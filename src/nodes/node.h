@@ -36,13 +36,18 @@ namespace BR {
 // Node is a template class that takes a single type parameter, which is a function pointer
 template<typename F> class Node;
 
-typedef tree_node_<Node*> TreeNode;  
+/* typedef tree_node_<Node*> TreeNode; */  
 
+class NodeBaseBase
+{
+    virtual ~NodeBaseBase() = 0;
+};
 // Now we define specializations for the function pointers
 template<typename R, typename... Args>
-class NodeBase
+class NodeBase : public NodeBaseBase
 {
     using RetType = R;
+	using Function = R(*)(Args...);
     using ArgTypes = std::tuple<Args...>;
     static constexpr std::size_t ArgCount = sizeof...(Args);
     

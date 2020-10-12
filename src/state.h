@@ -30,8 +30,8 @@ using namespace std;
 namespace BR { namespace Dat{
     template<typename type>
     /*!
-     * @class Stack
-     * @brief template stack class which holds various stack types for feat 
+     * @class NodeData
+     * @brief template stack class which holds various stack types for brush 
      */
     class NodeData
     {
@@ -40,10 +40,10 @@ namespace BR { namespace Dat{
             
         public:
         
-            ///< population set element at back of vector
+            ///< set element 
             void set(type element){ std::swap(dat, element);  }
             
-            ///< pops element from back of vector and removes it
+            ///< return the data
             type& get()
             {
                 return dat;
@@ -54,7 +54,7 @@ namespace BR { namespace Dat{
     
     /*!
      * @class State
-     * @brief contains various types of State actually used by feat
+     * @brief contains various types of State actually used by brush
      */
     struct State
     {
