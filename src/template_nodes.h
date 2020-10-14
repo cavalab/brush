@@ -3,7 +3,7 @@
 using namespace std;
 using std::cout; 
 
-/* template<typename F> class NodeBase; */
+template<typename F> class NodeBase;
 
 /* typedef tree_node_<Node*> TreeNode; */  
 
@@ -13,7 +13,7 @@ using std::cout;
 /* }; */
 // Now we define specializations for the function pointers
 template<typename R, typename... Args>
-class NodeBase //: public NodeBaseBase
+class NodeBase<R(Args...)> //: public NodeBaseBase
 {
     public:
         using RetType = R;
@@ -41,8 +41,8 @@ class NodeBase //: public NodeBaseBase
 // specialization for commutative and associate binary operators
 /* template<typename R, typename Arg> */
 /* class Node<R(*)(Args...)> : NodeBase<R, Args...> */
-// this class should work for associate and commutative operators:
-// plus, multiply, AND, OR
+/* // this class should work for associate and commutative operators: */
+/* // plus, multiply, AND, OR */
 /* class Node<R(*)(Arg, Arg)> : NodeBase<R, Arg, Arg> */
 /* { */
 /* public: */
@@ -62,8 +62,8 @@ class NodeBase //: public NodeBaseBase
 /*         cout << "ArgTypes: "; */
 /*         for (auto at : this->ArgTypes) cout << at; */
 /*         cout << endl; */
-/*     } */
-/*         ; */
+/*     }; */
+
 /* 	/1* State fit(const Data& d, *1/ */ 
 /* 	/1* 					   TreeNode* child1=0, *1/ */ 
 /* 	/1* 					   TreeNode* child2=0) *1/ */
@@ -89,9 +89,9 @@ class NodeBase //: public NodeBaseBase
 
 /* 	/1* } *1/ */
 
-/* 	/1* State predict(const Data& d, *1/ */ 
-/* 	/1* 					   TreeNode* child1=0, *1/ */ 
-/* 	/1* 					   TreeNode* child2=0) = 0; *1/ */
+/* /1* 	/2* State predict(const Data& d, *2/ *1/ */ 
+/* /1* 	/2* 					   TreeNode* child1=0, *2/ *1/ */ 
+/* /1* 	/2* 					   TreeNode* child2=0) = 0; *2/ *1/ */
 /* }; */
 
 // terminals
