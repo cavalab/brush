@@ -3,7 +3,7 @@
 using namespace std;
 using std::cout; 
 
-template<typename F> class NodeBase;
+class NodeBase {};
 
 /* typedef tree_node_<Node*> TreeNode; */  
 
@@ -11,33 +11,60 @@ template<typename F> class NodeBase;
 /* { */
 /*     virtual ~NodeBaseBase() = 0; */
 /* }; */
-// Now we define specializations for the function pointers
+/// Basic specialization for edge types (output and input types)
 template<typename R, typename... Args>
-class NodeBase<R(Args...)> //: public NodeBaseBase
+class TypedNodeBase : public NodeBase
 {
     public:
         using RetType = R;
-        /* using Function = R(*)(Args...); */
-        using Function = std::function<R(Args...)>;
         using ArgTypes = std::tuple<Args...>;
         static constexpr std::size_t ArgCount = sizeof...(Args);
     
+};
+
+
+template<typename F> class Node; // : public NodeBase;
+
+template<typename R, typename... Args>
+class Node<R(Args...)> : public TypedNodeBase<R, Args...>
+{
+    public:
+        using base = TypedNodeBase<R, Args...>;
+        using Function = std::function<R(Args...)>;
         Function op; 
 
-        NodeBase(Function& x) 
+        Node(Function& x) 
         {
-            op = x;
+            this->op = x;
             /* this->op = x(); */
             /* ArgTypes types; */ 
             /* cout << "function: " << x << endl; */
-            cout << "RetType: " << RetType() << endl;
-            cout << "ArgCount: " << ArgCount << endl;
+            cout << "RetType: " << typename base::RetType() << endl;
+            cout << "ArgCount: " << base::ArgCount << endl;
             /* cout << "ArgTypes: " << ArgTypes(); */
             /* for (auto at : types) cout << at; */
         };
 };
 
+template<typename R>
+class Node: public TypedNodeBase<R>
+{
+    public:
+        using base = TypedNodeBase<R>;
+        string variable_name;
 
+        Node(string name) 
+        {
+            this->variable_name = name;
+            /* this->op = x(); */
+            /* ArgTypes types; */ 
+            /* cout << "function: " << x << endl; */
+            cout << "RetType: " << typename base::RetType() << endl;
+            cout << "ArgCount: " << base::ArgCount << endl;
+            /* cout << "ArgTypes: " << ArgTypes(); */
+            /* for (auto at : types) cout << at; */
+        };
+};
 // specialization for commutative and associate binary operators
 /* template<typename R, typename Arg> */
 /* class Node<R(*)(Args...)> : NodeBase<R, Args...> */
