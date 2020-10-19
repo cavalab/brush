@@ -1,11 +1,30 @@
+/* Brush
+copyright 2020 William La Cava
+license: GNU/GPL v3
+*/
+
+#ifndef TEMPLATE_NODES_H
+#define TEMPLATE_NODES_H
 #include <typeinfo>
 #include <functional>
+#include "tree.h"
+#include "util/tuples.h"
+
 using namespace std;
 using std::cout; 
 
-class NodeBase {};
+/* TODO:
+ * - fit and predict
+ *   - get nodes working in a tree
+ *   - proper moving functions eg swap, etc. in base class
+ */
 
-/* typedef tree_node_<Node*> TreeNode; */  
+class NodeBase {
+	public:
+		string name;
+};
+
+typedef tree_node_<NodeBase*> TreeNode;  
 
 /* class NodeBaseBase */
 /* { */
@@ -18,6 +37,8 @@ class TypedNodeBase : public NodeBase
     public:
         using RetType = R;
         using ArgTypes = std::tuple<Args...>;
+        /* template <std::size_t N> */
+        /* using NthArg = std::tuple_element<N, ArgTypes>; */
         static constexpr std::size_t ArgCount = sizeof...(Args);
     
 };
@@ -31,11 +52,17 @@ class Node<R(Args...)> : public TypedNodeBase<R, Args...>
     public:
         using base = TypedNodeBase<R, Args...>;
         using Function = std::function<R(Args...)>;
+        /* using ArgCount = typename base::ArgCount; */
+        using ArgTypes = typename base::ArgTypes;
+
+        using NthArg = std::tuple_element<base::ArgCount, ArgTypes>;
+
         Function op; 
 
-        Node(Function& x) 
+        Node(Function& x, string name) 
         {
             this->op = x;
+			this->name = name;
             /* this->op = x(); */
             /* ArgTypes types; */ 
             /* cout << "function: " << x << endl; */
@@ -44,6 +71,27 @@ class Node<R(Args...)> : public TypedNodeBase<R, Args...>
             /* cout << "ArgTypes: " << ArgTypes(); */
             /* for (auto at : types) cout << at; */
         };
+
+        State fit(const Data& d, TreeNode* child1=0, TreeNode* child2=0)
+	    {
+            ArgTypes inputs; //(ArgCount);
+
+            TreeNode* sib = child1;
+            for (int i = 0; i < base::ArgCount; ++i)
+            {
+                /* std::get<i>(inputs) =  std::get<base::NthArg<i>>(sib->fit(d)) ; */
+                tuple_index(inputs, i) =  tuple_index(sib->fit(d), i) ;
+                sib = sib->next_sibling;
+            }
+            State out;
+            /* std::get<R>(out) = this->op( */
+            /*         std::get<base::ArgCount>(std::forward<ArgTypes>(inputs))... */
+            /*             ); */
+ 			std::get<R>(out) = std::apply([this](auto &&... args) 
+										  { this->op(args...); }, 
+								  		  inputs);
+            return out;
+        }
 };
 
 template<typename R>
@@ -56,6 +104,7 @@ class Node: public TypedNodeBase<R>
         Node(string name) 
         {
             this->variable_name = name;
+			this->name = this->variable_name;
             /* this->op = x(); */
             /* ArgTypes types; */ 
             /* cout << "function: " << x << endl; */
@@ -64,6 +113,13 @@ class Node: public TypedNodeBase<R>
             /* cout << "ArgTypes: " << ArgTypes(); */
             /* for (auto at : types) cout << at; */
         };
+
+        State fit(const Data& d, 
+						   TreeNode* child1=0, 
+						   TreeNode* child2=0)
+	    {
+            
+        }
 };
 // specialization for commutative and associate binary operators
 /* template<typename R, typename Arg> */
@@ -91,17 +147,17 @@ class Node: public TypedNodeBase<R>
 /*         cout << endl; */
 /*     }; */
 
-/* 	/1* State fit(const Data& d, *1/ */ 
-/* 	/1* 					   TreeNode* child1=0, *1/ */ 
-/* 	/1* 					   TreeNode* child2=0) *1/ */
-/* 	/1* { *1/ */
-/* 	/1* 	tree_node_<Node*>* sib = child1; *1/ */
-/* 	/1* 	vector<Arg> inputs; //(ArgCount); *1/ */
-/*         /1* for (int i = 0; i < ArgCount; ++i) *1/ */
-/*         /1* { *1/ */
-/*             /1* inputs.push_back( sib->fit(d).get<Arg>() ); *1/ */
-/*             /1* sib = sib->next_sibling; *1/ */
-/*         /1* } *1/ */
+	/* State fit(const Data& d, */ 
+	/* 					   TreeNode* child1=0, */ 
+	/* 					   TreeNode* child2=0) */
+	/* { */
+	/* 	tree_node_<Node*>* sib = child1; */
+	/* 	vector<Arg> inputs; //(ArgCount); */
+        /* for (int i = 0; i < ArgCount; ++i) */
+        /* { */
+            /* inputs.push_back( sib->fit(d).get<Arg>() ); */
+            /* sib = sib->next_sibling; */
+        /* } */
 /* 	/1* 	R output = transform_reduce( inputs.begin(), inputs.end(), *1/ */
 /*                                      /1* W.begin(), 0, *1/ */ 
 /*                                      /1* Function, *1/ */
@@ -212,3 +268,5 @@ class Node: public TypedNodeBase<R>
 /* 	/1* 					   TreeNode* child1=0, *1/ */ 
 /* 	/1* 					   TreeNode* child2=0) = 0; *1/ */
 /* }; */
+
+#endif

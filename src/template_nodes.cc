@@ -1,47 +1,80 @@
 #include <algorithm>
 #include <iostream>
 #include "template_nodes.h"
+#include "operators.h"
+#include "program.h"
+
+
 using namespace std;
+using namespace BR;
 
 /* template<typename T> */
 /* T add(T x, T y){ return x + y; }; */
-
-namespace Op{
-template<typename T>
-std::function<bool(T,T)> less = std::less<T>(); 
-
-template<typename T>
-std::function<T(T,T)> plus = std::plus<T>();
-
-template<typename T>
-std::function<T(T,T)> minus = std::minus<T>();
-
-template<typename T>
-std::function<T(T,T)> multiplies = std::multiplies<T>();
-}
+std::map<std::string, NodeBase* > NodeMap = {
+    { "+", new Node<float(float,float)>(Op::plus<float>, "ADD") },
+    { "-", new Node<float(float,float)>(Op::minus<float>, "MINUS") },
+    { "<", new Node<bool(float, float)>(Op::less<float>, "LESS THAN") },
+    { "*", new Node<float(float,float)>(Op::multiplies<float>, "TIMES") },
+};
 
 int main(int, char **)
 {
     cout << "declaring node...\n";
-    Node<int(int, int)> node_plus(Op::plus<int>);
+    Node<int(int, int)> node_plus(Op::plus<int>, "ADD");
     cout << "3+5 = " << node_plus.op(3, 5) << endl;
     cout << "3.1+5.7 = " << node_plus.op(3.1, 5.7) << endl;
 
-    Node<float(float, float)> node_plus_float(Op::plus<float>);
+    Node<float(float, float)> node_plus_float(Op::plus<float>, "ADD");
 
     cout << "3+5 = " << node_plus_float.op(3, 5) << endl;
     cout << "3.1+5.7 = " << node_plus_float.op(3.1, 5.7) << endl;
 
-    Node<bool(float, float)> node_lt(Op::less<float>);
+    Node<bool(float, float)> node_lt(Op::less<float>, "LESS THAN");
     cout << "3<5 = " << node_lt.op(3, 5) << endl;
     cout << "3.1<5.7 = " << node_lt.op(3.1, 5.7) << endl;
 
-    Node<float(float, float)> node_minus(Op::minus<float>);
+    Node<float(float, float)> node_minus(Op::minus<float>, "MINUS");
     cout << "3-5 = " << node_minus.op(3, 5) << endl;
     cout << "3.1-5.7 = " << node_minus.op(3.1, 5.7) << endl;
 
-    Node<float(float, float)> node_multiplies(Op::multiplies<float>);
+    Node<float(float, float)> node_multiplies(Op::multiplies<float>, "TIMES");
     cout << "3*5 = " << node_multiplies.op(3, 5) << endl;
     cout << "3.1*5.7 = " << node_multiplies.op(3.1, 5.7) << endl;
     cout << "dune.\n";
+
+    // construct tree
+    // P = LESS ( ADD (X1, X2) , MULTIPLY( X1, X2) )
+    //
+    Program tree;
+    Program::iterator top = tree.begin();
+    auto root = tree.insert(tree.begin(), NodeMap["<"]);
+    auto add = tree.append_child(root, NodeMap["+"]);
+    auto times = tree.append_child(root, NodeMap["*"]);
+    tree.append_child(add, new Node<float>("x_1"));
+    tree.append_child(add, new Node<float>("x_2"));
+    tree.append_child(times, new Node<float>("x_1"));
+    tree.append_child(times, new Node<float>("x_2"));
+
+    auto loc = tree.begin(); 
+
+    while(loc!=tree.end()) 
+    {
+        for(int i=0; i<tree.depth(loc); ++i)
+            cout << " ";
+        cout << (*loc)->name << endl;
+        ++loc;
+        /* cout << endl; */
+    }
+
+    cout << "===\n";
+    Program::pre_order_iterator poi = tree.begin();
+    MatrixXf X(2,10);
+    VectorXf y(10);
+    X << 1.0,2.0,3.0,4.0,5.0,6.0,7.0,8.0,9.0,10.0,
+         2.0,1.0,6.0,4.0,5.0,8.0,7.0,5.0,9.0,10.0,
+    y << 1.0,0.0,1.0,1.0,0.0,1.0,1.0,0.0,0.0,0.0;
+    BR::Dat::Longitudinal Z;
+    Data d(X,y,Z);
+    State out = tree.fit(d);
+    cout << "output: " << get<float>(out) << endl;
 }

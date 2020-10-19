@@ -36,7 +36,7 @@
 #include <cstddef>
 #include "state.h"
 #include "data.h"
-using BR::Dat::State;
+using BR::State;
 using BR::Dat::Data;
 /* /// Overload swap for data class */ 
 /* template<class T> */
@@ -57,13 +57,13 @@ class tree_node_ { // size: 5*4=20 bytes (on 32 bit arch), can be reduced by 8.
         /* string name;              				///< node type */
 
         /* State evaluate(const Data& data); */
-        State eval(const Data& d);
+        State fit(const Data& d);
 }; 
 
 template<class T>
-State tree_node_<T>::eval(const Data& d)
+State tree_node_<T>::fit(const Data& d)
 {
-    return this->data->evaluate(d, first_child, last_child);
+    return this->data->fit(d, first_child, last_child);
 }
 template<class T>
 tree_node_<T>::tree_node_()
