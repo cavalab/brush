@@ -15,6 +15,7 @@ license: GNU/GPL v3
 #include <vector>
 #include <map>
 #include <iostream>
+#include <variant>
 
 using std::vector;
 using Eigen::MatrixXf;
@@ -28,7 +29,8 @@ using namespace std;
 //external includes
 
 namespace BR { 
-    typedef std::tuple<float, bool, int, ArrayXf, ArrayXi, ArrayXb> State; 
+    /* typedef std::tuple<float, bool, int, ArrayXf, ArrayXi, ArrayXb> State; */ 
+    typedef std::variant<float, bool, int, ArrayXf, ArrayXi, ArrayXb> State; 
 }
     /*template<typename type>*/
     /*!

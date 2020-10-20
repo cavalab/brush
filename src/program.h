@@ -21,7 +21,7 @@ using BR::Dat::Data;
 
 namespace BR {
 
-class Program: public tree<NodeBase*>
+class Program : public tree<NodeBase*>
 {
     public:
       
@@ -37,7 +37,14 @@ class Program: public tree<NodeBase*>
         Program mutate(){}; 
         Program cross(Program& other){}; 
        
-        State fit(const Data& d);
+        State fit(const Data& d)
+		{
+			/* auto start = this->begin(); */
+            /* auto start = this->begin(); */ 
+			return (*this->begin())->fit(d);
+		};
+
+        /* tree<NodeBase*> P; */
 
 };
 }

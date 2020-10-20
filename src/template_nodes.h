@@ -21,7 +21,10 @@ using std::cout;
 
 class NodeBase {
 	public:
+        typedef tree_node_<NodeBase*> TreeNode;  
 		string name;
+        virtual State fit(const Data& d, TreeNode* child1=0, 
+                TreeNode* child2=0) = 0;
 };
 
 typedef tree_node_<NodeBase*> TreeNode;  
@@ -37,15 +40,19 @@ class TypedNodeBase : public NodeBase
     public:
         using RetType = R;
         using ArgTypes = std::tuple<Args...>;
-        /* template <std::size_t N> */
-        /* using NthArg = std::tuple_element<N, ArgTypes>; */
+        template <std::size_t N>
+        using NthArg = std::tuple_element<N, ArgTypes>;
         static constexpr std::size_t ArgCount = sizeof...(Args);
+        /* const vector<std::size_t> arg_index(ArgCount); */
+        /* arg_index = std::iota(arg_index.begin(),arg_index.end(),0); */
     
 };
 
 
 template<typename F> class Node; // : public NodeBase;
 
+/* template <size_t I=0, typename... Ts> */
+/* constexpr void assign_inputs(tuple<Ts...> inputs, */ 
 template<typename R, typename... Args>
 class Node<R(Args...)> : public TypedNodeBase<R, Args...>
 {
@@ -54,43 +61,60 @@ class Node<R(Args...)> : public TypedNodeBase<R, Args...>
         using Function = std::function<R(Args...)>;
         /* using ArgCount = typename base::ArgCount; */
         using ArgTypes = typename base::ArgTypes;
+        /* using ArgTypesTypes = std::tuple<typename Args::value_type...>; */
+        template <std::size_t N>
+        using NthType = typename std::tuple_element<N, ArgTypes>::type;
 
-        using NthArg = std::tuple_element<base::ArgCount, ArgTypes>;
+        /* using NthArg = base::NthArg; */
+        /* template<std::size_t N> */
+        /* const auto ArgIdx = std::make_integer_sequence<std::size_t, N>; */
+        /* const auto ArgIdx = std::make_index_sequence<sizeof...(Args)>{}; */
+		/* static constexpr std::array<int, base::ArgCount> ArgIdx = \ */
+		/* 	f_them_all(ArgTypes); */
 
         Function op; 
 
-        Node(Function& x, string name) 
+		template<size_t... Is>
+		ArgTypes set_inputs(const array<State, base::ArgCount>& in, 
+					std::index_sequence<Is...>)
+		{ 
+            return std::make_tuple(std::get<NthType<Is>>(in.at(Is))...);
+		};
+        /* template<size_t I, typename T> */
+        /*     void set_item( */
+        /* get<I>(t) = get<T>(in.at(I)); */
+
+        Node(const Function& x, string name) 
         {
             this->op = x;
 			this->name = name;
-            /* this->op = x(); */
-            /* ArgTypes types; */ 
-            /* cout << "function: " << x << endl; */
             cout << "RetType: " << typename base::RetType() << endl;
             cout << "ArgCount: " << base::ArgCount << endl;
-            /* cout << "ArgTypes: " << ArgTypes(); */
-            /* for (auto at : types) cout << at; */
         };
 
         State fit(const Data& d, TreeNode* child1=0, TreeNode* child2=0)
 	    {
+            cout << "fitting " << this->name << endl;
+            cout << "child1: " << child1 << endl;
+            cout << "child2: " << child2 << endl;
             ArgTypes inputs; //(ArgCount);
+            array<State, base::ArgCount> child_outputs;
 
+            cout << "gathering inputs..." << endl;
             TreeNode* sib = child1;
             for (int i = 0; i < base::ArgCount; ++i)
             {
-                /* std::get<i>(inputs) =  std::get<base::NthArg<i>>(sib->fit(d)) ; */
-                tuple_index(inputs, i) =  tuple_index(sib->fit(d), i) ;
+                cout << i << endl;
+                cout << "sibling: " << sib << endl;
+                cout << "sibling name: " << sib->data->name << endl;
+                child_outputs.at(i) = sib->fit(d);
                 sib = sib->next_sibling;
             }
-            State out;
-            /* std::get<R>(out) = this->op( */
-            /*         std::get<base::ArgCount>(std::forward<ArgTypes>(inputs))... */
-            /*             ); */
- 			std::get<R>(out) = std::apply([this](auto &&... args) 
-										  { this->op(args...); }, 
-								  		  inputs);
-            return out;
+            inputs = set_inputs(child_outputs, 
+                                std::make_index_sequence<sizeof...(Args)>{}
+                                );
+
+ 			return std::apply(this->op, inputs);
         }
 };
 
@@ -100,11 +124,13 @@ class Node: public TypedNodeBase<R>
     public:
         using base = TypedNodeBase<R>;
         string variable_name;
+		unsigned int loc;
 
-        Node(string name) 
+        Node(string name, int loc) 
         {
             this->variable_name = name;
 			this->name = this->variable_name;
+			this->loc = loc;
             /* this->op = x(); */
             /* ArgTypes types; */ 
             /* cout << "function: " << x << endl; */
@@ -118,9 +144,38 @@ class Node: public TypedNodeBase<R>
 						   TreeNode* child1=0, 
 						   TreeNode* child2=0)
 	    {
-            
+            //TODO: this needs to be specialized for different terminal types
+            //that deal directly with data.
+			/* State out; */
+			/* std::get<R>(out) = d.X.row(this->loc); */ 
+            return 0;
+            /* return d.X.row(this->loc); */
         }
 };
+
+template<>
+class Node<ArrayXf>: public TypedNodeBase<ArrayXf>
+{
+    public:
+        string variable_name;
+		unsigned int loc;
+
+        Node(string name, int loc) 
+        {
+            this->variable_name = name;
+			this->name = this->variable_name;
+			this->loc = loc;
+        };
+        State fit(const Data& d, 
+						   TreeNode* child1=0, 
+						   TreeNode* child2=0)
+	    {
+			/* State out; */
+			/* std::get<R>(out) = d.X.row(this->loc); */ 
+            return ArrayXf(d.X.row(this->loc));
+        };
+};
+
 // specialization for commutative and associate binary operators
 /* template<typename R, typename Arg> */
 /* class Node<R(*)(Args...)> : NodeBase<R, Args...> */

@@ -95,7 +95,7 @@ class tree {
 		class pre_order_iterator;
 		class post_order_iterator;
 		class sibling_iterator;
-      class leaf_iterator;
+        class leaf_iterator;
 
 		tree();                                         // empty constructor
 		tree(const T&);                                 // constructor setting given element as head
@@ -171,7 +171,7 @@ class tree {
 				bool    operator==(const post_order_iterator&) const;
 				bool    operator!=(const post_order_iterator&) const;
 				post_order_iterator&  operator++();
-			   post_order_iterator&  operator--();
+	  		    post_order_iterator&  operator--();
 				post_order_iterator   operator++(int);
 				post_order_iterator   operator--(int);
 				post_order_iterator&  operator+=(unsigned int);

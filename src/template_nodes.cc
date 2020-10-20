@@ -3,10 +3,12 @@
 #include "template_nodes.h"
 #include "operators.h"
 #include "program.h"
+#include "data.h"
 
 
 using namespace std;
 using namespace BR;
+using namespace BR::Dat;
 
 /* template<typename T> */
 /* T add(T x, T y){ return x + y; }; */
@@ -50,10 +52,10 @@ int main(int, char **)
     auto root = tree.insert(tree.begin(), NodeMap["<"]);
     auto add = tree.append_child(root, NodeMap["+"]);
     auto times = tree.append_child(root, NodeMap["*"]);
-    tree.append_child(add, new Node<float>("x_1"));
-    tree.append_child(add, new Node<float>("x_2"));
-    tree.append_child(times, new Node<float>("x_1"));
-    tree.append_child(times, new Node<float>("x_2"));
+    tree.append_child(add, new Node<float>("x_1", 0));
+    tree.append_child(add, new Node<float>("x_2", 1));
+    tree.append_child(times, new Node<float>("x_1", 0));
+    tree.append_child(times, new Node<float>("x_2", 1));
 
     auto loc = tree.begin(); 
 
@@ -73,8 +75,8 @@ int main(int, char **)
     X << 1.0,2.0,3.0,4.0,5.0,6.0,7.0,8.0,9.0,10.0,
          2.0,1.0,6.0,4.0,5.0,8.0,7.0,5.0,9.0,10.0,
     y << 1.0,0.0,1.0,1.0,0.0,1.0,1.0,0.0,0.0,0.0;
-    BR::Dat::Longitudinal Z;
+    Longitudinal Z;
     Data d(X,y,Z);
     State out = tree.fit(d);
-    cout << "output: " << get<float>(out) << endl;
+    cout << "output: " << get<ArrayXb>(out) << endl;
 }
