@@ -1,13 +1,18 @@
+/* Brush
+copyright 2020 William La Cava
+license: GNU/GPL v3
+*/
+#ifndef OP_H
+#define OP_H
 #include <Eigen/Dense>
 using namespace std;
-using namespace Eigen;
-using Eigen::Dynamic;
-using Eigen::Dynamic;
+typedef Eigen::Array<bool,Eigen::Dynamic,1> ArrayXb;
+using Eigen::ArrayBase;
 
 namespace Op{
 
-template<typename T>
-std::function<bool(T,T)> less = std::less<T>(); 
+/* template<typename T> */
+/* std::function<bool(T,T)> less = std::less<T>(); */ 
 
 /// specialization of binary op for eigen
 /* template<typename T> */
@@ -15,22 +20,24 @@ std::function<bool(T,T)> less = std::less<T>();
 /*     Matrix<T, Dynamic, Dynamic> B) */
 /* { return A < B; } */
 
-template<typename T>
-inline ArrayXb lt( const ArrayBase<T>& A, const ArrayBase<T>& B) 
-{ return A < B; };
-
 template<typename T, typename U>
-T lt( U A, U B) { return T(A < B); };
+inline T lt( const U& A, const U& B) { return T(A < B); };
+
+/* template<typename T> */
+/* inline ArrayXb lt( const ArrayBase<T>& A, const ArrayBase<T>& B) */ 
+/* { return A < B; }; */
+
 /* template<typename T> */
 /* std::function<Eigen::MatrixBase<bool>(T,T)> cwise_less = lt<T>(); */ 
 
-template<typename T>
-std::function<T(T,T)> plus = std::plus<T>();
+/* template<typename T> */
+/* std::function<T(T,T)> plus = std::plus<T>(); */
 
-template<typename T>
-std::function<T(T,T)> minus = std::minus<T>();
+/* template<typename T> */
+/* std::function<T(T,T)> minus = std::minus<T>(); */
 
-template<typename T>
-std::function<T(T,T)> multiplies = std::multiplies<T>();
+/* template<typename T> */
+/* std::function<T(T,T)> multiplies = std::multiplies<T>(); */
 
 }
+#endif

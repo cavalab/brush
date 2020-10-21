@@ -12,7 +12,7 @@ license: GNU/GPL v3
 #include "tree.h"
 #include "data.h"
 #include "state.h"
-#include "template_nodes.h"
+#include "node.h"
 
 using std::cout;
 using std::string;
