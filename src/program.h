@@ -23,6 +23,7 @@ namespace BR {
 
 class Program : public tree<NodeBase*>
 {
+    
     public:
       
         // constructs a tree using functions, terminals, and settings
@@ -40,11 +41,12 @@ class Program : public tree<NodeBase*>
         State fit(const Data& d)
 		{
 			/* auto start = this->begin(); */
-            /* auto start = this->begin(); */ 
-			return (*this->begin())->fit(d);
+            iterator start = this->begin(); 
+            /* tree_node_<NodeBase*> root = (*start).fit(d); */
+            State out = start.node->fit(d);
+			return out;
 		};
 
-        /* tree<NodeBase*> P; */
 
 };
 }

@@ -4,6 +4,7 @@
 #include "operators.h"
 #include "program.h"
 #include "data.h"
+#include "tree.h"
 
 using namespace Eigen;
 using namespace std;
@@ -48,7 +49,7 @@ int main(int, char **)
     // P = LESS ( ADD (X1, X2) , MULTIPLY( X1, X2) )
     //
     Program tree;
-    Program::iterator top = tree.begin();
+    auto top = tree.begin();
     auto root = tree.insert(tree.begin(), NodeMap["<"]);
     auto add = tree.append_child(root, NodeMap["+"]);
     auto times = tree.append_child(root, NodeMap["*"]);

@@ -23,8 +23,7 @@ class NodeBase {
 	public:
         typedef tree_node_<NodeBase*> TreeNode;  
 		string name;
-        virtual State fit(const Data& d, TreeNode* child1=0, 
-                TreeNode* child2=0) = 0;
+        virtual State fit(const Data&, TreeNode*, TreeNode*) = 0;
 };
 
 typedef tree_node_<NodeBase*> TreeNode;  
@@ -114,6 +113,8 @@ class Node<R(Args...)> : public TypedNodeBase<R, Args...>
                                 std::make_index_sequence<sizeof...(Args)>{}
                                 );
 
+            State out = std::apply(this->op, inputs);
+            cout << "returning " << std::get<R>(out) << endl;
  			return std::apply(this->op, inputs);
         }
 };
@@ -141,9 +142,9 @@ class Node: public TypedNodeBase<R>
         };
 
         State fit(const Data& d, 
-						   TreeNode* child1=0, 
-						   TreeNode* child2=0)
-	    {
+						   TreeNode* child1, 
+						   TreeNode* child2)
+        {
             //TODO: this needs to be specialized for different terminal types
             //that deal directly with data.
 			/* State out; */
@@ -172,6 +173,7 @@ class Node<ArrayXf>: public TypedNodeBase<ArrayXf>
 	    {
 			/* State out; */
 			/* std::get<R>(out) = d.X.row(this->loc); */ 
+            cout << "returning " << d.X.row(this->loc).transpose() << endl;
             return ArrayXf(d.X.row(this->loc));
         };
 };
