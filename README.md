@@ -1,7 +1,7 @@
 # brush
 
 Brush is a strongly-typed genetic programming language. 
-It is designed to allow **b**ackpropagations and **r**ecursion **u**sing **s**earch **h**euristics.
+It is designed for **b**ackpropagations and **r**ecursion **u**sing **s**earch **h**euristics.
 
 Goals:
 
