@@ -38,6 +38,8 @@
 #include "data.h"
 using BR::State;
 using BR::Dat::Data;
+#include <Eigen/Dense>
+using Eigen::ArrayXf;
 /* /// Overload swap for data class */ 
 /* template<class T> */
 /* void swap(T& x, T& y) { x.swap(y); } */
@@ -58,6 +60,8 @@ class tree_node_ { // size: 5*4=20 bytes (on 32 bit arch), can be reduced by 8.
 
         /* State evaluate(const Data& data); */
         State fit(const Data& d);
+        State predict(const Data& d);
+        State grad_descent(const ArrayXf&);
 }; 
 
 template<class T>
@@ -65,6 +69,19 @@ State tree_node_<T>::fit(const Data& d)
 {
     return this->data->fit(d, first_child, last_child);
 }
+
+template<class T>
+State tree_node_<T>::predict(const Data& d)
+{
+    return this->data->predict(d, first_child, last_child);
+}
+
+template<class T>
+State tree_node_<T>::grad_descent(const ArrayXf& gradient)
+{
+    return this->data->fit(gradient, *first_child, *last_child);
+}
+
 template<class T>
 tree_node_<T>::tree_node_()
 	: parent(0), first_child(0), last_child(0), prev_sibling(0), next_sibling(0)
