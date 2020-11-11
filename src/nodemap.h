@@ -9,7 +9,6 @@ license: GNU/GPL v3
 #include "operators.h"
 
 /* template<typename R, typename Arg1, typename Arg2=Arg1> */
-template<typename T, typename ... Args>
 struct NodeMap
 {
     std::map<std::string, NodeBase*> node_map; 
@@ -32,14 +31,14 @@ struct NodeMap
 };
 
 template<typename T>
-struct ContinuousNodeMap : NodeMap<T>
+struct ContinuousNodeMap : NodeMap
 {
     ContinuousNodeMap() 
     { 
-       this->node_map = std::map<std::string, NodeBase*>({
-            { "+", new Node<T(T,T)>(std::plus<T>(), "ADD") },
-            { "-", new Node<T(T,T)>(std::minus<T>(), "SUBTRACT") },
-            { "*", new Node<T(T,T)>(std::multiplies<T>(), "TIMES") }
+       this->node_map = {
+            { "+", new Node<T(T,T)>("+", std::plus<T>()) },
+            { "-", new Node<T(T,T)>("-", std::minus<T>()) },
+            { "*", new Node<T(T,T)>("*", std::multiplies<T>()) },
             /* { "/", Node<T(T,T)>(Op::safe_divide<T>, "DIV") }, */
             /* { "sqrt",  new Node<T(T)>(sqrt, "sqrt")}, */ 
             /* { "sin",  new Node<T(T)>(sin, "sin")}, */ 
@@ -54,28 +53,26 @@ struct ContinuousNodeMap : NodeMap<T>
             /* { "log", new Node<T(T)>(log, "log") }, */   
             /* { "logit", new Node<T(T)>(logit, "logit") }, */
             /* { "relu", new Node<T(T)>(relu, "relu") } */
-       });
+       };
     };
 };
 
 template<typename T, typename U>
-struct LogicalNodeMap : NodeMap<T,U>
+struct LogicalNodeMap : NodeMap
 {
     LogicalNodeMap() 
     {
-       this->node_map = std::map<std::string, NodeBase*>(
-        {
+       this->node_map = {
             /* { "and", new Node<T(U,U)>(Op::plus<T>, "AND") }, */
             /* { "or", new Node<T(U,U)>(Op::minus<T>, "OR") }, */
             /* { "not", new Node<T(U,U)>(Op::multiplies<T>, "NOT") }, */
             /* { "xor", new Node<T(U,U)>(Op::divides<T>, "XOR") }, */
-            { "<", new Node<T(U,U)>(Op::lt<T,U>, "LESS") }
+            { "<", new Node<T(U,U)>("<", Op::lt<T,U>) },
             /* { "<=", new Node<T(U,U)>(Op::leq<U>, "LESS") }, */
             /* { "=",  new Node<T(U,U)>(Op::equal<U>, "EQUAL")}, */ 
             /* { ">",  new Node<T(U,U)>(Op::gt<U>, ">")}, */ 
             /* { ">=",  new Node<T(U,U)>(Op::geq<U>, ">")}, */ 
-        }
-        );
+        };
     };
 };
 
@@ -83,6 +80,12 @@ ContinuousNodeMap<ArrayXf> VectorArithmeticMap;
 ContinuousNodeMap<float> FloatNodeMap; 
 LogicalNodeMap<ArrayXb, ArrayXf> VectorLogicMap;
 /* LogicalNodeMap<bool, float> BoolLogicMap; */
+/* One node map to rule them all */
+NodeMap NM;
+NM.node_map.insert(VectorArithmeticMap.node_map.begin(),
+                   VectorArithmeticMap.node_map.end());
+NM.node_map.insert(VectorLogicMap.node_map.begin(),
+                   VectorLogicMap.node_map.end());
 
 #endif
 
