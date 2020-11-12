@@ -24,24 +24,24 @@ using namespace BR::Dat;
 int main(int, char **)
 {
     cout << "declaring node...\n";
-    Node<int(int, int)> node_plus(std::plus<int>(), "ADD");
+    Node<int(int, int)> node_plus("+", std::plus<int>());
     cout << "3+5 = " << node_plus.op(3, 5) << endl;
     cout << "3.1+5.7 = " << node_plus.op(3.1, 5.7) << endl;
 
-    Node<float(float, float)> node_plus_float(std::plus<float>(), "ADD");
+    Node<float(float, float)> node_plus_float("+", std::plus<float>());
 
     cout << "3+5 = " << node_plus_float.op(3, 5) << endl;
     cout << "3.1+5.7 = " << node_plus_float.op(3.1, 5.7) << endl;
 
-    Node<bool(float, float)> node_lt(std::less<float>(), "LESS THAN");
+    Node<bool(float, float)> node_lt("<", std::less<float>() );
     cout << "3<5 = " << node_lt.op(3, 5) << endl;
     cout << "3.1<5.7 = " << node_lt.op(3.1, 5.7) << endl;
 
-    Node<float(float, float)> node_minus(std::minus<float>(), "MINUS");
+    Node<float(float, float)> node_minus("-", std::minus<float>());
     cout << "3-5 = " << node_minus.op(3, 5) << endl;
     cout << "3.1-5.7 = " << node_minus.op(3.1, 5.7) << endl;
 
-    Node<float(float, float)> node_multiplies(std::multiplies<float>(), "TIMES");
+    Node<float(float, float)> node_multiplies("*", std::multiplies<float>());
     cout << "3*5 = " << node_multiplies.op(3, 5) << endl;
     cout << "3.1*5.7 = " << node_multiplies.op(3.1, 5.7) << endl;
     cout << "dune.\n";
@@ -51,8 +51,8 @@ int main(int, char **)
     //
     Program tree;
     auto top = tree.begin();
-    auto root = tree.insert(tree.begin(), VectorLogicMap["<"]);
-    auto add = tree.append_child(root, VectorArithmeticMap["+"]);
+    auto root = tree.insert(tree.begin(), NM["<"]);
+    auto add = tree.append_child(root, NM["+"]);
     /* auto add = tree.append_child(root, new Node<ArrayXf(ArrayXf,ArrayXf)>( */
     /*             std::plus<ArrayXf>(), "ADD")); */
     

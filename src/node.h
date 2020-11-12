@@ -46,6 +46,14 @@ class TypedNodeBase : public NodeBase
         static constexpr std::size_t ArgCount = sizeof...(Args);
         template <std::size_t N>
         using NthType = typename std::tuple_element<N, TupleArgs>::type;
+		
+    protected:
+        template<size_t... Is>
+		TupleArgs set_inputs(const array<State, ArgCount>& in, 
+					std::index_sequence<Is...>)
+		{ 
+            return std::make_tuple(std::get<NthType<Is>>(in.at(Is))...);
+		};
 };
 
 /* Declaration of Node as a templated class */
@@ -137,10 +145,8 @@ class Node<R(Args...)> : public TypedNodeBase<R, Args...>
 
         Node(string name, const Function& x) 
         {
-            this->op = x;
 			this->name = name;
-            this->V = {};
-            this->W = { 1.0 };
+            this->op = x;
         };
 
         State fit(const Data& d, TreeNode*& child1, TreeNode*& child2) override 
@@ -154,7 +160,7 @@ class Node<R(Args...)> : public TypedNodeBase<R, Args...>
                 child_outputs.at(i) = sib->fit(d);
                 sib = sib->next_sibling;
             }
-            TupleArgs inputs = set_inputs(child_outputs, 
+            TupleArgs inputs = base::set_inputs(child_outputs, 
                                 std::make_index_sequence<sizeof...(Args)>{}
                                 );
 
@@ -175,7 +181,7 @@ class Node<R(Args...)> : public TypedNodeBase<R, Args...>
                 child_outputs.at(i) = sib->predict(d);
                 sib = sib->next_sibling;
             }
-            TupleArgs inputs = set_inputs(child_outputs, 
+            TupleArgs inputs = base::set_inputs(child_outputs, 
                                 std::make_index_sequence<sizeof...(Args)>{}
                                 );
 
@@ -183,15 +189,7 @@ class Node<R(Args...)> : public TypedNodeBase<R, Args...>
         };
 
 
-    private:
-
-		template<size_t... Is>
-		TupleArgs set_inputs(const array<State, base::ArgCount>& in, 
-					std::index_sequence<Is...>)
-		{ 
-            return std::make_tuple(std::get<base::NthType<Is>>(in.at(Is))...);
-		};
-
+        State grad_descent(const ArrayXf&, TreeNode*&, TreeNode*&) override {};
 
 };
 
@@ -251,7 +249,7 @@ class NodeDx<R(Args...)> : public TypedNodeBase<R, Args...>
                 child_outputs.at(i) = sib->fit(d);
                 sib = sib->next_sibling;
             }
-            TupleArgs inputs = set_inputs(child_outputs, 
+            TupleArgs inputs = base::set_inputs(child_outputs, 
                                 std::make_index_sequence<sizeof...(Args)>{}
                                 );
 
@@ -286,7 +284,7 @@ class NodeDx<R(Args...)> : public TypedNodeBase<R, Args...>
                 child_outputs.at(i) = sib->predict(d);
                 sib = sib->next_sibling;
             }
-            TupleArgs inputs = set_inputs(child_outputs, 
+            TupleArgs inputs = base::set_inputs(child_outputs, 
                                 std::make_index_sequence<sizeof...(Args)>{}
                                 );
 
@@ -310,12 +308,6 @@ class NodeDx<R(Args...)> : public TypedNodeBase<R, Args...>
 
     private:
 
-		template<size_t... Is>
-		TupleArgs set_inputs(const array<State, base::ArgCount>& in, 
-					std::index_sequence<Is...>)
-		{ 
-            return std::make_tuple(std::get<base::NthType<Is>>(in.at(Is))...);
-		};
 
         void store_gradients(const typename base::TupleArgs& inputs)
         {

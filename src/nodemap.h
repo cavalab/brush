@@ -11,7 +11,20 @@ license: GNU/GPL v3
 /* template<typename R, typename Arg1, typename Arg2=Arg1> */
 struct NodeMap
 {
-    std::map<std::string, NodeBase*> node_map; 
+    typedef std::map<std::string, NodeBase*> str_to_node;
+    str_to_node node_map; 
+
+    NodeMap(){};
+
+    NodeMap(std::set<str_to_node> maps)
+    {
+        this->node_map.clear();
+        for (const auto& nm : maps)
+        {
+            this->node_map.insert(nm.begin(), nm.end());
+        }
+
+    };
 
     ~NodeMap()
     {
@@ -39,6 +52,7 @@ struct ContinuousNodeMap : NodeMap
             { "+", new Node<T(T,T)>("+", std::plus<T>()) },
             { "-", new Node<T(T,T)>("-", std::minus<T>()) },
             { "*", new Node<T(T,T)>("*", std::multiplies<T>()) },
+       };
             /* { "/", Node<T(T,T)>(Op::safe_divide<T>, "DIV") }, */
             /* { "sqrt",  new Node<T(T)>(sqrt, "sqrt")}, */ 
             /* { "sin",  new Node<T(T)>(sin, "sin")}, */ 
@@ -53,7 +67,6 @@ struct ContinuousNodeMap : NodeMap
             /* { "log", new Node<T(T)>(log, "log") }, */   
             /* { "logit", new Node<T(T)>(logit, "logit") }, */
             /* { "relu", new Node<T(T)>(relu, "relu") } */
-       };
     };
 };
 
@@ -63,16 +76,16 @@ struct LogicalNodeMap : NodeMap
     LogicalNodeMap() 
     {
        this->node_map = {
+            { "<", new Node<T(U,U)>("<", Op::lt<T,U>) },
+        };
             /* { "and", new Node<T(U,U)>(Op::plus<T>, "AND") }, */
             /* { "or", new Node<T(U,U)>(Op::minus<T>, "OR") }, */
             /* { "not", new Node<T(U,U)>(Op::multiplies<T>, "NOT") }, */
             /* { "xor", new Node<T(U,U)>(Op::divides<T>, "XOR") }, */
-            { "<", new Node<T(U,U)>("<", Op::lt<T,U>) },
             /* { "<=", new Node<T(U,U)>(Op::leq<U>, "LESS") }, */
             /* { "=",  new Node<T(U,U)>(Op::equal<U>, "EQUAL")}, */ 
             /* { ">",  new Node<T(U,U)>(Op::gt<U>, ">")}, */ 
             /* { ">=",  new Node<T(U,U)>(Op::geq<U>, ">")}, */ 
-        };
     };
 };
 
@@ -81,7 +94,12 @@ ContinuousNodeMap<float> FloatNodeMap;
 LogicalNodeMap<ArrayXb, ArrayXf> VectorLogicMap;
 /* LogicalNodeMap<bool, float> BoolLogicMap; */
 /* One node map to rule them all */
-NodeMap NM;
+static NodeMap NM(std::set<NodeMap::str_to_node>{
+                    VectorArithmeticMap.node_map, 
+                    FloatNodeMap.node_map,
+                    VectorLogicMap.node_map
+                    }
+                 );
 /* NM.node_map.insert(VectorArithmeticMap.node_map.begin(), */
 /*                    VectorArithmeticMap.node_map.end()); */
 /* NM.node_map.insert(VectorLogicMap.node_map.begin(), */
