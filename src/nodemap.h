@@ -82,10 +82,10 @@ LogicalNodeMap<ArrayXb, ArrayXf> VectorLogicMap;
 /* LogicalNodeMap<bool, float> BoolLogicMap; */
 /* One node map to rule them all */
 NodeMap NM;
-NM.node_map.insert(VectorArithmeticMap.node_map.begin(),
-                   VectorArithmeticMap.node_map.end());
-NM.node_map.insert(VectorLogicMap.node_map.begin(),
-                   VectorLogicMap.node_map.end());
+/* NM.node_map.insert(VectorArithmeticMap.node_map.begin(), */
+/*                    VectorArithmeticMap.node_map.end()); */
+/* NM.node_map.insert(VectorLogicMap.node_map.begin(), */
+/*                    VectorLogicMap.node_map.end()); */
 
 #endif
 

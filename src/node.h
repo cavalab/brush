@@ -477,9 +477,9 @@ class NodeDx<R(Args...)> : public TypedNodeBase<R, Args...>
 /*         State grad_descent(const ArrayXf& gradient, TreeNode*& child1,*/ 
 /*                                TreeNode*& child2) override*/
 /*         {*/
-/*     /*     this->update_weights(d, gradient); */*/
-/*     /*     child1->backprop(d, gradient*ddx.at(0)); */*/
-/*     /*     child2->backprop(d, gradient*ddx.at(1)); */*/
+/*          this->update_weights(d, gradient); */
+/*          child1->backprop(d, gradient*ddx.at(0)); */
+/*          child2->backprop(d, gradient*ddx.at(1)); */
 
 /*         };*/
 
