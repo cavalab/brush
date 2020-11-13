@@ -21,7 +21,9 @@ using BR::Dat::Data;
 
 namespace BR {
 
-class Program : public tree<NodeBase*>
+/* template<typename T> class Program; */
+
+template<typename T> class Program : public tree<NodeBase*>
 {
     
     public:
@@ -35,16 +37,27 @@ class Program : public tree<NodeBase*>
                          char otype, 
                          const vector<char>& term_types){};
 
-        Program mutate(){}; 
-        Program cross(Program& other){}; 
+        Program<T> mutate(){}; 
+        Program<T> cross(Program<T>& other){}; 
        
-        State fit(const Data& d)
+        T fit(const Data& d)
 		{
-			/* auto start = this->begin(); */
             iterator start = this->begin(); 
-            /* tree_node_<NodeBase*> root = (*start).fit(d); */
             State out = start.node->fit(d);
-			return out;
+			return std::get<T>(out);
+		};
+
+        T predict(const Data& d)
+		{
+            iterator start = this->begin(); 
+            State out = start.node->predict(d);
+            cout << "Program::predict returning\n";
+			return std::get<T>(out);
+		};
+        void grad_descent(const ArrayXf& gradient, const Data& d)
+		{
+            iterator start = this->begin(); 
+            start.node->grad_descent(gradient, d);
 		};
 
 

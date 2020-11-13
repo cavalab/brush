@@ -70,13 +70,61 @@ struct ContinuousNodeMap : NodeMap
     };
 };
 
+/* tuple<T,T> d_plus(T a, T b){ return {1, 1}; }; */ 
+/* template<> */
+/* tuple<ArrayXf,ArrayXf> d_plus(ArrayXf a, ArrayXf b) */
+/* { */ 
+/*     return {ArrayXf::Ones(a.size()), ArrayXf::Ones(b.size())}; */ 
+/* }; */ 
+/* auto d_plus[](){return tuple<T,T>{1,1}; */
+template<typename T>
+struct WeightedNodeMap : NodeMap
+{
+    WeightedNodeMap() 
+    { 
+       this->node_map = {
+            { "+", new WeightedNode<T(T,T)>("+", 
+                    std::plus<T>(), 
+                    d_plus<T>()
+                    /* vector<float>{3.14, 5.6} */
+                    )
+            },
+            { "-", new WeightedNode<T(T,T)>("-", 
+                    std::minus<T>(),
+                    d_minus<T>()
+                    /* vector<float>{2, 2} */
+                    ) 
+            },
+            { "*", new WeightedNode<T(T,T)>("*", 
+                    std::multiplies<T>(),
+                    d_multiplies<T>()
+                    /* vector<float>{0.5, 0.4} */
+                    ) 
+            },
+       };
+            /* { "/", Node<T(T,T)>(Op::safe_divide<T>, "DIV") }, */
+            /* { "sqrt",  new Node<T(T)>(sqrt, "sqrt")}, */ 
+            /* { "sin",  new Node<T(T)>(sin, "sin")}, */ 
+            /* { "cos",  new Node<T(T)>(cos, "cos")}, */ 
+            /* { "tanh",  new Node<T(T)>(tanh, "tanh")}, */ 
+            /* { "^2",  new Node<T(T)>(square, "^2")}, */ 
+            /* { "^3",  new Node<T(T)>(cube, "^3")}, */ 
+            /* { "^",  new Node<T(T)>(^, "^")}, */ 
+            /* { "exp",  new Node<T(T)>(exp, "exp")}, */ 
+            /* { "gauss",  new Node<T(T)>(gauss, "gauss")}, */ 
+            /* { "gauss2d",  new Node<T(T,T)>(gauss2d, "gauss2d")}, */ 
+            /* { "log", new Node<T(T)>(log, "log") }, */   
+            /* { "logit", new Node<T(T)>(logit, "logit") }, */
+            /* { "relu", new Node<T(T)>(relu, "relu") } */
+    };
+};
 template<typename T, typename U>
 struct LogicalNodeMap : NodeMap
 {
     LogicalNodeMap() 
     {
        this->node_map = {
-            { "<", new Node<T(U,U)>("<", Op::lt<T,U>) },
+            { "<", new Node<T(U,U)>("<", lt<T,U>) },
         };
             /* { "and", new Node<T(U,U)>(Op::plus<T>, "AND") }, */
             /* { "or", new Node<T(U,U)>(Op::minus<T>, "OR") }, */
@@ -90,13 +138,14 @@ struct LogicalNodeMap : NodeMap
 };
 
 ContinuousNodeMap<ArrayXf> VectorArithmeticMap; 
+WeightedNodeMap<ArrayXf> DxMap; 
 ContinuousNodeMap<float> FloatNodeMap; 
 LogicalNodeMap<ArrayXb, ArrayXf> VectorLogicMap;
 /* LogicalNodeMap<bool, float> BoolLogicMap; */
 /* One node map to rule them all */
 static NodeMap NM(std::set<NodeMap::str_to_node>{
-                    VectorArithmeticMap.node_map, 
-                    FloatNodeMap.node_map,
+                    DxMap.node_map, 
+                    /* FloatNodeMap.node_map, */
                     VectorLogicMap.node_map
                     }
                  );

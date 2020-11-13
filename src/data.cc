@@ -12,7 +12,7 @@ using namespace BR::Util;
 
 namespace BR{ namespace Dat{
 
-    Data::Data(MatrixXf& X, VectorXf& y, Longitudinal& Z, 
+    Data::Data(MatrixXf& X, ArrayXf& y, Longitudinal& Z, 
             bool c): X(X), y(y), Z(Z), classification(c) 
     {
         validation=false;
@@ -57,7 +57,7 @@ namespace BR{ namespace Dat{
         vCreated = false;
     }
  
-    DataRef::DataRef(MatrixXf& X, VectorXf& y, 
+    DataRef::DataRef(MatrixXf& X, ArrayXf& y, 
                      Longitudinal& Z, 
                      bool c)
     {
@@ -97,7 +97,7 @@ namespace BR{ namespace Dat{
         }
     }
     
-    void DataRef::setOriginalData(MatrixXf& X, VectorXf& y, 
+    void DataRef::setOriginalData(MatrixXf& X, ArrayXf& y, 
                                   Longitudinal& Z,
                                   bool c)
     {
@@ -127,7 +127,7 @@ namespace BR{ namespace Dat{
         classification = d->classification;
     }
     
-    void DataRef::setTrainingData(MatrixXf& X_t, VectorXf& y_t, 
+    void DataRef::setTrainingData(MatrixXf& X_t, ArrayXf& y_t, 
                                 Longitudinal& Z_t,
                                 bool c)
     {
@@ -146,7 +146,7 @@ namespace BR{ namespace Dat{
             tCreated = true;
     }
     
-    void DataRef::setValidationData(MatrixXf& X_v, VectorXf& y_v, 
+    void DataRef::setValidationData(MatrixXf& X_v, ArrayXf& y_v, 
                                 Longitudinal& Z_v,
                                 bool c)
     {
@@ -171,7 +171,7 @@ namespace BR{ namespace Dat{
 
         /* cout << "X after shuffle: \n"; */
         /* cout << o->X.transpose() << "\n"; */
-        o->y = (o->y.transpose() * perm).transpose() ;       // shuffle y too
+        o->y = (o->y.matrix().transpose() * perm).transpose().array() ;       // shuffle y too
         
         if(o->Z.size() > 0)
         {
@@ -310,8 +310,8 @@ namespace BR{ namespace Dat{
             v->X = MatrixXf::Map(o->X.data()+t->X.rows()*t->X.cols(),
                                        v->X.rows(),v->X.cols());
 
-            t->y = VectorXf::Map(o->y.data(),t->y.size());
-            v->y = VectorXf::Map(o->y.data()+t->y.size(),v->y.size());
+            t->y = ArrayXf::Map(o->y.data(),t->y.size());
+            v->y = ArrayXf::Map(o->y.data()+t->y.size(),v->y.size());
             if(o->Z.size() > 0)
                 split_longitudinal(o->Z, t->Z, v->Z, split);
         }

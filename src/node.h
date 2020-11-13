@@ -10,9 +10,9 @@ license: GNU/GPL v3
 #include "tree.h"
 #include "util/tuples.h"
 #include <Eigen/Dense>
+#include <stdexcept>
 using Eigen::ArrayXf;
 using namespace std;
-using std::cout; 
 
 /* TODO:
  * - fit and predict
@@ -26,7 +26,8 @@ class NodeBase {
 		string name;
         virtual State fit(const Data&, TreeNode*&, TreeNode*&) = 0;
         virtual State predict(const Data&, TreeNode*, TreeNode*) = 0;
-        virtual State grad_descent(const ArrayXf&, TreeNode*&, TreeNode*&) = 0;
+        virtual void grad_descent(const ArrayXf&, const Data&, 
+                                   TreeNode*&, TreeNode*&) = 0;
         /*TODO: 
          * implement clone, copy, swap and assignment operators
          */
@@ -47,6 +48,14 @@ class TypedNodeBase : public NodeBase
         template <std::size_t N>
         using NthType = typename std::tuple_element<N, TupleArgs>::type;
 		
+        string name;
+
+        void grad_descent(const ArrayXf&, const Data&, 
+                           TreeNode*&, TreeNode*&) override 
+        {
+            throw runtime_error("grad_descent not implemented for " + name);
+        };
+
     protected:
         template<size_t... Is>
 		TupleArgs set_inputs(const array<State, ArgCount>& in, 
@@ -58,8 +67,8 @@ class TypedNodeBase : public NodeBase
 
 /* Declaration of Node as a templated class */
 template<typename F> class Node; 
-template<typename F> class NodeDx; 
-template<typename F> class NodeSplit; 
+template<typename F> class WeightedNode; 
+template<typename F> class SplitNode; 
 
 /* specialization of Node for terminals */
 template<typename R>
@@ -68,6 +77,7 @@ class Node: public TypedNodeBase<R>
     public:
         using base = TypedNodeBase<R>;
         string variable_name;
+        string name;
 		unsigned int loc;
 
         Node(string name, int loc) 
@@ -94,7 +104,8 @@ class Node: public TypedNodeBase<R>
             /* return d.X.row(this->loc); */
         }
         State predict(const Data&, TreeNode*, TreeNode*) override {};
-        State grad_descent(const ArrayXf&, TreeNode*&, TreeNode*&) override {};
+        void grad_descent(const ArrayXf& gradient, const Data& d, 
+                           TreeNode*& child1, TreeNode*& child2) override {};
 };
 
 /* specialization of Node for Array terminals */
@@ -115,9 +126,7 @@ class Node<ArrayXf>: public TypedNodeBase<ArrayXf>
 						   TreeNode*& child1, 
 						   TreeNode*& child2) override
 	    {
-			/* State out; */
-			/* std::get<R>(out) = d.X.row(this->loc); */ 
-            cout << "returning " << d.X.row(this->loc).transpose() << endl;
+            cout << "returning " << d.X.row(this->loc) << endl;
             return ArrayXf(d.X.row(this->loc));
         };
         State predict(const Data& d, TreeNode* child1, 
@@ -125,8 +134,8 @@ class Node<ArrayXf>: public TypedNodeBase<ArrayXf>
         {
             return ArrayXf(d.X.row(this->loc));
         };
-        State grad_descent(const ArrayXf& d, TreeNode*& child1, 
-                           TreeNode*& child2) override {};
+        void grad_descent(const ArrayXf& gradient, const Data& d, 
+                           TreeNode*& child1, TreeNode*& child2) override {};
 };
 
 /* Specialization of Node for simple functions (no weights) 
@@ -189,29 +198,30 @@ class Node<R(Args...)> : public TypedNodeBase<R, Args...>
         };
 
 
-        State grad_descent(const ArrayXf&, TreeNode*&, TreeNode*&) override {};
 
 };
 
-/* Node for differentiable functions 
+/* Node for differentiable functions.
  * 
+ * Restrictions: all argument datatypes and the return type must match.
  * */
 template<typename R, typename... Args>
-/* class NodeDx<ArrayXf(Args...)> : public TypedNodeBase<R(Args...)> */
+/* class WeightedNode<ArrayXf(Args...)> : public TypedNodeBase<R(Args...)> */
 /* template<Array<typename T,-1,1>(Array<T,-1,1>... Args)> */
 /* template<ArrayXf R, ArrayXf ... Args> */
 /* template<> */
-class NodeDx<R(Args...)> : public TypedNodeBase<R, Args...>
+class WeightedNode<R(Args...)> : public TypedNodeBase<R, Args...>
 {
     public:
         /* using Args = ... ArrayXf; */
         using base = TypedNodeBase<R, Args...>;
         using Function = std::function<R(Args...)>;
         using TupleArgs = typename base::TupleArgs;
+        using ArrayArgs = std::array<R, base::ArgCount>;
         // weight types
         using WTypes = std::array<float, base::ArgCount>;
         // derivative function type
-        using DxFunction = std::function<WTypes(float...)>;
+        using DxFunction = std::function<ArrayArgs(Args...)>;
         /// the function applied to data
         Function op; 
         /// the derivative of the function wrt each input
@@ -221,15 +231,33 @@ class NodeDx<R(Args...)> : public TypedNodeBase<R, Args...>
         WTypes W;
         /// the momentum of the weights associated with each input
         WTypes V;
+        /// partial derivative w.r.t. the weights, used to update W
+        ArrayArgs df_dW;
+        /// partial derivative w.r.t. the inputs, to propagate the gradient
+        ArrayArgs df_dX; 
 
-
-        NodeDx(string name, const Function& f, const DxFunction& df ) 
+        WeightedNode(string name, const Function& f, const DxFunction& df,
+                     const vector<float>& Win = {})
         {
             this->op = f;
             this->d_op = df; 
 			this->name = name;
-            this->V = {};
-            this->W = { 1.0 };
+            this->V.fill(0.0);
+            if (Win.empty())
+                this->W.fill(1.0);
+            else
+                std::move(Win.begin(), Win.begin()+base::ArgCount, 
+                        this->W.begin());
+
+            cout << name << " Win: ";
+            for (auto w: Win)
+                cout << w << " ";
+            cout << endl;
+
+            cout << name << " weights: ";
+            for (auto w: this->W)
+                cout << w << " ";
+            cout << endl;
         };
 
         State fit(const Data& d, TreeNode*& child1, TreeNode*& child2) override 
@@ -237,7 +265,7 @@ class NodeDx<R(Args...)> : public TypedNodeBase<R, Args...>
             cout << "fitting " << this->name << endl;
             cout << "child1: " << &child1 << endl;
             cout << "child2: " << &child2 << endl;
-            array<State, base::ArgCount> child_outputs;
+            array<R, base::ArgCount> inputs;
 
             cout << "gathering inputs..." << endl;
             TreeNode* sib = child1;
@@ -246,22 +274,20 @@ class NodeDx<R(Args...)> : public TypedNodeBase<R, Args...>
                 cout << i << endl;
                 cout << "sibling: " << sib << endl;
                 cout << "sibling name: " << sib->data->name << endl;
-                child_outputs.at(i) = sib->fit(d);
+                inputs.at(i) = std::get<R>(sib->fit(d));
                 sib = sib->next_sibling;
             }
-            TupleArgs inputs = base::set_inputs(child_outputs, 
-                                std::make_index_sequence<sizeof...(Args)>{}
-                                );
+
+            this->store_gradients(inputs);
 
             cout << "applying weights to " << this->name << " operator\n";
-            inputs = std::transform(inputs.begin(), inputs.end(),
-                                    W.begin(), std::multiplies<>());
+            std::transform(W.begin(), W.end(), inputs.cbegin(),
+                           inputs.begin(), std::multiplies<>());
 
             cout << "applying " << this->name << " operator\n";
             State out = std::apply(this->op, inputs);
             cout << "returning " << std::get<R>(out) << endl;
 
-            this->store_gradients(inputs);
 
  			return std::apply(this->op, inputs);
         };
@@ -272,7 +298,7 @@ class NodeDx<R(Args...)> : public TypedNodeBase<R, Args...>
             cout << "predicting " << this->name << endl;
             cout << "child1: " << child1 << endl;
             cout << "child2: " << child2 << endl;
-            array<State, base::ArgCount> child_outputs;
+            array<R, base::ArgCount> inputs;
 
             cout << "gathering inputs..." << endl;
             TreeNode* sib = child1;
@@ -281,54 +307,55 @@ class NodeDx<R(Args...)> : public TypedNodeBase<R, Args...>
                 cout << i << endl;
                 cout << "sibling: " << sib << endl;
                 cout << "sibling name: " << sib->data->name << endl;
-                child_outputs.at(i) = sib->predict(d);
+                inputs.at(i) = std::get<R>(sib->predict(d));
                 sib = sib->next_sibling;
             }
-            TupleArgs inputs = base::set_inputs(child_outputs, 
-                                std::make_index_sequence<sizeof...(Args)>{}
-                                );
 
             cout << "applying weights to " << this->name << " operator\n";
-            inputs = std::transform(inputs.begin(), inputs.end(),
-                                    W.begin(), std::multiplies<>());
+            std::transform(W.begin(), W.end(), inputs.cbegin(),
+                           inputs.begin(), std::multiplies<>());
             cout << "applying " << this->name << " operator\n";
             State out = std::apply(this->op, inputs);
             cout << "returning " << std::get<R>(out) << endl;
  			return std::apply(this->op, inputs);
         };
 
-        State grad_descent(const ArrayXf& gradient, TreeNode*& child1, 
-                               TreeNode*& child2) override
+        void grad_descent(const ArrayXf& gradient, const Data& d, 
+                           TreeNode*& child1, TreeNode*& child2) override
         {
-    /*     this->update_weights(d, gradient); */
-    /*     child1->backprop(d, gradient*ddx.at(0)); */
-    /*     child2->backprop(d, gradient*ddx.at(1)); */
+            /* backpropagate the gradient * df_dX. 
+             * update internal weights. 
+             */
+            cout << "gradient descent on " << this->name << endl;
+            TreeNode* sib = child1;
+            for (int i = 0; i < base::ArgCount; ++i)
+            {
+                sib->grad_descent(gradient*this->df_dX.at(i), d);
+                sib = sib->next_sibling;
+            }
 
+            this->update_weights(gradient);
         };
 
     private:
 
-
-        void store_gradients(const typename base::TupleArgs& inputs)
+        void store_gradients(const ArrayArgs& inputs)
         {
             /* Here we store the derivatives of the output w.r.t. 
-             * the inputs (ddx, used to backpropagate the gradient) 
-             * and the edge weights (ddw, used to update these weights).
+             * the inputs (df_dX, used to backpropagate the gradient) 
+             * and the edge weights (df_dW, used to update these weights).
+             *
+             * it's important that argument inputs enters this 
+             * function before scaling by the weights, W.
              */
-            // TODO: this isn't going to work generically with d_op... but
-            // there should be an elegant way to provide a derivative function
-            // that respects datatypes as well as weights types
-            TupleArgs d_inputs = std::apply(this->d_op, 
-                                    inputs);
-            this->df_dw = std::apply(this->d_op, inputs);
-            this->df_dx = std::apply(this->d_op, this->W);
-/*         this->g.clear(); */
-/*         ddw.push_back(x1); */
-/*         ddw.push_back(x2); */
-/*         //ddx0 */
-/*         ddx.push_back(W.at(0)); */
-/*         //ddx1 */
-/*         ddx.push_back(W.at(1)); */
+            cout << "storing gradients for " << this->name << endl;
+            ArrayArgs df_dIn = std::apply(this->d_op, inputs);
+
+            std::transform(W.begin(), W.end(), df_dIn.begin(),
+                           this->df_dX.begin(), std::multiplies<>());    
+
+            std::transform(df_dIn.begin(), df_dIn.end(), inputs.begin(),
+                           this->df_dW.begin(), std::multiplies<>());    
         };
 
         void update_weights(const ArrayXf& gradient)
@@ -336,17 +363,23 @@ class NodeDx<R(Args...)> : public TypedNodeBase<R, Args...>
             /*! update weights via gradient descent + momentum
              * @param lr : learning rate
              * @param m : momentum
-             * v(t+1) = a * v(t) - n * gradient
+             * v(t+1) = m * v(t) - lr * gradient
              * w(t+1) = w(t) + v(t+1)
+             *
+             * TODO: move the optimizer-specific functionality of this method
+             * to a separate class
              * */
             std::cout << "***************************\n";
             std::cout << "Updating " << this->name << "\n";
 
             // Update all weights
-            std::cout << "Current gradient" << gradient << "\n";
+            std::cout << "Current gradient" << gradient.transpose() << "\n";
+            cout << "Current weights: ";
+            for (const auto& w: W) cout << w << " ";
+            cout << endl;
             array<float, base::ArgCount> W_temp(W);
             array<float, base::ArgCount> V_temp(V);
-            float lr = 0.1;
+            float lr = 0.25;
             float m = 0.1; 
             
             cout << "learning_rate is "<< lr <<"\n"; 
@@ -354,9 +387,11 @@ class NodeDx<R(Args...)> : public TypedNodeBase<R, Args...>
             // updated weights
             for (int i = 0; i < base::ArgCount; ++i) 
             {
+                cout << "dL/dW[" << i << "]: " 
+                    << (gradient*this->df_dW.at(i)).mean() << endl;
                 std::cout << "V[i]: " << V[i] << "\n";
                 V_temp[i] = (m * V.at(i) 
-                             - lr * (gradient*this->ddw.at(i)).mean() );
+                             - lr * (gradient*this->df_dW.at(i)).mean() );
                 std::cout << "V_temp: " << V_temp[i] << "\n";
             }
             for (int i = 0; i < W.size(); ++i)
@@ -369,7 +404,9 @@ class NodeDx<R(Args...)> : public TypedNodeBase<R, Args...>
             }
 
             std::cout << "Updated\n";
-            std::cout << "***************************\n";
+            cout << "Weights: ";
+            for (const auto& w: W) cout << w << " ";
+            std::cout << "\n***************************\n";
         };
 
 
@@ -378,7 +415,7 @@ class NodeDx<R(Args...)> : public TypedNodeBase<R, Args...>
  * 
  * */
 /* template<typename R, typename... Args>*/
-/* class NodeSplit<R(Args...)> : public TypedNodeBase<R, Args...>*/
+/* class SplitNode<R(Args...)> : public TypedNodeBase<R, Args...>*/
 /* {*/
 /*     public:*/
 /*         using base = TypedNodeBase<R, Args...>;*/
@@ -466,7 +503,7 @@ class NodeDx<R(Args...)> : public TypedNodeBase<R, Args...>
 /*  			return std::apply(this->op, inputs);*/
 /*         };*/
 
-/*         State grad_descent(const ArrayXf& gradient, TreeNode*& child1,*/ 
+/*         void grad_descent(const ArrayXf& gradient, TreeNode*& child1,*/ 
 /*                                TreeNode*& child2) override*/
 /*         {*/
 /*          this->update_weights(d, gradient); */

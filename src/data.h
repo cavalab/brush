@@ -13,7 +13,6 @@ license: GNU/GPL v3
 
 using std::vector;
 using Eigen::MatrixXf;
-using Eigen::VectorXf;
 using Eigen::ArrayXf;
 using Eigen::VectorXi;
 using Eigen::Dynamic;
@@ -44,17 +43,17 @@ namespace Dat{
 
     class Data
     {
-        //Data(MatrixXf& X, VectorXf& y, std::map<string, 
+        //Data(MatrixXf& X, ArrayXf& y, std::map<string, 
         //std::pair<vector<ArrayXf>, vector<ArrayXf>>>& Z): X(X), y(y), Z(Z){}
         public:
  
             MatrixXf& X;
-            VectorXf& y;
+            ArrayXf& y;
             Longitudinal& Z;
             bool classification;
             bool validation; 
 
-            Data(MatrixXf& X, VectorXf& y, Longitudinal& Z, bool c = false);
+            Data(MatrixXf& X, ArrayXf& y, Longitudinal& Z, bool c = false);
 
             void set_validation(bool v=true);
             
@@ -76,8 +75,8 @@ namespace Dat{
             // training and validation data
             MatrixXf X_t;
             MatrixXf X_v;
-            VectorXf y_t;
-            VectorXf y_v;
+            ArrayXf y_t;
+            ArrayXf y_v;
             Longitudinal Z_t;
             Longitudinal Z_v;
             
@@ -93,22 +92,22 @@ namespace Dat{
             ~DataRef();
             
     
-            DataRef(MatrixXf& X, VectorXf& y, 
+            DataRef(MatrixXf& X, ArrayXf& y, 
                              Longitudinal& Z, 
                              bool c=false);
                     
-            void setOriginalData(MatrixXf& X, VectorXf& y, 
+            void setOriginalData(MatrixXf& X, ArrayXf& y, 
                     Longitudinal& Z, bool c=false);
             
             void setOriginalData(Data *d);
             
-            void setTrainingData(MatrixXf& X_t, VectorXf& y_t, 
+            void setTrainingData(MatrixXf& X_t, ArrayXf& y_t, 
                                Longitudinal& Z_t,
                                bool c = false);
             
             void setTrainingData(Data *d, bool toDelete = false);
             
-            void setValidationData(MatrixXf& X_v, VectorXf& y_v, 
+            void setValidationData(MatrixXf& X_v, ArrayXf& y_v, 
                                Longitudinal& Z_v,
                                bool c = false);
             
