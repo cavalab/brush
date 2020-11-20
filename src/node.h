@@ -201,7 +201,7 @@ class Node<R(Args...)> : public TypedNodeBase<R, Args...>
 
 };
 
-/* Node for differentiable functions.
+/* Node for weighted functions.
  * 
  * Restrictions: all argument datatypes and the return type must match.
  * */

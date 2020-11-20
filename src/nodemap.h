@@ -86,34 +86,97 @@ struct WeightedNodeMap : NodeMap
             { "+", new WeightedNode<T(T,T)>("+", 
                     std::plus<T>(), 
                     d_plus<T>()
-                    /* vector<float>{3.14, 5.6} */
                     )
             },
             { "-", new WeightedNode<T(T,T)>("-", 
                     std::minus<T>(),
                     d_minus<T>()
-                    /* vector<float>{2, 2} */
                     ) 
             },
             { "*", new WeightedNode<T(T,T)>("*", 
                     std::multiplies<T>(),
                     d_multiplies<T>()
-                    /* vector<float>{0.5, 0.4} */
+                    ) 
+            },
+            { "/", new WeightedNode<T(T,T)>("/", 
+                    std::divides<T>(),
+                    d_divides<T>()
+                    ) 
+            },
+            { "sin", new WeightedNode<T(T)>("sin", 
+                    /* sin, */
+                    [](const T& x) -> T {return sin(x);},
+                    [](const T& x) -> array<T,1>{return {-cos(x)};}
+                    ) 
+            },
+            { "cos", new WeightedNode<T(T)>("cos", 
+                    [](const T& x) -> T {return cos(x);},
+                    [](const T& x) -> array<T,1>{return {sin(x)};}
+                    ) 
+            },
+            { "tanh", new WeightedNode<T(T)>("tanh", 
+                    [](const T& x) -> T {return tanh(x);},
+                    [](const T& x) -> array<T,1>
+                        { return {1 - pow(tanh(x), 2)}; }
+                    ) 
+            },
+            { "exp", new WeightedNode<T(T)>("exp", 
+                    [](const T& x) -> T {return exp(x);},
+                    [](const T& x) -> array<T,1>{return {exp(x)};}
+                    ) 
+            },
+            { "log", new WeightedNode<T(T)>("log", 
+                    safe_log<T>(),
+                    d_safe_log<T>()
+                    ) 
+            },
+            { "sqrt", new WeightedNode<T(T)>("sqrt", 
+                    [](const T& x) -> T { return sqrt(abs(x)); },
+                    [](const T& x) -> array<T,1> {
+                        return {x/(2*sqrt(abs(x)))}; }
+                    ) 
+            },
+            { "^2", new WeightedNode<T(T)>("^2", 
+                    [](const T& x) -> T {return pow(x, 2);},
+                    [](const T& x) -> array<T,1> {return {2*x}; }
+                    ) 
+            },
+            { "^3", new WeightedNode<T(T)>("^3", 
+                    [](const T& x) -> T {return pow(x, 3);},
+                    [](const T& x) -> array<T,1> {return {3*pow(x, 2)}; }
+                    ) 
+            },
+            { "^", new WeightedNode<T(T,T)>("^", 
+                    [](const T& lhs, const T& rhs) -> T {return pow(lhs, rhs);},
+                    [](const T& lhs, const T& rhs) -> array<T,2> {
+                        return {rhs * pow(lhs, rhs-1), 
+                                log(lhs) * pow(lhs, rhs)}; 
+                        }
+                    ) 
+            },
+            { "logit", new WeightedNode<T(T)>("logit", 
+                    [](const T& x) -> T {return 1/(1+exp(-x));},
+                    [](const T& x) -> array<T,1> {
+                        return { exp(-x)/pow(1+exp(-x),2) }; }
+                    ) 
+            },
+            { "relu", new WeightedNode<T(T)>("relu", 
+                    relu<T>(),
+                    [](const T& x) -> array<T,1> { return {x}; }
                     ) 
             },
        };
-            /* { "/", Node<T(T,T)>(Op::safe_divide<T>, "DIV") }, */
-            /* { "sqrt",  new Node<T(T)>(sqrt, "sqrt")}, */ 
             /* { "sin",  new Node<T(T)>(sin, "sin")}, */ 
             /* { "cos",  new Node<T(T)>(cos, "cos")}, */ 
             /* { "tanh",  new Node<T(T)>(tanh, "tanh")}, */ 
+            /* { "exp",  new Node<T(T)>(exp, "exp")}, */ 
+            /* { "log", new Node<T(T)>(log, "log") }, */   
+            /* { "sqrt",  new Node<T(T)>(sqrt, "sqrt")}, */ 
             /* { "^2",  new Node<T(T)>(square, "^2")}, */ 
             /* { "^3",  new Node<T(T)>(cube, "^3")}, */ 
             /* { "^",  new Node<T(T)>(^, "^")}, */ 
-            /* { "exp",  new Node<T(T)>(exp, "exp")}, */ 
             /* { "gauss",  new Node<T(T)>(gauss, "gauss")}, */ 
             /* { "gauss2d",  new Node<T(T,T)>(gauss2d, "gauss2d")}, */ 
-            /* { "log", new Node<T(T)>(log, "log") }, */   
             /* { "logit", new Node<T(T)>(logit, "logit") }, */
             /* { "relu", new Node<T(T)>(relu, "relu") } */
     };
