@@ -10,16 +10,8 @@ using namespace std;
 typedef Eigen::Array<bool,Eigen::Dynamic,1> ArrayXb;
 using Eigen::ArrayBase;
 
-/* namespace Op{ */
-
-/* template<typename T> */
-/* std::function<bool(T,T)> less = std::less<T>(); */ 
-
-/// specialization of binary op for eigen
-/* template<typename T> */
-/* Matrix<bool, Dynamic, Dynamic> lt( Matrix<T, Dynamic, Dynamic> A, */  
-/*     Matrix<T, Dynamic, Dynamic> B) */
-/* { return A < B; } */
+/*! Operator definitions, and their derivatives
+ */
 
 template<typename T, typename U>
 inline T lt( const U& A, const U& B) { return T(A < B); };
@@ -47,7 +39,7 @@ template<typename T>
 struct relu {
     T operator()(const T &x) const 
     {
-       return (x > 0).select(x, ArrayXf::Zero(x.size())+0.01); 
+       return max(x, 0.01); 
     }
 };
 
@@ -55,7 +47,7 @@ template<>
 struct relu<ArrayXf> {
     ArrayXf operator()(const ArrayXf &x) const 
     {
-       return max(x, 0.01); 
+       return (x > 0).select(x, ArrayXf::Zero(x.size())+0.01); 
     }
 };
 /* Partial Derivative Functions 
@@ -120,7 +112,23 @@ template<typename T>
 struct d_safe_log {
     array<T,1> operator()(const T &x) const 
     {
-        return limited(1/x);
+        return {BR::Util::limited(T(1/x))};
+    }
+};
+template<typename T>
+struct d_relu {
+    array<T,1> operator()(const T &x) const 
+    {
+        return {x > 0 ? 1 : 0.01};
+    }
+};
+/// Specialization required for ArrayXf
+template<>
+struct d_relu<ArrayXf> {
+    array<ArrayXf,1> operator()(const ArrayXf &x) const 
+    {
+       return {(x > 0).select(ArrayXf::Ones(x.size()), 
+                             ArrayXf::Zero(x.size())+0.01)};
     }
 };
 /* } */

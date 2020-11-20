@@ -233,7 +233,7 @@ typedef struct Log_Stats Log_stats;
 
 /// limits the output to finite real numbers
 template<typename T>
-T limited(T& x)
+T limited(T x)
 {
     if (isnan(x))
         return 0;
@@ -246,7 +246,7 @@ T limited(T& x)
 };
 
 template<> inline
-ArrayXf limited<ArrayXf>(ArrayXf& x) 
+ArrayXf limited<ArrayXf>(ArrayXf x) 
 {
     x = (isnan(x)).select(0,x);
     x = (x < MIN_FLT).select(MIN_FLT,x);

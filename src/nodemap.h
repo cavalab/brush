@@ -162,19 +162,10 @@ struct WeightedNodeMap : NodeMap
             },
             { "relu", new WeightedNode<T(T)>("relu", 
                     relu<T>(),
-                    [](const T& x) -> array<T,1> { return {x}; }
+                    d_relu<T>()
                     ) 
             },
        };
-            /* { "sin",  new Node<T(T)>(sin, "sin")}, */ 
-            /* { "cos",  new Node<T(T)>(cos, "cos")}, */ 
-            /* { "tanh",  new Node<T(T)>(tanh, "tanh")}, */ 
-            /* { "exp",  new Node<T(T)>(exp, "exp")}, */ 
-            /* { "log", new Node<T(T)>(log, "log") }, */   
-            /* { "sqrt",  new Node<T(T)>(sqrt, "sqrt")}, */ 
-            /* { "^2",  new Node<T(T)>(square, "^2")}, */ 
-            /* { "^3",  new Node<T(T)>(cube, "^3")}, */ 
-            /* { "^",  new Node<T(T)>(^, "^")}, */ 
             /* { "gauss",  new Node<T(T)>(gauss, "gauss")}, */ 
             /* { "gauss2d",  new Node<T(T,T)>(gauss2d, "gauss2d")}, */ 
             /* { "logit", new Node<T(T)>(logit, "logit") }, */
