@@ -414,31 +414,31 @@ class WeightedNode<R(Args...)> : public TypedNodeBase<R, Args...>
 /* Node for split functions 
  * 
  * */
-/* template<typename R, typename... Args>*/
-/* class SplitNode<R(Args...)> : public TypedNodeBase<R, Args...>*/
-/* {*/
-/*     public:*/
-/*         using base = TypedNodeBase<R, Args...>;*/
-/*         using Function = std::function<R(Args...)>;*/
-/*         using TupleArgs = typename base::TupleArgs;*/
+template<typename R, typename... Args>
+class SplitNode<R(Args...)> : public TypedNodeBase<R, Args...>
+{
+    public:
+        using base = TypedNodeBase<R, Args...>;
+        using Function = std::function<std::array<Data,2>(Args...)>;
+        using TupleArgs = typename base::TupleArgs;
 
-/*         /// the function applied to data*/
-/*         Function op;*/ 
-/*         /// the learned feature choice*/
-/*         unsigned int loc;*/
-/*         /// the learned threshold*/
-/*         float threshold;*/
+        /// the function applied to data to split it
+        Function op; 
+        /// the learned feature choice
+        unsigned int loc;
+        /// the learned threshold
+        float threshold;
 
-/*         Node(const Function& x, string name)*/ 
-/*         {*/
-/*             this->op = x;*/
-/* 			this->name = name;*/
-/*             this->V = {};*/
-/*             this->W = { 1.0 };*/
-/*         };*/
+        Node(string name, Function splitter) 
+        {
+            this->op = x;
+			this->name = name;
+            this->V = {};
+            this->W = { 1.0 };
+        };
 
-/*         State fit(const Data& d, TreeNode*& child1, TreeNode*& child2) override*/ 
-/* 	    {*/
+        State fit(const Data& d, TreeNode*& child1, TreeNode*& child2) override 
+	    {
 
             /* 1) choose best feature
              * 2) choose best threshold of feature
@@ -447,82 +447,74 @@ class WeightedNode<R(Args...)> : public TypedNodeBase<R, Args...>
              * 5) stitch child outputs together and return
              */
 
-/*             cout << "fitting " << this->name << endl;*/
-/*             cout << "child1: " << &child1 << endl;*/
-/*             cout << "child2: " << &child2 << endl;*/
-/*             array<State, base::ArgCount> child_outputs;*/
+            cout << "fitting " << this->name << endl;
 
-/*             cout << "gathering inputs..." << endl;*/
-/*             TreeNode* sib = child1;*/
-/*             for (int i = 0; i < base::ArgCount; ++i)*/
-/*             {*/
-/*                 cout << i << endl;*/
-/*                 cout << "sibling: " << sib << endl;*/
-/*                 cout << "sibling name: " << sib->data->name << endl;*/
-/*                 child_outputs.at(i) = sib->fit(d);*/
-/*                 sib = sib->next_sibling;*/
-/*             }*/
-/*             TupleArgs inputs = set_inputs(child_outputs,*/ 
-/*                                 std::make_index_sequence<sizeof...(Args)>{}*/
-/*                                 );*/
+            // set feature and threshold
+            set_feature(d);
+            set_threshold(d);
+            // split the data
+            array<Data, 2> data_splits = this->split(d);
 
-/*             cout << "applying " << this->name << " operator\n";*/
-/*             State out = std::apply(this->op, inputs);*/
-/*             cout << "returning " << std::get<R>(out) << endl;*/
+            array<State, base::ArgCount> child_outputs;
+            cout << "gathering inputs..." << endl;
+            TreeNode* sib = child1;
+            for (int i = 0; i < base::ArgCount; ++i)
+            {
+                cout << i << endl;
+                child_outputs.at(i) = sib->fit(data_splits.at(i));
+                sib = sib->next_sibling;
+            }
+            /* TupleArgs inputs = set_inputs(child_outputs, */ 
+            /*                     std::make_index_sequence<sizeof...(Args)>{} */
+            /*                     ); */
 
-/*             this->store_gradients(inputs);*/
+            // stitch together outputs
+            State out = this->stitch(child_outputs);
 
-/*  			return std::apply(this->op, inputs);*/
-/*         };*/
+            cout << "returning " << std::get<R>(out) << endl;
 
-/*         State predict(const Data& d, TreeNode* child1,*/ 
-/*                 TreeNode* child2) override*/
-/* 	    {*/
-/*             cout << "predicting " << this->name << endl;*/
-/*             cout << "child1: " << child1 << endl;*/
-/*             cout << "child2: " << child2 << endl;*/
-/*             array<State, base::ArgCount> child_outputs;*/
+ 			return out;
+        };
 
-/*             cout << "gathering inputs..." << endl;*/
-/*             TreeNode* sib = child1;*/
-/*             for (int i = 0; i < base::ArgCount; ++i)*/
-/*             {*/
-/*                 cout << i << endl;*/
-/*                 cout << "sibling: " << sib << endl;*/
-/*                 cout << "sibling name: " << sib->data->name << endl;*/
-/*                 child_outputs.at(i) = sib->predict(d);*/
-/*                 sib = sib->next_sibling;*/
-/*             }*/
-/*             TupleArgs inputs = set_inputs(child_outputs,*/ 
-/*                                 std::make_index_sequence<sizeof...(Args)>{}*/
-/*                                 );*/
+        State predict(const Data& d, TreeNode* child1, 
+                TreeNode* child2) override
+	    {
+            cout << "predicting " << this->name << endl;
+            cout << "child1: " << child1 << endl;
+            cout << "child2: " << child2 << endl;
+            array<State, base::ArgCount> child_outputs;
 
-/*             cout << "applying " << this->name << " operator\n";*/
-/*             State out = std::apply(this->op, inputs);*/
-/*             cout << "returning " << std::get<R>(out) << endl;*/
-/*  			return std::apply(this->op, inputs);*/
-/*         };*/
+            cout << "gathering inputs..." << endl;
+            TreeNode* sib = child1;
+            for (int i = 0; i < base::ArgCount; ++i)
+            {
+                cout << i << endl;
+                cout << "sibling: " << sib << endl;
+                cout << "sibling name: " << sib->data->name << endl;
+                child_outputs.at(i) = sib->predict(d);
+                sib = sib->next_sibling;
+            }
+            TupleArgs inputs = set_inputs(child_outputs, 
+                                std::make_index_sequence<sizeof...(Args)>{}
+                                );
 
-/*         void grad_descent(const ArrayXf& gradient, TreeNode*& child1,*/ 
-/*                                TreeNode*& child2) override*/
-/*         {*/
-/*          this->update_weights(d, gradient); */
-/*          child1->backprop(d, gradient*ddx.at(0)); */
-/*          child2->backprop(d, gradient*ddx.at(1)); */
+            cout << "applying " << this->name << " operator\n";
+            State out = std::apply(this->op, inputs);
+            cout << "returning " << std::get<R>(out) << endl;
+ 			return std::apply(this->op, inputs);
+        };
 
-/*         };*/
+        void grad_descent(const ArrayXf& gradient, TreeNode*& child1, 
+                               TreeNode*& child2) override
+        {
+         this->update_weights(d, gradient); 
+         child1->backprop(d, gradient*ddx.at(0)); 
+         child2->backprop(d, gradient*ddx.at(1)); 
 
-/*     private:*/
-/* // TODO: move to shared parent class*/
-/* 		template<size_t... Is>*/
-/* 		TupleArgs set_inputs(const array<State, base::ArgCount>& in,*/ 
-/* 					std::index_sequence<Is...>)*/
-/* 		{*/ 
-/*             return std::make_tuple(std::get<base::NthType<Is>>(in.at(Is))...);*/
-/* 		};*/
+        };
 
-
-/* };*/
+    private:
+};
 
 
 // specialization for commutative and associate binary operators

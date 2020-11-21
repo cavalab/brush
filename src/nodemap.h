@@ -166,6 +166,7 @@ struct WeightedNodeMap : NodeMap
                     ) 
             },
        };
+       /* TODO / potential adds:*/
             /* { "gauss",  new Node<T(T)>(gauss, "gauss")}, */ 
             /* { "gauss2d",  new Node<T(T,T)>(gauss2d, "gauss2d")}, */ 
             /* { "logit", new Node<T(T)>(logit, "logit") }, */
