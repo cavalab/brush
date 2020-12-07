@@ -15,7 +15,9 @@ namespace BR{ namespace Dat{
     Data::Data(MatrixXf& X, ArrayXf& y, Longitudinal& Z, 
             bool c): X(X), y(y), Z(Z), classification(c) 
     {
+
         validation=false;
+        X_dtypes = get_dtypes(X);
     }
     
     void Data::set_validation(bool v){validation=v;}
@@ -29,25 +31,56 @@ namespace BR{ namespace Dat{
 //        r.shuffle(idx.begin(), idx.end());
         db.X.resize(X.rows(),batch_size);
         db.y.resize(batch_size);
-        for (const auto& val: Z )
-        {
-            db.Z[val.first].first.resize(batch_size);
-            db.Z[val.first].second.resize(batch_size);
-        }
+        db.Z.resize(batch_size);
+
         for (unsigned i = 0; i<batch_size; ++i)
         {
            
            db.X.col(i) = X.col(idx.at(i)); 
            db.y(i) = y(idx.at(i)); 
+           db.Z.at(i) = Z.at(idx.at(i));
 
-           for (const auto& val: Z )
-           {
-                db.Z[val.first].first.at(i) = Z.at(val.first).first.at(
-                        idx.at(i));
-                db.Z[val.first].second.at(i) = Z.at(val.first).second.at(
-                        idx.at(i));
-           }
+           /* for (const auto& val: Z ) */
+           /* { */
+           /*      db.Z[val.first].first.at(i) = Z.at(val.first).first.at( */
+           /*              idx.at(i)); */
+           /*      db.Z[val.first].second.at(i) = Z.at(val.first).second.at( */
+           /*              idx.at(i)); */
+           /* } */
         }
+    }
+    array<Data, 2> Data::split(const ArrayXb& mask) const
+    {
+        // split data into two based on mask. 
+        int size1 = mask.count();
+        int size2 = mask.size() - size1;
+        MatrixXf X1(X.rows(), size1), X2(X.rows(), size2);
+        ArrayXf y1(size1), y2(size2);
+        Longitudinal Z1(size1), Z2(size2); 
+
+        int idx1 = 0, idx2 = 0;
+
+        for (int  i = 0; i < mask.size(); ++i)
+        {
+            if (mask(i))
+            {
+                X1.col(idx1) = X.col(i);
+                y1(idx1) = y(i);
+                Z1.at(idx1) = Z.at(i);
+                ++idx1;
+            }
+            else
+            {
+                X2.col(idx2) = X.col(i);
+                y2(idx2) = y(i);
+                Z2.at(idx2) = Z.at(i);
+                ++idx2;
+            }
+        }
+
+        array<Data, 2> result = {Data(X1,y1,Z1), Data(X2, y2, Z2)};
+
+        return result;
     }
     
     DataRef::DataRef()
@@ -183,21 +216,7 @@ namespace BR{ namespace Dat{
             /* for (const auto& zi : zidx) */
             /*     cout << zi << "," ; */
             /* cout << "\n"; */
-            for(auto &val : o->Z)
-            {
-                /* cout << "unshuffled " << val.first << ": \n"; */
-                /* for (unsigned i = 0; i < val.second.first.size(); ++i) */
-                /* { */
-                    /* cout << val.second.first.at(i).transpose() << "\n"; */
-                /* } */
-                reorder_longitudinal(val.second.first, zidx);
-                reorder_longitudinal(val.second.second, zidx);
-                /* cout << "shuffled " << val.first << ": \n"; */
-                /* for (unsigned i = 0; i < val.second.first.size(); ++i) */
-                /* { */
-                /*     cout << val.second.first.at(i).transpose() << "\n"; */
-                /* } */
-            }
+            reorder(o->Z, zidx);
         }
     }
     
@@ -250,15 +269,16 @@ namespace BR{ namespace Dat{
         {
             t->X.col(x) = o->X.col(t_indices[x]);
             t->y[x] = o->y[t_indices[x]];
+            t->Z[x] = o->Z[t_indices[x]];
             
-            if(o->Z.size() > 0)
-            {
-                for(auto const &val : o->Z)
-                {
-                    t->Z[val.first].first.push_back(val.second.first[t_indices[x]]);
-                    t->Z[val.first].second.push_back(val.second.second[t_indices[x]]);
-                }
-            }
+            /* if(o->Z.size() > 0) */
+            /* { */
+            /*     for(auto const &val : o->Z) */
+            /*     { */
+            /*         t->Z[val.first].first.push_back(val.second.first[t_indices[x]]); */
+            /*         t->Z[val.first].second.push_back(val.second.second[t_indices[x]]); */
+            /*     } */
+            /* } */
         }
         
         sort(v_indices.begin(), v_indices.end());
@@ -267,17 +287,18 @@ namespace BR{ namespace Dat{
         {
             v->X.col(x) = o->X.col(v_indices[x]);
             v->y[x] = o->y[v_indices[x]];
+            v->Z[x] = o->Z[t_indices[x]];
             
-            if(o->Z.size() > 0)
-            {
-                for(auto const &val : o->Z)
-                {
-                    v->Z[val.first].first.push_back(
-                            val.second.first[t_indices[x]]);
-                    v->Z[val.first].second.push_back(
-                            val.second.second[t_indices[x]]);
-                }
-            }
+            /* if(o->Z.size() > 0) */
+            /* { */
+            /*     for(auto const &val : o->Z) */
+            /*     { */
+            /*         v->Z[val.first].first.push_back( */
+            /*                 val.second.first[t_indices[x]]); */
+            /*         v->Z[val.first].second.push_back( */
+            /*                 val.second.second[t_indices[x]]); */
+            /*     } */
+            /* } */
         }
 
         
@@ -325,46 +346,35 @@ namespace BR{ namespace Dat{
                             float split)
     {
     
-        int size;
-        for ( const auto val: Z )
-        {
-            size = Z[val.first].first.size();
-            break;
-        }
+       
+        /* for ( const auto val: Z ) */
+        /* { */
+        /*     size = Z[val.first].first.size(); */
+        /*     break; */
+        /* } */
         
-        int testSize = int(size*split);
-        int validateSize = int(size*(1-split));
+        int trainSize = int(Z.size()*split);
+        int validateSize = int(Z.size()*(1-split));
+
+        Z_t.assign(Z.begin(), Z.begin() + trainSize);
+        Z_v.assign(Z.begin()+trainSize, Z.begin() + trainSize+validateSize);
             
-        for ( const auto &val: Z )
-        {
-            vector<ArrayXf> _Z_t_v, _Z_t_t, _Z_v_v, _Z_v_t;
-            _Z_t_v.assign(Z[val.first].first.begin(), 
-                    Z[val.first].first.begin()+testSize);
-            _Z_t_t.assign(Z[val.first].second.begin(), 
-                    Z[val.first].second.begin()+testSize);
-            _Z_v_v.assign(Z[val.first].first.begin()+testSize, 
-                          Z[val.first].first.begin()+testSize+validateSize);
-            _Z_v_t.assign(Z[val.first].second.begin()+testSize, 
-                          Z[val.first].second.begin()+testSize+validateSize);
+        /* for ( const auto &val: Z ) */
+        /* { */
+        /*     vector<ArrayXf> _Z_t_v, _Z_t_t, _Z_v_v, _Z_v_t; */
+        /*     _Z_t_v.assign(Z[val.first].first.begin(), */ 
+        /*             Z[val.first].first.begin()+testSize); */
+        /*     _Z_t_t.assign(Z[val.first].second.begin(), */ 
+        /*             Z[val.first].second.begin()+testSize); */
+        /*     _Z_v_v.assign(Z[val.first].first.begin()+testSize, */ 
+        /*                   Z[val.first].first.begin()+testSize+validateSize); */
+        /*     _Z_v_t.assign(Z[val.first].second.begin()+testSize, */ 
+        /*                   Z[val.first].second.begin()+testSize+validateSize); */
             
-            Z_t[val.first] = make_pair(_Z_t_v, _Z_t_t);
-            Z_v[val.first] = make_pair(_Z_v_v, _Z_v_t);
-        }
+        /*     Z_t[val.first] = make_pair(_Z_t_v, _Z_t_t); */
+        /*     Z_v[val.first] = make_pair(_Z_v_v, _Z_v_t); */
+        /* } */
     }
     
-    void DataRef::reorder_longitudinal(vector<ArrayXf> &v,
-            vector<int> const &order )  
-    {   
-        for ( int s = 1; s < order.size(); ++ s ) 
-        {
-            for ( int d = order[s]; d < s; d = order[d] ) 
-            {
-                if ( d == s ) 
-                {
-                    while ( d = order[d], d != s ) 
-                        swap( v[s], v[d] );
-                }
-            }
-        }
-    }
+    
 }}

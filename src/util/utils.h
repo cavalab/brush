@@ -162,7 +162,7 @@ ArrayXb isinf(const ArrayXf& x);
 ArrayXb isnan(const ArrayXf& x);
 
 /// calculates data types for each column of X
-vector<char> find_dtypes(MatrixXf &X);
+vector<string> get_dtypes(MatrixXf &X);
 
 /// returns unique elements in vector
 template <typename T>
@@ -175,11 +175,27 @@ vector<T> unique(vector<T> w)
     return w;
 }
 
+/// returns unique elements in Eigen matrix of variable rows/cols
+template <typename T>
+vector<T> unique(Matrix<T, -1, -1> w)
+{
+    vector<T> wv( w.data(), w.data()+w.size());
+    return unique(wv);
+}
+
 /// returns unique elements in Eigen vector
 template <typename T>
-vector<T> unique(Matrix<T, Dynamic, 1> w)
+vector<T> unique(Matrix<T, -1, 1> w)
 {
-    vector<T> wv( w.data(), w.data()+w.rows());
+    vector<T> wv( w.data(), w.data()+w.size());
+    return unique(wv);
+}
+
+/// returns unique elements in 1d Eigen array
+template <typename T>
+vector<T> unique(Array<T, -1, 1> w)
+{
+    vector<T> wv( w.data(), w.data()+w.rows()*w.cols());
     return unique(wv);
 }
 
@@ -252,6 +268,47 @@ ArrayXf limited<ArrayXf>(ArrayXf x)
     x = (x < MIN_FLT).select(MIN_FLT,x);
     x = (x > MAX_FLT).select(MAX_FLT,x);
     return x;
+};
+
+template<typename T>
+void reorder(vector<T> &v, vector<int> const &order )  
+{   
+    for ( int s = 1; s < order.size(); ++ s ) 
+    {
+        for ( int d = order[s]; d < s; d = order[d] ) 
+        {
+            if ( d == s ) 
+            {
+                while ( d = order[d], d != s ) 
+                    swap( v[s], v[d] );
+            }
+        }
+    }
+};
+
+/// split Eigen matrix or array into two by mask
+template<typename T>
+array<ArrayBase<T>, 2> split(const ArrayBase<T>& w, const ArrayXb& mask)
+{
+    int size1 = mask.count();
+    int size2 = mask.size() - size1;
+    ArrayBase<T> left(size1), right(size2);
+
+    int idx1 = 0, idx2 = 0;
+    for (int  i = 0; i < mask.size(); ++i)
+    {
+        if (mask(i))
+        {
+            left(idx1) = w(i);
+            ++idx1;
+        }
+        else
+        {
+            right(idx2) = w(i);
+            ++idx2;
+        }
+    }
+    return { left, right };
 };
 
 } // Util

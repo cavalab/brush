@@ -39,9 +39,9 @@ std::string trim(std::string str, const std::string& chars)
 }
 
 /// determines data types of columns of matrix X.
-vector<char> find_dtypes(MatrixXf &X)
+vector<string> get_dtypes(MatrixXf &X)
 {
-    vector<char> dtypes;
+    vector<string> dtypes;
     
     // get feature types (binary or continuous/categorical)
     int i, j;
@@ -65,13 +65,13 @@ vector<char> find_dtypes(MatrixXf &X)
         }
     
         if(isBinary)
-            dtypes.push_back('b');
+            dtypes.push_back("bool");
         else
         {
             if(isCategorical && uniqueMap.size() < 10)
-                dtypes.push_back('c');    
+                dtypes.push_back("int");    
             else
-                dtypes.push_back('f');
+                dtypes.push_back("float");
         }
     }
     /* cout << "dtypes: " ; */ 

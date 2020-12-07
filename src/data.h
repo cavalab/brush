@@ -38,8 +38,16 @@ namespace Dat{
      * @class Data
      * @brief data holding X, y, and Z data
      */
-    typedef std::map<string, std::pair<vector<ArrayXf>, 
-            vector<ArrayXf>>> Longitudinal;
+    
+    struct TimeSeries
+    {
+        ArrayXf time;
+        ArrayXf value;
+    };
+
+    typedef std::map<string, TimeSeries> TimeSeriesMap;
+
+    typedef vector<TimeSeriesMap> Longitudinal;
 
     class Data
     {
@@ -52,6 +60,7 @@ namespace Dat{
             Longitudinal& Z;
             bool classification;
             bool validation; 
+            vector<string> X_dtypes;
 
             Data(MatrixXf& X, ArrayXf& y, Longitudinal& Z, bool c = false);
 
@@ -59,6 +68,8 @@ namespace Dat{
             
             /// select random subset of data for training weights.
             void get_batch(Data &db, int batch_size) const;
+
+            array<Data, 2> split(const ArrayXb& mask) const;
     };
     
     /* !

@@ -19,6 +19,8 @@ using namespace std;
  *   - get nodes working in a tree
  *   - proper moving functions eg swap, etc. in base class
  */
+/* namespace BR{ */
+using namespace BR::Util;
 
 class NodeBase {
 	public:
@@ -426,15 +428,19 @@ class SplitNode<R(Args...)> : public TypedNodeBase<R, Args...>
         Function op; 
         /// the learned feature choice
         unsigned int loc;
+        /// whether the variable choice is fixed
+        bool fixed_variable;
         /// the learned threshold
         float threshold;
 
-        Node(string name, Function splitter) 
+        SplitNode(string name, int loc = -1) 
         {
-            this->op = x;
 			this->name = name;
-            this->V = {};
-            this->W = { 1.0 };
+            if (loc != -1)
+            {
+                this->loc = loc;
+                this->fixed_variable = true;
+            }
         };
 
         State fit(const Data& d, TreeNode*& child1, TreeNode*& child2) override 
@@ -450,10 +456,14 @@ class SplitNode<R(Args...)> : public TypedNodeBase<R, Args...>
             cout << "fitting " << this->name << endl;
 
             // set feature and threshold
-            set_feature(d);
-            set_threshold(d);
+            if (this->fixed_variable)
+                set_threshold(d);
+            else
+                set_variable_and_threshold(d);
+
             // split the data
-            array<Data, 2> data_splits = this->split(d);
+            ArrayXb mask = d.X.row(this->loc).array() < this->threshold;
+            array<Data, 2> data_splits = d.split(mask);
 
             array<State, base::ArgCount> child_outputs;
             cout << "gathering inputs..." << endl;
@@ -504,16 +514,172 @@ class SplitNode<R(Args...)> : public TypedNodeBase<R, Args...>
  			return std::apply(this->op, inputs);
         };
 
-        void grad_descent(const ArrayXf& gradient, TreeNode*& child1, 
-                               TreeNode*& child2) override
+        void grad_descent(const ArrayXf& gradient, const Data& d, 
+                          TreeNode*& child1, TreeNode*& child2) override
         {
-         this->update_weights(d, gradient); 
-         child1->backprop(d, gradient*ddx.at(0)); 
-         child2->backprop(d, gradient*ddx.at(1)); 
+            ArrayXb mask = d.X.row(this->loc).array() < this->threshold;
+            array<Data, 2> data_splits = d.split(mask);
 
+            array<ArrayXf, 2> grad_splits = split(gradient, mask);
+
+            child1->grad_descent(grad_splits.at(0), data_splits.at(0)); 
+            child2->grad_descent(grad_splits.at(1), data_splits.at(1)); 
         };
 
     private:
+
+        State stitch(array<State, base::ArgCount>& child_outputs, const Data& d)
+        {
+            R result;
+            ArrayXb mask = d.X.row(this->loc).array() < this->threshold;
+            for (int i = 0; i < mask.size(); ++i)
+            {
+                result(i) = mask(i) ? get<R>(child_outputs.at(0))(i) 
+                                    : get<R>(child_outputs.at(1))(i);
+            }
+            return result;
+
+        }
+
+        void set_variable_and_threshold(const Data& d)
+        {
+            /* loops thru variables in d.X and picks the best threshold
+             * and feature to split at.
+             */
+            float best_score = 0;
+            for (int i = 0; i < d.X.rows(); ++i)
+            {
+                float tmp_thresh, score;
+                tie(tmp_thresh, score) = set_threshold(d.X.row(i), 
+                                                       d.X_dtypes.at(i), 
+                                                       d.y, 
+                                                       d.classification);
+
+                if (score < best_score || i == 0)
+                {
+                    best_score = score;
+                    this->loc = i;
+                    this->threshold = tmp_thresh;
+                }
+
+            }
+        }
+
+        tuple<float,float> set_threshold(ArrayXf& x, string x_dtype, 
+                                         VectorXf& y, bool classification)
+        {
+            /* for each unique value in x, calculate the reduction in the 
+             * heuristic brought about by
+             * splitting between that value and the next. 
+             * set threshold according to the biggest reduction. 
+             */
+
+            vector<float> s = unique(x);
+
+            // we'll treat x as a float if it has more than 10 unique values
+            bool x_is_float = x_dtype == "float";
+
+            vector<float> unique_classes = unique(y);
+            vector<int> idx(x.size());
+            std::iota(idx.begin(),idx.end(), 0);
+            Map<ArrayXi> midx(idx.data(),idx.size());
+            float thresh, score, best_score;
+
+            for (unsigned i =0; i<s.size()-1; ++i)
+            {
+
+                float val;
+                ArrayXi split_idx;
+                
+                if (x_is_float)
+                {
+                    val = (s.at(i) + s.at(i+1)) / 2;
+                    split_idx = (x < val).select(midx,-midx-1);
+                }
+                else
+                {
+                    val = s.at(i);
+                    split_idx = (x == val).select(midx,-midx-1);
+                }
+
+                /* cout << "split val: " << val << "\n"; */
+
+                // split data
+                vector<float> d1, d2; 
+                for (unsigned j=0; j< split_idx.size(); ++j)
+                {
+                    if (split_idx(j) <0)
+                        d2.push_back(y(-1-split_idx(j)));
+                    else
+                        d1.push_back(y(split_idx(j)));
+                }
+                if (d1.empty() || d2.empty())
+                    continue;
+
+                Map<VectorXf> map_d1(d1.data(), d1.size());  
+                Map<VectorXf> map_d2(d2.data(), d2.size());  
+                /* cout << "d1: " << map_d1.transpose() << "\n"; */
+                /* cout << "d2: " << map_d2.transpose() << "\n"; */
+                score = gain(map_d1, map_d2, classification, 
+                        unique_classes);
+                /* cout << "score: " << score << "\n"; */
+                if (score < best_score || i == 0)
+                {
+                    best_score = score;
+                    thresh = val;
+                }
+                /* cout << val << "," << score << "\n"; */
+            }
+
+            thresh = std::isinf(thresh)? 
+                0 : std::isnan(thresh)? 
+                0 : thresh;
+
+            return make_tuple(thresh, score);
+        }
+       
+        float gain(const VectorXf& lsplit, 
+                const VectorXf& rsplit, 
+                bool classification, vector<float> unique_classes)
+        {
+            float lscore, rscore, score;
+            if (classification)
+            {
+                lscore = gini_impurity_index(lsplit, unique_classes);
+                rscore = gini_impurity_index(rsplit, unique_classes);
+                cout << "lscore: " << lscore << "\n";
+                cout << "rscore: " << rscore << "\n";
+                score = (lscore*float(lsplit.size()) + 
+                        rscore*float(rsplit.size()))
+                            /(float(lsplit.size()) + float(rsplit.size()));
+            }
+            else
+            {
+                lscore = variance(lsplit.array())/float(lsplit.size());
+                rscore = variance(rsplit.array())/float(rsplit.size());
+                score = lscore + rscore; 
+            }
+
+            return score;
+        }
+
+        float gini_impurity_index(const VectorXf& classes, 
+                vector<float> uc)
+        {
+            VectorXf class_weights(uc.size());
+            for (auto c : uc){
+                class_weights(c) = 0;
+                class_weights(c) = float(
+                        (classes.cast<int>().array() == int(c)).count()
+                        )/classes.size();
+                cout << "class_weights for " << c << ": " 
+                     << class_weights(c) << "\n"; 
+            }
+            /* float total_weight=class_weights.sum(); */
+            float gini = 1 - class_weights.dot(class_weights);
+
+            return gini;
+        }
 };
 
 
@@ -560,4 +726,5 @@ class SplitNode<R(Args...)> : public TypedNodeBase<R, Args...>
 /*                                      /1* std::multiplies<>() *1/ */
 /*                                      /1* ) ; *1/ */
 
+/* } // BR */
 #endif
