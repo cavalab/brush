@@ -192,16 +192,46 @@ struct LogicalNodeMap : NodeMap
     };
 };
 
+struct SplitNodeMap : NodeMap
+{
+    SplitNodeMap() 
+    { 
+       this->node_map = {
+            { "split_float", new SplitNode<ArrayXf(ArrayXf,ArrayXf)>(
+                    "split_float") },
+            { "split_int", new SplitNode<ArrayXf(ArrayXi,ArrayXi)>(
+                    "split_int") },
+            { "split_bool", new SplitNode<ArrayXf(ArrayXb,ArrayXb)>(
+                    "split_bool") },
+       };
+            /* { "/", Node<T(T,T)>(Op::safe_divide<T>, "DIV") }, */
+            /* { "sqrt",  new Node<T(T)>(sqrt, "sqrt")}, */ 
+            /* { "sin",  new Node<T(T)>(sin, "sin")}, */ 
+            /* { "cos",  new Node<T(T)>(cos, "cos")}, */ 
+            /* { "tanh",  new Node<T(T)>(tanh, "tanh")}, */ 
+            /* { "^2",  new Node<T(T)>(square, "^2")}, */ 
+            /* { "^3",  new Node<T(T)>(cube, "^3")}, */ 
+            /* { "^",  new Node<T(T)>(^, "^")}, */ 
+            /* { "exp",  new Node<T(T)>(exp, "exp")}, */ 
+            /* { "gauss",  new Node<T(T)>(gauss, "gauss")}, */ 
+            /* { "gauss2d",  new Node<T(T,T)>(gauss2d, "gauss2d")}, */ 
+            /* { "log", new Node<T(T)>(log, "log") }, */   
+            /* { "logit", new Node<T(T)>(logit, "logit") }, */
+            /* { "relu", new Node<T(T)>(relu, "relu") } */
+    };
+};
 ContinuousNodeMap<ArrayXf> VectorArithmeticMap; 
 WeightedNodeMap<ArrayXf> DxMap; 
 ContinuousNodeMap<float> FloatNodeMap; 
 LogicalNodeMap<ArrayXb, ArrayXf> VectorLogicMap;
+SplitNodeMap SNM;
 /* LogicalNodeMap<bool, float> BoolLogicMap; */
 /* One node map to rule them all */
 static NodeMap NM(std::set<NodeMap::str_to_node>{
                     DxMap.node_map, 
                     /* FloatNodeMap.node_map, */
-                    VectorLogicMap.node_map
+                    VectorLogicMap.node_map,
+                    SNM.node_map
                     }
                  );
 /* NM.node_map.insert(VectorArithmeticMap.node_map.begin(), */

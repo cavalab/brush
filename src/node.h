@@ -457,7 +457,9 @@ class SplitNode<R(Args...)> : public TypedNodeBase<R, Args...>
 
             // set feature and threshold
             if (this->fixed_variable)
-                set_threshold(d);
+            {
+                tie(this->threshold, ignore) = set_threshold(d, this->loc);
+            }
             else
                 set_variable_and_threshold(d);
 
@@ -550,10 +552,7 @@ class SplitNode<R(Args...)> : public TypedNodeBase<R, Args...>
             for (int i = 0; i < d.X.rows(); ++i)
             {
                 float tmp_thresh, score;
-                tie(tmp_thresh, score) = set_threshold(d.X.row(i), 
-                                                       d.X_dtypes.at(i), 
-                                                       d.y, 
-                                                       d.classification);
+                tie(tmp_thresh, score) = set_threshold(d, i);
 
                 if (score < best_score || i == 0)
                 {
@@ -565,19 +564,20 @@ class SplitNode<R(Args...)> : public TypedNodeBase<R, Args...>
             }
         }
 
-        tuple<float,float> set_threshold(ArrayXf& x, string x_dtype, 
-                                         VectorXf& y, bool classification)
+        tuple<float,float> set_threshold(const Data& d, int var_idx)
         {
             /* for each unique value in x, calculate the reduction in the 
              * heuristic brought about by
              * splitting between that value and the next. 
              * set threshold according to the biggest reduction. 
              */
+            const ArrayXf& x = d.X.row(var_idx); 
+            const VectorXf& y = d.y;
 
             vector<float> s = unique(x);
 
             // we'll treat x as a float if it has more than 10 unique values
-            bool x_is_float = x_dtype == "float";
+            bool x_is_float = d.X_dtypes.at(idx) == "float";
 
             vector<float> unique_classes = unique(y);
             vector<int> idx(x.size());
@@ -620,7 +620,7 @@ class SplitNode<R(Args...)> : public TypedNodeBase<R, Args...>
                 Map<VectorXf> map_d2(d2.data(), d2.size());  
                 /* cout << "d1: " << map_d1.transpose() << "\n"; */
                 /* cout << "d2: " << map_d2.transpose() << "\n"; */
-                score = gain(map_d1, map_d2, classification, 
+                score = gain(map_d1, map_d2, d.classification, 
                         unique_classes);
                 /* cout << "score: " << score << "\n"; */
                 if (score < best_score || i == 0)
