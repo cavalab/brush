@@ -6,7 +6,7 @@ license: GNU/GPL v3
 #include "logger.h"
 #include "error.h"
 
-namespace BR { namespace Util{
+namespace Brush { namespace Util{
     
     Logger* Logger::instance = NULL;
     

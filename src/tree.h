@@ -36,8 +36,8 @@
 #include <cstddef>
 #include "state.h"
 #include "data.h"
-using BR::State;
-using BR::Dat::Data;
+using Brush::State;
+using Brush::Dat::Data;
 #include <Eigen/Dense>
 using Eigen::ArrayXf;
 /* /// Overload swap for data class */ 
@@ -56,7 +56,6 @@ class tree_node_ { // size: 5*4=20 bytes (on 32 bit arch), can be reduced by 8.
 	    tree_node_<T> *first_child, *last_child;
 		tree_node_<T> *prev_sibling, *next_sibling;
 		T data;
-        /* string name;              				///< node type */
 
         /* State evaluate(const Data& data); */
         State fit(const Data& d);

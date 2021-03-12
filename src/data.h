@@ -27,10 +27,10 @@ using namespace std;
 //#include "node/node.h"
 //external includes
 
-namespace BR
+namespace Brush
 {
 /**
-* @namespace BR::Dat
+* @namespace Brush::Dat
 * @brief namespace containing Data structures used in Feat
 */
 namespace Dat{

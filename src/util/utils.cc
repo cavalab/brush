@@ -7,7 +7,7 @@ license: GNU/GPL v3
 #include "rnd.h"
 #include <unordered_set>
 
-namespace BR{
+namespace Brush{
 namespace Util{
 
 string PBSTR = "====================";
@@ -360,7 +360,32 @@ void Log_Stats::update(int index,
     med_num_params.push_back(md_num_params);
     med_dim.push_back(md_dim);
 }
-        
+
+/* array<ArrayXf, 2> split(ArrayXf& v, ArrayXb& mask) */
+/* { */
+/*     int size1 = mask.count(); */
+/*     int size2 = mask.size() - size1; */
+/*     ArrayXf L(size1), R(size2); */
+/*     int idx1 = 0, idx2 = 0; */
+
+/*     for (int  i = 0; i < mask.size(); ++i) */
+/*     { */
+/*         if (mask(i)) */
+/*         { */
+/*             L(idx1) = v(i); */
+/*             ++idx1; */
+/*         } */
+/*         else */
+/*         { */
+/*             R(idx2) = v(i); */
+/*             ++idx2; */
+/*         } */
+             
+/*     } */
+
+/*     return {L, R}; */ 
+
+/* } */
 
 } // Util
-} // BR
+} // Brush

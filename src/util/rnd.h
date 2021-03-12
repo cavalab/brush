@@ -15,7 +15,7 @@ license: GNU/GPL v3
 using namespace std;
 using std::swap;
 
-namespace BR { namespace Util{
+namespace Brush { namespace Util{
     
     ////////////////////////////////////////////////////////// Declarations
     

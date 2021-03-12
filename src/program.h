@@ -16,10 +16,10 @@ license: GNU/GPL v3
 
 using std::cout;
 using std::string;
-using BR::State;
-using BR::Dat::Data;
+using Brush::State;
+using Brush::Dat::Data;
 
-namespace BR {
+namespace Brush {
 
 /* template<typename T> class Program; */
 

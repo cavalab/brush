@@ -1,4 +1,4 @@
-/* BRUSH
+/* BrushUSH
 copyright 2017 William La Cava
 license: GNU/GPL v3
 */
@@ -9,7 +9,7 @@ license: GNU/GPL v3
 #include<iostream>
 using namespace std;
 
-namespace BR {
+namespace Brush {
 
     namespace Util{
     

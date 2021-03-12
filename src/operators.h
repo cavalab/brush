@@ -112,7 +112,7 @@ template<typename T>
 struct d_safe_log {
     array<T,1> operator()(const T &x) const 
     {
-        return {BR::Util::limited(T(1/x))};
+        return {Brush::Util::limited(T(1/x))};
     }
 };
 template<typename T>
@@ -131,5 +131,7 @@ struct d_relu<ArrayXf> {
                              ArrayXf::Zero(x.size())+0.01)};
     }
 };
+
+//TODO: reduction derivatives (mean, variance, etc.?)
 /* } */
 #endif

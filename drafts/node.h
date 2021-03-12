@@ -15,7 +15,7 @@ license: GNU/GPL v3
 using std::cout;
 using std::string;
 
-namespace BR {
+namespace Brush {
 
 class Node
 {

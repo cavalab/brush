@@ -21,7 +21,7 @@ option( CORE_USE_CUDA   "Use CUDA to speed up certain parts of the code."  OFF )
 #endif()
 #############################################
 
-set(CMAKE_CXX_COMPILER /usr/bin/g++-7)
+# set(CMAKE_CXX_COMPILER /usr/bin/g++-7)
 # version requirement for Eigen
 cmake_minimum_required (VERSION 3.0)
 # use c++ 17

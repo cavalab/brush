@@ -28,7 +28,7 @@ using namespace std;
 //#include "node/node.h"
 //external includes
 
-namespace BR { 
+namespace Brush { 
     /* typedef std::tuple<float, bool, int, ArrayXf, ArrayXi, ArrayXb> State; */ 
     typedef std::variant<float, bool, int, ArrayXf, ArrayXi, ArrayXb> State; 
 }

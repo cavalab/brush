@@ -19,8 +19,8 @@ using namespace std;
  *   - get nodes working in a tree
  *   - proper moving functions eg swap, etc. in base class
  */
-/* namespace BR{ */
-using namespace BR::Util;
+/* namespace Brush{ */
+using namespace Brush::Util;
 
 class NodeBase {
 	public:
@@ -60,11 +60,51 @@ class TypedNodeBase : public NodeBase
 
     protected:
         template<size_t... Is>
-		TupleArgs set_inputs(const array<State, ArgCount>& in, 
-					std::index_sequence<Is...>)
+		TupleArgs tupleize(const array<State, ArgCount>& in, 
+        				   std::index_sequence<Is...>)
 		{ 
             return std::make_tuple(std::get<NthType<Is>>(in.at(Is))...);
 		};
+
+		TupleArgs tupleize(const array<State, ArgCount>& in)
+        {
+            return this->tupleize(in, 
+                                  std::make_index_sequence<sizeof...(Args)>{});
+        };
+
+        /// Utility to grab child outputs. 
+        array<State, ArgCount> get_children(const Data& d,
+                                            TreeNode*& child1, 
+                                            TreeNode*& child2, 
+                                            // std::function<State(const Data&)> fn
+                                            State (TreeNode::*fn)(const Data&)
+                                            )
+        {
+            array<State, ArgCount> child_outputs;
+
+            TreeNode* sib = child1;
+            for (int i = 0; i < ArgCount; ++i)
+            {
+                cout << i << endl;
+                child_outputs.at(i) = (sib->*fn)(d);
+                sib = sib->next_sibling;
+            }
+            return child_outputs;
+            
+        };
+
+        array<State, ArgCount> get_children_fit(const Data& d, 
+                                                TreeNode*& child1, 
+                                                TreeNode*& child2)
+        {
+            return get_children(d, child1, child2, &TreeNode::fit);
+        }
+        array<State, ArgCount> get_children_predict(const Data& d, 
+                                                    TreeNode*& child1, 
+                                                    TreeNode*& child2)
+        {
+            return get_children(d, child1, child2, &TreeNode::predict);
+        }
 };
 
 /* Declaration of Node as a templated class */
@@ -105,12 +145,15 @@ class Node: public TypedNodeBase<R>
             return 0;
             /* return d.X.row(this->loc); */
         }
-        State predict(const Data&, TreeNode*, TreeNode*) override {};
+        State predict(const Data&, TreeNode*, TreeNode*) override {return 0;};
         void grad_descent(const ArrayXf& gradient, const Data& d, 
                            TreeNode*& child1, TreeNode*& child2) override {};
 };
 
 /* specialization of Node for Array terminals */
+// TODO: make this a templated class called Terminal. 
+// make data a json structure. 
+// access variables by name from data, and return appropriate type.
 template<>
 class Node<ArrayXf>: public TypedNodeBase<ArrayXf>
 {
@@ -125,15 +168,15 @@ class Node<ArrayXf>: public TypedNodeBase<ArrayXf>
 			this->loc = loc;
         };
         State fit(const Data& d, 
-						   TreeNode*& child1, 
-						   TreeNode*& child2) override
+				  TreeNode*& child1, 
+				  TreeNode*& child2) override
 	    {
-            cout << "returning " << d.X.row(this->loc) << endl;
-            return ArrayXf(d.X.row(this->loc));
+            return predict(d, child1, child2);
         };
         State predict(const Data& d, TreeNode* child1, 
                       TreeNode* child2) override 
         {
+            cout << "returning " << d.X.row(this->loc) << endl;
             return ArrayXf(d.X.row(this->loc));
         };
         void grad_descent(const ArrayXf& gradient, const Data& d, 
@@ -162,18 +205,18 @@ class Node<R(Args...)> : public TypedNodeBase<R, Args...>
 
         State fit(const Data& d, TreeNode*& child1, TreeNode*& child2) override 
 	    {
-            array<State, base::ArgCount> child_outputs;
+            // array<State, base::ArgCount> child_outputs;
 
-            TreeNode* sib = child1;
-            for (int i = 0; i < base::ArgCount; ++i)
-            {
-                cout << i << endl;
-                child_outputs.at(i) = sib->fit(d);
-                sib = sib->next_sibling;
-            }
-            TupleArgs inputs = base::set_inputs(child_outputs, 
-                                std::make_index_sequence<sizeof...(Args)>{}
-                                );
+            // TreeNode* sib = child1;
+            // for (int i = 0; i < base::ArgCount; ++i)
+            // {
+            //     cout << i << endl;
+            //     child_outputs.at(i) = sib->fit(d);
+            //     sib = sib->next_sibling;
+            // }
+            // auto child_outputs = base::get_children_fit(d, child1, child2);
+            TupleArgs inputs = base::tupleize(
+                base::get_children_fit(d, child1, child2));
 
  			return std::apply(this->op, inputs);
         };
@@ -181,20 +224,19 @@ class Node<R(Args...)> : public TypedNodeBase<R, Args...>
         State predict(const Data& d, TreeNode* child1, 
                 TreeNode* child2) override
 	    {
-            array<State, base::ArgCount> child_outputs;
+            // array<State, base::ArgCount> child_outputs;
 
-            TreeNode* sib = child1;
-            for (int i = 0; i < base::ArgCount; ++i)
-            {
-                cout << i << endl;
-                cout << "sibling: " << sib << endl;
-                cout << "sibling name: " << sib->data->name << endl;
-                child_outputs.at(i) = sib->predict(d);
-                sib = sib->next_sibling;
-            }
-            TupleArgs inputs = base::set_inputs(child_outputs, 
-                                std::make_index_sequence<sizeof...(Args)>{}
-                                );
+            // TreeNode* sib = child1;
+            // for (int i = 0; i < base::ArgCount; ++i)
+            // {
+            //     cout << i << endl;
+            //     cout << "sibling: " << sib << endl;
+            //     cout << "sibling name: " << sib->data->name << endl;
+            //     child_outputs.at(i) = sib->predict(d);
+            //     sib = sib->next_sibling;
+            // }
+            auto child_outputs = base::get_children_predict(d, child1, child2);
+            TupleArgs inputs = base::tupleize(child_outputs);
 
  			return std::apply(this->op, inputs);
         };
@@ -267,18 +309,21 @@ class WeightedNode<R(Args...)> : public TypedNodeBase<R, Args...>
             cout << "fitting " << this->name << endl;
             cout << "child1: " << &child1 << endl;
             cout << "child2: " << &child2 << endl;
-            array<R, base::ArgCount> inputs;
-
-            cout << "gathering inputs..." << endl;
-            TreeNode* sib = child1;
-            for (int i = 0; i < base::ArgCount; ++i)
-            {
-                cout << i << endl;
-                cout << "sibling: " << sib << endl;
-                cout << "sibling name: " << sib->data->name << endl;
-                inputs.at(i) = std::get<R>(sib->fit(d));
-                sib = sib->next_sibling;
-            }
+            auto child_outputs = base::get_children_fit(d, child1, child2);
+            // TODO: helper fn to convert children to ArrayArgs
+            ArrayArgs inputs; // = std::apply(std::get<R>, child_outputs);
+            for (int i = 0; i < child_outputs.size(); ++i)
+                inputs.at(i) = std::get<R>(child_outputs.at(i));
+            // cout << "gathering inputs..." << endl;
+            // TreeNode* sib = child1;
+            // for (int i = 0; i < base::ArgCount; ++i)
+            // {
+            //     cout << i << endl;
+            //     cout << "sibling: " << sib << endl;
+            //     cout << "sibling name: " << sib->data->name << endl;
+            //     inputs.at(i) = std::get<R>(sib->fit(d));
+            //     sib = sib->next_sibling;
+            // }
 
             this->store_gradients(inputs);
 
@@ -300,18 +345,21 @@ class WeightedNode<R(Args...)> : public TypedNodeBase<R, Args...>
             cout << "predicting " << this->name << endl;
             cout << "child1: " << child1 << endl;
             cout << "child2: " << child2 << endl;
-            array<R, base::ArgCount> inputs;
-
-            cout << "gathering inputs..." << endl;
-            TreeNode* sib = child1;
-            for (int i = 0; i < base::ArgCount; ++i)
-            {
-                cout << i << endl;
-                cout << "sibling: " << sib << endl;
-                cout << "sibling name: " << sib->data->name << endl;
-                inputs.at(i) = std::get<R>(sib->predict(d));
-                sib = sib->next_sibling;
-            }
+            auto child_outputs = base::get_children_predict(d, child1, child2);
+            // TODO: helper fn to convert children to ArrayArgs
+            ArrayArgs inputs; 
+            for (int i = 0; i < child_outputs.size(); ++i)
+                inputs.at(i) = std::get<R>(child_outputs.at(i));
+            // cout << "gathering inputs..." << endl;
+            // TreeNode* sib = child1;
+            // for (int i = 0; i < base::ArgCount; ++i)
+            // {
+            //     cout << i << endl;
+            //     cout << "sibling: " << sib << endl;
+            //     cout << "sibling name: " << sib->data->name << endl;
+            //     inputs.at(i) = std::get<R>(sib->predict(d));
+            //     sib = sib->next_sibling;
+            // }
 
             cout << "applying weights to " << this->name << " operator\n";
             std::transform(W.begin(), W.end(), inputs.cbegin(),
@@ -468,20 +516,18 @@ class SplitNode<R(Args...)> : public TypedNodeBase<R, Args...>
             array<Data, 2> data_splits = d.split(mask);
 
             array<State, base::ArgCount> child_outputs;
-            cout << "gathering inputs..." << endl;
-            TreeNode* sib = child1;
-            for (int i = 0; i < base::ArgCount; ++i)
-            {
-                cout << i << endl;
-                child_outputs.at(i) = sib->fit(data_splits.at(i));
-                sib = sib->next_sibling;
-            }
-            /* TupleArgs inputs = set_inputs(child_outputs, */ 
-            /*                     std::make_index_sequence<sizeof...(Args)>{} */
-            /*                     ); */
+            child_outputs = this->get_children_fit(data_splits, child1, child2);
+            // cout << "gathering inputs..." << endl;
+            // TreeNode* sib = child1;
+            // for (int i = 0; i < base::ArgCount; ++i)
+            // {
+            //     cout << i << endl;
+            //     child_outputs.at(i) = sib->fit(data_splits.at(i));
+            //     sib = sib->next_sibling;
+            // }
 
             // stitch together outputs
-            State out = this->stitch(child_outputs);
+            State out = this->stitch(child_outputs, d);
 
             cout << "returning " << std::get<R>(out) << endl;
 
@@ -494,26 +540,28 @@ class SplitNode<R(Args...)> : public TypedNodeBase<R, Args...>
             cout << "predicting " << this->name << endl;
             cout << "child1: " << child1 << endl;
             cout << "child2: " << child2 << endl;
-            array<State, base::ArgCount> child_outputs;
 
-            cout << "gathering inputs..." << endl;
-            TreeNode* sib = child1;
-            for (int i = 0; i < base::ArgCount; ++i)
-            {
-                cout << i << endl;
-                cout << "sibling: " << sib << endl;
-                cout << "sibling name: " << sib->data->name << endl;
-                child_outputs.at(i) = sib->predict(d);
-                sib = sib->next_sibling;
-            }
-            TupleArgs inputs = set_inputs(child_outputs, 
-                                std::make_index_sequence<sizeof...(Args)>{}
-                                );
+            // split the data
+            ArrayXb mask = d.X.row(this->loc).array() < this->threshold;
+            array<Data, 2> data_splits = d.split(mask);
 
-            cout << "applying " << this->name << " operator\n";
-            State out = std::apply(this->op, inputs);
+            // array<State, base::ArgCount> child_outputs;
+            auto child_outputs = this->get_children_predict(data_splits, child1, 
+                                                       child2);
+            // cout << "gathering inputs..." << endl;
+            // TreeNode* sib = child1;
+            // for (int i = 0; i < base::ArgCount; ++i)
+            // {
+            //     cout << i << endl;
+            //     child_outputs.at(i) = sib->predict(data_splits.at(i));
+            //     sib = sib->next_sibling;
+            // }
+
+            // stitch together outputs
+            State out = this->stitch(child_outputs, d);
+
             cout << "returning " << std::get<R>(out) << endl;
- 			return std::apply(this->op, inputs);
+            return out;
         };
 
         void grad_descent(const ArrayXf& gradient, const Data& d, 
@@ -522,14 +570,48 @@ class SplitNode<R(Args...)> : public TypedNodeBase<R, Args...>
             ArrayXb mask = d.X.row(this->loc).array() < this->threshold;
             array<Data, 2> data_splits = d.split(mask);
 
-            array<ArrayXf, 2> grad_splits = split(gradient, mask);
+            array<ArrayXf, 2> grad_splits = Brush::Util::split(gradient, mask);
 
             child1->grad_descent(grad_splits.at(0), data_splits.at(0)); 
             child2->grad_descent(grad_splits.at(1), data_splits.at(1)); 
         };
 
     private:
+        /// Utility to grab child outputs. 
+        array<State, base::ArgCount> get_children(const array<Data, 2>& data_splits,
+                                            TreeNode*& child1, 
+                                            TreeNode*& child2, 
+                                            State (TreeNode::*fn)(const Data&)
+                                           )
+        {
+            array<State, base::ArgCount> child_outputs;
 
+            TreeNode* sib = child1;
+            for (int i = 0; i < base::ArgCount; ++i)
+            {
+                cout << i << endl;
+                child_outputs.at(i) = (sib->*fn)(data_splits.at(i));
+                sib = sib->next_sibling;
+            }
+            return child_outputs;
+            
+        };
+
+        array<State, base::ArgCount> get_children_fit(
+            const array<Data, 2>& data_splits, 
+            TreeNode*& child1, 
+            TreeNode*& child2)
+        {
+            return get_children(data_splits, child1, child2, &TreeNode::fit);
+        }
+        array<State, base::ArgCount> get_children_predict(
+            const array<Data, 2>& data_splits,
+            TreeNode*& child1, 
+            TreeNode*& child2)
+        {
+            return get_children(data_splits, child1, child2, &TreeNode::predict);
+        }
+        /// Stitches together outputs from left or right child based on threshold
         State stitch(array<State, base::ArgCount>& child_outputs, const Data& d)
         {
             R result;
@@ -577,7 +659,7 @@ class SplitNode<R(Args...)> : public TypedNodeBase<R, Args...>
             vector<float> s = unique(x);
 
             // we'll treat x as a float if it has more than 10 unique values
-            bool x_is_float = d.X_dtypes.at(idx) == "float";
+            bool x_is_float = d.X_dtypes.at(var_idx) == "float";
 
             vector<float> unique_classes = unique(y);
             vector<int> idx(x.size());
@@ -726,5 +808,5 @@ class SplitNode<R(Args...)> : public TypedNodeBase<R, Args...>
 /*                                      /1* std::multiplies<>() *1/ */
 /*                                      /1* ) ; *1/ */
 
-/* } // BR */
+/* } // Brush */
 #endif

@@ -8,7 +8,7 @@ license: GNU/GPL v3
 //#include "node/node.h"
 //external includes
 
-namespace BR{ namespace Util{
+namespace Brush{ namespace Util{
         /// prints error and throws an exception
         void HandleErrorThrow(string err, const char *file, int line )
         {

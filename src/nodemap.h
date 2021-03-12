@@ -67,7 +67,7 @@ struct ContinuousNodeMap : NodeMap
             /* { "log", new Node<T(T)>(log, "log") }, */   
             /* { "logit", new Node<T(T)>(logit, "logit") }, */
             /* { "relu", new Node<T(T)>(relu, "relu") } */
-    };
+    }
 };
 
 /* tuple<T,T> d_plus(T a, T b){ return {1, 1}; }; */ 
@@ -220,18 +220,47 @@ struct SplitNodeMap : NodeMap
             /* { "relu", new Node<T(T)>(relu, "relu") } */
     };
 };
+
+template<typename R, typename T>
+struct ReduceMap : NodeMap
+{
+    ReduceMap()
+    { 
+       this->node_map = {
+            // longitudinal nodes
+            { "mean", new Node<R(T)>("mean", &T::mean) }
+       };
+            /* { "median", new ReduceNode<float(ArrayXf,ArrayXf)>() }, */
+            /* { "max", new ReduceNode<float(ArrayXf,ArrayXf)>() }, */
+            /* { "min", new MinNode<ArrayXf(ArrayXf,ArrayXf)>() }, */
+            /* { "variance", new VarNode<ArrayXf(ArrayXf,ArrayXf)>() }, */
+            /* { "skew", new SkewNode<ArrayXf(ArrayXf,ArrayXf)>() }, */
+            /* { "kurtosis", new KurtosisNode<ArrayXf(ArrayXf,ArrayXf)>() }, */
+            /* { "slope", new SlopeNode<ArrayXf(ArrayXf,ArrayXf)>() }, */
+            /* { "count", new CountNode<ArrayXf(ArrayXf,ArrayXf)>() }, */
+            /* { "recent", new RecentNode<ArrayXf(ArrayXf,ArrayXf)>() }, */
+    };
+};
+
+/* Declare node maps 
+ *
+ */
 ContinuousNodeMap<ArrayXf> VectorArithmeticMap; 
 WeightedNodeMap<ArrayXf> DxMap; 
 ContinuousNodeMap<float> FloatNodeMap; 
 LogicalNodeMap<ArrayXb, ArrayXf> VectorLogicMap;
 SplitNodeMap SNM;
+ReduceMap<float, ArrayXf> ScalarReduceMap;
+// ReduceMap<Eigen::VectorwiseOp<VectorXf,1>, MatrixXf> VectorReduceMap;
 /* LogicalNodeMap<bool, float> BoolLogicMap; */
 /* One node map to rule them all */
 static NodeMap NM(std::set<NodeMap::str_to_node>{
                     DxMap.node_map, 
                     /* FloatNodeMap.node_map, */
                     VectorLogicMap.node_map,
-                    SNM.node_map
+                    SNM.node_map,
+                    ScalarReduceMap.node_map
+                //     VectorReduceMap.node_map
                     }
                  );
 /* NM.node_map.insert(VectorArithmeticMap.node_map.begin(), */

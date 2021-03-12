@@ -9,8 +9,8 @@
 
 using namespace Eigen;
 using namespace std;
-using namespace BR;
-using namespace BR::Dat;
+using namespace Brush;
+using namespace Brush::Dat;
 
 /* template<typename T> */
 /* T add(T x, T y){ return x + y; }; */

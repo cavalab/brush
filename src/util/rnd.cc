@@ -5,7 +5,7 @@ license: GNU/GPL v3
 
 #include "rnd.h"
 
-namespace BR { namespace Util{
+namespace Brush { namespace Util{
     
     Rnd* Rnd::instance = NULL;
     

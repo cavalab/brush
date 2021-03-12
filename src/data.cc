@@ -8,9 +8,9 @@ license: GNU/GPL v3
 #include "util/rnd.h"
 #include "util/logger.h"
 
-using namespace BR::Util;
+using namespace Brush::Util;
 
-namespace BR{ namespace Dat{
+namespace Brush{ namespace Dat{
 
     Data::Data(MatrixXf& X, ArrayXf& y, Longitudinal& Z, 
             bool c): X(X), y(y), Z(Z), classification(c) 

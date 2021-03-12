@@ -18,10 +18,10 @@ license: GNU/GPL v3
 using namespace Eigen;
 
 /**
-* @namespace BR::Util
+* @namespace Brush::Util
 * @brief namespace containing various utility functions used in Feat
 */
-namespace BR{
+namespace Brush{
 namespace Util{
 
 extern string PBSTR;
@@ -288,29 +288,29 @@ void reorder(vector<T> &v, vector<int> const &order )
 
 /// split Eigen matrix or array into two by mask
 template<typename T>
-array<ArrayBase<T>, 2> split(const ArrayBase<T>& w, const ArrayXb& mask)
+array<Array<T,-1, 1>, 2> split(const Array<T,-1,1>& v, const ArrayXb& mask)
 {
     int size1 = mask.count();
     int size2 = mask.size() - size1;
-    ArrayBase<T> left(size1), right(size2);
+    Array<T,-1,1> L(size1), R(size2);
 
     int idx1 = 0, idx2 = 0;
     for (int  i = 0; i < mask.size(); ++i)
     {
         if (mask(i))
         {
-            left(idx1) = w(i);
+            L(idx1) = v(i);
             ++idx1;
         }
         else
         {
-            right(idx2) = w(i);
+            R(idx2) = v(i);
             ++idx2;
         }
     }
-    return { left, right };
+    return { L, R };
 };
 
 } // Util
-} // BR 
+} // Brush 
 #endif
