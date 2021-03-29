@@ -1,0 +1,1 @@
+/usr/bin/g++-9 -fPIC  -fopenmp -Wno-ignored-attributes -g  -shared -Wl,-soname,libbrush_lib.so -o libbrush_lib.so CMakeFiles/brush_lib.dir/src/data.cc.o CMakeFiles/brush_lib.dir/src/program.cc.o CMakeFiles/brush_lib.dir/src/util/error.cc.o CMakeFiles/brush_lib.dir/src/util/logger.cc.o CMakeFiles/brush_lib.dir/src/util/rnd.cc.o CMakeFiles/brush_lib.dir/src/util/utils.cc.o 

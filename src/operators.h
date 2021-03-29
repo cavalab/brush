@@ -20,8 +20,8 @@ template<typename T>
 struct safe_log {
     T operator()(const T &x) const 
     {
-        if (abs(x) > NEAR_ZERO)
-            return log(abs(x));
+        if (fabs(x) > NEAR_ZERO)
+            return log(fabs(x));
         else
             return MIN_FLT;
     }
@@ -73,6 +73,15 @@ struct d_plus<ArrayXf> {
         return {ArrayXf::Ones(lhs.size()), ArrayXf::Ones(rhs.size())}; 
     }
 };
+/// Specialization required for ArrayXi
+template<>
+struct d_plus<ArrayXi> {
+    array<ArrayXi,2> operator()(const ArrayXi &lhs, 
+                                      const ArrayXi &rhs) const 
+    {
+        return {ArrayXi::Ones(lhs.size()), ArrayXi::Ones(rhs.size())}; 
+    }
+};
 
 template<typename T>
 struct d_minus {
@@ -81,13 +90,24 @@ struct d_minus {
         return {1, -1};
     }
 };
-/// Specialization required for Array
+/// Specialization required for ArrayXf
 template<>
 struct d_minus<ArrayXf> {
     array<ArrayXf,2> operator()(const ArrayXf &lhs, 
                                       const ArrayXf &rhs) const 
     {
-        return {ArrayXf::Ones(lhs.size()), -ArrayXf::Ones(rhs.size())}; 
+        return {ArrayXf::Ones(lhs.size()), 
+                -ArrayXf::Ones(rhs.size())}; 
+    }
+};
+/// Specialization required for ArrayXi
+template<>
+struct d_minus<ArrayXi> {
+    array<ArrayXi,2> operator()(const ArrayXi &lhs, 
+                                      const ArrayXi &rhs) const 
+    {
+        return {ArrayXi::Ones(lhs.size()), 
+                -ArrayXi::Ones(rhs.size())}; 
     }
 };
 
@@ -128,7 +148,7 @@ struct d_relu<ArrayXf> {
     array<ArrayXf,1> operator()(const ArrayXf &x) const 
     {
        return {(x > 0).select(ArrayXf::Ones(x.size()), 
-                             ArrayXf::Zero(x.size())+0.01)};
+                              ArrayXf::Zero(x.size())+0.01)};
     }
 };
 

@@ -386,6 +386,14 @@ void Log_Stats::update(int index,
 /*     return {L, R}; */ 
 
 /* } */
+TypeMap<std::string> type_names = {
+        { typeid(int) , "int" },
+        { typeid(float) , "float" },
+        { typeid(bool) , "bool" },
+        { typeid(ArrayXf) , "ArrayXf" },
+        { typeid(ArrayXi) , "ArrayXi" },
+        { typeid(ArrayXb) , "ArrayXb" }
+    };
 
 } // Util
 } // Brush

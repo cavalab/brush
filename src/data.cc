@@ -13,11 +13,25 @@ using namespace Brush::Util;
 namespace Brush{ namespace Dat{
 
     Data::Data(MatrixXf& X, ArrayXf& y, Longitudinal& Z, 
-            bool c): X(X), y(y), Z(Z), classification(c) 
+               const vector<string>& variable_names, 
+               bool c): X(X), y(y), Z(Z), var_names(variable_names), classification(c) 
     {
-
         validation=false;
         X_dtypes = get_dtypes(X);
+
+        if (var_names.empty())
+        {
+            vector<int> varnum(X.rows());
+            iota(varnum.begin(), varnum.end(), 0);
+            for (const auto& v : varnum)
+                var_names.push_back("x_"+to_string(v));
+        }
+        assert(X.rows() == var_names.size());
+
+        for (int i = 0; i< X.rows(); ++i)
+        {
+            name_to_idx[var_names.at(i)] = i;
+        }
     }
     
     void Data::set_validation(bool v){validation=v;}
@@ -51,6 +65,7 @@ namespace Brush{ namespace Dat{
     }
     array<Data, 2> Data::split(const ArrayXb& mask) const
     {
+        // TODO: can we turn X1, X2 into maps, so the data isn't copied?
         // split data into two based on mask. 
         int size1 = mask.count();
         int size2 = mask.size() - size1;
@@ -78,29 +93,33 @@ namespace Brush{ namespace Dat{
             }
         }
 
-        array<Data, 2> result = {Data(X1,y1,Z1), Data(X2, y2, Z2)};
+        array<Data, 2> result = {Data(X1, y1, Z1, 
+                                      var_names, classification), 
+                                 Data(X2, y2, Z2, 
+                                      var_names, classification)
+                                };
 
         return result;
     }
     
-    DataRef::DataRef()
+    CVData::CVData()
     {
         oCreated = false;
         tCreated = false;
         vCreated = false;
     }
  
-    DataRef::DataRef(MatrixXf& X, ArrayXf& y, 
-                     Longitudinal& Z, 
-                     bool c)
+    CVData::CVData(MatrixXf& X, ArrayXf& y, Longitudinal & Z, 
+                   const vector<string>& variable_names,
+                   bool c)
     {
-        o = new Data(X, y, Z, c);
+        o = new Data(X, y, Z, variable_names, c);
         oCreated = true;
         
-        t = new Data(X_t, y_t, Z_t, c);
+        t = new Data(X_t, y_t, Z_t, variable_names, c);
         tCreated = true;
         
-        v = new Data(X_v, y_v, Z_v, c);
+        v = new Data(X_v, y_v, Z_v, variable_names, c);
         vCreated = true;
         
         classification = c;
@@ -109,7 +128,7 @@ namespace Brush{ namespace Dat{
         //train_test_split(params.shuffle, params.split);
     }
    
-    DataRef::~DataRef()
+    CVData::~CVData()
     {
         if(o != NULL && oCreated)
         {
@@ -130,47 +149,47 @@ namespace Brush{ namespace Dat{
         }
     }
     
-    void DataRef::setOriginalData(MatrixXf& X, ArrayXf& y, 
-                                  Longitudinal& Z,
-                                  bool c)
+    void CVData::setOriginalData(MatrixXf& X, ArrayXf& y, Longitudinal& Z,
+                                 const vector<string>& variable_names,
+                                 bool c)
     {
-        o = new Data(X, y, Z, c);
+        o = new Data(X, y, Z, variable_names, c);
         oCreated = true;
         
-        t = new Data(X_t, y_t, Z_t, c);
+        t = new Data(X_t, y_t, Z_t, variable_names, c);
         tCreated = true;
         
-        v = new Data(X_v, y_v, Z_v, c);
+        v = new Data(X_v, y_v, Z_v, variable_names, c);
         vCreated = true;
         
         classification = c;
     }
     
-    void DataRef::setOriginalData(Data *d)
+    void CVData::setOriginalData(Data *d)
     {
         o = d;
         oCreated = false;
         
-        t = new Data(X_t, y_t, Z_t, d->classification);
+        t = new Data(X_t, y_t, Z_t, d->var_names, d->classification);
         tCreated = true;
         
-        v = new Data(X_v, y_v, Z_v, d->classification);
+        v = new Data(X_v, y_v, Z_v, d->var_names, d->classification);
         vCreated = true;
         
         classification = d->classification;
     }
     
-    void DataRef::setTrainingData(MatrixXf& X_t, ArrayXf& y_t, 
-                                Longitudinal& Z_t,
-                                bool c)
+    void CVData::setTrainingData(MatrixXf& X_t, ArrayXf& y_t, Longitudinal& Z_t,
+                                 const vector<string>& variable_names,
+                                 bool c)
     {
-        t = new Data(X_t, y_t, Z_t, c);
+        t = new Data(X_t, y_t, Z_t, variable_names, c);
         tCreated = true;
         
         classification = c;
     }
     
-    void DataRef::setTrainingData(Data *d, bool toDelete)
+    void CVData::setTrainingData(Data *d, bool toDelete)
     {
         t = d;
         if(!toDelete)
@@ -179,21 +198,22 @@ namespace Brush{ namespace Dat{
             tCreated = true;
     }
     
-    void DataRef::setValidationData(MatrixXf& X_v, ArrayXf& y_v, 
-                                Longitudinal& Z_v,
-                                bool c)
+    void CVData::setValidationData(MatrixXf& X_v, ArrayXf& y_v, 
+                                   Longitudinal& Z_v,
+                                   const vector<string>& variable_names,
+                                   bool c)
     {
-        v = new Data(X_v, y_v, Z_v, c);
+        v = new Data(X_v, y_v, Z_v, variable_names,  c);
         vCreated = true;
     }
     
-    void DataRef::setValidationData(Data *d)
+    void CVData::setValidationData(Data *d)
     {
         v = d;
         vCreated = false;
     }
     
-    void DataRef::shuffle_data()
+    void CVData::shuffle_data()
     {
         Eigen::PermutationMatrix<Dynamic,Dynamic> perm(o->X.cols());
         perm.setIdentity();
@@ -220,7 +240,7 @@ namespace Brush{ namespace Dat{
         }
     }
     
-    void DataRef::split_stratified(float split)
+    void CVData::split_stratified(float split)
     {
         logger.log("Stratify split called with initial data size as " 
                 + std::to_string(o->X.cols()), 3);
@@ -270,15 +290,6 @@ namespace Brush{ namespace Dat{
             t->X.col(x) = o->X.col(t_indices[x]);
             t->y[x] = o->y[t_indices[x]];
             t->Z[x] = o->Z[t_indices[x]];
-            
-            /* if(o->Z.size() > 0) */
-            /* { */
-            /*     for(auto const &val : o->Z) */
-            /*     { */
-            /*         t->Z[val.first].first.push_back(val.second.first[t_indices[x]]); */
-            /*         t->Z[val.first].second.push_back(val.second.second[t_indices[x]]); */
-            /*     } */
-            /* } */
         }
         
         sort(v_indices.begin(), v_indices.end());
@@ -288,23 +299,12 @@ namespace Brush{ namespace Dat{
             v->X.col(x) = o->X.col(v_indices[x]);
             v->y[x] = o->y[v_indices[x]];
             v->Z[x] = o->Z[t_indices[x]];
-            
-            /* if(o->Z.size() > 0) */
-            /* { */
-            /*     for(auto const &val : o->Z) */
-            /*     { */
-            /*         v->Z[val.first].first.push_back( */
-            /*                 val.second.first[t_indices[x]]); */
-            /*         v->Z[val.first].second.push_back( */
-            /*                 val.second.second[t_indices[x]]); */
-            /*     } */
-            /* } */
         }
 
         
     }
  
-    void DataRef::train_test_split(bool shuffle, float split)
+    void CVData::train_test_split(bool shuffle, float split)
     {
         /* @param X: n_features x n_samples matrix of training data
          * @param y: n_samples vector of training labels
@@ -339,7 +339,7 @@ namespace Brush{ namespace Dat{
 
     }  
     
-    void DataRef::split_longitudinal(
+    void CVData::split_longitudinal(
                             Longitudinal& Z,
                             Longitudinal& Z_t,
                             Longitudinal& Z_v,

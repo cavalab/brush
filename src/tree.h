@@ -61,6 +61,7 @@ class tree_node_ { // size: 5*4=20 bytes (on 32 bit arch), can be reduced by 8.
         State fit(const Data& d);
         State predict(const Data& d);
         void grad_descent(const ArrayXf&, const Data&);
+		string get_model();
 }; 
 
 template<class T>
@@ -79,6 +80,12 @@ template<class T>
 void tree_node_<T>::grad_descent(const ArrayXf& gradient, const Data& d)
 {
     this->data->grad_descent(gradient, d, first_child, last_child);
+}
+
+template<class T>
+string tree_node_<T>::get_model()
+{
+    return this->data->get_model(first_child, last_child);
 }
 
 template<class T>

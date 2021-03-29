@@ -1,7 +1,6 @@
 #include <algorithm>
 #include <iostream>
 #include "node.h"
-#include "nodemap.h"
 #include "operators.h"
 #include "program.h"
 #include "data.h"
@@ -23,57 +22,58 @@ using namespace Brush::Dat;
 
 int main(int, char **)
 {
-    cout << "declaring node...\n";
-    Node<int(int, int)> node_plus("+", std::plus<int>());
-    cout << "3+5 = " << node_plus.op(3, 5) << endl;
-    cout << "3.1+5.7 = " << node_plus.op(3.1, 5.7) << endl;
+    // cout << "declaring node...\n";
+    // Node<int(int, int)> node_plus("+", std::plus<int>());
+    // cout << "3+5 = " << node_plus.op(3, 5) << endl;
+    // cout << "3.1+5.7 = " << node_plus.op(3.1, 5.7) << endl;
 
-    Node<float(float, float)> node_plus_float("+", std::plus<float>());
+    // Node<float(float, float)> node_plus_float("+", std::plus<float>());
 
-    cout << "3+5 = " << node_plus_float.op(3, 5) << endl;
-    cout << "3.1+5.7 = " << node_plus_float.op(3.1, 5.7) << endl;
+    // cout << "3+5 = " << node_plus_float.op(3, 5) << endl;
+    // cout << "3.1+5.7 = " << node_plus_float.op(3.1, 5.7) << endl;
 
-    Node<bool(float, float)> node_lt("<", std::less<float>() );
-    cout << "3<5 = " << node_lt.op(3, 5) << endl;
-    cout << "3.1<5.7 = " << node_lt.op(3.1, 5.7) << endl;
+    // Node<bool(float, float)> node_lt("<", std::less<float>() );
+    // cout << "3<5 = " << node_lt.op(3, 5) << endl;
+    // cout << "3.1<5.7 = " << node_lt.op(3.1, 5.7) << endl;
 
-    Node<float(float, float)> node_minus("-", std::minus<float>());
-    cout << "3-5 = " << node_minus.op(3, 5) << endl;
-    cout << "3.1-5.7 = " << node_minus.op(3.1, 5.7) << endl;
+    // Node<float(float, float)> node_minus("-", std::minus<float>());
+    // cout << "3-5 = " << node_minus.op(3, 5) << endl;
+    // cout << "3.1-5.7 = " << node_minus.op(3.1, 5.7) << endl;
 
-    Node<float(float, float)> node_multiplies("*", std::multiplies<float>());
-    cout << "3*5 = " << node_multiplies.op(3, 5) << endl;
-    cout << "3.1*5.7 = " << node_multiplies.op(3.1, 5.7) << endl;
-    cout << "dune.\n";
+    // Node<float(float, float)> node_multiplies("*", std::multiplies<float>());
+    // cout << "3*5 = " << node_multiplies.op(3, 5) << endl;
+    // cout << "3.1*5.7 = " << node_multiplies.op(3.1, 5.7) << endl;
+    // cout << "dune.\n";
 
-    // construct tree
-    // P = LESS ( ADD (X1, X2) , MULTIPLY( X1, X2) )
-    //
-    Program<ArrayXb> tree;
-    auto top = tree.begin();
-    auto root = tree.insert(tree.begin(), NM["<"]);
-    auto add = tree.append_child(root, NM["+"]);
-    /* auto add = tree.append_child(root, new Node<ArrayXf(ArrayXf,ArrayXf)>( */
-    /*             std::plus<ArrayXf>(), "ADD")); */
+    // // construct tree
+    // // P = LESS ( ADD (X1, X2) , MULTIPLY( X1, X2) )
+    // //
+    // Program<ArrayXb> tree;
+    // auto top = tree.prg.begin();
+    // auto root = tree.prg.insert(tree.prg.begin(), NM["<"]);
+    // auto add = tree.prg.append_child(root, NM["+"]);
+    // /* auto add = tree.append_child(root, new Node<ArrayXf(ArrayXf,ArrayXf)>( */
+    // /*             std::plus<ArrayXf>(), "ADD")); */
     
-    auto times = tree.append_child(root, NM["*"]);
-    tree.append_child(add, new Node<ArrayXf>("x_1", 0));
-    tree.append_child(add, new Node<ArrayXf>("x_2", 1));
-    tree.append_child(times, new Node<ArrayXf>("x_1", 0));
-    tree.append_child(times, new Node<ArrayXf>("x_2", 1));
+    // auto times = tree.prg.append_child(root, NM["*"]);
+    // tree.prg.append_child(add, new Node<ArrayXf>("x_1", 0));
+    // tree.prg.append_child(add, new Node<ArrayXf>("x_2", 1));
+    // tree.prg.append_child(times, new Node<ArrayXf>("x_1", 0));
+    // tree.prg.append_child(times, new Node<ArrayXf>("x_2", 1));
 
-    auto loc = tree.begin(); 
+    // auto loc = tree.prg.begin(); 
 
-    while(loc!=tree.end()) 
-    {
-        for(int i=0; i<tree.depth(loc); ++i)
-            cout << "--";
-        cout << (*loc)->name << endl;
-        ++loc;
-        /* cout << endl; */
-    }
+    // while(loc!=tree.prg.end()) 
+    // {
+    //     for(int i=0; i<tree.prg.depth(loc); ++i)
+    //         cout << "--";
+    //     cout << (*loc)->name << endl;
+    //     ++loc;
+    //     /* cout << endl; */
+    // }
 
-    cout << "===\n";
+    cout << "=======================================\n";
+    cout << "setting up data...\n";
     MatrixXf X(2,10);
     ArrayXf y(10);
     X << 1.0,2.0,3.0,4.0,5.0,6.0,7.0,8.0,9.0,10.0,
@@ -81,9 +81,9 @@ int main(int, char **)
     y << 1.0,0.0,1.0,1.0,0.0,1.0,1.0,0.0,0.0,0.0;
     Longitudinal Z;
     Data d(X,y,Z);
-    cout << "fitting tree...\n";
-    State out = tree.fit(d);
-    cout << "output: " << get<ArrayXb>(out) << endl;
+    // cout << "fitting tree...\n";
+    // State out = tree.fit(d);
+    // cout << "output: " << get<ArrayXb>(out) << endl;
 
     // test backpropagation
     // y = 3.14*X1 + 1.68*X2
@@ -98,10 +98,16 @@ int main(int, char **)
          0.2254195 , 0.70526861, 0.31406024, 0.07082619, 0.84034526;
     y << 3.55634251, 3.13854087, 3.55887523, 3.29462895, 3.33443517,
              3.4378868 , 3.41092345, 3.5087468 , 3.25110243, 3.11382179;
+
+            
     Program<ArrayXf> DXtree;
-    auto root2 = DXtree.insert(DXtree.begin(), NM["+"]);
-    DXtree.append_child(root2, new Node<ArrayXf>("x_1", 0));
-    DXtree.append_child(root2, new Node<ArrayXf>("x_2", 1));
+    cout << "making program...\n";
+    for (int d = 1; d < 10; ++d)
+        for (int s = 1; s < 50; ++s)
+            DXtree.make_program(d, s);
+    // auto root2 = DXtree.prg.insert(DXtree.prg.begin(), NM["+"]);
+    // DXtree.prg.append_child(root2, new Node<ArrayXf>("x_1", 0));
+    // DXtree.prg.append_child(root2, new Node<ArrayXf>("x_2", 1));
     DXtree.fit(d);
     cout << "generating predictions\n";
     ArrayXf y_pred = DXtree.predict(d);

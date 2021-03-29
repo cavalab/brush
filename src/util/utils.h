@@ -14,6 +14,8 @@ license: GNU/GPL v3
 #include <map>
 #include "../init.h"
 #include "error.h"
+#include <typeindex>
+#include <iterator> // needed for std::ostram_iterator
 
 using namespace Eigen;
 
@@ -28,6 +30,41 @@ extern string PBSTR;
 
 extern int PBWIDTH;
 
+/* a hash map from types to strings of their names. 
+https://en.cppreference.com/w/cpp/types/type_info/hash_code
+*/
+
+// using TypeInfoPtr = const std::type_info*; 
+// struct Hasher {
+//     std::size_t operator()(type_index code) const
+//     {
+//         return code.get().hash_code();
+//     }
+// };
+ 
+// struct EqualTo {
+//     bool operator()(type_index lhs, type_index rhs) const
+//     {
+//         return lhs.get() == rhs.get();
+//     }
+// };
+
+// << operator overload for printing vectors
+template <typename T>
+std::ostream& operator<< (std::ostream& out, const std::vector<T>& v) {
+  if ( !v.empty() ) {
+    out << '[';
+    std::copy (v.begin(), v.end(), std::ostream_iterator<T>(out, ", "));
+    out << "\b\b]";
+  }
+  return out;
+}
+
+template<typename T>
+using TypeMap = std::map<std::type_index, T>; 
+extern TypeMap<std::string> type_names; 
+
+// using TypeMap = std::unordered_map<TypeInfoPtr, T, Hasher, EqualTo>; 
 /// limits node output to be between MIN_FLT and MAX_FLT
 void clean(ArrayXf& x);
 
@@ -39,10 +76,18 @@ std::string trim(std::string str, const std::string& chars = "\t\n\v\f\r ");
 
 /// check if element is in vector.
 template<typename T>
-bool in(const vector<T> v, const T& i)
+bool in(const vector<T>& v, const T& i)
 {
     return std::find(v.begin(), v.end(), i) != v.end();
 }
+// /// specialization for type_index
+// template<>
+// bool in<type_index>(const vector<type_index>& v, const type_index& i)
+// {
+//     return std::find_if(v.begin(), v.end(), 
+//                         [=](type_index s){return s.get() == i.get();}
+//                        ) != v.end();
+// }
 
 /// calculate median
 float median(const ArrayXf& v);
