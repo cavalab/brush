@@ -93,7 +93,8 @@ template<typename T> class Program //: public tree<NodeBase*>
             if (max_size == 0)
                 max_size = r.rnd_int(1, pow(2, max_d));
 
-            cout << "building program with max size " << max_size << endl;
+            cout << "building program with max size " << max_size 
+                 << ", max_depth: " << max_d << endl;
 
 
             // Queue of nodes that need children

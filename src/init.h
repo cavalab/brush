@@ -40,7 +40,6 @@ typedef std::map<string,
 /* #include "util/json.hpp" */
 /* using nlohmann::json; */
 
-
 static float NEAR_ZERO = 0.0000001;
 static float MAX_FLT = std::numeric_limits<float>::max();
 static float MIN_FLT = std::numeric_limits<float>::lowest();

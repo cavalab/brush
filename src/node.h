@@ -395,6 +395,7 @@ class WeightedDxNode<R(Args...)> : public DxNode<R(Args...)>
                      const vector<float>& Win = {})
         : DxNode<R(Args...)>(name, f, df) 
         {
+            cout << "initializing node " << name << endl;
             this->V.fill(0.0);
             if (Win.empty())
                 this->W.fill(1.0);

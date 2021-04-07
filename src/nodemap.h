@@ -338,82 +338,82 @@ NodeVector make_continuous_nodes()
 //TODO: define argument packs that can feed into different node types. 
 // something like map<T>(name, fn, d_fn, inv_fn, arity)
 
-template<typename T> //, template<typename> typename N>
-NodeVector make_weighted_dx_nodes()
-{
-    cout << "making weighted dx nodes...\n";
-    return {
-            new WeightedDxNode<T(T,T)>("ADD", 
-                    std::plus<T>(), 
-                    d_plus<T>()
-                    ),
-            new WeightedDxNode<T(T,T)>("MINUS", 
-                    std::minus<T>(),
-                    d_minus<T>()
-                    ),
-            new WeightedDxNode<T(T,T)>("TIMES", 
-                    std::multiplies<T>(),
-                    d_multiplies<T>()
-                    ),
-            new WeightedDxNode<T(T,T)>("DIV", 
-                    std::divides<T>(),
-                    d_divides<T>()
-                    ),
-            new WeightedDxNode<T(T)>("sin", 
-                    [](const T& x) -> T {return sin(x);},
-                    [](const T& x) -> array<T,1>{return {-cos(x)};}
-                    ),
-            new WeightedDxNode<T(T)>("cos", 
-                    [](const T& x) -> T {return cos(x);},
-                    [](const T& x) -> array<T,1>{return {sin(x)};}
-                    ),
-            new WeightedDxNode<T(T)>("tanh", 
-                    [](const T& x) -> T {return tanh(x);},
-                    [](const T& x) -> array<T,1>
-                        { return {1 - pow(tanh(x), 2)}; }
-                    ),
-            new WeightedDxNode<T(T)>("exp", 
-                    [](const T& x) -> T {return exp(x);},
-                    [](const T& x) -> array<T,1>{return {exp(x)};}
-                    ),
-            new WeightedDxNode<T(T)>("log", 
-                    safe_log<T>(),
-                    d_safe_log<T>()
-                    ),
-            new WeightedDxNode<T(T)>("sqrt", 
-                    [](const T& x) -> T { return sqrt(abs(x)); },
-                    [](const T& x) -> array<T,1> {
-                        return {x/(2*sqrt(abs(x)))}; }
-                    ),
-            new WeightedDxNode<T(T)>("square", 
-                    [](const T& x) -> T {return pow(x, 2);},
-                    [](const T& x) -> array<T,1> {return {2*x}; }
-                    ),
-            new WeightedDxNode<T(T)>("cube", 
-                    [](const T& x) -> T {return pow(x, 3);},
-                    [](const T& x) -> array<T,1> {return {3*pow(x, 2)}; }
-                    ),
-            new WeightedDxNode<T(T,T)>("pow", 
-                    [](const T& lhs, const T& rhs) -> T {return pow(lhs, rhs);},
-                    [](const T& lhs, const T& rhs) -> array<T,2> {
-                        return {rhs * pow(lhs, rhs-1), 
-                                log(lhs) * pow(lhs, rhs)}; 
-                        }
-                    ),
-            new WeightedDxNode<T(T)>("logit", 
-                    [](const T& x) -> T {return 1/(1+exp(-x));},
-                    [](const T& x) -> array<T,1> {
-                        return { exp(-x)/pow(1+exp(-x),2) }; }
-                    ),
-            new WeightedDxNode<T(T)>("relu", 
-                    relu<T>(),
-                    d_relu<T>()
-                    ),
-       };
-       /* TODO / potential adds:*/
-            /* { "gauss",  new Node<T(T)>(gauss, "gauss")}, */ 
-            /* { "gauss2d",  new Node<T(T,T)>(gauss2d, "gauss2d")}, */ 
-};
+// template<typename T> //, template<typename> typename N>
+// NodeVector make_weighted_dx_nodes()
+// {
+//     cout << "making weighted dx nodes...\n";
+//     return {
+//             new WeightedDxNode<T(T,T)>("ADD", 
+//                     std::plus<T>(), 
+//                     d_plus<T>()
+//                     ),
+//             new WeightedDxNode<T(T,T)>("MINUS", 
+//                     std::minus<T>(),
+//                     d_minus<T>()
+//                     ),
+//             new WeightedDxNode<T(T,T)>("TIMES", 
+//                     std::multiplies<T>(),
+//                     d_multiplies<T>()
+//                     ),
+//             new WeightedDxNode<T(T,T)>("DIV", 
+//                     std::divides<T>(),
+//                     d_divides<T>()
+//                     ),
+//             new WeightedDxNode<T(T)>("sin", 
+//                     [](const T& x) -> T {return sin(x);},
+//                     [](const T& x) -> array<T,1>{return {-cos(x)};}
+//                     ),
+//             new WeightedDxNode<T(T)>("cos", 
+//                     [](const T& x) -> T {return cos(x);},
+//                     [](const T& x) -> array<T,1>{return {sin(x)};}
+//                     ),
+//             new WeightedDxNode<T(T)>("tanh", 
+//                     [](const T& x) -> T {return tanh(x);},
+//                     [](const T& x) -> array<T,1>
+//                         { return {1 - pow(tanh(x), 2)}; }
+//                     ),
+//             new WeightedDxNode<T(T)>("exp", 
+//                     [](const T& x) -> T {return exp(x);},
+//                     [](const T& x) -> array<T,1>{return {exp(x)};}
+//                     ),
+//             new WeightedDxNode<T(T)>("log", 
+//                     safe_log<T>(),
+//                     d_safe_log<T>()
+//                     ),
+//             new WeightedDxNode<T(T)>("sqrt", 
+//                     [](const T& x) -> T { return sqrt(abs(x)); },
+//                     [](const T& x) -> array<T,1> {
+//                         return {x/(2*sqrt(abs(x)))}; }
+//                     ),
+//             new WeightedDxNode<T(T)>("square", 
+//                     [](const T& x) -> T {return pow(x, 2);},
+//                     [](const T& x) -> array<T,1> {return {2*x}; }
+//                     ),
+//             new WeightedDxNode<T(T)>("cube", 
+//                     [](const T& x) -> T {return pow(x, 3);},
+//                     [](const T& x) -> array<T,1> {return {3*pow(x, 2)}; }
+//                     ),
+//             new WeightedDxNode<T(T,T)>("pow", 
+//                     [](const T& lhs, const T& rhs) -> T {return pow(lhs, rhs);},
+//                     [](const T& lhs, const T& rhs) -> array<T,2> {
+//                         return {rhs * pow(lhs, rhs-1), 
+//                                 log(lhs) * pow(lhs, rhs)}; 
+//                         }
+//                     ),
+//             new WeightedDxNode<T(T)>("logit", 
+//                     [](const T& x) -> T {return 1/(1+exp(-x));},
+//                     [](const T& x) -> array<T,1> {
+//                         return { exp(-x)/pow(1+exp(-x),2) }; }
+//                     ),
+//             new WeightedDxNode<T(T)>("relu", 
+//                     relu<T>(),
+//                     d_relu<T>()
+//                     ),
+//        };
+//        /* TODO / potential adds:*/
+//             /* { "gauss",  new Node<T(T)>(gauss, "gauss")}, */ 
+//             /* { "gauss2d",  new Node<T(T,T)>(gauss2d, "gauss2d")}, */ 
+// };
 
 
 // template<typename T>
@@ -534,21 +534,21 @@ vector<type_index> data_types = {
 ArrayXf x1, x2;
 NodeVector terminals = { new Terminal("x1",x1), new Terminal("x2",x2) };
 
-std::set<NodeVector> node_set = {
-                        make_weighted_dx_nodes<ArrayXf>(),
-                        // make_weighted_dx_nodes<ArrayXi>(),
-                        make_split_nodes<ArrayXf>(),
-                        // make_split_nodes<ArrayXf,ArrayXi>(),
-                        // make_split_nodes<ArrayXf,ArrayXb>(),
-                        // make_split_nodes<ArrayXi>(),
-                        // make_split_nodes<ArrayXi,ArrayXf>(),
-                        // make_split_nodes<ArrayXi,ArrayXb>(),
-                        // make_split_nodes<ArrayXb>(),
-                        // make_split_nodes<ArrayXb,ArrayXf>(),
-                        // make_split_nodes<ArrayXb,ArrayXi>()
-                    };
+// std::set<NodeVector> node_set = {
+//                         // make_weighted_dx_nodes<ArrayXf>(),
+//                         // make_weighted_dx_nodes<ArrayXi>(),
+//                         // make_split_nodes<ArrayXf>(),
+//                         // make_split_nodes<ArrayXf,ArrayXi>(),
+//                         // make_split_nodes<ArrayXf,ArrayXb>(),
+//                         // make_split_nodes<ArrayXi>(),
+//                         // make_split_nodes<ArrayXi,ArrayXf>(),
+//                         // make_split_nodes<ArrayXi,ArrayXb>(),
+//                         // make_split_nodes<ArrayXb>(),
+//                         // make_split_nodes<ArrayXb,ArrayXf>(),
+//                         // make_split_nodes<ArrayXb,ArrayXi>()
+//                     };
 
-SearchSpace SS(node_set, terminals, data_types);
+// SearchSpace SS(node_set, terminals, data_types);
 
 } // Brush
 #endif
