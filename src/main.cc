@@ -5,8 +5,10 @@
 #include "program.h"
 #include "data.h"
 #include "tree.h"
+#include "init.h"
 
 using namespace Eigen;
+// using Eigen::ArrayXf;
 using namespace std;
 using namespace Brush;
 using namespace Brush::Dat;
@@ -24,38 +26,49 @@ int main(int, char **)
 {
     // auto float_binary_operators = make_binary_operators<float>();
     // auto array_binary_operators = make_binary_operators<ArrayXf>();
-    // vector<BinaryOperator<float>*> FloatBinaryOperators = { 
-    //                             new Add<float>(),
-    //                             new Sub<float>()
-    //                             };
-    // vector<Operator<Eigen::ArrayXf>*> ArrayBinaryOperators = { 
-    //                             new Add<float>(),
-    //                             new Sub<float>()
-    //                             };
-    // auto op = Add<float>();
-    BinaryOperator<float>* op = new Add<float>();
-    auto node = WeightedDxNode<float(float,float)>(
-        op->get_name(),
-        op->f,
-        op->df
-    );
+    vector<BinaryOperator<float>*> FloatBinaryOperators = { 
+                                new Add<float>()
+                                // new Sub<float>(),
+                                // new Times<float>(),
+                                // new Div<float>(),
+                                };
+    vector<BinaryOperator<ArrayXf>*> ArrayBinaryOperators = {
+        new Add<ArrayXf>()
+        // new Sub<ArrayXf>(),
+        // new Times<ArrayXf>(),
+        // new Div<ArrayXf>(),
+        };
+    // // WORKS:
+    // BinaryOperator<float>* op = new Add<float>();
+    // auto node = WeightedDxNode<float(float,float)>(
+    //     op->name,
+    //     op->f,
+    //     op->df
+    // );
+    // BinaryOperator<ArrayXf>* op2 = new Add<ArrayXf>();
+    // auto nude = WeightedDxNode<ArrayXf(ArrayXf,ArrayXf)>(
+    //     op2->name,
+    //     op2->f,
+    //     op2->df
+    // );
+    // // END WORKS
     // for (const auto& op : float_binary_operators)
-    // for (const auto& op : FloatBinaryOperators)
-    // {
-    //     auto node = WeightedDxNode<float(const float&,const float&)>(
-    //                                op->get_name(), 
-    //                                (*op), 
-    //                                op->df
-    //                                );
-    // }
-    // for (const auto& op : array_binary_operators)
-    // {
-    //     auto node = WeightedDxNode<ArrayXf(ArrayXf, ArrayXf)>(
-    //                                op->get_name(), 
-    //                                op, 
-    //                                op->df
-    //                                );
-    // }
+    for (const auto& op : FloatBinaryOperators)
+    {
+        auto node = WeightedDxNode<float(float,float)>(
+                                   op->name, 
+                                   op->f, 
+                                   op->df
+                                   );
+    };
+    for (const auto& op : ArrayBinaryOperators)
+    {
+        auto node = WeightedDxNode<ArrayXf(ArrayXf, ArrayXf)>(
+                                   op->name,
+                                   op->f, 
+                                   op->df
+                                   );
+    }
     // cout << "declaring node...\n";
     // Node<int(int, int)> node_plus("+", std::plus<int>());
     // cout << "3+5 = " << node_plus.op(3, 5) << endl;

@@ -21,14 +21,26 @@ namespace Brush
 {
 
 //template specializations for eigen types you are interested in
-template<typename T> struct isEigenArray;
-template<>
-struct isEigenArray<Eigen::ArrayXf> { typedef std::true_type value; };
+// template<typename T> struct isEigenArray;
+template<typename T> 
+struct isEigenArray : std::false_type {};
 
 template<>
-struct isEigenArray<Eigen::ArrayXi> { typedef std::true_type value; };
+struct isEigenArray<Eigen::ArrayXf> : std::true_type {};
+template<>
+struct isEigenArray<Eigen::ArrayXi> : std::true_type {};
 
-template<typename T> struct isEigenArray { typedef std::false_type value; };
+template<typename T> 
+struct isntEigenArray : std::true_type {};
+
+template<>
+struct isntEigenArray<Eigen::ArrayXf> : std::false_type {};
+template<>
+struct isntEigenArray<Eigen::ArrayXi> : std::false_type {};
+
+// template<>
+// struct isEigenArray<Eigen::ArrayXi> { typedef std::true_type value; };
+
 
 /* Partial Derivative Functions 
  *
@@ -38,23 +50,45 @@ template<typename T> struct isEigenArray { typedef std::false_type value; };
  */
 
 /// add
-template<class T, class Enable = void>
-struct d_add 
+// template<class T, class Enable = void> struct d_add;
+// // template<class T, std::enable_if_t<isEigenArray<T, int>::value, int> = 0>
+// template<class T> 
+// struct d_add<T> 
+// {
+//     array<T,2> operator()(const T &lhs, const T &rhs) const 
+//     {
+//         return {1, 1};
+//     }
+// };
+template<typename T>
+std::enable_if_t<std::is_base_of_v<Eigen::ArrayBase<T>, T>, 
+array<T,2>> d_add(const T &lhs, const T &rhs) 
 {
-    array<T,2> operator()(const T &lhs, const T &rhs) const 
-    {
-        return {1, 1};
-    }
+    return {T::Ones(lhs.size()), T::Ones(rhs.size())}; 
 };
+
+template<typename T>
+std::enable_if_t<std::is_scalar_v<T>, 
+array<T,2>> d_add(const T &lhs, const T &rhs) 
+{
+    return {1, 1};
+};
+
 /// add specialization for Eigen Arrays
-template<class T>
-struct d_add<T, std::enable_if_t<isEigenArray<T>::value>> 
-{
-    array<T,2> operator()(const T &lhs, const T &rhs) const 
-    {
-        return {T::Ones(lhs.size()), T::Ones(rhs.size())}; 
-    }
-};
+// template<class T, typename std::enable_if_t<isEigenArray<T>::value>> 
+// template<class T, std::enable_if_t<isEigenArray<T, bool>::value, int> = 0>
+// struct d_add //<T, std::enable_if_t<isEigenArray<T>::value, int>* = nullptr> 
+// template<class T>
+// struct d_add<T, std::enable_if_t<isEigenArray<T>::value>> 
+// {
+//     // std::enable_if_t<isEigenArray<T>::value, array<T,2>> 
+//     // std::enable_if_t<is_same<int, T>::value, array<T,2>> 
+//     array<T,2> operator()(const T &lhs, const T &rhs) const 
+//     {
+//         return {T::Ones(lhs.size()), T::Ones(rhs.size())}; 
+//     }
+
+// };
 
 template<typename T, class Enable = void>
 struct d_sub {
@@ -175,7 +209,7 @@ struct UnaryOperator
     static inline const std::string name = "UNDEFINED";
     static inline const int complexity = -1;
     static inline const function<T(U)> df();
-    std::string get_name(){return this->name;};
+    // std::string get_name(){return this->name;};
     virtual T operator()(const U& x) const = 0;
     // virtual array<T,2> df(const U& x, const V& y) const = 0;
 };
@@ -195,43 +229,40 @@ template<typename T> struct Sub;
 template<typename T> 
 struct Add : public BinaryOperator<T>
 {
-    using BO = BinaryOperator<T>;
-    Add(): BO("ADD", 2, std::plus<T>(), d_add<T>())  {}
+    Add(): BinaryOperator<T>("ADD", 2, std::plus<T>(), d_add<T>)  {}
 };
 
 template<typename T> 
 struct Sub : public BinaryOperator<T>
-// struct Sub : public BinaryOperator<T(T,T)>
 {
-    static inline const std::string name = "SUB";
-    static inline const int complexity = 2;
-
-    inline T operator()(const T& x, const T& y) const { return x - y;};
-
-    // static inline const function<T(T,T)> df = d_sub<T>(); 
-    array<T,2> df(const T& x, const T& y) override {return d_sub<T>(x,y); };
+    Sub(): BinaryOperator<T>("SUB", 2, std::minus<T>(), d_sub<T>())  {}
 };
 
 template<typename T> 
 struct Times : public BinaryOperator<T>
 {
-    static inline const std::string name = "TIMES";
-    static inline const int complexity = 3;
+    Times(): BinaryOperator<T>("TIMES", 3, std::multiplies<T>(), 
+                               d_multiplies<T>())  {}
+    // static inline const std::string name = "TIMES";
+    // static inline const int complexity = 3;
 
-    inline T operator()(const T& x, const T& y) const { return std::multiplies<T>(x,y);};
+    // inline T operator()(const T& x, const T& y) const { return std::multiplies<T>(x,y);};
 
-    static inline const function<T(T,T)> df = d_multiplies<T>(); 
+    // static inline const function<T(T,T)> df = d_multiplies<T>(); 
 };
 
 template<typename T> 
 struct Div : public BinaryOperator<T>
 {
-    static inline const std::string name = "DIV";
-    static inline const int complexity = 4;
+    Div(): BinaryOperator<T>("DIV", 4, 
+                             std::divides<T>(), 
+                             d_div<T>())  {}
+    // static inline const std::string name = "DIV";
+    // static inline const int complexity = 4;
 
-    inline T operator()(const T& x, const T& y) const { return x/y;};
+    // inline T operator()(const T& x, const T& y) const { return x/y;};
 
-    static inline const function<T(T,T)> df = d_div<T>(); 
+    // static inline const function<T(T,T)> df = d_div<T>(); 
 };
 
 template<typename T> 
