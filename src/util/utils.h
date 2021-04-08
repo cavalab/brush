@@ -201,10 +201,24 @@ struct Normalizer
 };
 
 /// returns true for elements of x that are infinite
-ArrayXb isinf(const ArrayXf& x);
+// template<typename T>
+// ArrayXb isinf(const ArrayBase<T>& x)
+// {
+//     ArrayXb infs(x.size());
+//     for (unsigned i =0; i < infs.size(); ++i)
+//         infs(i) = std::isinf(x(i));
+//     return infs;
+// }
 
 /// returns true for elements of x that are NaN
-ArrayXb isnan(const ArrayXf& x);
+// template<typename T>
+// ArrayXb isnan(const ArrayBase<T>& x)
+// {
+//     ArrayXb nans(x.size());
+//     for (unsigned i =0; i < nans.size(); ++i)
+//         nans(i) = std::isnan(x(i));
+//     return nans;
+// }
 
 /// calculates data types for each column of X
 vector<string> get_dtypes(MatrixXf &X);
@@ -294,7 +308,8 @@ typedef struct Log_Stats Log_stats;
 
 /// limits the output to finite real numbers
 template<typename T>
-T limited(T x)
+std::enable_if_t<std::is_scalar_v<T>, T> 
+limited(T x)
 {
     if (isnan(x))
         return 0;
@@ -306,8 +321,9 @@ T limited(T x)
     return x;
 };
 
-template<> inline
-ArrayXf limited<ArrayXf>(ArrayXf x) 
+template<typename T> 
+std::enable_if_t<std::is_base_of_v<Eigen::ArrayBase<T>, T>, T> 
+limited(T x) 
 {
     x = (isnan(x)).select(0,x);
     x = (x < MIN_FLT).select(MIN_FLT,x);

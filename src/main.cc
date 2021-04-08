@@ -24,20 +24,25 @@ using namespace Brush::Dat;
 
 int main(int, char **)
 {
-    // auto float_binary_operators = make_binary_operators<float>();
-    // auto array_binary_operators = make_binary_operators<ArrayXf>();
-    vector<BinaryOperator<float>*> FloatBinaryOperators = { 
-                                new Add<float>()
-                                // new Sub<float>(),
-                                // new Times<float>(),
-                                // new Div<float>(),
-                                };
-    vector<BinaryOperator<ArrayXf>*> ArrayBinaryOperators = {
-        new Add<ArrayXf>()
-        // new Sub<ArrayXf>(),
-        // new Times<ArrayXf>(),
-        // new Div<ArrayXf>(),
-        };
+    auto float_binary_operators = make_binary_operators<float>();
+    auto array_binary_operators = make_binary_operators<ArrayXf>();
+
+    auto float_unary_operators = make_unary_operators<float>();
+    auto array_unary_operators = make_unary_operators<ArrayXf>();
+    // vector<BinaryOperator<float>*> FloatBinaryOperators = { 
+    //                             new Add<float>(),
+    //                             new Sub<float>(),
+    //                             new Times<float>(),
+    //                             new Div<float>(),
+    //                             new Pow<float>(),
+    //                             };
+    // vector<BinaryOperator<ArrayXf>*> ArrayBinaryOperators = {
+    //     new Add<ArrayXf>(),
+    //     new Sub<ArrayXf>(),
+    //     new Times<ArrayXf>(),
+    //     new Div<ArrayXf>(),
+    //     new Pow<ArrayXf>(),
+    //     };
     // // WORKS:
     // BinaryOperator<float>* op = new Add<float>();
     // auto node = WeightedDxNode<float(float,float)>(
@@ -52,8 +57,8 @@ int main(int, char **)
     //     op2->df
     // );
     // // END WORKS
-    // for (const auto& op : float_binary_operators)
-    for (const auto& op : FloatBinaryOperators)
+    for (const auto& op : float_binary_operators)
+    // for (const auto& op : FloatBinaryOperators)
     {
         auto node = WeightedDxNode<float(float,float)>(
                                    op->name, 
@@ -61,9 +66,26 @@ int main(int, char **)
                                    op->df
                                    );
     };
-    for (const auto& op : ArrayBinaryOperators)
+    for (const auto& op : array_binary_operators)
     {
         auto node = WeightedDxNode<ArrayXf(ArrayXf, ArrayXf)>(
+                                   op->name,
+                                   op->f, 
+                                   op->df
+                                   );
+    }
+    for (const auto& op : float_unary_operators)
+    // for (const auto& op : FloatBinaryOperators)
+    {
+        auto node = WeightedDxNode<float(float)>(
+                                   op->name, 
+                                   op->f, 
+                                   op->df
+                                   );
+    };
+    for (const auto& op : array_unary_operators)
+    {
+        auto node = WeightedDxNode<ArrayXf(ArrayXf)>(
                                    op->name,
                                    op->f, 
                                    op->df

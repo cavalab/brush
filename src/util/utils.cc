@@ -255,23 +255,23 @@ void Normalizer::fit_normalize(MatrixXf& X, const vector<char>& dtypes)
 }
 
 /// returns true for elements of x that are infinite
-ArrayXb isinf(const ArrayXf& x)
-{
-    ArrayXb infs(x.size());
-    for (unsigned i =0; i < infs.size(); ++i)
-        infs(i) = std::isinf(x(i));
-    return infs;
-}
+// ArrayXb isinf(const ArrayXf& x)
+// {
+//     ArrayXb infs(x.size());
+//     for (unsigned i =0; i < infs.size(); ++i)
+//         infs(i) = std::isinf(x(i));
+//     return infs;
+// }
 
-/// returns true for elements of x that are NaN
-ArrayXb isnan(const ArrayXf& x)
-{
-    ArrayXb nans(x.size());
-    for (unsigned i =0; i < nans.size(); ++i)
-        nans(i) = std::isnan(x(i));
-    return nans;
+// /// returns true for elements of x that are NaN
+// ArrayXb isnan(const ArrayXf& x)
+// {
+//     ArrayXb nans(x.size());
+//     for (unsigned i =0; i < nans.size(); ++i)
+//         nans(i) = std::isnan(x(i));
+//     return nans;
 
-}
+// }
 
 /* Defined in utils.h
 ///template function to convert objects to string for logging
