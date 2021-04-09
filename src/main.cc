@@ -29,36 +29,8 @@ int main(int, char **)
 
     auto float_unary_operators = make_unary_operators<float>();
     auto array_unary_operators = make_unary_operators<ArrayXf>();
-    // vector<BinaryOperator<float>*> FloatBinaryOperators = { 
-    //                             new Add<float>(),
-    //                             new Sub<float>(),
-    //                             new Times<float>(),
-    //                             new Div<float>(),
-    //                             new Pow<float>(),
-    //                             };
-    // vector<BinaryOperator<ArrayXf>*> ArrayBinaryOperators = {
-    //     new Add<ArrayXf>(),
-    //     new Sub<ArrayXf>(),
-    //     new Times<ArrayXf>(),
-    //     new Div<ArrayXf>(),
-    //     new Pow<ArrayXf>(),
-    //     };
-    // // WORKS:
-    // BinaryOperator<float>* op = new Add<float>();
-    // auto node = WeightedDxNode<float(float,float)>(
-    //     op->name,
-    //     op->f,
-    //     op->df
-    // );
-    // BinaryOperator<ArrayXf>* op2 = new Add<ArrayXf>();
-    // auto nude = WeightedDxNode<ArrayXf(ArrayXf,ArrayXf)>(
-    //     op2->name,
-    //     op2->f,
-    //     op2->df
-    // );
-    // // END WORKS
+
     for (const auto& op : float_binary_operators)
-    // for (const auto& op : FloatBinaryOperators)
     {
         auto node = WeightedDxNode<float(float,float)>(
                                    op->name, 
@@ -75,7 +47,6 @@ int main(int, char **)
                                    );
     }
     for (const auto& op : float_unary_operators)
-    // for (const auto& op : FloatBinaryOperators)
     {
         auto node = WeightedDxNode<float(float)>(
                                    op->name, 
@@ -173,7 +144,7 @@ int main(int, char **)
     // cout << "making program...\n";
     // for (int d = 1; d < 10; ++d)
     //     for (int s = 1; s < 50; ++s)
-    //         DXtree.make_program(d, s);
+    //         DXtree(d, s, typeid(ArrayXf));
     // // auto root2 = DXtree.prg.insert(DXtree.prg.begin(), NM["+"]);
     // // DXtree.prg.append_child(root2, new Node<ArrayXf>("x_1", 0));
     // // DXtree.prg.append_child(root2, new Node<ArrayXf>("x_2", 1));

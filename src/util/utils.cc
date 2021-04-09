@@ -82,119 +82,6 @@ vector<string> get_dtypes(MatrixXf &X)
 
 }
 
-/// calculate median
-float median(const ArrayXf& v) 
-{
-    // instantiate a vector
-    vector<float> x(v.size());
-    x.assign(v.data(),v.data()+v.size());
-    // middle element
-    size_t n = x.size()/2;
-    // sort nth element of array
-    nth_element(x.begin(),x.begin()+n,x.end());
-    // if evenly sized, return average of middle two elements
-    if (x.size() % 2 == 0) {
-        nth_element(x.begin(),x.begin()+n-1,x.end());
-        return (x[n] + x[n-1]) / 2;
-    }
-    // otherwise return middle element
-    else
-        return x[n];
-}
-
-/// returns the (first) index of the element with the middlest value in v
-int argmiddle(vector<float>& v)
-{
-    // instantiate a vector
-    vector<float> x = v; 
-    // middle iterator
-    std::vector<float>::iterator middle = x.begin() + x.size()/2;
-    // sort nth element of array
-    nth_element(x.begin(), middle, x.end());
-    // find position of middle value in original array
-    std::vector<float>::iterator it = std::find(v.begin(), v.end(), *middle);
-
-    std::vector<float>::size_type pos = std::distance(v.begin(), it);
-    /* cout << "middle index: " << pos << "\n"; */
-    /* cout << "middle value: " << *it << "\n"; */
-    return pos;
-}
-
-/// calculate variance when mean provided
-float variance(const ArrayXf& v, float mean) 
-{
-    ArrayXf tmp = mean*ArrayXf::Ones(v.size());
-    return pow((v - tmp), 2).mean();
-}
-
-/// calculate variance
-float variance(const ArrayXf& v) 
-{
-    float mean = v.mean();
-    return variance(v, mean);
-}
-
-/// calculate skew
-float skew(const ArrayXf& v) 
-{
-    float mean = v.mean();
-    ArrayXf tmp = mean*ArrayXf::Ones(v.size());
-    
-    float thirdMoment = pow((v - tmp), 3).mean();
-    float variance = pow((v - tmp), 2).mean();
-    
-    return thirdMoment/sqrt(pow(variance, 3));
-}
-
-/// calculate kurtosis
-float kurtosis(const ArrayXf& v) 
-{
-    float mean = v.mean();
-    ArrayXf tmp = mean*ArrayXf::Ones(v.size());
-    
-    float fourthMoment = pow((v - tmp), 4).mean();
-    float variance = pow((v - tmp), 2).mean();
-    
-    return fourthMoment/pow(variance, 2);
-}
-
-float covariance(const ArrayXf& x, const ArrayXf& y)
-{
-    float meanX = x.mean();
-    float meanY = y.mean();
-    //float count = x.size();
-    
-    ArrayXf tmp1 = meanX*ArrayXf::Ones(x.size());
-    ArrayXf tmp2 = meanY*ArrayXf::Ones(y.size());
-    
-    return ((x - tmp1)*(y - tmp2)).mean();
-    
-}
-
-float slope(const ArrayXf& x, const ArrayXf& y)
-    // y: rise dimension, x: run dimension. slope = rise/run
-{
-    return covariance(x, y)/variance(x);
-}
-
-// Pearson correlation    
-float pearson_correlation(const ArrayXf& x, const ArrayXf& y)
-{
-    return pow(covariance(x,y),2) / (variance(x) * variance(y));
-}
-/// median absolute deviation
-float mad(const ArrayXf& x) 
-{
-    // returns median absolute deviation (MAD)
-    // get median of x
-    float x_median = median(x);
-    //calculate absolute deviation from median
-    ArrayXf dev(x.size());
-    for (int i =0; i < x.size(); ++i)
-        dev(i) = fabs(x(i) - x_median);
-    // return median of the absolute deviation
-    return median(dev);
-}
 
 Timer::Timer(bool run)
 {
@@ -394,6 +281,91 @@ TypeMap<std::string> type_names = {
         { typeid(ArrayXi) , "ArrayXi" },
         { typeid(ArrayXb) , "ArrayXb" }
     };
+
+/// returns the (first) index of the element with the middlest value in v
+int argmiddle(vector<float>& v)
+{
+    // instantiate a vector
+    vector<float> x = v; 
+    // middle iterator
+    std::vector<float>::iterator middle = x.begin() + x.size()/2;
+    // sort nth element of array
+    nth_element(x.begin(), middle, x.end());
+    // find position of middle value in original array
+    std::vector<float>::iterator it = std::find(v.begin(), v.end(), *middle);
+
+    std::vector<float>::size_type pos = std::distance(v.begin(), it);
+    /* cout << "middle index: " << pos << "\n"; */
+    /* cout << "middle value: " << *it << "\n"; */
+    return pos;
+}
+/// calculate variance
+float variance(const ArrayXf& v) 
+{
+    return pow((v - v.mean()), 2).mean();
+};
+
+/// calculate skew
+float skew(const ArrayXf& v) 
+{
+    float mean = v.mean();
+    ArrayXf tmp = mean*ArrayXf::Ones(v.size());
+    
+    float thirdMoment = pow((v - tmp), 3).mean();
+    float variance = pow((v - tmp), 2).mean();
+    
+    return thirdMoment/sqrt(pow(variance, 3));
+};
+
+/// calculate kurtosis
+float kurtosis(const ArrayXf& v) 
+{
+    float mean = v.mean();
+    ArrayXf tmp = mean*ArrayXf::Ones(v.size());
+    
+    float fourthMoment = pow((v - tmp), 4).mean();
+    float variance = pow((v - tmp), 2).mean();
+    
+    return fourthMoment/pow(variance, 2);
+};
+
+float covariance(const ArrayXf& x, const ArrayXf& y)
+{
+    float meanX = x.mean();
+    float meanY = y.mean();
+    //float count = x.size();
+    
+    ArrayXf tmp1 = meanX*ArrayXf::Ones(x.size());
+    ArrayXf tmp2 = meanY*ArrayXf::Ones(y.size());
+    
+    return ((x - tmp1)*(y - tmp2)).mean();
+    
+};
+
+float slope(const ArrayXf& x, const ArrayXf& y)
+    // y: rise dimension, x: run dimension. slope = rise/run
+{
+    return covariance(x, y)/variance(x);
+};
+
+// Pearson correlation    
+float pearson_correlation(const ArrayXf& x, const ArrayXf& y)
+{
+    return pow(covariance(x,y),2) / (variance(x) * variance(y));
+};
+/// median absolute deviation
+float mad(const ArrayXf& x) 
+{
+    // returns median absolute deviation (MAD)
+    // get median of x
+    float x_median = median(x);
+    //calculate absolute deviation from median
+    ArrayXf dev(x.size());
+    for (int i =0; i < x.size(); ++i)
+        dev(i) = fabs(x(i) - x_median);
+    // return median of the absolute deviation
+    return median(dev);
+};
 
 } // Util
 } // Brush

@@ -139,18 +139,8 @@ relu(const T& x)
 {
     return (x > 0).select(x, T::Zero(x.size())+0.01);
 };
-// struct OperatorBase
-// {
-//     static inline const std::string name = "UNDEFINED";
-//     static inline const int complexity = -1;
-//     // string name;
-//     // int complexity;
-//     std::string get_name(){return this->name;};
-// };
- 
-// TODO: make this generic, multitype? 
-template<typename T, typename U, typename V> struct BinaryOperator;
-// template<typename T, typename U> struct UnaryOperator;
+
+// template<typename T, typename U, typename V> struct BinaryOperator;
 
 template<typename T, typename U=T, typename V=T>
 struct BinaryOperator
@@ -218,7 +208,6 @@ struct Pow : public BinaryOperator<T>
     ) {}
 };
 
-////////////////////////////////////////////////////////////////////////////////
 /* Unary Operators */
 
 template<typename T> 
@@ -309,8 +298,53 @@ struct Relu : public UnaryOperator<T>
 
 template<typename T, typename U>
 inline T lt( const U& A, const U& B) { return T(A < B); };
-//TODO: reduction derivatives (mean, variance, etc.?)
-/* } */
+
+////////////////////////////////////////////////////////////////////////////////
+/* (TODO): Reductions */
+
+/* At a point x where there is exactly one function fi such that fi(x) is the median, the derivative of the median is indeed the derivative of fi (this is not the median of the derivatives). 
+At a point where there are more than one functions equal to the median, the derivative of the median exists only if the derivatives of these functions are equal at that point. 
+Otherwise, the derivative of the median does not exist at that point.
+*/
+template<typename T>
+T d_median(const Array<T,-1,1>& v) 
+{
+    // instantiate a vector
+    vector<float> x(v.size());
+    x.assign(v.data(),v.data()+v.size());
+    // middle element
+    size_t n = x.size()/2;
+    // sort nth element of array
+    nth_element(x.begin(),x.begin()+n,x.end());
+    // if evenly sized, return average of middle two elements
+    if (x.size() % 2 == 0) {
+        nth_element(x.begin(),x.begin()+n-1,x.end());
+        return (x[n] + x[n-1]) / 2;
+    }
+    // otherwise return middle element
+    else
+        return x[n];
+}
+
+
+// /// calculate variance when mean provided
+// float variance(const ArrayXf& v, float mean) 
+// {
+//     ArrayXf tmp = mean*ArrayXf::Ones(v.size());
+//     return pow((v - tmp), 2).mean();
+// }
+
+// /// calculate variance
+// float variance(const ArrayXf& v) 
+// {
+//     float mean = v.mean();
+//     return variance(v, mean);
+// }
+
+
+////////////////////////////////////////////////////////////////////////////////
+/* Operator creation routines */
+
 template<typename T>
 vector<shared_ptr<BinaryOperator<T>>> make_binary_operators()
 {

@@ -72,6 +72,26 @@ namespace Brush { namespace Util{
                 return start;
             }
            
+            template<typename T>
+            T random_choice(const map<T, float>& m)
+            {
+               /*!
+                * return a random key of a map, where the values are weights.
+                */          
+               
+                assert(m.size()>0 
+                    && " attemping to return random choice from an empty map");
+
+                vector<T> keys;
+                vector<float> w; 
+                for (const auto& [k, v]: m)
+                {
+                    keys.push_back(k);
+                    w.push_back(v);
+                }
+                return *select_randomly(keys.begin(),keys.end(),
+                                        w.begin(), w.end());
+            }
             template<template<class, class> class C, class T>
             T random_choice(const C<T, std::allocator<T>>& v)
             {

@@ -26,12 +26,12 @@ using std::vector;
  *  Sampling is done in proportion to the weight associated with 
  *  each node. By default, sampling is done uniform randomly.
 */
+using namespace Brush::nodes;
 
 typedef vector<NodeBase*> NodeVector;
 
 namespace Brush
 {
-
 
 struct SearchSpace
 {
@@ -125,7 +125,7 @@ struct SearchSpace
 
     // template<typename R>
     template<typename F> NodeBase* get(const string& name);
-    /// get specific node by name.
+    /// get specific node by name and type.
     template<typename R, typename... Args>
     NodeBase* get(const string& name, R, Args...)
     {
@@ -267,6 +267,29 @@ struct SearchSpace
                                    name_w.end())).second;
     };
 
+    // get operator with at least one argument matching arg 
+    NodeBase* get_op_with_arg(type_index ret, type_index arg) const
+    {
+        auto args_map = node_map.at(ret);
+        vector<NodeBase*> matches;
+        vector<float> weights; 
+
+        for (const auto& [args_type, name_map]: args_map)
+        {
+            for (const auto& [name, node]: name_map)
+            {
+                if ( in(node->arg_types(), arg) )
+                {
+                    matches.push_back(node);
+                    weights.push_back(weight_map.at(ret).at(args_type).at(name));
+                }
+            }
+        }
+
+        return (*r.select_randomly(matches.begin(), matches.end(), 
+                                   weights.begin(), weights.end()));
+    };
+
     // /// get a node with matching return type
     // NodeBase* get_ret_type_like(const type_info& ret)
     // {
@@ -280,7 +303,7 @@ struct SearchSpace
     //     return get_like(static_cast<TypedNodeBase<)
     // }
     /// get a node wth matching return type and argument types
-    NodeBase* get_node_like(const NodeBase*& node) const
+    NodeBase* get_node_like(NodeBase* node) const
     {
         auto matches = node_map.at(node->ret_type()).at(node->args_type());
         auto match_weights = get_weights(node->ret_type(), node->args_type());
@@ -299,7 +322,7 @@ struct SearchSpace
     // };
 };
 
-extern SearchSpace SS;
+SearchSpace SS;
 
 map<string,  NodeBase*> mapify(NodeVector& nodes)
 {

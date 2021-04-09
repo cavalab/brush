@@ -174,7 +174,7 @@ class tree {
 				bool    operator==(const pre_order_iterator&) const;
 				bool    operator!=(const pre_order_iterator&) const;
 				pre_order_iterator&  operator++();
-			   pre_order_iterator&  operator--();
+			    pre_order_iterator&  operator--();
 				pre_order_iterator   operator++(int);
 				pre_order_iterator   operator--(int);
 				pre_order_iterator&  operator+=(unsigned int);

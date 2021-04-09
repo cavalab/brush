@@ -18,6 +18,7 @@ license: GNU/GPL v3
 #include "state.h"
 #include "node.h"
 #include "nodemap.h"
+#include "params.h"
 
 using std::cout;
 using std::string;
@@ -27,6 +28,8 @@ using Brush::SearchSpace;
 
 namespace Brush {
 
+
+typedef tree<NodeBase*>::pre_order_iterator Iter; 
 
 /* template<typename T> class Program; */
 
@@ -40,134 +43,121 @@ T RandomDequeue(std::vector<T>& Q)
     return val;
 }
 
+tree<NodeBase*> make_program(type_index root_type, 
+                             int max_d, int max_breadth, int max_size);
+
+tree<NodeBase*> point_mutation(tree<NodeBase*>& prg, Iter spot);
+tree<NodeBase*> insert_mutation(tree<NodeBase*>& prg, Iter spot);
+tree<NodeBase*> delete_mutation(tree<NodeBase*>& prg, Iter spot);
+
+// TODO: instead of templating this, define meaningful derived classes
+// for unsupervised learning, classification and regression. 
 template<typename T> class Program //: public tree<NodeBase*>
 {
-    typedef tree<NodeBase*>::pre_order_iterator Iter; 
 
     public:
-      
-        
-        Program<T> mutate(){}; 
-        Program<T> cross(Program<T>& other){}; 
-       
-        T fit(const Data& d)
-		{
-            Iter start = prg.begin(); 
-            State out = start.node->fit(d);
-			return std::get<T>(out);
-		};
 
-        T predict(const Data& d)
-		{
-            Iter start = prg.begin(); 
-            State out = start.node->predict(d);
-            cout << "Program::predict returning\n";
-			return std::get<T>(out);
-		};
-        void grad_descent(const ArrayXf& gradient, const Data& d)
-		{
-            Iter start = prg.begin(); 
-            start.node->grad_descent(gradient, d);
-		};
+    /// the underlying program
+    tree<NodeBase*> prg; 
+    
+    Program()
+    {
+        // make a random program
+        int depth = r.rnd_int(1, params.max_depth);
+        int breadth = r.rnd_int(1, params.max_breadth);
+        int size = r.rnd_int(1, params.max_size);
 
-        string get_model()
+        this->prg = make_program(typeid(T), depth, breadth, size);
+    }
+    T fit(const Data& d)
+    {
+        Iter start = prg.begin(); 
+        State out = start.node->fit(d);
+        return std::get<T>(out);
+    };
+
+    T predict(const Data& d)
+    {
+        Iter start = prg.begin(); 
+        State out = start.node->predict(d);
+        cout << "Program::predict returning\n";
+        return std::get<T>(out);
+    };
+
+    void grad_descent(const ArrayXf& gradient, const Data& d)
+    {
+        Iter start = prg.begin(); 
+        start.node->grad_descent(gradient, d);
+    };
+
+    string get_model()
+    {
+        Iter start = prg.begin(); 
+        return start.node->get_model();
+    }
+
+    Program<T> mutate() const
+    {
+        /* Types of mutation:
+        * point mutation
+        * insertion mutation
+        * deletion mutation
+        */
+
+        Program<T> child(this);
+
+        // choose location by weighted sampling of program
+        auto weights = std::transform(child.prg.begin(), child.prg.end(), 
+                                [](const auto& node){ return node->data.weight; } );
+
+        auto spot = r.select_randomly(child.prg.begin(), child.prg.end(), 
+                                      weights.begin(), weights.end());
+
+        // choose one of these options
+        switch (r.random_choice(params.mutation_options))
         {
-            Iter start = prg.begin(); 
-            return start.node->get_model();
+            case "insert":
+                insert_mutation(child.prg, spot);
+                break;
+            case "delete":
+                delete_mutation(child.prg, spot);
+                break;
+            default:
+                point_mutation(child.prg, spot);
         }
+        return child;
+    } 
+    /// swaps subtrees between this and other (note the pass by copy)
+    Program<T> cross(const Program<T>& other) const
+    {
+        /* subtree crossover between this and other, producing new Program */
+        // choose location by weighted sampling of program
+        Program<T> child(this);
 
+        auto child_weights = std::transform(child.prg.begin(), child.prg.end(), 
+                        [](const auto& node){ return node->data.weight; } );
 
-        /// the underlying program
-        tree<NodeBase*> prg; 
+        auto child_spot = r.select_randomly(child.prg.begin(), 
+                                            child.prg.end(), 
+                                            child_weights.begin(), 
+                                            child_weights.end()
+                                           );
 
-        // constructs a tree using functions, terminals, and settings
-        void make_program(int max_d, int max_size=0)
-        {
-            /*
-            * implementation of PTC2 for strongly typed GP from Luke et al. 
-            * "Two fast tree-creation algorithms for genetic programming"
-            *  
-            */
-            cout << "============================================\n";
-            prg.clear();
-            if (max_size == 0)
-                max_size = r.rnd_int(1, pow(2, max_d));
+        auto other_weights = std::transform(other.prg.begin(), other.prg.end(), 
+                        [](const auto& node){ return node->data.weight; } );
 
-            cout << "building program with max size " << max_size 
-                 << ", max_depth: " << max_d << endl;
+        auto other_spot = r.select_randomly(other.prg.begin(), 
+                                            other.prg.end(), 
+                                            other_weights.begin(), 
+                                            other_weights.end()
+                                           );
+                        
+        // swap subtrees at child_spot and other_spot
+        child.prg.move_ontop(child_spot, other_spot);
 
+        return child;
 
-            // Queue of nodes that need children
-            vector<tuple<Iter, type_index, int>> queue; 
-
-            if (max_size == 1)
-            {
-                auto root = prg.insert(prg.begin(), SS.get_terminal(typeid(T)));
-            }
-            else
-            {
-                // cout << "getting op of type " << type_names[typeid(T)] << endl;
-                auto n = SS.get_op(typeid(T));
-                // cout << "chose " << n->name << endl;
-                auto spot = prg.insert(prg.begin(), n);
-                // node depth
-                int d = 1;
-                // current tree size
-                int s = 1;
-                //For each argument position a of n, Enqueue(a; g) 
-                for (auto a : n->arg_types())
-                { 
-                    // cout << "queing a node of type " << type_names[a] << endl;
-                    queue.push_back(make_tuple(spot, a, d));
-                }
-
-                // cout << "entering first while loop...\n";
-                while (queue.size() + s < max_size && queue.size() > 0) 
-                {
-                    // cout << "queue size: " << queue.size() << endl; 
-                    auto [qspot, t, d] = RandomDequeue(queue);
-
-                    // cout << "d: " << d << endl;
-                    if (d == max_d)
-                    {
-                        // cout << "getting " << type_names[t] << " terminal\n"; 
-                        prg.append_child(qspot, SS.get_terminal(t));
-                    }
-                    else
-                    {
-                        //choose a nonterminal of matching type
-                        // cout << "getting op of type " << type_names[t] << endl;
-                        auto n = SS.get_op(t);
-                        // cout << "chose " << n->name << endl;
-                        Iter new_spot = prg.append_child(qspot, n);
-                        // For each arg of n, add to queue
-                        for (auto a : n->arg_types())
-                        {
-                            // cout << "queing a node of type " << type_names[a] << endl;
-                            queue.push_back(make_tuple(new_spot, a, d+1));
-                        }
-                    }
-                    ++s;
-                    // cout << "s: " << s << endl;
-                } 
-                // cout << "entering second while loop...\n";
-                while (queue.size() > 0)
-                {
-                    if (queue.size() == 0)
-                        break;
-
-                    // cout << "queue size: " << queue.size() << endl; 
-
-                    auto [qspot, t, d] = RandomDequeue(queue);
-
-                    // cout << "getting " << type_names[t] << " terminal\n"; 
-                    prg.append_child(qspot, SS.get_terminal(t));
-
-                }
-            }
-            cout << "final program: " << this->get_model() << endl;
-        };
-
+    };
 };
 }
 #endif

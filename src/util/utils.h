@@ -80,17 +80,29 @@ bool in(const vector<T>& v, const T& i)
 {
     return std::find(v.begin(), v.end(), i) != v.end();
 }
-// /// specialization for type_index
-// template<>
-// bool in<type_index>(const vector<type_index>& v, const type_index& i)
-// {
-//     return std::find_if(v.begin(), v.end(), 
-//                         [=](type_index s){return s.get() == i.get();}
-//                        ) != v.end();
-// }
 
 /// calculate median
-float median(const ArrayXf& v);
+// float median(const ArrayXf& v);
+/// calculate median
+template<typename T>
+T median(const Array<T,-1,1>& v) 
+{
+    // instantiate a vector
+    vector<float> x(v.size());
+    x.assign(v.data(),v.data()+v.size());
+    // middle element
+    size_t n = x.size()/2;
+    // sort nth element of array
+    nth_element(x.begin(),x.begin()+n,x.end());
+    // if evenly sized, return average of middle two elements
+    if (x.size() % 2 == 0) {
+        nth_element(x.begin(),x.begin()+n-1,x.end());
+        return (x[n] + x[n-1]) / 2;
+    }
+    // otherwise return middle element
+    else
+        return x[n];
+}
 
 /// calculate variance when mean provided
 float variance(const ArrayXf& v, float mean);
@@ -199,26 +211,6 @@ struct Normalizer
     
     void fit_normalize(MatrixXf& X, const vector<char>& dtypes);
 };
-
-/// returns true for elements of x that are infinite
-// template<typename T>
-// ArrayXb isinf(const ArrayBase<T>& x)
-// {
-//     ArrayXb infs(x.size());
-//     for (unsigned i =0; i < infs.size(); ++i)
-//         infs(i) = std::isinf(x(i));
-//     return infs;
-// }
-
-/// returns true for elements of x that are NaN
-// template<typename T>
-// ArrayXb isnan(const ArrayBase<T>& x)
-// {
-//     ArrayXb nans(x.size());
-//     for (unsigned i =0; i < nans.size(); ++i)
-//         nans(i) = std::isnan(x(i));
-//     return nans;
-// }
 
 /// calculates data types for each column of X
 vector<string> get_dtypes(MatrixXf &X);
