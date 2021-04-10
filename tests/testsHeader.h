@@ -29,7 +29,7 @@ using std::stof;
 #define private public
 
 #include <cstdio>
-#include "../src/feat.h"
+#include "../src/init.h"
 
 using namespace Brush;
 

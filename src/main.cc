@@ -24,44 +24,10 @@ using namespace Brush::Dat;
 
 int main(int, char **)
 {
-    auto float_binary_operators = make_binary_operators<float>();
-    auto array_binary_operators = make_binary_operators<ArrayXf>();
 
-    auto float_unary_operators = make_unary_operators<float>();
-    auto array_unary_operators = make_unary_operators<ArrayXf>();
+    typedef map<string, map<type_index, NodeBase*> NameRetType2NodeMap;
 
-    for (const auto& op : float_binary_operators)
-    {
-        auto node = WeightedDxNode<float(float,float)>(
-                                   op->name, 
-                                   op->f, 
-                                   op->df
-                                   );
-    };
-    for (const auto& op : array_binary_operators)
-    {
-        auto node = WeightedDxNode<ArrayXf(ArrayXf, ArrayXf)>(
-                                   op->name,
-                                   op->f, 
-                                   op->df
-                                   );
-    }
-    for (const auto& op : float_unary_operators)
-    {
-        auto node = WeightedDxNode<float(float)>(
-                                   op->name, 
-                                   op->f, 
-                                   op->df
-                                   );
-    };
-    for (const auto& op : array_unary_operators)
-    {
-        auto node = WeightedDxNode<ArrayXf(ArrayXf)>(
-                                   op->name,
-                                   op->f, 
-                                   op->df
-                                   );
-    }
+
     // cout << "declaring node...\n";
     // Node<int(int, int)> node_plus("+", std::plus<int>());
     // cout << "3+5 = " << node_plus.op(3, 5) << endl;

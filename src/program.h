@@ -17,7 +17,7 @@ license: GNU/GPL v3
 #include "data.h"
 #include "state.h"
 #include "node.h"
-#include "nodemap.h"
+#include "search_space.h"
 #include "params.h"
 
 using std::cout;

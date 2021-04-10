@@ -45,6 +45,7 @@ struct TimeSeries
     ArrayXf value;
 };
 
+// TODO: store names more generally, in dictionary style, instead of in map
 typedef std::map<string, TimeSeries> TimeSeriesMap;
 
 typedef vector<TimeSeriesMap> Longitudinal;

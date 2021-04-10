@@ -344,23 +344,55 @@ T d_median(const Array<T,-1,1>& v)
 
 ////////////////////////////////////////////////////////////////////////////////
 /* Operator creation routines */
+// template<typename T, typename U=T, typename V=T>
+// NodeBase* make_node(string op_name)
+// {
+//     auto op = make_op_map<T,U,V>()()[op_name];
 
+//     if (op->name == "best_split")
+//         return new SplitNode<T(T,T)>(op->name, op->f, op->df);
+//     else if (op->name == "arg_split")
+//         return new SplitNode<T(U,T,T)>(op->name, op->f, op->df);
+//     else
+//         return new WeightedDxNode<T(U,V)>(op->name, op->f, op->df);
+
+// }
+// todo: make these return maps?
+// typedef map<string, std::function<shared_ptr<BinaryOperator<T>>()>> BinOpMaker;
 template<typename T>
-vector<shared_ptr<BinaryOperator<T>>> make_binary_operators()
+vector<shared_ptr<BinaryOperator<T>>> make_binary_operators(
+        vector<string>& op_names)
 {
-    return {
-            make_shared<Add<T>>(),
-            make_shared<Sub<T>>(),
-            make_shared<Times<T>>(),
-            make_shared<Div<T>>(),
-            make_shared<Pow<T>>()
+    typedef map<string, std::function<shared_ptr<BinaryOperator<T>>()>> BinOpMap;
+    vector<shared_ptr<BinaryOperator<T>>> binary_operators;
+
+    BinOpMap binary_op_map = {
+            {"ADD",     make_shared<Add<T>> },
+            {"SUB",     make_shared<Sub<T>> },
+            {"TIMES",   make_shared<Times<T>> },
+            {"DIV",     make_shared<Div<T>> },
+            {"POW",     make_shared<Pow<T>> },
     };
+    // if op names is empty, return all nodes
+    if (op_names.empty())
+    {
+        return transform(binary_op_map.begin(), binary_op_map.end(), 
+                [](const auto& bom){return bom.second();});
+    }
+    for (const auto& op: op_names)
+    {
+        if (binary_op_map.find(op) != binary_op_map.end())
+            binary_operators.push_back(binary_op_map[op]());
+    }
+    return binary_operators;
+
 }
 
 template<typename T>
-vector<shared_ptr<UnaryOperator<T>>> make_unary_operators()
+vector<shared_ptr<UnaryOperator<T>>> make_unary_operators(
+        vector<string>& op_names)
 {
-    return {
+    auto all_ops = {
             make_shared<Sin<T>>(),
             make_shared<Cos<T>>(),
             make_shared<Exp<T>>(),
@@ -372,6 +404,14 @@ vector<shared_ptr<UnaryOperator<T>>> make_unary_operators()
             make_shared<Logit<T>>(),
             make_shared<Relu<T>>()
     };
+    if (op_names.empty())
+        return all_ops;
+
+    vector<shared_ptr<UnaryOperator<T>>> filtered_ops;
+    std::copy_if(all_ops.begin(), all_ops.end(),
+                 std::back_inserter(filtered_ops),
+                 [&](const auto& o) { return in(op_names, o->name); }
+                );    
 }
 
 
