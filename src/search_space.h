@@ -248,6 +248,7 @@ struct SearchSpace
         vector<NodeBase*> terminals = generate_terminals(d);
         set<NodeBase*> nodes = generate_all_nodes(op_names, terminal_types);
 
+        int i = 0;
         for (const auto& n: nodes)
         {
             cout << "adding " << n->name << ") to search space...\n";
@@ -255,18 +256,20 @@ struct SearchSpace
             this->node_map[n->ret_type()][n->args_type()][n->name] = n;
             
             // update weights
-            float w = use_all? 1.0 : user_ops.at(n->name);
+            float w = use_all? 1.0 : user_ops.at(op_names.at(i));
             this->weight_map[n->ret_type()][n->args_type()][n->name] = w;
 
             // this->ret_w_map[n->ret_type()] += w;
             // this->args_w_map[n->args_type()] += w;
             // this->name_w_map[n->name] = w;
             // this->weight_map[n->ret_type][typeid(n->args_type)] = 1.0;
+            ++i;
 
         }
         // map terminals
         for (const auto& term : terminals)
         {
+            cout << "adding " << term->name << ") to search space...\n";
             if (terminal_map.find(term->ret_type()) == terminal_map.end())
                 terminal_map[term->ret_type()] = NodeVector();
 
@@ -293,10 +296,9 @@ struct SearchSpace
     {
         for (auto it = node_map.begin(); it != node_map.end(); )
         {
-            for (auto it2 = it->second.begin(); it2 != it->second.end(); )
+            for (auto it2 = it->second.begin(); it2 != it->second.end(); ++it2)
             {
-                for (auto it3 = it2->second.begin(); 
-                     it3 != it2->second.end(); )
+                for (auto it3 = it2->second.begin(); it3 != it2->second.end(); ++it3)
                 {
                     // delete the NodeBase* pointer
                     delete it3->second;
