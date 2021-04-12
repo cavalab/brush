@@ -363,79 +363,89 @@ T d_median(const Array<T,-1,1>& v)
 // typedef map<string, std::function<shared_ptr<BinaryOperator<T>>()>> BinOpMaker;
 
 /// define binary operators. Right now they are just defined for ArrayXf data.
-template<typename T>
-vector<shared_ptr<BinaryOperator<T>>> make_binary_operators(
-        vector<string>& op_names)
-{ 
-    return {}; 
-};
+template <typename T> struct make_binary_operators;
+// vector<shared_ptr<BinaryOperator<T>>> make_binary_operators(vector<string>&);
+template <typename T> struct make_unary_operators; 
+// vector<shared_ptr<UnaryOperator<T>>> make_unary_operators(vector<string>&);
+
+// template<typename T>
+// vector<shared_ptr<BinaryOperator<T>>> make_binary_operators(
+//         vector<string>& op_names)
+// { 
+//     return {}; 
+// };
 
 template<>
-vector<shared_ptr<BinaryOperator<ArrayXf>>> make_binary_operators(
-        vector<string>& op_names)
+struct make_binary_operators<ArrayXf>
 {
     typedef map<string, std::function<shared_ptr<BinaryOperator<ArrayXf>>()>> BinOpMap;
-    vector<shared_ptr<BinaryOperator<ArrayXf>>> binary_operators;
 
-    BinOpMap binary_op_map = {
-            {"ADD",     make_shared<Add<ArrayXf>> },
-            {"SUB",     make_shared<Sub<ArrayXf>> },
-            {"TIMES",   make_shared<Times<ArrayXf>> },
-            {"DIV",     make_shared<Div<ArrayXf>> },
-            {"POW",     make_shared<Pow<ArrayXf>> },
-    };
-    // if op names is empty, return all nodes
-    if (op_names.empty())
+    vector<shared_ptr<BinaryOperator<ArrayXf>>> operator()(vector<string>& op_names)
     {
-        binary_operators.resize(binary_op_map.size());
-        transform(binary_op_map.begin(), binary_op_map.end(), 
-                binary_operators.begin(),
-                [](const auto& bom){return bom.second();});
+        vector<shared_ptr<BinaryOperator<ArrayXf>>> binary_operators;
+
+        BinOpMap binary_op_map = {
+                {"ADD",     make_shared<Add<ArrayXf>> },
+                {"SUB",     make_shared<Sub<ArrayXf>> },
+                {"TIMES",   make_shared<Times<ArrayXf>> },
+                {"DIV",     make_shared<Div<ArrayXf>> },
+                {"POW",     make_shared<Pow<ArrayXf>> },
+        };
+        // if op names is empty, return all nodes
+        if (op_names.empty())
+        {
+            binary_operators.resize(binary_op_map.size());
+            transform(binary_op_map.begin(), binary_op_map.end(), 
+                    binary_operators.begin(),
+                    [](const auto& bom){return bom.second();});
+            return binary_operators;
+        }
+        for (const auto& op: op_names)
+        {
+            if (binary_op_map.find(op) != binary_op_map.end())
+                binary_operators.push_back(binary_op_map[op]());
+        }
         return binary_operators;
-    }
-    for (const auto& op: op_names)
-    {
-        if (binary_op_map.find(op) != binary_op_map.end())
-            binary_operators.push_back(binary_op_map[op]());
-    }
-    return binary_operators;
-
-}
-
-/// define unary operators. Right now they are just defined for ArrayXf data.
-template<typename T>
-vector<shared_ptr<UnaryOperator<T>>> make_unary_operators(
-        vector<string>& op_names)
-{ 
-    return {}; 
+    };
 };
 
-template<>
-vector<shared_ptr<UnaryOperator<ArrayXf>>> make_unary_operators<ArrayXf>(
-        vector<string>& op_names)
-{
-    vector<shared_ptr<UnaryOperator<ArrayXf>>> all_ops = {
-            make_shared<Sin<ArrayXf>>(),
-            make_shared<Cos<ArrayXf>>(),
-            make_shared<Exp<ArrayXf>>(),
-            make_shared<SafeLog<ArrayXf>>(),
-            make_shared<Sqrt<ArrayXf>>(),
-            make_shared<Square<ArrayXf>>(),
-            make_shared<Cube<ArrayXf>>(),
-            make_shared<Tanh<ArrayXf>>(),
-            make_shared<Logit<ArrayXf>>(),
-            make_shared<Relu<ArrayXf>>()
-    };
-    if (op_names.empty())
-        return all_ops;
+/// define unary operators. Right now they are just defined for ArrayXf data.
+// template<typename T>
+// vector<shared_ptr<UnaryOperator<T>>> make_unary_operators(
+//         vector<string>& op_names)
+// { 
+//     return {}; 
+// };
 
-    vector<shared_ptr<UnaryOperator<ArrayXf>>> filtered_ops;
-    std::copy_if(all_ops.begin(), all_ops.end(),
-                 std::back_inserter(filtered_ops),
-                 [&](const auto& o) { return in(op_names, o->name); }
-                );    
-    return filtered_ops;
-}
+template<>
+struct make_unary_operators<ArrayXf>
+{
+    vector<shared_ptr<UnaryOperator<ArrayXf>>> operator()(vector<string>& op_names)
+    {
+        vector<shared_ptr<UnaryOperator<ArrayXf>>> all_ops = {
+                make_shared<Sin<ArrayXf>>(),
+                make_shared<Cos<ArrayXf>>(),
+                make_shared<Exp<ArrayXf>>(),
+                make_shared<SafeLog<ArrayXf>>(),
+                make_shared<Sqrt<ArrayXf>>(),
+                make_shared<Square<ArrayXf>>(),
+                make_shared<Cube<ArrayXf>>(),
+                make_shared<Tanh<ArrayXf>>(),
+                make_shared<Logit<ArrayXf>>(),
+                make_shared<Relu<ArrayXf>>()
+        };
+        if (op_names.empty())
+            return all_ops;
+
+        vector<shared_ptr<UnaryOperator<ArrayXf>>> filtered_ops;
+        std::copy_if(all_ops.begin(), all_ops.end(),
+                    std::back_inserter(filtered_ops),
+                    [&](const auto& o) { return in(op_names, o->name); }
+                    );    
+        return filtered_ops;
+    };
+
+};
 
 
 

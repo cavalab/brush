@@ -2,15 +2,15 @@
 copyright 2020 William La Cava
 license: GNU/GPL v3
 */
-#ifndef NODEMAP_H
-#define NODEMAP_H
+#ifndef SEARCHSPACE_H 
+#define SEARCHSPACE_H
 //internal includes
+#include "init.h"
 #include "node.h"
 #include "operators.h"
 #include "util/utils.h"
 #include "util/rnd.h"
-using std::vector;
-using std::cout;
+
 /* TODO
 * instead of specifying keys, values, just specify the values into a list of
 * some kind, and then loop thru the list and construct a map using the node
@@ -43,16 +43,21 @@ tuple<set<NodeBase*>,set<type_index>> generate_nodes(vector<string>& op_names)
     set<NodeBase*> nodes; 
     set<type_index> new_types;
 
-    auto binary_operators = make_binary_operators<ArrayXf>(op_names);
-    auto unary_operators = make_unary_operators<ArrayXf>(op_names);
+    auto binary_operators = make_binary_operators<ArrayXf>()(op_names);
+    // auto binary_operators = make_binary_operators(op_names);
+    auto unary_operators = make_unary_operators<ArrayXf>()(op_names);
     // auto reduce_operators = make_reduction_operators<T>();
 
 
     for (const auto& op : binary_operators)
-        nodes.insert( new WeightedDxNode<ArrayXf(ArrayXf,ArrayXf)>(op->name, op->f, op->df));
+        nodes.insert( new WeightedDxNode<ArrayXf(ArrayXf,ArrayXf)>(op->name, 
+                                                                   op->f, 
+                                                                   op->df));
 
     for (const auto& op : unary_operators)
-        nodes.insert( new WeightedDxNode<ArrayXf(ArrayXf)>(op->name, op->f, op->df));
+        nodes.insert( new WeightedDxNode<ArrayXf(ArrayXf)>(op->name, 
+                                                           op->f, 
+                                                           op->df));
 
     if ( in(op_names, "best_split"))
         nodes.insert(new SplitNode<ArrayXf(ArrayXf,ArrayXf)>("best_split"));
@@ -282,20 +287,6 @@ struct SearchSpace
     {
          typedef std::tuple<Args...> TupleArgs;
          return node_map.at(typeid(R)).at(typeid(TupleArgs)).at(name);
-
-        // auto matches = node_map[ret];
-        // vector<NodeBase*> results;
-        // for (const auto& [key, arg_map] : node_map[ret])
-        // {
-        //     for (const auto& [key, arg_map] : node_map[ret])
-        //     {
-
-        //     }
-        //     f
-        //     if (in(arg_map, name))
-
-        // }
-
     }
 
     ~SearchSpace()
@@ -458,18 +449,6 @@ struct SearchSpace
                                    weights.begin(), weights.end()));
     };
 
-    // /// get a node with matching return type
-    // NodeBase* get_ret_type_like(const type_info& ret)
-    // {
-    //     auto matches = node_map.at(ret);
-    //     return r.random_choice(r.random_choice(matches, args_weights),
-    //                            name_weights);
-    // }
-
-    // NodeBase* get_like(const NodeBase*& node)
-    // {
-    //     return get_like(static_cast<TypedNodeBase<)
-    // }
     /// get a node wth matching return type and argument types
     NodeBase* get_node_like(NodeBase* node) const
     {
@@ -490,165 +469,7 @@ struct SearchSpace
     // };
 };
 
-SearchSpace SS;
-
-map<string,  NodeBase*> mapify(NodeVector& nodes)
-{
-    map<string,  NodeBase*> node_map;
-    for (const auto& n : nodes)
-        node_map[n->name] = n;
-
-    return node_map;
-};
-
-template<typename T>
-NodeVector make_continuous_nodes()
-{
-    return NodeVector{
-
-            new Node<T(T,T)>("+", std::plus<T>()),
-            new Node<T(T,T)>("-", std::minus<T>()),
-            new Node<T(T,T)>("*", std::multiplies<T>()) 
-            /* { "/", Node<T(T,T)>(Op::safe_divide<T>, "DIV") }, */
-            /* { "sqrt",  new Node<T(T)>(sqrt, "sqrt")}, */ 
-            /* { "sin",  new Node<T(T)>(sin, "sin")}, */ 
-            /* { "cos",  new Node<T(T)>(cos, "cos")}, */ 
-            /* { "tanh",  new Node<T(T)>(tanh, "tanh")}, */ 
-            /* { "^2",  new Node<T(T)>(square, "^2")}, */ 
-            /* { "^3",  new Node<T(T)>(cube, "^3")}, */ 
-            /* { "^",  new Node<T(T)>(^, "^")}, */ 
-            /* { "exp",  new Node<T(T)>(exp, "exp")}, */ 
-            /* { "gauss",  new Node<T(T)>(gauss, "gauss")}, */ 
-            /* { "gauss2d",  new Node<T(T,T)>(gauss2d, "gauss2d")}, */ 
-            /* { "log", new Node<T(T)>(log, "log") }, */   
-            /* { "logit", new Node<T(T)>(logit, "logit") }, */
-            /* { "relu", new Node<T(T)>(relu, "relu") } */
-    };
-};
-
-template<typename T, typename U>
-NodeVector make_logical_nodes()
-{
-    cout << "making logical nodes...\n";
-    return {
-            new Node<T(U,U)>("<", lt<T,U>) 
-            /* { "and", new Node<T(U,U)>(Op::plus<T>, "AND") }, */
-            /* { "or", new Node<T(U,U)>(Op::minus<T>, "OR") }, */
-            /* { "not", new Node<T(U,U)>(Op::multiplies<T>, "NOT") }, */
-            /* { "xor", new Node<T(U,U)>(Op::divides<T>, "XOR") }, */
-            /* { "<=", new Node<T(U,U)>(Op::leq<U>, "LESS") }, */
-            /* { "=",  new Node<T(U,U)>(Op::equal<U>, "EQUAL")}, */ 
-            /* { ">",  new Node<T(U,U)>(Op::gt<U>, ">")}, */ 
-            /* { ">=",  new Node<T(U,U)>(Op::geq<U>, ">")}, */ 
-    };
-};
-// template<typename T, typename U>
-// struct LogicalNodeMap : NodeMap
-// {
-//     LogicalNodeMap() 
-//     {
-//        this->node_map = {
-//             { "<", new Node<T(U,U)>("<", lt<T,U>) },
-//         };
-//             /* { "and", new Node<T(U,U)>(Op::plus<T>, "AND") }, */
-//             /* { "or", new Node<T(U,U)>(Op::minus<T>, "OR") }, */
-//             /* { "not", new Node<T(U,U)>(Op::multiplies<T>, "NOT") }, */
-//             /* { "xor", new Node<T(U,U)>(Op::divides<T>, "XOR") }, */
-//             /* { "<=", new Node<T(U,U)>(Op::leq<U>, "LESS") }, */
-//             /* { "=",  new Node<T(U,U)>(Op::equal<U>, "EQUAL")}, */ 
-//             /* { ">",  new Node<T(U,U)>(Op::gt<U>, ">")}, */ 
-//             /* { ">=",  new Node<T(U,U)>(Op::geq<U>, ">")}, */ 
-//     };
-// };
-
-// template<typename T, typename U = T>
-// NodeVector make_split_nodes()
-// {
-//     cout << "making split nodes...\n";
-//     return {
-//             // Split on best feature
-//             new SplitNode<T(T,T)>("best_split"),
-//             // Split on first argument
-//             new SplitNode<T(U,T,T)>("arg_split")
-//             };
-// };
-
-// template<typename T>
-// struct SplitNodeMap : NodeMap
-// {
-//     SplitNodeMap() 
-//     { 
-//        this->node_map = {
-//                // Automatic thresholding
-//             { "split_"+type_names[typeid(T)], new SplitNode<T(T,T)>(
-//                      "split_"+type_names[typeid(T)] )},
-//                 // Split on first argument
-//             { "split_"+type_names[typeid(T)], new SplitNode<T(T,T,T)>(
-//                      "split3_"+type_names[typeid(T)] )},
-//        };
-//     };
-// };
-
-// template<typename R, typename T>
-// struct ReduceMap : NodeMap
-// {
-//     ReduceMap()
-//     { 
-//        this->node_map = {
-//             // longitudinal nodes
-//             { "mean", new Node<R(T)>("mean", &T::mean) }
-//        };
-//             /* { "median", new ReduceNode<float(ArrayXf,ArrayXf)>() }, */
-//             /* { "max", new ReduceNode<float(ArrayXf,ArrayXf)>() }, */
-//             /* { "min", new MinNode<ArrayXf(ArrayXf,ArrayXf)>() }, */
-//             /* { "variance", new VarNode<ArrayXf(ArrayXf,ArrayXf)>() }, */
-//             /* { "skew", new SkewNode<ArrayXf(ArrayXf,ArrayXf)>() }, */
-//             /* { "kurtosis", new KurtosisNode<ArrayXf(ArrayXf,ArrayXf)>() }, */
-//             /* { "slope", new SlopeNode<ArrayXf(ArrayXf,ArrayXf)>() }, */
-//             /* { "count", new CountNode<ArrayXf(ArrayXf,ArrayXf)>() }, */
-//             /* { "recent", new RecentNode<ArrayXf(ArrayXf,ArrayXf)>() }, */
-//     };
-// };
-
-/* Declare node maps 
- *
- */
-// ContinuousNodeMap<ArrayXf> VectorArithmeticMap; 
-// WeightedNodeMap<ArrayXf> DxMap; 
-// ContinuousNodeMap<float> FloatNodeMap; 
-// LogicalNodeMap<ArrayXb, ArrayXf> VectorLogicMap;
-// SplitNodeMap<ArrayXf> SNMfloat;
-// ReduceMap<float, ArrayXf> ScalarReduceMap;
-// auto CNM = make_continuous_nodes<ArrayXf>();
-// auto CNM = make_weighted_dx_nodes<ArrayXf>();
-// auto WCN = make_dx_nodes<WeightedDxNode,ArrayXf>();
-// auto LN = make_logical_nodes<ArrayXb, ArrayXf>();
-// auto SN = make_split_nodes<ArrayXf>();
-// auto RM = make_reduced_nodes<float, ArrayXf>();
-
-// ReduceMap<Eigen::VectorwiseOp<VectorXf,1>, MatrixXf> VectorReduceMap;
-/* LogicalNodeMap<bool, float> BoolLogicMap; */
-/* define the search space */
-/* NM.node_map.insert(VectorArithmeticMap.node_map.begin(), */
-/*                    VectorArithmeticMap.node_map.end()); */
-/* NM.node_map.insert(VectorLogicMap.node_map.begin(), */
-/*                    VectorLogicMap.node_map.end()); */
-
-// std::set<NodeVector> node_set = {
-//                         // make_weighted_dx_nodes<ArrayXf>(),
-//                         // make_weighted_dx_nodes<ArrayXi>(),
-//                         // make_split_nodes<ArrayXf>(),
-//                         // make_split_nodes<ArrayXf,ArrayXi>(),
-//                         // make_split_nodes<ArrayXf,ArrayXb>(),
-//                         // make_split_nodes<ArrayXi>(),
-//                         // make_split_nodes<ArrayXi,ArrayXf>(),
-//                         // make_split_nodes<ArrayXi,ArrayXb>(),
-//                         // make_split_nodes<ArrayXb>(),
-//                         // make_split_nodes<ArrayXb,ArrayXf>(),
-//                         // make_split_nodes<ArrayXb,ArrayXi>()
-//                     };
-
-// SearchSpace SS(node_set, terminals, data_types);
+static SearchSpace SS;
 
 
 } // Brush

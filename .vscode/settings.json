@@ -1,3 +1,9 @@
 {
-    "cmake.buildDirectory": "${workspaceFolder}/build/"
+    "cmake.buildDirectory": "${workspaceFolder}/build/",
+    "cmake.environment": {
+        "EIGEN3_INCLUDE_DIR": "/home/bill/anaconda3/envs/brush/include/eigen3/",
+        "GTEST_INCLUDE_DIRS": "/home/bill/anaconda3/envs/brush/include/gtest/",
+        "GTEST_LIBRARIES": "/home/bill/anaconda3/envs/brush/lib/libgtest.so"
+    },
+    "cmake.buildBeforeRun": true,
 }

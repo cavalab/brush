@@ -3,8 +3,18 @@
         {
             "name": "Linux",
             "includePath": [
-                "${workspaceFolder}/**"
+                "${workspaceFolder}/**",
+                "/home/bill/anaconda3/envs/brush/include/",
+                "/home/bill/anaconda3/envs/brush/include/eigen3/",
             ],
+            "browse": {
+                "databaseFilename":"${workspaceFolder}/.vscode/vc.db",
+                "limitSymbolsToIncludedHeaders": true,
+                "path": [
+                        "${workspaceFolder}",
+                        "/home/bill/anaconda3/envs/brush/include/"
+                        ]
+            },
             "defines": [],
             "compilerPath": "/usr/bin/gcc",
             "cStandard": "gnu17",

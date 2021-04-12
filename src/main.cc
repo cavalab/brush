@@ -11,7 +11,7 @@ using namespace Eigen;
 // using Eigen::ArrayXf;
 using namespace std;
 using namespace Brush;
-using namespace Brush::Dat;
+using namespace Brush::data;
 
 /* template<typename T> */
 /* T add(T x, T y){ return x + y; }; */
@@ -25,7 +25,7 @@ using namespace Brush::Dat;
 int main(int, char **)
 {
 
-    typedef map<string, map<type_index, NodeBase*> NameRetType2NodeMap;
+    // typedef map<string, map<type_index, NodeBase*> NameRetType2NodeMap;
 
 
     // cout << "declaring node...\n";
