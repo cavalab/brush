@@ -10,7 +10,7 @@ license: GNU/GPL v3
 #include <string>
 // internal includes
 #include "../tree.h"
-#include "../data.h"
+#include "../data/data.h"
 #include "../state.h"
 using std::cout;
 using std::string;

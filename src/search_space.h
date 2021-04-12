@@ -10,6 +10,7 @@ license: GNU/GPL v3
 #include "util/utils.h"
 #include "util/rnd.h"
 using std::vector;
+using std::cout;
 /* TODO
 * instead of specifying keys, values, just specify the values into a list of
 * some kind, and then loop thru the list and construct a map using the node
@@ -27,18 +28,178 @@ using std::vector;
  *  each node. By default, sampling is done uniform randomly.
 */
 using namespace Brush::nodes;
+using namespace Brush::data;
 
 typedef vector<NodeBase*> NodeVector;
 
 namespace Brush
 {
 
+// template<typename T>
+tuple<set<NodeBase*>,set<type_index>> generate_nodes(vector<string>& op_names)
+{
+
+    // NodeNameTypeMap name2ret2node;
+    set<NodeBase*> nodes; 
+    set<type_index> new_types;
+
+    auto binary_operators = make_binary_operators<ArrayXf>(op_names);
+    auto unary_operators = make_unary_operators<ArrayXf>(op_names);
+    // auto reduce_operators = make_reduction_operators<T>();
+
+
+    for (const auto& op : binary_operators)
+        nodes.insert( new WeightedDxNode<ArrayXf(ArrayXf,ArrayXf)>(op->name, op->f, op->df));
+
+    for (const auto& op : unary_operators)
+        nodes.insert( new WeightedDxNode<ArrayXf(ArrayXf)>(op->name, op->f, op->df));
+
+    if ( in(op_names, "best_split"))
+        nodes.insert(new SplitNode<ArrayXf(ArrayXf,ArrayXf)>("best_split"));
+
+    if ( in(op_names, "arg_split"))
+    {
+        nodes.insert( new SplitNode<ArrayXf(ArrayXf,ArrayXf,ArrayXf)>("arg_split"));
+    }
+
+    return {nodes, new_types};
+};
+//TODO: add reduction operators
+/// generates nodes that act on T. return any non-T return types.
+// template<typename T>
+// tuple<set<NodeBase*>,set<type_index>> generate_nodes(vector<string>& op_names)
+// {
+
+//     // NodeNameTypeMap name2ret2node;
+//     set<NodeBase*> nodes; 
+//     set<type_index> new_types;
+
+//     auto binary_operators = make_binary_operators<T>(op_names);
+//     auto unary_operators = make_unary_operators<T>(op_names);
+//     // auto reduce_operators = make_reduction_operators<T>();
+
+
+//     for (const auto& op : binary_operators)
+//         nodes.insert( new WeightedDxNode<T(T,T)>(op->name, op->f, op->df));
+
+//     for (const auto& op : unary_operators)
+//         nodes.insert( new WeightedDxNode<T(T)>(op->name, op->f, op->df));
+
+//     if ( in(op_names, "best_split"))
+//         nodes.insert(new SplitNode<T(T,T)>("best_split"));
+
+//     if ( in(op_names, "arg_split"))
+//     {
+//         if (typeid(T) == typeid(ArrayXb))
+//         {
+//             nodes.insert(
+//                     new SplitNode<ArrayXf(T,ArrayXf,ArrayXf)>("arg_split")
+//             );
+//             new_types.insert(typeid(ArrayXf));
+//         }
+//     }
+
+//     return {nodes, new_types};
+// };
+
+// template<>
+// tuple<set<NodeBase*>,set<type_index>> generate_nodes<Longitudinal>(vector<string>& op_names)
+// {
+//     return {{},{}};
+// };
+NodeVector generate_terminals(const Data& d)
+{
+    NodeVector terminals;
+    for (const auto& var : d.var_names)
+    {
+        // terminals.push_back(make_shared<Terminal>(var, d[var]));
+        terminals.push_back(new Terminal(var, d[var]));
+    };
+    return terminals;
+};
+
+set<NodeBase*> generate_all_nodes(vector<string>& node_names, 
+                                  set<type_index> term_types)
+{
+    set<NodeBase*> nodes; 
+    set<type_index> new_types;
+
+    auto [new_nodes, nt] = generate_nodes(node_names);
+    nodes.merge(new_nodes);
+    term_types.merge(nt);
+    // term_types.erase(t);
+    // generate nodes that act on the terminals, and on any new return 
+    // types from the nodes encountered along the way.
+    // while(term_types.size() > 0)
+    // for (auto t: term_types)
+    // {
+    //     type_index t = *term_types.begin();
+    //     string tn = type_names.at(t);
+
+    //     // auto [new_nodes, nt] = generate_nodes<bool>(node_names);
+    //     // nodes.merge(new_nodes);
+    //     // term_types.merge(nt);
+    //     // term_types.erase(t);
+
+    //     // if (tn == "bool")
+    //     // {
+    //     //     auto [new_nodes, nt] = generate_nodes<bool>(node_names);
+    //     //     nodes.merge(new_nodes);
+    //     //     term_types.merge(nt);
+    //     //     term_types.erase(t);
+    //     // }
+    //     // else if (tn == "int")
+    //     // {
+    //     //     auto [new_nodes, nt] = generate_nodes<int>(node_names);
+    //     //     nodes.merge(new_nodes);
+    //     //     term_types.merge(nt);
+    //     //     term_types.erase(t);
+    //     // }
+    //     // else if (tn == "float")
+    //     // {
+    //     //     auto [new_nodes, nt] = generate_nodes<float>(node_names);
+    //     //     nodes.merge(new_nodes);
+    //     //     term_types.merge(nt);
+    //     //     term_types.erase(t);
+    //     // }
+    //     // if (tn == "ArrayXb")
+    //     // {
+    //     //     // auto [new_nodes, nt] = generate_nodes<ArrayXb>(node_names);
+    //     //     // nodes.merge(new_nodes);
+    //     //     // term_types.merge(nt);
+    //     //     // term_types.erase(t);
+    //     // }
+    //     // else if (tn == "ArrayXi")
+    //     // {
+    //     //     // auto [new_nodes, nt] = generate_nodes<ArrayXi>(node_names);
+    //     //     // nodes.merge(new_nodes);
+    //     //     // term_types.merge(nt);
+    //     //     // term_types.erase(t);
+    //     // }
+    //     // else if (tn == "ArrayXf")
+    //     // {
+    //     //     auto [new_nodes, nt] = generate_nodes(node_names);
+    //     //     nodes.merge(new_nodes);
+    //     //     term_types.merge(nt);
+    //     //     term_types.erase(t);
+    //     // }
+    //     // else if (tn == "Longitudinal")
+    //     // {
+    //     //     auto [new_nodes, nt] = generate_nodes<Longitudinal>(node_names);
+    //     //     nodes.merge(new_nodes);
+    //     //     term_types.merge(nt);
+    //     //     term_types.erase(t);
+    //     // }
+    // }
+    return nodes;
+}
+
 struct SearchSpace
 {
     TypeMap<TypeMap<map<string, NodeBase*>>> node_map;
     // NodeMap node_map; 
     TypeMap<NodeVector> terminal_map;
-    vector<type_index> terminal_types;
+    set<type_index> terminal_types;
     // terminal weights
     TypeMap<vector<float>> terminal_weights;
     // map name to weights
@@ -59,10 +220,9 @@ struct SearchSpace
      *  - assertion check to make sure there is at least one operator that 
      *      returns the output type of the model. 
     */
-    SearchSpace(const Data& d, 
-                set<NodeVector>& node_set, 
-                NodeVector& terminals,
-                vector<type_index>& data_types,
+    SearchSpace(){};
+
+    void init(const Data& d, 
                 const map<string,float>& user_ops = {}
                 //add terminal_set
                )
@@ -70,59 +230,34 @@ struct SearchSpace
         cout << "constructing search space...\n";
 
         bool use_all = user_ops.size() == 0;
+        vector<string> op_names;
+        for (const auto& [op, weight] : user_ops)
+            op_names.push_back(op);
 
         this->node_map.clear();
 
         // create nodes based on data types 
-        this->terminal_types = d.data_types;
-        set<type_index> node_ret_types;
+        for (const auto& dt : d.data_types)
+            this->terminal_types.insert(dt);
 
-        // vector<NodeBase*> nodes
-        vector<NodeBase*> nodes = generate_all_nodes(op_names, types);
+        vector<NodeBase*> terminals = generate_terminals(d);
+        set<NodeBase*> nodes = generate_all_nodes(op_names, terminal_types);
 
-        for (const auto& nodes : node_set)
+        for (const auto& n: nodes)
         {
-            for (const auto& n: nodes)
-            {
-                // the node name needs to be in user_ops
-                // the node return or argument type needs to be in data_types
-                if (! use_all)
-                    if (user_ops.find(n->name) == user_ops.end() )
-                        continue;
-                // if(!in(data_types, n->ret_type())) 
-                // {
-                //     bool pass = false;
-                //     for (const auto& a : n->arg_types()) 
-                //     {
-                //         pass = pass || in(data_types, a);
-                //     }
-                //     if (!pass)
-                //         continue;
-                // }
-                // // initialize weights
-                // if (ret_w_map.find(n->ret_type()) == ret_w_map.end())
-                //     ret_w_map[n->ret_type()] = 0;
-                // if (args_w_map.find(n->args_type()) == args_w_map.end())
-                //     args_w_map[n->args_type()] = 0;
-                // if (name_w_map.find(n->name) == name_w_map.end())
-                //     name_w_map[n->name] = 0;
+            cout << "adding " << n->name << ") to search space...\n";
+            // add the node to the nodemap
+            this->node_map[n->ret_type()][n->args_type()][n->name] = n;
+            
+            // update weights
+            float w = use_all? 1.0 : user_ops.at(n->name);
+            this->weight_map[n->ret_type()][n->args_type()][n->name] = w;
 
-                cout << "adding " << n->name << " = " 
-                     << n->ret_type().name() << "(" 
-                     << n->args_type().name() << ") to search space...\n";
-                // add the node to the nodemap
-                this->node_map[n->ret_type()][n->args_type()][n->name] = n;
-                
-                // update weights
-                float w = use_all? 1.0 : user_ops.at(n->name);
-                this->weight_map[n->ret_type()][n->args_type()][n->name] = w;
+            // this->ret_w_map[n->ret_type()] += w;
+            // this->args_w_map[n->args_type()] += w;
+            // this->name_w_map[n->name] = w;
+            // this->weight_map[n->ret_type][typeid(n->args_type)] = 1.0;
 
-                // this->ret_w_map[n->ret_type()] += w;
-                // this->args_w_map[n->args_type()] += w;
-                // this->name_w_map[n->name] = w;
-                // this->weight_map[n->ret_type][typeid(n->args_type)] = 1.0;
-
-            }
         }
         // map terminals
         for (const auto& term : terminals)
@@ -426,17 +561,17 @@ NodeVector make_logical_nodes()
 //     };
 // };
 
-template<typename T, typename U = T>
-NodeVector make_split_nodes()
-{
-    cout << "making split nodes...\n";
-    return {
-            // Split on best feature
-            new SplitNode<T(T,T)>("best_split"),
-            // Split on first argument
-            new SplitNode<T(U,T,T)>("arg_split")
-            };
-};
+// template<typename T, typename U = T>
+// NodeVector make_split_nodes()
+// {
+//     cout << "making split nodes...\n";
+//     return {
+//             // Split on best feature
+//             new SplitNode<T(T,T)>("best_split"),
+//             // Split on first argument
+//             new SplitNode<T(U,T,T)>("arg_split")
+//             };
+// };
 
 // template<typename T>
 // struct SplitNodeMap : NodeMap
@@ -499,14 +634,6 @@ NodeVector make_split_nodes()
 /* NM.node_map.insert(VectorLogicMap.node_map.begin(), */
 /*                    VectorLogicMap.node_map.end()); */
 
-vector<type_index> data_types = { 
-                                typeid(ArrayXf), 
-                                // typeid(ArrayXb), 
-                                // typeid(ArrayXi), 
-                                };
-ArrayXf x1, x2;
-NodeVector terminals = { new Terminal("x1",x1), new Terminal("x2",x2) };
-
 // std::set<NodeVector> node_set = {
 //                         // make_weighted_dx_nodes<ArrayXf>(),
 //                         // make_weighted_dx_nodes<ArrayXi>(),
@@ -522,150 +649,8 @@ NodeVector terminals = { new Terminal("x1",x1), new Terminal("x2",x2) };
 //                     };
 
 // SearchSpace SS(node_set, terminals, data_types);
-typedef map<string, map<type_index, map<type_index, NodeBase*>> NodesByName;
 
 
-//TODO: add reduction operators
-/// generates nodes that act on T, and returns any non-T return types.
-template<typename T>
-tuple<set<NodeBase*>,set<type_index>> generate_nodes(vector<string>& op_names)
-{
-
-    // NodeNameTypeMap name2ret2node;
-    set<NodeBase*> nodes; 
-    set<type_index> new_types;
-
-    auto binary_operators = make_binary_operators<T>(op_names);
-    auto unary_operators = make_unary_operators<T>(op_names);
-    // auto reduce_operators = make_reduction_operators<T>();
-
-    for (const auto& op : binary_operators)
-        nodes.insert( new WeightedDxNode<T(T,T)>(op->name, op->f, op->df));
-
-    for (const auto& op : unary_operators)
-        nodes.insert( new WeightedDxNode<T(T)>(op->name, op->f, op->df));
-
-    if ( in(op_names, "best_split"))
-        nodes.insert(new SplitNode<T(T,T)>("best_split"));
-
-    if ( in(op_names, "cond_split"))
-    {
-        if (typeid(T) == typeid(ArrayXb))
-        {
-            nodes.insert(
-                    new SplitNode<ArrayXf(T,ArrayXf,ArrayXf)>("cond_split")
-            );
-            new_types.insert(ArrayXf);
-        }
-        else if (typeid(T) == typeid(bool))
-        {
-            nodes.insert(new SplitNode<float(T,float,float)>("arg_split"));
-            new_types.insert(float);
-        }
-
-    }
-
-    return {nodes, new_types};
-};
-
-template<>
-tuple<set<NodeBase*>,set<type_index>> generate_nodes<Longitudinal>(
-        vector<string>& op_names,
-        set<type_index> types)
-{
-    return {};
-};
-
-set<Nodebase*> generate_all_nodes(vector<string>& node_names, 
-                                  type_index output_type,
-                                  set<type_index> term_types)
-{
-    set<NodeBase*> nodes; 
-    set<type_index> new_types;
-    // generate nodes that act on the terminals, and on any new return 
-    // types from the nodes encountered along the way.
-    while(term_types.size() > 0)
-    // for (auto t: term_types)
-    {
-        switch (t)
-        {
-            case typeid(bool):
-                auto [new_nodes, nt] = generate_nodes<bool>(node_names);
-                nodes.merge(new_nodes);
-                term_types.merge(nt);
-                term_types.erase(t);
-                break;
-            case typeid(int):
-                auto [new_nodes, nt] = generate_nodes<int>(node_names);
-                nodes.merge(new_nodes);
-                term_types.merge(nt);
-                term_types.erase(t);
-                break;
-            case typeid(float):
-                auto [new_nodes, nt] = generate_nodes<float>(node_names);
-                nodes.merge(new_nodes);
-                term_types.merge(nt);
-                term_types.erase(t);
-                break;
-            case typeid(ArrayXb):
-                auto [new_nodes, nt] = generate_nodes<ArrayXb>(node_names);
-                nodes.merge(new_nodes);
-                term_types.merge(nt);
-                term_types.erase(t);
-                break;
-            case typeid(ArrayXi):
-                auto [new_nodes, nt] = generate_nodes<ArrayXi>(node_names);
-                nodes.merge(new_nodes);
-                term_types.merge(nt);
-                term_types.erase(t);
-                break;
-            case typeid(ArrayXf):
-                auto [new_nodes, nt] = generate_nodes<ArrayXf>(node_names);
-                nodes.merge(new_nodes);
-                term_types.merge(nt);
-                term_types.erase(t);
-                break;
-            case typeid(Longitudinal):
-                auto [new_nodes, nt] = generate_nodes<Longitudinal>(node_names);
-                nodes.merge(new_nodes);
-                term_types.merge(nt);
-                term_types.erase(t);
-                break;
-        }
-    }
-    return nodes;
-}
-// maps names and types to a function that generates that node
-struct NodeGenerator
-{
-    typedef map<string, map<type_index, NodeBase*> NameRetType2NodeMap;
-
-    NodeGenerator(vector<string>& node_names, type_index ret_type, vector<type_index> term_types)
-    {
-        for (const t : terminal_types)
-        {
-            switch (t)
-            {
-                case typeid(bool):
-                    make_binary_operators<bool>();
-                    break;
-                case typeid(int):
-                    break;
-                case typeid(float):
-                    break;
-                case typeid(ArrayXb):
-                    break;
-                case typeid(ArrayXi):
-                    break;
-                case typeid(ArrayXf):
-                    break;
-                case typeid(Longitudinal):
-                    break;
-            }
-        }
-    }
-}
-// std::set<vector<NodeBase*>> make_nodes<
 } // Brush
 #endif
 

@@ -13,6 +13,7 @@ license: GNU/GPL v3
 #include <stdexcept>
 #include <typeinfo>
 using Eigen::ArrayXf;
+using Eigen::VectorXf;
 using namespace std;
 
 /* TODO:
@@ -137,7 +138,6 @@ class TypedNodeBase : public NodeBase
         array<State, ArgCount> get_children(const Data& d,
                                             TreeNode*& child1, 
                                             TreeNode*& child2, 
-                                            // std::function<State(const Data&)> fn
                                             State (TreeNode::*fn)(const Data&)
                                             )
         {
@@ -171,7 +171,6 @@ class TypedNodeBase : public NodeBase
         vector<State> get_variable_children(const Data& d,
                                             TreeNode*& child1, 
                                             TreeNode*& child2, 
-                                            // std::function<State(const Data&)> fn
                                             State (TreeNode::*fn)(const Data&)
                                             )
         {

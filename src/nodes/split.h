@@ -136,7 +136,7 @@ class SplitNode<R(Args...)> : public TypedNodeBase<R, Args...>
             child1->grad_descent(grad_splits.at(0), data_splits.at(0)); 
             child2->grad_descent(grad_splits.at(1), data_splits.at(1)); 
 
-            base::set_weight(gradient.matrix().norm());
+            base::set_prob_change(gradient.matrix().norm());
         };
 
     private:
@@ -216,14 +216,16 @@ class SplitNode<R(Args...)> : public TypedNodeBase<R, Args...>
              * heuristic brought about by
              * splitting between that value and the next. 
              * set threshold according to the biggest reduction. 
+             * 
+             * returns: the threshold and the score.
              */
             const ArrayXf& x = d.X.row(var_idx); 
-            const VectorXf& y = d.y;
+            const ArrayXf& y = d.y;
 
             vector<float> s = unique(x);
 
             // we'll treat x as a float if it has more than 10 unique values
-            bool x_is_float = d.X_dtypes.at(var_idx) == "float";
+            bool x_is_float = d.data_types.at(var_idx) == typeid(ArrayXf);
 
             vector<float> unique_classes = unique(y);
             vector<int> idx(x.size());

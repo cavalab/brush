@@ -92,8 +92,8 @@ namespace Brush { namespace Util{
                 return *select_randomly(keys.begin(),keys.end(),
                                         w.begin(), w.end());
             }
-            template<template<class, class> class C, class T>
-            T random_choice(const C<T, std::allocator<T>>& v)
+            template<class V, class T>
+            T random_choice(const V& v)
             {
                /*!
                 * return a random element of a vector.

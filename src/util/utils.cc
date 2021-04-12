@@ -39,9 +39,9 @@ std::string trim(std::string str, const std::string& chars)
 }
 
 /// determines data types of columns of matrix X.
-vector<string> get_dtypes(MatrixXf &X)
+vector<type_index> get_dtypes(MatrixXf &X)
 {
-    vector<string> dtypes;
+    vector<type_index> dtypes;
     
     // get feature types (binary or continuous/categorical)
     int i, j;
@@ -65,13 +65,13 @@ vector<string> get_dtypes(MatrixXf &X)
         }
     
         if(isBinary)
-            dtypes.push_back("bool");
+            dtypes.push_back(typeid(ArrayXb));
         else
         {
             if(isCategorical && uniqueMap.size() < 10)
-                dtypes.push_back("int");    
+                dtypes.push_back(typeid( ArrayXi ));    
             else
-                dtypes.push_back("float");
+                dtypes.push_back(typeid(ArrayXf));
         }
     }
     /* cout << "dtypes: " ; */ 
@@ -273,6 +273,8 @@ void Log_Stats::update(int index,
 /*     return {L, R}; */ 
 
 /* } */
+// TYPES = {INT, FLOAT, BOOL, ARRAYXB, ARRAYXI, ARRAYXF, LONG };
+
 TypeMap<std::string> type_names = {
         { typeid(int) , "int" },
         { typeid(float) , "float" },
@@ -281,6 +283,15 @@ TypeMap<std::string> type_names = {
         { typeid(ArrayXi) , "ArrayXi" },
         { typeid(ArrayXb) , "ArrayXb" }
     };
+// TypeMap<TYPES> type_enum = {
+//         { typeid(int) , TYPES::INT },
+//         { typeid(float) , TYPES::FLOAT },
+//         { typeid(bool) , TYPES::BOOL },
+//         { typeid(ArrayXf) , TYPES::ARRAYXF },
+//         { typeid(ArrayXi) , TYPES::ARRAYXI },
+//         { typeid(ArrayXb) , TYPES::ARRAYXB },
+//         { typeid(Longitudinal), TYPES::LONG }
+//     };
 
 /// returns the (first) index of the element with the middlest value in v
 int argmiddle(vector<float>& v)

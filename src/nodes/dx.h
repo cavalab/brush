@@ -92,6 +92,7 @@ class DxNode<R(Args...)> : public TypedNodeBase<R, Args...>
             TreeNode* sib = child1;
             for (int i = 0; i < base::ArgCount; ++i)
             {
+                // chain them rules
                 sib->grad_descent(gradient*this->df_dX.at(i), d);
                 sib = sib->next_sibling;
             }
@@ -134,7 +135,7 @@ class WeightedDxNode<R(Args...)> : public DxNode<R(Args...)>
         /// the momentum of the weights associated with each input
         WTypes V;
         /// partial derivative w.r.t. the weights, used to update W
-        ArrayArgs df_dW;
+        std::array<ArrayXf, base::ArgCount> df_dW;
 
         WeightedDxNode(string name, const Function& f, const DxFunction& df,
                      const vector<float>& Win = {})
@@ -175,7 +176,7 @@ class WeightedDxNode<R(Args...)> : public DxNode<R(Args...)>
             this->store_gradients(inputs);
 
             cout << "applying weights to " << this->name << " operator\n";
-            std::transform(W.begin(), W.end(), inputs.cbegin(),
+            std::transform(inputs.begin(), inputs.end(), W.begin(),
                            inputs.begin(), std::multiplies<>());
 
             cout << "applying " << this->name << " operator\n";
@@ -199,7 +200,7 @@ class WeightedDxNode<R(Args...)> : public DxNode<R(Args...)>
                 inputs.at(i) = std::get<R>(child_outputs.at(i));
 
             cout << "applying weights to " << this->name << " operator\n";
-            std::transform(W.begin(), W.end(), inputs.cbegin(),
+            std::transform(inputs.begin(), inputs.end(), W.begin(),
                            inputs.begin(), std::multiplies<>());
             cout << "applying " << this->name << " operator\n";
             State out = std::apply(this->op, inputs);
@@ -271,10 +272,10 @@ class WeightedDxNode<R(Args...)> : public DxNode<R(Args...)>
             for (int i = 0; i < base::ArgCount; ++i) 
             {
                 cout << "dL/dW[" << i << "]: " 
-                    << (gradient*this->df_dW.at(i)).mean() << endl;
+                    << (gradient*this->df_dW.at(i)).matrix().mean() << endl;
                 std::cout << "V[i]: " << V[i] << "\n";
                 V_temp[i] = (m * V.at(i) 
-                             - lr * (gradient*this->df_dW.at(i)).mean() );
+                             - lr * (gradient*this->df_dW.at(i)).matrix().mean() );
                 std::cout << "V_temp: " << V_temp[i] << "\n";
             }
             for (int i = 0; i < W.size(); ++i)
@@ -405,7 +406,7 @@ class ReduceDxNode<R(Arg,Arg)> : public TypedNodeBase<R, Arg>
             int i = 0;
             while (sib != child2)
             {
-                sib->grad_descent(gradient*this->df_dX.at(i), d);
+                sib->grad_descent(gradient*float(this->df_dX.at(i)), d);
                 sib = sib->next_sibling;
                 ++i;
             }

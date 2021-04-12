@@ -12,13 +12,9 @@
 
 // stuff being used
 
-using namespace std;
+// using namespace std;
 
-using Eigen::MatrixXf;
-using Eigen::VectorXf;
 typedef Eigen::Array<bool,Eigen::Dynamic,1> ArrayXb;
-using std::vector;
-using std::string;
 using std::shared_ptr;
 using std::make_shared;
 using std::cout;
@@ -29,8 +25,10 @@ using std::stof;
 #define private public
 
 #include <cstdio>
-#include "../src/init.h"
-
+#include "../init.h"
+#include "../data/data.h"
+#include "../search_space.h"
 using namespace Brush;
+using namespace Brush::data;
 
 #endif

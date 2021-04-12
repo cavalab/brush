@@ -7,6 +7,7 @@ license: GNU/GPL v3
 #include <Eigen/Dense>
 #include "init.h"
 #include "util/utils.h"
+using namespace Brush::Util;
 
 using namespace std;
 // using namespace Brush;
@@ -137,7 +138,8 @@ template<typename T>
 std::enable_if_t<std::is_base_of_v<Eigen::ArrayBase<T>, T>, T> 
 relu(const T& x)
 {
-    return (x > 0).select(x, T::Zero(x.size())+0.01);
+    // return (x > 0).select(x, T::Zero(x.size())+T(0.01));
+    return (x > 0).select(x, T::Zero(x.size()));
 };
 
 // template<typename T, typename U, typename V> struct BinaryOperator;
@@ -359,25 +361,37 @@ T d_median(const Array<T,-1,1>& v)
 // }
 // todo: make these return maps?
 // typedef map<string, std::function<shared_ptr<BinaryOperator<T>>()>> BinOpMaker;
+
+/// define binary operators. Right now they are just defined for ArrayXf data.
 template<typename T>
 vector<shared_ptr<BinaryOperator<T>>> make_binary_operators(
         vector<string>& op_names)
+{ 
+    return {}; 
+};
+
+template<>
+vector<shared_ptr<BinaryOperator<ArrayXf>>> make_binary_operators(
+        vector<string>& op_names)
 {
-    typedef map<string, std::function<shared_ptr<BinaryOperator<T>>()>> BinOpMap;
-    vector<shared_ptr<BinaryOperator<T>>> binary_operators;
+    typedef map<string, std::function<shared_ptr<BinaryOperator<ArrayXf>>()>> BinOpMap;
+    vector<shared_ptr<BinaryOperator<ArrayXf>>> binary_operators;
 
     BinOpMap binary_op_map = {
-            {"ADD",     make_shared<Add<T>> },
-            {"SUB",     make_shared<Sub<T>> },
-            {"TIMES",   make_shared<Times<T>> },
-            {"DIV",     make_shared<Div<T>> },
-            {"POW",     make_shared<Pow<T>> },
+            {"ADD",     make_shared<Add<ArrayXf>> },
+            {"SUB",     make_shared<Sub<ArrayXf>> },
+            {"TIMES",   make_shared<Times<ArrayXf>> },
+            {"DIV",     make_shared<Div<ArrayXf>> },
+            {"POW",     make_shared<Pow<ArrayXf>> },
     };
     // if op names is empty, return all nodes
     if (op_names.empty())
     {
-        return transform(binary_op_map.begin(), binary_op_map.end(), 
+        binary_operators.resize(binary_op_map.size());
+        transform(binary_op_map.begin(), binary_op_map.end(), 
+                binary_operators.begin(),
                 [](const auto& bom){return bom.second();});
+        return binary_operators;
     }
     for (const auto& op: op_names)
     {
@@ -388,31 +402,41 @@ vector<shared_ptr<BinaryOperator<T>>> make_binary_operators(
 
 }
 
+/// define unary operators. Right now they are just defined for ArrayXf data.
 template<typename T>
 vector<shared_ptr<UnaryOperator<T>>> make_unary_operators(
         vector<string>& op_names)
+{ 
+    return {}; 
+};
+
+template<>
+vector<shared_ptr<UnaryOperator<ArrayXf>>> make_unary_operators<ArrayXf>(
+        vector<string>& op_names)
 {
-    auto all_ops = {
-            make_shared<Sin<T>>(),
-            make_shared<Cos<T>>(),
-            make_shared<Exp<T>>(),
-            make_shared<SafeLog<T>>(),
-            make_shared<Sqrt<T>>(),
-            make_shared<Square<T>>(),
-            make_shared<Cube<T>>(),
-            make_shared<Tanh<T>>(),
-            make_shared<Logit<T>>(),
-            make_shared<Relu<T>>()
+    vector<shared_ptr<UnaryOperator<ArrayXf>>> all_ops = {
+            make_shared<Sin<ArrayXf>>(),
+            make_shared<Cos<ArrayXf>>(),
+            make_shared<Exp<ArrayXf>>(),
+            make_shared<SafeLog<ArrayXf>>(),
+            make_shared<Sqrt<ArrayXf>>(),
+            make_shared<Square<ArrayXf>>(),
+            make_shared<Cube<ArrayXf>>(),
+            make_shared<Tanh<ArrayXf>>(),
+            make_shared<Logit<ArrayXf>>(),
+            make_shared<Relu<ArrayXf>>()
     };
     if (op_names.empty())
         return all_ops;
 
-    vector<shared_ptr<UnaryOperator<T>>> filtered_ops;
+    vector<shared_ptr<UnaryOperator<ArrayXf>>> filtered_ops;
     std::copy_if(all_ops.begin(), all_ops.end(),
                  std::back_inserter(filtered_ops),
                  [&](const auto& o) { return in(op_names, o->name); }
                 );    
+    return filtered_ops;
 }
+
 
 
 } // Brush

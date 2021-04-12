@@ -7,5 +7,3 @@ namespace Brush
 {
 
 }
-
-#endif

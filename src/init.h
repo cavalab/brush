@@ -21,13 +21,20 @@ license: GNU/GPL v3
 #include <iostream>
 #include <numeric>
 #include <map>
+#include <set>
+#include <vector>
+#include <string>
+
 using Eigen::MatrixXf;
 using Eigen::VectorXf;
+using Eigen::VectorXi;
 using Eigen::ArrayXf;
 typedef Eigen::Array<bool,Eigen::Dynamic,1> ArrayXb;
 typedef Eigen::Matrix<bool,Eigen::Dynamic,1> VectorXb;
 typedef Eigen::Matrix<long,Eigen::Dynamic,1> VectorXl;
+// STD
 using std::vector;
+using std::set;
 using std::string;
 using std::unique_ptr;
 using std::shared_ptr;
@@ -36,6 +43,8 @@ using std::cout;
 typedef std::map<string, 
                  std::pair<vector<ArrayXf>, vector<ArrayXf>>
                 > LongData;
+using Eigen::Dynamic;
+using Eigen::Map;
 // internal includes
 /* #include "util/json.hpp" */
 /* using nlohmann::json; */
@@ -43,6 +52,7 @@ typedef std::map<string,
 static float NEAR_ZERO = 0.0000001;
 static float MAX_FLT = std::numeric_limits<float>::max();
 static float MIN_FLT = std::numeric_limits<float>::lowest();
+
 
 
 #endif

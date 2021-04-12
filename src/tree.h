@@ -34,12 +34,13 @@
 #include <queue>
 #include <algorithm>
 #include <cstddef>
+
+// local includes
 #include "state.h"
-#include "data.h"
+#include "data/data.h"
+#include "init.h"
 using Brush::State;
-using Brush::Dat::Data;
-#include <Eigen/Dense>
-using Eigen::ArrayXf;
+using Brush::data::Data;
 /* /// Overload swap for data class */ 
 /* template<class T> */
 /* void swap(T& x, T& y) { x.swap(y); } */

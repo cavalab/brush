@@ -3,7 +3,7 @@
 #include "node.h"
 #include "operators.h"
 #include "program.h"
-#include "data.h"
+#include "data/data.h"
 #include "tree.h"
 #include "init.h"
 

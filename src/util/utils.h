@@ -8,6 +8,7 @@ license: GNU/GPL v3
 
 #include <Eigen/Dense>
 #include <vector>
+#include <set>
 #include <fstream>
 #include <chrono>
 #include <ostream>
@@ -18,6 +19,7 @@ license: GNU/GPL v3
 #include <iterator> // needed for std::ostram_iterator
 
 using namespace Eigen;
+using namespace std;
 
 /**
 * @namespace Brush::Util
@@ -63,7 +65,8 @@ std::ostream& operator<< (std::ostream& out, const std::vector<T>& v) {
 template<typename T>
 using TypeMap = std::map<std::type_index, T>; 
 extern TypeMap<std::string> type_names; 
-
+// enum class TYPES; // int;
+// extern TypeMap<TYPES> type_enum;
 // using TypeMap = std::unordered_map<TypeInfoPtr, T, Hasher, EqualTo>; 
 /// limits node output to be between MIN_FLT and MAX_FLT
 void clean(ArrayXf& x);
@@ -75,8 +78,9 @@ std::string rtrim(std::string str, const std::string& chars = "\t\n\v\f\r ");
 std::string trim(std::string str, const std::string& chars = "\t\n\v\f\r ");
 
 /// check if element is in vector.
-template<typename T>
-bool in(const vector<T>& v, const T& i)
+template<typename V, typename T>
+// template<template<class> class C, class T>
+bool in(const V& v, const T& i)
 {
     return std::find(v.begin(), v.end(), i) != v.end();
 }
@@ -213,7 +217,7 @@ struct Normalizer
 };
 
 /// calculates data types for each column of X
-vector<string> get_dtypes(MatrixXf &X);
+vector<type_index> get_dtypes(MatrixXf &X);
 
 /// returns unique elements in vector
 template <typename T>
@@ -342,10 +346,12 @@ void reorder(vector<T> &v, vector<int> const &order )
 /// split Eigen matrix or array into two by mask
 template<typename T>
 array<Array<T,-1, 1>, 2> split(const Array<T,-1,1>& v, const ArrayXb& mask)
+// array<DenseBase<T>, 2> split(const DenseBase<T>& v, const ArrayXb& mask)
 {
     int size1 = mask.count();
     int size2 = mask.size() - size1;
     Array<T,-1,1> L(size1), R(size2);
+    // DenseBase<T> L(size1), R(size2);
 
     int idx1 = 0, idx2 = 0;
     for (int  i = 0; i < mask.size(); ++i)
@@ -364,6 +370,12 @@ array<Array<T,-1, 1>, 2> split(const Array<T,-1,1>& v, const ArrayXb& mask)
     return { L, R };
 };
 
+template<typename Iter>
+void print(Iter first, Iter last)
+{
+    std::for_each(first, last, [](const auto& i){std::cout << ", " << i; });
+    std::cout << endl;
+}
 } // Util
 } // Brush 
 #endif
