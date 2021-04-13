@@ -120,12 +120,17 @@ struct SearchSpace
     {
         cout << "constructing search space...\n";
 
+        this->node_map.clear();
+        this->weight_map.clear();
+        this->terminal_map.clear();
+        this->terminal_types.clear();
+        this->terminal_weights.clear();
+
         bool use_all = user_ops.size() == 0;
         vector<string> op_names;
         for (const auto& [op, weight] : user_ops)
             op_names.push_back(op);
 
-        this->node_map.clear();
 
         // create nodes based on data types 
         for (const auto& dt : d.data_types)
@@ -155,14 +160,34 @@ struct SearchSpace
         // map terminals
         for (const auto& term : terminals)
         {
-            cout << "adding " << term->name << ") to search space...\n";
+            cout << "adding " << term->get_name() << ") to search space...\n";
             if (terminal_map.find(term->ret_type()) == terminal_map.end())
                 terminal_map[term->ret_type()] = NodeVector();
-
+            cout << "terminal ret_type: " << type_names[term->ret_type()] << "\n";
             terminal_map[term->ret_type()].push_back(term);
             terminal_weights[term->ret_type()].push_back(1.0);
         }
 
+        cout << "terminal map: " << terminal_map.size() << "\n";
+        for (const auto& [k, v] : terminal_map)
+        {
+            cout << type_names[k] << ": ";
+            print(v.begin(), v.end());
+        }
+        cout << "node map: " << node_map.size() << "\n";
+        for (const auto& [ret_type, v] : node_map)
+        {
+            for (const auto& [args_type, v2] : v)
+            {
+                for (const auto& [name, nodeval] : v2)
+                {
+                    cout << "node_map[" << type_names[ret_type] 
+                        << "][args_type][" << name << "] = " 
+                        << nodeval->get_name() << endl;
+                }
+
+            }
+        }
         cout << "done.\n";
 
 
@@ -217,6 +242,14 @@ struct SearchSpace
     /// get a typed terminal 
     NodeBase* get_terminal(type_index ret) const
     {
+        cout << "get terminal of type " << type_names[ret] << "\n";
+        cout << "terminal map: " << terminal_map.size() << "\n";
+        for (const auto& [k, v] : terminal_map)
+        {
+            cout << type_names[k] << ": ";
+            print(v.begin(), v.end());
+        }
+        print(terminal_weights.at(ret).begin(), terminal_weights.at(ret).end());
         //TODO: match terminal args_type (probably '{}' or something?)
         //  make a separate terminal_map
         return *r.select_randomly(terminal_map.at(ret).begin(), 

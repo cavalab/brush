@@ -36,9 +36,9 @@ tree<NodeBase*> make_program(type_index root_type,
     }
     else
     {
-        // cout << "getting op of type " << type_names[typeid(T)] << endl;
+        cout << "getting op of type " << type_names[root_type] << endl;
         auto n = SS.get_op(root_type);
-        // cout << "chose " << n->name << endl;
+        cout << "chose " << n->name << endl;
         auto spot = prg.insert(prg.begin(), n);
         // node depth
         int d = 1;
@@ -47,50 +47,50 @@ tree<NodeBase*> make_program(type_index root_type,
         //For each argument position a of n, Enqueue(a; g) 
         for (auto a : n->arg_types())
         { 
-            // cout << "queing a node of type " << type_names[a] << endl;
+            cout << "queing a node of type " << type_names[a] << endl;
             queue.push_back(make_tuple(spot, a, d));
         }
 
-        // cout << "entering first while loop...\n";
+        cout << "entering first while loop...\n";
         while (queue.size() + s < max_size && queue.size() > 0) 
         {
-            // cout << "queue size: " << queue.size() << endl; 
+            cout << "queue size: " << queue.size() << endl; 
             auto [qspot, t, d] = RandomDequeue(queue);
 
-            // cout << "d: " << d << endl;
+            cout << "d: " << d << endl;
             if (d == max_d)
             {
-                // cout << "getting " << type_names[t] << " terminal\n"; 
+                cout << "getting " << type_names[t] << " terminal\n"; 
                 prg.append_child(qspot, SS.get_terminal(t));
             }
             else
             {
                 //choose a nonterminal of matching type
-                // cout << "getting op of type " << type_names[t] << endl;
+                cout << "getting op of type " << type_names[t] << endl;
                 auto n = SS.get_op(t);
-                // cout << "chose " << n->name << endl;
+                cout << "chose " << n->name << endl;
                 Iter new_spot = prg.append_child(qspot, n);
                 // For each arg of n, add to queue
                 for (auto a : n->arg_types())
                 {
-                    // cout << "queing a node of type " << type_names[a] << endl;
+                    cout << "queing a node of type " << type_names[a] << endl;
                     queue.push_back(make_tuple(new_spot, a, d+1));
                 }
             }
             ++s;
-            // cout << "s: " << s << endl;
+            cout << "s: " << s << endl;
         } 
-        // cout << "entering second while loop...\n";
+        cout << "entering second while loop...\n";
         while (queue.size() > 0)
         {
             if (queue.size() == 0)
                 break;
 
-            // cout << "queue size: " << queue.size() << endl; 
+            cout << "queue size: " << queue.size() << endl; 
 
             auto [qspot, t, d] = RandomDequeue(queue);
 
-            // cout << "getting " << type_names[t] << " terminal\n"; 
+            cout << "getting " << type_names[t] << " terminal\n"; 
             prg.append_child(qspot, SS.get_terminal(t));
 
         }

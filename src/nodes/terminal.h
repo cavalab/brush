@@ -48,6 +48,7 @@ class Terminal: public TypedNodeBase<R>
         { 
             return this->variable_name;
         };
+        string get_name() const override {return this->variable_name;};
 };
 
 } // nodes

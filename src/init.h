@@ -1,4 +1,4 @@
-/* BrushUSH
+/* Brush
 copyright 2017 William La Cava
 license: GNU/GPL v3
 */

@@ -51,9 +51,9 @@ class NodeBase {
         virtual State predict(const Data&, TreeNode*&, TreeNode*&) = 0;
         virtual void grad_descent(const ArrayXf&, const Data&, 
                                    TreeNode*&, TreeNode*&) = 0;
-        virtual string get_model(TreeNode*& child1, 
+        virtual string get_model(TreeNode*& child1,
                                  TreeNode*& child2) const = 0; 
-         
+        virtual string get_name() const = 0; 
         // virtual bool is() = 0;
         /*TODO: 
          * implement clone, copy, swap and assignment operators
@@ -95,9 +95,9 @@ class TypedNodeBase : public NodeBase
             n += ")>";
             this->set_name(n);
         };
-
-        void set_name(string n){this->name = n;}
-        void set_op_name(string n){this->op_name = n;}
+        string get_name() const override {return this->name;};
+        void set_name(string n){this->name = n;};
+        void set_op_name(string n){this->op_name = n;};
         std::type_index ret_type() const override { return typeid(R); }; 
         std::type_index args_type() const override { return typeid(TupleArgs);}; 
         vector<std::type_index> arg_types() const override
@@ -110,7 +110,7 @@ class TypedNodeBase : public NodeBase
 
         void set_prob_change(float w){ this->prob_change = w;};
 
-        string get_model(TreeNode*& child1, TreeNode*& child2) const override
+        string get_model(TreeNode*& child1=0, TreeNode*& child2=0) const override
         { 
             TreeNode* sib = child1;
             string  child_outputs = "";
