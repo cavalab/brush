@@ -252,10 +252,12 @@ struct SearchSpace
         print(terminal_weights.at(ret).begin(), terminal_weights.at(ret).end());
         //TODO: match terminal args_type (probably '{}' or something?)
         //  make a separate terminal_map
-        return *r.select_randomly(terminal_map.at(ret).begin(), 
+        auto rval =  *r.select_randomly(terminal_map.at(ret).begin(), 
                                   terminal_map.at(ret).end(), 
                                   terminal_weights.at(ret).begin(),
                                   terminal_weights.at(ret).end());
+        cout << "returning " << rval->get_name() << endl;
+        return rval;
     };
 
     vector<float> get_weights() const
@@ -390,7 +392,7 @@ struct SearchSpace
     // };
 };
 
-static SearchSpace SS;
+extern SearchSpace SS;
 
 
 } // Brush

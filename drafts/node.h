@@ -49,8 +49,8 @@ class Node
         }
 
         virtual State evaluate(const Data& d, 
-                               tree_node_<Node*>* child1=0, 
-                               tree_node_<Node*>* child2=0) = 0;
+                               tree_node_<Node*>* first_child=0, 
+                               tree_node_<Node*>* last_child=0) = 0;
 };
 
 typedef tree_node_<Node*> TreeNode;  
@@ -63,12 +63,12 @@ class NodeTimes : public Node
 {
     public:
         NodeTimes(){name = "times";}
-        State evaluate(const Data& d, tree_node_<Node*>* child1=0, 
-                tree_node_<Node*>* child2=0)
+        State evaluate(const Data& d, tree_node_<Node*>* first_child=0, 
+                tree_node_<Node*>* last_child=0)
         {
-            /* return  child1->eval(x) * child2->eval(x); */
-            State s1 = child1->eval(d);
-            State s2 = child2->eval(d);
+            /* return  first_child->eval(x) * last_child->eval(x); */
+            State s1 = first_child->eval(d);
+            State s2 = last_child->eval(d);
             State s3;
             s3.set<float>(s1.get_data<float>() * s2.get_data<float>());
             return  s3;
@@ -79,11 +79,11 @@ class NodeSum : public Node
 {
     public:
         NodeSum(){name = "sum";}
-        State evaluate(const Data& d, tree_node_<Node*>* child1=0, 
-                tree_node_<Node*>* child2=0)
+        State evaluate(const Data& d, tree_node_<Node*>* first_child=0, 
+                tree_node_<Node*>* last_child=0)
         {
             ArrayXf sum(d.X.cols());
-            tree_node_<Node*>* sib = child1;
+            tree_node_<Node*>* sib = first_child;
             while (sib != 0)
             {
                 cout << "+= " << sib->data->name << "\n";

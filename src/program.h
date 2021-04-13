@@ -43,12 +43,8 @@ T RandomDequeue(std::vector<T>& Q)
     return val;
 }
 
-tree<NodeBase*> make_program(type_index root_type, 
-                             int max_d, int max_breadth, int max_size);
-
-tree<NodeBase*> point_mutation(tree<NodeBase*>& prg, Iter spot);
-tree<NodeBase*> insert_mutation(tree<NodeBase*>& prg, Iter spot);
-tree<NodeBase*> delete_mutation(tree<NodeBase*>& prg, Iter spot);
+tree<NodeBase*> make_program(SearchSpace& SS, type_index root_type, 
+                            int max_d, int max_breadth, int max_size);
 
 // TODO: instead of templating this, define meaningful derived classes
 // for unsupervised learning, classification and regression. 
@@ -59,8 +55,10 @@ template<typename T> class Program //: public tree<NodeBase*>
 
     /// the underlying program
     tree<NodeBase*> prg; 
+    /// reference to search space
+    SearchSpace& SS;
     
-    Program(int depth=0, int breadth = 0, int size = 0)
+    Program(SearchSpace& ss, int depth=0, int breadth = 0, int size = 0): SS(ss)
     {
         // make a random program
         if (depth == 0)
@@ -70,7 +68,7 @@ template<typename T> class Program //: public tree<NodeBase*>
         if (size == 0)
             size = r.rnd_int(1, params.max_size);
 
-        this->prg = make_program(typeid(T), depth, breadth, size);
+        this->prg = make_program(this->SS, typeid(T), depth, breadth, size);
     }
     T fit(const Data& d)
     {
@@ -93,12 +91,67 @@ template<typename T> class Program //: public tree<NodeBase*>
         start.node->grad_descent(gradient, d);
     };
 
-    string get_model()
+    string get_model(bool pretty=false)
     {
-        Iter start = prg.begin(); 
-        return start.node->get_model();
+        return prg.get_model(pretty);
     }
 
+    string get_tree_model(bool pretty=false)
+    {
+        return prg.get_tree_model(pretty);
+    }
+
+    ////////////////////////////////////////////////////////////////////////////
+    // Mutation & Crossover
+
+
+    // tree<NodeBase*> point_mutation(tree<NodeBase*>& prg, Iter spot);
+    // tree<NodeBase*> insert_mutation(tree<NodeBase*>& prg, Iter spot);
+    // tree<NodeBase*> delete_mutation(tree<NodeBase*>& prg, Iter spot);
+
+    /// point mutation: replace node with same typed node
+    tree<NodeBase*> point_mutation(tree<NodeBase*>& prg, Iter spot)
+    {
+        auto newNode = this->SS.get_node_like(spot.node->data); 
+        prg.replace(spot, newNode);
+        return prg;
+    }
+    /// insert a node with spot as a child
+    tree<NodeBase*> insert_mutation(tree<NodeBase*>& prg, Iter spot)
+    {
+        auto spot_type = spot.node->data->ret_type();
+        auto n = this->SS.get_op_with_arg(spot_type, spot_type); 
+        // make node n wrap the subtree at the chosen spot
+        auto parent_node = prg.wrap(spot, n);
+
+        // now fill the arguments of n appropriately
+        bool spot_filled = false;
+        for (auto a: n->arg_types())
+        {
+            
+            if (spot_filled)
+            {
+                // if spot is in its child position, append children
+                prg.append_child(parent_node, this->SS.get_terminal(a));
+            }
+            // if types match, treat this spot as filled by the spot node 
+            else if (a == spot_type)
+                spot_filled = true;
+            // otherwise, add siblings before spot node
+            else
+                prg.insert(spot, this->SS.get_terminal(a));
+
+        } 
+        return prg;
+    }
+    /// delete subtree and replace it with a terminal of the same return type
+    tree<NodeBase*> delete_mutation(tree<NodeBase*>& prg, Iter spot)
+    {
+        auto terminal = this->SS.get_terminal(spot.node->data->ret_type()); 
+        prg.erase_children(spot); 
+        prg.replace(spot, terminal);
+        return prg;
+    }
     Program<T> mutate() const
     {
         /* Types of mutation:
@@ -161,6 +214,10 @@ template<typename T> class Program //: public tree<NodeBase*>
         return child;
 
     };
-};
-}
+}; // Program
+
+typedef Program<ArrayXXf> MultiProgram;
+
+} // Brush
+
 #endif

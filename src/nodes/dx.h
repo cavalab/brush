@@ -45,12 +45,12 @@ class DxNode<R(Args...)> : public TypedNodeBase<R, Args...>
             this->set_name("DxNode(" +this->name + ")");
         };
 
-        State fit(const Data& d, TreeNode*& child1, TreeNode*& child2) override 
+        State fit(const Data& d, TreeNode*& first_child, TreeNode*& last_child) override 
 	    {
             cout << "fitting " << this->name << endl;
-            cout << "child1: " << &child1 << endl;
-            cout << "child2: " << &child2 << endl;
-            auto child_outputs = base::get_children_fit(d, child1, child2);
+            cout << "first_child: " << &first_child << endl;
+            cout << "last_child: " << &last_child << endl;
+            auto child_outputs = base::get_children_fit(d, first_child, last_child);
             // TODO: helper fn to convert children to ArrayArgs
             ArrayArgs inputs; // = std::apply(std::get<R>, child_outputs);
             for (int i = 0; i < child_outputs.size(); ++i)
@@ -65,13 +65,13 @@ class DxNode<R(Args...)> : public TypedNodeBase<R, Args...>
  			return std::apply(this->op, inputs);
         };
 
-        State predict(const Data& d, TreeNode*& child1, 
-                TreeNode*& child2) override
+        State predict(const Data& d, TreeNode*& first_child, 
+                TreeNode*& last_child) override
 	    {
             cout << "predicting " << this->name << endl;
-            cout << "child1: " << child1 << endl;
-            cout << "child2: " << child2 << endl;
-            auto child_outputs = base::get_children_predict(d, child1, child2);
+            cout << "first_child: " << first_child << endl;
+            cout << "last_child: " << last_child << endl;
+            auto child_outputs = base::get_children_predict(d, first_child, last_child);
             // TODO: helper fn to convert children to ArrayArgs
             ArrayArgs inputs; 
             for (int i = 0; i < child_outputs.size(); ++i)
@@ -84,12 +84,12 @@ class DxNode<R(Args...)> : public TypedNodeBase<R, Args...>
         };
 
         void grad_descent(const ArrayXf& gradient, const Data& d, 
-                           TreeNode*& child1, TreeNode*& child2) override
+                           TreeNode*& first_child, TreeNode*& last_child) override
         {
             /* backpropagate the gradient * df_dX. 
              */
             cout << "gradient descent on " << this->name << endl;
-            TreeNode* sib = child1;
+            TreeNode* sib = first_child;
             for (int i = 0; i < base::ArgCount; ++i)
             {
                 // chain them rules
@@ -162,12 +162,12 @@ class WeightedDxNode<R(Args...)> : public DxNode<R(Args...)>
             cout << endl;
         };
 
-        State fit(const Data& d, TreeNode*& child1, TreeNode*& child2) override 
+        State fit(const Data& d, TreeNode*& first_child, TreeNode*& last_child) override 
 	    {
             cout << "fitting " << this->name << endl;
-            cout << "child1: " << &child1 << endl;
-            cout << "child2: " << &child2 << endl;
-            auto child_outputs = base::get_children_fit(d, child1, child2);
+            cout << "first_child: " << &first_child << endl;
+            cout << "last_child: " << &last_child << endl;
+            auto child_outputs = base::get_children_fit(d, first_child, last_child);
             // TODO: helper fn to convert children to ArrayArgs
             ArrayArgs inputs; // = std::apply(std::get<R>, child_outputs);
             for (int i = 0; i < child_outputs.size(); ++i)
@@ -187,13 +187,13 @@ class WeightedDxNode<R(Args...)> : public DxNode<R(Args...)>
  			return std::apply(this->op, inputs);
         };
 
-        State predict(const Data& d, TreeNode*& child1, 
-                TreeNode*& child2) override
+        State predict(const Data& d, TreeNode*& first_child, 
+                TreeNode*& last_child) override
 	    {
             cout << "predicting " << this->name << endl;
-            cout << "child1: " << child1 << endl;
-            cout << "child2: " << child2 << endl;
-            auto child_outputs = base::get_children_predict(d, child1, child2);
+            cout << "first_child: " << first_child << endl;
+            cout << "last_child: " << last_child << endl;
+            auto child_outputs = base::get_children_predict(d, first_child, last_child);
             // TODO: helper fn to convert children to ArrayArgs
             ArrayArgs inputs; 
             for (int i = 0; i < child_outputs.size(); ++i)
@@ -209,12 +209,12 @@ class WeightedDxNode<R(Args...)> : public DxNode<R(Args...)>
         };
 
         void grad_descent(const ArrayXf& gradient, const Data& d, 
-                           TreeNode*& child1, TreeNode*& child2) override
+                           TreeNode*& first_child, TreeNode*& last_child) override
         {
             /* backpropagate the gradient * df_dX. 
              * update internal weights. 
              */
-            DxNode<R(Args...)>::grad_descent(gradient, d, child1, child2);
+            DxNode<R(Args...)>::grad_descent(gradient, d, first_child, last_child);
             this->update_weights(gradient);
 
             this->set_prob_change(gradient.matrix().norm());
@@ -324,10 +324,10 @@ class WeightedDxNode<R(Args...)> : public DxNode<R(Args...)>
 /*     }; */
 
 	/* State fit(const Data& d, */ 
-	/* 					   TreeNode* child1=0, */ 
-	/* 					   TreeNode* child2=0) */
+	/* 					   TreeNode* first_child=0, */ 
+	/* 					   TreeNode* last_child=0) */
 	/* { */
-	/* 	tree_node_<Node*>* sib = child1; */
+	/* 	tree_node_<Node*>* sib = first_child; */
 	/* 	vector<Arg> inputs; //(ArgCount); */
         /* for (int i = 0; i < ArgCount; ++i) */
         /* { */
@@ -377,34 +377,35 @@ class ReduceDxNode<R(Arg,Arg)> : public TypedNodeBase<R, Arg>
             this->set_name("ReduceDxNode(" +this->name + ")");
         };
 
-        State fit(const Data& d, TreeNode*& child1, TreeNode*& child2) override 
+        State fit(const Data& d, TreeNode*& first_child, TreeNode*& last_child) override 
 	    {
             cout << "fitting " << this->name << endl;
-            vector<Arg> inputs = this->get_children_variable_fit(d, child1, 
-                                                                 child2);
+            vector<Arg> inputs = this->get_children_variable_fit(d, first_child, 
+                                                                 last_child);
 
             return std::reduce(inputs.begin(), inputs.end(), this->op);
         };
 
-        State predict(const Data& d, TreeNode*& child1, 
-                      TreeNode*& child2) override
+        State predict(const Data& d, TreeNode*& first_child, 
+                      TreeNode*& last_child) override
 	    {
             cout << "predicting " << this->name << endl;
             vector<Arg> inputs = base::get_variable_children_predict(d, 
-                                    child1, child2);
+                                    first_child, last_child);
 
             return std::reduce(inputs.begin(), inputs.end(), this->op);
         };
 
         void grad_descent(const ArrayXf& gradient, const Data& d, 
-                           TreeNode*& child1, TreeNode*& child2) override
+                           TreeNode*& first_child, TreeNode*& last_child) override
         {
             /* backpropagate the gradient * df_dX. 
              */
             cout << "gradient descent on " << this->name << endl;
-            TreeNode* sib = child1;
+            TreeNode* sib = first_child;
             int i = 0;
-            while (sib != child2)
+            // while (sib <= last_child)
+            for(int i = 0; i < this->arg_count(); ++i)
             {
                 sib->grad_descent(gradient*float(this->df_dX.at(i)), d);
                 sib = sib->next_sibling;

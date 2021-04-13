@@ -50,7 +50,7 @@ class SplitNode<R(Args...)> : public TypedNodeBase<R, Args...>
             }
         };
 
-        State fit(const Data& d, TreeNode*& child1, TreeNode*& child2) override 
+        State fit(const Data& d, TreeNode*& first_child, TreeNode*& last_child) override 
 	    {
 
             /* 1) choose best feature
@@ -76,9 +76,9 @@ class SplitNode<R(Args...)> : public TypedNodeBase<R, Args...>
             array<Data, 2> data_splits = d.split(mask);
 
             array<State, base::ArgCount> child_outputs;
-            child_outputs = this->get_children_fit(data_splits, child1, child2);
+            child_outputs = this->get_children_fit(data_splits, first_child, last_child);
             // cout << "gathering inputs..." << endl;
-            // TreeNode* sib = child1;
+            // TreeNode* sib = first_child;
             // for (int i = 0; i < base::ArgCount; ++i)
             // {
             //     cout << i << endl;
@@ -94,22 +94,22 @@ class SplitNode<R(Args...)> : public TypedNodeBase<R, Args...>
  			return out;
         };
 
-        State predict(const Data& d, TreeNode*& child1, 
-                TreeNode*& child2) override
+        State predict(const Data& d, TreeNode*& first_child, 
+                TreeNode*& last_child) override
 	    {
             cout << "predicting " << this->name << endl;
-            cout << "child1: " << child1 << endl;
-            cout << "child2: " << child2 << endl;
+            cout << "first_child: " << first_child << endl;
+            cout << "last_child: " << last_child << endl;
 
             // split the data
             ArrayXb mask = d.X.row(this->loc).array() < this->threshold;
             array<Data, 2> data_splits = d.split(mask);
 
             // array<State, base::ArgCount> child_outputs;
-            auto child_outputs = this->get_children_predict(data_splits, child1, 
-                                                       child2);
+            auto child_outputs = this->get_children_predict(data_splits, first_child, 
+                                                       last_child);
             // cout << "gathering inputs..." << endl;
-            // TreeNode* sib = child1;
+            // TreeNode* sib = first_child;
             // for (int i = 0; i < base::ArgCount; ++i)
             // {
             //     cout << i << endl;
@@ -126,15 +126,15 @@ class SplitNode<R(Args...)> : public TypedNodeBase<R, Args...>
 
         /// split the gradient and send it to the children
         void grad_descent(const ArrayXf& gradient, const Data& d, 
-                          TreeNode*& child1, TreeNode*& child2) override
+                          TreeNode*& first_child, TreeNode*& last_child) override
         {
             ArrayXb mask = d.X.row(this->loc).array() < this->threshold;
             array<Data, 2> data_splits = d.split(mask);
 
             array<ArrayXf, 2> grad_splits = Brush::Util::split(gradient, mask);
 
-            child1->grad_descent(grad_splits.at(0), data_splits.at(0)); 
-            child2->grad_descent(grad_splits.at(1), data_splits.at(1)); 
+            first_child->grad_descent(grad_splits.at(0), data_splits.at(0)); 
+            last_child->grad_descent(grad_splits.at(1), data_splits.at(1)); 
 
             base::set_prob_change(gradient.matrix().norm());
         };
@@ -143,14 +143,14 @@ class SplitNode<R(Args...)> : public TypedNodeBase<R, Args...>
         /// Utility to grab child outputs. 
         array<State, base::ArgCount> get_children(
                                 const array<Data, 2>& data_splits,
-                                TreeNode*& child1, 
-                                TreeNode*& child2, 
+                                TreeNode*& first_child, 
+                                TreeNode*& last_child, 
                                 State (TreeNode::*fn)(const Data&)
                                 )
         {
             array<State, base::ArgCount> child_outputs;
 
-            TreeNode* sib = child1;
+            TreeNode* sib = first_child;
             for (int i = 0; i < base::ArgCount; ++i)
             {
                 cout << i << endl;
@@ -163,17 +163,17 @@ class SplitNode<R(Args...)> : public TypedNodeBase<R, Args...>
 
         array<State, base::ArgCount> get_children_fit(
             const array<Data, 2>& data_splits, 
-            TreeNode*& child1, 
-            TreeNode*& child2)
+            TreeNode*& first_child, 
+            TreeNode*& last_child)
         {
-            return get_children(data_splits, child1, child2, &TreeNode::fit);
+            return get_children(data_splits, first_child, last_child, &TreeNode::fit);
         }
         array<State, base::ArgCount> get_children_predict(
             const array<Data, 2>& data_splits,
-            TreeNode*& child1, 
-            TreeNode*& child2)
+            TreeNode*& first_child, 
+            TreeNode*& last_child)
         {
-            return get_children(data_splits, child1, child2, &TreeNode::predict);
+            return get_children(data_splits, first_child, last_child, &TreeNode::predict);
         }
         /// Stitches together outputs from left or right child based on threshold
         State stitch(array<State, base::ArgCount>& child_outputs, const Data& d)

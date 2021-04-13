@@ -262,7 +262,16 @@ string to_string(const T& value)
     ss << value;
     return ss.str();
 }
- 
+///find and replace string
+std::string ReplaceString(std::string subject, const std::string& search,
+                          const std::string& replace);
+
+///string find and replace in place
+void ReplaceStringInPlace(std::string& subject, const std::string& search,
+                          const std::string& replace);
+
+
+
 /// returns the condition number of a matrix.
 float condition_number(const MatrixXf& X);
   

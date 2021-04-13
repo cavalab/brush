@@ -378,5 +378,26 @@ float mad(const ArrayXf& x)
     return median(dev);
 };
 
+///find and replace string
+std::string ReplaceString(std::string subject, const std::string& search,
+                          const std::string& replace)
+{
+    size_t pos = 0;
+    while ((pos = subject.find(search, pos)) != std::string::npos) {
+         subject.replace(pos, search.length(), replace);
+         pos += replace.length();
+    }
+    return subject;
+}
+///string find and replace in place
+void ReplaceStringInPlace(std::string& subject, const std::string& search,
+                          const std::string& replace)
+{
+    size_t pos = 0;
+    while ((pos = subject.find(search, pos)) != std::string::npos) {
+         subject.replace(pos, search.length(), replace);
+         pos += replace.length();
+    }
+}
 } // Util
 } // Brush

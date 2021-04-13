@@ -62,7 +62,8 @@ class tree_node_ { // size: 5*4=20 bytes (on 32 bit arch), can be reduced by 8.
         State fit(const Data& d);
         State predict(const Data& d);
         void grad_descent(const ArrayXf&, const Data&);
-		string get_model();
+		string get_model(bool pretty=false);
+		string get_tree_model(bool pretty=false, string offset="");
 }; 
 
 template<class T>
@@ -84,9 +85,15 @@ void tree_node_<T>::grad_descent(const ArrayXf& gradient, const Data& d)
 }
 
 template<class T>
-string tree_node_<T>::get_model()
+string tree_node_<T>::get_model(bool pretty)
 {
-    return this->data->get_model(first_child, last_child);
+    return this->data->get_model(pretty, first_child, last_child);
+}
+
+template<class T>
+string tree_node_<T>::get_tree_model(bool pretty, string offset)
+{
+    return this->data->get_tree_model(pretty, offset, first_child, last_child);
 }
 
 template<class T>
@@ -484,6 +491,16 @@ class tree {
 					}
 		};
 		tree_node *head, *feet;    // head/feet are always dummy; if an iterator points to them it is invalid
+		////////////////////////////////////////////////////////////////////////
+		// WGL changes
+		string get_model(bool pretty=false)
+		{ 
+			return this->head->next_sibling->get_model(pretty);
+		};
+		string get_tree_model(bool pretty=false)
+		{ 
+			return this->head->next_sibling->get_tree_model(pretty);
+		};
 	private:
 		tree_node_allocator alloc_;
 		void head_initialise_();

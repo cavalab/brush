@@ -50,10 +50,15 @@ class NodeBase {
         virtual State fit(const Data&, TreeNode*&, TreeNode*&) = 0;
         virtual State predict(const Data&, TreeNode*&, TreeNode*&) = 0;
         virtual void grad_descent(const ArrayXf&, const Data&, 
-                                   TreeNode*&, TreeNode*&) = 0;
-        virtual string get_model(TreeNode*& child1,
-                                 TreeNode*& child2) const = 0; 
-        virtual string get_name() const = 0; 
+                                  TreeNode*&, TreeNode*&) = 0;
+        virtual string get_model(bool pretty, 
+                                 TreeNode*& first_child,
+                                 TreeNode*& last_child) const = 0;
+        virtual string get_tree_model(bool pretty, string offset, 
+                                      TreeNode *&first_child,
+                                      TreeNode *&last_child) const = 0;
+        virtual string get_name() const = 0;
+        virtual string get_op_name() const =0;
         // virtual bool is() = 0;
         /*TODO: 
          * implement clone, copy, swap and assignment operators
@@ -61,6 +66,7 @@ class NodeBase {
 };
 
 typedef tree_node_<NodeBase*> TreeNode;  
+typedef tree<NodeBase*>::sibling_iterator SibIter;  
 
 /* Basic specialization for edge types (output and input types)
  * Defines some basic shared parameters for nodes.
@@ -96,6 +102,7 @@ class TypedNodeBase : public NodeBase
             this->set_name(n);
         };
         string get_name() const override {return this->name;};
+        string get_op_name() const override {return this->op_name;};
         void set_name(string n){this->name = n;};
         void set_op_name(string n){this->op_name = n;};
         std::type_index ret_type() const override { return typeid(R); }; 
@@ -110,18 +117,51 @@ class TypedNodeBase : public NodeBase
 
         void set_prob_change(float w){ this->prob_change = w;};
 
-        string get_model(TreeNode*& child1=0, TreeNode*& child2=0) const override
+        string get_model(bool pretty=false, TreeNode*& first_child=0, 
+                         TreeNode*& last_child=0) const override
         { 
-            TreeNode* sib = child1;
             string  child_outputs = "";
-            while (sib != child2)
+            TreeNode* sib = first_child;
+            for(int i = 0; i < this->arg_count(); ++i)
             {
-                child_outputs += sib->get_model();
+                child_outputs += sib->get_model(pretty);
                 sib = sib->next_sibling;
-                if (sib != child2-1)
+                if (sib != nullptr)
                     child_outputs += ",";
             }
-            return this->name + "(" + child_outputs + ")";
+            if (pretty)
+                return this->op_name + "(" + child_outputs + ")";
+            else
+                return this->name + "(" + child_outputs + ")";
+        };
+
+        string get_tree_model(bool pretty=false, string offset="", 
+                              TreeNode*& first_child=0, 
+                              TreeNode*& last_child=0) const override
+        { 
+            // cout << "TypedNodeBase::get_tree_model. ";
+            // cout << "first_child: " << first_child << endl;
+            // cout << "last_child: " << last_child << endl;
+            string new_offset = "  ";
+
+            string  child_outputs = "\n";
+
+            TreeNode* sib = first_child;
+            for(int i = 0; i < this->arg_count(); ++i)
+            {
+                child_outputs += offset + "|-";
+                string s = sib->get_tree_model(pretty, offset+new_offset);
+                sib = sib->next_sibling;
+                if (sib != nullptr)
+                    ReplaceStringInPlace(s, "\n"+offset, "\n"+offset+"|") ;
+                child_outputs += s;
+                if (sib != nullptr)
+                    child_outputs += "\n";
+            }
+            if (pretty)
+                return this->op_name + child_outputs;
+            else
+                return this->name +  child_outputs;
         };
 
         template<size_t... Is>
@@ -144,14 +184,14 @@ class TypedNodeBase : public NodeBase
 
         /// Utility to grab child outputs. 
         array<State, ArgCount> get_children(const Data& d,
-                                            TreeNode*& child1, 
-                                            TreeNode*& child2, 
+                                            TreeNode*& first_child, 
+                                            TreeNode*& last_child, 
                                             State (TreeNode::*fn)(const Data&)
                                             )
         {
             array<State, ArgCount> child_outputs;
 
-            TreeNode* sib = child1;
+            TreeNode* sib = first_child;
             for (int i = 0; i < ArgCount; ++i)
             {
                 cout << i << endl;
@@ -163,29 +203,29 @@ class TypedNodeBase : public NodeBase
         };
 
         array<State, ArgCount> get_children_fit(const Data& d, 
-                                                TreeNode*& child1, 
-                                                TreeNode*& child2)
+                                                TreeNode*& first_child, 
+                                                TreeNode*& last_child)
         {
-            return get_children(d, child1, child2, &TreeNode::fit);
+            return get_children(d, first_child, last_child, &TreeNode::fit);
         }
         array<State, ArgCount> get_children_predict(const Data& d, 
-                                                    TreeNode*& child1, 
-                                                    TreeNode*& child2)
+                                                    TreeNode*& first_child, 
+                                                    TreeNode*& last_child)
         {
-            return get_children(d, child1, child2, &TreeNode::predict);
+            return get_children(d, first_child, last_child, &TreeNode::predict);
         }
 
         /// Utility to grab child outputs for variable arity nodes.
         vector<State> get_variable_children(const Data& d,
-                                            TreeNode*& child1, 
-                                            TreeNode*& child2, 
+                                            TreeNode*& first_child, 
+                                            TreeNode*& last_child, 
                                             State (TreeNode::*fn)(const Data&)
                                             )
         {
             vector<State> child_outputs;
 
-            TreeNode* sib = child1;
-            while (sib != child2)
+            TreeNode* sib = first_child;
+            for(int i = 0; i < this->arg_count(); ++i)
             {
                 child_outputs.push_back((sib->*fn)(d));
                 sib = sib->next_sibling;
@@ -194,16 +234,16 @@ class TypedNodeBase : public NodeBase
         };
 
         vector<State> get_variable_children_fit(const Data& d, 
-                                                TreeNode*& child1, 
-                                                TreeNode*& child2)
+                                                TreeNode*& first_child, 
+                                                TreeNode*& last_child)
         {
-            return get_variable_children(d, child1, child2, &TreeNode::fit);
+            return get_variable_children(d, first_child, last_child, &TreeNode::fit);
         }
         vector<State> get_variable_children_predict(const Data& d, 
-                                                    TreeNode*& child1, 
-                                                    TreeNode*& child2)
+                                                    TreeNode*& first_child, 
+                                                    TreeNode*& last_child)
         {
-            return get_variable_children(d, child1, child2, &TreeNode::predict);
+            return get_variable_children(d, first_child, last_child, &TreeNode::predict);
         }
 };
 
@@ -229,18 +269,18 @@ class Node<R(Args...)> : public TypedNodeBase<R, Args...>
             this->set_name("Node(" +this->name + ")");
         };
 
-        State fit(const Data& d, TreeNode*& child1, TreeNode*& child2) override 
+        State fit(const Data& d, TreeNode*& first_child, TreeNode*& last_child) override 
 	    {
             TupleArgs inputs = base::tupleize(
-                base::get_children_fit(d, child1, child2));
+                base::get_children_fit(d, first_child, last_child));
 
  			return std::apply(this->op, inputs);
         };
 
-        State predict(const Data& d, TreeNode*& child1, 
-                TreeNode*& child2) override
+        State predict(const Data& d, TreeNode*& first_child, 
+                TreeNode*& last_child) override
 	    {
-            auto child_outputs = base::get_children_predict(d, child1, child2);
+            auto child_outputs = base::get_children_predict(d, first_child, last_child);
             TupleArgs inputs = base::tupleize(child_outputs);
 
  			return std::apply(this->op, inputs);

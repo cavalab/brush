@@ -12,7 +12,7 @@ namespace Brush
 {
 
 // constructs a tree using functions, terminals, and settings
-tree<NodeBase*> make_program(type_index root_type, 
+tree<NodeBase*> make_program(SearchSpace& SS, type_index root_type, 
                              int max_d, int max_breadth, int max_size)
 {
     /*
@@ -32,6 +32,7 @@ tree<NodeBase*> make_program(type_index root_type,
 
     if (max_size == 1)
     {
+        // auto root = prg.set_head(SS.get_terminal(root_type));
         auto root = prg.insert(prg.begin(), SS.get_terminal(root_type));
     }
     else
@@ -39,6 +40,7 @@ tree<NodeBase*> make_program(type_index root_type,
         cout << "getting op of type " << type_names[root_type] << endl;
         auto n = SS.get_op(root_type);
         cout << "chose " << n->name << endl;
+        // auto spot = prg.set_head(n);
         auto spot = prg.insert(prg.begin(), n);
         // node depth
         int d = 1;
@@ -95,53 +97,13 @@ tree<NodeBase*> make_program(type_index root_type,
 
         }
     }
-    cout << "final program: " << prg.head->first_child->get_model() << endl;
+    cout << "final program:\n" 
+         << prg.get_model() << "\n" 
+         << prg.get_model(true) << endl; // pretty
+
     return prg;
 };
 
-/// point mutation: replace node with same typed node
-tree<NodeBase*> point_mutation(tree<NodeBase*>& prg, Iter spot)
-{
-    auto newNode = SS.get_node_like(spot.node->data); 
-    prg.replace(spot, newNode);
-    return prg;
-}
-/// insert a node with spot as a child
-tree<NodeBase*> insert_mutation(tree<NodeBase*>& prg, Iter spot)
-{
-    auto spot_type = spot.node->data->ret_type();
-    auto n = SS.get_op_with_arg(spot_type, spot_type); 
-    // make node n wrap the subtree at the chosen spot
-    auto parent_node = prg.wrap(spot, n);
-
-    // now fill the arguments of n appropriately
-    bool spot_filled = false;
-    for (auto a: n->arg_types())
-    {
-        
-        if (spot_filled)
-        {
-            // if spot is in its child position, append children
-            prg.append_child(parent_node, SS.get_terminal(a));
-        }
-        // if types match, treat this spot as filled by the spot node 
-        else if (a == spot_type)
-            spot_filled = true;
-        // otherwise, add siblings before spot node
-        else
-            prg.insert(spot, SS.get_terminal(a));
-
-    } 
-    return prg;
-}
-/// delete subtree and replace it with a terminal of the same return type
-tree<NodeBase*> delete_mutation(tree<NodeBase*>& prg, Iter spot)
-{
-    auto terminal = SS.get_terminal(spot.node->data->ret_type()); 
-    prg.erase_children(spot); 
-    prg.replace(spot, terminal);
-    return prg;
-}
 
 
 
