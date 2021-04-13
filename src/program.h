@@ -60,12 +60,15 @@ template<typename T> class Program //: public tree<NodeBase*>
     /// the underlying program
     tree<NodeBase*> prg; 
     
-    Program()
+    Program(int depth=0, int breadth = 0, int size = 0)
     {
         // make a random program
-        int depth = r.rnd_int(1, params.max_depth);
-        int breadth = r.rnd_int(1, params.max_breadth);
-        int size = r.rnd_int(1, params.max_size);
+        if (depth == 0)
+            depth = r.rnd_int(1, params.max_depth);
+        if (breadth == 0)
+            breadth = r.rnd_int(1, params.max_breadth);
+        if (size == 0)
+            size = r.rnd_int(1, params.max_size);
 
         this->prg = make_program(typeid(T), depth, breadth, size);
     }

@@ -32,8 +32,11 @@ class NodeBase {
 	public:
 
         typedef tree_node_<NodeBase*> TreeNode;  
+        /// full name of the node, with types
 		string name;
+        // name of the operator
 		string op_name;
+        // pretty name of the op, for printing equations
 		string op_name_pretty;
         // whether to center the operator in pretty printing
         bool center_op;
@@ -82,8 +85,13 @@ class TypedNodeBase : public NodeBase
         {
             this->set_op_name(n);
             n += "<"+ type_names.at(this->ret_type()) + "(";
-            for (const auto& at : this->arg_types())
-                n += type_names.at(at);
+            auto ats = this->arg_types();
+            for (int i = 0; i<ats.size(); ++i )
+            {
+                n += type_names.at(ats.at(i));
+                if(i < ats.size()-1)  
+                    n += ",";
+            }
             n += ")>";
             this->set_name(n);
         };
@@ -91,7 +99,7 @@ class TypedNodeBase : public NodeBase
         void set_name(string n){this->name = n;}
         void set_op_name(string n){this->op_name = n;}
         std::type_index ret_type() const override { return typeid(R); }; 
-        std::type_index args_type() const override { return typeid(TupleArgs); }; 
+        std::type_index args_type() const override { return typeid(TupleArgs);}; 
         vector<std::type_index> arg_types() const override
         {
             return this->get_arg_types(make_index_sequence<ArgCount>());
