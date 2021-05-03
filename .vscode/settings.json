@@ -1,10 +1,10 @@
 {
     "cmake.buildDirectory": "${workspaceFolder}/build/",
     "cmake.environment": {
-        "EIGEN3_INCLUDE_DIR": "/home/bill/anaconda3/envs/brush/include/eigen3/",
-        "GTEST_INCLUDE_DIRS": "/home/bill/anaconda3/envs/brush/include/gtest/",
-        "GTEST_LIBRARIES": "/home/bill/anaconda3/envs/brush/lib/libgtest.so"
+        "EIGEN3_INCLUDE_DIR": "${env:CONDA_PREFIX}/include/eigen3/",
+        "GTEST_INCLUDE_DIRS": "${env:CONDA_PREFIX}/include/gtest/",
+        "GTEST_LIBRARIES": "${env:CONDA_PREFIX}/lib/libgtest.so"
     },
     "cmake.buildBeforeRun": true,
-    "python.pythonPath": "c:\\Users\\jdr2160\\Miniconda3\\envs\\brush\\python.exe",
+    "python.pythonPath": "${env:CONDA_PREFIX}/envs/brush/bin/python",
 }

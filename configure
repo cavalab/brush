@@ -6,7 +6,8 @@
 # ./configure profile: build a version of feat use with profiling tools. 
 # ===
 rm -rf build; mkdir build; cd build; 
-cmake -DCMAKE_BUILD_TYPE=Debug -DGTEST_INCLUDE_DIRS="$CONDA_PREFIX/include/" -DGTEST_LIBRARIES="$CONDA_PREFIX/lib/libgtest.so" -DEIGEN3_INCLUDE_DIR="$CONDA_PREFIX/include/eigen3/" ..
+#cmake -DCMAKE_BUILD_TYPE=Debug -DGTEST_INCLUDE_DIRS="$CONDA_PREFIX/include/" -DGTEST_LIBRARIES="$CONDA_PREFIX/lib/libgtest.so" -DEIGEN3_INCLUDE_DIR="$CONDA_PREFIX/include/eigen3/" ..
+cmake .. -DCMAKE_LIBRARY_OUTPUT_DIRECTORY=/mnt/d/projects/brush/build/lib.linux-x86_64-3.7/ -DPYTHON_EXECUTABLE=/home/jdr2160/miniconda3/envs/brush/bin/python3.7 -DCMAKE_BUILD_TYPE=Debug -DGTEST_INCLUDE_DIRS=/home/jdr2160/miniconda3/envs/brush/include/ -DGTEST_LIBRARIES=/home/jdr2160/miniconda3/envs/brush/lib/libgtest.so -DEIGEN3_INCLUDE_DIR=/home/jdr2160/miniconda3/envs/brush/include/eigen3/ -DPYBIND11_FINDPYTHON=ON
 
 # if [ "$1" == "debug" ]; then
 #     rm -rf debug; mkdir debug; cd debug; 
