@@ -115,16 +115,26 @@ target_link_libraries(tests brush ${GTEST_LIBRARIES} pthread)
 
 # generate python bindings
 find_package(Python COMPONENTS Interpreter Development REQUIRED)
-find_package(pybind11 CONFIG REQUIRED)
+
+# if (DEFINED ENV{PYBIND11_INCLUDE_DIR})
+#     set(PYBIND11_INCLUDE_DIR $ENV{PYBIND11_INCLUDE_DIR})
+# endif()
+# message(STATUS "PYBIND11_INCLUDE_DIR=${PYBIND11_INCLUDE_DIR}")
+# set(pybind11_DIR "${PYBIND11_INCLUDE_DIR}")
 
 message("Python_FOUND:${Python_FOUND}")
 message("Python_VERSION:${Python_VERSION}")
 message("Python_Development_FOUND:${Python_Development_FOUND}")
 message("Python_LIBRARIES:${Python_LIBRARIES}")
+message("pybind11_DIR:${pybind11_DIR}")
 
 find_package(PythonLibs REQUIRED)
 include_directories("${PYTHON_INCLUDE_DIRS}")
+message("Python_INCLUDE_DIRS:${PYTHON_INCLUDE_DIRS}")
 target_link_libraries(brush ${PYTHON_LIBRARIES})
+
+find_package(pybind11 REQUIRED)
+include_directories("${pybind11_INCLUDE_DIRS}")
 
 #add_subdirectory(pybind11)
 pybind11_add_module(pybrush src/example.cc)
