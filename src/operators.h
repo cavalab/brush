@@ -464,7 +464,6 @@ struct make_unary_operators<ArrayXf>
 };
 
 
-
 } // Brush
 
 #endif
