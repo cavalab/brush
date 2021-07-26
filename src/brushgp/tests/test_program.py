@@ -36,12 +36,14 @@ class TestProgram(TestCase):
                   [0.2254195 , 0.70526861, 0.31406024, 0.07082619, 0.84034526]], dtype=float)
     y = np.array([3.55634251, 3.13854087, 3.55887523, 3.29462895, 3.33443517,
                   3.4378868 , 3.41092345, 3.5087468 , 3.25110243, 3.11382179], dtype=float)
+
+    data = (X, y)
     
     prg = Program()
 
-    prg.fit((X, y))
+    prg.fit(data)
 
-    y_pred = prg.predict((X, y))  # y_pred is a numpy array
+    y_pred = prg.predict(data)  # y_pred is a numpy array
     
     print()
     print("Calculating loss before training:")
@@ -57,6 +59,6 @@ class TestProgram(TestCase):
       prg.grad_descent(d_loss, data)
       print("  y_pred: {0}".format(y_pred.T))
       print("  y:      {0}".format(y.T))
-      print("  Loss:   {0}".format(prg.loss(y, y_pred))
+      print("  Loss:   {0}".format(prg.loss(y, y_pred)))
       
       d_loss = prg.d_loss(y, y_pred)
