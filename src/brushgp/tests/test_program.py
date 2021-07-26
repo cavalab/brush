@@ -24,7 +24,7 @@ class TestProgram(TestCase):
     # search space.
     # TODO: Should we use a core set of default ops, or should the users be
     # able to define them individually? Or both...?
-    prg = Program(data=(X, y), depth=0, breadth=0, size=10)
+    prg = Program(X=x, y=y, depth=0, breadth=0, size=10)
 
   def test_back_prop(self):
     """Test whether brushgp can train a GP program using backprop and square

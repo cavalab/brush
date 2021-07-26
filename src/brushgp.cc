@@ -7,6 +7,8 @@ license: GNU/GPL v3
 
 #include <pybind11/pybind11.h>
 
+#include "program.h"
+
 #define STRINGIFY(x) #x
 #define MACRO_STRINGIFY(x) STRINGIFY(x)
 
@@ -42,4 +44,9 @@ PYBIND11_MODULE(cmake_example, m) {
 #else
     m.attr("__version__") = "dev";
 #endif
+}
+
+PYBIND11_MODULE(brushgp, m) {
+    py::class_<Program>(m, "Program")
+        .def(py::init(&Program::create_py))
 }

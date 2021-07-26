@@ -11,6 +11,8 @@ license: GNU/GPL v3
 #include <iostream>
 
 #include <string>
+#include <Eigen/Dense>  // For python factory constructor
+
 // internal includes
 #include "tree.h"
 
@@ -57,6 +59,17 @@ template<typename T> class Program //: public tree<NodeBase*>
     tree<NodeBase*> prg; 
     /// reference to search space
     SearchSpace& SS;
+
+    // Factory function to construct a Program using the Pybind11 interface
+    static Program create_py(MatrixXf X, ArrayXf y, int depth=0, int breadth=0, int size=0)
+    {
+        Longitudinal Z;
+        Data data(X, y, Z)
+        SearchSpace SS;
+        SS.init(data);
+
+        return Program(SS, depth, breadth, size);
+    }
     
     Program(SearchSpace& ss, int depth=0, int breadth = 0, int size = 0): SS(ss)
     {
