@@ -137,5 +137,5 @@ find_package(pybind11 REQUIRED)
 include_directories("${pybind11_INCLUDE_DIRS}")
 
 #add_subdirectory(pybind11)
-pybind11_add_module(pybrush src/example.cc)
-target_compile_definitions(pybrush PRIVATE VERSION_INFO=${EXAMPLE_VERSION_INFO})
+pybind11_add_module(brushgp src/brushgp.cpp)
+target_compile_definitions(brushgp PRIVATE VERSION_INFO=${EXAMPLE_VERSION_INFO})

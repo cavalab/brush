@@ -18,6 +18,8 @@ class CMakeExtension(Extension):
 
 class CMakeBuild(build_ext):
     def build_extension(self, ext):
+        print("building extension...")
+        
         extdir = os.path.abspath(os.path.dirname(self.get_ext_fullpath(ext.name)))
 
         if not extdir.endswith(os.path.sep):
@@ -26,15 +28,19 @@ class CMakeBuild(build_ext):
         #cfg = "Debug" if self.debug else "Release"
         cfg = "Debug"
 
+        conda_prefix = os.environ['CONDA_PREFIX']
+
         cmake_generator = os.environ.get("CMAKE_GENERATOR", "")
         cmake_args = [
             "-DCMAKE_LIBRARY_OUTPUT_DIRECTORY={}".format(extdir),
             "-DPYTHON_EXECUTABLE={}".format(sys.executable),
             "-DEXAMPLE_VERSION_INFO={}".format(self.distribution.get_version()),
             "-DCMAKE_BUILD_TYPE={}".format(cfg),  # not used on MSVC, but no harm
-            "-DGTEST_INCLUDE_DIRS={}/include/".format(os.environ['CONDA_PREFIX']),
-            "-DGTEST_LIBRARIES={}/lib/libgtest.so".format(os.environ['CONDA_PREFIX']),
-            "-DEIGEN3_INCLUDE_DIR={}/include/eigen3/".format(os.environ['CONDA_PREFIX']),
+            "-DGTEST_INCLUDE_DIRS={}/include/".format(conda_prefix),
+            "-DGTEST_LIBRARIES={}/lib/libgtest.so".format(conda_prefix),
+            "-DEIGEN3_INCLUDE_DIR={}/include/eigen3/".format(conda_prefix),
+            "-Dpybind11_DIR={}/lib/python3.8/site-packages/pybind11/share/cmake/pybind11/".format(conda_prefix),
+            "-DPYBIND11_FINDPYTHON=ON",
         ]
         build_args = []
 
@@ -83,7 +89,7 @@ class CMakeBuild(build_ext):
 
 
 setup(
-    name="brush",
+    name="brushgp",
     version="0.0.1",
     author="William La Cava and Joseph D. Romano",
     author_email="joseph.romano@pennmedicine.upenn.edu",  # can change to Bill
@@ -98,7 +104,9 @@ setup(
     # packages=find_packages(where="src"),
     # cmake_install_dir="src/brush",
     python_requires=">=3.6",
-    ext_modules=[CMakeExtension("brush")],
+    ext_modules=[CMakeExtension("brushgp")],
     cmdclass={"build_ext": CMakeBuild},
+    test_suite='nose.collector',
+    tests_require=['nose'],
     zip_safe=False,
 )
