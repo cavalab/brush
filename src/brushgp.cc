@@ -1,3 +1,10 @@
+/* Brush
+
+copyright 2020 William La Cava
+authors: William La Cava and Joseph D. Romano
+license: GNU/GPL v3
+*/
+
 #include <pybind11/pybind11.h>
 
 #define STRINGIFY(x) #x

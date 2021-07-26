@@ -7,6 +7,13 @@ import subprocess
 from setuptools import setup, Extension
 from setuptools.command.build_ext import build_ext
 
+PLAT_TO_CMAKE = {
+    "win32": "Win32",
+    "win-amd64": "x64",
+    "win-arm32": "ARM",
+    "win-arm64": "ARM64"
+}
+
 with open("README.md", 'r', encoding="utf-8") as fp:
     long_description = fp.read()
 
