@@ -34,12 +34,13 @@
 #include <queue>
 #include <algorithm>
 #include <cstddef>
+
+// local includes
 #include "state.h"
-#include "data.h"
+#include "data/data.h"
+#include "init.h"
 using Brush::State;
-using Brush::Dat::Data;
-#include <Eigen/Dense>
-using Eigen::ArrayXf;
+using Brush::data::Data;
 /* /// Overload swap for data class */ 
 /* template<class T> */
 /* void swap(T& x, T& y) { x.swap(y); } */
@@ -61,6 +62,8 @@ class tree_node_ { // size: 5*4=20 bytes (on 32 bit arch), can be reduced by 8.
         State fit(const Data& d);
         State predict(const Data& d);
         void grad_descent(const ArrayXf&, const Data&);
+		string get_model(bool pretty=false);
+		string get_tree_model(bool pretty=false, string offset="");
 }; 
 
 template<class T>
@@ -79,6 +82,18 @@ template<class T>
 void tree_node_<T>::grad_descent(const ArrayXf& gradient, const Data& d)
 {
     this->data->grad_descent(gradient, d, first_child, last_child);
+}
+
+template<class T>
+string tree_node_<T>::get_model(bool pretty)
+{
+    return this->data->get_model(pretty, first_child, last_child);
+}
+
+template<class T>
+string tree_node_<T>::get_tree_model(bool pretty, string offset)
+{
+    return this->data->get_tree_model(pretty, offset, first_child, last_child);
 }
 
 template<class T>
@@ -167,7 +182,7 @@ class tree {
 				bool    operator==(const pre_order_iterator&) const;
 				bool    operator!=(const pre_order_iterator&) const;
 				pre_order_iterator&  operator++();
-			   pre_order_iterator&  operator--();
+			    pre_order_iterator&  operator--();
 				pre_order_iterator   operator++(int);
 				pre_order_iterator   operator--(int);
 				pre_order_iterator&  operator+=(unsigned int);
@@ -476,6 +491,16 @@ class tree {
 					}
 		};
 		tree_node *head, *feet;    // head/feet are always dummy; if an iterator points to them it is invalid
+		////////////////////////////////////////////////////////////////////////
+		// WGL changes
+		string get_model(bool pretty=false)
+		{ 
+			return this->head->next_sibling->get_model(pretty);
+		};
+		string get_tree_model(bool pretty=false)
+		{ 
+			return this->head->next_sibling->get_tree_model(pretty);
+		};
 	private:
 		tree_node_allocator alloc_;
 		void head_initialise_();

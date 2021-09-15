@@ -7,7 +7,7 @@ Goals:
 
 - flexibility to define n-ary trees of operators on data of variable types (singletons, arrays, matrices of floats, ints, and bools)
 - support for gradient descent over these programs
-- support for recursive splits 
+- support for recursive splits that flow with gradients
 - fast-ish in C++
 - easy-to-use Python API
 

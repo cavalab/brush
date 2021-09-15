@@ -1,0 +1,11 @@
+{
+    "cmake.buildDirectory": "${workspaceFolder}/build/",
+    "cmake.environment": {
+        "EIGEN3_INCLUDE_DIR": "${env:CONDA_PREFIX}/include/eigen3/",
+        "GTEST_INCLUDE_DIRS": "${env:CONDA_PREFIX}/include/gtest/",
+        "GTEST_LIBRARIES": "${env:CONDA_PREFIX}/lib/libgtest.so",
+        "pybind11_DIR": "${env:CONDA_PREFIX}/lib/python3.8/site-packages/pybind11/include/"
+    },
+    "cmake.buildBeforeRun": true,
+    "python.pythonPath": "${env:CONDA_PREFIX}/bin/python",
+}

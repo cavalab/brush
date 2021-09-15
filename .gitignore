@@ -1,3 +1,5 @@
+build/
+
 *.swp
 
 # Prerequisites
@@ -32,3 +34,20 @@
 *.exe
 *.out
 *.app
+
+
+### VisualStudioCode ###
+.vscode/*
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+!.vscode/extensions.json
+
+### VisualStudioCode Patch ###
+# Ignore all local history of files
+**/.history
+
+CMakeFiles/
+*.egg-info/*
+
+*__pycache__*

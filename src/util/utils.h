@@ -8,14 +8,18 @@ license: GNU/GPL v3
 
 #include <Eigen/Dense>
 #include <vector>
+#include <set>
 #include <fstream>
 #include <chrono>
 #include <ostream>
 #include <map>
 #include "../init.h"
 #include "error.h"
+#include <typeindex>
+#include <iterator> // needed for std::ostram_iterator
 
 using namespace Eigen;
+using namespace std;
 
 /**
 * @namespace Brush::Util
@@ -28,6 +32,42 @@ extern string PBSTR;
 
 extern int PBWIDTH;
 
+/* a hash map from types to strings of their names. 
+https://en.cppreference.com/w/cpp/types/type_info/hash_code
+*/
+
+// using TypeInfoPtr = const std::type_info*; 
+// struct Hasher {
+//     std::size_t operator()(type_index code) const
+//     {
+//         return code.get().hash_code();
+//     }
+// };
+ 
+// struct EqualTo {
+//     bool operator()(type_index lhs, type_index rhs) const
+//     {
+//         return lhs.get() == rhs.get();
+//     }
+// };
+
+// << operator overload for printing vectors
+template <typename T>
+std::ostream& operator<< (std::ostream& out, const std::vector<T>& v) {
+  if ( !v.empty() ) {
+    out << '[';
+    std::copy (v.begin(), v.end(), std::ostream_iterator<T>(out, ", "));
+    out << "\b\b]";
+  }
+  return out;
+}
+
+template<typename T>
+using TypeMap = std::map<std::type_index, T>; 
+extern TypeMap<std::string> type_names; 
+// enum class TYPES; // int;
+// extern TypeMap<TYPES> type_enum;
+// using TypeMap = std::unordered_map<TypeInfoPtr, T, Hasher, EqualTo>; 
 /// limits node output to be between MIN_FLT and MAX_FLT
 void clean(ArrayXf& x);
 
@@ -38,14 +78,35 @@ std::string rtrim(std::string str, const std::string& chars = "\t\n\v\f\r ");
 std::string trim(std::string str, const std::string& chars = "\t\n\v\f\r ");
 
 /// check if element is in vector.
-template<typename T>
-bool in(const vector<T> v, const T& i)
+template<typename V, typename T>
+// template<template<class> class C, class T>
+bool in(const V& v, const T& i)
 {
     return std::find(v.begin(), v.end(), i) != v.end();
 }
 
 /// calculate median
-float median(const ArrayXf& v);
+// float median(const ArrayXf& v);
+/// calculate median
+template<typename T>
+T median(const Array<T,-1,1>& v) 
+{
+    // instantiate a vector
+    vector<float> x(v.size());
+    x.assign(v.data(),v.data()+v.size());
+    // middle element
+    size_t n = x.size()/2;
+    // sort nth element of array
+    nth_element(x.begin(),x.begin()+n,x.end());
+    // if evenly sized, return average of middle two elements
+    if (x.size() % 2 == 0) {
+        nth_element(x.begin(),x.begin()+n-1,x.end());
+        return (x[n] + x[n-1]) / 2;
+    }
+    // otherwise return middle element
+    else
+        return x[n];
+}
 
 /// calculate variance when mean provided
 float variance(const ArrayXf& v, float mean);
@@ -155,14 +216,8 @@ struct Normalizer
     void fit_normalize(MatrixXf& X, const vector<char>& dtypes);
 };
 
-/// returns true for elements of x that are infinite
-ArrayXb isinf(const ArrayXf& x);
-
-/// returns true for elements of x that are NaN
-ArrayXb isnan(const ArrayXf& x);
-
 /// calculates data types for each column of X
-vector<string> get_dtypes(MatrixXf &X);
+vector<type_index> get_dtypes(MatrixXf &X);
 
 /// returns unique elements in vector
 template <typename T>
@@ -207,7 +262,16 @@ string to_string(const T& value)
     ss << value;
     return ss.str();
 }
- 
+///find and replace string
+std::string ReplaceString(std::string subject, const std::string& search,
+                          const std::string& replace);
+
+///string find and replace in place
+void ReplaceStringInPlace(std::string& subject, const std::string& search,
+                          const std::string& replace);
+
+
+
 /// returns the condition number of a matrix.
 float condition_number(const MatrixXf& X);
   
@@ -249,7 +313,8 @@ typedef struct Log_Stats Log_stats;
 
 /// limits the output to finite real numbers
 template<typename T>
-T limited(T x)
+std::enable_if_t<std::is_scalar_v<T>, T> 
+limited(T x)
 {
     if (isnan(x))
         return 0;
@@ -261,8 +326,9 @@ T limited(T x)
     return x;
 };
 
-template<> inline
-ArrayXf limited<ArrayXf>(ArrayXf x) 
+template<typename T> 
+std::enable_if_t<std::is_base_of_v<Eigen::ArrayBase<T>, T>, T> 
+limited(T x) 
 {
     x = (isnan(x)).select(0,x);
     x = (x < MIN_FLT).select(MIN_FLT,x);
@@ -289,10 +355,12 @@ void reorder(vector<T> &v, vector<int> const &order )
 /// split Eigen matrix or array into two by mask
 template<typename T>
 array<Array<T,-1, 1>, 2> split(const Array<T,-1,1>& v, const ArrayXb& mask)
+// array<DenseBase<T>, 2> split(const DenseBase<T>& v, const ArrayXb& mask)
 {
     int size1 = mask.count();
     int size2 = mask.size() - size1;
     Array<T,-1,1> L(size1), R(size2);
+    // DenseBase<T> L(size1), R(size2);
 
     int idx1 = 0, idx2 = 0;
     for (int  i = 0; i < mask.size(); ++i)
@@ -329,6 +397,13 @@ struct EqualTo {
     }
 };
 extern std::unordered_map<TypeInfoRef, std::string, Hasher, EqualTo> type_names; 
+
+template<typename Iter>
+void print(Iter first, Iter last)
+{
+    std::for_each(first, last, [](const auto& i){std::cout << ", " << i; });
+    std::cout << endl;
+}
 } // Util
 } // Brush 
 #endif

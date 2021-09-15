@@ -61,9 +61,39 @@ namespace Brush { namespace Util{
                 advance(start, dis(rg[omp_get_thread_num()]));
                 return start;
             }
+
+            /// select randomly with weighted distribution
+            template<typename Iter, typename Iter2>                                    
+            Iter select_randomly(Iter start, Iter end, Iter2 wstart, Iter2 wend)
+            {
+                // std::uniform_int_distribution<> dis(0, distance(start, end) - 1);
+                std::discrete_distribution<size_t> dis(wstart, wend);
+                advance(start, dis(rg[omp_get_thread_num()]));
+                return start;
+            }
            
-            template<typename C, typename T>
-            T random_choice(const C<T>& v)
+            template<typename T>
+            T random_choice(const map<T, float>& m)
+            {
+               /*!
+                * return a random key of a map, where the values are weights.
+                */          
+               
+                assert(m.size()>0 
+                    && " attemping to return random choice from an empty map");
+
+                vector<T> keys;
+                vector<float> w; 
+                for (const auto& [k, v]: m)
+                {
+                    keys.push_back(k);
+                    w.push_back(v);
+                }
+                return *select_randomly(keys.begin(),keys.end(),
+                                        w.begin(), w.end());
+            }
+            template<class V, class T>
+            T random_choice(const V& v)
             {
                /*!
                 * return a random element of a vector.
@@ -74,11 +104,11 @@ namespace Brush { namespace Util{
             }
  
            
-            template<template <Container<typename T>>, typename D>
-            T random_choice(const C<T>& v, const vector<D>& w )
+            template<template<class, class> class C, class T>
+            T random_choice(const C<T, std::allocator<T>>& v, const vector<float>& w )
             {
                 /*!
-                 * return a weighted random element of a vector
+                 * return a weighted random element of an STL container
                  */
                  
                 if(w.size() == 0)

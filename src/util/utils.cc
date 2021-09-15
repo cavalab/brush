@@ -39,9 +39,9 @@ std::string trim(std::string str, const std::string& chars)
 }
 
 /// determines data types of columns of matrix X.
-vector<string> get_dtypes(MatrixXf &X)
+vector<type_index> get_dtypes(MatrixXf &X)
 {
-    vector<string> dtypes;
+    vector<type_index> dtypes;
     
     // get feature types (binary or continuous/categorical)
     int i, j;
@@ -65,13 +65,13 @@ vector<string> get_dtypes(MatrixXf &X)
         }
     
         if(isBinary)
-            dtypes.push_back("bool");
+            dtypes.push_back(typeid(ArrayXb));
         else
         {
             if(isCategorical && uniqueMap.size() < 10)
-                dtypes.push_back("int");    
+                dtypes.push_back(typeid( ArrayXi ));    
             else
-                dtypes.push_back("float");
+                dtypes.push_back(typeid(ArrayXf));
         }
     }
     /* cout << "dtypes: " ; */ 
@@ -82,119 +82,6 @@ vector<string> get_dtypes(MatrixXf &X)
 
 }
 
-/// calculate median
-float median(const ArrayXf& v) 
-{
-    // instantiate a vector
-    vector<float> x(v.size());
-    x.assign(v.data(),v.data()+v.size());
-    // middle element
-    size_t n = x.size()/2;
-    // sort nth element of array
-    nth_element(x.begin(),x.begin()+n,x.end());
-    // if evenly sized, return average of middle two elements
-    if (x.size() % 2 == 0) {
-        nth_element(x.begin(),x.begin()+n-1,x.end());
-        return (x[n] + x[n-1]) / 2;
-    }
-    // otherwise return middle element
-    else
-        return x[n];
-}
-
-/// returns the (first) index of the element with the middlest value in v
-int argmiddle(vector<float>& v)
-{
-    // instantiate a vector
-    vector<float> x = v; 
-    // middle iterator
-    std::vector<float>::iterator middle = x.begin() + x.size()/2;
-    // sort nth element of array
-    nth_element(x.begin(), middle, x.end());
-    // find position of middle value in original array
-    std::vector<float>::iterator it = std::find(v.begin(), v.end(), *middle);
-
-    std::vector<float>::size_type pos = std::distance(v.begin(), it);
-    /* cout << "middle index: " << pos << "\n"; */
-    /* cout << "middle value: " << *it << "\n"; */
-    return pos;
-}
-
-/// calculate variance when mean provided
-float variance(const ArrayXf& v, float mean) 
-{
-    ArrayXf tmp = mean*ArrayXf::Ones(v.size());
-    return pow((v - tmp), 2).mean();
-}
-
-/// calculate variance
-float variance(const ArrayXf& v) 
-{
-    float mean = v.mean();
-    return variance(v, mean);
-}
-
-/// calculate skew
-float skew(const ArrayXf& v) 
-{
-    float mean = v.mean();
-    ArrayXf tmp = mean*ArrayXf::Ones(v.size());
-    
-    float thirdMoment = pow((v - tmp), 3).mean();
-    float variance = pow((v - tmp), 2).mean();
-    
-    return thirdMoment/sqrt(pow(variance, 3));
-}
-
-/// calculate kurtosis
-float kurtosis(const ArrayXf& v) 
-{
-    float mean = v.mean();
-    ArrayXf tmp = mean*ArrayXf::Ones(v.size());
-    
-    float fourthMoment = pow((v - tmp), 4).mean();
-    float variance = pow((v - tmp), 2).mean();
-    
-    return fourthMoment/pow(variance, 2);
-}
-
-float covariance(const ArrayXf& x, const ArrayXf& y)
-{
-    float meanX = x.mean();
-    float meanY = y.mean();
-    //float count = x.size();
-    
-    ArrayXf tmp1 = meanX*ArrayXf::Ones(x.size());
-    ArrayXf tmp2 = meanY*ArrayXf::Ones(y.size());
-    
-    return ((x - tmp1)*(y - tmp2)).mean();
-    
-}
-
-float slope(const ArrayXf& x, const ArrayXf& y)
-    // y: rise dimension, x: run dimension. slope = rise/run
-{
-    return covariance(x, y)/variance(x);
-}
-
-// Pearson correlation    
-float pearson_correlation(const ArrayXf& x, const ArrayXf& y)
-{
-    return pow(covariance(x,y),2) / (variance(x) * variance(y));
-}
-/// median absolute deviation
-float mad(const ArrayXf& x) 
-{
-    // returns median absolute deviation (MAD)
-    // get median of x
-    float x_median = median(x);
-    //calculate absolute deviation from median
-    ArrayXf dev(x.size());
-    for (int i =0; i < x.size(); ++i)
-        dev(i) = fabs(x(i) - x_median);
-    // return median of the absolute deviation
-    return median(dev);
-}
 
 Timer::Timer(bool run)
 {
@@ -255,23 +142,23 @@ void Normalizer::fit_normalize(MatrixXf& X, const vector<char>& dtypes)
 }
 
 /// returns true for elements of x that are infinite
-ArrayXb isinf(const ArrayXf& x)
-{
-    ArrayXb infs(x.size());
-    for (unsigned i =0; i < infs.size(); ++i)
-        infs(i) = std::isinf(x(i));
-    return infs;
-}
+// ArrayXb isinf(const ArrayXf& x)
+// {
+//     ArrayXb infs(x.size());
+//     for (unsigned i =0; i < infs.size(); ++i)
+//         infs(i) = std::isinf(x(i));
+//     return infs;
+// }
 
-/// returns true for elements of x that are NaN
-ArrayXb isnan(const ArrayXf& x)
-{
-    ArrayXb nans(x.size());
-    for (unsigned i =0; i < nans.size(); ++i)
-        nans(i) = std::isnan(x(i));
-    return nans;
+// /// returns true for elements of x that are NaN
+// ArrayXb isnan(const ArrayXf& x)
+// {
+//     ArrayXb nans(x.size());
+//     for (unsigned i =0; i < nans.size(); ++i)
+//         nans(i) = std::isnan(x(i));
+//     return nans;
 
-}
+// }
 
 /* Defined in utils.h
 ///template function to convert objects to string for logging
@@ -386,8 +273,9 @@ void Log_Stats::update(int index,
 /*     return {L, R}; */ 
 
 /* } */
-extern std::unordered_map<TypeInfoRef, std::string, Hasher, EqualTo> \
-    type_names = {
+// TYPES = {INT, FLOAT, BOOL, ARRAYXB, ARRAYXI, ARRAYXF, LONG };
+
+TypeMap<std::string> type_names = {
         { typeid(int) , "int" },
         { typeid(float) , "float" },
         { typeid(bool) , "bool" },
@@ -395,6 +283,122 @@ extern std::unordered_map<TypeInfoRef, std::string, Hasher, EqualTo> \
         { typeid(ArrayXi) , "ArrayXi" },
         { typeid(ArrayXb) , "ArrayXb" }
     };
+// TypeMap<TYPES> type_enum = {
+//         { typeid(int) , TYPES::INT },
+//         { typeid(float) , TYPES::FLOAT },
+//         { typeid(bool) , TYPES::BOOL },
+//         { typeid(ArrayXf) , TYPES::ARRAYXF },
+//         { typeid(ArrayXi) , TYPES::ARRAYXI },
+//         { typeid(ArrayXb) , TYPES::ARRAYXB },
+//         { typeid(Longitudinal), TYPES::LONG }
+//     };
 
+/// returns the (first) index of the element with the middlest value in v
+int argmiddle(vector<float>& v)
+{
+    // instantiate a vector
+    vector<float> x = v; 
+    // middle iterator
+    std::vector<float>::iterator middle = x.begin() + x.size()/2;
+    // sort nth element of array
+    nth_element(x.begin(), middle, x.end());
+    // find position of middle value in original array
+    std::vector<float>::iterator it = std::find(v.begin(), v.end(), *middle);
+
+    std::vector<float>::size_type pos = std::distance(v.begin(), it);
+    /* cout << "middle index: " << pos << "\n"; */
+    /* cout << "middle value: " << *it << "\n"; */
+    return pos;
+}
+/// calculate variance
+float variance(const ArrayXf& v) 
+{
+    return pow((v - v.mean()), 2).mean();
+};
+
+/// calculate skew
+float skew(const ArrayXf& v) 
+{
+    float mean = v.mean();
+    ArrayXf tmp = mean*ArrayXf::Ones(v.size());
+    
+    float thirdMoment = pow((v - tmp), 3).mean();
+    float variance = pow((v - tmp), 2).mean();
+    
+    return thirdMoment/sqrt(pow(variance, 3));
+};
+
+/// calculate kurtosis
+float kurtosis(const ArrayXf& v) 
+{
+    float mean = v.mean();
+    ArrayXf tmp = mean*ArrayXf::Ones(v.size());
+    
+    float fourthMoment = pow((v - tmp), 4).mean();
+    float variance = pow((v - tmp), 2).mean();
+    
+    return fourthMoment/pow(variance, 2);
+};
+
+float covariance(const ArrayXf& x, const ArrayXf& y)
+{
+    float meanX = x.mean();
+    float meanY = y.mean();
+    //float count = x.size();
+    
+    ArrayXf tmp1 = meanX*ArrayXf::Ones(x.size());
+    ArrayXf tmp2 = meanY*ArrayXf::Ones(y.size());
+    
+    return ((x - tmp1)*(y - tmp2)).mean();
+    
+};
+
+float slope(const ArrayXf& x, const ArrayXf& y)
+    // y: rise dimension, x: run dimension. slope = rise/run
+{
+    return covariance(x, y)/variance(x);
+};
+>>>>>>> e288e83dc9b018727c563fc4891fcc02d8bbea1f
+
+// Pearson correlation    
+float pearson_correlation(const ArrayXf& x, const ArrayXf& y)
+{
+    return pow(covariance(x,y),2) / (variance(x) * variance(y));
+};
+/// median absolute deviation
+float mad(const ArrayXf& x) 
+{
+    // returns median absolute deviation (MAD)
+    // get median of x
+    float x_median = median(x);
+    //calculate absolute deviation from median
+    ArrayXf dev(x.size());
+    for (int i =0; i < x.size(); ++i)
+        dev(i) = fabs(x(i) - x_median);
+    // return median of the absolute deviation
+    return median(dev);
+};
+
+///find and replace string
+std::string ReplaceString(std::string subject, const std::string& search,
+                          const std::string& replace)
+{
+    size_t pos = 0;
+    while ((pos = subject.find(search, pos)) != std::string::npos) {
+         subject.replace(pos, search.length(), replace);
+         pos += replace.length();
+    }
+    return subject;
+}
+///string find and replace in place
+void ReplaceStringInPlace(std::string& subject, const std::string& search,
+                          const std::string& replace)
+{
+    size_t pos = 0;
+    while ((pos = subject.find(search, pos)) != std::string::npos) {
+         subject.replace(pos, search.length(), replace);
+         pos += replace.length();
+    }
+}
 } // Util
 } // Brush

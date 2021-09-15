@@ -3,7 +3,7 @@
 # license: GNU/GPL v3
 
 ######### Options ###########################
-option( CORE_USE_CUDA   "Use CUDA to speed up certain parts of the code."  OFF )
+# option( CORE_USE_CUDA   "Use CUDA to speed up certain parts of the code."  OFF )
 #############################################
 
 ######### CUDA decisions ####################
@@ -23,7 +23,7 @@ option( CORE_USE_CUDA   "Use CUDA to speed up certain parts of the code."  OFF )
 
 # set(CMAKE_CXX_COMPILER /usr/bin/g++-7)
 # version requirement for Eigen
-cmake_minimum_required (VERSION 3.0)
+cmake_minimum_required (VERSION 3.15...3.19)
 # use c++ 17
 set (CMAKE_CXX_STANDARD 17)
 
@@ -36,26 +36,40 @@ set (CMAKE_CXX_STANDARD 17)
 project(brush)
 
 # add Eigen include paths
-option(EIGEN_DIR "use Eigen environment variable" OFF)
-if (EIGEN_DIR)
-    include_directories("$ENV{EIGEN3_INCLUDE_DIR}")
+if (DEFINED ENV{EIGEN3_INCLUDE_DIR})
+    set(EIGEN3_INCLUDE_DIR $ENV{EIGEN3_INCLUDE_DIR})
+    include_directories($ENV{EIGEN3_INCLUDE_DIR})
+elseif(DEFINED EIGEN3_INCLUDE_DIR)
+    include_directories("${EIGEN3_INCLUDE_DIR}")
 else()
+    message(STATUS "No EIGEN3_INCLUDE_DIR found, using find_package...")
     find_package(Eigen3 REQUIRED NO_MODULE)
-    include_directories(${EIGEN3_INCLUDE_DIR})
 endif()
+message(STATUS "EIGEN3_INCLUDE_DIR=${EIGEN3_INCLUDE_DIR}")
+
 
 # Locate GTest
-option(TEST "build tests" OFF)
-if (TEST)
-    option(GTEST_DIR "use GTest environment path" OFF)
-    if (GTEST_DIR)
-        include_directories("$ENV{GTEST_DIR}/include")
-
-    else()
-        find_package(GTest REQUIRED)
-        include_directories(${GTEST_INCLUDE_DIRS})
-    endif()
+# if defined in environment
+if (DEFINED ENV{GTEST_INCLUDE_DIRS} AND DEFINED ENV{GTEST_LIBRARIES})
+    include_directories("$ENV{GTEST_INCLUDE_DIRS}")
+    set(GTEST_INCLUDE_DIRS $ENV{GTEST_INCLUDE_DIRS})
+    set(GTEST_LIBRARIES $ENV{GTEST_LIBRARIES})
+# defined at command line
+elseif(DEFINED GTEST_INCLUDE_DIRS AND DEFINED GTEST_LIBRARIES)
+    set(GTEST_INCLUDE_DIRS ${GTEST_INCLUDE_DIRS})
+    set(GTEST_LIBRARIES ${GTEST_LIBRARIES})
+    include_directories("${GTEST_INCLUDE_DIRS}")
+# goin fishin
+else()
+    message(STATUS "looking for GTest")
+    find_package(GTest REQUIRED)
 endif()
+
+include_directories(${GTEST_INCLUDE_DIRS})
+message(STATUS "GTest dir=${GTEST_INCLUDE_DIRS}")
+message(STATUS "GTest library=${GTEST_LIBRARIES}")
+
+# endif()
 
 # autocomplete for YouCompleteMe needs commands to be exported
 set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
@@ -78,63 +92,50 @@ if (OMP)
     endif()
 endif()
 
-######### CUDA decisions ####################
-if (CORE_USE_CUDA)
-    find_package(CUDA REQUIRED)
-    add_definitions(-DUSE_CUDA)
-    #enable_language(CUDA)
-    list(APPEND CUDA_NVCC_FLAGS "-std=c++11 --expt-relaxed-constexpr --default-stream per-thread -Wno-deprecated-gpu-targets")
-
-endif()
-#############################################
-
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wno-ignored-attributes")
 
 # gather list of source files
-if (CORE_USE_CUDA)   
-    file(GLOB_RECURSE cuda_files "*.cu")
-endif()    
 
 file(GLOB_RECURSE sources "src/*.cc")
-
-list(REMOVE_ITEM sources ${CMAKE_CURRENT_SOURCE_DIR}/src/parser.cc)
+# ignore main for now, just build tests
 list(REMOVE_ITEM sources ${CMAKE_CURRENT_SOURCE_DIR}/src/main.cc)
-list(REMOVE_ITEM sources ${CMAKE_CURRENT_SOURCE_DIR}/src/template_nodes.cc)
-list(REMOVE_ITEM sources ${CMAKE_CURRENT_SOURCE_DIR}/src/nodes/arithmetic/n_add.cc)
-list(REMOVE_ITEM sources ${CMAKE_CURRENT_SOURCE_DIR}/src/nodes/n_dx.cc)
 
-# executable
-
-if (CORE_USE_CUDA)
-    cuda_add_library(brush_lib SHARED ${sources} ${cuda_files})
-else()
-    add_library(brush_lib SHARED ${sources})
-endif()
-
-# executables
+# build brush library
+add_library(brush SHARED ${sources})
 
 #brush executable
-add_executable(brush src/main.cc)
+# add_executable(brush src/main.cc)
 
-#link libraries for different executables
+# Google tests
+# Link runTests with what we want to test and the GTest and pthread library
+file(GLOB_RECURSE testsSrc "tests/*.cc")
 
-if (CORE_USE_CUDA)
-    target_link_libraries(brush ${CUDA_LIBRARIES})
-else()
-    target_link_libraries(brush brush_lib )
-endif()
+add_executable(tests ${testsSrc})
+target_link_libraries(tests brush ${GTEST_LIBRARIES} pthread)
 
-if (TEST)
-    # Link runTests with what we want to test and the GTest and pthread library
-    file(GLOB_RECURSE testsSrc "tests/*.cc")
-    
-    add_executable(tests ${testsSrc})
-    
-    if (CORE_USE_CUDA)
-        target_link_libraries(tests brush_lib ${CUDA_LIBRARIES} ${GTEST_LIBRARIES} pthread)
-    else()
-        target_link_libraries(tests brush_lib ${GTEST_LIBRARIES} pthread)
-    endif()
-endif()
+# generate python bindings
+find_package(Python COMPONENTS Interpreter Development REQUIRED)
 
+# if (DEFINED ENV{PYBIND11_INCLUDE_DIR})
+#     set(PYBIND11_INCLUDE_DIR $ENV{PYBIND11_INCLUDE_DIR})
+# endif()
+# message(STATUS "PYBIND11_INCLUDE_DIR=${PYBIND11_INCLUDE_DIR}")
+# set(pybind11_DIR "${PYBIND11_INCLUDE_DIR}")
 
+message("Python_FOUND:${Python_FOUND}")
+message("Python_VERSION:${Python_VERSION}")
+message("Python_Development_FOUND:${Python_Development_FOUND}")
+message("Python_LIBRARIES:${Python_LIBRARIES}")
+message("pybind11_DIR:${pybind11_DIR}")
+
+find_package(PythonLibs REQUIRED)
+include_directories("${PYTHON_INCLUDE_DIRS}")
+message("Python_INCLUDE_DIRS:${PYTHON_INCLUDE_DIRS}")
+target_link_libraries(brush ${PYTHON_LIBRARIES})
+
+find_package(pybind11 REQUIRED)
+include_directories("${pybind11_INCLUDE_DIRS}")
+
+#add_subdirectory(pybind11)
+pybind11_add_module(brushgp src/brushgp.cpp)
+target_compile_definitions(brushgp PRIVATE VERSION_INFO=${EXAMPLE_VERSION_INFO})
