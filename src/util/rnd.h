@@ -62,8 +62,8 @@ namespace Brush { namespace Util{
                 return start;
             }
            
-            template<typename T>
-            T random_choice(const vector<T>& v)
+            template<typename C, typename T>
+            T random_choice(const C<T>& v)
             {
                /*!
                 * return a random element of a vector.
@@ -74,8 +74,8 @@ namespace Brush { namespace Util{
             }
  
            
-            template<typename T, typename D>
-            T random_choice(const vector<T>& v, const vector<D>& w )
+            template<template <Container<typename T>>, typename D>
+            T random_choice(const C<T>& v, const vector<D>& w )
             {
                 /*!
                  * return a weighted random element of a vector
@@ -98,7 +98,7 @@ namespace Brush { namespace Util{
                 {
                     assert(v.size() == w.size());
                     std::discrete_distribution<size_t> dis(w.begin(), w.end());
-                    return v[dis(rg[omp_get_thread_num()])]; 
+                    return v.at(dis(rg[omp_get_thread_num()])); 
                 }
             }
             

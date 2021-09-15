@@ -51,6 +51,8 @@ namespace Dat{
 
     class Data
     {
+        //TODO: make this a json object that allows elements to be fetched by
+        //name 
         //Data(MatrixXf& X, ArrayXf& y, std::map<string, 
         //std::pair<vector<ArrayXf>, vector<ArrayXf>>>& Z): X(X), y(y), Z(Z){}
         public:
@@ -73,11 +75,11 @@ namespace Dat{
     };
     
     /* !
-     * @class DataRef
+     * @class CVData
      * @brief Holds training and validation splits of data, with pointers to 
      * each.
      * */
-    class DataRef
+    class CVData
     {
         private:
             bool oCreated;
@@ -98,12 +100,12 @@ namespace Dat{
             Data *v = NULL;     //< pointer to validation data
             Data *t = NULL;     //< pointer to training data
             
-            DataRef();
+            CVData();
             
-            ~DataRef();
+            ~CVData();
             
     
-            DataRef(MatrixXf& X, ArrayXf& y, 
+            CVData(MatrixXf& X, ArrayXf& y, 
                              Longitudinal& Z, 
                              bool c=false);
                     
