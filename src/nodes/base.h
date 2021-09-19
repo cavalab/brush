@@ -57,8 +57,16 @@ class NodeBase {
         virtual string get_tree_model(bool pretty, string offset, 
                                       TreeNode *&first_child,
                                       TreeNode *&last_child) const = 0;
-        virtual string get_name() const = 0;
-        virtual string get_op_name() const =0;
+        // naming
+        virtual string get_name() const {return this->name;};
+        virtual string get_op_name() const {return this->op_name;};
+        void set_name(string n){this->name = n;};
+        void set_op_name(string n){this->op_name = n;};
+        // changing
+        float get_prob_change(){ return this->prob_change;};
+        void set_prob_change(float w){ this->prob_change = w;};
+        float get_prob_keep(){ return 1-this->prob_change;};
+
         // virtual bool is() = 0;
         /*TODO: 
          * implement clone, copy, swap and assignment operators
@@ -101,10 +109,6 @@ class TypedNodeBase : public NodeBase
             n += ")>";
             this->set_name(n);
         };
-        string get_name() const override {return this->name;};
-        string get_op_name() const override {return this->op_name;};
-        void set_name(string n){this->name = n;};
-        void set_op_name(string n){this->op_name = n;};
         std::type_index ret_type() const override { return typeid(R); }; 
         std::type_index args_type() const override { return typeid(TupleArgs);}; 
         vector<std::type_index> arg_types() const override
@@ -115,7 +119,6 @@ class TypedNodeBase : public NodeBase
 
     protected:
 
-        void set_prob_change(float w){ this->prob_change = w;};
 
         string get_model(bool pretty=false, TreeNode*& first_child=0, 
                          TreeNode*& last_child=0) const override

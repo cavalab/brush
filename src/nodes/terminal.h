@@ -14,7 +14,7 @@ template<typename F> class Terminal;
 
 /* specialization of Node for terminals */
 template<typename R>
-class Terminal: public TypedNodeBase<R>
+class Terminal: public TypedNodeBase<R> 
 {
     public:
         using base = TypedNodeBase<R>;

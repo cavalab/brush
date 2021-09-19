@@ -96,6 +96,22 @@ d_relu(const T &x)
                             ArrayXf::Zero(x.size())+0.01)};
 }
 
+/// logit
+template<typename T>
+std::enable_if_t<std::is_scalar_v<T>, array<T,1>> 
+d_logit(const T &x) 
+{
+    return { exp(-x)/pow(1+exp(-x), float(2)) }; 
+};
+
+/// logit specialization for Eigen Arrays
+template<typename T>
+std::enable_if_t<std::is_base_of_v<Eigen::ArrayBase<T>, T>, array<T,1>> 
+d_logit(const T &x)  
+{
+    return { exp(-x)/(1+exp(-x)).pow(2) };
+};
+
 template<typename T>
 array<T,2> d_pow(const T& lhs, const T& rhs) 
 {
@@ -286,7 +302,7 @@ struct Logit : public UnaryOperator<T>
 {
     Logit(): UnaryOperator<T>("LOGIT", 3, 
         [](const T& x){ return 1/(1+exp(-x)); },
-        [](const T& x) -> array<T,1> { return { exp(-x)/pow(1+exp(-x),T(2)) }; }
+        d_logit<T>
     ){}
 };
 

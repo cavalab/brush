@@ -82,7 +82,8 @@ template<typename T> class Program //: public tree<NodeBase*>
             size = r.rnd_int(1, params.max_size);
 
         this->prg = make_program(this->SS, typeid(T), depth, breadth, size);
-    }
+    };
+
     T fit(const Data& d)
     {
         Iter start = prg.begin(); 
@@ -123,19 +124,20 @@ template<typename T> class Program //: public tree<NodeBase*>
     // tree<NodeBase*> delete_mutation(tree<NodeBase*>& prg, Iter spot);
 
     /// point mutation: replace node with same typed node
-    tree<NodeBase*> point_mutation(tree<NodeBase*>& prg, Iter spot)
+    void point_mutation(Iter spot)
     {
+        cout << "point mutation\n";
         auto newNode = this->SS.get_node_like(spot.node->data); 
-        prg.replace(spot, newNode);
-        return prg;
-    }
+        this->prg.replace(spot, newNode);
+    };
     /// insert a node with spot as a child
-    tree<NodeBase*> insert_mutation(tree<NodeBase*>& prg, Iter spot)
+    void insert_mutation(Iter spot)
     {
+        cout << "insert mutation\n";
         auto spot_type = spot.node->data->ret_type();
         auto n = this->SS.get_op_with_arg(spot_type, spot_type); 
         // make node n wrap the subtree at the chosen spot
-        auto parent_node = prg.wrap(spot, n);
+        auto parent_node = this->prg.wrap(spot, n);
 
         // now fill the arguments of n appropriately
         bool spot_filled = false;
@@ -145,26 +147,26 @@ template<typename T> class Program //: public tree<NodeBase*>
             if (spot_filled)
             {
                 // if spot is in its child position, append children
-                prg.append_child(parent_node, this->SS.get_terminal(a));
+                this->prg.append_child(parent_node, this->SS.get_terminal(a));
             }
             // if types match, treat this spot as filled by the spot node 
             else if (a == spot_type)
                 spot_filled = true;
             // otherwise, add siblings before spot node
             else
-                prg.insert(spot, this->SS.get_terminal(a));
+                this->prg.insert(spot, this->SS.get_terminal(a));
 
         } 
-        return prg;
-    }
+    };
     /// delete subtree and replace it with a terminal of the same return type
-    tree<NodeBase*> delete_mutation(tree<NodeBase*>& prg, Iter spot)
+    void delete_mutation(Iter spot)
     {
+        cout << "delete mutation\n";
         auto terminal = this->SS.get_terminal(spot.node->data->ret_type()); 
-        prg.erase_children(spot); 
-        prg.replace(spot, terminal);
-        return prg;
-    }
+        this->prg.erase_children(spot); 
+        this->prg.replace(spot, terminal);
+    };
+
     Program<T> mutate() const
     {
         /* Types of mutation:
@@ -173,47 +175,55 @@ template<typename T> class Program //: public tree<NodeBase*>
         * deletion mutation
         */
 
-        Program<T> child(this);
+        Program<T> child(*this);
 
         // choose location by weighted sampling of program
-        auto weights = std::transform(child.prg.begin(), child.prg.end(), 
-                                [](const auto& node){ return node->data.weight; } );
+        vector<float> weights(child.prg.size());
+        std::transform(child.prg.begin(), child.prg.end(), 
+                       weights.begin(),
+                       [](const auto& node){ return node->get_prob_change(); }
+                      );
 
         auto spot = r.select_randomly(child.prg.begin(), child.prg.end(), 
                                       weights.begin(), weights.end());
 
         // choose one of these options
-        switch (r.random_choice(params.mutation_options))
-        {
-            case "insert":
-                insert_mutation(child.prg, spot);
-                break;
-            case "delete":
-                delete_mutation(child.prg, spot);
-                break;
-            default:
-                point_mutation(child.prg, spot);
-        }
+        string choice = r.random_choice(params.mutation_options);
+
+        if (choice == "insert")
+            child.insert_mutation(spot);
+        else if (choice == "delete")
+            child.delete_mutation(spot);
+        else 
+            child.point_mutation(spot);
+
         return child;
-    } 
+    };
     /// swaps subtrees between this and other (note the pass by copy)
     Program<T> cross(const Program<T>& other) const
     {
         /* subtree crossover between this and other, producing new Program */
         // choose location by weighted sampling of program
-        Program<T> child(this);
+        Program<T> child(*this);
 
-        auto child_weights = std::transform(child.prg.begin(), child.prg.end(), 
-                        [](const auto& node){ return node->data.weight; } );
+        // pick a subtree to replace
+        vector<float> child_weights(child.prg.size());
+        std::transform(child.prg.begin(), child.prg.end(), 
+                       child_weights.begin(),
+                       [](const auto& node){ return node->get_prob_change(); }
+                      );
 
         auto child_spot = r.select_randomly(child.prg.begin(), 
                                             child.prg.end(), 
                                             child_weights.begin(), 
                                             child_weights.end()
                                            );
-
-        auto other_weights = std::transform(other.prg.begin(), other.prg.end(), 
-                        [](const auto& node){ return node->data.weight; } );
+        // pick a subtree to insert
+        vector<float> other_weights(other.prg.size());
+        std::transform(other.prg.begin(), other.prg.end(), 
+                       other_weights.begin(),
+                       [](const auto& node){ return node->get_prob_keep(); }
+                      );
 
         auto other_spot = r.select_randomly(other.prg.begin(), 
                                             other.prg.end(), 
@@ -225,7 +235,6 @@ template<typename T> class Program //: public tree<NodeBase*>
         child.prg.move_ontop(child_spot, other_spot);
 
         return child;
-
     };
 }; // Program
 
