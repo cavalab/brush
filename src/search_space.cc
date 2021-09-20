@@ -22,9 +22,18 @@ tuple<set<NodeBase*>,set<type_index>> generate_nodes(vector<string>& op_names)
                                                                    op->df));
 
     for (const auto& op : unary_operators)
+    {
         nodes.insert( new WeightedDxNode<ArrayXf(ArrayXf)>(op->name, 
                                                            op->f, 
-                                                           op->df));
+                                                           op->df)
+                    );
+        cout << "making TransformReduceDxNode " << op->name;
+        nodes.insert( new TransformReduceDxNode<ArrayXf(ArrayXf)>(op->name, 
+                                                           op->f, 
+                                                           op->df,
+                                                           10)
+                    );
+    }
 
     if ( in(op_names, "best_split"))
         nodes.insert(new SplitNode<ArrayXf(ArrayXf,ArrayXf)>("best_split"));
