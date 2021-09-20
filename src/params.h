@@ -32,7 +32,7 @@ struct Params
     }
 };
 
-Params params;
+static Params params;
 
 } // Brush
 
