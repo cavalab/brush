@@ -31,7 +31,7 @@ namespace Brush
 {
 /**
 * @namespace Brush::Dat
-* @brief namespace containing Data structures used in Feat
+* @brief namespace containing Data structures used in brush
 */
 namespace Dat{
     /*!

@@ -358,7 +358,6 @@ float slope(const ArrayXf& x, const ArrayXf& y)
 {
     return covariance(x, y)/variance(x);
 };
->>>>>>> e288e83dc9b018727c563fc4891fcc02d8bbea1f
 
 // Pearson correlation    
 float pearson_correlation(const ArrayXf& x, const ArrayXf& y)

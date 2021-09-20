@@ -23,7 +23,7 @@ using namespace std;
 
 /**
 * @namespace Brush::Util
-* @brief namespace containing various utility functions used in Feat
+* @brief namespace containing various utility functions 
 */
 namespace Brush{
 namespace Util{
@@ -379,24 +379,24 @@ array<Array<T,-1, 1>, 2> split(const Array<T,-1,1>& v, const ArrayXb& mask)
     return { L, R };
 };
 
-/* a hash map from types to strings of their names. 
-https://en.cppreference.com/w/cpp/types/type_info/hash_code
-*/
-using TypeInfoRef = std::reference_wrapper<const std::type_info>; 
-struct Hasher {
-    std::size_t operator()(TypeInfoRef code) const
-    {
-        return code.get().hash_code();
-    }
-};
+// /* a hash map from types to strings of their names. 
+// https://en.cppreference.com/w/cpp/types/type_info/hash_code
+// */
+// using TypeInfoRef = std::reference_wrapper<const std::type_info>; 
+// struct Hasher {
+//     std::size_t operator()(TypeInfoRef code) const
+//     {
+//         return code.get().hash_code();
+//     }
+// };
  
-struct EqualTo {
-    bool operator()(TypeInfoRef lhs, TypeInfoRef rhs) const
-    {
-        return lhs.get() == rhs.get();
-    }
-};
-extern std::unordered_map<TypeInfoRef, std::string, Hasher, EqualTo> type_names; 
+// struct EqualTo {
+//     bool operator()(TypeInfoRef lhs, TypeInfoRef rhs) const
+//     {
+//         return lhs.get() == rhs.get();
+//     }
+// };
+// extern std::unordered_map<TypeInfoRef, std::string, Hasher, EqualTo> type_names; 
 
 template<typename Iter>
 void print(Iter first, Iter last)

@@ -1,13 +1,13 @@
 #!/bin/bash
 # ===
 # Configuration Options:
-# ./configure : builds a release version of feat.
-# ./configure debug : builds a debug version of feat.
-# ./configure profile: build a version of feat use with profiling tools. 
+# ./configure : builds a release version of brush.
+# ./configure debug : builds a debug version of brush.
+# ./configure profile: build a version of brush use with profiling tools. 
 # ===
 rm -rf build; mkdir build; cd build; 
 cmake .. -DCMAKE_LIBRARY_OUTPUT_DIRECTORY="$CONDA_PREFIX/build/lib.linux-x86_64-3.7/" \
-  -DPYTHON_EXECUTABLE="$CONDA_PREFIX/bin/python3.8.2" \
+  -DPYTHON_EXECUTABLE="$CONDA_PREFIX/bin/python" \
   -DCMAKE_BUILD_TYPE=Debug \
   -DGTEST_INCLUDE_DIRS="$CONDA_PREFIX/include/" \
   -DGTEST_LIBRARIES="$CONDA_PREFIX/lib/libgtest.so" \

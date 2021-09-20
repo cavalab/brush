@@ -27,12 +27,12 @@ tuple<set<NodeBase*>,set<type_index>> generate_nodes(vector<string>& op_names)
                                                            op->f, 
                                                            op->df)
                     );
-        cout << "making TransformReduceDxNode " << op->name;
-        nodes.insert( new TransformReduceDxNode<ArrayXf(ArrayXf)>(op->name, 
-                                                           op->f, 
-                                                           op->df,
-                                                           10)
-                    );
+        // cout << "making TransformReduceDxNode " << op->name;
+        // nodes.insert( new TransformReduceDxNode<ArrayXf(ArrayXf)>(op->name, 
+        //                                                    op->f, 
+        //                                                    op->df,
+        //                                                    10)
+        //             );
     }
 
     if ( in(op_names, "best_split"))
