@@ -20,6 +20,8 @@ class TestProgram(TestCase):
                   [2.0,1.0,6.0,4.0,5.0,8.0,7.0,5.0,9.0,10.0]], dtype=float)
     y = np.array([1.0,0.0,1.0,1.0,0.0,1.0,1.0,0.0,0.0,0.0], dtype=float)
 
+    # TODO: What about Z? Do we just define it implicitly in the constructor?
+
     # Unlike in the C++ version, we don't need to explicitly construct a
     # search space.
     # TODO: Should we use a core set of default ops, or should the users be
@@ -38,13 +40,13 @@ class TestProgram(TestCase):
                   3.4378868 , 3.41092345, 3.5087468 , 3.25110243, 3.11382179], dtype=float)
 
     data = (X, y)
-    
+
     prg = Program()
 
     prg.fit(data)
 
     y_pred = prg.predict(data)  # y_pred is a numpy array
-    
+
     print()
     print("Calculating loss before training:")
     print("  y_pred: {0}".format(y_pred.T))

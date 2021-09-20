@@ -1,5 +1,7 @@
 /* Brush
 
+brushgp.cc : Python interface to brush classes and functions, using pybind11
+
 copyright 2020 William La Cava
 authors: William La Cava and Joseph D. Romano
 license: GNU/GPL v3
@@ -47,6 +49,10 @@ PYBIND11_MODULE(cmake_example, m) {
 }
 
 PYBIND11_MODULE(brushgp, m) {
-    py::class_<Program>(m, "Program")
-        .def(py::init(&Program::create_py))
+    py::class_<Brush::Program<float> >(m, "Program")
+        .def(py::init(&Brush::Program<float>::create_py));
+        // .def("fit", &Brush::Program<float>::fit_py)
+        // .def("predict", &Brush::Program<float>::predict_py)
+        // .def("loss", &Brush::Program<float>::loss_py)
+        // .def("d_loss", &Brush::Program<float>::d_loss_py)
 }

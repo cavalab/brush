@@ -6,6 +6,7 @@ import subprocess
 
 from setuptools import setup, Extension
 from setuptools.command.build_ext import build_ext
+from distutils.dir_util import remove_tree
 
 PLAT_TO_CMAKE = {
     "win32": "Win32",
@@ -94,6 +95,12 @@ class CMakeBuild(build_ext):
             ["cmake", "--build", "."] + build_args, cwd=self.build_temp
         )
 
+# Clean old build/ directory if it exists
+try:
+    remove_tree("./build")
+    print("Removed old build directory.")
+except FileNotFoundError:
+    print("No existing build directory found - skipping.")
 
 setup(
     name="brushgp",
@@ -111,6 +118,9 @@ setup(
     # packages=find_packages(where="src"),
     # cmake_install_dir="src/brush",
     python_requires=">=3.6",
+    install_requires=[
+        'numpy'
+    ],
     ext_modules=[CMakeExtension("brushgp")],
     cmdclass={"build_ext": CMakeBuild},
     test_suite='nose.collector',

@@ -64,7 +64,7 @@ template<typename T> class Program //: public tree<NodeBase*>
     static Program create_py(MatrixXf X, ArrayXf y, int depth=0, int breadth=0, int size=0)
     {
         Longitudinal Z;
-        Data data(X, y, Z)
+        Data data(X, y, Z);
         SearchSpace SS;
         SS.init(data);
 
