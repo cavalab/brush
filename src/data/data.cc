@@ -21,14 +21,14 @@ Data::Data(MatrixXf& X, ArrayXf& y, Longitudinal& Z,
 
     if (var_names.empty())
     {
-        vector<int> varnum(X.rows());
+        vector<int> varnum(X.cols());
         iota(varnum.begin(), varnum.end(), 0);
         for (const auto& v : varnum)
             var_names.push_back("x_"+to_string(v));
     }
-    assert(X.rows() == var_names.size());
+    assert(X.cols() == var_names.size());
 
-    for (int i = 0; i< X.rows(); ++i)
+    for (int i = 0; i< X.cols(); ++i)
     {
         name_to_idx[var_names.at(i)] = i;
     }
@@ -36,16 +36,17 @@ Data::Data(MatrixXf& X, ArrayXf& y, Longitudinal& Z,
 
 void Data::set_validation(bool v){validation=v;}
 
-void Data::get_batch(Data &db, int batch_size) const
+Data Data::get_batch(int batch_size) const
 {
 
     batch_size =  std::min(batch_size,int(y.size()));
     vector<size_t> idx(y.size());
     std::iota(idx.begin(), idx.end(), 0);
 //        r.shuffle(idx.begin(), idx.end());
-    db.X.resize(X.rows(),batch_size);
+    Data db;
+    db.X.resize(batch_size, X.cols());
     db.y.resize(batch_size);
-    db.Z.resize(batch_size);
+    db.Z = resize(batch_size);
 
     for (unsigned i = 0; i<batch_size; ++i)
     {
@@ -63,36 +64,54 @@ void Data::get_batch(Data &db, int batch_size) const
         /* } */
     }
 }
+array<TimeSeries, 2> TimeSeries::split(const ArrayXb& mask) const
+{
+
+}
 array<Data, 2> Data::split(const ArrayXb& mask) const
 {
-    // TODO: can we turn X1, X2 into maps, so the data isn't copied?
     // split data into two based on mask. 
     int size1 = mask.count();
     int size2 = mask.size() - size1;
-    MatrixXf X1(X.rows(), size1), X2(X.rows(), size2);
+    MatrixXf X1(size1, X.cols()), X2(size2, X.cols());
     ArrayXf y1(size1), y2(size2);
-    Longitudinal Z1(size1), Z2(size2); 
+    Longitudinal Z1, Z2; 
 
-    int idx1 = 0, idx2 = 0;
+    tie( X1, X2 ) = split(X, mask);
+    tie( y1, y2 ) = split(y, mask);
 
-    for (int  i = 0; i < mask.size(); ++i)
+
+    // int idx1 = 0, idx2 = 0;
+
+    // for (int  i = 0; i < mask.size(); ++i)
+    // {
+    //     if (mask(i))
+    //     {
+    //         X1.row(idx1) = X.row(i);
+    //         y1(idx1) = y(i);
+    //         ++idx1;
+    //     }
+    //     else
+    //     {
+    //         X2.row(idx2) = X.row(i);
+    //         y2(idx2) = y(i);
+    //         ++idx2;
+    //     }
+    // }
+    // split longitudinal variables
+    for (auto& el: Z.items())
     {
-        if (mask(i))
-        {
-            X1.col(idx1) = X.col(i);
-            y1(idx1) = y(i);
-            Z1.at(idx1) = Z.at(i);
-            ++idx1;
-        }
-        else
-        {
-            X2.col(idx2) = X.col(i);
-            y2(idx2) = y(i);
-            Z2.at(idx2) = Z.at(i);
-            ++idx2;
-        }
+        string& key = el.key();
+        TimeSeries& feature = el.value();
+
+        Z1[el.key()] = TimeSeries(size1);
+        Z2[el.key()] = TimeSeries(size2);
+
+        tie( Z1[el.key()].value, Z2[el.key()].value ) = split(feature.value, mask);
+        tie( Z1[el.key()].time, Z2[el.key()].time ) = split(feature.time, mask);
     }
 
+    // create two new data objects and return
     array<Data, 2> result = {Data(X1, y1, Z1, 
                                     var_names, classification), 
                                 Data(X2, y2, Z2, 
@@ -278,8 +297,8 @@ void CVData::split_stratified(float split)
         
     }
     
-    X_t.resize(o->X.rows(), t_indices.size());
-    X_v.resize(o->X.rows(), v_indices.size());
+    X_t.resize(o->X.cols(), t_indices.size());
+    X_v.resize(o->X.cols(), v_indices.size());
     y_t.resize(t_indices.size());
     y_v.resize(v_indices.size());
     
@@ -321,15 +340,15 @@ void CVData::train_test_split(bool shuffle, float split)
     else
     {        
         // resize training and test sets
-        X_t.resize(o->X.rows(),int(o->X.cols()*split));
-        X_v.resize(o->X.rows(),int(o->X.cols()*(1-split)));
+        X_t.resize(o->X.cols(),int(o->X.cols()*split));
+        X_v.resize(o->X.cols(),int(o->X.cols()*(1-split)));
         y_t.resize(int(o->y.size()*split));
         y_v.resize(int(o->y.size()*(1-split)));
         
         // map training and test sets  
-        t->X = MatrixXf::Map(o->X.data(),t->X.rows(),t->X.cols());
-        v->X = MatrixXf::Map(o->X.data()+t->X.rows()*t->X.cols(),
-                                    v->X.rows(),v->X.cols());
+        t->X = MatrixXf::Map(o->X.data(),t->X.cols(),t->X.cols());
+        v->X = MatrixXf::Map(o->X.data()+t->X.cols()*t->X.cols(),
+                                    v->X.cols(),v->X.cols());
 
         t->y = ArrayXf::Map(o->y.data(),t->y.size());
         v->y = ArrayXf::Map(o->y.data()+t->y.size(),v->y.size());

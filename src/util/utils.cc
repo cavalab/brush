@@ -48,7 +48,7 @@ vector<type_index> get_dtypes(MatrixXf &X)
     bool isBinary;
     bool isCategorical;
     std::map<float, bool> uniqueMap;
-    for(i = 0; i < X.rows(); i++)
+    for(i = 0; i < X.cols(); i++)
     {
         isBinary = true;
         isCategorical = true;
@@ -103,7 +103,7 @@ void Normalizer::fit(MatrixXf& X, const vector<char>& dt)
     scale.clear();
     offset.clear();
     dtypes = dt; 
-    for (unsigned int i=0; i<X.rows(); ++i)
+    for (unsigned int i=0; i<X.cols(); ++i)
     {
         // mean center
         VectorXf tmp = X.row(i).array()-X.row(i).mean();
@@ -118,7 +118,7 @@ void Normalizer::fit(MatrixXf& X, const vector<char>& dt)
 void Normalizer::normalize(MatrixXf& X)
 {  
     // normalize features
-    for (unsigned int i=0; i<X.rows(); ++i)
+    for (unsigned int i=0; i<X.cols(); ++i)
     {
         if (std::isinf(scale.at(i)))
         {
@@ -172,7 +172,7 @@ string to_string(const T& value)
 /// returns the condition number of a matrix.
 float condition_number(const MatrixXf& X)
 {
-    /* cout << "X (" << X.rows() << "x" << X.cols() << "): " << X.transpose() << "\n"; */
+    /* cout << "X (" << X.cols() << "x" << X.cols() << "): " << X.transpose() << "\n"; */
     /* MatrixXf Y = X; */
     /* try */
     /* { */

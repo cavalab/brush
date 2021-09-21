@@ -195,7 +195,7 @@ class SplitNode<R(Args...)> : public TypedNodeBase<R, Args...>
              * and feature to split at.
              */
             float best_score = 0;
-            for (int i = 0; i < d.X.rows(); ++i)
+            for (int i = 0; i < d.X.cols(); ++i)
             {
                 float tmp_thresh, score;
                 tie(tmp_thresh, score) = set_threshold(d, i);

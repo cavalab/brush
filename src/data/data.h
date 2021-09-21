@@ -27,19 +27,28 @@ namespace Brush
 namespace data{
 /*!
     * @class Data
-    * @brief data holding X, y, and Z data
+    * @brief data holding X, y, and Z data.
+    * 
+    * 
+    * X: an N x m matrix of static features, where rows are samples and columns are features
+    * y: length N array, the target label
+    * Z: a json object of Longitudinal data. Contains p keys, where there are p longitudinal features. 
+    *   each key denotes a TimeSeries that contains two N x t matrices, where t is the maximum number of observations of a feature. One matrix, value, contains the observation, and the other matrix, time, contains the time of observation. 
+    * 
     */
 
 struct TimeSeries
 {
-    ArrayXf time;
-    ArrayXf value;
+    ArrayXXf time;
+    ArrayXXf value;
+
+    TimeSeries(size_t x) { time.resize(x); value.resize(x); };
 };
 
 // TODO: store names more generally, in dictionary style, instead of in map
-typedef std::map<string, TimeSeries> TimeSeriesMap;
+// typedef std::map<string, TimeSeries> TimeSeriesMap;
 
-typedef vector<TimeSeriesMap> Longitudinal;
+typedef nlohmann::json Longitudinal;
 
 class Data
 {
@@ -81,7 +90,7 @@ class Data
         // };
         const ArrayXf operator[](std::string name) const 
         { 
-            return X.row(name_to_idx.at(name)).array();
+            return X.col(name_to_idx.at(name)).array();
         };
 };
 

@@ -46,8 +46,8 @@ typedef std::map<string,
 using Eigen::Dynamic;
 using Eigen::Map;
 // internal includes
-/* #include "util/json.hpp" */
-/* using nlohmann::json; */
+#include "thirdparty/json.hpp"
+using nlohmann::json;
 
 static float NEAR_ZERO = 0.0000001;
 static float MAX_FLT = std::numeric_limits<float>::max();
