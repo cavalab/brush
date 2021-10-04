@@ -14,7 +14,8 @@ using namespace std;
 #include "../util/error.h"
 #include "../util/logger.h"
 #include "../util/rnd.h"
-
+#include <Eigen/Sparse>
+#include <unsupported/Eigen/CXX11/Tensor> 
 //#include "node/node.h"
 //external includes
 
@@ -32,17 +33,66 @@ namespace data{
     * 
     * X: an N x m matrix of static features, where rows are samples and columns are features
     * y: length N array, the target label
-    * Z: a json object of Longitudinal data. Contains p keys, where there are p longitudinal features. 
-    *   each key denotes a TimeSeries that contains two N x t matrices, where t is the maximum number of observations of a feature. One matrix, value, contains the observation, and the other matrix, time, contains the time of observation. 
+    * Z: a json object of Longitudinal data. 
+    *   each key denotes a TimeSeries that contains two N x t sparse matrices, where t is the maximum number of observations of a feature. One matrix, value, contains the observation, and the other matrix, time, contains the time of observation. 
+    * Or...
     * 
+    * Z: Longitudinal data
+    *     * 
     */
 
+struct Longitudinal
+{
+    /*!
+     * @class Longitudinal
+     * @brief class for holding and manipulation longitudinal data.
+     * contains of two N x p x t tensors of time and values. 
+     * columns contains p feature names and maps to col indices in time and value. 
+     * t is the longest time series. 
+     * Currently does not support sparse data.
+     * time: 
+     *  - use relative time deltas, with first observation at time t=0
+     **/
+  
+    Tensor<float, 3> time;  /// time of observation
+    Tensor<float, 3> value; /// observation value
+    std::map<string, unsigned> columns; /// variable names
+
+    Longitudinal(size_t x) { this->resize(x); }
+
+    void resize(size_t x) 
+    {
+        time.resize(x, Eigen::NoChange, Eigen::NoChange); 
+        value.resize(x, Eigen::NoChange, Eigen::NoChange); 
+    };
+
+    tuple<Longitudinal, 2> split(ArrayXb& mask)
+    {
+        Tensor<float, 3> time1(mask.sum()), value1(mask.sum());
+        Tensor<float, 3> time2(mask.size()-Z1.size()), value2(mask.size()-Z1.size());
+
+        tie{ time1, time2 } = util::split(this->time, mask);
+        tie{ value1, value2 } = util::split(this->value, mask);
+
+        tuple<Longitudinal, 2> result = { 
+            Longitudinal Z1{time1, value1, this->columns};
+            Longitudinal Z2{time2, value2, this->columns};
+        };
+
+        // TODO
+        // from_json();
+        // to_json();
+
+    };
+};
 struct TimeSeries
 {
-    ArrayXXf time;
-    ArrayXXf value;
+    SparseMatrix<float> time;
+    SparseMatrix<float> value;
 
-    TimeSeries(size_t x) { time.resize(x); value.resize(x); };
+    TimeSeries(size_t x) { time.resize(x, Eigen::NoChange); value.resize(x, Eigen::NoChange); };
+    // array<TimeSeries, 2> TimeSeries::split(const ArrayXb& mask) const ;
+    // TODO: from_json and to_json
 };
 
 // TODO: store names more generally, in dictionary style, instead of in map
@@ -74,7 +124,7 @@ class Data
         void set_validation(bool v=true);
         
         /// select random subset of data for training weights.
-        void get_batch(Data &db, int batch_size) const;
+        Data get_batch(int batch_size) const;
 
         array<Data, 2> split(const ArrayXb& mask) const;
 

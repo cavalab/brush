@@ -23,6 +23,7 @@ using Eigen::VectorXf;
 using Eigen::ArrayXf;
 using Eigen::ArrayXi;
 typedef Eigen::Array<bool,Eigen::Dynamic,1> ArrayXb;
+typedef Array<bool, Eigen::Dynamic, Eigen::Dynamic> ArrayXXb;
 using namespace std;
 
 //#include "node/node.h"
@@ -30,7 +31,14 @@ using namespace std;
 
 namespace Brush { 
     /* typedef std::tuple<float, bool, int, ArrayXf, ArrayXi, ArrayXb> State; */ 
-    typedef std::variant<float, bool, int, ArrayXf, ArrayXi, ArrayXb> State; 
+    typedef std::variant<
+                         ArrayXf, 
+                         ArrayXi, 
+                         ArrayXb,
+                         ArrayXXf, 
+                         ArrayXXi, 
+                         ArrayXXb,
+                         > State; 
 }
     /*template<typename type>*/
     /*!

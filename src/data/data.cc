@@ -43,31 +43,26 @@ Data Data::get_batch(int batch_size) const
     vector<size_t> idx(y.size());
     std::iota(idx.begin(), idx.end(), 0);
 //        r.shuffle(idx.begin(), idx.end());
-    Data db;
-    db.X.resize(batch_size, X.cols());
-    db.y.resize(batch_size);
-    db.Z = resize(batch_size);
+    Data batch;
+    batch.X.resize(batch_size, X.cols());
+    batch.y.resize(batch_size);
+    batch.Z.time.resize(batch_size);
+    batch.Z.value.resize(batch_size);
 
     for (unsigned i = 0; i<batch_size; ++i)
     {
         
-        db.X.col(i) = X.col(idx.at(i)); 
-        db.y(i) = y(idx.at(i)); 
-        db.Z.at(i) = Z.at(idx.at(i));
+        batch.X.col(i) = X.col(idx.at(i)); 
+        batch.y(i) = y(idx.at(i)); 
+        batch.Z.time.row(i) = Z.time.row(idx.at(i));
+        batch.Z.value.row(i) = Z.value.row(idx.at(i));
 
-        /* for (const auto& val: Z ) */
-        /* { */
-        /*      db.Z[val.first].first.at(i) = Z.at(val.first).first.at( */
-        /*              idx.at(i)); */
-        /*      db.Z[val.first].second.at(i) = Z.at(val.first).second.at( */
-        /*              idx.at(i)); */
-        /* } */
     }
 }
-array<TimeSeries, 2> TimeSeries::split(const ArrayXb& mask) const
-{
+// array<TimeSeries, 2> TimeSeries::split(const ArrayXb& mask) const
+// {
 
-}
+// }
 array<Data, 2> Data::split(const ArrayXb& mask) const
 {
     // split data into two based on mask. 
@@ -99,17 +94,18 @@ array<Data, 2> Data::split(const ArrayXb& mask) const
     //     }
     // }
     // split longitudinal variables
-    for (auto& el: Z.items())
-    {
-        string& key = el.key();
-        TimeSeries& feature = el.value();
+    // for (auto& el: Z.items())
+    // {
+    //     string& key = el.key();
+    //     TimeSeries& feature = el.value();
 
-        Z1[el.key()] = TimeSeries(size1);
-        Z2[el.key()] = TimeSeries(size2);
+    //     Z1[el.key()] = TimeSeries(size1);
+    //     Z2[el.key()] = TimeSeries(size2);
 
-        tie( Z1[el.key()].value, Z2[el.key()].value ) = split(feature.value, mask);
-        tie( Z1[el.key()].time, Z2[el.key()].time ) = split(feature.time, mask);
-    }
+    //     tie( Z1[el.key()].value, Z2[el.key()].value ) = split(feature.value, mask);
+    //     tie( Z1[el.key()].time, Z2[el.key()].time ) = split(feature.time, mask);
+    // }
+    std::tie{ Z1, Z2 } = Z.split(mask);
 
     // create two new data objects and return
     array<Data, 2> result = {Data(X1, y1, Z1, 
