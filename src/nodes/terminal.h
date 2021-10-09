@@ -36,7 +36,7 @@ class Terminal: public TypedNodeBase<R>
         State predict(const Data& d, TreeNode*& first_child, 
                       TreeNode*& last_child) override
         {
-            State out = d[variable_name];
+            R out = std::get<R>(d[variable_name]);
             return out;
         };
         void grad_descent(const ArrayXf& gradient, const Data& d, 

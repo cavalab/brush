@@ -38,7 +38,6 @@ std::string trim(std::string str, const std::string& chars)
     return ltrim(rtrim(str, chars), chars);
 }
 
-/// determines data types of columns of matrix X.
 vector<type_index> get_dtypes(MatrixXf &X)
 {
     vector<type_index> dtypes;
@@ -398,6 +397,18 @@ void ReplaceStringInPlace(std::string& subject, const std::string& search,
          subject.replace(pos, search.length(), replace);
          pos += replace.length();
     }
+}
+
+/// convert a boolean mask to an index array
+vector<size_t> mask_to_index(const ArrayXb& mask)
+{
+    vector<size_t> idx;
+    for (int i = 0; i < mask.size(); ++i)
+    {
+        if (mask(i))
+            idx.push_back(i);
+    }
+    return idx;
 }
 } // Util
 } // Brush

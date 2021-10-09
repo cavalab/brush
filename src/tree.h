@@ -39,7 +39,7 @@
 #include "state.h"
 #include "data/data.h"
 #include "init.h"
-using Brush::State;
+using Brush::data::State;
 using Brush::data::Data;
 /* /// Overload swap for data class */ 
 /* template<class T> */

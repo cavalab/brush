@@ -53,7 +53,9 @@ namespace Brush { namespace Util{
                     swap (first[i], first[d(rg[omp_get_thread_num()])]);
                 }
             }    
-            
+
+            vector<size_t> shuffled_index(size_t n);
+             
             template<typename Iter>                                    
             Iter select_randomly(Iter start, Iter end)
             {
@@ -76,7 +78,8 @@ namespace Brush { namespace Util{
             T random_choice(const map<T, float>& m)
             {
                /*!
-                * return a random key of a map, where the values are weights.
+                * return a weighted random key of a map, 
+                * where the values are weights.
                 */          
                
                 assert(m.size()>0 

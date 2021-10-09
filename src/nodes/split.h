@@ -6,6 +6,7 @@ license: GNU/GPL v3
 #ifndef SPLIT_H
 #define SPLIT_H
 #include "base.h"
+using std::get;
 
 namespace Brush {
 namespace nodes {
@@ -26,7 +27,8 @@ class SplitNode<R(Args...)> : public TypedNodeBase<R, Args...>
         /// whether the variable choice is fixed
         bool fixed_variable;
         /// the learned feature choice
-        unsigned int loc;
+        // unsigned int loc;
+        string feature;
         /// the learned threshold
         float threshold;
         /// sample feature space
@@ -34,7 +36,7 @@ class SplitNode<R(Args...)> : public TypedNodeBase<R, Args...>
         float feature_sample = 1.0;
 
 
-        SplitNode(string name, int loc = -1) : base(name) 
+        SplitNode(string name, string feature = "") : base(name) 
         {
             /* TODO: this constructor should determine whether we are searching
              * for the best split feature or taking a feature for splitting as
@@ -45,7 +47,7 @@ class SplitNode<R(Args...)> : public TypedNodeBase<R, Args...>
             // if (loc != -1)
             if (base::ArgCount == 3)
             {
-                this->loc = loc;
+                this->feature = feature;
                 this->fixed_variable = true;
             }
         };
@@ -65,14 +67,15 @@ class SplitNode<R(Args...)> : public TypedNodeBase<R, Args...>
             // set feature and threshold
             if (this->fixed_variable)
             {
-                // TODO: replace loc with child arg 1 output
-                tie(this->threshold, ignore) = set_threshold(d, this->loc);
+                // TODO: replace feature with child arg 1 output
+                tie(this->threshold, ignore) = set_threshold(d, this->feature);
             }
             else
                 set_variable_and_threshold(d);
 
             // split the data
-            ArrayXb mask = d.X.row(this->loc).array() < this->threshold;
+            // ArrayXb mask = std::get<R>(d[this->feature] < this->threshold;
+            ArrayXb mask = d.get(this->feature) < this->threshold;
             array<Data, 2> data_splits = d.split(mask);
 
             array<State, base::ArgCount> child_outputs;
@@ -102,7 +105,7 @@ class SplitNode<R(Args...)> : public TypedNodeBase<R, Args...>
             cout << "last_child: " << last_child << endl;
 
             // split the data
-            ArrayXb mask = d.X.row(this->loc).array() < this->threshold;
+            ArrayXb mask = d.get(this->feature) < this->threshold;
             array<Data, 2> data_splits = d.split(mask);
 
             // array<State, base::ArgCount> child_outputs;
@@ -128,7 +131,8 @@ class SplitNode<R(Args...)> : public TypedNodeBase<R, Args...>
         void grad_descent(const ArrayXf& gradient, const Data& d, 
                           TreeNode*& first_child, TreeNode*& last_child) override
         {
-            ArrayXb mask = d.X.row(this->loc).array() < this->threshold;
+            // ArrayXb mask = d[this->feature] < this->threshold;
+            ArrayXb mask = d.get(this->feature) < this->threshold;
             array<Data, 2> data_splits = d.split(mask);
 
             array<ArrayXf, 2> grad_splits = Brush::Util::split(gradient, mask);
@@ -179,7 +183,8 @@ class SplitNode<R(Args...)> : public TypedNodeBase<R, Args...>
         State stitch(array<State, base::ArgCount>& child_outputs, const Data& d)
         {
             R result;
-            ArrayXb mask = d.X.row(this->loc).array() < this->threshold;
+            // ArrayXb mask = d[this->feature] < this->threshold;
+            ArrayXb mask = d.get(this->feature) < this->threshold;
             for (int i = 0; i < mask.size(); ++i)
             {
                 result(i) = mask(i) ? get<R>(child_outputs.at(0))(i) 
@@ -191,26 +196,29 @@ class SplitNode<R(Args...)> : public TypedNodeBase<R, Args...>
 
         void set_variable_and_threshold(const Data& d)
         {
-            /* loops thru variables in d.X and picks the best threshold
+            /* loops thru variables in d and picks the best threshold
              * and feature to split at.
              */
             float best_score = 0;
-            for (int i = 0; i < d.X.cols(); ++i)
+            int i = 0;
+            // for (int i = 0; i < d.cols(); ++i)
+            for (auto& [key, value] : d.features) 
             {
                 float tmp_thresh, score;
-                tie(tmp_thresh, score) = set_threshold(d, i);
+                tie(tmp_thresh, score) = set_threshold(d, key);
 
                 if (score < best_score || i == 0)
                 {
                     best_score = score;
-                    this->loc = i;
+                    this->feature = i;
                     this->threshold = tmp_thresh;
                 }
+                ++i;
 
             }
         }
 
-        tuple<float,float> set_threshold(const Data& d, int var_idx)
+        tuple<float,float> set_threshold(const Data& d, string var)
         {
             /* for each unique value in x, calculate the reduction in the 
              * heuristic brought about by
@@ -219,13 +227,13 @@ class SplitNode<R(Args...)> : public TypedNodeBase<R, Args...>
              * 
              * returns: the threshold and the score.
              */
-            const ArrayXf& x = d.X.row(var_idx); 
-            const ArrayXf& y = d.y;
+            const ArrayXf& x = d[var]; 
+            const ArrayXf& y = d["y"];
 
             vector<float> s = unique(x);
 
             // we'll treat x as a float if it has more than 10 unique values
-            bool x_is_float = d.data_types.at(var_idx) == typeid(ArrayXf);
+            bool x_is_float = d.data_types[var] == typeid(ArrayXf);
 
             vector<float> unique_classes = unique(y);
             vector<int> idx(x.size());
