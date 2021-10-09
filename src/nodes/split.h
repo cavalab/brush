@@ -227,8 +227,10 @@ class SplitNode<R(Args...)> : public TypedNodeBase<R, Args...>
              * 
              * returns: the threshold and the score.
              */
+            //TODO: we need way to subset the data by features of a specific
+            // type. In this case, array features.
             const ArrayXf& x = d[var]; 
-            const ArrayXf& y = d["y"];
+            const ArrayXf& y = d.y;
 
             vector<float> s = unique(x);
 

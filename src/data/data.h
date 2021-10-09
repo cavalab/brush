@@ -267,26 +267,7 @@ class Data
         //     // this->y = ArrayXf();
         //     classification=false;
         // }
-
-        Data(std::map<string, State>& d, 
-             const Ref<const ArrayXf>& y_ = ArrayXf(), 
-             bool c = false
-             ): 
-             features(d), y(y_), classification(c) {};
-
-        Data(const Ref<const ArrayXXf>& X, 
-             const Ref<const ArrayXf>& y_ = ArrayXf(), 
-             const Longitudinal& Z = {},
-             const vector<string>& vn = {}, 
-             bool c = false
-            ): 
-            var_names(vn), 
-            features(make_features(X,Z,vn))
-            y(y_),
-            classification(c),
-            {} 
-
-        /// turns a 
+        /// turns input data into a feature map
         std::map<string, State> make_features(const Ref<const ArrayXXf>& X,
                                               const Longitudinal& Z = {},
                                               const vector<string>& vn = {}
@@ -315,6 +296,25 @@ class Data
             return tmp_features;
 
         };
+
+        Data(std::map<string, State>& d, 
+             const Ref<const ArrayXf>& y_ = ArrayXf(), 
+             bool c = false
+             ): 
+             features(d), y(y_), classification(c) {};
+
+        Data(const Ref<const ArrayXXf>& X, 
+             const Ref<const ArrayXf>& y_ = ArrayXf(), 
+             const Longitudinal& Z = {},
+             const vector<string>& vn = {}, 
+             bool c = false
+            ): 
+            var_names(vn), 
+            features(make_features(X,Z,vn)),
+            y(y_),
+            classification(c)
+            {} 
+
         // Data(ArrayXf& X, ArrayXf& y, Longitudinal& Z, 
         //      const vector<string>& variable_names = {}, bool c = false);
 
