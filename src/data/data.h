@@ -269,25 +269,25 @@ class Data
         // }
 
         Data(std::map<string, State>& d, 
-            //  const Ref<const ArrayXf> y_ = Ref<ArrayXf()>, 
              const Ref<const ArrayXf>& y_ = ArrayXf(), 
              bool c = false
              ): 
              features(d), y(y_), classification(c) {};
 
-        Data(const Ref<const ArrayXf>& X, 
+        Data(const Ref<const ArrayXXf>& X, 
              const Ref<const ArrayXf>& y_ = ArrayXf(), 
              const Longitudinal& Z = {},
              const vector<string>& vn = {}, 
              bool c = false
             ): 
             var_names(vn), 
-            classification(c) ,
-            y(y_),
             features(make_features(X,Z,vn))
+            y(y_),
+            classification(c),
             {} 
 
-        std::map<string, State> make_features(const Ref<const ArrayXf>& X,
+        /// turns a 
+        std::map<string, State> make_features(const Ref<const ArrayXXf>& X,
                                               const Longitudinal& Z = {},
                                               const vector<string>& vn = {}
                                               ) 
