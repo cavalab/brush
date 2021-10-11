@@ -87,120 +87,8 @@ extern std::vector<std::type_index> StateTypeMap;
 /// returns the typeid held in arg
 std::type_index StateType(const State& arg);
 
-
-
-/// UPdate: this can't work because std::visit requires return types of 
-/// overloaded visitors to match:
-/// https://stackoverflow.com/questions/66128167/return-value-from-possible-type-in-stdvariant-through-stdvisit
-/// return the implicit type of a State
-// auto typedState(const State& value)
-// {
-//     // return std::visit([](auto&& arg) 
-//     // {
-//     //     using T = std::decay_t<decltype(arg)>;
-//     //     return T(arg);
-//     // },
-//     // value
-//     // );
-// //     // 4. another type-matching visitor: a class with 3 overloaded operator()'s
-// //     // Note: The `(auto arg)` template operator() will bind to `int` and `long`
-// //     //       in this case, but in its absence the `(double arg)` operator()
-// //     //       *will also* bind to `int` and `long` because both are implicitly
-// //     //       convertible to double. When using this form, care has to be taken
-// //     //       that implicit conversions are handled correctly.
-//     return std::visit(overloaded {
-//         // [](const auto& arg) -> State { return arg; },
-//         [](const ArrayXb& arg) -> ArrayXb { return arg; },
-//         [](const ArrayXi& arg) -> ArrayXi { return arg; },
-//         [](const ArrayXf& arg) -> ArrayXf { return arg; },
-//         [](const ArrayXXb& arg) -> ArrayXXb { return arg; },
-//         [](const ArrayXXi& arg) -> ArrayXXi { return arg; },
-//         [](const ArrayXXf& arg) -> ArrayXXf { return arg; },
-//         [](const TimeSeries& arg) -> TimeSeries { return arg; }
-//     }, value);
-// };
-
 /// determines data types of columns of matrix X.
 State check_type(const ArrayXf& x);
-
-// struct Longitudinal
-// {
-//     /*!
-//      * @class Longitudinal
-//      * @brief class for holding and manipulation longitudinal data.
-//      * contains of two N x p x t tensors of time and values. 
-//      * columns contains p feature names and maps to col indices in time and value. 
-//      * t is the longest time series. 
-//      * Currently does not support sparse data.
-//      * time: 
-//      *  - use relative time deltas, with first observation at time t=0
-//      **/
-  
-//     Tensor<float, 3> time(1,1,1);  /// time of observation
-//     Tensor<float, 3> value(1,1,1); /// observation value
-//     std::map<string, unsigned> columns; /// variable names
-
-//     Longitudinal(size_t x) { this->resize(x); };
-
-//     Longitudinal(Tensor<float, 3>& t, 
-//                  Tensor<float, 3>& v, 
-//                  std::map<string, unsigned> c) : 
-//                  time{t}, value{v}, columns{c} {};
-
-//     void resize(size_t x) 
-//     {
-//         time.resize(x, Eigen::NoChange, Eigen::NoChange); 
-//         value.resize(x, Eigen::NoChange, Eigen::NoChange); 
-//     };
-
-//     std::array<Longitudinal, 2> split(ArrayXb& mask)
-//     {
-//         Tensor<float, 3> time1(mask.sum()), value1(mask.sum());
-//         Tensor<float, 3> time2(mask.size()-time1.size()), value2(mask.size()-value1.size());
-
-//         tie{ time1, time2 } = util::split(this->time, mask);
-//         tie{ value1, value2 } = util::split(this->value, mask);
-
-//         std::array<Longitudinal, 2> result{ 
-//             Longitudinal Z1{time1, value1, this->columns},
-//             Longitudinal Z2{time2, value2, this->columns}
-//         };
-
-//         // TODO
-//         // from_json();
-//         // to_json();
-//     };
-// };
-
-// TODO: store names more generally, in dictionary style, instead of in map
-// typedef std::map<string, TimeSeries> TimeSeriesMap;
-
-// typedef nlohmann::json Longitudinal;
-
-////////////////////////////////////////////////////////////////////
-// using some template magic so that the Data class can 
-// take lvalues or rvalues without copying the underlying data, 
-// and store a const reference in the lvalue case
-// https://www.fluentcpp.com/2018/07/17/how-to-construct-c-objects-without-making-copies/
-// template<class T>
-// struct const_reference
-// {
-//    using type = const std::remove_reference_t<T>&;
-// };
-
-// template <class T>
-// using const_reference_t =  typename const_reference<T>::type;
-
-// template <class T>
-// struct add_const_to_value
-// {
-//    using type =  std::conditional_t<std::is_lvalue_reference_v<T>, const_reference_t<T>, const T>;
-// };
-
-// template <class T>
-// using add_const_to_value_t =  typename add_const_to_value<T>::type;
-////////////////////////////////////////////////////////////////////
- 
 
 class Data 
 {
@@ -311,9 +199,6 @@ class Data
             classification(c)
             {init();} 
 
-        // Data(ArrayXf& X, ArrayXf& y, Longitudinal& Z, 
-        //      const vector<string>& variable_names = {}, bool c = false);
-
         void set_validation(bool v=true);
         
         /// select random subset of data for training weights.
@@ -321,133 +206,12 @@ class Data
 
         std::array<Data, 2> split(const ArrayXb& mask) const;
 
-        // void shuffle();
-        // template<typename T>
-        // T& operator[](std::string name) { return d.X.row(Xidx[name]); };
-        // template<typename T>
-        // const T& operator[](std::string name) const { return d.X.row(Xidx[name]); };
-        // TODO: templatize these, when d has json. 
-        // commenting out non-const for now, it isn't a use case?
-        // ArrayXf operator[](std::string name) 
-        // { 
-        //     return X.row(Xidx.at(name)).array(); 
-        // };
         State operator[](std::string name) const 
         {
             return this->features.at(name);
         }
-        /// return a typed feature
-        /// Note: doesn't work, see typedState() comment above
-        // auto get(const string& name) const
-        // {
-        //     // return typedState(this->features.at(name));
-        //     return std::visit([](auto&& arg){ return arg; }, 
-        //                       this->features.at(name)
-        //                      );
-
-        // }
-        // const ArrayXf operator[](std::string name) const 
-        // { 
-        //     return X.col(Xidx.at(name)).array();
-        // };
-        // const State get(std::string name) const 
-        // {
-        //     if ( Xidx.find(name) != Xidx.end() ) 
-        //     {
-        //         // found in X
-        //         return X.col(Xidx.at(name)).array();
-        //     } 
-        //     else if ( Zidx.find(name) != Zidx.end() )
-        //     {
-        //         int loc = Zidx.at(name);
-        //         Eigen::array<int, 2> offsets = {0, loc, 0};
-        //         Eigen::array<int, 2> extents = {0, Z.time.dimension(1), 0};
-        //         return TimeSeries(MatrixCast(Z.time.slice(offsets,extents)),
-        //                           MatrixCast(Z.value.slice(offsets,extents))
-        //                          );
-        //         ;
-        //     // not found
-        //     }
-        //     else
-        //     {
-        //         HANDLE_ERROR_THROW("Variable name not found in data");
-        //     }
-        // }
 };
 
-/* !
-    * @class CVData
-    * @brief Holds training and validation splits of data, with pointers to 
-    * each.
-    * */
-// class CVData
-// {
-//     private:
-//         bool oCreated;
-//         bool tCreated;
-//         bool vCreated;
-//         // training and validation data
-//         ArrayXf X_t;
-//         ArrayXXf X_v;
-//         ArrayXf y_t;
-//         ArrayXf y_v;
-//         Longitudinal Z_t;
-//         Longitudinal Z_v;
-        
-//         bool classification;
-
-//     public:
-//         Data *o = NULL;     //< pointer to original data
-//         Data *v = NULL;     //< pointer to validation data
-//         Data *t = NULL;     //< pointer to training data
-        
-//         CVData();
-        
-//         ~CVData();
-        
-
-//         CVData(ArrayXXf& X, ArrayXf& y, Longitudinal& Z, 
-//                const vector<string>& variable_names,
-//                bool c=false);
-                
-//         void setOriginalData(ArrayXXf& X, ArrayXf& y, Longitudinal& Z, 
-//                              const vector<string>& variable_names,
-//                              bool c=false);
-        
-//         void setOriginalData(Data *d);
-        
-//         void setTrainingData(ArrayXXf& X_t, ArrayXf& y_t, Longitudinal& Z_t,
-//                              const vector<string>& variable_names,
-//                              bool c = false);
-        
-//         void setTrainingData(Data *d, bool toDelete = false);
-        
-//         void setValidationData(ArrayXXf& X_v, ArrayXf& y_v, Longitudinal& Z_v,
-//                                const vector<string>& variable_names,
-//                                bool c = false);
-        
-//         void setValidationData(Data *d);
-        
-//         /// shuffles original data
-//         void shuffle_data();
-        
-//         /// split classification data as stratas
-//         void split_stratified(float split);
-        
-//         /// splits data into training and validation folds.
-//         void train_test_split(bool shuffle, float split);
-
-//         void split_longitudinal(
-//                     Longitudinal& Z,
-//                     Longitudinal& Z_t,
-//                     Longitudinal& Z_v,
-//                     float split);
-                    
-//         /// reordering utility for shuffling longitudinal data.
-//         void reorder_longitudinal(vector<ArrayXf> &vec1, 
-//                 const vector<int>& order); 
-
-// };
 } // Dat
 } // Brush
 
