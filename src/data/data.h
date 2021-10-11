@@ -36,42 +36,11 @@ namespace Brush
 */
 namespace data
 {
-/// determines data types of columns of matrix X.
-auto typecast(const ArrayXf& x)
-{
-    // get feature types (binary or continuous/categorical)
-    bool isBinary = true;
-    bool isCategorical = true;
-    std::map<float, bool> uniqueMap;
-    for(int i = 0; i < x.size(); i++)
-    {
-        
-        if(x(i) != 0 && x(i) != 1)
-            isBinary = false;
-        if(x(i) != floor(x(i)) && x(i) != ceil(x(i)))
-            isCategorical = false;
-        else
-            uniqueMap[x(i)] = true;
-    } 
 
-    return isBinary ? x.cast<bool>()
-                     : (isCategorical && uniqueMap.size() < 10) ? 
-                        x.cast<int>() 
-                        : x;
-    // if (isBinary)
-    //     return x.cast<bool>();
-    // else
-    // {
-    //     if(isCategorical && uniqueMap.size() < 10)
-    //         return x.cast<int>();
-    //     else
-    //         return x;
-    // }
-
-}
 
 struct TimeSeries
 {
+    // TODO: this should probably be templated by bool, int, float
     using ts_val = std::variant<ArrayXXb, ArrayXXi, ArrayXXf>;
     /*! Wraps time and value slices to matrices
     *  TODO: define begin() and end() iterators? figure out how to handle operators that just use values versus time 
@@ -86,7 +55,8 @@ struct TimeSeries
     TimeSeries operator()(const T& idx) const
     {
         ArrayXXf t = time(idx, Eigen::all);
-        ts_val v = value(idx, Eigen::all);
+        ts_val v = this->value;
+        std::visit([&](auto&& arg) { arg = arg(idx, Eigen::all); }, v);
         return TimeSeries(t, v);
     };
     /// return a slice of the data by row or column
@@ -111,31 +81,47 @@ typedef std::variant<
                      ArrayXXf, 
                      TimeSeries
                     > State; 
+/// returns the typeid held in the variant by calling 
+/// StateTypeMap.at(variant.index());
+extern std::vector<std::type_index> StateTypeMap;
+/// returns the typeid held in arg
+std::type_index StateType(const State& arg);
 
-// explicit deduction guide (not needed as of C++20)
-template<class... Ts> struct overloaded : Ts... { using Ts::operator()...; };
-template<class... Ts> overloaded(Ts...) -> overloaded<Ts...>;
 
+
+/// UPdate: this can't work because std::visit requires return types of 
+/// overloaded visitors to match:
+/// https://stackoverflow.com/questions/66128167/return-value-from-possible-type-in-stdvariant-through-stdvisit
 /// return the implicit type of a State
-auto typedState(const State& arg)
-{
-    // 4. another type-matching visitor: a class with 3 overloaded operator()'s
-    // Note: The `(auto arg)` template operator() will bind to `int` and `long`
-    //       in this case, but in its absence the `(double arg)` operator()
-    //       *will also* bind to `int` and `long` because both are implicitly
-    //       convertible to double. When using this form, care has to be taken
-    //       that implicit conversions are handled correctly.
-    return std::visit(overloaded {
-        // [](const auto& arg) -> State { return arg; },
-        [](const ArrayXf& arg) -> ArrayXf { return arg; },
-        [](const ArrayXi& arg) -> ArrayXi { return arg; },
-        [](const ArrayXb& arg) -> ArrayXb { return arg; },
-        [](const ArrayXXf& arg) -> ArrayXXf { return arg; },
-        [](const ArrayXXi& arg) -> ArrayXXi { return arg; },
-        [](const ArrayXXb& arg) -> ArrayXXb { return arg; },
-        [](const TimeSeries& arg) -> TimeSeries { return arg; }
-    }, arg);
-};
+// auto typedState(const State& value)
+// {
+//     // return std::visit([](auto&& arg) 
+//     // {
+//     //     using T = std::decay_t<decltype(arg)>;
+//     //     return T(arg);
+//     // },
+//     // value
+//     // );
+// //     // 4. another type-matching visitor: a class with 3 overloaded operator()'s
+// //     // Note: The `(auto arg)` template operator() will bind to `int` and `long`
+// //     //       in this case, but in its absence the `(double arg)` operator()
+// //     //       *will also* bind to `int` and `long` because both are implicitly
+// //     //       convertible to double. When using this form, care has to be taken
+// //     //       that implicit conversions are handled correctly.
+//     return std::visit(overloaded {
+//         // [](const auto& arg) -> State { return arg; },
+//         [](const ArrayXb& arg) -> ArrayXb { return arg; },
+//         [](const ArrayXi& arg) -> ArrayXi { return arg; },
+//         [](const ArrayXf& arg) -> ArrayXf { return arg; },
+//         [](const ArrayXXb& arg) -> ArrayXXb { return arg; },
+//         [](const ArrayXXi& arg) -> ArrayXXi { return arg; },
+//         [](const ArrayXXf& arg) -> ArrayXXf { return arg; },
+//         [](const TimeSeries& arg) -> TimeSeries { return arg; }
+//     }, value);
+// };
+
+/// determines data types of columns of matrix X.
+State check_type(const ArrayXf& x);
 
 // struct Longitudinal
 // {
@@ -214,12 +200,7 @@ auto typedState(const State& arg)
 // template <class T>
 // using add_const_to_value_t =  typename add_const_to_value<T>::type;
 ////////////////////////////////////////////////////////////////////
-// helper constant for the visitor
-template<class> inline constexpr bool always_false_v = false;
  
-// helper type for the visitor #4
-// explicit deduction guide (not needed as of C++20)
-template<class... Ts> overloaded(Ts...) -> overloaded<Ts...>;
 
 class Data 
 {
@@ -242,15 +223,16 @@ class Data
         const std::map<string, State>& features;
 
         // ArrayXXf& X;
-        const Ref<ArrayXf> y;
+        const Ref<const ArrayXf> y;
         // Longitudinal& Z;
         bool classification;
         bool validation; 
         int n_samples;
         int n_features;
         // type_index ret_type;
-        // vector<type_index> data_types;
         vector<string> var_names;
+        vector<type_index> data_types;
+        Util::TypeMap<vector<string>> features_of_type;
         // map<string, size_t> Xidx, Zidx;
 
         Data operator()(const vector<size_t>& idx) const;
@@ -258,6 +240,7 @@ class Data
         /// to define metafeatures of the data.
         void init()
         {
+            //TODO: populate var_names, var_data_types, data_types, features_of_type
             n_features = this->features.size();
             // note this will have to change in unsupervised settings
             n_samples = this->y.size();
@@ -289,20 +272,33 @@ class Data
 
             for (int i = 0; i < var_names.size(); ++i)
             {
-                tmp_features[var_names[i]] = typecast(X.col(i).array());
-                
+                State tmp = check_type(X.col(i).array());
+                // std::type_index feature_type = typeid(std::decay_t<std::decltype(tmp)>);
+                std::type_index feature_type = StateType(tmp);
+
+                tmp_features[var_names[i]] = tmp;
+                Util::unique_insert(data_types, feature_type);
+                // add feature to appropriate map list 
+                features_of_type[feature_type].push_back(var_names.at(i));
             }
+            cout << "Data:: loaded data_types: ";
+            // Util::print(data_types.begin(), data_types.end());
             tmp_features.insert(Z.begin(), Z.end());
             return tmp_features;
 
         };
 
+        /// initialize data from a map.
         Data(std::map<string, State>& d, 
              const Ref<const ArrayXf>& y_ = ArrayXf(), 
              bool c = false
              ): 
-             features(d), y(y_), classification(c) {};
+             features(d), 
+             y(y_), 
+             classification(c) 
+             {init();};
 
+        /// initialize data from a matrix with feature columns.
         Data(const Ref<const ArrayXXf>& X, 
              const Ref<const ArrayXf>& y_ = ArrayXf(), 
              const Longitudinal& Z = {},
@@ -313,7 +309,7 @@ class Data
             features(make_features(X,Z,vn)),
             y(y_),
             classification(c)
-            {} 
+            {init();} 
 
         // Data(ArrayXf& X, ArrayXf& y, Longitudinal& Z, 
         //      const vector<string>& variable_names = {}, bool c = false);
@@ -336,16 +332,20 @@ class Data
         // { 
         //     return X.row(Xidx.at(name)).array(); 
         // };
-        const State operator[](std::string name) const 
+        State operator[](std::string name) const 
         {
             return this->features.at(name);
         }
         /// return a typed feature
-        auto get(string& name) const
-        {
-            return typedState(this->features.at(name));
+        /// Note: doesn't work, see typedState() comment above
+        // auto get(const string& name) const
+        // {
+        //     // return typedState(this->features.at(name));
+        //     return std::visit([](auto&& arg){ return arg; }, 
+        //                       this->features.at(name)
+        //                      );
 
-        }
+        // }
         // const ArrayXf operator[](std::string name) const 
         // { 
         //     return X.col(Xidx.at(name)).array();

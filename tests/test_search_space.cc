@@ -28,11 +28,6 @@ TEST(SearchSpace, Initialization)
 	Data dt(X, y, z);
     Data dv(X_v, y_v, z);
     
-    CVData dcv;
-    
-    dcv.setTrainingData(&dt);
-    dcv.setValidationData(&dv); 
-
     map<string, float> user_ops = {
         {"ADD", 1},
         {"SUB", 1},

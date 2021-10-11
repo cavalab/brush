@@ -355,6 +355,8 @@ void reorder(vector<T> &v, vector<int> const &order )
 
 /// convert a boolean mask to an index array
 vector<size_t> mask_to_index(const ArrayXb& mask);
+/// convert a boolean mask into true and false index arrays
+tuple<vector<size_t>,vector<size_t>> mask_to_indices(const ArrayXb& mask);
 
 // /// cast a float array to bool or integer if its values comply
 // auto typecast(ArrayXf& x);
@@ -528,7 +530,16 @@ void print(Iter first, Iter last)
 //     }
 // }
 
-
+/// unique insertion into a vector. 
+/// allows a vector to be used like a set. 
+/// source: http://www.lafstern.org/matt/col1.pdf
+template <class Vector, class T>
+void unique_insert(Vector& v, const T& t) 
+{
+    typename Vector::iterator i = std::lower_bound(v.begin(), v.end(), t);
+    if (i == v.end() || t < *i)
+    v.insert(i, t);
+}
 
 
 } // Util

@@ -410,5 +410,18 @@ vector<size_t> mask_to_index(const ArrayXb& mask)
     }
     return idx;
 }
+///returns 2 indices: first where mask is true, and second where mask is false.
+tuple<vector<size_t>,vector<size_t>> mask_to_indices(const ArrayXb& mask)
+{
+    tuple<vector<size_t>,vector<size_t>> indices({},{});
+    for (int i = 0; i < mask.size(); ++i)
+    {
+        if (mask(i))
+            std::get<0>(indices).push_back(i);
+        else
+            std::get<1>(indices).push_back(i);
+    }
+    return indices;
+}
 } // Util
 } // Brush

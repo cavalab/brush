@@ -129,7 +129,12 @@ NodeVector generate_terminals(const Data& d)
     {
         cout << "generating terminal " << var << endl;
         // terminals.push_back(make_shared<Terminal>(var, d[var]));
-        terminals.push_back(new Terminal(var, d[var]));
+        std::visit([&](const auto& arg){
+            terminals.push_back(new Terminal(var, arg));
+        },
+        d[var]
+        );
+
     };
     return terminals;
 };

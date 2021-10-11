@@ -53,6 +53,12 @@ static float NEAR_ZERO = 0.0000001;
 static float MAX_FLT = std::numeric_limits<float>::max();
 static float MIN_FLT = std::numeric_limits<float>::lowest();
 
-
+namespace Brush{
+// helper constant for the visitor
+template<class> inline constexpr bool always_false_v = false;
+// explicit deduction guide (not needed as of C++20)
+template<class... Ts> struct overloaded : Ts... { using Ts::operator()...; };
+template<class... Ts> overloaded(Ts...) -> overloaded<Ts...>;
+}
 
 #endif
