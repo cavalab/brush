@@ -139,9 +139,5 @@ find_package(pybind11 REQUIRED)
 include_directories("${pybind11_INCLUDE_DIRS}")
 
 #add_subdirectory(pybind11)
-<<<<<<< HEAD
-pybind11_add_module(brushgp src/brushgp.cc)
-=======
 pybind11_add_module(brushgp ${CMAKE_CURRENT_SOURCE_DIR}/src/brushgp.cc)
->>>>>>> data_class
 target_compile_definitions(brushgp PRIVATE VERSION_INFO=${EXAMPLE_VERSION_INFO})
