@@ -20,7 +20,7 @@ class Terminal: public TypedNodeBase<R>
         using base = TypedNodeBase<R>;
         string variable_name;
 
-        Terminal(string variable_name, R& value) : base("Terminal")
+        Terminal(string variable_name, const R& value) : base("Terminal")
         {
             /* @param variable_name: name of the variable
             *  @param value: the value, to grab its reference type
@@ -36,7 +36,7 @@ class Terminal: public TypedNodeBase<R>
         State predict(const Data& d, TreeNode*& first_child, 
                       TreeNode*& last_child) override
         {
-            State out = d[variable_name];
+            R out = std::get<R>(d[variable_name]);
             return out;
         };
         void grad_descent(const ArrayXf& gradient, const Data& d, 

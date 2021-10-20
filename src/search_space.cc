@@ -27,12 +27,12 @@ tuple<set<NodeBase*>,set<type_index>> generate_nodes(vector<string>& op_names)
                                                            op->f, 
                                                            op->df)
                     );
-        cout << "making TransformReduceDxNode " << op->name;
-        nodes.insert( new TransformReduceDxNode<ArrayXf(ArrayXf)>(op->name, 
-                                                           op->f, 
-                                                           op->df,
-                                                           10)
-                    );
+        // cout << "making TransformReduceDxNode " << op->name;
+        // nodes.insert( new TransformReduceDxNode<ArrayXf(ArrayXf)>(op->name, 
+        //                                                    op->f, 
+        //                                                    op->df,
+        //                                                    10)
+        //             );
     }
 
     if ( in(op_names, "best_split"))
@@ -129,7 +129,12 @@ NodeVector generate_terminals(const Data& d)
     {
         cout << "generating terminal " << var << endl;
         // terminals.push_back(make_shared<Terminal>(var, d[var]));
-        terminals.push_back(new Terminal(var, d[var]));
+        std::visit([&](const auto& arg){
+            terminals.push_back(new Terminal(var, arg));
+        },
+        d[var]
+        );
+
     };
     return terminals;
 };

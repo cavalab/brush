@@ -4,6 +4,7 @@ copyright 2020 William La Cava
 license: GNU/GPL v3
 */
 #ifndef PROGRAM_H
+
 #define PROGRAM_H
 //external includes
 
@@ -16,7 +17,7 @@ license: GNU/GPL v3
 // internal includes
 #include "tree.h"
 
-#include "data/data.h"
+// #include "data/data.h"
 #include "state.h"
 #include "node.h"
 #include "search_space.h"
@@ -24,7 +25,7 @@ license: GNU/GPL v3
 
 using std::cout;
 using std::string;
-using Brush::State;
+using Brush::data::State;
 using Brush::data::Data;
 using Brush::SearchSpace;
 

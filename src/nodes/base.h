@@ -21,6 +21,7 @@ using namespace std;
  */
 /* namespace Brush{ */
 using namespace Brush::Util;
+using Brush::data::State;
 
 namespace Brush {
 namespace nodes {
@@ -28,6 +29,7 @@ namespace nodes {
 // defined nodes:
 template<typename F> class Node; 
 
+// TODO: combine this with tree_node_<NodeBase*>
 class NodeBase {
 	public:
 

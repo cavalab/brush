@@ -38,7 +38,6 @@ std::string trim(std::string str, const std::string& chars)
     return ltrim(rtrim(str, chars), chars);
 }
 
-/// determines data types of columns of matrix X.
 vector<type_index> get_dtypes(MatrixXf &X)
 {
     vector<type_index> dtypes;
@@ -48,7 +47,7 @@ vector<type_index> get_dtypes(MatrixXf &X)
     bool isBinary;
     bool isCategorical;
     std::map<float, bool> uniqueMap;
-    for(i = 0; i < X.rows(); i++)
+    for(i = 0; i < X.cols(); i++)
     {
         isBinary = true;
         isCategorical = true;
@@ -103,7 +102,7 @@ void Normalizer::fit(MatrixXf& X, const vector<char>& dt)
     scale.clear();
     offset.clear();
     dtypes = dt; 
-    for (unsigned int i=0; i<X.rows(); ++i)
+    for (unsigned int i=0; i<X.cols(); ++i)
     {
         // mean center
         VectorXf tmp = X.row(i).array()-X.row(i).mean();
@@ -118,7 +117,7 @@ void Normalizer::fit(MatrixXf& X, const vector<char>& dt)
 void Normalizer::normalize(MatrixXf& X)
 {  
     // normalize features
-    for (unsigned int i=0; i<X.rows(); ++i)
+    for (unsigned int i=0; i<X.cols(); ++i)
     {
         if (std::isinf(scale.at(i)))
         {
@@ -172,7 +171,7 @@ string to_string(const T& value)
 /// returns the condition number of a matrix.
 float condition_number(const MatrixXf& X)
 {
-    /* cout << "X (" << X.rows() << "x" << X.cols() << "): " << X.transpose() << "\n"; */
+    /* cout << "X (" << X.cols() << "x" << X.cols() << "): " << X.transpose() << "\n"; */
     /* MatrixXf Y = X; */
     /* try */
     /* { */
@@ -398,6 +397,31 @@ void ReplaceStringInPlace(std::string& subject, const std::string& search,
          subject.replace(pos, search.length(), replace);
          pos += replace.length();
     }
+}
+
+/// convert a boolean mask to an index array
+vector<size_t> mask_to_index(const ArrayXb& mask)
+{
+    vector<size_t> idx;
+    for (int i = 0; i < mask.size(); ++i)
+    {
+        if (mask(i))
+            idx.push_back(i);
+    }
+    return idx;
+}
+///returns 2 indices: first where mask is true, and second where mask is false.
+tuple<vector<size_t>,vector<size_t>> mask_to_indices(const ArrayXb& mask)
+{
+    tuple<vector<size_t>,vector<size_t>> indices({},{});
+    for (int i = 0; i < mask.size(); ++i)
+    {
+        if (mask(i))
+            std::get<0>(indices).push_back(i);
+        else
+            std::get<1>(indices).push_back(i);
+    }
+    return indices;
 }
 } // Util
 } // Brush

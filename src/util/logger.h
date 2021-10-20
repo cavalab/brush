@@ -17,7 +17,7 @@ namespace Brush {
         
         /*!
          * @class Logger
-         * @brief Defines a multi level static logger for feat.
+         * @brief Defines a multi level static logger.
          */
 
         class Logger

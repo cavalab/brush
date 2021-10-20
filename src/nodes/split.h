@@ -6,6 +6,7 @@ license: GNU/GPL v3
 #ifndef SPLIT_H
 #define SPLIT_H
 #include "base.h"
+using std::get;
 
 namespace Brush {
 namespace nodes {
@@ -26,7 +27,8 @@ class SplitNode<R(Args...)> : public TypedNodeBase<R, Args...>
         /// whether the variable choice is fixed
         bool fixed_variable;
         /// the learned feature choice
-        unsigned int loc;
+        // unsigned int loc;
+        string feature;
         /// the learned threshold
         float threshold;
         /// sample feature space
@@ -34,7 +36,7 @@ class SplitNode<R(Args...)> : public TypedNodeBase<R, Args...>
         float feature_sample = 1.0;
 
 
-        SplitNode(string name, int loc = -1) : base(name) 
+        SplitNode(string name, string feature = "") : base(name) 
         {
             /* TODO: this constructor should determine whether we are searching
              * for the best split feature or taking a feature for splitting as
@@ -45,7 +47,7 @@ class SplitNode<R(Args...)> : public TypedNodeBase<R, Args...>
             // if (loc != -1)
             if (base::ArgCount == 3)
             {
-                this->loc = loc;
+                this->feature = feature;
                 this->fixed_variable = true;
             }
         };
@@ -65,14 +67,19 @@ class SplitNode<R(Args...)> : public TypedNodeBase<R, Args...>
             // set feature and threshold
             if (this->fixed_variable)
             {
-                // TODO: replace loc with child arg 1 output
-                tie(this->threshold, ignore) = set_threshold(d, this->loc);
+                // TODO: replace feature with child arg 1 output
+                tie(this->threshold, ignore) = best_threshold(d[this->feature],
+                                                             d.y, 
+                                                             d.classification
+                                                             );
             }
             else
                 set_variable_and_threshold(d);
 
             // split the data
-            ArrayXb mask = d.X.row(this->loc).array() < this->threshold;
+            // ArrayXb mask = std::get<R>(d[this->feature] < this->threshold;
+            // ArrayXb mask = d[this->feature] < this->threshold;
+            ArrayXb mask = this->threshold_mask(d);
             array<Data, 2> data_splits = d.split(mask);
 
             array<State, base::ArgCount> child_outputs;
@@ -87,7 +94,7 @@ class SplitNode<R(Args...)> : public TypedNodeBase<R, Args...>
             // }
 
             // stitch together outputs
-            State out = this->stitch(child_outputs, d);
+            State out = this->stitch(child_outputs, d, mask);
 
             cout << "returning " << std::get<R>(out) << endl;
 
@@ -102,12 +109,14 @@ class SplitNode<R(Args...)> : public TypedNodeBase<R, Args...>
             cout << "last_child: " << last_child << endl;
 
             // split the data
-            ArrayXb mask = d.X.row(this->loc).array() < this->threshold;
+            // ArrayXb mask = d.get(this->feature) < this->threshold;
+            ArrayXb mask = this->threshold_mask(d);
             array<Data, 2> data_splits = d.split(mask);
 
             // array<State, base::ArgCount> child_outputs;
-            auto child_outputs = this->get_children_predict(data_splits, first_child, 
-                                                       last_child);
+            auto child_outputs = this->get_children_predict(data_splits,    
+                                                            first_child, 
+                                                            last_child);
             // cout << "gathering inputs..." << endl;
             // TreeNode* sib = first_child;
             // for (int i = 0; i < base::ArgCount; ++i)
@@ -118,7 +127,7 @@ class SplitNode<R(Args...)> : public TypedNodeBase<R, Args...>
             // }
 
             // stitch together outputs
-            State out = this->stitch(child_outputs, d);
+            State out = this->stitch(child_outputs, d, mask);
 
             cout << "returning " << std::get<R>(out) << endl;
             return out;
@@ -128,7 +137,9 @@ class SplitNode<R(Args...)> : public TypedNodeBase<R, Args...>
         void grad_descent(const ArrayXf& gradient, const Data& d, 
                           TreeNode*& first_child, TreeNode*& last_child) override
         {
-            ArrayXb mask = d.X.row(this->loc).array() < this->threshold;
+            // ArrayXb mask = d[this->feature] < this->threshold;
+            // ArrayXb mask = d.get(this->feature) < this->threshold;
+            ArrayXb mask = this->threshold_mask(d);
             array<Data, 2> data_splits = d.split(mask);
 
             array<ArrayXf, 2> grad_splits = Brush::Util::split(gradient, mask);
@@ -176,118 +187,286 @@ class SplitNode<R(Args...)> : public TypedNodeBase<R, Args...>
             return get_children(data_splits, first_child, last_child, &TreeNode::predict);
         }
         /// Stitches together outputs from left or right child based on threshold
-        State stitch(array<State, base::ArgCount>& child_outputs, const Data& d)
+        State stitch(array<State, base::ArgCount>& child_outputs, const Data& d,
+                     const ArrayXb& mask)
         {
-            R result;
-            ArrayXb mask = d.X.row(this->loc).array() < this->threshold;
-            for (int i = 0; i < mask.size(); ++i)
-            {
-                result(i) = mask(i) ? get<R>(child_outputs.at(0))(i) 
-                                    : get<R>(child_outputs.at(1))(i);
-            }
+            // TODO: this wont work as written; the index of the left and right
+            // child need to be taken into account
+            R result(mask.size());
+            // ArrayXb mask = d[this->feature] < this->threshold;
+            // ArrayXb mask = d.get(this->feature) < this->threshold;
+
+            vector<size_t> L_idx, R_idx;
+            tie (L_idx, R_idx) = Util::mask_to_indices(mask);
+            result(L_idx) = get<R>(child_outputs.at(0));
+            result(R_idx) = get<R>(child_outputs.at(1));
+            // int lhs=0, rhs=0;
+            // for (int i = 0; i < mask.size(); ++i)
+            // {
+            //     result(i) = mask(i) ? get<R>(child_outputs.at(0))(i) 
+            //                         : get<R>(child_outputs.at(1))(i);
+            // }
             return result;
 
         }
+        /// Applies a learned threshold to a feature, returning a mask.
+        ArrayXb threshold_mask(const State& x, const float& threshold)
+        {
+            return std::visit(overloaded {
+                [&](const ArrayXb& arg) -> ArrayXb { return arg; },
+                [&](const ArrayXi& arg) -> ArrayXb { return (arg == this->threshold); },
+                [&](const ArrayXf& arg) -> ArrayXb { return (arg < this->threshold); },
+                [&](const auto& arg)    { 
+                    HANDLE_ERROR_THROW("Split threshold not defined for this State type!"); return ArrayXb(); },
+                // [&](const ArrayXXb& arg) { return arg; },
+                // [&](const ArrayXXi& arg) { return arg; },
+                // [&](const ArrayXXf& arg) { return arg; },
+                // [&](const TimeSeries& arg) { return arg; }
+                }, x);
 
+        }
+        ArrayXb threshold_mask(const Data& d)
+        {
+            return this->threshold_mask(d[this->feature], this->threshold);
+
+        }
+        
+        State get_unique(const State& value)
+        {
+            return std::visit([&](auto&& arg) 
+            {
+                using T = std::decay_t<decltype(arg)>;
+                if constexpr (std::is_same_v<T, ArrayXb> 
+                              || std::is_same_v<T, ArrayXi> 
+                              || std::is_same_v<T, ArrayXf> 
+                             )
+                    return State(Util::unique(arg));
+                else if constexpr (std::is_same_v<T, ArrayXXb> 
+                                   || std::is_same_v<T, ArrayXXi> 
+                                   || std::is_same_v<T, ArrayXXf> 
+                                   || std::is_same_v<T, data::TimeSeries> 
+                                  )
+                {
+                    HANDLE_ERROR_THROW("Can't get unique vals for type!");
+                    return value;
+                }
+            },
+            value
+            );
+        }
+         
         void set_variable_and_threshold(const Data& d)
         {
-            /* loops thru variables in d.X and picks the best threshold
+            /* loops thru variables in d and picks the best threshold
              * and feature to split at.
              */
             float best_score = 0;
-            for (int i = 0; i < d.X.rows(); ++i)
+            int i = 0;
+            vector<std::type_index> feature_types{typeid(ArrayXi),
+                                                  typeid(ArrayXb),
+                                                  typeid(ArrayXf)
+                                                 };
+            for (auto& ft: feature_types)
             {
-                float tmp_thresh, score;
-                tie(tmp_thresh, score) = set_threshold(d, i);
-
-                if (score < best_score || i == 0)
+                for (const auto& key : d.features_of_type.at(ft)) 
                 {
-                    best_score = score;
-                    this->loc = i;
-                    this->threshold = tmp_thresh;
-                }
+                    float tmp_thresh, score;
 
+                    tie(tmp_thresh, score) = best_threshold(d[key], 
+                                                            d.y, 
+                                                            d.classification
+                                                           );
+                    if (score < best_score || i == 0)
+                    {
+                        best_score = score;
+                        this->feature = key;
+                        this->threshold = tmp_thresh;
+                    }
+                    ++i;
+                }
             }
         }
 
-        tuple<float,float> set_threshold(const Data& d, int var_idx)
+        tuple<float,float> best_threshold(const State& x, const ArrayXf& y, 
+                                          bool classification)
         {
             /* for each unique value in x, calculate the reduction in the 
-             * heuristic brought about by
-             * splitting between that value and the next. 
-             * set threshold according to the biggest reduction. 
-             * 
-             * returns: the threshold and the score.
-             */
-            const ArrayXf& x = d.X.row(var_idx); 
-            const ArrayXf& y = d.y;
+            * heuristic brought about by
+            * splitting between that value and the next. 
+            * set threshold according to the biggest reduction. 
+            * 
+            * returns: the threshold and the score.
+            */
+            // get all possible split masks based on variant type
+            
+            vector<float> all_thresholds = std::visit(overloaded 
+            {
+                [&](const ArrayXb& x) -> vector<float>
+                {
+                    return vector<float>{0.0};
+                },
+                [&](const ArrayXi& x) -> vector<float>
+                {
+                    vector<float> thresholds;
+                    for (const auto& val : unique(x))
+                        thresholds.push_back(val);
+                    return thresholds;
+                },
+                [&](const ArrayXf& x) -> vector<float>
+                {
+                    vector<float> thresholds;
+                    auto s = unique(x);
+                    for (unsigned i =0; i<s.size()-1; ++i)
+                    {
+                        thresholds.push_back(s.at(i) + s.at(i+1));
+                    }
+                    return thresholds;
+                },
+                [&](const auto& x) -> vector<float>
+                {
+                    HANDLE_ERROR_THROW("Threshold not implemented for this type!");
+                    return vector<float>();
+                }
+            }, x);
+            // map<float, ArrayXb> all_masks = \
+            // std::visit(overloaded {
+            //     [&](const ArrayXb& x) -> map<float, ArrayXb>
+            //     {
+            //         return {0.0, x};
+            //     },
+            //     [&](const ArrayXi& x) -> map<float, ArrayXb>
+            //     {
+            //         map<float, ArrayXb> masks;
+            //         for (const auto& val : unique(x))
+            //             masks[val] = (x == val);
+            //         return masks;
+            //     },
+            //     [&](const ArrayXb& x) -> map<float, ArrayXb>
+            //     {
+            //         map<float, ArrayXb> masks;
+            //         auto s = unique(x);
+            //         for (unsigned i =0; i<s.size()-1; ++i)
+            //         {
+            //             float val = (s.at(i) + s.at(i+1)) / 2;
+            //             masks[val] = (x < val);
+            //         }
+            //         return masks;
+            //     },
+            //     [&](const auto& x) -> map<float, ArrayXb>
+            //     {
+            //         HANDLE_ERROR_THROW("Threshold not implemented for this type!");
+            //         return {};
+            //     }
+            // }, x);
 
-            vector<float> s = unique(x);
+            //////////////////// shared //////////////////////
+            float score, best_thresh, best_score;
+            int i = 0 ;
+            vector<float> unique_classes;
+            if (classification)
+                unique_classes = unique(y);
 
-            // we'll treat x as a float if it has more than 10 unique values
-            bool x_is_float = d.data_types.at(var_idx) == typeid(ArrayXf);
-
-            vector<float> unique_classes = unique(y);
-            vector<int> idx(x.size());
-            std::iota(idx.begin(),idx.end(), 0);
-            Map<ArrayXi> midx(idx.data(),idx.size());
-            float thresh, score, best_score;
-
-            for (unsigned i =0; i<s.size()-1; ++i)
+            for (const auto thresh: all_thresholds)
             {
 
-                float val;
-                ArrayXi split_idx;
-                
-                if (x_is_float)
-                {
-                    val = (s.at(i) + s.at(i+1)) / 2;
-                    split_idx = (x < val).select(midx,-midx-1);
-                }
-                else
-                {
-                    val = s.at(i);
-                    split_idx = (x == val).select(midx,-midx-1);
-                }
-
-                /* cout << "split val: " << val << "\n"; */
+                ArrayXb mask = threshold_mask(x, thresh);
+                vector<size_t> L_idx, R_idx;
+                tie (L_idx, R_idx) = Util::mask_to_indices(mask);
 
                 // split data
-                vector<float> d1, d2; 
-                for (unsigned j=0; j< split_idx.size(); ++j)
-                {
-                    if (split_idx(j) <0)
-                        d2.push_back(y(-1-split_idx(j)));
-                    else
-                        d1.push_back(y(split_idx(j)));
-                }
-                if (d1.empty() || d2.empty())
+                const ArrayXf& lhs = y(L_idx); 
+                const ArrayXf& rhs = y(R_idx); 
+
+                if (lhs.size() == 0 || rhs.size() == 0)
                     continue;
 
-                Map<VectorXf> map_d1(d1.data(), d1.size());  
-                Map<VectorXf> map_d2(d2.data(), d2.size());  
-                /* cout << "d1: " << map_d1.transpose() << "\n"; */
-                /* cout << "d2: " << map_d2.transpose() << "\n"; */
-                score = gain(map_d1, map_d2, d.classification, 
-                        unique_classes);
+                score = gain(lhs, rhs, classification, 
+                            unique_classes);
                 /* cout << "score: " << score << "\n"; */
                 if (score < best_score || i == 0)
                 {
                     best_score = score;
-                    thresh = val;
+                    best_thresh = thresh;
                 }
-                /* cout << val << "," << score << "\n"; */
+                ++i;
             }
 
-            thresh = std::isinf(thresh)? 
-                0 : std::isnan(thresh)? 
-                0 : thresh;
+            best_thresh = std::isinf(best_thresh)? 
+                0 : std::isnan(best_thresh)? 
+                0 : best_thresh;
 
-            return make_tuple(thresh, score);
+            return make_tuple(best_thresh, best_score);
+
         }
+
+        // tuple<float,float> set_threshold(const Data& d, string var)
+        // {
+        //     /* for each unique value in x, calculate the reduction in the 
+        //      * heuristic brought about by
+        //      * splitting between that value and the next. 
+        //      * set threshold according to the biggest reduction. 
+        //      * 
+        //      * returns: the threshold and the score.
+        //      */
+        //     //TODO: we need way to subset the data by features of a specific
+        //     // type. In this case, array features.
+        //     const auto& x = d[var]; 
+        //     const ArrayXf& y = d.y;
+
+        //     auto s = this->get_unique(x);
+
+        //     // we'll treat x as a float if it has more than 10 unique values
+        //     // using T = std::decay_t<decltype(x)>;
+        //     // bool x_is_float = std::is_same_v<T, ArrayXf>;
+        //     bool x_is_float = std::holds_alternative<ArrayXf>(x);
+
+        //     vector<float> unique_classes = unique(y);
+        //     float thresh, score, best_score;
+
+        //     for (unsigned i =0; i<s.size()-1; ++i)
+        //     {
+
+        //         float val;
+                
+        //         if (x_is_float)
+        //         {
+        //             val = (s.at(i) + s.at(i+1)) / 2;
+        //             mask = (x < val);
+        //         }
+        //         else
+        //         {
+        //             val = s.at(i);
+        //             mask = (x == val);
+        //         }
+        //         vector<size_t> L_idx, R_idx;
+        //         tie (L_idx, R_idx) = Util::mask_to_indices(this->threshold_mask(x, val));
+
+        //         // split data
+        //         const ArrayXf& lhs = y(L_idx); //target_splits[0];
+        //         const ArrayXf& rhs = y(R_idx); //target_splits[1];
+
+        //         if (lhs.size() == 0 || rhs.size() == 0)
+        //             continue;
+
+        //         score = gain(lhs, rhs, d.classification, 
+        //                      unique_classes);
+        //         /* cout << "score: " << score << "\n"; */
+        //         if (score < best_score || i == 0)
+        //         {
+        //             best_score = score;
+        //             thresh = val;
+        //         }
+        //     }
+
+        //     thresh = std::isinf(thresh)? 
+        //         0 : std::isnan(thresh)? 
+        //         0 : thresh;
+
+        //     return make_tuple(thresh, score);
+        // }
        
-        float gain(const VectorXf& lsplit, 
-                const VectorXf& rsplit, 
+        float gain(const ArrayXf& lsplit, 
+                const ArrayXf& rsplit, 
                 bool classification, vector<float> unique_classes)
         {
             float lscore, rscore, score;
@@ -303,25 +482,24 @@ class SplitNode<R(Args...)> : public TypedNodeBase<R, Args...>
             }
             else
             {
-                lscore = variance(lsplit.array())/float(lsplit.size());
-                rscore = variance(rsplit.array())/float(rsplit.size());
+                lscore = variance(lsplit)/float(lsplit.size());
+                rscore = variance(rsplit)/float(rsplit.size());
                 score = lscore + rscore; 
             }
 
             return score;
         }
 
-        float gini_impurity_index(const VectorXf& classes, 
-                vector<float> uc)
+        float gini_impurity_index(const ArrayXf& classes, 
+                                  const vector<float>& uc)
         {
-            VectorXf class_weights(uc.size());
+            VectorXf class_weights = VectorXf::Zero(uc.size());
             for (auto c : uc){
-                class_weights(c) = 0;
-                class_weights(c) = float(
-                        (classes.cast<int>().array() == int(c)).count()
+                class_weights(int(c)) = float(
+                        (classes.cast<int>() == int(c)).count()
                         )/classes.size();
                 cout << "class_weights for " << c << ": " 
-                     << class_weights(c) << "\n"; 
+                     << class_weights(int(c)) << "\n"; 
             }
             /* float total_weight=class_weights.sum(); */
             float gini = 1 - class_weights.dot(class_weights);

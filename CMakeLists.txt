@@ -96,10 +96,11 @@ set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wno-ignored-attributes")
 
 # gather list of source files
 
-file(GLOB_RECURSE sources "src/*.cc")
+file(GLOB_RECURSE sources ${CMAKE_CURRENT_SOURCE_DIR}/src/*.cc)
 # ignore main for now, just build tests
 list(REMOVE_ITEM sources ${CMAKE_CURRENT_SOURCE_DIR}/src/main.cc)
 
+message(STATUS "Sources: '${sources}")
 # build brush library
 add_library(brush SHARED ${sources})
 
@@ -109,6 +110,7 @@ add_library(brush SHARED ${sources})
 # Google tests
 # Link runTests with what we want to test and the GTest and pthread library
 file(GLOB_RECURSE testsSrc "tests/*.cc")
+message(STATUS "testsSrc: '${testsSrc}")
 
 add_executable(tests ${testsSrc})
 target_link_libraries(tests brush ${GTEST_LIBRARIES} pthread)
@@ -137,5 +139,9 @@ find_package(pybind11 REQUIRED)
 include_directories("${pybind11_INCLUDE_DIRS}")
 
 #add_subdirectory(pybind11)
+<<<<<<< HEAD
 pybind11_add_module(brushgp src/brushgp.cc)
+=======
+pybind11_add_module(brushgp ${CMAKE_CURRENT_SOURCE_DIR}/src/brushgp.cc)
+>>>>>>> data_class
 target_compile_definitions(brushgp PRIVATE VERSION_INFO=${EXAMPLE_VERSION_INFO})

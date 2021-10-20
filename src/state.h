@@ -23,15 +23,48 @@ using Eigen::VectorXf;
 using Eigen::ArrayXf;
 using Eigen::ArrayXi;
 typedef Eigen::Array<bool,Eigen::Dynamic,1> ArrayXb;
+typedef Eigen::Array<bool, Eigen::Dynamic, Eigen::Dynamic> ArrayXXb;
 using namespace std;
 
 //#include "node/node.h"
 //external includes
 
-namespace Brush { 
-    /* typedef std::tuple<float, bool, int, ArrayXf, ArrayXi, ArrayXb> State; */ 
-    typedef std::variant<float, bool, int, ArrayXf, ArrayXi, ArrayXb> State; 
-}
+// namespace Brush { 
+//     /* typedef std::tuple<float, bool, int, ArrayXf, ArrayXi, ArrayXb> State; */ 
+//     typedef std::variant<
+//                          ArrayXb,
+//                          ArrayXi, 
+//                          ArrayXf, 
+//                          ArrayXXb,
+//                          ArrayXXi, 
+//                          ArrayXXf, 
+//                          data::TimeSeries,
+//                          > State; 
+
+//     /// return the implicit type of a State
+//     // explicit deduction guide (not needed as of C++20)
+//     template<class... Ts> overloaded(Ts...) -> overloaded<Ts...>;
+//     auto typedState(const auto& arg)
+//     {
+//         // 4. another type-matching visitor: a class with 3 overloaded operator()'s
+//         // Note: The `(auto arg)` template operator() will bind to `int` and `long`
+//         //       in this case, but in its absence the `(double arg)` operator()
+//         //       *will also* bind to `int` and `long` because both are implicitly
+//         //       convertible to double. When using this form, care has to be taken
+//         //       that implicit conversions are handled correctly.
+//         std::visit(overloaded {
+//             [](const auto& arg) -> State { return arg; },
+//             [](const ArrayXf& arg) -> ArrayXf { return arg; },
+//             [](const ArrayXi& arg) -> ArrayXi { return arg; },
+//             [](const ArrayXb& arg) -> ArrayXb { return arg; },
+//             [](const ArrayXXf& arg) -> ArrayXXf { return arg; },
+//             [](const ArrayXXi& arg) -> ArrayXXi { return arg; },
+//             [](const ArrayXXb& arg) -> ArrayXXb { return arg; },
+//             [](const TimeSeries& arg) -> TimeSeries { return arg; },
+//         }, arg);
+//     }
+//     }
+// }
     /*template<typename type>*/
     /*!
     /* * @class NodeData*/

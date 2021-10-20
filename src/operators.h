@@ -453,6 +453,8 @@ struct make_unary_operators<ArrayXf>
         if (op_names.empty())
             return all_ops;
 
+        //TODO: note this is slower than the BinaryOperator impl above 
+        // (loop over op_names, not all_ops)
         vector<shared_ptr<UnaryOperator<ArrayXf>>> filtered_ops;
         std::copy_if(all_ops.begin(), all_ops.end(),
                     std::back_inserter(filtered_ops),

@@ -4,16 +4,16 @@
             "name": "Linux",
             "includePath": [
                 "${workspaceFolder}/**",
-                "${env:CONDA_PREFIX}/envs/brush/include/",
-                "${env:CONDA_PREFIX}/envs/brush/include/eigen3/"
+                "${env:CONDA_PREFIX}/include/",
+                "${env:CONDA_PREFIX}/include/eigen3/"
             ],
             "browse": {
-                "databaseFilename":"${workspaceFolder}/.vscode/vc.db",
+                "databaseFilename": "${workspaceFolder}/.vscode/vc.db",
                 "limitSymbolsToIncludedHeaders": true,
                 "path": [
-                        "${workspaceFolder}",
-                        "${env:CONDA_PREFIX}/envs/brush/include/"
-                        ]
+                    "${workspaceFolder}",
+                    "${env:CONDA_PREFIX}/envs/brush/include/"
+                ]
             },
             "defines": [],
             "compilerPath": "/usr/bin/gcc",
