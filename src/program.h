@@ -22,6 +22,8 @@ license: GNU/GPL v3
 #include "node.h"
 #include "search_space.h"
 #include "params.h"
+#include "util/utils.h"
+
 
 using std::cout;
 using std::string;

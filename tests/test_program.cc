@@ -12,8 +12,8 @@ TEST(Program, MakeProgram)
          2.0,1.0,6.0,4.0,5.0,8.0,7.0,5.0,9.0,10.0,
     y << 1.0,0.0,1.0,1.0,0.0,1.0,1.0,0.0,0.0,0.0;
     Longitudinal Z;
+    cout << "Allocated data structures, now assembling Data object...\n";
     Data data(X,y,Z);
-    // cout << "fitting tree...\n";
     // State out = tree.fit(d);
     // cout << "output: " << get<ArrayXb>(out) << endl;
 

@@ -197,7 +197,10 @@ class Data
             features(make_features(X,Z,vn)),
             y(y_),
             classification(c)
-            {init();} 
+            {
+                cout << "Reached constructor...\n";
+                init();
+            } 
 
         void set_validation(bool v=true);
         
