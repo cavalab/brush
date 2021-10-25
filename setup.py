@@ -124,6 +124,6 @@ setup(
     ext_modules=[CMakeExtension("brushgp")],
     cmdclass={"build_ext": CMakeBuild},
     test_suite='nose.collector',
-    tests_require=['nose'],
+    tests_require=['nose', 'pmlb'],
     zip_safe=False,
 )

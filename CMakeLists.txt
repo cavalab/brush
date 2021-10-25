@@ -75,7 +75,8 @@ message(STATUS "GTest library=${GTEST_LIBRARIES}")
 set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
 
 # set a default build type if none was specified
-set(default_build_type "Release")
+# set(default_build_type "Release")
+set(default_build_type "Debug")
 if (NOT CMAKE_BUILD_TYPE)
     message(STATUS "Setting build type to '${default_build_type}' since none was specified.")
     set(CMAKE_BUILD_TYPE "${default_build_type}")
