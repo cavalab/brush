@@ -125,14 +125,16 @@ set<NodeBase*> generate_all_nodes(vector<string>& node_names,
 NodeVector generate_terminals(const Data& d)
 {
     NodeVector terminals;
-    for (const auto& var : d.var_names)
+    for (const auto& kv : d.features)
     {
-        cout << "generating terminal " << var << endl;
+        // const string& var = kv.first;
+        // const State& arg = kv.second;
+        // std::cout << "generating terminal " << kv.first << endl;
         // terminals.push_back(make_shared<Terminal>(var, d[var]));
-        std::visit([&](const auto& arg){
-            terminals.push_back(new Terminal(var, arg));
-        },
-        d[var]
+        std::visit([&](const auto& a){
+            terminals.push_back(new Terminal(kv.first, a));
+            },
+            kv.second
         );
 
     };
