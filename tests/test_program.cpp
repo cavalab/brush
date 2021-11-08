@@ -6,14 +6,21 @@ TEST(Program, MakeProgram)
 {
         
     cout << "setting up data...\n";
-    MatrixXf X(2,10);
+    ArrayXXf X(10,2);
     ArrayXf y(10);
-    X << 1.0,2.0,3.0,4.0,5.0,6.0,7.0,8.0,9.0,10.0,
-         2.0,1.0,6.0,4.0,5.0,8.0,7.0,5.0,9.0,10.0,
-    y << 1.0,0.0,1.0,1.0,0.0,1.0,1.0,0.0,0.0,0.0;
-    Longitudinal Z;
+    X << 1.1,2.0,3.0,4.0,5.0,6.5,7.0,8.0,9.0,10.0,
+         2.0,1.2,6.0,4.0,5.0,8.0,7.0,5.0,9.0,10.0,
+    y << 1.0,0.0,1.4,1.0,0.0,1.0,1.0,0.0,0.0,0.0;
     cout << "Allocated data structures, now assembling Data object...\n";
-    Data data(X,y,Z);
+    Data data(X,y);
+    for (const auto& kv : data.features)
+    {
+        const string& name = kv.first;
+        const State& value = kv.second;
+
+        std::cout << name << ": ";
+        std::visit([](auto&& v){std::cout << v << endl;}, value);
+    }
     // State out = tree.fit(d);
     // cout << "output: " << get<ArrayXb>(out) << endl;
 
@@ -50,7 +57,7 @@ TEST(Program, BackProp)
     // X2: sin(r)
     /* r = 0.54340523, 0.98342536, 0.52725502, 0.1019157 , 0.13250716, */
     /*          0.2273736 , 0.78280196, 0.31946665, 0.07088554, 0.99791986; */
-    MatrixXf X(2,10);
+    MatrixXf X(10,2);
     ArrayXf y(10);
     X << 0.85595296, 0.55417453, 0.8641915 , 0.99481109, 0.99123376,
          0.9742618 , 0.70894019, 0.94940306, 0.99748867, 0.54205151,
@@ -58,8 +65,7 @@ TEST(Program, BackProp)
          0.2254195 , 0.70526861, 0.31406024, 0.07082619, 0.84034526;
     y << 3.55634251, 3.13854087, 3.55887523, 3.29462895, 3.33443517,
              3.4378868 , 3.41092345, 3.5087468 , 3.25110243, 3.11382179;
-    Longitudinal Z;
-    Data data(X,y,Z);
+    Data data(X,y);
 
     SearchSpace SS;
     SS.init(data);
@@ -99,7 +105,7 @@ TEST(Program, Mutation)
     /* r = 0.54340523, 0.98342536, 0.52725502, 0.1019157 , 0.13250716, */
     /*          0.2273736 , 0.78280196, 0.31946665, 0.07088554, 0.99791986; */
     // TODO: set random seed
-    MatrixXf X(2,10);
+    MatrixXf X(10,2);
     ArrayXf y(10);
     X << 0.85595296, 0.55417453, 0.8641915 , 0.99481109, 0.99123376,
          0.9742618 , 0.70894019, 0.94940306, 0.99748867, 0.54205151,
@@ -107,8 +113,7 @@ TEST(Program, Mutation)
          0.2254195 , 0.70526861, 0.31406024, 0.07082619, 0.84034526;
     y << 3.55634251, 3.13854087, 3.55887523, 3.29462895, 3.33443517,
              3.4378868 , 3.41092345, 3.5087468 , 3.25110243, 3.11382179;
-    Longitudinal Z;
-    Data data(X,y,Z);
+    Data data(X,y);
 
     SearchSpace SS;
     SS.init(data);

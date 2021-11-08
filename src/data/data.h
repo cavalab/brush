@@ -59,24 +59,8 @@ struct TimeSeries
         std::visit([&](auto&& arg) { arg = arg(idx, Eigen::all); }, v);
         return TimeSeries(t, v);
     };
-    /**
-     * @brief Print the time series.
-     * 
-     * @param output ostream object
-     * @param T time series object
-     * @return ostream& 
-     */
-    friend ostream &operator<<( ostream &output, const TimeSeries &T ) 
-    { 
-        //  for (int i = 0; i < T.time.rows(); ++i)
-        //  {
-            // output << "("+T.time(i)+", "+T.value(i)+")";
-            // if (i != T.time.rows()-1)
-            //     output << ", ";
-        //  }
-        std::visit([&](const auto& a){output << a;}, T.value);
-         return output;            
-    }
+    friend ostream &operator<<( ostream &output, const TimeSeries &ts );
+    
     /// return a slice of the data by row or column
     template<typename T, typename U>
     TimeSeries operator()(const T& rows, 
@@ -88,6 +72,8 @@ struct TimeSeries
     };
     // TODO: from_json and to_json
 };
+
+
 typedef std::map<std::string, TimeSeries> Longitudinal;
 /// State: defines the possible types of data flowing thru nodes.
 typedef std::variant<
@@ -125,11 +111,10 @@ class Data
     //std::pair<vector<ArrayXf>, vector<ArrayXf>>>& Z): X(X), y(y), Z(Z){}
     private:
     public:
-        std::vector<std::string> var_names;
         std::vector<type_index> data_types;
         Util::TypeMap<vector<string>> features_of_type;
 
-        const std::map<string, State>& features;
+        std::map<string, State> features;
 
         // ArrayXXf& X;
         const Ref<const ArrayXf> y;
@@ -144,75 +129,13 @@ class Data
         Data operator()(const vector<size_t>& idx) const;
         /// call init at the end of constructors
         /// to define metafeatures of the data.
-        void init()
-        {
-            //TODO: populate var_names, var_data_types, data_types, features_of_type
-            n_features = this->features.size();
-            // note this will have to change in unsupervised settings
-            n_samples = this->y.size();
+        void init();
 
-            // debug: print data
-            for (const auto& [var, arg] : this->features)
-            {
-                std::cout << "feature: " << var << endl; 
-                std::visit([&](const auto& a){ cout << a << "\n"; }, arg);
-            }
-        }
-        // Data()
-        // {
-        //     // this->y = ArrayXf();
-        //     classification=false;
-        // }
         /// turns input data into a feature map
-        std::map<string, State> make_features(const Ref<const ArrayXXf>& X,
+        map<string,State> make_features(const Ref<const ArrayXXf>& X,
                                               const Longitudinal& Z = {},
                                               const vector<string>& vn = {}
-                                              ) 
-        {
-            std::map<std::string, State> tmp_features;
-
-            for (int i = 0; i < X.cols(); ++i)
-            {
-                State tmp = check_type(X.col(i).array());
-                // std::type_index feature_type = typeid(std::decay_t<std::decltype(tmp)>);
-                std::type_index feature_type = StateType(tmp);
-
-                tmp_features[var_names.at(i)] = tmp;
-                // save feature types
-                Util::unique_insert(data_types, feature_type);
-                // add feature to appropriate map list 
-                features_of_type[feature_type].push_back(var_names.at(i));
-            }
-            cout << "Data:: loaded data_types: ";
-            // Util::print(data_types.begin(), data_types.end());
-            tmp_features.insert(Z.begin(), Z.end());
-            return tmp_features;
-
-        };
-
-        vector<string> init_var_names(const Ref<const ArrayXXf>& X,
-                                     const vector<string>& vn = {}
-                                    )
-        {
-            vector<string> tmp;
-            if (vn.empty())
-            {
-                for (int i = 0; i < X.cols(); ++i)
-                {
-                    string v = "x_"+to_string(i);
-                    tmp.push_back(v);
-                }
-            }
-            else
-            {
-                if (vn.size() != X.cols())
-                    HANDLE_ERROR_THROW(to_string(vn.size())
-                                       +"variable names and "
-                                       +to_string(X.cols())+" features");
-            }
-
-            return tmp;
-        } 
+                                              );
 
         /// initialize data from a map.
         Data(std::map<string, State>& d, 
@@ -231,8 +154,7 @@ class Data
              const vector<string>& vn = {}, 
              bool c = false
             ) 
-            : var_names(init_var_names(X, vn))
-            , features(make_features(X,Z,vn))
+            : features(make_features(X,Z,vn))
             , y(y_)
             , classification(c)
             {

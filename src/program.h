@@ -98,7 +98,7 @@ template<typename T> class Program //: public tree<NodeBase*>
     {
         Iter start = prg.begin(); 
         State out = start.node->predict(d);
-        cout << "Program::predict returning\n";
+        cout << "Program::predict";
         return std::get<T>(out);
     };
 

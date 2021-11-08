@@ -181,7 +181,7 @@ class WeightedDxNode<R(Args...)> : public DxNode<R(Args...)>
 
             cout << "applying " << this->name << " operator\n";
             State out = std::apply(this->op, inputs);
-            cout << "returning " << std::get<R>(out) << endl;
+            // cout << "returning " << std::get<R>(out) << endl;
 
 
  			return out; //std::apply(this->op, inputs);
@@ -204,7 +204,7 @@ class WeightedDxNode<R(Args...)> : public DxNode<R(Args...)>
                            inputs.begin(), std::multiplies<>());
             cout << "applying " << this->name << " operator\n";
             State out = std::apply(this->op, inputs);
-            cout << "returning " << std::get<R>(out) << endl;
+            // cout << "returning " << std::get<R>(out) << endl;
  			return std::apply(this->op, inputs);
         };
 

@@ -63,6 +63,19 @@ State check_type(const ArrayXf& x)
     return tmp;
 
 }
+/**
+ * @brief Print the time series.
+ * 
+ * @param output ostream object
+ * @param T time series object
+ * @return ostream& 
+ */
+ostream &operator<<( ostream &output, const TimeSeries &ts )
+{ 
+    std::visit([&](const auto& a){output << a;}, ts.value);
+
+    return output;            
+};
 
 /// return a slice of the data using indices idx
 Data Data::operator()(const vector<size_t>& idx) const
@@ -108,6 +121,69 @@ array<Data, 2> Data::split(const ArrayXb& mask) const
     auto idx2 = Util::mask_to_index((!mask));
     return std::array<Data, 2>{ (*this)(idx1), (*this)(idx2) };
 }
+/// call init at the end of constructors
+/// to define metafeatures of the data.
+void Data::init()
+{
+    //TODO: populate var_names, var_data_types, data_types, features_of_type
+    n_features = this->features.size();
+    // note this will have to change in unsupervised settings
+    n_samples = this->y.size();
+
+
+    for (const auto& [name, value]: this->features)
+    {
+        // save feature types
+        std::type_index feature_type = StateType(value);
+
+        Util::unique_insert(this->data_types, feature_type);
+        // add feature to appropriate map list 
+        this->features_of_type[feature_type].push_back(name);
+    }
+    // debug: print data
+    // for (const auto& [var, arg] : this->features)
+    // {
+    //     std::cout << "feature: " << var << endl; 
+    //     std::visit([&](const auto& a){ cout << a << "\n"; }, arg);
+    // }
+}
+
+/// turns input data into a feature map
+map<string, State> Data::make_features(const Ref<const ArrayXXf>& X,
+                                       const Longitudinal& Z,
+                                       const vector<string>& vn 
+                                       ) 
+{
+    map<string, State> tmp_features;
+    vector<string> var_names;
+    // check variable names
+    if (vn.empty())
+    {
+        for (int i = 0; i < X.cols(); ++i)
+        {
+            string v = "x_"+to_string(i);
+            var_names.push_back(v);
+        }
+    }
+    else
+    {
+        if (vn.size() != X.cols())
+            HANDLE_ERROR_THROW(to_string(vn.size())
+                                +"variable names and "
+                                +to_string(X.cols())+" features");
+    }
+
+    for (int i = 0; i < X.cols(); ++i)
+    {
+        State tmp = check_type(X.col(i).array());
+
+        tmp_features[var_names.at(i)] = tmp;
+    }
+    cout << "Data:: loaded data_types: ";
+    // Util::print(data_types.begin(), data_types.end());
+    tmp_features.insert(Z.begin(), Z.end());
+    return tmp_features;
+};
 
     
 } // data

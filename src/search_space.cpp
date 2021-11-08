@@ -127,14 +127,21 @@ NodeVector generate_terminals(const Data& d)
     NodeVector terminals;
     for (const auto& kv : d.features)
     {
-        // const string& var = kv.first;
-        // const State& arg = kv.second;
-        // std::cout << "generating terminal " << kv.first << endl;
+        // note: structured bindings cannot be captured by lambdas until C++20
+        const string& name = kv.first;
+        const State& value = kv.second;
+        std::cout << "generating terminal " << name << endl;
         // terminals.push_back(make_shared<Terminal>(var, d[var]));
-        std::visit([&](const auto& a){
-            terminals.push_back(new Terminal(kv.first, a));
+
+        std::visit([&](auto && v){
+            std::cout << name << ":" << v << endl;
             },
-            kv.second
+            value
+        );
+        std::visit([&](auto && v){
+            terminals.push_back(new Terminal(name, v));
+            },
+            value
         );
 
     };

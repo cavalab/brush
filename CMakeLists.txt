@@ -20,7 +20,7 @@
 #    endif()
 #endif()
 #############################################
-
+link_directories( $ENV{LD_LIBRARY_PATH} )
 # set(CMAKE_CXX_COMPILER /usr/bin/g++-7)
 # version requirement for Eigen
 cmake_minimum_required (VERSION 3.15...3.19)
