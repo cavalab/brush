@@ -26,7 +26,16 @@ namespace Brush
  * Each returns an array of partial derivatives of the form 
  * df/dx1, ..., df/dxm 
  */
-
+// functions for visiting beginning and end iterators of State
+struct begin{
+            auto operator()(auto arg) {return arg.begin()},
+            auto operator()(Eigen::ArrayBase<T,-1,-1>& arg) {return arg.rowwise()},
+}
+struct end{
+            auto operator()(auto arg) {return arg.end()},
+            auto operator()(Eigen::ArrayBase<T,-1,-1>& arg) {return arg.rowwise()+arg.rows()-1},
+    
+}
 /// add
 template<typename T>
 std::enable_if_t<std::is_scalar_v<T>, array<T,2>> 

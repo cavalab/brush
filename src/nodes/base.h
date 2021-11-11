@@ -183,8 +183,7 @@ class TypedNodeBase : public NodeBase
 
 		TupleArgs tupleize(const array<State, ArgCount>& in)
         {
-            return this->tupleize(in, 
-                                  std::make_index_sequence<ArgCount>{});
+            return this->tupleize(in, std::make_index_sequence<ArgCount>{});
         };
 
         /// Utility to grab child outputs. 
@@ -194,6 +193,8 @@ class TypedNodeBase : public NodeBase
                                             State (TreeNode::*fn)(const Data&)
                                             )
         {
+            // why not make get children return the tuple?
+            // use get<NthType<i>> to get the type for it
             array<State, ArgCount> child_outputs;
 
             TreeNode* sib = first_child;
@@ -290,6 +291,33 @@ class Node<R(Args...)> : public TypedNodeBase<R, Args...>
 
  			return std::apply(this->op, inputs);
         };
+
+        template<class T> evaluate_op<1>(ArrayArgs& inputs);
+        // specialization for unary operator
+        State evaluate_op<1>(ArrayArgs& inputs)
+        {
+            State output;
+            std::transform(
+                std::visit(begin, inputs<0>),
+                std::visit(end, inputs<0>),
+                std::visit(begin, output), 
+                this->op
+            );
+            return output;
+        }
+        // specialization for binary operator
+        State evaluate_op<2>(ArrayArgs& inputs)
+        {
+            State output;
+            std::transform(
+                std::visit(begin, inputs<0>),
+                std::visit(end, inputs<0>),
+                std::visit(begin, inputs<1>), 
+                std::visit(begin, output), 
+                this->op
+            );
+            return output;
+        }
 };
 
 } // nodes
