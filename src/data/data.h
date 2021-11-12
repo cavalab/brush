@@ -28,6 +28,10 @@ using Eigen::Ref;
 typedef Eigen::Array<bool,Eigen::Dynamic,1> ArrayXb;
 typedef Eigen::Array<bool, Eigen::Dynamic, Eigen::Dynamic> ArrayXXb;
 
+typedef DenseBase<ArrayXXb>::RowwiseReturnType::iterator XXbIt;
+typedef DenseBase<ArrayXXi>::RowwiseReturnType::iterator XXiIt;
+typedef DenseBase<ArrayXXf>::RowwiseReturnType::iterator XXfIt;
+
 namespace Brush
 {
 /**
@@ -38,43 +42,79 @@ namespace data
 {
 
 
+template<class T>
 struct TimeSeries
 {
     // TODO: this should probably be templated by bool, int, float
-    using ts_val = std::variant<ArrayXXb, ArrayXXi, ArrayXXf>;
+    // using ts_val = std::variant<ArrayXXb, ArrayXXi, ArrayXXf>;
+    using ValType = Array<T, Dynamic, Dynamic>;
     /*! Wraps time and value slices to matrices
     *  TODO: define begin() and end() iterators? figure out how to handle operators that just use values versus time 
     */
     ArrayXXf time;
-    ts_val value;
+    ValType value;
     TimeSeries(const ArrayXXf& t, 
-               const ts_val& v): time(t), value(v) {}
+               const ValType& v): time(t), value(v) {}
     // array<TimeSeries, 2> TimeSeries::split(const ArrayXb& mask) const ;
     /// return a slice of the data using indices idx
-    template<typename T>
-    TimeSeries operator()(const T& idx) const
+    template<typename U>
+    TimeSeries operator()(const U& idx) const
     {
-        ArrayXXf t = time(idx, Eigen::all);
-        ts_val v = this->value;
-        std::visit([&](auto&& arg) { arg = arg(idx, Eigen::all); }, v);
+        ArrayXXf t = this->time(idx, Eigen::all);
+        ValType v = this->value(idx, Eigen::all);
+        // std::visit([&](auto&& arg) { arg = arg(idx, Eigen::all); }, v);
         return TimeSeries(t, v);
     };
-    friend ostream &operator<<( ostream &output, const TimeSeries &ts );
+
+    /**
+     * @brief Print the time series.
+     * 
+     * @param output ostream object
+     * @param ts time series object
+     * @return ostream& 
+     */
+    friend ostream &operator<<( ostream &output, const TimeSeries<T> &ts )
+    { 
+        output << ts.value;
+
+        return output;            
+    };
     
     /// return a slice of the data by row or column
-    template<typename T, typename U>
-    TimeSeries operator()(const T& rows, 
-                          const U& cols) const
+    template<typename R, typename C>
+    TimeSeries operator()(const R& rows, 
+                          const C& cols) const
     {
-        ArrayXXf t = time(rows, cols);
-        ts_val v = value(rows, cols);
+        ArrayXXf t = this->time(rows, cols);
+        ValType v = this->value(rows, cols);
         return TimeSeries(t, v);
     };
     // TODO: from_json and to_json
+
+    // TODO: custom iterator that iterates over pairs of time and value vectors.
+    // for now these only iterate over values.
+    
+    typename DenseBase<ValType>::RowwiseReturnType::iterator begin()
+    {
+        return this->value.rowwise().begin();
+    }
+    typename DenseBase<ValType>::RowwiseReturnType::iterator end()
+    {
+        return this->value.rowwise().end();
+        // return std::visit([](auto v){return v.rowwise().end();}, this->value);
+    }
 };
 
+/**
+ * @brief TimeSeries convenience typedefs.
+ * 
+ */
+typedef TimeSeries<bool> TimeSeriesb;
+typedef TimeSeries<int> TimeSeriesi;
+typedef TimeSeries<float> TimeSeriesf;
 
-typedef std::map<std::string, TimeSeries> Longitudinal;
+////////////////////////////////////////////////////////////////////////////////
+// 
 /// State: defines the possible types of data flowing thru nodes.
 typedef std::variant<
                      ArrayXb,
@@ -83,13 +123,83 @@ typedef std::variant<
                      ArrayXXb,
                      ArrayXXi, 
                      ArrayXXf, 
-                     TimeSeries
+                     TimeSeriesb,
+                     TimeSeriesi,
+                     TimeSeriesf
                     > State; 
 /// returns the typeid held in the variant by calling 
 /// StateTypeMap.at(variant.index());
-extern std::vector<std::type_index> StateTypeMap;
+extern std::vector<std::type_index> StateTypes;
 /// returns the typeid held in arg
 std::type_index StateType(const State& arg);
+// functions for visiting beginning and end iterators of State
+// template<class T>
+// DenseBase<T>::RowwiseReturnType::iterator RowBegin(T arg)
+// {
+//     return arg.rowwise().begin();
+// }
+struct Begin
+{
+    ArrayXb::iterator operator()(ArrayXb arg){return arg.begin();};
+    ArrayXi::iterator operator()(ArrayXi arg){return arg.begin();} ;
+    ArrayXf::iterator operator()(ArrayXf arg){return arg.begin();} ;
+    // TimeSeries
+    XXbIt operator()(TimeSeriesb arg){return arg.begin();};
+    XXiIt operator()(TimeSeriesi arg){return arg.begin();};
+    XXfIt operator()(TimeSeriesf arg){return arg.begin();};
+
+    XXbIt operator()(ArrayXXb arg){return arg.rowwise().begin();};
+    XXiIt operator()(ArrayXXi arg){return arg.rowwise().begin();};
+    XXfIt operator()(ArrayXXf arg){return arg.rowwise().begin();};
+    // DenseBase<ArrayXXb>::RowwiseReturnType::iterator RowBegin(T arg)
+    // auto operator()(ArrayXXb arg){ return RowBegin<ArrayXXb>(arg); };
+    // auto operator()(ArrayXXi arg){ return RowBegin<ArrayXXi>(arg); };
+    // auto operator()(ArrayXXf arg){ return RowBegin<ArrayXXf>(arg); };
+    // Eigen::VectorwiseOp<ArrayXXi>::iterator operator()(ArrayXXi arg){
+    //     return arg.rowwise().begin();
+    // };
+    // Eigen::VectorwiseOp<ArrayXXf>::iterator operator()(ArrayXXf arg){
+    //     return arg.rowwise().begin();
+    // };
+    // return std::visit( overloaded { 
+    // [](auto arg) {return arg.begin(); },
+    // [](ArrayXXb& arg) {return arg.rowwise(); }
+    // [](ArrayXXi& arg) {return arg.rowwise(); },
+    // [](ArrayXXf& arg) {return arg.rowwise(); },
+    // },
+    // x);
+};
+struct End
+{
+    ArrayXb::iterator operator()(ArrayXb arg){return arg.end();};
+    ArrayXi::iterator operator()(ArrayXi arg){return arg.end();} ;
+    ArrayXf::iterator operator()(ArrayXf arg){return arg.end();} ;
+    // TimeSeries
+    XXbIt operator()(TimeSeriesb arg){return arg.end();};
+    XXiIt operator()(TimeSeriesi arg){return arg.end();};
+    XXfIt operator()(TimeSeriesf arg){return arg.end();};
+ 
+    XXbIt operator()(ArrayXXb arg){return arg.rowwise().end();};
+    XXiIt operator()(ArrayXXi arg){return arg.rowwise().end();} ;
+    XXfIt operator()(ArrayXXf arg){return arg.rowwise().end();} ;
+    // return std::visit( overloaded { 
+    // [](auto arg) {return arg.begin(); },
+    // [](ArrayXXb& arg) {return arg.rowwise(); }
+    // [](ArrayXXi& arg) {return arg.rowwise(); },
+    // [](ArrayXXf& arg) {return arg.rowwise(); },
+    // },
+    // x);
+};
+// auto end(State& x)
+// {
+//     return std::visit( overloaded { 
+//     [](auto arg) {return arg.end(); };
+//     [](ArrayXXb& arg) {return arg.rowwise()+arg.rows()-1; };
+//     [](ArrayXXi& arg) {return arg.rowwise()+arg.rows()-1; };
+//     [](ArrayXXf& arg) {return arg.rowwise()+arg.rows()-1; };
+//     },
+//     x);
+// }
 
 /// determines data types of columns of matrix X.
 State check_type(const ArrayXf& x);
@@ -133,9 +243,9 @@ class Data
 
         /// turns input data into a feature map
         map<string,State> make_features(const Ref<const ArrayXXf>& X,
-                                              const Longitudinal& Z = {},
-                                              const vector<string>& vn = {}
-                                              );
+                                        const map<string, State>& Z = {},
+                                        const vector<string>& vn = {}
+                                       );
 
         /// initialize data from a map.
         Data(std::map<string, State>& d, 
@@ -150,7 +260,7 @@ class Data
         /// initialize data from a matrix with feature columns.
         Data(const Ref<const ArrayXXf>& X, 
              const Ref<const ArrayXf>& y_ = ArrayXf(), 
-             const Longitudinal& Z = {},
+             const map<string, State>& Z = {},
              const vector<string>& vn = {}, 
              bool c = false
             ) 

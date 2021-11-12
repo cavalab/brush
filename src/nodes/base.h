@@ -22,6 +22,8 @@ using namespace std;
 /* namespace Brush{ */
 using namespace Brush::Util;
 using Brush::data::State;
+using Brush::data::Begin;
+using Brush::data::End;
 
 namespace Brush {
 namespace nodes {
@@ -266,6 +268,7 @@ class Node<R(Args...)> : public TypedNodeBase<R, Args...>
         using base = TypedNodeBase<R, Args...>;
         using Function = std::function<R(Args...)>;
         using TupleArgs = typename base::TupleArgs;
+        using ArrayArgs = std::array<R, base::ArgCount>;
 
         /// the function applied to data
         Function op; 
@@ -277,10 +280,11 @@ class Node<R(Args...)> : public TypedNodeBase<R, Args...>
 
         State fit(const Data& d, TreeNode*& first_child, TreeNode*& last_child) override 
 	    {
-            TupleArgs inputs = base::tupleize(
-                base::get_children_fit(d, first_child, last_child));
+            // TupleArgs inputs = base::tupleize(
+            ArrayArgs inputs = base::get_children_fit(d, first_child, last_child);
 
- 			return std::apply(this->op, inputs);
+ 			// return std::apply(this->op, inputs);
+            return this->apply_op(inputs);
         };
 
         State predict(const Data& d, TreeNode*& first_child, 
@@ -289,36 +293,52 @@ class Node<R(Args...)> : public TypedNodeBase<R, Args...>
             auto child_outputs = base::get_children_predict(d, first_child, last_child);
             TupleArgs inputs = base::tupleize(child_outputs);
 
- 			return std::apply(this->op, inputs);
+ 			return this->apply_op(inputs);
         };
 
-        template<class T> evaluate_op<1>(ArrayArgs& inputs);
+        State apply_op(ArrayArgs& inputs)
+        {
+            switch (this->arg_count())
+            {
+                case 1: return apply_unary(inputs);
+                break;
+                case 2: return apply_binary(inputs);
+                break;
+                default: HANDLE_ERROR_THROW("Operator mismatch with arg_count");
+            }
+            
+        };
+        // TODO: it may be more memory efficient to write outputs onto the first
+        // input, assuming there wouldn't be memory clashes. 
         // specialization for unary operator
-        State evaluate_op<1>(ArrayArgs& inputs)
+        State apply_unary(ArrayArgs& inputs)
         {
-            State output;
+            R output;
             std::transform(
-                std::visit(begin, inputs<0>),
-                std::visit(end, inputs<0>),
-                std::visit(begin, output), 
+                std::visit(Begin(), inputs[0]), 
+                std::visit(End(), inputs[0]), 
+                std::visit(Begin(), output), 
                 this->op
             );
+
             return output;
-        }
+        };
         // specialization for binary operator
-        State evaluate_op<2>(ArrayArgs& inputs)
+        State apply_binary(ArrayArgs& inputs)
         {
-            State output;
+            R output;
             std::transform(
-                std::visit(begin, inputs<0>),
-                std::visit(end, inputs<0>),
-                std::visit(begin, inputs<1>), 
-                std::visit(begin, output), 
+                std::visit(Begin(), inputs[0]), 
+                std::visit(End(), inputs[0]), 
+                std::visit(Begin(), inputs[1]), 
+                std::visit(End(), inputs[1]), 
+                std::visit(Begin(), output), 
                 this->op
             );
             return output;
-        }
+        };
 };
+
 
 } // nodes
 } // Brush

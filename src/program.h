@@ -66,8 +66,7 @@ template<typename T> class Program //: public tree<NodeBase*>
     // Factory function to construct a Program using the Pybind11 interface
     static Program create_py(MatrixXf X, ArrayXf y, int depth=0, int breadth=0, int size=0)
     {
-        Longitudinal Z;
-        Data data(X, y, Z);
+        Data data(X, y);
         SearchSpace SS;
         SS.init(data);
 

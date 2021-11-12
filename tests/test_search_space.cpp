@@ -23,10 +23,8 @@ TEST(SearchSpace, Initialization)
     y << 3.0,  3.59159876,  3.30384889,  2.20720158;
     y_v << 0.57015434, -1.20648656, -2.68773747;
     
-    Longitudinal z; 
-
-	Data dt(X, y, z);
-    Data dv(X_v, y_v, z);
+	Data dt(X, y);
+    Data dv(X_v, y_v);
     
     map<string, float> user_ops = {
         {"ADD", 1},

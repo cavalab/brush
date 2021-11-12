@@ -12,19 +12,21 @@ using std::min;
 namespace Brush{ 
 namespace data{
 
-std::vector<std::type_index> StateTypeMap = {
+std::vector<std::type_index> StateTypes = {
                       typeid(ArrayXb),
                       typeid(ArrayXi), 
                       typeid(ArrayXf), 
                       typeid(ArrayXXb),
                       typeid(ArrayXXi), 
                       typeid(ArrayXXf), 
-                      typeid(TimeSeries)
+                      typeid(TimeSeriesb),
+                      typeid(TimeSeriesi),
+                      typeid(TimeSeriesf)
 };
 // /// returns the typeid held in arg
 std::type_index StateType(const State& arg)
 {
-    return StateTypeMap.at(arg.index());
+    return StateTypes.at(arg.index());
 }
 State check_type(const ArrayXf& x)
 {
@@ -63,19 +65,6 @@ State check_type(const ArrayXf& x)
     return tmp;
 
 }
-/**
- * @brief Print the time series.
- * 
- * @param output ostream object
- * @param T time series object
- * @return ostream& 
- */
-ostream &operator<<( ostream &output, const TimeSeries &ts )
-{ 
-    std::visit([&](const auto& a){output << a;}, ts.value);
-
-    return output;            
-};
 
 /// return a slice of the data using indices idx
 Data Data::operator()(const vector<size_t>& idx) const
@@ -85,11 +74,17 @@ Data Data::operator()(const vector<size_t>& idx) const
     {
         std::visit([&](auto&& arg) 
         {
+            // overloaded {
+            //     [](auto arg){new_d[key] = T(arg(idx));};
+            //     [](auto arg){new_d[key] = T(arg(idx));};
+            // }
             using T = std::decay_t<decltype(arg)>;
             if constexpr (std::is_same_v<T, ArrayXb> 
                           || std::is_same_v<T, ArrayXi> 
                           || std::is_same_v<T, ArrayXf> 
-                          || std::is_same_v<T, TimeSeries> 
+                          || std::is_same_v<T, TimeSeriesb> 
+                          || std::is_same_v<T, TimeSeriesi> 
+                          || std::is_same_v<T, TimeSeriesf> 
                          )
                 new_d[key] = T(arg(idx));
             else if constexpr (std::is_same_v<T, ArrayXXb> 
@@ -150,7 +145,7 @@ void Data::init()
 
 /// turns input data into a feature map
 map<string, State> Data::make_features(const Ref<const ArrayXXf>& X,
-                                       const Longitudinal& Z,
+                                       const map<string,State>& Z,
                                        const vector<string>& vn 
                                        ) 
 {
