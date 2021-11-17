@@ -541,6 +541,82 @@ void unique_insert(Vector& v, const T& t)
     v.insert(i, t);
 }
 
+// tupleize a vector. 
+// https://stackoverflow.com/questions/28410697/c-convert-vector-to-tuple
+template <typename T, std::size_t... Indices>
+auto vectorToTupleHelper(const std::vector<T>& v, std::index_sequence<Indices...>) {
+  return std::make_tuple(v[Indices]...);
+}
+
+template <std::size_t N, typename T>
+auto vectorToTuple(const std::vector<T>& v) {
+  assert(v.size() >= N);
+  return vectorToTupleHelper(v, std::make_index_sequence<N>());
+}
+
+State apply_unary(const Function& f, vector<State>& inputs)
+{
+    R output;
+    std::transform(
+        std::execution::par_unseq,
+        std::visit(Begin(), inputs.at(0)), 
+        std::visit(End(), inputs.at(0)), 
+        std::visit(Begin(), output), 
+        f
+    );
+
+    return output;
+};
+// specialization for binary operator
+State apply_binary(const Function& f, vector<State>& inputs)
+{
+    R output;
+    std::transform(
+        std::execution::par_unseq,
+        std::visit(Begin(), inputs.at(0)), 
+        std::visit(End(), inputs.at(0)), 
+        std::visit(Begin(), inputs.at(1)), 
+        std::visit(End(), inputs.at(1)), 
+        std::visit(Begin(), output), 
+        f
+    );
+    return output;
+};
+template<typename R, typename Arg, typename... Args>
+R apply(const std::function<R(Arg,Args...)>& f, vector<Arg>& inputs)
+{
+    R output;
+    switch (inputs.size())
+    {
+        case 1: 
+            std::transform(
+                    std::execution::par_unseq,
+                    inputs.at(0).begin(),
+                    inputs.at(0).end(),
+                    output.begin(),
+                    f
+            );
+            break;
+        case 2: 
+            std::transform(
+                std::execution::par_unseq,
+                inputs.at(0).begin(),
+                inputs.at(0).end(),
+                inputs.at(1).begin(),
+                inputs.at(1).end(),
+                output.begin(),
+                f
+            );
+            break;
+        default: 
+            HANDLE_ERROR_THROW("Wrong number of inputs for operator");
+            break;
+        
+    };
+
+    return output;
+};
+
 
 } // Util
 } // Brush 

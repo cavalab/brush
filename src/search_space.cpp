@@ -15,17 +15,22 @@ tuple<set<NodeBase*>,set<type_index>> generate_nodes(vector<string>& op_names)
     auto unary_operators = make_unary_operators<ArrayXf>()(op_names);
     // auto reduce_operators = make_reduction_operators<T>();
 
-
+    bool weighted = true;
     for (const auto& op : binary_operators)
-        nodes.insert( new WeightedDxNode<ArrayXf(ArrayXf,ArrayXf)>(op->name, 
-                                                                   op->f, 
-                                                                   op->df));
+        nodes.insert( new DxNode<ArrayXf(ArrayXf,ArrayXf)>(op->name, 
+                                                           op->f, 
+                                                           op->df,
+                                                           weighted
+                                                          )
+                    );
 
     for (const auto& op : unary_operators)
     {
-        nodes.insert( new WeightedDxNode<ArrayXf(ArrayXf)>(op->name, 
-                                                           op->f, 
-                                                           op->df)
+        nodes.insert( new DxNode<ArrayXf(ArrayXf)>(op->name, 
+                                                   op->f, 
+                                                   op->df, 
+                                                   weighted
+                                                  )
                     );
         // cout << "making TransformReduceDxNode " << op->name;
         // nodes.insert( new TransformReduceDxNode<ArrayXf(ArrayXf)>(op->name, 

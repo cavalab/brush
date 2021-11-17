@@ -49,7 +49,7 @@ template<typename T>
 std::enable_if_t<std::is_scalar_v<T>, array<T,2>> 
 d_add(const T &lhs, const T &rhs) 
 {
-    return {1, 1};
+    return {T(1), T(1)};
 };
 
 /// add specialization for Eigen Arrays
@@ -57,7 +57,8 @@ template<typename T>
 std::enable_if_t<std::is_base_of_v<Eigen::ArrayBase<T>, T>, array<T,2>> 
 d_add(const T &lhs, const T &rhs) 
 {
-    return {T::Ones(lhs.size()), T::Ones(rhs.size())}; 
+    return {T::Ones(lhs.rows(),lhs.cols()), 
+            T::Ones(rhs.rows(),rhs.cols())}; 
 };
 
 /// sub
@@ -65,14 +66,15 @@ template<typename T>
 std::enable_if_t<std::is_scalar_v<T>, array<T,2>> 
 d_sub(const T &lhs, const T &rhs)  
 {
-    return {1, -1};
+    return {T(1), T(-1)};
 };
 /// sub specialization for Eigen Arrays
 template<typename T>
 std::enable_if_t<std::is_base_of_v<Eigen::ArrayBase<T>, T>, array<T,2>> 
 d_sub(const T &lhs, const T &rhs)  
 {
-    return {T::Ones(lhs.size()), -T::Ones(rhs.size())}; 
+    return {T::Ones(lhs.rows(),lhs.cols()), 
+            -T::Ones(rhs.rows(),rhs.cols())}; 
 };
 
 /// multiply
@@ -109,8 +111,8 @@ template<typename T>
 std::enable_if_t<std::is_base_of_v<Eigen::ArrayBase<T>, T>, array<T,1>> 
 d_relu(const T &x)  
 {
-    return {(x > 0).select(ArrayXf::Ones(x.size()), 
-                            ArrayXf::Zero(x.size())+0.01)};
+    return {(x > 0).select(T::Ones(x.rows(),x.cols()), 
+                           T::Zero(x.rows(),x.cols())+0.0001)};
 }
 
 /// logit
@@ -413,17 +415,18 @@ struct make_binary_operators<ArrayXf>
 {
     typedef map<string, std::function<shared_ptr<BinaryOperator<ArrayXf>>()>> BinOpMap;
 
+    BinOpMap binary_op_map = {
+            {"ADD",     make_shared<Add<ArrayXf>> },
+            {"SUB",     make_shared<Sub<ArrayXf>> },
+            {"TIMES",   make_shared<Times<ArrayXf>> },
+            {"DIV",     make_shared<Div<ArrayXf>> },
+            {"POW",     make_shared<Pow<ArrayXf>> },
+    };
+
     vector<shared_ptr<BinaryOperator<ArrayXf>>> operator()(vector<string>& op_names)
     {
         vector<shared_ptr<BinaryOperator<ArrayXf>>> binary_operators;
 
-        BinOpMap binary_op_map = {
-                {"ADD",     make_shared<Add<ArrayXf>> },
-                {"SUB",     make_shared<Sub<ArrayXf>> },
-                {"TIMES",   make_shared<Times<ArrayXf>> },
-                {"DIV",     make_shared<Div<ArrayXf>> },
-                {"POW",     make_shared<Pow<ArrayXf>> },
-        };
         // if op names is empty, return all nodes
         if (op_names.empty())
         {
@@ -453,20 +456,20 @@ struct make_binary_operators<ArrayXf>
 template<>
 struct make_unary_operators<ArrayXf>
 {
+    vector<shared_ptr<UnaryOperator<ArrayXf>>> all_ops = {
+            make_shared<Sin<ArrayXf>>(),
+            make_shared<Cos<ArrayXf>>(),
+            make_shared<Exp<ArrayXf>>(),
+            make_shared<SafeLog<ArrayXf>>(),
+            make_shared<Sqrt<ArrayXf>>(),
+            make_shared<Square<ArrayXf>>(),
+            make_shared<Cube<ArrayXf>>(),
+            make_shared<Tanh<ArrayXf>>(),
+            make_shared<Logit<ArrayXf>>(),
+            make_shared<Relu<ArrayXf>>()
+    };
     vector<shared_ptr<UnaryOperator<ArrayXf>>> operator()(vector<string>& op_names)
     {
-        vector<shared_ptr<UnaryOperator<ArrayXf>>> all_ops = {
-                make_shared<Sin<ArrayXf>>(),
-                make_shared<Cos<ArrayXf>>(),
-                make_shared<Exp<ArrayXf>>(),
-                make_shared<SafeLog<ArrayXf>>(),
-                make_shared<Sqrt<ArrayXf>>(),
-                make_shared<Square<ArrayXf>>(),
-                make_shared<Cube<ArrayXf>>(),
-                make_shared<Tanh<ArrayXf>>(),
-                make_shared<Logit<ArrayXf>>(),
-                make_shared<Relu<ArrayXf>>()
-        };
         if (op_names.empty())
             return all_ops;
 

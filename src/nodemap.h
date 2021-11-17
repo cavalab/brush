@@ -178,7 +178,7 @@ vector<NodeBase*> make_continuous_nodes<T>()
 }
 
 template<typename N, typename T>
-vector<NodeBase*> make_dx_nodes<T>()
+vector<NodeBase*> make_dx_nodes<T>(bool weighted)
 {
     return vector<NodeBase*> nodes = {
             new N<T(T,T)>("+", 
