@@ -20,6 +20,13 @@ license: GNU/GPL v3
 namespace py = pybind11;
 
 
+// Test data as numpy arrays:
+// X = np.array([[1.1, 2.0, 3.0, 4.0, 5.0, 6.5, 7.0, 8.0, 9.0, 10.0],
+//               [2.0, 1.2, 6.0, 4.0, 5.0, 8.0, 7.0, 5.0, 9.0, 10.0]])
+//
+// y = np.array( [1.0, 0.0, 1.4, 1.0, 0.0, 1.0, 1.0, 0.0, 0.0,  0.0])
+
+
 PYBIND11_MODULE(brushgp, m) {
     m.doc() = "Python interface for Brush";
 
@@ -30,7 +37,9 @@ PYBIND11_MODULE(brushgp, m) {
 #endif
 
     py::class_<Brush::data::Data>(m, "Data")
-        .def(py::init<ArrayXXf, ArrayXf>());
+        .def(py::init<ArrayXXf, ArrayXf>())
+        // .def("get_X", &Brush::data::Data::get_X, py::return_value_policy::reference_internal)
+        ;
 
     // Notice: We change the interface for SearchSpace a little bit by 
     // constructing it with a Data object, rather than initializing it as an
@@ -40,9 +49,11 @@ PYBIND11_MODULE(brushgp, m) {
             SearchSpace SS;
             SS.init(data);
             return SS;
-        }));
+        }))
+        ;
 
     py::class_<Brush::Program<ArrayXf> >(m, "Program")
         .def(py::init<SearchSpace&, int, int, int>())
-        .def("fit", &Brush::Program<ArrayXf>::fit);
+        .def("fit", &Brush::Program<ArrayXf>::fit)
+        ;
 }

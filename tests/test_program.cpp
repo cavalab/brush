@@ -5,13 +5,11 @@
 TEST(Program, MakeProgram)
 {
         
-    cout << "setting up data...\n";
     ArrayXXf X(10,2);
     ArrayXf y(10);
     X << 1.1,2.0,3.0,4.0,5.0,6.5,7.0,8.0,9.0,10.0,
          2.0,1.2,6.0,4.0,5.0,8.0,7.0,5.0,9.0,10.0,
     y << 1.0,0.0,1.4,1.0,0.0,1.0,1.0,0.0,0.0,0.0;
-    cout << "Allocated data structures, now assembling Data object...\n";
     Data data(X,y);
     for (const auto& kv : data.features)
     {
@@ -36,7 +34,6 @@ TEST(Program, MakeProgram)
 
             
     // Program<ArrayXf> DXtree;
-    cout << "making program...\n";
     for (int d = 1; d < 10; ++d)
         for (int s = 1; s < 50; ++s)
         {

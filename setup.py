@@ -121,6 +121,9 @@ setup(
     install_requires=[
         'numpy'
     ],
+    test_requires=[
+        'pytest'
+    ],
     ext_modules=[CMakeExtension("brushgp")],
     cmdclass={"build_ext": CMakeBuild},
     test_suite='nose.collector',
