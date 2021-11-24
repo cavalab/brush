@@ -78,6 +78,9 @@ template<typename T> class Program //: public tree<NodeBase*>
 
     T fit(const Data& d)
     {
+        // Check to see if the program has been initialized. If not, call an
+        // init method
+
         Iter start = prg.begin(); 
         State out = start.node->fit(d);
         return std::get<T>(out);
