@@ -25,9 +25,11 @@ namespace Brush
 {
 /* Partial Derivative Functions 
  *
- * These fns take partial derivates of fns f(x1, ... xm).
- * Each returns an array of partial derivatives of the form 
- * df/dx1, ..., df/dxm 
+ * These fns calculate partial derivates of fns f(x1, ... xm).
+ * In the case that df/dx1 = df/dx2, only one function is defined. 
+ * For binary operators that aren't symmetric, d_*_rhs and d_*_lhs are defined. 
+ * see also: 
+ * https://eigen.tuxfamily.org/dox/group__CoeffwiseMathFunctions.html
  */
 
     
@@ -46,95 +48,116 @@ namespace Brush
 // };
 /// add
 template<typename T>
-std::enable_if_t<std::is_scalar_v<T>, array<T,2>> 
+std::enable_if_t<std::is_scalar_v<T>, T> 
 d_add(const T &lhs, const T &rhs) 
 {
-    return {T(1), T(1)};
+    return T(1);
 };
 
 /// add specialization for Eigen Arrays
 template<typename T>
-std::enable_if_t<std::is_base_of_v<Eigen::ArrayBase<T>, T>, array<T,2>> 
+std::enable_if_t<std::is_base_of_v<Eigen::ArrayBase<T>, T>, T> 
 d_add(const T &lhs, const T &rhs) 
 {
-    return {T::Ones(lhs.rows(),lhs.cols()), 
-            T::Ones(rhs.rows(),rhs.cols())}; 
+    return T::Ones(lhs.rows(),lhs.cols()); 
 };
 
 /// sub
 template<typename T>
-std::enable_if_t<std::is_scalar_v<T>, array<T,2>> 
-d_sub(const T &lhs, const T &rhs)  
+std::enable_if_t<std::is_scalar_v<T>, T> 
+d_sub_lhs(const T &lhs, const T &rhs)  
 {
-    return {T(1), T(-1)};
+    return T(1);
+};
+template<typename T>
+std::enable_if_t<std::is_scalar_v<T>, T> 
+d_sub_rhs(const T &lhs, const T &rhs)  
+{
+    return T(-1);
 };
 /// sub specialization for Eigen Arrays
 template<typename T>
-std::enable_if_t<std::is_base_of_v<Eigen::ArrayBase<T>, T>, array<T,2>> 
-d_sub(const T &lhs, const T &rhs)  
+std::enable_if_t<std::is_base_of_v<Eigen::ArrayBase<T>, T>, T> 
+d_sub_lhs(const T &lhs, const T &rhs)  
 {
-    return {T::Ones(lhs.rows(),lhs.cols()), 
-            -T::Ones(rhs.rows(),rhs.cols())}; 
+    return T::Ones(lhs.rows(),lhs.cols());
+};
+template<typename T>
+std::enable_if_t<std::is_base_of_v<Eigen::ArrayBase<T>, T>, T>
+d_sub_rhs(const T &lhs, const T &rhs)  
+{
+    return -T::Ones(rhs.rows(),rhs.cols()); 
 };
 
 /// multiply
 template<typename T>
-array<T,2> d_times(const T &lhs, const T &rhs)  
+T d_times(const T &lhs, const T &rhs)  
 {
-    return {rhs, lhs};
+    return rhs;
 }
 
 /// divide
 template<typename T>
-array<T,2> d_div(const T &lhs, const T &rhs) 
+T d_div_lhs(const T &lhs, const T &rhs) 
 {
-    return {1/rhs, -lhs/(pow(rhs,2))};
+    return 1/rhs;
+};
+template<typename T>
+T d_div_rhs(const T &lhs, const T &rhs) 
+{
+    return -lhs/(pow(rhs,2));
 };
 
 /// log
 template<typename T>
-array<T,1> d_safe_log(const T &x)
+T d_safe_log(const T &x)
 {
-    return {Brush::Util::limited(T(1/x))};
+    return Brush::Util::limited(T(1/x));
 };
 
 /// relu
 template<typename T>
-std::enable_if_t<std::is_scalar_v<T>, array<T,1>> 
+std::enable_if_t<std::is_scalar_v<T>, T> 
 d_relu(const T &x) 
 {
-    return {x > 0 ? 1 : 0.01};
+    return x > 0 ? 1 : 0.01;
 };
 
 /// relu specialization for Eigen Arrays
 template<typename T>
-std::enable_if_t<std::is_base_of_v<Eigen::ArrayBase<T>, T>, array<T,1>> 
+std::enable_if_t<std::is_base_of_v<Eigen::ArrayBase<T>, T>, T> 
 d_relu(const T &x)  
 {
-    return {(x > 0).select(T::Ones(x.rows(),x.cols()), 
-                           T::Zero(x.rows(),x.cols())+0.0001)};
+    return (x > 0).select(T::Ones(x.rows(),x.cols()), 
+                           T::Zero(x.rows(),x.cols())+0.0001);
 }
 
 /// logit
 template<typename T>
-std::enable_if_t<std::is_scalar_v<T>, array<T,1>> 
+std::enable_if_t<std::is_scalar_v<T>, T> 
 d_logit(const T &x) 
 {
-    return { exp(-x)/pow(1+exp(-x), float(2)) }; 
+    return exp(-x)/pow(1+exp(-x), float(2)); 
 };
 
 /// logit specialization for Eigen Arrays
 template<typename T>
-std::enable_if_t<std::is_base_of_v<Eigen::ArrayBase<T>, T>, array<T,1>> 
+std::enable_if_t<std::is_base_of_v<Eigen::ArrayBase<T>, T>, T> 
 d_logit(const T &x)  
 {
-    return { exp(-x)/(1+exp(-x)).pow(2) };
+    return exp(-x)/(1+exp(-x)).pow(2);
 };
 
 template<typename T>
-array<T,2> d_pow(const T& lhs, const T& rhs) 
+T d_pow_lhs(const T& lhs, const T& rhs) 
 {
-    return {rhs * pow(lhs, rhs-1), log(lhs) * pow(lhs, rhs)}; 
+    return rhs * pow(lhs, rhs-1); 
+};
+
+template<typename T>
+T d_pow_rhs(const T& lhs, const T& rhs) 
+{
+    return log(lhs) * pow(lhs, rhs); 
 };
 
 ////////////////////////////////////////////////////////////////////////////////
@@ -185,12 +208,12 @@ struct BinaryOperator
     std::string name;
     int complexity;
     const function<T(U,V)> f;
-    const function<array<T,2>(U,V)> df;
+    const vector<function<T(U,V)>> df;
 
     inline BinaryOperator(string n, 
                           int c, 
                           const function<T(U,V)>& f, 
-                          const function<array<T,2>(U,V)>& df
+                          const vector<function<T(U,V)>>& df
                          ): name(n),  complexity(c), f(f), df(df)  {}
 };
 
@@ -200,12 +223,12 @@ struct UnaryOperator
     std::string name;
     int complexity;
     const function<T(U)> f;
-    const function<array<T,1>(U)> df;
+    const vector<function<T(U)>> df;
 
     inline UnaryOperator(string n, 
                           int c, 
                           const function<T(U)>& f, 
-                          const function<array<T,1>(U)>& df
+                          const vector<function<T(U)>>& df
                          ): name(n),  complexity(c), f(f), df(df)  {}
 };
 
@@ -214,25 +237,25 @@ struct UnaryOperator
 template<typename T> 
 struct Add : public BinaryOperator<T>
 {
-    Add(): BinaryOperator<T>("ADD", 2, std::plus<T>(), d_add<T>) {}
+    Add(): BinaryOperator<T>("ADD", 2, std::plus<T>(), {d_add<T>,d_add<T>}) {}
 };
 
 template<typename T> 
 struct Sub : public BinaryOperator<T>
 {
-    Sub(): BinaryOperator<T>("SUB", 2, std::minus<T>(), d_sub<T>) {}
+    Sub(): BinaryOperator<T>("SUB", 2, std::minus<T>(), {d_sub_lhs<T>, d_sub_rhs<T>}) {}
 };
 
 template<typename T> 
 struct Times : public BinaryOperator<T>
 {
-    Times(): BinaryOperator<T>("TIMES", 3, std::multiplies<T>(), d_times<T>) {}
+    Times(): BinaryOperator<T>("TIMES", 3, std::multiplies<T>(), {d_times<T>,d_times<T>}) {}
 };
 
 template<typename T> 
 struct Div : public BinaryOperator<T>
 {
-    Div(): BinaryOperator<T>("DIV", 4, std::divides<T>(), d_div<T>) {}
+    Div(): BinaryOperator<T>("DIV", 4, std::divides<T>(), {d_div_lhs<T>,d_div_rhs<T>}) {}
 };
 
 
@@ -241,10 +264,10 @@ struct Pow : public BinaryOperator<T>
 {
     Pow(): BinaryOperator<T>("POW", 7, 
         [](const T& a, const T& b){return pow(a,b);}, 
-        d_pow<T>
+        {d_pow_lhs<T>, d_pow_rhs<T>}
     ) {}
 };
-
+////////////////////////////////////////////////////////////////////////////////
 /* Unary Operators */
 
 template<typename T> 
@@ -252,14 +275,14 @@ struct Exp : public UnaryOperator<T>
 {
     Exp(): UnaryOperator<T>("EXP", 7, 
                             [](const T& x){ return exp(x); }, 
-                            [](const T& x) -> array<T,1>{ return {exp(x)}; } 
+                            {[](const T& x) -> T{ return {exp(x)}; }} 
     ) {}
 };
 
 template<typename T> 
 struct SafeLog : public UnaryOperator<T> 
 {
-    SafeLog(): UnaryOperator<T>("LOG", 4, safe_log<T>, d_safe_log<T>) {}
+    SafeLog(): UnaryOperator<T>("LOG", 4, safe_log<T>, {d_safe_log<T>}) {}
 };
 
 template<typename T> 
@@ -267,7 +290,7 @@ struct Sin : public UnaryOperator<T>
 {
     Sin(): UnaryOperator<T>("SIN", 9,  
                             [](const T& x){ return sin(x); }, 
-                            [](const T& x) -> array<T,1>{ return {-cos(x)}; }
+                            {[](const T& x) -> T{ return {-cos(x)}; }}
     ) {}
 };
 
@@ -276,7 +299,7 @@ struct Cos : public UnaryOperator<T>
 {
     Cos(): UnaryOperator<T>("COS", 9, 
                             [](const T& x){ return cos(x); }, 
-                            [](const T& x) -> array<T,1>{ return {sin(x)}; }
+                            {[](const T& x) -> T{ return {sin(x)}; }}
     ) {}
 };
 
@@ -285,7 +308,7 @@ struct Tanh : public UnaryOperator<T>
 {
     Tanh(): UnaryOperator<T>("TANH", 9,  
                     [](const T& x){ return tanh(x); }, 
-                    [](const T& x) -> array<T,1>{return {1-pow(tanh(x), 2)}; } 
+                    {[](const T& x) -> T{return {1-pow(tanh(x), 2)}; }}
     ) {} 
 };
 
@@ -294,7 +317,7 @@ struct Sqrt : public UnaryOperator<T>
 {
     Sqrt(): UnaryOperator<T>("SQRT", 5, 
                     [](const T& x){ return sqrt(x); }, 
-                    [](const T& x) -> array<T,1>{return {x/ (2*sqrt(abs(x)))}; } 
+                    {[](const T& x) -> T{return {x/ (2*sqrt(abs(x)))}; } }
     ){}
 };
 
@@ -303,7 +326,7 @@ struct Square : public UnaryOperator<T>
 {
     Square(): UnaryOperator<T>("SQUARE", 4, 
                                [](const T& x){ return pow(x, 2); },
-                               [](const T& x) -> array<T,1>{return {2*x}; }
+                               {[](const T& x) -> T{return {2*x}; }}
     ){}
 };
 
@@ -312,7 +335,7 @@ struct Cube : public UnaryOperator<T>
 {
     Cube(): UnaryOperator<T>("CUBE", 4, 
         [](const T& x){ return pow(x, 3); },
-        [](const T& x) -> array<T,1>{return {3*pow(x, T(2))}; }
+        {[](const T& x) -> T{return {3*pow(x, T(2))}; }}
     ){}
 };
 
@@ -321,23 +344,24 @@ struct Logit : public UnaryOperator<T>
 {
     Logit(): UnaryOperator<T>("LOGIT", 3, 
         [](const T& x){ return 1/(1+exp(-x)); },
-        d_logit<T>
+        { d_logit<T> }
     ){}
 };
 
 template<typename T>
 struct Relu : public UnaryOperator<T>
 {
-    Relu(): UnaryOperator<T>("RELU", 3, relu<T>, 
-        d_relu<T>
-    ) {}  
+    Relu(): UnaryOperator<T>("RELU", 3, relu<T>, {d_relu<T>}) {}  
 };
 
 template<typename T, typename U>
 inline T lt( const U& A, const U& B) { return T(A < B); };
 
 ////////////////////////////////////////////////////////////////////////////////
-/* (TODO): Reductions */
+/* Reductions */
+// https://eigen.tuxfamily.org/dox/group__QuickRefPage.html
+
+// TODO: make these work with different sized data (longitudinal/ timeseries)
 
 /* At a point x where there is exactly one function fi such that fi(x) is the median, the derivative of the median is indeed the derivative of fi (this is not the median of the derivatives). 
 At a point where there are more than one functions equal to the median, the derivative of the median exists only if the derivatives of these functions are equal at that point. 
@@ -363,6 +387,57 @@ T d_median(const Array<T,-1,1>& v)
         return x[n];
 }
 
+struct Sum : public UnaryOperator<ArrayXf, ArrayXXf>
+{
+    Sum(): UnaryOperator<ArrayXf, ArrayXXf>(
+        "SUM", 
+        1, 
+        [](const ArrayXXf& x){ return x.rowwise().sum(); },
+        { [](const ArrayXXf& x){ return ArrayXXf::Ones(x.rows(), x.cols()); } }
+    ){}
+};
+
+struct Mean : public UnaryOperator<ArrayXf, ArrayXXf>
+{
+    Mean(): UnaryOperator<ArrayXf, ArrayXXf>(
+        "MEAN", 
+        1, 
+        [](const ArrayXXf& x){ return x.rowwise().mean(); },
+        { [](const ArrayXXf& x){ return ArrayXXf::Ones(x.rows(), x.cols())/x.cols(); } }
+    ){}
+};
+
+struct Var : public UnaryOperator<ArrayXf, ArrayXXf>
+{
+    Var(): UnaryOperator<ArrayXf, ArrayXXf>(
+        "VAR", 
+        2, 
+        [](const ArrayXXf& x){ 
+            return (x - x.rowwise().mean()).pow(2).rowwise().mean(); 
+        },
+        { 
+            [](const ArrayXXf& x){ 
+                return 2/x.cols()*(x - x.rowwise().mean()); 
+            } 
+        }
+    ){}
+};
+
+// struct Count : public UnaryOperator<ArrayXf, ArrayXXf>
+// {
+//     Count(): UnaryOperator<ArrayXf, ArrayXXf>(
+//         "COUNT", 
+//         2, 
+//         [](const ArrayXXf& x){ 
+//             return (x - x.rowwise().mean()).pow(2).rowwise().mean(); 
+//         },
+//         { 
+//             [](const ArrayXXf& x){ 
+//                 return 2/x.cols()*(x - x.rowwise().mean()); 
+//             } 
+//         }
+//     ){}
+// };
 
 // /// calculate variance when mean provided
 // float variance(const ArrayXf& v, float mean) 
@@ -381,110 +456,68 @@ T d_median(const Array<T,-1,1>& v)
 
 ////////////////////////////////////////////////////////////////////////////////
 /* Operator creation routines */
-// template<typename T, typename U=T, typename V=T>
-// NodeBase* make_node(string op_name)
-// {
-//     auto op = make_op_map<T,U,V>()()[op_name];
 
-//     if (op->name == "best_split")
-//         return new SplitNode<T(T,T)>(op->name, op->f, op->df);
-//     else if (op->name == "arg_split")
-//         return new SplitNode<T(U,T,T)>(op->name, op->f, op->df);
-//     else
-//         return new WeightedDxNode<T(U,V)>(op->name, op->f, op->df);
-
-// }
-// todo: make these return maps?
-// typedef map<string, std::function<shared_ptr<BinaryOperator<T>>()>> BinOpMaker;
-
-/// define binary operators. Right now they are just defined for ArrayXf data.
-template <typename T> struct make_binary_operators;
-// vector<shared_ptr<BinaryOperator<T>>> make_binary_operators(vector<string>&);
-template <typename T> struct make_unary_operators; 
-// vector<shared_ptr<UnaryOperator<T>>> make_unary_operators(vector<string>&);
-
-// template<typename T>
-// vector<shared_ptr<BinaryOperator<T>>> make_binary_operators(
-//         vector<string>& op_names)
-// { 
-//     return {}; 
-// };
-
-template<>
-struct make_binary_operators<ArrayXf>
+template<typename T>
+void make_op_map(map<string, std::function<shared_ptr<UnaryOperator<T>>()>>& op_map)
 {
-    typedef map<string, std::function<shared_ptr<BinaryOperator<ArrayXf>>()>> BinOpMap;
-
-    BinOpMap binary_op_map = {
-            {"ADD",     make_shared<Add<ArrayXf>> },
-            {"SUB",     make_shared<Sub<ArrayXf>> },
-            {"TIMES",   make_shared<Times<ArrayXf>> },
-            {"DIV",     make_shared<Div<ArrayXf>> },
-            {"POW",     make_shared<Pow<ArrayXf>> },
+    op_map = {
+            {"SIN",         make_shared<Sin<T>> },
+            {"COS",         make_shared<Cos<T>> },
+            {"EXP",         make_shared<Exp<T>> },
+            {"SAFELOG",     make_shared<SafeLog<T>> },
+            {"SQRT",        make_shared<Sqrt<T>> },
+            {"SQUARE",      make_shared<Square<T>> },
+            {"CUBE",        make_shared<Cube<T>> },
+            {"TANH",        make_shared<Tanh<T>> },
+            {"LOGIT",       make_shared<Logit<T>> },
+            {"RELU",        make_shared<Relu<T>> }
     };
 
-    vector<shared_ptr<BinaryOperator<ArrayXf>>> operator()(vector<string>& op_names)
+}
+template<typename T>
+void make_op_map(map<string, std::function<shared_ptr<BinaryOperator<T>>()>>& op_map)
+{
+    op_map = {
+            {"ADD",     make_shared<Add<T>> },
+            {"SUB",     make_shared<Sub<T>> },
+            {"TIMES",   make_shared<Times<T>> },
+            {"DIV",     make_shared<Div<T>> },
+            {"POW",     make_shared<Pow<T>> },
+    };
+
+}
+
+template<typename O>
+struct OpMaker
+{
+    typedef map<string, std::function<shared_ptr<O>()>> OpMapType;
+    OpMapType op_map;
+    // make_operators(OpMapType om): op_map(om) {}
+    OpMaker(){ make_op_map(this->op_map); };
+
+    vector<shared_ptr<O>> make(vector<string>& op_names)
     {
-        vector<shared_ptr<BinaryOperator<ArrayXf>>> binary_operators;
+        vector<shared_ptr<O>> operators;
 
         // if op names is empty, return all nodes
         if (op_names.empty())
         {
-            binary_operators.resize(binary_op_map.size());
-            transform(binary_op_map.begin(), binary_op_map.end(), 
-                    binary_operators.begin(),
-                    [](const auto& bom){return bom.second();});
-            return binary_operators;
+            operators.resize(op_map.size());
+            transform(op_map.begin(), op_map.end(), 
+                      operators.begin(),
+                      [](const auto& bom){return bom.second();});
+            return operators;
         }
+        // else, make the operators in op_names
         for (const auto& op: op_names)
         {
-            if (binary_op_map.find(op) != binary_op_map.end())
-                binary_operators.push_back(binary_op_map[op]());
+            if (op_map.find(op) != op_map.end())
+                operators.push_back(op_map[op]());
         }
-        return binary_operators;
-    };
-};
-
-/// define unary operators. Right now they are just defined for ArrayXf data.
-// template<typename T>
-// vector<shared_ptr<UnaryOperator<T>>> make_unary_operators(
-//         vector<string>& op_names)
-// { 
-//     return {}; 
-// };
-
-template<>
-struct make_unary_operators<ArrayXf>
-{
-    vector<shared_ptr<UnaryOperator<ArrayXf>>> all_ops = {
-            make_shared<Sin<ArrayXf>>(),
-            make_shared<Cos<ArrayXf>>(),
-            make_shared<Exp<ArrayXf>>(),
-            make_shared<SafeLog<ArrayXf>>(),
-            make_shared<Sqrt<ArrayXf>>(),
-            make_shared<Square<ArrayXf>>(),
-            make_shared<Cube<ArrayXf>>(),
-            make_shared<Tanh<ArrayXf>>(),
-            make_shared<Logit<ArrayXf>>(),
-            make_shared<Relu<ArrayXf>>()
-    };
-    vector<shared_ptr<UnaryOperator<ArrayXf>>> operator()(vector<string>& op_names)
-    {
-        if (op_names.empty())
-            return all_ops;
-
-        //TODO: note this is slower than the BinaryOperator impl above 
-        // (loop over op_names, not all_ops)
-        vector<shared_ptr<UnaryOperator<ArrayXf>>> filtered_ops;
-        std::copy_if(all_ops.begin(), all_ops.end(),
-                    std::back_inserter(filtered_ops),
-                    [&](const auto& o) { return in(op_names, o->name); }
-                    );    
-        return filtered_ops;
+        return operators;
     };
 
 };
-
 
 } // Brush
 

@@ -2,7 +2,7 @@
 
 namespace Brush{
 
-// template<typename T>
+template<typename T>
 tuple<set<NodeBase*>,set<type_index>> generate_nodes(vector<string>& op_names)
 {
 
@@ -10,42 +10,32 @@ tuple<set<NodeBase*>,set<type_index>> generate_nodes(vector<string>& op_names)
     set<NodeBase*> nodes; 
     set<type_index> new_types;
 
-    auto binary_operators = make_binary_operators<ArrayXf>()(op_names);
+    // auto binary_operators = make_binary_operators<ArrayXf>()(op_names);
+    auto binary_operators = OpMaker<BinaryOperator<T>>().make(op_names);
+    auto unary_operators = OpMaker<UnaryOperator<T>>().make(op_names);
+    // auto binary_operators = make_binary_operators<T>()(op_names);
     // auto binary_operators = make_binary_operators(op_names);
-    auto unary_operators = make_unary_operators<ArrayXf>()(op_names);
+    // auto unary_operators = make_unary_operators<T>()(op_names);
     // auto reduce_operators = make_reduction_operators<T>();
 
-    bool weighted = true;
     for (const auto& op : binary_operators)
-        nodes.insert( new DxNode<ArrayXf(ArrayXf,ArrayXf)>(op->name, 
-                                                           op->f, 
-                                                           op->df,
-                                                           weighted
-                                                          )
-                    );
+    {
+        nodes.insert( new DxNode<T(T,T)>(op->name+"_W", op->f, op->df, true) );
+        nodes.insert( new DxNode<T(T,T)>(op->name, op->f, op->df, false) );
+    }
 
     for (const auto& op : unary_operators)
     {
-        nodes.insert( new DxNode<ArrayXf(ArrayXf)>(op->name, 
-                                                   op->f, 
-                                                   op->df, 
-                                                   weighted
-                                                  )
-                    );
-        // cout << "making TransformReduceDxNode " << op->name;
-        // nodes.insert( new TransformReduceDxNode<ArrayXf(ArrayXf)>(op->name, 
-        //                                                    op->f, 
-        //                                                    op->df,
-        //                                                    10)
-        //             );
+        nodes.insert( new DxNode<T(T)>(op->name+"_W", op->f, op->df, true) );
+        nodes.insert( new DxNode<T(T)>(op->name, op->f, op->df, false) );
     }
 
     if ( in(op_names, "best_split"))
-        nodes.insert(new SplitNode<ArrayXf(ArrayXf,ArrayXf)>("best_split"));
+        nodes.insert(new SplitNode<T(T,T)>("best_split"));
 
     if ( in(op_names, "arg_split"))
     {
-        nodes.insert( new SplitNode<ArrayXf(ArrayXf,ArrayXf,ArrayXf)>("arg_split"));
+        nodes.insert( new SplitNode<T(T,T,T)>("arg_split"));
     }
 
     return {nodes, new_types};
@@ -57,7 +47,7 @@ set<NodeBase*> generate_all_nodes(vector<string>& node_names,
     set<NodeBase*> nodes; 
     set<type_index> new_types;
 
-    auto [new_nodes, nt] = generate_nodes(node_names);
+    auto [new_nodes, nt] = generate_nodes<ArrayXf>(node_names);
     nodes.merge(new_nodes);
     term_types.merge(nt);
     // term_types.erase(t);

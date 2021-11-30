@@ -47,6 +47,10 @@ class NodeBase {
         bool center_op;
         // chance of node being selected for variation
         float prob_change; 
+        /// unique id
+        int ID;
+        static int sNextId;
+        inline int getNextId() { return ++sNextId; };
 
         virtual std::type_index ret_type() const = 0; 
         virtual std::type_index args_type() const = 0; 
@@ -92,7 +96,7 @@ class TypedNodeBase : public NodeBase
         using Function = std::function<R(Args...)>;
         using TupleArgs = std::tuple<Args...>;
         static constexpr std::size_t ArgCount = sizeof...(Args);
-        using ArrayArgs = std::array<State,ArgCount>;
+        using StateArrayArgs = std::array<State,ArgCount>;
         template <std::size_t N>
         using NthType = typename std::tuple_element<N, TupleArgs>::type;
 
@@ -115,6 +119,7 @@ class TypedNodeBase : public NodeBase
             }
             n += ")>";
             this->set_name(n);
+            this->ID = this->getNextId();
         };
         std::type_index ret_type() const override { return typeid(R); }; 
         std::type_index args_type() const override { return typeid(TupleArgs);}; 
@@ -192,33 +197,55 @@ class TypedNodeBase : public NodeBase
         };
 
         /// Utility to grab child outputs. 
-        vector<State> get_children(const Data& d,
+        // vector<State> get_children(const Data& d,
+        //                            TreeNode*& first_child, 
+        //                            TreeNode*& last_child, 
+        //                            State (TreeNode::*fn)(const Data&))
+        // {
+        //     // why not make get children return the tuple?
+        //     // use get<NthType<i>> to get the type for it
+        //     vector<State> child_outputs;
+
+        //     TreeNode* sib = first_child;
+        //     for (int i = 0; i < this->get_arg_count(); ++i)
+        //     {
+        //         child_outputs.push_back((sib->*fn)(d));
+        //         sib = sib->next_sibling;
+        //     }
+        //     return child_outputs;
+            
+        // };
+        
+        TupleArgs get_children(const Data& d,
                                    TreeNode*& first_child, 
                                    TreeNode*& last_child, 
                                    State (TreeNode::*fn)(const Data&))
         {
             // why not make get children return the tuple?
             // use get<NthType<i>> to get the type for it
-            vector<State> child_outputs;
+            StateArrayArgs child_outputs;
 
             TreeNode* sib = first_child;
             for (int i = 0; i < this->get_arg_count(); ++i)
             {
-                child_outputs.push_back((sib->*fn)(d));
+                // std::get<i>(child_outputs) = std::get<NthType<i>>((sib->*fn)(d));
+                child_outputs.at(i) = (sib->*fn)(d);
                 sib = sib->next_sibling;
             }
-            return child_outputs;
+            return tupleize(child_outputs);
             
-        };
+        };;
 
-        vector<State> get_children_fit(const Data& d, 
+        TupleArgs get_children_fit(const Data& d, 
+        // vector<State> get_children_fit(const Data& d, 
                                        TreeNode*& first_child, 
                                        TreeNode*& last_child)
         {
             return get_children(d, first_child, last_child, &TreeNode::fit);
         };
 
-        vector<State> get_children_predict(const Data& d, 
+        TupleArgs get_children_predict(const Data& d, 
+        // vector<State> get_children_predict(const Data& d, 
                                            TreeNode*& first_child, 
                                            TreeNode*& last_child)
         {
@@ -226,59 +253,59 @@ class TypedNodeBase : public NodeBase
         };
 
 
-        /**
-         * @brief applies a unary or binary operator to the inputs.
-         * 
-         * @param inputs 
-         * @return State 
-         */
-        State apply(const Function& f, vector<State>& inputs)
-        {
-            switch (this->get_arg_count())
-            {
-                case 1: 
-                    return apply_unary(f, inputs);
-                    break;
-                case 2: 
-                    return apply_binary(f, inputs);
-                    break;
-                default: 
-                    HANDLE_ERROR_THROW("Operator mismatch with get_arg_count");
-                    break;
-            };
+        // /**
+        //  * @brief applies a unary or binary operator to the inputs.
+        //  * 
+        //  * @param inputs 
+        //  * @return State 
+        //  */
+        // State apply(const Function& f, vector<State>& inputs)
+        // {
+        //     switch (this->get_arg_count())
+        //     {
+        //         case 1: 
+        //             return apply_unary(f, inputs);
+        //             break;
+        //         case 2: 
+        //             return apply_binary(f, inputs);
+        //             break;
+        //         default: 
+        //             HANDLE_ERROR_THROW("Operator mismatch with get_arg_count");
+        //             break;
+        //     };
             
-        };
-        // TODO: it may be more memory efficient to write outputs onto the first
-        // input, assuming there wouldn't be memory clashes. 
-        // specialization for unary operator
-        State apply_unary(const Function& f, vector<State>& inputs)
-        {
-            R output;
-            std::transform(
-                std::execution::par_unseq,
-                std::visit(Begin(), inputs.at(0)), 
-                std::visit(End(), inputs.at(0)), 
-                std::visit(Begin(), output), 
-                f
-            );
+        // };
+        // // TODO: it may be more memory efficient to write outputs onto the first
+        // // input, assuming there wouldn't be memory clashes. 
+        // // specialization for unary operator
+        // State apply_unary(const Function& f, vector<State>& inputs)
+        // {
+        //     R output;
+        //     std::transform(
+        //         std::execution::par_unseq,
+        //         std::visit(Begin(), inputs.at(0)), 
+        //         std::visit(End(), inputs.at(0)), 
+        //         std::visit(Begin(), output), 
+        //         f
+        //     );
 
-            return output;
-        };
-        // specialization for binary operator
-        State apply_binary(const Function& f, vector<State>& inputs)
-        {
-            R output;
-            std::transform(
-                std::execution::par_unseq,
-                std::visit(Begin(), inputs.at(0)), 
-                std::visit(End(), inputs.at(0)), 
-                std::visit(Begin(), inputs.at(1)), 
-                std::visit(End(), inputs.at(1)), 
-                std::visit(Begin(), output), 
-                f
-            );
-            return output;
-        };
+        //     return output;
+        // };
+        // // specialization for binary operator
+        // State apply_binary(const Function& f, vector<State>& inputs)
+        // {
+        //     R output;
+        //     std::transform(
+        //         std::execution::par_unseq,
+        //         std::visit(Begin(), inputs.at(0)), 
+        //         std::visit(End(), inputs.at(0)), 
+        //         std::visit(Begin(), inputs.at(1)), 
+        //         // std::visit(End(), inputs.at(1)), 
+        //         std::visit(Begin(), output), 
+        //         f
+        //     );
+        //     return output;
+        // };
 };
 
 
@@ -294,7 +321,7 @@ class Node<R(Args...)> : public TypedNodeBase<R, Args...>
         using base = TypedNodeBase<R, Args...>;
         using Function = std::function<R(Args...)>;
         using TupleArgs = typename base::TupleArgs;
-        using ArrayArgs = std::array<State, base::ArgCount>;
+        using StateArrayArgs = std::array<State, base::ArgCount>;
 
         /// the function applied to data
         Function op; 
@@ -307,19 +334,20 @@ class Node<R(Args...)> : public TypedNodeBase<R, Args...>
         State fit(const Data& d, TreeNode*& first_child, TreeNode*& last_child) override 
 	    {
             // TupleArgs inputs = base::tupleize(
-            vector<State> inputs = base::get_children_fit(d, first_child, last_child);
+            TupleArgs inputs = base::get_children_fit(d, first_child, last_child);
 
- 			// return std::apply(this->op, inputs);
-            return this->apply(this->op, inputs);
+ 			return std::apply(this->op, inputs);
+            // return this->apply(this->op, inputs);
         };
 
         State predict(const Data& d, TreeNode*& first_child, 
                 TreeNode*& last_child) override
 	    {
-            vector<State> inputs = base::get_children_predict(d, first_child, last_child);
+            TupleArgs inputs = base::get_children_predict(d, first_child, last_child);
             // TupleArgs inputs = base::tupleize(child_outputs);
 
- 			return this->apply(this->op, inputs);
+ 			return std::apply(this->op, inputs);
+ 			// return this->apply(this->op, inputs);
         };
 
         

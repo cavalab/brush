@@ -35,6 +35,7 @@ typedef vector<NodeBase*> NodeVector;
 namespace Brush
 {
 
+template<typename T>
 tuple<set<NodeBase*>,set<type_index>> generate_nodes(vector<string>& op_names);
 //TODO: add reduction operators
 /// generates nodes that act on T. return any non-T return types.
@@ -183,7 +184,9 @@ struct SearchSpace
                 {
                     cout << "node_map[" << type_names[ret_type] 
                         << "][args_type][" << name << "] = " 
-                        << nodeval->get_name() << endl;
+                        << nodeval->get_name() 
+                        << nodeval->ID
+                        << endl;
                 }
 
             }

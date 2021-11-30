@@ -17,6 +17,7 @@ license: GNU/GPL v3
 #include "error.h"
 #include <typeindex>
 #include <iterator> // needed for std::ostram_iterator
+#include <execution> // parallel policies
 
 using namespace Eigen;
 using namespace std;
@@ -554,36 +555,36 @@ auto vectorToTuple(const std::vector<T>& v) {
   return vectorToTupleHelper(v, std::make_index_sequence<N>());
 }
 
-State apply_unary(const Function& f, vector<State>& inputs)
-{
-    R output;
-    std::transform(
-        std::execution::par_unseq,
-        std::visit(Begin(), inputs.at(0)), 
-        std::visit(End(), inputs.at(0)), 
-        std::visit(Begin(), output), 
-        f
-    );
+// State apply_unary(const Function& f, vector<State>& inputs)
+// {
+//     R output;
+//     std::transform(
+//         std::execution::par_unseq,
+//         std::visit(Begin(), inputs.at(0)), 
+//         std::visit(End(), inputs.at(0)), 
+//         std::visit(Begin(), output), 
+//         f
+//     );
 
-    return output;
-};
-// specialization for binary operator
-State apply_binary(const Function& f, vector<State>& inputs)
-{
-    R output;
-    std::transform(
-        std::execution::par_unseq,
-        std::visit(Begin(), inputs.at(0)), 
-        std::visit(End(), inputs.at(0)), 
-        std::visit(Begin(), inputs.at(1)), 
-        std::visit(End(), inputs.at(1)), 
-        std::visit(Begin(), output), 
-        f
-    );
-    return output;
-};
+//     return output;
+// };
+// // specialization for binary operator
+// State apply_binary(const Function& f, vector<State>& inputs)
+// {
+//     R output;
+//     std::transform(
+//         std::execution::par_unseq,
+//         std::visit(Begin(), inputs.at(0)), 
+//         std::visit(End(), inputs.at(0)), 
+//         std::visit(Begin(), inputs.at(1)), 
+//         std::visit(End(), inputs.at(1)), 
+//         std::visit(Begin(), output), 
+//         f
+//     );
+//     return output;
+// };
 template<typename R, typename Arg, typename... Args>
-R apply(const std::function<R(Arg,Args...)>& f, vector<Arg>& inputs)
+R apply(const std::function<R(Args...)>& f, const vector<Arg>& inputs)
 {
     R output;
     switch (inputs.size())
@@ -603,7 +604,7 @@ R apply(const std::function<R(Arg,Args...)>& f, vector<Arg>& inputs)
                 inputs.at(0).begin(),
                 inputs.at(0).end(),
                 inputs.at(1).begin(),
-                inputs.at(1).end(),
+                // inputs.at(1).end(),
                 output.begin(),
                 f
             );
