@@ -1,0 +1,5 @@
+find_package(Doxygen REQUIRED)
+find_package(Sphinx REQUIRED)
+
+# get_target_property(BRUSH_PUBLIC_HEADER_DIR brush INTERFACE_INCLUDE_DIRECTORIES)
+# file(GLOB_RECURSE BRUSH_PUBLIC_HEADER_DIR)

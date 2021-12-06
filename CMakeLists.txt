@@ -137,3 +137,8 @@ target_link_libraries(brush ${PYTHON_LIBRARIES})
 pybind11_add_module(brushgp ${CMAKE_CURRENT_SOURCE_DIR}/src/brushgp.cpp)
 target_link_libraries(brushgp PRIVATE brush)
 target_compile_definitions(brushgp PRIVATE VERSION_INFO=${EXAMPLE_VERSION_INFO})
+
+
+# Handle stuff for docs (Sphinx/Doxygen)
+set(CMAKE_MODULE_PATH "${PROJECT_SOURCE_DIR}/cmake" ${CMAKE_MODULE_PATH})
+add_subdirectory("docs")

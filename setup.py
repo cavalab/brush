@@ -124,6 +124,12 @@ setup(
     test_requires=[
         'pytest'
     ],
+    extras_require={
+        'docs': [
+            'sphinx_rtd_theme',
+            'breathe'
+        ]
+    },
     ext_modules=[CMakeExtension("brushgp")],
     cmdclass={"build_ext": CMakeBuild},
     test_suite='nose.collector',
