@@ -11,8 +11,8 @@ tuple<set<NodeBase*>,set<type_index>> generate_nodes(vector<string>& op_names)
     set<type_index> new_types;
 
     // auto binary_operators = make_binary_operators<ArrayXf>()(op_names);
-    auto binary_operators = OpMaker<BinaryOperator<T>>().make(op_names);
-    auto unary_operators = OpMaker<UnaryOperator<T>>().make(op_names);
+    auto binary_operators = OpMaker<BinaryOp<T>>().make(op_names);
+    auto unary_operators = OpMaker<UnaryOp<T>>().make(op_names);
     // auto binary_operators = make_binary_operators<T>()(op_names);
     // auto binary_operators = make_binary_operators(op_names);
     // auto unary_operators = make_unary_operators<T>()(op_names);
@@ -30,15 +30,45 @@ tuple<set<NodeBase*>,set<type_index>> generate_nodes(vector<string>& op_names)
         nodes.insert( new DxNode<T(T)>(op->name, op->f, op->df, false) );
     }
 
+    // if ( in(op_names, "best_split"))
+    //     nodes.insert(new SplitNode<T(T,T)>("best_split"));
+
+    // if ( in(op_names, "arg_split"))
+    // {
+    //     nodes.insert( new SplitNode<T(T,T,T)>("arg_split"));
+    // }
+
+    return {nodes, new_types};
+}
+tuple<set<NodeBase*>,set<type_index>> generate_split_nodes(vector<string>& op_names)
+{
+    set<NodeBase*> nodes; 
+    set<type_index> new_types;
     if ( in(op_names, "best_split"))
-        nodes.insert(new SplitNode<T(T,T)>("best_split"));
+    {
+        nodes.insert(new SplitNode<ArrayXf(ArrayXf,ArrayXf)>("best_split"));
+        nodes.insert(new SplitNode<ArrayXi(ArrayXi,ArrayXi)>("best_split"));
+        nodes.insert(new SplitNode<ArrayXb(ArrayXb,ArrayXb)>("best_split"));
+    }
 
     if ( in(op_names, "arg_split"))
     {
-        nodes.insert( new SplitNode<T(T,T,T)>("arg_split"));
+        nodes.insert( new SplitNode<ArrayXf(ArrayXf,ArrayXf,ArrayXf)>("arg_split"));
+        nodes.insert( new SplitNode<ArrayXf(ArrayXi,ArrayXf,ArrayXf)>("arg_split"));
+        nodes.insert( new SplitNode<ArrayXf(ArrayXb,ArrayXf,ArrayXf)>("arg_split"));
+
+        nodes.insert( new SplitNode<ArrayXi(ArrayXf,ArrayXi,ArrayXi)>("arg_split"));
+        nodes.insert( new SplitNode<ArrayXi(ArrayXi,ArrayXi,ArrayXi)>("arg_split"));
+        nodes.insert( new SplitNode<ArrayXi(ArrayXb,ArrayXi,ArrayXi)>("arg_split"));
+
+        nodes.insert( new SplitNode<ArrayXb(ArrayXf,ArrayXb,ArrayXb)>("arg_split"));
+        nodes.insert( new SplitNode<ArrayXb(ArrayXi,ArrayXb,ArrayXb)>("arg_split"));
+        nodes.insert( new SplitNode<ArrayXb(ArrayXb,ArrayXb,ArrayXb)>("arg_split"));
+
     }
 
     return {nodes, new_types};
+
 }
 
 set<NodeBase*> generate_all_nodes(vector<string>& node_names, 
@@ -48,6 +78,8 @@ set<NodeBase*> generate_all_nodes(vector<string>& node_names,
     set<type_index> new_types;
 
     auto [new_nodes, nt] = generate_nodes<ArrayXf>(node_names);
+    auto [new_nodes2, nt2] = generate_nodes<ArrayXXf>(node_names);
+    auto [new_nodes3, nt3] = generate_split_nodes(node_names);
     nodes.merge(new_nodes);
     term_types.merge(nt);
     // term_types.erase(t);

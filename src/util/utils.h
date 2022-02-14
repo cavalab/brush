@@ -618,6 +618,16 @@ R apply(const std::function<R(Args...)>& f, const vector<Arg>& inputs)
     return output;
 };
 
+template<class T, class U>
+std::vector<T> slice(const vector<T>& v, const U& idx)
+{
+    vector<T> result;
+    for (const auto& i : idx)
+    {
+        result.push_back(v.at(i));
+    }
+    return result;
+}
 
 } // Util
 } // Brush 

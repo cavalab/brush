@@ -41,27 +41,30 @@ namespace Brush
 namespace data
 {
 
-
 template<class T>
 struct TimeSeries
 {
     // TODO: this should probably be templated by bool, int, float
     // using ts_val = std::variant<ArrayXXb, ArrayXXi, ArrayXXf>;
-    using ValType = Array<T, Dynamic, Dynamic>;
+    // using ValType = Array<T, Dynamic, Dynamic>;
+    using ValType = std::vector<Array<T,Dynamic,1>>;
+    using TimeType = std::vector<ArrayXi>;
     /*! Wraps time and value slices to matrices
     *  TODO: define begin() and end() iterators? figure out how to handle operators that just use values versus time 
     */
-    ArrayXXf time;
+    TimeType time;
     ValType value;
-    TimeSeries(const ArrayXXf& t, 
+    TimeSeries(const TimeType& t, 
                const ValType& v): time(t), value(v) {}
     // array<TimeSeries, 2> TimeSeries::split(const ArrayXb& mask) const ;
     /// return a slice of the data using indices idx
     template<typename U>
     TimeSeries operator()(const U& idx) const
     {
-        ArrayXXf t = this->time(idx, Eigen::all);
-        ValType v = this->value(idx, Eigen::all);
+        // TimeType t = this->time(idx, Eigen::all);
+        TimeType t = Util::slice(this->time, idx);
+        // ValType v = this->value(idx, Eigen::all);
+        ValType v = Util::slice(this->value, idx); //(idx, Eigen::all);
         // std::visit([&](auto&& arg) { arg = arg(idx, Eigen::all); }, v);
         return TimeSeries(t, v);
     };
@@ -80,29 +83,25 @@ struct TimeSeries
         return output;            
     };
     
-    /// return a slice of the data by row or column
-    template<typename R, typename C>
-    TimeSeries operator()(const R& rows, 
-                          const C& cols) const
-    {
-        ArrayXXf t = this->time(rows, cols);
-        ValType v = this->value(rows, cols);
-        return TimeSeries(t, v);
-    };
+    // /// return a slice of the data by row or colum/n
+    // template<typename R, typename C>
+    // TimeSeries operator()(const R& rows, 
+    //                       const C& cols) const
+    // {
+    //     ArrayXXf t = this->time(rows, cols);
+    //     ValType v = this->value(rows, cols);
+    //     return TimeSeries(t, v);
+    // };
     // TODO: from_json and to_json
 
     // TODO: custom iterator that iterates over pairs of time and value vectors.
     // for now these only iterate over values.
     
-    typename DenseBase<ValType>::RowwiseReturnType::iterator begin()
-    {
-        return this->value.rowwise().begin();
-    }
-    typename DenseBase<ValType>::RowwiseReturnType::iterator end()
-    {
-        return this->value.rowwise().end();
-        // return std::visit([](auto v){return v.rowwise().end();}, this->value);
-    }
+    typename ValType::iterator begin() { return this->value.begin(); };
+    typename ValType::iterator end() { return this->value.end(); };
+    auto cbegin() const { return this->value.cbegin(); };
+    auto cend() const { return this->value.cend(); };
+    // return std::visit([](auto v){return v.rowwise().end();}, this->value); }
 };
 
 /**
@@ -144,9 +143,9 @@ struct Begin
     ArrayXi::iterator operator()(ArrayXi arg){return arg.begin();} ;
     ArrayXf::iterator operator()(ArrayXf arg){return arg.begin();} ;
     // TimeSeries
-    XXbIt operator()(TimeSeriesb arg){return arg.begin();};
-    XXiIt operator()(TimeSeriesi arg){return arg.begin();};
-    XXfIt operator()(TimeSeriesf arg){return arg.begin();};
+    auto operator()(TimeSeriesb arg){return arg.begin();};
+    auto operator()(TimeSeriesi arg){return arg.begin();};
+    auto operator()(TimeSeriesf arg){return arg.begin();};
 
     XXbIt operator()(ArrayXXb arg){return arg.rowwise().begin();};
     XXiIt operator()(ArrayXXi arg){return arg.rowwise().begin();};
@@ -175,9 +174,9 @@ struct End
     ArrayXi::iterator operator()(ArrayXi arg){return arg.end();} ;
     ArrayXf::iterator operator()(ArrayXf arg){return arg.end();} ;
     // TimeSeries
-    XXbIt operator()(TimeSeriesb arg){return arg.end();};
-    XXiIt operator()(TimeSeriesi arg){return arg.end();};
-    XXfIt operator()(TimeSeriesf arg){return arg.end();};
+    auto operator()(TimeSeriesb arg){return arg.end();};
+    auto operator()(TimeSeriesi arg){return arg.end();};
+    auto operator()(TimeSeriesf arg){return arg.end();};
  
     XXbIt operator()(ArrayXXb arg){return arg.rowwise().end();};
     XXiIt operator()(ArrayXXi arg){return arg.rowwise().end();} ;

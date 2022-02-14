@@ -59,6 +59,9 @@ class DxNode<R(FirstArg, NextArgs...)> : public TypedNodeBase<R, FirstArg, NextA
         /// TODO: how to handle weighted sum?
         // weight types
         using WTypes = std::array<float, base::ArgCount>;
+        // using WTypes = typename std::conditional<std::is_same_v<FirstArg,ArrayXf>, 
+        //                     std::array<float, base::ArgCount>, 
+        //                     std::array<ArrayXf, base::ArgCount>>::type;
         // derivative function type
         using DxFunction = vector<std::function<FirstArg(FirstArg, NextArgs...)>>;
 

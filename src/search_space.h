@@ -34,56 +34,17 @@ typedef vector<NodeBase*> NodeVector;
 
 namespace Brush
 {
-
+////////////////////////////////////////////////////////////////////////////////
+// node generation routines
 template<typename T>
 tuple<set<NodeBase*>,set<type_index>> generate_nodes(vector<string>& op_names);
-//TODO: add reduction operators
-/// generates nodes that act on T. return any non-T return types.
-// template<typename T>
-// tuple<set<NodeBase*>,set<type_index>> generate_nodes(vector<string>& op_names)
-// {
+tuple<set<NodeBase*>,set<type_index>> generate_split_nodes(vector<string>& op_names);
 
-//     // NodeNameTypeMap name2ret2node;
-//     set<NodeBase*> nodes; 
-//     set<type_index> new_types;
-
-//     auto binary_operators = make_binary_operators<T>(op_names);
-//     auto unary_operators = make_unary_operators<T>(op_names);
-//     // auto reduce_operators = make_reduction_operators<T>();
-
-
-//     for (const auto& op : binary_operators)
-//         nodes.insert( new WeightedDxNode<T(T,T)>(op->name, op->f, op->df));
-
-//     for (const auto& op : unary_operators)
-//         nodes.insert( new WeightedDxNode<T(T)>(op->name, op->f, op->df));
-
-//     if ( in(op_names, "best_split"))
-//         nodes.insert(new SplitNode<T(T,T)>("best_split"));
-
-//     if ( in(op_names, "arg_split"))
-//     {
-//         if (typeid(T) == typeid(ArrayXb))
-//         {
-//             nodes.insert(
-//                     new SplitNode<ArrayXf(T,ArrayXf,ArrayXf)>("arg_split")
-//             );
-//             new_types.insert(typeid(ArrayXf));
-//         }
-//     }
-
-//     return {nodes, new_types};
-// };
-
-// template<>
-// tuple<set<NodeBase*>,set<type_index>> generate_nodes<Longitudinal>(vector<string>& op_names)
-// {
-//     return {{},{}};
-// };
 NodeVector generate_terminals(const Data& d);
 
 set<NodeBase*> generate_all_nodes(vector<string>& node_names, 
                                   set<type_index> term_types);
+////////////////////////////////////////////////////////////////////////////////
 
 
 struct SearchSpace
