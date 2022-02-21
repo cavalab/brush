@@ -28,7 +28,19 @@ namespace py = pybind11;
 
 
 PYBIND11_MODULE(brushgp, m) {
-    m.doc() = "Python interface for Brush";
+    m.doc() = R"pbdoc(
+        Python interface for Brush
+        --------------------------
+
+        .. currentmodule:: brushgp
+
+        .. autosummary::
+           :toctree: _generate
+
+           Data
+           SearchSpace
+           Program
+    )pbdoc";
 
 #ifdef VERSION_INFO
     m.attr("__version__") = MACRO_STRINGIFY(VERSION_INFO);

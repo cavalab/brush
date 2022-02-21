@@ -119,7 +119,8 @@ setup(
     # cmake_install_dir="src/brush",
     python_requires=">=3.6",
     install_requires=[
-        'numpy'
+        'numpy',
+        'sphinx'
     ],
     test_requires=[
         'pytest'
@@ -127,6 +128,7 @@ setup(
     extras_require={
         'docs': [
             'sphinx_rtd_theme',
+            'maisie_sphinx_theme',
             'breathe'
         ]
     },

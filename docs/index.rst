@@ -1,20 +1,18 @@
-.. BrushGP documentation master file, created by
-   sphinx-quickstart on Mon Dec  6 12:12:02 2021.
-   You can adapt this file completely to your liking, but it should at least
-   contain the root `toctree` directive.
+Overview
+========
 
-Welcome to BrushGP's documentation!
-===================================
+**brush** is a library for symbolic regression via strongly-typed genetic
+programming.
+
+The name **brush** is an acronym, short for backpropagations and recursion
+using search heuristics.
+
+Contents
+--------
 
 .. toctree::
    :maxdepth: 2
    :caption: Contents:
 
-
-
-Indices and tables
-==================
-
-* :ref:`genindex`
-* :ref:`modindex`
-* :ref:`search`
+   cpp_api
+   python_api
