@@ -63,19 +63,6 @@ template<typename T> class Program //: public tree<NodeBase*>
     /// reference to search space
     SearchSpace& SS;
 
-<<<<<<< HEAD
-    // Factory function to construct a Program using the Pybind11 interface
-    static Program create_py(MatrixXf X, ArrayXf y, int depth=0, int breadth=0, int size=0)
-    {
-        Data data(X, y);
-        SearchSpace SS;
-        SS.init(data);
-
-        return Program(SS, depth, breadth, size);
-    }
-    
-=======
->>>>>>> python
     Program(SearchSpace& ss, int depth=0, int breadth = 0, int size = 0): SS(ss)
     {
         // make a random program

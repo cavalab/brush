@@ -454,7 +454,7 @@ struct min {
         ArrayXf tmp;
         std::transform(x.cbegin(), x.cend(), 
                         tmp.begin(),
-                        [](const auto& i){return i.min();}
+                        [](const auto& i){return i.minCoeff();}
         );
         return tmp;
     };
@@ -470,13 +470,13 @@ struct d_min{
 };
 
 struct max {
-    ArrayXf operator()(const ArrayXXf& x){ return x.rowwise().max();};
+    ArrayXf operator()(const ArrayXXf& x){ return x.rowwise().maxCoeff();};
     ArrayXf operator()(const TimeSeriesf& x)
     {
         ArrayXf tmp;
         std::transform(x.cbegin(), x.cend(), 
                         tmp.begin(),
-                        [](const auto& i){return i.max();}
+                        [](const auto& i){return i.maxCoeff();}
         );
         return tmp;
     };
