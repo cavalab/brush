@@ -1,27 +1,18 @@
 #!/usr/bin/env python3
 
-import unittest
+import pytest
+import numpy as np
 from pmlb import fetch_data
 
 from brushgp import Program, Data, SearchSpace
 
-class TestProgram(unittest.TestCase):
-    def setup_class(self):
-        X, y = fetch_data('breast_cancer_wisconsin', return_X_y=True)
-        self.X = X
-        self.y = y
+test_y = np.array([1.,0.,1.4,1.,0.,1.,1.,0.,0.,0.])
+test_X = np.array([[1.1,2.0,3.0,4.0,5.0,6.5,7.0,8.0,9.0,10.0],
+                   [2.0,1.2,6.0,4.0,5.0,8.0,7.0,5.0,9.0,10.0]])
 
-    def test_data_does_initialize(self):
-        self.data = Data(self.X, self.y)
-
-    def test_can_create_search_space(self):
-        self.search_space = SearchSpace(self.data)
-    
-    def test_does_create_program(self):
-        self.program = Program(X, y)
-        assert self.program is not None
-
-    def test_does_fit_program(self):
-        self.program.fit()
-
-    def test
+class TestProgram():
+    def test_make_program(self):
+        data = Data(test_X, test_y)
+        SS = SearchSpace(data)
+        pytest.set_trace()
+        prg = Program(SS, 1, 0, 1)

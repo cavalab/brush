@@ -129,11 +129,9 @@ target_link_libraries(tests brush ${GTEST_LIBRARIES} pthread tbb)
 # generate python bindings
 find_package(Python COMPONENTS Interpreter Development REQUIRED)
 
-# if (DEFINED ENV{PYBIND11_INCLUDE_DIR})
-#     set(PYBIND11_INCLUDE_DIR $ENV{PYBIND11_INCLUDE_DIR})
-# endif()
-# message(STATUS "PYBIND11_INCLUDE_DIR=${PYBIND11_INCLUDE_DIR}")
-# set(pybind11_DIR "${PYBIND11_INCLUDE_DIR}")
+# Find pybind11
+find_package(pybind11 REQUIRED)
+include_directories("${pybind11_INCLUDE_DIRS}")
 
 message("Python_FOUND:${Python_FOUND}")
 message("Python_VERSION:${Python_VERSION}")
@@ -146,9 +144,11 @@ include_directories("${PYTHON_INCLUDE_DIRS}")
 message("Python_INCLUDE_DIRS:${PYTHON_INCLUDE_DIRS}")
 target_link_libraries(brush ${PYTHON_LIBRARIES})
 
-find_package(pybind11 REQUIRED)
-include_directories("${pybind11_INCLUDE_DIRS}")
-
-#add_subdirectory(pybind11)
 pybind11_add_module(brushgp ${CMAKE_CURRENT_SOURCE_DIR}/src/brushgp.cpp)
+target_link_libraries(brushgp PRIVATE brush)
 target_compile_definitions(brushgp PRIVATE VERSION_INFO=${EXAMPLE_VERSION_INFO})
+
+
+# Handle stuff for docs (Sphinx/Doxygen)
+set(CMAKE_MODULE_PATH "${PROJECT_SOURCE_DIR}/cmake" ${CMAKE_MODULE_PATH})
+add_subdirectory("docs")

@@ -1,18 +1,26 @@
 {
+    "cmake.buildBeforeRun": true,
     "cmake.buildDirectory": "${workspaceFolder}/build/",
+    "cmake.cmakePath": "${env:CONDA_PREFIX}/envs/brush/bin/cmake",
     "cmake.configureEnvironment": {
         // "EIGEN3_INCLUDE_DIR": "${env:CONDA_PREFIX}/include/eigen3/",
+<<<<<<< HEAD
         "EIGEN3_INCLUDE_DIR": "${env:CONDA_PREFIX}/include/eigen3/",
         "GTEST_INCLUDE_DIRS": "${env:CONDA_PREFIX}/include/",
         "GTEST_LIBRARIES": "${env:CONDA_PREFIX}/lib/libgtest.so",
         "pybind11_DIR": "${env:CONDA_PREFIX}/lib/python3.8/site-packages/pybind11/share/cmake/pybind11/",
         // "CONDA_LIB":  "${env:CONDA_PREFIX}/lib/"
         "CONDA_LIB":  "/home/bill/anaconda3/envs/brush/lib/"
+=======
+        "EIGEN3_INCLUDE_DIR": "${env:CONDA_PREFIX}/envs/brush/include/eigen3/",
+        "GTEST_INCLUDE_DIRS": "${env:CONDA_PREFIX}/envs/brush/include/",
+        "GTEST_LIBRARIES": "${env:CONDA_PREFIX}/envs/brush/lib/libgtest.so",
+        "pybind11_DIR": "${env:CONDA_PREFIX}/envs/brush/lib/python3.8/site-packages/pybind11/share/cmake/pybind11/",
+>>>>>>> python
         // "PYTHON_LIBRARIES": "${env:CONDA_PREFIX}/lib/libpython3.8.so",
         // "PYTHON_INCLUDE_DIRS": "${env:CONDA_PREFIX}/include/",
     },
-    "cmake.buildBeforeRun": true,
-    "python.pythonPath": "${env:CONDA_PREFIX}/bin/python",
+    "python.pythonPath": "${env:CONDA_PREFIX}/envs/brush/bin/python",
     "files.associations": {
         "type_traits": "cpp",
         "string": "cpp",

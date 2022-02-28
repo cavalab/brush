@@ -267,7 +267,6 @@ class Data
             , y(y_)
             , classification(c)
             {
-                cout << "Reached constructor...\n";
                 init();
             } 
 
