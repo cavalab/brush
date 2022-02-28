@@ -136,6 +136,7 @@ struct SearchSpace
             cout << type_names[k] << ": ";
             print(v.begin(), v.end());
         }
+
         cout << "node map: " << node_map.size() << "\n";
         for (const auto& [ret_type, v] : node_map)
         {

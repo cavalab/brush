@@ -403,18 +403,18 @@ T d_median(const Array<T,-1,1>& v)
         return x[n];
 }
 
-struct sum {
-    ArrayXf operator()(const ArrayXXf& x){ return x.rowwise().sum();};
-    ArrayXf operator()(const TimeSeriesf& x)
-    {
-        ArrayXf tmp;
-        std::transform(x.cbegin(), x.cend(), 
-                        tmp.begin(),
-                        [](const auto& i){return i.sum();}
-        );
-        return tmp;
-    };
-};
+// struct sum {
+//     ArrayXf operator()(const ArrayXXf& x){ return x.rowwise().sum();};
+//     ArrayXf operator()(const TimeSeriesf& x)
+//     {
+//         ArrayXf tmp;
+//         std::transform(x.cbegin(), x.cend(), 
+//                         tmp.begin(),
+//                         [](const auto& i){return i.sum();}
+//         );
+//         return tmp;
+//     };
+// };
 struct d_sum{
     ArrayXXf operator()(const ArrayXXf& x){ return ArrayXXf::Ones(x.rows(), x.cols()); };
     TimeSeriesf operator()(const TimeSeriesf& x){ 
@@ -425,18 +425,18 @@ struct d_sum{
     };
 };
 
-struct mean {
-    ArrayXf operator()(const ArrayXXf& x){ return x.rowwise().mean();};
-    ArrayXf operator()(const TimeSeriesf& x)
-    {
-        ArrayXf tmp;
-        std::transform(x.cbegin(), x.cend(), 
-                        tmp.begin(),
-                        [](const auto& i){return i.mean();}
-        );
-        return tmp;
-    };
-};
+// struct mean {
+//     ArrayXf operator()(const ArrayXXf& x){ return x.rowwise().mean();};
+//     ArrayXf operator()(const TimeSeriesf& x)
+//     {
+//         ArrayXf tmp;
+//         std::transform(x.cbegin(), x.cend(), 
+//                         tmp.begin(),
+//                         [](const auto& i){return i.mean();}
+//         );
+//         return tmp;
+//     };
+// };
 struct d_mean{
     ArrayXXf operator()(const ArrayXXf& x){ return ArrayXXf::Ones(x.rows(), x.cols()); };
     TimeSeriesf operator()(const TimeSeriesf& x){ 
@@ -447,18 +447,78 @@ struct d_mean{
     };
 };
 
-struct min {
-    ArrayXf operator()(const ArrayXXf& x){ return x.rowwise().minCoeff();};
-    ArrayXf operator()(const TimeSeriesf& x)
-    {
-        ArrayXf tmp;
-        std::transform(x.cbegin(), x.cend(), 
-                        tmp.begin(),
-                        [](const auto& i){return i.minCoeff();}
-        );
-        return tmp;
-    };
+// struct var {
+//     float variance(ArrayXf v)
+//     {
+//         return pow((v - v.mean()), 2).mean();
+//     }
+
+//     ArrayXf operator()(const ArrayXXf& x)
+//     { 
+//         ArrayXf tmp(x.rows());
+//         std::transform(x.rowwise().cbegin(), x.rowwise().cend(), 
+//                        tmp.begin(),
+//                        this->variance
+//         );
+//         return tmp;
+//    };
+//    ArrayXf operator()(const TimeSeriesf& x)
+//    {
+//        ArrayXf tmp(x.value.rows());
+//        std::transform(x.value.cbegin(), x.value.cend(), 
+//                       tmp.begin(),
+//                       this->variance
+//        );
+//        return tmp;
+//    };
+// };
+
+struct d_var {
+//     float variance(ArrayXf v)
+//     {
+//         return pow((v - v.mean()), 2).mean();
+//     }
+
+//     ArrayXf operator()(const ArrayXXf& x)
+//     { 
+//         ArrayXf tmp(x.rows());
+//         std::transform(x.rowwise().cbegin(), x.rowwise().cend(), 
+//                        tmp.begin(),
+//                        this->variance
+//         );
+//         return tmp;
+//    };
+//    ArrayXf operator()(const TimeSeriesf& x)
+//    {
+//        ArrayXf tmp(x.value.size());
+//        std::transform(x.value.cbegin(), x.value.cend(), 
+//                       tmp.begin(),
+//                       this->variance
+//        );
+//        return tmp;
+//    };
 };
+        // [](const ArrayXXf& x){ 
+        //     return (x - x.rowwise().mean()).pow(2).rowwise().mean(); 
+        // },
+        // { 
+        //     [](const ArrayXXf& x){ 
+        //         return 2/x.cols()*(x - x.rowwise().mean()); 
+        //     } 
+        // }
+
+// struct min {
+//     ArrayXf operator()(const ArrayXXf& x){ return x.rowwise().minCoeff();};
+//     ArrayXf operator()(const TimeSeriesf& x)
+//     {
+//         ArrayXf tmp;
+//         std::transform(x.cbegin(), x.cend(), 
+//                         tmp.begin(),
+//                         [](const auto& i){return i.minCoeff();}
+//         );
+//         return tmp;
+//     };
+// };
 struct d_min{
     ArrayXXf operator()(const ArrayXXf& x){ return ArrayXXf::Ones(x.rows(), x.cols()); };
     TimeSeriesf operator()(const TimeSeriesf& x){ 
@@ -469,18 +529,18 @@ struct d_min{
     };
 };
 
-struct max {
-    ArrayXf operator()(const ArrayXXf& x){ return x.rowwise().maxCoeff();};
-    ArrayXf operator()(const TimeSeriesf& x)
-    {
-        ArrayXf tmp;
-        std::transform(x.cbegin(), x.cend(), 
-                        tmp.begin(),
-                        [](const auto& i){return i.maxCoeff();}
-        );
-        return tmp;
-    };
-};
+// struct max {
+//     ArrayXf operator()(const ArrayXXf& x){ return x.rowwise().maxCoeff();};
+//     ArrayXf operator()(const TimeSeriesf& x)
+//     {
+//         ArrayXf tmp;
+//         std::transform(x.cbegin(), x.cend(), 
+//                         tmp.begin(),
+//                         [](const auto& i){return i.maxCoeff();}
+//         );
+//         return tmp;
+//     };
+// };
 struct d_max{
     ArrayXXf operator()(const ArrayXXf& x){ return ArrayXXf::Ones(x.rows(), x.cols()); };
     TimeSeriesf operator()(const TimeSeriesf& x){ 
@@ -490,28 +550,115 @@ struct d_max{
         return TimeSeriesf(x.time, ones); 
     };
 };
+////////////////////////////////////////////////////////////////////////////////
+/* Long Operator
+ * Operates on matrices and timeseries, returns array (for whole sample set)
+ */
+template<typename T> // T: float, int, bool
+struct LongOp {
+    using OpType=std::function<T(const Eigen::Ref<Array<T,Dynamic,1>>)>;
+    OpType op;
 
-struct median {
-    ArrayXf operator()(const ArrayXXf& x)
-    { 
-        return x.rowwise().median();
-        ArrayXf tmp;
-        std::transform(x.rowwise().cbegin(), x.rowwise().cend(), 
-                        tmp.begin(),
-                        [](const auto& i){return Util::median(i);}
-        );
-        return tmp;
-    };
-    ArrayXf operator()(const TimeSeriesf& x)
+    LongOp(OpType o): op(o) {};
+
+    /* apply op to begin and end iterators */
+    template<typename Iter>                                    
+    Array<T,Dynamic,1> apply(Iter start, Iter end)
     {
-        ArrayXf tmp;
-        std::transform(x.cbegin(), x.cend(), 
-                        tmp.begin(),
-                        [](const auto& i){return Util::median(i);}
+        Array<T,Dynamic,1> dest(end-start);
+        std::transform(start, end, 
+                       dest.begin(),
+                       this->op
         );
-        return tmp;
+        return dest;
+    };
+    Array<T,Dynamic,1> operator()(const Eigen::Ref<const ArrayXXf>& x)
+    {
+        // auto rows = x.rowwise();
+        return this->apply(x.rowwise().cbegin(), x.rowwise().cend());
+    };
+    Array<T,Dynamic,1> operator()(const TimeSeriesf& x)
+    {
+        return this->apply(x.value.begin(), x.value.end());
     };
 };
+
+// struct sum : LongOP<float>
+// {
+//     op = [](const auto& i){return i.sum();};
+// };
+
+// struct median : LongOP<float>
+// {
+//     op = [](const auto& i){return Util::median(i);};
+// };
+// auto median = LongOp<float>([](const auto& i){return Util::median(i);});
+// auto mean = LongOp<float>([](const auto& i){return i.mean();});
+// auto min = LongOp<float>([](const ArrayXf& i){return i.minCoeff();});
+// auto max = LongOp<float>([](const ArrayXf& i){return i.maxCoeff();});
+// auto var = LongOp<float>([](const ArrayXf& i){return pow((i - i.mean()), 2).mean();});
+// // auto sum = LongOp<float>([](const ArrayXf& i){return i.sum();});
+// auto count = LongOp<float>([](const ArrayXf& i){return i.size();});
+
+
+// template<typename T> // T: float, int, bool
+// struct DLongOp {
+//     using Dtype = Eigen::Ref<Array<T,Dynamic,1>>;
+//     using OpType=std::function<Dtype(const Dtype)>;
+//     OpType op;
+
+//     DLongOp(OpType o): op(o) {};
+
+//     /* apply op to begin and end iterators */
+//     template<typename Iter>                                    
+//     Array<T,Dynamic,1> apply(Iter start, Iter end)
+//     {
+//         Array<T,Dynamic,1> dest(end-start);
+//         std::transform(start, end, 
+//                        dest.begin(),
+//                        this->op
+//         );
+//         return dest;
+//     };
+//     ArrayXXf operator()(const ArrayXXf& x)
+//     {
+//         return this->apply(x.rowwise().begin(), x.rowwise().end());
+//     };
+//     TimeSeriesf operator()(const TimeSeriesf& x)
+//     {
+//         return TimeSeriesf(x.time,
+//                            this->apply(x.value.begin(), x.value.end()));
+//     };
+// };
+// struct d_mean{
+//     ArrayXXf operator()(const ArrayXXf& x){ return ArrayXXf::Ones(x.rows(), x.cols()); };
+//     TimeSeriesf operator()(const TimeSeriesf& x){ 
+//         TimeSeriesf::ValType ones;
+//         for (const auto& i : x.value)
+//             ones.push_back(ArrayXf::Ones(i.rows()));
+//         return TimeSeriesf(x.time, ones); 
+//     };
+// };
+// struct median {
+//     ArrayXf operator()(const ArrayXXf& x)
+//     { 
+//         ArrayXf tmp;
+//         std::transform(x.rowwise().cbegin(), x.rowwise().cend(), 
+//                         tmp.begin(),
+//                         [](const auto& i){return Util::median(i);}
+//         );
+//         return tmp;
+//     };
+//     ArrayXf operator()(const TimeSeriesf& x)
+//     {
+//         ArrayXf tmp;
+//         std::transform(x.cbegin(), x.cend(), 
+//                         tmp.begin(),
+//                         [](const auto& i){return Util::median(i);}
+//         );
+//         return tmp;
+//     };
+// };
 struct d_median{
     ArrayXXf operator()(const ArrayXXf& x){ return ArrayXXf::Ones(x.rows(), x.cols()); };
     TimeSeriesf operator()(const TimeSeriesf& x){ 
@@ -522,18 +669,18 @@ struct d_median{
     };
 };
 
-struct count {
-    ArrayXf operator()(const ArrayXXf& x){ return x.rowwise().count();};
-    ArrayXf operator()(const TimeSeriesf& x)
-    {
-        ArrayXf tmp;
-        std::transform(x.cbegin(), x.cend(), 
-                        tmp.begin(),
-                        [](const auto& i){return i.count();}
-        );
-        return tmp;
-    };
-};
+// struct count {
+//     ArrayXf operator()(const ArrayXXf& x){ return x.rowwise().count();};
+//     ArrayXf operator()(const TimeSeriesf& x)
+//     {
+//         ArrayXf tmp;
+//         std::transform(x.cbegin(), x.cend(), 
+//                         tmp.begin(),
+//                         [](const auto& i){return i.count();}
+//         );
+//         return tmp;
+//     };
+// };
 struct d_count{
     ArrayXXf operator()(const ArrayXXf& x){ return ArrayXXf::Ones(x.rows(), x.cols()); };
     TimeSeriesf operator()(const TimeSeriesf& x){ 
@@ -546,11 +693,11 @@ struct d_count{
 
 // stat operators that summarize matrices and timeseries 
 template<typename Arg> struct Sum;
-template<typename Arg> struct Mean;
-template<typename Arg> struct Min;
-template<typename Arg> struct Max;
-template<typename Arg> struct Median;
-template<typename Arg> struct Count;
+// template<typename Arg> struct Mean;
+// template<typename Arg> struct Min;
+// template<typename Arg> struct Max;
+// template<typename Arg> struct Median;
+// template<typename Arg> struct Count;
 
 /** 
  * Sum for matrices
@@ -558,7 +705,12 @@ template<typename Arg> struct Count;
 template<>
 struct Sum<ArrayXXf> : public UnaryOp<ArrayXf, ArrayXXf>
 {
-    Sum<ArrayXXf>(): UnaryOp<ArrayXf, ArrayXXf>("SUM", 1, sum(), {d_sum()}){}
+    Sum<ArrayXXf>(): UnaryOp<ArrayXf, ArrayXXf>(
+        "SUM", 1, 
+        LongOp<float>( [](const auto& i){return i.sum();} ), 
+        // sum(),
+        {d_sum()}
+    ){}
 };
 
 /** 
@@ -567,46 +719,52 @@ struct Sum<ArrayXXf> : public UnaryOp<ArrayXf, ArrayXXf>
 template<>
 struct Sum<TimeSeriesf> : public UnaryOp<ArrayXf, TimeSeriesf>
 {
-    Sum<TimeSeriesf>(): UnaryOp<ArrayXf, TimeSeriesf>( "SUM", 1, sum(), {d_sum()}
+    Sum<TimeSeriesf>(): UnaryOp<ArrayXf, TimeSeriesf>(
+        "SUM", 1, 
+        LongOp<float>( [](const auto& i){return i.sum();} ), 
+        // sum(),
+        {d_sum()}
     ){}
 };
 
-template<>
-struct Mean<ArrayXXf> : public UnaryOp<ArrayXf, ArrayXXf>
-{
-    Mean<ArrayXXf>(): UnaryOp<ArrayXf, ArrayXXf>(
-        "MEAN", 
-        1, 
-        [](const ArrayXXf& x){ return x.rowwise().mean(); },
-        { [](const ArrayXXf& x){ return ArrayXXf::Ones(x.rows(), x.cols())/x.cols(); } }
-    ){}
-};
+// template<>
+// struct Mean<ArrayXXf> : public UnaryOp<ArrayXf, ArrayXXf>
+// {
+//     Mean<ArrayXXf>(): UnaryOp<ArrayXf, ArrayXXf>(
+//         "MEAN", 
+//         1, 
+//         mean(),
+//         {d_mean()}
+//         // [](const ArrayXXf& x){ return x.rowwise().mean(); },
+//         // { [](const ArrayXXf& x){ return ArrayXXf::Ones(x.rows(), x.cols())/x.cols(); } }
+//     ){}
+// };
 
-struct Mean<TimeSeriesf> : public UnaryOp<ArrayXf, TimeSeriesf>
-{
-    Mean<TimeSeriesf>(): UnaryOp<ArrayXf, TimeSeriesf>(
-        "MEAN", 
-        1, 
-        [](const ArrayXXf& x){ return x.rowwise().mean(); },
-        { [](const ArrayXXf& x){ return ArrayXXf::Ones(x.rows(), x.cols())/x.cols(); } }
-    ){}
-};
+// template<>
+// struct Mean<TimeSeriesf> : public UnaryOp<ArrayXf, TimeSeriesf>
+// {
+//     Mean<TimeSeriesf>(): UnaryOp<ArrayXf, TimeSeriesf>(
+//         "MEAN", 
+//         1, 
+//         mean(),
+//         {d_mean()}
+//         // [](const TimeSeriesf& x){ 
+//         //     return x.rowwise().mean(); 
+//         // },
+//         // { [](const TimeSeriesf& x){ return ArrayXXf::Ones(x.rows(), x.cols())/x.cols(); } }
+//     ){}
+// };
 
-struct Var : public UnaryOp<ArrayXf, ArrayXXf>
-{
-    Var(): UnaryOp<ArrayXf, ArrayXXf>(
-        "VAR", 
-        2, 
-        [](const ArrayXXf& x){ 
-            return (x - x.rowwise().mean()).pow(2).rowwise().mean(); 
-        },
-        { 
-            [](const ArrayXXf& x){ 
-                return 2/x.cols()*(x - x.rowwise().mean()); 
-            } 
-        }
-    ){}
-};
+// template<>
+// struct Var<ArrayXXf> : public UnaryOp<ArrayXf, ArrayXXf>
+// {
+//     Var(): UnaryOp<ArrayXf, ArrayXXf>(
+//         "VAR", 
+//         2, 
+//         var(),
+//         {d_var()}
+//     ){}
+// };
 
 // struct Count : public UnaryOp<ArrayXf, ArrayXXf>
 // {

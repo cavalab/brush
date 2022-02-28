@@ -89,8 +89,7 @@ bool in(const V& v, const T& i)
 /// calculate median
 // float median(const ArrayXf& v);
 /// calculate median
-template<typename T>
-T median(const Array<T,-1,1>& v) 
+float median(const Eigen::Ref<const ArrayXf>& v) 
 {
     // instantiate a vector
     vector<float> x(v.size());
