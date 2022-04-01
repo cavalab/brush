@@ -23,7 +23,7 @@ std::vector<std::type_index> StateTypes = {
                       typeid(TimeSeriesi),
                       typeid(TimeSeriesf)
 };
-// /// returns the typeid held in arg
+// /// returns the type_index held in arg
 std::type_index StateType(const State& arg)
 {
     return StateTypes.at(arg.index());

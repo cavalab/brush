@@ -26,8 +26,6 @@ foreach (_variableName ${_variableNames})
     message(STATUS "${_variableName}=${${_variableName}}")
 endforeach()
 link_directories( $ENV{LD_LIBRARY_PATH})
-link_directories( "/home/anaconda3/envs/brush/lib/")
-link_directories( $ENV{CONDA_LIB} )
 # set(CMAKE_CXX_COMPILER /usr/bin/g++-7)
 # version requirement for Eigen
 cmake_minimum_required (VERSION 3.15...3.19)
@@ -124,7 +122,7 @@ file(GLOB_RECURSE testsSrc "tests/*.cpp")
 message(STATUS "testsSrc: '${testsSrc}")
 
 add_executable(tests ${testsSrc})
-target_link_libraries(tests brush ${GTEST_LIBRARIES} pthread tbb)
+target_link_libraries(tests brush ${GTEST_LIBRARIES} pthread)
 
 # generate python bindings
 find_package(Python COMPONENTS Interpreter Development REQUIRED)

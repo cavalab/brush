@@ -3,16 +3,17 @@
         {
             "name": "Linux",
             "includePath": [
-                "${workspaceFolder}/**",
+                // "${workspaceFolder}/**",
                 "${env:CONDA_PREFIX}/include/",
                 "${env:CONDA_PREFIX}/include/eigen3/"
             ],
             "browse": {
-                "databaseFilename": "${workspaceFolder}/.vscode/vc.db",
+                // "databaseFilename": "${workspaceFolder}/.vscode/vc.db",
                 "limitSymbolsToIncludedHeaders": true,
                 "path": [
-                    "${workspaceFolder}",
-                    "${env:CONDA_PREFIX}/envs/brush/include/"
+                    // "${workspaceFolder}",
+                    "..",
+                    "${env:CONDA_PREFIX}/include/"
                 ]
             },
             "defines": [],
@@ -21,7 +22,7 @@
             "cppStandard": "gnu++17",
             "intelliSenseMode": "linux-gcc-x64",
             "configurationProvider": "ms-vscode.cmake-tools",
-            "compileCommands": "${workspaceFolder}/build/compile_commands.json"
+            "compileCommands": "build/compile_commands.json"
         }
     ],
     "version": 4

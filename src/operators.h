@@ -556,7 +556,8 @@ struct d_max{
  */
 template<typename T> // T: float, int, bool
 struct LongOp {
-    using OpType=std::function<T(const Eigen::Ref<Array<T,Dynamic,1>>)>;
+    using OpType=std::function<T(const Eigen::Ref<const Array<T,Dynamic,1>>)>;
+    
     OpType op;
 
     LongOp(OpType o): op(o) {};
@@ -579,7 +580,7 @@ struct LongOp {
     };
     Array<T,Dynamic,1> operator()(const TimeSeriesf& x)
     {
-        return this->apply(x.value.begin(), x.value.end());
+        return this->apply(x.value.cbegin(), x.value.cend());
     };
 };
 
@@ -692,7 +693,7 @@ struct d_count{
 };
 
 // stat operators that summarize matrices and timeseries 
-template<typename Arg> struct Sum;
+// template<typename Arg> struct Sum;
 // template<typename Arg> struct Mean;
 // template<typename Arg> struct Min;
 // template<typename Arg> struct Max;
@@ -702,30 +703,40 @@ template<typename Arg> struct Sum;
 /** 
  * Sum for matrices
  */ 
-template<>
-struct Sum<ArrayXXf> : public UnaryOp<ArrayXf, ArrayXXf>
+template<typename T> 
+struct Sum<T> : public UnaryOp<ArrayXf, T>
 {
-    Sum<ArrayXXf>(): UnaryOp<ArrayXf, ArrayXXf>(
+    Sum<T>(): UnaryOp<ArrayXf, T>(
         "SUM", 1, 
         LongOp<float>( [](const auto& i){return i.sum();} ), 
         // sum(),
         {d_sum()}
     ){}
 };
+// template<>
+// struct Sum<ArrayXXf> : public UnaryOp<ArrayXf, ArrayXXf>
+// {
+//     Sum<ArrayXXf>(): UnaryOp<ArrayXf, ArrayXXf>(
+//         "SUM", 1, 
+//         LongOp<float>( [](const auto& i){return i.sum();} ), 
+//         // sum(),
+//         {d_sum()}
+//     ){}
+// };
 
-/** 
- * Sum for Time series
- */ 
-template<>
-struct Sum<TimeSeriesf> : public UnaryOp<ArrayXf, TimeSeriesf>
-{
-    Sum<TimeSeriesf>(): UnaryOp<ArrayXf, TimeSeriesf>(
-        "SUM", 1, 
-        LongOp<float>( [](const auto& i){return i.sum();} ), 
-        // sum(),
-        {d_sum()}
-    ){}
-};
+// /** 
+//  * Sum for Time series
+//  */ 
+// template<>
+// struct Sum<TimeSeriesf> : public UnaryOp<ArrayXf, TimeSeriesf>
+// {
+//     Sum<TimeSeriesf>(): UnaryOp<ArrayXf, TimeSeriesf>(
+//         "SUM", 1, 
+//         LongOp<float>( [](const auto& i){return i.sum();} ), 
+//         // sum(),
+//         {d_sum()}
+//     ){}
+// };
 
 // template<>
 // struct Mean<ArrayXXf> : public UnaryOp<ArrayXf, ArrayXXf>
