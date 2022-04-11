@@ -84,6 +84,16 @@ https://eigen.tuxfamily.org/dox/TopicCustomizing_Plugins.html
         // template<typename T, typename... Tn>
         template<typename T1, typename T2, typename... Tn>
         inline auto operator()(T1 t1, T2 t2, Tn... tn) { return t1.min(t2.min(tn), ...)); }
+
+        template<typename T>
+        inline auto operator()(T t) { return t.rowwise().minCoeff(); }
+
+        // template<>
+        // inline auto operator()(TimeSeriesf t) { return t.apply(Function<NodeType::Max>()); }
+        template<typename T>
+        inline auto operator()(TimeSeries<T> t) { 
+            return t.apply([](const auto& i){return i.minCoeff();});
+        }
     };
 
     /* coefficient-wise maximum of two or more arguments. */
@@ -95,33 +105,65 @@ https://eigen.tuxfamily.org/dox/TopicCustomizing_Plugins.html
         
         template<typename T1, typename T2, typename... Tn>
         inline auto operator()(T1 t1, T2 t2, Tn... tn) { return t1.max(t2.max(tn), ...)); }
-    };
 
-    // TODO: these need to be specialized for +timeseries :(
-    /* maximum coefficient*/
-    template<>
-    struct Function<NodeType::MaxCoeff>
-    {
         template<typename T>
         inline auto operator()(T t) { return t.rowwise().maxCoeff(); }
-        
+
+        // template<>
+        // inline auto operator()(TimeSeriesf t) { return t.apply(Eigen::maxCoeff()); }
+        template<typename T>
+        inline auto operator()(TimeSeries<T> t) { 
+            return t.apply([](const auto& i){return i.maxCoeff();});
+        }
     };
 
-    /* minimum coefficient*/
-    template<>
-    struct Function<NodeType::MinCoeff>
-    {
-        template<typename T>
-        inline auto operator()(T t) { return t.rowwise().minCoeff(); }
+    // // TODO: these need to be specialized for +timeseries :(
+    // /* maximum coefficient*/
+    // template<>
+    // struct Function<NodeType::MaxCoeff>
+    // {
+    //     template<typename T>
+    //     inline auto operator()(T t) { return t.rowwise().maxCoeff(); }
+
+    //     // template<>
+    //     // inline auto operator()(TimeSeriesf t) { return t.apply(Eigen::maxCoeff()); }
+    //     template<typename T>
+    //     inline auto operator()(TimeSeries<T> t) { 
+    //         return t.apply([](const auto& i){return i.maxCoeff();});
+    //     }
         
-    };
+    // };
+
+    /* minimum coefficient*/
+    // template<>
+    // struct Function<NodeType::MinCoeff>
+    // {
+    //     template<typename T>
+    //     inline auto operator()(T t) { return t.rowwise().minCoeff(); }
+
+    //     // template<>
+    //     // inline auto operator()(TimeSeriesf t) { return t.apply(Function<NodeType::Max>()); }
+    //     template<typename T>
+    //     inline auto operator()(TimeSeries<T> t) { 
+    //         return t.apply([](const auto& i){return i.minCoeff();});
+    //     }
+        
+    // };
 
     /* mean */
     template<>
     struct Function<NodeType::Mean>
     {
+        // template<typename T, typename T2>
+        // inline auto operator()(T t) { return t.rowwise().mean(); }
+
         template<typename T>
         inline auto operator()(T t) { return t.rowwise().mean(); }
+
+        template<typename T>
+        inline auto operator()(TimeSeries<T> t) { 
+            return t.apply([](const auto& i){return i.mean();});
+        }
         
     };
 
@@ -142,20 +184,24 @@ https://eigen.tuxfamily.org/dox/TopicCustomizing_Plugins.html
         typename Derived::PlainObject m { d.replicate(1,1) };
         return median(m);
     }
-    // template<>
-    // struct Function<NodeType::Median>
-    // {
-    //     template<typename R, typename T>
-    //     inline auto operator()(T t) { r = t.rowwise().median(); }
+    template<>
+    struct Function<NodeType::Median>
+    {
+        template<typename T>
+        inline auto operator()(T t) { return median(t); }
         
-    // };
+    };
     /* sum */
     template<>
     struct Function<NodeType::Sum>
     {
         template<typename T>
         inline auto operator()(T t) { return t.rowwise().sum(); }
-        
+
+        template<typename T>
+        inline auto operator()(TimeSeries<T> t) { 
+            return t.apply([](const auto& i){return i.sum();});
+        }
     };
 
 

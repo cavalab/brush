@@ -101,7 +101,39 @@ struct TimeSeries
     typename ValType::iterator end() { return this->value.end(); };
     auto cbegin() const { return this->value.cbegin(); };
     auto cend() const { return this->value.cend(); };
+    typename TimeType::iterator tbegin() { return this->time.begin(); };
+    typename TimeType::iterator tend() { return this->time.end(); };
+    auto ctbegin() const { return this->time.cbegin(); };
+    auto ctend() const { return this->time.cend(); };
+    // auto rowwise() const { return this->value.rowwise(); };
+    // auto colwise() const { return this->value.colwise(); };
     // return std::visit([](auto v){return v.rowwise().end();}, this->value); }
+
+    //TODO: define overloaded operations?
+    /* operators on values */
+    template<typename O>
+    auto apply(std::function<T(ValType)> op){
+        Array<T,Dynamic,1> dest(this->value.size());
+        std::transform(cbegin(), cend(), 
+                       dest.begin(),
+                       op
+        );
+        return dest;
+    }; 
+    /* operators on time */
+    template<typename O>
+    auto apply(std::function<T(TimeType)> op){
+        Array<T,Dynamic,1> dest(this->time.size());
+        std::transform(ctbegin(), ctend(), 
+                       dest.begin(),
+                       op
+        );
+        return dest;
+    }; 
+
+    // inline auto mean() const { return std::apply(this->cbegin(), this->cend(), 
+    // [](auto i){ i.mean(); };
+    // inline auto mean() const { return this->value.mean(); };
 };
 
 /**
