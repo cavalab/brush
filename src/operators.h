@@ -10,7 +10,7 @@ Code below heavily inspired by heal-research/operon
 #include "init.h"
 #include "util/utils.h"
 #include "data/data.h"
-#include "nodes/node.h"
+#include "node.h"
 using namespace Brush::Util;
 
 using namespace std;
@@ -118,7 +118,7 @@ https://eigen.tuxfamily.org/dox/TopicCustomizing_Plugins.html
     };
 
     // // TODO: these need to be specialized for +timeseries :(
-    // /* maximum coefficient*/
+    // /* maximum coefficient*
     // template<>
     // struct Function<NodeType::MaxCoeff>
     // {

@@ -114,5 +114,134 @@ enum class NodeGroup : __UINT32_TYPE__
     Leaf,
 };
 
+struct Node {
+
+    typedef tree_node_<Node*> TreeNode;  
+    /// full name of the node, with types
+    string name;
+    // whether to center the operator in pretty printing
+    bool center_op;
+    // chance of node being selected for variation
+    float prob_change; 
+    // /// unique id
+    // int ID;
+    // static int sNextId;
+    // inline int getNextId() { return ++sNextId; };
+
+
+    NodeType Type;
+    bool IsDifferentiable;
+    bool IsWeighted;
+    bool Optimize;
+
+    Node() = default; 
+
+    explicit Node(NodeType type) noexcept
+        : Node(type, static_cast<Operon::Hash>(type))
+    {
+    }
+
+    explicit Node(NodeType type, bool weighted) noexcept
+        : Type(type)
+        , IsWeighted(weighted)
+    {
+        // if (Type < NodeType::Abs) // Add, Mul, Sub, Div, Aq, Pow
+        // {
+        //     Arity = 2;
+        // } else if (Type < NodeType::Dynamic) // Log, Exp, Sin, Cos, Tan, Tanh, Sqrt, Cbrt, Square
+        // {
+        //     Arity = 1;
+        // }
+        // Length = Arity;
+        // IsEnabled = true;
+        // Optimize = IsLeaf(); // we only optimize leaf nodes
+        // Value = 1.;
+    }
+
+    static auto Constant(double value)
+    {
+        Node node(NodeType::Constant);
+        node.Value = static_cast<Operon::Scalar>(value);
+        return node;
+    }
+
+    [[nodiscard]] auto Name() const noexcept -> std::string const&;
+    [[nodiscard]] auto Desc() const noexcept -> std::string const&;
+
+    // comparison operators
+    // inline auto operator==(const Node& rhs) const noexcept -> bool
+    // {
+    //     return CalculatedHashValue == rhs.CalculatedHashValue;
+    // }
+
+    // inline auto operator!=(const Node& rhs) const noexcept -> bool
+    // {
+    //     return !((*this) == rhs);
+    // }
+
+    // inline auto operator<(const Node& rhs) const noexcept -> bool
+    // {
+    //     return std::tie(HashValue, CalculatedHashValue) < std::tie(rhs.HashValue, rhs.CalculatedHashValue);
+    // }
+
+    // inline auto operator<=(const Node& rhs) const noexcept -> bool
+    // {
+    //     return ((*this) == rhs || (*this) < rhs);
+    // }
+
+    // inline auto operator>(const Node& rhs) const noexcept -> bool
+    // {
+    //     return !((*this) <= rhs);
+    // }
+
+    // inline auto operator>=(const Node& rhs) const noexcept -> bool
+    // {
+    //     return !((*this) < rhs);
+    // }
+
+    template <NodeType... T>
+    [[nodiscard]] inline auto Is() const -> bool { return ((Type == T) || ...); }
+
+    [[nodiscard]] inline auto IsLeaf() const noexcept -> bool { 
+        return Is<NodeType::Constant, NodeType::Variable>(); 
+    }
+    [[nodiscard]] inline auto IsCommutative() const noexcept -> bool { 
+        return Is<NodeType::Add,
+                  NodeType::Mul,
+                  NodeType::Fmin,
+                  NodeType::Fmax>(); 
+    }
+
+
+    std::type_index ret_type() const; 
+    std::type_index args_type() const; 
+    vector<std::type_index> arg_types() const; 
+    size_t get_arg_count() const = 0;
+    // need to figure out how to define these for NodeTypes. 
+    // different operators need different flow through fit and predict - 
+    // for example, split nodes need to run a function on the data, then
+    // pass different data chunks to the children. meanwhile math ops mostly
+    // pull their children first and then do a computation on the arguments.
+    auto fit(const Data&, TreeNode*&, TreeNode*&);
+    auto predict(const Data&, TreeNode*&, TreeNode*&);
+    void grad_descent(const ArrayXf&, const Data&, 
+                                TreeNode*&, TreeNode*&);
+    string get_model(bool pretty, 
+                                TreeNode*& first_child,
+                                TreeNode*& last_child) const;
+    string get_tree_model(bool pretty, string offset, 
+                                    TreeNode *&first_child,
+                                    TreeNode *&last_child) const ;
+    // naming
+    string get_name() const {return this->name;};
+    string get_op_name() const {return this->op_name;};
+    void set_name(string n){this->name = n;};
+    void set_op_name(string n){this->op_name = n;};
+    // changing
+    float get_prob_change(){ return this->prob_change;};
+    void set_prob_change(float w){ this->prob_change = w;};
+    float get_prob_keep(){ return 1-this->prob_change;};
+};
+
 }
 #endif
