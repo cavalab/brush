@@ -6,6 +6,7 @@ license: GNU/GPL v3
 #ifndef NODE_H
 #define NODE_H
 
+#include "data/data.h"
 // #include "nodes/base.h"
 // #include "nodes/dx.h"
 // #include "nodes/split.h"
@@ -28,6 +29,9 @@ Node overhaul:
 
 */
 namespace Brush{
+
+using Brush::data::DataType;
+using Brush::data::Data;
 
 enum class NodeType : uint32_t {
     //arithmetic
@@ -127,7 +131,7 @@ struct Node {
     // static int sNextId;
     // inline int getNextId() { return ++sNextId; };
 
-    NodeType node_type;
+    NodeType op_type;
     DataType output_type;
     vector<DataType> input_types;
     bool IsDifferentiable;
@@ -141,13 +145,13 @@ struct Node {
     Node() = default; 
 
     explicit Node(NodeType type) noexcept
-        : Node(type)
+        : op_type(type)
     {
     }
 
     explicit Node(NodeType type, bool weighted) noexcept
-        : Type(type)
-        , IsWeighted(weighted)
+        : op_type(type)
+        , is_weighted(weighted)
     {
         // if (Type < NodeType::Abs) // Add, Mul, Sub, Div, Aq, Pow
         // {
@@ -204,7 +208,7 @@ struct Node {
     // }
 
     template <NodeType... T>
-    [[nodiscard]] inline auto Is() const -> bool { return ((Type == T) || ...); }
+    [[nodiscard]] inline auto Is() const -> bool { return ((op_type == T) || ...); }
 
     [[nodiscard]] inline auto IsLeaf() const noexcept -> bool { 
         return Is<NodeType::Constant, NodeType::Variable>(); 
@@ -212,39 +216,39 @@ struct Node {
     [[nodiscard]] inline auto IsCommutative() const noexcept -> bool { 
         return Is<NodeType::Add,
                   NodeType::Mul,
-                  NodeType::Fmin,
-                  NodeType::Fmax>(); 
+                  NodeType::Min,
+                  NodeType::Max>(); 
     }
 
 
     std::type_index ret_type() const; 
     std::type_index args_type() const; 
     vector<std::type_index> arg_types() const; 
-    size_t get_arg_count() const = 0;
+    size_t get_arg_count() const;
     // need to figure out how to define these for NodeTypes. 
     // different operators need different flow through fit and predict - 
     // for example, split nodes need to run a function on the data, then
     // pass different data chunks to the children. meanwhile math ops mostly
     // pull their children first and then do a computation on the arguments.
-    auto fit(const Data&, TreeNode*&, TreeNode*&);
-    auto predict(const Data&, TreeNode*&, TreeNode*&);
-    void grad_descent(const ArrayXf&, const Data&, 
-                                TreeNode*&, TreeNode*&);
-    string get_model(bool pretty, 
-                                TreeNode*& first_child,
-                                TreeNode*& last_child) const;
-    string get_tree_model(bool pretty, string offset, 
-                                    TreeNode *&first_child,
-                                    TreeNode *&last_child) const ;
-    // naming
-    string get_name() const {return this->name;};
-    string get_op_name() const {return this->op_name;};
-    void set_name(string n){this->name = n;};
-    void set_op_name(string n){this->op_name = n;};
-    // changing
-    float get_prob_change(){ return this->prob_change;};
-    void set_prob_change(float w){ this->prob_change = w;};
-    float get_prob_keep(){ return 1-this->prob_change;};
+    /* auto fit(const Data&, TreeNode*&, TreeNode*&); */
+    /* auto predict(const Data&, TreeNode*&, TreeNode*&); */
+    /* void grad_descent(const ArrayXf&, const Data&, */ 
+    /*                             TreeNode*&, TreeNode*&); */
+    /* string get_model(bool pretty, */ 
+    /*                             TreeNode*& first_child, */
+    /*                             TreeNode*& last_child) const; */
+    /* string get_tree_model(bool pretty, string offset, */ 
+    /*                                 TreeNode *&first_child, */
+    /*                                 TreeNode *&last_child) const ; */
+    /* // naming */
+    /* string get_name() const {return this->name;}; */
+    /* string get_op_name() const {return this->op_name;}; */
+    /* void set_name(string n){this->name = n;}; */
+    /* void set_op_name(string n){this->op_name = n;}; */
+    /* // changing */
+    /* float get_prob_change(){ return this->prob_change;}; */
+    /* void set_prob_change(float w){ this->prob_change = w;}; */
+    /* float get_prob_keep(){ return 1-this->prob_change;}; */
 };
 
 }

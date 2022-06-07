@@ -72,7 +72,7 @@ https://eigen.tuxfamily.org/dox/TopicCustomizing_Plugins.html
 
         // template<typename T, typename... Tn>
         template<typename T1, typename T2, typename... Tn>
-        inline auto operator()(T t1, T t2, Tn... tn) { return t1 / (t2 * (tn * ...)); }
+        inline auto operator()(T1 t1, T2 t2, Tn... tn) { return t1 / (t2 * (tn * ...)); }
     };
 
     /* coefficient-wise minimum of two or more arguments. */
@@ -84,13 +84,12 @@ https://eigen.tuxfamily.org/dox/TopicCustomizing_Plugins.html
         
         // template<typename T, typename... Tn>
         template<typename T1, typename T2, typename... Tn>
-        inline auto operator()(T1 t1, T2 t2, Tn... tn) { return t1.min(t2.min(tn), ...)); }
+        inline auto operator()(T1 t1, T2 t2, Tn... tn) { return min(t1, t2, tn ...); }
 
         template<typename T>
         inline auto operator()(T t) { return t.rowwise().minCoeff(); }
 
         // template<>
-        // inline auto operator()(TimeSeriesf t) { return t.apply(Function<NodeType::Max>()); }
         template<typename T>
         inline auto operator()(TimeSeries<T> t) { 
             return t.apply([](const auto& i){return i.minCoeff();});
@@ -105,7 +104,7 @@ https://eigen.tuxfamily.org/dox/TopicCustomizing_Plugins.html
         // inline auto operator()(T t) { return t; }
         
         template<typename T1, typename T2, typename... Tn>
-        inline auto operator()(T1 t1, T2 t2, Tn... tn) { return t1.max(t2.max(tn), ...)); }
+        inline auto operator()(T1 t1, T2 t2, Tn... tn) { return max(t1, t2, tn ...); }
 
         template<typename T>
         inline auto operator()(T t) { return t.rowwise().maxCoeff(); }

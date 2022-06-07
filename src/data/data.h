@@ -125,7 +125,7 @@ struct TimeSeries
 
     //TODO: define overloaded operations?
     /* operators on values */
-    template<typename O>
+    /* template<typename O> */
     auto apply(std::function<T(ValType)> op){
         Array<T,Dynamic,1> dest(this->value.size());
         std::transform(cbegin(), cend(), 
@@ -135,8 +135,8 @@ struct TimeSeries
         return dest;
     }; 
     /* operators on time */
-    template<typename O>
-    auto apply(std::function<T(TimeType)> op){
+    /* template<typename O> */
+    auto apply_time(std::function<T(TimeType)> op){
         Array<T,Dynamic,1> dest(this->time.size());
         std::transform(ctbegin(), ctend(), 
                        dest.begin(),

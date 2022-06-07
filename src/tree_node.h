@@ -85,8 +85,9 @@ enum class ExecType : uint32_t {
 } 
 
 /* template<T> auto fit(const Data& d); */
+template<ExecType T> fit(const Data& d);
 
-template <ExecType = ExecType::Mapper>
+template <ExecType::Mapper>
 auto fit(const Data& d)
 {
     ArrayArgs inputs = this->get_children_fit(d, first_child, last_child);
@@ -114,6 +115,7 @@ auto fit(const Data& d)
 
 template <> 
 auto fit<ExecType::Splitter>(const Data& d)
+
 {
     // need to handle kind with fixed var and kind without
 
