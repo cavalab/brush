@@ -67,8 +67,8 @@ class SplitNode<R(Args...)> : public TypedNodeBase<R, Args...>
             // set feature and threshold
             if (this->fixed_variable)
             {
-                // TODO: replace feature with child arg 1 output
-                tie(this->threshold, ignore) = best_threshold(d[this->feature],
+                tie(this->threshold, ignore) = best_threshold(
+                                                             d[this->feature],
                                                              d.y, 
                                                              d.classification
                                                              );
@@ -116,15 +116,8 @@ class SplitNode<R(Args...)> : public TypedNodeBase<R, Args...>
             // array<State, base::ArgCount> child_outputs;
             auto child_outputs = this->get_children_predict(data_splits,    
                                                             first_child, 
-                                                            last_child);
-            // cout << "gathering inputs..." << endl;
-            // TreeNode* sib = first_child;
-            // for (int i = 0; i < base::ArgCount; ++i)
-            // {
-            //     cout << i << endl;
-            //     child_outputs.at(i) = sib->predict(data_splits.at(i));
-            //     sib = sib->next_sibling;
-            // }
+                                                            last_child
+                                                           );
 
             // stitch together outputs
             State out = this->stitch(child_outputs, d, mask);

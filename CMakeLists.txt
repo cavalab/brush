@@ -40,42 +40,47 @@ set (CMAKE_CXX_STANDARD 17)
 # project name
 project(brush)
 
-#
-
-
-# add Eigen include paths
+# # add Eigen include paths
 if (DEFINED ENV{EIGEN3_INCLUDE_DIR})
     set(EIGEN3_INCLUDE_DIR $ENV{EIGEN3_INCLUDE_DIR})
     include_directories($ENV{EIGEN3_INCLUDE_DIR})
+    message(STATUS "EIGEN3_INCLUDE_DIR=${EIGEN3_INCLUDE_DIR}")
 elseif(DEFINED EIGEN3_INCLUDE_DIR)
     include_directories("${EIGEN3_INCLUDE_DIR}")
+    message(STATUS "EIGEN3_INCLUDE_DIR=${EIGEN3_INCLUDE_DIR}")
+elseif(DEFINED ENV{CONDA_PREFIX})
+    include_directories($ENV{CONDA_PREFIX}/include/eigen3/)
 else()
     message(STATUS "No EIGEN3_INCLUDE_DIR found, using find_package...")
-    find_package(Eigen3 REQUIRED NO_MODULE)
+    find_package(Eigen3 3.4 REQUIRED NO_MODULE)
 endif()
-message(STATUS "EIGEN3_INCLUDE_DIR=${EIGEN3_INCLUDE_DIR}")
 
 
 # Locate GTest
-# if defined in environment
-if (DEFINED ENV{GTEST_INCLUDE_DIRS} AND DEFINED ENV{GTEST_LIBRARIES})
-    include_directories("$ENV{GTEST_INCLUDE_DIRS}")
-    set(GTEST_INCLUDE_DIRS $ENV{GTEST_INCLUDE_DIRS})
-    set(GTEST_LIBRARIES $ENV{GTEST_LIBRARIES})
-# defined at command line
-elseif(DEFINED GTEST_INCLUDE_DIRS AND DEFINED GTEST_LIBRARIES)
-    set(GTEST_INCLUDE_DIRS ${GTEST_INCLUDE_DIRS})
-    set(GTEST_LIBRARIES ${GTEST_LIBRARIES})
-    include_directories("${GTEST_INCLUDE_DIRS}")
-# goin fishin
-else()
-    message(STATUS "looking for GTest")
-    find_package(GTest REQUIRED)
-endif()
+include(FetchContent)
+FetchContent_Declare(
+  googletest
+  URL https://github.com/google/googletest/archive/609281088cfefc76f9d0ce82e1ff6c30cc3591e5.zip
+)
+# # if defined in environment
+# if (DEFINED ENV{GTEST_INCLUDE_DIRS} AND DEFINED ENV{GTEST_LIBRARIES})
+#     include_directories("$ENV{GTEST_INCLUDE_DIRS}")
+#     set(GTEST_INCLUDE_DIRS $ENV{GTEST_INCLUDE_DIRS})
+#     set(GTEST_LIBRARIES $ENV{GTEST_LIBRARIES})
+# # defined at command line
+# elseif(DEFINED GTEST_INCLUDE_DIRS AND DEFINED GTEST_LIBRARIES)
+#     set(GTEST_INCLUDE_DIRS ${GTEST_INCLUDE_DIRS})
+#     set(GTEST_LIBRARIES ${GTEST_LIBRARIES})
+#     include_directories("${GTEST_INCLUDE_DIRS}")
+# # goin fishin
+# else()
+#     message(STATUS "looking for GTest")
+#     find_package(GTest REQUIRED)
+# endif()
 
-include_directories(${GTEST_INCLUDE_DIRS})
-message(STATUS "GTest dir=${GTEST_INCLUDE_DIRS}")
-message(STATUS "GTest library=${GTEST_LIBRARIES}")
+# include_directories(${GTEST_INCLUDE_DIRS})
+# message(STATUS "GTest dir=${GTEST_INCLUDE_DIRS}")
+# message(STATUS "GTest library=${GTEST_LIBRARIES}")
 
 # endif()
 
@@ -103,6 +108,8 @@ endif()
 
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wno-ignored-attributes")
 
+########################################
+# build brush library
 # gather list of source files
 
 file(GLOB_RECURSE sources ${CMAKE_CURRENT_SOURCE_DIR}/src/*.cpp)
@@ -110,19 +117,19 @@ file(GLOB_RECURSE sources ${CMAKE_CURRENT_SOURCE_DIR}/src/*.cpp)
 list(REMOVE_ITEM sources ${CMAKE_CURRENT_SOURCE_DIR}/src/main.cpp)
 
 message(STATUS "Sources: '${sources}")
-# build brush library
 add_library(brush SHARED ${sources})
 
-#brush executable
+########################################
+#brush executable: tests
 # add_executable(brush src/main.cpp)
-
-# Google tests
 # Link runTests with what we want to test and the GTest and pthread library
 file(GLOB_RECURSE testsSrc "tests/*.cpp")
 message(STATUS "testsSrc: '${testsSrc}")
-
 add_executable(tests ${testsSrc})
-target_link_libraries(tests brush ${GTEST_LIBRARIES} pthread)
+target_link_libraries(tests brush gtest_main pthread)
+# Google tests
+include(GoogleTest)
+gtest_discover_tests(tests)
 
 # generate python bindings
 find_package(Python COMPONENTS Interpreter Development REQUIRED)

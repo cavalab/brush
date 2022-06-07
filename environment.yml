@@ -2,14 +2,14 @@ name: brush
 channels:
     - conda-forge
 dependencies:
-    - python=3.8.2
+    - python #=3.8.2
     - cmake #=3.18.*
-    - eigen=3.4.*
-    - gtest=1.10.0
-    - pybind11=2.6.2
+    - eigen #=3.4.*
+    # - gtest #=1.10.0
+    - pybind11 #=2.6.2
     - ninja
-    - tbb-devel=2020.2
-    - pytest=6.2.4
+    - tbb-devel #=2020.2
+    - pytest #=6.2.4
     - pydot
     # - pandas=1.1.*
     # - scikit-learn=0.23.*

@@ -23,6 +23,7 @@ using Eigen::ArrayXi;
 using Eigen::Dynamic;
 
 using Brush::data::State;
+using Brush::data::TimeSeries;
 using Brush::data::TimeSeriesf;
 
 namespace Brush
@@ -50,7 +51,7 @@ https://eigen.tuxfamily.org/dox/TopicCustomizing_Plugins.html
 
         // template<typename T, typename... Tn>
         template<typename T1, typename T2, typename... Tn>
-        inline auto operator()(T t1, T t2, Tn... tn) { return t1 - (t2 + (tn + ...)); }
+        inline auto operator()(T1 t1, T2 t2, Tn... tn) { return t1 - (t2 + (tn + ...)); }
     };
 
     template<>

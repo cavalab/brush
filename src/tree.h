@@ -39,101 +39,13 @@
 #include "state.h"
 #include "data/data.h"
 #include "init.h"
+#include "tree_node.h"
 using Brush::data::State;
 using Brush::data::Data;
 /* /// Overload swap for data class */ 
 /* template<class T> */
 /* void swap(T& x, T& y) { x.swap(y); } */
 
-/// A node in the tree, combining links to other nodes as well as the actual data.
-template<class T>
-class tree_node_ { // size: 5*4=20 bytes (on 32 bit arch), can be reduced by 8.
-	public:
-		tree_node_();
-		tree_node_(const T&);
-		tree_node_(T&&);
-
-		tree_node_<T> *parent;
-	    tree_node_<T> *first_child, *last_child;
-		tree_node_<T> *prev_sibling, *next_sibling;
-		T data;
-
-        State fit(const Data& d);
-        State predict(const Data& d);
-        void grad_descent(const ArrayXf&, const Data&);
-		string get_model(bool pretty=false);
-		string get_tree_model(bool pretty=false, string offset="");
-}; 
-
-// /**
-//  * @brief tree node specialization for NodeBase.
-//  * 
-//  */
-// class tree_node_<NodeBase*> { // size: 5*4=20 bytes (on 32 bit arch), can be reduced by 8.
-// 	public:
-// 		tree_node_();
-// 		tree_node_(const NodeBase*&);
-// 		tree_node_(NodeBase*&&);
-
-// 		tree_node_<NodeBase*> *parent;
-// 	    tree_node_<NodeBase*> *first_child, *last_child;
-// 		tree_node_<NodeBase*> *prev_sibling, *next_sibling;
-// 		NodeBase* data;
-
-//         /* State evaluate(const Data& data); */
-//         State fit(const Data& d);
-//         State predict(const Data& d);
-//         void grad_descent(const ArrayXf&, const Data&);
-// 		string get_model(bool pretty=false);
-// 		string get_tree_model(bool pretty=false, string offset="");
-// };
-template<class T>
-State tree_node_<T>::fit(const Data& d)
-{
-    return this->data->fit(d, first_child, last_child);
-}
-
-template<class T>
-State tree_node_<T>::predict(const Data& d)
-{
-    return this->data->predict(d, first_child, last_child);
-}
-
-template<class T>
-void tree_node_<T>::grad_descent(const ArrayXf& gradient, const Data& d)
-{
-    this->data->grad_descent(gradient, d, first_child, last_child);
-}
-
-template<class T>
-string tree_node_<T>::get_model(bool pretty)
-{
-    return this->data->get_model(pretty, first_child, last_child);
-}
-
-template<class T>
-string tree_node_<T>::get_tree_model(bool pretty, string offset)
-{
-    return this->data->get_tree_model(pretty, offset, first_child, last_child);
-}
-
-template<class T>
-tree_node_<T>::tree_node_()
-	: parent(0), first_child(0), last_child(0), prev_sibling(0), next_sibling(0)
-	{
-	}
-
-template<class T>
-tree_node_<T>::tree_node_(const T& val)
-	: parent(0), first_child(0), last_child(0), prev_sibling(0), next_sibling(0), data(val)
-	{
-	}
-
-template<class T>
-tree_node_<T>::tree_node_(T&& val)
-	: parent(0), first_child(0), last_child(0), prev_sibling(0), next_sibling(0), data(val)
-	{
-	}
 
 template <class T, class tree_node_allocator = std::allocator<tree_node_<T> > >
 class tree {

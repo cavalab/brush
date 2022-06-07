@@ -41,6 +41,20 @@ namespace Brush
 namespace data
 {
 
+// DataType enum
+
+enum class DataType : uint32_t {
+    ArrayB, 
+    ArrayI, 
+    ArrayF, 
+    MatrixB, 
+    MatrixI, 
+    MatrixF, 
+    TimeSeriesB, 
+    TimeSeriesI,
+    TimeSeriesF
+};
+
 template<class T>
 struct TimeSeries
 {
@@ -144,7 +158,7 @@ typedef TimeSeries<bool> TimeSeriesb;
 typedef TimeSeries<int> TimeSeriesi;
 typedef TimeSeries<float> TimeSeriesf;
 
-////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////
 // 
 /// State: defines the possible types of data flowing thru nodes.
 typedef std::variant<

@@ -15,7 +15,7 @@ license: GNU/GPL v3
     #define omp_set_num_threads( x ) 0
 #endif
 // stuff being used
-
+#include "stdint.h"
 #include <Eigen/Dense>
 #include <memory>
 #include <iostream>

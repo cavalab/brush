@@ -83,7 +83,7 @@ enum class NodeType : uint32_t {
     // timing masks
     Before,
     After,
-    During
+    During,
 
     //split
     SplitBest,
@@ -91,7 +91,7 @@ enum class NodeType : uint32_t {
 
     // leaves
     Constant,
-    Variable 
+    Variable,
 
     // custom
     CustomOp,
@@ -116,7 +116,6 @@ enum class NodeGroup : __UINT32_TYPE__
 
 struct Node {
 
-    typedef tree_node_<Node*> TreeNode;  
     /// full name of the node, with types
     string name;
     // whether to center the operator in pretty printing
@@ -128,16 +127,21 @@ struct Node {
     // static int sNextId;
     // inline int getNextId() { return ++sNextId; };
 
-
-    NodeType Type;
+    NodeType node_type;
+    DataType output_type;
+    vector<DataType> input_types;
     bool IsDifferentiable;
-    bool IsWeighted;
+    bool is_weighted;
     bool Optimize;
+    vector<float> W; 
+    float threshold; // just use W.at(0)? 
+    string feature; // feature for terminals or splitting nodes 
+
 
     Node() = default; 
 
     explicit Node(NodeType type) noexcept
-        : Node(type, static_cast<Operon::Hash>(type))
+        : Node(type)
     {
     }
 
@@ -158,12 +162,12 @@ struct Node {
         // Value = 1.;
     }
 
-    static auto Constant(double value)
-    {
-        Node node(NodeType::Constant);
-        node.Value = static_cast<Operon::Scalar>(value);
-        return node;
-    }
+    /* static auto Constant(double value) */
+    /* { */
+    /*     Node node(NodeType::Constant); */
+    /*     node.Value = static_cast<Operon::Scalar>(value); */
+    /*     return node; */
+    /* } */
 
     [[nodiscard]] auto Name() const noexcept -> std::string const&;
     [[nodiscard]] auto Desc() const noexcept -> std::string const&;
