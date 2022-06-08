@@ -3,9 +3,13 @@
 
 #include "init.h"
 #include "data/data.h"
+#include "node.h"
 
 using std::string;
 using Brush::data::Data;
+using Brush::ExecType;
+
+namespace Brush {
 /// A node in the tree, combining links to other nodes as well as the actual data.
 template<class T>
 class tree_node_ { // size: 5*4=20 bytes (on 32 bit arch), can be reduced by 8.
@@ -24,6 +28,12 @@ class tree_node_ { // size: 5*4=20 bytes (on 32 bit arch), can be reduced by 8.
         void grad_descent(const ArrayXf&, const Data&);
 		string get_model(bool pretty=false);
 		string get_tree_model(bool pretty=false, string offset="");
+    private:
+        template<ExecType E>
+        auto _fit(const Data& d);
+
+        template<ExecType E>
+        auto _predict(const Data& d);
 }; 
 
 // /**
@@ -33,19 +43,19 @@ class tree_node_ { // size: 5*4=20 bytes (on 32 bit arch), can be reduced by 8.
 template<class T>
 auto tree_node_<T>::fit(const Data& d)
 {
-    return fit<data.node_type>(d, first_child, last_child);
+    return this->_fit<data.exec_type>(d);
 }
 
 template<class T>
 auto tree_node_<T>::predict(const Data& d)
 {
-    return predict<data.node_type>(d, first_child, last_child);
+    return _predict<data.exec_type>(d);
 }
 
 template<class T>
 void tree_node_<T>::grad_descent(const ArrayXf& gradient, const Data& d)
 {
-    this->data->grad_descent(gradient, d, first_child, last_child);
+    /* _grad_descent(gradient, d); */
 }
 
 template<class T>
@@ -78,19 +88,15 @@ tree_node_<T>::tree_node_(T&& val)
 	{
 	}
 
-enum class ExecType : uint32_t {
-    Mapper, // maps child nodes to output via function call.
-    Splitter, // splits data and returns the output of the children on each split.
-    Terminal    // returns a data element.
-} 
 
 /* template<T> auto fit(const Data& d); */
-template<ExecType T> fit(const Data& d);
+/* template<ExecType T> fit(const Data& d); */
 
-template <ExecType::Mapper>
-auto fit(const Data& d)
+template <> 
+template <> 
+auto tree_node_<Node>::_fit<ExecType::Mapper>(const Data& d)
 {
-    ArrayArgs inputs = this->get_children_fit(d, first_child, last_child);
+    auto inputs = this->get_children_fit(d, first_child, last_child);
     
     /* this->store_gradients(inputs); */
 
@@ -114,42 +120,47 @@ auto fit(const Data& d)
 };
 
 template <> 
-auto fit<ExecType::Splitter>(const Data& d)
-
+template <> 
+auto tree_node_<Node>::_fit<ExecType::Splitter>(const Data& d)
 {
-    // need to handle kind with fixed var and kind without
+    /* inline auto operator()(const Data& d, Node& node) */
+    /* { */
+        // need to handle kind with fixed var and kind without
 
-    // set feature and threshold
-    if (this->data.fixed_variable)
-    {
-        tie(this->data.threshold, ignore) = best_threshold(
-                                                     d[this->data.feature],
-                                                     d.y, 
-                                                     d.classification
-                                                     );
-    }
-    else
-        set_variable_and_threshold(d);
+        // set feature and threshold
+        if (this->data.fixed_variable)
+        {
+            tie(this->data.threshold, ignore) = best_threshold(
+                                                         d[this->data.feature],
+                                                         d.y, 
+                                                         d.classification
+                                                         );
+        }
+        else
+            set_variable_and_threshold(d);
 
-    auto data_splits = Function<data.node_type>(d); 
-    ArrayXb mask = this->threshold_mask(d);
-    array<Data, 2> data_splits = d.split(mask);
+        auto data_splits = Function<data.node_type>(d); 
+        ArrayXb mask = this->threshold_mask(d);
+        array<Data, 2> data_splits = d.split(mask);
 
-    /* array<State, base::ArgCount> child_outputs; */
-    auto child_outputs = this->get_children_fit(data_splits); 
-    // stitch together outputs
-    State out = stitch(child_outputs, d, mask);
+        /* array<State, base::ArgCount> child_outputs; */
+        auto child_outputs = this->get_children_fit(data_splits); 
+        // stitch together outputs
+        State out = stitch(child_outputs, d, mask);
 
-    cout << "returning " << std::get<R>(out) << endl;
+        cout << "returning " << std::get<R>(out) << endl;
 
-    return out;
+        return out;
+    /* } */
 };
 
 template <> 
-auto fit<ExecType::Terminal>(const Data& d)
+template <> 
+auto tree_node_<Node>::_fit<ExecType::Terminal>(const Data& d)
 {
     return this->predict(d);
 
 };
 
+}// Brush
 #endif

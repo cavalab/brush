@@ -27,29 +27,29 @@ license: GNU/GPL v3
  *  Sampling is done in proportion to the weight associated with 
  *  each node. By default, sampling is done uniform randomly.
 */
-using namespace Brush::nodes;
+/* using namespace Brush::nodes; */
 using namespace Brush::data;
-
-typedef vector<NodeBase*> NodeVector;
+using Brush::Node;
+typedef vector<Node> NodeVector;
 
 namespace Brush
 {
 ////////////////////////////////////////////////////////////////////////////////
 // node generation routines
 template<typename T>
-tuple<set<NodeBase*>,set<type_index>> generate_nodes(vector<string>& op_names);
-tuple<set<NodeBase*>,set<type_index>> generate_split_nodes(vector<string>& op_names);
+tuple<set<Node>,set<type_index>> generate_nodes(vector<string>& op_names);
+tuple<set<Node>,set<type_index>> generate_split_nodes(vector<string>& op_names);
 
 NodeVector generate_terminals(const Data& d);
 
-set<NodeBase*> generate_all_nodes(vector<string>& node_names, 
+set<Node> generate_all_nodes(vector<string>& node_names, 
                                   set<type_index> term_types);
 ////////////////////////////////////////////////////////////////////////////////
 
 
 struct SearchSpace
 {
-    TypeMap<TypeMap<map<string, NodeBase*>>> node_map;
+    TypeMap<TypeMap<map<string, Node>>> node_map;
     // NodeMap node_map; 
     TypeMap<NodeVector> terminal_map;
     set<type_index> terminal_types;
@@ -98,24 +98,24 @@ struct SearchSpace
         for (const auto& dt : d.data_types)
             this->terminal_types.insert(dt);
 
-        vector<NodeBase*> terminals = generate_terminals(d);
-        set<NodeBase*> nodes = generate_all_nodes(op_names, terminal_types);
+        vector<Node> terminals = generate_terminals(d);
+        set<Node> nodes = generate_all_nodes(op_names, terminal_types);
 
         int i = 0;
         for (const auto& n: nodes)
         {
-            cout << "adding " << n->name << ") to search space...\n";
+            cout << "adding " << n.name << ") to search space...\n";
             // add the node to the nodemap
-            this->node_map[n->ret_type()][n->args_type()][n->op_name] = n;
+            this->node_map[n.ret_type][n.args_type()][n.op_name] = n;
             
             // update weights
             float w = use_all? 1.0 : user_ops.at(op_names.at(i));
-            this->weight_map[n->ret_type()][n->args_type()][n->op_name] = w;
+            this->weight_map[n.ret_type()][n.args_type()][n.op_name] = w;
 
-            // this->ret_w_map[n->ret_type()] += w;
-            // this->args_w_map[n->args_type()] += w;
-            // this->name_w_map[n->name] = w;
-            // this->weight_map[n->ret_type][typeid(n->args_type)] = 1.0;
+            // this->ret_w_map[n.ret_type()] += w;
+            // this->args_w_map[n.args_type()] += w;
+            // this->name_w_map[n.name] = w;
+            // this->weight_map[n.ret_type][typeid(n.args_type)] = 1.0;
             ++i;
 
         }
@@ -159,10 +159,10 @@ struct SearchSpace
     };
 
     // template<typename R>
-    template<typename F> NodeBase* get(const string& name);
+    template<typename F> Node get(const string& name);
     /// get specific node by name and type.
     template<typename R, typename... Args>
-    NodeBase* get(const string& name, R, Args...)
+    Node get(const string& name, R, Args...)
     {
          typedef std::tuple<Args...> TupleArgs;
          return node_map.at(typeid(R)).at(typeid(TupleArgs)).at(name);
@@ -176,7 +176,7 @@ struct SearchSpace
             {
                 for (auto it3 = it2->second.begin(); it3 != it2->second.end(); ++it3)
                 {
-                    // delete the NodeBase* pointer
+                    // delete the Node pointer
                     delete it3->second;
                 }
             }
@@ -193,7 +193,7 @@ struct SearchSpace
     };
 
     /// get a terminal 
-    NodeBase* get_terminal() const
+    Node get_terminal() const
     {
         //TODO: match terminal args_type (probably '{}' or something?)
         //  make a separate terminal_map
@@ -205,7 +205,7 @@ struct SearchSpace
                                   terminal_weights.at(match.first).end());
     };
     /// get a typed terminal 
-    NodeBase* get_terminal(type_index ret) const
+    Node get_terminal(type_index ret) const
     {
         cout << "get terminal of type " << type_names[ret] << "\n";
         cout << "terminal map: " << terminal_map.size() << "\n";
@@ -269,7 +269,7 @@ struct SearchSpace
         return v;
     };
     /// get an operator 
-    NodeBase* get_op(type_index ret) const
+    Node get_op(type_index ret) const
     {
         //TODO: match terminal args_type (probably '{}' or something?)
         auto ret_match = node_map.at(ret);
@@ -289,14 +289,14 @@ struct SearchSpace
     };
 
     // get operator with at least one argument matching arg 
-    NodeBase* get_op_with_arg(type_index ret, type_index arg, 
+    Node get_op_with_arg(type_index ret, type_index arg, 
                               bool terminal_compatible=true) const
     {
         // terminal_compatible: the other args the op takes must exist in the
         // terminal types. 
 
         auto args_map = node_map.at(ret);
-        vector<NodeBase*> matches;
+        vector<Node> matches;
         vector<float> weights; 
 
         for (const auto& [args_type, name_map]: args_map)
@@ -338,7 +338,7 @@ struct SearchSpace
     };
 
     /// get a node wth matching return type and argument types
-    NodeBase* get_node_like(NodeBase* node) const
+    Node get_node_like(Node node) const
     {
         auto matches = node_map.at(node->ret_type()).at(node->args_type());
         auto match_weights = get_weights(node->ret_type(), node->args_type());
@@ -348,7 +348,7 @@ struct SearchSpace
                                    match_weights.end())).second;
     };
 
-    // NodeBase* operator[](const std::string& op)
+    // Node operator[](const std::string& op)
     // { 
     //     if (node_map.find(op) == node_map.end())
     //         std::cerr << "ERROR: couldn't find " << op << endl;

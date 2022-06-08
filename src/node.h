@@ -109,14 +109,20 @@ enum class NodeType : uint32_t {
 
 /* defines groupings of nodes that share common fitting conditions. 
 */
-enum class NodeGroup : __UINT32_TYPE__
-{
-    UnaryOperator,
-    BinaryOperator,
-    NaryOperator,
-    Split,
-    Leaf,
-};
+/* enum class NodeGroup : __UINT32_TYPE__ */
+/* { */
+/*     UnaryOperator, */
+/*     BinaryOperator, */
+/*     NaryOperator, */
+/*     Split, */
+/*     Leaf, */
+/* }; */
+
+enum class ExecType : uint32_t {
+    Mapper, // maps child nodes to output via function call.
+    Splitter, // splits data and returns the output of the children on each split.
+    Terminal    // returns a data element.
+}; 
 
 struct Node {
 
@@ -132,11 +138,12 @@ struct Node {
     // inline int getNextId() { return ++sNextId; };
 
     NodeType op_type;
-    DataType output_type;
-    vector<DataType> input_types;
-    bool IsDifferentiable;
+    ExecType exec_type;
+    DataType ret_type;
+    std::vector<DataType> arg_types;
+    bool is_differentiable;
     bool is_weighted;
-    bool Optimize;
+    bool optimize;
     vector<float> W; 
     float threshold; // just use W.at(0)? 
     string feature; // feature for terminals or splitting nodes 
@@ -176,6 +183,13 @@ struct Node {
     [[nodiscard]] auto Name() const noexcept -> std::string const&;
     [[nodiscard]] auto Desc() const noexcept -> std::string const&;
 
+    // get return type and argument types. 
+    // these should come from a mapping. 
+    DataType get_ret_type() const { return ret_type; }; 
+    std::type_index args_type() const { 
+        return typeid(make_tuple(arg_types.begin(), arg_types.end()));
+    }; 
+    size_t get_arg_count() const { return arg_types.size(); };
     // comparison operators
     // inline auto operator==(const Node& rhs) const noexcept -> bool
     // {
@@ -221,10 +235,6 @@ struct Node {
     }
 
 
-    std::type_index ret_type() const; 
-    std::type_index args_type() const; 
-    vector<std::type_index> arg_types() const; 
-    size_t get_arg_count() const;
     // need to figure out how to define these for NodeTypes. 
     // different operators need different flow through fit and predict - 
     // for example, split nodes need to run a function on the data, then
