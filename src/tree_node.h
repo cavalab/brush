@@ -4,10 +4,12 @@
 #include "init.h"
 #include "data/data.h"
 #include "node.h"
+#include "interpreter.h"
 
 using std::string;
 using Brush::data::Data;
 using Brush::ExecType;
+using Brush::Node;
 
 namespace Brush {
 /// A node in the tree, combining links to other nodes as well as the actual data.
@@ -91,31 +93,36 @@ tree_node_<T>::tree_node_(T&& val)
 
 /* template<T> auto fit(const Data& d); */
 /* template<ExecType T> fit(const Data& d); */
+void tree_node_<Node>::apply_weights(auto& inputs)
+{
+    std::transform(
+                inputs.begin(), 
+                inputs.end(),
+                data.W.begin(),
+                inputs.begin(), 
+                std::multiplies<>()
+                );
+};
 
 template <> 
 template <> 
 auto tree_node_<Node>::_fit<ExecType::Mapper>(const Data& d)
 {
-    auto inputs = this->get_children_fit(d, first_child, last_child);
+    /* auto inputs = this->get_children_fit(d, first_child, last_child); */
+    auto signature = NodeSchema[data.node_type]["Signature"][data.ret_type]; 
+    auto inputs = GetChildren<signature>(d);
     
     /* this->store_gradients(inputs); */
 
     if (this->data.is_weighted)
     {
-        cout << "applying weights to " << this->name << " operator\n";
-        /* apply_weights(inputs); */
-        std::transform(
-                    inputs.begin(), 
-                    inputs.end(),
-                    this->data.W.begin(),
-                    inputs.begin(), 
-                    std::multiplies<>()
-                    );
+        cout << "applying weights to " << this->data.name << " operator\n";
+        apply_weights(inputs);
     }
 
     // State out = Util::apply(this->op, inputs);
     // cout << "returning " << std::get<R>(out) << endl;
-    return std::apply(Function<data.node_type>, inputs);
+    return std::apply(Brush::Function<data.node_type>, inputs);
 
 };
 
@@ -161,6 +168,8 @@ auto tree_node_<Node>::_fit<ExecType::Terminal>(const Data& d)
     return this->predict(d);
 
 };
+
+
 
 }// Brush
 #endif

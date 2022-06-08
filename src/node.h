@@ -7,6 +7,7 @@ license: GNU/GPL v3
 #define NODE_H
 
 #include "data/data.h"
+#include "nodemap.h"
 // #include "nodes/base.h"
 // #include "nodes/dx.h"
 // #include "nodes/split.h"
@@ -151,8 +152,11 @@ struct Node {
 
     Node() = default; 
 
-    explicit Node(NodeType type) noexcept
+    explicit Node(NodeType type, DataType output_type) noexcept
         : op_type(type)
+        , ret_type(output_type)
+        , exec_type(NodeSchema[type]["ExecType"])
+        , arg_types(NodeSchema[type]["Mapping"][output_type])
     {
     }
 
