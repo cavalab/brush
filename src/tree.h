@@ -447,7 +447,7 @@ class tree {
 				
 				bool operator()(const tree_node *a, const tree_node *b) 
 					{
-					return comp_(a->data, b->data);
+					return comp_(a->n, b->n);
 					}
 			private:
 				StrictWeakOrdering comp_;
@@ -633,7 +633,7 @@ void tree<T, tree_node_allocator>::erase_children(const iterator_base& it)
 		prev=cur;
 		cur=cur->next_sibling;
 		erase_children(pre_order_iterator(prev));
-//		kp::destructor(&prev->data);
+//		kp::destructor(&prev->n);
 		alloc_.destroy(prev);
 		alloc_.deallocate(prev,1);
 		}
@@ -654,7 +654,7 @@ void tree<T, tree_node_allocator>::erase_right_siblings(const iterator_base& it)
 		prev=cur;
 		cur=cur->next_sibling;
 		erase_children(pre_order_iterator(prev));
-//		kp::destructor(&prev->data);
+//		kp::destructor(&prev->n);
 		alloc_.destroy(prev);
 		alloc_.deallocate(prev,1);
 		}
@@ -675,7 +675,7 @@ void tree<T, tree_node_allocator>::erase_left_siblings(const iterator_base& it)
 		prev=cur;
 		cur=cur->prev_sibling;
 		erase_children(pre_order_iterator(prev));
-//		kp::destructor(&prev->data);
+//		kp::destructor(&prev->n);
 		alloc_.destroy(prev);
 		alloc_.deallocate(prev,1);
 		}
@@ -707,7 +707,7 @@ iter tree<T, tree_node_allocator>::erase(iter it)
 		cur->next_sibling->prev_sibling=cur->prev_sibling;
 		}
 
-//	kp::destructor(&cur->data);
+//	kp::destructor(&cur->n);
 	alloc_.destroy(cur);
    alloc_.deallocate(cur,1);
 	return ret;
@@ -936,7 +936,7 @@ iter tree<T, tree_node_allocator>::append_child(iter position)
 
 	tree_node *tmp=alloc_.allocate(1,0);
 	alloc_.construct(tmp, tree_node_<T>());
-//	kp::constructor(&tmp->data);
+//	kp::constructor(&tmp->n);
 	tmp->first_child=0;
 	tmp->last_child=0;
 
@@ -963,7 +963,7 @@ iter tree<T, tree_node_allocator>::prepend_child(iter position)
 
 	tree_node *tmp=alloc_.allocate(1,0);
 	alloc_.construct(tmp, tree_node_<T>());
-//	kp::constructor(&tmp->data);
+//	kp::constructor(&tmp->n);
 	tmp->first_child=0;
 	tmp->last_child=0;
 
@@ -994,7 +994,7 @@ iter tree<T, tree_node_allocator>::append_child(iter position, const T& x)
 
 	tree_node* tmp = alloc_.allocate(1,0);
 	alloc_.construct(tmp, x);
-//	kp::constructor(&tmp->data, x);
+//	kp::constructor(&tmp->n, x);
 	tmp->first_child=0;
 	tmp->last_child=0;
 
@@ -1021,8 +1021,8 @@ iter tree<T, tree_node_allocator>::append_child(iter position, T&& x)
 
 	tree_node* tmp = alloc_.allocate(1,0);
 	alloc_.construct(tmp); // Here is where the move semantics kick in
-	/* tmp->data.swap(x); */
-    std::swap(tmp->data,x);
+	/* tmp->n.swap(x); */
+    std::swap(tmp->n,x);
 
 	tmp->first_child=0;
 	tmp->last_child=0;
@@ -1050,7 +1050,7 @@ iter tree<T, tree_node_allocator>::prepend_child(iter position, const T& x)
 
 	tree_node* tmp = alloc_.allocate(1,0);
 	alloc_.construct(tmp, x);
-//	kp::constructor(&tmp->data, x);
+//	kp::constructor(&tmp->n, x);
 	tmp->first_child=0;
 	tmp->last_child=0;
 
@@ -1077,8 +1077,8 @@ iter tree<T, tree_node_allocator>::prepend_child(iter position, T&& x)
 
 	tree_node* tmp = alloc_.allocate(1,0);
 	alloc_.construct(tmp);
-	/* tmp->data.swap(x); */
-    std::swap(tmp->data,x);
+	/* tmp->n.swap(x); */
+    std::swap(tmp->n,x);
 
 	tmp->first_child=0;
 	tmp->last_child=0;
@@ -1182,7 +1182,7 @@ iter tree<T, tree_node_allocator>::insert(iter position, const T& x)
 
 	tree_node* tmp = alloc_.allocate(1,0);
 	alloc_.construct(tmp, x);
-//	kp::constructor(&tmp->data, x);
+//	kp::constructor(&tmp->n, x);
 	tmp->first_child=0;
 	tmp->last_child=0;
 
@@ -1210,8 +1210,8 @@ iter tree<T, tree_node_allocator>::insert(iter position, T&& x)
 		}
 	tree_node* tmp = alloc_.allocate(1,0);
 	alloc_.construct(tmp);
-	/* tmp->data.swap(x); // Move semantics */
-    std::swap(tmp->data,x);
+	/* tmp->n.swap(x); // Move semantics */
+    std::swap(tmp->n,x);
 	tmp->first_child=0;
 	tmp->last_child=0;
 
@@ -1234,7 +1234,7 @@ typename tree<T, tree_node_allocator>::sibling_iterator tree<T, tree_node_alloca
 	{
 	tree_node* tmp = alloc_.allocate(1,0);
 	alloc_.construct(tmp, x);
-//	kp::constructor(&tmp->data, x);
+//	kp::constructor(&tmp->n, x);
 	tmp->first_child=0;
 	tmp->last_child=0;
 
@@ -1265,7 +1265,7 @@ iter tree<T, tree_node_allocator>::insert_after(iter position, const T& x)
 	{
 	tree_node* tmp = alloc_.allocate(1,0);
 	alloc_.construct(tmp, x);
-//	kp::constructor(&tmp->data, x);
+//	kp::constructor(&tmp->n, x);
 	tmp->first_child=0;
 	tmp->last_child=0;
 
@@ -1290,9 +1290,9 @@ iter tree<T, tree_node_allocator>::insert_after(iter position, T&& x)
 	{
 	tree_node* tmp = alloc_.allocate(1,0);
 	alloc_.construct(tmp);
-	/* tmp->data.swap(x); // move semantics */
-    std::swap(tmp->data,x);
-//	kp::constructor(&tmp->data, x);
+	/* tmp->n.swap(x); // move semantics */
+    std::swap(tmp->n,x);
+//	kp::constructor(&tmp->n, x);
 	tmp->first_child=0;
 	tmp->last_child=0;
 
@@ -1345,9 +1345,9 @@ template <class T, class tree_node_allocator>
 template <class iter>
 iter tree<T, tree_node_allocator>::replace(iter position, const T& x)
 	{
-//	kp::destructor(&position.node->data);
-//	kp::constructor(&position.node->data, x);
-	position.node->data=x;
+//	kp::destructor(&position.node->n);
+//	kp::constructor(&position.node->n, x);
+	position.node->n=x;
 //	alloc_.destroy(position.node);
 //	alloc_.construct(position.node, x);
 	return position;
@@ -1368,7 +1368,7 @@ iter tree<T, tree_node_allocator>::replace(iter position, const iterator_base& f
 //	std::cout << "no warning!" << std::endl;
 	tree_node* tmp = alloc_.allocate(1,0);
 	alloc_.construct(tmp, (*from));
-//	kp::constructor(&tmp->data, (*from));
+//	kp::constructor(&tmp->n, (*from));
 	tmp->first_child=0;
 	tmp->last_child=0;
 	if(current_to->prev_sibling==0) {
@@ -1388,7 +1388,7 @@ iter tree<T, tree_node_allocator>::replace(iter position, const iterator_base& f
 		}
 	tmp->next_sibling=current_to->next_sibling;
 	tmp->parent=current_to->parent;
-//	kp::destructor(&current_to->data);
+//	kp::destructor(&current_to->n);
 	alloc_.destroy(current_to);
 	alloc_.deallocate(current_to,1);
 	current_to=tmp;
@@ -1402,7 +1402,7 @@ iter tree<T, tree_node_allocator>::replace(iter position, const iterator_base& f
 		assert(current_from!=0);
 		if(current_from->first_child != 0) {
 			current_from=current_from->first_child;
-			toit=append_child(toit, current_from->data);
+			toit=append_child(toit, current_from->n);
 			}
 		else {
 			while(current_from->next_sibling==0 && current_from!=start_from) {
@@ -1412,7 +1412,7 @@ iter tree<T, tree_node_allocator>::replace(iter position, const iterator_base& f
 				}
 			current_from=current_from->next_sibling;
 			if(current_from!=last) {
-				toit=append_child(parent(toit), current_from->data);
+				toit=append_child(parent(toit), current_from->n);
 				}
 			}
 		} while(current_from!=last);
@@ -2324,13 +2324,13 @@ tree<T, tree_node_allocator>::iterator_base::iterator_base(tree_node *tn)
 template <class T, class tree_node_allocator>
 T& tree<T, tree_node_allocator>::iterator_base::operator*() const
 	{
-	return node->data;
+	return node->n;
 	}
 
 template <class T, class tree_node_allocator>
 T* tree<T, tree_node_allocator>::iterator_base::operator->() const
 	{
-	return &(node->data);
+	return &(node->n);
 	}
 
 template <class T, class tree_node_allocator>

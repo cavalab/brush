@@ -628,6 +628,16 @@ std::vector<T> slice(const vector<T>& v, const U& idx)
     return result;
 }
 
+/// Given a map from keys to values, creates a new map from values to keys
+template<typename K, typename V>
+static map<V, K> reverse_map(const map<K, V>& m) {
+    map<V, K> r;
+    for (const auto& kv : m)
+        r[kv.second] = kv.first;
+    return r;
+};
+
+
 } // Util
 } // Brush 
 #endif

@@ -38,9 +38,6 @@ namespace Brush
 * @namespace Brush::data
 * @brief namespace containing Data structures used in Brush
 */
-namespace data
-{
-
 // DataType enum
 
 enum class DataType : uint32_t {
@@ -54,6 +51,24 @@ enum class DataType : uint32_t {
     TimeSeriesI,
     TimeSeriesF
 };
+
+map<DataType,string>  DataTypeName = {
+    {DataType::ArrayB, "ArrayB"},
+    {DataType::ArrayI, "ArrayI"},
+    {DataType::ArrayF, "ArrayF"},
+    {DataType::MatrixB, "MatrixB"},
+    {DataType::MatrixI, "MatrixI"},
+    {DataType::MatrixF, "MatrixF"},
+    {DataType::TimeSeriesB, "TimeSeriesB"},
+    {DataType::TimeSeriesI,"TimeSeriesI"},
+    {DataType::TimeSeriesF, "TimeSeriesF"},
+};
+auto DataNameType = Util::reverse_map(DataTypeName);
+
+
+namespace data
+{
+
 // Map the enum class to actual data types by calling decltype(DataTypeMap[DataType]).
 
 template<class T>
@@ -161,24 +176,6 @@ typedef TimeSeries<bool> TimeSeriesb;
 typedef TimeSeries<int> TimeSeriesi;
 typedef TimeSeries<float> TimeSeriesf;
 
-template<DataType D = DataType::ArrayB>
-struct DataMap{ inline auto operator()() { return ArrayXb(); } };
-template<>
-struct DataMap<DataType::ArrayI>{ inline auto operator()() { return ArrayXi(); } };
-template<>
-struct DataMap<DataType::ArrayF>{ inline auto operator()(){ return ArrayXf(); } };
-template<>
-struct DataMap<DataType::MatrixB>{ inline auto operator()() { return ArrayXXb(); } };
-template<>
-struct DataMap<DataType::MatrixI>{ inline auto operator()() { return ArrayXXi(); } };
-template<>
-struct DataMap<DataType::MatrixF>{ inline auto operator()() { return ArrayXXf(); } };
-template<>
-struct DataMap<DataType::TimeSeriesB>{ inline auto operator()() { return TimeSeriesb(); } };
-template<>
-struct DataMap<DataType::TimeSeriesI>{ inline auto operator()() { return TimeSeriesi(); } };
-template<>
-struct DataMap<DataType::TimeSeriesF>{ inline auto operator()() { return TimeSeriesf(); } };
 
 ///////////////////////////////////////////////////////////////////////////////
 // 
@@ -288,7 +285,7 @@ class Data
     //std::pair<vector<ArrayXf>, vector<ArrayXf>>>& Z): X(X), y(y), Z(Z){}
     private:
     public:
-        std::vector<type_index> data_types;
+        std::vector<DataType> data_types;
         Util::TypeMap<vector<string>> features_of_type;
 
         std::map<string, State> features;
@@ -350,8 +347,39 @@ class Data
             return this->features.at(name);
         }
 };
+} // data
 
-} // Dat
+template<DataType D = DataType::ArrayB>
+struct DataMap{ inline auto operator()() { return ArrayXb(); } };
+template<>
+struct DataMap<DataType::ArrayI>{ inline auto operator()() { return ArrayXi(); } };
+template<>
+struct DataMap<DataType::ArrayF>{ inline auto operator()(){ return ArrayXf(); } };
+template<>
+struct DataMap<DataType::MatrixB>{ inline auto operator()() { return ArrayXXb(); } };
+template<>
+struct DataMap<DataType::MatrixI>{ inline auto operator()() { return ArrayXXi(); } };
+template<>
+struct DataMap<DataType::MatrixF>{ inline auto operator()() { return ArrayXXf(); } };
+template<>
+struct DataMap<DataType::TimeSeriesB>{ inline auto operator()() { return data::TimeSeriesb(); } };
+template<>
+struct DataMap<DataType::TimeSeriesI>{ inline auto operator()() { return data::TimeSeriesi(); } };
+template<>
+struct DataMap<DataType::TimeSeriesF>{ inline auto operator()() { return data::TimeSeriesf(); } };
+
+map<DataType,std::type_index>  DataTypeID = {
+    {DataType::ArrayB, typeid(ArrayXb)},
+    {DataType::ArrayI, typeid(ArrayXi)},
+    {DataType::ArrayF, typeid(ArrayXf)},
+    {DataType::MatrixB, typeid(ArrayXXb)},
+    {DataType::MatrixI, typeid(ArrayXXi)},
+    {DataType::MatrixF, typeid(ArrayXXf)},
+    {DataType::TimeSeriesB, typeid(data::TimeSeriesb)},
+    {DataType::TimeSeriesI,typeid(data::TimeSeriesi)},
+    {DataType::TimeSeriesF, typeid(data::TimeSeriesf)},
+};
+auto DataIDType = Util::reverse_map(DataTypeID);
 } // Brush
 
 #endif

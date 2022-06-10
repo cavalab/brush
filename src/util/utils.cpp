@@ -423,5 +423,6 @@ tuple<vector<size_t>,vector<size_t>> mask_to_indices(const ArrayXb& mask)
     }
     return indices;
 }
+
 } // Util
 } // Brush

@@ -3,7 +3,7 @@
 namespace Brush{
 
 template<typename T>
-tuple<set<NodeBase*>,set<type_index>> generate_nodes(vector<string>& op_names)
+tuple<set<Node>,set<type_index>> generate_nodes(vector<string>& op_names)
 {
 
     // NodeNameTypeMap name2ret2node;

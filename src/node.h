@@ -8,6 +8,7 @@ license: GNU/GPL v3
 
 #include "data/data.h"
 #include "nodemap.h"
+#include "util/utils.h"
 // #include "nodes/base.h"
 // #include "nodes/dx.h"
 // #include "nodes/split.h"
@@ -29,10 +30,28 @@ Node overhaul:
     - keep an eye towards extensibility by defining a custom node registration function that works.
 
 */
+using Brush::DataType;
+using Brush::ExecType;
+using Brush::data::Data;
+
 namespace Brush{
 
-using Brush::data::DataType;
-using Brush::data::Data;
+struct uint32_vector_hasher {
+    std::size_t operator()(std::vector<uint32_t> const& vec) const {
+      std::size_t seed = vec.size();
+      for(auto& i : vec) {
+        seed ^= i + 0x9e3779b9 + (seed << 6) + (seed >> 2);
+      }
+      return seed;
+    }
+    std::size_t operator()(std::vector<Brush::DataType> const& vec) const {
+      std::size_t seed = vec.size();
+      for(auto& i : vec) {
+        seed ^= uint32_t(i) + 0x9e3779b9 + (seed << 6) + (seed >> 2);
+      }
+      return seed;
+    }
+};
 
 
 // TODO:
@@ -51,15 +70,6 @@ using Brush::data::Data;
 /*     Leaf, */
 /* }; */
 
-enum class ExecType : uint32_t {
-    Transformer, // maps child nodes to output via function call.
-    Reducer, // maps child nodes to output via reduction call.
-    Applier, // maps child nodes to output via function call.
-    Splitter, // splits data and returns the output of the children on each split.
-    Terminal,    // returns a data element.
-    SimpleBinary, // no weights, just a binary call to apply
-    SimpleUnary, // no weights, just a unary call to apply
-}; 
 
 struct Node {
 
@@ -74,7 +84,7 @@ struct Node {
     // static int sNextId;
     // inline int getNextId() { return ++sNextId; };
 
-    NodeType op_type;
+    NodeType node_type;
     ExecType exec_type;
     DataType ret_type;
     std::vector<DataType> arg_types;
@@ -89,15 +99,14 @@ struct Node {
     Node() = default; 
 
     explicit Node(NodeType type, DataType output_type) noexcept
-        : op_type(type)
+        : node_type(type)
         , ret_type(output_type)
-        , exec_type(NodeSchema[type]["ExecType"])
-        , arg_types(NodeSchema[type]["Mapping"][output_type])
-    {
-    }
+        , exec_type(NodeSchema[NodeTypeName[type]]["ExecType"])
+        , arg_types(NodeSchema[NodeTypeName[type]]["Signature"][DataTypeName[output_type]])
+    {}
 
     explicit Node(NodeType type, bool weighted) noexcept
-        : op_type(type)
+        : node_type(type)
         , is_weighted(weighted)
     {
         // if (Type < NodeType::Abs) // Add, Mul, Sub, Div, Aq, Pow
@@ -120,14 +129,14 @@ struct Node {
     /*     return node; */
     /* } */
 
-    [[nodiscard]] auto Name() const noexcept -> std::string const&;
-    [[nodiscard]] auto Desc() const noexcept -> std::string const&;
+    [[nodiscard]] auto get_name() const noexcept -> std::string const&;
+    [[nodiscard]] auto get_desc() const noexcept -> std::string const&;
 
     // get return type and argument types. 
     // these should come from a mapping. 
     DataType get_ret_type() const { return ret_type; }; 
-    std::type_index args_type() const { 
-        return typeid(make_tuple(arg_types.begin(), arg_types.end()));
+    std::size_t args_type() const { 
+        return uint32_vector_hasher()(arg_types);
     }; 
     size_t get_arg_count() const { return arg_types.size(); };
     // comparison operators
@@ -162,7 +171,7 @@ struct Node {
     // }
 
     template <NodeType... T>
-    [[nodiscard]] inline auto Is() const -> bool { return ((op_type == T) || ...); }
+    [[nodiscard]] inline auto Is() const -> bool { return ((node_type == T) || ...); }
 
     [[nodiscard]] inline auto IsLeaf() const noexcept -> bool { 
         return Is<NodeType::Constant, NodeType::Variable>(); 
@@ -175,8 +184,10 @@ struct Node {
     }
 
     inline decltype(auto) signature() const { 
-        return NodeSchema[node_type]["Signature"][ret_type]; 
+        return NodeSchema[NodeTypeName[node_type]]["Signature"][DataTypeName[ret_type]]; 
     };
+    /* template<ExecType E> auto tupleargs() const; */
+
     // need to figure out how to define these for NodeTypes. 
     // different operators need different flow through fit and predict - 
     // for example, split nodes need to run a function on the data, then

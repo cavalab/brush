@@ -36,7 +36,7 @@ namespace Brush
 - might need to extend eigen to handle the median case
 https://eigen.tuxfamily.org/dox/TopicCustomizing_Plugins.html
 */
-    template<NodeType N = NodeType::Add>
+    template<Brush::NodeType N = NodeType::Add>
     struct Function 
     {
         // template<typename T>

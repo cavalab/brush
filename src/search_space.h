@@ -30,6 +30,9 @@ license: GNU/GPL v3
 /* using namespace Brush::nodes; */
 using namespace Brush::data;
 using Brush::Node;
+using Brush::DataType;
+using std::type_index; 
+
 typedef vector<Node> NodeVector;
 
 namespace Brush
@@ -49,14 +52,6 @@ set<Node> generate_all_nodes(vector<string>& node_names,
 
 struct SearchSpace
 {
-    TypeMap<TypeMap<map<string, Node>>> node_map;
-    // NodeMap node_map; 
-    TypeMap<NodeVector> terminal_map;
-    set<type_index> terminal_types;
-    // terminal weights
-    TypeMap<vector<float>> terminal_weights;
-    // map name to weights
-    TypeMap<TypeMap<map<string, float>>> weight_map; 
 
     /* Construct a search space, consisting of operations and terminals
      * and functions that sample the space. 
@@ -72,13 +67,41 @@ struct SearchSpace
      *      just do two passes for simplicity. 
      *  - assertion check to make sure there is at least one operator that 
      *      returns the output type of the model. 
+     *
+     *
+     * Params
+     *
+     * node_map: Maps return types to argument types to operator names. 
+     *  schema:
+     *      { return_type : { arguments_type : {node_type : node } }}
+     *
+     * terminal_map: Maps return types to terminals. 
+     *      { return_type : vector of Nodes } 
+     *
+     * terminal_types: A set of the available terminal types. 
     */
+    
+    map<DataType,           // return type
+        map<size_t,         // hash of arg types
+            map<NodeType,   // node type (name)
+                Node        // the node!
+                >>> node_map;
+    // NodeMap node_map; 
+    map<DataType, NodeVector> terminal_map;
+    set<DataType> terminal_types;
+    // terminal weights
+    TypeMap<vector<float>> terminal_weights;
+    // map name to weights
+    map<DataType,           // return type
+        map<size_t,         // hash of arg types
+            map<NodeType,   // node type (name)
+                float       // the weight
+                >>> weight_map; 
     SearchSpace(){};
 
     void init(const Data& d, 
-                const map<string,float>& user_ops = {}
-                //add terminal_set
-               )
+              const map<string,float>& user_ops = {}
+             )
     {
         cout << "constructing search space...\n";
 
@@ -106,11 +129,11 @@ struct SearchSpace
         {
             cout << "adding " << n.name << ") to search space...\n";
             // add the node to the nodemap
-            this->node_map[n.ret_type][n.args_type()][n.op_name] = n;
+            this->node_map[n.ret_type][n.args_type()][n.node_type] = n;
             
             // update weights
             float w = use_all? 1.0 : user_ops.at(op_names.at(i));
-            this->weight_map[n.ret_type()][n.args_type()][n.op_name] = w;
+            this->weight_map[n.ret_type][n.args_type()][n.node_type] = w;
 
             // this->ret_w_map[n.ret_type()] += w;
             // this->args_w_map[n.args_type()] += w;
@@ -122,12 +145,12 @@ struct SearchSpace
         // map terminals
         for (const auto& term : terminals)
         {
-            cout << "adding " << term->get_name() << ") to search space...\n";
-            if (terminal_map.find(term->ret_type()) == terminal_map.end())
-                terminal_map[term->ret_type()] = NodeVector();
-            cout << "terminal ret_type: " << type_names[term->ret_type()] << "\n";
-            terminal_map[term->ret_type()].push_back(term);
-            terminal_weights[term->ret_type()].push_back(1.0);
+            cout << "adding " << term.get_name() << ") to search space...\n";
+            if (terminal_map.find(term.ret_type()) == terminal_map.end())
+                terminal_map[term.ret_type()] = NodeVector();
+            cout << "terminal ret_type: " << type_names[term.ret_type()] << "\n";
+            terminal_map[term.ret_type()].push_back(term);
+            terminal_weights[term.ret_type()].push_back(1.0);
         }
 
         cout << "terminal map: " << terminal_map.size() << "\n";
@@ -145,9 +168,9 @@ struct SearchSpace
                 for (const auto& [name, nodeval] : v2)
                 {
                     cout << "node_map[" << type_names[ret_type] 
-                        << "][args_type][" << name << "] = " 
-                        << nodeval->get_name() 
-                        << nodeval->ID
+                        << "][args_type][" << NodeTypeName[name] << "] = " 
+                        << nodeval.get_name() 
+                        /* << nodeval.ID */
                         << endl;
                 }
 
@@ -155,41 +178,15 @@ struct SearchSpace
         }
         cout << "done.\n";
 
-
     };
 
     // template<typename R>
     template<typename F> Node get(const string& name);
-    /// get specific node by name and type.
-    template<typename R, typename... Args>
-    Node get(const string& name, R, Args...)
-    {
-         typedef std::tuple<Args...> TupleArgs;
-         return node_map.at(typeid(R)).at(typeid(TupleArgs)).at(name);
-    }
 
-    ~SearchSpace()
+    Node get(const NodeType type, DataType R, vector<DataType>& arg_types)
     {
-        for (auto it = node_map.begin(); it != node_map.end(); )
-        {
-            for (auto it2 = it->second.begin(); it2 != it->second.end(); ++it2)
-            {
-                for (auto it3 = it2->second.begin(); it3 != it2->second.end(); ++it3)
-                {
-                    // delete the Node pointer
-                    delete it3->second;
-                }
-            }
-            node_map.erase(it++);  
-        }
-        for (auto it = terminal_map.begin(); it != terminal_map.end(); )
-        {
-            for (auto it2 : it->second)
-            {
-                delete it2;
-            }
-            terminal_map.erase(it++);   
-        }
+         auto arg_hash = Util::uint32_vector_hasher(arg_types);
+         return node_map.at(R).at(arg_hash).at(type);
     };
 
     /// get a terminal 
@@ -197,17 +194,17 @@ struct SearchSpace
     {
         //TODO: match terminal args_type (probably '{}' or something?)
         //  make a separate terminal_map
-        auto match = *r.select_randomly(terminal_map.begin(), 
-                                        terminal_map.end());
-        return *r.select_randomly(match.second.begin(),
-                                  match.second.end(), 
-                                  terminal_weights.at(match.first).begin(), 
-                                  terminal_weights.at(match.first).end());
+        auto match = r.select_randomly(terminal_map.begin(), terminal_map.end());
+        return r.select_randomly(
+                match.second.begin(), match.second.end(), 
+                terminal_weights.at(match.first).begin(), 
+                terminal_weights.at(match.first).end()
+                );
     };
     /// get a typed terminal 
-    Node get_terminal(type_index ret) const
+    Node get_terminal(DataType ret) const
     {
-        cout << "get terminal of type " << type_names[ret] << "\n";
+        cout << "get terminal of type " << DataTypeName[ret] << "\n";
         cout << "terminal map: " << terminal_map.size() << "\n";
         for (const auto& [k, v] : terminal_map)
         {
@@ -244,7 +241,7 @@ struct SearchSpace
         return v;
     };
 
-    vector<float> get_weights(type_index ret) const
+    vector<float> get_weights(DataType ret) const
     {
         // returns a weight vector, each element corresponding to an args type.
         vector<float> v;
@@ -259,17 +256,17 @@ struct SearchSpace
         }
         return v;
     };
-    vector<float> get_weights(type_index ret, type_index args) const
+    vector<float> get_weights(DataType ret, size_t args_hash) const
     {
         // returns a weight vector, each element corresponding to an args type.
         vector<float> v;
-        for (const auto& [name, w]: weight_map.at(ret).at(args))
+        for (const auto& [name, w]: weight_map.at(ret).at(args_hash))
             v.push_back(w); 
 
         return v;
     };
     /// get an operator 
-    Node get_op(type_index ret) const
+    Node get_op(DataType ret) const
     {
         //TODO: match terminal args_type (probably '{}' or something?)
         auto ret_match = node_map.at(ret);
@@ -289,7 +286,7 @@ struct SearchSpace
     };
 
     // get operator with at least one argument matching arg 
-    Node get_op_with_arg(type_index ret, type_index arg, 
+    Node get_op_with_arg(DataType ret, DataType arg, 
                               bool terminal_compatible=true) const
     {
         // terminal_compatible: the other args the op takes must exist in the
@@ -340,8 +337,8 @@ struct SearchSpace
     /// get a node wth matching return type and argument types
     Node get_node_like(Node node) const
     {
-        auto matches = node_map.at(node->ret_type()).at(node->args_type());
-        auto match_weights = get_weights(node->ret_type(), node->args_type());
+        auto matches = node_map.at(node.ret_type).at(node.args_type());
+        auto match_weights = get_weights(node.ret_type, node.args_type());
         return (*r.select_randomly(matches.begin(), 
                                    matches.end(), 
                                    match_weights.begin(), 
