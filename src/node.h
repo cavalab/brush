@@ -34,74 +34,6 @@ namespace Brush{
 using Brush::data::DataType;
 using Brush::data::Data;
 
-enum class NodeType : uint32_t {
-    //arithmetic
-    Add,
-    Sub,
-    Mul,
-    Div,
-    Aq,
-    Abs,
-
-    Acos,
-    Asin,
-    Atan,
-    Cos,
-    Cosh,
-    Sin,
-    Sinh,
-    Tan,
-    Tanh,
-    Cbrt,
-    Ceil,
-    Floor,
-    Exp,
-    Log,
-    Logabs,
-    Log1p,
-    Sqrt,
-    Sqrtabs,
-    Square,
-    Pow,
-
-    // logic; not sure these will make it in
-    And,
-    Or,
-    Not,
-    Xor,
-
-    // decision (same)
-    Equals,
-    LessThan,
-    GreaterThan,
-    Leq,
-    Geq,
-
-    // summary stats
-    Min,
-    Max,
-    Mean,
-    Median,
-    Count,
-    Sum,
-
-    // timing masks
-    Before,
-    After,
-    During,
-
-    //split
-    SplitBest,
-    SplitOn,
-
-    // leaves
-    Constant,
-    Variable,
-
-    // custom
-    CustomOp,
-    CustomSplit
-};
 
 // TODO:
 // define NodeGroup Enum
@@ -120,9 +52,13 @@ enum class NodeType : uint32_t {
 /* }; */
 
 enum class ExecType : uint32_t {
-    Mapper, // maps child nodes to output via function call.
+    Transformer, // maps child nodes to output via function call.
+    Reducer, // maps child nodes to output via reduction call.
+    Applier, // maps child nodes to output via function call.
     Splitter, // splits data and returns the output of the children on each split.
-    Terminal    // returns a data element.
+    Terminal,    // returns a data element.
+    SimpleBinary, // no weights, just a binary call to apply
+    SimpleUnary, // no weights, just a unary call to apply
 }; 
 
 struct Node {
@@ -238,7 +174,9 @@ struct Node {
                   NodeType::Max>(); 
     }
 
-
+    inline decltype(auto) signature() const { 
+        return NodeSchema[node_type]["Signature"][ret_type]; 
+    };
     // need to figure out how to define these for NodeTypes. 
     // different operators need different flow through fit and predict - 
     // for example, split nodes need to run a function on the data, then

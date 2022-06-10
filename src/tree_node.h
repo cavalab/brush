@@ -21,7 +21,7 @@ class tree_node_ { // size: 5*4=20 bytes (on 32 bit arch), can be reduced by 8.
 		tree_node_(T&&);
 
 		tree_node_<T> *parent;
-	    tree_node_<T> *first_child, *last_child;
+	    tree_node_<T> *first_kid, *last_child;
 		tree_node_<T> *prev_sibling, *next_sibling;
 		T data;
 
@@ -63,30 +63,30 @@ void tree_node_<T>::grad_descent(const ArrayXf& gradient, const Data& d)
 template<class T>
 string tree_node_<T>::get_model(bool pretty)
 {
-    return this->data->get_model(pretty, first_child, last_child);
+    return this->data->get_model(pretty, first_kid, last_child);
 }
 
 template<class T>
 string tree_node_<T>::get_tree_model(bool pretty, string offset)
 {
-    return this->data->get_tree_model(pretty, offset, first_child, last_child);
+    return this->data->get_tree_model(pretty, offset, first_kid, last_child);
 }
 
 template<class T>
 tree_node_<T>::tree_node_()
-	: parent(0), first_child(0), last_child(0), prev_sibling(0), next_sibling(0)
+	: parent(0), first_kid(0), last_child(0), prev_sibling(0), next_sibling(0)
 	{
 	}
 
 template<class T>
 tree_node_<T>::tree_node_(const T& val)
-	: parent(0), first_child(0), last_child(0), prev_sibling(0), next_sibling(0), data(val)
+	: parent(0), first_kid(0), last_child(0), prev_sibling(0), next_sibling(0), data(val)
 	{
 	}
 
 template<class T>
 tree_node_<T>::tree_node_(T&& val)
-	: parent(0), first_child(0), last_child(0), prev_sibling(0), next_sibling(0), data(val)
+	: parent(0), first_kid(0), last_child(0), prev_sibling(0), next_sibling(0), data(val)
 	{
 	}
 
@@ -95,6 +95,7 @@ tree_node_<T>::tree_node_(T&& val)
 /* template<ExecType T> fit(const Data& d); */
 void tree_node_<Node>::apply_weights(auto& inputs)
 {
+    cout << "applying weights to " << this->data.name << " operator\n";
     std::transform(
                 inputs.begin(), 
                 inputs.end(),
@@ -104,65 +105,110 @@ void tree_node_<Node>::apply_weights(auto& inputs)
                 );
 };
 
-template <> 
-template <> 
-auto tree_node_<Node>::_fit<ExecType::Mapper>(const Data& d)
+template <> template <> 
+auto tree_node_<Node>::_fit<ExecType::SimpleBinary>(const Data& d)
 {
-    /* auto inputs = this->get_children_fit(d, first_child, last_child); */
-    auto signature = NodeSchema[data.node_type]["Signature"][data.ret_type]; 
-    auto inputs = GetChildren<signature>(d);
-    
-    /* this->store_gradients(inputs); */
+    return std::apply(Brush::Function<data.node_type>, first_kid->fit(d), last_kid->fit(d));
+};
 
-    if (this->data.is_weighted)
-    {
-        cout << "applying weights to " << this->data.name << " operator\n";
+template <> template <> 
+auto tree_node_<Node>::_fit<ExecType::SimpleUnary>(const Data& d)
+{
+    return std::apply(Brush::Function<data.node_type>, first_kid->fit(d));
+};
+
+template <> template <> 
+auto tree_node_<Node>::_fit<ExecType::Applier>(const Data& d)
+{
+    /* auto signature = NodeSchema[data.node_type]["Signature"][data.ret_type]; */ 
+    typedef decltype(data.signature()) signature;
+
+    auto inputs = GetKids<data.exec_type,signature>(d);
+    
+    if (this->data.is_weighted){
         apply_weights(inputs);
     }
-
     // State out = Util::apply(this->op, inputs);
     // cout << "returning " << std::get<R>(out) << endl;
     return std::apply(Brush::Function<data.node_type>, inputs);
-
 };
 
-template <> 
-template <> 
+template <> template <> 
+auto tree_node_<Node>::_fit<ExecType::Transformer>(const Data& d)
+{
+    typedef decltype(data.signature().at(0)) signature;
+
+    auto outputs = GetKidsFit<data.exec_type,signature>(d);
+    
+    if (this->data.is_weighted) {
+        apply_weights(inputs);
+    }
+    // State out = Util::apply(this->op, inputs);
+    // cout << "returning " << std::get<R>(out) << endl;
+    std::transform(
+                outputs.begin(), 
+                outputs.end(),
+                outputs.begin(), 
+                Function<data.node_type>
+                );
+
+    return outputs; 
+};
+
+template <> template <> 
+auto tree_node_<Node>::_fit<ExecType::Reducer>(const Data& d)
+{
+    typedef decltype(data.signature().at(0)) signature;
+
+    auto inputs = GetKidsFit<data.exec_type,signature>(d);
+    
+    if (this->data.is_weighted) {
+        apply_weights(inputs);
+    }
+    // State out = Util::apply(this->op, inputs);
+    // cout << "returning " << std::get<R>(out) << endl;
+    signature output = std::reduce(inputs.begin(), inputs.end(), signature(0), 
+                                   Function<data.node_type>);
+    return output; 
+};
+
+
+template <> template <> 
 auto tree_node_<Node>::_fit<ExecType::Splitter>(const Data& d)
 {
-    /* inline auto operator()(const Data& d, Node& node) */
-    /* { */
-        // need to handle kind with fixed var and kind without
+    // need to handle kind with fixed var and kind without
 
-        // set feature and threshold
-        if (this->data.fixed_variable)
-        {
-            tie(this->data.threshold, ignore) = best_threshold(
-                                                         d[this->data.feature],
-                                                         d.y, 
-                                                         d.classification
-                                                         );
-        }
-        else
-            set_variable_and_threshold(d);
+    // set feature and threshold
+    if (this->data.fixed_variable)
+    {
+        tie(this->data.threshold, ignore) = best_threshold(
+                                                     d[this->data.feature],
+                                                     d.y, 
+                                                     d.classification
+                                                     );
+    }
+    else
+        set_variable_and_threshold(d);
 
-        auto data_splits = Function<data.node_type>(d); 
-        ArrayXb mask = this->threshold_mask(d);
-        array<Data, 2> data_splits = d.split(mask);
+    auto data_splits = Function<data.node_type>(d); 
+    ArrayXb mask = this->threshold_mask(d);
+    array<Data, 2> data_splits = d.split(mask);
 
-        /* array<State, base::ArgCount> child_outputs; */
-        auto child_outputs = this->get_children_fit(data_splits); 
-        // stitch together outputs
-        State out = stitch(child_outputs, d, mask);
+    /* array<State, base::ArgCount> kid_outputs; */
+    //TODO: type for kids. also, handle scenario where first kid is the variable to split on.
+    //
+    typedef decltype(data.signature()) signature;
 
-        cout << "returning " << std::get<R>(out) << endl;
+    auto kid_outputs = GetKidsFit<ExecType::Splitter,signature>(data_splits); 
+    // stitch together outputs
+    State out = stitch(kid_outputs, d, mask);
 
-        return out;
-    /* } */
+    cout << "returning " << std::get<R>(out) << endl;
+
+    return out;
 };
 
-template <> 
-template <> 
+template <> template <> 
 auto tree_node_<Node>::_fit<ExecType::Terminal>(const Data& d)
 {
     return this->predict(d);

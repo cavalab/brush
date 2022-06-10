@@ -54,6 +54,7 @@ enum class DataType : uint32_t {
     TimeSeriesI,
     TimeSeriesF
 };
+// Map the enum class to actual data types by calling decltype(DataTypeMap[DataType]).
 
 template<class T>
 struct TimeSeries
@@ -66,6 +67,8 @@ struct TimeSeries
     /*! Wraps time and value slices to matrices
     *  TODO: define begin() and end() iterators? figure out how to handle operators that just use values versus time 
     */
+    TimeSeries() = default; 
+
     TimeType time;
     ValType value;
     TimeSeries(const TimeType& t, 
@@ -157,6 +160,25 @@ struct TimeSeries
 typedef TimeSeries<bool> TimeSeriesb;
 typedef TimeSeries<int> TimeSeriesi;
 typedef TimeSeries<float> TimeSeriesf;
+
+template<DataType D = DataType::ArrayB>
+struct DataMap{ inline auto operator()() { return ArrayXb(); } };
+template<>
+struct DataMap<DataType::ArrayI>{ inline auto operator()() { return ArrayXi(); } };
+template<>
+struct DataMap<DataType::ArrayF>{ inline auto operator()(){ return ArrayXf(); } };
+template<>
+struct DataMap<DataType::MatrixB>{ inline auto operator()() { return ArrayXXb(); } };
+template<>
+struct DataMap<DataType::MatrixI>{ inline auto operator()() { return ArrayXXi(); } };
+template<>
+struct DataMap<DataType::MatrixF>{ inline auto operator()() { return ArrayXXf(); } };
+template<>
+struct DataMap<DataType::TimeSeriesB>{ inline auto operator()() { return TimeSeriesb(); } };
+template<>
+struct DataMap<DataType::TimeSeriesI>{ inline auto operator()() { return TimeSeriesi(); } };
+template<>
+struct DataMap<DataType::TimeSeriesF>{ inline auto operator()() { return TimeSeriesf(); } };
 
 ///////////////////////////////////////////////////////////////////////////////
 // 

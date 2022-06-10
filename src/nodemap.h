@@ -6,8 +6,9 @@ license: GNU/GPL v3
 #define NODELIST_H
 //internal includes
 #include "init.h"
-#include "node.h"
+/* #include "node.h" */
 #include "operators.h"
+#include "data/data.h"
 #include "util/utils.h"
 #include "util/rnd.h"
 using std::vector;
@@ -27,19 +28,92 @@ using std::vector;
  *  Sampling is done in proportion to the weight associated with 
  *  each node. By default, sampling is done uniform randomly.
 */
-using Brush::NodeType; 
-using Brush::DataType; 
-using Brush::ExecType; 
+using namespace Brush;
+/* using Brush::NodeType; */ 
+/* using Brush::DataType; */ 
+/* using Brush::ExecType; */ 
 using std::tuple;
 using std::array;
 namespace Brush {
 
+enum class NodeType : uint32_t {
+    //arithmetic
+    Add,
+    Sub,
+    Mul,
+    Div,
+    Aq,
+    Abs,
+
+    Acos,
+    Asin,
+    Atan,
+    Cos,
+    Cosh,
+    Sin,
+    Sinh,
+    Tan,
+    Tanh,
+    Cbrt,
+    Ceil,
+    Floor,
+    Exp,
+    Log,
+    Logabs,
+    Log1p,
+    Sqrt,
+    Sqrtabs,
+    Square,
+    Pow,
+
+    // logic; not sure these will make it in
+    And,
+    Or,
+    Not,
+    Xor,
+
+    // decision (same)
+    Equals,
+    LessThan,
+    GreaterThan,
+    Leq,
+    Geq,
+
+    // summary stats
+    Min,
+    Max,
+    Mean,
+    Median,
+    Count,
+    Sum,
+
+    // timing masks
+    Before,
+    After,
+    During,
+
+    //split
+    SplitBest,
+    SplitOn,
+
+    // leaves
+    Constant,
+    Variable,
+
+    // custom
+    CustomOp,
+    CustomSplit
+};
+
+// OK: the signatures should be Tuples, just so the map has all the same types. 
+// when grabbing the signature to get children (for things where Array types are needed),
+// just grab the first element and make an array. 
+// Otherwise we won't be able to support arguments with multiple types. 
+// in Node(), we can make the arg_types vector of enum DataTypes using a mapping from 
+// typeids to DataTypes. It will be a little clunky but also totally fine. 
+//
 auto BinaryFF  = {
-    { DataType::ArrayF, {
-        {"InType", {ArrayF,ArrayF}},
-        {"Signature", array<Eigen::ArrayXf, 2>() },
-                        }
-    },
+    { DataType::ArrayF, tuple<Eigen::ArrayXf, Eigen::ArrayXf>() },
     { DataType::MatrixF, tuple<Eigen::ArrayXXf,Eigen::ArrayXXf>() },
     { DataType::TimeSeriesF, tuple<TimeSeriesf,TimeSeriesf>() },
 };
@@ -67,14 +141,14 @@ auto UnaryFF  = {
     { DataType::TimeSeriesF, tuple<TimeSeriesXf>() },
 };
 auto UnaryBB  = {
-    { DataType::ArrayB, tuple<Eigen::ArrayXb>() },
+    { DataType::ArrayB, tuple<ArrayXb>() },
     { DataType::MatrixB, tuple<Eigen::ArrayXXb>() },
     { DataType::TimeSeriesB, tuple<TimeSeriesb>() },
 };
 
 auto ReduceFF  = {
     { DataType::ArrayF, tuple<Eigen::ArrayXXf>() },
-    { DataType::ArrayF, tuple<TimeSeriesXf>() },
+    { DataType::ArrayF, tuple<TimeSeriesf>() },
 };
 auto ReduceIA  = {
     { DataType::ArrayI, tuple<Eigen::ArrayXXf>() },
@@ -94,160 +168,158 @@ auto NodeSchema = {
 
 //arithmetic
     {NodeType::Add, {
-        {"Arity", 2},
-        {"ExecType", ExecType::Mapper},
-        {"Mapping", BinaryFF},
-        {"Signature", BinaryFFSig},
+        {"ExecType", ExecType::Reducer},
+        {"Mapping", BinaryF},
                     },
     },
     {NodeType::Sub, {
         {"Arity", 2},
-        {"ExecType", ExecType::Mapper},
+        {"ExecType", ExecType::Applier},
         {"Mapping", BinaryFF},
                     },
     },
     {NodeType::Mul, {
         {"Arity", 2},
-        {"ExecType", ExecType::Mapper},
+        {"ExecType", ExecType::Reducer},
         {"Mapping", BinaryFF},
                     },
     },
     {NodeType::Div, {
         {"Arity", 2},
-        {"ExecType", ExecType::Mapper},
+        {"ExecType", ExecType::Applier},
         {"Mapping", BinaryFF},
                     },
     },
     {NodeType::Aq, {
         {"Arity", 2},
-        {"ExecType", ExecType::Mapper},
+        {"ExecType", ExecType::Applier},
         {"Mapping", BinaryFF},
                    },
     },
     {NodeType::Abs, {
         {"Arity", 1},
-        {"ExecType", ExecType::Mapper},
+        {"ExecType", ExecType::Transformer},
         {"Mapping", UnaryFF},
                     },
     },
     {NodeType::Cbrt, {
         {"Arity", 1},
-        {"ExecType", ExecType::Mapper},
+        {"ExecType", ExecType::Transformer},
         {"Mapping", UnaryFF},
                      },
     },
     {NodeType::Ceil, {
         {"Arity", 1},
-            {"ExecType", ExecType::Mapper},
+            {"ExecType", ExecType::Transformer},
             {"Mapping", UnaryIF},
                      },
     },
     {NodeType::Floor, {
         {"Arity", 1},
-            {"ExecType", ExecType::Mapper},
+            {"ExecType", ExecType::Transformer},
             {"Mapping", UnaryIF},
                       },
     },
     {NodeType::Exp, {
         {"Arity", 1},
-        {"ExecType", ExecType::Mapper},
+        {"ExecType", ExecType::Transformer},
         {"Mapping", UnaryFF},
                     },
     },
     {NodeType::Log, {
         {"Arity", 1},
-        {"ExecType", ExecType::Mapper},
+        {"ExecType", ExecType::Transformer},
         {"Mapping", UnaryFF},
                     },
     },
     {NodeType::Logabs, {
         {"Arity", 1},
-            {"ExecType", ExecType::Mapper},
+            {"ExecType", ExecType::Transformer},
             {"Mapping", UnaryFF},
                        },
     },
     {NodeType::Log1p, {
         {"Arity", 1},
-            {"ExecType", ExecType::Mapper},
+            {"ExecType", ExecType::Transformer},
             {"Mapping", UnaryFF},
                       },
     },
     {NodeType::Sqrt, {
         {"Arity", 1},
-            {"ExecType", ExecType::Mapper},
+            {"ExecType", ExecType::Transformer},
             {"Mapping", UnaryFF},
                      },
     },
     {NodeType::Sqrtabs, {
         {"Arity", 1},
-            {"ExecType", ExecType::Mapper},
+            {"ExecType", ExecType::Transformer},
             {"Mapping", UnaryFF},
                         },
     },
     {NodeType::Square, {
         {"Arity", 1},
-            {"ExecType", ExecType::Mapper},
+            {"ExecType", ExecType::Transformer},
             {"Mapping", UnaryFF},
                        },
     },
     /* {NodeType::Pow, { */
     /*     {"Arity", 1}, */
-    /*     {"ExecType", ExecType::Mapper}, */
+    /*     {"ExecType", ExecType::Transformer}, */
     /*     {"Mapping", UnaryFF}, */
     /*                 }, */
     /* }, */
 // trigonometry
     {NodeType::Acos, {
         {"Arity", 1},
-            {"ExecType", ExecType::Mapper},
+            {"ExecType", ExecType::Transformer},
             {"Mapping", UnaryFF},
                      },
     },
     {NodeType::Asin, {
         {"Arity", 1},
-            {"ExecType", ExecType::Mapper},
+            {"ExecType", ExecType::Transformer},
             {"Mapping", UnaryFF},
                      },
     },
     {NodeType::Atan, {
         {"Arity", 1},
-            {"ExecType", ExecType::Mapper},
+            {"ExecType", ExecType::Transformer},
             {"Mapping", UnaryFF},
                      },
     },
     {NodeType::Cos, {
         {"Arity", 1},
-        {"ExecType", ExecType::Mapper},
+        {"ExecType", ExecType::Transformer},
         {"Mapping", UnaryFF},
                     },
     },
     {NodeType::Cosh, {
         {"Arity", 1},
-            {"ExecType", ExecType::Mapper},
+            {"ExecType", ExecType::Transformer},
             {"Mapping", UnaryFF},
                      },
     },
     {NodeType::Sin, {
         {"Arity", 1},
-        {"ExecType", ExecType::Mapper},
+        {"ExecType", ExecType::Transformer},
         {"Mapping", UnaryFF},
                     },
     },
     {NodeType::Sinh, {
         {"Arity", 1},
-            {"ExecType", ExecType::Mapper},
+            {"ExecType", ExecType::Transformer},
             {"Mapping", UnaryFF},
                      },
     },
     {NodeType::Tan, {
         {"Arity", 1},
-        {"ExecType", ExecType::Mapper},
+        {"ExecType", ExecType::Transformer},
         {"Mapping", UnaryFF},
                     },
     },
     {NodeType::Tanh, {
         {"Arity", 1},
-            {"ExecType", ExecType::Mapper},
+            {"ExecType", ExecType::Transformer},
             {"Mapping", UnaryFF},
                      },
     },
@@ -255,81 +327,81 @@ auto NodeSchema = {
 // logic; not sure these will make it in
     {NodeType::And, {
         {"Arity", 1},
-        {"ExecType", ExecType::Mapper},
+        {"ExecType", ExecType::Reducer},
         {"Mapping", BinaryBB},
                     },
     },
     {NodeType::Or, {
-        {"ExecType", ExecType::Mapper},
+        {"ExecType", ExecType::Reducer},
         {"Mapping", BinaryBB},
                    },
     },
     {NodeType::Not, {
-        {"ExecType", ExecType::Mapper},
+        {"ExecType", ExecType::Transformer},
         {"Mapping", UnaryBB},
                     },
     },
     {NodeType::Xor, {
-        {"ExecType", ExecType::Mapper},
+        {"ExecType", ExecType::Applier},
         {"Mapping", BinaryBB},
                     },
     },
 
 // decision (same)
     {NodeType::Equals, {
-            {"ExecType", ExecType::Mapper},
+            {"ExecType", ExecType::Reducer},
             {"Mapping", BinaryBF},
                        },
     },
     {NodeType::LessThan, {
-                {"ExecType", ExecType::Mapper},
+                {"ExecType", ExecType::Applier},
                 {"Mapping", BinaryBF},
                          },
     },
     {NodeType::GreaterThan, {
-                {"ExecType", ExecType::Mapper},
+                {"ExecType", ExecType::Applier},
                 {"Mapping", BinaryBF},
                             },
     },
     {NodeType::Leq, {
-        {"ExecType", ExecType::Mapper},
+        {"ExecType", ExecType::Applier},
         {"Mapping", BinaryBF},
                     },
     },
     {NodeType::Geq, {
-        {"ExecType", ExecType::Mapper},
+        {"ExecType", ExecType::Applier},
         {"Mapping", BinaryBF},
                     },
     },
 
 // summary stats
     {NodeType::Min, {
-        {"ExecType", ExecType::Mapper},
+        {"ExecType", ExecType::Reducer},
         {"Mapping", ReduceAll},
                     },
     },
     {NodeType::Max, {
-        {"ExecType", ExecType::Mapper},
+        {"ExecType", ExecType::Reducer},
         {"Mapping", ReduceAll},
                     },
     },
     {NodeType::Mean, {
-            {"ExecType", ExecType::Mapper},
+            {"ExecType", ExecType::Applier},
             {"Mapping", ReduceFF},
                      },
     },
     {NodeType::Median, {
-            {"ExecType", ExecType::Mapper},
+            {"ExecType", ExecType::Applier},
             {"Mapping", ReduceFF},
                        },
     },
     {NodeType::Count, {
-            {"ExecType", ExecType::Mapper},
+            {"ExecType", ExecType::Applier},
             {"Mapping", ReduceIA},
                       },
     },
     {NodeType::Sum, {
-        {"ExecType", ExecType::Mapper},
+        {"ExecType", ExecType::Applier},
         {"Mapping", ReduceAll},
                     },
     },
@@ -391,3 +463,5 @@ auto NodeSchema = {
     },
 };
 }
+
+#endif

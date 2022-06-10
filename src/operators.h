@@ -8,6 +8,7 @@ Code below heavily inspired by heal-research/operon
 #define OP_H
 #include <Eigen/Dense>
 #include "init.h"
+#include "nodemap.h"
 #include "util/utils.h"
 #include "data/data.h"
 #include "node.h"
@@ -25,6 +26,7 @@ using Eigen::Dynamic;
 using Brush::data::State;
 using Brush::data::TimeSeries;
 using Brush::data::TimeSeriesf;
+using Brush::NodeType;
 
 namespace Brush
 {
@@ -34,7 +36,7 @@ namespace Brush
 - might need to extend eigen to handle the median case
 https://eigen.tuxfamily.org/dox/TopicCustomizing_Plugins.html
 */
-    template<Brush::NodeType N = NodeType::Add>
+    template<NodeType N = NodeType::Add>
     struct Function 
     {
         // template<typename T>

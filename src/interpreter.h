@@ -11,59 +11,86 @@ license: GNU/GPL v3
 
 namespace Brush{
 
+template<ExecType E, typename T> GetKids; 
+template<ExecType E, typename T> GetKidsFit; 
+template<ExecType E, typename T> GetKidsPredict; 
+
+template<ExecType E, typename T>
+struct GetKidsFit {
+    auto operator(const Data& d){
+        return GetKids<E,T>(d, &TreeNode::fit);
+    };
+};
+
+template<ExecType E, typename T>
+struct GetKidsPredict {
+    auto operator(const Data& d) {
+        return GetKids<E,T>(d, &TreeNode::predict);
+    };
+};
+
+/* returns a fixed-sized array of arguments of the same type.
+ */
 template<typename T>
-struct GetChildren
+struct GetKids<ExecType::Applier, T>
 {
+    /* ArrayArgs */
     using TreeNode = tree_node_<Node>;
     template <std::size_t N>
     using NthType = typename std::tuple_element<N, T>::type;
 
     T operator()(const Data& d, State (TreeNode::*fn)(const Data&))
     {
-        // why not make get children return the tuple?
-        // use get<NthType<i>> to get the type for it
-        T child_outputs;
+        // why not make get kids return the tuple? because tuples suck with weights
+        T kid_outputs;
 
-        TreeNode* sib = first_child;
-        for (int i = 0; i < this->get_arg_count(); ++i)
+        TreeNode* sib = first_kid;
+        for (int i = 0; i < kid_outputs.size(); ++i)
         {
-            /* std::get<i>(child_outputs) = std::get<NthType<i>>((sib->*fn)(d)); */
-            child_outputs.at(i) = (sib->*fn)(d);
+            kid_outputs.at(i) = (sib->*fn)(d);
             sib = sib->next_sibling;
         }
-        return child_outputs;
+        return kid_outputs;
+    };
+};
 
-    }
-}
-
-auto get_children(const Data& d, auto (TreeNode::*fn)(const Data&))
+/* returns a vector of arguments of the same type.
+ */
+template<typename T>
+struct GetKids<ExecType::Transformer, T>
 {
-    // why not make get children return the tuple?
-    // use get<NthType<i>> to get the type for it
-    auto signature = NodeSchema[data.node_type]["Signature"][data.ret_type]; 
-    auto child_outputs = GetChildren<decltype(signature)>(d);
-
-    TreeNode* sib = first_child;
-    for (int i = 0; i < data.get_arg_count(); ++i)
+    auto operator()(const Data& d, auto (TreeNode::*fn)(const Data&) )
     {
-        // std::get<i>(child_outputs) = std::get<NthType<i>>((sib->*fn)(d));
-        child_outputs.at(i) = (sib->*fn)(d);
-        sib = sib->next_sibling;
-    }
-    /* return tupleize(child_outputs); */
-    return child_outputs;
-    
-};;
+        vector<T> kid_outputs; 
 
-TupleArgs get_children_fit(const Data& d)
+        auto sib = first_kid;
+        while(sib != last_kid)
+        {
+            kid_outputs.push_back((sib->*fn)(d));
+            sib = sib->next_sibling;
+        }
+        return kid_outputs;
+    };
+};
+template<typename T>
+struct GetKids<ExecType::Reducer, T>
 {
-    return get_children(d, &TreeNode::fit);
+    auto operator()(const Data& d, auto (TreeNode::*fn)(const Data&) )
+    {
+        return GetKids<ExecType::Transformer, T>(d, fn);
+    };
 };
 
-TupleArgs get_children_predict(const Data& d)
-{
-    return get_children(d, &TreeNode::predict);
-};
+
+
+/* returns a fixed sized array of arguments of the same type.
+ */
+
+
+
+/* returns a vector of arguments of the same type.
+ */
+
 
 }
 #endif
