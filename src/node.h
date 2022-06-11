@@ -98,17 +98,22 @@ struct Node {
 
     Node() = default; 
 
-    explicit Node(NodeType type, DataType output_type) noexcept
+    explicit Node(NodeType type, DataType output_type, bool weighted=false) noexcept
         : node_type(type)
         , ret_type(output_type)
         , exec_type(NodeSchema[NodeTypeName[type]]["ExecType"])
         , arg_types(NodeSchema[NodeTypeName[type]]["Signature"][DataTypeName[output_type]])
+        , is_weighted(weighted)
     {}
 
-    explicit Node(NodeType type, bool weighted) noexcept
+    explicit Node(NodeType type, DataType output_type, string name) noexcept
         : node_type(type)
-        , is_weighted(weighted)
-    {
+        , ret_type(output_type)
+        , feature(name)
+        , exec_type(NodeSchema[NodeTypeName[type]]["ExecType"])
+        , arg_types(NodeSchema[NodeTypeName[type]]["Signature"][DataTypeName[output_type]])
+        , is_weighted(false)
+    {}
         // if (Type < NodeType::Abs) // Add, Mul, Sub, Div, Aq, Pow
         // {
         //     Arity = 2;
@@ -120,7 +125,6 @@ struct Node {
         // IsEnabled = true;
         // Optimize = IsLeaf(); // we only optimize leaf nodes
         // Value = 1.;
-    }
 
     /* static auto Constant(double value) */
     /* { */
@@ -129,8 +133,8 @@ struct Node {
     /*     return node; */
     /* } */
 
-    [[nodiscard]] auto get_name() const noexcept -> std::string const&;
-    [[nodiscard]] auto get_desc() const noexcept -> std::string const&;
+    auto get_name() const noexcept -> std::string const&;
+    auto get_desc() const noexcept -> std::string const&;
 
     // get return type and argument types. 
     // these should come from a mapping. 
@@ -171,12 +175,13 @@ struct Node {
     // }
 
     template <NodeType... T>
-    [[nodiscard]] inline auto Is() const -> bool { return ((node_type == T) || ...); }
+    inline auto Is() const -> bool { return ((node_type == T) || ...); }
 
-    [[nodiscard]] inline auto IsLeaf() const noexcept -> bool { 
+    inline auto IsLeaf() const noexcept -> bool { 
         return Is<NodeType::Constant, NodeType::Variable>(); 
     }
-    [[nodiscard]] inline auto IsCommutative() const noexcept -> bool { 
+
+    inline auto IsCommutative() const noexcept -> bool { 
         return Is<NodeType::Add,
                   NodeType::Mul,
                   NodeType::Min,
@@ -212,7 +217,7 @@ struct Node {
     /* float get_prob_change(){ return this->prob_change;}; */
     /* void set_prob_change(float w){ this->prob_change = w;}; */
     /* float get_prob_keep(){ return 1-this->prob_change;}; */
-};
-
+    };
 }
+
 #endif

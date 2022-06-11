@@ -46,7 +46,7 @@ tuple<set<Node>,set<type_index>> generate_split_nodes(vector<string>& op_names);
 NodeVector generate_terminals(const Data& d);
 
 set<Node> generate_all_nodes(vector<string>& node_names, 
-                                  set<type_index> term_types);
+                             set<DataType> term_types);
 ////////////////////////////////////////////////////////////////////////////////
 
 
@@ -88,9 +88,9 @@ struct SearchSpace
                 >>> node_map;
     // NodeMap node_map; 
     map<DataType, NodeVector> terminal_map;
+    map<DataType, vector<float>> terminal_weights;
     set<DataType> terminal_types;
     // terminal weights
-    TypeMap<vector<float>> terminal_weights;
     // map name to weights
     map<DataType,           // return type
         map<size_t,         // hash of arg types
@@ -135,10 +135,6 @@ struct SearchSpace
             float w = use_all? 1.0 : user_ops.at(op_names.at(i));
             this->weight_map[n.ret_type][n.args_type()][n.node_type] = w;
 
-            // this->ret_w_map[n.ret_type()] += w;
-            // this->args_w_map[n.args_type()] += w;
-            // this->name_w_map[n.name] = w;
-            // this->weight_map[n.ret_type][typeid(n.args_type)] = 1.0;
             ++i;
 
         }
@@ -146,17 +142,17 @@ struct SearchSpace
         for (const auto& term : terminals)
         {
             cout << "adding " << term.get_name() << ") to search space...\n";
-            if (terminal_map.find(term.ret_type()) == terminal_map.end())
-                terminal_map[term.ret_type()] = NodeVector();
-            cout << "terminal ret_type: " << type_names[term.ret_type()] << "\n";
-            terminal_map[term.ret_type()].push_back(term);
-            terminal_weights[term.ret_type()].push_back(1.0);
+            if (terminal_map.find(term.ret_type) == terminal_map.end())
+                terminal_map[term.ret_type] = NodeVector();
+            cout << "terminal ret_type: " << DataTypeName[term.ret_type] << "\n";
+            terminal_map[term.ret_type].push_back(term);
+            terminal_weights[term.ret_type].push_back(1.0);
         }
 
         cout << "terminal map: " << terminal_map.size() << "\n";
         for (const auto& [k, v] : terminal_map)
         {
-            cout << type_names[k] << ": ";
+            cout << DataTypeName[k] << ": ";
             print(v.begin(), v.end());
         }
 
@@ -167,7 +163,7 @@ struct SearchSpace
             {
                 for (const auto& [name, nodeval] : v2)
                 {
-                    cout << "node_map[" << type_names[ret_type] 
+                    cout << "node_map[" << DataTypeName[ret_type] 
                         << "][args_type][" << NodeTypeName[name] << "] = " 
                         << nodeval.get_name() 
                         /* << nodeval.ID */
@@ -185,7 +181,7 @@ struct SearchSpace
 
     Node get(const NodeType type, DataType R, vector<DataType>& arg_types)
     {
-         auto arg_hash = Util::uint32_vector_hasher(arg_types);
+         auto arg_hash = uint32_vector_hasher()(arg_types);
          return node_map.at(R).at(arg_hash).at(type);
     };
 
@@ -208,7 +204,7 @@ struct SearchSpace
         cout << "terminal map: " << terminal_map.size() << "\n";
         for (const auto& [k, v] : terminal_map)
         {
-            cout << type_names[k] << ": ";
+            cout << DataTypeName[k] << ": ";
             print(v.begin(), v.end());
         }
         print(terminal_weights.at(ret).begin(), terminal_weights.at(ret).end());

@@ -4,6 +4,7 @@
 #include "init.h"
 #include "data/data.h"
 #include "node.h"
+#include "operators.h"
 /* #include "interpreter.h" */
 
 using std::string;
@@ -25,33 +26,37 @@ template<>
 class tree_node_<Node> { // size: 5*4=20 bytes (on 32 bit arch), can be reduced by 8.
 	public:
         tree_node_()
-            : parent(0), first_kid(0), last_child(0), prev_sibling(0), next_sibling(0)
+            : parent(0), first_kid(0), last_kid(0), prev_sibling(0), next_sibling(0)
             {}
 
         tree_node_(const Node& val)
-            : parent(0), first_kid(0), last_child(0), prev_sibling(0), next_sibling(0), n(val)
+            : parent(0), first_kid(0), last_kid(0), prev_sibling(0), next_sibling(0), n(val)
             {}
 
         tree_node_(Node&& val)
-            : parent(0), first_kid(0), last_child(0), prev_sibling(0), next_sibling(0), n(val)
+            : parent(0), first_kid(0), last_kid(0), prev_sibling(0), next_sibling(0), n(val)
             {}
 
 		tree_node_<Node> *parent;
-	    tree_node_<Node> *first_kid, *last_child;
+	    tree_node_<Node> *first_kid, *last_kid;
 		tree_node_<Node> *prev_sibling, *next_sibling;
 		Node n;
 
-        inline auto fit(const Data& d) { return this->_fit<n.exec_type>(d); };
-        inline auto predict(const Data& d) { return this->_predict<n.exec_type>(d); };
+        auto fit(const Data& d); 
+        auto predict(const Data& d) const; 
         /* void grad_descent(const ArrayXf&, const Data&); */
 		string get_model(bool pretty=false);
 		string get_tree_model(bool pretty=false, string offset="");
     private:
+        
+
         template<ExecType E>
         auto _fit(const Data& d);
 
         template<ExecType E>
         auto _predict(const Data& d);
+
+        auto _dispatch(ExecType E, bool train, const Data& d);
 
         template<ExecType E, typename T> struct GetKids; 
         template<ExecType E, typename T> struct GetKidsFit; 
@@ -79,31 +84,31 @@ typedef class tree_node_<Node> TreeNode;
 /*     /1* _grad_descent(gradient, d); *1/ */
 /* }; */
 
-template<>
-string TreeNode::get_model(bool pretty)
-{
-    return this->n.get_model(pretty, first_kid, last_child);
-}
+/* template<> */
+/* string TreeNode::get_model(bool pretty) */
+/* { */
+/*     return this->n.get_model(pretty, first_kid, last_kid); */
+/* } */
 
-template<>
-string TreeNode::get_tree_model(bool pretty, string offset)
-{
-    return this->n.get_tree_model(pretty, offset, first_kid, last_child);
-}
+/* template<> */
+/* string TreeNode::get_tree_model(bool pretty, string offset) */
+/* { */
+/*     return this->n.get_tree_model(pretty, offset, first_kid, last_kid); */
+/* } */
 
-template <> template <> 
+template <> 
 auto TreeNode::_fit<ExecType::Binary>(const Data& d)
 {
     if (this->n.is_weighted)
-        return std::apply(Brush::Function<n.node_type>, 
+        return std::apply(Brush::Function<n.node_type>(), 
                           n.W[0]*first_kid->fit(d), 
                           n.W[1]*last_kid->fit(d)
         );
     else
-        return std::apply(Brush::Function<n.node_type>, first_kid->fit(d), last_kid->fit(d));
+        return std::apply(Brush::Function<n.node_type>(), first_kid->fit(d), last_kid->fit(d));
 };
 
-template <> template <> 
+template <> 
 auto TreeNode::_fit<ExecType::Unary>(const Data& d)
 {
     if (this->n.is_weighted)
@@ -112,7 +117,7 @@ auto TreeNode::_fit<ExecType::Unary>(const Data& d)
         return std::apply(Brush::Function<n.node_type>, first_kid->fit(d));
 };
 
-template <> template <> 
+template <> 
 auto TreeNode::_fit<ExecType::Applier>(const Data& d)
 {
     /* auto signature = NodeSchema[n.node_type]["Signature"][n.ret_type]; */ 
@@ -128,7 +133,7 @@ auto TreeNode::_fit<ExecType::Applier>(const Data& d)
     return std::apply(Brush::Function<n.node_type>, inputs);
 };
 
-template <> template <> 
+template <> 
 auto TreeNode::_fit<ExecType::Transformer>(const Data& d)
 {
     typedef decltype(n.signature().at(0)) signature;
@@ -150,7 +155,7 @@ auto TreeNode::_fit<ExecType::Transformer>(const Data& d)
     return outputs; 
 };
 
-template <> template <> 
+template <> 
 auto TreeNode::_fit<ExecType::Reducer>(const Data& d)
 {
     typedef decltype(n.signature().at(0)) signature;
@@ -168,7 +173,7 @@ auto TreeNode::_fit<ExecType::Reducer>(const Data& d)
 };
 
 
-template <> template <> 
+template <> 
 auto TreeNode::_fit<ExecType::Splitter>(const Data& d)
 {
     // need to handle kind with fixed var and kind without
@@ -203,7 +208,7 @@ auto TreeNode::_fit<ExecType::Splitter>(const Data& d)
     return out;
 };
 
-template <> template <> 
+template <> 
 auto TreeNode::_fit<ExecType::Terminal>(const Data& d)
 {
     return this->predict(d);
@@ -221,7 +226,7 @@ struct TreeNode::GetKids<ExecType::Applier, T>
     template <std::size_t N>
     using NthType = typename std::tuple_element<N, T>::type;
 
-    T operator()(const Data& d, State (TreeNode::*fn)(const Data&))
+    T operator()(const Data& d, auto (TreeNode::*fn)(const Data&))
     {
         // why not make get kids return the tuple? because tuples suck with weights
         T kid_outputs;
@@ -278,7 +283,39 @@ struct TreeNode::GetKidsPredict {
     };
 };
 ////////////////////////////////////////////////////////////////////////////////
-
+template<>
+auto TreeNode::_dispatch(ExecType E, bool train, const Data& d)
+{
+    switch (E) {
+        case ExecType::Unary: 
+            return train? _fit<ExecType::Unary>(d) : _predict<ExecType::Unary>(d);
+            break;
+        case ExecType::Binary:
+            return train? _fit<ExecType::Binary>(d) : _predict<ExecType::Binary>(d);
+            break;
+        case ExecType::Transformer: 
+            return train? _fit<ExecType::Transformer>(d) : _predict<ExecType::Transformer>(d);
+            break;
+        case ExecType::Reducer: 
+            return train? _fit<ExecType::Reducer>(d) : _predict<ExecType::Reducer>(d);
+            break;
+        case ExecType::Applier:
+            return train? _fit<ExecType::Applier>(d) : _predict<ExecType::Applier>(d);
+            break;
+        case ExecType::Splitter: 
+             return train? _fit<ExecType::Splitter>(d) : _predict<ExecType::Splitter>(d);
+            break;
+        case ExecType::Terminal:    
+            return train? _fit<ExecType::Terminal>(d) : _predict<ExecType::Terminal>(d);
+            break;
+        default:
+            HANDLE_ERROR_THROW("ExecType not found");
+    }
+};
+template<> template<typename R>
+R TreeNode::fit(const Data& d) { return _dispatch(n.exec_type, true, d); };
+template<> template<typename R>
+R TreeNode::predict(const Data& d) const { return _dispatch(n.exec_type, false, d); };
 
 }// Brush
 #endif

@@ -12,7 +12,7 @@ namespace Brush
 {
 
 // constructs a tree using functions, terminals, and settings
-tree<NodeBase*> make_program(SearchSpace& SS, type_index root_type, 
+tree<Node> make_program(SearchSpace& SS, type_index root_type, 
                              int max_d, int max_breadth, int max_size)
 {
     /*
@@ -21,7 +21,7 @@ tree<NodeBase*> make_program(SearchSpace& SS, type_index root_type,
     *  
     */
     cout << "============================================\n";
-    auto prg = tree<NodeBase*>();
+    auto prg = tree<Node>();
 
     cout << "building program with max size " << max_size 
             << ", max_depth: " << max_d << endl;

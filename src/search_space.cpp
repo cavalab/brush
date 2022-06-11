@@ -7,7 +7,7 @@ tuple<set<Node>,set<type_index>> generate_nodes(vector<string>& op_names)
 {
 
     // NodeNameTypeMap name2ret2node;
-    set<NodeBase*> nodes; 
+    set<Node> nodes; 
     set<type_index> new_types;
 
     // auto binary_operators = make_binary_operators<ArrayXf>()(op_names);
@@ -40,9 +40,9 @@ tuple<set<Node>,set<type_index>> generate_nodes(vector<string>& op_names)
 
     return {nodes, new_types};
 }
-tuple<set<NodeBase*>,set<type_index>> generate_split_nodes(vector<string>& op_names)
+tuple<set<Node>,set<type_index>> generate_split_nodes(vector<string>& op_names)
 {
-    set<NodeBase*> nodes; 
+    set<Node> nodes; 
     set<type_index> new_types;
     if ( in(op_names, "best_split"))
     {
@@ -71,106 +71,41 @@ tuple<set<NodeBase*>,set<type_index>> generate_split_nodes(vector<string>& op_na
 
 }
 
-set<NodeBase*> generate_all_nodes(vector<string>& node_names, 
-                                  set<type_index> term_types)
+set<Node> generate_all_nodes(vector<string>& node_names, set<DataType> term_types)
 {
-    set<NodeBase*> nodes; 
-    set<type_index> new_types;
+    set<Node> nodes;
 
-    auto [new_nodes, nt] = generate_nodes<ArrayXf>(node_names);
-    auto [new_nodes2, nt2] = generate_nodes<ArrayXXf>(node_names);
-    auto [new_nodes3, nt3] = generate_split_nodes(node_names);
-    nodes.merge(new_nodes);
-    term_types.merge(nt);
-    // term_types.erase(t);
-    // generate nodes that act on the terminals, and on any new return 
-    // types from the nodes encountered along the way.
-    // while(term_types.size() > 0)
-    // for (auto t: term_types)
-    // {
-    //     type_index t = *term_types.begin();
-    //     string tn = type_names.at(t);
+    for ( const auto &[name, v]: NodeSchema ) 
+    {
+        if !in(node_names, name) 
+            continue;
 
-    //     // auto [new_nodes, nt] = generate_nodes<bool>(node_names);
-    //     // nodes.merge(new_nodes);
-    //     // term_types.merge(nt);
-    //     // term_types.erase(t);
+        auto node_type = NodeNameType[name];
 
-    //     // if (tn == "bool")
-    //     // {
-    //     //     auto [new_nodes, nt] = generate_nodes<bool>(node_names);
-    //     //     nodes.merge(new_nodes);
-    //     //     term_types.merge(nt);
-    //     //     term_types.erase(t);
-    //     // }
-    //     // else if (tn == "int")
-    //     // {
-    //     //     auto [new_nodes, nt] = generate_nodes<int>(node_names);
-    //     //     nodes.merge(new_nodes);
-    //     //     term_types.merge(nt);
-    //     //     term_types.erase(t);
-    //     // }
-    //     // else if (tn == "float")
-    //     // {
-    //     //     auto [new_nodes, nt] = generate_nodes<float>(node_names);
-    //     //     nodes.merge(new_nodes);
-    //     //     term_types.merge(nt);
-    //     //     term_types.erase(t);
-    //     // }
-    //     // if (tn == "ArrayXb")
-    //     // {
-    //     //     // auto [new_nodes, nt] = generate_nodes<ArrayXb>(node_names);
-    //     //     // nodes.merge(new_nodes);
-    //     //     // term_types.merge(nt);
-    //     //     // term_types.erase(t);
-    //     // }
-    //     // else if (tn == "ArrayXi")
-    //     // {
-    //     //     // auto [new_nodes, nt] = generate_nodes<ArrayXi>(node_names);
-    //     //     // nodes.merge(new_nodes);
-    //     //     // term_types.merge(nt);
-    //     //     // term_types.erase(t);
-    //     // }
-    //     // else if (tn == "ArrayXf")
-    //     // {
-    //     //     auto [new_nodes, nt] = generate_nodes(node_names);
-    //     //     nodes.merge(new_nodes);
-    //     //     term_types.merge(nt);
-    //     //     term_types.erase(t);
-    //     // }
-    //     // else if (tn == "Longitudinal")
-    //     // {
-    //     //     auto [new_nodes, nt] = generate_nodes<Longitudinal>(node_names);
-    //     //     nodes.merge(new_nodes);
-    //     //     term_types.merge(nt);
-    //     //     term_types.erase(t);
-    //     // }
-    // }
-    return nodes;
+        for ( const auto &[ret_name, sig]: v["Signature"] ) 
+        {
+            // TODO: potentially check signature and filter out types
+            auto ret_type = DataNameType[ret_name];
+            nodes.insert(Node(node_type, ret_type, true));
+            nodes.insert(Node(node_type, ret_type, false));
+             
+        }
+    }
 }
 
 NodeVector generate_terminals(const Data& d)
 {
     NodeVector terminals;
-    for (const auto& kv : d.features)
+    int i = 0;
+    for ( const auto &[key, value]: d.featues ) 
     {
+        auto data_type = d.data_types.at(i);
         // note: structured bindings cannot be captured by lambdas until C++20
-        const string& name = kv.first;
-        const State& value = kv.second;
-        std::cout << "generating terminal " << name << endl;
+        std::cout << "generating terminal " << key << "of type " << value << endl;
         // terminals.push_back(make_shared<Terminal>(var, d[var]));
 
-        std::visit([&](auto && v){
-            std::cout << name << ":" << v << endl;
-            },
-            value
-        );
-        std::visit([&](auto && v){
-            terminals.push_back(new Terminal(name, v));
-            },
-            value
-        );
-
+        terminals.push_back(Node(NodeType::Terminal, data_type, name));
+        ++i;
     };
     return terminals;
 };
