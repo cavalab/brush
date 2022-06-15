@@ -34,7 +34,7 @@ using Brush::SearchSpace;
 namespace Brush {
 
 
-typedef tree<NodeBase*>::pre_order_iterator Iter; 
+typedef tree<Node>::pre_order_iterator Iter; 
 
 /* template<typename T> class Program; */
 
@@ -48,20 +48,22 @@ T RandomDequeue(std::vector<T>& Q)
     return val;
 }
 
-tree<NodeBase*> make_program(SearchSpace& SS, type_index root_type, 
+tree<Node> make_program(SearchSpace& SS, type_index root_type, 
                             int max_d, int max_breadth, int max_size);
 
 // TODO: instead of templating this, define meaningful derived classes
 // for unsupervised learning, classification and regression. 
-template<typename T> class Program //: public tree<NodeBase*>
+template<typename T> class Program //: public tree<Node>
 {
 
     public:
 
     /// the underlying program
-    tree<NodeBase*> prg; 
+    tree<Node> prg; 
     /// reference to search space
     SearchSpace& SS;
+    /* /// the interpeter */ 
+    /* Interpreter interpreter; */
 
     Program(SearchSpace& ss, int depth=0, int breadth = 0, int size = 0): SS(ss)
     {
@@ -82,8 +84,8 @@ template<typename T> class Program //: public tree<NodeBase*>
         // init method
 
         Iter start = prg.begin(); 
-        State out = start.node->fit(d);
-        return std::get<T>(out);
+        T out = start.node->fit(d);
+        return out;
     };
 
     T predict(const Data& d)
@@ -114,9 +116,9 @@ template<typename T> class Program //: public tree<NodeBase*>
     // Mutation & Crossover
 
 
-    // tree<NodeBase*> point_mutation(tree<NodeBase*>& prg, Iter spot);
-    // tree<NodeBase*> insert_mutation(tree<NodeBase*>& prg, Iter spot);
-    // tree<NodeBase*> delete_mutation(tree<NodeBase*>& prg, Iter spot);
+    // tree<Node> point_mutation(tree<Node>& prg, Iter spot);
+    // tree<Node> insert_mutation(tree<Node>& prg, Iter spot);
+    // tree<Node> delete_mutation(tree<Node>& prg, Iter spot);
 
     /// point mutation: replace node with same typed node
     void point_mutation(Iter spot)

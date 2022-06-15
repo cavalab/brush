@@ -5,7 +5,7 @@
 #include "data/data.h"
 #include "node.h"
 #include "operators.h"
-/* #include "interpreter.h" */
+#include "interpreter.h"
 
 using std::string;
 using Brush::data::Data;
@@ -100,21 +100,20 @@ template <>
 auto TreeNode::_fit<ExecType::Binary>(const Data& d)
 {
     if (this->n.is_weighted)
-        return std::apply(Brush::Function<n.node_type>(), 
-                          n.W[0]*first_kid->fit(d), 
-                          n.W[1]*last_kid->fit(d)
-        );
+        /* return Brush::Function<n.node_type>( n.W[0]*first_kid->fit(d), n.W[1]*last_kid->fit(d) ); */
+        return dispatch_table.apply(n.node_type, n.W[0]*first_kid->fit(d), n.W[1]*last_kid->fit(d) );
     else
-        return std::apply(Brush::Function<n.node_type>(), first_kid->fit(d), last_kid->fit(d));
+        /* return Brush::Function<n.node_type>( first_kid->fit(d), last_kid->fit(d) ); */
+        return dispatch_table.apply(n.node_type, n.W[0]*first_kid->fit(d), n.W[1]*last_kid->fit(d) );
 };
 
 template <> 
 auto TreeNode::_fit<ExecType::Unary>(const Data& d)
 {
     if (this->n.is_weighted)
-        return std::apply(Brush::Function<n.node_type>, n.W[0]*first_kid->fit(d));
+        return Brush::Function<n.node_type>( n.W[0]*first_kid->fit(d)) );
     else
-        return std::apply(Brush::Function<n.node_type>, first_kid->fit(d));
+        return Brush::Function<n.node_type>( first_kid->fit(d) );
 };
 
 template <> 
@@ -313,7 +312,9 @@ auto TreeNode::_dispatch(ExecType E, bool train, const Data& d)
     }
 };
 template<> template<typename R>
-R TreeNode::fit(const Data& d) { return _dispatch(n.exec_type, true, d); };
+R TreeNode::fit(const Data& d) { 
+    return _dispatch(n.exec_type, true, d); 
+};
 template<> template<typename R>
 R TreeNode::predict(const Data& d) const { return _dispatch(n.exec_type, false, d); };
 

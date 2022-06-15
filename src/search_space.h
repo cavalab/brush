@@ -40,8 +40,8 @@ namespace Brush
 ////////////////////////////////////////////////////////////////////////////////
 // node generation routines
 template<typename T>
-tuple<set<Node>,set<type_index>> generate_nodes(vector<string>& op_names);
-tuple<set<Node>,set<type_index>> generate_split_nodes(vector<string>& op_names);
+/* tuple<set<Node>,set<type_index>> generate_nodes(vector<string>& op_names); */
+/* tuple<set<Node>,set<type_index>> generate_split_nodes(vector<string>& op_names); */
 
 NodeVector generate_terminals(const Data& d);
 
@@ -190,8 +190,8 @@ struct SearchSpace
     {
         //TODO: match terminal args_type (probably '{}' or something?)
         //  make a separate terminal_map
-        auto match = r.select_randomly(terminal_map.begin(), terminal_map.end());
-        return r.select_randomly(
+        auto match = *r.select_randomly(terminal_map.begin(), terminal_map.end());
+        return *r.select_randomly(
                 match.second.begin(), match.second.end(), 
                 terminal_weights.at(match.first).begin(), 
                 terminal_weights.at(match.first).end()
@@ -214,7 +214,7 @@ struct SearchSpace
                                   terminal_map.at(ret).end(), 
                                   terminal_weights.at(ret).begin(),
                                   terminal_weights.at(ret).end());
-        cout << "returning " << rval->get_name() << endl;
+        cout << "returning " << rval.get_name() << endl;
         return rval;
     };
 
@@ -296,7 +296,7 @@ struct SearchSpace
         {
             for (const auto& [name, node]: name_map)
             {
-                auto node_arg_types = node->arg_types();
+                auto node_arg_types = node.arg_types();
                 if ( in(node_arg_types, arg) )
                 {
                     // if checking terminal compatibility, make sure there's

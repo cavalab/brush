@@ -115,8 +115,25 @@ enum class NodeType : uint32_t {
 
     // custom
     CustomOp,
-    CustomSplit
+    CustomSplit,
+
+    // Special Op
+    _END_
 };
+
+
+/* using UnderlyingNodeType = std::underlying_type_t<NodeType>; */
+
+/* struct NodeTypes { */
+/*     // magic number keeping track of the number of different node types */
+/*     static constexpr size_t Count = static_cast<UnderlyingNodeType>(NodeType::_END_); */
+
+/*     // returns the index of the given type in the NodeType enum */
+/*     static auto GetIndex(NodeType type) -> size_t */
+/*     { */
+/*         return std::bitset<Count>(static_cast<std::underlying_type_t<NodeType>>(type) - 1).count(); */
+/*     } */
+/* }; */
 
 std::map<std::string, NodeType> NodeNameType = {
     //arithmetic
