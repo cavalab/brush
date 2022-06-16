@@ -4,6 +4,8 @@ license: GNU/GPL v3
 */
 #ifndef NODELIST_H
 #define NODELIST_H
+// external includes
+#include <bitset>
 //internal includes
 #include "init.h"
 /* #include "node.h" */
@@ -49,91 +51,102 @@ enum class ExecType : uint32_t {
     Splitter, // splits data and returns the output of the children on each split.
     Terminal,    // returns a data element.
 }; 
-enum class NodeType : uint32_t {
-    //arithmetic
-    Add,
-    Sub,
-    Mul,
-    Div,
-    Aq,
-    Abs,
-
-    Acos,
-    Asin,
-    Atan,
-    Cos,
-    Cosh,
-    Sin,
-    Sinh,
-    Tan,
-    Tanh,
-    Cbrt,
-    Ceil,
-    Floor,
-    Exp,
-    Log,
-    Logabs,
-    Log1p,
-    Sqrt,
-    Sqrtabs,
-    Square,
-    Pow,
-
-    // logic; not sure these will make it in
-    And,
-    Or,
-    Not,
-    Xor,
-
+enum class NodeType : uint64_t {
+    // arithmetic
+    Add                 = 1UL << 1UL,
+    Sub                 = 1UL << 2UL,
+    Mul                 = 1UL << 3UL,
+    Div                 = 1UL << 4UL,
+    Aq                  = 1UL << 5UL,
+    Abs                 = 1UL << 6UL,
+    // trig
+    Acos                = 1UL << 7UL,
+    Asin                = 1UL << 8UL,
+    Atan                = 1UL << 9UL,
+    Cos                 = 1UL << 10UL,
+    Cosh                = 1UL << 11UL,
+    Sin                 = 1UL << 12UL,
+    Sinh                = 1UL << 13UL,
+    Tan                 = 1UL << 14UL,
+    Tanh                = 1UL << 15UL,
+    Cbrt                = 1UL << 16UL,
+    Ceil                = 1UL << 17UL,
+    Floor               = 1UL << 18UL,
+    Exp                 = 1UL << 19UL,
+    Log                 = 1UL << 20UL,
+    Logabs              = 1UL << 21UL,
+    Log1p               = 1UL << 22UL,
+    Sqrt                = 1UL << 23UL,
+    Sqrtabs             = 1UL << 24UL,
+    Square              = 1UL << 25UL,
+    Pow                 = 1UL << 26UL,
+    // logic 
+    And                 = 1UL << 27UL,
+    Or                  = 1UL << 28UL,
+    Not                 = 1UL << 29UL,
+    Xor                 = 1UL << 30UL,
     // decision (same)
-    Equals,
-    LessThan,
-    GreaterThan,
-    Leq,
-    Geq,
-
+    Equals              = 1UL << 31UL,
+    LessThan            = 1UL << 32UL,
+    GreaterThan         = 1UL << 33UL,
+    Leq                 = 1UL << 34UL,
+    Geq                 = 1UL << 35UL,
     // summary stats
-    Min,
-    Max,
-    Mean,
-    Median,
-    Count,
-    Sum,
-
+    Min                 = 1UL << 36UL,
+    Max                 = 1UL << 37UL,
+    Mean                = 1UL << 38UL,
+    Median              = 1UL << 39UL,
+    Count               = 1UL << 40UL,
+    Sum                 = 1UL << 41UL,
     // timing masks
-    Before,
-    After,
-    During,
-
+    Before              = 1UL << 42UL,
+    After               = 1UL << 43UL,
+    During              = 1UL << 44UL,
     //split
-    SplitBest,
-    SplitOn,
-
+    SplitBest           = 1UL << 45UL,
+    SplitOn             = 1UL << 46UL,
     // leaves
-    Constant,
-    Variable,
-
+    Constant            = 1UL << 47UL,
+    Terminal            = 1UL << 48UL,
     // custom
-    CustomOp,
-    CustomSplit,
-
+    CustomOp            = 1UL << 49UL,
+    CustomSplit         = 1UL << 50UL,
     // Special Op
-    _END_
+    _END_               = 1UL << 51UL,
 };
 
 
-/* using UnderlyingNodeType = std::underlying_type_t<NodeType>; */
+using UnderlyingNodeType = std::underlying_type_t<NodeType>;
+struct NodeTypes {
+    // magic number keeping track of the number of different node types
+    static constexpr size_t Count = 51;
 
-/* struct NodeTypes { */
-/*     // magic number keeping track of the number of different node types */
-/*     static constexpr size_t Count = static_cast<UnderlyingNodeType>(NodeType::_END_); */
+    // returns the index of the given type in the NodeType enum
+    static auto GetIndex(NodeType type) -> size_t
+    {
+        return std::bitset<Count>(static_cast<std::underlying_type_t<NodeType>>(type) - 1).count();
+    }
+};
 
-/*     // returns the index of the given type in the NodeType enum */
-/*     static auto GetIndex(NodeType type) -> size_t */
-/*     { */
-/*         return std::bitset<Count>(static_cast<std::underlying_type_t<NodeType>>(type) - 1).count(); */
-/*     } */
-/* }; */
+inline constexpr auto operator&(NodeType lhs, NodeType rhs) -> NodeType { return static_cast<NodeType>(static_cast<UnderlyingNodeType>(lhs) & static_cast<UnderlyingNodeType>(rhs)); }
+inline constexpr auto operator|(NodeType lhs, NodeType rhs) -> NodeType { return static_cast<NodeType>(static_cast<UnderlyingNodeType>(lhs) | static_cast<UnderlyingNodeType>(rhs)); }
+inline constexpr auto operator^(NodeType lhs, NodeType rhs) -> NodeType { return static_cast<NodeType>(static_cast<UnderlyingNodeType>(lhs) ^ static_cast<UnderlyingNodeType>(rhs)); }
+inline constexpr auto operator~(NodeType lhs) -> NodeType { return static_cast<NodeType>(~static_cast<UnderlyingNodeType>(lhs)); }
+inline auto operator&=(NodeType& lhs, NodeType rhs) -> NodeType&
+{
+    lhs = lhs & rhs;
+    return lhs;
+}
+inline auto operator|=(NodeType& lhs, NodeType rhs) -> NodeType&
+{
+    lhs = lhs | rhs;
+    return lhs;
+}
+inline auto operator^=(NodeType& lhs, NodeType rhs) -> NodeType&
+{
+    lhs = lhs ^ rhs;
+    return lhs;
+}
 
 std::map<std::string, NodeType> NodeNameType = {
     //arithmetic
@@ -197,7 +210,7 @@ std::map<std::string, NodeType> NodeNameType = {
 
     // leaves
     {"Constant", NodeType::Constant},
-    {"Variable", NodeType::Variable},
+    {"Terminal", NodeType::Terminal},
 
     // custom
     {"CustomOp", NodeType::CustomOp},
@@ -243,7 +256,7 @@ auto NodeTypeName = Util::reverse_map(NodeNameType);
 /*     }; */
 
 /*     template<typename ... Args> */
-/*     template<DataType T, DataType U, DataType V> */
+/*     template<DataType T, DataType L, DataType V> */
 /*     auto tupleof(T */
 /* }; */
 

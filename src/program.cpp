@@ -12,7 +12,7 @@ namespace Brush
 {
 
 // constructs a tree using functions, terminals, and settings
-tree<Node> make_program(SearchSpace& SS, type_index root_type, 
+tree<Node> make_program(SearchSpace& SS, DataType root_type, 
                              int max_d, int max_breadth, int max_size)
 {
     /*
@@ -28,7 +28,7 @@ tree<Node> make_program(SearchSpace& SS, type_index root_type,
 
 
     // Queue of nodes that need children
-    vector<tuple<Iter, type_index, int>> queue; 
+    vector<tuple<Iter, DataType, int>> queue; 
 
     if (max_size == 1)
     {
@@ -37,9 +37,9 @@ tree<Node> make_program(SearchSpace& SS, type_index root_type,
     }
     else
     {
-        cout << "getting op of type " << type_names[root_type] << endl;
+        cout << "getting op of type " << DataTypeName[root_type] << endl;
         auto n = SS.get_op(root_type);
-        cout << "chose " << n->name << endl;
+        cout << "chose " << n.name << endl;
         // auto spot = prg.set_head(n);
         auto spot = prg.insert(prg.begin(), n);
         // node depth
@@ -47,9 +47,9 @@ tree<Node> make_program(SearchSpace& SS, type_index root_type,
         // current tree size
         int s = 1;
         //For each argument position a of n, Enqueue(a; g) 
-        for (auto a : n->arg_types())
+        for (auto a : n.arg_types)
         { 
-            cout << "queing a node of type " << type_names[a] << endl;
+            cout << "queing a node of type " << DataTypeName[a] << endl;
             queue.push_back(make_tuple(spot, a, d));
         }
 
@@ -62,20 +62,20 @@ tree<Node> make_program(SearchSpace& SS, type_index root_type,
             cout << "d: " << d << endl;
             if (d == max_d)
             {
-                cout << "getting " << type_names[t] << " terminal\n"; 
+                cout << "getting " << DataTypeName[t] << " terminal\n"; 
                 prg.append_child(qspot, SS.get_terminal(t));
             }
             else
             {
                 //choose a nonterminal of matching type
-                cout << "getting op of type " << type_names[t] << endl;
+                cout << "getting op of type " << DataTypeName[t] << endl;
                 auto n = SS.get_op(t);
-                cout << "chose " << n->name << endl;
+                cout << "chose " << n.name << endl;
                 Iter new_spot = prg.append_child(qspot, n);
                 // For each arg of n, add to queue
-                for (auto a : n->arg_types())
+                for (auto a : n.arg_types)
                 {
-                    cout << "queing a node of type " << type_names[a] << endl;
+                    cout << "queing a node of type " << DataTypeName[a] << endl;
                     queue.push_back(make_tuple(new_spot, a, d+1));
                 }
             }
@@ -92,7 +92,7 @@ tree<Node> make_program(SearchSpace& SS, type_index root_type,
 
             auto [qspot, t, d] = RandomDequeue(queue);
 
-            cout << "getting " << type_names[t] << " terminal\n"; 
+            cout << "getting " << DataTypeName[t] << " terminal\n"; 
             prg.append_child(qspot, SS.get_terminal(t));
 
         }

@@ -98,8 +98,9 @@ template<typename T> class Program //: public tree<Node>
 
     void grad_descent(const ArrayXf& gradient, const Data& d)
     {
+        //TODO
         Iter start = prg.begin(); 
-        start.node->grad_descent(gradient, d);
+        /* start.node.grad_descent(gradient, d); */
     };
 
     string get_model(bool pretty=false)
@@ -124,21 +125,21 @@ template<typename T> class Program //: public tree<Node>
     void point_mutation(Iter spot)
     {
         cout << "point mutation\n";
-        auto newNode = this->SS.get_node_like(spot.node->data); 
+        auto newNode = this->SS.get_node_like(spot.node->n); 
         this->prg.replace(spot, newNode);
     };
     /// insert a node with spot as a child
     void insert_mutation(Iter spot)
     {
         cout << "insert mutation\n";
-        auto spot_type = spot.node->data->ret_type();
+        auto spot_type = spot.node->n.ret_type;
         auto n = this->SS.get_op_with_arg(spot_type, spot_type); 
         // make node n wrap the subtree at the chosen spot
         auto parent_node = this->prg.wrap(spot, n);
 
         // now fill the arguments of n appropriately
         bool spot_filled = false;
-        for (auto a: n->arg_types())
+        for (auto a: n.arg_types)
         {
             
             if (spot_filled)
@@ -159,7 +160,7 @@ template<typename T> class Program //: public tree<Node>
     void delete_mutation(Iter spot)
     {
         cout << "delete mutation\n";
-        auto terminal = this->SS.get_terminal(spot.node->data->ret_type()); 
+        auto terminal = this->SS.get_terminal(spot.node->n.ret_type); 
         this->prg.erase_children(spot); 
         this->prg.replace(spot, terminal);
     };

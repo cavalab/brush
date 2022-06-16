@@ -39,7 +39,7 @@ namespace Brush
 {
 ////////////////////////////////////////////////////////////////////////////////
 // node generation routines
-template<typename T>
+/* template<typename T> */
 /* tuple<set<Node>,set<type_index>> generate_nodes(vector<string>& op_names); */
 /* tuple<set<Node>,set<type_index>> generate_split_nodes(vector<string>& op_names); */
 
@@ -296,7 +296,7 @@ struct SearchSpace
         {
             for (const auto& [name, node]: name_map)
             {
-                auto node_arg_types = node.arg_types();
+                auto node_arg_types = node.arg_types;
                 if ( in(node_arg_types, arg) )
                 {
                     // if checking terminal compatibility, make sure there's

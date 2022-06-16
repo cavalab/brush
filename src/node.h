@@ -9,6 +9,7 @@ license: GNU/GPL v3
 #include "data/data.h"
 #include "nodemap.h"
 #include "util/utils.h"
+#include <iostream>
 // #include "nodes/base.h"
 // #include "nodes/dx.h"
 // #include "nodes/split.h"
@@ -71,6 +72,8 @@ struct uint32_vector_hasher {
 /* }; */
 
 
+
+
 struct Node {
 
     /// full name of the node, with types
@@ -100,16 +103,18 @@ struct Node {
 
     explicit Node(NodeType type, DataType output_type, bool weighted=false) noexcept
         : node_type(type)
+        , name(NodeTypeName[type])
         , ret_type(output_type)
         , exec_type(NodeSchema[NodeTypeName[type]]["ExecType"])
         , arg_types(NodeSchema[NodeTypeName[type]]["Signature"][DataTypeName[output_type]])
         , is_weighted(weighted)
     {}
 
-    explicit Node(NodeType type, DataType output_type, string name) noexcept
+    explicit Node(NodeType type, DataType output_type, string feature_name) noexcept
         : node_type(type)
+        , name(NodeTypeName[type])
         , ret_type(output_type)
-        , feature(name)
+        , feature(feature_name)
         , exec_type(NodeSchema[NodeTypeName[type]]["ExecType"])
         , arg_types(NodeSchema[NodeTypeName[type]]["Signature"][DataTypeName[output_type]])
         , is_weighted(false)
@@ -143,42 +148,45 @@ struct Node {
         return uint32_vector_hasher()(arg_types);
     }; 
     size_t get_arg_count() const { return arg_types.size(); };
-    // comparison operators
-    // inline auto operator==(const Node& rhs) const noexcept -> bool
-    // {
-    //     return CalculatedHashValue == rhs.CalculatedHashValue;
-    // }
 
-    // inline auto operator!=(const Node& rhs) const noexcept -> bool
-    // {
-    //     return !((*this) == rhs);
-    // }
+    //comparison operators
+    inline auto operator==(const Node& rhs) const noexcept -> bool
+    {
+        /* return CalculatedHashValue == rhs.CalculatedHashValue; */
+        return (*this) == rhs;
+    }
 
-    // inline auto operator<(const Node& rhs) const noexcept -> bool
-    // {
-    //     return std::tie(HashValue, CalculatedHashValue) < std::tie(rhs.HashValue, rhs.CalculatedHashValue);
-    // }
+    inline auto operator!=(const Node& rhs) const noexcept -> bool
+    {
+        return !((*this) == rhs);
+    }
 
-    // inline auto operator<=(const Node& rhs) const noexcept -> bool
-    // {
-    //     return ((*this) == rhs || (*this) < rhs);
-    // }
+    inline auto operator<(const Node& rhs) const noexcept -> bool
+    {
+        /* return std::tie(HashValue, CalculatedHashValue) < std::tie(rhs.HashValue, rhs.CalculatedHashValue); */
+        return (*this) < rhs;
+    }
 
-    // inline auto operator>(const Node& rhs) const noexcept -> bool
-    // {
-    //     return !((*this) <= rhs);
-    // }
+    inline auto operator<=(const Node& rhs) const noexcept -> bool
+    {
+        return ((*this) == rhs || (*this) < rhs);
+    }
 
-    // inline auto operator>=(const Node& rhs) const noexcept -> bool
-    // {
-    //     return !((*this) < rhs);
-    // }
+    inline auto operator>(const Node& rhs) const noexcept -> bool
+    {
+        return !((*this) <= rhs);
+    }
+
+    inline auto operator>=(const Node& rhs) const noexcept -> bool
+    {
+        return !((*this) < rhs);
+    }
 
     template <NodeType... T>
     inline auto Is() const -> bool { return ((node_type == T) || ...); }
 
     inline auto IsLeaf() const noexcept -> bool { 
-        return Is<NodeType::Constant, NodeType::Variable>(); 
+        return Is<NodeType::Constant, NodeType::Terminal>(); 
     }
 
     inline auto IsCommutative() const noexcept -> bool { 
@@ -217,6 +225,13 @@ struct Node {
     /* float get_prob_change(){ return this->prob_change;}; */
     /* void set_prob_change(float w){ this->prob_change = w;}; */
     /* float get_prob_keep(){ return 1-this->prob_change;}; */
+    };
+
+    ostream& operator<<(ostream& os, const Node& n)
+    {
+        /* os << dt.mo << '/' << dt.da << '/' << dt.yr; */
+        os << n.name;
+        return os;
     };
 }
 

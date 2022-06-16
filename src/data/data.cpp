@@ -131,7 +131,7 @@ void Data::init()
         // save feature types
         std::type_index feature_type = StateType(value);
 
-        Util::unique_insert(this->data_types, feature_type);
+        Util::unique_insert(this->data_types, DataIDType[feature_type]);
         // add feature to appropriate map list 
         this->features_of_type[feature_type].push_back(name);
     }
