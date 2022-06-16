@@ -10,7 +10,19 @@ using namespace Brush::Util;
 using std::min;
 
 namespace Brush{ 
-namespace data{
+
+map<DataType,string>  DataTypeName = {
+    {DataType::ArrayB, "ArrayB"},
+    {DataType::ArrayI, "ArrayI"},
+    {DataType::ArrayF, "ArrayF"},
+    {DataType::MatrixB, "MatrixB"},
+    {DataType::MatrixI, "MatrixI"},
+    {DataType::MatrixF, "MatrixF"},
+    {DataType::TimeSeriesB, "TimeSeriesB"},
+    {DataType::TimeSeriesI,"TimeSeriesI"},
+    {DataType::TimeSeriesF, "TimeSeriesF"},
+};
+map<string,DataType> DataNameType = Util::reverse_map(DataTypeName);
 
 std::vector<std::type_index> StateTypes = {
                       typeid(ArrayXb),
@@ -19,10 +31,13 @@ std::vector<std::type_index> StateTypes = {
                       typeid(ArrayXXb),
                       typeid(ArrayXXi), 
                       typeid(ArrayXXf), 
-                      typeid(TimeSeriesb),
-                      typeid(TimeSeriesi),
-                      typeid(TimeSeriesf)
+                      typeid(data::TimeSeriesb),
+                      typeid(data::TimeSeriesi),
+                      typeid(data::TimeSeriesf)
 };
+
+namespace data{
+
 // /// returns the type_index held in arg
 std::type_index StateType(const State& arg)
 {

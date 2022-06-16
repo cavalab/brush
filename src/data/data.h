@@ -52,18 +52,8 @@ enum class DataType : uint32_t {
     TimeSeriesF
 };
 
-map<DataType,string>  DataTypeName = {
-    {DataType::ArrayB, "ArrayB"},
-    {DataType::ArrayI, "ArrayI"},
-    {DataType::ArrayF, "ArrayF"},
-    {DataType::MatrixB, "MatrixB"},
-    {DataType::MatrixI, "MatrixI"},
-    {DataType::MatrixF, "MatrixF"},
-    {DataType::TimeSeriesB, "TimeSeriesB"},
-    {DataType::TimeSeriesI,"TimeSeriesI"},
-    {DataType::TimeSeriesF, "TimeSeriesF"},
-};
-auto DataNameType = Util::reverse_map(DataTypeName);
+extern map<DataType,string>  DataTypeName; 
+extern map<string,DataType>  DataNameType; 
 
 
 namespace data
@@ -368,8 +358,8 @@ struct DataMap<DataType::TimeSeriesI>{ inline auto operator()() { return data::T
 template<>
 struct DataMap<DataType::TimeSeriesF>{ inline auto operator()() { return data::TimeSeriesf(); } };
 
-map<DataType,std::type_index>  DataTypeID;
-map<std::type_index,DataType>  DataIDType;
+extern map<DataType,std::type_index>  DataTypeID;
+extern map<std::type_index,DataType>  DataIDType;
 } // Brush
 
 #endif
