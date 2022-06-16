@@ -84,8 +84,8 @@ template<typename T> class Program //: public tree<Node>
         // init method
 
         Iter start = prg.begin(); 
-        T out = start.node->fit(d);
-        return out;
+        State out = start.node->fit(d);
+        return std::get<T>(out);
     };
 
     T predict(const Data& d)

@@ -1,5 +1,6 @@
 #ifndef tree_node_h
 #define tree_node_h
+#include <tuple>
 
 #include "init.h"
 #include "data/data.h"
@@ -16,6 +17,8 @@ namespace Brush {
 /// A node in the tree, combining links to other nodes as well as the actual data.
 template<class T> class tree_node_; 
 
+struct DispatchTable;
+extern DispatchTable dispatch_table; 
 
 // /**
 //  * @brief tree node specialization for Node.
@@ -42,9 +45,9 @@ class tree_node_<Node> { // size: 5*4=20 bytes (on 32 bit arch), can be reduced 
 		tree_node_<Node> *prev_sibling, *next_sibling;
 		Node n;
 
-        auto eval(const Data& d){ return ArrayXf();};
-        auto fit(const Data& d){ return ArrayXf();};
-        auto predict(const Data& d){ return ArrayXf();};
+        State eval(const Data& d);
+        State fit(const Data& d);
+        State predict(const Data& d);
         /* auto predict(const Data& d) const; */ 
         /* /1* void grad_descent(const ArrayXf&, const Data&); *1/ */
 		string get_model(bool pretty=false);
@@ -79,6 +82,96 @@ class tree_node_<Node> { // size: 5*4=20 bytes (on 32 bit arch), can be reduced 
 }; 
 typedef class tree_node_<Node> TreeNode; 
 
+namespace detail {
+    /* class tree_node_<Node> */
+    // dispatching mechanism
+    // stolen from Operon 
+    /* template<NodeType Type, typename R, typename... Args> */
+    template<NodeType Type>
+    State DispatchOpUnary(Data& d, TreeNode& tn)
+    {
+        return Function<Type>{}(tn.first_child->eval(d));
+    }
+    /* template<NodeType Type, typename R> */
+    template<NodeType Type>
+    State DispatchOpBinary(Data& d, TreeNode& tn)
+    {
+        return Function<Type>{}(tn.first_child->eval(d), tn.last_child->eval(d));
+    }
+    /* State DispatchOpBinary(Data& d, TreeNode& tn) */
+    /* { */
+    /*     using Arg1 = decltype(nt.n.arg_types.at(0)); */
+    /*     using Arg2 = decltype(nt.n.arg_types.at(1)); */
+    /*     return Function<Type>{}(n.first_child->eval<Arg1>(d), n.last_child->eval<Arg1>(d)); */
+    /* } */
+
+    /* template<NodeType Type, typename R> */
+    template<NodeType Type>
+    State DispatchTerminal(Data& d, TreeNode& tn)
+    {
+        using T = decltype(DataMap<tn.n.ret_type>{}());
+        return std::get<T>(d.features[tn.n.feature]);
+    }
+
+
+    /* template<typename X, typename Tuple> */
+    /* class tuple_index; */
+
+    /* template<typename X, typename... T> */
+    /* class tuple_index<X, std::tuple<T...>> { */
+    /*     template<std::size_t... Idx> */
+    /*     static constexpr auto FindIdx(std::index_sequence<Idx...> ) -> int64_t */
+    /*     { */
+    /*         return -1 + ((std::is_same<X, T>::value ? Idx + 1 : 0) + ...); */
+    /*     } */
+
+    /* public: */
+    /*     static constexpr int64_t value = FindIdx(std::index_sequence_for<T...>{}); */
+    /* }; */
+
+    using Callable = typename std::function<State(Data&,TreeNode&)>;
+
+    template<NodeType Type, ExecType E>
+    static constexpr auto MakeCall() -> Callable
+    {
+        switch (E) {
+            case ExecType::Unary: 
+                return Callable(detail::DispatchOpUnary<Type>);
+                break;
+            case ExecType::Binary:
+                return Callable(detail::DispatchOpBinary<Type>);
+                break;
+            //TODO
+            /* case ExecType::Transformer: */ 
+            /*     break; */
+            /* case ExecType::Reducer: */ 
+            /*     break; */
+            /* case ExecType::Applier: */
+            /*     break; */
+            /* case ExecType::Splitter: */ 
+            /*     break; */
+            case ExecType::Terminal:    
+                return Callable(detail::DispatchTerminal<Type>);
+                break;
+            default:
+                HANDLE_ERROR_THROW("ExecType not found");
+        };
+    }
+
+    /* template<NodeType Type, typename... Ts, std::enable_if_t<sizeof...(Ts) != 0, bool> = true> */
+    template<NodeType Type, ExecType E> 
+    static constexpr auto MakeTuple()
+    {
+        /* return std::make_tuple(MakeCall<Type, Ts>()...); */
+        return std::make_tuple(MakeCall<Type, E>());
+    };
+
+    /* template<typename F, typename... Ts, std::enable_if_t<sizeof...(Ts) != 0 && (std::is_invocable_r_v<void, F, detail::Array<Ts>&, Vector<Node> const&, size_t, Operon::Range> && ...), bool> = true> */
+    /* static constexpr auto MakeTuple(F&& f) */
+    /* { */
+    /*     return std::make_tuple(Callable<Ts>(std::forward<F&&>(f))...); */
+    /* } */
+} // namespace detail
 
 /* template<> */
 /* void TreeNode::grad_descent(const ArrayXf& gradient, const Data& d) */

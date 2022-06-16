@@ -180,6 +180,18 @@ map<string, State> Data::make_features(const Ref<const ArrayXXf>& X,
     return tmp_features;
 };
 
+map<DataType,std::type_index>  DataTypeID = {
+    {DataType::ArrayB, typeid(ArrayXb)},
+    {DataType::ArrayI, typeid(ArrayXi)},
+    {DataType::ArrayF, typeid(ArrayXf)},
+    {DataType::MatrixB, typeid(ArrayXXb)},
+    {DataType::MatrixI, typeid(ArrayXXi)},
+    {DataType::MatrixF, typeid(ArrayXXf)},
+    {DataType::TimeSeriesB, typeid(data::TimeSeriesb)},
+    {DataType::TimeSeriesI,typeid(data::TimeSeriesi)},
+    {DataType::TimeSeriesF, typeid(data::TimeSeriesf)},
+};
+auto DataIDType = Util::reverse_map(DataTypeID);
     
 } // data
 } // Brush

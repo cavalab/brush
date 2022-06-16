@@ -368,18 +368,8 @@ struct DataMap<DataType::TimeSeriesI>{ inline auto operator()() { return data::T
 template<>
 struct DataMap<DataType::TimeSeriesF>{ inline auto operator()() { return data::TimeSeriesf(); } };
 
-map<DataType,std::type_index>  DataTypeID = {
-    {DataType::ArrayB, typeid(ArrayXb)},
-    {DataType::ArrayI, typeid(ArrayXi)},
-    {DataType::ArrayF, typeid(ArrayXf)},
-    {DataType::MatrixB, typeid(ArrayXXb)},
-    {DataType::MatrixI, typeid(ArrayXXi)},
-    {DataType::MatrixF, typeid(ArrayXXf)},
-    {DataType::TimeSeriesB, typeid(data::TimeSeriesb)},
-    {DataType::TimeSeriesI,typeid(data::TimeSeriesi)},
-    {DataType::TimeSeriesF, typeid(data::TimeSeriesf)},
-};
-auto DataIDType = Util::reverse_map(DataTypeID);
+map<DataType,std::type_index>  DataTypeID;
+map<std::type_index,DataType>  DataIDType;
 } // Brush
 
 #endif
