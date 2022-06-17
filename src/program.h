@@ -84,16 +84,18 @@ template<typename T> class Program //: public tree<Node>
         // init method
 
         Iter start = prg.begin(); 
-        State out = start.node->fit(d);
-        return std::get<T>(out);
+        T out = start.node->fit<T>(d);
+        return out;
     };
 
     T predict(const Data& d)
     {
         Iter start = prg.begin(); 
-        State out = start.node->predict(d);
-        cout << "Program::predict";
-        return std::get<T>(out);
+        /* State out = start.node->predict(d); */
+        /* cout << "Program::predict"; */
+        /* return std::get<T>(out); */
+        T out = start.node->predict<T>(d);
+        return out;
     };
 
     void grad_descent(const ArrayXf& gradient, const Data& d)
@@ -179,7 +181,7 @@ template<typename T> class Program //: public tree<Node>
         vector<float> weights(child.prg.size());
         std::transform(child.prg.begin(), child.prg.end(), 
                        weights.begin(),
-                       [](const auto& node){ return node->get_prob_change(); }
+                       [](const auto& n){ return n.get_prob_change(); }
                       );
 
         auto spot = r.select_randomly(child.prg.begin(), child.prg.end(), 
@@ -208,7 +210,7 @@ template<typename T> class Program //: public tree<Node>
         vector<float> child_weights(child.prg.size());
         std::transform(child.prg.begin(), child.prg.end(), 
                        child_weights.begin(),
-                       [](const auto& node){ return node->get_prob_change(); }
+                       [](const auto& n){ return n.get_prob_change(); }
                       );
 
         auto child_spot = r.select_randomly(child.prg.begin(), 
@@ -220,7 +222,7 @@ template<typename T> class Program //: public tree<Node>
         vector<float> other_weights(other.prg.size());
         std::transform(other.prg.begin(), other.prg.end(), 
                        other_weights.begin(),
-                       [](const auto& node){ return node->get_prob_keep(); }
+                       [](const auto& n){ return n.get_prob_change(); }
                       );
 
         auto other_spot = r.select_randomly(other.prg.begin(), 

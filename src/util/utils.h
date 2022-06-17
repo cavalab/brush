@@ -53,15 +53,15 @@ https://en.cppreference.com/w/cpp/types/type_info/hash_code
 // };
 
 // << operator overload for printing vectors
-template <typename T>
-std::ostream& operator<< (std::ostream& out, const std::vector<T>& v) {
-  if ( !v.empty() ) {
-    out << '[';
-    std::copy (v.begin(), v.end(), std::ostream_iterator<T>(out, ", "));
-    out << "\b\b]";
-  }
-  return out;
-}
+/* template <typename T> */
+/* std::ostream& operator<< (std::ostream& out, const std::vector<T>& v) { */
+/*   if ( !v.empty() ) { */
+/*     out << '['; */
+/*     std::copy (v.begin(), v.end(), std::ostream_iterator<T>(out, ", ")); */
+/*     out << "\b\b]"; */
+/*   } */
+/*   return out; */
+/* } */
 
 template<typename T>
 using TypeMap = std::map<std::type_index, T>; 
@@ -89,24 +89,7 @@ bool in(const V& v, const T& i)
 /// calculate median
 // float median(const ArrayXf& v);
 /// calculate median
-float median(const Eigen::Ref<const ArrayXf>& v) 
-{
-    // instantiate a vector
-    vector<float> x(v.size());
-    x.assign(v.data(),v.data()+v.size());
-    // middle element
-    size_t n = x.size()/2;
-    // sort nth element of array
-    nth_element(x.begin(),x.begin()+n,x.end());
-    // if evenly sized, return average of middle two elements
-    if (x.size() % 2 == 0) {
-        nth_element(x.begin(),x.begin()+n-1,x.end());
-        return (x[n] + x[n-1]) / 2;
-    }
-    // otherwise return middle element
-    else
-        return x[n];
-}
+float median(const Eigen::Ref<const ArrayXf>& v);
 
 /// calculate variance when mean provided
 float variance(const ArrayXf& v, float mean);
@@ -637,6 +620,21 @@ static map<V, K> reverse_map(const map<K, V>& m) {
     return r;
 };
 
+template<typename T>
+ostream &operator<<( ostream &os, const vector<T>& v )
+{ 
+    int j = 1;
+    size_t len = v.size();
+    for (const auto& i : v)
+    {
+        os << i ;
+        if (j != len)
+            os << ", ";
+    }
+    os << endl;
+
+    return os;            
+};
 
 } // Util
 } // Brush 

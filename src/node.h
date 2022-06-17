@@ -222,17 +222,12 @@ struct Node {
     /* void set_name(string n){this->name = n;}; */
     /* void set_op_name(string n){this->op_name = n;}; */
     /* // changing */
-    /* float get_prob_change(){ return this->prob_change;}; */
-    /* void set_prob_change(float w){ this->prob_change = w;}; */
-    /* float get_prob_keep(){ return 1-this->prob_change;}; */
+    float get_prob_change() const { return this->prob_change;};
+    void set_prob_change(float w){ this->prob_change = w;};
+    float get_prob_keep() const { return 1-this->prob_change;};
     };
 
-    ostream& operator<<(ostream& os, const Node& n)
-    {
-        /* os << dt.mo << '/' << dt.da << '/' << dt.yr; */
-        os << n.name;
-        return os;
-    };
+    ostream& operator<<(ostream& os, const Node& n);
 }
 
 #endif

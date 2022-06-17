@@ -67,7 +67,9 @@ struct TimeSeries
     // TODO: this should probably be templated by bool, int, float
     // using ts_val = std::variant<ArrayXXb, ArrayXXi, ArrayXXf>;
     // using ValType = Array<T, Dynamic, Dynamic>;
-    using ValType = std::vector<Array<T,Dynamic,1>>;
+    using ElemType = T;
+    using EntryType = Array<T,Dynamic,1>;
+    using ValType = std::vector<EntryType>;
     using TimeType = std::vector<ArrayXi>;
     /*! Wraps time and value slices to matrices
     *  TODO: define begin() and end() iterators? figure out how to handle operators that just use values versus time 
@@ -133,25 +135,81 @@ struct TimeSeries
 
     //TODO: define overloaded operations?
     /* operators on values */
-    /* template<typename O> */
-    auto apply(std::function<T(ValType)> op){
-        Array<T,Dynamic,1> dest(this->value.size());
+    /* transform takes a unary function, and applies it to each entry.  */
+    auto transform(std::function<EntryType(EntryType)> op) const -> TimeSeries<T>
+    {
+        ValType dest(this->value.size());
         std::transform(cbegin(), cend(), 
                        dest.begin(),
                        op
         );
-        return dest;
-    }; 
-    /* operators on time */
-    /* template<typename O> */
-    auto apply_time(std::function<T(TimeType)> op){
-        Array<T,Dynamic,1> dest(this->time.size());
-        std::transform(ctbegin(), ctend(), 
+        return TimeSeries<T>(dest, this->time);
+    }
+    /* reduce takes a unary aggregating function, applies it to each entry, and returns an Array.*/
+    auto reduce(std::function<T(EntryType)> op) const -> EntryType
+    {
+        // dest is of Entry type but is as long as the # samples. 
+        EntryType dest(this->value.size());
+        std::transform(cbegin(), cend(), 
                        dest.begin(),
-                       op
+                       [&](const EntryType& i){return op(i);}
         );
         return dest;
     }; 
+
+    // transformation overloads
+    inline auto abs() { return this->transform([](const EntryType& i){ return i.abs(); }); };
+    inline auto pow() { return this->transform([](const EntryType& i){ return i.pow(); } ); };
+    inline auto log() { return this->transform([](const EntryType& i){ return i.log(); } ); };
+    inline auto logabs() { return this->transform([](const EntryType& i){ return i.abs().log(); } ); };
+    inline auto log1p() { return this->transform([](const EntryType& i){ return i.log1p(); } ); };
+    inline auto ceil() { return this->transform([](const EntryType& i){ return i.ceil(); } ); };
+    inline auto floor() { return this->transform([](const EntryType& i){ return i.floor(); } ); };
+    inline auto exp() { return this->transform([](const EntryType& i){ return i.exp(); } ); };
+    inline auto sin() { return this->transform([](const EntryType& i){ return i.sin(); } ); };
+    inline auto cos() { return this->transform([](const EntryType& i){ return i.cos(); } ); };
+    inline auto tan() { return this->transform([](const EntryType& i){ return i.tan(); } ); };
+    inline auto asin() { return this->transform([](const EntryType& i){ return i.asin(); } ); };
+    inline auto acos() { return this->transform([](const EntryType& i){ return i.acos(); } ); };
+    inline auto atan() { return this->transform([](const EntryType& i){ return i.atan(); } ); };
+    inline auto sinh() { return this->transform([](const EntryType& i){ return i.sinh(); } ); };
+    inline auto cosh() { return this->transform([](const EntryType& i){ return i.cosh(); } ); };
+    inline auto tanh() { return this->transform([](const EntryType& i){ return i.tanh(); } ); };
+    inline auto sqrt() { return this->transform([](const EntryType& i){ return i.sqrt(); } ); };
+    inline auto sqrtabs() { return this->transform([](const EntryType& i){ return i.abs().sqrt(); } ); };
+    inline auto square() { return this->transform([](const EntryType& i){ return i.square(); } ); };
+    // reduction overloads
+    inline auto sum() { return this->reduce([](const EntryType& i){ return i.sum(); } ); };
+
+    /* apply takes a function that is applied to each Entry
+    auto apply(std::function<ValType(TimeSeries<T>)> op)
+    {
+        T dest(this->value.size());
+        std::transform(cbegin(), cend(), 
+                       dest.begin(),
+                       [](const auto& i){return op(i);}
+        );
+        return TimeSeries<T>(dest, this->time);
+    }; 
+    /* template<typename O> */
+    /* auto apply(std::function<T(ValType)> op){ */
+    /*     Array<T,Dynamic,1> dest(this->value.size()); */
+    /*     std::transform(cbegin(), cend(), */ 
+    /*                    dest.begin(), */
+    /*                    op */
+    /*     ); */
+    /*     return dest; */
+    /* }; */ 
+    /* operators on time */
+    /* template<typename O> */
+    /* auto apply_time(std::function<TimeType(TimeType)> op){ */
+    /*     Array<T,Dynamic,1> dest(this->time.size()); */
+    /*     std::transform(ctbegin(), ctend(), */ 
+    /*                    dest.begin(), */
+    /*                    op */
+    /*     ); */
+    /*     return dest; */
+    /* }; */ 
 
     // inline auto mean() const { return std::apply(this->cbegin(), this->cend(), 
     // [](auto i){ i.mean(); };

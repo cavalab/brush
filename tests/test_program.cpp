@@ -16,8 +16,8 @@ TEST(Program, MakeProgram)
         const string& name = kv.first;
         const State& value = kv.second;
 
-        std::cout << name << ": ";
-        std::visit([](auto&& v){std::cout << v << endl;}, value);
+        std::cout << name << ": " << name;
+        /* std::visit([](auto&& v){std::cout << v << endl;}, value); */
     }
     // State out = tree.fit(d);
     // cout << "output: " << get<ArrayXb>(out) << endl;
