@@ -6,6 +6,7 @@
 #include "data/data.h"
 #include "node.h"
 #include "operators.h"
+#include "thirdparty/eternal.hpp"
 /* #include "interpreter.h" */
 
 using std::string;
@@ -42,11 +43,11 @@ class tree_node_<Node> { // size: 5*4=20 bytes (on 32 bit arch), can be reduced 
 		tree_node_<Node> *prev_sibling, *next_sibling;
 		Node n;
 
-        template<typename T>
-        auto eval(const Data& d);
-        template<typename T>
+        /* template<typename T> */
+        /* auto eval(const Data& d); */
+        /* template<typename T> */
         auto fit(const Data& d){ State s; return std::get<T>(s);};
-        template<typename T>
+        /* template<typename T> */
         auto predict(const Data& d){ State s; return std::get<T>(s);};
         /* auto predict(const Data& d) const; */ 
         /* /1* void grad_descent(const ArrayXf&, const Data&); *1/ */
@@ -67,18 +68,6 @@ class tree_node_<Node> { // size: 5*4=20 bytes (on 32 bit arch), can be reduced 
         template<ExecType E, typename T> struct GetKidsFit; 
         template<ExecType E, typename T> struct GetKidsPredict; 
 
-        template<typename T>
-        void apply_weights(T& inputs)
-        {
-            cout << "applying weights to " << this->n.name << " operator\n";
-            std::transform(
-                        inputs.begin(), 
-                        inputs.end(),
-                        n.W.begin(),
-                        inputs.begin(), 
-                        std::multiplies<>()
-                        );
-        }
 }; 
 typedef class tree_node_<Node> TreeNode; 
 
@@ -87,8 +76,10 @@ namespace detail {
     // dispatching mechanism
     // stolen from Operon 
     /* template<NodeType Type, typename R, typename... Args> */
-    template<NodeType Type, typename T>
-    T DispatchOpUnary(const Data& d, TreeNode& tn)
+    template<NodeType Type, typename T> DispatchOpUnary(const Data& d, TreeNode& tn);
+
+    template<NodeType Type, typename... T>
+    auto DispatchOpUnary(const Data& d, TreeNode& tn)
     {
         Function<Type> f{};
         return f(tn.first_child->eval(d));
@@ -171,22 +162,45 @@ namespace detail {
     using Signature = typename std::tuple<Arg1,Arg2>;
 
     template<NodeType Type, typename T>
-    static constexpr auto MakeSignature() -> Signature<T>
+    static constexpr auto MakeOperator()  
     {
+        // TODO
+        // handle arg types for reducers and comparators, which are different than return type 
 
+        // handle cases when node doesn't have that return type
+        //
         if constexpr (Type > NodeType::_SPLITTER_) { 
-            return;
+            //TODO
+            /* return Callable<T>(detail::DispatchOpSplitter<Type, T>); */
+            return Operator<Type, T>(); 
+            /* return new SplitOp<Type, T>(); */
+        }
+        else if constexpr (Type > NodeType::_COMPARATOR_) { 
+            /* return Callable<T>(detail::DispatchOpBinary<Type, T>); */
+            /* return new CompareOp<Type, T>(); */
+            // TODO: handle matrix
+            return Operator<Type, ArrayXb, T, T>();
         }
         else if constexpr (Type > NodeType::_BINARY_) { 
-            return Callable<T>(detail::DispatchOpBinary<Type, T>);
+            /* return Callable<T>(detail::DispatchOpBinary<Type, T>); */
+            return Operator<Type, T, T, T>();
+        }
+        else if constexpr (Type > NodeType::_REDUCER_) { 
+            /* return Callable<T>(detail::DispatchOpBinary<Type, T>); */
+            typedef ReducedType<T>::type R; 
+            return Operator<Type, R, T>();
         }
         else if constexpr (Type > NodeType::_UNARY_) { 
-            return Callable<T>(detail::DispatchOpUnary<Type, T>);
+            /* return Callable<T>(detail::DispatchOpUnary<Type, T>); */
+            /* return new UnaryOp<Type, T>(); */
+            return Operator<Type, T, T>();
         } 
         else if constexpr (Type > NodeType::_LEAF_) { 
-            return Callable<T>(detail::DispatchTerminal<Type, T>);
+            /* return Callable<T>(detail::DispatchTerminal<Type, T>); */
+            return new Operator<Type, T>();
         } 
-        return Callable<T>(detail::NoOp<Type, T>);
+        /* return Callable<T>(detail::NoOp<Type, T>); */
+        return Operator<Type,T>();
     }
 
 
@@ -215,8 +229,12 @@ namespace detail {
 
 ////////////////////////////////////////////////////////////////////////////////
 // Dispatch Table
-template<typename... Ts>
-struct DispatchTable {
+template<typename Signatures> DispatchTable;
+
+template<typename... Ts> 
+struct DispatchTable
+{
+    
     //TODO: this Ts specifies the return type in Operon, which is one of two values, an Eigen array
     // or a Dual. 
     // The callables are templated by this type. In our case, we have functions that return
@@ -336,251 +354,66 @@ DispatchTable<
              > dtable;
 //////////////////////////////////////////////////////////////////////////////////
 // fit, eval, predict
-template<typename T>
-auto TreeNode::eval(const Data& d)
+auto TreeNode::fit(const Data& d)
 { 
     auto F = dtable.template Get<T>(n.node_type);
-    return F(d, (*this));
+    return F.fit(d, (*this));
 };
 
-/* template<> */
-/* void TreeNode::grad_descent(const ArrayXf& gradient, const Data& d) */
-/* { */
-/*     /1* _grad_descent(gradient, d); *1/ */
-/* }; */
+auto TreeNode::predict(const Data& d)
+{ 
+    auto F = dtable.template Get<T>(n.node_type);
+    return F.predict(d, (*this));
+};
 
-/* template<> */
-/* string TreeNode::get_model(bool pretty) */
-/* { */
-/*     return this->n.get_model(pretty, first_child, last_child); */
+////////////////////////////////////////////////////////////////////////////////
+// signature compile-time maps
+//
+using CTMap = mapblox::eternal::map;
+using Signature = CTMap<DataType,std::array<DataType,N>>;
+
+MAPBOX_ETERNAL_CONSTEXPR const auto UnaryFtoF = \
+    Signature({
+            {DataType::ArrayF, {DataType::ArrayF, DataType::_NONE_} },
+            {DataType::MatrixF, {DataType::MatrixF, DataType::_NONE_} },
+            });
+
+MAPBOX_ETERNAL_CONSTEXPR const auto BinaryFFtoF = \
+    Signature({
+            {DataType::ArrayF, {DataType::ArrayF, DataType::ArrayF} },
+            {DataType::MatrixF, {DataType::MatrixF, DataType::MatrixF} },
+            });
+
+MAPBOX_ETERNAL_CONSTEXPR const auto BinaryBBtoB = \
+    Signature({
+            {DataType::ArrayB, {DataType::ArrayB, DataType::ArrayB} },
+            {DataType::MatrixB, {DataType::MatrixB, DataType::MatrixB} },
+            });
+
+/* template<NodeType Type, typename R, typename ...Args> */ 
+/* struct Signature{ */
+/*     using TupleArgs = std::tuple<Args...>; */
 /* } */
-
-/* template<> */
-/* string TreeNode::get_tree_model(bool pretty, string offset) */
-/* { */
-/*     return this->n.get_tree_model(pretty, offset, first_child, last_child); */
-/* } */
-
-/* template <>*/ 
-/* auto TreeNode::_fit<ExecType::Binary>(const Data& d)*/
-/* {*/
-/*     if (this->n.is_weighted)*/
-/*         return Brush::Function<n.node_type>( n.W[0]*first_child->fit(d), n.W[1]*last_child->fit(d) ); */
-/*         return dispatch_table.apply(n.node_type, n.W[0]*first_child->fit(d), n.W[1]*last_child->fit(d) );*/
-/*     else*/
-/*         return Brush::Function<n.node_type>( first_child->fit(d), last_child->fit(d) ); */
-/*         return dispatch_table.apply(n.node_type, n.W[0]*first_child->fit(d), n.W[1]*last_child->fit(d) );*/
-/* };*/
-
-/* template <>*/ 
-/* auto TreeNode::_fit<ExecType::Unary>(const Data& d)*/
-/* {*/
-/*     if (this->n.is_weighted)*/
-/*         return Brush::Function<n.node_type>( n.W[0]*first_child->fit(d)) );*/
-/*     else*/
-/*         return Brush::Function<n.node_type>( first_child->fit(d) );*/
-/* };*/
-
-/* template <>*/ 
-/* auto TreeNode::_fit<ExecType::Applier>(const Data& d)*/
-/* {*/
-    /* auto signature = NodeSchema[n.node_type]["Signature"][n.ret_type]; */ 
-/*     typedef decltype(n.signature()) signature;*/
-
-/*     auto inputs = GetKids<n.exec_type,signature>(d);*/
-    
-/*     if (this->n.is_weighted){*/
-/*         apply_weights(inputs);*/
-/*     }*/
-/*     // State out = Util::apply(this->op, inputs);*/
-/*     // cout << "returning " << std::get<R>(out) << endl;*/
-/*     return std::apply(Brush::Function<n.node_type>, inputs);*/
-/* };*/
-
-/* template <>*/ 
-/* auto TreeNode::_fit<ExecType::Transformer>(const Data& d)*/
-/* {*/
-/*     typedef decltype(n.signature().at(0)) signature;*/
-
-/*     auto outputs = GetKidsFit<n.exec_type,signature>(d);*/
-    
-/*     if (this->n.is_weighted) {*/
-/*         apply_weights(inputs);*/
-/*     }*/
-/*     // State out = Util::apply(this->op, inputs);*/
-/*     // cout << "returning " << std::get<R>(out) << endl;*/
-/*     std::transform(*/
-/*                 outputs.begin(),*/ 
-/*                 outputs.end(),*/
-/*                 outputs.begin(),*/ 
-/*                 Function<n.node_type>*/
-/*                 );*/
-
-/*     return outputs;*/ 
-/* };*/
-
-/* template <>*/ 
-/* auto TreeNode::_fit<ExecType::Reducer>(const Data& d)*/
-/* {*/
-/*     typedef decltype(n.signature().at(0)) signature;*/
-
-/*     auto inputs = GetKidsFit<n.exec_type,signature>(d);*/
-    
-/*     if (this->n.is_weighted) {*/
-/*         apply_weights(inputs);*/
-/*     }*/
-/*     // State out = Util::apply(this->op, inputs);*/
-/*     // cout << "returning " << std::get<R>(out) << endl;*/
-/*     signature output = std::reduce(inputs.begin(), inputs.end(), signature(0),*/ 
-/*                                    Function<n.node_type>);*/
-/*     return output;*/ 
-/* };*/
-
-
-/* template <>*/ 
-/* auto TreeNode::_fit<ExecType::Splitter>(const Data& d)*/
-/* {*/
-/*     // need to handle kind with fixed var and kind without*/
-
-/*     // set feature and threshold*/
-/*     if (this->n.fixed_variable)*/
-/*     {*/
-/*         tie(this->n.threshold, ignore) = best_threshold(*/
-/*                                                      d[this->n.feature],*/
-/*                                                      d.y,*/ 
-/*                                                      d.classification*/
-/*                                                      );*/
-/*     }*/
-/*     else*/
-/*         set_variable_and_threshold(d);*/
-
-/*     auto data_splits = Function<n.node_type>(d);*/ 
-/*     ArrayXb mask = this->threshold_mask(d);*/
-/*     array<Data, 2> data_splits = d.split(mask);*/
-
-    /* array<State, base::ArgCount> kid_outputs; */
-/*     //TODO: type for kids. also, handle scenario where first kid is the variable to split on.*/
-    //
-/*     typedef decltype(n.signature()) signature;*/
-
-/*     auto kid_outputs = GetKidsFit<ExecType::Splitter,signature>(data_splits);*/ 
-/*     // stitch together outputs*/
-/*     State out = stitch(kid_outputs, d, mask);*/
-
-/*     cout << "returning " << std::get<R>(out) << endl;*/
-
-/*     return out;*/
-/* };*/
-
-/* template <>*/ 
-/* auto TreeNode::_fit<ExecType::Terminal>(const Data& d)*/
-/* {*/
-/*     return this->predict(d);*/
-/* };*/
-
-/* ////////////////////////////////////////////////////////////////////////////////*/
-/* // children fetching functions for nary operators*/
-
-/* returns a fixed-sized array of arguments of the same type.
- */
-/* template<typename T>*/
-/* struct TreeNode::GetKids<ExecType::Applier, T>*/
-/* {*/
-    /* ArrayArgs */
-/*     template <std::size_t N>*/
-/*     using NthType = typename std::tuple_element<N, T>::type;*/
-
-/*     T operator()(const Data& d, auto (TreeNode::*fn)(const Data&))*/
-/*     {*/
-/*         // why not make get kids return the tuple? because tuples suck with weights*/
-/*         T kid_outputs;*/
-
-/*         TreeNode* sib = first_child;*/
-/*         for (int i = 0; i < kid_outputs.size(); ++i)*/
-/*         {*/
-/*             kid_outputs.at(i) = (sib->*fn)(d);*/
-/*             sib = sib->next_sibling;*/
-/*         }*/
-/*         return kid_outputs;*/
-/*     };*/
-/* };*/
-
-/* returns a vector of arguments of the same type. for nary children.
-   should be used for ExectType::Transformer and Reducer.*/
-/* template<ExecType E, typename T> */
-/* struct TreeNode::GetKids */
-/* { */
-/*     auto operator()(const Data& d, auto (TreeNode::*fn)(const Data&) ) */
-/*     { */
-/*         vector<T> kid_outputs; */ 
-
-/*         auto sib = first_child; */
-/*         while(sib != last_child) */
-/*         { */
-/*             kid_outputs.push_back((sib->*fn)(d)); */
-/*             sib = sib->next_sibling; */
-/*         } */
-/*         return kid_outputs; */
-/*     }; */
+/* template<NodeType Type, typename R> */ 
+/* struct UnarySignature : Signature<Type, R, R> { */
+/*     using TupleArgs = Signature::TupleArgs; */
 /* }; */
-/* template<typename T> */
-/* struct TreeNode::GetKids<ExecType::Reducer, T> */
-/* { */
-/*     auto operator()(const Data& d, auto (TreeNode::*fn)(const Data&) ) */
-/*     { */
-/*         return GetKids<ExecType::Transformer, T>(d, fn); */
-/*     }; */
+/* template<NodeType Type, typename R> */ 
+/* struct BinarySignature : Signature<Type, R, R, R> { */
+/*     using TupleArgs = Signature::TupleArgs; */
 /* }; */
 
-/* template<ExecType E, typename T> */
-/* struct TreeNode::GetKidsFit { */
-/*     auto operator(const Data& d){ */
-/*         return GetKids<E,T>(d, &TreeNode::fit); */
-/*     }; */
-/* }; */
+using SigMap = CTmap<NodeType, Signature>;
+MAPBOX_ETERNAL_CONSTEXPR const auto SignatureTable = SigMap({
+    { NodeType::Abs, UnaryFtoF },
+    { NodeType::Add, BinaryFFoF },
+});
 
-/* template<ExecType E, typename T> */
-/* struct TreeNode::GetKidsPredict { */
-/*     auto operator(const Data& d) { */
-/*         return GetKids<E,T>(d, &TreeNode::predict); */
-/*     }; */
-/* }; */
-/* //////////////////////////////////////////////////////////////////////////////// */
-/* template<> */
-/* auto TreeNode::_dispatch(ExecType E, bool train, const Data& d) */
-/* { */
-/*     switch (E) { */
-/*         case ExecType::Unary: */ 
-/*             return train? _fit<ExecType::Unary>(d) : _predict<ExecType::Unary>(d); */
-/*             break; */
-/*         case ExecType::Binary: */
-/*             return train? _fit<ExecType::Binary>(d) : _predict<ExecType::Binary>(d); */
-/*             break; */
-/*         case ExecType::Transformer: */ 
-/*             return train? _fit<ExecType::Transformer>(d) : _predict<ExecType::Transformer>(d); */
-/*             break; */
-/*         case ExecType::Reducer: */ 
-/*             return train? _fit<ExecType::Reducer>(d) : _predict<ExecType::Reducer>(d); */
-/*             break; */
-/*         case ExecType::Applier: */
-/*             return train? _fit<ExecType::Applier>(d) : _predict<ExecType::Applier>(d); */
-/*             break; */
-/*         case ExecType::Splitter: */ 
-/*              return train? _fit<ExecType::Splitter>(d) : _predict<ExecType::Splitter>(d); */
-/*             break; */
-/*         case ExecType::Terminal: */    
-/*             return train? _fit<ExecType::Terminal>(d) : _predict<ExecType::Terminal>(d); */
-/*             break; */
-/*         default: */
-/*             HANDLE_ERROR_THROW("ExecType not found"); */
-/*     } */
-/* }; */
-/* template<> template<typename R> */
-/* R TreeNode::eval(const Data& d) { */ 
-/*     return _dispatch(n.exec_type, true, d); */ 
-/* }; */ 
-/* template<> template<typename R> */ 
-/* R TreeNode::predict(const Data& d) const { return _dispatch(n.exec_type, false, d); }; */ 
-
+template<typename T=ArrayXXf> struct ReducedType{ using type=ArrayXf; };
+template<> struct ReducedType<TimeSeriesf>{ using type=ArrayXf; };
+template<> struct ReducedType<ArrayXXi>{ using type=ArrayXi; };
+template<> struct ReducedType<TimeSeriesi>{ using type=ArrayXi; };
+template<> struct ReducedType<ArrayXXb>{ using type=ArrayXb; };
+template<> struct ReducedType<TimeSeriesb>{ using type=ArrayXb; };
 }// Brush
 #endif

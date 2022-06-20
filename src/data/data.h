@@ -49,7 +49,8 @@ enum class DataType : uint32_t {
     MatrixF, 
     TimeSeriesB, 
     TimeSeriesI,
-    TimeSeriesF
+    TimeSeriesF,
+    _NONE_
 };
 
 extern map<DataType,string>  DataTypeName; 
@@ -397,24 +398,16 @@ class Data
 };
 } // data
 
-template<DataType D = DataType::ArrayB>
-struct DataMap{ inline auto operator()() { return ArrayXb(); } };
-template<>
-struct DataMap<DataType::ArrayI>{ inline auto operator()() { return ArrayXi(); } };
-template<>
-struct DataMap<DataType::ArrayF>{ inline auto operator()(){ return ArrayXf(); } };
-template<>
-struct DataMap<DataType::MatrixB>{ inline auto operator()() { return ArrayXXb(); } };
-template<>
-struct DataMap<DataType::MatrixI>{ inline auto operator()() { return ArrayXXi(); } };
-template<>
-struct DataMap<DataType::MatrixF>{ inline auto operator()() { return ArrayXXf(); } };
-template<>
-struct DataMap<DataType::TimeSeriesB>{ inline auto operator()() { return data::TimeSeriesb(); } };
-template<>
-struct DataMap<DataType::TimeSeriesI>{ inline auto operator()() { return data::TimeSeriesi(); } };
-template<>
-struct DataMap<DataType::TimeSeriesF>{ inline auto operator()() { return data::TimeSeriesf(); } };
+// TODO: make this a typedef
+template<DataType D = DataType::ArrayB> struct DataTypeMap{ using type = ArrayXb; };
+template<> struct DataTypeMap<DataType::ArrayI>{ using type = ArrayXi; };
+template<> struct DataTypeMap<DataType::ArrayF>{ using type = ArrayXf; };
+template<> struct DataTypeMap<DataType::MatrixB>{ using type = ArrayXXb; };
+template<> struct DataTypeMap<DataType::MatrixI>{ using type = ArrayXXi; };
+template<> struct DataTypeMap<DataType::MatrixF>{ using type = ArrayXXf; };
+template<> struct DataTypeMap<DataType::TimeSeriesB>{ using type = data::TimeSeriesb; };
+template<> struct DataTypeMap<DataType::TimeSeriesI>{ using type = data::TimeSeriesi; }; 
+template<> struct DataTypeMap<DataType::TimeSeriesF>{ using type = data::TimeSeriesf; };
 
 extern map<DataType,std::type_index>  DataTypeID;
 extern map<std::type_index,DataType>  DataIDType;

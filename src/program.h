@@ -82,7 +82,6 @@ template<typename T> class Program //: public tree<Node>
     {
         // Check to see if the program has been initialized. If not, call an
         // init method
-
         Iter start = prg.begin(); 
         T out = start.node->fit<T>(d);
         return out;
