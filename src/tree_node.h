@@ -164,6 +164,8 @@ namespace detail {
     template<NodeType Type, typename T>
     static constexpr auto MakeOperator()  
     {
+        // NOTE: I should just handcarft this for each case for now. 
+        // It would not be that much code. All this map shit is getting messy.
         // TODO
         // handle arg types for reducers and comparators, which are different than return type 
 
@@ -172,7 +174,11 @@ namespace detail {
         if constexpr (Type > NodeType::_SPLITTER_) { 
             //TODO
             /* return Callable<T>(detail::DispatchOpSplitter<Type, T>); */
-            return Operator<Type, T>(); 
+            if constexpr (Type == NodeType::SplitOn)  
+                //TODO: this one can be different types for FirstArg
+                return Operator<Type, T, T, T, T>(); 
+            else ifconstexpr (Type == NodeType::SplitBest)  
+                return Operator<Type, T, T, T>(); 
             /* return new SplitOp<Type, T>(); */
         }
         else if constexpr (Type > NodeType::_COMPARATOR_) { 

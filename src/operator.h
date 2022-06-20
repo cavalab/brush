@@ -93,7 +93,7 @@ namespace Brush {
 
         ////////////////////////////////////////////////////////////////////////////////
         // fit and predict
-        auto fit(const Data& d, TreeNode& tn) override
+        RetType fit(const Data& d, TreeNode& tn) override
 	    {
             if (n.is_weighted)
                 auto inputs = get_kids_fit<ArrayArgs>(d, tn);
@@ -104,7 +104,7 @@ namespace Brush {
                 return std::apply(F, inputs);
         };
 
-        auto predict(const Data& d, TreeNode& tn) override
+        RetType predict(const Data& d, TreeNode& tn) override
 	    {
             if (n.is_weighted)
                 auto inputs = get_kids_predict<ArrayArgs>(d, tn);
