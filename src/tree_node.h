@@ -5,7 +5,8 @@
 #include "init.h"
 #include "data/data.h"
 #include "node.h"
-#include "operators.h"
+#include "functions.h"
+#include "operator.h"
 #include "thirdparty/eternal.hpp"
 /* #include "interpreter.h" */
 
@@ -161,8 +162,8 @@ namespace detail {
     template<typename Arg1, typename Arg2>
     using Signature = typename std::tuple<Arg1,Arg2>;
 
-    template<NodeType Type, typename T>
-    static constexpr auto MakeOperator()  
+    template<NodeType Type>
+    static constexpr auto MakeOperators()  
     {
         // NOTE: I should just handcarft this for each case for now. 
         // It would not be that much code. All this map shit is getting messy.
@@ -171,6 +172,14 @@ namespace detail {
 
         // handle cases when node doesn't have that return type
         //
+        using TupleRetTypes = RetTypes<Type>::RetTypes;
+        //TODO
+        // make map a map of maps, to map from node type to return type to operator. 
+        // example: map < NodeType, map<DataType,Operator<RetType,ArgTypes>()>>
+        (map_.insert({ nt(Is), detail::MakeTuple<nt(Is),Ts...>() }), ...);
+    } 
+    template<NodeType Type, typename T>
+    static constexpr auto MakeOperator()  
         if constexpr (Type > NodeType::_SPLITTER_) { 
             //TODO
             /* return Callable<T>(detail::DispatchOpSplitter<Type, T>); */
@@ -185,7 +194,8 @@ namespace detail {
             /* return Callable<T>(detail::DispatchOpBinary<Type, T>); */
             /* return new CompareOp<Type, T>(); */
             // TODO: handle matrix
-            return Operator<Type, ArrayXb, T, T>();
+            typedef ComparisonType<T>::type R; 
+            return Operator<Type, R, T, T>();
         }
         else if constexpr (Type > NodeType::_BINARY_) { 
             /* return Callable<T>(detail::DispatchOpBinary<Type, T>); */
@@ -421,5 +431,10 @@ template<> struct ReducedType<ArrayXXi>{ using type=ArrayXi; };
 template<> struct ReducedType<TimeSeriesi>{ using type=ArrayXi; };
 template<> struct ReducedType<ArrayXXb>{ using type=ArrayXb; };
 template<> struct ReducedType<TimeSeriesb>{ using type=ArrayXb; };
+
+template<typename T=ArrayXf> struct ComparisonType{ using type=ArrayXb; };
+template<> struct ComparisonType<ArrayXi>{ using type=ArrayXb; };
+template<> struct ComparisonType<ArrayXXf>{ using type=ArrayXXb; };
+template<> struct ComparisonType<ArrayXXi>{ using type=ArrayXXb; };
 }// Brush
 #endif

@@ -32,6 +32,7 @@ namespace Brush {
         
         Function<Type> F{}; 
 
+        Operator(Type node_type, RetType y, Args... args){};
         //////////////////////////////////////////////////////////////////////////////////
         /// Apply weights
         template<typename T>
@@ -48,7 +49,7 @@ namespace Brush {
         }
         //////////////////////////////////////////////////////////////////////////////////
         /// Utilities to grab child outputs.
-        template<typename T> T get_kids(Data&, TreeNode&, State (TreeNode::*fn)(const Data&));
+        template<typename T> T get_kids(const Data&, TreeNode&, State (TreeNode::*fn)(const Data&));
 
         template<>
         ArrayArgs get_kids<ArrayArgs>(const Data& d, TreeNode& tn, 
