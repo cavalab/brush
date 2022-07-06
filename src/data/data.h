@@ -399,25 +399,27 @@ class Data
 } // data
 
 // TODO: make this a typedef
-template<typename D> struct DataTypeMap; 
-template<> struct DataTypeMap<DataType::ArrayB>{ using type = ArrayXb; };
-template<> struct DataTypeMap<DataType::ArrayI>{ using type = ArrayXi; };
-template<> struct DataTypeMap<DataType::ArrayF>{ using type = ArrayXf; };
-template<> struct DataTypeMap<DataType::MatrixB>{ using type = ArrayXXb; };
-template<> struct DataTypeMap<DataType::MatrixI>{ using type = ArrayXXi; };
-template<> struct DataTypeMap<DataType::MatrixF>{ using type = ArrayXXf; };
-template<> struct DataTypeMap<DataType::TimeSeriesB>{ using type = data::TimeSeriesb; };
-template<> struct DataTypeMap<DataType::TimeSeriesI>{ using type = data::TimeSeriesi; }; 
-template<> struct DataTypeMap<DataType::TimeSeriesF>{ using type = data::TimeSeriesf; };
-template<> struct DataTypeMap<ArrayXb>{ const DataType type = DataType::ArrayXb; };
-template<> struct DataTypeMap<ArrayXi>{ const DataType type = DataType::ArrayXI; };
-template<> struct DataTypeMap<ArrayXf>{ const DataType type = DataType::ArrayXF; };
-template<> struct DataTypeMap<ArrayXXb>{ const DataType type = DataType::MatrixB; };
-template<> struct DataTypeMap<ArrayXXi>{ const DataType type = DataType::MatrixI; };
-template<> struct DataTypeMap<ArrayXXf>{ const DataType type = DataType::MatrixF; };
-template<> struct DataTypeMap<data::TimeSeriesb>{ const DataType type = DataType::TimeSeriesB; };
-template<> struct DataTypeMap<data::TimeSeriesi>{ const DataType type = DataType::TimeSeriesI; };
-template<> struct DataTypeMap<data::TimeSeriesf>{ const DataType type = DataType::TimeSeriesF; };
+template<DataType D> struct DataTypeType; 
+template<> struct DataTypeType<DataType::ArrayB>{ using type = ArrayXb; };
+template<> struct DataTypeType<DataType::ArrayI>{ using type = ArrayXi; };
+template<> struct DataTypeType<DataType::ArrayF>{ using type = ArrayXf; };
+template<> struct DataTypeType<DataType::MatrixB>{ using type = ArrayXXb; };
+template<> struct DataTypeType<DataType::MatrixI>{ using type = ArrayXXi; };
+template<> struct DataTypeType<DataType::MatrixF>{ using type = ArrayXXf; };
+template<> struct DataTypeType<DataType::TimeSeriesB>{ using type = data::TimeSeriesb; };
+template<> struct DataTypeType<DataType::TimeSeriesI>{ using type = data::TimeSeriesi; }; 
+template<> struct DataTypeType<DataType::TimeSeriesF>{ using type = data::TimeSeriesf; };
+
+template<typename T> struct DataTypeEnum; 
+template<> struct DataTypeEnum<ArrayXb>{ static constexpr DataType value = DataType::ArrayB; };
+template<> struct DataTypeEnum<ArrayXi>{ static constexpr DataType value = DataType::ArrayI; };
+template<> struct DataTypeEnum<ArrayXf>{ static constexpr DataType value = DataType::ArrayF; };
+template<> struct DataTypeEnum<ArrayXXb>{ static constexpr DataType value = DataType::MatrixB; };
+template<> struct DataTypeEnum<ArrayXXi>{ static constexpr DataType value = DataType::MatrixI; };
+template<> struct DataTypeEnum<ArrayXXf>{ static constexpr DataType value = DataType::MatrixF; };
+template<> struct DataTypeEnum<data::TimeSeriesb>{ static constexpr DataType value = DataType::TimeSeriesB; };
+template<> struct DataTypeEnum<data::TimeSeriesi>{ static constexpr DataType value = DataType::TimeSeriesI; };
+template<> struct DataTypeEnum<data::TimeSeriesf>{ static constexpr DataType value = DataType::TimeSeriesF; };
 
 extern map<DataType,std::type_index>  DataTypeID;
 extern map<std::type_index,DataType>  DataIDType;

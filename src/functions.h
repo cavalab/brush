@@ -184,12 +184,12 @@ https://eigen.tuxfamily.org/dox/TopicCustomizing_Plugins.html
 
 
      // bin... and unary functions
-     template<>
-     struct Function<NodeType::Aq>
-     {
-         template<typename T>
-         inline auto operator()(T t1, T t2) { return t1 / (typename T::Scalar{1.0} + t2.square()).sqrt(); }
-     };
+     /* template<> */
+     /* struct Function<NodeType::Aq> */
+     /* { */
+     /*     template<typename T> */
+     /*     inline auto operator()(T t1, T t2) { return t1 / (typename T::Scalar{1.0} + t2.square()).sqrt(); } */
+     /* }; */
 
      template<>
      struct Function<NodeType::Pow>

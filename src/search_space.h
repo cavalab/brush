@@ -7,9 +7,11 @@ license: GNU/GPL v3
 //internal includes
 #include "init.h"
 #include "node.h"
-#include "operators.h"
+#include "nodemap.h"
+#include "operator.h"
 #include "util/utils.h"
 #include "util/rnd.h"
+#include <utility>
 
 /* TODO
 * instead of specifying keys, values, just specify the values into a list of
@@ -122,22 +124,23 @@ struct SearchSpace
             this->terminal_types.insert(dt);
 
         vector<Node> terminals = generate_terminals(d);
-        set<Node> nodes = generate_all_nodes(op_names, terminal_types);
+        /* set<Node> nodes = generate_all_nodes(op_names, terminal_types); */
 
-        int i = 0;
-        for (const auto& n: nodes)
-        {
-            cout << "adding " << n.name << ") to search space...\n";
-            // add the node to the nodemap
-            this->node_map[n.ret_type][n.args_type()][n.node_type] = n;
+        GenerateNodeMap(user_ops, std::make_index_sequence<NodeTypes::Count>());
+        /* int i = 0; */
+        /* for (const auto& n: nodes) */
+        /* { */
+        /*     cout << "adding " << n.name << ") to search space...\n"; */
+        /*     // add the node to the nodemap */
+        /*     this->node_map[n.ret_type][n.args_type()][n.node_type] = n; */
             
-            // update weights
-            float w = use_all? 1.0 : user_ops.at(op_names.at(i));
-            this->weight_map[n.ret_type][n.args_type()][n.node_type] = w;
+        /*     // update weights */
+        /*     float w = use_all? 1.0 : user_ops.at(op_names.at(i)); */
+        /*     this->weight_map[n.ret_type][n.args_type()][n.node_type] = w; */
 
-            ++i;
+        /*     ++i; */
 
-        }
+        /* } */
         // map terminals
         for (const auto& term : terminals)
         {
@@ -338,7 +341,8 @@ struct SearchSpace
         return (*r.select_randomly(matches.begin(), 
                                    matches.end(), 
                                    match_weights.begin(), 
-                                   match_weights.end())).second;
+                                   match_weights.end())
+               ).second;
     };
 
     // Node operator[](const std::string& op)
@@ -348,6 +352,64 @@ struct SearchSpace
         
     //     return this->node_map.at(op); 
     // };
+    private:
+        template<NodeType NT, SigType S>
+        static constexpr auto MakeNode(bool weighted)
+        {
+            using RetType = typename Signature<S>::RetType; 
+            DataType output_type = DataTypeEnum<RetType>::value;
+            return Node(NT, S, output_type, weighted);
+
+        }
+       
+        template<NodeType NT, SigType S>
+        constexpr void AddNode(const map<string,float>& user_ops)
+        {
+            bool use_all = user_ops.size() == 0;
+            auto name = NodeTypeName.at(NT);
+            auto n = MakeNode<NT,S>(false);
+            if (n.IsWeighable())
+            {
+                n.is_weighted=true; // weighted
+            }
+            node_map[n.ret_type][n.args_type()][n.node_type] = n;
+            float w = use_all? 1.0 : user_ops.at(name);
+            weight_map[n.ret_type][n.args_type()][n.node_type] = w;
+        }
+
+        template<NodeType NT, typename Sigs, Sigs S={}, std::size_t... Is>
+        constexpr void AddNodes(const map<string,float>& user_ops, std::index_sequence<Is...>)
+        {
+            (AddNode<NT,std::get<Is>(S)>(user_ops), ...);
+        }
+
+        template<NodeType NT>
+        void MakeNodes(const map<string,float>& user_ops)
+        {
+            bool use_all = user_ops.size() == 0;
+            auto name = NodeTypeName.at(NT);
+
+            if (!use_all & user_ops.find(name) == user_ops.end())
+                return;
+
+            constexpr auto signatures = Signatures<NT>::value;
+            constexpr auto size = std::tuple_size<std::decay_t<decltype(signatures)>>::value ;
+            AddNodes<NT, decltype(signatures), signatures>(user_ops, std::make_index_sequence<size>()); 
+            /* constexpr auto add = [&](auto const... sigs) {((AddNode<NT,sigs>(user_ops)), ...);}; */ 
+            /* std::apply(add, signatures); */
+            /* for (constexpr SigType S : signatures) */
+            /* { */
+            /*     /1* auto signature = Signature<S>; *1/ */
+            /*     /1* map_.insert({ NT, {S, detail::MakeOperator<RetType,NT,S>() }}); *1/ */
+            /* } */
+        }
+
+        template<std::size_t... Is>
+        void GenerateNodeMap(const map<string,float>& user_ops, std::index_sequence<Is...> )
+        {
+            auto nt = [](auto i) { return static_cast<NodeType>(1UL << i); };
+            (MakeNodes<nt(Is)>(user_ops), ...);
+        }
 };
 
 extern SearchSpace SS;
@@ -355,57 +417,3 @@ extern SearchSpace SS;
 
 } // Brush
 #endif
-
-// Old nodes from FEAT:
-    /* { "+",  new NodeAdd({1.0,1.0})}, */ 
-    /* { "-",  new NodeSubtract({1.0,1.0})}, */ 
-    /* { "*",  new NodeMultiply({1.0,1.0})}, */ 
-    /* { "/",  new NodeDivide({1.0,1.0})}, */ 
-    /* { "sqrt",  new NodeSqrt({1.0})}, */ 
-    /* { "sin",  new NodeSin({1.0})}, */ 
-    /* { "cos",  new NodeCos({1.0})}, */ 
-    /* { "tanh",  new NodeTanh({1.0})}, */ 
-    /* { "^2",  new NodeSquare({1.0})}, */ 
-    /* { "^3",  new NodeCube({1.0})}, */ 
-    /* { "^",  new NodeExponent({1.0})}, */ 
-    /* { "exp",  new NodeExponential({1.0})}, */ 
-    /* { "gauss",  new NodeGaussian({1.0})}, */ 
-    /* { "gauss2d",  new Node2dGaussian({1.0, 1.0})}, */ 
-    /* { "log", new NodeLog({1.0}) }, */   
-    /* { "logit", new NodeLogit({1.0}) }, */
-    /* { "relu", new NodeRelu({1.0}) }, */
-    /* { "b2f", new NodeFloat<bool>() }, */
-    /* { "c2f", new NodeFloat<int>() }, */
-    
-    /* // logical operators */
-    /* { "and", new NodeAnd() }, */
-    /* { "or", new NodeOr() }, */
-    /* { "not", new NodeNot() }, */
-    /* { "xor", new NodeXor() }, */
-    /* { "=", new NodeEqual() }, */
-    /* { ">", new NodeGreaterThan() }, */
-    /* { ">=", new NodeGEQ() }, */        
-    /* { "<", new NodeLessThan() }, */
-    /* { "<=", new NodeLEQ() }, */
-    /* { "split", new NodeSplit<float>() }, */
-    /* { "fuzzy_split", new NodeFuzzySplit<float>() }, */
-    /* { "fuzzy_fixed_split", new NodeFuzzyFixedSplit<float>() }, */
-    /* { "split_c", new NodeSplit<int>() }, */
-    /* { "fuzzy_split_c", new NodeFuzzySplit<int>() }, */
-    /* { "fuzzy_fixed_split_c", new NodeFuzzyFixedSplit<int>() }, */
-    /* { "if", new NodeIf() }, */   	    		
-    /* { "ite", new NodeIfThenElse() }, */
-    /* { "step", new NodeStep() }, */
-    /* { "sign", new NodeSign() }, */
-       
-    /* // longitudinal nodes */
-    /* { "mean", new NodeMean() }, */
-    /* { "median", new NodeMedian() }, */
-    /* { "max", new NodeMax() }, */
-    /* { "min", new NodeMin() }, */
-    /* { "variance", new NodeVar() }, */
-    /* { "skew", new NodeSkew() }, */
-    /* { "kurtosis", new NodeKurtosis() }, */
-    /* { "slope", new NodeSlope() }, */
-    /* { "count", new NodeCount() }, */
-    /* { "recent", new NodeRecent() }, */

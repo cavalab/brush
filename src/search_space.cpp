@@ -2,28 +2,39 @@
 
 namespace Brush{
 
-set<Node> generate_all_nodes(vector<string>& node_names, set<DataType> term_types)
-{
-    set<Node> nodes;
+    //TODO: overhaul like Dispatchtable
+/* void GenerateNodes(std::make_index_sequence<NodeTypes::Count>{}); */ 
+/* set<Node> generate_all_nodes(vector<string>& node_names, set<DataType> term_types) */
+/* { */
+/*     set<Node> nodes; */
 
-    for ( const auto &[name, v]: NodeSchema.items() ) 
-    {
-        if (!in(node_names, name) )
-            continue;
+/*     for ( const auto &[name, v]: NodeSchema.items() ) */ 
+/*     { */
+/*         if (!in(node_names, name) ) */
+/*             continue; */
 
-        auto node_type = NodeNameType[name];
+/*         auto node_type = NodeNameType[name]; */
 
-        for ( const auto &[ret_name, sig]: v["Signature"].items() ) 
-        {
-            // TODO: potentially check signature and filter out types
-            auto ret_type = DataNameType[ret_name];
-            nodes.insert(Node(node_type, ret_type, true));
-            nodes.insert(Node(node_type, ret_type, false));
+/*         auto signatures = Signatures<node_type>::value; */
+/*         for (const auto& S : signatures) */
+/*         { */
+/*             /1* auto signature = Signature<S>; *1/ */
+/*             using RetType = typename Signature<S>::RetType; */ 
+            
+/*             nodes.insert(Node(node_type, S, ret_type, true)); */
+/*             nodes.insert(Node(node_type, S, ret_type, false)); */
+/*         } */
+/*         for ( const auto &[ret_name, sig]: v["Signature"].items() ) */ 
+/*         { */
+/*             // TODO: potentially check signature and filter out types */
+/*             auto ret_type = DataNameType[ret_name]; */
+/*             nodes.insert(Node(node_type, ret_type, true)); */
+/*             nodes.insert(Node(node_type, ret_type, false)); */
              
-        }
-    }
-    return nodes;
-}
+/*         } */
+/*     } */
+/*     return nodes; */
+/* } */
 
 NodeVector generate_terminals(const Data& d)
 {

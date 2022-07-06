@@ -89,6 +89,7 @@ struct Node {
 
     NodeType node_type;
     ExecType exec_type;
+    SigType sig_type;
     DataType ret_type;
     std::vector<DataType> arg_types;
     bool is_differentiable;
@@ -101,22 +102,25 @@ struct Node {
 
     Node() = default; 
 
-    explicit Node(NodeType type, DataType output_type, bool weighted=false) noexcept
+    explicit Node(NodeType type, SigType sig, DataType output_type, bool weighted=false) noexcept
         : node_type(type)
         , name(NodeTypeName[type])
+        , sig_type(sig)
         , ret_type(output_type)
+        /* , ret_type(DataTypeName<Signature<sig>::RetType>>) */
         , exec_type(NodeSchema[NodeTypeName[type]]["ExecType"])
-        , arg_types(NodeSchema[NodeTypeName[type]]["Signature"][DataTypeName[output_type]])
+        /* , arg_types(NodeSchema[NodeTypeName[type]]["Signature"][DataTypeName[output_type]]) */
         , is_weighted(weighted)
     {}
 
     explicit Node(NodeType type, DataType output_type, string feature_name) noexcept
         : node_type(type)
         , name(NodeTypeName[type])
+        , sig_type(SigType::Terminal)
         , ret_type(output_type)
         , feature(feature_name)
         , exec_type(NodeSchema[NodeTypeName[type]]["ExecType"])
-        , arg_types(NodeSchema[NodeTypeName[type]]["Signature"][DataTypeName[output_type]])
+        /* , arg_types(NodeSchema[NodeTypeName[type]]["Signature"][DataTypeName[output_type]]) */
         , is_weighted(false)
     {}
         // if (Type < NodeType::Abs) // Add, Mul, Sub, Div, Aq, Pow
@@ -194,6 +198,46 @@ struct Node {
                   NodeType::Mul,
                   NodeType::Min,
                   NodeType::Max>(); 
+    }
+
+    inline auto IsDifferentiable() const noexcept -> bool { 
+        return !Is<
+                    NodeType::Ceil,
+                    NodeType::Floor,
+                    NodeType::Not,              
+                    NodeType::Before,       
+                    NodeType::After,          
+                    NodeType::During,
+                    NodeType::Count,
+                    NodeType::And, 
+                    NodeType::Or,
+                    NodeType::Xor, 
+                    NodeType::Equals,
+                    NodeType::LessThan,
+                    NodeType::Leq,
+                    NodeType::Geq
+                    >();                
+    }
+
+    inline auto IsWeighable() const noexcept -> bool { 
+        return !Is<
+                    NodeType::Ceil,
+                    NodeType::Floor,
+                    NodeType::Not,              
+                    NodeType::Before,       
+                    NodeType::After,          
+                    NodeType::During,
+                    NodeType::Count,
+                    NodeType::And, 
+                    NodeType::Or,
+                    NodeType::Xor, 
+                    NodeType::Equals,
+                    NodeType::LessThan,
+                    NodeType::Leq,
+                    NodeType::Geq,
+                    NodeType::SplitOn,
+                    NodeType::SplitBest
+                    >();                
     }
 
     inline decltype(auto) signature() const { 

@@ -1,13 +1,14 @@
 #ifndef tree_node_h
 #define tree_node_h
 #include <tuple>
+#include <unordered_map>
 
 #include "init.h"
 #include "data/data.h"
 #include "node.h"
 #include "functions.h"
-#include "operator.h"
-#include "thirdparty/eternal.hpp"
+#include "nodemap.h"
+/* #include "operator.h" */
 /* #include "interpreter.h" */
 
 using std::string;
@@ -46,10 +47,10 @@ class tree_node_<Node> { // size: 5*4=20 bytes (on 32 bit arch), can be reduced 
 
         /* template<typename T> */
         /* auto eval(const Data& d); */
-        /* template<typename T> */
-        auto fit(const Data& d){ State s; return std::get<T>(s);};
-        /* template<typename T> */
-        auto predict(const Data& d){ State s; return std::get<T>(s);};
+        template<typename T>
+        auto fit(const Data& d); //{ State s; return std::get<T>(s);};
+        template<typename T>
+        auto predict(const Data& d); //{ State s; return std::get<T>(s);};
         /* auto predict(const Data& d) const; */ 
         /* /1* void grad_descent(const ArrayXf&, const Data&); *1/ */
 		string get_model(bool pretty=false);
@@ -65,158 +66,32 @@ class tree_node_<Node> { // size: 5*4=20 bytes (on 32 bit arch), can be reduced 
 
         /* auto _dispatch(ExecType E, bool train, const Data& d); */
 
-        template<ExecType E, typename T> struct GetKids; 
-        template<ExecType E, typename T> struct GetKidsFit; 
-        template<ExecType E, typename T> struct GetKidsPredict; 
+        /* template<ExecType E, typename T> struct GetKids; */ 
+        /* template<ExecType E, typename T> struct GetKidsFit; */ 
+        /* template<ExecType E, typename T> struct GetKidsPredict; */ 
 
 }; 
-typedef class tree_node_<Node> TreeNode; 
+using TreeNode = class tree_node_<Node>; 
+//forward declarations
+template<NodeType NT, SigType S> auto DispatchPredict(const Data& d, TreeNode& tn) ;
+template<NodeType NT, SigType S> auto DispatchFit(const Data& d, TreeNode& tn) ;
 
 namespace detail {
-    /* class tree_node_<Node> */
-    // dispatching mechanism
-    // stolen from Operon 
-    /* template<NodeType Type, typename R, typename... Args> */
-    template<NodeType Type, typename T> DispatchOpUnary(const Data& d, TreeNode& tn);
-
-    template<NodeType Type, typename... T>
-    auto DispatchOpUnary(const Data& d, TreeNode& tn)
-    {
-        Function<Type> f{};
-        return f(tn.first_child->eval(d));
-    }
-    /* template<NodeType Type, typename R> */
-    template<NodeType Type, typename T>
-    T DispatchOpBinary(const Data& d, TreeNode& tn)
-    {
-        Function<Type> f{};
-        return f(tn.first_child->eval<T>(d), tn.last_child->eval<T>(d));
-    }
-    /* State DispatchOpBinary(Data& d, TreeNode& tn) */
-    /* { */
-    /*     using Arg1 = decltype(nt.n.arg_types.at(0)); */
-    /*     using Arg2 = decltype(nt.n.arg_types.at(1)); */
-    /*     return Function<Type>{}(n.first_child->eval<Arg1>(d), n.last_child->eval<Arg1>(d)); */
-    /* } */
-
-    /* template<NodeType Type, typename R> */
-    template<NodeType Type, typename T>
-    T DispatchTerminal(const Data& d, TreeNode& tn)
-    {
-        /* using T = decltype(DataMap<tn.n.ret_type>{}()); */
-        return std::get<T>(d[tn.n.feature]);
-        /* return d.features[tn.n.feature]; */
-    }
-
-    template<NodeType Type, typename T>
-    T NoOp(const Data& d, TreeNode& tn)
-    {
-        return T();
-    }
-
-    /* template<typename X, typename Tuple> */
-    /* class tuple_index; */
-
-    /* template<typename X, typename... T> */
-    /* class tuple_index<X, std::tuple<T...>> { */
-    /*     template<std::size_t... Idx> */
-    /*     static constexpr auto FindIdx(std::index_sequence<Idx...> ) -> int64_t */
-    /*     { */
-    /*         return -1 + ((std::is_same<X, T>::value ? Idx + 1 : 0) + ...); */
-    /*     } */
-
-    /* public: */
-    /*     static constexpr int64_t value = FindIdx(std::index_sequence_for<T...>{}); */
-    /* }; */
 
     template<typename T>
     using Callable = typename std::function<T(const Data&,TreeNode&)>;
 
-    template<NodeType Type, typename T>
-    static constexpr auto MakeCall() -> Callable<T>
-    {
+    template <typename T, typename TupleCallables>
+    struct has_type;
 
-        if constexpr (Type > NodeType::_SPLITTER_) { 
-            return Callable<T>(detail::DispatchOpBinary<Type, T>);
-        }
-        else if constexpr (Type > NodeType::_BINARY_) { 
-            return Callable<T>(detail::DispatchOpBinary<Type, T>);
-        }
-        else if constexpr (Type > NodeType::_UNARY_) { 
-            return Callable<T>(detail::DispatchOpUnary<Type, T>);
-        } 
-        else if constexpr (Type > NodeType::_LEAF_) { 
-            return Callable<T>(detail::DispatchTerminal<Type, T>);
-        } 
-        return Callable<T>(detail::NoOp<Type, T>);
-    }
+    template <typename T, typename... Us>
+    struct has_type<T, std::tuple<Us...>> : std::disjunction<std::is_same<T, Us>...> {};
 
-    /* template<NodeType Type, typename... Ts, std::enable_if_t<sizeof...(Ts) != 0, bool> = true> */
-    template<NodeType Type, typename... Ts> 
-    static constexpr auto MakeTuple()
-    {
-        return std::make_tuple(MakeCall<Type, Ts>()...);
-        /* return MakeCall<Type>(); */
-    };
-
-    template<typename Arg1, typename Arg2>
-    using Signature = typename std::tuple<Arg1,Arg2>;
-
-    template<NodeType Type>
-    static constexpr auto MakeOperators()  
-    {
-        // NOTE: I should just handcarft this for each case for now. 
-        // It would not be that much code. All this map shit is getting messy.
-        // TODO
-        // handle arg types for reducers and comparators, which are different than return type 
-
-        // handle cases when node doesn't have that return type
-        //
-        using TupleRetTypes = RetTypes<Type>::RetTypes;
-        //TODO
-        // make map a map of maps, to map from node type to return type to operator. 
-        // example: map < NodeType, map<DataType,Operator<RetType,ArgTypes>()>>
-        (map_.insert({ nt(Is), detail::MakeTuple<nt(Is),Ts...>() }), ...);
-    } 
-    template<NodeType Type, typename T>
+    /* template<NodeType NT, typename R> */
+    template<typename R, NodeType N, SigType S>
     static constexpr auto MakeOperator()  
-        if constexpr (Type > NodeType::_SPLITTER_) { 
-            //TODO
-            /* return Callable<T>(detail::DispatchOpSplitter<Type, T>); */
-            if constexpr (Type == NodeType::SplitOn)  
-                //TODO: this one can be different types for FirstArg
-                return Operator<Type, T, T, T, T>(); 
-            else ifconstexpr (Type == NodeType::SplitBest)  
-                return Operator<Type, T, T, T>(); 
-            /* return new SplitOp<Type, T>(); */
-        }
-        else if constexpr (Type > NodeType::_COMPARATOR_) { 
-            /* return Callable<T>(detail::DispatchOpBinary<Type, T>); */
-            /* return new CompareOp<Type, T>(); */
-            // TODO: handle matrix
-            typedef ComparisonType<T>::type R; 
-            return Operator<Type, R, T, T>();
-        }
-        else if constexpr (Type > NodeType::_BINARY_) { 
-            /* return Callable<T>(detail::DispatchOpBinary<Type, T>); */
-            return Operator<Type, T, T, T>();
-        }
-        else if constexpr (Type > NodeType::_REDUCER_) { 
-            /* return Callable<T>(detail::DispatchOpBinary<Type, T>); */
-            typedef ReducedType<T>::type R; 
-            return Operator<Type, R, T>();
-        }
-        else if constexpr (Type > NodeType::_UNARY_) { 
-            /* return Callable<T>(detail::DispatchOpUnary<Type, T>); */
-            /* return new UnaryOp<Type, T>(); */
-            return Operator<Type, T, T>();
-        } 
-        else if constexpr (Type > NodeType::_LEAF_) { 
-            /* return Callable<T>(detail::DispatchTerminal<Type, T>); */
-            return new Operator<Type, T>();
-        } 
-        /* return Callable<T>(detail::NoOp<Type, T>); */
-        return Operator<Type,T>();
+    {
+        return Callable<R>(DispatchFit<N,S>);
     }
 
 
@@ -227,7 +102,7 @@ namespace detail {
     /* { */
     /*     return std::make_tuple(Callable<Ts>(std::forward<F&&>(f))...); */
     /* } */
-    template<typename X, typename Tuple>
+    template<typename X, typename TupleCallables>
     class tuple_index;
 
     template<typename X, typename... T>
@@ -245,7 +120,7 @@ namespace detail {
 
 ////////////////////////////////////////////////////////////////////////////////
 // Dispatch Table
-template<typename Signatures> DispatchTable;
+/* template<typename T> struct DispatchTable; */
 
 template<typename... Ts> 
 struct DispatchTable
@@ -265,12 +140,13 @@ struct DispatchTable
     template<typename T>
     using Callable = detail::Callable<T>;
 
-    using Tuple    = std::tuple<Callable<Ts>...>;
+    using CallVariant    = std::variant<Callable<Ts>...>;
     /* using Map      = robin_hood::unordered_flat_map<Operon::Hash, Tuple>; */
-    using Map      = std::unordered_map<NodeType, Tuple>;
+    // could have fit map, predict map
+    using DTMap = std::tuple<std::unordered_map<NodeType, std::unordered_map<SigType,CallVariant>>>;
 
 private:
-    Map map_;
+    DTMap map_;
 
     template<std::size_t... Is>
     void InitMap(std::index_sequence<Is...> /*unused*/)
@@ -282,9 +158,32 @@ private:
         /* (map_.insert({ Node(f(Is)).HashValue, detail::MakeTuple<f(Is), Ts...>() }), ...); */
         //TODO: use MakeTuple to determine exec type from node type. We could implement
         // exectypes as an Is"blah"<> function in the Node class even. 
-        (map_.insert({ nt(Is), detail::MakeTuple<nt(Is),Ts...>() }), ...);
+        /* (map_.insert({ nt(Is), detail::MakeTuple<nt(Is),Ts...>() }), ...); */
+        /* (MakeOperators<nt(Is),Ts>(), ...); */
+        (MakeOperators<nt(Is)>(), ...);
         //TODO: this really should be a hash, if want to register other functions
     }
+
+    template<NodeType NT, typename Sigs, Sigs S, std::size_t... Is>
+    void AddOperator(std::index_sequence<Is...>)
+    {
+        /* using RetType = typename Signature<S>::RetType; */ 
+        (map_.insert({ NT, {std:get<Is>(S), 
+                     detail::MakeOperator< Signature<std::get<Is>(S)>::ReturnType,
+                             NT,
+                             std::get<Is>(S)>() 
+                           }
+                     }), ...);
+    }
+    template<NodeType NT>
+    void MakeOperators()  
+    {
+        constexpr auto signatures = Signatures<NT>::value;
+        
+        AddOperator<NT, signatures>( 
+                     std::make_index_sequence<std::tuple_size_v<decltype(signatures)>>()
+                     );
+    } 
 
 public:
     DispatchTable()
@@ -318,23 +217,25 @@ public:
     /* template<typename T> */
     /* [[nodiscard]] inline auto Get(Operon::Hash const h) const -> Callable<T> const& */
     /* { */
-    /*     constexpr int64_t idx = detail::tuple_index<Callable<T>, Tuple>::value; */
-    /*     static_assert(idx >= 0, "Tuple does not contain type T"); */
+    /*     constexpr int64_t idx = detail::tuple_index<Callable<T>, TupleCallables>::value; */
+    /*     static_assert(idx >= 0, "TupleCallables does not contain type T"); */
     /*     if (auto it = map_.find(h); it != map_.end()) { */
     /*         return std::get<static_cast<size_t>(idx)>(it->second); */
     /*     } */
     /*     throw std::runtime_error(fmt::format("Hash value {} is not in the map\n", h)); */
     /* } */
     template<typename T>
-    [[nodiscard]] inline auto Get(NodeType h) const -> Callable<T> const&
+    [[nodiscard]] inline auto Get(NodeType n, SigType s) const -> Callable<T> const&
     {
-        constexpr int64_t idx = detail::tuple_index<Callable<T>, Tuple>::value;
-        static_assert(idx >= 0, "Tuple does not contain type T");
-        if (auto it = map_.find(h); it != map_.end()) {
-            return std::get<static_cast<size_t>(idx)>(it->second);
-        }
-        /* throw std::runtime_error(fmt::format("Hash value {} is not in the map\n", h)); */
-        throw std::runtime_error("Op not found");
+        return std::get<Callable<T>>(map_.at(n).at(s));
+        /* constexpr auto typed_map = std::get<T>(map_); */
+        /* constexpr int64_t idx = detail::tuple_index<Callable<T>, TupleCallables>::value; */
+        /* static_assert(idx >= 0, "TupleCallables does not contain type T"); */
+        /* if (auto it = map_.find(h); it != map_.end()) { */
+        /*     return std::get<static_cast<size_t>(idx)>(it->second); */
+        /* } */
+        /* /1* throw std::runtime_error(fmt::format("Hash value {} is not in the map\n", h)); *1/ */
+        /* throw std::runtime_error("Op not found"); */
     }
 
     /* template<typename F> */
@@ -342,17 +243,17 @@ public:
     /*     map_[hash] = detail::MakeTuple<F, Ts...>(std::forward<F&&>(f)); */
     /* } */
 
-    template<typename T>
-    /* [[nodiscard]] inline auto TryGet(Operon::Hash const h) const noexcept -> std::optional<Callable<T>> */
-    [[nodiscard]] inline auto TryGet(NodeType h) const noexcept -> std::optional<Callable<T>>
-    {
-        constexpr int64_t idx = detail::tuple_index<Callable<T>, Tuple>::value;
-        static_assert(idx >= 0, "Tuple does not contain type T");
-        if (auto it = map_.find(h); it != map_.end()) {
-            return { std::get<static_cast<size_t>(idx)>(it->second) };
-        }
-        return {};
-    }
+    /* template<typename T> */
+    /* /1* [[nodiscard]] inline auto TryGet(Operon::Hash const h) const noexcept -> std::optional<Callable<T>> *1/ */
+    /* [[nodiscard]] inline auto TryGet(NodeType h) const noexcept -> std::optional<Callable<T>> */
+    /* { */
+    /*     constexpr int64_t idx = detail::tuple_index<Callable<T>, TupleCallables>::value; */
+    /*     static_assert(idx >= 0, "TupleCallables does not contain type T"); */
+    /*     if (auto it = map_.find(h); it != map_.end()) { */
+    /*         return { std::get<static_cast<size_t>(idx)>(it->second) }; */
+    /*     } */
+    /*     return {}; */
+    /* } */
 
     /* [[nodiscard]] auto Contains(Operon::Hash hash) const noexcept -> bool { return map_.contains(hash); } */
 };
@@ -370,71 +271,20 @@ DispatchTable<
              > dtable;
 //////////////////////////////////////////////////////////////////////////////////
 // fit, eval, predict
+template<typename T>
 auto TreeNode::fit(const Data& d)
 { 
-    auto F = dtable.template Get<T>(n.node_type);
-    return F.fit(d, (*this));
+    auto F = dtable.template Get<T>(n.node_type, n.sig_type);
+    return F(d, (*this));
 };
 
+template<typename T>
 auto TreeNode::predict(const Data& d)
 { 
-    auto F = dtable.template Get<T>(n.node_type);
-    return F.predict(d, (*this));
+    auto F = dtable.template Get<T>(n.node_type, n.sig_type);
+    return F(d, (*this));
 };
 
-////////////////////////////////////////////////////////////////////////////////
-// signature compile-time maps
-//
-using CTMap = mapblox::eternal::map;
-using Signature = CTMap<DataType,std::array<DataType,N>>;
 
-MAPBOX_ETERNAL_CONSTEXPR const auto UnaryFtoF = \
-    Signature({
-            {DataType::ArrayF, {DataType::ArrayF, DataType::_NONE_} },
-            {DataType::MatrixF, {DataType::MatrixF, DataType::_NONE_} },
-            });
-
-MAPBOX_ETERNAL_CONSTEXPR const auto BinaryFFtoF = \
-    Signature({
-            {DataType::ArrayF, {DataType::ArrayF, DataType::ArrayF} },
-            {DataType::MatrixF, {DataType::MatrixF, DataType::MatrixF} },
-            });
-
-MAPBOX_ETERNAL_CONSTEXPR const auto BinaryBBtoB = \
-    Signature({
-            {DataType::ArrayB, {DataType::ArrayB, DataType::ArrayB} },
-            {DataType::MatrixB, {DataType::MatrixB, DataType::MatrixB} },
-            });
-
-/* template<NodeType Type, typename R, typename ...Args> */ 
-/* struct Signature{ */
-/*     using TupleArgs = std::tuple<Args...>; */
-/* } */
-/* template<NodeType Type, typename R> */ 
-/* struct UnarySignature : Signature<Type, R, R> { */
-/*     using TupleArgs = Signature::TupleArgs; */
-/* }; */
-/* template<NodeType Type, typename R> */ 
-/* struct BinarySignature : Signature<Type, R, R, R> { */
-/*     using TupleArgs = Signature::TupleArgs; */
-/* }; */
-
-using SigMap = CTmap<NodeType, Signature>;
-MAPBOX_ETERNAL_CONSTEXPR const auto SignatureTable = SigMap({
-    { NodeType::Abs, UnaryFtoF },
-    { NodeType::Add, BinaryFFoF },
-});
-
-template<typename T=ArrayXXf> struct ReducedType{ using type=ArrayXf; };
-template<> struct ReducedType<TimeSeriesf>{ using type=ArrayXf; };
-template<> struct ReducedType<ArrayXXi>{ using type=ArrayXi; };
-template<> struct ReducedType<TimeSeriesi>{ using type=ArrayXi; };
-template<> struct ReducedType<ArrayXXb>{ using type=ArrayXb; };
-template<> struct ReducedType<TimeSeriesb>{ using type=ArrayXb; };
-
-template<typename T=ArrayXf> struct ComparisonType{ using type=ArrayXb; };
-template<> struct ComparisonType<ArrayXi>{ using type=ArrayXb; };
-template<> struct ComparisonType<ArrayXXf>{ using type=ArrayXXb; };
-template<> struct ComparisonType<ArrayXXi>{ using type=ArrayXXb; };
 }// Brush
 #endif
