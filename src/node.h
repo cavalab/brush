@@ -116,13 +116,15 @@ struct Node {
     explicit Node(NodeType type, DataType output_type, string feature_name) noexcept
         : node_type(type)
         , name(NodeTypeName[type])
-        , sig_type(SigType::Terminal)
+        /* , sig_type(SigType::) */
         , ret_type(output_type)
         , feature(feature_name)
         , exec_type(NodeSchema[NodeTypeName[type]]["ExecType"])
         /* , arg_types(NodeSchema[NodeTypeName[type]]["Signature"][DataTypeName[output_type]]) */
         , is_weighted(false)
-    {}
+    {
+        //TODO: set sig_type
+    }
         // if (Type < NodeType::Abs) // Add, Mul, Sub, Div, Aq, Pow
         // {
         //     Arity = 2;

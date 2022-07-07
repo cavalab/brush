@@ -73,8 +73,8 @@ class tree_node_<Node> { // size: 5*4=20 bytes (on 32 bit arch), can be reduced 
 }; 
 using TreeNode = class tree_node_<Node>; 
 //forward declarations
-template<NodeType NT, SigType S> auto DispatchPredict(const Data& d, TreeNode& tn) ;
-template<NodeType NT, SigType S> auto DispatchFit(const Data& d, TreeNode& tn) ;
+template<typename R, NodeType NT, SigType S> R DispatchPredict(const Data& d, TreeNode& tn) ;
+template<typename R, NodeType NT, SigType S> R DispatchFit(const Data& d, TreeNode& tn) ;
 
 namespace detail {
 
@@ -88,10 +88,11 @@ namespace detail {
     struct has_type<T, std::tuple<Us...>> : std::disjunction<std::is_same<T, Us>...> {};
 
     /* template<NodeType NT, typename R> */
-    template<typename R, NodeType N, SigType S>
+    template<NodeType N, SigType S>
     static constexpr auto MakeOperator()  
     {
-        return Callable<R>(DispatchFit<N,S>);
+        using R = typename Signature<S>::RetType;
+        return Callable<R>(DispatchFit<R,N,S>);
     }
 
 
@@ -143,7 +144,8 @@ struct DispatchTable
     using CallVariant    = std::variant<Callable<Ts>...>;
     /* using Map      = robin_hood::unordered_flat_map<Operon::Hash, Tuple>; */
     // could have fit map, predict map
-    using DTMap = std::tuple<std::unordered_map<NodeType, std::unordered_map<SigType,CallVariant>>>;
+    using SigMap = std::unordered_map<SigType,CallVariant>;
+    using DTMap = std::unordered_map<NodeType, SigMap>;
 
 private:
     DTMap map_;
@@ -160,27 +162,27 @@ private:
         // exectypes as an Is"blah"<> function in the Node class even. 
         /* (map_.insert({ nt(Is), detail::MakeTuple<nt(Is),Ts...>() }), ...); */
         /* (MakeOperators<nt(Is),Ts>(), ...); */
-        (MakeOperators<nt(Is)>(), ...);
+        /* (MakeOperators<nt(Is)>(), ...); */
+        (map_.insert({ nt(Is), MakeOperators<nt(Is)>() }), ...);
         //TODO: this really should be a hash, if want to register other functions
     }
 
     template<NodeType NT, typename Sigs, Sigs S, std::size_t... Is>
-    void AddOperator(std::index_sequence<Is...>)
+    static constexpr auto AddOperator(std::index_sequence<Is...>)
     {
-        /* using RetType = typename Signature<S>::RetType; */ 
-        (map_.insert({ NT, {std:get<Is>(S), 
-                     detail::MakeOperator< Signature<std::get<Is>(S)>::ReturnType,
-                             NT,
-                             std::get<Is>(S)>() 
-                           }
-                     }), ...);
+        SigMap sm;
+        (sm.insert({std:get<Is>(S), 
+                    detail::MakeOperator<NT, std::get<Is>(S)>() 
+                   }),
+         ...);
+        return sm;
     }
     template<NodeType NT>
-    void MakeOperators()  
+    SigMap MakeOperators()  
     {
         constexpr auto signatures = Signatures<NT>::value;
         
-        AddOperator<NT, signatures>( 
+        return AddOperator<NT, decltype(signatures), signatures>( 
                      std::make_index_sequence<std::tuple_size_v<decltype(signatures)>>()
                      );
     } 
@@ -259,15 +261,16 @@ public:
 };
 
 DispatchTable<
-              ArrayXb,
-              ArrayXi, 
-              ArrayXf, 
-              ArrayXXb,
-              ArrayXXi, 
-              ArrayXXf, 
-              TimeSeriesb,
-              TimeSeriesi,
-              TimeSeriesf
+              ArrayXf
+              /* ArrayXb, */
+              /* ArrayXi, */ 
+              /* ArrayXf, */ 
+              /* ArrayXXb, */
+              /* ArrayXXi, */ 
+              /* ArrayXXf, */ 
+              /* TimeSeriesb, */
+              /* TimeSeriesi, */
+              /* TimeSeriesf */
              > dtable;
 //////////////////////////////////////////////////////////////////////////////////
 // fit, eval, predict

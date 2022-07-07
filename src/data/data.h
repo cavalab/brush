@@ -182,39 +182,6 @@ struct TimeSeries
     // reduction overloads
     inline auto sum() { return this->reduce([](const EntryType& i){ return i.sum(); } ); };
 
-    /* apply takes a function that is applied to each Entry
-    auto apply(std::function<ValType(TimeSeries<T>)> op)
-    {
-        T dest(this->value.size());
-        std::transform(cbegin(), cend(), 
-                       dest.begin(),
-                       [](const auto& i){return op(i);}
-        );
-        return TimeSeries<T>(dest, this->time);
-    }; 
-    /* template<typename O> */
-    /* auto apply(std::function<T(ValType)> op){ */
-    /*     Array<T,Dynamic,1> dest(this->value.size()); */
-    /*     std::transform(cbegin(), cend(), */ 
-    /*                    dest.begin(), */
-    /*                    op */
-    /*     ); */
-    /*     return dest; */
-    /* }; */ 
-    /* operators on time */
-    /* template<typename O> */
-    /* auto apply_time(std::function<TimeType(TimeType)> op){ */
-    /*     Array<T,Dynamic,1> dest(this->time.size()); */
-    /*     std::transform(ctbegin(), ctend(), */ 
-    /*                    dest.begin(), */
-    /*                    op */
-    /*     ); */
-    /*     return dest; */
-    /* }; */ 
-
-    // inline auto mean() const { return std::apply(this->cbegin(), this->cend(), 
-    // [](auto i){ i.mean(); };
-    // inline auto mean() const { return this->value.mean(); };
 };
 
 /**
@@ -395,7 +362,7 @@ class Data
         {
             return this->features.at(name);
         }
-};
+}; // class data
 } // data
 
 // TODO: make this a typedef
@@ -423,6 +390,7 @@ template<> struct DataTypeEnum<data::TimeSeriesf>{ static constexpr DataType val
 
 extern map<DataType,std::type_index>  DataTypeID;
 extern map<std::type_index,DataType>  DataIDType;
+
 } // Brush
 
 #endif

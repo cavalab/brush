@@ -38,7 +38,7 @@ namespace Brush {
         using RetType = typename Signature<S>::RetType;
         static constexpr size_t ArgCount = Signature<S>::ArgCount;
         /* using Args = typename ArgTypes<exec_type,RetType>::type; //std::tuple<Args...>; */
-        //std::conditional_v<is_array_v<Args>, Args::size, std::tuple_size_v<Args>>;
+        //std::conditional_v<is_array_v, Args::size, std::tuple_size_v>;
 
         /* static constexpr size_t ArgCount = sizeof(...Args) */ 
         //templatize this
@@ -54,15 +54,18 @@ namespace Brush {
         template <std::size_t N>
         using NthType = conditional_t<!is_array_v<Args>,typename std::tuple_element<N, Args>::type,void>;
         
-        Function<NT> F{}; 
+        static constexpr auto F = [](const auto& ...args){
+            Function<NT> f{};
+            return f(args...); 
+        }; 
 
         Operator() = default;
         /* Operator(NT node_type, RetType y, Args... args){}; */
         //////////////////////////////////////////////////////////////////////////////////
         /// Apply weights
-        template<typename T>
-        enable_if_t<is_array_v<T>> 
-        apply_weights(T& inputs, const Node& n)
+        template<typename T=Args>
+        enable_if_t<is_array_v<T,void>> 
+        apply_weights(T& inputs, const Node& n) const
         {
             cout << "applying weights to " << n.name << " operator\n";
             std::transform(
@@ -75,12 +78,12 @@ namespace Brush {
         }
         //////////////////////////////////////////////////////////////////////////////////
         /// Utilities to grab child outputs.
-        template<typename T> T get_kids(const Data&, TreeNode&, bool fit);
+        /* template<typename T> T get_kids(const Data&, TreeNode&, bool fit) const; */
 
         // get a std::array of kids
         template<typename T>
         enable_if_t<is_array_v<T>, T> 
-        get_kids(const Data& d, TreeNode& tn, bool fit) 
+        get_kids(const Data& d, TreeNode& tn, bool fit) const
         {
             T child_outputs;
             using arg_type = typename T::value_type;
@@ -94,20 +97,10 @@ namespace Brush {
             return child_outputs;
         };
 
-        /* template<size_t... Is> */
-		/* auto tupleize(const array<State, ArgCount>& in, std::index_sequence<Is...>) */
-		/* { */
-        /*     return std::make_tuple(std::get<NthType<Is>>(in.at(Is))...); */
-		/* }; */
-
-		/* auto tupleize(const array<State, ArgCount>& in) */
-        /* { */
-        /*     return this->tupleize(in, std::make_index_sequence<ArgCount>{}); */
-        /* }; */
 
         // get a std::tuple of kids
         template<int I>
-        auto get_kid(TreeNode* first)
+        auto get_kid(TreeNode* first) const
         {
             auto sib = first; 
             for (int i = 0 ; i < I; ++i)
@@ -115,75 +108,69 @@ namespace Brush {
             return sib;
         };
 
-        template<typename T, size_t ...Is> 
-        auto get_kids(const Data& d, TreeNode& tn, bool fit, std::index_sequence<Is...>)
+        template<size_t ...Is> 
+        auto get_kids_seq(const Data& d, TreeNode& tn, bool fit, std::index_sequence<Is...>) const
         {
             /* static constexpr auto f = [&]( */
             return std::make_tuple(
-                    fit ?  get_kid<Is>(tn.first_child)->fit<arg>(d) : 
-                           get_kid<Is>(tn.first_child)->predict<arg>(d)
+                    fit ?  get_kid<Is>(tn.first_child)->fit<std::get<Is>(Args)>(d) : 
+                           get_kid<Is>(tn.first_child)->predict<std::get<Is>(Args)>(d)
                         ...);
         };
 
-        template<typename T>
+        template<typename T=Args>
         enable_if_t<!is_array_v<T>, T> 
-        get_kids(const Data& d, TreeNode& tn, bool fit)
+        get_kids(const Data& d, TreeNode& tn, bool fit) const
         {
-            return get_kids(d, tn, fit, std::make_index_sequence<ArgCount>{});
-            /* T child_outputs; */
-
-            /* TreeNode* sib = tn.first_child; */
-            /* for (int i = 0; i < ArgCount; ++i) */
-            /* { */
-            /*     constexpr size_t j = i; */
-            /*     using arg_type = NthType<j>; */
-            /*     child_outputs.at(i) = fit? sib->fit<arg_type>(d) : sib->predict<arg_type>(d); */
-            /*     sib = sib->next_sibling; */
-            /* } */
-            /* return child_outputs; */
-            /* array<State, ArgCount> child_outputs; */
-
-            /* TreeNode* sib = first_child; */
-            /* for (int i = 0; i < ArgCount; ++i) */
-            /* { */
-            /*     cout << i << endl; */
-            /*     child_outputs.at(i) = (sib->*fn)(d); */
-            /*     sib = sib->next_sibling; */
-            /* } */
-            /* return tupleize(child_outputs); */
+            return get_kids_seq(d, tn, fit, std::make_index_sequence<ArgCount>{});
         };
 
-        template<typename T>
-        auto get_kids_fit(const Data& d, TreeNode& tn)
+        // fit and predict convenience functions
+        template<typename T=Args>
+        auto get_kids_fit(const Data& d, TreeNode& tn) const
         {
-            return get_kids<T>(d, tn, true);
+            return get_kids(d, tn, true);
         };
 
-        template<typename T>
-        auto get_kids_predict(const Data& d, TreeNode& tn)
+        auto get_kids_predict(const Data& d, TreeNode& tn) const
         {
             return get_kids(d, tn, false);
         };
 
         ///////////////////////////////////////////////////////////////////////////
         // fit and predict
-        RetType eval(const Data& d, TreeNode& tn) override
+        template<typename T=Args>
+        enable_if_t<is_array_v<T>,RetType> 
+        eval(const Data& d, TreeNode& tn) const
 	    {
-            auto inputs = get_kids_fit<Args>(d, tn);
+            auto inputs = get_kids_fit(d, tn);
             if (tn.n.is_weighted)
                 this->apply_weights(inputs, tn.n);
             return std::apply(F, inputs);
+            /* return F(std::forward<inputs>); */
         };
 
-        RetType fit(const Data& d, TreeNode& tn) override
+        /* template<typename T> */
+        /* enable_if_t<!is_array_v<T>, RetType> */ 
+        template<typename T=Args>
+        enable_if_t<!is_array_v<T>,RetType>
+        eval(const Data& d, TreeNode& tn) const
+	    {
+            auto inputs = get_kids_fit(d, tn);
+            return std::apply(F, inputs);
+            /* return F(inputs); */
+            /* return F(std::forward<inputs>); */
+        };
+
+        RetType fit(const Data& d, TreeNode& tn) const
 	    {
             return eval(d,tn);
-            /* auto inputs = get_kids_fit<Args>(d, tn); */
+            /* auto inputs = get_kids_fit(d, tn); */
             /* if (n.is_weighted) */
             /*     this->apply_weights(inputs, tn->n); */
             /* return std::apply(F, inputs); */
             /* if (n.is_weighted) */
-            /*     auto inputs = get_kids_fit<Args>(d, tn); */
+            /*     auto inputs = get_kids_fit(d, tn); */
             /*     this->apply_weights(inputs, tn->n); */
             /*     return std::apply(F, inputs); */
             /* else */
@@ -191,38 +178,50 @@ namespace Brush {
             /*     return std::apply(F, inputs); */
         };
 
-        RetType predict(const Data& d, TreeNode& tn) override
+        RetType predict(const Data& d, TreeNode& tn) const
 	    {
             return eval(d,tn);
-            /* auto inputs = get_kids_predict<Args>(d, tn); */
-            /* if (n.is_weighted) */
-            /*     this->apply_weights(inputs, tn->n); */
-            /* return std::apply(F, inputs); */
-            /* if (n.is_weighted) */
-            /*     auto inputs = get_kids_predict<Args>(d, tn); */
-            /*     this->apply_weights(inputs, tn->n); */
-            /*     return std::apply(F, inputs); */
-            /* else */
-            /*     auto inputs = get_kids_predict<TupleArgs>(d, tn); */
-            /*     return std::apply(F, inputs); */
         };
+    };
+    /// Terminal Overload
+    template<SigType S>
+    struct Operator<NodeType::Terminal, S>
+    {
+        using RetType = typename Signature<S>::RetType;
+        RetType eval(const Data& d, TreeNode& tn) const { return std::get<RetType>(d[tn.n.feature]); };
+        RetType fit(const Data& d, TreeNode& tn) const { return eval(d,tn); };
+        RetType predict(const Data& d, TreeNode& tn) const { return eval(d,tn); };
+    };
+    template<SigType S> 
+    struct Operator<NodeType::Constant, S>
+    {
+        using RetType = typename Signature<S>::RetType;
+        RetType eval(const Data& d, TreeNode& tn) const { return RetType(tn.n.W.at(0)); };
+        RetType fit(const Data& d, TreeNode& tn) const { return eval(d,tn); };
+        RetType predict(const Data& d, TreeNode& tn) const { return eval(d,tn); };
     };
     ////////////////////////////////////////////////////////////////////////////
     // fit and predict Dispatch functions
-    template<NodeType NT, SigType S> //, typename ...Args>
-    auto DispatchFit(const Data& d, TreeNode& tn) 
+    template<typename R, NodeType NT, SigType S> //, typename ...Args>
+    R DispatchFit(const Data& d, TreeNode& tn) 
     {
         const auto op = Operator<NT,S>{};
         return op.fit(d, tn);
     };
 
-    template<NodeType NT, SigType S>
-    auto DispatchPredict(const Data& d, TreeNode& tn) 
+    template<typename R, NodeType NT, SigType S>
+    R DispatchPredict(const Data& d, TreeNode& tn) 
 
     {
         const auto op = Operator<NT,S>{};
         return op.predict(d, tn);
     };
+    /* template<typename R, NodeType NT, SigType S> //, typename ...Args> */
+    /* R DispatchFit(const Data& d, TreeNode& tn) */ 
+    /* { */
+    /*     const auto op = Operator<NT,S>{}; */
+    /*     return op.fit(d, tn); */
+    /* }; */
 
 }
 

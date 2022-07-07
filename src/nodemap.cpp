@@ -8,7 +8,7 @@ std::map<std::string, NodeType> NodeNameType = {
     {"Sub", NodeType::Sub},
     {"Mul", NodeType::Mul},
     {"Div", NodeType::Div},
-    {"Aq", NodeType::Aq},
+    /* {"Aq", NodeType::Aq}, */
     {"Abs", NodeType::Abs},
 
     {"Acos", NodeType::Acos},
@@ -20,7 +20,6 @@ std::map<std::string, NodeType> NodeNameType = {
     {"Sinh", NodeType::Sinh},
     {"Tan", NodeType::Tan},
     {"Tanh", NodeType::Tanh},
-    {"Cbrt", NodeType::Cbrt},
     {"Ceil", NodeType::Ceil},
     {"Floor", NodeType::Floor},
     {"Exp", NodeType::Exp},
@@ -67,7 +66,8 @@ std::map<std::string, NodeType> NodeNameType = {
     {"Terminal", NodeType::Terminal},
 
     // custom
-    {"CustomOp", NodeType::CustomOp},
+    {"CustomUnaryOp", NodeType::CustomUnaryOp},
+    {"CustomBinaryOp", NodeType::CustomBinaryOp},
     {"CustomSplit", NodeType::CustomSplit},
 };
 

@@ -177,7 +177,15 @@ static constexpr bool is_one_of_v = is_one_of<T, Ts...>::value;
 
 
 enum class SigType : uint32_t {
-    Terminal,
+    ArrayB, 
+    ArrayI, 
+    ArrayF, 
+    MatrixB, 
+    MatrixI, 
+    MatrixF, 
+    TimeSeriesB, 
+    TimeSeriesI,
+    TimeSeriesF,
     ArrayFtoArrayF,
     ArrayItoArrayI,
     ArrayBtoArrayB,
@@ -228,6 +236,11 @@ template<> struct Signature<SigType::ArrayBtoArrayB>{
     using ArgTypes = std::array<ArrayXb,1>;
     static constexpr size_t ArgCount=1;
 };
+template<> struct Signature<SigType::ArrayF>{ 
+    using RetType = ArrayXf; 
+    using ArgTypes = std::array<ArrayXf,0>;
+    static constexpr size_t ArgCount=0;
+};
 
 // Signatures gives a set of SigType for each node
 
@@ -235,18 +248,11 @@ template<> struct Signature<SigType::ArrayBtoArrayB>{
 //
 template<NodeType N, typename T = void> struct Signatures; 
 
-/* template<NodeType N> */
-/* struct Signatures<N> */
-/* { */ 
-/*     static constexpr array<SigType,1> value = { */ 
-/*         SigType::Terminal */
-/*     }; */ 
-/* }; */ 
 template<NodeType N>
 struct Signatures<N, enable_if_t<is_one_of_v<N, NodeType::Constant, NodeType::Terminal>>>
 { 
     static constexpr array<SigType,1> value = { 
-        SigType::Terminal
+        SigType::ArrayF
     }; 
 }; 
 template<NodeType N>
