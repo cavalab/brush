@@ -29,7 +29,7 @@ link_directories( $ENV{LD_LIBRARY_PATH})
 # set(CMAKE_CXX_COMPILER /usr/bin/g++-7)
 # version requirement for Eigen
 cmake_minimum_required (VERSION 3.15...3.19)
-# use c++ 17
+# use c++ 20
 set (CMAKE_CXX_STANDARD 20)
 
 #set (CMAKE_CXX_FLAGS "--std=c++11")

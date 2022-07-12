@@ -6,6 +6,7 @@
 #include "tree.h"
 #include "tree_node.h"
 #include <type_traits>
+#include <concepts>
 using namespace std;
 
 namespace Brush {
@@ -52,7 +53,10 @@ namespace Brush {
         /* using ArrayArgs = std::array<FirstArg,ArgCount>; */
         // enable if tuple
         template <std::size_t N>
-        using NthType = conditional_t<!is_array_v<Args>,typename std::tuple_element<N, Args>::type,void>;
+        using NthType = conditional_t<is_array_v<Args>,
+                                      typename Args::value_type,
+                                      typename std::tuple_element<N, Args>::type
+                                     >;
         
         static constexpr auto F = [](const auto& ...args){
             Function<NT> f{};
@@ -75,7 +79,7 @@ namespace Brush {
                         inputs.begin(), 
                         std::multiplies<>()
                         );
-        }
+        };
         //////////////////////////////////////////////////////////////////////////////////
         /// Utilities to grab child outputs.
         /* template<typename T> T get_kids(const Data&, TreeNode&, bool fit) const; */
@@ -99,43 +103,73 @@ namespace Brush {
 
 
         // get a std::tuple of kids
-        template<int I>
-        auto get_kid(TreeNode* first) const
+        template<int I,bool fit>
+        auto get_kid(const Data& d,TreeNode& tn ) const
         {
-            auto sib = first; 
+            auto sib = tn.first_child; 
             for (int i = 0 ; i < I; ++i)
                 sib = sib->next_sibling;
-            return sib;
+            /* return sib; */
+            if constexpr(fit)
+                return sib->fit<NthType<I>>(d);
+            else
+                return sib->predict<NthType<I>>(d);
         };
 
-        template<size_t ...Is> 
-        auto get_kids_seq(const Data& d, TreeNode& tn, bool fit, std::index_sequence<Is...>) const
-        {
-            /* static constexpr auto f = [&]( */
-            return std::make_tuple(
-                    fit ?  get_kid<Is>(tn.first_child)->fit<std::get<Is>(Args)>(d) : 
-                           get_kid<Is>(tn.first_child)->predict<std::get<Is>(Args)>(d)
-                        ...);
-        };
+        /* template<size_t ...Is> auto get_kids(const Data& d, TreeNode& tn, std::index_sequence<Is...>) const ; */
 
+        template<typename T, size_t ...Is>
+        enable_if_t<!is_array_v<T>, T> 
+        /* template<size_t ...Is> */ 
+        get_kids_seq(const Data& d, TreeNode& tn, bool fit, std::index_sequence<Is...>) const 
+        { 
+            return std::make_tuple(get_kid<Is,fit>(tn)...);
+        };
+        /* template<size_t ...Is> */ 
+        /* template<typename T, size_t ...Is> */
+        /* enable_if_t<!is_array_v<T>, T> */ 
+        /* get_kids_seq_predict(const Data& d, TreeNode& tn, std::index_sequence<Is...>) const */
+        /* { */ 
+        /*     return std::make_tuple(get_kid<Is>(tn)->predict<NthType<Is>>(d)...); */ 
+        /* }; */
+
+        /* template<size_t ...Is> */ 
+        /* auto get_kids_seq(const Data& d, TreeNode& tn, bool fit, std::index_sequence<Is...>) const */
+        /* { */
+        /*     template<bool F> */
+        /*     auto f = [&](auto&& ...args, auto&& ...Is) { */ 
+        /*         /1* using arg = typename std::get<i>(Args); *1/ */
+        /*         using arg = typename std::tuple_element<i, Args>::type; */
+        /*         auto kid = get_kid<i>(tn.first_child); */
+
+        /*         if (fit) */ 
+        /*         { */
+        /*             return kid->fit<arg>(d); */ 
+        /*         } */
+        /*         else */
+        /*         { */
+        /*             return kid->predict<arg>(d); */ 
+        /*         } */
+        /*     }; */
+        /*     return std::make_tuple(f(Is) ...); */
+        /* }; */
+
+        // tuple get kids
         template<typename T=Args>
         enable_if_t<!is_array_v<T>, T> 
         get_kids(const Data& d, TreeNode& tn, bool fit) const
         {
-            return get_kids_seq(d, tn, fit, std::make_index_sequence<ArgCount>{});
+            /* std::apply(, kid_outputs); */
+            return get_kids_seq<T>(d, tn, fit, std::make_index_sequence<ArgCount>{});
+            /* else */
+            /*     return get_kids_seq_predict<T>(d, tn, fit, std::make_index_sequence<ArgCount>{}); */
         };
 
         // fit and predict convenience functions
-        template<typename T=Args>
-        auto get_kids_fit(const Data& d, TreeNode& tn) const
-        {
-            return get_kids(d, tn, true);
-        };
+        /* template<typename T=Args> */
+        auto get_kids_fit(const Data& d, TreeNode& tn) const { return get_kids(d, tn, true); };
 
-        auto get_kids_predict(const Data& d, TreeNode& tn) const
-        {
-            return get_kids(d, tn, false);
-        };
+        auto get_kids_predict(const Data& d, TreeNode& tn) const { return get_kids(d, tn, false); };
 
         ///////////////////////////////////////////////////////////////////////////
         // fit and predict
@@ -196,7 +230,31 @@ namespace Brush {
     struct Operator<NodeType::Constant, S>
     {
         using RetType = typename Signature<S>::RetType;
-        RetType eval(const Data& d, TreeNode& tn) const { return RetType(tn.n.W.at(0)); };
+
+        template<typename T=RetType>
+        requires same_as<T, ArrayXf>
+        RetType eval(const Data& d, TreeNode& tn) const { 
+            return tn.n.W.at(0)*RetType(d.n_samples); 
+        };
+
+        template<typename T=RetType>
+        requires same_as<T, ArrayXb>
+        RetType eval(const Data& d, TreeNode& tn) const { 
+            return RetType(d.n_samples) > tn.n.W.at(0); 
+        };
+
+        template<typename T=RetType>
+        requires same_as<T, ArrayXXf>
+        RetType eval(const Data& d, TreeNode& tn) const { 
+            return tn.n.W.at(0)*RetType(d.n_samples, d.n_features); 
+        };
+
+        template<typename T=RetType>
+        requires same_as<T, ArrayXXb>
+        RetType eval(const Data& d, TreeNode& tn) const { 
+            return RetType(d.n_samples, d.n_features) > tn.n.W.at(0);
+        };
+        
         RetType fit(const Data& d, TreeNode& tn) const { return eval(d,tn); };
         RetType predict(const Data& d, TreeNode& tn) const { return eval(d,tn); };
     };
