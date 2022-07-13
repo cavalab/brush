@@ -4,7 +4,6 @@ copyright 2020 William La Cava
 license: GNU/GPL v3
 */
 #ifndef PROGRAM_H
-
 #define PROGRAM_H
 //external includes
 

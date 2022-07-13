@@ -57,11 +57,21 @@ endif()
 
 
 # Locate GTest
+# include(FetchContent)
+# FetchContent_Declare(
+#   googletest
+#   URL https://github.com/google/googletest/archive/609281088cfefc76f9d0ce82e1ff6c30cc3591e5.zip
+# )
 include(FetchContent)
 FetchContent_Declare(
   googletest
-  URL https://github.com/google/googletest/archive/609281088cfefc76f9d0ce82e1ff6c30cc3591e5.zip
+  GIT_REPOSITORY https://github.com/google/googletest.git
+  GIT_TAG release-1.12.1
 )
+# For Windows: Prevent overriding the parent project's compiler/linker settings
+set(gtest_force_shared_crt ON CACHE BOOL "" FORCE)
+FetchContent_MakeAvailable(googletest)
+
 # # if defined in environment
 # if (DEFINED ENV{GTEST_INCLUDE_DIRS} AND DEFINED ENV{GTEST_LIBRARIES})
 #     include_directories("$ENV{GTEST_INCLUDE_DIRS}")

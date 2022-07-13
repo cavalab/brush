@@ -46,12 +46,15 @@ using Brush::data::Data;
 /* template<class T> */
 /* void swap(T& x, T& y) { x.swap(y); } */
 
-
+//
 template <class T, class tree_node_allocator = std::allocator<tree_node_<T> > >
 class tree {
 	protected:
 		typedef tree_node_<T> tree_node;
 	public:
+
+        //WGL: destroy for c++ 20
+        /* using std::allocator_traits<tree_node_allocator>::destroy; */
 		/// Value of the data stored at a node.
 		typedef T value_type;
 
@@ -535,8 +538,11 @@ template <class T, class tree_node_allocator>
 tree<T, tree_node_allocator>::~tree()
 	{
 	clear();
-	alloc_.destroy(head);
-	alloc_.destroy(feet);
+	/* alloc_.destroy(head); */
+	/* alloc_.destroy(feet); */
+    // WGL
+    std::destroy_at(head);
+    std::destroy_at(feet);
 	alloc_.deallocate(head,1);
 	alloc_.deallocate(feet,1);
 	}
@@ -544,10 +550,14 @@ tree<T, tree_node_allocator>::~tree()
 template <class T, class tree_node_allocator>
 void tree<T, tree_node_allocator>::head_initialise_() 
    { 
-   head = alloc_.allocate(1,0); // MSVC does not have default second argument 
-	feet = alloc_.allocate(1,0);
-	alloc_.construct(head, tree_node_<T>());
-	alloc_.construct(feet, tree_node_<T>());
+   /* head = alloc_.allocate(1,0); // MSVC does not have default second argument */ 
+	/* feet = alloc_.allocate(1,0); */
+   head = alloc_.allocate(1); // WGL for c++20
+	feet = alloc_.allocate(1);
+    std::construct_at(head, tree_node_<T>());
+    std::construct_at(feet, tree_node_<T>());
+	/* alloc_.construct(head, tree_node_<T>()); */
+	/* alloc_.construct(feet, tree_node_<T>()); */
 
    head->parent=0;
    head->first_child=0;
@@ -634,7 +644,8 @@ void tree<T, tree_node_allocator>::erase_children(const iterator_base& it)
 		cur=cur->next_sibling;
 		erase_children(pre_order_iterator(prev));
 //		kp::destructor(&prev->n);
-		alloc_.destroy(prev);
+		/* alloc_.destroy(prev); */
+        std::destroy_at(prev);
 		alloc_.deallocate(prev,1);
 		}
 	it.node->first_child=0;
@@ -655,7 +666,9 @@ void tree<T, tree_node_allocator>::erase_right_siblings(const iterator_base& it)
 		cur=cur->next_sibling;
 		erase_children(pre_order_iterator(prev));
 //		kp::destructor(&prev->n);
-		alloc_.destroy(prev);
+		/* alloc_.destroy(prev); */
+        //WGL
+        std::destroy_at(prev);
 		alloc_.deallocate(prev,1);
 		}
 	it.node->next_sibling=0;
@@ -676,7 +689,9 @@ void tree<T, tree_node_allocator>::erase_left_siblings(const iterator_base& it)
 		cur=cur->prev_sibling;
 		erase_children(pre_order_iterator(prev));
 //		kp::destructor(&prev->n);
-		alloc_.destroy(prev);
+		/* alloc_.destroy(prev); */
+        //WGL
+        std::destroy_at(prev);
 		alloc_.deallocate(prev,1);
 		}
 	it.node->prev_sibling=0;
@@ -708,7 +723,10 @@ iter tree<T, tree_node_allocator>::erase(iter it)
 		}
 
 //	kp::destructor(&cur->n);
-	alloc_.destroy(cur);
+    /* alloc_.destroy(cur); */
+    //WGL
+    //std::allocator_traits<tree_node_allocator>::destroy
+    std::destroy_at(cur);
    alloc_.deallocate(cur,1);
 	return ret;
 	}
@@ -934,8 +952,9 @@ iter tree<T, tree_node_allocator>::append_child(iter position)
 	assert(position.node!=feet);
 	assert(position.node);
 
-	tree_node *tmp=alloc_.allocate(1,0);
-	alloc_.construct(tmp, tree_node_<T>());
+	/* tree_node *tmp=alloc_.allocate(1,0); */
+	tree_node *tmp=alloc_.allocate(1); // WGL
+	std::construct_at(tmp, tree_node_<T>());
 //	kp::constructor(&tmp->n);
 	tmp->first_child=0;
 	tmp->last_child=0;
@@ -961,8 +980,9 @@ iter tree<T, tree_node_allocator>::prepend_child(iter position)
 	assert(position.node!=feet);
 	assert(position.node);
 
-	tree_node *tmp=alloc_.allocate(1,0);
-	alloc_.construct(tmp, tree_node_<T>());
+	/* tree_node *tmp=alloc_.allocate(1,0); */
+	tree_node *tmp=alloc_.allocate(1); // WGL
+	std::construct_at(tmp, tree_node_<T>());
 //	kp::constructor(&tmp->n);
 	tmp->first_child=0;
 	tmp->last_child=0;
@@ -992,8 +1012,10 @@ iter tree<T, tree_node_allocator>::append_child(iter position, const T& x)
 	assert(position.node!=feet);
 	assert(position.node);
 
-	tree_node* tmp = alloc_.allocate(1,0);
-	alloc_.construct(tmp, x);
+	/* tree_node* tmp = alloc_.allocate(1,0); */
+	tree_node *tmp=alloc_.allocate(1); // WGL
+	/* alloc_.construct(tmp, x); */
+    std::construct_at(tmp, x);
 //	kp::constructor(&tmp->n, x);
 	tmp->first_child=0;
 	tmp->last_child=0;
@@ -1019,8 +1041,10 @@ iter tree<T, tree_node_allocator>::append_child(iter position, T&& x)
 	assert(position.node!=feet);
 	assert(position.node);
 
-	tree_node* tmp = alloc_.allocate(1,0);
-	alloc_.construct(tmp); // Here is where the move semantics kick in
+	/* tree_node* tmp = alloc_.allocate(1,0); */
+	tree_node *tmp=alloc_.allocate(1); // WGL
+	/* alloc_.construct(tmp); // Here is where the move semantics kick in */
+    std::construct_at(tmp); // Here is where the move semantics kick in
 	/* tmp->n.swap(x); */
     std::swap(tmp->n,x);
 
@@ -1048,8 +1072,9 @@ iter tree<T, tree_node_allocator>::prepend_child(iter position, const T& x)
 	assert(position.node!=feet);
 	assert(position.node);
 
-	tree_node* tmp = alloc_.allocate(1,0);
-	alloc_.construct(tmp, x);
+	/* tree_node* tmp = alloc_.allocate(1,0); */
+	tree_node *tmp=alloc_.allocate(1); // WGL
+	std::construct_at(tmp, x);
 //	kp::constructor(&tmp->n, x);
 	tmp->first_child=0;
 	tmp->last_child=0;
@@ -1075,8 +1100,9 @@ iter tree<T, tree_node_allocator>::prepend_child(iter position, T&& x)
 	assert(position.node!=feet);
 	assert(position.node);
 
-	tree_node* tmp = alloc_.allocate(1,0);
-	alloc_.construct(tmp);
+	/* tree_node* tmp = alloc_.allocate(1,0); */
+	tree_node *tmp=alloc_.allocate(1); // WGL
+	std::construct_at(tmp);
 	/* tmp->n.swap(x); */
     std::swap(tmp->n,x);
 
@@ -1180,8 +1206,10 @@ iter tree<T, tree_node_allocator>::insert(iter position, const T& x)
 		}
 	assert(position.node!=head); // Cannot insert before head.
 
-	tree_node* tmp = alloc_.allocate(1,0);
-	alloc_.construct(tmp, x);
+	/* tree_node* tmp = alloc_.allocate(1,0); */
+	tree_node *tmp=alloc_.allocate(1); // WGL
+	/* alloc_.construct(tmp, x); */
+    std::construct_at(tmp, x);
 //	kp::constructor(&tmp->n, x);
 	tmp->first_child=0;
 	tmp->last_child=0;
@@ -1208,8 +1236,10 @@ iter tree<T, tree_node_allocator>::insert(iter position, T&& x)
 		position.node=feet; // Backward compatibility: when calling insert on a null node,
 		                    // insert before the feet.
 		}
-	tree_node* tmp = alloc_.allocate(1,0);
-	alloc_.construct(tmp);
+	/* tree_node* tmp = alloc_.allocate(1,0); */
+	tree_node *tmp=alloc_.allocate(1); // WGL
+	/* alloc_.construct(tmp); */
+    std::construct_at(tmp);
 	/* tmp->n.swap(x); // Move semantics */
     std::swap(tmp->n,x);
 	tmp->first_child=0;
@@ -1232,8 +1262,9 @@ iter tree<T, tree_node_allocator>::insert(iter position, T&& x)
 template <class T, class tree_node_allocator>
 typename tree<T, tree_node_allocator>::sibling_iterator tree<T, tree_node_allocator>::insert(sibling_iterator position, const T& x)
 	{
-	tree_node* tmp = alloc_.allocate(1,0);
-	alloc_.construct(tmp, x);
+	/* tree_node* tmp = alloc_.allocate(1,0); */
+	tree_node *tmp=alloc_.allocate(1); // WGL
+	std::construct_at(tmp, x);
 //	kp::constructor(&tmp->n, x);
 	tmp->first_child=0;
 	tmp->last_child=0;
@@ -1263,8 +1294,9 @@ template <class T, class tree_node_allocator>
 template <class iter>
 iter tree<T, tree_node_allocator>::insert_after(iter position, const T& x)
 	{
-	tree_node* tmp = alloc_.allocate(1,0);
-	alloc_.construct(tmp, x);
+	/* tree_node* tmp = alloc_.allocate(1,0); */
+	tree_node *tmp=alloc_.allocate(1); // WGL
+	std::construct_at(tmp, x);
 //	kp::constructor(&tmp->n, x);
 	tmp->first_child=0;
 	tmp->last_child=0;
@@ -1288,8 +1320,9 @@ template <class T, class tree_node_allocator>
 template <class iter>
 iter tree<T, tree_node_allocator>::insert_after(iter position, T&& x)
 	{
-	tree_node* tmp = alloc_.allocate(1,0);
-	alloc_.construct(tmp);
+	/* tree_node* tmp = alloc_.allocate(1,0); */
+	tree_node *tmp=alloc_.allocate(1); // WGL
+	std::construct_at(tmp);
 	/* tmp->n.swap(x); // move semantics */
     std::swap(tmp->n,x);
 //	kp::constructor(&tmp->n, x);
@@ -1366,8 +1399,10 @@ iter tree<T, tree_node_allocator>::replace(iter position, const iterator_base& f
 //	std::cout << "warning!" << position.node << std::endl;
 	erase_children(position);	
 //	std::cout << "no warning!" << std::endl;
-	tree_node* tmp = alloc_.allocate(1,0);
-	alloc_.construct(tmp, (*from));
+	/* tree_node* tmp = alloc_.allocate(1,0); */
+	tree_node *tmp=alloc_.allocate(1); // WGL
+	/* alloc_.construct(tmp, (*from)); */
+    std::construct_at(tmp, (*from));
 //	kp::constructor(&tmp->n, (*from));
 	tmp->first_child=0;
 	tmp->last_child=0;
@@ -1389,7 +1424,8 @@ iter tree<T, tree_node_allocator>::replace(iter position, const iterator_base& f
 	tmp->next_sibling=current_to->next_sibling;
 	tmp->parent=current_to->parent;
 //	kp::destructor(&current_to->n);
-	alloc_.destroy(current_to);
+	/* alloc_.destroy(current_to); */
+    std::destroy_at(current_to);
 	alloc_.deallocate(current_to,1);
 	current_to=tmp;
 	

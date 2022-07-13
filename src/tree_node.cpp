@@ -2,6 +2,18 @@
 
 namespace Brush {
 
+DispatchTable<
+              ArrayXf
+              /* ArrayXb, */
+              /* ArrayXi, */ 
+              /* ArrayXf, */ 
+              /* ArrayXXb, */
+              /* ArrayXXi, */ 
+              /* ArrayXXf, */ 
+              /* TimeSeriesb, */
+              /* TimeSeriesi, */
+              /* TimeSeriesf */
+             > dtable;
         /* template<typename T> */
         /* auto tree_node_<Node>::eval(const Data& d) */
         /* { */ 

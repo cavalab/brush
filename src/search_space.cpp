@@ -2,6 +2,23 @@
 
 namespace Brush{
 
+NodeVector generate_terminals(const Data& d)
+{
+    NodeVector terminals;
+    int i = 0;
+    for ( const auto &[name, value]: d.features ) 
+    {
+        auto data_type = d.data_types.at(i);
+        // note: structured bindings cannot be captured by lambdas until C++20
+        /* std::cout << "generating terminal " << key << "of type " << value << endl; */
+        // terminals.push_back(make_shared<Terminal>(var, d[var]));
+
+        terminals.push_back(Node(NodeType::Terminal, data_type, name));
+        ++i;
+    };
+    return terminals;
+};
+
     //TODO: overhaul like Dispatchtable
 /* void GenerateNodes(std::make_index_sequence<NodeTypes::Count>{}); */ 
 /* set<Node> generate_all_nodes(vector<string>& node_names, set<DataType> term_types) */
@@ -36,21 +53,6 @@ namespace Brush{
 /*     return nodes; */
 /* } */
 
-NodeVector generate_terminals(const Data& d)
-{
-    NodeVector terminals;
-    int i = 0;
-    for ( const auto &[name, value]: d.features ) 
-    {
-        auto data_type = d.data_types.at(i);
-        // note: structured bindings cannot be captured by lambdas until C++20
-        /* std::cout << "generating terminal " << key << "of type " << value << endl; */
-        // terminals.push_back(make_shared<Terminal>(var, d[var]));
 
-        terminals.push_back(Node(NodeType::Terminal, data_type, name));
-        ++i;
-    };
-    return terminals;
-};
 
 } //Brush

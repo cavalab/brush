@@ -1,5 +1,5 @@
-#ifndef tree_node_h
-#define tree_node_h
+#ifndef TREE_NODE_H
+#define TREE_NODE_H
 #include <tuple>
 #include <unordered_map>
 
@@ -171,10 +171,7 @@ private:
     static constexpr auto AddOperator(std::index_sequence<Is...>)
     {
         SigMap sm;
-        (sm.insert({std:get<Is>(S), 
-                    detail::MakeOperator<NT, std::get<Is>(S)>() 
-                   }),
-         ...);
+        (sm.insert({std::get<Is>(S), detail::MakeOperator<NT, std::get<Is>(S)>()}), ...);
         return sm;
     }
     template<NodeType NT>
@@ -260,7 +257,7 @@ public:
     /* [[nodiscard]] auto Contains(Operon::Hash hash) const noexcept -> bool { return map_.contains(hash); } */
 };
 
-DispatchTable<
+extern DispatchTable<
               ArrayXf
               /* ArrayXb, */
               /* ArrayXi, */ 
@@ -288,6 +285,22 @@ auto TreeNode::predict(const Data& d)
     return F(d, (*this));
 };
 
+string TreeNode::get_model(bool pretty) const 
+{ 
+    string child_outputs = "";
+    auto sib = first_child;
+    for(int i = 0; i < this->n.get_arg_count(); ++i)
+    {
+        child_outputs += sib->get_model(pretty);
+        sib = sib->next_sibling;
+        if (sib != nullptr)
+            child_outputs += ",";
+    }
+    /* if (pretty) */
+    /*     return this->n.op_name + "(" + child_outputs + ")"; */
+    /* else */
+    return this->n.name + "(" + child_outputs + ")";
+};
 
 }// Brush
 #endif
