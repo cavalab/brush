@@ -53,8 +53,8 @@ class tree_node_<Node> { // size: 5*4=20 bytes (on 32 bit arch), can be reduced 
         auto predict(const Data& d); //{ State s; return std::get<T>(s);};
         /* auto predict(const Data& d) const; */ 
         /* /1* void grad_descent(const ArrayXf&, const Data&); *1/ */
-		string get_model(bool pretty=false);
-		string get_tree_model(bool pretty=false, string offset="");
+		string get_model(bool pretty=false) const;
+		string get_tree_model(bool pretty=false, string offset="") const;
     private:
         
 
@@ -285,22 +285,6 @@ auto TreeNode::predict(const Data& d)
     return F(d, (*this));
 };
 
-string TreeNode::get_model(bool pretty) const 
-{ 
-    string child_outputs = "";
-    auto sib = first_child;
-    for(int i = 0; i < this->n.get_arg_count(); ++i)
-    {
-        child_outputs += sib->get_model(pretty);
-        sib = sib->next_sibling;
-        if (sib != nullptr)
-            child_outputs += ",";
-    }
-    /* if (pretty) */
-    /*     return this->n.op_name + "(" + child_outputs + ")"; */
-    /* else */
-    return this->n.name + "(" + child_outputs + ")";
-};
 
 }// Brush
 #endif

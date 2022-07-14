@@ -47,14 +47,15 @@ T RandomDequeue(std::vector<T>& Q)
     return val;
 }
 
-tree<Node> make_program(SearchSpace& SS, type_index root_type, 
+tree<Node> make_program(SearchSpace& SS, DataType root_type, 
                             int max_d, int max_breadth, int max_size);
 
 // TODO: instead of templating this, define meaningful derived classes
 // for unsupervised learning, classification and regression. 
 template<typename T> class Program //: public tree<Node>
 {
-
+    /* using RetType = typename DataTypeType<T>::type; */
+    const DataType RetDataType = DataTypeEnum<T>::value;
     public:
 
     /// the underlying program
@@ -74,25 +75,25 @@ template<typename T> class Program //: public tree<Node>
         if (size == 0)
             size = r.rnd_int(1, params.max_size);
 
-        this->prg = make_program(this->SS, typeid(T), depth, breadth, size);
+        this->prg = make_program(this->SS, RetDataType, depth, breadth, size);
     };
 
     T fit(const Data& d)
     {
         // Check to see if the program has been initialized. If not, call an
         // init method
-        Iter start = prg.begin(); 
-        T out = start.node->fit<T>(d);
+        Iter head = prg.begin(); 
+        T out = head.node->fit<T>(d);
         return out;
     };
 
     T predict(const Data& d)
     {
-        Iter start = prg.begin(); 
-        /* State out = start.node->predict(d); */
+        Iter head = prg.begin(); 
+        /* State out = head.node->predict(d); */
         /* cout << "Program::predict"; */
         /* return std::get<T>(out); */
-        T out = start.node->predict<T>(d);
+        T out = head.node->predict<T>(d);
         return out;
     };
 
@@ -105,12 +106,15 @@ template<typename T> class Program //: public tree<Node>
 
     string get_model(bool pretty=false)
     {
-        return prg.get_model(pretty);
+        Iter head = prg.begin(); 
+        return head.node->get_model(pretty);
     }
 
     string get_tree_model(bool pretty=false)
     {
-        return prg.get_tree_model(pretty);
+        /* return prg.get_tree_model(pretty); */
+        Iter head = prg.begin(); 
+        return head.node->get_model(pretty);
     }
 
     ////////////////////////////////////////////////////////////////////////////

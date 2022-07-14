@@ -427,16 +427,16 @@ class tree {
 					}
 		};
 		tree_node *head, *feet;    // head/feet are always dummy; if an iterator points to them it is invalid
-		////////////////////////////////////////////////////////////////////////
-		// WGL changes
-		string get_model(bool pretty=false)
-		{ 
-			return this->head->next_sibling->get_model(pretty);
-		};
-		string get_tree_model(bool pretty=false)
-		{ 
-			return this->head->next_sibling->get_tree_model(pretty);
-		};
+		/* //////////////////////////////////////////////////////////////////////// */
+		/* // WGL changes */
+		/* string get_model(bool pretty=false) */
+		/* { */ 
+		/* 	return this->head->next_sibling->get_model(pretty); */
+		/* }; */
+		/* string get_tree_model(bool pretty=false) */
+		/* { */ 
+		/* 	return this->head->next_sibling->get_tree_model(pretty); */
+		/* }; */
 	private:
 		tree_node_allocator alloc_;
 		void head_initialise_();

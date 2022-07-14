@@ -145,7 +145,7 @@ struct Node {
     /* } */
 
     auto get_name() const noexcept -> std::string const&;
-    auto get_desc() const noexcept -> std::string const&;
+    /* auto get_desc() const noexcept -> std::string const&; */
 
     // get return type and argument types. 
     // these should come from a mapping. 

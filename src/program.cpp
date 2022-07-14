@@ -98,8 +98,10 @@ tree<Node> make_program(SearchSpace& SS, DataType root_type,
         }
     }
     cout << "final program:\n" 
-         << prg.get_model() << "\n" 
-         << prg.get_model(true) << endl; // pretty
+        << prg.head->get_model() << "\n"
+        << prg.head->get_model(true) << endl;
+         /* << prg.get_model() << "\n" */ 
+         /* << prg.get_model(true) << endl; // pretty */
 
     return prg;
 };
