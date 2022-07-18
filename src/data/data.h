@@ -181,6 +181,26 @@ struct TimeSeries
     inline auto square() { return this->transform([](const EntryType& i){ return i.square(); } ); };
     // reduction overloads
     inline auto sum() { return this->reduce([](const EntryType& i){ return i.sum(); } ); };
+    inline auto median() { return this->reduce([](const EntryType& i){ return Util::median(i); } ); };
+
+    template<typename T2>
+    inline auto before(const TimeSeries<T2>& t2) const { 
+        // return elements of this that are before elements in t2
+        // TODO
+        return (*this); 
+    };
+    template<typename T2>
+    inline auto after(const TimeSeries<T2>& t2) const { 
+        // return elements of this that are after elements in t2
+        // TODO
+        return (*this); 
+    };
+    template<typename T2>
+    inline auto during(const TimeSeries<T2>& t2) const { 
+        // return elements of this that occur within the window in which elements of t2 occur
+        // TODO
+        return (*this); 
+    };
 
 };
 
@@ -304,6 +324,8 @@ class Data
         std::vector<DataType> data_types;
         Util::TypeMap<vector<string>> features_of_type;
 
+        // TODO: this should probably be a more complex type to include feature type 
+        // and potentially other info, like arbitrary relations between features
         std::map<string, State> features;
 
         // ArrayXXf& X;
@@ -388,7 +410,7 @@ template<> struct DataTypeEnum<data::TimeSeriesb>{ static constexpr DataType val
 template<> struct DataTypeEnum<data::TimeSeriesi>{ static constexpr DataType value = DataType::TimeSeriesI; };
 template<> struct DataTypeEnum<data::TimeSeriesf>{ static constexpr DataType value = DataType::TimeSeriesF; };
 
-extern map<DataType,std::type_index>  DataTypeID;
+extern const map<DataType,std::type_index>  DataTypeID;
 extern map<std::type_index,DataType>  DataIDType;
 
 } // Brush

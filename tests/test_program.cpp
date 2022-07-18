@@ -1,6 +1,7 @@
 #include "testsHeader.h"
 #include "../src/search_space.h"
 #include "../src/program.h"
+#include "../src/operator.h"
 
 TEST(Program, MakeProgram)
 {
@@ -40,7 +41,8 @@ TEST(Program, MakeProgram)
             Program<ArrayXf> PRG(SS, d, 0, s);
             cout << "=================================================" << "\n";
             cout << "Tree model for depth = " << d << ", size = " << s << ":\n";
-            cout << PRG.get_tree_model(true) << endl;
+            /* cout << PRG.get_tree_model(true) << endl; */
+            cout << PRG.get_model(true) << endl;
             cout << "=================================================" << "\n";
         }
 }

@@ -1,5 +1,6 @@
 #include "testsHeader.h"
 #include "../src/search_space.h"
+#include "../src/program.h"
 
 TEST(SearchSpace, Initialization)
 {

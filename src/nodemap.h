@@ -60,60 +60,61 @@ enum class NodeType : uint64_t {
     Sinh                = 1UL << 9UL,
     Tan                 = 1UL << 10UL,
     Tanh                = 1UL << 11UL,
-    Ceil                = 1UL << 13UL,
-    Floor               = 1UL << 14UL,
-    Exp                 = 1UL << 15UL,
-    Log                 = 1UL << 16UL,
-    Logabs              = 1UL << 17UL,
-    Log1p               = 1UL << 18UL,
-    Sqrt                = 1UL << 19UL,
-    Sqrtabs             = 1UL << 20UL,
-    Square              = 1UL << 21UL,
-    Not                 = 1UL << 22UL,
+    Ceil                = 1UL << 12UL,
+    Floor               = 1UL << 13UL,
+    Exp                 = 1UL << 14UL,
+    Log                 = 1UL << 15UL,
+    Logabs              = 1UL << 16UL,
+    Log1p               = 1UL << 17UL,
+    Sqrt                = 1UL << 18UL,
+    Sqrtabs             = 1UL << 19UL,
+    Square              = 1UL << 20UL,
+    Not                 = 1UL << 21UL,
     // timing masks
-    Before              = 1UL << 23UL,
-    After               = 1UL << 24UL,
-    During              = 1UL << 25UL,
-    CustomUnaryOp       = 1UL << 26UL,
+    Before              = 1UL << 22UL,
+    After               = 1UL << 23UL,
+    During              = 1UL << 24UL,
     // Reducers
-    Min                 = 1UL << 28UL,
-    Max                 = 1UL << 29UL,
-    Mean                = 1UL << 30UL,
-    Median              = 1UL << 31UL,
-    Count               = 1UL << 32UL,
-    Sum                 = 1UL << 33UL,
+    Min                 = 1UL << 25UL,
+    Max                 = 1UL << 26UL,
+    Mean                = 1UL << 27UL,
+    Median              = 1UL << 28UL,
+    Count               = 1UL << 29UL,
+    Sum                 = 1UL << 30UL,
     // Binary
-    Add                 = 1UL << 35UL,
-    Sub                 = 1UL << 36UL,
-    Mul                 = 1UL << 37UL,
-    Div                 = 1UL << 38UL,
-    Pow                 = 1UL << 39UL,
-    And                 = 1UL << 40UL,
-    Or                  = 1UL << 41UL,
-    Xor                 = 1UL << 42UL,
+    Add                 = 1UL << 31UL,
+    Sub                 = 1UL << 32UL,
+    Mul                 = 1UL << 33UL,
+    Div                 = 1UL << 34UL,
+    Pow                 = 1UL << 35UL,
+    And                 = 1UL << 36UL,
+    Or                  = 1UL << 37UL,
+    Xor                 = 1UL << 38UL,
     // these ones change type
-    Equals              = 1UL << 43UL,
-    LessThan            = 1UL << 44UL,
-    GreaterThan         = 1UL << 45UL,
-    Leq                 = 1UL << 46UL,
-    Geq                 = 1UL << 47UL,
-    CustomBinaryOp      = 1UL << 48UL,
+    Equals              = 1UL << 39UL,
+    LessThan            = 1UL << 40UL,
+    GreaterThan         = 1UL << 41UL,
+    Leq                 = 1UL << 42UL,
+    Geq                 = 1UL << 43UL,
     //split
-    SplitBest           = 1UL << 50UL,
-    SplitOn             = 1UL << 51UL,
-    CustomSplit         = 1UL << 52UL
+    SplitBest           = 1UL << 44UL,
+    SplitOn             = 1UL << 45UL,
+    // custom
+    CustomUnaryOp       = 1UL << 46UL,
+    CustomBinaryOp      = 1UL << 47UL,
+    CustomSplit         = 1UL << 48UL
 };
 
 
 using UnderlyingNodeType = std::underlying_type_t<NodeType>;
 struct NodeTypes {
     // magic number keeping track of the number of different node types
-    static constexpr size_t Count = 10;
+    static constexpr size_t Count = 38;
 
     // returns the index of the given type in the NodeType enum
     static auto GetIndex(NodeType type) -> size_t
     {
-        return std::bitset<Count>(static_cast<std::underlying_type_t<NodeType>>(type)).count();
+        return std::bitset<Count>(static_cast<UnderlyingNodeType>(type)).count();
     }
 };
 
@@ -192,12 +193,6 @@ enum class SigType : uint32_t {
     ArrayFtoArrayB,
     ArrayFtoArrayI,
     ArrayItoArrayB,
-    ArrayFArrayFtoArrayF,
-    ArrayIArrayItoArrayI,
-    ArrayBArrayBtoArrayB,
-    ArrayFArrayFtoArrayB,
-    ArrayFArrayFtoArrayI,
-    ArrayIArrayItoArrayB,
     MatrixFtoMatrixF,
     MatrixItoMatrixI,
     MatrixBtoMatrixB,
@@ -205,12 +200,24 @@ enum class SigType : uint32_t {
     MatrixFtoMatrixI,
     MatrixItoMatrixB,
     MatrixItoMatrixF,
+    TimeSeriesFtoTimeSeriesF,
+    TimeSeriesItoTimeSeriesI,
+    TimeSeriesBtoTimeSeriesB,
+    ArrayFArrayFtoArrayF,
+    ArrayIArrayItoArrayI,
+    ArrayBArrayBtoArrayB,
+    ArrayFArrayFtoArrayB,
+    ArrayFArrayFtoArrayI,
+    ArrayIArrayItoArrayB,
     MatrixFMatrixFtoMatrixF,
     MatrixIMatrixItoMatrixI,
     MatrixBMatrixBtoMatrixB,
     MatrixFMatrixFtoMatrixB,
     MatrixFMatrixFtoMatrixI,
     MatrixIMatrixItoMatrixB,
+    TimeSeriesFTimeSeriesFtoTimeSeriesF,
+    TimeSeriesITimeSeriesItoTimeSeriesI,
+    TimeSeriesBTimeSeriesBtoTimeSeriesB,
     MatrixFtoArrayF,
     MatrixItoArrayI,
     MatrixBtoArrayB,
@@ -221,26 +228,31 @@ enum class SigType : uint32_t {
     MatrixBtoArrayF,
     ArrayFArrayFArrayFtoArrayF
 };
-template<SigType S = SigType::ArrayFtoArrayF> struct Signature{ 
-    using RetType = ArrayXf; 
-    using ArgTypes = std::array<ArrayXf,1>; 
-    static constexpr size_t ArgCount=1;
-};
-template<> struct Signature<SigType::ArrayItoArrayI>{ 
-    using RetType = ArrayXi; 
-    using ArgTypes = std::array<ArrayXi,1>;
-    static constexpr size_t ArgCount=1;
-};
-template<> struct Signature<SigType::ArrayBtoArrayB>{ 
-    using RetType = ArrayXb; 
-    using ArgTypes = std::array<ArrayXb,1>;
-    static constexpr size_t ArgCount=1;
-};
-template<> struct Signature<SigType::ArrayF>{ 
-    using RetType = ArrayXf; 
-    using ArgTypes = std::array<ArrayXf,0>;
-    static constexpr size_t ArgCount=0;
-};
+
+template<SigType S = SigType::ArrayF> struct Signature{ using RetType = ArrayXf; using ArgTypes = std::array<ArrayXf,0>; static constexpr size_t ArgCount=0; };
+template<> struct Signature<SigType::ArrayB>{ using RetType = ArrayXb; using ArgTypes = std::array<ArrayXb,0>; static constexpr size_t ArgCount=0; };
+template<> struct Signature<SigType::ArrayI>{ using RetType = ArrayXi; using ArgTypes = std::array<ArrayXi,0>; static constexpr size_t ArgCount=0; };
+template<> struct Signature<SigType::ArrayFtoArrayF> { using RetType = ArrayXf; using ArgTypes = std::array<ArrayXf,1>; static constexpr size_t ArgCount=1; };
+template<> struct Signature<SigType::ArrayItoArrayI>{ using RetType = ArrayXi; using ArgTypes = std::array<ArrayXi,1>; static constexpr size_t ArgCount=1; };
+template<> struct Signature<SigType::ArrayBtoArrayB>{ using RetType = ArrayXb; using ArgTypes = std::array<ArrayXb,1>; static constexpr size_t ArgCount=1; };
+template<> struct Signature<SigType::MatrixFtoMatrixF>{ using RetType = ArrayXXf; using ArgTypes = std::array<ArrayXXf,1>; static constexpr size_t ArgCount=1; };
+template<> struct Signature<SigType::MatrixItoMatrixI>{ using RetType = ArrayXXi; using ArgTypes = std::array<ArrayXXi,1>; static constexpr size_t ArgCount=1; };
+template<> struct Signature<SigType::MatrixBtoMatrixB>{ using RetType = ArrayXXb; using ArgTypes = std::array<ArrayXXb,1>; static constexpr size_t ArgCount=1; };
+template<> struct Signature<SigType::MatrixFtoArrayF>{ using RetType = ArrayXf; using ArgTypes = std::array<ArrayXXf,1>; static constexpr size_t ArgCount=1; };
+template<> struct Signature<SigType::MatrixItoArrayI>{ using RetType = ArrayXi; using ArgTypes = std::array<ArrayXXi,1>; static constexpr size_t ArgCount=1; };
+template<> struct Signature<SigType::MatrixBtoArrayB>{ using RetType = ArrayXb; using ArgTypes = std::array<ArrayXXb,1>; static constexpr size_t ArgCount=1; };
+template<> struct Signature<SigType::MatrixItoArrayF>{ using RetType = ArrayXf; using ArgTypes = std::array<ArrayXXi,1>; static constexpr size_t ArgCount=1; };
+template<> struct Signature<SigType::MatrixBtoArrayF>{ using RetType = ArrayXf; using ArgTypes = std::array<ArrayXXb,1>; static constexpr size_t ArgCount=1; };
+template<> struct Signature<SigType::TimeSeriesFtoTimeSeriesF>{ using RetType = TimeSeriesf; using ArgTypes = std::array<TimeSeriesf,1>; static constexpr size_t ArgCount=1; }; 
+template<> struct Signature<SigType::TimeSeriesBtoTimeSeriesB>{ using RetType = TimeSeriesb; using ArgTypes = std::array<TimeSeriesb,1>; static constexpr size_t ArgCount=1; }; 
+template<> struct Signature<SigType::TimeSeriesItoTimeSeriesI>{ using RetType = TimeSeriesi; using ArgTypes = std::array<TimeSeriesi,1>; static constexpr size_t ArgCount=1; }; 
+template<> struct Signature<SigType::ArrayFArrayFtoArrayF>{ using RetType = ArrayXf; using ArgTypes = std::array<ArrayXf,2>; static constexpr size_t ArgCount=2; }; 
+template<> struct Signature<SigType::ArrayIArrayItoArrayI>{ using RetType = ArrayXi; using ArgTypes = std::array<ArrayXi,2>; static constexpr size_t ArgCount=2; };
+template<> struct Signature<SigType::ArrayBArrayBtoArrayB>{ using RetType = ArrayXb; using ArgTypes = std::array<ArrayXb,2>; static constexpr size_t ArgCount=2; };
+template<> struct Signature<SigType::ArrayFArrayFArrayFtoArrayF>{ using RetType = ArrayXf; using ArgTypes = std::array<ArrayXf,3>; static constexpr size_t ArgCount=3; }; 
+template<> struct Signature<SigType::TimeSeriesFTimeSeriesFtoTimeSeriesF>{ using RetType = TimeSeriesf; using ArgTypes = std::array<TimeSeriesf,2>; static constexpr size_t ArgCount=2; }; 
+template<> struct Signature<SigType::TimeSeriesBTimeSeriesBtoTimeSeriesB>{ using RetType = TimeSeriesb; using ArgTypes = std::array<TimeSeriesb,2>; static constexpr size_t ArgCount=2; }; 
+template<> struct Signature<SigType::TimeSeriesITimeSeriesItoTimeSeriesI>{ using RetType = TimeSeriesi; using ArgTypes = std::array<TimeSeriesi,2>; static constexpr size_t ArgCount=2; }; 
 
 // Signatures gives a set of SigType for each node
 
@@ -323,14 +335,13 @@ template<NodeType N>
 struct Signatures<N, enable_if_t<is_one_of_v<N, 
     NodeType::Before,
     NodeType::After,
-    NodeType::During,
-    NodeType::CustomUnaryOp
+    NodeType::During
     >>>{ 
         //TODO: Fix
         static constexpr array<SigType,3> value = { 
-            SigType::MatrixFtoArrayF, 
-            SigType::MatrixItoArrayI,
-            SigType::MatrixBtoArrayB,
+            SigType::TimeSeriesFTimeSeriesFtoTimeSeriesF, 
+            SigType::TimeSeriesITimeSeriesItoTimeSeriesI, 
+            SigType::TimeSeriesBTimeSeriesBtoTimeSeriesB
         };
     }; 
 template<NodeType N>
@@ -341,7 +352,7 @@ struct Signatures<N, enable_if_t<is_one_of_v<N,
         static constexpr array<SigType,3> value = { 
             SigType::MatrixFtoArrayF, 
             SigType::MatrixItoArrayI,
-            SigType::MatrixBtoArrayB,
+            SigType::MatrixBtoArrayB
         };
     }; 
 

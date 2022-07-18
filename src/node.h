@@ -55,25 +55,6 @@ struct uint32_vector_hasher {
 };
 
 
-// TODO:
-// define NodeGroup Enum
-// define a map of NodeTypes to their input-output mappings
-// define the actual templated functions
-
-/* defines groupings of nodes that share common fitting conditions. 
-*/
-/* enum class NodeGroup : __UINT32_TYPE__ */
-/* { */
-/*     UnaryOperator, */
-/*     BinaryOperator, */
-/*     NaryOperator, */
-/*     Split, */
-/*     Leaf, */
-/* }; */
-
-
-
-
 struct Node {
 
     /// full name of the node, with types
@@ -88,7 +69,7 @@ struct Node {
     // inline int getNextId() { return ++sNextId; };
 
     NodeType node_type;
-    ExecType exec_type;
+    /* ExecType exec_type; */
     SigType sig_type;
     DataType ret_type;
     std::vector<DataType> arg_types;
@@ -108,10 +89,12 @@ struct Node {
         , sig_type(sig)
         , ret_type(output_type)
         /* , ret_type(DataTypeName<Signature<sig>::RetType>>) */
-        , exec_type(NodeSchema[NodeTypeName[type]]["ExecType"])
+        /* , exec_type(NodeSchema[NodeTypeName[type]]["ExecType"]) */
         /* , arg_types(NodeSchema[NodeTypeName[type]]["Signature"][DataTypeName[output_type]]) */
         , is_weighted(weighted)
-    {}
+    {
+        cout << "instantiated " << name << " with return type" << DataTypeName.at(ret_type) << endl;
+    }
 
     explicit Node(NodeType type, DataType output_type, string feature_name) noexcept
         : node_type(type)
@@ -119,11 +102,13 @@ struct Node {
         /* , sig_type(SigType::) */
         , ret_type(output_type)
         , feature(feature_name)
-        , exec_type(NodeSchema[NodeTypeName[type]]["ExecType"])
+        /* , exec_type(NodeSchema[NodeTypeName[type]]["ExecType"]) */
         /* , arg_types(NodeSchema[NodeTypeName[type]]["Signature"][DataTypeName[output_type]]) */
         , is_weighted(false)
     {
         //TODO: set sig_type
+        cout << "instantiated " << name << " from feature " << feature << endl;
+        
     }
         // if (Type < NodeType::Abs) // Add, Mul, Sub, Div, Aq, Pow
         // {

@@ -24,6 +24,21 @@ map<DataType,string>  DataTypeName = {
 };
 map<string,DataType> DataNameType = Util::reverse_map(DataTypeName);
 
+const map<DataType,std::type_index>  DataTypeID = {
+    {DataType::ArrayB, typeid(ArrayXb)},
+    {DataType::ArrayI, typeid(ArrayXi)},
+    {DataType::ArrayF, typeid(ArrayXf)},
+    {DataType::MatrixB, typeid(ArrayXXb)},
+    {DataType::MatrixI, typeid(ArrayXXi)},
+    {DataType::MatrixF, typeid(ArrayXXf)},
+    {DataType::TimeSeriesB, typeid(data::TimeSeriesb)},
+    {DataType::TimeSeriesI,typeid(data::TimeSeriesi)},
+    {DataType::TimeSeriesF, typeid(data::TimeSeriesf)},
+};
+map<std::type_index,DataType> DataIDType = Util::reverse_map(DataTypeID);
+
+namespace data{
+
 std::vector<std::type_index> StateTypes = {
                       typeid(ArrayXb),
                       typeid(ArrayXi), 
@@ -35,8 +50,6 @@ std::vector<std::type_index> StateTypes = {
                       typeid(data::TimeSeriesi),
                       typeid(data::TimeSeriesf)
 };
-
-namespace data{
 
 // /// returns the type_index held in arg
 std::type_index StateType(const State& arg)
@@ -146,7 +159,8 @@ void Data::init()
         // save feature types
         std::type_index feature_type = StateType(value);
 
-        Util::unique_insert(this->data_types, DataIDType[feature_type]);
+        /* Util::unique_insert(this->data_types, DataIDType[feature_type]); */
+        this->data_types.push_back( DataIDType[feature_type]);
         // add feature to appropriate map list 
         this->features_of_type[feature_type].push_back(name);
     }
@@ -195,18 +209,6 @@ map<string, State> Data::make_features(const Ref<const ArrayXXf>& X,
     return tmp_features;
 };
 
-const map<DataType,std::type_index>  DataTypeID = {
-    {DataType::ArrayB, typeid(ArrayXb)},
-    {DataType::ArrayI, typeid(ArrayXi)},
-    {DataType::ArrayF, typeid(ArrayXf)},
-    {DataType::MatrixB, typeid(ArrayXXb)},
-    {DataType::MatrixI, typeid(ArrayXXi)},
-    {DataType::MatrixF, typeid(ArrayXXf)},
-    {DataType::TimeSeriesB, typeid(data::TimeSeriesb)},
-    {DataType::TimeSeriesI,typeid(data::TimeSeriesi)},
-    {DataType::TimeSeriesF, typeid(data::TimeSeriesf)},
-};
-const auto DataIDType = Util::reverse_map(DataTypeID);
     
 } // data
 } // Brush

@@ -6,7 +6,8 @@
 # ./configure profile: build a version of brush use with profiling tools. 
 # ===
 rm -rf build; mkdir build; cd build; 
-cmake .. -DCMAKE_VERBOSE=1 # \
+cmake .. -DCMAKE_VERBOSE=1 \
+    -DCMAKE_BUILD_TYPE=Debug 
   # -DEIGEN3_INCLUDE_DIR="$CONDA_PREFIX/include/eigen3/"
 # cmake .. -DCMAKE_LIBRARY_OUTPUT_DIRECTORY="$CONDA_PREFIX/build/lib.linux-x86_64-3.7/" \
 #   -DPYTHON_EXECUTABLE="$CONDA_PREFIX/bin/python" \

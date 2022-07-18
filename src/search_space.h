@@ -125,26 +125,14 @@ struct SearchSpace
 
         vector<Node> terminals = generate_terminals(d);
         /* set<Node> nodes = generate_all_nodes(op_names, terminal_types); */
-
+        
+        cout << "generate nodemap\n";
         GenerateNodeMap(user_ops, std::make_index_sequence<NodeTypes::Count>());
-        /* int i = 0; */
-        /* for (const auto& n: nodes) */
-        /* { */
-        /*     cout << "adding " << n.name << ") to search space...\n"; */
-        /*     // add the node to the nodemap */
-        /*     this->node_map[n.ret_type][n.args_type()][n.node_type] = n; */
-            
-        /*     // update weights */
-        /*     float w = use_all? 1.0 : user_ops.at(op_names.at(i)); */
-        /*     this->weight_map[n.ret_type][n.args_type()][n.node_type] = w; */
-
-        /*     ++i; */
-
-        /* } */
         // map terminals
+        cout << "looping through terminals...\n";
         for (const auto& term : terminals)
         {
-            cout << "adding " << term.get_name() << ") to search space...\n";
+            cout << "adding " << term.get_name() << " to search space...\n";
             if (terminal_map.find(term.ret_type) == terminal_map.end())
                 terminal_map[term.ret_type] = NodeVector();
             cout << "terminal ret_type: " << DataTypeName[term.ret_type] << "\n";
