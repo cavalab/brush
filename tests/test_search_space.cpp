@@ -28,10 +28,10 @@ TEST(SearchSpace, Initialization)
     Data dv(X_v, y_v);
     
     map<string, float> user_ops = {
-        {"ADD", 1},
-        {"SUB", 1},
-        {"DIV", .5},
-        {"TIMES", 0.5}
+        {"Add", 1},
+        {"Sub", 1},
+        {"Div", .5},
+        {"Times", 0.5}
     };
 
     // SearchSpace SS;

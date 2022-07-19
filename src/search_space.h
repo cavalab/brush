@@ -283,24 +283,17 @@ struct SearchSpace
         vector<Node> matches;
         vector<float> weights; 
 
-        for (const auto& [args_type, name_map]: args_map)
-        {
-            for (const auto& [name, node]: name_map)
-            {
+        for (const auto& [args_type, name_map]: args_map) {
+            for (const auto& [name, node]: name_map) {
                 auto node_arg_types = node.arg_types;
-                if ( in(node_arg_types, arg) )
-                {
+                if ( in(node_arg_types, arg) ) {
                     // if checking terminal compatibility, make sure there's
                     // a compatible terminal for the node's other arguments
-                    if (terminal_compatible)
-                    {
+                    if (terminal_compatible) {
                         bool compatible = true;
-                        for (const auto& arg_type: node_arg_types)
-                        { 
-                            if (arg_type != arg)
-                            {
-                                if ( ! in(terminal_types, arg_type) )
-                                {
+                        for (const auto& arg_type: node_arg_types) { 
+                            if (arg_type != arg) {
+                                if ( ! in(terminal_types, arg_type) ) {
                                     compatible = false;
                                     break;
                                 }
@@ -308,7 +301,6 @@ struct SearchSpace
                         }
                         if (! compatible)
                             continue;
-
                     }
                     // if we made it this far, include the node as a match!
                     matches.push_back(node);
