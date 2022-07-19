@@ -24,14 +24,14 @@ TEST(Program, MakeProgram)
     // cout << "output: " << get<ArrayXb>(out) << endl;
 
     map<string, float> user_ops = {
-        {"ADD", 1},
-        {"SUB", 1},
-        {"DIV", .5},
-        {"TIMES", 0.5}
+        {"Add", 1},
+        {"Sub", 1},
+        {"Div", .5},
+        {"Times", 0.5}
     };
 
     SearchSpace SS;
-    SS.init(data);
+    SS.init(data,user_ops);
 
             
     // Program<ArrayXf> DXtree;

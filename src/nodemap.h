@@ -7,6 +7,7 @@ license: GNU/GPL v3
 // external includes
 #include <bitset>
 #include <type_traits>
+#include <utility>
 //internal includes
 #include "init.h"
 /* #include "node.h" */
@@ -188,19 +189,53 @@ struct Sig
 {
     using RetType = R;
     static constexpr std::size_t ArgCount = sizeof...(Args);
-    using ArgTypes = std::tuple<Args...>;
+
+    using FirstArg = std::tuple_element_t<0, std::tuple<Args...>>;
+
+    /// ArgTypes is a std::array if the types are shared, otherwise it is a tuple. 
+    // (using std::array allows begin() and end() ops like transform to be applied)
+    using ArgTypes = conditional_t<all_same<Args...>::value,
+                                   std::array<FirstArg,ArgCount>,
+                                   std::tuple<Args...>
+                                  >;
+    template <std::size_t N>
+    using NthType = conditional_t<is_array_v<ArgTypes>, 
+                                  FirstArg,
+                                  typename std::tuple_element<N, ArgTypes>::type
+                                 >;
+    // currently unused
     using Function = std::function<R(Args...)>;
+
+
+    template<size_t... Is>
+    static constexpr auto get_arg_types(std::index_sequence<Is...>) 
+    {
+        return vector<DataType>{(DataTypeEnum<NthType<Is>>::value) ...};
+    }
+
+    static constexpr auto get_arg_types() {
+        return get_arg_types(make_index_sequence<ArgCount>());
+    } 
 };
-template<typename R, typename... Args>
-requires all_same<Args...>::value
-struct Sig<R,Args...>
+/// specialization for terminals
+template<typename R>
+struct Sig<R>
 {
     using RetType = R;
-    static constexpr std::size_t ArgCount = sizeof...(Args);
-    using FirstArg = std::tuple_element_t<0, std::tuple<Args...>>;
-    using ArgTypes = std::array<FirstArg,ArgCount>;
-    using Function = std::function<R(Args...)>;
+    using ArgTypes = void;
+    static constexpr std::size_t ArgCount = 0;
+    static constexpr auto get_arg_types() { return vector<DataType>{}; } 
 };
+/* template<typename R, typename... Args> */
+/* requires all_same<Args...>::value */
+/* struct Sig<R,Args...> */
+/* { */
+/*     using RetType = R; */
+/*     static constexpr std::size_t ArgCount = sizeof...(Args); */
+/*     using FirstArg = std::tuple_element_t<0, std::tuple<Args...>>; */
+/*     using ArgTypes = std::array<FirstArg,ArgCount>; */
+/*     using Function = std::function<R(Args...)>; */
+/* }; */
 /* template<typename R> */
 /* struct Sig<R> */
 /* { */
@@ -217,7 +252,7 @@ struct Signature<R(Args...)> : Sig<R, Args...>
     using RetType = base::RetType;
     using ArgTypes = base::ArgTypes;
     static constexpr auto ArgCount = base::ArgCount;
-    using Function = base::Function;
+    /* using Function = base::Function; */
 };
 // Store the signatures that each Node can handle
 //
@@ -225,7 +260,10 @@ template<NodeType N, typename T = void> struct Signatures;
 
 template<NodeType N>
 struct Signatures<N, enable_if_t<is_one_of_v<N, NodeType::Constant, NodeType::Terminal>>>{ 
-    using type = std::tuple< Signature<ArrayXf()>, Signature<ArrayXb()>, Signature<ArrayXi()> >; 
+    using type = std::tuple< 
+          Signature<ArrayXf()>, 
+          Signature<ArrayXb()>, 
+          Signature<ArrayXi()> >; 
 }; 
 
 template<NodeType N>

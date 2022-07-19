@@ -39,20 +39,20 @@ map<std::type_index,DataType> DataIDType = Util::reverse_map(DataTypeID);
 
 namespace data{
 
-std::vector<std::type_index> StateTypes = {
-                      typeid(ArrayXb),
-                      typeid(ArrayXi), 
-                      typeid(ArrayXf), 
-                      typeid(ArrayXXb),
-                      typeid(ArrayXXi), 
-                      typeid(ArrayXXf), 
-                      typeid(data::TimeSeriesb),
-                      typeid(data::TimeSeriesi),
-                      typeid(data::TimeSeriesf)
+std::vector<DataType> StateTypes = {
+    DataType::ArrayB,
+    DataType::ArrayI, 
+    DataType::ArrayF, 
+    DataType::MatrixB,
+    DataType::MatrixI, 
+    DataType::MatrixF, 
+    DataType::TimeSeriesB,
+    DataType::TimeSeriesI,
+    DataType::TimeSeriesF
 };
 
 // /// returns the type_index held in arg
-std::type_index StateType(const State& arg)
+DataType StateType(const State& arg)
 {
     return StateTypes.at(arg.index());
 }
@@ -157,19 +157,13 @@ void Data::init()
     for (const auto& [name, value]: this->features)
     {
         // save feature types
-        std::type_index feature_type = StateType(value);
+        auto feature_type = StateType(value);
 
-        /* Util::unique_insert(this->data_types, DataIDType[feature_type]); */
-        this->data_types.push_back( DataIDType[feature_type]);
+        Util::unique_insert(unique_data_types, feature_type);
+        feature_types.push_back( feature_type);
         // add feature to appropriate map list 
         this->features_of_type[feature_type].push_back(name);
     }
-    // debug: print data
-    // for (const auto& [var, arg] : this->features)
-    // {
-    //     std::cout << "feature: " << var << endl; 
-    //     std::visit([&](const auto& a){ cout << a << "\n"; }, arg);
-    // }
 }
 
 /// turns input data into a feature map

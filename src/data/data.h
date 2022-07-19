@@ -50,7 +50,6 @@ enum class DataType : uint32_t {
     TimeSeriesB, 
     TimeSeriesI,
     TimeSeriesF,
-    _NONE_
 };
 
 extern map<DataType,string>  DataTypeName; 
@@ -234,82 +233,10 @@ typedef std::variant<
                      TimeSeriesi,
                      TimeSeriesf
                     > State; 
-/// returns the typeid held in the variant by calling 
-/// StateTypeMap.at(variant.index());
-extern std::vector<std::type_index> StateTypes;
-/// returns the typeid held in arg
-std::type_index StateType(const State& arg);
-// functions for visiting beginning and end iterators of State
-// template<class T>
-// DenseBase<T>::RowwiseReturnType::iterator RowBegin(T arg)
-// {
-//     return arg.rowwise().begin();
-// }
-struct Begin
-{
-    ArrayXb::iterator operator()(ArrayXb arg){return arg.begin();};
-    ArrayXi::iterator operator()(ArrayXi arg){return arg.begin();} ;
-    ArrayXf::iterator operator()(ArrayXf arg){return arg.begin();} ;
-    // TimeSeries
-    auto operator()(TimeSeriesb arg){return arg.begin();};
-    auto operator()(TimeSeriesi arg){return arg.begin();};
-    auto operator()(TimeSeriesf arg){return arg.begin();};
-
-    XXbIt operator()(ArrayXXb arg){return arg.rowwise().begin();};
-    XXiIt operator()(ArrayXXi arg){return arg.rowwise().begin();};
-    XXfIt operator()(ArrayXXf arg){return arg.rowwise().begin();};
-    // DenseBase<ArrayXXb>::RowwiseReturnType::iterator RowBegin(T arg)
-    // auto operator()(ArrayXXb arg){ return RowBegin<ArrayXXb>(arg); };
-    // auto operator()(ArrayXXi arg){ return RowBegin<ArrayXXi>(arg); };
-    // auto operator()(ArrayXXf arg){ return RowBegin<ArrayXXf>(arg); };
-    // Eigen::VectorwiseOp<ArrayXXi>::iterator operator()(ArrayXXi arg){
-    //     return arg.rowwise().begin();
-    // };
-    // Eigen::VectorwiseOp<ArrayXXf>::iterator operator()(ArrayXXf arg){
-    //     return arg.rowwise().begin();
-    // };
-    // return std::visit( overloaded { 
-    // [](auto arg) {return arg.begin(); },
-    // [](ArrayXXb& arg) {return arg.rowwise(); }
-    // [](ArrayXXi& arg) {return arg.rowwise(); },
-    // [](ArrayXXf& arg) {return arg.rowwise(); },
-    // },
-    // x);
-};
-struct End
-{
-    ArrayXb::iterator operator()(ArrayXb arg){return arg.end();};
-    ArrayXi::iterator operator()(ArrayXi arg){return arg.end();} ;
-    ArrayXf::iterator operator()(ArrayXf arg){return arg.end();} ;
-    // TimeSeries
-    auto operator()(TimeSeriesb arg){return arg.end();};
-    auto operator()(TimeSeriesi arg){return arg.end();};
-    auto operator()(TimeSeriesf arg){return arg.end();};
- 
-    XXbIt operator()(ArrayXXb arg){return arg.rowwise().end();};
-    XXiIt operator()(ArrayXXi arg){return arg.rowwise().end();} ;
-    XXfIt operator()(ArrayXXf arg){return arg.rowwise().end();} ;
-    // return std::visit( overloaded { 
-    // [](auto arg) {return arg.begin(); },
-    // [](ArrayXXb& arg) {return arg.rowwise(); }
-    // [](ArrayXXi& arg) {return arg.rowwise(); },
-    // [](ArrayXXf& arg) {return arg.rowwise(); },
-    // },
-    // x);
-};
-// auto end(State& x)
-// {
-//     return std::visit( overloaded { 
-//     [](auto arg) {return arg.end(); };
-//     [](ArrayXXb& arg) {return arg.rowwise()+arg.rows()-1; };
-//     [](ArrayXXi& arg) {return arg.rowwise()+arg.rows()-1; };
-//     [](ArrayXXf& arg) {return arg.rowwise()+arg.rows()-1; };
-//     },
-//     x);
-// }
 
 /// determines data types of columns of matrix X.
 State check_type(const ArrayXf& x);
+///////////////////////////////////////////////////////////////////////////////
 
 class Data 
 {
@@ -328,8 +255,9 @@ class Data
     //std::pair<vector<ArrayXf>, vector<ArrayXf>>>& Z): X(X), y(y), Z(Z){}
     private:
     public:
-        std::vector<DataType> data_types;
-        Util::TypeMap<vector<string>> features_of_type;
+        std::vector<DataType> unique_data_types;
+        std::vector<DataType> feature_types;
+        std::unordered_map<DataType,vector<string>> features_of_type;
 
         // TODO: this should probably be a more complex type to include feature type 
         // and potentially other info, like arbitrary relations between features
@@ -395,16 +323,16 @@ class Data
 } // data
 
 // TODO: make this a typedef
-template<DataType D> struct DataTypeType; 
-template<> struct DataTypeType<DataType::ArrayB>{ using type = ArrayXb; };
-template<> struct DataTypeType<DataType::ArrayI>{ using type = ArrayXi; };
-template<> struct DataTypeType<DataType::ArrayF>{ using type = ArrayXf; };
-template<> struct DataTypeType<DataType::MatrixB>{ using type = ArrayXXb; };
-template<> struct DataTypeType<DataType::MatrixI>{ using type = ArrayXXi; };
-template<> struct DataTypeType<DataType::MatrixF>{ using type = ArrayXXf; };
-template<> struct DataTypeType<DataType::TimeSeriesB>{ using type = data::TimeSeriesb; };
-template<> struct DataTypeType<DataType::TimeSeriesI>{ using type = data::TimeSeriesi; }; 
-template<> struct DataTypeType<DataType::TimeSeriesF>{ using type = data::TimeSeriesf; };
+template<DataType D> struct DataEnumType; 
+template<> struct DataEnumType<DataType::ArrayB>{ using type = ArrayXb; };
+template<> struct DataEnumType<DataType::ArrayI>{ using type = ArrayXi; };
+template<> struct DataEnumType<DataType::ArrayF>{ using type = ArrayXf; };
+template<> struct DataEnumType<DataType::MatrixB>{ using type = ArrayXXb; };
+template<> struct DataEnumType<DataType::MatrixI>{ using type = ArrayXXi; };
+template<> struct DataEnumType<DataType::MatrixF>{ using type = ArrayXXf; };
+template<> struct DataEnumType<DataType::TimeSeriesB>{ using type = data::TimeSeriesb; };
+template<> struct DataEnumType<DataType::TimeSeriesI>{ using type = data::TimeSeriesi; }; 
+template<> struct DataEnumType<DataType::TimeSeriesF>{ using type = data::TimeSeriesf; };
 
 template<typename T> struct DataTypeEnum; 
 template<> struct DataTypeEnum<ArrayXb>{ static constexpr DataType value = DataType::ArrayB; };

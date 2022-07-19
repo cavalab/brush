@@ -325,20 +325,10 @@ private:
     void InitMap(std::index_sequence<Is...> /*unused*/)
     {
         auto nt = [](auto i) { return static_cast<NodeType>(1UL << i); };
-        /* auto et = [](auto i) { */ 
-        /*     return static_cast<ExecType>(NodeSchema[NodeTypeName[i]]["ExecType"]); */
-        /* }; */
-        /* (map_.insert({ Node(f(Is)).HashValue, detail::MakeTuple<f(Is), Ts...>() }), ...); */
-        //TODO: use MakeTuple to determine exec type from node type. We could implement
-        // exectypes as an Is"blah"<> function in the Node class even. 
-        /* (map_.insert({ nt(Is), detail::MakeTuple<nt(Is),Ts...>() }), ...); */
-        /* (MakeOperators<nt(Is),Ts>(), ...); */
-        /* (MakeOperators<nt(Is)>(), ...); */
         (map_.insert({ nt(Is), MakeOperators<nt(Is)>() }), ...);
         //TODO: this really should be a hash, if want to register other functions
     }
 
-    /* template<NodeType NT, typename Sigs, Sigs S, std::size_t... Is> */
     template<NodeType NT, typename Sigs, std::size_t... Is>
     static constexpr auto AddOperator(std::index_sequence<Is...>)
     {

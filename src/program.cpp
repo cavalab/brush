@@ -41,6 +41,7 @@ tree<Node> make_program(SearchSpace& SS, DataType root_type,
         auto n = SS.get_op(root_type);
         cout << "chose " << n.name << endl;
         // auto spot = prg.set_head(n);
+        cout << "inserting...\n";
         auto spot = prg.insert(prg.begin(), n);
         // node depth
         int d = 1;
@@ -53,6 +54,8 @@ tree<Node> make_program(SearchSpace& SS, DataType root_type,
             queue.push_back(make_tuple(spot, a, d));
         }
 
+        cout << "queue size: " << queue.size() << endl; 
+        cout << "s" << queue.size() << endl; 
         cout << "entering first while loop...\n";
         while (queue.size() + s < max_size && queue.size() > 0) 
         {

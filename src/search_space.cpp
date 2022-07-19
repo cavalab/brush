@@ -10,7 +10,7 @@ NodeVector generate_terminals(const Data& d)
     {
         cout << "name: " << name << endl;
         cout << "get data type\n";
-        auto data_type = d.data_types.at(i);
+        auto data_type = d.feature_types.at(i);
         cout << "push back terminal\n";
         // note: structured bindings cannot be captured by lambdas until C++20
         /* std::cout << "generating terminal " << key << "of type " << value << endl; */

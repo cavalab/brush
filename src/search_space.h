@@ -91,7 +91,7 @@ struct SearchSpace
     // NodeMap node_map; 
     map<DataType, NodeVector> terminal_map;
     map<DataType, vector<float>> terminal_weights;
-    set<DataType> terminal_types;
+    vector<DataType> terminal_types;
     // terminal weights
     // map name to weights
     map<DataType,           // return type
@@ -120,14 +120,14 @@ struct SearchSpace
 
 
         // create nodes based on data types 
-        for (const auto& dt : d.data_types)
-            this->terminal_types.insert(dt);
+        terminal_types = d.unique_data_types;
 
         vector<Node> terminals = generate_terminals(d);
         /* set<Node> nodes = generate_all_nodes(op_names, terminal_types); */
         
         cout << "generate nodemap\n";
-        GenerateNodeMap(user_ops, std::make_index_sequence<NodeTypes::Count>());
+        GenerateNodeMap(user_ops, d.unique_data_types, 
+                std::make_index_sequence<NodeTypes::Count>());
         // map terminals
         cout << "looping through terminals...\n";
         for (const auto& term : terminals)
@@ -347,51 +347,75 @@ struct SearchSpace
             using RetType = typename S::RetType; 
             DataType output_type = DataTypeEnum<RetType>::value;
             std::size_t sig_hash = typeid(S).hash_code();
-            return Node(NT, sig_hash, output_type, weighted);
-
+            auto arg_types = S::get_arg_types();
+            return Node(NT, arg_types, sig_hash, output_type, weighted);
         }
        
         template<NodeType NT, typename S>
-        constexpr void AddNode(const map<string,float>& user_ops)
+        constexpr void AddNode(const map<string,float>& user_ops, 
+                const vector<DataType>& unique_data_types
+                )
         {
+            
             bool use_all = user_ops.size() == 0;
             auto name = NodeTypeName.at(NT);
             auto n = MakeNode<NT,S>(false);
-            if (n.IsWeighable())
-            {
-                n.is_weighted=true; // weighted
+
+            // if we're using all, prune the operators out that don't have argument types that
+            // overlap with feature data types
+            if (use_all) {
+                for (auto arg: n.arg_types){
+                    if (! in(unique_data_types,arg) ){
+                        cout << "not adding " << n.name << " because " 
+                            << DataTypeName[arg] << " is not in unique_data_types\n";
+                        return; 
+                    }
+                }    
             }
+            //TODO: address this (whether weights should be included by default)
+            if (n.IsWeighable())
+                n.is_weighted=true; // weighted
             node_map[n.ret_type][n.args_type()][n.node_type] = n;
+            
+            // sampling probability map
             float w = use_all? 1.0 : user_ops.at(name);
             weight_map[n.ret_type][n.args_type()][n.node_type] = w;
         }
 
         template<NodeType NT, typename Sigs, std::size_t... Is>
-        constexpr void AddNodes(const map<string,float>& user_ops, std::index_sequence<Is...>)
+        constexpr void AddNodes(const map<string,float>& user_ops, 
+                const vector<DataType>& unique_data_types,
+                std::index_sequence<Is...>)
         {
-            (AddNode<NT,std::tuple_element_t<Is, Sigs>>(user_ops), ...);
+            (AddNode<NT,std::tuple_element_t<Is, Sigs>>(user_ops, unique_data_types), ...);
         }
 
         template<NodeType NT>
-        void MakeNodes(const map<string,float>& user_ops)
+        void MakeNodes(const map<string,float>& user_ops, const vector<DataType>& unique_data_types) 
         {
             bool use_all = user_ops.size() == 0;
             auto name = NodeTypeName.at(NT);
 
             if (!use_all & user_ops.find(name) == user_ops.end())
+            {
+                cout << "skipping " << name << ", not in user_ops\n"; 
                 return;
+            }
 
             /* constexpr auto signatures = Signatures<NT>::value; */
             using signatures = Signatures<NT>::type;
             constexpr auto size = std::tuple_size<signatures>::value ;
-            AddNodes<NT, signatures>(user_ops, std::make_index_sequence<size>()); 
+            AddNodes<NT, signatures>(user_ops, unique_data_types, std::make_index_sequence<size>()); 
         }
 
         template<std::size_t... Is>
-        void GenerateNodeMap(const map<string,float>& user_ops, std::index_sequence<Is...> )
+        void GenerateNodeMap(const map<string,float>& user_ops, 
+                const vector<DataType>& unique_data_types, 
+                std::index_sequence<Is...> 
+                )
         {
             auto nt = [](auto i) { return static_cast<NodeType>(1UL << i); };
-            (MakeNodes<nt(Is)>(user_ops), ...);
+            (MakeNodes<nt(Is)>(user_ops, unique_data_types), ...);
         }
 };
 

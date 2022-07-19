@@ -73,7 +73,6 @@ struct Node {
     std::size_t sig_hash;
     DataType ret_type;
     std::vector<DataType> arg_types;
-    bool is_differentiable;
     bool is_weighted;
     bool optimize;
     vector<float> W; 
@@ -83,59 +82,36 @@ struct Node {
 
     Node() = default; 
 
-    explicit Node(NodeType type, std::size_t sig, DataType output_type, bool weighted=false) noexcept
+
+    explicit Node(NodeType type, const vector<DataType>& args, std::size_t sig, DataType output_type, bool weighted=false) noexcept
         : node_type(type)
         , name(NodeTypeName[type])
+        , arg_types(args)
         , sig_hash(sig)
         , ret_type(output_type)
         , is_weighted(weighted)
     {
-        cout << "instantiated " << name << "with sig hash " << sig_hash << " and return type " << DataTypeName.at(ret_type) << endl;
+        cout << "instantiated " << name << " with sig hash " << sig_hash << " and return type " << DataTypeName.at(ret_type) << endl;
     }
 
     explicit Node(NodeType type, DataType output_type, string feature_name) noexcept
         : node_type(type)
         , name(NodeTypeName[type])
-        /* , sig_hash(SigType::) */
         , ret_type(output_type)
         , feature(feature_name)
-        /* , exec_type(NodeSchema[NodeTypeName[type]]["ExecType"]) */
-        /* , arg_types(NodeSchema[NodeTypeName[type]]["Signature"][DataTypeName[output_type]]) */
         , is_weighted(false)
     {
-        //TODO: set sig_hash
         cout << "instantiated " << name << " from feature " << feature << " with output type " << DataTypeName.at(ret_type) << endl;
         sig_hash=typeid(void).hash_code();
-        
+        arg_types = vector<DataType>{};
     }
-        // if (Type < NodeType::Abs) // Add, Mul, Sub, Div, Aq, Pow
-        // {
-        //     Arity = 2;
-        // } else if (Type < NodeType::Dynamic) // Log, Exp, Sin, Cos, Tan, Tanh, Sqrt, Cbrt, Square
-        // {
-        //     Arity = 1;
-        // }
-        // Length = Arity;
-        // IsEnabled = true;
-        // Optimize = IsLeaf(); // we only optimize leaf nodes
-        // Value = 1.;
-
-    /* static auto Constant(double value) */
-    /* { */
-    /*     Node node(NodeType::Constant); */
-    /*     node.Value = static_cast<Operon::Scalar>(value); */
-    /*     return node; */
-    /* } */
 
     auto get_name() const noexcept -> std::string const&;
     /* auto get_desc() const noexcept -> std::string const&; */
 
     // get return type and argument types. 
-    // these should come from a mapping. 
     DataType get_ret_type() const { return ret_type; }; 
-    std::size_t args_type() const { 
-        return uint32_vector_hasher()(arg_types);
-    }; 
+    std::size_t args_type() const { return sig_hash; };
     size_t get_arg_count() const { return arg_types.size(); };
 
     //comparison operators
@@ -230,33 +206,13 @@ struct Node {
     };
     /* template<ExecType E> auto tupleargs() const; */
 
-    // need to figure out how to define these for NodeTypes. 
-    // different operators need different flow through fit and predict - 
-    // for example, split nodes need to run a function on the data, then
-    // pass different data chunks to the children. meanwhile math ops mostly
-    // pull their children first and then do a computation on the arguments.
-    /* auto fit(const Data&, TreeNode*&, TreeNode*&); */
-    /* auto predict(const Data&, TreeNode*&, TreeNode*&); */
-    /* void grad_descent(const ArrayXf&, const Data&, */ 
-    /*                             TreeNode*&, TreeNode*&); */
-    /* string get_model(bool pretty, */ 
-    /*                             TreeNode*& first_child, */
-    /*                             TreeNode*& last_child) const; */
-    /* string get_tree_model(bool pretty, string offset, */ 
-    /*                                 TreeNode *&first_child, */
-    /*                                 TreeNode *&last_child) const ; */
-    /* // naming */
-    /* string get_name() const {return this->name;}; */
-    /* string get_op_name() const {return this->op_name;}; */
-    /* void set_name(string n){this->name = n;}; */
-    /* void set_op_name(string n){this->op_name = n;}; */
-    /* // changing */
+    //TODO revisit
     float get_prob_change() const { return this->prob_change;};
     void set_prob_change(float w){ this->prob_change = w;};
     float get_prob_keep() const { return 1-this->prob_change;};
-    };
+};
 
     ostream& operator<<(ostream& os, const Node& n);
-}
+} // namespace Brush
 
 #endif
