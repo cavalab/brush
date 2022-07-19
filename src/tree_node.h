@@ -59,17 +59,17 @@ class tree_node_<Node> { // size: 5*4=20 bytes (on 32 bit arch), can be reduced 
 }; 
 using TreeNode = class tree_node_<Node>; 
 //forward declarations
-/* template<typename R, NodeType NT, SigType S> R DispatchPredict(const Data& d, TreeNode& tn) ; */
-/* template<typename R, NodeType NT, SigType S> R DispatchFit(const Data& d, TreeNode& tn) ; */
+/* template<typename R, NodeType NT, type_index S> R DispatchPredict(const Data& d, TreeNode& tn) ; */
+/* template<typename R, NodeType NT, type_index S> R DispatchFit(const Data& d, TreeNode& tn) ; */
 ///////////////////////////////////////////////////////////////////////////////////////
 // Operator class
-template<NodeType NT, SigType S> 
+template<NodeType NT, typename S> 
 struct Operator 
 {
     // TODO
-    using Args = typename Signature<S>::ArgTypes;
-    using RetType = typename Signature<S>::RetType;
-    static constexpr size_t ArgCount = Signature<S>::ArgCount;
+    using Args = typename S::ArgTypes;
+    using RetType = typename S::RetType;
+    static constexpr size_t ArgCount = S::ArgCount;
     // get arg types from tuple by index
     template <std::size_t N>
     using NthType = conditional_t<is_array_v<Args>,
@@ -77,10 +77,8 @@ struct Operator
                                   typename std::tuple_element<N, Args>::type
                                  >;
     
-    static constexpr auto F = [](const auto& ...args){
-        Function<NT> f{};
-        return f(args...); 
-    }; 
+    static constexpr auto F = [](const auto& ...args){ Function<NT> f{}; return f(args...); }; 
+    /* static constexpr Function<NT> F{}; */
 
     Operator() = default;
     /* Operator(NT node_type, RetType y, Args... args){}; */
@@ -181,39 +179,40 @@ struct Operator
     RetType predict(const Data& d, TreeNode& tn) const { return eval<false>(d,tn); };
 };
 /// Terminal Overload
-template<SigType S>
+template<typename S>
 struct Operator<NodeType::Terminal, S>
 {
-    using RetType = typename Signature<S>::RetType;
+    using RetType = typename S::RetType;
     RetType eval(const Data& d, TreeNode& tn) const { return std::get<RetType>(d[tn.n.feature]); };
     RetType fit(const Data& d, TreeNode& tn) const { return eval(d,tn); };
     RetType predict(const Data& d, TreeNode& tn) const { return eval(d,tn); };
 };
-template<SigType S> 
+template<typename S> 
 struct Operator<NodeType::Constant, S>
 {
-    using RetType = typename Signature<S>::RetType;
+    using RetType = typename S::RetType;
 
-    template<typename T=RetType>
-    requires same_as<T, ArrayXf>
+    template<typename T=RetType> requires same_as<T, ArrayXf>
     RetType eval(const Data& d, TreeNode& tn) const { 
         return tn.n.W.at(0)*RetType(d.n_samples); 
     };
 
-    template<typename T=RetType>
-    requires same_as<T, ArrayXb>
+    template<typename T=RetType> requires same_as<T, ArrayXi>
+    RetType eval(const Data& d, TreeNode& tn) const { 
+        return int(tn.n.W.at(0))*RetType(d.n_samples); 
+    };
+
+    template<typename T=RetType> requires same_as<T, ArrayXb>
     RetType eval(const Data& d, TreeNode& tn) const { 
         return RetType(d.n_samples) > tn.n.W.at(0); 
     };
 
-    template<typename T=RetType>
-    requires same_as<T, ArrayXXf>
+    template<typename T=RetType> requires same_as<T, ArrayXXf>
     RetType eval(const Data& d, TreeNode& tn) const { 
         return tn.n.W.at(0)*RetType(d.n_samples, d.n_features); 
     };
 
-    template<typename T=RetType>
-    requires same_as<T, ArrayXXb>
+    template<typename T=RetType> requires same_as<T, ArrayXXb>
     RetType eval(const Data& d, TreeNode& tn) const { 
         return RetType(d.n_samples, d.n_features) > tn.n.W.at(0);
     };
@@ -223,14 +222,14 @@ struct Operator<NodeType::Constant, S>
 };
 ////////////////////////////////////////////////////////////////////////////
 // fit and predict Dispatch functions
-template<typename R, NodeType NT, SigType S> //, typename ...Args>
+template<typename R, NodeType NT, typename S> //, typename ...Args>
 R DispatchFit(const Data& d, TreeNode& tn) 
 {
     const auto op = Operator<NT,S>{};
     return op.fit(d, tn);
 };
 
-template<typename R, NodeType NT, SigType S>
+template<typename R, NodeType NT, typename S>
 R DispatchPredict(const Data& d, TreeNode& tn) 
 
 {
@@ -250,10 +249,10 @@ namespace detail {
     struct has_type<T, std::tuple<Us...>> : std::disjunction<std::is_same<T, Us>...> {};
 
     /* template<NodeType NT, typename R> */
-    template<NodeType N, SigType S>
+    template<NodeType N, typename S>
     static constexpr auto MakeOperator()  
     {
-        using R = typename Signature<S>::RetType;
+        using R = typename S::RetType;
         return Callable<R>(DispatchFit<R,N,S>);
     }
 
@@ -306,7 +305,7 @@ struct DispatchTable
     using CallVariant    = std::variant<Callable<Ts>...>;
     /* using Map      = robin_hood::unordered_flat_map<Operon::Hash, Tuple>; */
     // could have fit map, predict map
-    using SigMap = std::unordered_map<SigType,CallVariant>;
+    using SigMap = std::unordered_map<std::size_t,CallVariant>;
     using DTMap = std::unordered_map<NodeType, SigMap>;
 
 private:
@@ -329,20 +328,24 @@ private:
         //TODO: this really should be a hash, if want to register other functions
     }
 
-    template<NodeType NT, typename Sigs, Sigs S, std::size_t... Is>
+    /* template<NodeType NT, typename Sigs, Sigs S, std::size_t... Is> */
+    template<NodeType NT, typename Sigs, std::size_t... Is>
     static constexpr auto AddOperator(std::index_sequence<Is...>)
     {
         SigMap sm;
-        (sm.insert({std::get<Is>(S), detail::MakeOperator<NT, std::get<Is>(S)>()}), ...);
+        (sm.insert({typeid(std::tuple_element_t<Is, Sigs>).hash_code(), 
+                    detail::MakeOperator<NT, std::tuple_element_t<Is, Sigs>>()}), ...);
         return sm;
     }
     template<NodeType NT>
     SigMap MakeOperators()  
     {
-        constexpr auto signatures = Signatures<NT>::value;
+        /* constexpr auto signatures = Signatures<NT>::value; */
+        using signatures = typename Signatures<NT>::type;
         
-        return AddOperator<NT, decltype(signatures), signatures>( 
-                     std::make_index_sequence<std::tuple_size_v<decltype(signatures)>>()
+        /* return AddOperator<NT, decltype(signatures)>( */ 
+        return AddOperator<NT, signatures>( 
+                     std::make_index_sequence<std::tuple_size_v<signatures>>()
                      );
     } 
 
@@ -370,7 +373,7 @@ public:
     DispatchTable(DispatchTable &&other) noexcept : map_(std::move(other.map_)) { }
 
     template<typename T>
-    inline auto Get(NodeType n, SigType s) const -> Callable<T> const&
+    inline auto Get(NodeType n, std::size_t s) const -> Callable<T> const&
     {
         return std::get<Callable<T>>(map_.at(n).at(s));
     }
@@ -393,14 +396,14 @@ const DispatchTable<
 template<typename T>
 auto TreeNode::fit(const Data& d)
 { 
-    auto F = dtable.template Get<T>(n.node_type, n.sig_type);
+    auto F = dtable.template Get<T>(n.node_type, n.sig_hash);
     return F(d, (*this));
 };
 
 template<typename T>
 auto TreeNode::predict(const Data& d)
 { 
-    auto F = dtable.template Get<T>(n.node_type, n.sig_type);
+    auto F = dtable.template Get<T>(n.node_type, n.sig_hash);
     return F(d, (*this));
 };
 

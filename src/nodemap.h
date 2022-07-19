@@ -6,6 +6,7 @@ license: GNU/GPL v3
 #define NODEMAP_H
 // external includes
 #include <bitset>
+#include <type_traits>
 //internal includes
 #include "init.h"
 /* #include "node.h" */
@@ -177,85 +178,124 @@ template<NodeType T, NodeType... Ts>
 static constexpr bool is_one_of_v = is_one_of<T, Ts...>::value;
 
 
-enum class SigType : uint32_t {
-    ArrayB, 
-    ArrayI, 
-    ArrayF, 
-    MatrixB, 
-    MatrixI, 
-    MatrixF, 
-    TimeSeriesB, 
-    TimeSeriesI,
-    TimeSeriesF,
-    ArrayFtoArrayF,
-    ArrayItoArrayI,
-    ArrayBtoArrayB,
-    ArrayFtoArrayB,
-    ArrayFtoArrayI,
-    ArrayItoArrayB,
-    MatrixFtoMatrixF,
-    MatrixItoMatrixI,
-    MatrixBtoMatrixB,
-    MatrixFtoMatrixB,
-    MatrixFtoMatrixI,
-    MatrixItoMatrixB,
-    MatrixItoMatrixF,
-    TimeSeriesFtoTimeSeriesF,
-    TimeSeriesItoTimeSeriesI,
-    TimeSeriesBtoTimeSeriesB,
-    ArrayFArrayFtoArrayF,
-    ArrayIArrayItoArrayI,
-    ArrayBArrayBtoArrayB,
-    ArrayFArrayFtoArrayB,
-    ArrayFArrayFtoArrayI,
-    ArrayIArrayItoArrayB,
-    MatrixFMatrixFtoMatrixF,
-    MatrixIMatrixItoMatrixI,
-    MatrixBMatrixBtoMatrixB,
-    MatrixFMatrixFtoMatrixB,
-    MatrixFMatrixFtoMatrixI,
-    MatrixIMatrixItoMatrixB,
-    TimeSeriesFTimeSeriesFtoTimeSeriesF,
-    TimeSeriesITimeSeriesItoTimeSeriesI,
-    TimeSeriesBTimeSeriesBtoTimeSeriesB,
-    MatrixFtoArrayF,
-    MatrixItoArrayI,
-    MatrixBtoArrayB,
-    MatrixFtoArrayB,
-    MatrixFtoArrayI,
-    MatrixItoArrayB,
-    MatrixItoArrayF,
-    MatrixBtoArrayF,
-    ArrayFArrayFArrayFtoArrayF
-};
+/* enum class SigType : uint32_t { */
+/*     ArrayB, */ 
+/*     ArrayI, */ 
+/*     ArrayF, */ 
+/*     MatrixB, */ 
+/*     MatrixI, */ 
+/*     MatrixF, */ 
+/*     TimeSeriesB, */ 
+/*     TimeSeriesI, */
+/*     TimeSeriesF, */
+/*     ArrayFtoArrayF, */
+/*     ArrayItoArrayI, */
+/*     ArrayBtoArrayB, */
+/*     ArrayFtoArrayB, */
+/*     ArrayFtoArrayI, */
+/*     ArrayItoArrayB, */
+/*     MatrixFtoMatrixF, */
+/*     MatrixItoMatrixI, */
+/*     MatrixBtoMatrixB, */
+/*     MatrixFtoMatrixB, */
+/*     MatrixFtoMatrixI, */
+/*     MatrixItoMatrixB, */
+/*     MatrixItoMatrixF, */
+/*     TimeSeriesFtoTimeSeriesF, */
+/*     TimeSeriesItoTimeSeriesI, */
+/*     TimeSeriesBtoTimeSeriesB, */
+/*     ArrayFArrayFtoArrayF, */
+/*     ArrayIArrayItoArrayI, */
+/*     ArrayBArrayBtoArrayB, */
+/*     ArrayFArrayFtoArrayB, */
+/*     ArrayFArrayFtoArrayI, */
+/*     ArrayIArrayItoArrayB, */
+/*     MatrixFMatrixFtoMatrixF, */
+/*     MatrixIMatrixItoMatrixI, */
+/*     MatrixBMatrixBtoMatrixB, */
+/*     MatrixFMatrixFtoMatrixB, */
+/*     MatrixFMatrixFtoMatrixI, */
+/*     MatrixIMatrixItoMatrixB, */
+/*     TimeSeriesFTimeSeriesFtoTimeSeriesF, */
+/*     TimeSeriesITimeSeriesItoTimeSeriesI, */
+/*     TimeSeriesBTimeSeriesBtoTimeSeriesB, */
+/*     MatrixFtoArrayF, */
+/*     MatrixItoArrayI, */
+/*     MatrixBtoArrayB, */
+/*     MatrixFtoArrayB, */
+/*     MatrixFtoArrayI, */
+/*     MatrixItoArrayB, */
+/*     MatrixItoArrayF, */
+/*     MatrixBtoArrayF, */
+/*     ArrayFArrayFArrayFtoArrayF */
+/* }; */
 
-template<SigType S = SigType::ArrayF> struct Signature{ using RetType = ArrayXf; using ArgTypes = std::array<ArrayXf,0>; static constexpr size_t ArgCount=0; };
-template<> struct Signature<SigType::ArrayB>{ using RetType = ArrayXb; using ArgTypes = std::array<ArrayXb,0>; static constexpr size_t ArgCount=0; };
-template<> struct Signature<SigType::ArrayI>{ using RetType = ArrayXi; using ArgTypes = std::array<ArrayXi,0>; static constexpr size_t ArgCount=0; };
-template<> struct Signature<SigType::ArrayFtoArrayF> { using RetType = ArrayXf; using ArgTypes = std::array<ArrayXf,1>; static constexpr size_t ArgCount=1; };
-template<> struct Signature<SigType::ArrayItoArrayI>{ using RetType = ArrayXi; using ArgTypes = std::array<ArrayXi,1>; static constexpr size_t ArgCount=1; };
-template<> struct Signature<SigType::ArrayBtoArrayB>{ using RetType = ArrayXb; using ArgTypes = std::array<ArrayXb,1>; static constexpr size_t ArgCount=1; };
-template<> struct Signature<SigType::MatrixFtoMatrixF>{ using RetType = ArrayXXf; using ArgTypes = std::array<ArrayXXf,1>; static constexpr size_t ArgCount=1; };
-template<> struct Signature<SigType::MatrixItoMatrixI>{ using RetType = ArrayXXi; using ArgTypes = std::array<ArrayXXi,1>; static constexpr size_t ArgCount=1; };
-template<> struct Signature<SigType::MatrixBtoMatrixB>{ using RetType = ArrayXXb; using ArgTypes = std::array<ArrayXXb,1>; static constexpr size_t ArgCount=1; };
-template<> struct Signature<SigType::MatrixFtoArrayF>{ using RetType = ArrayXf; using ArgTypes = std::array<ArrayXXf,1>; static constexpr size_t ArgCount=1; };
-template<> struct Signature<SigType::MatrixItoArrayI>{ using RetType = ArrayXi; using ArgTypes = std::array<ArrayXXi,1>; static constexpr size_t ArgCount=1; };
-template<> struct Signature<SigType::MatrixBtoArrayB>{ using RetType = ArrayXb; using ArgTypes = std::array<ArrayXXb,1>; static constexpr size_t ArgCount=1; };
-template<> struct Signature<SigType::MatrixItoArrayF>{ using RetType = ArrayXf; using ArgTypes = std::array<ArrayXXi,1>; static constexpr size_t ArgCount=1; };
-template<> struct Signature<SigType::MatrixBtoArrayF>{ using RetType = ArrayXf; using ArgTypes = std::array<ArrayXXb,1>; static constexpr size_t ArgCount=1; };
-template<> struct Signature<SigType::TimeSeriesFtoTimeSeriesF>{ using RetType = TimeSeriesf; using ArgTypes = std::array<TimeSeriesf,1>; static constexpr size_t ArgCount=1; }; 
-template<> struct Signature<SigType::TimeSeriesBtoTimeSeriesB>{ using RetType = TimeSeriesb; using ArgTypes = std::array<TimeSeriesb,1>; static constexpr size_t ArgCount=1; }; 
-template<> struct Signature<SigType::TimeSeriesItoTimeSeriesI>{ using RetType = TimeSeriesi; using ArgTypes = std::array<TimeSeriesi,1>; static constexpr size_t ArgCount=1; }; 
-template<> struct Signature<SigType::ArrayFArrayFtoArrayF>{ using RetType = ArrayXf; using ArgTypes = std::array<ArrayXf,2>; static constexpr size_t ArgCount=2; }; 
-template<> struct Signature<SigType::ArrayIArrayItoArrayI>{ using RetType = ArrayXi; using ArgTypes = std::array<ArrayXi,2>; static constexpr size_t ArgCount=2; };
-template<> struct Signature<SigType::ArrayBArrayBtoArrayB>{ using RetType = ArrayXb; using ArgTypes = std::array<ArrayXb,2>; static constexpr size_t ArgCount=2; };
-template<> struct Signature<SigType::ArrayFArrayFArrayFtoArrayF>{ using RetType = ArrayXf; using ArgTypes = std::array<ArrayXf,3>; static constexpr size_t ArgCount=3; }; 
-template<> struct Signature<SigType::TimeSeriesFTimeSeriesFtoTimeSeriesF>{ using RetType = TimeSeriesf; using ArgTypes = std::array<TimeSeriesf,2>; static constexpr size_t ArgCount=2; }; 
-template<> struct Signature<SigType::TimeSeriesBTimeSeriesBtoTimeSeriesB>{ using RetType = TimeSeriesb; using ArgTypes = std::array<TimeSeriesb,2>; static constexpr size_t ArgCount=2; }; 
-template<> struct Signature<SigType::TimeSeriesITimeSeriesItoTimeSeriesI>{ using RetType = TimeSeriesi; using ArgTypes = std::array<TimeSeriesi,2>; static constexpr size_t ArgCount=2; }; 
+/* template<SigType S = SigType::ArrayF> struct Signature{ using RetType = ArrayXf; using ArgTypes = std::array<ArrayXf,0>; static constexpr size_t ArgCount=0; }; */
+/* template<> struct Signature<SigType::ArrayB>{ using RetType = ArrayXb; using ArgTypes = std::array<ArrayXb,0>; static constexpr size_t ArgCount=0; }; */
+/* template<> struct Signature<SigType::ArrayI>{ using RetType = ArrayXi; using ArgTypes = std::array<ArrayXi,0>; static constexpr size_t ArgCount=0; }; */
+/* template<> struct Signature<SigType::ArrayFtoArrayF> { using RetType = ArrayXf; using ArgTypes = std::array<ArrayXf,1>; static constexpr size_t ArgCount=1; }; */
+/* template<> struct Signature<SigType::ArrayItoArrayI>{ using RetType = ArrayXi; using ArgTypes = std::array<ArrayXi,1>; static constexpr size_t ArgCount=1; }; */
+/* template<> struct Signature<SigType::ArrayBtoArrayB>{ using RetType = ArrayXb; using ArgTypes = std::array<ArrayXb,1>; static constexpr size_t ArgCount=1; }; */
+/* template<> struct Signature<SigType::MatrixFtoMatrixF>{ using RetType = ArrayXXf; using ArgTypes = std::array<ArrayXXf,1>; static constexpr size_t ArgCount=1; }; */
+/* template<> struct Signature<SigType::MatrixItoMatrixI>{ using RetType = ArrayXXi; using ArgTypes = std::array<ArrayXXi,1>; static constexpr size_t ArgCount=1; }; */
+/* template<> struct Signature<SigType::MatrixBtoMatrixB>{ using RetType = ArrayXXb; using ArgTypes = std::array<ArrayXXb,1>; static constexpr size_t ArgCount=1; }; */
+/* template<> struct Signature<SigType::MatrixFtoArrayF>{ using RetType = ArrayXf; using ArgTypes = std::array<ArrayXXf,1>; static constexpr size_t ArgCount=1; }; */
+/* template<> struct Signature<SigType::MatrixItoArrayI>{ using RetType = ArrayXi; using ArgTypes = std::array<ArrayXXi,1>; static constexpr size_t ArgCount=1; }; */
+/* template<> struct Signature<SigType::MatrixBtoArrayB>{ using RetType = ArrayXb; using ArgTypes = std::array<ArrayXXb,1>; static constexpr size_t ArgCount=1; }; */
+/* template<> struct Signature<SigType::MatrixItoArrayF>{ using RetType = ArrayXf; using ArgTypes = std::array<ArrayXXi,1>; static constexpr size_t ArgCount=1; }; */
+/* template<> struct Signature<SigType::MatrixBtoArrayF>{ using RetType = ArrayXf; using ArgTypes = std::array<ArrayXXb,1>; static constexpr size_t ArgCount=1; }; */
+/* template<> struct Signature<SigType::TimeSeriesFtoTimeSeriesF>{ using RetType = TimeSeriesf; using ArgTypes = std::array<TimeSeriesf,1>; static constexpr size_t ArgCount=1; }; */ 
+/* template<> struct Signature<SigType::TimeSeriesBtoTimeSeriesB>{ using RetType = TimeSeriesb; using ArgTypes = std::array<TimeSeriesb,1>; static constexpr size_t ArgCount=1; }; */ 
+/* template<> struct Signature<SigType::TimeSeriesItoTimeSeriesI>{ using RetType = TimeSeriesi; using ArgTypes = std::array<TimeSeriesi,1>; static constexpr size_t ArgCount=1; }; */ 
+/* template<> struct Signature<SigType::ArrayFArrayFtoArrayF>{ using RetType = ArrayXf; using ArgTypes = std::array<ArrayXf,2>; static constexpr size_t ArgCount=2; }; */ 
+/* template<> struct Signature<SigType::ArrayIArrayItoArrayI>{ using RetType = ArrayXi; using ArgTypes = std::array<ArrayXi,2>; static constexpr size_t ArgCount=2; }; */
+/* template<> struct Signature<SigType::ArrayBArrayBtoArrayB>{ using RetType = ArrayXb; using ArgTypes = std::array<ArrayXb,2>; static constexpr size_t ArgCount=2; }; */
+/* template<> struct Signature<SigType::ArrayFArrayFArrayFtoArrayF>{ using RetType = ArrayXf; using ArgTypes = std::array<ArrayXf,3>; static constexpr size_t ArgCount=3; }; */ 
+/* template<> struct Signature<SigType::TimeSeriesFTimeSeriesFtoTimeSeriesF>{ using RetType = TimeSeriesf; using ArgTypes = std::array<TimeSeriesf,2>; static constexpr size_t ArgCount=2; }; */ 
+/* template<> struct Signature<SigType::TimeSeriesBTimeSeriesBtoTimeSeriesB>{ using RetType = TimeSeriesb; using ArgTypes = std::array<TimeSeriesb,2>; static constexpr size_t ArgCount=2; }; */ 
+/* template<> struct Signature<SigType::TimeSeriesITimeSeriesItoTimeSeriesI>{ using RetType = TimeSeriesi; using ArgTypes = std::array<TimeSeriesi,2>; static constexpr size_t ArgCount=2; }; */ 
 
 // Signatures gives a set of SigType for each node
-
+template<typename FirstArg, typename... NextArgs>
+struct all_same{
+    static constexpr bool value = ((std::is_same_v<FirstArg,NextArgs> && ...));
+};
+template<typename R, typename... Args>
+struct Sig  
+{
+    using RetType = R;
+    static constexpr std::size_t ArgCount = sizeof...(Args);
+    using ArgTypes = std::tuple<Args...>;
+    using Function = std::function<R(Args...)>;
+};
+template<typename R, typename... Args>
+requires all_same<Args...>::value
+struct Sig<R,Args...>
+{
+    using RetType = R;
+    static constexpr std::size_t ArgCount = sizeof...(Args);
+    using FirstArg = std::tuple_element_t<0, std::tuple<Args...>>;
+    using ArgTypes = std::array<FirstArg,ArgCount>;
+    using Function = std::function<R(Args...)>;
+};
+/* template<typename R> */
+/* struct Sig<R> */
+/* { */
+/*     using RetType = R; */
+/*     static constexpr std::size_t ArgCount = 0; */
+/*     using ArgTypes = void; */
+/*     using Function = std::function<R()>; */
+/* }; */
+template<typename T> struct Signature;
+template<typename R, typename... Args>
+struct Signature<R(Args...)> : Sig<R, Args...>
+{
+    using base = Sig<R, Args...>;
+    using RetType = base::RetType;
+    using ArgTypes = base::ArgTypes;
+    static constexpr auto ArgCount = base::ArgCount;
+    using Function = base::Function;
+};
 // Store the signatures that each Node can handle
 //
 template<NodeType N, typename T = void> struct Signatures; 
@@ -263,9 +303,7 @@ template<NodeType N, typename T = void> struct Signatures;
 template<NodeType N>
 struct Signatures<N, enable_if_t<is_one_of_v<N, NodeType::Constant, NodeType::Terminal>>>
 { 
-    static constexpr array<SigType,1> value = { 
-        SigType::ArrayF
-    }; 
+    using type = std::tuple< Signature<ArrayXf()>, Signature<ArrayXb()>, Signature<ArrayXi()> >; 
 }; 
 template<NodeType N>
 struct Signatures<N, enable_if_t<is_one_of_v<N,
@@ -276,32 +314,32 @@ struct Signatures<N, enable_if_t<is_one_of_v<N,
     /* NodeType::Aq, */
     NodeType::Pow
     >>>{ 
-        static constexpr array<SigType,2> value = { 
-            SigType::ArrayFArrayFtoArrayF, 
-            SigType::MatrixFMatrixFtoMatrixF
-        }; 
+        using type = std::tuple< 
+            Signature<ArrayXf(ArrayXf,ArrayXf)>,
+            Signature<ArrayXXf(ArrayXXf,ArrayXXf)>
+        >; 
     }; 
 
-template<NodeType N>
-struct Signatures<N, enable_if_t<is_one_of_v<N,
-    NodeType::And,
-    NodeType::Or,
-    NodeType::Xor
-    >>>{ 
-        /* static constexpr ExecType type = ExecType::Binary; */ 
-        static constexpr array<SigType,2> value = { 
-            SigType::ArrayBArrayBtoArrayB, 
-            SigType::MatrixBMatrixBtoMatrixB
-        }; 
-    }; 
+/* template<NodeType N> */
+/* struct Signatures<N, enable_if_t<is_one_of_v<N, */
+/*     NodeType::And, */
+/*     NodeType::Or, */
+/*     NodeType::Xor */
+/*     >>>{ */ 
+/*         /1* static constexpr ExecType type = ExecType::Binary; *1/ */ 
+/*         static constexpr array<SigType,2> value = { */ 
+/*             SigType::ArrayBArrayBtoArrayB, */ 
+/*             SigType::MatrixBMatrixBtoMatrixB */
+/*         }; */ 
+/*     }; */ 
 
-template<> 
-struct Signatures<NodeType::Not> { 
-    static constexpr array<SigType, 2> value = {
-            SigType::ArrayBtoArrayB, 
-            SigType::MatrixBtoMatrixB
-    };
-};
+/* template<> */ 
+/* struct Signatures<NodeType::Not> { */ 
+/*     static constexpr array<SigType, 2> value = { */
+/*             SigType::ArrayBtoArrayB, */ 
+/*             SigType::MatrixBtoMatrixB */
+/*     }; */
+/* }; */
 
 template<NodeType N> 
 struct Signatures<N, enable_if_t<is_one_of_v<N,
@@ -325,101 +363,106 @@ struct Signatures<N, enable_if_t<is_one_of_v<N,
     NodeType::Sqrtabs,
     NodeType::Square 
     >>>{ 
-        static constexpr array<SigType,2> value = { 
-            SigType::ArrayFtoArrayF, 
-            SigType::MatrixFtoMatrixF 
-        };
+        /* static constexpr auto value = { */ 
+        /*     Signature<ArrayXf(ArrayXf)>{}, */
+        /*     Signature<ArrayXXf(ArrayXXf)>{}, */
+
+        /* }; */
+        using type = std::tuple< 
+            Signature<ArrayXf(ArrayXf)>,
+            Signature<ArrayXXf(ArrayXXf)>
+        >;
     };
 
-template<NodeType N>
-struct Signatures<N, enable_if_t<is_one_of_v<N, 
-    NodeType::Before,
-    NodeType::After,
-    NodeType::During
-    >>>{ 
-        //TODO: Fix
-        static constexpr array<SigType,3> value = { 
-            SigType::TimeSeriesFTimeSeriesFtoTimeSeriesF, 
-            SigType::TimeSeriesITimeSeriesItoTimeSeriesI, 
-            SigType::TimeSeriesBTimeSeriesBtoTimeSeriesB
-        };
-    }; 
-template<NodeType N>
-struct Signatures<N, enable_if_t<is_one_of_v<N, 
-    NodeType::Min, 
-    NodeType::Max
-    >>>{ 
-        static constexpr array<SigType,3> value = { 
-            SigType::MatrixFtoArrayF, 
-            SigType::MatrixItoArrayI,
-            SigType::MatrixBtoArrayB
-        };
-    }; 
+/* template<NodeType N> */
+/* struct Signatures<N, enable_if_t<is_one_of_v<N, */ 
+/*     NodeType::Before, */
+/*     NodeType::After, */
+/*     NodeType::During */
+/*     >>>{ */ 
+/*         //TODO: Fix */
+/*         static constexpr array<SigType,3> value = { */ 
+/*             SigType::TimeSeriesFTimeSeriesFtoTimeSeriesF, */ 
+/*             SigType::TimeSeriesITimeSeriesItoTimeSeriesI, */ 
+/*             SigType::TimeSeriesBTimeSeriesBtoTimeSeriesB */
+/*         }; */
+/*     }; */ 
+/* template<NodeType N> */
+/* struct Signatures<N, enable_if_t<is_one_of_v<N, */ 
+/*     NodeType::Min, */ 
+/*     NodeType::Max */
+/*     >>>{ */ 
+/*         static constexpr array<SigType,3> value = { */ 
+/*             SigType::MatrixFtoArrayF, */ 
+/*             SigType::MatrixItoArrayI, */
+/*             SigType::MatrixBtoArrayB */
+/*         }; */
+/*     }; */ 
 
-template<NodeType N>
-struct Signatures<N, enable_if_t<is_one_of_v<N, 
-    NodeType::Mean,
-    NodeType::Median
-    >>>{ 
-        static constexpr array<SigType,1> value = { 
-            SigType::MatrixFtoArrayF
-        };
-    }; 
+/* template<NodeType N> */
+/* struct Signatures<N, enable_if_t<is_one_of_v<N, */ 
+/*     NodeType::Mean, */
+/*     NodeType::Median */
+/*     >>>{ */ 
+/*         static constexpr array<SigType,1> value = { */ 
+/*             SigType::MatrixFtoArrayF */
+/*         }; */
+/*     }; */ 
 
-template<NodeType N>
-struct Signatures<N, enable_if_t<is_one_of_v<N, 
-    NodeType::Count,
-    NodeType::Sum
-    >>>{ 
-        static constexpr array<SigType,3> value = { 
-            SigType::MatrixFtoArrayF, 
-            SigType::MatrixItoArrayF, 
-            SigType::MatrixBtoArrayF, 
-        };
-    }; 
+/* template<NodeType N> */
+/* struct Signatures<N, enable_if_t<is_one_of_v<N, */ 
+/*     NodeType::Count, */
+/*     NodeType::Sum */
+/*     >>>{ */ 
+/*         static constexpr array<SigType,3> value = { */ 
+/*             SigType::MatrixFtoArrayF, */ 
+/*             SigType::MatrixItoArrayF, */ 
+/*             SigType::MatrixBtoArrayF, */ 
+/*         }; */
+/*     }; */ 
 
-template<NodeType N>
-struct Signatures<N, enable_if_t<is_one_of_v<N, 
-    NodeType::Equals,
-    NodeType::LessThan,
-    NodeType::GreaterThan,
-    NodeType::Leq,
-    NodeType::Geq,
-    NodeType::CustomBinaryOp
-    >>>{ 
-        static constexpr array<SigType,4> value = { 
-            SigType::ArrayFArrayFtoArrayB, 
-            SigType::ArrayIArrayItoArrayB, 
-            SigType::MatrixFMatrixFtoMatrixB, 
-            SigType::MatrixFMatrixFtoMatrixB, 
-        };
-    }; 
+/* template<NodeType N> */
+/* struct Signatures<N, enable_if_t<is_one_of_v<N, */ 
+/*     NodeType::Equals, */
+/*     NodeType::LessThan, */
+/*     NodeType::GreaterThan, */
+/*     NodeType::Leq, */
+/*     NodeType::Geq, */
+/*     NodeType::CustomBinaryOp */
+/*     >>>{ */ 
+/*         static constexpr array<SigType,4> value = { */ 
+/*             SigType::ArrayFArrayFtoArrayB, */ 
+/*             SigType::ArrayIArrayItoArrayB, */ 
+/*             SigType::MatrixFMatrixFtoMatrixB, */ 
+/*             SigType::MatrixFMatrixFtoMatrixB, */ 
+/*         }; */
+/*     }; */ 
 
-template<NodeType N>
-struct Signatures<N, enable_if_t<is_one_of_v<N, NodeType::SplitBest, NodeType::CustomSplit>>>
-    { 
-        static constexpr array<SigType,3> value = { 
-            SigType::ArrayFArrayFtoArrayF, 
-            SigType::ArrayIArrayItoArrayI, 
-            SigType::ArrayBArrayBtoArrayB, 
-            // TODO
-            /* SigType::MatrixFMatrixFtoMatrixF, */
-            /* SigType::MatrixFMatrixFtoMatrixF */
-        }; 
-    }; 
-template<>
-struct Signatures<NodeType::SplitOn>{ 
-        static constexpr array<SigType,1> value = { 
-            SigType::ArrayFArrayFArrayFtoArrayF
-            /* SigType::ArrayFArrayIArrayItoArrayI, */ 
-            /* SigType::ArrayFArrayBArrayBtoArrayB, */ 
-            /* SigType::ArrayIArrayFArrayFtoArrayF, */ 
-            /* SigType::ArrayIArrayIArrayItoArrayI, */ 
-            /* SigType::ArrayIArrayBArrayBtoArrayB, */ 
-            /* SigType::ArrayBArrayFArrayFtoArrayF, */ 
-            /* SigType::ArrayBArrayIArrayItoArrayI, */ 
-            /* SigType::ArrayBArrayBArrayBtoArrayB, */ 
-        }; 
-    }; 
+/* template<NodeType N> */
+/* struct Signatures<N, enable_if_t<is_one_of_v<N, NodeType::SplitBest, NodeType::CustomSplit>>> */
+/*     { */ 
+/*         static constexpr array<SigType,3> value = { */ 
+/*             SigType::ArrayFArrayFtoArrayF, */ 
+/*             SigType::ArrayIArrayItoArrayI, */ 
+/*             SigType::ArrayBArrayBtoArrayB, */ 
+/*             // TODO */
+/*             /1* SigType::MatrixFMatrixFtoMatrixF, *1/ */
+/*             /1* SigType::MatrixFMatrixFtoMatrixF *1/ */
+/*         }; */ 
+/*     }; */ 
+/* template<> */
+/* struct Signatures<NodeType::SplitOn>{ */ 
+/*         static constexpr array<SigType,1> value = { */ 
+/*             SigType::ArrayFArrayFArrayFtoArrayF */
+/*             /1* SigType::ArrayFArrayIArrayItoArrayI, *1/ */ 
+/*             /1* SigType::ArrayFArrayBArrayBtoArrayB, *1/ */ 
+/*             /1* SigType::ArrayIArrayFArrayFtoArrayF, *1/ */ 
+/*             /1* SigType::ArrayIArrayIArrayItoArrayI, *1/ */ 
+/*             /1* SigType::ArrayIArrayBArrayBtoArrayB, *1/ */ 
+/*             /1* SigType::ArrayBArrayFArrayFtoArrayF, *1/ */ 
+/*             /1* SigType::ArrayBArrayIArrayItoArrayI, *1/ */ 
+/*             /1* SigType::ArrayBArrayBArrayBtoArrayB, *1/ */ 
+/*         }; */ 
+/*     }; */ 
 } // namespace Brush
 #endif

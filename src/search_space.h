@@ -341,16 +341,17 @@ struct SearchSpace
     //     return this->node_map.at(op); 
     // };
     private:
-        template<NodeType NT, SigType S>
+        template<NodeType NT, typename S>
         static constexpr auto MakeNode(bool weighted)
         {
-            using RetType = typename Signature<S>::RetType; 
+            using RetType = typename S::RetType; 
             DataType output_type = DataTypeEnum<RetType>::value;
-            return Node(NT, S, output_type, weighted);
+            std::size_t sig_hash = typeid(S).hash_code();
+            return Node(NT, sig_hash, output_type, weighted);
 
         }
        
-        template<NodeType NT, SigType S>
+        template<NodeType NT, typename S>
         constexpr void AddNode(const map<string,float>& user_ops)
         {
             bool use_all = user_ops.size() == 0;
@@ -365,10 +366,10 @@ struct SearchSpace
             weight_map[n.ret_type][n.args_type()][n.node_type] = w;
         }
 
-        template<NodeType NT, typename Sigs, Sigs S={}, std::size_t... Is>
+        template<NodeType NT, typename Sigs, std::size_t... Is>
         constexpr void AddNodes(const map<string,float>& user_ops, std::index_sequence<Is...>)
         {
-            (AddNode<NT,std::get<Is>(S)>(user_ops), ...);
+            (AddNode<NT,std::tuple_element_t<Is, Sigs>>(user_ops), ...);
         }
 
         template<NodeType NT>
@@ -380,16 +381,10 @@ struct SearchSpace
             if (!use_all & user_ops.find(name) == user_ops.end())
                 return;
 
-            constexpr auto signatures = Signatures<NT>::value;
-            constexpr auto size = std::tuple_size<std::decay_t<decltype(signatures)>>::value ;
-            AddNodes<NT, decltype(signatures), signatures>(user_ops, std::make_index_sequence<size>()); 
-            /* constexpr auto add = [&](auto const... sigs) {((AddNode<NT,sigs>(user_ops)), ...);}; */ 
-            /* std::apply(add, signatures); */
-            /* for (constexpr SigType S : signatures) */
-            /* { */
-            /*     /1* auto signature = Signature<S>; *1/ */
-            /*     /1* map_.insert({ NT, {S, detail::MakeOperator<RetType,NT,S>() }}); *1/ */
-            /* } */
+            /* constexpr auto signatures = Signatures<NT>::value; */
+            using signatures = Signatures<NT>::type;
+            constexpr auto size = std::tuple_size<signatures>::value ;
+            AddNodes<NT, signatures>(user_ops, std::make_index_sequence<size>()); 
         }
 
         template<std::size_t... Is>

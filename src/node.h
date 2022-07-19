@@ -70,7 +70,7 @@ struct Node {
 
     NodeType node_type;
     /* ExecType exec_type; */
-    SigType sig_type;
+    std::size_t sig_hash;
     DataType ret_type;
     std::vector<DataType> arg_types;
     bool is_differentiable;
@@ -83,14 +83,11 @@ struct Node {
 
     Node() = default; 
 
-    explicit Node(NodeType type, SigType sig, DataType output_type, bool weighted=false) noexcept
+    explicit Node(NodeType type, std::size_t sig, DataType output_type, bool weighted=false) noexcept
         : node_type(type)
         , name(NodeTypeName[type])
-        , sig_type(sig)
+        , sig_hash(sig)
         , ret_type(output_type)
-        /* , ret_type(DataTypeName<Signature<sig>::RetType>>) */
-        /* , exec_type(NodeSchema[NodeTypeName[type]]["ExecType"]) */
-        /* , arg_types(NodeSchema[NodeTypeName[type]]["Signature"][DataTypeName[output_type]]) */
         , is_weighted(weighted)
     {
         cout << "instantiated " << name << " with return type" << DataTypeName.at(ret_type) << endl;
@@ -99,15 +96,16 @@ struct Node {
     explicit Node(NodeType type, DataType output_type, string feature_name) noexcept
         : node_type(type)
         , name(NodeTypeName[type])
-        /* , sig_type(SigType::) */
+        /* , sig_hash(SigType::) */
         , ret_type(output_type)
         , feature(feature_name)
         /* , exec_type(NodeSchema[NodeTypeName[type]]["ExecType"]) */
         /* , arg_types(NodeSchema[NodeTypeName[type]]["Signature"][DataTypeName[output_type]]) */
         , is_weighted(false)
     {
-        //TODO: set sig_type
+        //TODO: set sig_hash
         cout << "instantiated " << name << " from feature " << feature << endl;
+        sig_hash=typeid(void).hash_code();
         
     }
         // if (Type < NodeType::Abs) // Add, Mul, Sub, Div, Aq, Pow

@@ -48,21 +48,15 @@ https://eigen.tuxfamily.org/dox/TopicCustomizing_Plugins.html
     template<>
     struct Function<NodeType::Add> 
     {
-        // template<typename T>
-        // inline auto operator()(T t) { return t; }
-        template<typename T1, typename T2, typename... Tn>
-        inline auto operator()(T1 t1, T2 t2, Tn... tn) { return t1 + t2 + (tn + ...); }
+        template<typename T1, typename T2>
+        inline auto operator()(T1 t1, T2 t2) { return t1 + t2; }
     };
 
     template<>
     struct Function<NodeType::Sub>
     {
-        // template<typename T>
-        // inline auto operator()(T t) { return -t; }
-
-        // template<typename T, typename... Tn>
-        template<typename T1, typename T2, typename... Tn>
-        inline auto operator()(T1 t1, T2 t2, Tn... tn) { return t1 - (t2 + (tn + ...)); }
+        template<typename T1, typename T2>
+        inline auto operator()(T1 t1, T2 t2) { return t1 - t2; }
     };
 
     template<>
@@ -165,18 +159,18 @@ https://eigen.tuxfamily.org/dox/TopicCustomizing_Plugins.html
     template<>
     struct Function<NodeType::Median>
     {
-        template<typename T>
-        inline auto operator()(T t) { return median(t); }
+        /* template<typename T> */
+        /* inline auto operator()(T t) { return median(t); } */
         
         template<typename T>
-        inline auto operator()(ArrayXXf t) { 
-            ArrayXf tmp;
+        inline auto operator()(Eigen::Array<T,-1,-1> t) { 
+            Array<T,-1,1> tmp;
             std::transform(t.rowwise().cbegin(), t.rowwise().cend(), 
                            tmp.begin(),
                            [](const auto& i){return Util::median(i);}
             );
             return tmp;
-        };
+        }
 
         template<typename T>
         inline auto operator()(TimeSeries<T> t) { return t.median(); }
