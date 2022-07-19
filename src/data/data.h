@@ -147,13 +147,15 @@ struct TimeSeries
         return TimeSeries<T>(dest, this->time);
     }
     /* reduce takes a unary aggregating function, applies it to each entry, and returns an Array.*/
-    auto reduce(std::function<T(EntryType)> op) const -> EntryType
+    template<typename R=T>
+    auto reduce(const auto& op) const 
     {
-        // dest is of Entry type but is as long as the # samples. 
-        EntryType dest(this->value.size());
+        using RetType = Array<R,Dynamic,1>;
+        // output "dest" has one entry for each sample. 
+        RetType dest(this->value.size());
         std::transform(cbegin(), cend(), 
                        dest.begin(),
-                       [&](const EntryType& i){return op(i);}
+                       [&](const EntryType& i){return R(op(i));}
         );
         return dest;
     }; 
@@ -180,8 +182,13 @@ struct TimeSeries
     inline auto sqrtabs() { return this->transform([](const EntryType& i){ return i.abs().sqrt(); } ); };
     inline auto square() { return this->transform([](const EntryType& i){ return i.square(); } ); };
     // reduction overloads
-    inline auto sum() { return this->reduce([](const EntryType& i){ return i.sum(); } ); };
     inline auto median() { return this->reduce([](const EntryType& i){ return Util::median(i); } ); };
+    inline auto mean() { return this->reduce([](const EntryType& i){ return i.mean(); } ); };
+    inline auto std() { return this->reduce([](const EntryType& i){ return i.std(); } ); };
+    inline auto max() { return this->reduce([](const EntryType& i){ return i.maxCoeff(); } ); };
+    inline auto min() { return this->reduce([](const EntryType& i){ return i.minCoeff(); } ); };
+    inline auto sum() { return this->reduce<float>([](const EntryType& i){ return i.sum(); } ); };
+    inline auto count() { return this->reduce<float>([](const EntryType& i){ return i.size(); } ); };
 
     template<typename T2>
     inline auto before(const TimeSeries<T2>& t2) const { 

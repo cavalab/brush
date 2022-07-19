@@ -90,7 +90,7 @@ struct Node {
         , ret_type(output_type)
         , is_weighted(weighted)
     {
-        cout << "instantiated " << name << " with return type" << DataTypeName.at(ret_type) << endl;
+        cout << "instantiated " << name << "with sig hash " << sig_hash << " and return type " << DataTypeName.at(ret_type) << endl;
     }
 
     explicit Node(NodeType type, DataType output_type, string feature_name) noexcept
@@ -104,7 +104,7 @@ struct Node {
         , is_weighted(false)
     {
         //TODO: set sig_hash
-        cout << "instantiated " << name << " from feature " << feature << endl;
+        cout << "instantiated " << name << " from feature " << feature << " with output type " << DataTypeName.at(ret_type) << endl;
         sig_hash=typeid(void).hash_code();
         
     }

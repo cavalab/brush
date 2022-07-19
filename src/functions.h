@@ -65,8 +65,8 @@ https://eigen.tuxfamily.org/dox/TopicCustomizing_Plugins.html
         // template<typename T>
         // inline auto operator()(T t) { return t; }
 
-        template<typename T1, typename T2, typename... Tn>
-        inline auto operator()(T1 t1, T2 t2, Tn... tn) { return t1 * t2 * (tn * ...); }
+        template<typename T1, typename T2>
+        inline auto operator()(T1 t1, T2 t2) { return t1 * t2 ;}
     };
 
     template<>
@@ -76,8 +76,8 @@ https://eigen.tuxfamily.org/dox/TopicCustomizing_Plugins.html
         // inline auto operator()(T t) { return t.inverse(); }
 
         // template<typename T, typename... Tn>
-        template<typename T1, typename T2, typename... Tn>
-        inline auto operator()(T1 t1, T2 t2, Tn... tn) { return t1 / (t2 * (tn * ...)); }
+        template<typename T1, typename T2>
+        inline auto operator()(T1 t1, T2 t2) { return t1 / t2 ; }
     };
 
     /* coefficient-wise minimum of two or more arguments. */
@@ -96,9 +96,7 @@ https://eigen.tuxfamily.org/dox/TopicCustomizing_Plugins.html
 
         // template<>
         template<typename T>
-        inline auto operator()(TimeSeries<T> t) { 
-            return t.reduce([](const auto& i){return i.minCoeff();});
-        }
+        inline auto operator()(TimeSeries<T> t) { return t.min(); } 
     };
 
     /* coefficient-wise maximum of two or more arguments. */
@@ -117,9 +115,7 @@ https://eigen.tuxfamily.org/dox/TopicCustomizing_Plugins.html
         // template<>
         // inline auto operator()(TimeSeriesf t) { return t.apply(Eigen::maxCoeff()); }
         template<typename T>
-        inline auto operator()(TimeSeries<T> t) { 
-            return t.reduce([](const auto& i){return i.maxCoeff();});
-        }
+        inline auto operator()(TimeSeries<T> t) { return t.max(); }
     };
 
     /* mean */
@@ -133,9 +129,7 @@ https://eigen.tuxfamily.org/dox/TopicCustomizing_Plugins.html
         inline auto operator()(T t) { return t.rowwise().mean(); }
 
         template<typename T>
-        inline auto operator()(TimeSeries<T> t) { 
-            return t.apply([](const auto& i){return i.mean();});
-        }
+        inline auto operator()(TimeSeries<T> t) { return t.mean(); }
         
     };
 
@@ -165,7 +159,7 @@ https://eigen.tuxfamily.org/dox/TopicCustomizing_Plugins.html
         template<typename T>
         inline auto operator()(Eigen::Array<T,-1,-1> t) { 
             Array<T,-1,1> tmp;
-            std::transform(t.rowwise().cbegin(), t.rowwise().cend(), 
+            std::transform(t.rowwise().begin(), t.rowwise().end(), 
                            tmp.begin(),
                            [](const auto& i){return Util::median(i);}
             );
@@ -174,15 +168,6 @@ https://eigen.tuxfamily.org/dox/TopicCustomizing_Plugins.html
 
         template<typename T>
         inline auto operator()(TimeSeries<T> t) { return t.median(); }
-        /* inline auto operator()(const TimeSeriesf& x) */
-        /* { */
-        /*     ArrayXf tmp; */
-        /*     std::transform(x.cbegin(), x.cend(), */ 
-        /*                     tmp.begin(), */
-        /*                     [](const auto& i){return Util::median(i);} */
-        /*     ); */
-        /*     return tmp; */
-        /* }; */
     };
     /* sum */
     template<>
@@ -191,8 +176,26 @@ https://eigen.tuxfamily.org/dox/TopicCustomizing_Plugins.html
         template<typename T>
         inline auto operator()(T t) { return t.rowwise().sum(); }
 
+        inline auto operator()(ArrayXXb t) { auto tmp = t.rowwise().count(); return (tmp.cast <float> ());}
+        /* template<typename T> */
+        /* requires (std::is_same_v<T,bool> || std::is_same_v<T,int>) */
+        /* inline auto operator()(Array<T,-1,-1> t) { */ 
+        /*     ArrayXf tmp = t.rowwise().sum().cast <float> (); */
+        /*     return tmp; */ 
+        /* } */
+
         template<typename T>
         inline auto operator()(TimeSeries<T> t) { return t.sum(); } 
+    };
+    template<>
+    struct Function<NodeType::Count>
+    {
+        /* template<typename T> */
+        /* inline auto operator()(T t) { return t.rowwise().size(); } */
+        inline auto operator()(ArrayXXb t) { return t.rowwise().count(); }
+
+        template<typename T>
+        inline auto operator()(TimeSeries<T> t) { return t.count(); } 
     };
 
 

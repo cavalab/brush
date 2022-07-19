@@ -284,7 +284,7 @@ namespace detail {
 // Dispatch Table
 /* template<typename T> struct DispatchTable; */
 
-template<typename... Ts> 
+/* template<typename... Ts> */ 
 struct DispatchTable
 {
     
@@ -302,7 +302,17 @@ struct DispatchTable
     template<typename T>
     using Callable = detail::Callable<T>;
 
-    using CallVariant    = std::variant<Callable<Ts>...>;
+    using CallVariant = std::variant< 
+        Callable<ArrayXb>,
+        Callable<ArrayXi>, 
+        Callable<ArrayXf>, 
+        Callable<ArrayXXb>,
+        Callable<ArrayXXi>, 
+        Callable<ArrayXXf>, 
+        Callable<TimeSeriesb>,
+        Callable<TimeSeriesi>,
+        Callable<TimeSeriesf>
+        >;
     /* using Map      = robin_hood::unordered_flat_map<Operon::Hash, Tuple>; */
     // could have fit map, predict map
     using SigMap = std::unordered_map<std::size_t,CallVariant>;
@@ -380,17 +390,7 @@ public:
 
 };
 
-const DispatchTable<
-              ArrayXb,
-              ArrayXi, 
-              ArrayXf, 
-              ArrayXXb,
-              ArrayXXi, 
-              ArrayXXf, 
-              TimeSeriesb,
-              TimeSeriesi,
-              TimeSeriesf
-             > dtable;
+const DispatchTable dtable;
 //////////////////////////////////////////////////////////////////////////////////
 // fit, eval, predict
 template<typename T>
