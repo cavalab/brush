@@ -61,7 +61,7 @@ tree<Node> make_program(SearchSpace& SS, DataType root_type,
             cout << "queue size: " << queue.size() << endl; 
             auto [qspot, t, d] = RandomDequeue(queue);
 
-            cout << "d: " << d << endl;
+            cout << "current depth: " << d << endl;
             if (d == max_d)
             {
                 cout << "getting " << DataTypeName[t] << " terminal\n"; 
@@ -82,7 +82,7 @@ tree<Node> make_program(SearchSpace& SS, DataType root_type,
                 }
             }
             ++s;
-            cout << "s: " << s << endl;
+            cout << "current tree size: " << s << endl;
         } 
         cout << "entering second while loop...\n";
         while (queue.size() > 0)

@@ -47,11 +47,7 @@ string TreeNode::get_model(bool pretty) const
 
 string TreeNode::get_tree_model(bool pretty, string offset) const 
 { 
-    // cout << "TypedNodeBase::get_tree_model. ";
-    // cout << "first_child: " << first_child << endl;
-    // cout << "last_child: " << last_child << endl;
     string new_offset = "  ";
-
     string  child_outputs = "\n";
 
     auto sib = first_child;
@@ -69,6 +65,6 @@ string TreeNode::get_tree_model(bool pretty, string offset) const
     /* if (pretty) */
     /*     return this->op_name + child_outputs; */
     /* else */
-        return this->n.name + child_outputs;
+    return this->n.get_name() + child_outputs;
 };
 }

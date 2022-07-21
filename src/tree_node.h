@@ -55,7 +55,6 @@ class tree_node_<Node> { // size: 5*4=20 bytes (on 32 bit arch), can be reduced 
         /* /1* void grad_descent(const ArrayXf&, const Data&); *1/ */
 		string get_model(bool pretty=false) const;
 		string get_tree_model(bool pretty=false, string offset="") const;
-
 }; 
 using TreeNode = class tree_node_<Node>; 
 //forward declarations

@@ -105,7 +105,7 @@ struct SearchSpace
               const map<string,float>& user_ops = {}
              )
     {
-        cout << "constructing search space...\n";
+        fmt::print("constructing search space...");
 
         this->node_map.clear();
         this->weight_map.clear();
@@ -125,29 +125,32 @@ struct SearchSpace
         vector<Node> terminals = generate_terminals(d);
         /* set<Node> nodes = generate_all_nodes(op_names, terminal_types); */
         
-        cout << "generate nodemap\n";
+        fmt::print("generate nodemap");
         GenerateNodeMap(user_ops, d.unique_data_types, 
                 std::make_index_sequence<NodeTypes::Count>());
         // map terminals
-        cout << "looping through terminals...\n";
+        fmt::print("looping through terminals...");
         for (const auto& term : terminals)
         {
-            cout << "adding " << term.get_name() << " to search space...\n";
+            fmt::print("adding {} to search space...", term.get_name());
             if (terminal_map.find(term.ret_type) == terminal_map.end())
                 terminal_map[term.ret_type] = NodeVector();
-            cout << "terminal ret_type: " << DataTypeName[term.ret_type] << "\n";
+            fmt::print("terminal ret_type: {}", DataTypeName[term.ret_type]);
             terminal_map[term.ret_type].push_back(term);
             terminal_weights[term.ret_type].push_back(1.0);
         }
 
-        cout << "terminal map: " << terminal_map.size() << "\n";
-        for (const auto& [k, v] : terminal_map)
+        fmt::print("terminal map: {}", terminal_map.size() );
+        for (const auto& [k, nv] : terminal_map)
         {
-            cout << DataTypeName[k] << ": ";
-            print(v.begin(), v.end());
+            fmt::print("{}: ",DataTypeName[k]);
+            for (auto n : nv)
+                fmt::print("{}", n.get_name());
+            /* fmt::print("{}",v); */
+            /* print(v.begin(), v.end()); */
         }
 
-        cout << "node map: " << node_map.size() << "\n";
+        fmt::print("node map (size={}):", node_map.size() );
         for (const auto& [ret_type, v] : node_map)
         {
             for (const auto& [args_type, v2] : v)
@@ -163,7 +166,7 @@ struct SearchSpace
 
             }
         }
-        cout << "done.\n";
+        fmt::print("done.");
 
     };
 
@@ -193,12 +196,15 @@ struct SearchSpace
     {
         cout << "get terminal of type " << DataTypeName[ret] << "\n";
         cout << "terminal map: " << terminal_map.size() << "\n";
-        for (const auto& [k, v] : terminal_map)
+        for (const auto& [k, nv] : terminal_map)
         {
-            cout << DataTypeName[k] << ": ";
-            print(v.begin(), v.end());
+            fmt::print("{}: ", DataTypeName[k]);
+            /* print(v.begin(), v.end()); */
+            for (auto n : nv)
+                fmt::print("{}", n.get_name());
         }
-        print(terminal_weights.at(ret).begin(), terminal_weights.at(ret).end());
+        /* print(terminal_weights.at(ret).begin(), terminal_weights.at(ret).end()); */
+        fmt::print("{}",terminal_weights.at(ret));
         //TODO: match terminal args_type (probably '{}' or something?)
         //  make a separate terminal_map
         auto rval =  *r.select_randomly(terminal_map.at(ret).begin(), 

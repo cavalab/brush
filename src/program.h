@@ -113,8 +113,8 @@ template<typename T> class Program //: public tree<Node>
     string get_tree_model(bool pretty=false)
     {
         /* return prg.get_tree_model(pretty); */
-        Iter head = prg.begin(); 
-        return head.node->get_model(pretty);
+        /* Iter head = prg.begin(); */ 
+        return prg.begin().node->get_tree_model(pretty);
     }
 
     ////////////////////////////////////////////////////////////////////////////

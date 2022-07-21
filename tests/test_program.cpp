@@ -31,7 +31,8 @@ TEST(Program, MakeProgram)
     };
 
     SearchSpace SS;
-    SS.init(data,user_ops);
+    /* SS.init(data,user_ops); */
+    SS.init(data);
 
             
     // Program<ArrayXf> DXtree;
@@ -41,8 +42,8 @@ TEST(Program, MakeProgram)
             Program<ArrayXf> PRG(SS, d, 0, s);
             cout << "=================================================" << "\n";
             cout << "Tree model for depth = " << d << ", size = " << s << ":\n";
-            /* cout << PRG.get_tree_model(true) << endl; */
-            cout << PRG.get_model(true) << endl;
+            cout << PRG.get_tree_model(true) << endl;
+            /* cout << PRG.get_model(true) << endl; */
             cout << "=================================================" << "\n";
         }
 }
