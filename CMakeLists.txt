@@ -21,10 +21,10 @@
 #endif()
 #############################################
 
-# if (APPLE OR UNIX)
-#    set(CMAKE_C_COMPILER   "gcc")
-#    set(CMAKE_CXX_COMPILER "g++")
-# endif()
+if (APPLE OR UNIX)
+   set(CMAKE_C_COMPILER   "gcc")
+   set(CMAKE_CXX_COMPILER "g++")
+endif()
 
 get_cmake_property(_variableNames VARIABLES)
 list (SORT _variableNames)
