@@ -55,7 +55,6 @@ tree<Node> make_program(SearchSpace& SS, DataType root_type,
         }
 
         cout << "queue size: " << queue.size() << endl; 
-        cout << "s" << queue.size() << endl; 
         cout << "entering first while loop...\n";
         while (queue.size() + s < max_size && queue.size() > 0) 
         {

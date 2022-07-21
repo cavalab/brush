@@ -106,7 +106,7 @@ struct Node {
         arg_types = vector<DataType>{};
     }
 
-    auto get_name() const noexcept -> std::string const&;
+    inline auto get_name() const noexcept -> std::string const&; 
     /* auto get_desc() const noexcept -> std::string const&; */
 
     // get return type and argument types. 

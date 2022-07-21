@@ -72,27 +72,6 @@ FetchContent_Declare(
 set(gtest_force_shared_crt ON CACHE BOOL "" FORCE)
 FetchContent_MakeAvailable(googletest)
 
-# # if defined in environment
-# if (DEFINED ENV{GTEST_INCLUDE_DIRS} AND DEFINED ENV{GTEST_LIBRARIES})
-#     include_directories("$ENV{GTEST_INCLUDE_DIRS}")
-#     set(GTEST_INCLUDE_DIRS $ENV{GTEST_INCLUDE_DIRS})
-#     set(GTEST_LIBRARIES $ENV{GTEST_LIBRARIES})
-# # defined at command line
-# elseif(DEFINED GTEST_INCLUDE_DIRS AND DEFINED GTEST_LIBRARIES)
-#     set(GTEST_INCLUDE_DIRS ${GTEST_INCLUDE_DIRS})
-#     set(GTEST_LIBRARIES ${GTEST_LIBRARIES})
-#     include_directories("${GTEST_INCLUDE_DIRS}")
-# # goin fishin
-# else()
-#     message(STATUS "looking for GTest")
-#     find_package(GTest REQUIRED)
-# endif()
-
-# include_directories(${GTEST_INCLUDE_DIRS})
-# message(STATUS "GTest dir=${GTEST_INCLUDE_DIRS}")
-# message(STATUS "GTest library=${GTEST_LIBRARIES}")
-
-# endif()
 
 # autocomplete for YouCompleteMe needs commands to be exported
 set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
@@ -119,6 +98,9 @@ endif()
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wno-ignored-attributes")
 
 ########################################
+# fmt
+find_package(fmt REQUIRED)
+########################################
 # build brush library
 # gather list of source files
 
@@ -136,7 +118,7 @@ add_library(brush SHARED ${sources})
 file(GLOB_RECURSE testsSrc "tests/*.cpp")
 message(STATUS "testsSrc: '${testsSrc}")
 add_executable(tests ${testsSrc})
-target_link_libraries(tests brush gtest_main pthread)
+target_link_libraries(tests brush gtest_main pthread fmt::fmt)
 # Google tests
 include(GoogleTest)
 gtest_discover_tests(tests)
@@ -157,7 +139,7 @@ message("pybind11_DIR:${pybind11_DIR}")
 find_package(PythonLibs REQUIRED)
 include_directories("${PYTHON_INCLUDE_DIRS}")
 message("Python_INCLUDE_DIRS:${PYTHON_INCLUDE_DIRS}")
-target_link_libraries(brush ${PYTHON_LIBRARIES})
+target_link_libraries(brush ${PYTHON_LIBRARIES} fmt::fmt)
 
 pybind11_add_module(brushgp ${CMAKE_CURRENT_SOURCE_DIR}/src/brushgp.cpp)
 target_link_libraries(brushgp PRIVATE brush)

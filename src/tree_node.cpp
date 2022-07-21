@@ -27,6 +27,9 @@ namespace Brush {
 
 string TreeNode::get_model(bool pretty) const 
 { 
+    if (n.get_arg_count()==0)
+        return n.get_name();
+
     string child_outputs = "";
     auto sib = first_child;
     for(int i = 0; i < this->n.get_arg_count(); ++i)
