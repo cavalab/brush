@@ -21,10 +21,11 @@
 #endif()
 #############################################
 
-if (APPLE OR UNIX)
-   set(CMAKE_C_COMPILER   "gcc")
-   set(CMAKE_CXX_COMPILER "g++")
-endif()
+# On Apple, install gcc>=11 version via homebrew 
+# if (APPLE)
+#    set(CMAKE_C_COMPILER   "/opt/homebrew/bin/gcc")
+#    set(CMAKE_CXX_COMPILER "/opt/homebrew/bin/g++")
+# endif()
 
 get_cmake_property(_variableNames VARIABLES)
 list (SORT _variableNames)

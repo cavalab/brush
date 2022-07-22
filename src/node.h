@@ -147,40 +147,50 @@ struct Node {
         return !((*this) < rhs);
     }
 
-    template <NodeType... T>
-    inline auto Is() const -> bool { return ((node_type == T) || ...); }
+    inline decltype(auto) signature() const { 
+        return NodeSchema[NodeTypeName[node_type]]["Signature"][DataTypeName[ret_type]]; 
+    };
 
-    inline auto IsLeaf() const noexcept -> bool { 
-        return Is<NodeType::Constant, NodeType::Terminal>(); 
-    }
+    //TODO revisit
+    float get_prob_change() const { return this->prob_change;};
+    void set_prob_change(float w){ this->prob_change = w;};
+    float get_prob_keep() const { return 1-this->prob_change;};
+};
 
-    inline auto IsCommutative() const noexcept -> bool { 
-        return Is<NodeType::Add,
-                  NodeType::Mul,
-                  NodeType::Min,
-                  NodeType::Max>(); 
-    }
+template <NodeType... T>
+inline auto Is(NodeType nt) -> bool { return ((nt == T) || ...); }
 
-    inline auto IsDifferentiable() const noexcept -> bool { 
-        return !Is<
-                    NodeType::Ceil,
-                    NodeType::Floor,
-                    NodeType::Not,              
-                    NodeType::Before,       
-                    NodeType::After,          
-                    NodeType::During,
-                    NodeType::Count,
-                    NodeType::And, 
-                    NodeType::Or,
-                    NodeType::Xor, 
-                    NodeType::Equals,
-                    NodeType::LessThan,
-                    NodeType::Leq,
-                    NodeType::Geq
-                    >();                
-    }
+inline auto IsLeaf(NodeType nt) noexcept -> bool { 
+    return Is<NodeType::Constant, NodeType::Terminal>(nt); 
+}
 
-    inline auto IsWeighable() const noexcept -> bool { 
+inline auto IsCommutative(NodeType nt) noexcept -> bool { 
+    return Is<NodeType::Add,
+              NodeType::Mul,
+              NodeType::Min,
+              NodeType::Max>(nt); 
+}
+
+inline auto IsDifferentiable(NodeType nt) noexcept -> bool { 
+    return !Is<
+                NodeType::Ceil,
+                NodeType::Floor,
+                NodeType::Not,              
+                NodeType::Before,       
+                NodeType::After,          
+                NodeType::During,
+                NodeType::Count,
+                NodeType::And, 
+                NodeType::Or,
+                NodeType::Xor, 
+                NodeType::Equals,
+                NodeType::LessThan,
+                NodeType::Leq,
+                NodeType::Geq
+                >(nt);                
+}
+template<NodeType NT>
+inline auto IsWeighable() noexcept -> bool { 
         return !Is<
                     NodeType::Ceil,
                     NodeType::Floor,
@@ -198,21 +208,21 @@ struct Node {
                     NodeType::Geq,
                     NodeType::SplitOn,
                     NodeType::SplitBest
-                    >();                
+                    >(NT);                
     }
+ostream& operator<<(ostream& os, const Node& n);
+ostream& operator<<(ostream& os, const NodeType& nt);
 
-    inline decltype(auto) signature() const { 
-        return NodeSchema[NodeTypeName[node_type]]["Signature"][DataTypeName[ret_type]]; 
-    };
-    /* template<ExecType E> auto tupleargs() const; */
 
-    //TODO revisit
-    float get_prob_change() const { return this->prob_change;};
-    void set_prob_change(float w){ this->prob_change = w;};
-    float get_prob_keep() const { return 1-this->prob_change;};
-};
-
-    ostream& operator<<(ostream& os, const Node& n);
 } // namespace Brush
+
+// format overload for Nodes
+template <> struct fmt::formatter<Brush::Node>: formatter<string_view> {
+  // parse is inherited from formatter<string_view>.
+  template <typename FormatContext>
+  auto format(Brush::Node x, FormatContext& ctx) const {
+    return formatter<string_view>::format(x.get_name(), ctx);
+  }
+};
 
 #endif

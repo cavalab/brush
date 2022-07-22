@@ -197,12 +197,15 @@ map<string, State> Data::make_features(const Ref<const ArrayXXf>& X,
 
         tmp_features[var_names.at(i)] = tmp;
     }
-    cout << "Data:: loaded data_types: ";
-    // Util::print(data_types.begin(), data_types.end());
     tmp_features.insert(Z.begin(), Z.end());
     return tmp_features;
 };
 
+ostream& operator<<(ostream& os, DataType dt)
+{
+    os << DataTypeName[dt];
+    return os;
+}
     
 } // data
 } // Brush

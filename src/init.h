@@ -24,8 +24,9 @@ license: GNU/GPL v3
 #include <set>
 #include <vector>
 #include <string>
-#include <fmt/core.h>
+/* #include <fmt/core.h> */
 #include <fmt/ranges.h>
+#include <fmt/format.h>
 
 using Eigen::MatrixXf;
 using Eigen::ArrayXXf;

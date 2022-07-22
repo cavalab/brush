@@ -54,6 +54,7 @@ enum class DataType : uint32_t {
 
 extern map<DataType,string>  DataTypeName; 
 extern map<string,DataType>  DataNameType; 
+ostream& operator<<(ostream& os, DataType n);
 
 
 namespace data
@@ -349,5 +350,13 @@ extern const map<DataType,std::type_index>  DataTypeID;
 extern map<std::type_index,DataType>  DataIDType;
 
 } // Brush
+
+// format overload for DataType
+template <> struct fmt::formatter<Brush::DataType>: formatter<string_view> {
+  template <typename FormatContext>
+  auto format(Brush::DataType x, FormatContext& ctx) const {
+    return formatter<string_view>::format(Brush::DataTypeName.at(x), ctx);
+  }
+};
 
 #endif

@@ -372,13 +372,14 @@ array<Array<T,-1, 1>, 2> split(const Array<T,-1,1>& v, const ArrayXb& mask)
 };
 
 /// prints comma delimited container contents. 
-template<typename Iter>
-void print(Iter first, Iter last)
+template<std::ranges::range T>
+void print(T t)
 {
-    auto out = fmt::memory_buffer();
+    /* auto out = fmt::memory_buffer(); */
     /* vector<char> out; */
-    std::for_each(first, last, [&](const auto& i){fmt::format_to(std::back_inserter(out), "{}",i);});
-    fmt::print(to_string(out));
+    /* std::for_each(first, last, [&](const auto& i){fmt::format_to(std::back_inserter(out), "{}",i);}); */
+    /* fmt::print(to_string(out)); */
+    fmt::print("{}",t);
 }
 
 

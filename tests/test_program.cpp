@@ -23,12 +23,12 @@ TEST(Program, MakeProgram)
     // State out = tree.fit(d);
     // cout << "output: " << get<ArrayXb>(out) << endl;
 
-    map<string, float> user_ops = {
-        {"Add", 1},
-        {"Sub", 1},
-        {"Div", .5},
-        {"Times", 0.5}
-    };
+    /* map<string, float> user_ops = { */
+    /*     {"Add", 1}, */
+    /*     {"Sub", 1}, */
+    /*     {"Div", .5}, */
+    /*     {"Times", 0.5} */
+    /* }; */
 
     SearchSpace SS;
     /* SS.init(data,user_ops); */
@@ -36,13 +36,13 @@ TEST(Program, MakeProgram)
 
             
     // Program<ArrayXf> DXtree;
-    for (int d = 1; d < 10; ++d)
-        for (int s = 1; s < 50; ++s)
+    for (int d = 1; d < 3; ++d)
+        for (int s = 1; s < 10; ++s)
         {
-            Program<ArrayXf> PRG(SS, d, 0, s);
+            Program<ArrayXf> PRG = SS.make_program<ArrayXf>(d, 0, s);
             cout << "=================================================" << "\n";
             cout << "Tree model for depth = " << d << ", size = " << s << ":\n";
-            cout << PRG.get_tree_model(true) << endl;
+            cout << PRG.get_model("compact", true) << endl;
             /* cout << PRG.get_model(true) << endl; */
             cout << "=================================================" << "\n";
         }
@@ -70,7 +70,7 @@ TEST(Program, BackProp)
     SearchSpace SS;
     SS.init(data);
 
-    Program<ArrayXf> DXtree(SS);
+    auto DXtree = SS.make_program<ArrayXf>();
     // auto root = DXtree.prg.insert(DXtree.prg.begin(), SS.get_op(typeid(ArrayXf));
     // DXtree.prg.append_child(root2, new Node<ArrayXf>("x_1", 0));
     // DXtree.prg.append_child(root2, new Node<ArrayXf>("x_2", 1));
@@ -118,7 +118,7 @@ TEST(Program, Mutation)
     SearchSpace SS;
     SS.init(data);
 
-    Program<ArrayXf> DXtree(SS, 6, 10, 30);
+    Program<ArrayXf> DXtree = SS.make_program<ArrayXf>(6, 10, 30);
     cout << "starting model:\n";
     cout << DXtree.get_tree_model(true) << endl;
     DXtree.fit(data);

@@ -11,7 +11,9 @@ license: GNU/GPL v3
 #include "operator.h"
 #include "util/utils.h"
 #include "util/rnd.h"
+#include "params.h"
 #include <utility>
+#include <optional>
 
 /* TODO
 * instead of specifying keys, values, just specify the values into a list of
@@ -35,7 +37,6 @@ using Brush::Node;
 using Brush::DataType;
 using std::type_index; 
 
-typedef vector<Node> NodeVector;
 
 namespace Brush
 {
@@ -45,12 +46,17 @@ namespace Brush
 /* tuple<set<Node>,set<type_index>> generate_nodes(vector<string>& op_names); */
 /* tuple<set<Node>,set<type_index>> generate_split_nodes(vector<string>& op_names); */
 
-NodeVector generate_terminals(const Data& d);
+// forward declarations
+using TreeIter = tree<Node>::pre_order_iterator;
+template<typename T> struct Program;
+
+vector<Node> generate_terminals(const Data& d);
 
 set<Node> generate_all_nodes(vector<string>& node_names, 
                              set<DataType> term_types);
 ////////////////////////////////////////////////////////////////////////////////
 
+extern std::unordered_map<std::size_t, std::string> ArgsName; 
 
 struct SearchSpace
 {
@@ -82,101 +88,33 @@ struct SearchSpace
      *
      * terminal_types: A set of the available terminal types. 
     */
-    
-    map<DataType,           // return type
-        map<size_t,         // hash of arg types
-            map<NodeType,   // node type (name)
-                Node        // the node!
-                >>> node_map;
-    // NodeMap node_map; 
-    map<DataType, NodeVector> terminal_map;
-    map<DataType, vector<float>> terminal_weights;
+    using ArgsHash = std::size_t; 
+
+    template<typename T>
+    using Map = unordered_map<DataType,           // return type
+                    unordered_map<ArgsHash,         // hash of arg types
+                        unordered_map<NodeType,   // node type 
+                            T>>>;        // the data!
+    Map<Node> node_map;
+    Map<float> weight_map; 
+
+    unordered_map<DataType, vector<Node>> terminal_map;
+    unordered_map<DataType, vector<float>> terminal_weights;
     vector<DataType> terminal_types;
-    // terminal weights
-    // map name to weights
-    map<DataType,           // return type
-        map<size_t,         // hash of arg types
-            map<NodeType,   // node type (name)
-                float       // the weight
-                >>> weight_map; 
-    SearchSpace(){};
-
-    void init(const Data& d, 
-              const map<string,float>& user_ops = {}
-             )
-    {
-        fmt::print("constructing search space...");
-
-        this->node_map.clear();
-        this->weight_map.clear();
-        this->terminal_map.clear();
-        this->terminal_types.clear();
-        this->terminal_weights.clear();
-
-        bool use_all = user_ops.size() == 0;
-        vector<string> op_names;
-        for (const auto& [op, weight] : user_ops)
-            op_names.push_back(op);
-
-
-        // create nodes based on data types 
-        terminal_types = d.unique_data_types;
-
-        vector<Node> terminals = generate_terminals(d);
-        /* set<Node> nodes = generate_all_nodes(op_names, terminal_types); */
-        
-        fmt::print("generate nodemap");
-        GenerateNodeMap(user_ops, d.unique_data_types, 
-                std::make_index_sequence<NodeTypes::Count>());
-        // map terminals
-        fmt::print("looping through terminals...");
-        for (const auto& term : terminals)
-        {
-            fmt::print("adding {} to search space...", term.get_name());
-            if (terminal_map.find(term.ret_type) == terminal_map.end())
-                terminal_map[term.ret_type] = NodeVector();
-            fmt::print("terminal ret_type: {}", DataTypeName[term.ret_type]);
-            terminal_map[term.ret_type].push_back(term);
-            terminal_weights[term.ret_type].push_back(1.0);
-        }
-
-        fmt::print("terminal map: {}", terminal_map.size() );
-        for (const auto& [k, nv] : terminal_map)
-        {
-            fmt::print("{}: ",DataTypeName[k]);
-            for (auto n : nv)
-                fmt::print("{}", n.get_name());
-            /* fmt::print("{}",v); */
-            /* print(v.begin(), v.end()); */
-        }
-
-        fmt::print("node map (size={}):", node_map.size() );
-        for (const auto& [ret_type, v] : node_map)
-        {
-            for (const auto& [args_type, v2] : v)
-            {
-                for (const auto& [name, nodeval] : v2)
-                {
-                    cout << "node_map[" << DataTypeName[ret_type] 
-                        << "][args_type][" << NodeTypeName[name] << "] = " 
-                        << nodeval.get_name() 
-                        /* << nodeval.ID */
-                        << endl;
-                }
-
-            }
-        }
-        fmt::print("done.");
-
-    };
+    
+    template<typename T>
+    Program<T> make_program(int max_d=0, int max_breadth=0, int max_size=0);
+    
+    
+    void init(const Data& d, const unordered_map<string,float>& user_ops = {});
 
     // template<typename R>
     template<typename F> Node get(const string& name);
 
-    Node get(const NodeType type, DataType R, vector<DataType>& arg_types)
+    Node get(const NodeType type, DataType R, size_t args_hash)
     {
-         auto arg_hash = uint32_vector_hasher()(arg_types);
-         return node_map.at(R).at(arg_hash).at(type);
+         /* auto arg_hash = uint32_vector_hasher()(arg_types); */
+         return node_map.at(R).at(args_hash).at(type);
     };
 
     /// get a terminal 
@@ -199,12 +137,12 @@ struct SearchSpace
         for (const auto& [k, nv] : terminal_map)
         {
             fmt::print("{}: ", DataTypeName[k]);
-            /* print(v.begin(), v.end()); */
             for (auto n : nv)
-                fmt::print("{}", n.get_name());
+                fmt::print("{}, ", n.get_name());
+            fmt::print("\n");
         }
         /* print(terminal_weights.at(ret).begin(), terminal_weights.at(ret).end()); */
-        fmt::print("{}",terminal_weights.at(ret));
+        fmt::print("{}\n",terminal_weights.at(ret));
         //TODO: match terminal args_type (probably '{}' or something?)
         //  make a separate terminal_map
         auto rval =  *r.select_randomly(terminal_map.at(ret).begin(), 
@@ -249,7 +187,7 @@ struct SearchSpace
         }
         return v;
     };
-    vector<float> get_weights(DataType ret, size_t args_hash) const
+    vector<float> get_weights(DataType ret, ArgsHash args_hash) const
     {
         // returns a weight vector, each element corresponding to an args type.
         vector<float> v;
@@ -279,10 +217,13 @@ struct SearchSpace
     };
 
     // get operator with at least one argument matching arg 
+    // thoughts (TODO):
+    //  this could be templated by return type and arg. although the lookup in the map should be
+    //  fairly fast. 
     Node get_op_with_arg(DataType ret, DataType arg, 
                               bool terminal_compatible=true) const
     {
-        // terminal_compatible: the other args the op takes must exist in the
+        // terminal_compatible: the other args the returned operator takes must exist in the
         // terminal types. 
 
         auto args_map = node_map.at(ret);
@@ -331,57 +272,56 @@ struct SearchSpace
                ).second;
     };
 
-    // Node operator[](const std::string& op)
-    // { 
-    //     if (node_map.find(op) == node_map.end())
-    //         std::cerr << "ERROR: couldn't find " << op << endl;
-        
-    //     return this->node_map.at(op); 
-    // };
     private:
+        /* template<typename T, > */
+        /* static constexpr bool contains() { return is_one_of_v<T, Args...>; } */
+        /* static constexpr auto MakeNode(bool weighted) */
         template<NodeType NT, typename S>
-        static constexpr auto MakeNode(bool weighted)
+        requires (!is_one_of_v<NT, NodeType::Terminal, NodeType::Constant>)
+        static constexpr std::optional<Node> CreateNode(const auto& unique_data_types, bool use_all, bool weighted)
         {
+            // if we're using all, prune the operators out that don't have argument types that
+            // overlap with feature data types
+            if (use_all) {
+                for (auto arg: S::get_arg_types()){
+                    if (! in(unique_data_types,arg) ){
+                        /* fmt::print("not adding {} because {} is not in unique_data_types\n", NT, arg); */
+                        return {}; 
+                    }
+                }    
+            }
             using RetType = typename S::RetType; 
             DataType output_type = DataTypeEnum<RetType>::value;
-            std::size_t sig_hash = typeid(S).hash_code();
+            /* auto args_hash = typeid(S).hash_code(); */
+            auto args_hash = S::hash_args();
+            ArgsName[args_hash] = fmt::format("{}", S::get_arg_types());
             auto arg_types = S::get_arg_types();
-            return Node(NT, arg_types, sig_hash, output_type, weighted);
+            return Node(NT, arg_types, args_hash, output_type, weighted);
         }
        
         template<NodeType NT, typename S>
-        constexpr void AddNode(const map<string,float>& user_ops, 
+        constexpr void AddNode(const unordered_map<string,float>& user_ops, 
                 const vector<DataType>& unique_data_types
                 )
         {
             
             bool use_all = user_ops.size() == 0;
-            auto name = NodeTypeName.at(NT);
-            auto n = MakeNode<NT,S>(false);
-
-            // if we're using all, prune the operators out that don't have argument types that
-            // overlap with feature data types
-            if (use_all) {
-                for (auto arg: n.arg_types){
-                    if (! in(unique_data_types,arg) ){
-                        cout << "not adding " << n.name << " because " 
-                            << DataTypeName[arg] << " is not in unique_data_types\n";
-                        return; 
-                    }
-                }    
-            }
+            auto name = NodeTypeName[NT];
             //TODO: address this (whether weights should be included by default)
-            if (n.IsWeighable())
-                n.is_weighted=true; // weighted
-            node_map[n.ret_type][n.args_type()][n.node_type] = n;
-            
-            // sampling probability map
-            float w = use_all? 1.0 : user_ops.at(name);
-            weight_map[n.ret_type][n.args_type()][n.node_type] = w;
+            bool weighted = IsWeighable<NT>();
+            auto n_maybe = CreateNode<NT,S>(unique_data_types, use_all, weighted);
+
+            if (n_maybe){
+                auto n = n_maybe.value();
+                node_map[n.ret_type][n.args_type()][n.node_type] = n;
+                // sampling probability map
+                float w = use_all? 1.0 : user_ops.at(name);
+                weight_map[n.ret_type][n.args_type()][n.node_type] = w;
+            }
         }
 
         template<NodeType NT, typename Sigs, std::size_t... Is>
-        constexpr void AddNodes(const map<string,float>& user_ops, 
+        constexpr void AddNodes(const unordered_map<string,float>& user_ops, 
                 const vector<DataType>& unique_data_types,
                 std::index_sequence<Is...>)
         {
@@ -389,25 +329,28 @@ struct SearchSpace
         }
 
         template<NodeType NT>
-        void MakeNodes(const map<string,float>& user_ops, const vector<DataType>& unique_data_types) 
+        void MakeNodes(const unordered_map<string,float>& user_ops, 
+                       const vector<DataType>& unique_data_types
+                      ) 
         {
+            if (Is<NodeType::Terminal, NodeType::Constant>(NT))
+                return;
             bool use_all = user_ops.size() == 0;
             auto name = NodeTypeName.at(NT);
 
             if (!use_all & user_ops.find(name) == user_ops.end())
             {
-                cout << "skipping " << name << ", not in user_ops\n"; 
+                /* cout << "skipping " << name << ", not in user_ops\n"; */ 
                 return;
             }
 
-            /* constexpr auto signatures = Signatures<NT>::value; */
             using signatures = Signatures<NT>::type;
-            constexpr auto size = std::tuple_size<signatures>::value ;
+            constexpr auto size = std::tuple_size<signatures>::value;
             AddNodes<NT, signatures>(user_ops, unique_data_types, std::make_index_sequence<size>()); 
         }
 
         template<std::size_t... Is>
-        void GenerateNodeMap(const map<string,float>& user_ops, 
+        void GenerateNodeMap(const unordered_map<string,float>& user_ops, 
                 const vector<DataType>& unique_data_types, 
                 std::index_sequence<Is...> 
                 )
@@ -419,6 +362,30 @@ struct SearchSpace
 
 extern SearchSpace SS;
 
-
 } // Brush
+
+// format overload 
+template <> struct fmt::formatter<Brush::SearchSpace>: formatter<string_view> {
+  template <typename FormatContext>
+  auto format(const Brush::SearchSpace& SS, FormatContext& ctx) const {
+    string output = "Search Space\n===\n";
+    output += fmt::format("terminal_map: {}\n", SS.terminal_map);
+    output += fmt::format("terminal_weights: {}\n", SS.terminal_weights);
+    for (const auto& [ret_type, v] : SS.node_map) {
+        for (const auto& [args_type, v2] : v) {
+            for (const auto& [node_type, node] : v2) {
+                output += fmt::format("node_map[{}][{}][{}] = {}, weight = {}\n", 
+                        ret_type,
+                        ArgsName[args_type],
+                        node_type,
+                        node,
+                        SS.weight_map.at(ret_type).at(args_type).at(node_type)
+                        );
+            }
+        }
+    }
+    output += "===";
+    return formatter<string_view>::format(output, ctx);
+  }
+};
 #endif

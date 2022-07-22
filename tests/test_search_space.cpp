@@ -27,7 +27,7 @@ TEST(SearchSpace, Initialization)
 	Data dt(X, y);
     Data dv(X_v, y_v);
     
-    map<string, float> user_ops = {
+    unordered_map<string, float> user_ops = {
         {"Add", 1},
         {"Sub", 1},
         {"Div", .5},

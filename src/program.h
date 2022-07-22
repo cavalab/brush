@@ -11,12 +11,13 @@ license: GNU/GPL v3
 #include <iostream>
 
 #include <string>
-#include <Eigen/Dense>  // For python factory constructor
+#include "assert.h"
 
 // internal includes
-#include "tree.h"
 
 // #include "data/data.h"
+#include "init.h"
+#include "tree.h"
 #include "state.h"
 #include "node.h"
 #include "search_space.h"
@@ -37,54 +38,37 @@ typedef tree<Node>::pre_order_iterator Iter;
 
 /* template<typename T> class Program; */
 
-template<typename T>
-T RandomDequeue(std::vector<T>& Q)
-{
-    int loc = r.rnd_int(0, Q.size()-1);
-    std::swap(Q[loc], Q[Q.size()-1]);
-    T val = Q.back();
-    Q.pop_back();
-    return val;
-}
 
-tree<Node> make_program(SearchSpace& SS, DataType root_type, 
-                            int max_d, int max_breadth, int max_size);
+/* tree<Node> make_program(SearchSpace& SS, DataType root_type, */ 
+/*                             int max_d, int max_breadth, int max_size); */
 
 // TODO: instead of templating this, define meaningful derived classes
 // for unsupervised learning, classification and regression. 
-template<typename T> class Program //: public tree<Node>
+template<typename T> struct Program //: public tree<Node>
 {
     /* using RetType = typename DataTypeType<T>::type; */
     const DataType RetDataType = DataTypeEnum<T>::value;
-    public:
 
     /// the underlying program
     tree<Node> prg; 
     /// reference to search space
-    SearchSpace& SS;
-    /* /// the interpeter */ 
-    /* Interpreter interpreter; */
+    std::optional<std::reference_wrapper<SearchSpace>> SSref;
 
-    Program(SearchSpace& ss, int depth=0, int breadth = 0, int size = 0): SS(ss)
-    {
-        // make a random program
-        if (depth == 0)
-            depth = r.rnd_int(1, params.max_depth);
-        if (breadth == 0)
-            breadth = r.rnd_int(1, params.max_breadth);
-        if (size == 0)
-            size = r.rnd_int(1, params.max_size);
+    /* Program(SearchSpace& ss, int depth=0, int breadth = 0, int size = 0): SS(ss) */
+    /* { */
 
-        this->prg = make_program(this->SS, RetDataType, depth, breadth, size);
-    };
+    /*     this->prg = make_program(this->SS, RetDataType, depth, breadth, size); */
+    /* }; */
+    Program() = default;
+    Program(const SearchSpace& s, const tree<Node> t): SSref(s), prg(t) {}
 
     T fit(const Data& d)
     {
         // Check to see if the program has been initialized. If not, call an
         // init method
-        Iter head = prg.begin(); 
-        T out = head.node->fit<T>(d);
-        return out;
+        /* Iter head = prg.begin(); */ 
+        return prg.begin().node->fit<T>(d);
+        /* return out; */
     };
 
     T predict(const Data& d)
@@ -104,9 +88,13 @@ template<typename T> class Program //: public tree<Node>
         /* start.node.grad_descent(gradient, d); */
     };
 
-    string get_model(bool pretty=false)
+    string get_model(string fmt="compact", bool pretty=false)
     {
-        Iter head = prg.begin(); 
+        auto head = prg.begin(); 
+        /* if (fmt=="compact") */
+        /*     return head.node->get_model(pretty); */
+        if (fmt=="tree")
+            return head.node->get_tree_model(pretty);
         return head.node->get_model(pretty);
     }
 
@@ -126,18 +114,18 @@ template<typename T> class Program //: public tree<Node>
     // tree<Node> delete_mutation(tree<Node>& prg, Iter spot);
 
     /// point mutation: replace node with same typed node
-    void point_mutation(Iter spot)
+    void point_mutation(Iter spot, const SearchSpace& SS)
     {
         cout << "point mutation\n";
-        auto newNode = this->SS.get_node_like(spot.node->n); 
+        auto newNode = SS.get_node_like(spot.node->n); 
         this->prg.replace(spot, newNode);
     };
     /// insert a node with spot as a child
-    void insert_mutation(Iter spot)
+    void insert_mutation(Iter spot, const SearchSpace& SS)
     {
         cout << "insert mutation\n";
         auto spot_type = spot.node->n.ret_type;
-        auto n = this->SS.get_op_with_arg(spot_type, spot_type); 
+        auto n = SS.get_op_with_arg(spot_type, spot_type); 
         // make node n wrap the subtree at the chosen spot
         auto parent_node = this->prg.wrap(spot, n);
 
@@ -149,27 +137,29 @@ template<typename T> class Program //: public tree<Node>
             if (spot_filled)
             {
                 // if spot is in its child position, append children
-                this->prg.append_child(parent_node, this->SS.get_terminal(a));
+                this->prg.append_child(parent_node, SS.get_terminal(a));
             }
             // if types match, treat this spot as filled by the spot node 
             else if (a == spot_type)
                 spot_filled = true;
             // otherwise, add siblings before spot node
             else
-                this->prg.insert(spot, this->SS.get_terminal(a));
+                this->prg.insert(spot, SS.get_terminal(a));
 
         } 
     };
     /// delete subtree and replace it with a terminal of the same return type
-    void delete_mutation(Iter spot)
+    void delete_mutation(Iter spot, const SearchSpace& SS)
     {
         cout << "delete mutation\n";
-        auto terminal = this->SS.get_terminal(spot.node->n.ret_type); 
+        auto terminal = SS.get_terminal(spot.node->n.ret_type); 
         this->prg.erase_children(spot); 
         this->prg.replace(spot, terminal);
     };
 
-    Program<T> mutate() const
+    inline Program<T> mutate() const { assert(this->SSref); return mutate(SSref.value()); }
+
+    Program<T> mutate(const SearchSpace& SS) const
     {
         /* Types of mutation:
         * point mutation
@@ -193,11 +183,11 @@ template<typename T> class Program //: public tree<Node>
         string choice = r.random_choice(params.mutation_options);
 
         if (choice == "insert")
-            child.insert_mutation(spot);
+            child.insert_mutation(spot, SS);
         else if (choice == "delete")
-            child.delete_mutation(spot);
+            child.delete_mutation(spot, SS);
         else 
-            child.point_mutation(spot);
+            child.point_mutation(spot, SS);
 
         return child;
     };

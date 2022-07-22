@@ -48,59 +48,59 @@ namespace Brush {
 
 
 enum class NodeType : uint64_t {
-    // leaves
-    Constant            = 1UL << 0UL,
-    Terminal            = 1UL << 1UL,
     // Unary
-    Abs                 = 1UL << 2UL,
-    Acos                = 1UL << 3UL,
-    Asin                = 1UL << 4UL,
-    Atan                = 1UL << 5UL,
-    Cos                 = 1UL << 6UL,
-    Cosh                = 1UL << 7UL,
-    Sin                 = 1UL << 8UL,
-    Sinh                = 1UL << 9UL,
-    Tan                 = 1UL << 10UL,
-    Tanh                = 1UL << 11UL,
-    Ceil                = 1UL << 12UL,
-    Floor               = 1UL << 13UL,
-    Exp                 = 1UL << 14UL,
-    Log                 = 1UL << 15UL,
-    Logabs              = 1UL << 16UL,
-    Log1p               = 1UL << 17UL,
-    Sqrt                = 1UL << 18UL,
-    Sqrtabs             = 1UL << 19UL,
-    Square              = 1UL << 20UL,
-    Not                 = 1UL << 21UL,
+    Abs                 = 1UL << 0UL,
+    Acos                = 1UL << 1UL,
+    Asin                = 1UL << 2UL,
+    Atan                = 1UL << 3UL,
+    Cos                 = 1UL << 4UL,
+    Cosh                = 1UL << 5UL,
+    Sin                 = 1UL << 6UL,
+    Sinh                = 1UL << 7UL,
+    Tan                 = 1UL << 8UL,
+    Tanh                = 1UL << 9UL,
+    Ceil                = 1UL << 10UL,
+    Floor               = 1UL << 11UL,
+    Exp                 = 1UL << 12UL,
+    Log                 = 1UL << 13UL,
+    Logabs              = 1UL << 14UL,
+    Log1p               = 1UL << 15UL,
+    Sqrt                = 1UL << 16UL,
+    Sqrtabs             = 1UL << 17UL,
+    Square              = 1UL << 18UL,
+    Not                 = 1UL << 19UL,
     // timing masks
-    Before              = 1UL << 22UL,
-    After               = 1UL << 23UL,
-    During              = 1UL << 24UL,
+    Before              = 1UL << 20UL,
+    After               = 1UL << 21UL,
+    During              = 1UL << 22UL,
     // Reducers
-    Min                 = 1UL << 25UL,
-    Max                 = 1UL << 26UL,
-    Mean                = 1UL << 27UL,
-    Median              = 1UL << 28UL,
-    Count               = 1UL << 29UL,
-    Sum                 = 1UL << 30UL,
+    Min                 = 1UL << 23UL,
+    Max                 = 1UL << 24UL,
+    Mean                = 1UL << 25UL,
+    Median              = 1UL << 26UL,
+    Count               = 1UL << 27UL,
+    Sum                 = 1UL << 28UL,
     // Binary
-    Add                 = 1UL << 31UL,
-    Sub                 = 1UL << 32UL,
-    Mul                 = 1UL << 33UL,
-    Div                 = 1UL << 34UL,
-    Pow                 = 1UL << 35UL,
-    And                 = 1UL << 36UL,
-    Or                  = 1UL << 37UL,
-    Xor                 = 1UL << 38UL,
+    Add                 = 1UL << 29UL,
+    Sub                 = 1UL << 30UL,
+    Mul                 = 1UL << 31UL,
+    Div                 = 1UL << 32UL,
+    Pow                 = 1UL << 33UL,
+    And                 = 1UL << 34UL,
+    Or                  = 1UL << 35UL,
+    Xor                 = 1UL << 36UL,
+    //split
+    SplitBest           = 1UL << 37UL,
+    SplitOn             = 1UL << 38UL,
     // these ones change type
     Equals              = 1UL << 39UL,
     LessThan            = 1UL << 40UL,
     GreaterThan         = 1UL << 41UL,
     Leq                 = 1UL << 42UL,
     Geq                 = 1UL << 43UL,
-    //split
-    SplitBest           = 1UL << 44UL,
-    SplitOn             = 1UL << 45UL,
+    // leaves
+    Constant            = 1UL << 44UL,
+    Terminal            = 1UL << 45UL,
     // custom
     CustomUnaryOp       = 1UL << 46UL,
     CustomBinaryOp      = 1UL << 47UL,
@@ -112,6 +112,7 @@ using UnderlyingNodeType = std::underlying_type_t<NodeType>;
 struct NodeTypes {
     // magic number keeping track of the number of different node types
     static constexpr size_t Count = 38;
+    static constexpr size_t OpCount = Count-2;
 
     // returns the index of the given type in the NodeType enum
     static auto GetIndex(NodeType type) -> size_t
@@ -168,11 +169,6 @@ enum class ExecType: uint32_t {
 template <NodeType T, NodeType... Ts> struct is_one_of
 {
     static constexpr bool value = ((T == Ts) || ...);
-    /* { */ 
-    /*     return true; */ 
-    /* } */ 
-    /* else */
-    /*     return false; */
 };
 
 template<NodeType T, NodeType... Ts> 
@@ -216,6 +212,11 @@ struct Sig
     static constexpr auto get_arg_types() {
         return get_arg_types(make_index_sequence<ArgCount>());
     } 
+
+    template<typename T>
+    static constexpr bool contains() { return is_one_of_v<T, Args...>; }
+
+    static constexpr std::size_t hash_args(){ return typeid(ArgTypes).hash_code();}
 };
 /// specialization for terminals
 template<typename R>
@@ -431,4 +432,12 @@ struct Signatures<N, enable_if_t<is_one_of_v<N, NodeType::SplitBest, NodeType::C
 /*         }; */ 
 /*     }; */ 
 } // namespace Brush
+// format overload for Nodes
+template <> struct fmt::formatter<Brush::NodeType>: formatter<string_view> {
+  // parse is inherited from formatter<string_view>.
+  template <typename FormatContext>
+  auto format(Brush::NodeType x, FormatContext& ctx) const {
+    return formatter<string_view>::format(Brush::NodeTypeName.at(x), ctx);
+  }
+};
 #endif
