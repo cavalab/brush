@@ -1,6 +1,7 @@
 #include "testsHeader.h"
 #include "../src/search_space.h"
 #include "../src/program.h"
+#include "../src/dispatch_table.h"
 
 TEST(SearchSpace, Initialization)
 {
@@ -37,4 +38,7 @@ TEST(SearchSpace, Initialization)
     // SearchSpace SS;
     SearchSpace SS;
     SS.init(dt, user_ops);
+
+    dtable_fit.print();
+    dtable_predict.print();
 }

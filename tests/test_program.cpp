@@ -1,11 +1,14 @@
 #include "testsHeader.h"
 #include "../src/search_space.h"
 #include "../src/program.h"
-/* #include "../src/operator.h" */
+#include "../src/dispatch_table.h"
 
 TEST(Program, MakeProgram)
 {
         
+    dtable_fit.print();
+    dtable_predict.print();
+
     ArrayXXf X(10,2);
     ArrayXf y(10);
     X << 1.1,2.0,3.0,4.0,5.0,6.5,7.0,8.0,9.0,10.0,

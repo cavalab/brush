@@ -107,17 +107,17 @@ public:
 
     void print()
     {
-        /* fmt::print("================== \n"); */
-        /* fmt::print("dispatch table map_: \n"); */
-        /* for (const auto& [nt, sigmap]: map_){ */
-        /*         for (const auto& [sig, call]: sigmap){ */
-        /*             if (Fit) */
-        /*                 fmt::print("{}: {}:DispatchFit\n",nt, sig); */
-        /*             else */
-        /*                 fmt::print("{}: {}:DispatchPredict\n",nt, sig); */
-        /*         } */
-        /*     } */
-        /* fmt::print("================== \n"); */
+        fmt::print("================== \n");
+        fmt::print("dispatch table map_: \n");
+        for (const auto& [nt, sigmap]: map_){
+                for (const auto& [sig, call]: sigmap){
+                    if (Fit)
+                        fmt::print("{}: {}:DispatchFit\n",nt, sig);
+                    else
+                        fmt::print("{}: {}:DispatchPredict\n",nt, sig);
+                }
+            }
+        fmt::print("================== \n");
     }
 
     ~DispatchTable() = default;
