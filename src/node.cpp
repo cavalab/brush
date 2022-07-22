@@ -14,14 +14,14 @@ ostream& operator<<(ostream& os, const Node& n)
     return os;
 }
 
-auto Node::get_name() const noexcept -> std::string const 
+auto Node::get_name() const noexcept -> std::string 
 { 
         
         if (Is<NodeType::Terminal>(node_type))
-        {
-            fmt::print("Node::feature value: {}\n", feature);
-            fmt::print("Node::name value: {}\n", name);
             return feature;
+        else if (Is<NodeType::Constant>(node_type))
+        {
+            return fmt::format("{:.3f}",W.at(0));
         }
         else if (Is<NodeType::SplitBest>(node_type))
             return fmt::format("Split( {} > {:.3f})", feature, threshold); 

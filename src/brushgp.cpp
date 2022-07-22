@@ -62,6 +62,7 @@ PYBIND11_MODULE(brushgp, m) {
             SS.init(data);
             return SS;
         }))
+        .def("make_program", &Brush::SearchSpace::make_program<ArrayXf>)
         ;
 
     py::class_<Brush::Program<ArrayXf> >(m, "Program")
@@ -69,6 +70,7 @@ PYBIND11_MODULE(brushgp, m) {
         .def(py::init<>())
         .def("fit", &Brush::Program<ArrayXf>::fit)
         .def("predict", &Brush::Program<ArrayXf>::predict)
-        .def("get_model", &Brush::Program<ArrayXf>::get_model)
+        .def("get_model", &Brush::Program<ArrayXf>::get_model, 
+                py::arg("type")="compact", py::arg("pretty")=false)
         ;
 }

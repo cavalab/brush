@@ -95,12 +95,12 @@ class CMakeBuild(build_ext):
             ["cmake", "--build", "."] + build_args, cwd=self.build_temp
         )
 
-# Clean old build/ directory if it exists
-try:
-    remove_tree("./build")
-    print("Removed old build directory.")
-except FileNotFoundError:
-    print("No existing build directory found - skipping.")
+# # Clean old build/ directory if it exists
+# try:
+#     remove_tree("./build")
+#     print("Removed old build directory.")
+# except FileNotFoundError:
+#     print("No existing build directory found - skipping.")
 
 setup(
     name="brushgp",

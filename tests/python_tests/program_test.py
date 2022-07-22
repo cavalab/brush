@@ -14,5 +14,8 @@ class TestProgram():
     def test_make_program(self):
         data = Data(test_X, test_y)
         SS = SearchSpace(data)
-        pytest.set_trace()
-        prg = Program(SS, 1, 0, 1)
+        # pytest.set_trace()
+        for d in range(1,4):
+            for s in range(1,20):
+                prg = SS.make_program(d, 0, s)
+                print(f"Tree model for depth {d}, size {s}:", prg.get_model())
