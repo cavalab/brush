@@ -18,7 +18,7 @@ vector<Node> generate_terminals(const Data& d)
         /* using RetType = typename DataEnumType<data_type>::type; */
         /* auto sig_hash = typeid(tuple<RetType>); */
         auto sig_hash = DataTypeID.at(data_type).hash_code();
-        fmt::print("generating Terminal name: {}, data_type: {}", featurename, data_type);
+        /* fmt::print("generating Terminal name: {}, data_type: {}", featurename, data_type); */
         terminals.push_back(Node(NodeType::Terminal, featurename, data_type, sig_hash));
         ++i;
     };
@@ -48,17 +48,17 @@ void SearchSpace::init(const Data& d, const unordered_map<string,float>& user_op
 
     vector<Node> terminals = generate_terminals(d);
     
-    fmt::print("generate nodemap\n");
+    /* fmt::print("generate nodemap\n"); */
     GenerateNodeMap(user_ops, d.unique_data_types, 
                     std::make_index_sequence<NodeTypes::OpCount>());
     // map terminals
-    fmt::print("looping through terminals...\n");
+    /* fmt::print("looping through terminals...\n"); */
     for (const auto& term : terminals)
     {
-        fmt::print("adding {} to search space...\n", term.get_name());
+        /* fmt::print("adding {} to search space...\n", term.get_name()); */
         if (terminal_map.find(term.ret_type) == terminal_map.end())
             terminal_map[term.ret_type] = vector<Node>();
-        fmt::print("terminal ret_type: {}\n", DataTypeName[term.ret_type]);
+        /* fmt::print("terminal ret_type: {}\n", DataTypeName[term.ret_type]); */
         terminal_map[term.ret_type].push_back(term);
         terminal_weights[term.ret_type].push_back(1.0);
     }

@@ -159,7 +159,7 @@ struct Operator
     // fit and predict
     template<bool Fit, typename T=Args>
     requires (is_array_v<T>)
-    RetType eval(const Data& d, TreeNode& tn) const
+    auto eval(const Data& d, TreeNode& tn) const
     {
         auto inputs = get_kids<Fit>(d, tn);
         if (tn.n.is_weighted)
@@ -169,24 +169,25 @@ struct Operator
 
     template<bool Fit, typename T=Args>
     requires (!is_array_v<T>)
-    RetType eval(const Data& d, TreeNode& tn) const
+    auto eval(const Data& d, TreeNode& tn) const
     {
         auto inputs = get_kids<Fit>(d, tn);
         return std::apply(F, inputs);
     };
 
-    RetType fit(const Data& d, TreeNode& tn) const { return eval<true>(d,tn); };
+    auto fit(const Data& d, TreeNode& tn) const { return eval<true>(d,tn); };
 
-    RetType predict(const Data& d, TreeNode& tn) const { return eval<false>(d,tn); };
+    auto predict(const Data& d, TreeNode& tn) const { return eval<false>(d,tn); };
 };
 /// Terminal Overload
 template<typename S>
 struct Operator<NodeType::Terminal, S>
 {
     using RetType = typename S::RetType;
-    RetType eval(const Data& d, TreeNode& tn) const { return std::get<RetType>(d[tn.n.feature]); };
-    RetType fit(const Data& d, TreeNode& tn) const { return eval(d,tn); };
-    RetType predict(const Data& d, TreeNode& tn) const { return eval(d,tn); };
+    auto eval(const Data& d, TreeNode& tn) const { return std::get<RetType>(d[tn.n.feature]); };
+    /* auto eval(const Data& d, TreeNode& tn) const { return d[tn.n.feature]; }; */
+    auto fit(const Data& d, TreeNode& tn) const { return eval(d,tn); };
+    auto predict(const Data& d, TreeNode& tn) const { return eval(d,tn); };
 };
 template<typename S> 
 struct Operator<NodeType::Constant, S>
@@ -194,32 +195,32 @@ struct Operator<NodeType::Constant, S>
     using RetType = typename S::RetType;
 
     template<typename T=RetType> requires same_as<T, ArrayXf>
-    RetType eval(const Data& d, TreeNode& tn) const { 
+    auto eval(const Data& d, TreeNode& tn) const { 
         return tn.n.W.at(0)*RetType(d.n_samples); 
     };
 
     template<typename T=RetType> requires same_as<T, ArrayXi>
-    RetType eval(const Data& d, TreeNode& tn) const { 
+    auto eval(const Data& d, TreeNode& tn) const { 
         return int(tn.n.W.at(0))*RetType(d.n_samples); 
     };
 
     template<typename T=RetType> requires same_as<T, ArrayXb>
-    RetType eval(const Data& d, TreeNode& tn) const { 
+    auto eval(const Data& d, TreeNode& tn) const { 
         return RetType(d.n_samples) > tn.n.W.at(0); 
     };
 
     template<typename T=RetType> requires same_as<T, ArrayXXf>
-    RetType eval(const Data& d, TreeNode& tn) const { 
+    auto eval(const Data& d, TreeNode& tn) const { 
         return tn.n.W.at(0)*RetType(d.n_samples, d.n_features); 
     };
 
     template<typename T=RetType> requires same_as<T, ArrayXXb>
-    RetType eval(const Data& d, TreeNode& tn) const { 
+    auto eval(const Data& d, TreeNode& tn) const { 
         return RetType(d.n_samples, d.n_features) > tn.n.W.at(0);
     };
     
-    RetType fit(const Data& d, TreeNode& tn) const { return eval(d,tn); };
-    RetType predict(const Data& d, TreeNode& tn) const { return eval(d,tn); };
+    auto fit(const Data& d, TreeNode& tn) const { return eval(d,tn); };
+    auto predict(const Data& d, TreeNode& tn) const { return eval(d,tn); };
 };
 ////////////////////////////////////////////////////////////////////////////
 // fit and predict Dispatch functions
@@ -356,7 +357,7 @@ public:
                 fmt::print("{}: {}:Callable\n",nt, k);
             }
         }
-        fmt::print("!!!!!!!!!!!!!!!! \n");
+        fmt::print("================== \n");
     }
 
     ~DispatchTable() = default;
@@ -397,18 +398,18 @@ extern DispatchTable dtable;
 template<typename T>
 auto TreeNode::fit(const Data& d)
 { 
-    fmt::print("TreeNode::fit; calling dtable.Get<{}>({},{})\n", DataTypeEnum<T>::value, n.node_type, n.sig_hash);
+    /* fmt::print("TreeNode::fit; calling dtable.Get<{}>({},{})\n", DataTypeEnum<T>::value, n.node_type, n.sig_hash); */
     auto F = dtable.template Get<T>(n.node_type, n.sig_hash);
-    fmt::print("return F(d,this)\n");
+    /* fmt::print("return F(d,this)\n"); */
     return F(d, (*this), true);
 };
 
 template<typename T>
 auto TreeNode::predict(const Data& d)
 { 
-    fmt::print("TreeNode::predict; calling dtable.Get<{}>({},{})\n", DataTypeEnum<T>::value, n.node_type, n.sig_hash);
+    /* fmt::print("TreeNode::predict; calling dtable.Get<{}>({},{})\n", DataTypeEnum<T>::value, n.node_type, n.sig_hash); */
     auto F = dtable.template Get<T>(n.node_type, n.sig_hash);
-    fmt::print("return F(d,this)\n");
+    /* fmt::print("return F(d,this)\n"); */
     return F(d, (*this), false);
 };
 

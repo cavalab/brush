@@ -124,24 +124,24 @@ struct SearchSpace
     /// get a typed terminal 
     Node get_terminal(DataType ret) const
     {
-        cout << "get terminal of type " << DataTypeName[ret] << "\n";
-        cout << "terminal map: " << terminal_map.size() << "\n";
-        for (const auto& [k, nv] : terminal_map)
-        {
-            fmt::print("{}: ", DataTypeName[k]);
-            for (auto n : nv)
-                fmt::print("{}, ", n.get_name());
-            fmt::print("\n");
-        }
+        /* cout << "get terminal of type " << DataTypeName[ret] << "\n"; */
+        /* /1* cout << "terminal map: " << terminal_map.size() << "\n"; *1/ */
+        /* for (const auto& [k, nv] : terminal_map) */
+        /* { */
+        /*     fmt::print("{}: ", DataTypeName[k]); */
+        /*     for (auto n : nv) */
+        /*         fmt::print("{}, ", n.get_name()); */
+        /*     fmt::print("\n"); */
+        /* } */
         /* print(terminal_weights.at(ret).begin(), terminal_weights.at(ret).end()); */
-        fmt::print("{}\n",terminal_weights.at(ret));
+        /* fmt::print("{}\n",terminal_weights.at(ret)); */
         //TODO: match terminal args_type (probably '{}' or something?)
         //  make a separate terminal_map
         auto rval =  *r.select_randomly(terminal_map.at(ret).begin(), 
                                   terminal_map.at(ret).end(), 
                                   terminal_weights.at(ret).begin(),
                                   terminal_weights.at(ret).end());
-        cout << "returning " << rval.get_name() << endl;
+        /* cout << "returning " << rval.get_name() << endl; */
         return rval;
     };
 
@@ -381,7 +381,7 @@ Program<T> SearchSpace::make_program(int max_d, int max_breadth, int max_size)
 
     auto prg = tree<Node>();
 
-    fmt::print("building program with max size {}, max depth {}",max_size,max_d); 
+    /* fmt::print("building program with max size {}, max depth {}",max_size,max_d); */ 
 
     // Queue of nodes that need children
     vector<tuple<TreeIter, DataType, int>> queue; 
@@ -392,11 +392,11 @@ Program<T> SearchSpace::make_program(int max_d, int max_breadth, int max_size)
     }
     else
     {
-        cout << "getting op of type " << DataTypeName[root_type] << endl;
+        /* cout << "getting op of type " << DataTypeName[root_type] << endl; */
         auto n = get_op(root_type);
-        cout << "chose " << n.name << endl;
+        /* cout << "chose " << n.name << endl; */
         // auto spot = prg.set_head(n);
-        cout << "inserting...\n";
+        /* cout << "inserting...\n"; */
         auto spot = prg.insert(prg.begin(), n);
         // node depth
         int d = 1;
@@ -405,58 +405,58 @@ Program<T> SearchSpace::make_program(int max_d, int max_breadth, int max_size)
         //For each argument position a of n, Enqueue(a; g) 
         for (auto a : n.arg_types)
         { 
-            cout << "queing a node of type " << DataTypeName[a] << endl;
+            /* cout << "queing a node of type " << DataTypeName[a] << endl; */
             queue.push_back(make_tuple(spot, a, d));
         }
 
-        cout << "queue size: " << queue.size() << endl; 
-        cout << "entering first while loop...\n";
+        /* cout << "queue size: " << queue.size() << endl; */ 
+        /* cout << "entering first while loop...\n"; */
         while (queue.size() + s < max_size && queue.size() > 0) 
         {
-            cout << "queue size: " << queue.size() << endl; 
+            /* cout << "queue size: " << queue.size() << endl; */ 
             auto [qspot, t, d] = RandomDequeue(queue);
 
-            cout << "current depth: " << d << endl;
+            /* cout << "current depth: " << d << endl; */
             if (d == max_d)
             {
-                cout << "getting " << DataTypeName[t] << " terminal\n"; 
+                /* cout << "getting " << DataTypeName[t] << " terminal\n"; */ 
                 prg.append_child(qspot, get_terminal(t));
             }
             else
             {
                 //choose a nonterminal of matching type
-                cout << "getting op of type " << DataTypeName[t] << endl;
+                /* cout << "getting op of type " << DataTypeName[t] << endl; */
                 auto n = get_op(t);
-                cout << "chose " << n.name << endl;
+                /* cout << "chose " << n.name << endl; */
                 TreeIter new_spot = prg.append_child(qspot, n);
                 // For each arg of n, add to queue
                 for (auto a : n.arg_types)
                 {
-                    cout << "queing a node of type " << DataTypeName[a] << endl;
+                    /* cout << "queing a node of type " << DataTypeName[a] << endl; */
                     queue.push_back(make_tuple(new_spot, a, d+1));
                 }
             }
             ++s;
-            cout << "current tree size: " << s << endl;
+            /* cout << "current tree size: " << s << endl; */
         } 
-        cout << "entering second while loop...\n";
+        /* cout << "entering second while loop...\n"; */
         while (queue.size() > 0)
         {
             if (queue.size() == 0)
                 break;
 
-            cout << "queue size: " << queue.size() << endl; 
+            /* cout << "queue size: " << queue.size() << endl; */ 
 
             auto [qspot, t, d] = RandomDequeue(queue);
 
-            cout << "getting " << DataTypeName[t] << " terminal\n"; 
+            /* cout << "getting " << DataTypeName[t] << " terminal\n"; */ 
             prg.append_child(qspot, get_terminal(t));
 
         }
     }
-    cout << "final tree:\n" 
-        << prg.begin().node->get_model() << "\n"
-        << prg.begin().node->get_tree_model(true) << endl;
+    /* cout << "final tree:\n" */ 
+    /*     << prg.begin().node->get_model() << "\n" */
+    /*     << prg.begin().node->get_tree_model(true) << endl; */
          /* << prg.get_model() << "\n" */ 
          /* << prg.get_model(true) << endl; // pretty */
 
