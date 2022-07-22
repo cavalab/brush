@@ -15,23 +15,15 @@ license: GNU/GPL v3
 #include <utility>
 #include <optional>
 
-/* TODO
-* instead of specifying keys, values, just specify the values into a list of
-* some kind, and then loop thru the list and construct a map using the node
-* name as the key.
-*/
-/* template<typename R, typename Arg1, typename Arg2=Arg1> */
+
 /* Defines the search space of Brush. 
  *  The search spaces consists of nodes and their accompanying probability
  *  distribution. 
- *  Nodes can be accessed by name using a string map. 
- *  Alternatively, the functions and terminal sets may be sampled separately
- *  or together. 
+ *  Nodes can be accessed by type, signature, or a combination.  
  *  You may also sample the search space by return type. 
  *  Sampling is done in proportion to the weight associated with 
  *  each node. By default, sampling is done uniform randomly.
 */
-/* using namespace Brush::nodes; */
 using namespace Brush::data;
 using Brush::Node;
 using Brush::DataType;
@@ -358,7 +350,118 @@ struct SearchSpace
             auto nt = [](auto i) { return static_cast<NodeType>(1UL << i); };
             (MakeNodes<nt(Is)>(user_ops, unique_data_types), ...);
         }
+}; // SearchSpace
+
+/// queue for make program
+template<typename T>
+T RandomDequeue(std::vector<T>& Q)
+{
+    int loc = r.rnd_int(0, Q.size()-1);
+    std::swap(Q[loc], Q[Q.size()-1]);
+    T val = Q.back();
+    Q.pop_back();
+    return val;
 };
+// constructs a tree using functions, terminals, and settings
+template<typename T>
+Program<T> SearchSpace::make_program(int max_d, int max_breadth, int max_size)
+{
+    /*
+    * implementation of PTC2 for strongly typed GP from Luke et al. 
+    * "Two fast tree-creation algorithms for genetic programming"
+    *  
+    */
+    if (max_d == 0)
+        max_d = r.rnd_int(1, params.max_depth);
+    if (max_breadth == 0)
+        max_breadth = r.rnd_int(1, params.max_breadth);
+    if (max_size == 0)
+        max_size = r.rnd_int(1, params.max_size);
+    DataType root_type = DataTypeEnum<T>::value;
+
+    auto prg = tree<Node>();
+
+    fmt::print("building program with max size {}, max depth {}",max_size,max_d); 
+
+    // Queue of nodes that need children
+    vector<tuple<TreeIter, DataType, int>> queue; 
+
+    if (max_size == 1)
+    {
+        auto root = prg.insert(prg.begin(), get_terminal(root_type));
+    }
+    else
+    {
+        cout << "getting op of type " << DataTypeName[root_type] << endl;
+        auto n = get_op(root_type);
+        cout << "chose " << n.name << endl;
+        // auto spot = prg.set_head(n);
+        cout << "inserting...\n";
+        auto spot = prg.insert(prg.begin(), n);
+        // node depth
+        int d = 1;
+        // current tree size
+        int s = 1;
+        //For each argument position a of n, Enqueue(a; g) 
+        for (auto a : n.arg_types)
+        { 
+            cout << "queing a node of type " << DataTypeName[a] << endl;
+            queue.push_back(make_tuple(spot, a, d));
+        }
+
+        cout << "queue size: " << queue.size() << endl; 
+        cout << "entering first while loop...\n";
+        while (queue.size() + s < max_size && queue.size() > 0) 
+        {
+            cout << "queue size: " << queue.size() << endl; 
+            auto [qspot, t, d] = RandomDequeue(queue);
+
+            cout << "current depth: " << d << endl;
+            if (d == max_d)
+            {
+                cout << "getting " << DataTypeName[t] << " terminal\n"; 
+                prg.append_child(qspot, get_terminal(t));
+            }
+            else
+            {
+                //choose a nonterminal of matching type
+                cout << "getting op of type " << DataTypeName[t] << endl;
+                auto n = get_op(t);
+                cout << "chose " << n.name << endl;
+                TreeIter new_spot = prg.append_child(qspot, n);
+                // For each arg of n, add to queue
+                for (auto a : n.arg_types)
+                {
+                    cout << "queing a node of type " << DataTypeName[a] << endl;
+                    queue.push_back(make_tuple(new_spot, a, d+1));
+                }
+            }
+            ++s;
+            cout << "current tree size: " << s << endl;
+        } 
+        cout << "entering second while loop...\n";
+        while (queue.size() > 0)
+        {
+            if (queue.size() == 0)
+                break;
+
+            cout << "queue size: " << queue.size() << endl; 
+
+            auto [qspot, t, d] = RandomDequeue(queue);
+
+            cout << "getting " << DataTypeName[t] << " terminal\n"; 
+            prg.append_child(qspot, get_terminal(t));
+
+        }
+    }
+    cout << "final tree:\n" 
+        << prg.begin().node->get_model() << "\n"
+        << prg.begin().node->get_tree_model(true) << endl;
+         /* << prg.get_model() << "\n" */ 
+         /* << prg.get_model(true) << endl; // pretty */
+
+    return Program<T>(*this,prg);
+};;
 
 extern SearchSpace SS;
 
@@ -371,6 +474,7 @@ template <> struct fmt::formatter<Brush::SearchSpace>: formatter<string_view> {
     string output = "Search Space\n===\n";
     output += fmt::format("terminal_map: {}\n", SS.terminal_map);
     output += fmt::format("terminal_weights: {}\n", SS.terminal_weights);
+    output += fmt::format("node_map: \n");
     for (const auto& [ret_type, v] : SS.node_map) {
         for (const auto& [args_type, v2] : v) {
             for (const auto& [node_type, node] : v2) {

@@ -60,7 +60,11 @@ template<typename T> struct Program //: public tree<Node>
     /*     this->prg = make_program(this->SS, RetDataType, depth, breadth, size); */
     /* }; */
     Program() = default;
-    Program(const SearchSpace& s, const tree<Node> t): SSref(s), prg(t) {}
+    Program(const std::reference_wrapper<SearchSpace> s, const tree<Node> t)
+        : prg(t) 
+    {
+        SSref = std::optional<std::reference_wrapper<SearchSpace>>{s};
+    }
 
     T fit(const Data& d)
     {

@@ -47,6 +47,9 @@ set (CMAKE_CXX_STANDARD 20)
 # project name
 project(brush)
 
+if(DEFINED ENV{CONDA_PREFIX})
+    set(CMAKE_PREFIX_PATH $ENV{CONDA_PREFIX})
+endif()
 # # add Eigen include paths
 if (DEFINED ENV{EIGEN3_INCLUDE_DIR})
     set(EIGEN3_INCLUDE_DIR $ENV{EIGEN3_INCLUDE_DIR})

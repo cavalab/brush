@@ -222,24 +222,27 @@ struct Operator<NodeType::Constant, S>
 ////////////////////////////////////////////////////////////////////////////
 // fit and predict Dispatch functions
 template<typename R, NodeType NT, typename S> //, typename ...Args>
-R DispatchFit(const Data& d, TreeNode& tn) 
+R DispatchOp(const Data& d, TreeNode& tn, bool fit) 
 {
     const auto op = Operator<NT,S>{};
-    return op.fit(d, tn);
+    if (fit)
+        return op.fit(d, tn);
+    else
+        return op.predict(d, tn);
 };
 
-template<typename R, NodeType NT, typename S>
-R DispatchPredict(const Data& d, TreeNode& tn) 
+/* template<typename R, NodeType NT, typename S> */
+/* R DispatchPredict(const Data& d, TreeNode& tn) */ 
 
-{
-    const auto op = Operator<NT,S>{};
-    return op.predict(d, tn);
-};
+/* { */
+/*     const auto op = Operator<NT,S>{}; */
+/*     return op.predict(d, tn); */
+/* }; */
 
 namespace detail {
 
     template<typename T>
-    using Callable = typename std::function<T(const Data&,TreeNode&)>;
+    using Callable = typename std::function<T(const Data&,TreeNode&,bool)>;
 
     template <typename T, typename TupleCallables>
     struct has_type;
@@ -252,7 +255,7 @@ namespace detail {
     static constexpr auto MakeOperator()  
     {
         using R = typename S::RetType;
-        return Callable<R>(DispatchFit<R,N,S>);
+        return Callable<R>(DispatchOp<R,N,S>);
     }
 
 
@@ -352,6 +355,12 @@ public:
     DispatchTable()
     {
         InitMap(std::make_index_sequence<NodeTypes::Count>{}); 
+        fmt::print("dispatch table map_: \n");
+        for (auto [nt, sigmap]: map_){
+            for (auto [args_hash, callvariant]: sigmap){
+                fmt::print("{}: {}:Callable\n",nt, args_hash);
+            }
+        }
     }
 
     ~DispatchTable() = default;
@@ -385,15 +394,19 @@ const DispatchTable dtable;
 template<typename T>
 auto TreeNode::fit(const Data& d)
 { 
+    fmt::print("TreeNode::fit; calling dtable.Get<{}>({},{})\n", DataTypeEnum<T>::value, n.node_type, n.sig_hash);
     auto F = dtable.template Get<T>(n.node_type, n.sig_hash);
-    return F(d, (*this));
+    fmt::print("return F(d,this)\n");
+    return F(d, (*this), true);
 };
 
 template<typename T>
 auto TreeNode::predict(const Data& d)
 { 
+    fmt::print("TreeNode::predict; calling dtable.Get<{}>({},{})\n", DataTypeEnum<T>::value, n.node_type, n.sig_hash);
     auto F = dtable.template Get<T>(n.node_type, n.sig_hash);
-    return F(d, (*this));
+    fmt::print("return F(d,this)\n");
+    return F(d, (*this), false);
 };
 
 
