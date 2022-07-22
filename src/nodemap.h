@@ -93,25 +93,25 @@ enum class NodeType : uint64_t {
     SplitBest           = 1UL << 37UL,
     SplitOn             = 1UL << 38UL,
     // these ones change type
-    Equals              = 1UL << 39UL,
-    LessThan            = 1UL << 40UL,
-    GreaterThan         = 1UL << 41UL,
-    Leq                 = 1UL << 42UL,
-    Geq                 = 1UL << 43UL,
+    /* Equals              = 1UL << 39UL, */
+    /* LessThan            = 1UL << 40UL, */
+    /* GreaterThan         = 1UL << 41UL, */
+    /* Leq                 = 1UL << 42UL, */
+    /* Geq                 = 1UL << 43UL, */
     // leaves
-    Constant            = 1UL << 44UL,
-    Terminal            = 1UL << 45UL,
+    Constant            = 1UL << 39UL,
+    Terminal            = 1UL << 40UL,
     // custom
-    CustomUnaryOp       = 1UL << 46UL,
-    CustomBinaryOp      = 1UL << 47UL,
-    CustomSplit         = 1UL << 48UL
+    CustomUnaryOp       = 1UL << 41UL,
+    CustomBinaryOp      = 1UL << 42UL,
+    CustomSplit         = 1UL << 43UL
 };
 
 
 using UnderlyingNodeType = std::underlying_type_t<NodeType>;
 struct NodeTypes {
     // magic number keeping track of the number of different node types
-    static constexpr size_t Count = 38;
+    static constexpr size_t Count = 41;
     static constexpr size_t OpCount = Count-2;
 
     // returns the index of the given type in the NodeType enum
@@ -181,7 +181,7 @@ struct all_same{
     static constexpr bool value = ((std::is_same_v<FirstArg,NextArgs> && ...));
 };
 template<typename R, typename... Args>
-struct Sig  
+struct SigBase  
 {
     using RetType = R;
     static constexpr std::size_t ArgCount = sizeof...(Args);
@@ -217,39 +217,25 @@ struct Sig
     static constexpr bool contains() { return is_one_of_v<T, Args...>; }
 
     static constexpr std::size_t hash_args(){ return typeid(ArgTypes).hash_code();}
+
+    static constexpr std::size_t hash(){ return typeid(tuple<R,Args...>).hash_code();};
 };
 /// specialization for terminals
 template<typename R>
-struct Sig<R>
+struct SigBase<R>
 {
     using RetType = R;
     using ArgTypes = void;
     static constexpr std::size_t ArgCount = 0;
     static constexpr auto get_arg_types() { return vector<DataType>{}; } 
+    static constexpr std::size_t hash(){ return typeid(R).hash_code(); };
 };
-/* template<typename R, typename... Args> */
-/* requires all_same<Args...>::value */
-/* struct Sig<R,Args...> */
-/* { */
-/*     using RetType = R; */
-/*     static constexpr std::size_t ArgCount = sizeof...(Args); */
-/*     using FirstArg = std::tuple_element_t<0, std::tuple<Args...>>; */
-/*     using ArgTypes = std::array<FirstArg,ArgCount>; */
-/*     using Function = std::function<R(Args...)>; */
-/* }; */
-/* template<typename R> */
-/* struct Sig<R> */
-/* { */
-/*     using RetType = R; */
-/*     static constexpr std::size_t ArgCount = 0; */
-/*     using ArgTypes = void; */
-/*     using Function = std::function<R()>; */
-/* }; */
+
 template<typename T> struct Signature;
 template<typename R, typename... Args>
-struct Signature<R(Args...)> : Sig<R, Args...>
+struct Signature<R(Args...)> : SigBase<R, Args...>
 {
-    using base = Sig<R, Args...>;
+    using base = SigBase<R, Args...>;
     using RetType = base::RetType;
     using ArgTypes = base::ArgTypes;
     static constexpr auto ArgCount = base::ArgCount;
@@ -388,22 +374,20 @@ struct Signatures<NodeType::Count>{
         >;
 };
 
-template<NodeType N>
-struct Signatures<N, enable_if_t<is_one_of_v<N, 
-    NodeType::Equals,
-    NodeType::LessThan,
-    NodeType::GreaterThan,
-    NodeType::Leq,
-    NodeType::Geq,
-    NodeType::CustomBinaryOp
-    >>>{ 
-        using type = std::tuple<
-            Signature<ArrayXf(ArrayXf,ArrayXb)>, 
-            Signature<ArrayXi(ArrayXi,ArrayXb)>, 
-            Signature<ArrayXXf(ArrayXXf,ArrayXXb)>,
-            Signature<ArrayXXf(ArrayXXf,ArrayXXb)>
-        >;
-    }; 
+/* template<NodeType N> */
+/* struct Signatures<N, enable_if_t<is_one_of_v<N, */ 
+/*     NodeType::Equals, */
+/*     NodeType::LessThan, */
+/*     NodeType::GreaterThan, */
+/*     NodeType::Leq, */
+/*     NodeType::Geq, */
+/*     NodeType::CustomBinaryOp */
+/*     >>>{ */ 
+/*         using type = std::tuple< */
+/*             Signature<ArrayXb(ArrayXf,ArrayXf)> */
+/*             /1* Signature<ArrayXXf(ArrayXXf,ArrayXXf)>, *1/ */
+/*         >; */
+/*     }; */ 
 
 template<NodeType N>
 struct Signatures<N, enable_if_t<is_one_of_v<N, NodeType::SplitBest, NodeType::CustomSplit>>>
@@ -417,20 +401,20 @@ struct Signatures<N, enable_if_t<is_one_of_v<N, NodeType::SplitBest, NodeType::C
             /* Signature<ArrayXXf,ArrayXXf,,ArrayXXf, */
         >; 
     }; 
-/* template<> */
-/* struct Signatures<NodeType::SplitOn>{ */ 
-/*         static constexpr array<SigType,1> value = { */ 
-/*             Signature<ArrayXfArrayXfArrayXf,ArrayXf */
-/*             /1* Signature<ArrayXfArrayXiArrayXi,ArrayXi, *1/ */ 
-/*             /1* Signature<ArrayXfArrayXbArrayXb,ArrayXb, *1/ */ 
-/*             /1* Signature<ArrayXiArrayXfArrayXf,ArrayXf, *1/ */ 
-/*             /1* Signature<ArrayXiArrayXiArrayXi,ArrayXi, *1/ */ 
-/*             /1* Signature<ArrayXiArrayXbArrayXb,ArrayXb, *1/ */ 
-/*             /1* Signature<ArrayXbArrayXfArrayXf,ArrayXf, *1/ */ 
-/*             /1* Signature<ArrayXbArrayXiArrayXi,ArrayXi, *1/ */ 
-/*             /1* Signature<ArrayXbArrayXbArrayXb,ArrayXb, *1/ */ 
-/*         }; */ 
-/*     }; */ 
+template<>
+struct Signatures<NodeType::SplitOn>{ 
+        using type = std::tuple< 
+            Signature<ArrayXf(ArrayXf,ArrayXf,ArrayXf)>,
+            Signature<ArrayXf(ArrayXi,ArrayXf,ArrayXf)>,
+            /* Signature<ArrayXf(ArrayXb,ArrayXf,ArrayXf)>, */
+            Signature<ArrayXi(ArrayXf,ArrayXi,ArrayXi)>,
+            Signature<ArrayXi(ArrayXi,ArrayXi,ArrayXi)>
+            /* Signature<ArrayXi(ArrayXb,ArrayXi,ArrayXi)>, */
+            /* Signature<ArrayXb(ArrayXf,ArrayXb,ArrayXb)>, */
+            /* Signature<ArrayXb(ArrayXi,ArrayXb,ArrayXb)>, */
+            /* Signature<ArrayXb(ArrayXb,ArrayXb,ArrayXb)> */
+        >;
+    }; 
 } // namespace Brush
 // format overload for Nodes
 template <> struct fmt::formatter<Brush::NodeType>: formatter<string_view> {

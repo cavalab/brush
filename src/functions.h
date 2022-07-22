@@ -378,6 +378,13 @@ https://eigen.tuxfamily.org/dox/TopicCustomizing_Plugins.html
          template<typename T1, typename T2>
          inline auto operator()(T1 t1, T2 t2) { return t1.during(t2); }
      };
+
+     template<>
+     struct Function<NodeType::SplitOn>
+     {
+         template<typename T1, typename T2>
+         inline auto operator()(T1 t1, T2 t2, T2 t3) { return t2; }
+     };
 } // Brush
 
 #endif

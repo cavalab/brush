@@ -71,10 +71,12 @@ struct Operator
     static constexpr size_t ArgCount = S::ArgCount;
     // get arg types from tuple by index
     template <std::size_t N>
-    using NthType = conditional_t<is_array_v<Args>,
-                                  typename Args::value_type,
-                                  typename std::tuple_element<N, Args>::type
-                                 >;
+    using NthType = typename S::NthType<N>; 
+    /* template <std::size_t N> */
+    /* using NthType = conditional_t<is_array_v<Args>, */
+    /*                               typename Args::value_type, */
+    /*                               typename std::tuple_element<N, Args>::type */
+    /*                              >; */
     
     static constexpr auto F = [](const auto& ...args){ Function<NT> f{}; return f(args...); }; 
     /* static constexpr Function<NT> F{}; */
@@ -258,14 +260,6 @@ namespace detail {
         return Callable<R>(DispatchOp<R,N,S>);
     }
 
-
-
-
-    /* template<typename F, typename... Ts, std::enable_if_t<sizeof...(Ts) != 0 && (std::is_invocable_r_v<void, F, detail::Array<Ts>&, Vector<Node> const&, size_t, Operon::Range> && ...), bool> = true> */
-    /* static constexpr auto MakeTuple(F&& f) */
-    /* { */
-    /*     return std::make_tuple(Callable<Ts>(std::forward<F&&>(f))...); */
-    /* } */
     template<typename X, typename TupleCallables>
     class tuple_index;
 
@@ -335,7 +329,7 @@ private:
     static constexpr auto AddOperator(std::index_sequence<Is...>)
     {
         SigMap sm;
-        (sm.insert({typeid(std::tuple_element_t<Is, Sigs>).hash_code(), 
+        (sm.insert({std::tuple_element_t<Is, Sigs>::hash(), 
                     detail::MakeOperator<NT, std::tuple_element_t<Is, Sigs>>()}), ...);
         return sm;
     }
@@ -355,12 +349,14 @@ public:
     DispatchTable()
     {
         InitMap(std::make_index_sequence<NodeTypes::Count>{}); 
+        fmt::print("================== \n");
         fmt::print("dispatch table map_: \n");
         for (auto [nt, sigmap]: map_){
-            for (auto [args_hash, callvariant]: sigmap){
-                fmt::print("{}: {}:Callable\n",nt, args_hash);
+            for (auto [k, v]: sigmap){
+                fmt::print("{}: {}:Callable\n",nt, k);
             }
         }
+        fmt::print("!!!!!!!!!!!!!!!! \n");
     }
 
     ~DispatchTable() = default;
@@ -383,12 +379,19 @@ public:
     template<typename T>
     inline auto Get(NodeType n, std::size_t s) const -> Callable<T> const&
     {
+        if (map_.at(n).find(s) == map_.at(n).end())
+        {
+            fmt::print("{} not in map_.at({})\n",s,n);
+            fmt::print("options:\n");
+            for (auto [k, v]: map_.at(n))
+                fmt::print("{}\n", k);
+        }
         return std::get<Callable<T>>(map_.at(n).at(s));
     }
 
 };
 
-const DispatchTable dtable;
+extern DispatchTable dtable;
 //////////////////////////////////////////////////////////////////////////////////
 // fit, eval, predict
 template<typename T>

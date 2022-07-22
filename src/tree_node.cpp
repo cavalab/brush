@@ -2,28 +2,7 @@
 
 namespace Brush {
 
-/* const DispatchTable< */
-/*               ArrayXf */
-/*               /1* ArrayXb, *1/ */
-/*               /1* ArrayXi, *1/ */ 
-/*               /1* ArrayXf, *1/ */ 
-/*               /1* ArrayXXb, *1/ */
-/*               /1* ArrayXXi, *1/ */ 
-/*               /1* ArrayXXf, *1/ */ 
-/*               /1* TimeSeriesb, *1/ */
-/*               /1* TimeSeriesi, *1/ */
-/*               /1* TimeSeriesf *1/ */
-/*              > dtable; */
-        /* template<typename T> */
-        /* auto tree_node_<Node>::eval(const Data& d) */
-        /* { */ 
-        /*     auto F = DTable.TryGet<T>(n); */
-        /*     return F(d, n); */
-        /* }; */
-        /* template<typename T> */
-        /* auto tree_node_<Node>::fit(const Data& d){ State s; return std::get<T>(s);}; */
-        /* template<typename T> */
-        /* auto tree_node_<Node>::predict(const Data& d){ State s; return std::get<T>(s);}; */
+DispatchTable dtable;
 
 string TreeNode::get_model(bool pretty) const 
 { 

@@ -103,10 +103,10 @@ struct SearchSpace
     // template<typename R>
     template<typename F> Node get(const string& name);
 
-    Node get(const NodeType type, DataType R, size_t args_hash)
+    Node get(const NodeType type, DataType R, size_t sig_hash)
     {
          /* auto arg_hash = uint32_vector_hasher()(arg_types); */
-         return node_map.at(R).at(args_hash).at(type);
+         return node_map.at(R).at(sig_hash).at(type);
     };
 
     /// get a terminal 
@@ -179,11 +179,11 @@ struct SearchSpace
         }
         return v;
     };
-    vector<float> get_weights(DataType ret, ArgsHash args_hash) const
+    vector<float> get_weights(DataType ret, ArgsHash sig_hash) const
     {
         // returns a weight vector, each element corresponding to an args type.
         vector<float> v;
-        for (const auto& [name, w]: weight_map.at(ret).at(args_hash))
+        for (const auto& [name, w]: weight_map.at(ret).at(sig_hash))
             v.push_back(w); 
 
         return v;
@@ -285,10 +285,10 @@ struct SearchSpace
             using RetType = typename S::RetType; 
             DataType output_type = DataTypeEnum<RetType>::value;
             /* auto args_hash = typeid(S).hash_code(); */
-            auto args_hash = S::hash_args();
-            ArgsName[args_hash] = fmt::format("{}", S::get_arg_types());
+            auto sig_hash = S::hash();
+            ArgsName[sig_hash] = fmt::format("{}", S::get_arg_types());
             auto arg_types = S::get_arg_types();
-            return Node(NT, arg_types, args_hash, output_type, weighted);
+            return Node(NT, arg_types, sig_hash, output_type, weighted);
         }
        
         template<NodeType NT, typename S>
@@ -474,7 +474,6 @@ template <> struct fmt::formatter<Brush::SearchSpace>: formatter<string_view> {
     string output = "Search Space\n===\n";
     output += fmt::format("terminal_map: {}\n", SS.terminal_map);
     output += fmt::format("terminal_weights: {}\n", SS.terminal_weights);
-    output += fmt::format("node_map: \n");
     for (const auto& [ret_type, v] : SS.node_map) {
         for (const auto& [args_type, v2] : v) {
             for (const auto& [node_type, node] : v2) {

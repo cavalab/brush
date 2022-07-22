@@ -2,15 +2,24 @@
 
 namespace Brush{
 
+/* template<DataType DT> */
+/* Node make_terminal(const string& featurename){ */
+/*     auto sig_hash=Signature<RetType()>::hash(); */
+/*     return Node(NodeType::Terminal, featurename, DT, sig_hash); */
+/* } */
+
 vector<Node> generate_terminals(const Data& d)
 {
     vector<Node> terminals;
     int i = 0;
-    for ( const auto &[name, value]: d.features ) 
+    for ( const auto &[featurename, value]: d.features ) 
     {
         auto data_type = d.feature_types.at(i);
-        fmt::print("generating Terminal name: {}, data_type: {}",name, data_type);
-        terminals.push_back(Node(NodeType::Terminal, data_type, name));
+        /* using RetType = typename DataEnumType<data_type>::type; */
+        /* auto sig_hash = typeid(tuple<RetType>); */
+        auto sig_hash = DataTypeID.at(data_type).hash_code();
+        fmt::print("generating Terminal name: {}, data_type: {}", featurename, data_type);
+        terminals.push_back(Node(NodeType::Terminal, featurename, data_type, sig_hash));
         ++i;
     };
     return terminals;

@@ -38,11 +38,11 @@ std::map<std::string, NodeType> NodeNameType = {
     {"Xor", NodeType::Xor},
 
     // decision (same)
-    {"Equals", NodeType::Equals},
-    {"LessThan", NodeType::LessThan},
-    {"GreaterThan", NodeType::GreaterThan},
-    {"Leq", NodeType::Leq},
-    {"Geq", NodeType::Geq},
+    /* {"Equals", NodeType::Equals}, */
+    /* {"LessThan", NodeType::LessThan}, */
+    /* {"GreaterThan", NodeType::GreaterThan}, */
+    /* {"Leq", NodeType::Leq}, */
+    /* {"Geq", NodeType::Geq}, */
 
     // summary stats
     {"Min", NodeType::Min},

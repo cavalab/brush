@@ -94,15 +94,15 @@ struct Node {
         /* cout << "instantiated " << name << " with sig hash " << sig_hash << " and return type " << DataTypeName.at(ret_type) << endl; */
     }
 
-    explicit Node(NodeType type, DataType output_type, string feature_name) noexcept
+    explicit Node(NodeType type, string feature_name, DataType output_type, std::size_t sig) noexcept
         : node_type(type)
-        , name(NodeTypeName[type])
-        , ret_type(output_type)
         , feature(feature_name)
+        , ret_type(output_type)
+        , sig_hash(sig)
+        , name(NodeTypeName[type])
         , is_weighted(false)
     {
         /* cout << "instantiated " << name << " from feature " << feature << " with output type " << DataTypeName.at(ret_type) << endl; */
-        sig_hash=typeid(void).hash_code();
         arg_types = vector<DataType>{};
     }
 
@@ -182,11 +182,11 @@ inline auto IsDifferentiable(NodeType nt) noexcept -> bool {
                 NodeType::Count,
                 NodeType::And, 
                 NodeType::Or,
-                NodeType::Xor, 
-                NodeType::Equals,
-                NodeType::LessThan,
-                NodeType::Leq,
-                NodeType::Geq
+                NodeType::Xor 
+                /* NodeType::Equals, */
+                /* NodeType::LessThan, */
+                /* NodeType::Leq, */
+                /* NodeType::Geq */
                 >(nt);                
 }
 template<NodeType NT>
@@ -201,13 +201,13 @@ inline auto IsWeighable() noexcept -> bool {
                     NodeType::Count,
                     NodeType::And, 
                     NodeType::Or,
-                    NodeType::Xor, 
-                    NodeType::Equals,
-                    NodeType::LessThan,
-                    NodeType::Leq,
-                    NodeType::Geq,
-                    NodeType::SplitOn,
-                    NodeType::SplitBest
+                    NodeType::Xor
+                    /* NodeType::Equals, */
+                    /* NodeType::LessThan, */
+                    /* NodeType::Leq, */
+                    /* NodeType::Geq, */
+                    /* NodeType::SplitOn, */
+                    /* NodeType::SplitBest */
                     >(NT);                
     }
 ostream& operator<<(ostream& os, const Node& n);
