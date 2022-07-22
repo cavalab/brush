@@ -1,7 +1,7 @@
 #include "testsHeader.h"
 #include "../src/search_space.h"
 #include "../src/program.h"
-#include "../src/operator.h"
+/* #include "../src/operator.h" */
 
 TEST(Program, MakeProgram)
 {

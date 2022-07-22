@@ -116,15 +116,14 @@ namespace Brush { namespace Util{
                  
                 if(w.size() == 0)
                 {   
-                    cout<<"random_choice() w.size() = 0 Calling random_choice(v)\n";
-                    
-                    cout << "W size is " << w.size() << "v size is " << v.size() << "\n"; 
+                    fmt::format("w size = {} and v size = {}, returning uniform random choice\n",
+                            w.size(), v.size());
                     return random_choice(v);
                 }
                 if(w.size() != v.size())
                 {   
-                    cout<<"WARN! random_choice() w.size() " << w.size() << "!= v.size() " 
-                        << v.size() << ", Calling random_choice(v)\n";
+                    fmt::format("w ({}) != v size ({}), returning uniform random choice\n",
+                            w.size(), v.size());
                     return random_choice(v);
                 }
                 else
@@ -150,6 +149,6 @@ namespace Brush { namespace Util{
     };
     
     static Rnd &r = *Rnd::initRand();
-}
-}
+} // Util
+} // Brush
 #endif

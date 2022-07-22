@@ -2,8 +2,6 @@
 
 namespace Brush {
 
-DispatchTable dtable;
-
 string TreeNode::get_model(bool pretty) const 
 { 
     if (n.get_arg_count()==0)

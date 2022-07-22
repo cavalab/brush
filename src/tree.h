@@ -40,13 +40,15 @@
 #include "data/data.h"
 #include "init.h"
 #include "tree_node.h"
+#include "operator.h"
 using Brush::data::State;
 using Brush::data::Data;
 /* /// Overload swap for data class */ 
 /* template<class T> */
 /* void swap(T& x, T& y) { x.swap(y); } */
 
-//
+namespace Brush {
+
 template <class T, class tree_node_allocator = std::allocator<tree_node_<T> > >
 class tree {
 	protected:
@@ -3177,6 +3179,7 @@ typename tree<T, tree_node_allocator>::leaf_iterator& tree<T, tree_node_allocato
    return (*this);
    }
 
+} // Brush
 #endif
 
 // Local variables:

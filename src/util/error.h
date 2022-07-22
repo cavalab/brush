@@ -22,7 +22,7 @@ namespace Brush{ namespace Util {
     void HandleErrorNoThrow(string err, const char *file, int line );
     
     #define HANDLE_ERROR_THROW( err ) (Brush::Util::HandleErrorThrow( err, __FILE__, __LINE__ ))
-    #define HANDLE_ERROR_NO_THROW( err ) (Brush::Util::HandleErrorNoThrow( err, __FILE__, __LINE__ ))
+    #define HANDLE_WARNING( err ) (Brush::Util::HandleErrorNoThrow( err, __FILE__, __LINE__ ))
 
 }}
 

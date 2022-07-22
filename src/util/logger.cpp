@@ -34,8 +34,8 @@ namespace Brush { namespace Util{
             this->verbosity = verbosity;
         else
         {
-            HANDLE_ERROR_NO_THROW("'" + std::to_string(verbosity) + "' is not a valid verbosity. Setting to default 2\n");
-            HANDLE_ERROR_NO_THROW("Valid Values :\n\t0 - none\n\t1 - progress\n\t2 - minimal\n\t3 - all");
+            HANDLE_WARNING("'" + std::to_string(verbosity) + "' is not a valid verbosity. Setting to default 2\n");
+            HANDLE_WARNING("Valid Values :\n\t0 - none\n\t1 - progress\n\t2 - minimal\n\t3 - all");
             this->verbosity = 2;
             verbosity = 2;
         }

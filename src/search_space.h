@@ -8,7 +8,7 @@ license: GNU/GPL v3
 #include "init.h"
 #include "node.h"
 #include "nodemap.h"
-#include "operator.h"
+#include "tree.h"
 #include "util/utils.h"
 #include "util/rnd.h"
 #include "params.h"
@@ -25,6 +25,7 @@ license: GNU/GPL v3
  *  each node. By default, sampling is done uniform randomly.
 */
 using namespace Brush::data;
+using namespace Brush::Util; 
 using Brush::Node;
 using Brush::DataType;
 using std::type_index; 
@@ -44,8 +45,6 @@ template<typename T> struct Program;
 
 vector<Node> generate_terminals(const Data& d);
 
-set<Node> generate_all_nodes(vector<string>& node_names, 
-                             set<DataType> term_types);
 ////////////////////////////////////////////////////////////////////////////////
 
 extern std::unordered_map<std::size_t, std::string> ArgsName; 
