@@ -39,14 +39,14 @@ TEST(Program, MakeProgram)
 
             
     // Program<ArrayXf> DXtree;
-    for (int d = 1; d < 3; ++d)
+    for (int d = 1; d < 10; ++d)
         for (int s = 1; s < 10; ++s)
         {
             Program<ArrayXf> PRG = SS.make_program<ArrayXf>(d, 0, s);
             cout << "=================================================" << "\n";
             cout << "Tree model for depth = " << d << ", size = " << s << ":\n";
             cout << PRG.get_model("compact", true) << endl;
-            /* cout << PRG.get_model(true) << endl; */
+            cout << PRG.get_model("tree", true) << endl;
             cout << "=================================================" << "\n";
         }
 }

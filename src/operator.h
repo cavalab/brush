@@ -10,7 +10,6 @@ namespace Brush{
 template<NodeType NT, typename S, bool Fit> 
 struct Operator 
 {
-    // TODO
     using Args = typename S::ArgTypes;
     using RetType = typename S::RetType;
     static constexpr size_t ArgCount = S::ArgCount;
@@ -19,7 +18,6 @@ struct Operator
     using NthType = typename S::NthType<N>; 
     
     static constexpr auto F = [](const auto& ...args){ Function<NT> f{}; return f(args...); }; 
-    /* static constexpr Function<NT> F{}; */
 
     Operator() = default;
     /* Operator(NT node_type, RetType y, Args... args){}; */
@@ -109,10 +107,6 @@ struct Operator
         auto inputs = get_kids(d, tn);
         return std::apply(F, inputs);
     };
-
-    auto fit(const Data& d, TreeNode& tn) const { return eval<true>(d,tn); };
-
-    auto predict(const Data& d, TreeNode& tn) const { return eval<false>(d,tn); };
 };
 //////////////////////////////////////////////////////////////////////////////////
 /// Terminal Overload
@@ -153,13 +147,98 @@ struct Operator<NodeType::Constant, S, Fit>
     auto eval(const Data& d, TreeNode& tn) const { 
         return RetType(d.n_samples, d.n_features);
     };
-    
-    auto fit(const Data& d, TreeNode& tn) const { return eval(d,tn); };
-    auto predict(const Data& d, TreeNode& tn) const { return eval(d,tn); };
 };
 
 //////////////////////////////////////////////////////////////////////////////////
 // Split Node Overloads
+namespace Split {
+
+    template<typename T>
+    auto best_threshold(const T& x, const ArrayXf& y, bool classification);
+    /// Stitches together outputs from left or right child based on threshold
+    State stitch(auto& child_outputs, const Data& d, const ArrayXb& mask);
+        
+    template<typename T>
+    ArrayXb threshold_mask(const T& x, const float& threshold);
+    
+    float gini_impurity_index(const ArrayXf& classes, const vector<float>& uc);
+    float gain(const ArrayXf& lsplit, const ArrayXf& rsplit, bool classification, 
+            vector<float> unique_classes);
+}
+
+/* template<NodeType NT, typename S> */ 
+/* requires (is_same_v<NT,NodeType::SplitBest> || is_same_v<NT, NodeType::SplitOn>) */
+/* template<typename S>*/
+/* inline auto Operator<NodeType::SplitBest,S,true>::eval(const Data& d, TreeNode& tn) const {*/
+
+    /* 1) choose best feature
+     * 2) choose best threshold of feature
+     * 3) split data on feature at threshold
+     * 4) evaluate child nodes on split data
+     * 5) stitch child outputs together and return
+     */
+
+/*     auto& threshold = tn.n.W.at(0);*/
+/*     auto& feature = tn.n.feature;*/
+
+/*     // set feature and threshold*/
+/*     if constexpr (NT == NodeType::SplitOn)*/
+/*     {*/
+/*         tie(threshold, ignore) = best_threshold( d[feature], d.y, d.classification);*/
+/*     }*/
+/*     else*/
+/*         tie(feature, threshold) = get_best_variable_and_threshold(d);*/
+
+/*     return Operator<NT,S,false>().eval<false>(d, tn);*/
+/* }*/
+
+template<typename S, bool Fit> 
+/* requires (is_same_v<NT,NodeType::SplitBest> || is_same_v<NT, NodeType::SplitOn>) */
+/* template<> */
+struct Operator<NodeType::SplitBest,S,Fit>
+{
+    auto predict(const Data& d, TreeNode& tn) const 
+    {
+        const auto& threshold = tn.n.W.at(0);
+        const auto& feature = tn.n.feature;
+
+        // split the data
+        ArrayXb mask = Split::threshold_mask(d, threshold);
+        array<Data, 2> data_splits = d.split(mask);
+
+        auto child_outputs = get_children_fit(data_splits);
+
+        // stitch together outputs
+        auto out = Split::stitch(child_outputs, d, mask);
+
+        /* cout << "returning " << std::get<RetType>(out) << endl; */
+
+        return out;
+    }
+
+    auto fit(const Data& d, TreeNode& tn) const {
+        auto& threshold = tn.n.W.at(0);
+        auto& feature = tn.n.feature;
+
+        // set feature and threshold
+        /* if constexpr (NT == NodeType::SplitOn) */
+        /* { */
+        /*     tie(threshold, ignore) = Split::best_threshold( d[feature], d.y, d.classification); */
+        /* } */
+        /* else */
+        //TODO: make this the Function<NodeType::SplitBest>?
+        tie(feature, threshold) = Split::get_best_variable_and_threshold(d);
+
+        return predict(d, tn);
+
+    }
+    auto eval(const Data& d, TreeNode& tn) const {
+        if constexpr (Fit)
+            return fit(d,tn); 
+        else
+            return predict(d,tn);
+    }
+};
 
 ////////////////////////////////////////////////////////////////////////////
 // fit and predict Dispatch functions
