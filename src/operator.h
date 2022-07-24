@@ -8,6 +8,7 @@ namespace Brush{
 ///////////////////////////////////////////////////////////////////////////////////////
 // Operator class
 template<NodeType NT, typename S, bool Fit> 
+requires (!conjunction_v<is_same_v<NT,NodeType::SplitOn>,is_same_v<NT,NodeType::SplitBest>>)
 struct Operator 
 {
     using Args = typename S::ArgTypes;
@@ -153,8 +154,7 @@ struct Operator<NodeType::Constant, S, Fit>
 // Split Node Overloads
 namespace Split {
 
-    template<typename T>
-    auto best_threshold(const T& x, const ArrayXf& y, bool classification);
+    auto best_threshold(const auto& x, const ArrayXf& y, bool classification);
     /// Stitches together outputs from left or right child based on threshold
     State stitch(auto& child_outputs, const Data& d, const ArrayXb& mask);
         
@@ -192,10 +192,13 @@ namespace Split {
 /*     return Operator<NT,S,false>().eval<false>(d, tn);*/
 /* }*/
 
-template<typename S, bool Fit> 
+/* template<typename S, bool Fit> */ 
 /* requires (is_same_v<NT,NodeType::SplitBest> || is_same_v<NT, NodeType::SplitOn>) */
 /* template<> */
-struct Operator<NodeType::SplitBest,S,Fit>
+/* struct Operator<NodeType::SplitBest,S,Fit> */
+template<NodeType NT, typename S, bool Fit> 
+requires (conjunction_v<is_same_v<NT,NodeType::SplitOn>,is_same_v<NT,NodeType::SplitBest>>)
+struct Operator 
 {
     auto predict(const Data& d, TreeNode& tn) const 
     {
@@ -221,13 +224,12 @@ struct Operator<NodeType::SplitBest,S,Fit>
         auto& feature = tn.n.feature;
 
         // set feature and threshold
-        /* if constexpr (NT == NodeType::SplitOn) */
-        /* { */
-        /*     tie(threshold, ignore) = Split::best_threshold( d[feature], d.y, d.classification); */
-        /* } */
-        /* else */
-        //TODO: make this the Function<NodeType::SplitBest>?
-        tie(feature, threshold) = Split::get_best_variable_and_threshold(d);
+        if constexpr (NT == NodeType::SplitOn)
+        {
+            tie(threshold, ignore) = Split::best_threshold( d[feature], d.y, d.classification);
+        }
+        else
+            tie(feature, threshold) = Split::get_best_variable_and_threshold(d);
 
         return predict(d, tn);
 

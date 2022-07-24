@@ -45,8 +45,25 @@ auto get_best_variable_and_threshold(const Data& d)
     return std::make_tuple(feature, threshold);
 }
 
-tuple<float,float> best_threshold(const State& x, const ArrayXf& y, 
-                                  bool classification)
+template<> auto get_thresholds<ArrayXb>(const ArrayXb& x){ vector<float>{0.0}; }
+template<> auto get_thresholds<ArrayXi>(const ArrayXb& x){ 
+    vector<float> thresholds;
+    for (const auto& val : unique(x))
+        thresholds.push_back(val);
+    return thresholds;
+}
+
+template<> auto get_thresholds<ArrayXf>(const ArrayXb& x){ 
+    vector<float> thresholds;
+    auto s = unique(x);
+    for (unsigned i =0; i<s.size()-1; ++i)
+    {
+        thresholds.push_back(s.at(i) + s.at(i+1));
+    }
+    return thresholds;
+}
+
+tuple<float,float> best_threshold(const auto& x, const ArrayXf& y, bool classification)
 {
     /* for each unique value in x, calculate the reduction in the 
     * heuristic brought about by
@@ -57,35 +74,7 @@ tuple<float,float> best_threshold(const State& x, const ArrayXf& y,
     */
     // get all possible split masks based on variant type
     
-    vector<float> all_thresholds = std::visit(overloaded 
-    {
-        [&](const ArrayXb& x) -> vector<float>
-        {
-            return vector<float>{0.0};
-        },
-        [&](const ArrayXi& x) -> vector<float>
-        {
-            vector<float> thresholds;
-            for (const auto& val : unique(x))
-                thresholds.push_back(val);
-            return thresholds;
-        },
-        [&](const ArrayXf& x) -> vector<float>
-        {
-            vector<float> thresholds;
-            auto s = unique(x);
-            for (unsigned i =0; i<s.size()-1; ++i)
-            {
-                thresholds.push_back(s.at(i) + s.at(i+1));
-            }
-            return thresholds;
-        },
-        [&](const auto& x) -> vector<float>
-        {
-            HANDLE_ERROR_THROW("Threshold not implemented for this type!");
-            return vector<float>();
-        }
-    }, x);
+    vector<float> all_thresholds = get_thresholds(x); 
 
     //////////////////// shared //////////////////////
     float score, best_thresh, best_score;
@@ -108,8 +97,7 @@ tuple<float,float> best_threshold(const State& x, const ArrayXf& y,
         if (lhs.size() == 0 || rhs.size() == 0)
             continue;
 
-        score = gain(lhs, rhs, classification, 
-                    unique_classes);
+        score = gain(lhs, rhs, classification, unique_classes);
         /* cout << "score: " << score << "\n"; */
         if (score < best_score || i == 0)
         {
