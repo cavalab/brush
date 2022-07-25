@@ -7,8 +7,10 @@
 namespace Brush{
 ///////////////////////////////////////////////////////////////////////////////////////
 // Operator class
-template<NodeType NT, typename S, bool Fit> 
-requires (!conjunction_v<is_same_v<NT,NodeType::SplitOn>,is_same_v<NT,NodeType::SplitBest>>)
+/* template<NodeType NT, typename S, bool Fit, typename T=void> Operator; */
+
+template<NodeType NT, typename S, bool Fit, typename E=void> 
+/* requires(NT != NodeType::SplitOn) */
 struct Operator 
 {
     using Args = typename S::ArgTypes;
@@ -154,9 +156,21 @@ struct Operator<NodeType::Constant, S, Fit>
 // Split Node Overloads
 namespace Split {
 
-    auto best_threshold(const auto& x, const ArrayXf& y, bool classification);
+    template<typename T> vector<float> get_thresholds(const T& x); 
+    tuple<string,float> get_best_variable_and_threshold(const Data& d, TreeNode& tn);
     /// Stitches together outputs from left or right child based on threshold
-    State stitch(auto& child_outputs, const Data& d, const ArrayXb& mask);
+    template<typename T>
+    T stitch(array<T,2>& child_outputs, const Data& d, const ArrayXb& mask)
+    {
+        T result(mask.size());
+
+        vector<size_t> L_idx, R_idx;
+        tie (L_idx, R_idx) = Util::mask_to_indices(mask);
+        result(L_idx) = child_outputs.at(0);
+        result(R_idx) = child_outputs.at(1);
+        return result;
+
+    }
         
     template<typename T>
     ArrayXb threshold_mask(const T& x, const float& threshold);
@@ -164,6 +178,58 @@ namespace Split {
     float gini_impurity_index(const ArrayXf& classes, const vector<float>& uc);
     float gain(const ArrayXf& lsplit, const ArrayXf& rsplit, bool classification, 
             vector<float> unique_classes);
+    template<typename T>
+    tuple<float,float> best_threshold(const T& x, const ArrayXf& y, bool classification)
+    {
+        /* for each unique value in x, calculate the reduction in the 
+        * heuristic brought about by
+        * splitting between that value and the next. 
+        * set threshold according to the biggest reduction. 
+        * 
+        * returns: the threshold and the score.
+        */
+        // get all possible split masks based on variant type
+        
+        vector<float> all_thresholds = get_thresholds(x); 
+
+        //////////////////// shared //////////////////////
+        float score, best_thresh, best_score;
+        int i = 0 ;
+        vector<float> unique_classes;
+        if (classification)
+            unique_classes = unique(y);
+
+        for (const auto thresh: all_thresholds)
+        {
+
+            ArrayXb mask = threshold_mask(x, thresh);
+            vector<size_t> L_idx, R_idx;
+            tie (L_idx, R_idx) = Util::mask_to_indices(mask);
+
+            // split data
+            const ArrayXf& lhs = y(L_idx); 
+            const ArrayXf& rhs = y(R_idx); 
+
+            if (lhs.size() == 0 || rhs.size() == 0)
+                continue;
+
+            score = gain(lhs, rhs, classification, unique_classes);
+            /* cout << "score: " << score << "\n"; */
+            if (score < best_score || i == 0)
+            {
+                best_score = score;
+                best_thresh = thresh;
+            }
+            ++i;
+        }
+
+        best_thresh = std::isinf(best_thresh)? 
+            0 : std::isnan(best_thresh)? 
+            0 : best_thresh;
+
+        return make_tuple(best_thresh, best_score);
+
+    }
 }
 
 /* template<NodeType NT, typename S> */ 
@@ -196,20 +262,59 @@ namespace Split {
 /* requires (is_same_v<NT,NodeType::SplitBest> || is_same_v<NT, NodeType::SplitOn>) */
 /* template<> */
 /* struct Operator<NodeType::SplitBest,S,Fit> */
+/* template<NodeType NT> */
+/* concept Splitter = requires(conjunction_v<is_same_v<NT,NodeType::SplitOn>,is_same_v<NT,NodeType::SplitBest>>>) */
+
 template<NodeType NT, typename S, bool Fit> 
-requires (conjunction_v<is_same_v<NT,NodeType::SplitOn>,is_same_v<NT,NodeType::SplitBest>>)
-struct Operator 
+/* requires (conjunction_v<is_same_v<NT,NodeType::SplitOn>,is_same_v<NT,NodeType::SplitBest>>) */
+/* requires (NT==NodeType::SplitOn) */
+struct Operator<NT, S, Fit, enable_if_t<is_one_of_v<NT, NodeType::SplitOn, NodeType::SplitBest>>> 
+/* struct Operator< */
 {
+    using Args = typename S::ArgTypes;
+    using RetType = typename S::RetType;
+    static constexpr size_t ArgCount = S::ArgCount;
+    // get arg types from tuple by index
+    template <std::size_t N>
+    using NthType = typename S::NthType<N>; 
+    
+    static constexpr auto F = [](const auto& ...args){ Function<NT> f{}; return f(args...); }; 
+
+    auto get_kids(const array<Data, 2>& d, TreeNode& tn) const
+    {
+        /* using arg_type = typename Args::value_type; */
+        using arg_type = NthType<1>;
+        array<arg_type,2> child_outputs;
+
+        TreeNode* sib = tn.first_child;
+        for (int i = 0; i < 2; ++i)
+        {
+            if constexpr (Fit)
+                child_outputs.at(i) = sib->fit<arg_type>(d.at(i)) ;
+            else
+                child_outputs.at(i) = sib->predict<arg_type>(d.at(i));
+            sib = sib->next_sibling;
+        }
+        return child_outputs;
+    };
+
     auto predict(const Data& d, TreeNode& tn) const 
     {
         const auto& threshold = tn.n.W.at(0);
         const auto& feature = tn.n.feature;
 
         // split the data
-        ArrayXb mask = Split::threshold_mask(d, threshold);
+        ArrayXb mask;
+        if constexpr (NT==NodeType::SplitBest)
+            mask = Split::threshold_mask(d[feature], threshold);
+        else {
+            auto split_feature = tn.first_child->predict<NthType<0>>(d);
+            mask = Split::threshold_mask(split_feature, threshold);
+        }
+
         array<Data, 2> data_splits = d.split(mask);
 
-        auto child_outputs = get_children_fit(data_splits);
+        auto child_outputs = get_kids(data_splits, tn);
 
         // stitch together outputs
         auto out = Split::stitch(child_outputs, d, mask);
@@ -226,10 +331,11 @@ struct Operator
         // set feature and threshold
         if constexpr (NT == NodeType::SplitOn)
         {
-            tie(threshold, ignore) = Split::best_threshold( d[feature], d.y, d.classification);
+            auto split_feature = tn.first_child->fit<NthType<0>>(d);
+            tie(threshold, ignore) = Split::best_threshold(split_feature, d.y, d.classification);
         }
         else
-            tie(feature, threshold) = Split::get_best_variable_and_threshold(d);
+            tie(feature, threshold) = Split::get_best_variable_and_threshold(d, tn);
 
         return predict(d, tn);
 

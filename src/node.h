@@ -76,7 +76,6 @@ struct Node {
     bool is_weighted;
     bool optimize;
     vector<float> W; 
-    float threshold; // just use W.at(0)? 
     string feature; // feature for terminals or splitting nodes 
 
 
@@ -92,6 +91,10 @@ struct Node {
         , is_weighted(weighted)
     {
         /* cout << "instantiated " << name << " with sig hash " << sig_hash << " and return type " << DataTypeName.at(ret_type) << endl; */
+        if (weighted)
+            W.resize(args.size());
+        else if (Util::in(vector<NodeType>{NodeType::SplitOn, NodeType::SplitBest}, type))
+            W.resize(1);
     }
 
     explicit Node(NodeType type, string feature_name, DataType output_type, std::size_t sig) noexcept
