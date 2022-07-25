@@ -22,7 +22,6 @@ struct Operator
     static constexpr auto F = [](const auto& ...args){ Function<NT> f{}; return f(args...); }; 
 
     Operator() = default;
-    /* Operator(NT node_type, RetType y, Args... args){}; */
     ////////////////////////////////////////////////////////////////////////////////
     /// Apply weights
     template<typename T=Args>
@@ -154,82 +153,13 @@ struct Operator<NodeType::Constant, S, Fit>
 //////////////////////////////////////////////////////////////////////////////////
 // Split Node Overloads
 namespace Split {
-
-    template<typename T>
-    auto get_best_threshold_of_type(const Data& d, const auto& keys){
-
-        float best_score = MAX_FLT;
-        int i = 0;
-        string feature;
-        float threshold;
-
-        for (const auto& key : keys) 
-        {
-            float tmp_thresh, score;
-
-            tie(tmp_thresh, score) = best_threshold(std::get<T>(d[key]), d.y, d.classification);
-            if (score < best_score || i == 0)
-            {
-                best_score = score;
-                feature = key;
-                threshold = tmp_thresh;
-            }
-            ++i;
-        }
-        return std::make_tuple(feature, threshold, best_score);
-
-    }
-    template<typename Ts,  std::size_t... Is> 
-    auto best = get_best_thresholds(const Data&d, std::index_sequence<Is...>)
-    {
-        using entry = tuple<string, float, float>;
-        auto compare = [](const entry& a, const entry& b){ 
-            return (std::get<2>(a) < std::get<2>(b)); 
-        };
-        array<entry,sizeof...(Is)> results; 
-        /* using type = typename std::tuple_element<N, ArgTypes>::type */
-        results = (get_best_threshold_of_type<std::tuple_element_t<Is,Ts>>(d, 
-                    d.features_of_type.at(DataTypeEnum<std::tuple_element_t<Is,Ts>>::value)) ...);
-
-        auto best = std::ranges::min_element(results, compare);
-        return best;
-    }
-
-    tuple<string,float> get_best_variable_and_threshold(const Data& d, TreeNode& tn)
-    {
-        /* loops thru variables in d and picks the best threshold
-         * and feature to split at.
-         */
-        using FeatTypes = tuple<ArrayXf,ArrayXi,ArrayXb>;
-        float best_score;
-        string feature;
-        float threshold;
-
-        tie(feature, threshold, best_score) = get_best_thresholds<FeatTypes>(d, std::index_sequence_for<FeatTypes>());
-        return std::make_tuple(feature, threshold);
-    }
-    template<typename T> vector<float> get_thresholds(const T& x); 
-    /* tuple<string,float> get_best_variable_and_threshold(const Data& d, const TreeNode& tn); */
-    /// Stitches together outputs from left or right child based on threshold
-    template<typename T>
-    T stitch(array<T,2>& child_outputs, const Data& d, const ArrayXb& mask)
-    {
-        T result(mask.size());
-
-        vector<size_t> L_idx, R_idx;
-        tie (L_idx, R_idx) = Util::mask_to_indices(mask);
-        result(L_idx) = child_outputs.at(0);
-        result(R_idx) = child_outputs.at(1);
-        return result;
-
-    }
-        
     template<typename T>
     ArrayXb threshold_mask(const T& x, const float& threshold);
-    
     float gini_impurity_index(const ArrayXf& classes, const vector<float>& uc);
     float gain(const ArrayXf& lsplit, const ArrayXf& rsplit, bool classification, 
             vector<float> unique_classes);
+
+    template<typename T> vector<float> get_thresholds(const T& x); 
 
     template<typename T>
     tuple<float,float> best_threshold(const T& x, const ArrayXf& y, bool classification)
@@ -283,7 +213,72 @@ namespace Split {
         return make_tuple(best_thresh, best_score);
 
     }
-}
+
+    template<typename T>
+    auto get_best_threshold_by_type(const Data& d, const auto& keys)
+    {
+        float best_score = MAX_FLT;
+        string feature;
+        float threshold;
+
+        for (const auto& key : keys) 
+        {
+            float tmp_thresh, score;
+
+            tie(tmp_thresh, score) = best_threshold(std::get<T>(d[key]), d.y, d.classification);
+            if (score < best_score)
+            {
+                best_score = score;
+                feature = key;
+                threshold = tmp_thresh;
+            }
+        }
+        return std::make_tuple(feature, threshold, best_score);
+    }
+
+    template<typename Ts,  std::size_t... Is> 
+    auto get_best_thresholds(const Data&d, std::index_sequence<Is...>)
+    {
+        using entry = tuple<string, float, float>;
+        auto compare = [](const entry& a, const entry& b){ 
+            return (std::get<2>(a) < std::get<2>(b)); 
+        };
+
+        array<entry, sizeof...(Is)> results;
+        (static_cast<void>(results[Is] = get_best_threshold_by_type<std::tuple_element_t<Is,Ts>>(
+            d, d.features_of_type.at(DataTypeEnum<std::tuple_element_t<Is,Ts>>::value))),
+         ...);
+
+        auto best = std::ranges::min_element(results, compare);
+        return (*best);
+    }
+
+    tuple<string,float> get_best_variable_and_threshold(const Data& d, TreeNode& tn)
+    {
+        /* loops thru variables in d and picks the best threshold
+         * and feature to split at.
+         */
+        using FeatTypes = tuple<ArrayXf,ArrayXi,ArrayXb>;
+        constexpr auto size = std::tuple_size<FeatTypes>::value;
+        auto [feature, threshold, best_score] = get_best_thresholds<FeatTypes>(d, std::make_index_sequence<size>{});
+        return std::make_tuple(feature, threshold);
+    }
+    /// Stitches together outputs from left or right child based on threshold
+    template<typename T>
+    T stitch(array<T,2>& child_outputs, const Data& d, const ArrayXb& mask)
+    {
+        T result(mask.size());
+
+        vector<size_t> L_idx, R_idx;
+        tie (L_idx, R_idx) = Util::mask_to_indices(mask);
+        result(L_idx) = child_outputs.at(0);
+        result(R_idx) = child_outputs.at(1);
+        return result;
+
+    }
+        
+    
+} // namespace Split
 
 
 /* template<typename S, bool Fit> */ 
@@ -305,7 +300,7 @@ struct Operator<NT, S, Fit, enable_if_t<is_one_of_v<NT, NodeType::SplitOn, NodeT
     template <std::size_t N>
     using NthType = typename S::NthType<N>; 
     
-    static constexpr auto F = [](const auto& ...args){ Function<NT> f{}; return f(args...); }; 
+    /* static constexpr auto F = [](const auto& ...args){ Function<NT> f{}; return f(args...); }; */ 
 
     auto get_kids(const array<Data, 2>& d, TreeNode& tn) const
     {
