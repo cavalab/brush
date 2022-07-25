@@ -110,9 +110,9 @@ struct Operator
         return std::apply(F, inputs);
     };
 
-    auto fit(const Data& d, TreeNode& tn) const { return eval<true>(d,tn); };
+    /* auto fit(const Data& d, TreeNode& tn) const { return eval<true>(d,tn); }; */
 
-    auto predict(const Data& d, TreeNode& tn) const { return eval<false>(d,tn); };
+    /* auto predict(const Data& d, TreeNode& tn) const { return eval<false>(d,tn); }; */
 };
 //////////////////////////////////////////////////////////////////////////////////
 /// Terminal Overload

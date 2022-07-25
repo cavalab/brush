@@ -66,7 +66,6 @@ PYBIND11_MODULE(brushgp, m) {
         ;
 
     py::class_<Brush::Program<ArrayXf> >(m, "Program")
-        /* .def(py::init<SearchSpace&, int, int, int>()) */
         .def(py::init<>())
         .def("fit", &Brush::Program<ArrayXf>::fit)
         .def("predict", &Brush::Program<ArrayXf>::predict)

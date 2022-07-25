@@ -101,7 +101,6 @@ struct SearchSpace
 
     // template<typename R>
     template<typename F> Node get(const string& name);
-
     Node get(const NodeType type, DataType R, size_t sig_hash)
     {
          /* auto arg_hash = uint32_vector_hasher()(arg_types); */
