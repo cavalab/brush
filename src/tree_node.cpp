@@ -24,6 +24,9 @@ string TreeNode::get_model(bool pretty) const
 
 string TreeNode::get_tree_model(bool pretty, string offset) const 
 { 
+    if (n.get_arg_count()==0)
+        return n.get_name();
+
     string new_offset = "  ";
     string  child_outputs = "\n";
 
@@ -33,7 +36,7 @@ string TreeNode::get_tree_model(bool pretty, string offset) const
         child_outputs += offset + "|-";
         string s = sib->get_tree_model(pretty, offset+new_offset);
         sib = sib->next_sibling;
-        if (sib != nullptr)
+        if (sib == nullptr)
             ReplaceStringInPlace(s, "\n"+offset, "\n"+offset+"|") ;
         child_outputs += s;
         if (sib != nullptr)

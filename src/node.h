@@ -113,9 +113,10 @@ struct Node {
     /* auto get_desc() const noexcept -> std::string const&; */
 
     // get return type and argument types. 
-    DataType get_ret_type() const { return ret_type; }; 
-    std::size_t args_type() const { return sig_hash; };
-    size_t get_arg_count() const { return arg_types.size(); };
+    inline DataType get_ret_type() const { return ret_type; }; 
+    inline std::size_t args_type() const { return sig_hash; };
+    inline auto get_arg_types() const { return arg_types; };
+    inline size_t get_arg_count() const { return arg_types.size(); };
 
     //comparison operators
     inline auto operator==(const Node& rhs) const noexcept -> bool

@@ -123,7 +123,9 @@ TEST(Program, Mutation)
 
     Program<ArrayXf> DXtree = SS.make_program<ArrayXf>(6, 10, 30);
     cout << "starting model:\n";
-    cout << DXtree.get_tree_model(true) << endl;
+    cout << DXtree.get_model() << endl;
+    cout << DXtree.get_model("tree") << endl;
+    cout << "running fit\n";
     DXtree.fit(data);
     cout << "generating predictions\n";
     ArrayXf y_pred = DXtree.predict(data);
@@ -133,7 +135,7 @@ TEST(Program, Mutation)
 
     cout << "=================================================" << "\n";
     cout << "Mutated model:" << endl ;
-    cout << Child.get_tree_model(true) << endl;
+    cout << Child.get_model("tree",true) << endl;
     cout << "=================================================" << "\n";
 
     Child.fit(data);

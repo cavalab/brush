@@ -26,6 +26,13 @@
 #    set(CMAKE_C_COMPILER   "/opt/homebrew/bin/gcc")
 #    set(CMAKE_CXX_COMPILER "/opt/homebrew/bin/g++")
 # endif()
+# if (MSVC)
+#     # warning level 4 and all warnings as errors
+#     # add_compile_options(/W4 /WX)
+# elseif(UNIX)
+#     # lots of warnings and all warnings as errors
+#     add_compile_options(-MM)
+# endif()
 
 get_cmake_property(_variableNames VARIABLES)
 list (SORT _variableNames)

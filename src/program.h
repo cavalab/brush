@@ -46,6 +46,7 @@ typedef tree<Node>::pre_order_iterator Iter;
 // for unsupervised learning, classification and regression. 
 template<typename T> struct Program //: public tree<Node>
 {
+    bool is_fitted_;
     /* using RetType = typename DataTypeType<T>::type; */
     const DataType RetDataType = DataTypeEnum<T>::value;
 
@@ -68,45 +69,33 @@ template<typename T> struct Program //: public tree<Node>
 
     T fit(const Data& d)
     {
-        // Check to see if the program has been initialized. If not, call an
-        // init method
-        /* Iter head = prg.begin(); */ 
-        return prg.begin().node->fit<T>(d);
-        /* return out; */
+        fmt::print("Fitting {}\n", this->get_model());
+        T out =  prg.begin().node->fit<T>(d);
+        is_fitted_ = true;
+        return out;
     };
 
     T predict(const Data& d)
     {
-        Iter head = prg.begin(); 
-        /* State out = head.node->predict(d); */
-        /* cout << "Program::predict"; */
-        /* return std::get<T>(out); */
-        T out = head.node->predict<T>(d);
+        if (!is_fitted_)
+            HANDLE_ERROR_THROW("Program is not fitted. Call 'fit' first.\n");
+
+        fmt::print("Predicting {}\n", this->get_model());
+        T out = prg.begin().node->predict<T>(d);
         return out;
     };
 
     void grad_descent(const ArrayXf& gradient, const Data& d)
     {
         //TODO
-        Iter start = prg.begin(); 
-        /* start.node.grad_descent(gradient, d); */
     };
 
     string get_model(string fmt="compact", bool pretty=false)
     {
         auto head = prg.begin(); 
-        /* if (fmt=="compact") */
-        /*     return head.node->get_model(pretty); */
         if (fmt=="tree")
             return head.node->get_tree_model(pretty);
         return head.node->get_model(pretty);
-    }
-
-    string get_tree_model(bool pretty=false)
-    {
-        /* return prg.get_tree_model(pretty); */
-        /* Iter head = prg.begin(); */ 
-        return prg.begin().node->get_tree_model(pretty);
     }
 
     ////////////////////////////////////////////////////////////////////////////

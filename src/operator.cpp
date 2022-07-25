@@ -3,6 +3,16 @@
 
 namespace Brush::Split{
 
+tuple<string,float> get_best_variable_and_threshold(const Data& d, TreeNode& tn)
+{
+    /* loops thru variables in d and picks the best threshold
+     * and feature to split at.
+     */
+    using FeatTypes = tuple<ArrayXf,ArrayXi,ArrayXb>;
+    constexpr auto size = std::tuple_size<FeatTypes>::value;
+    auto [feature, threshold, best_score] = get_best_thresholds<FeatTypes>(d, std::make_index_sequence<size>{});
+    return std::make_tuple(feature, threshold);
+}
 
 template<> vector<float> get_thresholds<ArrayXb>(const ArrayXb& x){ return vector<float>{0.0}; }
 template<> vector<float> get_thresholds<ArrayXi>(const ArrayXi& x){ 

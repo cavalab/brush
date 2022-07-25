@@ -115,7 +115,10 @@ template<typename S, bool Fit>
 struct Operator<NodeType::Terminal, S, Fit>
 {
     using RetType = typename S::RetType;
-    auto eval(const Data& d, TreeNode& tn) const { return std::get<RetType>(d[tn.n.feature]); };
+    auto eval(const Data& d, TreeNode& tn) const { 
+        fmt::print("run std::get<{}>(d[{}])\n", DataTypeEnum<RetType>::value, tn.n.feature); 
+        return std::get<RetType>(d[tn.n.feature]); 
+    };
 };
 //////////////////////////////////////////////////////////////////////////////////
 // Constant Overloads
@@ -160,6 +163,7 @@ namespace Split {
             vector<float> unique_classes);
 
     template<typename T> vector<float> get_thresholds(const T& x); 
+    tuple<string,float> get_best_variable_and_threshold(const Data& d, TreeNode& tn);
 
     template<typename T>
     tuple<float,float> best_threshold(const T& x, const ArrayXf& y, bool classification)
@@ -253,16 +257,6 @@ namespace Split {
         return (*best);
     }
 
-    tuple<string,float> get_best_variable_and_threshold(const Data& d, TreeNode& tn)
-    {
-        /* loops thru variables in d and picks the best threshold
-         * and feature to split at.
-         */
-        using FeatTypes = tuple<ArrayXf,ArrayXi,ArrayXb>;
-        constexpr auto size = std::tuple_size<FeatTypes>::value;
-        auto [feature, threshold, best_score] = get_best_thresholds<FeatTypes>(d, std::make_index_sequence<size>{});
-        return std::make_tuple(feature, threshold);
-    }
     /// Stitches together outputs from left or right child based on threshold
     template<typename T>
     T stitch(array<T,2>& child_outputs, const Data& d, const ArrayXb& mask)
@@ -353,7 +347,8 @@ struct Operator<NT, S, Fit, enable_if_t<is_one_of_v<NT, NodeType::SplitOn, NodeT
         if constexpr (NT == NodeType::SplitOn)
         {
             FirstArg split_feature = tn.first_child->fit<FirstArg>(d);
-            tie(threshold, ignore) = Split::best_threshold(split_feature, d.y, d.classification);
+            tie(threshold, ignore) = Split::best_threshold(split_feature, d.y, 
+                    d.classification);
         }
         else
             tie(feature, threshold) = Split::get_best_variable_and_threshold(d, tn);
@@ -371,9 +366,10 @@ struct Operator<NT, S, Fit, enable_if_t<is_one_of_v<NT, NodeType::SplitOn, NodeT
 
 ////////////////////////////////////////////////////////////////////////////
 // fit and predict Dispatch functions
-template<typename R, NodeType NT, typename S, bool Fit> //, typename ...Args>
+template<typename R, NodeType NT, typename S, bool Fit> 
 R DispatchOp(const Data& d, TreeNode& tn) 
 {
+    fmt::print("Dispatching {}\n",NT);
     const auto op = Operator<NT,S,Fit>{};
     return op.eval(d, tn);
 };
