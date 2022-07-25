@@ -9,9 +9,14 @@
         "data": { "$ref": "https://github.com/lacava/brush/data/data.schema.json" },
         "config": {
             "properties": {
+                "cdm_version": {
+                    "description": "CDM Version from which the data are derived. Note: This schema was developed using definitions in v5.4 of the standard, so other versions may or may not be compatible until more complete testing is performed.",
+                    "type": "string"
+                },
                 "time_values": {
                     "description": "Format of time values in this dataset. Options are \"offset\", \"delta\", \"timestamp\", etc.",
-                    "type": "string"
+                    "type": "string",
+                    "enum": ["offset", "delta", "timestamp"]
                 },
                 "string_features": {
                     "description": "How to treat string features (e.g., categorical, one-hot, etc.)",
@@ -21,5 +26,5 @@
             }
         }
     },
-    "required": ["feature_map", "data"]
+    "required": ["cdm_version", "feature_map", "data"]
 }
