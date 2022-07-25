@@ -1,0 +1,37 @@
+{
+    "$schema": "https://json-schema.org/draft/2020-12/schema",
+    "$id": "https://github.com/lacava/brush/data/feature_map.schema.json",
+    "title": "Brush Feature Map",
+    "description": "Positional definitions of features included in a Brush dataset, organized into major categories (drugs, labs, procedures, etc.)",
+    "type": "object",
+    "properties": {
+        "PERSON": {
+            "type": "array",
+            "items": { "$ref": "#/$defs/feature" }
+        },
+        "DRUG_EXPOSURE": {
+            "type": "array",
+            "items": { "$ref": "#/$defs/feature" }
+        },
+        "MEASUREMENT": {
+            "type": "array",
+            "items": { "$ref": "#/$defs/feature" }
+        },
+        "PROCEDURE_OCCURRENCE": {
+            "type": "array",
+            "items": { "$ref": "#/$defs/feature" }
+        }
+    },
+    "$defs": {
+        "feature": {
+            "type": "object",
+            "properties": {
+                "name": { "type": "string" },
+                "dtype": {
+                    "type": "string",
+                    "enum": ["INT", "FLOAT", "STRING", "TIME", "DATE", "DATETIME", "BOOL"]
+                }
+            }
+        }
+    }
+}

@@ -1,0 +1,25 @@
+{
+    "$schema": "https://json-schema.org/draft/2020-12/schema",
+    "$id": "https://github.com/lacava/brush/data/brush.schema.json",
+    "title": "Brush Dataset",
+    "description": "A dataset for Brush - a strongly typed genetic programming language.",
+    "type": "object",
+    "properties": {
+        "feature_map": { "$ref": "https://github.com/lacava/brush/data/feature_map.schema.json" },
+        "data": { "$ref": "https://github.com/lacava/brush/data/data.schema.json" },
+        "config": {
+            "properties": {
+                "time_values": {
+                    "description": "Format of time values in this dataset. Options are \"offset\", \"delta\", \"timestamp\", etc.",
+                    "type": "string"
+                },
+                "string_features": {
+                    "description": "How to treat string features (e.g., categorical, one-hot, etc.)",
+                    "type": "string",
+                    "enum": ["categorical", "onehot"]
+                }
+            }
+        }
+    },
+    "required": ["feature_map", "data"]
+}

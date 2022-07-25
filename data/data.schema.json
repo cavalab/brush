@@ -1,0 +1,25 @@
+{
+    "$schema": "https://json-schema.org/draft/2020-12/schema",
+    "$id": "https://github.com/lacava/brush/data/data.schema.json",
+    "title": "Brush Data",
+    "description": "Patient-wise data for Brush",
+    "type": "array",
+    "items": { "$ref": "#/$defs/person" },
+    "$defs": {
+        "person": {
+            "type": "object",
+            "description": "Each person has an ID and a set of arrays corresponding to values taken from each of the standardized OMOP clinical data tables. The values in an array can be of mixed types, and each value corresponds (positionally) to feature in that table's feature map for this dataset.",
+            "properties": {
+                "person_id": { "type": "integer" },
+                "PERSON": { "type": "array" },
+                "DRUG_EXPOSURE": { "type": "array" },
+                "MEASUREMENT": { "type": "array" },
+                "PROCEDURE_OCCURRENCE": { "type": "array" }
+            },
+            "required": [ "person_id" ]
+        },
+        "data": {
+            "type": ["string", "number", "integer", "array", "boolean"]
+        }
+    }
+}
