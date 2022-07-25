@@ -1,36 +1,8 @@
 #include "operator.h"
+#include <utility>
 
 namespace Brush::Split{
 
-tuple<string,float> get_best_variable_and_threshold(const Data& d, TreeNode& tn)
-{
-    /* loops thru variables in d and picks the best threshold
-     * and feature to split at.
-     */
-    float best_score = 0;
-    int i = 0;
-    vector<DataType> feature_types{DataType::ArrayF,DataType::ArrayI,DataType::ArrayB};
-    string feature;
-    float threshold;
-
-    for (auto& ft: feature_types)
-    {
-        for (const auto& key : d.features_of_type.at(ft)) 
-        {
-            float tmp_thresh, score;
-
-            tie(tmp_thresh, score) = best_threshold(d[key], d.y, d.classification);
-            if (score < best_score || i == 0)
-            {
-                best_score = score;
-                tn.n.feature = key;
-                tn.n.W.at(0) = tmp_thresh;
-            }
-            ++i;
-        }
-    }
-    return std::make_tuple(feature, threshold);
-}
 
 template<> vector<float> get_thresholds<ArrayXb>(const ArrayXb& x){ return vector<float>{0.0}; }
 template<> vector<float> get_thresholds<ArrayXi>(const ArrayXi& x){ 

@@ -10,7 +10,6 @@ namespace Brush{
 /* template<NodeType NT, typename S, bool Fit, typename T=void> Operator; */
 
 template<NodeType NT, typename S, bool Fit, typename E=void> 
-/* requires(NT != NodeType::SplitOn) */
 struct Operator 
 {
     using Args = typename S::ArgTypes;
@@ -156,8 +155,61 @@ struct Operator<NodeType::Constant, S, Fit>
 // Split Node Overloads
 namespace Split {
 
+    template<typename T>
+    auto get_best_threshold_of_type(const Data& d, const auto& keys){
+
+        float best_score = MAX_FLT;
+        int i = 0;
+        string feature;
+        float threshold;
+
+        for (const auto& key : keys) 
+        {
+            float tmp_thresh, score;
+
+            tie(tmp_thresh, score) = best_threshold(std::get<T>(d[key]), d.y, d.classification);
+            if (score < best_score || i == 0)
+            {
+                best_score = score;
+                feature = key;
+                threshold = tmp_thresh;
+            }
+            ++i;
+        }
+        return std::make_tuple(feature, threshold, best_score);
+
+    }
+    template<typename Ts,  std::size_t... Is> 
+    auto best = get_best_thresholds(const Data&d, std::index_sequence<Is...>)
+    {
+        using entry = tuple<string, float, float>;
+        auto compare = [](const entry& a, const entry& b){ 
+            return (std::get<2>(a) < std::get<2>(b)); 
+        };
+        array<entry,sizeof...(Is)> results; 
+        /* using type = typename std::tuple_element<N, ArgTypes>::type */
+        results = (get_best_threshold_of_type<std::tuple_element_t<Is,Ts>>(d, 
+                    d.features_of_type.at(DataTypeEnum<std::tuple_element_t<Is,Ts>>::value)) ...);
+
+        auto best = std::ranges::min_element(results, compare);
+        return best;
+    }
+
+    tuple<string,float> get_best_variable_and_threshold(const Data& d, TreeNode& tn)
+    {
+        /* loops thru variables in d and picks the best threshold
+         * and feature to split at.
+         */
+        using FeatTypes = tuple<ArrayXf,ArrayXi,ArrayXb>;
+        float best_score;
+        string feature;
+        float threshold;
+
+        tie(feature, threshold, best_score) = get_best_thresholds<FeatTypes>(d, std::index_sequence_for<FeatTypes>());
+        return std::make_tuple(feature, threshold);
+    }
     template<typename T> vector<float> get_thresholds(const T& x); 
-    tuple<string,float> get_best_variable_and_threshold(const Data& d, TreeNode& tn);
+    /* tuple<string,float> get_best_variable_and_threshold(const Data& d, const TreeNode& tn); */
     /// Stitches together outputs from left or right child based on threshold
     template<typename T>
     T stitch(array<T,2>& child_outputs, const Data& d, const ArrayXb& mask)
@@ -178,6 +230,7 @@ namespace Split {
     float gini_impurity_index(const ArrayXf& classes, const vector<float>& uc);
     float gain(const ArrayXf& lsplit, const ArrayXf& rsplit, bool classification, 
             vector<float> unique_classes);
+
     template<typename T>
     tuple<float,float> best_threshold(const T& x, const ArrayXf& y, bool classification)
     {
@@ -232,31 +285,6 @@ namespace Split {
     }
 }
 
-/* template<NodeType NT, typename S> */ 
-/* requires (is_same_v<NT,NodeType::SplitBest> || is_same_v<NT, NodeType::SplitOn>) */
-/* template<typename S>*/
-/* inline auto Operator<NodeType::SplitBest,S,true>::eval(const Data& d, TreeNode& tn) const {*/
-
-    /* 1) choose best feature
-     * 2) choose best threshold of feature
-     * 3) split data on feature at threshold
-     * 4) evaluate child nodes on split data
-     * 5) stitch child outputs together and return
-     */
-
-/*     auto& threshold = tn.n.W.at(0);*/
-/*     auto& feature = tn.n.feature;*/
-
-/*     // set feature and threshold*/
-/*     if constexpr (NT == NodeType::SplitOn)*/
-/*     {*/
-/*         tie(threshold, ignore) = best_threshold( d[feature], d.y, d.classification);*/
-/*     }*/
-/*     else*/
-/*         tie(feature, threshold) = get_best_variable_and_threshold(d);*/
-
-/*     return Operator<NT,S,false>().eval<false>(d, tn);*/
-/* }*/
 
 /* template<typename S, bool Fit> */ 
 /* requires (is_same_v<NT,NodeType::SplitBest> || is_same_v<NT, NodeType::SplitOn>) */
@@ -266,12 +294,11 @@ namespace Split {
 /* concept Splitter = requires(conjunction_v<is_same_v<NT,NodeType::SplitOn>,is_same_v<NT,NodeType::SplitBest>>>) */
 
 template<NodeType NT, typename S, bool Fit> 
-/* requires (conjunction_v<is_same_v<NT,NodeType::SplitOn>,is_same_v<NT,NodeType::SplitBest>>) */
-/* requires (NT==NodeType::SplitOn) */
 struct Operator<NT, S, Fit, enable_if_t<is_one_of_v<NT, NodeType::SplitOn, NodeType::SplitBest>>> 
 /* struct Operator< */
 {
     using Args = typename S::ArgTypes;
+    using FirstArg = typename S::base::FirstArg;
     using RetType = typename S::RetType;
     static constexpr size_t ArgCount = S::ArgCount;
     // get arg types from tuple by index
@@ -282,7 +309,6 @@ struct Operator<NT, S, Fit, enable_if_t<is_one_of_v<NT, NodeType::SplitOn, NodeT
 
     auto get_kids(const array<Data, 2>& d, TreeNode& tn) const
     {
-        /* using arg_type = typename Args::value_type; */
         using arg_type = NthType<1>;
         array<arg_type,2> child_outputs;
 
@@ -306,9 +332,9 @@ struct Operator<NT, S, Fit, enable_if_t<is_one_of_v<NT, NodeType::SplitOn, NodeT
         // split the data
         ArrayXb mask;
         if constexpr (NT==NodeType::SplitBest)
-            mask = Split::threshold_mask(d[feature], threshold);
+            mask = Split::threshold_mask(std::get<FirstArg>(d[feature]), threshold);
         else {
-            auto split_feature = tn.first_child->predict<NthType<0>>(d);
+            auto split_feature = tn.first_child->predict<FirstArg>(d);
             mask = Split::threshold_mask(split_feature, threshold);
         }
 
@@ -331,7 +357,7 @@ struct Operator<NT, S, Fit, enable_if_t<is_one_of_v<NT, NodeType::SplitOn, NodeT
         // set feature and threshold
         if constexpr (NT == NodeType::SplitOn)
         {
-            auto split_feature = tn.first_child->fit<NthType<0>>(d);
+            FirstArg split_feature = tn.first_child->fit<FirstArg>(d);
             tie(threshold, ignore) = Split::best_threshold(split_feature, d.y, d.classification);
         }
         else

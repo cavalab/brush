@@ -319,7 +319,15 @@ class Data
         State operator[](std::string name) const 
         {
             return this->features.at(name);
+        };
+
+        template<DataType DT, typename T = ArrayXf> //DataEnumType<DT>::type>
+        T get(std::string name) const
+        {
+            /* using T = typename DataEnumType<DT>::type; */
+            return std::get<T>(this->features.at(name));
         }
+        /* template<> ArrayXb get<ArrayXb>(std::string name) */
 }; // class data
 } // data
 
