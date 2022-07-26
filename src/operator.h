@@ -96,8 +96,8 @@ struct Operator
     auto eval(const Data& d, TreeNode& tn) const
     {
         auto inputs = get_kids(d, tn);
-        if (tn.n.is_weighted)
-            this->apply_weights(inputs, tn.n);
+        if (tn.data.is_weighted)
+            this->apply_weights(inputs, tn.data);
         return std::apply(F, inputs);
     };
 
@@ -116,8 +116,10 @@ struct Operator<NodeType::Terminal, S, Fit>
 {
     using RetType = typename S::RetType;
     auto eval(const Data& d, TreeNode& tn) const { 
-        fmt::print("run std::get<{}>(d[{}])\n", DataTypeEnum<RetType>::value, tn.n.feature); 
-        return std::get<RetType>(d[tn.n.feature]); 
+        fmt::print("run std::get<{}>(d[{}])\n", DataTypeEnum<RetType>::value, tn.data.feature); 
+        auto out = std::get<RetType>(d[tn.data.feature]);
+        fmt::print("Returning {}={}\n",tn.data.feature,out);
+        return out; 
     };
 };
 //////////////////////////////////////////////////////////////////////////////////
@@ -129,12 +131,12 @@ struct Operator<NodeType::Constant, S, Fit>
 
     template<typename T=RetType> requires same_as<T, ArrayXf>
     auto eval(const Data& d, TreeNode& tn) const { 
-        return RetType::Constant(d.n_samples, tn.n.W.at(0)); 
+        return RetType::Constant(d.n_samples, tn.data.W.at(0)); 
     };
 
     template<typename T=RetType> requires same_as<T, ArrayXi>
     auto eval(const Data& d, TreeNode& tn) const { 
-        return RetType::Constant(d.n_samples, int(tn.n.W.at(0))); 
+        return RetType::Constant(d.n_samples, int(tn.data.W.at(0))); 
     };
 
     template<typename T=RetType> requires same_as<T, ArrayXb>
@@ -144,7 +146,7 @@ struct Operator<NodeType::Constant, S, Fit>
 
     template<typename T=RetType> requires same_as<T, ArrayXXf>
     auto eval(const Data& d, TreeNode& tn) const { 
-        return RetType::Constant(d.n_samples, d.n_features, tn.n.W.at(0)); 
+        return RetType::Constant(d.n_samples, d.n_features, tn.data.W.at(0)); 
     };
 
     template<typename T=RetType> requires same_as<T, ArrayXXb>
@@ -315,8 +317,8 @@ struct Operator<NT, S, Fit, enable_if_t<is_one_of_v<NT, NodeType::SplitOn, NodeT
 
     auto predict(const Data& d, TreeNode& tn) const 
     {
-        const auto& threshold = tn.n.W.at(0);
-        const auto& feature = tn.n.feature;
+        const auto& threshold = tn.data.W.at(0);
+        const auto& feature = tn.data.feature;
 
         // split the data
         ArrayXb mask;
@@ -340,8 +342,8 @@ struct Operator<NT, S, Fit, enable_if_t<is_one_of_v<NT, NodeType::SplitOn, NodeT
     }
 
     auto fit(const Data& d, TreeNode& tn) const {
-        auto& threshold = tn.n.W.at(0);
-        auto& feature = tn.n.feature;
+        auto& threshold = tn.data.W.at(0);
+        auto& feature = tn.data.feature;
 
         // set feature and threshold
         if constexpr (NT == NodeType::SplitOn)

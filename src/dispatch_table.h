@@ -17,11 +17,13 @@ license: GNU/GPL v3
 #include <tuple>
 
 
-namespace Brush{
-
 // forward declarations
 template<typename T> class tree_node_;
 using TreeNode = class tree_node_<Node>; 
+
+namespace Brush{
+
+// forward declarations
 template<typename R, NodeType NT, typename S, bool Fit> R DispatchOp(const Data& d, TreeNode& tn); 
 
 ////////////////////////////////////////////////////////////////////////////////

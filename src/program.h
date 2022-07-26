@@ -17,7 +17,8 @@ license: GNU/GPL v3
 
 // #include "data/data.h"
 #include "init.h"
-#include "tree.h"
+/* #include "thirdparty/tree.hh" */
+#include "tree_node.h"
 #include "state.h"
 #include "node.h"
 #include "search_space.h"
@@ -71,6 +72,7 @@ template<typename T> struct Program //: public tree<Node>
     {
         fmt::print("Fitting {}\n", this->get_model());
         T out =  prg.begin().node->fit<T>(d);
+        fmt::print("Output {}\n", out);
         is_fitted_ = true;
         return out;
     };
@@ -110,14 +112,14 @@ template<typename T> struct Program //: public tree<Node>
     void point_mutation(Iter spot, const SearchSpace& SS)
     {
         cout << "point mutation\n";
-        auto newNode = SS.get_node_like(spot.node->n); 
+        auto newNode = SS.get_node_like(spot.node->data); 
         this->prg.replace(spot, newNode);
     };
     /// insert a node with spot as a child
     void insert_mutation(Iter spot, const SearchSpace& SS)
     {
         cout << "insert mutation\n";
-        auto spot_type = spot.node->n.ret_type;
+        auto spot_type = spot.node->data.ret_type;
         auto n = SS.get_op_with_arg(spot_type, spot_type); 
         // make node n wrap the subtree at the chosen spot
         auto parent_node = this->prg.wrap(spot, n);
@@ -145,7 +147,7 @@ template<typename T> struct Program //: public tree<Node>
     void delete_mutation(Iter spot, const SearchSpace& SS)
     {
         cout << "delete mutation\n";
-        auto terminal = SS.get_terminal(spot.node->n.ret_type); 
+        auto terminal = SS.get_terminal(spot.node->data.ret_type); 
         this->prg.erase_children(spot); 
         this->prg.replace(spot, terminal);
     };

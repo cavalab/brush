@@ -1,15 +1,14 @@
 #include "tree_node.h"
 
-namespace Brush {
 
 string TreeNode::get_model(bool pretty) const 
 { 
-    if (n.get_arg_count()==0)
-        return n.get_name();
+    if (data.get_arg_count()==0)
+        return data.get_name();
 
     string child_outputs = "";
     auto sib = first_child;
-    for(int i = 0; i < this->n.get_arg_count(); ++i)
+    for(int i = 0; i < data.get_arg_count(); ++i)
     {
         child_outputs += sib->get_model(pretty);
         sib = sib->next_sibling;
@@ -17,21 +16,21 @@ string TreeNode::get_model(bool pretty) const
             child_outputs += ",";
     }
     /* if (pretty) */
-    /*     return this->n.op_name + "(" + child_outputs + ")"; */
+    /*     return data.op_name + "(" + child_outputs + ")"; */
     /* else */
-    return this->n.name + "(" + child_outputs + ")";
+    return data.name + "(" + child_outputs + ")";
 };
 
 string TreeNode::get_tree_model(bool pretty, string offset) const 
 { 
-    if (n.get_arg_count()==0)
-        return n.get_name();
+    if (data.get_arg_count()==0)
+        return data.get_name();
 
     string new_offset = "  ";
     string  child_outputs = "\n";
 
     auto sib = first_child;
-    for(int i = 0; i < this->n.get_arg_count(); ++i)
+    for(int i = 0; i < data.get_arg_count(); ++i)
     {
         child_outputs += offset + "|-";
         string s = sib->get_tree_model(pretty, offset+new_offset);
@@ -43,8 +42,7 @@ string TreeNode::get_tree_model(bool pretty, string offset) const
             child_outputs += "\n";
     }
     /* if (pretty) */
-    /*     return this->op_name + child_outputs; */
+    /*     return op_name + child_outputs; */
     /* else */
-    return this->n.get_name() + child_outputs;
+    return data.get_name() + child_outputs;
 };
-}

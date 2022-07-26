@@ -8,7 +8,7 @@ license: GNU/GPL v3
 #include "init.h"
 #include "node.h"
 #include "nodemap.h"
-#include "tree.h"
+#include "tree_node.h"
 #include "util/utils.h"
 #include "util/rnd.h"
 #include "params.h"

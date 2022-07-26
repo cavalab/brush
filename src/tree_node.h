@@ -9,6 +9,7 @@
 #include "functions.h"
 #include "nodemap.h"
 #include "dispatch_table.h"
+#include "thirdparty/tree.hh"
 /* #include "operator.h" */
 /* #include "interpreter.h" */
 
@@ -17,9 +18,9 @@ using Brush::data::Data;
 using Brush::ExecType;
 using Brush::Node;
 
-namespace Brush {
+/* namespace Brush { */
 /// A node in the tree, combining links to other nodes as well as the actual data.
-template<class T> class tree_node_; 
+/* template<class T> class tree_node_; */ 
 
 // /**
 //  * @brief tree node specialization for Node.
@@ -34,17 +35,17 @@ class tree_node_<Node> { // size: 5*4=20 bytes (on 32 bit arch), can be reduced 
             {}
 
         tree_node_(const Node& val)
-            : parent(0), first_child(0), last_child(0), prev_sibling(0), next_sibling(0), n(val)
+            : parent(0), first_child(0), last_child(0), prev_sibling(0), next_sibling(0), data(val)
             {}
 
         tree_node_(Node&& val)
-            : parent(0), first_child(0), last_child(0), prev_sibling(0), next_sibling(0), n(val)
+            : parent(0), first_child(0), last_child(0), prev_sibling(0), next_sibling(0), data(val)
             {}
 
 		tree_node_<Node> *parent;
 	    tree_node_<Node> *first_child, *last_child;
 		tree_node_<Node> *prev_sibling, *next_sibling;
-		Node n;
+		Node data;
 
         /* template<typename T> */
         template<typename T>
@@ -63,16 +64,18 @@ using TreeNode = class tree_node_<Node>;
 template<typename T>
 auto TreeNode::fit(const Data& d)
 { 
-    auto F = dtable_fit.template Get<T>(n.node_type, n.sig_hash);
+    fmt::print("Getting {}({})\n",data.node_type, data.sig_hash);
+    auto F = dtable_fit.template Get<T>(data.node_type, data.sig_hash);
+    fmt::print("return F(d,(*this))\n");
     return F(d, (*this));
 };
 
 template<typename T>
 auto TreeNode::predict(const Data& d)
 { 
-    auto F = dtable_predict.template Get<T>(n.node_type, n.sig_hash);
+    auto F = dtable_predict.template Get<T>(data.node_type, data.sig_hash);
     return F(d, (*this));
 };
 
-}// Brush
+/* }// Brush */
 #endif
