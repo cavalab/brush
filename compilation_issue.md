@@ -1,6 +1,10 @@
-Error overview: I am having compilation error in the linking step. Specifically, the error message is "Undefined symbols for architecture x86_64" and "ld: symbols not found for architecture x86_64". It looks like it has to do with string format, and a related package is fmt.  
+Error overview: 
+____
+I am having compilation error in the linking step. Specifically, the error message is "Undefined symbols for architecture x86_64" and "ld: symbols not found for architecture x86_64". It looks like it has to do with string format, and a related package is fmt.  
 
-Error detail: Originally I was trying on my M1 chip mac with Arm architecture, but it didn't work out, so I switched to a different mac using x86 architecture, and I encountered the following error:
+Error detail: 
+____
+Originally I was trying on my M1 chip mac with Arm architecture, but it didn't work out, so I switched to a different mac using x86 architecture, and I encountered the following error:
 
 Undefined symbols for architecture x86_64:
   "__ZN3fmt2v97vformatB5cxx11ENS0_17basic_string_viewIcEENS0_17basic_format_argsINS0_20basic_format_contextINS0_8appenderEcEEEE", referenced from:
@@ -15,7 +19,7 @@ Undefined symbols for architecture x86_64:
 ld: symbol(s) not found for architecture x86_64 
 
 Error attempt: The things I have tried so far:
-
+____
 initial attemps:
 ____
 1. change compiler from Apple Clang 13 to gcc-11
