@@ -47,6 +47,7 @@ TEST(Program, MakeProgram)
             cout << "Tree model for depth = " << d << ", size = " << s << ":\n";
             cout << PRG.get_model("compact", true) << endl;
             cout << PRG.get_model("tree", true) << endl;
+            cout << PRG.get_model("dot", true) << endl;
             cout << "=================================================" << "\n";
         }
 }

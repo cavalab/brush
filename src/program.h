@@ -97,7 +97,29 @@ template<typename T> struct Program //: public tree<Node>
         auto head = prg.begin(); 
         if (fmt=="tree")
             return head.node->get_tree_model(pretty);
+        else if (fmt=="dot")
+            return get_dot_model(); ;
         return head.node->get_model(pretty);
+    }
+
+    string get_dot_model(){
+        string out = "digraph G {\n";
+        /* auto iter = prg.begin(); */
+        for (Iter iter = prg.begin(); iter!=prg.end(); iter++)
+        /* for (const auto iter : prg) */
+        {
+            auto kid = iter.node->first_child;
+            for (int i = 0; i < iter.number_of_children(); ++i)
+            {
+                out += fmt::format("{} -> {};\n", 
+                        iter.node->data.get_name(),
+                        kid->data.get_name());
+                kid = kid->next_sibling;
+            }
+
+        }
+        out += "}\n";
+        return out;
     }
 
     ////////////////////////////////////////////////////////////////////////////
