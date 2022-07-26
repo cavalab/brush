@@ -17,17 +17,21 @@ ld: symbol(s) not found for architecture x86_64
 Error attempt: The things I have tried so far:
 
 initial attemps:
+____
 1. change compiler from Apple Clang 13 to gcc-11
 2. include fmt header in brushgp and dispatch_table
  
 suggested attempts:
+____
 3. include fmt header in third party under src  
 4. brew install fmt and link to it
 
 further attemps:
+____
 5. followed the stackoverflow post "https://stackoverflow.com/questions/56608684/how-to-use-the-fmt-library-without-getting-undefined-symbols-for-architecture-x" and tried fmt/format.h instead of fmt/core.h
 
 future thoughts:
+____
 6. maybe I should use the optional header-only mode or link to the fmt library?
 
 It seems that all of the above attempts failed.
