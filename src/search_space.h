@@ -96,7 +96,11 @@ struct SearchSpace
     template<typename T>
     Program<T> make_program(int max_d=0, int max_breadth=0, int max_size=0);
     
-    
+    SearchSpace() = default;
+    SearchSpace(const Data& d, const unordered_map<string,float>& user_ops = {}){
+        init(d,user_ops);
+    }
+
     void init(const Data& d, const unordered_map<string,float>& user_ops = {});
 
     bool check(DataType R) const {

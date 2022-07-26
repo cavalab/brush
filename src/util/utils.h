@@ -26,6 +26,31 @@ using namespace std;
 * @namespace Brush::Util
 * @brief namespace containing various utility functions 
 */
+namespace std
+{
+    template<typename... TTypes>
+    class hash<std::tuple<TTypes...>>
+    {
+    private:
+        typedef std::tuple<TTypes...> Tuple;
+
+        template<int N>
+        size_t operator()(Tuple value) const { return 0; }
+
+        template<int N, typename THead, typename... TTail>
+        size_t operator()(Tuple value) const
+        {
+            constexpr int Index = N - sizeof...(TTail) - 1;
+            return hash<THead>()(std::get<Index>(value)) ^ operator()<N, TTail...>(value);
+        }
+
+    public:
+        size_t operator()(Tuple value) const
+        {
+            return operator()<sizeof...(TTypes), TTypes...>(value);
+        }
+    };
+}
 namespace Brush{
 namespace Util{
 
@@ -33,35 +58,8 @@ extern string PBSTR;
 
 extern int PBWIDTH;
 
-/* a hash map from types to strings of their names. 
-https://en.cppreference.com/w/cpp/types/type_info/hash_code
-*/
-
-// using TypeInfoPtr = const std::type_info*; 
-// struct Hasher {
-//     std::size_t operator()(type_index code) const
-//     {
-//         return code.get().hash_code();
-//     }
-// };
- 
-// struct EqualTo {
-//     bool operator()(type_index lhs, type_index rhs) const
-//     {
-//         return lhs.get() == rhs.get();
-//     }
-// };
-
-// << operator overload for printing vectors
-/* template <typename T> */
-/* std::ostream& operator<< (std::ostream& out, const std::vector<T>& v) { */
-/*   if ( !v.empty() ) { */
-/*     out << '['; */
-/*     std::copy (v.begin(), v.end(), std::ostream_iterator<T>(out, ", ")); */
-/*     out << "\b\b]"; */
-/*   } */
-/*   return out; */
-/* } */
+// tuple hash
+// https://stackoverflow.com/questions/15103975/my-stdhash-for-stdtuples-any-improvements
 
 template<typename T>
 using TypeMap = std::map<std::type_index, T>; 

@@ -1,6 +1,8 @@
 /* Brush
 copyright 2020 William La Cava
 license: GNU/GPL v3
+
+This section adapted heavily from Operon: https://github.com/heal-research/operon/
 */
 #ifndef NODEMAP_H
 #define NODEMAP_H

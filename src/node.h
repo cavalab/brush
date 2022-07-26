@@ -64,12 +64,8 @@ struct Node {
     // chance of node being selected for variation
     float prob_change; 
     // /// unique id
-    // int ID;
-    // static int sNextId;
-    // inline int getNextId() { return ++sNextId; };
 
     NodeType node_type;
-    /* ExecType exec_type; */
     std::size_t sig_hash;
     DataType ret_type;
     std::vector<DataType> arg_types;
@@ -77,6 +73,7 @@ struct Node {
     bool optimize;
     vector<float> W; 
     string feature; // feature for terminals or splitting nodes 
+    size_t complete_hash; 
 
 
     Node() = default; 
@@ -91,10 +88,15 @@ struct Node {
         , is_weighted(weighted)
     {
         /* cout << "instantiated " << name << " with sig hash " << sig_hash << " and return type " << DataTypeName.at(ret_type) << endl; */
-        if (weighted)
+        optimize=false;
+        if (weighted){   
+            optimize=true;
             W.resize(args.size());
+        }
         else if (Util::in(vector<NodeType>{NodeType::SplitOn, NodeType::SplitBest}, type))
-            W.resize(1);
+            W.resize(1); // W.at(0) represents the threshold of the split
+
+        set_complete_hash();
     }
 
     explicit Node(NodeType type, string feature_name, DataType output_type, std::size_t sig) noexcept
@@ -106,7 +108,9 @@ struct Node {
         , is_weighted(false)
     {
         /* cout << "instantiated " << name << " from feature " << feature << " with output type " << DataTypeName.at(ret_type) << endl; */
+        optimize=false;
         arg_types = vector<DataType>{};
+        set_complete_hash();
     }
 
     auto get_name() const noexcept -> std::string; 
@@ -118,11 +122,23 @@ struct Node {
     inline auto get_arg_types() const { return arg_types; };
     inline size_t get_arg_count() const { return arg_types.size(); };
 
+    void set_complete_hash(){
+        using Tuple = std::tuple< UnderlyingNodeType, size_t, bool, bool, string >;
+        complete_hash = std::hash<Tuple>{}(Tuple{
+                NodeTypes::GetIndex(node_type),
+                sig_hash,
+                is_weighted,
+                optimize,
+                feature
+                });
+    }
+    ////////////////////////////////////////////////////////////////////////////////
     //comparison operators
     inline auto operator==(const Node& rhs) const noexcept -> bool
     {
         /* return CalculatedHashValue == rhs.CalculatedHashValue; */
-        return (*this) == rhs;
+        return complete_hash == rhs.complete_hash;
+        /* return (*this) == rhs; */
     }
 
     inline auto operator!=(const Node& rhs) const noexcept -> bool
@@ -133,6 +149,7 @@ struct Node {
     inline auto operator<(const Node& rhs) const noexcept -> bool
     {
         /* return std::tie(HashValue, CalculatedHashValue) < std::tie(rhs.HashValue, rhs.CalculatedHashValue); */
+        return complete_hash < complete_hash; 
         return (*this) < rhs;
     }
 
@@ -151,16 +168,15 @@ struct Node {
         return !((*this) < rhs);
     }
 
-    inline decltype(auto) signature() const { 
-        return NodeSchema[NodeTypeName[node_type]]["Signature"][DataTypeName[ret_type]]; 
-    };
-
+    ////////////////////////////////////////////////////////////////////////////////
+    // getters and setters
     //TODO revisit
     float get_prob_change() const { return this->prob_change;};
     void set_prob_change(float w){ this->prob_change = w;};
     float get_prob_keep() const { return 1-this->prob_change;};
 };
 
+//TODO: add nt to template as first argument, make these constexpr
 template <NodeType... T>
 inline auto Is(NodeType nt) -> bool { return ((nt == T) || ...); }
 

@@ -1,7 +1,9 @@
 #ifndef OPERATOR_H
 #define OPERATOR_H
 
+#include "init.h"
 #include "tree_node.h"
+/* #include "data/timeseries.h" */
 /* using TreeNode = class tree_node_<Node>; */ 
 
 namespace Brush{
@@ -20,6 +22,7 @@ struct Operator
     using NthType = typename S::NthType<N>; 
     
     static constexpr auto F = [](const auto& ...args){ Function<NT> f{}; return f(args...); }; 
+    /* static constexpr auto F = [](const auto ...args){ Function<NT> f{}; return f(args...); }; */ 
 
     Operator() = default;
     ////////////////////////////////////////////////////////////////////////////////
@@ -118,7 +121,6 @@ struct Operator<NodeType::Terminal, S, Fit>
     auto eval(const Data& d, TreeNode& tn) const { 
         fmt::print("run std::get<{}>(d[{}])\n", DataTypeEnum<RetType>::value, tn.data.feature); 
         auto out = std::get<RetType>(d[tn.data.feature]);
-        fmt::print("Returning {}={}\n",tn.data.feature,out);
         return out; 
     };
 };
@@ -373,7 +375,12 @@ R DispatchOp(const Data& d, TreeNode& tn)
 {
     fmt::print("Dispatching {}\n",NT);
     const auto op = Operator<NT,S,Fit>{};
-    return op.eval(d, tn);
+    R out = op.eval(d, tn);
+    // TODO: figure out why fmt::print isn't working with Eigen 
+    /* fmt::print("{} returning {}\n",NT, out); */
+    cout << NT << " output: " << out << endl;
+    /* return out; */
+    return op.eval(d,tn);
 };
 
 } // Brush
