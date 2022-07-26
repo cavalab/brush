@@ -21,13 +21,13 @@ initial attemps:
 2. include fmt header in brushgp and dispatch_table
  
 suggested attempts:
-2. include fmt header in third party under src  
-3. brew install fmt and link to it
+3. include fmt header in third party under src  
+4. brew install fmt and link to it
 
 further attemps:
-4. followed the stackoverflow post "https://stackoverflow.com/questions/56608684/how-to-use-the-fmt-library-without-getting-undefined-symbols-for-architecture-x" and tried fmt/format.h instead of fmt/core.h
+5. followed the stackoverflow post "https://stackoverflow.com/questions/56608684/how-to-use-the-fmt-library-without-getting-undefined-symbols-for-architecture-x" and tried fmt/format.h instead of fmt/core.h
 
 future thoughts:
-5. maybe I should use the optional header-only mode or link to the fmt library?
+6. maybe I should use the optional header-only mode or link to the fmt library?
 
 It seems that all of the above attempts failed.
