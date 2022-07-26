@@ -27,7 +27,7 @@ template<> vector<float> get_thresholds<ArrayXf>(const ArrayXf& x){
     auto s = unique(x);
     for (unsigned i =0; i<s.size()-1; ++i)
     {
-        thresholds.push_back(s.at(i) + s.at(i+1));
+        thresholds.push_back((s.at(i) + s.at(i+1))/2.0);
     }
     return thresholds;
 }
@@ -35,11 +35,17 @@ template<> vector<float> get_thresholds<ArrayXf>(const ArrayXf& x){
 
 /// Applies a learned threshold to a feature, returning a mask.
 template<>
-ArrayXb threshold_mask<ArrayXb>(const ArrayXb& x, const float& threshold) { return x; }
+ArrayXb threshold_mask<ArrayXb>(const ArrayXb& x, const float& threshold) { 
+    return x; 
+}
 template<>
-ArrayXb threshold_mask<ArrayXf>(const ArrayXf& x, const float& threshold) { return (x > threshold); }
+ArrayXb threshold_mask<ArrayXf>(const ArrayXf& x, const float& threshold) { 
+    return (x > threshold); 
+}
 template<>
-ArrayXb threshold_mask<ArrayXi>(const ArrayXi& x, const float& threshold) { return (x == threshold); }
+ArrayXb threshold_mask<ArrayXi>(const ArrayXi& x, const float& threshold) { 
+    return (x == threshold); 
+}
 
 
 float gain(const ArrayXf& lsplit, 
@@ -61,6 +67,8 @@ float gain(const ArrayXf& lsplit,
         {
             lscore = variance(lsplit)/float(lsplit.size());
             rscore = variance(rsplit)/float(rsplit.size());
+            cout << "lscore: " << lscore << "\n";
+            cout << "rscore: " << rscore << "\n";
             score = lscore + rscore; 
         }
 

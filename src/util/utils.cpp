@@ -421,6 +421,9 @@ void ReplaceStringInPlace(std::string& subject, const std::string& search,
 /// convert a boolean mask to an index array
 vector<size_t> mask_to_index(const ArrayXb& mask)
 {
+    fmt::print("mask_to_index:: mask: {}\n",mask);
+    auto tmp = mask.cast<int>();
+    fmt::print("mask_to_index:: mask cast: {}\n",tmp);
     vector<size_t> idx;
     for (int i = 0; i < mask.size(); ++i)
     {

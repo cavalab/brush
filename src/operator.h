@@ -182,9 +182,13 @@ namespace Split {
         // get all possible split masks based on variant type
         
         vector<float> all_thresholds = get_thresholds(x); 
+        fmt::print("x: {}\n", x);
+        fmt::print("y: {}\n", y);
+        fmt::print("classification: {}\n", classification);
+        fmt::print("all thresholds: {}\n", all_thresholds);
 
         //////////////////// shared //////////////////////
-        float score, best_thresh, best_score;
+        float best_thresh, best_score = MAX_FLT;
         int i = 0 ;
         vector<float> unique_classes;
         if (classification)
@@ -204,8 +208,9 @@ namespace Split {
             if (lhs.size() == 0 || rhs.size() == 0)
                 continue;
 
-            score = gain(lhs, rhs, classification, unique_classes);
-            /* cout << "score: " << score << "\n"; */
+            //TODO: templatize gain for classification/regression
+            float score = gain(lhs, rhs, classification, unique_classes);
+            fmt::print("threshold={}; lhs={};rhs={}; score = {}\n",thresh,lhs,rhs,score);
             if (score < best_score || i == 0)
             {
                 best_score = score;
@@ -223,47 +228,65 @@ namespace Split {
     }
 
     template<typename T>
-    auto get_best_threshold_by_type(const Data& d, const auto& keys)
+    void get_best_threshold_by_type(const Data& d, auto& results)
     {
+        DataType DT = DataTypeEnum<T>::value;
+        fmt::print("get_best_threshold_by_type [T = {}]\n",DT);
+
+        vector<string> keys;
         float best_score = MAX_FLT;
-        string feature;
-        float threshold;
+        string feature="";
+        float threshold=0.0;
+        int i = 0;
+
+        if (d.features_of_type.find(DT) != d.features_of_type.end())
+            keys = d.features_of_type.at(DT);
+        else
+        {
+            fmt::print("didn't find features of type {} in data\n",DT);
+            return; // std::make_tuple(feature, threshold, best_score);
+        }
 
         for (const auto& key : keys) 
         {
             float tmp_thresh, score;
 
             tie(tmp_thresh, score) = best_threshold(std::get<T>(d[key]), d.y, d.classification);
-            if (score < best_score)
+            fmt::print("best threshold for {} = {:.3f}, score = {:.3f}\n",key,tmp_thresh,score);
+            if (score < best_score | i == 0)
             {
                 best_score = score;
                 feature = key;
                 threshold = tmp_thresh;
             }
+            ++i;
         }
-        return std::make_tuple(feature, threshold, best_score);
+        auto tmp = std::make_tuple(feature, threshold, best_score);
+        fmt::print("returning {}\n",tmp);
+        results.push_back(std::make_tuple(feature, threshold, best_score));
     }
 
     template<typename Ts,  std::size_t... Is> 
     auto get_best_thresholds(const Data&d, std::index_sequence<Is...>)
     {
+        fmt::print("get_best_thresholds\n");
         using entry = tuple<string, float, float>;
         auto compare = [](const entry& a, const entry& b){ 
             return (std::get<2>(a) < std::get<2>(b)); 
         };
 
-        array<entry, sizeof...(Is)> results;
-        (static_cast<void>(results[Is] = get_best_threshold_by_type<std::tuple_element_t<Is,Ts>>(
-            d, d.features_of_type.at(DataTypeEnum<std::tuple_element_t<Is,Ts>>::value))),
-         ...);
-
+        vector<entry> results;
+        fmt::print("get_best_thresholds::results size:{}\n",results.size());
+        (..., (get_best_threshold_by_type<std::tuple_element_t<Is,Ts>>(d, results)));
+        fmt::print("getting best\n");
         auto best = std::ranges::min_element(results, compare);
+        fmt::print("best: {}\n",(*best));
         return (*best);
     }
 
     /// Stitches together outputs from left or right child based on threshold
     template<typename T>
-    T stitch(array<T,2>& child_outputs, const Data& d, const ArrayXb& mask)
+    T stitch(array<T,2>& child_outputs, const ArrayXb& mask)
     {
         T result(mask.size());
 
@@ -306,16 +329,38 @@ struct Operator<NT, S, Fit, enable_if_t<is_one_of_v<NT, NodeType::SplitOn, NodeT
         array<arg_type,2> child_outputs;
 
         TreeNode* sib = tn.first_child;
+
+        if constexpr (NT==NodeType::SplitOn)
+            sib = sib->next_sibling;
+
         for (int i = 0; i < 2; ++i)
         {
             if constexpr (Fit)
-                child_outputs.at(i) = sib->fit<arg_type>(d.at(i)) ;
+                child_outputs.at(i) = sib->fit<arg_type>(d.at(i));
             else
                 child_outputs.at(i) = sib->predict<arg_type>(d.at(i));
             sib = sib->next_sibling;
         }
         return child_outputs;
     };
+
+    auto fit(const Data& d, TreeNode& tn) const {
+        auto& threshold = tn.data.W.at(0);
+        auto& feature = tn.data.feature;
+
+        // set feature and threshold
+        if constexpr (NT == NodeType::SplitOn)
+        {
+            // split on first child
+            FirstArg split_feature = tn.first_child->fit<FirstArg>(d);
+            // get the best splitting threshold
+            tie(threshold, ignore) = Split::best_threshold(split_feature, d.y, d.classification);
+        }
+        else
+            tie(feature, threshold) = Split::get_best_variable_and_threshold(d, tn);
+
+        return predict(d, tn);
+    }
 
     auto predict(const Data& d, TreeNode& tn) const 
     {
@@ -336,29 +381,11 @@ struct Operator<NT, S, Fit, enable_if_t<is_one_of_v<NT, NodeType::SplitOn, NodeT
         auto child_outputs = get_kids(data_splits, tn);
 
         // stitch together outputs
-        auto out = Split::stitch(child_outputs, d, mask);
-
+        auto out = Split::stitch(child_outputs, mask);
+        /* auto out = mask.select(child_outputs.at(0), child_outputs.at(1)); */
         /* cout << "returning " << std::get<RetType>(out) << endl; */
 
         return out;
-    }
-
-    auto fit(const Data& d, TreeNode& tn) const {
-        auto& threshold = tn.data.W.at(0);
-        auto& feature = tn.data.feature;
-
-        // set feature and threshold
-        if constexpr (NT == NodeType::SplitOn)
-        {
-            FirstArg split_feature = tn.first_child->fit<FirstArg>(d);
-            tie(threshold, ignore) = Split::best_threshold(split_feature, d.y, 
-                    d.classification);
-        }
-        else
-            tie(feature, threshold) = Split::get_best_variable_and_threshold(d, tn);
-
-        return predict(d, tn);
-
     }
     auto eval(const Data& d, TreeNode& tn) const {
         if constexpr (Fit)
@@ -373,10 +400,10 @@ struct Operator<NT, S, Fit, enable_if_t<is_one_of_v<NT, NodeType::SplitOn, NodeT
 template<typename R, NodeType NT, typename S, bool Fit> 
 R DispatchOp(const Data& d, TreeNode& tn) 
 {
-    fmt::print("Dispatching {}\n",NT);
+    fmt::print("DispatchOp: Dispatching {}\n",NT);
     const auto op = Operator<NT,S,Fit>{};
     R out = op.eval(d, tn);
-    // TODO: figure out why fmt::print isn't working with Eigen 
+    // TODO: figure out why fmt::print isn't working with Eigen::Matrix
     /* fmt::print("{} returning {}\n",NT, out); */
     cout << NT << " output: " << out << endl;
     /* return out; */

@@ -159,6 +159,7 @@ class Data
         {
             if (this->features.find(name) == features.end())
                 HANDLE_ERROR_THROW(fmt::format("Couldn't find feature {} in data\n",name));
+            fmt::print("returning data::features.at({})\n",name); 
             return this->features.at(name);
         };
 
@@ -168,6 +169,7 @@ class Data
             /* using T = typename DataEnumType<DT>::type; */
             return std::get<T>(this->features.at(name));
         }
+
         /* template<> ArrayXb get<ArrayXb>(std::string name) */
 }; // class data
 } // data

@@ -1,6 +1,9 @@
 /* Brush
 copyright 2020 William La Cava
 license: GNU/GPL v3
+
+Node class design heavily inspired by Operon, (c) Heal Research
+https://github.com/heal-research/operon/
 */
 
 #ifndef NODE_H
