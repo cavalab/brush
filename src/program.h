@@ -17,7 +17,8 @@ license: GNU/GPL v3
 
 // #include "data/data.h"
 #include "init.h"
-#include "tree.h"
+/* #include "thirdparty/tree.hh" */
+#include "tree_node.h"
 #include "state.h"
 #include "node.h"
 #include "search_space.h"
@@ -46,6 +47,7 @@ typedef tree<Node>::pre_order_iterator Iter;
 // for unsupervised learning, classification and regression. 
 template<typename T> struct Program //: public tree<Node>
 {
+    bool is_fitted_;
     /* using RetType = typename DataTypeType<T>::type; */
     const DataType RetDataType = DataTypeEnum<T>::value;
 
@@ -68,45 +70,34 @@ template<typename T> struct Program //: public tree<Node>
 
     T fit(const Data& d)
     {
-        // Check to see if the program has been initialized. If not, call an
-        // init method
-        /* Iter head = prg.begin(); */ 
-        return prg.begin().node->fit<T>(d);
-        /* return out; */
+        fmt::print("Fitting {}\n", this->get_model());
+        T out =  prg.begin().node->fit<T>(d);
+        fmt::print("Output {}\n", out);
+        is_fitted_ = true;
+        return out;
     };
 
     T predict(const Data& d)
     {
-        Iter head = prg.begin(); 
-        /* State out = head.node->predict(d); */
-        /* cout << "Program::predict"; */
-        /* return std::get<T>(out); */
-        T out = head.node->predict<T>(d);
+        if (!is_fitted_)
+            HANDLE_ERROR_THROW("Program is not fitted. Call 'fit' first.\n");
+
+        fmt::print("Predicting {}\n", this->get_model());
+        T out = prg.begin().node->predict<T>(d);
         return out;
     };
 
     void grad_descent(const ArrayXf& gradient, const Data& d)
     {
         //TODO
-        Iter start = prg.begin(); 
-        /* start.node.grad_descent(gradient, d); */
     };
 
     string get_model(string fmt="compact", bool pretty=false)
     {
         auto head = prg.begin(); 
-        /* if (fmt=="compact") */
-        /*     return head.node->get_model(pretty); */
         if (fmt=="tree")
             return head.node->get_tree_model(pretty);
         return head.node->get_model(pretty);
-    }
-
-    string get_tree_model(bool pretty=false)
-    {
-        /* return prg.get_tree_model(pretty); */
-        /* Iter head = prg.begin(); */ 
-        return prg.begin().node->get_tree_model(pretty);
     }
 
     ////////////////////////////////////////////////////////////////////////////
@@ -121,14 +112,14 @@ template<typename T> struct Program //: public tree<Node>
     void point_mutation(Iter spot, const SearchSpace& SS)
     {
         cout << "point mutation\n";
-        auto newNode = SS.get_node_like(spot.node->n); 
+        auto newNode = SS.get_node_like(spot.node->data); 
         this->prg.replace(spot, newNode);
     };
     /// insert a node with spot as a child
     void insert_mutation(Iter spot, const SearchSpace& SS)
     {
         cout << "insert mutation\n";
-        auto spot_type = spot.node->n.ret_type;
+        auto spot_type = spot.node->data.ret_type;
         auto n = SS.get_op_with_arg(spot_type, spot_type); 
         // make node n wrap the subtree at the chosen spot
         auto parent_node = this->prg.wrap(spot, n);
@@ -156,7 +147,7 @@ template<typename T> struct Program //: public tree<Node>
     void delete_mutation(Iter spot, const SearchSpace& SS)
     {
         cout << "delete mutation\n";
-        auto terminal = SS.get_terminal(spot.node->n.ret_type); 
+        auto terminal = SS.get_terminal(spot.node->data.ret_type); 
         this->prg.erase_children(spot); 
         this->prg.replace(spot, terminal);
     };

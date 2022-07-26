@@ -23,8 +23,8 @@ auto Node::get_name() const noexcept -> std::string
         {
             return fmt::format("{:.3f}",W.at(0));
         }
-        else if (Is<NodeType::SplitBest>(node_type))
-            return fmt::format("Split( {} > {:.3f})", feature, threshold); 
+        /* else if (Is<NodeType::SplitBest>(node_type)) */
+        /*     return fmt::format("Split( {} > {:.3f})", feature, W.at(0)); */ 
         else
             return name;
 }

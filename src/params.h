@@ -30,6 +30,7 @@ struct Params
         max_breadth = 5;
         max_size = 20;
     }
+
 };
 
 static Params params;

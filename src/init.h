@@ -25,8 +25,9 @@ license: GNU/GPL v3
 #include <vector>
 #include <string>
 /* #include <fmt/core.h> */
-#include <fmt/ranges.h>
+#include <fmt/ostream.h> 
 #include <fmt/format.h>
+#include <fmt/ranges.h>
 
 using Eigen::MatrixXf;
 using Eigen::ArrayXXf;
@@ -34,6 +35,7 @@ using Eigen::ArrayXXi;
 using Eigen::VectorXf;
 using Eigen::VectorXi;
 using Eigen::ArrayXf;
+using Eigen::seq;
 typedef Eigen::Array<bool,Eigen::Dynamic,1> ArrayXb;
 typedef Eigen::Array<bool,Eigen::Dynamic,Eigen::Dynamic> ArrayXXb;
 typedef Eigen::Matrix<bool,Eigen::Dynamic,1> VectorXb;

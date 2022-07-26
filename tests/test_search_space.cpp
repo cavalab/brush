@@ -39,6 +39,6 @@ TEST(SearchSpace, Initialization)
     SearchSpace SS;
     SS.init(dt, user_ops);
 
-    dtable_fit.print();
-    dtable_predict.print();
+/*     dtable_fit.print(); */
+/*     dtable_predict.print(); */
 }

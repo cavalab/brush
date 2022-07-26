@@ -1,6 +1,9 @@
 /* Brush
 copyright 2020 William La Cava
 license: GNU/GPL v3
+
+Dispatch class design heavily inspired by Operon, (c) Heal Research
+https://github.com/heal-research/operon/
 */
 
 #ifndef INTERPRETER_H
@@ -9,19 +12,18 @@ license: GNU/GPL v3
 #include "data/data.h"
 #include "nodemap.h"
 #include "node.h"
-/* #include "operator.h" */
-/* #include "dispatch_callables.h" */
-/* #include "tree_node.h" */
 #include <optional>
 #include <cstddef>
 #include <tuple>
 
 
-namespace Brush{
-
 // forward declarations
 template<typename T> class tree_node_;
 using TreeNode = class tree_node_<Node>; 
+
+namespace Brush{
+
+// forward declarations
 template<typename R, NodeType NT, typename S, bool Fit> R DispatchOp(const Data& d, TreeNode& tn); 
 
 ////////////////////////////////////////////////////////////////////////////////
@@ -30,17 +32,6 @@ template<bool Fit>
 struct DispatchTable
 {
     
-    //TODO: this Ts specifies the return type in Operon, which is one of two values, an Eigen array
-    // or a Dual. 
-    // The callables are templated by this type. In our case, we have functions that return
-    // different types but have arbitrary signature types as well. 
-    // One option is that we have the dispatch table templated by these, but then we have
-    // disparate dispatch tables for every function signature (maybe this ok...). 
-    // However, the logic around which node types have which function signatures might get
-    // complicated. We'd have to avoid adding nodes to the map for a given type if they don't
-    // have that return type. (might not be that hard... but wouldn't happen at compile time.)
-    // Right now, I'm trying to use State returns, so that the Callable signature is the same for
-    // different dispatch functions. Not sure if this will work.  
     template<typename T>
     using Callable = typename std::function<T(const Data&,TreeNode&)>;
 

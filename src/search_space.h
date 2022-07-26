@@ -8,7 +8,7 @@ license: GNU/GPL v3
 #include "init.h"
 #include "node.h"
 #include "nodemap.h"
-#include "tree.h"
+#include "tree_node.h"
 #include "util/utils.h"
 #include "util/rnd.h"
 #include "params.h"
@@ -96,15 +96,48 @@ struct SearchSpace
     template<typename T>
     Program<T> make_program(int max_d=0, int max_breadth=0, int max_size=0);
     
-    
+    SearchSpace() = default;
+    SearchSpace(const Data& d, const unordered_map<string,float>& user_ops = {}){
+        init(d,user_ops);
+    }
+
     void init(const Data& d, const unordered_map<string,float>& user_ops = {});
 
+    bool check(DataType R) const {
+        if (node_map.find(R) == node_map.end()){
+            auto msg = fmt::format("{} not in node_map\n",R);
+            HANDLE_ERROR_THROW(msg); 
+        }
+        return true;
+    }
+    bool check(DataType R, size_t sig_hash) const
+    {
+        if (check(R)){
+            if (node_map.at(R).find(sig_hash) == node_map.at(R).end()){
+                auto msg = fmt::format("{} not in node_map.at({})\n", sig_hash, R);
+                HANDLE_ERROR_THROW(msg); 
+            }
+        }
+        return true;
+    }
+    bool check(DataType R, size_t sig_hash, NodeType type) const
+    {
+        if (check(R,sig_hash)){
+            if (node_map.at(R).at(sig_hash).find(type) == node_map.at(R).at(sig_hash).end()){
+
+                auto msg = fmt::format("{} not in node_map[{}][{}]\n",type, sig_hash, R);
+                HANDLE_ERROR_THROW(msg); 
+            }}
+        return true;
+    }
     // template<typename R>
     template<typename F> Node get(const string& name);
-    Node get(const NodeType type, DataType R, size_t sig_hash)
+
+    Node get(NodeType type, DataType R, size_t sig_hash)
     {
-         /* auto arg_hash = uint32_vector_hasher()(arg_types); */
-         return node_map.at(R).at(sig_hash).at(type);
+        check(R, sig_hash, type);
+        /* auto arg_hash = uint32_vector_hasher()(arg_types); */
+        return node_map.at(R).at(sig_hash).at(type);
     };
 
     /// get a terminal 
@@ -120,26 +153,16 @@ struct SearchSpace
                 );
     };
     /// get a typed terminal 
-    Node get_terminal(DataType ret) const
+    Node get_terminal(DataType R) const
     {
-        /* cout << "get terminal of type " << DataTypeName[ret] << "\n"; */
-        /* /1* cout << "terminal map: " << terminal_map.size() << "\n"; *1/ */
-        /* for (const auto& [k, nv] : terminal_map) */
-        /* { */
-        /*     fmt::print("{}: ", DataTypeName[k]); */
-        /*     for (auto n : nv) */
-        /*         fmt::print("{}, ", n.get_name()); */
-        /*     fmt::print("\n"); */
-        /* } */
-        /* print(terminal_weights.at(ret).begin(), terminal_weights.at(ret).end()); */
-        /* fmt::print("{}\n",terminal_weights.at(ret)); */
-        //TODO: match terminal args_type (probably '{}' or something?)
-        //  make a separate terminal_map
-        auto rval =  *r.select_randomly(terminal_map.at(ret).begin(), 
-                                  terminal_map.at(ret).end(), 
-                                  terminal_weights.at(ret).begin(),
-                                  terminal_weights.at(ret).end());
-        /* cout << "returning " << rval.get_name() << endl; */
+        if (terminal_map.find(R) == terminal_map.end()){
+            auto msg = fmt::format("{} not in terminal_map\n",R);
+            HANDLE_ERROR_THROW(msg); 
+        }
+        auto rval =  *r.select_randomly(terminal_map.at(R).begin(), 
+                                  terminal_map.at(R).end(), 
+                                  terminal_weights.at(R).begin(),
+                                  terminal_weights.at(R).end());
         return rval;
     };
 
@@ -189,6 +212,7 @@ struct SearchSpace
     /// get an operator 
     Node get_op(DataType ret) const
     {
+        check(ret);
         //TODO: match terminal args_type (probably '{}' or something?)
         auto ret_match = node_map.at(ret);
 
@@ -213,6 +237,9 @@ struct SearchSpace
     Node get_op_with_arg(DataType ret, DataType arg, 
                               bool terminal_compatible=true) const
     {
+        //TODO: these needs to be overhauled 
+        fmt::print("get_op_with_arg");
+        check(ret);
         // terminal_compatible: the other args the returned operator takes must exist in the
         // terminal types. 
 
@@ -222,7 +249,7 @@ struct SearchSpace
 
         for (const auto& [args_type, name_map]: args_map) {
             for (const auto& [name, node]: name_map) {
-                auto node_arg_types = node.arg_types;
+                auto node_arg_types = node.get_arg_types();
                 if ( in(node_arg_types, arg) ) {
                     // if checking terminal compatibility, make sure there's
                     // a compatible terminal for the node's other arguments
