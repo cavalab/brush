@@ -19,6 +19,7 @@ license: GNU/GPL v3
 #include <Eigen/Dense>
 #include <memory>
 #include <iostream>
+#include <fstream>
 #include <numeric>
 #include <map>
 #include <set>

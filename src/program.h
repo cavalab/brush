@@ -8,7 +8,6 @@ license: GNU/GPL v3
 //external includes
 
 //
-#include <iostream>
 
 #include <string>
 #include "assert.h"
