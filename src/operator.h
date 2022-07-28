@@ -118,9 +118,18 @@ template<typename S, bool Fit>
 struct Operator<NodeType::Terminal, S, Fit>
 {
     using RetType = typename S::RetType;
-    auto eval(const Data& d, TreeNode& tn) const { 
+    RetType eval(const Data& d, const TreeNode& tn) const { 
         fmt::print("run std::get<{}>(d[{}])\n", DataTypeEnum<RetType>::value, tn.data.feature); 
-        auto out = std::get<RetType>(d[tn.data.feature]);
+        RetType out = std::get<RetType>(d[tn.data.feature]);
+        fmt::print("output type: {}, size: {}\n",typeid(out).name(),out.size());
+
+        fmt::print("TreeNode pointers before eval: \nparent: {}\nfirst_child: {}\nlast_child:{}\nprev_sibling: {}\nnext_sibling: {}\n",
+                fmt::ptr(tn.parent),
+            fmt::ptr(tn.first_child),
+            fmt::ptr(tn.last_child),
+            fmt::ptr(tn.prev_sibling),
+            fmt::ptr(tn.next_sibling)
+            );
         return out; 
     };
 };
@@ -182,10 +191,10 @@ namespace Split {
         // get all possible split masks based on variant type
         
         vector<float> all_thresholds = get_thresholds(x); 
-        fmt::print("x: {}\n", x);
-        fmt::print("y: {}\n", y);
-        fmt::print("classification: {}\n", classification);
-        fmt::print("all thresholds: {}\n", all_thresholds);
+        /* fmt::print("x: {}\n", x); */
+        /* fmt::print("y: {}\n", y); */
+        /* fmt::print("classification: {}\n", classification); */
+        /* fmt::print("all thresholds: {}\n", all_thresholds); */
 
         //////////////////// shared //////////////////////
         float best_thresh, best_score = MAX_FLT;
@@ -210,7 +219,7 @@ namespace Split {
 
             //TODO: templatize gain for classification/regression
             float score = gain(lhs, rhs, classification, unique_classes);
-            fmt::print("threshold={}; lhs={};rhs={}; score = {}\n",thresh,lhs,rhs,score);
+            /* fmt::print("threshold={}; lhs={};rhs={}; score = {}\n",thresh,lhs,rhs,score); */
             if (score < best_score || i == 0)
             {
                 best_score = score;
@@ -231,7 +240,7 @@ namespace Split {
     void get_best_threshold_by_type(const Data& d, auto& results)
     {
         DataType DT = DataTypeEnum<T>::value;
-        fmt::print("get_best_threshold_by_type [T = {}]\n",DT);
+        /* fmt::print("get_best_threshold_by_type [T = {}]\n",DT); */
 
         vector<string> keys;
         float best_score = MAX_FLT;
@@ -243,7 +252,7 @@ namespace Split {
             keys = d.features_of_type.at(DT);
         else
         {
-            fmt::print("didn't find features of type {} in data\n",DT);
+            /* fmt::print("didn't find features of type {} in data\n",DT); */
             return; // std::make_tuple(feature, threshold, best_score);
         }
 
@@ -269,18 +278,18 @@ namespace Split {
     template<typename Ts,  std::size_t... Is> 
     auto get_best_thresholds(const Data&d, std::index_sequence<Is...>)
     {
-        fmt::print("get_best_thresholds\n");
+        /* fmt::print("get_best_thresholds\n"); */
         using entry = tuple<string, float, float>;
         auto compare = [](const entry& a, const entry& b){ 
             return (std::get<2>(a) < std::get<2>(b)); 
         };
 
         vector<entry> results;
-        fmt::print("get_best_thresholds::results size:{}\n",results.size());
+        /* fmt::print("get_best_thresholds::results size:{}\n",results.size()); */
         (..., (get_best_threshold_by_type<std::tuple_element_t<Is,Ts>>(d, results)));
-        fmt::print("getting best\n");
+        /* fmt::print("getting best\n"); */
         auto best = std::ranges::min_element(results, compare);
-        fmt::print("best: {}\n",(*best));
+        /* fmt::print("best: {}\n",(*best)); */
         return (*best);
     }
 
@@ -329,10 +338,10 @@ struct Operator<NT, S, Fit, enable_if_t<is_one_of_v<NT, NodeType::SplitOn, NodeT
         array<arg_type,2> child_outputs;
 
         TreeNode* sib = tn.first_child;
-
         if constexpr (NT==NodeType::SplitOn)
             sib = sib->next_sibling;
 
+        cout << "-----> first_child ptr: " << sib << endl;
         for (int i = 0; i < 2; ++i)
         {
             if constexpr (Fit)
@@ -340,6 +349,7 @@ struct Operator<NT, S, Fit, enable_if_t<is_one_of_v<NT, NodeType::SplitOn, NodeT
             else
                 child_outputs.at(i) = sib->predict<arg_type>(d.at(i));
             sib = sib->next_sibling;
+            cout << "-----> next sib ptr: " << sib << endl;
         }
         return child_outputs;
     };
@@ -377,10 +387,13 @@ struct Operator<NT, S, Fit, enable_if_t<is_one_of_v<NT, NodeType::SplitOn, NodeT
         }
 
         array<Data, 2> data_splits = d.split(mask);
-
+        fmt::print("data_splits sizes: {}, {}\n",
+                data_splits[0].get_n_samples(), 
+                data_splits[1].get_n_samples());
         auto child_outputs = get_kids(data_splits, tn);
 
         // stitch together outputs
+        fmt::print("stitching outputs\n");
         auto out = Split::stitch(child_outputs, mask);
         /* auto out = mask.select(child_outputs.at(0), child_outputs.at(1)); */
         /* cout << "returning " << std::get<RetType>(out) << endl; */
@@ -402,12 +415,24 @@ R DispatchOp(const Data& d, TreeNode& tn)
 {
     fmt::print("DispatchOp: Dispatching {}\n",NT);
     const auto op = Operator<NT,S,Fit>{};
+    fmt::print("TreeNode pointers before eval: \nparent: {}\nfirst_child: {}\nlast_child:{}\nprev_sibling: {}\nnext_sibling: {}\n",fmt::ptr(tn.parent),
+            fmt::ptr(tn.first_child),
+            fmt::ptr(tn.last_child),
+            fmt::ptr(tn.prev_sibling),
+            fmt::ptr(tn.next_sibling)
+            );
     R out = op.eval(d, tn);
+    fmt::print("TreeNode pointers after eval: \nparent: {}\nfirst_child: {}\nlast_child:{}\nprev_sibling: {}\nnext_sibling: {}\n",fmt::ptr(tn.parent),
+            fmt::ptr(tn.first_child),
+            fmt::ptr(tn.last_child),
+            fmt::ptr(tn.prev_sibling),
+            fmt::ptr(tn.next_sibling)
+            );
     // TODO: figure out why fmt::print isn't working with Eigen::Matrix
     /* fmt::print("{} returning {}\n",NT, out); */
     cout << NT << " output: " << out << endl;
-    /* return out; */
-    return op.eval(d,tn);
+    return out;
+    /* return op.eval(d,tn); */
 };
 
 } // Brush

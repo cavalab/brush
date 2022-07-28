@@ -102,17 +102,27 @@ template<typename T> struct Program //: public tree<Node>
     }
 
     string get_dot_model(){
-        string out = "digraph G {\n";
-        /* auto iter = prg.begin(); */
+        string out = "digraph G {\norientation=landscape;\n";
+
         for (Iter iter = prg.begin(); iter!=prg.end(); iter++)
-        /* for (const auto iter : prg) */
         {
+            const auto& parent = iter.node->data;
             auto kid = iter.node->first_child;
+
             for (int i = 0; i < iter.number_of_children(); ++i)
             {
-                out += fmt::format("{} -> {};\n", 
-                        iter.node->data.get_name(),
-                        kid->data.get_name());
+                string label="";
+                if (parent.is_weighted)
+                    label = fmt::format("{:.3f}",parent.W.at(i));
+                else if (Is<NodeType::SplitOn>(parent.node_type) && i == 0)
+                    label = fmt::format("{:.3f}",parent.W.at(i)); 
+
+                out += fmt::format("{} [comment=\"{}\"] -> {} [label=\"{}\"];\n", 
+                        parent.get_name(),
+                        parent.complete_hash,
+                        kid->data.get_name(),
+                        label
+                        );
                 kid = kid->next_sibling;
             }
 

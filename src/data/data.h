@@ -76,6 +76,7 @@ typedef std::variant<
 
 /// determines data types of columns of matrix X.
 State check_type(const ArrayXf& x);
+DataType StateType(const State& arg);
 ///////////////////////////////////////////////////////////////////////////////
 
 class Data 
@@ -149,7 +150,8 @@ class Data
             } 
 
         void set_validation(bool v=true);
-        
+        inline int get_n_samples(){ return this->y.size(); };
+        inline int get_n_features(){ return this->features.size(); };
         /// select random subset of data for training weights.
         Data get_batch(int batch_size) const;
 
@@ -160,15 +162,9 @@ class Data
             if (this->features.find(name) == features.end())
                 HANDLE_ERROR_THROW(fmt::format("Couldn't find feature {} in data\n",name));
             fmt::print("returning data::features.at({})\n",name); 
+            fmt::print("data::features.at({}) type = {}\n",name,this->features.at(name).index()); 
             return this->features.at(name);
         };
-
-        template<DataType DT, typename T = ArrayXf> //DataEnumType<DT>::type>
-        T get(std::string name) const
-        {
-            /* using T = typename DataEnumType<DT>::type; */
-            return std::get<T>(this->features.at(name));
-        }
 
         /* template<> ArrayXb get<ArrayXb>(std::string name) */
 }; // class data

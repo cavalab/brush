@@ -26,7 +26,7 @@ TEST(Program, MakeProgram)
     // State out = tree.fit(d);
     // cout << "output: " << get<ArrayXb>(out) << endl;
 
-    /* map<string, float> user_ops = { */
+    /* unordered_map<string, float> user_ops = { */
     /*     {"Add", 1}, */
     /*     {"Sub", 1}, */
     /*     {"Div", .5}, */
@@ -75,14 +75,26 @@ TEST(Program, BackProp)
              3.4378868 , 3.41092345, 3.5087468 , 3.25110243, 3.11382179;
     Data data(X,y);
 
-    SearchSpace SS;
-    SS.init(data);
+    unordered_map<string, float> user_ops = {
+        {"Add", 1},
+        {"Sub", 1},
+        {"Div", .5},
+        {"Times", 0.5},
+        {"SplitOn", 0.5},
+        {"SplitBest", 0.5}
+    };
+    SearchSpace SS(data, user_ops);
+    /* SS.init(data); */
 
-    auto DXtree = SS.make_program<ArrayXf>();
+    auto DXtree = SS.make_program<ArrayXf>(9,0,9);
     // auto root = DXtree.prg.insert(DXtree.prg.begin(), SS.get_op(typeid(ArrayXf));
     // DXtree.prg.append_child(root2, new Node<ArrayXf>("x_1", 0));
     // DXtree.prg.append_child(root2, new Node<ArrayXf>("x_2", 1));
     DXtree.fit(data);
+    ofstream file;
+    file.open(fmt::format("dx_model.dot"));
+    file <<  DXtree.get_model("dot", true);
+    file.close();
     cout << "generating predictions\n";
     ArrayXf y_pred = DXtree.predict(data);
     cout << "gradient descent\n";

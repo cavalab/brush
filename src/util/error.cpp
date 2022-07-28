@@ -19,7 +19,7 @@ namespace Brush{ namespace Util{
         ///prints error to stderr and returns
         void HandleErrorNoThrow(string err, const char *file, int line )
         {
-            fmt::print(stderr, "ERROR {}:{}: {}\n", file, line, err);
+            fmt::print(stderr, "WARNING {}:{}: {}\n", file, line, err);
         }
 } }
 

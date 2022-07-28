@@ -297,16 +297,14 @@ struct SearchSpace
         requires (!is_one_of_v<NT, NodeType::Terminal, NodeType::Constant>)
         static constexpr std::optional<Node> CreateNode(const auto& unique_data_types, bool use_all, bool weighted)
         {
-            // if we're using all, prune the operators out that don't have argument types that
+            // prune the operators out that don't have argument types that
             // overlap with feature data types
-            if (use_all) {
-                for (auto arg: S::get_arg_types()){
-                    if (! in(unique_data_types,arg) ){
-                        /* fmt::print("not adding {} because {} is not in unique_data_types\n", NT, arg); */
-                        return {}; 
-                    }
-                }    
-            }
+            for (auto arg: S::get_arg_types()){
+                if (! in(unique_data_types,arg) ){
+                    HANDLE_WARNING(fmt::format("not adding {} because {} is not in unique_data_types\n", NT, arg));
+                    return {}; 
+                }
+            }    
             using RetType = typename S::RetType; 
             DataType output_type = DataTypeEnum<RetType>::value;
             /* auto args_hash = typeid(S).hash_code(); */

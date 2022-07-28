@@ -102,10 +102,6 @@ Data Data::operator()(const vector<size_t>& idx) const
     {
         std::visit([&](auto&& arg) 
         {
-            // overloaded {
-            //     [](auto arg){new_d[key] = T(arg(idx));};
-            //     [](auto arg){new_d[key] = T(arg(idx));};
-            // }
             using T = std::decay_t<decltype(arg)>;
             if constexpr (std::is_same_v<T, ArrayXb> 
                           || std::is_same_v<T, ArrayXi> 

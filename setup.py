@@ -82,6 +82,7 @@ class CMakeBuild(build_ext):
             # self.parallel is a Python 3 only way to set parallel jobs by hand
             # using -j in the build_ext call, not supported by pip or PyPA-build.
             if hasattr(self, "parallel") and self.parallel:
+                print(f'building in parallel with {self.parallel} threads')
                 # CMake 3.12+ only.
                 build_args += ["-j{}".format(self.parallel)]
 
