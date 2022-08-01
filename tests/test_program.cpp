@@ -80,8 +80,8 @@ TEST(Program, BackProp)
         {"Sub", 1},
         {"Div", .5},
         {"Times", 0.5},
-        {"SplitOn", 0.5},
-        {"SplitBest", 0.5}
+        /* {"SplitOn", 0.5}, */
+        /* {"SplitBest", 0.5} */
     };
     SearchSpace SS(data, user_ops);
     /* SS.init(data); */

@@ -637,6 +637,8 @@ ostream &operator<<( ostream &os, const vector<T>& v )
     return os;            
 };
 
+template <typename> struct is_tuple: std::false_type {};
+template <typename ...T> struct is_tuple<std::tuple<T...>>: std::true_type {};
 } // Util
 } // Brush 
 #endif

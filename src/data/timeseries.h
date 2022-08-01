@@ -11,7 +11,7 @@ namespace Brush::data{
 template<class T>
 struct TimeSeries
 {
-    using ElemType = T;
+    using Scalar = T;
     using EntryType = Eigen::Array<T,Dynamic,1>;
     using ValType = std::vector<EntryType>;
     using TimeType = std::vector<Eigen::ArrayXi>;
@@ -75,7 +75,7 @@ struct TimeSeries
                        dest.begin(),
                        op
         );
-        return TimeSeries<T>(dest, this->time);
+        return TimeSeries<T>(this->time, dest);
     }
     /* reduce takes a unary aggregating function, applies it to each entry, and returns an Array.*/
     template<typename R=T>
@@ -120,6 +120,13 @@ struct TimeSeries
     inline auto min() { return this->reduce([](const EntryType& i){ return i.minCoeff(); } ); };
     inline auto sum() { return this->reduce<float>([](const EntryType& i){ return i.sum(); } ); };
     inline auto count() { return this->reduce<float>([](const EntryType& i){ return i.size(); } ); };
+
+    /* template<typename V=T> */
+    /* enable_if_t<is_same_v<V,float>,TimeSeries<float>> */
+    
+    inline auto operator*(const float& v) requires(is_same_v<Scalar,float>) { 
+        return this->transform([&](const EntryType& i){ return i*v; } ); 
+    };
 
     template<typename T2>
     inline auto before(const TimeSeries<T2>& t2) const { 

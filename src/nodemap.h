@@ -43,6 +43,7 @@ using Brush::DataType;
 using Brush::data::TimeSeriesb; 
 using Brush::data::TimeSeriesi; 
 using Brush::data::TimeSeriesf; 
+using Brush::Util::is_tuple;
 
 namespace Brush {
 
@@ -178,9 +179,10 @@ static constexpr bool is_one_of_v = is_one_of<T, Ts...>::value;
 
 
 // Signatures gives a set of SigType for each node
-template<typename FirstArg, typename... NextArgs>
+template<typename First, typename ... Next>
 struct all_same{
-    static constexpr bool value = ((std::is_same_v<FirstArg,NextArgs> && ...));
+    static constexpr bool value {(std::is_same_v<First,Next> && ...)};
+    /* static constexpr bool value = true; */
 };
 template<typename R, typename... Args>
 struct SigBase  
@@ -192,12 +194,12 @@ struct SigBase
 
     /// ArgTypes is a std::array if the types are shared, otherwise it is a tuple. 
     // (using std::array allows begin() and end() ops like transform to be applied)
-    using ArgTypes = conditional_t<all_same<Args...>::value,
+    using ArgTypes = conditional_t<(std::is_same_v<FirstArg,Args> && ...),
                                    std::array<FirstArg,ArgCount>,
                                    std::tuple<Args...>
                                   >;
     template <std::size_t N>
-    using NthType = conditional_t<is_array_v<ArgTypes>, 
+    using NthType = conditional_t<!is_tuple<ArgTypes>::value, 
                                   FirstArg,
                                   typename std::tuple_element<N, ArgTypes>::type
                                  >;
@@ -214,6 +216,12 @@ struct SigBase
     static constexpr auto get_arg_types() {
         return get_arg_types(make_index_sequence<ArgCount>());
     } 
+    static constexpr auto get_args_type() {
+        if constexpr (!is_tuple<ArgTypes>::value)
+            return "Array";
+        else
+            return "Tuple";
+    };
 
     template<typename T>
     static constexpr bool contains() { return is_one_of_v<T, Args...>; }
@@ -230,6 +238,7 @@ struct SigBase<R>
     using ArgTypes = void;
     static constexpr std::size_t ArgCount = 0;
     static constexpr auto get_arg_types() { return vector<DataType>{}; } 
+    static constexpr auto get_args_type() { return "None"; } 
     static constexpr std::size_t hash(){ return typeid(R).hash_code(); };
 };
 

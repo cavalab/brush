@@ -3,6 +3,8 @@
 
 #include "init.h"
 #include "tree_node.h"
+#include "util/utils.h"
+using Util::is_tuple;
 /* #include "data/timeseries.h" */
 /* using TreeNode = class tree_node_<Node>; */ 
 
@@ -11,10 +13,15 @@ namespace Brush{
 // Operator class
 /* template<NodeType NT, typename S, bool Fit, typename T=void> Operator; */
 
+/* template <typename T> */
+/* template <typename> struct is_tuple: std::false_type {}; */
+/* template <typename ...T> struct is_tuple<std::tuple<T...>>: std::true_type {}; */
+/* using is_tuple_v = typename is_tuple<T>::value; */
+
 template<NodeType NT, typename S, bool Fit, typename E=void> 
 struct Operator 
 {
-    using Args = typename S::ArgTypes;
+    using ArgTypes = typename S::ArgTypes;
     using RetType = typename S::RetType;
     static constexpr size_t ArgCount = S::ArgCount;
     // get arg types from tuple by index
@@ -26,33 +33,18 @@ struct Operator
 
     Operator() = default;
     ////////////////////////////////////////////////////////////////////////////////
-    /// Apply weights
-    template<typename T=Args>
-    enable_if_t<is_array_v<T,void>> 
-    apply_weights(T& inputs, const Node& n) const
-    {
-        cout << "applying weights to " << n.name << " operator\n";
-        std::transform(
-                    inputs.begin(), 
-                    inputs.end(),
-                    n.W.begin(),
-                    inputs.begin(), 
-                    std::multiplies<>()
-                    );
-    };
-    ////////////////////////////////////////////////////////////////////////////////
     /// Utilities to grab child outputs.
 
     // get a std::array of kids
-    template<typename T=Args>
-    enable_if_t<is_array_v<T>, T> 
+    template<typename T=ArgTypes>
+    enable_if_t<!is_tuple<T>::value, T> 
     get_kids(const Data& d, TreeNode& tn) const
     {
         T child_outputs;
         using arg_type = typename T::value_type;
 
         TreeNode* sib = tn.first_child;
-        for (int i = 0; i < this->get_arg_count(); ++i)
+        for (int i = 0; i < ArgCount; ++i)
         {
             if constexpr (Fit)
                 child_outputs.at(i) = sib->fit<arg_type>(d) ;
@@ -78,38 +70,67 @@ struct Operator
     };
 
     template<typename T, size_t ...Is>
-    requires (!is_array_v<T>)
-    auto get_kids_seq(const Data& d, TreeNode& tn, std::index_sequence<Is...>) const 
+    /* requires (!is_array_v<decay_t<T>>) */
+    enable_if_t<is_tuple<T>::value, T> 
+    get_kids_seq(const Data& d, TreeNode& tn, std::index_sequence<Is...>) const 
     { 
         return std::make_tuple(get_kid<Is>(d,tn)...);
     };
 
     // get a std::tuple of kids
-    template<typename T=Args>
-    requires (!is_array_v<T>)
-    auto get_kids(const Data& d, TreeNode& tn) const
+    template<typename T=ArgTypes>
+    /* requires (!is_array_v<decay_t<T>>) */
+    enable_if_t<is_tuple<T>::value, T> 
+    get_kids(const Data& d, TreeNode& tn) const
     {
         return get_kids_seq<T>(d, tn, std::make_index_sequence<ArgCount>{});
     };
 
+    ////////////////////////////////////////////////////////////////////////////////
+    /// Apply weights
+    template<typename T=ArgTypes>
+    /* enable_if_t<!is_tuple<T>::value && is_same_v<T::Scalar,float>,void> */ 
+    enable_if_t<!is_tuple<T>::value && is_same_v<typename T::value_type::Scalar,float>,void> 
+    apply_weights(T& inputs, const Node& n) const
+    {
+        cout << "applying weights to " << n.name << " operator\n";
+        std::transform(
+                    inputs.begin(), 
+                    inputs.end(),
+                    n.W.begin(),
+                    inputs.begin(), 
+                    std::multiplies<>()
+                    );
+    };
     ///////////////////////////////////////////////////////////////////////////
     // fit and predict
-    template<typename T=Args>
-    requires (is_array_v<T>)
-    auto eval(const Data& d, TreeNode& tn) const
+    template<typename T=ArgTypes>
+    /* requires (is_array_v<decay_t<T>>) */
+    /* enable_if_t<!is_tuple<T>::value, RetType> */ 
+    enable_if_t<!is_tuple<T>::value && is_same_v<typename T::value_type::Scalar,float>, RetType> 
+    eval(const Data& d, TreeNode& tn) const
     {
+        fmt::print("eval::getting kids\n");
         auto inputs = get_kids(d, tn);
+        fmt::print("eval::applying weights\n");
         if (tn.data.is_weighted)
             this->apply_weights(inputs, tn.data);
+        fmt::print("eval::std::apply F\n");
         return std::apply(F, inputs);
     };
 
-    template<typename T=Args>
-    requires (!is_array_v<T>)
-    auto eval(const Data& d, TreeNode& tn) const
+    template<typename T=ArgTypes>
+    /* requires (!is_array_v<decay_t<T>>) */
+    /* enable_if_t<is_tuple<T>::value, RetType> */ 
+    enable_if_t<is_tuple<T>::value || !is_same_v<typename T::value_type::Scalar,float>, RetType> 
+    eval(const Data& d, TreeNode& tn) const
     {
-        auto inputs = get_kids(d, tn);
-        return std::apply(F, inputs);
+        fmt::print("eval (tuple)::getting kids\n");
+        ArgTypes inputs = get_kids(d, tn);
+        fmt::print("eval (tuple)::apply F, inputs\n");
+        RetType out = std::apply(F, inputs);
+        /* return std::apply(F, inputs); */
+        return out;
     };
 };
 //////////////////////////////////////////////////////////////////////////////////
@@ -121,15 +142,7 @@ struct Operator<NodeType::Terminal, S, Fit>
     RetType eval(const Data& d, const TreeNode& tn) const { 
         fmt::print("run std::get<{}>(d[{}])\n", DataTypeEnum<RetType>::value, tn.data.feature); 
         RetType out = std::get<RetType>(d[tn.data.feature]);
-        fmt::print("output type: {}, size: {}\n",typeid(out).name(),out.size());
 
-        fmt::print("TreeNode pointers before eval: \nparent: {}\nfirst_child: {}\nlast_child:{}\nprev_sibling: {}\nnext_sibling: {}\n",
-                fmt::ptr(tn.parent),
-            fmt::ptr(tn.first_child),
-            fmt::ptr(tn.last_child),
-            fmt::ptr(tn.prev_sibling),
-            fmt::ptr(tn.next_sibling)
-            );
         return out; 
     };
 };
@@ -322,7 +335,7 @@ template<NodeType NT, typename S, bool Fit>
 struct Operator<NT, S, Fit, enable_if_t<is_one_of_v<NT, NodeType::SplitOn, NodeType::SplitBest>>> 
 /* struct Operator< */
 {
-    using Args = typename S::ArgTypes;
+    using ArgTypes = typename S::ArgTypes;
     using FirstArg = typename S::base::FirstArg;
     using RetType = typename S::RetType;
     static constexpr size_t ArgCount = S::ArgCount;
@@ -337,7 +350,7 @@ struct Operator<NT, S, Fit, enable_if_t<is_one_of_v<NT, NodeType::SplitOn, NodeT
         using arg_type = NthType<1>;
         array<arg_type,2> child_outputs;
 
-        TreeNode* sib = tn.first_child;
+        auto sib = tn.first_child;
         if constexpr (NT==NodeType::SplitOn)
             sib = sib->next_sibling;
 
@@ -413,24 +426,24 @@ struct Operator<NT, S, Fit, enable_if_t<is_one_of_v<NT, NodeType::SplitOn, NodeT
 template<typename R, NodeType NT, typename S, bool Fit> 
 R DispatchOp(const Data& d, TreeNode& tn) 
 {
-    fmt::print("DispatchOp: Dispatching {}\n",NT);
+    fmt::print("DispatchOp: Dispatching {} with Signature Type {}\n",NT, S::get_args_type());
     const auto op = Operator<NT,S,Fit>{};
-    fmt::print("TreeNode pointers before eval: \nparent: {}\nfirst_child: {}\nlast_child:{}\nprev_sibling: {}\nnext_sibling: {}\n",fmt::ptr(tn.parent),
-            fmt::ptr(tn.first_child),
-            fmt::ptr(tn.last_child),
-            fmt::ptr(tn.prev_sibling),
-            fmt::ptr(tn.next_sibling)
-            );
+    /* fmt::print("TreeNode pointers before eval: \nparent: {}\nfirst_child: {}\nlast_child:{}\nprev_sibling: {}\nnext_sibling: {}\n",fmt::ptr(tn.parent), */
+    /*         fmt::ptr(tn.first_child), */
+    /*         fmt::ptr(tn.last_child), */
+    /*         fmt::ptr(tn.prev_sibling), */
+    /*         fmt::ptr(tn.next_sibling) */
+    /*         ); */
     R out = op.eval(d, tn);
-    fmt::print("TreeNode pointers after eval: \nparent: {}\nfirst_child: {}\nlast_child:{}\nprev_sibling: {}\nnext_sibling: {}\n",fmt::ptr(tn.parent),
-            fmt::ptr(tn.first_child),
-            fmt::ptr(tn.last_child),
-            fmt::ptr(tn.prev_sibling),
-            fmt::ptr(tn.next_sibling)
-            );
+    /* fmt::print("TreeNode pointers after eval: \nparent: {}\nfirst_child: {}\nlast_child:{}\nprev_sibling: {}\nnext_sibling: {}\n",fmt::ptr(tn.parent), */
+    /*         fmt::ptr(tn.first_child), */
+    /*         fmt::ptr(tn.last_child), */
+    /*         fmt::ptr(tn.prev_sibling), */
+    /*         fmt::ptr(tn.next_sibling) */
+    /*         ); */
     // TODO: figure out why fmt::print isn't working with Eigen::Matrix
     /* fmt::print("{} returning {}\n",NT, out); */
-    cout << NT << " output: " << out << endl;
+    /* cout << NT << " output: " << out << endl; */
     return out;
     /* return op.eval(d,tn); */
 };

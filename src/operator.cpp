@@ -57,8 +57,8 @@ float gain(const ArrayXf& lsplit,
         {
             lscore = gini_impurity_index(lsplit, unique_classes);
             rscore = gini_impurity_index(rsplit, unique_classes);
-            cout << "lscore: " << lscore << "\n";
-            cout << "rscore: " << rscore << "\n";
+            /* cout << "lscore: " << lscore << "\n"; */
+            /* cout << "rscore: " << rscore << "\n"; */
             score = (lscore*float(lsplit.size()) + 
                     rscore*float(rsplit.size()))
                         /(float(lsplit.size()) + float(rsplit.size()));
@@ -67,8 +67,8 @@ float gain(const ArrayXf& lsplit,
         {
             lscore = variance(lsplit)/float(lsplit.size());
             rscore = variance(rsplit)/float(rsplit.size());
-            cout << "lscore: " << lscore << "\n";
-            cout << "rscore: " << rscore << "\n";
+            /* cout << "lscore: " << lscore << "\n"; */
+            /* cout << "rscore: " << rscore << "\n"; */
             score = lscore + rscore; 
         }
 
