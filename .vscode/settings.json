@@ -1,7 +1,8 @@
 {
-    "cmake.buildBeforeRun": true,
-    "cmake.buildDirectory": "build/",
     "cmake.cmakePath": "${env:CONDA_PREFIX}/bin/cmake",
+    "cmake.buildBeforeRun": true,
+    "cmake.buildTask": true,
+    "cmake.buildDirectory": "build/",
     "cmake.configureEnvironment": {
         // "EIGEN3_INCLUDE_DIR": "${env:CONDA_PREFIX}/include/eigen3/",
         "EIGEN3_INCLUDE_DIR": "${env:CONDA_PREFIX}/include/eigen3/",

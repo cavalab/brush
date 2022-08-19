@@ -95,6 +95,8 @@ struct Node {
         if (weighted){   
             optimize=true;
             W.resize(args.size());
+            for (int i = 0; i < W.size(); ++i)
+                W.at(i) = 1.0;  
         }
         else if (Util::in(vector<NodeType>{NodeType::SplitOn, NodeType::SplitBest}, type))
             W.resize(1); // W.at(0) represents the threshold of the split

@@ -49,7 +49,9 @@ https://eigen.tuxfamily.org/dox/TopicCustomizing_Plugins.html
     struct Function<NodeType::Add> 
     {
         template<typename T1, typename T2>
-        inline auto operator()(T1 t1, T2 t2) { return t1 + t2; }
+        inline auto operator()(T1 t1, T2 t2) { 
+            return t1 + t2; 
+        }
     };
 
     template<>

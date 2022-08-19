@@ -276,10 +276,13 @@ struct SearchSpace
         return (*r.select_randomly(matches.begin(), matches.end(), 
                                    weights.begin(), weights.end()));
     };
-
+    
     /// get a node wth matching return type and argument types
     Node get_node_like(Node node) const
     {
+        if (Is<NodeType::Terminal>(node.node_type))
+            return get_terminal(node.ret_type);
+
         auto matches = node_map.at(node.ret_type).at(node.args_type());
         auto match_weights = get_weights(node.ret_type, node.args_type());
         return (*r.select_randomly(matches.begin(), 
