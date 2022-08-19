@@ -46,6 +46,8 @@ struct Operator
         TreeNode* sib = tn.first_child;
         for (int i = 0; i < ArgCount; ++i)
         {
+            if (sib == nullptr)
+                HANDLE_ERROR_THROW("bad sibling ptr in get kids");
             if constexpr (Fit)
                 child_outputs.at(i) = sib->fit<arg_type>(d) ;
             else
@@ -58,9 +60,9 @@ struct Operator
 
     // tuple get kids
     template<int I>
-    auto get_kid(const Data& d,TreeNode& tn ) const
+    NthType<I> get_kid(const Data& d,TreeNode& tn ) const
     {
-        auto sib = tn.first_child; 
+        TreeNode* sib = tn.first_child; 
         for (int i = 0 ; i < I; ++i)
             sib = sib->next_sibling;
         if constexpr(Fit)
@@ -111,12 +113,19 @@ struct Operator
     eval(const Data& d, TreeNode& tn) const
     {
         fmt::print("eval::getting kids\n");
-        auto inputs = get_kids(d, tn);
+        ArgTypes inputs = get_kids(d, tn);
         fmt::print("eval::applying weights\n");
         if (tn.data.is_weighted)
             this->apply_weights(inputs, tn.data);
+        for (auto i : inputs){
+            cout << "input rows: " << i.rows() << endl;
+            cout << "input cols: " << i.cols() << endl;
+        };
         fmt::print("eval::std::apply F\n");
-        return std::apply(F, inputs);
+        RetType out = std::apply(F, inputs);
+        if constexpr (is_same_v<RetType,ArrayXf>)
+            fmt::print("eval::std::apply result: {}\n",out);
+        return out;
     };
 
     template<typename T=ArgTypes>
@@ -154,27 +163,27 @@ struct Operator<NodeType::Constant, S, Fit>
     using RetType = typename S::RetType;
 
     template<typename T=RetType> requires same_as<T, ArrayXf>
-    auto eval(const Data& d, TreeNode& tn) const { 
+    RetType eval(const Data& d, TreeNode& tn) const { 
         return RetType::Constant(d.n_samples, tn.data.W.at(0)); 
     };
 
     template<typename T=RetType> requires same_as<T, ArrayXi>
-    auto eval(const Data& d, TreeNode& tn) const { 
+    RetType eval(const Data& d, TreeNode& tn) const { 
         return RetType::Constant(d.n_samples, int(tn.data.W.at(0))); 
     };
 
     template<typename T=RetType> requires same_as<T, ArrayXb>
-    auto eval(const Data& d, TreeNode& tn) const { 
+    RetType eval(const Data& d, TreeNode& tn) const { 
         return RetType(d.n_samples); 
     };
 
     template<typename T=RetType> requires same_as<T, ArrayXXf>
-    auto eval(const Data& d, TreeNode& tn) const { 
+    RetType eval(const Data& d, TreeNode& tn) const { 
         return RetType::Constant(d.n_samples, d.n_features, tn.data.W.at(0)); 
     };
 
     template<typename T=RetType> requires same_as<T, ArrayXXb>
-    auto eval(const Data& d, TreeNode& tn) const { 
+    RetType eval(const Data& d, TreeNode& tn) const { 
         return RetType(d.n_samples, d.n_features);
     };
 };
@@ -344,13 +353,14 @@ struct Operator<NT, S, Fit, enable_if_t<is_one_of_v<NT, NodeType::SplitOn, NodeT
     using NthType = typename S::NthType<N>; 
     
     /* static constexpr auto F = [](const auto& ...args){ Function<NT> f{}; return f(args...); }; */ 
+    static constexpr Function<NT> F{};
 
-    auto get_kids(const array<Data, 2>& d, TreeNode& tn) const
+    array<RetType,2> get_kids(const array<Data, 2>& d, TreeNode& tn) const
     {
         using arg_type = NthType<1>;
         array<arg_type,2> child_outputs;
 
-        auto sib = tn.first_child;
+        TreeNode* sib = tn.first_child;
         if constexpr (NT==NodeType::SplitOn)
             sib = sib->next_sibling;
 
@@ -367,7 +377,7 @@ struct Operator<NT, S, Fit, enable_if_t<is_one_of_v<NT, NodeType::SplitOn, NodeT
         return child_outputs;
     };
 
-    auto fit(const Data& d, TreeNode& tn) const {
+    RetType fit(const Data& d, TreeNode& tn) const {
         auto& threshold = tn.data.W.at(0);
         auto& feature = tn.data.feature;
 
@@ -385,7 +395,7 @@ struct Operator<NT, S, Fit, enable_if_t<is_one_of_v<NT, NodeType::SplitOn, NodeT
         return predict(d, tn);
     }
 
-    auto predict(const Data& d, TreeNode& tn) const 
+    RetType predict(const Data& d, TreeNode& tn) const 
     {
         const auto& threshold = tn.data.W.at(0);
         const auto& feature = tn.data.feature;
@@ -413,7 +423,7 @@ struct Operator<NT, S, Fit, enable_if_t<is_one_of_v<NT, NodeType::SplitOn, NodeT
 
         return out;
     }
-    auto eval(const Data& d, TreeNode& tn) const {
+    RetType eval(const Data& d, TreeNode& tn) const {
         if constexpr (Fit)
             return fit(d,tn); 
         else
@@ -427,22 +437,11 @@ template<typename R, NodeType NT, typename S, bool Fit>
 R DispatchOp(const Data& d, TreeNode& tn) 
 {
     fmt::print("DispatchOp: Dispatching {} with Signature Type {}\n",NT, S::get_args_type());
+
     const auto op = Operator<NT,S,Fit>{};
-    /* fmt::print("TreeNode pointers before eval: \nparent: {}\nfirst_child: {}\nlast_child:{}\nprev_sibling: {}\nnext_sibling: {}\n",fmt::ptr(tn.parent), */
-    /*         fmt::ptr(tn.first_child), */
-    /*         fmt::ptr(tn.last_child), */
-    /*         fmt::ptr(tn.prev_sibling), */
-    /*         fmt::ptr(tn.next_sibling) */
-    /*         ); */
     R out = op.eval(d, tn);
-    /* fmt::print("TreeNode pointers after eval: \nparent: {}\nfirst_child: {}\nlast_child:{}\nprev_sibling: {}\nnext_sibling: {}\n",fmt::ptr(tn.parent), */
-    /*         fmt::ptr(tn.first_child), */
-    /*         fmt::ptr(tn.last_child), */
-    /*         fmt::ptr(tn.prev_sibling), */
-    /*         fmt::ptr(tn.next_sibling) */
-    /*         ); */
-    // TODO: figure out why fmt::print isn't working with Eigen::Matrix
-    /* fmt::print("{} returning {}\n",NT, out); */
+    if constexpr (is_same_v<R,ArrayXf>)
+        fmt::print("{} returning {}\n",NT, out);
     /* cout << NT << " output: " << out << endl; */
     return out;
     /* return op.eval(d,tn); */

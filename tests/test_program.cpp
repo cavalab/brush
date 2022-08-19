@@ -76,10 +76,9 @@ TEST(Program, BackProp)
     Data data(X,y);
 
     unordered_map<string, float> user_ops = {
-        {"Add", 1},
-        {"Sub", 1},
-        {"Div", .5},
-        {"Times", 0.5},
+        {"Add", 1}
+        /* {"Sub", 1}, */
+        /* {"Mul", 0.5} */
         /* {"SplitOn", 0.5}, */
         /* {"SplitBest", 0.5} */
     };

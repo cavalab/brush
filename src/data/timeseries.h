@@ -38,7 +38,9 @@ struct TimeSeries
         return TimeSeries(t, v);
     };
 
-    
+    inline auto size() -> size_t { return value.size(); };
+    inline auto rows() -> size_t { return value.size(); };
+    inline auto cols(int i = 0) -> size_t { return value.at(i).size(); };
     // /// return a slice of the data by row or colum/n
     // template<typename R, typename C>
     // TimeSeries operator()(const R& rows, 

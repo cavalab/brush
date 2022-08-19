@@ -62,9 +62,6 @@ https://eigen.tuxfamily.org/dox/TopicCustomizing_Plugins.html
     template<>
     struct Function<NodeType::Mul>
     {
-        // template<typename T>
-        // inline auto operator()(T t) { return t; }
-
         template<typename T1, typename T2>
         inline auto operator()(T1 t1, T2 t2) { return t1 * t2 ;}
     };
@@ -72,10 +69,6 @@ https://eigen.tuxfamily.org/dox/TopicCustomizing_Plugins.html
     template<>
     struct Function<NodeType::Div>
     {
-        // template<typename T>
-        // inline auto operator()(T t) { return t.inverse(); }
-
-        // template<typename T, typename... Tn>
         template<typename T1, typename T2>
         inline auto operator()(T1 t1, T2 t2) { return t1 / t2 ; }
     };

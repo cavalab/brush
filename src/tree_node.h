@@ -64,7 +64,7 @@ using TreeNode = class tree_node_<Node>;
 template<typename T>
 auto TreeNode::fit(const Data& d)
 { 
-    fmt::print("TreeNode::fit: getting {}({})\n",data.node_type, data.sig_hash);
+    fmt::print("TreeNode::fit: getting {}\n",data.node_type);
     auto F = dtable_fit.template Get<T>(data.node_type, data.sig_hash);
     /* fmt::print("TreeNode::fit: return F(d,(*this))\n"); */
     return F(d, (*this));
