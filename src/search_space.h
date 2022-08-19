@@ -280,8 +280,9 @@ struct SearchSpace
     /// get a node wth matching return type and argument types
     Node get_node_like(Node node) const
     {
-        if (Is<NodeType::Terminal>(node.node_type))
+        if (Is<NodeType::Terminal>(node.node_type)){
             return get_terminal(node.ret_type);
+        }
 
         auto matches = node_map.at(node.ret_type).at(node.args_type());
         auto match_weights = get_weights(node.ret_type, node.args_type());

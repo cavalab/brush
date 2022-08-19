@@ -47,11 +47,11 @@ TEST(Program, MakeProgram)
             cout << "Tree model for depth = " << d << ", size = " << s << ":\n";
             cout << PRG.get_model("compact", true) << endl;
             cout << PRG.get_model("tree", true) << endl;
-            ofstream file;
-            file.open(fmt::format("model_d{}_s{}.dot",d,s));
-            file <<  PRG.get_model("dot", true);
-            file.close();
-            cout << PRG.get_model("dot", true) << endl;
+            // ofstream file;
+            // file.open(fmt::format("model_d{}_s{}.dot",d,s));
+            // file <<  PRG.get_model("dot", true);
+            // file.close();
+            // cout << PRG.get_model("dot", true) << endl;
             cout << "=================================================" << "\n";
         }
 }
@@ -76,11 +76,12 @@ TEST(Program, BackProp)
     Data data(X,y);
 
     unordered_map<string, float> user_ops = {
-        {"Add", 1}
-        /* {"Sub", 1}, */
-        /* {"Mul", 0.5} */
-        /* {"SplitOn", 0.5}, */
-        /* {"SplitBest", 0.5} */
+        {"Add", 1},
+        {"Sub", 1}, 
+        {"Mul", 0.5},
+        {"Sin", 0.1},
+        {"SplitOn", 0.5}, 
+        {"SplitBest", 0.5} 
     };
     SearchSpace SS(data, user_ops);
     /* SS.init(data); */
