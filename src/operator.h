@@ -149,7 +149,13 @@ struct Operator<NodeType::Terminal, S, Fit>
     using RetType = typename S::RetType;
     RetType eval(const Data& d, const TreeNode& tn) const { 
         fmt::print("run std::get<{}>(d[{}])\n", DataTypeEnum<RetType>::value, tn.data.feature); 
-        RetType out = std::get<RetType>(d[tn.data.feature]);
+        RetType out;
+        try {
+            out = std::get<RetType>(d[tn.data.feature]);
+        }
+        catch(const std::bad_variant_access& e) {
+            HANDLE_ERROR_THROW(fmt::format("{}",e.what()));
+        }
 
         return out; 
     };

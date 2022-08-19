@@ -140,6 +140,12 @@ public:
                 err+= fmt::format("{}\n", k);
             HANDLE_ERROR_THROW(err); 
         }
+        try {
+            return std::get<Callable<T>>(map_.at(n).at(sig_hash));
+        }
+        catch(const std::bad_variant_access& e) {
+            HANDLE_ERROR_THROW(fmt::format("{}",e.what()));
+        }
         return std::get<Callable<T>>(map_.at(n).at(sig_hash));
     }
 
