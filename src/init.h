@@ -26,6 +26,7 @@ license: GNU/GPL v3
 #include <vector>
 #include <string>
 /* #include <fmt/core.h> */
+#define FMT_HEADER_ONLY
 #include <fmt/ostream.h> 
 #include <fmt/format.h>
 #include <fmt/ranges.h>
