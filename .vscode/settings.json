@@ -14,7 +14,6 @@
         // "PYTHON_LIBRARIES": "${env:CONDA_PREFIX}/lib/libpython3.8.so",
         // "PYTHON_INCLUDE_DIRS": "${env:CONDA_PREFIX}/include/",
     },
-    "python.pythonPath": "${env:CONDA_PREFIX}/envs/brush/bin/python",
     "files.associations": {
         "type_traits": "cpp",
         "string": "cpp",
@@ -68,4 +67,9 @@
         "valarray": "cpp",
         "variant": "cpp"
     },
+    "python.testing.pytestArgs": [
+        "tests"
+    ],
+    "python.testing.unittestEnabled": false,
+    "python.testing.pytestEnabled": true,
 }

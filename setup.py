@@ -106,7 +106,7 @@ class CMakeBuild(build_ext):
 setup(
     name="brushgp",
     version="0.0.1",
-    author="William La Cava and Joseph D. Romano",
+    author="William La Cava, Joseph D. Romano, Zongjun Liu",
     author_email="joseph.romano@pennmedicine.upenn.edu",  # can change to Bill
     license="GNU General Public License v3.0",
     long_description=long_description,
