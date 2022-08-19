@@ -23,29 +23,58 @@
                 }
             ],
         },
+        // {
+        //    "name": "(gdb) valgrind remote-target",
+        //    "type": "cppdbg",
+        //    "request": "launch",
+        //    "program": "./build/tests",
+        //    "targetArchitecture": "x64",
+        //    "customLaunchSetupCommands" : [
+        //        {
+        //            "description": "Enable pretty-printing for gdb",
+        //            "text": "-enable-pretty-printing",
+        //            "ignoreFailures": true
+        //        },
+        //        {
+        //          "description": "Attach to valgrind",
+        //          "text": "target remote | /usr/lib/x86_64-linux-gnu/valgrind/../../bin/vgdb",
+        //          "ignoreFailures": false  
+        //        }
+        //    ],
+        //    "stopAtEntry": false,
+        //    "cwd": "${workspaceFolder}",
+        //    "environment": [],
+        //    "externalConsole": false,
+        //    "MIMode": "gdb"
+        // },
+        // {
+        //     "name": "pytest",
+        //     "type": "python",
+        //     "request": "launch",
+        //     "program": "${env:CONDA_PREFIX}/bin/python -m pytest",
+        //     "console": "integratedTerminal"
+        // },
+        // {
+        //     "name": "(gdb) Python",
+        //     "type": "cppdbg",
+        //     "request": "attach",
+        //     "program": "${env:CONDA_PREFIX}/bin/python -m pytest", 
+        //     // "processId": "${command:pickProcess}",
+        //     "MIMode": "gdb",
+        //     "setupCommands": [
+        //         {
+        //             "description": "Enable pretty-printing for gdb",
+        //             "text": "-enable-pretty-printing",
+        //             "ignoreFailures": true
+        //         }
+        //     ]
+        // },
         {
-           "name": "(gdb) valgrind remote-target",
-           "type": "cppdbg",
-           "request": "launch",
-           "program": "./build/tests",
-           "targetArchitecture": "x64",
-           "customLaunchSetupCommands" : [
-               {
-                   "description": "Enable pretty-printing for gdb",
-                   "text": "-enable-pretty-printing",
-                   "ignoreFailures": true
-               },
-               {
-                 "description": "Attach to valgrind",
-                 "text": "target remote | /usr/lib/x86_64-linux-gnu/valgrind/../../bin/vgdb",
-                 "ignoreFailures": false  
-               }
-           ],
-           "stopAtEntry": false,
-           "cwd": "${workspaceFolder}",
-           "environment": [],
-           "externalConsole": false,
-           "MIMode": "gdb"
-       }
+        "name": "Python C++ Debug",
+        "type": "pythoncpp",
+        "request": "launch",
+        "pythonConfig": "default",
+        "cppConfig": "default (gdb) Attach",
+        }
     ]
 }

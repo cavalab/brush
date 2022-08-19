@@ -86,6 +86,18 @@ template<typename T> struct Program //: public tree<Node>
         return out;
     };
 
+    T fit(const Ref<const ArrayXXf>& X, const Ref<const ArrayXf>& y)
+    {
+        Data d(X,y);
+        return fit(d);
+    };
+
+    T predict(const Ref<const ArrayXXf>& X, const Ref<const ArrayXf>& y)
+    {
+        Data d(X,y);
+        return predict(d);
+    };
+
     void grad_descent(const ArrayXf& gradient, const Data& d)
     {
         //TODO
