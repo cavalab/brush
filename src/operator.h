@@ -28,7 +28,7 @@ struct Operator
     template <std::size_t N>
     using NthType = typename S::NthType<N>; 
     
-    static constexpr auto F = [](const auto ...args) -> RetType { 
+    static constexpr auto F = [](const auto& ...args) -> RetType { 
         Function<NT> f; 
         return f(args...); 
     }; 
@@ -120,12 +120,6 @@ struct Operator
         fmt::print("eval::applying weights\n");
         if (tn.data.is_weighted)
             this->apply_weights(inputs, tn.data);
-        int i = 0;
-        for (auto in : inputs){
-            cout << "input " << i << ": " << in << endl;
-            cout << "rows: " << in.rows() << endl;
-            cout << "cols: " << in.cols() << endl;
-        };
         fmt::print("eval::std::apply F\n");
         RetType out = std::apply(F, inputs);
         if constexpr (is_same_v<RetType,ArrayXf>)
