@@ -1,0 +1,119 @@
+{
+    "features": {
+        // - Observations map in 1-to-1 fashion to rows taken from a CDM table. BRUSH needs routine for compiling lists of features into arrays, etc.
+        //   - In other words, these tables are in 'long' format, as there is no logic before this to compress feature sets into 'wide' format tables
+        // - person_id is omitted as a predictive feature
+        // - list of features in a given dataset is dynamic 
+        // - datetimes should be preferred over date/time fields; this will be better supported in CDM v6
+        // - varchar() fields are converted to strings
+        // - refer to docs here: https://ohdsi.github.io/CommonDataModel/cdm53.html#Clinical_Data_Tables
+        "PERSON": [
+            {
+                "field": "gender_concept_id",
+                "dtype": "integer"
+            },
+            {
+                "field": "birth_datetime",
+                "dtype": "datetime"
+            },
+            {
+                "field": "race_concept_id",
+                "dtype": "integer"
+            },
+            {
+                "field": "location_id",
+                "dtype": "integer"
+            }
+        ],
+        "DRUG_EXPOSURE": [  
+            {
+                "field": "drug_concept_id",
+                "dtype": "integer"
+            },
+            {
+                "field": "drug_exposure_start_datetime",
+                "dtype": "datetime"
+            },
+            {
+                "field": "drug_exposure_end_datetime",
+                "dtype": "datetime"
+            },
+            {
+                "field": "quantity",
+                "dtype": "float"
+            },
+            {
+                "field": "dose_unit_source_value",
+                "dtype": "string"
+            }
+        ],
+        "MEASUREMENT": [
+            {
+                "field": "measurement_concept_id",
+                "dtype": "integer"
+            },
+            {
+                "field": "measurement_datetime",
+                "dtype": "datetime"
+            },
+            {
+                "field": "value_as_number",
+                "dtype": "float"
+            }
+        ],
+        "PROCEDURE_OCCURRENCE": [
+            {
+                "field": "procedure_concept_id",
+                "dtype": "integer"
+            },
+            {
+                "field": "procedure_datetime",
+                "dtype": "datetime"
+            }
+        ]
+    },
+    "data": [
+        // For each person in the dataset:
+        // - 1 array for each of the CDM tables defined in "features"
+        // - arrays can be mixed types
+        // - order of features is preserved
+        // - this is the only place in the data object where you find "person_id"
+        {
+            "person_id": 12345,
+            "PERSON": [  // PERSON is the only table that has just one row
+                123456,  // Gender concept ID
+                "1990-10-25;02:03:45",  // Birth datetime
+                234567,  // Race concept ID
+                1234  // Location ID
+            ],
+            "DRUG_EXPOSURE": [
+                [  // first drug
+                    345678, ...
+                ],
+                [  // second drug
+                    456789, ...
+                ]
+            ],
+            "MEASUREMENT": [
+                [
+
+                ],
+                ...
+            ],
+            "PROCEDURE_OCCURRENCE": [
+                [
+
+                ],
+                ...
+            ]
+        },
+        {
+            "person_id": 23456,
+            ...
+        }
+    ],
+    "config": {
+        "time_values_type": "datetime",
+        "cdm_version": "5.3"
+    }
+}

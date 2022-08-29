@@ -1,0 +1,46 @@
+{
+    "$schema": "https://json-schema.org/draft/2020-12/schema",
+    "$id": "https://github.com/lacava/brush/data/feature_map.schema.json",
+    "title": "Brush Feature Map",
+    "description": "Positional definitions of features included in a Brush dataset, organized into major categories (drugs, labs, procedures, etc.). Each category is semantically equivalent to a Clinical Data Table as defined in the corresponding OMOP CDM.",
+    "type": "object",
+    "properties": {
+        "PERSON": {
+            "description": "Ordered features from an OMOP PERSON table",
+            "type": "array",
+            "items": { "$ref": "#/$defs/feature" }
+        },
+        "DRUG_EXPOSURE": {
+            "description": "Ordered features from an OMOP DRUG_EXPOSURE table",
+            "type": "array",
+            "items": { "$ref": "#/$defs/feature" }
+        },
+        "MEASUREMENT": {
+            "description": "Ordered features from an OMOP MEASUREMENT table",
+            "type": "array",
+            "items": { "$ref": "#/$defs/feature" }
+        },
+        "PROCEDURE_OCCURRENCE": {
+            "description": "Ordered features from an OMOP PROCEDURE_OCCURRENCE table",
+            "type": "array",
+            "items": { "$ref": "#/$defs/feature" }
+        }
+    },
+    "$defs": {
+        "feature": {
+            "type": "object",
+            "properties": {
+                "concept_id": { 
+                    "description": "OMOP Concept ID corresponding to the current feature. The CDM field where the Concept ID is found varies based on the clinical data table in question. For example, in the DRUG_EXPOSURE table, this value should be populated from the drug_concept_id field.",
+                    "type": "integer"
+                },
+                "dtype": {
+                    "description": "Data type of the feature's value(s). Array types are allowed. Note that the final dataset can be assembled into a matrix of mixed types.",
+                    "type": "string",
+                    "enum": ["INT", "FLOAT", "STRING", "TIME", "DATE", "DATETIME", "BOOL"]
+                },
+                "required": ["concept_id", "dtype"]
+            }
+        }
+    }
+}
