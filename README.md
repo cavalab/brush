@@ -11,7 +11,7 @@ Goals:
 - fast-ish in C++
 - easy-to-use Python API
 
-# install instructions
+# Installation instructions
 
 - Install the brush environment
 
@@ -21,15 +21,24 @@ conda env create
 
 - Configure the build
 
-'''
+```
 ./configure
-'''
+```
 
-- Install 
+- Install C++ library
 
-There are a few build targets:
-- the c++ library tests
-- 
+```
+./install
+```
+
+- Install tests (optional)
+
 ```
 ./install tests
-'''
+```
+
+- Install Python package (optional)
+
+```
+pip install .
+```
