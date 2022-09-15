@@ -9,6 +9,7 @@ license: GNU/GPL v3
 
 #include <pybind11/pybind11.h>
 #include <pybind11/eigen.h>
+#include <pybind11/stl.h>
 
 #include "program.h"
 #include "search_space.h"
@@ -27,7 +28,6 @@ namespace br = Brush;
 //               [2.0, 1.2, 6.0, 4.0, 5.0, 8.0, 7.0, 5.0, 9.0, 10.0]])
 //
 // y = np.array( [1.0, 0.0, 1.4, 1.0, 0.0, 1.0, 1.0, 0.0, 0.0,  0.0])
-
 
 PYBIND11_MODULE(brushgp, m) {
     m.doc() = R"pbdoc(
@@ -50,9 +50,16 @@ PYBIND11_MODULE(brushgp, m) {
     m.attr("__version__") = "dev";
 #endif
 
+<<<<<<< HEAD
     py::class_<br::data::Data>(m, "Data")
         .def(py::init<ArrayXXf, ArrayXf>())
         // .def("get_X", &br::data::Data::get_X, py::return_value_policy::reference_internal)
+=======
+    py::class_<Brush::data::Data>(m, "Data")
+        .def(py::init<Ref<const ArrayXXf>&, Ref<const ArrayXf>& >())
+        // .def("get_features", &Brush::data::Data::features, py::return_value_policy::reference_internal)
+        // .def("get_y", &Brush::data::Data::get_y, py::return_value_policy::reference_internal)        
+>>>>>>> f34e88369722dfc996a8f123d9d060838957a63b
         ;
 
     // Notice: We change the interface for SearchSpace a little bit by 
