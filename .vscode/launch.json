@@ -8,10 +8,10 @@
             "name": "(gdb) Launch",
             "type": "cppdbg",
             "request": "launch",
-            "program": "./build/tests",
+            "program": "/home/bill/projects/brush/build/tests",
             "args": [],
             "stopAtEntry": false,
-            "cwd": "${workspaceFolder}",
+            "cwd": "/home/bill/projects/brush/",
             "environment": [],
             "externalConsole": false,
             "MIMode": "gdb",
@@ -22,7 +22,7 @@
                     "ignoreFailures": true
                 }
             ],
-        },
+        }
         // {
         //    "name": "(gdb) valgrind remote-target",
         //    "type": "cppdbg",
@@ -69,12 +69,12 @@
         //         }
         //     ]
         // },
-        {
-        "name": "Python C++ Debug",
-        "type": "pythoncpp",
-        "request": "launch",
-        "pythonConfig": "default",
-        "cppConfig": "default (gdb) Attach",
-        }
+        // {
+        // "name": "Python C++ Debug",
+        // "type": "pythoncpp",
+        // "request": "launch",
+        // "pythonConfig": "default",
+        // "cppConfig": "default (gdb) Attach",
+        // }
     ]
 }

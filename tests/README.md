@@ -14,6 +14,6 @@ Then, simply run the tests:
 
 From the root directory of this repository:
 
-`nosetests tests/python_tests/program_test.py`
+`nosetests tests/python/program_test.py`
 
 etc. for other test files.

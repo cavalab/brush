@@ -305,7 +305,7 @@ struct SearchSpace
             // overlap with feature data types
             for (auto arg: S::get_arg_types()){
                 if (! in(unique_data_types,arg) ){
-                    HANDLE_WARNING(fmt::format("not adding {} because {} is not in unique_data_types\n", NT, arg));
+                    // HANDLE_WARNING(fmt::format("not adding {} because {} is not in unique_data_types\n", NT, arg));
                     return {}; 
                 }
             }    
