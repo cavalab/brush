@@ -50,16 +50,10 @@ PYBIND11_MODULE(brushgp, m) {
     m.attr("__version__") = "dev";
 #endif
 
-<<<<<<< HEAD
-    py::class_<br::data::Data>(m, "Data")
-        .def(py::init<ArrayXXf, ArrayXf>())
-        // .def("get_X", &br::data::Data::get_X, py::return_value_policy::reference_internal)
-=======
     py::class_<Brush::data::Data>(m, "Data")
         .def(py::init<Ref<const ArrayXXf>&, Ref<const ArrayXf>& >())
         // .def("get_features", &Brush::data::Data::features, py::return_value_policy::reference_internal)
         // .def("get_y", &Brush::data::Data::get_y, py::return_value_policy::reference_internal)        
->>>>>>> f34e88369722dfc996a8f123d9d060838957a63b
         ;
 
     // Notice: We change the interface for SearchSpace a little bit by 
