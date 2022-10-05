@@ -150,8 +150,8 @@ class Data
             } 
 
         void set_validation(bool v=true);
-        inline int get_n_samples(){ return this->y.size(); };
-        inline int get_n_features(){ return this->features.size(); };
+        inline int get_n_samples() const { return this->y.size(); };
+        inline int get_n_features() const { return this->features.size(); };
         /// select random subset of data for training weights.
         Data get_batch(int batch_size) const;
 

@@ -372,10 +372,13 @@ struct Operator<NT, S, Fit, enable_if_t<is_one_of_v<NT, NodeType::SplitOn, NodeT
         cout << "-----> first_child ptr: " << sib << endl;
         for (int i = 0; i < 2; ++i)
         {
-            if constexpr (Fit)
-                child_outputs.at(i) = sib->fit<arg_type>(d.at(i));
-            else
-                child_outputs.at(i) = sib->predict<arg_type>(d.at(i));
+            if (d.at(i).get_n_samples() > 0)
+            {
+                if constexpr (Fit)
+                    child_outputs.at(i) = sib->fit<arg_type>(d.at(i));
+                else
+                    child_outputs.at(i) = sib->predict<arg_type>(d.at(i));
+            }
             sib = sib->next_sibling;
             cout << "-----> next sib ptr: " << sib << endl;
         }
@@ -418,6 +421,11 @@ struct Operator<NT, S, Fit, enable_if_t<is_one_of_v<NT, NodeType::SplitOn, NodeT
         fmt::print("data_splits sizes: {}, {}\n",
                 data_splits[0].get_n_samples(), 
                 data_splits[1].get_n_samples());
+        // // if there aren't samples on either side of the split, just return 
+        // // one child or the other
+        // if (data_splits[0].get_n_samples() == 0)
+        // else if (data_splits[1].get_n_samples() == 0)
+            
         auto child_outputs = get_kids(data_splits, tn);
 
         // stitch together outputs
@@ -445,6 +453,9 @@ R DispatchOp(const Data& d, TreeNode& tn)
 
     const auto op = Operator<NT,S,Fit>{};
     R out = op.eval(d, tn);
+    if(out.size()==0)
+        cout << "out empty\n";
+
     if constexpr (is_same_v<R,ArrayXf>)
         fmt::print("{} returning {}\n",NT, out);
     /* cout << NT << " output: " << out << endl; */
