@@ -2,6 +2,7 @@
 #include "../../src/search_space.h"
 #include "../../src/program.h"
 #include "../../src/dispatch_table.h"
+#include "../../src/data/io.h"
 
 TEST(Program, MakeProgram)
 {
@@ -9,12 +10,13 @@ TEST(Program, MakeProgram)
     dtable_fit.print();
     dtable_predict.print();
 
-    ArrayXXf X(10,2);
-    ArrayXf y(10);
-    X << 1.1,2.0,3.0,4.0,5.0,6.5,7.0,8.0,9.0,10.0,
-         2.0,1.2,6.0,4.0,5.0,8.0,7.0,5.0,9.0,10.0,
-    y << 1.0,0.0,1.4,1.0,0.0,1.0,1.0,0.0,0.0,0.0;
-    Data data(X,y);
+    // ArrayXXf X(10,2);
+    // ArrayXf y(10);
+    // X << 1.1,2.0,3.0,4.0,5.0,6.5,7.0,8.0,9.0,10.0,
+    //      2.0,1.2,6.0,4.0,5.0,8.0,7.0,5.0,9.0,10.0,
+    // y << 1.0,0.0,1.4,1.0,0.0,1.0,1.0,0.0,0.0,0.0;
+    // Data data(X,y);
+    Data data = data::read_csv("examples/datasets/d_enc.csv","label");
     for (const auto& kv : data.features)
     {
         const string& name = kv.first;
@@ -55,15 +57,16 @@ TEST(Program, MakeProgram)
 TEST(Program, FitPrograms)
 {
         
-    dtable_fit.print();
-    dtable_predict.print();
+    // dtable_fit.print();
+    // dtable_predict.print();
 
-    ArrayXXf X(10,2);
-    ArrayXf y(10);
-    X << 1.1,2.0,3.0,4.0,5.0,6.5,7.0,8.0,9.0,10.0,
-         2.0,1.2,6.0,4.0,5.0,8.0,7.0,5.0,9.0,10.0,
-    y << 1.0,0.0,1.4,1.0,0.0,1.0,1.0,0.0,0.0,0.0;
-    Data data(X,y);
+    Data data = data::read_csv("examples/datasets/d_enc.csv","label");
+    // ArrayXXf X(10,2);
+    // ArrayXf y(10);
+    // X << 1.1,2.0,3.0,4.0,5.0,6.5,7.0,8.0,9.0,10.0,
+    //      2.0,1.2,6.0,4.0,5.0,8.0,7.0,5.0,9.0,10.0,
+    // y << 1.0,0.0,1.4,1.0,0.0,1.0,1.0,0.0,0.0,0.0;
+    // Data data(X,y);
     for (const auto& kv : data.features)
     {
         const string& name = kv.first;
@@ -88,19 +91,22 @@ TEST(Program, FitPrograms)
 
             
     // Program<ArrayXf> DXtree;
-    for (int d = 1; d < 10; ++d)
-        for (int s = 1; s < 100; ++s)
-        {
-            Program<ArrayXf> PRG = SS.make_program<ArrayXf>(d, 0, s);
-            fmt::print(
-                "=================================================\n"
-                "Tree model for depth = {}, size= {}: {}\n"
-                "=================================================\n",
-                d, s, PRG.get_model("compact", true)
-            );
-            fmt::print("fitting...\n");
-            PRG.fit(data);
-        }
+    for (int t = 0; t < 10; ++t)
+    {
+        for (int d = 1; d < 10; ++d)
+            for (int s = 1; s < 100; s+=10)
+            {
+                Program<ArrayXf> PRG = SS.make_program<ArrayXf>(d, 0, s);
+                fmt::print(
+                    "=================================================\n"
+                    "Tree model for depth = {}, size= {}: {}\n"
+                    "=================================================\n",
+                    d, s, PRG.get_model("compact", true)
+                );
+                fmt::print("fitting...\n");
+                PRG.fit(data);
+            }
+    }
 }
 TEST(Program, BackProp)
 {

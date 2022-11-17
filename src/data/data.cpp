@@ -182,9 +182,13 @@ map<string, State> Data::make_features(const Ref<const ArrayXXf>& X,
     else
     {
         if (vn.size() != X.cols())
-            HANDLE_ERROR_THROW(to_string(vn.size())
-                                +"variable names and "
-                                +to_string(X.cols())+" features");
+            HANDLE_ERROR_THROW(
+                fmt::format("Variable names and data size mismatch: "
+                "{} variable names and {} features in X", 
+                vn.size(), 
+                X.cols()
+                )
+            );
     }
 
     for (int i = 0; i < X.cols(); ++i)

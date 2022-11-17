@@ -168,6 +168,11 @@ class Data
 
         /* template<> ArrayXb get<ArrayXb>(std::string name) */
 }; // class data
+
+// // read csv
+// Data read_csv(const std::string & path, MatrixXf& X, VectorXf& y, 
+//     vector<string>& names, vector<char> &dtypes, bool& binary_endpoint, char sep) ;
+
 } // data
 
 // TODO: make this a typedef

@@ -103,9 +103,9 @@ public:
         for (const auto& [nt, sigmap]: map_){
                 for (const auto& [sig, call]: sigmap){
                     if (Fit)
-                        fmt::print("{}: {}:DispatchFit\n",nt, sig);
+                        fmt::print("{} : {} : DispatchFit\n",nt, sig);
                     else
-                        fmt::print("{}: {}:DispatchPredict\n",nt, sig);
+                        fmt::print("{} : {} : DispatchPredict\n",nt, sig);
                 }
             }
         fmt::print("================== \n");
@@ -144,7 +144,8 @@ public:
             return std::get<Callable<T>>(map_.at(n).at(sig_hash));
         }
         catch(const std::bad_variant_access& e) {
-            HANDLE_ERROR_THROW(fmt::format("{}",e.what()));
+            auto msg = fmt::format("{}",e.what());
+            HANDLE_ERROR_THROW(msg);
         }
         return std::get<Callable<T>>(map_.at(n).at(sig_hash));
     }
