@@ -33,10 +33,6 @@ typedef DenseBase<ArrayXXf>::RowwiseReturnType::iterator XXfIt;
 
 namespace Brush
 {
-/**
-* @namespace Brush::data
-* @brief namespace containing Data structures used in Brush
-*/
 // DataType enum
 
 enum class DataType : uint32_t {
@@ -56,8 +52,12 @@ extern map<string,DataType>  DataNameType;
 ostream& operator<<(ostream& os, DataType n);
 
 
-namespace data
+namespace Data
 {
+/**
+* @namespace Brush::Data
+* @brief namespace containing Data structures used in Brush
+*/
 
 ///////////////////////////////////////////////////////////////////////////////
 // 
@@ -79,10 +79,10 @@ State check_type(const ArrayXf& x);
 DataType StateType(const State& arg);
 ///////////////////////////////////////////////////////////////////////////////
 
-class Data 
+class Dataset 
 {
     /*!
-    * @class Data
+    * @class Dataset
     * @brief holds X, y, and Z data.
     * 
     * 
@@ -92,7 +92,7 @@ class Data
     */
     //TODO: make this a json object that allows elements to be fetched by
     //name 
-    //Data(ArrayXXf& X, ArrayXf& y, std::map<string, 
+    //Dataset(ArrayXXf& X, ArrayXf& y, std::map<string, 
     //std::pair<vector<ArrayXf>, vector<ArrayXf>>>& Z): X(X), y(y), Z(Z){}
     private:
     public:
@@ -114,7 +114,7 @@ class Data
         // type_index ret_type;
         // map<string, size_t> Xidx, Zidx;
 
-        Data operator()(const vector<size_t>& idx) const;
+        Dataset operator()(const vector<size_t>& idx) const;
         /// call init at the end of constructors
         /// to define metafeatures of the data.
         void init();
@@ -126,7 +126,7 @@ class Data
                                        );
 
         /// initialize data from a map.
-        Data(std::map<string, State>& d, 
+        Dataset(std::map<string, State>& d, 
              const Ref<const ArrayXf>& y_ = ArrayXf(), 
              bool c = false
              ) 
@@ -136,7 +136,7 @@ class Data
              {init();};
 
         /// initialize data from a matrix with feature columns.
-        Data(const Ref<const ArrayXXf>& X, 
+        Dataset(const Ref<const ArrayXXf>& X, 
              const Ref<const ArrayXf>& y_ = ArrayXf(), 
              const map<string, State>& Z = {},
              const vector<string>& vn = {}, 
@@ -153,16 +153,16 @@ class Data
         inline int get_n_samples() const { return this->y.size(); };
         inline int get_n_features() const { return this->features.size(); };
         /// select random subset of data for training weights.
-        Data get_batch(int batch_size) const;
+        Dataset get_batch(int batch_size) const;
 
-        std::array<Data, 2> split(const ArrayXb& mask) const;
+        std::array<Dataset, 2> split(const ArrayXb& mask) const;
 
         State operator[](std::string name) const 
         {
             if (this->features.find(name) == features.end())
                 HANDLE_ERROR_THROW(fmt::format("Couldn't find feature {} in data\n",name));
-            fmt::print("returning data::features.at({})\n",name); 
-            fmt::print("data::features.at({}) type = {}\n",name,this->features.at(name).index()); 
+            fmt::print("returning Data::features.at({})\n",name); 
+            fmt::print("Data::features.at({}) type = {}\n",name,this->features.at(name).index()); 
             return this->features.at(name);
         };
 
@@ -170,7 +170,7 @@ class Data
 }; // class data
 
 // // read csv
-// Data read_csv(const std::string & path, MatrixXf& X, VectorXf& y, 
+// Dataset read_csv(const std::string & path, MatrixXf& X, VectorXf& y, 
 //     vector<string>& names, vector<char> &dtypes, bool& binary_endpoint, char sep) ;
 
 } // data
@@ -183,9 +183,9 @@ template<> struct DataEnumType<DataType::ArrayF>{ using type = ArrayXf; };
 template<> struct DataEnumType<DataType::MatrixB>{ using type = ArrayXXb; };
 template<> struct DataEnumType<DataType::MatrixI>{ using type = ArrayXXi; };
 template<> struct DataEnumType<DataType::MatrixF>{ using type = ArrayXXf; };
-template<> struct DataEnumType<DataType::TimeSeriesB>{ using type = data::TimeSeriesb; };
-template<> struct DataEnumType<DataType::TimeSeriesI>{ using type = data::TimeSeriesi; }; 
-template<> struct DataEnumType<DataType::TimeSeriesF>{ using type = data::TimeSeriesf; };
+template<> struct DataEnumType<DataType::TimeSeriesB>{ using type = Data::TimeSeriesb; };
+template<> struct DataEnumType<DataType::TimeSeriesI>{ using type = Data::TimeSeriesi; }; 
+template<> struct DataEnumType<DataType::TimeSeriesF>{ using type = Data::TimeSeriesf; };
 
 template<typename T> struct DataTypeEnum; 
 template<> struct DataTypeEnum<ArrayXb>{ static constexpr DataType value = DataType::ArrayB; };
@@ -194,9 +194,9 @@ template<> struct DataTypeEnum<ArrayXf>{ static constexpr DataType value = DataT
 template<> struct DataTypeEnum<ArrayXXb>{ static constexpr DataType value = DataType::MatrixB; };
 template<> struct DataTypeEnum<ArrayXXi>{ static constexpr DataType value = DataType::MatrixI; };
 template<> struct DataTypeEnum<ArrayXXf>{ static constexpr DataType value = DataType::MatrixF; };
-template<> struct DataTypeEnum<data::TimeSeriesb>{ static constexpr DataType value = DataType::TimeSeriesB; };
-template<> struct DataTypeEnum<data::TimeSeriesi>{ static constexpr DataType value = DataType::TimeSeriesI; };
-template<> struct DataTypeEnum<data::TimeSeriesf>{ static constexpr DataType value = DataType::TimeSeriesF; };
+template<> struct DataTypeEnum<Data::TimeSeriesb>{ static constexpr DataType value = DataType::TimeSeriesB; };
+template<> struct DataTypeEnum<Data::TimeSeriesi>{ static constexpr DataType value = DataType::TimeSeriesI; };
+template<> struct DataTypeEnum<Data::TimeSeriesf>{ static constexpr DataType value = DataType::TimeSeriesF; };
 
 extern const map<DataType,std::type_index>  DataTypeID;
 extern map<std::type_index,DataType>  DataIDType;
@@ -210,5 +210,12 @@ template <> struct fmt::formatter<Brush::DataType>: formatter<string_view> {
     return formatter<string_view>::format(Brush::DataTypeName.at(x), ctx);
   }
 };
+// TODO: fmt overload for Data
+// template <> struct fmt::formatter<Brush::Data::Dataset>: formatter<string_view> {
+//   template <typename FormatContext>
+//   auto format(Brush::Data::Dataset& x, FormatContext& ctx) const {
+    // return formatter<string_view>::format(Brush::DataTypeName.at(x), ctx);
+//   }
+// };
 
 #endif

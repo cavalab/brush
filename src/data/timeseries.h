@@ -6,7 +6,7 @@
 /* #include "../util/logger.h" */
 /* #include "../util/rnd.h" */
 
-namespace Brush::data{
+namespace Brush::Data{
 
 template<class T>
 struct TimeSeries
@@ -182,36 +182,36 @@ typedef TimeSeries<bool> TimeSeriesb;
 typedef TimeSeries<int> TimeSeriesi;
 typedef TimeSeries<float> TimeSeriesf;
 
-} // namespace Brush::data
+} // namespace Brush::Data
 
 namespace Brush{
-std::ostream &operator<<( std::ostream& output, const Brush::data::TimeSeries<bool>& ts ) ;
-std::ostream &operator<<( std::ostream& output, const Brush::data::TimeSeries<float>& ts ) ;
-std::ostream &operator<<( std::ostream& output, const Brush::data::TimeSeries<int>& ts ) ;
+std::ostream &operator<<( std::ostream& output, const Brush::Data::TimeSeries<bool>& ts ) ;
+std::ostream &operator<<( std::ostream& output, const Brush::Data::TimeSeries<float>& ts ) ;
+std::ostream &operator<<( std::ostream& output, const Brush::Data::TimeSeries<int>& ts ) ;
 } // namespace Brush
 
-template <> struct fmt::formatter<Brush::data::TimeSeriesi>: formatter<string_view> {
+template <> struct fmt::formatter<Brush::Data::TimeSeriesi>: formatter<string_view> {
   // parse is inherited from formatter<string_view>.
   template <typename FormatContext>
-  auto format(Brush::data::TimeSeriesi x, FormatContext& ctx) const {
+  auto format(Brush::Data::TimeSeriesi x, FormatContext& ctx) const {
     /* return formatter<string_view>::format(x.value, ctx); */
     return formatter<string_view>::format(x.print(), ctx);
   }
 };
 
-template <> struct fmt::formatter<Brush::data::TimeSeriesb>: formatter<string_view> {
+template <> struct fmt::formatter<Brush::Data::TimeSeriesb>: formatter<string_view> {
   // parse is inherited from formatter<string_view>.
   template <typename FormatContext>
-  auto format(Brush::data::TimeSeriesb x, FormatContext& ctx) const {
+  auto format(Brush::Data::TimeSeriesb x, FormatContext& ctx) const {
     /* return formatter<string_view>::format(print_time_series(x), ctx); */
     return formatter<string_view>::format(x.print(), ctx);
   }
 };
 
-template <> struct fmt::formatter<Brush::data::TimeSeriesf>: formatter<string_view> {
+template <> struct fmt::formatter<Brush::Data::TimeSeriesf>: formatter<string_view> {
   // parse is inherited from formatter<string_view>.
   template <typename FormatContext>
-  auto format(Brush::data::TimeSeriesf x, FormatContext& ctx) const {
+  auto format(Brush::Data::TimeSeriesf x, FormatContext& ctx) const {
     /* return formatter<string_view>::format(print_time_series(x), ctx); */
     return formatter<string_view>::format(x.print(), ctx);
     /* return formatter<string_view>::format(x.value, ctx); */

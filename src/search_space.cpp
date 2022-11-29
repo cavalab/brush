@@ -8,7 +8,7 @@ namespace Brush{
 /*     return Node(NodeType::Terminal, featurename, DT, sig_hash); */
 /* } */
 
-vector<Node> generate_terminals(const Data& d)
+vector<Node> generate_terminals(const Dataset& d)
 {
     vector<Node> terminals;
     int i = 0;
@@ -27,7 +27,7 @@ vector<Node> generate_terminals(const Data& d)
 
 std::unordered_map<std::size_t, std::string> ArgsName; 
 
-void SearchSpace::init(const Data& d, const unordered_map<string,float>& user_ops)
+void SearchSpace::init(const Dataset& d, const unordered_map<string,float>& user_ops)
 {
     fmt::print("constructing search space...\n");
 

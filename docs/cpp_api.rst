@@ -1,16 +1,16 @@
 C++ API
 =======
 
-The ``Brush::data`` namespace
+The ``Brush::Data`` namespace
 -----------------------------
 
 .. doxygennamespace:: Brush::data
    :members:
 
-The ``Brush::data::Data`` class
+The ``Brush::Data::Dataset`` class
 *******************************
 
-.. doxygenclass:: Brush::data::Data
+.. doxygenclass:: Brush::Data::Dataset
    :members:
 
 GP programs

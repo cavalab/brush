@@ -36,7 +36,7 @@ Node overhaul:
 */
 using Brush::DataType;
 using Brush::ExecType;
-using Brush::data::Data;
+using Brush::Data::Dataset;
 
 namespace Brush{
 

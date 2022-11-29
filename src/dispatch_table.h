@@ -24,7 +24,10 @@ using TreeNode = class tree_node_<Node>;
 namespace Brush{
 
 // forward declarations
-template<typename R, NodeType NT, typename S, bool Fit> R DispatchOp(const Data& d, TreeNode& tn); 
+template<typename R, NodeType NT, typename S, bool Fit> R DispatchOp(
+    const Data::Dataset& d, 
+    TreeNode& tn
+); 
 
 ////////////////////////////////////////////////////////////////////////////////
 // Dispatch Table
@@ -33,7 +36,7 @@ struct DispatchTable
 {
     
     template<typename T>
-    using Callable = typename std::function<T(const Data&,TreeNode&)>;
+    using Callable = typename std::function<T(const Data::Dataset&, TreeNode&)>;
 
     using CallVariant = std::variant< 
         Callable<ArrayXb>,

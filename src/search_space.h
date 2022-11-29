@@ -24,7 +24,7 @@ license: GNU/GPL v3
  *  Sampling is done in proportion to the weight associated with 
  *  each node. By default, sampling is done uniform randomly.
 */
-using namespace Brush::data;
+using namespace Brush::Data;
 using namespace Brush::Util; 
 using Brush::Node;
 using Brush::DataType;
@@ -43,7 +43,7 @@ namespace Brush
 using TreeIter = tree<Node>::pre_order_iterator;
 template<typename T> struct Program;
 
-vector<Node> generate_terminals(const Data& d);
+vector<Node> generate_terminals(const Dataset& d);
 
 ////////////////////////////////////////////////////////////////////////////////
 
@@ -97,11 +97,11 @@ struct SearchSpace
     Program<T> make_program(int max_d=0, int max_breadth=0, int max_size=0);
     
     SearchSpace() = default;
-    SearchSpace(const Data& d, const unordered_map<string,float>& user_ops = {}){
+    SearchSpace(const Dataset& d, const unordered_map<string,float>& user_ops = {}){
         init(d,user_ops);
     }
 
-    void init(const Data& d, const unordered_map<string,float>& user_ops = {});
+    void init(const Dataset& d, const unordered_map<string,float>& user_ops = {});
 
     bool check(DataType R) const {
         if (node_map.find(R) == node_map.end()){

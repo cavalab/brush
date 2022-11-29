@@ -31,13 +31,13 @@ const map<DataType,std::type_index>  DataTypeID = {
     {DataType::MatrixB, typeid(ArrayXXb)},
     {DataType::MatrixI, typeid(ArrayXXi)},
     {DataType::MatrixF, typeid(ArrayXXf)},
-    {DataType::TimeSeriesB, typeid(data::TimeSeriesb)},
-    {DataType::TimeSeriesI,typeid(data::TimeSeriesi)},
-    {DataType::TimeSeriesF, typeid(data::TimeSeriesf)},
+    {DataType::TimeSeriesB, typeid(Data::TimeSeriesb)},
+    {DataType::TimeSeriesI,typeid(Data::TimeSeriesi)},
+    {DataType::TimeSeriesF, typeid(Data::TimeSeriesf)},
 };
 map<std::type_index,DataType> DataIDType = Util::reverse_map(DataTypeID);
 
-namespace data{
+namespace Data{
 
 std::vector<DataType> StateTypes = {
     DataType::ArrayB,
@@ -95,7 +95,7 @@ State check_type(const ArrayXf& x)
 }
 
 /// return a slice of the data using indices idx
-Data Data::operator()(const vector<size_t>& idx) const
+Dataset Dataset::operator()(const vector<size_t>& idx) const
 {
     std::map<std::string, State> new_d;
     for (auto& [key, value] : this->features) 
@@ -123,31 +123,31 @@ Data Data::operator()(const vector<size_t>& idx) const
         );
     }
     auto new_y = this->y(idx);
-    return Data(new_d, new_y, this->classification);
+    return Dataset(new_d, new_y, this->classification);
 }
 
-Data Data::get_batch(int batch_size) const
+Dataset Dataset::get_batch(int batch_size) const
 {
 
-    batch_size =  std::min(batch_size,int(this->n_samples));
-    return (*this)(r.shuffled_index(n_samples));
+    batch_size =  std::min(batch_size,int(this->get_n_samples()));
+    return (*this)(r.shuffled_index(get_n_samples()));
 }
 
-array<Data, 2> Data::split(const ArrayXb& mask) const
+array<Dataset, 2> Dataset::split(const ArrayXb& mask) const
 {
     // split data into two based on mask. 
     auto idx1 = Util::mask_to_index(mask);
     auto idx2 = Util::mask_to_index((!mask));
-    return std::array<Data, 2>{ (*this)(idx1), (*this)(idx2) };
+    return std::array<Dataset, 2>{ (*this)(idx1), (*this)(idx2) };
 }
 /// call init at the end of constructors
 /// to define metafeatures of the data.
-void Data::init()
+void Dataset::init()
 {
     //TODO: populate var_names, var_data_types, data_types, features_of_type
-    n_features = this->features.size();
+    // n_features = this->features.size();
     // note this will have to change in unsupervised settings
-    n_samples = this->y.size();
+    // n_samples = this->y.size();
 
 
     for (const auto& [name, value]: this->features)
@@ -163,7 +163,7 @@ void Data::init()
 }
 
 /// turns input data into a feature map
-map<string, State> Data::make_features(const Ref<const ArrayXXf>& X,
+map<string, State> Dataset::make_features(const Ref<const ArrayXXf>& X,
                                        const map<string,State>& Z,
                                        const vector<string>& vn 
                                        ) 

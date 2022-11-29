@@ -16,7 +16,6 @@ license: GNU/GPL v3
 
 // #include "data/data.h"
 #include "init.h"
-/* #include "thirdparty/tree.hh" */
 #include "tree_node.h"
 #include "state.h"
 #include "node.h"
@@ -27,8 +26,8 @@ license: GNU/GPL v3
 
 using std::cout;
 using std::string;
-using Brush::data::State;
-using Brush::data::Data;
+using Brush::Data::State;
+using Brush::Data::Dataset;
 using Brush::SearchSpace;
 
 namespace Brush {
@@ -67,7 +66,7 @@ template<typename T> struct Program //: public tree<Node>
         SSref = std::optional<std::reference_wrapper<SearchSpace>>{s};
     }
 
-    T fit(const Data& d)
+    T fit(const Dataset& d)
     {
         fmt::print("Fitting {}\n", this->get_model());
         T out =  prg.begin().node->fit<T>(d);
@@ -76,7 +75,7 @@ template<typename T> struct Program //: public tree<Node>
         return out;
     };
 
-    T predict(const Data& d)
+    T predict(const Dataset& d)
     {
         if (!is_fitted_)
             HANDLE_ERROR_THROW("Program is not fitted. Call 'fit' first.\n");
@@ -88,17 +87,17 @@ template<typename T> struct Program //: public tree<Node>
 
     T fit(const Ref<const ArrayXXf>& X, const Ref<const ArrayXf>& y)
     {
-        Data d(X,y);
+        Dataset d(X,y);
         return fit(d);
     };
 
     T predict(const Ref<const ArrayXXf>& X, const Ref<const ArrayXf>& y)
     {
-        Data d(X,y);
+        Dataset d(X,y);
         return predict(d);
     };
 
-    void grad_descent(const ArrayXf& gradient, const Data& d)
+    void grad_descent(const ArrayXf& gradient, const Dataset& d)
     {
         //TODO
     };

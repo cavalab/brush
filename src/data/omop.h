@@ -10,15 +10,13 @@ license: GNU/GPL v3
 #include <string>
 #include <filesystem>
 #include <fstream>
-#include "../thirdparty/json.hpp"
+#include "../../thirdparty/json.hpp"
 
 namespace fs = std::filesystem;
 
-namespace Brush
+namespace Brush::Data
 {
 
-namespace data
-{
 
 enum class TimeValues {
     offset,
@@ -37,17 +35,15 @@ struct OmopData
     TimeValues tv = TimeValues::timestamp;
     StringFeatures sf = StringFeatures::categorical;
 
-    /// Initialize OMOP Data from a directory of CSVs
+    /// Initialize OMOP Dataset from a directory of CSVs
     OmopData(fs::directory_iterator omop_dir);
 
-    /// Initialize OMOP Data from a JSON file
+    /// Initialize OMOP Dataset from a JSON file
     OmopData(fs::path json_filename);
 
-    /// Initialize OMOP Data from a SQL database connection
+    /// Initialize OMOP Dataset from a SQL database connection
     // TODO
 };
-
-}
 
 }
 

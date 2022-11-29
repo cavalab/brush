@@ -23,9 +23,9 @@ using Eigen::Array;
 using Eigen::ArrayXi;
 using Eigen::Dynamic;
 
-using Brush::data::State;
-using Brush::data::TimeSeries;
-using Brush::data::TimeSeriesf;
+using Brush::Data::State;
+using Brush::Data::TimeSeries;
+using Brush::Data::TimeSeriesf;
 using Brush::NodeType;
 
 namespace Brush

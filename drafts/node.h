@@ -48,7 +48,7 @@ class Node
             swap(this->probability,b.probability);
         }
 
-        virtual State evaluate(const Data& d, 
+        virtual State evaluate(const Dataset& d, 
                                tree_node_<Node*>* first_child=0, 
                                tree_node_<Node*>* last_child=0) = 0;
 };
@@ -63,7 +63,7 @@ class NodeTimes : public Node
 {
     public:
         NodeTimes(){name = "times";}
-        State evaluate(const Data& d, tree_node_<Node*>* first_child=0, 
+        State evaluate(const Dataset& d, tree_node_<Node*>* first_child=0, 
                 tree_node_<Node*>* last_child=0)
         {
             /* return  first_child->eval(x) * last_child->eval(x); */
@@ -79,7 +79,7 @@ class NodeSum : public Node
 {
     public:
         NodeSum(){name = "sum";}
-        State evaluate(const Data& d, tree_node_<Node*>* first_child=0, 
+        State evaluate(const Dataset& d, tree_node_<Node*>* first_child=0, 
                 tree_node_<Node*>* last_child=0)
         {
             ArrayXf sum(d.X.cols());

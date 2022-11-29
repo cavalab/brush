@@ -38,7 +38,7 @@ using namespace std;
 //                          ArrayXXb,
 //                          ArrayXXi, 
 //                          ArrayXXf, 
-//                          data::TimeSeries,
+//                          Data::TimeSeries,
 //                          > State; 
 
 //     /// return the implicit type of a State

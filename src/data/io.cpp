@@ -8,10 +8,10 @@ license: GNU/GPL v3
 /* #include "rnd.h" */
 #include <unordered_set>
 
-namespace Brush::data{
+namespace Brush::Data{
     
 /// read csv file into Data. 
-Data read_csv (
+Dataset read_csv (
     const std::string& path,
     const std::string& target,
     char sep
@@ -102,7 +102,7 @@ Data read_csv (
     // check if endpoint is binary
     bool binary_endpoint = (y.array() == 0 || y.array() == 1).all();
 
-    auto result = Data(features,y,binary_endpoint);
+    auto result = Dataset(features,y,binary_endpoint);
     return result;
     
 }

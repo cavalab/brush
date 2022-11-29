@@ -29,6 +29,6 @@ using std::stof;
 #include "../../src/data/data.h"
 #include "../../src/operator.h"
 using namespace Brush;
-using namespace Brush::data;
+using namespace Brush::Data;
 
 #endif

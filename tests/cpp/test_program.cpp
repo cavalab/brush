@@ -15,8 +15,8 @@ TEST(Program, MakeProgram)
     // X << 1.1,2.0,3.0,4.0,5.0,6.5,7.0,8.0,9.0,10.0,
     //      2.0,1.2,6.0,4.0,5.0,8.0,7.0,5.0,9.0,10.0,
     // y << 1.0,0.0,1.4,1.0,0.0,1.0,1.0,0.0,0.0,0.0;
-    // Data data(X,y);
-    Data data = data::read_csv("examples/datasets/d_enc.csv","label");
+    // Dataset data(X,y);
+    Dataset data = Data::read_csv("examples/datasets/d_enc.csv","label");
     for (const auto& kv : data.features)
     {
         const string& name = kv.first;
@@ -60,13 +60,7 @@ TEST(Program, FitPrograms)
     // dtable_fit.print();
     // dtable_predict.print();
 
-    Data data = data::read_csv("examples/datasets/d_enc.csv","label");
-    // ArrayXXf X(10,2);
-    // ArrayXf y(10);
-    // X << 1.1,2.0,3.0,4.0,5.0,6.5,7.0,8.0,9.0,10.0,
-    //      2.0,1.2,6.0,4.0,5.0,8.0,7.0,5.0,9.0,10.0,
-    // y << 1.0,0.0,1.4,1.0,0.0,1.0,1.0,0.0,0.0,0.0;
-    // Data data(X,y);
+    Dataset data = Data::read_csv("examples/datasets/d_enc.csv","label");
     for (const auto& kv : data.features)
     {
         const string& name = kv.first;
@@ -125,7 +119,7 @@ TEST(Program, BackProp)
          0.2254195 , 0.70526861, 0.31406024, 0.07082619, 0.84034526;
     y << 3.55634251, 3.13854087, 3.55887523, 3.29462895, 3.33443517,
              3.4378868 , 3.41092345, 3.5087468 , 3.25110243, 3.11382179;
-    Data data(X,y);
+    Dataset data(X,y);
 
     unordered_map<string, float> user_ops = {
         {"Add", 1},
@@ -185,7 +179,7 @@ TEST(Program, Mutation)
          0.2254195 , 0.70526861, 0.31406024, 0.07082619, 0.84034526;
     y << 3.55634251, 3.13854087, 3.55887523, 3.29462895, 3.33443517,
              3.4378868 , 3.41092345, 3.5087468 , 3.25110243, 3.11382179;
-    Data data(X,y);
+    Dataset data(X,y);
 
     SearchSpace SS;
     SS.init(data);

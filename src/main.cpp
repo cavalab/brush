@@ -11,7 +11,7 @@ using namespace Eigen;
 // using Eigen::ArrayXf;
 using namespace std;
 using namespace Brush;
-using namespace Brush::data;
+using namespace Brush::Data;
 
 /* template<typename T> */
 /* T add(T x, T y){ return x + y; }; */
@@ -86,7 +86,7 @@ int main(int, char **)
     //      2.0,1.0,6.0,4.0,5.0,8.0,7.0,5.0,9.0,10.0,
     // y << 1.0,0.0,1.0,1.0,0.0,1.0,1.0,0.0,0.0,0.0;
     // Longitudinal Z;
-    // Data d(X,y,Z);
+    // Dataset d(X,y,Z);
     // // cout << "fitting tree...\n";
     // // State out = tree.fit(d);
     // // cout << "output: " << get<ArrayXb>(out) << endl;

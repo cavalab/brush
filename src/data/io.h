@@ -1,5 +1,5 @@
-/* FEAT
-copyright 2017 William La Cava
+/* Brush
+copyright 2020 William La Cava
 license: GNU/GPL v3
 */
 
@@ -18,11 +18,11 @@ license: GNU/GPL v3
 
 using namespace Eigen;
 
-namespace Brush::data
+namespace Brush::Data
 {
 
 ///  read csv file into Data. 
-Data read_csv (
+Dataset read_csv (
     const std::string& path,
     const std::string& target,
     char sep=','

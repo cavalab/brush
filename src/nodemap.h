@@ -40,9 +40,9 @@ using namespace Brush;
 using std::tuple;
 using std::array;
 using Brush::DataType; 
-using Brush::data::TimeSeriesb; 
-using Brush::data::TimeSeriesi; 
-using Brush::data::TimeSeriesf; 
+using Brush::Data::TimeSeriesb; 
+using Brush::Data::TimeSeriesi; 
+using Brush::Data::TimeSeriesf; 
 using Brush::Util::is_tuple;
 
 namespace Brush {

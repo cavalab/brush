@@ -2,13 +2,11 @@
 copyright 2022 William La Cava
 license: GNU/GPL v3
 */
-
 #include "omop.h"
 
 
-namespace Brush {
+namespace Brush::Data {
 
-namespace data {
 
 OmopData::OmopData(fs::directory_iterator omop_dir) {
     for (fs::directory_entry dir_entry : omop_dir) {
@@ -21,7 +19,5 @@ OmopData::OmopData(fs::directory_iterator omop_dir) {
 OmopData::OmopData(fs::path json_filename) {
 
 };
-
-}
 
 }

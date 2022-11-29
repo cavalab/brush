@@ -3,7 +3,7 @@
 
 namespace Brush::Split{
 
-tuple<string,float> get_best_variable_and_threshold(const Data& d, TreeNode& tn)
+tuple<string,float> get_best_variable_and_threshold(const Dataset& d, TreeNode& tn)
 {
     /* loops thru variables in d and picks the best threshold
      * and feature to split at.

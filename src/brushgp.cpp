@@ -20,7 +20,7 @@ license: GNU/GPL v3
 
 namespace py = pybind11;
 namespace br = Brush;
-// using br::data;
+// using br::Data;
 
 
 // Test data as numpy arrays:
@@ -39,7 +39,7 @@ PYBIND11_MODULE(brushgp, m) {
         .. autosummary::
            :toctree: _generate
 
-           Data
+           Dataset
            SearchSpace
            Program
     )pbdoc";
@@ -50,17 +50,17 @@ PYBIND11_MODULE(brushgp, m) {
     m.attr("__version__") = "dev";
 #endif
 
-    py::class_<Brush::data::Data>(m, "Data")
+    py::class_<Brush::Data::Dataset>(m, "Dataset")
         .def(py::init<Ref<const ArrayXXf>&, Ref<const ArrayXf>& >())
-        // .def("get_features", &Brush::data::Data::features, py::return_value_policy::reference_internal)
-        // .def("get_y", &Brush::data::Data::get_y, py::return_value_policy::reference_internal)        
+        // .def("get_features", &Brush::Data::Dataset::features, py::return_value_policy::reference_internal)
+        // .def("get_y", &Brush::Data::Dataset::get_y, py::return_value_policy::reference_internal)        
         ;
 
     // Notice: We change the interface for SearchSpace a little bit by 
-    // constructing it with a Data object, rather than initializing it as an
-    // empty struct and then calling init() with the Data object.
+    // constructing it with a Dataset object, rather than initializing it as an
+    // empty struct and then calling init() with the Dataset object.
     py::class_<br::SearchSpace>(m, "SearchSpace")
-        .def(py::init([](br::data::Data data) {
+        .def(py::init([](br::Data::Dataset data) {
             SearchSpace SS;
             SS.init(data);
             return SS;
@@ -71,10 +71,10 @@ PYBIND11_MODULE(brushgp, m) {
 
     py::class_<Prg>(m, "Program")
         .def(py::init<>())
-        .def("fit", static_cast<ArrayXf(br::Program<ArrayXf>::*)(const Data& d)>(&br::Program<ArrayXf>::fit), "fit from Data object")
+        .def("fit", static_cast<ArrayXf(br::Program<ArrayXf>::*)(const Dataset& d)>(&br::Program<ArrayXf>::fit), "fit from Dataset object")
         .def("fit", static_cast<ArrayXf(br::Program<ArrayXf>::*)(const Ref<const ArrayXXf>& X, const Ref<const ArrayXf>& y)>(&br::Program<ArrayXf>::fit), 
             "fit from X,y data")
-        .def("predict", static_cast<ArrayXf(br::Program<ArrayXf>::*)(const Data& d)>(&br::Program<ArrayXf>::fit), "fit from Data object")
+        .def("predict", static_cast<ArrayXf(br::Program<ArrayXf>::*)(const Dataset& d)>(&br::Program<ArrayXf>::fit), "fit from Dataset object")
         .def("predict", static_cast<ArrayXf(br::Program<ArrayXf>::*)(const Ref<const ArrayXXf>& X, const Ref<const ArrayXf>& y)>(&br::Program<ArrayXf>::fit), 
             "fit from X,y data")
         .def("get_model", &br::Program<ArrayXf>::get_model, 
