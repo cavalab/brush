@@ -18,7 +18,7 @@ string TreeNode::get_model(bool pretty) const
     /* if (pretty) */
     /*     return data.op_name + "(" + child_outputs + ")"; */
     /* else */
-    return data.name + "(" + child_outputs + ")";
+    return data.get_name() + "(" + child_outputs + ")";
 };
 
 string TreeNode::get_tree_model(bool pretty, string offset) const 

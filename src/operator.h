@@ -134,15 +134,15 @@ struct Operator
     enable_if_t<!is_tuple<T>::value && is_same_v<typename T::value_type::Scalar,float>, RetType> 
     eval(const Dataset& d, TreeNode& tn) const
     {
-        fmt::print("eval::getting kids\n");
+        // fmt::print("eval::getting kids\n");
         ArgTypes inputs = get_kids(d, tn);
-        fmt::print("eval::applying weights\n");
+        // fmt::print("eval::applying weights\n");
         if (tn.data.is_weighted)
             this->apply_weights(inputs, tn.data);
-        fmt::print("eval::std::apply F\n");
+        // fmt::print("eval::std::apply F\n");
         RetType out = std::apply(F, inputs);
-        if constexpr (is_same_v<RetType,ArrayXf>)
-            fmt::print("eval::std::apply result: {}\n",out);
+        // if constexpr (is_same_v<RetType,ArrayXf>)
+        //     fmt::print("eval::std::apply result: {}\n",out);
         return out;
     };
 
@@ -152,9 +152,9 @@ struct Operator
     enable_if_t<is_tuple<T>::value || !is_same_v<typename T::value_type::Scalar,float>, RetType> 
     eval(const Dataset& d, TreeNode& tn) const
     {
-        fmt::print("eval (tuple)::getting kids\n");
+        // fmt::print("eval (tuple)::getting kids\n");
         ArgTypes inputs = get_kids(d, tn);
-        fmt::print("eval (tuple)::apply F, inputs\n");
+        // fmt::print("eval (tuple)::apply F, inputs\n");
         RetType out = std::apply(F, inputs);
         /* return std::apply(F, inputs); */
         return out;
@@ -167,7 +167,7 @@ struct Operator<NodeType::Terminal, S, Fit>
 {
     using RetType = typename S::RetType;
     RetType eval(const Dataset& d, const TreeNode& tn) const { 
-        fmt::print("run std::get<{}>(d[{}])\n", DataTypeEnum<RetType>::value, tn.data.feature); 
+        // fmt::print("run std::get<{}>(d[{}])\n", DataTypeEnum<RetType>::value, tn.data.feature); 
         RetType out;
         try {
             out = std::get<RetType>(d[tn.data.feature]);
@@ -288,16 +288,17 @@ struct Operator<NT, S, Fit, enable_if_t<is_one_of_v<NT, NodeType::SplitOn, NodeT
         // split the data
         ArrayXb mask;
         if constexpr (NT==NodeType::SplitBest)
-            mask = Split::threshold_mask(std::get<FirstArg>(d[feature]), threshold);
+            // mask = Split::threshold_mask(std::get<FirstArg>(d.at(feature)), threshold);
+            mask = Split::threshold_mask(d[feature], threshold);
         else {
             auto split_feature = tn.first_child->predict<FirstArg>(d);
             mask = Split::threshold_mask(split_feature, threshold);
         }
 
         array<Dataset, 2> data_splits = d.split(mask);
-        fmt::print("data_splits sizes: {}, {}\n",
-                data_splits[0].get_n_samples(), 
-                data_splits[1].get_n_samples());
+        // fmt::print("data_splits sizes: {}, {}\n",
+        //         data_splits[0].get_n_samples(), 
+        //         data_splits[1].get_n_samples());
         // // if there aren't samples on either side of the split, just return 
         // // one child or the other
         // if (data_splits[0].get_n_samples() == 0)
@@ -306,7 +307,7 @@ struct Operator<NT, S, Fit, enable_if_t<is_one_of_v<NT, NodeType::SplitOn, NodeT
         auto child_outputs = get_kids(data_splits, tn);
 
         // stitch together outputs
-        fmt::print("stitching outputs\n");
+        // fmt::print("stitching outputs\n");
         auto out = Split::stitch(child_outputs, mask);
         /* auto out = mask.select(child_outputs.at(0), child_outputs.at(1)); */
         /* cout << "returning " << std::get<RetType>(out) << endl; */
@@ -326,7 +327,11 @@ struct Operator<NT, S, Fit, enable_if_t<is_one_of_v<NT, NodeType::SplitOn, NodeT
 template<typename R, NodeType NT, typename S, bool Fit> 
 R DispatchOp(const Dataset& d, TreeNode& tn) 
 {
-    fmt::print("DispatchOp: Dispatching {} with Signature Type {}\n",NT, S::get_args_type());
+    fmt::print("DispatchOp: Dispatching {} with signature {} of {}\n",
+        NT, 
+        S::get_args_type(),
+        S::get_arg_types()
+    );
 
     const auto op = Operator<NT,S,Fit>{};
     R out = op.eval(d, tn);

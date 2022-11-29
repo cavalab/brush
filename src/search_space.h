@@ -421,6 +421,8 @@ Program<T> SearchSpace::make_program(int max_d, int max_breadth, int max_size)
     {
         /* cout << "getting op of type " << DataTypeName[root_type] << endl; */
         auto n = get_op(root_type);
+        if (n.name=="SplitOn" && in(n.arg_types, DataType::ArrayI))
+            fmt::print("{}",n.get_name());
         /* cout << "chose " << n.name << endl; */
         // auto spot = prg.set_head(n);
         /* cout << "inserting...\n"; */
@@ -433,7 +435,8 @@ Program<T> SearchSpace::make_program(int max_d, int max_breadth, int max_size)
         for (auto a : n.arg_types)
         { 
             /* cout << "queing a node of type " << DataTypeName[a] << endl; */
-            queue.push_back(make_tuple(spot, a, d));
+            auto child_spot = prg.append_child(spot);
+            queue.push_back(make_tuple(child_spot, a, d));
         }
 
         /* cout << "queue size: " << queue.size() << endl; */ 
@@ -446,8 +449,11 @@ Program<T> SearchSpace::make_program(int max_d, int max_breadth, int max_size)
             /* cout << "current depth: " << d << endl; */
             if (d == max_d)
             {
+                // choose terminal of matching type
                 /* cout << "getting " << DataTypeName[t] << " terminal\n"; */ 
-                prg.append_child(qspot, get_terminal(t));
+                // qspot = get_terminal(t);
+                prg.replace(qspot, get_terminal(t));
+                // prg.append_child(qspot, get_terminal(t));
             }
             else
             {
@@ -455,12 +461,16 @@ Program<T> SearchSpace::make_program(int max_d, int max_breadth, int max_size)
                 /* cout << "getting op of type " << DataTypeName[t] << endl; */
                 auto n = get_op(t);
                 /* cout << "chose " << n.name << endl; */
-                TreeIter new_spot = prg.append_child(qspot, n);
+                // TreeIter new_spot = prg.append_child(qspot, n);
+                // qspot = n;
+                auto newspot = prg.replace(qspot, n);
                 // For each arg of n, add to queue
                 for (auto a : n.arg_types)
                 {
                     /* cout << "queing a node of type " << DataTypeName[a] << endl; */
-                    queue.push_back(make_tuple(new_spot, a, d+1));
+                    // queue.push_back(make_tuple(new_spot, a, d+1));
+                    auto child_spot = prg.append_child(newspot);
+                    queue.push_back(make_tuple(child_spot, a, d+1));
                 }
             }
             ++s;
@@ -477,7 +487,9 @@ Program<T> SearchSpace::make_program(int max_d, int max_breadth, int max_size)
             auto [qspot, t, d] = RandomDequeue(queue);
 
             /* cout << "getting " << DataTypeName[t] << " terminal\n"; */ 
-            prg.append_child(qspot, get_terminal(t));
+            // prg.append_child(qspot, get_terminal(t));
+            // qspot = get_terminal(t);
+            auto newspot = prg.replace(qspot, get_terminal(t));
 
         }
     }

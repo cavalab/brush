@@ -46,6 +46,25 @@ template<>
 ArrayXb threshold_mask<ArrayXi>(const ArrayXi& x, const float& threshold) { 
     return (x == threshold); 
 }
+template<>
+ArrayXb threshold_mask<State>(const State& x, const float& threshold) { 
+    // return std::visit(
+    //     x
+    // ); 
+    return std::visit(
+        [&](const auto& arg) -> ArrayXb { 
+            using T = std::decay_t<decltype(arg)>;
+            if constexpr (std::is_same_v<T, ArrayXb> 
+                          || std::is_same_v<T, ArrayXi> 
+                          || std::is_same_v<T, ArrayXf> 
+                         )
+                return threshold_mask(arg, threshold); 
+            else
+                return ArrayXb::Constant(arg.size(), true);
+        },
+        x
+    );
+}
 
 
 float gain(const ArrayXf& lsplit, 

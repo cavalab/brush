@@ -57,7 +57,10 @@ struct uint32_vector_hasher {
     }
 };
 
-
+/**
+ * @brief class holding the data for a node in a tree.
+ * 
+ */
 struct Node {
 
     /// full name of the node, with types
