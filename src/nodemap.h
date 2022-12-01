@@ -223,8 +223,8 @@ struct SigBase
             return "Tuple";
     };
 
-    template<typename T>
-    static constexpr bool contains() { return is_one_of_v<T, Args...>; }
+    // template<typename T>
+    // static constexpr bool contains() { return is_one_of_v<T, Args...>; }       // This is ill-formed on clang; returns an error
 
     static constexpr std::size_t hash_args(){ return typeid(ArgTypes).hash_code();}
 
@@ -247,8 +247,8 @@ template<typename R, typename... Args>
 struct Signature<R(Args...)> : SigBase<R, Args...>
 {
     using base = SigBase<R, Args...>;
-    using RetType = base::RetType;
-    using ArgTypes = base::ArgTypes;
+    using RetType = typename base::RetType;
+    using ArgTypes = typename base::ArgTypes;
     static constexpr auto ArgCount = base::ArgCount;
     /* using Function = base::Function; */
 };
