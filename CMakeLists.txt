@@ -36,15 +36,21 @@
 
 get_cmake_property(_variableNames VARIABLES)
 list (SORT _variableNames)
-foreach (_variableName ${_variableNames})
-    message(STATUS "${_variableName}=${${_variableName}}")
-endforeach()
+# foreach (_variableName ${_variableNames})
+#     message(STATUS "${_variableName}=${${_variableName}}")
+# endforeach()
 link_directories( $ENV{LD_LIBRARY_PATH})
 # set(CMAKE_CXX_COMPILER /usr/bin/g++-7)
+set(CMAKE_CXX_COMPILER "clang++")
+set(CLANG_DEFAULT_CXX_STDLIB "libc++")
+message(STATUS "CLANG_DEFAULT_CXX_STDLIB=${CLANG_DEFAULT_CXX_STDLIB}")
+set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -stdlib=libc++")
+set(CMAKE_EXE_LINKER_FLAGS "${CMAKE_EXE_LINKER_FLAGS} -stdlib=libc++ -lc++abi")
 # version requirement for Eigen
 cmake_minimum_required (VERSION 3.15...3.19)
 # use c++ 20
-set (CMAKE_CXX_STANDARD 20)
+set(CMAKE_CXX_STANDARD 20)
+message(STATUS "CMAKE_CXX_STANDARD=${CMAKE_CXX_STANDARD}")
 
 #set (CMAKE_CXX_FLAGS "--std=c++11")
 
@@ -131,9 +137,25 @@ file(GLOB_RECURSE testsSrc "tests/*.cpp")
 message(STATUS "testsSrc: '${testsSrc}")
 add_executable(tests ${testsSrc})
 target_link_libraries(tests brush gtest_main pthread fmt::fmt)
-# Google tests
+#Google tests
 include(GoogleTest)
 gtest_discover_tests(tests)
+
+
+# Make the preprocessor aware of the OS. We need to conditionally compile some
+# of the code based on OS due to variable implementation of C++20 features. For
+# example, Apple's clang++ doesn't have complete implementation of the
+# <execution> header, so we can't easily use multithreading.
+if(CMAKE_SYSTEM_NAME STREQUAL "Linux")
+    target_compile_definitions(brush PUBLIC "IS_LINUX")
+endif()
+if(CMAKE_SYSTEM_NAME STREQUAL "Darwin")
+    target_compile_definitions(brush PUBLIC "IS_MACOS")
+endif()
+if(CMAKE_SYSTEM_NAME STREQUAL "Windows")
+    target_compile_definitions(brush PUBLIC "IS_WINDOWS")
+endif()
+
 
 # generate python bindings
 find_package(Python COMPONENTS Interpreter Development REQUIRED)
@@ -159,5 +181,5 @@ target_compile_definitions(brushgp PRIVATE VERSION_INFO=${EXAMPLE_VERSION_INFO})
 
 
 # Handle stuff for docs (Sphinx/Doxygen)
-set(CMAKE_MODULE_PATH "${PROJECT_SOURCE_DIR}/cmake" ${CMAKE_MODULE_PATH})
-add_subdirectory("docs")
+# set(CMAKE_MODULE_PATH "${PROJECT_SOURCE_DIR}/cmake" ${CMAKE_MODULE_PATH})
+# add_subdirectory("docs")
