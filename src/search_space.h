@@ -51,9 +51,9 @@ extern std::unordered_map<std::size_t, std::string> ArgsName;
 
 struct SearchSpace
 {
-
-    /* Construct a search space, consisting of operations and terminals
+    /* @brief Construct a search space, consisting of operations and terminals
      * and functions that sample the space. 
+     *
      * The set of operators is a user controlled parameter; however, we can 
      * automate, to some extent, the set of possible operators based on the 
      * data types in the problem. 
@@ -70,14 +70,14 @@ struct SearchSpace
      *
      * Params
      *
-     * node_map: Maps return types to argument types to operator names. 
+     * @param node_map: Maps return types to argument types to operator names. 
      *  schema:
      *      { return_type : { arguments_type : {node_type : node } }}
      *
-     * terminal_map: Maps return types to terminals. 
+     * @param terminal_map: Maps return types to terminals. 
      *      { return_type : vector of Nodes } 
      *
-     * terminal_types: A set of the available terminal types. 
+     * @param terminal_types: A set of the available terminal types. 
     */
     using ArgsHash = std::size_t; 
 
@@ -389,7 +389,8 @@ T RandomDequeue(std::vector<T>& Q)
     Q.pop_back();
     return val;
 };
-// constructs a tree using functions, terminals, and settings
+
+/// constructs a tree using functions, terminals, and settings
 template<typename T>
 Program<T> SearchSpace::make_program(int max_d, int max_breadth, int max_size)
 {

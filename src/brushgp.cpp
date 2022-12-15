@@ -71,10 +71,11 @@ PYBIND11_MODULE(brushgp, m) {
 
     py::class_<Prg>(m, "Program")
         .def(py::init<>())
-        .def("fit", static_cast<ArrayXf(br::Program<ArrayXf>::*)(const Dataset& d)>(&br::Program<ArrayXf>::fit), "fit from Dataset object")
+        .def("fit", 
+             static_cast<ArrayXf(br::Program<ArrayXf>::*)(const Dataset& d)>(&br::Program<ArrayXf>::fit), "fit from Dataset object")
         .def("fit", static_cast<ArrayXf(br::Program<ArrayXf>::*)(const Ref<const ArrayXXf>& X, const Ref<const ArrayXf>& y)>(&br::Program<ArrayXf>::fit), 
             "fit from X,y data")
-        .def("predict", static_cast<ArrayXf(br::Program<ArrayXf>::*)(const Dataset& d)>(&br::Program<ArrayXf>::fit), "fit from Dataset object")
+        .def("predict", static_cast<ArrayXf(br::Program<ArrayXf>::*)(const Dataset& d)>(&br::Program<ArrayXf>::fit), "predict from Dataset object")
         .def("predict", static_cast<ArrayXf(br::Program<ArrayXf>::*)(const Ref<const ArrayXXf>& X, const Ref<const ArrayXf>& y)>(&br::Program<ArrayXf>::fit), 
             "fit from X,y data")
         .def("get_model", &br::Program<ArrayXf>::get_model, 

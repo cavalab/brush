@@ -4,42 +4,16 @@
 #include "../../src/dispatch_table.h"
 #include "../../src/data/io.h"
 
+
 TEST(Program, MakeProgram)
 {
         
-    dtable_fit.print();
-    dtable_predict.print();
-
-    // ArrayXXf X(10,2);
-    // ArrayXf y(10);
-    // X << 1.1,2.0,3.0,4.0,5.0,6.5,7.0,8.0,9.0,10.0,
-    //      2.0,1.2,6.0,4.0,5.0,8.0,7.0,5.0,9.0,10.0,
-    // y << 1.0,0.0,1.4,1.0,0.0,1.0,1.0,0.0,0.0,0.0;
-    // Dataset data(X,y);
     Dataset data = Data::read_csv("examples/datasets/d_enc.csv","label");
-    for (const auto& kv : data.features)
-    {
-        const string& name = kv.first;
-        const State& value = kv.second;
-
-        std::cout << name << ": " << name;
-        /* std::visit([](auto&& v){std::cout << v << endl;}, value); */
-    }
-    // State out = tree.fit(d);
-    // cout << "output: " << get<ArrayXb>(out) << endl;
-
-    /* unordered_map<string, float> user_ops = { */
-    /*     {"Add", 1}, */
-    /*     {"Sub", 1}, */
-    /*     {"Div", .5}, */
-    /*     {"Times", 0.5} */
-    /* }; */
 
     SearchSpace SS;
     /* SS.init(data,user_ops); */
     SS.init(data);
 
-            
     // Program<ArrayXf> DXtree;
     for (int d = 1; d < 10; ++d)
         for (int s = 1; s < 10; ++s)
@@ -57,39 +31,14 @@ TEST(Program, MakeProgram)
 TEST(Program, FitPrograms)
 {
         
-    // dtable_fit.print();
-    // dtable_predict.print();
-
     Dataset data = Data::read_csv("examples/datasets/d_enc.csv","label");
-    for (const auto& kv : data.features)
-    {
-        const string& name = kv.first;
-        const State& value = kv.second;
-
-        std::cout << name << ": " << name;
-        /* std::visit([](auto&& v){std::cout << v << endl;}, value); */
-    }
-    // State out = tree.fit(d);
-    // cout << "output: " << get<ArrayXb>(out) << endl;
-
-    /* unordered_map<string, float> user_ops = { */
-    /*     {"Add", 1}, */
-    /*     {"Sub", 1}, */
-    /*     {"Div", .5}, */
-    /*     {"Times", 0.5} */
-    /* }; */
 
     SearchSpace SS;
-    /* SS.init(data,user_ops); */
     SS.init(data);
 
-            
-    // Program<ArrayXf> DXtree;
-    for (int t = 0; t < 10; ++t)
-    {
-        for (int d = 1; d < 10; ++d)
-            for (int s = 1; s < 100; s+=10)
-            {
+    for (int t = 0; t < 10; ++t) {
+        for (int d = 1; d < 10; ++d) { 
+            for (int s = 1; s < 100; s+=10) {
                 Program<ArrayXf> PRG = SS.make_program<ArrayXf>(d, 0, s);
                 fmt::print(
                     "=================================================\n"
@@ -100,6 +49,7 @@ TEST(Program, FitPrograms)
                 fmt::print("fitting...\n");
                 PRG.fit(data);
             }
+        }
     }
 }
 TEST(Program, BackProp)
@@ -133,9 +83,6 @@ TEST(Program, BackProp)
     /* SS.init(data); */
 
     auto DXtree = SS.make_program<ArrayXf>(9,0,9);
-    // auto root = DXtree.prg.insert(DXtree.prg.begin(), SS.get_op(typeid(ArrayXf));
-    // DXtree.prg.append_child(root2, new Node<ArrayXf>("x_1", 0));
-    // DXtree.prg.append_child(root2, new Node<ArrayXf>("x_2", 1));
     DXtree.fit(data);
     ofstream file;
     file.open(fmt::format("dx_model.dot"));
