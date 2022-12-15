@@ -75,6 +75,29 @@ template<typename T> struct Program //: public tree<Node>
         return out;
     };
 
+    void update_weights(const Dataset& d)
+    {
+        // Updates the weights within a tree. 
+
+        // get a copy of the weights from the tree. 
+        auto weights = this->get_weights();
+        // make an optimizer
+        auto WO = WeightOptimizer(); 
+        // get new weights from optimization.
+        auto new_weights = WO.update(d, this->prg, weights);
+        this->set_weights(new_weights);
+    }
+
+    auto get_weights()
+    {
+        // return the weights of the tree as an array (probably eigen array)
+    }
+
+    auto set_weights(const T& weights)
+    {
+        // take the weights updated by WeightOptimizer and set them in the tree. 
+    }
+
     T predict(const Dataset& d)
     {
         if (!is_fitted_)
