@@ -15,10 +15,13 @@ struct WeightOptimizer
 {
     // put ceres stuff in here!
 
-    auto new_weights update(const Dataset& d, tree<Node>& prg, ArrayXf& weights)
+    auto new_weights update(Program& p, const Dataset& d)
     {
         // update weights to return new_weights using Non-linear least squares.
         // target: d.y
+        // get a copy of the weights from the tree. 
+        auto weights = p.get_weights();
+        int n_weights = weights.size();
 
     }
 }
