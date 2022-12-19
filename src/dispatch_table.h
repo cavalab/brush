@@ -74,8 +74,17 @@ private:
                      );
     } 
 
+    // template<NodeType NT, typename Sigs, std::size_t... Is>
+    // static constexpr auto AddOperator(std::index_sequence<Is...>)
+    // {
+    //     SigMap sm;
+    //     (sm.insert({std::tuple_element_t<Is, Sigs>::hash(), 
+    //                 MakeCallable<NT, std::tuple_element_t<Is, Sigs>>()}), ...);
+    //     return sm;
+    // }
+    //TEST WITHOUT CONSTEXPR FOR CLANG:
     template<NodeType NT, typename Sigs, std::size_t... Is>
-    static constexpr auto AddOperator(std::index_sequence<Is...>)
+    static auto AddOperator(std::index_sequence<Is...>)
     {
         SigMap sm;
         (sm.insert({std::tuple_element_t<Is, Sigs>::hash(), 
