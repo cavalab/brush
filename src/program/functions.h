@@ -6,11 +6,10 @@ Code below heavily inspired by heal-research/operon
 */
 #ifndef OP_H
 #define OP_H
-#include <Eigen/Dense>
-#include "init.h"
+#include "../init.h"
 #include "nodemap.h"
-#include "util/utils.h"
-#include "data/data.h"
+#include "../util/utils.h"
+#include "../data/data.h"
 #include "node.h"
 using namespace Brush::Util;
 

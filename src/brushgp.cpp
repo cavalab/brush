@@ -11,7 +11,7 @@ license: GNU/GPL v3
 #include <pybind11/eigen.h>
 #include <pybind11/stl.h>
 
-#include "program.h"
+#include "program/program.h"
 #include "search_space.h"
 #include "data/data.h"
 

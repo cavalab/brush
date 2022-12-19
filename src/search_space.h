@@ -6,9 +6,9 @@ license: GNU/GPL v3
 #define SEARCHSPACE_H
 //internal includes
 #include "init.h"
-#include "node.h"
-#include "nodemap.h"
-#include "tree_node.h"
+#include "program/node.h"
+#include "program/nodemap.h"
+#include "program/tree_node.h"
 #include "util/utils.h"
 #include "util/rnd.h"
 #include "params.h"

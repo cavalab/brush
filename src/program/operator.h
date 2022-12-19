@@ -1,9 +1,9 @@
 #ifndef OPERATOR_H
 #define OPERATOR_H
 
-#include "init.h"
+#include "../init.h"
 #include "tree_node.h"
-#include "util/utils.h"
+#include "../util/utils.h"
 using Util::is_tuple;
 /* #include "data/timeseries.h" */
 /* using TreeNode = class tree_node_<Node>; */ 

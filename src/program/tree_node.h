@@ -3,19 +3,16 @@
 #include <tuple>
 #include <unordered_map>
 
-#include "init.h"
-#include "data/data.h"
+#include "../init.h"
+#include "../data/data.h"
 #include "node.h"
 #include "functions.h"
 #include "nodemap.h"
 #include "dispatch_table.h"
-#include "../thirdparty/tree.hh"
-/* #include "operator.h" */
-/* #include "interpreter.h" */
+#include "../../thirdparty/tree.hh"
 
 using std::string;
 using Brush::Data::Dataset;
-using Brush::ExecType;
 using Brush::Node;
 
 /* namespace Brush { */

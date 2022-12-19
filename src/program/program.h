@@ -15,13 +15,12 @@ license: GNU/GPL v3
 // internal includes
 
 // #include "data/data.h"
-#include "init.h"
+#include "../init.h"
 #include "tree_node.h"
-#include "state.h"
 #include "node.h"
-#include "search_space.h"
-#include "params.h"
-#include "util/utils.h"
+#include "../search_space.h"
+#include "../params.h"
+#include "../util/utils.h"
 
 
 using std::cout;

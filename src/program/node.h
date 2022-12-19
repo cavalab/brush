@@ -9,9 +9,9 @@ https://github.com/heal-research/operon/
 #ifndef NODE_H
 #define NODE_H
 
-#include "data/data.h"
+#include "../data/data.h"
 #include "nodemap.h"
-#include "util/utils.h"
+#include "../util/utils.h"
 #include <iostream>
 // #include "nodes/base.h"
 // #include "nodes/dx.h"
@@ -35,7 +35,6 @@ Node overhaul:
 
 */
 using Brush::DataType;
-using Brush::ExecType;
 using Brush::Data::Dataset;
 
 namespace Brush{
