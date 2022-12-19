@@ -120,7 +120,9 @@ setup(
     # cmake_install_dir="src/brush",
     python_requires=">=3.6",
     install_requires=[
+        'jsonschema',
         'numpy',
+        'pandas',
         'sphinx'
     ],
     test_requires=[

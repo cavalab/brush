@@ -17,7 +17,10 @@ license: GNU/GPL v3
 #include "error.h"
 #include <typeindex>
 #include <iterator> // needed for std::ostram_iterator
+#ifndef IS_MACOS
 #include <execution> // parallel policies
+#endif
+#include <ranges>
 
 using namespace Eigen;
 using namespace std;
@@ -574,7 +577,9 @@ R apply(const std::function<R(Args...)>& f, const vector<Arg>& inputs)
     {
         case 1: 
             std::transform(
+#ifndef IS_MACOS
                     std::execution::par_unseq,
+#endif
                     inputs.at(0).begin(),
                     inputs.at(0).end(),
                     output.begin(),
@@ -583,7 +588,9 @@ R apply(const std::function<R(Args...)>& f, const vector<Arg>& inputs)
             break;
         case 2: 
             std::transform(
+#ifndef IS_MACOS
                 std::execution::par_unseq,
+#endif
                 inputs.at(0).begin(),
                 inputs.at(0).end(),
                 inputs.at(1).begin(),

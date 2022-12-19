@@ -157,7 +157,7 @@ struct Node {
     inline auto operator<(const Node& rhs) const noexcept -> bool
     {
         /* return std::tie(HashValue, CalculatedHashValue) < std::tie(rhs.HashValue, rhs.CalculatedHashValue); */
-        return complete_hash < complete_hash; 
+        return complete_hash < rhs.complete_hash; 
         return (*this) < rhs;
     }
 

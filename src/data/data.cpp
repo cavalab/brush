@@ -98,8 +98,10 @@ State check_type(const ArrayXf& x)
 Dataset Dataset::operator()(const vector<size_t>& idx) const
 {
     std::map<std::string, State> new_d;
-    for (auto& [key, value] : this->features) 
+    for (auto& feature : this->features) 
     {
+        std::string key = feature.first;
+        Brush::data::State value = feature.second;
         std::visit([&](auto&& arg) 
         {
             using T = std::decay_t<decltype(arg)>;

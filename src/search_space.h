@@ -363,7 +363,7 @@ struct SearchSpace
                 return;
             }
 
-            using signatures = Signatures<NT>::type;
+            using signatures = typename Signatures<NT>::type;
             constexpr auto size = std::tuple_size<signatures>::value;
             AddNodes<NT, signatures>(user_ops, unique_data_types, std::make_index_sequence<size>()); 
         }
