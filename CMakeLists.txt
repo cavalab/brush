@@ -50,6 +50,9 @@ set(CMAKE_EXE_LINKER_FLAGS "${CMAKE_EXE_LINKER_FLAGS} -stdlib=libc++ -lc++abi")
 cmake_minimum_required (VERSION 3.15...3.19)
 # use c++ 20
 set(CMAKE_CXX_STANDARD 20)
+if(CMAKE_SYSTEM_NAME STREQUAL "Darwin")
+    set(CMAKE_CXX_STANDARD 23)
+endif()
 message(STATUS "CMAKE_CXX_STANDARD=${CMAKE_CXX_STANDARD}")
 
 #set (CMAKE_CXX_FLAGS "--std=c++11")
