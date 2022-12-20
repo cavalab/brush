@@ -56,27 +56,6 @@ PYBIND11_MODULE(brushgp, m) {
         // .def("get_y", &Brush::Data::Dataset::get_y, py::return_value_policy::reference_internal)        
         ;
 
-    using Reg = br::Program<ArrayXf>;
-
-    py::class_<Reg>(m, "Program")
-        .def(py::init<>())
-        .def("fit",
-             static_cast<Reg &(Reg::*)(const Dataset &d)>(&Reg::fit),
-             "fit from Dataset object")
-        .def("fit",
-             static_cast<Reg &(Reg::*)(const Ref<const ArrayXXf> &X, const Ref<const ArrayXf> &y)>(&Reg::fit),
-             "fit from X,y data")
-        .def("predict",
-             static_cast<ArrayXf (Reg::*)(const Dataset &d)>(&Reg::predict),
-             "predict from Dataset object")
-        .def("predict",
-             static_cast<ArrayXf (Reg::*)(const Ref<const ArrayXXf> &X)>(&Reg::predict),
-             "fit from X,y data")
-        .def("get_model",
-             &Reg::get_model,
-             py::arg("type") = "compact",
-             py::arg("pretty") = false);
-
     // Notice: We change the interface for SearchSpace a little bit by 
     // constructing it with a Dataset object, rather than initializing it as an
     // empty struct and then calling init() with the Dataset object.
@@ -91,4 +70,96 @@ PYBIND11_MODULE(brushgp, m) {
         .def("make_multiclass_classifier", &br::SearchSpace::make_multiclass_classifier)
         .def("make_representer", &br::SearchSpace::make_representer)
         ;
+
+    using Reg = br::Program<ArrayXf>;
+    using Cls = br::Program<ArrayXb>;
+    using MCls = br::Program<ArrayXi>;
+    using Rep = br::Program<ArrayXXf>;
+
+    py::class_<Reg>(m, "Regressor")
+        .def(py::init<>())
+        .def("fit",
+             static_cast<Reg &(Reg::*)(const Dataset &d)>(&Reg::fit),
+             "fit from Dataset object")
+        .def("fit",
+             static_cast<Reg &(Reg::*)(const Ref<const ArrayXXf> &X, const Ref<const ArrayXf> &y)>
+                (&Reg::fit),
+             "fit from X,y data")
+        .def("predict",
+             static_cast<ArrayXf (Reg::*)(const Dataset &d)>(&Reg::predict),
+             "predict from Dataset object")
+        .def("predict",
+             static_cast<ArrayXf (Reg::*)(const Ref<const ArrayXXf> &X)>(&Reg::predict),
+             "fit from X,y data")
+        .def("get_model",
+             &Reg::get_model,
+             py::arg("type") = "compact",
+             py::arg("pretty") = false);
+
+    py::class_<Cls>(m, "Classifier")
+        .def(py::init<>())
+        .def("fit",
+             static_cast<Cls &(Cls::*)(const Dataset &d)>(&Cls::fit),
+             "fit from Dataset object")
+        .def("fit",
+             static_cast<Cls &(Cls::*)(const Ref<const ArrayXXf> &X, const Ref<const ArrayXf> &y)>
+                (&Cls::fit),
+             "fit from X,y data")
+        .def("predict",
+             static_cast<ArrayXb (Cls::*)(const Dataset &d)>(&Cls::predict),
+             "predict from Dataset object")
+        .def("predict",
+             static_cast<ArrayXb (Cls::*)(const Ref<const ArrayXXf> &X)>(&Cls::predict),
+             "fit from X,y data")
+        .def("predict_proba",
+             static_cast<ArrayXf (Cls::*)(const Dataset &d)>(&Cls::predict_proba),
+             "predict from Dataset object")
+        .def("predict_proba",
+             static_cast<ArrayXf (Cls::*)(const Ref<const ArrayXXf> &X)>(&Cls::predict_proba),
+             "fit from X,y data")
+        .def("get_model",
+             &Cls::get_model,
+             py::arg("type") = "compact",
+             py::arg("pretty") = false);
+
+    py::class_<MCls>(m, "MulticlassClassifer")
+        .def(py::init<>())
+        .def("fit",
+             static_cast<MCls &(MCls::*)(const Dataset &d)>(&MCls::fit),
+             "fit from Dataset object")
+        .def("fit",
+             static_cast<MCls &(MCls::*)(const Ref<const ArrayXXf> &X, const Ref<const ArrayXf> &y)>
+                (&MCls::fit),
+             "fit from X,y data")
+        .def("predict",
+             static_cast<ArrayXi (MCls::*)(const Dataset &d)>(&MCls::predict),
+             "predict from Dataset object")
+        .def("predict",
+             static_cast<ArrayXi (MCls::*)(const Ref<const ArrayXXf> &X)>(&MCls::predict),
+             "fit from X,y data")
+        .def("get_model",
+             &MCls::get_model,
+             py::arg("type") = "compact",
+             py::arg("pretty") = false);
+
+    py::class_<Rep>(m, "Representer")
+        .def(py::init<>())
+        .def("fit",
+             static_cast<Rep &(Rep::*)(const Dataset &d)>(&Rep::fit),
+             "fit from Dataset object")
+        .def("fit",
+             static_cast<Rep &(Rep::*)(const Ref<const ArrayXXf> &X, const Ref<const ArrayXf> &y)>
+                (&Rep::fit),
+             "fit from X,y data")
+        .def("predict",
+             static_cast<ArrayXXf (Rep::*)(const Dataset &d)>(&Rep::predict),
+             "predict from Dataset object")
+        .def("predict",
+             static_cast<ArrayXXf (Rep::*)(const Ref<const ArrayXXf> &X)>(&Rep::predict),
+             "fit from X,y data")
+        .def("get_model",
+             &Rep::get_model,
+             py::arg("type") = "compact",
+             py::arg("pretty") = false);
+
 }

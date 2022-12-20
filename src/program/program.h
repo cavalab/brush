@@ -21,6 +21,7 @@ license: GNU/GPL v3
 #include "../search_space.h"
 #include "../params.h"
 #include "../util/utils.h"
+#include "functions.h"
 
 
 using std::cout;
@@ -88,6 +89,24 @@ template<typename T> struct Program //: public tree<Node>
         fmt::print("Predicting {}\n", this->get_model());
         R out = (Tree.begin().node->predict<TreeType>(d) > 0.5);
         return out;
+    };
+
+    /// @brief Specialized predict function for multiclass classification. 
+    /// @tparam R: return type, typically left blank 
+    /// @param d : data
+    /// @return out: integer labels
+    template <typename R = T>
+    enable_if_t<is_same_v<R, ArrayXi>, R>
+    predict(const Dataset &d)
+    {
+        if (!is_fitted_)
+            HANDLE_ERROR_THROW("Program is not fitted. Call 'fit' first.\n");
+
+        fmt::print("Predicting {}\n", this->get_model());
+        TreeType out = Tree.begin().node->predict<TreeType>(d);
+        auto argmax = Function<NodeType::ArgMax>{};
+        R label = argmax(out);
+        return label;
     };
 
     template <typename R = T>

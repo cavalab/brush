@@ -478,8 +478,6 @@ PT SearchSpace::make_program(int max_d, int max_size)
         else
             n = get_op(root_type);
 
-        if (n.name=="SplitOn" && in(n.arg_types, DataType::ArrayI))
-            fmt::print("{}",n.get_name());
         /* cout << "chose " << n.name << endl; */
         // auto spot = Tree.set_head(n);
         /* cout << "inserting...\n"; */
