@@ -510,7 +510,7 @@ Program<T> SearchSpace::make_program(int max_d, int max_breadth, int max_size)
          /* << prg.get_model(true) << endl; // pretty */
 
     return Program<T>(*this,prg);
-};;
+};
 
 extern SearchSpace SS;
 
