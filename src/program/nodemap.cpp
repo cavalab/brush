@@ -30,6 +30,7 @@ std::map<std::string, NodeType> NodeNameType = {
     {"Sqrtabs", NodeType::Sqrtabs},
     {"Square", NodeType::Square},
     {"Pow", NodeType::Pow},
+    {"Logistic", NodeType::Logistic},
 
     // logic; not sure these will make it in
     {"And", NodeType::And},

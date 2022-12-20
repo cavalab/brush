@@ -34,66 +34,91 @@ namespace Brush {
 
 typedef tree<Node>::pre_order_iterator Iter; 
 
-/* template<typename T> class Program; */
-
-
-/* tree<Node> make_program(SearchSpace& SS, DataType root_type, */ 
-/*                             int max_d, int max_breadth, int max_size); */
-
-// TODO: instead of templating this, define meaningful derived classes
 // for unsupervised learning, classification and regression. 
 template<typename T> struct Program //: public tree<Node>
 {
+    /// @brief whether fit has been called
     bool is_fitted_;
-    /* using RetType = typename DataTypeType<T>::type; */
-    const DataType RetDataType = DataTypeEnum<T>::value;
-
-    /// the underlying program
-    tree<Node> prg; 
+    /// the type of output from the tree object
+    using TreeType = conditional_t<std::is_same_v<T,ArrayXXf>, ArrayXXf, ArrayXf>;
+    /// the underlying tree
+    tree<Node> Tree; 
     /// reference to search space
     std::optional<std::reference_wrapper<SearchSpace>> SSref;
 
-    /* Program(SearchSpace& ss, int depth=0, int breadth = 0, int size = 0): SS(ss) */
-    /* { */
-
-    /*     this->prg = make_program(this->SS, RetDataType, depth, breadth, size); */
-    /* }; */
     Program() = default;
     Program(const std::reference_wrapper<SearchSpace> s, const tree<Node> t)
-        : prg(t) 
+        : Tree(t) 
     {
         SSref = std::optional<std::reference_wrapper<SearchSpace>>{s};
     }
 
-    T fit(const Dataset& d)
+    Program<T>& fit(const Dataset& d)
     {
         fmt::print("Fitting {}\n", this->get_model());
-        T out =  prg.begin().node->fit<T>(d);
-        fmt::print("Output {}\n", out);
+        TreeType out =  Tree.begin().node->fit<TreeType>(d);
+        // fmt::print("Output {}\n", out);
         is_fitted_ = true;
-        return out;
+        return *this;
     };
 
-    T predict(const Dataset& d)
+    template <typename R = T>
+    enable_if_t<is_same_v<R, TreeType>, R>
+    predict(const Dataset &d)
     {
         if (!is_fitted_)
             HANDLE_ERROR_THROW("Program is not fitted. Call 'fit' first.\n");
 
         fmt::print("Predicting {}\n", this->get_model());
-        T out = prg.begin().node->predict<T>(d);
+        R out = Tree.begin().node->predict<TreeType>(d);
         return out;
     };
 
-    T fit(const Ref<const ArrayXXf>& X, const Ref<const ArrayXf>& y)
+    /// @brief Specialized predict function for binary classification. 
+    /// @tparam R: return type, typically left blank 
+    /// @param d : data
+    /// @return out: binary labels
+    template <typename R = T>
+    enable_if_t<is_same_v<R, ArrayXb>, R>
+    predict(const Dataset &d)
+    {
+        if (!is_fitted_)
+            HANDLE_ERROR_THROW("Program is not fitted. Call 'fit' first.\n");
+
+        fmt::print("Predicting {}\n", this->get_model());
+        R out = (Tree.begin().node->predict<TreeType>(d) > 0.5);
+        return out;
+    };
+
+    template <typename R = T>
+    enable_if_t<is_same_v<R, ArrayXb>, ArrayXf>
+    predict_proba(const Dataset &d) { return predict<ArrayXf>(d); };
+
+    /// @brief Convenience function to call fit directly from X,y data.
+    /// @param X : Input features
+    /// @param y : Labels
+    /// @return : reference to program 
+    Program<T>& fit(const Ref<const ArrayXXf>& X, const Ref<const ArrayXf>& y)
     {
         Dataset d(X,y);
         return fit(d);
     };
 
-    T predict(const Ref<const ArrayXXf>& X, const Ref<const ArrayXf>& y)
+    /// @brief Convenience function to call predict directly from X data.
+    /// @param X : Input features
+    /// @return : predictions 
+    T predict(const Ref<const ArrayXXf>& X)
     {
-        Dataset d(X,y);
+        Dataset d(X);
         return predict(d);
+    };
+
+    template <typename R = T>
+    enable_if_t<is_same_v<R, ArrayXb>, ArrayXf>
+    predict_proba(const Ref<const ArrayXXf>& X)
+    {
+        Dataset d(X);
+        return predict_proba(d);
     };
 
     void grad_descent(const ArrayXf& gradient, const Dataset& d)
@@ -103,7 +128,7 @@ template<typename T> struct Program //: public tree<Node>
 
     string get_model(string fmt="compact", bool pretty=false)
     {
-        auto head = prg.begin(); 
+        auto head = Tree.begin(); 
         if (fmt=="tree")
             return head.node->get_tree_model(pretty);
         else if (fmt=="dot")
@@ -114,7 +139,7 @@ template<typename T> struct Program //: public tree<Node>
     string get_dot_model(){
         string out = "digraph G {\norientation=landscape;\n";
 
-        for (Iter iter = prg.begin(); iter!=prg.end(); iter++)
+        for (Iter iter = Tree.begin(); iter!=Tree.end(); iter++)
         {
             const auto& parent = iter.node->data;
             auto kid = iter.node->first_child;
@@ -145,16 +170,16 @@ template<typename T> struct Program //: public tree<Node>
     // Mutation & Crossover
 
 
-    // tree<Node> point_mutation(tree<Node>& prg, Iter spot);
-    // tree<Node> insert_mutation(tree<Node>& prg, Iter spot);
-    // tree<Node> delete_mutation(tree<Node>& prg, Iter spot);
+    // tree<Node> point_mutation(tree<Node>& Tree, Iter spot);
+    // tree<Node> insert_mutation(tree<Node>& Tree, Iter spot);
+    // tree<Node> delete_mutation(tree<Node>& Tree, Iter spot);
 
     /// point mutation: replace node with same typed node
     void point_mutation(Iter spot, const SearchSpace& SS)
     {
         cout << "point mutation\n";
         auto newNode = SS.get_node_like(spot.node->data); 
-        this->prg.replace(spot, newNode);
+        this->Tree.replace(spot, newNode);
     };
     /// insert a node with spot as a child
     void insert_mutation(Iter spot, const SearchSpace& SS)
@@ -163,7 +188,7 @@ template<typename T> struct Program //: public tree<Node>
         auto spot_type = spot.node->data.ret_type;
         auto n = SS.get_op_with_arg(spot_type, spot_type); 
         // make node n wrap the subtree at the chosen spot
-        auto parent_node = this->prg.wrap(spot, n);
+        auto parent_node = this->Tree.wrap(spot, n);
 
         // now fill the arguments of n appropriately
         bool spot_filled = false;
@@ -173,14 +198,14 @@ template<typename T> struct Program //: public tree<Node>
             if (spot_filled)
             {
                 // if spot is in its child position, append children
-                this->prg.append_child(parent_node, SS.get_terminal(a));
+                this->Tree.append_child(parent_node, SS.get_terminal(a));
             }
             // if types match, treat this spot as filled by the spot node 
             else if (a == spot_type)
                 spot_filled = true;
             // otherwise, add siblings before spot node
             else
-                this->prg.insert(spot, SS.get_terminal(a));
+                this->Tree.insert(spot, SS.get_terminal(a));
 
         } 
     };
@@ -189,8 +214,8 @@ template<typename T> struct Program //: public tree<Node>
     {
         cout << "delete mutation\n";
         auto terminal = SS.get_terminal(spot.node->data.ret_type); 
-        this->prg.erase_children(spot); 
-        this->prg.replace(spot, terminal);
+        this->Tree.erase_children(spot); 
+        this->Tree.replace(spot, terminal);
     };
 
     inline Program<T> mutate() const { assert(this->SSref); return mutate(SSref.value()); }
@@ -206,13 +231,13 @@ template<typename T> struct Program //: public tree<Node>
         Program<T> child(*this);
 
         // choose location by weighted sampling of program
-        vector<float> weights(child.prg.size());
-        std::transform(child.prg.begin(), child.prg.end(), 
+        vector<float> weights(child.Tree.size());
+        std::transform(child.Tree.begin(), child.Tree.end(), 
                        weights.begin(),
                        [](const auto& n){ return n.get_prob_change(); }
                       );
 
-        auto spot = r.select_randomly(child.prg.begin(), child.prg.end(), 
+        auto spot = r.select_randomly(child.Tree.begin(), child.Tree.end(), 
                                       weights.begin(), weights.end());
 
         // choose one of these options
@@ -235,38 +260,36 @@ template<typename T> struct Program //: public tree<Node>
         Program<T> child(*this);
 
         // pick a subtree to replace
-        vector<float> child_weights(child.prg.size());
-        std::transform(child.prg.begin(), child.prg.end(), 
+        vector<float> child_weights(child.Tree.size());
+        std::transform(child.Tree.begin(), child.Tree.end(), 
                        child_weights.begin(),
                        [](const auto& n){ return n.get_prob_change(); }
                       );
 
-        auto child_spot = r.select_randomly(child.prg.begin(), 
-                                            child.prg.end(), 
+        auto child_spot = r.select_randomly(child.Tree.begin(), 
+                                            child.Tree.end(), 
                                             child_weights.begin(), 
                                             child_weights.end()
                                            );
         // pick a subtree to insert
-        vector<float> other_weights(other.prg.size());
-        std::transform(other.prg.begin(), other.prg.end(), 
+        vector<float> other_weights(other.Tree.size());
+        std::transform(other.Tree.begin(), other.Tree.end(), 
                        other_weights.begin(),
                        [](const auto& n){ return n.get_prob_change(); }
                       );
 
-        auto other_spot = r.select_randomly(other.prg.begin(), 
-                                            other.prg.end(), 
+        auto other_spot = r.select_randomly(other.Tree.begin(), 
+                                            other.Tree.end(), 
                                             other_weights.begin(), 
                                             other_weights.end()
                                            );
                         
         // swap subtrees at child_spot and other_spot
-        child.prg.move_ontop(child_spot, other_spot);
+        child.Tree.move_ontop(child_spot, other_spot);
 
         return child;
     };
 }; // Program
-
-typedef Program<ArrayXXf> MultiProgram;
 
 } // Brush
 

@@ -79,6 +79,7 @@ https://eigen.tuxfamily.org/dox/TopicCustomizing_Plugins.html
         template<typename T1, typename T2>
         inline auto operator()(T1 t1, T2 t2) { return t1 / t2 ; }
     };
+    
 
     /* coefficient-wise minimum of two or more arguments. */
     template<>
@@ -211,10 +212,6 @@ https://eigen.tuxfamily.org/dox/TopicCustomizing_Plugins.html
             return idx;
         }
 
-        // template<>
-        // inline auto operator()(TimeSeriesf t) { return t.apply(Eigen::maxCoeff()); }
-        // template<typename T>
-        // inline auto operator()(TimeSeries<T> t) { return t.max(); }
     };
 
 
@@ -234,6 +231,13 @@ https://eigen.tuxfamily.org/dox/TopicCustomizing_Plugins.html
         /* template<typename T> */
         /* inline auto operator()(TimeSeries<T> t) { return t.transform(std::fabs); } */
         /* inline auto operator()(TimeSeries<T> t) { return t.apply([](const auto& i){return i.abs();}); } */
+    };
+
+    template<>
+    struct Function<NodeType::Logistic>
+    {
+        template<typename T>
+        inline auto operator()(T t) { return 1 / (1 + (-t).exp()) ; }
     };
 
     template<>

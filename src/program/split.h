@@ -31,7 +31,7 @@ namespace Split{
         
         vector<float> all_thresholds = get_thresholds(x); 
         /* fmt::print("x: {}\n", x); */
-        /* fmt::print("y: {}\n", y); */
+        fmt::print("y: {}\n", y);
         /* fmt::print("classification: {}\n", classification); */
         /* fmt::print("all thresholds: {}\n", all_thresholds); */
 
@@ -100,7 +100,7 @@ namespace Split{
             float tmp_thresh, score;
 
             tie(tmp_thresh, score) = best_threshold(std::get<T>(d[key]), d.y, d.classification);
-            fmt::print("best threshold for {} = {:.3f}, score = {:.3f}\n",key,tmp_thresh,score);
+            // fmt::print("best threshold for {} = {:.3f}, score = {:.3f}\n",key,tmp_thresh,score);
             if (score < best_score | i == 0)
             {
                 best_score = score;
@@ -110,7 +110,6 @@ namespace Split{
             ++i;
         }
         auto tmp = std::make_tuple(feature, threshold, best_score);
-        fmt::print("returning {}\n",tmp);
         results.push_back(std::make_tuple(feature, threshold, best_score));
     }
 
@@ -171,7 +170,6 @@ struct Operator<NT, S, Fit, enable_if_t<is_one_of_v<NT, NodeType::SplitOn, NodeT
         if constexpr (NT==NodeType::SplitOn)
             sib = sib->next_sibling;
 
-        cout << "-----> first_child ptr: " << sib << endl;
         for (int i = 0; i < 2; ++i)
         {
             if (d.at(i).get_n_samples() > 0)
@@ -182,7 +180,6 @@ struct Operator<NT, S, Fit, enable_if_t<is_one_of_v<NT, NodeType::SplitOn, NodeT
                     child_outputs.at(i) = sib->predict<arg_type>(d.at(i));
             }
             sib = sib->next_sibling;
-            cout << "-----> next sib ptr: " << sib << endl;
         }
         return child_outputs;
     };

@@ -62,7 +62,9 @@ Dataset read_csv (
         ++rows;
     }
     
-    auto y = Map<VectorXf>(targets.data(), targets.size());
+    auto y = ArrayXf(targets.size());
+    for (int i = 0; i < targets.size(); ++i)
+        y(i) = targets.at(i);
 
     // infer types of features
     map<string, State> features;
@@ -75,34 +77,15 @@ Dataset read_csv (
         features[key] = check_type(tmp); 
         
     }
-    // auto X = Map<MatrixXf>(values.data(), values.size()/(rows-1), rows-1);
-    // auto XT = X.transpose();
-    
-    // if (X.cols() != names.size())
-    // {
-    //     string error_msg = "header missing or incorrect number of "
-    //                        "feature names\n";
-    //     error_msg += "X size: " + to_string(X.rows()) + "x" 
-    //         + to_string(X.cols()) +"\n";
-    //     error_msg += "feature names: ";
-    //     for (auto fn: names)
-    //         error_msg += fn + ",";
-    //     HANDLE_ERROR_THROW(error_msg);
-    // }
-   
-    // dtypes = find_dtypes(X);
-
-    // string print_dtypes = "dtypes: "; 
-    // for (unsigned i = 0; i < dtypes.size(); ++i) 
-    //     print_dtypes += (names.at(i) + " (" + to_string(dtypes.at(i)) 
-    //             + "), ");
-    // print_dtypes += "\n";
-    // cout << print_dtypes;
 
     // check if endpoint is binary
     bool binary_endpoint = (y.array() == 0 || y.array() == 1).all();
 
+    fmt::print("y: {}\n",y);
+
     auto result = Dataset(features,y,binary_endpoint);
+    fmt::print("result.y: {}\n",result.y);
+    ArrayXf y2 = result.y;
     return result;
     
 }

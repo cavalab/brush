@@ -56,6 +56,27 @@ PYBIND11_MODULE(brushgp, m) {
         // .def("get_y", &Brush::Data::Dataset::get_y, py::return_value_policy::reference_internal)        
         ;
 
+    using Reg = br::Program<ArrayXf>;
+
+    py::class_<Reg>(m, "Program")
+        .def(py::init<>())
+        .def("fit",
+             static_cast<Reg &(Reg::*)(const Dataset &d)>(&Reg::fit),
+             "fit from Dataset object")
+        .def("fit",
+             static_cast<Reg &(Reg::*)(const Ref<const ArrayXXf> &X, const Ref<const ArrayXf> &y)>(&Reg::fit),
+             "fit from X,y data")
+        .def("predict",
+             static_cast<ArrayXf (Reg::*)(const Dataset &d)>(&Reg::predict),
+             "predict from Dataset object")
+        .def("predict",
+             static_cast<ArrayXf (Reg::*)(const Ref<const ArrayXXf> &X)>(&Reg::predict),
+             "fit from X,y data")
+        .def("get_model",
+             &Reg::get_model,
+             py::arg("type") = "compact",
+             py::arg("pretty") = false);
+
     // Notice: We change the interface for SearchSpace a little bit by 
     // constructing it with a Dataset object, rather than initializing it as an
     // empty struct and then calling init() with the Dataset object.
@@ -65,20 +86,9 @@ PYBIND11_MODULE(brushgp, m) {
             SS.init(data);
             return SS;
         }))
-        .def("make_program", &br::SearchSpace::make_program<ArrayXf>)
-        ;
-    using Prg = br::Program<ArrayXf>;
-
-    py::class_<Prg>(m, "Program")
-        .def(py::init<>())
-        .def("fit", 
-             static_cast<ArrayXf(br::Program<ArrayXf>::*)(const Dataset& d)>(&br::Program<ArrayXf>::fit), "fit from Dataset object")
-        .def("fit", static_cast<ArrayXf(br::Program<ArrayXf>::*)(const Ref<const ArrayXXf>& X, const Ref<const ArrayXf>& y)>(&br::Program<ArrayXf>::fit), 
-            "fit from X,y data")
-        .def("predict", static_cast<ArrayXf(br::Program<ArrayXf>::*)(const Dataset& d)>(&br::Program<ArrayXf>::fit), "predict from Dataset object")
-        .def("predict", static_cast<ArrayXf(br::Program<ArrayXf>::*)(const Ref<const ArrayXXf>& X, const Ref<const ArrayXf>& y)>(&br::Program<ArrayXf>::fit), 
-            "fit from X,y data")
-        .def("get_model", &br::Program<ArrayXf>::get_model, 
-                py::arg("type")="compact", py::arg("pretty")=false)
+        .def("make_regressor", &br::SearchSpace::make_regressor)
+        .def("make_classifier", &br::SearchSpace::make_classifier)
+        .def("make_multiclass_classifier", &br::SearchSpace::make_multiclass_classifier)
+        .def("make_representer", &br::SearchSpace::make_representer)
         ;
 }

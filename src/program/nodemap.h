@@ -54,32 +54,33 @@ enum class NodeType : uint64_t {
     Sqrtabs             = 1UL << 17UL,
     Square              = 1UL << 18UL,
     Not                 = 1UL << 19UL,
+    Logistic            = 1UL << 20UL,
     // timing masks
-    Before              = 1UL << 20UL,
-    After               = 1UL << 21UL,
-    During              = 1UL << 22UL,
+    Before              = 1UL << 21UL,
+    After               = 1UL << 22UL,
+    During              = 1UL << 23UL,
     // Reducers
-    Min                 = 1UL << 23UL,
-    Max                 = 1UL << 24UL,
-    Mean                = 1UL << 25UL,
-    Median              = 1UL << 26UL,
-    Count               = 1UL << 27UL,
-    Sum                 = 1UL << 28UL,
-    ArgMax              = 1UL << 29UL,
+    Min                 = 1UL << 24UL,
+    Max                 = 1UL << 25UL,
+    Mean                = 1UL << 26UL,
+    Median              = 1UL << 27UL,
+    Count               = 1UL << 28UL,
+    Sum                 = 1UL << 29UL,
+    ArgMax              = 1UL << 30UL,
     // Transformers 
-    Softmax             = 1UL << 30UL,
+    Softmax             = 1UL << 31UL,
     // Binary
-    Add                 = 1UL << 31UL,
-    Sub                 = 1UL << 32UL,
-    Mul                 = 1UL << 33UL,
-    Div                 = 1UL << 34UL,
-    Pow                 = 1UL << 35UL,
-    And                 = 1UL << 36UL,
-    Or                  = 1UL << 37UL,
-    Xor                 = 1UL << 38UL,
+    Add                 = 1UL << 32UL,
+    Sub                 = 1UL << 33UL,
+    Mul                 = 1UL << 34UL,
+    Div                 = 1UL << 35UL,
+    Pow                 = 1UL << 36UL,
+    And                 = 1UL << 37UL,
+    Or                  = 1UL << 38UL,
+    Xor                 = 1UL << 39UL,
     //split
-    SplitBest           = 1UL << 39UL,
-    SplitOn             = 1UL << 40UL,
+    SplitBest           = 1UL << 40UL,
+    SplitOn             = 1UL << 41UL,
     // these ones change type
     /* Equals              = 1UL << 39UL, */
     /* LessThan            = 1UL << 40UL, */
@@ -87,19 +88,19 @@ enum class NodeType : uint64_t {
     /* Leq                 = 1UL << 42UL, */
     /* Geq                 = 1UL << 43UL, */
     // leaves
-    Constant            = 1UL << 41UL,
-    Terminal            = 1UL << 42UL,
+    Constant            = 1UL << 42UL,
+    Terminal            = 1UL << 43UL,
     // custom
-    CustomUnaryOp       = 1UL << 43UL,
-    CustomBinaryOp      = 1UL << 44UL,
-    CustomSplit         = 1UL << 45UL
+    CustomUnaryOp       = 1UL << 44UL,
+    CustomBinaryOp      = 1UL << 45UL,
+    CustomSplit         = 1UL << 46UL
 };
 
 
 using UnderlyingNodeType = std::underlying_type_t<NodeType>;
 struct NodeTypes {
     // magic number keeping track of the number of different node types
-    static constexpr size_t Count = 43;
+    static constexpr size_t Count = 44;
     static constexpr size_t OpCount = Count-2;
 
     // returns the index of the given type in the NodeType enum

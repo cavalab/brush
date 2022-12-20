@@ -105,7 +105,8 @@ class Dataset
         std::map<string, State> features;
 
         // ArrayXXf& X;
-        const Ref<const ArrayXf> y;
+        // const Ref<const ArrayXf> y;
+        ArrayXf y;
         // Longitudinal& Z;
         bool classification;
         bool validation; 
@@ -161,8 +162,6 @@ class Dataset
         {
             if (this->features.find(name) == features.end())
                 HANDLE_ERROR_THROW(fmt::format("Couldn't find feature {} in data\n",name));
-            fmt::print("returning Data::features.at({})\n",name); 
-            fmt::print("Data::features.at({}) type = {}\n",name,this->features.at(name).index()); 
             return this->features.at(name);
         };
 

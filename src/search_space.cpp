@@ -1,4 +1,5 @@
 #include "search_space.h"
+#include "program/program.h"
 
 namespace Brush{
 
@@ -30,7 +31,7 @@ std::unordered_map<std::size_t, std::string> ArgsName;
 void SearchSpace::init(const Dataset& d, const unordered_map<string,float>& user_ops)
 {
     fmt::print("constructing search space...\n");
-
+    // ArrayXf y = d.y;
     this->node_map.clear();
     this->weight_map.clear();
     this->terminal_map.clear();
@@ -67,6 +68,26 @@ void SearchSpace::init(const Dataset& d, const unordered_map<string,float>& user
 
 };
 
+RegressorProgram SearchSpace::make_regressor(int max_d, int max_size)
+{
+    return make_program<RegressorProgram>(max_d, max_size);
+};
+
+ClassifierProgram SearchSpace::make_classifier(int max_d, int max_size)
+{
+    return make_program<ClassifierProgram>(max_d, max_size);
+};
+
+MulticlassClassifierProgram SearchSpace::make_multiclass_classifier(
+    int max_d, int max_size)
+{
+    return make_program<MulticlassClassifierProgram>(max_d, max_size);
+};
+
+RepresenterProgram SearchSpace::make_representer(int max_d, int max_size)
+{
+    return make_program<RepresenterProgram>(max_d, max_size);
+};
 
 } //Brush
 

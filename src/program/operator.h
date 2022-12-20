@@ -116,7 +116,6 @@ struct Operator
          * @param inputs: arguments to the operator
          * @param n: the node with weights
          */
-        cout << "applying weights to " << n.name << " operator\n";
         std::transform(
                     inputs.begin(), 
                     inputs.end(),
@@ -209,19 +208,19 @@ struct Operator<NodeType::Constant, S, Fit>
 template<typename R, NodeType NT, typename S, bool Fit> 
 R DispatchOp(const Dataset& d, TreeNode& tn) 
 {
-    fmt::print("DispatchOp: Dispatching {} with signature {} of {}\n",
-        NT, 
-        S::get_args_type(),
-        S::get_arg_types()
-    );
+    // fmt::print("DispatchOp: Dispatching {} with signature {} of {}\n",
+    //     NT, 
+    //     S::get_args_type(),
+    //     S::get_arg_types()
+    // );
 
     const auto op = Operator<NT,S,Fit>{};
     R out = op.eval(d, tn);
-    if(out.size()==0)
-        cout << "out empty\n";
+    // if(out.size()==0)
+    //     cout << "out empty\n";
 
-    if constexpr (is_same_v<R,ArrayXf>)
-        fmt::print("{} returning {}\n",NT, out);
+    // if constexpr (is_same_v<R,ArrayXf>)
+    //     fmt::print("{} returning {}\n",NT, out);
     /* cout << NT << " output: " << out << endl; */
     return out;
     /* return op.eval(d,tn); */

@@ -173,7 +173,8 @@ struct Signatures<N, enable_if_t<is_one_of_v<N,
     NodeType::Log1p,
     NodeType::Sqrt,
     NodeType::Sqrtabs,
-    NodeType::Square 
+    NodeType::Square,
+    NodeType::Logistic
     >>>{ 
         using type = std::tuple< 
             Signature<ArrayXf(ArrayXf)>,
