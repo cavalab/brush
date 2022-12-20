@@ -52,6 +52,9 @@ std::map<std::string, NodeType> NodeNameType = {
     {"Count", NodeType::Count},
     {"Sum", NodeType::Sum},
 
+    // transforms
+    {"Softmax", NodeType::Softmax},
+
     // timing masks
     {"Before", NodeType::Before},
     {"After", NodeType::After},

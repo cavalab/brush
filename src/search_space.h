@@ -299,7 +299,11 @@ struct SearchSpace
         /* static constexpr auto MakeNode(bool weighted) */
         template<NodeType NT, typename S>
         requires (!is_one_of_v<NT, NodeType::Terminal, NodeType::Constant>)
-        static constexpr std::optional<Node> CreateNode(const auto& unique_data_types, bool use_all, bool weighted)
+        static constexpr std::optional<Node> CreateNode(
+            const auto& unique_data_types, 
+            bool use_all, 
+            bool weighted
+        )
         {
             // prune the operators out that don't have argument types that
             // overlap with feature data types
@@ -319,9 +323,10 @@ struct SearchSpace
         }
        
         template<NodeType NT, typename S>
-        constexpr void AddNode(const unordered_map<string,float>& user_ops, 
-                const vector<DataType>& unique_data_types
-                )
+        constexpr void AddNode(
+            const unordered_map<string,float>& user_ops, 
+            const vector<DataType>& unique_data_types
+        )
         {
             
             bool use_all = user_ops.size() == 0;
@@ -339,12 +344,12 @@ struct SearchSpace
             }
         }
 
-        template<NodeType NT, typename Sigs, std::size_t... Is>
-        constexpr void AddNodes(const unordered_map<string,float>& user_ops, 
-                const vector<DataType>& unique_data_types,
-                std::index_sequence<Is...>)
+        template <NodeType NT, typename Sigs, std::size_t... Is>
+        constexpr void AddNodes(const unordered_map<string, float> &user_ops,
+                                const vector<DataType> &unique_data_types,
+                                std::index_sequence<Is...>)
         {
-            (AddNode<NT,std::tuple_element_t<Is, Sigs>>(user_ops, unique_data_types), ...);
+            (AddNode<NT, std::tuple_element_t<Is, Sigs>>(user_ops, unique_data_types), ...);
         }
 
         template<NodeType NT>
@@ -365,7 +370,11 @@ struct SearchSpace
 
             using signatures = Signatures<NT>::type;
             constexpr auto size = std::tuple_size<signatures>::value;
-            AddNodes<NT, signatures>(user_ops, unique_data_types, std::make_index_sequence<size>()); 
+            AddNodes<NT, signatures>(
+                user_ops,
+                unique_data_types,
+                std::make_index_sequence<size>()
+            ); 
         }
 
         template<std::size_t... Is>

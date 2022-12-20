@@ -6,6 +6,12 @@ Code below heavily inspired by heal-research/operon
 */
 #ifndef OP_H
 #define OP_H
+#include <cmath>
+#include <iterator>
+#include <functional>
+#include <numeric>
+#include <type_traits>
+
 #include "../init.h"
 #include "nodemap.h"
 #include "../util/utils.h"
@@ -193,192 +199,225 @@ https://eigen.tuxfamily.org/dox/TopicCustomizing_Plugins.html
     };
 
 
-     // bin... and unary functions
-     /* template<> */
-     /* struct Function<NodeType::Aq> */
-     /* { */
-     /*     template<typename T> */
-     /*     inline auto operator()(T t1, T t2) { return t1 / (typename T::Scalar{1.0} + t2.square()).sqrt(); } */
-     /* }; */
+    // bin... and unary functions
+    /* template<> */
+    /* struct Function<NodeType::Aq> */
+    /* { */
+    /*     template<typename T> */
+    /*     inline auto operator()(T t1, T t2) { return t1 / (typename T::Scalar{1.0} + t2.square()).sqrt(); } */
+    /* }; */
 
-     template<>
-     struct Function<NodeType::Pow>
-     {
-         template<typename T>
-         inline auto operator()(T t1, T t2) { return t1.pow(t2); }
-     };
+    template<>
+    struct Function<NodeType::Pow>
+    {
+        template<typename T>
+        inline auto operator()(T t1, T t2) { return t1.pow(t2); }
+    };
 
-     template<>
-     struct Function<NodeType::Abs>
-     {
-         template<typename T>
-         inline auto operator()(T t) { return t.abs(); }
+    template<>
+    struct Function<NodeType::Abs>
+    {
+        template<typename T>
+        inline auto operator()(T t) { return t.abs(); }
 
-         /* template<typename T> */
-         /* inline auto operator()(TimeSeries<T> t) { return t.transform(std::fabs); } */
-         /* inline auto operator()(TimeSeries<T> t) { return t.apply([](const auto& i){return i.abs();}); } */
-     };
+        /* template<typename T> */
+        /* inline auto operator()(TimeSeries<T> t) { return t.transform(std::fabs); } */
+        /* inline auto operator()(TimeSeries<T> t) { return t.apply([](const auto& i){return i.abs();}); } */
+    };
 
-     template<>
-     struct Function<NodeType::Log>
-     {
-         template<typename T>
-         inline auto operator()(T t) { return t.log(); }
-     };
+    template<>
+    struct Function<NodeType::Log>
+    {
+        template<typename T>
+        inline auto operator()(T t) { return t.log(); }
+    };
 
-     template<>
-     struct Function<NodeType::Logabs>
-     {
-         template<typename T>
-         inline auto operator()(T t) { return t.abs().log(); }
-     };
+    template<>
+    struct Function<NodeType::Logabs>
+    {
+        template<typename T>
+        inline auto operator()(T t) { return t.abs().log(); }
+    };
 
-     template<>
-     struct Function<NodeType::Log1p>
-     {
-         template<typename T>
-         inline auto operator()(T t) { return t.log1p(); }
-     };
+    template<>
+    struct Function<NodeType::Log1p>
+    {
+        template<typename T>
+        inline auto operator()(T t) { return t.log1p(); }
+    };
 
-     template<>
-     struct Function<NodeType::Ceil>
-     {
-         template<typename T>
-         inline auto operator()(T t) { return t.ceil(); }
-     };
+    template<>
+    struct Function<NodeType::Ceil>
+    {
+        template<typename T>
+        inline auto operator()(T t) { return t.ceil(); }
+    };
 
-     template<>
-     struct Function<NodeType::Floor>
-     {
-         template<typename T>
-         inline auto operator()(T t) { return t.floor(); }
-     };
+    template<>
+    struct Function<NodeType::Floor>
+    {
+        template<typename T>
+        inline auto operator()(T t) { return t.floor(); }
+    };
 
-     template<>
-     struct Function<NodeType::Exp>
-     {
-         template<typename T>
-         inline auto operator()(T t) { return t.exp(); }
-     };
+    template<>
+    struct Function<NodeType::Exp>
+    {
+        template<typename T>
+        inline auto operator()(T t) { return t.exp(); }
+    };
 
-     template<>
-     struct Function<NodeType::Sin>
-     {
-         template<typename T>
-         inline auto operator()(T t) { return t.sin(); }
-     };
+    template<>
+    struct Function<NodeType::Sin>
+    {
+        template<typename T>
+        inline auto operator()(T t) { return t.sin(); }
+    };
 
-     template<>
-     struct Function<NodeType::Cos>
-     {
-         template<typename T>
-         inline auto operator()(T t) { return t.cos(); }
-     };
+    template<>
+    struct Function<NodeType::Cos>
+    {
+        template<typename T>
+        inline auto operator()(T t) { return t.cos(); }
+    };
 
-     template<>
-     struct Function<NodeType::Tan>
-     {
-         template<typename T>
-         inline auto operator()(T t) { return t.tan(); }
-     };
+    template<>
+    struct Function<NodeType::Tan>
+    {
+        template<typename T>
+        inline auto operator()(T t) { return t.tan(); }
+    };
 
-     template<>
-     struct Function<NodeType::Asin>
-     {
-         template<typename T>
-         inline auto operator()(T t) { return t.asin(); }
-     };
+    template<>
+    struct Function<NodeType::Asin>
+    {
+        template<typename T>
+        inline auto operator()(T t) { return t.asin(); }
+    };
 
-     template<>
-     struct Function<NodeType::Acos>
-     {
-         template<typename T>
-         inline auto operator()(T t) { return t.acos(); }
-     };
+    template<>
+    struct Function<NodeType::Acos>
+    {
+        template<typename T>
+        inline auto operator()(T t) { return t.acos(); }
+    };
 
-     template<>
-     struct Function<NodeType::Atan>
-     {
-         template<typename T>
-         inline auto operator()(T t) { return t.atan(); }
-     };
+    template<>
+    struct Function<NodeType::Atan>
+    {
+        template<typename T>
+        inline auto operator()(T t) { return t.atan(); }
+    };
 
-     template<>
-     struct Function<NodeType::Sinh>
-     {
-         template<typename T>
-         inline auto operator()(T t) { return t.sinh(); }
-     };
+    template<>
+    struct Function<NodeType::Sinh>
+    {
+        template<typename T>
+        inline auto operator()(T t) { return t.sinh(); }
+    };
 
-     template<>
-     struct Function<NodeType::Cosh>
-     {
-         template<typename T>
-         inline auto operator()(T t) { return t.cosh(); }
-     };
+    template<>
+    struct Function<NodeType::Cosh>
+    {
+        template<typename T>
+        inline auto operator()(T t) { return t.cosh(); }
+    };
 
-     template<>
-     struct Function<NodeType::Tanh>
-     {
-         template<typename T>
-         inline auto operator()(T t) { return t.tanh(); }
-     };
+    template<>
+    struct Function<NodeType::Tanh>
+    {
+        template<typename T>
+        inline auto operator()(T t) { return t.tanh(); }
+    };
 
-     template<>
-     struct Function<NodeType::Sqrt>
-     {
-         template<typename T>
-         inline auto operator()(T t) { return t.sqrt(); }
-     };
+    template<>
+    struct Function<NodeType::Sqrt>
+    {
+        template<typename T>
+        inline auto operator()(T t) { return t.sqrt(); }
+    };
 
-     template<>
-     struct Function<NodeType::Sqrtabs>
-     {
-         template<typename T>
-         inline auto operator()(T t) { return t.abs().sqrt(); }
-     };
+    template<>
+    struct Function<NodeType::Sqrtabs>
+    {
+        template<typename T>
+        inline auto operator()(T t) { return t.abs().sqrt(); }
+    };
 
-     /* template<> */
-     /* struct Function<NodeType::Cbrt> */
-     /* { */
-     /*     template<typename T> */
-     /*     inline auto operator()(T t) { return t.unaryExpr([](typename T::Scalar const& v) { return std::cbrt(v); }); } */
-     /* }; */
+    /* template<> */
+    /* struct Function<NodeType::Cbrt> */
+    /* { */
+    /*     template<typename T> */
+    /*     inline auto operator()(T t) { return t.unaryExpr([](typename T::Scalar const& v) { return std::cbrt(v); }); } */
+    /* }; */
 
-     template<>
-     struct Function<NodeType::Square>
-     {
-         template<typename T>
-         inline auto operator()(T t) { return t.square(); }
-     };
+    template<>
+    struct Function<NodeType::Square>
+    {
+        template<typename T>
+        inline auto operator()(T t) { return t.square(); }
+    };
 
-     template<>
-     struct Function<NodeType::Before>
-     {
-         template<typename T1, typename T2>
-         inline auto operator()(T1 t1, T2 t2) { return t1.before(t2); }
-     };
+    template<>
+    struct Function<NodeType::Before>
+    {
+        template<typename T1, typename T2>
+        inline auto operator()(T1 t1, T2 t2) { return t1.before(t2); }
+    };
 
-     template<>
-     struct Function<NodeType::After>
-     {
-         template<typename T1, typename T2>
-         inline auto operator()(T1 t1, T2 t2) { return t1.after(t2); }
-     };
+    template<>
+    struct Function<NodeType::After>
+    {
+        template<typename T1, typename T2>
+        inline auto operator()(T1 t1, T2 t2) { return t1.after(t2); }
+    };
 
-     template<>
-     struct Function<NodeType::During>
-     {
-         template<typename T1, typename T2>
-         inline auto operator()(T1 t1, T2 t2) { return t1.during(t2); }
-     };
+    template<>
+    struct Function<NodeType::During>
+    {
+        template<typename T1, typename T2>
+        inline auto operator()(T1 t1, T2 t2) { return t1.during(t2); }
+    };
 
-     template<>
-     struct Function<NodeType::SplitOn>
-     {
-         template<typename T1, typename T2>
-         inline auto operator()(T1 t1, T2 t2, T2 t3) { return t2; }
-     };
+    template<>
+    struct Function<NodeType::SplitOn>
+    {
+        template<typename T1, typename T2>
+        inline auto operator()(T1 t1, T2 t2, T2 t3) { return t2; }
+    };
+    
+    /// @brief Stacks Eigen arrays into a 2d-array, where each array is a column.
+    /// @tparam T : underlying type in array
+    template<typename T> 
+    constexpr auto Stack = [](auto m, auto... ms) {
+        return ((Array<T,-1,-1>(m.rows(),1+sizeof...(ms))<<m),...,ms).finished();
+    }; 
+
+    template<>
+    struct Function<NodeType::Softmax>
+    {
+       template <typename T>
+       inline auto softmax(const Array<T, -1, -1> &t) const
+       {
+          auto tMinusMax = t.rowwise() - t.colwise().maxCoeff();
+          Array<T, -1, 1> output = tMinusMax.rowwise() - tMinusMax.exp().colwise().sum().log();
+          return output;
+       }
+
+       template <typename T>
+       inline auto operator()(const Array<T, -1, -1> &t)
+       {
+          return this->softmax(t);
+       }
+
+       template<typename T, typename ...Ts>
+       inline auto operator()(Array<T,-1,1> first, Ts... inputs) 
+       { 
+           auto output = Stack<T>(first, inputs...);
+           return this->softmax(output);
+       }
+    };
+
 } // Brush
 
 #endif

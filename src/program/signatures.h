@@ -105,7 +105,9 @@ struct Signature<R(Args...)> : SigBase<R, Args...>
     static constexpr auto ArgCount = base::ArgCount;
     /* using Function = base::Function; */
 };
-// Store the signatures that each Node can handle
+////////////////////////////////////////////////////////////////////////////////
+// Signatures
+// - store the signatures that each Node can handle
 //
 template<NodeType N, typename T = void> struct Signatures; 
 
@@ -279,5 +281,26 @@ struct Signatures<NodeType::SplitOn>{
             /* Signature<ArrayXb(ArrayXb,ArrayXb,ArrayXb)> */
         >;
     }; 
+
+// TODO: specialize for variable arity operators that take a vector of inputs
+    template <>
+    struct Signatures<NodeType::Softmax>
+    {
+        using type = std::tuple<
+            Signature<ArrayXXf(ArrayXXf)>,
+            Signature<ArrayXXf(ArrayXf, ArrayXf)>,
+            Signature<ArrayXXf(ArrayXf, ArrayXf, ArrayXf)>,
+            Signature<ArrayXXf(ArrayXf, ArrayXf, ArrayXf, ArrayXf)>,
+            Signature<ArrayXXf(ArrayXf, ArrayXf, ArrayXf, ArrayXf, ArrayXf)>,
+            Signature<ArrayXXf(ArrayXf, ArrayXf, ArrayXf, ArrayXf, ArrayXf, ArrayXf)>,
+            Signature<ArrayXXf(ArrayXf, ArrayXf, ArrayXf, ArrayXf, ArrayXf, ArrayXf, ArrayXf)>,
+            Signature<ArrayXXf(ArrayXf, ArrayXf, ArrayXf, ArrayXf, ArrayXf, ArrayXf, ArrayXf,
+                ArrayXf)>,
+            Signature<ArrayXXf(ArrayXf, ArrayXf, ArrayXf, ArrayXf, ArrayXf, ArrayXf, ArrayXf,
+                ArrayXf, ArrayXf)>,
+            Signature<ArrayXXf(ArrayXf, ArrayXf, ArrayXf, ArrayXf, ArrayXf, ArrayXf, ArrayXf,
+                ArrayXf, ArrayXf)>
+            >;
+    };
 } // namespace Brush
 #endif

@@ -1,7 +1,7 @@
 #include "testsHeader.h"
 #include "../../src/search_space.h"
-#include "../../src/program.h"
-#include "../../src/dispatch_table.h"
+#include "../../src/program/program.h"
+#include "../../src/program/dispatch_table.h"
 
 TEST(SearchSpace, Initialization)
 {
