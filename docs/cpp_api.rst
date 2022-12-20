@@ -1,22 +1,31 @@
 C++ API
 =======
 
-The ``Brush::Data`` namespace
------------------------------
+.. The ``Brush::Data`` namespace
+.. -----------------------------
 
-.. doxygennamespace:: Brush::data
-   :members:
+.. .. doxygennamespace:: Brush::Data
+..    :members:
 
 The ``Brush::Data::Dataset`` class
-*******************************
+**********************************
 
 .. doxygenclass:: Brush::Data::Dataset
    :members:
+   :allow-dot-graphs:
 
-GP programs
+Programs
 -----------
 
-The ``Brush::Program`` class is used to define a single GP program.
-
-.. doxygenclass:: Brush::Program
+.. doxygenstruct:: Brush::Program
    :members:
+   :allow-dot-graphs:
+
+
+
+Nodes
+-----------
+
+.. doxygenstruct:: Brush::Node
+   :members:
+   :allow-dot-graphs:
