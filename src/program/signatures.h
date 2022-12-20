@@ -240,6 +240,17 @@ struct Signatures<NodeType::Count>{
         >;
 };
 
+template<NodeType N>
+struct Signatures<N, enable_if_t<is_one_of_v<N, 
+    NodeType::ArgMax 
+    >>>{ 
+        using type = std::tuple<
+            Signature<ArrayXi(ArrayXXf)>,
+            Signature<ArrayXi(ArrayXXi)>,
+            Signature<ArrayXi(ArrayXXb)>
+        >;
+    }; 
+
 /* template<NodeType N> */
 /* struct Signatures<N, enable_if_t<is_one_of_v<N, */ 
 /*     NodeType::Equals, */

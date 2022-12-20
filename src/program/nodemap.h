@@ -65,20 +65,21 @@ enum class NodeType : uint64_t {
     Median              = 1UL << 26UL,
     Count               = 1UL << 27UL,
     Sum                 = 1UL << 28UL,
+    ArgMax              = 1UL << 29UL,
     // Transformers 
-    Softmax             = 1UL << 29UL,
+    Softmax             = 1UL << 30UL,
     // Binary
-    Add                 = 1UL << 30UL,
-    Sub                 = 1UL << 31UL,
-    Mul                 = 1UL << 32UL,
-    Div                 = 1UL << 33UL,
-    Pow                 = 1UL << 34UL,
-    And                 = 1UL << 35UL,
-    Or                  = 1UL << 36UL,
-    Xor                 = 1UL << 37UL,
+    Add                 = 1UL << 31UL,
+    Sub                 = 1UL << 32UL,
+    Mul                 = 1UL << 33UL,
+    Div                 = 1UL << 34UL,
+    Pow                 = 1UL << 35UL,
+    And                 = 1UL << 36UL,
+    Or                  = 1UL << 37UL,
+    Xor                 = 1UL << 38UL,
     //split
-    SplitBest           = 1UL << 38UL,
-    SplitOn             = 1UL << 39UL,
+    SplitBest           = 1UL << 39UL,
+    SplitOn             = 1UL << 40UL,
     // these ones change type
     /* Equals              = 1UL << 39UL, */
     /* LessThan            = 1UL << 40UL, */
@@ -86,19 +87,19 @@ enum class NodeType : uint64_t {
     /* Leq                 = 1UL << 42UL, */
     /* Geq                 = 1UL << 43UL, */
     // leaves
-    Constant            = 1UL << 40UL,
-    Terminal            = 1UL << 41UL,
+    Constant            = 1UL << 41UL,
+    Terminal            = 1UL << 42UL,
     // custom
-    CustomUnaryOp       = 1UL << 42UL,
-    CustomBinaryOp      = 1UL << 43UL,
-    CustomSplit         = 1UL << 44UL
+    CustomUnaryOp       = 1UL << 43UL,
+    CustomBinaryOp      = 1UL << 44UL,
+    CustomSplit         = 1UL << 45UL
 };
 
 
 using UnderlyingNodeType = std::underlying_type_t<NodeType>;
 struct NodeTypes {
     // magic number keeping track of the number of different node types
-    static constexpr size_t Count = 42;
+    static constexpr size_t Count = 43;
     static constexpr size_t OpCount = Count-2;
 
     // returns the index of the given type in the NodeType enum

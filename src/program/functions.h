@@ -199,13 +199,24 @@ https://eigen.tuxfamily.org/dox/TopicCustomizing_Plugins.html
     };
 
 
-    // bin... and unary functions
-    /* template<> */
-    /* struct Function<NodeType::Aq> */
-    /* { */
-    /*     template<typename T> */
-    /*     inline auto operator()(T t1, T t2) { return t1 / (typename T::Scalar{1.0} + t2.square()).sqrt(); } */
-    /* }; */
+    /* coefficient-wise maximum of two or more arguments. */
+    template<>
+    struct Function<NodeType::ArgMax>
+    {
+        template<typename T>
+        inline auto operator()(T t) { 
+            ArrayXi idx(t.rows());
+            for (int i = 0; i < t.rows(); ++i)
+                t.row(i).maxCoeff(&idx(i));
+            return idx;
+        }
+
+        // template<>
+        // inline auto operator()(TimeSeriesf t) { return t.apply(Eigen::maxCoeff()); }
+        // template<typename T>
+        // inline auto operator()(TimeSeries<T> t) { return t.max(); }
+    };
+
 
     template<>
     struct Function<NodeType::Pow>

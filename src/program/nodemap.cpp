@@ -51,6 +51,7 @@ std::map<std::string, NodeType> NodeNameType = {
     {"Median", NodeType::Median},
     {"Count", NodeType::Count},
     {"Sum", NodeType::Sum},
+    {"ArgMax", NodeType::ArgMax},
 
     // transforms
     {"Softmax", NodeType::Softmax},
