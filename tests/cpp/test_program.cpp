@@ -3,8 +3,6 @@
 #include "../../src/program/program.h"
 #include "../../src/program/dispatch_table.h"
 #include "../../src/data/io.h"
-#include "../../src/types.h"
-
 
 TEST(Program, MakeRegressor)
 {

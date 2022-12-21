@@ -16,36 +16,9 @@ license: GNU/GPL v3
 
 //external includes
 #include <variant>
-using std::min;
-using std::iota;
-using std::vector;
-using Eigen::MatrixXf;
-using Eigen::VectorXf;
-using Eigen::ArrayXf;
-using Eigen::ArrayXi;
-using Eigen::Ref;
-typedef Eigen::Array<bool,Eigen::Dynamic,1> ArrayXb;
-typedef Eigen::Array<bool, Eigen::Dynamic, Eigen::Dynamic> ArrayXXb;
-
-typedef DenseBase<ArrayXXb>::RowwiseReturnType::iterator XXbIt;
-typedef DenseBase<ArrayXXi>::RowwiseReturnType::iterator XXiIt;
-typedef DenseBase<ArrayXXf>::RowwiseReturnType::iterator XXfIt;
 
 namespace Brush
 {
-// DataType enum
-
-enum class DataType : uint32_t {
-    ArrayB, 
-    ArrayI, 
-    ArrayF, 
-    MatrixB, 
-    MatrixI, 
-    MatrixF, 
-    TimeSeriesB, 
-    TimeSeriesI,
-    TimeSeriesF,
-};
 
 extern map<DataType,string>  DataTypeName; 
 extern map<string,DataType>  DataNameType; 
@@ -59,20 +32,6 @@ namespace Data
 * @brief namespace containing Data structures used in Brush
 */
 
-///////////////////////////////////////////////////////////////////////////////
-// 
-/// State: defines the possible types of data flowing thru nodes.
-typedef std::variant<
-                     ArrayXb,
-                     ArrayXi, 
-                     ArrayXf, 
-                     ArrayXXb,
-                     ArrayXXi, 
-                     ArrayXXf, 
-                     TimeSeriesb,
-                     TimeSeriesi,
-                     TimeSeriesf
-                    > State; 
 
 /// determines data types of columns of matrix X.
 State check_type(const ArrayXf& x);
@@ -173,29 +132,6 @@ class Dataset
 //     vector<string>& names, vector<char> &dtypes, bool& binary_endpoint, char sep) ;
 
 } // data
-
-// TODO: make this a typedef
-template<DataType D> struct DataEnumType; 
-template<> struct DataEnumType<DataType::ArrayB>{ using type = ArrayXb; };
-template<> struct DataEnumType<DataType::ArrayI>{ using type = ArrayXi; };
-template<> struct DataEnumType<DataType::ArrayF>{ using type = ArrayXf; };
-template<> struct DataEnumType<DataType::MatrixB>{ using type = ArrayXXb; };
-template<> struct DataEnumType<DataType::MatrixI>{ using type = ArrayXXi; };
-template<> struct DataEnumType<DataType::MatrixF>{ using type = ArrayXXf; };
-template<> struct DataEnumType<DataType::TimeSeriesB>{ using type = Data::TimeSeriesb; };
-template<> struct DataEnumType<DataType::TimeSeriesI>{ using type = Data::TimeSeriesi; }; 
-template<> struct DataEnumType<DataType::TimeSeriesF>{ using type = Data::TimeSeriesf; };
-
-template<typename T> struct DataTypeEnum; 
-template<> struct DataTypeEnum<ArrayXb>{ static constexpr DataType value = DataType::ArrayB; };
-template<> struct DataTypeEnum<ArrayXi>{ static constexpr DataType value = DataType::ArrayI; };
-template<> struct DataTypeEnum<ArrayXf>{ static constexpr DataType value = DataType::ArrayF; };
-template<> struct DataTypeEnum<ArrayXXb>{ static constexpr DataType value = DataType::MatrixB; };
-template<> struct DataTypeEnum<ArrayXXi>{ static constexpr DataType value = DataType::MatrixI; };
-template<> struct DataTypeEnum<ArrayXXf>{ static constexpr DataType value = DataType::MatrixF; };
-template<> struct DataTypeEnum<Data::TimeSeriesb>{ static constexpr DataType value = DataType::TimeSeriesB; };
-template<> struct DataTypeEnum<Data::TimeSeriesi>{ static constexpr DataType value = DataType::TimeSeriesI; };
-template<> struct DataTypeEnum<Data::TimeSeriesf>{ static constexpr DataType value = DataType::TimeSeriesF; };
 
 extern const map<DataType,std::type_index>  DataTypeID;
 extern map<std::type_index,DataType>  DataIDType;

@@ -39,9 +39,9 @@ using Eigen::VectorXi;
 using Eigen::ArrayXf;
 using Eigen::seq;
 typedef Eigen::Array<bool,Eigen::Dynamic,1> ArrayXb;
+typedef Eigen::Array<int,Eigen::Dynamic,1> ArrayXi;
 typedef Eigen::Array<bool,Eigen::Dynamic,Eigen::Dynamic> ArrayXXb;
-typedef Eigen::Matrix<bool,Eigen::Dynamic,1> VectorXb;
-typedef Eigen::Matrix<long,Eigen::Dynamic,1> VectorXl;
+typedef Eigen::Array<int,Eigen::Dynamic,Eigen::Dynamic> ArrayXXi;
 // STD
 using std::map;
 using std::vector;
@@ -64,6 +64,7 @@ static float NEAR_ZERO = 0.0000001;
 static float MAX_FLT = std::numeric_limits<float>::max();
 static float MIN_FLT = std::numeric_limits<float>::lowest();
 
+#include "types.h"
 namespace Brush{
 // helper constant for the visitor
 template<class> inline constexpr bool always_false_v = false;

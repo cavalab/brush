@@ -77,30 +77,4 @@ std::map<std::string, NodeType> NodeNameType = {
 };
 
 std::map<NodeType,std::string> NodeTypeName = Util::reverse_map(NodeNameType);
-
-// json BinaryFFtoF  = {
-//     { "ArrayF", {DataType::ArrayF, DataType::ArrayF }},
-//     { "MatrixF", {DataType::MatrixF,DataType::MatrixF }},
-//     { "TimeSeriesF", {DataType::TimeSeriesF,DataType::TimeSeriesF }},
-// };
-
-// json UnaryFtoF  = {
-//     { "ArrayF", {DataType::ArrayF }},
-//     { "MatrixF", {DataType::MatrixF }},
-//     { "TimeSeriesF", {DataType::TimeSeriesF }},
-// };
-
-// json NodeSchema = {
-// //arithmetic
-//     {"Add", { 
-//                 {"ExecType", ExecType::Binary}, 
-//                 {"Signature", BinaryFFtoF}, 
-//             },
-//     },
-//     {"Abs", { 
-//                 {"ExecType", ExecType::Unary}, 
-//                 {"Signature", UnaryFtoF}, 
-//             },
-//     },
-// };
-}
+} // Brush

@@ -29,9 +29,6 @@ using Brush::Util::is_tuple;
 
 namespace Brush {
 
-
-
-
 enum class NodeType : uint64_t {
     // Unary
     Abs                 = 1UL << 0UL,

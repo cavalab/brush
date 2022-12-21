@@ -174,13 +174,6 @@ struct TimeSeries
     };
 };
 
-/**
- * @brief TimeSeries convenience typedefs.
- * 
- */
-typedef TimeSeries<bool> TimeSeriesb;
-typedef TimeSeries<int> TimeSeriesi;
-typedef TimeSeries<float> TimeSeriesf;
 
 } // namespace Brush::Data
 
