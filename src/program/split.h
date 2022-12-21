@@ -30,10 +30,6 @@ namespace Split{
         // get all possible split masks based on variant type
         
         vector<float> all_thresholds = get_thresholds(x); 
-        /* fmt::print("x: {}\n", x); */
-        fmt::print("y: {}\n", y);
-        /* fmt::print("classification: {}\n", classification); */
-        /* fmt::print("all thresholds: {}\n", all_thresholds); */
 
         //////////////////// shared //////////////////////
         float best_thresh, best_score = MAX_FLT;

@@ -56,9 +56,7 @@ template<typename T> struct Program //: public tree<Node>
 
     Program<T>& fit(const Dataset& d)
     {
-        fmt::print("Fitting {}\n", this->get_model());
         TreeType out =  Tree.begin().node->fit<TreeType>(d);
-        // fmt::print("Output {}\n", out);
         is_fitted_ = true;
         return *this;
     };
@@ -70,7 +68,6 @@ template<typename T> struct Program //: public tree<Node>
         if (!is_fitted_)
             HANDLE_ERROR_THROW("Program is not fitted. Call 'fit' first.\n");
 
-        fmt::print("Predicting {}\n", this->get_model());
         R out = Tree.begin().node->predict<TreeType>(d);
         return out;
     };
@@ -86,7 +83,6 @@ template<typename T> struct Program //: public tree<Node>
         if (!is_fitted_)
             HANDLE_ERROR_THROW("Program is not fitted. Call 'fit' first.\n");
 
-        fmt::print("Predicting {}\n", this->get_model());
         R out = (Tree.begin().node->predict<TreeType>(d) > 0.5);
         return out;
     };
@@ -102,7 +98,6 @@ template<typename T> struct Program //: public tree<Node>
         if (!is_fitted_)
             HANDLE_ERROR_THROW("Program is not fitted. Call 'fit' first.\n");
 
-        fmt::print("Predicting {}\n", this->get_model());
         TreeType out = Tree.begin().node->predict<TreeType>(d);
         auto argmax = Function<NodeType::ArgMax>{};
         R label = argmax(out);

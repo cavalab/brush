@@ -62,9 +62,9 @@ Dataset read_csv (
         ++rows;
     }
     
-    auto y = ArrayXf(targets.size());
-    for (int i = 0; i < targets.size(); ++i)
-        y(i) = targets.at(i);
+    auto y = ArrayXf::Map(targets.data(), targets.size());
+    // for (int i = 0; i < targets.size(); ++i)
+    //     y(i) = targets.at(i);
 
     // infer types of features
     map<string, State> features;
@@ -81,11 +81,7 @@ Dataset read_csv (
     // check if endpoint is binary
     bool binary_endpoint = (y.array() == 0 || y.array() == 1).all();
 
-    fmt::print("y: {}\n",y);
-
     auto result = Dataset(features,y,binary_endpoint);
-    fmt::print("result.y: {}\n",result.y);
-    ArrayXf y2 = result.y;
     return result;
     
 }

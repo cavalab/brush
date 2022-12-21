@@ -270,7 +270,7 @@ struct SearchSpace
                               bool terminal_compatible=true) const
     {
         //TODO: these needs to be overhauled 
-        fmt::print("get_op_with_arg");
+        // fmt::print("get_op_with_arg");
         check(ret);
         // terminal_compatible: the other args the returned operator takes must exist in the
         // terminal types. 

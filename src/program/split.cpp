@@ -102,8 +102,6 @@ float gini_impurity_index(const ArrayXf& classes,
         class_weights.push_back(
             float( (classes.cast<int>() == int(c)).count())/classes.size()
         );
-        cout << "class_weights for " << c << ": " 
-             << class_weights.back() << "\n"; 
     }
     /* float total_weight=class_weights.sum(); */
     auto cw = VectorXf::Map(class_weights.data(), class_weights.size());

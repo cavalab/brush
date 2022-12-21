@@ -9,10 +9,8 @@ TEST(Program, MakeRegressor)
         
     Dataset data = Data::read_csv("examples/datasets/d_enc.csv","label");
 
-    ArrayXf y = data.y; 
 
     SearchSpace SS;
-    /* SS.init(data,user_ops); */
     SS.init(data);
 
     // Program<ArrayXf> DXtree;
@@ -47,7 +45,6 @@ TEST(Program, FitRegressor)
                     "=================================================\n",
                     d, s, PRG.get_model("compact", true)
                 );
-                fmt::print("fitting...\n");
                 PRG.fit(data);
                 auto y = PRG.predict(data);
             }
@@ -62,8 +59,6 @@ TEST(Program, FitClassifier)
     SearchSpace SS;
     SS.init(data);
 
-    fmt::print("data.y: {}\n",data.y);
-
     for (int t = 0; t < 10; ++t) {
         for (int d = 1; d < 10; ++d) { 
             for (int s = 1; s < 100; s+=10) {
@@ -74,7 +69,6 @@ TEST(Program, FitClassifier)
                     "=================================================\n",
                     d, s, PRG.get_model("compact", true)
                 );
-                fmt::print("fitting...\n");
                 PRG.fit(data);
                 auto y = PRG.predict(data);
                 auto yproba = PRG.predict_proba(data);
@@ -108,28 +102,29 @@ TEST(Program, Mutation)
     SearchSpace SS;
     SS.init(data);
 
-    RegressorProgram DXtree = SS.make_regressor(6, 30);
-    cout << "starting model:\n";
-    cout << DXtree.get_model() << endl;
-    cout << DXtree.get_model("tree") << endl;
-    cout << "running fit\n";
-    DXtree.fit(data);
-    cout << "generating predictions\n";
-    ArrayXf y_pred = DXtree.predict(data);
-    cout << "y_pred: " << y_pred.transpose() << endl;
-    cout << "mutating...\n";
-    auto Child = DXtree.mutate();
+    for (int d = 1; d < 10; ++d)
+    {
+        for (int s = 1; s < 10; ++s)
+        {
+            RegressorProgram PRG = SS.make_regressor(d, s);
+            PRG.fit(data);
+            ArrayXf y_pred = PRG.predict(data);
+            auto Child = PRG.mutate();
 
-    cout << "=================================================" << "\n";
-    cout << "Mutated model:" << endl ;
-    cout << Child.get_model("tree",true) << endl;
-    cout << "=================================================" << "\n";
+            fmt::print(
+                "=================================================\n"
+                "depth = {}, size= {}\n"
+                "Initial Model: {}\n"
+                "Mutated Model: {}\n",
+                d, s, 
+                PRG.get_model("compact", true),
+                Child.get_model("compact", true)
+            );
 
-    Child.fit(data);
-    cout << "generating predictions\n";
-    y_pred = Child.predict(data);
-    cout << "y_pred: " << y_pred.transpose() << endl;
-
+            Child.fit(data);
+            y_pred = Child.predict(data);
+        }
+    }
 }
 
 TEST(Program, WeightOptimization)
