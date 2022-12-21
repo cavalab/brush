@@ -29,19 +29,22 @@ namespace br = Brush;
 //
 // y = np.array( [1.0, 0.0, 1.4, 1.0, 0.0, 1.0, 1.0, 0.0, 0.0,  0.0])
 
-PYBIND11_MODULE(brushgp, m) {
+PYBIND11_MODULE(brush, m) {
     m.doc() = R"pbdoc(
         Python interface for Brush
         --------------------------
 
-        .. currentmodule:: brushgp
+        .. currentmodule:: brush.core
 
         .. autosummary::
            :toctree: _generate
 
            Dataset
            SearchSpace
-           Program
+           Regressor
+           Classifier
+           MulticlassClassifier
+           Representer
     )pbdoc";
 
 #ifdef VERSION_INFO
@@ -52,8 +55,6 @@ PYBIND11_MODULE(brushgp, m) {
 
     py::class_<Brush::Data::Dataset>(m, "Dataset")
         .def(py::init<Ref<const ArrayXXf>&, Ref<const ArrayXf>& >())
-        // .def("get_features", &Brush::Data::Dataset::features, py::return_value_policy::reference_internal)
-        // .def("get_y", &Brush::Data::Dataset::get_y, py::return_value_policy::reference_internal)        
         ;
 
     // Notice: We change the interface for SearchSpace a little bit by 
@@ -72,9 +73,6 @@ PYBIND11_MODULE(brushgp, m) {
         ;
 
     using Reg = br::Program<ArrayXf>;
-    using Cls = br::Program<ArrayXb>;
-    using MCls = br::Program<ArrayXi>;
-    using Rep = br::Program<ArrayXXf>;
 
     py::class_<Reg>(m, "Regressor")
         .def(py::init<>())
@@ -96,6 +94,7 @@ PYBIND11_MODULE(brushgp, m) {
              py::arg("type") = "compact",
              py::arg("pretty") = false);
 
+    using Cls = br::Program<ArrayXb>;
     py::class_<Cls>(m, "Classifier")
         .def(py::init<>())
         .def("fit",
@@ -122,6 +121,7 @@ PYBIND11_MODULE(brushgp, m) {
              py::arg("type") = "compact",
              py::arg("pretty") = false);
 
+    using MCls = br::Program<ArrayXi>;
     py::class_<MCls>(m, "MulticlassClassifer")
         .def(py::init<>())
         .def("fit",
@@ -142,6 +142,7 @@ PYBIND11_MODULE(brushgp, m) {
              py::arg("type") = "compact",
              py::arg("pretty") = false);
 
+    using Rep = br::Program<ArrayXXf>;
     py::class_<Rep>(m, "Representer")
         .def(py::init<>())
         .def("fit",

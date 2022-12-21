@@ -7,7 +7,7 @@ control of the underlying GP objects.
 
 import brushgp
 
-class GPClassifier(object):
+class BrushClassifier(object):
     def __init__(self, max_depth=0, max_breadth=0, max_size=0):
         """
         Binary classifier using a GP tree.
