@@ -30,10 +30,6 @@ namespace Split{
         // get all possible split masks based on variant type
         
         vector<float> all_thresholds = get_thresholds(x); 
-        /* fmt::print("x: {}\n", x); */
-        /* fmt::print("y: {}\n", y); */
-        /* fmt::print("classification: {}\n", classification); */
-        /* fmt::print("all thresholds: {}\n", all_thresholds); */
 
         //////////////////// shared //////////////////////
         float best_thresh, best_score = MAX_FLT;
@@ -100,7 +96,7 @@ namespace Split{
             float tmp_thresh, score;
 
             tie(tmp_thresh, score) = best_threshold(std::get<T>(d[key]), d.y, d.classification);
-            fmt::print("best threshold for {} = {:.3f}, score = {:.3f}\n",key,tmp_thresh,score);
+            // fmt::print("best threshold for {} = {:.3f}, score = {:.3f}\n",key,tmp_thresh,score);
             if (score < best_score | i == 0)
             {
                 best_score = score;
@@ -110,7 +106,6 @@ namespace Split{
             ++i;
         }
         auto tmp = std::make_tuple(feature, threshold, best_score);
-        fmt::print("returning {}\n",tmp);
         results.push_back(std::make_tuple(feature, threshold, best_score));
     }
 
@@ -146,5 +141,104 @@ namespace Split{
 
     }
 } // namespace Split
+////////////////////////////////////////////////////////////////////////////////
+// Split operator overload
+template<NodeType NT, typename S, bool Fit> 
+struct Operator<NT, S, Fit, enable_if_t<is_one_of_v<NT, NodeType::SplitOn, NodeType::SplitBest>>> 
+{
+    using ArgTypes = typename S::ArgTypes;
+    using FirstArg = typename S::base::FirstArg;
+    using RetType = typename S::RetType;
+    static constexpr size_t ArgCount = S::ArgCount;
+    // get arg types from tuple by index
+    template <std::size_t N>
+    using NthType = typename S::NthType<N>; 
+    
+    /* static constexpr auto F = [](const auto& ...args){ Function<NT> f{}; return f(args...); }; */ 
+    static constexpr Function<NT> F{};
+
+    array<RetType,2> get_kids(const array<Dataset, 2>& d, TreeNode& tn) const
+    {
+        using arg_type = NthType<1>;
+        array<arg_type,2> child_outputs;
+
+        TreeNode* sib = tn.first_child;
+        if constexpr (NT==NodeType::SplitOn)
+            sib = sib->next_sibling;
+
+        for (int i = 0; i < 2; ++i)
+        {
+            if (d.at(i).get_n_samples() > 0)
+            {
+                if constexpr (Fit)
+                    child_outputs.at(i) = sib->fit<arg_type>(d.at(i));
+                else
+                    child_outputs.at(i) = sib->predict<arg_type>(d.at(i));
+            }
+            sib = sib->next_sibling;
+        }
+        return child_outputs;
+    };
+
+    RetType fit(const Dataset& d, TreeNode& tn) const {
+        auto& threshold = tn.data.W.at(0);
+        auto& feature = tn.data.feature;
+
+        // set feature and threshold
+        if constexpr (NT == NodeType::SplitOn)
+        {
+            // split on first child
+            FirstArg split_feature = tn.first_child->fit<FirstArg>(d);
+            // get the best splitting threshold
+            tie(threshold, ignore) = Split::best_threshold(split_feature, d.y, d.classification);
+        }
+        else
+            tie(feature, threshold) = Split::get_best_variable_and_threshold(d, tn);
+
+        return predict(d, tn);
+    }
+
+    RetType predict(const Dataset& d, TreeNode& tn) const 
+    {
+        const auto& threshold = tn.data.W.at(0);
+        const auto& feature = tn.data.feature;
+
+        // split the data
+        ArrayXb mask;
+        if constexpr (NT==NodeType::SplitBest)
+            // mask = Split::threshold_mask(std::get<FirstArg>(d.at(feature)), threshold);
+            mask = Split::threshold_mask(d[feature], threshold);
+        else {
+            auto split_feature = tn.first_child->predict<FirstArg>(d);
+            mask = Split::threshold_mask(split_feature, threshold);
+        }
+
+        array<Dataset, 2> data_splits = d.split(mask);
+        // fmt::print("data_splits sizes: {}, {}\n",
+        //         data_splits[0].get_n_samples(), 
+        //         data_splits[1].get_n_samples());
+        // // if there aren't samples on either side of the split, just return 
+        // // one child or the other
+        // if (data_splits[0].get_n_samples() == 0)
+        // else if (data_splits[1].get_n_samples() == 0)
+            
+        auto child_outputs = get_kids(data_splits, tn);
+
+        // stitch together outputs
+        // fmt::print("stitching outputs\n");
+        auto out = Split::stitch(child_outputs, mask);
+        /* auto out = mask.select(child_outputs.at(0), child_outputs.at(1)); */
+        /* cout << "returning " << std::get<RetType>(out) << endl; */
+
+        return out;
+    }
+    RetType eval(const Dataset& d, TreeNode& tn) const {
+        if constexpr (Fit)
+            return fit(d,tn); 
+        else
+            return predict(d,tn);
+    }
+};
+
 
 #endif

@@ -9,9 +9,9 @@ https://github.com/heal-research/operon/
 #ifndef NODE_H
 #define NODE_H
 
-#include "data/data.h"
+#include "../data/data.h"
 #include "nodemap.h"
-#include "util/utils.h"
+#include "../util/utils.h"
 #include <iostream>
 // #include "nodes/base.h"
 // #include "nodes/dx.h"
@@ -35,7 +35,6 @@ Node overhaul:
 
 */
 using Brush::DataType;
-using Brush::ExecType;
 using Brush::Data::Dataset;
 
 namespace Brush{
@@ -69,8 +68,8 @@ struct Node {
     bool center_op;
     // chance of node being selected for variation
     float prob_change; 
-    // /// unique id
-
+    // whether node is modifiable
+    bool fixed;
     NodeType node_type;
     std::size_t sig_hash;
     DataType ret_type;
@@ -108,6 +107,8 @@ struct Node {
         else
 
         set_complete_hash();
+        set_prob_change(1.0);
+        fixed=false;
     }
 
     explicit Node(NodeType type, string feature_name, DataType output_type, std::size_t sig) noexcept
@@ -122,6 +123,8 @@ struct Node {
         optimize=false;
         arg_types = vector<DataType>{};
         set_complete_hash();
+        set_prob_change(1.0);
+        fixed=false;
     }
 
     auto get_name() const noexcept -> std::string; 
@@ -183,7 +186,7 @@ struct Node {
     // getters and setters
     //TODO revisit
     float get_prob_change() const { return this->prob_change;};
-    void set_prob_change(float w){ this->prob_change = w;};
+    void set_prob_change(float w){ if (!fixed) this->prob_change = w;};
     float get_prob_keep() const { return 1-this->prob_change;};
 };
 

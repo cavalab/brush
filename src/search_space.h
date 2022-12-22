@@ -6,9 +6,10 @@ license: GNU/GPL v3
 #define SEARCHSPACE_H
 //internal includes
 #include "init.h"
-#include "node.h"
-#include "nodemap.h"
-#include "tree_node.h"
+#include "program/node.h"
+#include "program/nodemap.h"
+#include "program/tree_node.h"
+// #include "program/program.h"
 #include "util/utils.h"
 #include "util/rnd.h"
 #include "params.h"
@@ -41,7 +42,9 @@ namespace Brush
 
 // forward declarations
 using TreeIter = tree<Node>::pre_order_iterator;
-template<typename T> struct Program;
+// template<typename T> struct Program;
+// enum class ProgramType: uint32_t;
+// template<typename T> struct ProgramTypeEnum; 
 
 vector<Node> generate_terminals(const Dataset& d);
 
@@ -93,9 +96,14 @@ struct SearchSpace
     unordered_map<DataType, vector<float>> terminal_weights;
     vector<DataType> terminal_types;
     
-    template<typename T>
-    Program<T> make_program(int max_d=0, int max_breadth=0, int max_size=0);
-    
+    template<typename PT>
+    PT make_program(int max_d=0, int max_size=0);
+
+    RegressorProgram make_regressor(int max_d = 0, int max_size = 0);
+    ClassifierProgram make_classifier(int max_d = 0, int max_size = 0);
+    MulticlassClassifierProgram make_multiclass_classifier(int max_d = 0, int max_size = 0);
+    RepresenterProgram make_representer(int max_d = 0, int max_size = 0);
+
     SearchSpace() = default;
     SearchSpace(const Dataset& d, const unordered_map<string,float>& user_ops = {}){
         init(d,user_ops);
@@ -136,10 +144,34 @@ struct SearchSpace
     Node get(NodeType type, DataType R, size_t sig_hash)
     {
         check(R, sig_hash, type);
-        /* auto arg_hash = uint32_vector_hasher()(arg_types); */
         return node_map.at(R).at(sig_hash).at(type);
     };
 
+    template<typename S>
+    Node get(NodeType type, DataType R, S sig){ return get(type, R, sig.hash()); };
+
+    Node get(NodeType type, DataType R)
+    {
+        check(R);
+        auto ret_match = node_map.at(R);
+        vector<Node> matches; 
+        vector<float> weights; 
+        for (const auto& kv: ret_match)
+        {
+            auto arg_hash = kv.first;
+            auto node_type_map = kv.second;
+            if (node_type_map.find(type) != node_type_map.end())
+            {
+                matches.push_back(node_type_map.at(type));
+                weights.push_back(weight_map.at(R).at(arg_hash).at(type));
+            }
+        }
+
+        return (*r.select_randomly(matches.begin(),
+                                   matches.end(),
+                                   weights.begin(),
+                                   weights.end()));
+    };
     /// get a terminal 
     Node get_terminal() const
     {
@@ -238,7 +270,7 @@ struct SearchSpace
                               bool terminal_compatible=true) const
     {
         //TODO: these needs to be overhauled 
-        fmt::print("get_op_with_arg");
+        // fmt::print("get_op_with_arg");
         check(ret);
         // terminal_compatible: the other args the returned operator takes must exist in the
         // terminal types. 
@@ -299,7 +331,11 @@ struct SearchSpace
         /* static constexpr auto MakeNode(bool weighted) */
         template<NodeType NT, typename S>
         requires (!is_one_of_v<NT, NodeType::Terminal, NodeType::Constant>)
-        static constexpr std::optional<Node> CreateNode(const auto& unique_data_types, bool use_all, bool weighted)
+        static constexpr std::optional<Node> CreateNode(
+            const auto& unique_data_types, 
+            bool use_all, 
+            bool weighted
+        )
         {
             // prune the operators out that don't have argument types that
             // overlap with feature data types
@@ -319,9 +355,10 @@ struct SearchSpace
         }
        
         template<NodeType NT, typename S>
-        constexpr void AddNode(const unordered_map<string,float>& user_ops, 
-                const vector<DataType>& unique_data_types
-                )
+        constexpr void AddNode(
+            const unordered_map<string,float>& user_ops, 
+            const vector<DataType>& unique_data_types
+        )
         {
             
             bool use_all = user_ops.size() == 0;
@@ -339,12 +376,12 @@ struct SearchSpace
             }
         }
 
-        template<NodeType NT, typename Sigs, std::size_t... Is>
-        constexpr void AddNodes(const unordered_map<string,float>& user_ops, 
-                const vector<DataType>& unique_data_types,
-                std::index_sequence<Is...>)
+        template <NodeType NT, typename Sigs, std::size_t... Is>
+        constexpr void AddNodes(const unordered_map<string, float> &user_ops,
+                                const vector<DataType> &unique_data_types,
+                                std::index_sequence<Is...>)
         {
-            (AddNode<NT,std::tuple_element_t<Is, Sigs>>(user_ops, unique_data_types), ...);
+            (AddNode<NT, std::tuple_element_t<Is, Sigs>>(user_ops, unique_data_types), ...);
         }
 
         template<NodeType NT>
@@ -365,7 +402,11 @@ struct SearchSpace
 
             using signatures = Signatures<NT>::type;
             constexpr auto size = std::tuple_size<signatures>::value;
-            AddNodes<NT, signatures>(user_ops, unique_data_types, std::make_index_sequence<size>()); 
+            AddNodes<NT, signatures>(
+                user_ops,
+                unique_data_types,
+                std::make_index_sequence<size>()
+            ); 
         }
 
         template<std::size_t... Is>
@@ -391,8 +432,8 @@ T RandomDequeue(std::vector<T>& Q)
 };
 
 /// constructs a tree using functions, terminals, and settings
-template<typename T>
-Program<T> SearchSpace::make_program(int max_d, int max_breadth, int max_size)
+template<typename PT>
+PT SearchSpace::make_program(int max_d, int max_size)
 {
     /*
     * implementation of PTC2 for strongly typed GP from Luke et al. 
@@ -401,13 +442,13 @@ Program<T> SearchSpace::make_program(int max_d, int max_breadth, int max_size)
     */
     if (max_d == 0)
         max_d = r.rnd_int(1, params.max_depth);
-    if (max_breadth == 0)
-        max_breadth = r.rnd_int(1, params.max_breadth);
     if (max_size == 0)
         max_size = r.rnd_int(1, params.max_size);
-    DataType root_type = DataTypeEnum<T>::value;
 
-    auto prg = tree<Node>();
+    DataType root_type = DataTypeEnum<typename PT::TreeType>::value;
+    ProgramType program_type = ProgramTypeEnum<PT>::value;
+
+    auto Tree = tree<Node>();
 
     /* fmt::print("building program with max size {}, max depth {}",max_size,max_d); */ 
 
@@ -416,18 +457,30 @@ Program<T> SearchSpace::make_program(int max_d, int max_breadth, int max_size)
 
     if (max_size == 1)
     {
-        auto root = prg.insert(prg.begin(), get_terminal(root_type));
+        auto root = Tree.insert(Tree.begin(), get_terminal(root_type));
     }
     else
     {
-        /* cout << "getting op of type " << DataTypeName[root_type] << endl; */
-        auto n = get_op(root_type);
-        if (n.name=="SplitOn" && in(n.arg_types, DataType::ArrayI))
-            fmt::print("{}",n.get_name());
+        Node n;
+        if (program_type == ProgramType::BinaryClassifier)
+        {
+            n = get(NodeType::Logistic, DataType::ArrayF, Signature<ArrayXf(ArrayXf)>());
+            n.set_prob_change(0.0);
+            n.fixed=true;
+        }
+        else if (program_type == ProgramType::MulticlassClassifier)
+        {
+            n = get(NodeType::Softmax, DataType::MatrixF);
+            n.set_prob_change(0.0);
+            n.fixed=true;
+        }
+        else
+            n = get_op(root_type);
+
         /* cout << "chose " << n.name << endl; */
-        // auto spot = prg.set_head(n);
+        // auto spot = Tree.set_head(n);
         /* cout << "inserting...\n"; */
-        auto spot = prg.insert(prg.begin(), n);
+        auto spot = Tree.insert(Tree.begin(), n);
         // node depth
         int d = 1;
         // current tree size
@@ -436,7 +489,7 @@ Program<T> SearchSpace::make_program(int max_d, int max_breadth, int max_size)
         for (auto a : n.arg_types)
         { 
             /* cout << "queing a node of type " << DataTypeName[a] << endl; */
-            auto child_spot = prg.append_child(spot);
+            auto child_spot = Tree.append_child(spot);
             queue.push_back(make_tuple(child_spot, a, d));
         }
 
@@ -453,8 +506,8 @@ Program<T> SearchSpace::make_program(int max_d, int max_breadth, int max_size)
                 // choose terminal of matching type
                 /* cout << "getting " << DataTypeName[t] << " terminal\n"; */ 
                 // qspot = get_terminal(t);
-                prg.replace(qspot, get_terminal(t));
-                // prg.append_child(qspot, get_terminal(t));
+                Tree.replace(qspot, get_terminal(t));
+                // Tree.append_child(qspot, get_terminal(t));
             }
             else
             {
@@ -462,15 +515,15 @@ Program<T> SearchSpace::make_program(int max_d, int max_breadth, int max_size)
                 /* cout << "getting op of type " << DataTypeName[t] << endl; */
                 auto n = get_op(t);
                 /* cout << "chose " << n.name << endl; */
-                // TreeIter new_spot = prg.append_child(qspot, n);
+                // TreeIter new_spot = Tree.append_child(qspot, n);
                 // qspot = n;
-                auto newspot = prg.replace(qspot, n);
+                auto newspot = Tree.replace(qspot, n);
                 // For each arg of n, add to queue
                 for (auto a : n.arg_types)
                 {
                     /* cout << "queing a node of type " << DataTypeName[a] << endl; */
                     // queue.push_back(make_tuple(new_spot, a, d+1));
-                    auto child_spot = prg.append_child(newspot);
+                    auto child_spot = Tree.append_child(newspot);
                     queue.push_back(make_tuple(child_spot, a, d+1));
                 }
             }
@@ -488,20 +541,20 @@ Program<T> SearchSpace::make_program(int max_d, int max_breadth, int max_size)
             auto [qspot, t, d] = RandomDequeue(queue);
 
             /* cout << "getting " << DataTypeName[t] << " terminal\n"; */ 
-            // prg.append_child(qspot, get_terminal(t));
+            // Tree.append_child(qspot, get_terminal(t));
             // qspot = get_terminal(t);
-            auto newspot = prg.replace(qspot, get_terminal(t));
+            auto newspot = Tree.replace(qspot, get_terminal(t));
 
         }
     }
     /* cout << "final tree:\n" */ 
-    /*     << prg.begin().node->get_model() << "\n" */
-    /*     << prg.begin().node->get_tree_model(true) << endl; */
-         /* << prg.get_model() << "\n" */ 
-         /* << prg.get_model(true) << endl; // pretty */
+    /*     << Tree.begin().node->get_model() << "\n" */
+    /*     << Tree.begin().node->get_tree_model(true) << endl; */
+         /* << Tree.get_model() << "\n" */ 
+         /* << Tree.get_model(true) << endl; // pretty */
 
-    return Program<T>(*this,prg);
-};;
+    return PT(*this,Tree);
+};
 
 extern SearchSpace SS;
 

@@ -4,8 +4,8 @@ Overview
 **brush** is a library for symbolic regression via strongly-typed genetic
 programming.
 
-The name **brush** is an acronym, short for backpropagations and recursion
-using search heuristics.
+The name **brush** is an acronym, short for **B**\ ackpropagation and **R**\ ecursion
+**U**\ sing **S**\ earch **H**\ euristics.
 
 Contents
 --------

@@ -9,7 +9,7 @@ https://github.com/heal-research/operon/
 #ifndef INTERPRETER_H
 #define INTERPRETER_H
 
-#include "data/data.h"
+#include "../data/data.h"
 #include "nodemap.h"
 #include "node.h"
 #include <optional>

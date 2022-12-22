@@ -1,11 +1,12 @@
 Python API
 ==========
 
-With automodule:
-
-.. automodule:: brushgp
-
 With doxygennamespace:
 
 .. doxygennamespace:: brushgp
-   :members:
+   :members: 
+
+With autoclass:
+
+.. automodule:: brushgp
+   :members: Dataset, Classifier, Regressor

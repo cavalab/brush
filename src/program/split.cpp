@@ -95,18 +95,17 @@ float gain(const ArrayXf& lsplit,
     }
 
 float gini_impurity_index(const ArrayXf& classes, 
-                          const vector<float>& uc)
+                          const vector<float>& unique_classes)
 {
-    VectorXf class_weights = VectorXf::Zero(uc.size());
-    for (auto c : uc){
-        class_weights(int(c)) = float(
-                (classes.cast<int>() == int(c)).count()
-                )/classes.size();
-        cout << "class_weights for " << c << ": " 
-             << class_weights(int(c)) << "\n"; 
+    vector<float> class_weights;
+    for (auto c : unique_classes){
+        class_weights.push_back(
+            float( (classes.cast<int>() == int(c)).count())/classes.size()
+        );
     }
     /* float total_weight=class_weights.sum(); */
-    float gini = 1 - class_weights.dot(class_weights);
+    auto cw = VectorXf::Map(class_weights.data(), class_weights.size());
+    float gini = 1 - cw.dot(cw);
 
     return gini;
 }
