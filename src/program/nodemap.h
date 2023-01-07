@@ -98,7 +98,7 @@ enum class NodeType : uint64_t {
 using UnderlyingNodeType = std::underlying_type_t<NodeType>;
 struct NodeTypes {
     // magic number keeping track of the number of different node types
-    static constexpr size_t Count = 4;
+    static constexpr size_t Count = 40;
     static constexpr size_t OpCount = Count-2;
 
     // returns the index of the given type in the NodeType enum

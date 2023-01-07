@@ -149,6 +149,7 @@ struct Operator<NT, S, Fit, enable_if_t<is_one_of_v<NT, NodeType::SplitOn, NodeT
     using ArgTypes = typename S::ArgTypes;
     using FirstArg = typename S::base::FirstArg;
     using RetType = typename S::RetType;
+    using W = typename S::WeightType;
     static constexpr size_t ArgCount = S::ArgCount;
     // get arg types from tuple by index
     template <std::size_t N>
@@ -157,7 +158,7 @@ struct Operator<NT, S, Fit, enable_if_t<is_one_of_v<NT, NodeType::SplitOn, NodeT
     /* static constexpr auto F = [](const auto& ...args){ Function<NT> f{}; return f(args...); }; */ 
     static constexpr Function<NT> F{};
 
-    array<RetType,2> get_kids(const array<Dataset, 2>& d, TreeNode& tn) const
+    array<RetType,2> get_kids(const array<Dataset, 2>& d, TreeNode& tn, const W** weights=nullptr) const
     {
         using arg_type = NthType<1>;
         array<arg_type,2> child_outputs;
@@ -173,7 +174,7 @@ struct Operator<NT, S, Fit, enable_if_t<is_one_of_v<NT, NodeType::SplitOn, NodeT
                 if constexpr (Fit)
                     child_outputs.at(i) = sib->fit<arg_type>(d.at(i));
                 else
-                    child_outputs.at(i) = sib->predict<arg_type>(d.at(i));
+                    child_outputs.at(i) = sib->predict<arg_type>(d.at(i), weights);
             }
             sib = sib->next_sibling;
         }
@@ -198,7 +199,7 @@ struct Operator<NT, S, Fit, enable_if_t<is_one_of_v<NT, NodeType::SplitOn, NodeT
         return predict(d, tn);
     }
 
-    RetType predict(const Dataset& d, TreeNode& tn) const 
+    RetType predict(const Dataset& d, TreeNode& tn, const W** weights=nullptr) const 
     {
         const auto& threshold = tn.data.W.at(0);
         const auto& feature = tn.data.feature;
@@ -222,7 +223,7 @@ struct Operator<NT, S, Fit, enable_if_t<is_one_of_v<NT, NodeType::SplitOn, NodeT
         // if (data_splits[0].get_n_samples() == 0)
         // else if (data_splits[1].get_n_samples() == 0)
             
-        auto child_outputs = get_kids(data_splits, tn);
+        auto child_outputs = get_kids(data_splits, tn, weights);
 
         // stitch together outputs
         // fmt::print("stitching outputs\n");
@@ -232,11 +233,11 @@ struct Operator<NT, S, Fit, enable_if_t<is_one_of_v<NT, NodeType::SplitOn, NodeT
 
         return out;
     }
-    RetType eval(const Dataset& d, TreeNode& tn) const {
+    RetType eval(const Dataset& d, TreeNode& tn, const W** weights=nullptr) const {
         if constexpr (Fit)
             return fit(d,tn); 
         else
-            return predict(d,tn);
+            return predict(d,tn,weights);
     }
 };
 

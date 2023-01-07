@@ -118,7 +118,8 @@ struct Operator
                 if (weights == nullptr)
                     HANDLE_ERROR_THROW("weights = nullptr\n");
                 // auto w = **weights;
-                inputs[i] *= **weights;
+                // inputs[i] *= **weights;
+                inputs[i] = inputs[i] * (**weights);
                 // increment weight pointer
                 *weights++;
             }

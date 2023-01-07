@@ -70,7 +70,9 @@ struct TimeSeries
 
     //TODO: define overloaded operations?
     /* operators on values */
-    /* transform takes a unary function, and applies it to each entry.  */
+    /* transform takes a unary function, and applies it to each entry, 
+     * and returns a TimeSeries.
+    */
     auto transform(std::function<EntryType(EntryType)> op) const -> TimeSeries<T>
     {
         ValType dest(this->value.size());
@@ -127,7 +129,7 @@ struct TimeSeries
     /* template<typename V=T> */
     /* enable_if_t<is_same_v<V,float>,TimeSeries<float>> */
     
-    inline auto operator*(const float& v) requires(is_same_v<Scalar,float>) { 
+    inline auto operator*(float v) requires(is_same_v<Scalar,float>) { 
         return this->transform([&](const EntryType& i){ return i*v; } ); 
     };
 
