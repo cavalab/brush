@@ -63,13 +63,13 @@ template<typename T> struct Program //: public tree<Node>
         return *this;
     };
 
-    template <typename R>
-    auto evaluate(const Dataset &d)
+    template <typename R, typename W>
+    auto predict_with_weights(const Dataset &d, const W** weights)
     {
         if (!is_fitted_)
             HANDLE_ERROR_THROW("Program is not fitted. Call 'fit' first.\n");
 
-        return Tree.begin().node->predict<R>(d);
+        return Tree.begin().node->predict<R>(d, weights);
     };
 
     template <typename R = T>

@@ -31,12 +31,8 @@ template<NodeType T, NodeType... Ts>
 static constexpr bool is_one_of_v = is_one_of<T, Ts...>::value;
 
 
-// Signatures gives a set of SigType for each node
-template<typename First, typename ... Next>
-struct all_same{
-    static constexpr bool value {(std::is_same_v<First,Next> && ...)};
-    /* static constexpr bool value = true; */
-};
+
+
 template<typename R, typename... Args>
 struct SigBase  
 {
@@ -56,6 +52,11 @@ struct SigBase
                                   FirstArg,
                                   typename std::tuple_element<N, ArgTypes>::type
                                  >;
+    using WeightType = typename WeightType<RetType>::type; 
+    // conditional_t<any_same_v<typename RetType::Scalar, fJet, iJet, bJet>,
+    //     fJet, 
+    //     float
+    // >; 
     // currently unused
     using Function = std::function<R(Args...)>;
 
@@ -89,6 +90,7 @@ struct SigBase<R>
 {
     using RetType = R;
     using ArgTypes = void;
+    using WeightType = typename WeightType<R>::type;
     static constexpr std::size_t ArgCount = 0;
     static constexpr auto get_arg_types() { return vector<DataType>{}; } 
     static constexpr auto get_args_type() { return "None"; } 
@@ -102,6 +104,7 @@ struct Signature<R(Args...)> : SigBase<R, Args...>
     using base = SigBase<R, Args...>;
     using RetType = base::RetType;
     using ArgTypes = base::ArgTypes;
+    using WeightType = base::WeightType;
     static constexpr auto ArgCount = base::ArgCount;
     /* using Function = base::Function; */
 };
@@ -133,25 +136,25 @@ struct Signatures<N, enable_if_t<is_one_of_v<N,
         >; 
     }; 
 
-template<NodeType N>
-struct Signatures<N, enable_if_t<is_one_of_v<N,
-    NodeType::And,
-    NodeType::Or,
-    NodeType::Xor
-    >>>{ 
-        using type = std::tuple< 
-            Signature<ArrayXb(ArrayXb,ArrayXb)>,
-            Signature<ArrayXXb(ArrayXXb,ArrayXXb)>
-        >; 
-    }; 
+// template<NodeType N>
+// struct Signatures<N, enable_if_t<is_one_of_v<N,
+//     NodeType::And,
+//     NodeType::Or,
+//     NodeType::Xor
+//     >>>{ 
+//         using type = std::tuple< 
+//             Signature<ArrayXb(ArrayXb,ArrayXb)>,
+//             Signature<ArrayXXb(ArrayXXb,ArrayXXb)>
+//         >; 
+//     }; 
 
-template<> 
-struct Signatures<NodeType::Not> { 
-    using type = std::tuple<
-        Signature<ArrayXb(ArrayXb)>,
-        Signature<ArrayXXb(ArrayXXb)>
-    >;
-};
+// template<> 
+// struct Signatures<NodeType::Not> { 
+//     using type = std::tuple<
+//         Signature<ArrayXb(ArrayXb)>,
+//         Signature<ArrayXXb(ArrayXXb)>
+//     >;
+// };
 
 template<NodeType N> 
 struct Signatures<N, enable_if_t<is_one_of_v<N,

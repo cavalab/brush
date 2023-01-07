@@ -38,10 +38,6 @@ using Eigen::VectorXf;
 using Eigen::VectorXi;
 using Eigen::ArrayXf;
 using Eigen::seq;
-typedef Eigen::Array<bool,Eigen::Dynamic,1> ArrayXb;
-typedef Eigen::Array<int,Eigen::Dynamic,1> ArrayXi;
-typedef Eigen::Array<bool,Eigen::Dynamic,Eigen::Dynamic> ArrayXXb;
-typedef Eigen::Array<int,Eigen::Dynamic,Eigen::Dynamic> ArrayXXi;
 // STD
 using std::map;
 using std::vector;

@@ -6,9 +6,10 @@ Dispatch class design heavily inspired by Operon, (c) Heal Research
 https://github.com/heal-research/operon/
 */
 
-#ifndef INTERPRETER_H
-#define INTERPRETER_H
+#ifndef DISPATCH_TABLE_H
+#define DISPATCH_TABLE_H
 
+#include "../init.h"
 #include "../data/data.h"
 #include "nodemap.h"
 #include "node.h"
@@ -24,7 +25,12 @@ using TreeNode = class tree_node_<Node>;
 namespace Brush{
 
 // forward declarations
-template<typename R, NodeType NT, typename S, bool Fit> R DispatchOp(
+template<typename R, NodeType NT, typename S, bool Fit, typename W> R DispatchOp(
+    const Data::Dataset& d, 
+    TreeNode& tn,
+    const W** weights
+); 
+template<typename R, NodeType NT, typename S, bool Fit> R DispatchFitOp(
     const Data::Dataset& d, 
     TreeNode& tn
 ); 
@@ -35,8 +41,12 @@ template<bool Fit>
 struct DispatchTable
 {
     
+    // todo: make this handle weights that are jet-typed
     template<typename T>
-    using Callable = typename std::function<T(const Data::Dataset&, TreeNode&)>;
+    using Callable = typename std::conditional_t<Fit, 
+        std::function<T(const Data::Dataset&, TreeNode&)>,
+        std::function<T(const Data::Dataset&, TreeNode&, const typename WeightType<T>::type**)>
+    >;
 
     using CallVariant = std::variant< 
         Callable<ArrayXb>,
@@ -47,7 +57,17 @@ struct DispatchTable
         Callable<ArrayXXf>, 
         Callable<TimeSeriesb>,
         Callable<TimeSeriesi>,
-        Callable<TimeSeriesf>
+        Callable<TimeSeriesf>,
+        // jet overloads
+        Callable<ArrayXbJet>,
+        Callable<ArrayXiJet>, 
+        Callable<ArrayXfJet>, 
+        Callable<ArrayXXbJet>,
+        Callable<ArrayXXiJet>, 
+        Callable<ArrayXXfJet>, 
+        Callable<Data::TimeSeriesbJet>,
+        Callable<Data::TimeSeriesiJet>,
+        Callable<Data::TimeSeriesfJet>
         >;
     // map (fit/predict)->(node type)->(signature hash)->(dispatch function)
     using SigMap = std::unordered_map<std::size_t,CallVariant>;
@@ -82,7 +102,7 @@ private:
     {
         SigMap sm;
         (sm.insert({std::tuple_element_t<Is, Sigs>::hash(), 
-                    MakeCallable<NT, std::tuple_element_t<Is, Sigs>>()}), ...);
+            MakeCallable<NT, std::tuple_element_t<Is, Sigs>>()}), ...);
         return sm;
     }
 
@@ -90,7 +110,11 @@ private:
     static constexpr auto MakeCallable()  
     {
         using R = typename S::RetType;
-        return Callable<R>(DispatchOp<R,N,S,Fit>);
+        using W = typename S::WeightType;
+        if constexpr (Fit)
+            return Callable<R>(DispatchFitOp<R,N,S,Fit>);
+        else
+            return Callable<R>(DispatchOp<R,N,S,Fit,W>);
     }
 
 public:

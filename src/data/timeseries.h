@@ -12,6 +12,7 @@ template<class T>
 struct TimeSeries
 {
     using Scalar = T;
+    static const size_t NumDimensions=1;
     using EntryType = Eigen::Array<T,Dynamic,1>;
     using ValType = std::vector<EntryType>;
     using TimeType = std::vector<Eigen::ArrayXi>;

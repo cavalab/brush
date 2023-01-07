@@ -209,14 +209,14 @@ inline auto IsDifferentiable(NodeType nt) noexcept -> bool {
     return !Is<
                 NodeType::Ceil,
                 NodeType::Floor,
-                NodeType::Not,              
+                // NodeType::Not,              
                 NodeType::Before,       
                 NodeType::After,          
                 NodeType::During,
-                NodeType::Count,
-                NodeType::And, 
-                NodeType::Or,
-                NodeType::Xor 
+                NodeType::Count
+                // NodeType::And, 
+                // NodeType::Or,
+                // NodeType::Xor 
                 /* NodeType::Equals, */
                 /* NodeType::LessThan, */
                 /* NodeType::Leq, */
@@ -228,14 +228,14 @@ inline auto IsWeighable() noexcept -> bool {
         return !Is<
                     NodeType::Ceil,
                     NodeType::Floor,
-                    NodeType::Not,              
+                    // NodeType::Not,              
                     NodeType::Before,       
                     NodeType::After,          
                     NodeType::During,
-                    NodeType::Count,
-                    NodeType::And, 
-                    NodeType::Or,
-                    NodeType::Xor
+                    NodeType::Count
+                    // NodeType::And, 
+                    // NodeType::Or,
+                    // NodeType::Xor
                     /* NodeType::Equals, */
                     /* NodeType::LessThan, */
                     /* NodeType::Leq, */

@@ -14,7 +14,7 @@
 namespace Brush
 {
     using Scalar = float;
-    using Dual = ceres::Jet<Scalar, 4 * sizeof(double) / sizeof(Scalar)>;
+    using Dual = ceres::Jet<Scalar, 1>;
 // auto mean_squared_error(ArrayXf y, ArrayXf y_pred)
 // {
 //     return (y-y_pred).norm();
@@ -49,21 +49,30 @@ struct ResidualEvaluator {
     template <typename T>
     auto operator()(T const* parameters, T* residuals) const -> bool
     {
-        using ArrayType = Array<T, Dynamic, 1, Eigen::ColMajor>;
-        Map<ArrayType const> new_weights(parameters, numParameters_);
+        using ArrayType = Array<T, Dynamic, 1>; // ColMajor?
+        // Map<ArrayType const> new_weights(parameters, numParameters_);
+        // T const * p2 = parameters;
+        const T ** new_weights = &parameters; 
+        // auto new_weights = &parameters;
 
-        program_.get().set_weights(new_weights);
-        ArrayType y_pred = program_.get().template evaluate<ArrayType>(dataset_.get());
+        // GetProgram().set_weights(new_weights);
+        ArrayType y_pred = GetProgram().template predict_with_weights<ArrayType>(
+            GetDataset(), 
+            new_weights
+        );
 
-        auto residualMap = ArrayType::Map(residuals, dataset_.get().get_n_samples());
+        auto residualMap = ArrayType::Map(residuals, GetDataset().get_n_samples());
 
-        residualMap = (y_pred - y_true_); 
+        residualMap = (y_pred - GetTarget()); 
 
         return true;
     }
 
     [[nodiscard]] auto NumParameters() const -> size_t { return numParameters_; }
     [[nodiscard]] auto NumResiduals() const -> size_t { return y_true_.get().size(); }
+    inline auto GetProgram() const { return program_.get();};
+    inline auto GetDataset() const { return dataset_.get();};
+    inline auto GetTarget() const { return y_true_.get();};
 
 private:
     std::reference_wrapper<PT> program_;
@@ -105,7 +114,7 @@ struct WeightOptimizer
             solver.Solve(cost_function, &parameters);
             // m0 = p.cast<Operon::Scalar>();
         
-            std::cout << summary.BriefReport() << "\n";
+            // std::cout << summary.BriefReport() << "\n";
             fmt::print("Summary:\nInitial cost: {}\nFinal Cost: {}\nIterations: {}\n",
                 solver.summary.initial_cost,
                 solver.summary.final_cost,

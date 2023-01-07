@@ -6,11 +6,60 @@ license: GNU/GPL v3
 #ifndef TYPES_H
 #define TYPES_H
 
-#include "init.h"
 #include <variant>
+#include <ceres/jet.h>
 
 namespace Brush {
 
+/// @brief checks whether all the types match.
+/// @tparam First 
+/// @tparam ...Next 
+template<typename First, typename ... Next>
+struct all_same{
+    static constexpr bool value {(std::is_same_v<First,Next> && ...)};
+};
+template<typename First, typename ... Next>
+static constexpr bool all_same_v = all_same<First, Next...>::value;
+
+/// @brief checks whether any of the types match the first one.
+/// @tparam First 
+/// @tparam ...Next 
+template<typename First, typename ... Next>
+struct any_same{
+    static constexpr bool value {(std::is_same_v<First,Next> || ...)};
+};
+template<typename First, typename ... Next>
+static constexpr bool any_same_v = any_same<First, Next...>::value;
+////////////////////////////////////////////////////////////////////////////////
+// Eigen types
+typedef Eigen::Array<bool,Eigen::Dynamic,1> ArrayXb;
+typedef Eigen::Array<int,Eigen::Dynamic,1> ArrayXi;
+typedef Eigen::Array<bool,Eigen::Dynamic,Eigen::Dynamic> ArrayXXb;
+typedef Eigen::Array<int,Eigen::Dynamic,Eigen::Dynamic> ArrayXXi;
+// Ceres types
+typedef ceres::Jet<float, 1> fJet;
+typedef ceres::Jet<int, 1> iJet;
+typedef ceres::Jet<bool, 1> bJet;
+
+typedef Eigen::Array<fJet,Eigen::Dynamic,1> ArrayXfJet;
+typedef Eigen::Array<iJet,Eigen::Dynamic,1> ArrayXiJet;
+typedef Eigen::Array<bJet,Eigen::Dynamic,1> ArrayXbJet;
+typedef Eigen::Array<fJet,Eigen::Dynamic,Eigen::Dynamic> ArrayXXfJet;
+typedef Eigen::Array<iJet,Eigen::Dynamic,Eigen::Dynamic> ArrayXXiJet;
+typedef Eigen::Array<bJet,Eigen::Dynamic,Eigen::Dynamic> ArrayXXbJet;
+
+/// @brief Returns the weight type associated with the scalar type underlying T.
+/// @tparam T one of the State types, e.g. ArrayXf
+template <typename T>
+struct WeightType {
+    typedef std::conditional_t<
+        any_same_v<typename T::Scalar, fJet, iJet, bJet>,
+        fJet, 
+        float
+    > type; 
+};
+template<typename T> 
+using WeightType_t = typename WeightType<T>::type;
 ////////////////////////////////////////////////////////////////////////////////
 // Program 
 template<typename T> struct Program;
@@ -59,6 +108,9 @@ namespace Data{
     typedef TimeSeries<bool> TimeSeriesb;
     typedef TimeSeries<int> TimeSeriesi;
     typedef TimeSeries<float> TimeSeriesf;
+    typedef TimeSeries<bJet> TimeSeriesbJet;
+    typedef TimeSeries<iJet> TimeSeriesiJet;
+    typedef TimeSeries<fJet> TimeSeriesfJet;
 
     ////////////////////////////////////////////////////////////////////////////
     /// @brief defines the possible types of data flowing thru nodes.
@@ -71,7 +123,17 @@ namespace Data{
         ArrayXXf,
         TimeSeriesb,
         TimeSeriesi,
-        TimeSeriesf
+        TimeSeriesf,
+        // Jet types
+        ArrayXbJet,
+        ArrayXiJet,
+        ArrayXfJet,
+        ArrayXXbJet,
+        ArrayXXiJet,
+        ArrayXXfJet,
+        TimeSeriesbJet,
+        TimeSeriesiJet,
+        TimeSeriesfJet
         >
         State;
 }
