@@ -90,6 +90,10 @@ private:
     {
         /* constexpr auto signatures = Signatures<NT>::value; */
         using signatures = typename Signatures<NT>::type;
+        // TODO
+        // make a struct that constructs the jet-equivalent signature of each 
+        // entry in Signatures and makes operators out of all of them
+        // using signatures_with_duals = typename SignaturesWithDuals<signatures>::type;
         
         /* return AddOperator<NT, decltype(signatures)>( */ 
         return AddOperator<NT, signatures>( 
