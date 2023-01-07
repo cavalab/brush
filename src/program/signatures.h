@@ -60,6 +60,10 @@ struct SigBase
     // currently unused
     using Function = std::function<R(Args...)>;
 
+    // using DualArgTypes = std::tuple<Jetify<Args>...>;
+    static constexpr auto Dual(){
+        return Signature<typename Jetify<RetType>::type (typename Jetify<Args>::type ...)>;
+    }
 
     template<size_t... Is>
     static constexpr auto get_arg_types(std::index_sequence<Is...>) 
@@ -108,6 +112,28 @@ struct Signature<R(Args...)> : SigBase<R, Args...>
     static constexpr auto ArgCount = base::ArgCount;
     /* using Function = base::Function; */
 };
+
+template <typename T> Jetify;
+template<> Jetify<ArrayXf> { typedef ArrayXfJet type;};
+template<> Jetify<ArrayXi> { using type = ArrayXiJet;};
+template<> Jetify<ArrayXb> { using type = ArrayXbJet;};
+template<> Jetify<ArrayXXf> { using type = ArrayXXfJet;};
+template<> Jetify<ArrayXXi> { using type = ArrayXXiJet;};
+template<> Jetify<ArrayXXb> { using type = ArrayXXbJet;};
+template<> Jetify<Timeseriesf> { using type = TimeseriesfJet;};
+template<> Jetify<Timeseriesi> { using type = TimeseriesiJet;};
+template<> Jetify<Timeseriesb> { using type = TimeseriesbJet;};
+// template<typename T, typename S=T::Scalar, int Rows=T::RowsAtCompileTime, int Cols=0> struct Jetify {
+//     using type = T<
+// }
+// template<> struct Dual<bool>{ using type = Jet<bool, 1>; };
+// template<> struct Dual<int>{ using type = Jet<int, 1>; };
+// template<> struct Dual<float>{ using type = Jet<int, 1>; };
+template<typename T> 
+struct DualSignature : SigBase<Jetify<T::RetType>,
+{
+    using RetType = 
+}
 ////////////////////////////////////////////////////////////////////////////////
 // Signatures
 // - store the signatures that each Node can handle
