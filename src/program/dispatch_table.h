@@ -107,6 +107,12 @@ private:
         SigMap sm;
         (sm.insert({std::tuple_element_t<Is, Sigs>::hash(), 
             MakeCallable<NT, std::tuple_element_t<Is, Sigs>>()}), ...);
+        // add dual signature
+        // using dual = typename std::tuple_element_t<Is, Sigs>::Dual;
+        // (sm.insert({dual::hash(), 
+        //     MakeCallable<NT, dual>()}), ...);
+        (sm.insert({std::tuple_element_t<Is, Sigs>::Dual::hash(), 
+            MakeCallable<NT, typename std::tuple_element_t<Is, Sigs>::Dual>()}), ...);
         return sm;
     }
 

@@ -31,6 +31,19 @@ template<NodeType T, NodeType... Ts>
 static constexpr bool is_one_of_v = is_one_of<T, Ts...>::value;
 
 
+template <typename T> struct Jetify;
+template<> struct Jetify<ArrayXf> { using type= ArrayXfJet;};
+template<> struct Jetify<ArrayXi> { using type = ArrayXiJet;};
+template<> struct Jetify<ArrayXb> { using type = ArrayXbJet;};
+template<> struct Jetify<ArrayXXf> { using type = ArrayXXfJet;};
+template<> struct Jetify<ArrayXXi> { using type = ArrayXXiJet;};
+template<> struct Jetify<ArrayXXb> { using type = ArrayXXbJet;};
+template<> struct Jetify<Data::TimeSeriesf> { using type = Data::TimeSeriesfJet;};
+template<> struct Jetify<Data::TimeSeriesi> { using type = Data::TimeSeriesiJet;};
+template<> struct Jetify<Data::TimeSeriesb> { using type = Data::TimeSeriesbJet;};
+
+template <typename T> 
+using Jetify_t = typename Jetify<T>::type;
 
 
 template<typename R, typename... Args>
@@ -61,9 +74,11 @@ struct SigBase
     using Function = std::function<R(Args...)>;
 
     // using DualArgTypes = std::tuple<Jetify<Args>...>;
-    static constexpr auto Dual(){
-        return Signature<typename Jetify<RetType>::type (typename Jetify<Args>::type ...)>;
-    }
+    // using Dual = typename SigBase<Jetify_t<RetType>, Jetify_t<Args>... >;
+    // static constexpr auto Dual(){
+    //     // return Signature<Jetify_t<RetType> (Jetify_t<Args> ...)>;
+    //     return SigBase<Jetify_t<RetType>, Jetify_t<Args>... >();
+    // }
 
     template<size_t... Is>
     static constexpr auto get_arg_types(std::index_sequence<Is...>) 
@@ -111,29 +126,21 @@ struct Signature<R(Args...)> : SigBase<R, Args...>
     using WeightType = base::WeightType;
     static constexpr auto ArgCount = base::ArgCount;
     /* using Function = base::Function; */
+
+    using Dual = SigBase<Jetify_t<RetType>, Jetify_t<Args>... >;
 };
 
-template <typename T> Jetify;
-template<> Jetify<ArrayXf> { typedef ArrayXfJet type;};
-template<> Jetify<ArrayXi> { using type = ArrayXiJet;};
-template<> Jetify<ArrayXb> { using type = ArrayXbJet;};
-template<> Jetify<ArrayXXf> { using type = ArrayXXfJet;};
-template<> Jetify<ArrayXXi> { using type = ArrayXXiJet;};
-template<> Jetify<ArrayXXb> { using type = ArrayXXbJet;};
-template<> Jetify<Timeseriesf> { using type = TimeseriesfJet;};
-template<> Jetify<Timeseriesi> { using type = TimeseriesiJet;};
-template<> Jetify<Timeseriesb> { using type = TimeseriesbJet;};
 // template<typename T, typename S=T::Scalar, int Rows=T::RowsAtCompileTime, int Cols=0> struct Jetify {
 //     using type = T<
 // }
 // template<> struct Dual<bool>{ using type = Jet<bool, 1>; };
 // template<> struct Dual<int>{ using type = Jet<int, 1>; };
 // template<> struct Dual<float>{ using type = Jet<int, 1>; };
-template<typename T> 
-struct DualSignature : SigBase<Jetify<T::RetType>,
-{
-    using RetType = 
-}
+// template<typename T> 
+// struct DualSignature : SigBase<Jetify<T::RetType>,
+// {
+//     using RetType = 
+// }
 ////////////////////////////////////////////////////////////////////////////////
 // Signatures
 // - store the signatures that each Node can handle
