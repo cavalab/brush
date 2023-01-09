@@ -100,6 +100,7 @@ struct Operator
     };
 
     ////////////////////////////////////////////////////////////////////////////////
+    // apply weights
     template<typename T=ArgTypes>
     enable_if_t<!is_tuple<T>::value && is_one_of_v<typename T::value_type::Scalar,float,fJet>,void> 
     apply_weights(T& inputs, const Node& n, const W** weights=nullptr) const
@@ -124,7 +125,7 @@ struct Operator
                 *weights++;
             }
         }
-        else
+        else 
         {
             std::transform(
                 inputs.begin(),
@@ -190,7 +191,8 @@ struct Operator<NodeType::Constant, S, Fit>
 
     template<typename T=RetType, typename Scalar=T::Scalar, int N=T::NumDimensions> 
     // requires same_as<T, ArrayXf>
-    RetType eval(const Dataset& d, TreeNode& tn, const W** weights=nullptr) const { 
+    RetType eval(const Dataset& d, TreeNode& tn, const W** weights=nullptr) const 
+    { 
         Scalar w;
         if (weights == nullptr)
         {
@@ -198,9 +200,14 @@ struct Operator<NodeType::Constant, S, Fit>
         }
         else
         {
-            if constexpr (is_one_of_v<Scalar, bJet, iJet, fJet>)  
-                w = Scalar(typename Scalar::Scalar((**weights).a));
-            else
+            if constexpr (is_same_v<Scalar, W>) 
+                w = **weights;
+            else if constexpr (is_same_v<Scalar, iJet> && is_same_v<W, fJet>)  {
+                using WScalar = typename Scalar::Scalar;
+                WScalar tmp = WScalar((**weights).a);    
+                w = Scalar(tmp);
+            }
+            else            
                 w = Scalar(**weights);
             *weights++;
         }

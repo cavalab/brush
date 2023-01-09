@@ -8,6 +8,7 @@ license: GNU/GPL v3
 
 #include <variant>
 #include <ceres/jet.h>
+#include <concepts>
 
 namespace Brush {
 
@@ -30,6 +31,9 @@ struct is_one_of{
 };
 template<typename First, typename ... Next>
 static constexpr bool is_one_of_v = is_one_of<First, Next...>::value;
+// see https://en.cppreference.com/w/cpp/concepts/same_as 
+template<typename T, typename ... U>
+concept IsAnyOf = (std::same_as<T, U> || ...);
 ////////////////////////////////////////////////////////////////////////////////
 // Eigen types
 typedef Eigen::Array<bool,Eigen::Dynamic,1> ArrayXb;

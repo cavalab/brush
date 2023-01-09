@@ -12,7 +12,7 @@ template<class T>
 struct TimeSeries
 {
     using Scalar = T;
-    static const size_t NumDimensions=1;
+    static const size_t NumDimensions=2;
     using EntryType = Eigen::Array<T,Dynamic,1>;
     using ValType = std::vector<EntryType>;
     using TimeType = std::vector<Eigen::ArrayXi>;
@@ -28,8 +28,8 @@ struct TimeSeries
                const ValType& v): time(t), value(v) {}
     // array<TimeSeries, 2> TimeSeries::split(const ArrayXb& mask) const ;
     /// return a slice of the data using indices idx
-    template<typename U>
-    TimeSeries operator()(const U& idx) const
+    template<typename U, typename V>
+    TimeSeries operator()(const U& idx, const V& idx2=Eigen::all) const
     {
         // TimeType t = this->time(idx, Eigen::all);
         TimeType t = Util::slice(this->time, idx);
@@ -128,8 +128,9 @@ struct TimeSeries
 
     /* template<typename V=T> */
     /* enable_if_t<is_same_v<V,float>,TimeSeries<float>> */
-    
-    inline auto operator*(T v) //requires(is_same_v<Scalar,float>) 
+
+    template<typename T2> 
+    inline auto operator*(T2 v) //requires(is_same_v<Scalar,float>) 
     { 
         return this->transform([&](const EntryType& i){ return i*v; } ); 
     };

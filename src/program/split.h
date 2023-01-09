@@ -10,6 +10,46 @@ license: GNU/GPL v3
 namespace Split{
     template<typename T>
     ArrayXb threshold_mask(const T& x, const float& threshold);
+    /// Applies a learned threshold to a feature, returning a mask.
+    template<typename T> requires same_as<typename T::Scalar, bool>
+    ArrayXb threshold_mask(const T& x, const float& threshold) { 
+        return x; 
+    }
+    template<typename T> requires same_as<typename T::Scalar, bJet>
+    ArrayXb threshold_mask(const T& x, const float& threshold) { 
+        ArrayXb ret(x.size()); 
+        for (int i = 0; i< x.size(); ++i)
+            ret(i) = x(i).a;
+        return ret; 
+    }
+    template<typename T> requires same_as<typename T::Scalar, float>
+    ArrayXb threshold_mask(const T& x, const float& threshold) { 
+        return (x > threshold); 
+    }
+    template<typename T> requires same_as<typename T::Scalar, fJet>
+    ArrayXb threshold_mask(const T& x, const float& threshold) { 
+        ArrayXb ret(x.size()); 
+        std::transform(
+            x.begin(), x.end(), ret.begin(), 
+            [&](const auto& e){return e > threshold;}
+        );
+        return ret; 
+    }
+    template<typename T> requires same_as<typename T::Scalar, int>
+    ArrayXb threshold_mask(const T& x, const float& threshold) { 
+        return (x == threshold); 
+    }
+
+    template<typename T> requires same_as<typename T::Scalar, iJet>
+    ArrayXb threshold_mask(const T& x, const float& threshold) { 
+        // return (x == threshold); 
+        ArrayXb ret(x.size()); 
+        std::transform(
+            x.begin(), x.end(), ret.begin(), 
+            [&](const auto& e){return e == threshold;}
+        );
+        return ret;
+    }
     float gini_impurity_index(const ArrayXf& classes, const vector<float>& uc);
     float gain(const ArrayXf& lsplit, const ArrayXf& rsplit, bool classification, 
             vector<float> unique_classes);
@@ -210,7 +250,7 @@ struct Operator<NT, S, Fit, enable_if_t<is_in_v<NT, NodeType::SplitOn, NodeType:
             // mask = Split::threshold_mask(std::get<FirstArg>(d.at(feature)), threshold);
             mask = Split::threshold_mask(d[feature], threshold);
         else {
-            auto split_feature = tn.first_child->predict<FirstArg>(d);
+            auto split_feature = tn.first_child->predict<FirstArg>(d, weights);
             mask = Split::threshold_mask(split_feature, threshold);
         }
 
