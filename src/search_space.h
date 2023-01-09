@@ -327,10 +327,10 @@ struct SearchSpace
 
     private:
         /* template<typename T, > */
-        /* static constexpr bool contains() { return is_one_of_v<T, Args...>; } */
+        /* static constexpr bool contains() { return is_in_v<T, Args...>; } */
         /* static constexpr auto MakeNode(bool weighted) */
         template<NodeType NT, typename S>
-        requires (!is_one_of_v<NT, NodeType::Terminal, NodeType::Constant>)
+        requires (!is_in_v<NT, NodeType::Terminal, NodeType::Constant>)
         static constexpr std::optional<Node> CreateNode(
             const auto& unique_data_types, 
             bool use_all, 

@@ -101,7 +101,7 @@ struct Operator
 
     ////////////////////////////////////////////////////////////////////////////////
     template<typename T=ArgTypes>
-    enable_if_t<!is_tuple<T>::value && is_same_v<typename T::value_type::Scalar,float>,void> 
+    enable_if_t<!is_tuple<T>::value && is_one_of_v<typename T::value_type::Scalar,float,fJet>,void> 
     apply_weights(T& inputs, const Node& n, const W** weights=nullptr) const
     {
         /**
@@ -137,7 +137,7 @@ struct Operator
     ///////////////////////////////////////////////////////////////////////////
     /// evaluate operator on array of arguments
     template<typename T=ArgTypes>
-    enable_if_t<!is_tuple<T>::value && is_same_v<typename T::value_type::Scalar,float>, RetType> 
+    enable_if_t<!is_tuple<T>::value && is_one_of_v<typename T::value_type::Scalar,float,fJet>, RetType> 
     eval(const Dataset& d, TreeNode& tn, const W** weights=nullptr) const
     {
         ArgTypes inputs = get_kids(d, tn);
@@ -149,7 +149,7 @@ struct Operator
 
     /// evaluate operator on tuple of arguments
     template<typename T=ArgTypes>
-    enable_if_t<is_tuple<T>::value || !is_same_v<typename T::value_type::Scalar,float>, RetType> 
+    enable_if_t<is_tuple<T>::value || !is_one_of_v<typename T::value_type::Scalar,float,fJet>, RetType> 
     eval(const Dataset& d, TreeNode& tn, const W** weights=nullptr) const
     {
         ArgTypes inputs = get_kids(d, tn);
@@ -188,30 +188,47 @@ struct Operator<NodeType::Constant, S, Fit>
     // define W type
     // make eval return weights if it isn't a nullptr
 
-    template<typename T=RetType> requires same_as<T, ArrayXf>
+    template<typename T=RetType, typename Scalar=T::Scalar, int N=T::NumDimensions> 
+    // requires same_as<T, ArrayXf>
     RetType eval(const Dataset& d, TreeNode& tn, const W** weights=nullptr) const { 
-        return RetType::Constant(d.get_n_samples(), tn.data.W.at(0)); 
+        Scalar w;
+        if (weights == nullptr)
+        {
+            w = Scalar(tn.data.W.at(0));
+        }
+        else
+        {
+            if constexpr (is_one_of_v<Scalar, bJet, iJet, fJet>)  
+                w = Scalar(typename Scalar::Scalar((**weights).a));
+            else
+                w = Scalar(**weights);
+            *weights++;
+        }
+        if constexpr (N == 1)
+            return RetType::Constant(d.get_n_samples(), w); 
+        else
+            return RetType::Constant(d.get_n_samples(), d.get_n_features(), w); 
     };
 
-    template<typename T=RetType> requires same_as<T, ArrayXi>
-    RetType eval(const Dataset& d, TreeNode& tn, const W** weights=nullptr) const { 
-        return RetType::Constant(d.get_n_samples(), int(tn.data.W.at(0))); 
-    };
+    // template<typename T=RetType> requires same_as<T, ArrayXi>
+    // RetType eval(const Dataset& d, TreeNode& tn, const W** weights=nullptr) const { 
+    //     return RetType::Constant(d.get_n_samples(), int(tn.data.W.at(0))); 
+    // };
 
-    template<typename T=RetType> requires same_as<T, ArrayXb>
-    RetType eval(const Dataset& d, TreeNode& tn, const W** weights=nullptr) const { 
-        return RetType(d.get_n_samples()); 
-    };
+    // template<typename T=RetType> requires same_as<T, ArrayXb>
+    // RetType eval(const Dataset& d, TreeNode& tn, const W** weights=nullptr) const { 
+    //     return RetType(d.get_n_samples()); 
+    // };
 
-    template<typename T=RetType> requires same_as<T, ArrayXXf>
-    RetType eval(const Dataset& d, TreeNode& tn, const W** weights=nullptr) const { 
-        return RetType::Constant(d.get_n_samples(), d.get_n_features(), tn.data.W.at(0)); 
-    };
+    // template<typename T=RetType> requires same_as<T, ArrayXXf>
+    // RetType eval(const Dataset& d, TreeNode& tn, const W** weights=nullptr) const { 
+    //     return RetType::Constant(d.get_n_samples(), d.get_n_features(), tn.data.W.at(0)); 
+    // };
 
-    template<typename T=RetType> requires same_as<T, ArrayXXb>
-    RetType eval(const Dataset& d, TreeNode& tn, const W** weights=nullptr) const { 
-        return RetType(d.get_n_samples(), d.get_n_features());
-    };
+    // template<typename T=RetType> requires same_as<T, ArrayXXb>
+    // RetType eval(const Dataset& d, TreeNode& tn, const W** weights=nullptr) const { 
+    //     return RetType(d.get_n_samples(), d.get_n_features());
+    // };
 };
 
 ////////////////////////////////////////////////////////////////////////////

@@ -25,11 +25,11 @@ static constexpr bool all_same_v = all_same<First, Next...>::value;
 /// @tparam First 
 /// @tparam ...Next 
 template<typename First, typename ... Next>
-struct any_same{
+struct is_one_of{
     static constexpr bool value {(std::is_same_v<First,Next> || ...)};
 };
 template<typename First, typename ... Next>
-static constexpr bool any_same_v = any_same<First, Next...>::value;
+static constexpr bool is_one_of_v = is_one_of<First, Next...>::value;
 ////////////////////////////////////////////////////////////////////////////////
 // Eigen types
 typedef Eigen::Array<bool,Eigen::Dynamic,1> ArrayXb;
@@ -53,7 +53,7 @@ typedef Eigen::Array<bJet,Eigen::Dynamic,Eigen::Dynamic> ArrayXXbJet;
 template <typename T>
 struct WeightType {
     typedef std::conditional_t<
-        any_same_v<typename T::Scalar, fJet, iJet, bJet>,
+        is_one_of_v<typename T::Scalar, fJet, iJet, bJet>,
         fJet, 
         float
     > type; 

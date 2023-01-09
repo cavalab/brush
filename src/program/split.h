@@ -144,10 +144,10 @@ namespace Split{
 ////////////////////////////////////////////////////////////////////////////////
 // Split operator overload
 template<NodeType NT, typename S, bool Fit> 
-struct Operator<NT, S, Fit, enable_if_t<is_one_of_v<NT, NodeType::SplitOn, NodeType::SplitBest>>> 
+struct Operator<NT, S, Fit, enable_if_t<is_in_v<NT, NodeType::SplitOn, NodeType::SplitBest>>> 
 {
     using ArgTypes = typename S::ArgTypes;
-    using FirstArg = typename S::base::FirstArg;
+    using FirstArg = typename S::FirstArg;
     using RetType = typename S::RetType;
     using W = typename S::WeightType;
     static constexpr size_t ArgCount = S::ArgCount;

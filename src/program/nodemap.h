@@ -60,20 +60,18 @@ enum class NodeType : uint64_t {
     Max                 = 1UL << 24UL,
     Mean                = 1UL << 25UL,
     Median              = 1UL << 26UL,
-    Count               = 1UL << 27UL,
-    Sum                 = 1UL << 28UL,
-    ArgMax              = 1UL << 29UL,
+    Sum                 = 1UL << 27UL,
     // Transformers 
-    Softmax             = 1UL << 30UL,
+    Softmax             = 1UL << 28UL,
     // Binary
-    Add                 = 1UL << 31UL,
-    Sub                 = 1UL << 32UL,
-    Mul                 = 1UL << 33UL,
-    Div                 = 1UL << 34UL,
-    Pow                 = 1UL << 35UL,
+    Add                 = 1UL << 29UL,
+    Sub                 = 1UL << 30UL,
+    Mul                 = 1UL << 31UL,
+    Div                 = 1UL << 32UL,
+    Pow                 = 1UL << 33UL,
     //split
-    SplitBest           = 1UL << 36UL,
-    SplitOn             = 1UL << 37UL,
+    SplitBest           = 1UL << 34UL,
+    SplitOn             = 1UL << 35UL,
     // these ones change type
     /* Equals              = 1UL << 39UL, */
     /* LessThan            = 1UL << 40UL, */
@@ -81,8 +79,10 @@ enum class NodeType : uint64_t {
     /* Leq                 = 1UL << 42UL, */
     /* Geq                 = 1UL << 43UL, */
     // leaves
-    Constant            = 1UL << 38UL,
-    Terminal            = 1UL << 39UL,
+    Constant            = 1UL << 36UL,
+    Terminal            = 1UL << 37UL,
+    ArgMax              = 1UL << 38UL,
+    Count               = 1UL << 39UL,
     // custom
     CustomUnaryOp       = 1UL << 40UL,
     CustomBinaryOp      = 1UL << 41UL,
@@ -98,7 +98,7 @@ enum class NodeType : uint64_t {
 using UnderlyingNodeType = std::underlying_type_t<NodeType>;
 struct NodeTypes {
     // magic number keeping track of the number of different node types
-    static constexpr size_t Count = 20;
+    static constexpr size_t Count = 38;
     static constexpr size_t OpCount = Count-2;
 
     // returns the index of the given type in the NodeType enum

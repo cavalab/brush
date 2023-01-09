@@ -123,13 +123,14 @@ struct TimeSeries
     inline auto std() { return this->reduce([](const EntryType& i){ return i.std(); } ); };
     inline auto max() { return this->reduce([](const EntryType& i){ return i.maxCoeff(); } ); };
     inline auto min() { return this->reduce([](const EntryType& i){ return i.minCoeff(); } ); };
-    inline auto sum() { return this->reduce<float>([](const EntryType& i){ return i.sum(); } ); };
+    inline auto sum() { return this->reduce<Scalar>([](const EntryType& i){ return i.sum(); } ); };
     inline auto count() { return this->reduce<float>([](const EntryType& i){ return i.size(); } ); };
 
     /* template<typename V=T> */
     /* enable_if_t<is_same_v<V,float>,TimeSeries<float>> */
     
-    inline auto operator*(float v) requires(is_same_v<Scalar,float>) { 
+    inline auto operator*(T v) //requires(is_same_v<Scalar,float>) 
+    { 
         return this->transform([&](const EntryType& i){ return i*v; } ); 
     };
 

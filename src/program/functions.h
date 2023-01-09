@@ -237,7 +237,7 @@ https://eigen.tuxfamily.org/dox/TopicCustomizing_Plugins.html
     struct Function<NodeType::Logistic>
     {
         template<typename T>
-        inline auto operator()(T t) { return 1 / (1 + (-t).exp()) ; }
+        inline auto operator()(T t) { return float(1.0) / (float(1.0) + (-t).exp()) ; }
     };
 
     template<>

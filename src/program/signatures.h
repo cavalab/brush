@@ -22,13 +22,14 @@ namespace Brush {
 
 // https://stackoverflow.com/questions/25958259/how-do-i-find-out-if-a-tuple-contains-a-type
 // https://stackoverflow.com/questions/34111060/c-check-if-the-template-type-is-one-of-the-variadic-template-types
-template <NodeType T, NodeType... Ts> struct is_one_of
+template <NodeType T, NodeType... Ts> 
+struct is_in
 {
     static constexpr bool value = ((T == Ts) || ...);
 };
 
 template<NodeType T, NodeType... Ts> 
-static constexpr bool is_one_of_v = is_one_of<T, Ts...>::value;
+static constexpr bool is_in_v = is_in<T, Ts...>::value;
 
 
 template <typename T> struct Jetify;
@@ -65,11 +66,7 @@ struct SigBase
                                   FirstArg,
                                   typename std::tuple_element<N, ArgTypes>::type
                                  >;
-    using WeightType = typename WeightType<RetType>::type; 
-    // conditional_t<any_same_v<typename RetType::Scalar, fJet, iJet, bJet>,
-    //     fJet, 
-    //     float
-    // >; 
+    using WeightType = typename WeightType<FirstArg>::type; 
     // currently unused
     using Function = std::function<R(Args...)>;
 
@@ -97,7 +94,7 @@ struct SigBase
     };
 
     template<typename T>
-    static constexpr bool contains() { return is_one_of_v<T, Args...>; }
+    static constexpr bool contains() { return is_in_v<T, Args...>; }
 
     static constexpr std::size_t hash_args(){ return typeid(ArgTypes).hash_code();}
 
@@ -109,6 +106,7 @@ struct SigBase<R>
 {
     using RetType = R;
     using ArgTypes = void;
+    using FirstArg = void;
     using WeightType = typename WeightType<R>::type;
     static constexpr std::size_t ArgCount = 0;
     static constexpr auto get_arg_types() { return vector<DataType>{}; } 
@@ -123,11 +121,14 @@ struct Signature<R(Args...)> : SigBase<R, Args...>
     using base = SigBase<R, Args...>;
     using RetType = base::RetType;
     using ArgTypes = base::ArgTypes;
+    using FirstArg = base::FirstArg;
     using WeightType = base::WeightType;
     static constexpr auto ArgCount = base::ArgCount;
     /* using Function = base::Function; */
 
+    // using Dual = Signature<Jetify_t<RetType>(Jetify_t<Args>...) >;
     using Dual = SigBase<Jetify_t<RetType>, Jetify_t<Args>... >;
+    using DualArgs = SigBase<RetType, Jetify_t<Args>... >;
 };
 
 // template<typename T, typename S=T::Scalar, int Rows=T::RowsAtCompileTime, int Cols=0> struct Jetify {
@@ -148,7 +149,7 @@ struct Signature<R(Args...)> : SigBase<R, Args...>
 template<NodeType N, typename T = void> struct Signatures; 
 
 template<NodeType N>
-struct Signatures<N, enable_if_t<is_one_of_v<N, NodeType::Constant, NodeType::Terminal>>>{ 
+struct Signatures<N, enable_if_t<is_in_v<N, NodeType::Constant, NodeType::Terminal>>>{ 
     using type = std::tuple< 
           Signature<ArrayXf()>, 
           Signature<ArrayXb()>, 
@@ -156,7 +157,7 @@ struct Signatures<N, enable_if_t<is_one_of_v<N, NodeType::Constant, NodeType::Te
 }; 
 
 template<NodeType N>
-struct Signatures<N, enable_if_t<is_one_of_v<N, 
+struct Signatures<N, enable_if_t<is_in_v<N, 
     NodeType::Add,
     NodeType::Sub,
     NodeType::Mul,
@@ -170,7 +171,7 @@ struct Signatures<N, enable_if_t<is_one_of_v<N,
     }; 
 
 // template<NodeType N>
-// struct Signatures<N, enable_if_t<is_one_of_v<N,
+// struct Signatures<N, enable_if_t<is_in_v<N,
 //     NodeType::And,
 //     NodeType::Or,
 //     NodeType::Xor
@@ -190,7 +191,7 @@ struct Signatures<N, enable_if_t<is_one_of_v<N,
 // };
 
 template<NodeType N> 
-struct Signatures<N, enable_if_t<is_one_of_v<N,
+struct Signatures<N, enable_if_t<is_in_v<N,
     NodeType::Abs,
     NodeType::Acos,
     NodeType::Asin,
@@ -219,7 +220,7 @@ struct Signatures<N, enable_if_t<is_one_of_v<N,
     };
 
 template<NodeType N>
-struct Signatures<N, enable_if_t<is_one_of_v<N, 
+struct Signatures<N, enable_if_t<is_in_v<N, 
     NodeType::Before,
     NodeType::After,
     NodeType::During
@@ -232,7 +233,7 @@ struct Signatures<N, enable_if_t<is_one_of_v<N,
         >;
     }; 
 template<NodeType N>
-struct Signatures<N, enable_if_t<is_one_of_v<N, 
+struct Signatures<N, enable_if_t<is_in_v<N, 
     NodeType::Min, 
     NodeType::Max
     >>>{ 
@@ -244,7 +245,7 @@ struct Signatures<N, enable_if_t<is_one_of_v<N,
     }; 
 
 template<NodeType N>
-struct Signatures<N, enable_if_t<is_one_of_v<N, 
+struct Signatures<N, enable_if_t<is_in_v<N, 
     NodeType::Mean,
     NodeType::Median
     >>>{ 
@@ -278,7 +279,7 @@ struct Signatures<NodeType::Count>{
 };
 
 template<NodeType N>
-struct Signatures<N, enable_if_t<is_one_of_v<N, 
+struct Signatures<N, enable_if_t<is_in_v<N, 
     NodeType::ArgMax 
     >>>{ 
         using type = std::tuple<
@@ -289,7 +290,7 @@ struct Signatures<N, enable_if_t<is_one_of_v<N,
     }; 
 
 /* template<NodeType N> */
-/* struct Signatures<N, enable_if_t<is_one_of_v<N, */ 
+/* struct Signatures<N, enable_if_t<is_in_v<N, */ 
 /*     NodeType::Equals, */
 /*     NodeType::LessThan, */
 /*     NodeType::GreaterThan, */
@@ -304,7 +305,7 @@ struct Signatures<N, enable_if_t<is_one_of_v<N,
 /*     }; */ 
 
 template<NodeType N>
-struct Signatures<N, enable_if_t<is_one_of_v<N, NodeType::SplitBest, NodeType::CustomSplit>>>
+struct Signatures<N, enable_if_t<is_in_v<N, NodeType::SplitBest, NodeType::CustomSplit>>>
     { 
         using type = std::tuple<
             Signature<ArrayXf(ArrayXf,ArrayXf)>, 

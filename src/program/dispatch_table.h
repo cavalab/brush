@@ -111,8 +111,14 @@ private:
         // using dual = typename std::tuple_element_t<Is, Sigs>::Dual;
         // (sm.insert({dual::hash(), 
         //     MakeCallable<NT, dual>()}), ...);
-        (sm.insert({std::tuple_element_t<Is, Sigs>::Dual::hash(), 
-            MakeCallable<NT, typename std::tuple_element_t<Is, Sigs>::Dual>()}), ...);
+        if constexpr (is_in_v<NT, NodeType::ArgMax, NodeType::Count>){
+            (sm.insert({std::tuple_element_t<Is, Sigs>::DualArgs::hash(), 
+                MakeCallable<NT, typename std::tuple_element_t<Is, Sigs>::DualArgs>()}), ...);
+        }
+        else {
+            (sm.insert({std::tuple_element_t<Is, Sigs>::Dual::hash(), 
+                MakeCallable<NT, typename std::tuple_element_t<Is, Sigs>::Dual>()}), ...);
+        }
         return sm;
     }
 
