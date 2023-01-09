@@ -122,6 +122,7 @@ private:
         return sm;
     }
 
+
     template<NodeType N, typename S>
     static constexpr auto MakeCallable()  
     {
@@ -183,12 +184,30 @@ public:
                 err+= fmt::format("{}\n", k);
             HANDLE_ERROR_THROW(err); 
         }
-        try {
+        // CallVariant callable = map_.at(n).at(sig_hash);
+        fmt::print("get<Callable<{}>> for {} with hash {}\n",
+            DataTypeEnum<T>::value, n, sig_hash
+        );
+        // try {
+        if (std::holds_alternative<Callable<T>>(map_.at(n).at(sig_hash)))
             return std::get<Callable<T>>(map_.at(n).at(sig_hash));
-        }
-        catch(const std::bad_variant_access& e) {
-            auto msg = fmt::format("{}",e.what());
-            HANDLE_ERROR_THROW(msg);
+        // }
+        // catch(const std::bad_variant_access& e) {
+
+            // auto msg = fmt::format("{}\nTried to ",e.what()); HANDLE_ERROR_THROW(msg);
+        // }
+        else{
+            if (map_.at(n).size() > 1){
+                for (const auto & kv : map_.at(n))
+                {
+                    if (std::holds_alternative<Callable<T>>(kv.second))
+                        return std::get<Callable<T>>(kv.second);
+                }
+            }
+            fmt::print("Tried get<Callable<{}>> for {} with hash {}; failed"
+            " because map holds index {}\n",
+                DataTypeEnum<T>::value, n, sig_hash, map_.at(n).at(sig_hash).index() 
+            );
         }
         return std::get<Callable<T>>(map_.at(n).at(sig_hash));
     }
@@ -197,5 +216,29 @@ public:
 
 extern DispatchTable<true> dtable_fit;
 extern DispatchTable<false> dtable_predict;
+// // format overload 
+// template <> struct fmt::formatter<Brush::SearchSpace>: formatter<string_view> {
+//   template <typename FormatContext>
+//   auto format(const Brush::SearchSpace& SS, FormatContext& ctx) const {
+//     string output = "Search Space\n===\n";
+//     output += fmt::format("terminal_map: {}\n", SS.terminal_map);
+//     output += fmt::format("terminal_weights: {}\n", SS.terminal_weights);
+//     for (const auto& [ret_type, v] : SS.node_map) {
+//         for (const auto& [args_type, v2] : v) {
+//             for (const auto& [node_type, node] : v2) {
+//                 output += fmt::format("node_map[{}][{}][{}] = {}, weight = {}\n", 
+//                         ret_type,
+//                         ArgsName[args_type],
+//                         node_type,
+//                         node,
+//                         SS.weight_map.at(ret_type).at(args_type).at(node_type)
+//                         );
+//             }
+//         }
+//     }
+//     output += "===";
+//     return formatter<string_view>::format(output, ctx);
+//   }
+// };
 } // namespace Brush
 #endif

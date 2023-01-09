@@ -70,13 +70,6 @@ struct SigBase
     // currently unused
     using Function = std::function<R(Args...)>;
 
-    // using DualArgTypes = std::tuple<Jetify<Args>...>;
-    // using Dual = typename SigBase<Jetify_t<RetType>, Jetify_t<Args>... >;
-    // static constexpr auto Dual(){
-    //     // return Signature<Jetify_t<RetType> (Jetify_t<Args> ...)>;
-    //     return SigBase<Jetify_t<RetType>, Jetify_t<Args>... >();
-    // }
-
     template<size_t... Is>
     static constexpr auto get_arg_types(std::index_sequence<Is...>) 
     {

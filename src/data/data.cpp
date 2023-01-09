@@ -21,6 +21,15 @@ map<DataType,string>  DataTypeName = {
     {DataType::TimeSeriesB, "TimeSeriesB"},
     {DataType::TimeSeriesI,"TimeSeriesI"},
     {DataType::TimeSeriesF, "TimeSeriesF"},
+    {DataType::ArrayBJet, "ArrayBJet"},
+    {DataType::ArrayIJet, "ArrayIJet"},
+    {DataType::ArrayFJet, "ArrayFJet"},
+    {DataType::MatrixBJet, "MatrixBJet"},
+    {DataType::MatrixIJet, "MatrixIJet"},
+    {DataType::MatrixFJet, "MatrixFJet"},
+    {DataType::TimeSeriesBJet, "TimeSeriesBJet"},
+    {DataType::TimeSeriesIJet,"TimeSeriesIJet"},
+    {DataType::TimeSeriesFJet, "TimeSeriesFJet"}
 };
 map<string,DataType> DataNameType = Util::reverse_map(DataTypeName);
 

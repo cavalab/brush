@@ -34,7 +34,8 @@ TEST(Program, FitRegressor)
 
     SearchSpace SS;
     SS.init(data);
-
+    dtable_fit.print();
+    dtable_predict.print();
     for (int t = 0; t < 10; ++t) {
         for (int d = 1; d < 10; ++d) { 
             for (int s = 1; s < 100; s+=10) {

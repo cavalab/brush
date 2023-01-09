@@ -31,9 +31,9 @@ struct is_one_of{
 };
 template<typename First, typename ... Next>
 static constexpr bool is_one_of_v = is_one_of<First, Next...>::value;
-// see https://en.cppreference.com/w/cpp/concepts/same_as 
-template<typename T, typename ... U>
-concept IsAnyOf = (std::same_as<T, U> || ...);
+// // see https://en.cppreference.com/w/cpp/concepts/same_as 
+// template<typename T, typename ... U>
+// concept IsAnyOf = (std::same_as<T, U> || ...);
 ////////////////////////////////////////////////////////////////////////////////
 // Eigen types
 typedef Eigen::Array<bool,Eigen::Dynamic,1> ArrayXb;
@@ -151,29 +151,50 @@ enum class DataType : uint32_t {
     MatrixF, 
     TimeSeriesB, 
     TimeSeriesI,
-    TimeSeriesF
+    TimeSeriesF,
+    ArrayBJet, 
+    ArrayIJet, 
+    ArrayFJet, 
+    MatrixBJet, 
+    MatrixIJet, 
+    MatrixFJet, 
+    TimeSeriesBJet, 
+    TimeSeriesIJet,
+    TimeSeriesFJet
 };
-template<DataType D> struct DataEnumType; 
-template<> struct DataEnumType<DataType::ArrayB>{ using type = ArrayXb; };
-template<> struct DataEnumType<DataType::ArrayI>{ using type = ArrayXi; };
-template<> struct DataEnumType<DataType::ArrayF>{ using type = ArrayXf; };
-template<> struct DataEnumType<DataType::MatrixB>{ using type = ArrayXXb; };
-template<> struct DataEnumType<DataType::MatrixI>{ using type = ArrayXXi; };
-template<> struct DataEnumType<DataType::MatrixF>{ using type = ArrayXXf; };
-template<> struct DataEnumType<DataType::TimeSeriesB>{ using type = Data::TimeSeriesb; };
-template<> struct DataEnumType<DataType::TimeSeriesI>{ using type = Data::TimeSeriesi; }; 
-template<> struct DataEnumType<DataType::TimeSeriesF>{ using type = Data::TimeSeriesf; };
 
-template<typename T> struct DataTypeEnum; 
-template<> struct DataTypeEnum<ArrayXb>{ static constexpr DataType value = DataType::ArrayB; };
-template<> struct DataTypeEnum<ArrayXi>{ static constexpr DataType value = DataType::ArrayI; };
-template<> struct DataTypeEnum<ArrayXf>{ static constexpr DataType value = DataType::ArrayF; };
-template<> struct DataTypeEnum<ArrayXXb>{ static constexpr DataType value = DataType::MatrixB; };
-template<> struct DataTypeEnum<ArrayXXi>{ static constexpr DataType value = DataType::MatrixI; };
-template<> struct DataTypeEnum<ArrayXXf>{ static constexpr DataType value = DataType::MatrixF; };
-template<> struct DataTypeEnum<Data::TimeSeriesb>{ static constexpr DataType value = DataType::TimeSeriesB; };
-template<> struct DataTypeEnum<Data::TimeSeriesi>{ static constexpr DataType value = DataType::TimeSeriesI; };
-template<> struct DataTypeEnum<Data::TimeSeriesf>{ static constexpr DataType value = DataType::TimeSeriesF; };
+using DT = DataType; 
+template<typename T> struct DataTypeEnum;
+template <> struct DataTypeEnum<ArrayXb> { static constexpr DT value = DT::ArrayB; };
+template <> struct DataTypeEnum<ArrayXi> { static constexpr DT value = DT::ArrayI; };
+template <> struct DataTypeEnum<ArrayXf> { static constexpr DT value = DT::ArrayF; };
+template <> struct DataTypeEnum<ArrayXXb> { static constexpr DT value = DT::MatrixB; };
+template <> struct DataTypeEnum<ArrayXXi> { static constexpr DT value = DT::MatrixI; };
+template <> struct DataTypeEnum<ArrayXXf> { static constexpr DT value = DT::MatrixF; };
+template <> struct DataTypeEnum<Data::TimeSeriesb> { static constexpr DT value = DT::TimeSeriesB; };
+template <> struct DataTypeEnum<Data::TimeSeriesi> { static constexpr DT value = DT::TimeSeriesI; };
+template <> struct DataTypeEnum<Data::TimeSeriesf> { static constexpr DT value = DT::TimeSeriesF; };
+template <> struct DataTypeEnum<ArrayXbJet> { static constexpr DT value = DT::ArrayBJet; };
+template <> struct DataTypeEnum<ArrayXiJet> { static constexpr DT value = DT::ArrayIJet; };
+template <> struct DataTypeEnum<ArrayXfJet> { static constexpr DT value = DT::ArrayFJet; };
+template <> struct DataTypeEnum<ArrayXXbJet> { static constexpr DT value = DT::MatrixBJet; };
+template <> struct DataTypeEnum<ArrayXXiJet> { static constexpr DT value = DT::MatrixIJet; };
+template <> struct DataTypeEnum<ArrayXXfJet> { static constexpr DT value = DT::MatrixFJet; };
+template <>
+struct DataTypeEnum<Data::TimeSeriesbJet>
+{
+    static constexpr DT value = DT::TimeSeriesBJet;
+};
+template <>
+struct DataTypeEnum<Data::TimeSeriesiJet>
+{
+    static constexpr DT value = DT::TimeSeriesIJet;
+};
+template <>
+struct DataTypeEnum<Data::TimeSeriesfJet>
+{
+    static constexpr DT value = DT::TimeSeriesFJet;
+};
 
 } // Brush
 
