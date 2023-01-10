@@ -72,6 +72,7 @@ struct Node {
     bool fixed;
     NodeType node_type;
     std::size_t sig_hash;
+    std::size_t sig_dual_hash;
     DataType ret_type;
     std::vector<DataType> arg_types;
     bool is_weighted;
@@ -84,12 +85,14 @@ struct Node {
     Node() = default; 
 
 
-    explicit Node(NodeType type, const vector<DataType>& args, std::size_t sig, DataType output_type, bool weighted=false) noexcept
+    template<typename S>
+    explicit Node(NodeType type, S signature, bool weighted=false) noexcept
         : node_type(type)
         , name(NodeTypeName[type])
-        , arg_types(args)
-        , sig_hash(sig)
-        , ret_type(output_type)
+        , arg_types(S::get_arg_types())
+        , sig_hash(S::hash())
+        , sig_dual_hash(S::Dual::hash())
+        , ret_type(DataTypeEnum<typename S::RetType>::value)
         , is_weighted(weighted)
     {
         /* cout << "instantiated " << name << " with sig hash " << sig_hash << " and return type " << DataTypeName.at(ret_type) << endl; */
@@ -97,7 +100,7 @@ struct Node {
 
         if (weighted){   
             optimize=true;
-            W.resize(args.size());
+            W.resize(arg_types.size());
             for (int i = 0; i < W.size(); ++i)
                 W.at(i) = 1.0;  
             optimize=true;
@@ -110,13 +113,41 @@ struct Node {
         set_prob_change(1.0);
         fixed=false;
     }
+    // explicit Node(NodeType type, const vector<DataType>& args, std::size_t sig, DataType output_type, bool weighted=false) noexcept
+    //     : node_type(type)
+    //     , name(NodeTypeName[type])
+    //     , arg_types(args)
+    //     , sig_hash(sig)
+    //     , ret_type(output_type)
+    //     , is_weighted(weighted)
+    // {
+    //     /* cout << "instantiated " << name << " with sig hash " << sig_hash << " and return type " << DataTypeName.at(ret_type) << endl; */
+    //     optimize=false;
 
-    explicit Node(NodeType type, string feature_name, DataType output_type, std::size_t sig) noexcept
+    //     if (weighted){   
+    //         optimize=true;
+    //         W.resize(args.size());
+    //         for (int i = 0; i < W.size(); ++i)
+    //             W.at(i) = 1.0;  
+    //         optimize=true;
+    //     }
+    //     else if (Util::in(vector<NodeType>{NodeType::SplitOn, NodeType::SplitBest}, type))
+    //         W.resize(1); // W.at(0) represents the threshold of the split
+    //     else
+
+    //     set_complete_hash();
+    //     set_prob_change(1.0);
+    //     fixed=false;
+    // }
+
+    template<typename S>
+    explicit Node(NodeType type, string feature_name, S signature) noexcept
         : node_type(type)
-        , feature(feature_name)
-        , ret_type(output_type)
-        , sig_hash(sig)
         , name(NodeTypeName[type])
+        , feature(feature_name)
+        , ret_type(DataTypeEnum<typename S::RetType>::value)
+        , sig_hash(S::hash())
+        , sig_dual_hash(S::Dual::hash())
         , is_weighted(false)
     {
         /* cout << "instantiated " << name << " from feature " << feature << " with output type " << DataTypeName.at(ret_type) << endl; */

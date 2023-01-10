@@ -341,17 +341,11 @@ struct SearchSpace
             // overlap with feature data types
             for (auto arg: S::get_arg_types()){
                 if (! in(unique_data_types,arg) ){
-                    // HANDLE_WARNING(fmt::format("not adding {} because {} is not in unique_data_types\n", NT, arg));
                     return {}; 
                 }
             }    
-            using RetType = typename S::RetType; 
-            DataType output_type = DataTypeEnum<RetType>::value;
-            /* auto args_hash = typeid(S).hash_code(); */
-            auto sig_hash = S::hash();
-            ArgsName[sig_hash] = fmt::format("{}", S::get_arg_types());
-            auto arg_types = S::get_arg_types();
-            return Node(NT, arg_types, sig_hash, output_type, weighted);
+            ArgsName[S::hash()] = fmt::format("{}", S::get_arg_types());
+            return Node(NT, S{}, weighted);
         }
        
         template<NodeType NT, typename S>
@@ -394,11 +388,9 @@ struct SearchSpace
             bool use_all = user_ops.size() == 0;
             auto name = NodeTypeName.at(NT);
 
+            // skip operators not defined by user
             if (!use_all & user_ops.find(name) == user_ops.end())
-            {
-                /* cout << "skipping " << name << ", not in user_ops\n"; */ 
                 return;
-            }
 
             using signatures = Signatures<NT>::type;
             constexpr auto size = std::tuple_size<signatures>::value;

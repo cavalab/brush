@@ -32,8 +32,8 @@ struct is_one_of{
 template<typename First, typename ... Next>
 static constexpr bool is_one_of_v = is_one_of<First, Next...>::value;
 // // see https://en.cppreference.com/w/cpp/concepts/same_as 
-// template<typename T, typename ... U>
-// concept IsAnyOf = (std::same_as<T, U> || ...);
+template<typename T, typename ... U>
+concept IsAnyOf = (std::same_as<T, U> || ...);
 ////////////////////////////////////////////////////////////////////////////////
 // Eigen types
 typedef Eigen::Array<bool,Eigen::Dynamic,1> ArrayXb;
@@ -164,6 +164,18 @@ enum class DataType : uint32_t {
 };
 
 using DT = DataType; 
+
+template<DT D> struct DataEnumType; 
+template<> struct DataEnumType<DT::ArrayB>{ using type = ArrayXb; };
+template<> struct DataEnumType<DT::ArrayI>{ using type = ArrayXi; };
+template<> struct DataEnumType<DT::ArrayF>{ using type = ArrayXf; };
+template<> struct DataEnumType<DT::MatrixB>{ using type = ArrayXXb; };
+template<> struct DataEnumType<DT::MatrixI>{ using type = ArrayXXi; };
+template<> struct DataEnumType<DT::MatrixF>{ using type = ArrayXXf; };
+template<> struct DataEnumType<DT::TimeSeriesB>{ using type = Data::TimeSeriesb; };
+template<> struct DataEnumType<DT::TimeSeriesI>{ using type = Data::TimeSeriesi; }; 
+template<> struct DataEnumType<DT::TimeSeriesF>{ using type = Data::TimeSeriesf; };
+
 template<typename T> struct DataTypeEnum;
 template <> struct DataTypeEnum<ArrayXb> { static constexpr DT value = DT::ArrayB; };
 template <> struct DataTypeEnum<ArrayXi> { static constexpr DT value = DT::ArrayI; };

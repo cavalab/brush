@@ -175,19 +175,19 @@ public:
     template<typename T>
     inline auto Get(NodeType n, std::size_t sig_hash) const -> Callable<T> const&
     {
+        fmt::print("get<Callable<{}>> for {} with hash {}\n",
+            DataTypeEnum<T>::value, n, sig_hash
+        );
         if (map_.at(n).find(sig_hash) == map_.at(n).end())
         {
             string err;
-            err += fmt::format("{} not in map_.at({})\n",sig_hash,n);
+            err += fmt::format("sig_hash={} not in map_.at({})\n",sig_hash,n);
             err += fmt::format("options:\n");
             for (auto [k, v]: map_.at(n))
                 err+= fmt::format("{}\n", k);
             HANDLE_ERROR_THROW(err); 
         }
         // CallVariant callable = map_.at(n).at(sig_hash);
-        fmt::print("get<Callable<{}>> for {} with hash {}\n",
-            DataTypeEnum<T>::value, n, sig_hash
-        );
         // try {
         if (std::holds_alternative<Callable<T>>(map_.at(n).at(sig_hash)))
             return std::get<Callable<T>>(map_.at(n).at(sig_hash));

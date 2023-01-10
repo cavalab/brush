@@ -64,7 +64,7 @@ template<typename T> struct Program //: public tree<Node>
     };
 
     template <typename R, typename W>
-    auto predict_with_weights(const Dataset &d, const W** weights)
+    R predict_with_weights(const Dataset &d, const W** weights)
     {
         if (!is_fitted_)
             HANDLE_ERROR_THROW("Program is not fitted. Call 'fit' first.\n");

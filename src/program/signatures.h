@@ -32,7 +32,7 @@ template<NodeType T, NodeType... Ts>
 static constexpr bool is_in_v = is_in<T, Ts...>::value;
 
 
-template <typename T> struct Jetify;
+template <typename T> struct Jetify { using type = T;};
 template<> struct Jetify<ArrayXf> { using type= ArrayXfJet;};
 template<> struct Jetify<ArrayXi> { using type = ArrayXiJet;};
 template<> struct Jetify<ArrayXb> { using type = ArrayXbJet;};
@@ -117,9 +117,7 @@ struct Signature<R(Args...)> : SigBase<R, Args...>
     using FirstArg = base::FirstArg;
     using WeightType = base::WeightType;
     static constexpr auto ArgCount = base::ArgCount;
-    /* using Function = base::Function; */
 
-    // using Dual = Signature<Jetify_t<RetType>(Jetify_t<Args>...) >;
     using Dual = SigBase<Jetify_t<RetType>, Jetify_t<Args>... >;
     using DualArgs = SigBase<RetType, Jetify_t<Args>... >;
 };

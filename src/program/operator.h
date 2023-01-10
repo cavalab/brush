@@ -141,7 +141,7 @@ struct Operator
     enable_if_t<!is_tuple<T>::value && is_one_of_v<typename T::value_type::Scalar,float,fJet>, RetType> 
     eval(const Dataset& d, TreeNode& tn, const W** weights=nullptr) const
     {
-        ArgTypes inputs = get_kids(d, tn);
+        ArgTypes inputs = get_kids(d, tn, weights);
         if (tn.data.is_weighted)
             this->apply_weights(inputs, tn.data, weights);
         RetType out = std::apply(F, inputs);
