@@ -35,6 +35,7 @@ namespace Brush {
 
 
 typedef tree<Node>::pre_order_iterator Iter; 
+typedef tree<Node>::post_order_iterator PostIter; 
 
 // for unsupervised learning, classification and regression. 
 template<typename T> struct Program //: public tree<Node>
@@ -157,7 +158,7 @@ template<typename T> struct Program //: public tree<Node>
     {
         int count=0;
         // return the weights of the tree as an array 
-        for (Iter i = Tree.begin(); i != Tree.end(); ++i)
+        for (PostIter i = Tree.begin(); i != Tree.end_post(); ++i)
         {
             const auto& node = i.node->data; 
             if (node.optimize)
@@ -171,7 +172,7 @@ template<typename T> struct Program //: public tree<Node>
     {
         ArrayXf weights(get_weight_count()); 
         int i = 0;
-        for (Iter t = Tree.begin(); t != Tree.end(); ++t)
+        for (PostIter t = Tree.begin(); t != Tree.end_post(); ++t)
         {
             const auto& node = t.node->data; 
             if (node.optimize)
@@ -196,7 +197,7 @@ template<typename T> struct Program //: public tree<Node>
         // return the weights of the tree as an array 
         if (weights.size() != get_weight_count())
             HANDLE_ERROR_THROW("Tried to set_weights of incorrect size");
-        for (Iter i = Tree.begin(); i != Tree.end(); ++i)
+        for (PostIter i = Tree.begin(); i != Tree.end_post(); ++i)
         {
             auto& node = i.node->data; 
             int j = 0;

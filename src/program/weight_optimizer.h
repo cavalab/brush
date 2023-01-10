@@ -125,6 +125,10 @@ struct WeightOptimizer
                 parameters
             );
             // summary.Success = detail::CheckSuccess(summary.InitialCost, summary.FinalCost);
+            if (summary.final_cost < summary.initial_cost)
+            {
+                program.set_weights(parameters);
+            }
             // return x0;
         }
 
