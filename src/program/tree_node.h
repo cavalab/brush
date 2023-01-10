@@ -42,7 +42,7 @@ class tree_node_<Node> { // size: 5*4=20 bytes (on 32 bit arch), can be reduced 
         auto fit(const Dataset& d); 
 
         template<typename T> 
-        auto predict(const Dataset& d);
+        auto predict(const Dataset& d, const float** weights=nullptr); 
 
         template<typename T, typename W>
         auto predict(const Dataset& d, const W** weights); 
@@ -65,16 +65,15 @@ auto TreeNode::fit(const Dataset& d)
 };
 
 template<typename T> 
-auto TreeNode::predict(const Dataset& d)
+auto TreeNode::predict(const Dataset& d, const float** weights)
 { 
     auto F = dtable_predict.template Get<T>(data.node_type, data.sig_hash);
-    return F(d, (*this), nullptr);
+    return F(d, (*this), weights);
 };
 
 template<typename T, typename W> 
 auto TreeNode::predict(const Dataset& d, const W** weights)
 { 
-    //todo: make a data.dual_hash function
     auto F = dtable_predict.template Get<T>(data.node_type, data.sig_dual_hash);
     return F(d, (*this), weights);
 };

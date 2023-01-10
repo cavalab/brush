@@ -166,7 +166,9 @@ struct Operator<NodeType::Terminal, S, Fit>
     using RetType = typename S::RetType;
     using W = typename S::WeightType; 
 
-    RetType eval(const Dataset& d, const TreeNode& tn, const W** weights=nullptr) const { 
+    template<typename T=RetType> 
+        requires (is_one_of_v<typename T::Scalar,bool,int,float>)
+    T eval(const Dataset& d, const TreeNode& tn, const W** weights=nullptr) const { 
         RetType out;
         try {
             out = std::get<RetType>(d[tn.data.feature]);
@@ -176,6 +178,32 @@ struct Operator<NodeType::Terminal, S, Fit>
         }
 
         return out; 
+    };
+    template <typename T = RetType>
+        requires( is_one_of_v<typename T::Scalar, bJet, iJet, fJet>)
+    T eval(const Dataset &d, const TreeNode &tn, const W **weights = nullptr) const
+    {
+        return std::visit(
+            [](const auto &&arg) -> T
+            {
+                using ArgType = std::decay_t<decltype(arg)>;
+                using Scalar = typename T::Scalar;
+                if constexpr (std::is_same_v<Jetify_t<ArgType>,T>)
+                {
+                    return arg.template cast<Scalar>();
+                }
+                else
+                {
+                    auto msg = fmt::format("Failed trying to cast {} to {}\n",
+                        DataTypeEnum<ArgType>::value,
+                        DataTypeEnum<T>::value
+                    );
+                    HANDLE_ERROR_THROW(msg);
+                }
+                return T();
+            },
+            d[tn.data.feature]
+        );
     };
 };
 //////////////////////////////////////////////////////////////////////////////////

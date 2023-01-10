@@ -31,26 +31,14 @@ struct TimeSeries
     template<typename U, typename V>
     TimeSeries operator()(const U& idx, const V& idx2=Eigen::all) const
     {
-        // TimeType t = this->time(idx, Eigen::all);
         TimeType t = Util::slice(this->time, idx);
-        // ValType v = this->value(idx, Eigen::all);
-        ValType v = Util::slice(this->value, idx); //(idx, Eigen::all);
-        // std::visit([&](auto&& arg) { arg = arg(idx, Eigen::all); }, v);
+        ValType v = Util::slice(this->value, idx); 
         return TimeSeries(t, v);
     };
 
     inline auto size() const -> size_t { return value.size(); };
     inline auto rows() const -> size_t { return value.size(); };
     inline auto cols(int i = 0) const -> size_t { return value.at(i).size(); };
-    // /// return a slice of the data by row or colum/n
-    // template<typename R, typename C>
-    // TimeSeries operator()(const R& rows, 
-    //                       const C& cols) const
-    // {
-    //     ArrayXXf t = this->time(rows, cols);
-    //     ValType v = this->value(rows, cols);
-    //     return TimeSeries(t, v);
-    // };
     // TODO: from_json and to_json
 
     // TODO: custom iterator that iterates over pairs of time and value vectors.
@@ -73,14 +61,16 @@ struct TimeSeries
     /* transform takes a unary function, and applies it to each entry, 
      * and returns a TimeSeries.
     */
-    auto transform(std::function<EntryType(EntryType)> op) const -> TimeSeries<T>
+    template<typename ET=EntryType>
+    auto transform(std::function<ET(EntryType)> op) const 
     {
-        ValType dest(this->value.size());
+        std::vector<ET> dest(this->value.size());
+        // std::vector<ET> dest(this->value.size());
         std::transform(cbegin(), cend(), 
                        dest.begin(),
                        op
         );
-        return TimeSeries<T>(this->time, dest);
+        return TimeSeries<typename ET::Scalar>(this->time, dest);
     }
     /* reduce takes a unary aggregating function, applies it to each entry, and returns an Array.*/
     template<typename R=T>
@@ -94,7 +84,14 @@ struct TimeSeries
                        [&](const EntryType& i){return R(op(i));}
         );
         return dest;
-    }; 
+    };
+
+    template <typename C>
+    inline auto cast() const {
+        using NewType = Array<C, Dynamic, 1>;
+        return this->transform<NewType>([](const EntryType &i) 
+                               { return i.template cast<C>(); });
+    };
 
     // transformation overloads
     inline auto abs() { return this->transform([](const EntryType& i){ return i.abs(); }); };
@@ -132,7 +129,7 @@ struct TimeSeries
     template<typename T2> 
     inline auto operator*(T2 v) //requires(is_same_v<Scalar,float>) 
     { 
-        return this->transform([&](const EntryType& i){ return i*v; } ); 
+        return this->transform<EntryType>([=](const EntryType& i){ return i*v; } ); 
     };
 
     template<typename T2>

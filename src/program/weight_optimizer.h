@@ -120,7 +120,7 @@ struct WeightOptimizer
                 solver.summary.final_cost,
                 solver.summary.iterations
             );
-            fmt::print("Initial weights: {}\nFinal weights: {}", 
+            fmt::print("Initial weights: {}\nFinal weights: {}\n", 
                 init_weights, 
                 parameters
             );

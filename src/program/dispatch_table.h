@@ -175,9 +175,9 @@ public:
     template<typename T>
     inline auto Get(NodeType n, std::size_t sig_hash) const -> Callable<T> const&
     {
-        fmt::print("get<Callable<{}>> for {} with hash {}\n",
-            DataTypeEnum<T>::value, n, sig_hash
-        );
+        // fmt::print("get<Callable<{}>> for {} with hash {}\n",
+        //     DataTypeEnum<T>::value, n, sig_hash
+        // );
         if (map_.at(n).find(sig_hash) == map_.at(n).end())
         {
             string err;
@@ -197,17 +197,18 @@ public:
             // auto msg = fmt::format("{}\nTried to ",e.what()); HANDLE_ERROR_THROW(msg);
         // }
         else{
-            if (map_.at(n).size() > 1){
-                for (const auto & kv : map_.at(n))
-                {
-                    if (std::holds_alternative<Callable<T>>(kv.second))
-                        return std::get<Callable<T>>(kv.second);
-                }
-            }
-            fmt::print("Tried get<Callable<{}>> for {} with hash {}; failed"
+            // if (map_.at(n).size() > 1){
+            //     for (const auto & kv : map_.at(n))
+            //     {
+            //         if (std::holds_alternative<Callable<T>>(kv.second))
+            //             return std::get<Callable<T>>(kv.second);
+            //     }
+            // }
+            auto msg = fmt::format("Tried get<Callable<{}>> for {} with hash {}; failed"
             " because map holds index {}\n",
                 DataTypeEnum<T>::value, n, sig_hash, map_.at(n).at(sig_hash).index() 
             );
+            HANDLE_ERROR_THROW(msg);
         }
         return std::get<Callable<T>>(map_.at(n).at(sig_hash));
     }

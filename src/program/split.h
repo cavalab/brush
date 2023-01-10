@@ -246,8 +246,12 @@ struct Operator<NT, S, Fit, enable_if_t<is_in_v<NT, NodeType::SplitOn, NodeType:
 
         // split the data
         ArrayXb mask;
-        if constexpr (NT==NodeType::SplitBest)
-            // mask = Split::threshold_mask(std::get<FirstArg>(d.at(feature)), threshold);
+        if (feature == "")
+        {
+            mask.resize(d.get_n_samples());
+            mask.fill(true);
+        }
+        else if constexpr (NT==NodeType::SplitBest)
             mask = Split::threshold_mask(d[feature], threshold);
         else {
             auto split_feature = tn.first_child->predict<FirstArg>(d, weights);
