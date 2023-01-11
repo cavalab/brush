@@ -87,7 +87,26 @@ bool in(const V& v, const T& i)
 /// calculate median
 // float median(const ArrayXf& v);
 /// calculate median
-float median(const Eigen::Ref<const ArrayXf>& v);
+// float median(const Eigen::Ref<const ArrayXf>& v);
+template<typename T, typename Scalar=T::Scalar>
+auto median(const T& v) 
+{
+    // instantiate a vector
+    vector<Scalar> x(v.size());
+    x.assign(v.data(),v.data()+v.size());
+    // middle element
+    size_t n = x.size()/2;
+    // sort nth element of array
+    nth_element(x.begin(),x.begin()+n,x.end());
+    // if evenly sized, return average of middle two elements
+    if (x.size() % 2 == 0) {
+        nth_element(x.begin(),x.begin()+n-1,x.end());
+        return (x[n] + x[n-1]) / Scalar(2);
+    }
+    // otherwise return middle element
+    else
+        return x[n];
+};
 
 /// calculate variance when mean provided
 float variance(const ArrayXf& v, float mean);
@@ -652,6 +671,8 @@ template <typename ...T> struct is_tuple<std::tuple<T...>>: std::true_type {};
 //         return variant_index<VariantType, T, index + 1>();
 //     }
 // } 
+
+
 } // Util
 } // Brush 
 #endif

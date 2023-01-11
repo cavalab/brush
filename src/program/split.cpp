@@ -21,6 +21,12 @@ template<> vector<float> get_thresholds<ArrayXi>(const ArrayXi& x){
         thresholds.push_back(val);
     return thresholds;
 }
+template<> vector<float> get_thresholds<ArrayXiJet>(const ArrayXiJet& x){ 
+    vector<float> thresholds;
+    for (const auto& val : unique(x))
+        thresholds.push_back(val.a);
+    return thresholds;
+}
 
 template<> vector<float> get_thresholds<ArrayXf>(const ArrayXf& x){ 
     vector<float> thresholds;
@@ -31,33 +37,23 @@ template<> vector<float> get_thresholds<ArrayXf>(const ArrayXf& x){
     }
     return thresholds;
 }
+template<> vector<float> get_thresholds<ArrayXfJet>(const ArrayXfJet& x){ 
+    vector<float> thresholds;
+    auto s = unique(x);
+    for (unsigned i =0; i<s.size()-1; ++i)
+    {
+        thresholds.push_back((s.at(i).a + s.at(i+1).a)/float(2.0));
+    }
+    return thresholds;
+}
 
 
-/// Applies a learned threshold to a feature, returning a mask.
-template<>
-ArrayXb threshold_mask<ArrayXb>(const ArrayXb& x, const float& threshold) { 
-    return x; 
-}
-template<>
-ArrayXb threshold_mask<ArrayXf>(const ArrayXf& x, const float& threshold) { 
-    return (x > threshold); 
-}
-template<>
-ArrayXb threshold_mask<ArrayXi>(const ArrayXi& x, const float& threshold) { 
-    return (x == threshold); 
-}
 template<>
 ArrayXb threshold_mask<State>(const State& x, const float& threshold) { 
-    // return std::visit(
-    //     x
-    // ); 
     return std::visit(
         [&](const auto& arg) -> ArrayXb { 
             using T = std::decay_t<decltype(arg)>;
-            if constexpr (std::is_same_v<T, ArrayXb> 
-                          || std::is_same_v<T, ArrayXi> 
-                          || std::is_same_v<T, ArrayXf> 
-                         )
+            if constexpr (T::NumDimensions == 1)
                 return threshold_mask(arg, threshold); 
             else
                 return ArrayXb::Constant(arg.size(), true);
@@ -65,8 +61,6 @@ ArrayXb threshold_mask<State>(const State& x, const float& threshold) {
         x
     );
 }
-
-
 float gain(const ArrayXf& lsplit, 
             const ArrayXf& rsplit, 
             bool classification, vector<float> unique_classes)

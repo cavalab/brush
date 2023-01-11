@@ -33,10 +33,10 @@ std::map<std::string, NodeType> NodeNameType = {
     {"Logistic", NodeType::Logistic},
 
     // logic; not sure these will make it in
-    {"And", NodeType::And},
-    {"Or", NodeType::Or},
-    {"Not", NodeType::Not},
-    {"Xor", NodeType::Xor},
+    // {"And", NodeType::And},
+    // {"Or", NodeType::Or},
+    // {"Not", NodeType::Not},
+    // {"Xor", NodeType::Xor},
 
     // decision (same)
     /* {"Equals", NodeType::Equals}, */

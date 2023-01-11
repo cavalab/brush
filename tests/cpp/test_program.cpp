@@ -34,7 +34,8 @@ TEST(Program, FitRegressor)
 
     SearchSpace SS;
     SS.init(data);
-
+    dtable_fit.print();
+    dtable_predict.print();
     for (int t = 0; t < 10; ++t) {
         for (int d = 1; d < 10; ++d) { 
             for (int s = 1; s < 100; s+=10) {
@@ -47,6 +48,40 @@ TEST(Program, FitRegressor)
                 );
                 PRG.fit(data);
                 auto y = PRG.predict(data);
+            }
+        }
+    }
+}
+
+TEST(Program, PredictWithWeights)
+{
+        
+    Dataset data = Data::read_csv("examples/datasets/d_enc.csv","label");
+
+    SearchSpace SS;
+    SS.init(data);
+    dtable_fit.print();
+    dtable_predict.print();
+    for (int t = 0; t < 10; ++t) {
+        for (int d = 1; d < 10; ++d) { 
+            for (int s = 1; s < 100; s+=10) {
+                RegressorProgram PRG = SS.make_regressor(d, s);
+                fmt::print(
+                    "=================================================\n"
+                    "Tree model for depth = {}, size= {}: {}\n"
+                    "=================================================\n",
+                    d, s, PRG.get_model("compact", true)
+                );
+                PRG.fit(data);
+                auto y = PRG.predict(data);
+                auto weights = PRG.get_weights();
+                auto yweights = PRG.predict_with_weights(data, weights);
+                for (int i = 0; i < y.size(); ++i){
+                    if (std::isnan(y(i)))
+                        ASSERT_TRUE(std::isnan(y(i)));
+                    else
+                        ASSERT_FLOAT_EQ(y(i), yweights(i));
+                }
             }
         }
     }

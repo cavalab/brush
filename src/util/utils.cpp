@@ -364,24 +364,7 @@ float pearson_correlation(const ArrayXf& x, const ArrayXf& y)
     return pow(covariance(x,y),2) / (variance(x) * variance(y));
 };
 
-float median(const Eigen::Ref<const ArrayXf>& v) 
-{
-    // instantiate a vector
-    vector<float> x(v.size());
-    x.assign(v.data(),v.data()+v.size());
-    // middle element
-    size_t n = x.size()/2;
-    // sort nth element of array
-    nth_element(x.begin(),x.begin()+n,x.end());
-    // if evenly sized, return average of middle two elements
-    if (x.size() % 2 == 0) {
-        nth_element(x.begin(),x.begin()+n-1,x.end());
-        return (x[n] + x[n-1]) / 2;
-    }
-    // otherwise return middle element
-    else
-        return x[n];
-};
+
 /// median absolute deviation
 float mad(const ArrayXf& x) 
 {

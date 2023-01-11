@@ -8,22 +8,16 @@
 #include "node.h"
 #include "functions.h"
 #include "nodemap.h"
-#include "dispatch_table.h"
 #include "../../thirdparty/tree.hh"
 
 using std::string;
 using Brush::Data::Dataset;
 using Brush::Node;
 
-/* namespace Brush { */
-/// A node in the tree, combining links to other nodes as well as the actual data.
-/* template<class T> class tree_node_; */ 
-
-// /**
-//  * @brief tree node specialization for Node.
-//  * 
-//  */
-//
+/**
+  * @brief tree node specialization for Node.
+  * 
+*/
 template<>
 class tree_node_<Node> { // size: 5*4=20 bytes (on 32 bit arch), can be reduced by 8.
 	public:
@@ -44,12 +38,15 @@ class tree_node_<Node> { // size: 5*4=20 bytes (on 32 bit arch), can be reduced 
 		tree_node_<Node> *prev_sibling, *next_sibling;
 		Node data;
 
-        /* template<typename T> */
         template<typename T>
-        auto fit(const Dataset& d); //{ State s; return std::get<T>(s);};
-        template<typename T>
-        auto predict(const Dataset& d); //{ State s; return std::get<T>(s);};
-        /* /1* void grad_descent(const ArrayXf&, const Dataset&); *1/ */
+        auto fit(const Dataset& d); 
+
+        template<typename T> 
+        auto predict(const Dataset& d, const float** weights=nullptr); 
+
+        template<typename T, typename W>
+        auto predict(const Dataset& d, const W** weights); 
+
 		string get_model(bool pretty=false) const;
 		string get_tree_model(bool pretty=false, string offset="") const;
 }; 
@@ -58,21 +55,27 @@ using TreeNode = class tree_node_<Node>;
 //////////////////////////////////////////////////////////////////////////////////
 // fit, eval, predict
 
+#include "dispatch_table.h"
+
 template<typename T>
 auto TreeNode::fit(const Dataset& d)
 { 
-    // fmt::print("TreeNode::fit: getting {}\n",data.node_type);
     auto F = dtable_fit.template Get<T>(data.node_type, data.sig_hash);
-    /* fmt::print("TreeNode::fit: return F(d,(*this))\n"); */
     return F(d, (*this));
 };
 
-template<typename T>
-auto TreeNode::predict(const Dataset& d)
+template<typename T> 
+auto TreeNode::predict(const Dataset& d, const float** weights)
 { 
     auto F = dtable_predict.template Get<T>(data.node_type, data.sig_hash);
-    return F(d, (*this));
+    return F(d, (*this), weights);
 };
 
-/* }// Brush */
+template<typename T, typename W> 
+auto TreeNode::predict(const Dataset& d, const W** weights)
+{ 
+    auto F = dtable_predict.template Get<T>(data.node_type, data.sig_dual_hash);
+    return F(d, (*this), weights);
+};
+
 #endif

@@ -22,6 +22,7 @@ license: GNU/GPL v3
 #include "../params.h"
 #include "../util/utils.h"
 #include "functions.h"
+// #include "weight_optimizer.h"
 
 
 using std::cout;
@@ -34,6 +35,7 @@ namespace Brush {
 
 
 typedef tree<Node>::pre_order_iterator Iter; 
+typedef tree<Node>::post_order_iterator PostIter; 
 
 // for unsupervised learning, classification and regression. 
 template<typename T> struct Program //: public tree<Node>
@@ -57,8 +59,24 @@ template<typename T> struct Program //: public tree<Node>
     Program<T>& fit(const Dataset& d)
     {
         TreeType out =  Tree.begin().node->fit<TreeType>(d);
+        update_weights(d);
         is_fitted_ = true;
         return *this;
+    };
+
+    template <typename R, typename W>
+    R predict_with_weights(const Dataset &d, const W** weights)
+    {
+        if (!is_fitted_)
+            HANDLE_ERROR_THROW("Program is not fitted. Call 'fit' first.\n");
+
+        return Tree.begin().node->predict<R>(d, weights);
+    };
+
+    auto predict_with_weights(const Dataset &d, const ArrayXf& weights)
+    {
+        float const * wptr = weights.data(); 
+        return this->predict_with_weights<T>(d, &wptr);
     };
 
     template <typename R = T>
@@ -140,6 +158,61 @@ template<typename T> struct Program //: public tree<Node>
         //TODO
     };
 
+    void update_weights(const Dataset& d);
+
+    int get_n_weights() const
+    {
+        int count=0;
+        // check tree nodes for weights
+        for (PostIter i = Tree.begin_post(); i != Tree.end_post(); ++i)
+        {
+            const auto& node = i.node->data; 
+            if (node.optimize)
+                count += node.W.size();
+        }
+        return count;
+    }
+
+    /// return the weights of the tree as an array 
+    ArrayXf get_weights()
+    {
+        ArrayXf weights(get_n_weights()); 
+        int i = 0;
+        for (PostIter t = Tree.begin_post(); t != Tree.end_post(); ++t)
+        {
+            const auto& node = t.node->data; 
+            if (node.optimize)
+            {
+                for (const auto& w: node.W)
+                {
+                    weights(i) = w;
+                    ++i;
+                }
+            }
+        }
+        return weights;
+    }
+
+    void set_weights(const ArrayXf& weights)
+    {
+        // take the weights set them in the tree. 
+        // return the weights of the tree as an array 
+        if (weights.size() != get_n_weights())
+            HANDLE_ERROR_THROW("Tried to set_weights of incorrect size");
+        for (PostIter i = Tree.begin_post(); i != Tree.end_post(); ++i)
+        {
+            auto& node = i.node->data; 
+            int j = 0;
+            if (node.optimize)
+            {
+                for (auto& w: node.W)
+                {
+                    w = weights(j);
+                    ++j;
+                }
+            }
+        }
+    }
     string get_model(string fmt="compact", bool pretty=false)
     {
         auto head = Tree.begin(); 
@@ -303,8 +376,23 @@ template<typename T> struct Program //: public tree<Node>
 
         return child;
     };
-}; // Program
 
+}; // Program
 } // Brush
+
+#include "optimizer/weight_optimizer.h"
+
+namespace Brush {
+    template<typename T> 
+    void Program<T>::update_weights(const Dataset& d)
+    {
+        // Updates the weights within a tree. 
+        // make an optimizer
+        auto WO = WeightOptimizer(); 
+        // get new weights from optimization.
+        WO.update((*this), d);
+    }
+} // Brush
+
 
 #endif
