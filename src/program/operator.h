@@ -116,13 +116,12 @@ struct Operator
         {
             for (int i = 0; i < inputs.size(); ++i)
             {
-                if (weights == nullptr)
+                if (weights == nullptr || *weights == nullptr)
                     HANDLE_ERROR_THROW("weights = nullptr\n");
-                // auto w = **weights;
-                // inputs[i] *= **weights;
+
                 inputs[i] = inputs[i] * (**weights);
                 // increment weight pointer
-                *weights++;
+                *weights = *weights+1;
             }
         }
         else 

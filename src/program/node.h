@@ -103,7 +103,6 @@ struct Node {
             W.resize(arg_types.size());
             for (int i = 0; i < W.size(); ++i)
                 W.at(i) = 1.0;  
-            optimize=true;
         }
         else if (Util::in(vector<NodeType>{NodeType::SplitOn, NodeType::SplitBest}, type))
             W.resize(1); // W.at(0) represents the threshold of the split
@@ -113,32 +112,6 @@ struct Node {
         set_prob_change(1.0);
         fixed=false;
     }
-    // explicit Node(NodeType type, const vector<DataType>& args, std::size_t sig, DataType output_type, bool weighted=false) noexcept
-    //     : node_type(type)
-    //     , name(NodeTypeName[type])
-    //     , arg_types(args)
-    //     , sig_hash(sig)
-    //     , ret_type(output_type)
-    //     , is_weighted(weighted)
-    // {
-    //     /* cout << "instantiated " << name << " with sig hash " << sig_hash << " and return type " << DataTypeName.at(ret_type) << endl; */
-    //     optimize=false;
-
-    //     if (weighted){   
-    //         optimize=true;
-    //         W.resize(args.size());
-    //         for (int i = 0; i < W.size(); ++i)
-    //             W.at(i) = 1.0;  
-    //         optimize=true;
-    //     }
-    //     else if (Util::in(vector<NodeType>{NodeType::SplitOn, NodeType::SplitBest}, type))
-    //         W.resize(1); // W.at(0) represents the threshold of the split
-    //     else
-
-    //     set_complete_hash();
-    //     set_prob_change(1.0);
-    //     fixed=false;
-    // }
 
     template<typename S>
     explicit Node(NodeType type, string feature_name, S signature) noexcept
@@ -225,6 +198,9 @@ struct Node {
 template <NodeType... T>
 inline auto Is(NodeType nt) -> bool { return ((nt == T) || ...); }
 
+template <NodeType... T>
+inline auto Isnt(NodeType nt) -> bool { return !((nt == T) || ...); }
+
 inline auto IsLeaf(NodeType nt) noexcept -> bool { 
     return Is<NodeType::Constant, NodeType::Terminal>(nt); 
 }
@@ -237,7 +213,7 @@ inline auto IsCommutative(NodeType nt) noexcept -> bool {
 }
 
 inline auto IsDifferentiable(NodeType nt) noexcept -> bool { 
-    return !Is<
+    return Isnt<
                 NodeType::Ceil,
                 NodeType::Floor,
                 // NodeType::Not,              
@@ -256,14 +232,14 @@ inline auto IsDifferentiable(NodeType nt) noexcept -> bool {
 }
 template<NodeType NT>
 inline auto IsWeighable() noexcept -> bool { 
-        return !Is<
+        return Isnt<
                     NodeType::Ceil,
                     NodeType::Floor,
                     // NodeType::Not,              
                     NodeType::Before,       
                     NodeType::After,          
                     NodeType::During,
-                    NodeType::Count
+                    NodeType::Count,
                     // NodeType::And, 
                     // NodeType::Or,
                     // NodeType::Xor
@@ -271,8 +247,8 @@ inline auto IsWeighable() noexcept -> bool {
                     /* NodeType::LessThan, */
                     /* NodeType::Leq, */
                     /* NodeType::Geq, */
-                    /* NodeType::SplitOn, */
-                    /* NodeType::SplitBest */
+                    NodeType::SplitOn,
+                    NodeType::SplitBest 
                     >(NT);                
     }
 ostream& operator<<(ostream& os, const Node& n);

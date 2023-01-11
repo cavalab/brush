@@ -73,6 +73,12 @@ template<typename T> struct Program //: public tree<Node>
         return Tree.begin().node->predict<R>(d, weights);
     };
 
+    auto predict_with_weights(const Dataset &d, const ArrayXf& weights)
+    {
+        float const * wptr = weights.data(); 
+        return this->predict_with_weights<T>(d, &wptr);
+    };
+
     template <typename R = T>
     enable_if_t<is_same_v<R, TreeType>, R>
     predict(const Dataset &d)
@@ -154,11 +160,11 @@ template<typename T> struct Program //: public tree<Node>
 
     void update_weights(const Dataset& d);
 
-    int get_weight_count() const
+    int get_n_weights() const
     {
         int count=0;
-        // return the weights of the tree as an array 
-        for (PostIter i = Tree.begin(); i != Tree.end_post(); ++i)
+        // check tree nodes for weights
+        for (PostIter i = Tree.begin_post(); i != Tree.end_post(); ++i)
         {
             const auto& node = i.node->data; 
             if (node.optimize)
@@ -170,9 +176,9 @@ template<typename T> struct Program //: public tree<Node>
     /// return the weights of the tree as an array 
     ArrayXf get_weights()
     {
-        ArrayXf weights(get_weight_count()); 
+        ArrayXf weights(get_n_weights()); 
         int i = 0;
-        for (PostIter t = Tree.begin(); t != Tree.end_post(); ++t)
+        for (PostIter t = Tree.begin_post(); t != Tree.end_post(); ++t)
         {
             const auto& node = t.node->data; 
             if (node.optimize)
@@ -187,17 +193,13 @@ template<typename T> struct Program //: public tree<Node>
         return weights;
     }
 
-    // void set_weights(const vector<float>& weights)
-    // {
-    //     set_weights()
-    // }
     void set_weights(const ArrayXf& weights)
     {
         // take the weights set them in the tree. 
         // return the weights of the tree as an array 
-        if (weights.size() != get_weight_count())
+        if (weights.size() != get_n_weights())
             HANDLE_ERROR_THROW("Tried to set_weights of incorrect size");
-        for (PostIter i = Tree.begin(); i != Tree.end_post(); ++i)
+        for (PostIter i = Tree.begin_post(); i != Tree.end_post(); ++i)
         {
             auto& node = i.node->data; 
             int j = 0;

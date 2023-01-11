@@ -41,9 +41,10 @@ typedef Eigen::Array<int,Eigen::Dynamic,1> ArrayXi;
 typedef Eigen::Array<bool,Eigen::Dynamic,Eigen::Dynamic> ArrayXXb;
 typedef Eigen::Array<int,Eigen::Dynamic,Eigen::Dynamic> ArrayXXi;
 // Ceres types
-typedef ceres::Jet<float, 1> fJet;
-typedef ceres::Jet<int, 1> iJet;
-typedef ceres::Jet<bool, 1> bJet;
+static constexpr int stride = 8;
+typedef ceres::Jet<float, stride> fJet;
+typedef ceres::Jet<int, stride> iJet;
+typedef ceres::Jet<bool, stride> bJet;
 
 typedef Eigen::Array<fJet,Eigen::Dynamic,1> ArrayXfJet;
 typedef Eigen::Array<iJet,Eigen::Dynamic,1> ArrayXiJet;

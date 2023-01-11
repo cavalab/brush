@@ -13,8 +13,9 @@
 #include "optimizer/tiny_cost_function.hpp"
 namespace Brush
 {
-    using Scalar = float;
-    using Dual = ceres::Jet<Scalar, 1>;
+    // using Scalar = float;
+    // using Dual = ceres::Jet<Scalar, 1>;
+    using Dual = fJet;
 // auto mean_squared_error(ArrayXf y, ArrayXf y_pred)
 // {
 //     return (y-y_pred).norm();
@@ -90,75 +91,38 @@ struct WeightOptimizer
         // update weights to return new_weights using Non-linear least squares.
         // target: d.y
         // get a copy of the weights from the tree. 
+        if (program.get_n_weights() == 0)
+            return;
+        fmt::print("number of weights: {}\n",program.get_n_weights());
         auto init_weights = program.get_weights();
-        int n_weights = init_weights.size();
-        
-        // auto residual_functor = ResidualEvaluator<PT>(program, dataset);
-        // auto cost_function = ceres::DynamicAutoDiffCostFunction<ResidualEvaluator<PT>>(
-        //     &residual_functor
-        // );
-        // cost_function.AddParameterBlock(n_weights);
-        // cost_function.SetNumResiduals(residual_functor.NumResiduals());
 
-        // ceres::TinySolver<ceres::DynamicAutoDiffCostFunction<ResidualEvaluator<PT>>> solver;
-        // solver.options.max_num_iterations = 1000;
         ceres::Solver::Summary summary;
 
         ResidualEvaluator<PT> re(program, dataset);
         Brush::TinyCostFunction<ResidualEvaluator<PT>, Dual, float, Eigen::ColMajor> cost_function(re);
         ceres::TinySolver<decltype(cost_function)> solver;
-        // auto x0 = weights;
-        // auto m0 = Eigen::Map<Eigen::Matrix<Operon::Scalar, Eigen::Dynamic, 1>>(x0.data(), x0.size()); 
-        if (n_weights > 0) {
-            typename decltype(solver)::Parameters parameters = program.get_weights(); 
-            solver.Solve(cost_function, &parameters);
-            // m0 = p.cast<Operon::Scalar>();
-        
-            // std::cout << summary.BriefReport() << "\n";
-            fmt::print("Summary:\nInitial cost: {}\nFinal Cost: {}\nIterations: {}\n",
-                solver.summary.initial_cost,
-                solver.summary.final_cost,
-                solver.summary.iterations
-            );
-            fmt::print("Initial weights: {}\nFinal weights: {}\n", 
-                init_weights, 
-                parameters
-            );
-            // summary.Success = detail::CheckSuccess(summary.InitialCost, summary.FinalCost);
-            if (summary.final_cost < summary.initial_cost)
-            {
-                program.set_weights(parameters);
-            }
-            // return x0;
+
+        typename decltype(solver)::Parameters parameters = program.get_weights(); 
+        solver.Solve(cost_function, &parameters);
+        // m0 = p.cast<Operon::Scalar>();
+    
+        // std::cout << summary.BriefReport() << "\n";
+        fmt::print("Summary:\nInitial cost: {}\nFinal Cost: {}\nIterations: {}\n",
+            solver.summary.initial_cost,
+            solver.summary.final_cost,
+            solver.summary.iterations
+        );
+        fmt::print("Initial weights: {}\nFinal weights: {}\n", 
+            init_weights, 
+            parameters
+        );
+        // summary.Success = detail::CheckSuccess(summary.InitialCost, summary.FinalCost);
+        if (summary.final_cost < summary.initial_cost)
+        {
+            program.set_weights(parameters);
         }
 
 ////////////////////////////////////////////////////////////////////////////////
-        // ceres::DynamicCostFunction* costFunction = nullptr;
-        // ResidualEvaluator re(interpreter, tree, dataset, target, range);
-        // TinyCostFunction<ResidualEvaluator, Operon::Dual, Operon::Scalar, Eigen::RowMajor> f(re);
-        // costFunction = new Operon::DynamicCostFunction<decltype(f)>(f);
-
-        // auto sz = static_cast<Eigen::Index>(x0.size());
-        // Eigen::MatrixXd params = Eigen::Map<Eigen::Matrix<Operon::Scalar, -1, 1>>(x0.data(), sz).template cast<double>();
-        // ceres::Problem problem;
-        // problem.AddResidualBlock(costFunction, nullptr, params.data());
-
-        // ceres::Solver::Options options;
-        // options.max_num_iterations = static_cast<int>(iterations - 1); // workaround since for some reason ceres sometimes does 1 more iteration
-        // options.linear_solver_type = ceres::DENSE_QR;
-        // options.minimizer_progress_to_stdout = report;
-        // options.num_threads = 1;
-        // options.logging_type = ceres::LoggingType::SILENT;
-
-        // ceres::Solver::Summary s;
-        // Solve(options, &problem, &s);
-        // sum.InitialCost = s.initial_cost;
-        // sum.FinalCost = s.final_cost;
-        // sum.Iterations = static_cast<int>(s.iterations.size());
-        // sum.FunctionEvaluations = s.num_residual_evaluations;
-        // sum.JacobianEvaluations = s.num_jacobian_evaluations;
-        // summary.Success = detail::CheckSuccess(summary.InitialCost, summary.FinalCost);
-        // return x0;
     }
 };
 
