@@ -1,10 +1,13 @@
-// SPDX-License-Identifier: MIT
-// SPDX-FileCopyrightText: Copyright 2019-2022 Heal Research
+/* Brush
+copyright 2020 William La Cava
+license: GNU/GPL v3
 
-#ifndef OPERON_OPTIMIZER_TINY_HPP
-#define OPERON_OPTIMIZER_TINY_HPP
+Code below heavily inspired by heal-research/operon, Copyright 2019-2022 Heal Research
+*/
 
-// #include <Eigen/Core>
+#ifndef TINY_OPTIMIZER
+#define TINY_OPTIMIZER
+
 
 namespace Brush {
 using Scalar = float;
@@ -127,6 +130,6 @@ struct TinyCostFunction {
 private:
     CostFunctor functor_;
 };
-} // namespace Operon
+} // namespace Brush
 
 #endif

@@ -380,7 +380,7 @@ template<typename T> struct Program //: public tree<Node>
 }; // Program
 } // Brush
 
-#include "weight_optimizer.h"
+#include "optimizer/weight_optimizer.h"
 
 namespace Brush {
     template<typename T> 

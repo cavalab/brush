@@ -1,8 +1,11 @@
+/* Brush
+copyright 2020 William La Cava
+license: GNU/GPL v3
+
+Code below heavily inspired by heal-research/operon, Copyright 2019-2022 Heal Research
+*/
 #ifndef WEIGHT_OPTIMIZER_H
 #define WEIGHT_OPTIMIZER_H
-// #include "../init.h"
-// #include "program.h"
-// #include "../data/data.h"
 
 #include <ceres/dynamic_autodiff_cost_function.h>
 #include <ceres/dynamic_numeric_diff_cost_function.h>
@@ -10,7 +13,8 @@
 #include <ceres/solver.h>
 #include <ceres/tiny_solver.h>
 
-#include "optimizer/tiny_cost_function.hpp"
+#include "tiny_cost_function.h"
+
 namespace Brush
 {
     // using Scalar = float;
