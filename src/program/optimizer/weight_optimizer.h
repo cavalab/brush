@@ -17,13 +17,6 @@ Code below heavily inspired by heal-research/operon, Copyright 2019-2022 Heal Re
 
 namespace Brush
 {
-    // using Scalar = float;
-    // using Dual = ceres::Jet<Scalar, 1>;
-    using Dual = fJet;
-// auto mean_squared_error(ArrayXf y, ArrayXf y_pred)
-// {
-//     return (y-y_pred).norm();
-// }
 
 struct OptimizerSummary {
     double InitialCost;
@@ -42,8 +35,7 @@ struct ResidualEvaluator {
         , dataset_(dataset)
         , numParameters_(program.get_weights().size())
         , y_true_(dataset.y)
-    {
-    }
+    {}
 
     template<typename T>
     auto operator()(Eigen::DenseBase<T>& parameters, Eigen::DenseBase<T>& residuals) const noexcept -> void
@@ -55,12 +47,8 @@ struct ResidualEvaluator {
     auto operator()(T const* parameters, T* residuals) const -> bool
     {
         using ArrayType = Array<T, Dynamic, 1>; // ColMajor?
-        // Map<ArrayType const> new_weights(parameters, numParameters_);
-        // T const * p2 = parameters;
         const T ** new_weights = &parameters; 
-        // auto new_weights = &parameters;
 
-        // GetProgram().set_weights(new_weights);
         ArrayType y_pred = GetProgram().template predict_with_weights<ArrayType>(
             GetDataset(), 
             new_weights
@@ -103,14 +91,12 @@ struct WeightOptimizer
         ceres::Solver::Summary summary;
 
         ResidualEvaluator<PT> re(program, dataset);
-        Brush::TinyCostFunction<ResidualEvaluator<PT>, Dual, float, Eigen::ColMajor> cost_function(re);
+        Brush::TinyCostFunction<ResidualEvaluator<PT>, fJet, float, Eigen::ColMajor> cost_function(re);
         ceres::TinySolver<decltype(cost_function)> solver;
 
         typename decltype(solver)::Parameters parameters = program.get_weights(); 
         solver.Solve(cost_function, &parameters);
-        // m0 = p.cast<Operon::Scalar>();
     
-        // std::cout << summary.BriefReport() << "\n";
         fmt::print("Summary:\nInitial cost: {}\nFinal Cost: {}\nIterations: {}\n",
             solver.summary.initial_cost,
             solver.summary.final_cost,
