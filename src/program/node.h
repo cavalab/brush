@@ -80,6 +80,24 @@ struct Node {
     vector<float> W; 
     string feature; // feature for terminals or splitting nodes 
     size_t complete_hash; 
+    // serialization
+    NLOHMANN_DEFINE_TYPE_INTRUSIVE(Node, 
+        name, 
+        center_op, 
+        prob_change,
+        fixed,
+        node_type,
+        sig_hash,
+        sig_dual_hash,
+        ret_type,
+        arg_types,
+        is_weighted,
+        optimize,
+        W,
+        feature,
+        complete_hash
+    ) 
+
 
 
     Node() = default; 

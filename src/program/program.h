@@ -56,6 +56,11 @@ template<typename T> struct Program //: public tree<Node>
         SSref = std::optional<std::reference_wrapper<SearchSpace>>{s};
     }
 
+    inline void set_search_space(const std::reference_wrapper<SearchSpace> s)
+    {
+        SSref = std::optional<std::reference_wrapper<SearchSpace>>{s};
+    }
+
     Program<T>& fit(const Dataset& d)
     {
         TreeType out =  Tree.begin().node->fit<TreeType>(d);
@@ -377,6 +382,8 @@ template<typename T> struct Program //: public tree<Node>
         return child;
     };
 
+    // serialization
+    // NLOHMANN_DEFINE_TYPE_INTRUSIVE(Program<T>, is_fitted_, Tree) 
 }; // Program
 } // Brush
 
@@ -391,8 +398,22 @@ namespace Brush {
         auto WO = WeightOptimizer(); 
         // get new weights from optimization.
         WO.update((*this), d);
+    };
+
+// serialization
+    // serialization for program
+    template<typename T>
+    void to_json(json &j, const Program<T> &p)
+    {
+        j = json{{"Tree",p.Tree}, {"is_fitted_", p.is_fitted_}}; 
+    }
+
+    template<typename T>
+    void from_json(const json &j, Program<T>& p)
+    {
+        j.at("Tree").get_to(p.Tree);
+        j.at("is_fitted_").get_to(p.is_fitted_);
     }
 } // Brush
-
 
 #endif

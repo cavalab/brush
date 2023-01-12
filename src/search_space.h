@@ -95,6 +95,14 @@ struct SearchSpace
     unordered_map<DataType, vector<Node>> terminal_map;
     unordered_map<DataType, vector<float>> terminal_weights;
     vector<DataType> terminal_types;
+    // serialization
+    NLOHMANN_DEFINE_TYPE_INTRUSIVE(SearchSpace, 
+        node_map,
+        weight_map,
+        terminal_map,
+        terminal_weights,
+        terminal_types
+    ) 
     
     template<typename PT>
     PT make_program(int max_d=0, int max_size=0);

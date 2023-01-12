@@ -78,4 +78,6 @@ auto TreeNode::predict(const Dataset& d, const W** weights)
     return F(d, (*this), weights);
 };
 
+void to_json(json &j, const tree<Node> &t);
+void from_json(const json &j, tree<Node> &t);
 #endif

@@ -76,7 +76,7 @@ private:
 
 struct WeightOptimizer
 {
-    // put ceres stuff in here!
+    
     template<typename PT>
     void update(PT& program, const Dataset& dataset)
     {

@@ -36,7 +36,7 @@ TEST(Program, FitRegressor)
     SS.init(data);
     dtable_fit.print();
     dtable_predict.print();
-    for (int t = 0; t < 10; ++t) {
+    // for (int t = 0; t < 10; ++t) {
         for (int d = 1; d < 10; ++d) { 
             for (int s = 1; s < 100; s+=10) {
                 RegressorProgram PRG = SS.make_regressor(d, s);
@@ -50,7 +50,7 @@ TEST(Program, FitRegressor)
                 auto y = PRG.predict(data);
             }
         }
-    }
+    // }
 }
 
 TEST(Program, PredictWithWeights)
@@ -62,9 +62,9 @@ TEST(Program, PredictWithWeights)
     SS.init(data);
     dtable_fit.print();
     dtable_predict.print();
-    for (int t = 0; t < 10; ++t) {
+    // for (int t = 0; t < 10; ++t) {
         for (int d = 1; d < 10; ++d) { 
-            for (int s = 1; s < 100; s+=10) {
+            for (int s = 1; s < 10; s+=10) {
                 RegressorProgram PRG = SS.make_regressor(d, s);
                 fmt::print(
                     "=================================================\n"
@@ -84,7 +84,7 @@ TEST(Program, PredictWithWeights)
                 }
             }
         }
-    }
+    // }
 }
 
 TEST(Program, FitClassifier)
@@ -94,7 +94,7 @@ TEST(Program, FitClassifier)
     SearchSpace SS;
     SS.init(data);
 
-    for (int t = 0; t < 10; ++t) {
+    // for (int t = 0; t < 10; ++t) {
         for (int d = 1; d < 10; ++d) { 
             for (int s = 1; s < 100; s+=10) {
                 auto PRG = SS.make_classifier(d, s);
@@ -109,7 +109,7 @@ TEST(Program, FitClassifier)
                 auto yproba = PRG.predict_proba(data);
             }
         }
-    }
+    // }
 }
 
 
@@ -117,12 +117,6 @@ TEST(Program, FitClassifier)
 TEST(Program, Mutation)
 {
     // test mutation
-    // y = 3.14*X1 + 1.68*X2
-    // r: random numbers
-    // X1: cos(r)
-    // X2: sin(r)
-    /* r = 0.54340523, 0.98342536, 0.52725502, 0.1019157 , 0.13250716, */
-    /*          0.2273736 , 0.78280196, 0.31946665, 0.07088554, 0.99791986; */
     // TODO: set random seed
     MatrixXf X(10,2);
     ArrayXf y(10);
@@ -162,59 +156,52 @@ TEST(Program, Mutation)
     }
 }
 
-TEST(Program, WeightOptimization)
+
+
+TEST(Program, Serialization)
 {
-    // TODO
-    // // test backpropagation
-    // // y = 3.14*X1 + 1.68*X2
-    // // r: random numbers
-    // // X1: cos(r)
-    // // X2: sin(r)
-    // /* r = 0.54340523, 0.98342536, 0.52725502, 0.1019157 , 0.13250716, */
-    // /*          0.2273736 , 0.78280196, 0.31946665, 0.07088554, 0.99791986; */
-    // MatrixXf X(10,2);
-    // ArrayXf y(10);
-    // X << 0.85595296, 0.55417453, 0.8641915 , 0.99481109, 0.99123376,
-    //      0.9742618 , 0.70894019, 0.94940306, 0.99748867, 0.54205151,
-    //      0.5170537 , 0.8324005 , 0.50316305, 0.10173936, 0.13211973,
-    //      0.2254195 , 0.70526861, 0.31406024, 0.07082619, 0.84034526;
-    // y << 3.55634251, 3.13854087, 3.55887523, 3.29462895, 3.33443517,
-    //          3.4378868 , 3.41092345, 3.5087468 , 3.25110243, 3.11382179;
-    // Dataset data(X,y);
+    // test mutation
+    // TODO: set random seed
+    MatrixXf X(10,2);
+    ArrayXf y(10);
+    X << 0.85595296, 0.55417453, 0.8641915 , 0.99481109, 0.99123376,
+         0.9742618 , 0.70894019, 0.94940306, 0.99748867, 0.54205151,
+         0.5170537 , 0.8324005 , 0.50316305, 0.10173936, 0.13211973,
+         0.2254195 , 0.70526861, 0.31406024, 0.07082619, 0.84034526;
+    y << 3.55634251, 3.13854087, 3.55887523, 3.29462895, 3.33443517,
+             3.4378868 , 3.41092345, 3.5087468 , 3.25110243, 3.11382179;
+    Dataset data(X,y);
 
-    // unordered_map<string, float> user_ops = {
-    //     {"Add", 1},
-    //     {"Sub", 1}, 
-    //     {"Mul", 0.5},
-    //     {"Sin", 0.1},
-    //     {"SplitOn", 0.5}, 
-    //     {"SplitBest", 0.5} 
-    // };
-    // SearchSpace SS(data, user_ops);
-    // /* SS.init(data); */
+    SearchSpace SS;
+    SS.init(data);
 
-    // auto DXtree = SS.make_program<RegressorProgram>(9,9);
-    // DXtree.fit(data);
-    // ofstream file;
-    // file.open(fmt::format("dx_model.dot"));
-    // file <<  DXtree.get_model("dot", true);
-    // file.close();
-    // cout << "generating predictions\n";
-    // ArrayXf y_pred = DXtree.predict(data);
-    // cout << "gradient descent\n";
-    // cout << "calculating loss\n";
-    // cout << "y_pred: " << y_pred.transpose() << endl;
-    // cout << "y: " << y.transpose() << endl;
-    // cout << "loss: " << (y_pred - y).square().transpose() << endl;
-    // ArrayXf d_loss = 2*(y_pred - y);
-    // for (int i = 0; i < 20; ++i)
-    // {
-    //     DXtree.grad_descent(d_loss, data);
-    //     y_pred = DXtree.predict(data);
-    //     cout << "updated y_pred: " << y_pred.transpose() << endl;
-    //     cout << "             y: " << y.transpose() << endl;
-    //     cout << "loss: " << (y_pred - y).square().transpose() << endl;
-    //     d_loss = 2*(y_pred - y);
-    // }
+    for (int d = 1; d < 10; ++d)
+    {
+        for (int s = 1; s < 10; ++s)
+        {
+            RegressorProgram PRG = SS.make_regressor(d, s);
+            fmt::print(
+                "=================================================\n"
+                "depth = {}, size= {}\n"
+                "Initial Model: {}\n",
+                d, s, 
+                PRG.get_model("compact", true)
+            );
+            PRG.fit(data);
+            ArrayXf y_pred = PRG.predict(data);
+            json PRGjson = PRG;
+            fmt::print( "json: {}\n", PRGjson.dump(2));
+            auto newPRG = PRGjson.get<RegressorProgram>();
+            fmt::print("Initial Model: {}\n",PRG.get_model("compact", true));
+            fmt::print("Loaded  Model: {}\n",newPRG.get_model("compact", true));
+            ASSERT_TRUE(
+                std::equal(PRG.Tree.begin(),PRG.Tree.end(),newPRG.Tree.begin())
+            );
+            newPRG.set_search_space(SS);
+            newPRG.fit(data);
+            ArrayXf new_y_pred = newPRG.predict(data);
 
+
+        }
+    }
 }
