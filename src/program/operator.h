@@ -164,42 +164,31 @@ struct Operator<NodeType::Terminal, S, Fit>
         requires (is_one_of_v<typename T::Scalar,bool,int,float>)
     RetType eval(const Dataset& d, const TreeNode& tn, const W** weights=nullptr) const 
     { 
-        if (std::holds_alternative<RetType>(d[tn.data.feature]))
-            return std::get<RetType>(d[tn.data.feature]);
-
-        HANDLE_ERROR_THROW(fmt::format("Failed to return type {} for '{}'\n",
-            DataTypeEnum<RetType>::value,
-            tn.data.feature
-        ));
-
-        return RetType(); 
+        return this->get<RetType>(d,tn.data.feature);
     };
     template <typename T = RetType>
         requires( is_one_of_v<typename T::Scalar, bJet, iJet, fJet>)
     RetType eval(const Dataset &d, const TreeNode &tn, const W **weights = nullptr) const
     {
-        return std::visit(
-            [](const auto &&arg) -> T
-            {
-                using ArgType = std::decay_t<decltype(arg)>;
-                using Scalar = typename T::Scalar;
-                if constexpr (std::is_same_v<Jetify_t<ArgType>,T>)
-                {
-                    return arg.template cast<Scalar>();
-                }
-                else
-                {
-                    auto msg = fmt::format("Failed trying to cast {} to {}\n",
-                        DataTypeEnum<ArgType>::value,
-                        DataTypeEnum<T>::value
-                    );
-                    HANDLE_ERROR_THROW(msg);
-                }
-                return T();
-            },
-            d[tn.data.feature]
-        );
+        using nonJetType = UnJetify_t<RetType>; 
+        using Scalar = typename RetType::Scalar;
+        return this->get<nonJetType>(d, tn.data.feature).template cast<Scalar>();
     };
+
+    template<typename T>
+    auto get(const Dataset& d, const string& feature) const
+    {
+        if (std::holds_alternative<T>(d[feature]))
+            return std::get<T>(d[feature]); 
+
+        HANDLE_ERROR_THROW(fmt::format("Failed to return type {} for '{}'\n",
+            DataTypeEnum<RetType>::value,
+            feature
+        ));
+
+        return T(); 
+
+    }
 };
 //////////////////////////////////////////////////////////////////////////////////
 // Constant Overloads
@@ -251,7 +240,7 @@ R DispatchOp(const Dataset& d, TreeNode& tn, const W** weights)
 };
 
 template<typename R, NodeType NT, typename S, bool Fit> 
-R DispatchFitOp(const Dataset& d, TreeNode& tn) 
+R DispatchOp(const Dataset& d, TreeNode& tn) 
 {
     const auto op = Operator<NT,S,Fit>{};
     return op.eval(d, tn);

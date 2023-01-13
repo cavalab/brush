@@ -25,23 +25,16 @@ using TreeNode = class tree_node_<Node>;
 namespace Brush{
 
 // forward declarations
-template<typename R, NodeType NT, typename S, bool Fit, typename W> R DispatchOp(
-    const Data::Dataset& d, 
-    TreeNode& tn,
-    const W** weights
-); 
-template<typename R, NodeType NT, typename S, bool Fit> R DispatchFitOp(
-    const Data::Dataset& d, 
-    TreeNode& tn
-); 
+template<typename R, NodeType NT, typename S, bool Fit, typename W> 
+R DispatchOp( const Data::Dataset& d, TreeNode& tn, const W** weights); 
+template<typename R, NodeType NT, typename S, bool Fit> 
+R DispatchOp( const Data::Dataset& d, TreeNode& tn); 
 
 ////////////////////////////////////////////////////////////////////////////////
 // Dispatch Table
 template<bool Fit>
 struct DispatchTable
 {
-    
-    // todo: make this handle weights that are jet-typed
     template<typename T>
     using Callable = typename std::conditional_t<Fit, 
         std::function<T(const Data::Dataset&, TreeNode&)>,
@@ -69,8 +62,9 @@ struct DispatchTable
         Callable<Data::TimeSeriesiJet>,
         Callable<Data::TimeSeriesfJet>
         >;
-    // map (fit/predict)->(node type)->(signature hash)->(dispatch function)
+    /// @brief maps Signature hashes -> Dispatch Operator
     using SigMap = std::unordered_map<std::size_t,CallVariant>;
+    /// @brief maps NodeTypes -> Signature hash -> Dispatch Operator 
     using DTMap = std::unordered_map<NodeType, SigMap>;
 
 private:
@@ -88,14 +82,7 @@ private:
     template<NodeType NT>
     SigMap MakeOperators()  
     {
-        /* constexpr auto signatures = Signatures<NT>::value; */
         using signatures = typename Signatures<NT>::type;
-        // TODO
-        // make a struct that constructs the jet-equivalent signature of each 
-        // entry in Signatures and makes operators out of all of them
-        // using signatures_with_duals = typename SignaturesWithDuals<signatures>::type;
-        
-        /* return AddOperator<NT, decltype(signatures)>( */ 
         return AddOperator<NT, signatures>( 
                      std::make_index_sequence<std::tuple_size_v<signatures>>()
                      );
@@ -107,10 +94,7 @@ private:
         SigMap sm;
         (sm.insert({std::tuple_element_t<Is, Sigs>::hash(), 
             MakeCallable<NT, std::tuple_element_t<Is, Sigs>>()}), ...);
-        // add dual signature
-        // using dual = typename std::tuple_element_t<Is, Sigs>::Dual;
-        // (sm.insert({dual::hash(), 
-        //     MakeCallable<NT, dual>()}), ...);
+        // Add dual signatures that take Jet types
         if constexpr (is_in_v<NT, NodeType::ArgMax, NodeType::Count>){
             (sm.insert({std::tuple_element_t<Is, Sigs>::DualArgs::hash(), 
                 MakeCallable<NT, typename std::tuple_element_t<Is, Sigs>::DualArgs>()}), ...);
@@ -129,7 +113,7 @@ private:
         using R = typename S::RetType;
         using W = typename S::WeightType;
         if constexpr (Fit)
-            return Callable<R>(DispatchFitOp<R,N,S,Fit>);
+            return Callable<R>(DispatchOp<R,N,S,Fit>);
         else
             return Callable<R>(DispatchOp<R,N,S,Fit,W>);
     }

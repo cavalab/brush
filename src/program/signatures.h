@@ -1,25 +1,14 @@
-
 /* Brush
 copyright 2020 William La Cava
 license: GNU/GPL v3
 
-This section adapted heavily from Operon: https://github.com/heal-research/operon/
 */
 #ifndef SIGNATURES_H
 #define SIGNATURES_H
-// external includes
-// using namespace Brush;
-// using std::tuple;
-// using std::array;
-// using Brush::DataType; 
-// using Brush::Data::TimeSeriesb; 
-// using Brush::Data::TimeSeriesi; 
-// using Brush::Data::TimeSeriesf; 
-// using Brush::Util::is_tuple;
 
 namespace Brush {
 ////////////////////////////////////////////////////////////////////////////////
-
+// refs:
 // https://stackoverflow.com/questions/25958259/how-do-i-find-out-if-a-tuple-contains-a-type
 // https://stackoverflow.com/questions/34111060/c-check-if-the-template-type-is-one-of-the-variadic-template-types
 template <NodeType T, NodeType... Ts> 
@@ -32,8 +21,21 @@ template<NodeType T, NodeType... Ts>
 static constexpr bool is_in_v = is_in<T, Ts...>::value;
 
 
+// TODO: potentially improve this with something like
+// template <typename T, typename S> struct Jetify; 
+// template<typename T, 
+//     typename S=T::Scalar, 
+//     typename R=T::RowsAtCompileTime,
+//     typename C=T::ColsAtCompileTime,
+//     > 
+// struct Jetify<Eigen::ArrayBase<T>> { 
+//     using Scalar = std::conditional_t<is_same_v<S,int>, iJet, 
+//         conditional_t<is_same_v<S,bool>,bJet, 
+//         conditional_t<is_same_v<S,float>,fJet, void>>>;
+//     using type = Array<Scalar,R,C>;
+// };
 template <typename T> struct Jetify { using type = T;};
-template<> struct Jetify<ArrayXf> { using type= ArrayXfJet;};
+template<> struct Jetify<ArrayXf> { using type = ArrayXfJet;};
 template<> struct Jetify<ArrayXi> { using type = ArrayXiJet;};
 template<> struct Jetify<ArrayXb> { using type = ArrayXbJet;};
 template<> struct Jetify<ArrayXXf> { using type = ArrayXXfJet;};
@@ -42,9 +44,21 @@ template<> struct Jetify<ArrayXXb> { using type = ArrayXXbJet;};
 template<> struct Jetify<Data::TimeSeriesf> { using type = Data::TimeSeriesfJet;};
 template<> struct Jetify<Data::TimeSeriesi> { using type = Data::TimeSeriesiJet;};
 template<> struct Jetify<Data::TimeSeriesb> { using type = Data::TimeSeriesbJet;};
-
 template <typename T> 
 using Jetify_t = typename Jetify<T>::type;
+
+template <typename T> struct UnJetify { using type = T;};
+template<> struct UnJetify<ArrayXfJet> { using type = ArrayXf;};
+template<> struct UnJetify<ArrayXiJet> { using type = ArrayXi;};
+template<> struct UnJetify<ArrayXbJet> { using type = ArrayXb;};
+template<> struct UnJetify<ArrayXXfJet> { using type = ArrayXXf;};
+template<> struct UnJetify<ArrayXXiJet> { using type = ArrayXXi;};
+template<> struct UnJetify<ArrayXXbJet> { using type = ArrayXXb;};
+template<> struct UnJetify<Data::TimeSeriesfJet> { using type = Data::TimeSeriesf;};
+template<> struct UnJetify<Data::TimeSeriesiJet> { using type = Data::TimeSeriesi;};
+template<> struct UnJetify<Data::TimeSeriesbJet> { using type = Data::TimeSeriesb;};
+template <typename T> 
+using UnJetify_t = typename UnJetify<T>::type;
 
 
 template<typename R, typename... Args>
