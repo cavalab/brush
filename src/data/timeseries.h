@@ -94,34 +94,34 @@ struct TimeSeries
     };
 
     // transformation overloads
-    inline auto abs() { return this->transform([](const EntryType& i){ return i.abs(); }); };
-    inline auto pow() { return this->transform([](const EntryType& i){ return i.pow(); } ); };
-    inline auto log() { return this->transform([](const EntryType& i){ return i.log(); } ); };
-    inline auto logabs() { return this->transform([](const EntryType& i){ return i.abs().log(); } ); };
-    inline auto log1p() { return this->transform([](const EntryType& i){ return i.log1p(); } ); };
-    inline auto ceil() { return this->transform([](const EntryType& i){ return i.ceil(); } ); };
-    inline auto floor() { return this->transform([](const EntryType& i){ return i.floor(); } ); };
-    inline auto exp() { return this->transform([](const EntryType& i){ return i.exp(); } ); };
-    inline auto sin() { return this->transform([](const EntryType& i){ return i.sin(); } ); };
-    inline auto cos() { return this->transform([](const EntryType& i){ return i.cos(); } ); };
-    inline auto tan() { return this->transform([](const EntryType& i){ return i.tan(); } ); };
-    inline auto asin() { return this->transform([](const EntryType& i){ return i.asin(); } ); };
-    inline auto acos() { return this->transform([](const EntryType& i){ return i.acos(); } ); };
-    inline auto atan() { return this->transform([](const EntryType& i){ return i.atan(); } ); };
-    inline auto sinh() { return this->transform([](const EntryType& i){ return i.sinh(); } ); };
-    inline auto cosh() { return this->transform([](const EntryType& i){ return i.cosh(); } ); };
-    inline auto tanh() { return this->transform([](const EntryType& i){ return i.tanh(); } ); };
-    inline auto sqrt() { return this->transform([](const EntryType& i){ return i.sqrt(); } ); };
-    inline auto sqrtabs() { return this->transform([](const EntryType& i){ return i.abs().sqrt(); } ); };
-    inline auto square() { return this->transform([](const EntryType& i){ return i.square(); } ); };
+    inline auto abs() const { return this->transform([](const EntryType& i){ return i.abs(); }); };
+    inline auto pow() const { return this->transform([](const EntryType& i){ return i.pow(); } ); };
+    inline auto log() const { return this->transform([](const EntryType& i){ return i.log(); } ); };
+    inline auto logabs() const { return this->transform([](const EntryType& i){ return i.abs().log(); } ); };
+    inline auto log1p() const { return this->transform([](const EntryType& i){ return i.log1p(); } ); };
+    inline auto ceil() const { return this->transform([](const EntryType& i){ return i.ceil(); } ); };
+    inline auto floor() const { return this->transform([](const EntryType& i){ return i.floor(); } ); };
+    inline auto exp() const { return this->transform([](const EntryType& i){ return i.exp(); } ); };
+    inline auto sin() const { return this->transform([](const EntryType& i){ return i.sin(); } ); };
+    inline auto cos() const { return this->transform([](const EntryType& i){ return i.cos(); } ); };
+    inline auto tan() const { return this->transform([](const EntryType& i){ return i.tan(); } ); };
+    inline auto asin() const { return this->transform([](const EntryType& i){ return i.asin(); } ); };
+    inline auto acos() const { return this->transform([](const EntryType& i){ return i.acos(); } ); };
+    inline auto atan() const { return this->transform([](const EntryType& i){ return i.atan(); } ); };
+    inline auto sinh() const { return this->transform([](const EntryType& i){ return i.sinh(); } ); };
+    inline auto cosh() const { return this->transform([](const EntryType& i){ return i.cosh(); } ); };
+    inline auto tanh() const { return this->transform([](const EntryType& i){ return i.tanh(); } ); };
+    inline auto sqrt() const { return this->transform([](const EntryType& i){ return i.sqrt(); } ); };
+    inline auto sqrtabs() const { return this->transform([](const EntryType& i){ return i.abs().sqrt(); } ); };
+    inline auto square() const { return this->transform([](const EntryType& i){ return i.square(); } ); };
     // reduction overloads
-    inline auto median() { return this->reduce([](const EntryType& i){ return Util::median(i); } ); };
-    inline auto mean() { return this->reduce([](const EntryType& i){ return i.mean(); } ); };
-    inline auto std() { return this->reduce([](const EntryType& i){ return i.std(); } ); };
-    inline auto max() { return this->reduce([](const EntryType& i){ return i.maxCoeff(); } ); };
-    inline auto min() { return this->reduce([](const EntryType& i){ return i.minCoeff(); } ); };
-    inline auto sum() { return this->reduce<Scalar>([](const EntryType& i){ return i.sum(); } ); };
-    inline auto count() { return this->reduce<float>([](const EntryType& i){ return i.size(); } ); };
+    inline auto median() const { return this->reduce([](const EntryType& i){ return Util::median(i); } ); };
+    inline auto mean() const { return this->reduce([](const EntryType& i){ return i.mean(); } ); };
+    inline auto std() const { return this->reduce([](const EntryType& i){ return i.std(); } ); };
+    inline auto max() const { return this->reduce([](const EntryType& i){ return i.maxCoeff(); } ); };
+    inline auto min() const { return this->reduce([](const EntryType& i){ return i.minCoeff(); } ); };
+    inline auto sum() const { return this->reduce<Scalar>([](const EntryType& i){ return i.sum(); } ); };
+    inline auto count() const { return this->reduce<float>([](const EntryType& i){ return i.size(); } ); };
 
     /* template<typename V=T> */
     /* enable_if_t<is_same_v<V,float>,TimeSeries<float>> */

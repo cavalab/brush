@@ -91,7 +91,7 @@ template<typename T> struct Program //: public tree<Node>
         if (!is_fitted_)
             HANDLE_ERROR_THROW("Program is not fitted. Call 'fit' first.\n");
 
-        R out = Tree.begin().node->predict<TreeType>(d);
+        auto out = Tree.begin().node->predict<TreeType>(d);
         return out;
     };
 
