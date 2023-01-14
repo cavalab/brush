@@ -233,14 +233,14 @@ struct Operator<NodeType::Constant, S, Fit>
 ////////////////////////////////////////////////////////////////////////////
 // Dispatch functions
 template<typename R, NodeType NT, typename S, bool Fit, typename W> 
-R DispatchOp(const Dataset& d, TreeNode& tn, const W** weights) 
+inline R DispatchOp(const Dataset& d, TreeNode& tn, const W** weights) 
 {
     const auto op = Operator<NT,S,Fit>{};
     return op.eval(d, tn, weights);
 };
 
 template<typename R, NodeType NT, typename S, bool Fit> 
-R DispatchOp(const Dataset& d, TreeNode& tn) 
+inline R DispatchOp(const Dataset& d, TreeNode& tn) 
 {
     const auto op = Operator<NT,S,Fit>{};
     return op.eval(d, tn);

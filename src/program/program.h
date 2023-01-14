@@ -382,8 +382,14 @@ template<typename T> struct Program //: public tree<Node>
         return child;
     };
 
-    // serialization
-    // NLOHMANN_DEFINE_TYPE_INTRUSIVE(Program<T>, is_fitted_, Tree) 
+    /// @brief turns program tree into a linear program. 
+    /// @return a vector of nodes encoding the program in reverse polish notation
+    vector<Node> linearize() const {
+        vector<Node> linear_program;
+        for (PostIter i = Tree.begin_post(); i != Tree.end_post(); ++i)
+            linear_program.push_back(i.node->data);
+        return linear_program;
+    }
 }; // Program
 } // Brush
 
