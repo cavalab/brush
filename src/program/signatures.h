@@ -71,6 +71,9 @@ struct SigBase
 
     /// ArgTypes is a std::array if the types are shared, otherwise it is a tuple. 
     // (using std::array allows begin() and end() ops like transform to be applied)
+    // TODO: add an option to have argtypes be an ArrayX<T,-1,ArgCount> if the nodetype
+    // is associative and the ArgCount is greater than the operator's arg count
+    // (i.e., add is a BinaryOp and associative, so for Args>2 make the argtype an ArrayXX<T> )
     using ArgTypes = conditional_t<(std::is_same_v<FirstArg,Args> && ...),
                                    std::array<FirstArg,ArgCount>,
                                    std::tuple<Args...>
