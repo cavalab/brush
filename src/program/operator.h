@@ -54,7 +54,8 @@ struct Operator
         T child_outputs;
         using arg_type = std::conditional_t<is_std_array_v<T>,
             typename T::value_type, Array<typename S::FirstArg::Scalar, -1, 1>>;
-
+        if constexpr (is_eigen_array_v<T>)
+            child_outputs.resize(d.get_n_samples(), Eigen::NoChange);
 
         TreeNode* sib = tn.first_child;
         for (int i = 0; i < ArgCount; ++i)

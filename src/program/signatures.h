@@ -26,6 +26,9 @@ namespace Brush {
 //         conditional_t<is_same_v<S,float>,fJet, void>>>;
 //     using type = Array<Scalar,R,C>;
 // };
+
+static constexpr size_t MAX_ARGS = 5;
+
 template <typename T> struct Jetify { using type = T;};
 template<> struct Jetify<ArrayXf> { using type = ArrayXfJet;};
 template<> struct Jetify<ArrayXi> { using type = ArrayXiJet;};
@@ -138,15 +141,9 @@ struct NarySignature
     template <std::size_t N>
     using NthType = Arg; 
 
-    static constexpr auto make()
-    {
-        return make_signature(Indices{});
-    }
-
     template<size_t ...Is>
     static constexpr auto make_signature(std::index_sequence<Is...>)
     {
-
         return Signature<R(NthType<Is>...)>{};
     }
 
@@ -155,22 +152,29 @@ struct NarySignature
 };
 template<typename R, typename Arg, size_t ArgCount> 
 using NarySignature_t = typename NarySignature<R,Arg,ArgCount>::type;
-// template<typename R, typename FirstArg, size_t N>
-// struct Signature: SigBase<R, Args...>
-// {
-// };
 
-// template<typename T, typename S=T::Scalar, int Rows=T::RowsAtCompileTime, int Cols=0> struct Jetify {
-//     using type = T<
-// }
-// template<> struct Dual<bool>{ using type = Jet<bool, 1>; };
-// template<> struct Dual<int>{ using type = Jet<int, 1>; };
-// template<> struct Dual<float>{ using type = Jet<int, 1>; };
-// template<typename T> 
-// struct DualSignature : SigBase<Jetify<T::RetType>,
-// {
-//     using RetType = 
-// }
+template<typename R, typename Arg, size_t MaxArgCount>
+struct NarySignatures
+{
+    template <std::size_t N>
+    using NthType = Arg; 
+    static constexpr size_t Min = 2;
+    static constexpr size_t Max = MaxArgCount-2;
+    static constexpr auto Indices = std::make_index_sequence<Max>();
+
+    template<size_t ...Is>
+    static constexpr auto make_signatures(std::index_sequence<Is...>)
+    {
+        // return std::make_tuple(NarySignature<R,Arg,Is+Min>() ...);
+        return std::tuple<NarySignature_t<R,Arg,(Is+Min)> ...>();
+    }
+
+    using type = decltype(make_signatures(Indices)); 
+
+};
+template<typename R, typename Arg, size_t MaxArgCount> 
+using NarySignatures_t = typename NarySignatures<R,Arg,MaxArgCount>::type;
+
 ////////////////////////////////////////////////////////////////////////////////
 // Signatures
 // - store the signatures that each Node can handle
@@ -266,11 +270,15 @@ struct Signatures<N, enable_if_t<is_in_v<N,
     NodeType::Min, 
     NodeType::Max
     >>>{ 
-        using type = std::tuple<
+        using unaryTuple = std::tuple<
             Signature<ArrayXf(ArrayXXf)>,
             Signature<ArrayXi(ArrayXXi)>
-            /* Signature<ArrayXb(ArrayXXb)> */
         >;
+
+        using naryTupleF = NarySignatures_t<ArrayXf,ArrayXf,MAX_ARGS>;
+        using naryTupleI = NarySignatures_t<ArrayXi,ArrayXi,MAX_ARGS>;
+
+        using type = decltype(std::tuple_cat(unaryTuple(), naryTupleF(), naryTupleI()));
     }; 
 
 template<NodeType N>
@@ -364,18 +372,10 @@ struct Signatures<NodeType::SplitOn>{
     template <>
     struct Signatures<NodeType::Softmax>
     {
-        using type = std::tuple<
-            Signature<ArrayXXf(ArrayXXf)>,
-            NarySignature_t<ArrayXXf,ArrayXf,2>,
-            NarySignature_t<ArrayXXf,ArrayXf,3>,
-            NarySignature_t<ArrayXXf,ArrayXf,4>,
-            NarySignature_t<ArrayXXf,ArrayXf,5>,
-            NarySignature_t<ArrayXXf,ArrayXf,6>,
-            NarySignature_t<ArrayXXf,ArrayXf,7>,
-            NarySignature_t<ArrayXXf,ArrayXf,8>,
-            NarySignature_t<ArrayXXf,ArrayXf,9>,
-            NarySignature_t<ArrayXXf,ArrayXf,10>
-            >;
+        using unaryTuple = std::tuple< Signature<ArrayXXf(ArrayXXf)> >;
+        using naryTuple = NarySignatures_t<ArrayXXf,ArrayXf,MAX_ARGS>;
+
+        using type = decltype(std::tuple_cat(unaryTuple(), naryTuple()));
     };
 } // namespace Brush
 #endif
