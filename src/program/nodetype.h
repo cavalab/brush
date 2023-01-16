@@ -25,7 +25,6 @@ using Brush::DataType;
 using Brush::Data::TimeSeriesb; 
 using Brush::Data::TimeSeriesi; 
 using Brush::Data::TimeSeriesf; 
-using Brush::Util::is_tuple;
 
 namespace Brush {
 
@@ -187,7 +186,22 @@ static constexpr bool BinaryOp = is_in_v<nt,
     NT::Div,
     NT::Pow
 >;
+template<NT nt>
+static constexpr bool AssociativeBinaryOp = is_in_v<nt, 
+    NT::Add,
+    NT::Mul
+>;
 
+template<NT nt>
+static constexpr bool NaryOp = is_in_v<nt, 
+    NT::Min,
+    NT::Max,
+    NT::Mean,
+    NT::Median,
+    NT::Sum,
+    // NT::Prod,
+    NT::Softmax
+>;
 // // TODO: make this work 
 // template<typename NT, size_t ArgCount>
 // concept Transformer = requires(NT n, size_t ArgCount) 

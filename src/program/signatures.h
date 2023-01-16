@@ -131,6 +131,30 @@ struct Signature<R(Args...)> : SigBase<R, Args...>
     using DualArgs = SigBase<RetType, Jetify_t<Args>... >;
 };
 
+template<typename R, typename Arg, size_t ArgCount, 
+    typename Indices = std::make_index_sequence<ArgCount> >
+struct NarySignature
+{
+    template <std::size_t N>
+    using NthType = Arg; 
+
+    static constexpr auto make()
+    {
+        return make_signature(Indices{});
+    }
+
+    template<size_t ...Is>
+    static constexpr auto make_signature(std::index_sequence<Is...>)
+    {
+
+        return Signature<R(NthType<Is>...)>{};
+    }
+
+    using type = decltype(make_signature(Indices{})); 
+
+};
+template<typename R, typename Arg, size_t ArgCount> 
+using NarySignature_t = typename NarySignature<R,Arg,ArgCount>::type;
 // template<typename R, typename FirstArg, size_t N>
 // struct Signature: SigBase<R, Args...>
 // {
@@ -342,18 +366,15 @@ struct Signatures<NodeType::SplitOn>{
     {
         using type = std::tuple<
             Signature<ArrayXXf(ArrayXXf)>,
-            Signature<ArrayXXf(ArrayXf, ArrayXf)>,
-            Signature<ArrayXXf(ArrayXf, ArrayXf, ArrayXf)>,
-            Signature<ArrayXXf(ArrayXf, ArrayXf, ArrayXf, ArrayXf)>,
-            Signature<ArrayXXf(ArrayXf, ArrayXf, ArrayXf, ArrayXf, ArrayXf)>,
-            Signature<ArrayXXf(ArrayXf, ArrayXf, ArrayXf, ArrayXf, ArrayXf, ArrayXf)>,
-            Signature<ArrayXXf(ArrayXf, ArrayXf, ArrayXf, ArrayXf, ArrayXf, ArrayXf, ArrayXf)>,
-            Signature<ArrayXXf(ArrayXf, ArrayXf, ArrayXf, ArrayXf, ArrayXf, ArrayXf, ArrayXf,
-                ArrayXf)>,
-            Signature<ArrayXXf(ArrayXf, ArrayXf, ArrayXf, ArrayXf, ArrayXf, ArrayXf, ArrayXf,
-                ArrayXf, ArrayXf)>,
-            Signature<ArrayXXf(ArrayXf, ArrayXf, ArrayXf, ArrayXf, ArrayXf, ArrayXf, ArrayXf,
-                ArrayXf, ArrayXf)>
+            NarySignature_t<ArrayXXf,ArrayXf,2>,
+            NarySignature_t<ArrayXXf,ArrayXf,3>,
+            NarySignature_t<ArrayXXf,ArrayXf,4>,
+            NarySignature_t<ArrayXXf,ArrayXf,5>,
+            NarySignature_t<ArrayXXf,ArrayXf,6>,
+            NarySignature_t<ArrayXXf,ArrayXf,7>,
+            NarySignature_t<ArrayXXf,ArrayXf,8>,
+            NarySignature_t<ArrayXXf,ArrayXf,9>,
+            NarySignature_t<ArrayXXf,ArrayXf,10>
             >;
     };
 } // namespace Brush

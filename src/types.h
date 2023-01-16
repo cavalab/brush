@@ -209,6 +209,27 @@ struct DataTypeEnum<Data::TimeSeriesfJet>
     static constexpr DT value = DT::TimeSeriesFJet;
 };
 
+// check for std::array types
+template <typename T>
+struct is_std_array : std::false_type {}; 
+template <typename V, size_t n>
+struct is_std_array<std::array<V, n>> : std::true_type {}; 
+template <typename T>
+static constexpr bool is_std_array_v = is_std_array<T>::value;
+
+// check for Eigen::Array types
+template<typename T>
+struct is_eigen_array
+ : std::is_base_of<Eigen::ArrayBase<std::decay_t<T> >, std::decay_t<T> > {};
+
+template<typename T>
+static constexpr bool is_eigen_array_v = is_eigen_array<T>::value;
+
+// check for tuple types
+template <typename> struct is_tuple: std::false_type {};
+template <typename ...T> struct is_tuple<std::tuple<T...>>: std::true_type {};
+template <typename T>
+static constexpr bool is_tuple_v = is_tuple<T>::value;
 } // Brush
 
 #endif

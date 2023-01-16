@@ -4,7 +4,6 @@
 #include "../init.h"
 #include "tree_node.h"
 #include "../util/utils.h"
-using Util::is_tuple;
 /* #include "data/timeseries.h" */
 /* using TreeNode = class tree_node_<Node>; */ 
 
@@ -27,8 +26,9 @@ struct Operator
     *   array and the operator is applied to that array
     */
     using ArgTypes = conditional_t<
-        (UnaryOp<NT> && S::ArgCount > 1) || (BinaryOp<NT> && S::ArgCount > 2),
+        (UnaryOp<NT> && S::ArgCount > 1) || (NaryOp<NT> && S::ArgCount > 1),
         Array<typename S::FirstArg::Scalar, -1, S::ArgCount>,
+        // Array<typename S::FirstArg::Scalar, -1, -1>,
         typename S::ArgTypes>;
     using RetType = typename S::RetType;
     static constexpr size_t ArgCount = S::ArgCount;
@@ -42,41 +42,48 @@ struct Operator
         Function<NT> f; 
         return f(args...); 
     }; 
-    /* static constexpr auto F = [](const auto ...args){ Function<NT> f{}; return f(args...); }; */ 
 
     Operator() = default;
     ////////////////////////////////////////////////////////////////////////////////
     /// Utilities to grab child outputs.
 
-    // get a std::array of kids
-    template<typename T=ArgTypes> requires(!is_tuple<T>::value) 
+    // get a std::array or eigen array of kids
+    template<typename T=ArgTypes> requires(is_std_array_v<T> || is_eigen_array_v<T>) 
     T get_kids(const Dataset& d, TreeNode& tn, const W** weights=nullptr) const
     {
         T child_outputs;
-        using arg_type = typename T::value_type;
+        using arg_type = std::conditional_t<is_std_array_v<T>,
+            typename T::value_type, Array<typename S::FirstArg::Scalar, -1, 1>>;
+
 
         TreeNode* sib = tn.first_child;
         for (int i = 0; i < ArgCount; ++i)
         {
             if (sib == nullptr)
                 HANDLE_ERROR_THROW("bad sibling ptr in get kids");
-            if constexpr (Fit)
-                child_outputs.at(i) = sib->fit<arg_type>(d);
-            else
-                child_outputs.at(i) = sib->predict<arg_type>(d, weights);
+            if constexpr (Fit){
+                if constexpr(is_std_array_v<T>)
+                    child_outputs.at(i) = sib->fit<arg_type>(d);
+                else
+                    child_outputs.col(i) = sib->fit<arg_type>(d);
+            }
+            else{
+                if constexpr(is_std_array_v<T>)
+                    child_outputs.at(i) = sib->predict<arg_type>(d, weights);
+                else
+                    child_outputs.col(i) = sib->predict<arg_type>(d, weights);
+            }
             sib = sib->next_sibling;
         }
         return child_outputs;
     };
 
-
     // gets one kid for a tuple of kids
     template<int I>
     NthType<I> get_kid(const Dataset& d,TreeNode& tn, const W** weights ) const
     {
-        TreeNode* sib = tn.first_child; 
-        for (int i = 0 ; i < I; ++i)
-            sib = sib->next_sibling;
+        auto sib = tree<TreeNode>::sibling_iterator(tn.first_child) ;
+        sib += I;
         if constexpr(Fit)
             return sib->fit<NthType<I>>(d);
         else
@@ -86,29 +93,42 @@ struct Operator
     /**
      * @brief Makes and returns a tuple of child outputs
      * 
-     * @tparam T: a tuple  
-     * @tparam Is: integer sequence 
-     * @param d : dataset
-     * @param tn : a tree node
+     * @tparam T a tuple  
+     * @tparam Is integer sequence 
+     * @param d dataset
+     * @param tn a tree node
      * @return a tuple with elements corresponding to each child node
      */
-    template<typename T, size_t ...Is> requires(is_tuple<T>::value) 
+    template<typename T, size_t ...Is> requires(is_tuple_v<T>) 
     T get_kids_seq(const Dataset& d, TreeNode& tn, const W** weights, std::index_sequence<Is...>) const 
     { 
         return std::make_tuple(get_kid<Is>(d,tn,weights)...);
     };
 
     // get a std::tuple of kids
-    template<typename T=ArgTypes> requires(is_tuple<T>::value) 
+    template<typename T=ArgTypes> requires(is_tuple_v<T>) 
     T get_kids(const Dataset& d, TreeNode& tn, const W** weights=nullptr) const
     {
         return get_kids_seq<T>(d, tn, weights, std::make_index_sequence<ArgCount>{});
     };
 
     ////////////////////////////////////////////////////////////////////////////////
-    // apply weights
-    template<typename T=ArgTypes>
-    requires(!is_tuple<T>::value && is_one_of_v<typename T::value_type::Scalar,float,fJet>) 
+    // weights
+    template<typename InIter>
+    void weight_transform(InIter in_begin, InIter in_end, const Node& n, const W** weights=nullptr) const
+    {
+        if (weights == nullptr)
+            std::transform( in_begin, in_end, n.W.begin(), in_begin, std::multiplies<>());
+        else
+        {
+            auto WMap = Eigen::Map<const Array<W,ArgCount,1>>(*weights);
+            std::transform( in_begin, in_end, WMap.begin(), in_begin, std::multiplies<>());
+            *weights = *weights+ArgCount;
+        }
+    }
+
+    template<typename T=ArgTypes> 
+    requires(is_std_array_v<T> || is_eigen_array_v<T>) 
     void apply_weights(T& inputs, const Node& n, const W** weights=nullptr) const
     {
         /**
@@ -118,48 +138,39 @@ struct Operator
          * @param inputs: arguments to the operator
          * @param n: the node with weights
          */
-        if (weights != nullptr)
-        {
-            for (int i = 0; i < inputs.size(); ++i)
-            {
-                if (weights == nullptr || *weights == nullptr)
-                    HANDLE_ERROR_THROW("weights = nullptr\n");
-
-                inputs[i] = inputs[i] * (**weights);
-                // increment weight pointer
-                *weights = *weights+1;
-            }
-        }
-        else 
-        {
-            std::transform(
-                inputs.begin(),
-                inputs.end(),
-                n.W.begin(),
-                inputs.begin(),
-                std::multiplies<>());
-        }
+        if constexpr (is_std_array_v<T>)
+            weight_transform(inputs.begin(), inputs.end(), n, weights);
+        else if constexpr (is_eigen_array_v<T>)
+            weight_transform(inputs.colwise().begin(), inputs.colwise().end(), n, weights);
     };
     ///////////////////////////////////////////////////////////////////////////
     /// evaluate operator on array of arguments
     template<typename T=ArgTypes>
-    requires (!is_tuple<T>::value && is_one_of_v<typename T::value_type::Scalar,float,fJet>) 
+    requires ( is_std_array_v<T> || is_tuple_v<T>)
     RetType eval(const Dataset& d, TreeNode& tn, const W** weights=nullptr) const
     {
         auto inputs = get_kids(d, tn, weights);
-        if (tn.data.is_weighted)
-            this->apply_weights(inputs, tn.data, weights);
+        if constexpr (is_one_of_v<typename T::value_type::Scalar,float,fJet>)
+        {
+            if (tn.data.is_weighted)
+                this->apply_weights(inputs, tn.data, weights);
+        }
         return std::apply(F, inputs);
     };
 
-    /// evaluate operator on tuple of arguments
-    template<typename T=ArgTypes>
-    requires( is_tuple<T>::value || !is_one_of_v<typename T::value_type::Scalar,float,fJet>) 
+    /// evaluate operator on eigen array of arguments
+    template<typename T=ArgTypes> requires ( is_eigen_array_v<T>)
     RetType eval(const Dataset& d, TreeNode& tn, const W** weights=nullptr) const
     {
-        auto inputs = get_kids(d, tn);
-        return std::apply(F, inputs);
+        auto inputs = get_kids(d, tn, weights);
+        if constexpr (is_one_of_v<typename T::Scalar,float,fJet>)
+        {
+            if (tn.data.is_weighted)
+                this->apply_weights(inputs, tn.data, weights);
+        }
+        return Function<NT>{}(inputs);
     };
+
 };
 //////////////////////////////////////////////////////////////////////////////////
 /// Terminal Overload

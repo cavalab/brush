@@ -366,7 +366,7 @@ struct SearchSpace
             bool use_all = user_ops.size() == 0;
             auto name = NodeTypeName[NT];
             //TODO: address this (whether weights should be included by default)
-            bool weighted = IsWeighable<NT>();
+            bool weighted = (IsWeighable<NT>() && is_same_v<typename S::RetType::Scalar, float>);
             auto n_maybe = CreateNode<NT,S>(unique_data_types, use_all, weighted);
 
             if (n_maybe){

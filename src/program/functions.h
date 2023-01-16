@@ -382,25 +382,24 @@ https://eigen.tuxfamily.org/dox/group__QuickRefPage.html#arrayonly
     struct Function<NodeType::Softmax>
     {
        template <typename T>
-       inline auto softmax(const Array<T, -1, -1> &t) const
+       inline auto softmax(const ArrayBase<T> &t) const
        {
           auto tMinusMax = t.rowwise() - t.colwise().maxCoeff();
-          Array<T, -1, 1> output = tMinusMax.rowwise() - tMinusMax.exp().colwise().sum().log();
-          return output;
+          return tMinusMax.rowwise() - tMinusMax.exp().colwise().sum().log();
        }
 
        template <typename T>
-       inline auto operator()(const Array<T, -1, -1> &t)
+       inline auto operator()(const ArrayBase<T> &t)
        {
           return this->softmax(t);
        }
 
-       template<typename T, typename ...Ts>
-       inline auto operator()(const Array<T,-1,1>& first, const Ts& ... inputs) 
-       { 
-           auto output = Stack<T>(first, inputs...);
-           return this->softmax(output);
-       }
+    //    template<typename T, typename ...Ts>
+    //    inline auto operator()(const Array<T,-1,1>& first, const Ts& ... inputs) 
+    //    { 
+    //        auto output = Stack<T>(first, inputs...);
+    //        return this->softmax(output);
+    //    }
     };
 
 } // Brush

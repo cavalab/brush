@@ -656,8 +656,6 @@ ostream &operator<<( ostream &os, const vector<T>& v )
     return os;            
 };
 
-template <typename> struct is_tuple: std::false_type {};
-template <typename ...T> struct is_tuple<std::tuple<T...>>: std::true_type {};
 
 // template<typename VariantType, typename T, std::size_t index = 0>
 // constexpr std::size_t variant_index() {
