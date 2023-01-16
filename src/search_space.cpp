@@ -43,7 +43,7 @@ void SearchSpace::init(const Dataset& d, const unordered_map<string,float>& user
 
     vector<Node> terminals = generate_terminals(d);
     
-    /* fmt::print("generate nodemap\n"); */
+    /* fmt::print("generate nodetype\n"); */
     GenerateNodeMap(user_ops, d.unique_data_types, 
                     std::make_index_sequence<NodeTypes::OpCount>());
     // map terminals

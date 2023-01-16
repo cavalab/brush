@@ -13,7 +13,7 @@ Code below heavily inspired by heal-research/operon
 #include <type_traits>
 
 #include "../init.h"
-#include "nodemap.h"
+#include "nodetype.h"
 #include "../util/utils.h"
 #include "../data/data.h"
 #include "node.h"
@@ -40,6 +40,9 @@ namespace Brush
 - by returning auto, operators preserve expression templates in Eigen. that allows them to be evaluated once after the expression is constructed. 
 - might need to extend eigen to handle the median case
 https://eigen.tuxfamily.org/dox/TopicCustomizing_Plugins.html
+
+- eigen reference of operators: 
+https://eigen.tuxfamily.org/dox/group__QuickRefPage.html#arrayonly
 */
     template<Brush::NodeType N>
     struct Function 
@@ -127,13 +130,27 @@ https://eigen.tuxfamily.org/dox/TopicCustomizing_Plugins.html
     template<>
     struct Function<NodeType::Median>
     {
+        template<typename Derived>
+        typename Derived::Scalar median( Eigen::DenseBase<Derived>& d ){
+            auto r { d.reshaped() };
+            std::sort( r.begin(), r.end() );
+            return r.size() % 2 == 0 ?
+                r.segment( (r.size()-2)/2, 2 ).mean() :
+                r( r.size()/2 );
+        }
+
+        template<typename Derived>
+        typename Derived::Scalar median( const Eigen::DenseBase<Derived>& d ){
+            typename Derived::PlainObject m { d.replicate(1,1) };
+            return median(m);
+        }
         
         template<typename T>
         inline auto operator()(const Eigen::Array<T,-1,-1>& t) { 
             Array<T,-1,1> tmp;
             std::transform(t.rowwise().begin(), t.rowwise().end(), 
                            tmp.begin(),
-                           [](const auto& i){return Util::median(i);}
+                           [&](const auto& i){return this->median(i);}
             );
             return tmp;
         }

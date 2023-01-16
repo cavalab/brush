@@ -7,7 +7,7 @@ license: GNU/GPL v3
 //internal includes
 #include "init.h"
 #include "program/node.h"
-#include "program/nodemap.h"
+#include "program/nodetype.h"
 #include "program/tree_node.h"
 // #include "program/program.h"
 #include "util/utils.h"

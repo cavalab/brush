@@ -11,7 +11,7 @@ https://github.com/heal-research/operon/
 
 #include "../init.h"
 #include "../data/data.h"
-#include "nodemap.h"
+#include "nodetype.h"
 #include "node.h"
 #include <optional>
 #include <cstddef>

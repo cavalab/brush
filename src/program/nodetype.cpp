@@ -1,4 +1,4 @@
-#include "nodemap.h"
+#include "nodetype.h"
 
 namespace Brush{
 
@@ -10,7 +10,6 @@ std::map<std::string, NodeType> NodeNameType = {
     {"Div", NodeType::Div},
     /* {"Aq", NodeType::Aq}, */
     {"Abs", NodeType::Abs},
-
     {"Acos", NodeType::Acos},
     {"Asin", NodeType::Asin},
     {"Atan", NodeType::Atan},

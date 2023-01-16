@@ -10,7 +10,7 @@ https://github.com/heal-research/operon/
 #define NODE_H
 
 #include "../data/data.h"
-#include "nodemap.h"
+#include "nodetype.h"
 #include "../util/utils.h"
 #include <iostream>
 // #include "nodes/base.h"
@@ -283,5 +283,6 @@ template <> struct fmt::formatter<Brush::Node>: formatter<string_view> {
     return formatter<string_view>::format(x.get_name(), ctx);
   }
 };
+
 
 #endif

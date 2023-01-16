@@ -14,13 +14,22 @@ namespace Brush{
 
 /// @brief Core computation of a node's function to data. 
 /// @tparam S the signature of the node 
-/// @tparam E unused 
 /// @tparam NT node type
 /// @tparam Fit true: fit, false: predict
+/// @tparam E used for node type specialization
 template<NodeType NT, typename S, bool Fit, typename E=void> 
 struct Operator 
 {
-    using ArgTypes = typename S::ArgTypes;
+    /* @brief set argument types to those of the signature unless:
+    *   a) the operator is unary and there are more than one arguments
+    *   b) the operator is binary and associative  
+    *   In the case of a) or b), arguments to the operator are stacked into an 
+    *   array and the operator is applied to that array
+    */
+    using ArgTypes = conditional_t<
+        (UnaryOp<NT> && S::ArgCount > 1) || (BinaryOp<NT> && S::ArgCount > 2),
+        Array<typename S::FirstArg::Scalar, -1, S::ArgCount>,
+        typename S::ArgTypes>;
     using RetType = typename S::RetType;
     static constexpr size_t ArgCount = S::ArgCount;
     // get arg types from tuple by index

@@ -11,14 +11,6 @@ namespace Brush {
 // refs:
 // https://stackoverflow.com/questions/25958259/how-do-i-find-out-if-a-tuple-contains-a-type
 // https://stackoverflow.com/questions/34111060/c-check-if-the-template-type-is-one-of-the-variadic-template-types
-template <NodeType T, NodeType... Ts> 
-struct is_in
-{
-    static constexpr bool value = ((T == Ts) || ...);
-};
-
-template<NodeType T, NodeType... Ts> 
-static constexpr bool is_in_v = is_in<T, Ts...>::value;
 
 
 // TODO: potentially improve this with something like
@@ -138,6 +130,11 @@ struct Signature<R(Args...)> : SigBase<R, Args...>
     using Dual = SigBase<Jetify_t<RetType>, Jetify_t<Args>... >;
     using DualArgs = SigBase<RetType, Jetify_t<Args>... >;
 };
+
+// template<typename R, typename FirstArg, size_t N>
+// struct Signature: SigBase<R, Args...>
+// {
+// };
 
 // template<typename T, typename S=T::Scalar, int Rows=T::RowsAtCompileTime, int Cols=0> struct Jetify {
 //     using type = T<

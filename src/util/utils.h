@@ -89,7 +89,7 @@ bool in(const V& v, const T& i)
 /// calculate median
 // float median(const Eigen::Ref<const ArrayXf>& v);
 template<typename T, typename Scalar=T::Scalar>
-auto median(const T& v) 
+Scalar median(const T& v) 
 {
     // instantiate a vector
     vector<Scalar> x(v.size());

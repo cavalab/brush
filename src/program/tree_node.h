@@ -7,7 +7,7 @@
 #include "../data/data.h"
 #include "node.h"
 #include "functions.h"
-#include "nodemap.h"
+#include "nodetype.h"
 #include "../../thirdparty/tree.hh"
 
 using std::string;

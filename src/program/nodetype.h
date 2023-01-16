@@ -135,7 +135,7 @@ extern std::map<std::string, NodeType> NodeNameType;
 extern std::map<NodeType,std::string> NodeTypeName;
 
 } // namespace Brush
-// format overload for Nodes
+// format overload for NodeTypes
 template <> struct fmt::formatter<Brush::NodeType>: formatter<string_view> {
   // parse is inherited from formatter<string_view>.
   template <typename FormatContext>
@@ -143,5 +143,65 @@ template <> struct fmt::formatter<Brush::NodeType>: formatter<string_view> {
     return formatter<string_view>::format(Brush::NodeTypeName.at(x), ctx);
   }
 };
+////////////////////////////////////////////////////////////////////////////////
+template <NodeType T, NodeType... Ts> 
+struct is_in
+{
+    static constexpr bool value = ((T == Ts) || ...);
+};
+
+template<NodeType T, NodeType... Ts> 
+static constexpr bool is_in_v = is_in<T, Ts...>::value;
+
+using NT = NodeType;
+// NodeType concepts
+template<NT nt>
+static constexpr bool UnaryOp = is_in_v<nt, 
+    NT::Abs,
+    NT::Acos,
+    NT::Asin,
+    NT::Atan,
+    NT::Cos,
+    NT::Cosh,
+    NT::Sin,
+    NT::Sinh,
+    NT::Tan,
+    NT::Tanh,
+    NT::Ceil,
+    NT::Floor,
+    NT::Exp,
+    NT::Log,
+    NT::Logabs,
+    NT::Log1p,
+    NT::Sqrt,
+    NT::Sqrtabs,
+    NT::Square,
+    NT::Logistic
+>;
+
+template<NT nt>
+static constexpr bool BinaryOp = is_in_v<nt, 
+    NT::Add,
+    NT::Sub,
+    NT::Mul,
+    NT::Div,
+    NT::Pow
+>;
+
+// // TODO: make this work 
+// template<typename NT, size_t ArgCount>
+// concept Transformer = requires(NT n, size_t ArgCount) 
+// {
+//     UnaryOp<n> && ArgCount > 1;
+// }
+
+// template<typename NT, size_t ArgCount>
+// concept Reducer = requires(NT n, size_t ArgCount) 
+// {
+//     BinaryOp<n> && ArgCount > 2;
+// }
+   
+   
+   
 #include "signatures.h"
 #endif
