@@ -246,10 +246,18 @@ struct Signatures<N, enable_if_t<is_in_v<N,
     NodeType::Square,
     NodeType::Logistic
     >>>{ 
-        using type = std::tuple< 
+        // using type = std::tuple< 
+        //     Signature<ArrayXf(ArrayXf)>,
+        //     Signature<ArrayXXf(ArrayXXf)>
+        // >;
+        using unaryTuple = std::tuple<
             Signature<ArrayXf(ArrayXf)>,
             Signature<ArrayXXf(ArrayXXf)>
         >;
+
+        using naryTuple = NarySignatures_t<ArrayXXf,ArrayXf,MAX_ARGS>;
+
+        using type = decltype(std::tuple_cat(unaryTuple(), naryTuple()));
     };
 
 template<NodeType N>
@@ -265,45 +273,50 @@ struct Signatures<N, enable_if_t<is_in_v<N,
             Signature<TimeSeriesb(TimeSeriesb,TimeSeriesb)>
         >;
     }; 
+// template<NodeType N>
+// struct Signatures<N, enable_if_t<is_in_v<N, 
+//     NodeType::Min, 
+//     NodeType::Max
+//     >>>{ 
+//         using unaryTuple = std::tuple<
+//             Signature<ArrayXf(ArrayXXf)>,
+//             Signature<ArrayXi(ArrayXXi)>
+//         >;
+
+//         using naryTupleF = NarySignatures_t<ArrayXf,ArrayXf,MAX_ARGS>;
+//         using naryTupleI = NarySignatures_t<ArrayXi,ArrayXi,MAX_ARGS>;
+
+//         using type = decltype(std::tuple_cat(unaryTuple(), naryTupleF(), naryTupleI()));
+//     }; 
+
 template<NodeType N>
 struct Signatures<N, enable_if_t<is_in_v<N, 
     NodeType::Min, 
-    NodeType::Max
-    >>>{ 
-        using unaryTuple = std::tuple<
-            Signature<ArrayXf(ArrayXXf)>,
-            Signature<ArrayXi(ArrayXXi)>
-        >;
-
-        using naryTupleF = NarySignatures_t<ArrayXf,ArrayXf,MAX_ARGS>;
-        using naryTupleI = NarySignatures_t<ArrayXi,ArrayXi,MAX_ARGS>;
-
-        using type = decltype(std::tuple_cat(unaryTuple(), naryTupleF(), naryTupleI()));
-    }; 
-
-template<NodeType N>
-struct Signatures<N, enable_if_t<is_in_v<N, 
+    NodeType::Max,
+    NodeType::Sum,
     NodeType::Mean,
     NodeType::Median
     >>>{ 
-        using type = std::tuple<
+        using unaryTuple = std::tuple<
             Signature<ArrayXf(ArrayXXf)>,
             Signature<ArrayXf(TimeSeriesf)>
-            /* Signature<ArrayXf(ArrayXXi)>, */
-            /* Signature<ArrayXf(ArrayXXb)> */
         >;
+
+        using naryTuple = NarySignatures_t<ArrayXf,ArrayXf,MAX_ARGS>;
+
+        using type = decltype(std::tuple_cat(unaryTuple(), naryTuple()));
     }; 
 
-template<>
-struct Signatures<NodeType::Sum>{ 
-        using type = std::tuple<
-            Signature<ArrayXf(ArrayXXf)>,
-            /* Signature<ArrayXi(ArrayXXi)>, */
-            Signature<ArrayXf(TimeSeriesf)>
-            /* Signature<ArrayXf(TimeSeriesi)>, */
-            /* Signature<ArrayXf(TimeSeriesb)> */
-        >;
-    }; 
+// template<>
+// struct Signatures<NodeType::Sum>{ 
+//         using type = std::tuple<
+//             Signature<ArrayXf(ArrayXXf)>,
+//             /* Signature<ArrayXi(ArrayXXi)>, */
+//             Signature<ArrayXf(TimeSeriesf)>
+//             /* Signature<ArrayXf(TimeSeriesi)>, */
+//             /* Signature<ArrayXf(TimeSeriesb)> */
+//         >;
+//     }; 
 
 template<> 
 struct Signatures<NodeType::Count>{
@@ -368,7 +381,6 @@ struct Signatures<NodeType::SplitOn>{
         >;
     }; 
 
-// TODO: specialize for variable arity operators that take a vector of inputs
     template <>
     struct Signatures<NodeType::Softmax>
     {
