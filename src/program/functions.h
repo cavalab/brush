@@ -145,9 +145,9 @@ https://eigen.tuxfamily.org/dox/group__QuickRefPage.html#arrayonly
             return median(m);
         }
         
-        template<typename T>
-        inline auto operator()(const Eigen::Array<T,-1,-1>& t) { 
-            Array<T,-1,1> tmp;
+        template<typename Derived, typename T=Derived::Scalar>
+        inline auto operator()(const Eigen::ArrayBase<Derived>& t) { 
+            Eigen::Array<T,-1,1> tmp(t.rows());
             std::transform(t.rowwise().begin(), t.rowwise().end(), 
                            tmp.begin(),
                            [&](const auto& i){return this->median(i);}
@@ -157,6 +157,16 @@ https://eigen.tuxfamily.org/dox/group__QuickRefPage.html#arrayonly
 
         template<typename T>
         inline auto operator()(const TimeSeries<T>& t) { return t.median(); }
+    };
+
+    template<>
+    struct Function<NodeType::Prod>
+    {
+        template<typename T>
+        inline auto operator()(const T& t) { return t.rowwise().prod(); }
+
+        template<typename T>
+        inline auto operator()(const TimeSeries<T>& t) { return t.prod(); } 
     };
     /* sum */
     template<>

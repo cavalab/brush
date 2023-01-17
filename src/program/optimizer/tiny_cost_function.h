@@ -74,7 +74,8 @@ namespace detail {
     }
 } // namespace detail
 
-template <typename CostFunctor, typename DualType, typename ScalarType, int StorageOrder = Eigen::RowMajor>
+template <typename CostFunctor, typename DualType=fJet, typename ScalarType=float, 
+    int StorageOrder = Eigen::ColMajor>
 struct TinyCostFunction {
     static constexpr int Stride = DualType::DIMENSION;
     static constexpr int Storage = StorageOrder;

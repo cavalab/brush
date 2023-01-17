@@ -60,17 +60,18 @@ enum class NodeType : uint64_t {
     Mean                = 1UL << 25UL,
     Median              = 1UL << 26UL,
     Sum                 = 1UL << 27UL,
+    Prod                = 1UL << 28UL,
     // Transformers 
-    Softmax             = 1UL << 28UL,
+    Softmax             = 1UL << 29UL,
     // Binary
-    Add                 = 1UL << 29UL,
-    Sub                 = 1UL << 30UL,
-    Mul                 = 1UL << 31UL,
-    Div                 = 1UL << 32UL,
-    Pow                 = 1UL << 33UL,
+    Add                 = 1UL << 30UL,
+    Sub                 = 1UL << 31UL,
+    Mul                 = 1UL << 32UL,
+    Div                 = 1UL << 33UL,
+    Pow                 = 1UL << 34UL,
     //split
-    SplitBest           = 1UL << 34UL,
-    SplitOn             = 1UL << 35UL,
+    SplitBest           = 1UL << 35UL,
+    SplitOn             = 1UL << 36UL,
     // these ones change type
     /* Equals              = 1UL << 39UL, */
     /* LessThan            = 1UL << 40UL, */
@@ -78,14 +79,14 @@ enum class NodeType : uint64_t {
     /* Leq                 = 1UL << 42UL, */
     /* Geq                 = 1UL << 43UL, */
     // leaves
-    Constant            = 1UL << 36UL,
-    Terminal            = 1UL << 37UL,
-    ArgMax              = 1UL << 38UL,
-    Count               = 1UL << 39UL,
+    Constant            = 1UL << 37UL,
+    Terminal            = 1UL << 38UL,
+    ArgMax              = 1UL << 39UL,
+    Count               = 1UL << 40UL,
     // custom
-    CustomUnaryOp       = 1UL << 40UL,
-    CustomBinaryOp      = 1UL << 41UL,
-    CustomSplit         = 1UL << 42UL
+    CustomUnaryOp       = 1UL << 41UL,
+    CustomBinaryOp      = 1UL << 42UL,
+    CustomSplit         = 1UL << 43UL
     // boolean
     // And                 = 1UL << 37UL,
     // Or                  = 1UL << 38UL,
@@ -97,7 +98,7 @@ enum class NodeType : uint64_t {
 using UnderlyingNodeType = std::underlying_type_t<NodeType>;
 struct NodeTypes {
     // magic number keeping track of the number of different node types
-    static constexpr size_t Count = 38;
+    static constexpr size_t Count = 39;
     static constexpr size_t OpCount = Count-2;
 
     // returns the index of the given type in the NodeType enum
@@ -199,7 +200,7 @@ static constexpr bool NaryOp = is_in_v<nt,
     NT::Mean,
     NT::Median,
     NT::Sum,
-    // NT::Prod,
+    NT::Prod,
     NT::Softmax
 >;
 // // TODO: make this work 

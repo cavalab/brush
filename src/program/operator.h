@@ -26,9 +26,8 @@ struct Operator
     *   array and the operator is applied to that array
     */
     using ArgTypes = conditional_t<
-        (UnaryOp<NT> && S::ArgCount > 1) || (NaryOp<NT> && S::ArgCount > 1),
+        ((UnaryOp<NT> || NaryOp<NT>) && S::ArgCount > 1),
         Array<typename S::FirstArg::Scalar, -1, S::ArgCount>,
-        // Array<typename S::FirstArg::Scalar, -1, -1>,
         typename S::ArgTypes>;
     using RetType = typename S::RetType;
     static constexpr size_t ArgCount = S::ArgCount;
@@ -42,6 +41,7 @@ struct Operator
         Function<NT> f; 
         return f(args...); 
     }; 
+    // static constexpr auto F = Function<NT>{};
 
     Operator() = default;
     ////////////////////////////////////////////////////////////////////////////////
@@ -160,7 +160,7 @@ struct Operator
     };
 
     /// evaluate operator on eigen array of arguments
-    template<typename T=ArgTypes> requires ( is_eigen_array_v<T>)
+    template<typename T=ArgTypes> requires ( is_eigen_array_v<T> && !is_std_array_v<T>)
     RetType eval(const Dataset& d, TreeNode& tn, const W** weights=nullptr) const
     {
         auto inputs = get_kids(d, tn, weights);
@@ -169,7 +169,7 @@ struct Operator
             if (tn.data.is_weighted)
                 this->apply_weights(inputs, tn.data, weights);
         }
-        return Function<NT>{}(inputs);
+        return F(inputs);
     };
 
 };

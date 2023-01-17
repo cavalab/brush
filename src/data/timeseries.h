@@ -122,6 +122,7 @@ struct TimeSeries
     inline auto min() const { return this->reduce([](const EntryType& i){ return i.minCoeff(); } ); };
     inline auto sum() const { return this->reduce<Scalar>([](const EntryType& i){ return i.sum(); } ); };
     inline auto count() const { return this->reduce<float>([](const EntryType& i){ return i.size(); } ); };
+    inline auto prod() const { return this->reduce<Scalar>([](const EntryType& i){ return i.prod(); } ); };
 
     /* template<typename V=T> */
     /* enable_if_t<is_same_v<V,float>,TimeSeries<float>> */

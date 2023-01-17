@@ -77,22 +77,23 @@ private:
 struct WeightOptimizer
 {
     
+    /// @brief Update program weights using non-linear least squares.
+    /// @tparam PT the program type 
+    /// @param program the program 
+    /// @param dataset the dataset 
     template<typename PT>
     void update(PT& program, const Dataset& dataset)
     {
-        // update weights to return new_weights using Non-linear least squares.
-        // target: d.y
-        // get a copy of the weights from the tree. 
         if (program.get_n_weights() == 0)
             return;
         fmt::print("number of weights: {}\n",program.get_n_weights());
         auto init_weights = program.get_weights();
 
-        ceres::Solver::Summary summary;
-
-        ResidualEvaluator<PT> re(program, dataset);
-        Brush::TinyCostFunction<ResidualEvaluator<PT>, fJet, float, Eigen::ColMajor> cost_function(re);
-        ceres::TinySolver<decltype(cost_function)> solver;
+        using CFType = Brush::TinyCostFunction<ResidualEvaluator<PT>> ; 
+        ResidualEvaluator<PT> evaluator(program, dataset);
+        CFType cost_function(evaluator);
+        ceres::TinySolver<CFType> solver;
+        solver.options.max_num_iterations = 10;
 
         typename decltype(solver)::Parameters parameters = program.get_weights(); 
         solver.Solve(cost_function, &parameters);
@@ -106,15 +107,13 @@ struct WeightOptimizer
             init_weights, 
             parameters
         );
-        // summary.Success = detail::CheckSuccess(summary.InitialCost, summary.FinalCost);
-        if (summary.final_cost < summary.initial_cost)
+        if (solver.summary.final_cost < solver.summary.initial_cost)
         {
             program.set_weights(parameters);
         }
 
-////////////////////////////////////////////////////////////////////////////////
     }
 };
 
-}
+} // namespace Brush
 #endif

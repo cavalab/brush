@@ -291,9 +291,10 @@ struct Signatures<N, enable_if_t<is_in_v<N,
 
 template<NodeType N>
 struct Signatures<N, enable_if_t<is_in_v<N, 
+    NodeType::Sum,
+    NodeType::Prod,
     NodeType::Min, 
     NodeType::Max,
-    NodeType::Sum,
     NodeType::Mean,
     NodeType::Median
     >>>{ 
@@ -306,17 +307,6 @@ struct Signatures<N, enable_if_t<is_in_v<N,
 
         using type = decltype(std::tuple_cat(unaryTuple(), naryTuple()));
     }; 
-
-// template<>
-// struct Signatures<NodeType::Sum>{ 
-//         using type = std::tuple<
-//             Signature<ArrayXf(ArrayXXf)>,
-//             /* Signature<ArrayXi(ArrayXXi)>, */
-//             Signature<ArrayXf(TimeSeriesf)>
-//             /* Signature<ArrayXf(TimeSeriesi)>, */
-//             /* Signature<ArrayXf(TimeSeriesb)> */
-//         >;
-//     }; 
 
 template<> 
 struct Signatures<NodeType::Count>{

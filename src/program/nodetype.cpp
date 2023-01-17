@@ -44,13 +44,14 @@ std::map<std::string, NodeType> NodeNameType = {
     /* {"Leq", NodeType::Leq}, */
     /* {"Geq", NodeType::Geq}, */
 
-    // summary stats
+    // reductions
     {"Min", NodeType::Min},
     {"Max", NodeType::Max},
     {"Mean", NodeType::Mean},
     {"Median", NodeType::Median},
     {"Count", NodeType::Count},
     {"Sum", NodeType::Sum},
+    {"Prod", NodeType::Prod},
     {"ArgMax", NodeType::ArgMax},
 
     // transforms
