@@ -17,6 +17,8 @@ using Scalar = float;
 // - the Dual type represents a dual number, the user can specify the type for the Scalar part (float, double) and the Stride (Ceres-specific)
 // - the StorageOrder specifies the format of the jacobian (row-major for the big Ceres solver, column-major for the tiny solver)
 
+// TODO: eliminate this and use the Ceres tiny solver autodiff function instead:
+// https://github.com/ceres-solver/ceres-solver/blob/caf614a6c1ac1717be606c37fe434391edb2f417/include/ceres/tiny_solver_autodiff_function.h
 namespace detail {
     template<typename CostFunctor, typename Dual, typename Scalar, int JacobianLayout = Eigen::ColMajor>
     inline auto Autodiff(CostFunctor const& function, Scalar const* parameters, Scalar* residuals, Scalar* jacobian) -> bool
