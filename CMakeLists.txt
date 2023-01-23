@@ -108,7 +108,6 @@ if (OMP)
 endif()
 
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wno-ignored-attributes")
-
 ########################################
 # fmt
 find_package(fmt REQUIRED)
@@ -124,8 +123,7 @@ message(STATUS "Sources: '${sources}")
 add_library(brush SHARED ${sources})
 
 ########################################
-#brush executable: tests
-# add_executable(brush src/main.cpp)
+# brush cpp tests
 # Link runTests with what we want to test and the GTest and pthread library
 file(GLOB_RECURSE testsSrc "tests/*.cpp")
 message(STATUS "testsSrc: '${testsSrc}")
@@ -135,6 +133,7 @@ target_link_libraries(tests brush gtest_main pthread fmt::fmt)
 include(GoogleTest)
 gtest_discover_tests(tests)
 
+########################################
 # generate python bindings
 find_package(Python COMPONENTS Interpreter Development REQUIRED)
 
