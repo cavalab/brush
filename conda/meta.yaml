@@ -1,0 +1,47 @@
+{% set name = "brushgp" %}
+{% set version = "0.0.1" %}
+
+package:
+  name {{ name|lower }}
+  version: {{ version }}
+
+source:
+  url: https://github.com/lacava/brush/releases/download/{{ version }}/brushgp-{{ version }}.tar.gz
+  sha256: [[TODO]]
+
+build:
+  # THIS IS WHERE MOST OF THE REMAINING WORK NEEDS TO BE DONE.
+  # NOTICE THAT WE CAN USE OS-SPECIFIC BUILD RULES VIA COMMENTS AT END OF LINES.
+  # NEED TO MAKE SHELL SCRIPTS AND BATCH FILE
+  script: build-gcc.sh  # [linux]
+  script: build-clang.sh  # [osx]
+  # WILL REQUIRE SOME EXTRA WORK BEFORE WE'RE READY FOR WINDOWS
+  # script: build-win.bat  # [win]
+  number: 0
+  skip: True  # [py<37]
+
+requirements:
+  build:
+    - {{ compiler('cxx') }}
+  host:
+    - python
+    - pip
+  run:
+    - python
+
+test:
+  requires:
+    - pip
+  commands:
+    - pip check
+
+about:
+  home: https://github.com/lacava/brush
+  summary: 
+  description: |
+    Brush is a strongly-typed genetic programming language. It is designed for
+    **b**ackpropagations and **r**ecursion **u**sing **s**earch **h**euristics.
+  license: GPL-3.0-only
+  license_file: LICENSE.txt
+  # doc_url: UPDATE WHEN READY
+  dev_url: https://github.com/lacava/brush
