@@ -13,8 +13,7 @@ build:
   # THIS IS WHERE MOST OF THE REMAINING WORK NEEDS TO BE DONE.
   # NOTICE THAT WE CAN USE OS-SPECIFIC BUILD RULES VIA COMMENTS AT END OF LINES.
   # NEED TO MAKE SHELL SCRIPTS AND BATCH FILE
-  script: build-gcc.sh  # [linux]
-  script: build-clang.sh  # [osx]
+  script: build.sh  # [not win]
   # WILL REQUIRE SOME EXTRA WORK BEFORE WE'RE READY FOR WINDOWS
   # script: build-win.bat  # [win]
   number: 0
@@ -22,6 +21,7 @@ build:
 
 requirements:
   build:
+    - cmake
     - {{ compiler('cxx') }}
   host:
     - python
