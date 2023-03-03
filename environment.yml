@@ -2,35 +2,21 @@ name: brush
 channels:
     - conda-forge
 dependencies:
-    - breathe
+    - python #=3.8.2
     - cmake #=3.18.*
     - eigen #=3.4.*
     - fmt
     - gcc >= 12.0
     - gxx >= 12.0
     - gtest #=1.10.0
-    - ipython
-    - jupyter
     - ninja
     - ceres-solver
+    - pybind11 #=2.6.2
+    - pytest #=6.2.4
+    - pydot
+    # these are not required for install
+    - jupyter
+    - ipython
     - pip
     - pip:
       - graphviz
-      - Maisie-Sphinx-Theme
-      - pmlb
-      - sphinx
-      - furo
-    - pybind11 #=2.6.2
-    - pydot
-    - pytest #=6.2.4
-    - python #=3.8.2
-    # - pandas=1.1.*
-    # - scikit-learn=0.23.*
-    # - setuptools=45.*
-    # - wheel=0.35.*
-    - pip
-    - pip:
-      # documentation
-      - pydot
-      - maisie_sphinx_theme
-      - breathe
