@@ -65,8 +65,8 @@ extensions = [
   "sphinx.ext.autodoc",
   "sphinx.ext.autosummary",
   "breathe",  # Use Doxygen output as input for Sphinx
-  "maisie_sphinx_theme",
-  "sphinx.ext.graphviz"
+  "sphinx.ext.graphviz",
+  'numpydoc'
 ]
 
 autosummary_generate = True

@@ -1,4 +1,8 @@
-#include <vector>
+#include "testsHeader.h"
+#include "../../src/search_space.h"
+#include "../../src/program/program.h"
+#include "../../src/program/dispatch_table.h"
+#include "../../src/data/io.h"
 using namespace std;
 
 TEST(Program, UpdateWeights)
@@ -20,10 +24,10 @@ TEST(Program, UpdateWeights)
             );
 
             auto weights = PRG.get_weights();
-            auto n = weights.size;
-            auto new_weights = vector<float>(n, 1.3);
+            auto n = weights.size();
+            auto new_weights = ArrayXf(n, 1.3);
             PRG.set_weights(new_weights);
-            auto weights = PRG.get_weights();
+            weights = PRG.get_weights();
             
             for (int i = 0; i < weights.size(); ++i){
                 if (std::isnan(weights(i)))

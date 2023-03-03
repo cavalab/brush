@@ -56,6 +56,7 @@ project(brush)
 
 if(DEFINED ENV{CONDA_PREFIX})
     set(CMAKE_PREFIX_PATH $ENV{CONDA_PREFIX})
+    message(STATUS "CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}")
 endif()
 # # add Eigen include paths
 if (DEFINED ENV{EIGEN3_INCLUDE_DIR})
