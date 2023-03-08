@@ -284,5 +284,56 @@ template <> struct fmt::formatter<Brush::Node>: formatter<string_view> {
   }
 };
 
+////////////////////////////////////////
+// serialization
+// serialization for Node
+// using json = nlohmann::json;
+
+// void to_json(json& j, const Node& p) 
+// {
+//     j = json{
+//         {"name", p.name},
+//         {"center_op", p.center_op}, 
+//         {"prob_change", p.prob_change}, 
+//         {"fixed", p.fixed}, 
+//         {"node_type", p.node_type}, 
+//         {"sig_hash", p.sig_hash}, 
+//         {"sig_dual_hash", p.sig_dual_hash}, 
+//         {"ret_type", p.ret_type}, 
+//         {"arg_types", p.arg_types}, 
+//         {"is_weighted", p.is_weighted}, 
+//         {"optimize", p.optimize}, 
+//         {"W", p.W}, 
+//         {"feature", p.feature}, 
+//         {"complete_hash", p.complete_hash} 
+//     };
+// }
+
+// void from_json(const json &j, Node& p)
+// {
+//     vector<string> members = { 
+//         "name", 
+//         "center_op", 
+//         "prob_change",
+//         "fixed",
+//         "node_type",
+//         "sig_hash",
+//         "sig_dual_hash",
+//         "ret_type",
+//         "arg_types",
+//         "is_weighted",
+//         "optimize",
+//         "W",
+//         "feature",
+//         "complete_hash"
+//     };
+//     for (const auto& m : members)
+//     {
+//         if (j.contains(m))
+//         {
+//             j.at(m).get_to(p)
+//         }
+//     }
+// }
 
 #endif
