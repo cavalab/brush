@@ -20,14 +20,6 @@ license: GNU/GPL v3
 
 namespace py = pybind11;
 namespace br = Brush;
-// using br::Data;
-
-
-// Test data as numpy arrays:
-// X = np.array([[1.1, 2.0, 3.0, 4.0, 5.0, 6.5, 7.0, 8.0, 9.0, 10.0],
-//               [2.0, 1.2, 6.0, 4.0, 5.0, 8.0, 7.0, 5.0, 9.0, 10.0]])
-//
-// y = np.array( [1.0, 0.0, 1.4, 1.0, 0.0, 1.0, 1.0, 0.0, 0.0,  0.0])
 
 PYBIND11_MODULE(brush, m) {
     m.doc() = R"pbdoc(
