@@ -107,7 +107,7 @@ setup(
     name="brushgp",
     version="0.0.1",
     author="William La Cava, Joseph D. Romano, Zongjun Liu",
-    author_email="williamlacava@gmail.com",  # can change to Bill
+    author_email="williamlacava@gmail.com",
     license="GNU General Public License v3.0",
     long_description=long_description,
     long_description_content_type="text/markdown",

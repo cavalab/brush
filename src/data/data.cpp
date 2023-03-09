@@ -101,7 +101,7 @@ Dataset Dataset::operator()(const vector<size_t>& idx) const
     for (auto& feature : this->features) 
     {
         std::string key = feature.first;
-        Brush::data::State value = feature.second;
+        Brush::Data::State value = feature.second;
         std::visit([&](auto&& arg) 
         {
             using T = std::decay_t<decltype(arg)>;
