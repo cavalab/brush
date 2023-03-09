@@ -7,7 +7,7 @@
 TEST(Program, MakeRegressor)
 {
         
-    Dataset data = Data::read_csv("examples/datasets/d_enc.csv","label");
+    Dataset data = Data::read_csv("docs/examples/datasets/d_enc.csv","label");
 
 
     SearchSpace SS;
@@ -30,7 +30,7 @@ TEST(Program, MakeRegressor)
 TEST(Program, FitRegressor)
 {
         
-    Dataset data = Data::read_csv("examples/datasets/d_enc.csv","label");
+    Dataset data = Data::read_csv("docs/examples/datasets/d_enc.csv","label");
 
     SearchSpace SS;
     SS.init(data);
@@ -56,7 +56,7 @@ TEST(Program, FitRegressor)
 TEST(Program, PredictWithWeights)
 {
         
-    Dataset data = Data::read_csv("examples/datasets/d_enc.csv","label");
+    Dataset data = Data::read_csv("docs/examples/datasets/d_enc.csv","label");
 
     SearchSpace SS;
     SS.init(data);
@@ -90,7 +90,7 @@ TEST(Program, PredictWithWeights)
 TEST(Program, FitClassifier)
 {
         
-    Dataset data = Data::read_csv("examples/datasets/d_analcatdata_aids.csv","target");
+    Dataset data = Data::read_csv("docs/examples/datasets/d_analcatdata_aids.csv","target");
     SearchSpace SS;
     SS.init(data);
 

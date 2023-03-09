@@ -34,7 +34,7 @@ class TestProgram():
                 print(y)
 
     def test_fit_classifier(self):
-        df = pd.read_csv('examples/datasets/d_analcatdata_aids.csv')
+        df = pd.read_csv('docs/examples/datasets/d_analcatdata_aids.csv')
         data = Dataset(df.drop(columns='target'), df['target'])
         SS = SearchSpace(data)
         # pytest.set_trace()

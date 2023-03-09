@@ -164,6 +164,28 @@ enum class DataType : uint32_t {
     TimeSeriesFJet
 };
 
+// map DataType values to JSON as strings
+NLOHMANN_JSON_SERIALIZE_ENUM( DataType, {
+    {DataType::ArrayB, "ArrayB"},
+    {DataType::ArrayI, "ArrayI"},
+    {DataType::ArrayF, "ArrayF"},
+    {DataType::MatrixB, "MatrixB"},
+    {DataType::MatrixI, "MatrixI"},
+    {DataType::MatrixF, "MatrixF"},
+    {DataType::TimeSeriesB, "TimeSeriesB"},
+    {DataType::TimeSeriesI,"TimeSeriesI"},
+    {DataType::TimeSeriesF,"TimeSeriesF"},
+    {DataType::ArrayBJet, "ArrayBJet"},
+    {DataType::ArrayIJet, "ArrayIJet"},
+    {DataType::ArrayFJet, "ArrayFJet"},
+    {DataType::MatrixBJet, "MatrixBJet"},
+    {DataType::MatrixIJet, "MatrixIJet"},
+    {DataType::MatrixFJet, "MatrixFJet"},
+    {DataType::TimeSeriesBJet, "TimeSeriesBJet"},
+    {DataType::TimeSeriesIJet,"TimeSeriesIJet"},
+    {DataType::TimeSeriesFJet, "TimeSeriesFJet"},
+})
+
 using DT = DataType; 
 
 template<DT D> struct DataEnumType; 

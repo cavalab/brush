@@ -134,7 +134,83 @@ inline auto operator^=(NodeType& lhs, NodeType rhs) -> NodeType&
 extern std::map<std::string, NodeType> NodeNameType;
 extern std::map<NodeType,std::string> NodeTypeName;
 
+// map NodeType values to JSON as strings
+NLOHMANN_JSON_SERIALIZE_ENUM( NodeType, {
+    //arithmetic
+    {NodeType::Add,"Add" },
+    {NodeType::Sub,"Sub" },
+    {NodeType::Mul,"Mul" },
+    {NodeType::Div,"Div" },
+    /* {NodeType::Aq,"Aq" }, */
+    {NodeType::Abs,"Abs" },
+    {NodeType::Acos,"Acos" },
+    {NodeType::Asin,"Asin" },
+    {NodeType::Atan,"Atan" },
+    {NodeType::Cos,"Cos" },
+    {NodeType::Cosh,"Cosh" },
+    {NodeType::Sin,"Sin" },
+    {NodeType::Sinh,"Sinh" },
+    {NodeType::Tan,"Tan" },
+    {NodeType::Tanh,"Tanh" },
+    {NodeType::Ceil,"Ceil" },
+    {NodeType::Floor,"Floor" },
+    {NodeType::Exp,"Exp" },
+    {NodeType::Log,"Log" },
+    {NodeType::Logabs,"Logabs" },
+    {NodeType::Log1p,"Log1p" },
+    {NodeType::Sqrt,"Sqrt" },
+    {NodeType::Sqrtabs,"Sqrtabs" },
+    {NodeType::Square,"Square" },
+    {NodeType::Pow,"Pow" },
+    {NodeType::Logistic,"Logistic" },
+
+    // logic; not sure these will make it in
+    // {NodeType::And,"And" },
+    // {NodeType::Or,"Or" },
+    // {NodeType::Not,"Not" },
+    // {NodeType::Xor,"Xor" },
+
+    // decision (same)
+    /* {NodeType::Equals,"Equals" }, */
+    /* {NodeType::LessThan,"LessThan" }, */
+    /* {NodeType::GreaterThan,"GreaterThan" }, */
+    /* {NodeType::Leq,"Leq" }, */
+    /* {NodeType::Geq,"Geq" }, */
+
+    // reductions
+    {NodeType::Min,"Min" },
+    {NodeType::Max,"Max" },
+    {NodeType::Mean,"Mean" },
+    {NodeType::Median,"Median" },
+    {NodeType::Count,"Count" },
+    {NodeType::Sum,"Sum" },
+    {NodeType::Prod,"Prod" },
+    {NodeType::ArgMax,"ArgMax" },
+
+    // transforms
+    {NodeType::Softmax,"Softmax" },
+
+    // timing masks
+    {NodeType::Before,"Before" },
+    {NodeType::After,"After" },
+    {NodeType::During,"During" },
+
+    //split
+    {NodeType::SplitBest,"SplitBest" },
+    {NodeType::SplitOn,"SplitOn" },
+
+    // leaves
+    {NodeType::Constant,"Constant" },
+    {NodeType::Terminal,"Terminal" },
+
+    // custom
+    {NodeType::CustomUnaryOp,"CustomUnaryOp" },
+    {NodeType::CustomBinaryOp,"CustomBinaryOp" },
+    {NodeType::CustomSplit,"CustomSplit" },
+})   
+
 } // namespace Brush
+
 // format overload for NodeTypes
 template <> struct fmt::formatter<Brush::NodeType>: formatter<string_view> {
   // parse is inherited from formatter<string_view>.
@@ -215,7 +291,7 @@ static constexpr bool NaryOp = is_in_v<nt,
 // {
 //     BinaryOp<n> && ArgCount > 2;
 // }
-   
+
    
    
 #include "signatures.h"
