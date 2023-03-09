@@ -64,8 +64,8 @@ template<typename T> struct Program //: public tree<Node>
     Program<T>& fit(const Dataset& d)
     {
         TreeType out =  Tree.begin().node->fit<TreeType>(d);
+        this->is_fitted_ = true;
         update_weights(d);
-        is_fitted_ = true;
         return *this;
     };
 
@@ -172,7 +172,7 @@ template<typename T> struct Program //: public tree<Node>
         for (PostIter i = Tree.begin_post(); i != Tree.end_post(); ++i)
         {
             const auto& node = i.node->data; 
-            if (node.optimize)
+            if (node.is_weighted)
                 count += node.W.size();
         }
         return count;
@@ -186,7 +186,7 @@ template<typename T> struct Program //: public tree<Node>
         for (PostIter t = Tree.begin_post(); t != Tree.end_post(); ++t)
         {
             const auto& node = t.node->data; 
-            if (node.optimize)
+            if (node.is_weighted)
             {
                 for (const auto& w: node.W)
                 {
@@ -208,7 +208,7 @@ template<typename T> struct Program //: public tree<Node>
         {
             auto& node = i.node->data; 
             int j = 0;
-            if (node.optimize)
+            if (node.is_weighted)
             {
                 for (auto& w: node.W)
                 {
@@ -406,7 +406,7 @@ namespace Brush {
         WO.update((*this), d);
     };
 
-// serialization
+    // serialization
     // serialization for program
     template<typename T>
     void to_json(json &j, const Program<T> &p)

@@ -76,27 +76,25 @@ struct Node {
     DataType ret_type;
     std::vector<DataType> arg_types;
     bool is_weighted;
-    bool optimize;
     vector<float> W; 
     string feature; // feature for terminals or splitting nodes 
     size_t complete_hash; 
-    // serialization
-    NLOHMANN_DEFINE_TYPE_INTRUSIVE(Node, 
-        name, 
-        center_op, 
-        prob_change,
-        fixed,
-        node_type,
-        sig_hash,
-        sig_dual_hash,
-        ret_type,
-        arg_types,
-        is_weighted,
-        optimize,
-        W,
-        feature,
-        complete_hash
-    ) 
+    // // serialization
+    // NLOHMANN_DEFINE_TYPE_INTRUSIVE(Node, 
+    //     name, 
+    //     center_op, 
+    //     prob_change,
+    //     fixed,
+    //     node_type,
+    //     sig_hash,
+    //     sig_dual_hash,
+    //     ret_type,
+    //     arg_types,
+    //     is_weighted,
+    //     W,
+    //     feature,
+    //     complete_hash
+    // ) 
 
 
 
@@ -114,21 +112,45 @@ struct Node {
         , is_weighted(weighted)
     {
         /* cout << "instantiated " << name << " with sig hash " << sig_hash << " and return type " << DataTypeName.at(ret_type) << endl; */
-        optimize=false;
 
-        if (weighted){   
-            optimize=true;
+        // if (weighted){   
+        //     W.resize(arg_types.size());
+        //     for (int i = 0; i < W.size(); ++i)
+        //         W.at(i) = 1.0;  
+        // }
+        // else if (Util::in(vector<NodeType>{NodeType::SplitOn, NodeType::SplitBest}, type))
+        //     W.resize(1); // W.at(0) represents the threshold of the split
+        // else
+
+        // set_complete_hash();
+        // set_prob_change(1.0);
+        // fixed=false;
+        init();
+    }
+    template<typename S>
+    void set_signature()
+    {
+        arg_types = S::get_arg_types(); 
+        sig_hash = S::hash();
+        sig_dual_hash = S::Dual::hash();
+        ret_type = DataTypeEnum<typename S::RetType>::value;
+        set_complete_hash();
+    }
+    void init(){
+
+        if (is_weighted){   
             W.resize(arg_types.size());
             for (int i = 0; i < W.size(); ++i)
                 W.at(i) = 1.0;  
         }
-        else if (Util::in(vector<NodeType>{NodeType::SplitOn, NodeType::SplitBest}, type))
+        else if (Util::in(vector<NodeType>{NodeType::SplitOn, NodeType::SplitBest}, node_type))
             W.resize(1); // W.at(0) represents the threshold of the split
         else
 
         set_complete_hash();
         set_prob_change(1.0);
         fixed=false;
+
     }
 
     template<typename S>
@@ -142,11 +164,8 @@ struct Node {
         , is_weighted(false)
     {
         /* cout << "instantiated " << name << " from feature " << feature << " with output type " << DataTypeName.at(ret_type) << endl; */
-        optimize=false;
         arg_types = vector<DataType>{};
-        set_complete_hash();
-        set_prob_change(1.0);
-        fixed=false;
+        init();
     }
 
     auto get_name() const noexcept -> std::string; 
@@ -159,12 +178,11 @@ struct Node {
     inline size_t get_arg_count() const { return arg_types.size(); };
 
     void set_complete_hash(){
-        using Tuple = std::tuple< UnderlyingNodeType, size_t, bool, bool, string >;
+        using Tuple = std::tuple< UnderlyingNodeType, size_t, bool, string >;
         complete_hash = std::hash<Tuple>{}(Tuple{
                 NodeTypes::GetIndex(node_type),
                 sig_hash,
                 is_weighted,
-                optimize,
                 feature
                 });
     }
@@ -234,18 +252,10 @@ inline auto IsDifferentiable(NodeType nt) noexcept -> bool {
     return Isnt<
                 NodeType::Ceil,
                 NodeType::Floor,
-                // NodeType::Not,              
                 NodeType::Before,       
                 NodeType::After,          
                 NodeType::During,
                 NodeType::Count
-                // NodeType::And, 
-                // NodeType::Or,
-                // NodeType::Xor 
-                /* NodeType::Equals, */
-                /* NodeType::LessThan, */
-                /* NodeType::Leq, */
-                /* NodeType::Geq */
                 >(nt);                
 }
 template<NodeType NT>
@@ -253,18 +263,10 @@ inline auto IsWeighable() noexcept -> bool {
         return Isnt<
                     NodeType::Ceil,
                     NodeType::Floor,
-                    // NodeType::Not,              
                     NodeType::Before,       
                     NodeType::After,          
                     NodeType::During,
                     NodeType::Count,
-                    // NodeType::And, 
-                    // NodeType::Or,
-                    // NodeType::Xor
-                    /* NodeType::Equals, */
-                    /* NodeType::LessThan, */
-                    /* NodeType::Leq, */
-                    /* NodeType::Geq, */
                     NodeType::SplitOn,
                     NodeType::SplitBest 
                     >(NT);                
@@ -273,6 +275,9 @@ ostream& operator<<(ostream& os, const Node& n);
 ostream& operator<<(ostream& os, const NodeType& nt);
 
 
+
+void from_json(const json &j, Node& p);
+void to_json(json& j, const Node& p);
 } // namespace Brush
 
 // format overload for Nodes
@@ -284,56 +289,6 @@ template <> struct fmt::formatter<Brush::Node>: formatter<string_view> {
   }
 };
 
-////////////////////////////////////////
-// serialization
-// serialization for Node
-// using json = nlohmann::json;
 
-// void to_json(json& j, const Node& p) 
-// {
-//     j = json{
-//         {"name", p.name},
-//         {"center_op", p.center_op}, 
-//         {"prob_change", p.prob_change}, 
-//         {"fixed", p.fixed}, 
-//         {"node_type", p.node_type}, 
-//         {"sig_hash", p.sig_hash}, 
-//         {"sig_dual_hash", p.sig_dual_hash}, 
-//         {"ret_type", p.ret_type}, 
-//         {"arg_types", p.arg_types}, 
-//         {"is_weighted", p.is_weighted}, 
-//         {"optimize", p.optimize}, 
-//         {"W", p.W}, 
-//         {"feature", p.feature}, 
-//         {"complete_hash", p.complete_hash} 
-//     };
-// }
-
-// void from_json(const json &j, Node& p)
-// {
-//     vector<string> members = { 
-//         "name", 
-//         "center_op", 
-//         "prob_change",
-//         "fixed",
-//         "node_type",
-//         "sig_hash",
-//         "sig_dual_hash",
-//         "ret_type",
-//         "arg_types",
-//         "is_weighted",
-//         "optimize",
-//         "W",
-//         "feature",
-//         "complete_hash"
-//     };
-//     for (const auto& m : members)
-//     {
-//         if (j.contains(m))
-//         {
-//             j.at(m).get_to(p)
-//         }
-//     }
-// }
 
 #endif
