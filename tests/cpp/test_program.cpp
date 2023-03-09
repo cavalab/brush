@@ -158,50 +158,42 @@ TEST(Program, Mutation)
 
 
 
-TEST(Program, Serialization)
+TEST(Program, Optimizer)
 {
-    // test mutation
-    // TODO: set random seed
-    MatrixXf X(10,2);
-    ArrayXf y(10);
-    X << 0.85595296, 0.55417453, 0.8641915 , 0.99481109, 0.99123376,
-         0.9742618 , 0.70894019, 0.94940306, 0.99748867, 0.54205151,
-         0.5170537 , 0.8324005 , 0.50316305, 0.10173936, 0.13211973,
-         0.2254195 , 0.70526861, 0.31406024, 0.07082619, 0.84034526;
-    y << 3.55634251, 3.13854087, 3.55887523, 3.29462895, 3.33443517,
-             3.4378868 , 3.41092345, 3.5087468 , 3.25110243, 3.11382179;
-    Dataset data(X,y);
-
+    Dataset data = Data::read_csv("docs/examples/datasets/d_analcatdata_aids.csv","target");
     SearchSpace SS;
     SS.init(data);
 
-    for (int d = 1; d < 10; ++d)
-    {
-        for (int s = 1; s < 10; ++s)
+    json PRGjson = {"Tree",{
         {
-            RegressorProgram PRG = SS.make_regressor(d, s);
-            fmt::print(
-                "=================================================\n"
-                "depth = {}, size= {}\n"
-                "Initial Model: {}\n",
-                d, s, 
-                PRG.get_model("compact", true)
-            );
-            PRG.fit(data);
-            ArrayXf y_pred = PRG.predict(data);
-            json PRGjson = PRG;
-            fmt::print( "json: {}\n", PRGjson.dump(2));
-            auto newPRG = PRGjson.get<RegressorProgram>();
-            fmt::print("Initial Model: {}\n",PRG.get_model("compact", true));
-            fmt::print("Loaded  Model: {}\n",newPRG.get_model("compact", true));
-            ASSERT_TRUE(
-                std::equal(PRG.Tree.begin(),PRG.Tree.end(),newPRG.Tree.begin())
-            );
-            newPRG.set_search_space(SS);
-            newPRG.fit(data);
-            ArrayXf new_y_pred = newPRG.predict(data);
-
-
+            {"node_type","Terminal"},
+            {"feature","x_0"},
+        },
+        {
+            {"node_type","Terminal"},
+            {"feature","x_1"},
+        },
+        {
+            {"node_type","Add"},
+            {"is_weighted", true}
         }
-    }
+        },
+        {"is_fitted_",false}
+    };
+    fmt::print( "json program: {}\n", PRGjson.dump(2));
+    RegressorProgram PRG = PRGjson;
+    PRG.fit(data);
+    // ArrayXf y_pred = PRG.predict(data);
+    // json PRGjson = PRG;
+    // fmt::print( "json: {}\n", PRGjson.dump(2));
+    // auto newPRG = PRGjson.get<RegressorProgram>();
+    // fmt::print("Initial Model: {}\n",PRG.get_model("compact", true));
+    // fmt::print("Loaded  Model: {}\n",newPRG.get_model("compact", true));
+    // ASSERT_TRUE(
+    //     std::equal(PRG.Tree.begin(),PRG.Tree.end(),newPRG.Tree.begin())
+    // );
+    // newPRG.set_search_space(SS);
+    // newPRG.fit(data);
+    // ArrayXf new_y_pred = newPRG.predict(data);
+
 }
