@@ -208,10 +208,10 @@ TEST(Program, OptimizeAddition)
 {
     /* @brief Tests whether weight optimization works on a simple additive problem.
         The dataset models y = 2*x1 + 3*x2. 
-        The initial model is yhat = 1*x1 + 3*x2. 
+        The initial model is yhat = 1*x1 + 1*x2. 
         The test checks that the target output and initial model are close, and also
-        whether the weights are correct. 
-
+        whether the weights are correct. Given that the model yhat has the correct
+        structure, the fitted model should have an infinitesimally small error.
     */
     Dataset data = Data::read_csv("docs/examples/datasets/d_2x1_plus_3x2.csv","target");
     SearchSpace SS;
