@@ -242,6 +242,7 @@ TEST(Program, OptimizeAddition)
     // make json from the program just to visually check 
     json loadedPRGjson = PRG;
     fmt::print( "loaded json: {}\n", loadedPRGjson.dump(2));
+
     // fit model
     fmt::print( "fit\n");
     PRG.fit(data);
@@ -252,6 +253,10 @@ TEST(Program, OptimizeAddition)
     ArrayXf true_weights(2);
     true_weights << 2.0, 3.0;
 
+    // calculating the MSE
+    float mse = (data.y - y_pred).square().mean();
+
     ASSERT_TRUE(data.y.isApprox(y_pred, 1e-4));
     ASSERT_TRUE(learned_weights.isApprox(true_weights, 1e-4));
+    ASSERT_TRUE(mse <= 1e-4);
 } 
