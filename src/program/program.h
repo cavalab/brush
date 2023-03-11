@@ -37,11 +37,22 @@ namespace Brush {
 typedef tree<Node>::pre_order_iterator Iter; 
 typedef tree<Node>::post_order_iterator PostIter; 
 
+struct Fitness {
+    vector<float> values;
+    bool valid;
+};
+
 // for unsupervised learning, classification and regression. 
 template<typename T> struct Program //: public tree<Node>
 {
-    /// @brief whether fit has been called
+    /// whether fit has been called
     bool is_fitted_;
+    /// fitness 
+    Fitness fitness;
+    
+    // vector<float> fitness_values;
+    // bool fitness_valid;
+
     /// the type of output from the tree object
     using TreeType = conditional_t<std::is_same_v<T,ArrayXXf>, ArrayXXf, ArrayXf>;
     /// the underlying tree
@@ -61,11 +72,16 @@ template<typename T> struct Program //: public tree<Node>
         SSref = std::optional<std::reference_wrapper<SearchSpace>>{s};
     }
 
+    int size(){
+        return Tree.size();
+    }
+
     Program<T>& fit(const Dataset& d)
     {
         TreeType out =  Tree.begin().node->fit<TreeType>(d);
         this->is_fitted_ = true;
         update_weights(d);
+        // this->valid = true;
         return *this;
     };
 

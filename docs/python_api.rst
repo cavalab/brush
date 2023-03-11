@@ -3,10 +3,10 @@ Python API
 
 With doxygennamespace:
 
-.. doxygennamespace:: brushgp
+.. doxygennamespace:: brush
    :members: 
 
 With autoclass:
 
-.. automodule:: brushgp
+.. automodule:: brush
    :members: Dataset, Classifier, Regressor
