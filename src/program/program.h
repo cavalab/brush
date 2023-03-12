@@ -326,7 +326,7 @@ template<typename T> struct Program //: public tree<Node>
         this->Tree.replace(spot, terminal);
     };
 
-    inline Program<T> mutate() const { assert(this->SSref); return mutate(SSref.value()); }
+    // inline Program<T> mutate() const { assert(this->SSref); return mutate(SSref.value()); }
 
     Program<T> mutate(const SearchSpace& SS) const
     {
@@ -335,7 +335,8 @@ template<typename T> struct Program //: public tree<Node>
         * insertion mutation
         * deletion mutation
         */
-
+        // assert(this->SSref);
+        // auto SS = this->SSref.value();
         Program<T> child(*this);
 
         // choose location by weighted sampling of program
@@ -365,6 +366,7 @@ template<typename T> struct Program //: public tree<Node>
     {
         /* subtree crossover between this and other, producing new Program */
         // choose location by weighted sampling of program
+        // TODO: why doesn't this copy the search space reference to child?
         Program<T> child(*this);
 
         // pick a subtree to replace
