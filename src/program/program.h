@@ -285,14 +285,14 @@ template<typename T> struct Program //: public tree<Node>
     /// point mutation: replace node with same typed node
     void point_mutation(Iter spot, const SearchSpace& SS)
     {
-        cout << "point mutation\n";
+        // cout << "point mutation\n";
         auto newNode = SS.get_node_like(spot.node->data); 
         this->Tree.replace(spot, newNode);
     };
     /// insert a node with spot as a child
     void insert_mutation(Iter spot, const SearchSpace& SS)
     {
-        cout << "insert mutation\n";
+        // cout << "insert mutation\n";
         auto spot_type = spot.node->data.ret_type;
         auto n = SS.get_op_with_arg(spot_type, spot_type); 
         // make node n wrap the subtree at the chosen spot
@@ -320,7 +320,7 @@ template<typename T> struct Program //: public tree<Node>
     /// delete subtree and replace it with a terminal of the same return type
     void delete_mutation(Iter spot, const SearchSpace& SS)
     {
-        cout << "delete mutation\n";
+        // cout << "delete mutation\n";
         auto terminal = SS.get_terminal(spot.node->data.ret_type); 
         this->Tree.erase_children(spot); 
         this->Tree.replace(spot, terminal);
@@ -362,7 +362,7 @@ template<typename T> struct Program //: public tree<Node>
         return child;
     };
     /// swaps subtrees between this and other (note the pass by copy)
-    Program<T> cross(const Program<T>& other) const
+    Program<T> cross(Program<T> other) const
     {
         /* subtree crossover between this and other, producing new Program */
         // choose location by weighted sampling of program
@@ -375,27 +375,52 @@ template<typename T> struct Program //: public tree<Node>
                        child_weights.begin(),
                        [](const auto& n){ return n.get_prob_change(); }
                       );
-
-        auto child_spot = r.select_randomly(child.Tree.begin(), 
-                                            child.Tree.end(), 
-                                            child_weights.begin(), 
-                                            child_weights.end()
-                                           );
-        // pick a subtree to insert
-        vector<float> other_weights(other.Tree.size());
-        std::transform(other.Tree.begin(), other.Tree.end(), 
-                       other_weights.begin(),
-                       [](const auto& n){ return n.get_prob_change(); }
-                      );
-
-        auto other_spot = r.select_randomly(other.Tree.begin(), 
-                                            other.Tree.end(), 
-                                            other_weights.begin(), 
-                                            other_weights.end()
-                                           );
-                        
-        // swap subtrees at child_spot and other_spot
-        child.Tree.move_ontop(child_spot, other_spot);
+        // fmt::print("child weights: {}\n", child_weights);
+        bool matching_spots_found = false;
+        for (int tries = 0; tries < 3; ++tries)
+        {
+            auto child_spot = r.select_randomly(child.Tree.begin(), 
+                                                child.Tree.end(), 
+                                                child_weights.begin(), 
+                                                child_weights.end()
+                                            );
+            auto child_ret_type = child_spot.node->data.ret_type;
+            // fmt::print("child_spot : {}\n",child_spot.node->data);
+            // fmt::print("child_ret_type: {}\n",child_ret_type);
+            // pick a subtree to insert
+            // need to pick a node that has a matching output type to the child_spot
+            vector<float> other_weights(other.Tree.size());
+            std::transform(other.Tree.begin(), other.Tree.end(), 
+                other_weights.begin(),
+                [child_ret_type](const auto& n){ 
+                    if (n.ret_type == child_ret_type)
+                        return n.get_prob_change(); 
+                    else
+                        return float(0.0);
+                    }
+                );
+            for (const auto& w: other_weights)
+            {
+                matching_spots_found = w > 0.0;
+                if (matching_spots_found) 
+                    break;
+            }
+            if (matching_spots_found) 
+            {
+                auto other_spot = r.select_randomly(
+                    other.Tree.begin(), 
+                    other.Tree.end(), 
+                    other_weights.begin(), 
+                    other_weights.end()
+                );
+                                
+                // fmt::print("other_spot : {}\n",other_spot.node->data);
+                // swap subtrees at child_spot and other_spot
+                child.Tree.move_ontop(child_spot, other_spot);
+                return child;
+            }
+            // fmt::print("try {} failed\n",tries);
+        }
 
         return child;
     };

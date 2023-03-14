@@ -86,7 +86,7 @@ struct WeightOptimizer
     {
         if (program.get_n_weights() == 0)
             return;
-        fmt::print("number of weights: {}\n",program.get_n_weights());
+        // fmt::print("number of weights: {}\n",program.get_n_weights());
         auto init_weights = program.get_weights();
 
         using CFType = Brush::TinyCostFunction<ResidualEvaluator<PT>> ; 
@@ -98,15 +98,15 @@ struct WeightOptimizer
         typename decltype(solver)::Parameters parameters = program.get_weights(); 
         solver.Solve(cost_function, &parameters);
     
-        fmt::print("Summary:\nInitial cost: {}\nFinal Cost: {}\nIterations: {}\n",
-            solver.summary.initial_cost,
-            solver.summary.final_cost,
-            solver.summary.iterations
-        );
-        fmt::print("Initial weights: {}\nFinal weights: {}\n", 
-            init_weights, 
-            parameters
-        );
+        // fmt::print("Summary:\nInitial cost: {}\nFinal Cost: {}\nIterations: {}\n",
+        //     solver.summary.initial_cost,
+        //     solver.summary.final_cost,
+        //     solver.summary.iterations
+        // );
+        // fmt::print("Initial weights: {}\nFinal weights: {}\n", 
+        //     init_weights, 
+        //     parameters
+        // );
         if (solver.summary.final_cost < solver.summary.initial_cost)
         {
             program.set_weights(parameters);

@@ -12,19 +12,19 @@ from deap import algorithms, base, creator, tools
 # from tqdm import tqdm
 
 import _brush
+from .deap.nsga2 import nsga2
 # from _brush import Dataset, SearchSpace
 
-class Fitness():
-    def __init__(self):
-        self.values = None
-        self.valid = False
+# class Fitness():
+#     def __init__(self):
+#         self.values = None
+#         self.valid = False
 
-class Individual():
+class BrushIndividual():
     """Class that wraps brush program for creator.Individual class from DEAP.
     """
     def __init__(self, prg):
         self.prg = prg
-        self.fitness = Fitness()
 
 class BrushEstimator():
     """
@@ -62,32 +62,40 @@ class BrushEstimator():
         """Setup the deap toolbox"""
         toolbox: base.Toolbox = base.Toolbox()
 
-        creator.create("FitnessMulti", base.Fitness, weights=(1.0,-1.0))
-        
-        # creator.create("Individual", self.Individual, fitness=creator.FitnessMulti)  
-        # self._create_deap_individual_ = creator.Individual
+        # minimize MAE, minimize size
+        creator.create("FitnessMulti", base.Fitness, weights=(-1.0,-1.0))
 
+        # create Individual class, inheriting from self.Individual with a fitness attribute
+        creator.create("Individual", BrushIndividual, fitness=creator.FitnessMulti)  
+        
         toolbox.register("mate", self._crossover)
         toolbox.register("mutate", self._mutate)
 
-        toolbox.register("select", tools.selNSGA2, nd='log')
+        toolbox.register("select", tools.selTournamentDCD) 
+        toolbox.register("survive", tools.selNSGA2)
 
-        toolbox.register(
-            "evaluate",
-            self._fitness_function,
-            data=data
-        )
+        # toolbox.individual will make an individual by calling self._make_individual
+        # toolbox.register("individual", creator.Individual, self._make_individual)
+        # toolbox.population will return a list of elements by calling toolbox.individual
+        toolbox.register("population", tools.initRepeat, list, self._make_individual)
+        toolbox.register( "evaluate", self._fitness_function, data=data)
 
         return toolbox
 
     def _crossover(self, ind1, ind2):
-        return (
-            Individual(ind1.prg.cross(ind2.prg)), 
-            Individual(ind2.prg.cross(ind1.prg))
-            )
+        offspring = [] 
+
+        for i,j in [(ind1,ind2),(ind2,ind1)]:
+            off = creator.Individual(i.prg.cross(j.prg))
+            # off.fitness.valid = False
+            offspring.append(off)
+
+        return offspring[0], offspring[1]
 
     def _mutate(self, ind1):
-        return (Individual(ind1.prg.mutate(self.search_space_)),)
+        # offspring = (creator.Individual(ind1.prg.mutate(self.search_space_)),)
+        offspring = creator.Individual(ind1.prg.mutate(self.search_space_))
+        return offspring
 
     def fit(self, X, y):
         """
@@ -105,21 +113,22 @@ class BrushEstimator():
         self.search_space_ = _brush.SearchSpace(self.data_)
         self.hof_ = tools.HallOfFame(maxsize=self.pop_size)
         self.toolbox_ = self._setup_toolbox(data=self.data_)
-        population = self._setup_population()
+        # population = self._setup_population()
         # This function expects :meth:`toolbox.mate`, :meth:`toolbox.mutate`,
         # :meth:`toolbox.select` and :meth:`toolbox.evaluate` aliases to be
         # registered in the toolbox. This algorithm uses the :func:`varOr`
         # variation.
-        algorithms.eaMuPlusLambda(
-            population=population,
-            toolbox=self.toolbox_,
-            # halloffame=self.hof_,
-            mu=self.pop_size,
-            lambda_=self.pop_size,
-            ngen=self.max_gen,
-            cxpb=0.5,
-            mutpb=0.5
-        )
+        # algorithms.eaMuPlusLambda(
+        #     population=population,
+        #     toolbox=self.toolbox_,
+        #     # halloffame=self.hof_,
+        #     mu=self.pop_size,
+        #     lambda_=self.pop_size,
+        #     ngen=self.max_gen,
+        #     cxpb=0.5,
+        #     mutpb=0.5
+        # )
+        result = nsga2(self.toolbox_, self.max_gen, self.pop_size, 0.9)
 
         return self
 
@@ -131,10 +140,7 @@ class BrushEstimator():
             generate = self.search_space_.make_regressor
 
         programs = [
-            Individual(generate(
-                np.random.randint(1,self.max_depth),
-                np.random.randint(1, self.max_size)
-                ))
+            BrushIndividual(generate(self.max_depth, self.max_size))
             for i in range(self.pop_size)
         ]
         # return [self._create_deap_individual_(p) for p in programs]
@@ -155,6 +161,11 @@ class BrushClassifier(BrushEstimator):
             np.abs(data.y-ind.prg.predict(data)).sum(), 
             ind.prg.size()
         )
+    
+    def _make_individual(self):
+        return creator.Individual(
+            self.search_space_.make_classifier(self.max_depth, self.max_size)
+            )
     # class Individual(_brush.program.Classifier):
     #     """Class that wraps brush program for creator.Individual class from DEAP. """
     #     def __init__(self,*args, **kwargs):
@@ -175,3 +186,6 @@ class BrushRegressor(BrushEstimator):
             np.sum((data.y- ind.predict(data))**2),
             ind.size()
         )
+
+    def _make_individual(self):
+        return self.search_space_.make_regressor(self.max_depth, self.max_size)
