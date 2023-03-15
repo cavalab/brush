@@ -47,7 +47,8 @@ class BrushEstimator():
         max_gen=100,
         verbosity=0,
         max_depth=3,
-        max_size=20
+        max_size=20,
+        mutation_options = {"point":0.5, "insert": 0.25, "delete":  0.25},
         ):
         self.pop_size=pop_size
         self.max_gen=max_gen

@@ -350,7 +350,7 @@ template<typename T> struct Program //: public tree<Node>
                                       weights.begin(), weights.end());
 
         // choose one of these options
-        string choice = r.random_choice(params.mutation_options);
+        string choice = r.random_choice(PARAMS["mutation_options"]);
 
         if (choice == "insert")
             child.insert_mutation(spot, SS);
