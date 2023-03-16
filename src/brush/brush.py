@@ -4,7 +4,7 @@ sklearn-compatible wrapper for GP analyses.
 See brushgp.cpp for Python (via pybind11) modules that give more fine-grained
 control of the underlying GP objects.
 """
-# from sklearn.base import BaseEstimator
+from sklearn.base import BaseEstimator, ClassifierMixin
 # from sklearn.metrics import mean_squared_error
 import numpy as np
 # import deap as dp
@@ -15,18 +15,13 @@ import _brush
 from .deap.nsga2 import nsga2
 # from _brush import Dataset, SearchSpace
 
-# class Fitness():
-#     def __init__(self):
-#         self.values = None
-#         self.valid = False
-
 class BrushIndividual():
     """Class that wraps brush program for creator.Individual class from DEAP.
     """
     def __init__(self, prg):
         self.prg = prg
 
-class BrushEstimator():
+class BrushEstimator(BaseEstimator):
     """
     Binary classifier using a GP tree.
 
@@ -56,7 +51,7 @@ class BrushEstimator():
         self.mode=mode
         self.max_depth=max_depth
         self.max_size=max_size
-
+        self.mutation_options=mutation_options
 
 
     def _setup_toolbox(self, data):
@@ -98,6 +93,10 @@ class BrushEstimator():
         offspring = creator.Individual(ind1.prg.mutate(self.search_space_))
         return offspring
 
+    # def _set_brush_params(self, attribs):
+    #     for k,v in attribs.items():
+    #     _brush.PARAMS = attribs
+
     def fit(self, X, y):
         """
         Fit an estimator to X,y.
@@ -109,26 +108,13 @@ class BrushEstimator():
         y : np.ndarray
             1-d array of (boolean) target values.
         """
+        _brush.set_params(self.get_params())
 
         self.data_ = _brush.Dataset(X, y)
         self.search_space_ = _brush.SearchSpace(self.data_)
-        self.hof_ = tools.HallOfFame(maxsize=self.pop_size)
+        # self.hof_ = tools.HallOfFame(maxsize=self.pop_size)
         self.toolbox_ = self._setup_toolbox(data=self.data_)
-        # population = self._setup_population()
-        # This function expects :meth:`toolbox.mate`, :meth:`toolbox.mutate`,
-        # :meth:`toolbox.select` and :meth:`toolbox.evaluate` aliases to be
-        # registered in the toolbox. This algorithm uses the :func:`varOr`
-        # variation.
-        # algorithms.eaMuPlusLambda(
-        #     population=population,
-        #     toolbox=self.toolbox_,
-        #     # halloffame=self.hof_,
-        #     mu=self.pop_size,
-        #     lambda_=self.pop_size,
-        #     ngen=self.max_gen,
-        #     cxpb=0.5,
-        #     mutpb=0.5
-        # )
+
         result = nsga2(self.toolbox_, self.max_gen, self.pop_size, 0.9)
 
         return self
@@ -147,7 +133,7 @@ class BrushEstimator():
         # return [self._create_deap_individual_(p) for p in programs]
         return programs
 
-class BrushClassifier(BrushEstimator):
+class BrushClassifier(BrushEstimator,ClassifierMixin):
     """Brush for classification"""
     def __init__( self, **kwargs):
         super().__init__(mode='classification',**kwargs)
@@ -173,6 +159,8 @@ class BrushClassifier(BrushEstimator):
     #         print('args:',args)
     #         print('kwargs:',kwargs)
     #         super().__init__()
+    def get_params(self):
+        return {k:v for k,v in self.__dict__.items() if not k.endswith('_')}
 
 class BrushRegressor(BrushEstimator):
     """Brush for classification"""

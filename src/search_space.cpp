@@ -58,7 +58,7 @@ void SearchSpace::init(const Dataset& d, const unordered_map<string,float>& user
         terminal_weights[term.ret_type].push_back(1.0);
     }
 
-    fmt::print("{}\n", *this);
+    // fmt::print("{}\n", *this);
 
 };
 

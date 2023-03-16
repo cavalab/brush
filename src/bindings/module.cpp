@@ -18,6 +18,7 @@ namespace py = pybind11;
 void bind_dataset(py::module &);
 void bind_search_space(py::module &);
 void bind_programs(py::module &);
+void bind_params(py::module &);
 
 PYBIND11_MODULE(_brush, m) {
      m.doc() = R"pbdoc(
@@ -43,6 +44,7 @@ PYBIND11_MODULE(_brush, m) {
      m.attr("__version__") = "dev";
 #endif
       
+     bind_params(m);
      bind_dataset(m);
      bind_search_space(m);
      py::module_ m2 = m.def_submodule("program", "Contains Program classes.");

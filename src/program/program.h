@@ -335,8 +335,6 @@ template<typename T> struct Program //: public tree<Node>
         * insertion mutation
         * deletion mutation
         */
-        // assert(this->SSref);
-        // auto SS = this->SSref.value();
         Program<T> child(*this);
 
         // choose location by weighted sampling of program
@@ -350,7 +348,9 @@ template<typename T> struct Program //: public tree<Node>
                                       weights.begin(), weights.end());
 
         // choose one of these options
-        string choice = r.random_choice(PARAMS["mutation_options"]);
+        string choice = r.random_choice(
+            PARAMS["mutation_options"].get<std::map<string,float>>()
+        );
 
         if (choice == "insert")
             child.insert_mutation(spot, SS);
