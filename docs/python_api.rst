@@ -1,12 +1,19 @@
 Python API
 ==========
 
-With doxygennamespace:
+.. With doxygennamespace:
 
-.. doxygennamespace:: brush
-   :members: 
+.. .. doxygennamespace:: brush
+..    :members: 
 
-With autoclass:
+.. autoclass:: brush.estimator.BrushEstimator
+   :members:
+   :undoc-members:
 
-.. automodule:: brush
-   :members: Dataset, Classifier, Regressor
+.. autoclass:: brush.estimator.BrushClassifier
+   :members:
+   :undoc-members:
+
+.. autoclass:: brush.estimator.BrushRegressor
+   :members:
+   :undoc-members:

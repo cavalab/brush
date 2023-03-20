@@ -1,31 +1,46 @@
 C++ API
 =======
 
-.. The ``Brush::Data`` namespace
-.. -----------------------------
-
-.. .. doxygennamespace:: Brush::Data
-..    :members:
-
-The ``Brush::Data::Dataset`` class
-**********************************
+The ``Brush::Data`` namespace
+-----------------------------
 
 .. doxygenclass:: Brush::Data::Dataset
    :members:
-   :allow-dot-graphs:
 
-Programs
------------
+.. doxygenstruct:: Brush::Data::TimeSeries
+   :members:
+
+Program
+-------
 
 .. doxygenstruct:: Brush::Program
    :members:
-   :allow-dot-graphs:
 
+DispatchTable
+-------------
 
+.. doxygenstruct:: Brush::DispatchTable
+   :members:
 
-Nodes
------------
+.. Operator
+.. -------------
+
+.. .. doxygenstruct:: Brush::Operator
+..    :members:
+
+Node
+-------------
 
 .. doxygenstruct:: Brush::Node
    :members:
-   :allow-dot-graphs:
+
+NodeTypes
+-------------
+
+.. doxygenenum:: Brush::NodeType
+
+SearchSpace
+------------
+
+.. doxygenstruct:: Brush::SearchSpace
+   :members:

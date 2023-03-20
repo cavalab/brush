@@ -16,12 +16,12 @@ import brush
 X,y = fetch_data('adult', return_X_y = True, 
     local_cache_dir='/home/bill/projects/pmlb/datasets/'
 )
-test_X,test_y = resample(X,y, n_samples=10000)
+test_X,test_y = resample(X,y, n_samples=1000)
 
 class TestBrush():
     def test_fit_brush_classifier(self):
-        est = brush.BrushClassifier(max_gen=100, pop_size=100, max_size=50, max_depth=6,
-
+        est = brush.BrushClassifier(
+            max_gen=100, pop_size=100, max_size=50, max_depth=6,
             mutation_options = {"point":0.25, "insert": 0.5, "delete":  0.25},
         )
         

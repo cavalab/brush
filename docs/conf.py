@@ -36,7 +36,8 @@ def configureDoxyfile(input_dir, output_dir):
 read_the_docs_build = os.environ.get('READTHEDOCS', None) == 'True'
 
 breathe_projects = {}
-if read_the_docs_build:
+# if read_the_docs_build:
+if True:
   input_dir = '../src'
   output_dir = 'build'
   configureDoxyfile(input_dir, output_dir)
@@ -64,7 +65,9 @@ extensions = [
   "sphinx.ext.autosummary",
   "breathe",  # Use Doxygen output as input for Sphinx
   "sphinx.ext.graphviz",
-  'numpydoc'
+  'numpydoc',
+  "myst_parser",
+  'sphinx_copybutton'
 ]
 
 autosummary_generate = True
@@ -95,7 +98,11 @@ html_theme = 'sphinx_book_theme'
 
 # Breathe configuration
 breathe_default_project = "brush"
-
+breathe_default_members = ('members', 'undoc-members')
+from glob import glob
+breathe_projects_source = {
+    "brush" : ( "../src/", list(glob('../src/',recursive=True)) )
+}
 
 # footer
 # this one is for furo
@@ -116,4 +123,6 @@ breathe_default_project = "brush"
 html_theme_options = {
     "repository_url": "https://github.com/cavalab/brush",
     "use_repository_button": True,
+    "path_to_docs":'docs/',
+    'home_page_in_toc':True,
 }
