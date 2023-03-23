@@ -28,7 +28,7 @@ void bind_program(py::module& m, string name)
             "predict from Dataset object")
         .def("predict",
             static_cast<RetType (T::*)(const Ref<const ArrayXXf> &X)>(&T::predict),
-            "fit from X,y data")
+            "predict from X data")
         .def("get_model",
             &T::get_model,
             py::arg("type") = "compact",

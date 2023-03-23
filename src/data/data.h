@@ -98,13 +98,19 @@ class Dataset
         /// initialize data from a matrix with feature columns.
         Dataset(const Ref<const ArrayXXf>& X, 
              const Ref<const ArrayXf>& y_ = ArrayXf(), 
-             const map<string, State>& Z = {},
              const vector<string>& vn = {}, 
+             const map<string, State>& Z = {},
              bool c = false
             ) 
             : features(make_features(X,Z,vn))
             , y(y_)
             , classification(c)
+            {
+                init();
+            } 
+        Dataset(const Ref<const ArrayXXf>& X, const vector<string>& vn) 
+            : features(make_features(X,map<string, State>{},vn))
+            , classification(false)
             {
                 init();
             } 

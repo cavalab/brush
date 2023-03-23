@@ -25,7 +25,7 @@ std::unordered_map<std::size_t, std::string> ArgsName;
 
 void SearchSpace::init(const Dataset& d, const unordered_map<string,float>& user_ops)
 {
-    fmt::print("constructing search space...\n");
+    // fmt::print("constructing search space...\n");
     this->node_map.clear();
     this->weight_map.clear();
     this->terminal_map.clear();

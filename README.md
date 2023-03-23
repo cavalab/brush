@@ -140,3 +140,29 @@ In general, this is the approach:
     branch. Be sure to reference any relevant issues.
 
 <!-- end contributing -->
+
+# Basic Usage
+
+Brush is designed to be used similarly to any [sklearn-style estimator](https://sklearn.org).
+That means it should be compatible with sklearn pipelines, wrappers, and so forth. 
+
+In addition, Brush provides functionality that allows you to feed in more complicated data types than just matrices of floating point values. 
+
+## Regression
+
+```python
+from brush import BrushRegressor
+
+est = brush.BrushRegressor()
+    max_gen=100, pop_size=100, max_size=50, max_depth=6,
+    mutation_options = {"point":0.25, "insert": 0.5, "delete":  0.25},
+)
+```
+## Classification
+
+# Data types
+
+
+## Model Visualization
+
+## Writing Programs Manually

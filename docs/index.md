@@ -8,23 +8,22 @@
 # Table of Contents
 
 ```{toctree} 
-:caption: Getting Started 
+:caption: Quickstart 
 :maxdepth: 2
 
-overview
 installation
 basics
-contributing
 ```
 
-<!-- ```{toctree} 
-:caption: Examples 
+```{toctree} 
+:caption: User Guide 
 :maxdepth: 1
 
+overview
 examples/archive
 examples/longitudinal
-
-``` -->
+contributing
+```
 
 ```{toctree} 
 :caption: API 

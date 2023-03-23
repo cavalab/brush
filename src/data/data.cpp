@@ -161,7 +161,7 @@ void Dataset::init()
     // note this will have to change in unsupervised settings
     // n_samples = this->y.size();
 
-
+    // fmt::print("Dataset::init()\n");
     for (const auto& [name, value]: this->features)
     {
         // save feature types
@@ -180,11 +180,14 @@ map<string, State> Dataset::make_features(const Ref<const ArrayXXf>& X,
                                        const vector<string>& vn 
                                        ) 
 {
+    // fmt::print("Dataset::make_features()\n");
     map<string, State> tmp_features;
     vector<string> var_names;
+    // fmt::print("vn: {}\n",vn);
     // check variable names
     if (vn.empty())
     {
+        // fmt::print("vn empty\n");
         for (int i = 0; i < X.cols(); ++i)
         {
             string v = "x_"+to_string(i);
@@ -201,14 +204,17 @@ map<string, State> Dataset::make_features(const Ref<const ArrayXXf>& X,
                 X.cols()
                 )
             );
+        var_names = vn;
     }
 
     for (int i = 0; i < X.cols(); ++i)
     {
+        // fmt::print("X({}): {} \n",i,var_names.at(i));
         State tmp = check_type(X.col(i).array());
 
         tmp_features[var_names.at(i)] = tmp;
     }
+    // fmt::print("tmp_features insert\n");
     tmp_features.insert(Z.begin(), Z.end());
     return tmp_features;
 };
