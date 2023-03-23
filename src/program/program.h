@@ -107,8 +107,7 @@ template<typename T> struct Program //: public tree<Node>
         if (!is_fitted_)
             HANDLE_ERROR_THROW("Program is not fitted. Call 'fit' first.\n");
 
-        auto out = Tree.begin().node->predict<TreeType>(d);
-        return out;
+        return Tree.begin().node->predict<TreeType>(d);
     };
 
     /// @brief Specialized predict function for binary classification. 
@@ -122,8 +121,7 @@ template<typename T> struct Program //: public tree<Node>
         if (!is_fitted_)
             HANDLE_ERROR_THROW("Program is not fitted. Call 'fit' first.\n");
 
-        R out = (Tree.begin().node->predict<TreeType>(d) > 0.5);
-        return out;
+        return (Tree.begin().node->predict<TreeType>(d) > 0.5);
     };
 
     /// @brief Specialized predict function for multiclass classification. 
@@ -139,8 +137,7 @@ template<typename T> struct Program //: public tree<Node>
 
         TreeType out = Tree.begin().node->predict<TreeType>(d);
         auto argmax = Function<NodeType::ArgMax>{};
-        R label = argmax(out);
-        return label;
+        return argmax(out);
     };
 
     template <typename R = T>
