@@ -1,4 +1,4 @@
-# brush
+# Brush
 
 <!-- start overview -->
 
@@ -12,8 +12,6 @@ Goals:
 - support for recursive splits that flow with gradients
 - fast-ish in C++
 - easy-to-use Python API
-
-
 
 ## Contact
 
@@ -57,7 +55,7 @@ python setup.py develop
 Gives you an editable install for messing with Python code in the project. 
 (Any underyling cpp changes require this command to be re-run).
 
-## Overview
+## Package Structure
 
 There are a few different moving parts that can be built in this project:
 
@@ -75,7 +73,17 @@ There are a few different moving parts that can be built in this project:
 Pip will install the `brush` module and call `CMake` to build the `_brush` extension.   
 It will not build the docs or cpp tests. 
 
-## Installing the cpp tests
+## Tests
+
+## Python
+
+The tests are run by calling pytest from the root directory. 
+
+```bash
+pytest 
+```
+
+## Cpp
 
 If you are developing the cpp code and want to build the cpp tests, run the following: 
 
@@ -141,7 +149,10 @@ In general, this is the approach:
 
 <!-- end contributing -->
 
-# Basic Usage
+
+## Basic Usage
+
+<!-- start basics -->
 
 Brush is designed to be used similarly to any [sklearn-style estimator](https://sklearn.org).
 That means it should be compatible with sklearn pipelines, wrappers, and so forth. 
@@ -151,18 +162,60 @@ In addition, Brush provides functionality that allows you to feed in more compli
 ## Regression
 
 ```python
-from brush import BrushRegressor
+# load data
+import pandas as pd
+df = pd.read_csv('docs/examples/datasets/d_enc.csv')
+X = dfr.drop(columns='label')
+y = dfr['label']
 
-est = brush.BrushRegressor()
-    max_gen=100, pop_size=100, max_size=50, max_depth=6,
-    mutation_options = {"point":0.25, "insert": 0.5, "delete":  0.25},
-)
+# import and make a regressor
+import pandas as pd
+from brush import BrushRegressor
+est = BrushRegressor()
+
+# use like you would a sklearn regressor
+est.fit(X,y)
+y_pred = est.predict(X)
+
+print('score:', est.score(X,y))
 ```
+
 ## Classification
+
+```python
+# load data
+import pandas as pd
+df = pd.read_csv('docs/examples/datasets/d_analcatdata_aids.csv')
+X = dfc.drop(columns='target')
+y = dfc['target']
+
+# import and make a classifier
+import pandas as pd
+from brush import BrushClassifier
+est = BrushClassifier()
+# use like you would a sklearn classifier
+est.fit(X,y)
+y_pred = est.predict(X)
+y_pred_proba = est.predict_proba(X)
+
+print('score:', est.score(X,y))
+```
+
+<!-- end basics -->
+
+# User Guide
+
+<!-- start guide -->
 
 # Data types
 
+<!-- start datatypes -->
+
+<!-- end datatypes -->
 
 ## Model Visualization
 
-## Writing Programs Manually
+<!-- start visualization -->
+
+<!-- end visualization -->
+

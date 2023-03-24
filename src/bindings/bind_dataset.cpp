@@ -1,6 +1,7 @@
 #include "module.h"
 #include "../data/data.h"
 #include "../types.h"
+#include "../data/io.h"
 namespace py = pybind11;
 namespace br = Brush;
 namespace nl = nlohmann;
@@ -55,4 +56,5 @@ void bind_dataset(py::module & m)
     //     .def_readwrite("features", &br::Data::Dataset::features)
         ;
 
+    m.def("read_csv", &br::Data::read_csv, py::arg("path"), py::arg("target"), py::arg("sep")=',');
 }

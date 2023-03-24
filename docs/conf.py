@@ -67,7 +67,9 @@ extensions = [
   "sphinx.ext.graphviz",
   'numpydoc',
   "myst_parser",
-  'sphinx_copybutton'
+  'sphinx_copybutton',
+  'sphinx.ext.mathjax',
+  'sphinx_math_dollar'
 ]
 
 autosummary_generate = True
@@ -86,10 +88,7 @@ exclude_patterns = ['_build', 'Thumbs.db', '.DS_Store','thirdparty']
 # The theme to use for HTML and HTML Help pages.  See the documentation for
 # a list of builtin themes.
 #
-# html_theme = 'maisie_sphinx_theme'
-# html_theme_path = maisie_sphinx_theme.html_theme_path()
 html_theme = 'sphinx_book_theme'
-# html_theme_path = maisie_sphinx_theme.html_theme_path()
 
 # Add any paths that contain custom static files (such as style sheets) here,
 # relative to this directory. They are copied after the builtin static files,
@@ -125,4 +124,18 @@ html_theme_options = {
     "use_repository_button": True,
     "path_to_docs":'docs/',
     'home_page_in_toc':True,
+    "show_navbar_depth": 1
 }
+
+# html_sidebars = {
+#     "reference/blog/*": [
+#         "navbar-logo.html",
+#         "search-field.html",
+#         "postcard.html",
+#         "recentposts.html",
+#         "tagcloud.html",
+#         "categories.html",
+#         "archives.html",
+#         "sbt-sidebar-nav.html",
+#     ]
+# }

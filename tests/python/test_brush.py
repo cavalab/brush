@@ -10,9 +10,6 @@ from sklearn.utils import resample
 # from _brush.program import Regressor, Classifier
 import brush
 
-# test_y = np.array([1.,0.,1,1.,0.,1.,1.,0.,0.,0.])
-# test_X = np.array([[1.1,2.0,3.0,4.0,5.0,6.5,7.0,8.0,9.0,10.0],
-#                    [2.0,1.2,6.0,4.0,5.0,8.0,7.0,5.0,9.0,10.0]])
 dfc = pd.read_csv('docs/examples/datasets/d_analcatdata_aids.csv')
 Xc = dfc.drop(columns='target')
 yc = dfc['target']
@@ -33,6 +30,8 @@ class TestBrush():
     def test_fit_brush_classifier(self):
         est = brush.BrushClassifier(**brush_args)
         est.fit(Xc, yc)
+        y_pred = est.predict(Xc)
+        y_pred_proba = est.predict_proba(Xc)
         print('score:',est.score(Xc,yc))
 
     def test_fit_brush_regressor(self):

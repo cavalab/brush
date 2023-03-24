@@ -8,8 +8,8 @@
 # Table of Contents
 
 ```{toctree} 
+:maxdepth: 1
 :caption: Quickstart 
-:maxdepth: 2
 
 installation
 basics
@@ -17,19 +17,16 @@ basics
 
 ```{toctree} 
 :caption: User Guide 
-:maxdepth: 1
+:maxdepth: 2
 
-overview
-examples/archive
-examples/longitudinal
-contributing
+guide/index
 ```
 
 ```{toctree} 
 :caption: API 
 :maxdepth: 2
 
-python_api
-cpp_api
+python_api/index
+cpp_api/index
 
 ```
