@@ -5,7 +5,10 @@
 Brush is a strongly-typed genetic programming language. 
 It is designed for **b**ackpropagations and **r**ecursion **u**sing **s**earch **h**euristics.
 
-Goals:
+This project is **very much** under active development. 
+Expect api changes, bugs, breaking things, etc. 
+
+## Goals
 
 - flexibility to define n-ary trees of operators on data of variable types (singletons, arrays, matrices of floats, ints, and bools)
 - support for gradient descent over these programs
