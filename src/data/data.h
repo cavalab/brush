@@ -109,14 +109,36 @@ class Dataset
                 init();
             } 
         Dataset(const Ref<const ArrayXXf>& X, const vector<string>& vn) 
-            : features(make_features(X,map<string, State>{},vn))
-            , classification(false)
+            : classification(false)
             {
+                features = make_features(X,map<string, State>{},vn);
                 init();
             } 
 
+        void print() const
+        {
+            fmt::print("Dataset contains {} samples and {} features\n",
+                get_n_samples(), get_n_features()
+            );
+            for (auto& [key, value] : this->features) 
+            {
+                if (std::holds_alternative<ArrayXf>(value))
+                    fmt::print("{}: {}\n", key, std::get<ArrayXf>(value));
+                else if (std::holds_alternative<ArrayXi>(value))
+                    fmt::print("{}: {}\n", key, std::get<ArrayXi>(value));
+                else if (std::holds_alternative<ArrayXb>(value))
+                    fmt::print("{}: {}\n", key, std::get<ArrayXb>(value));
+            }
+
+        };
+
         void set_validation(bool v=true);
-        inline int get_n_samples() const { return this->y.size(); };
+        inline int get_n_samples() const { 
+            return std::visit(
+                [&](auto&& arg) -> int { return int(arg.size());}, 
+                features.begin()->second
+            );
+        };
         inline int get_n_features() const { return this->features.size(); };
         /// select random subset of data for training weights.
         Dataset get_batch(int batch_size) const;

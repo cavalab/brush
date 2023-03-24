@@ -51,6 +51,7 @@ void bind_dataset(py::module & m)
         .def_readwrite("y", &br::Data::Dataset::y)
         .def("get_n_samples", &br::Data::Dataset::get_n_samples)
         .def("get_n_features", &br::Data::Dataset::get_n_features)
+        .def("print", &br::Data::Dataset::print)
     //     .def_readwrite("features", &br::Data::Dataset::features)
         ;
 

@@ -211,7 +211,6 @@ map<string, State> Dataset::make_features(const Ref<const ArrayXXf>& X,
     for (int i = 0; i < X.cols(); ++i)
     {
         // fmt::print("X({}): {} \n",i,var_names.at(i));
-        fmt::print("X({}): {} \n",i,X.col(i).array());
         State tmp = check_type(X.col(i).array());
 
         tmp_features[var_names.at(i)] = tmp;

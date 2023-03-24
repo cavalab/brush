@@ -134,7 +134,6 @@ template<typename T> struct Program //: public tree<Node>
     {
         if (!is_fitted_)
             HANDLE_ERROR_THROW("Program is not fitted. Call 'fit' first.\n");
-
         TreeType out = Tree.begin().node->predict<TreeType>(d);
         auto argmax = Function<NodeType::ArgMax>{};
         return argmax(out);
