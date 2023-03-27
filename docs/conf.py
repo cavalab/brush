@@ -66,10 +66,12 @@ extensions = [
   "breathe",  # Use Doxygen output as input for Sphinx
   "sphinx.ext.graphviz",
   'numpydoc',
-  "myst_parser",
   'sphinx_copybutton',
   'sphinx.ext.mathjax',
-  'sphinx_math_dollar'
+  'sphinx_math_dollar',
+  'myst_nb',
+  # 'nbsphinx',
+  # "myst_parser",
 ]
 
 autosummary_generate = True
@@ -82,7 +84,7 @@ templates_path = ['_templates']
 # This pattern also affects html_static_path and html_extra_path.
 exclude_patterns = ['_build', 'Thumbs.db', '.DS_Store','thirdparty']
 
-
+nb_output_stderr="remove"
 # -- Options for HTML output -------------------------------------------------
 
 # The theme to use for HTML and HTML Help pages.  See the documentation for

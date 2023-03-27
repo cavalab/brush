@@ -21,6 +21,7 @@ basics
 
 guide/index
 guide/contributing
+examples/index
 ```
 
 ```{toctree} 

@@ -258,6 +258,8 @@ struct Signatures<N, enable_if_t<is_in_v<N,
         using naryTuple = NarySignatures_t<ArrayXXf,ArrayXf,MAX_ARGS>;
 
         using type = decltype(std::tuple_cat(unaryTuple(), naryTuple()));
+
+        // using default = tuple_element<0,type>;
     };
 
 template<NodeType N>
