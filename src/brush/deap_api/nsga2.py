@@ -19,6 +19,7 @@ def nsga2(toolbox, NGEN, MU, CXPB):
 
     pop = toolbox.population(n=MU)
 
+
     # Evaluate the individuals with an invalid fitness
     invalid_ind = [ind for ind in pop if not ind.fitness.valid]
     fitnesses = toolbox.map(toolbox.evaluate, invalid_ind)
@@ -50,6 +51,7 @@ def nsga2(toolbox, NGEN, MU, CXPB):
             # del ind1.fitness.values, ind2.fitness.values
             offspring.extend([off2, off2])
 
+        # archive.update(offspring)
         # Evaluate the individuals with an invalid fitness
         invalid_ind = [ind for ind in offspring if not ind.fitness.valid]
         fitnesses = toolbox.map(toolbox.evaluate, invalid_ind)
@@ -64,4 +66,7 @@ def nsga2(toolbox, NGEN, MU, CXPB):
 
     print("Final population hypervolume is %f" % hypervolume(pop, [1000.0, 50.0]))
 
-    return pop, logbook
+    archive = tools.ParetoFront() 
+    archive.update(pop)
+
+    return archive, logbook

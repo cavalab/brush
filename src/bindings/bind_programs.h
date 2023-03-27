@@ -6,6 +6,9 @@ using Cls = Brush::Program<ArrayXb>;
 using Rep = Brush::Program<ArrayXXf>;
 using MCls = Brush::Program<ArrayXi>;
 
+namespace nl = nlohmann;
+namespace br = Brush;
+
 template<typename T>
 void bind_program(py::module& m, string name)
 {
@@ -16,6 +19,9 @@ void bind_program(py::module& m, string name)
 
     py::class_<T>(m, name.data() ) //, py::dynamic_attr() )
         .def(py::init<>())
+        .def(py::init(
+            [](const json& j){ T p = j; return p; })
+        )
         .def_readwrite("fitness", &T::fitness)
         .def("fit",
             static_cast<T &(T::*)(const Dataset &d)>(&T::fit),
@@ -28,11 +34,12 @@ void bind_program(py::module& m, string name)
             "predict from Dataset object")
         .def("predict",
             static_cast<RetType (T::*)(const Ref<const ArrayXXf> &X)>(&T::predict),
-            "fit from X,y data")
+            "predict from X data")
         .def("get_model",
             &T::get_model,
             py::arg("type") = "compact",
             py::arg("pretty") = false)
+        .def("get_weights", &T::get_weights)
         .def("size", &T::size)
         .def("cross", &T::cross)
         .def("mutate", &T::mutate) // static_cast<T &(T::*)()>(&T::mutate))

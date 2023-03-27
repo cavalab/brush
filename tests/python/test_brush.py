@@ -10,34 +10,35 @@ from sklearn.utils import resample
 # from _brush.program import Regressor, Classifier
 import brush
 
-# test_y = np.array([1.,0.,1,1.,0.,1.,1.,0.,0.,0.])
-# test_X = np.array([[1.1,2.0,3.0,4.0,5.0,6.5,7.0,8.0,9.0,10.0],
-#                    [2.0,1.2,6.0,4.0,5.0,8.0,7.0,5.0,9.0,10.0]])
-X,y = fetch_data('adult', return_X_y = True, 
-    local_cache_dir='/home/bill/projects/pmlb/datasets/'
+dfc = pd.read_csv('docs/examples/datasets/d_analcatdata_aids.csv')
+Xc = dfc.drop(columns='target')
+yc = dfc['target']
+
+dfr = pd.read_csv('docs/examples/datasets/d_enc.csv')
+Xr = dfr.drop(columns='label')
+yr = dfr['label']
+
+brush_args = dict(
+    max_gen=100, 
+    pop_size=100, 
+    max_size=50, 
+    max_depth=6,
+    mutation_options = {"point":0.25, "insert": 0.5, "delete":  0.25},
 )
-test_X,test_y = resample(X,y, n_samples=10000)
 
 class TestBrush():
     def test_fit_brush_classifier(self):
-        est = brush.BrushClassifier(max_gen=100, pop_size=100, max_size=50, max_depth=6,
+        est = brush.BrushClassifier(**brush_args)
+        est.fit(Xc, yc)
+        y_pred = est.predict(Xc)
+        y_pred_proba = est.predict_proba(Xc)
+        print('score:',est.score(Xc,yc))
 
-            mutation_options = {"point":0.25, "insert": 0.5, "delete":  0.25},
-        )
+    def test_fit_brush_regressor(self):
+        est = brush.BrushRegressor(**brush_args)
         
-        est.fit(test_X, test_y)
-
-    # def test_fit_regressor(self):
-    #     data = Dataset(test_X, test_y)
-    #     SS = SearchSpace(data)
-    #     # pytest.set_trace()
-    #     for d in range(1,4):
-    #         for s in range(1,20):
-    #             prg = SS.make_regressor(d, s)
-    #             print(f"Tree model for depth {d}, size {s}:", prg.get_model())
-    #             # prg.fit(data)
-    #             y = prg.fit(data).predict(data)
-    #             print(y)
+        est.fit(Xr, yr)
+        print('score:',est.score(Xr,yr))
 
     # def test_fit_classifier(self):
     #     df = pd.read_csv('docs/examples/datasets/d_analcatdata_aids.csv')
@@ -54,4 +55,5 @@ class TestBrush():
     #             print(y)
 
 if __name__ == '__main__':
-    TestBrush().test_fit_brush_classifier()
+    # TestBrush().test_fit_brush_classifier()
+    TestBrush().test_fit_brush_regressor()

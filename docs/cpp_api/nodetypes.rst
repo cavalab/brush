@@ -1,0 +1,4 @@
+NodeTypes
+-------------
+
+.. doxygenenum:: Brush::NodeType

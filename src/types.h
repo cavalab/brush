@@ -164,6 +164,7 @@ enum class DataType : uint32_t {
     TimeSeriesFJet
 };
 
+#ifndef DOXYGEN_SKIP
 // map DataType values to JSON as strings
 NLOHMANN_JSON_SERIALIZE_ENUM( DataType, {
     {DataType::ArrayB, "ArrayB"},
@@ -185,6 +186,7 @@ NLOHMANN_JSON_SERIALIZE_ENUM( DataType, {
     {DataType::TimeSeriesIJet,"TimeSeriesIJet"},
     {DataType::TimeSeriesFJet, "TimeSeriesFJet"},
 })
+#endif
 
 using DT = DataType; 
 

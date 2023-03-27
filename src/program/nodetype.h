@@ -134,6 +134,7 @@ inline auto operator^=(NodeType& lhs, NodeType rhs) -> NodeType&
 extern std::map<std::string, NodeType> NodeNameType;
 extern std::map<NodeType,std::string> NodeTypeName;
 
+#ifndef DOXYGEN_SKIP
 // map NodeType values to JSON as strings
 NLOHMANN_JSON_SERIALIZE_ENUM( NodeType, {
     //arithmetic
@@ -208,6 +209,7 @@ NLOHMANN_JSON_SERIALIZE_ENUM( NodeType, {
     {NodeType::CustomBinaryOp,"CustomBinaryOp" },
     {NodeType::CustomSplit,"CustomSplit" },
 })   
+#endif
 
 } // namespace Brush
 

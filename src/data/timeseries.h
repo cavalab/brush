@@ -8,6 +8,8 @@
 
 namespace Brush::Data{
 
+/// @brief A struct for TimeSeries data. 
+/// @tparam T the scalar type of the underlying values. 
 template<class T>
 struct TimeSeries
 {
