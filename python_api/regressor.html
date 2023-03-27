@@ -308,7 +308,9 @@ document.write(`
   </button>
 `);
 </script>
-
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</label>
 </div></div>
       
     </div>
@@ -324,6 +326,14 @@ document.write(`
     <div id="print-main-content">
         <div id="jb-print-toc">
             
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#brush.estimator.BrushRegressor"><code class="docutils literal notranslate"><span class="pre">BrushRegressor</span></code></a></li>
+</ul>
+            </nav>
         </div>
     </div>
 </div>
@@ -335,6 +345,44 @@ document.write(`
                   
   <section id="brushregressor">
 <h1>BrushRegressor<a class="headerlink" href="#brushregressor" title="Permalink to this heading">#</a></h1>
+<dl class="py class">
+<dt class="sig sig-object py" id="brush.estimator.BrushRegressor">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">brush.estimator.</span></span><span class="sig-name descname"><span class="pre">BrushRegressor</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#brush.estimator.BrushRegressor" title="Permalink to this definition">#</a></dt>
+<dd><p>Brush for regression.</p>
+<p>For options, see <a class="reference internal" href="estimator.html#brush.estimator.BrushEstimator" title="brush.estimator.BrushEstimator"><code class="xref py py-class docutils literal notranslate"><span class="pre">BrushEstimator</span></code></a>.</p>
+<p class="rubric">Examples</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">&#39;docs/examples/datasets/d_enc.csv&#39;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">X</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="s1">&#39;label&#39;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">y</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;label&#39;</span><span class="p">]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">brush</span> <span class="kn">import</span> <span class="n">BrushRegressor</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">est</span> <span class="o">=</span> <span class="n">BrushRegressor</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">est</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X</span><span class="p">,</span><span class="n">y</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="s1">&#39;score:&#39;</span><span class="p">,</span> <span class="n">est</span><span class="o">.</span><span class="n">score</span><span class="p">(</span><span class="n">X</span><span class="p">,</span><span class="n">y</span><span class="p">))</span>
+</pre></div>
+</div>
+<p class="rubric">Methods</p>
+<table class="autosummary longtable table autosummary">
+<tbody>
+<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">fit</span></code>(X, y)</p></td>
+<td><p>Fit an estimator to X,y.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_params</span></code>()</p></td>
+<td><p>Get parameters for this estimator.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">predict</span></code>(X)</p></td>
+<td><p>Predict using the best estimator in the archive.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">score</span></code>(X, y[, sample_weight])</p></td>
+<td><p>Return the coefficient of determination of the prediction.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">set_params</span></code>(**params)</p></td>
+<td><p>Set the parameters of this estimator.</p></td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
 </section>
 
 
@@ -370,6 +418,20 @@ document.write(`
             </div>
             
             
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#brush.estimator.BrushRegressor"><code class="docutils literal notranslate"><span class="pre">BrushRegressor</span></code></a></li>
+</ul>
+  </nav></div>
+
+</div></div>
               
             
           </div>
