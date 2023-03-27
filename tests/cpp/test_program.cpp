@@ -599,12 +599,10 @@ TEST(Program, OptimizeSqrt)
 
     auto learned_weights = PRG.get_weights();
 
+    // 2*sqrt(x1) is equivalent to sqrt(4*x1). The weight of a function
+    // node is applied to each of its children, not to the node itself.
     ArrayXf true_weights(1);
     true_weights << 4.0;
-
-    std::cout << "Learned weights " << learned_weights << std::endl;
-    std::cout << "True weights "    << true_weights << std::endl;
-    std::cout << "diff weights "    << (abs(learned_weights-true_weights) <= 0.0001) << std::endl;
 
     // calculating the MSE
     float mse = (data.y - y_pred).square().mean();
