@@ -31,6 +31,10 @@ GNU GPLv3, see [LICENSE](https://github.com/cavalab/brush/blob/master/LICENSE)
 
 <!-- end overview -->
 
+# Documentation
+
+For the user guide and API, see the [docs](https://cavalab.org/brush).
+
 # Installation 
 
 <!-- start installation -->
@@ -205,20 +209,4 @@ print('score:', est.score(X,y))
 ```
 
 <!-- end basics -->
-
-# User Guide
-
-<!-- start guide -->
-
-# Data types
-
-<!-- start datatypes -->
-
-<!-- end datatypes -->
-
-## Model Visualization
-
-<!-- start visualization -->
-
-<!-- end visualization -->
 
