@@ -82,7 +82,7 @@ It will not build the docs or cpp tests.
 
 ## Tests
 
-## Python
+### Python
 
 The tests are run by calling pytest from the root directory. 
 
@@ -90,7 +90,7 @@ The tests are run by calling pytest from the root directory.
 pytest 
 ```
 
-## Cpp
+### Cpp
 
 If you are developing the cpp code and want to build the cpp tests, run the following: 
 
