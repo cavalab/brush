@@ -256,9 +256,8 @@ template<typename T> struct Program //: public tree<Node>
                 else if (Is<NodeType::SplitOn>(parent.node_type) && i == 0)
                     label = fmt::format("{:.3f}",parent.W.at(i)); 
 
-                out += fmt::format("{} [comment=\"{}\"] -> {} [label=\"{}\"];\n", 
+                out += fmt::format("{} -> {} [label=\"{}\"];\n", 
                         parent.get_name(),
-                        parent.complete_hash,
                         kid->data.get_name(),
                         label
                         );

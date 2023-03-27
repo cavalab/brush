@@ -39,6 +39,7 @@ void bind_program(py::module& m, string name)
             &T::get_model,
             py::arg("type") = "compact",
             py::arg("pretty") = false)
+        .def("get_dot_model", &T::get_dot_model)
         .def("get_weights", &T::get_weights)
         .def("size", &T::size)
         .def("cross", &T::cross)

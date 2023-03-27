@@ -94,22 +94,20 @@ TEST(Program, FitClassifier)
     SearchSpace SS;
     SS.init(data);
 
-    // for (int t = 0; t < 10; ++t) {
-        for (int d = 1; d < 10; ++d) { 
-            for (int s = 1; s < 100; s+=10) {
-                auto PRG = SS.make_classifier(d, s);
-                fmt::print(
-                    "=================================================\n"
-                    "Tree model for depth = {}, size= {}: {}\n"
-                    "=================================================\n",
-                    d, s, PRG.get_model("compact", true)
-                );
-                PRG.fit(data);
-                auto y = PRG.predict(data);
-                auto yproba = PRG.predict_proba(data);
-            }
+    for (int d = 1; d < 10; ++d) { 
+        for (int s = 1; s < 100; s+=10) {
+            auto PRG = SS.make_classifier(d, s);
+            fmt::print(
+                "=================================================\n"
+                "Tree model for depth = {}, size= {}: {}\n"
+                "=================================================\n",
+                d, s, PRG.get_model("compact", true)
+            );
+            PRG.fit(data);
+            auto y = PRG.predict(data);
+            auto yproba = PRG.predict_proba(data);
         }
-    // }
+    }
 }
 
 

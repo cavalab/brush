@@ -176,7 +176,6 @@ X = dfr.drop(columns='label')
 y = dfr['label']
 
 # import and make a regressor
-import pandas as pd
 from brush import BrushRegressor
 est = BrushRegressor()
 
@@ -197,7 +196,6 @@ X = dfc.drop(columns='target')
 y = dfc['target']
 
 # import and make a classifier
-import pandas as pd
 from brush import BrushClassifier
 est = BrushClassifier()
 # use like you would a sklearn classifier
