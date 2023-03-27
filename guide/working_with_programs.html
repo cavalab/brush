@@ -50,6 +50,7 @@
     <script src="../_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
     <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'guide/working_with_programs';</script>
+    <link rel="shortcut icon" href="../_static/paint-brush-solid.svg"/>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="JSON Interoperability" href="json.html" />
@@ -354,7 +355,7 @@ document.write(`
 You may think of it as a <em>model</em> or a <em>function</em> mapping feature inputs to data labels.
 We call them programs because that’s what they are: executable data structures,<br />
 and that is what they are called in the genetic algorithm literature, to distinguish them from optimizing bits or strings.</p>
-<p>The Brush Program class operates similarly to a (sklearn)[scikit-learn.org] estimator: it has <code class="docutils literal notranslate"><span class="pre">fit</span></code> and <code class="docutils literal notranslate"><span class="pre">predict</span></code> methods that are called in during training or inference, respectively.</p>
+<p>The Brush Program class operates similarly to a <span class="xref myst">sklearn</span> estimator: it has <code class="docutils literal notranslate"><span class="pre">fit</span></code> and <code class="docutils literal notranslate"><span class="pre">predict</span></code> methods that are called in during training or inference, respectively.</p>
 <section id="types-of-programs">
 <h2>Types of Programs<a class="headerlink" href="#types-of-programs" title="Permalink to this heading">#</a></h2>
 <p>There are four fundamental “types” of Brush programs:</p>
@@ -376,14 +377,15 @@ and that is what they are called in the genetic algorithm literature, to disting
 <section id="representation">
 <h2>Representation<a class="headerlink" href="#representation" title="Permalink to this heading">#</a></h2>
 <p>Internally, the programs are represented as syntax trees.
-We use the (tree.hh tree class)[https://github.com/kpeeters/tree.hh] which gives trees an STL-like feel.</p>
+We use the <a class="reference external" href="https://github.com/kpeeters/tree.hh">tree.hh tree class</a> which gives trees an STL-like feel.</p>
 </section>
 <section id="generation">
 <h2>Generation<a class="headerlink" href="#generation" title="Permalink to this heading">#</a></h2>
-<p>We generate random programs using Sean Luke’s <span class="xref myst">PTC2 algorithm</span>.</p>
+<p>We generate random programs using Sean Luke’s PTC2 algorithm.</p>
 </section>
 <section id="evaluation">
 <h2>Evaluation<a class="headerlink" href="#evaluation" title="Permalink to this heading">#</a></h2>
+<p>TODO</p>
 </section>
 <section id="visualizing-programs">
 <h2>Visualizing Programs<a class="headerlink" href="#visualizing-programs" title="Permalink to this heading">#</a></h2>
