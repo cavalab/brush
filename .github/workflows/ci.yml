@@ -9,6 +9,9 @@ defaults:
     shell: bash -l {0}
 
 jobs:
+########################################
+# tests
+########################################
   tests:
     runs-on: ubuntu-latest
     steps:
@@ -16,7 +19,7 @@ jobs:
         name: Checkout code
         uses: actions/checkout@v3
       - 
-        name: add docs environment dependencies
+        name: Mamba Environment
         uses: mamba-org/provision-with-micromamba@main
         with:
           environment-file: environment.yml
@@ -28,16 +31,13 @@ jobs:
           micromamba env list
           export CMAKE_BUILD_PARALLEL_LEVEL=4
           pip install .
-########################################
-# tests
-########################################
       - 
         name: Test Import
         run: |
           cd ..
           which python
           # micromamba info
-          python -c "from feat import Feat"
+          python -c "import brush"
       - 
         name: Wrapper Test 
         run: |
@@ -52,7 +52,7 @@ jobs:
         name: Checkout code
         uses: actions/checkout@v3
       - 
-        name: add docs environment dependencies
+        name: Mamba Environment
         uses: mamba-org/provision-with-micromamba@main
         with:
           environment-file: environment.yml
