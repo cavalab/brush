@@ -2,45 +2,12 @@
 # copyright 2020 William La Cava 
 # license: GNU/GPL v3
 
-######### Options ###########################
-# option( CORE_USE_CUDA   "Use CUDA to speed up certain parts of the code."  OFF )
-#############################################
-
-######### CUDA decisions ####################
-#if (CORE_USE_CUDA)
-#    MESSAGE( STATUS ">> --------------  USING CUDA --------------" )
-#    set( CUDA_TOOLKIT_ROOT_DIR "/usr/local/cuda-8.0")
-#    if (APPLE OR UNIX)
-#        set(CMAKE_C_COMPILER   /usr/bin/gcc)
-#        set(CMAKE_CXX_COMPILER /usr/bin/g++)
-#    elseif (WIN32)
-#        ### By default we use VS
-#        MESSAGE( STATUS ">> User compiler:             MSVC" )
-#        MESSAGE( STATUS ">> Choosing a different compiler is not yet implemented for Windows" )
-#    endif()
-#endif()
-#############################################
-
-# On Apple, install gcc>=11 version via homebrew 
-# if (APPLE)
-#    set(CMAKE_C_COMPILER   "/opt/homebrew/bin/gcc")
-#    set(CMAKE_CXX_COMPILER "/opt/homebrew/bin/g++")
-# endif()
-# if (MSVC)
-#     # warning level 4 and all warnings as errors
-#     # add_compile_options(/W4 /WX)
-# elseif(UNIX)
-#     # lots of warnings and all warnings as errors
-#     add_compile_options(-MM)
-# endif()
-
 get_cmake_property(_variableNames VARIABLES)
 list (SORT _variableNames)
 foreach (_variableName ${_variableNames})
     message(STATUS "${_variableName}=${${_variableName}}")
 endforeach()
 link_directories( $ENV{LD_LIBRARY_PATH})
-# set(CMAKE_CXX_COMPILER /usr/bin/g++-7)
 # version requirement for Eigen
 cmake_minimum_required (VERSION 3.15...3.19)
 # use c++ 20
@@ -52,7 +19,7 @@ set (CMAKE_CXX_STANDARD 20)
 
   
 # project name
-project(brush)
+project(_brush)
 
 if(DEFINED ENV{CONDA_PREFIX})
     set(CMAKE_PREFIX_PATH $ENV{CONDA_PREFIX})
@@ -74,16 +41,6 @@ else()
 endif()
 
 
-# Locate GTest
-include(FetchContent)
-FetchContent_Declare(
-  googletest
-  GIT_REPOSITORY https://github.com/google/googletest.git
-  GIT_TAG release-1.12.1
-)
-# For Windows: Prevent overriding the parent project's compiler/linker settings
-set(gtest_force_shared_crt ON CACHE BOOL "" FORCE)
-FetchContent_MakeAvailable(googletest)
 
 
 # autocomplete for YouCompleteMe needs commands to be exported
@@ -113,31 +70,8 @@ set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wno-ignored-attributes")
 # fmt
 find_package(fmt REQUIRED)
 ########################################
-# build brush library
-# gather list of source files
-
-file(GLOB_RECURSE sources ${CMAKE_CURRENT_SOURCE_DIR}/src/*.cpp)
-# ignore main for now, just build tests
-list(REMOVE_ITEM sources ${CMAKE_CURRENT_SOURCE_DIR}/src/main.cpp)
-
-message(STATUS "Sources: '${sources}")
-add_library(brush SHARED ${sources})
-
-########################################
-# brush cpp tests
-# Link runTests with what we want to test and the GTest and pthread library
-file(GLOB_RECURSE testsSrc "tests/*.cpp")
-message(STATUS "testsSrc: '${testsSrc}")
-add_executable(tests ${testsSrc})
-target_link_libraries(tests brush gtest_main pthread fmt::fmt)
-# Google tests
-include(GoogleTest)
-gtest_discover_tests(tests)
-
-########################################
-# generate python bindings
+# Python
 find_package(Python COMPONENTS Interpreter Development REQUIRED)
-
 # Find pybind11
 find_package(pybind11 REQUIRED)
 include_directories("${pybind11_INCLUDE_DIRS}")
@@ -151,13 +85,64 @@ message("pybind11_DIR:${pybind11_DIR}")
 find_package(PythonLibs REQUIRED)
 include_directories("${PYTHON_INCLUDE_DIRS}")
 message("Python_INCLUDE_DIRS:${PYTHON_INCLUDE_DIRS}")
-target_link_libraries(brush ${PYTHON_LIBRARIES} fmt::fmt)
 
-pybind11_add_module(brushgp ${CMAKE_CURRENT_SOURCE_DIR}/src/brushgp.cpp)
-target_link_libraries(brushgp PRIVATE brush)
-target_compile_definitions(brushgp PRIVATE VERSION_INFO=${EXAMPLE_VERSION_INFO})
+########################################
+# build brush library
+
+# gather list of source files
+file(GLOB_RECURSE sources ${CMAKE_CURRENT_SOURCE_DIR}/src/*.cpp)
+file(GLOB_RECURSE bindings ${CMAKE_CURRENT_SOURCE_DIR}/src/bindings/*.cpp)
+list(REMOVE_ITEM sources ${bindings})
+message(STATUS "Sources: '${sources}")
+
+# the pure cpp brush library (no python bindings)
+add_library(cbrush SHARED ${sources})
+# target_link_libraries(cbrush ${PYTHON_LIBRARIES} fmt::fmt)
+target_link_libraries(cbrush fmt::fmt)
+
+########################################
+# generate python bindings
+
+message("add module")
+pybind11_add_module(_brush ${bindings})
+# pybind11_add_module(_brush ${sources})
+message("target link libraries")
+target_link_libraries(_brush PRIVATE cbrush)
+# target_link_libraries(_brush PRIVATE ${PYTHON_LIBRARIES} fmt::fmt)
+target_compile_definitions(_brush PRIVATE VERSION_INFO=${EXAMPLE_VERSION_INFO})
 
 
+########################################
+# brush cpp tests
+option(GTEST "build cpp tests" ON)
+if (GTEST)
+    # Locate GTest
+    include(FetchContent)
+    FetchContent_Declare(
+    googletest
+    GIT_REPOSITORY https://github.com/google/googletest.git
+    GIT_TAG release-1.12.1
+    )
+    # For Windows: Prevent overriding the parent project's compiler/linker settings
+    set(gtest_force_shared_crt ON CACHE BOOL "" FORCE)
+    FetchContent_MakeAvailable(googletest)
+    file(GLOB_RECURSE testsSrc "tests/*.cpp")
+    message(STATUS "testsSrc: '${testsSrc}")
+    add_executable(tests ${testsSrc})
+    # Link runTests with what we want to test and the GTest and pthread library
+    target_link_libraries(tests cbrush gtest_main pthread fmt::fmt)
+    # Google tests
+    include(GoogleTest)
+    gtest_discover_tests(tests)
+endif()
+
+########################################
 # Handle stuff for docs (Sphinx/Doxygen)
-set(CMAKE_MODULE_PATH "${PROJECT_SOURCE_DIR}/cmake" ${CMAKE_MODULE_PATH})
-add_subdirectory("docs")
+option(DOCS "build docs" ON)
+if (DOCS)
+    message("set")
+    set(CMAKE_MODULE_PATH "${PROJECT_SOURCE_DIR}/cmake" ${CMAKE_MODULE_PATH})
+    message("docs")
+    add_subdirectory("docs")
+    message("done")
+endif()

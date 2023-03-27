@@ -10,7 +10,8 @@ license: GNU/GPL v3
 #include <string>
 #include <filesystem>
 #include <fstream>
-#include "../../thirdparty/json.hpp"
+// #include "../../thirdparty/json.hpp"
+#include "nlohmann/json.hpp"
 
 namespace fs = std::filesystem;
 

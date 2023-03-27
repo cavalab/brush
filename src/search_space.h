@@ -96,6 +96,8 @@ struct SearchSpace
     unordered_map<DataType, vector<float>> terminal_weights;
     vector<DataType> terminal_types;
     // serialization
+#ifndef DOXYGEN_SKIP
+
     NLOHMANN_DEFINE_TYPE_INTRUSIVE(SearchSpace, 
         node_map,
         weight_map,
@@ -103,6 +105,8 @@ struct SearchSpace
         terminal_weights,
         terminal_types
     ) 
+
+#endif
     
     template<typename PT>
     PT make_program(int max_d=0, int max_size=0);
@@ -441,9 +445,9 @@ PT SearchSpace::make_program(int max_d, int max_size)
     *  
     */
     if (max_d == 0)
-        max_d = r.rnd_int(1, params.max_depth);
+        max_d = r.rnd_int(1, PARAMS["max_depth"].get<int>());
     if (max_size == 0)
-        max_size = r.rnd_int(1, params.max_size);
+        max_size = r.rnd_int(1, PARAMS["max_size"].get<int>());
 
     DataType root_type = DataTypeEnum<typename PT::TreeType>::value;
     ProgramType program_type = ProgramTypeEnum<PT>::value;

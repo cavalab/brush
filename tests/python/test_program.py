@@ -4,8 +4,10 @@ import pytest
 import numpy as np
 import pandas as pd
 from pmlb import fetch_data
+import json
 
-from brushgp import Dataset, SearchSpace, Regressor, Classifier
+from _brush import Dataset, SearchSpace, read_csv
+from _brush.program import Regressor, Classifier
 
 test_y = np.array([1.,0.,1.4,1.,0.,1.,1.,0.,0.,0.])
 test_X = np.array([[1.1,2.0,3.0,4.0,5.0,6.5,7.0,8.0,9.0,10.0],
@@ -47,5 +49,33 @@ class TestProgram():
                 y = prg.fit(data).predict(data)
                 print(y)
 
+    def test_json_regressor(self):
+
+        data = read_csv("docs/examples/datasets/d_2x1_plus_3x2.csv","target")
+        json_program = {
+            "Tree": [
+                { "node_type":"Add", "is_weighted": True },
+                { "node_type":"Terminal", "feature":"x1"},
+                { "node_type":"Terminal", "feature":"x2"}
+            ],
+            "is_fitted_":False
+        }
+        print( "initial json: {}\n", json_program)
+        PRG = Regressor(json_program)
+        print( "program:", PRG.get_model())
+        # fit model
+        print( "fit")
+        PRG.fit(data)
+        print( "predict")
+        y_pred = PRG.predict(data)
+
+        learned_weights = PRG.get_weights()
+        print('learned weights:', learned_weights)
+        
+        true_weights = [2.0, 3.0]
+
+        assert np.sum(np.abs(data.y-y_pred)) <= 1e-4
+        assert all(round(i,4) == round(j, 4) for i,j in zip(learned_weights, true_weights)) 
+
 if __name__ == '__main__':
-    TestProgram().test_fit_program()
+    TestProgram().test_json_regressor()

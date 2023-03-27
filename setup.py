@@ -4,7 +4,7 @@ import os
 import sys
 import subprocess
 
-from setuptools import setup, Extension
+from setuptools import setup, Extension, find_packages
 from setuptools.command.build_ext import build_ext
 from distutils.dir_util import remove_tree
 
@@ -33,8 +33,8 @@ class CMakeBuild(build_ext):
         if not extdir.endswith(os.path.sep):
             extdir += os.path.sep
 
-        #cfg = "Debug" if self.debug else "Release"
-        cfg = "Debug"
+        cfg = "Debug" if self.debug else "Release"
+        # cfg = "Debug"
 
         conda_prefix = os.environ['CONDA_PREFIX']
 
@@ -44,13 +44,15 @@ class CMakeBuild(build_ext):
             "-DPYTHON_EXECUTABLE={}".format(sys.executable),
             "-DEXAMPLE_VERSION_INFO={}".format(self.distribution.get_version()),
             "-DCMAKE_BUILD_TYPE={}".format(cfg),  # not used on MSVC, but no harm
+            "-DGTEST=OFF",
+            "-DDOCS=OFF",
             "-DGTEST_INCLUDE_DIRS={}/include/".format(conda_prefix),
             "-DGTEST_LIBRARIES={}/lib/libgtest.so".format(conda_prefix),
             "-DEIGEN3_INCLUDE_DIR={}/include/eigen3/".format(conda_prefix),
             "-Dpybind11_DIR={}/lib/python3.8/site-packages/pybind11/share/cmake/pybind11/".format(conda_prefix),
             "-DPYBIND11_FINDPYTHON=ON",
         ]
-        build_args = []
+        build_args = ['--target',ext.name]
 
         if self.compiler.compiler_type != "msvc":
             if not cmake_generator:
@@ -104,7 +106,7 @@ class CMakeBuild(build_ext):
 #     print("No existing build directory found - skipping.")
 
 setup(
-    name="brushgp",
+    name="brush",
     version="0.0.1",
     author="William La Cava, Joseph D. Romano",
     author_email="joseph.romano@pennmedicine.upenn.edu",  # can change to Bill
@@ -115,8 +117,8 @@ setup(
     project_urls={
         "Bug Tracker": "https://github.com/lacava/brush/issues",
     },
-    # package_dir={"": "src"},
-    # packages=find_packages(where="src"),
+    package_dir={"": "src"},
+    packages=find_packages(where="src"),
     # cmake_install_dir="src/brush",
     python_requires=">=3.6",
     install_requires=[
@@ -133,9 +135,12 @@ setup(
             'breathe'
         ]
     },
-    ext_modules=[CMakeExtension("brushgp")],
+    ext_modules=[
+        CMakeExtension("_brush")
+    ],
     cmdclass={"build_ext": CMakeBuild},
     test_suite='nose.collector',
     tests_require=['nose', 'pmlb'],
     zip_safe=False,
+    include_package_data=True
 )
