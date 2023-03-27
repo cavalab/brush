@@ -1,4 +1,4 @@
-The ``Brush::Data`` namespace
+Brush::Data
 =============================
 
 .. doxygenclass:: Brush::Data::Dataset
