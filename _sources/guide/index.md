@@ -1,4 +1,4 @@
-# Parts of Brush
+# Cookbook 
 
 Brush mostly consists of these components: 
 
@@ -11,7 +11,7 @@ Brush mostly consists of these components:
 ```{toctree}
 data
 search_space
-program
+working_with_programs
 json
 deap
 ```

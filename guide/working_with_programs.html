@@ -9,7 +9,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
 
-    <title>JSON Interoperability &#8212; Brush 0.1a documentation</title>
+    <title>Working with Programs &#8212; Brush 0.1a documentation</title>
   
   
   
@@ -49,11 +49,11 @@
     <script src="../_static/copybutton.js"></script>
     <script src="../_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
     <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
-    <script>DOCUMENTATION_OPTIONS.pagename = 'guide/json';</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'guide/working_with_programs';</script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="Using Deap" href="deap.html" />
-    <link rel="prev" title="Working with Programs" href="working_with_programs.html" />
+    <link rel="next" title="JSON Interoperability" href="json.html" />
+    <link rel="prev" title="The Search Space" href="search_space.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   </head>
@@ -148,8 +148,8 @@
 <li class="toctree-l1 current active has-children"><a class="reference internal" href="index.html">Cookbook</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-1"><i class="fa-solid fa-chevron-down"></i></label><ul class="current">
 <li class="toctree-l2"><a class="reference internal" href="data.html">Working with Data</a></li>
 <li class="toctree-l2"><a class="reference internal" href="search_space.html">The Search Space</a></li>
-<li class="toctree-l2"><a class="reference internal" href="working_with_programs.html">Working with Programs</a></li>
-<li class="toctree-l2 current active"><a class="current reference internal" href="#">JSON Interoperability</a></li>
+<li class="toctree-l2 current active"><a class="current reference internal" href="#">Working with Programs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="json.html">JSON Interoperability</a></li>
 <li class="toctree-l2"><a class="reference internal" href="deap.html">Using Deap</a></li>
 </ul>
 </li>
@@ -240,7 +240,7 @@
       
       
       
-      <li><a href="../_sources/guide/json.md" target="_blank"
+      <li><a href="../_sources/guide/working_with_programs.ipynb" target="_blank"
    class="btn btn-sm btn-download-source-button dropdown-item"
    title="Download source file"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -250,7 +250,7 @@
 <span class="btn__icon-container">
   <i class="fas fa-file"></i>
   </span>
-<span class="btn__text-container">.md</span>
+<span class="btn__text-container">.ipynb</span>
 </a>
 </li>
       
@@ -309,7 +309,9 @@ document.write(`
   </button>
 `);
 </script>
-
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</label>
 </div></div>
       
     </div>
@@ -320,11 +322,23 @@ document.write(`
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1>JSON Interoperability</h1>
+    <h1>Working with Programs</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
             
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#types-of-programs">Types of Programs</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#representation">Representation</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#generation">Generation</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#evaluation">Evaluation</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#visualizing-programs">Visualizing Programs</a></li>
+</ul>
+            </nav>
         </div>
     </div>
 </div>
@@ -334,34 +348,134 @@ document.write(`
 <div id="searchbox"></div>
                 <article class="bd-article" role="main">
                   
-  <section id="json-interoperability">
-<h1>JSON Interoperability<a class="headerlink" href="#json-interoperability" title="Permalink to this heading">#</a></h1>
-<p>Many of the classes and objects in Brush can be serialized to and from json.
-This is achieved using the <a class="reference external" href="https://github.com/nlohmann/json">cpp json</a> package.
-It means you can, for example, write programs as Python dictionaries like so:</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span>
-<span class="n">json_program</span> <span class="o">=</span> <span class="p">{</span>
-    <span class="s2">&quot;Tree&quot;</span><span class="p">:</span> <span class="p">[</span>
-        <span class="p">{</span> <span class="s2">&quot;node_type&quot;</span><span class="p">:</span><span class="s2">&quot;Add&quot;</span><span class="p">,</span> <span class="s2">&quot;is_weighted&quot;</span><span class="p">:</span> <span class="kc">True</span> <span class="p">},</span>
-        <span class="p">{</span> <span class="s2">&quot;node_type&quot;</span><span class="p">:</span><span class="s2">&quot;Terminal&quot;</span><span class="p">,</span> <span class="s2">&quot;feature&quot;</span><span class="p">:</span><span class="s2">&quot;x1&quot;</span><span class="p">},</span>
-        <span class="p">{</span> <span class="s2">&quot;node_type&quot;</span><span class="p">:</span><span class="s2">&quot;Terminal&quot;</span><span class="p">,</span> <span class="s2">&quot;feature&quot;</span><span class="p">:</span><span class="s2">&quot;x2&quot;</span><span class="p">}</span>
-    <span class="p">],</span>
-    <span class="s2">&quot;is_fitted_&quot;</span><span class="p">:</span><span class="kc">False</span>
-<span class="p">}</span>
+  <section id="working-with-programs">
+<h1>Working with Programs<a class="headerlink" href="#working-with-programs" title="Permalink to this heading">#</a></h1>
+<p>In Brush, a <em>Program</em> is an executable data structure.
+You may think of it as a <em>model</em> or a <em>function</em> mapping feature inputs to data labels.
+We call them programs because that’s what they are: executable data structures,<br />
+and that is what they are called in the genetic algorithm literature, to distinguish them from optimizing bits or strings.</p>
+<p>The Brush Program class operates similarly to a (sklearn)[scikit-learn.org] estimator: it has <code class="docutils literal notranslate"><span class="pre">fit</span></code> and <code class="docutils literal notranslate"><span class="pre">predict</span></code> methods that are called in during training or inference, respectively.</p>
+<section id="types-of-programs">
+<h2>Types of Programs<a class="headerlink" href="#types-of-programs" title="Permalink to this heading">#</a></h2>
+<p>There are four fundamental “types” of Brush programs:</p>
+<ul class="simple">
+<li><p><strong>Regressors</strong>: map inputs to a continous endpoint</p></li>
+<li><p><strong>Binary Classifiers</strong>: map inputs to a binary endpoint, as well as a continuous value in <span class="math notranslate nohighlight">\([0, 1]\)</span></p></li>
+<li><p><strong>Multi-class Classifiers</strong>: map inputs to a category</p>
+<ul>
+<li><p>Under development</p></li>
+</ul>
+</li>
+<li><p><strong>Representors</strong>: map inputs to a lower dimensional space.</p>
+<ul>
+<li><p>Under development</p></li>
+</ul>
+</li>
+</ul>
+</section>
+<section id="representation">
+<h2>Representation<a class="headerlink" href="#representation" title="Permalink to this heading">#</a></h2>
+<p>Internally, the programs are represented as syntax trees.
+We use the (tree.hh tree class)[https://github.com/kpeeters/tree.hh] which gives trees an STL-like feel.</p>
+</section>
+<section id="generation">
+<h2>Generation<a class="headerlink" href="#generation" title="Permalink to this heading">#</a></h2>
+<p>We generate random programs using Sean Luke’s <span class="xref myst">PTC2 algorithm</span>.</p>
+</section>
+<section id="evaluation">
+<h2>Evaluation<a class="headerlink" href="#evaluation" title="Permalink to this heading">#</a></h2>
+</section>
+<section id="visualizing-programs">
+<h2>Visualizing Programs<a class="headerlink" href="#visualizing-programs" title="Permalink to this heading">#</a></h2>
+<p>Programs in Brush are symbolic tree structures, and can be viewed in a few ways:</p>
+<ol class="arabic simple">
+<li><p>As a string using <code class="docutils literal notranslate"><span class="pre">get_model()</span></code></p></li>
+<li><p>As a string-like tree using <code class="docutils literal notranslate"><span class="pre">get_model(&quot;tree&quot;)</span></code></p></li>
+<li><p>As a graph using <code class="docutils literal notranslate"><span class="pre">graphviz</span></code> and <code class="docutils literal notranslate"><span class="pre">get_model(&quot;dot&quot;)</span></code>.</p></li>
+</ol>
+<p>Let’s look at a regresion example.</p>
+<div class="cell tag_remove-output docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">from</span> <span class="nn">brush</span> <span class="kn">import</span> <span class="n">BrushRegressor</span>
 
+<span class="c1"># load data</span>
+<span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">&#39;../examples/datasets/d_enc.csv&#39;</span><span class="p">)</span>
+<span class="n">X</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="s1">&#39;label&#39;</span><span class="p">)</span>
+<span class="n">y</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;label&#39;</span><span class="p">]</span>
+
+<span class="c1"># import and make a regressor</span>
+<span class="n">est</span> <span class="o">=</span> <span class="n">BrushRegressor</span><span class="p">()</span>
+
+<span class="c1"># use like you would a sklearn regressor</span>
+<span class="n">est</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X</span><span class="p">,</span><span class="n">y</span><span class="p">)</span>
+<span class="n">y_pred</span> <span class="o">=</span> <span class="n">est</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X</span><span class="p">)</span>
 </pre></div>
 </div>
-<p>This program is a weighted addition of <code class="docutils literal notranslate"><span class="pre">x1</span></code> and <code class="docutils literal notranslate"><span class="pre">x2</span></code>, i.e., <div class="math notranslate nohighlight">
-\[c_1 x_1 + c_2 x_2\]</div>
-.
-Note the dictionary must contain keys for all members of the Program class, <code class="docutils literal notranslate"><span class="pre">Tree</span></code> and <code class="docutils literal notranslate"><span class="pre">is_fitted_</span></code>.
-We can turn this directly into a regressor:</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span>
-<span class="n">PRG</span> <span class="o">=</span> <span class="n">Regressor</span><span class="p">(</span><span class="n">json_program</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span> <span class="s2">&quot;program:&quot;</span><span class="p">,</span> <span class="n">PRG</span><span class="o">.</span><span class="n">get_model</span><span class="p">())</span>
-
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s1">&#39;score:&#39;</span><span class="p">,</span> <span class="n">est</span><span class="o">.</span><span class="n">score</span><span class="p">(</span><span class="n">X</span><span class="p">,</span><span class="n">y</span><span class="p">))</span>
 </pre></div>
 </div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>score: 0.8014088305336884
+</pre></div>
+</div>
+</div>
+</div>
+<p>Now that we have trained a model, <code class="docutils literal notranslate"><span class="pre">est.best_estimator_</span></code> contains our symbolic model.
+We can view it as a string:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">est</span><span class="o">.</span><span class="n">best_estimator_</span><span class="o">.</span><span class="n">get_model</span><span class="p">())</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Abs(x4)
+</pre></div>
+</div>
+</div>
+</div>
+<p>We can view it as a tree:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">est</span><span class="o">.</span><span class="n">best_estimator_</span><span class="o">.</span><span class="n">get_model</span><span class="p">(</span><span class="s2">&quot;tree&quot;</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Abs
+|-x4
+</pre></div>
+</div>
+</div>
+</div>
+<p>We can also view it as a graph in dot format.
+Let’s import graphviz and make a nicer plot.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">graphviz</span>
+
+<span class="n">model</span> <span class="o">=</span> <span class="n">est</span><span class="o">.</span><span class="n">best_estimator_</span><span class="o">.</span><span class="n">get_model</span><span class="p">(</span><span class="s2">&quot;dot&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">model</span><span class="p">)</span>
+<span class="n">g</span> <span class="o">=</span> <span class="n">graphviz</span><span class="o">.</span><span class="n">Source</span><span class="p">(</span><span class="n">model</span><span class="p">)</span>
+<span class="n">g</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>digraph G {
+Abs -&gt; x4 [label=&quot;4.702&quot;];
+}
+</pre></div>
+</div>
+<img alt="../_images/935d5d225dd8aa181eac17f5b85e086f7641eca44ff5a598ebae0038d0be49f3.svg" src="../_images/935d5d225dd8aa181eac17f5b85e086f7641eca44ff5a598ebae0038d0be49f3.svg" /></div>
+</div>
+</section>
 </section>
 
 
@@ -374,20 +488,20 @@ We can turn this directly into a regressor:</p>
                   <!-- Previous / next buttons -->
 <div class="prev-next-area">
     <a class="left-prev"
-       href="working_with_programs.html"
+       href="search_space.html"
        title="previous page">
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
         <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title">Working with Programs</p>
+        <p class="prev-next-title">The Search Space</p>
       </div>
     </a>
     <a class="right-next"
-       href="deap.html"
+       href="json.html"
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">Using Deap</p>
+        <p class="prev-next-title">JSON Interoperability</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
@@ -397,6 +511,24 @@ We can turn this directly into a regressor:</p>
             </div>
             
             
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#types-of-programs">Types of Programs</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#representation">Representation</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#generation">Generation</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#evaluation">Evaluation</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#visualizing-programs">Visualizing Programs</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
               
             
           </div>

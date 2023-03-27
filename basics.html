@@ -33,12 +33,16 @@
     <link rel="stylesheet" href="_static/styles/sphinx-book-theme.css?digest=14f4ca6b54d191a8c7657f6c759bf11a5fb86285" type="text/css" />
     <link rel="stylesheet" type="text/css" href="_static/graphviz.css" />
     <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
   
   <!-- Pre-loaded scripts that we'll load fully later -->
   <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=12da95d707ffb74b382d" />
 <link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=12da95d707ffb74b382d" />
 
     <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
     <script src="_static/doctools.js"></script>
     <script src="_static/sphinx_highlight.js"></script>
     <script src="_static/clipboard.min.js"></script>
@@ -47,7 +51,7 @@
     <script>DOCUMENTATION_OPTIONS.pagename = 'basics';</script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="Parts of Brush" href="guide/index.html" />
+    <link rel="next" title="Cookbook" href="guide/index.html" />
     <link rel="prev" title="Installation" href="installation.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
@@ -140,14 +144,15 @@
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">User Guide</span></p>
 <ul class="nav bd-sidenav">
-<li class="toctree-l1 has-children"><a class="reference internal" href="guide/index.html">Parts of Brush</a><input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-1"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l1 has-children"><a class="reference internal" href="guide/index.html">Cookbook</a><input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-1"><i class="fa-solid fa-chevron-down"></i></label><ul>
 <li class="toctree-l2"><a class="reference internal" href="guide/data.html">Working with Data</a></li>
 <li class="toctree-l2"><a class="reference internal" href="guide/search_space.html">The Search Space</a></li>
-<li class="toctree-l2"><a class="reference internal" href="guide/program.html">Working with Programs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="guide/working_with_programs.html">Working with Programs</a></li>
 <li class="toctree-l2"><a class="reference internal" href="guide/json.html">JSON Interoperability</a></li>
 <li class="toctree-l2"><a class="reference internal" href="guide/deap.html">Using Deap</a></li>
 </ul>
 </li>
+<li class="toctree-l1"><a class="reference internal" href="guide/contributing.html">Contributing</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">API</span></p>
 <ul class="nav bd-sidenav">
@@ -349,8 +354,8 @@ That means it should be compatible with sklearn pipelines, wrappers, and so fort
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># load data</span>
 <span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
 <span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">&#39;docs/examples/datasets/d_enc.csv&#39;</span><span class="p">)</span>
-<span class="n">X</span> <span class="o">=</span> <span class="n">dfr</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="s1">&#39;label&#39;</span><span class="p">)</span>
-<span class="n">y</span> <span class="o">=</span> <span class="n">dfr</span><span class="p">[</span><span class="s1">&#39;label&#39;</span><span class="p">]</span>
+<span class="n">X</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="s1">&#39;label&#39;</span><span class="p">)</span>
+<span class="n">y</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;label&#39;</span><span class="p">]</span>
 
 <span class="c1"># import and make a regressor</span>
 <span class="kn">from</span> <span class="nn">brush</span> <span class="kn">import</span> <span class="n">BrushRegressor</span>
@@ -369,8 +374,8 @@ That means it should be compatible with sklearn pipelines, wrappers, and so fort
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># load data</span>
 <span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
 <span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">&#39;docs/examples/datasets/d_analcatdata_aids.csv&#39;</span><span class="p">)</span>
-<span class="n">X</span> <span class="o">=</span> <span class="n">dfc</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="s1">&#39;target&#39;</span><span class="p">)</span>
-<span class="n">y</span> <span class="o">=</span> <span class="n">dfc</span><span class="p">[</span><span class="s1">&#39;target&#39;</span><span class="p">]</span>
+<span class="n">X</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="s1">&#39;target&#39;</span><span class="p">)</span>
+<span class="n">y</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;target&#39;</span><span class="p">]</span>
 
 <span class="c1"># import and make a classifier</span>
 <span class="kn">from</span> <span class="nn">brush</span> <span class="kn">import</span> <span class="n">BrushClassifier</span>
@@ -409,7 +414,7 @@ That means it should be compatible with sklearn pipelines, wrappers, and so fort
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">Parts of Brush</p>
+        <p class="prev-next-title">Cookbook</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
