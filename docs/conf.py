@@ -91,11 +91,12 @@ nb_output_stderr="remove"
 # a list of builtin themes.
 #
 html_theme = 'sphinx_book_theme'
-
+html_favicon = "_static/paint-brush-solid.svg"
+# html_logo = "_static/paint-brush-solid.svg"
 # Add any paths that contain custom static files (such as style sheets) here,
 # relative to this directory. They are copied after the builtin static files,
 # so a file named "default.css" will overwrite the builtin "default.css".
-# html_static_path = ['_static']
+html_static_path = ['_static']
 
 # Breathe configuration
 breathe_default_project = "brush"
@@ -126,7 +127,10 @@ html_theme_options = {
     "use_repository_button": True,
     "path_to_docs":'docs/',
     'home_page_in_toc':True,
-    "show_navbar_depth": 1
+    "show_navbar_depth": 1,
+    # "logo": {
+    #       "image_dark": "_static/paint-brush-solid.svg",
+    #   },
 }
 
 # html_sidebars = {
