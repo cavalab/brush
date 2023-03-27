@@ -42,6 +42,20 @@ class BrushEstimator(BaseEstimator):
     mutation_options: dict, default {"point":0.5, "insert": 0.25, "delete":  0.25}
         A dictionary with keys naming the types of mutation and floating point 
         values specifying the fraction of total mutations to do with that method. 
+
+    Attributes
+    ----------
+    best_estimator_: _brush.Program
+        The final model picked from training. Used in subsequent calls to :func:`predict`. 
+    archive_: list[deap_api.DeapIndividual]
+        The final population from training. 
+    data_: _brush.Dataset
+        The training data in Brush format. 
+    search_space_: a Brush `SearchSpace` object. 
+        Holds the operators and terminals and sampling utilities to update programs.
+    toolbox_: deap.Toolbox
+        The toolbox used by DEAP for EA algorithm. 
+
     """
     
     def __init__(
@@ -125,9 +139,9 @@ class BrushEstimator(BaseEstimator):
 
         archive, logbook = nsga2(self.toolbox_, self.max_gen, self.pop_size, 0.9)
         self.archive_ = archive
-        self.best_estimator_ = self.archive_[0]
+        self.best_estimator_ = self.archive_[0].prg
 
-        print('best model:',self.best_estimator_.prg.get_model())
+        print('best model:',self.best_estimator_.get_model())
         return self
     
     def _make_data(self, X, y=None):
@@ -150,7 +164,7 @@ class BrushEstimator(BaseEstimator):
     def predict(self, X):
         """Predict using the best estimator in the archive. """
         data = self._make_data(X)
-        return self.best_estimator_.prg.predict(data)
+        return self.best_estimator_.predict(data)
 
     # def _setup_population(self):
     #     """initialize programs"""
@@ -173,6 +187,17 @@ class BrushClassifier(BrushEstimator,ClassifierMixin):
     """Brush for classification.
 
     For options, see :py:class:`BrushEstimator <brush.estimator.BrushEstimator>`. 
+
+    Examples
+    --------
+    >>> import pandas as pd
+    >>> df = pd.read_csv('docs/examples/datasets/d_analcatdata_aids.csv')
+    >>> X = df.drop(columns='target')
+    >>> y = df['target']
+    >>> from brush import BrushClassifier
+    >>> est = BrushClassifier()
+    >>> est.fit(X,y)
+    >>> print('score:', est.score(X,y))
     """
     def __init__( self, **kwargs):
         super().__init__(mode='classification',**kwargs)
@@ -192,12 +217,23 @@ class BrushClassifier(BrushEstimator,ClassifierMixin):
     def predict_proba(self, X):
         """Predict using the best estimator in the archive. """
         X = self._check_X(X)
-        return self.best_estimator_.prg.predict_proba(X)
+        return self.best_estimator_.predict_proba(X)
 
 class BrushRegressor(BrushEstimator, RegressorMixin):
     """Brush for regression.
 
     For options, see :py:class:`BrushEstimator <brush.estimator.BrushEstimator>`. 
+
+    Examples
+    --------
+    >>> import pandas as pd
+    >>> df = pd.read_csv('docs/examples/datasets/d_enc.csv')
+    >>> X = df.drop(columns='label')
+    >>> y = df['label']
+    >>> from brush import BrushRegressor
+    >>> est = BrushRegressor()
+    >>> est.fit(X,y)
+    >>> print('score:', est.score(X,y))
     """
     def __init__(self, **kwargs):
         super().__init__(mode='regressor',**kwargs)

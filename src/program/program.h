@@ -241,7 +241,8 @@ template<typename T> struct Program //: public tree<Node>
     }
 
     string get_dot_model(){
-        string out = "digraph G {\norientation=landscape;\n";
+        // string out = "digraph G {\norientation=landscape;\n";
+        string out = "digraph G {\n";
 
         for (Iter iter = Tree.begin(); iter!=Tree.end(); iter++)
         {

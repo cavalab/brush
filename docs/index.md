@@ -20,6 +20,7 @@ basics
 :maxdepth: 2
 
 guide/index
+guide/contributing
 ```
 
 ```{toctree} 

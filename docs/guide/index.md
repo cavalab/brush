@@ -1,4 +1,4 @@
-# Parts of Brush
+# Cookbook 
 
 Brush mostly consists of these components: 
 

@@ -172,8 +172,8 @@ In addition, Brush provides functionality that allows you to feed in more compli
 # load data
 import pandas as pd
 df = pd.read_csv('docs/examples/datasets/d_enc.csv')
-X = dfr.drop(columns='label')
-y = dfr['label']
+X = df.drop(columns='label')
+y = df['label']
 
 # import and make a regressor
 from brush import BrushRegressor
@@ -192,8 +192,8 @@ print('score:', est.score(X,y))
 # load data
 import pandas as pd
 df = pd.read_csv('docs/examples/datasets/d_analcatdata_aids.csv')
-X = dfc.drop(columns='target')
-y = dfc['target']
+X = df.drop(columns='target')
+y = df['target']
 
 # import and make a classifier
 from brush import BrushClassifier
