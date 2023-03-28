@@ -9,7 +9,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
 
-    <title>Using Deap &#8212; Brush 0.1a documentation</title>
+    <title>Development &#8212; Brush 0.1a documentation</title>
   
   
   
@@ -48,12 +48,12 @@
     <script src="../_static/clipboard.min.js"></script>
     <script src="../_static/copybutton.js"></script>
     <script src="../_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
-    <script>DOCUMENTATION_OPTIONS.pagename = 'guide/deap';</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'guide/development';</script>
     <link rel="shortcut icon" href="../_static/paint-brush-solid.svg"/>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="Contributing" href="contributing.html" />
-    <link rel="prev" title="JSON Interoperability" href="json.html" />
+    <link rel="next" title="Python API" href="../python_api/index.html" />
+    <link rel="prev" title="Contributing" href="contributing.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   </head>
@@ -145,16 +145,16 @@
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">User Guide</span></p>
 <ul class="current nav bd-sidenav">
-<li class="toctree-l1 current active has-children"><a class="reference internal" href="index.html">Cookbook</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-1"><i class="fa-solid fa-chevron-down"></i></label><ul class="current">
+<li class="toctree-l1 has-children"><a class="reference internal" href="index.html">Cookbook</a><input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-1"><i class="fa-solid fa-chevron-down"></i></label><ul>
 <li class="toctree-l2"><a class="reference internal" href="data.html">Working with Data</a></li>
 <li class="toctree-l2"><a class="reference internal" href="search_space.html">The Search Space</a></li>
 <li class="toctree-l2"><a class="reference internal" href="working_with_programs.html">Working with Programs</a></li>
 <li class="toctree-l2"><a class="reference internal" href="json.html">JSON Interoperability</a></li>
-<li class="toctree-l2 current active"><a class="current reference internal" href="#">Using Deap</a></li>
+<li class="toctree-l2"><a class="reference internal" href="deap.html">Using Deap</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="contributing.html">Contributing</a></li>
-<li class="toctree-l1"><a class="reference internal" href="development.html">Development</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Development</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">API</span></p>
 <ul class="nav bd-sidenav">
@@ -241,7 +241,7 @@
       
       
       
-      <li><a href="../_sources/guide/deap.md" target="_blank"
+      <li><a href="../_sources/guide/development.md" target="_blank"
    class="btn btn-sm btn-download-source-button dropdown-item"
    title="Download source file"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -310,7 +310,9 @@ document.write(`
   </button>
 `);
 </script>
-
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</label>
 </div></div>
       
     </div>
@@ -321,11 +323,24 @@ document.write(`
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1>Using Deap</h1>
+    <h1>Development</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
             
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#package-structure">Package Structure</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#tests">Tests</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#python">Python</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#cpp">Cpp</a></li>
+</ul>
+</li>
+</ul>
+            </nav>
         </div>
     </div>
 </div>
@@ -335,9 +350,60 @@ document.write(`
 <div id="searchbox"></div>
                 <article class="bd-article" role="main">
                   
-  <section id="using-deap">
-<h1>Using Deap<a class="headerlink" href="#using-deap" title="Permalink to this heading">#</a></h1>
-<p>TODO</p>
+  <section id="development">
+<h1>Development<a class="headerlink" href="#development" title="Permalink to this heading">#</a></h1>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>python setup.py develop
+</pre></div>
+</div>
+<p>Gives you an editable install for messing with Python code in the project.
+(Any underyling cpp changes require this command to be re-run).</p>
+<section id="package-structure">
+<h2>Package Structure<a class="headerlink" href="#package-structure" title="Permalink to this heading">#</a></h2>
+<p>There are a few different moving parts that can be built in this project:</p>
+<ul class="simple">
+<li><p>the cpp brush library (called <code class="docutils literal notranslate"><span class="pre">cbrush</span></code>)</p></li>
+<li><p>the cpp tests, written google tests (an executable named <code class="docutils literal notranslate"><span class="pre">tests</span></code>)</p>
+<ul>
+<li><p>depends on <code class="docutils literal notranslate"><span class="pre">cbrush</span></code></p></li>
+</ul>
+</li>
+<li><p>the cpp-python bindings (a Python module written in cpp named <code class="docutils literal notranslate"><span class="pre">_brush</span></code>)</p>
+<ul>
+<li><p>depends on <code class="docutils literal notranslate"><span class="pre">cbrush</span></code></p></li>
+</ul>
+</li>
+<li><p>the <code class="docutils literal notranslate"><span class="pre">brush</span></code> Python module</p>
+<ul>
+<li><p>depends on <code class="docutils literal notranslate"><span class="pre">_brush</span></code></p></li>
+</ul>
+</li>
+<li><p>the docs (built with a combination of Sphinx and Doxygen)</p>
+<ul>
+<li><p>depends on <code class="docutils literal notranslate"><span class="pre">brush</span></code></p></li>
+</ul>
+</li>
+</ul>
+<p>Pip will install the <code class="docutils literal notranslate"><span class="pre">brush</span></code> module and call <code class="docutils literal notranslate"><span class="pre">CMake</span></code> to build the <code class="docutils literal notranslate"><span class="pre">_brush</span></code> extension.<br />
+It will not build the docs or cpp tests.</p>
+</section>
+<section id="tests">
+<h2>Tests<a class="headerlink" href="#tests" title="Permalink to this heading">#</a></h2>
+<section id="python">
+<h3>Python<a class="headerlink" href="#python" title="Permalink to this heading">#</a></h3>
+<p>The tests are run by calling pytest from the root directory.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pytest<span class="w"> </span>
+</pre></div>
+</div>
+</section>
+<section id="cpp">
+<h3>Cpp<a class="headerlink" href="#cpp" title="Permalink to this heading">#</a></h3>
+<p>If you are developing the cpp code and want to build the cpp tests, run the following:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">./</span><span class="n">configure</span>
+<span class="o">./</span><span class="n">install</span> <span class="n">tests</span>
+</pre></div>
+</div>
+</section>
+</section>
 </section>
 
 
@@ -350,20 +416,20 @@ document.write(`
                   <!-- Previous / next buttons -->
 <div class="prev-next-area">
     <a class="left-prev"
-       href="json.html"
+       href="contributing.html"
        title="previous page">
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
         <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title">JSON Interoperability</p>
+        <p class="prev-next-title">Contributing</p>
       </div>
     </a>
     <a class="right-next"
-       href="contributing.html"
+       href="../python_api/index.html"
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">Contributing</p>
+        <p class="prev-next-title">Python API</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
@@ -373,6 +439,25 @@ document.write(`
             </div>
             
             
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#package-structure">Package Structure</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#tests">Tests</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#python">Python</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#cpp">Cpp</a></li>
+</ul>
+</li>
+</ul>
+  </nav></div>
+
+</div></div>
               
             
           </div>
