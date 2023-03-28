@@ -5,6 +5,8 @@ namespace py = pybind11;
 namespace br = Brush;
 namespace nl = nlohmann;
 
+using stream_redirect = py::call_guard<py::scoped_ostream_redirect, py::scoped_estream_redirect>;
+
 void bind_search_space(py::module &m)
 {
     // Notice: We change the interface for SearchSpace a little bit by
@@ -16,10 +18,14 @@ void bind_search_space(py::module &m)
                 SearchSpace SS;
                 SS.init(data);
                 return SS; }))
+        .def(py::init<const Dataset&, const unordered_map<string,float>&>())
         .def("make_regressor", &br::SearchSpace::make_regressor)
         .def("make_classifier", &br::SearchSpace::make_classifier)
         .def("make_multiclass_classifier", &br::SearchSpace::make_multiclass_classifier)
         .def("make_representer", &br::SearchSpace::make_representer)
-        .def("print", &br::SearchSpace::print)
+        .def("print", 
+            &br::SearchSpace::print, 
+            stream_redirect()
+        )
     ;
 }

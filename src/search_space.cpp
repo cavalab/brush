@@ -1,5 +1,6 @@
 #include "search_space.h"
 #include "program/program.h"
+#include <iostream>
 
 namespace Brush{
 
@@ -24,7 +25,7 @@ vector<Node> generate_terminals(const Dataset& d)
 std::unordered_map<std::size_t, std::string> ArgsName; 
 
 void SearchSpace::print() const { 
-    fmt::print("{}\n", *this); 
+    std::cout << fmt::format("{}\n", *this) << std::flush; 
 }
 
 void SearchSpace::init(const Dataset& d, const unordered_map<string,float>& user_ops)

@@ -9,6 +9,8 @@ using MCls = Brush::Program<ArrayXi>;
 namespace nl = nlohmann;
 namespace br = Brush;
 
+using stream_redirect = py::call_guard<py::scoped_ostream_redirect, py::scoped_estream_redirect>;
+
 template<typename T>
 void bind_program(py::module& m, string name)
 {
@@ -38,8 +40,9 @@ void bind_program(py::module& m, string name)
         .def("get_model",
             &T::get_model,
             py::arg("type") = "compact",
-            py::arg("pretty") = false)
-        .def("get_dot_model", &T::get_dot_model)
+            py::arg("pretty") = false,
+            stream_redirect()
+            )
         .def("get_weights", &T::get_weights)
         .def("size", &T::size)
         .def("cross", &T::cross)
