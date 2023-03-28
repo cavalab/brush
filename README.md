@@ -3,12 +3,12 @@
 <!-- start overview -->
 
 Brush is an interpretable machine learning library for training symbolic models. 
-It combines several learning paradigms (non-linear least squares, decision trees, symbolic regression) into a strongly-typed genetic programming language. 
+It wraps multiple learning paradigms (gradient descent, decision trees, symbolic regression) into a strongly-typed genetic programming language (Montana, 1995 [PDF](http://davidmontana.net/papers/stgp.pdf)). 
 
 This project is **very much** under active development. 
-Expect api changes, bugs, breaking things, etc. 
+Expect api changes and broken things.  
 
-## Design Goals
+## Features / Design Goals
 
 - Flexibility to define n-ary trees of operators on data of variable types (singletons, arrays, time series, matrices of floats, ints, and bools)
 - Support for gradient descent over these programs
