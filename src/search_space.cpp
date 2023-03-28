@@ -23,6 +23,10 @@ vector<Node> generate_terminals(const Dataset& d)
 
 std::unordered_map<std::size_t, std::string> ArgsName; 
 
+void SearchSpace::print() const { 
+    fmt::print("{}\n", *this); 
+}
+
 void SearchSpace::init(const Dataset& d, const unordered_map<string,float>& user_ops)
 {
     // fmt::print("constructing search space...\n");
@@ -58,7 +62,6 @@ void SearchSpace::init(const Dataset& d, const unordered_map<string,float>& user
         terminal_weights[term.ret_type].push_back(1.0);
     }
 
-    // fmt::print("{}\n", *this);
 
 };
 

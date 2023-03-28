@@ -20,5 +20,6 @@ void bind_search_space(py::module &m)
         .def("make_classifier", &br::SearchSpace::make_classifier)
         .def("make_multiclass_classifier", &br::SearchSpace::make_multiclass_classifier)
         .def("make_representer", &br::SearchSpace::make_representer)
+        .def("print", &br::SearchSpace::print)
     ;
 }
