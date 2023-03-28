@@ -8,6 +8,8 @@ It wraps multiple learning paradigms (gradient descent, decision trees, symbolic
 This project is **very much** under active development. 
 Expect api changes and broken things.  
 
+For the user guide and API, see the [docs](https://cavalab.org/brush).
+
 ## Features / Design Goals
 
 - Flexibility to define n-ary trees of operators on data of variable types (singletons, arrays, time series, matrices of floats, ints, and bools)
@@ -37,9 +39,6 @@ GNU GPLv3, see [LICENSE](https://github.com/cavalab/brush/blob/master/LICENSE)
 
 <!-- end overview -->
 
-# Quickstart
-
-For the user guide and API, see the [docs](https://cavalab.org/brush).
 
 # Installation 
 
@@ -107,6 +106,57 @@ If you are developing the cpp code and want to build the cpp tests, run the foll
 
 <!-- end installation -->
 
+## Basic Usage
+
+<!-- start basics -->
+
+Brush is designed to be used similarly to any [sklearn-style estimator](https://sklearn.org).
+That means it should be compatible with sklearn pipelines, wrappers, and so forth. 
+
+In addition, Brush provides functionality that allows you to feed in more complicated data types than just matrices of floating point values. 
+
+## Regression
+
+```python
+# load data
+import pandas as pd
+df = pd.read_csv('docs/examples/datasets/d_enc.csv')
+X = df.drop(columns='label')
+y = df['label']
+
+# import and make a regressor
+from brush import BrushRegressor
+est = BrushRegressor()
+
+# use like you would a sklearn regressor
+est.fit(X,y)
+y_pred = est.predict(X)
+
+print('score:', est.score(X,y))
+```
+
+## Classification
+
+```python
+# load data
+import pandas as pd
+df = pd.read_csv('docs/examples/datasets/d_analcatdata_aids.csv')
+X = df.drop(columns='target')
+y = df['target']
+
+# import and make a classifier
+from brush import BrushClassifier
+est = BrushClassifier()
+# use like you would a sklearn classifier
+est.fit(X,y)
+y_pred = est.predict(X)
+y_pred_proba = est.predict_proba(X)
+
+print('score:', est.score(X,y))
+```
+
+<!-- end basics -->
+
 
 ## Contributing
 
@@ -161,56 +211,3 @@ In general, this is the approach:
     branch. Be sure to reference any relevant issues.
 
 <!-- end contributing -->
-
-
-## Basic Usage
-
-<!-- start basics -->
-
-Brush is designed to be used similarly to any [sklearn-style estimator](https://sklearn.org).
-That means it should be compatible with sklearn pipelines, wrappers, and so forth. 
-
-In addition, Brush provides functionality that allows you to feed in more complicated data types than just matrices of floating point values. 
-
-## Regression
-
-```python
-# load data
-import pandas as pd
-df = pd.read_csv('docs/examples/datasets/d_enc.csv')
-X = df.drop(columns='label')
-y = df['label']
-
-# import and make a regressor
-from brush import BrushRegressor
-est = BrushRegressor()
-
-# use like you would a sklearn regressor
-est.fit(X,y)
-y_pred = est.predict(X)
-
-print('score:', est.score(X,y))
-```
-
-## Classification
-
-```python
-# load data
-import pandas as pd
-df = pd.read_csv('docs/examples/datasets/d_analcatdata_aids.csv')
-X = df.drop(columns='target')
-y = df['target']
-
-# import and make a classifier
-from brush import BrushClassifier
-est = BrushClassifier()
-# use like you would a sklearn classifier
-est.fit(X,y)
-y_pred = est.predict(X)
-y_pred_proba = est.predict_proba(X)
-
-print('score:', est.score(X,y))
-```
-
-<!-- end basics -->
-
