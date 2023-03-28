@@ -118,7 +118,10 @@ struct Node {
     void init(){
 
         if (is_weighted){   
-            W.resize(arg_types.size());
+            if (node_type == NodeType::Constant)
+                W.resize(1);
+            else
+                W.resize(arg_types.size());
             for (int i = 0; i < W.size(); ++i)
                 W.at(i) = 1.0;  
         }
@@ -132,6 +135,11 @@ struct Node {
 
     }
 
+    /// @brief Terminal specialization
+    /// @tparam S signature 
+    /// @param type node type
+    /// @param feature_name name of the terminal 
+    /// @param signature signature 
     template<typename S>
     explicit Node(NodeType type, string feature_name, S signature) noexcept
         : node_type(type)
@@ -140,10 +148,10 @@ struct Node {
         , ret_type(DataTypeEnum<typename S::RetType>::value)
         , sig_hash(S::hash())
         , sig_dual_hash(S::Dual::hash())
-        , is_weighted(false)
     {
         /* cout << "instantiated " << name << " from feature " << feature << " with output type " << DataTypeName.at(ret_type) << endl; */
         arg_types = vector<DataType>{};
+        is_weighted = type == NodeType::Constant;
         init();
     }
 

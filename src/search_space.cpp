@@ -4,6 +4,9 @@
 
 namespace Brush{
 
+/// @brief generate terminals from the dataset features and random constants.
+/// @param d a dataset
+/// @return a vector of nodes 
 vector<Node> generate_terminals(const Dataset& d)
 {
     vector<Node> terminals;
@@ -19,6 +22,9 @@ vector<Node> generate_terminals(const Dataset& d)
         );
         ++i;
     };
+
+    // add a constant
+    terminals.push_back( Node(NodeType::Constant, "C", Signature<ArrayXf()>{}));
     return terminals;
 };
 
