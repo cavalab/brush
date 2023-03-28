@@ -17,8 +17,8 @@ void bind_program(py::module& m, string name)
             std::conditional_t<std::is_same_v<T,Cls>, ArrayXb, 
             std::conditional_t<std::is_same_v<T,MCls>, ArrayXi, ArrayXXf>>>;
 
-    py::class_<T>(m, name.data() ) //, py::dynamic_attr() )
-        .def(py::init<>())
+    py::class_<T> prog(m, name.data() ); 
+    prog.def(py::init<>())
         .def(py::init(
             [](const json& j){ T p = j; return p; })
         )
@@ -62,10 +62,10 @@ void bind_program(py::module& m, string name)
         ;
     if constexpr (std::is_same_v<T,Cls>)
     {
-        m.def("predict_proba",
+        prog.def("predict_proba",
                 static_cast<ArrayXf (T::*)(const Dataset &d)>(&T::predict_proba),
-                "predict from Dataset object");
-        m.def("predict_proba",
+                "predict from Dataset object")
+           .def("predict_proba",
                 static_cast<ArrayXf (T::*)(const Ref<const ArrayXXf> &X)>(&T::predict_proba),
                 "fit from X,y data");
     }
