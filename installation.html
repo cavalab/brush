@@ -310,9 +310,7 @@ document.write(`
   </button>
 `);
 </script>
-<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
-    <span class="fa-solid fa-list"></span>
-</label>
+
 </div></div>
       
     </div>
@@ -328,14 +326,6 @@ document.write(`
     <div id="print-main-content">
         <div id="jb-print-toc">
             
-            <div>
-                <h2> Contents </h2>
-            </div>
-            <nav aria-label="Page">
-                <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#install-the-brush-environment">Install the brush environment</a></li>
-</ul>
-            </nav>
         </div>
     </div>
 </div>
@@ -347,17 +337,21 @@ document.write(`
                   
   <section id="installation">
 <h1>Installation<a class="headerlink" href="#installation" title="Permalink to this heading">#</a></h1>
-<section id="install-the-brush-environment">
-<h2>Install the brush environment<a class="headerlink" href="#install-the-brush-environment" title="Permalink to this heading">#</a></h2>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">conda</span> <span class="n">env</span> <span class="n">create</span>
+<p>Clone the repo:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">git</span> <span class="n">clone</span> <span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">github</span><span class="o">.</span><span class="n">com</span><span class="o">/</span><span class="n">cavalab</span><span class="o">/</span><span class="n">brush</span><span class="o">.</span><span class="n">git</span>
 </pre></div>
 </div>
-<p>If you are just using (not editing) the Python package:</p>
+<p>Install the brush environment:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">cd</span> <span class="n">brush</span>
+<span class="n">conda</span> <span class="n">env</span> <span class="n">create</span>
+</pre></div>
+</div>
+<p>Install brush:</p>
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>pip install .
 </pre></div>
 </div>
-<p>from the repo root directory.</p>
-</section>
+<p>from the repo root directory.
+If you are just planning to develop, see <span class="xref myst">Development</span>.</p>
 </section>
 
 
@@ -393,20 +387,6 @@ document.write(`
             </div>
             
             
-              
-                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
-
-  <div class="sidebar-secondary-item">
-  <div class="page-toc tocsection onthispage">
-    <i class="fa-solid fa-list"></i> Contents
-  </div>
-  <nav class="bd-toc-nav page-toc">
-    <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#install-the-brush-environment">Install the brush environment</a></li>
-</ul>
-  </nav></div>
-
-</div></div>
               
             
           </div>
