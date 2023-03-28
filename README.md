@@ -18,7 +18,11 @@ Expect api changes, bugs, breaking things, etc.
 
 ## Contact
 
-Maintained by William La Cava @lacava (william.lacava@childrens.harvard.edu)
+Brush is maintained by William La Cava ([@lacava](https://github.com/lacava), william.lacava@childrens.harvard.edu) and initially authored by him and Joseph D. Romano ((https://github.com/JDRomano2)). 
+
+Contributors include:
+
+- Zongjun Liu [bio](https://cavalab.org/members/liu-zongjun/)
 
 ## Acknowledgments
 
