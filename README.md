@@ -41,27 +41,33 @@ GNU GPLv3, see [LICENSE](https://github.com/cavalab/brush/blob/master/LICENSE)
 
 # Quickstart 
 
-# Installation 
+## Installation
 
 <!-- start installation -->
-
-## Install the brush environment
+Clone the repo:
 
 ```
+git clone https://github.com/cavalab/brush.git
+```
+
+Install the brush environment:
+
+```
+cd brush
 conda env create
 ```
 
-If you are just using (not editing) the Python package:
+Install brush: 
 
 ```text
 pip install .
 ```
 
 from the repo root directory.
+If you are just planning to develop, see [Development](#development).
 
 <!-- end installation -->
 
-## Development 
 
 
 ## Basic Usage
@@ -170,6 +176,7 @@ In general, this is the approach:
 
 <!-- end contributing -->
 
+# Development 
 <!-- start development -->
 
 ```text
