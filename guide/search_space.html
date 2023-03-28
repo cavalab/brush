@@ -240,7 +240,7 @@
       
       
       
-      <li><a href="../_sources/guide/search_space.md" target="_blank"
+      <li><a href="../_sources/guide/search_space.ipynb" target="_blank"
    class="btn btn-sm btn-download-source-button dropdown-item"
    title="Download source file"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -250,7 +250,7 @@
 <span class="btn__icon-container">
   <i class="fas fa-file"></i>
   </span>
-<span class="btn__text-container">.md</span>
+<span class="btn__text-container">.ipynb</span>
 </a>
 </li>
       
@@ -309,7 +309,9 @@ document.write(`
   </button>
 `);
 </script>
-
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</label>
 </div></div>
       
     </div>
@@ -325,6 +327,16 @@ document.write(`
     <div id="print-main-content">
         <div id="jb-print-toc">
             
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#initializing">Initializing</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#inspecting">Inspecting</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#sampling">Sampling</a></li>
+</ul>
+            </nav>
         </div>
     </div>
 </div>
@@ -336,7 +348,85 @@ document.write(`
                   
   <section id="the-search-space">
 <h1>The Search Space<a class="headerlink" href="#the-search-space" title="Permalink to this heading">#</a></h1>
-<p>TODO</p>
+<p>The <span class="xref myst"><code class="docutils literal notranslate"><span class="pre">SearchSpace</span></code></span> holds the terminals and operators used to define programs, and includes utilities for creating programs and modifying them.
+It has a few basic components:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">node_map</span></code>: this object maps function signatures to specific node types. It is a nested map, made to most quickly match on return types first, then full signatures. It is structured this way to mutations and crossover lookups fast.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">terminal_map</span></code>: same as <code class="docutils literal notranslate"><span class="pre">node_map</span></code> but for terminals.</p></li>
+</ul>
+<p>Both of these maps have associated weights that are used to weight the probabilities of each operator/terminal being sampled.
+Users can optionally provide these weights.</p>
+<section id="initializing">
+<h2>Initializing<a class="headerlink" href="#initializing" title="Permalink to this heading">#</a></h2>
+<p>At a minimum, initializing the search space requires that a <code class="docutils literal notranslate"><span class="pre">Dataset</span></code> is already defined, so that <code class="docutils literal notranslate"><span class="pre">SearchSpace</span></code> knows how to define the terminals.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">from</span> <span class="nn">brush</span> <span class="kn">import</span> <span class="n">Dataset</span><span class="p">,</span> <span class="n">SearchSpace</span>
+
+<span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">&#39;../examples/datasets/d_enc.csv&#39;</span><span class="p">)</span>
+<span class="n">X</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="s1">&#39;label&#39;</span><span class="p">)</span>
+<span class="n">y</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;label&#39;</span><span class="p">]</span>
+
+<span class="n">data</span> <span class="o">=</span> <span class="n">Dataset</span><span class="p">(</span><span class="n">X</span><span class="p">,</span><span class="n">y</span><span class="p">)</span>
+
+<span class="n">search_space</span> <span class="o">=</span> <span class="n">SearchSpace</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>By default, the search space includes all available operators that have at least one argument type matching a datatype in <code class="docutils literal notranslate"><span class="pre">Data</span></code>.
+That can be quite large.</p>
+<p>Instead, the user may specify operators with weightings that determine the probability of being sampled, i.e.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">user_ops</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s1">&#39;Add&#39;</span><span class="p">:</span> <span class="mf">0.5</span><span class="p">,</span>
+    <span class="s1">&#39;Sub&#39;</span><span class="p">:</span> <span class="mf">0.5</span><span class="p">,</span>
+    <span class="s1">&#39;Mul&#39;</span><span class="p">:</span> <span class="mf">1.0</span><span class="p">,</span>
+    <span class="s1">&#39;Div&#39;</span><span class="p">:</span> <span class="mf">0.1</span><span class="p">,</span>
+    <span class="s1">&#39;SplitBest&#39;</span><span class="p">:</span><span class="mf">0.2</span>
+<span class="p">}</span>
+
+<span class="n">search_space</span> <span class="o">=</span> <span class="n">SearchSpace</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">user_ops</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="inspecting">
+<h2>Inspecting<a class="headerlink" href="#inspecting" title="Permalink to this heading">#</a></h2>
+<p>We now have a much smaller search space. To view it, call <code class="docutils literal notranslate"><span class="pre">print()</span></code>:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">search_space</span><span class="o">.</span><span class="n">print</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Search Space
+===
+terminal_map: {ArrayI: [x_5, x_7], ArrayF: [x_0, x_1, x_2, x_3, x_4, x_6]}
+terminal_weights: {ArrayI: [1, 1], ArrayF: [1, 1, 1, 1, 1, 1]}
+node_map[ArrayI][[&quot;ArrayI&quot;, &quot;ArrayI&quot;]][SplitBest] = SplitBest[&gt;0.000], weight = 0.2
+node_map[ArrayF][[&quot;ArrayF&quot;, &quot;ArrayF&quot;]][SplitBest] = SplitBest[&gt;0.000], weight = 0.2
+node_map[ArrayF][[&quot;ArrayF&quot;, &quot;ArrayF&quot;]][Div] = Div, weight = 0.1
+node_map[ArrayF][[&quot;ArrayF&quot;, &quot;ArrayF&quot;]][Mul] = Mul, weight = 1
+node_map[ArrayF][[&quot;ArrayF&quot;, &quot;ArrayF&quot;]][Sub] = Sub, weight = 0.5
+node_map[ArrayF][[&quot;ArrayF&quot;, &quot;ArrayF&quot;]][Add] = Add, weight = 0.5
+===
+</pre></div>
+</div>
+</div>
+</div>
+<p>Note that the <code class="docutils literal notranslate"><span class="pre">node_map</span></code> includes two <code class="docutils literal notranslate"><span class="pre">SplitBest</span></code> operators: one with the signature <code class="docutils literal notranslate"><span class="pre">ArrayI(ArrayI,</span> <span class="pre">ArrayI)</span></code> and one with the signature <code class="docutils literal notranslate"><span class="pre">ArrayF(ArrayF,</span> <span class="pre">ArrayF)</span></code>.
+This is because our dataset contains both interger and floating point data types.
+Note also that the default behavior is to give both of these nodes the same weight as specified by the user.</p>
+</section>
+<section id="sampling">
+<h2>Sampling<a class="headerlink" href="#sampling" title="Permalink to this heading">#</a></h2>
+<p>TODO. For now, see the mutation and crossover functions in the <span class="xref myst">Program</span> class.</p>
+</section>
 </section>
 
 
@@ -372,6 +462,22 @@ document.write(`
             </div>
             
             
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#initializing">Initializing</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#inspecting">Inspecting</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#sampling">Sampling</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
               
             
           </div>
