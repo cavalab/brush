@@ -38,41 +38,37 @@ State check_type(const ArrayXf& x);
 DataType StateType(const State& arg);
 ///////////////////////////////////////////////////////////////////////////////
 
+/*!
+* @class Dataset
+* @brief holds variable type data.
+* 
+*/
 class Dataset 
 {
-    /*!
-    * @class Dataset
-    * @brief holds X, y, and Z data.
-    * 
-    * 
-    * X: an N x m matrix of static features, where rows are samples and columns are features
-    * y: length N array, the target label
-    * Z: Longitudinal data
-    */
     //TODO: make this a json object that allows elements to be fetched by
     //name 
     //Dataset(ArrayXXf& X, ArrayXf& y, std::map<string, 
     //std::pair<vector<ArrayXf>, vector<ArrayXf>>>& Z): X(X), y(y), Z(Z){}
     private:
     public:
+        /// @brief keeps track of the unique data types in the dataset. 
         std::vector<DataType> unique_data_types;
+        /// @brief types of data in the features.  
         std::vector<DataType> feature_types;
+        /// @brief map from data types to features having that type.
         std::unordered_map<DataType,vector<string>> features_of_type;
 
+        
+        /// @brief dataset features, as key value pairs
+        std::map<string, State> features;
         // TODO: this should probably be a more complex type to include feature type 
         // and potentially other info, like arbitrary relations between features
-        std::map<string, State> features;
 
-        // ArrayXXf& X;
-        // const Ref<const ArrayXf> y;
+        
+        /// @brief length N array, the target label
         ArrayXf y;
-        // Longitudinal& Z;
+        /// @brief whether this is a classification problem
         bool classification;
-        bool validation; 
-        int n_samples;
-        int n_features;
-        // type_index ret_type;
-        // map<string, size_t> Xidx, Zidx;
 
         Dataset operator()(const vector<size_t>& idx) const;
         /// call init at the end of constructors

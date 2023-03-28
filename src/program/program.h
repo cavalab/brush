@@ -344,9 +344,8 @@ template<typename T> struct Program //: public tree<Node>
                                       weights.begin(), weights.end());
 
         // choose one of these options
-        string choice = r.random_choice(
-            PARAMS["mutation_options"].get<std::map<string,float>>()
-        );
+        auto mutation_options = PARAMS["mutation_options"].get<std::map<string,float>>();
+        string choice = r.random_choice(mutation_options);
 
         if (choice == "insert")
             child.insert_mutation(spot, SS);

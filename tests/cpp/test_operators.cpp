@@ -6,6 +6,7 @@
 
 TEST(Operators, Mutation)
 {
+    PARAMS["mutation_options"] = {{"point",0.5}, {"insert", 0.25}, {"delete", 0.25}};
     // test mutation
     // TODO: set random seed
     MatrixXf X(10,2);
@@ -25,11 +26,16 @@ TEST(Operators, Mutation)
     {
         for (int s = 1; s < 10; ++s)
         {
+            fmt::print("d={},s={}\n",d,s);
+            fmt::print("make_regressor\n");
             RegressorProgram PRG = SS.make_regressor(d, s);
+            fmt::print("PRG.fit(data);\n");
             PRG.fit(data);
             ArrayXf y_pred = PRG.predict(data);
+            fmt::print("auto Child = PRG.mutate(SS);\n");
             auto Child = PRG.mutate(SS);
 
+            fmt::print("print\n");
             fmt::print(
                 "=================================================\n"
                 "depth = {}, size= {}\n"
@@ -40,6 +46,7 @@ TEST(Operators, Mutation)
                 Child.get_model("compact", true)
             );
 
+            fmt::print("child fit\n");
             Child.fit(data);
             y_pred = Child.predict(data);
         }

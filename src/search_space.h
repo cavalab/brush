@@ -427,7 +427,7 @@ struct SearchSpace
     /// @return a Node 
     Node get_node_like(Node node) const
     {
-        if (Is<NodeType::Terminal>(node.node_type)){
+        if (Is<NodeType::Terminal, NodeType::Constant>(node.node_type)){
             return get_terminal(node.ret_type);
         }
 
