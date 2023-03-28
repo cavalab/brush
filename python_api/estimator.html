@@ -358,37 +358,37 @@ document.write(`
 This class shouldn’t be called directly; instead, call a child class like 
 <a class="reference internal" href="regressor.html#brush.estimator.BrushRegressor" title="brush.estimator.BrushRegressor"><code class="xref py py-class docutils literal notranslate"><span class="pre">BrushRegressor</span></code></a> or <a class="reference internal" href="classifier.html#brush.estimator.BrushClassifier" title="brush.estimator.BrushClassifier"><code class="xref py py-class docutils literal notranslate"><span class="pre">BrushClassifier</span></code></a>. 
 All of the shared parameters are documented here.</p>
-<dl class="field-list simple">
+<dl class="field-list">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><dl class="simple">
-<dt><strong>mode: str, default ‘classification’</strong></dt><dd><p>The mode of the estimator. Used by subclasses</p>
+<dt><strong>mode</strong><span class="classifier">str, default ‘classification’</span></dt><dd><p>The mode of the estimator. Used by subclasses</p>
 </dd>
-<dt><strong>pop_size: int, default 100</strong></dt><dd><p>Population size.</p>
+<dt><strong>pop_size</strong><span class="classifier">int, default 100</span></dt><dd><p>Population size.</p>
 </dd>
-<dt><strong>max_gen: int, default 100</strong></dt><dd><p>Maximum iterations of the algorithm.</p>
+<dt><strong>max_gen</strong><span class="classifier">int, default 100</span></dt><dd><p>Maximum iterations of the algorithm.</p>
 </dd>
-<dt><strong>verbosity: int, default 0</strong></dt><dd><p>Controls level of printouts.</p>
+<dt><strong>verbosity</strong><span class="classifier">int, default 0</span></dt><dd><p>Controls level of printouts.</p>
 </dd>
 <dt><strong>max_depth</strong><span class="classifier">int, default 0</span></dt><dd><p>Maximum depth of GP trees in the GP program. Use 0 for no limit.</p>
 </dd>
 <dt><strong>max_size</strong><span class="classifier">int, default 0</span></dt><dd><p>Maximum number of nodes in a tree. Use 0 for no limit.</p>
 </dd>
-<dt><strong>mutation_options: dict, default {“point”:0.5, “insert”: 0.25, “delete”:  0.25}</strong></dt><dd><p>A dictionary with keys naming the types of mutation and floating point 
+<dt><strong>mutation_options</strong><span class="classifier">dict, default {“point”:0.5, “insert”: 0.25, “delete”:  0.25}</span></dt><dd><p>A dictionary with keys naming the types of mutation and floating point 
 values specifying the fraction of total mutations to do with that method.</p>
 </dd>
 </dl>
 </dd>
 <dt class="field-even">Attributes<span class="colon">:</span></dt>
-<dd class="field-even"><dl class="simple">
-<dt><strong>best_estimator_: _brush.Program</strong></dt><dd><p>The final model picked from training. Used in subsequent calls to <a class="reference internal" href="#brush.estimator.BrushEstimator.predict" title="brush.estimator.BrushEstimator.predict"><code class="xref py py-func docutils literal notranslate"><span class="pre">predict()</span></code></a>.</p>
+<dd class="field-even"><dl>
+<dt><strong>best_estimator_</strong><span class="classifier">_brush.Program</span></dt><dd><p>The final model picked from training. Used in subsequent calls to <a class="reference internal" href="#brush.estimator.BrushEstimator.predict" title="brush.estimator.BrushEstimator.predict"><code class="xref py py-func docutils literal notranslate"><span class="pre">predict()</span></code></a>.</p>
 </dd>
-<dt><strong>archive_: list[deap_api.DeapIndividual]</strong></dt><dd><p>The final population from training.</p>
+<dt><strong>archive_</strong><span class="classifier">list[deap_api.DeapIndividual]</span></dt><dd><p>The final population from training.</p>
 </dd>
-<dt><strong>data_: _brush.Dataset</strong></dt><dd><p>The training data in Brush format.</p>
+<dt><strong>data_</strong><span class="classifier">_brush.Dataset</span></dt><dd><p>The training data in Brush format.</p>
 </dd>
-<dt><strong>search_space_: a Brush `SearchSpace` object.</strong></dt><dd><p>Holds the operators and terminals and sampling utilities to update programs.</p>
+<dt><strong>search_space_</strong><span class="classifier">a Brush <cite>SearchSpace</cite> object.</span></dt><dd><p>Holds the operators and terminals and sampling utilities to update programs.</p>
 </dd>
-<dt><strong>toolbox_: deap.Toolbox</strong></dt><dd><p>The toolbox used by DEAP for EA algorithm.</p>
+<dt><strong>toolbox_</strong><span class="classifier">deap.Toolbox</span></dt><dd><p>The toolbox used by DEAP for EA algorithm.</p>
 </dd>
 </dl>
 </dd>
