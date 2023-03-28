@@ -21,6 +21,7 @@ basics
 
 guide/index
 guide/contributing
+guide/development
 ```
 
 ```{toctree} 
