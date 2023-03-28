@@ -2,19 +2,19 @@
 
 <!-- start overview -->
 
-Brush is a strongly-typed genetic programming language. 
-It is designed for **b**ackpropagations and **r**ecursion **u**sing **s**earch **h**euristics.
+Brush is an interpretable machine learning library for training symbolic models. 
+It combines several learning paradigms (non-linear least squares, decision trees, symbolic regression) into a strongly-typed genetic programming language. 
 
 This project is **very much** under active development. 
 Expect api changes, bugs, breaking things, etc. 
 
-## Goals
+## Design Goals
 
-- flexibility to define n-ary trees of operators on data of variable types (singletons, arrays, matrices of floats, ints, and bools)
-- support for gradient descent over these programs
-- support for recursive splits that flow with gradients
-- fast-ish in C++
-- easy-to-use Python API
+- Flexibility to define n-ary trees of operators on data of variable types (singletons, arrays, time series, matrices of floats, ints, and bools)
+- Support for gradient descent over these programs
+- Support for recursive splits that flow with gradients
+- Fast-ish in C++
+- Easy-to-use Python API with low-level bindings
 
 ## Contact
 
@@ -35,7 +35,7 @@ GNU GPLv3, see [LICENSE](https://github.com/cavalab/brush/blob/master/LICENSE)
 
 <!-- end overview -->
 
-# Documentation
+# Quickstart
 
 For the user guide and API, see the [docs](https://cavalab.org/brush).
 
