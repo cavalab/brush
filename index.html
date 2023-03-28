@@ -332,7 +332,7 @@ document.write(`
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
 <li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Overview</a><ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#goals">Goals</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#design-goals">Design Goals</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#contact">Contact</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#acknowledgments">Acknowledgments</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#license">License</a></li>
@@ -355,18 +355,18 @@ document.write(`
                   
   <section id="overview">
 <h1>Overview<a class="headerlink" href="#overview" title="Permalink to this heading">#</a></h1>
-<p>Brush is a strongly-typed genetic programming language.
-It is designed for <strong>b</strong>ackpropagations and <strong>r</strong>ecursion <strong>u</strong>sing <strong>s</strong>earch <strong>h</strong>euristics.</p>
+<p>Brush is an interpretable machine learning library for training symbolic models.
+It combines several learning paradigms (non-linear least squares, decision trees, symbolic regression) into a strongly-typed genetic programming language.</p>
 <p>This project is <strong>very much</strong> under active development.
 Expect api changes, bugs, breaking things, etc.</p>
-<section id="goals">
-<h2>Goals<a class="headerlink" href="#goals" title="Permalink to this heading">#</a></h2>
+<section id="design-goals">
+<h2>Design Goals<a class="headerlink" href="#design-goals" title="Permalink to this heading">#</a></h2>
 <ul class="simple">
-<li><p>flexibility to define n-ary trees of operators on data of variable types (singletons, arrays, matrices of floats, ints, and bools)</p></li>
-<li><p>support for gradient descent over these programs</p></li>
-<li><p>support for recursive splits that flow with gradients</p></li>
-<li><p>fast-ish in C++</p></li>
-<li><p>easy-to-use Python API</p></li>
+<li><p>Flexibility to define n-ary trees of operators on data of variable types (singletons, arrays, time series, matrices of floats, ints, and bools)</p></li>
+<li><p>Support for gradient descent over these programs</p></li>
+<li><p>Support for recursive splits that flow with gradients</p></li>
+<li><p>Fast-ish in C++</p></li>
+<li><p>Easy-to-use Python API with low-level bindings</p></li>
 </ul>
 </section>
 <section id="contact">
@@ -465,7 +465,7 @@ Brush is being developed to learn clinical diagnostics in the <a class="referenc
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
 <li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Overview</a><ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#goals">Goals</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#design-goals">Design Goals</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#contact">Contact</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#acknowledgments">Acknowledgments</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#license">License</a></li>
