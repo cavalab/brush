@@ -216,8 +216,8 @@ class BrushClassifier(BrushEstimator,ClassifierMixin):
 
     def predict_proba(self, X):
         """Predict using the best estimator in the archive. """
-        X = self._check_X(X)
-        return self.best_estimator_.predict_proba(X)
+        data = self._make_data(X)
+        return self.best_estimator_.predict_proba(data)
 
 class BrushRegressor(BrushEstimator, RegressorMixin):
     """Brush for regression.
