@@ -241,7 +241,8 @@ template<typename T> struct Program //: public tree<Node>
     }
 
     string get_dot_model(){
-        string out = "digraph G {\norientation=landscape;\n";
+        // string out = "digraph G {\norientation=landscape;\n";
+        string out = "digraph G {\n";
 
         for (Iter iter = Tree.begin(); iter!=Tree.end(); iter++)
         {
@@ -256,9 +257,8 @@ template<typename T> struct Program //: public tree<Node>
                 else if (Is<NodeType::SplitOn>(parent.node_type) && i == 0)
                     label = fmt::format("{:.3f}",parent.W.at(i)); 
 
-                out += fmt::format("{} [comment=\"{}\"] -> {} [label=\"{}\"];\n", 
+                out += fmt::format("{} -> {} [label=\"{}\"];\n", 
                         parent.get_name(),
-                        parent.complete_hash,
                         kid->data.get_name(),
                         label
                         );
@@ -344,9 +344,8 @@ template<typename T> struct Program //: public tree<Node>
                                       weights.begin(), weights.end());
 
         // choose one of these options
-        string choice = r.random_choice(
-            PARAMS["mutation_options"].get<std::map<string,float>>()
-        );
+        auto mutation_options = PARAMS["mutation_options"].get<std::map<string,float>>();
+        string choice = r.random_choice(mutation_options);
 
         if (choice == "insert")
             child.insert_mutation(spot, SS);

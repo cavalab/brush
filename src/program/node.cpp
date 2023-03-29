@@ -88,7 +88,8 @@ void init_node_with_default_signature(Node& node)
         NT::Sqrt,
         NT::Sqrtabs,
         NT::Square,
-        NT::Logistic
+        NT::Logistic,
+        NT::CustomUnaryOp
         >(n)) 
     {
         node.set_signature<Signature<ArrayXf(ArrayXf)>>();
@@ -98,11 +99,33 @@ void init_node_with_default_signature(Node& node)
         NT::Sub,
         NT::Mul,
         NT::Div,
-        NT::Pow
+        NT::Pow,
+        NT::SplitBest,
+        NT::CustomSplit
         >(n))
      {
         node.set_signature<Signature<ArrayXf(ArrayXf,ArrayXf)>>();
     }  
+    else if (Is<
+        NT::Min,
+        NT::Max,
+        NT::Mean,
+        NT::Median,
+        NT::Sum,
+        NT::Prod,
+        NT::Softmax
+        >(n))
+    {
+        auto msg = fmt::format("Can't infer arguments for {} from json."
+            " Please provide them.\n",n);
+        HANDLE_ERROR_THROW(msg);
+    }
+    else if (Is<
+        NT::SplitOn
+        >(n))
+    {
+        node.set_signature<Signature<ArrayXf(ArrayXf,ArrayXf,ArrayXf)>>();
+    }
     else{
         node.set_signature<Signature<ArrayXf()>>();
     }

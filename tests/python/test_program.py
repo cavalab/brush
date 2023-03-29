@@ -1,13 +1,13 @@
 #!/usr/bin/env python3
 
-import pytest
+
+import _brush
+
 import numpy as np
 import pandas as pd
 from pmlb import fetch_data
 import json
-
-from _brush import Dataset, SearchSpace, read_csv
-from _brush.program import Regressor, Classifier
+import pytest
 
 test_y = np.array([1.,0.,1.4,1.,0.,1.,1.,0.,0.,0.])
 test_X = np.array([[1.1,2.0,3.0,4.0,5.0,6.5,7.0,8.0,9.0,10.0],
@@ -15,8 +15,8 @@ test_X = np.array([[1.1,2.0,3.0,4.0,5.0,6.5,7.0,8.0,9.0,10.0],
 
 class TestProgram():
     def test_make_program(self):
-        data = Dataset(test_X, test_y)
-        SS = SearchSpace(data)
+        data = _brush.Dataset(test_X, test_y)
+        SS = _brush.SearchSpace(data)
         # pytest.set_trace()
         for d in range(1,4):
             for s in range(1,20):
@@ -24,8 +24,8 @@ class TestProgram():
                 print(f"Tree model for depth {d}, size {s}:", prg.get_model())
 
     def test_fit_regressor(self):
-        data = Dataset(test_X, test_y)
-        SS = SearchSpace(data)
+        data = _brush.Dataset(test_X, test_y)
+        SS = _brush.SearchSpace(data)
         # pytest.set_trace()
         for d in range(1,4):
             for s in range(1,20):
@@ -37,8 +37,8 @@ class TestProgram():
 
     def test_fit_classifier(self):
         df = pd.read_csv('docs/examples/datasets/d_analcatdata_aids.csv')
-        data = Dataset(df.drop(columns='target'), df['target'])
-        SS = SearchSpace(data)
+        data = _brush.Dataset(df.drop(columns='target'), df['target'])
+        SS = _brush.SearchSpace(data)
         # pytest.set_trace()
         for d in range(1,4):
             for s in range(1,20):
@@ -51,7 +51,7 @@ class TestProgram():
 
     def test_json_regressor(self):
 
-        data = read_csv("docs/examples/datasets/d_2x1_plus_3x2.csv","target")
+        data = _brush.read_csv("docs/examples/datasets/d_2x1_plus_3x2.csv","target")
         json_program = {
             "Tree": [
                 { "node_type":"Add", "is_weighted": True },
@@ -61,7 +61,7 @@ class TestProgram():
             "is_fitted_":False
         }
         print( "initial json: {}\n", json_program)
-        PRG = Regressor(json_program)
+        PRG = _brush.program.Regressor(json_program)
         print( "program:", PRG.get_model())
         # fit model
         print( "fit")

@@ -21,22 +21,6 @@ void bind_programs(py::module &);
 void bind_params(py::module &);
 
 PYBIND11_MODULE(_brush, m) {
-     m.doc() = R"pbdoc(
-         Python interface for Brush
-         --------------------------
-
-         .. currentmodule:: brush.core
-
-         .. autosummary::
-            :toctree: _generate
-
-            Dataset
-            SearchSpace
-            Regressor
-            Classifier
-            MulticlassClassifier
-            Representer
-     )pbdoc";
 
 #ifdef VERSION_INFO
      m.attr("__version__") = MACRO_STRINGIFY(VERSION_INFO);

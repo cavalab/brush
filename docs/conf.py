@@ -66,10 +66,12 @@ extensions = [
   "breathe",  # Use Doxygen output as input for Sphinx
   "sphinx.ext.graphviz",
   'numpydoc',
-  "myst_parser",
   'sphinx_copybutton',
   'sphinx.ext.mathjax',
-  'sphinx_math_dollar'
+  'sphinx_math_dollar',
+  'myst_nb',
+  # 'nbsphinx',
+  # "myst_parser",
 ]
 
 autosummary_generate = True
@@ -82,18 +84,19 @@ templates_path = ['_templates']
 # This pattern also affects html_static_path and html_extra_path.
 exclude_patterns = ['_build', 'Thumbs.db', '.DS_Store','thirdparty']
 
-
+nb_output_stderr="remove"
 # -- Options for HTML output -------------------------------------------------
 
 # The theme to use for HTML and HTML Help pages.  See the documentation for
 # a list of builtin themes.
 #
 html_theme = 'sphinx_book_theme'
-
+html_favicon = "_static/paint-brush-solid.svg"
+# html_logo = "_static/paint-brush-solid.svg"
 # Add any paths that contain custom static files (such as style sheets) here,
 # relative to this directory. They are copied after the builtin static files,
 # so a file named "default.css" will overwrite the builtin "default.css".
-# html_static_path = ['_static']
+html_static_path = ['_static']
 
 # Breathe configuration
 breathe_default_project = "brush"
@@ -124,7 +127,10 @@ html_theme_options = {
     "use_repository_button": True,
     "path_to_docs":'docs/',
     'home_page_in_toc':True,
-    "show_navbar_depth": 1
+    "show_navbar_depth": 1,
+    # "logo": {
+    #       "image_dark": "_static/paint-brush-solid.svg",
+    #   },
 }
 
 # html_sidebars = {

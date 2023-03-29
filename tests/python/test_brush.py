@@ -1,14 +1,12 @@
 #!/usr/bin/env python3
 
+import brush
 import pytest
 import numpy as np
 import pandas as pd
 from pmlb import fetch_data
 from sklearn.utils import resample
 
-# from _brush import Dataset, SearchSpace 
-# from _brush.program import Regressor, Classifier
-import brush
 
 dfc = pd.read_csv('docs/examples/datasets/d_analcatdata_aids.csv')
 Xc = dfc.drop(columns='target')

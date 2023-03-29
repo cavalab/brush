@@ -2,23 +2,31 @@
 
 <!-- start overview -->
 
-Brush is a strongly-typed genetic programming language. 
-It is designed for **b**ackpropagations and **r**ecursion **u**sing **s**earch **h**euristics.
+Brush is an interpretable machine learning library for training symbolic models. 
+It wraps multiple learning paradigms (gradient descent, decision trees, symbolic regression) into a strongly-typed genetic programming language (Montana, 1995 [PDF](http://davidmontana.net/papers/stgp.pdf)). 
 
 This project is **very much** under active development. 
-Expect api changes, bugs, breaking things, etc. 
+Expect api changes and broken things.  
 
-## Goals
+For the user guide and API, see the [docs](https://cavalab.org/brush).
 
-- flexibility to define n-ary trees of operators on data of variable types (singletons, arrays, matrices of floats, ints, and bools)
-- support for gradient descent over these programs
-- support for recursive splits that flow with gradients
-- fast-ish in C++
-- easy-to-use Python API
+## Features / Design Goals
+
+- Flexibility to define n-ary trees of operators on data of variable types (singletons, arrays, time series, matrices of floats, ints, and bools)
+- Support for gradient descent over these programs
+- Support for recursive splits that flow with gradients
+- Fast-ish in C++
+- Easy-to-use Python API with low-level bindings
 
 ## Contact
 
-Maintained by William La Cava @lacava (william.lacava@childrens.harvard.edu)
+Brush is maintained by William La Cava ([@lacava](https://github.com/lacava), william.lacava@childrens.harvard.edu) and initially authored by him and Joseph D. Romano ([@JDRomano2](https://github.com/JDRomano2)). 
+
+Contributors include:
+
+- Zongjun Liu ([bio](https://cavalab.org/members/liu-zongjun/))
+- Guilherme Aldeia ([@gAldeia](https://github.com/gAldeia))
+- Fabricio Olivetti de Franca ([@folivetti](https://github.com/folivetti))
 
 ## Acknowledgments
 
@@ -31,71 +39,87 @@ GNU GPLv3, see [LICENSE](https://github.com/cavalab/brush/blob/master/LICENSE)
 
 <!-- end overview -->
 
-# Installation 
+# Quickstart 
+
+## Installation
 
 <!-- start installation -->
-
-## Install the brush environment
+Clone the repo:
 
 ```
+git clone https://github.com/cavalab/brush.git
+```
+
+Install the brush environment:
+
+```
+cd brush
 conda env create
 ```
 
-If you are just using (not editing) the Python package:
+Install brush: 
 
 ```text
 pip install .
 ```
 
 from the repo root directory.
-
-## Development 
-
-```text
-python setup.py develop
-```
-
-Gives you an editable install for messing with Python code in the project. 
-(Any underyling cpp changes require this command to be re-run).
-
-## Package Structure
-
-There are a few different moving parts that can be built in this project:
-
-- the cpp brush library (called `cbrush`)
-- the cpp tests, written google tests (an executable named `tests`)
-    - depends on `cbrush`
-- the cpp-python bindings (a Python module written in cpp named `_brush`)
-    - depends on `cbrush`
-- the `brush` Python module
-    - depends on `_brush`
-- the docs (built with a combination of Sphinx and Doxygen)
-    - depends on `brush`
-
-
-Pip will install the `brush` module and call `CMake` to build the `_brush` extension.   
-It will not build the docs or cpp tests. 
-
-## Tests
-
-## Python
-
-The tests are run by calling pytest from the root directory. 
-
-```bash
-pytest 
-```
-
-## Cpp
-
-If you are developing the cpp code and want to build the cpp tests, run the following: 
-
-```
-./configure
-./install tests
-```
+If you are just planning to develop, see [Development](#development).
 
 <!-- end installation -->
+
+
+
+## Basic Usage
+
+<!-- start basics -->
+
+Brush is designed to be used similarly to any [sklearn-style estimator](https://sklearn.org).
+That means it should be compatible with sklearn pipelines, wrappers, and so forth. 
+
+In addition, Brush provides functionality that allows you to feed in more complicated data types than just matrices of floating point values. 
+
+## Regression
+
+```python
+# load data
+import pandas as pd
+df = pd.read_csv('docs/examples/datasets/d_enc.csv')
+X = df.drop(columns='label')
+y = df['label']
+
+# import and make a regressor
+from brush import BrushRegressor
+est = BrushRegressor()
+
+# use like you would a sklearn regressor
+est.fit(X,y)
+y_pred = est.predict(X)
+
+print('score:', est.score(X,y))
+```
+
+## Classification
+
+```python
+# load data
+import pandas as pd
+df = pd.read_csv('docs/examples/datasets/d_analcatdata_aids.csv')
+X = df.drop(columns='target')
+y = df['target']
+
+# import and make a classifier
+from brush import BrushClassifier
+est = BrushClassifier()
+# use like you would a sklearn classifier
+est.fit(X,y)
+y_pred = est.predict(X)
+y_pred_proba = est.predict_proba(X)
+
+print('score:', est.score(X,y))
+```
+
+<!-- end basics -->
 
 
 ## Contributing
@@ -152,73 +176,51 @@ In general, this is the approach:
 
 <!-- end contributing -->
 
+# Development 
+<!-- start development -->
 
-## Basic Usage
-
-<!-- start basics -->
-
-Brush is designed to be used similarly to any [sklearn-style estimator](https://sklearn.org).
-That means it should be compatible with sklearn pipelines, wrappers, and so forth. 
-
-In addition, Brush provides functionality that allows you to feed in more complicated data types than just matrices of floating point values. 
-
-## Regression
-
-```python
-# load data
-import pandas as pd
-df = pd.read_csv('docs/examples/datasets/d_enc.csv')
-X = dfr.drop(columns='label')
-y = dfr['label']
-
-# import and make a regressor
-import pandas as pd
-from brush import BrushRegressor
-est = BrushRegressor()
-
-# use like you would a sklearn regressor
-est.fit(X,y)
-y_pred = est.predict(X)
-
-print('score:', est.score(X,y))
+```text
+python setup.py develop
 ```
 
-## Classification
+Gives you an editable install for messing with Python code in the project. 
+(Any underyling cpp changes require this command to be re-run).
 
-```python
-# load data
-import pandas as pd
-df = pd.read_csv('docs/examples/datasets/d_analcatdata_aids.csv')
-X = dfc.drop(columns='target')
-y = dfc['target']
+## Package Structure
 
-# import and make a classifier
-import pandas as pd
-from brush import BrushClassifier
-est = BrushClassifier()
-# use like you would a sklearn classifier
-est.fit(X,y)
-y_pred = est.predict(X)
-y_pred_proba = est.predict_proba(X)
+There are a few different moving parts that can be built in this project:
 
-print('score:', est.score(X,y))
+- the cpp brush library (called `cbrush`)
+- the cpp tests, written google tests (an executable named `tests`)
+    - depends on `cbrush`
+- the cpp-python bindings (a Python module written in cpp named `_brush`)
+    - depends on `cbrush`
+- the `brush` Python module
+    - depends on `_brush`
+- the docs (built with a combination of Sphinx and Doxygen)
+    - depends on `brush`
+
+
+Pip will install the `brush` module and call `CMake` to build the `_brush` extension.   
+It will not build the docs or cpp tests. 
+
+## Tests
+
+### Python
+
+The tests are run by calling pytest from the root directory. 
+
+```bash
+pytest 
 ```
 
-<!-- end basics -->
+### Cpp
 
-# User Guide
+If you are developing the cpp code and want to build the cpp tests, run the following: 
 
-<!-- start guide -->
+```
+./configure
+./install tests
+```
 
-# Data types
-
-<!-- start datatypes -->
-
-<!-- end datatypes -->
-
-## Model Visualization
-
-<!-- start visualization -->
-
-<!-- end visualization -->
-
+<!-- end development -->

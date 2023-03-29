@@ -120,17 +120,20 @@ if (GTEST)
     include(FetchContent)
     FetchContent_Declare(
     googletest
-    GIT_REPOSITORY https://github.com/google/googletest.git
-    GIT_TAG release-1.12.1
+    # GIT_REPOSITORY https://github.com/google/googletest.git
+    # GIT_TAG release-1.12.1
+    URL https://github.com/google/googletest/archive/03597a01ee50ed33e9dfd640b249b4be3799d395.zip
     )
     # For Windows: Prevent overriding the parent project's compiler/linker settings
     set(gtest_force_shared_crt ON CACHE BOOL "" FORCE)
     FetchContent_MakeAvailable(googletest)
+    # Find tests
     file(GLOB_RECURSE testsSrc "tests/*.cpp")
     message(STATUS "testsSrc: '${testsSrc}")
+    enable_testing()
     add_executable(tests ${testsSrc})
     # Link runTests with what we want to test and the GTest and pthread library
-    target_link_libraries(tests cbrush gtest_main pthread fmt::fmt)
+    target_link_libraries(tests cbrush GTest::gtest_main pthread fmt::fmt)
     # Google tests
     include(GoogleTest)
     gtest_discover_tests(tests)

@@ -1,8 +1,12 @@
 #include "search_space.h"
 #include "program/program.h"
+#include <iostream>
 
 namespace Brush{
 
+/// @brief generate terminals from the dataset features and random constants.
+/// @param d a dataset
+/// @return a vector of nodes 
 vector<Node> generate_terminals(const Dataset& d)
 {
     vector<Node> terminals;
@@ -18,10 +22,17 @@ vector<Node> generate_terminals(const Dataset& d)
         );
         ++i;
     };
+
+    // add a constant
+    terminals.push_back( Node(NodeType::Constant, "C", Signature<ArrayXf()>{}));
     return terminals;
 };
 
 std::unordered_map<std::size_t, std::string> ArgsName; 
+
+void SearchSpace::print() const { 
+    std::cout << fmt::format("{}\n", *this) << std::flush; 
+}
 
 void SearchSpace::init(const Dataset& d, const unordered_map<string,float>& user_ops)
 {
@@ -58,7 +69,6 @@ void SearchSpace::init(const Dataset& d, const unordered_map<string,float>& user
         terminal_weights[term.ret_type].push_back(1.0);
     }
 
-    // fmt::print("{}\n", *this);
 
 };
 

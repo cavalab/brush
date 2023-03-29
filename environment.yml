@@ -8,12 +8,13 @@ dependencies:
     - fmt
     - gcc >= 12.0
     - gxx >= 12.0
-    - gtest #=1.10.0
     - ninja
     - ceres-solver
     - pybind11 #=2.6.2
     - pytest #=6.2.4
     - pydot
+    - scikit-learn
+    - pandas
     # these are not required for install
     - jupyter
     - ipython
@@ -22,3 +23,5 @@ dependencies:
     - pybind11_json
     - pip:
       - graphviz
+      - deap
+      - pmlb

@@ -64,39 +64,30 @@ struct Node {
 
     /// full name of the node, with types
     string name;
-    // whether to center the operator in pretty printing
+    /// whether to center the operator in pretty printing
     bool center_op;
-    // chance of node being selected for variation
+    /// chance of node being selected for variation
     float prob_change; 
-    // whether node is modifiable
+    /// whether node is modifiable
     bool fixed;
+    /// @brief the node type
     NodeType node_type;
+    /// @brief a hash of the signature
     std::size_t sig_hash;
+    /// @brief a hash of the dual of the signature (for NLS)
     std::size_t sig_dual_hash;
+    /// @brief return data type
     DataType ret_type;
+    /// @brief argument data types
     std::vector<DataType> arg_types;
+    /// @brief whether this node is weighted
     bool is_weighted;
+    /// @brief the weights of the node. also used for splitting thresholds.
     vector<float> W; 
-    string feature; // feature for terminals or splitting nodes 
+    /// @brief feature name for terminals or splitting nodes
+    string feature; 
+    /// @brief a complete hash / unique ID for the node, except weights
     size_t complete_hash; 
-    // // serialization
-    // NLOHMANN_DEFINE_TYPE_INTRUSIVE(Node, 
-    //     name, 
-    //     center_op, 
-    //     prob_change,
-    //     fixed,
-    //     node_type,
-    //     sig_hash,
-    //     sig_dual_hash,
-    //     ret_type,
-    //     arg_types,
-    //     is_weighted,
-    //     W,
-    //     feature,
-    //     complete_hash
-    // ) 
-
-
 
     Node() = default; 
 
@@ -111,22 +102,9 @@ struct Node {
         , ret_type(DataTypeEnum<typename S::RetType>::value)
         , is_weighted(weighted)
     {
-        /* cout << "instantiated " << name << " with sig hash " << sig_hash << " and return type " << DataTypeName.at(ret_type) << endl; */
-
-        // if (weighted){   
-        //     W.resize(arg_types.size());
-        //     for (int i = 0; i < W.size(); ++i)
-        //         W.at(i) = 1.0;  
-        // }
-        // else if (Util::in(vector<NodeType>{NodeType::SplitOn, NodeType::SplitBest}, type))
-        //     W.resize(1); // W.at(0) represents the threshold of the split
-        // else
-
-        // set_complete_hash();
-        // set_prob_change(1.0);
-        // fixed=false;
         init();
     }
+
     template<typename S>
     void set_signature()
     {
@@ -136,10 +114,14 @@ struct Node {
         ret_type = DataTypeEnum<typename S::RetType>::value;
         set_complete_hash();
     }
+
     void init(){
 
         if (is_weighted){   
-            W.resize(arg_types.size());
+            if (node_type == NodeType::Constant)
+                W.resize(1);
+            else
+                W.resize(arg_types.size());
             for (int i = 0; i < W.size(); ++i)
                 W.at(i) = 1.0;  
         }
@@ -153,6 +135,11 @@ struct Node {
 
     }
 
+    /// @brief Terminal specialization
+    /// @tparam S signature 
+    /// @param type node type
+    /// @param feature_name name of the terminal 
+    /// @param signature signature 
     template<typename S>
     explicit Node(NodeType type, string feature_name, S signature) noexcept
         : node_type(type)
@@ -161,10 +148,10 @@ struct Node {
         , ret_type(DataTypeEnum<typename S::RetType>::value)
         , sig_hash(S::hash())
         , sig_dual_hash(S::Dual::hash())
-        , is_weighted(false)
     {
         /* cout << "instantiated " << name << " from feature " << feature << " with output type " << DataTypeName.at(ret_type) << endl; */
         arg_types = vector<DataType>{};
+        is_weighted = type == NodeType::Constant;
         init();
     }
 

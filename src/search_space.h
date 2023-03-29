@@ -52,36 +52,29 @@ vector<Node> generate_terminals(const Dataset& d);
 
 extern std::unordered_map<std::size_t, std::string> ArgsName; 
 
+/*! @brief Holds a search space, consisting of operations and terminals
+    * and functions, and methods to sample that space to create programs. 
+    *
+    * The set of operators is a user controlled parameter; however, we can 
+    * automate, to some extent, the set of possible operators based on the 
+    * data types in the problem. 
+    * Constraints on operators based on data types: 
+    *  - only user specified operators are included. 
+    *  - operators whose arguments are covered by terminal types are included
+    *      first. Then, a second pass includes any operators whose arguments
+    *      are covered by terminal_types + return types of the current set of 
+    *      operators. One could imagine this continuing ad infinitum, but we
+    *      just do two passes for simplicity. 
+    *  - assertion check to make sure there is at least one operator that 
+    *      returns the output type of the model. 
+    *
+    *
+    * Parameters
+    * ----------
+    *
+*/
 struct SearchSpace
 {
-    /* @brief Construct a search space, consisting of operations and terminals
-     * and functions that sample the space. 
-     *
-     * The set of operators is a user controlled parameter; however, we can 
-     * automate, to some extent, the set of possible operators based on the 
-     * data types in the problem. 
-     * Constraints on operators based on data types: 
-     *  - only user specified operators are included. 
-     *  - operators whose arguments are covered by terminal types are included
-     *      first. Then, a second pass includes any operators whose arguments
-     *      are covered by terminal_types + return types of the current set of 
-     *      operators. One could imagine this continuing ad infinitum, but we
-     *      just do two passes for simplicity. 
-     *  - assertion check to make sure there is at least one operator that 
-     *      returns the output type of the model. 
-     *
-     *
-     * Params
-     *
-     * @param node_map: Maps return types to argument types to operator names. 
-     *  schema:
-     *      { return_type : { arguments_type : {node_type : node } }}
-     *
-     * @param terminal_map: Maps return types to terminals. 
-     *      { return_type : vector of Nodes } 
-     *
-     * @param terminal_types: A set of the available terminal types. 
-    */
     using ArgsHash = std::size_t; 
 
     template<typename T>
@@ -89,12 +82,36 @@ struct SearchSpace
                     unordered_map<ArgsHash,         // hash of arg types
                         unordered_map<NodeType,   // node type 
                             T>>>;        // the data!
+    
+    /**
+     * @brief Maps return types to argument types to node types. 
+     * 
+     *  schema:
+     * 
+     *      { return_type : { arguments_type : {node_type : node } }}
+     */
     Map<Node> node_map;
+
+    /// @brief A map of weights corresponding to elements in @ref node_map, used to weight probabilities of each node being sampled from the map. 
     Map<float> weight_map; 
 
+    /**
+     * @brief Maps return types to terminals. 
+     * 
+     * schema:
+     * 
+     *      { return_type : vector of Nodes } 
+     *
+     * 
+     */
     unordered_map<DataType, vector<Node>> terminal_map;
+
+    /// @brief A map of weights corresponding to elements in @ref terminal_map, used to weight probabilities of each node being sampled from the map. 
     unordered_map<DataType, vector<float>> terminal_weights;
+
+    /// @brief A vector storing the available return types of terminals. 
     vector<DataType> terminal_types;
+
     // serialization
 #ifndef DOXYGEN_SKIP
 
@@ -108,21 +125,64 @@ struct SearchSpace
 
 #endif
     
+    /**
+     * @brief Makes a random program.
+     * 
+     * We use an implementation of PTC2 for strongly typed GP from 
+     * 
+     * Sean Luke. "Two fast tree-creation algorithms for genetic programming"
+     * (https://doi.org/10.1109/4235.873237)
+     * 
+     * @tparam PT program type
+     * @param max_d max depth of the program
+     * @param max_size max size of the programd 
+     * @return a program of type PTsize 
+     * 
+     */
     template<typename PT>
     PT make_program(int max_d=0, int max_size=0);
 
+    /// @brief Makes a random regressor program. Convenience wrapper for @ref make_program
+    /// @param max_d max depth of the program
+    /// @param max_size max size of the program
+    /// @return a regressor program 
     RegressorProgram make_regressor(int max_d = 0, int max_size = 0);
+
+    /// @brief Makes a random classifier program. Convenience wrapper for @ref make_program
+    /// @param max_d max depth of the program
+    /// @param max_size max size of the program
+    /// @return a classifier program 
     ClassifierProgram make_classifier(int max_d = 0, int max_size = 0);
+
+    /// @brief Makes a random multiclass classifier program. Convenience wrapper for @ref make_program
+    /// @param max_d max depth of the program
+    /// @param max_size max size of the program
+    /// @return a multiclass classifier program 
     MulticlassClassifierProgram make_multiclass_classifier(int max_d = 0, int max_size = 0);
+
+    /// @brief Makes a random representer program. Convenience wrapper for @ref make_program
+    /// @param max_d max depth of the program
+    /// @param max_size max size of the program
+    /// @return a representer program 
     RepresenterProgram make_representer(int max_d = 0, int max_size = 0);
 
     SearchSpace() = default;
+
+    /// @brief Construct a search space
+    /// @param d A dataset containing terminal definitions
+    /// @param user_ops Optional user-provided dictionary of operators with their probability of being chosen
     SearchSpace(const Dataset& d, const unordered_map<string,float>& user_ops = {}){
         init(d,user_ops);
     }
 
+    /// @brief Called by the constructor to initialize the search space
+    /// @param d A dataset containing terminal definitions
+    /// @param user_ops Optional user-provided dictionary of operators with their probability of being chosen
     void init(const Dataset& d, const unordered_map<string,float>& user_ops = {});
 
+    /// @brief check if a return type is in the node map
+    /// @param R data type
+    /// @return true if it exists 
     bool check(DataType R) const {
         if (node_map.find(R) == node_map.end()){
             auto msg = fmt::format("{} not in node_map\n",R);
@@ -130,6 +190,11 @@ struct SearchSpace
         }
         return true;
     }
+
+    /// @brief check if a function signature is in the search space
+    /// @param R return type
+    /// @param sig_hash signature hash
+    /// @return true if it exists
     bool check(DataType R, size_t sig_hash) const
     {
         if (check(R)){
@@ -140,6 +205,12 @@ struct SearchSpace
         }
         return true;
     }
+
+    /// @brief check if a typed Node is in the search space
+    /// @param R return type
+    /// @param sig_hash signature hash
+    /// @param type the node type
+    /// @return true if it exists
     bool check(DataType R, size_t sig_hash, NodeType type) const
     {
         if (check(R,sig_hash)){
@@ -150,18 +221,33 @@ struct SearchSpace
             }}
         return true;
     }
-    // template<typename R>
+
     template<typename F> Node get(const string& name);
 
+    /// @brief get a typed node 
+    /// @param type the node type 
+    /// @param R the return type of the node
+    /// @param sig_hash the signature hash of the node
+    /// @return the matching [Node](@ref Node)
     Node get(NodeType type, DataType R, size_t sig_hash)
     {
         check(R, sig_hash, type);
         return node_map.at(R).at(sig_hash).at(type);
     };
 
+    /// @brief get a typed node. 
+    /// @tparam S the signature of the node, inferred.  
+    /// @param type the node type 
+    /// @param R the return type of the node
+    /// @param sig the signature of the node 
+    /// @return the matching Node 
     template<typename S>
     Node get(NodeType type, DataType R, S sig){ return get(type, R, sig.hash()); };
 
+    /// @brief Get a specific node type that matches a return value. 
+    /// @param type the node type
+    /// @param R the return type
+    /// @return A Node of type `type` with return type `R`. 
     Node get(NodeType type, DataType R)
     {
         check(R);
@@ -184,7 +270,8 @@ struct SearchSpace
                                    weights.begin(),
                                    weights.end()));
     };
-    /// get a terminal 
+
+    /// get a random terminal 
     Node get_terminal() const
     {
         //TODO: match terminal args_type (probably '{}' or something?)
@@ -196,7 +283,8 @@ struct SearchSpace
                 terminal_weights.at(match.first).end()
                 );
     };
-    /// get a typed terminal 
+
+    /// get a terminal with return type `R` 
     Node get_terminal(DataType R) const
     {
         if (terminal_map.find(R) == terminal_map.end()){
@@ -210,9 +298,10 @@ struct SearchSpace
         return rval;
     };
 
+    /// @brief get weights of the return types 
+    /// @return a weight vector, each element corresponding to a return type.
     vector<float> get_weights() const
     {
-        // returns a weight vector, each element corresponding to a return type.
         vector<float> v;
         for (auto& [ret, arg_w_map]: weight_map) 
         {
@@ -229,9 +318,11 @@ struct SearchSpace
         return v;
     };
 
+    /// @brief get weights of the argument types matching return type `ret`.
+    /// @param ret return type
+    /// @return a weight vector, each element corresponding to an args type. 
     vector<float> get_weights(DataType ret) const
     {
-        // returns a weight vector, each element corresponding to an args type.
         vector<float> v;
         for (const auto& [arg, name_map] : weight_map.at(ret))
         {
@@ -244,16 +335,23 @@ struct SearchSpace
         }
         return v;
     };
+
+    /// @brief get the weights of nodes matching a signature. 
+    /// @param ret return type
+    /// @param sig_hash signature hash
+    /// @return a weight vector, each element corresponding to a node.
     vector<float> get_weights(DataType ret, ArgsHash sig_hash) const
     {
-        // returns a weight vector, each element corresponding to an args type.
         vector<float> v;
         for (const auto& [name, w]: weight_map.at(ret).at(sig_hash))
             v.push_back(w); 
 
         return v;
     };
-    /// get an operator 
+
+    /// @brief get an operator matching return type `ret`. 
+    /// @param ret return type
+    /// @return a randomly chosen operator
     Node get_op(DataType ret) const
     {
         check(ret);
@@ -274,18 +372,21 @@ struct SearchSpace
                                    name_w.end())).second;
     };
 
-    // get operator with at least one argument matching arg 
-    // thoughts (TODO):
-    //  this could be templated by return type and arg. although the lookup in the map should be
-    //  fairly fast. 
+    
+    /// @brief get operator with at least one argument matching arg 
+    /// @param ret return type
+    /// @param arg argument type to match
+    /// @param terminal_compatible if true, the other args the returned operator takes must exist in the terminal types. 
+    /// @return a matching operator. 
     Node get_op_with_arg(DataType ret, DataType arg, 
                               bool terminal_compatible=true) const
     {
+        // thoughts (TODO):
+        //  this could be templated by return type and arg. although the lookup in the map should be
+        //  fairly fast. 
         //TODO: these needs to be overhauled 
         // fmt::print("get_op_with_arg");
         check(ret);
-        // terminal_compatible: the other args the returned operator takes must exist in the
-        // terminal types. 
 
         auto args_map = node_map.at(ret);
         vector<Node> matches;
@@ -321,10 +422,12 @@ struct SearchSpace
                                    weights.begin(), weights.end()));
     };
     
-    /// get a node wth matching return type and argument types
+    /// @brief get a node with a signature matching `node`
+    /// @param node the node to match
+    /// @return a Node 
     Node get_node_like(Node node) const
     {
-        if (Is<NodeType::Terminal>(node.node_type)){
+        if (Is<NodeType::Terminal, NodeType::Constant>(node.node_type)){
             return get_terminal(node.ret_type);
         }
 
@@ -337,10 +440,11 @@ struct SearchSpace
                ).second;
     };
 
+    /// @brief prints the search space map. 
+    void print() const; 
+
     private:
-        /* template<typename T, > */
-        /* static constexpr bool contains() { return is_in_v<T, Args...>; } */
-        /* static constexpr auto MakeNode(bool weighted) */
+
         template<NodeType NT, typename S>
         requires (!is_in_v<NT, NodeType::Terminal, NodeType::Constant>)
         static constexpr std::optional<Node> CreateNode(
@@ -435,15 +539,9 @@ T RandomDequeue(std::vector<T>& Q)
     return val;
 };
 
-/// constructs a tree using functions, terminals, and settings
 template<typename PT>
 PT SearchSpace::make_program(int max_d, int max_size)
 {
-    /*
-    * implementation of PTC2 for strongly typed GP from Luke et al. 
-    * "Two fast tree-creation algorithms for genetic programming"
-    *  
-    */
     if (max_d == 0)
         max_d = r.rnd_int(1, PARAMS["max_depth"].get<int>());
     if (max_size == 0)
