@@ -19,3 +19,7 @@ Install the python wrapper from the root directory:
 Make sure that you have the python package `pytest` installed. From the root directory of this repository simply call:
 
 `pytest`
+
+Or, to target a specific test:
+
+`pytest path/to/test_file.py`
