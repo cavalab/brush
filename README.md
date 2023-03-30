@@ -22,16 +22,18 @@ For the user guide and API, see the [docs](https://cavalab.org/brush).
 
 Brush is maintained by William La Cava ([@lacava](https://github.com/lacava), william.lacava@childrens.harvard.edu) and initially authored by him and Joseph D. Romano ([@JDRomano2](https://github.com/JDRomano2)). 
 
-Contributors include:
+Special thanks to these contributors:
 
-- Zongjun Liu ([bio](https://cavalab.org/members/liu-zongjun/))
 - Guilherme Aldeia ([@gAldeia](https://github.com/gAldeia))
 - Fabricio Olivetti de Franca ([@folivetti](https://github.com/folivetti))
+- Zongjun Liu ([@msnliu](https://github.com/msnliu))
+- Daniel S. Herman 
+
 
 ## Acknowledgments
 
-This work is supported by grant R00-LM012926 from the National Library of Medicine. 
-Brush is being developed to learn clinical diagnostics in the [Cava Lab at Harvard Medical School](http://cavalab.org). 
+Brush is being developed to improve clinical diagnostics in the [Cava Lab at Harvard Medical School](http://cavalab.org). 
+This work is partially funded by grant R00-LM012926 from the National Library of Medicine and a Patient-Centered Outcomes Research Institute (PCORI) Award (ME-2020C1D-19393).
 
 ## License
 
