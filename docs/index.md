@@ -30,5 +30,4 @@ guide/development
 
 python_api/index
 cpp_api/index
-
 ```

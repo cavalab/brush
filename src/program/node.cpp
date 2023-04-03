@@ -23,12 +23,12 @@ auto Node::get_name() const noexcept -> std::string
         return feature;
     else if (Is<NodeType::Constant>(node_type))
     {
-        return fmt::format("{:.3f}", W.at(0));
+        return fmt::format("{:.3f}", W);
     }
     else if (Is<NodeType::SplitBest>(node_type))
-        return fmt::format("SplitBest[{}>{:.3f}]", feature, W.at(0));
+        return fmt::format("SplitBest[{}>{:.3f}]", feature, W);
     else if (Is<NodeType::SplitOn>(node_type))
-        return fmt::format("SplitOn[{:.3f}]", W.at(0));
+        return fmt::format("SplitOn[{:.3f}]", W);
     else
         return name;
 }

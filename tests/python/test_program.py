@@ -63,11 +63,11 @@ def test_json_regressor():
     data = _brush.read_csv("docs/examples/datasets/d_2x1_plus_3x2.csv","target")
     json_program = {
         "Tree": [
-            { "node_type":"Add", "is_weighted": True },
-                { "node_type":"Terminal", "feature":"x1" },
-                { "node_type":"Terminal", "feature":"x2" }
-        ],
-        "is_fitted_":False
+                { "node_type":"Add", "is_weighted": False },
+                { "node_type":"Terminal", "feature":"x1", "is_weighted": True},
+                { "node_type":"Terminal", "feature":"x2", "is_weighted": True}
+            ],
+            "is_fitted_":False
     }
     print( "initial json: {}\n", json_program)
     prg = _brush.program.Regressor(json_program)

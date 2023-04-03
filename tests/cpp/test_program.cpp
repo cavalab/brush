@@ -179,15 +179,17 @@ TEST(Program, OptimizeAdditionPositiveWeights)
         {"Tree", {
         {
             {"node_type","Add"},
-            {"is_weighted", true}
+            {"is_weighted", false}
         },
         {
             {"node_type","Terminal"},
             {"feature","x1"},
+            {"is_weighted", true}
         },
         {
             {"node_type","Terminal"},
             {"feature","x2"},
+            {"is_weighted", true}
         }
         }},
         {"is_fitted_",false}
@@ -206,8 +208,10 @@ TEST(Program, OptimizeAdditionPositiveWeights)
     PRG.fit(data);
     fmt::print( "predict\n");
     ArrayXf y_pred = PRG.predict(data);
+    fmt::print( "y_pred: {}\n", y_pred);
 
     auto learned_weights = PRG.get_weights();
+    fmt::print( "weights: {}\n", learned_weights);
     ArrayXf true_weights(2);
     true_weights << 2.0, 3.0;
 
