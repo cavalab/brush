@@ -222,7 +222,7 @@ struct Operator<NT, S, Fit, enable_if_t<is_in_v<NT, NodeType::SplitOn, NodeType:
     };
 
     RetType fit(const Dataset& d, TreeNode& tn) const {
-        auto& threshold = tn.data.W.at(0);
+        auto& threshold = tn.data.W;
         auto& feature = tn.data.feature;
 
         // set feature and threshold
@@ -241,7 +241,7 @@ struct Operator<NT, S, Fit, enable_if_t<is_in_v<NT, NodeType::SplitOn, NodeType:
 
     RetType predict(const Dataset& d, TreeNode& tn, const W** weights=nullptr) const 
     {
-        const auto& threshold = tn.data.W.at(0);
+        const auto& threshold = tn.data.W;
         const auto& feature = tn.data.feature;
 
         // split the data

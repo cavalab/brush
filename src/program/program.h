@@ -185,7 +185,8 @@ template<typename T> struct Program //: public tree<Node>
         {
             const auto& node = i.node->data; 
             if (node.is_weighted)
-                count += node.W.size();
+                // count += node.W.size();
+                ++count;
         }
         return count;
     }
@@ -200,11 +201,11 @@ template<typename T> struct Program //: public tree<Node>
             const auto& node = t.node->data; 
             if (node.is_weighted)
             {
-                for (const auto& w: node.W)
-                {
-                    weights(i) = w;
-                    ++i;
-                }
+                // for (const auto& w: node.W)
+                // {
+                weights(i) = node.W;
+                ++i;
+                // }
             }
         }
         return weights;
@@ -216,17 +217,14 @@ template<typename T> struct Program //: public tree<Node>
         // return the weights of the tree as an array 
         if (weights.size() != get_n_weights())
             HANDLE_ERROR_THROW("Tried to set_weights of incorrect size");
+        int j = 0;
         for (PostIter i = Tree.begin_post(); i != Tree.end_post(); ++i)
         {
             auto& node = i.node->data; 
-            int j = 0;
             if (node.is_weighted)
             {
-                for (auto& w: node.W)
-                {
-                    w = weights(j);
-                    ++j;
-                }
+                node.W = weights(j);
+                ++j;
             }
         }
     }
@@ -240,25 +238,26 @@ template<typename T> struct Program //: public tree<Node>
         return head.node->get_model(pretty);
     }
 
-    string get_dot_model(){
+    string get_dot_model()
+    {
         // string out = "digraph G {\norientation=landscape;\n";
         string out = "digraph G {\n";
 
         for (Iter iter = Tree.begin(); iter!=Tree.end(); iter++)
         {
-            const auto& parent = iter.node->data;
+            const auto& parent_data = iter.node->data;
             auto kid = iter.node->first_child;
 
             for (int i = 0; i < iter.number_of_children(); ++i)
             {
                 string label="";
-                if (parent.is_weighted)
-                    label = fmt::format("{:.3f}",parent.W.at(i));
-                else if (Is<NodeType::SplitOn>(parent.node_type) && i == 0)
-                    label = fmt::format("{:.3f}",parent.W.at(i)); 
+                if (kid->data.is_weighted)
+                    label = fmt::format("{:.3f}",kid->data.W);
+                else if (Is<NodeType::SplitOn>(parent_data.node_type) && i == 0)
+                    label = fmt::format("{:.3f}",parent_data.W); 
 
                 out += fmt::format("{} -> {} [label=\"{}\"];\n", 
-                        parent.get_name(),
+                        parent_data.get_name(),
                         kid->data.get_name(),
                         label
                         );

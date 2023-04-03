@@ -9,6 +9,44 @@
 
 namespace Brush{
 ///////////////////////////////////////////////////////////////////////////////////////
+namespace util{
+    ////////////////////////////////////////////////////////////////////////////////
+    /// @brief get weight 
+    /// @tparam T return type
+    /// @tparam Scalar scalar type of return type
+    /// @param tn tree node
+    /// @param weights option pointer to a weight array, used in place of node weight
+    /// @return 
+    template<typename T, typename Scalar, typename W> 
+    Scalar get_weight(const TreeNode& tn, const W** weights=nullptr)
+    { 
+        Scalar w;
+        // Prediction case: weight is stored in the node data.
+        if (weights == nullptr)
+        {
+            w = Scalar(tn.data.W);
+        }
+        else
+        {
+            // NLS case 1: floating point weight is stored in weights
+            if constexpr (is_same_v<Scalar, W>) 
+                w = **weights;
+            // NLS case 2: a Jet/Dual weight is stored in weights, but this constant is a 
+            // integer type. We need to do some casting
+            else if constexpr (is_same_v<Scalar, iJet> && is_same_v<W, fJet>)  {
+                using WScalar = typename Scalar::Scalar;
+                WScalar tmp = WScalar((**weights).a);    
+                w = Scalar(tmp);
+            }
+            // NLS case 3: a Jet/Dual weight is stored in weights, matching Scalar type
+            else            
+                w = Scalar(**weights);
+            *weights = *weights+1;
+            
+        }
+        return w;
+    };
+}
 // Operator class
 
 /// @brief Core computation of a node's function to data. 
@@ -19,7 +57,7 @@ namespace Brush{
 template<NodeType NT, typename S, bool Fit, typename E=void> 
 struct Operator 
 {
-    /* @brief set argument types to those of the signature unless:
+    /*! @brief set argument types to those of the signature unless:
     *   a) the operator is unary and there are more than one arguments
     *   b) the operator is binary and associative  
     *   In the case of a) or b), arguments to the operator are stacked into an 
@@ -29,14 +67,23 @@ struct Operator
         ((UnaryOp<NT> || NaryOp<NT>) && S::ArgCount > 1),
         Array<typename S::FirstArg::Scalar, -1, S::ArgCount>,
         typename S::ArgTypes>;
+
+    /// @brief return type of the operator
     using RetType = typename S::RetType;
+
+    /// @brief stores the argument count of the operator
     static constexpr size_t ArgCount = S::ArgCount;
-    // get arg types from tuple by index
+
+    /// get arg types from tuple by index
     template <std::size_t N>
+
+    /// utility for returning the type of the Nth argument
     using NthType = typename S::NthType<N>; 
-    // set weight type
+
+    /// set weight type
     using W = typename S::WeightType; 
     
+    /// @brief wrapper function for the node function
     static constexpr auto F = [](const auto& ...args) { 
         Function<NT> f; 
         return f(args...); 
@@ -106,70 +153,92 @@ struct Operator
         return std::make_tuple(get_kid<Is>(d,tn,weights)...);
     };
 
-    // get a std::tuple of kids
+    // 
+
+    /// @brief get a std::tuple of kids. Used when child arguments are different types.
+    /// @tparam T argument types 
+    /// @param d the dataset
+    /// @param tn the tree node
+    /// @param weights option pointer to a weight array, used in place of node weight
+    /// @return a tuple of the child arguments
     template<typename T=ArgTypes> requires(is_tuple_v<T>) 
     T get_kids(const Dataset& d, TreeNode& tn, const W** weights=nullptr) const
     {
         return get_kids_seq<T>(d, tn, weights, std::make_index_sequence<ArgCount>{});
     };
 
-    ////////////////////////////////////////////////////////////////////////////////
-    // weights
-    template<typename InIter>
-    void weight_transform(InIter in_begin, InIter in_end, const Node& n, const W** weights=nullptr) const
+    // ////////////////////////////////////////////////////////////////////////////////
+    // /// @brief get weight 
+    // /// @tparam T return type
+    // /// @tparam Scalar scalar type of return type
+    // /// @param tn tree node
+    // /// @param weights option pointer to a weight array, used in place of node weight
+    // /// @return 
+    // template<typename T=RetType, typename Scalar=T::Scalar> 
+    // Scalar get_weight(TreeNode& tn, const W** weights=nullptr) const 
+    // { 
+    //     Scalar w;
+    //     if (weights == nullptr)
+    //     {
+    //         w = Scalar(tn.data.W);
+    //     }
+    //     else
+    //     {
+    //         if constexpr (is_same_v<Scalar, W>) 
+    //             w = **weights;
+    //         else if constexpr (is_same_v<Scalar, iJet> && is_same_v<W, fJet>)  {
+    //             using WScalar = typename Scalar::Scalar;
+    //             WScalar tmp = WScalar((**weights).a);    
+    //             w = Scalar(tmp);
+    //         }
+    //         else            
+    //             w = Scalar(**weights);
+    //         *weights++;
+    //     }
+    //     return w;
+    // };
+    ///////////////////////////////////////////////////////////////////////////
+
+    /// @brief Apply node function in a functional style
+    /// @tparam T argument types
+    /// @param inputs the child node outputs
+    /// @return return values applying F to the inputs
+    template<typename T=ArgTypes> requires ( is_std_array_v<T> || is_tuple_v<T>)
+    RetType apply(const T& inputs) const
     {
-        if (weights == nullptr)
-            std::transform( in_begin, in_end, n.W.begin(), in_begin, std::multiplies<>());
-        else
-        {
-            auto WMap = Eigen::Map<const Array<W,ArgCount,1>>(*weights);
-            std::transform( in_begin, in_end, WMap.begin(), in_begin, std::multiplies<>());
-            *weights = *weights+ArgCount;
-        }
+        return std::apply(F, inputs);
     }
 
-    template<typename T=ArgTypes> 
-    requires(is_std_array_v<T> || is_eigen_array_v<T>) 
-    void apply_weights(T& inputs, const Node& n, const W** weights=nullptr) const
-    {
-        /**
-         * @brief applies weights from n.W to inputs. 
-         * 
-         * @tparam T: some floating point thing
-         * @param inputs: arguments to the operator
-         * @param n: the node with weights
-         */
-        if constexpr (is_std_array_v<T>)
-            weight_transform(inputs.begin(), inputs.end(), n, weights);
-        else if constexpr (is_eigen_array_v<T>)
-            weight_transform(inputs.colwise().begin(), inputs.colwise().end(), n, weights);
-    };
-    ///////////////////////////////////////////////////////////////////////////
-    /// evaluate operator on array of arguments
-    template<typename T=ArgTypes>
-    requires ( is_std_array_v<T> || is_tuple_v<T>)
-    RetType eval(const Dataset& d, TreeNode& tn, const W** weights=nullptr) const
-    {
-        auto inputs = get_kids(d, tn, weights);
-        if constexpr (is_one_of_v<typename T::value_type::Scalar,float,fJet>)
-        {
-            if (tn.data.is_weighted)
-                this->apply_weights(inputs, tn.data, weights);
-        }
-        return std::apply(F, inputs);
-    };
-
-    /// evaluate operator on eigen array of arguments
+    /// @brief Apply the node function
+    /// @tparam T argument types
+    /// @param inputs the child node outputs
+    /// @return return values applying F to the inputs
     template<typename T=ArgTypes> requires ( is_eigen_array_v<T> && !is_std_array_v<T>)
+    RetType apply(const T& inputs) const
+    {
+        return F(inputs);
+    }
+
+    /// @brief evaluate the operator on the data. main entry point. 
+    /// @tparam T argument types
+    /// @tparam Scalar the underlying scalar type of the return type
+    /// @param d dataset
+    /// @param tn tree node
+    /// @param weights option pointer to a weight array, used in place of node weight
+    /// @return output values from applying operator function 
+    template<typename T=ArgTypes, typename Scalar=RetType::Scalar>
     RetType eval(const Dataset& d, TreeNode& tn, const W** weights=nullptr) const
     {
         auto inputs = get_kids(d, tn, weights);
-        if constexpr (is_one_of_v<typename T::Scalar,float,fJet>)
+        if constexpr (is_one_of_v<Scalar,float,fJet>)
         {
             if (tn.data.is_weighted)
-                this->apply_weights(inputs, tn.data, weights);
+            {
+                auto w = util::get_weight<RetType,Scalar,W>(tn, weights);
+                return this->apply(inputs)*w;
+            }
         }
-        return F(inputs);
+        return this->apply(inputs);
     };
 
 };
@@ -181,18 +250,34 @@ struct Operator<NodeType::Terminal, S, Fit>
     using RetType = typename S::RetType;
     using W = typename S::WeightType; 
 
-    template<typename T=RetType> 
-        requires (is_one_of_v<typename T::Scalar,bool,int,float>)
+    template<typename T=RetType, typename Scalar=typename T::Scalar> 
+        requires (is_one_of_v<Scalar,bool,int,float>)
     RetType eval(const Dataset& d, const TreeNode& tn, const W** weights=nullptr) const 
     { 
+        if constexpr (is_one_of_v<Scalar,float,fJet>)
+        {
+            if (tn.data.is_weighted)
+            {
+                auto w = util::get_weight<RetType,Scalar,W>(tn, weights);
+                return this->get<RetType>(d, tn.data.feature)*w;
+            }
+        }
         return this->get<RetType>(d,tn.data.feature);
     };
-    template <typename T = RetType>
-        requires( is_one_of_v<typename T::Scalar, bJet, iJet, fJet>)
+
+    template <typename T = RetType, typename Scalar=typename T::Scalar>
+        requires( is_one_of_v<Scalar, bJet, iJet, fJet>)
     RetType eval(const Dataset &d, const TreeNode &tn, const W **weights = nullptr) const
     {
         using nonJetType = UnJetify_t<RetType>; 
-        using Scalar = typename RetType::Scalar;
+        if constexpr (is_one_of_v<Scalar,float,fJet>)
+        {
+            if (tn.data.is_weighted)
+            {
+                auto w = util::get_weight<RetType,Scalar,W>(tn, weights);
+                return this->get<nonJetType>(d, tn.data.feature).template cast<Scalar>()*w;
+            }
+        }
         return this->get<nonJetType>(d, tn.data.feature).template cast<Scalar>();
     };
 
@@ -222,24 +307,8 @@ struct Operator<NodeType::Constant, S, Fit>
     template<typename T=RetType, typename Scalar=T::Scalar, int N=T::NumDimensions> 
     RetType eval(const Dataset& d, TreeNode& tn, const W** weights=nullptr) const 
     { 
-        Scalar w;
-        if (weights == nullptr)
-        {
-            w = Scalar(tn.data.W.at(0));
-        }
-        else
-        {
-            if constexpr (is_same_v<Scalar, W>) 
-                w = **weights;
-            else if constexpr (is_same_v<Scalar, iJet> && is_same_v<W, fJet>)  {
-                using WScalar = typename Scalar::Scalar;
-                WScalar tmp = WScalar((**weights).a);    
-                w = Scalar(tmp);
-            }
-            else            
-                w = Scalar(**weights);
-            *weights++;
-        }
+        // Scalar w = get_weight(tn, weights);
+        Scalar w = util::get_weight<RetType,Scalar,W>(tn, weights);
         if constexpr (N == 1)
             return RetType::Constant(d.get_n_samples(), w); 
         else

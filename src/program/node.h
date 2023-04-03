@@ -83,7 +83,7 @@ struct Node {
     /// @brief whether this node is weighted
     bool is_weighted;
     /// @brief the weights of the node. also used for splitting thresholds.
-    vector<float> W; 
+    float W; 
     /// @brief feature name for terminals or splitting nodes
     string feature; 
     /// @brief a complete hash / unique ID for the node, except weights
@@ -117,18 +117,20 @@ struct Node {
 
     void init(){
 
-        if (is_weighted){   
-            if (node_type == NodeType::Constant)
-                W.resize(1);
-            else
-                W.resize(arg_types.size());
-            for (int i = 0; i < W.size(); ++i)
-                W.at(i) = 1.0;  
-        }
-        else if (Util::in(vector<NodeType>{NodeType::SplitOn, NodeType::SplitBest}, node_type))
-            W.resize(1); // W.at(0) represents the threshold of the split
-        else
-
+        // if (is_weighted){   
+        //     W = 1.0;
+        // }
+        //     if (node_type == NodeType::Constant)
+        //         W.resize(1);
+        //     else
+        //         W.resize(arg_types.size());
+        //     for (int i = 0; i < W.size(); ++i)
+        //         W.at(i) = 1.0;  
+        // }
+        // else if (Util::in(vector<NodeType>{NodeType::SplitOn, NodeType::SplitBest}, node_type))
+        //     W.resize(1); // W.at(0) represents the threshold of the split
+        // else
+        W = 1.0;
         set_complete_hash();
         set_prob_change(1.0);
         fixed=false;
