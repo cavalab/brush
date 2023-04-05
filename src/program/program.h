@@ -239,6 +239,7 @@ template<typename T> struct Program //: public tree<Node>
     {
         // string out = "digraph G {\norientation=landscape;\n";
         // TODO: make the node names their hash or index, and the node label the nodetype name. 
+        // ref: https://stackoverflow.com/questions/10579041/graphviz-create-new-node-with-this-same-label#10579155
         map<NodeType,unsigned int> nodetype_count;
         string out = "digraph G {\n";
         bool first = true;
