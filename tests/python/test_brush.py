@@ -15,14 +15,19 @@ yc = dfc['target']
 dfr = pd.read_csv('docs/examples/datasets/d_enc.csv')
 Xr = dfr.drop(columns='label')
 yr = dfr['label']
+# Xr, yr = fetch_data('192_vineyard', return_X_y = True)
 
 brush_args = dict(
-    max_gen=100, 
-    pop_size=100, 
-    max_size=50, 
-    max_depth=6,
-    mutation_options = {"point":0.25, "insert": 0.5, "delete":  0.25},
+    functions=['SplitBest','Add','Sub','Mul','Div'],
+    pop_size=20,
+    max_gen=2
 )
+#     max_gen=100, 
+#     pop_size=100, 
+#     max_size=50, 
+#     max_depth=6,
+#     mutation_options = {"point":0.25, "insert": 0.5, "delete":  0.25},
+# )
 
 class TestBrush():
     def test_fit_brush_classifier(self):

@@ -42,6 +42,9 @@ class BrushEstimator(BaseEstimator):
     mutation_options : dict, default {"point":0.5, "insert": 0.25, "delete":  0.25}
         A dictionary with keys naming the types of mutation and floating point 
         values specifying the fraction of total mutations to do with that method. 
+    functions: dict[str,float] or list[str], default {}
+        A dictionary with keys naming the function set and values giving the probability of sampling them, or a list of functions which will be weighted uniformly.
+        If empty, all available functions are included in the search space.
 
     Attributes
     ----------
@@ -66,7 +69,9 @@ class BrushEstimator(BaseEstimator):
         verbosity=0,
         max_depth=3,
         max_size=20,
-        mutation_options = {"point":0.5, "insert": 0.25, "delete":  0.25},
+        mutation_options = {"point":0.4, "insert": 0.25, "delete":  0.25, "toggle_weight": 0.1},
+        functions: list[str]|dict[str,float] = {},
+        batch_size: int = 0
         ):
         self.pop_size=pop_size
         self.max_gen=max_gen
@@ -75,6 +80,8 @@ class BrushEstimator(BaseEstimator):
         self.max_depth=max_depth
         self.max_size=max_size
         self.mutation_options=mutation_options
+        self.functions=functions
+        self.batch_size=batch_size
 
 
     def _setup_toolbox(self, data):
@@ -127,10 +134,15 @@ class BrushEstimator(BaseEstimator):
         """
         _brush.set_params(self.get_params())
         self.data_ = self._make_data(X,y)
-        self.search_space_ = _brush.SearchSpace(self.data_)
+        if isinstance(self.functions, list):
+            self.functions_ = {k:1.0 for k in self.functions}
+        else:
+            self.functions_ = self.functions
+
+        self.search_space_ = _brush.SearchSpace(self.data_, self.functions_)
         self.toolbox_ = self._setup_toolbox(data=self.data_)
 
-        archive, logbook = nsga2(self.toolbox_, self.max_gen, self.pop_size, 0.9)
+        archive, logbook = nsga2(self.toolbox_, self.max_gen, self.pop_size, 0.9, self.verbosity)
         self.archive_ = archive
         self.best_estimator_ = self.archive_[0].prg
 
@@ -148,11 +160,13 @@ class BrushEstimator(BaseEstimator):
                 return _brush.Dataset(X, feature_names)
             else:
                 return _brush.Dataset(X, y, feature_names)
-        else:
-            assert isinstance(X, np.ndarray)
+
+        assert isinstance(X, np.ndarray)
+        # if there is no label, don't include it in library call to Dataset
         if isinstance(y, NoneType):
-            return _brush.Dataset(X, y)
-        return _brush.Dataset(X)
+            return _brush.Dataset(X)
+
+        return _brush.Dataset(X,y)
 
     def predict(self, X):
         """Predict using the best estimator in the archive. """

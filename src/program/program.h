@@ -238,45 +238,88 @@ template<typename T> struct Program //: public tree<Node>
     string get_dot_model()
     {
         // string out = "digraph G {\norientation=landscape;\n";
+        // TODO: make the node names their hash or index, and the node label the nodetype name. 
+        map<NodeType,unsigned int> nodetype_count;
         string out = "digraph G {\n";
-
+        bool first = true;
         for (Iter iter = Tree.begin(); iter!=Tree.end(); iter++)
         {
             const auto& parent_data = iter.node->data;
             auto kid = iter.node->first_child;
 
+            if (nodetype_count.find(parent_data.node_type) == nodetype_count.end())
+            {
+                nodetype_count[parent_data.node_type] = 0;
+            }
+
+            // if the first node is weighted, make a dummy output node so that the 
+            // first node's weight can be shown
+            if (first && parent_data.is_weighted)
+            {
+                out += "y [shape=box];\n";
+                out += fmt::format("y -> {} [label=\"{:.2f}\"];\n", 
+                        parent_data.get_name(false),
+                        parent_data.W
+                        );
+
+            }
+            first = false;
+
+            // add the node
+            out += fmt::format("{};\n", parent_data.get_name(false)); 
+
+            // add edges to the node's children
             for (int i = 0; i < iter.number_of_children(); ++i)
             {
                 string label="";
+                string headlabel="";
+                string taillabel="";
+                bool use_head_tail_labels = false;
                 if (kid->data.is_weighted)
-                    label = fmt::format("{:.3f}",kid->data.W);
+                    label = fmt::format("{:.2f}",kid->data.W);
                 else if (Is<NodeType::SplitOn>(parent_data.node_type)){
+                    use_head_tail_labels=true;
                     if (i == 0)
-                        label = fmt::format(">{:.3f}?",parent_data.W); 
+                        headlabel = fmt::format(">{:.2f}?",parent_data.W); 
                     else if (i==1)
-                        label = "Y"; 
+                        headlabel = "Y"; 
                     else
-                        label = "N";
+                        headlabel = "N";
+                    taillabel=label;
                 }
                 else if (Is<NodeType::SplitBest>(parent_data.node_type)){
+                    use_head_tail_labels=true;
                     if (i == 0){
-                        label = fmt::format(">{:.3f}?",parent_data.W); 
-                        out += fmt::format("{} -> {} [label=\"{}\"];\n", 
+                        headlabel = fmt::format(">{:.2f}?",parent_data.W); 
+                        out += fmt::format("{} -> {} [headlabel=\"{}\", taillabel=\"{}\"];\n", 
                                 parent_data.get_name(),
                                 parent_data.get_feature(),
-                                label
+                                headlabel,
+                                taillabel
                                 );
-                        label = "Y"; 
+                        headlabel = "Y"; 
                     }
                     else
-                        label = "N";
-                }
+                        headlabel = "N";
 
-                out += fmt::format("{} -> {} [label=\"{}\"];\n", 
-                        parent_data.get_name(),
-                        kid->data.get_name(),
-                        label
-                        );
+                    taillabel = label;
+                }
+                if (use_head_tail_labels){
+                    out += fmt::format("{} -> {} [headlabel=\"{}\",taillabel=\"{}\"];\n", 
+                            parent_data.get_name(false),
+                            kid->data.get_name(false),
+                            headlabel,
+                            taillabel
+                            );
+
+                }
+                else{
+                    out += fmt::format("{} -> {} [label=\"{}\"];\n", 
+                            parent_data.get_name(false),
+                            kid->data.get_name(false),
+                            label
+                            );
+                }
                 kid = kid->next_sibling;
             }
 

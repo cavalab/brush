@@ -129,7 +129,10 @@ struct Node {
 
     }
 
-    string get_name() const noexcept; 
+    /// @brief gets a string version of the node for printing.
+    /// @param include_weight whether to include the node's weight in the output.
+    /// @return string version of the node.
+    string get_name(bool include_weight=true) const noexcept; 
     string get_model(const vector<string>&) const noexcept; 
 
     // get return type and argument types. 

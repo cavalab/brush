@@ -3,7 +3,7 @@ from deap.benchmarks.tools import diversity, convergence, hypervolume
 import numpy as np
 import random
 
-def nsga2(toolbox, NGEN, MU, CXPB):
+def nsga2(toolbox, NGEN, MU, CXPB, verbosity):
     # NGEN = 250
     # MU = 100
     # CXPB = 0.9
@@ -32,7 +32,8 @@ def nsga2(toolbox, NGEN, MU, CXPB):
 
     record = stats.compile(pop)
     logbook.record(gen=0, evals=len(invalid_ind), **record)
-    print(logbook.stream)
+    if verbosity > 0: 
+        print(logbook.stream)
 
     # Begin the generational process
     for gen in range(1, NGEN):
@@ -62,9 +63,11 @@ def nsga2(toolbox, NGEN, MU, CXPB):
         pop = toolbox.survive(pop + offspring, MU)
         record = stats.compile(pop)
         logbook.record(gen=gen, evals=len(invalid_ind), **record)
-        print(logbook.stream)
+        if verbosity > 0: 
+            print(logbook.stream)
 
-    print("Final population hypervolume is %f" % hypervolume(pop, [1000.0, 50.0]))
+    if verbosity > 0: 
+        print("Final population hypervolume is %f" % hypervolume(pop, [1000.0, 50.0]))
 
     archive = tools.ParetoFront() 
     archive.update(pop)

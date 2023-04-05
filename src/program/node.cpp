@@ -17,21 +17,21 @@ ostream& operator<<(ostream& os, const Node& n)
 
 /// @brief get the name of the node. 
 /// @return name 
-auto Node::get_name() const noexcept -> std::string 
+auto Node::get_name(bool include_weight) const noexcept -> std::string 
 {
 
     if (Is<NodeType::Terminal>(node_type))
     {
-        if (is_weighted && W != 1.0)
+        if (is_weighted && W != 1.0 && include_weight)
             return fmt::format("{:.2f}*{}",W,feature);
         else
             return feature;
     }
-    else if (Is<NodeType::Constant>(node_type))
+    else if (Is<NodeType::Constant>(node_type) && include_weight)
     {
         return fmt::format("{:.2f}", W);
     }
-    else if (is_weighted)
+    else if (is_weighted && include_weight)
         return fmt::format("{:.2f}*{}",W,name);
     return name;
 }
@@ -218,7 +218,6 @@ void from_json(const json &j, Node& p)
     if (j.contains("node_hash"))
     {
         j.at("node_hash").get_to(p.node_hash);
-        fmt::print("set node_hash={}...\n", p.node_hash);
     }
     else
         make_signature=true;
@@ -228,13 +227,12 @@ void from_json(const json &j, Node& p)
         init_node_with_default_signature(p);
     }
     p.init();
-    // fmt::print("checking W\n");
+
     if (j.contains("W"))
         j.at("W").get_to(p.W);
 
 
     json new_json = p;
-    // fmt::print("new node json: {}\n", new_json.dump(2));
 }
 
 

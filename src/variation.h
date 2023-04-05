@@ -74,11 +74,7 @@ inline void delete_mutation(tree<Node>& Tree, Iter spot, const SearchSpace& SS)
 
 inline void toggle_weight_mutation(tree<Node>& Tree, Iter spot, const SearchSpace& SS)
 {
-    fmt::print("Tree before toggle weight: {}\n",Tree);
-    fmt::print("spot: {}\n",spot.node->data.get_name());
     spot.node->data.is_weighted = !spot.node->data.is_weighted;
-    fmt::print("toggled spot: {}\n",spot.node->data.get_name());
-    fmt::print("Tree after toggle weight:  {}\n",Tree);
 }
 
 /**
