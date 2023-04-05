@@ -201,11 +201,8 @@ template<typename T> struct Program //: public tree<Node>
             const auto& node = t.node->data; 
             if (node.is_weighted)
             {
-                // for (const auto& w: node.W)
-                // {
                 weights(i) = node.W;
                 ++i;
-                // }
             }
         }
         return weights;
@@ -253,8 +250,27 @@ template<typename T> struct Program //: public tree<Node>
                 string label="";
                 if (kid->data.is_weighted)
                     label = fmt::format("{:.3f}",kid->data.W);
-                else if (Is<NodeType::SplitOn>(parent_data.node_type) && i == 0)
-                    label = fmt::format("{:.3f}",parent_data.W); 
+                else if (Is<NodeType::SplitOn>(parent_data.node_type)){
+                    if (i == 0)
+                        label = fmt::format(">{:.3f}?",parent_data.W); 
+                    else if (i==1)
+                        label = "Y"; 
+                    else
+                        label = "N";
+                }
+                else if (Is<NodeType::SplitBest>(parent_data.node_type)){
+                    if (i == 0){
+                        label = fmt::format(">{:.3f}?",parent_data.W); 
+                        out += fmt::format("{} -> {} [label=\"{}\"];\n", 
+                                parent_data.get_name(),
+                                parent_data.get_feature(),
+                                label
+                                );
+                        label = "Y"; 
+                    }
+                    else
+                        label = "N";
+                }
 
                 out += fmt::format("{} -> {} [label=\"{}\"];\n", 
                         parent_data.get_name(),
@@ -272,152 +288,9 @@ template<typename T> struct Program //: public tree<Node>
     ////////////////////////////////////////////////////////////////////////////
     // Mutation & Crossover
 
-
-    // tree<Node> point_mutation(tree<Node>& Tree, Iter spot);
-    // tree<Node> insert_mutation(tree<Node>& Tree, Iter spot);
-    // tree<Node> delete_mutation(tree<Node>& Tree, Iter spot);
-
-    /// point mutation: replace node with same typed node
-    void point_mutation(Iter spot, const SearchSpace& SS)
-    {
-        // cout << "point mutation\n";
-        auto newNode = SS.get_node_like(spot.node->data); 
-        this->Tree.replace(spot, newNode);
-    };
-    /// insert a node with spot as a child
-    void insert_mutation(Iter spot, const SearchSpace& SS)
-    {
-        // cout << "insert mutation\n";
-        auto spot_type = spot.node->data.ret_type;
-        auto n = SS.get_op_with_arg(spot_type, spot_type); 
-        // make node n wrap the subtree at the chosen spot
-        auto parent_node = this->Tree.wrap(spot, n);
-
-        // now fill the arguments of n appropriately
-        bool spot_filled = false;
-        for (auto a: n.arg_types)
-        {
-            
-            if (spot_filled)
-            {
-                // if spot is in its child position, append children
-                this->Tree.append_child(parent_node, SS.get_terminal(a));
-            }
-            // if types match, treat this spot as filled by the spot node 
-            else if (a == spot_type)
-                spot_filled = true;
-            // otherwise, add siblings before spot node
-            else
-                this->Tree.insert(spot, SS.get_terminal(a));
-
-        } 
-    };
-    /// delete subtree and replace it with a terminal of the same return type
-    void delete_mutation(Iter spot, const SearchSpace& SS)
-    {
-        // cout << "delete mutation\n";
-        auto terminal = SS.get_terminal(spot.node->data.ret_type); 
-        this->Tree.erase_children(spot); 
-        this->Tree.replace(spot, terminal);
-    };
-
-    // inline Program<T> mutate() const { assert(this->SSref); return mutate(SSref.value()); }
-
-    Program<T> mutate(const SearchSpace& SS) const
-    {
-        /* Types of mutation:
-        * point mutation
-        * insertion mutation
-        * deletion mutation
-        */
-        Program<T> child(*this);
-
-        // choose location by weighted sampling of program
-        vector<float> weights(child.Tree.size());
-        std::transform(child.Tree.begin(), child.Tree.end(), 
-                       weights.begin(),
-                       [](const auto& n){ return n.get_prob_change(); }
-                      );
-
-        auto spot = r.select_randomly(child.Tree.begin(), child.Tree.end(), 
-                                      weights.begin(), weights.end());
-
-        // choose one of these options
-        auto mutation_options = PARAMS["mutation_options"].get<std::map<string,float>>();
-        string choice = r.random_choice(mutation_options);
-
-        if (choice == "insert")
-            child.insert_mutation(spot, SS);
-        else if (choice == "delete")
-            child.delete_mutation(spot, SS);
-        else 
-            child.point_mutation(spot, SS);
-
-        return child;
-    };
+    Program<T> mutate() const;
     /// swaps subtrees between this and other (note the pass by copy)
-    Program<T> cross(Program<T> other) const
-    {
-        /* subtree crossover between this and other, producing new Program */
-        // choose location by weighted sampling of program
-        // TODO: why doesn't this copy the search space reference to child?
-        Program<T> child(*this);
-
-        // pick a subtree to replace
-        vector<float> child_weights(child.Tree.size());
-        std::transform(child.Tree.begin(), child.Tree.end(), 
-                       child_weights.begin(),
-                       [](const auto& n){ return n.get_prob_change(); }
-                      );
-        // fmt::print("child weights: {}\n", child_weights);
-        bool matching_spots_found = false;
-        for (int tries = 0; tries < 3; ++tries)
-        {
-            auto child_spot = r.select_randomly(child.Tree.begin(), 
-                                                child.Tree.end(), 
-                                                child_weights.begin(), 
-                                                child_weights.end()
-                                            );
-            auto child_ret_type = child_spot.node->data.ret_type;
-            // fmt::print("child_spot : {}\n",child_spot.node->data);
-            // fmt::print("child_ret_type: {}\n",child_ret_type);
-            // pick a subtree to insert
-            // need to pick a node that has a matching output type to the child_spot
-            vector<float> other_weights(other.Tree.size());
-            std::transform(other.Tree.begin(), other.Tree.end(), 
-                other_weights.begin(),
-                [child_ret_type](const auto& n){ 
-                    if (n.ret_type == child_ret_type)
-                        return n.get_prob_change(); 
-                    else
-                        return float(0.0);
-                    }
-                );
-            for (const auto& w: other_weights)
-            {
-                matching_spots_found = w > 0.0;
-                if (matching_spots_found) 
-                    break;
-            }
-            if (matching_spots_found) 
-            {
-                auto other_spot = r.select_randomly(
-                    other.Tree.begin(), 
-                    other.Tree.end(), 
-                    other_weights.begin(), 
-                    other_weights.end()
-                );
-                                
-                // fmt::print("other_spot : {}\n",other_spot.node->data);
-                // swap subtrees at child_spot and other_spot
-                child.Tree.move_ontop(child_spot, other_spot);
-                return child;
-            }
-            // fmt::print("try {} failed\n",tries);
-        }
-
-        return child;
-    };
+    Program<T> cross(Program<T> other) const;
 
     /// @brief turns program tree into a linear program. 
     /// @return a vector of nodes encoding the program in reverse polish notation
@@ -430,33 +303,54 @@ template<typename T> struct Program //: public tree<Node>
 }; // Program
 } // Brush
 
+////////////////////////////////////////////////////////////////////////////////
+// weight optimization
 #include "optimizer/weight_optimizer.h"
+namespace Brush{
 
-namespace Brush {
-    template<typename T> 
-    void Program<T>::update_weights(const Dataset& d)
-    {
-        // Updates the weights within a tree. 
-        // make an optimizer
-        auto WO = WeightOptimizer(); 
-        // get new weights from optimization.
-        WO.update((*this), d);
-    };
+template<typename T> 
+void Program<T>::update_weights(const Dataset& d)
+{
+    // Updates the weights within a tree. 
+    // make an optimizer
+    auto WO = WeightOptimizer(); 
+    // get new weights from optimization.
+    WO.update((*this), d);
+};
 
-    // serialization
-    // serialization for program
-    template<typename T>
-    void to_json(json &j, const Program<T> &p)
-    {
-        j = json{{"Tree",p.Tree}, {"is_fitted_", p.is_fitted_}}; 
-    }
+////////////////////////////////////////////////////////////////////////////////
+// mutation and crossover
+#include "../variation.h"
+template<typename T>
+Program<T> Program<T>::mutate() const
+{
+    return variation::mutate(*this, this->SSref.value().get());
+};
 
-    template<typename T>
-    void from_json(const json &j, Program<T>& p)
-    {
-        j.at("Tree").get_to(p.Tree);
-        j.at("is_fitted_").get_to(p.is_fitted_);
-    }
-} // Brush
+/// swaps subtrees between this and other (note the pass by copy)
+template<typename T>
+Program<T> Program<T>::cross(Program<T> other) const
+{
+    return variation::cross(*this, other);
+};
+
+
+////////////////////////////////////////////////////////////////////////////////
+// serialization
+// serialization for program
+template<typename T>
+void to_json(json &j, const Program<T> &p)
+{
+    j = json{{"Tree",p.Tree}, {"is_fitted_", p.is_fitted_}}; 
+}
+
+template<typename T>
+void from_json(const json &j, Program<T>& p)
+{
+    j.at("Tree").get_to(p.Tree);
+    j.at("is_fitted_").get_to(p.is_fitted_);
+}
+
+}//namespace Brush
 
 #endif

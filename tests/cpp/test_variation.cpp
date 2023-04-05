@@ -6,7 +6,9 @@
 
 TEST(Operators, Mutation)
 {
-    PARAMS["mutation_options"] = {{"point",0.5}, {"insert", 0.25}, {"delete", 0.25}};
+    PARAMS["mutation_options"] = {
+        {"point",0.25}, {"insert", 0.25}, {"delete", 0.25}, {"toggle_weight", 0.25}
+        };
     // test mutation
     // TODO: set random seed
     MatrixXf X(10,2);
@@ -33,7 +35,7 @@ TEST(Operators, Mutation)
             PRG.fit(data);
             ArrayXf y_pred = PRG.predict(data);
             fmt::print("auto Child = PRG.mutate(SS);\n");
-            auto Child = PRG.mutate(SS);
+            auto Child = PRG.mutate();
 
             fmt::print("print\n");
             fmt::print(
@@ -76,6 +78,8 @@ TEST(Operators, Crossover)
         {
             RegressorProgram PRG1 = SS.make_regressor(d, s);
             RegressorProgram PRG2 = SS.make_regressor(d, s);
+            PRG1.fit(data);
+            PRG2.fit(data);
 
             fmt::print(
                 "=================================================\n"
@@ -86,8 +90,6 @@ TEST(Operators, Crossover)
                 PRG1.get_model("compact", true),
                 PRG2.get_model("compact", true)
             );
-            PRG1.fit(data);
-            PRG2.fit(data);
             ArrayXf y_pred = PRG1.predict(data);
             fmt::print("cross one\n");
             auto Child1 = PRG1.cross(PRG2);

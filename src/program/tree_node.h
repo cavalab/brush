@@ -81,4 +81,45 @@ auto TreeNode::predict(const Dataset& d, const W** weights)
 // serialization functions
 void to_json(json &j, const tree<Node> &t);
 void from_json(const json &j, tree<Node> &t);
+
+// namespace node{
+
+//     template<NodeType NT=0>
+//     string get_model(const Node& data, const vector<string>& children)
+//     {
+//         string args = "";
+//         for (int i = 0; i < children.size(); ++i){
+//             args += children.at(i);
+//             if (i < children.size()-1)
+//                 args += ",";
+//         }
+
+//         return fmt::format("{}({})", data.get_name(), args);
+        
+//     }
+
+//     template<>
+//     string get_model<NodeType::SplitBest>(const Node& data, const vector<string>& children)
+//     {
+//         return fmt::format("IF-THEN-ELSE({}>{:.3f},{},{})",
+//             data.get_feature(),
+//             data.W,
+//             children.at(0),
+//             children.at(1)
+//             );
+        
+//     }
+
+//     template<>
+//     string get_model<NodeType::SplitOn>(const Node& data, const vector<string>& children)
+//     {
+//         return fmt::format("IF-THEN-ELSE({}>{:.3f},{},{})",
+//             children.at(0),
+//             data.W,
+//             children.at(1),
+//             children.at(2)
+//             );
+        
+//     }
+// }
 #endif

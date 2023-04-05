@@ -21,17 +21,52 @@ auto Node::get_name() const noexcept -> std::string
 {
 
     if (Is<NodeType::Terminal>(node_type))
-        return feature;
+    {
+        if (is_weighted && W != 1.0)
+            return fmt::format("{:.2f}*{}",W,feature);
+        else
+            return feature;
+    }
     else if (Is<NodeType::Constant>(node_type))
     {
-        return fmt::format("{:.3f}", W);
+        return fmt::format("{:.2f}", W);
     }
-    else if (Is<NodeType::SplitBest>(node_type))
-        return fmt::format("SplitBest[{}>{:.3f}]", feature, W);
-    else if (Is<NodeType::SplitOn>(node_type))
-        return fmt::format("SplitOn[{:.3f}]", W);
-    else
-        return name;
+    else if (is_weighted)
+        return fmt::format("{:.2f}*{}",W,name);
+    return name;
+}
+
+string Node::get_model(const vector<string>& children) const noexcept
+{
+    if (children.empty())
+        return get_name();
+    else if (Is<NodeType::SplitBest>(node_type)){
+        return fmt::format("If({}>{:.2f},{},{})",
+            feature,
+            W,
+            children.at(0),
+            children.at(1)
+            );
+    }
+    else if (Is<NodeType::SplitOn>(node_type)){
+        return fmt::format("If({}>{:.2f},{},{})",
+            children.at(0),
+            W,
+            children.at(1),
+            children.at(2)
+            );
+    }
+    else{
+        string args = "";
+        for (int i = 0; i < children.size(); ++i){
+            args += children.at(i);
+            if (i < children.size()-1)
+                args += ",";
+        }
+
+        return fmt::format("{}({})", get_name(), args);
+    }
+
 }
 
 ////////////////////////////////////////

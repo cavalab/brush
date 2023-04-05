@@ -129,7 +129,8 @@ struct Node {
 
     }
 
-    auto get_name() const noexcept -> std::string; 
+    string get_name() const noexcept; 
+    string get_model(const vector<string>&) const noexcept; 
 
     // get return type and argument types. 
     inline DataType get_ret_type() const { return ret_type; }; 

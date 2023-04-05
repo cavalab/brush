@@ -111,7 +111,7 @@ class BrushEstimator(BaseEstimator):
 
     def _mutate(self, ind1):
         # offspring = (creator.Individual(ind1.prg.mutate(self.search_space_)),)
-        offspring = creator.Individual(ind1.prg.mutate(self.search_space_))
+        offspring = creator.Individual(ind1.prg.mutate())
         return offspring
 
     def fit(self, X, y):
