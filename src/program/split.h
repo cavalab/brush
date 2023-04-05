@@ -223,7 +223,6 @@ struct Operator<NT, S, Fit, enable_if_t<is_in_v<NT, NodeType::SplitOn, NodeType:
 
     RetType fit(const Dataset& d, TreeNode& tn) const {
         auto& threshold = tn.data.W;
-        auto& feature = tn.data.feature;
 
         // set feature and threshold
         if constexpr (NT == NodeType::SplitOn)
@@ -234,7 +233,11 @@ struct Operator<NT, S, Fit, enable_if_t<is_in_v<NT, NodeType::SplitOn, NodeType:
             tie(threshold, ignore) = Split::best_threshold(split_feature, d.y, d.classification);
         }
         else
+        {
+            string feature = "";
             tie(feature, threshold) = Split::get_best_variable_and_threshold(d, tn);
+            tn.data.set_feature(feature);
+        }
 
         return predict(d, tn);
     }
@@ -242,7 +245,7 @@ struct Operator<NT, S, Fit, enable_if_t<is_in_v<NT, NodeType::SplitOn, NodeType:
     RetType predict(const Dataset& d, TreeNode& tn, const W** weights=nullptr) const 
     {
         const auto& threshold = tn.data.W;
-        const auto& feature = tn.data.feature;
+        const auto& feature = tn.data.get_feature();
 
         // split the data
         ArrayXb mask;

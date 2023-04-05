@@ -84,23 +84,28 @@ struct Node {
     bool is_weighted;
     /// @brief the weights of the node. also used for splitting thresholds.
     float W; 
-    /// @brief feature name for terminals or splitting nodes
-    string feature; 
-    /// @brief a complete hash / unique ID for the node, except weights
-    size_t complete_hash; 
+    /// @brief a node hash / unique ID for the node, except weights
+    size_t node_hash; 
 
-    Node() = default; 
+    // Node(){init();}; 
+    Node() = default;
 
 
+    /// @brief Constructor used by search space 
+    /// @tparam S signature 
+    /// @param type node type
+    /// @param feature_name name of the terminal 
+    /// @param signature signature 
     template<typename S>
-    explicit Node(NodeType type, S signature, bool weighted=false) noexcept
+    explicit Node(NodeType type, S signature, bool weighted=false, string feature_name="") noexcept
         : node_type(type)
         , name(NodeTypeName[type])
+        , ret_type(S::get_ret_type())
         , arg_types(S::get_arg_types())
         , sig_hash(S::hash())
         , sig_dual_hash(S::Dual::hash())
-        , ret_type(DataTypeEnum<typename S::RetType>::value)
         , is_weighted(weighted)
+        , feature(feature_name)
     {
         init();
     }
@@ -108,57 +113,23 @@ struct Node {
     template<typename S>
     void set_signature()
     {
+        ret_type = S::get_ret_type();
         arg_types = S::get_arg_types(); 
         sig_hash = S::hash();
         sig_dual_hash = S::Dual::hash();
-        ret_type = DataTypeEnum<typename S::RetType>::value;
-        set_complete_hash();
+        set_node_hash();
     }
 
     void init(){
 
-        // if (is_weighted){   
-        //     W = 1.0;
-        // }
-        //     if (node_type == NodeType::Constant)
-        //         W.resize(1);
-        //     else
-        //         W.resize(arg_types.size());
-        //     for (int i = 0; i < W.size(); ++i)
-        //         W.at(i) = 1.0;  
-        // }
-        // else if (Util::in(vector<NodeType>{NodeType::SplitOn, NodeType::SplitBest}, node_type))
-        //     W.resize(1); // W.at(0) represents the threshold of the split
-        // else
         W = 1.0;
-        set_complete_hash();
+        set_node_hash();
         set_prob_change(1.0);
         fixed=false;
 
     }
 
-    /// @brief Terminal specialization
-    /// @tparam S signature 
-    /// @param type node type
-    /// @param feature_name name of the terminal 
-    /// @param signature signature 
-    template<typename S>
-    explicit Node(NodeType type, string feature_name, S signature) noexcept
-        : node_type(type)
-        , name(NodeTypeName[type])
-        , feature(feature_name)
-        , ret_type(DataTypeEnum<typename S::RetType>::value)
-        , sig_hash(S::hash())
-        , sig_dual_hash(S::Dual::hash())
-    {
-        /* cout << "instantiated " << name << " from feature " << feature << " with output type " << DataTypeName.at(ret_type) << endl; */
-        arg_types = vector<DataType>{};
-        is_weighted = type == NodeType::Constant;
-        init();
-    }
-
     auto get_name() const noexcept -> std::string; 
-    /* auto get_desc() const noexcept -> std::string const&; */
 
     // get return type and argument types. 
     inline DataType get_ret_type() const { return ret_type; }; 
@@ -166,21 +137,28 @@ struct Node {
     inline auto get_arg_types() const { return arg_types; };
     inline size_t get_arg_count() const { return arg_types.size(); };
 
-    void set_complete_hash(){
+    void set_node_hash(){
         using Tuple = std::tuple< UnderlyingNodeType, size_t, bool, string >;
-        complete_hash = std::hash<Tuple>{}(Tuple{
+        auto tmp = Tuple{
+                NodeTypes::GetIndex(node_type),
+                sig_hash,
+                is_weighted,
+                feature
+                };
+        node_hash = std::hash<Tuple>{}(Tuple{
                 NodeTypes::GetIndex(node_type),
                 sig_hash,
                 is_weighted,
                 feature
                 });
+        // fmt::print("nodetype:{}; hash tuple:{}; node_hash={}\n", node_type, tmp, node_hash);
     }
     ////////////////////////////////////////////////////////////////////////////////
     //comparison operators
     inline auto operator==(const Node& rhs) const noexcept -> bool
     {
         /* return CalculatedHashValue == rhs.CalculatedHashValue; */
-        return complete_hash == rhs.complete_hash;
+        return node_hash == rhs.node_hash;
         /* return (*this) == rhs; */
     }
 
@@ -192,7 +170,7 @@ struct Node {
     inline auto operator<(const Node& rhs) const noexcept -> bool
     {
         /* return std::tie(HashValue, CalculatedHashValue) < std::tie(rhs.HashValue, rhs.CalculatedHashValue); */
-        return complete_hash < complete_hash; 
+        return node_hash < node_hash; 
         return (*this) < rhs;
     }
 
@@ -217,6 +195,14 @@ struct Node {
     float get_prob_change() const { return this->prob_change;};
     void set_prob_change(float w){ if (!fixed) this->prob_change = w;};
     float get_prob_keep() const { return 1-this->prob_change;};
+
+    inline void set_feature(string f){ feature = f; set_node_hash(); };
+    inline string get_feature() const { return feature; };
+
+    private:
+
+        /// @brief feature name for terminals or splitting nodes
+        string feature; 
 };
 
 //TODO: add nt to template as first argument, make these constexpr

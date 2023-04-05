@@ -259,10 +259,10 @@ struct Operator<NodeType::Terminal, S, Fit>
             if (tn.data.is_weighted)
             {
                 auto w = util::get_weight<RetType,Scalar,W>(tn, weights);
-                return this->get<RetType>(d, tn.data.feature)*w;
+                return this->get<RetType>(d, tn.data.get_feature())*w;
             }
         }
-        return this->get<RetType>(d,tn.data.feature);
+        return this->get<RetType>(d,tn.data.get_feature());
     };
 
     template <typename T = RetType, typename Scalar=typename T::Scalar>
@@ -275,10 +275,10 @@ struct Operator<NodeType::Terminal, S, Fit>
             if (tn.data.is_weighted)
             {
                 auto w = util::get_weight<RetType,Scalar,W>(tn, weights);
-                return this->get<nonJetType>(d, tn.data.feature).template cast<Scalar>()*w;
+                return this->get<nonJetType>(d, tn.data.get_feature()).template cast<Scalar>()*w;
             }
         }
-        return this->get<nonJetType>(d, tn.data.feature).template cast<Scalar>();
+        return this->get<nonJetType>(d, tn.data.get_feature()).template cast<Scalar>();
     };
 
     template<typename T>

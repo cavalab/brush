@@ -146,17 +146,19 @@ TEST(Program, Serialization)
             PRG.fit(data);
             ArrayXf y_pred = PRG.predict(data);
             json PRGjson = PRG;
-            fmt::print( "json: {}\n", PRGjson.dump(2));
-            auto newPRG = PRGjson.get<RegressorProgram>();
+            fmt::print( "json of initial model: {}\n", PRGjson.dump(2));
+            // auto newPRG = PRGjson.get<RegressorProgram>();
+            RegressorProgram newPRG = PRGjson;
+            json newPRGjson = newPRG;
+            fmt::print( "json of loaded model: {}\n", newPRGjson.dump(2));
             fmt::print("Initial Model: {}\n",PRG.get_model("compact", true));
             fmt::print("Loaded  Model: {}\n",newPRG.get_model("compact", true));
             ASSERT_TRUE(
-                std::equal(PRG.Tree.begin(),PRG.Tree.end(),newPRG.Tree.begin())
+                std::equal(PRG.Tree.begin(), PRG.Tree.end(), newPRG.Tree.begin())
             );
             newPRG.set_search_space(SS);
             newPRG.fit(data);
             ArrayXf new_y_pred = newPRG.predict(data);
-
 
         }
     }

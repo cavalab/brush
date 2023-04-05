@@ -4,6 +4,7 @@ namespace Brush {
 
 ostream& operator<<(ostream& os, const NodeType& nt)
 {
+    os << "nt: " << nt << endl;
     os << NodeTypeName.at(nt);
     return os;
 }
@@ -52,8 +53,8 @@ void to_json(json& j, const Node& p)
         {"arg_types", p.arg_types}, 
         {"is_weighted", p.is_weighted}, 
         {"W", p.W}, 
-        {"feature", p.feature}, 
-        {"complete_hash", p.complete_hash} 
+        {"feature", p.get_feature()}, 
+        {"node_hash", p.node_hash} 
     };
 }
 
@@ -150,7 +151,10 @@ void from_json(const json &j, Node& p)
     if (j.contains("fixed"))
         j.at("fixed").get_to(p.fixed);
     if (j.contains("feature"))
-        j.at("feature").get_to(p.feature);
+    {
+        // j.at("feature").get_to(p.feature);
+        p.set_feature(j.at("feature"));
+    }
     if (j.contains("is_weighted"))
         j.at("is_weighted").get_to(p.is_weighted);
     else
@@ -176,13 +180,16 @@ void from_json(const json &j, Node& p)
         j.at("sig_dual_hash").get_to(p.sig_dual_hash);
     else
         make_signature=true;
-    if (j.contains("complete_hash"))
-        j.at("complete_hash").get_to(p.complete_hash);
+    if (j.contains("node_hash"))
+    {
+        j.at("node_hash").get_to(p.node_hash);
+        fmt::print("set node_hash={}...\n", p.node_hash);
+    }
     else
         make_signature=true;
 
     if (make_signature){
-        // fmt::print("using default signature...\n");
+        fmt::print("using default signature...\n");
         init_node_with_default_signature(p);
     }
     p.init();

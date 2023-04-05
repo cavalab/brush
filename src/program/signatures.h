@@ -98,6 +98,8 @@ struct SigBase
             return "Tuple";
     };
 
+    static constexpr auto get_ret_type() {return DataTypeEnum<RetType>::value;};
+
     template<typename T>
     static constexpr bool contains() { return is_in_v<T, Args...>; }
 
@@ -114,8 +116,9 @@ struct SigBase<R>
     using FirstArg = void;
     using WeightType = typename WeightType<R>::type;
     static constexpr std::size_t ArgCount = 0;
-    static constexpr auto get_arg_types() { return vector<DataType>{}; } 
-    static constexpr auto get_args_type() { return "None"; } 
+    static constexpr auto get_ret_type() {return DataTypeEnum<RetType>::value;};
+    static constexpr auto get_arg_types() { return vector<DataType>{}; };
+    static constexpr auto get_args_type() { return "None"; };
     static constexpr std::size_t hash(){ return typeid(R).hash_code(); };
 };
 
