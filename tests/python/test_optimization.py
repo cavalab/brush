@@ -208,6 +208,6 @@ def test_optimizer(optimization_problem, request):
     learned_weights = prg.get_weights();
     print('learned weights:', learned_weights)
 
-    assert np.sum(np.abs(data.y-y_pred)) <= 1e-2
+    assert np.sum(np.square(data.y-y_pred)) <= 1e-3
     assert np.allclose(data.y, y_pred, atol=1e-3)
     assert weight_check(learned_weights)
