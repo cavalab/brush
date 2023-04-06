@@ -250,16 +250,6 @@ template<typename T> struct Program //: public tree<Node>
 
             string parent_id = fmt::format("{}",fmt::ptr(iter.node));
             parent_id = parent_id.substr(2);
-            // string parent_id = parent_data.get_name(false);
-            // if (node_count.find(parent_id) == node_count.end())
-            //     node_count[parent_id] = 1;
-            // else{
-            //     node_count.at(parent_id)++;
-            // }
-            // parent_id = fmt::format("{}_{}",parent_id,node_count.at(parent_id));
-            // string parent_id = fmt::format("{}{}", 
-            //     parent_data.get_name(false), parent_data.get_node_hash()
-            // );
 
 
             // if the first node is weighted, make a dummy output node so that the 
@@ -293,21 +283,8 @@ template<typename T> struct Program //: public tree<Node>
                 string tail_label="";
                 bool use_head_tail_labels = false;
                 
-                // size_t kid_id = kid->data.get_node_hash();
                 string kid_id = fmt::format("{}",fmt::ptr(kid));
                 kid_id = kid_id.substr(2);
-                // string kid_id = fmt::format("{}{}", 
-                //     kid->data.get_name(false),
-                //     kid->data.get_node_hash()
-                // );
-
-                // string kid_id = std::to_string(kid); //.get_name(false);
-                // if (node_count.find(kid_id) == node_count.end())
-                //     node_count[kid_id] = 1;
-                // else{
-                //     node_count.at(kid_id)++;
-                // }
-                // kid_id = fmt::format("{}_{}",kid_id,node_count.at(kid_id));
 
                 if (kid->data.is_weighted && Isnt<NodeType::Constant>(kid->data.node_type)){
                     edge_label = fmt::format("{:.2f}",kid->data.W);
@@ -337,8 +314,6 @@ template<typename T> struct Program //: public tree<Node>
 
                 if (use_head_tail_labels){
                     out += fmt::format("\"{}\" -> \"{}\" [headlabel=\"{}\",taillabel=\"{}\"];\n", 
-                            // parent_data.get_name(false),
-                            // kid->data.get_name(false),
                             parent_id,
                             kid_id,
                             head_label,
