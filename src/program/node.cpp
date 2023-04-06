@@ -88,8 +88,8 @@ void to_json(json& j, const Node& p)
         {"arg_types", p.arg_types}, 
         {"is_weighted", p.is_weighted}, 
         {"W", p.W}, 
-        {"feature", p.get_feature()}, 
-        {"node_hash", p.node_hash} 
+        {"feature", p.get_feature()} 
+        // {"node_hash", p.get_node_hash()} 
     };
 }
 
@@ -215,12 +215,12 @@ void from_json(const json &j, Node& p)
         j.at("sig_dual_hash").get_to(p.sig_dual_hash);
     else
         make_signature=true;
-    if (j.contains("node_hash"))
-    {
-        j.at("node_hash").get_to(p.node_hash);
-    }
-    else
-        make_signature=true;
+    // if (j.contains("node_hash"))
+    // {
+    //     j.at("node_hash").get_to(p.node_hash);
+    // }
+    // else
+    //     make_signature=true;
 
     if (make_signature){
         fmt::print("using default signature...\n");

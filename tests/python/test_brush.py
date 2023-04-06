@@ -42,6 +42,7 @@ class TestBrush():
         
         est.fit(Xr, yr)
         print('score:',est.score(Xr,yr))
+        est.best_estimator_.get_model('dot')
 
     # def test_fit_classifier(self):
     #     df = pd.read_csv('docs/examples/datasets/d_analcatdata_aids.csv')

@@ -84,8 +84,18 @@ struct Node {
     bool is_weighted;
     /// @brief the weights of the node. also used for splitting thresholds.
     float W; 
-    /// @brief a node hash / unique ID for the node, except weights
-    size_t node_hash; 
+    // /// @brief a node hash / unique ID for the node, except weights
+    // size_t node_hash; 
+    /// @brief tuple type for hashing
+    using HashTuple = std::tuple< 
+        UnderlyingNodeType,     // node type
+        size_t,                 // sig_hash
+        bool,                   // is_weighted
+        string,                 // feature
+        bool,                   // fixed
+        int                     // rounded W
+        // float                   // prob_change
+    >;
 
     // Node(){init();}; 
     Node() = default;
@@ -117,13 +127,13 @@ struct Node {
         arg_types = S::get_arg_types(); 
         sig_hash = S::hash();
         sig_dual_hash = S::Dual::hash();
-        set_node_hash();
+        // set_node_hash();
     }
 
     void init(){
 
         W = 1.0;
-        set_node_hash();
+        // set_node_hash();
         set_prob_change(1.0);
         fixed=false;
 
@@ -141,28 +151,34 @@ struct Node {
     inline auto get_arg_types() const { return arg_types; };
     inline size_t get_arg_count() const { return arg_types.size(); };
 
-    void set_node_hash(){
-        using Tuple = std::tuple< UnderlyingNodeType, size_t, bool, string >;
-        auto tmp = Tuple{
+    // void set_node_hash(){
+    //     node_hash = std::hash<HashTuple>{}(HashTuple{
+    //             NodeTypes::GetIndex(node_type),
+    //             sig_hash,
+    //             is_weighted,
+    //             feature,
+    //             fixed,
+    //             W,
+    //             prob_change
+    //     });
+    //     // fmt::print("nodetype:{}; hash tuple:{}; node_hash={}\n", node_type, tmp, node_hash);
+    // }
+    size_t get_node_hash() const {
+        return std::hash<HashTuple>{}(HashTuple{
                 NodeTypes::GetIndex(node_type),
                 sig_hash,
                 is_weighted,
-                feature
-                };
-        node_hash = std::hash<Tuple>{}(Tuple{
-                NodeTypes::GetIndex(node_type),
-                sig_hash,
-                is_weighted,
-                feature
-                });
-        // fmt::print("nodetype:{}; hash tuple:{}; node_hash={}\n", node_type, tmp, node_hash);
+                feature,
+                fixed,
+                int(W*100)
+        });
     }
     ////////////////////////////////////////////////////////////////////////////////
     //comparison operators
     inline auto operator==(const Node& rhs) const noexcept -> bool
     {
         /* return CalculatedHashValue == rhs.CalculatedHashValue; */
-        return node_hash == rhs.node_hash;
+        return get_node_hash() == rhs.get_node_hash();
         /* return (*this) == rhs; */
     }
 
@@ -174,7 +190,7 @@ struct Node {
     inline auto operator<(const Node& rhs) const noexcept -> bool
     {
         /* return std::tie(HashValue, CalculatedHashValue) < std::tie(rhs.HashValue, rhs.CalculatedHashValue); */
-        return node_hash < node_hash; 
+        return get_node_hash() < rhs.get_node_hash(); 
         return (*this) < rhs;
     }
 
@@ -200,7 +216,7 @@ struct Node {
     void set_prob_change(float w){ if (!fixed) this->prob_change = w;};
     float get_prob_keep() const { return 1-this->prob_change;};
 
-    inline void set_feature(string f){ feature = f; set_node_hash(); };
+    inline void set_feature(string f){ feature = f; };
     inline string get_feature() const { return feature; };
 
     private:

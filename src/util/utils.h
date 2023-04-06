@@ -26,31 +26,93 @@ using namespace std;
 * @namespace Brush::Util
 * @brief namespace containing various utility functions 
 */
-namespace std
-{
-    template<typename... TTypes>
-    class hash<std::tuple<TTypes...>>
+
+
+// namespace std
+// {
+//     /**
+//      * @brief A std::hash specialization for tuples. 
+//      * 
+//      * See 
+//      * 
+//      * @tparam TTypes 
+//      */
+//     template<typename... TTypes>
+//     class hash<std::tuple<TTypes...>>
+//     {
+//     private:
+//         typedef std::tuple<TTypes...> Tuple;
+
+//         template<int N>
+//         size_t operator()(Tuple value) const { return 0; }
+
+//         template<int N, typename THead, typename... TTail>
+//         size_t operator()(Tuple value) const
+//         {
+//             constexpr int Index = N - sizeof...(TTail) - 1;
+//             return hash<THead>()(std::get<Index>(value)) ^ operator()<N, TTail...>(value);
+//         }
+
+//     public:
+//         size_t operator()(Tuple value) const
+//         {
+//             return operator()<sizeof...(TTypes), TTypes...>(value);
+//         }
+//     };
+// }
+
+#include <tuple>
+namespace std{
+    namespace
     {
-    private:
-        typedef std::tuple<TTypes...> Tuple;
 
-        template<int N>
-        size_t operator()(Tuple value) const { return 0; }
+        // Code from boost
+        // Reciprocal of the golden ratio helps spread entropy
+        //     and handles duplicates.
+        // See Mike Seymour in magic-numbers-in-boosthash-combine:
+        //     http://stackoverflow.com/questions/4948780
 
-        template<int N, typename THead, typename... TTail>
-        size_t operator()(Tuple value) const
+        template <class T>
+        inline void hash_combine(std::size_t& seed, T const& v)
         {
-            constexpr int Index = N - sizeof...(TTail) - 1;
-            return hash<THead>()(std::get<Index>(value)) ^ operator()<N, TTail...>(value);
+            seed ^= std::hash<T>()(v) + 0x9e3779b9 + (seed<<6) + (seed>>2);
         }
 
-    public:
-        size_t operator()(Tuple value) const
+        // Recursive template code derived from Matthieu M.
+        template <class Tuple, size_t Index = std::tuple_size<Tuple>::value - 1>
+        struct HashValueImpl
         {
-            return operator()<sizeof...(TTypes), TTypes...>(value);
-        }
+          static void apply(size_t& seed, Tuple const& tuple)
+          {
+            HashValueImpl<Tuple, Index-1>::apply(seed, tuple);
+            hash_combine(seed, std::get<Index>(tuple));
+          }
+        };
+
+        template <class Tuple>
+        struct HashValueImpl<Tuple,0>
+        {
+          static void apply(size_t& seed, Tuple const& tuple)
+          {
+            hash_combine(seed, std::get<0>(tuple));
+          }
+        };
+    }
+
+    template <typename ... TT>
+    struct hash<std::tuple<TT...>> 
+    {
+        size_t
+        operator()(std::tuple<TT...> const& tt) const
+        {                                              
+            size_t seed = 0;                             
+            HashValueImpl<std::tuple<TT...> >::apply(seed, tt);    
+            return seed;                                 
+        }                                              
+
     };
 }
+
 namespace Brush{
 namespace Util{
 

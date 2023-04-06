@@ -237,93 +237,125 @@ template<typename T> struct Program //: public tree<Node>
 
     string get_dot_model()
     {
-        // string out = "digraph G {\norientation=landscape;\n";
         // TODO: make the node names their hash or index, and the node label the nodetype name. 
         // ref: https://stackoverflow.com/questions/10579041/graphviz-create-new-node-with-this-same-label#10579155
-        map<NodeType,unsigned int> nodetype_count;
         string out = "digraph G {\n";
-        bool first = true;
+        // bool first = true;
+        std::map<string, unsigned int> node_count;
+        int i = 0;
         for (Iter iter = Tree.begin(); iter!=Tree.end(); iter++)
         {
             const auto& parent_data = iter.node->data;
-            auto kid = iter.node->first_child;
 
-            if (nodetype_count.find(parent_data.node_type) == nodetype_count.end())
-            {
-                nodetype_count[parent_data.node_type] = 0;
-            }
+
+            string parent_id = fmt::format("{}",fmt::ptr(iter.node));
+            parent_id = parent_id.substr(2);
+            // string parent_id = parent_data.get_name(false);
+            // if (node_count.find(parent_id) == node_count.end())
+            //     node_count[parent_id] = 1;
+            // else{
+            //     node_count.at(parent_id)++;
+            // }
+            // parent_id = fmt::format("{}_{}",parent_id,node_count.at(parent_id));
+            // string parent_id = fmt::format("{}{}", 
+            //     parent_data.get_name(false), parent_data.get_node_hash()
+            // );
+
 
             // if the first node is weighted, make a dummy output node so that the 
             // first node's weight can be shown
-            if (first && parent_data.is_weighted)
+            if (i==0 && parent_data.is_weighted)
             {
                 out += "y [shape=box];\n";
-                out += fmt::format("y -> {} [label=\"{:.2f}\"];\n", 
-                        parent_data.get_name(false),
+                out += fmt::format("y -> \"{}\" [label=\"{:.2f}\"];\n", 
+                        // parent_data.get_name(false),
+                        parent_id,
                         parent_data.W
                         );
 
             }
-            first = false;
 
             // add the node
-            out += fmt::format("{};\n", parent_data.get_name(false)); 
+            bool is_constant = Is<NodeType::Constant>(parent_data.node_type);
+            string node_label = parent_data.get_name(is_constant);
+
+            if (Is<NodeType::SplitBest>(parent_data.node_type)){
+                node_label = fmt::format("{}>{:.2f}?", parent_data.get_feature(), parent_data.W); 
+            }
+            out += fmt::format("\"{}\" [label=\"{}\"];\n", parent_id, node_label); 
 
             // add edges to the node's children
-            for (int i = 0; i < iter.number_of_children(); ++i)
+            auto kid = iter.node->first_child;
+            for (int j = 0; j < iter.number_of_children(); ++j)
             {
-                string label="";
-                string headlabel="";
-                string taillabel="";
+                string edge_label="";
+                string head_label="";
+                string tail_label="";
                 bool use_head_tail_labels = false;
-                if (kid->data.is_weighted)
-                    label = fmt::format("{:.2f}",kid->data.W);
-                else if (Is<NodeType::SplitOn>(parent_data.node_type)){
+                
+                // size_t kid_id = kid->data.get_node_hash();
+                string kid_id = fmt::format("{}",fmt::ptr(kid));
+                kid_id = kid_id.substr(2);
+                // string kid_id = fmt::format("{}{}", 
+                //     kid->data.get_name(false),
+                //     kid->data.get_node_hash()
+                // );
+
+                // string kid_id = std::to_string(kid); //.get_name(false);
+                // if (node_count.find(kid_id) == node_count.end())
+                //     node_count[kid_id] = 1;
+                // else{
+                //     node_count.at(kid_id)++;
+                // }
+                // kid_id = fmt::format("{}_{}",kid_id,node_count.at(kid_id));
+
+                if (kid->data.is_weighted && Isnt<NodeType::Constant>(kid->data.node_type)){
+                    edge_label = fmt::format("{:.2f}",kid->data.W);
+                }
+
+                if (Is<NodeType::SplitOn>(parent_data.node_type)){
                     use_head_tail_labels=true;
-                    if (i == 0)
-                        headlabel = fmt::format(">{:.2f}?",parent_data.W); 
-                    else if (i==1)
-                        headlabel = "Y"; 
+                    if (j == 0)
+                        tail_label = fmt::format(">{:.2f}",parent_data.W); 
+                    else if (j==1)
+                        tail_label = "Y"; 
                     else
-                        headlabel = "N";
-                    taillabel=label;
+                        tail_label = "N";
+
+                    head_label=edge_label;
                 }
                 else if (Is<NodeType::SplitBest>(parent_data.node_type)){
                     use_head_tail_labels=true;
-                    if (i == 0){
-                        headlabel = fmt::format(">{:.2f}?",parent_data.W); 
-                        out += fmt::format("{} -> {} [headlabel=\"{}\", taillabel=\"{}\"];\n", 
-                                parent_data.get_name(),
-                                parent_data.get_feature(),
-                                headlabel,
-                                taillabel
-                                );
-                        headlabel = "Y"; 
+                    if (j == 0){
+                        tail_label = "Y"; 
                     }
                     else
-                        headlabel = "N";
+                        tail_label = "N";
 
-                    taillabel = label;
+                    head_label = edge_label;
                 }
+
                 if (use_head_tail_labels){
-                    out += fmt::format("{} -> {} [headlabel=\"{}\",taillabel=\"{}\"];\n", 
-                            parent_data.get_name(false),
-                            kid->data.get_name(false),
-                            headlabel,
-                            taillabel
+                    out += fmt::format("\"{}\" -> \"{}\" [headlabel=\"{}\",taillabel=\"{}\"];\n", 
+                            // parent_data.get_name(false),
+                            // kid->data.get_name(false),
+                            parent_id,
+                            kid_id,
+                            head_label,
+                            tail_label
                             );
 
                 }
                 else{
-                    out += fmt::format("{} -> {} [label=\"{}\"];\n", 
-                            parent_data.get_name(false),
-                            kid->data.get_name(false),
-                            label
+                    out += fmt::format("\"{}\" -> \"{}\" [label=\"{}\"];\n", 
+                            parent_id,
+                            kid_id,
+                            edge_label
                             );
                 }
                 kid = kid->next_sibling;
             }
-
+            ++i;
         }
         out += "}\n";
         return out;
