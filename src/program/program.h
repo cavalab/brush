@@ -235,42 +235,57 @@ template<typename T> struct Program //: public tree<Node>
         return head.node->get_model(pretty);
     }
 
-    string get_dot_model()
+    string get_dot_model(string extras="")
     {
         // TODO: make the node names their hash or index, and the node label the nodetype name. 
         // ref: https://stackoverflow.com/questions/10579041/graphviz-create-new-node-with-this-same-label#10579155
         string out = "digraph G {\n";
+        if (! extras.empty())
+            out += fmt::format("{}\n", extras);
+
+        auto get_id = [](const auto& n){
+            if (Is<NodeType::Terminal>(n->data.node_type)) 
+                return n->data.get_name(false);
+
+            return fmt::format("{}",fmt::ptr(n)).substr(2);
+        };
         // bool first = true;
         std::map<string, unsigned int> node_count;
         int i = 0;
         for (Iter iter = Tree.begin(); iter!=Tree.end(); iter++)
         {
-            const auto& parent_data = iter.node->data;
+            const auto& parent = iter.node;
+            // const auto& parent_data = iter.node->data;
 
 
-            string parent_id = fmt::format("{}",fmt::ptr(iter.node));
-            parent_id = parent_id.substr(2);
+            string parent_id = get_id(parent);
+            // if (Is<NodeType::Terminal>(parent_data.node_type)) 
+            //     parent_id = parent_data.get_name(false);
+            // else{
+            //     parent_id = fmt::format("{}",fmt::ptr(iter.node)).substr(2);
+            // }
+            // // parent_id = parent_id.substr(2);
 
 
             // if the first node is weighted, make a dummy output node so that the 
             // first node's weight can be shown
-            if (i==0 && parent_data.is_weighted)
+            if (i==0 && parent->data.is_weighted)
             {
                 out += "y [shape=box];\n";
                 out += fmt::format("y -> \"{}\" [label=\"{:.2f}\"];\n", 
                         // parent_data.get_name(false),
                         parent_id,
-                        parent_data.W
+                        parent->data.W
                         );
 
             }
 
             // add the node
-            bool is_constant = Is<NodeType::Constant>(parent_data.node_type);
-            string node_label = parent_data.get_name(is_constant);
+            bool is_constant = Is<NodeType::Constant>(parent->data.node_type);
+            string node_label = parent->data.get_name(is_constant);
 
-            if (Is<NodeType::SplitBest>(parent_data.node_type)){
-                node_label = fmt::format("{}>{:.2f}?", parent_data.get_feature(), parent_data.W); 
+            if (Is<NodeType::SplitBest>(parent->data.node_type)){
+                node_label = fmt::format("{}>{:.2f}?", parent->data.get_feature(), parent->data.W); 
             }
             out += fmt::format("\"{}\" [label=\"{}\"];\n", parent_id, node_label); 
 
@@ -283,17 +298,18 @@ template<typename T> struct Program //: public tree<Node>
                 string tail_label="";
                 bool use_head_tail_labels = false;
                 
-                string kid_id = fmt::format("{}",fmt::ptr(kid));
-                kid_id = kid_id.substr(2);
+                string kid_id = get_id(kid);
+                // string kid_id = fmt::format("{}",fmt::ptr(kid));
+                // kid_id = kid_id.substr(2);
 
                 if (kid->data.is_weighted && Isnt<NodeType::Constant>(kid->data.node_type)){
                     edge_label = fmt::format("{:.2f}",kid->data.W);
                 }
 
-                if (Is<NodeType::SplitOn>(parent_data.node_type)){
+                if (Is<NodeType::SplitOn>(parent->data.node_type)){
                     use_head_tail_labels=true;
                     if (j == 0)
-                        tail_label = fmt::format(">{:.2f}",parent_data.W); 
+                        tail_label = fmt::format(">{:.2f}",parent->data.W); 
                     else if (j==1)
                         tail_label = "Y"; 
                     else
@@ -301,7 +317,7 @@ template<typename T> struct Program //: public tree<Node>
 
                     head_label=edge_label;
                 }
-                else if (Is<NodeType::SplitBest>(parent_data.node_type)){
+                else if (Is<NodeType::SplitBest>(parent->data.node_type)){
                     use_head_tail_labels=true;
                     if (j == 0){
                         tail_label = "Y"; 

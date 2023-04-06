@@ -43,6 +43,7 @@ void bind_program(py::module& m, string name)
             py::arg("pretty") = false,
             stream_redirect()
             )
+        .def("get_dot_model", &T::get_dot_model, py::arg("extras")="")
         .def("get_weights", &T::get_weights)
         .def("size", &T::size)
         .def("cross", &T::cross)
