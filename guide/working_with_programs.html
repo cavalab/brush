@@ -338,7 +338,13 @@ document.write(`
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#representation">Representation</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#generation">Generation</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#evaluation">Evaluation</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#visualizing-programs">Visualizing Programs</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#visualizing-programs">Visualizing Programs</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#string">String</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#quick-little-tree">Quick Little Tree</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#graphviz">GraphViz</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#tweaking-graphs">Tweaking Graphs</a></li>
+</ul>
+</li>
 </ul>
             </nav>
         </div>
@@ -401,34 +407,38 @@ We use the <a class="reference external" href="https://github.com/kpeeters/tree.
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
 <span class="kn">from</span> <span class="nn">brush</span> <span class="kn">import</span> <span class="n">BrushRegressor</span>
+<span class="kn">from</span> <span class="nn">pmlb</span> <span class="kn">import</span> <span class="n">fetch_data</span>
 
 <span class="c1"># load data</span>
 <span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">&#39;../examples/datasets/d_enc.csv&#39;</span><span class="p">)</span>
 <span class="n">X</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="s1">&#39;label&#39;</span><span class="p">)</span>
 <span class="n">y</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;label&#39;</span><span class="p">]</span>
-
-<span class="c1"># import and make a regressor</span>
-<span class="n">est</span> <span class="o">=</span> <span class="n">BrushRegressor</span><span class="p">()</span>
-
-<span class="c1"># use like you would a sklearn regressor</span>
-<span class="n">est</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X</span><span class="p">,</span><span class="n">y</span><span class="p">)</span>
-<span class="n">y_pred</span> <span class="o">=</span> <span class="n">est</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s1">&#39;score:&#39;</span><span class="p">,</span> <span class="n">est</span><span class="o">.</span><span class="n">score</span><span class="p">(</span><span class="n">X</span><span class="p">,</span><span class="n">y</span><span class="p">))</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># import and make a regressor</span>
+<span class="n">est</span> <span class="o">=</span> <span class="n">BrushRegressor</span><span class="p">(</span>
+    <span class="n">functions</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;SplitBest&#39;</span><span class="p">,</span><span class="s1">&#39;Add&#39;</span><span class="p">,</span><span class="s1">&#39;Mul&#39;</span><span class="p">,</span><span class="s1">&#39;Sin&#39;</span><span class="p">,</span><span class="s1">&#39;Cos&#39;</span><span class="p">,</span><span class="s1">&#39;Exp&#39;</span><span class="p">,</span><span class="s1">&#39;Logabs&#39;</span><span class="p">]</span>
+<span class="p">)</span>
+
+<span class="c1"># use like you would a sklearn regressor</span>
+<span class="n">est</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X</span><span class="p">,</span><span class="n">y</span><span class="p">)</span>
+<span class="n">y_pred</span> <span class="o">=</span> <span class="n">est</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;score:&#39;</span><span class="p">,</span> <span class="n">est</span><span class="o">.</span><span class="n">score</span><span class="p">(</span><span class="n">X</span><span class="p">,</span><span class="n">y</span><span class="p">))</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>score: 0.8014088305336884
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>best model: Add(10.57*x6,If(x0&gt;0.75,Add(8.50*x6,If(x0&gt;0.81,26.02,Add(-9.31*x4,127.74*x0))),Add(Add(13.60*x4,0.11*x2),-0.09*x1)))
 </pre></div>
 </div>
 </div>
 </div>
+<section id="string">
+<h3>String<a class="headerlink" href="#string" title="Permalink to this heading">#</a></h3>
 <p>Now that we have trained a model, <code class="docutils literal notranslate"><span class="pre">est.best_estimator_</span></code> contains our symbolic model.
 We can view it as a string:</p>
 <div class="cell docutils container">
@@ -438,12 +448,15 @@ We can view it as a string:</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Abs(x4)
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Add(10.57*x6,If(x0&gt;0.75,Add(8.50*x6,If(x0&gt;0.81,26.02,Add(-9.31*x4,127.74*x0))),Add(Add(13.60*x4,0.11*x2),-0.09*x1)))
 </pre></div>
 </div>
 </div>
 </div>
-<p>We can view it as a tree:</p>
+</section>
+<section id="quick-little-tree">
+<h3>Quick Little Tree<a class="headerlink" href="#quick-little-tree" title="Permalink to this heading">#</a></h3>
+<p>Or, we can view it as a compact tree:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">est</span><span class="o">.</span><span class="n">best_estimator_</span><span class="o">.</span><span class="n">get_model</span><span class="p">(</span><span class="s2">&quot;tree&quot;</span><span class="p">))</span>
@@ -451,33 +464,102 @@ We can view it as a string:</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Abs
-|-x4
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Add
+|-10.57*x6
+|-SplitBest
+|  |-Add
+|    |-8.50*x6
+|    |-SplitBest
+|    |  |-26.02
+|    |  |-Add
+|    |  |  |--9.31*x4
+|    |  |  |-127.74*x0
+|  |-Add
+|  |  |-Add
+|  |    |-13.60*x4
+|  |    |-0.11*x2
+|  |  |--0.09*x1
 </pre></div>
 </div>
 </div>
 </div>
-<p>We can also view it as a graph in dot format.
+</section>
+<section id="graphviz">
+<h3>GraphViz<a class="headerlink" href="#graphviz" title="Permalink to this heading">#</a></h3>
+<p>If we are feeling fancy 🎩, we can also view it as a graph in dot format.
 Let’s import graphviz and make a nicer plot.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">graphviz</span>
 
 <span class="n">model</span> <span class="o">=</span> <span class="n">est</span><span class="o">.</span><span class="n">best_estimator_</span><span class="o">.</span><span class="n">get_model</span><span class="p">(</span><span class="s2">&quot;dot&quot;</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">model</span><span class="p">)</span>
-<span class="n">g</span> <span class="o">=</span> <span class="n">graphviz</span><span class="o">.</span><span class="n">Source</span><span class="p">(</span><span class="n">model</span><span class="p">)</span>
-<span class="n">g</span>
+<span class="n">graphviz</span><span class="o">.</span><span class="n">Source</span><span class="p">(</span><span class="n">model</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/894e562a34cef47c1913c648404bd64ccabf59c3b9cbdf3b269807c2c874b5f3.svg" src="../_images/894e562a34cef47c1913c648404bd64ccabf59c3b9cbdf3b269807c2c874b5f3.svg" /></div>
+</div>
+<p>The <code class="docutils literal notranslate"><span class="pre">model</span></code> variable is now a little program in the <a class="reference external" href="https://graphviz.org/docs/layouts/dot/">dot language</a>, which we can inspect directly.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">model</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>digraph G {
-Abs -&gt; x4 [label=&quot;4.702&quot;];
+&quot;5625d27dfb10&quot; [label=&quot;Add&quot;];
+&quot;5625d27dfb10&quot; -&gt; &quot;x6&quot; [label=&quot;10.57&quot;];
+&quot;5625d27dfb10&quot; -&gt; &quot;5625d1de0610&quot; [label=&quot;&quot;];
+&quot;x6&quot; [label=&quot;x6&quot;];
+&quot;5625d1de0610&quot; [label=&quot;x0&gt;0.75?&quot;];
+&quot;5625d1de0610&quot; -&gt; &quot;5625d3c02820&quot; [headlabel=&quot;&quot;,taillabel=&quot;Y&quot;];
+&quot;5625d1de0610&quot; -&gt; &quot;5625d1ddc200&quot; [headlabel=&quot;&quot;,taillabel=&quot;N&quot;];
+&quot;5625d3c02820&quot; [label=&quot;Add&quot;];
+&quot;5625d3c02820&quot; -&gt; &quot;x6&quot; [label=&quot;8.50&quot;];
+&quot;5625d3c02820&quot; -&gt; &quot;5625d27cb4a0&quot; [label=&quot;&quot;];
+&quot;x6&quot; [label=&quot;x6&quot;];
+&quot;5625d27cb4a0&quot; [label=&quot;x0&gt;0.81?&quot;];
+&quot;5625d27cb4a0&quot; -&gt; &quot;5625d1c92dc0&quot; [headlabel=&quot;&quot;,taillabel=&quot;Y&quot;];
+&quot;5625d27cb4a0&quot; -&gt; &quot;5625d2515750&quot; [headlabel=&quot;&quot;,taillabel=&quot;N&quot;];
+&quot;5625d1c92dc0&quot; [label=&quot;26.02&quot;];
+&quot;5625d2515750&quot; [label=&quot;Add&quot;];
+&quot;5625d2515750&quot; -&gt; &quot;x4&quot; [label=&quot;-9.31&quot;];
+&quot;5625d2515750&quot; -&gt; &quot;x0&quot; [label=&quot;127.74&quot;];
+&quot;x4&quot; [label=&quot;x4&quot;];
+&quot;x0&quot; [label=&quot;x0&quot;];
+&quot;5625d1ddc200&quot; [label=&quot;Add&quot;];
+&quot;5625d1ddc200&quot; -&gt; &quot;5625d1d1bc10&quot; [label=&quot;&quot;];
+&quot;5625d1ddc200&quot; -&gt; &quot;x1&quot; [label=&quot;-0.09&quot;];
+&quot;5625d1d1bc10&quot; [label=&quot;Add&quot;];
+&quot;5625d1d1bc10&quot; -&gt; &quot;x4&quot; [label=&quot;13.60&quot;];
+&quot;5625d1d1bc10&quot; -&gt; &quot;x2&quot; [label=&quot;0.11&quot;];
+&quot;x4&quot; [label=&quot;x4&quot;];
+&quot;x2&quot; [label=&quot;x2&quot;];
+&quot;x1&quot; [label=&quot;x1&quot;];
 }
 </pre></div>
 </div>
-<img alt="../_images/935d5d225dd8aa181eac17f5b85e086f7641eca44ff5a598ebae0038d0be49f3.svg" src="../_images/935d5d225dd8aa181eac17f5b85e086f7641eca44ff5a598ebae0038d0be49f3.svg" /></div>
 </div>
+</div>
+</section>
+<section id="tweaking-graphs">
+<h3>Tweaking Graphs<a class="headerlink" href="#tweaking-graphs" title="Permalink to this heading">#</a></h3>
+<p>The <a class="reference external" href="https://graphviz.org/docs/layouts/dot/">dot manual</a> has lots of options for tweaking the graphs.
+You can do this by manually editing <code class="docutils literal notranslate"><span class="pre">model</span></code>, but brush also provides a function, <code class="docutils literal notranslate"><span class="pre">get_dot_model()</span></code>, to which you can pass additional arguments to dot.</p>
+<p>For example, let’s view the graph from Left-to-Right:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">model</span> <span class="o">=</span> <span class="n">est</span><span class="o">.</span><span class="n">best_estimator_</span><span class="o">.</span><span class="n">get_dot_model</span><span class="p">(</span><span class="s2">&quot;rankdir=LR;&quot;</span><span class="p">)</span>
+<span class="n">graphviz</span><span class="o">.</span><span class="n">Source</span><span class="p">(</span><span class="n">model</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/73a51c81d0fced123804ad84605f07b260d059593d734d8708017752780d6228.svg" src="../_images/73a51c81d0fced123804ad84605f07b260d059593d734d8708017752780d6228.svg" /></div>
+</div>
+</section>
 </section>
 </section>
 
@@ -533,7 +615,13 @@ Abs -&gt; x4 [label=&quot;4.702&quot;];
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#representation">Representation</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#generation">Generation</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#evaluation">Evaluation</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#visualizing-programs">Visualizing Programs</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#visualizing-programs">Visualizing Programs</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#string">String</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#quick-little-tree">Quick Little Tree</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#graphviz">GraphViz</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#tweaking-graphs">Tweaking Graphs</a></li>
+</ul>
+</li>
 </ul>
   </nav></div>
 

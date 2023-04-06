@@ -342,6 +342,15 @@ document.write(`
 <span id="_CPPv3N5Brush4NodeE"></span><span id="_CPPv2N5Brush4NodeE"></span><span id="Brush::Node"></span><span class="target" id="d1/d3a/structBrush_1_1Node"></span><span class="k"><span class="pre">struct</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">Node</span></span></span><a class="headerlink" href="#_CPPv4N5Brush4NodeE" title="Permalink to this definition">#</a><br /></dt>
 <dd><p>class holding the data for a node in a tree. </p>
 <div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric" id="breathe-section-title-public-types">Public Types</p>
+<dl class="cpp type">
+<dt class="sig sig-object cpp" id="_CPPv4N5Brush4Node9HashTupleE">
+<span id="_CPPv3N5Brush4Node9HashTupleE"></span><span id="_CPPv2N5Brush4Node9HashTupleE"></span><span class="target" id="d1/d3a/structBrush_1_1Node_1a65b335bb198e4a320b0aa60e559571c5"></span><span class="k"><span class="pre">using</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">HashTuple</span></span></span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">tuple</span></span><span class="p"><span class="pre">&lt;</span></span><span class="n"><span class="pre">UnderlyingNodeType</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="n"><span class="pre">size_t</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="kt"><span class="pre">bool</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="n"><span class="pre">string</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="kt"><span class="pre">bool</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="kt"><span class="pre">int</span></span><span class="p"><span class="pre">&gt;</span></span><a class="headerlink" href="#_CPPv4N5Brush4Node9HashTupleE" title="Permalink to this definition">#</a><br /></dt>
+<dd><p>tuple type for hashing </p>
+</dd></dl>
+
+</div>
+<div class="breathe-sectiondef docutils container">
 <p class="breathe-sectiondef-title rubric" id="breathe-section-title-public-functions">Public Functions</p>
 <dl class="cpp function">
 <dt class="sig sig-object cpp" id="_CPPv4N5Brush4Node4NodeEv">
@@ -349,24 +358,9 @@ document.write(`
 <dd></dd></dl>
 
 <dl class="cpp function">
-<dt class="sig sig-object cpp" id="_CPPv4I0EN5Brush4Node4NodeE8NodeType1Sb">
-<span id="_CPPv3I0EN5Brush4Node4NodeE8NodeType1Sb"></span><span id="_CPPv2I0EN5Brush4Node4NodeE8NodeType1Sb"></span><span class="k"><span class="pre">template</span></span><span class="p"><span class="pre">&lt;</span></span><span class="k"><span class="pre">typename</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">S</span></span></span><span class="p"><span class="pre">&gt;</span></span><br /><span class="target" id="d1/d3a/structBrush_1_1Node_1a4e48329de0898917a0d358a367e78763"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="k"><span class="pre">explicit</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">Node</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="nodetypes.html#_CPPv4N5Brush8NodeTypeE" title="Brush::NodeType"><span class="n"><span class="pre">NodeType</span></span></a><span class="w"> </span><span class="n sig-param"><span class="pre">type</span></span>, <a class="reference internal" href="#_CPPv4I0EN5Brush4Node4NodeE8NodeType1Sb" title="Brush::Node::Node::S"><span class="n"><span class="pre">S</span></span></a><span class="w"> </span><span class="n sig-param"><span class="pre">signature</span></span>, <span class="kt"><span class="pre">bool</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">weighted</span></span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="k"><span class="pre">false</span></span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">noexcept</span></span><a class="headerlink" href="#_CPPv4I0EN5Brush4Node4NodeE8NodeType1Sb" title="Permalink to this definition">#</a><br /></dt>
-<dd></dd></dl>
-
-<dl class="cpp function">
-<dt class="sig sig-object cpp" id="_CPPv4I0EN5Brush4Node13set_signatureEvv">
-<span id="_CPPv3I0EN5Brush4Node13set_signatureEv"></span><span id="_CPPv2I0EN5Brush4Node13set_signatureEv"></span><span class="k"><span class="pre">template</span></span><span class="p"><span class="pre">&lt;</span></span><span class="k"><span class="pre">typename</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">S</span></span></span><span class="p"><span class="pre">&gt;</span></span><br /><span class="target" id="d1/d3a/structBrush_1_1Node_1a24ab653c36833ab9cd301efe99b39d5f"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">set_signature</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4I0EN5Brush4Node13set_signatureEvv" title="Permalink to this definition">#</a><br /></dt>
-<dd></dd></dl>
-
-<dl class="cpp function">
-<dt class="sig sig-object cpp" id="_CPPv4N5Brush4Node4initEv">
-<span id="_CPPv3N5Brush4Node4initEv"></span><span id="_CPPv2N5Brush4Node4initEv"></span><span id="Brush::Node::init"></span><span class="target" id="d1/d3a/structBrush_1_1Node_1a99e9db58c89646c630fb9d54b41ff2ba"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">init</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N5Brush4Node4initEv" title="Permalink to this definition">#</a><br /></dt>
-<dd></dd></dl>
-
-<dl class="cpp function">
-<dt class="sig sig-object cpp" id="_CPPv4I0EN5Brush4Node4NodeE8NodeType6string1S">
-<span id="_CPPv3I0EN5Brush4Node4NodeE8NodeType6string1S"></span><span id="_CPPv2I0EN5Brush4Node4NodeE8NodeType6string1S"></span><span class="k"><span class="pre">template</span></span><span class="p"><span class="pre">&lt;</span></span><span class="k"><span class="pre">typename</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">S</span></span></span><span class="p"><span class="pre">&gt;</span></span><br /><span class="target" id="d1/d3a/structBrush_1_1Node_1ad5ac7534a0b668318f454ffd6ba42822"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="k"><span class="pre">explicit</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">Node</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="nodetypes.html#_CPPv4N5Brush8NodeTypeE" title="Brush::NodeType"><span class="n"><span class="pre">NodeType</span></span></a><span class="w"> </span><span class="n sig-param"><span class="pre">type</span></span>, <span class="n"><span class="pre">string</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">feature_name</span></span>, <a class="reference internal" href="#_CPPv4I0EN5Brush4Node4NodeE8NodeType6string1S" title="Brush::Node::Node::S"><span class="n"><span class="pre">S</span></span></a><span class="w"> </span><span class="n sig-param"><span class="pre">signature</span></span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">noexcept</span></span><a class="headerlink" href="#_CPPv4I0EN5Brush4Node4NodeE8NodeType6string1S" title="Permalink to this definition">#</a><br /></dt>
-<dd><p>Terminal specialization. </p>
+<dt class="sig sig-object cpp" id="_CPPv4I0EN5Brush4Node4NodeE8NodeType1Sb6string">
+<span id="_CPPv3I0EN5Brush4Node4NodeE8NodeType1Sb6string"></span><span id="_CPPv2I0EN5Brush4Node4NodeE8NodeType1Sb6string"></span><span class="k"><span class="pre">template</span></span><span class="p"><span class="pre">&lt;</span></span><span class="k"><span class="pre">typename</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">S</span></span></span><span class="p"><span class="pre">&gt;</span></span><br /><span class="target" id="d1/d3a/structBrush_1_1Node_1a62f7ba79b38e86e54488e5dd9a6bdc93"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="k"><span class="pre">explicit</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">Node</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="nodetypes.html#_CPPv4N5Brush8NodeTypeE" title="Brush::NodeType"><span class="n"><span class="pre">NodeType</span></span></a><span class="w"> </span><span class="n sig-param"><span class="pre">type</span></span>, <a class="reference internal" href="#_CPPv4I0EN5Brush4Node4NodeE8NodeType1Sb6string" title="Brush::Node::Node::S"><span class="n"><span class="pre">S</span></span></a><span class="w"> </span><span class="n sig-param"><span class="pre">signature</span></span>, <span class="kt"><span class="pre">bool</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">weighted</span></span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="k"><span class="pre">false</span></span>, <span class="n"><span class="pre">string</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">feature_name</span></span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="s"><span class="pre">&quot;&quot;</span></span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">noexcept</span></span><a class="headerlink" href="#_CPPv4I0EN5Brush4Node4NodeE8NodeType1Sb6string" title="Permalink to this definition">#</a><br /></dt>
+<dd><p>Constructor used by search space. </p>
 <dl class="field-list simple">
 <dt class="field-odd">Template Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><p><strong>S</strong> – signature </p>
@@ -382,15 +376,37 @@ document.write(`
 </dd></dl>
 
 <dl class="cpp function">
-<dt class="sig sig-object cpp" id="_CPPv4NK5Brush4Node8get_nameEv">
-<span id="_CPPv3NK5Brush4Node8get_nameEv"></span><span id="_CPPv2NK5Brush4Node8get_nameEv"></span><span id="Brush::Node::get_nameC"></span><span class="target" id="d1/d3a/structBrush_1_1Node_1a16e8322c6093276bbde58cd00d692d14"></span><span class="kt"><span class="pre">auto</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">get_name</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="k"><span class="pre">noexcept</span></span><span class="w"> </span><span class="o"><span class="pre">-&gt;</span></span><span class="w"> </span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">string</span></span><a class="headerlink" href="#_CPPv4NK5Brush4Node8get_nameEv" title="Permalink to this definition">#</a><br /></dt>
-<dd><p>get the name of the node. </p>
+<dt class="sig sig-object cpp" id="_CPPv4I0EN5Brush4Node13set_signatureEvv">
+<span id="_CPPv3I0EN5Brush4Node13set_signatureEv"></span><span id="_CPPv2I0EN5Brush4Node13set_signatureEv"></span><span class="k"><span class="pre">template</span></span><span class="p"><span class="pre">&lt;</span></span><span class="k"><span class="pre">typename</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">S</span></span></span><span class="p"><span class="pre">&gt;</span></span><br /><span class="target" id="d1/d3a/structBrush_1_1Node_1a24ab653c36833ab9cd301efe99b39d5f"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">set_signature</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4I0EN5Brush4Node13set_signatureEvv" title="Permalink to this definition">#</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N5Brush4Node4initEv">
+<span id="_CPPv3N5Brush4Node4initEv"></span><span id="_CPPv2N5Brush4Node4initEv"></span><span id="Brush::Node::init"></span><span class="target" id="d1/d3a/structBrush_1_1Node_1a99e9db58c89646c630fb9d54b41ff2ba"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">init</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N5Brush4Node4initEv" title="Permalink to this definition">#</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4NK5Brush4Node8get_nameEb">
+<span id="_CPPv3NK5Brush4Node8get_nameEb"></span><span id="_CPPv2NK5Brush4Node8get_nameEb"></span><span id="Brush::Node::get_name__bC"></span><span class="target" id="d1/d3a/structBrush_1_1Node_1aaddaf7903795dfdcad487234d6dc380e"></span><span class="n"><span class="pre">string</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">get_name</span></span></span><span class="sig-paren">(</span><span class="kt"><span class="pre">bool</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">include_weight</span></span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="k"><span class="pre">true</span></span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="k"><span class="pre">noexcept</span></span><a class="headerlink" href="#_CPPv4NK5Brush4Node8get_nameEb" title="Permalink to this definition">#</a><br /></dt>
+<dd><p>gets a string version of the node for printing. </p>
+<p>get the name of the node.</p>
 <dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>include_weight</strong> – whether to include the node’s weight in the output. </p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>string version of the node.</p>
+</dd>
 <dt class="field-odd">Returns<span class="colon">:</span></dt>
 <dd class="field-odd"><p>name </p>
 </dd>
 </dl>
 </dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4NK5Brush4Node9get_modelERK6vectorI6stringE">
+<span id="_CPPv3NK5Brush4Node9get_modelERK6vectorI6stringE"></span><span id="_CPPv2NK5Brush4Node9get_modelERK6vectorI6stringE"></span><span id="Brush::Node::get_model__vector:string:CRC"></span><span class="target" id="d1/d3a/structBrush_1_1Node_1af621eb9463a3ed3434841565a849c03b"></span><span class="n"><span class="pre">string</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">get_model</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">vector</span></span><span class="p"><span class="pre">&lt;</span></span><span class="n"><span class="pre">string</span></span><span class="p"><span class="pre">&gt;</span></span><span class="p"><span class="pre">&amp;</span></span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="k"><span class="pre">noexcept</span></span><a class="headerlink" href="#_CPPv4NK5Brush4Node9get_modelERK6vectorI6stringE" title="Permalink to this definition">#</a><br /></dt>
+<dd></dd></dl>
 
 <dl class="cpp function">
 <dt class="sig sig-object cpp" id="_CPPv4NK5Brush4Node12get_ret_typeEv">
@@ -413,8 +429,8 @@ document.write(`
 <dd></dd></dl>
 
 <dl class="cpp function">
-<dt class="sig sig-object cpp" id="_CPPv4N5Brush4Node17set_complete_hashEv">
-<span id="_CPPv3N5Brush4Node17set_complete_hashEv"></span><span id="_CPPv2N5Brush4Node17set_complete_hashEv"></span><span id="Brush::Node::set_complete_hash"></span><span class="target" id="d1/d3a/structBrush_1_1Node_1a05890dd444d42b30dad8db7193c6307a"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">set_complete_hash</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N5Brush4Node17set_complete_hashEv" title="Permalink to this definition">#</a><br /></dt>
+<dt class="sig sig-object cpp" id="_CPPv4NK5Brush4Node13get_node_hashEv">
+<span id="_CPPv3NK5Brush4Node13get_node_hashEv"></span><span id="_CPPv2NK5Brush4Node13get_node_hashEv"></span><span id="Brush::Node::get_node_hashC"></span><span class="target" id="d1/d3a/structBrush_1_1Node_1a1aef5137dca5171a150c6d26ca43d9bc"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="n"><span class="pre">size_t</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">get_node_hash</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">const</span></span><a class="headerlink" href="#_CPPv4NK5Brush4Node13get_node_hashEv" title="Permalink to this definition">#</a><br /></dt>
 <dd></dd></dl>
 
 <dl class="cpp function">
@@ -460,6 +476,16 @@ document.write(`
 <dl class="cpp function">
 <dt class="sig sig-object cpp" id="_CPPv4NK5Brush4Node13get_prob_keepEv">
 <span id="_CPPv3NK5Brush4Node13get_prob_keepEv"></span><span id="_CPPv2NK5Brush4Node13get_prob_keepEv"></span><span id="Brush::Node::get_prob_keepC"></span><span class="target" id="d1/d3a/structBrush_1_1Node_1a087a9c51b46b3e801506415376cd0518"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="kt"><span class="pre">float</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">get_prob_keep</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">const</span></span><a class="headerlink" href="#_CPPv4NK5Brush4Node13get_prob_keepEv" title="Permalink to this definition">#</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N5Brush4Node11set_featureE6string">
+<span id="_CPPv3N5Brush4Node11set_featureE6string"></span><span id="_CPPv2N5Brush4Node11set_featureE6string"></span><span id="Brush::Node::set_feature__string"></span><span class="target" id="d1/d3a/structBrush_1_1Node_1a7e8460b645f3d58c3093eda1d5d3166c"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">set_feature</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">string</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">f</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N5Brush4Node11set_featureE6string" title="Permalink to this definition">#</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4NK5Brush4Node11get_featureEv">
+<span id="_CPPv3NK5Brush4Node11get_featureEv"></span><span id="_CPPv2NK5Brush4Node11get_featureEv"></span><span id="Brush::Node::get_featureC"></span><span class="target" id="d1/d3a/structBrush_1_1Node_1a85a62efd4f1f99fa45eb52e4c0a1a26f"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="n"><span class="pre">string</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">get_feature</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">const</span></span><a class="headerlink" href="#_CPPv4NK5Brush4Node11get_featureEv" title="Permalink to this definition">#</a><br /></dt>
 <dd></dd></dl>
 
 </div>
@@ -529,18 +555,6 @@ document.write(`
 <dt class="sig sig-object cpp" id="_CPPv4N5Brush4Node1WE">
 <span id="_CPPv3N5Brush4Node1WE"></span><span id="_CPPv2N5Brush4Node1WE"></span><span id="Brush::Node::W__float"></span><span class="target" id="d1/d3a/structBrush_1_1Node_1ab719e64b13753515be49327d98bf2224"></span><span class="kt"><span class="pre">float</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">W</span></span></span><a class="headerlink" href="#_CPPv4N5Brush4Node1WE" title="Permalink to this definition">#</a><br /></dt>
 <dd><p>the weights of the node. also used for splitting thresholds. </p>
-</dd></dl>
-
-<dl class="cpp var">
-<dt class="sig sig-object cpp" id="_CPPv4N5Brush4Node7featureE">
-<span id="_CPPv3N5Brush4Node7featureE"></span><span id="_CPPv2N5Brush4Node7featureE"></span><span id="Brush::Node::feature__string"></span><span class="target" id="d1/d3a/structBrush_1_1Node_1ac5f37d638625468ed68de599a2a7d968"></span><span class="n"><span class="pre">string</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">feature</span></span></span><a class="headerlink" href="#_CPPv4N5Brush4Node7featureE" title="Permalink to this definition">#</a><br /></dt>
-<dd><p>feature name for terminals or splitting nodes </p>
-</dd></dl>
-
-<dl class="cpp var">
-<dt class="sig sig-object cpp" id="_CPPv4N5Brush4Node13complete_hashE">
-<span id="_CPPv3N5Brush4Node13complete_hashE"></span><span id="_CPPv2N5Brush4Node13complete_hashE"></span><span id="Brush::Node::complete_hash__s"></span><span class="target" id="d1/d3a/structBrush_1_1Node_1abedd1bc1de108c083702ee6116e1c43b"></span><span class="n"><span class="pre">size_t</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">complete_hash</span></span></span><a class="headerlink" href="#_CPPv4N5Brush4Node13complete_hashE" title="Permalink to this definition">#</a><br /></dt>
-<dd><p>a complete hash / unique ID for the node, except weights </p>
 </dd></dl>
 
 </div>
