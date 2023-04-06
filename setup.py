@@ -123,11 +123,10 @@ setup(
     python_requires=">=3.6",
     install_requires=[
         'numpy',
+        'scikit-learn',
         'sphinx'
     ],
-    test_requires=[
-        'pytest'
-    ],
+    tests_require=['pytest', 'pmlb'],
     extras_require={
         'docs': [
             'sphinx_rtd_theme',
@@ -139,8 +138,7 @@ setup(
         CMakeExtension("_brush")
     ],
     cmdclass={"build_ext": CMakeBuild},
-    test_suite='nose.collector',
-    tests_require=['nose', 'pmlb'],
+    test_suite='tests/python',
     zip_safe=False,
     include_package_data=True
 )
