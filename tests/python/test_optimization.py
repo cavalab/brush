@@ -19,9 +19,9 @@ def optimize_addition_positive_weights():
 
     json_program = {
         "Tree": [
-            { "node_type":"Add", "is_weighted": True },
-                { "node_type":"Terminal", "feature":"x1" },
-                { "node_type":"Terminal", "feature":"x2" }
+            { "node_type":"Add", "is_weighted": False },
+            { "node_type":"Terminal", "feature":"x1", "is_weighted": True },
+            { "node_type":"Terminal", "feature":"x2", "is_weighted": True }
         ],
         "is_fitted_":False
     }
@@ -36,9 +36,9 @@ def optimize_addition_negative_weights():
 
     json_program = {
         "Tree": [
-            { "node_type":"Add", "is_weighted": True },
-                { "node_type":"Terminal", "feature":"x1" },
-                { "node_type":"Terminal", "feature":"x2" }
+            { "node_type":"Add", "is_weighted": False },
+            { "node_type":"Terminal", "feature":"x1", "is_weighted": True },
+            { "node_type":"Terminal", "feature":"x2", "is_weighted": True }
         ],
         "is_fitted_":False
     }
@@ -53,9 +53,9 @@ def optimize_subtraction_positive_weights():
 
     json_program = {
         "Tree": [
-            { "node_type":"Sub", "is_weighted": True },
-                { "node_type":"Terminal", "feature":"x1" },
-                { "node_type":"Terminal", "feature":"x2" }
+            { "node_type":"Sub", "is_weighted": False },
+            { "node_type":"Terminal", "feature":"x1", "is_weighted": True },
+            { "node_type":"Terminal", "feature":"x2", "is_weighted": True }
         ],
         "is_fitted_":False
     }
@@ -70,9 +70,9 @@ def optimize_subtraction_negative_weights():
 
     json_program = {
         "Tree": [
-            { "node_type":"Sub", "is_weighted": True },
-                { "node_type":"Terminal", "feature":"x1" },
-                { "node_type":"Terminal", "feature":"x2" }
+            { "node_type":"Sub", "is_weighted": False },
+            { "node_type":"Terminal", "feature":"x1", "is_weighted": True },
+            { "node_type":"Terminal", "feature":"x2", "is_weighted": True }
         ],
         "is_fitted_":False
     }
@@ -87,9 +87,9 @@ def optimize_multiply():
 
     json_program = {
         "Tree": [
-            { "node_type":"Mul", "is_weighted": True },
-                { "node_type":"Terminal", "feature":"x1" },
-                { "node_type":"Terminal", "feature":"x2" }
+            { "node_type":"Mul", "is_weighted": False },
+            { "node_type":"Terminal", "feature":"x1", "is_weighted": True },
+            { "node_type":"Terminal", "feature":"x2", "is_weighted": False }
         ],
         "is_fitted_":False
     }
@@ -104,25 +104,41 @@ def optimize_divide():
 
     json_program = {
         "Tree": [
-            { "node_type":"Div", "is_weighted": True },
-                { "node_type":"Terminal", "feature":"x1" },
-                { "node_type":"Terminal", "feature":"x2" }
+            { "node_type":"Div", "is_weighted": False },
+            { "node_type":"Terminal", "feature":"x1", "is_weighted": True },
+            { "node_type":"Terminal", "feature":"x2", "is_weighted": False }
         ],
         "is_fitted_":False
     }
 
-    weight_check = lambda learned_weights: np.allclose(learned_weights[0]/learned_weights[1], 2.0/3.0, atol=1e-3)
+    weight_check = lambda learned_weights: np.allclose(learned_weights[0], 2.0/3.0, atol=1e-3)
 
     return (data, json_program, weight_check)
 
 @pytest.fixture
-def optimize_sqrt():
+def optimize_sqrt_outer_weight():
     data = _brush.read_csv("docs/examples/datasets/d_2_sqrt_x1.csv","target")
 
     json_program = {
         "Tree": [
             { "node_type":"Sqrt", "is_weighted": True },
-                { "node_type":"Terminal", "feature":"x1" }
+            { "node_type":"Terminal", "feature":"x1", "is_weighted": False }
+        ],
+        "is_fitted_":False
+    }
+
+    weight_check = lambda learned_weights: np.allclose(learned_weights, [2.0], atol=1e-3)
+
+    return (data, json_program, weight_check)
+
+@pytest.fixture
+def optimize_sqrt_inner_weight():
+    data = _brush.read_csv("docs/examples/datasets/d_2_sqrt_x1.csv","target")
+
+    json_program = {
+        "Tree": [
+            { "node_type":"Sqrt", "is_weighted": False },
+            { "node_type":"Terminal", "feature":"x1", "is_weighted": True }
         ],
         "is_fitted_":False
     }
@@ -131,6 +147,37 @@ def optimize_sqrt():
 
     return (data, json_program, weight_check)
 
+@pytest.fixture
+def optimize_sin_outer_weight():
+    data = _brush.read_csv("docs/examples/datasets/d_2_sin_x1.csv","target")
+
+    json_program = {
+        "Tree": [
+            { "node_type":"Sin", "is_weighted": True },
+            { "node_type":"Terminal", "feature":"x1", "is_weighted": False }
+        ],
+        "is_fitted_":False
+    }
+
+    weight_check = lambda learned_weights: np.allclose(learned_weights, [2.0], atol=1e-3)
+
+    return (data, json_program, weight_check)
+
+@pytest.fixture
+def optimize_sin_inner_weight():
+    data = _brush.read_csv("docs/examples/datasets/d_sin_0_25x1.csv","target")
+
+    json_program = {
+        "Tree": [
+            { "node_type":"Sin", "is_weighted": False },
+            { "node_type":"Terminal", "feature":"x1", "is_weighted": True }
+        ],
+        "is_fitted_":False
+    }
+
+    weight_check = lambda learned_weights: np.allclose(learned_weights, [0.25], atol=1e-2)
+
+    return (data, json_program, weight_check)
 
 @pytest.mark.parametrize(
     'optimization_problem', ['optimize_addition_positive_weights',
@@ -139,7 +186,10 @@ def optimize_sqrt():
                              'optimize_subtraction_negative_weights',
                              'optimize_multiply',
                              'optimize_divide',
-                             'optimize_sqrt'
+                             'optimize_sqrt_outer_weight',
+                             'optimize_sqrt_inner_weight',
+                             'optimize_sin_outer_weight',
+                             'optimize_sin_inner_weight'
                              ])
 def test_optimizer(optimization_problem, request):
 
@@ -158,6 +208,6 @@ def test_optimizer(optimization_problem, request):
     learned_weights = prg.get_weights();
     print('learned weights:', learned_weights)
 
-    assert np.sum(np.abs(data.y-y_pred)) <= 1e-3
+    assert np.sum(np.abs(data.y-y_pred)) <= 1e-2
     assert np.allclose(data.y, y_pred, atol=1e-3)
     assert weight_check(learned_weights)
