@@ -91,7 +91,7 @@ inline void toggle_weight_mutation(tree<Node>& Tree, Iter spot, const SearchSpac
  * @param SS a search space
  * @return `child`, the mutated program
  */
-template<typename T>
+template<ProgramType T>
 Program<T> mutate(const Program<T>& parent, const SearchSpace& SS)
 {
     Program<T> child(parent);
@@ -127,7 +127,7 @@ Program<T> mutate(const Program<T>& parent, const SearchSpace& SS)
     return child;
 };
 /// swaps subtrees between this and other (note the pass by copy)
-template<typename T>
+template<ProgramType T>
 Program<T> cross(const Program<T>& root, const Program<T>& other) 
 {
     /* subtree crossover between this and other, producing new Program */

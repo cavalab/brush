@@ -112,21 +112,9 @@ Dataset Dataset::operator()(const vector<size_t>& idx) const
         std::visit([&](auto&& arg) 
         {
             using T = std::decay_t<decltype(arg)>;
-            if constexpr (
-                T::NumDimensions == 1
-                // std::is_same_v<T, ArrayXb> 
-                // || std::is_same_v<T, ArrayXi> 
-                // || std::is_same_v<T, ArrayXf> 
-                // || std::is_same_v<T, TimeSeriesb> 
-                // || std::is_same_v<T, TimeSeriesi> 
-                // || std::is_same_v<T, TimeSeriesf> 
-            )
+            if constexpr ( T::NumDimensions == 1)
                 new_features[key] = T(arg(idx));
             else if constexpr (T::NumDimensions==2)
-            //     std::is_same_v<T, ArrayXXb> 
-            //     || std::is_same_v<T, ArrayXXi> 
-            //     || std::is_same_v<T, ArrayXXf> 
-            // )
                 new_features[key] = T(arg(idx, Eigen::all));
             else 
                 static_assert(always_false_v<T>, "non-exhaustive visitor!");
@@ -180,7 +168,7 @@ void Dataset::init()
 }
 
 /// turns input data into a feature map
-map<string, State> Dataset::make_features(const Ref<const ArrayXXf>& X,
+map<string, State> Dataset::make_features(const ArrayXXf& X,
                                        const map<string,State>& Z,
                                        const vector<string>& vn 
                                        ) 

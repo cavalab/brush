@@ -13,9 +13,9 @@ license: GNU/GPL v3
 #include "../util/logger.h"
 #include "../util/rnd.h"
 #include "timeseries.h"
-
 //external includes
 #include <variant>
+#include <optional> 
 
 namespace Brush
 {
@@ -69,6 +69,7 @@ class Dataset
         ArrayXf y;
         /// @brief whether this is a classification problem
         bool classification;
+        std::optional<std::reference_wrapper<const ArrayXXf>> Xref;
 
         Dataset operator()(const vector<size_t>& idx) const;
         /// call init at the end of constructors
@@ -76,7 +77,7 @@ class Dataset
         void init();
 
         /// turns input data into a feature map
-        map<string,State> make_features(const Ref<const ArrayXXf>& X,
+        map<string,State> make_features(const ArrayXXf& X,
                                         const map<string, State>& Z = {},
                                         const vector<string>& vn = {}
                                        );
@@ -92,7 +93,7 @@ class Dataset
              {init();};
 
         /// initialize data from a matrix with feature columns.
-        Dataset(const Ref<const ArrayXXf>& X, 
+        Dataset(const ArrayXXf& X, 
              const Ref<const ArrayXf>& y_ = ArrayXf(), 
              const vector<string>& vn = {}, 
              const map<string, State>& Z = {},
@@ -103,12 +104,15 @@ class Dataset
             , classification(c)
             {
                 init();
+                Xref = optional<reference_wrapper<const ArrayXXf>>{X};
             } 
-        Dataset(const Ref<const ArrayXXf>& X, const vector<string>& vn) 
+
+        Dataset(const ArrayXXf& X, const vector<string>& vn) 
             : classification(false)
+            , features(make_features(X,map<string, State>{},vn))
             {
-                features = make_features(X,map<string, State>{},vn);
                 init();
+                Xref = optional<reference_wrapper<const ArrayXXf>>{X};
             } 
 
         void print() const
@@ -127,7 +131,13 @@ class Dataset
             }
 
         };
-
+        auto get_X() const
+        {
+            if (Xref.has_value())
+                return this->Xref.value().get();
+            else
+                HANDLE_ERROR_THROW("Dataset does not hold a reference to X.");
+        }
         void set_validation(bool v=true);
         inline int get_n_samples() const { 
             return std::visit(

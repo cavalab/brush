@@ -41,10 +41,26 @@ struct Fitness {
     vector<float> values;
     bool valid;
 };
-
+using PT = ProgramType;
 // for unsupervised learning, classification and regression. 
-template<typename T> struct Program //: public tree<Node>
+template<PT PType> struct Program //: public tree<Node>
 {
+    static constexpr PT program_type = PType;
+    using RetType = typename std::conditional_t<PType == PT::Regressor, ArrayXf,
+        std::conditional_t<PType == PT::BinaryClassifier, ArrayXb,
+        std::conditional_t<PType == PT::MulticlassClassifier, ArrayXi,
+        std::conditional_t<PType == PT::Representer, ArrayXXf, ArrayXf
+        >>>>;
+    using TreeType = std::conditional_t<PType == PT::BinaryClassifier, ArrayXf,
+        std::conditional_t<PType == PT::MulticlassClassifier, ArrayXXf, 
+        RetType>>;
+    // using ProbType = TreeType;
+    // using TreeType = std::conditional_t<PType == PT::BinaryClassifier, ArrayXf,
+    //     std::conditional_t<PType == PT::MulticlassClassifier, ArrayXXf,
+    //     std::conditional_t<PType == PT::Representer, ArrayXXf, ArrayXf
+    //     >>>>
+    // ;
+
     /// whether fit has been called
     bool is_fitted_;
     /// fitness 
@@ -54,7 +70,7 @@ template<typename T> struct Program //: public tree<Node>
     // bool fitness_valid;
 
     /// the type of output from the tree object
-    using TreeType = conditional_t<std::is_same_v<T,ArrayXXf>, ArrayXXf, ArrayXf>;
+    // using TreeType = conditional_t<std::is_same_v<T,ArrayXXf>, ArrayXXf, ArrayXf>;
     /// the underlying tree
     tree<Node> Tree; 
     /// reference to search space
@@ -76,7 +92,7 @@ template<typename T> struct Program //: public tree<Node>
         return Tree.size();
     }
 
-    Program<T>& fit(const Dataset& d)
+    Program<PType>& fit(const Dataset& d)
     {
         TreeType out =  Tree.begin().node->fit<TreeType>(d);
         this->is_fitted_ = true;
@@ -97,12 +113,19 @@ template<typename T> struct Program //: public tree<Node>
     auto predict_with_weights(const Dataset &d, const ArrayXf& weights)
     {
         float const * wptr = weights.data(); 
-        return this->predict_with_weights<T>(d, &wptr);
+        return this->predict_with_weights<RetType>(d, &wptr);
     };
 
-    template <typename R = T>
-    enable_if_t<is_same_v<R, TreeType>, R>
-    predict(const Dataset &d)
+    /**
+     * @brief the standard predict function.
+     * Returns the output of the Tree directly. 
+     * 
+     * @tparam R return type, default 
+     * @param d dataset
+     * @return 
+     */
+    template <typename R = RetType>
+    TreeType predict(const Dataset &d)  requires(is_same_v<R, TreeType>)
     {
         if (!is_fitted_)
             HANDLE_ERROR_THROW("Program is not fitted. Call 'fit' first.\n");
@@ -114,13 +137,11 @@ template<typename T> struct Program //: public tree<Node>
     /// @tparam R: return type, typically left blank 
     /// @param d : data
     /// @return out: binary labels
-    template <typename R = T>
-    enable_if_t<is_same_v<R, ArrayXb>, R>
-    predict(const Dataset &d)
+    template <typename R = RetType>
+    ArrayXb predict(const Dataset &d)   requires(is_same_v<R, ArrayXb>)
     {
         if (!is_fitted_)
             HANDLE_ERROR_THROW("Program is not fitted. Call 'fit' first.\n");
-
         return (Tree.begin().node->predict<TreeType>(d) > 0.5);
     };
 
@@ -128,9 +149,8 @@ template<typename T> struct Program //: public tree<Node>
     /// @tparam R: return type, typically left blank 
     /// @param d : data
     /// @return out: integer labels
-    template <typename R = T>
-    enable_if_t<is_same_v<R, ArrayXi>, R>
-    predict(const Dataset &d)
+    template <typename R = RetType>
+    ArrayXi predict(const Dataset &d)   requires(is_same_v<R, ArrayXi>)
     {
         if (!is_fitted_)
             HANDLE_ERROR_THROW("Program is not fitted. Call 'fit' first.\n");
@@ -139,15 +159,19 @@ template<typename T> struct Program //: public tree<Node>
         return argmax(out);
     };
 
-    template <typename R = T>
-    enable_if_t<is_same_v<R, ArrayXb>, ArrayXf>
-    predict_proba(const Dataset &d) { return predict<ArrayXf>(d); };
+    // template <typename R = RetType>
+    template <PT P = PType>
+        requires((P == PT::BinaryClassifier) || (P == PT::MulticlassClassifier))
+    TreeType predict_proba(const Dataset &d) 
+    { 
+        return predict<TreeType>(d); 
+    };
 
     /// @brief Convenience function to call fit directly from X,y data.
     /// @param X : Input features
     /// @param y : Labels
     /// @return : reference to program 
-    Program<T>& fit(const Ref<const ArrayXXf>& X, const Ref<const ArrayXf>& y)
+    Program<PType>& fit(const Ref<const ArrayXXf>& X, const Ref<const ArrayXf>& y)
     {
         Dataset d(X,y);
         return fit(d);
@@ -156,27 +180,35 @@ template<typename T> struct Program //: public tree<Node>
     /// @brief Convenience function to call predict directly from X data.
     /// @param X : Input features
     /// @return : predictions 
-    T predict(const Ref<const ArrayXXf>& X)
+    RetType predict(const Ref<const ArrayXXf>& X)
     {
         Dataset d(X);
         return predict(d);
     };
 
-    template <typename R = T>
-    enable_if_t<is_same_v<R, ArrayXb>, ArrayXf>
-    predict_proba(const Ref<const ArrayXXf>& X)
+    /**
+     * @brief Predict probabilities from X.
+     * 
+     * Requires a BinaryClassifier or MulticlassClassifier.
+     * 
+     * @tparam P parameter for type checking, typically left blank. 
+     */
+    template <PT P = PType>
+        requires((P == PT::BinaryClassifier) || (P == PT::MulticlassClassifier))
+    TreeType predict_proba(const Ref<const ArrayXXf>& X) 
     {
         Dataset d(X);
         return predict_proba(d);
     };
 
-    void grad_descent(const ArrayXf& gradient, const Dataset& d)
-    {
-        //TODO
-    };
-
+    /**
+     * @brief Updates the program's weights using non-linear least squares.
+     * 
+     * @param d the dataset
+     */
     void update_weights(const Dataset& d);
 
+    /// @brief returns the number of weights in the program.
     int get_n_weights() const
     {
         int count=0;
@@ -185,13 +217,16 @@ template<typename T> struct Program //: public tree<Node>
         {
             const auto& node = i.node->data; 
             if (node.is_weighted)
-                // count += node.W.size();
                 ++count;
         }
         return count;
     }
 
-    /// return the weights of the tree as an array 
+    /**
+     * @brief Get the weights of the tree as an array
+     * 
+     * @return ArrayXf of weights in the program, encoded in post-fix order. 
+     */
     ArrayXf get_weights()
     {
         ArrayXf weights(get_n_weights()); 
@@ -208,6 +243,12 @@ template<typename T> struct Program //: public tree<Node>
         return weights;
     }
 
+    /**
+     * @brief Set the weights in the tree from an array of weights. 
+     * 
+     * @param weights an array of weights. The number of the weights in the tree 
+     *  must match the length of `weights`.
+     */
     void set_weights(const ArrayXf& weights)
     {
         // take the weights set them in the tree. 
@@ -225,6 +266,18 @@ template<typename T> struct Program //: public tree<Node>
             }
         }
     }
+    /**
+     * @brief Get the model as a string
+     * 
+     * @param fmt one of "compact", "tree", or "dot". Default "compact".  
+     * 
+     *  - *compact* : the program as an equation. 
+     *  - *tree* : the program as a (small batch, artisinal) tree. 
+     *  - *dot* : the program in the dot language for downstream visualization.
+     * 
+     * @param pretty currently unused. 
+     * @return string the model in string form.  
+     */
     string get_model(string fmt="compact", bool pretty=false)
     {
         auto head = Tree.begin(); 
@@ -235,6 +288,12 @@ template<typename T> struct Program //: public tree<Node>
         return head.node->get_model(pretty);
     }
 
+    /**
+     * @brief Get the model as a dot object
+     * 
+     * @param extras extra code passed to the beginning of the dot code. 
+     * @return string the model in dot language. 
+     */
     string get_dot_model(string extras="")
     {
         // TODO: make the node names their hash or index, and the node label the nodetype name. 
@@ -355,9 +414,17 @@ template<typename T> struct Program //: public tree<Node>
     ////////////////////////////////////////////////////////////////////////////
     // Mutation & Crossover
 
-    Program<T> mutate() const;
-    /// swaps subtrees between this and other (note the pass by copy)
-    Program<T> cross(Program<T> other) const;
+    /// @brief convenience wrapper for :func:mutate in variation.h
+    /// @return a mutated version of this program
+    Program<PType> mutate() const;
+
+    /**
+     * @brief convenience wrapper for :func:cross in variation.h
+     * 
+     * @param other another program to cross with this one. 
+     * @return a mutated version of this and the other program
+     */
+    Program<PType> cross(Program<PType> other) const;
 
     /// @brief turns program tree into a linear program. 
     /// @return a vector of nodes encoding the program in reverse polish notation
@@ -375,8 +442,8 @@ template<typename T> struct Program //: public tree<Node>
 #include "optimizer/weight_optimizer.h"
 namespace Brush{
 
-template<typename T> 
-void Program<T>::update_weights(const Dataset& d)
+template<ProgramType PType> 
+void Program<PType>::update_weights(const Dataset& d)
 {
     // Updates the weights within a tree. 
     // make an optimizer
@@ -388,15 +455,15 @@ void Program<T>::update_weights(const Dataset& d)
 ////////////////////////////////////////////////////////////////////////////////
 // mutation and crossover
 #include "../variation.h"
-template<typename T>
-Program<T> Program<T>::mutate() const
+template<ProgramType PType>
+Program<PType> Program<PType>::mutate() const
 {
     return variation::mutate(*this, this->SSref.value().get());
 };
 
 /// swaps subtrees between this and other (note the pass by copy)
-template<typename T>
-Program<T> Program<T>::cross(Program<T> other) const
+template<ProgramType PType>
+Program<PType> Program<PType>::cross(Program<PType> other) const
 {
     return variation::cross(*this, other);
 };
@@ -405,14 +472,14 @@ Program<T> Program<T>::cross(Program<T> other) const
 ////////////////////////////////////////////////////////////////////////////////
 // serialization
 // serialization for program
-template<typename T>
-void to_json(json &j, const Program<T> &p)
+template<ProgramType PType>
+void to_json(json &j, const Program<PType> &p)
 {
     j = json{{"Tree",p.Tree}, {"is_fitted_", p.is_fitted_}}; 
 }
 
-template<typename T>
-void from_json(const json &j, Program<T>& p)
+template<ProgramType PType>
+void from_json(const json &j, Program<PType>& p)
 {
     j.at("Tree").get_to(p.Tree);
     j.at("is_fitted_").get_to(p.is_fitted_);

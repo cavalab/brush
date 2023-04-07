@@ -4,7 +4,7 @@ sklearn-compatible wrapper for GP analyses.
 See brushgp.cpp for Python (via pybind11) modules that give more fine-grained
 control of the underlying GP objects.
 """
-from sklearn.base import BaseEstimator, ClassifierMixin, RegressorMixin
+from sklearn.base import BaseEstimator, ClassifierMixin, RegressorMixin, TransformerMixin
 # from sklearn.metrics import mean_squared_error
 import numpy as np
 import pandas as pd
@@ -134,6 +134,11 @@ class BrushEstimator(BaseEstimator):
         """
         _brush.set_params(self.get_params())
         self.data_ = self._make_data(X,y)
+
+        # set n classes if relevant
+        if self.mode=="classification":
+            self.n_classes_ = np.nunique(y)
+
         if isinstance(self.functions, list):
             self.functions_ = {k:1.0 for k in self.functions}
         else:
@@ -219,10 +224,26 @@ class BrushClassifier(BrushEstimator,ClassifierMixin):
     def _make_individual(self):
         return creator.Individual(
             self.search_space_.make_classifier(self.max_depth, self.max_size)
+            if self.n_classes_ == 2 else
+            self.search_space_.make_multiclass_classifier(self.max_depth, self.max_size)
             )
 
     def predict_proba(self, X):
-        """Predict using the best estimator in the archive. """
+        """Predict class probabilities for X.
+
+        Parameters
+        ----------
+        X : {array-like, sparse matrix} of shape (n_samples, n_features)
+            The input samples. Internally, it will be converted to
+            ``dtype=np.float32``.
+
+        Returns
+        -------
+        p : ndarray of shape (n_samples, n_classes)
+            The class probabilities of the input samples. The order of the
+            classes corresponds to that in the attribute :term:`classes_`.
+
+        """
         data = self._make_data(X)
         return self.best_estimator_.predict_proba(data)
 
@@ -256,3 +277,40 @@ class BrushRegressor(BrushEstimator, RegressorMixin):
         return creator.Individual(
             self.search_space_.make_regressor(self.max_depth, self.max_size)
         )
+
+# Under development
+# class BrushRepresenter(BrushEstimator, TransformerMixin):
+#     """Brush for representation learning.
+
+#     For options, see :py:class:`BrushEstimator <brush.estimator.BrushEstimator>`. 
+
+#     Examples
+#     --------
+#     >>> import pandas as pd
+#     >>> df = pd.read_csv('docs/examples/datasets/d_enc.csv')
+#     >>> X = df.drop(columns='label')
+#     >>> y = df['label']
+#     >>> from brush import BrushRegressor
+#     >>> est = BrushRegressor()
+#     >>> est.fit(X,y)
+#     >>> print('score:', est.score(X,y))
+#     """
+#     def __init__(self, **kwargs):
+#         super().__init__(mode='regressor',**kwargs)
+
+#     def _fitness_function(self, ind, data: _brush.Dataset):
+#         ind.prg.fit(data)
+#         return (
+#             # todo: need to return a matrix from X for this
+#             np.sum((data.get_X()- ind.prg.predict(data))**2),
+#             ind.prg.size()
+#         )
+
+#     def _make_individual(self):
+#         return creator.Individual(
+#             self.search_space_.make_representer(self.max_depth, self.max_size)
+#         )
+
+#     def transform(self, X):
+#         """Transform X using the best estimator in the archive. """
+#         return self.predict(X)

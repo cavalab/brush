@@ -32,6 +32,7 @@ void bind_dataset(py::module & m)
         .def("get_n_features", &br::Data::Dataset::get_n_features)
         .def("print", &br::Data::Dataset::print)
         .def("get_batch", &br::Data::Dataset::get_batch)
+        .def("get_X", &br::Data::Dataset::get_X)
         ;
 
     m.def("read_csv", &br::Data::read_csv, py::arg("path"), py::arg("target"), py::arg("sep")=',');

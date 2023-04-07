@@ -1,17 +1,17 @@
 #include "module.h"
 #include "../program/program.h"
 
-using Reg = Brush::Program<ArrayXf>;
-using Cls = Brush::Program<ArrayXb>;
-using Rep = Brush::Program<ArrayXXf>;
-using MCls = Brush::Program<ArrayXi>;
+using Reg = Brush::RegressorProgram;
+using Cls = Brush::ClassifierProgram;
+using Rep = Brush::RepresenterProgram;
+using MCls = Brush::MulticlassClassifierProgram;
 
 namespace nl = nlohmann;
 namespace br = Brush;
 
 using stream_redirect = py::call_guard<py::scoped_ostream_redirect, py::scoped_estream_redirect>;
 
-template<typename T>
+template<ProgramType T>
 void bind_program(py::module& m, string name)
 {
     using RetType = std::conditional_t<

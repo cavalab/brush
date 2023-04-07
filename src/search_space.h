@@ -540,16 +540,17 @@ T RandomDequeue(std::vector<T>& Q)
     return val;
 };
 
-template<typename PT>
-PT SearchSpace::make_program(int max_d, int max_size)
+template<typename P>
+P SearchSpace::make_program(int max_d, int max_size)
 {
     if (max_d == 0)
         max_d = r.rnd_int(1, PARAMS["max_depth"].get<int>());
     if (max_size == 0)
         max_size = r.rnd_int(1, PARAMS["max_size"].get<int>());
 
-    DataType root_type = DataTypeEnum<typename PT::TreeType>::value;
-    ProgramType program_type = ProgramTypeEnum<PT>::value;
+    DataType root_type = DataTypeEnum<typename P::TreeType>::value;
+    ProgramType program_type = P::program_type;
+    // ProgramType program_type = ProgramTypeEnum<PT>::value;
 
     auto Tree = tree<Node>();
 
@@ -565,13 +566,13 @@ PT SearchSpace::make_program(int max_d, int max_size)
     else
     {
         Node n;
-        if (program_type == ProgramType::BinaryClassifier)
+        if (P::program_type == ProgramType::BinaryClassifier)
         {
             n = get(NodeType::Logistic, DataType::ArrayF, Signature<ArrayXf(ArrayXf)>());
             n.set_prob_change(0.0);
             n.fixed=true;
         }
-        else if (program_type == ProgramType::MulticlassClassifier)
+        else if (P::program_type == ProgramType::MulticlassClassifier)
         {
             n = get(NodeType::Softmax, DataType::MatrixF);
             n.set_prob_change(0.0);
@@ -656,7 +657,7 @@ PT SearchSpace::make_program(int max_d, int max_size)
          /* << Tree.get_model() << "\n" */ 
          /* << Tree.get_model(true) << endl; // pretty */
 
-    return PT(*this,Tree);
+    return P(*this,Tree);
 };
 
 extern SearchSpace SS;

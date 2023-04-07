@@ -1,5 +1,4 @@
 #!/usr/bin/env python3
-
 import brush
 import pytest
 import numpy as np
@@ -22,6 +21,14 @@ def brush_args():
     
 @pytest.fixture
 def classification_setup():
+    df = pd.read_csv('docs/examples/datasets/d_analcatdata_aids.csv')
+    X  = df.drop(columns='target')
+    y  = df['target']
+
+    return brush.BrushClassifier, X, y
+
+@pytest.fixture
+def multiclass_classification_setup():
     df = pd.read_csv('docs/examples/datasets/d_analcatdata_aids.csv')
     X  = df.drop(columns='target')
     y  = df['target']
