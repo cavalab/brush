@@ -137,7 +137,7 @@ class BrushEstimator(BaseEstimator):
 
         # set n classes if relevant
         if self.mode=="classification":
-            self.n_classes_ = np.nunique(y)
+            self.n_classes_ = len(np.unique(y))
 
         if isinstance(self.functions, list):
             self.functions_ = {k:1.0 for k in self.functions}

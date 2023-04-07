@@ -11,7 +11,7 @@ namespace br = Brush;
 
 using stream_redirect = py::call_guard<py::scoped_ostream_redirect, py::scoped_estream_redirect>;
 
-template<ProgramType T>
+template<typename T>
 void bind_program(py::module& m, string name)
 {
     using RetType = std::conditional_t<

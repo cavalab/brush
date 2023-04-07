@@ -4,10 +4,10 @@ namespace py = pybind11;
 namespace br = Brush;
 namespace nl = nlohmann;
 
-using Reg = br::Program<ArrayXf>;
-using Cls = br::Program<ArrayXb>;
-using Rep = br::Program<ArrayXXf>;
-using MCls = br::Program<ArrayXi>;
+// using Reg = br::Program<ArrayXf>;
+// using Cls = br::Program<ArrayXb>;
+// using Rep = br::Program<ArrayXXf>;
+// using MCls = br::Program<ArrayXi>;
 
 void bind_programs(py::module& m)
 {
@@ -15,15 +15,11 @@ void bind_programs(py::module& m)
           .def(py::init<>())
           .def_readwrite("values", &br::Fitness::values)
           .def_readwrite("valid", &br::Fitness::valid)
-          // .def("__del__", [](const C&) -> void { 
-          //      std::cout << "deleting C" << std::endl;
-          //      }
-          // )
           ;
 
-     bind_program<Reg>(m, "Regressor");
-     bind_program<Cls>(m, "Classifier");
-     bind_program<MCls>(m, "MultiClassifier");
-     bind_program<Rep>(m, "Representer");
+     bind_program<br::RegressorProgram>(m, "Regressor");
+     bind_program<br::ClassifierProgram>(m, "Classifier");
+     bind_program<br::MulticlassClassifierProgram>(m, "MultiClassifier");
+     bind_program<br::RepresenterProgram>(m, "Representer");
 
 }

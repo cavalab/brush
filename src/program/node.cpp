@@ -215,15 +215,8 @@ void from_json(const json &j, Node& p)
         j.at("sig_dual_hash").get_to(p.sig_dual_hash);
     else
         make_signature=true;
-    // if (j.contains("node_hash"))
-    // {
-    //     j.at("node_hash").get_to(p.node_hash);
-    // }
-    // else
-    //     make_signature=true;
 
     if (make_signature){
-        fmt::print("using default signature...\n");
         init_node_with_default_signature(p);
     }
     p.init();
