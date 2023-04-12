@@ -28,7 +28,6 @@ using Eigen::Array;
 using Eigen::ArrayXi;
 using Eigen::Dynamic;
 
-using Brush::Data::State;
 using Brush::Data::TimeSeries;
 using Brush::Data::TimeSeriesf;
 using Brush::NodeType;

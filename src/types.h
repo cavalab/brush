@@ -81,28 +81,6 @@ typedef Program<PT::MulticlassClassifier> MulticlassClassifierProgram;
 typedef Program<PT::Representer> RepresenterProgram;
 
 
-// template<typename T> struct ProgramTypeEnum;
-// template <>
-// struct ProgramTypeEnum<RegressorProgram>
-// {
-//     static constexpr ProgramType value = ProgramType::Regressor;
-// };
-// template <>
-// struct ProgramTypeEnum<ClassifierProgram>
-// {
-//     static constexpr ProgramType value = ProgramType::BinaryClassifier;
-// };
-// template <>
-// struct ProgramTypeEnum<MulticlassClassifierProgram>
-// {
-//     static constexpr ProgramType value = ProgramType::MulticlassClassifier;
-// };
-// template <>
-// struct ProgramTypeEnum<RepresenterProgram>
-// {
-//     static constexpr ProgramType value = ProgramType::Representer;
-// };
-
 ////////////////////////////////////////////////////////////////////////////////
 // Data 
 namespace Data{

@@ -27,7 +27,6 @@ license: GNU/GPL v3
 
 using std::cout;
 using std::string;
-using Brush::Data::State;
 using Brush::Data::Dataset;
 using Brush::SearchSpace;
 
@@ -42,35 +41,35 @@ struct Fitness {
     bool valid;
 };
 using PT = ProgramType;
+
 // for unsupervised learning, classification and regression. 
-template<PT PType> struct Program //: public tree<Node>
+
+/**
+ * @brief An individual program, a.k.a. model. 
+ * 
+ * @tparam PType one of the ProgramType enum values. 
+ */
+template<PT PType> struct Program 
 {
+    /// @brief an enum storing the program type. 
     static constexpr PT program_type = PType;
+
+    /// @brief the return type of the tree when calling :func:`predict`. 
     using RetType = typename std::conditional_t<PType == PT::Regressor, ArrayXf,
         std::conditional_t<PType == PT::BinaryClassifier, ArrayXb,
         std::conditional_t<PType == PT::MulticlassClassifier, ArrayXi,
         std::conditional_t<PType == PT::Representer, ArrayXXf, ArrayXf
         >>>>;
+    /// the type of output from the tree object
     using TreeType = std::conditional_t<PType == PT::BinaryClassifier, ArrayXf,
         std::conditional_t<PType == PT::MulticlassClassifier, ArrayXXf, 
         RetType>>;
-    // using ProbType = TreeType;
-    // using TreeType = std::conditional_t<PType == PT::BinaryClassifier, ArrayXf,
-    //     std::conditional_t<PType == PT::MulticlassClassifier, ArrayXXf,
-    //     std::conditional_t<PType == PT::Representer, ArrayXXf, ArrayXf
-    //     >>>>
-    // ;
 
     /// whether fit has been called
     bool is_fitted_;
     /// fitness 
     Fitness fitness;
     
-    // vector<float> fitness_values;
-    // bool fitness_valid;
-
-    /// the type of output from the tree object
-    // using TreeType = conditional_t<std::is_same_v<T,ArrayXXf>, ArrayXXf, ArrayXf>;
     /// the underlying tree
     tree<Node> Tree; 
     /// reference to search space
@@ -414,12 +413,12 @@ template<PT PType> struct Program //: public tree<Node>
     ////////////////////////////////////////////////////////////////////////////
     // Mutation & Crossover
 
-    /// @brief convenience wrapper for :func:mutate in variation.h
+    /// @brief convenience wrapper for :cpp:func:`variation:mutate()` in variation.h
     /// @return a mutated version of this program
     Program<PType> mutate() const;
 
     /**
-     * @brief convenience wrapper for :func:cross in variation.h
+     * @brief convenience wrapper for :cpp:func:`variation:cross` in variation.h
      * 
      * @param other another program to cross with this one. 
      * @return a mutated version of this and the other program

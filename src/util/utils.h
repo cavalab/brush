@@ -619,34 +619,6 @@ auto vectorToTuple(const std::vector<T>& v) {
   return vectorToTupleHelper(v, std::make_index_sequence<N>());
 }
 
-// State apply_unary(const Function& f, vector<State>& inputs)
-// {
-//     R output;
-//     std::transform(
-//         std::execution::par_unseq,
-//         std::visit(Begin(), inputs.at(0)), 
-//         std::visit(End(), inputs.at(0)), 
-//         std::visit(Begin(), output), 
-//         f
-//     );
-
-//     return output;
-// };
-// // specialization for binary operator
-// State apply_binary(const Function& f, vector<State>& inputs)
-// {
-//     R output;
-//     std::transform(
-//         std::execution::par_unseq,
-//         std::visit(Begin(), inputs.at(0)), 
-//         std::visit(End(), inputs.at(0)), 
-//         std::visit(Begin(), inputs.at(1)), 
-//         std::visit(End(), inputs.at(1)), 
-//         std::visit(Begin(), output), 
-//         f
-//     );
-//     return output;
-// };
 template<typename R, typename Arg, typename... Args>
 R apply(const std::function<R(Args...)>& f, const vector<Arg>& inputs)
 {

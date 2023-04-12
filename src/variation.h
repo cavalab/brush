@@ -19,9 +19,10 @@ license: GNU/GPL v3
 // Mutation & Crossover
 
 
-// tree<Node> point_mutation(tree<Node>& Tree, Iter spot);
-// tree<Node> insert_mutation(tree<Node>& Tree, Iter spot);
-// tree<Node> delete_mutation(tree<Node>& Tree, Iter spot);
+/**
+ * @brief Namespace for variation functions like crossover and mutation. 
+ * 
+ */
 namespace variation {
 
 typedef tree<Node>::pre_order_iterator Iter; 
@@ -72,6 +73,10 @@ inline void delete_mutation(tree<Node>& Tree, Iter spot, const SearchSpace& SS)
     Tree.replace(spot, terminal);
 };
 
+/// @brief toggle the node's weight on or off. 
+/// @param Tree the program tree
+/// @param spot an iterator to the node that is being mutated
+/// @param SS the search space (unused)
 inline void toggle_weight_mutation(tree<Node>& Tree, Iter spot, const SearchSpace& SS)
 {
     spot.node->data.is_weighted = !spot.node->data.is_weighted;
@@ -106,8 +111,9 @@ Program<T> mutate(const Program<T>& parent, const SearchSpace& SS)
     auto spot = r.select_randomly(child.Tree.begin(), child.Tree.end(), 
                                     weights.begin(), weights.end());
 
-    // choose one of these options
     auto options = PARAMS["mutation_options"].get<std::map<string,float>>();
+
+    // choose a mutation option
     string choice = r.random_choice(options);
 
     if (choice == "insert")
@@ -126,7 +132,12 @@ Program<T> mutate(const Program<T>& parent, const SearchSpace& SS)
 
     return child;
 };
-/// swaps subtrees between this and other (note the pass by copy)
+
+/// @brief swaps subtrees between root and other, returning new program 
+/// @tparam T the program type
+/// @param root the root parent
+/// @param other the donating parent
+/// @return new program of type `T`
 template<ProgramType T>
 Program<T> cross(const Program<T>& root, const Program<T>& other) 
 {

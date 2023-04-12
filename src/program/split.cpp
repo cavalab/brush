@@ -1,5 +1,6 @@
 #include "operator.h"
 #include <utility>
+using Brush::Data::State;
 
 namespace Brush::Split{
 
@@ -15,6 +16,7 @@ tuple<string,float> get_best_variable_and_threshold(const Dataset& d, TreeNode& 
 }
 
 template<> vector<float> get_thresholds<ArrayXb>(const ArrayXb& x){ return vector<float>{0.0}; }
+template<> vector<float> get_thresholds<ArrayXbJet>(const ArrayXbJet& x){ return vector<float>{0.0}; }
 template<> vector<float> get_thresholds<ArrayXi>(const ArrayXi& x){ 
     vector<float> thresholds;
     for (const auto& val : unique(x))

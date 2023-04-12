@@ -265,7 +265,19 @@ inline auto IsWeighable() noexcept -> bool {
                     NodeType::SplitOn,
                     NodeType::SplitBest 
                     >(NT);                
-    }
+}
+inline auto IsWeighable(NodeType nt) noexcept -> bool { 
+        return Isnt<
+                    NodeType::Ceil,
+                    NodeType::Floor,
+                    NodeType::Before,       
+                    NodeType::After,          
+                    NodeType::During,
+                    NodeType::Count,
+                    NodeType::SplitOn,
+                    NodeType::SplitBest 
+                    >(nt);                
+}
 ostream& operator<<(ostream& os, const Node& n);
 ostream& operator<<(ostream& os, const NodeType& nt);
 
