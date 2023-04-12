@@ -352,7 +352,7 @@ document.write(`
 <h1>BrushClassifier<a class="headerlink" href="#brushclassifier" title="Permalink to this heading">#</a></h1>
 <dl class="py class">
 <dt class="sig sig-object py" id="brush.estimator.BrushClassifier">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">brush.estimator.</span></span><span class="sig-name descname"><span class="pre">BrushClassifier</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/cavalab/brush/blob/master/src/brush/estimator.py#L193-L227"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#brush.estimator.BrushClassifier" title="Permalink to this definition">#</a></dt>
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">brush.estimator.</span></span><span class="sig-name descname"><span class="pre">BrushClassifier</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/cavalab/brush/blob/master/src/brush/estimator.py#L198-L248"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#brush.estimator.BrushClassifier" title="Permalink to this definition">#</a></dt>
 <dd><p>Brush for classification.</p>
 <p>For options, see <a class="reference internal" href="estimator.html#brush.estimator.BrushEstimator" title="brush.estimator.BrushEstimator"><code class="xref py py-class docutils literal notranslate"><span class="pre">BrushEstimator</span></code></a>.</p>
 <p class="rubric">Examples</p>
@@ -379,7 +379,7 @@ document.write(`
 <td><p>Predict using the best estimator in the archive.</p></td>
 </tr>
 <tr class="row-even"><td><p><a class="reference internal" href="#brush.estimator.BrushClassifier.predict_proba" title="brush.estimator.BrushClassifier.predict_proba"><code class="xref py py-obj docutils literal notranslate"><span class="pre">predict_proba</span></code></a>(X)</p></td>
-<td><p>Predict using the best estimator in the archive.</p></td>
+<td><p>Predict class probabilities for X.</p></td>
 </tr>
 <tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">score</span></code>(X, y[, sample_weight])</p></td>
 <td><p>Return the mean accuracy on the given test data and labels.</p></td>
@@ -391,8 +391,24 @@ document.write(`
 </table>
 <dl class="py method">
 <dt class="sig sig-object py" id="brush.estimator.BrushClassifier.predict_proba">
-<span class="sig-name descname"><span class="pre">predict_proba</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">X</span></span></em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/cavalab/brush/blob/master/src/brush/estimator.py#L224-L227"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#brush.estimator.BrushClassifier.predict_proba" title="Permalink to this definition">#</a></dt>
-<dd><p>Predict using the best estimator in the archive.</p>
+<span class="sig-name descname"><span class="pre">predict_proba</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">X</span></span></em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/cavalab/brush/blob/master/src/brush/estimator.py#L231-L248"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#brush.estimator.BrushClassifier.predict_proba" title="Permalink to this definition">#</a></dt>
+<dd><p>Predict class probabilities for X.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>X</strong><span class="classifier">{array-like, sparse matrix} of shape (n_samples, n_features)</span></dt><dd><p>The input samples. Internally, it will be converted to
+<code class="docutils literal notranslate"><span class="pre">dtype=np.float32</span></code>.</p>
+</dd>
+</dl>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><dl class="simple">
+<dt><strong>p</strong><span class="classifier">ndarray of shape (n_samples, n_classes)</span></dt><dd><p>The class probabilities of the input samples. The order of the
+classes corresponds to that in the attribute <span class="xref std std-term">classes_</span>.</p>
+</dd>
+</dl>
+</dd>
+</dl>
 </dd></dl>
 
 </dd></dl>
