@@ -179,6 +179,29 @@ def optimize_sin_inner_weight():
 
     return (data, json_program, weight_check)
 
+@pytest.fixture
+def optimize_notable_product_weight():
+    data = _brush.read_csv("docs/examples/datasets/d_square_x1_plus_2_x1_x2_plus_square_x2.csv","target")
+
+    json_program = {
+        "Tree": [
+            { "node_type":"Add", "is_weighted": False },
+                { "node_type":"Mul", "is_weighted": False },
+                    { "node_type":"Terminal", "feature":"x1", "is_weighted": True },
+                    { "node_type":"Terminal", "feature":"x2", "is_weighted": False },
+                { "node_type":"Add", "is_weighted": False }, 
+                    { "node_type":"Square", "is_weighted": False },
+                        { "node_type":"Terminal", "feature":"x1", "is_weighted": True },
+                    { "node_type":"Square", "is_weighted": False },
+                        { "node_type":"Terminal", "feature":"x2", "is_weighted": False }
+        ],
+        "is_fitted_":False
+    }
+
+    weight_check = lambda learned_weights: np.allclose(learned_weights, [2.0, 1.0], atol=1e-2)
+
+    return (data, json_program, weight_check)
+
 @pytest.mark.parametrize(
     'optimization_problem', ['optimize_addition_positive_weights',
                              'optimize_addition_negative_weights',
@@ -189,7 +212,8 @@ def optimize_sin_inner_weight():
                              'optimize_sqrt_outer_weight',
                              'optimize_sqrt_inner_weight',
                              'optimize_sin_outer_weight',
-                             'optimize_sin_inner_weight'
+                             'optimize_sin_inner_weight',
+                             'optimize_notable_product_weight'
                              ])
 def test_optimizer(optimization_problem, request):
 
