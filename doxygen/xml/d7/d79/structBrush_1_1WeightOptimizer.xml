@@ -1,0 +1,71 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="d7/d79/structBrush_1_1WeightOptimizer" kind="struct" language="C++" prot="public">
+    <compoundname>Brush::WeightOptimizer</compoundname>
+    <includes refid="d7/de3/weight__optimizer_8h" local="no">weight_optimizer.h</includes>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="d7/d79/structBrush_1_1WeightOptimizer_1a16d264faa5c311908f1761119acc64f0" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>typename <ref refid="dc/d5c/namespaceBrush_1ae591329af27c88b714d0f92b86276366" kindref="member">PT</ref></type>
+          </param>
+        </templateparamlist>
+        <type>void</type>
+        <definition>void Brush::WeightOptimizer::update</definition>
+        <argsstring>(PT &amp;program, const Dataset &amp;dataset)</argsstring>
+        <name>update</name>
+        <param>
+          <type><ref refid="dc/d5c/namespaceBrush_1ae591329af27c88b714d0f92b86276366" kindref="member">PT</ref> &amp;</type>
+          <declname>program</declname>
+        </param>
+        <param>
+          <type>const Dataset &amp;</type>
+          <declname>dataset</declname>
+        </param>
+        <briefdescription>
+<para>Update program weights using non-linear least squares. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="templateparam"><parameteritem>
+<parameternamelist>
+<parametername>PT</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the program type </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>program</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the program </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>dataset</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the dataset </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/runner/work/brush/brush/src/program/optimizer/weight_optimizer.h" line="85" column="10" bodyfile="/home/runner/work/brush/brush/src/program/optimizer/weight_optimizer.h" bodystart="85" bodyend="115"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="/home/runner/work/brush/brush/src/program/optimizer/weight_optimizer.h" line="77" column="1" bodyfile="/home/runner/work/brush/brush/src/program/optimizer/weight_optimizer.h" bodystart="78" bodyend="116"/>
+    <listofallmembers>
+      <member refid="d7/d79/structBrush_1_1WeightOptimizer_1a16d264faa5c311908f1761119acc64f0" prot="public" virt="non-virtual"><scope>Brush::WeightOptimizer</scope><name>update</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

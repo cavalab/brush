@@ -1,0 +1,4 @@
+var structBrush_1_1Signatures_3_01N_00_01enable__if__t_3_01is__in__v_3_01N_00_01NodeType_1_1Constant596b719ae2fbdba032d4d7caf610588d =
+[
+    [ "type", "d6/d46/structBrush_1_1Signatures_3_01N_00_01enable__if__t_3_01is__in__v_3_01N_00_01NodeType_1_1Constant596b719ae2fbdba032d4d7caf610588d.html#a96e9e6a4739b0da9ea65b95b71d56726", null ]
+];

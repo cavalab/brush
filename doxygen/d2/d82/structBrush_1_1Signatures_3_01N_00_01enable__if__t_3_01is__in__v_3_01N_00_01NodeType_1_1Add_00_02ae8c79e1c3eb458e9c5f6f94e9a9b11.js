@@ -1,0 +1,4 @@
+var structBrush_1_1Signatures_3_01N_00_01enable__if__t_3_01is__in__v_3_01N_00_01NodeType_1_1Add_00_02ae8c79e1c3eb458e9c5f6f94e9a9b11 =
+[
+    [ "type", "d2/d82/structBrush_1_1Signatures_3_01N_00_01enable__if__t_3_01is__in__v_3_01N_00_01NodeType_1_1Add_00_02ae8c79e1c3eb458e9c5f6f94e9a9b11.html#a1f501bcf30bc678a9317a7d5b5d69dd4", null ]
+];

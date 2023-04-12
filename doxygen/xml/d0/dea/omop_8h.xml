@@ -1,0 +1,107 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="d0/dea/omop_8h" kind="file" language="C++">
+    <compoundname>omop.h</compoundname>
+    <includes local="no">string</includes>
+    <includes local="no">filesystem</includes>
+    <includes local="no">fstream</includes>
+    <includes local="yes">nlohmann/json.hpp</includes>
+    <includedby refid="d2/d01/omop_8cpp" local="yes">omop.cpp</includedby>
+    <incdepgraph>
+      <node id="3">
+        <label>filesystem</label>
+      </node>
+      <node id="1">
+        <label>omop.h</label>
+        <link refid="d0/dea/omop_8h"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="5" relation="include">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>string</label>
+      </node>
+      <node id="4">
+        <label>fstream</label>
+      </node>
+      <node id="5">
+        <label>nlohmann/json.hpp</label>
+      </node>
+    </incdepgraph>
+    <invincdepgraph>
+      <node id="1">
+        <label>omop.h</label>
+        <link refid="d0/dea/omop_8h"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>omop.cpp</label>
+        <link refid="d2/d01/omop_8cpp"/>
+      </node>
+    </invincdepgraph>
+    <innerclass refid="dc/d67/structBrush_1_1Data_1_1OmopData" prot="public">Brush::Data::OmopData</innerclass>
+    <innernamespace refid="dc/d5c/namespaceBrush">Brush</innernamespace>
+    <innernamespace refid="d9/d1c/namespaceBrush_1_1Data">Brush::Data</innernamespace>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"><highlight class="comment">/*<sp/>Brush</highlight></codeline>
+<codeline lineno="2"><highlight class="comment">copyright<sp/>2022<sp/>William<sp/>La<sp/>Cava</highlight></codeline>
+<codeline lineno="3"><highlight class="comment">license:<sp/>GNU/GPL<sp/>v3</highlight></codeline>
+<codeline lineno="4"><highlight class="comment">*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="5"><highlight class="normal"></highlight></codeline>
+<codeline lineno="6"><highlight class="normal"></highlight><highlight class="preprocessor">#ifndef<sp/>OMOP_H</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="7"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>OMOP_H</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="8"><highlight class="normal"></highlight></codeline>
+<codeline lineno="9"><highlight class="normal"></highlight><highlight class="comment">//<sp/>#include<sp/>&quot;../init.h&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="10"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;string&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="11"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;filesystem&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="12"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;fstream&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="13"><highlight class="normal"></highlight><highlight class="comment">//<sp/>#include<sp/>&quot;../../thirdparty/json.hpp&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="14"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;nlohmann/json.hpp&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="15"><highlight class="normal"></highlight></codeline>
+<codeline lineno="16"><highlight class="normal"></highlight><highlight class="keyword">namespace<sp/></highlight><highlight class="normal">fs<sp/>=<sp/>std::filesystem;</highlight></codeline>
+<codeline lineno="17"><highlight class="normal"></highlight></codeline>
+<codeline lineno="18"><highlight class="normal"></highlight><highlight class="keyword">namespace<sp/></highlight><highlight class="normal"><ref refid="d9/d1c/namespaceBrush_1_1Data" kindref="compound">Brush::Data</ref></highlight></codeline>
+<codeline lineno="19"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="20"><highlight class="normal"></highlight></codeline>
+<codeline lineno="21"><highlight class="normal"></highlight></codeline>
+<codeline lineno="22" refid="d9/d1c/namespaceBrush_1_1Data_1a7e8d2615fe3bb7ef5f2a7cc9c625f985" refkind="member"><highlight class="normal"></highlight><highlight class="keyword">enum<sp/>class</highlight><highlight class="normal"><sp/><ref refid="d9/d1c/namespaceBrush_1_1Data_1a7e8d2615fe3bb7ef5f2a7cc9c625f985" kindref="member">TimeValues</ref><sp/>{</highlight></codeline>
+<codeline lineno="23"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="d9/d1c/namespaceBrush_1_1Data_1a7e8d2615fe3bb7ef5f2a7cc9c625f985a7a86c157ee9713c34fbd7a1ee40f0c5a" kindref="member">offset</ref>,</highlight></codeline>
+<codeline lineno="24"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="d9/d1c/namespaceBrush_1_1Data_1a7e8d2615fe3bb7ef5f2a7cc9c625f985a63bcabf86a9a991864777c631c5b7617" kindref="member">delta</ref>,</highlight></codeline>
+<codeline lineno="25"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="d9/d1c/namespaceBrush_1_1Data_1a7e8d2615fe3bb7ef5f2a7cc9c625f985ad7e6d55ba379a13d08c25d15faf2a23b" kindref="member">timestamp</ref></highlight></codeline>
+<codeline lineno="26"><highlight class="normal">};</highlight></codeline>
+<codeline lineno="27"><highlight class="normal"></highlight></codeline>
+<codeline lineno="28" refid="d9/d1c/namespaceBrush_1_1Data_1a901360c78c84846f943a6653336f82a3" refkind="member"><highlight class="normal"></highlight><highlight class="keyword">enum<sp/>class</highlight><highlight class="normal"><sp/><ref refid="d9/d1c/namespaceBrush_1_1Data_1a901360c78c84846f943a6653336f82a3" kindref="member">StringFeatures</ref><sp/>{</highlight></codeline>
+<codeline lineno="29"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="d9/d1c/namespaceBrush_1_1Data_1a901360c78c84846f943a6653336f82a3a1d242f46959a33ab759e4f37b31df7f3" kindref="member">categorical</ref>,</highlight></codeline>
+<codeline lineno="30"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="d9/d1c/namespaceBrush_1_1Data_1a901360c78c84846f943a6653336f82a3a5b15d44354f1b6710c0d96d58376a9f3" kindref="member">onehot</ref></highlight></codeline>
+<codeline lineno="31"><highlight class="normal">};</highlight></codeline>
+<codeline lineno="32"><highlight class="normal"></highlight></codeline>
+<codeline lineno="33" refid="dc/d67/structBrush_1_1Data_1_1OmopData" refkind="compound"><highlight class="normal"></highlight><highlight class="keyword">struct<sp/></highlight><highlight class="normal"><ref refid="dc/d67/structBrush_1_1Data_1_1OmopData" kindref="compound">OmopData</ref></highlight></codeline>
+<codeline lineno="34"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="35" refid="dc/d67/structBrush_1_1Data_1_1OmopData_1a33bc71d0a2b254f83094568cf9518ae7" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>std::string<sp/><ref refid="dc/d67/structBrush_1_1Data_1_1OmopData_1a33bc71d0a2b254f83094568cf9518ae7" kindref="member">cdm_version</ref>;</highlight></codeline>
+<codeline lineno="36" refid="dc/d67/structBrush_1_1Data_1_1OmopData_1a91a6caf1263851a23aa64423d4dd43cb" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="d9/d1c/namespaceBrush_1_1Data_1a7e8d2615fe3bb7ef5f2a7cc9c625f985" kindref="member">TimeValues</ref><sp/><ref refid="dc/d67/structBrush_1_1Data_1_1OmopData_1a91a6caf1263851a23aa64423d4dd43cb" kindref="member">tv</ref><sp/>=<sp/><ref refid="d9/d1c/namespaceBrush_1_1Data_1a7e8d2615fe3bb7ef5f2a7cc9c625f985ad7e6d55ba379a13d08c25d15faf2a23b" kindref="member">TimeValues::timestamp</ref>;</highlight></codeline>
+<codeline lineno="37" refid="dc/d67/structBrush_1_1Data_1_1OmopData_1a8edd70d1fb93ec16a444c07fb9284c71" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="d9/d1c/namespaceBrush_1_1Data_1a901360c78c84846f943a6653336f82a3" kindref="member">StringFeatures</ref><sp/><ref refid="dc/d67/structBrush_1_1Data_1_1OmopData_1a8edd70d1fb93ec16a444c07fb9284c71" kindref="member">sf</ref><sp/>=<sp/><ref refid="d9/d1c/namespaceBrush_1_1Data_1a901360c78c84846f943a6653336f82a3a1d242f46959a33ab759e4f37b31df7f3" kindref="member">StringFeatures::categorical</ref>;</highlight></codeline>
+<codeline lineno="38"><highlight class="normal"></highlight></codeline>
+<codeline lineno="40"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="dc/d67/structBrush_1_1Data_1_1OmopData_1a1f884542927a952356b10f691d8660d0" kindref="member">OmopData</ref>(fs::directory_iterator<sp/>omop_dir);</highlight></codeline>
+<codeline lineno="41"><highlight class="normal"></highlight></codeline>
+<codeline lineno="43"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="dc/d67/structBrush_1_1Data_1_1OmopData_1a1f884542927a952356b10f691d8660d0" kindref="member">OmopData</ref>(fs::path<sp/>json_filename);</highlight></codeline>
+<codeline lineno="44"><highlight class="normal"></highlight></codeline>
+<codeline lineno="46"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>TODO</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="47"><highlight class="normal">};</highlight></codeline>
+<codeline lineno="48"><highlight class="normal"></highlight></codeline>
+<codeline lineno="49"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="50"><highlight class="normal"></highlight></codeline>
+<codeline lineno="51"><highlight class="normal"></highlight><highlight class="preprocessor">#endif</highlight></codeline>
+    </programlisting>
+    <location file="/home/runner/work/brush/brush/src/data/omop.h"/>
+  </compounddef>
+</doxygen>

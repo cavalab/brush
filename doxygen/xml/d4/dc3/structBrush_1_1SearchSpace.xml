@@ -1,0 +1,1386 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="d4/dc3/structBrush_1_1SearchSpace" kind="struct" language="C++" prot="public">
+    <compoundname>Brush::SearchSpace</compoundname>
+    <includes refid="d9/d99/search__space_8h" local="no">search_space.h</includes>
+      <sectiondef kind="public-type">
+      <memberdef kind="typedef" id="d4/dc3/structBrush_1_1SearchSpace_1af004a91112f5e3994d7c90c8baa71310" prot="public" static="no">
+        <type>std::size_t</type>
+        <definition>using Brush::SearchSpace::ArgsHash =  std::size_t</definition>
+        <argsstring></argsstring>
+        <name>ArgsHash</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/runner/work/brush/brush/src/search_space.h" line="78" column="5" bodyfile="/home/runner/work/brush/brush/src/search_space.h" bodystart="78" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="typedef" id="d4/dc3/structBrush_1_1SearchSpace_1aa99f71f6328c8706a171c2f9c803b06d" prot="public" static="no">
+        <templateparamlist>
+          <param>
+            <type>typename T</type>
+          </param>
+        </templateparamlist>
+        <type>unordered_map&lt; <ref refid="dc/d5c/namespaceBrush_1a3f2c9b744330ba4a561ac72f048a1a5f" kindref="member">DataType</ref>, unordered_map&lt; <ref refid="d4/dc3/structBrush_1_1SearchSpace_1af004a91112f5e3994d7c90c8baa71310" kindref="member">ArgsHash</ref>, unordered_map&lt; <ref refid="dc/d5c/namespaceBrush_1a051322bb9fd1db4638b6eccd399a29c8" kindref="member">NodeType</ref>, T &gt; &gt;&gt;</type>
+        <definition>using Brush::SearchSpace::Map =  unordered_map&lt;DataType, unordered_map&lt;ArgsHash, unordered_map&lt;NodeType, T&gt; &gt;&gt;</definition>
+        <argsstring></argsstring>
+        <name>Map</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/runner/work/brush/brush/src/search_space.h" line="81" column="5" bodyfile="/home/runner/work/brush/brush/src/search_space.h" bodystart="84" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="d4/dc3/structBrush_1_1SearchSpace_1a4bd8ffb41071c9a6739f92b275a510f5" prot="public" static="no" mutable="no">
+        <type><ref refid="d4/dc3/structBrush_1_1SearchSpace_1aa99f71f6328c8706a171c2f9c803b06d" kindref="member">Map</ref>&lt; <ref refid="d1/d3a/structBrush_1_1Node" kindref="compound">Node</ref> &gt;</type>
+        <definition>Map&lt;Node&gt; Brush::SearchSpace::node_map</definition>
+        <argsstring></argsstring>
+        <name>node_map</name>
+        <briefdescription>
+<para>Maps return types to argument types to node types. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>schema: <verbatim>{ return_type : { arguments_type : {node_type : node } }}
+</verbatim> </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/runner/work/brush/brush/src/search_space.h" line="93" column="9" bodyfile="/home/runner/work/brush/brush/src/search_space.h" bodystart="93" bodyend="-1"/>
+        <referencedby refid="d7/de7/structfmt_1_1formatter_3_01Brush_1_1SearchSpace_01_4_1a742f0a2c0d464dabc476bb1ccec27ddb" compoundref="d9/d99/search__space_8h" startline="670" endline="689">fmt::formatter&lt; Brush::SearchSpace &gt;::format</referencedby>
+        <referencedby refid="d4/dc3/structBrush_1_1SearchSpace_1a88636b9ece72850950f3b37b660d0be0" compoundref="da/d48/search__space_8cpp" startline="45" endline="81">init</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="d4/dc3/structBrush_1_1SearchSpace_1ae3c114b829c2059dcb6565d11de527af" prot="public" static="no" mutable="no">
+        <type><ref refid="d4/dc3/structBrush_1_1SearchSpace_1aa99f71f6328c8706a171c2f9c803b06d" kindref="member">Map</ref>&lt; float &gt;</type>
+        <definition>Map&lt;float&gt; Brush::SearchSpace::weight_map</definition>
+        <argsstring></argsstring>
+        <name>weight_map</name>
+        <briefdescription>
+<para>A map of weights corresponding to elements in <ref refid="d4/dc3/structBrush_1_1SearchSpace_1a4bd8ffb41071c9a6739f92b275a510f5" kindref="member">node_map</ref>, used to weight probabilities of each node being sampled from the map. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/runner/work/brush/brush/src/search_space.h" line="96" column="9" bodyfile="/home/runner/work/brush/brush/src/search_space.h" bodystart="96" bodyend="-1"/>
+        <referencedby refid="d7/de7/structfmt_1_1formatter_3_01Brush_1_1SearchSpace_01_4_1a742f0a2c0d464dabc476bb1ccec27ddb" compoundref="d9/d99/search__space_8h" startline="670" endline="689">fmt::formatter&lt; Brush::SearchSpace &gt;::format</referencedby>
+        <referencedby refid="d4/dc3/structBrush_1_1SearchSpace_1a88636b9ece72850950f3b37b660d0be0" compoundref="da/d48/search__space_8cpp" startline="45" endline="81">init</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="d4/dc3/structBrush_1_1SearchSpace_1a4c2acdd29d7465109ead9835f952fee0" prot="public" static="no" mutable="no">
+        <type>unordered_map&lt; <ref refid="dc/d5c/namespaceBrush_1a3f2c9b744330ba4a561ac72f048a1a5f" kindref="member">DataType</ref>, vector&lt; <ref refid="d1/d3a/structBrush_1_1Node" kindref="compound">Node</ref> &gt; &gt;</type>
+        <definition>unordered_map&lt;DataType, vector&lt;Node&gt; &gt; Brush::SearchSpace::terminal_map</definition>
+        <argsstring></argsstring>
+        <name>terminal_map</name>
+        <briefdescription>
+<para>Maps return types to terminals. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>schema: <verbatim> { return_type : vector of Nodes } 
+</verbatim> </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/runner/work/brush/brush/src/search_space.h" line="107" column="19" bodyfile="/home/runner/work/brush/brush/src/search_space.h" bodystart="107" bodyend="-1"/>
+        <referencedby refid="d7/de7/structfmt_1_1formatter_3_01Brush_1_1SearchSpace_01_4_1a742f0a2c0d464dabc476bb1ccec27ddb" compoundref="d9/d99/search__space_8h" startline="670" endline="689">fmt::formatter&lt; Brush::SearchSpace &gt;::format</referencedby>
+        <referencedby refid="d4/dc3/structBrush_1_1SearchSpace_1a88636b9ece72850950f3b37b660d0be0" compoundref="da/d48/search__space_8cpp" startline="45" endline="81">init</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="d4/dc3/structBrush_1_1SearchSpace_1a990aab15f3645f7b13cd678473e9f2fb" prot="public" static="no" mutable="no">
+        <type>unordered_map&lt; <ref refid="dc/d5c/namespaceBrush_1a3f2c9b744330ba4a561ac72f048a1a5f" kindref="member">DataType</ref>, vector&lt; float &gt; &gt;</type>
+        <definition>unordered_map&lt;DataType, vector&lt;float&gt; &gt; Brush::SearchSpace::terminal_weights</definition>
+        <argsstring></argsstring>
+        <name>terminal_weights</name>
+        <briefdescription>
+<para>A map of weights corresponding to elements in <ref refid="d4/dc3/structBrush_1_1SearchSpace_1a4c2acdd29d7465109ead9835f952fee0" kindref="member">terminal_map</ref>, used to weight probabilities of each node being sampled from the map. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/runner/work/brush/brush/src/search_space.h" line="110" column="19" bodyfile="/home/runner/work/brush/brush/src/search_space.h" bodystart="110" bodyend="-1"/>
+        <referencedby refid="d7/de7/structfmt_1_1formatter_3_01Brush_1_1SearchSpace_01_4_1a742f0a2c0d464dabc476bb1ccec27ddb" compoundref="d9/d99/search__space_8h" startline="670" endline="689">fmt::formatter&lt; Brush::SearchSpace &gt;::format</referencedby>
+        <referencedby refid="d4/dc3/structBrush_1_1SearchSpace_1a88636b9ece72850950f3b37b660d0be0" compoundref="da/d48/search__space_8cpp" startline="45" endline="81">init</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="d4/dc3/structBrush_1_1SearchSpace_1af67633b1cb0d2ff56bec919e81d84ede" prot="public" static="no" mutable="no">
+        <type>vector&lt; <ref refid="dc/d5c/namespaceBrush_1a3f2c9b744330ba4a561ac72f048a1a5f" kindref="member">DataType</ref> &gt;</type>
+        <definition>vector&lt;DataType&gt; Brush::SearchSpace::terminal_types</definition>
+        <argsstring></argsstring>
+        <name>terminal_types</name>
+        <briefdescription>
+<para>A vector storing the available return types of terminals. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/runner/work/brush/brush/src/search_space.h" line="113" column="12" bodyfile="/home/runner/work/brush/brush/src/search_space.h" bodystart="113" bodyend="-1"/>
+        <referencedby refid="d4/dc3/structBrush_1_1SearchSpace_1a88636b9ece72850950f3b37b660d0be0" compoundref="da/d48/search__space_8cpp" startline="45" endline="81">init</referencedby>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="d4/dc3/structBrush_1_1SearchSpace_1a4beda54d854b01d28488f3736aa0d394" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>typename <ref refid="dc/d5c/namespaceBrush_1ae591329af27c88b714d0f92b86276366" kindref="member">PT</ref></type>
+          </param>
+        </templateparamlist>
+        <type><ref refid="dc/d5c/namespaceBrush_1ae591329af27c88b714d0f92b86276366" kindref="member">PT</ref></type>
+        <definition>PT Brush::SearchSpace::make_program</definition>
+        <argsstring>(int max_d=0, int max_size=0)</argsstring>
+        <name>make_program</name>
+        <param>
+          <type>int</type>
+          <declname>max_d</declname>
+          <defval>0</defval>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>max_size</declname>
+          <defval>0</defval>
+        </param>
+        <briefdescription>
+<para>Makes a random program. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>We use an implementation of PTC2 for strongly typed GP from</para>
+<para>Sean Luke. &quot;Two fast tree-creation algorithms for genetic programming&quot; (<ulink url="https://doi.org/10.1109/4235.873237">https://doi.org/10.1109/4235.873237</ulink>)</para>
+<para><parameterlist kind="templateparam"><parameteritem>
+<parameternamelist>
+<parametername>PT</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>program type </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>max_d</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>max depth of the program </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>max_size</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>max size of the programd </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>a program of type PTsize </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/runner/work/brush/brush/src/search_space.h" line="143" column="8"/>
+      </memberdef>
+      <memberdef kind="function" id="d4/dc3/structBrush_1_1SearchSpace_1a1f8755ab53cb1ac2f26d8598cf83fd6d" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="dc/d5c/namespaceBrush_1acf6a63881021ff8db344de980b599720" kindref="member">RegressorProgram</ref></type>
+        <definition>RegressorProgram Brush::SearchSpace::make_regressor</definition>
+        <argsstring>(int max_d=0, int max_size=0)</argsstring>
+        <name>make_regressor</name>
+        <param>
+          <type>int</type>
+          <declname>max_d</declname>
+          <defval>0</defval>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>max_size</declname>
+          <defval>0</defval>
+        </param>
+        <briefdescription>
+<para>Makes a random regressor program. Convenience wrapper for <ref refid="d4/dc3/structBrush_1_1SearchSpace_1a4beda54d854b01d28488f3736aa0d394" kindref="member">make_program</ref>. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>max_d</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>max depth of the program </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>max_size</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>max size of the program </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>a regressor program </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/runner/work/brush/brush/src/search_space.h" line="149" column="22" bodyfile="/home/runner/work/brush/brush/src/search_space.cpp" bodystart="83" bodyend="86"/>
+        <referencedby refid="d0/d94/bind__search__space_8cpp_1a5dd9aae5c3af6fab760233deca1956cd" compoundref="d0/d94/bind__search__space_8cpp" startline="10" endline="31">bind_search_space</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="d4/dc3/structBrush_1_1SearchSpace_1a991c3b97d125a3ccf658d21d0c74ca4d" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="dc/d5c/namespaceBrush_1a217def005bc371ea274945e0db65e757" kindref="member">ClassifierProgram</ref></type>
+        <definition>ClassifierProgram Brush::SearchSpace::make_classifier</definition>
+        <argsstring>(int max_d=0, int max_size=0)</argsstring>
+        <name>make_classifier</name>
+        <param>
+          <type>int</type>
+          <declname>max_d</declname>
+          <defval>0</defval>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>max_size</declname>
+          <defval>0</defval>
+        </param>
+        <briefdescription>
+<para>Makes a random classifier program. Convenience wrapper for <ref refid="d4/dc3/structBrush_1_1SearchSpace_1a4beda54d854b01d28488f3736aa0d394" kindref="member">make_program</ref>. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>max_d</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>max depth of the program </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>max_size</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>max size of the program </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>a classifier program </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/runner/work/brush/brush/src/search_space.h" line="155" column="23" bodyfile="/home/runner/work/brush/brush/src/search_space.cpp" bodystart="88" bodyend="91"/>
+        <referencedby refid="d0/d94/bind__search__space_8cpp_1a5dd9aae5c3af6fab760233deca1956cd" compoundref="d0/d94/bind__search__space_8cpp" startline="10" endline="31">bind_search_space</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="d4/dc3/structBrush_1_1SearchSpace_1ae0a81352230eebea59f4b79cbb6c9b30" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="dc/d5c/namespaceBrush_1af7783e75e847f650db4e32882f9dea29" kindref="member">MulticlassClassifierProgram</ref></type>
+        <definition>MulticlassClassifierProgram Brush::SearchSpace::make_multiclass_classifier</definition>
+        <argsstring>(int max_d=0, int max_size=0)</argsstring>
+        <name>make_multiclass_classifier</name>
+        <param>
+          <type>int</type>
+          <declname>max_d</declname>
+          <defval>0</defval>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>max_size</declname>
+          <defval>0</defval>
+        </param>
+        <briefdescription>
+<para>Makes a random multiclass classifier program. Convenience wrapper for <ref refid="d4/dc3/structBrush_1_1SearchSpace_1a4beda54d854b01d28488f3736aa0d394" kindref="member">make_program</ref>. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>max_d</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>max depth of the program </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>max_size</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>max size of the program </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>a multiclass classifier program </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/runner/work/brush/brush/src/search_space.h" line="161" column="33" bodyfile="/home/runner/work/brush/brush/src/search_space.cpp" bodystart="93" bodyend="97"/>
+        <referencedby refid="d0/d94/bind__search__space_8cpp_1a5dd9aae5c3af6fab760233deca1956cd" compoundref="d0/d94/bind__search__space_8cpp" startline="10" endline="31">bind_search_space</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="d4/dc3/structBrush_1_1SearchSpace_1a2338329a79cb81c184f5a0e8dc4bedbb" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="dc/d5c/namespaceBrush_1a0df1acf4afe5f9d3ab91be448c3b2a31" kindref="member">RepresenterProgram</ref></type>
+        <definition>RepresenterProgram Brush::SearchSpace::make_representer</definition>
+        <argsstring>(int max_d=0, int max_size=0)</argsstring>
+        <name>make_representer</name>
+        <param>
+          <type>int</type>
+          <declname>max_d</declname>
+          <defval>0</defval>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>max_size</declname>
+          <defval>0</defval>
+        </param>
+        <briefdescription>
+<para>Makes a random representer program. Convenience wrapper for <ref refid="d4/dc3/structBrush_1_1SearchSpace_1a4beda54d854b01d28488f3736aa0d394" kindref="member">make_program</ref>. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>max_d</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>max depth of the program </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>max_size</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>max size of the program </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>a representer program </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/runner/work/brush/brush/src/search_space.h" line="167" column="24" bodyfile="/home/runner/work/brush/brush/src/search_space.cpp" bodystart="99" bodyend="102"/>
+        <referencedby refid="d0/d94/bind__search__space_8cpp_1a5dd9aae5c3af6fab760233deca1956cd" compoundref="d0/d94/bind__search__space_8cpp" startline="10" endline="31">bind_search_space</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="d4/dc3/structBrush_1_1SearchSpace_1af87c7270774accc9aa698089d310c4c3" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>Brush::SearchSpace::SearchSpace</definition>
+        <argsstring>()=default</argsstring>
+        <name>SearchSpace</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/runner/work/brush/brush/src/search_space.h" line="169" column="5"/>
+      </memberdef>
+      <memberdef kind="function" id="d4/dc3/structBrush_1_1SearchSpace_1a18309b1a1b5a24ac2bf96e1f64aab004" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>Brush::SearchSpace::SearchSpace</definition>
+        <argsstring>(const Dataset &amp;d, const unordered_map&lt; string, float &gt; &amp;user_ops={})</argsstring>
+        <name>SearchSpace</name>
+        <param>
+          <type>const <ref refid="d2/d36/classBrush_1_1Data_1_1Dataset" kindref="compound">Dataset</ref> &amp;</type>
+          <declname>d</declname>
+        </param>
+        <param>
+          <type>const unordered_map&lt; string, float &gt; &amp;</type>
+          <declname>user_ops</declname>
+          <defval>{}</defval>
+        </param>
+        <briefdescription>
+<para>Construct a search space. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>d</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>A dataset containing terminal definitions </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>user_ops</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Optional user-provided dictionary of operators with their probability of being chosen </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/runner/work/brush/brush/src/search_space.h" line="174" column="5" bodyfile="/home/runner/work/brush/brush/src/search_space.h" bodystart="174" bodyend="176"/>
+      </memberdef>
+      <memberdef kind="function" id="d4/dc3/structBrush_1_1SearchSpace_1a88636b9ece72850950f3b37b660d0be0" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void Brush::SearchSpace::init</definition>
+        <argsstring>(const Dataset &amp;d, const unordered_map&lt; string, float &gt; &amp;user_ops={})</argsstring>
+        <name>init</name>
+        <param>
+          <type>const <ref refid="d2/d36/classBrush_1_1Data_1_1Dataset" kindref="compound">Dataset</ref> &amp;</type>
+          <declname>d</declname>
+        </param>
+        <param>
+          <type>const unordered_map&lt; string, float &gt; &amp;</type>
+          <declname>user_ops</declname>
+          <defval>{}</defval>
+        </param>
+        <briefdescription>
+<para>Called by the constructor to initialize the search space. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>d</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>A dataset containing terminal definitions </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>user_ops</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Optional user-provided dictionary of operators with their probability of being chosen </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/runner/work/brush/brush/src/search_space.h" line="181" column="10" bodyfile="/home/runner/work/brush/brush/src/search_space.cpp" bodystart="45" bodyend="81"/>
+        <references refid="dc/d5c/namespaceBrush_1a08d191fd1a609031bd321d66312c988d" compoundref="da/d48/search__space_8cpp" startline="10" endline="37">Brush::generate_terminals</references>
+        <references refid="d4/dc3/structBrush_1_1SearchSpace_1aaa7e4460ad218ff67bc4159aff77bdf3" compoundref="d9/d99/search__space_8h" startline="522" endline="529">GenerateNodeMap</references>
+        <references refid="d4/dc3/structBrush_1_1SearchSpace_1a4bd8ffb41071c9a6739f92b275a510f5" compoundref="d9/d99/search__space_8h" startline="93">node_map</references>
+        <references refid="d4/dc3/structBrush_1_1SearchSpace_1a4c2acdd29d7465109ead9835f952fee0" compoundref="d9/d99/search__space_8h" startline="107">terminal_map</references>
+        <references refid="d4/dc3/structBrush_1_1SearchSpace_1af67633b1cb0d2ff56bec919e81d84ede" compoundref="d9/d99/search__space_8h" startline="113">terminal_types</references>
+        <references refid="d4/dc3/structBrush_1_1SearchSpace_1a990aab15f3645f7b13cd678473e9f2fb" compoundref="d9/d99/search__space_8h" startline="110">terminal_weights</references>
+        <references refid="d2/d36/classBrush_1_1Data_1_1Dataset_1a96fc30b35f152f425377e1ae34398779" compoundref="d2/dbd/data_8h" startline="55">Brush::Data::Dataset::unique_data_types</references>
+        <references refid="d4/dc3/structBrush_1_1SearchSpace_1ae3c114b829c2059dcb6565d11de527af" compoundref="d9/d99/search__space_8h" startline="96">weight_map</references>
+        <referencedby refid="d0/d94/bind__search__space_8cpp_1a5dd9aae5c3af6fab760233deca1956cd" compoundref="d0/d94/bind__search__space_8cpp" startline="10" endline="31">bind_search_space</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="d4/dc3/structBrush_1_1SearchSpace_1a67cb58cf03f3114cd2230624b2e3dca9" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool Brush::SearchSpace::check</definition>
+        <argsstring>(DataType R) const</argsstring>
+        <name>check</name>
+        <param>
+          <type><ref refid="dc/d5c/namespaceBrush_1a3f2c9b744330ba4a561ac72f048a1a5f" kindref="member">DataType</ref></type>
+          <declname>R</declname>
+        </param>
+        <briefdescription>
+<para>check if a return type is in the node map </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>R</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>data type </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>true if it exists </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/runner/work/brush/brush/src/search_space.h" line="186" column="10" bodyfile="/home/runner/work/brush/brush/src/search_space.h" bodystart="186" bodyend="192"/>
+        <references refid="da/d41/error_8h_1aa4c550bcd71e4ec1c97b111e1360509a" compoundref="da/d41/error_8h" startline="24">HANDLE_ERROR_THROW</references>
+      </memberdef>
+      <memberdef kind="function" id="d4/dc3/structBrush_1_1SearchSpace_1aa75e6c82dc85e752b099d9adc1d24df8" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool Brush::SearchSpace::check</definition>
+        <argsstring>(DataType R, size_t sig_hash) const</argsstring>
+        <name>check</name>
+        <param>
+          <type><ref refid="dc/d5c/namespaceBrush_1a3f2c9b744330ba4a561ac72f048a1a5f" kindref="member">DataType</ref></type>
+          <declname>R</declname>
+        </param>
+        <param>
+          <type>size_t</type>
+          <declname>sig_hash</declname>
+        </param>
+        <briefdescription>
+<para>check if a function signature is in the search space </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>R</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>return type </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>sig_hash</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>signature hash </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>true if it exists </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/runner/work/brush/brush/src/search_space.h" line="198" column="10" bodyfile="/home/runner/work/brush/brush/src/search_space.h" bodystart="198" bodyend="207"/>
+        <references refid="da/d41/error_8h_1aa4c550bcd71e4ec1c97b111e1360509a" compoundref="da/d41/error_8h" startline="24">HANDLE_ERROR_THROW</references>
+      </memberdef>
+      <memberdef kind="function" id="d4/dc3/structBrush_1_1SearchSpace_1a626c437dc8fb6bcac68f2dcae64c00cc" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool Brush::SearchSpace::check</definition>
+        <argsstring>(DataType R, size_t sig_hash, NodeType type) const</argsstring>
+        <name>check</name>
+        <param>
+          <type><ref refid="dc/d5c/namespaceBrush_1a3f2c9b744330ba4a561ac72f048a1a5f" kindref="member">DataType</ref></type>
+          <declname>R</declname>
+        </param>
+        <param>
+          <type>size_t</type>
+          <declname>sig_hash</declname>
+        </param>
+        <param>
+          <type><ref refid="dc/d5c/namespaceBrush_1a051322bb9fd1db4638b6eccd399a29c8" kindref="member">NodeType</ref></type>
+          <declname>type</declname>
+        </param>
+        <briefdescription>
+<para>check if a typed <ref refid="d1/d3a/structBrush_1_1Node" kindref="compound">Node</ref> is in the search space </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>R</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>return type </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>sig_hash</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>signature hash </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>type</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the node type </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>true if it exists </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/runner/work/brush/brush/src/search_space.h" line="214" column="10" bodyfile="/home/runner/work/brush/brush/src/search_space.h" bodystart="214" bodyend="223"/>
+        <references refid="da/d41/error_8h_1aa4c550bcd71e4ec1c97b111e1360509a" compoundref="da/d41/error_8h" startline="24">HANDLE_ERROR_THROW</references>
+      </memberdef>
+      <memberdef kind="function" id="d4/dc3/structBrush_1_1SearchSpace_1a3f54812898af087a3bc6c1bfea8f4a87" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>typename F</type>
+          </param>
+        </templateparamlist>
+        <type><ref refid="d1/d3a/structBrush_1_1Node" kindref="compound">Node</ref></type>
+        <definition>Node Brush::SearchSpace::get</definition>
+        <argsstring>(const string &amp;name)</argsstring>
+        <name>get</name>
+        <param>
+          <type>const string &amp;</type>
+          <declname>name</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/runner/work/brush/brush/src/search_space.h" line="225" column="21"/>
+      </memberdef>
+      <memberdef kind="function" id="d4/dc3/structBrush_1_1SearchSpace_1a9f5632dcb5c60863face5d6e1fdd92ba" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="d1/d3a/structBrush_1_1Node" kindref="compound">Node</ref></type>
+        <definition>Node Brush::SearchSpace::get</definition>
+        <argsstring>(NodeType type, DataType R, size_t sig_hash)</argsstring>
+        <name>get</name>
+        <param>
+          <type><ref refid="dc/d5c/namespaceBrush_1a051322bb9fd1db4638b6eccd399a29c8" kindref="member">NodeType</ref></type>
+          <declname>type</declname>
+        </param>
+        <param>
+          <type><ref refid="dc/d5c/namespaceBrush_1a3f2c9b744330ba4a561ac72f048a1a5f" kindref="member">DataType</ref></type>
+          <declname>R</declname>
+        </param>
+        <param>
+          <type>size_t</type>
+          <declname>sig_hash</declname>
+        </param>
+        <briefdescription>
+<para>get a typed node </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>type</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the node type </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>R</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the return type of the node </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>sig_hash</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the signature hash of the node </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>the matching <ref refid="d1/d3a/structBrush_1_1Node" kindref="compound">Node</ref> </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/runner/work/brush/brush/src/search_space.h" line="232" column="10" bodyfile="/home/runner/work/brush/brush/src/search_space.h" bodystart="232" bodyend="236"/>
+      </memberdef>
+      <memberdef kind="function" id="d4/dc3/structBrush_1_1SearchSpace_1a6687f99606513848ee1042b90f7750dd" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>typename S</type>
+          </param>
+        </templateparamlist>
+        <type><ref refid="d1/d3a/structBrush_1_1Node" kindref="compound">Node</ref></type>
+        <definition>Node Brush::SearchSpace::get</definition>
+        <argsstring>(NodeType type, DataType R, S sig)</argsstring>
+        <name>get</name>
+        <param>
+          <type><ref refid="dc/d5c/namespaceBrush_1a051322bb9fd1db4638b6eccd399a29c8" kindref="member">NodeType</ref></type>
+          <declname>type</declname>
+        </param>
+        <param>
+          <type><ref refid="dc/d5c/namespaceBrush_1a3f2c9b744330ba4a561ac72f048a1a5f" kindref="member">DataType</ref></type>
+          <declname>R</declname>
+        </param>
+        <param>
+          <type>S</type>
+          <declname>sig</declname>
+        </param>
+        <briefdescription>
+<para>get a typed node. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="templateparam"><parameteritem>
+<parameternamelist>
+<parametername>S</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the signature of the node, inferred. <linebreak/>
+ </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>type</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the node type </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>R</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the return type of the node </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>sig</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the signature of the node </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>the matching <ref refid="d1/d3a/structBrush_1_1Node" kindref="compound">Node</ref> </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/runner/work/brush/brush/src/search_space.h" line="245" column="10" bodyfile="/home/runner/work/brush/brush/src/search_space.h" bodystart="245" bodyend="245"/>
+        <references refid="d4/dc3/structBrush_1_1SearchSpace_1a6687f99606513848ee1042b90f7750dd" compoundref="d9/d99/search__space_8h" startline="245" endline="245">get</references>
+        <referencedby refid="d4/dc3/structBrush_1_1SearchSpace_1a6687f99606513848ee1042b90f7750dd" compoundref="d9/d99/search__space_8h" startline="245" endline="245">get</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="d4/dc3/structBrush_1_1SearchSpace_1a53c05b982db1d8efd46f6c5a5a57a533" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="d1/d3a/structBrush_1_1Node" kindref="compound">Node</ref></type>
+        <definition>Node Brush::SearchSpace::get</definition>
+        <argsstring>(NodeType type, DataType R)</argsstring>
+        <name>get</name>
+        <param>
+          <type><ref refid="dc/d5c/namespaceBrush_1a051322bb9fd1db4638b6eccd399a29c8" kindref="member">NodeType</ref></type>
+          <declname>type</declname>
+        </param>
+        <param>
+          <type><ref refid="dc/d5c/namespaceBrush_1a3f2c9b744330ba4a561ac72f048a1a5f" kindref="member">DataType</ref></type>
+          <declname>R</declname>
+        </param>
+        <briefdescription>
+<para>Get a specific node type that matches a return value. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>type</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the node type </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>R</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the return type </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>A <ref refid="d1/d3a/structBrush_1_1Node" kindref="compound">Node</ref> of type <computeroutput>type</computeroutput> with return type <computeroutput>R</computeroutput>. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/runner/work/brush/brush/src/search_space.h" line="251" column="10" bodyfile="/home/runner/work/brush/brush/src/search_space.h" bodystart="251" bodyend="272"/>
+        <references refid="d6/d2e/namespaceBrush_1_1Util_1af7dd70e54015821d96e3a1afed6344ca" compoundref="d2/da9/rnd_8h" startline="151">Brush::Util::r</references>
+        <references refid="d2/d2d/classBrush_1_1Util_1_1Rnd_1a9f0fe39c1fd498b378c8d4abe7b9d71b" compoundref="d2/da9/rnd_8h" startline="60" endline="65">Brush::Util::Rnd::select_randomly</references>
+      </memberdef>
+      <memberdef kind="function" id="d4/dc3/structBrush_1_1SearchSpace_1a6f491bad218a6482a66d32a790a2aa85" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="d1/d3a/structBrush_1_1Node" kindref="compound">Node</ref></type>
+        <definition>Node Brush::SearchSpace::get_terminal</definition>
+        <argsstring>() const</argsstring>
+        <name>get_terminal</name>
+        <briefdescription>
+<para>get a random terminal </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/runner/work/brush/brush/src/search_space.h" line="275" column="10" bodyfile="/home/runner/work/brush/brush/src/search_space.h" bodystart="275" bodyend="285"/>
+        <references refid="d6/d2e/namespaceBrush_1_1Util_1af7dd70e54015821d96e3a1afed6344ca" compoundref="d2/da9/rnd_8h" startline="151">Brush::Util::r</references>
+        <references refid="d2/d2d/classBrush_1_1Util_1_1Rnd_1a9f0fe39c1fd498b378c8d4abe7b9d71b" compoundref="d2/da9/rnd_8h" startline="60" endline="65">Brush::Util::Rnd::select_randomly</references>
+        <referencedby refid="d0/d24/namespacevariation_1ac09afe106fc118aa9dc82a1b8ce87b01" compoundref="d4/d1f/variation_8h" startline="68" endline="74">variation::delete_mutation</referencedby>
+        <referencedby refid="d0/d24/namespacevariation_1ab75fceda2c7aa69e59d3b55562937942" compoundref="d4/d1f/variation_8h" startline="39" endline="65">variation::insert_mutation</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="d4/dc3/structBrush_1_1SearchSpace_1a158036ea3930b5663adba0a779bce656" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="d1/d3a/structBrush_1_1Node" kindref="compound">Node</ref></type>
+        <definition>Node Brush::SearchSpace::get_terminal</definition>
+        <argsstring>(DataType R) const</argsstring>
+        <name>get_terminal</name>
+        <param>
+          <type><ref refid="dc/d5c/namespaceBrush_1a3f2c9b744330ba4a561ac72f048a1a5f" kindref="member">DataType</ref></type>
+          <declname>R</declname>
+        </param>
+        <briefdescription>
+<para>get a terminal with return type <computeroutput>R</computeroutput> </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/runner/work/brush/brush/src/search_space.h" line="288" column="10" bodyfile="/home/runner/work/brush/brush/src/search_space.h" bodystart="288" bodyend="299"/>
+        <references refid="da/d41/error_8h_1aa4c550bcd71e4ec1c97b111e1360509a" compoundref="da/d41/error_8h" startline="24">HANDLE_ERROR_THROW</references>
+        <references refid="d6/d2e/namespaceBrush_1_1Util_1af7dd70e54015821d96e3a1afed6344ca" compoundref="d2/da9/rnd_8h" startline="151">Brush::Util::r</references>
+        <references refid="d2/d2d/classBrush_1_1Util_1_1Rnd_1a9f0fe39c1fd498b378c8d4abe7b9d71b" compoundref="d2/da9/rnd_8h" startline="60" endline="65">Brush::Util::Rnd::select_randomly</references>
+      </memberdef>
+      <memberdef kind="function" id="d4/dc3/structBrush_1_1SearchSpace_1a038ae8b09e1482f69de9feaf22aeacdb" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>vector&lt; float &gt;</type>
+        <definition>vector&lt;float&gt; Brush::SearchSpace::get_weights</definition>
+        <argsstring>() const</argsstring>
+        <name>get_weights</name>
+        <briefdescription>
+<para>get weights of the return types </para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>a weight vector, each element corresponding to a return type. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/runner/work/brush/brush/src/search_space.h" line="303" column="12" bodyfile="/home/runner/work/brush/brush/src/search_space.h" bodystart="303" bodyend="319"/>
+      </memberdef>
+      <memberdef kind="function" id="d4/dc3/structBrush_1_1SearchSpace_1a20915b371297c0b4aec69786f39053bb" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>vector&lt; float &gt;</type>
+        <definition>vector&lt;float&gt; Brush::SearchSpace::get_weights</definition>
+        <argsstring>(DataType ret) const</argsstring>
+        <name>get_weights</name>
+        <param>
+          <type><ref refid="dc/d5c/namespaceBrush_1a3f2c9b744330ba4a561ac72f048a1a5f" kindref="member">DataType</ref></type>
+          <declname>ret</declname>
+        </param>
+        <briefdescription>
+<para>get weights of the argument types matching return type <computeroutput>ret</computeroutput>. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>ret</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>return type </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>a weight vector, each element corresponding to an args type. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/runner/work/brush/brush/src/search_space.h" line="324" column="12" bodyfile="/home/runner/work/brush/brush/src/search_space.h" bodystart="324" bodyend="337"/>
+      </memberdef>
+      <memberdef kind="function" id="d4/dc3/structBrush_1_1SearchSpace_1a3155097f992425ae7c303c6e1d15eee1" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>vector&lt; float &gt;</type>
+        <definition>vector&lt;float&gt; Brush::SearchSpace::get_weights</definition>
+        <argsstring>(DataType ret, ArgsHash sig_hash) const</argsstring>
+        <name>get_weights</name>
+        <param>
+          <type><ref refid="dc/d5c/namespaceBrush_1a3f2c9b744330ba4a561ac72f048a1a5f" kindref="member">DataType</ref></type>
+          <declname>ret</declname>
+        </param>
+        <param>
+          <type><ref refid="d4/dc3/structBrush_1_1SearchSpace_1af004a91112f5e3994d7c90c8baa71310" kindref="member">ArgsHash</ref></type>
+          <declname>sig_hash</declname>
+        </param>
+        <briefdescription>
+<para>get the weights of nodes matching a signature. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>ret</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>return type </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>sig_hash</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>signature hash </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>a weight vector, each element corresponding to a node. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/runner/work/brush/brush/src/search_space.h" line="343" column="12" bodyfile="/home/runner/work/brush/brush/src/search_space.h" bodystart="343" bodyend="350"/>
+      </memberdef>
+      <memberdef kind="function" id="d4/dc3/structBrush_1_1SearchSpace_1aaf0d192118f8c95a7b7232fb46920cc4" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="d1/d3a/structBrush_1_1Node" kindref="compound">Node</ref></type>
+        <definition>Node Brush::SearchSpace::get_op</definition>
+        <argsstring>(DataType ret) const</argsstring>
+        <name>get_op</name>
+        <param>
+          <type><ref refid="dc/d5c/namespaceBrush_1a3f2c9b744330ba4a561ac72f048a1a5f" kindref="member">DataType</ref></type>
+          <declname>ret</declname>
+        </param>
+        <briefdescription>
+<para>get an operator matching return type <computeroutput>ret</computeroutput>. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>ret</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>return type </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>a randomly chosen operator </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/runner/work/brush/brush/src/search_space.h" line="355" column="10" bodyfile="/home/runner/work/brush/brush/src/search_space.h" bodystart="355" bodyend="373"/>
+        <references refid="d6/d2e/namespaceBrush_1_1Util_1af7dd70e54015821d96e3a1afed6344ca" compoundref="d2/da9/rnd_8h" startline="151">Brush::Util::r</references>
+        <references refid="d2/d2d/classBrush_1_1Util_1_1Rnd_1a9f0fe39c1fd498b378c8d4abe7b9d71b" compoundref="d2/da9/rnd_8h" startline="60" endline="65">Brush::Util::Rnd::select_randomly</references>
+      </memberdef>
+      <memberdef kind="function" id="d4/dc3/structBrush_1_1SearchSpace_1a86bec43f225bb5bbbcafa7f44a8b3102" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="d1/d3a/structBrush_1_1Node" kindref="compound">Node</ref></type>
+        <definition>Node Brush::SearchSpace::get_op_with_arg</definition>
+        <argsstring>(DataType ret, DataType arg, bool terminal_compatible=true) const</argsstring>
+        <name>get_op_with_arg</name>
+        <param>
+          <type><ref refid="dc/d5c/namespaceBrush_1a3f2c9b744330ba4a561ac72f048a1a5f" kindref="member">DataType</ref></type>
+          <declname>ret</declname>
+        </param>
+        <param>
+          <type><ref refid="dc/d5c/namespaceBrush_1a3f2c9b744330ba4a561ac72f048a1a5f" kindref="member">DataType</ref></type>
+          <declname>arg</declname>
+        </param>
+        <param>
+          <type>bool</type>
+          <declname>terminal_compatible</declname>
+          <defval>true</defval>
+        </param>
+        <briefdescription>
+<para>get operator with at least one argument matching arg </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>ret</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>return type </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>arg</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>argument type to match </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>terminal_compatible</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>if true, the other args the returned operator takes must exist in the terminal types. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>a matching operator. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/runner/work/brush/brush/src/search_space.h" line="381" column="10" bodyfile="/home/runner/work/brush/brush/src/search_space.h" bodystart="381" bodyend="423"/>
+        <references refid="d6/d2e/namespaceBrush_1_1Util_1ab03528e8d9652013786252f63b6d5840" compoundref="d5/d60/utils_8h" startline="144" endline="147">Brush::Util::in</references>
+        <references refid="d6/d2e/namespaceBrush_1_1Util_1af7dd70e54015821d96e3a1afed6344ca" compoundref="d2/da9/rnd_8h" startline="151">Brush::Util::r</references>
+        <references refid="d2/d2d/classBrush_1_1Util_1_1Rnd_1a9f0fe39c1fd498b378c8d4abe7b9d71b" compoundref="d2/da9/rnd_8h" startline="60" endline="65">Brush::Util::Rnd::select_randomly</references>
+        <referencedby refid="d0/d24/namespacevariation_1ab75fceda2c7aa69e59d3b55562937942" compoundref="d4/d1f/variation_8h" startline="39" endline="65">variation::insert_mutation</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="d4/dc3/structBrush_1_1SearchSpace_1aeadd5cc2c0b7f791299560dd0dea4e4e" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="d1/d3a/structBrush_1_1Node" kindref="compound">Node</ref></type>
+        <definition>Node Brush::SearchSpace::get_node_like</definition>
+        <argsstring>(Node node) const</argsstring>
+        <name>get_node_like</name>
+        <param>
+          <type><ref refid="d1/d3a/structBrush_1_1Node" kindref="compound">Node</ref></type>
+          <declname>node</declname>
+        </param>
+        <briefdescription>
+<para>get a node with a signature matching <computeroutput>node</computeroutput> </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>node</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the node to match </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>a <ref refid="d1/d3a/structBrush_1_1Node" kindref="compound">Node</ref> </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/runner/work/brush/brush/src/search_space.h" line="428" column="10" bodyfile="/home/runner/work/brush/brush/src/search_space.h" bodystart="428" bodyend="441"/>
+        <references refid="d1/d3a/structBrush_1_1Node_1a9ec6ba08b0baebc0cd105e4ef774b7fb" compoundref="d1/d77/node_8h" startline="150" endline="150">Brush::Node::args_type</references>
+        <references refid="d1/d3a/structBrush_1_1Node_1a522791afe93c92442564356ff19ff55a" compoundref="d1/d77/node_8h" startline="74">Brush::Node::node_type</references>
+        <references refid="d6/d2e/namespaceBrush_1_1Util_1af7dd70e54015821d96e3a1afed6344ca" compoundref="d2/da9/rnd_8h" startline="151">Brush::Util::r</references>
+        <references refid="d1/d3a/structBrush_1_1Node_1a65b283648fe779d81ac11f9e4714d920" compoundref="d1/d77/node_8h" startline="80">Brush::Node::ret_type</references>
+        <references refid="d2/d2d/classBrush_1_1Util_1_1Rnd_1a9f0fe39c1fd498b378c8d4abe7b9d71b" compoundref="d2/da9/rnd_8h" startline="60" endline="65">Brush::Util::Rnd::select_randomly</references>
+        <referencedby refid="d0/d24/namespacevariation_1a5d1fdeb5d33b06ee8847da09f58f0f5f" compoundref="d4/d1f/variation_8h" startline="31" endline="36">variation::point_mutation</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="d4/dc3/structBrush_1_1SearchSpace_1a1cfbfca3a45987de45159bc4699a61bb" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void Brush::SearchSpace::print</definition>
+        <argsstring>() const</argsstring>
+        <name>print</name>
+        <briefdescription>
+<para>prints the search space map. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/runner/work/brush/brush/src/search_space.h" line="444" column="10" bodyfile="/home/runner/work/brush/brush/src/search_space.cpp" bodystart="41" bodyend="43"/>
+        <referencedby refid="d0/d94/bind__search__space_8cpp_1a5dd9aae5c3af6fab760233deca1956cd" compoundref="d0/d94/bind__search__space_8cpp" startline="10" endline="31">bind_search_space</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="d4/dc3/structBrush_1_1SearchSpace_1a30dc9740ebecad5267acd5e27b1a3953" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>typename P</type>
+          </param>
+        </templateparamlist>
+        <type>P</type>
+        <definition>P Brush::SearchSpace::make_program</definition>
+        <argsstring>(int max_d, int max_size)</argsstring>
+        <name>make_program</name>
+        <param>
+          <type>int</type>
+          <declname>max_d</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>max_size</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/runner/work/brush/brush/src/search_space.h" line="544" column="3" bodyfile="/home/runner/work/brush/brush/src/search_space.h" bodystart="544" bodyend="661"/>
+        <references refid="d1/d3a/structBrush_1_1Node_1a237b9208864ace5209edca01623f6b1e" compoundref="d1/d77/node_8h" startline="82">Brush::Node::arg_types</references>
+        <references refid="dc/d5c/namespaceBrush_1a3f2c9b744330ba4a561ac72f048a1a5fa2edbf6aa916089ab4f236b106fe413f3">Brush::ArrayF</references>
+        <references refid="dc/d5c/namespaceBrush_1ae591329af27c88b714d0f92b86276366a3cdc33a35d0e4f3b9bae953babd8f9b4">Brush::BinaryClassifier</references>
+        <references refid="d1/d3a/structBrush_1_1Node_1a32c73293ee4e02b6d828c2c213e06154" compoundref="d1/d77/node_8h" startline="72">Brush::Node::fixed</references>
+        <references refid="dc/d5c/namespaceBrush_1a051322bb9fd1db4638b6eccd399a29c8a9a2126552a9de60d20d95a47f85a16fd">Brush::Logistic</references>
+        <references refid="dc/d5c/namespaceBrush_1a3f2c9b744330ba4a561ac72f048a1a5fa15a48b9e681bad477840a498c9b9ffea">Brush::MatrixF</references>
+        <references refid="dc/d5c/namespaceBrush_1ae591329af27c88b714d0f92b86276366ac62539fc5a23115fca906befbd511c0a">Brush::MulticlassClassifier</references>
+        <references refid="dc/d5c/namespaceBrush_1a9c6fb4b74a0a8a8fd047a49f3c9e2283" compoundref="dc/d4d/params_8cpp" startline="8">Brush::PARAMS</references>
+        <references refid="d6/d2e/namespaceBrush_1_1Util_1af7dd70e54015821d96e3a1afed6344ca" compoundref="d2/da9/rnd_8h" startline="151">Brush::Util::r</references>
+        <references refid="dc/d5c/namespaceBrush_1a819e6d35661a163c3f40d927766a3213" compoundref="d9/d99/search__space_8h" startline="534" endline="541">Brush::RandomDequeue</references>
+        <references refid="d2/d2d/classBrush_1_1Util_1_1Rnd_1aef0f2836321f651d5887d29739e180f5" compoundref="de/d67/rnd_8cpp" startline="64" endline="68">Brush::Util::Rnd::rnd_int</references>
+        <references refid="d1/d3a/structBrush_1_1Node_1ad9e4f8654978a40e8266b20a4bb0950f" compoundref="d1/d77/node_8h" startline="216" endline="216">Brush::Node::set_prob_change</references>
+        <references refid="dc/d5c/namespaceBrush_1a051322bb9fd1db4638b6eccd399a29c8a31d953b9d49a6b4378f45097047976d0">Brush::Softmax</references>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="private-func">
+      <memberdef kind="function" id="d4/dc3/structBrush_1_1SearchSpace_1a350a180311cc07e07788afc5f046de16" prot="private" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type><ref refid="dc/d5c/namespaceBrush_1a051322bb9fd1db4638b6eccd399a29c8" kindref="member">NodeType</ref></type>
+            <declname>NT</declname>
+            <defname>NT</defname>
+          </param>
+          <param>
+            <type>typename S</type>
+          </param>
+        </templateparamlist>
+        <type></type>
+        <definition>Brush::SearchSpace::requires</definition>
+        <argsstring>(!is_in_v&lt; NT, NodeType::Terminal, NodeType::Constant &gt;) static const expr std</argsstring>
+        <name>requires</name>
+        <param>
+          <type>!<ref refid="de/d26/nodetype_8h_1a71f687f53e36ccdc3277214f2d535fe5" kindref="member">is_in_v</ref>&lt; <ref refid="dc/d5c/namespaceBrush_1a051322bb9fd1db4638b6eccd399a29c8" kindref="member">NT</ref>, <ref refid="dc/d5c/namespaceBrush_1a051322bb9fd1db4638b6eccd399a29c8a514d8a494f087c0d549b9536c2ef3bd9" kindref="member">NodeType::Terminal</ref>, <ref refid="dc/d5c/namespaceBrush_1a051322bb9fd1db4638b6eccd399a29c8acb17869fe51048b5a5c4c6106551a255" kindref="member">NodeType::Constant</ref> &gt;</type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/runner/work/brush/brush/src/search_space.h" line="449" column="9" bodyfile="/home/runner/work/brush/brush/src/search_space.h" bodystart="449" bodyend="465"/>
+        <references refid="dc/d5c/namespaceBrush_1a5ce2db092b85cde6a08777c7e9446b8b" compoundref="da/d48/search__space_8cpp" startline="37">Brush::ArgsName</references>
+        <references refid="d6/d2e/namespaceBrush_1_1Util_1ab03528e8d9652013786252f63b6d5840" compoundref="d5/d60/utils_8h" startline="144" endline="147">Brush::Util::in</references>
+      </memberdef>
+      <memberdef kind="function" id="d4/dc3/structBrush_1_1SearchSpace_1a4a255b2a600b65c33dc7dad6dd6a4614" prot="private" static="no" constexpr="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type><ref refid="dc/d5c/namespaceBrush_1a051322bb9fd1db4638b6eccd399a29c8" kindref="member">NodeType</ref></type>
+            <declname>NT</declname>
+            <defname>NT</defname>
+          </param>
+          <param>
+            <type>typename S</type>
+          </param>
+        </templateparamlist>
+        <type>constexpr void</type>
+        <definition>constexpr void Brush::SearchSpace::AddNode</definition>
+        <argsstring>(const unordered_map&lt; string, float &gt; &amp;user_ops, const vector&lt; DataType &gt; &amp;unique_data_types)</argsstring>
+        <name>AddNode</name>
+        <param>
+          <type>const unordered_map&lt; string, float &gt; &amp;</type>
+          <declname>user_ops</declname>
+        </param>
+        <param>
+          <type>const vector&lt; <ref refid="dc/d5c/namespaceBrush_1a3f2c9b744330ba4a561ac72f048a1a5f" kindref="member">DataType</ref> &gt; &amp;</type>
+          <declname>unique_data_types</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/runner/work/brush/brush/src/search_space.h" line="468" column="24" bodyfile="/home/runner/work/brush/brush/src/search_space.h" bodystart="468" bodyend="488"/>
+        <references refid="dc/d5c/namespaceBrush_1abfd0b15e0aacec494262585ad04fd79b" compoundref="df/dfe/nodetype_8cpp" startline="79">Brush::NodeTypeName</references>
+      </memberdef>
+      <memberdef kind="function" id="d4/dc3/structBrush_1_1SearchSpace_1a56e2beeb7aecac93840a237b7b9adf3b" prot="private" static="no" constexpr="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type><ref refid="dc/d5c/namespaceBrush_1a051322bb9fd1db4638b6eccd399a29c8" kindref="member">NodeType</ref></type>
+            <declname>NT</declname>
+            <defname>NT</defname>
+          </param>
+          <param>
+            <type>typename Sigs</type>
+          </param>
+          <param>
+            <type>std::size_t...</type>
+            <declname>Is</declname>
+            <defname>Is</defname>
+          </param>
+        </templateparamlist>
+        <type>constexpr void</type>
+        <definition>constexpr void Brush::SearchSpace::AddNodes</definition>
+        <argsstring>(const unordered_map&lt; string, float &gt; &amp;user_ops, const vector&lt; DataType &gt; &amp;unique_data_types, std::index_sequence&lt; Is... &gt;)</argsstring>
+        <name>AddNodes</name>
+        <param>
+          <type>const unordered_map&lt; string, float &gt; &amp;</type>
+          <declname>user_ops</declname>
+        </param>
+        <param>
+          <type>const vector&lt; <ref refid="dc/d5c/namespaceBrush_1a3f2c9b744330ba4a561ac72f048a1a5f" kindref="member">DataType</ref> &gt; &amp;</type>
+          <declname>unique_data_types</declname>
+        </param>
+        <param>
+          <type>std::index_sequence&lt; Is... &gt;</type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/runner/work/brush/brush/src/search_space.h" line="491" column="24" bodyfile="/home/runner/work/brush/brush/src/search_space.h" bodystart="491" bodyend="496"/>
+      </memberdef>
+      <memberdef kind="function" id="d4/dc3/structBrush_1_1SearchSpace_1af8165ac09c39eec3e5aa6e2d925b8104" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type><ref refid="dc/d5c/namespaceBrush_1a051322bb9fd1db4638b6eccd399a29c8" kindref="member">NodeType</ref></type>
+            <declname>NT</declname>
+            <defname>NT</defname>
+          </param>
+        </templateparamlist>
+        <type>void</type>
+        <definition>void Brush::SearchSpace::MakeNodes</definition>
+        <argsstring>(const unordered_map&lt; string, float &gt; &amp;user_ops, const vector&lt; DataType &gt; &amp;unique_data_types)</argsstring>
+        <name>MakeNodes</name>
+        <param>
+          <type>const unordered_map&lt; string, float &gt; &amp;</type>
+          <declname>user_ops</declname>
+        </param>
+        <param>
+          <type>const vector&lt; <ref refid="dc/d5c/namespaceBrush_1a3f2c9b744330ba4a561ac72f048a1a5f" kindref="member">DataType</ref> &gt; &amp;</type>
+          <declname>unique_data_types</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/runner/work/brush/brush/src/search_space.h" line="499" column="14" bodyfile="/home/runner/work/brush/brush/src/search_space.h" bodystart="499" bodyend="519"/>
+        <references refid="dc/d5c/namespaceBrush_1abfd0b15e0aacec494262585ad04fd79b" compoundref="df/dfe/nodetype_8cpp" startline="79">Brush::NodeTypeName</references>
+      </memberdef>
+      <memberdef kind="function" id="d4/dc3/structBrush_1_1SearchSpace_1aaa7e4460ad218ff67bc4159aff77bdf3" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>std::size_t...</type>
+            <declname>Is</declname>
+            <defname>Is</defname>
+          </param>
+        </templateparamlist>
+        <type>void</type>
+        <definition>void Brush::SearchSpace::GenerateNodeMap</definition>
+        <argsstring>(const unordered_map&lt; string, float &gt; &amp;user_ops, const vector&lt; DataType &gt; &amp;unique_data_types, std::index_sequence&lt; Is... &gt;)</argsstring>
+        <name>GenerateNodeMap</name>
+        <param>
+          <type>const unordered_map&lt; string, float &gt; &amp;</type>
+          <declname>user_ops</declname>
+        </param>
+        <param>
+          <type>const vector&lt; <ref refid="dc/d5c/namespaceBrush_1a3f2c9b744330ba4a561ac72f048a1a5f" kindref="member">DataType</ref> &gt; &amp;</type>
+          <declname>unique_data_types</declname>
+        </param>
+        <param>
+          <type>std::index_sequence&lt; Is... &gt;</type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/runner/work/brush/brush/src/search_space.h" line="522" column="14" bodyfile="/home/runner/work/brush/brush/src/search_space.h" bodystart="522" bodyend="529"/>
+        <referencedby refid="d4/dc3/structBrush_1_1SearchSpace_1a88636b9ece72850950f3b37b660d0be0" compoundref="da/d48/search__space_8cpp" startline="45" endline="81">init</referencedby>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+<para>Holds a search space, consisting of operations and terminals and functions, and methods to sample that space to create programs. </para>
+    </briefdescription>
+    <detaileddescription>
+<para>The set of operators is a user controlled parameter; however, we can automate, to some extent, the set of possible operators based on the data types in the problem. Constraints on operators based on data types:<itemizedlist>
+<listitem><para>only user specified operators are included.</para>
+</listitem><listitem><para>operators whose arguments are covered by terminal types are included first. Then, a second pass includes any operators whose arguments are covered by terminal_types + return types of the current set of operators. One could imagine this continuing ad infinitum, but we just do two passes for simplicity.</para>
+</listitem><listitem><para>assertion check to make sure there is at least one operator that returns the output type of the model.</para>
+</listitem></itemizedlist>
+</para>
+<sect2 id="d4/dc3/structBrush_1_1SearchSpace_1autotoc_md0">
+<title>Parameters</title>
+</sect2>
+    </detaileddescription>
+    <collaborationgraph>
+      <node id="5">
+        <label>Brush::Node</label>
+        <link refid="d1/d3a/structBrush_1_1Node"/>
+        <childnode refid="6" relation="usage">
+          <edgelabel>arg_types</edgelabel>
+        </childnode>
+        <childnode refid="7" relation="usage">
+          <edgelabel>feature</edgelabel>
+          <edgelabel>name</edgelabel>
+        </childnode>
+      </node>
+      <node id="10">
+        <label>std::vector&lt; float &gt;</label>
+      </node>
+      <node id="6">
+        <label>std::vector&lt; DataType &gt;</label>
+        <childnode refid="3" relation="usage">
+          <edgelabel>elements</edgelabel>
+        </childnode>
+      </node>
+      <node id="4">
+        <label>std::vector&lt; Brush::Node &gt;</label>
+        <childnode refid="5" relation="usage">
+          <edgelabel>elements</edgelabel>
+        </childnode>
+      </node>
+      <node id="8">
+        <label>std::basic_string&lt; Char &gt;</label>
+      </node>
+      <node id="9">
+        <label>std::unordered_map&lt; DataType, vector&lt; float &gt; &gt;</label>
+        <childnode refid="3" relation="usage">
+          <edgelabel>keys</edgelabel>
+        </childnode>
+        <childnode refid="10" relation="usage">
+          <edgelabel>elements</edgelabel>
+        </childnode>
+      </node>
+      <node id="3">
+        <label>DataType</label>
+      </node>
+      <node id="1">
+        <label>Brush::SearchSpace</label>
+        <link refid="d4/dc3/structBrush_1_1SearchSpace"/>
+        <childnode refid="2" relation="usage">
+          <edgelabel>terminal_map</edgelabel>
+        </childnode>
+        <childnode refid="6" relation="usage">
+          <edgelabel>terminal_types</edgelabel>
+        </childnode>
+        <childnode refid="9" relation="usage">
+          <edgelabel>terminal_weights</edgelabel>
+        </childnode>
+      </node>
+      <node id="2">
+        <label>std::unordered_map&lt; DataType, vector&lt; Brush::Node &gt; &gt;</label>
+        <childnode refid="3" relation="usage">
+          <edgelabel>keys</edgelabel>
+        </childnode>
+        <childnode refid="4" relation="usage">
+          <edgelabel>elements</edgelabel>
+        </childnode>
+      </node>
+      <node id="7">
+        <label>std::string</label>
+        <childnode refid="8" relation="public-inheritance">
+        </childnode>
+      </node>
+    </collaborationgraph>
+    <location file="/home/runner/work/brush/brush/src/search_space.h" line="76" column="1" bodyfile="/home/runner/work/brush/brush/src/search_space.h" bodystart="77" bodyend="530"/>
+    <listofallmembers>
+      <member refid="d4/dc3/structBrush_1_1SearchSpace_1a4a255b2a600b65c33dc7dad6dd6a4614" prot="private" virt="non-virtual"><scope>Brush::SearchSpace</scope><name>AddNode</name></member>
+      <member refid="d4/dc3/structBrush_1_1SearchSpace_1a56e2beeb7aecac93840a237b7b9adf3b" prot="private" virt="non-virtual"><scope>Brush::SearchSpace</scope><name>AddNodes</name></member>
+      <member refid="d4/dc3/structBrush_1_1SearchSpace_1af004a91112f5e3994d7c90c8baa71310" prot="public" virt="non-virtual"><scope>Brush::SearchSpace</scope><name>ArgsHash</name></member>
+      <member refid="d4/dc3/structBrush_1_1SearchSpace_1a67cb58cf03f3114cd2230624b2e3dca9" prot="public" virt="non-virtual"><scope>Brush::SearchSpace</scope><name>check</name></member>
+      <member refid="d4/dc3/structBrush_1_1SearchSpace_1aa75e6c82dc85e752b099d9adc1d24df8" prot="public" virt="non-virtual"><scope>Brush::SearchSpace</scope><name>check</name></member>
+      <member refid="d4/dc3/structBrush_1_1SearchSpace_1a626c437dc8fb6bcac68f2dcae64c00cc" prot="public" virt="non-virtual"><scope>Brush::SearchSpace</scope><name>check</name></member>
+      <member refid="d4/dc3/structBrush_1_1SearchSpace_1aaa7e4460ad218ff67bc4159aff77bdf3" prot="private" virt="non-virtual"><scope>Brush::SearchSpace</scope><name>GenerateNodeMap</name></member>
+      <member refid="d4/dc3/structBrush_1_1SearchSpace_1a3f54812898af087a3bc6c1bfea8f4a87" prot="public" virt="non-virtual"><scope>Brush::SearchSpace</scope><name>get</name></member>
+      <member refid="d4/dc3/structBrush_1_1SearchSpace_1a9f5632dcb5c60863face5d6e1fdd92ba" prot="public" virt="non-virtual"><scope>Brush::SearchSpace</scope><name>get</name></member>
+      <member refid="d4/dc3/structBrush_1_1SearchSpace_1a6687f99606513848ee1042b90f7750dd" prot="public" virt="non-virtual"><scope>Brush::SearchSpace</scope><name>get</name></member>
+      <member refid="d4/dc3/structBrush_1_1SearchSpace_1a53c05b982db1d8efd46f6c5a5a57a533" prot="public" virt="non-virtual"><scope>Brush::SearchSpace</scope><name>get</name></member>
+      <member refid="d4/dc3/structBrush_1_1SearchSpace_1aeadd5cc2c0b7f791299560dd0dea4e4e" prot="public" virt="non-virtual"><scope>Brush::SearchSpace</scope><name>get_node_like</name></member>
+      <member refid="d4/dc3/structBrush_1_1SearchSpace_1aaf0d192118f8c95a7b7232fb46920cc4" prot="public" virt="non-virtual"><scope>Brush::SearchSpace</scope><name>get_op</name></member>
+      <member refid="d4/dc3/structBrush_1_1SearchSpace_1a86bec43f225bb5bbbcafa7f44a8b3102" prot="public" virt="non-virtual"><scope>Brush::SearchSpace</scope><name>get_op_with_arg</name></member>
+      <member refid="d4/dc3/structBrush_1_1SearchSpace_1a6f491bad218a6482a66d32a790a2aa85" prot="public" virt="non-virtual"><scope>Brush::SearchSpace</scope><name>get_terminal</name></member>
+      <member refid="d4/dc3/structBrush_1_1SearchSpace_1a158036ea3930b5663adba0a779bce656" prot="public" virt="non-virtual"><scope>Brush::SearchSpace</scope><name>get_terminal</name></member>
+      <member refid="d4/dc3/structBrush_1_1SearchSpace_1a038ae8b09e1482f69de9feaf22aeacdb" prot="public" virt="non-virtual"><scope>Brush::SearchSpace</scope><name>get_weights</name></member>
+      <member refid="d4/dc3/structBrush_1_1SearchSpace_1a20915b371297c0b4aec69786f39053bb" prot="public" virt="non-virtual"><scope>Brush::SearchSpace</scope><name>get_weights</name></member>
+      <member refid="d4/dc3/structBrush_1_1SearchSpace_1a3155097f992425ae7c303c6e1d15eee1" prot="public" virt="non-virtual"><scope>Brush::SearchSpace</scope><name>get_weights</name></member>
+      <member refid="d4/dc3/structBrush_1_1SearchSpace_1a88636b9ece72850950f3b37b660d0be0" prot="public" virt="non-virtual"><scope>Brush::SearchSpace</scope><name>init</name></member>
+      <member refid="d4/dc3/structBrush_1_1SearchSpace_1a991c3b97d125a3ccf658d21d0c74ca4d" prot="public" virt="non-virtual"><scope>Brush::SearchSpace</scope><name>make_classifier</name></member>
+      <member refid="d4/dc3/structBrush_1_1SearchSpace_1ae0a81352230eebea59f4b79cbb6c9b30" prot="public" virt="non-virtual"><scope>Brush::SearchSpace</scope><name>make_multiclass_classifier</name></member>
+      <member refid="d4/dc3/structBrush_1_1SearchSpace_1a4beda54d854b01d28488f3736aa0d394" prot="public" virt="non-virtual"><scope>Brush::SearchSpace</scope><name>make_program</name></member>
+      <member refid="d4/dc3/structBrush_1_1SearchSpace_1a30dc9740ebecad5267acd5e27b1a3953" prot="public" virt="non-virtual"><scope>Brush::SearchSpace</scope><name>make_program</name></member>
+      <member refid="d4/dc3/structBrush_1_1SearchSpace_1a1f8755ab53cb1ac2f26d8598cf83fd6d" prot="public" virt="non-virtual"><scope>Brush::SearchSpace</scope><name>make_regressor</name></member>
+      <member refid="d4/dc3/structBrush_1_1SearchSpace_1a2338329a79cb81c184f5a0e8dc4bedbb" prot="public" virt="non-virtual"><scope>Brush::SearchSpace</scope><name>make_representer</name></member>
+      <member refid="d4/dc3/structBrush_1_1SearchSpace_1af8165ac09c39eec3e5aa6e2d925b8104" prot="private" virt="non-virtual"><scope>Brush::SearchSpace</scope><name>MakeNodes</name></member>
+      <member refid="d4/dc3/structBrush_1_1SearchSpace_1aa99f71f6328c8706a171c2f9c803b06d" prot="public" virt="non-virtual"><scope>Brush::SearchSpace</scope><name>Map</name></member>
+      <member refid="d4/dc3/structBrush_1_1SearchSpace_1a4bd8ffb41071c9a6739f92b275a510f5" prot="public" virt="non-virtual"><scope>Brush::SearchSpace</scope><name>node_map</name></member>
+      <member refid="d4/dc3/structBrush_1_1SearchSpace_1a1cfbfca3a45987de45159bc4699a61bb" prot="public" virt="non-virtual"><scope>Brush::SearchSpace</scope><name>print</name></member>
+      <member refid="d4/dc3/structBrush_1_1SearchSpace_1a350a180311cc07e07788afc5f046de16" prot="private" virt="non-virtual"><scope>Brush::SearchSpace</scope><name>requires</name></member>
+      <member refid="d4/dc3/structBrush_1_1SearchSpace_1af87c7270774accc9aa698089d310c4c3" prot="public" virt="non-virtual"><scope>Brush::SearchSpace</scope><name>SearchSpace</name></member>
+      <member refid="d4/dc3/structBrush_1_1SearchSpace_1a18309b1a1b5a24ac2bf96e1f64aab004" prot="public" virt="non-virtual"><scope>Brush::SearchSpace</scope><name>SearchSpace</name></member>
+      <member refid="d4/dc3/structBrush_1_1SearchSpace_1a4c2acdd29d7465109ead9835f952fee0" prot="public" virt="non-virtual"><scope>Brush::SearchSpace</scope><name>terminal_map</name></member>
+      <member refid="d4/dc3/structBrush_1_1SearchSpace_1af67633b1cb0d2ff56bec919e81d84ede" prot="public" virt="non-virtual"><scope>Brush::SearchSpace</scope><name>terminal_types</name></member>
+      <member refid="d4/dc3/structBrush_1_1SearchSpace_1a990aab15f3645f7b13cd678473e9f2fb" prot="public" virt="non-virtual"><scope>Brush::SearchSpace</scope><name>terminal_weights</name></member>
+      <member refid="d4/dc3/structBrush_1_1SearchSpace_1ae3c114b829c2059dcb6565d11de527af" prot="public" virt="non-virtual"><scope>Brush::SearchSpace</scope><name>weight_map</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

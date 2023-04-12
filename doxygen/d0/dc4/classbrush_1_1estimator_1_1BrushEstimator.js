@@ -1,0 +1,27 @@
+var classbrush_1_1estimator_1_1BrushEstimator =
+[
+    [ "__init__", "d0/dc4/classbrush_1_1estimator_1_1BrushEstimator.html#a118d108e81e36cbd8a28b670eba7f9e0", null ],
+    [ "_crossover", "d0/dc4/classbrush_1_1estimator_1_1BrushEstimator.html#af7d065d73b3f1ec7f9e11799167da014", null ],
+    [ "_make_data", "d0/dc4/classbrush_1_1estimator_1_1BrushEstimator.html#a8ee87e403b46c4f0d3c718a2c3fdc988", null ],
+    [ "_mutate", "d0/dc4/classbrush_1_1estimator_1_1BrushEstimator.html#a8edd942e828516255af2ae908a8e4666", null ],
+    [ "_setup_toolbox", "d0/dc4/classbrush_1_1estimator_1_1BrushEstimator.html#a546c6a6230b2d4f9a960b38596f54820", null ],
+    [ "fit", "d0/dc4/classbrush_1_1estimator_1_1BrushEstimator.html#a86918636dd7cd887005649b62d14d1be", null ],
+    [ "get_params", "d0/dc4/classbrush_1_1estimator_1_1BrushEstimator.html#a3808a9773d5a42827cc28aaf3f97b694", null ],
+    [ "predict", "d0/dc4/classbrush_1_1estimator_1_1BrushEstimator.html#a87709a26a92ac4e24a4f3106b2bdd139", null ],
+    [ "archive_", "d0/dc4/classbrush_1_1estimator_1_1BrushEstimator.html#ada78ab3e85a2edecbd8bf256009f014c", null ],
+    [ "batch_size", "d0/dc4/classbrush_1_1estimator_1_1BrushEstimator.html#aa71f7e6d68f5ce219d65b7f7b863fa6e", null ],
+    [ "best_estimator_", "d0/dc4/classbrush_1_1estimator_1_1BrushEstimator.html#a44422c9d94c587951537f62fdfe95739", null ],
+    [ "data_", "d0/dc4/classbrush_1_1estimator_1_1BrushEstimator.html#a0a312180a4bb723670ab37a417074a0e", null ],
+    [ "functions", "d0/dc4/classbrush_1_1estimator_1_1BrushEstimator.html#af9065286a6d4c5f2dcd6e3bcc539c08b", null ],
+    [ "functions_", "d0/dc4/classbrush_1_1estimator_1_1BrushEstimator.html#ab25513e9cb65475b41f18804257a49b6", null ],
+    [ "max_depth", "d0/dc4/classbrush_1_1estimator_1_1BrushEstimator.html#a2526c6813d622c1ac125e5fb7b6ba128", null ],
+    [ "max_gen", "d0/dc4/classbrush_1_1estimator_1_1BrushEstimator.html#a3b4adff253c20efd315e9f8789503b4b", null ],
+    [ "max_size", "d0/dc4/classbrush_1_1estimator_1_1BrushEstimator.html#af75977b66a8836d700221adcb701b067", null ],
+    [ "mode", "d0/dc4/classbrush_1_1estimator_1_1BrushEstimator.html#a5d1704a652d6d5ea0e5e98125702719a", null ],
+    [ "mutation_options", "d0/dc4/classbrush_1_1estimator_1_1BrushEstimator.html#a0174bd91eccdf68b8885ae6b5ef4db76", null ],
+    [ "n_classes_", "d0/dc4/classbrush_1_1estimator_1_1BrushEstimator.html#a0b22b0ef09f113dfd3871d328090499c", null ],
+    [ "pop_size", "d0/dc4/classbrush_1_1estimator_1_1BrushEstimator.html#ab2416cb2e4a9327b93fe8397d0ba8572", null ],
+    [ "search_space_", "d0/dc4/classbrush_1_1estimator_1_1BrushEstimator.html#ae60d91755de9e541295e25c49ecfb591", null ],
+    [ "toolbox_", "d0/dc4/classbrush_1_1estimator_1_1BrushEstimator.html#ab7642f08b6d239392ecaa4a78b730957", null ],
+    [ "verbosity", "d0/dc4/classbrush_1_1estimator_1_1BrushEstimator.html#a0d186a49025ec8370f4c5b2c61d1304f", null ]
+];

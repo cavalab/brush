@@ -1,0 +1,60 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="d3/d0e/structBrush_1_1is__one__of" kind="struct" language="C++" prot="public">
+    <compoundname>Brush::is_one_of</compoundname>
+    <includes refid="d9/d49/types_8h" local="no">types.h</includes>
+    <templateparamlist>
+      <param>
+        <type>typename First</type>
+      </param>
+      <param>
+        <type>typename ...</type>
+        <declname>Next</declname>
+        <defname>Next</defname>
+      </param>
+    </templateparamlist>
+      <sectiondef kind="public-static-attrib">
+      <memberdef kind="variable" id="d3/d0e/structBrush_1_1is__one__of_1a15d14c2d78985dd8213f240862875846" prot="public" static="yes" constexpr="yes" mutable="no">
+        <type>constexpr bool</type>
+        <definition>constexpr bool Brush::is_one_of&lt; First, Next &gt;::value</definition>
+        <argsstring></argsstring>
+        <name>value</name>
+        <initializer>{(std::is_same_v&lt;First,Next&gt; || ...)}</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/runner/work/brush/brush/src/types.h" line="30" column="27" bodyfile="/home/runner/work/brush/brush/src/types.h" bodystart="30" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+<para>checks whether any of the types match the first one. </para>
+    </briefdescription>
+    <detaileddescription>
+<para><parameterlist kind="templateparam"><parameteritem>
+<parameternamelist>
+<parametername>First</parametername>
+</parameternamelist>
+<parameterdescription>
+<para></para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>...Next</parametername>
+</parameternamelist>
+<parameterdescription>
+<para></para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+    </detaileddescription>
+    <location file="/home/runner/work/brush/brush/src/types.h" line="29" column="1" bodyfile="/home/runner/work/brush/brush/src/types.h" bodystart="29" bodyend="31"/>
+    <listofallmembers>
+      <member refid="d3/d0e/structBrush_1_1is__one__of_1a15d14c2d78985dd8213f240862875846" prot="public" virt="non-virtual"><scope>Brush::is_one_of</scope><name>value</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

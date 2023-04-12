@@ -1,0 +1,173 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="da/d81/classbrush_1_1estimator_1_1BrushRegressor" kind="class" language="Python" prot="public">
+    <compoundname>brush::estimator::BrushRegressor</compoundname>
+    <basecompoundref refid="d0/dc4/classbrush_1_1estimator_1_1BrushEstimator" prot="public" virt="non-virtual">brush.estimator.BrushEstimator</basecompoundref>
+    <basecompoundref prot="public" virt="non-virtual">RegressorMixin</basecompoundref>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="da/d81/classbrush_1_1estimator_1_1BrushRegressor_1a8f27759d9f9dbd6cc519a867e6a5822e" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>def</type>
+        <definition>def brush.estimator.BrushRegressor.__init__</definition>
+        <argsstring>(self, **kwargs)</argsstring>
+        <name>__init__</name>
+        <param>
+          <type>self</type>
+          <defname>self</defname>
+        </param>
+        <param>
+          <type>**</type>
+          <declname>kwargs</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/runner/work/brush/brush/src/brush/estimator.py" line="266" column="1" bodyfile="/home/runner/work/brush/brush/src/brush/estimator.py" bodystart="266" bodyend="268"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="private-func">
+      <memberdef kind="function" id="da/d81/classbrush_1_1estimator_1_1BrushRegressor_1ac1eabaaaed9126e30f5858da65daf472" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>def</type>
+        <definition>def brush.estimator.BrushRegressor._fitness_function</definition>
+        <argsstring>(self, ind, _brush.Dataset data)</argsstring>
+        <name>_fitness_function</name>
+        <param>
+          <type>self</type>
+          <defname>self</defname>
+        </param>
+        <param>
+          <type>ind</type>
+          <defname>ind</defname>
+        </param>
+        <param>
+          <type>_brush.Dataset</type>
+          <declname>data</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/runner/work/brush/brush/src/brush/estimator.py" line="269" column="1" bodyfile="/home/runner/work/brush/brush/src/brush/estimator.py" bodystart="269" bodyend="275"/>
+        <referencedby refid="d0/dc4/classbrush_1_1estimator_1_1BrushEstimator_1a546c6a6230b2d4f9a960b38596f54820" compoundref="d3/dac/estimator_8py" startline="87" endline="108">brush.estimator.BrushEstimator._setup_toolbox</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="da/d81/classbrush_1_1estimator_1_1BrushRegressor_1aa2445be9821177293be3585174333928" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>def</type>
+        <definition>def brush.estimator.BrushRegressor._make_individual</definition>
+        <argsstring>(self)</argsstring>
+        <name>_make_individual</name>
+        <param>
+          <type>self</type>
+          <defname>self</defname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/runner/work/brush/brush/src/brush/estimator.py" line="276" column="1" bodyfile="/home/runner/work/brush/brush/src/brush/estimator.py" bodystart="276" bodyend="316"/>
+        <references refid="d0/dc4/classbrush_1_1estimator_1_1BrushEstimator_1a2526c6813d622c1ac125e5fb7b6ba128" compoundref="d3/dac/estimator_8py" startline="80">brush.estimator.BrushEstimator.max_depth</references>
+        <references refid="d0/dc4/classbrush_1_1estimator_1_1BrushEstimator_1af75977b66a8836d700221adcb701b067" compoundref="d3/dac/estimator_8py" startline="81">brush.estimator.BrushEstimator.max_size</references>
+        <references refid="d0/dc4/classbrush_1_1estimator_1_1BrushEstimator_1ae60d91755de9e541295e25c49ecfb591" compoundref="d3/dac/estimator_8py" startline="147">brush.estimator.BrushEstimator.search_space_</references>
+        <referencedby refid="d0/dc4/classbrush_1_1estimator_1_1BrushEstimator_1a546c6a6230b2d4f9a960b38596f54820" compoundref="d3/dac/estimator_8py" startline="87" endline="108">brush.estimator.BrushEstimator._setup_toolbox</referencedby>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+<para><verbatim>Brush for regression.
+
+For options, see :py:class:`BrushEstimator &lt;brush.estimator.BrushEstimator&gt;`. 
+
+Examples
+--------
+&gt;&gt;&gt; import pandas as pd
+&gt;&gt;&gt; df = pd.read_csv(&apos;docs/examples/datasets/d_enc.csv&apos;)
+&gt;&gt;&gt; X = df.drop(columns=&apos;label&apos;)
+&gt;&gt;&gt; y = df[&apos;label&apos;]
+&gt;&gt;&gt; from brush import BrushRegressor
+&gt;&gt;&gt; est = BrushRegressor()
+&gt;&gt;&gt; est.fit(X,y)
+&gt;&gt;&gt; print(&apos;score:&apos;, est.score(X,y))
+</verbatim> </para>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="2">
+        <label>brush.estimator.BrushEstimator</label>
+        <link refid="d0/dc4/classbrush_1_1estimator_1_1BrushEstimator"/>
+        <childnode refid="3" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="3">
+        <label>BaseEstimator</label>
+      </node>
+      <node id="1">
+        <label>brush.estimator.BrushRegressor</label>
+        <link refid="da/d81/classbrush_1_1estimator_1_1BrushRegressor"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+        <childnode refid="4" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="4">
+        <label>RegressorMixin</label>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="2">
+        <label>brush.estimator.BrushEstimator</label>
+        <link refid="d0/dc4/classbrush_1_1estimator_1_1BrushEstimator"/>
+        <childnode refid="3" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="3">
+        <label>BaseEstimator</label>
+      </node>
+      <node id="1">
+        <label>brush.estimator.BrushRegressor</label>
+        <link refid="da/d81/classbrush_1_1estimator_1_1BrushRegressor"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+        <childnode refid="4" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="4">
+        <label>RegressorMixin</label>
+      </node>
+    </collaborationgraph>
+    <location file="/home/runner/work/brush/brush/src/brush/estimator.py" line="250" column="1" bodyfile="/home/runner/work/brush/brush/src/brush/estimator.py" bodystart="250" bodyend="316"/>
+    <listofallmembers>
+      <member refid="da/d81/classbrush_1_1estimator_1_1BrushRegressor_1a8f27759d9f9dbd6cc519a867e6a5822e" prot="public" virt="non-virtual"><scope>brush::estimator::BrushRegressor</scope><name>__init__</name></member>
+      <member refid="d0/dc4/classbrush_1_1estimator_1_1BrushEstimator_1a118d108e81e36cbd8a28b670eba7f9e0" prot="public" virt="non-virtual" ambiguityscope="brush::estimator::BrushEstimator."><scope>brush::estimator::BrushRegressor</scope><name>__init__</name></member>
+      <member refid="d0/dc4/classbrush_1_1estimator_1_1BrushEstimator_1af7d065d73b3f1ec7f9e11799167da014" prot="private" virt="non-virtual"><scope>brush::estimator::BrushRegressor</scope><name>_crossover</name></member>
+      <member refid="da/d81/classbrush_1_1estimator_1_1BrushRegressor_1ac1eabaaaed9126e30f5858da65daf472" prot="private" virt="non-virtual"><scope>brush::estimator::BrushRegressor</scope><name>_fitness_function</name></member>
+      <member refid="d0/dc4/classbrush_1_1estimator_1_1BrushEstimator_1a8ee87e403b46c4f0d3c718a2c3fdc988" prot="private" virt="non-virtual"><scope>brush::estimator::BrushRegressor</scope><name>_make_data</name></member>
+      <member refid="da/d81/classbrush_1_1estimator_1_1BrushRegressor_1aa2445be9821177293be3585174333928" prot="private" virt="non-virtual"><scope>brush::estimator::BrushRegressor</scope><name>_make_individual</name></member>
+      <member refid="d0/dc4/classbrush_1_1estimator_1_1BrushEstimator_1a8edd942e828516255af2ae908a8e4666" prot="private" virt="non-virtual"><scope>brush::estimator::BrushRegressor</scope><name>_mutate</name></member>
+      <member refid="d0/dc4/classbrush_1_1estimator_1_1BrushEstimator_1a546c6a6230b2d4f9a960b38596f54820" prot="private" virt="non-virtual"><scope>brush::estimator::BrushRegressor</scope><name>_setup_toolbox</name></member>
+      <member refid="d0/dc4/classbrush_1_1estimator_1_1BrushEstimator_1ada78ab3e85a2edecbd8bf256009f014c" prot="public" virt="non-virtual"><scope>brush::estimator::BrushRegressor</scope><name>archive_</name></member>
+      <member refid="d0/dc4/classbrush_1_1estimator_1_1BrushEstimator_1aa71f7e6d68f5ce219d65b7f7b863fa6e" prot="public" virt="non-virtual"><scope>brush::estimator::BrushRegressor</scope><name>batch_size</name></member>
+      <member refid="d0/dc4/classbrush_1_1estimator_1_1BrushEstimator_1a44422c9d94c587951537f62fdfe95739" prot="public" virt="non-virtual"><scope>brush::estimator::BrushRegressor</scope><name>best_estimator_</name></member>
+      <member refid="d0/dc4/classbrush_1_1estimator_1_1BrushEstimator_1a0a312180a4bb723670ab37a417074a0e" prot="public" virt="non-virtual"><scope>brush::estimator::BrushRegressor</scope><name>data_</name></member>
+      <member refid="d0/dc4/classbrush_1_1estimator_1_1BrushEstimator_1a86918636dd7cd887005649b62d14d1be" prot="public" virt="non-virtual"><scope>brush::estimator::BrushRegressor</scope><name>fit</name></member>
+      <member refid="d0/dc4/classbrush_1_1estimator_1_1BrushEstimator_1af9065286a6d4c5f2dcd6e3bcc539c08b" prot="public" virt="non-virtual"><scope>brush::estimator::BrushRegressor</scope><name>functions</name></member>
+      <member refid="d0/dc4/classbrush_1_1estimator_1_1BrushEstimator_1ab25513e9cb65475b41f18804257a49b6" prot="public" virt="non-virtual"><scope>brush::estimator::BrushRegressor</scope><name>functions_</name></member>
+      <member refid="d0/dc4/classbrush_1_1estimator_1_1BrushEstimator_1a3808a9773d5a42827cc28aaf3f97b694" prot="public" virt="non-virtual"><scope>brush::estimator::BrushRegressor</scope><name>get_params</name></member>
+      <member refid="d0/dc4/classbrush_1_1estimator_1_1BrushEstimator_1a2526c6813d622c1ac125e5fb7b6ba128" prot="public" virt="non-virtual"><scope>brush::estimator::BrushRegressor</scope><name>max_depth</name></member>
+      <member refid="d0/dc4/classbrush_1_1estimator_1_1BrushEstimator_1a3b4adff253c20efd315e9f8789503b4b" prot="public" virt="non-virtual"><scope>brush::estimator::BrushRegressor</scope><name>max_gen</name></member>
+      <member refid="d0/dc4/classbrush_1_1estimator_1_1BrushEstimator_1af75977b66a8836d700221adcb701b067" prot="public" virt="non-virtual"><scope>brush::estimator::BrushRegressor</scope><name>max_size</name></member>
+      <member refid="d0/dc4/classbrush_1_1estimator_1_1BrushEstimator_1a5d1704a652d6d5ea0e5e98125702719a" prot="public" virt="non-virtual"><scope>brush::estimator::BrushRegressor</scope><name>mode</name></member>
+      <member refid="d0/dc4/classbrush_1_1estimator_1_1BrushEstimator_1a0174bd91eccdf68b8885ae6b5ef4db76" prot="public" virt="non-virtual"><scope>brush::estimator::BrushRegressor</scope><name>mutation_options</name></member>
+      <member refid="d0/dc4/classbrush_1_1estimator_1_1BrushEstimator_1a0b22b0ef09f113dfd3871d328090499c" prot="public" virt="non-virtual"><scope>brush::estimator::BrushRegressor</scope><name>n_classes_</name></member>
+      <member refid="d0/dc4/classbrush_1_1estimator_1_1BrushEstimator_1ab2416cb2e4a9327b93fe8397d0ba8572" prot="public" virt="non-virtual"><scope>brush::estimator::BrushRegressor</scope><name>pop_size</name></member>
+      <member refid="d0/dc4/classbrush_1_1estimator_1_1BrushEstimator_1a87709a26a92ac4e24a4f3106b2bdd139" prot="public" virt="non-virtual"><scope>brush::estimator::BrushRegressor</scope><name>predict</name></member>
+      <member refid="d0/dc4/classbrush_1_1estimator_1_1BrushEstimator_1ae60d91755de9e541295e25c49ecfb591" prot="public" virt="non-virtual"><scope>brush::estimator::BrushRegressor</scope><name>search_space_</name></member>
+      <member refid="d0/dc4/classbrush_1_1estimator_1_1BrushEstimator_1ab7642f08b6d239392ecaa4a78b730957" prot="public" virt="non-virtual"><scope>brush::estimator::BrushRegressor</scope><name>toolbox_</name></member>
+      <member refid="d0/dc4/classbrush_1_1estimator_1_1BrushEstimator_1a0d186a49025ec8370f4c5b2c61d1304f" prot="public" virt="non-virtual"><scope>brush::estimator::BrushRegressor</scope><name>verbosity</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

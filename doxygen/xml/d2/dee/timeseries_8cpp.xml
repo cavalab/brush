@@ -1,0 +1,197 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="d2/dee/timeseries_8cpp" kind="file" language="C++">
+    <compoundname>timeseries.cpp</compoundname>
+    <includes refid="d9/df7/timeseries_8h" local="yes">timeseries.h</includes>
+    <incdepgraph>
+      <node id="15">
+        <label>fmt/format.h</label>
+      </node>
+      <node id="27">
+        <label>iterator</label>
+      </node>
+      <node id="25">
+        <label>error.h</label>
+        <link refid="da/d41/error_8h"/>
+        <childnode refid="13" relation="include">
+        </childnode>
+        <childnode refid="7" relation="include">
+        </childnode>
+      </node>
+      <node id="4">
+        <label>stdint.h</label>
+      </node>
+      <node id="19">
+        <label>variant</label>
+      </node>
+      <node id="2">
+        <label>timeseries.h</label>
+        <link refid="d9/df7/timeseries_8h"/>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="22" relation="include">
+        </childnode>
+        <childnode refid="25" relation="include">
+        </childnode>
+      </node>
+      <node id="14">
+        <label>fmt/ostream.h</label>
+      </node>
+      <node id="9">
+        <label>numeric</label>
+      </node>
+      <node id="13">
+        <label>string</label>
+      </node>
+      <node id="10">
+        <label>map</label>
+      </node>
+      <node id="8">
+        <label>fstream</label>
+      </node>
+      <node id="24">
+        <label>ostream</label>
+      </node>
+      <node id="18">
+        <label>types.h</label>
+        <link refid="d9/d49/types_8h"/>
+        <childnode refid="19" relation="include">
+        </childnode>
+        <childnode refid="20" relation="include">
+        </childnode>
+        <childnode refid="21" relation="include">
+        </childnode>
+      </node>
+      <node id="5">
+        <label>Eigen/Dense</label>
+      </node>
+      <node id="29">
+        <label>tuple</label>
+      </node>
+      <node id="16">
+        <label>fmt/ranges.h</label>
+      </node>
+      <node id="12">
+        <label>vector</label>
+      </node>
+      <node id="1">
+        <label>timeseries.cpp</label>
+        <link refid="d2/dee/timeseries_8cpp"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+      </node>
+      <node id="3">
+        <label>../init.h</label>
+        <link refid="d8/dc0/init_8h"/>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="5" relation="include">
+        </childnode>
+        <childnode refid="6" relation="include">
+        </childnode>
+        <childnode refid="7" relation="include">
+        </childnode>
+        <childnode refid="8" relation="include">
+        </childnode>
+        <childnode refid="9" relation="include">
+        </childnode>
+        <childnode refid="10" relation="include">
+        </childnode>
+        <childnode refid="11" relation="include">
+        </childnode>
+        <childnode refid="12" relation="include">
+        </childnode>
+        <childnode refid="13" relation="include">
+        </childnode>
+        <childnode refid="14" relation="include">
+        </childnode>
+        <childnode refid="15" relation="include">
+        </childnode>
+        <childnode refid="16" relation="include">
+        </childnode>
+        <childnode refid="17" relation="include">
+        </childnode>
+        <childnode refid="18" relation="include">
+        </childnode>
+      </node>
+      <node id="7">
+        <label>iostream</label>
+      </node>
+      <node id="22">
+        <label>../util/utils.h</label>
+        <link refid="d5/d60/utils_8h"/>
+        <childnode refid="5" relation="include">
+        </childnode>
+        <childnode refid="12" relation="include">
+        </childnode>
+        <childnode refid="11" relation="include">
+        </childnode>
+        <childnode refid="8" relation="include">
+        </childnode>
+        <childnode refid="23" relation="include">
+        </childnode>
+        <childnode refid="24" relation="include">
+        </childnode>
+        <childnode refid="10" relation="include">
+        </childnode>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="25" relation="include">
+        </childnode>
+        <childnode refid="26" relation="include">
+        </childnode>
+        <childnode refid="27" relation="include">
+        </childnode>
+        <childnode refid="28" relation="include">
+        </childnode>
+        <childnode refid="29" relation="include">
+        </childnode>
+      </node>
+      <node id="20">
+        <label>ceres/jet.h</label>
+      </node>
+      <node id="28">
+        <label>execution</label>
+      </node>
+      <node id="23">
+        <label>chrono</label>
+      </node>
+      <node id="21">
+        <label>concepts</label>
+      </node>
+      <node id="11">
+        <label>set</label>
+      </node>
+      <node id="17">
+        <label>nlohmann/json.hpp</label>
+      </node>
+      <node id="6">
+        <label>memory</label>
+      </node>
+      <node id="26">
+        <label>typeindex</label>
+      </node>
+    </incdepgraph>
+    <innernamespace refid="dc/d5c/namespaceBrush">Brush</innernamespace>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"><highlight class="preprocessor">#include<sp/>&quot;<ref refid="d9/df7/timeseries_8h" kindref="compound">timeseries.h</ref>&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="2"><highlight class="normal"></highlight></codeline>
+<codeline lineno="3"><highlight class="normal"></highlight><highlight class="keyword">namespace<sp/></highlight><highlight class="normal"><ref refid="dc/d5c/namespaceBrush" kindref="compound">Brush</ref><sp/>{</highlight></codeline>
+<codeline lineno="4" refid="dc/d5c/namespaceBrush_1a5889414830fe5821779ecd3ec289a260" refkind="member"><highlight class="normal">std::ostream<sp/>&amp;<ref refid="dc/d5c/namespaceBrush_1a2ab77fa68a4b9b7fcaad9eb701929f15" kindref="member">operator&lt;&lt;</ref>(<sp/>std::ostream&amp;<sp/>output,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="d7/d56/structBrush_1_1Data_1_1TimeSeries" kindref="compound">Brush::Data::TimeSeries&lt;bool&gt;</ref>&amp;<sp/>ts<sp/>)<sp/>{<sp/></highlight></codeline>
+<codeline lineno="5"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>output<sp/>&lt;&lt;<sp/>ts.<ref refid="d7/d56/structBrush_1_1Data_1_1TimeSeries_1a45820a71d7cb5d552dce96fdce8db1d1" kindref="member">print</ref>();</highlight></codeline>
+<codeline lineno="6"><highlight class="normal">};</highlight></codeline>
+<codeline lineno="7" refid="dc/d5c/namespaceBrush_1aa854a393be5276f95b956e85cffcd3a5" refkind="member"><highlight class="normal">std::ostream<sp/>&amp;<ref refid="dc/d5c/namespaceBrush_1a2ab77fa68a4b9b7fcaad9eb701929f15" kindref="member">operator&lt;&lt;</ref>(<sp/>std::ostream&amp;<sp/>output,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="d7/d56/structBrush_1_1Data_1_1TimeSeries" kindref="compound">Brush::Data::TimeSeries&lt;float&gt;</ref>&amp;<sp/>ts<sp/>)<sp/>{<sp/></highlight></codeline>
+<codeline lineno="8"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>output<sp/>&lt;&lt;<sp/>ts.<ref refid="d7/d56/structBrush_1_1Data_1_1TimeSeries_1a45820a71d7cb5d552dce96fdce8db1d1" kindref="member">print</ref>();</highlight></codeline>
+<codeline lineno="9"><highlight class="normal">};</highlight></codeline>
+<codeline lineno="10" refid="dc/d5c/namespaceBrush_1a4eba9c56cb84ac0d5d22f8dd207986fe" refkind="member"><highlight class="normal">std::ostream<sp/>&amp;<ref refid="dc/d5c/namespaceBrush_1a2ab77fa68a4b9b7fcaad9eb701929f15" kindref="member">operator&lt;&lt;</ref>(<sp/>std::ostream&amp;<sp/>output,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="d7/d56/structBrush_1_1Data_1_1TimeSeries" kindref="compound">Brush::Data::TimeSeries&lt;int&gt;</ref>&amp;<sp/>ts<sp/>)<sp/>{<sp/></highlight></codeline>
+<codeline lineno="11"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>output<sp/>&lt;&lt;<sp/>ts.<ref refid="d7/d56/structBrush_1_1Data_1_1TimeSeries_1a45820a71d7cb5d552dce96fdce8db1d1" kindref="member">print</ref>();</highlight></codeline>
+<codeline lineno="12"><highlight class="normal">};</highlight></codeline>
+<codeline lineno="13"><highlight class="normal">}</highlight></codeline>
+    </programlisting>
+    <location file="/home/runner/work/brush/brush/src/data/timeseries.cpp"/>
+  </compounddef>
+</doxygen>

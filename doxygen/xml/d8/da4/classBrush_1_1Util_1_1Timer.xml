@@ -1,0 +1,148 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="d8/da4/classBrush_1_1Util_1_1Timer" kind="class" language="C++" prot="public">
+    <compoundname>Brush::Util::Timer</compoundname>
+    <includes refid="d5/d60/utils_8h" local="no">utils.h</includes>
+      <sectiondef kind="private-type">
+      <memberdef kind="typedef" id="d8/da4/classBrush_1_1Util_1_1Timer_1ab650cf34f8650b85732e59d8857eb616" prot="private" static="no">
+        <type>std::chrono::high_resolution_clock</type>
+        <definition>typedef std::chrono::high_resolution_clock Brush::Util::Timer::high_resolution_clock</definition>
+        <argsstring></argsstring>
+        <name>high_resolution_clock</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/runner/work/brush/brush/src/util/utils.h" line="223" column="48" bodyfile="/home/runner/work/brush/brush/src/util/utils.h" bodystart="223" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="typedef" id="d8/da4/classBrush_1_1Util_1_1Timer_1a29db3bae8726071dce6ca281d77ed99a" prot="private" static="no">
+        <type>std::chrono::seconds</type>
+        <definition>typedef std::chrono::seconds Brush::Util::Timer::seconds</definition>
+        <argsstring></argsstring>
+        <name>seconds</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/runner/work/brush/brush/src/util/utils.h" line="225" column="34" bodyfile="/home/runner/work/brush/brush/src/util/utils.h" bodystart="225" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="d8/da4/classBrush_1_1Util_1_1Timer_1ae986058e0b64dd5bd65dace34c7bfde1" prot="private" static="no" mutable="no">
+        <type>high_resolution_clock::time_point</type>
+        <definition>high_resolution_clock::time_point Brush::Util::Timer::_start</definition>
+        <argsstring></argsstring>
+        <name>_start</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/runner/work/brush/brush/src/util/utils.h" line="242" column="47" bodyfile="/home/runner/work/brush/brush/src/util/utils.h" bodystart="242" bodyend="-1"/>
+        <referencedby refid="d8/da4/classBrush_1_1Util_1_1Timer_1a0b2b4a4a29477bf98ec3b0b80b29685c" compoundref="de/d06/utils_8cpp" startline="94" endline="97">Elapsed</referencedby>
+        <referencedby refid="d8/da4/classBrush_1_1Util_1_1Timer_1a2b0d0e5b94f317dcc50d7cffc45321e3" compoundref="de/d06/utils_8cpp" startline="90" endline="93">Reset</referencedby>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="d8/da4/classBrush_1_1Util_1_1Timer_1a1038d1fb626abf7b44ca1d5f63f1ca36" prot="public" static="no" const="no" explicit="yes" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>Brush::Util::Timer::Timer</definition>
+        <argsstring>(bool run=false)</argsstring>
+        <name>Timer</name>
+        <param>
+          <type>bool</type>
+          <declname>run</declname>
+          <defval>false</defval>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/runner/work/brush/brush/src/util/utils.h" line="228" column="18" bodyfile="/home/runner/work/brush/brush/src/util/utils.cpp" bodystart="85" bodyend="89"/>
+        <references refid="d8/da4/classBrush_1_1Util_1_1Timer_1a2b0d0e5b94f317dcc50d7cffc45321e3" compoundref="de/d06/utils_8cpp" startline="90" endline="93">Reset</references>
+      </memberdef>
+      <memberdef kind="function" id="d8/da4/classBrush_1_1Util_1_1Timer_1a2b0d0e5b94f317dcc50d7cffc45321e3" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void Brush::Util::Timer::Reset</definition>
+        <argsstring>()</argsstring>
+        <name>Reset</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/runner/work/brush/brush/src/util/utils.h" line="230" column="14" bodyfile="/home/runner/work/brush/brush/src/util/utils.cpp" bodystart="90" bodyend="93"/>
+        <references refid="d8/da4/classBrush_1_1Util_1_1Timer_1ae986058e0b64dd5bd65dace34c7bfde1" compoundref="d5/d60/utils_8h" startline="242">_start</references>
+        <referencedby refid="d8/da4/classBrush_1_1Util_1_1Timer_1a1038d1fb626abf7b44ca1d5f63f1ca36" compoundref="de/d06/utils_8cpp" startline="85" endline="89">Timer</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="d8/da4/classBrush_1_1Util_1_1Timer_1a0b2b4a4a29477bf98ec3b0b80b29685c" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>std::chrono::duration&lt; float &gt;</type>
+        <definition>std::chrono::duration&lt; float &gt; Brush::Util::Timer::Elapsed</definition>
+        <argsstring>() const</argsstring>
+        <name>Elapsed</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/runner/work/brush/brush/src/util/utils.h" line="232" column="31" bodyfile="/home/runner/work/brush/brush/src/util/utils.cpp" bodystart="94" bodyend="97"/>
+        <references refid="d8/da4/classBrush_1_1Util_1_1Timer_1ae986058e0b64dd5bd65dace34c7bfde1" compoundref="d5/d60/utils_8h" startline="242">_start</references>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="friend">
+      <memberdef kind="friend" id="d8/da4/classBrush_1_1Util_1_1Timer_1a066ae07ce0ebdef7e9878608df8206fe" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>typename T</type>
+          </param>
+          <param>
+            <type>typename Traits</type>
+          </param>
+        </templateparamlist>
+        <type>std::basic_ostream&lt; T, Traits &gt; &amp;</type>
+        <definition>std::basic_ostream&lt;T, Traits&gt;&amp; operator&lt;&lt;</definition>
+        <argsstring>(std::basic_ostream&lt; T, Traits &gt; &amp;out, const Timer &amp;timer)</argsstring>
+        <name>operator&lt;&lt;</name>
+        <param>
+          <type>std::basic_ostream&lt; T, Traits &gt; &amp;</type>
+          <declname>out</declname>
+        </param>
+        <param>
+          <type>const <ref refid="d8/da4/classBrush_1_1Util_1_1Timer" kindref="compound">Timer</ref> &amp;</type>
+          <declname>timer</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/runner/work/brush/brush/src/util/utils.h" line="235" column="9" bodyfile="/home/runner/work/brush/brush/src/util/utils.h" bodystart="235" bodyend="239"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+<para>class for timing things. </para>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="/home/runner/work/brush/brush/src/util/utils.h" line="221" column="1" bodyfile="/home/runner/work/brush/brush/src/util/utils.h" bodystart="222" bodyend="244"/>
+    <listofallmembers>
+      <member refid="d8/da4/classBrush_1_1Util_1_1Timer_1ae986058e0b64dd5bd65dace34c7bfde1" prot="private" virt="non-virtual"><scope>Brush::Util::Timer</scope><name>_start</name></member>
+      <member refid="d8/da4/classBrush_1_1Util_1_1Timer_1a0b2b4a4a29477bf98ec3b0b80b29685c" prot="public" virt="non-virtual"><scope>Brush::Util::Timer</scope><name>Elapsed</name></member>
+      <member refid="d8/da4/classBrush_1_1Util_1_1Timer_1ab650cf34f8650b85732e59d8857eb616" prot="private" virt="non-virtual"><scope>Brush::Util::Timer</scope><name>high_resolution_clock</name></member>
+      <member refid="d8/da4/classBrush_1_1Util_1_1Timer_1a066ae07ce0ebdef7e9878608df8206fe" prot="public" virt="non-virtual"><scope>Brush::Util::Timer</scope><name>operator&lt;&lt;</name></member>
+      <member refid="d8/da4/classBrush_1_1Util_1_1Timer_1a2b0d0e5b94f317dcc50d7cffc45321e3" prot="public" virt="non-virtual"><scope>Brush::Util::Timer</scope><name>Reset</name></member>
+      <member refid="d8/da4/classBrush_1_1Util_1_1Timer_1a29db3bae8726071dce6ca281d77ed99a" prot="private" virt="non-virtual"><scope>Brush::Util::Timer</scope><name>seconds</name></member>
+      <member refid="d8/da4/classBrush_1_1Util_1_1Timer_1a1038d1fb626abf7b44ca1d5f63f1ca36" prot="public" virt="non-virtual"><scope>Brush::Util::Timer</scope><name>Timer</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

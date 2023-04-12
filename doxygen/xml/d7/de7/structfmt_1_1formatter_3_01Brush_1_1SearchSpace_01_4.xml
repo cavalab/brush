@@ -1,0 +1,74 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="d7/de7/structfmt_1_1formatter_3_01Brush_1_1SearchSpace_01_4" kind="struct" language="C++" prot="public">
+    <compoundname>fmt::formatter&lt; Brush::SearchSpace &gt;</compoundname>
+    <basecompoundref prot="public" virt="non-virtual">formatter&lt; string_view &gt;</basecompoundref>
+    <includes refid="d9/d99/search__space_8h" local="no">search_space.h</includes>
+    <templateparamlist>
+    </templateparamlist>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="d7/de7/structfmt_1_1formatter_3_01Brush_1_1SearchSpace_01_4_1a742f0a2c0d464dabc476bb1ccec27ddb" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>typename FormatContext</type>
+          </param>
+        </templateparamlist>
+        <type>auto</type>
+        <definition>auto fmt::formatter&lt; Brush::SearchSpace &gt;::format</definition>
+        <argsstring>(const Brush::SearchSpace &amp;SS, FormatContext &amp;ctx) const</argsstring>
+        <name>format</name>
+        <param>
+          <type>const <ref refid="d4/dc3/structBrush_1_1SearchSpace" kindref="compound">Brush::SearchSpace</ref> &amp;</type>
+          <declname>SS</declname>
+        </param>
+        <param>
+          <type>FormatContext &amp;</type>
+          <declname>ctx</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/runner/work/brush/brush/src/search_space.h" line="670" column="8" bodyfile="/home/runner/work/brush/brush/src/search_space.h" bodystart="670" bodyend="689"/>
+        <references refid="dc/d5c/namespaceBrush_1a5ce2db092b85cde6a08777c7e9446b8b" compoundref="da/d48/search__space_8cpp" startline="37">Brush::ArgsName</references>
+        <references refid="d4/dc3/structBrush_1_1SearchSpace_1a4bd8ffb41071c9a6739f92b275a510f5" compoundref="d9/d99/search__space_8h" startline="93">Brush::SearchSpace::node_map</references>
+        <references refid="dc/d5c/namespaceBrush_1ae41500fed38676f34a4d476a992d585d">Brush::SS</references>
+        <references refid="d4/dc3/structBrush_1_1SearchSpace_1a4c2acdd29d7465109ead9835f952fee0" compoundref="d9/d99/search__space_8h" startline="107">Brush::SearchSpace::terminal_map</references>
+        <references refid="d4/dc3/structBrush_1_1SearchSpace_1a990aab15f3645f7b13cd678473e9f2fb" compoundref="d9/d99/search__space_8h" startline="110">Brush::SearchSpace::terminal_weights</references>
+        <references refid="d4/dc3/structBrush_1_1SearchSpace_1ae3c114b829c2059dcb6565d11de527af" compoundref="d9/d99/search__space_8h" startline="96">Brush::SearchSpace::weight_map</references>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="1">
+        <label>fmt::formatter&lt; Brush::SearchSpace &gt;</label>
+        <link refid="d7/de7/structfmt_1_1formatter_3_01Brush_1_1SearchSpace_01_4"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>formatter&lt; string_view &gt;</label>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="1">
+        <label>fmt::formatter&lt; Brush::SearchSpace &gt;</label>
+        <link refid="d7/de7/structfmt_1_1formatter_3_01Brush_1_1SearchSpace_01_4"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>formatter&lt; string_view &gt;</label>
+      </node>
+    </collaborationgraph>
+    <location file="/home/runner/work/brush/brush/src/search_space.h" line="668" column="11" bodyfile="/home/runner/work/brush/brush/src/search_space.h" bodystart="668" bodyend="690"/>
+    <listofallmembers>
+      <member refid="d7/de7/structfmt_1_1formatter_3_01Brush_1_1SearchSpace_01_4_1a742f0a2c0d464dabc476bb1ccec27ddb" prot="public" virt="non-virtual"><scope>fmt::formatter&lt; Brush::SearchSpace &gt;</scope><name>format</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

@@ -1,0 +1,120 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="d5/d16/module_8h" kind="file" language="C++">
+    <compoundname>module.h</compoundname>
+    <includes local="no">pybind11/pybind11.h</includes>
+    <includes local="no">pybind11/eigen.h</includes>
+    <includes local="no">pybind11/stl.h</includes>
+    <includes local="no">pybind11/iostream.h</includes>
+    <includes local="yes">pybind11_json/pybind11_json.hpp</includes>
+    <includes local="yes">nlohmann/json.hpp</includes>
+    <includedby refid="d9/d40/bind__dataset_8cpp" local="yes">bind_dataset.cpp</includedby>
+    <includedby refid="da/dbf/bind__params_8cpp" local="yes">bind_params.cpp</includedby>
+    <includedby refid="d9/d26/bind__programs_8cpp" local="yes">bind_programs.cpp</includedby>
+    <includedby refid="d6/d3f/bind__programs_8h" local="yes">bind_programs.h</includedby>
+    <includedby refid="d0/d94/bind__search__space_8cpp" local="yes">bind_search_space.cpp</includedby>
+    <includedby refid="dd/d30/module_8cpp" local="yes">module.cpp</includedby>
+    <incdepgraph>
+      <node id="6">
+        <label>pybind11_json/pybind11_json.hpp</label>
+      </node>
+      <node id="3">
+        <label>pybind11/eigen.h</label>
+      </node>
+      <node id="5">
+        <label>pybind11/iostream.h</label>
+      </node>
+      <node id="2">
+        <label>pybind11/pybind11.h</label>
+      </node>
+      <node id="1">
+        <label>module.h</label>
+        <link refid="d5/d16/module_8h"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="5" relation="include">
+        </childnode>
+        <childnode refid="6" relation="include">
+        </childnode>
+        <childnode refid="7" relation="include">
+        </childnode>
+      </node>
+      <node id="7">
+        <label>nlohmann/json.hpp</label>
+      </node>
+      <node id="4">
+        <label>pybind11/stl.h</label>
+      </node>
+    </incdepgraph>
+    <invincdepgraph>
+      <node id="5">
+        <label>bind_programs.h</label>
+        <link refid="d6/d3f/bind__programs_8h"/>
+        <childnode refid="4" relation="include">
+        </childnode>
+      </node>
+      <node id="3">
+        <label>bind_params.cpp</label>
+        <link refid="da/dbf/bind__params_8cpp"/>
+      </node>
+      <node id="6">
+        <label>bind_search_space.cpp</label>
+        <link refid="d0/d94/bind__search__space_8cpp"/>
+      </node>
+      <node id="7">
+        <label>module.cpp</label>
+        <link refid="dd/d30/module_8cpp"/>
+      </node>
+      <node id="4">
+        <label>bind_programs.cpp</label>
+        <link refid="d9/d26/bind__programs_8cpp"/>
+      </node>
+      <node id="2">
+        <label>bind_dataset.cpp</label>
+        <link refid="d9/d40/bind__dataset_8cpp"/>
+      </node>
+      <node id="1">
+        <label>module.h</label>
+        <link refid="d5/d16/module_8h"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="5" relation="include">
+        </childnode>
+        <childnode refid="6" relation="include">
+        </childnode>
+        <childnode refid="7" relation="include">
+        </childnode>
+      </node>
+    </invincdepgraph>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"><highlight class="comment">/*<sp/>Brush</highlight></codeline>
+<codeline lineno="2"><highlight class="comment"></highlight></codeline>
+<codeline lineno="3"><highlight class="comment">module.h<sp/>:<sp/>Python<sp/>interface<sp/>to<sp/>Brush<sp/>classes<sp/>and<sp/>functions,<sp/>using<sp/>pybind11</highlight></codeline>
+<codeline lineno="4"><highlight class="comment"></highlight></codeline>
+<codeline lineno="5"><highlight class="comment">copyright<sp/>2021<sp/>William<sp/>La<sp/>Cava</highlight></codeline>
+<codeline lineno="6"><highlight class="comment">authors:<sp/>William<sp/>La<sp/>Cava<sp/>and<sp/>Joseph<sp/>D.<sp/>Romano</highlight></codeline>
+<codeline lineno="7"><highlight class="comment">license:<sp/>GNU/GPL<sp/>v3</highlight></codeline>
+<codeline lineno="8"><highlight class="comment">*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="9"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;pybind11/pybind11.h&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="10"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;pybind11/eigen.h&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="11"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;pybind11/stl.h&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="12"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;pybind11/iostream.h&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="13"><highlight class="normal"></highlight><highlight class="comment">//<sp/>json<sp/>support</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="14"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;pybind11_json/pybind11_json.hpp&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="15"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;nlohmann/json.hpp&quot;</highlight></codeline>
+    </programlisting>
+    <location file="/home/runner/work/brush/brush/src/bindings/module.h"/>
+  </compounddef>
+</doxygen>

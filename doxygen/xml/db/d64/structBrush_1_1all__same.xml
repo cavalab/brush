@@ -1,0 +1,60 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="db/d64/structBrush_1_1all__same" kind="struct" language="C++" prot="public">
+    <compoundname>Brush::all_same</compoundname>
+    <includes refid="d9/d49/types_8h" local="no">types.h</includes>
+    <templateparamlist>
+      <param>
+        <type>typename First</type>
+      </param>
+      <param>
+        <type>typename ...</type>
+        <declname>Next</declname>
+        <defname>Next</defname>
+      </param>
+    </templateparamlist>
+      <sectiondef kind="public-static-attrib">
+      <memberdef kind="variable" id="db/d64/structBrush_1_1all__same_1a2451a4b50eda0715b566770d3b4dfb01" prot="public" static="yes" constexpr="yes" mutable="no">
+        <type>constexpr bool</type>
+        <definition>constexpr bool Brush::all_same&lt; First, Next &gt;::value</definition>
+        <argsstring></argsstring>
+        <name>value</name>
+        <initializer>{(std::is_same_v&lt;First,Next&gt; &amp;&amp; ...)}</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/runner/work/brush/brush/src/types.h" line="20" column="27" bodyfile="/home/runner/work/brush/brush/src/types.h" bodystart="20" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+<para>checks whether all the types match. </para>
+    </briefdescription>
+    <detaileddescription>
+<para><parameterlist kind="templateparam"><parameteritem>
+<parameternamelist>
+<parametername>First</parametername>
+</parameternamelist>
+<parameterdescription>
+<para></para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>...Next</parametername>
+</parameternamelist>
+<parameterdescription>
+<para></para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+    </detaileddescription>
+    <location file="/home/runner/work/brush/brush/src/types.h" line="19" column="1" bodyfile="/home/runner/work/brush/brush/src/types.h" bodystart="19" bodyend="21"/>
+    <listofallmembers>
+      <member refid="db/d64/structBrush_1_1all__same_1a2451a4b50eda0715b566770d3b4dfb01" prot="public" virt="non-virtual"><scope>Brush::all_same</scope><name>value</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

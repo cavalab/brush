@@ -1,0 +1,1008 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="db/d88/structBrush_1_1Program" kind="struct" language="C++" prot="public">
+    <compoundname>Brush::Program</compoundname>
+    <includes refid="d1/dea/program_8h" local="no">program.h</includes>
+    <templateparamlist>
+      <param>
+        <type><ref refid="dc/d5c/namespaceBrush_1ae591329af27c88b714d0f92b86276366" kindref="member">PT</ref></type>
+        <declname>PType</declname>
+        <defname>PType</defname>
+      </param>
+    </templateparamlist>
+      <sectiondef kind="public-type">
+      <memberdef kind="typedef" id="db/d88/structBrush_1_1Program_1a9c1ae84b6c475643e7adcd36f1bf0341" prot="public" static="no">
+        <type>typename std::conditional_t&lt; PType==PT::Regressor, ArrayXf, std::conditional_t&lt; PType==PT::BinaryClassifier, <ref refid="dc/d5c/namespaceBrush_1a1c0079df772d6e050857327591514810" kindref="member">ArrayXb</ref>, std::conditional_t&lt; PType==PT::MulticlassClassifier, <ref refid="dc/d5c/namespaceBrush_1ac5cd76eed6ea70d1c8f429ee37ca9fc0" kindref="member">ArrayXi</ref>, std::conditional_t&lt; PType==PT::Representer, ArrayXXf, ArrayXf &gt; &gt;&gt; &gt;</type>
+        <definition>using Brush::Program&lt; PType &gt;::RetType =  typename std::conditional_t&lt;PType == PT::Regressor, ArrayXf, std::conditional_t&lt;PType == PT::BinaryClassifier, ArrayXb, std::conditional_t&lt;PType == PT::MulticlassClassifier, ArrayXi, std::conditional_t&lt;PType == PT::Representer, ArrayXXf, ArrayXf &gt; &gt;&gt; &gt;</definition>
+        <argsstring></argsstring>
+        <name>RetType</name>
+        <briefdescription>
+<para>the return type of the tree when calling :func:<computeroutput>predict</computeroutput>. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/runner/work/brush/brush/src/program/program.h" line="58" column="5" bodyfile="/home/runner/work/brush/brush/src/program/program.h" bodystart="62" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="typedef" id="db/d88/structBrush_1_1Program_1a54036fdabf4bb8d87e19c4c2f6b577a4" prot="public" static="no">
+        <type>std::conditional_t&lt; PType==PT::BinaryClassifier, ArrayXf, std::conditional_t&lt; PType==PT::MulticlassClassifier, ArrayXXf, <ref refid="db/d88/structBrush_1_1Program_1a9c1ae84b6c475643e7adcd36f1bf0341" kindref="member">RetType</ref> &gt; &gt;</type>
+        <definition>using Brush::Program&lt; PType &gt;::TreeType =  std::conditional_t&lt;PType == PT::BinaryClassifier, ArrayXf, std::conditional_t&lt;PType == PT::MulticlassClassifier, ArrayXXf, RetType&gt; &gt;</definition>
+        <argsstring></argsstring>
+        <name>TreeType</name>
+        <briefdescription>
+<para>the type of output from the tree object </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/runner/work/brush/brush/src/program/program.h" line="64" column="5" bodyfile="/home/runner/work/brush/brush/src/program/program.h" bodystart="66" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-static-attrib">
+      <memberdef kind="variable" id="db/d88/structBrush_1_1Program_1a695b4178894f8703f2b539cf3a51b098" prot="public" static="yes" constexpr="yes" mutable="no">
+        <type>constexpr <ref refid="dc/d5c/namespaceBrush_1ae591329af27c88b714d0f92b86276366" kindref="member">PT</ref></type>
+        <definition>constexpr PT Brush::Program&lt; PType &gt;::program_type</definition>
+        <argsstring></argsstring>
+        <name>program_type</name>
+        <initializer>= PType</initializer>
+        <briefdescription>
+<para>an enum storing the program type. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/runner/work/brush/brush/src/program/program.h" line="55" column="25" bodyfile="/home/runner/work/brush/brush/src/program/program.h" bodystart="55" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="db/d88/structBrush_1_1Program_1a66e9a1ae33267ee5132ba3b3757b8a01" prot="public" static="no" mutable="no">
+        <type>bool</type>
+        <definition>bool Brush::Program&lt; PType &gt;::is_fitted_</definition>
+        <argsstring></argsstring>
+        <name>is_fitted_</name>
+        <briefdescription>
+<para>whether fit has been called </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/runner/work/brush/brush/src/program/program.h" line="69" column="10" bodyfile="/home/runner/work/brush/brush/src/program/program.h" bodystart="69" bodyend="-1"/>
+        <referencedby refid="dc/d5c/namespaceBrush_1a2360e8e22462df83dc799c8096ce5938" compoundref="d1/dea/program_8h" startline="481" endline="485">Brush::from_json</referencedby>
+        <referencedby refid="db/d88/structBrush_1_1Program_1a0dafcc2656df58585dc3d29b6e50dd1e">Brush::Program&lt; PType &gt;::predict</referencedby>
+        <referencedby refid="db/d88/structBrush_1_1Program_1a6a1237f15d7b9cc1e825e1a3213df58e" compoundref="d1/dea/program_8h" startline="104" endline="110">Brush::Program&lt; PType &gt;::predict_with_weights</referencedby>
+        <referencedby refid="dc/d5c/namespaceBrush_1ab70b101224f05ee7cb285e1212137053" compoundref="d1/dea/program_8h" startline="475" endline="478">Brush::to_json</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="db/d88/structBrush_1_1Program_1aeee26a7a2bcb499acd96c366279429ad" prot="public" static="no" mutable="no">
+        <type><ref refid="d6/dd0/structBrush_1_1Fitness" kindref="compound">Fitness</ref></type>
+        <definition>Fitness Brush::Program&lt; PType &gt;::fitness</definition>
+        <argsstring></argsstring>
+        <name>fitness</name>
+        <briefdescription>
+<para>fitness </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/runner/work/brush/brush/src/program/program.h" line="71" column="13" bodyfile="/home/runner/work/brush/brush/src/program/program.h" bodystart="71" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="db/d88/structBrush_1_1Program_1a7435fb84d7b056a108f142bb19956da5" prot="public" static="no" mutable="no">
+        <type>tree&lt; <ref refid="d1/d3a/structBrush_1_1Node" kindref="compound">Node</ref> &gt;</type>
+        <definition>tree&lt;Node&gt; Brush::Program&lt; PType &gt;::Tree</definition>
+        <argsstring></argsstring>
+        <name>Tree</name>
+        <briefdescription>
+<para>the underlying tree </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/runner/work/brush/brush/src/program/program.h" line="74" column="10" bodyfile="/home/runner/work/brush/brush/src/program/program.h" bodystart="74" bodyend="-1"/>
+        <referencedby refid="db/d88/structBrush_1_1Program_1aa2a1b3dbc41da0eebb3681b2bcdc6969" compoundref="d1/dea/program_8h" startline="94" endline="101">Brush::Program&lt; PType &gt;::fit</referencedby>
+        <referencedby refid="dc/d5c/namespaceBrush_1a2360e8e22462df83dc799c8096ce5938" compoundref="d1/dea/program_8h" startline="481" endline="485">Brush::from_json</referencedby>
+        <referencedby refid="db/d88/structBrush_1_1Program_1a75df309b29521934822f8eced7be0418" compoundref="d1/dea/program_8h" startline="296" endline="411">Brush::Program&lt; PType &gt;::get_dot_model</referencedby>
+        <referencedby refid="db/d88/structBrush_1_1Program_1a7ef9a37328467c60d86b78ebfd373810" compoundref="d1/dea/program_8h" startline="280" endline="288">Brush::Program&lt; PType &gt;::get_model</referencedby>
+        <referencedby refid="db/d88/structBrush_1_1Program_1a990bd3691f3b3e2b7ff479bcd4231479" compoundref="d1/dea/program_8h" startline="211" endline="222">Brush::Program&lt; PType &gt;::get_n_weights</referencedby>
+        <referencedby refid="db/d88/structBrush_1_1Program_1a8bee1c866051b3e11c017cdf29b46eb7" compoundref="d1/dea/program_8h" startline="229" endline="243">Brush::Program&lt; PType &gt;::get_weights</referencedby>
+        <referencedby refid="db/d88/structBrush_1_1Program_1ad30d126946a56dba56680f4f96cb3361" compoundref="d1/dea/program_8h" startline="430" endline="435">Brush::Program&lt; PType &gt;::linearize</referencedby>
+        <referencedby refid="db/d88/structBrush_1_1Program_1a6a1237f15d7b9cc1e825e1a3213df58e" compoundref="d1/dea/program_8h" startline="104" endline="110">Brush::Program&lt; PType &gt;::predict_with_weights</referencedby>
+        <referencedby refid="db/d88/structBrush_1_1Program_1a5ba9c69ade043cacb917dfb654a57834" compoundref="d1/dea/program_8h" startline="251" endline="267">Brush::Program&lt; PType &gt;::set_weights</referencedby>
+        <referencedby refid="db/d88/structBrush_1_1Program_1a1910283c3cdd3adf53ae62def076396f" compoundref="d1/dea/program_8h" startline="90" endline="92">Brush::Program&lt; PType &gt;::size</referencedby>
+        <referencedby refid="dc/d5c/namespaceBrush_1ab70b101224f05ee7cb285e1212137053" compoundref="d1/dea/program_8h" startline="475" endline="478">Brush::to_json</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="db/d88/structBrush_1_1Program_1a349a42d743b44ad4515bbeb9a93a95f1" prot="public" static="no" mutable="no">
+        <type>std::optional&lt; std::reference_wrapper&lt; <ref refid="d4/dc3/structBrush_1_1SearchSpace" kindref="compound">SearchSpace</ref> &gt; &gt;</type>
+        <definition>std::optional&lt;std::reference_wrapper&lt;SearchSpace&gt; &gt; Brush::Program&lt; PType &gt;::SSref</definition>
+        <argsstring></argsstring>
+        <name>SSref</name>
+        <briefdescription>
+<para>reference to search space </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/runner/work/brush/brush/src/program/program.h" line="76" column="19" bodyfile="/home/runner/work/brush/brush/src/program/program.h" bodystart="76" bodyend="-1"/>
+        <referencedby refid="db/d88/structBrush_1_1Program_1a00356ac7bbc5c1d8f70bc8d90f41d4ac" compoundref="d1/dea/program_8h" startline="79" endline="83">Brush::Program&lt; PType &gt;::Program</referencedby>
+        <referencedby refid="db/d88/structBrush_1_1Program_1aa24681261d191fdc486973820394d411" compoundref="d1/dea/program_8h" startline="85" endline="88">Brush::Program&lt; PType &gt;::set_search_space</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="db/d88/structBrush_1_1Program_1ab3adac9c92a44b15a924f4c3e727d659" prot="public" static="no" mutable="no">
+        <type><ref refid="db/d88/structBrush_1_1Program_1a54036fdabf4bb8d87e19c4c2f6b577a4" kindref="member">TreeType</ref></type>
+        <definition>TreeType Brush::Program&lt; PType &gt;::TreeType</definition>
+        <argsstring></argsstring>
+        <name>TreeType</name>
+        <initializer>{
+        if (!<ref refid="db/d88/structBrush_1_1Program_1a66e9a1ae33267ee5132ba3b3757b8a01" kindref="member">is_fitted_</ref>)
+            <ref refid="da/d41/error_8h_1aa4c550bcd71e4ec1c97b111e1360509a" kindref="member">HANDLE_ERROR_THROW</ref>(&quot;Program is not fitted. Call &apos;<ref refid="db/d88/structBrush_1_1Program_1aa2a1b3dbc41da0eebb3681b2bcdc6969" kindref="member">fit</ref>&apos; first.\n&quot;)</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/runner/work/brush/brush/src/program/program.h" line="127" column="26" bodyfile="/home/runner/work/brush/brush/src/program/program.h" bodystart="128" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="db/d88/structBrush_1_1Program_1a35f07c2aac938fbba9d525885eb220f5" prot="public" static="no" mutable="no">
+        <type><ref refid="dc/d5c/namespaceBrush_1a1c0079df772d6e050857327591514810" kindref="member">ArrayXb</ref></type>
+        <definition>ArrayXb Brush::Program&lt; PType &gt;::ArrayXb</definition>
+        <argsstring></argsstring>
+        <name>ArrayXb</name>
+        <initializer>{
+        if (!<ref refid="db/d88/structBrush_1_1Program_1a66e9a1ae33267ee5132ba3b3757b8a01" kindref="member">is_fitted_</ref>)
+            <ref refid="da/d41/error_8h_1aa4c550bcd71e4ec1c97b111e1360509a" kindref="member">HANDLE_ERROR_THROW</ref>(&quot;Program is not fitted. Call &apos;<ref refid="db/d88/structBrush_1_1Program_1aa2a1b3dbc41da0eebb3681b2bcdc6969" kindref="member">fit</ref>&apos; first.\n&quot;)</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/runner/work/brush/brush/src/program/program.h" line="140" column="26" bodyfile="/home/runner/work/brush/brush/src/program/program.h" bodystart="141" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="db/d88/structBrush_1_1Program_1a2b6124d27bdeb7f0a8b5cf2508c9ae3e" prot="public" static="no" mutable="no">
+        <type><ref refid="dc/d5c/namespaceBrush_1ac5cd76eed6ea70d1c8f429ee37ca9fc0" kindref="member">ArrayXi</ref></type>
+        <definition>ArrayXi Brush::Program&lt; PType &gt;::ArrayXi</definition>
+        <argsstring></argsstring>
+        <name>ArrayXi</name>
+        <initializer>{
+        if (!<ref refid="db/d88/structBrush_1_1Program_1a66e9a1ae33267ee5132ba3b3757b8a01" kindref="member">is_fitted_</ref>)
+            <ref refid="da/d41/error_8h_1aa4c550bcd71e4ec1c97b111e1360509a" kindref="member">HANDLE_ERROR_THROW</ref>(&quot;Program is not fitted. Call &apos;<ref refid="db/d88/structBrush_1_1Program_1aa2a1b3dbc41da0eebb3681b2bcdc6969" kindref="member">fit</ref>&apos; first.\n&quot;)</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/runner/work/brush/brush/src/program/program.h" line="152" column="26" bodyfile="/home/runner/work/brush/brush/src/program/program.h" bodystart="153" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="db/d88/structBrush_1_1Program_1a7e0a3172a2a4f19af7e6307711791ebb" prot="public" static="no" mutable="no">
+        <type><ref refid="db/d88/structBrush_1_1Program_1a54036fdabf4bb8d87e19c4c2f6b577a4" kindref="member">TreeType</ref></type>
+        <definition>TreeType Brush::Program&lt; PType &gt;::out</definition>
+        <argsstring></argsstring>
+        <name>out</name>
+        <initializer>= Tree.begin().node-&gt;<ref refid="db/d88/structBrush_1_1Program_1a0dafcc2656df58585dc3d29b6e50dd1e" kindref="member">predict</ref>&lt;<ref refid="db/d88/structBrush_1_1Program_1a54036fdabf4bb8d87e19c4c2f6b577a4" kindref="member">TreeType</ref>&gt;(d)</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/runner/work/brush/brush/src/program/program.h" line="156" column="18" bodyfile="/home/runner/work/brush/brush/src/program/program.h" bodystart="156" bodyend="-1"/>
+        <referencedby refid="db/d88/structBrush_1_1Program_1aa2a1b3dbc41da0eebb3681b2bcdc6969" compoundref="d1/dea/program_8h" startline="94" endline="101">Brush::Program&lt; PType &gt;::fit</referencedby>
+        <referencedby refid="db/d88/structBrush_1_1Program_1a75df309b29521934822f8eced7be0418" compoundref="d1/dea/program_8h" startline="296" endline="411">Brush::Program&lt; PType &gt;::get_dot_model</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="db/d88/structBrush_1_1Program_1a6720dbe112394135b4237338eb7bd1ac" prot="public" static="no" mutable="no">
+        <type>auto</type>
+        <definition>auto Brush::Program&lt; PType &gt;::argmax</definition>
+        <argsstring></argsstring>
+        <name>argmax</name>
+        <initializer>= <ref refid="d9/d1b/structBrush_1_1Function" kindref="compound">Function</ref>&lt;<ref refid="dc/d5c/namespaceBrush_1a051322bb9fd1db4638b6eccd399a29c8a4766ad7b5b229c7c9a713faa05a2ef67" kindref="member">NodeType::ArgMax</ref>&gt;{}</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/runner/work/brush/brush/src/program/program.h" line="157" column="14" bodyfile="/home/runner/work/brush/brush/src/program/program.h" bodystart="157" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="db/d88/structBrush_1_1Program_1ab5df93b7b0bf914455ffeb5cc7574543" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>Brush::Program&lt; PType &gt;::Program</definition>
+        <argsstring>()=default</argsstring>
+        <name>Program</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/runner/work/brush/brush/src/program/program.h" line="78" column="5"/>
+      </memberdef>
+      <memberdef kind="function" id="db/d88/structBrush_1_1Program_1a00356ac7bbc5c1d8f70bc8d90f41d4ac" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>Brush::Program&lt; PType &gt;::Program</definition>
+        <argsstring>(const std::reference_wrapper&lt; SearchSpace &gt; s, const tree&lt; Node &gt; t)</argsstring>
+        <name>Program</name>
+        <param>
+          <type>const std::reference_wrapper&lt; <ref refid="d4/dc3/structBrush_1_1SearchSpace" kindref="compound">SearchSpace</ref> &gt;</type>
+          <declname>s</declname>
+        </param>
+        <param>
+          <type>const tree&lt; <ref refid="d1/d3a/structBrush_1_1Node" kindref="compound">Node</ref> &gt;</type>
+          <declname>t</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/runner/work/brush/brush/src/program/program.h" line="79" column="5" bodyfile="/home/runner/work/brush/brush/src/program/program.h" bodystart="79" bodyend="83"/>
+        <references refid="db/d88/structBrush_1_1Program_1a349a42d743b44ad4515bbeb9a93a95f1" compoundref="d1/dea/program_8h" startline="76">Brush::Program&lt; PType &gt;::SSref</references>
+      </memberdef>
+      <memberdef kind="function" id="db/d88/structBrush_1_1Program_1aa24681261d191fdc486973820394d411" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void Brush::Program&lt; PType &gt;::set_search_space</definition>
+        <argsstring>(const std::reference_wrapper&lt; SearchSpace &gt; s)</argsstring>
+        <name>set_search_space</name>
+        <param>
+          <type>const std::reference_wrapper&lt; <ref refid="d4/dc3/structBrush_1_1SearchSpace" kindref="compound">SearchSpace</ref> &gt;</type>
+          <declname>s</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/runner/work/brush/brush/src/program/program.h" line="85" column="17" bodyfile="/home/runner/work/brush/brush/src/program/program.h" bodystart="85" bodyend="88"/>
+        <references refid="db/d88/structBrush_1_1Program_1a349a42d743b44ad4515bbeb9a93a95f1" compoundref="d1/dea/program_8h" startline="76">Brush::Program&lt; PType &gt;::SSref</references>
+      </memberdef>
+      <memberdef kind="function" id="db/d88/structBrush_1_1Program_1a1910283c3cdd3adf53ae62def076396f" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>int</type>
+        <definition>int Brush::Program&lt; PType &gt;::size</definition>
+        <argsstring>()</argsstring>
+        <name>size</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/runner/work/brush/brush/src/program/program.h" line="90" column="9" bodyfile="/home/runner/work/brush/brush/src/program/program.h" bodystart="90" bodyend="92"/>
+        <references refid="db/d88/structBrush_1_1Program_1a7435fb84d7b056a108f142bb19956da5" compoundref="d1/dea/program_8h" startline="74">Brush::Program&lt; PType &gt;::Tree</references>
+      </memberdef>
+      <memberdef kind="function" id="db/d88/structBrush_1_1Program_1aa2a1b3dbc41da0eebb3681b2bcdc6969" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="db/d88/structBrush_1_1Program" kindref="compound">Program</ref>&lt; PType &gt; &amp;</type>
+        <definition>Program&lt;PType&gt;&amp; Brush::Program&lt; PType &gt;::fit</definition>
+        <argsstring>(const Dataset &amp;d)</argsstring>
+        <name>fit</name>
+        <param>
+          <type>const <ref refid="d2/d36/classBrush_1_1Data_1_1Dataset" kindref="compound">Dataset</ref> &amp;</type>
+          <declname>d</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/runner/work/brush/brush/src/program/program.h" line="94" column="13" bodyfile="/home/runner/work/brush/brush/src/program/program.h" bodystart="94" bodyend="101"/>
+        <references refid="db/d88/structBrush_1_1Program_1a7e0a3172a2a4f19af7e6307711791ebb" compoundref="d1/dea/program_8h" startline="156">Brush::Program&lt; PType &gt;::out</references>
+        <references refid="db/d88/structBrush_1_1Program_1a7435fb84d7b056a108f142bb19956da5" compoundref="d1/dea/program_8h" startline="74">Brush::Program&lt; PType &gt;::Tree</references>
+        <references refid="db/d88/structBrush_1_1Program_1a1cc0fd2af851933b54ef5fb6fb6c941b" compoundref="d1/dea/program_8h" startline="445" endline="452">Brush::Program&lt; PType &gt;::update_weights</references>
+        <referencedby refid="db/d88/structBrush_1_1Program_1a4af75a668804744f414cb166d29a3059" compoundref="d1/dea/program_8h" startline="173" endline="177">Brush::Program&lt; PType &gt;::fit</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="db/d88/structBrush_1_1Program_1a6a1237f15d7b9cc1e825e1a3213df58e" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>typename R</type>
+          </param>
+          <param>
+            <type>typename W</type>
+          </param>
+        </templateparamlist>
+        <type>R</type>
+        <definition>R Brush::Program&lt; PType &gt;::predict_with_weights</definition>
+        <argsstring>(const Dataset &amp;d, const W **weights)</argsstring>
+        <name>predict_with_weights</name>
+        <param>
+          <type>const <ref refid="d2/d36/classBrush_1_1Data_1_1Dataset" kindref="compound">Dataset</ref> &amp;</type>
+          <declname>d</declname>
+        </param>
+        <param>
+          <type>const W **</type>
+          <declname>weights</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/runner/work/brush/brush/src/program/program.h" line="104" column="7" bodyfile="/home/runner/work/brush/brush/src/program/program.h" bodystart="104" bodyend="110"/>
+        <references refid="da/d41/error_8h_1aa4c550bcd71e4ec1c97b111e1360509a" compoundref="da/d41/error_8h" startline="24">HANDLE_ERROR_THROW</references>
+        <references refid="db/d88/structBrush_1_1Program_1a66e9a1ae33267ee5132ba3b3757b8a01" compoundref="d1/dea/program_8h" startline="69">Brush::Program&lt; PType &gt;::is_fitted_</references>
+        <references refid="db/d88/structBrush_1_1Program_1a7435fb84d7b056a108f142bb19956da5" compoundref="d1/dea/program_8h" startline="74">Brush::Program&lt; PType &gt;::Tree</references>
+      </memberdef>
+      <memberdef kind="function" id="db/d88/structBrush_1_1Program_1a93735deb988101774e8e58c5402e1a21" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>auto</type>
+        <definition>auto Brush::Program&lt; PType &gt;::predict_with_weights</definition>
+        <argsstring>(const Dataset &amp;d, const ArrayXf &amp;weights)</argsstring>
+        <name>predict_with_weights</name>
+        <param>
+          <type>const <ref refid="d2/d36/classBrush_1_1Data_1_1Dataset" kindref="compound">Dataset</ref> &amp;</type>
+          <declname>d</declname>
+        </param>
+        <param>
+          <type>const ArrayXf &amp;</type>
+          <declname>weights</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/runner/work/brush/brush/src/program/program.h" line="112" column="10" bodyfile="/home/runner/work/brush/brush/src/program/program.h" bodystart="112" bodyend="116"/>
+      </memberdef>
+      <memberdef kind="function" id="db/d88/structBrush_1_1Program_1a0dafcc2656df58585dc3d29b6e50dd1e" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>typename R</type>
+            <defval><ref refid="db/d88/structBrush_1_1Program_1a9c1ae84b6c475643e7adcd36f1bf0341" kindref="member">RetType</ref></defval>
+          </param>
+        </templateparamlist>
+        <type><ref refid="db/d88/structBrush_1_1Program_1a54036fdabf4bb8d87e19c4c2f6b577a4" kindref="member">TreeType</ref></type>
+        <definition>TreeType Brush::Program&lt; PType &gt;::predict</definition>
+        <argsstring>(const Dataset &amp;d) requires(is_same_v&lt; R</argsstring>
+        <name>predict</name>
+        <param>
+          <type>const <ref refid="d2/d36/classBrush_1_1Data_1_1Dataset" kindref="compound">Dataset</ref> &amp;</type>
+          <declname>d</declname>
+        </param>
+        <briefdescription>
+<para>the standard predict function. Returns the output of the Tree directly. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="templateparam"><parameteritem>
+<parameternamelist>
+<parametername>R</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>return type, default </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>d</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>dataset </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para></para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/runner/work/brush/brush/src/program/program.h" line="127" column="14"/>
+        <references refid="da/d41/error_8h_1aa4c550bcd71e4ec1c97b111e1360509a" compoundref="da/d41/error_8h" startline="24">HANDLE_ERROR_THROW</references>
+        <references refid="db/d88/structBrush_1_1Program_1a66e9a1ae33267ee5132ba3b3757b8a01" compoundref="d1/dea/program_8h" startline="69">Brush::Program&lt; PType &gt;::is_fitted_</references>
+        <referencedby refid="db/d88/structBrush_1_1Program_1a59371dd699ddbb0bdb3b27237cb40e76" compoundref="d1/dea/program_8h" startline="182" endline="186">Brush::Program&lt; PType &gt;::predict</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="db/d88/structBrush_1_1Program_1af354ccdb9b9e119beae89f338b1a183a" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="db/d88/structBrush_1_1Program_1a404b6411cca03f93896e4c81a8aa90cf" kindref="member">return</ref> <ref refid="db/d88/structBrush_1_1Program_1a7435fb84d7b056a108f142bb19956da5" kindref="member">Tree</ref></type>
+        <definition>return Tree Brush::Program&lt; PType &gt;::begin</definition>
+        <argsstring>().node -&gt; predict&lt; TreeType &gt;(d)</argsstring>
+        <name>begin</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/runner/work/brush/brush/src/program/program.h" line="132" column="20"/>
+      </memberdef>
+      <memberdef kind="function" id="db/d88/structBrush_1_1Program_1ace998af38f1b2542faa6d94c9fa1eaa6" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>typename R</type>
+            <defval><ref refid="db/d88/structBrush_1_1Program_1a9c1ae84b6c475643e7adcd36f1bf0341" kindref="member">RetType</ref></defval>
+          </param>
+        </templateparamlist>
+        <type><ref refid="dc/d5c/namespaceBrush_1a1c0079df772d6e050857327591514810" kindref="member">ArrayXb</ref></type>
+        <definition>ArrayXb Brush::Program&lt; PType &gt;::predict</definition>
+        <argsstring>(const Dataset &amp;d) requires(is_same_v&lt; R</argsstring>
+        <name>predict</name>
+        <param>
+          <type>const <ref refid="d2/d36/classBrush_1_1Data_1_1Dataset" kindref="compound">Dataset</ref> &amp;</type>
+          <declname>d</declname>
+        </param>
+        <briefdescription>
+<para>Specialized predict function for binary classification. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="templateparam"><parameteritem>
+<parameternamelist>
+<parametername>R</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>return type, typically left blank </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>d</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>: data </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>out: binary labels </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/runner/work/brush/brush/src/program/program.h" line="140" column="13"/>
+      </memberdef>
+      <memberdef kind="function" id="db/d88/structBrush_1_1Program_1a404b6411cca03f93896e4c81a8aa90cf" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>Brush::Program&lt; PType &gt;::return</definition>
+        <argsstring>(Tree.begin().node-&gt;predict&lt; TreeType &gt;(d) &gt; 0.5)</argsstring>
+        <name>return</name>
+        <param>
+          <type>Tree.</type>
+          <declname>begin</declname>
+          <array>).node-&gt;predict&lt; TreeType &gt;(d</array>
+        </param>
+        <param>
+          <type>0.</type>
+          <declname>5</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/runner/work/brush/brush/src/program/program.h" line="144" column="9"/>
+      </memberdef>
+      <memberdef kind="function" id="db/d88/structBrush_1_1Program_1abe17a66e4f4dce64dadc157f3031d178" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>typename R</type>
+            <defval><ref refid="db/d88/structBrush_1_1Program_1a9c1ae84b6c475643e7adcd36f1bf0341" kindref="member">RetType</ref></defval>
+          </param>
+        </templateparamlist>
+        <type><ref refid="dc/d5c/namespaceBrush_1ac5cd76eed6ea70d1c8f429ee37ca9fc0" kindref="member">ArrayXi</ref></type>
+        <definition>ArrayXi Brush::Program&lt; PType &gt;::predict</definition>
+        <argsstring>(const Dataset &amp;d) requires(is_same_v&lt; R</argsstring>
+        <name>predict</name>
+        <param>
+          <type>const <ref refid="d2/d36/classBrush_1_1Data_1_1Dataset" kindref="compound">Dataset</ref> &amp;</type>
+          <declname>d</declname>
+        </param>
+        <briefdescription>
+<para>Specialized predict function for multiclass classification. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="templateparam"><parameteritem>
+<parameternamelist>
+<parametername>R</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>return type, typically left blank </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>d</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>: data </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>out: integer labels </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/runner/work/brush/brush/src/program/program.h" line="152" column="13"/>
+      </memberdef>
+      <memberdef kind="function" id="db/d88/structBrush_1_1Program_1a426d0241355efc01ed0bd933ab7d5b1e" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="db/d88/structBrush_1_1Program_1a404b6411cca03f93896e4c81a8aa90cf" kindref="member">return</ref></type>
+        <definition>return Brush::Program&lt; PType &gt;::argmax</definition>
+        <argsstring>(out)</argsstring>
+        <name>argmax</name>
+        <param>
+          <type><ref refid="db/d88/structBrush_1_1Program_1a7e0a3172a2a4f19af7e6307711791ebb" kindref="member">out</ref></type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/runner/work/brush/brush/src/program/program.h" line="158" column="16"/>
+      </memberdef>
+      <memberdef kind="function" id="db/d88/structBrush_1_1Program_1ac2d8422ec1bc02f89584178503647d8f" prot="public" static="no" const="yes" explicit="no" inline="yes" refqual="lvalue" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type><ref refid="dc/d5c/namespaceBrush_1ae591329af27c88b714d0f92b86276366" kindref="member">PT</ref></type>
+            <declname>P</declname>
+            <defname>P</defname>
+            <defval>PType</defval>
+          </param>
+        </templateparamlist>
+        <type></type>
+        <definition>Brush::Program&lt; PType &gt;::requires</definition>
+        <argsstring>((P==PT::BinaryClassifier)||(P==PT::MulticlassClassifier)) TreeType predict_proba(const Dataset &amp;d)</argsstring>
+        <name>requires</name>
+        <param>
+          <type>(P==PT::BinaryClassifier)||(P==PT::MulticlassClassifier)</type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/runner/work/brush/brush/src/program/program.h" line="163" column="9" bodyfile="/home/runner/work/brush/brush/src/program/program.h" bodystart="163" bodyend="167"/>
+      </memberdef>
+      <memberdef kind="function" id="db/d88/structBrush_1_1Program_1a4af75a668804744f414cb166d29a3059" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="db/d88/structBrush_1_1Program" kindref="compound">Program</ref>&lt; PType &gt; &amp;</type>
+        <definition>Program&lt;PType&gt;&amp; Brush::Program&lt; PType &gt;::fit</definition>
+        <argsstring>(const Ref&lt; const ArrayXXf &gt; &amp;X, const Ref&lt; const ArrayXf &gt; &amp;y)</argsstring>
+        <name>fit</name>
+        <param>
+          <type>const Ref&lt; const ArrayXXf &gt; &amp;</type>
+          <declname>X</declname>
+        </param>
+        <param>
+          <type>const Ref&lt; const ArrayXf &gt; &amp;</type>
+          <declname>y</declname>
+        </param>
+        <briefdescription>
+<para>Convenience function to call fit directly from X,y data. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>X</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>: Input features </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>y</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>: Labels </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>: reference to program </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/runner/work/brush/brush/src/program/program.h" line="173" column="13" bodyfile="/home/runner/work/brush/brush/src/program/program.h" bodystart="173" bodyend="177"/>
+        <references refid="db/d88/structBrush_1_1Program_1aa2a1b3dbc41da0eebb3681b2bcdc6969" compoundref="d1/dea/program_8h" startline="94" endline="101">Brush::Program&lt; PType &gt;::fit</references>
+      </memberdef>
+      <memberdef kind="function" id="db/d88/structBrush_1_1Program_1a59371dd699ddbb0bdb3b27237cb40e76" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="db/d88/structBrush_1_1Program_1a9c1ae84b6c475643e7adcd36f1bf0341" kindref="member">RetType</ref></type>
+        <definition>RetType Brush::Program&lt; PType &gt;::predict</definition>
+        <argsstring>(const Ref&lt; const ArrayXXf &gt; &amp;X)</argsstring>
+        <name>predict</name>
+        <param>
+          <type>const Ref&lt; const ArrayXXf &gt; &amp;</type>
+          <declname>X</declname>
+        </param>
+        <briefdescription>
+<para>Convenience function to call predict directly from X data. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>X</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>: Input features </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>: predictions </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/runner/work/brush/brush/src/program/program.h" line="182" column="13" bodyfile="/home/runner/work/brush/brush/src/program/program.h" bodystart="182" bodyend="186"/>
+        <references refid="db/d88/structBrush_1_1Program_1a0dafcc2656df58585dc3d29b6e50dd1e">Brush::Program&lt; PType &gt;::predict</references>
+      </memberdef>
+      <memberdef kind="function" id="db/d88/structBrush_1_1Program_1a9c16ec636d25a5c3156b7d6094078af2" prot="public" static="no" const="yes" explicit="no" inline="yes" refqual="lvalue" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type><ref refid="dc/d5c/namespaceBrush_1ae591329af27c88b714d0f92b86276366" kindref="member">PT</ref></type>
+            <declname>P</declname>
+            <defname>P</defname>
+            <defval>PType</defval>
+          </param>
+        </templateparamlist>
+        <type></type>
+        <definition>Brush::Program&lt; PType &gt;::requires</definition>
+        <argsstring>((P==PT::BinaryClassifier)||(P==PT::MulticlassClassifier)) TreeType predict_proba(const Ref&lt; const ArrayXXf &gt; &amp;X)</argsstring>
+        <name>requires</name>
+        <param>
+          <type>(P==PT::BinaryClassifier)||(P==PT::MulticlassClassifier)</type>
+        </param>
+        <briefdescription>
+<para>Predict probabilities from X. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>Requires a BinaryClassifier or MulticlassClassifier.</para>
+<para><parameterlist kind="templateparam"><parameteritem>
+<parameternamelist>
+<parametername>P</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>parameter for type checking, typically left blank. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/runner/work/brush/brush/src/program/program.h" line="196" column="9" bodyfile="/home/runner/work/brush/brush/src/program/program.h" bodystart="196" bodyend="201"/>
+      </memberdef>
+      <memberdef kind="function" id="db/d88/structBrush_1_1Program_1a1cc0fd2af851933b54ef5fb6fb6c941b" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void Brush::Program&lt; PType &gt;::update_weights</definition>
+        <argsstring>(const Dataset &amp;d)</argsstring>
+        <name>update_weights</name>
+        <param>
+          <type>const <ref refid="d2/d36/classBrush_1_1Data_1_1Dataset" kindref="compound">Dataset</ref> &amp;</type>
+          <declname>d</declname>
+        </param>
+        <briefdescription>
+<para>Updates the program&apos;s weights using non-linear least squares. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>d</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the dataset </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/runner/work/brush/brush/src/program/program.h" line="208" column="10" bodyfile="/home/runner/work/brush/brush/src/program/program.h" bodystart="445" bodyend="452"/>
+        <referencedby refid="db/d88/structBrush_1_1Program_1aa2a1b3dbc41da0eebb3681b2bcdc6969" compoundref="d1/dea/program_8h" startline="94" endline="101">Brush::Program&lt; PType &gt;::fit</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="db/d88/structBrush_1_1Program_1a990bd3691f3b3e2b7ff479bcd4231479" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>int</type>
+        <definition>int Brush::Program&lt; PType &gt;::get_n_weights</definition>
+        <argsstring>() const</argsstring>
+        <name>get_n_weights</name>
+        <briefdescription>
+<para>returns the number of weights in the program. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/runner/work/brush/brush/src/program/program.h" line="211" column="9" bodyfile="/home/runner/work/brush/brush/src/program/program.h" bodystart="211" bodyend="222"/>
+        <references refid="db/d88/structBrush_1_1Program_1a7435fb84d7b056a108f142bb19956da5" compoundref="d1/dea/program_8h" startline="74">Brush::Program&lt; PType &gt;::Tree</references>
+        <referencedby refid="db/d88/structBrush_1_1Program_1a8bee1c866051b3e11c017cdf29b46eb7" compoundref="d1/dea/program_8h" startline="229" endline="243">Brush::Program&lt; PType &gt;::get_weights</referencedby>
+        <referencedby refid="db/d88/structBrush_1_1Program_1a5ba9c69ade043cacb917dfb654a57834" compoundref="d1/dea/program_8h" startline="251" endline="267">Brush::Program&lt; PType &gt;::set_weights</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="db/d88/structBrush_1_1Program_1a8bee1c866051b3e11c017cdf29b46eb7" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>ArrayXf</type>
+        <definition>ArrayXf Brush::Program&lt; PType &gt;::get_weights</definition>
+        <argsstring>()</argsstring>
+        <name>get_weights</name>
+        <briefdescription>
+<para>Get the weights of the tree as an array. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>ArrayXf of weights in the program, encoded in post-fix order. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/runner/work/brush/brush/src/program/program.h" line="229" column="13" bodyfile="/home/runner/work/brush/brush/src/program/program.h" bodystart="229" bodyend="243"/>
+        <references refid="db/d88/structBrush_1_1Program_1a990bd3691f3b3e2b7ff479bcd4231479" compoundref="d1/dea/program_8h" startline="211" endline="222">Brush::Program&lt; PType &gt;::get_n_weights</references>
+        <references refid="db/d88/structBrush_1_1Program_1a7435fb84d7b056a108f142bb19956da5" compoundref="d1/dea/program_8h" startline="74">Brush::Program&lt; PType &gt;::Tree</references>
+      </memberdef>
+      <memberdef kind="function" id="db/d88/structBrush_1_1Program_1a5ba9c69ade043cacb917dfb654a57834" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void Brush::Program&lt; PType &gt;::set_weights</definition>
+        <argsstring>(const ArrayXf &amp;weights)</argsstring>
+        <name>set_weights</name>
+        <param>
+          <type>const ArrayXf &amp;</type>
+          <declname>weights</declname>
+        </param>
+        <briefdescription>
+<para>Set the weights in the tree from an array of weights. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>weights</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>an array of weights. The number of the weights in the tree must match the length of <computeroutput>weights</computeroutput>. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/runner/work/brush/brush/src/program/program.h" line="251" column="10" bodyfile="/home/runner/work/brush/brush/src/program/program.h" bodystart="251" bodyend="267"/>
+        <references refid="db/d88/structBrush_1_1Program_1a990bd3691f3b3e2b7ff479bcd4231479" compoundref="d1/dea/program_8h" startline="211" endline="222">Brush::Program&lt; PType &gt;::get_n_weights</references>
+        <references refid="da/d41/error_8h_1aa4c550bcd71e4ec1c97b111e1360509a" compoundref="da/d41/error_8h" startline="24">HANDLE_ERROR_THROW</references>
+        <references refid="db/d88/structBrush_1_1Program_1a7435fb84d7b056a108f142bb19956da5" compoundref="d1/dea/program_8h" startline="74">Brush::Program&lt; PType &gt;::Tree</references>
+      </memberdef>
+      <memberdef kind="function" id="db/d88/structBrush_1_1Program_1a7ef9a37328467c60d86b78ebfd373810" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>string</type>
+        <definition>string Brush::Program&lt; PType &gt;::get_model</definition>
+        <argsstring>(string fmt=&quot;compact&quot;, bool pretty=false)</argsstring>
+        <name>get_model</name>
+        <param>
+          <type>string</type>
+          <declname>fmt</declname>
+          <defval>&quot;compact&quot;</defval>
+        </param>
+        <param>
+          <type>bool</type>
+          <declname>pretty</declname>
+          <defval>false</defval>
+        </param>
+        <briefdescription>
+<para>Get the model as a string. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>fmt</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>one of &quot;compact&quot;, &quot;tree&quot;, or &quot;dot&quot;. Default &quot;compact&quot;. <linebreak/>
+</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<itemizedlist>
+<listitem><para><emphasis>compact</emphasis> : the program as an equation.</para>
+</listitem><listitem><para><emphasis>tree</emphasis> : the program as a (small batch, artisinal) tree.</para>
+</listitem><listitem><para><emphasis>dot</emphasis> : the program in the dot language for downstream visualization.</para>
+</listitem></itemizedlist>
+</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>pretty</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>currently unused. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>string the model in string form. <linebreak/>
+ </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/runner/work/brush/brush/src/program/program.h" line="280" column="12" bodyfile="/home/runner/work/brush/brush/src/program/program.h" bodystart="280" bodyend="288"/>
+        <references refid="db/d88/structBrush_1_1Program_1a75df309b29521934822f8eced7be0418" compoundref="d1/dea/program_8h" startline="296" endline="411">Brush::Program&lt; PType &gt;::get_dot_model</references>
+        <references refid="db/d88/structBrush_1_1Program_1a7435fb84d7b056a108f142bb19956da5" compoundref="d1/dea/program_8h" startline="74">Brush::Program&lt; PType &gt;::Tree</references>
+      </memberdef>
+      <memberdef kind="function" id="db/d88/structBrush_1_1Program_1a75df309b29521934822f8eced7be0418" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>string</type>
+        <definition>string Brush::Program&lt; PType &gt;::get_dot_model</definition>
+        <argsstring>(string extras=&quot;&quot;)</argsstring>
+        <name>get_dot_model</name>
+        <param>
+          <type>string</type>
+          <declname>extras</declname>
+          <defval>&quot;&quot;</defval>
+        </param>
+        <briefdescription>
+<para>Get the model as a dot object. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>extras</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>extra code passed to the beginning of the dot code. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>string the model in dot language. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/runner/work/brush/brush/src/program/program.h" line="296" column="12" bodyfile="/home/runner/work/brush/brush/src/program/program.h" bodystart="296" bodyend="411"/>
+        <references refid="db/d88/structBrush_1_1Program_1a7e0a3172a2a4f19af7e6307711791ebb" compoundref="d1/dea/program_8h" startline="156">Brush::Program&lt; PType &gt;::out</references>
+        <references refid="db/d88/structBrush_1_1Program_1a7435fb84d7b056a108f142bb19956da5" compoundref="d1/dea/program_8h" startline="74">Brush::Program&lt; PType &gt;::Tree</references>
+        <referencedby refid="db/d88/structBrush_1_1Program_1a7ef9a37328467c60d86b78ebfd373810" compoundref="d1/dea/program_8h" startline="280" endline="288">Brush::Program&lt; PType &gt;::get_model</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="db/d88/structBrush_1_1Program_1a294cf928c4374ebf6fae5713f31f3c79" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="db/d88/structBrush_1_1Program" kindref="compound">Program</ref>&lt; PType &gt;</type>
+        <definition>Program&lt; PType &gt; Brush::Program&lt; PType &gt;::mutate</definition>
+        <argsstring>() const</argsstring>
+        <name>mutate</name>
+        <briefdescription>
+<para>convenience wrapper for :cpp:func:<computeroutput>variation:<ref refid="db/d88/structBrush_1_1Program_1a294cf928c4374ebf6fae5713f31f3c79" kindref="member">mutate()</ref></computeroutput> in <ref refid="d4/d1f/variation_8h" kindref="compound">variation.h</ref> </para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>a mutated version of this program </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/runner/work/brush/brush/src/program/program.h" line="418" column="13" bodyfile="/home/runner/work/brush/brush/src/program/program.h" bodystart="458" bodyend="461"/>
+        <references refid="d0/d24/namespacevariation_1abfa16e581c2548444df2bb4cbaa1b221" compoundref="d4/d1f/variation_8h" startline="100" endline="134">variation::mutate</references>
+      </memberdef>
+      <memberdef kind="function" id="db/d88/structBrush_1_1Program_1a73fe32f4ee17a89b1044ec83f1b11766" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="db/d88/structBrush_1_1Program" kindref="compound">Program</ref>&lt; PType &gt;</type>
+        <definition>Program&lt; PType &gt; Brush::Program&lt; PType &gt;::cross</definition>
+        <argsstring>(Program&lt; PType &gt; other) const</argsstring>
+        <name>cross</name>
+        <param>
+          <type><ref refid="db/d88/structBrush_1_1Program" kindref="compound">Program</ref>&lt; PType &gt;</type>
+          <declname>other</declname>
+        </param>
+        <briefdescription>
+<para>convenience wrapper for :cpp:func:<computeroutput>variation:cross</computeroutput> in <ref refid="d4/d1f/variation_8h" kindref="compound">variation.h</ref> </para>
+        </briefdescription>
+        <detaileddescription>
+<para>swaps subtrees between this and other (note the pass by copy)</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>other</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>another program to cross with this one. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>a mutated version of this and the other program </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/runner/work/brush/brush/src/program/program.h" line="426" column="13" bodyfile="/home/runner/work/brush/brush/src/program/program.h" bodystart="465" bodyend="468"/>
+        <references refid="d0/d24/namespacevariation_1a3a3e45e3cbe090c29a47b3e60fdd3dac" compoundref="d4/d1f/variation_8h" startline="142" endline="203">variation::cross</references>
+      </memberdef>
+      <memberdef kind="function" id="db/d88/structBrush_1_1Program_1ad30d126946a56dba56680f4f96cb3361" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>vector&lt; <ref refid="d1/d3a/structBrush_1_1Node" kindref="compound">Node</ref> &gt;</type>
+        <definition>vector&lt;Node&gt; Brush::Program&lt; PType &gt;::linearize</definition>
+        <argsstring>() const</argsstring>
+        <name>linearize</name>
+        <briefdescription>
+<para>turns program tree into a linear program. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>a vector of nodes encoding the program in reverse polish notation </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/runner/work/brush/brush/src/program/program.h" line="430" column="12" bodyfile="/home/runner/work/brush/brush/src/program/program.h" bodystart="430" bodyend="435"/>
+        <references refid="db/d88/structBrush_1_1Program_1a7435fb84d7b056a108f142bb19956da5" compoundref="d1/dea/program_8h" startline="74">Brush::Program&lt; PType &gt;::Tree</references>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+<para>An individual program, a.k.a. model. </para>
+    </briefdescription>
+    <detaileddescription>
+<para><parameterlist kind="templateparam"><parameteritem>
+<parameternamelist>
+<parametername>PType</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>one of the ProgramType enum values. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+    </detaileddescription>
+    <collaborationgraph>
+      <node id="1">
+        <label>Brush::Program&lt; PType &gt;</label>
+        <link refid="db/d88/structBrush_1_1Program"/>
+        <childnode refid="2" relation="usage">
+          <edgelabel>fitness</edgelabel>
+        </childnode>
+      </node>
+      <node id="3">
+        <label>std::vector&lt; float &gt;</label>
+      </node>
+      <node id="2">
+        <label>Brush::Fitness</label>
+        <link refid="d6/dd0/structBrush_1_1Fitness"/>
+        <childnode refid="3" relation="usage">
+          <edgelabel>values</edgelabel>
+        </childnode>
+      </node>
+    </collaborationgraph>
+    <location file="/home/runner/work/brush/brush/src/program/program.h" line="52" column="11" bodyfile="/home/runner/work/brush/brush/src/program/program.h" bodystart="53" bodyend="436"/>
+    <listofallmembers>
+      <member refid="db/d88/structBrush_1_1Program_1a6720dbe112394135b4237338eb7bd1ac" prot="public" virt="non-virtual"><scope>Brush::Program</scope><name>argmax</name></member>
+      <member refid="db/d88/structBrush_1_1Program_1a426d0241355efc01ed0bd933ab7d5b1e" prot="public" virt="non-virtual"><scope>Brush::Program</scope><name>argmax</name></member>
+      <member refid="db/d88/structBrush_1_1Program_1a35f07c2aac938fbba9d525885eb220f5" prot="public" virt="non-virtual"><scope>Brush::Program</scope><name>ArrayXb</name></member>
+      <member refid="db/d88/structBrush_1_1Program_1a2b6124d27bdeb7f0a8b5cf2508c9ae3e" prot="public" virt="non-virtual"><scope>Brush::Program</scope><name>ArrayXi</name></member>
+      <member refid="db/d88/structBrush_1_1Program_1af354ccdb9b9e119beae89f338b1a183a" prot="public" virt="non-virtual"><scope>Brush::Program</scope><name>begin</name></member>
+      <member refid="db/d88/structBrush_1_1Program_1a73fe32f4ee17a89b1044ec83f1b11766" prot="public" virt="non-virtual"><scope>Brush::Program</scope><name>cross</name></member>
+      <member refid="db/d88/structBrush_1_1Program_1aa2a1b3dbc41da0eebb3681b2bcdc6969" prot="public" virt="non-virtual"><scope>Brush::Program</scope><name>fit</name></member>
+      <member refid="db/d88/structBrush_1_1Program_1a4af75a668804744f414cb166d29a3059" prot="public" virt="non-virtual"><scope>Brush::Program</scope><name>fit</name></member>
+      <member refid="db/d88/structBrush_1_1Program_1aeee26a7a2bcb499acd96c366279429ad" prot="public" virt="non-virtual"><scope>Brush::Program</scope><name>fitness</name></member>
+      <member refid="db/d88/structBrush_1_1Program_1a75df309b29521934822f8eced7be0418" prot="public" virt="non-virtual"><scope>Brush::Program</scope><name>get_dot_model</name></member>
+      <member refid="db/d88/structBrush_1_1Program_1a7ef9a37328467c60d86b78ebfd373810" prot="public" virt="non-virtual"><scope>Brush::Program</scope><name>get_model</name></member>
+      <member refid="db/d88/structBrush_1_1Program_1a990bd3691f3b3e2b7ff479bcd4231479" prot="public" virt="non-virtual"><scope>Brush::Program</scope><name>get_n_weights</name></member>
+      <member refid="db/d88/structBrush_1_1Program_1a8bee1c866051b3e11c017cdf29b46eb7" prot="public" virt="non-virtual"><scope>Brush::Program</scope><name>get_weights</name></member>
+      <member refid="db/d88/structBrush_1_1Program_1a66e9a1ae33267ee5132ba3b3757b8a01" prot="public" virt="non-virtual"><scope>Brush::Program</scope><name>is_fitted_</name></member>
+      <member refid="db/d88/structBrush_1_1Program_1ad30d126946a56dba56680f4f96cb3361" prot="public" virt="non-virtual"><scope>Brush::Program</scope><name>linearize</name></member>
+      <member refid="db/d88/structBrush_1_1Program_1a294cf928c4374ebf6fae5713f31f3c79" prot="public" virt="non-virtual"><scope>Brush::Program</scope><name>mutate</name></member>
+      <member refid="db/d88/structBrush_1_1Program_1a7e0a3172a2a4f19af7e6307711791ebb" prot="public" virt="non-virtual"><scope>Brush::Program</scope><name>out</name></member>
+      <member refid="db/d88/structBrush_1_1Program_1a0dafcc2656df58585dc3d29b6e50dd1e" prot="public" virt="non-virtual"><scope>Brush::Program</scope><name>predict</name></member>
+      <member refid="db/d88/structBrush_1_1Program_1ace998af38f1b2542faa6d94c9fa1eaa6" prot="public" virt="non-virtual"><scope>Brush::Program</scope><name>predict</name></member>
+      <member refid="db/d88/structBrush_1_1Program_1abe17a66e4f4dce64dadc157f3031d178" prot="public" virt="non-virtual"><scope>Brush::Program</scope><name>predict</name></member>
+      <member refid="db/d88/structBrush_1_1Program_1a59371dd699ddbb0bdb3b27237cb40e76" prot="public" virt="non-virtual"><scope>Brush::Program</scope><name>predict</name></member>
+      <member refid="db/d88/structBrush_1_1Program_1a6a1237f15d7b9cc1e825e1a3213df58e" prot="public" virt="non-virtual"><scope>Brush::Program</scope><name>predict_with_weights</name></member>
+      <member refid="db/d88/structBrush_1_1Program_1a93735deb988101774e8e58c5402e1a21" prot="public" virt="non-virtual"><scope>Brush::Program</scope><name>predict_with_weights</name></member>
+      <member refid="db/d88/structBrush_1_1Program_1ab5df93b7b0bf914455ffeb5cc7574543" prot="public" virt="non-virtual"><scope>Brush::Program</scope><name>Program</name></member>
+      <member refid="db/d88/structBrush_1_1Program_1a00356ac7bbc5c1d8f70bc8d90f41d4ac" prot="public" virt="non-virtual"><scope>Brush::Program</scope><name>Program</name></member>
+      <member refid="db/d88/structBrush_1_1Program_1a695b4178894f8703f2b539cf3a51b098" prot="public" virt="non-virtual"><scope>Brush::Program</scope><name>program_type</name></member>
+      <member refid="db/d88/structBrush_1_1Program_1ac2d8422ec1bc02f89584178503647d8f" prot="public" virt="non-virtual"><scope>Brush::Program</scope><name>requires</name></member>
+      <member refid="db/d88/structBrush_1_1Program_1a9c16ec636d25a5c3156b7d6094078af2" prot="public" virt="non-virtual"><scope>Brush::Program</scope><name>requires</name></member>
+      <member refid="db/d88/structBrush_1_1Program_1a9c1ae84b6c475643e7adcd36f1bf0341" prot="public" virt="non-virtual"><scope>Brush::Program</scope><name>RetType</name></member>
+      <member refid="db/d88/structBrush_1_1Program_1a404b6411cca03f93896e4c81a8aa90cf" prot="public" virt="non-virtual"><scope>Brush::Program</scope><name>return</name></member>
+      <member refid="db/d88/structBrush_1_1Program_1aa24681261d191fdc486973820394d411" prot="public" virt="non-virtual"><scope>Brush::Program</scope><name>set_search_space</name></member>
+      <member refid="db/d88/structBrush_1_1Program_1a5ba9c69ade043cacb917dfb654a57834" prot="public" virt="non-virtual"><scope>Brush::Program</scope><name>set_weights</name></member>
+      <member refid="db/d88/structBrush_1_1Program_1a1910283c3cdd3adf53ae62def076396f" prot="public" virt="non-virtual"><scope>Brush::Program</scope><name>size</name></member>
+      <member refid="db/d88/structBrush_1_1Program_1a349a42d743b44ad4515bbeb9a93a95f1" prot="public" virt="non-virtual"><scope>Brush::Program</scope><name>SSref</name></member>
+      <member refid="db/d88/structBrush_1_1Program_1a7435fb84d7b056a108f142bb19956da5" prot="public" virt="non-virtual"><scope>Brush::Program</scope><name>Tree</name></member>
+      <member refid="db/d88/structBrush_1_1Program_1a54036fdabf4bb8d87e19c4c2f6b577a4" prot="public" virt="non-virtual"><scope>Brush::Program</scope><name>TreeType</name></member>
+      <member refid="db/d88/structBrush_1_1Program_1ab3adac9c92a44b15a924f4c3e727d659" prot="public" virt="non-virtual"><scope>Brush::Program</scope><name>TreeType</name></member>
+      <member refid="db/d88/structBrush_1_1Program_1a1cc0fd2af851933b54ef5fb6fb6c941b" prot="public" virt="non-virtual"><scope>Brush::Program</scope><name>update_weights</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

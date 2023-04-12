@@ -1,0 +1,580 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="d9/d49/types_8h" kind="file" language="C++">
+    <compoundname>types.h</compoundname>
+    <includes local="no">variant</includes>
+    <includes local="no">ceres/jet.h</includes>
+    <includes local="no">concepts</includes>
+    <includedby refid="d9/d40/bind__dataset_8cpp" local="yes">bind_dataset.cpp</includedby>
+    <includedby refid="d8/dc0/init_8h" local="yes">init.h</includedby>
+    <incdepgraph>
+      <node id="2">
+        <label>variant</label>
+      </node>
+      <node id="1">
+        <label>types.h</label>
+        <link refid="d9/d49/types_8h"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+      </node>
+      <node id="3">
+        <label>ceres/jet.h</label>
+      </node>
+      <node id="4">
+        <label>concepts</label>
+      </node>
+    </incdepgraph>
+    <invincdepgraph>
+      <node id="14">
+        <label>bind_programs.h</label>
+        <link refid="d6/d3f/bind__programs_8h"/>
+        <childnode refid="15" relation="include">
+        </childnode>
+      </node>
+      <node id="29">
+        <label>params.cpp</label>
+        <link refid="dc/d4d/params_8cpp"/>
+      </node>
+      <node id="18">
+        <label>tree_node.cpp</label>
+        <link refid="dd/d06/tree__node_8cpp"/>
+      </node>
+      <node id="27">
+        <label>params.h</label>
+        <link refid="da/d33/params_8h"/>
+        <childnode refid="28" relation="include">
+        </childnode>
+        <childnode refid="29" relation="include">
+        </childnode>
+        <childnode refid="13" relation="include">
+        </childnode>
+        <childnode refid="19" relation="include">
+        </childnode>
+      </node>
+      <node id="12">
+        <label>split.cpp</label>
+        <link refid="d4/d59/split_8cpp"/>
+      </node>
+      <node id="28">
+        <label>bind_params.cpp</label>
+        <link refid="da/dbf/bind__params_8cpp"/>
+      </node>
+      <node id="32">
+        <label>utils.cpp</label>
+        <link refid="de/d06/utils_8cpp"/>
+      </node>
+      <node id="16">
+        <label>bind_search_space.cpp</label>
+        <link refid="d0/d94/bind__search__space_8cpp"/>
+      </node>
+      <node id="25">
+        <label>timeseries.h</label>
+        <link refid="d9/df7/timeseries_8h"/>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="26" relation="include">
+        </childnode>
+      </node>
+      <node id="19">
+        <label>search_space.h</label>
+        <link refid="d9/d99/search__space_8h"/>
+        <childnode refid="16" relation="include">
+        </childnode>
+        <childnode refid="13" relation="include">
+        </childnode>
+        <childnode refid="17" relation="include">
+        </childnode>
+      </node>
+      <node id="30">
+        <label>rnd.h</label>
+        <link refid="d2/da9/rnd_8h"/>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="23" relation="include">
+        </childnode>
+        <childnode refid="19" relation="include">
+        </childnode>
+        <childnode refid="31" relation="include">
+        </childnode>
+        <childnode refid="32" relation="include">
+        </childnode>
+      </node>
+      <node id="31">
+        <label>rnd.cpp</label>
+        <link refid="de/d67/rnd_8cpp"/>
+      </node>
+      <node id="9">
+        <label>dispatch_table.cpp</label>
+        <link refid="df/d47/dispatch__table_8cpp"/>
+      </node>
+      <node id="17">
+        <label>search_space.cpp</label>
+        <link refid="da/d48/search__space_8cpp"/>
+      </node>
+      <node id="1">
+        <label>types.h</label>
+        <link refid="d9/d49/types_8h"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="3" relation="include">
+        </childnode>
+      </node>
+      <node id="15">
+        <label>bind_programs.cpp</label>
+        <link refid="d9/d26/bind__programs_8cpp"/>
+      </node>
+      <node id="2">
+        <label>bind_dataset.cpp</label>
+        <link refid="d9/d40/bind__dataset_8cpp"/>
+      </node>
+      <node id="4">
+        <label>data.h</label>
+        <link refid="d2/dbd/data_8h"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="5" relation="include">
+        </childnode>
+        <childnode refid="6" relation="include">
+        </childnode>
+        <childnode refid="8" relation="include">
+        </childnode>
+        <childnode refid="20" relation="include">
+        </childnode>
+        <childnode refid="21" relation="include">
+        </childnode>
+        <childnode refid="23" relation="include">
+        </childnode>
+        <childnode refid="10" relation="include">
+        </childnode>
+      </node>
+      <node id="26">
+        <label>timeseries.cpp</label>
+        <link refid="d2/dee/timeseries_8cpp"/>
+      </node>
+      <node id="3">
+        <label>init.h</label>
+        <link refid="d8/dc0/init_8h"/>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="6" relation="include">
+        </childnode>
+        <childnode refid="25" relation="include">
+        </childnode>
+        <childnode refid="27" relation="include">
+        </childnode>
+        <childnode refid="8" relation="include">
+        </childnode>
+        <childnode refid="20" relation="include">
+        </childnode>
+        <childnode refid="23" relation="include">
+        </childnode>
+        <childnode refid="11" relation="include">
+        </childnode>
+        <childnode refid="13" relation="include">
+        </childnode>
+        <childnode refid="10" relation="include">
+        </childnode>
+        <childnode refid="19" relation="include">
+        </childnode>
+        <childnode refid="30" relation="include">
+        </childnode>
+        <childnode refid="33" relation="include">
+        </childnode>
+      </node>
+      <node id="13">
+        <label>program.h</label>
+        <link refid="d1/dea/program_8h"/>
+        <childnode refid="14" relation="include">
+        </childnode>
+        <childnode refid="16" relation="include">
+        </childnode>
+        <childnode refid="17" relation="include">
+        </childnode>
+      </node>
+      <node id="6">
+        <label>io.h</label>
+        <link refid="dc/dac/io_8h"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="7" relation="include">
+        </childnode>
+      </node>
+      <node id="8">
+        <label>dispatch_table.h</label>
+        <link refid="df/d61/dispatch__table_8h"/>
+        <childnode refid="9" relation="include">
+        </childnode>
+        <childnode refid="10" relation="include">
+        </childnode>
+      </node>
+      <node id="7">
+        <label>io.cpp</label>
+        <link refid="d5/d5a/io_8cpp"/>
+      </node>
+      <node id="22">
+        <label>node.cpp</label>
+        <link refid="d7/d70/node_8cpp"/>
+      </node>
+      <node id="33">
+        <label>utils.h</label>
+        <link refid="d5/d60/utils_8h"/>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="7" relation="include">
+        </childnode>
+        <childnode refid="25" relation="include">
+        </childnode>
+        <childnode refid="20" relation="include">
+        </childnode>
+        <childnode refid="21" relation="include">
+        </childnode>
+        <childnode refid="23" relation="include">
+        </childnode>
+        <childnode refid="11" relation="include">
+        </childnode>
+        <childnode refid="13" relation="include">
+        </childnode>
+        <childnode refid="19" relation="include">
+        </childnode>
+        <childnode refid="32" relation="include">
+        </childnode>
+      </node>
+      <node id="21">
+        <label>node.h</label>
+        <link refid="d1/d77/node_8h"/>
+        <childnode refid="8" relation="include">
+        </childnode>
+        <childnode refid="20" relation="include">
+        </childnode>
+        <childnode refid="22" relation="include">
+        </childnode>
+        <childnode refid="13" relation="include">
+        </childnode>
+        <childnode refid="10" relation="include">
+        </childnode>
+        <childnode refid="19" relation="include">
+        </childnode>
+      </node>
+      <node id="5">
+        <label>data.cpp</label>
+        <link refid="da/dc9/data_8cpp"/>
+      </node>
+      <node id="24">
+        <label>nodetype.cpp</label>
+        <link refid="df/dfe/nodetype_8cpp"/>
+      </node>
+      <node id="20">
+        <label>functions.h</label>
+        <link refid="d8/d5c/functions_8h"/>
+        <childnode refid="13" relation="include">
+        </childnode>
+        <childnode refid="10" relation="include">
+        </childnode>
+      </node>
+      <node id="10">
+        <label>tree_node.h</label>
+        <link refid="d1/da6/tree__node_8h"/>
+        <childnode refid="11" relation="include">
+        </childnode>
+        <childnode refid="13" relation="include">
+        </childnode>
+        <childnode refid="18" relation="include">
+        </childnode>
+        <childnode refid="19" relation="include">
+        </childnode>
+      </node>
+      <node id="23">
+        <label>nodetype.h</label>
+        <link refid="de/d26/nodetype_8h"/>
+        <childnode refid="8" relation="include">
+        </childnode>
+        <childnode refid="20" relation="include">
+        </childnode>
+        <childnode refid="21" relation="include">
+        </childnode>
+        <childnode refid="24" relation="include">
+        </childnode>
+        <childnode refid="10" relation="include">
+        </childnode>
+        <childnode refid="19" relation="include">
+        </childnode>
+      </node>
+      <node id="11">
+        <label>operator.h</label>
+        <link refid="d7/de0/operator_8h"/>
+        <childnode refid="9" relation="include">
+        </childnode>
+        <childnode refid="12" relation="include">
+        </childnode>
+      </node>
+    </invincdepgraph>
+    <innerclass refid="db/d64/structBrush_1_1all__same" prot="public">Brush::all_same</innerclass>
+    <innerclass refid="d3/d0e/structBrush_1_1is__one__of" prot="public">Brush::is_one_of</innerclass>
+    <innerclass refid="da/d54/structBrush_1_1WeightType" prot="public">Brush::WeightType</innerclass>
+    <innerclass refid="d6/d53/structBrush_1_1DataEnumType_3_01DT_1_1ArrayB_01_4" prot="public">Brush::DataEnumType&lt; DT::ArrayB &gt;</innerclass>
+    <innerclass refid="db/d06/structBrush_1_1DataEnumType_3_01DT_1_1ArrayI_01_4" prot="public">Brush::DataEnumType&lt; DT::ArrayI &gt;</innerclass>
+    <innerclass refid="df/dc3/structBrush_1_1DataEnumType_3_01DT_1_1ArrayF_01_4" prot="public">Brush::DataEnumType&lt; DT::ArrayF &gt;</innerclass>
+    <innerclass refid="de/dd1/structBrush_1_1DataEnumType_3_01DT_1_1MatrixB_01_4" prot="public">Brush::DataEnumType&lt; DT::MatrixB &gt;</innerclass>
+    <innerclass refid="d6/de7/structBrush_1_1DataEnumType_3_01DT_1_1MatrixI_01_4" prot="public">Brush::DataEnumType&lt; DT::MatrixI &gt;</innerclass>
+    <innerclass refid="d9/df1/structBrush_1_1DataEnumType_3_01DT_1_1MatrixF_01_4" prot="public">Brush::DataEnumType&lt; DT::MatrixF &gt;</innerclass>
+    <innerclass refid="dc/dd6/structBrush_1_1DataEnumType_3_01DT_1_1TimeSeriesB_01_4" prot="public">Brush::DataEnumType&lt; DT::TimeSeriesB &gt;</innerclass>
+    <innerclass refid="dd/dff/structBrush_1_1DataEnumType_3_01DT_1_1TimeSeriesI_01_4" prot="public">Brush::DataEnumType&lt; DT::TimeSeriesI &gt;</innerclass>
+    <innerclass refid="d2/db8/structBrush_1_1DataEnumType_3_01DT_1_1TimeSeriesF_01_4" prot="public">Brush::DataEnumType&lt; DT::TimeSeriesF &gt;</innerclass>
+    <innerclass refid="d7/d9a/structBrush_1_1DataTypeEnum_3_01ArrayXb_01_4" prot="public">Brush::DataTypeEnum&lt; ArrayXb &gt;</innerclass>
+    <innerclass refid="d7/d35/structBrush_1_1DataTypeEnum_3_01ArrayXi_01_4" prot="public">Brush::DataTypeEnum&lt; ArrayXi &gt;</innerclass>
+    <innerclass refid="d9/d96/structBrush_1_1DataTypeEnum_3_01ArrayXf_01_4" prot="public">Brush::DataTypeEnum&lt; ArrayXf &gt;</innerclass>
+    <innerclass refid="d7/d17/structBrush_1_1DataTypeEnum_3_01ArrayXXb_01_4" prot="public">Brush::DataTypeEnum&lt; ArrayXXb &gt;</innerclass>
+    <innerclass refid="de/dcc/structBrush_1_1DataTypeEnum_3_01ArrayXXi_01_4" prot="public">Brush::DataTypeEnum&lt; ArrayXXi &gt;</innerclass>
+    <innerclass refid="df/dc9/structBrush_1_1DataTypeEnum_3_01ArrayXXf_01_4" prot="public">Brush::DataTypeEnum&lt; ArrayXXf &gt;</innerclass>
+    <innerclass refid="d6/d27/structBrush_1_1DataTypeEnum_3_01Data_1_1TimeSeriesb_01_4" prot="public">Brush::DataTypeEnum&lt; Data::TimeSeriesb &gt;</innerclass>
+    <innerclass refid="d5/d29/structBrush_1_1DataTypeEnum_3_01Data_1_1TimeSeriesi_01_4" prot="public">Brush::DataTypeEnum&lt; Data::TimeSeriesi &gt;</innerclass>
+    <innerclass refid="df/d37/structBrush_1_1DataTypeEnum_3_01Data_1_1TimeSeriesf_01_4" prot="public">Brush::DataTypeEnum&lt; Data::TimeSeriesf &gt;</innerclass>
+    <innerclass refid="d7/d76/structBrush_1_1DataTypeEnum_3_01ArrayXbJet_01_4" prot="public">Brush::DataTypeEnum&lt; ArrayXbJet &gt;</innerclass>
+    <innerclass refid="d4/dd1/structBrush_1_1DataTypeEnum_3_01ArrayXiJet_01_4" prot="public">Brush::DataTypeEnum&lt; ArrayXiJet &gt;</innerclass>
+    <innerclass refid="d4/d46/structBrush_1_1DataTypeEnum_3_01ArrayXfJet_01_4" prot="public">Brush::DataTypeEnum&lt; ArrayXfJet &gt;</innerclass>
+    <innerclass refid="da/d1f/structBrush_1_1DataTypeEnum_3_01ArrayXXbJet_01_4" prot="public">Brush::DataTypeEnum&lt; ArrayXXbJet &gt;</innerclass>
+    <innerclass refid="dc/d84/structBrush_1_1DataTypeEnum_3_01ArrayXXiJet_01_4" prot="public">Brush::DataTypeEnum&lt; ArrayXXiJet &gt;</innerclass>
+    <innerclass refid="d7/d70/structBrush_1_1DataTypeEnum_3_01ArrayXXfJet_01_4" prot="public">Brush::DataTypeEnum&lt; ArrayXXfJet &gt;</innerclass>
+    <innerclass refid="d6/d3c/structBrush_1_1DataTypeEnum_3_01Data_1_1TimeSeriesbJet_01_4" prot="public">Brush::DataTypeEnum&lt; Data::TimeSeriesbJet &gt;</innerclass>
+    <innerclass refid="da/d56/structBrush_1_1DataTypeEnum_3_01Data_1_1TimeSeriesiJet_01_4" prot="public">Brush::DataTypeEnum&lt; Data::TimeSeriesiJet &gt;</innerclass>
+    <innerclass refid="d1/d94/structBrush_1_1DataTypeEnum_3_01Data_1_1TimeSeriesfJet_01_4" prot="public">Brush::DataTypeEnum&lt; Data::TimeSeriesfJet &gt;</innerclass>
+    <innerclass refid="d6/dfa/structBrush_1_1is__std__array" prot="public">Brush::is_std_array</innerclass>
+    <innerclass refid="d4/df1/structBrush_1_1is__std__array_3_01std_1_1array_3_01V_00_01n_01_4_01_4" prot="public">Brush::is_std_array&lt; std::array&lt; V, n &gt; &gt;</innerclass>
+    <innerclass refid="df/d72/structBrush_1_1is__eigen__array" prot="public">Brush::is_eigen_array</innerclass>
+    <innerclass refid="d0/d4c/structBrush_1_1is__tuple" prot="public">Brush::is_tuple</innerclass>
+    <innerclass refid="df/d54/structBrush_1_1is__tuple_3_01std_1_1tuple_3_01T_8_8_8_01_4_01_4" prot="public">Brush::is_tuple&lt; std::tuple&lt; T... &gt; &gt;</innerclass>
+    <innernamespace refid="dc/d5c/namespaceBrush">Brush</innernamespace>
+    <innernamespace refid="d9/d1c/namespaceBrush_1_1Data">Brush::Data</innernamespace>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"><highlight class="comment">/*<sp/>Brush</highlight></codeline>
+<codeline lineno="2"><highlight class="comment"></highlight></codeline>
+<codeline lineno="3"><highlight class="comment">copyright<sp/>2020<sp/>William<sp/>La<sp/>Cava</highlight></codeline>
+<codeline lineno="4"><highlight class="comment">license:<sp/>GNU/GPL<sp/>v3</highlight></codeline>
+<codeline lineno="5"><highlight class="comment">*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="6"><highlight class="normal"></highlight><highlight class="preprocessor">#ifndef<sp/>TYPES_H</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="7"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>TYPES_H</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="8"><highlight class="normal"></highlight></codeline>
+<codeline lineno="9"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;variant&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="10"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;ceres/jet.h&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="11"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;concepts&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="12"><highlight class="normal"></highlight></codeline>
+<codeline lineno="13"><highlight class="normal"></highlight><highlight class="keyword">namespace<sp/></highlight><highlight class="normal"><ref refid="dc/d5c/namespaceBrush" kindref="compound">Brush</ref><sp/>{</highlight></codeline>
+<codeline lineno="14"><highlight class="normal"></highlight></codeline>
+<codeline lineno="18"><highlight class="keyword">template</highlight><highlight class="normal">&lt;</highlight><highlight class="keyword">typename</highlight><highlight class="normal"><sp/>First,<sp/></highlight><highlight class="keyword">typename</highlight><highlight class="normal"><sp/>...<sp/>Next&gt;</highlight></codeline>
+<codeline lineno="19" refid="db/d64/structBrush_1_1all__same" refkind="compound"><highlight class="normal"></highlight><highlight class="keyword">struct<sp/></highlight><highlight class="normal"><ref refid="db/d64/structBrush_1_1all__same" kindref="compound">all_same</ref>{</highlight></codeline>
+<codeline lineno="20" refid="db/d64/structBrush_1_1all__same_1a2451a4b50eda0715b566770d3b4dfb01" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/>constexpr<sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/><ref refid="db/d64/structBrush_1_1all__same_1a2451a4b50eda0715b566770d3b4dfb01" kindref="member">value</ref><sp/>{(std::is_same_v&lt;First,Next&gt;<sp/>&amp;&amp;<sp/>...)};</highlight></codeline>
+<codeline lineno="21"><highlight class="normal">};</highlight></codeline>
+<codeline lineno="22"><highlight class="normal"></highlight><highlight class="keyword">template</highlight><highlight class="normal">&lt;</highlight><highlight class="keyword">typename</highlight><highlight class="normal"><sp/>First,<sp/></highlight><highlight class="keyword">typename</highlight><highlight class="normal"><sp/>...<sp/>Next&gt;</highlight></codeline>
+<codeline lineno="23" refid="dc/d5c/namespaceBrush_1a96ba9dd2b16a0a3b8f63eeacf7f55a7c" refkind="member"><highlight class="normal"></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/>constexpr<sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/><ref refid="dc/d5c/namespaceBrush_1a96ba9dd2b16a0a3b8f63eeacf7f55a7c" kindref="member">all_same_v</ref><sp/>=<sp/><ref refid="db/d64/structBrush_1_1all__same" kindref="compound">all_same</ref>&lt;First,<sp/>Next...&gt;::value;</highlight></codeline>
+<codeline lineno="24"><highlight class="normal"></highlight></codeline>
+<codeline lineno="28"><highlight class="keyword">template</highlight><highlight class="normal">&lt;</highlight><highlight class="keyword">typename</highlight><highlight class="normal"><sp/>First,<sp/></highlight><highlight class="keyword">typename</highlight><highlight class="normal"><sp/>...<sp/>Next&gt;</highlight></codeline>
+<codeline lineno="29" refid="d3/d0e/structBrush_1_1is__one__of" refkind="compound"><highlight class="normal"></highlight><highlight class="keyword">struct<sp/></highlight><highlight class="normal"><ref refid="d3/d0e/structBrush_1_1is__one__of" kindref="compound">is_one_of</ref>{</highlight></codeline>
+<codeline lineno="30" refid="d3/d0e/structBrush_1_1is__one__of_1a15d14c2d78985dd8213f240862875846" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/>constexpr<sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/><ref refid="d3/d0e/structBrush_1_1is__one__of_1a15d14c2d78985dd8213f240862875846" kindref="member">value</ref><sp/>{(std::is_same_v&lt;First,Next&gt;<sp/>||<sp/>...)};</highlight></codeline>
+<codeline lineno="31"><highlight class="normal">};</highlight></codeline>
+<codeline lineno="32"><highlight class="normal"></highlight><highlight class="keyword">template</highlight><highlight class="normal">&lt;</highlight><highlight class="keyword">typename</highlight><highlight class="normal"><sp/>First,<sp/></highlight><highlight class="keyword">typename</highlight><highlight class="normal"><sp/>...<sp/>Next&gt;</highlight></codeline>
+<codeline lineno="33" refid="dc/d5c/namespaceBrush_1a7e323244b7b57c08d6816a009e74eec6" refkind="member"><highlight class="normal"></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/>constexpr<sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/><ref refid="dc/d5c/namespaceBrush_1a7e323244b7b57c08d6816a009e74eec6" kindref="member">is_one_of_v</ref><sp/>=<sp/><ref refid="d3/d0e/structBrush_1_1is__one__of" kindref="compound">is_one_of</ref>&lt;First,<sp/>Next...&gt;::value;</highlight></codeline>
+<codeline lineno="34"><highlight class="normal"></highlight><highlight class="comment">//<sp/>//<sp/>see<sp/>https://en.cppreference.com/w/cpp/concepts/same_as<sp/></highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="35"><highlight class="normal"></highlight><highlight class="keyword">template</highlight><highlight class="normal">&lt;</highlight><highlight class="keyword">typename</highlight><highlight class="normal"><sp/>T,<sp/></highlight><highlight class="keyword">typename</highlight><highlight class="normal"><sp/>...<sp/>U&gt;</highlight></codeline>
+<codeline lineno="36" refid="dc/d5c/namespaceBrush_1abbb90bb47436c84a0d3ddda9f3aef758" refkind="member"><highlight class="normal">concept<sp/><ref refid="dc/d5c/namespaceBrush_1abbb90bb47436c84a0d3ddda9f3aef758" kindref="member">IsAnyOf</ref><sp/>=<sp/>(std::same_as&lt;T,<sp/>U&gt;<sp/>||<sp/>...);</highlight></codeline>
+<codeline lineno="38"><highlight class="comment">//<sp/>Eigen<sp/>types</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="39" refid="dc/d5c/namespaceBrush_1a1c0079df772d6e050857327591514810" refkind="member"><highlight class="normal"></highlight><highlight class="keyword">typedef</highlight><highlight class="normal"><sp/>Eigen::Array&lt;bool,Eigen::Dynamic,1&gt;<sp/><ref refid="dc/d5c/namespaceBrush_1a1c0079df772d6e050857327591514810" kindref="member">ArrayXb</ref>;</highlight></codeline>
+<codeline lineno="40" refid="dc/d5c/namespaceBrush_1ac5cd76eed6ea70d1c8f429ee37ca9fc0" refkind="member"><highlight class="normal"></highlight><highlight class="keyword">typedef</highlight><highlight class="normal"><sp/>Eigen::Array&lt;int,Eigen::Dynamic,1&gt;<sp/><ref refid="dc/d5c/namespaceBrush_1ac5cd76eed6ea70d1c8f429ee37ca9fc0" kindref="member">ArrayXi</ref>;</highlight></codeline>
+<codeline lineno="41" refid="dc/d5c/namespaceBrush_1aa296f8bffc481f54826511e4c5172ff6" refkind="member"><highlight class="normal"></highlight><highlight class="keyword">typedef</highlight><highlight class="normal"><sp/>Eigen::Array&lt;bool,Eigen::Dynamic,Eigen::Dynamic&gt;<sp/><ref refid="dc/d5c/namespaceBrush_1aa296f8bffc481f54826511e4c5172ff6" kindref="member">ArrayXXb</ref>;</highlight></codeline>
+<codeline lineno="42" refid="dc/d5c/namespaceBrush_1a1ebf835d71baed4d5d616491364856ff" refkind="member"><highlight class="normal"></highlight><highlight class="keyword">typedef</highlight><highlight class="normal"><sp/>Eigen::Array&lt;int,Eigen::Dynamic,Eigen::Dynamic&gt;<sp/><ref refid="dc/d5c/namespaceBrush_1a1ebf835d71baed4d5d616491364856ff" kindref="member">ArrayXXi</ref>;</highlight></codeline>
+<codeline lineno="43"><highlight class="normal"></highlight><highlight class="comment">//<sp/>Ceres<sp/>types</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="44" refid="dc/d5c/namespaceBrush_1ae997c702078cc1c68f8c951c331fdf51" refkind="member"><highlight class="normal"></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/>constexpr<sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="dc/d5c/namespaceBrush_1ae997c702078cc1c68f8c951c331fdf51" kindref="member">stride</ref><sp/>=<sp/>8;</highlight></codeline>
+<codeline lineno="45" refid="dc/d5c/namespaceBrush_1afca2eb9cd1e30d788f324d15a9af500a" refkind="member"><highlight class="normal"></highlight><highlight class="keyword">typedef</highlight><highlight class="normal"><sp/>ceres::Jet&lt;float,<sp/>stride&gt;<sp/><ref refid="dc/d5c/namespaceBrush_1afca2eb9cd1e30d788f324d15a9af500a" kindref="member">fJet</ref>;</highlight></codeline>
+<codeline lineno="46" refid="dc/d5c/namespaceBrush_1a12cdc4558b7841338641fdc58bbda013" refkind="member"><highlight class="normal"></highlight><highlight class="keyword">typedef</highlight><highlight class="normal"><sp/>ceres::Jet&lt;int,<sp/>stride&gt;<sp/><ref refid="dc/d5c/namespaceBrush_1a12cdc4558b7841338641fdc58bbda013" kindref="member">iJet</ref>;</highlight></codeline>
+<codeline lineno="47" refid="dc/d5c/namespaceBrush_1a1dc15defd0ed08feac029e2844f7867e" refkind="member"><highlight class="normal"></highlight><highlight class="keyword">typedef</highlight><highlight class="normal"><sp/>ceres::Jet&lt;bool,<sp/>stride&gt;<sp/><ref refid="dc/d5c/namespaceBrush_1a1dc15defd0ed08feac029e2844f7867e" kindref="member">bJet</ref>;</highlight></codeline>
+<codeline lineno="48"><highlight class="normal"></highlight></codeline>
+<codeline lineno="49" refid="dc/d5c/namespaceBrush_1aa9f9c545473315b227a08920cf5882e4" refkind="member"><highlight class="normal"></highlight><highlight class="keyword">typedef</highlight><highlight class="normal"><sp/>Eigen::Array&lt;fJet,Eigen::Dynamic,1&gt;<sp/><ref refid="dc/d5c/namespaceBrush_1aa9f9c545473315b227a08920cf5882e4" kindref="member">ArrayXfJet</ref>;</highlight></codeline>
+<codeline lineno="50" refid="dc/d5c/namespaceBrush_1ad4d3c3e8d9e723792930ef23b3a1da6f" refkind="member"><highlight class="normal"></highlight><highlight class="keyword">typedef</highlight><highlight class="normal"><sp/>Eigen::Array&lt;iJet,Eigen::Dynamic,1&gt;<sp/><ref refid="dc/d5c/namespaceBrush_1ad4d3c3e8d9e723792930ef23b3a1da6f" kindref="member">ArrayXiJet</ref>;</highlight></codeline>
+<codeline lineno="51" refid="dc/d5c/namespaceBrush_1ac5d3cc055d05202b02d1c70993eb61b7" refkind="member"><highlight class="normal"></highlight><highlight class="keyword">typedef</highlight><highlight class="normal"><sp/>Eigen::Array&lt;bJet,Eigen::Dynamic,1&gt;<sp/><ref refid="dc/d5c/namespaceBrush_1ac5d3cc055d05202b02d1c70993eb61b7" kindref="member">ArrayXbJet</ref>;</highlight></codeline>
+<codeline lineno="52" refid="dc/d5c/namespaceBrush_1ac8f76bb8adc0e81c0e17a645a7447b64" refkind="member"><highlight class="normal"></highlight><highlight class="keyword">typedef</highlight><highlight class="normal"><sp/>Eigen::Array&lt;fJet,Eigen::Dynamic,Eigen::Dynamic&gt;<sp/><ref refid="dc/d5c/namespaceBrush_1ac8f76bb8adc0e81c0e17a645a7447b64" kindref="member">ArrayXXfJet</ref>;</highlight></codeline>
+<codeline lineno="53" refid="dc/d5c/namespaceBrush_1af5c48ba01828e9da34a2a539dd2e8a14" refkind="member"><highlight class="normal"></highlight><highlight class="keyword">typedef</highlight><highlight class="normal"><sp/>Eigen::Array&lt;iJet,Eigen::Dynamic,Eigen::Dynamic&gt;<sp/><ref refid="dc/d5c/namespaceBrush_1af5c48ba01828e9da34a2a539dd2e8a14" kindref="member">ArrayXXiJet</ref>;</highlight></codeline>
+<codeline lineno="54" refid="dc/d5c/namespaceBrush_1a1fa87bfd9d6d1e7705044eb5c431be7f" refkind="member"><highlight class="normal"></highlight><highlight class="keyword">typedef</highlight><highlight class="normal"><sp/>Eigen::Array&lt;bJet,Eigen::Dynamic,Eigen::Dynamic&gt;<sp/><ref refid="dc/d5c/namespaceBrush_1a1fa87bfd9d6d1e7705044eb5c431be7f" kindref="member">ArrayXXbJet</ref>;</highlight></codeline>
+<codeline lineno="55"><highlight class="normal"></highlight></codeline>
+<codeline lineno="58"><highlight class="keyword">template</highlight><highlight class="normal"><sp/>&lt;</highlight><highlight class="keyword">typename</highlight><highlight class="normal"><sp/>T&gt;</highlight></codeline>
+<codeline lineno="59" refid="da/d54/structBrush_1_1WeightType" refkind="compound"><highlight class="normal"></highlight><highlight class="keyword">struct<sp/></highlight><highlight class="normal"><ref refid="da/d54/structBrush_1_1WeightType" kindref="compound">WeightType</ref><sp/>{</highlight></codeline>
+<codeline lineno="60"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">typedef</highlight><highlight class="normal"><sp/>std::conditional_t&lt;</highlight></codeline>
+<codeline lineno="61"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>is_one_of_v&lt;typename<sp/>T::Scalar,<sp/>fJet,<sp/>iJet,<sp/>bJet&gt;,</highlight></codeline>
+<codeline lineno="62"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="dc/d5c/namespaceBrush_1afca2eb9cd1e30d788f324d15a9af500a" kindref="member">fJet</ref>,<sp/></highlight></codeline>
+<codeline lineno="63"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">float</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="64" refid="da/d54/structBrush_1_1WeightType_1a40f52b2a8e4a4371254dc7545cc1a1af" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>&gt;<sp/><ref refid="da/d54/structBrush_1_1WeightType_1a40f52b2a8e4a4371254dc7545cc1a1af" kindref="member">type</ref>;<sp/></highlight></codeline>
+<codeline lineno="65"><highlight class="normal">};</highlight></codeline>
+<codeline lineno="66"><highlight class="normal"></highlight><highlight class="keyword">template</highlight><highlight class="normal">&lt;</highlight><highlight class="keyword">typename</highlight><highlight class="normal"><sp/>T&gt;<sp/></highlight></codeline>
+<codeline lineno="67" refid="dc/d5c/namespaceBrush_1a6ef1576bfd7316c401c4d5e68b2f9316" refkind="member"><highlight class="normal"></highlight><highlight class="keyword">using</highlight><highlight class="normal"><sp/><ref refid="dc/d5c/namespaceBrush_1a6ef1576bfd7316c401c4d5e68b2f9316" kindref="member">WeightType_t</ref><sp/>=<sp/></highlight><highlight class="keyword">typename</highlight><highlight class="normal"><sp/><ref refid="da/d54/structBrush_1_1WeightType_1a40f52b2a8e4a4371254dc7545cc1a1af" kindref="member">WeightType&lt;T&gt;::type</ref>;</highlight></codeline>
+<codeline lineno="69"><highlight class="comment">//<sp/>Program<sp/></highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="70" refid="dc/d5c/namespaceBrush_1ae591329af27c88b714d0f92b86276366" refkind="member"><highlight class="normal"></highlight><highlight class="keyword">enum<sp/>class</highlight><highlight class="normal"><sp/><ref refid="dc/d5c/namespaceBrush_1ae591329af27c88b714d0f92b86276366" kindref="member">ProgramType</ref><sp/>:<sp/>uint32_t<sp/>{</highlight></codeline>
+<codeline lineno="71"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="dc/d5c/namespaceBrush_1ae591329af27c88b714d0f92b86276366abe2f9eac301f8c5b7acffd6b3c458faa" kindref="member">Regressor</ref>,</highlight></codeline>
+<codeline lineno="72"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="dc/d5c/namespaceBrush_1ae591329af27c88b714d0f92b86276366a3cdc33a35d0e4f3b9bae953babd8f9b4" kindref="member">BinaryClassifier</ref>,</highlight></codeline>
+<codeline lineno="73"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="dc/d5c/namespaceBrush_1ae591329af27c88b714d0f92b86276366ac62539fc5a23115fca906befbd511c0a" kindref="member">MulticlassClassifier</ref>,</highlight></codeline>
+<codeline lineno="74"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="dc/d5c/namespaceBrush_1ae591329af27c88b714d0f92b86276366aca702b6b08355f71cf4b1a17a8e16b8b" kindref="member">Representer</ref></highlight></codeline>
+<codeline lineno="75"><highlight class="normal">};</highlight></codeline>
+<codeline lineno="76"><highlight class="normal"></highlight><highlight class="keyword">using</highlight><highlight class="normal"><sp/><ref refid="dc/d5c/namespaceBrush_1ae46187cf60951af470ada69728a8fabc" kindref="member">PT</ref><sp/>=<sp/><ref refid="dc/d5c/namespaceBrush_1ae591329af27c88b714d0f92b86276366" kindref="member">ProgramType</ref>;</highlight></codeline>
+<codeline lineno="77"><highlight class="normal"></highlight><highlight class="keyword">template</highlight><highlight class="normal">&lt;PT<sp/>T&gt;<sp/></highlight><highlight class="keyword">struct<sp/></highlight><highlight class="normal">Program;</highlight></codeline>
+<codeline lineno="78" refid="dc/d5c/namespaceBrush_1acf6a63881021ff8db344de980b599720" refkind="member"><highlight class="normal"></highlight><highlight class="keyword">typedef</highlight><highlight class="normal"><sp/><ref refid="db/d88/structBrush_1_1Program" kindref="compound">Program&lt;PT::Regressor&gt;</ref><sp/><ref refid="dc/d5c/namespaceBrush_1acf6a63881021ff8db344de980b599720" kindref="member">RegressorProgram</ref>;</highlight></codeline>
+<codeline lineno="79" refid="dc/d5c/namespaceBrush_1a217def005bc371ea274945e0db65e757" refkind="member"><highlight class="normal"></highlight><highlight class="keyword">typedef</highlight><highlight class="normal"><sp/><ref refid="db/d88/structBrush_1_1Program" kindref="compound">Program&lt;PT::BinaryClassifier&gt;</ref><sp/><ref refid="dc/d5c/namespaceBrush_1a217def005bc371ea274945e0db65e757" kindref="member">ClassifierProgram</ref>;</highlight></codeline>
+<codeline lineno="80" refid="dc/d5c/namespaceBrush_1af7783e75e847f650db4e32882f9dea29" refkind="member"><highlight class="normal"></highlight><highlight class="keyword">typedef</highlight><highlight class="normal"><sp/><ref refid="db/d88/structBrush_1_1Program" kindref="compound">Program&lt;PT::MulticlassClassifier&gt;</ref><sp/><ref refid="dc/d5c/namespaceBrush_1af7783e75e847f650db4e32882f9dea29" kindref="member">MulticlassClassifierProgram</ref>;</highlight></codeline>
+<codeline lineno="81" refid="dc/d5c/namespaceBrush_1a0df1acf4afe5f9d3ab91be448c3b2a31" refkind="member"><highlight class="normal"></highlight><highlight class="keyword">typedef</highlight><highlight class="normal"><sp/><ref refid="db/d88/structBrush_1_1Program" kindref="compound">Program&lt;PT::Representer&gt;</ref><sp/><ref refid="dc/d5c/namespaceBrush_1a0df1acf4afe5f9d3ab91be448c3b2a31" kindref="member">RepresenterProgram</ref>;</highlight></codeline>
+<codeline lineno="82"><highlight class="normal"></highlight></codeline>
+<codeline lineno="83"><highlight class="normal"></highlight></codeline>
+<codeline lineno="85"><highlight class="comment">//<sp/>Data<sp/></highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="86"><highlight class="normal"></highlight><highlight class="keyword">namespace<sp/></highlight><highlight class="normal">Data{</highlight></codeline>
+<codeline lineno="87"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">template</highlight><highlight class="normal">&lt;</highlight><highlight class="keyword">class</highlight><highlight class="normal"><sp/>T&gt;<sp/></highlight><highlight class="keyword">struct<sp/></highlight><highlight class="normal">TimeSeries;</highlight></codeline>
+<codeline lineno="92" refid="d9/d1c/namespaceBrush_1_1Data_1a31f33981b7b5a0fd9f735aecac86bdf9" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">typedef</highlight><highlight class="normal"><sp/><ref refid="d7/d56/structBrush_1_1Data_1_1TimeSeries" kindref="compound">TimeSeries&lt;bool&gt;</ref><sp/><ref refid="d9/d1c/namespaceBrush_1_1Data_1a31f33981b7b5a0fd9f735aecac86bdf9" kindref="member">TimeSeriesb</ref>;</highlight></codeline>
+<codeline lineno="93" refid="d9/d1c/namespaceBrush_1_1Data_1af3754cc76393d77d2e246a50cf26789b" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">typedef</highlight><highlight class="normal"><sp/><ref refid="d7/d56/structBrush_1_1Data_1_1TimeSeries" kindref="compound">TimeSeries&lt;int&gt;</ref><sp/><ref refid="d9/d1c/namespaceBrush_1_1Data_1af3754cc76393d77d2e246a50cf26789b" kindref="member">TimeSeriesi</ref>;</highlight></codeline>
+<codeline lineno="94" refid="d9/d1c/namespaceBrush_1_1Data_1a66dd2004d1ee46aa2b08a5b2ff462d29" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">typedef</highlight><highlight class="normal"><sp/><ref refid="d7/d56/structBrush_1_1Data_1_1TimeSeries" kindref="compound">TimeSeries&lt;float&gt;</ref><sp/><ref refid="d9/d1c/namespaceBrush_1_1Data_1a66dd2004d1ee46aa2b08a5b2ff462d29" kindref="member">TimeSeriesf</ref>;</highlight></codeline>
+<codeline lineno="95" refid="d9/d1c/namespaceBrush_1_1Data_1a8750de9f6997ddb7e3d08163690692e5" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">typedef</highlight><highlight class="normal"><sp/><ref refid="d7/d56/structBrush_1_1Data_1_1TimeSeries" kindref="compound">TimeSeries&lt;bJet&gt;</ref><sp/><ref refid="d9/d1c/namespaceBrush_1_1Data_1a8750de9f6997ddb7e3d08163690692e5" kindref="member">TimeSeriesbJet</ref>;</highlight></codeline>
+<codeline lineno="96" refid="d9/d1c/namespaceBrush_1_1Data_1a23a3cfbe568e9bb38ff52aeae1e536eb" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">typedef</highlight><highlight class="normal"><sp/><ref refid="d7/d56/structBrush_1_1Data_1_1TimeSeries" kindref="compound">TimeSeries&lt;iJet&gt;</ref><sp/><ref refid="d9/d1c/namespaceBrush_1_1Data_1a23a3cfbe568e9bb38ff52aeae1e536eb" kindref="member">TimeSeriesiJet</ref>;</highlight></codeline>
+<codeline lineno="97" refid="d9/d1c/namespaceBrush_1_1Data_1a1e91de31054d32c664b20c9f9bf978d5" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">typedef</highlight><highlight class="normal"><sp/><ref refid="d7/d56/structBrush_1_1Data_1_1TimeSeries" kindref="compound">TimeSeries&lt;fJet&gt;</ref><sp/><ref refid="d9/d1c/namespaceBrush_1_1Data_1a1e91de31054d32c664b20c9f9bf978d5" kindref="member">TimeSeriesfJet</ref>;</highlight></codeline>
+<codeline lineno="98"><highlight class="normal"></highlight></codeline>
+<codeline lineno="101"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">typedef</highlight><highlight class="normal"><sp/>std::variant&lt;</highlight></codeline>
+<codeline lineno="102"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="dc/d5c/namespaceBrush_1a1c0079df772d6e050857327591514810" kindref="member">ArrayXb</ref>,</highlight></codeline>
+<codeline lineno="103"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="dc/d5c/namespaceBrush_1ac5cd76eed6ea70d1c8f429ee37ca9fc0" kindref="member">ArrayXi</ref>,</highlight></codeline>
+<codeline lineno="104"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>ArrayXf,</highlight></codeline>
+<codeline lineno="105"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="dc/d5c/namespaceBrush_1aa296f8bffc481f54826511e4c5172ff6" kindref="member">ArrayXXb</ref>,</highlight></codeline>
+<codeline lineno="106"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="dc/d5c/namespaceBrush_1a1ebf835d71baed4d5d616491364856ff" kindref="member">ArrayXXi</ref>,</highlight></codeline>
+<codeline lineno="107"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>ArrayXXf,</highlight></codeline>
+<codeline lineno="108"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="d9/d1c/namespaceBrush_1_1Data_1a31f33981b7b5a0fd9f735aecac86bdf9" kindref="member">TimeSeriesb</ref>,</highlight></codeline>
+<codeline lineno="109"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="d9/d1c/namespaceBrush_1_1Data_1af3754cc76393d77d2e246a50cf26789b" kindref="member">TimeSeriesi</ref>,</highlight></codeline>
+<codeline lineno="110"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="d9/d1c/namespaceBrush_1_1Data_1a66dd2004d1ee46aa2b08a5b2ff462d29" kindref="member">TimeSeriesf</ref>,</highlight></codeline>
+<codeline lineno="111"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Jet<sp/>types</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="112"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="dc/d5c/namespaceBrush_1ac5d3cc055d05202b02d1c70993eb61b7" kindref="member">ArrayXbJet</ref>,</highlight></codeline>
+<codeline lineno="113"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="dc/d5c/namespaceBrush_1ad4d3c3e8d9e723792930ef23b3a1da6f" kindref="member">ArrayXiJet</ref>,</highlight></codeline>
+<codeline lineno="114"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="dc/d5c/namespaceBrush_1aa9f9c545473315b227a08920cf5882e4" kindref="member">ArrayXfJet</ref>,</highlight></codeline>
+<codeline lineno="115"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="dc/d5c/namespaceBrush_1a1fa87bfd9d6d1e7705044eb5c431be7f" kindref="member">ArrayXXbJet</ref>,</highlight></codeline>
+<codeline lineno="116"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="dc/d5c/namespaceBrush_1af5c48ba01828e9da34a2a539dd2e8a14" kindref="member">ArrayXXiJet</ref>,</highlight></codeline>
+<codeline lineno="117"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="dc/d5c/namespaceBrush_1ac8f76bb8adc0e81c0e17a645a7447b64" kindref="member">ArrayXXfJet</ref>,</highlight></codeline>
+<codeline lineno="118"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="d9/d1c/namespaceBrush_1_1Data_1a8750de9f6997ddb7e3d08163690692e5" kindref="member">TimeSeriesbJet</ref>,</highlight></codeline>
+<codeline lineno="119"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="d9/d1c/namespaceBrush_1_1Data_1a23a3cfbe568e9bb38ff52aeae1e536eb" kindref="member">TimeSeriesiJet</ref>,</highlight></codeline>
+<codeline lineno="120"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="d7/d56/structBrush_1_1Data_1_1TimeSeries" kindref="compound">TimeSeriesfJet</ref></highlight></codeline>
+<codeline lineno="121"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>&gt;</highlight></codeline>
+<codeline lineno="122" refid="d9/d1c/namespaceBrush_1_1Data_1aeec1ea0d55dd44db207801471be4f09c" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="d9/d1c/namespaceBrush_1_1Data_1aeec1ea0d55dd44db207801471be4f09c" kindref="member">State</ref>;</highlight></codeline>
+<codeline lineno="123"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="125" refid="dc/d5c/namespaceBrush_1a3f2c9b744330ba4a561ac72f048a1a5f" refkind="member"><highlight class="keyword">enum<sp/>class</highlight><highlight class="normal"><sp/><ref refid="dc/d5c/namespaceBrush_1a3f2c9b744330ba4a561ac72f048a1a5f" kindref="member">DataType</ref><sp/>:<sp/>uint32_t<sp/>{</highlight></codeline>
+<codeline lineno="126"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="dc/d5c/namespaceBrush_1a3f2c9b744330ba4a561ac72f048a1a5fa3c119844524e715e16e6c9b36e6516f0" kindref="member">ArrayB</ref>,<sp/></highlight></codeline>
+<codeline lineno="127"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="dc/d5c/namespaceBrush_1a3f2c9b744330ba4a561ac72f048a1a5fa2374ac8b377f9b738831879110e0a42f" kindref="member">ArrayI</ref>,<sp/></highlight></codeline>
+<codeline lineno="128"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="dc/d5c/namespaceBrush_1a3f2c9b744330ba4a561ac72f048a1a5fa2edbf6aa916089ab4f236b106fe413f3" kindref="member">ArrayF</ref>,<sp/></highlight></codeline>
+<codeline lineno="129"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="dc/d5c/namespaceBrush_1a3f2c9b744330ba4a561ac72f048a1a5faff5fcdb084b02b3a04c8047ba23cc517" kindref="member">MatrixB</ref>,<sp/></highlight></codeline>
+<codeline lineno="130"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="dc/d5c/namespaceBrush_1a3f2c9b744330ba4a561ac72f048a1a5fa18f540d7c03f3e490d0b2a9cb73ff3f7" kindref="member">MatrixI</ref>,<sp/></highlight></codeline>
+<codeline lineno="131"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="dc/d5c/namespaceBrush_1a3f2c9b744330ba4a561ac72f048a1a5fa15a48b9e681bad477840a498c9b9ffea" kindref="member">MatrixF</ref>,<sp/></highlight></codeline>
+<codeline lineno="132"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="dc/d5c/namespaceBrush_1a3f2c9b744330ba4a561ac72f048a1a5fad2d25b8ef74c30d96415406364f58a4c" kindref="member">TimeSeriesB</ref>,<sp/></highlight></codeline>
+<codeline lineno="133"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="dc/d5c/namespaceBrush_1a3f2c9b744330ba4a561ac72f048a1a5fa543c0044cb299cbc0e6a2b5c98fab6f8" kindref="member">TimeSeriesI</ref>,</highlight></codeline>
+<codeline lineno="134"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="dc/d5c/namespaceBrush_1a3f2c9b744330ba4a561ac72f048a1a5fa8fecb1ed1259bf11d68a66a2a16e26ad" kindref="member">TimeSeriesF</ref>,</highlight></codeline>
+<codeline lineno="135"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="dc/d5c/namespaceBrush_1a3f2c9b744330ba4a561ac72f048a1a5fa4ead1826c774b1909147017aa9d40286" kindref="member">ArrayBJet</ref>,<sp/></highlight></codeline>
+<codeline lineno="136"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="dc/d5c/namespaceBrush_1a3f2c9b744330ba4a561ac72f048a1a5fab2f1351e0180bd77bfe5eb28c4f6eab6" kindref="member">ArrayIJet</ref>,<sp/></highlight></codeline>
+<codeline lineno="137"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="dc/d5c/namespaceBrush_1a3f2c9b744330ba4a561ac72f048a1a5fa88716bbde417bb51a103158f11db1bac" kindref="member">ArrayFJet</ref>,<sp/></highlight></codeline>
+<codeline lineno="138"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="dc/d5c/namespaceBrush_1a3f2c9b744330ba4a561ac72f048a1a5fafea6e13957d754d28035f576e0670bdc" kindref="member">MatrixBJet</ref>,<sp/></highlight></codeline>
+<codeline lineno="139"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="dc/d5c/namespaceBrush_1a3f2c9b744330ba4a561ac72f048a1a5faf9985f52f9f6adbd066e89601b227fee" kindref="member">MatrixIJet</ref>,<sp/></highlight></codeline>
+<codeline lineno="140"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="dc/d5c/namespaceBrush_1a3f2c9b744330ba4a561ac72f048a1a5fa4678785909f43dd51beca8de286db81e" kindref="member">MatrixFJet</ref>,<sp/></highlight></codeline>
+<codeline lineno="141"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="dc/d5c/namespaceBrush_1a3f2c9b744330ba4a561ac72f048a1a5fa0018198fc700c7f206291c36ba182f97" kindref="member">TimeSeriesBJet</ref>,<sp/></highlight></codeline>
+<codeline lineno="142"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="dc/d5c/namespaceBrush_1a3f2c9b744330ba4a561ac72f048a1a5fa84c4cfe69dd755bfa4e2ec5e105a7cb7" kindref="member">TimeSeriesIJet</ref>,</highlight></codeline>
+<codeline lineno="143"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="dc/d5c/namespaceBrush_1a3f2c9b744330ba4a561ac72f048a1a5fa3433784d0ec7d698c62a62a96b53d5ad" kindref="member">TimeSeriesFJet</ref></highlight></codeline>
+<codeline lineno="144"><highlight class="normal">};</highlight></codeline>
+<codeline lineno="145"><highlight class="normal"></highlight></codeline>
+<codeline lineno="146"><highlight class="normal"></highlight><highlight class="preprocessor">#ifndef<sp/>DOXYGEN_SKIP</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="147"><highlight class="normal"></highlight><highlight class="comment">//<sp/>map<sp/>DataType<sp/>values<sp/>to<sp/>JSON<sp/>as<sp/>strings</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="148"><highlight class="normal">NLOHMANN_JSON_SERIALIZE_ENUM(<sp/><ref refid="dc/d5c/namespaceBrush_1a3f2c9b744330ba4a561ac72f048a1a5f" kindref="member">DataType</ref>,<sp/>{</highlight></codeline>
+<codeline lineno="149"><highlight class="normal"><sp/><sp/><sp/><sp/>{<ref refid="dc/d5c/namespaceBrush_1a3f2c9b744330ba4a561ac72f048a1a5fa3c119844524e715e16e6c9b36e6516f0" kindref="member">DataType::ArrayB</ref>,<sp/></highlight><highlight class="stringliteral">&quot;ArrayB&quot;</highlight><highlight class="normal">},</highlight></codeline>
+<codeline lineno="150"><highlight class="normal"><sp/><sp/><sp/><sp/>{<ref refid="dc/d5c/namespaceBrush_1a3f2c9b744330ba4a561ac72f048a1a5fa2374ac8b377f9b738831879110e0a42f" kindref="member">DataType::ArrayI</ref>,<sp/></highlight><highlight class="stringliteral">&quot;ArrayI&quot;</highlight><highlight class="normal">},</highlight></codeline>
+<codeline lineno="151"><highlight class="normal"><sp/><sp/><sp/><sp/>{<ref refid="dc/d5c/namespaceBrush_1a3f2c9b744330ba4a561ac72f048a1a5fa2edbf6aa916089ab4f236b106fe413f3" kindref="member">DataType::ArrayF</ref>,<sp/></highlight><highlight class="stringliteral">&quot;ArrayF&quot;</highlight><highlight class="normal">},</highlight></codeline>
+<codeline lineno="152"><highlight class="normal"><sp/><sp/><sp/><sp/>{<ref refid="dc/d5c/namespaceBrush_1a3f2c9b744330ba4a561ac72f048a1a5faff5fcdb084b02b3a04c8047ba23cc517" kindref="member">DataType::MatrixB</ref>,<sp/></highlight><highlight class="stringliteral">&quot;MatrixB&quot;</highlight><highlight class="normal">},</highlight></codeline>
+<codeline lineno="153"><highlight class="normal"><sp/><sp/><sp/><sp/>{<ref refid="dc/d5c/namespaceBrush_1a3f2c9b744330ba4a561ac72f048a1a5fa18f540d7c03f3e490d0b2a9cb73ff3f7" kindref="member">DataType::MatrixI</ref>,<sp/></highlight><highlight class="stringliteral">&quot;MatrixI&quot;</highlight><highlight class="normal">},</highlight></codeline>
+<codeline lineno="154"><highlight class="normal"><sp/><sp/><sp/><sp/>{<ref refid="dc/d5c/namespaceBrush_1a3f2c9b744330ba4a561ac72f048a1a5fa15a48b9e681bad477840a498c9b9ffea" kindref="member">DataType::MatrixF</ref>,<sp/></highlight><highlight class="stringliteral">&quot;MatrixF&quot;</highlight><highlight class="normal">},</highlight></codeline>
+<codeline lineno="155"><highlight class="normal"><sp/><sp/><sp/><sp/>{<ref refid="dc/d5c/namespaceBrush_1a3f2c9b744330ba4a561ac72f048a1a5fad2d25b8ef74c30d96415406364f58a4c" kindref="member">DataType::TimeSeriesB</ref>,<sp/></highlight><highlight class="stringliteral">&quot;TimeSeriesB&quot;</highlight><highlight class="normal">},</highlight></codeline>
+<codeline lineno="156"><highlight class="normal"><sp/><sp/><sp/><sp/>{<ref refid="dc/d5c/namespaceBrush_1a3f2c9b744330ba4a561ac72f048a1a5fa543c0044cb299cbc0e6a2b5c98fab6f8" kindref="member">DataType::TimeSeriesI</ref>,</highlight><highlight class="stringliteral">&quot;TimeSeriesI&quot;</highlight><highlight class="normal">},</highlight></codeline>
+<codeline lineno="157"><highlight class="normal"><sp/><sp/><sp/><sp/>{<ref refid="dc/d5c/namespaceBrush_1a3f2c9b744330ba4a561ac72f048a1a5fa8fecb1ed1259bf11d68a66a2a16e26ad" kindref="member">DataType::TimeSeriesF</ref>,</highlight><highlight class="stringliteral">&quot;TimeSeriesF&quot;</highlight><highlight class="normal">},</highlight></codeline>
+<codeline lineno="158"><highlight class="normal"><sp/><sp/><sp/><sp/>{<ref refid="dc/d5c/namespaceBrush_1a3f2c9b744330ba4a561ac72f048a1a5fa4ead1826c774b1909147017aa9d40286" kindref="member">DataType::ArrayBJet</ref>,<sp/></highlight><highlight class="stringliteral">&quot;ArrayBJet&quot;</highlight><highlight class="normal">},</highlight></codeline>
+<codeline lineno="159"><highlight class="normal"><sp/><sp/><sp/><sp/>{<ref refid="dc/d5c/namespaceBrush_1a3f2c9b744330ba4a561ac72f048a1a5fab2f1351e0180bd77bfe5eb28c4f6eab6" kindref="member">DataType::ArrayIJet</ref>,<sp/></highlight><highlight class="stringliteral">&quot;ArrayIJet&quot;</highlight><highlight class="normal">},</highlight></codeline>
+<codeline lineno="160"><highlight class="normal"><sp/><sp/><sp/><sp/>{<ref refid="dc/d5c/namespaceBrush_1a3f2c9b744330ba4a561ac72f048a1a5fa88716bbde417bb51a103158f11db1bac" kindref="member">DataType::ArrayFJet</ref>,<sp/></highlight><highlight class="stringliteral">&quot;ArrayFJet&quot;</highlight><highlight class="normal">},</highlight></codeline>
+<codeline lineno="161"><highlight class="normal"><sp/><sp/><sp/><sp/>{<ref refid="dc/d5c/namespaceBrush_1a3f2c9b744330ba4a561ac72f048a1a5fafea6e13957d754d28035f576e0670bdc" kindref="member">DataType::MatrixBJet</ref>,<sp/></highlight><highlight class="stringliteral">&quot;MatrixBJet&quot;</highlight><highlight class="normal">},</highlight></codeline>
+<codeline lineno="162"><highlight class="normal"><sp/><sp/><sp/><sp/>{<ref refid="dc/d5c/namespaceBrush_1a3f2c9b744330ba4a561ac72f048a1a5faf9985f52f9f6adbd066e89601b227fee" kindref="member">DataType::MatrixIJet</ref>,<sp/></highlight><highlight class="stringliteral">&quot;MatrixIJet&quot;</highlight><highlight class="normal">},</highlight></codeline>
+<codeline lineno="163"><highlight class="normal"><sp/><sp/><sp/><sp/>{<ref refid="dc/d5c/namespaceBrush_1a3f2c9b744330ba4a561ac72f048a1a5fa4678785909f43dd51beca8de286db81e" kindref="member">DataType::MatrixFJet</ref>,<sp/></highlight><highlight class="stringliteral">&quot;MatrixFJet&quot;</highlight><highlight class="normal">},</highlight></codeline>
+<codeline lineno="164"><highlight class="normal"><sp/><sp/><sp/><sp/>{<ref refid="dc/d5c/namespaceBrush_1a3f2c9b744330ba4a561ac72f048a1a5fa0018198fc700c7f206291c36ba182f97" kindref="member">DataType::TimeSeriesBJet</ref>,<sp/></highlight><highlight class="stringliteral">&quot;TimeSeriesBJet&quot;</highlight><highlight class="normal">},</highlight></codeline>
+<codeline lineno="165"><highlight class="normal"><sp/><sp/><sp/><sp/>{<ref refid="dc/d5c/namespaceBrush_1a3f2c9b744330ba4a561ac72f048a1a5fa84c4cfe69dd755bfa4e2ec5e105a7cb7" kindref="member">DataType::TimeSeriesIJet</ref>,</highlight><highlight class="stringliteral">&quot;TimeSeriesIJet&quot;</highlight><highlight class="normal">},</highlight></codeline>
+<codeline lineno="166"><highlight class="normal"><sp/><sp/><sp/><sp/>{<ref refid="dc/d5c/namespaceBrush_1a3f2c9b744330ba4a561ac72f048a1a5fa3433784d0ec7d698c62a62a96b53d5ad" kindref="member">DataType::TimeSeriesFJet</ref>,<sp/></highlight><highlight class="stringliteral">&quot;TimeSeriesFJet&quot;</highlight><highlight class="normal">},</highlight></codeline>
+<codeline lineno="167"><highlight class="normal">})</highlight></codeline>
+<codeline lineno="168"><highlight class="normal">#endif</highlight></codeline>
+<codeline lineno="169"><highlight class="normal"></highlight></codeline>
+<codeline lineno="170" refid="dc/d5c/namespaceBrush_1a576773e3747961bbf095c82b9e13e64f" refkind="member"><highlight class="normal"></highlight><highlight class="keyword">using</highlight><highlight class="normal"><sp/><ref refid="dc/d5c/namespaceBrush_1a3f2c9b744330ba4a561ac72f048a1a5f" kindref="member">DT</ref><sp/>=<sp/><ref refid="dc/d5c/namespaceBrush_1a3f2c9b744330ba4a561ac72f048a1a5f" kindref="member">DataType</ref>;<sp/></highlight></codeline>
+<codeline lineno="171"><highlight class="normal"></highlight></codeline>
+<codeline lineno="172" refid="d8/d17/structBrush_1_1DataEnumType" refkind="compound"><highlight class="normal"></highlight><highlight class="keyword">template</highlight><highlight class="normal">&lt;DT<sp/>D&gt;<sp/></highlight><highlight class="keyword">struct<sp/></highlight><highlight class="normal"><ref refid="d8/d17/structBrush_1_1DataEnumType" kindref="compound">DataEnumType</ref>;<sp/></highlight></codeline>
+<codeline lineno="173" refid="d6/d53/structBrush_1_1DataEnumType_3_01DT_1_1ArrayB_01_4_1a2e0fe0c7622c8ad9895035fb89c0e53b" refkind="member"><highlight class="normal"></highlight><highlight class="keyword">template</highlight><highlight class="normal">&lt;&gt;<sp/></highlight><highlight class="keyword">struct<sp/></highlight><highlight class="normal"><ref refid="d8/d17/structBrush_1_1DataEnumType" kindref="compound">DataEnumType</ref>&lt;<ref refid="dc/d5c/namespaceBrush_1a3f2c9b744330ba4a561ac72f048a1a5f" kindref="member">DT</ref>::<ref refid="dc/d5c/namespaceBrush_1a3f2c9b744330ba4a561ac72f048a1a5fa3c119844524e715e16e6c9b36e6516f0" kindref="member">ArrayB</ref>&gt;{<sp/></highlight><highlight class="keyword">using</highlight><highlight class="normal"><sp/><ref refid="d6/d53/structBrush_1_1DataEnumType_3_01DT_1_1ArrayB_01_4_1a2e0fe0c7622c8ad9895035fb89c0e53b" kindref="member">type</ref><sp/>=<sp/><ref refid="dc/d5c/namespaceBrush_1a1c0079df772d6e050857327591514810" kindref="member">ArrayXb</ref>;<sp/>};</highlight></codeline>
+<codeline lineno="174" refid="db/d06/structBrush_1_1DataEnumType_3_01DT_1_1ArrayI_01_4_1a6e6ec8c9b9fafdfb63109c1a5c9fe012" refkind="member"><highlight class="normal"></highlight><highlight class="keyword">template</highlight><highlight class="normal">&lt;&gt;<sp/></highlight><highlight class="keyword">struct<sp/></highlight><highlight class="normal"><ref refid="d8/d17/structBrush_1_1DataEnumType" kindref="compound">DataEnumType</ref>&lt;<ref refid="dc/d5c/namespaceBrush_1a3f2c9b744330ba4a561ac72f048a1a5f" kindref="member">DT</ref>::<ref refid="dc/d5c/namespaceBrush_1a3f2c9b744330ba4a561ac72f048a1a5fa2374ac8b377f9b738831879110e0a42f" kindref="member">ArrayI</ref>&gt;{<sp/></highlight><highlight class="keyword">using</highlight><highlight class="normal"><sp/><ref refid="db/d06/structBrush_1_1DataEnumType_3_01DT_1_1ArrayI_01_4_1a6e6ec8c9b9fafdfb63109c1a5c9fe012" kindref="member">type</ref><sp/>=<sp/><ref refid="dc/d5c/namespaceBrush_1ac5cd76eed6ea70d1c8f429ee37ca9fc0" kindref="member">ArrayXi</ref>;<sp/>};</highlight></codeline>
+<codeline lineno="175" refid="df/dc3/structBrush_1_1DataEnumType_3_01DT_1_1ArrayF_01_4_1ac0521ea3233f494bb3b51211d396dbaf" refkind="member"><highlight class="normal"></highlight><highlight class="keyword">template</highlight><highlight class="normal">&lt;&gt;<sp/></highlight><highlight class="keyword">struct<sp/></highlight><highlight class="normal"><ref refid="d8/d17/structBrush_1_1DataEnumType" kindref="compound">DataEnumType</ref>&lt;<ref refid="dc/d5c/namespaceBrush_1a3f2c9b744330ba4a561ac72f048a1a5f" kindref="member">DT</ref>::<ref refid="dc/d5c/namespaceBrush_1a3f2c9b744330ba4a561ac72f048a1a5fa2edbf6aa916089ab4f236b106fe413f3" kindref="member">ArrayF</ref>&gt;{<sp/></highlight><highlight class="keyword">using</highlight><highlight class="normal"><sp/><ref refid="df/dc3/structBrush_1_1DataEnumType_3_01DT_1_1ArrayF_01_4_1ac0521ea3233f494bb3b51211d396dbaf" kindref="member">type</ref><sp/>=<sp/>ArrayXf;<sp/>};</highlight></codeline>
+<codeline lineno="176" refid="de/dd1/structBrush_1_1DataEnumType_3_01DT_1_1MatrixB_01_4_1a12b2801ebfbda0580a269a265fca7bfe" refkind="member"><highlight class="normal"></highlight><highlight class="keyword">template</highlight><highlight class="normal">&lt;&gt;<sp/></highlight><highlight class="keyword">struct<sp/></highlight><highlight class="normal"><ref refid="d8/d17/structBrush_1_1DataEnumType" kindref="compound">DataEnumType</ref>&lt;<ref refid="dc/d5c/namespaceBrush_1a3f2c9b744330ba4a561ac72f048a1a5f" kindref="member">DT</ref>::<ref refid="dc/d5c/namespaceBrush_1a3f2c9b744330ba4a561ac72f048a1a5faff5fcdb084b02b3a04c8047ba23cc517" kindref="member">MatrixB</ref>&gt;{<sp/></highlight><highlight class="keyword">using</highlight><highlight class="normal"><sp/><ref refid="de/dd1/structBrush_1_1DataEnumType_3_01DT_1_1MatrixB_01_4_1a12b2801ebfbda0580a269a265fca7bfe" kindref="member">type</ref><sp/>=<sp/><ref refid="dc/d5c/namespaceBrush_1aa296f8bffc481f54826511e4c5172ff6" kindref="member">ArrayXXb</ref>;<sp/>};</highlight></codeline>
+<codeline lineno="177" refid="d6/de7/structBrush_1_1DataEnumType_3_01DT_1_1MatrixI_01_4_1aaa00f8008f8ab1342bb67e807fcd5c53" refkind="member"><highlight class="normal"></highlight><highlight class="keyword">template</highlight><highlight class="normal">&lt;&gt;<sp/></highlight><highlight class="keyword">struct<sp/></highlight><highlight class="normal"><ref refid="d8/d17/structBrush_1_1DataEnumType" kindref="compound">DataEnumType</ref>&lt;<ref refid="dc/d5c/namespaceBrush_1a3f2c9b744330ba4a561ac72f048a1a5f" kindref="member">DT</ref>::<ref refid="dc/d5c/namespaceBrush_1a3f2c9b744330ba4a561ac72f048a1a5fa18f540d7c03f3e490d0b2a9cb73ff3f7" kindref="member">MatrixI</ref>&gt;{<sp/></highlight><highlight class="keyword">using</highlight><highlight class="normal"><sp/><ref refid="d6/de7/structBrush_1_1DataEnumType_3_01DT_1_1MatrixI_01_4_1aaa00f8008f8ab1342bb67e807fcd5c53" kindref="member">type</ref><sp/>=<sp/><ref refid="dc/d5c/namespaceBrush_1a1ebf835d71baed4d5d616491364856ff" kindref="member">ArrayXXi</ref>;<sp/>};</highlight></codeline>
+<codeline lineno="178" refid="d9/df1/structBrush_1_1DataEnumType_3_01DT_1_1MatrixF_01_4_1abdb0a15f9338882190f87b6b28429f33" refkind="member"><highlight class="normal"></highlight><highlight class="keyword">template</highlight><highlight class="normal">&lt;&gt;<sp/></highlight><highlight class="keyword">struct<sp/></highlight><highlight class="normal"><ref refid="d8/d17/structBrush_1_1DataEnumType" kindref="compound">DataEnumType</ref>&lt;<ref refid="dc/d5c/namespaceBrush_1a3f2c9b744330ba4a561ac72f048a1a5f" kindref="member">DT</ref>::<ref refid="dc/d5c/namespaceBrush_1a3f2c9b744330ba4a561ac72f048a1a5fa15a48b9e681bad477840a498c9b9ffea" kindref="member">MatrixF</ref>&gt;{<sp/></highlight><highlight class="keyword">using</highlight><highlight class="normal"><sp/><ref refid="d9/df1/structBrush_1_1DataEnumType_3_01DT_1_1MatrixF_01_4_1abdb0a15f9338882190f87b6b28429f33" kindref="member">type</ref><sp/>=<sp/>ArrayXXf;<sp/>};</highlight></codeline>
+<codeline lineno="179" refid="dc/dd6/structBrush_1_1DataEnumType_3_01DT_1_1TimeSeriesB_01_4_1a70f6787a7deeaabe744a3736e1ac052d" refkind="member"><highlight class="normal"></highlight><highlight class="keyword">template</highlight><highlight class="normal">&lt;&gt;<sp/></highlight><highlight class="keyword">struct<sp/></highlight><highlight class="normal"><ref refid="d8/d17/structBrush_1_1DataEnumType" kindref="compound">DataEnumType</ref>&lt;<ref refid="dc/d5c/namespaceBrush_1a3f2c9b744330ba4a561ac72f048a1a5f" kindref="member">DT</ref>::<ref refid="dc/d5c/namespaceBrush_1a3f2c9b744330ba4a561ac72f048a1a5fad2d25b8ef74c30d96415406364f58a4c" kindref="member">TimeSeriesB</ref>&gt;{<sp/></highlight><highlight class="keyword">using</highlight><highlight class="normal"><sp/><ref refid="d7/d56/structBrush_1_1Data_1_1TimeSeries" kindref="compound">type</ref><sp/>=<sp/><ref refid="d9/d1c/namespaceBrush_1_1Data_1a31f33981b7b5a0fd9f735aecac86bdf9" kindref="member">Data::TimeSeriesb</ref>;<sp/>};</highlight></codeline>
+<codeline lineno="180" refid="dd/dff/structBrush_1_1DataEnumType_3_01DT_1_1TimeSeriesI_01_4_1a84c70e073df5b664a1cdc8fd9e552043" refkind="member"><highlight class="normal"></highlight><highlight class="keyword">template</highlight><highlight class="normal">&lt;&gt;<sp/></highlight><highlight class="keyword">struct<sp/></highlight><highlight class="normal"><ref refid="d8/d17/structBrush_1_1DataEnumType" kindref="compound">DataEnumType</ref>&lt;<ref refid="dc/d5c/namespaceBrush_1a3f2c9b744330ba4a561ac72f048a1a5f" kindref="member">DT</ref>::<ref refid="dc/d5c/namespaceBrush_1a3f2c9b744330ba4a561ac72f048a1a5fa543c0044cb299cbc0e6a2b5c98fab6f8" kindref="member">TimeSeriesI</ref>&gt;{<sp/></highlight><highlight class="keyword">using</highlight><highlight class="normal"><sp/><ref refid="d7/d56/structBrush_1_1Data_1_1TimeSeries" kindref="compound">type</ref><sp/>=<sp/><ref refid="d9/d1c/namespaceBrush_1_1Data_1af3754cc76393d77d2e246a50cf26789b" kindref="member">Data::TimeSeriesi</ref>;<sp/>};<sp/></highlight></codeline>
+<codeline lineno="181" refid="d2/db8/structBrush_1_1DataEnumType_3_01DT_1_1TimeSeriesF_01_4_1a94ff02da076ace1114bae3c1f724cbe2" refkind="member"><highlight class="normal"></highlight><highlight class="keyword">template</highlight><highlight class="normal">&lt;&gt;<sp/></highlight><highlight class="keyword">struct<sp/></highlight><highlight class="normal"><ref refid="d8/d17/structBrush_1_1DataEnumType" kindref="compound">DataEnumType</ref>&lt;<ref refid="dc/d5c/namespaceBrush_1a3f2c9b744330ba4a561ac72f048a1a5f" kindref="member">DT</ref>::<ref refid="dc/d5c/namespaceBrush_1a3f2c9b744330ba4a561ac72f048a1a5fa8fecb1ed1259bf11d68a66a2a16e26ad" kindref="member">TimeSeriesF</ref>&gt;{<sp/></highlight><highlight class="keyword">using</highlight><highlight class="normal"><sp/><ref refid="d7/d56/structBrush_1_1Data_1_1TimeSeries" kindref="compound">type</ref><sp/>=<sp/><ref refid="d9/d1c/namespaceBrush_1_1Data_1a66dd2004d1ee46aa2b08a5b2ff462d29" kindref="member">Data::TimeSeriesf</ref>;<sp/>};</highlight></codeline>
+<codeline lineno="182"><highlight class="normal"></highlight></codeline>
+<codeline lineno="183" refid="df/d3e/structBrush_1_1DataTypeEnum" refkind="compound"><highlight class="normal"></highlight><highlight class="keyword">template</highlight><highlight class="normal">&lt;</highlight><highlight class="keyword">typename</highlight><highlight class="normal"><sp/>T&gt;<sp/></highlight><highlight class="keyword">struct<sp/></highlight><highlight class="normal"><ref refid="df/d3e/structBrush_1_1DataTypeEnum" kindref="compound">DataTypeEnum</ref>;</highlight></codeline>
+<codeline lineno="184" refid="d7/d9a/structBrush_1_1DataTypeEnum_3_01ArrayXb_01_4_1a14268054ae382fc1a2207c71270c2169" refkind="member"><highlight class="normal"></highlight><highlight class="keyword">template</highlight><highlight class="normal"><sp/>&lt;&gt;<sp/></highlight><highlight class="keyword">struct<sp/></highlight><highlight class="normal"><ref refid="df/d3e/structBrush_1_1DataTypeEnum" kindref="compound">DataTypeEnum</ref>&lt;<ref refid="dc/d5c/namespaceBrush_1a1c0079df772d6e050857327591514810" kindref="member">ArrayXb</ref>&gt;<sp/>{<sp/></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/>constexpr<sp/><ref refid="dc/d5c/namespaceBrush_1a3f2c9b744330ba4a561ac72f048a1a5f" kindref="member">DT</ref><sp/>value<sp/>=<sp/>DT::ArrayB;<sp/>};</highlight></codeline>
+<codeline lineno="185" refid="d7/d35/structBrush_1_1DataTypeEnum_3_01ArrayXi_01_4_1ac35096de8e73810e1d2c38be7857a791" refkind="member"><highlight class="normal"></highlight><highlight class="keyword">template</highlight><highlight class="normal"><sp/>&lt;&gt;<sp/></highlight><highlight class="keyword">struct<sp/></highlight><highlight class="normal"><ref refid="df/d3e/structBrush_1_1DataTypeEnum" kindref="compound">DataTypeEnum</ref>&lt;<ref refid="dc/d5c/namespaceBrush_1ac5cd76eed6ea70d1c8f429ee37ca9fc0" kindref="member">ArrayXi</ref>&gt;<sp/>{<sp/></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/>constexpr<sp/><ref refid="dc/d5c/namespaceBrush_1a3f2c9b744330ba4a561ac72f048a1a5f" kindref="member">DT</ref><sp/>value<sp/>=<sp/>DT::ArrayI;<sp/>};</highlight></codeline>
+<codeline lineno="186" refid="d9/d96/structBrush_1_1DataTypeEnum_3_01ArrayXf_01_4_1af11d0c6333dac56a1421e7bd43bd9261" refkind="member"><highlight class="normal"></highlight><highlight class="keyword">template</highlight><highlight class="normal"><sp/>&lt;&gt;<sp/></highlight><highlight class="keyword">struct<sp/></highlight><highlight class="normal"><ref refid="df/d3e/structBrush_1_1DataTypeEnum" kindref="compound">DataTypeEnum</ref>&lt;ArrayXf&gt;<sp/>{<sp/></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/>constexpr<sp/><ref refid="dc/d5c/namespaceBrush_1a3f2c9b744330ba4a561ac72f048a1a5f" kindref="member">DT</ref><sp/>value<sp/>=<sp/>DT::ArrayF;<sp/>};</highlight></codeline>
+<codeline lineno="187" refid="d7/d17/structBrush_1_1DataTypeEnum_3_01ArrayXXb_01_4_1adcad7c996a6795b86891371be2cc1e13" refkind="member"><highlight class="normal"></highlight><highlight class="keyword">template</highlight><highlight class="normal"><sp/>&lt;&gt;<sp/></highlight><highlight class="keyword">struct<sp/></highlight><highlight class="normal"><ref refid="df/d3e/structBrush_1_1DataTypeEnum" kindref="compound">DataTypeEnum</ref>&lt;<ref refid="dc/d5c/namespaceBrush_1aa296f8bffc481f54826511e4c5172ff6" kindref="member">ArrayXXb</ref>&gt;<sp/>{<sp/></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/>constexpr<sp/><ref refid="dc/d5c/namespaceBrush_1a3f2c9b744330ba4a561ac72f048a1a5f" kindref="member">DT</ref><sp/>value<sp/>=<sp/>DT::MatrixB;<sp/>};</highlight></codeline>
+<codeline lineno="188" refid="de/dcc/structBrush_1_1DataTypeEnum_3_01ArrayXXi_01_4_1a53ae4d2553542f3753ee2ecb86ef3c81" refkind="member"><highlight class="normal"></highlight><highlight class="keyword">template</highlight><highlight class="normal"><sp/>&lt;&gt;<sp/></highlight><highlight class="keyword">struct<sp/></highlight><highlight class="normal"><ref refid="df/d3e/structBrush_1_1DataTypeEnum" kindref="compound">DataTypeEnum</ref>&lt;<ref refid="dc/d5c/namespaceBrush_1a1ebf835d71baed4d5d616491364856ff" kindref="member">ArrayXXi</ref>&gt;<sp/>{<sp/></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/>constexpr<sp/><ref refid="dc/d5c/namespaceBrush_1a3f2c9b744330ba4a561ac72f048a1a5f" kindref="member">DT</ref><sp/>value<sp/>=<sp/>DT::MatrixI;<sp/>};</highlight></codeline>
+<codeline lineno="189" refid="df/dc9/structBrush_1_1DataTypeEnum_3_01ArrayXXf_01_4_1ac56d926946ffa130d0e04ef399536ce8" refkind="member"><highlight class="normal"></highlight><highlight class="keyword">template</highlight><highlight class="normal"><sp/>&lt;&gt;<sp/></highlight><highlight class="keyword">struct<sp/></highlight><highlight class="normal"><ref refid="df/d3e/structBrush_1_1DataTypeEnum" kindref="compound">DataTypeEnum</ref>&lt;ArrayXXf&gt;<sp/>{<sp/></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/>constexpr<sp/><ref refid="dc/d5c/namespaceBrush_1a3f2c9b744330ba4a561ac72f048a1a5f" kindref="member">DT</ref><sp/>value<sp/>=<sp/>DT::MatrixF;<sp/>};</highlight></codeline>
+<codeline lineno="190" refid="d6/d27/structBrush_1_1DataTypeEnum_3_01Data_1_1TimeSeriesb_01_4_1a716fa3038fb40256f1f25a47971622d8" refkind="member"><highlight class="normal"></highlight><highlight class="keyword">template</highlight><highlight class="normal"><sp/>&lt;&gt;<sp/></highlight><highlight class="keyword">struct<sp/></highlight><highlight class="normal"><ref refid="df/d3e/structBrush_1_1DataTypeEnum" kindref="compound">DataTypeEnum</ref>&lt;Data::<ref refid="d9/d1c/namespaceBrush_1_1Data_1a31f33981b7b5a0fd9f735aecac86bdf9" kindref="member">TimeSeriesb</ref>&gt;<sp/>{<sp/></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/>constexpr<sp/><ref refid="dc/d5c/namespaceBrush_1a3f2c9b744330ba4a561ac72f048a1a5f" kindref="member">DT</ref><sp/>value<sp/>=<sp/>DT::TimeSeriesB;<sp/>};</highlight></codeline>
+<codeline lineno="191" refid="d5/d29/structBrush_1_1DataTypeEnum_3_01Data_1_1TimeSeriesi_01_4_1afbe8756077623d61183cceb40080f2b8" refkind="member"><highlight class="normal"></highlight><highlight class="keyword">template</highlight><highlight class="normal"><sp/>&lt;&gt;<sp/></highlight><highlight class="keyword">struct<sp/></highlight><highlight class="normal"><ref refid="df/d3e/structBrush_1_1DataTypeEnum" kindref="compound">DataTypeEnum</ref>&lt;Data::<ref refid="d9/d1c/namespaceBrush_1_1Data_1af3754cc76393d77d2e246a50cf26789b" kindref="member">TimeSeriesi</ref>&gt;<sp/>{<sp/></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/>constexpr<sp/><ref refid="dc/d5c/namespaceBrush_1a3f2c9b744330ba4a561ac72f048a1a5f" kindref="member">DT</ref><sp/>value<sp/>=<sp/>DT::TimeSeriesI;<sp/>};</highlight></codeline>
+<codeline lineno="192" refid="df/d37/structBrush_1_1DataTypeEnum_3_01Data_1_1TimeSeriesf_01_4_1abf094b9e5c8eaa62c9943fbdd7178688" refkind="member"><highlight class="normal"></highlight><highlight class="keyword">template</highlight><highlight class="normal"><sp/>&lt;&gt;<sp/></highlight><highlight class="keyword">struct<sp/></highlight><highlight class="normal"><ref refid="df/d3e/structBrush_1_1DataTypeEnum" kindref="compound">DataTypeEnum</ref>&lt;Data::<ref refid="d9/d1c/namespaceBrush_1_1Data_1a66dd2004d1ee46aa2b08a5b2ff462d29" kindref="member">TimeSeriesf</ref>&gt;<sp/>{<sp/></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/>constexpr<sp/><ref refid="dc/d5c/namespaceBrush_1a3f2c9b744330ba4a561ac72f048a1a5f" kindref="member">DT</ref><sp/>value<sp/>=<sp/>DT::TimeSeriesF;<sp/>};</highlight></codeline>
+<codeline lineno="193" refid="d7/d76/structBrush_1_1DataTypeEnum_3_01ArrayXbJet_01_4_1ab8b9c9dbcb5e7a821210d08bba381206" refkind="member"><highlight class="normal"></highlight><highlight class="keyword">template</highlight><highlight class="normal"><sp/>&lt;&gt;<sp/></highlight><highlight class="keyword">struct<sp/></highlight><highlight class="normal"><ref refid="df/d3e/structBrush_1_1DataTypeEnum" kindref="compound">DataTypeEnum</ref>&lt;<ref refid="dc/d5c/namespaceBrush_1ac5d3cc055d05202b02d1c70993eb61b7" kindref="member">ArrayXbJet</ref>&gt;<sp/>{<sp/></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/>constexpr<sp/><ref refid="dc/d5c/namespaceBrush_1a3f2c9b744330ba4a561ac72f048a1a5f" kindref="member">DT</ref><sp/>value<sp/>=<sp/>DT::ArrayBJet;<sp/>};</highlight></codeline>
+<codeline lineno="194" refid="d4/dd1/structBrush_1_1DataTypeEnum_3_01ArrayXiJet_01_4_1ada3d9462cee724e4b4d2acdab918b4b1" refkind="member"><highlight class="normal"></highlight><highlight class="keyword">template</highlight><highlight class="normal"><sp/>&lt;&gt;<sp/></highlight><highlight class="keyword">struct<sp/></highlight><highlight class="normal"><ref refid="df/d3e/structBrush_1_1DataTypeEnum" kindref="compound">DataTypeEnum</ref>&lt;<ref refid="dc/d5c/namespaceBrush_1ad4d3c3e8d9e723792930ef23b3a1da6f" kindref="member">ArrayXiJet</ref>&gt;<sp/>{<sp/></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/>constexpr<sp/><ref refid="dc/d5c/namespaceBrush_1a3f2c9b744330ba4a561ac72f048a1a5f" kindref="member">DT</ref><sp/>value<sp/>=<sp/>DT::ArrayIJet;<sp/>};</highlight></codeline>
+<codeline lineno="195" refid="d4/d46/structBrush_1_1DataTypeEnum_3_01ArrayXfJet_01_4_1a97ccdb56db686ccc6a608d52eb96facb" refkind="member"><highlight class="normal"></highlight><highlight class="keyword">template</highlight><highlight class="normal"><sp/>&lt;&gt;<sp/></highlight><highlight class="keyword">struct<sp/></highlight><highlight class="normal"><ref refid="df/d3e/structBrush_1_1DataTypeEnum" kindref="compound">DataTypeEnum</ref>&lt;<ref refid="dc/d5c/namespaceBrush_1aa9f9c545473315b227a08920cf5882e4" kindref="member">ArrayXfJet</ref>&gt;<sp/>{<sp/></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/>constexpr<sp/><ref refid="dc/d5c/namespaceBrush_1a3f2c9b744330ba4a561ac72f048a1a5f" kindref="member">DT</ref><sp/>value<sp/>=<sp/>DT::ArrayFJet;<sp/>};</highlight></codeline>
+<codeline lineno="196" refid="da/d1f/structBrush_1_1DataTypeEnum_3_01ArrayXXbJet_01_4_1a21379dd94c25f6f62c0856fb9377c8e6" refkind="member"><highlight class="normal"></highlight><highlight class="keyword">template</highlight><highlight class="normal"><sp/>&lt;&gt;<sp/></highlight><highlight class="keyword">struct<sp/></highlight><highlight class="normal"><ref refid="df/d3e/structBrush_1_1DataTypeEnum" kindref="compound">DataTypeEnum</ref>&lt;<ref refid="dc/d5c/namespaceBrush_1a1fa87bfd9d6d1e7705044eb5c431be7f" kindref="member">ArrayXXbJet</ref>&gt;<sp/>{<sp/></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/>constexpr<sp/><ref refid="dc/d5c/namespaceBrush_1a3f2c9b744330ba4a561ac72f048a1a5f" kindref="member">DT</ref><sp/>value<sp/>=<sp/>DT::MatrixBJet;<sp/>};</highlight></codeline>
+<codeline lineno="197" refid="dc/d84/structBrush_1_1DataTypeEnum_3_01ArrayXXiJet_01_4_1ab31e23b2cd3325190e9486498a11fab5" refkind="member"><highlight class="normal"></highlight><highlight class="keyword">template</highlight><highlight class="normal"><sp/>&lt;&gt;<sp/></highlight><highlight class="keyword">struct<sp/></highlight><highlight class="normal"><ref refid="df/d3e/structBrush_1_1DataTypeEnum" kindref="compound">DataTypeEnum</ref>&lt;<ref refid="dc/d5c/namespaceBrush_1af5c48ba01828e9da34a2a539dd2e8a14" kindref="member">ArrayXXiJet</ref>&gt;<sp/>{<sp/></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/>constexpr<sp/><ref refid="dc/d5c/namespaceBrush_1a3f2c9b744330ba4a561ac72f048a1a5f" kindref="member">DT</ref><sp/>value<sp/>=<sp/>DT::MatrixIJet;<sp/>};</highlight></codeline>
+<codeline lineno="198" refid="d7/d70/structBrush_1_1DataTypeEnum_3_01ArrayXXfJet_01_4_1ab71f842057e6fc1998d8b96a984641bc" refkind="member"><highlight class="normal"></highlight><highlight class="keyword">template</highlight><highlight class="normal"><sp/>&lt;&gt;<sp/></highlight><highlight class="keyword">struct<sp/></highlight><highlight class="normal"><ref refid="df/d3e/structBrush_1_1DataTypeEnum" kindref="compound">DataTypeEnum</ref>&lt;<ref refid="dc/d5c/namespaceBrush_1ac8f76bb8adc0e81c0e17a645a7447b64" kindref="member">ArrayXXfJet</ref>&gt;<sp/>{<sp/></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/>constexpr<sp/><ref refid="dc/d5c/namespaceBrush_1a3f2c9b744330ba4a561ac72f048a1a5f" kindref="member">DT</ref><sp/>value<sp/>=<sp/>DT::MatrixFJet;<sp/>};</highlight></codeline>
+<codeline lineno="199"><highlight class="normal"></highlight><highlight class="keyword">template</highlight><highlight class="normal"><sp/>&lt;&gt;</highlight></codeline>
+<codeline lineno="200" refid="d6/d3c/structBrush_1_1DataTypeEnum_3_01Data_1_1TimeSeriesbJet_01_4" refkind="compound"><highlight class="normal"></highlight><highlight class="keyword">struct<sp/></highlight><highlight class="normal"><ref refid="df/d3e/structBrush_1_1DataTypeEnum" kindref="compound">DataTypeEnum</ref>&lt;Data::<ref refid="d9/d1c/namespaceBrush_1_1Data_1a8750de9f6997ddb7e3d08163690692e5" kindref="member">TimeSeriesbJet</ref>&gt;</highlight></codeline>
+<codeline lineno="201"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="202" refid="d6/d3c/structBrush_1_1DataTypeEnum_3_01Data_1_1TimeSeriesbJet_01_4_1ac787d76d23e5cb477a2747a8c71f5625" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/>constexpr<sp/><ref refid="dc/d5c/namespaceBrush_1a3f2c9b744330ba4a561ac72f048a1a5f" kindref="member">DT</ref><sp/>value<sp/>=<sp/>DT::TimeSeriesBJet;</highlight></codeline>
+<codeline lineno="203"><highlight class="normal">};</highlight></codeline>
+<codeline lineno="204"><highlight class="normal"></highlight><highlight class="keyword">template</highlight><highlight class="normal"><sp/>&lt;&gt;</highlight></codeline>
+<codeline lineno="205" refid="da/d56/structBrush_1_1DataTypeEnum_3_01Data_1_1TimeSeriesiJet_01_4" refkind="compound"><highlight class="normal"></highlight><highlight class="keyword">struct<sp/></highlight><highlight class="normal"><ref refid="df/d3e/structBrush_1_1DataTypeEnum" kindref="compound">DataTypeEnum</ref>&lt;Data::<ref refid="d9/d1c/namespaceBrush_1_1Data_1a23a3cfbe568e9bb38ff52aeae1e536eb" kindref="member">TimeSeriesiJet</ref>&gt;</highlight></codeline>
+<codeline lineno="206"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="207" refid="da/d56/structBrush_1_1DataTypeEnum_3_01Data_1_1TimeSeriesiJet_01_4_1aecece5ff92aa384d5949a5ea9d7fcc0c" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/>constexpr<sp/><ref refid="dc/d5c/namespaceBrush_1a3f2c9b744330ba4a561ac72f048a1a5f" kindref="member">DT</ref><sp/>value<sp/>=<sp/>DT::TimeSeriesIJet;</highlight></codeline>
+<codeline lineno="208"><highlight class="normal">};</highlight></codeline>
+<codeline lineno="209"><highlight class="normal"></highlight><highlight class="keyword">template</highlight><highlight class="normal"><sp/>&lt;&gt;</highlight></codeline>
+<codeline lineno="210" refid="d1/d94/structBrush_1_1DataTypeEnum_3_01Data_1_1TimeSeriesfJet_01_4" refkind="compound"><highlight class="normal"></highlight><highlight class="keyword">struct<sp/></highlight><highlight class="normal"><ref refid="df/d3e/structBrush_1_1DataTypeEnum" kindref="compound">DataTypeEnum</ref>&lt;Data::<ref refid="d9/d1c/namespaceBrush_1_1Data_1a1e91de31054d32c664b20c9f9bf978d5" kindref="member">TimeSeriesfJet</ref>&gt;</highlight></codeline>
+<codeline lineno="211"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="212" refid="d1/d94/structBrush_1_1DataTypeEnum_3_01Data_1_1TimeSeriesfJet_01_4_1a77e14d3e55de61c563aeb74b3585ee8f" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/>constexpr<sp/><ref refid="dc/d5c/namespaceBrush_1a3f2c9b744330ba4a561ac72f048a1a5f" kindref="member">DT</ref><sp/>value<sp/>=<sp/>DT::TimeSeriesFJet;</highlight></codeline>
+<codeline lineno="213"><highlight class="normal">};</highlight></codeline>
+<codeline lineno="214"><highlight class="normal"></highlight></codeline>
+<codeline lineno="215"><highlight class="normal"></highlight><highlight class="comment">//<sp/>check<sp/>for<sp/>std::array<sp/>types</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="216"><highlight class="normal"></highlight><highlight class="keyword">template</highlight><highlight class="normal"><sp/>&lt;</highlight><highlight class="keyword">typename</highlight><highlight class="normal"><sp/>T&gt;</highlight></codeline>
+<codeline lineno="217" refid="d6/dfa/structBrush_1_1is__std__array" refkind="compound"><highlight class="normal"></highlight><highlight class="keyword">struct<sp/></highlight><highlight class="normal"><ref refid="d6/dfa/structBrush_1_1is__std__array" kindref="compound">is_std_array</ref><sp/>:<sp/>std::false_type<sp/>{};<sp/></highlight></codeline>
+<codeline lineno="218"><highlight class="normal"></highlight><highlight class="keyword">template</highlight><highlight class="normal"><sp/>&lt;</highlight><highlight class="keyword">typename</highlight><highlight class="normal"><sp/>V,<sp/></highlight><highlight class="keywordtype">size_t</highlight><highlight class="normal"><sp/>n&gt;</highlight></codeline>
+<codeline lineno="219" refid="d4/df1/structBrush_1_1is__std__array_3_01std_1_1array_3_01V_00_01n_01_4_01_4" refkind="compound"><highlight class="normal"></highlight><highlight class="keyword">struct<sp/></highlight><highlight class="normal"><ref refid="d6/dfa/structBrush_1_1is__std__array" kindref="compound">is_std_array</ref>&lt;std::array&lt;V,<sp/>n&gt;&gt;<sp/>:<sp/>std::true_type<sp/>{};<sp/></highlight></codeline>
+<codeline lineno="220"><highlight class="normal"></highlight><highlight class="keyword">template</highlight><highlight class="normal"><sp/>&lt;</highlight><highlight class="keyword">typename</highlight><highlight class="normal"><sp/>T&gt;</highlight></codeline>
+<codeline lineno="221" refid="dc/d5c/namespaceBrush_1af0a72d6e11b43912abc5bc15d19e66f3" refkind="member"><highlight class="normal"></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/>constexpr<sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/><ref refid="dc/d5c/namespaceBrush_1af0a72d6e11b43912abc5bc15d19e66f3" kindref="member">is_std_array_v</ref><sp/>=<sp/><ref refid="d6/dfa/structBrush_1_1is__std__array" kindref="compound">is_std_array&lt;T&gt;::value</ref>;</highlight></codeline>
+<codeline lineno="222"><highlight class="normal"></highlight></codeline>
+<codeline lineno="223"><highlight class="normal"></highlight><highlight class="comment">//<sp/>check<sp/>for<sp/>Eigen::Array<sp/>types</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="224"><highlight class="normal"></highlight><highlight class="keyword">template</highlight><highlight class="normal">&lt;</highlight><highlight class="keyword">typename</highlight><highlight class="normal"><sp/>T&gt;</highlight></codeline>
+<codeline lineno="225" refid="df/d72/structBrush_1_1is__eigen__array" refkind="compound"><highlight class="normal"></highlight><highlight class="keyword">struct<sp/></highlight><highlight class="normal"><ref refid="df/d72/structBrush_1_1is__eigen__array" kindref="compound">is_eigen_array</ref></highlight></codeline>
+<codeline lineno="226"><highlight class="normal"><sp/>:<sp/>std::is_base_of&lt;Eigen::ArrayBase&lt;std::decay_t&lt;T&gt;<sp/>&gt;,<sp/>std::decay_t&lt;T&gt;<sp/>&gt;<sp/>{};</highlight></codeline>
+<codeline lineno="227"><highlight class="normal"></highlight></codeline>
+<codeline lineno="228"><highlight class="normal"></highlight><highlight class="keyword">template</highlight><highlight class="normal">&lt;</highlight><highlight class="keyword">typename</highlight><highlight class="normal"><sp/>T&gt;</highlight></codeline>
+<codeline lineno="229" refid="dc/d5c/namespaceBrush_1a6225fa35f6e06e54d4a31a8f25cd4a66" refkind="member"><highlight class="normal"></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/>constexpr<sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/><ref refid="dc/d5c/namespaceBrush_1a6225fa35f6e06e54d4a31a8f25cd4a66" kindref="member">is_eigen_array_v</ref><sp/>=<sp/><ref refid="df/d72/structBrush_1_1is__eigen__array" kindref="compound">is_eigen_array&lt;T&gt;::value</ref>;</highlight></codeline>
+<codeline lineno="230"><highlight class="normal"></highlight></codeline>
+<codeline lineno="231"><highlight class="normal"></highlight><highlight class="comment">//<sp/>check<sp/>for<sp/>tuple<sp/>types</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="232" refid="d0/d4c/structBrush_1_1is__tuple" refkind="compound"><highlight class="normal"></highlight><highlight class="keyword">template</highlight><highlight class="normal"><sp/>&lt;</highlight><highlight class="keyword">typename</highlight><highlight class="normal">&gt;<sp/></highlight><highlight class="keyword">struct<sp/></highlight><highlight class="normal"><ref refid="d0/d4c/structBrush_1_1is__tuple" kindref="compound">is_tuple</ref>:<sp/>std::false_type<sp/>{};</highlight></codeline>
+<codeline lineno="233" refid="df/d54/structBrush_1_1is__tuple_3_01std_1_1tuple_3_01T_8_8_8_01_4_01_4" refkind="compound"><highlight class="normal"></highlight><highlight class="keyword">template</highlight><highlight class="normal"><sp/>&lt;</highlight><highlight class="keyword">typename</highlight><highlight class="normal"><sp/>...T&gt;<sp/></highlight><highlight class="keyword">struct<sp/></highlight><highlight class="normal"><ref refid="d0/d4c/structBrush_1_1is__tuple" kindref="compound">is_tuple</ref>&lt;std::tuple&lt;T...&gt;&gt;:<sp/>std::true_type<sp/>{};</highlight></codeline>
+<codeline lineno="234"><highlight class="normal"></highlight><highlight class="keyword">template</highlight><highlight class="normal"><sp/>&lt;</highlight><highlight class="keyword">typename</highlight><highlight class="normal"><sp/>T&gt;</highlight></codeline>
+<codeline lineno="235" refid="dc/d5c/namespaceBrush_1a00b234ce343d03867e55d528f8cb8895" refkind="member"><highlight class="normal"></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/>constexpr<sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/><ref refid="dc/d5c/namespaceBrush_1a00b234ce343d03867e55d528f8cb8895" kindref="member">is_tuple_v</ref><sp/>=<sp/><ref refid="d0/d4c/structBrush_1_1is__tuple" kindref="compound">is_tuple&lt;T&gt;::value</ref>;</highlight></codeline>
+<codeline lineno="236"><highlight class="normal">}<sp/></highlight><highlight class="comment">//<sp/>Brush</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="237"><highlight class="normal"></highlight></codeline>
+<codeline lineno="238"><highlight class="normal"></highlight><highlight class="preprocessor">#endif</highlight></codeline>
+    </programlisting>
+    <location file="/home/runner/work/brush/brush/src/types.h"/>
+  </compounddef>
+</doxygen>

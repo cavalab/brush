@@ -1,0 +1,309 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="d0/d24/namespacevariation" kind="namespace" language="C++">
+    <compoundname>variation</compoundname>
+      <sectiondef kind="typedef">
+      <memberdef kind="typedef" id="d0/d24/namespacevariation_1ace95ad8220efc40e8d89096ce61e6e60" prot="public" static="no">
+        <type>tree&lt; Node &gt;::pre_order_iterator</type>
+        <definition>typedef tree&lt;Node&gt;::pre_order_iterator variation::Iter</definition>
+        <argsstring></argsstring>
+        <name>Iter</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/runner/work/brush/brush/src/variation.h" line="28" column="35" bodyfile="/home/runner/work/brush/brush/src/variation.h" bodystart="28" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="func">
+      <memberdef kind="function" id="d0/d24/namespacevariation_1a5d1fdeb5d33b06ee8847da09f58f0f5f" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void variation::point_mutation</definition>
+        <argsstring>(tree&lt; Node &gt; &amp;Tree, Iter spot, const SearchSpace &amp;SS)</argsstring>
+        <name>point_mutation</name>
+        <param>
+          <type>tree&lt; Node &gt; &amp;</type>
+          <declname>Tree</declname>
+        </param>
+        <param>
+          <type><ref refid="d0/d24/namespacevariation_1ace95ad8220efc40e8d89096ce61e6e60" kindref="member">Iter</ref></type>
+          <declname>spot</declname>
+        </param>
+        <param>
+          <type>const SearchSpace &amp;</type>
+          <declname>SS</declname>
+        </param>
+        <briefdescription>
+<para>point mutation: replace node with same typed node </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/runner/work/brush/brush/src/variation.h" line="31" column="13" bodyfile="/home/runner/work/brush/brush/src/variation.h" bodystart="31" bodyend="36"/>
+        <references refid="d4/dc3/structBrush_1_1SearchSpace_1aeadd5cc2c0b7f791299560dd0dea4e4e" compoundref="d9/d99/search__space_8h" startline="428" endline="441">Brush::SearchSpace::get_node_like</references>
+        <references refid="dc/d5c/namespaceBrush_1ae41500fed38676f34a4d476a992d585d">Brush::SS</references>
+        <referencedby refid="d0/d24/namespacevariation_1abfa16e581c2548444df2bb4cbaa1b221" compoundref="d4/d1f/variation_8h" startline="100" endline="134">mutate</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="d0/d24/namespacevariation_1ab75fceda2c7aa69e59d3b55562937942" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void variation::insert_mutation</definition>
+        <argsstring>(tree&lt; Node &gt; &amp;Tree, Iter spot, const SearchSpace &amp;SS)</argsstring>
+        <name>insert_mutation</name>
+        <param>
+          <type>tree&lt; Node &gt; &amp;</type>
+          <declname>Tree</declname>
+        </param>
+        <param>
+          <type><ref refid="d0/d24/namespacevariation_1ace95ad8220efc40e8d89096ce61e6e60" kindref="member">Iter</ref></type>
+          <declname>spot</declname>
+        </param>
+        <param>
+          <type>const SearchSpace &amp;</type>
+          <declname>SS</declname>
+        </param>
+        <briefdescription>
+<para>insert a node with spot as a child </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/runner/work/brush/brush/src/variation.h" line="39" column="13" bodyfile="/home/runner/work/brush/brush/src/variation.h" bodystart="39" bodyend="65"/>
+        <references refid="d4/dc3/structBrush_1_1SearchSpace_1a86bec43f225bb5bbbcafa7f44a8b3102" compoundref="d9/d99/search__space_8h" startline="381" endline="423">Brush::SearchSpace::get_op_with_arg</references>
+        <references refid="d4/dc3/structBrush_1_1SearchSpace_1a6f491bad218a6482a66d32a790a2aa85" compoundref="d9/d99/search__space_8h" startline="275" endline="285">Brush::SearchSpace::get_terminal</references>
+        <references refid="dc/d5c/namespaceBrush_1ae41500fed38676f34a4d476a992d585d">Brush::SS</references>
+        <referencedby refid="d0/d24/namespacevariation_1abfa16e581c2548444df2bb4cbaa1b221" compoundref="d4/d1f/variation_8h" startline="100" endline="134">mutate</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="d0/d24/namespacevariation_1ac09afe106fc118aa9dc82a1b8ce87b01" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void variation::delete_mutation</definition>
+        <argsstring>(tree&lt; Node &gt; &amp;Tree, Iter spot, const SearchSpace &amp;SS)</argsstring>
+        <name>delete_mutation</name>
+        <param>
+          <type>tree&lt; Node &gt; &amp;</type>
+          <declname>Tree</declname>
+        </param>
+        <param>
+          <type><ref refid="d0/d24/namespacevariation_1ace95ad8220efc40e8d89096ce61e6e60" kindref="member">Iter</ref></type>
+          <declname>spot</declname>
+        </param>
+        <param>
+          <type>const SearchSpace &amp;</type>
+          <declname>SS</declname>
+        </param>
+        <briefdescription>
+<para>delete subtree and replace it with a terminal of the same return type </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/runner/work/brush/brush/src/variation.h" line="68" column="13" bodyfile="/home/runner/work/brush/brush/src/variation.h" bodystart="68" bodyend="74"/>
+        <references refid="d4/dc3/structBrush_1_1SearchSpace_1a6f491bad218a6482a66d32a790a2aa85" compoundref="d9/d99/search__space_8h" startline="275" endline="285">Brush::SearchSpace::get_terminal</references>
+        <references refid="dc/d5c/namespaceBrush_1ae41500fed38676f34a4d476a992d585d">Brush::SS</references>
+        <referencedby refid="d0/d24/namespacevariation_1abfa16e581c2548444df2bb4cbaa1b221" compoundref="d4/d1f/variation_8h" startline="100" endline="134">mutate</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="d0/d24/namespacevariation_1acfeeba87c491e8c1e6c6e1ede19fc4bc" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void variation::toggle_weight_mutation</definition>
+        <argsstring>(tree&lt; Node &gt; &amp;Tree, Iter spot, const SearchSpace &amp;SS)</argsstring>
+        <name>toggle_weight_mutation</name>
+        <param>
+          <type>tree&lt; Node &gt; &amp;</type>
+          <declname>Tree</declname>
+        </param>
+        <param>
+          <type><ref refid="d0/d24/namespacevariation_1ace95ad8220efc40e8d89096ce61e6e60" kindref="member">Iter</ref></type>
+          <declname>spot</declname>
+        </param>
+        <param>
+          <type>const SearchSpace &amp;</type>
+          <declname>SS</declname>
+        </param>
+        <briefdescription>
+<para>toggle the node&apos;s weight on or off. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>Tree</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the program tree </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>spot</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>an iterator to the node that is being mutated </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>SS</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the search space (unused) </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/runner/work/brush/brush/src/variation.h" line="80" column="13" bodyfile="/home/runner/work/brush/brush/src/variation.h" bodystart="80" bodyend="83"/>
+        <referencedby refid="d0/d24/namespacevariation_1abfa16e581c2548444df2bb4cbaa1b221" compoundref="d4/d1f/variation_8h" startline="100" endline="134">mutate</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="d0/d24/namespacevariation_1abfa16e581c2548444df2bb4cbaa1b221" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>ProgramType</type>
+            <declname>T</declname>
+            <defname>T</defname>
+          </param>
+        </templateparamlist>
+        <type>Program&lt; T &gt;</type>
+        <definition>Program&lt;T&gt; variation::mutate</definition>
+        <argsstring>(const Program&lt; T &gt; &amp;parent, const SearchSpace &amp;SS)</argsstring>
+        <name>mutate</name>
+        <param>
+          <type>const Program&lt; T &gt; &amp;</type>
+          <declname>parent</declname>
+        </param>
+        <param>
+          <type>const SearchSpace &amp;</type>
+          <declname>SS</declname>
+        </param>
+        <briefdescription>
+<para>Mutate a program. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>Types of mutation:</para>
+<para><itemizedlist>
+<listitem><para>point mutation changes a single node.</para>
+</listitem><listitem><para>insertion mutation inserts a node as the parent of an existing node, and fills in the other arguments.</para>
+</listitem><listitem><para>deletion mutation deletes a node</para>
+</listitem><listitem><para>toggle_weight mutation turns a node&apos;s weight on or off. <parameterlist kind="templateparam"><parameteritem>
+<parameternamelist>
+<parametername>T</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>program type </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>parent</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the program to be mutated </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>SS</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>a search space </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para><computeroutput>child</computeroutput>, the mutated program </para>
+</simplesect>
+</para>
+</listitem></itemizedlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/runner/work/brush/brush/src/variation.h" line="100" column="9" bodyfile="/home/runner/work/brush/brush/src/variation.h" bodystart="100" bodyend="134"/>
+        <references refid="d0/d24/namespacevariation_1ac09afe106fc118aa9dc82a1b8ce87b01" compoundref="d4/d1f/variation_8h" startline="68" endline="74">delete_mutation</references>
+        <references refid="da/d41/error_8h_1aa4c550bcd71e4ec1c97b111e1360509a" compoundref="da/d41/error_8h" startline="24">HANDLE_ERROR_THROW</references>
+        <references refid="d0/d24/namespacevariation_1ab75fceda2c7aa69e59d3b55562937942" compoundref="d4/d1f/variation_8h" startline="39" endline="65">insert_mutation</references>
+        <references refid="dc/d5c/namespaceBrush_1a9c6fb4b74a0a8a8fd047a49f3c9e2283" compoundref="dc/d4d/params_8cpp" startline="8">Brush::PARAMS</references>
+        <references refid="d0/d24/namespacevariation_1a5d1fdeb5d33b06ee8847da09f58f0f5f" compoundref="d4/d1f/variation_8h" startline="31" endline="36">point_mutation</references>
+        <references refid="d6/d2e/namespaceBrush_1_1Util_1af7dd70e54015821d96e3a1afed6344ca" compoundref="d2/da9/rnd_8h" startline="151">Brush::Util::r</references>
+        <references refid="d2/d2d/classBrush_1_1Util_1_1Rnd_1a18656ce513329b1c672f6ee15ab281b7" compoundref="d2/da9/rnd_8h" startline="78" endline="97">Brush::Util::Rnd::random_choice</references>
+        <references refid="d2/d2d/classBrush_1_1Util_1_1Rnd_1a9f0fe39c1fd498b378c8d4abe7b9d71b" compoundref="d2/da9/rnd_8h" startline="60" endline="65">Brush::Util::Rnd::select_randomly</references>
+        <references refid="dc/d5c/namespaceBrush_1ae41500fed38676f34a4d476a992d585d">Brush::SS</references>
+        <references refid="d0/d24/namespacevariation_1acfeeba87c491e8c1e6c6e1ede19fc4bc" compoundref="d4/d1f/variation_8h" startline="80" endline="83">toggle_weight_mutation</references>
+        <referencedby refid="d6/d3f/bind__programs_8h_1a8284c80bb3c1dfb32250420f76a183fd" compoundref="d6/d3f/bind__programs_8h" startline="15" endline="77">bind_program</referencedby>
+        <referencedby refid="db/d88/structBrush_1_1Program_1a294cf928c4374ebf6fae5713f31f3c79" compoundref="d1/dea/program_8h" startline="458" endline="461">Brush::Program&lt; PType &gt;::mutate</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="d0/d24/namespacevariation_1a3a3e45e3cbe090c29a47b3e60fdd3dac" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>ProgramType</type>
+            <declname>T</declname>
+            <defname>T</defname>
+          </param>
+        </templateparamlist>
+        <type>Program&lt; T &gt;</type>
+        <definition>Program&lt;T&gt; variation::cross</definition>
+        <argsstring>(const Program&lt; T &gt; &amp;root, const Program&lt; T &gt; &amp;other)</argsstring>
+        <name>cross</name>
+        <param>
+          <type>const Program&lt; T &gt; &amp;</type>
+          <declname>root</declname>
+        </param>
+        <param>
+          <type>const Program&lt; T &gt; &amp;</type>
+          <declname>other</declname>
+        </param>
+        <briefdescription>
+<para>swaps subtrees between root and other, returning new program </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="templateparam"><parameteritem>
+<parameternamelist>
+<parametername>T</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the program type </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>root</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the root parent </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>other</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the donating parent </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>new program of type <computeroutput>T</computeroutput> </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/runner/work/brush/brush/src/variation.h" line="142" column="9" bodyfile="/home/runner/work/brush/brush/src/variation.h" bodystart="142" bodyend="203"/>
+        <references refid="d6/d2e/namespaceBrush_1_1Util_1af7dd70e54015821d96e3a1afed6344ca" compoundref="d2/da9/rnd_8h" startline="151">Brush::Util::r</references>
+        <references refid="d2/d2d/classBrush_1_1Util_1_1Rnd_1a9f0fe39c1fd498b378c8d4abe7b9d71b" compoundref="d2/da9/rnd_8h" startline="60" endline="65">Brush::Util::Rnd::select_randomly</references>
+        <referencedby refid="d6/d3f/bind__programs_8h_1a8284c80bb3c1dfb32250420f76a183fd" compoundref="d6/d3f/bind__programs_8h" startline="15" endline="77">bind_program</referencedby>
+        <referencedby refid="db/d88/structBrush_1_1Program_1a73fe32f4ee17a89b1044ec83f1b11766" compoundref="d1/dea/program_8h" startline="465" endline="468">Brush::Program&lt; PType &gt;::cross</referencedby>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+<para>Namespace for variation functions like crossover and mutation. </para>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="/home/runner/work/brush/brush/src/variation.h" line="26" column="1"/>
+  </compounddef>
+</doxygen>

@@ -1,0 +1,6 @@
+var searchData=
+[
+  ['w_1456',['W',['../dc/d31/structBrush_1_1Operator.html#a33cf8494b82e7e0b7beb42fa376e9a6c',1,'Brush::Operator::W()'],['../dd/d88/structBrush_1_1Operator_3_01NodeType_1_1Terminal_00_01S_00_01Fit_01_4.html#a5176127947597b2158c8cd5984cb276f',1,'Brush::Operator&lt; NodeType::Terminal, S, Fit &gt;::W()'],['../df/dc1/structBrush_1_1Operator_3_01NodeType_1_1Constant_00_01S_00_01Fit_01_4.html#a9c73f02bcd42c10cd4094ab2f9fb06dd',1,'Brush::Operator&lt; NodeType::Constant, S, Fit &gt;::W()'],['../d3/df2/structOperator_3_01NT_00_01S_00_01Fit_00_01enable__if__t_3_01is__in__v_3_01NT_00_01NodeType_1_1Se4750a8ecc1d24ba81c8da2bd5c73a14.html#aee0f8e740812e0102ca842c75ac26bd9',1,'Operator&lt; NT, S, Fit, enable_if_t&lt; is_in_v&lt; NT, NodeType::SplitOn, NodeType::SplitBest &gt; &gt; &gt;::W()']]],
+  ['weighttype_1457',['WeightType',['../da/dd5/structBrush_1_1SigBase.html#af330c93cdb4c2b8855a1224f65070f08',1,'Brush::SigBase::WeightType()'],['../dc/da5/structBrush_1_1SigBase_3_01R_01_4.html#ad4623810d48636cef328a9cc02e385ab',1,'Brush::SigBase&lt; R &gt;::WeightType()'],['../d5/d7d/structBrush_1_1Signature_3_01R_07Args_8_8_8_08_4.html#a0d7d214836abf590725c8e2e9d7fc420',1,'Brush::Signature&lt; R(Args...)&gt;::WeightType()']]],
+  ['weighttype_5ft_1458',['WeightType_t',['../dc/d5c/namespaceBrush.html#a6ef1576bfd7316c401c4d5e68b2f9316',1,'Brush']]]
+];

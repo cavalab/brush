@@ -1,0 +1,94 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="d8/de0/tuples_8h" kind="file" language="C++">
+    <compoundname>tuples.h</compoundname>
+    <includes local="no">variant</includes>
+    <incdepgraph>
+      <node id="2">
+        <label>variant</label>
+      </node>
+      <node id="1">
+        <label>tuples.h</label>
+        <link refid="d8/de0/tuples_8h"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+      </node>
+    </incdepgraph>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"><highlight class="comment">/*<sp/>Brush</highlight></codeline>
+<codeline lineno="2"><highlight class="comment">copyright<sp/>2020<sp/>William<sp/>La<sp/>Cava</highlight></codeline>
+<codeline lineno="3"><highlight class="comment">license:<sp/>GNU/GPL<sp/>v3</highlight></codeline>
+<codeline lineno="4"><highlight class="comment">*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="5"><highlight class="normal"></highlight></codeline>
+<codeline lineno="6"><highlight class="normal"></highlight><highlight class="preprocessor">#ifndef<sp/>TUPLES_H</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="7"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>TUPLES_H</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="8"><highlight class="normal"></highlight></codeline>
+<codeline lineno="9"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;variant&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="10"><highlight class="normal"></highlight><highlight class="keyword">using<sp/>namespace<sp/></highlight><highlight class="normal">std;</highlight></codeline>
+<codeline lineno="11"><highlight class="normal"></highlight><highlight class="comment">/*<sp/>This<sp/>code<sp/>taken<sp/>from<sp/></highlight></codeline>
+<codeline lineno="12"><highlight class="comment">https://changkun.de/modern-cpp/en-us/04-containers/index.html#4-3-Tuples<sp/></highlight></codeline>
+<codeline lineno="13"><highlight class="comment">to<sp/>enable<sp/>run-time<sp/>indexing<sp/>of<sp/>tuples</highlight></codeline>
+<codeline lineno="14"><highlight class="comment">*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="15"><highlight class="normal"></highlight></codeline>
+<codeline lineno="16"><highlight class="normal"></highlight><highlight class="comment">/*<sp/>template<sp/>&lt;size_t<sp/>n,<sp/>typename...<sp/>T&gt;<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="17"><highlight class="normal"></highlight><highlight class="comment">/*<sp/>constexpr<sp/>std::variant&lt;T...&gt;<sp/>_tuple_index(const<sp/>std::tuple&lt;T...&gt;&amp;<sp/>tpl,<sp/>size_t<sp/>i)<sp/>*/</highlight><highlight class="normal"><sp/></highlight></codeline>
+<codeline lineno="18"><highlight class="normal"></highlight><highlight class="comment">/*<sp/>{<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="19"><highlight class="normal"></highlight><highlight class="comment">/*<sp/><sp/><sp/><sp/><sp/>if<sp/>constexpr<sp/>(n<sp/>&gt;=<sp/>sizeof...(T))<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="20"><highlight class="normal"></highlight><highlight class="comment">/*<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>throw<sp/>std::out_of_range(&quot;Tuple<sp/>index<sp/>out<sp/>of<sp/>range.&quot;);<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="21"><highlight class="normal"></highlight><highlight class="comment">/*<sp/><sp/><sp/><sp/><sp/>if<sp/>(i<sp/>==<sp/>n)<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="22"><highlight class="normal"></highlight><highlight class="comment">/*<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>return<sp/>std::variant&lt;T...&gt;{<sp/>std::in_place_index&lt;n&gt;,<sp/>std::get&lt;n&gt;(tpl)<sp/>};<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="23"><highlight class="normal"></highlight><highlight class="comment">/*<sp/><sp/><sp/><sp/><sp/>return<sp/>_tuple_index&lt;(n<sp/>&lt;<sp/>sizeof...(T)-1<sp/>?<sp/>n+1<sp/>:<sp/>0)&gt;(tpl,<sp/>i);<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="24"><highlight class="normal"></highlight><highlight class="comment">/*<sp/>}<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="25"><highlight class="normal"></highlight></codeline>
+<codeline lineno="26"><highlight class="normal"></highlight><highlight class="comment">/*<sp/>template<sp/>&lt;typename...<sp/>T&gt;<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="27"><highlight class="normal"></highlight><highlight class="comment">/*<sp/>constexpr<sp/>std::variant&lt;T...&gt;<sp/>tuple_index(const<sp/>std::tuple&lt;T...&gt;&amp;<sp/>tpl,<sp/>size_t<sp/>i)<sp/>*/</highlight><highlight class="normal"><sp/></highlight></codeline>
+<codeline lineno="28"><highlight class="normal"></highlight><highlight class="comment">/*<sp/>{<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="29"><highlight class="normal"></highlight><highlight class="comment">/*<sp/><sp/><sp/><sp/><sp/>return<sp/>_tuple_index&lt;0&gt;(tpl,<sp/>i);<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="30"><highlight class="normal"></highlight><highlight class="comment">/*<sp/>}<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="31"><highlight class="normal"></highlight></codeline>
+<codeline lineno="32"><highlight class="normal"></highlight><highlight class="comment">/*<sp/>template<sp/>&lt;typename<sp/>T0,<sp/>typename<sp/>...<sp/>Ts&gt;<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="33"><highlight class="normal"></highlight><highlight class="comment">/*<sp/>std::ostream<sp/>&amp;<sp/>operator&lt;&lt;<sp/>(std::ostream<sp/>&amp;<sp/>s,<sp/>std::variant&lt;T0,<sp/>Ts...&gt;<sp/>const<sp/>&amp;<sp/>v)<sp/>*/</highlight><highlight class="normal"><sp/></highlight></codeline>
+<codeline lineno="34"><highlight class="normal"></highlight><highlight class="comment">/*<sp/>{<sp/>*/</highlight><highlight class="normal"><sp/></highlight></codeline>
+<codeline lineno="35"><highlight class="normal"></highlight><highlight class="comment">/*<sp/><sp/><sp/><sp/><sp/>std::visit([&amp;](auto<sp/>&amp;&amp;<sp/>x){<sp/>s<sp/>&lt;&lt;<sp/>x;},<sp/>v);<sp/>*/</highlight><highlight class="normal"><sp/></highlight></codeline>
+<codeline lineno="36"><highlight class="normal"></highlight><highlight class="comment">/*<sp/><sp/><sp/><sp/><sp/>return<sp/>s;<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="37"><highlight class="normal"></highlight><highlight class="comment">/*<sp/>}<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="38"><highlight class="normal"></highlight></codeline>
+<codeline lineno="39"><highlight class="normal"></highlight></codeline>
+<codeline lineno="40"><highlight class="normal"></highlight><highlight class="comment">//<sp/>trying<sp/>to<sp/>implement<sp/>constant<sp/>index<sp/>access<sp/>for<sp/>tuples</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="41"><highlight class="normal"></highlight></codeline>
+<codeline lineno="42"><highlight class="normal"></highlight><highlight class="comment">/*<sp/>template<sp/>&lt;std::size_t...<sp/>Is&gt;<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="43"><highlight class="normal"></highlight><highlight class="comment">/*<sp/>struct<sp/>indices<sp/>{};<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="44"><highlight class="normal"></highlight></codeline>
+<codeline lineno="45"><highlight class="normal"></highlight><highlight class="comment">/*<sp/>template<sp/>&lt;std::size_t<sp/>N,<sp/>std::size_t...<sp/>Is&gt;<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="46"><highlight class="normal"></highlight><highlight class="comment">/*<sp/>struct<sp/>build_indices<sp/>:<sp/>build_indices&lt;N-1,<sp/>N-1,<sp/>Is...&gt;<sp/>{};<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="47"><highlight class="normal"></highlight></codeline>
+<codeline lineno="48"><highlight class="normal"></highlight><highlight class="comment">/*<sp/>template<sp/>&lt;std::size_t...<sp/>Is&gt;<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="49"><highlight class="normal"></highlight><highlight class="comment">/*<sp/>struct<sp/>build_indices&lt;0,<sp/>Is...&gt;<sp/>:<sp/>indices&lt;Is...&gt;<sp/>{};<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="50"><highlight class="normal"></highlight></codeline>
+<codeline lineno="51"><highlight class="normal"></highlight><highlight class="comment">/*<sp/>template<sp/>&lt;typename<sp/>Tuple&gt;<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="52"><highlight class="normal"></highlight><highlight class="comment">/*<sp/>using<sp/>IndicesFor<sp/>=<sp/>build_indices&lt;std::tuple_size&lt;Tuple&gt;::value&gt;;<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="53"><highlight class="normal"></highlight></codeline>
+<codeline lineno="54"><highlight class="normal"></highlight><highlight class="comment">/*<sp/>template<sp/>&lt;typename<sp/>Tuple,<sp/>std::size_t...<sp/>Indices&gt;<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="55"><highlight class="normal"></highlight><highlight class="comment">/*<sp/>std::array&lt;int,<sp/>std::tuple_size&lt;Tuple&gt;::value&gt;<sp/>f_them_all(Tuple&amp;&amp;<sp/>t,<sp/>*/</highlight><highlight class="normal"><sp/></highlight></codeline>
+<codeline lineno="56"><highlight class="normal"></highlight><highlight class="comment">/*<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>indices&lt;Indices...&gt;)<sp/>*/</highlight><highlight class="normal"><sp/></highlight></codeline>
+<codeline lineno="57"><highlight class="normal"></highlight><highlight class="comment">/*<sp/>{<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="58"><highlight class="normal"></highlight><highlight class="comment">/*<sp/><sp/>return<sp/>std::array&lt;int,<sp/>std::tuple_size&lt;Tuple&gt;::value&gt;<sp/>{<sp/>*/</highlight><highlight class="normal"><sp/></highlight></codeline>
+<codeline lineno="59"><highlight class="normal"></highlight><highlight class="comment">/*<sp/><sp/><sp/><sp/><sp/><sp/>{<sp/>f(std::get&lt;Indices&gt;(std::forward&lt;Tuple&gt;(t)))...<sp/>}<sp/>*/</highlight><highlight class="normal"><sp/></highlight></codeline>
+<codeline lineno="60"><highlight class="normal"></highlight><highlight class="comment">/*<sp/><sp/><sp/><sp/><sp/><sp/>};<sp/>*/</highlight><highlight class="normal"><sp/></highlight></codeline>
+<codeline lineno="61"><highlight class="normal"></highlight><highlight class="comment">/*<sp/>}<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="62"><highlight class="normal"></highlight></codeline>
+<codeline lineno="63"><highlight class="normal"></highlight><highlight class="comment">/*<sp/>template<sp/>&lt;typename<sp/>Tuple&gt;<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="64"><highlight class="normal"></highlight><highlight class="comment">/*<sp/>std::array&lt;int,<sp/>std::tuple_size&lt;Tuple&gt;::value&gt;<sp/>f_them_all(Tuple&amp;&amp;<sp/>t)<sp/>*/</highlight><highlight class="normal"><sp/></highlight></codeline>
+<codeline lineno="65"><highlight class="normal"></highlight><highlight class="comment">/*<sp/>{<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="66"><highlight class="normal"></highlight><highlight class="comment">/*<sp/><sp/><sp/><sp/><sp/>return<sp/>f_them_all(std::forward&lt;Tuple&gt;(t),<sp/>IndicesFor&lt;Tuple&gt;<sp/>{});<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="67"><highlight class="normal"></highlight><highlight class="comment">/*<sp/>}<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="68"><highlight class="normal"></highlight></codeline>
+<codeline lineno="69"><highlight class="normal"></highlight><highlight class="preprocessor">#endif</highlight></codeline>
+    </programlisting>
+    <location file="/home/runner/work/brush/brush/src/util/tuples.h"/>
+  </compounddef>
+</doxygen>

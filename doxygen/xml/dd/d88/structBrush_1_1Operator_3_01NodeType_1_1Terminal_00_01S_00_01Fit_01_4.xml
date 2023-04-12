@@ -1,0 +1,183 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="dd/d88/structBrush_1_1Operator_3_01NodeType_1_1Terminal_00_01S_00_01Fit_01_4" kind="struct" language="C++" prot="public">
+    <compoundname>Brush::Operator&lt; NodeType::Terminal, S, Fit &gt;</compoundname>
+    <includes refid="d7/de0/operator_8h" local="no">operator.h</includes>
+    <templateparamlist>
+      <param>
+        <type>typename S</type>
+      </param>
+      <param>
+        <type>bool</type>
+        <declname>Fit</declname>
+        <defname>Fit</defname>
+      </param>
+    </templateparamlist>
+      <sectiondef kind="public-type">
+      <memberdef kind="typedef" id="dd/d88/structBrush_1_1Operator_3_01NodeType_1_1Terminal_00_01S_00_01Fit_01_4_1a13deb85d16b607e4842e7c0277db79c8" prot="public" static="no">
+        <type>typename S::RetType</type>
+        <definition>using Brush::Operator&lt; NodeType::Terminal, S, Fit &gt;::RetType =  typename S::RetType</definition>
+        <argsstring></argsstring>
+        <name>RetType</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/runner/work/brush/brush/src/program/operator.h" line="218" column="5" bodyfile="/home/runner/work/brush/brush/src/program/operator.h" bodystart="218" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="typedef" id="dd/d88/structBrush_1_1Operator_3_01NodeType_1_1Terminal_00_01S_00_01Fit_01_4_1a5176127947597b2158c8cd5984cb276f" prot="public" static="no">
+        <type>typename S::WeightType</type>
+        <definition>using Brush::Operator&lt; NodeType::Terminal, S, Fit &gt;::W =  typename S::WeightType</definition>
+        <argsstring></argsstring>
+        <name>W</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/runner/work/brush/brush/src/program/operator.h" line="219" column="5" bodyfile="/home/runner/work/brush/brush/src/program/operator.h" bodystart="219" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="dd/d88/structBrush_1_1Operator_3_01NodeType_1_1Terminal_00_01S_00_01Fit_01_4_1a87454e9050411ec3898d3599b50463c1" prot="public" static="no" mutable="no">
+        <type><ref refid="dc/d31/structBrush_1_1Operator_1a3bedec6829095c6bb0b7c82885622d8e" kindref="member">const</ref> <ref refid="df/d61/dispatch__table_8h_1a5d0d9e773ca46763fb1b1152cafc4179" kindref="member">TreeNode</ref> &amp;</type>
+        <definition>const TreeNode &amp; Brush::Operator&lt; NodeType::Terminal, S, Fit &gt;::tn</definition>
+        <argsstring></argsstring>
+        <name>tn</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/runner/work/brush/brush/src/program/operator.h" line="223" column="29" bodyfile="/home/runner/work/brush/brush/src/program/operator.h" bodystart="223" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="dd/d88/structBrush_1_1Operator_3_01NodeType_1_1Terminal_00_01S_00_01Fit_01_4_1a6a6dab7428491549993f87476de904f6" prot="public" static="no" mutable="no">
+        <type><ref refid="dc/d31/structBrush_1_1Operator_1a3bedec6829095c6bb0b7c82885622d8e" kindref="member">const</ref> <ref refid="df/d61/dispatch__table_8h_1a5d0d9e773ca46763fb1b1152cafc4179" kindref="member">TreeNode</ref> <ref refid="dc/d31/structBrush_1_1Operator_1a3bedec6829095c6bb0b7c82885622d8e" kindref="member">const</ref> <ref refid="dd/d88/structBrush_1_1Operator_3_01NodeType_1_1Terminal_00_01S_00_01Fit_01_4_1a5176127947597b2158c8cd5984cb276f" kindref="member">W</ref> **</type>
+        <definition>const TreeNode const W ** Brush::Operator&lt; NodeType::Terminal, S, Fit &gt;::weights</definition>
+        <argsstring></argsstring>
+        <name>weights</name>
+        <initializer>=nullptr) <ref refid="dc/d31/structBrush_1_1Operator_1a3bedec6829095c6bb0b7c82885622d8e" kindref="member">const</ref> 
+    { 
+        if constexpr (<ref refid="dc/d5c/namespaceBrush_1a7e323244b7b57c08d6816a009e74eec6" kindref="member">is_one_of_v</ref>&lt;<ref refid="dc/d5c/namespaceBrush_1ac3467b794678aa79ffba2438c8fbd16b" kindref="member">Scalar</ref>,float,<ref refid="dc/d5c/namespaceBrush_1afca2eb9cd1e30d788f324d15a9af500a" kindref="member">fJet</ref>&gt;)
+        {
+            if (tn.data.is_weighted)
+            {
+                auto w = <ref refid="d7/d6b/namespaceBrush_1_1util_1acd1da211f39b8d4d52fb3811fb4c032b" kindref="member">util::get_weight</ref>&lt;<ref refid="dd/d88/structBrush_1_1Operator_3_01NodeType_1_1Terminal_00_01S_00_01Fit_01_4_1a13deb85d16b607e4842e7c0277db79c8" kindref="member">RetType</ref>,<ref refid="dc/d5c/namespaceBrush_1ac3467b794678aa79ffba2438c8fbd16b" kindref="member">Scalar</ref>,<ref refid="dd/d88/structBrush_1_1Operator_3_01NodeType_1_1Terminal_00_01S_00_01Fit_01_4_1a5176127947597b2158c8cd5984cb276f" kindref="member">W</ref>&gt;(<ref refid="dd/d88/structBrush_1_1Operator_3_01NodeType_1_1Terminal_00_01S_00_01Fit_01_4_1a87454e9050411ec3898d3599b50463c1" kindref="member">tn</ref>, weights);
+                return this-&gt;<ref refid="dd/d88/structBrush_1_1Operator_3_01NodeType_1_1Terminal_00_01S_00_01Fit_01_4_1a936cf115e4d95aed91817fcf1bb9c084" kindref="member">get</ref>&lt;<ref refid="dd/d88/structBrush_1_1Operator_3_01NodeType_1_1Terminal_00_01S_00_01Fit_01_4_1a13deb85d16b607e4842e7c0277db79c8" kindref="member">RetType</ref>&gt;(d, tn.data.get_feature())*w;
+            }
+        }
+        return this-&gt;<ref refid="dd/d88/structBrush_1_1Operator_3_01NodeType_1_1Terminal_00_01S_00_01Fit_01_4_1a936cf115e4d95aed91817fcf1bb9c084" kindref="member">get</ref>&lt;<ref refid="dd/d88/structBrush_1_1Operator_3_01NodeType_1_1Terminal_00_01S_00_01Fit_01_4_1a13deb85d16b607e4842e7c0277db79c8" kindref="member">RetType</ref>&gt;(d,tn.data.get_feature());
+    }</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/runner/work/brush/brush/src/program/operator.h" line="223" column="40" bodyfile="/home/runner/work/brush/brush/src/program/operator.h" bodystart="223" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="dd/d88/structBrush_1_1Operator_3_01NodeType_1_1Terminal_00_01S_00_01Fit_01_4_1a4a4703c5990aba663b5aa55c12a3af1f" prot="public" static="no" const="yes" explicit="no" inline="no" refqual="lvalue" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>typename T</type>
+            <defval><ref refid="dd/d88/structBrush_1_1Operator_3_01NodeType_1_1Terminal_00_01S_00_01Fit_01_4_1a13deb85d16b607e4842e7c0277db79c8" kindref="member">RetType</ref></defval>
+          </param>
+          <param>
+            <type>typename <ref refid="dc/d5c/namespaceBrush_1ac3467b794678aa79ffba2438c8fbd16b" kindref="member">Scalar</ref></type>
+            <defval>typename T::Scalar</defval>
+          </param>
+        </templateparamlist>
+        <type></type>
+        <definition>Brush::Operator&lt; NodeType::Terminal, S, Fit &gt;::requires</definition>
+        <argsstring>(is_one_of_v&lt; Scalar, bool, int, float &gt;) RetType eval(const Dataset &amp;d</argsstring>
+        <name>requires</name>
+        <param>
+          <type><ref refid="dc/d5c/namespaceBrush_1a7e323244b7b57c08d6816a009e74eec6" kindref="member">is_one_of_v</ref>&lt; <ref refid="dc/d5c/namespaceBrush_1ac3467b794678aa79ffba2438c8fbd16b" kindref="member">Scalar</ref>, bool, int, float &gt;</type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/runner/work/brush/brush/src/program/operator.h" line="222" column="9"/>
+      </memberdef>
+      <memberdef kind="function" id="dd/d88/structBrush_1_1Operator_3_01NodeType_1_1Terminal_00_01S_00_01Fit_01_4_1a5dde7a99e6d728b63704125b2788a07e" prot="public" static="no" const="yes" explicit="no" inline="no" refqual="lvalue" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>typename T</type>
+            <defval><ref refid="dd/d88/structBrush_1_1Operator_3_01NodeType_1_1Terminal_00_01S_00_01Fit_01_4_1a13deb85d16b607e4842e7c0277db79c8" kindref="member">RetType</ref></defval>
+          </param>
+          <param>
+            <type>typename <ref refid="dc/d5c/namespaceBrush_1ac3467b794678aa79ffba2438c8fbd16b" kindref="member">Scalar</ref></type>
+            <defval>typename T::Scalar</defval>
+          </param>
+        </templateparamlist>
+        <type></type>
+        <definition>Brush::Operator&lt; NodeType::Terminal, S, Fit &gt;::requires</definition>
+        <argsstring>(is_one_of_v&lt; Scalar, bJet, iJet, fJet &gt;) RetType eval(const Dataset &amp;d</argsstring>
+        <name>requires</name>
+        <param>
+          <type><ref refid="dc/d5c/namespaceBrush_1a7e323244b7b57c08d6816a009e74eec6" kindref="member">is_one_of_v</ref>&lt; <ref refid="dc/d5c/namespaceBrush_1ac3467b794678aa79ffba2438c8fbd16b" kindref="member">Scalar</ref>, <ref refid="dc/d5c/namespaceBrush_1a1dc15defd0ed08feac029e2844f7867e" kindref="member">bJet</ref>, <ref refid="dc/d5c/namespaceBrush_1a12cdc4558b7841338641fdc58bbda013" kindref="member">iJet</ref>, <ref refid="dc/d5c/namespaceBrush_1afca2eb9cd1e30d788f324d15a9af500a" kindref="member">fJet</ref> &gt;</type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/runner/work/brush/brush/src/program/operator.h" line="237" column="9"/>
+        <references refid="dc/d31/structBrush_1_1Operator_1a9b3566380c44ab792b52b467799285a4" compoundref="d7/de0/operator_8h" startline="98">Brush::Operator&lt; NT, S, Fit, E &gt;::tn</references>
+        <references refid="dc/d31/structBrush_1_1Operator_1ac0d7dd5291386ff527a39f2f4fea03df" compoundref="d7/de0/operator_8h" startline="98">Brush::Operator&lt; NT, S, Fit, E &gt;::weights</references>
+      </memberdef>
+      <memberdef kind="function" id="dd/d88/structBrush_1_1Operator_3_01NodeType_1_1Terminal_00_01S_00_01Fit_01_4_1a936cf115e4d95aed91817fcf1bb9c084" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>typename T</type>
+          </param>
+        </templateparamlist>
+        <type>auto</type>
+        <definition>auto Brush::Operator&lt; NodeType::Terminal, S, Fit &gt;::get</definition>
+        <argsstring>(const Dataset &amp;d, const string &amp;feature) const</argsstring>
+        <name>get</name>
+        <param>
+          <type><ref refid="dc/d31/structBrush_1_1Operator_1a3bedec6829095c6bb0b7c82885622d8e" kindref="member">const</ref> <ref refid="d2/d36/classBrush_1_1Data_1_1Dataset" kindref="compound">Dataset</ref> &amp;</type>
+          <declname>d</declname>
+        </param>
+        <param>
+          <type><ref refid="dc/d31/structBrush_1_1Operator_1a3bedec6829095c6bb0b7c82885622d8e" kindref="member">const</ref> string &amp;</type>
+          <declname>feature</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/runner/work/brush/brush/src/program/operator.h" line="253" column="10" bodyfile="/home/runner/work/brush/brush/src/program/operator.h" bodystart="253" bodyend="265"/>
+        <references refid="da/d41/error_8h_1aa4c550bcd71e4ec1c97b111e1360509a" compoundref="da/d41/error_8h" startline="24">HANDLE_ERROR_THROW</references>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+<para>Terminal Overload. </para>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="/home/runner/work/brush/brush/src/program/operator.h" line="216" column="1" bodyfile="/home/runner/work/brush/brush/src/program/operator.h" bodystart="217" bodyend="266"/>
+    <listofallmembers>
+      <member refid="dd/d88/structBrush_1_1Operator_3_01NodeType_1_1Terminal_00_01S_00_01Fit_01_4_1a936cf115e4d95aed91817fcf1bb9c084" prot="public" virt="non-virtual"><scope>Brush::Operator&lt; NodeType::Terminal, S, Fit &gt;</scope><name>get</name></member>
+      <member refid="dd/d88/structBrush_1_1Operator_3_01NodeType_1_1Terminal_00_01S_00_01Fit_01_4_1a4a4703c5990aba663b5aa55c12a3af1f" prot="public" virt="non-virtual"><scope>Brush::Operator&lt; NodeType::Terminal, S, Fit &gt;</scope><name>requires</name></member>
+      <member refid="dd/d88/structBrush_1_1Operator_3_01NodeType_1_1Terminal_00_01S_00_01Fit_01_4_1a5dde7a99e6d728b63704125b2788a07e" prot="public" virt="non-virtual"><scope>Brush::Operator&lt; NodeType::Terminal, S, Fit &gt;</scope><name>requires</name></member>
+      <member refid="dd/d88/structBrush_1_1Operator_3_01NodeType_1_1Terminal_00_01S_00_01Fit_01_4_1a13deb85d16b607e4842e7c0277db79c8" prot="public" virt="non-virtual"><scope>Brush::Operator&lt; NodeType::Terminal, S, Fit &gt;</scope><name>RetType</name></member>
+      <member refid="dd/d88/structBrush_1_1Operator_3_01NodeType_1_1Terminal_00_01S_00_01Fit_01_4_1a87454e9050411ec3898d3599b50463c1" prot="public" virt="non-virtual"><scope>Brush::Operator&lt; NodeType::Terminal, S, Fit &gt;</scope><name>tn</name></member>
+      <member refid="dd/d88/structBrush_1_1Operator_3_01NodeType_1_1Terminal_00_01S_00_01Fit_01_4_1a5176127947597b2158c8cd5984cb276f" prot="public" virt="non-virtual"><scope>Brush::Operator&lt; NodeType::Terminal, S, Fit &gt;</scope><name>W</name></member>
+      <member refid="dd/d88/structBrush_1_1Operator_3_01NodeType_1_1Terminal_00_01S_00_01Fit_01_4_1a6a6dab7428491549993f87476de904f6" prot="public" virt="non-virtual"><scope>Brush::Operator&lt; NodeType::Terminal, S, Fit &gt;</scope><name>weights</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

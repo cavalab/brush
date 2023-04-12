@@ -165,11 +165,13 @@
 </ul>
 </li>
 <li class="toctree-l1 current active has-children"><a class="reference internal" href="index.html">C++ API</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-3"><i class="fa-solid fa-chevron-down"></i></label><ul class="current">
-<li class="toctree-l2"><a class="reference internal" href="data.html">Brush::Data</a></li>
+<li class="toctree-l2"><a class="reference internal" href="data.html">Dataset</a></li>
+<li class="toctree-l2"><a class="reference internal" href="timeseries.html">TimeSeries</a></li>
 <li class="toctree-l2"><a class="reference internal" href="search_space.html">SearchSpace</a></li>
 <li class="toctree-l2 current active"><a class="current reference internal" href="#">Program</a></li>
 <li class="toctree-l2"><a class="reference internal" href="node.html">Node</a></li>
 <li class="toctree-l2"><a class="reference internal" href="nodetypes.html">NodeTypes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="variation.html">Variation (Crossover/Mutation)</a></li>
 </ul>
 </li>
 </ul>
@@ -340,17 +342,25 @@ document.write(`
 <dl class="cpp struct">
 <dt class="sig sig-object cpp" id="_CPPv4I_2PTEN5Brush7ProgramE">
 <span id="_CPPv3I_2PTEN5Brush7ProgramE"></span><span id="_CPPv2I_2PTEN5Brush7ProgramE"></span><span class="k"><span class="pre">template</span></span><span class="p"><span class="pre">&lt;</span></span><span class="n"><span class="pre">PT</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">PType</span></span></span><span class="p"><span class="pre">&gt;</span></span><br /><span class="target" id="db/d88/structBrush_1_1Program"></span><span class="k"><span class="pre">struct</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">Program</span></span></span><a class="headerlink" href="#_CPPv4I_2PTEN5Brush7ProgramE" title="Permalink to this definition">#</a><br /></dt>
-<dd><div class="breathe-sectiondef docutils container">
+<dd><p>An individual program, a.k.a. model. </p>
+<dl class="field-list simple">
+<dt class="field-odd">Template Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>PType</strong> – one of the ProgramType enum values. </p>
+</dd>
+</dl>
+<div class="breathe-sectiondef docutils container">
 <p class="breathe-sectiondef-title rubric" id="breathe-section-title-public-types">Public Types</p>
 <dl class="cpp type">
 <dt class="sig sig-object cpp" id="_CPPv4N5Brush7Program7RetTypeE">
 <span id="_CPPv3N5Brush7Program7RetTypeE"></span><span id="_CPPv2N5Brush7Program7RetTypeE"></span><span class="target" id="db/d88/structBrush_1_1Program_1a9c1ae84b6c475643e7adcd36f1bf0341"></span><span class="k"><span class="pre">using</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">RetType</span></span></span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="k"><span class="pre">typename</span></span><span class="w"> </span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">conditional_t</span></span><span class="p"><span class="pre">&lt;</span></span><a class="reference internal" href="#_CPPv4I_2PTEN5Brush7ProgramE" title="Brush::Program::PType"><span class="n"><span class="pre">PType</span></span></a><span class="w"> </span><span class="o"><span class="pre">==</span></span><span class="w"> </span><span class="n"><span class="pre">PT</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">Regressor</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="n"><span class="pre">ArrayXf</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">conditional_t</span></span><span class="p"><span class="pre">&lt;</span></span><a class="reference internal" href="#_CPPv4I_2PTEN5Brush7ProgramE" title="Brush::Program::PType"><span class="n"><span class="pre">PType</span></span></a><span class="w"> </span><span class="o"><span class="pre">==</span></span><span class="w"> </span><span class="n"><span class="pre">PT</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">BinaryClassifier</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="n"><span class="pre">ArrayXb</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">conditional_t</span></span><span class="p"><span class="pre">&lt;</span></span><a class="reference internal" href="#_CPPv4I_2PTEN5Brush7ProgramE" title="Brush::Program::PType"><span class="n"><span class="pre">PType</span></span></a><span class="w"> </span><span class="o"><span class="pre">==</span></span><span class="w"> </span><span class="n"><span class="pre">PT</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">MulticlassClassifier</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="n"><span class="pre">ArrayXi</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">conditional_t</span></span><span class="p"><span class="pre">&lt;</span></span><a class="reference internal" href="#_CPPv4I_2PTEN5Brush7ProgramE" title="Brush::Program::PType"><span class="n"><span class="pre">PType</span></span></a><span class="w"> </span><span class="o"><span class="pre">==</span></span><span class="w"> </span><span class="n"><span class="pre">PT</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">Representer</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="n"><span class="pre">ArrayXXf</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="n"><span class="pre">ArrayXf</span></span><span class="p"><span class="pre">&gt;</span></span><span class="p"><span class="pre">&gt;</span></span><span class="p"><span class="pre">&gt;</span></span><span class="p"><span class="pre">&gt;</span></span><a class="headerlink" href="#_CPPv4N5Brush7Program7RetTypeE" title="Permalink to this definition">#</a><br /></dt>
-<dd></dd></dl>
+<dd><p>the return type of the tree when calling :func:<code class="docutils literal notranslate"><span class="pre">predict</span></code>. </p>
+</dd></dl>
 
 <dl class="cpp type">
 <dt class="sig sig-object cpp" id="_CPPv4N5Brush7Program8TreeTypeE">
 <span id="_CPPv3N5Brush7Program8TreeTypeE"></span><span id="_CPPv2N5Brush7Program8TreeTypeE"></span><span class="target" id="db/d88/structBrush_1_1Program_1a54036fdabf4bb8d87e19c4c2f6b577a4"></span><span class="k"><span class="pre">using</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">TreeType</span></span></span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">conditional_t</span></span><span class="p"><span class="pre">&lt;</span></span><a class="reference internal" href="#_CPPv4I_2PTEN5Brush7ProgramE" title="Brush::Program::PType"><span class="n"><span class="pre">PType</span></span></a><span class="w"> </span><span class="o"><span class="pre">==</span></span><span class="w"> </span><span class="n"><span class="pre">PT</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">BinaryClassifier</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="n"><span class="pre">ArrayXf</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">conditional_t</span></span><span class="p"><span class="pre">&lt;</span></span><a class="reference internal" href="#_CPPv4I_2PTEN5Brush7ProgramE" title="Brush::Program::PType"><span class="n"><span class="pre">PType</span></span></a><span class="w"> </span><span class="o"><span class="pre">==</span></span><span class="w"> </span><span class="n"><span class="pre">PT</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">MulticlassClassifier</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="n"><span class="pre">ArrayXXf</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference internal" href="#_CPPv4N5Brush7Program7RetTypeE" title="Brush::Program::RetType"><span class="n"><span class="pre">RetType</span></span></a><span class="p"><span class="pre">&gt;</span></span><span class="p"><span class="pre">&gt;</span></span><a class="headerlink" href="#_CPPv4N5Brush7Program8TreeTypeE" title="Permalink to this definition">#</a><br /></dt>
-<dd></dd></dl>
+<dd><p>the type of output from the tree object </p>
+</dd></dl>
 
 </div>
 <div class="breathe-sectiondef docutils container">
@@ -583,7 +593,7 @@ document.write(`
 <dl class="cpp function">
 <dt class="sig sig-object cpp" id="_CPPv4NK5Brush7Program6mutateEv">
 <span id="_CPPv3NK5Brush7Program6mutateEv"></span><span id="_CPPv2NK5Brush7Program6mutateEv"></span><span id="Brush::Program::mutateC"></span><span class="target" id="db/d88/structBrush_1_1Program_1a294cf928c4374ebf6fae5713f31f3c79"></span><a class="reference internal" href="#_CPPv4I_2PTEN5Brush7ProgramE" title="Brush::Program"><span class="n"><span class="pre">Program</span></span></a><span class="p"><span class="pre">&lt;</span></span><a class="reference internal" href="#_CPPv4I_2PTEN5Brush7ProgramE" title="Brush::Program::PType"><span class="n"><span class="pre">PType</span></span></a><span class="p"><span class="pre">&gt;</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">mutate</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">const</span></span><a class="headerlink" href="#_CPPv4NK5Brush7Program6mutateEv" title="Permalink to this definition">#</a><br /></dt>
-<dd><p>convenience wrapper for :func:mutate in variation.h</p>
+<dd><p>convenience wrapper for :cpp:func:<code class="docutils literal notranslate"><span class="pre">variation:</span><a class="reference internal" href="#db/d88/structBrush_1_1Program_1a294cf928c4374ebf6fae5713f31f3c79"><span class="std std-ref"><span class="pre">mutate()</span></span></a></code> in variation.h</p>
 <dl class="field-list simple">
 <dt class="field-odd">Returns<span class="colon">:</span></dt>
 <dd class="field-odd"><p>a mutated version of this program </p>
@@ -594,7 +604,7 @@ document.write(`
 <dl class="cpp function">
 <dt class="sig sig-object cpp" id="_CPPv4NK5Brush7Program5crossE7ProgramI5PTypeE">
 <span id="_CPPv3NK5Brush7Program5crossE7ProgramI5PTypeE"></span><span id="_CPPv2NK5Brush7Program5crossE7ProgramI5PTypeE"></span><span id="Brush::Program::cross__Program:PType:C"></span><span class="target" id="db/d88/structBrush_1_1Program_1a73fe32f4ee17a89b1044ec83f1b11766"></span><a class="reference internal" href="#_CPPv4I_2PTEN5Brush7ProgramE" title="Brush::Program"><span class="n"><span class="pre">Program</span></span></a><span class="p"><span class="pre">&lt;</span></span><a class="reference internal" href="#_CPPv4I_2PTEN5Brush7ProgramE" title="Brush::Program::PType"><span class="n"><span class="pre">PType</span></span></a><span class="p"><span class="pre">&gt;</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">cross</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="#_CPPv4I_2PTEN5Brush7ProgramE" title="Brush::Program"><span class="n"><span class="pre">Program</span></span></a><span class="p"><span class="pre">&lt;</span></span><a class="reference internal" href="#_CPPv4I_2PTEN5Brush7ProgramE" title="Brush::Program::PType"><span class="n"><span class="pre">PType</span></span></a><span class="p"><span class="pre">&gt;</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">other</span></span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">const</span></span><a class="headerlink" href="#_CPPv4NK5Brush7Program5crossE7ProgramI5PTypeE" title="Permalink to this definition">#</a><br /></dt>
-<dd><p>convenience wrapper for :func:cross in variation.h</p>
+<dd><p>convenience wrapper for :cpp:func:<code class="docutils literal notranslate"><span class="pre">variation:cross</span></code> in variation.h</p>
 <p>swaps subtrees between this and other (note the pass by copy)</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
@@ -635,8 +645,7 @@ document.write(`
 <dl class="cpp var">
 <dt class="sig sig-object cpp" id="_CPPv4N5Brush7Program4TreeE">
 <span id="_CPPv3N5Brush7Program4TreeE"></span><span id="_CPPv2N5Brush7Program4TreeE"></span><span id="Brush::Program::Tree__tree:Node:"></span><span class="target" id="db/d88/structBrush_1_1Program_1a7435fb84d7b056a108f142bb19956da5"></span><span class="n"><span class="pre">tree</span></span><span class="p"><span class="pre">&lt;</span></span><a class="reference internal" href="node.html#_CPPv4N5Brush4NodeE" title="Brush::Node"><span class="n"><span class="pre">Node</span></span></a><span class="p"><span class="pre">&gt;</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">Tree</span></span></span><a class="headerlink" href="#_CPPv4N5Brush7Program4TreeE" title="Permalink to this definition">#</a><br /></dt>
-<dd><p>the type of output from the tree object </p>
-<p>the underlying tree </p>
+<dd><p>the underlying tree </p>
 </dd></dl>
 
 <dl class="cpp var">
@@ -676,7 +685,8 @@ document.write(`
 <dl class="cpp var">
 <dt class="sig sig-object cpp" id="_CPPv4N5Brush7Program12program_typeE">
 <span id="_CPPv3N5Brush7Program12program_typeE"></span><span id="_CPPv2N5Brush7Program12program_typeE"></span><span id="Brush::Program::program_type__PT"></span><span class="target" id="db/d88/structBrush_1_1Program_1a695b4178894f8703f2b539cf3a51b098"></span><span class="k"><span class="pre">static</span></span><span class="w"> </span><span class="k"><span class="pre">constexpr</span></span><span class="w"> </span><span class="n"><span class="pre">PT</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">program_type</span></span></span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><a class="reference internal" href="#_CPPv4I_2PTEN5Brush7ProgramE" title="Brush::Program::PType"><span class="n"><span class="pre">PType</span></span></a><a class="headerlink" href="#_CPPv4N5Brush7Program12program_typeE" title="Permalink to this definition">#</a><br /></dt>
-<dd></dd></dl>
+<dd><p>an enum storing the program type. </p>
+</dd></dl>
 
 </div>
 </dd></dl>

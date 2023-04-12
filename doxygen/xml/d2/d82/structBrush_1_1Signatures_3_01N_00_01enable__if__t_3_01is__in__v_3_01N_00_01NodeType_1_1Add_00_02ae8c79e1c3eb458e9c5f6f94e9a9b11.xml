@@ -1,0 +1,37 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="d2/d82/structBrush_1_1Signatures_3_01N_00_01enable__if__t_3_01is__in__v_3_01N_00_01NodeType_1_1Add_00_02ae8c79e1c3eb458e9c5f6f94e9a9b11" kind="struct" language="C++" prot="public">
+    <compoundname>Brush::Signatures&lt; N, enable_if_t&lt; is_in_v&lt; N, NodeType::Add, NodeType::Sub, NodeType::Mul, NodeType::Div, NodeType::Pow &gt; &gt; &gt;</compoundname>
+    <includes refid="d8/d8b/signatures_8h" local="no">signatures.h</includes>
+    <templateparamlist>
+      <param>
+        <type><ref refid="dc/d5c/namespaceBrush_1a051322bb9fd1db4638b6eccd399a29c8" kindref="member">NodeType</ref></type>
+        <declname>N</declname>
+        <defname>N</defname>
+      </param>
+    </templateparamlist>
+      <sectiondef kind="public-type">
+      <memberdef kind="typedef" id="d2/d82/structBrush_1_1Signatures_3_01N_00_01enable__if__t_3_01is__in__v_3_01N_00_01NodeType_1_1Add_00_02ae8c79e1c3eb458e9c5f6f94e9a9b11_1a1f501bcf30bc678a9317a7d5b5d69dd4" prot="public" static="no">
+        <type>std::tuple&lt; <ref refid="d2/d75/structBrush_1_1Signature" kindref="compound">Signature</ref>&lt; ArrayXf(ArrayXf, ArrayXf)&gt;, <ref refid="d2/d75/structBrush_1_1Signature" kindref="compound">Signature</ref>&lt; ArrayXXf(ArrayXXf, ArrayXXf)&gt; &gt;</type>
+        <definition>using Brush::Signatures&lt; N, enable_if_t&lt; is_in_v&lt; N, NodeType::Add, NodeType::Sub, NodeType::Mul, NodeType::Div, NodeType::Pow &gt; &gt; &gt;::type =  std::tuple&lt; Signature&lt;ArrayXf(ArrayXf,ArrayXf)&gt;, Signature&lt;ArrayXXf(ArrayXXf,ArrayXXf)&gt; &gt;</definition>
+        <argsstring></argsstring>
+        <name>type</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/runner/work/brush/brush/src/program/signatures.h" line="211" column="9" bodyfile="/home/runner/work/brush/brush/src/program/signatures.h" bodystart="214" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="/home/runner/work/brush/brush/src/program/signatures.h" line="204" column="1" bodyfile="/home/runner/work/brush/brush/src/program/signatures.h" bodystart="210" bodyend="215"/>
+    <listofallmembers>
+      <member refid="d2/d82/structBrush_1_1Signatures_3_01N_00_01enable__if__t_3_01is__in__v_3_01N_00_01NodeType_1_1Add_00_02ae8c79e1c3eb458e9c5f6f94e9a9b11_1a1f501bcf30bc678a9317a7d5b5d69dd4" prot="public" virt="non-virtual"><scope>Brush::Signatures&lt; N, enable_if_t&lt; is_in_v&lt; N, NodeType::Add, NodeType::Sub, NodeType::Mul, NodeType::Div, NodeType::Pow &gt; &gt; &gt;</scope><name>type</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

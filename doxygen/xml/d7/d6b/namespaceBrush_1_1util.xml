@@ -1,0 +1,84 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="d7/d6b/namespaceBrush_1_1util" kind="namespace" language="C++">
+    <compoundname>Brush::util</compoundname>
+      <sectiondef kind="func">
+      <memberdef kind="function" id="d7/d6b/namespaceBrush_1_1util_1acd1da211f39b8d4d52fb3811fb4c032b" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>typename T</type>
+          </param>
+          <param>
+            <type>typename <ref refid="dc/d5c/namespaceBrush_1ac3467b794678aa79ffba2438c8fbd16b" kindref="member">Scalar</ref></type>
+          </param>
+          <param>
+            <type>typename W</type>
+          </param>
+        </templateparamlist>
+        <type><ref refid="dc/d5c/namespaceBrush_1ac3467b794678aa79ffba2438c8fbd16b" kindref="member">Scalar</ref></type>
+        <definition>Scalar Brush::util::get_weight</definition>
+        <argsstring>(const TreeNode &amp;tn, const W **weights=nullptr)</argsstring>
+        <name>get_weight</name>
+        <param>
+          <type>const <ref refid="df/d61/dispatch__table_8h_1a5d0d9e773ca46763fb1b1152cafc4179" kindref="member">TreeNode</ref> &amp;</type>
+          <declname>tn</declname>
+        </param>
+        <param>
+          <type>const W **</type>
+          <declname>weights</declname>
+          <defval>nullptr</defval>
+        </param>
+        <briefdescription>
+<para>get weight </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="templateparam"><parameteritem>
+<parameternamelist>
+<parametername>T</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>return type </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>Scalar</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>scalar type of return type </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>tn</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>tree node </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>weights</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>option pointer to a weight array, used in place of node weight </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para></para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/runner/work/brush/brush/src/program/operator.h" line="19" column="12" bodyfile="/home/runner/work/brush/brush/src/program/operator.h" bodystart="19" bodyend="46"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="/home/runner/work/brush/brush/src/program/operator.h" line="10" column="1"/>
+  </compounddef>
+</doxygen>

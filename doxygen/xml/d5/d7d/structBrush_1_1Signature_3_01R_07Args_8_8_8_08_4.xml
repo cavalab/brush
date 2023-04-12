@@ -1,0 +1,175 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="d5/d7d/structBrush_1_1Signature_3_01R_07Args_8_8_8_08_4" kind="struct" language="C++" prot="public">
+    <compoundname>Brush::Signature&lt; R(Args...)&gt;</compoundname>
+    <basecompoundref refid="da/dd5/structBrush_1_1SigBase" prot="public" virt="non-virtual">Brush::SigBase&lt; R, Args... &gt;</basecompoundref>
+    <includes refid="d8/d8b/signatures_8h" local="no">signatures.h</includes>
+    <templateparamlist>
+      <param>
+        <type>typename R</type>
+      </param>
+      <param>
+        <type>typename...</type>
+        <declname>Args</declname>
+        <defname>Args</defname>
+      </param>
+    </templateparamlist>
+      <sectiondef kind="public-type">
+      <memberdef kind="typedef" id="d5/d7d/structBrush_1_1Signature_3_01R_07Args_8_8_8_08_4_1a5ba87bfe055a2d811d1e1732a8c7730b" prot="public" static="no">
+        <type><ref refid="da/dd5/structBrush_1_1SigBase" kindref="compound">SigBase</ref>&lt; R, Args... &gt;</type>
+        <definition>using Brush::Signature&lt; R(Args...)&gt;::base =  SigBase&lt;R, Args...&gt;</definition>
+        <argsstring></argsstring>
+        <name>base</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/runner/work/brush/brush/src/program/signatures.h" line="129" column="5" bodyfile="/home/runner/work/brush/brush/src/program/signatures.h" bodystart="129" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="typedef" id="d5/d7d/structBrush_1_1Signature_3_01R_07Args_8_8_8_08_4_1ac504f5c9a0c2245fb429a05942aae1d7" prot="public" static="no">
+        <type><ref refid="da/dd5/structBrush_1_1SigBase_1a648c74c8673cb0d89211dd3388d13274" kindref="member">base::RetType</ref></type>
+        <definition>using Brush::Signature&lt; R(Args...)&gt;::RetType =  base::RetType</definition>
+        <argsstring></argsstring>
+        <name>RetType</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/runner/work/brush/brush/src/program/signatures.h" line="130" column="5" bodyfile="/home/runner/work/brush/brush/src/program/signatures.h" bodystart="130" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="typedef" id="d5/d7d/structBrush_1_1Signature_3_01R_07Args_8_8_8_08_4_1a2f6af7046a9e1c4eb8cba1764a18a775" prot="public" static="no">
+        <type><ref refid="da/dd5/structBrush_1_1SigBase_1a8c4f8492dcb9b877ef14e8d07dca9046" kindref="member">base::ArgTypes</ref></type>
+        <definition>using Brush::Signature&lt; R(Args...)&gt;::ArgTypes =  base::ArgTypes</definition>
+        <argsstring></argsstring>
+        <name>ArgTypes</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/runner/work/brush/brush/src/program/signatures.h" line="131" column="5" bodyfile="/home/runner/work/brush/brush/src/program/signatures.h" bodystart="131" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="typedef" id="d5/d7d/structBrush_1_1Signature_3_01R_07Args_8_8_8_08_4_1a13864fc31c1af5bd4d11a65442779ce1" prot="public" static="no">
+        <type><ref refid="da/dd5/structBrush_1_1SigBase_1a83277e4484f08ac92475eeb8d474143e" kindref="member">base::FirstArg</ref></type>
+        <definition>using Brush::Signature&lt; R(Args...)&gt;::FirstArg =  base::FirstArg</definition>
+        <argsstring></argsstring>
+        <name>FirstArg</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/runner/work/brush/brush/src/program/signatures.h" line="132" column="5" bodyfile="/home/runner/work/brush/brush/src/program/signatures.h" bodystart="132" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="typedef" id="d5/d7d/structBrush_1_1Signature_3_01R_07Args_8_8_8_08_4_1a0d7d214836abf590725c8e2e9d7fc420" prot="public" static="no">
+        <type><ref refid="da/dd5/structBrush_1_1SigBase_1af330c93cdb4c2b8855a1224f65070f08" kindref="member">base::WeightType</ref></type>
+        <definition>using Brush::Signature&lt; R(Args...)&gt;::WeightType =  base::WeightType</definition>
+        <argsstring></argsstring>
+        <name>WeightType</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/runner/work/brush/brush/src/program/signatures.h" line="133" column="5" bodyfile="/home/runner/work/brush/brush/src/program/signatures.h" bodystart="133" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="typedef" id="d5/d7d/structBrush_1_1Signature_3_01R_07Args_8_8_8_08_4_1a70fe4161c9513f394d403d6139351cce" prot="public" static="no">
+        <type><ref refid="da/dd5/structBrush_1_1SigBase" kindref="compound">SigBase</ref>&lt; <ref refid="dc/d5c/namespaceBrush_1a94ca3809086fedb863aeddce810bad2f" kindref="member">Jetify_t</ref>&lt; <ref refid="d5/d7d/structBrush_1_1Signature_3_01R_07Args_8_8_8_08_4_1ac504f5c9a0c2245fb429a05942aae1d7" kindref="member">RetType</ref> &gt;, <ref refid="dc/d5c/namespaceBrush_1a94ca3809086fedb863aeddce810bad2f" kindref="member">Jetify_t</ref>&lt; Args &gt;... &gt;</type>
+        <definition>using Brush::Signature&lt; R(Args...)&gt;::Dual =  SigBase&lt;Jetify_t&lt;RetType&gt;, Jetify_t&lt;Args&gt;... &gt;</definition>
+        <argsstring></argsstring>
+        <name>Dual</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/runner/work/brush/brush/src/program/signatures.h" line="136" column="5" bodyfile="/home/runner/work/brush/brush/src/program/signatures.h" bodystart="136" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="typedef" id="d5/d7d/structBrush_1_1Signature_3_01R_07Args_8_8_8_08_4_1a7ace5066b187efa33260b6b979451bd9" prot="public" static="no">
+        <type><ref refid="da/dd5/structBrush_1_1SigBase" kindref="compound">SigBase</ref>&lt; <ref refid="d5/d7d/structBrush_1_1Signature_3_01R_07Args_8_8_8_08_4_1ac504f5c9a0c2245fb429a05942aae1d7" kindref="member">RetType</ref>, <ref refid="dc/d5c/namespaceBrush_1a94ca3809086fedb863aeddce810bad2f" kindref="member">Jetify_t</ref>&lt; Args &gt;... &gt;</type>
+        <definition>using Brush::Signature&lt; R(Args...)&gt;::DualArgs =  SigBase&lt;RetType, Jetify_t&lt;Args&gt;... &gt;</definition>
+        <argsstring></argsstring>
+        <name>DualArgs</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/runner/work/brush/brush/src/program/signatures.h" line="137" column="5" bodyfile="/home/runner/work/brush/brush/src/program/signatures.h" bodystart="137" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-static-attrib">
+      <memberdef kind="variable" id="d5/d7d/structBrush_1_1Signature_3_01R_07Args_8_8_8_08_4_1a38a3636a337dcec3d10b81ae7b888f74" prot="public" static="yes" constexpr="yes" mutable="no">
+        <type>constexpr auto</type>
+        <definition>constexpr auto Brush::Signature&lt; R(Args...)&gt;::ArgCount</definition>
+        <argsstring></argsstring>
+        <name>ArgCount</name>
+        <initializer>= base::ArgCount</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/runner/work/brush/brush/src/program/signatures.h" line="134" column="27" bodyfile="/home/runner/work/brush/brush/src/program/signatures.h" bodystart="134" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="1">
+        <label>Brush::Signature&lt; R(Args...)&gt;</label>
+        <link refid="d5/d7d/structBrush_1_1Signature_3_01R_07Args_8_8_8_08_4"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>Brush::SigBase&lt; R, Args... &gt;</label>
+        <link refid="da/dd5/structBrush_1_1SigBase"/>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="1">
+        <label>Brush::Signature&lt; R(Args...)&gt;</label>
+        <link refid="d5/d7d/structBrush_1_1Signature_3_01R_07Args_8_8_8_08_4"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>Brush::SigBase&lt; R, Args... &gt;</label>
+        <link refid="da/dd5/structBrush_1_1SigBase"/>
+      </node>
+    </collaborationgraph>
+    <location file="/home/runner/work/brush/brush/src/program/signatures.h" line="127" column="1" bodyfile="/home/runner/work/brush/brush/src/program/signatures.h" bodystart="128" bodyend="138"/>
+    <listofallmembers>
+      <member refid="d5/d7d/structBrush_1_1Signature_3_01R_07Args_8_8_8_08_4_1a38a3636a337dcec3d10b81ae7b888f74" prot="public" virt="non-virtual"><scope>Brush::Signature&lt; R(Args...)&gt;</scope><name>ArgCount</name></member>
+      <member refid="d5/d7d/structBrush_1_1Signature_3_01R_07Args_8_8_8_08_4_1a2f6af7046a9e1c4eb8cba1764a18a775" prot="public" virt="non-virtual"><scope>Brush::Signature&lt; R(Args...)&gt;</scope><name>ArgTypes</name></member>
+      <member refid="d5/d7d/structBrush_1_1Signature_3_01R_07Args_8_8_8_08_4_1a5ba87bfe055a2d811d1e1732a8c7730b" prot="public" virt="non-virtual"><scope>Brush::Signature&lt; R(Args...)&gt;</scope><name>base</name></member>
+      <member refid="da/dd5/structBrush_1_1SigBase_1afcea385152d72559a0544447c1467537" prot="public" virt="non-virtual"><scope>Brush::Signature&lt; R(Args...)&gt;</scope><name>contains</name></member>
+      <member refid="d5/d7d/structBrush_1_1Signature_3_01R_07Args_8_8_8_08_4_1a70fe4161c9513f394d403d6139351cce" prot="public" virt="non-virtual"><scope>Brush::Signature&lt; R(Args...)&gt;</scope><name>Dual</name></member>
+      <member refid="d5/d7d/structBrush_1_1Signature_3_01R_07Args_8_8_8_08_4_1a7ace5066b187efa33260b6b979451bd9" prot="public" virt="non-virtual"><scope>Brush::Signature&lt; R(Args...)&gt;</scope><name>DualArgs</name></member>
+      <member refid="d5/d7d/structBrush_1_1Signature_3_01R_07Args_8_8_8_08_4_1a13864fc31c1af5bd4d11a65442779ce1" prot="public" virt="non-virtual"><scope>Brush::Signature&lt; R(Args...)&gt;</scope><name>FirstArg</name></member>
+      <member refid="da/dd5/structBrush_1_1SigBase_1a65aae1d226520ac153bb8d7ebc4c7a29" prot="public" virt="non-virtual"><scope>Brush::Signature&lt; R(Args...)&gt;</scope><name>Function</name></member>
+      <member refid="da/dd5/structBrush_1_1SigBase_1a88859bf40bef625cf9101dc9930f8440" prot="public" virt="non-virtual"><scope>Brush::Signature&lt; R(Args...)&gt;</scope><name>get_arg_types</name></member>
+      <member refid="da/dd5/structBrush_1_1SigBase_1a08bcca0a17e3b39833be2c5a54fd7bcd" prot="public" virt="non-virtual"><scope>Brush::Signature&lt; R(Args...)&gt;</scope><name>get_arg_types</name></member>
+      <member refid="da/dd5/structBrush_1_1SigBase_1a8e6d6c978d88960b462d27a062778781" prot="public" virt="non-virtual"><scope>Brush::Signature&lt; R(Args...)&gt;</scope><name>get_args_type</name></member>
+      <member refid="da/dd5/structBrush_1_1SigBase_1ad18cdd8caeb5828a9b55c6999b31d2f5" prot="public" virt="non-virtual"><scope>Brush::Signature&lt; R(Args...)&gt;</scope><name>get_ret_type</name></member>
+      <member refid="da/dd5/structBrush_1_1SigBase_1a5df3e3042b325ba5adcf5bd959760db0" prot="public" virt="non-virtual"><scope>Brush::Signature&lt; R(Args...)&gt;</scope><name>hash</name></member>
+      <member refid="da/dd5/structBrush_1_1SigBase_1ad1fb7c49bbae03d555731a517a4329b7" prot="public" virt="non-virtual"><scope>Brush::Signature&lt; R(Args...)&gt;</scope><name>hash_args</name></member>
+      <member refid="da/dd5/structBrush_1_1SigBase_1ac36ab2649170f26b8ffb2a3d5ecf2620" prot="public" virt="non-virtual"><scope>Brush::Signature&lt; R(Args...)&gt;</scope><name>NthType</name></member>
+      <member refid="d5/d7d/structBrush_1_1Signature_3_01R_07Args_8_8_8_08_4_1ac504f5c9a0c2245fb429a05942aae1d7" prot="public" virt="non-virtual"><scope>Brush::Signature&lt; R(Args...)&gt;</scope><name>RetType</name></member>
+      <member refid="d5/d7d/structBrush_1_1Signature_3_01R_07Args_8_8_8_08_4_1a0d7d214836abf590725c8e2e9d7fc420" prot="public" virt="non-virtual"><scope>Brush::Signature&lt; R(Args...)&gt;</scope><name>WeightType</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

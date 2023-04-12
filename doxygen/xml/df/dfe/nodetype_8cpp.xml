@@ -1,0 +1,344 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="df/dfe/nodetype_8cpp" kind="file" language="C++">
+    <compoundname>nodetype.cpp</compoundname>
+    <includes refid="de/d26/nodetype_8h" local="yes">nodetype.h</includes>
+    <incdepgraph>
+      <node id="34">
+        <label>../util/logger.h</label>
+        <link refid="d1/d8c/logger_8h"/>
+        <childnode refid="10" relation="include">
+        </childnode>
+      </node>
+      <node id="18">
+        <label>fmt/format.h</label>
+      </node>
+      <node id="37">
+        <label>limits</label>
+      </node>
+      <node id="31">
+        <label>iterator</label>
+      </node>
+      <node id="29">
+        <label>error.h</label>
+        <link refid="da/d41/error_8h"/>
+        <childnode refid="16" relation="include">
+        </childnode>
+        <childnode refid="10" relation="include">
+        </childnode>
+      </node>
+      <node id="7">
+        <label>stdint.h</label>
+      </node>
+      <node id="22">
+        <label>variant</label>
+      </node>
+      <node id="38">
+        <label>timeseries.h</label>
+        <link refid="d9/df7/timeseries_8h"/>
+        <childnode refid="6" relation="include">
+        </childnode>
+        <childnode refid="26" relation="include">
+        </childnode>
+        <childnode refid="29" relation="include">
+        </childnode>
+      </node>
+      <node id="17">
+        <label>fmt/ostream.h</label>
+      </node>
+      <node id="12">
+        <label>numeric</label>
+      </node>
+      <node id="16">
+        <label>string</label>
+      </node>
+      <node id="13">
+        <label>map</label>
+      </node>
+      <node id="35">
+        <label>../util/rnd.h</label>
+        <link refid="d2/da9/rnd_8h"/>
+        <childnode refid="36" relation="include">
+        </childnode>
+        <childnode refid="37" relation="include">
+        </childnode>
+        <childnode refid="15" relation="include">
+        </childnode>
+        <childnode refid="6" relation="include">
+        </childnode>
+      </node>
+      <node id="40">
+        <label>signatures.h</label>
+        <link refid="d8/d8b/signatures_8h"/>
+      </node>
+      <node id="11">
+        <label>fstream</label>
+      </node>
+      <node id="28">
+        <label>ostream</label>
+      </node>
+      <node id="21">
+        <label>types.h</label>
+        <link refid="d9/d49/types_8h"/>
+        <childnode refid="22" relation="include">
+        </childnode>
+        <childnode refid="23" relation="include">
+        </childnode>
+        <childnode refid="24" relation="include">
+        </childnode>
+      </node>
+      <node id="36">
+        <label>random</label>
+      </node>
+      <node id="8">
+        <label>Eigen/Dense</label>
+      </node>
+      <node id="3">
+        <label>bitset</label>
+      </node>
+      <node id="33">
+        <label>tuple</label>
+      </node>
+      <node id="19">
+        <label>fmt/ranges.h</label>
+      </node>
+      <node id="39">
+        <label>optional</label>
+      </node>
+      <node id="15">
+        <label>vector</label>
+      </node>
+      <node id="25">
+        <label>../data/data.h</label>
+        <link refid="d2/dbd/data_8h"/>
+        <childnode refid="6" relation="include">
+        </childnode>
+        <childnode refid="26" relation="include">
+        </childnode>
+        <childnode refid="29" relation="include">
+        </childnode>
+        <childnode refid="34" relation="include">
+        </childnode>
+        <childnode refid="35" relation="include">
+        </childnode>
+        <childnode refid="38" relation="include">
+        </childnode>
+        <childnode refid="22" relation="include">
+        </childnode>
+        <childnode refid="39" relation="include">
+        </childnode>
+      </node>
+      <node id="6">
+        <label>../init.h</label>
+        <link refid="d8/dc0/init_8h"/>
+        <childnode refid="7" relation="include">
+        </childnode>
+        <childnode refid="8" relation="include">
+        </childnode>
+        <childnode refid="9" relation="include">
+        </childnode>
+        <childnode refid="10" relation="include">
+        </childnode>
+        <childnode refid="11" relation="include">
+        </childnode>
+        <childnode refid="12" relation="include">
+        </childnode>
+        <childnode refid="13" relation="include">
+        </childnode>
+        <childnode refid="14" relation="include">
+        </childnode>
+        <childnode refid="15" relation="include">
+        </childnode>
+        <childnode refid="16" relation="include">
+        </childnode>
+        <childnode refid="17" relation="include">
+        </childnode>
+        <childnode refid="18" relation="include">
+        </childnode>
+        <childnode refid="19" relation="include">
+        </childnode>
+        <childnode refid="20" relation="include">
+        </childnode>
+        <childnode refid="21" relation="include">
+        </childnode>
+      </node>
+      <node id="5">
+        <label>utility</label>
+      </node>
+      <node id="10">
+        <label>iostream</label>
+      </node>
+      <node id="26">
+        <label>../util/utils.h</label>
+        <link refid="d5/d60/utils_8h"/>
+        <childnode refid="8" relation="include">
+        </childnode>
+        <childnode refid="15" relation="include">
+        </childnode>
+        <childnode refid="14" relation="include">
+        </childnode>
+        <childnode refid="11" relation="include">
+        </childnode>
+        <childnode refid="27" relation="include">
+        </childnode>
+        <childnode refid="28" relation="include">
+        </childnode>
+        <childnode refid="13" relation="include">
+        </childnode>
+        <childnode refid="6" relation="include">
+        </childnode>
+        <childnode refid="29" relation="include">
+        </childnode>
+        <childnode refid="30" relation="include">
+        </childnode>
+        <childnode refid="31" relation="include">
+        </childnode>
+        <childnode refid="32" relation="include">
+        </childnode>
+        <childnode refid="33" relation="include">
+        </childnode>
+      </node>
+      <node id="23">
+        <label>ceres/jet.h</label>
+      </node>
+      <node id="32">
+        <label>execution</label>
+      </node>
+      <node id="27">
+        <label>chrono</label>
+      </node>
+      <node id="24">
+        <label>concepts</label>
+      </node>
+      <node id="4">
+        <label>type_traits</label>
+      </node>
+      <node id="14">
+        <label>set</label>
+      </node>
+      <node id="1">
+        <label>nodetype.cpp</label>
+        <link refid="df/dfe/nodetype_8cpp"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+      </node>
+      <node id="20">
+        <label>nlohmann/json.hpp</label>
+      </node>
+      <node id="2">
+        <label>nodetype.h</label>
+        <link refid="de/d26/nodetype_8h"/>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="5" relation="include">
+        </childnode>
+        <childnode refid="6" relation="include">
+        </childnode>
+        <childnode refid="25" relation="include">
+        </childnode>
+        <childnode refid="26" relation="include">
+        </childnode>
+        <childnode refid="35" relation="include">
+        </childnode>
+        <childnode refid="40" relation="include">
+        </childnode>
+      </node>
+      <node id="9">
+        <label>memory</label>
+      </node>
+      <node id="30">
+        <label>typeindex</label>
+      </node>
+    </incdepgraph>
+    <innernamespace refid="dc/d5c/namespaceBrush">Brush</innernamespace>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"><highlight class="preprocessor">#include<sp/>&quot;<ref refid="de/d26/nodetype_8h" kindref="compound">nodetype.h</ref>&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="2"><highlight class="normal"></highlight></codeline>
+<codeline lineno="3"><highlight class="normal"></highlight><highlight class="keyword">namespace<sp/></highlight><highlight class="normal"><ref refid="dc/d5c/namespaceBrush" kindref="compound">Brush</ref>{</highlight></codeline>
+<codeline lineno="4"><highlight class="normal"></highlight></codeline>
+<codeline lineno="5" refid="dc/d5c/namespaceBrush_1a53cdba1e843851199f3be9be32f5acdf" refkind="member"><highlight class="normal">std::map&lt;std::string,<sp/>NodeType&gt;<sp/><ref refid="dc/d5c/namespaceBrush_1a53cdba1e843851199f3be9be32f5acdf" kindref="member">NodeNameType</ref><sp/>=<sp/>{</highlight></codeline>
+<codeline lineno="6"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//arithmetic</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="7"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight><highlight class="stringliteral">&quot;Add&quot;</highlight><highlight class="normal">,<sp/><ref refid="dc/d5c/namespaceBrush_1a051322bb9fd1db4638b6eccd399a29c8aec211f7c20af43e742bf2570c3cb84f9" kindref="member">NodeType::Add</ref>},</highlight></codeline>
+<codeline lineno="8"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight><highlight class="stringliteral">&quot;Sub&quot;</highlight><highlight class="normal">,<sp/><ref refid="dc/d5c/namespaceBrush_1a051322bb9fd1db4638b6eccd399a29c8ae80155eceb940c89e2de63ad05868db2" kindref="member">NodeType::Sub</ref>},</highlight></codeline>
+<codeline lineno="9"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight><highlight class="stringliteral">&quot;Mul&quot;</highlight><highlight class="normal">,<sp/><ref refid="dc/d5c/namespaceBrush_1a051322bb9fd1db4638b6eccd399a29c8a62b6d55816cf737bfc6f42e60df1a3f2" kindref="member">NodeType::Mul</ref>},</highlight></codeline>
+<codeline lineno="10"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight><highlight class="stringliteral">&quot;Div&quot;</highlight><highlight class="normal">,<sp/><ref refid="dc/d5c/namespaceBrush_1a051322bb9fd1db4638b6eccd399a29c8a43d11850893d2fe84a1e618121c1cc0a" kindref="member">NodeType::Div</ref>},</highlight></codeline>
+<codeline lineno="11"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>{&quot;Aq&quot;,<sp/>NodeType::Aq},<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="12"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight><highlight class="stringliteral">&quot;Abs&quot;</highlight><highlight class="normal">,<sp/><ref refid="dc/d5c/namespaceBrush_1a051322bb9fd1db4638b6eccd399a29c8a1e34af023adeb7d5f484f8eb4b9826b6" kindref="member">NodeType::Abs</ref>},</highlight></codeline>
+<codeline lineno="13"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight><highlight class="stringliteral">&quot;Acos&quot;</highlight><highlight class="normal">,<sp/><ref refid="dc/d5c/namespaceBrush_1a051322bb9fd1db4638b6eccd399a29c8aed4629033ecb516ed7d1536e162030bb" kindref="member">NodeType::Acos</ref>},</highlight></codeline>
+<codeline lineno="14"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight><highlight class="stringliteral">&quot;Asin&quot;</highlight><highlight class="normal">,<sp/><ref refid="dc/d5c/namespaceBrush_1a051322bb9fd1db4638b6eccd399a29c8a76cfc54de4e2b9cde17334c821217d11" kindref="member">NodeType::Asin</ref>},</highlight></codeline>
+<codeline lineno="15"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight><highlight class="stringliteral">&quot;Atan&quot;</highlight><highlight class="normal">,<sp/><ref refid="dc/d5c/namespaceBrush_1a051322bb9fd1db4638b6eccd399a29c8ac9968ab1fa8103acbb3a4f22265f2def" kindref="member">NodeType::Atan</ref>},</highlight></codeline>
+<codeline lineno="16"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight><highlight class="stringliteral">&quot;Cos&quot;</highlight><highlight class="normal">,<sp/><ref refid="dc/d5c/namespaceBrush_1a051322bb9fd1db4638b6eccd399a29c8affca562be079b9e4e41ea9d6a86c582b" kindref="member">NodeType::Cos</ref>},</highlight></codeline>
+<codeline lineno="17"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight><highlight class="stringliteral">&quot;Cosh&quot;</highlight><highlight class="normal">,<sp/><ref refid="dc/d5c/namespaceBrush_1a051322bb9fd1db4638b6eccd399a29c8a4371c3565b771b40c187487cc0190392" kindref="member">NodeType::Cosh</ref>},</highlight></codeline>
+<codeline lineno="18"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight><highlight class="stringliteral">&quot;Sin&quot;</highlight><highlight class="normal">,<sp/><ref refid="dc/d5c/namespaceBrush_1a051322bb9fd1db4638b6eccd399a29c8a0986d137604183312e6d3599578bc6cd" kindref="member">NodeType::Sin</ref>},</highlight></codeline>
+<codeline lineno="19"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight><highlight class="stringliteral">&quot;Sinh&quot;</highlight><highlight class="normal">,<sp/><ref refid="dc/d5c/namespaceBrush_1a051322bb9fd1db4638b6eccd399a29c8a98ed804abf4edd1f3be3fa894fa8cc3d" kindref="member">NodeType::Sinh</ref>},</highlight></codeline>
+<codeline lineno="20"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight><highlight class="stringliteral">&quot;Tan&quot;</highlight><highlight class="normal">,<sp/><ref refid="dc/d5c/namespaceBrush_1a051322bb9fd1db4638b6eccd399a29c8a1266b4e6f81e60733ec6c717e0181f60" kindref="member">NodeType::Tan</ref>},</highlight></codeline>
+<codeline lineno="21"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight><highlight class="stringliteral">&quot;Tanh&quot;</highlight><highlight class="normal">,<sp/><ref refid="dc/d5c/namespaceBrush_1a051322bb9fd1db4638b6eccd399a29c8acc132a41cab5676334f353a22a0aa5c5" kindref="member">NodeType::Tanh</ref>},</highlight></codeline>
+<codeline lineno="22"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight><highlight class="stringliteral">&quot;Ceil&quot;</highlight><highlight class="normal">,<sp/><ref refid="dc/d5c/namespaceBrush_1a051322bb9fd1db4638b6eccd399a29c8ab95a01ffffa8fcdd2a9af961937c097c" kindref="member">NodeType::Ceil</ref>},</highlight></codeline>
+<codeline lineno="23"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight><highlight class="stringliteral">&quot;Floor&quot;</highlight><highlight class="normal">,<sp/><ref refid="dc/d5c/namespaceBrush_1a051322bb9fd1db4638b6eccd399a29c8af3f6d0343d56ce88ce7958170ed05cb3" kindref="member">NodeType::Floor</ref>},</highlight></codeline>
+<codeline lineno="24"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight><highlight class="stringliteral">&quot;Exp&quot;</highlight><highlight class="normal">,<sp/><ref refid="dc/d5c/namespaceBrush_1a051322bb9fd1db4638b6eccd399a29c8acad39a154bffb61175f674d6eefaf6d0" kindref="member">NodeType::Exp</ref>},</highlight></codeline>
+<codeline lineno="25"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight><highlight class="stringliteral">&quot;Log&quot;</highlight><highlight class="normal">,<sp/><ref refid="dc/d5c/namespaceBrush_1a051322bb9fd1db4638b6eccd399a29c8ace0be71e33226e4c1db2bcea5959f16b" kindref="member">NodeType::Log</ref>},</highlight></codeline>
+<codeline lineno="26"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight><highlight class="stringliteral">&quot;Logabs&quot;</highlight><highlight class="normal">,<sp/><ref refid="dc/d5c/namespaceBrush_1a051322bb9fd1db4638b6eccd399a29c8a90cfc7b40a8a0ccaf1e7f2822f3970ec" kindref="member">NodeType::Logabs</ref>},</highlight></codeline>
+<codeline lineno="27"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight><highlight class="stringliteral">&quot;Log1p&quot;</highlight><highlight class="normal">,<sp/><ref refid="dc/d5c/namespaceBrush_1a051322bb9fd1db4638b6eccd399a29c8a03d80d06f1bae0730687cc7d5815fc3c" kindref="member">NodeType::Log1p</ref>},</highlight></codeline>
+<codeline lineno="28"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight><highlight class="stringliteral">&quot;Sqrt&quot;</highlight><highlight class="normal">,<sp/><ref refid="dc/d5c/namespaceBrush_1a051322bb9fd1db4638b6eccd399a29c8aae77f3ad25595e35b327334d89410054" kindref="member">NodeType::Sqrt</ref>},</highlight></codeline>
+<codeline lineno="29"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight><highlight class="stringliteral">&quot;Sqrtabs&quot;</highlight><highlight class="normal">,<sp/><ref refid="dc/d5c/namespaceBrush_1a051322bb9fd1db4638b6eccd399a29c8a8a3e1775ae37f59b4078cb38d1d30154" kindref="member">NodeType::Sqrtabs</ref>},</highlight></codeline>
+<codeline lineno="30"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight><highlight class="stringliteral">&quot;Square&quot;</highlight><highlight class="normal">,<sp/><ref refid="dc/d5c/namespaceBrush_1a051322bb9fd1db4638b6eccd399a29c8aceb46ca115d05c51aa5a16a8867c3304" kindref="member">NodeType::Square</ref>},</highlight></codeline>
+<codeline lineno="31"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight><highlight class="stringliteral">&quot;Pow&quot;</highlight><highlight class="normal">,<sp/><ref refid="dc/d5c/namespaceBrush_1a051322bb9fd1db4638b6eccd399a29c8a8be6d3e955290ee50c00a4bc92aa7749" kindref="member">NodeType::Pow</ref>},</highlight></codeline>
+<codeline lineno="32"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight><highlight class="stringliteral">&quot;Logistic&quot;</highlight><highlight class="normal">,<sp/><ref refid="dc/d5c/namespaceBrush_1a051322bb9fd1db4638b6eccd399a29c8a9a2126552a9de60d20d95a47f85a16fd" kindref="member">NodeType::Logistic</ref>},</highlight></codeline>
+<codeline lineno="33"><highlight class="normal"></highlight></codeline>
+<codeline lineno="34"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>logic;<sp/>not<sp/>sure<sp/>these<sp/>will<sp/>make<sp/>it<sp/>in</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="35"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>{&quot;And&quot;,<sp/>NodeType::And},</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="36"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>{&quot;Or&quot;,<sp/>NodeType::Or},</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="37"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>{&quot;Not&quot;,<sp/>NodeType::Not},</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="38"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>{&quot;Xor&quot;,<sp/>NodeType::Xor},</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="39"><highlight class="normal"></highlight></codeline>
+<codeline lineno="40"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>decision<sp/>(same)</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="41"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>{&quot;Equals&quot;,<sp/>NodeType::Equals},<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="42"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>{&quot;LessThan&quot;,<sp/>NodeType::LessThan},<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="43"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>{&quot;GreaterThan&quot;,<sp/>NodeType::GreaterThan},<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="44"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>{&quot;Leq&quot;,<sp/>NodeType::Leq},<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="45"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>{&quot;Geq&quot;,<sp/>NodeType::Geq},<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="46"><highlight class="normal"></highlight></codeline>
+<codeline lineno="47"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>reductions</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="48"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight><highlight class="stringliteral">&quot;Min&quot;</highlight><highlight class="normal">,<sp/><ref refid="dc/d5c/namespaceBrush_1a051322bb9fd1db4638b6eccd399a29c8a78d811e98514cd165dda532286610fd2" kindref="member">NodeType::Min</ref>},</highlight></codeline>
+<codeline lineno="49"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight><highlight class="stringliteral">&quot;Max&quot;</highlight><highlight class="normal">,<sp/><ref refid="dc/d5c/namespaceBrush_1a051322bb9fd1db4638b6eccd399a29c8a6a061313d22e51e0f25b7cd4dc065233" kindref="member">NodeType::Max</ref>},</highlight></codeline>
+<codeline lineno="50"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight><highlight class="stringliteral">&quot;Mean&quot;</highlight><highlight class="normal">,<sp/><ref refid="dc/d5c/namespaceBrush_1a051322bb9fd1db4638b6eccd399a29c8a3d6c9ac08ada31c184094bbc67afe00d" kindref="member">NodeType::Mean</ref>},</highlight></codeline>
+<codeline lineno="51"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight><highlight class="stringliteral">&quot;Median&quot;</highlight><highlight class="normal">,<sp/><ref refid="dc/d5c/namespaceBrush_1a051322bb9fd1db4638b6eccd399a29c8a66851a3adec6655a7bd563743e4a55a2" kindref="member">NodeType::Median</ref>},</highlight></codeline>
+<codeline lineno="52"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight><highlight class="stringliteral">&quot;Count&quot;</highlight><highlight class="normal">,<sp/><ref refid="dc/d5c/namespaceBrush_1a051322bb9fd1db4638b6eccd399a29c8ae93f994f01c537c4e2f7d8528c3eb5e9" kindref="member">NodeType::Count</ref>},</highlight></codeline>
+<codeline lineno="53"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight><highlight class="stringliteral">&quot;Sum&quot;</highlight><highlight class="normal">,<sp/><ref refid="dc/d5c/namespaceBrush_1a051322bb9fd1db4638b6eccd399a29c8aa0ec87054b5e5b7847d0d8780a01a3d5" kindref="member">NodeType::Sum</ref>},</highlight></codeline>
+<codeline lineno="54"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight><highlight class="stringliteral">&quot;Prod&quot;</highlight><highlight class="normal">,<sp/><ref refid="dc/d5c/namespaceBrush_1a051322bb9fd1db4638b6eccd399a29c8a362a33c23b08e4a32a4ec53fbb82cccd" kindref="member">NodeType::Prod</ref>},</highlight></codeline>
+<codeline lineno="55"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight><highlight class="stringliteral">&quot;ArgMax&quot;</highlight><highlight class="normal">,<sp/><ref refid="dc/d5c/namespaceBrush_1a051322bb9fd1db4638b6eccd399a29c8a4766ad7b5b229c7c9a713faa05a2ef67" kindref="member">NodeType::ArgMax</ref>},</highlight></codeline>
+<codeline lineno="56"><highlight class="normal"></highlight></codeline>
+<codeline lineno="57"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>transforms</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="58"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight><highlight class="stringliteral">&quot;Softmax&quot;</highlight><highlight class="normal">,<sp/><ref refid="dc/d5c/namespaceBrush_1a051322bb9fd1db4638b6eccd399a29c8a31d953b9d49a6b4378f45097047976d0" kindref="member">NodeType::Softmax</ref>},</highlight></codeline>
+<codeline lineno="59"><highlight class="normal"></highlight></codeline>
+<codeline lineno="60"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>timing<sp/>masks</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="61"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight><highlight class="stringliteral">&quot;Before&quot;</highlight><highlight class="normal">,<sp/><ref refid="dc/d5c/namespaceBrush_1a051322bb9fd1db4638b6eccd399a29c8a9060587edeb01a63e3d3edc959678d1e" kindref="member">NodeType::Before</ref>},</highlight></codeline>
+<codeline lineno="62"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight><highlight class="stringliteral">&quot;After&quot;</highlight><highlight class="normal">,<sp/><ref refid="dc/d5c/namespaceBrush_1a051322bb9fd1db4638b6eccd399a29c8a7bfcadb5535fe8aad5032762b7bfe159" kindref="member">NodeType::After</ref>},</highlight></codeline>
+<codeline lineno="63"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight><highlight class="stringliteral">&quot;During&quot;</highlight><highlight class="normal">,<sp/><ref refid="dc/d5c/namespaceBrush_1a051322bb9fd1db4638b6eccd399a29c8a6bff18384c86302924dc53ce5595a5ee" kindref="member">NodeType::During</ref>},</highlight></codeline>
+<codeline lineno="64"><highlight class="normal"></highlight></codeline>
+<codeline lineno="65"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//split</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="66"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight><highlight class="stringliteral">&quot;SplitBest&quot;</highlight><highlight class="normal">,<sp/><ref refid="dc/d5c/namespaceBrush_1a051322bb9fd1db4638b6eccd399a29c8af8c481a92abba984160fae1003dfad55" kindref="member">NodeType::SplitBest</ref>},</highlight></codeline>
+<codeline lineno="67"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight><highlight class="stringliteral">&quot;SplitOn&quot;</highlight><highlight class="normal">,<sp/><ref refid="dc/d5c/namespaceBrush_1a051322bb9fd1db4638b6eccd399a29c8a15c7aff4312b936aa10eb02272c40c7a" kindref="member">NodeType::SplitOn</ref>},</highlight></codeline>
+<codeline lineno="68"><highlight class="normal"></highlight></codeline>
+<codeline lineno="69"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>leaves</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="70"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight><highlight class="stringliteral">&quot;Constant&quot;</highlight><highlight class="normal">,<sp/><ref refid="dc/d5c/namespaceBrush_1a051322bb9fd1db4638b6eccd399a29c8acb17869fe51048b5a5c4c6106551a255" kindref="member">NodeType::Constant</ref>},</highlight></codeline>
+<codeline lineno="71"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight><highlight class="stringliteral">&quot;Terminal&quot;</highlight><highlight class="normal">,<sp/><ref refid="dc/d5c/namespaceBrush_1a051322bb9fd1db4638b6eccd399a29c8a514d8a494f087c0d549b9536c2ef3bd9" kindref="member">NodeType::Terminal</ref>},</highlight></codeline>
+<codeline lineno="72"><highlight class="normal"></highlight></codeline>
+<codeline lineno="73"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>custom</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="74"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight><highlight class="stringliteral">&quot;CustomUnaryOp&quot;</highlight><highlight class="normal">,<sp/><ref refid="dc/d5c/namespaceBrush_1a051322bb9fd1db4638b6eccd399a29c8a5899c0d045d3a748ff08343f578992e4" kindref="member">NodeType::CustomUnaryOp</ref>},</highlight></codeline>
+<codeline lineno="75"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight><highlight class="stringliteral">&quot;CustomBinaryOp&quot;</highlight><highlight class="normal">,<sp/><ref refid="dc/d5c/namespaceBrush_1a051322bb9fd1db4638b6eccd399a29c8ab301448504f668a662d6cc14b2e62182" kindref="member">NodeType::CustomBinaryOp</ref>},</highlight></codeline>
+<codeline lineno="76"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight><highlight class="stringliteral">&quot;CustomSplit&quot;</highlight><highlight class="normal">,<sp/><ref refid="dc/d5c/namespaceBrush_1a051322bb9fd1db4638b6eccd399a29c8ad7ef4eb5c359fda634e34511047fee18" kindref="member">NodeType::CustomSplit</ref>},</highlight></codeline>
+<codeline lineno="77"><highlight class="normal">};</highlight></codeline>
+<codeline lineno="78"><highlight class="normal"></highlight></codeline>
+<codeline lineno="79" refid="dc/d5c/namespaceBrush_1abfd0b15e0aacec494262585ad04fd79b" refkind="member"><highlight class="normal">std::map&lt;NodeType,std::string&gt;<sp/><ref refid="dc/d5c/namespaceBrush_1abfd0b15e0aacec494262585ad04fd79b" kindref="member">NodeTypeName</ref><sp/>=<sp/><ref refid="d6/d2e/namespaceBrush_1_1Util_1acb304889eae44960a17ed276d815275a" kindref="member">Util::reverse_map</ref>(<ref refid="dc/d5c/namespaceBrush_1a53cdba1e843851199f3be9be32f5acdf" kindref="member">NodeNameType</ref>);</highlight></codeline>
+<codeline lineno="80"><highlight class="normal">}<sp/></highlight><highlight class="comment">//<sp/>Brush</highlight><highlight class="normal"></highlight></codeline>
+    </programlisting>
+    <location file="/home/runner/work/brush/brush/src/program/nodetype.cpp"/>
+  </compounddef>
+</doxygen>

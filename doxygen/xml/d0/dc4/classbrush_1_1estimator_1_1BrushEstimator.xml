@@ -1,0 +1,579 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="d0/dc4/classbrush_1_1estimator_1_1BrushEstimator" kind="class" language="Python" prot="public">
+    <compoundname>brush::estimator::BrushEstimator</compoundname>
+    <basecompoundref prot="public" virt="non-virtual">BaseEstimator</basecompoundref>
+    <derivedcompoundref refid="d0/d6a/classbrush_1_1estimator_1_1BrushClassifier" prot="public" virt="non-virtual">brush.estimator.BrushClassifier</derivedcompoundref>
+    <derivedcompoundref refid="da/d81/classbrush_1_1estimator_1_1BrushRegressor" prot="public" virt="non-virtual">brush.estimator.BrushRegressor</derivedcompoundref>
+      <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="d0/dc4/classbrush_1_1estimator_1_1BrushEstimator_1ab2416cb2e4a9327b93fe8397d0ba8572" prot="public" static="no" mutable="no">
+        <type></type>
+        <definition>brush.estimator.BrushEstimator::pop_size</definition>
+        <argsstring></argsstring>
+        <name>pop_size</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/runner/work/brush/brush/src/brush/estimator.py" line="76" column="1" bodyfile="/home/runner/work/brush/brush/src/brush/estimator.py" bodystart="76" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="d0/dc4/classbrush_1_1estimator_1_1BrushEstimator_1a3b4adff253c20efd315e9f8789503b4b" prot="public" static="no" mutable="no">
+        <type></type>
+        <definition>brush.estimator.BrushEstimator::max_gen</definition>
+        <argsstring></argsstring>
+        <name>max_gen</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/runner/work/brush/brush/src/brush/estimator.py" line="77" column="1" bodyfile="/home/runner/work/brush/brush/src/brush/estimator.py" bodystart="77" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="d0/dc4/classbrush_1_1estimator_1_1BrushEstimator_1a0d186a49025ec8370f4c5b2c61d1304f" prot="public" static="no" mutable="no">
+        <type></type>
+        <definition>brush.estimator.BrushEstimator::verbosity</definition>
+        <argsstring></argsstring>
+        <name>verbosity</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/runner/work/brush/brush/src/brush/estimator.py" line="78" column="1" bodyfile="/home/runner/work/brush/brush/src/brush/estimator.py" bodystart="78" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="d0/dc4/classbrush_1_1estimator_1_1BrushEstimator_1a5d1704a652d6d5ea0e5e98125702719a" prot="public" static="no" mutable="no">
+        <type></type>
+        <definition>brush.estimator.BrushEstimator::mode</definition>
+        <argsstring></argsstring>
+        <name>mode</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/runner/work/brush/brush/src/brush/estimator.py" line="79" column="1" bodyfile="/home/runner/work/brush/brush/src/brush/estimator.py" bodystart="79" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="d0/dc4/classbrush_1_1estimator_1_1BrushEstimator_1a2526c6813d622c1ac125e5fb7b6ba128" prot="public" static="no" mutable="no">
+        <type></type>
+        <definition>brush.estimator.BrushEstimator::max_depth</definition>
+        <argsstring></argsstring>
+        <name>max_depth</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/runner/work/brush/brush/src/brush/estimator.py" line="80" column="1" bodyfile="/home/runner/work/brush/brush/src/brush/estimator.py" bodystart="80" bodyend="-1"/>
+        <referencedby refid="d0/d6a/classbrush_1_1estimator_1_1BrushClassifier_1a2f7af58230ed6d27a92c6c727b600820" compoundref="d3/dac/estimator_8py" startline="224" endline="230">brush.estimator.BrushClassifier._make_individual</referencedby>
+        <referencedby refid="da/d81/classbrush_1_1estimator_1_1BrushRegressor_1aa2445be9821177293be3585174333928" compoundref="d3/dac/estimator_8py" startline="276" endline="316">brush.estimator.BrushRegressor._make_individual</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="d0/dc4/classbrush_1_1estimator_1_1BrushEstimator_1af75977b66a8836d700221adcb701b067" prot="public" static="no" mutable="no">
+        <type></type>
+        <definition>brush.estimator.BrushEstimator::max_size</definition>
+        <argsstring></argsstring>
+        <name>max_size</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/runner/work/brush/brush/src/brush/estimator.py" line="81" column="1" bodyfile="/home/runner/work/brush/brush/src/brush/estimator.py" bodystart="81" bodyend="-1"/>
+        <referencedby refid="d0/d6a/classbrush_1_1estimator_1_1BrushClassifier_1a2f7af58230ed6d27a92c6c727b600820" compoundref="d3/dac/estimator_8py" startline="224" endline="230">brush.estimator.BrushClassifier._make_individual</referencedby>
+        <referencedby refid="da/d81/classbrush_1_1estimator_1_1BrushRegressor_1aa2445be9821177293be3585174333928" compoundref="d3/dac/estimator_8py" startline="276" endline="316">brush.estimator.BrushRegressor._make_individual</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="d0/dc4/classbrush_1_1estimator_1_1BrushEstimator_1a0174bd91eccdf68b8885ae6b5ef4db76" prot="public" static="no" mutable="no">
+        <type></type>
+        <definition>brush.estimator.BrushEstimator::mutation_options</definition>
+        <argsstring></argsstring>
+        <name>mutation_options</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/runner/work/brush/brush/src/brush/estimator.py" line="82" column="1" bodyfile="/home/runner/work/brush/brush/src/brush/estimator.py" bodystart="82" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="d0/dc4/classbrush_1_1estimator_1_1BrushEstimator_1af9065286a6d4c5f2dcd6e3bcc539c08b" prot="public" static="no" mutable="no">
+        <type></type>
+        <definition>brush.estimator.BrushEstimator::functions</definition>
+        <argsstring></argsstring>
+        <name>functions</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/runner/work/brush/brush/src/brush/estimator.py" line="83" column="1" bodyfile="/home/runner/work/brush/brush/src/brush/estimator.py" bodystart="83" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="d0/dc4/classbrush_1_1estimator_1_1BrushEstimator_1aa71f7e6d68f5ce219d65b7f7b863fa6e" prot="public" static="no" mutable="no">
+        <type></type>
+        <definition>brush.estimator.BrushEstimator::batch_size</definition>
+        <argsstring></argsstring>
+        <name>batch_size</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/runner/work/brush/brush/src/brush/estimator.py" line="84" column="1" bodyfile="/home/runner/work/brush/brush/src/brush/estimator.py" bodystart="84" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="d0/dc4/classbrush_1_1estimator_1_1BrushEstimator_1a0a312180a4bb723670ab37a417074a0e" prot="public" static="no" mutable="no">
+        <type></type>
+        <definition>brush.estimator.BrushEstimator::data_</definition>
+        <argsstring></argsstring>
+        <name>data_</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/runner/work/brush/brush/src/brush/estimator.py" line="136" column="1" bodyfile="/home/runner/work/brush/brush/src/brush/estimator.py" bodystart="136" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="d0/dc4/classbrush_1_1estimator_1_1BrushEstimator_1a0b22b0ef09f113dfd3871d328090499c" prot="public" static="no" mutable="no">
+        <type></type>
+        <definition>brush.estimator.BrushEstimator::n_classes_</definition>
+        <argsstring></argsstring>
+        <name>n_classes_</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/runner/work/brush/brush/src/brush/estimator.py" line="140" column="1" bodyfile="/home/runner/work/brush/brush/src/brush/estimator.py" bodystart="140" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="d0/dc4/classbrush_1_1estimator_1_1BrushEstimator_1ab25513e9cb65475b41f18804257a49b6" prot="public" static="no" mutable="no">
+        <type></type>
+        <definition>brush.estimator.BrushEstimator::functions_</definition>
+        <argsstring></argsstring>
+        <name>functions_</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/runner/work/brush/brush/src/brush/estimator.py" line="143" column="1" bodyfile="/home/runner/work/brush/brush/src/brush/estimator.py" bodystart="143" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="d0/dc4/classbrush_1_1estimator_1_1BrushEstimator_1ae60d91755de9e541295e25c49ecfb591" prot="public" static="no" mutable="no">
+        <type></type>
+        <definition>brush.estimator.BrushEstimator::search_space_</definition>
+        <argsstring></argsstring>
+        <name>search_space_</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/runner/work/brush/brush/src/brush/estimator.py" line="147" column="1" bodyfile="/home/runner/work/brush/brush/src/brush/estimator.py" bodystart="147" bodyend="-1"/>
+        <referencedby refid="d0/d6a/classbrush_1_1estimator_1_1BrushClassifier_1a2f7af58230ed6d27a92c6c727b600820" compoundref="d3/dac/estimator_8py" startline="224" endline="230">brush.estimator.BrushClassifier._make_individual</referencedby>
+        <referencedby refid="da/d81/classbrush_1_1estimator_1_1BrushRegressor_1aa2445be9821177293be3585174333928" compoundref="d3/dac/estimator_8py" startline="276" endline="316">brush.estimator.BrushRegressor._make_individual</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="d0/dc4/classbrush_1_1estimator_1_1BrushEstimator_1ab7642f08b6d239392ecaa4a78b730957" prot="public" static="no" mutable="no">
+        <type></type>
+        <definition>brush.estimator.BrushEstimator::toolbox_</definition>
+        <argsstring></argsstring>
+        <name>toolbox_</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/runner/work/brush/brush/src/brush/estimator.py" line="148" column="1" bodyfile="/home/runner/work/brush/brush/src/brush/estimator.py" bodystart="148" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="d0/dc4/classbrush_1_1estimator_1_1BrushEstimator_1ada78ab3e85a2edecbd8bf256009f014c" prot="public" static="no" mutable="no">
+        <type></type>
+        <definition>brush.estimator.BrushEstimator::archive_</definition>
+        <argsstring></argsstring>
+        <name>archive_</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/runner/work/brush/brush/src/brush/estimator.py" line="151" column="1" bodyfile="/home/runner/work/brush/brush/src/brush/estimator.py" bodystart="151" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="d0/dc4/classbrush_1_1estimator_1_1BrushEstimator_1a44422c9d94c587951537f62fdfe95739" prot="public" static="no" mutable="no">
+        <type></type>
+        <definition>brush.estimator.BrushEstimator::best_estimator_</definition>
+        <argsstring></argsstring>
+        <name>best_estimator_</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/runner/work/brush/brush/src/brush/estimator.py" line="152" column="1" bodyfile="/home/runner/work/brush/brush/src/brush/estimator.py" bodystart="152" bodyend="-1"/>
+        <referencedby refid="d0/dc4/classbrush_1_1estimator_1_1BrushEstimator_1a87709a26a92ac4e24a4f3106b2bdd139" compoundref="d3/dac/estimator_8py" startline="176" endline="180">brush.estimator.BrushEstimator.predict</referencedby>
+        <referencedby refid="d0/d6a/classbrush_1_1estimator_1_1BrushClassifier_1a0a089fd905951f470a57fd267890511c" compoundref="d3/dac/estimator_8py" startline="231" endline="249">brush.estimator.BrushClassifier.predict_proba</referencedby>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="d0/dc4/classbrush_1_1estimator_1_1BrushEstimator_1a118d108e81e36cbd8a28b670eba7f9e0" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>def</type>
+        <definition>def brush.estimator.BrushEstimator.__init__</definition>
+        <argsstring>(self, mode=&apos;classification&apos;, pop_size=100, max_gen=100, verbosity=0, max_depth=3, max_size=20, mutation_options={&quot;point&quot;:0.4, &quot;insert&quot;:0.25, &quot;delete&quot;:0.25, &quot;toggle_weight&quot;:0.1}, list[str]|dict[str, float] functions={}, int batch_size=0)</argsstring>
+        <name>__init__</name>
+        <param>
+          <type>self</type>
+          <defname>self</defname>
+        </param>
+        <param>
+          <type><ref refid="d0/dc4/classbrush_1_1estimator_1_1BrushEstimator_1a5d1704a652d6d5ea0e5e98125702719a" kindref="member">mode</ref></type>
+          <defname>mode</defname>
+          <defval>&apos;classification&apos;</defval>
+        </param>
+        <param>
+          <type><ref refid="d0/dc4/classbrush_1_1estimator_1_1BrushEstimator_1ab2416cb2e4a9327b93fe8397d0ba8572" kindref="member">pop_size</ref></type>
+          <defname>pop_size</defname>
+          <defval>100</defval>
+        </param>
+        <param>
+          <type><ref refid="d0/dc4/classbrush_1_1estimator_1_1BrushEstimator_1a3b4adff253c20efd315e9f8789503b4b" kindref="member">max_gen</ref></type>
+          <defname>max_gen</defname>
+          <defval>100</defval>
+        </param>
+        <param>
+          <type><ref refid="d0/dc4/classbrush_1_1estimator_1_1BrushEstimator_1a0d186a49025ec8370f4c5b2c61d1304f" kindref="member">verbosity</ref></type>
+          <defname>verbosity</defname>
+          <defval>0</defval>
+        </param>
+        <param>
+          <type><ref refid="d0/dc4/classbrush_1_1estimator_1_1BrushEstimator_1a2526c6813d622c1ac125e5fb7b6ba128" kindref="member">max_depth</ref></type>
+          <defname>max_depth</defname>
+          <defval>3</defval>
+        </param>
+        <param>
+          <type><ref refid="d0/dc4/classbrush_1_1estimator_1_1BrushEstimator_1af75977b66a8836d700221adcb701b067" kindref="member">max_size</ref></type>
+          <defname>max_size</defname>
+          <defval>20</defval>
+        </param>
+        <param>
+          <type><ref refid="d0/dc4/classbrush_1_1estimator_1_1BrushEstimator_1a0174bd91eccdf68b8885ae6b5ef4db76" kindref="member">mutation_options</ref></type>
+          <defname>mutation_options</defname>
+          <defval>{&quot;point&quot;:0.4, &quot;insert&quot;:0.25, &quot;delete&quot;:0.25, &quot;toggle_weight&quot;:0.1}</defval>
+        </param>
+        <param>
+          <type>list|dict</type>
+          <declname>functions</declname>
+          <array>[str][str, float]</array>
+          <defval>{}</defval>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>batch_size</declname>
+          <defval>0</defval>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/runner/work/brush/brush/src/brush/estimator.py" line="64" column="1" bodyfile="/home/runner/work/brush/brush/src/brush/estimator.py" bodystart="75" bodyend="86"/>
+      </memberdef>
+      <memberdef kind="function" id="d0/dc4/classbrush_1_1estimator_1_1BrushEstimator_1a86918636dd7cd887005649b62d14d1be" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>def</type>
+        <definition>def brush.estimator.BrushEstimator.fit</definition>
+        <argsstring>(self, X, y)</argsstring>
+        <name>fit</name>
+        <param>
+          <type>self</type>
+          <defname>self</defname>
+        </param>
+        <param>
+          <type>X</type>
+          <defname>X</defname>
+        </param>
+        <param>
+          <type>y</type>
+          <defname>y</defname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><verbatim>Fit an estimator to X,y.
+
+Parameters
+----------
+X : np.ndarray
+    2-d array of input data.
+y : np.ndarray
+    1-d array of (boolean) target values.
+</verbatim> </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/runner/work/brush/brush/src/brush/estimator.py" line="124" column="1" bodyfile="/home/runner/work/brush/brush/src/brush/estimator.py" bodystart="124" bodyend="156"/>
+        <references refid="d0/dc4/classbrush_1_1estimator_1_1BrushEstimator_1a3808a9773d5a42827cc28aaf3f97b694" compoundref="d3/dac/estimator_8py" startline="195" endline="197">brush.estimator.BrushEstimator.get_params</references>
+      </memberdef>
+      <memberdef kind="function" id="d0/dc4/classbrush_1_1estimator_1_1BrushEstimator_1a87709a26a92ac4e24a4f3106b2bdd139" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>def</type>
+        <definition>def brush.estimator.BrushEstimator.predict</definition>
+        <argsstring>(self, X)</argsstring>
+        <name>predict</name>
+        <param>
+          <type>self</type>
+          <defname>self</defname>
+        </param>
+        <param>
+          <type>X</type>
+          <defname>X</defname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><verbatim>Predict using the best estimator in the archive. </verbatim> </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/runner/work/brush/brush/src/brush/estimator.py" line="176" column="1" bodyfile="/home/runner/work/brush/brush/src/brush/estimator.py" bodystart="176" bodyend="180"/>
+        <references refid="d0/dc4/classbrush_1_1estimator_1_1BrushEstimator_1a8ee87e403b46c4f0d3c718a2c3fdc988" compoundref="d3/dac/estimator_8py" startline="157" endline="175">brush.estimator.BrushEstimator._make_data</references>
+        <references refid="d0/dc4/classbrush_1_1estimator_1_1BrushEstimator_1a44422c9d94c587951537f62fdfe95739" compoundref="d3/dac/estimator_8py" startline="152">brush.estimator.BrushEstimator.best_estimator_</references>
+      </memberdef>
+      <memberdef kind="function" id="d0/dc4/classbrush_1_1estimator_1_1BrushEstimator_1a3808a9773d5a42827cc28aaf3f97b694" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>def</type>
+        <definition>def brush.estimator.BrushEstimator.get_params</definition>
+        <argsstring>(self)</argsstring>
+        <name>get_params</name>
+        <param>
+          <type>self</type>
+          <defname>self</defname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/runner/work/brush/brush/src/brush/estimator.py" line="195" column="1" bodyfile="/home/runner/work/brush/brush/src/brush/estimator.py" bodystart="195" bodyend="197"/>
+        <referencedby refid="d0/dc4/classbrush_1_1estimator_1_1BrushEstimator_1a86918636dd7cd887005649b62d14d1be" compoundref="d3/dac/estimator_8py" startline="124" endline="156">brush.estimator.BrushEstimator.fit</referencedby>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="private-func">
+      <memberdef kind="function" id="d0/dc4/classbrush_1_1estimator_1_1BrushEstimator_1a546c6a6230b2d4f9a960b38596f54820" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>def</type>
+        <definition>def brush.estimator.BrushEstimator._setup_toolbox</definition>
+        <argsstring>(self, data)</argsstring>
+        <name>_setup_toolbox</name>
+        <param>
+          <type>self</type>
+          <defname>self</defname>
+        </param>
+        <param>
+          <type>data</type>
+          <defname>data</defname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><verbatim>Setup the deap toolbox</verbatim> </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/runner/work/brush/brush/src/brush/estimator.py" line="87" column="1" bodyfile="/home/runner/work/brush/brush/src/brush/estimator.py" bodystart="87" bodyend="108"/>
+        <references refid="d0/dc4/classbrush_1_1estimator_1_1BrushEstimator_1af7d065d73b3f1ec7f9e11799167da014" compoundref="d3/dac/estimator_8py" startline="109" endline="118">brush.estimator.BrushEstimator._crossover</references>
+        <references refid="d0/d6a/classbrush_1_1estimator_1_1BrushClassifier_1a57f9821e2eb132e67a4dcbd97ffa472f" compoundref="d3/dac/estimator_8py" startline="217" endline="223">brush.estimator.BrushClassifier._fitness_function</references>
+        <references refid="da/d81/classbrush_1_1estimator_1_1BrushRegressor_1ac1eabaaaed9126e30f5858da65daf472" compoundref="d3/dac/estimator_8py" startline="269" endline="275">brush.estimator.BrushRegressor._fitness_function</references>
+        <references refid="d0/d6a/classbrush_1_1estimator_1_1BrushClassifier_1a2f7af58230ed6d27a92c6c727b600820" compoundref="d3/dac/estimator_8py" startline="224" endline="230">brush.estimator.BrushClassifier._make_individual</references>
+        <references refid="da/d81/classbrush_1_1estimator_1_1BrushRegressor_1aa2445be9821177293be3585174333928" compoundref="d3/dac/estimator_8py" startline="276" endline="316">brush.estimator.BrushRegressor._make_individual</references>
+        <references refid="d0/dc4/classbrush_1_1estimator_1_1BrushEstimator_1a8edd942e828516255af2ae908a8e4666" compoundref="d3/dac/estimator_8py" startline="119" endline="123">brush.estimator.BrushEstimator._mutate</references>
+      </memberdef>
+      <memberdef kind="function" id="d0/dc4/classbrush_1_1estimator_1_1BrushEstimator_1af7d065d73b3f1ec7f9e11799167da014" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>def</type>
+        <definition>def brush.estimator.BrushEstimator._crossover</definition>
+        <argsstring>(self, ind1, ind2)</argsstring>
+        <name>_crossover</name>
+        <param>
+          <type>self</type>
+          <defname>self</defname>
+        </param>
+        <param>
+          <type>ind1</type>
+          <defname>ind1</defname>
+        </param>
+        <param>
+          <type>ind2</type>
+          <defname>ind2</defname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/runner/work/brush/brush/src/brush/estimator.py" line="109" column="1" bodyfile="/home/runner/work/brush/brush/src/brush/estimator.py" bodystart="109" bodyend="118"/>
+        <referencedby refid="d0/dc4/classbrush_1_1estimator_1_1BrushEstimator_1a546c6a6230b2d4f9a960b38596f54820" compoundref="d3/dac/estimator_8py" startline="87" endline="108">brush.estimator.BrushEstimator._setup_toolbox</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="d0/dc4/classbrush_1_1estimator_1_1BrushEstimator_1a8edd942e828516255af2ae908a8e4666" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>def</type>
+        <definition>def brush.estimator.BrushEstimator._mutate</definition>
+        <argsstring>(self, ind1)</argsstring>
+        <name>_mutate</name>
+        <param>
+          <type>self</type>
+          <defname>self</defname>
+        </param>
+        <param>
+          <type>ind1</type>
+          <defname>ind1</defname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/runner/work/brush/brush/src/brush/estimator.py" line="119" column="1" bodyfile="/home/runner/work/brush/brush/src/brush/estimator.py" bodystart="119" bodyend="123"/>
+        <referencedby refid="d0/dc4/classbrush_1_1estimator_1_1BrushEstimator_1a546c6a6230b2d4f9a960b38596f54820" compoundref="d3/dac/estimator_8py" startline="87" endline="108">brush.estimator.BrushEstimator._setup_toolbox</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="d0/dc4/classbrush_1_1estimator_1_1BrushEstimator_1a8ee87e403b46c4f0d3c718a2c3fdc988" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>def</type>
+        <definition>def brush.estimator.BrushEstimator._make_data</definition>
+        <argsstring>(self, X, y=None)</argsstring>
+        <name>_make_data</name>
+        <param>
+          <type>self</type>
+          <defname>self</defname>
+        </param>
+        <param>
+          <type>X</type>
+          <defname>X</defname>
+        </param>
+        <param>
+          <type>y</type>
+          <defname>y</defname>
+          <defval>None</defval>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/runner/work/brush/brush/src/brush/estimator.py" line="157" column="1" bodyfile="/home/runner/work/brush/brush/src/brush/estimator.py" bodystart="157" bodyend="175"/>
+        <referencedby refid="d0/dc4/classbrush_1_1estimator_1_1BrushEstimator_1a87709a26a92ac4e24a4f3106b2bdd139" compoundref="d3/dac/estimator_8py" startline="176" endline="180">brush.estimator.BrushEstimator.predict</referencedby>
+        <referencedby refid="d0/d6a/classbrush_1_1estimator_1_1BrushClassifier_1a0a089fd905951f470a57fd267890511c" compoundref="d3/dac/estimator_8py" startline="231" endline="249">brush.estimator.BrushClassifier.predict_proba</referencedby>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+<para><verbatim>This is the base class for Brush estimators. 
+This class shouldn&apos;t be called directly; instead, call a child class like 
+:py:class:`BrushRegressor &lt;brush.estimator.BrushRegressor&gt;` or :py:class:`BrushClassifier &lt;brush.estimator.BrushClassifier&gt;`. 
+All of the shared parameters are documented here. 
+
+
+Parameters
+----------
+mode : str, default &apos;classification&apos;
+    The mode of the estimator. Used by subclasses
+pop_size : int, default 100
+    Population size.
+max_gen : int, default 100
+    Maximum iterations of the algorithm.
+verbosity : int, default 0
+    Controls level of printouts.
+max_depth : int, default 0
+    Maximum depth of GP trees in the GP program. Use 0 for no limit.
+max_size : int, default 0
+    Maximum number of nodes in a tree. Use 0 for no limit.
+mutation_options : dict, default {&quot;point&quot;:0.5, &quot;insert&quot;: 0.25, &quot;delete&quot;:  0.25}
+    A dictionary with keys naming the types of mutation and floating point 
+    values specifying the fraction of total mutations to do with that method. 
+functions: dict[str,float] or list[str], default {}
+    A dictionary with keys naming the function set and values giving the probability of sampling them, or a list of functions which will be weighted uniformly.
+    If empty, all available functions are included in the search space.
+
+Attributes
+----------
+best_estimator_ : _brush.Program
+    The final model picked from training. Used in subsequent calls to :func:`predict`. 
+archive_ : list[deap_api.DeapIndividual]
+    The final population from training. 
+data_ : _brush.Dataset
+    The training data in Brush format. 
+search_space_ : a Brush `SearchSpace` object. 
+    Holds the operators and terminals and sampling utilities to update programs.
+toolbox_ : deap.Toolbox
+    The toolbox used by DEAP for EA algorithm. </verbatim> </para>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="1">
+        <label>brush.estimator.BrushEstimator</label>
+        <link refid="d0/dc4/classbrush_1_1estimator_1_1BrushEstimator"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>BaseEstimator</label>
+      </node>
+      <node id="4">
+        <label>brush.estimator.BrushRegressor</label>
+        <link refid="da/d81/classbrush_1_1estimator_1_1BrushRegressor"/>
+        <childnode refid="1" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="3">
+        <label>brush.estimator.BrushClassifier</label>
+        <link refid="d0/d6a/classbrush_1_1estimator_1_1BrushClassifier"/>
+        <childnode refid="1" relation="public-inheritance">
+        </childnode>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="1">
+        <label>brush.estimator.BrushEstimator</label>
+        <link refid="d0/dc4/classbrush_1_1estimator_1_1BrushEstimator"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>BaseEstimator</label>
+      </node>
+    </collaborationgraph>
+    <location file="/home/runner/work/brush/brush/src/brush/estimator.py" line="20" column="1" bodyfile="/home/runner/work/brush/brush/src/brush/estimator.py" bodystart="20" bodyend="198"/>
+    <listofallmembers>
+      <member refid="d0/dc4/classbrush_1_1estimator_1_1BrushEstimator_1a118d108e81e36cbd8a28b670eba7f9e0" prot="public" virt="non-virtual"><scope>brush::estimator::BrushEstimator</scope><name>__init__</name></member>
+      <member refid="d0/dc4/classbrush_1_1estimator_1_1BrushEstimator_1af7d065d73b3f1ec7f9e11799167da014" prot="private" virt="non-virtual"><scope>brush::estimator::BrushEstimator</scope><name>_crossover</name></member>
+      <member refid="d0/dc4/classbrush_1_1estimator_1_1BrushEstimator_1a8ee87e403b46c4f0d3c718a2c3fdc988" prot="private" virt="non-virtual"><scope>brush::estimator::BrushEstimator</scope><name>_make_data</name></member>
+      <member refid="d0/dc4/classbrush_1_1estimator_1_1BrushEstimator_1a8edd942e828516255af2ae908a8e4666" prot="private" virt="non-virtual"><scope>brush::estimator::BrushEstimator</scope><name>_mutate</name></member>
+      <member refid="d0/dc4/classbrush_1_1estimator_1_1BrushEstimator_1a546c6a6230b2d4f9a960b38596f54820" prot="private" virt="non-virtual"><scope>brush::estimator::BrushEstimator</scope><name>_setup_toolbox</name></member>
+      <member refid="d0/dc4/classbrush_1_1estimator_1_1BrushEstimator_1ada78ab3e85a2edecbd8bf256009f014c" prot="public" virt="non-virtual"><scope>brush::estimator::BrushEstimator</scope><name>archive_</name></member>
+      <member refid="d0/dc4/classbrush_1_1estimator_1_1BrushEstimator_1aa71f7e6d68f5ce219d65b7f7b863fa6e" prot="public" virt="non-virtual"><scope>brush::estimator::BrushEstimator</scope><name>batch_size</name></member>
+      <member refid="d0/dc4/classbrush_1_1estimator_1_1BrushEstimator_1a44422c9d94c587951537f62fdfe95739" prot="public" virt="non-virtual"><scope>brush::estimator::BrushEstimator</scope><name>best_estimator_</name></member>
+      <member refid="d0/dc4/classbrush_1_1estimator_1_1BrushEstimator_1a0a312180a4bb723670ab37a417074a0e" prot="public" virt="non-virtual"><scope>brush::estimator::BrushEstimator</scope><name>data_</name></member>
+      <member refid="d0/dc4/classbrush_1_1estimator_1_1BrushEstimator_1a86918636dd7cd887005649b62d14d1be" prot="public" virt="non-virtual"><scope>brush::estimator::BrushEstimator</scope><name>fit</name></member>
+      <member refid="d0/dc4/classbrush_1_1estimator_1_1BrushEstimator_1af9065286a6d4c5f2dcd6e3bcc539c08b" prot="public" virt="non-virtual"><scope>brush::estimator::BrushEstimator</scope><name>functions</name></member>
+      <member refid="d0/dc4/classbrush_1_1estimator_1_1BrushEstimator_1ab25513e9cb65475b41f18804257a49b6" prot="public" virt="non-virtual"><scope>brush::estimator::BrushEstimator</scope><name>functions_</name></member>
+      <member refid="d0/dc4/classbrush_1_1estimator_1_1BrushEstimator_1a3808a9773d5a42827cc28aaf3f97b694" prot="public" virt="non-virtual"><scope>brush::estimator::BrushEstimator</scope><name>get_params</name></member>
+      <member refid="d0/dc4/classbrush_1_1estimator_1_1BrushEstimator_1a2526c6813d622c1ac125e5fb7b6ba128" prot="public" virt="non-virtual"><scope>brush::estimator::BrushEstimator</scope><name>max_depth</name></member>
+      <member refid="d0/dc4/classbrush_1_1estimator_1_1BrushEstimator_1a3b4adff253c20efd315e9f8789503b4b" prot="public" virt="non-virtual"><scope>brush::estimator::BrushEstimator</scope><name>max_gen</name></member>
+      <member refid="d0/dc4/classbrush_1_1estimator_1_1BrushEstimator_1af75977b66a8836d700221adcb701b067" prot="public" virt="non-virtual"><scope>brush::estimator::BrushEstimator</scope><name>max_size</name></member>
+      <member refid="d0/dc4/classbrush_1_1estimator_1_1BrushEstimator_1a5d1704a652d6d5ea0e5e98125702719a" prot="public" virt="non-virtual"><scope>brush::estimator::BrushEstimator</scope><name>mode</name></member>
+      <member refid="d0/dc4/classbrush_1_1estimator_1_1BrushEstimator_1a0174bd91eccdf68b8885ae6b5ef4db76" prot="public" virt="non-virtual"><scope>brush::estimator::BrushEstimator</scope><name>mutation_options</name></member>
+      <member refid="d0/dc4/classbrush_1_1estimator_1_1BrushEstimator_1a0b22b0ef09f113dfd3871d328090499c" prot="public" virt="non-virtual"><scope>brush::estimator::BrushEstimator</scope><name>n_classes_</name></member>
+      <member refid="d0/dc4/classbrush_1_1estimator_1_1BrushEstimator_1ab2416cb2e4a9327b93fe8397d0ba8572" prot="public" virt="non-virtual"><scope>brush::estimator::BrushEstimator</scope><name>pop_size</name></member>
+      <member refid="d0/dc4/classbrush_1_1estimator_1_1BrushEstimator_1a87709a26a92ac4e24a4f3106b2bdd139" prot="public" virt="non-virtual"><scope>brush::estimator::BrushEstimator</scope><name>predict</name></member>
+      <member refid="d0/dc4/classbrush_1_1estimator_1_1BrushEstimator_1ae60d91755de9e541295e25c49ecfb591" prot="public" virt="non-virtual"><scope>brush::estimator::BrushEstimator</scope><name>search_space_</name></member>
+      <member refid="d0/dc4/classbrush_1_1estimator_1_1BrushEstimator_1ab7642f08b6d239392ecaa4a78b730957" prot="public" virt="non-virtual"><scope>brush::estimator::BrushEstimator</scope><name>toolbox_</name></member>
+      <member refid="d0/dc4/classbrush_1_1estimator_1_1BrushEstimator_1a0d186a49025ec8370f4c5b2c61d1304f" prot="public" virt="non-virtual"><scope>brush::estimator::BrushEstimator</scope><name>verbosity</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

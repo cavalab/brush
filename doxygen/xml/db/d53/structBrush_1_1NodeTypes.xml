@@ -1,0 +1,67 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="db/d53/structBrush_1_1NodeTypes" kind="struct" language="C++" prot="public">
+    <compoundname>Brush::NodeTypes</compoundname>
+    <includes refid="de/d26/nodetype_8h" local="no">nodetype.h</includes>
+      <sectiondef kind="public-static-attrib">
+      <memberdef kind="variable" id="db/d53/structBrush_1_1NodeTypes_1a23df32f725c8ff1acf6b0ab2d9b57a78" prot="public" static="yes" constexpr="yes" mutable="no">
+        <type>constexpr size_t</type>
+        <definition>constexpr size_t Brush::NodeTypes::Count</definition>
+        <argsstring></argsstring>
+        <name>Count</name>
+        <initializer>= 39</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/runner/work/brush/brush/src/program/nodetype.h" line="101" column="29" bodyfile="/home/runner/work/brush/brush/src/program/nodetype.h" bodystart="101" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="db/d53/structBrush_1_1NodeTypes_1acf3e2b9f55d6886ee6190d05f3d2bd0b" prot="public" static="yes" constexpr="yes" mutable="no">
+        <type>constexpr size_t</type>
+        <definition>constexpr size_t Brush::NodeTypes::OpCount</definition>
+        <argsstring></argsstring>
+        <name>OpCount</name>
+        <initializer>= <ref refid="db/d53/structBrush_1_1NodeTypes_1a23df32f725c8ff1acf6b0ab2d9b57a78" kindref="member">Count</ref>-2</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/runner/work/brush/brush/src/program/nodetype.h" line="102" column="29" bodyfile="/home/runner/work/brush/brush/src/program/nodetype.h" bodystart="102" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-static-func">
+      <memberdef kind="function" id="db/d53/structBrush_1_1NodeTypes_1a560225849a640cb91ed60227d653dbfa" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>auto</type>
+        <definition>static auto Brush::NodeTypes::GetIndex</definition>
+        <argsstring>(NodeType type) -&gt; size_t</argsstring>
+        <name>GetIndex</name>
+        <param>
+          <type><ref refid="dc/d5c/namespaceBrush_1a051322bb9fd1db4638b6eccd399a29c8" kindref="member">NodeType</ref></type>
+          <declname>type</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/runner/work/brush/brush/src/program/nodetype.h" line="105" column="17" bodyfile="/home/runner/work/brush/brush/src/program/nodetype.h" bodystart="105" bodyend="108"/>
+        <referencedby refid="d1/d3a/structBrush_1_1Node_1a1aef5137dca5171a150c6d26ca43d9bc" compoundref="d1/d77/node_8h" startline="166" endline="175">Brush::Node::get_node_hash</referencedby>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="/home/runner/work/brush/brush/src/program/nodetype.h" line="99" column="1" bodyfile="/home/runner/work/brush/brush/src/program/nodetype.h" bodystart="99" bodyend="109"/>
+    <listofallmembers>
+      <member refid="db/d53/structBrush_1_1NodeTypes_1a23df32f725c8ff1acf6b0ab2d9b57a78" prot="public" virt="non-virtual"><scope>Brush::NodeTypes</scope><name>Count</name></member>
+      <member refid="db/d53/structBrush_1_1NodeTypes_1a560225849a640cb91ed60227d653dbfa" prot="public" virt="non-virtual"><scope>Brush::NodeTypes</scope><name>GetIndex</name></member>
+      <member refid="db/d53/structBrush_1_1NodeTypes_1acf3e2b9f55d6886ee6190d05f3d2bd0b" prot="public" virt="non-virtual"><scope>Brush::NodeTypes</scope><name>OpCount</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

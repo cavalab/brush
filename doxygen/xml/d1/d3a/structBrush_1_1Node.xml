@@ -1,0 +1,762 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="d1/d3a/structBrush_1_1Node" kind="struct" language="C++" prot="public">
+    <compoundname>Brush::Node</compoundname>
+    <includes refid="d1/d77/node_8h" local="no">node.h</includes>
+      <sectiondef kind="public-type">
+      <memberdef kind="typedef" id="d1/d3a/structBrush_1_1Node_1a65b335bb198e4a320b0aa60e559571c5" prot="public" static="no">
+        <type>std::tuple&lt; <ref refid="dc/d5c/namespaceBrush_1a682175e9dda766bb122adf2a1eded535" kindref="member">UnderlyingNodeType</ref>, size_t, bool, string, bool, int &gt;</type>
+        <definition>using Brush::Node::HashTuple =  std::tuple&lt; UnderlyingNodeType, size_t, bool, string, bool, int &gt;</definition>
+        <argsstring></argsstring>
+        <name>HashTuple</name>
+        <briefdescription>
+<para>tuple type for hashing </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/runner/work/brush/brush/src/program/node.h" line="90" column="5" bodyfile="/home/runner/work/brush/brush/src/program/node.h" bodystart="98" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="d1/d3a/structBrush_1_1Node_1ad6b3fd4a54c813d066370defc8a85af1" prot="public" static="no" mutable="no">
+        <type>string</type>
+        <definition>string Brush::Node::name</definition>
+        <argsstring></argsstring>
+        <name>name</name>
+        <briefdescription>
+<para>full name of the node, with types </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/runner/work/brush/brush/src/program/node.h" line="66" column="12" bodyfile="/home/runner/work/brush/brush/src/program/node.h" bodystart="66" bodyend="-1"/>
+        <referencedby refid="dc/d5c/namespaceBrush_1ad36f62c73493c032059be8cd18590d0e" compoundref="d7/d70/node_8cpp" startline="171" endline="229">Brush::from_json</referencedby>
+        <referencedby refid="dc/d5c/namespaceBrush_1a2277345e299e6d41c9573c59b32ad0aa" compoundref="d7/d70/node_8cpp" startline="77" endline="94">Brush::to_json</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="d1/d3a/structBrush_1_1Node_1a0971012cfb2ae944f4bea0ea0dc9e5a3" prot="public" static="no" mutable="no">
+        <type>bool</type>
+        <definition>bool Brush::Node::center_op</definition>
+        <argsstring></argsstring>
+        <name>center_op</name>
+        <briefdescription>
+<para>whether to center the operator in pretty printing </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/runner/work/brush/brush/src/program/node.h" line="68" column="10" bodyfile="/home/runner/work/brush/brush/src/program/node.h" bodystart="68" bodyend="-1"/>
+        <referencedby refid="dc/d5c/namespaceBrush_1ad36f62c73493c032059be8cd18590d0e" compoundref="d7/d70/node_8cpp" startline="171" endline="229">Brush::from_json</referencedby>
+        <referencedby refid="dc/d5c/namespaceBrush_1a2277345e299e6d41c9573c59b32ad0aa" compoundref="d7/d70/node_8cpp" startline="77" endline="94">Brush::to_json</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="d1/d3a/structBrush_1_1Node_1a9f5b2e34d8ba752e0f6bffebec8afdc0" prot="public" static="no" mutable="no">
+        <type>float</type>
+        <definition>float Brush::Node::prob_change</definition>
+        <argsstring></argsstring>
+        <name>prob_change</name>
+        <briefdescription>
+<para>chance of node being selected for variation </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/runner/work/brush/brush/src/program/node.h" line="70" column="11" bodyfile="/home/runner/work/brush/brush/src/program/node.h" bodystart="70" bodyend="-1"/>
+        <referencedby refid="d1/d3a/structBrush_1_1Node_1a4fcf7feccb71d538f8614d3c51247eb4" compoundref="d1/d77/node_8h" startline="215" endline="215">get_prob_change</referencedby>
+        <referencedby refid="d1/d3a/structBrush_1_1Node_1a087a9c51b46b3e801506415376cd0518" compoundref="d1/d77/node_8h" startline="217" endline="217">get_prob_keep</referencedby>
+        <referencedby refid="dc/d5c/namespaceBrush_1a2277345e299e6d41c9573c59b32ad0aa" compoundref="d7/d70/node_8cpp" startline="77" endline="94">Brush::to_json</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="d1/d3a/structBrush_1_1Node_1a32c73293ee4e02b6d828c2c213e06154" prot="public" static="no" mutable="no">
+        <type>bool</type>
+        <definition>bool Brush::Node::fixed</definition>
+        <argsstring></argsstring>
+        <name>fixed</name>
+        <briefdescription>
+<para>whether node is modifiable </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/runner/work/brush/brush/src/program/node.h" line="72" column="10" bodyfile="/home/runner/work/brush/brush/src/program/node.h" bodystart="72" bodyend="-1"/>
+        <referencedby refid="dc/d5c/namespaceBrush_1ad36f62c73493c032059be8cd18590d0e" compoundref="d7/d70/node_8cpp" startline="171" endline="229">Brush::from_json</referencedby>
+        <referencedby refid="d1/d3a/structBrush_1_1Node_1a1aef5137dca5171a150c6d26ca43d9bc" compoundref="d1/d77/node_8h" startline="166" endline="175">get_node_hash</referencedby>
+        <referencedby refid="d1/d3a/structBrush_1_1Node_1a99e9db58c89646c630fb9d54b41ff2ba" compoundref="d1/d77/node_8h" startline="133" endline="140">init</referencedby>
+        <referencedby refid="d4/dc3/structBrush_1_1SearchSpace_1a30dc9740ebecad5267acd5e27b1a3953" compoundref="d9/d99/search__space_8h" startline="544" endline="661">Brush::SearchSpace::make_program</referencedby>
+        <referencedby refid="d1/d3a/structBrush_1_1Node_1ad9e4f8654978a40e8266b20a4bb0950f" compoundref="d1/d77/node_8h" startline="216" endline="216">set_prob_change</referencedby>
+        <referencedby refid="dc/d5c/namespaceBrush_1a2277345e299e6d41c9573c59b32ad0aa" compoundref="d7/d70/node_8cpp" startline="77" endline="94">Brush::to_json</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="d1/d3a/structBrush_1_1Node_1a522791afe93c92442564356ff19ff55a" prot="public" static="no" mutable="no">
+        <type><ref refid="dc/d5c/namespaceBrush_1a051322bb9fd1db4638b6eccd399a29c8" kindref="member">NodeType</ref></type>
+        <definition>NodeType Brush::Node::node_type</definition>
+        <argsstring></argsstring>
+        <name>node_type</name>
+        <briefdescription>
+<para>the node type </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/runner/work/brush/brush/src/program/node.h" line="74" column="14" bodyfile="/home/runner/work/brush/brush/src/program/node.h" bodystart="74" bodyend="-1"/>
+        <referencedby refid="dc/d5c/namespaceBrush_1ad36f62c73493c032059be8cd18590d0e" compoundref="d7/d70/node_8cpp" startline="171" endline="229">Brush::from_json</referencedby>
+        <referencedby refid="d1/d3a/structBrush_1_1Node_1a1aef5137dca5171a150c6d26ca43d9bc" compoundref="d1/d77/node_8h" startline="166" endline="175">get_node_hash</referencedby>
+        <referencedby refid="d4/dc3/structBrush_1_1SearchSpace_1aeadd5cc2c0b7f791299560dd0dea4e4e" compoundref="d9/d99/search__space_8h" startline="428" endline="441">Brush::SearchSpace::get_node_like</referencedby>
+        <referencedby refid="dc/d5c/namespaceBrush_1a8f1ed90f7962fef5764e7be14845aa34" compoundref="d7/d70/node_8cpp" startline="97" endline="169">Brush::init_node_with_default_signature</referencedby>
+        <referencedby refid="dc/d5c/namespaceBrush_1a2277345e299e6d41c9573c59b32ad0aa" compoundref="d7/d70/node_8cpp" startline="77" endline="94">Brush::to_json</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="d1/d3a/structBrush_1_1Node_1a889e0361b55a63a4510a3edabd2fa57c" prot="public" static="no" mutable="no">
+        <type>std::size_t</type>
+        <definition>std::size_t Brush::Node::sig_hash</definition>
+        <argsstring></argsstring>
+        <name>sig_hash</name>
+        <briefdescription>
+<para>a hash of the signature </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/runner/work/brush/brush/src/program/node.h" line="76" column="17" bodyfile="/home/runner/work/brush/brush/src/program/node.h" bodystart="76" bodyend="-1"/>
+        <referencedby refid="d1/d3a/structBrush_1_1Node_1a9ec6ba08b0baebc0cd105e4ef774b7fb" compoundref="d1/d77/node_8h" startline="150" endline="150">args_type</referencedby>
+        <referencedby refid="dc/d5c/namespaceBrush_1ad36f62c73493c032059be8cd18590d0e" compoundref="d7/d70/node_8cpp" startline="171" endline="229">Brush::from_json</referencedby>
+        <referencedby refid="d1/d3a/structBrush_1_1Node_1a1aef5137dca5171a150c6d26ca43d9bc" compoundref="d1/d77/node_8h" startline="166" endline="175">get_node_hash</referencedby>
+        <referencedby refid="d1/d3a/structBrush_1_1Node_1a24ab653c36833ab9cd301efe99b39d5f" compoundref="d1/d77/node_8h" startline="124" endline="131">set_signature</referencedby>
+        <referencedby refid="dc/d5c/namespaceBrush_1a2277345e299e6d41c9573c59b32ad0aa" compoundref="d7/d70/node_8cpp" startline="77" endline="94">Brush::to_json</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="d1/d3a/structBrush_1_1Node_1aed6c2af0fae3dd8e5a8aa2fab77479fd" prot="public" static="no" mutable="no">
+        <type>std::size_t</type>
+        <definition>std::size_t Brush::Node::sig_dual_hash</definition>
+        <argsstring></argsstring>
+        <name>sig_dual_hash</name>
+        <briefdescription>
+<para>a hash of the dual of the signature (for NLS) </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/runner/work/brush/brush/src/program/node.h" line="78" column="17" bodyfile="/home/runner/work/brush/brush/src/program/node.h" bodystart="78" bodyend="-1"/>
+        <referencedby refid="dc/d5c/namespaceBrush_1ad36f62c73493c032059be8cd18590d0e" compoundref="d7/d70/node_8cpp" startline="171" endline="229">Brush::from_json</referencedby>
+        <referencedby refid="d1/d3a/structBrush_1_1Node_1a24ab653c36833ab9cd301efe99b39d5f" compoundref="d1/d77/node_8h" startline="124" endline="131">set_signature</referencedby>
+        <referencedby refid="dc/d5c/namespaceBrush_1a2277345e299e6d41c9573c59b32ad0aa" compoundref="d7/d70/node_8cpp" startline="77" endline="94">Brush::to_json</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="d1/d3a/structBrush_1_1Node_1a65b283648fe779d81ac11f9e4714d920" prot="public" static="no" mutable="no">
+        <type><ref refid="dc/d5c/namespaceBrush_1a3f2c9b744330ba4a561ac72f048a1a5f" kindref="member">DataType</ref></type>
+        <definition>DataType Brush::Node::ret_type</definition>
+        <argsstring></argsstring>
+        <name>ret_type</name>
+        <briefdescription>
+<para>return data type </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/runner/work/brush/brush/src/program/node.h" line="80" column="14" bodyfile="/home/runner/work/brush/brush/src/program/node.h" bodystart="80" bodyend="-1"/>
+        <referencedby refid="dc/d5c/namespaceBrush_1ad36f62c73493c032059be8cd18590d0e" compoundref="d7/d70/node_8cpp" startline="171" endline="229">Brush::from_json</referencedby>
+        <referencedby refid="d4/dc3/structBrush_1_1SearchSpace_1aeadd5cc2c0b7f791299560dd0dea4e4e" compoundref="d9/d99/search__space_8h" startline="428" endline="441">Brush::SearchSpace::get_node_like</referencedby>
+        <referencedby refid="d1/d3a/structBrush_1_1Node_1a2d4b7a1f21f80ce980f4748432911964" compoundref="d1/d77/node_8h" startline="149" endline="149">get_ret_type</referencedby>
+        <referencedby refid="d1/d3a/structBrush_1_1Node_1a24ab653c36833ab9cd301efe99b39d5f" compoundref="d1/d77/node_8h" startline="124" endline="131">set_signature</referencedby>
+        <referencedby refid="dc/d5c/namespaceBrush_1a2277345e299e6d41c9573c59b32ad0aa" compoundref="d7/d70/node_8cpp" startline="77" endline="94">Brush::to_json</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="d1/d3a/structBrush_1_1Node_1a237b9208864ace5209edca01623f6b1e" prot="public" static="no" mutable="no">
+        <type>std::vector&lt; <ref refid="dc/d5c/namespaceBrush_1a3f2c9b744330ba4a561ac72f048a1a5f" kindref="member">DataType</ref> &gt;</type>
+        <definition>std::vector&lt;DataType&gt; Brush::Node::arg_types</definition>
+        <argsstring></argsstring>
+        <name>arg_types</name>
+        <briefdescription>
+<para>argument data types </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/runner/work/brush/brush/src/program/node.h" line="82" column="17" bodyfile="/home/runner/work/brush/brush/src/program/node.h" bodystart="82" bodyend="-1"/>
+        <referencedby refid="dc/d5c/namespaceBrush_1ad36f62c73493c032059be8cd18590d0e" compoundref="d7/d70/node_8cpp" startline="171" endline="229">Brush::from_json</referencedby>
+        <referencedby refid="d1/d3a/structBrush_1_1Node_1ac2f0913b7a3e238d879722eb7f62aee2" compoundref="d1/d77/node_8h" startline="152" endline="152">get_arg_count</referencedby>
+        <referencedby refid="d1/d3a/structBrush_1_1Node_1a754e5efb828686e30ebfa2174d56e37a" compoundref="d1/d77/node_8h" startline="151" endline="151">get_arg_types</referencedby>
+        <referencedby refid="d4/dc3/structBrush_1_1SearchSpace_1a30dc9740ebecad5267acd5e27b1a3953" compoundref="d9/d99/search__space_8h" startline="544" endline="661">Brush::SearchSpace::make_program</referencedby>
+        <referencedby refid="d1/d3a/structBrush_1_1Node_1a24ab653c36833ab9cd301efe99b39d5f" compoundref="d1/d77/node_8h" startline="124" endline="131">set_signature</referencedby>
+        <referencedby refid="dc/d5c/namespaceBrush_1a2277345e299e6d41c9573c59b32ad0aa" compoundref="d7/d70/node_8cpp" startline="77" endline="94">Brush::to_json</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="d1/d3a/structBrush_1_1Node_1ab72b791f57011a032c6c89238db85845" prot="public" static="no" mutable="no">
+        <type>bool</type>
+        <definition>bool Brush::Node::is_weighted</definition>
+        <argsstring></argsstring>
+        <name>is_weighted</name>
+        <briefdescription>
+<para>whether this node is weighted </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/runner/work/brush/brush/src/program/node.h" line="84" column="10" bodyfile="/home/runner/work/brush/brush/src/program/node.h" bodystart="84" bodyend="-1"/>
+        <referencedby refid="dc/d5c/namespaceBrush_1ad36f62c73493c032059be8cd18590d0e" compoundref="d7/d70/node_8cpp" startline="171" endline="229">Brush::from_json</referencedby>
+        <referencedby refid="d1/d3a/structBrush_1_1Node_1a1aef5137dca5171a150c6d26ca43d9bc" compoundref="d1/d77/node_8h" startline="166" endline="175">get_node_hash</referencedby>
+        <referencedby refid="dc/d5c/namespaceBrush_1a2277345e299e6d41c9573c59b32ad0aa" compoundref="d7/d70/node_8cpp" startline="77" endline="94">Brush::to_json</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="d1/d3a/structBrush_1_1Node_1ab719e64b13753515be49327d98bf2224" prot="public" static="no" mutable="no">
+        <type>float</type>
+        <definition>float Brush::Node::W</definition>
+        <argsstring></argsstring>
+        <name>W</name>
+        <briefdescription>
+<para>the weights of the node. also used for splitting thresholds. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/runner/work/brush/brush/src/program/node.h" line="86" column="11" bodyfile="/home/runner/work/brush/brush/src/program/node.h" bodystart="86" bodyend="-1"/>
+        <referencedby refid="dc/d5c/namespaceBrush_1ad36f62c73493c032059be8cd18590d0e" compoundref="d7/d70/node_8cpp" startline="171" endline="229">Brush::from_json</referencedby>
+        <referencedby refid="d1/d3a/structBrush_1_1Node_1a1aef5137dca5171a150c6d26ca43d9bc" compoundref="d1/d77/node_8h" startline="166" endline="175">get_node_hash</referencedby>
+        <referencedby refid="d1/d3a/structBrush_1_1Node_1a99e9db58c89646c630fb9d54b41ff2ba" compoundref="d1/d77/node_8h" startline="133" endline="140">init</referencedby>
+        <referencedby refid="dc/d5c/namespaceBrush_1a2277345e299e6d41c9573c59b32ad0aa" compoundref="d7/d70/node_8cpp" startline="77" endline="94">Brush::to_json</referencedby>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="d1/d3a/structBrush_1_1Node_1ac5f37d638625468ed68de599a2a7d968" prot="private" static="no" mutable="no">
+        <type>string</type>
+        <definition>string Brush::Node::feature</definition>
+        <argsstring></argsstring>
+        <name>feature</name>
+        <briefdescription>
+<para>feature name for terminals or splitting nodes </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/runner/work/brush/brush/src/program/node.h" line="225" column="16" bodyfile="/home/runner/work/brush/brush/src/program/node.h" bodystart="220" bodyend="-1"/>
+        <referencedby refid="d1/d3a/structBrush_1_1Node_1a85a62efd4f1f99fa45eb52e4c0a1a26f" compoundref="d1/d77/node_8h" startline="220" endline="220">get_feature</referencedby>
+        <referencedby refid="d1/d3a/structBrush_1_1Node_1a1aef5137dca5171a150c6d26ca43d9bc" compoundref="d1/d77/node_8h" startline="166" endline="175">get_node_hash</referencedby>
+        <referencedby refid="d1/d3a/structBrush_1_1Node_1a7e8460b645f3d58c3093eda1d5d3166c" compoundref="d1/d77/node_8h" startline="219" endline="219">set_feature</referencedby>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="d1/d3a/structBrush_1_1Node_1adcd17b2d50bd124218a1ed472369d461" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>Brush::Node::Node</definition>
+        <argsstring>()=default</argsstring>
+        <name>Node</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/runner/work/brush/brush/src/program/node.h" line="101" column="5"/>
+      </memberdef>
+      <memberdef kind="function" id="d1/d3a/structBrush_1_1Node_1a62f7ba79b38e86e54488e5dd9a6bdc93" prot="public" static="no" const="no" explicit="yes" inline="yes" noexcept="yes" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>typename S</type>
+          </param>
+        </templateparamlist>
+        <type></type>
+        <definition>Brush::Node::Node</definition>
+        <argsstring>(NodeType type, S signature, bool weighted=false, string feature_name=&quot;&quot;) noexcept</argsstring>
+        <name>Node</name>
+        <param>
+          <type><ref refid="dc/d5c/namespaceBrush_1a051322bb9fd1db4638b6eccd399a29c8" kindref="member">NodeType</ref></type>
+          <declname>type</declname>
+        </param>
+        <param>
+          <type>S</type>
+          <declname>signature</declname>
+        </param>
+        <param>
+          <type>bool</type>
+          <declname>weighted</declname>
+          <defval>false</defval>
+        </param>
+        <param>
+          <type>string</type>
+          <declname>feature_name</declname>
+          <defval>&quot;&quot;</defval>
+        </param>
+        <briefdescription>
+<para>Constructor used by search space. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="templateparam"><parameteritem>
+<parameternamelist>
+<parametername>S</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>signature </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>type</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>node type </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>feature_name</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>name of the terminal </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>signature</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>signature </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/runner/work/brush/brush/src/program/node.h" line="110" column="14" bodyfile="/home/runner/work/brush/brush/src/program/node.h" bodystart="110" bodyend="121"/>
+        <references refid="d1/d3a/structBrush_1_1Node_1a99e9db58c89646c630fb9d54b41ff2ba" compoundref="d1/d77/node_8h" startline="133" endline="140">init</references>
+      </memberdef>
+      <memberdef kind="function" id="d1/d3a/structBrush_1_1Node_1a24ab653c36833ab9cd301efe99b39d5f" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>typename S</type>
+          </param>
+        </templateparamlist>
+        <type>void</type>
+        <definition>void Brush::Node::set_signature</definition>
+        <argsstring>()</argsstring>
+        <name>set_signature</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/runner/work/brush/brush/src/program/node.h" line="124" column="10" bodyfile="/home/runner/work/brush/brush/src/program/node.h" bodystart="124" bodyend="131"/>
+        <references refid="d1/d3a/structBrush_1_1Node_1a237b9208864ace5209edca01623f6b1e" compoundref="d1/d77/node_8h" startline="82">arg_types</references>
+        <references refid="d1/d3a/structBrush_1_1Node_1a65b283648fe779d81ac11f9e4714d920" compoundref="d1/d77/node_8h" startline="80">ret_type</references>
+        <references refid="d1/d3a/structBrush_1_1Node_1aed6c2af0fae3dd8e5a8aa2fab77479fd" compoundref="d1/d77/node_8h" startline="78">sig_dual_hash</references>
+        <references refid="d1/d3a/structBrush_1_1Node_1a889e0361b55a63a4510a3edabd2fa57c" compoundref="d1/d77/node_8h" startline="76">sig_hash</references>
+        <referencedby refid="dc/d5c/namespaceBrush_1a8f1ed90f7962fef5764e7be14845aa34" compoundref="d7/d70/node_8cpp" startline="97" endline="169">Brush::init_node_with_default_signature</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="d1/d3a/structBrush_1_1Node_1a99e9db58c89646c630fb9d54b41ff2ba" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void Brush::Node::init</definition>
+        <argsstring>()</argsstring>
+        <name>init</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/runner/work/brush/brush/src/program/node.h" line="133" column="10" bodyfile="/home/runner/work/brush/brush/src/program/node.h" bodystart="133" bodyend="140"/>
+        <references refid="d1/d3a/structBrush_1_1Node_1a32c73293ee4e02b6d828c2c213e06154" compoundref="d1/d77/node_8h" startline="72">fixed</references>
+        <references refid="d1/d3a/structBrush_1_1Node_1ad9e4f8654978a40e8266b20a4bb0950f" compoundref="d1/d77/node_8h" startline="216" endline="216">set_prob_change</references>
+        <references refid="d1/d3a/structBrush_1_1Node_1ab719e64b13753515be49327d98bf2224" compoundref="d1/d77/node_8h" startline="86">W</references>
+        <referencedby refid="dc/d5c/namespaceBrush_1ad36f62c73493c032059be8cd18590d0e" compoundref="d7/d70/node_8cpp" startline="171" endline="229">Brush::from_json</referencedby>
+        <referencedby refid="d1/d3a/structBrush_1_1Node_1a62f7ba79b38e86e54488e5dd9a6bdc93" compoundref="d1/d77/node_8h" startline="110" endline="121">Node</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="d1/d3a/structBrush_1_1Node_1aaddaf7903795dfdcad487234d6dc380e" prot="public" static="no" const="yes" explicit="no" inline="no" noexcept="yes" virt="non-virtual">
+        <type>string</type>
+        <definition>auto Brush::Node::get_name</definition>
+        <argsstring>(bool include_weight=true) const noexcept</argsstring>
+        <name>get_name</name>
+        <param>
+          <type>bool</type>
+          <declname>include_weight</declname>
+          <defval>true</defval>
+        </param>
+        <briefdescription>
+<para>gets a string version of the node for printing. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>get the name of the node.</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>include_weight</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>whether to include the node&apos;s weight in the output. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>string version of the node.</para>
+</simplesect>
+<simplesect kind="return"><para>name </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/runner/work/brush/brush/src/program/node.h" line="145" column="12" bodyfile="/home/runner/work/brush/brush/src/program/node.cpp" bodystart="20" bodyend="37"/>
+        <referencedby refid="d4/d63/structfmt_1_1formatter_3_01Brush_1_1Node_01_4_1a3fbb52e5e3acf82d886c5c2f10a24df2" compoundref="d1/d77/node_8h" startline="294" endline="296">fmt::formatter&lt; Brush::Node &gt;::format</referencedby>
+        <referencedby refid="dc/d5c/namespaceBrush_1a9f9e092d833b2604cd38086f8b344a10" compoundref="d7/d70/node_8cpp" startline="12" endline="16">Brush::operator&lt;&lt;</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="d1/d3a/structBrush_1_1Node_1af621eb9463a3ed3434841565a849c03b" prot="public" static="no" const="yes" explicit="no" inline="no" noexcept="yes" virt="non-virtual">
+        <type>string</type>
+        <definition>string Brush::Node::get_model</definition>
+        <argsstring>(const vector&lt; string &gt; &amp;) const noexcept</argsstring>
+        <name>get_model</name>
+        <param>
+          <type>const vector&lt; string &gt; &amp;</type>
+          <defname>children</defname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/runner/work/brush/brush/src/program/node.h" line="146" column="12" bodyfile="/home/runner/work/brush/brush/src/program/node.cpp" bodystart="39" bodyend="70"/>
+      </memberdef>
+      <memberdef kind="function" id="d1/d3a/structBrush_1_1Node_1a2d4b7a1f21f80ce980f4748432911964" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="dc/d5c/namespaceBrush_1a3f2c9b744330ba4a561ac72f048a1a5f" kindref="member">DataType</ref></type>
+        <definition>DataType Brush::Node::get_ret_type</definition>
+        <argsstring>() const</argsstring>
+        <name>get_ret_type</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/runner/work/brush/brush/src/program/node.h" line="149" column="21" bodyfile="/home/runner/work/brush/brush/src/program/node.h" bodystart="149" bodyend="149"/>
+        <references refid="d1/d3a/structBrush_1_1Node_1a65b283648fe779d81ac11f9e4714d920" compoundref="d1/d77/node_8h" startline="80">ret_type</references>
+      </memberdef>
+      <memberdef kind="function" id="d1/d3a/structBrush_1_1Node_1a9ec6ba08b0baebc0cd105e4ef774b7fb" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>std::size_t</type>
+        <definition>std::size_t Brush::Node::args_type</definition>
+        <argsstring>() const</argsstring>
+        <name>args_type</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/runner/work/brush/brush/src/program/node.h" line="150" column="24" bodyfile="/home/runner/work/brush/brush/src/program/node.h" bodystart="150" bodyend="150"/>
+        <references refid="d1/d3a/structBrush_1_1Node_1a889e0361b55a63a4510a3edabd2fa57c" compoundref="d1/d77/node_8h" startline="76">sig_hash</references>
+        <referencedby refid="d4/dc3/structBrush_1_1SearchSpace_1aeadd5cc2c0b7f791299560dd0dea4e4e" compoundref="d9/d99/search__space_8h" startline="428" endline="441">Brush::SearchSpace::get_node_like</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="d1/d3a/structBrush_1_1Node_1a754e5efb828686e30ebfa2174d56e37a" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>auto</type>
+        <definition>auto Brush::Node::get_arg_types</definition>
+        <argsstring>() const</argsstring>
+        <name>get_arg_types</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/runner/work/brush/brush/src/program/node.h" line="151" column="17" bodyfile="/home/runner/work/brush/brush/src/program/node.h" bodystart="151" bodyend="151"/>
+        <references refid="d1/d3a/structBrush_1_1Node_1a237b9208864ace5209edca01623f6b1e" compoundref="d1/d77/node_8h" startline="82">arg_types</references>
+      </memberdef>
+      <memberdef kind="function" id="d1/d3a/structBrush_1_1Node_1ac2f0913b7a3e238d879722eb7f62aee2" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>size_t</type>
+        <definition>size_t Brush::Node::get_arg_count</definition>
+        <argsstring>() const</argsstring>
+        <name>get_arg_count</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/runner/work/brush/brush/src/program/node.h" line="152" column="19" bodyfile="/home/runner/work/brush/brush/src/program/node.h" bodystart="152" bodyend="152"/>
+        <references refid="d1/d3a/structBrush_1_1Node_1a237b9208864ace5209edca01623f6b1e" compoundref="d1/d77/node_8h" startline="82">arg_types</references>
+      </memberdef>
+      <memberdef kind="function" id="d1/d3a/structBrush_1_1Node_1a1aef5137dca5171a150c6d26ca43d9bc" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>size_t</type>
+        <definition>size_t Brush::Node::get_node_hash</definition>
+        <argsstring>() const</argsstring>
+        <name>get_node_hash</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/runner/work/brush/brush/src/program/node.h" line="166" column="12" bodyfile="/home/runner/work/brush/brush/src/program/node.h" bodystart="166" bodyend="175"/>
+        <references refid="d1/d3a/structBrush_1_1Node_1ac5f37d638625468ed68de599a2a7d968" compoundref="d1/d77/node_8h" startline="220">feature</references>
+        <references refid="d1/d3a/structBrush_1_1Node_1a32c73293ee4e02b6d828c2c213e06154" compoundref="d1/d77/node_8h" startline="72">fixed</references>
+        <references refid="db/d53/structBrush_1_1NodeTypes_1a560225849a640cb91ed60227d653dbfa" compoundref="de/d26/nodetype_8h" startline="105" endline="108">Brush::NodeTypes::GetIndex</references>
+        <references refid="d1/d3a/structBrush_1_1Node_1ab72b791f57011a032c6c89238db85845" compoundref="d1/d77/node_8h" startline="84">is_weighted</references>
+        <references refid="d1/d3a/structBrush_1_1Node_1a522791afe93c92442564356ff19ff55a" compoundref="d1/d77/node_8h" startline="74">node_type</references>
+        <references refid="d1/d3a/structBrush_1_1Node_1a889e0361b55a63a4510a3edabd2fa57c" compoundref="d1/d77/node_8h" startline="76">sig_hash</references>
+        <references refid="d1/d3a/structBrush_1_1Node_1ab719e64b13753515be49327d98bf2224" compoundref="d1/d77/node_8h" startline="86">W</references>
+        <referencedby refid="d1/d3a/structBrush_1_1Node_1aea5769142b80b211a53eb20d8a14507b" compoundref="d1/d77/node_8h" startline="190" endline="195">operator&lt;</referencedby>
+        <referencedby refid="d1/d3a/structBrush_1_1Node_1a7c46bb16fb006691be230d29b6e731fe" compoundref="d1/d77/node_8h" startline="178" endline="183">operator==</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="d1/d3a/structBrush_1_1Node_1a7c46bb16fb006691be230d29b6e731fe" prot="public" static="no" const="yes" explicit="no" inline="yes" noexcept="yes" virt="non-virtual">
+        <type>auto</type>
+        <definition>auto Brush::Node::operator==</definition>
+        <argsstring>(const Node &amp;rhs) const noexcept -&gt; bool</argsstring>
+        <name>operator==</name>
+        <param>
+          <type>const <ref refid="d1/d3a/structBrush_1_1Node" kindref="compound">Node</ref> &amp;</type>
+          <declname>rhs</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/runner/work/brush/brush/src/program/node.h" line="178" column="17" bodyfile="/home/runner/work/brush/brush/src/program/node.h" bodystart="178" bodyend="183"/>
+        <references refid="d1/d3a/structBrush_1_1Node_1a1aef5137dca5171a150c6d26ca43d9bc" compoundref="d1/d77/node_8h" startline="166" endline="175">get_node_hash</references>
+      </memberdef>
+      <memberdef kind="function" id="d1/d3a/structBrush_1_1Node_1ac854a6c4b96a0524e1371397c6fba4b1" prot="public" static="no" const="yes" explicit="no" inline="yes" noexcept="yes" virt="non-virtual">
+        <type>auto</type>
+        <definition>auto Brush::Node::operator!=</definition>
+        <argsstring>(const Node &amp;rhs) const noexcept -&gt; bool</argsstring>
+        <name>operator!=</name>
+        <param>
+          <type>const <ref refid="d1/d3a/structBrush_1_1Node" kindref="compound">Node</ref> &amp;</type>
+          <declname>rhs</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/runner/work/brush/brush/src/program/node.h" line="185" column="17" bodyfile="/home/runner/work/brush/brush/src/program/node.h" bodystart="185" bodyend="188"/>
+      </memberdef>
+      <memberdef kind="function" id="d1/d3a/structBrush_1_1Node_1aea5769142b80b211a53eb20d8a14507b" prot="public" static="no" const="yes" explicit="no" inline="yes" noexcept="yes" virt="non-virtual">
+        <type>auto</type>
+        <definition>auto Brush::Node::operator&lt;</definition>
+        <argsstring>(const Node &amp;rhs) const noexcept -&gt; bool</argsstring>
+        <name>operator&lt;</name>
+        <param>
+          <type>const <ref refid="d1/d3a/structBrush_1_1Node" kindref="compound">Node</ref> &amp;</type>
+          <declname>rhs</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/runner/work/brush/brush/src/program/node.h" line="190" column="12" bodyfile="/home/runner/work/brush/brush/src/program/node.h" bodystart="190" bodyend="195"/>
+        <references refid="d1/d3a/structBrush_1_1Node_1a1aef5137dca5171a150c6d26ca43d9bc" compoundref="d1/d77/node_8h" startline="166" endline="175">get_node_hash</references>
+      </memberdef>
+      <memberdef kind="function" id="d1/d3a/structBrush_1_1Node_1a62ae8b64fc43f5f13d697c481efb6588" prot="public" static="no" const="yes" explicit="no" inline="yes" noexcept="yes" virt="non-virtual">
+        <type>auto</type>
+        <definition>auto Brush::Node::operator&lt;=</definition>
+        <argsstring>(const Node &amp;rhs) const noexcept -&gt; bool</argsstring>
+        <name>operator&lt;=</name>
+        <param>
+          <type>const <ref refid="d1/d3a/structBrush_1_1Node" kindref="compound">Node</ref> &amp;</type>
+          <declname>rhs</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/runner/work/brush/brush/src/program/node.h" line="197" column="12" bodyfile="/home/runner/work/brush/brush/src/program/node.h" bodystart="197" bodyend="200"/>
+      </memberdef>
+      <memberdef kind="function" id="d1/d3a/structBrush_1_1Node_1a6dabaf6f3fcd362ff8fbc9e0bd37756f" prot="public" static="no" const="yes" explicit="no" inline="yes" noexcept="yes" virt="non-virtual">
+        <type>auto</type>
+        <definition>auto Brush::Node::operator&gt;</definition>
+        <argsstring>(const Node &amp;rhs) const noexcept -&gt; bool</argsstring>
+        <name>operator&gt;</name>
+        <param>
+          <type>const <ref refid="d1/d3a/structBrush_1_1Node" kindref="compound">Node</ref> &amp;</type>
+          <declname>rhs</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/runner/work/brush/brush/src/program/node.h" line="202" column="17" bodyfile="/home/runner/work/brush/brush/src/program/node.h" bodystart="202" bodyend="205"/>
+      </memberdef>
+      <memberdef kind="function" id="d1/d3a/structBrush_1_1Node_1aa020471209858e31cb4cf26453033929" prot="public" static="no" const="yes" explicit="no" inline="yes" noexcept="yes" virt="non-virtual">
+        <type>auto</type>
+        <definition>auto Brush::Node::operator&gt;=</definition>
+        <argsstring>(const Node &amp;rhs) const noexcept -&gt; bool</argsstring>
+        <name>operator&gt;=</name>
+        <param>
+          <type>const <ref refid="d1/d3a/structBrush_1_1Node" kindref="compound">Node</ref> &amp;</type>
+          <declname>rhs</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/runner/work/brush/brush/src/program/node.h" line="207" column="17" bodyfile="/home/runner/work/brush/brush/src/program/node.h" bodystart="207" bodyend="210"/>
+      </memberdef>
+      <memberdef kind="function" id="d1/d3a/structBrush_1_1Node_1a4fcf7feccb71d538f8614d3c51247eb4" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>float</type>
+        <definition>float Brush::Node::get_prob_change</definition>
+        <argsstring>() const</argsstring>
+        <name>get_prob_change</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/runner/work/brush/brush/src/program/node.h" line="215" column="11" bodyfile="/home/runner/work/brush/brush/src/program/node.h" bodystart="215" bodyend="215"/>
+        <references refid="d1/d3a/structBrush_1_1Node_1a9f5b2e34d8ba752e0f6bffebec8afdc0" compoundref="d1/d77/node_8h" startline="70">prob_change</references>
+      </memberdef>
+      <memberdef kind="function" id="d1/d3a/structBrush_1_1Node_1ad9e4f8654978a40e8266b20a4bb0950f" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void Brush::Node::set_prob_change</definition>
+        <argsstring>(float w)</argsstring>
+        <name>set_prob_change</name>
+        <param>
+          <type>float</type>
+          <declname>w</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/runner/work/brush/brush/src/program/node.h" line="216" column="10" bodyfile="/home/runner/work/brush/brush/src/program/node.h" bodystart="216" bodyend="216"/>
+        <references refid="d1/d3a/structBrush_1_1Node_1a32c73293ee4e02b6d828c2c213e06154" compoundref="d1/d77/node_8h" startline="72">fixed</references>
+        <referencedby refid="d1/d3a/structBrush_1_1Node_1a99e9db58c89646c630fb9d54b41ff2ba" compoundref="d1/d77/node_8h" startline="133" endline="140">init</referencedby>
+        <referencedby refid="d4/dc3/structBrush_1_1SearchSpace_1a30dc9740ebecad5267acd5e27b1a3953" compoundref="d9/d99/search__space_8h" startline="544" endline="661">Brush::SearchSpace::make_program</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="d1/d3a/structBrush_1_1Node_1a087a9c51b46b3e801506415376cd0518" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>float</type>
+        <definition>float Brush::Node::get_prob_keep</definition>
+        <argsstring>() const</argsstring>
+        <name>get_prob_keep</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/runner/work/brush/brush/src/program/node.h" line="217" column="11" bodyfile="/home/runner/work/brush/brush/src/program/node.h" bodystart="217" bodyend="217"/>
+        <references refid="d1/d3a/structBrush_1_1Node_1a9f5b2e34d8ba752e0f6bffebec8afdc0" compoundref="d1/d77/node_8h" startline="70">prob_change</references>
+      </memberdef>
+      <memberdef kind="function" id="d1/d3a/structBrush_1_1Node_1a7e8460b645f3d58c3093eda1d5d3166c" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void Brush::Node::set_feature</definition>
+        <argsstring>(string f)</argsstring>
+        <name>set_feature</name>
+        <param>
+          <type>string</type>
+          <declname>f</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/runner/work/brush/brush/src/program/node.h" line="219" column="17" bodyfile="/home/runner/work/brush/brush/src/program/node.h" bodystart="219" bodyend="219"/>
+        <references refid="d1/d3a/structBrush_1_1Node_1ac5f37d638625468ed68de599a2a7d968" compoundref="d1/d77/node_8h" startline="220">feature</references>
+        <referencedby refid="dc/d5c/namespaceBrush_1ad36f62c73493c032059be8cd18590d0e" compoundref="d7/d70/node_8cpp" startline="171" endline="229">Brush::from_json</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="d1/d3a/structBrush_1_1Node_1a85a62efd4f1f99fa45eb52e4c0a1a26f" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>string</type>
+        <definition>string Brush::Node::get_feature</definition>
+        <argsstring>() const</argsstring>
+        <name>get_feature</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/runner/work/brush/brush/src/program/node.h" line="220" column="19" bodyfile="/home/runner/work/brush/brush/src/program/node.h" bodystart="220" bodyend="220"/>
+        <references refid="d1/d3a/structBrush_1_1Node_1ac5f37d638625468ed68de599a2a7d968" compoundref="d1/d77/node_8h" startline="220">feature</references>
+        <referencedby refid="dc/d5c/namespaceBrush_1a2277345e299e6d41c9573c59b32ad0aa" compoundref="d7/d70/node_8cpp" startline="77" endline="94">Brush::to_json</referencedby>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+<para>class holding the data for a node in a tree. </para>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <collaborationgraph>
+      <node id="1">
+        <label>Brush::Node</label>
+        <link refid="d1/d3a/structBrush_1_1Node"/>
+        <childnode refid="2" relation="usage">
+          <edgelabel>arg_types</edgelabel>
+        </childnode>
+        <childnode refid="4" relation="usage">
+          <edgelabel>feature</edgelabel>
+          <edgelabel>name</edgelabel>
+        </childnode>
+      </node>
+      <node id="2">
+        <label>std::vector&lt; DataType &gt;</label>
+        <childnode refid="3" relation="usage">
+          <edgelabel>elements</edgelabel>
+        </childnode>
+      </node>
+      <node id="5">
+        <label>std::basic_string&lt; Char &gt;</label>
+      </node>
+      <node id="3">
+        <label>DataType</label>
+      </node>
+      <node id="4">
+        <label>std::string</label>
+        <childnode refid="5" relation="public-inheritance">
+        </childnode>
+      </node>
+    </collaborationgraph>
+    <location file="/home/runner/work/brush/brush/src/program/node.h" line="63" column="1" bodyfile="/home/runner/work/brush/brush/src/program/node.h" bodystart="63" bodyend="226"/>
+    <listofallmembers>
+      <member refid="d1/d3a/structBrush_1_1Node_1a237b9208864ace5209edca01623f6b1e" prot="public" virt="non-virtual"><scope>Brush::Node</scope><name>arg_types</name></member>
+      <member refid="d1/d3a/structBrush_1_1Node_1a9ec6ba08b0baebc0cd105e4ef774b7fb" prot="public" virt="non-virtual"><scope>Brush::Node</scope><name>args_type</name></member>
+      <member refid="d1/d3a/structBrush_1_1Node_1a0971012cfb2ae944f4bea0ea0dc9e5a3" prot="public" virt="non-virtual"><scope>Brush::Node</scope><name>center_op</name></member>
+      <member refid="d1/d3a/structBrush_1_1Node_1ac5f37d638625468ed68de599a2a7d968" prot="private" virt="non-virtual"><scope>Brush::Node</scope><name>feature</name></member>
+      <member refid="d1/d3a/structBrush_1_1Node_1a32c73293ee4e02b6d828c2c213e06154" prot="public" virt="non-virtual"><scope>Brush::Node</scope><name>fixed</name></member>
+      <member refid="d1/d3a/structBrush_1_1Node_1ac2f0913b7a3e238d879722eb7f62aee2" prot="public" virt="non-virtual"><scope>Brush::Node</scope><name>get_arg_count</name></member>
+      <member refid="d1/d3a/structBrush_1_1Node_1a754e5efb828686e30ebfa2174d56e37a" prot="public" virt="non-virtual"><scope>Brush::Node</scope><name>get_arg_types</name></member>
+      <member refid="d1/d3a/structBrush_1_1Node_1a85a62efd4f1f99fa45eb52e4c0a1a26f" prot="public" virt="non-virtual"><scope>Brush::Node</scope><name>get_feature</name></member>
+      <member refid="d1/d3a/structBrush_1_1Node_1af621eb9463a3ed3434841565a849c03b" prot="public" virt="non-virtual"><scope>Brush::Node</scope><name>get_model</name></member>
+      <member refid="d1/d3a/structBrush_1_1Node_1aaddaf7903795dfdcad487234d6dc380e" prot="public" virt="non-virtual"><scope>Brush::Node</scope><name>get_name</name></member>
+      <member refid="d1/d3a/structBrush_1_1Node_1a1aef5137dca5171a150c6d26ca43d9bc" prot="public" virt="non-virtual"><scope>Brush::Node</scope><name>get_node_hash</name></member>
+      <member refid="d1/d3a/structBrush_1_1Node_1a4fcf7feccb71d538f8614d3c51247eb4" prot="public" virt="non-virtual"><scope>Brush::Node</scope><name>get_prob_change</name></member>
+      <member refid="d1/d3a/structBrush_1_1Node_1a087a9c51b46b3e801506415376cd0518" prot="public" virt="non-virtual"><scope>Brush::Node</scope><name>get_prob_keep</name></member>
+      <member refid="d1/d3a/structBrush_1_1Node_1a2d4b7a1f21f80ce980f4748432911964" prot="public" virt="non-virtual"><scope>Brush::Node</scope><name>get_ret_type</name></member>
+      <member refid="d1/d3a/structBrush_1_1Node_1a65b335bb198e4a320b0aa60e559571c5" prot="public" virt="non-virtual"><scope>Brush::Node</scope><name>HashTuple</name></member>
+      <member refid="d1/d3a/structBrush_1_1Node_1a99e9db58c89646c630fb9d54b41ff2ba" prot="public" virt="non-virtual"><scope>Brush::Node</scope><name>init</name></member>
+      <member refid="d1/d3a/structBrush_1_1Node_1ab72b791f57011a032c6c89238db85845" prot="public" virt="non-virtual"><scope>Brush::Node</scope><name>is_weighted</name></member>
+      <member refid="d1/d3a/structBrush_1_1Node_1ad6b3fd4a54c813d066370defc8a85af1" prot="public" virt="non-virtual"><scope>Brush::Node</scope><name>name</name></member>
+      <member refid="d1/d3a/structBrush_1_1Node_1adcd17b2d50bd124218a1ed472369d461" prot="public" virt="non-virtual"><scope>Brush::Node</scope><name>Node</name></member>
+      <member refid="d1/d3a/structBrush_1_1Node_1a62f7ba79b38e86e54488e5dd9a6bdc93" prot="public" virt="non-virtual"><scope>Brush::Node</scope><name>Node</name></member>
+      <member refid="d1/d3a/structBrush_1_1Node_1a522791afe93c92442564356ff19ff55a" prot="public" virt="non-virtual"><scope>Brush::Node</scope><name>node_type</name></member>
+      <member refid="d1/d3a/structBrush_1_1Node_1ac854a6c4b96a0524e1371397c6fba4b1" prot="public" virt="non-virtual"><scope>Brush::Node</scope><name>operator!=</name></member>
+      <member refid="d1/d3a/structBrush_1_1Node_1aea5769142b80b211a53eb20d8a14507b" prot="public" virt="non-virtual"><scope>Brush::Node</scope><name>operator&lt;</name></member>
+      <member refid="d1/d3a/structBrush_1_1Node_1a62ae8b64fc43f5f13d697c481efb6588" prot="public" virt="non-virtual"><scope>Brush::Node</scope><name>operator&lt;=</name></member>
+      <member refid="d1/d3a/structBrush_1_1Node_1a7c46bb16fb006691be230d29b6e731fe" prot="public" virt="non-virtual"><scope>Brush::Node</scope><name>operator==</name></member>
+      <member refid="d1/d3a/structBrush_1_1Node_1a6dabaf6f3fcd362ff8fbc9e0bd37756f" prot="public" virt="non-virtual"><scope>Brush::Node</scope><name>operator&gt;</name></member>
+      <member refid="d1/d3a/structBrush_1_1Node_1aa020471209858e31cb4cf26453033929" prot="public" virt="non-virtual"><scope>Brush::Node</scope><name>operator&gt;=</name></member>
+      <member refid="d1/d3a/structBrush_1_1Node_1a9f5b2e34d8ba752e0f6bffebec8afdc0" prot="public" virt="non-virtual"><scope>Brush::Node</scope><name>prob_change</name></member>
+      <member refid="d1/d3a/structBrush_1_1Node_1a65b283648fe779d81ac11f9e4714d920" prot="public" virt="non-virtual"><scope>Brush::Node</scope><name>ret_type</name></member>
+      <member refid="d1/d3a/structBrush_1_1Node_1a7e8460b645f3d58c3093eda1d5d3166c" prot="public" virt="non-virtual"><scope>Brush::Node</scope><name>set_feature</name></member>
+      <member refid="d1/d3a/structBrush_1_1Node_1ad9e4f8654978a40e8266b20a4bb0950f" prot="public" virt="non-virtual"><scope>Brush::Node</scope><name>set_prob_change</name></member>
+      <member refid="d1/d3a/structBrush_1_1Node_1a24ab653c36833ab9cd301efe99b39d5f" prot="public" virt="non-virtual"><scope>Brush::Node</scope><name>set_signature</name></member>
+      <member refid="d1/d3a/structBrush_1_1Node_1aed6c2af0fae3dd8e5a8aa2fab77479fd" prot="public" virt="non-virtual"><scope>Brush::Node</scope><name>sig_dual_hash</name></member>
+      <member refid="d1/d3a/structBrush_1_1Node_1a889e0361b55a63a4510a3edabd2fa57c" prot="public" virt="non-virtual"><scope>Brush::Node</scope><name>sig_hash</name></member>
+      <member refid="d1/d3a/structBrush_1_1Node_1ab719e64b13753515be49327d98bf2224" prot="public" virt="non-virtual"><scope>Brush::Node</scope><name>W</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

@@ -1,0 +1,229 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="dd/d30/module_8cpp" kind="file" language="C++">
+    <compoundname>module.cpp</compoundname>
+    <includes refid="d5/d16/module_8h" local="yes">module.h</includes>
+    <incdepgraph>
+      <node id="7">
+        <label>pybind11_json/pybind11_json.hpp</label>
+      </node>
+      <node id="4">
+        <label>pybind11/eigen.h</label>
+      </node>
+      <node id="1">
+        <label>module.cpp</label>
+        <link refid="dd/d30/module_8cpp"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+      </node>
+      <node id="6">
+        <label>pybind11/iostream.h</label>
+      </node>
+      <node id="3">
+        <label>pybind11/pybind11.h</label>
+      </node>
+      <node id="2">
+        <label>module.h</label>
+        <link refid="d5/d16/module_8h"/>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="5" relation="include">
+        </childnode>
+        <childnode refid="6" relation="include">
+        </childnode>
+        <childnode refid="7" relation="include">
+        </childnode>
+        <childnode refid="8" relation="include">
+        </childnode>
+      </node>
+      <node id="8">
+        <label>nlohmann/json.hpp</label>
+      </node>
+      <node id="5">
+        <label>pybind11/stl.h</label>
+      </node>
+    </incdepgraph>
+      <sectiondef kind="define">
+      <memberdef kind="define" id="dd/d30/module_8cpp_1a6df1d22fb5f09eccc23b9f399670cfd7" prot="public" static="no">
+        <name>STRINGIFY</name>
+        <param><defname>x</defname></param>
+        <initializer>#x</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/runner/work/brush/brush/src/bindings/module.cpp" line="10" column="9" bodyfile="/home/runner/work/brush/brush/src/bindings/module.cpp" bodystart="10" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="dd/d30/module_8cpp_1a04bd637263ccb57f7e038856e2a51531" prot="public" static="no">
+        <name>MACRO_STRINGIFY</name>
+        <param><defname>x</defname></param>
+        <initializer><ref refid="dd/d30/module_8cpp_1a6df1d22fb5f09eccc23b9f399670cfd7" kindref="member">STRINGIFY</ref>(x)</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/runner/work/brush/brush/src/bindings/module.cpp" line="11" column="9" bodyfile="/home/runner/work/brush/brush/src/bindings/module.cpp" bodystart="11" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="func">
+      <memberdef kind="function" id="dd/d30/module_8cpp_1a995ca1cce898b8c2bab6ab3abd3e2997" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void bind_dataset</definition>
+        <argsstring>(py::module &amp;)</argsstring>
+        <name>bind_dataset</name>
+        <param>
+          <type>py::module &amp;</type>
+          <declname>m</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/runner/work/brush/brush/src/bindings/module.cpp" line="18" column="6" bodyfile="/home/runner/work/brush/brush/src/bindings/bind_dataset.cpp" bodystart="9" bodyend="39" declfile="/home/runner/work/brush/brush/src/bindings/module.cpp" declline="18" declcolumn="6"/>
+        <references refid="d6/d2e/namespaceBrush_1_1Util_1a0fca88a717680a76c4b7b9b082675f89" compoundref="d5/d60/utils_8h" startline="455" endline="462">Brush::Util::print</references>
+        <references refid="d9/d1c/namespaceBrush_1_1Data_1ad4320ca3604e146155ccc7c55ea9006c" compoundref="d5/d5a/io_8cpp" startline="14" endline="87">Brush::Data::read_csv</references>
+        <referencedby refid="dd/d30/module_8cpp_1ab3432520f506686ba18c7ce7758a6c69" compoundref="dd/d30/module_8cpp" startline="23" endline="37">PYBIND11_MODULE</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="dd/d30/module_8cpp_1aa36e59ad9e46e25d7fb56b00748e4739" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void bind_search_space</definition>
+        <argsstring>(py::module &amp;)</argsstring>
+        <name>bind_search_space</name>
+        <param>
+          <type>py::module &amp;</type>
+          <declname>m</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/runner/work/brush/brush/src/bindings/module.cpp" line="19" column="6" bodyfile="/home/runner/work/brush/brush/src/bindings/bind_search_space.cpp" bodystart="10" bodyend="31" declfile="/home/runner/work/brush/brush/src/bindings/module.cpp" declline="19" declcolumn="6"/>
+        <references refid="d4/dc3/structBrush_1_1SearchSpace_1a88636b9ece72850950f3b37b660d0be0" compoundref="da/d48/search__space_8cpp" startline="45" endline="81">Brush::SearchSpace::init</references>
+        <references refid="d4/dc3/structBrush_1_1SearchSpace_1a991c3b97d125a3ccf658d21d0c74ca4d" compoundref="da/d48/search__space_8cpp" startline="88" endline="91">Brush::SearchSpace::make_classifier</references>
+        <references refid="d4/dc3/structBrush_1_1SearchSpace_1ae0a81352230eebea59f4b79cbb6c9b30" compoundref="da/d48/search__space_8cpp" startline="93" endline="97">Brush::SearchSpace::make_multiclass_classifier</references>
+        <references refid="d4/dc3/structBrush_1_1SearchSpace_1a1f8755ab53cb1ac2f26d8598cf83fd6d" compoundref="da/d48/search__space_8cpp" startline="83" endline="86">Brush::SearchSpace::make_regressor</references>
+        <references refid="d4/dc3/structBrush_1_1SearchSpace_1a2338329a79cb81c184f5a0e8dc4bedbb" compoundref="da/d48/search__space_8cpp" startline="99" endline="102">Brush::SearchSpace::make_representer</references>
+        <references refid="d4/dc3/structBrush_1_1SearchSpace_1a1cfbfca3a45987de45159bc4699a61bb" compoundref="da/d48/search__space_8cpp" startline="41" endline="43">Brush::SearchSpace::print</references>
+        <references refid="dc/d5c/namespaceBrush_1ae41500fed38676f34a4d476a992d585d">Brush::SS</references>
+        <referencedby refid="dd/d30/module_8cpp_1ab3432520f506686ba18c7ce7758a6c69" compoundref="dd/d30/module_8cpp" startline="23" endline="37">PYBIND11_MODULE</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="dd/d30/module_8cpp_1a8d170e69b881d776fed22a71473062b9" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void bind_programs</definition>
+        <argsstring>(py::module &amp;)</argsstring>
+        <name>bind_programs</name>
+        <param>
+          <type>py::module &amp;</type>
+          <declname>m</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/runner/work/brush/brush/src/bindings/module.cpp" line="20" column="6" bodyfile="/home/runner/work/brush/brush/src/bindings/bind_programs.cpp" bodystart="12" bodyend="25" declfile="/home/runner/work/brush/brush/src/bindings/module.cpp" declline="20" declcolumn="6"/>
+        <references refid="d6/dd0/structBrush_1_1Fitness_1ae41414066bee664a1e5cae382667aec4" compoundref="d1/dea/program_8h" startline="41">Brush::Fitness::valid</references>
+        <references refid="d6/dd0/structBrush_1_1Fitness_1a853380ca80adf2ab47bc8d2fc34b09b4" compoundref="d1/dea/program_8h" startline="40">Brush::Fitness::values</references>
+        <referencedby refid="dd/d30/module_8cpp_1ab3432520f506686ba18c7ce7758a6c69" compoundref="dd/d30/module_8cpp" startline="23" endline="37">PYBIND11_MODULE</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="dd/d30/module_8cpp_1ade630122da6c4a317e256ba1bcaa7683" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void bind_params</definition>
+        <argsstring>(py::module &amp;)</argsstring>
+        <name>bind_params</name>
+        <param>
+          <type>py::module &amp;</type>
+          <declname>m</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/runner/work/brush/brush/src/bindings/module.cpp" line="21" column="6" bodyfile="/home/runner/work/brush/brush/src/bindings/bind_params.cpp" bodystart="4" bodyend="13" declfile="/home/runner/work/brush/brush/src/bindings/module.cpp" declline="21" declcolumn="6"/>
+        <references refid="dc/d5c/namespaceBrush_1a43eeef4bb05aa1be2b240b56fb3744fa" compoundref="dc/d4d/params_8cpp" startline="9" endline="9">Brush::set_params</references>
+        <referencedby refid="dd/d30/module_8cpp_1ab3432520f506686ba18c7ce7758a6c69" compoundref="dd/d30/module_8cpp" startline="23" endline="37">PYBIND11_MODULE</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="dd/d30/module_8cpp_1ab3432520f506686ba18c7ce7758a6c69" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>PYBIND11_MODULE</definition>
+        <argsstring>(_brush, m)</argsstring>
+        <name>PYBIND11_MODULE</name>
+        <param>
+          <type>_brush</type>
+        </param>
+        <param>
+          <type>m</type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/runner/work/brush/brush/src/bindings/module.cpp" line="23" column="1" bodyfile="/home/runner/work/brush/brush/src/bindings/module.cpp" bodystart="23" bodyend="37"/>
+        <references refid="dd/d30/module_8cpp_1a995ca1cce898b8c2bab6ab3abd3e2997" compoundref="d9/d40/bind__dataset_8cpp" startline="9" endline="39">bind_dataset</references>
+        <references refid="dd/d30/module_8cpp_1ade630122da6c4a317e256ba1bcaa7683" compoundref="da/dbf/bind__params_8cpp" startline="4" endline="13">bind_params</references>
+        <references refid="dd/d30/module_8cpp_1a8d170e69b881d776fed22a71473062b9" compoundref="d9/d26/bind__programs_8cpp" startline="12" endline="25">bind_programs</references>
+        <references refid="dd/d30/module_8cpp_1aa36e59ad9e46e25d7fb56b00748e4739" compoundref="d0/d94/bind__search__space_8cpp" startline="10" endline="31">bind_search_space</references>
+        <references refid="dd/d30/module_8cpp_1a04bd637263ccb57f7e038856e2a51531" compoundref="dd/d30/module_8cpp" startline="11">MACRO_STRINGIFY</references>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"><highlight class="comment">/*<sp/>Brush</highlight></codeline>
+<codeline lineno="2"><highlight class="comment"></highlight></codeline>
+<codeline lineno="3"><highlight class="comment">module.cpp<sp/>:<sp/>Python<sp/>interface<sp/>to<sp/>Brush<sp/>classes<sp/>and<sp/>functions,<sp/>using<sp/>pybind11</highlight></codeline>
+<codeline lineno="4"><highlight class="comment"></highlight></codeline>
+<codeline lineno="5"><highlight class="comment">copyright<sp/>2021<sp/>William<sp/>La<sp/>Cava</highlight></codeline>
+<codeline lineno="6"><highlight class="comment">authors:<sp/>William<sp/>La<sp/>Cava<sp/>and<sp/>Joseph<sp/>D.<sp/>Romano</highlight></codeline>
+<codeline lineno="7"><highlight class="comment">license:<sp/>GNU/GPL<sp/>v3</highlight></codeline>
+<codeline lineno="8"><highlight class="comment">*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="9"><highlight class="normal"></highlight></codeline>
+<codeline lineno="10" refid="dd/d30/module_8cpp_1a6df1d22fb5f09eccc23b9f399670cfd7" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>STRINGIFY(x)<sp/>#x</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="11" refid="dd/d30/module_8cpp_1a04bd637263ccb57f7e038856e2a51531" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>MACRO_STRINGIFY(x)<sp/>STRINGIFY(x)</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="12"><highlight class="normal"></highlight></codeline>
+<codeline lineno="13"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;<ref refid="d5/d16/module_8h" kindref="compound">module.h</ref>&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="14"><highlight class="normal"></highlight></codeline>
+<codeline lineno="15"><highlight class="normal"></highlight><highlight class="keyword">namespace<sp/></highlight><highlight class="normal">py<sp/>=<sp/>pybind11;</highlight></codeline>
+<codeline lineno="16"><highlight class="normal"></highlight></codeline>
+<codeline lineno="17"><highlight class="normal"></highlight><highlight class="comment">//<sp/>forward<sp/>declarations</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="18"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="dd/d30/module_8cpp_1a995ca1cce898b8c2bab6ab3abd3e2997" kindref="member">bind_dataset</ref>(py::module<sp/>&amp;);</highlight></codeline>
+<codeline lineno="19"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="dd/d30/module_8cpp_1aa36e59ad9e46e25d7fb56b00748e4739" kindref="member">bind_search_space</ref>(py::module<sp/>&amp;);</highlight></codeline>
+<codeline lineno="20"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="dd/d30/module_8cpp_1a8d170e69b881d776fed22a71473062b9" kindref="member">bind_programs</ref>(py::module<sp/>&amp;);</highlight></codeline>
+<codeline lineno="21"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="dd/d30/module_8cpp_1ade630122da6c4a317e256ba1bcaa7683" kindref="member">bind_params</ref>(py::module<sp/>&amp;);</highlight></codeline>
+<codeline lineno="22"><highlight class="normal"></highlight></codeline>
+<codeline lineno="23" refid="dd/d30/module_8cpp_1ab3432520f506686ba18c7ce7758a6c69" refkind="member"><highlight class="normal"><ref refid="dd/d30/module_8cpp_1ab3432520f506686ba18c7ce7758a6c69" kindref="member">PYBIND11_MODULE</ref>(_brush,<sp/>m)<sp/>{</highlight></codeline>
+<codeline lineno="24"><highlight class="normal"></highlight></codeline>
+<codeline lineno="25"><highlight class="normal"></highlight><highlight class="preprocessor">#ifdef<sp/>VERSION_INFO</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="26"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/>m.attr(</highlight><highlight class="stringliteral">&quot;__version__&quot;</highlight><highlight class="normal">)<sp/>=<sp/><ref refid="dd/d30/module_8cpp_1a04bd637263ccb57f7e038856e2a51531" kindref="member">MACRO_STRINGIFY</ref>(VERSION_INFO);</highlight></codeline>
+<codeline lineno="27"><highlight class="normal"></highlight><highlight class="preprocessor">#else</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="28"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/>m.attr(</highlight><highlight class="stringliteral">&quot;__version__&quot;</highlight><highlight class="normal">)<sp/>=<sp/></highlight><highlight class="stringliteral">&quot;dev&quot;</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="29"><highlight class="normal"></highlight><highlight class="preprocessor">#endif</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="30"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="31"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><ref refid="dd/d30/module_8cpp_1ade630122da6c4a317e256ba1bcaa7683" kindref="member">bind_params</ref>(m);</highlight></codeline>
+<codeline lineno="32"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><ref refid="dd/d30/module_8cpp_1a995ca1cce898b8c2bab6ab3abd3e2997" kindref="member">bind_dataset</ref>(m);</highlight></codeline>
+<codeline lineno="33"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><ref refid="dd/d30/module_8cpp_1aa36e59ad9e46e25d7fb56b00748e4739" kindref="member">bind_search_space</ref>(m);</highlight></codeline>
+<codeline lineno="34"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/>py::module_<sp/>m2<sp/>=<sp/>m.def_submodule(</highlight><highlight class="stringliteral">&quot;program&quot;</highlight><highlight class="normal">,<sp/></highlight><highlight class="stringliteral">&quot;Contains<sp/>Program<sp/>classes.&quot;</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="35"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><ref refid="dd/d30/module_8cpp_1a8d170e69b881d776fed22a71473062b9" kindref="member">bind_programs</ref>(m2);</highlight></codeline>
+<codeline lineno="36"><highlight class="normal"></highlight></codeline>
+<codeline lineno="37"><highlight class="normal">}</highlight></codeline>
+    </programlisting>
+    <location file="/home/runner/work/brush/brush/src/bindings/module.cpp"/>
+  </compounddef>
+</doxygen>

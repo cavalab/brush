@@ -1,0 +1,1227 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="d6/d2e/namespaceBrush_1_1Util" kind="namespace" language="C++">
+    <compoundname>Brush::Util</compoundname>
+    <innerclass refid="dd/d56/classBrush_1_1Util_1_1Logger" prot="public">Brush::Util::Logger</innerclass>
+    <innerclass refid="d2/d2d/classBrush_1_1Util_1_1Rnd" prot="public">Brush::Util::Rnd</innerclass>
+    <innerclass refid="d8/da4/classBrush_1_1Util_1_1Timer" prot="public">Brush::Util::Timer</innerclass>
+    <innerclass refid="d2/df8/structBrush_1_1Util_1_1Normalizer" prot="public">Brush::Util::Normalizer</innerclass>
+    <innerclass refid="db/d7e/structBrush_1_1Util_1_1Log__Stats" prot="public">Brush::Util::Log_Stats</innerclass>
+      <sectiondef kind="typedef">
+      <memberdef kind="typedef" id="d6/d2e/namespaceBrush_1_1Util_1a9fb536ac40eb64d4b0233e56d3ce7109" prot="public" static="no">
+        <templateparamlist>
+          <param>
+            <type>typename T</type>
+          </param>
+        </templateparamlist>
+        <type>std::map&lt; std::type_index, T &gt;</type>
+        <definition>using Brush::Util::TypeMap = typedef std::map&lt;std::type_index, T&gt;</definition>
+        <argsstring></argsstring>
+        <name>TypeMap</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/runner/work/brush/brush/src/util/utils.h" line="127" column="1" bodyfile="/home/runner/work/brush/brush/src/util/utils.h" bodystart="127" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="typedef" id="d6/d2e/namespaceBrush_1_1Util_1a879344781baecb2119f7bde9bddd8660" prot="public" static="no">
+        <type>struct <ref refid="db/d7e/structBrush_1_1Util_1_1Log__Stats" kindref="compound">Log_Stats</ref></type>
+        <definition>typedef struct Log_Stats Brush::Util::Log_stats</definition>
+        <argsstring></argsstring>
+        <name>Log_stats</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/runner/work/brush/brush/src/util/utils.h" line="347" column="5" bodyfile="/home/runner/work/brush/brush/src/util/utils.h" bodystart="374" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="var">
+      <memberdef kind="variable" id="d6/d2e/namespaceBrush_1_1Util_1aa6d49e22e6193fabd31fde261f607560" prot="public" static="yes" mutable="no">
+        <type><ref refid="dd/d56/classBrush_1_1Util_1_1Logger" kindref="compound">Logger</ref> &amp;</type>
+        <definition>Logger&amp; Brush::Util::logger</definition>
+        <argsstring></argsstring>
+        <name>logger</name>
+        <initializer>= *<ref refid="dd/d56/classBrush_1_1Util_1_1Logger_1ab4dd486a1ab7322f72b4ccca66d61096" kindref="member">Logger::initLogger</ref>()</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/runner/work/brush/brush/src/util/logger.h" line="46" column="23" bodyfile="/home/runner/work/brush/brush/src/util/logger.h" bodystart="46" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="d6/d2e/namespaceBrush_1_1Util_1af7dd70e54015821d96e3a1afed6344ca" prot="public" static="yes" mutable="no">
+        <type><ref refid="d2/d2d/classBrush_1_1Util_1_1Rnd" kindref="compound">Rnd</ref> &amp;</type>
+        <definition>Rnd&amp; Brush::Util::r</definition>
+        <argsstring></argsstring>
+        <name>r</name>
+        <initializer>= *<ref refid="d2/d2d/classBrush_1_1Util_1_1Rnd_1a4fee4453f2aff1384cda4e14d53234fe" kindref="member">Rnd::initRand</ref>()</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/runner/work/brush/brush/src/util/rnd.h" line="151" column="16" bodyfile="/home/runner/work/brush/brush/src/util/rnd.h" bodystart="151" bodyend="-1"/>
+        <referencedby refid="d5/d8a/namespaceBrush_1_1detail_1a947dcae654755bd0bb2afa43b5507a84" compoundref="dd/d1b/tiny__cost__function_8h" startline="24" endline="76">Brush::detail::Autodiff</referencedby>
+        <referencedby refid="d0/d24/namespacevariation_1a3a3e45e3cbe090c29a47b3e60fdd3dac" compoundref="d4/d1f/variation_8h" startline="142" endline="203">variation::cross</referencedby>
+        <referencedby refid="d4/dc3/structBrush_1_1SearchSpace_1a53c05b982db1d8efd46f6c5a5a57a533" compoundref="d9/d99/search__space_8h" startline="251" endline="272">Brush::SearchSpace::get</referencedby>
+        <referencedby refid="d2/d36/classBrush_1_1Data_1_1Dataset_1a3a5e9892d57ffee97276bbf30ede2582" compoundref="da/dc9/data_8cpp" startline="133" endline="138">Brush::Data::Dataset::get_batch</referencedby>
+        <referencedby refid="d4/dc3/structBrush_1_1SearchSpace_1aeadd5cc2c0b7f791299560dd0dea4e4e" compoundref="d9/d99/search__space_8h" startline="428" endline="441">Brush::SearchSpace::get_node_like</referencedby>
+        <referencedby refid="d4/dc3/structBrush_1_1SearchSpace_1aaf0d192118f8c95a7b7232fb46920cc4" compoundref="d9/d99/search__space_8h" startline="355" endline="373">Brush::SearchSpace::get_op</referencedby>
+        <referencedby refid="d4/dc3/structBrush_1_1SearchSpace_1a86bec43f225bb5bbbcafa7f44a8b3102" compoundref="d9/d99/search__space_8h" startline="381" endline="423">Brush::SearchSpace::get_op_with_arg</referencedby>
+        <referencedby refid="d4/dc3/structBrush_1_1SearchSpace_1a6f491bad218a6482a66d32a790a2aa85" compoundref="d9/d99/search__space_8h" startline="275" endline="285">Brush::SearchSpace::get_terminal</referencedby>
+        <referencedby refid="d4/dc3/structBrush_1_1SearchSpace_1a30dc9740ebecad5267acd5e27b1a3953" compoundref="d9/d99/search__space_8h" startline="544" endline="661">Brush::SearchSpace::make_program</referencedby>
+        <referencedby refid="d2/d84/structBrush_1_1Function_3_01NodeType_1_1Median_01_4_1ae43ba05c03d73ad8cbfcbf4d53caec58" compoundref="d8/d5c/functions_8h" startline="133" endline="139">Brush::Function&lt; NodeType::Median &gt;::median</referencedby>
+        <referencedby refid="d0/d24/namespacevariation_1abfa16e581c2548444df2bb4cbaa1b221" compoundref="d4/d1f/variation_8h" startline="100" endline="134">variation::mutate</referencedby>
+        <referencedby refid="dc/d5c/namespaceBrush_1a819e6d35661a163c3f40d927766a3213" compoundref="d9/d99/search__space_8h" startline="534" endline="541">Brush::RandomDequeue</referencedby>
+        <referencedby refid="d6/d2e/namespaceBrush_1_1Util_1acb304889eae44960a17ed276d815275a" compoundref="d5/d60/utils_8h" startline="670" endline="675">reverse_map</referencedby>
+        <referencedby refid="d2/d2d/classBrush_1_1Util_1_1Rnd_1a2fdc984e0cdd58be93c400671dff0649" compoundref="de/d67/rnd_8cpp" startline="39" endline="62">Brush::Util::Rnd::set_seed</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="d6/d2e/namespaceBrush_1_1Util_1afa1fde52ad1a13ccf861682c1d37896a" prot="public" static="no" mutable="no">
+        <type>string</type>
+        <definition>string Brush::Util::PBSTR</definition>
+        <argsstring></argsstring>
+        <name>PBSTR</name>
+        <initializer>= &quot;====================&quot;</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/runner/work/brush/brush/src/util/utils.cpp" line="13" column="8" bodyfile="/home/runner/work/brush/brush/src/util/utils.cpp" bodystart="13" bodyend="-1" declfile="/home/runner/work/brush/brush/src/util/utils.h" declline="119" declcolumn="15"/>
+      </memberdef>
+      <memberdef kind="variable" id="d6/d2e/namespaceBrush_1_1Util_1afdf0a27a6e1782537f1d1751e1efde51" prot="public" static="no" mutable="no">
+        <type>int</type>
+        <definition>int Brush::Util::PBWIDTH</definition>
+        <argsstring></argsstring>
+        <name>PBWIDTH</name>
+        <initializer>= 20</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/runner/work/brush/brush/src/util/utils.cpp" line="14" column="5" bodyfile="/home/runner/work/brush/brush/src/util/utils.cpp" bodystart="14" bodyend="-1" declfile="/home/runner/work/brush/brush/src/util/utils.h" declline="121" declcolumn="12"/>
+      </memberdef>
+      <memberdef kind="variable" id="d6/d2e/namespaceBrush_1_1Util_1a739956e96c77117c32f45cdb30472652" prot="public" static="no" mutable="no">
+        <type><ref refid="d6/d2e/namespaceBrush_1_1Util_1a9fb536ac40eb64d4b0233e56d3ce7109" kindref="member">TypeMap</ref>&lt; std::string &gt;</type>
+        <definition>TypeMap&lt; std::string &gt; Brush::Util::type_names</definition>
+        <argsstring></argsstring>
+        <name>type_names</name>
+        <initializer>= {
+        { typeid(int) , &quot;int&quot; },
+        { typeid(float) , &quot;float&quot; },
+        { typeid(bool) , &quot;bool&quot; },
+        { typeid(ArrayXf) , &quot;ArrayXf&quot; },
+        { typeid(<ref refid="dc/d5c/namespaceBrush_1ac5cd76eed6ea70d1c8f429ee37ca9fc0" kindref="member">ArrayXi</ref>) , &quot;ArrayXi&quot; },
+        { typeid(<ref refid="dc/d5c/namespaceBrush_1a1c0079df772d6e050857327591514810" kindref="member">ArrayXb</ref>) , &quot;ArrayXb&quot; }
+    }</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/runner/work/brush/brush/src/util/utils.cpp" line="277" column="9" bodyfile="/home/runner/work/brush/brush/src/util/utils.cpp" bodystart="277" bodyend="-1" declfile="/home/runner/work/brush/brush/src/util/utils.h" declline="128" declcolumn="16"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="func">
+      <memberdef kind="function" id="d6/d2e/namespaceBrush_1_1Util_1a3d3d6ff93c25e47eb7534665d7393c8d" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void Brush::Util::HandleErrorThrow</definition>
+        <argsstring>(string err, const char *file, int line)</argsstring>
+        <name>HandleErrorThrow</name>
+        <param>
+          <type>string</type>
+          <declname>err</declname>
+        </param>
+        <param>
+          <type>const char *</type>
+          <declname>file</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>line</declname>
+        </param>
+        <briefdescription>
+<para>prints error and throws an exception </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/runner/work/brush/brush/src/util/error.cpp" line="13" column="14" bodyfile="/home/runner/work/brush/brush/src/util/error.cpp" bodystart="13" bodyend="17" declfile="/home/runner/work/brush/brush/src/util/error.h" declline="19" declcolumn="10"/>
+        <references refid="d6/d2e/namespaceBrush_1_1Util_1a0fca88a717680a76c4b7b9b082675f89" compoundref="d5/d60/utils_8h" startline="455" endline="462">print</references>
+      </memberdef>
+      <memberdef kind="function" id="d6/d2e/namespaceBrush_1_1Util_1a34871e8de1fd6eabc81121b1af030b5a" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void Brush::Util::HandleErrorNoThrow</definition>
+        <argsstring>(string err, const char *file, int line)</argsstring>
+        <name>HandleErrorNoThrow</name>
+        <param>
+          <type>string</type>
+          <declname>err</declname>
+        </param>
+        <param>
+          <type>const char *</type>
+          <declname>file</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>line</declname>
+        </param>
+        <briefdescription>
+<para>prints error to stderr and returns </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/runner/work/brush/brush/src/util/error.cpp" line="20" column="14" bodyfile="/home/runner/work/brush/brush/src/util/error.cpp" bodystart="20" bodyend="23" declfile="/home/runner/work/brush/brush/src/util/error.h" declline="22" declcolumn="10"/>
+        <references refid="d6/d2e/namespaceBrush_1_1Util_1a0fca88a717680a76c4b7b9b082675f89" compoundref="d5/d60/utils_8h" startline="455" endline="462">print</references>
+      </memberdef>
+      <memberdef kind="function" id="d6/d2e/namespaceBrush_1_1Util_1a61817392e38bfbd623504cd8def55b3f" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void Brush::Util::clean</definition>
+        <argsstring>(ArrayXf &amp;x)</argsstring>
+        <name>clean</name>
+        <param>
+          <type>ArrayXf &amp;</type>
+          <declname>x</declname>
+        </param>
+        <briefdescription>
+<para>limits node output to be between MIN_FLT and MAX_FLT </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/runner/work/brush/brush/src/util/utils.cpp" line="17" column="6" bodyfile="/home/runner/work/brush/brush/src/util/utils.cpp" bodystart="17" bodyend="22" declfile="/home/runner/work/brush/brush/src/util/utils.h" declline="133" declcolumn="6"/>
+        <references refid="d8/dc0/init_8h_1a0c86fe7dc09ca580e891580bf302e659" compoundref="d8/dc0/init_8h" startline="61">MAX_FLT</references>
+        <references refid="d8/dc0/init_8h_1a8213bd26dbb943e499d0e227fa9b3159" compoundref="d8/dc0/init_8h" startline="62">MIN_FLT</references>
+      </memberdef>
+      <memberdef kind="function" id="d6/d2e/namespaceBrush_1_1Util_1a3837fbd31ac81e3f8db8aaa399fda345" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>std::string</type>
+        <definition>std::string Brush::Util::ltrim</definition>
+        <argsstring>(std::string str, const std::string &amp;chars)</argsstring>
+        <name>ltrim</name>
+        <param>
+          <type>std::string</type>
+          <declname>str</declname>
+        </param>
+        <param>
+          <type>const std::string &amp;</type>
+          <declname>chars</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/runner/work/brush/brush/src/util/utils.cpp" line="24" column="13" bodyfile="/home/runner/work/brush/brush/src/util/utils.cpp" bodystart="24" bodyend="28" declfile="/home/runner/work/brush/brush/src/util/utils.h" declline="135" declcolumn="13"/>
+        <referencedby refid="d6/d2e/namespaceBrush_1_1Util_1ad7cd519e42ccafa3c6f4242a0c2b6749" compoundref="de/d06/utils_8cpp" startline="36" endline="39">trim</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="d6/d2e/namespaceBrush_1_1Util_1a7ee435e912b43d1efe927860141fdafa" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>std::string</type>
+        <definition>std::string Brush::Util::rtrim</definition>
+        <argsstring>(std::string str, const std::string &amp;chars)</argsstring>
+        <name>rtrim</name>
+        <param>
+          <type>std::string</type>
+          <declname>str</declname>
+        </param>
+        <param>
+          <type>const std::string &amp;</type>
+          <declname>chars</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/runner/work/brush/brush/src/util/utils.cpp" line="30" column="13" bodyfile="/home/runner/work/brush/brush/src/util/utils.cpp" bodystart="30" bodyend="34" declfile="/home/runner/work/brush/brush/src/util/utils.h" declline="137" declcolumn="13"/>
+        <referencedby refid="d6/d2e/namespaceBrush_1_1Util_1ad7cd519e42ccafa3c6f4242a0c2b6749" compoundref="de/d06/utils_8cpp" startline="36" endline="39">trim</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="d6/d2e/namespaceBrush_1_1Util_1ad7cd519e42ccafa3c6f4242a0c2b6749" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>std::string</type>
+        <definition>std::string Brush::Util::trim</definition>
+        <argsstring>(std::string str, const std::string &amp;chars)</argsstring>
+        <name>trim</name>
+        <param>
+          <type>std::string</type>
+          <declname>str</declname>
+        </param>
+        <param>
+          <type>const std::string &amp;</type>
+          <declname>chars</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/runner/work/brush/brush/src/util/utils.cpp" line="36" column="13" bodyfile="/home/runner/work/brush/brush/src/util/utils.cpp" bodystart="36" bodyend="39" declfile="/home/runner/work/brush/brush/src/util/utils.h" declline="139" declcolumn="13"/>
+        <references refid="d6/d2e/namespaceBrush_1_1Util_1a3837fbd31ac81e3f8db8aaa399fda345" compoundref="de/d06/utils_8cpp" startline="24" endline="28">ltrim</references>
+        <references refid="d6/d2e/namespaceBrush_1_1Util_1a7ee435e912b43d1efe927860141fdafa" compoundref="de/d06/utils_8cpp" startline="30" endline="34">rtrim</references>
+        <referencedby refid="d9/d1c/namespaceBrush_1_1Data_1ad4320ca3604e146155ccc7c55ea9006c" compoundref="d5/d5a/io_8cpp" startline="14" endline="87">Brush::Data::read_csv</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="d6/d2e/namespaceBrush_1_1Util_1a20071cbe143ed15f50742b8b7b1bf725" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>vector&lt; type_index &gt;</type>
+        <definition>vector&lt; type_index &gt; Brush::Util::get_dtypes</definition>
+        <argsstring>(MatrixXf &amp;X)</argsstring>
+        <name>get_dtypes</name>
+        <param>
+          <type>MatrixXf &amp;</type>
+          <declname>X</declname>
+        </param>
+        <briefdescription>
+<para>calculates data types for each column of X </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/runner/work/brush/brush/src/util/utils.cpp" line="41" column="8" bodyfile="/home/runner/work/brush/brush/src/util/utils.cpp" bodystart="41" bodyend="82" declfile="/home/runner/work/brush/brush/src/util/utils.h" declline="282" declcolumn="8"/>
+      </memberdef>
+      <memberdef kind="function" id="d6/d2e/namespaceBrush_1_1Util_1a313cbd04c33a2fe62b87977739337658" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>float</type>
+        <definition>float Brush::Util::condition_number</definition>
+        <argsstring>(const MatrixXf &amp;X)</argsstring>
+        <name>condition_number</name>
+        <param>
+          <type>const MatrixXf &amp;</type>
+          <declname>X</declname>
+        </param>
+        <briefdescription>
+<para>returns true for elements of x that are infinite </para>
+        </briefdescription>
+        <detaileddescription>
+<para>returns the condition number of a matrix. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/runner/work/brush/brush/src/util/utils.cpp" line="172" column="7" bodyfile="/home/runner/work/brush/brush/src/util/utils.cpp" bodystart="172" bodyend="197" declfile="/home/runner/work/brush/brush/src/util/utils.h" declline="338" declcolumn="7"/>
+        <references refid="d8/dc0/init_8h_1a0c86fe7dc09ca580e891580bf302e659" compoundref="d8/dc0/init_8h" startline="61">MAX_FLT</references>
+      </memberdef>
+      <memberdef kind="function" id="d6/d2e/namespaceBrush_1_1Util_1a1d2cb1b20c4767ecd0c4ee602b7cda55" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>MatrixXf</type>
+        <definition>MatrixXf Brush::Util::corrcoef</definition>
+        <argsstring>(const MatrixXf &amp;X)</argsstring>
+        <name>corrcoef</name>
+        <param>
+          <type>const MatrixXf &amp;</type>
+          <declname>X</declname>
+        </param>
+        <briefdescription>
+<para>returns the pearson correlation coefficients of matrix. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/runner/work/brush/brush/src/util/utils.cpp" line="200" column="10" bodyfile="/home/runner/work/brush/brush/src/util/utils.cpp" bodystart="200" bodyend="216" declfile="/home/runner/work/brush/brush/src/util/utils.h" declline="341" declcolumn="10"/>
+        <referencedby refid="d6/d2e/namespaceBrush_1_1Util_1a068c0960a6ac697bf70ff5dc762e96da" compoundref="de/d06/utils_8cpp" startline="219" endline="225">mean_square_corrcoef</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="d6/d2e/namespaceBrush_1_1Util_1a068c0960a6ac697bf70ff5dc762e96da" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>float</type>
+        <definition>float Brush::Util::mean_square_corrcoef</definition>
+        <argsstring>(const MatrixXf &amp;X)</argsstring>
+        <name>mean_square_corrcoef</name>
+        <param>
+          <type>const MatrixXf &amp;</type>
+          <declname>X</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/runner/work/brush/brush/src/util/utils.cpp" line="219" column="7" bodyfile="/home/runner/work/brush/brush/src/util/utils.cpp" bodystart="219" bodyend="225" declfile="/home/runner/work/brush/brush/src/util/utils.h" declline="344" declcolumn="7"/>
+        <references refid="d6/d2e/namespaceBrush_1_1Util_1a1d2cb1b20c4767ecd0c4ee602b7cda55" compoundref="de/d06/utils_8cpp" startline="200" endline="216">corrcoef</references>
+      </memberdef>
+      <memberdef kind="function" id="d6/d2e/namespaceBrush_1_1Util_1afbb579185a6522b235c40136b5858851" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int Brush::Util::argmiddle</definition>
+        <argsstring>(vector&lt; float &gt; &amp;v)</argsstring>
+        <name>argmiddle</name>
+        <param>
+          <type>vector&lt; float &gt; &amp;</type>
+          <declname>v</declname>
+        </param>
+        <briefdescription>
+<para>returns the (first) index of the element with the middlest value in v </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/runner/work/brush/brush/src/util/utils.cpp" line="296" column="5" bodyfile="/home/runner/work/brush/brush/src/util/utils.cpp" bodystart="296" bodyend="311" declfile="/home/runner/work/brush/brush/src/util/utils.h" declline="347" declcolumn="5"/>
+      </memberdef>
+      <memberdef kind="function" id="d6/d2e/namespaceBrush_1_1Util_1ad88c0170839ba79e41dc5715e77abfc8" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>float</type>
+        <definition>float Brush::Util::variance</definition>
+        <argsstring>(const ArrayXf &amp;v)</argsstring>
+        <name>variance</name>
+        <param>
+          <type>const ArrayXf &amp;</type>
+          <declname>v</declname>
+        </param>
+        <briefdescription>
+<para>calculate variance </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/runner/work/brush/brush/src/util/utils.cpp" line="313" column="7" bodyfile="/home/runner/work/brush/brush/src/util/utils.cpp" bodystart="313" bodyend="316" declfile="/home/runner/work/brush/brush/src/util/utils.h" declline="177" declcolumn="7"/>
+        <referencedby refid="d7/da9/namespaceBrush_1_1Split_1a34b904a04926a4b4280fb922618cfe19" compoundref="d4/d59/split_8cpp" startline="66" endline="91">Brush::Split::gain</referencedby>
+        <referencedby refid="d6/d2e/namespaceBrush_1_1Util_1a647e7137bb014b8fb21cf0d9a985584b" compoundref="de/d06/utils_8cpp" startline="331" endline="340">kurtosis</referencedby>
+        <referencedby refid="d6/d2e/namespaceBrush_1_1Util_1a3ecdd0fbfe8f46304f0b48992cf5726c" compoundref="de/d06/utils_8cpp" startline="362" endline="365">pearson_correlation</referencedby>
+        <referencedby refid="d6/d2e/namespaceBrush_1_1Util_1a3a5e794811c2588fb5910b4d5b9abdcb" compoundref="de/d06/utils_8cpp" startline="319" endline="328">skew</referencedby>
+        <referencedby refid="d6/d2e/namespaceBrush_1_1Util_1a26cf881c06b230990b810de739347b58" compoundref="de/d06/utils_8cpp" startline="355" endline="359">slope</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="d6/d2e/namespaceBrush_1_1Util_1a3a5e794811c2588fb5910b4d5b9abdcb" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>float</type>
+        <definition>float Brush::Util::skew</definition>
+        <argsstring>(const ArrayXf &amp;v)</argsstring>
+        <name>skew</name>
+        <param>
+          <type>const ArrayXf &amp;</type>
+          <declname>v</declname>
+        </param>
+        <briefdescription>
+<para>calculate skew </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/runner/work/brush/brush/src/util/utils.cpp" line="319" column="7" bodyfile="/home/runner/work/brush/brush/src/util/utils.cpp" bodystart="319" bodyend="328" declfile="/home/runner/work/brush/brush/src/util/utils.h" declline="180" declcolumn="7"/>
+        <references refid="d6/d2e/namespaceBrush_1_1Util_1ad88c0170839ba79e41dc5715e77abfc8" compoundref="de/d06/utils_8cpp" startline="313" endline="316">variance</references>
+      </memberdef>
+      <memberdef kind="function" id="d6/d2e/namespaceBrush_1_1Util_1a647e7137bb014b8fb21cf0d9a985584b" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>float</type>
+        <definition>float Brush::Util::kurtosis</definition>
+        <argsstring>(const ArrayXf &amp;v)</argsstring>
+        <name>kurtosis</name>
+        <param>
+          <type>const ArrayXf &amp;</type>
+          <declname>v</declname>
+        </param>
+        <briefdescription>
+<para>calculate kurtosis </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/runner/work/brush/brush/src/util/utils.cpp" line="331" column="7" bodyfile="/home/runner/work/brush/brush/src/util/utils.cpp" bodystart="331" bodyend="340" declfile="/home/runner/work/brush/brush/src/util/utils.h" declline="183" declcolumn="7"/>
+        <references refid="d6/d2e/namespaceBrush_1_1Util_1ad88c0170839ba79e41dc5715e77abfc8" compoundref="de/d06/utils_8cpp" startline="313" endline="316">variance</references>
+      </memberdef>
+      <memberdef kind="function" id="d6/d2e/namespaceBrush_1_1Util_1ae119a14eab4e4899608c4e766acf54c0" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>float</type>
+        <definition>float Brush::Util::covariance</definition>
+        <argsstring>(const ArrayXf &amp;x, const ArrayXf &amp;y)</argsstring>
+        <name>covariance</name>
+        <param>
+          <type>const ArrayXf &amp;</type>
+          <declname>x</declname>
+        </param>
+        <param>
+          <type>const ArrayXf &amp;</type>
+          <declname>y</declname>
+        </param>
+        <briefdescription>
+<para>covariance of x and y </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/runner/work/brush/brush/src/util/utils.cpp" line="342" column="7" bodyfile="/home/runner/work/brush/brush/src/util/utils.cpp" bodystart="342" bodyend="353" declfile="/home/runner/work/brush/brush/src/util/utils.h" declline="186" declcolumn="7"/>
+        <referencedby refid="d6/d2e/namespaceBrush_1_1Util_1a3ecdd0fbfe8f46304f0b48992cf5726c" compoundref="de/d06/utils_8cpp" startline="362" endline="365">pearson_correlation</referencedby>
+        <referencedby refid="d6/d2e/namespaceBrush_1_1Util_1a26cf881c06b230990b810de739347b58" compoundref="de/d06/utils_8cpp" startline="355" endline="359">slope</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="d6/d2e/namespaceBrush_1_1Util_1a26cf881c06b230990b810de739347b58" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>float</type>
+        <definition>float Brush::Util::slope</definition>
+        <argsstring>(const ArrayXf &amp;x, const ArrayXf &amp;y)</argsstring>
+        <name>slope</name>
+        <param>
+          <type>const ArrayXf &amp;</type>
+          <declname>x</declname>
+        </param>
+        <param>
+          <type>const ArrayXf &amp;</type>
+          <declname>y</declname>
+        </param>
+        <briefdescription>
+<para>slope of x/y </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/runner/work/brush/brush/src/util/utils.cpp" line="355" column="7" bodyfile="/home/runner/work/brush/brush/src/util/utils.cpp" bodystart="355" bodyend="359" declfile="/home/runner/work/brush/brush/src/util/utils.h" declline="189" declcolumn="7"/>
+        <references refid="d6/d2e/namespaceBrush_1_1Util_1ae119a14eab4e4899608c4e766acf54c0" compoundref="de/d06/utils_8cpp" startline="342" endline="353">covariance</references>
+        <references refid="d6/d2e/namespaceBrush_1_1Util_1ad88c0170839ba79e41dc5715e77abfc8" compoundref="de/d06/utils_8cpp" startline="313" endline="316">variance</references>
+      </memberdef>
+      <memberdef kind="function" id="d6/d2e/namespaceBrush_1_1Util_1a3ecdd0fbfe8f46304f0b48992cf5726c" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>float</type>
+        <definition>float Brush::Util::pearson_correlation</definition>
+        <argsstring>(const ArrayXf &amp;x, const ArrayXf &amp;y)</argsstring>
+        <name>pearson_correlation</name>
+        <param>
+          <type>const ArrayXf &amp;</type>
+          <declname>x</declname>
+        </param>
+        <param>
+          <type>const ArrayXf &amp;</type>
+          <declname>y</declname>
+        </param>
+        <briefdescription>
+<para>the normalized covariance of x and y </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/runner/work/brush/brush/src/util/utils.cpp" line="362" column="7" bodyfile="/home/runner/work/brush/brush/src/util/utils.cpp" bodystart="362" bodyend="365" declfile="/home/runner/work/brush/brush/src/util/utils.h" declline="192" declcolumn="7"/>
+        <references refid="d6/d2e/namespaceBrush_1_1Util_1ae119a14eab4e4899608c4e766acf54c0" compoundref="de/d06/utils_8cpp" startline="342" endline="353">covariance</references>
+        <references refid="d6/d2e/namespaceBrush_1_1Util_1ad88c0170839ba79e41dc5715e77abfc8" compoundref="de/d06/utils_8cpp" startline="313" endline="316">variance</references>
+      </memberdef>
+      <memberdef kind="function" id="d6/d2e/namespaceBrush_1_1Util_1a27c00366227bc7afa5d057ca555f9e12" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>float</type>
+        <definition>float Brush::Util::mad</definition>
+        <argsstring>(const ArrayXf &amp;x)</argsstring>
+        <name>mad</name>
+        <param>
+          <type>const ArrayXf &amp;</type>
+          <declname>x</declname>
+        </param>
+        <briefdescription>
+<para>median absolute deviation </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/runner/work/brush/brush/src/util/utils.cpp" line="369" column="7" bodyfile="/home/runner/work/brush/brush/src/util/utils.cpp" bodystart="369" bodyend="380" declfile="/home/runner/work/brush/brush/src/util/utils.h" declline="195" declcolumn="7"/>
+        <references refid="d6/d2e/namespaceBrush_1_1Util_1a4d848757d9123e0562a7d87b44f1bdc6" compoundref="d5/d60/utils_8h" startline="154" endline="171">median</references>
+      </memberdef>
+      <memberdef kind="function" id="d6/d2e/namespaceBrush_1_1Util_1a0a7a059e331be3f8f7e5d1e0f1123f5a" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>std::string</type>
+        <definition>std::string Brush::Util::ReplaceString</definition>
+        <argsstring>(std::string subject, const std::string &amp;search, const std::string &amp;replace)</argsstring>
+        <name>ReplaceString</name>
+        <param>
+          <type>std::string</type>
+          <declname>subject</declname>
+        </param>
+        <param>
+          <type>const std::string &amp;</type>
+          <declname>search</declname>
+        </param>
+        <param>
+          <type>const std::string &amp;</type>
+          <declname>replace</declname>
+        </param>
+        <briefdescription>
+<para>find and replace string </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/runner/work/brush/brush/src/util/utils.cpp" line="383" column="13" bodyfile="/home/runner/work/brush/brush/src/util/utils.cpp" bodystart="383" bodyend="392" declfile="/home/runner/work/brush/brush/src/util/utils.h" declline="328" declcolumn="13"/>
+      </memberdef>
+      <memberdef kind="function" id="d6/d2e/namespaceBrush_1_1Util_1aa1982ec999d497f97eed7572863a58fa" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void Brush::Util::ReplaceStringInPlace</definition>
+        <argsstring>(std::string &amp;subject, const std::string &amp;search, const std::string &amp;replace)</argsstring>
+        <name>ReplaceStringInPlace</name>
+        <param>
+          <type>std::string &amp;</type>
+          <declname>subject</declname>
+        </param>
+        <param>
+          <type>const std::string &amp;</type>
+          <declname>search</declname>
+        </param>
+        <param>
+          <type>const std::string &amp;</type>
+          <declname>replace</declname>
+        </param>
+        <briefdescription>
+<para>string find and replace in place </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/runner/work/brush/brush/src/util/utils.cpp" line="394" column="6" bodyfile="/home/runner/work/brush/brush/src/util/utils.cpp" bodystart="394" bodyend="402" declfile="/home/runner/work/brush/brush/src/util/utils.h" declline="332" declcolumn="6"/>
+      </memberdef>
+      <memberdef kind="function" id="d6/d2e/namespaceBrush_1_1Util_1afc397ee448b473fec9502461f3e75eae" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>vector&lt; size_t &gt;</type>
+        <definition>vector&lt; size_t &gt; Brush::Util::mask_to_index</definition>
+        <argsstring>(const ArrayXb &amp;mask)</argsstring>
+        <name>mask_to_index</name>
+        <param>
+          <type>const <ref refid="dc/d5c/namespaceBrush_1a1c0079df772d6e050857327591514810" kindref="member">ArrayXb</ref> &amp;</type>
+          <declname>mask</declname>
+        </param>
+        <briefdescription>
+<para>convert a boolean mask to an index array </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/runner/work/brush/brush/src/util/utils.cpp" line="405" column="8" bodyfile="/home/runner/work/brush/brush/src/util/utils.cpp" bodystart="405" bodyend="415" declfile="/home/runner/work/brush/brush/src/util/utils.h" declline="419" declcolumn="8"/>
+        <referencedby refid="d2/d36/classBrush_1_1Data_1_1Dataset_1ade5da9269ebc099385d6f79cf4a53f9f" compoundref="da/dc9/data_8cpp" startline="140" endline="146">Brush::Data::Dataset::split</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="d6/d2e/namespaceBrush_1_1Util_1a43f8d9d4ac086fe1166492d0751eb2db" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>tuple&lt; vector&lt; size_t &gt;, vector&lt; size_t &gt; &gt;</type>
+        <definition>tuple&lt; vector&lt; size_t &gt;, vector&lt; size_t &gt; &gt; Brush::Util::mask_to_indices</definition>
+        <argsstring>(const ArrayXb &amp;mask)</argsstring>
+        <name>mask_to_indices</name>
+        <param>
+          <type>const <ref refid="dc/d5c/namespaceBrush_1a1c0079df772d6e050857327591514810" kindref="member">ArrayXb</ref> &amp;</type>
+          <declname>mask</declname>
+        </param>
+        <briefdescription>
+<para>returns 2 indices: first where mask is true, and second where mask is false. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>convert a boolean mask into true and false index arrays </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/runner/work/brush/brush/src/util/utils.cpp" line="417" column="7" bodyfile="/home/runner/work/brush/brush/src/util/utils.cpp" bodystart="417" bodyend="428" declfile="/home/runner/work/brush/brush/src/util/utils.h" declline="421" declcolumn="7"/>
+        <referencedby refid="de/dd1/namespaceSplit_1ac6e151bf63086d9df8979e0064236399" compoundref="d4/df2/split_8h" startline="61" endline="112">Split::best_threshold</referencedby>
+        <referencedby refid="de/dd1/namespaceSplit_1ad6013220c481c0b8720207da6814d690" compoundref="d4/df2/split_8h" startline="172" endline="182">Split::stitch</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="d6/d2e/namespaceBrush_1_1Util_1ab03528e8d9652013786252f63b6d5840" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>typename V</type>
+          </param>
+          <param>
+            <type>typename T</type>
+          </param>
+        </templateparamlist>
+        <type>bool</type>
+        <definition>bool Brush::Util::in</definition>
+        <argsstring>(const V &amp;v, const T &amp;i)</argsstring>
+        <name>in</name>
+        <param>
+          <type>const V &amp;</type>
+          <declname>v</declname>
+        </param>
+        <param>
+          <type>const T &amp;</type>
+          <declname>i</declname>
+        </param>
+        <briefdescription>
+<para>check if element is in vector. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/runner/work/brush/brush/src/util/utils.h" line="144" column="6" bodyfile="/home/runner/work/brush/brush/src/util/utils.h" bodystart="144" bodyend="147"/>
+        <referencedby refid="d4/dc3/structBrush_1_1SearchSpace_1a86bec43f225bb5bbbcafa7f44a8b3102" compoundref="d9/d99/search__space_8h" startline="381" endline="423">Brush::SearchSpace::get_op_with_arg</referencedby>
+        <referencedby refid="d4/dc3/structBrush_1_1SearchSpace_1a350a180311cc07e07788afc5f046de16" compoundref="d9/d99/search__space_8h" startline="449" endline="465">Brush::SearchSpace::requires</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="d6/d2e/namespaceBrush_1_1Util_1a4d848757d9123e0562a7d87b44f1bdc6" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>typename T</type>
+          </param>
+          <param>
+            <type>typename Scalar</type>
+            <defval>T::Scalar</defval>
+          </param>
+        </templateparamlist>
+        <type><ref refid="dc/d5c/namespaceBrush_1ac3467b794678aa79ffba2438c8fbd16b" kindref="member">Scalar</ref></type>
+        <definition>Scalar Brush::Util::median</definition>
+        <argsstring>(const T &amp;v)</argsstring>
+        <name>median</name>
+        <param>
+          <type>const T &amp;</type>
+          <declname>v</declname>
+        </param>
+        <briefdescription>
+<para>calculate median </para>
+        </briefdescription>
+        <detaileddescription>
+<para>calculate median </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/runner/work/brush/brush/src/util/utils.h" line="154" column="8" bodyfile="/home/runner/work/brush/brush/src/util/utils.h" bodystart="154" bodyend="171"/>
+        <referencedby refid="d6/d2e/namespaceBrush_1_1Util_1a27c00366227bc7afa5d057ca555f9e12" compoundref="de/d06/utils_8cpp" startline="369" endline="380">mad</referencedby>
+        <referencedby refid="d7/d56/structBrush_1_1Data_1_1TimeSeries_1ae3c8babca545b4cb131aa6ec8f039ac3" compoundref="d9/df7/timeseries_8h" startline="131" endline="131">Brush::Data::TimeSeries&lt; T &gt;::median</referencedby>
+        <referencedby refid="d2/d84/structBrush_1_1Function_3_01NodeType_1_1Median_01_4_1a226a9b29496d0d09fb55055ca23a3c86" compoundref="d8/d5c/functions_8h" startline="142" endline="145">Brush::Function&lt; NodeType::Median &gt;::median</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="d6/d2e/namespaceBrush_1_1Util_1a95368f7dc6c9ced55ce63b8c5f27a3ad" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>float</type>
+        <definition>float Brush::Util::variance</definition>
+        <argsstring>(const ArrayXf &amp;v, float mean)</argsstring>
+        <name>variance</name>
+        <param>
+          <type>const ArrayXf &amp;</type>
+          <declname>v</declname>
+        </param>
+        <param>
+          <type>float</type>
+          <declname>mean</declname>
+        </param>
+        <briefdescription>
+<para>calculate variance when mean provided </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/runner/work/brush/brush/src/util/utils.h" line="174" column="7" declfile="/home/runner/work/brush/brush/src/util/utils.h" declline="174" declcolumn="7"/>
+      </memberdef>
+      <memberdef kind="function" id="d6/d2e/namespaceBrush_1_1Util_1aab23aa0bf3ca59c67ea699726d10989a" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>typename T</type>
+          </param>
+        </templateparamlist>
+        <type>vector&lt; size_t &gt;</type>
+        <definition>vector&lt;size_t&gt; Brush::Util::argsort</definition>
+        <argsstring>(const vector&lt; T &gt; &amp;v, bool ascending=true)</argsstring>
+        <name>argsort</name>
+        <param>
+          <type>const vector&lt; T &gt; &amp;</type>
+          <declname>v</declname>
+        </param>
+        <param>
+          <type>bool</type>
+          <declname>ascending</declname>
+          <defval>true</defval>
+        </param>
+        <briefdescription>
+<para>return indices that sort a vector </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/runner/work/brush/brush/src/util/utils.h" line="199" column="8" bodyfile="/home/runner/work/brush/brush/src/util/utils.h" bodystart="199" bodyend="218"/>
+      </memberdef>
+      <memberdef kind="function" id="d6/d2e/namespaceBrush_1_1Util_1a9fd7fd0b4bc42f633c298cb830973d9a" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>typename T</type>
+          </param>
+        </templateparamlist>
+        <type>vector&lt; T &gt;</type>
+        <definition>vector&lt;T&gt; Brush::Util::softmax</definition>
+        <argsstring>(const vector&lt; T &gt; &amp;w)</argsstring>
+        <name>softmax</name>
+        <param>
+          <type>const vector&lt; T &gt; &amp;</type>
+          <declname>w</declname>
+        </param>
+        <briefdescription>
+<para>return the softmax transformation of a vector. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/runner/work/brush/brush/src/util/utils.h" line="248" column="8" bodyfile="/home/runner/work/brush/brush/src/util/utils.h" bodystart="248" bodyend="261"/>
+        <referencedby refid="d3/def/structBrush_1_1Function_3_01NodeType_1_1Softmax_01_4_1a973c465137ea44720d1ba0f16463f265" compoundref="d8/d5c/functions_8h" startline="401" endline="404">Brush::Function&lt; NodeType::Softmax &gt;::operator()</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="d6/d2e/namespaceBrush_1_1Util_1aa39c5ad4672ff451d1e8a1f464883943" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>typename T</type>
+          </param>
+        </templateparamlist>
+        <type>vector&lt; T &gt;</type>
+        <definition>vector&lt;T&gt; Brush::Util::unique</definition>
+        <argsstring>(vector&lt; T &gt; w)</argsstring>
+        <name>unique</name>
+        <param>
+          <type>vector&lt; T &gt;</type>
+          <declname>w</declname>
+        </param>
+        <briefdescription>
+<para>returns unique elements in vector </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/runner/work/brush/brush/src/util/utils.h" line="286" column="8" bodyfile="/home/runner/work/brush/brush/src/util/utils.h" bodystart="286" bodyend="293"/>
+        <references refid="d6/d2e/namespaceBrush_1_1Util_1a729e86c88226a9b0a0c44b57a7de9626" compoundref="d5/d60/utils_8h" startline="313" endline="317">unique</references>
+        <referencedby refid="de/dd1/namespaceSplit_1ac6e151bf63086d9df8979e0064236399" compoundref="d4/df2/split_8h" startline="61" endline="112">Split::best_threshold</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="d6/d2e/namespaceBrush_1_1Util_1a2d22b448dfc588322ed985d7c7ccb285" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>typename T</type>
+          </param>
+        </templateparamlist>
+        <type>vector&lt; T &gt;</type>
+        <definition>vector&lt;T&gt; Brush::Util::unique</definition>
+        <argsstring>(Matrix&lt; T, -1, -1 &gt; w)</argsstring>
+        <name>unique</name>
+        <param>
+          <type>Matrix&lt; T, -1, -1 &gt;</type>
+          <declname>w</declname>
+        </param>
+        <briefdescription>
+<para>returns unique elements in Eigen matrix of variable rows/cols </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/runner/work/brush/brush/src/util/utils.h" line="297" column="8" bodyfile="/home/runner/work/brush/brush/src/util/utils.h" bodystart="297" bodyend="301"/>
+        <references refid="d6/d2e/namespaceBrush_1_1Util_1a729e86c88226a9b0a0c44b57a7de9626" compoundref="d5/d60/utils_8h" startline="313" endline="317">unique</references>
+      </memberdef>
+      <memberdef kind="function" id="d6/d2e/namespaceBrush_1_1Util_1a371a7a5e82d30450af32ed3eca57210b" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>typename T</type>
+          </param>
+        </templateparamlist>
+        <type>vector&lt; T &gt;</type>
+        <definition>vector&lt;T&gt; Brush::Util::unique</definition>
+        <argsstring>(Matrix&lt; T, -1, 1 &gt; w)</argsstring>
+        <name>unique</name>
+        <param>
+          <type>Matrix&lt; T, -1, 1 &gt;</type>
+          <declname>w</declname>
+        </param>
+        <briefdescription>
+<para>returns unique elements in Eigen vector </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/runner/work/brush/brush/src/util/utils.h" line="305" column="8" bodyfile="/home/runner/work/brush/brush/src/util/utils.h" bodystart="305" bodyend="309"/>
+        <references refid="d6/d2e/namespaceBrush_1_1Util_1a729e86c88226a9b0a0c44b57a7de9626" compoundref="d5/d60/utils_8h" startline="313" endline="317">unique</references>
+      </memberdef>
+      <memberdef kind="function" id="d6/d2e/namespaceBrush_1_1Util_1a729e86c88226a9b0a0c44b57a7de9626" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>typename T</type>
+          </param>
+        </templateparamlist>
+        <type>vector&lt; T &gt;</type>
+        <definition>vector&lt;T&gt; Brush::Util::unique</definition>
+        <argsstring>(Array&lt; T, -1, 1 &gt; w)</argsstring>
+        <name>unique</name>
+        <param>
+          <type>Array&lt; T, -1, 1 &gt;</type>
+          <declname>w</declname>
+        </param>
+        <briefdescription>
+<para>returns unique elements in 1d Eigen array </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/runner/work/brush/brush/src/util/utils.h" line="313" column="8" bodyfile="/home/runner/work/brush/brush/src/util/utils.h" bodystart="313" bodyend="317"/>
+        <referencedby refid="d6/d2e/namespaceBrush_1_1Util_1aa39c5ad4672ff451d1e8a1f464883943" compoundref="d5/d60/utils_8h" startline="286" endline="293">unique</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="d6/d2e/namespaceBrush_1_1Util_1a9cd8004de7aab46b7a06f27d440064ed" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>typename T</type>
+          </param>
+        </templateparamlist>
+        <type>string</type>
+        <definition>string Brush::Util::to_string</definition>
+        <argsstring>(const T &amp;value)</argsstring>
+        <name>to_string</name>
+        <param>
+          <type>const T &amp;</type>
+          <declname>value</declname>
+        </param>
+        <briefdescription>
+<para>template function to convert objects to string for logging </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/runner/work/brush/brush/src/util/utils.h" line="321" column="8" bodyfile="/home/runner/work/brush/brush/src/util/utils.h" bodystart="321" bodyend="326"/>
+        <referencedby refid="d2/d36/classBrush_1_1Data_1_1Dataset_1ab709f6732a1854b45418e7f14dd759ea" compoundref="da/dc9/data_8cpp" startline="171" endline="213">Brush::Data::Dataset::make_features</referencedby>
+        <referencedby refid="dd/d56/classBrush_1_1Util_1_1Logger_1a9e88baaf25e97566fe654a0563253fd8" compoundref="d3/d30/logger_8cpp" startline="31" endline="42">Brush::Util::Logger::set_log_level</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="d6/d2e/namespaceBrush_1_1Util_1ad47cbf1e41c97c788fd164fb7e9b3eff" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>typename T</type>
+          </param>
+        </templateparamlist>
+        <type>std::enable_if_t&lt; std::is_scalar_v&lt; T &gt;, T &gt;</type>
+        <definition>std::enable_if_t&lt;std::is_scalar_v&lt;T&gt;, T&gt; Brush::Util::limited</definition>
+        <argsstring>(T x)</argsstring>
+        <name>limited</name>
+        <param>
+          <type>T</type>
+          <declname>x</declname>
+        </param>
+        <briefdescription>
+<para>limits the output to finite real numbers </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/runner/work/brush/brush/src/util/utils.h" line="379" column="1" bodyfile="/home/runner/work/brush/brush/src/util/utils.h" bodystart="379" bodyend="389"/>
+        <references refid="d8/dc0/init_8h_1a0c86fe7dc09ca580e891580bf302e659" compoundref="d8/dc0/init_8h" startline="61">MAX_FLT</references>
+        <references refid="d8/dc0/init_8h_1a8213bd26dbb943e499d0e227fa9b3159" compoundref="d8/dc0/init_8h" startline="62">MIN_FLT</references>
+      </memberdef>
+      <memberdef kind="function" id="d6/d2e/namespaceBrush_1_1Util_1aa4f2d451b316c48842eda0e29562e2e1" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>typename T</type>
+          </param>
+        </templateparamlist>
+        <type>std::enable_if_t&lt; std::is_base_of_v&lt; Eigen::ArrayBase&lt; T &gt;, T &gt;, T &gt;</type>
+        <definition>std::enable_if_t&lt;std::is_base_of_v&lt;Eigen::ArrayBase&lt;T&gt;, T&gt;, T&gt; Brush::Util::limited</definition>
+        <argsstring>(T x)</argsstring>
+        <name>limited</name>
+        <param>
+          <type>T</type>
+          <declname>x</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/runner/work/brush/brush/src/util/utils.h" line="393" column="1" bodyfile="/home/runner/work/brush/brush/src/util/utils.h" bodystart="393" bodyend="399"/>
+        <references refid="d8/dc0/init_8h_1a0c86fe7dc09ca580e891580bf302e659" compoundref="d8/dc0/init_8h" startline="61">MAX_FLT</references>
+        <references refid="d8/dc0/init_8h_1a8213bd26dbb943e499d0e227fa9b3159" compoundref="d8/dc0/init_8h" startline="62">MIN_FLT</references>
+      </memberdef>
+      <memberdef kind="function" id="d6/d2e/namespaceBrush_1_1Util_1a23d6d2f736db6e9d84cc27b58cc3bf27" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>typename T</type>
+          </param>
+        </templateparamlist>
+        <type>void</type>
+        <definition>void Brush::Util::reorder</definition>
+        <argsstring>(vector&lt; T &gt; &amp;v, vector&lt; int &gt; const &amp;order)</argsstring>
+        <name>reorder</name>
+        <param>
+          <type>vector&lt; T &gt; &amp;</type>
+          <declname>v</declname>
+        </param>
+        <param>
+          <type>vector&lt; int &gt; const &amp;</type>
+          <declname>order</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/runner/work/brush/brush/src/util/utils.h" line="402" column="6" bodyfile="/home/runner/work/brush/brush/src/util/utils.h" bodystart="402" bodyend="415"/>
+      </memberdef>
+      <memberdef kind="function" id="d6/d2e/namespaceBrush_1_1Util_1a1159db1e8024020d2e7a06845fc6254e" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>typename T</type>
+          </param>
+        </templateparamlist>
+        <type>array&lt; Array&lt; T,-1, 1 &gt;, 2 &gt;</type>
+        <definition>array&lt;Array&lt;T,-1, 1&gt;, 2&gt; Brush::Util::split</definition>
+        <argsstring>(const Array&lt; T,-1, 1 &gt; &amp;v, const ArrayXb &amp;mask)</argsstring>
+        <name>split</name>
+        <param>
+          <type>const Array&lt; T,-1, 1 &gt; &amp;</type>
+          <declname>v</declname>
+        </param>
+        <param>
+          <type>const <ref refid="dc/d5c/namespaceBrush_1a1c0079df772d6e050857327591514810" kindref="member">ArrayXb</ref> &amp;</type>
+          <declname>mask</declname>
+        </param>
+        <briefdescription>
+<para>split Eigen matrix or array into two by mask </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/runner/work/brush/brush/src/util/utils.h" line="428" column="7" bodyfile="/home/runner/work/brush/brush/src/util/utils.h" bodystart="428" bodyend="451"/>
+      </memberdef>
+      <memberdef kind="function" id="d6/d2e/namespaceBrush_1_1Util_1a0fca88a717680a76c4b7b9b082675f89" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>std::ranges::range</type>
+            <declname>T</declname>
+            <defname>T</defname>
+          </param>
+        </templateparamlist>
+        <type>void</type>
+        <definition>void Brush::Util::print</definition>
+        <argsstring>(T t)</argsstring>
+        <name>print</name>
+        <param>
+          <type>T</type>
+          <declname>t</declname>
+        </param>
+        <briefdescription>
+<para>prints comma delimited container contents. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/runner/work/brush/brush/src/util/utils.h" line="455" column="6" bodyfile="/home/runner/work/brush/brush/src/util/utils.h" bodystart="455" bodyend="462"/>
+        <referencedby refid="d9/d40/bind__dataset_8cpp_1a3a32d76d471ed16427cad15ed2364f0f" compoundref="d9/d40/bind__dataset_8cpp" startline="9" endline="39">bind_dataset</referencedby>
+        <referencedby refid="d6/d2e/namespaceBrush_1_1Util_1a34871e8de1fd6eabc81121b1af030b5a" compoundref="dd/db1/error_8cpp" startline="20" endline="23">HandleErrorNoThrow</referencedby>
+        <referencedby refid="d6/d2e/namespaceBrush_1_1Util_1a3d3d6ff93c25e47eb7534665d7393c8d" compoundref="dd/db1/error_8cpp" startline="13" endline="17">HandleErrorThrow</referencedby>
+        <referencedby refid="d1/d49/namespacebrush_1_1deap__api_1_1nsga2_1a28c2ecf4b42f4456d964b7a6adce55e0" compoundref="df/d62/nsga2_8py" startline="6" endline="75">brush.deap_api.nsga2.nsga2</referencedby>
+        <referencedby refid="d3/da8/structBrush_1_1DispatchTable_1a6f1cdf04bddfdd7cc09cc1e9d934dee6" compoundref="df/d61/dispatch__table_8h" startline="127" endline="140">Brush::DispatchTable&lt; Fit &gt;::print</referencedby>
+        <referencedby refid="d2/d36/classBrush_1_1Data_1_1Dataset_1a59ec8554d617a4a99ba7feec09bdc62c" compoundref="d2/dbd/data_8h" startline="118" endline="133">Brush::Data::Dataset::print</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="d6/d2e/namespaceBrush_1_1Util_1ac697e701ef641df7a4cff481c667c9f7" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>class Vector</type>
+          </param>
+          <param>
+            <type>class T</type>
+          </param>
+        </templateparamlist>
+        <type>void</type>
+        <definition>void Brush::Util::unique_insert</definition>
+        <argsstring>(Vector &amp;v, const T &amp;t)</argsstring>
+        <name>unique_insert</name>
+        <param>
+          <type>Vector &amp;</type>
+          <declname>v</declname>
+        </param>
+        <param>
+          <type>const T &amp;</type>
+          <declname>t</declname>
+        </param>
+        <briefdescription>
+<para>unique insertion into a vector. allows a vector to be used like a set. source: <ulink url="http://www.lafstern.org/matt/col1.pdf">http://www.lafstern.org/matt/col1.pdf</ulink> </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/runner/work/brush/brush/src/util/utils.h" line="602" column="6" bodyfile="/home/runner/work/brush/brush/src/util/utils.h" bodystart="602" bodyend="607"/>
+        <referencedby refid="d2/d36/classBrush_1_1Data_1_1Dataset_1aacd5afd19b9cee9d9d84e4290eeabb6f" compoundref="da/dc9/data_8cpp" startline="149" endline="168">Brush::Data::Dataset::init</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="d6/d2e/namespaceBrush_1_1Util_1a75d33dae3c8a1a36b1ef5f889d815d6e" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>typename T</type>
+          </param>
+          <param>
+            <type>std::size_t...</type>
+            <declname>Indices</declname>
+            <defname>Indices</defname>
+          </param>
+        </templateparamlist>
+        <type>auto</type>
+        <definition>auto Brush::Util::vectorToTupleHelper</definition>
+        <argsstring>(const std::vector&lt; T &gt; &amp;v, std::index_sequence&lt; Indices... &gt;)</argsstring>
+        <name>vectorToTupleHelper</name>
+        <param>
+          <type>const std::vector&lt; T &gt; &amp;</type>
+          <declname>v</declname>
+        </param>
+        <param>
+          <type>std::index_sequence&lt; Indices... &gt;</type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/runner/work/brush/brush/src/util/utils.h" line="612" column="6" bodyfile="/home/runner/work/brush/brush/src/util/utils.h" bodystart="612" bodyend="614"/>
+        <referencedby refid="d6/d2e/namespaceBrush_1_1Util_1a7a0a0b4f0cab1c690fc54ea9126e6814" compoundref="d5/d60/utils_8h" startline="617" endline="620">vectorToTuple</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="d6/d2e/namespaceBrush_1_1Util_1a7a0a0b4f0cab1c690fc54ea9126e6814" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>std::size_t</type>
+            <declname>N</declname>
+            <defname>N</defname>
+          </param>
+          <param>
+            <type>typename T</type>
+          </param>
+        </templateparamlist>
+        <type>auto</type>
+        <definition>auto Brush::Util::vectorToTuple</definition>
+        <argsstring>(const std::vector&lt; T &gt; &amp;v)</argsstring>
+        <name>vectorToTuple</name>
+        <param>
+          <type>const std::vector&lt; T &gt; &amp;</type>
+          <declname>v</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/runner/work/brush/brush/src/util/utils.h" line="617" column="6" bodyfile="/home/runner/work/brush/brush/src/util/utils.h" bodystart="617" bodyend="620"/>
+        <references refid="d6/d2e/namespaceBrush_1_1Util_1a75d33dae3c8a1a36b1ef5f889d815d6e" compoundref="d5/d60/utils_8h" startline="612" endline="614">vectorToTupleHelper</references>
+      </memberdef>
+      <memberdef kind="function" id="d6/d2e/namespaceBrush_1_1Util_1a1381c5883d1216248a82c6aafdceb944" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>typename R</type>
+          </param>
+          <param>
+            <type>typename Arg</type>
+          </param>
+          <param>
+            <type>typename...</type>
+            <declname>Args</declname>
+            <defname>Args</defname>
+          </param>
+        </templateparamlist>
+        <type>R</type>
+        <definition>R Brush::Util::apply</definition>
+        <argsstring>(const std::function&lt; R(Args...)&gt; &amp;f, const vector&lt; Arg &gt; &amp;inputs)</argsstring>
+        <name>apply</name>
+        <param>
+          <type>const std::function&lt; R(Args...)&gt; &amp;</type>
+          <declname>f</declname>
+        </param>
+        <param>
+          <type>const vector&lt; Arg &gt; &amp;</type>
+          <declname>inputs</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/runner/work/brush/brush/src/util/utils.h" line="623" column="3" bodyfile="/home/runner/work/brush/brush/src/util/utils.h" bodystart="623" bodyend="655"/>
+        <references refid="da/d41/error_8h_1aa4c550bcd71e4ec1c97b111e1360509a" compoundref="da/d41/error_8h" startline="24">HANDLE_ERROR_THROW</references>
+        <referencedby refid="dc/d31/structBrush_1_1Operator_1a19c4d0c66ace631c3105e11bd75b4761" compoundref="d7/de0/operator_8h" startline="197" endline="209">Brush::Operator&lt; NT, S, Fit, E &gt;::eval</referencedby>
+        <referencedby refid="de/d30/structstd_1_1hash_3_01std_1_1tuple_3_01TT_8_8_8_01_4_01_4_1afdf58525bd44e80be2af8355db0eba2e" compoundref="d5/d60/utils_8h" startline="106" endline="111">std::hash&lt; std::tuple&lt; TT... &gt; &gt;::operator()</referencedby>
+        <referencedby refid="dc/d31/structBrush_1_1Operator_1a1fb42dfa3da5dce9359ac0a0cbc9f5bd" compoundref="d7/de0/operator_8h" startline="173" endline="177">Brush::Operator&lt; NT, S, Fit, E &gt;::requires</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="d6/d2e/namespaceBrush_1_1Util_1a4f012643fa0287662ee98025044b81b7" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>class T</type>
+          </param>
+          <param>
+            <type>class U</type>
+          </param>
+        </templateparamlist>
+        <type>std::vector&lt; T &gt;</type>
+        <definition>std::vector&lt;T&gt; Brush::Util::slice</definition>
+        <argsstring>(const vector&lt; T &gt; &amp;v, const U &amp;idx)</argsstring>
+        <name>slice</name>
+        <param>
+          <type>const vector&lt; T &gt; &amp;</type>
+          <declname>v</declname>
+        </param>
+        <param>
+          <type>const U &amp;</type>
+          <declname>idx</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/runner/work/brush/brush/src/util/utils.h" line="658" column="13" bodyfile="/home/runner/work/brush/brush/src/util/utils.h" bodystart="658" bodyend="666"/>
+        <referencedby refid="d7/d56/structBrush_1_1Data_1_1TimeSeries_1af1ff3934c359ca5bd910a61fe083d5ce" compoundref="d9/df7/timeseries_8h" startline="45" endline="50">Brush::Data::TimeSeries&lt; T &gt;::operator()</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="d6/d2e/namespaceBrush_1_1Util_1acb304889eae44960a17ed276d815275a" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>typename K</type>
+          </param>
+          <param>
+            <type>typename V</type>
+          </param>
+        </templateparamlist>
+        <type>map&lt; V, K &gt;</type>
+        <definition>static map&lt;V, K&gt; Brush::Util::reverse_map</definition>
+        <argsstring>(const map&lt; K, V &gt; &amp;m)</argsstring>
+        <name>reverse_map</name>
+        <param>
+          <type>const map&lt; K, V &gt; &amp;</type>
+          <declname>m</declname>
+        </param>
+        <briefdescription>
+<para>Given a map from keys to values, creates a new map from values to keys. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/runner/work/brush/brush/src/util/utils.h" line="670" column="12" bodyfile="/home/runner/work/brush/brush/src/util/utils.h" bodystart="670" bodyend="675"/>
+        <references refid="d6/d2e/namespaceBrush_1_1Util_1af7dd70e54015821d96e3a1afed6344ca" compoundref="d2/da9/rnd_8h" startline="151">r</references>
+      </memberdef>
+      <memberdef kind="function" id="d6/d2e/namespaceBrush_1_1Util_1ad910506fb00aa26aa8de5f608e6704a2" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>typename T</type>
+          </param>
+        </templateparamlist>
+        <type>ostream &amp;</type>
+        <definition>ostream&amp; Brush::Util::operator&lt;&lt;</definition>
+        <argsstring>(ostream &amp;os, const vector&lt; T &gt; &amp;v)</argsstring>
+        <name>operator&lt;&lt;</name>
+        <param>
+          <type>ostream &amp;</type>
+          <declname>os</declname>
+        </param>
+        <param>
+          <type>const vector&lt; T &gt; &amp;</type>
+          <declname>v</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/runner/work/brush/brush/src/util/utils.h" line="678" column="1" bodyfile="/home/runner/work/brush/brush/src/util/utils.h" bodystart="678" bodyend="691"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+<para>namespace containing various utility functions </para>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="/home/runner/work/brush/brush/src/util/error.cpp" line="11" column="15"/>
+  </compounddef>
+</doxygen>

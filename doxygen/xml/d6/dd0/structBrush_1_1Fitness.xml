@@ -1,0 +1,58 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="d6/dd0/structBrush_1_1Fitness" kind="struct" language="C++" prot="public">
+    <compoundname>Brush::Fitness</compoundname>
+    <includes refid="d1/dea/program_8h" local="no">program.h</includes>
+      <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="d6/dd0/structBrush_1_1Fitness_1a853380ca80adf2ab47bc8d2fc34b09b4" prot="public" static="no" mutable="no">
+        <type>vector&lt; float &gt;</type>
+        <definition>vector&lt;float&gt; Brush::Fitness::values</definition>
+        <argsstring></argsstring>
+        <name>values</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/runner/work/brush/brush/src/program/program.h" line="40" column="12" bodyfile="/home/runner/work/brush/brush/src/program/program.h" bodystart="40" bodyend="-1"/>
+        <referencedby refid="d9/d26/bind__programs_8cpp_1a8435253e0dd2b6802297b820914051e5" compoundref="d9/d26/bind__programs_8cpp" startline="12" endline="25">bind_programs</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="d6/dd0/structBrush_1_1Fitness_1ae41414066bee664a1e5cae382667aec4" prot="public" static="no" mutable="no">
+        <type>bool</type>
+        <definition>bool Brush::Fitness::valid</definition>
+        <argsstring></argsstring>
+        <name>valid</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/runner/work/brush/brush/src/program/program.h" line="41" column="10" bodyfile="/home/runner/work/brush/brush/src/program/program.h" bodystart="41" bodyend="-1"/>
+        <referencedby refid="d9/d26/bind__programs_8cpp_1a8435253e0dd2b6802297b820914051e5" compoundref="d9/d26/bind__programs_8cpp" startline="12" endline="25">bind_programs</referencedby>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <collaborationgraph>
+      <node id="2">
+        <label>std::vector&lt; float &gt;</label>
+      </node>
+      <node id="1">
+        <label>Brush::Fitness</label>
+        <link refid="d6/dd0/structBrush_1_1Fitness"/>
+        <childnode refid="2" relation="usage">
+          <edgelabel>values</edgelabel>
+        </childnode>
+      </node>
+    </collaborationgraph>
+    <location file="/home/runner/work/brush/brush/src/program/program.h" line="39" column="1" bodyfile="/home/runner/work/brush/brush/src/program/program.h" bodystart="39" bodyend="42"/>
+    <listofallmembers>
+      <member refid="d6/dd0/structBrush_1_1Fitness_1ae41414066bee664a1e5cae382667aec4" prot="public" virt="non-virtual"><scope>Brush::Fitness</scope><name>valid</name></member>
+      <member refid="d6/dd0/structBrush_1_1Fitness_1a853380ca80adf2ab47bc8d2fc34b09b4" prot="public" virt="non-virtual"><scope>Brush::Fitness</scope><name>values</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>
