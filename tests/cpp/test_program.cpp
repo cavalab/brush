@@ -111,9 +111,6 @@ TEST(Program, FitClassifier)
     }
 }
 
-
-
-
 TEST(Program, Serialization)
 {
     // test mutation
@@ -160,6 +157,43 @@ TEST(Program, Serialization)
             newPRG.fit(data);
             ArrayXf new_y_pred = newPRG.predict(data);
 
+        }
+    }
+}
+
+TEST(Operators, ProgramMaxSizePARAMS)
+{
+    MatrixXf X(10,2);
+    ArrayXf y(10);
+    X << 0.85595296, 0.55417453, 0.8641915 , 0.99481109, 0.99123376,
+         0.9742618 , 0.70894019, 0.94940306, 0.99748867, 0.54205151,
+
+         0.5170537 , 0.8324005 , 0.50316305, 0.10173936, 0.13211973,
+         0.2254195 , 0.70526861, 0.31406024, 0.07082619, 0.84034526;
+
+    y << 3.55634251, 3.13854087, 3.55887523, 3.29462895, 3.33443517,
+         3.4378868 , 3.41092345, 3.5087468 , 3.25110243, 3.11382179;
+
+    Dataset data(X,y);
+
+    SearchSpace SS;
+    SS.init(data);
+
+    for (int d = 1; d < 10; ++d)
+    {
+        for (int s = 1; s < 10; ++s)
+        {
+            PARAMS["max_size"]  = s;
+            PARAMS["max_depth"] = d;
+
+            fmt::print("d={},s={}\n",d,s);
+            fmt::print("make_regressor\n");
+            RegressorProgram PRG = SS.make_regressor(0, 0);
+            
+            auto PRG_model = PRG.get_model("compact", true);
+
+            ASSERT_TRUE(PRG.size() > 0);
+            ASSERT_TRUE(PRG.size() <= s);
         }
     }
 }
