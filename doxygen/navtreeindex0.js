@@ -1,5 +1,7 @@
 var NAVTREEINDEX0 =
 {
+"":[0,0,2],
+"":[0,0,4],
 "annotated.html":[1,0],
 "classes.html":[1,1],
 "d0/d0e/classtree__node__.html":[1,0,6],
@@ -247,7 +249,5 @@ var NAVTREEINDEX0 =
 "d3/da8/structBrush_1_1DispatchTable.html#a4602a1c673ae0b1becfdda3f0e1ab7ee":[1,0,1,2,13],
 "d3/da8/structBrush_1_1DispatchTable.html#a54e201466bd6f10248dea9ef7f8b60b3":[1,0,1,2,9],
 "d3/da8/structBrush_1_1DispatchTable.html#a5e1df70f4c4257ec87c0d05b059a0ac2":[1,0,1,2,0],
-"d3/da8/structBrush_1_1DispatchTable.html#a6f1cdf04bddfdd7cc09cc1e9d934dee6":[1,0,1,2,15],
-"d3/da8/structBrush_1_1DispatchTable.html#a7f205306356c4feb6cb2fdc9509db02e":[1,0,1,2,2],
-"d3/da8/structBrush_1_1DispatchTable.html#aa88ae2404961ecae9bd5d0528b73706f":[1,0,1,2,7]
+"d3/da8/structBrush_1_1DispatchTable.html#a6f1cdf04bddfdd7cc09cc1e9d934dee6":[1,0,1,2,15]
 };

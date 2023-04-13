@@ -1,5 +1,7 @@
 var NAVTREEINDEX5 =
 {
+"dd/dc6/structBrush_1_1UnJetify.html":[1,0,1,64],
+"dd/dc6/structBrush_1_1UnJetify.html#a5e56b72a72e02f0ed80313bf740a607a":[1,0,1,64,0],
 "dd/dc8/structfmt_1_1formatter_3_01Brush_1_1Data_1_1TimeSeriesi_01_4.html":[1,0,2,1],
 "dd/dc8/structfmt_1_1formatter_3_01Brush_1_1Data_1_1TimeSeriesi_01_4.html#a1e8348a5b424ebf8b9382c0cfe830b4d":[1,0,2,1,0],
 "dd/dff/structBrush_1_1DataEnumType_3_01DT_1_1TimeSeriesI_01_4.html":[1,0,1,103],
@@ -179,8 +181,8 @@ var NAVTREEINDEX5 =
 "functions_e.html":[1,3,0,5],
 "functions_eval.html":[1,3,4],
 "functions_f.html":[1,3,0,6],
-"functions_func.html":[1,3,1,0],
 "functions_func.html":[1,3,1],
+"functions_func.html":[1,3,1,0],
 "functions_func_a.html":[1,3,1,1],
 "functions_func_b.html":[1,3,1,2],
 "functions_func_c.html":[1,3,1,3],
@@ -236,7 +238,5 @@ var NAVTREEINDEX5 =
 "namespacemembers_type.html":[0,1,3],
 "namespacemembers_vars.html":[0,1,2],
 "namespaces.html":[0,0],
-"pages.html":[],
-"":[0,0,2],
-"":[0,0,4]
+"pages.html":[]
 };

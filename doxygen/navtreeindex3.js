@@ -1,5 +1,7 @@
 var NAVTREEINDEX3 =
 {
+"d9/d40/bind__dataset_8cpp.html#a3a32d76d471ed16427cad15ed2364f0f":[2,0,2,0],
+"d9/d40/bind__dataset_8cpp_source.html":[2,0,2],
 "d9/d44/namespacebrush_1_1deap__api.html":[0,0,0,0],
 "d9/d49/types_8h.html":[2,0,46],
 "d9/d49/types_8h.html#a00b234ce343d03867e55d528f8cb8895":[2,0,46,67],
@@ -247,7 +249,5 @@ var NAVTREEINDEX3 =
 "dc/d31/structBrush_1_1Operator.html#ac0d7dd5291386ff527a39f2f4fea03df":[1,0,1,45,16],
 "dc/d31/structBrush_1_1Operator.html#ad28b68b8b56bff9cd2c3340fbdc959b3":[1,0,1,45,11],
 "dc/d4d/params_8cpp.html":[2,0,30],
-"dc/d4d/params_8cpp.html#a42d2b278c90f5578287d8d2bafd77ea4":[2,0,30,0],
-"dc/d4d/params_8cpp.html#a43eeef4bb05aa1be2b240b56fb3744fa":[2,0,30,1],
-"dc/d4d/params_8cpp.html#a9c6fb4b74a0a8a8fd047a49f3c9e2283":[2,0,30,2]
+"dc/d4d/params_8cpp.html#a42d2b278c90f5578287d8d2bafd77ea4":[2,0,30,0]
 };
