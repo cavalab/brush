@@ -70,7 +70,22 @@ namespace Brush { namespace Util{
             {
                 // std::uniform_int_distribution<> dis(0, distance(start, end) - 1);
                 std::discrete_distribution<size_t> dis(wstart, wend);
+
+                // `advance()` increments the iterator by n elements. `dis` is the
+                // discrete_distribution creates a probability distribution function,
+                // and can generate integers from [0, s), where `s` is the number of
+                // probabilities in the iterator passed as argument.
+                // to generate a new value, the `operator()( Generator& g )` needs
+                // to take a uniform random bit generator object. The brush.rnd
+                // class have a private generator `rg` that can be used.
+                // `rg` is a pseudo-random number generator vector, containing
+                // one random generator for each thread. In the line below.
                 advance(start, dis(rg[omp_get_thread_num()]));
+
+                // start was originally an iterator pointing to the beggining
+                // of the sequence we want to take a random value. It is incremented
+                // to point to a random element, with probabilities taken from 
+                // the second iterator Iter2.
                 return start;
             }
            
