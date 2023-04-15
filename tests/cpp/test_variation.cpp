@@ -144,13 +144,23 @@ TEST(Operators, MutationMaxSizeLimit)
     SearchSpace SS;
     SS.init(data);
 
-    for (int d = 1; d < 10; ++d)
+    // split operator --> arity 3
+    // prod operator  --> arity 4
+    int max_arity = 4;
+
+    for (int d = 5; d < 15; ++d)
     {
-        for (int s = 1; s < 10; ++s)
+        for (int s = 5; s < 15; ++s)
         {
+            PARAMS["max_size"]  = s;
+            PARAMS["max_depth"] = d;
+
             fmt::print("d={},s={}\n",d,s);
             fmt::print("make_regressor\n");
-            RegressorProgram PRG = SS.make_regressor(d, s);
+
+            // Enforcing that the parents does not exceed max_size by
+            // taking into account the highest arity of the function nodes
+            RegressorProgram PRG = SS.make_regressor(d, s - max_arity);
             
             auto PRG_model = PRG.get_model("compact", true);
 
@@ -172,7 +182,8 @@ TEST(Operators, MutationMaxSizeLimit)
             
             // Child is within restrictions. Here we expect the generated
             // expression to have at most max_size nodes (there is no tolerance 
-            // gap as PTC2 has)
+            // gap as PTC2 has). Notice that this is only valid if the original
+            // parent is already respecting the max_size
             ASSERT_TRUE(Child.size() > 0);
             ASSERT_TRUE(Child.size() <= s);
         }
@@ -273,6 +284,10 @@ TEST(Operators, MutationMaxSizePARAMS)
     SearchSpace SS;
     SS.init(data);
 
+    // split operator --> arity 3
+    // prod operator  --> arity 4
+    int max_arity = 4;
+
     for (int d = 1; d < 10; ++d)
     {
         for (int s = 1; s < 10; ++s)
@@ -280,18 +295,20 @@ TEST(Operators, MutationMaxSizePARAMS)
             PARAMS["max_size"]  = s;
             PARAMS["max_depth"] = d;
 
-
             fmt::print("d={},s={}\n",d,s);
             fmt::print("make_regressor\n");
+
             RegressorProgram PRG = SS.make_regressor(0, 0);
             
             auto PRG_model = PRG.get_model("compact", true);
 
             auto Child = PRG.mutate();
 
-            // Child is within restrictions
+            // Child is within restrictions. Here we allow the mutation
+            // to generate slightly bigger expressions (because the original
+            // parents can also have this offset due to PTC2 generation method)
             ASSERT_TRUE(Child.size() > 0);
-            ASSERT_TRUE(Child.size() <= s);
+            ASSERT_TRUE(Child.size() <= s+max_arity);
         }
     }
 }

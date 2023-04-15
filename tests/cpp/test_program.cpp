@@ -179,6 +179,16 @@ TEST(Operators, ProgramMaxSizePARAMS)
     SearchSpace SS;
     SS.init(data);
 
+    // A comment about PTC2 method:            
+    // PTC2 ensures that the depth does not exceed the maximum limit,
+    // and that the number of nodes does not exceed the maximum limit
+    // plus the highest arity of the function nodes, that is:
+    // `max_size + max(arity(f)), for f in function_set`
+
+    // split operator --> arity 3
+    // prod operator  --> arity 4
+    int max_arity = 4;
+
     for (int d = 1; d < 10; ++d)
     {
         for (int s = 1; s < 10; ++s)
@@ -197,16 +207,6 @@ TEST(Operators, ProgramMaxSizePARAMS)
                 d, s, 
                 PRG.get_model("compact", true)
             );
-
-            // A comment about PTC2 method:            
-            // PTC2 ensures that the depth does not exceed the maximum limit,
-            // and that the number of nodes does not exceed the maximum limit
-            // plus the highest arity of the function nodes, that is:
-            // `max_size + max(arity(f)), for f in function_set`
-
-            // split operator --> arity 3
-            // prod operator  --> arity 4
-            int max_arity = 4;
 
             ASSERT_TRUE(PRG.size() > 0);
             ASSERT_TRUE(PRG.size() <= s+max_arity);

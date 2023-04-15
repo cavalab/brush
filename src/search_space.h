@@ -377,9 +377,11 @@ struct SearchSpace
     /// @param ret return type
     /// @param arg argument type to match
     /// @param terminal_compatible if true, the other args the returned operator takes must exist in the terminal types. 
+    /// @param max_arg_count if zero, no limit is taken to the maximum number of arguments to the operator. Otherwise, the operator will have at most `max_arg_count` arguments. 
     /// @return a matching operator. 
     Node get_op_with_arg(DataType ret, DataType arg, 
-                              bool terminal_compatible=true) const
+                              bool terminal_compatible=true,
+                              int max_arg_count=0) const
     {
         // thoughts (TODO):
         //  this could be templated by return type and arg. although the lookup in the map should be
@@ -395,7 +397,12 @@ struct SearchSpace
         for (const auto& [args_type, name_map]: args_map) {
             for (const auto& [name, node]: name_map) {
                 auto node_arg_types = node.get_arg_types();
-                if ( in(node_arg_types, arg) ) {
+                
+                // has no size limit (max_arg_count==0) or the number of
+                // arguments woudn't exceed the maximum number of arguments
+                auto within_size_limit = !(max_arg_count) || (node.get_arg_count() <= max_arg_count);
+
+                if ( in(node_arg_types, arg) && within_size_limit) {
                     // if checking terminal compatibility, make sure there's
                     // a compatible terminal for the node's other arguments
                     if (terminal_compatible) {

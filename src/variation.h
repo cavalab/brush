@@ -40,15 +40,21 @@ inline void insert_mutation(tree<Node>& Tree, Iter spot, const SearchSpace& SS)
 {
     // cout << "insert mutation\n";
     auto spot_type = spot.node->data.ret_type;
-    auto n = SS.get_op_with_arg(spot_type, spot_type); 
+    
+    // pick a compatible random node to insert. We subtract one to count
+    // the op node that is already being inserted.
+    auto n = SS.get_op_with_arg(spot_type, spot_type, true,
+                                PARAMS["max_size"].get<int>()-Tree.size()-1); 
+
     // make node n wrap the subtree at the chosen spot
     auto parent_node = Tree.wrap(spot, n);
+
+    // GUI TODO: spot_filled should be any random spot with same type
 
     // now fill the arguments of n appropriately
     bool spot_filled = false;
     for (auto a: n.arg_types)
     {
-        
         if (spot_filled)
         {
             // if spot is in its child position, append children
@@ -60,7 +66,6 @@ inline void insert_mutation(tree<Node>& Tree, Iter spot, const SearchSpace& SS)
         // otherwise, add siblings before spot node
         else
             Tree.insert(spot, SS.get_terminal(a));
-
     } 
 }
 
@@ -113,7 +118,16 @@ Program<T> mutate(const Program<T>& parent, const SearchSpace& SS)
 
     auto options = PARAMS["mutation_options"].get<std::map<string,float>>();
 
-    // choose a mutation option
+    // Setting the weight of mutations that increase the expression to zero
+    // if the expression is already at the maximum allowed size. If not, 
+    // then the insert mutation will insert an operator that does not exceed
+    // the max_size. We add one to represent the op node that would be inserted.
+    if (child.Tree.size()+1 >= PARAMS["max_size"].get<int>())
+    {
+        options["insert"] = 0.0;
+    }
+
+    // choose a valid mutation option
     string choice = r.random_choice(options);
 
     if (choice == "insert")
@@ -128,7 +142,6 @@ Program<T> mutate(const Program<T>& parent, const SearchSpace& SS)
         string msg = fmt::format("{} not a valid mutation choice", choice);
         HANDLE_ERROR_THROW(msg);
     }
-
 
     return child;
 };
@@ -152,7 +165,9 @@ Program<T> cross(const Program<T>& root, const Program<T>& other)
                     child_weights.begin(),
                     [](const auto& n){ return n.get_prob_change(); }
                     );
+    
     // fmt::print("child weights: {}\n", child_weights);
+    // GUI TODO: Should this be random-based tries, or can I enumerate all possible solutions?
     bool matching_spots_found = false;
     for (int tries = 0; tries < 3; ++tries)
     {
@@ -162,8 +177,10 @@ Program<T> cross(const Program<T>& root, const Program<T>& other)
                                             child_weights.end()
                                         );
         auto child_ret_type = child_spot.node->data.ret_type;
+
         // fmt::print("child_spot : {}\n",child_spot.node->data);
         // fmt::print("child_ret_type: {}\n",child_ret_type);
+
         // pick a subtree to insert
         // need to pick a node that has a matching output type to the child_spot
         vector<float> other_weights(other.Tree.size());
@@ -178,12 +195,20 @@ Program<T> cross(const Program<T>& root, const Program<T>& other)
             );
         for (const auto& w: other_weights)
         {
+            // TODO: we need to pick a compatible spot that also does not generate
+            // a child bigger than the max_size.
+            
             matching_spots_found = w > 0.0;
+
             if (matching_spots_found) 
                 break;
         }
+
         if (matching_spots_found) 
         {
+            // The probability of picking the i-th element is w_i/S, with S being
+            // the sum of all weights. select_randomly works with a weight vector
+            // even if the weights does not sum up to 1
             auto other_spot = r.select_randomly(
                 other.Tree.begin(), 
                 other.Tree.end(), 
