@@ -190,10 +190,26 @@ TEST(Operators, ProgramMaxSizePARAMS)
             fmt::print("make_regressor\n");
             RegressorProgram PRG = SS.make_regressor(0, 0);
             
-            auto PRG_model = PRG.get_model("compact", true);
+            fmt::print(
+                "depth = {}, size= {}\n"
+                "Generated Model: {}\n"
+                "=================================================\n",
+                d, s, 
+                PRG.get_model("compact", true)
+            );
+
+            // A comment about PTC2 method:            
+            // PTC2 ensures that the depth does not exceed the maximum limit,
+            // and that the number of nodes does not exceed the maximum limit
+            // plus the highest arity of the function nodes, that is:
+            // `max_size + max(arity(f)), for f in function_set`
+
+            // split operator --> arity 3
+            // prod operator  --> arity 4
+            int max_arity = 4;
 
             ASSERT_TRUE(PRG.size() > 0);
-            ASSERT_TRUE(PRG.size() <= s);
+            ASSERT_TRUE(PRG.size() <= s+max_arity);
         }
     }
 }

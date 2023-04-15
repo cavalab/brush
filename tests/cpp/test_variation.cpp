@@ -170,7 +170,9 @@ TEST(Operators, MutationMaxSizeLimit)
             // Original didn't change
             ASSERT_TRUE(PRG_model == PRG.get_model("compact", true));
             
-            // Child is within restrictions
+            // Child is within restrictions. Here we expect the generated
+            // expression to have at most max_size nodes (there is no tolerance 
+            // gap as PTC2 has)
             ASSERT_TRUE(Child.size() > 0);
             ASSERT_TRUE(Child.size() <= s);
         }
