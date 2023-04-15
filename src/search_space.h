@@ -402,7 +402,7 @@ struct SearchSpace
                 // arguments woudn't exceed the maximum number of arguments
                 auto within_size_limit = !(max_arg_count) || (node.get_arg_count() <= max_arg_count);
 
-                if ( in(node_arg_types, arg) && within_size_limit) {
+                if ( in(node_arg_types, arg) && within_size_limit ) {
                     // if checking terminal compatibility, make sure there's
                     // a compatible terminal for the node's other arguments
                     if (terminal_compatible) {

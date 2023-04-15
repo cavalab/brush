@@ -167,7 +167,7 @@ Program<T> cross(const Program<T>& root, const Program<T>& other)
                     );
     
     // fmt::print("child weights: {}\n", child_weights);
-    // GUI TODO: Should this be random-based tries, or can I enumerate all possible solutions?
+    // GUI TODO: Keep doing random attempts, or test all possilities?
     bool matching_spots_found = false;
     for (int tries = 0; tries < 3; ++tries)
     {
@@ -176,28 +176,42 @@ Program<T> cross(const Program<T>& root, const Program<T>& other)
                                             child_weights.begin(), 
                                             child_weights.end()
                                         );
+
         auto child_ret_type = child_spot.node->data.ret_type;
+        auto allowed_size   = PARAMS["max_size"].get<int>() -
+                              ( child.Tree.size() - child.Tree.size(child_spot) );
 
-        // fmt::print("child_spot : {}\n",child_spot.node->data);
-        // fmt::print("child_ret_type: {}\n",child_ret_type);
+        fmt::print("child_spot : {}\n",child_spot.node->data);
+        fmt::print("child_ret_type: {}\n",child_ret_type);
+        fmt::print("child size: {}\n", child.Tree.size(child_spot));
+        fmt::print("child model: {}\n", child_spot.node->get_model());
 
-        // pick a subtree to insert
-        // need to pick a node that has a matching output type to the child_spot
+        // pick a subtree to insert. Selection is based on other_weights
         vector<float> other_weights(other.Tree.size());
+
+        // iterator to get the size of subtrees inside transform
+        auto other_iter = other.Tree.begin();
+        const auto get_size_and_inc = [other, &other_iter]() -> int {
+            int size = other.Tree.size(other_iter);
+            std::advance(other_iter, 1);
+            return size;
+        };
+
         std::transform(other.Tree.begin(), other.Tree.end(), 
             other_weights.begin(),
-            [child_ret_type](const auto& n){ 
-                if (n.ret_type == child_ret_type)
+            [allowed_size, child_ret_type, get_size_and_inc](const auto& n){
+                // need to pick a node that has a matching output type to the child_spot.
+                // also need to check if swaping this node wouldn't exceed max_size
+                if ( (n.ret_type == child_ret_type) && (get_size_and_inc() <= allowed_size) )
                     return n.get_prob_change(); 
                 else
+                    // setting the weight to zero to indicate a non-feasible crossover point
                     return float(0.0);
                 }
             );
+
         for (const auto& w: other_weights)
         {
-            // TODO: we need to pick a compatible spot that also does not generate
-            // a child bigger than the max_size.
-            
             matching_spots_found = w > 0.0;
 
             if (matching_spots_found) 
