@@ -208,12 +208,21 @@ TEST(Operators, CrossoverMaxSizeLimit)
     SearchSpace SS;
     SS.init(data);
 
-    for (int d = 1; d < 10; ++d)
+    // split operator --> arity 3
+    // prod operator  --> arity 4
+    int max_arity = 4;
+
+    for (int d = 5; d < 15; ++d)
     {
-        for (int s = 1; s < 10; ++s)
+        for (int s = 5; s < 15; ++s)
         {
-            RegressorProgram PRG1 = SS.make_regressor(d, s);
-            RegressorProgram PRG2 = SS.make_regressor(d, s);
+            PARAMS["max_size"]  = s;
+            PARAMS["max_depth"] = d;
+
+            // Enforcing that the parents does not exceed max_size by
+            // taking into account the highest arity of the function nodes
+            RegressorProgram PRG1 = SS.make_regressor(d, s-max_arity);
+            RegressorProgram PRG2 = SS.make_regressor(d, s-max_arity);
 
             auto PRG1_model = PRG1.get_model("compact", true);
             auto PRG2_model = PRG2.get_model("compact", true);
@@ -331,6 +340,10 @@ TEST(Operators, CrossoverMaxSizePARAMS)
     SearchSpace SS;
     SS.init(data);
 
+    // split operator --> arity 3
+    // prod operator  --> arity 4
+    int max_arity = 4;
+
     for (int d = 1; d < 10; ++d)
     {
         for (int s = 1; s < 10; ++s)
@@ -338,8 +351,8 @@ TEST(Operators, CrossoverMaxSizePARAMS)
             PARAMS["max_size"]  = s;
             PARAMS["max_depth"] = d;
 
-            RegressorProgram PRG1 = SS.make_regressor(d, s);
-            RegressorProgram PRG2 = SS.make_regressor(d, s);
+            RegressorProgram PRG1 = SS.make_regressor(0, 0);
+            RegressorProgram PRG2 = SS.make_regressor(0, 0);
 
             auto PRG1_model = PRG1.get_model("compact", true);
             auto PRG2_model = PRG2.get_model("compact", true);
@@ -349,11 +362,11 @@ TEST(Operators, CrossoverMaxSizePARAMS)
 
             // Child1 is within restrictions
             ASSERT_TRUE(Child1.size() > 0);
-            ASSERT_TRUE(Child1.size() <= s);
+            ASSERT_TRUE(Child1.size() <= s+max_arity);
 
             // Child2 is within restrictions
             ASSERT_TRUE(Child2.size() > 0);
-            ASSERT_TRUE(Child2.size() <= s);
+            ASSERT_TRUE(Child2.size() <= s+max_arity);
         }
     }
 }
