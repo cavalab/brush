@@ -161,7 +161,7 @@ TEST(Program, Serialization)
     }
 }
 
-TEST(Operators, ProgramMaxSizePARAMS)
+TEST(Operators, ProgramSizeAndDepthPARAMS)
 {
     MatrixXf X(10,2);
     ArrayXf y(10);
@@ -183,7 +183,8 @@ TEST(Operators, ProgramMaxSizePARAMS)
     // PTC2 ensures that the depth does not exceed the maximum limit,
     // and that the number of nodes does not exceed the maximum limit
     // plus the highest arity of the function nodes, that is:
-    // `max_size + max(arity(f)), for f in function_set`
+    // `max_size + max(arity(f)), for f in function_set`.
+    // For the depth, the PTC2 guarantees at most max_depth+1
 
     // split operator --> arity 3
     // prod operator  --> arity 4
@@ -203,13 +204,27 @@ TEST(Operators, ProgramMaxSizePARAMS)
             fmt::print(
                 "depth = {}, size= {}\n"
                 "Generated Model: {}\n"
+                "Model depth    : {}\n"
+                "Model size     : {}\n"
                 "=================================================\n",
                 d, s, 
-                PRG.get_model("compact", true)
+                PRG.get_model("compact", true), PRG.Tree.max_depth(), PRG.Tree.size()
             );
+
+            // There are two ways of assessing the size of a program
+            // GUI TODO: which style are we going to use? i) implement
+            // PRG.max_depth() (or PRG.depth()); or ii) get rid of PRG.size()
+            // and use always PRG.Tree.<>)
+            ASSERT_TRUE(PRG.Tree.size() > 0);
+            ASSERT_TRUE(PRG.Tree.size() <= s+max_arity);
 
             ASSERT_TRUE(PRG.size() > 0);
             ASSERT_TRUE(PRG.size() <= s+max_arity);
+
+            // GUI TODO: max_depth() counts the number of edges (so a program with
+            // one node has max_depth()==0). Is this how it should behave?
+            ASSERT_TRUE(PRG.Tree.max_depth() >= 0);
+            ASSERT_TRUE(PRG.Tree.max_depth() <= d+1);
         }
     }
 }

@@ -122,7 +122,7 @@ TEST(Operators, Crossover)
     }
 }
 
-TEST(Operators, MutationMaxSizeLimit)
+TEST(Operators, MutationSizeAndDepthLimit)
 {
     PARAMS["mutation_options"] = {
         {"point",0.25}, {"insert", 0.25}, {"delete", 0.25}, {"toggle_weight", 0.25}
@@ -159,8 +159,9 @@ TEST(Operators, MutationMaxSizeLimit)
             fmt::print("make_regressor\n");
 
             // Enforcing that the parents does not exceed max_size by
-            // taking into account the highest arity of the function nodes
-            RegressorProgram PRG = SS.make_regressor(d, s - max_arity);
+            // taking into account the highest arity of the function nodes;
+            // and the max_depth+1 that PTC2 can generate
+            RegressorProgram PRG = SS.make_regressor(d-1, s - max_arity);
             
             auto PRG_model = PRG.get_model("compact", true);
 
@@ -171,10 +172,14 @@ TEST(Operators, MutationMaxSizeLimit)
                 "=================================================\n"
                 "depth = {}, size= {}\n"
                 "Initial Model: {}\n"
-                "Mutated Model: {}\n",
+                "Mutated Model: {}\n"
+                "Mutated depth: {}\n"
+                "Mutated size : {}\n",
                 d, s, 
                 PRG.get_model("compact", true),
-                Child.get_model("compact", true)
+                Child.get_model("compact", true),
+                Child.Tree.max_depth(),
+                Child.Tree.size()
             );
 
             // Original didn't change
@@ -186,11 +191,17 @@ TEST(Operators, MutationMaxSizeLimit)
             // parent is already respecting the max_size
             ASSERT_TRUE(Child.size() > 0);
             ASSERT_TRUE(Child.size() <= s);
+
+            ASSERT_TRUE(Child.Tree.size() > 0);
+            ASSERT_TRUE(Child.Tree.size() <= s);
+
+            ASSERT_TRUE(Child.Tree.max_depth() >= 0);
+            ASSERT_TRUE(Child.Tree.max_depth() <= d);
         }
     }
 }
 
-TEST(Operators, CrossoverMaxSizeLimit)
+TEST(Operators, CrossoverSizeAndDepthLimit)
 {
     MatrixXf X(10,2);
     ArrayXf y(10);
@@ -221,8 +232,8 @@ TEST(Operators, CrossoverMaxSizeLimit)
 
             // Enforcing that the parents does not exceed max_size by
             // taking into account the highest arity of the function nodes
-            RegressorProgram PRG1 = SS.make_regressor(d, s-max_arity);
-            RegressorProgram PRG2 = SS.make_regressor(d, s-max_arity);
+            RegressorProgram PRG1 = SS.make_regressor(d-1, s-max_arity);
+            RegressorProgram PRG2 = SS.make_regressor(d-1, s-max_arity);
 
             auto PRG1_model = PRG1.get_model("compact", true);
             auto PRG2_model = PRG2.get_model("compact", true);
@@ -249,11 +260,17 @@ TEST(Operators, CrossoverMaxSizeLimit)
             fmt::print("cross two\n");
             auto Child2 = PRG2.cross(PRG1);
             fmt::print(
-                "Crossed Model 1: {}\n"
-                "Crossed Model 2: {}\n"
+                "Crossed Model 1      : {}\n"
+                "Crossed Model 1 depth: {}\n"
+                "Crossed Model 1 size : {}\n"
+                "Crossed Model 2      : {}\n"
+                "Crossed Model 2 depth: {}\n"
+                "Crossed Model 2 size : {}\n"
                 "=================================================\n",
                 Child1.get_model("compact", true),
-                Child2.get_model("compact", true)
+                Child1.Tree.max_depth(), Child1.Tree.size(), 
+                Child2.get_model("compact", true),
+                Child2.Tree.max_depth(), Child2.Tree.size()
             );
 
             // Original didn't change
@@ -263,15 +280,25 @@ TEST(Operators, CrossoverMaxSizeLimit)
             // Child1 is within restrictions
             ASSERT_TRUE(Child1.size() > 0);
             ASSERT_TRUE(Child1.size() <= s);
+            ASSERT_TRUE(Child1.Tree.size() > 0);
+            ASSERT_TRUE(Child1.Tree.size() <= s);
+
+            ASSERT_TRUE(Child1.Tree.max_depth() >= 0);
+            ASSERT_TRUE(Child1.Tree.max_depth() <= d);
 
             // Child2 is within restrictions
             ASSERT_TRUE(Child2.size() > 0);
             ASSERT_TRUE(Child2.size() <= s);
+            ASSERT_TRUE(Child2.Tree.size() > 0);
+            ASSERT_TRUE(Child2.Tree.size() <= s);
+
+            ASSERT_TRUE(Child2.Tree.max_depth() >= 0);
+            ASSERT_TRUE(Child2.Tree.max_depth() <= d);
         }
     }
 }
 
-TEST(Operators, MutationMaxSizePARAMS)
+TEST(Operators, MutationSizeAndDepthPARAMS)
 {
     PARAMS["mutation_options"] = {
         {"point",0.25}, {"insert", 0.25}, {"delete", 0.25}, {"toggle_weight", 0.25}
@@ -318,11 +345,17 @@ TEST(Operators, MutationMaxSizePARAMS)
             // parents can also have this offset due to PTC2 generation method)
             ASSERT_TRUE(Child.size() > 0);
             ASSERT_TRUE(Child.size() <= s+max_arity);
+
+            ASSERT_TRUE(Child.Tree.size() > 0);
+            ASSERT_TRUE(Child.Tree.size() <= s+max_arity);
+
+            ASSERT_TRUE(Child.Tree.max_depth() >= 0);
+            ASSERT_TRUE(Child.Tree.max_depth() <= d+1);
         }
     }
 }
 
-TEST(Operators, CrossoverMaxSizePARAMS)
+TEST(Operators, CrossoverSizeAndDepthPARAMS)
 {
     MatrixXf X(10,2);
     ArrayXf y(10);
@@ -363,10 +396,20 @@ TEST(Operators, CrossoverMaxSizePARAMS)
             // Child1 is within restrictions
             ASSERT_TRUE(Child1.size() > 0);
             ASSERT_TRUE(Child1.size() <= s+max_arity);
+            ASSERT_TRUE(Child1.Tree.size() > 0);
+            ASSERT_TRUE(Child1.Tree.size() <= s+max_arity);
+
+            ASSERT_TRUE(Child1.Tree.max_depth() >= 0);
+            ASSERT_TRUE(Child1.Tree.max_depth() <= d+1);
 
             // Child2 is within restrictions
             ASSERT_TRUE(Child2.size() > 0);
             ASSERT_TRUE(Child2.size() <= s+max_arity);
+            ASSERT_TRUE(Child2.Tree.size() > 0);
+            ASSERT_TRUE(Child2.Tree.size() <= s+max_arity);
+
+            ASSERT_TRUE(Child2.Tree.max_depth() >= 0);
+            ASSERT_TRUE(Child2.Tree.max_depth() <= d+1);
         }
     }
 }
