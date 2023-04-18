@@ -118,14 +118,12 @@ Program<T> mutate(const Program<T>& parent, const SearchSpace& SS)
 
     auto options = PARAMS["mutation_options"].get<std::map<string,float>>();
 
-    // Setting the weight of mutations that increase the expression to zero
-    // if the expression is already at the maximum allowed size or maximum 
-    // depth. If not, then the insert mutation will insert an operator that
-    // does not exceed the max_size. We add one to represent the op node
-    // that would be inserted.
+    // Setting to zero the weight of variations that increase the expression
+    // if the expression is already at the maximum size or depth
     if (child.Tree.size()+1      >= PARAMS["max_size"].get<int>() ||
         child.Tree.max_depth()+1 >= PARAMS["max_depth"].get<int>() )
     {
+        // avoid using mutations that increase size/depth 
         options["insert"] = 0.0;
     }
 
@@ -186,13 +184,13 @@ Program<T> cross(const Program<T>& root, const Program<T>& other)
         auto allowed_depth = PARAMS["max_depth"].get<int>() - 
                              ( child.Tree.max_depth() - child.Tree.depth(child_spot) );
 
-        fmt::print("child_spot      : {}\n",child_spot.node->data);
-        fmt::print("child_ret_type  : {}\n",child_ret_type);
-        fmt::print("child size      : {}\n", child.Tree.size());
-        fmt::print("child depth     : {}\n", child.Tree.max_depth());
-        fmt::print("child spot size : {}\n", child.Tree.size(child_spot));
-        fmt::print("child spot depth: {}\n", child.Tree.max_depth(child_spot));
-        fmt::print("child spot model: {}\n", child_spot.node->get_model());
+        // fmt::print("child_spot      : {}\n",child_spot.node->data);
+        // fmt::print("child_ret_type  : {}\n",child_ret_type);
+        // fmt::print("child size      : {}\n", child.Tree.size());
+        // fmt::print("child depth     : {}\n", child.Tree.max_depth());
+        // fmt::print("child spot size : {}\n", child.Tree.size(child_spot));
+        // fmt::print("child spot depth: {}\n", child.Tree.max_depth(child_spot));
+        // fmt::print("child spot model: {}\n", child_spot.node->get_model());
 
         // pick a subtree to insert. Selection is based on other_weights
         vector<float> other_weights(other.Tree.size());
@@ -211,7 +209,7 @@ Program<T> cross(const Program<T>& root, const Program<T>& other)
 
         std::transform(other.Tree.begin(), other.Tree.end(), 
             other_weights.begin(),
-            [allowed_size, child_ret_type, check_and_incrm](const auto& n){
+            [child_ret_type, check_and_incrm](const auto& n){
                 // need to pick a node that has a matching output type to the child_spot.
                 // also need to check if swaping this node wouldn't exceed max_size
                 if (check_and_incrm() && (n.ret_type == child_ret_type))

@@ -377,7 +377,7 @@ struct SearchSpace
     /// @param ret return type
     /// @param arg argument type to match
     /// @param terminal_compatible if true, the other args the returned operator takes must exist in the terminal types. 
-    /// @param max_arg_count if zero, no limit is taken to the maximum number of arguments to the operator. Otherwise, the operator will have at most `max_arg_count` arguments. 
+    /// @param max_arg_count if zero, there is no limit on number of arguments of the operator. If not, the operator can have at most `max_arg_count` arguments. 
     /// @return a matching operator. 
     Node get_op_with_arg(DataType ret, DataType arg, 
                               bool terminal_compatible=true,
