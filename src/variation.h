@@ -120,8 +120,8 @@ Program<T> mutate(const Program<T>& parent, const SearchSpace& SS)
 
     // Setting to zero the weight of variations that increase the expression
     // if the expression is already at the maximum size or depth
-    if (child.Tree.size()+1      >= PARAMS["max_size"].get<int>() ||
-        child.Tree.max_depth()+1 >= PARAMS["max_depth"].get<int>() )
+    if (child.Tree.size()+1      >= PARAMS["max_size"].get<int>()
+    ||  child.Tree.max_depth()+1 >= PARAMS["max_depth"].get<int>())
     {
         // avoid using mutations that increase size/depth 
         options["insert"] = 0.0;
@@ -166,7 +166,6 @@ Program<T> cross(const Program<T>& root, const Program<T>& other)
                     [](const auto& n){ return n.get_prob_change(); }
                     );
     
-    // fmt::print("child weights: {}\n", child_weights);
     // GUI TODO: Keep doing random attempts, or test all possilities?
     bool matching_spots_found = false;
     for (int tries = 0; tries < 3; ++tries)
@@ -183,14 +182,6 @@ Program<T> cross(const Program<T>& root, const Program<T>& other)
                              ( child.Tree.size() - child.Tree.size(child_spot) );
         auto allowed_depth = PARAMS["max_depth"].get<int>() - 
                              ( child.Tree.max_depth() - child.Tree.depth(child_spot) );
-
-        // fmt::print("child_spot      : {}\n",child_spot.node->data);
-        // fmt::print("child_ret_type  : {}\n",child_ret_type);
-        // fmt::print("child size      : {}\n", child.Tree.size());
-        // fmt::print("child depth     : {}\n", child.Tree.max_depth());
-        // fmt::print("child spot size : {}\n", child.Tree.size(child_spot));
-        // fmt::print("child spot depth: {}\n", child.Tree.max_depth(child_spot));
-        // fmt::print("child spot model: {}\n", child_spot.node->get_model());
 
         // pick a subtree to insert. Selection is based on other_weights
         vector<float> other_weights(other.Tree.size());
@@ -230,9 +221,6 @@ Program<T> cross(const Program<T>& root, const Program<T>& other)
 
         if (matching_spots_found) 
         {
-            // The probability of picking the i-th element is w_i/S, with S being
-            // the sum of all weights. select_randomly works with a weight vector
-            // even if the weights does not sum up to 1
             auto other_spot = r.select_randomly(
                 other.Tree.begin(), 
                 other.Tree.end(), 

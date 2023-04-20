@@ -550,6 +550,12 @@ T RandomDequeue(std::vector<T>& Q)
 template<typename P>
 P SearchSpace::make_program(int max_d, int max_size)
 {
+    // A comment about PTC2 method:            
+    // PTC2 can work with depth or size restriction, but it does not strictly
+    // satisfies these conditions all time. Given a `max_size` and `max_depth`
+    // parameters, the real maximum size that can occur is `max_size` plus the
+    // highest operator arity, and the real maximum depth is `max_depth` plus one.
+
     if (max_d == 0)
         max_d = r.rnd_int(1, PARAMS["max_depth"].get<int>());
     if (max_size == 0)

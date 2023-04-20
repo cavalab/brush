@@ -64,22 +64,25 @@ namespace Brush { namespace Util{
                 return start;
             }
 
-            /// select randomly with weighted distribution
+            // TODO: write doxygen documentation for this source code.
+            /// select randomly with weighted distribution.
+            // The probability of picking the i-th element is w_i/S, with S
+            // being the sum of all weights. select_randomly works even if the
+            // weights does not sum up to 1
             template<typename Iter, typename Iter2>                                    
             Iter select_randomly(Iter start, Iter end, Iter2 wstart, Iter2 wend)
             {
+                // discrete_distribution creates a Generator for a probability
+                // distribution function. `dis` generate integers from [0, s),
+                // where `s` is the number of probabilities in the iterator 
+                // passed as argument. To generate a new value, the
+                // `operator()( Generator& g )` needs a uniform random bit
+                // generator object, which is stored in `rg`.
+
                 // std::uniform_int_distribution<> dis(0, distance(start, end) - 1);
                 std::discrete_distribution<size_t> dis(wstart, wend);
 
-                // `advance()` increments the iterator by n elements. `dis` is the
-                // discrete_distribution creates a probability distribution function,
-                // and can generate integers from [0, s), where `s` is the number of
-                // probabilities in the iterator passed as argument.
-                // to generate a new value, the `operator()( Generator& g )` needs
-                // to take a uniform random bit generator object. The brush.rnd
-                // class have a private generator `rg` that can be used.
-                // `rg` is a pseudo-random number generator vector, containing
-                // one random generator for each thread. In the line below.
+                // `advance(it, n)` increments the iterator by n elements
                 advance(start, dis(rg[omp_get_thread_num()]));
 
                 // start was originally an iterator pointing to the beggining
@@ -157,6 +160,7 @@ namespace Brush { namespace Util{
         
             ~Rnd();
             
+            // Vector of pseudo-random number generators, one for each thread
             vector<std::mt19937> rg;
             
             static Rnd* instance;
