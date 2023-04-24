@@ -377,9 +377,11 @@ struct SearchSpace
     /// @param ret return type
     /// @param arg argument type to match
     /// @param terminal_compatible if true, the other args the returned operator takes must exist in the terminal types. 
+    /// @param max_arg_count if zero, there is no limit on number of arguments of the operator. If not, the operator can have at most `max_arg_count` arguments. 
     /// @return a matching operator. 
     Node get_op_with_arg(DataType ret, DataType arg, 
-                              bool terminal_compatible=true) const
+                              bool terminal_compatible=true,
+                              int max_arg_count=0) const
     {
         // thoughts (TODO):
         //  this could be templated by return type and arg. although the lookup in the map should be
@@ -395,7 +397,12 @@ struct SearchSpace
         for (const auto& [args_type, name_map]: args_map) {
             for (const auto& [name, node]: name_map) {
                 auto node_arg_types = node.get_arg_types();
-                if ( in(node_arg_types, arg) ) {
+                
+                // has no size limit (max_arg_count==0) or the number of
+                // arguments woudn't exceed the maximum number of arguments
+                auto within_size_limit = !(max_arg_count) || (node.get_arg_count() <= max_arg_count);
+
+                if ( in(node_arg_types, arg) && within_size_limit ) {
                     // if checking terminal compatibility, make sure there's
                     // a compatible terminal for the node's other arguments
                     if (terminal_compatible) {
@@ -543,6 +550,12 @@ T RandomDequeue(std::vector<T>& Q)
 template<typename P>
 P SearchSpace::make_program(int max_d, int max_size)
 {
+    // A comment about PTC2 method:            
+    // PTC2 can work with depth or size restriction, but it does not strictly
+    // satisfies these conditions all time. Given a `max_size` and `max_depth`
+    // parameters, the real maximum size that can occur is `max_size` plus the
+    // highest operator arity, and the real maximum depth is `max_depth` plus one.
+
     if (max_d == 0)
         max_d = r.rnd_int(1, PARAMS["max_depth"].get<int>());
     if (max_size == 0)
