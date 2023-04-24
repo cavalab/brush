@@ -153,92 +153,111 @@ $(document).ready(function(){initNavTree('d2/da9/rnd_8h_source.html','../../'); 
 <div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;                <span class="keywordflow">return</span> start;</div>
 <div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;            }</div>
 <div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160; </div>
-<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;            <span class="keyword">template</span>&lt;<span class="keyword">typename</span> Iter, <span class="keyword">typename</span> Iter2&gt;                                    </div>
-<div class="line"><a name="l00069"></a><span class="lineno"><a class="line" href="../../d2/d2d/classBrush_1_1Util_1_1Rnd.html#a6a38fe0711f752c14055257c4e25cbb2">   69</a></span>&#160;            <a class="code" href="../../dc/d5c/namespaceBrush.html#a822ae4ce07ba14ae433977a635675764">Iter</a> <a class="code" href="../../d2/d2d/classBrush_1_1Util_1_1Rnd.html#a6a38fe0711f752c14055257c4e25cbb2">select_randomly</a>(<a class="code" href="../../dc/d5c/namespaceBrush.html#a822ae4ce07ba14ae433977a635675764">Iter</a> start, <a class="code" href="../../dc/d5c/namespaceBrush.html#a822ae4ce07ba14ae433977a635675764">Iter</a> end, Iter2 wstart, Iter2 wend)</div>
-<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;            {</div>
-<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;                <span class="comment">// std::uniform_int_distribution&lt;&gt; dis(0, distance(start, end) - 1);</span></div>
-<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;                std::discrete_distribution&lt;size_t&gt; dis(wstart, wend);</div>
-<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;                advance(start, dis(rg[<a class="code" href="../../d8/dc0/init_8h.html#a889ec205c635b219999c761b28cc39ba">omp_get_thread_num</a>()]));</div>
-<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;                <span class="keywordflow">return</span> start;</div>
-<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;            }</div>
-<div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;           </div>
-<div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;            <span class="keyword">template</span>&lt;<span class="keyword">typename</span> T&gt;</div>
-<div class="line"><a name="l00078"></a><span class="lineno"><a class="line" href="../../d2/d2d/classBrush_1_1Util_1_1Rnd.html#a18656ce513329b1c672f6ee15ab281b7">   78</a></span>&#160;            T <a class="code" href="../../d2/d2d/classBrush_1_1Util_1_1Rnd.html#a18656ce513329b1c672f6ee15ab281b7">random_choice</a>(<span class="keyword">const</span> map&lt;T, float&gt;&amp; m)</div>
-<div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;            {</div>
-<div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160;                assert(m.size()&gt;0 </div>
-<div class="line"><a name="l00086"></a><span class="lineno">   86</span>&#160;                    &amp;&amp; <span class="stringliteral">&quot; attemping to return random choice from an empty map&quot;</span>);</div>
+<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;            <span class="comment">// TODO: write doxygen documentation for this source code.</span></div>
+<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;<span class="comment"></span>            <span class="comment">// The probability of picking the i-th element is w_i/S, with S</span></div>
+<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;            <span class="comment">// being the sum of all weights. select_randomly works even if the</span></div>
+<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;            <span class="comment">// weights does not sum up to 1</span></div>
+<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;            <span class="keyword">template</span>&lt;<span class="keyword">typename</span> Iter, <span class="keyword">typename</span> Iter2&gt;                                    </div>
+<div class="line"><a name="l00073"></a><span class="lineno"><a class="line" href="../../d2/d2d/classBrush_1_1Util_1_1Rnd.html#a6a38fe0711f752c14055257c4e25cbb2">   73</a></span>&#160;            <a class="code" href="../../dc/d5c/namespaceBrush.html#a822ae4ce07ba14ae433977a635675764">Iter</a> <a class="code" href="../../d2/d2d/classBrush_1_1Util_1_1Rnd.html#a6a38fe0711f752c14055257c4e25cbb2">select_randomly</a>(<a class="code" href="../../dc/d5c/namespaceBrush.html#a822ae4ce07ba14ae433977a635675764">Iter</a> start, <a class="code" href="../../dc/d5c/namespaceBrush.html#a822ae4ce07ba14ae433977a635675764">Iter</a> end, Iter2 wstart, Iter2 wend)</div>
+<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;            {</div>
+<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;                <span class="comment">// discrete_distribution creates a Generator for a probability</span></div>
+<div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;                <span class="comment">// distribution function. `dis` generate integers from [0, s),</span></div>
+<div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;                <span class="comment">// where `s` is the number of probabilities in the iterator </span></div>
+<div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;                <span class="comment">// passed as argument. To generate a new value, the</span></div>
+<div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;                <span class="comment">// `operator()( Generator&amp; g )` needs a uniform random bit</span></div>
+<div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;                <span class="comment">// generator object, which is stored in `rg`.</span></div>
+<div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160; </div>
+<div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160;                <span class="comment">// std::uniform_int_distribution&lt;&gt; dis(0, distance(start, end) - 1);</span></div>
+<div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160;                std::discrete_distribution&lt;size_t&gt; dis(wstart, wend);</div>
+<div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160; </div>
+<div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160;                <span class="comment">// `advance(it, n)` increments the iterator by n elements</span></div>
+<div class="line"><a name="l00086"></a><span class="lineno">   86</span>&#160;                advance(start, dis(rg[<a class="code" href="../../d8/dc0/init_8h.html#a889ec205c635b219999c761b28cc39ba">omp_get_thread_num</a>()]));</div>
 <div class="line"><a name="l00087"></a><span class="lineno">   87</span>&#160; </div>
-<div class="line"><a name="l00088"></a><span class="lineno">   88</span>&#160;                vector&lt;T&gt; keys;</div>
-<div class="line"><a name="l00089"></a><span class="lineno">   89</span>&#160;                vector&lt;float&gt; w; </div>
-<div class="line"><a name="l00090"></a><span class="lineno">   90</span>&#160;                <span class="keywordflow">for</span> (<span class="keyword">const</span> <span class="keyword">auto</span>&amp; [k, v]: m)</div>
-<div class="line"><a name="l00091"></a><span class="lineno">   91</span>&#160;                {</div>
-<div class="line"><a name="l00092"></a><span class="lineno">   92</span>&#160;                    keys.push_back(k);</div>
-<div class="line"><a name="l00093"></a><span class="lineno">   93</span>&#160;                    w.push_back(v);</div>
-<div class="line"><a name="l00094"></a><span class="lineno">   94</span>&#160;                }</div>
-<div class="line"><a name="l00095"></a><span class="lineno">   95</span>&#160;                <span class="keywordflow">return</span> *select_randomly(keys.begin(),keys.end(),</div>
-<div class="line"><a name="l00096"></a><span class="lineno">   96</span>&#160;                                        w.begin(), w.end());</div>
-<div class="line"><a name="l00097"></a><span class="lineno">   97</span>&#160;            }</div>
-<div class="line"><a name="l00098"></a><span class="lineno">   98</span>&#160;            <span class="keyword">template</span>&lt;<span class="keyword">class</span> V, <span class="keyword">class</span> T&gt;</div>
-<div class="line"><a name="l00099"></a><span class="lineno"><a class="line" href="../../d2/d2d/classBrush_1_1Util_1_1Rnd.html#a318db1552e635b2cac649c0e1b1805f6">   99</a></span>&#160;            T <a class="code" href="../../d2/d2d/classBrush_1_1Util_1_1Rnd.html#a318db1552e635b2cac649c0e1b1805f6">random_choice</a>(<span class="keyword">const</span> V&amp; v)</div>
-<div class="line"><a name="l00100"></a><span class="lineno">  100</span>&#160;            {</div>
-<div class="line"><a name="l00104"></a><span class="lineno">  104</span>&#160;                assert(v.size()&gt;0 </div>
-<div class="line"><a name="l00105"></a><span class="lineno">  105</span>&#160;                    &amp;&amp; <span class="stringliteral">&quot; attemping to return random choice from empty vector&quot;</span>);</div>
-<div class="line"><a name="l00106"></a><span class="lineno">  106</span>&#160;                <span class="keywordflow">return</span> *select_randomly(v.begin(),v.end());</div>
-<div class="line"><a name="l00107"></a><span class="lineno">  107</span>&#160;            }</div>
-<div class="line"><a name="l00108"></a><span class="lineno">  108</span>&#160; </div>
-<div class="line"><a name="l00109"></a><span class="lineno">  109</span>&#160;           </div>
-<div class="line"><a name="l00110"></a><span class="lineno">  110</span>&#160;            <span class="keyword">template</span>&lt;<span class="keyword">template</span>&lt;<span class="keyword">class</span>, <span class="keyword">class</span>&gt; <span class="keyword">class </span>C, <span class="keyword">class </span>T&gt;</div>
-<div class="line"><a name="l00111"></a><span class="lineno"><a class="line" href="../../d2/d2d/classBrush_1_1Util_1_1Rnd.html#a7a25d2af76e790737f5f0d28e62877e3">  111</a></span>&#160;            T <a class="code" href="../../d2/d2d/classBrush_1_1Util_1_1Rnd.html#a7a25d2af76e790737f5f0d28e62877e3">random_choice</a>(<span class="keyword">const</span> C&lt;T, std::allocator&lt;T&gt;&gt;&amp; v, <span class="keyword">const</span> vector&lt;float&gt;&amp; w )</div>
-<div class="line"><a name="l00112"></a><span class="lineno">  112</span>&#160;            {</div>
-<div class="line"><a name="l00117"></a><span class="lineno">  117</span>&#160;                <span class="keywordflow">if</span>(w.size() == 0)</div>
-<div class="line"><a name="l00118"></a><span class="lineno">  118</span>&#160;                {   </div>
-<div class="line"><a name="l00119"></a><span class="lineno">  119</span>&#160;                    fmt::format(<span class="stringliteral">&quot;w size = {} and v size = {}, returning uniform random choice\n&quot;</span>,</div>
-<div class="line"><a name="l00120"></a><span class="lineno">  120</span>&#160;                            w.size(), v.size());</div>
-<div class="line"><a name="l00121"></a><span class="lineno">  121</span>&#160;                    <span class="keywordflow">return</span> random_choice(v);</div>
-<div class="line"><a name="l00122"></a><span class="lineno">  122</span>&#160;                }</div>
-<div class="line"><a name="l00123"></a><span class="lineno">  123</span>&#160;                <span class="keywordflow">if</span>(w.size() != v.size())</div>
-<div class="line"><a name="l00124"></a><span class="lineno">  124</span>&#160;                {   </div>
-<div class="line"><a name="l00125"></a><span class="lineno">  125</span>&#160;                    fmt::format(<span class="stringliteral">&quot;w ({}) != v size ({}), returning uniform random choice\n&quot;</span>,</div>
-<div class="line"><a name="l00126"></a><span class="lineno">  126</span>&#160;                            w.size(), v.size());</div>
-<div class="line"><a name="l00127"></a><span class="lineno">  127</span>&#160;                    <span class="keywordflow">return</span> random_choice(v);</div>
-<div class="line"><a name="l00128"></a><span class="lineno">  128</span>&#160;                }</div>
-<div class="line"><a name="l00129"></a><span class="lineno">  129</span>&#160;                <span class="keywordflow">else</span></div>
-<div class="line"><a name="l00130"></a><span class="lineno">  130</span>&#160;                {</div>
-<div class="line"><a name="l00131"></a><span class="lineno">  131</span>&#160;                    assert(v.size() == w.size());</div>
-<div class="line"><a name="l00132"></a><span class="lineno">  132</span>&#160;                    std::discrete_distribution&lt;size_t&gt; dis(w.begin(), w.end());</div>
-<div class="line"><a name="l00133"></a><span class="lineno">  133</span>&#160;                    <span class="keywordflow">return</span> v.at(dis(rg[<a class="code" href="../../d8/dc0/init_8h.html#a889ec205c635b219999c761b28cc39ba">omp_get_thread_num</a>()])); </div>
-<div class="line"><a name="l00134"></a><span class="lineno">  134</span>&#160;                }</div>
-<div class="line"><a name="l00135"></a><span class="lineno">  135</span>&#160;            }</div>
-<div class="line"><a name="l00136"></a><span class="lineno">  136</span>&#160;            </div>
-<div class="line"><a name="l00137"></a><span class="lineno">  137</span>&#160;            <span class="keywordtype">float</span> gasdev();</div>
-<div class="line"><a name="l00138"></a><span class="lineno">  138</span>&#160; </div>
-<div class="line"><a name="l00139"></a><span class="lineno">  139</span>&#160;        <span class="keyword">private</span>:</div>
-<div class="line"><a name="l00140"></a><span class="lineno">  140</span>&#160; </div>
-<div class="line"><a name="l00141"></a><span class="lineno">  141</span>&#160;            <a class="code" href="../../d2/d2d/classBrush_1_1Util_1_1Rnd.html">Rnd</a>();</div>
-<div class="line"><a name="l00142"></a><span class="lineno">  142</span>&#160;        </div>
-<div class="line"><a name="l00143"></a><span class="lineno">  143</span>&#160;            ~<a class="code" href="../../d2/d2d/classBrush_1_1Util_1_1Rnd.html">Rnd</a>();</div>
-<div class="line"><a name="l00144"></a><span class="lineno">  144</span>&#160;            </div>
-<div class="line"><a name="l00145"></a><span class="lineno"><a class="line" href="../../d2/d2d/classBrush_1_1Util_1_1Rnd.html#a9b7a12dc79e6a2b18b25e8a04d9e8637">  145</a></span>&#160;            vector&lt;std::mt19937&gt; <a class="code" href="../../d2/d2d/classBrush_1_1Util_1_1Rnd.html#a9b7a12dc79e6a2b18b25e8a04d9e8637">rg</a>;</div>
-<div class="line"><a name="l00146"></a><span class="lineno">  146</span>&#160;            </div>
-<div class="line"><a name="l00147"></a><span class="lineno"><a class="line" href="../../d2/d2d/classBrush_1_1Util_1_1Rnd.html#aa459d569e44e12e26133da6069135b09">  147</a></span>&#160;            <span class="keyword">static</span> <a class="code" href="../../d2/d2d/classBrush_1_1Util_1_1Rnd.html">Rnd</a>* <a class="code" href="../../d2/d2d/classBrush_1_1Util_1_1Rnd.html#aa459d569e44e12e26133da6069135b09">instance</a>;</div>
-<div class="line"><a name="l00148"></a><span class="lineno">  148</span>&#160;     </div>
-<div class="line"><a name="l00149"></a><span class="lineno">  149</span>&#160;    };</div>
-<div class="line"><a name="l00150"></a><span class="lineno">  150</span>&#160;    </div>
-<div class="line"><a name="l00151"></a><span class="lineno"><a class="line" href="../../d6/d2e/namespaceBrush_1_1Util.html#af7dd70e54015821d96e3a1afed6344ca">  151</a></span>&#160;    <span class="keyword">static</span> <a class="code" href="../../d2/d2d/classBrush_1_1Util_1_1Rnd.html">Rnd</a> &amp;<a class="code" href="../../d6/d2e/namespaceBrush_1_1Util.html#af7dd70e54015821d96e3a1afed6344ca">r</a> = *Rnd::initRand();</div>
-<div class="line"><a name="l00152"></a><span class="lineno">  152</span>&#160;} <span class="comment">// Util</span></div>
-<div class="line"><a name="l00153"></a><span class="lineno">  153</span>&#160;} <span class="comment">// Brush</span></div>
-<div class="line"><a name="l00154"></a><span class="lineno">  154</span>&#160;<span class="preprocessor">#endif</span></div>
+<div class="line"><a name="l00088"></a><span class="lineno">   88</span>&#160;                <span class="comment">// start was originally an iterator pointing to the beggining</span></div>
+<div class="line"><a name="l00089"></a><span class="lineno">   89</span>&#160;                <span class="comment">// of the sequence we want to take a random value. It is incremented</span></div>
+<div class="line"><a name="l00090"></a><span class="lineno">   90</span>&#160;                <span class="comment">// to point to a random element, with probabilities taken from </span></div>
+<div class="line"><a name="l00091"></a><span class="lineno">   91</span>&#160;                <span class="comment">// the second iterator Iter2.</span></div>
+<div class="line"><a name="l00092"></a><span class="lineno">   92</span>&#160;                <span class="keywordflow">return</span> start;</div>
+<div class="line"><a name="l00093"></a><span class="lineno">   93</span>&#160;            }</div>
+<div class="line"><a name="l00094"></a><span class="lineno">   94</span>&#160;           </div>
+<div class="line"><a name="l00095"></a><span class="lineno">   95</span>&#160;            <span class="keyword">template</span>&lt;<span class="keyword">typename</span> T&gt;</div>
+<div class="line"><a name="l00096"></a><span class="lineno"><a class="line" href="../../d2/d2d/classBrush_1_1Util_1_1Rnd.html#a18656ce513329b1c672f6ee15ab281b7">   96</a></span>&#160;            T <a class="code" href="../../d2/d2d/classBrush_1_1Util_1_1Rnd.html#a18656ce513329b1c672f6ee15ab281b7">random_choice</a>(<span class="keyword">const</span> map&lt;T, float&gt;&amp; m)</div>
+<div class="line"><a name="l00097"></a><span class="lineno">   97</span>&#160;            {</div>
+<div class="line"><a name="l00103"></a><span class="lineno">  103</span>&#160;                assert(m.size()&gt;0 </div>
+<div class="line"><a name="l00104"></a><span class="lineno">  104</span>&#160;                    &amp;&amp; <span class="stringliteral">&quot; attemping to return random choice from an empty map&quot;</span>);</div>
+<div class="line"><a name="l00105"></a><span class="lineno">  105</span>&#160; </div>
+<div class="line"><a name="l00106"></a><span class="lineno">  106</span>&#160;                vector&lt;T&gt; keys;</div>
+<div class="line"><a name="l00107"></a><span class="lineno">  107</span>&#160;                vector&lt;float&gt; w; </div>
+<div class="line"><a name="l00108"></a><span class="lineno">  108</span>&#160;                <span class="keywordflow">for</span> (<span class="keyword">const</span> <span class="keyword">auto</span>&amp; [k, v]: m)</div>
+<div class="line"><a name="l00109"></a><span class="lineno">  109</span>&#160;                {</div>
+<div class="line"><a name="l00110"></a><span class="lineno">  110</span>&#160;                    keys.push_back(k);</div>
+<div class="line"><a name="l00111"></a><span class="lineno">  111</span>&#160;                    w.push_back(v);</div>
+<div class="line"><a name="l00112"></a><span class="lineno">  112</span>&#160;                }</div>
+<div class="line"><a name="l00113"></a><span class="lineno">  113</span>&#160;                <span class="keywordflow">return</span> *select_randomly(keys.begin(),keys.end(),</div>
+<div class="line"><a name="l00114"></a><span class="lineno">  114</span>&#160;                                        w.begin(), w.end());</div>
+<div class="line"><a name="l00115"></a><span class="lineno">  115</span>&#160;            }</div>
+<div class="line"><a name="l00116"></a><span class="lineno">  116</span>&#160;            <span class="keyword">template</span>&lt;<span class="keyword">class</span> V, <span class="keyword">class</span> T&gt;</div>
+<div class="line"><a name="l00117"></a><span class="lineno"><a class="line" href="../../d2/d2d/classBrush_1_1Util_1_1Rnd.html#a318db1552e635b2cac649c0e1b1805f6">  117</a></span>&#160;            T <a class="code" href="../../d2/d2d/classBrush_1_1Util_1_1Rnd.html#a318db1552e635b2cac649c0e1b1805f6">random_choice</a>(<span class="keyword">const</span> V&amp; v)</div>
+<div class="line"><a name="l00118"></a><span class="lineno">  118</span>&#160;            {</div>
+<div class="line"><a name="l00122"></a><span class="lineno">  122</span>&#160;                assert(v.size()&gt;0 </div>
+<div class="line"><a name="l00123"></a><span class="lineno">  123</span>&#160;                    &amp;&amp; <span class="stringliteral">&quot; attemping to return random choice from empty vector&quot;</span>);</div>
+<div class="line"><a name="l00124"></a><span class="lineno">  124</span>&#160;                <span class="keywordflow">return</span> *select_randomly(v.begin(),v.end());</div>
+<div class="line"><a name="l00125"></a><span class="lineno">  125</span>&#160;            }</div>
+<div class="line"><a name="l00126"></a><span class="lineno">  126</span>&#160; </div>
+<div class="line"><a name="l00127"></a><span class="lineno">  127</span>&#160;           </div>
+<div class="line"><a name="l00128"></a><span class="lineno">  128</span>&#160;            <span class="keyword">template</span>&lt;<span class="keyword">template</span>&lt;<span class="keyword">class</span>, <span class="keyword">class</span>&gt; <span class="keyword">class </span>C, <span class="keyword">class </span>T&gt;</div>
+<div class="line"><a name="l00129"></a><span class="lineno"><a class="line" href="../../d2/d2d/classBrush_1_1Util_1_1Rnd.html#a7a25d2af76e790737f5f0d28e62877e3">  129</a></span>&#160;            T <a class="code" href="../../d2/d2d/classBrush_1_1Util_1_1Rnd.html#a7a25d2af76e790737f5f0d28e62877e3">random_choice</a>(<span class="keyword">const</span> C&lt;T, std::allocator&lt;T&gt;&gt;&amp; v, <span class="keyword">const</span> vector&lt;float&gt;&amp; w )</div>
+<div class="line"><a name="l00130"></a><span class="lineno">  130</span>&#160;            {</div>
+<div class="line"><a name="l00135"></a><span class="lineno">  135</span>&#160;                <span class="keywordflow">if</span>(w.size() == 0)</div>
+<div class="line"><a name="l00136"></a><span class="lineno">  136</span>&#160;                {   </div>
+<div class="line"><a name="l00137"></a><span class="lineno">  137</span>&#160;                    fmt::format(<span class="stringliteral">&quot;w size = {} and v size = {}, returning uniform random choice\n&quot;</span>,</div>
+<div class="line"><a name="l00138"></a><span class="lineno">  138</span>&#160;                            w.size(), v.size());</div>
+<div class="line"><a name="l00139"></a><span class="lineno">  139</span>&#160;                    <span class="keywordflow">return</span> random_choice(v);</div>
+<div class="line"><a name="l00140"></a><span class="lineno">  140</span>&#160;                }</div>
+<div class="line"><a name="l00141"></a><span class="lineno">  141</span>&#160;                <span class="keywordflow">if</span>(w.size() != v.size())</div>
+<div class="line"><a name="l00142"></a><span class="lineno">  142</span>&#160;                {   </div>
+<div class="line"><a name="l00143"></a><span class="lineno">  143</span>&#160;                    fmt::format(<span class="stringliteral">&quot;w ({}) != v size ({}), returning uniform random choice\n&quot;</span>,</div>
+<div class="line"><a name="l00144"></a><span class="lineno">  144</span>&#160;                            w.size(), v.size());</div>
+<div class="line"><a name="l00145"></a><span class="lineno">  145</span>&#160;                    <span class="keywordflow">return</span> random_choice(v);</div>
+<div class="line"><a name="l00146"></a><span class="lineno">  146</span>&#160;                }</div>
+<div class="line"><a name="l00147"></a><span class="lineno">  147</span>&#160;                <span class="keywordflow">else</span></div>
+<div class="line"><a name="l00148"></a><span class="lineno">  148</span>&#160;                {</div>
+<div class="line"><a name="l00149"></a><span class="lineno">  149</span>&#160;                    assert(v.size() == w.size());</div>
+<div class="line"><a name="l00150"></a><span class="lineno">  150</span>&#160;                    std::discrete_distribution&lt;size_t&gt; dis(w.begin(), w.end());</div>
+<div class="line"><a name="l00151"></a><span class="lineno">  151</span>&#160;                    <span class="keywordflow">return</span> v.at(dis(rg[<a class="code" href="../../d8/dc0/init_8h.html#a889ec205c635b219999c761b28cc39ba">omp_get_thread_num</a>()])); </div>
+<div class="line"><a name="l00152"></a><span class="lineno">  152</span>&#160;                }</div>
+<div class="line"><a name="l00153"></a><span class="lineno">  153</span>&#160;            }</div>
+<div class="line"><a name="l00154"></a><span class="lineno">  154</span>&#160;            </div>
+<div class="line"><a name="l00155"></a><span class="lineno">  155</span>&#160;            <span class="keywordtype">float</span> gasdev();</div>
+<div class="line"><a name="l00156"></a><span class="lineno">  156</span>&#160; </div>
+<div class="line"><a name="l00157"></a><span class="lineno">  157</span>&#160;        <span class="keyword">private</span>:</div>
+<div class="line"><a name="l00158"></a><span class="lineno">  158</span>&#160; </div>
+<div class="line"><a name="l00159"></a><span class="lineno">  159</span>&#160;            <a class="code" href="../../d2/d2d/classBrush_1_1Util_1_1Rnd.html">Rnd</a>();</div>
+<div class="line"><a name="l00160"></a><span class="lineno">  160</span>&#160;        </div>
+<div class="line"><a name="l00161"></a><span class="lineno">  161</span>&#160;            ~<a class="code" href="../../d2/d2d/classBrush_1_1Util_1_1Rnd.html">Rnd</a>();</div>
+<div class="line"><a name="l00162"></a><span class="lineno">  162</span>&#160;            </div>
+<div class="line"><a name="l00163"></a><span class="lineno">  163</span>&#160;            <span class="comment">// Vector of pseudo-random number generators, one for each thread</span></div>
+<div class="line"><a name="l00164"></a><span class="lineno"><a class="line" href="../../d2/d2d/classBrush_1_1Util_1_1Rnd.html#a9b7a12dc79e6a2b18b25e8a04d9e8637">  164</a></span>&#160;            vector&lt;std::mt19937&gt; <a class="code" href="../../d2/d2d/classBrush_1_1Util_1_1Rnd.html#a9b7a12dc79e6a2b18b25e8a04d9e8637">rg</a>;</div>
+<div class="line"><a name="l00165"></a><span class="lineno">  165</span>&#160;            </div>
+<div class="line"><a name="l00166"></a><span class="lineno"><a class="line" href="../../d2/d2d/classBrush_1_1Util_1_1Rnd.html#aa459d569e44e12e26133da6069135b09">  166</a></span>&#160;            <span class="keyword">static</span> <a class="code" href="../../d2/d2d/classBrush_1_1Util_1_1Rnd.html">Rnd</a>* <a class="code" href="../../d2/d2d/classBrush_1_1Util_1_1Rnd.html#aa459d569e44e12e26133da6069135b09">instance</a>;</div>
+<div class="line"><a name="l00167"></a><span class="lineno">  167</span>&#160;     </div>
+<div class="line"><a name="l00168"></a><span class="lineno">  168</span>&#160;    };</div>
+<div class="line"><a name="l00169"></a><span class="lineno">  169</span>&#160;    </div>
+<div class="line"><a name="l00170"></a><span class="lineno"><a class="line" href="../../d6/d2e/namespaceBrush_1_1Util.html#af7dd70e54015821d96e3a1afed6344ca">  170</a></span>&#160;    <span class="keyword">static</span> <a class="code" href="../../d2/d2d/classBrush_1_1Util_1_1Rnd.html">Rnd</a> &amp;<a class="code" href="../../d6/d2e/namespaceBrush_1_1Util.html#af7dd70e54015821d96e3a1afed6344ca">r</a> = *Rnd::initRand();</div>
+<div class="line"><a name="l00171"></a><span class="lineno">  171</span>&#160;} <span class="comment">// Util</span></div>
+<div class="line"><a name="l00172"></a><span class="lineno">  172</span>&#160;} <span class="comment">// Brush</span></div>
+<div class="line"><a name="l00173"></a><span class="lineno">  173</span>&#160;<span class="preprocessor">#endif</span></div>
 <div class="ttc" id="aclassBrush_1_1Util_1_1Rnd_html"><div class="ttname"><a href="../../d2/d2d/classBrush_1_1Util_1_1Rnd.html">Brush::Util::Rnd</a></div><div class="ttdoc">Defines a multi-core random number generator and its operators.</div><div class="ttdef"><b>Definition:</b> <a href="../../d2/da9/rnd_8h_source.html#l00027">rnd.h:28</a></div></div>
-<div class="ttc" id="aclassBrush_1_1Util_1_1Rnd_html_a18656ce513329b1c672f6ee15ab281b7"><div class="ttname"><a href="../../d2/d2d/classBrush_1_1Util_1_1Rnd.html#a18656ce513329b1c672f6ee15ab281b7">Brush::Util::Rnd::random_choice</a></div><div class="ttdeci">T random_choice(const map&lt; T, float &gt; &amp;m)</div><div class="ttdef"><b>Definition:</b> <a href="../../d2/da9/rnd_8h_source.html#l00078">rnd.h:78</a></div></div>
-<div class="ttc" id="aclassBrush_1_1Util_1_1Rnd_html_a318db1552e635b2cac649c0e1b1805f6"><div class="ttname"><a href="../../d2/d2d/classBrush_1_1Util_1_1Rnd.html#a318db1552e635b2cac649c0e1b1805f6">Brush::Util::Rnd::random_choice</a></div><div class="ttdeci">T random_choice(const V &amp;v)</div><div class="ttdef"><b>Definition:</b> <a href="../../d2/da9/rnd_8h_source.html#l00099">rnd.h:99</a></div></div>
+<div class="ttc" id="aclassBrush_1_1Util_1_1Rnd_html_a18656ce513329b1c672f6ee15ab281b7"><div class="ttname"><a href="../../d2/d2d/classBrush_1_1Util_1_1Rnd.html#a18656ce513329b1c672f6ee15ab281b7">Brush::Util::Rnd::random_choice</a></div><div class="ttdeci">T random_choice(const map&lt; T, float &gt; &amp;m)</div><div class="ttdef"><b>Definition:</b> <a href="../../d2/da9/rnd_8h_source.html#l00096">rnd.h:96</a></div></div>
+<div class="ttc" id="aclassBrush_1_1Util_1_1Rnd_html_a318db1552e635b2cac649c0e1b1805f6"><div class="ttname"><a href="../../d2/d2d/classBrush_1_1Util_1_1Rnd.html#a318db1552e635b2cac649c0e1b1805f6">Brush::Util::Rnd::random_choice</a></div><div class="ttdeci">T random_choice(const V &amp;v)</div><div class="ttdef"><b>Definition:</b> <a href="../../d2/da9/rnd_8h_source.html#l00117">rnd.h:117</a></div></div>
 <div class="ttc" id="aclassBrush_1_1Util_1_1Rnd_html_a377cd0c8d7f0fee5cdbd2489941ce7cd"><div class="ttname"><a href="../../d2/d2d/classBrush_1_1Util_1_1Rnd.html#a377cd0c8d7f0fee5cdbd2489941ce7cd">Brush::Util::Rnd::shuffle</a></div><div class="ttdeci">void shuffle(RandomAccessIterator first, RandomAccessIterator last)</div><div class="ttdef"><b>Definition:</b> <a href="../../d2/da9/rnd_8h_source.html#l00048">rnd.h:48</a></div></div>
-<div class="ttc" id="aclassBrush_1_1Util_1_1Rnd_html_a6a38fe0711f752c14055257c4e25cbb2"><div class="ttname"><a href="../../d2/d2d/classBrush_1_1Util_1_1Rnd.html#a6a38fe0711f752c14055257c4e25cbb2">Brush::Util::Rnd::select_randomly</a></div><div class="ttdeci">Iter select_randomly(Iter start, Iter end, Iter2 wstart, Iter2 wend)</div><div class="ttdoc">select randomly with weighted distribution</div><div class="ttdef"><b>Definition:</b> <a href="../../d2/da9/rnd_8h_source.html#l00069">rnd.h:69</a></div></div>
-<div class="ttc" id="aclassBrush_1_1Util_1_1Rnd_html_a7a25d2af76e790737f5f0d28e62877e3"><div class="ttname"><a href="../../d2/d2d/classBrush_1_1Util_1_1Rnd.html#a7a25d2af76e790737f5f0d28e62877e3">Brush::Util::Rnd::random_choice</a></div><div class="ttdeci">T random_choice(const C&lt; T, std::allocator&lt; T &gt;&gt; &amp;v, const vector&lt; float &gt; &amp;w)</div><div class="ttdef"><b>Definition:</b> <a href="../../d2/da9/rnd_8h_source.html#l00111">rnd.h:111</a></div></div>
-<div class="ttc" id="aclassBrush_1_1Util_1_1Rnd_html_a9b7a12dc79e6a2b18b25e8a04d9e8637"><div class="ttname"><a href="../../d2/d2d/classBrush_1_1Util_1_1Rnd.html#a9b7a12dc79e6a2b18b25e8a04d9e8637">Brush::Util::Rnd::rg</a></div><div class="ttdeci">vector&lt; std::mt19937 &gt; rg</div><div class="ttdef"><b>Definition:</b> <a href="../../d2/da9/rnd_8h_source.html#l00145">rnd.h:145</a></div></div>
+<div class="ttc" id="aclassBrush_1_1Util_1_1Rnd_html_a6a38fe0711f752c14055257c4e25cbb2"><div class="ttname"><a href="../../d2/d2d/classBrush_1_1Util_1_1Rnd.html#a6a38fe0711f752c14055257c4e25cbb2">Brush::Util::Rnd::select_randomly</a></div><div class="ttdeci">Iter select_randomly(Iter start, Iter end, Iter2 wstart, Iter2 wend)</div><div class="ttdoc">select randomly with weighted distribution.</div><div class="ttdef"><b>Definition:</b> <a href="../../d2/da9/rnd_8h_source.html#l00073">rnd.h:73</a></div></div>
+<div class="ttc" id="aclassBrush_1_1Util_1_1Rnd_html_a7a25d2af76e790737f5f0d28e62877e3"><div class="ttname"><a href="../../d2/d2d/classBrush_1_1Util_1_1Rnd.html#a7a25d2af76e790737f5f0d28e62877e3">Brush::Util::Rnd::random_choice</a></div><div class="ttdeci">T random_choice(const C&lt; T, std::allocator&lt; T &gt;&gt; &amp;v, const vector&lt; float &gt; &amp;w)</div><div class="ttdef"><b>Definition:</b> <a href="../../d2/da9/rnd_8h_source.html#l00129">rnd.h:129</a></div></div>
+<div class="ttc" id="aclassBrush_1_1Util_1_1Rnd_html_a9b7a12dc79e6a2b18b25e8a04d9e8637"><div class="ttname"><a href="../../d2/d2d/classBrush_1_1Util_1_1Rnd.html#a9b7a12dc79e6a2b18b25e8a04d9e8637">Brush::Util::Rnd::rg</a></div><div class="ttdeci">vector&lt; std::mt19937 &gt; rg</div><div class="ttdef"><b>Definition:</b> <a href="../../d2/da9/rnd_8h_source.html#l00164">rnd.h:164</a></div></div>
 <div class="ttc" id="aclassBrush_1_1Util_1_1Rnd_html_a9f0fe39c1fd498b378c8d4abe7b9d71b"><div class="ttname"><a href="../../d2/d2d/classBrush_1_1Util_1_1Rnd.html#a9f0fe39c1fd498b378c8d4abe7b9d71b">Brush::Util::Rnd::select_randomly</a></div><div class="ttdeci">Iter select_randomly(Iter start, Iter end)</div><div class="ttdef"><b>Definition:</b> <a href="../../d2/da9/rnd_8h_source.html#l00060">rnd.h:60</a></div></div>
-<div class="ttc" id="aclassBrush_1_1Util_1_1Rnd_html_aa459d569e44e12e26133da6069135b09"><div class="ttname"><a href="../../d2/d2d/classBrush_1_1Util_1_1Rnd.html#aa459d569e44e12e26133da6069135b09">Brush::Util::Rnd::instance</a></div><div class="ttdeci">static Rnd * instance</div><div class="ttdef"><b>Definition:</b> <a href="../../d2/da9/rnd_8h_source.html#l00147">rnd.h:147</a></div></div>
+<div class="ttc" id="aclassBrush_1_1Util_1_1Rnd_html_aa459d569e44e12e26133da6069135b09"><div class="ttname"><a href="../../d2/d2d/classBrush_1_1Util_1_1Rnd.html#aa459d569e44e12e26133da6069135b09">Brush::Util::Rnd::instance</a></div><div class="ttdeci">static Rnd * instance</div><div class="ttdef"><b>Definition:</b> <a href="../../d2/da9/rnd_8h_source.html#l00166">rnd.h:166</a></div></div>
 <div class="ttc" id="ainit_8h_html_a889ec205c635b219999c761b28cc39ba"><div class="ttname"><a href="../../d8/dc0/init_8h.html#a889ec205c635b219999c761b28cc39ba">omp_get_thread_num</a></div><div class="ttdeci">#define omp_get_thread_num()</div><div class="ttdef"><b>Definition:</b> <a href="../../d8/dc0/init_8h_source.html#l00012">init.h:12</a></div></div>
-<div class="ttc" id="anamespaceBrush_1_1Util_html_af7dd70e54015821d96e3a1afed6344ca"><div class="ttname"><a href="../../d6/d2e/namespaceBrush_1_1Util.html#af7dd70e54015821d96e3a1afed6344ca">Brush::Util::r</a></div><div class="ttdeci">static Rnd &amp; r</div><div class="ttdef"><b>Definition:</b> <a href="../../d2/da9/rnd_8h_source.html#l00151">rnd.h:151</a></div></div>
+<div class="ttc" id="anamespaceBrush_1_1Util_html_af7dd70e54015821d96e3a1afed6344ca"><div class="ttname"><a href="../../d6/d2e/namespaceBrush_1_1Util.html#af7dd70e54015821d96e3a1afed6344ca">Brush::Util::r</a></div><div class="ttdeci">static Rnd &amp; r</div><div class="ttdef"><b>Definition:</b> <a href="../../d2/da9/rnd_8h_source.html#l00170">rnd.h:170</a></div></div>
 <div class="ttc" id="anamespaceBrush_html"><div class="ttname"><a href="../../dc/d5c/namespaceBrush.html">Brush</a></div><div class="ttdef"><b>Definition:</b> <a href="../../da/dc9/data_8cpp_source.html#l00012">data.cpp:12</a></div></div>
 <div class="ttc" id="anamespaceBrush_html_a822ae4ce07ba14ae433977a635675764"><div class="ttname"><a href="../../dc/d5c/namespaceBrush.html#a822ae4ce07ba14ae433977a635675764">Brush::Iter</a></div><div class="ttdeci">tree&lt; Node &gt;::pre_order_iterator Iter</div><div class="ttdef"><b>Definition:</b> <a href="../../d1/dea/program_8h_source.html#l00036">program.h:36</a></div></div>
 </div><!-- fragment --></div><!-- contents -->

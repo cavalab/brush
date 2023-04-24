@@ -16,7 +16,7 @@ var structBrush_1_1SearchSpace =
     [ "get", "d4/dc3/structBrush_1_1SearchSpace.html#a9f5632dcb5c60863face5d6e1fdd92ba", null ],
     [ "get_node_like", "d4/dc3/structBrush_1_1SearchSpace.html#aeadd5cc2c0b7f791299560dd0dea4e4e", null ],
     [ "get_op", "d4/dc3/structBrush_1_1SearchSpace.html#aaf0d192118f8c95a7b7232fb46920cc4", null ],
-    [ "get_op_with_arg", "d4/dc3/structBrush_1_1SearchSpace.html#a86bec43f225bb5bbbcafa7f44a8b3102", null ],
+    [ "get_op_with_arg", "d4/dc3/structBrush_1_1SearchSpace.html#a1016c29de8626a29c2208faa5482c9c2", null ],
     [ "get_terminal", "d4/dc3/structBrush_1_1SearchSpace.html#a6f491bad218a6482a66d32a790a2aa85", null ],
     [ "get_terminal", "d4/dc3/structBrush_1_1SearchSpace.html#a158036ea3930b5663adba0a779bce656", null ],
     [ "get_weights", "d4/dc3/structBrush_1_1SearchSpace.html#a038ae8b09e1482f69de9feaf22aeacdb", null ],

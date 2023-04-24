@@ -1228,9 +1228,11 @@
         <inbodydescription>
         </inbodydescription>
         <location file="/home/runner/work/brush/brush/src/params.cpp" line="8" column="20" bodyfile="/home/runner/work/brush/brush/src/params.cpp" bodystart="8" bodyend="-1" declfile="/home/runner/work/brush/brush/src/params.h" declline="12" declcolumn="21"/>
+        <referencedby refid="d0/d24/namespacevariation_1a3a3e45e3cbe090c29a47b3e60fdd3dac" compoundref="d4/d1f/variation_8h" startline="155" endline="240">variation::cross</referencedby>
         <referencedby refid="dc/d5c/namespaceBrush_1a42d2b278c90f5578287d8d2bafd77ea4" compoundref="dc/d4d/params_8cpp" startline="10" endline="10">get_params</referencedby>
-        <referencedby refid="d4/dc3/structBrush_1_1SearchSpace_1a30dc9740ebecad5267acd5e27b1a3953" compoundref="d9/d99/search__space_8h" startline="544" endline="661">Brush::SearchSpace::make_program</referencedby>
-        <referencedby refid="d0/d24/namespacevariation_1abfa16e581c2548444df2bb4cbaa1b221" compoundref="d4/d1f/variation_8h" startline="100" endline="134">variation::mutate</referencedby>
+        <referencedby refid="d0/d24/namespacevariation_1ab75fceda2c7aa69e59d3b55562937942" compoundref="d4/d1f/variation_8h" startline="39" endline="70">variation::insert_mutation</referencedby>
+        <referencedby refid="d4/dc3/structBrush_1_1SearchSpace_1a30dc9740ebecad5267acd5e27b1a3953" compoundref="d9/d99/search__space_8h" startline="551" endline="674">Brush::SearchSpace::make_program</referencedby>
+        <referencedby refid="d0/d24/namespacevariation_1abfa16e581c2548444df2bb4cbaa1b221" compoundref="d4/d1f/variation_8h" startline="105" endline="147">variation::mutate</referencedby>
         <referencedby refid="dc/d5c/namespaceBrush_1a43eeef4bb05aa1be2b240b56fb3744fa" compoundref="dc/d4d/params_8cpp" startline="9" endline="9">set_params</referencedby>
       </memberdef>
       <memberdef kind="variable" id="dc/d5c/namespaceBrush_1ab00cdf5cac845f372ec06d02f7a316b5" prot="public" static="no" mutable="no">
@@ -1317,10 +1319,10 @@
         <inbodydescription>
         </inbodydescription>
         <location file="/home/runner/work/brush/brush/src/program/nodetype.cpp" line="79" column="10" bodyfile="/home/runner/work/brush/brush/src/program/nodetype.cpp" bodystart="79" bodyend="-1" declfile="/home/runner/work/brush/brush/src/program/nodetype.h" declline="135" declcolumn="17"/>
-        <referencedby refid="d4/dc3/structBrush_1_1SearchSpace_1a4a255b2a600b65c33dc7dad6dd6a4614" compoundref="d9/d99/search__space_8h" startline="468" endline="488">Brush::SearchSpace::AddNode</referencedby>
+        <referencedby refid="d4/dc3/structBrush_1_1SearchSpace_1a4a255b2a600b65c33dc7dad6dd6a4614" compoundref="d9/d99/search__space_8h" startline="475" endline="495">Brush::SearchSpace::AddNode</referencedby>
         <referencedby refid="d4/d42/structfmt_1_1formatter_3_01Brush_1_1NodeType_01_4_1a66499c22826759622fa847c796886088" compoundref="de/d26/nodetype_8h" startline="220" endline="222">fmt::formatter&lt; Brush::NodeType &gt;::format</referencedby>
         <referencedby refid="dc/d5c/namespaceBrush_1ad36f62c73493c032059be8cd18590d0e" compoundref="d7/d70/node_8cpp" startline="171" endline="229">from_json</referencedby>
-        <referencedby refid="d4/dc3/structBrush_1_1SearchSpace_1af8165ac09c39eec3e5aa6e2d925b8104" compoundref="d9/d99/search__space_8h" startline="499" endline="519">Brush::SearchSpace::MakeNodes</referencedby>
+        <referencedby refid="d4/dc3/structBrush_1_1SearchSpace_1af8165ac09c39eec3e5aa6e2d925b8104" compoundref="d9/d99/search__space_8h" startline="506" endline="526">Brush::SearchSpace::MakeNodes</referencedby>
         <referencedby refid="dc/d5c/namespaceBrush_1a613f142cf27eb135a3eb1ba07bbfaffc" compoundref="d7/d70/node_8cpp" startline="5" endline="10">operator&lt;&lt;</referencedby>
       </memberdef>
       <memberdef kind="variable" id="dc/d5c/namespaceBrush_1a5720ee549e0df722bd77a7495c0c6f60" prot="public" static="yes" constexpr="yes" mutable="no">
@@ -1349,8 +1351,8 @@
         <inbodydescription>
         </inbodydescription>
         <location file="/home/runner/work/brush/brush/src/search_space.cpp" line="39" column="20" bodyfile="/home/runner/work/brush/brush/src/search_space.cpp" bodystart="37" bodyend="-1" declfile="/home/runner/work/brush/brush/src/search_space.h" declline="53" declcolumn="27"/>
-        <referencedby refid="d7/de7/structfmt_1_1formatter_3_01Brush_1_1SearchSpace_01_4_1a742f0a2c0d464dabc476bb1ccec27ddb" compoundref="d9/d99/search__space_8h" startline="670" endline="689">fmt::formatter&lt; Brush::SearchSpace &gt;::format</referencedby>
-        <referencedby refid="d4/dc3/structBrush_1_1SearchSpace_1a350a180311cc07e07788afc5f046de16" compoundref="d9/d99/search__space_8h" startline="449" endline="465">Brush::SearchSpace::requires</referencedby>
+        <referencedby refid="d7/de7/structfmt_1_1formatter_3_01Brush_1_1SearchSpace_01_4_1a742f0a2c0d464dabc476bb1ccec27ddb" compoundref="d9/d99/search__space_8h" startline="683" endline="702">fmt::formatter&lt; Brush::SearchSpace &gt;::format</referencedby>
+        <referencedby refid="d4/dc3/structBrush_1_1SearchSpace_1a350a180311cc07e07788afc5f046de16" compoundref="d9/d99/search__space_8h" startline="456" endline="472">Brush::SearchSpace::requires</referencedby>
       </memberdef>
       <memberdef kind="variable" id="dc/d5c/namespaceBrush_1ae41500fed38676f34a4d476a992d585d" prot="public" static="no" mutable="no">
         <type><ref refid="d4/dc3/structBrush_1_1SearchSpace" kindref="compound">SearchSpace</ref></type>
@@ -1363,12 +1365,12 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/runner/work/brush/brush/src/search_space.h" line="663" column="20" declfile="/home/runner/work/brush/brush/src/search_space.h" declline="663" declcolumn="20"/>
+        <location file="/home/runner/work/brush/brush/src/search_space.h" line="676" column="20" declfile="/home/runner/work/brush/brush/src/search_space.h" declline="676" declcolumn="20"/>
         <referencedby refid="d0/d94/bind__search__space_8cpp_1a5dd9aae5c3af6fab760233deca1956cd" compoundref="d0/d94/bind__search__space_8cpp" startline="10" endline="31">bind_search_space</referencedby>
-        <referencedby refid="d0/d24/namespacevariation_1ac09afe106fc118aa9dc82a1b8ce87b01" compoundref="d4/d1f/variation_8h" startline="68" endline="74">variation::delete_mutation</referencedby>
-        <referencedby refid="d7/de7/structfmt_1_1formatter_3_01Brush_1_1SearchSpace_01_4_1a742f0a2c0d464dabc476bb1ccec27ddb" compoundref="d9/d99/search__space_8h" startline="670" endline="689">fmt::formatter&lt; Brush::SearchSpace &gt;::format</referencedby>
-        <referencedby refid="d0/d24/namespacevariation_1ab75fceda2c7aa69e59d3b55562937942" compoundref="d4/d1f/variation_8h" startline="39" endline="65">variation::insert_mutation</referencedby>
-        <referencedby refid="d0/d24/namespacevariation_1abfa16e581c2548444df2bb4cbaa1b221" compoundref="d4/d1f/variation_8h" startline="100" endline="134">variation::mutate</referencedby>
+        <referencedby refid="d0/d24/namespacevariation_1ac09afe106fc118aa9dc82a1b8ce87b01" compoundref="d4/d1f/variation_8h" startline="73" endline="79">variation::delete_mutation</referencedby>
+        <referencedby refid="d7/de7/structfmt_1_1formatter_3_01Brush_1_1SearchSpace_01_4_1a742f0a2c0d464dabc476bb1ccec27ddb" compoundref="d9/d99/search__space_8h" startline="683" endline="702">fmt::formatter&lt; Brush::SearchSpace &gt;::format</referencedby>
+        <referencedby refid="d0/d24/namespacevariation_1ab75fceda2c7aa69e59d3b55562937942" compoundref="d4/d1f/variation_8h" startline="39" endline="70">variation::insert_mutation</referencedby>
+        <referencedby refid="d0/d24/namespacevariation_1abfa16e581c2548444df2bb4cbaa1b221" compoundref="d4/d1f/variation_8h" startline="105" endline="147">variation::mutate</referencedby>
         <referencedby refid="d0/d24/namespacevariation_1a5d1fdeb5d33b06ee8847da09f58f0f5f" compoundref="d4/d1f/variation_8h" startline="31" endline="36">variation::point_mutation</referencedby>
       </memberdef>
       <memberdef kind="variable" id="dc/d5c/namespaceBrush_1a96ba9dd2b16a0a3b8f63eeacf7f55a7c" prot="public" static="yes" constexpr="yes" mutable="no">
@@ -2290,10 +2292,10 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/runner/work/brush/brush/src/search_space.h" line="534" column="3" bodyfile="/home/runner/work/brush/brush/src/search_space.h" bodystart="534" bodyend="541"/>
-        <references refid="d6/d2e/namespaceBrush_1_1Util_1af7dd70e54015821d96e3a1afed6344ca" compoundref="d2/da9/rnd_8h" startline="151">Brush::Util::r</references>
+        <location file="/home/runner/work/brush/brush/src/search_space.h" line="541" column="3" bodyfile="/home/runner/work/brush/brush/src/search_space.h" bodystart="541" bodyend="548"/>
+        <references refid="d6/d2e/namespaceBrush_1_1Util_1af7dd70e54015821d96e3a1afed6344ca" compoundref="d2/da9/rnd_8h" startline="170">Brush::Util::r</references>
         <references refid="d2/d2d/classBrush_1_1Util_1_1Rnd_1aef0f2836321f651d5887d29739e180f5" compoundref="de/d67/rnd_8cpp" startline="64" endline="68">Brush::Util::Rnd::rnd_int</references>
-        <referencedby refid="d4/dc3/structBrush_1_1SearchSpace_1a30dc9740ebecad5267acd5e27b1a3953" compoundref="d9/d99/search__space_8h" startline="544" endline="661">Brush::SearchSpace::make_program</referencedby>
+        <referencedby refid="d4/dc3/structBrush_1_1SearchSpace_1a30dc9740ebecad5267acd5e27b1a3953" compoundref="d9/d99/search__space_8h" startline="551" endline="674">Brush::SearchSpace::make_program</referencedby>
       </memberdef>
       </sectiondef>
     <briefdescription>

@@ -28,7 +28,7 @@ var searchData=
   ['get_5fnode_5fhash_1068',['get_node_hash',['../d1/d3a/structBrush_1_1Node.html#a1aef5137dca5171a150c6d26ca43d9bc',1,'Brush::Node']]],
   ['get_5fnode_5flike_1069',['get_node_like',['../d4/dc3/structBrush_1_1SearchSpace.html#aeadd5cc2c0b7f791299560dd0dea4e4e',1,'Brush::SearchSpace']]],
   ['get_5fop_1070',['get_op',['../d4/dc3/structBrush_1_1SearchSpace.html#aaf0d192118f8c95a7b7232fb46920cc4',1,'Brush::SearchSpace']]],
-  ['get_5fop_5fwith_5farg_1071',['get_op_with_arg',['../d4/dc3/structBrush_1_1SearchSpace.html#a86bec43f225bb5bbbcafa7f44a8b3102',1,'Brush::SearchSpace']]],
+  ['get_5fop_5fwith_5farg_1071',['get_op_with_arg',['../d4/dc3/structBrush_1_1SearchSpace.html#a1016c29de8626a29c2208faa5482c9c2',1,'Brush::SearchSpace']]],
   ['get_5fparams_1072',['get_params',['../d0/dc4/classbrush_1_1estimator_1_1BrushEstimator.html#a3808a9773d5a42827cc28aaf3f97b694',1,'brush.estimator.BrushEstimator.get_params()'],['../dc/d5c/namespaceBrush.html#a42d2b278c90f5578287d8d2bafd77ea4',1,'Brush::get_params()']]],
   ['get_5fprob_5fchange_1073',['get_prob_change',['../d1/d3a/structBrush_1_1Node.html#a4fcf7feccb71d538f8614d3c51247eb4',1,'Brush::Node']]],
   ['get_5fprob_5fkeep_1074',['get_prob_keep',['../d1/d3a/structBrush_1_1Node.html#a087a9c51b46b3e801506415376cd0518',1,'Brush::Node']]],

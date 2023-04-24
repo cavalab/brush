@@ -179,8 +179,8 @@ var NAVTREEINDEX5 =
 "functions_e.html":[1,3,0,5],
 "functions_eval.html":[1,3,4],
 "functions_f.html":[1,3,0,6],
-"functions_func.html":[1,3,1,0],
 "functions_func.html":[1,3,1],
+"functions_func.html":[1,3,1,0],
 "functions_func_a.html":[1,3,1,1],
 "functions_func_b.html":[1,3,1,2],
 "functions_func_c.html":[1,3,1,3],
@@ -237,6 +237,6 @@ var NAVTREEINDEX5 =
 "namespacemembers_vars.html":[0,1,2],
 "namespaces.html":[0,0],
 "pages.html":[],
-"":[0,0,2],
-"":[0,0,4]
+"":[0,0,4],
+"":[0,0,2]
 };
