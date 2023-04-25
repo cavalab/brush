@@ -652,3 +652,127 @@ TEST(Program, OptimizeNotableProductWeight)
     ASSERT_TRUE(learned_weights.isApprox(true_weights, 1e-4));
     ASSERT_TRUE(mse <= 1e-4);
 } 
+
+TEST(Program, Optimize3aryProductInnerWeight)
+{
+    /* @brief Tests whether weight optimization works on finding the correct 
+        weights for a product problem using a 3-ary Prod node.
+        The dataset models y = 5*x1*x2*x3. 
+        The initial model is yhat = Prod(1*x1, x2, x3).
+    */
+
+    Dataset data = Data::read_csv("docs/examples/datasets/d_5x1_multiply_x2_multiply_x3.csv","target");
+    SearchSpace SS;
+    SS.init(data);
+
+    json PRGjson = {
+        {"Tree", {
+        { 
+            // Creating a 3-ary Prod node
+            {"is_weighted",false}, {"node_type","Prod"},
+
+            // We need to provide this information to avoid letting the parser
+            // infer the signature
+            {"arg_types"    ,{"ArrayF", "ArrayF", "ArrayF"}},
+            {"ret_type"     ,"ArrayF"},
+            {"sig_hash"     ,5617655905677279916UZ },
+            {"sig_dual_hash",10188582206427064428UZ},
+            {"complete_hash",1786662244046809282UZ }
+         },
+            { {"node_type","Terminal"}, {"feature","x1"}, {"is_weighted", true}  },
+            { {"node_type","Terminal"}, {"feature","x2"}, {"is_weighted", false} },
+            { {"node_type","Terminal"}, {"feature","x3"}, {"is_weighted", false} }
+        }},
+        {"is_fitted_",false}
+    };
+    fmt::print( "initial json: {}\n", PRGjson.dump(2));
+
+    // make program from json
+    RegressorProgram PRG = PRGjson;
+
+    // make json from the program just to visually check 
+    json loadedPRGjson = PRG;
+    fmt::print( "loaded json: {}\n", loadedPRGjson.dump(2));
+
+    // fit model
+    fmt::print( "fit\n");
+    PRG.fit(data);
+    fmt::print( "predict\n");
+    ArrayXf y_pred = PRG.predict(data);
+
+    auto learned_weights = PRG.get_weights();
+
+    std::cout << learned_weights << std::endl;
+
+    ArrayXf true_weights(1);
+    true_weights << 5.0;
+
+    // calculating the MSE
+    float mse = (data.y - y_pred).square().mean();
+
+    ASSERT_TRUE(data.y.isApprox(y_pred, 1e-4));
+    ASSERT_TRUE(learned_weights.isApprox(true_weights, 1e-4));
+    ASSERT_TRUE(mse <= 1e-4);
+} 
+
+TEST(Program, Optimize3aryProductOuterWeight)
+{
+    /* @brief Tests whether weight optimization works on finding the correct 
+        weights for a product problem using a 3-ary Prod node.
+        The dataset models y = 5*x1*x2*x3. 
+        The initial model is yhat = Prod(1*x1, x2, x3).
+    */
+
+    Dataset data = Data::read_csv("docs/examples/datasets/d_5x1_multiply_x2_multiply_x3.csv","target");
+    SearchSpace SS;
+    SS.init(data);
+
+    json PRGjson = {
+        {"Tree", {
+        { 
+            // Creating a 3-ary Prod node
+            {"is_weighted",true}, {"node_type","Prod"},
+
+            // We need to provide this information to avoid letting the parser
+            // infer the signature
+            {"arg_types"    ,{"ArrayF", "ArrayF", "ArrayF"}},
+            {"ret_type"     ,"ArrayF"},
+            {"sig_hash"     ,5617655905677279916UZ },
+            {"sig_dual_hash",10188582206427064428UZ},
+            {"complete_hash",1786662244046809282UZ }
+         },
+            { {"node_type","Terminal"}, {"feature","x1"}, {"is_weighted", false}  },
+            { {"node_type","Terminal"}, {"feature","x2"}, {"is_weighted", false} },
+            { {"node_type","Terminal"}, {"feature","x3"}, {"is_weighted", false} }
+        }},
+        {"is_fitted_",false}
+    };
+    fmt::print( "initial json: {}\n", PRGjson.dump(2));
+
+    // make program from json
+    RegressorProgram PRG = PRGjson;
+
+    // make json from the program just to visually check 
+    json loadedPRGjson = PRG;
+    fmt::print( "loaded json: {}\n", loadedPRGjson.dump(2));
+
+    // fit model
+    fmt::print( "fit\n");
+    PRG.fit(data);
+    fmt::print( "predict\n");
+    ArrayXf y_pred = PRG.predict(data);
+
+    auto learned_weights = PRG.get_weights();
+
+    std::cout << learned_weights << std::endl;
+
+    ArrayXf true_weights(1);
+    true_weights << 5.0;
+
+    // calculating the MSE
+    float mse = (data.y - y_pred).square().mean();
+
+    ASSERT_TRUE(data.y.isApprox(y_pred, 1e-4));
+    ASSERT_TRUE(learned_weights.isApprox(true_weights, 1e-4));
+    ASSERT_TRUE(mse <= 1e-4);
+} 
