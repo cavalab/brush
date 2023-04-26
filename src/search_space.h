@@ -377,9 +377,11 @@ struct SearchSpace
     /// @param ret return type
     /// @param arg argument type to match
     /// @param terminal_compatible if true, the other args the returned operator takes must exist in the terminal types. 
+    /// @param max_arg_count if zero, there is no limit on number of arguments of the operator. If not, the operator can have at most `max_arg_count` arguments. 
     /// @return a matching operator. 
     Node get_op_with_arg(DataType ret, DataType arg, 
-                              bool terminal_compatible=true) const
+                              bool terminal_compatible=true,
+                              int max_arg_count=0) const
     {
         // thoughts (TODO):
         //  this could be templated by return type and arg. although the lookup in the map should be
@@ -395,7 +397,12 @@ struct SearchSpace
         for (const auto& [args_type, name_map]: args_map) {
             for (const auto& [name, node]: name_map) {
                 auto node_arg_types = node.get_arg_types();
-                if ( in(node_arg_types, arg) ) {
+                
+                // has no size limit (max_arg_count==0) or the number of
+                // arguments woudn't exceed the maximum number of arguments
+                auto within_size_limit = !(max_arg_count) || (node.get_arg_count() <= max_arg_count);
+
+                if ( in(node_arg_types, arg) && within_size_limit ) {
                     // if checking terminal compatibility, make sure there's
                     // a compatible terminal for the node's other arguments
                     if (terminal_compatible) {
@@ -474,7 +481,8 @@ struct SearchSpace
             bool use_all = user_ops.size() == 0;
             auto name = NodeTypeName[NT];
             //TODO: address this (whether weights should be included by default)
-            bool weighted = (IsWeighable<NT>() && is_same_v<typename S::RetType::Scalar, float>);
+            // bool weighted = (IsWeighable<NT>() && is_same_v<typename S::RetType::Scalar, float>);
+            bool weighted = false;
             auto n_maybe = CreateNode<NT,S>(unique_data_types, use_all, weighted);
 
             if (n_maybe){
@@ -539,16 +547,23 @@ T RandomDequeue(std::vector<T>& Q)
     return val;
 };
 
-template<typename PT>
-PT SearchSpace::make_program(int max_d, int max_size)
+template<typename P>
+P SearchSpace::make_program(int max_d, int max_size)
 {
+    // A comment about PTC2 method:            
+    // PTC2 can work with depth or size restriction, but it does not strictly
+    // satisfies these conditions all time. Given a `max_size` and `max_depth`
+    // parameters, the real maximum size that can occur is `max_size` plus the
+    // highest operator arity, and the real maximum depth is `max_depth` plus one.
+
     if (max_d == 0)
         max_d = r.rnd_int(1, PARAMS["max_depth"].get<int>());
     if (max_size == 0)
         max_size = r.rnd_int(1, PARAMS["max_size"].get<int>());
 
-    DataType root_type = DataTypeEnum<typename PT::TreeType>::value;
-    ProgramType program_type = ProgramTypeEnum<PT>::value;
+    DataType root_type = DataTypeEnum<typename P::TreeType>::value;
+    ProgramType program_type = P::program_type;
+    // ProgramType program_type = ProgramTypeEnum<PT>::value;
 
     auto Tree = tree<Node>();
 
@@ -564,13 +579,13 @@ PT SearchSpace::make_program(int max_d, int max_size)
     else
     {
         Node n;
-        if (program_type == ProgramType::BinaryClassifier)
+        if (P::program_type == ProgramType::BinaryClassifier)
         {
             n = get(NodeType::Logistic, DataType::ArrayF, Signature<ArrayXf(ArrayXf)>());
             n.set_prob_change(0.0);
             n.fixed=true;
         }
-        else if (program_type == ProgramType::MulticlassClassifier)
+        else if (P::program_type == ProgramType::MulticlassClassifier)
         {
             n = get(NodeType::Softmax, DataType::MatrixF);
             n.set_prob_change(0.0);
@@ -655,7 +670,7 @@ PT SearchSpace::make_program(int max_d, int max_size)
          /* << Tree.get_model() << "\n" */ 
          /* << Tree.get_model(true) << endl; // pretty */
 
-    return PT(*this,Tree);
+    return P(*this,Tree);
 };
 
 extern SearchSpace SS;

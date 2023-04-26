@@ -98,6 +98,8 @@ struct SigBase
             return "Tuple";
     };
 
+    static constexpr auto get_ret_type() {return DataTypeEnum<RetType>::value;};
+
     template<typename T>
     static constexpr bool contains() { return is_in_v<T, Args...>; }
 
@@ -114,8 +116,9 @@ struct SigBase<R>
     using FirstArg = void;
     using WeightType = typename WeightType<R>::type;
     static constexpr std::size_t ArgCount = 0;
-    static constexpr auto get_arg_types() { return vector<DataType>{}; } 
-    static constexpr auto get_args_type() { return "None"; } 
+    static constexpr auto get_ret_type() {return DataTypeEnum<RetType>::value;};
+    static constexpr auto get_arg_types() { return vector<DataType>{}; };
+    static constexpr auto get_args_type() { return "None"; };
     static constexpr std::size_t hash(){ return typeid(R).hash_code(); };
 };
 
@@ -153,6 +156,15 @@ struct NarySignature
 template<typename R, typename Arg, size_t ArgCount> 
 using NarySignature_t = typename NarySignature<R,Arg,ArgCount>::type;
 
+/**
+ * @brief Makes a tuple of signatures with increasing arity up to `MaxArgCount`. 
+ * 
+ * Assumes the types of the arguments are identical. 
+ * 
+ * @tparam R  return type of the signature.
+ * @tparam Arg shared type of every argument. 
+ * @tparam MaxArgCount maximum number of arguments.
+ */
 template<typename R, typename Arg, size_t MaxArgCount>
 struct NarySignatures
 {
@@ -165,7 +177,6 @@ struct NarySignatures
     template<size_t ...Is>
     static constexpr auto make_signatures(std::index_sequence<Is...>)
     {
-        // return std::make_tuple(NarySignature<R,Arg,Is+Min>() ...);
         return std::tuple<NarySignature_t<R,Arg,(Is+Min)> ...>();
     }
 
@@ -275,21 +286,6 @@ struct Signatures<N, enable_if_t<is_in_v<N,
             Signature<TimeSeriesb(TimeSeriesb,TimeSeriesb)>
         >;
     }; 
-// template<NodeType N>
-// struct Signatures<N, enable_if_t<is_in_v<N, 
-//     NodeType::Min, 
-//     NodeType::Max
-//     >>>{ 
-//         using unaryTuple = std::tuple<
-//             Signature<ArrayXf(ArrayXXf)>,
-//             Signature<ArrayXi(ArrayXXi)>
-//         >;
-
-//         using naryTupleF = NarySignatures_t<ArrayXf,ArrayXf,MAX_ARGS>;
-//         using naryTupleI = NarySignatures_t<ArrayXi,ArrayXi,MAX_ARGS>;
-
-//         using type = decltype(std::tuple_cat(unaryTuple(), naryTupleF(), naryTupleI()));
-//     }; 
 
 template<NodeType N>
 struct Signatures<N, enable_if_t<is_in_v<N, 
@@ -363,7 +359,7 @@ struct Signatures<NodeType::SplitOn>{
         using type = std::tuple< 
             Signature<ArrayXf(ArrayXf,ArrayXf,ArrayXf)>,
             Signature<ArrayXf(ArrayXi,ArrayXf,ArrayXf)>,
-            /* Signature<ArrayXf(ArrayXb,ArrayXf,ArrayXf)>, */
+            Signature<ArrayXf(ArrayXb,ArrayXf,ArrayXf)>,
             Signature<ArrayXi(ArrayXf,ArrayXi,ArrayXi)>,
             Signature<ArrayXi(ArrayXi,ArrayXi,ArrayXi)>
             /* Signature<ArrayXi(ArrayXb,ArrayXi,ArrayXi)>, */

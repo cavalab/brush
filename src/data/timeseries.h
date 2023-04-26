@@ -8,8 +8,19 @@
 
 namespace Brush::Data{
 
-/// @brief A struct for TimeSeries data. 
-/// @tparam T the scalar type of the underlying values. 
+/**
+ * @brief Stores time series data and implements operators over it.
+ * 
+ * `TimeSeries` contains two members: `time` and `value`, that have the same shape. 
+ * Both are std::vectors of eigen arrays. 
+ * 
+ * Each element of the vector is intended to represent one person / sample. 
+ * The values in that element (an Eigen array) are observations of 
+ * `value` at time `t`. 
+ * 
+ * @tparam T the scalar type of the underlying values. 
+ */
+/// 
 template<class T>
 struct TimeSeries
 {

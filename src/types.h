@@ -67,40 +67,19 @@ template<typename T>
 using WeightType_t = typename WeightType<T>::type;
 ////////////////////////////////////////////////////////////////////////////////
 // Program 
-template<typename T> struct Program;
-typedef Program<ArrayXf> RegressorProgram;
-typedef Program<ArrayXb> ClassifierProgram;
-typedef Program<ArrayXi> MulticlassClassifierProgram;
-typedef Program<ArrayXXf> RepresenterProgram;
-
 enum class ProgramType : uint32_t {
     Regressor,
     BinaryClassifier,
     MulticlassClassifier,
     Representer
 };
+using PT = ProgramType;
+template<PT T> struct Program;
+typedef Program<PT::Regressor> RegressorProgram;
+typedef Program<PT::BinaryClassifier> ClassifierProgram;
+typedef Program<PT::MulticlassClassifier> MulticlassClassifierProgram;
+typedef Program<PT::Representer> RepresenterProgram;
 
-template<typename T> struct ProgramTypeEnum;
-template <>
-struct ProgramTypeEnum<RegressorProgram>
-{
-    static constexpr ProgramType value = ProgramType::Regressor;
-};
-template <>
-struct ProgramTypeEnum<ClassifierProgram>
-{
-    static constexpr ProgramType value = ProgramType::BinaryClassifier;
-};
-template <>
-struct ProgramTypeEnum<MulticlassClassifierProgram>
-{
-    static constexpr ProgramType value = ProgramType::MulticlassClassifier;
-};
-template <>
-struct ProgramTypeEnum<RepresenterProgram>
-{
-    static constexpr ProgramType value = ProgramType::Representer;
-};
 
 ////////////////////////////////////////////////////////////////////////////////
 // Data 

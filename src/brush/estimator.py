@@ -4,7 +4,7 @@ sklearn-compatible wrapper for GP analyses.
 See brushgp.cpp for Python (via pybind11) modules that give more fine-grained
 control of the underlying GP objects.
 """
-from sklearn.base import BaseEstimator, ClassifierMixin, RegressorMixin
+from sklearn.base import BaseEstimator, ClassifierMixin, RegressorMixin, TransformerMixin
 # from sklearn.metrics import mean_squared_error
 import numpy as np
 import pandas as pd
@@ -42,6 +42,9 @@ class BrushEstimator(BaseEstimator):
     mutation_options : dict, default {"point":0.5, "insert": 0.25, "delete":  0.25}
         A dictionary with keys naming the types of mutation and floating point 
         values specifying the fraction of total mutations to do with that method. 
+    functions: dict[str,float] or list[str], default {}
+        A dictionary with keys naming the function set and values giving the probability of sampling them, or a list of functions which will be weighted uniformly.
+        If empty, all available functions are included in the search space.
 
     Attributes
     ----------
@@ -66,7 +69,9 @@ class BrushEstimator(BaseEstimator):
         verbosity=0,
         max_depth=3,
         max_size=20,
-        mutation_options = {"point":0.5, "insert": 0.25, "delete":  0.25},
+        mutation_options = {"point":0.4, "insert": 0.25, "delete":  0.25, "toggle_weight": 0.1},
+        functions: list[str]|dict[str,float] = {},
+        batch_size: int = 0
         ):
         self.pop_size=pop_size
         self.max_gen=max_gen
@@ -75,6 +80,8 @@ class BrushEstimator(BaseEstimator):
         self.max_depth=max_depth
         self.max_size=max_size
         self.mutation_options=mutation_options
+        self.functions=functions
+        self.batch_size=batch_size
 
 
     def _setup_toolbox(self, data):
@@ -111,7 +118,7 @@ class BrushEstimator(BaseEstimator):
 
     def _mutate(self, ind1):
         # offspring = (creator.Individual(ind1.prg.mutate(self.search_space_)),)
-        offspring = creator.Individual(ind1.prg.mutate(self.search_space_))
+        offspring = creator.Individual(ind1.prg.mutate())
         return offspring
 
     def fit(self, X, y):
@@ -127,10 +134,20 @@ class BrushEstimator(BaseEstimator):
         """
         _brush.set_params(self.get_params())
         self.data_ = self._make_data(X,y)
-        self.search_space_ = _brush.SearchSpace(self.data_)
+
+        # set n classes if relevant
+        if self.mode=="classification":
+            self.n_classes_ = len(np.unique(y))
+
+        if isinstance(self.functions, list):
+            self.functions_ = {k:1.0 for k in self.functions}
+        else:
+            self.functions_ = self.functions
+
+        self.search_space_ = _brush.SearchSpace(self.data_, self.functions_)
         self.toolbox_ = self._setup_toolbox(data=self.data_)
 
-        archive, logbook = nsga2(self.toolbox_, self.max_gen, self.pop_size, 0.9)
+        archive, logbook = nsga2(self.toolbox_, self.max_gen, self.pop_size, 0.9, self.verbosity)
         self.archive_ = archive
         self.best_estimator_ = self.archive_[0].prg
 
@@ -148,11 +165,13 @@ class BrushEstimator(BaseEstimator):
                 return _brush.Dataset(X, feature_names)
             else:
                 return _brush.Dataset(X, y, feature_names)
-        else:
-            assert isinstance(X, np.ndarray)
+
+        assert isinstance(X, np.ndarray)
+        # if there is no label, don't include it in library call to Dataset
         if isinstance(y, NoneType):
-            return _brush.Dataset(X, y)
-        return _brush.Dataset(X)
+            return _brush.Dataset(X)
+
+        return _brush.Dataset(X,y)
 
     def predict(self, X):
         """Predict using the best estimator in the archive. """
@@ -205,10 +224,26 @@ class BrushClassifier(BrushEstimator,ClassifierMixin):
     def _make_individual(self):
         return creator.Individual(
             self.search_space_.make_classifier(self.max_depth, self.max_size)
+            if self.n_classes_ == 2 else
+            self.search_space_.make_multiclass_classifier(self.max_depth, self.max_size)
             )
 
     def predict_proba(self, X):
-        """Predict using the best estimator in the archive. """
+        """Predict class probabilities for X.
+
+        Parameters
+        ----------
+        X : {array-like, sparse matrix} of shape (n_samples, n_features)
+            The input samples. Internally, it will be converted to
+            ``dtype=np.float32``.
+
+        Returns
+        -------
+        p : ndarray of shape (n_samples, n_classes)
+            The class probabilities of the input samples. The order of the
+            classes corresponds to that in the attribute :term:`classes_`.
+
+        """
         data = self._make_data(X)
         return self.best_estimator_.predict_proba(data)
 
@@ -242,3 +277,40 @@ class BrushRegressor(BrushEstimator, RegressorMixin):
         return creator.Individual(
             self.search_space_.make_regressor(self.max_depth, self.max_size)
         )
+
+# Under development
+# class BrushRepresenter(BrushEstimator, TransformerMixin):
+#     """Brush for representation learning.
+
+#     For options, see :py:class:`BrushEstimator <brush.estimator.BrushEstimator>`. 
+
+#     Examples
+#     --------
+#     >>> import pandas as pd
+#     >>> df = pd.read_csv('docs/examples/datasets/d_enc.csv')
+#     >>> X = df.drop(columns='label')
+#     >>> y = df['label']
+#     >>> from brush import BrushRegressor
+#     >>> est = BrushRegressor()
+#     >>> est.fit(X,y)
+#     >>> print('score:', est.score(X,y))
+#     """
+#     def __init__(self, **kwargs):
+#         super().__init__(mode='regressor',**kwargs)
+
+#     def _fitness_function(self, ind, data: _brush.Dataset):
+#         ind.prg.fit(data)
+#         return (
+#             # todo: need to return a matrix from X for this
+#             np.sum((data.get_X()- ind.prg.predict(data))**2),
+#             ind.prg.size()
+#         )
+
+#     def _make_individual(self):
+#         return creator.Individual(
+#             self.search_space_.make_representer(self.max_depth, self.max_size)
+#         )
+
+#     def transform(self, X):
+#         """Transform X using the best estimator in the archive. """
+#         return self.predict(X)

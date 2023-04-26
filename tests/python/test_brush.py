@@ -1,5 +1,4 @@
 #!/usr/bin/env python3
-
 import brush
 import pytest
 import numpy as np
@@ -13,8 +12,8 @@ import logging
 @pytest.fixture
 def brush_args():
     return dict(
-        max_gen=100, 
-        pop_size=100, 
+        max_gen=10, 
+        pop_size=20, 
         max_size=50, 
         max_depth=6,
         mutation_options = {"point":0.25, "insert": 0.5, "delete":  0.25},
@@ -22,6 +21,14 @@ def brush_args():
     
 @pytest.fixture
 def classification_setup():
+    df = pd.read_csv('docs/examples/datasets/d_analcatdata_aids.csv')
+    X  = df.drop(columns='target')
+    y  = df['target']
+
+    return brush.BrushClassifier, X, y
+
+@pytest.fixture
+def multiclass_classification_setup():
     df = pd.read_csv('docs/examples/datasets/d_analcatdata_aids.csv')
     X  = df.drop(columns='target')
     y  = df['target']

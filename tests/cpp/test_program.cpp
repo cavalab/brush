@@ -111,9 +111,6 @@ TEST(Program, FitClassifier)
     }
 }
 
-
-
-
 TEST(Program, Serialization)
 {
     // test mutation
@@ -146,18 +143,81 @@ TEST(Program, Serialization)
             PRG.fit(data);
             ArrayXf y_pred = PRG.predict(data);
             json PRGjson = PRG;
-            fmt::print( "json: {}\n", PRGjson.dump(2));
-            auto newPRG = PRGjson.get<RegressorProgram>();
+            fmt::print( "json of initial model: {}\n", PRGjson.dump(2));
+            // auto newPRG = PRGjson.get<RegressorProgram>();
+            RegressorProgram newPRG = PRGjson;
+            json newPRGjson = newPRG;
+            fmt::print( "json of loaded model: {}\n", newPRGjson.dump(2));
             fmt::print("Initial Model: {}\n",PRG.get_model("compact", true));
             fmt::print("Loaded  Model: {}\n",newPRG.get_model("compact", true));
             ASSERT_TRUE(
-                std::equal(PRG.Tree.begin(),PRG.Tree.end(),newPRG.Tree.begin())
+                std::equal(PRG.Tree.begin(), PRG.Tree.end(), newPRG.Tree.begin())
             );
             newPRG.set_search_space(SS);
             newPRG.fit(data);
             ArrayXf new_y_pred = newPRG.predict(data);
 
+        }
+    }
+}
 
+TEST(Operators, ProgramSizeAndDepthPARAMS)
+{
+    MatrixXf X(10,2);
+    ArrayXf y(10);
+    X << 0.85595296, 0.55417453, 0.8641915 , 0.99481109, 0.99123376,
+         0.9742618 , 0.70894019, 0.94940306, 0.99748867, 0.54205151,
+
+         0.5170537 , 0.8324005 , 0.50316305, 0.10173936, 0.13211973,
+         0.2254195 , 0.70526861, 0.31406024, 0.07082619, 0.84034526;
+
+    y << 3.55634251, 3.13854087, 3.55887523, 3.29462895, 3.33443517,
+         3.4378868 , 3.41092345, 3.5087468 , 3.25110243, 3.11382179;
+
+    Dataset data(X,y);
+
+    SearchSpace SS;
+    SS.init(data);
+
+    // split operator --> arity 3
+    // prod operator  --> arity 4
+    int max_arity = 4;
+
+    for (int d = 1; d < 10; ++d)
+    {
+        for (int s = 1; s < 10; ++s)
+        {
+            PARAMS["max_size"]  = s;
+            PARAMS["max_depth"] = d;
+
+            fmt::print("d={},s={}\n",d,s);
+            fmt::print("make_regressor\n");
+            RegressorProgram PRG = SS.make_regressor(0, 0);
+            
+            fmt::print(
+                "depth = {}, size= {}\n"
+                "Generated Model: {}\n"
+                "Model depth    : {}\n"
+                "Model size     : {}\n"
+                "=================================================\n",
+                d, s, 
+                PRG.get_model("compact", true), PRG.Tree.max_depth(), PRG.Tree.size()
+            );
+
+            // There are two ways of assessing the size of a program
+            // GUI TODO: which style are we going to use? i) implement
+            // PRG.max_depth() (or PRG.depth()); or ii) get rid of PRG.size()
+            // and use always PRG.Tree.<>)
+            ASSERT_TRUE(PRG.Tree.size() > 0);
+            ASSERT_TRUE(PRG.Tree.size() <= s+max_arity);
+
+            ASSERT_TRUE(PRG.size() > 0);
+            ASSERT_TRUE(PRG.size() <= s+max_arity);
+
+            // GUI TODO: max_depth() counts the number of edges (so a program with
+            // one node has max_depth()==0). Is this how it should behave?
+            ASSERT_TRUE(PRG.Tree.max_depth() >= 0);
+            ASSERT_TRUE(PRG.Tree.max_depth() <= d+1);
         }
     }
 }

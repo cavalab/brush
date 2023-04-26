@@ -4,6 +4,7 @@ namespace Brush {
 
 ostream& operator<<(ostream& os, const NodeType& nt)
 {
+    os << "nt: " << nt << endl;
     os << NodeTypeName.at(nt);
     return os;
 }
@@ -16,21 +17,56 @@ ostream& operator<<(ostream& os, const Node& n)
 
 /// @brief get the name of the node. 
 /// @return name 
-auto Node::get_name() const noexcept -> std::string 
+auto Node::get_name(bool include_weight) const noexcept -> std::string 
 {
 
     if (Is<NodeType::Terminal>(node_type))
-        return feature;
-    else if (Is<NodeType::Constant>(node_type))
     {
-        return fmt::format("{:.3f}", W);
+        if (is_weighted && W != 1.0 && include_weight)
+            return fmt::format("{:.2f}*{}",W,feature);
+        else
+            return feature;
     }
-    else if (Is<NodeType::SplitBest>(node_type))
-        return fmt::format("SplitBest[{}>{:.3f}]", feature, W);
-    else if (Is<NodeType::SplitOn>(node_type))
-        return fmt::format("SplitOn[{:.3f}]", W);
-    else
-        return name;
+    else if (Is<NodeType::Constant>(node_type) && include_weight)
+    {
+        return fmt::format("{:.2f}", W);
+    }
+    else if (is_weighted && include_weight)
+        return fmt::format("{:.2f}*{}",W,name);
+    return name;
+}
+
+string Node::get_model(const vector<string>& children) const noexcept
+{
+    if (children.empty())
+        return get_name();
+    else if (Is<NodeType::SplitBest>(node_type)){
+        return fmt::format("If({}>{:.2f},{},{})",
+            feature,
+            W,
+            children.at(0),
+            children.at(1)
+            );
+    }
+    else if (Is<NodeType::SplitOn>(node_type)){
+        return fmt::format("If({}>{:.2f},{},{})",
+            children.at(0),
+            W,
+            children.at(1),
+            children.at(2)
+            );
+    }
+    else{
+        string args = "";
+        for (int i = 0; i < children.size(); ++i){
+            args += children.at(i);
+            if (i < children.size()-1)
+                args += ",";
+        }
+
+        return fmt::format("{}({})", get_name(), args);
+    }
+
 }
 
 ////////////////////////////////////////
@@ -52,8 +88,8 @@ void to_json(json& j, const Node& p)
         {"arg_types", p.arg_types}, 
         {"is_weighted", p.is_weighted}, 
         {"W", p.W}, 
-        {"feature", p.feature}, 
-        {"complete_hash", p.complete_hash} 
+        {"feature", p.get_feature()} 
+        // {"node_hash", p.get_node_hash()} 
     };
 }
 
@@ -150,7 +186,10 @@ void from_json(const json &j, Node& p)
     if (j.contains("fixed"))
         j.at("fixed").get_to(p.fixed);
     if (j.contains("feature"))
-        j.at("feature").get_to(p.feature);
+    {
+        // j.at("feature").get_to(p.feature);
+        p.set_feature(j.at("feature"));
+    }
     if (j.contains("is_weighted"))
         j.at("is_weighted").get_to(p.is_weighted);
     else
@@ -176,23 +215,17 @@ void from_json(const json &j, Node& p)
         j.at("sig_dual_hash").get_to(p.sig_dual_hash);
     else
         make_signature=true;
-    if (j.contains("complete_hash"))
-        j.at("complete_hash").get_to(p.complete_hash);
-    else
-        make_signature=true;
 
     if (make_signature){
-        // fmt::print("using default signature...\n");
         init_node_with_default_signature(p);
     }
     p.init();
-    // fmt::print("checking W\n");
+
     if (j.contains("W"))
         j.at("W").get_to(p.W);
 
 
     json new_json = p;
-    // fmt::print("new node json: {}\n", new_json.dump(2));
 }
 
 

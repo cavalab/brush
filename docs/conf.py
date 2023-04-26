@@ -38,17 +38,17 @@ def configureDoxyfile(input_dir, output_dir):
 		fp2.write(filedata)
 
 
-# Only trigger readthedocs build if running on readthedocs servers:
-read_the_docs_build = os.environ.get('READTHEDOCS', None) == 'True'
+## Only trigger readthedocs build if running on readthedocs servers:
+# read_the_docs_build = os.environ.get('READTHEDOCS', None) == 'True'
 
 breathe_projects = {}
 # if read_the_docs_build:
-if True:
-	input_dir = '../src'
-	output_dir = 'build'
-	configureDoxyfile(input_dir, output_dir)
-	subprocess.call('doxygen', shell=True)
-	breathe_projects['brush'] = output_dir + '/xml'
+input_dir = '../src'
+output_dir = 'doxygen_build/doxygen'
+os.makedirs(output_dir,exist_ok=True)
+configureDoxyfile(input_dir, output_dir)
+subprocess.call('doxygen', shell=True)
+breathe_projects['brush'] = output_dir + '/xml'
 
 
 # -- Project information -----------------------------------------------------
@@ -105,6 +105,8 @@ html_favicon = "_static/paint-brush-solid.svg"
 # relative to this directory. They are copied after the builtin static files,
 # so a file named "default.css" will overwrite the builtin "default.css".
 html_static_path = ['_static']
+# add doxygen docs to files
+html_extra_path = ['doxygen_build']
 
 # Breathe configuration
 breathe_default_project = "brush"

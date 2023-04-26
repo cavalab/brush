@@ -106,7 +106,7 @@ class CMakeBuild(build_ext):
 #     print("No existing build directory found - skipping.")
 
 setup(
-    name="brush",
+    name="pybrush",
     version="0.0.1",
     author="William La Cava, Joseph D. Romano",
     author_email="joseph.romano@pennmedicine.upenn.edu",  # can change to Bill

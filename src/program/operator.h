@@ -4,8 +4,6 @@
 #include "../init.h"
 #include "tree_node.h"
 #include "../util/utils.h"
-/* #include "data/timeseries.h" */
-/* using TreeNode = class tree_node_<Node>; */ 
 
 namespace Brush{
 ///////////////////////////////////////////////////////////////////////////////////////
@@ -47,6 +45,7 @@ namespace util{
         return w;
     };
 }
+////////////////////////////////////////////////////////////////////////////////
 // Operator class
 
 /// @brief Core computation of a node's function to data. 
@@ -57,9 +56,12 @@ namespace util{
 template<NodeType NT, typename S, bool Fit, typename E=void> 
 struct Operator 
 {
-    /*! @brief set argument types to those of the signature unless:
+    /**
+    *   @brief set argument types to those of the signature unless:
+    * 
     *   a) the operator is unary and there are more than one arguments
     *   b) the operator is binary and associative  
+    * 
     *   In the case of a) or b), arguments to the operator are stacked into an 
     *   array and the operator is applied to that array
     */
@@ -74,10 +76,8 @@ struct Operator
     /// @brief stores the argument count of the operator
     static constexpr size_t ArgCount = S::ArgCount;
 
-    /// get arg types from tuple by index
-    template <std::size_t N>
-
     /// utility for returning the type of the Nth argument
+    template <std::size_t N>
     using NthType = typename S::NthType<N>; 
 
     /// set weight type
@@ -88,13 +88,12 @@ struct Operator
         Function<NT> f; 
         return f(args...); 
     }; 
-    // static constexpr auto F = Function<NT>{};
 
     Operator() = default;
     ////////////////////////////////////////////////////////////////////////////////
-    /// Utilities to grab child outputs.
+    // Utilities to grab child outputs.
 
-    // get a std::array or eigen array of kids
+    /// get a std::array or eigen array of kids
     template<typename T=ArgTypes> requires(is_std_array_v<T> || is_eigen_array_v<T>) 
     T get_kids(const Dataset& d, TreeNode& tn, const W** weights=nullptr) const
     {
@@ -126,7 +125,7 @@ struct Operator
         return child_outputs;
     };
 
-    // gets one kid for a tuple of kids
+    /// gets one kid for a tuple of kids
     template<int I>
     NthType<I> get_kid(const Dataset& d,TreeNode& tn, const W** weights ) const
     {
@@ -153,8 +152,6 @@ struct Operator
         return std::make_tuple(get_kid<Is>(d,tn,weights)...);
     };
 
-    // 
-
     /// @brief get a std::tuple of kids. Used when child arguments are different types.
     /// @tparam T argument types 
     /// @param d the dataset
@@ -167,36 +164,6 @@ struct Operator
         return get_kids_seq<T>(d, tn, weights, std::make_index_sequence<ArgCount>{});
     };
 
-    // ////////////////////////////////////////////////////////////////////////////////
-    // /// @brief get weight 
-    // /// @tparam T return type
-    // /// @tparam Scalar scalar type of return type
-    // /// @param tn tree node
-    // /// @param weights option pointer to a weight array, used in place of node weight
-    // /// @return 
-    // template<typename T=RetType, typename Scalar=T::Scalar> 
-    // Scalar get_weight(TreeNode& tn, const W** weights=nullptr) const 
-    // { 
-    //     Scalar w;
-    //     if (weights == nullptr)
-    //     {
-    //         w = Scalar(tn.data.W);
-    //     }
-    //     else
-    //     {
-    //         if constexpr (is_same_v<Scalar, W>) 
-    //             w = **weights;
-    //         else if constexpr (is_same_v<Scalar, iJet> && is_same_v<W, fJet>)  {
-    //             using WScalar = typename Scalar::Scalar;
-    //             WScalar tmp = WScalar((**weights).a);    
-    //             w = Scalar(tmp);
-    //         }
-    //         else            
-    //             w = Scalar(**weights);
-    //         *weights++;
-    //     }
-    //     return w;
-    // };
     ///////////////////////////////////////////////////////////////////////////
 
     /// @brief Apply node function in a functional style
@@ -209,7 +176,7 @@ struct Operator
         return std::apply(F, inputs);
     }
 
-    /// @brief Apply the node function
+    /// @brief Apply the node function like a function
     /// @tparam T argument types
     /// @param inputs the child node outputs
     /// @return return values applying F to the inputs
@@ -242,6 +209,7 @@ struct Operator
     };
 
 };
+
 //////////////////////////////////////////////////////////////////////////////////
 /// Terminal Overload
 template<typename S, bool Fit>
@@ -259,10 +227,10 @@ struct Operator<NodeType::Terminal, S, Fit>
             if (tn.data.is_weighted)
             {
                 auto w = util::get_weight<RetType,Scalar,W>(tn, weights);
-                return this->get<RetType>(d, tn.data.feature)*w;
+                return this->get<RetType>(d, tn.data.get_feature())*w;
             }
         }
-        return this->get<RetType>(d,tn.data.feature);
+        return this->get<RetType>(d,tn.data.get_feature());
     };
 
     template <typename T = RetType, typename Scalar=typename T::Scalar>
@@ -275,10 +243,10 @@ struct Operator<NodeType::Terminal, S, Fit>
             if (tn.data.is_weighted)
             {
                 auto w = util::get_weight<RetType,Scalar,W>(tn, weights);
-                return this->get<nonJetType>(d, tn.data.feature).template cast<Scalar>()*w;
+                return this->get<nonJetType>(d, tn.data.get_feature()).template cast<Scalar>()*w;
             }
         }
-        return this->get<nonJetType>(d, tn.data.feature).template cast<Scalar>();
+        return this->get<nonJetType>(d, tn.data.get_feature()).template cast<Scalar>();
     };
 
     template<typename T>
@@ -296,6 +264,7 @@ struct Operator<NodeType::Terminal, S, Fit>
 
     }
 };
+
 //////////////////////////////////////////////////////////////////////////////////
 // Constant Overloads
 template<typename S, bool Fit> 

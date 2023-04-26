@@ -16,7 +16,15 @@ vector<Node> generate_terminals(const Dataset& d)
         std::visit(
             [&](auto&& arg) {
                 using T = std::decay_t<decltype(arg)>;
-                terminals.push_back( Node(NodeType::Terminal, feature_name, Signature<T()>{}));
+                using Scalar = typename T::Scalar;
+                constexpr bool weighted = std::is_same_v<Scalar, float>;
+                // if constexpr (T::Scalar == float)
+                terminals.push_back(Node(
+                    NodeType::Terminal, 
+                    Signature<T()>{}, 
+                    weighted,
+                    feature_name
+                ));
             },
             value
         );
@@ -24,7 +32,7 @@ vector<Node> generate_terminals(const Dataset& d)
     };
 
     // add a constant
-    terminals.push_back( Node(NodeType::Constant, "C", Signature<ArrayXf()>{}));
+    terminals.push_back( Node(NodeType::Constant, Signature<ArrayXf()>{}, true, "C"));
     return terminals;
 };
 

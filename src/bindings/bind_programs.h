@@ -1,10 +1,10 @@
 #include "module.h"
 #include "../program/program.h"
 
-using Reg = Brush::Program<ArrayXf>;
-using Cls = Brush::Program<ArrayXb>;
-using Rep = Brush::Program<ArrayXXf>;
-using MCls = Brush::Program<ArrayXi>;
+using Reg = Brush::RegressorProgram;
+using Cls = Brush::ClassifierProgram;
+using Rep = Brush::RepresenterProgram;
+using MCls = Brush::MulticlassClassifierProgram;
 
 namespace nl = nlohmann;
 namespace br = Brush;
@@ -43,6 +43,7 @@ void bind_program(py::module& m, string name)
             py::arg("pretty") = false,
             stream_redirect()
             )
+        .def("get_dot_model", &T::get_dot_model, py::arg("extras")="")
         .def("get_weights", &T::get_weights)
         .def("size", &T::size)
         .def("cross", &T::cross)

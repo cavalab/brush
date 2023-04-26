@@ -106,36 +106,28 @@ State check_type(const ArrayXf& x)
 /// return a slice of the data using indices idx
 Dataset Dataset::operator()(const vector<size_t>& idx) const
 {
-    std::map<std::string, State> new_d;
+    std::map<std::string, State> new_features;
     for (auto& [key, value] : this->features) 
     {
         std::visit([&](auto&& arg) 
         {
             using T = std::decay_t<decltype(arg)>;
-            if constexpr (
-                T::NumDimensions == 1
-                // std::is_same_v<T, ArrayXb> 
-                // || std::is_same_v<T, ArrayXi> 
-                // || std::is_same_v<T, ArrayXf> 
-                // || std::is_same_v<T, TimeSeriesb> 
-                // || std::is_same_v<T, TimeSeriesi> 
-                // || std::is_same_v<T, TimeSeriesf> 
-            )
-                new_d[key] = T(arg(idx));
+            if constexpr ( T::NumDimensions == 1)
+                new_features[key] = T(arg(idx));
             else if constexpr (T::NumDimensions==2)
-            //     std::is_same_v<T, ArrayXXb> 
-            //     || std::is_same_v<T, ArrayXXi> 
-            //     || std::is_same_v<T, ArrayXXf> 
-            // )
-                new_d[key] = T(arg(idx, Eigen::all));
+                new_features[key] = T(arg(idx, Eigen::all));
             else 
                 static_assert(always_false_v<T>, "non-exhaustive visitor!");
         },
         value
         );
     }
-    auto new_y = this->y(idx);
-    return Dataset(new_d, new_y, this->classification);
+    ArrayXf new_y;
+    if (this->y.size()>0)
+    {
+        new_y = this->y(idx);
+    }
+    return Dataset(new_features, new_y, this->classification);
 }
 
 Dataset Dataset::get_batch(int batch_size) const
@@ -176,7 +168,7 @@ void Dataset::init()
 }
 
 /// turns input data into a feature map
-map<string, State> Dataset::make_features(const Ref<const ArrayXXf>& X,
+map<string, State> Dataset::make_features(const ArrayXXf& X,
                                        const map<string,State>& Z,
                                        const vector<string>& vn 
                                        ) 
