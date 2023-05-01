@@ -152,18 +152,78 @@ struct TimeSeries
         // TODO
         return (*this); 
     };
+
     template<typename T2>
     inline auto after(const TimeSeries<T2>& t2) const { 
         // return elements of this that are after elements in t2
         // TODO
         return (*this); 
     };
+
     template<typename T2>
     inline auto during(const TimeSeries<T2>& t2) const { 
         // return elements of this that occur within the window in which elements of t2 occur
         // TODO
         return (*this); 
     };
+
+    /**
+     * @brief Sum two time series.
+     * 
+     * Note that non-overlapping time points are all maintained.  
+     * 
+     * @param t2 other time series to add with this one. 
+     * @return a new TimeSeries<T> object.
+     */
+    inline TimeSeries<T> sum(const TimeSeries<T>& t2) const {
+
+        TimeSeries<T> res(*this); 
+        TimeType new_time;
+        ValType new_value;
+
+        // if the time axes match, just add up the values and return
+        if (this->time == t2.time)
+        {
+            for (int i = 0; i < res.value.size(); ++i){
+                res.value.at(i) += t2.value.at(i);
+            }
+            return res;
+        }
+        // if they don't match
+        int i = 0;
+        for (const auto& t2_row_times : t2.time) {
+            const auto res_val = &res.value.at(i);
+            const auto t2_val = &t2_val;
+            // if the time axes match, just add up the values and return
+            if ((t2_row_times == res.time.at(i)).all()) {
+                res_val += t2_val;
+            }
+            else {
+                int j = 0;
+                for (const auto& it : t2_row_times)
+                {
+                    int idx;
+                    int min_coeff = (it-res.time.at(i)).minCoeff(&idx);
+                    if (min_coeff == 0){
+                        // find the location of the matching time and 
+                        // add the value at that location to res.value
+                        res_val(idx) += t2_val(j); 
+                    }
+                    else{
+                        // append the time point and value to res
+                        res_val.conservativeResize(res_val.rows()+1);
+                        res_val(res_val.rows()-1) = t2_val(j);
+                    }
+                    ++j;
+                }
+
+            }
+            ++i; 
+        }
+        return (*this); 
+    };
+
+
 
     std::string print() const
     { 
