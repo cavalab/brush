@@ -1,5 +1,7 @@
 var NAVTREEINDEX2 =
 {
+"d6/d2e/namespaceBrush_1_1Util.html#a879344781baecb2119f7bde9bddd8660":[0,0,1,4,5],
+"d6/d2e/namespaceBrush_1_1Util.html#a95368f7dc6c9ced55ce63b8c5f27a3ad":[0,0,1,4,48],
 "d6/d2e/namespaceBrush_1_1Util.html#a9cd8004de7aab46b7a06f27d440064ed":[0,0,1,4,40],
 "d6/d2e/namespaceBrush_1_1Util.html#a9fb536ac40eb64d4b0233e56d3ce7109":[0,0,1,4,6],
 "d6/d2e/namespaceBrush_1_1Util.html#a9fd7fd0b4bc42f633c298cb830973d9a":[0,0,1,4,38],
@@ -247,7 +249,5 @@ var NAVTREEINDEX2 =
 "d9/d26/bind__programs_8cpp.html":[2,0,4],
 "d9/d26/bind__programs_8cpp.html#a8435253e0dd2b6802297b820914051e5":[2,0,4,0],
 "d9/d26/bind__programs_8cpp_source.html":[2,0,4],
-"d9/d40/bind__dataset_8cpp.html":[2,0,2],
-"d9/d40/bind__dataset_8cpp.html#a3a32d76d471ed16427cad15ed2364f0f":[2,0,2,0],
-"d9/d40/bind__dataset_8cpp_source.html":[2,0,2]
+"d9/d40/bind__dataset_8cpp.html":[2,0,2]
 };
