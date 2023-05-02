@@ -93,7 +93,7 @@ struct SearchSpace
     Map<Node> node_map;
 
     /// @brief A map of weights corresponding to elements in @ref node_map, used to weight probabilities of each node being sampled from the map. 
-    Map<float> weight_map; 
+    Map<float> node_weights; 
 
     /**
      * @brief Maps return types to terminals. 
@@ -106,7 +106,7 @@ struct SearchSpace
      */
     unordered_map<DataType, vector<Node>> terminal_map;
 
-    /// @brief A map of weights corresponding to elements in @ref terminal_map, used to weight probabilities of each node being sampled from the map. 
+    /// @brief A map of weights corresponding to elements in @ref terminal_map, used to weight probabilities of each terminal being sampled from the map. 
     unordered_map<DataType, vector<float>> terminal_weights;
 
     /// @brief A vector storing the available return types of terminals. 
@@ -117,7 +117,7 @@ struct SearchSpace
 
     NLOHMANN_DEFINE_TYPE_INTRUSIVE(SearchSpace, 
         node_map,
-        weight_map,
+        node_weights,
         terminal_map,
         terminal_weights,
         terminal_types
@@ -261,7 +261,7 @@ struct SearchSpace
             if (node_type_map.find(type) != node_type_map.end())
             {
                 matches.push_back(node_type_map.at(type));
-                weights.push_back(weight_map.at(R).at(arg_hash).at(type));
+                weights.push_back(node_weights.at(R).at(arg_hash).at(type));
             }
         }
 
@@ -303,7 +303,7 @@ struct SearchSpace
     vector<float> get_weights() const
     {
         vector<float> v;
-        for (auto& [ret, arg_w_map]: weight_map) 
+        for (auto& [ret, arg_w_map]: node_weights) 
         {
             v.push_back(0);
             for (const auto& [arg, name_map] : arg_w_map)
@@ -324,7 +324,7 @@ struct SearchSpace
     vector<float> get_weights(DataType ret) const
     {
         vector<float> v;
-        for (const auto& [arg, name_map] : weight_map.at(ret))
+        for (const auto& [arg, name_map] : node_weights.at(ret))
         {
             v.push_back(0);
             for (const auto& [name, w]: name_map)
@@ -343,7 +343,7 @@ struct SearchSpace
     vector<float> get_weights(DataType ret, ArgsHash sig_hash) const
     {
         vector<float> v;
-        for (const auto& [name, w]: weight_map.at(ret).at(sig_hash))
+        for (const auto& [name, w]: node_weights.at(ret).at(sig_hash))
             v.push_back(w); 
 
         return v;
@@ -420,7 +420,7 @@ struct SearchSpace
                     }
                     // if we made it this far, include the node as a match!
                     matches.push_back(node);
-                    weights.push_back(weight_map.at(ret).at(args_type).at(name));
+                    weights.push_back(node_weights.at(ret).at(args_type).at(name));
                 }
             }
         }
@@ -490,7 +490,7 @@ struct SearchSpace
                 node_map[n.ret_type][n.args_type()][n.node_type] = n;
                 // sampling probability map
                 float w = use_all? 1.0 : user_ops.at(name);
-                weight_map[n.ret_type][n.args_type()][n.node_type] = w;
+                node_weights[n.ret_type][n.args_type()][n.node_type] = w;
             }
         }
 
@@ -692,7 +692,7 @@ template <> struct fmt::formatter<Brush::SearchSpace>: formatter<string_view> {
                         ArgsName[args_type],
                         node_type,
                         node,
-                        SS.weight_map.at(ret_type).at(args_type).at(node_type)
+                        SS.node_weights.at(ret_type).at(args_type).at(node_type)
                         );
             }
         }

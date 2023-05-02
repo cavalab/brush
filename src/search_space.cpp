@@ -46,7 +46,7 @@ void SearchSpace::init(const Dataset& d, const unordered_map<string,float>& user
 {
     // fmt::print("constructing search space...\n");
     this->node_map.clear();
-    this->weight_map.clear();
+    this->node_weights.clear();
     this->terminal_map.clear();
     this->terminal_types.clear();
     this->terminal_weights.clear();
