@@ -472,7 +472,7 @@ struct SearchSpace
         {
             
             bool use_all = user_ops.size() == 0;
-            auto name = NodeTypeName[NT];
+            auto name = json(NT).get<string>();
             //TODO: address this (whether weights should be included by default)
             // bool weighted = (IsWeighable<NT>() && is_same_v<typename S::RetType::Scalar, float>);
             bool weighted = false;
@@ -503,7 +503,8 @@ struct SearchSpace
             if (Is<NodeType::Terminal, NodeType::Constant>(NT))
                 return;
             bool use_all = user_ops.size() == 0;
-            auto name = NodeTypeName.at(NT);
+            // auto name = NodeTypeName.at(NT);
+            auto name = json(NT).get<string>();
 
             // skip operators not defined by user
             if (!use_all & user_ops.find(name) == user_ops.end())

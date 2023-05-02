@@ -5,7 +5,7 @@ namespace Brush {
 ostream& operator<<(ostream& os, const NodeType& nt)
 {
     os << "nt: " << nt << endl;
-    os << NodeTypeName.at(nt);
+    os << json(nt).dump();
     return os;
 }
 
@@ -96,13 +96,6 @@ void to_json(json& j, const Node& p)
 using NT = NodeType;
 void init_node_with_default_signature(Node& node)
 {
-    // if (Is<
-    //     NT::Add,
-    //     NT::Mul,
-    //     NT::Min,
-    //     NT::Max
-    //     >(nt)) 
-    //     return Signature<ArrayXf(ArrayXf,ArrayXf)>{};
     NT n = node.node_type;
     if (Is<
         NT::Abs,
@@ -179,7 +172,8 @@ void from_json(const json &j, Node& p)
     if (j.contains("name"))
         j.at("name").get_to(p.name);
     else        
-        p.name = NodeTypeName[p.node_type];
+        // p.name = NodeTypeName[p.node_type];
+        p.name = json(p.node_type).get<string>();
 
     if (j.contains("center_op"))
         j.at("center_op").get_to(p.center_op);

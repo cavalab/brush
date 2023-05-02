@@ -51,8 +51,8 @@ enum class NodeType : uint64_t {
     Square              = 1UL << 18UL,
     Logistic            = 1UL << 19UL,
     // timing masks
-    Before              = 1UL << 20UL,
-    After               = 1UL << 21UL,
+    FilterInterval      = 1UL << 20UL,
+    FilterValue         = 1UL << 21UL,
     During              = 1UL << 22UL,
     // Reducers
     Min                 = 1UL << 23UL,
@@ -131,8 +131,8 @@ inline auto operator^=(NodeType& lhs, NodeType rhs) -> NodeType&
 
 
 
-extern std::map<std::string, NodeType> NodeNameType;
-extern std::map<NodeType,std::string> NodeTypeName;
+// extern std::map<std::string, NodeType> NodeNameType;
+// extern std::map<NodeType,std::string> NodeTypeName;
 
 #ifndef DOXYGEN_SKIP
 // map NodeType values to JSON as strings
@@ -192,8 +192,10 @@ NLOHMANN_JSON_SERIALIZE_ENUM( NodeType, {
     {NodeType::Softmax,"Softmax" },
 
     // timing masks
-    {NodeType::Before,"Before" },
-    {NodeType::After,"After" },
+    // {NodeType::Before,"Before" },
+    // {NodeType::After,"After" },
+    {NodeType::FilterInterval,"FilterInterval" },
+    {NodeType::FilterValue,"FilterValue" },
     {NodeType::During,"During" },
 
     //split
@@ -218,7 +220,8 @@ template <> struct fmt::formatter<Brush::NodeType>: formatter<string_view> {
   // parse is inherited from formatter<string_view>.
   template <typename FormatContext>
   auto format(Brush::NodeType x, FormatContext& ctx) const {
-    return formatter<string_view>::format(Brush::NodeTypeName.at(x), ctx);
+    json j = x;
+    return formatter<string_view>::format(j.dump(), ctx);
   }
 };
 ////////////////////////////////////////////////////////////////////////////////

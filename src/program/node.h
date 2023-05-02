@@ -109,7 +109,8 @@ struct Node {
     template<typename S>
     explicit Node(NodeType type, S signature, bool weighted=false, string feature_name="") noexcept
         : node_type(type)
-        , name(NodeTypeName[type])
+        // , name(NodeTypeName[type])
+        , name(json(type).get<string>())
         , ret_type(S::get_ret_type())
         , arg_types(S::get_arg_types())
         , sig_hash(S::hash())
@@ -247,8 +248,8 @@ inline auto IsDifferentiable(NodeType nt) noexcept -> bool {
     return Isnt<
                 NodeType::Ceil,
                 NodeType::Floor,
-                NodeType::Before,       
-                NodeType::After,          
+                NodeType::FilterInterval,       
+                NodeType::FilterValue,          
                 NodeType::During,
                 NodeType::Count
                 >(nt);                
@@ -258,8 +259,8 @@ inline auto IsWeighable() noexcept -> bool {
         return Isnt<
                     NodeType::Ceil,
                     NodeType::Floor,
-                    NodeType::Before,       
-                    NodeType::After,          
+                    NodeType::FilterInterval,       
+                    NodeType::FilterValue,          
                     NodeType::During,
                     NodeType::Count,
                     NodeType::SplitOn,
@@ -270,8 +271,8 @@ inline auto IsWeighable(NodeType nt) noexcept -> bool {
         return Isnt<
                     NodeType::Ceil,
                     NodeType::Floor,
-                    NodeType::Before,       
-                    NodeType::After,          
+                    NodeType::FilterInterval,       
+                    NodeType::FilterValue,          
                     NodeType::During,
                     NodeType::Count,
                     NodeType::SplitOn,

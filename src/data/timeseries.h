@@ -5,6 +5,8 @@
 #include "../util/error.h"
 /* #include "../util/logger.h" */
 /* #include "../util/rnd.h" */
+using Eigen::seq;
+using Eigen::last;
 
 namespace Brush::Data{
 
@@ -65,27 +67,58 @@ struct TimeSeries
     typename TimeType::iterator tend() { return this->time.end(); };
     auto ctbegin() const { return this->time.cbegin(); };
     auto ctend() const { return this->time.cend(); };
-    // auto rowwise() const { return this->value.rowwise(); };
-    // auto colwise() const { return this->value.colwise(); };
-    // return std::visit([](auto v){return v.rowwise().end();}, this->value); }
 
-    //TODO: define overloaded operations?
-    /* operators on values */
-    /* transform takes a unary function, and applies it to each entry, 
-     * and returns a TimeSeries.
-    */
+    std::string print() const
+    { 
+        /**
+         * @brief Print the time series.
+         * 
+         * @param output ostream object
+         * @param ts time series object
+         * @return ostream& 
+         */
+        size_t m = 40;
+        size_t max_len = std::min(m, this->value.size()); 
+        string output = "[";
+        for (int i = 0; i < max_len; ++i){
+            size_t max_width = std::min(m, size_t(this->value.at(i).size())); 
+            string dots = max_width < m ? "" : "...";
+            auto val = this->value.at(i)(Eigen::seqN(0,max_width));
+            auto t = this->time.at(i)(Eigen::seqN(0,max_width));
+            output += fmt::format("[value: {}{},\n time: {}{}]\n", val, dots, t, dots); 
+        }
+        output += "]\n";
+
+        return output;            
+    };
+
+    ////////////////////////////////////////////////////////////////////////////////
+    // Functions
+
+    /**
+     * @brief applies a unary function to each entry in the time series.
+     * 
+     * @tparam ET 
+     * @param op a unary function.  
+     * @return auto a time series.
+     */
     template<typename ET=EntryType>
     auto transform(std::function<ET(EntryType)> op) const 
     {
         std::vector<ET> dest(this->value.size());
-        // std::vector<ET> dest(this->value.size());
         std::transform(cbegin(), cend(), 
                        dest.begin(),
                        op
         );
         return TimeSeries<typename ET::Scalar>(this->time, dest);
     }
-    /* reduce takes a unary aggregating function, applies it to each entry, and returns an Array.*/
+
+    /**
+     * @brief takes a unary aggregating function, applies it to each entry
+     * 
+     * @param op unary aggregating function
+     * @return auto an array 
+     */
     template<typename R=T>
     auto reduce(const auto& op) const 
     {
@@ -107,11 +140,11 @@ struct TimeSeries
     };
 
     // transformation overloads
-    inline auto abs() const { return this->transform([](const EntryType& i){ return i.abs(); }); };
-    inline auto pow() const { return this->transform([](const EntryType& i){ return i.pow(); } ); };
-    inline auto log() const { return this->transform([](const EntryType& i){ return i.log(); } ); };
+    inline auto abs() const { return this->transform([](const EntryType& i){ return i.abs(); });};
+    inline auto pow() const { return this->transform([](const EntryType& i){ return i.pow(); } );};
+    inline auto log() const { return this->transform([](const EntryType& i){ return i.log(); } );};
     inline auto logabs() const { return this->transform([](const EntryType& i){ return i.abs().log(); } ); };
-    inline auto log1p() const { return this->transform([](const EntryType& i){ return i.log1p(); } ); };
+    inline auto log1p() const { return this->transform([](const EntryType& i){ return i.log1p(); }); };
     inline auto ceil() const { return this->transform([](const EntryType& i){ return i.ceil(); } ); };
     inline auto floor() const { return this->transform([](const EntryType& i){ return i.floor(); } ); };
     inline auto exp() const { return this->transform([](const EntryType& i){ return i.exp(); } ); };
@@ -137,14 +170,51 @@ struct TimeSeries
     inline auto count() const { return this->reduce<float>([](const EntryType& i){ return i.size(); } ); };
     inline auto prod() const { return this->reduce<Scalar>([](const EntryType& i){ return i.prod(); } ); };
 
-    /* template<typename V=T> */
-    /* enable_if_t<is_same_v<V,float>,TimeSeries<float>> */
-
     template<typename T2> 
     inline auto operator*(T2 v) //requires(is_same_v<Scalar,float>) 
     { 
         return this->transform<EntryType>([=](const EntryType& i){ return i*v; } ); 
     };
+
+    /**
+     * @brief returns a mask where the time series is greater than `v`
+     * 
+     * @tparam T2 
+     * @param v theshold
+     * @return auto an array of masks, one for each sample/entry.
+     */
+    template<typename T2> 
+    inline auto operator>(T2 v) const { 
+        std::vector<ArrayXb> masks(this->value.size());
+        std::transform(cbegin(), cend(), masks.begin(), 
+            [=](const EntryType& i){ return (i > v); } 
+        );
+        return masks;
+    };
+
+    inline ArrayXi interval(const ArrayXi& t) const { 
+        return t(seq(1,last))-t(seq(0,last-1)); 
+    };
+
+    inline auto intervals() const { 
+        std::vector<ArrayXi> intervals; 
+        for (const auto& t: time)
+        {
+            intervals.push_back(interval(t));
+        }
+    };
+
+    template<typename T2>
+    inline auto filter_intervals(const T2& width) const {
+
+        std::vector<ArrayXb> masks(this->time.size());
+        for (const auto& t: time)
+        {
+            masks.push_back((interval(t) > width));
+        }
+        return filter(masks);
+        
+    }; 
 
     template<typename T2>
     inline auto before(const TimeSeries<T2>& t2) const { 
@@ -182,7 +252,8 @@ struct TimeSeries
      * 
      * Note that non-overlapping time points are all maintained.  
      * 
-     * @param t2 other time series to add with this one. 
+     * @param bin_op a binary operator defined on the Scalar type of this Time Series.
+     * @param t2 other time series, and rhs argument to bin_op. 
      * @return a new TimeSeries<T> object.
      */
     inline TimeSeries<T> apply(auto bin_op, const TimeSeries<T>& t2) const {
@@ -229,31 +300,32 @@ struct TimeSeries
         return res; 
     };
 
-
-
-    std::string print() const
-    { 
-        /**
-         * @brief Print the time series.
-         * 
-         * @param output ostream object
-         * @param ts time series object
-         * @return ostream& 
-         */
-        size_t m = 40;
-        size_t max_len = std::min(m, this->value.size()); 
-        string output = "[";
-        for (int i = 0; i < max_len; ++i){
-            size_t max_width = std::min(m, size_t(this->value.at(i).size())); 
-            string dots = max_width < m ? "" : "...";
-            auto val = this->value.at(i)(Eigen::seqN(0,max_width));
-            auto t = this->time.at(i)(Eigen::seqN(0,max_width));
-            output += fmt::format("[value: {}{},\n time: {}{}]\n", val, dots, t, dots); 
+    /**
+     * @brief filters the values of each entry according to the masks.
+     * 
+     * @param masks 
+     * @return auto 
+     */
+    inline auto filter(const vector<ArrayXb>& masks) const {
+        // check size
+        if (masks.size() != this->rows()) {
+            string msg = fmt::format("The mask size ({}) doesn't match the number of rows in the time series ({})\n", masks.size(), rows());
+            HANDLE_ERROR_THROW(msg);
         }
-        output += "]\n";
 
-        return output;            
-    };
+        TimeSeries<T> res; 
+
+        for (int i = 0; i < masks.size(); ++i)
+        {
+            auto idx = Util::mask_to_index(masks.at(i));
+            res.time.push_back( this->time.at(i)(idx) );
+            res.value.push_back( this->value.at(i)(idx) );
+        }
+        return res;
+
+    }
+
+    
 };
 
 

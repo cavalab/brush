@@ -273,13 +273,25 @@ struct Signatures<N, enable_if_t<is_in_v<N,
         // using default = tuple_element<0,type>;
     };
 
-template<NodeType N>
-struct Signatures<N, enable_if_t<is_in_v<N, 
-    NodeType::Before,
-    NodeType::After,
-    NodeType::During
-    >>>{ 
-        //TODO: Fix
+template<>
+struct Signatures<NodeType::FilterInterval>{
+    using type = std::tuple<
+        Signature<TimeSeriesf(TimeSeriesf,ArrayXi)>,
+        Signature<TimeSeriesi(TimeSeriesi,ArrayXi)>,
+        Signature<TimeSeriesb(TimeSeriesb,ArrayXi)>
+    >;
+}; 
+
+template<>
+struct Signatures<NodeType::FilterValue>{
+    using type = std::tuple<
+        Signature<TimeSeriesf(TimeSeriesf,ArrayXf)>,
+        Signature<TimeSeriesi(TimeSeriesi,ArrayXi)>
+    >;
+}; 
+
+template<>
+struct Signatures<NodeType::During>{
         using type = std::tuple<
             Signature<TimeSeriesf(TimeSeriesf,TimeSeriesf)>,
             Signature<TimeSeriesi(TimeSeriesi,TimeSeriesi)>,

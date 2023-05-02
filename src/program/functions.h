@@ -364,18 +364,35 @@ https://eigen.tuxfamily.org/dox/group__QuickRefPage.html#arrayonly
         inline auto operator()(const T& t) { return t.square(); }
     };
 
+    // template<>
+    // struct Function<NodeType::Before>
+    // {
+    //     template<typename T1, typename T2>
+    //     inline auto operator()(const T1& t1, const T2& t2) { return t1.before(t2); }
+    // };
+
+    // template<>
+    // struct Function<NodeType::After>
+    // {
+    //     template<typename T1, typename T2>
+    //     inline auto operator()(const T1& t1, const T2& t2) { return t1.after(t2); }
+    // };
     template<>
-    struct Function<NodeType::Before>
+    struct Function<NodeType::FilterInterval>
     {
         template<typename T1, typename T2>
-        inline auto operator()(const T1& t1, const T2& t2) { return t1.before(t2); }
+        inline auto operator()(const T1& t1, const T2& w) { 
+            return t1.filter_intervals(w); 
+        }
     };
 
     template<>
-    struct Function<NodeType::After>
+    struct Function<NodeType::FilterValue>
     {
         template<typename T1, typename T2>
-        inline auto operator()(const T1& t1, const T2& t2) { return t1.after(t2); }
+        inline auto operator()(const T1& t1, const T2& w) { 
+            return t1.filter((t1 > w)); 
+        }
     };
 
     template<>
