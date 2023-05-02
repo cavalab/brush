@@ -167,36 +167,41 @@ struct TimeSeries
         return (*this); 
     };
 
+    inline auto add(const TimeSeries<T>& t2) const 
+    { 
+        return this->apply(std::plus<>{}, t2);
+    };
+    inline auto max(const TimeSeries<T>& t2) const 
+    { 
+        auto op = [](const T& a, const T& b){return std::max(a,b);};
+        return this->apply(op, t2);
+    };
+
     /**
-     * @brief Sum two time series.
+     * @brief Apply a binary operator to two time series.
      * 
      * Note that non-overlapping time points are all maintained.  
      * 
      * @param t2 other time series to add with this one. 
      * @return a new TimeSeries<T> object.
      */
-    inline TimeSeries<T> sum(const TimeSeries<T>& t2) const {
+    inline TimeSeries<T> apply(auto bin_op, const TimeSeries<T>& t2) const {
 
-        TimeSeries<T> res(*this); 
-        TimeType new_time;
-        ValType new_value;
+        auto res = TimeSeries<T>(this->time, this->value);
 
-        // if the time axes match, just add up the values and return
-        if (this->time == t2.time)
-        {
-            for (int i = 0; i < res.value.size(); ++i){
-                res.value.at(i) += t2.value.at(i);
-            }
-            return res;
-        }
-        // if they don't match
         int i = 0;
         for (const auto& t2_row_times : t2.time) {
-            const auto res_val = &res.value.at(i);
-            const auto t2_val = &t2_val;
+            auto& res_val = res.value.at(i);
+            auto& t2_val = t2.value.at(i);
             // if the time axes match, just add up the values and return
             if ((t2_row_times == res.time.at(i)).all()) {
-                res_val += t2_val;
+                std::transform(
+                    res_val.begin(), // lhs begin
+                    res_val.end(), // lhs end
+                    t2_val.begin(), // rhs begin
+                    res_val.begin(), // output begin
+                    bin_op // operator
+                );
             }
             else {
                 int j = 0;
@@ -207,7 +212,8 @@ struct TimeSeries
                     if (min_coeff == 0){
                         // find the location of the matching time and 
                         // add the value at that location to res.value
-                        res_val(idx) += t2_val(j); 
+                        // res_val(idx) += t2_val(j); 
+                        res_val(idx) = bin_op(res_val(idx), t2_val(j)); 
                     }
                     else{
                         // append the time point and value to res
@@ -220,7 +226,7 @@ struct TimeSeries
             }
             ++i; 
         }
-        return (*this); 
+        return res; 
     };
 
 

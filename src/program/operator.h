@@ -56,22 +56,25 @@ namespace util{
 template<NodeType NT, typename S, bool Fit, typename E=void> 
 struct Operator 
 {
+    /// @brief return type of the operator
+    using RetType = typename S::RetType;
+
     /**
     *   @brief set argument types to those of the signature unless:
     * 
-    *   a) the operator is unary and there are more than one arguments
-    *   b) the operator is binary and associative  
+    *   the operator is unary and there are more than one arguments;
+    *   and the operator is binary and associative ;
+    *   and the return type is an eigen array
     * 
     *   In the case of a) or b), arguments to the operator are stacked into an 
     *   array and the operator is applied to that array
     */
+    //todo: check if rettype is an eigen array
     using ArgTypes = conditional_t<
-        ((UnaryOp<NT> || NaryOp<NT>) && S::ArgCount > 1),
+        ((UnaryOp<NT> || NaryOp<NT>) && S::ArgCount > 1 && is_eigen_array_v<RetType>),
         Array<typename S::FirstArg::Scalar, -1, S::ArgCount>,
         typename S::ArgTypes>;
 
-    /// @brief return type of the operator
-    using RetType = typename S::RetType;
 
     /// @brief stores the argument count of the operator
     static constexpr size_t ArgCount = S::ArgCount;

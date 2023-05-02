@@ -99,14 +99,20 @@ https://eigen.tuxfamily.org/dox/group__QuickRefPage.html#arrayonly
     template<>
     struct Function<NodeType::Max>
     {
-        template<typename T1, typename T2, typename... Tn>
-        inline auto operator()(const T1& t1, const T2& t2, Tn... tn) { return fmax(t1, t2, tn ...); }
+        // template<typename T1, typename T2, typename... Tn>
+        // inline auto operator()(const T1& t1, const T2& t2, Tn... tn) { return fmax(t1, t2, tn ...); }
 
         template<typename T>
         inline auto operator()(const T& t) { return t.rowwise().maxCoeff(); }
 
         template<typename T>
         inline auto operator()(const TimeSeries<T>& t) { return t.max(); }
+
+        template<typename T, typename... Tn>
+        inline auto operator()(const TimeSeries<T>& t, const TimeSeries<Tn>& ... tn) 
+        { 
+            return (t.max(tn), ...);
+        }
     };
 
     /* mean */
@@ -180,6 +186,12 @@ https://eigen.tuxfamily.org/dox/group__QuickRefPage.html#arrayonly
 
         template<typename T>
         inline auto operator()(const TimeSeries<T>& t) { return t.sum(); } 
+
+        template<typename T, typename... Tn>
+        inline auto operator()(const TimeSeries<T>& t, const TimeSeries<Tn>& ... tn) 
+        { 
+            return (t.add(tn), ...);
+        }
     };
 
     template<>

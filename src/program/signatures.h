@@ -290,9 +290,24 @@ struct Signatures<N, enable_if_t<is_in_v<N,
 template<NodeType N>
 struct Signatures<N, enable_if_t<is_in_v<N, 
     NodeType::Sum,
+    NodeType::Max
+    >>>{ 
+        using unaryTuple = std::tuple<
+            Signature<ArrayXf(ArrayXXf)>,
+            Signature<ArrayXf(TimeSeriesf)>
+        >;
+
+        using naryTuple = NarySignatures_t<ArrayXf,ArrayXf,MAX_ARGS>;
+        using naryTuple2 = NarySignatures_t<TimeSeriesf,TimeSeriesf,MAX_ARGS>;
+
+        using type = decltype(std::tuple_cat(unaryTuple(), naryTuple(), naryTuple2()));
+    }; 
+// TODO: transfer these to the signature above after implementing the 
+// version that takes time series arguments
+template<NodeType N>
+struct Signatures<N, enable_if_t<is_in_v<N, 
     NodeType::Prod,
     NodeType::Min, 
-    NodeType::Max,
     NodeType::Mean,
     NodeType::Median
     >>>{ 
