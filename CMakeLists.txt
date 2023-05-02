@@ -141,7 +141,7 @@ endif()
 
 ########################################
 # Handle stuff for docs (Sphinx/Doxygen)
-option(DOCS "build docs" ON)
+option(DOCS "build docs" OFF)
 if (DOCS)
     message("set")
     set(CMAKE_MODULE_PATH "${PROJECT_SOURCE_DIR}/cmake" ${CMAKE_MODULE_PATH})
