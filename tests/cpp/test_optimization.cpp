@@ -6,6 +6,11 @@
 
 using testing::TestWithParam;
 
+// Hashes corresponding to a 3-ary Prod operator
+const std::size_t sig_hash      = 5617655905677279916;
+const std::size_t sig_dual_hash = 10188582206427064428;
+const std::size_t complete_hash = 1786662244046809282;
+
 class OptimizerTest 
     : public TestWithParam< std::tuple<string,json,std::function<bool(ArrayXf)>> > {
     /** @brief Texture used to create value-parameterized tests. Expects a tuple
@@ -322,9 +327,9 @@ INSTANTIATE_TEST_SUITE_P(OptimizerTestParameters, OptimizerTest,
                     // infer the node signature
                     {"arg_types"    ,{"ArrayF", "ArrayF", "ArrayF"}},
                     {"ret_type"     ,"ArrayF"},
-                    {"sig_hash"     ,5617655905677279916UZ },
-                    {"sig_dual_hash",10188582206427064428UZ},
-                    {"complete_hash",1786662244046809282UZ } },
+                    {"sig_hash"     ,sig_hash},
+                    {"sig_dual_hash",sig_dual_hash},
+                    {"complete_hash",complete_hash} },
                 { {"node_type","Terminal"}, {"feature","x1"}, {"is_weighted", true } },
                 { {"node_type","Terminal"}, {"feature","x2"}, {"is_weighted", false} },
                 { {"node_type","Terminal"}, {"feature","x3"}, {"is_weighted", false} }
@@ -350,9 +355,9 @@ INSTANTIATE_TEST_SUITE_P(OptimizerTestParameters, OptimizerTest,
                     // infer the node signature
                     {"arg_types"    ,{"ArrayF", "ArrayF", "ArrayF"}},
                     {"ret_type"     ,"ArrayF"},
-                    {"sig_hash"     ,5617655905677279916UZ },
-                    {"sig_dual_hash",10188582206427064428UZ},
-                    {"complete_hash",1786662244046809282UZ } },
+                    {"sig_hash"     ,sig_hash},
+                    {"sig_dual_hash",sig_dual_hash},
+                    {"complete_hash",complete_hash} },
                 { {"node_type","Terminal"}, {"feature","x1"}, {"is_weighted", false} },
                 { {"node_type","Terminal"}, {"feature","x2"}, {"is_weighted", false} },
                 { {"node_type","Terminal"}, {"feature","x3"}, {"is_weighted", false} }
