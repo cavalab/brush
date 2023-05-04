@@ -421,7 +421,7 @@ template<PT PType> struct Program
      * @brief convenience wrapper for :cpp:func:`variation:cross` in variation.h
      * 
      * @param other another program to cross with this one. 
-     * @return a mutated version of this and the other program
+     * @return a new version of this and the other program
      */
     Program<PType> cross(Program<PType> other) const;
 
