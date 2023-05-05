@@ -191,7 +191,7 @@ Program<T> cross(const Program<T>& root, const Program<T>& other)
         auto allowed_size  = PARAMS["max_size"].get<int>() -
                              ( child.Tree.size() - child.Tree.size(child_spot) );
         auto allowed_depth = PARAMS["max_depth"].get<int>() - 
-                             ( child.Tree.max_depth() - child.Tree.depth(child_spot) );
+                             ( child.Tree.depth(child_spot) );
 
         // pick a subtree to insert. Selection is based on other_weights
         vector<float> other_weights(other.Tree.size());
@@ -202,7 +202,7 @@ Program<T> cross(const Program<T>& root, const Program<T>& other)
         // lambda function to check feasibility of solution and increment the iterator 
         const auto check_and_incrm = [other, &other_iter, allowed_size, allowed_depth]() -> bool {
             int s = other.Tree.size(other_iter);
-            int d = other.Tree.depth(other_iter);
+            int d = other.Tree.max_depth(other_iter);
 
             std::advance(other_iter, 1);
             return (s <= allowed_size) && (d <= allowed_depth);
