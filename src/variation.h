@@ -31,6 +31,8 @@ typedef tree<Node>::pre_order_iterator Iter;
 inline void point_mutation(tree<Node>& Tree, Iter spot, const SearchSpace& SS)
 {
     // cout << "point mutation\n";
+
+    // get_node_like will sample a similar node based on node_weights or terminal_weights
     auto newNode = SS.get_node_like(spot.node->data); 
     Tree.replace(spot, newNode);
 }
@@ -41,15 +43,13 @@ inline void insert_mutation(tree<Node>& Tree, Iter spot, const SearchSpace& SS)
     // cout << "insert mutation\n";
     auto spot_type = spot.node->data.ret_type;
     
-    // pick a compatible random node to insert. We subtract one to count
-    // the op node that is already being inserted.
+    // pick a random compatible node to insert (with probabilities given by
+    // anode_weights). The -1 represents the node being inserted.
     auto n = SS.get_op_with_arg(spot_type, spot_type, true,
                                 PARAMS["max_size"].get<int>()-Tree.size()-1); 
 
     // make node n wrap the subtree at the chosen spot
     auto parent_node = Tree.wrap(spot, n);
-
-    // GUI TODO: spot_filled should be any random spot with same type
 
     // now fill the arguments of n appropriately
     bool spot_filled = false;
@@ -73,6 +73,8 @@ inline void insert_mutation(tree<Node>& Tree, Iter spot, const SearchSpace& SS)
 inline void delete_mutation(tree<Node>& Tree, Iter spot, const SearchSpace& SS)
 {
     // cout << "delete mutation\n";
+
+    // get_terminal will sample based on terminal_weights
     auto terminal = SS.get_terminal(spot.node->data.ret_type); 
     Tree.erase_children(spot); 
     Tree.replace(spot, terminal);
@@ -95,7 +97,16 @@ inline void toggle_weight_mutation(tree<Node>& Tree, Iter spot, const SearchSpac
  *  - point mutation changes a single node. 
  *  - insertion mutation inserts a node as the parent of an existing node, and fills in the other arguments. 
  *  - deletion mutation deletes a node
- *  - toggle_weight mutation turns a node's weight on or off. 
+ *  - toggle_weight mutation turns a node's weight on or off.
+ * 
+ * Every mutation has a probability of occur based on global parameters. The
+ * place where the mutation will take place is sampled based on attribute 
+ * `get_prob_change` of each node in the tree. Inside each type of mutation, 
+ * when a new node is inserted, it is sampled based on `terminal_weights`.
+ * 
+ * By default, all probability distributions are uniform, but they can be
+ * dynamically optimized based on a Multi-Armed Bandit.
+ * 
  * @tparam T program type
  * @param parent the program to be mutated
  * @param SS a search space
@@ -120,8 +131,8 @@ Program<T> mutate(const Program<T>& parent, const SearchSpace& SS)
 
     // Setting to zero the weight of variations that increase the expression
     // if the expression is already at the maximum size or depth
-    if (child.Tree.size()+1      >= PARAMS["max_size"].get<int>()
-    ||  child.Tree.max_depth()+1 >= PARAMS["max_depth"].get<int>())
+    if (child.Tree.size()+1 >= PARAMS["max_size"].get<int>()
+    ||  child.Tree.depth(spot)+child.Tree.max_depth(spot)+1 >= PARAMS["max_depth"].get<int>())
     {
         // avoid using mutations that increase size/depth 
         options["insert"] = 0.0;
@@ -166,7 +177,6 @@ Program<T> cross(const Program<T>& root, const Program<T>& other)
                     [](const auto& n){ return n.get_prob_change(); }
                     );
     
-    // GUI TODO: Keep doing random attempts, or test all possilities?
     bool matching_spots_found = false;
     for (int tries = 0; tries < 3; ++tries)
     {
