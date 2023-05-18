@@ -88,8 +88,13 @@ class BrushEstimator(BaseEstimator):
         """Setup the deap toolbox"""
         toolbox: base.Toolbox = base.Toolbox()
 
-        # minimize MAE, minimize size
-        creator.create("FitnessMulti", base.Fitness, weights=(-1.0,-1.0))
+        # creator.create is used to "create new functions", and takes at least
+        # 2 arguments: the name of the newly created class and a base class
+
+        # minimize MAE, minimize size. When solving multi-objective problems,
+        # selection and survival must support this feature. This means that 
+        # these selection operators must accept a tuple of fitnesses as argument)
+        creator.create("FitnessMulti", base.Fitness, weights=(-1.0,-0.5))
 
         # create Individual class, inheriting from self.Individual with a fitness attribute
         creator.create("Individual", DeapIndividual, fitness=creator.FitnessMulti)  
@@ -151,7 +156,9 @@ class BrushEstimator(BaseEstimator):
         self.archive_ = archive
         self.best_estimator_ = self.archive_[0].prg
 
-        print('best model:',self.best_estimator_.get_model())
+        if self.verbosity > 0:             
+            print('best model:',self.best_estimator_.get_model())
+
         return self
     
     def _make_data(self, X, y=None):

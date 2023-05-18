@@ -377,11 +377,11 @@ struct SearchSpace
     /// @param ret return type
     /// @param arg argument type to match
     /// @param terminal_compatible if true, the other args the returned operator takes must exist in the terminal types. 
-    /// @param max_arg_count if zero, there is no limit on number of arguments of the operator. If not, the operator can have at most `max_arg_count` arguments. 
+    /// @param max_args if zero, there is no limit on number of arguments of the operator. If not, the operator can have at most `max_args` arguments. 
     /// @return a matching operator. 
     Node get_op_with_arg(DataType ret, DataType arg, 
                               bool terminal_compatible=true,
-                              int max_arg_count=0) const
+                              int max_arg=0) const
     {
         // thoughts (TODO):
         //  this could be templated by return type and arg. although the lookup in the map should be
@@ -391,18 +391,15 @@ struct SearchSpace
         check(ret);
 
         auto args_map = node_map.at(ret);
-        vector<Node> matches;
+        vector<Node>  matches;
         vector<float> weights; 
+        vector<bool>  invalids;
 
         for (const auto& [args_type, name_map]: args_map) {
             for (const auto& [name, node]: name_map) {
                 auto node_arg_types = node.get_arg_types();
                 
-                // has no size limit (max_arg_count==0) or the number of
-                // arguments woudn't exceed the maximum number of arguments
-                auto within_size_limit = !(max_arg_count) || (node.get_arg_count() <= max_arg_count);
-
-                if ( in(node_arg_types, arg) && within_size_limit ) {
+                if ( in(node_arg_types, arg) ) {
                     // if checking terminal compatibility, make sure there's
                     // a compatible terminal for the node's other arguments
                     if (terminal_compatible) {
@@ -421,9 +418,26 @@ struct SearchSpace
                     // if we made it this far, include the node as a match!
                     matches.push_back(node);
                     weights.push_back(node_weights.at(ret).at(args_type).at(name));
+    
+                    // saving for future checking
+                    // has no size limit (max_arg is 0) or the number of
+                    // arguments woudn't exceed the maximum number of arguments
+                    invalids.push_back(!(max_arg) || (node.get_arg_count() <= max_arg));
                 }
             }
         }
+
+        // If one or more nodes are respecting the size limit, we'll focus only
+        // on them. We do that by setting the probabilities of invalid nodes
+        // to zero. If all of them are invalid, we relax size restriction (
+        // we ignore it) to avoid selecting over an empty collection.
+        if (std::find(invalids.begin(), invalids.end(), false) != invalids.end()) {
+            std::transform(weights.begin(), weights.end(),
+                           invalids.begin(), weights.begin(),
+                          [](int weight, bool invalid) {
+                              return invalid ? 0.0 : weight;
+                          });
+        } 
 
         return (*r.select_randomly(matches.begin(), matches.end(), 
                                    weights.begin(), weights.end()));

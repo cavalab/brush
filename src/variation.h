@@ -44,7 +44,12 @@ inline void insert_mutation(tree<Node>& Tree, Iter spot, const SearchSpace& SS)
     auto spot_type = spot.node->data.ret_type;
     
     // pick a random compatible node to insert (with probabilities given by
-    // anode_weights). The -1 represents the node being inserted.
+    // node_weights). The `-1` represents the node being inserted.
+    // Ideally, it should always find at least one match (the same node
+    // used as a reference when calling the function). However, we have a 
+    // size restriction, which will be relaxed here (just as it is in the PTC2
+    // algorithm). This mutation can create a new expression that exceeds the
+    // maximum size by the highest arity among the operators.
     auto n = SS.get_op_with_arg(spot_type, spot_type, true,
                                 PARAMS["max_size"].get<int>()-Tree.size()-1); 
 
