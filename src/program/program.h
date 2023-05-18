@@ -91,6 +91,10 @@ template<PT PType> struct Program
         return Tree.size();
     }
 
+    int depth(){
+        return Tree.max_depth();
+    }
+
     Program<PType>& fit(const Dataset& d)
     {
         TreeType out =  Tree.begin().node->fit<TreeType>(d);
