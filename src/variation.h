@@ -32,7 +32,7 @@ inline void point_mutation(tree<Node>& Tree, Iter spot, const SearchSpace& SS)
 {
     // cout << "point mutation\n";
 
-    // get_node_like will sample a similar node based on node_weights or terminal_weights
+    // get_node_like will sample a similar node based on node_map_weights or terminal_weights
     auto newNode = SS.get_node_like(spot.node->data); 
     Tree.replace(spot, newNode);
 }
@@ -44,7 +44,7 @@ inline void insert_mutation(tree<Node>& Tree, Iter spot, const SearchSpace& SS)
     auto spot_type = spot.node->data.ret_type;
     
     // pick a random compatible node to insert (with probabilities given by
-    // node_weights). The `-1` represents the node being inserted.
+    // node_map_weights). The `-1` represents the node being inserted.
     // Ideally, it should always find at least one match (the same node
     // used as a reference when calling the function). However, we have a 
     // size restriction, which will be relaxed here (just as it is in the PTC2

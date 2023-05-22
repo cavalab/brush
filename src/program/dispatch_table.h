@@ -216,7 +216,7 @@ extern DispatchTable<false> dtable_predict;
 //                         ArgsName[args_type],
 //                         node_type,
 //                         node,
-//                         SS.node_weights.at(ret_type).at(args_type).at(node_type)
+//                         SS.node_map_weights.at(ret_type).at(args_type).at(node_type)
 //                         );
 //             }
 //         }

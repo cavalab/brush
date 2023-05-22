@@ -49,7 +49,7 @@ def nsga2(toolbox, NGEN, MU, CXPB, verbosity):
 
             off1 = toolbox.mutate(ind1)
             off2 = toolbox.mutate(ind2)
-            # del ind1.fitness.values, ind2.fitness.values
+            
             offspring.extend([off1, off2])
 
         # archive.update(offspring)
