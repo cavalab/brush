@@ -154,6 +154,7 @@ class BrushEstimator(BaseEstimator):
 
         archive, logbook = nsga2(self.toolbox_, self.max_gen, self.pop_size, 0.9, self.verbosity)
         self.archive_ = archive
+        self.logbook_ = logbook
         self.best_estimator_ = self.archive_[0].prg
 
         if self.verbosity > 0:             
