@@ -32,9 +32,12 @@ inline void point_mutation(tree<Node>& Tree, Iter spot, const SearchSpace& SS)
 {
     // cout << "point mutation\n";
 
-    // get_node_like will sample a similar node based on node_map_weights or terminal_weights
-    auto newNode = SS.get_node_like(spot.node->data); 
-    Tree.replace(spot, newNode);
+    // get_node_like will sample a similar node based on node_map_weights or
+    // terminal_weights, and maybe will return a Node.
+    std::optional<Node> newNode = SS.get_node_like(spot.node->data);
+
+    if (newNode) // if optional contains a Node, we access its contained value
+        Tree.replace(spot, *newNode);
 }
 
 /// insert a node with spot as a child
@@ -50,15 +53,18 @@ inline void insert_mutation(tree<Node>& Tree, Iter spot, const SearchSpace& SS)
     // size restriction, which will be relaxed here (just as it is in the PTC2
     // algorithm). This mutation can create a new expression that exceeds the
     // maximum size by the highest arity among the operators.
-    auto n = SS.get_op_with_arg(spot_type, spot_type, true,
+    std::optional<Node> n = SS.get_op_with_arg(spot_type, spot_type, true,
                                 PARAMS["max_size"].get<int>()-Tree.size()-1); 
 
+    if (!n) // there is no operator with compatible arguments
+        return;
+
     // make node n wrap the subtree at the chosen spot
-    auto parent_node = Tree.wrap(spot, n);
+    auto parent_node = Tree.wrap(spot, *n);
 
     // now fill the arguments of n appropriately
     bool spot_filled = false;
-    for (auto a: n.arg_types)
+    for (auto a: (*n).arg_types)
     {
         if (spot_filled)
         {
@@ -81,6 +87,7 @@ inline void delete_mutation(tree<Node>& Tree, Iter spot, const SearchSpace& SS)
 
     // get_terminal will sample based on terminal_weights
     auto terminal = SS.get_terminal(spot.node->data.ret_type); 
+    
     Tree.erase_children(spot); 
     Tree.replace(spot, terminal);
 };

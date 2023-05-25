@@ -68,6 +68,11 @@ extern std::unordered_map<std::size_t, std::string> ArgsName;
     *  - assertion check to make sure there is at least one operator that 
     *      returns the output type of the model. 
     *
+    * When sampling in the search space, some methods can fail to return a 
+    * value --- given a specific set of parameters to a function, the candidate
+    * solutions set may be empty --- and, for these methods, the return type is
+    * either a valid value, or a `std::nullopt`. This is controlled wrapping
+    * the return type with `std::optional`.
     *
     * Parameters
     * ----------
@@ -379,7 +384,7 @@ struct SearchSpace
     /// @param terminal_compatible if true, the other args the returned operator takes must exist in the terminal types. 
     /// @param max_args if zero, there is no limit on number of arguments of the operator. If not, the operator can have at most `max_args` arguments. 
     /// @return a matching operator. 
-    Node get_op_with_arg(DataType ret, DataType arg, 
+    std::optional<Node> get_op_with_arg(DataType ret, DataType arg, 
                               bool terminal_compatible=true,
                               int max_arg=0) const
     {
@@ -446,7 +451,7 @@ struct SearchSpace
     /// @brief get a node with a signature matching `node`
     /// @param node the node to match
     /// @return a Node 
-    Node get_node_like(Node node) const
+    std::optional<Node> get_node_like(Node node) const
     {
         if (Is<NodeType::Terminal, NodeType::Constant>(node.node_type)){
             return get_terminal(node.ret_type);
