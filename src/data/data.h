@@ -123,11 +123,11 @@ class Dataset
             for (auto& [key, value] : this->features) 
             {
                 if (std::holds_alternative<ArrayXf>(value))
-                    fmt::print("{}: {}\n", key, std::get<ArrayXf>(value));
+                    fmt::print("{} <ArrayXf>: {}\n", key, std::get<ArrayXf>(value));
                 else if (std::holds_alternative<ArrayXi>(value))
-                    fmt::print("{}: {}\n", key, std::get<ArrayXi>(value));
+                    fmt::print("{} <ArrayXi>: {}\n", key, std::get<ArrayXi>(value));
                 else if (std::holds_alternative<ArrayXb>(value))
-                    fmt::print("{}: {}\n", key, std::get<ArrayXb>(value));
+                    fmt::print("{} <ArrayXb>: {}\n", key, std::get<ArrayXb>(value));
             }
 
         };
