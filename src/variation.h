@@ -260,5 +260,5 @@ Program<T> cross(const Program<T>& root, const Program<T>& other)
 
     return child;
 };
-} //namespace vary
+} //namespace variation
 #endif
