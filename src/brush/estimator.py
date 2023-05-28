@@ -123,8 +123,10 @@ class BrushEstimator(BaseEstimator):
 
     def _mutate(self, ind1):
         # offspring = (creator.Individual(ind1.prg.mutate(self.search_space_)),)
-        offspring = creator.Individual(ind1.prg.mutate())
-        return offspring
+        opt = ind1.prg.mutate()
+        if opt is not None:
+            return creator.Individual(opt)
+        return None
 
     def fit(self, X, y):
         """
