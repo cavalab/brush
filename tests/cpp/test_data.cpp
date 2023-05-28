@@ -51,9 +51,7 @@ TEST(Data, MixedVariableTypes)
                 d, s, PRG.get_model("compact", true)
             );
 
-            auto Child = PRG.mutate();
-            fmt::print("Child model: {}\n", Child.get_model("compact", true));
-
+            // visualizing detailed information for the model
             std::for_each(PRG.Tree.begin(), PRG.Tree.end(),
                   [](const auto& n) { 
                     fmt::print("Name {}, node {}, feature {}, sig_hash {}\n",
@@ -61,16 +59,30 @@ TEST(Data, MixedVariableTypes)
                    });
 
             std::cout << std::endl;
-            
+
+            fmt::print( "PRG fit\n");
             PRG.fit(dt);
             fmt::print( "PRG predict\n");
             ArrayXf y_pred = PRG.predict(dt);
             fmt::print( "y_pred: {}\n", y_pred);
 
-            Child.fit(dt);
-            fmt::print( "Child predict\n");
-            ArrayXf y_pred_child = Child.predict(dt);
-            fmt::print( "y_pred: {}\n", y_pred);
+            // creating and fitting a child
+            auto opt = PRG.mutate();
+
+            if (!opt){
+                fmt::print("Mutation failed to create a child\n");
+            }
+            else {
+                auto Child = opt.value();
+
+                fmt::print("Child model: {}\n", Child.get_model("compact", true));
+
+                fmt::print( "Child fit\n");
+                Child.fit(dt);
+                fmt::print( "Child predict\n");
+                ArrayXf y_pred_child = Child.predict(dt);
+                fmt::print( "y_pred: {}\n", y_pred);
+            }
         }
 
     // Brush exports two DispatchTable structs named dtable_fit and dtable_predict.
