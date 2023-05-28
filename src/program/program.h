@@ -419,7 +419,7 @@ template<PT PType> struct Program
 
     /// @brief convenience wrapper for :cpp:func:`variation:mutate()` in variation.h
     /// @return a mutated version of this program
-    Program<PType> mutate() const;
+    std::optional<Program<PType>> mutate() const;
 
     /**
      * @brief convenience wrapper for :cpp:func:`variation:cross` in variation.h
@@ -459,7 +459,7 @@ void Program<PType>::update_weights(const Dataset& d)
 // mutation and crossover
 #include "../variation.h"
 template<ProgramType PType>
-Program<PType> Program<PType>::mutate() const
+std::optional<Program<PType>> Program<PType>::mutate() const
 {
     return variation::mutate(*this, this->SSref.value().get());
 };

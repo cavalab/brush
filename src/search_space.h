@@ -388,6 +388,7 @@ struct SearchSpace
                               bool terminal_compatible=true,
                               int max_arg=0) const
     {
+        // TODO: take out the size limit here and add the return std::nullopt when it fails
         // thoughts (TODO):
         //  this could be templated by return type and arg. although the lookup in the map should be
         //  fairly fast. 

@@ -11,6 +11,8 @@ license: GNU/GPL v3
 // #include "program/tree_node.h"
 // #include "node.h"
 
+#include <map>
+
 // namespace Brush{
 
 // typedef tree<Node>::pre_order_iterator Iter; 
@@ -28,7 +30,7 @@ namespace variation {
 typedef tree<Node>::pre_order_iterator Iter; 
 
 /// point mutation: replace node with same typed node
-inline void point_mutation(tree<Node>& Tree, Iter spot, const SearchSpace& SS)
+inline bool point_mutation(tree<Node>& Tree, Iter spot, const SearchSpace& SS)
 {
     // cout << "point mutation\n";
 
@@ -36,12 +38,18 @@ inline void point_mutation(tree<Node>& Tree, Iter spot, const SearchSpace& SS)
     // terminal_weights, and maybe will return a Node.
     std::optional<Node> newNode = SS.get_node_like(spot.node->data);
 
-    if (newNode) // if optional contains a Node, we access its contained value
+    // if optional contains a Node, we access its contained value
+    if (newNode) {
         Tree.replace(spot, *newNode);
+        return true;
+    }
+
+    // in case mutation fails
+    return false;
 }
 
 /// insert a node with spot as a child
-inline void insert_mutation(tree<Node>& Tree, Iter spot, const SearchSpace& SS)
+inline bool insert_mutation(tree<Node>& Tree, Iter spot, const SearchSpace& SS)
 {
     // cout << "insert mutation\n";
     auto spot_type = spot.node->data.ret_type;
@@ -57,7 +65,7 @@ inline void insert_mutation(tree<Node>& Tree, Iter spot, const SearchSpace& SS)
                                 PARAMS["max_size"].get<int>()-Tree.size()-1); 
 
     if (!n) // there is no operator with compatible arguments
-        return;
+        return false;
 
     // make node n wrap the subtree at the chosen spot
     auto parent_node = Tree.wrap(spot, *n);
@@ -78,10 +86,12 @@ inline void insert_mutation(tree<Node>& Tree, Iter spot, const SearchSpace& SS)
         else
             Tree.insert(spot, SS.get_terminal(a));
     } 
+
+    return true;
 }
 
 /// delete subtree and replace it with a terminal of the same return type
-inline void delete_mutation(tree<Node>& Tree, Iter spot, const SearchSpace& SS)
+inline bool delete_mutation(tree<Node>& Tree, Iter spot, const SearchSpace& SS)
 {
     // cout << "delete mutation\n";
 
@@ -89,16 +99,22 @@ inline void delete_mutation(tree<Node>& Tree, Iter spot, const SearchSpace& SS)
     auto terminal = SS.get_terminal(spot.node->data.ret_type); 
     
     Tree.erase_children(spot); 
+
+    // TODO: this may fail. I need to return optional here as well
     Tree.replace(spot, terminal);
+
+    return true;
 };
 
 /// @brief toggle the node's weight on or off. 
 /// @param Tree the program tree
 /// @param spot an iterator to the node that is being mutated
 /// @param SS the search space (unused)
-inline void toggle_weight_mutation(tree<Node>& Tree, Iter spot, const SearchSpace& SS)
+inline bool toggle_weight_mutation(tree<Node>& Tree, Iter spot, const SearchSpace& SS)
 {
     spot.node->data.is_weighted = !spot.node->data.is_weighted;
+
+    return true;
 }
 
 /**
@@ -125,9 +141,11 @@ inline void toggle_weight_mutation(tree<Node>& Tree, Iter spot, const SearchSpac
  * @return `child`, the mutated program
  */
 template<ProgramType T>
-Program<T> mutate(const Program<T>& parent, const SearchSpace& SS)
+std::optional<Program<T>> mutate(const Program<T>& parent, const SearchSpace& SS)
 {
     Program<T> child(parent);
+
+    // TODO: update documentation
 
     // choose location by weighted sampling of program
     vector<float> weights(child.Tree.size());
@@ -141,32 +159,36 @@ Program<T> mutate(const Program<T>& parent, const SearchSpace& SS)
 
     auto options = PARAMS["mutation_options"].get<std::map<string,float>>();
 
-    // Setting to zero the weight of variations that increase the expression
-    // if the expression is already at the maximum size or depth
-    if (child.Tree.size()+1 >= PARAMS["max_size"].get<int>()
-    ||  child.Tree.depth(spot)+child.Tree.max_depth(spot)+1 >= PARAMS["max_depth"].get<int>())
-    {
-        // avoid using mutations that increase size/depth 
-        options["insert"] = 0.0;
-    }
-
     // choose a valid mutation option
     string choice = r.random_choice(options);
 
-    if (choice == "insert")
-        insert_mutation(child.Tree, spot, SS);
-    else if (choice == "delete")
-        delete_mutation(child.Tree, spot, SS);
-    else if (choice == "point") 
-        point_mutation(child.Tree, spot, SS);
-    else if (choice == "toggle_weight") 
-        toggle_weight_mutation(child.Tree, spot, SS);
-    else{
-        string msg = fmt::format("{} not a valid mutation choice", choice);
+    // Every mutation here works inplace, so they return bool instead of
+    // std::optional to indicare the result of their manipulation over the
+    // program tree. Here we call the mutation function and return the result
+    using MutationFunc = std::function<bool(tree<Node>&, Iter, const SearchSpace&)>;
+
+    std::map<std::string, MutationFunc> mutations{
+        {"insert",        insert_mutation},
+        {"delete",        delete_mutation},
+        {"point",         point_mutation},
+        {"toggle_weight", toggle_weight_mutation}
+    };
+
+    // Try to find the mutation function based on the choice
+    auto it = mutations.find(choice);
+    if (it == mutations.end()) {
+        std::string msg = fmt::format("{} not a valid mutation choice", choice);
         HANDLE_ERROR_THROW(msg);
     }
 
-    return child;
+    bool success = it->second(child.Tree, spot, SS);
+    if (success
+    && ((child.Tree.size() <= PARAMS["max_size"].get<int>())
+    &&  (child.Tree.max_depth() <= PARAMS["max_depth"].get<int>())) ){
+        return child;
+    } else {
+        return std::nullopt;
+    }
 };
 
 /// @brief swaps subtrees between root and other, returning new program 
