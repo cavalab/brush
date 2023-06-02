@@ -76,7 +76,8 @@ inline bool insert_mutation(tree<Node>& Tree, Iter spot, const SearchSpace& SS)
     {
         if (spot_filled)
         {
-            // if spot is in its child position, append children
+            // if spot is in its child position, append children.
+            // reminding that get_terminal may fail as well
             Tree.append_child(parent_node, SS.get_terminal(a));
         }
         // if types match, treat this spot as filled by the spot node 
@@ -159,6 +160,27 @@ std::optional<Program<T>> mutate(const Program<T>& parent, const SearchSpace& SS
 
     auto options = PARAMS["mutation_options"].get<std::map<string,float>>();
 
+    // these restrictions below increase the performance
+
+    // don't increase an expression already at its maximum size!!
+    // Setting to zero the weight of variations that increase the expression
+    // if the expression is already at the maximum size or depth
+    if (child.Tree.size()+1      >= PARAMS["max_size"].get<int>()
+    ||  child.Tree.max_depth()+1 >= PARAMS["max_depth"].get<int>())
+    {
+        // avoid using mutations that increase size/depth. New mutations that
+        // has similar behavior should be listed here.
+        options["insert"] = 0.0;
+    }
+
+    // don't shrink an expression already at its minimum size
+    if (child.Tree.size() <= 1 || child.Tree.max_depth() <= 1)
+    {
+        // avoid using mutations that decrease size/depth. New mutations that
+        // has similar behavior should be listed here.
+        options["delete"] = 0.0;
+    }
+
     // choose a valid mutation option
     string choice = r.random_choice(options);
 
@@ -183,7 +205,7 @@ std::optional<Program<T>> mutate(const Program<T>& parent, const SearchSpace& SS
 
     bool success = it->second(child.Tree, spot, SS);
     if (success
-    && ((child.Tree.size() <= PARAMS["max_size"].get<int>())
+    && ((child.Tree.size()      <= PARAMS["max_size"].get<int>())
     &&  (child.Tree.max_depth() <= PARAMS["max_depth"].get<int>())) ){
         return child;
     } else {

@@ -124,6 +124,9 @@ TEST(Operators, MutationSizeAndDepthLimit)
 
             auto opt = PRG.mutate();
 
+            // TODO: count the number of fails and assert that it is not equal to
+            // the number of mutations applied (there is no point in having mutation
+            // if it doesn't work)
             if (!opt){
                 fmt::print(
                     "=================================================\n"
