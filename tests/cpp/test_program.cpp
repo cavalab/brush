@@ -204,18 +204,12 @@ TEST(Operators, ProgramSizeAndDepthPARAMS)
                 PRG.get_model("compact", true), PRG.Tree.max_depth(), PRG.Tree.size()
             );
 
-            // There are two ways of assessing the size of a program
-            // GUI TODO: which style are we going to use? i) implement
-            // PRG.max_depth() (or PRG.depth()); or ii) get rid of PRG.size()
-            // and use always PRG.Tree.<>)
             ASSERT_TRUE(PRG.Tree.size() > 0);
             ASSERT_TRUE(PRG.Tree.size() <= s+max_arity);
 
             ASSERT_TRUE(PRG.size() > 0);
             ASSERT_TRUE(PRG.size() <= s+max_arity);
 
-            // GUI TODO: max_depth() counts the number of edges (so a program with
-            // one node has max_depth()==0). Is this how it should behave?
             ASSERT_TRUE(PRG.Tree.max_depth() >= 0);
             ASSERT_TRUE(PRG.Tree.max_depth() <= d+1);
         }

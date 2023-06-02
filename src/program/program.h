@@ -87,10 +87,12 @@ template<PT PType> struct Program
         SSref = std::optional<std::reference_wrapper<SearchSpace>>{s};
     }
 
+    /// @brief count the tree size of the program
     int size(){
         return Tree.size();
     }
 
+    /// @brief count the tree depth of the program
     int depth(){
         return Tree.max_depth();
     }
