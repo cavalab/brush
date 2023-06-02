@@ -15,7 +15,7 @@ def nsga2(toolbox, NGEN, MU, CXPB, verbosity):
     # stats.register("max", np.max, axis=0)
 
     logbook = tools.Logbook()
-    logbook.header = "gen", "evals", "ave", "std", "min" 
+    logbook.header = "gen", "evals", "offspring", "ave", "std", "min" 
 
     pop = toolbox.population(n=MU)
 
@@ -43,27 +43,16 @@ def nsga2(toolbox, NGEN, MU, CXPB, verbosity):
         # offspring = [toolbox.clone(ind) for ind in offspring]
         offspring = []
 
-        # Since crossover/mutation can fail, we'll cycle through the parents
-        # until we have an offspring big enough
-        index, num_attempts = 0, 0
-
-        # iterate over the array until a criterion is met
-        while num_attempts < len(parents) and len(offspring) < len(parents):
-            index1 = (index + 1) % len(parents)
-            index2 = (index + 2) % len(parents)
-
-            ind1, ind2 = parents[index1], parents[index2]
-
+        for ind1, ind2 in zip(parents[::2], parents[1::2]):
             if random.random() <= CXPB:
                 ind1, ind2 = toolbox.mate(ind1, ind2)
+                
+            off1 = toolbox.mutate(ind1)
+            off2 = toolbox.mutate(ind2)
 
-            if ind1 is not None: ind1 = toolbox.mutate(ind1)
-            if ind1 is not None: offspring.append(ind1)
-
-            if ind2 is not None: ind2 = toolbox.mutate(ind2)
-            if ind2 is not None: offspring.append(ind2)
-
-            index += 2
+            # avoid inserting empty solutions
+            if off1: offspring.extend([off1])
+            if off2: offspring.extend([off2])
 
         # archive.update(offspring)
         # Evaluate the individuals with an invalid fitness
@@ -75,7 +64,7 @@ def nsga2(toolbox, NGEN, MU, CXPB, verbosity):
         # Select the next generation population
         pop = toolbox.survive(pop + offspring, MU)
         record = stats.compile(pop)
-        logbook.record(gen=gen, evals=len(invalid_ind), **record)
+        logbook.record(gen=gen, evals=len(invalid_ind), offspring=len(offspring), **record)
         if verbosity > 0: 
             print(logbook.stream)
 

@@ -123,9 +123,11 @@ class BrushEstimator(BaseEstimator):
 
     def _mutate(self, ind1):
         # offspring = (creator.Individual(ind1.prg.mutate(self.search_space_)),)
-        opt = ind1.prg.mutate()
-        if opt is not None:
-            return creator.Individual(opt)
+        offspring = ind1.prg.mutate()
+        
+        if offspring:
+            return creator.Individual(offspring)
+        
         return None
 
     def fit(self, X, y):
@@ -279,7 +281,7 @@ class BrushRegressor(BrushEstimator, RegressorMixin):
     def _fitness_function(self, ind, data: _brush.Dataset):
         ind.prg.fit(data)
         return (
-            np.sum((data.y- ind.prg.predict(data))**2),
+            np.mean((data.y- ind.prg.predict(data))**2),
             ind.prg.size()
         )
 
