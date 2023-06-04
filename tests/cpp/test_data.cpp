@@ -53,10 +53,12 @@ TEST(Data, MixedVariableTypes)
 
             // visualizing detailed information for the model
             std::for_each(PRG.Tree.begin(), PRG.Tree.end(),
-                  [](const auto& n) { 
-                    fmt::print("Name {}, node {}, feature {}, sig_hash {}\n",
-                               n.name, n.node_type, n.get_feature(), n.sig_hash);
-                   });
+                [](const auto& n) { 
+                    fmt::print("Name {}, node {}, feature {}\n"
+                               "  sig_hash {}\n  ret_type {}\n  ret_type type {}\n",
+                               n.name, n.node_type, n.get_feature(),
+                               n.sig_hash, n.ret_type, typeid(n.ret_type).name());
+                });
 
             std::cout << std::endl;
 
