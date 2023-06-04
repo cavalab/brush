@@ -16,6 +16,7 @@ namespace util{
     /// @param weights option pointer to a weight array, used in place of node weight
     /// @return 
     template<typename T, typename Scalar, typename W> 
+        requires (!is_one_of_v<Scalar,bool, bJet>)
     Scalar get_weight(const TreeNode& tn, const W** weights=nullptr)
     { 
         Scalar w;
@@ -31,7 +32,7 @@ namespace util{
                 w = **weights;
             // NLS case 2: a Jet/Dual weight is stored in weights, but this constant is a 
             // integer type. We need to do some casting
-            else if constexpr (is_same_v<Scalar, iJet> && is_same_v<W, fJet>)  {
+            else if constexpr (is_same_v<Scalar, iJet> && is_same_v<W, fJet>) {
                 using WScalar = typename Scalar::Scalar;
                 WScalar tmp = WScalar((**weights).a);    
                 w = Scalar(tmp);
@@ -43,6 +44,16 @@ namespace util{
             
         }
         return w;
+    };
+    template<typename T, typename Scalar, typename W> 
+        requires (is_one_of_v<Scalar,bool, bJet>)
+    Scalar get_weight(const TreeNode& tn, const W** weights=nullptr)
+    {
+        // we cannot weight a boolean feature. Nevertheless, we need to provide
+        // an implementation for get_weight behavior, so the metaprogramming
+        // doesn't fail to get a matching signature.
+
+        return Scalar(true);
     };
 }
 ////////////////////////////////////////////////////////////////////////////////
@@ -199,7 +210,7 @@ struct Operator
         auto inputs = get_kids(d, tn, weights);
         if constexpr (is_one_of_v<Scalar,float,fJet>)
         {
-            if (tn.data.is_weighted)
+            if (tn.data.get_is_weighted())
             {
                 auto w = util::get_weight<RetType,Scalar,W>(tn, weights);
                 return this->apply(inputs)*w;
@@ -218,13 +229,14 @@ struct Operator<NodeType::Terminal, S, Fit>
     using RetType = typename S::RetType;
     using W = typename S::WeightType; 
 
+    // Standard C++ types
     template<typename T=RetType, typename Scalar=typename T::Scalar> 
         requires (is_one_of_v<Scalar,bool,int,float>)
     RetType eval(const Dataset& d, const TreeNode& tn, const W** weights=nullptr) const 
     { 
         if constexpr (is_one_of_v<Scalar,float,fJet>)
         {
-            if (tn.data.is_weighted)
+            if (tn.data.get_is_weighted())
             {
                 auto w = util::get_weight<RetType,Scalar,W>(tn, weights);
                 return this->get<RetType>(d, tn.data.get_feature())*w;
@@ -233,6 +245,7 @@ struct Operator<NodeType::Terminal, S, Fit>
         return this->get<RetType>(d,tn.data.get_feature());
     };
 
+    // Jet types
     template <typename T = RetType, typename Scalar=typename T::Scalar>
         requires( is_one_of_v<Scalar, bJet, iJet, fJet>)
     RetType eval(const Dataset &d, const TreeNode &tn, const W **weights = nullptr) const
@@ -240,7 +253,7 @@ struct Operator<NodeType::Terminal, S, Fit>
         using nonJetType = UnJetify_t<RetType>; 
         if constexpr (is_one_of_v<Scalar,float,fJet>)
         {
-            if (tn.data.is_weighted)
+            if (tn.data.get_is_weighted())
             {
                 auto w = util::get_weight<RetType,Scalar,W>(tn, weights);
                 return this->get<nonJetType>(d, tn.data.get_feature()).template cast<Scalar>()*w;
@@ -249,6 +262,7 @@ struct Operator<NodeType::Terminal, S, Fit>
         return this->get<nonJetType>(d, tn.data.get_feature()).template cast<Scalar>();
     };
 
+    // Accessing dataset directly
     template<typename T>
     auto get(const Dataset& d, const string& feature) const
     {
@@ -261,7 +275,6 @@ struct Operator<NodeType::Terminal, S, Fit>
         ));
 
         return T(); 
-
     }
 };
 

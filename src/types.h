@@ -179,6 +179,12 @@ template<> struct DataEnumType<DT::MatrixF>{ using type = ArrayXXf; };
 template<> struct DataEnumType<DT::TimeSeriesB>{ using type = Data::TimeSeriesb; };
 template<> struct DataEnumType<DT::TimeSeriesI>{ using type = Data::TimeSeriesi; }; 
 template<> struct DataEnumType<DT::TimeSeriesF>{ using type = Data::TimeSeriesf; };
+template<> struct DataEnumType<DT::ArrayBJet>{ using type = ArrayXbJet; };
+template<> struct DataEnumType<DT::ArrayIJet>{ using type = ArrayXiJet; };
+template<> struct DataEnumType<DT::ArrayFJet>{ using type = ArrayXfJet; };
+template<> struct DataEnumType<DT::MatrixBJet>{ using type = ArrayXXbJet; };
+template<> struct DataEnumType<DT::MatrixIJet>{ using type = ArrayXXiJet; };
+template<> struct DataEnumType<DT::MatrixFJet>{ using type = ArrayXXfJet; };
 
 template<typename T> struct DataTypeEnum;
 template <> struct DataTypeEnum<ArrayXb> { static constexpr DT value = DT::ArrayB; };

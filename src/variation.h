@@ -113,7 +113,7 @@ inline bool delete_mutation(tree<Node>& Tree, Iter spot, const SearchSpace& SS)
 /// @param SS the search space (unused)
 inline bool toggle_weight_mutation(tree<Node>& Tree, Iter spot, const SearchSpace& SS)
 {
-    spot.node->data.is_weighted = !spot.node->data.is_weighted;
+    spot.node->data.set_is_weighted(!spot.node->data.get_is_weighted());
 
     return true;
 }

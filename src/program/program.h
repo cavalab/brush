@@ -221,7 +221,7 @@ template<PT PType> struct Program
         for (PostIter i = Tree.begin_post(); i != Tree.end_post(); ++i)
         {
             const auto& node = i.node->data; 
-            if (node.is_weighted)
+            if (node.get_is_weighted())
                 ++count;
         }
         return count;
@@ -239,7 +239,7 @@ template<PT PType> struct Program
         for (PostIter t = Tree.begin_post(); t != Tree.end_post(); ++t)
         {
             const auto& node = t.node->data; 
-            if (node.is_weighted)
+            if (node.get_is_weighted())
             {
                 weights(i) = node.W;
                 ++i;
@@ -264,7 +264,7 @@ template<PT PType> struct Program
         for (PostIter i = Tree.begin_post(); i != Tree.end_post(); ++i)
         {
             auto& node = i.node->data; 
-            if (node.is_weighted)
+            if (node.get_is_weighted())
             {
                 node.W = weights(j);
                 ++j;
@@ -333,7 +333,7 @@ template<PT PType> struct Program
 
             // if the first node is weighted, make a dummy output node so that the 
             // first node's weight can be shown
-            if (i==0 && parent->data.is_weighted)
+            if (i==0 && parent->data.get_is_weighted())
             {
                 out += "y [shape=box];\n";
                 out += fmt::format("y -> \"{}\" [label=\"{:.2f}\"];\n", 
@@ -366,7 +366,7 @@ template<PT PType> struct Program
                 // string kid_id = fmt::format("{}",fmt::ptr(kid));
                 // kid_id = kid_id.substr(2);
 
-                if (kid->data.is_weighted && Isnt<NodeType::Constant>(kid->data.node_type)){
+                if (kid->data.get_is_weighted() && Isnt<NodeType::Constant>(kid->data.node_type)){
                     edge_label = fmt::format("{:.2f}",kid->data.W);
                 }
 
