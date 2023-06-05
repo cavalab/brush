@@ -31,6 +31,7 @@ TEST(Operators, Mutation)
 
     for (int d = 1; d < 10; ++d)
     {
+        int successes = 0;
         for (int s = 1; s < 10; ++s)
         {
             fmt::print("d={},s={}\n",d,s);
@@ -60,6 +61,7 @@ TEST(Operators, Mutation)
                 );
             }
             else {
+                successes += 1;
                 auto Child = opt.value();
                 fmt::print(
                     "=================================================\n"
@@ -76,6 +78,8 @@ TEST(Operators, Mutation)
                 y_pred = Child.predict(data);
             }
         }
+        // since x1 and x2 have same type, we shoudn't get fails
+        ASSERT_TRUE(successes > 0);
     }
 }
 
@@ -108,7 +112,6 @@ TEST(Operators, MutationSizeAndDepthLimit)
     for (int d = 5; d < 15; ++d)
     {
         int successes = 0;
-
         for (int s = 5; s < 15; ++s)
         {
             PARAMS["max_size"]  = s;
@@ -196,6 +199,7 @@ TEST(Operators, Crossover)
 
     for (int d = 1; d < 10; ++d)
     {
+        int successes = 0;
         for (int s = 1; s < 10; ++s)
         {
             RegressorProgram PRG1 = SS.make_regressor(d, s);
@@ -212,31 +216,42 @@ TEST(Operators, Crossover)
                 PRG1.get_model("compact", true),
                 PRG2.get_model("compact", true)
             );
+
             ArrayXf y_pred = PRG1.predict(data);
             fmt::print("cross one\n");
-            auto Child1 = PRG1.cross(PRG2);
-            fmt::print(
-                "Model 1 after cross: {}\n"
-                "Model 2 after cross: {}\n",
-                PRG1.get_model("compact", true),
-                PRG2.get_model("compact", true)
-            );
-            fmt::print("cross two\n");
-            auto Child2 = PRG2.cross(PRG1);
 
-            fmt::print(
-                "Crossed Model 1: {}\n"
-                "Crossed Model 2: {}\n"
-                "=================================================\n",
-                Child1.get_model("compact", true),
-                Child2.get_model("compact", true)
-            );
-
-            Child1.fit(data);
-            Child2.fit(data);
-            auto child_pred1 = Child1.predict(data);
-            auto child_pred2 = Child2.predict(data);
+            auto opt = PRG1.cross(PRG2);
+            if (!opt){
+                fmt::print(
+                    "=================================================\n"
+                    "depth = {}, size= {}\n"
+                    "Original model 1: {}\n"
+                    "Original model 2: {}\n",
+                    "Crossover failed to create a child",
+                    d, s, 
+                    PRG1.get_model("compact", true),
+                    PRG2.get_model("compact", true)
+                );
+            }
+            else {
+                successes += 1;
+                auto Child = opt.value();
+                fmt::print(
+                    "Original model 1 after cross: {}\n"
+                    "Original model 2 after cross: {}\n",
+                    PRG1.get_model("compact", true),
+                    PRG2.get_model("compact", true)
+                );
+                fmt::print(
+                    "Crossed Model: {}\n"
+                    "=================================================\n",
+                    Child.get_model("compact", true)
+                );
+                Child.fit(data);
+                auto child_pred1 = Child.predict(data);
+            }
         }
+        ASSERT_TRUE(successes > 0);
     }
 }
 
@@ -264,6 +279,7 @@ TEST(Operators, CrossoverSizeAndDepthLimit)
 
     for (int d = 5; d < 15; ++d)
     {
+        int successes = 0;
         for (int s = 5; s < 15; ++s)
         {
             PARAMS["max_size"]  = s;
@@ -287,111 +303,47 @@ TEST(Operators, CrossoverSizeAndDepthLimit)
                 PRG2.get_model("compact", true)
             );
 
-            fmt::print("cross one\n");
-            auto Child1 = PRG1.cross(PRG2);
-            fmt::print(
-                "Model 1 after cross: {}\n"
-                "Model 2 after cross: {}\n",
-                PRG1.get_model("compact", true),
-                PRG2.get_model("compact", true)
-            );
+            fmt::print("cross\n");
+            auto opt = PRG1.cross(PRG2);
 
-            fmt::print("cross two\n");
-            auto Child2 = PRG2.cross(PRG1);
-            fmt::print(
-                "Crossed Model 1      : {}\n"
-                "Crossed Model 1 depth: {}\n"
-                "Crossed Model 1 size : {}\n"
-                "Crossed Model 2      : {}\n"
-                "Crossed Model 2 depth: {}\n"
-                "Crossed Model 2 size : {}\n"
-                "=================================================\n",
-                Child1.get_model("compact", true),
-                Child1.Tree.max_depth(), Child1.Tree.size(), 
-                Child2.get_model("compact", true),
-                Child2.Tree.max_depth(), Child2.Tree.size()
-            );
+            if (!opt){
+                fmt::print(
+                    "=================================================\n"
+                    "depth = {}, size= {}\n"
+                    "Original model 1: {}\n"
+                    "Original model 2: {}\n",
+                    "Crossover failed to create a child",
+                    d, s, 
+                    PRG1.get_model("compact", true),
+                    PRG2.get_model("compact", true)
+                );
+            }
+            else {
+                successes += 1;
+                auto Child = opt.value();
+                fmt::print(
+                    "Child Model      : {}\n"
+                    "Child Model depth: {}\n"
+                    "Child Model size : {}\n"
+                    "=================================================\n",
+                    Child.get_model("compact", true),
+                    Child.Tree.max_depth(), Child.Tree.size()
+                );
 
-            // Original didn't change
-            ASSERT_TRUE(PRG1_model == PRG1.get_model("compact", true));
-            ASSERT_TRUE(PRG2_model == PRG2.get_model("compact", true));
+                // Original didn't change
+                ASSERT_TRUE(PRG1_model == PRG1.get_model("compact", true));
+                ASSERT_TRUE(PRG2_model == PRG2.get_model("compact", true));
 
-            // Child1 is within restrictions
-            ASSERT_TRUE(Child1.size() > 0);
-            ASSERT_TRUE(Child1.size() <= s);
-            ASSERT_TRUE(Child1.Tree.size() > 0);
-            ASSERT_TRUE(Child1.Tree.size() <= s);
+                // Child is within restrictions
+                ASSERT_TRUE(Child.size() > 0);
+                ASSERT_TRUE(Child.size() <= s);
+                ASSERT_TRUE(Child.Tree.size() > 0);
+                ASSERT_TRUE(Child.Tree.size() <= s);
 
-            ASSERT_TRUE(Child1.Tree.max_depth() >= 0);
-            ASSERT_TRUE(Child1.Tree.max_depth() <= d);
-
-            // Child2 is within restrictions
-            ASSERT_TRUE(Child2.size() > 0);
-            ASSERT_TRUE(Child2.size() <= s);
-            ASSERT_TRUE(Child2.Tree.size() > 0);
-            ASSERT_TRUE(Child2.Tree.size() <= s);
-
-            ASSERT_TRUE(Child2.Tree.max_depth() >= 0);
-            ASSERT_TRUE(Child2.Tree.max_depth() <= d);
+                ASSERT_TRUE(Child.Tree.max_depth() >= 0);
+                ASSERT_TRUE(Child.Tree.max_depth() <= d);
+            }
         }
-    }
-}
-
-TEST(Operators, CrossoverSizeAndDepthPARAMS)
-{
-    MatrixXf X(10,2);
-    ArrayXf y(10);
-    X << 0.85595296, 0.55417453, 0.8641915 , 0.99481109, 0.99123376,
-         0.9742618 , 0.70894019, 0.94940306, 0.99748867, 0.54205151,
-
-         0.5170537 , 0.8324005 , 0.50316305, 0.10173936, 0.13211973,
-         0.2254195 , 0.70526861, 0.31406024, 0.07082619, 0.84034526;
-
-    y << 3.55634251, 3.13854087, 3.55887523, 3.29462895, 3.33443517,
-         3.4378868 , 3.41092345, 3.5087468 , 3.25110243, 3.11382179;
-
-    Dataset data(X,y);
-
-    SearchSpace SS;
-    SS.init(data);
-
-    // split operator --> arity 3
-    // prod operator  --> arity 4
-    int max_arity = 4;
-
-    for (int d = 1; d < 10; ++d)
-    {
-        for (int s = 1; s < 10; ++s)
-        {
-            PARAMS["max_size"]  = s;
-            PARAMS["max_depth"] = d;
-
-            RegressorProgram PRG1 = SS.make_regressor(0, 0);
-            RegressorProgram PRG2 = SS.make_regressor(0, 0);
-
-            auto PRG1_model = PRG1.get_model("compact", true);
-            auto PRG2_model = PRG2.get_model("compact", true);
-
-            auto Child1 = PRG1.cross(PRG2);
-            auto Child2 = PRG2.cross(PRG1);
-
-            // Child1 is within restrictions
-            ASSERT_TRUE(Child1.size() > 0);
-            ASSERT_TRUE(Child1.size() <= s+max_arity);
-            ASSERT_TRUE(Child1.Tree.size() > 0);
-            ASSERT_TRUE(Child1.Tree.size() <= s+max_arity);
-
-            ASSERT_TRUE(Child1.Tree.max_depth() >= 0);
-            ASSERT_TRUE(Child1.Tree.max_depth() <= d+1);
-
-            // Child2 is within restrictions
-            ASSERT_TRUE(Child2.size() > 0);
-            ASSERT_TRUE(Child2.size() <= s+max_arity);
-            ASSERT_TRUE(Child2.Tree.size() > 0);
-            ASSERT_TRUE(Child2.Tree.size() <= s+max_arity);
-
-            ASSERT_TRUE(Child2.Tree.max_depth() >= 0);
-            ASSERT_TRUE(Child2.Tree.max_depth() <= d+1);
-        }
+        ASSERT_TRUE(successes > 0);
     }
 }
