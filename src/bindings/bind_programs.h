@@ -48,7 +48,8 @@ void bind_program(py::module& m, string name)
         .def("size", &T::size)
         .def("depth", &T::depth)
         .def("cross", &T::cross)
-        .def("mutate", &T::mutate) // static_cast<T &(T::*)()>(&T::mutate))
+        .def("mutate", &T::mutate, py::return_value_policy::automatic,
+             "Performs one attempt to stochastically mutate the program and generate a child")
         .def("set_search_space", &T::set_search_space)
         .def(py::pickle(
             [](const T &p) { // __getstate__

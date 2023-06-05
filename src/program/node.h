@@ -39,6 +39,28 @@ using Brush::Data::Dataset;
 
 namespace Brush{
 
+// should I move this declaration to another place?
+template <DataType... T>
+inline auto Isnt(DataType dt) -> bool { return !((dt == T) || ...); }
+
+template<DataType DT>
+inline auto IsWeighable() noexcept -> bool { 
+        return Isnt<DataType::ArrayB,
+                    DataType::MatrixB,
+                    DataType::TimeSeriesB,
+                    DataType::ArrayBJet,
+                    DataType::MatrixBJet
+                    >(DT);                
+}
+inline auto IsWeighable(DataType dt) noexcept -> bool { 
+        return Isnt<DataType::ArrayB,
+                    DataType::MatrixB,
+                    DataType::TimeSeriesB,
+                    DataType::ArrayBJet,
+                    DataType::MatrixBJet
+                    >(dt);                
+}
+
 struct uint32_vector_hasher {
     std::size_t operator()(std::vector<uint32_t> const& vec) const {
       std::size_t seed = vec.size();
@@ -137,6 +159,9 @@ struct Node {
         set_prob_change(1.0);
         fixed=false;
 
+        // cant weight an boolean terminal
+        if (!IsWeighable(this->ret_type)) 
+            this->is_weighted = false;
     }
 
     /// @brief gets a string version of the node for printing.
@@ -219,13 +244,22 @@ struct Node {
     inline void set_feature(string f){ feature = f; };
     inline string get_feature() const { return feature; };
 
+    // TODO: use this in every occurence of is_weighted
+    inline bool get_is_weighted() const {return this->is_weighted;};
+    inline void set_is_weighted(bool is_weighted){
+
+        // cant change the weight of a boolean terminal
+        if (IsWeighable(this->ret_type)) 
+            this->is_weighted = is_weighted;
+    };
+
     private:
 
         /// @brief feature name for terminals or splitting nodes
         string feature; 
 };
 
-//TODO: add nt to template as first argument, make these constexpr
+//TODO GUI: add nt to template as first argument, make these constexpr
 template <NodeType... T>
 inline auto Is(NodeType nt) -> bool { return ((nt == T) || ...); }
 
@@ -278,6 +312,7 @@ inline auto IsWeighable(NodeType nt) noexcept -> bool {
                     NodeType::SplitBest 
                     >(nt);                
 }
+
 ostream& operator<<(ostream& os, const Node& n);
 ostream& operator<<(ostream& os, const NodeType& nt);
 

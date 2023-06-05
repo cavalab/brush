@@ -68,6 +68,11 @@ extern std::unordered_map<std::size_t, std::string> ArgsName;
     *  - assertion check to make sure there is at least one operator that 
     *      returns the output type of the model. 
     *
+    * When sampling in the search space, some methods can fail to return a 
+    * value --- given a specific set of parameters to a function, the candidate
+    * solutions set may be empty --- and, for these methods, the return type is
+    * either a valid value, or a `std::nullopt`. This is controlled wrapping
+    * the return type with `std::optional`.
     *
     * Parameters
     * ----------
@@ -93,7 +98,7 @@ struct SearchSpace
     Map<Node> node_map;
 
     /// @brief A map of weights corresponding to elements in @ref node_map, used to weight probabilities of each node being sampled from the map. 
-    Map<float> node_weights; 
+    Map<float> node_map_weights; 
 
     /**
      * @brief Maps return types to terminals. 
@@ -117,7 +122,7 @@ struct SearchSpace
 
     NLOHMANN_DEFINE_TYPE_INTRUSIVE(SearchSpace, 
         node_map,
-        node_weights,
+        node_map_weights,
         terminal_map,
         terminal_weights,
         terminal_types
@@ -261,7 +266,7 @@ struct SearchSpace
             if (node_type_map.find(type) != node_type_map.end())
             {
                 matches.push_back(node_type_map.at(type));
-                weights.push_back(node_weights.at(R).at(arg_hash).at(type));
+                weights.push_back(node_map_weights.at(R).at(arg_hash).at(type));
             }
         }
 
@@ -303,7 +308,7 @@ struct SearchSpace
     vector<float> get_weights() const
     {
         vector<float> v;
-        for (auto& [ret, arg_w_map]: node_weights) 
+        for (auto& [ret, arg_w_map]: node_map_weights) 
         {
             v.push_back(0);
             for (const auto& [arg, name_map] : arg_w_map)
@@ -324,7 +329,7 @@ struct SearchSpace
     vector<float> get_weights(DataType ret) const
     {
         vector<float> v;
-        for (const auto& [arg, name_map] : node_weights.at(ret))
+        for (const auto& [arg, name_map] : node_map_weights.at(ret))
         {
             v.push_back(0);
             for (const auto& [name, w]: name_map)
@@ -343,7 +348,7 @@ struct SearchSpace
     vector<float> get_weights(DataType ret, ArgsHash sig_hash) const
     {
         vector<float> v;
-        for (const auto& [name, w]: node_weights.at(ret).at(sig_hash))
+        for (const auto& [name, w]: node_map_weights.at(ret).at(sig_hash))
             v.push_back(w); 
 
         return v;
@@ -379,10 +384,11 @@ struct SearchSpace
     /// @param terminal_compatible if true, the other args the returned operator takes must exist in the terminal types. 
     /// @param max_args if zero, there is no limit on number of arguments of the operator. If not, the operator can have at most `max_args` arguments. 
     /// @return a matching operator. 
-    Node get_op_with_arg(DataType ret, DataType arg, 
+    std::optional<Node> get_op_with_arg(DataType ret, DataType arg, 
                               bool terminal_compatible=true,
                               int max_arg=0) const
     {
+        // TODO: take out the size limit here and add the return std::nullopt when it fails
         // thoughts (TODO):
         //  this could be templated by return type and arg. although the lookup in the map should be
         //  fairly fast. 
@@ -417,7 +423,7 @@ struct SearchSpace
                     }
                     // if we made it this far, include the node as a match!
                     matches.push_back(node);
-                    weights.push_back(node_weights.at(ret).at(args_type).at(name));
+                    weights.push_back(node_map_weights.at(ret).at(args_type).at(name));
     
                     // saving for future checking
                     // has no size limit (max_arg is 0) or the number of
@@ -446,7 +452,7 @@ struct SearchSpace
     /// @brief get a node with a signature matching `node`
     /// @param node the node to match
     /// @return a Node 
-    Node get_node_like(Node node) const
+    std::optional<Node> get_node_like(Node node) const
     {
         if (Is<NodeType::Terminal, NodeType::Constant>(node.node_type)){
             return get_terminal(node.ret_type);
@@ -504,7 +510,7 @@ struct SearchSpace
                 node_map[n.ret_type][n.args_type()][n.node_type] = n;
                 // sampling probability map
                 float w = use_all? 1.0 : user_ops.at(name);
-                node_weights[n.ret_type][n.args_type()][n.node_type] = w;
+                node_map_weights[n.ret_type][n.args_type()][n.node_type] = w;
             }
         }
 
@@ -706,7 +712,7 @@ template <> struct fmt::formatter<Brush::SearchSpace>: formatter<string_view> {
                         ArgsName[args_type],
                         node_type,
                         node,
-                        SS.node_weights.at(ret_type).at(args_type).at(node_type)
+                        SS.node_map_weights.at(ret_type).at(args_type).at(node_type)
                         );
             }
         }
