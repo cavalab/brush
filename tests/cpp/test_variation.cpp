@@ -107,6 +107,8 @@ TEST(Operators, MutationSizeAndDepthLimit)
 
     for (int d = 5; d < 15; ++d)
     {
+        int successes = 0;
+
         for (int s = 5; s < 15; ++s)
         {
             PARAMS["max_size"]  = s;
@@ -135,6 +137,8 @@ TEST(Operators, MutationSizeAndDepthLimit)
                 );
             }
             else {
+                successes += 1;
+                
                 // Extracting the child from the std::optional and checking
                 // if it is within size and depth restrictions. There is no
                 // margin for having slightly bigger expressions.
@@ -168,6 +172,7 @@ TEST(Operators, MutationSizeAndDepthLimit)
                 ASSERT_TRUE(Child.Tree.max_depth() <= d);
             }
         }
+        ASSERT_TRUE(successes > 0);
     }
 }
 
@@ -331,8 +336,6 @@ TEST(Operators, CrossoverSizeAndDepthLimit)
         }
     }
 }
-
-// TODO: make a test that will always choose one mutation and check for errors
 
 TEST(Operators, CrossoverSizeAndDepthPARAMS)
 {
