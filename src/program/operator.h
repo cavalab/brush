@@ -51,7 +51,14 @@ namespace util{
     {
         // we cannot weight a boolean feature. Nevertheless, we need to provide
         // an implementation for get_weight behavior, so the metaprogramming
-        // doesn't fail to get a matching signature.
+        // doesn't fail to get a matching signature. 
+
+        if (tn.data.get_is_weighted())
+            // Node's init() function avoids the creation of weighted nodes, 
+            // and the setter for `is_weighted` prevent enabling weight on 
+            // boolean values. 
+            HANDLE_ERROR_THROW(fmt::format("boolean terminal is weighted, but "
+            "it should not\n"));
 
         return Scalar(true);
     };
