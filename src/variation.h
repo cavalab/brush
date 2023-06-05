@@ -219,7 +219,7 @@ std::optional<Program<T>> mutate(const Program<T>& parent, const SearchSpace& SS
 /// @param other the donating parent
 /// @return new program of type `T`
 template<ProgramType T>
-Program<T> cross(const Program<T>& root, const Program<T>& other) 
+std::optional<Program<T>> cross(const Program<T>& root, const Program<T>& other) 
 {
     /* subtree crossover between this and other, producing new Program */
     // choose location by weighted sampling of program
@@ -233,60 +233,53 @@ Program<T> cross(const Program<T>& root, const Program<T>& other)
                     [](const auto& n){ return n.get_prob_change(); }
                     );
     
+    auto child_spot = r.select_randomly(child.Tree.begin(), 
+                                        child.Tree.end(), 
+                                        child_weights.begin(), 
+                                        child_weights.end()
+                                    );
+
+    auto child_ret_type = child_spot.node->data.ret_type;
+
+    auto allowed_size  = PARAMS["max_size"].get<int>() -
+                            ( child.Tree.size() - child.Tree.size(child_spot) );
+    auto allowed_depth = PARAMS["max_depth"].get<int>() - 
+                            ( child.Tree.depth(child_spot) );
+
+    // pick a subtree to insert. Selection is based on other_weights
+    vector<float> other_weights(other.Tree.size());
+
+    // iterator to get the size of subtrees inside transform
+    auto other_iter = other.Tree.begin();
+
+    // lambda function to check feasibility of solution and increment the iterator 
+    const auto check_and_incrm = [other, &other_iter, allowed_size, allowed_depth]() -> bool {
+        int s = other.Tree.size(other_iter);
+        int d = other.Tree.max_depth(other_iter);
+
+        std::advance(other_iter, 1);
+        return (s <= allowed_size) && (d <= allowed_depth);
+    };
+
+    std::transform(other.Tree.begin(), other.Tree.end(), 
+        other_weights.begin(),
+        [child_ret_type, check_and_incrm](const auto& n){
+            // need to pick a node that has a matching output type to the child_spot.
+            // also need to check if swaping this node wouldn't exceed max_size
+            if (check_and_incrm() && (n.ret_type == child_ret_type))
+                return n.get_prob_change(); 
+            else
+                // setting the weight to zero to indicate a non-feasible crossover point
+                return float(0.0);
+            }
+        );
+
     bool matching_spots_found = false;
-    for (int tries = 0; tries < 3; ++tries)
+    for (const auto& w: other_weights)
     {
-        auto child_spot = r.select_randomly(child.Tree.begin(), 
-                                            child.Tree.end(), 
-                                            child_weights.begin(), 
-                                            child_weights.end()
-                                        );
+        matching_spots_found = w > 0.0;
 
-        auto child_ret_type = child_spot.node->data.ret_type;
-
-        auto allowed_size  = PARAMS["max_size"].get<int>() -
-                             ( child.Tree.size() - child.Tree.size(child_spot) );
-        auto allowed_depth = PARAMS["max_depth"].get<int>() - 
-                             ( child.Tree.depth(child_spot) );
-
-        // pick a subtree to insert. Selection is based on other_weights
-        vector<float> other_weights(other.Tree.size());
-
-        // iterator to get the size of subtrees inside transform
-        auto other_iter = other.Tree.begin();
-
-        // lambda function to check feasibility of solution and increment the iterator 
-        const auto check_and_incrm = [other, &other_iter, allowed_size, allowed_depth]() -> bool {
-            int s = other.Tree.size(other_iter);
-            int d = other.Tree.max_depth(other_iter);
-
-            std::advance(other_iter, 1);
-            return (s <= allowed_size) && (d <= allowed_depth);
-        };
-
-        std::transform(other.Tree.begin(), other.Tree.end(), 
-            other_weights.begin(),
-            [child_ret_type, check_and_incrm](const auto& n){
-                // need to pick a node that has a matching output type to the child_spot.
-                // also need to check if swaping this node wouldn't exceed max_size
-                if (check_and_incrm() && (n.ret_type == child_ret_type))
-                    return n.get_prob_change(); 
-                else
-                    // setting the weight to zero to indicate a non-feasible crossover point
-                    return float(0.0);
-                }
-            );
-
-        for (const auto& w: other_weights)
-        {
-            matching_spots_found = w > 0.0;
-
-            if (matching_spots_found) 
-                break;
-        }
-
-        if (matching_spots_found) 
-        {
+        if (matching_spots_found) {
             auto other_spot = r.select_randomly(
                 other.Tree.begin(), 
                 other.Tree.end(), 
@@ -299,10 +292,8 @@ Program<T> cross(const Program<T>& root, const Program<T>& other)
             child.Tree.move_ontop(child_spot, other_spot);
             return child;
         }
-        // fmt::print("try {} failed\n",tries);
     }
-
-    return child;
+    return std::nullopt;
 };
 } //namespace variation
 #endif
