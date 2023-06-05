@@ -38,14 +38,13 @@ inline bool point_mutation(tree<Node>& Tree, Iter spot, const SearchSpace& SS)
     // terminal_weights, and maybe will return a Node.
     std::optional<Node> newNode = SS.get_node_like(spot.node->data);
 
-    // if optional contains a Node, we access its contained value
-    if (newNode) {
-        Tree.replace(spot, *newNode);
-        return true;
-    }
+    if (!newNode) // newNode == std::nullopt
+        return false;
 
-    // in case mutation fails
-    return false;
+    // if optional contains a Node, we access its contained value
+    Tree.replace(spot, *newNode);
+
+    return true;
 }
 
 /// insert a node with spot as a child
