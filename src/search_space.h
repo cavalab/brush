@@ -383,7 +383,7 @@ struct SearchSpace
     /// @param arg argument type to match
     /// @param terminal_compatible if true, the other args the returned operator takes must exist in the terminal types. 
     /// @param max_args if zero, there is no limit on number of arguments of the operator. If not, the operator can have at most `max_args` arguments. 
-    /// @return a matching operator. 
+    /// @return `std::optional` that may contain a matching operator. 
     std::optional<Node> get_op_with_arg(DataType ret, DataType arg, 
                               bool terminal_compatible=true,
                               int max_arg=0) const
@@ -451,7 +451,7 @@ struct SearchSpace
     
     /// @brief get a node with a signature matching `node`
     /// @param node the node to match
-    /// @return a Node 
+    /// @return `std::optional` that may contain a Node 
     std::optional<Node> get_node_like(Node node) const
     {
         if (Is<NodeType::Terminal, NodeType::Constant>(node.node_type)){

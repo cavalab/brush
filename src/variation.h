@@ -29,7 +29,11 @@ namespace variation {
 
 typedef tree<Node>::pre_order_iterator Iter; 
 
-/// point mutation: replace node with same typed node
+/// @brief replace node with same typed node
+/// @param Tree the program tree
+/// @param spot an iterator to the node that is being mutated
+/// @param SS the search space to sample a node like `spot`
+/// @return boolean indicating the success (true) or fail (false) of the operation
 inline bool point_mutation(tree<Node>& Tree, Iter spot, const SearchSpace& SS)
 {
     // cout << "point mutation\n";
@@ -47,7 +51,11 @@ inline bool point_mutation(tree<Node>& Tree, Iter spot, const SearchSpace& SS)
     return true;
 }
 
-/// insert a node with spot as a child
+/// @brief insert a node with spot as a child
+/// @param Tree the program tree
+/// @param spot an iterator to the node that is being mutated
+/// @param SS the search space to sample a node like `spot`
+/// @return boolean indicating the success (true) or fail (false) of the operation
 inline bool insert_mutation(tree<Node>& Tree, Iter spot, const SearchSpace& SS)
 {
     // cout << "insert mutation\n";
@@ -90,17 +98,21 @@ inline bool insert_mutation(tree<Node>& Tree, Iter spot, const SearchSpace& SS)
     return true;
 }
 
-/// delete subtree and replace it with a terminal of the same return type
+/// @brief delete subtree and replace it with a terminal of the same return type
+/// @param Tree the program tree
+/// @param spot an iterator to the node that is being mutated
+/// @param SS the search space to sample a node like `spot`
+/// @return boolean indicating the success (true) or fail (false) of the operation
 inline bool delete_mutation(tree<Node>& Tree, Iter spot, const SearchSpace& SS)
 {
     // cout << "delete mutation\n";
 
     // get_terminal will sample based on terminal_weights
+    // TODO: this may fail. I need to return optional here as well
     auto terminal = SS.get_terminal(spot.node->data.ret_type); 
     
     Tree.erase_children(spot); 
 
-    // TODO: this may fail. I need to return optional here as well
     Tree.replace(spot, terminal);
 
     return true;
@@ -110,6 +122,7 @@ inline bool delete_mutation(tree<Node>& Tree, Iter spot, const SearchSpace& SS)
 /// @param Tree the program tree
 /// @param spot an iterator to the node that is being mutated
 /// @param SS the search space (unused)
+/// @return boolean indicating the success (true) or fail (false) of the operation
 inline bool toggle_weight_mutation(tree<Node>& Tree, Iter spot, const SearchSpace& SS)
 {
     spot.node->data.set_is_weighted(!spot.node->data.get_is_weighted());
@@ -118,7 +131,7 @@ inline bool toggle_weight_mutation(tree<Node>& Tree, Iter spot, const SearchSpac
 }
 
 /**
- * @brief Mutate a program.
+ * @brief Stochastically mutate a program.
  * 
  * Types of mutation:
  * 
@@ -127,18 +140,26 @@ inline bool toggle_weight_mutation(tree<Node>& Tree, Iter spot, const SearchSpac
  *  - deletion mutation deletes a node
  *  - toggle_weight mutation turns a node's weight on or off.
  * 
- * Every mutation has a probability of occur based on global parameters. The
- * place where the mutation will take place is sampled based on attribute 
+ * Every mutation has a probability (weight) based on global parameters. The
+ * spot where the mutation will take place is sampled based on attribute 
  * `get_prob_change` of each node in the tree. Inside each type of mutation, 
  * when a new node is inserted, it is sampled based on `terminal_weights`.
  * 
- * By default, all probability distributions are uniform, but they can be
- * dynamically optimized based on a Multi-Armed Bandit.
+ * Due to the stochastic behavior, and the several sampling steps, it may come to
+ * a case where the search space does not hold any possible modification to do in
+ * the program. In this case, the method returns `std::nullopt` (and has overloads
+ * so it can be used in a boolean context).
+ * 
+ * If the mutation succeeds, the mutated program can be accessed through the
+ * `.value()` attribute of the `std::optional`. 
+ * 
+ * This means that, if you use the mutation as `auto opt = mutate(parent, SS)`,
+ * either `opt==false` or `opt.value()` contains the child program.
  * 
  * @tparam T program type
  * @param parent the program to be mutated
  * @param SS a search space
- * @return `child`, the mutated program
+ * @return `std::optional` that may contain the child program of type `T`
  */
 template<ProgramType T>
 std::optional<Program<T>> mutate(const Program<T>& parent, const SearchSpace& SS)
@@ -212,11 +233,29 @@ std::optional<Program<T>> mutate(const Program<T>& parent, const SearchSpace& SS
     }
 };
 
-/// @brief swaps subtrees between root and other, returning new program 
-/// @tparam T the program type
-/// @param root the root parent
-/// @param other the donating parent
-/// @return new program of type `T`
+/**
+ * @brief Stochastically swaps subtrees between root and other, returning a new program. 
+ * 
+ * The spot where the cross will take place in the `root` parent is sampled
+ * based on attribute `get_prob_change` of each node in the tree. After selecting
+ * the cross spot, the program will iterate through the `other` parent searching
+ * for all compatible sub-trees to replace.
+ * 
+ * Due to the stochastic behavior, it may come to a case where there is no 
+ * candidate to replace the spot node.  In this case, the method returns
+ * `std::nullopt` (and has overloads so it can be used in a boolean context).
+ * 
+ * If the cross succeeds, the child program can be accessed through the
+ * `.value()` attribute of the `std::optional`. 
+ * 
+ * This means that, if you use the cross as `auto opt = mutate(parent, SS)`,
+ * either `opt==false` or `opt.value()` contains the child.
+ * 
+ * @tparam T the program type
+ * @param root the root parent
+ * @param other the donating parent
+ * @return `std::optional` that may contain the child program of type `T`
+ */
 template<ProgramType T>
 std::optional<Program<T>> cross(const Program<T>& root, const Program<T>& other) 
 {
