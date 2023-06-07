@@ -429,7 +429,7 @@ template<PT PType> struct Program
      * @param other another program to cross with this one. 
      * @return a new version of this and the other program
      */
-    Program<PType> cross(Program<PType> other) const;
+    std::optional<Program<PType>> cross(Program<PType> other) const;
 
     /// @brief turns program tree into a linear program. 
     /// @return a vector of nodes encoding the program in reverse polish notation
@@ -468,7 +468,7 @@ std::optional<Program<PType>> Program<PType>::mutate() const
 
 /// swaps subtrees between this and other (note the pass by copy)
 template<ProgramType PType>
-Program<PType> Program<PType>::cross(Program<PType> other) const
+std::optional<Program<PType>> Program<PType>::cross(Program<PType> other) const
 {
     return variation::cross(*this, other);
 };

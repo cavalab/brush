@@ -47,7 +47,8 @@ void bind_program(py::module& m, string name)
         .def("get_weights", &T::get_weights)
         .def("size", &T::size)
         .def("depth", &T::depth)
-        .def("cross", &T::cross)
+        .def("cross", &T::cross, py::return_value_policy::automatic,
+             "Performs one attempt to stochastically swap subtrees between two programs and generate a child")
         .def("mutate", &T::mutate, py::return_value_policy::automatic,
              "Performs one attempt to stochastically mutate the program and generate a child")
         .def("set_search_space", &T::set_search_space)

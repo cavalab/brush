@@ -244,10 +244,8 @@ struct Node {
     inline void set_feature(string f){ feature = f; };
     inline string get_feature() const { return feature; };
 
-    // TODO: use this in every occurence of is_weighted
     inline bool get_is_weighted() const {return this->is_weighted;};
     inline void set_is_weighted(bool is_weighted){
-
         // cant change the weight of a boolean terminal
         if (IsWeighable(this->ret_type)) 
             this->is_weighted = is_weighted;
@@ -259,7 +257,6 @@ struct Node {
         string feature; 
 };
 
-//TODO GUI: add nt to template as first argument, make these constexpr
 template <NodeType... T>
 inline auto Is(NodeType nt) -> bool { return ((nt == T) || ...); }
 

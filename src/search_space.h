@@ -68,7 +68,8 @@ extern std::unordered_map<std::size_t, std::string> ArgsName;
     *  - assertion check to make sure there is at least one operator that 
     *      returns the output type of the model. 
     *
-    * When sampling in the search space, some methods can fail to return a 
+    * When sampling in the search space (using any of the sampling functions
+    * `sample_op` or `sample_terminal`), some methods can fail to return a 
     * value --- given a specific set of parameters to a function, the candidate
     * solutions set may be empty --- and, for these methods, the return type is
     * either a valid value, or a `std::nullopt`. This is controlled wrapping
@@ -249,60 +250,6 @@ struct SearchSpace
     template<typename S>
     Node get(NodeType type, DataType R, S sig){ return get(type, R, sig.hash()); };
 
-    /// @brief Get a specific node type that matches a return value. 
-    /// @param type the node type
-    /// @param R the return type
-    /// @return A Node of type `type` with return type `R`. 
-    Node get(NodeType type, DataType R)
-    {
-        check(R);
-        auto ret_match = node_map.at(R);
-        vector<Node> matches; 
-        vector<float> weights; 
-        for (const auto& kv: ret_match)
-        {
-            auto arg_hash = kv.first;
-            auto node_type_map = kv.second;
-            if (node_type_map.find(type) != node_type_map.end())
-            {
-                matches.push_back(node_type_map.at(type));
-                weights.push_back(node_map_weights.at(R).at(arg_hash).at(type));
-            }
-        }
-
-        return (*r.select_randomly(matches.begin(),
-                                   matches.end(),
-                                   weights.begin(),
-                                   weights.end()));
-    };
-
-    /// get a random terminal 
-    Node get_terminal() const
-    {
-        //TODO: match terminal args_type (probably '{}' or something?)
-        //  make a separate terminal_map
-        auto match = *r.select_randomly(terminal_map.begin(), terminal_map.end());
-        return *r.select_randomly(
-                match.second.begin(), match.second.end(), 
-                terminal_weights.at(match.first).begin(), 
-                terminal_weights.at(match.first).end()
-                );
-    };
-
-    /// get a terminal with return type `R` 
-    Node get_terminal(DataType R) const
-    {
-        if (terminal_map.find(R) == terminal_map.end()){
-            auto msg = fmt::format("{} not in terminal_map\n",R);
-            HANDLE_ERROR_THROW(msg); 
-        }
-        auto rval =  *r.select_randomly(terminal_map.at(R).begin(), 
-                                  terminal_map.at(R).end(), 
-                                  terminal_weights.at(R).begin(),
-                                  terminal_weights.at(R).end());
-        return rval;
-    };
-
     /// @brief get weights of the return types 
     /// @return a weight vector, each element corresponding to a return type.
     vector<float> get_weights() const
@@ -354,12 +301,79 @@ struct SearchSpace
         return v;
     };
 
+    /// @brief Get a random terminal 
+    /// @return `std::optional` that may contain a terminal Node.     
+    std::optional<Node> sample_terminal() const
+    {
+        //TODO: match terminal args_type (probably '{}' or something?)
+        //  make a separate terminal_map
+
+        // We'll make terminal types to have its weights proportional to the
+        // DataTypes Weights they hold
+        vector<float> data_type_weights(terminal_weights.size());
+        std::transform(
+            terminal_weights.begin(),
+            terminal_weights.end(),
+            data_type_weights.begin(),
+            [](const auto& tw){ 
+                return std::reduce(tw.second.begin(), tw.second.end()); }
+        );
+        
+        // empty solution space, or candidates have weight zero
+        if (std::all_of(data_type_weights.begin(), 
+                        data_type_weights.end(),
+                        [](const auto& weight) { return weight<=0.0; }))
+        {
+            return std::nullopt;
+        }
+
+        // If we got this far, then it is garanteed that we'll return something
+        // The match take into account datatypes with non-zero weights
+        auto match = *r.select_randomly(
+            terminal_map.begin(),
+            terminal_map.end(),
+            data_type_weights.begin(),
+            data_type_weights.end()
+        );
+
+        return *r.select_randomly(
+                    match.second.begin(), match.second.end(), 
+                    terminal_weights.at(match.first).begin(), 
+                    terminal_weights.at(match.first).end()
+                );
+    };
+
+    /// @brief Get a random terminal with return type `R` 
+    /// @return `std::optional` that may contain a terminal Node of type `R`.     
+    std::optional<Node> sample_terminal(DataType R) const
+    {
+        // should I keep doing this check?
+        // if (terminal_map.find(R) == terminal_map.end()){
+        //     auto msg = fmt::format("{} not in terminal_map\n",R);
+        //     HANDLE_ERROR_THROW(msg); 
+        // }
+
+        if ( (terminal_map.find(R) == terminal_map.end())
+        ||   (std::all_of(terminal_weights.at(R).begin(), 
+                           terminal_weights.at(R).end(),
+                           [](int i) { return i==0.0; })) )
+        {
+            return std::nullopt;
+        }
+
+        return *r.select_randomly(terminal_map.at(R).begin(), 
+                                  terminal_map.at(R).end(), 
+                                  terminal_weights.at(R).begin(),
+                                  terminal_weights.at(R).end());
+    };
+
     /// @brief get an operator matching return type `ret`. 
     /// @param ret return type
-    /// @return a randomly chosen operator
-    Node get_op(DataType ret) const
+    /// @return `std::optional` that may contain a randomly chosen operator matching return type `ret`
+    Node sample_op(DataType ret) const
     {
-        check(ret);
+        // check(ret);
+
         //TODO: match terminal args_type (probably '{}' or something?)
         auto ret_match = node_map.at(ret);
 
@@ -377,35 +391,74 @@ struct SearchSpace
                                    name_w.end())).second;
     };
 
-    
+    /// @brief Get a specific node type that matches a return value. 
+    /// @param type the node type
+    /// @param R the return type
+    /// @return `std::optional` that may contain a Node of type `type` with return type `R`. 
+    std::optional<Node> sample_op(NodeType type, DataType R)
+    {
+        // check(R);
+
+        auto ret_match = node_map.at(R);
+        
+        vector<Node> matches; 
+        vector<float> weights; 
+        for (const auto& kv: ret_match)
+        {
+            auto arg_hash = kv.first;
+            auto node_type_map = kv.second;
+            if (node_type_map.find(type) != node_type_map.end())
+            {
+                matches.push_back(node_type_map.at(type));
+                weights.push_back(node_map_weights.at(R).at(arg_hash).at(type));
+            }
+        }
+
+        // empty solution space, or candidates have weight zero
+        if ( (weights.size()==0)
+        ||   (std::all_of(weights.begin(), 
+                          weights.end(),
+                          [](float i) { return i<=0.0; })) )
+        {
+            return std::nullopt;
+        }
+        
+        return (*r.select_randomly(matches.begin(),
+                                   matches.end(),
+                                   weights.begin(),
+                                   weights.end()));
+    };
+
     /// @brief get operator with at least one argument matching arg 
     /// @param ret return type
     /// @param arg argument type to match
     /// @param terminal_compatible if true, the other args the returned operator takes must exist in the terminal types. 
     /// @param max_args if zero, there is no limit on number of arguments of the operator. If not, the operator can have at most `max_args` arguments. 
-    /// @return a matching operator. 
-    std::optional<Node> get_op_with_arg(DataType ret, DataType arg, 
+    /// @return `std::optional` that may contain a matching operator respecting all restrictions. 
+    std::optional<Node> sample_op_with_arg(DataType ret, DataType arg, 
                               bool terminal_compatible=true,
-                              int max_arg=0) const
+                              int max_args=0) const
     {
-        // TODO: take out the size limit here and add the return std::nullopt when it fails
         // thoughts (TODO):
         //  this could be templated by return type and arg. although the lookup in the map should be
         //  fairly fast. 
         //TODO: these needs to be overhauled 
-        // fmt::print("get_op_with_arg");
+        // fmt::print("sample_op_with_arg");
         check(ret);
 
         auto args_map = node_map.at(ret);
         vector<Node>  matches;
-        vector<float> weights; 
-        vector<bool>  invalids;
+        vector<float> weights;
 
         for (const auto& [args_type, name_map]: args_map) {
             for (const auto& [name, node]: name_map) {
                 auto node_arg_types = node.get_arg_types();
+
+                // has no size limit (max_arg_count==0) or the number of
+                // arguments woudn't exceed the maximum number of arguments
+                auto within_size_limit = !(max_args) || (node.get_arg_count() <= max_args);
                 
-                if ( in(node_arg_types, arg) ) {
+                if ( in(node_arg_types, arg) && within_size_limit) {
                     // if checking terminal compatibility, make sure there's
                     // a compatible terminal for the node's other arguments
                     if (terminal_compatible) {
@@ -424,26 +477,18 @@ struct SearchSpace
                     // if we made it this far, include the node as a match!
                     matches.push_back(node);
                     weights.push_back(node_map_weights.at(ret).at(args_type).at(name));
-    
-                    // saving for future checking
-                    // has no size limit (max_arg is 0) or the number of
-                    // arguments woudn't exceed the maximum number of arguments
-                    invalids.push_back(!(max_arg) || (node.get_arg_count() <= max_arg));
                 }
             }
         }
 
-        // If one or more nodes are respecting the size limit, we'll focus only
-        // on them. We do that by setting the probabilities of invalid nodes
-        // to zero. If all of them are invalid, we relax size restriction (
-        // we ignore it) to avoid selecting over an empty collection.
-        if (std::find(invalids.begin(), invalids.end(), false) != invalids.end()) {
-            std::transform(weights.begin(), weights.end(),
-                           invalids.begin(), weights.begin(),
-                          [](int weight, bool invalid) {
-                              return invalid ? 0.0 : weight;
-                          });
-        } 
+        // empty solution space, or candidates have weight zero
+        if ( (weights.size()==0)
+        ||   (std::all_of(weights.begin(), 
+                          weights.end(),
+                          [](float i) { return i<=0.0; })) )
+        {
+            return std::nullopt;
+        }
 
         return (*r.select_randomly(matches.begin(), matches.end(), 
                                    weights.begin(), weights.end()));
@@ -451,15 +496,25 @@ struct SearchSpace
     
     /// @brief get a node with a signature matching `node`
     /// @param node the node to match
-    /// @return a Node 
+    /// @return `std::optional` that may contain a Node 
     std::optional<Node> get_node_like(Node node) const
     {
         if (Is<NodeType::Terminal, NodeType::Constant>(node.node_type)){
-            return get_terminal(node.ret_type);
+            return sample_terminal(node.ret_type);
         }
 
         auto matches = node_map.at(node.ret_type).at(node.args_type());
         auto match_weights = get_weights(node.ret_type, node.args_type());
+
+        // empty solution space, or candidates have weight zero
+        if ( (match_weights.size()==0)
+        ||   (std::all_of(match_weights.begin(), 
+                          match_weights.end(),
+                          [](float i) { return i<=0.0; })) )
+        {
+            return std::nullopt;
+        }
+
         return (*r.select_randomly(matches.begin(), 
                                    matches.end(), 
                                    match_weights.begin(), 
@@ -594,10 +649,23 @@ P SearchSpace::make_program(int max_d, int max_size)
 
     if (max_size == 1)
     {
-        auto root = Tree.insert(Tree.begin(), get_terminal(root_type));
+        // auto root = Tree.insert(Tree.begin(), sample_terminal(root_type));
+
+        // We can only have a terminal here, but the terminal must be compatible
+        auto opt = sample_terminal(root_type);
+
+        if (!opt){
+            auto msg = fmt::format("Program with size=1 could not be created. "
+            "The search space does not contain any terminal with data type {}./n",
+            root_type);
+            HANDLE_ERROR_THROW(msg); 
+        }
+
+        auto root = Tree.insert(Tree.begin(), opt.value());
     }
-    else
+    else // Our program can (and will) be grater than 1 node
     {
+        // building the root node for each program case
         Node n;
         if (P::program_type == ProgramType::BinaryClassifier)
         {
@@ -607,12 +675,12 @@ P SearchSpace::make_program(int max_d, int max_size)
         }
         else if (P::program_type == ProgramType::MulticlassClassifier)
         {
-            n = get(NodeType::Softmax, DataType::MatrixF);
+            n = get(NodeType::Softmax, DataType::MatrixF, Signature<ArrayXXf(ArrayXXf)>());
             n.set_prob_change(0.0);
             n.fixed=true;
         }
         else
-            n = get_op(root_type);
+            n = sample_op(root_type);
 
         /* cout << "chose " << n.name << endl; */
         // auto spot = Tree.set_head(n);
@@ -630,6 +698,7 @@ P SearchSpace::make_program(int max_d, int max_size)
             queue.push_back(make_tuple(child_spot, a, d));
         }
 
+        // Now we actually start the PTC2 procedure to create the program tree
         /* cout << "queue size: " << queue.size() << endl; */ 
         /* cout << "entering first while loop...\n"; */
         while (queue.size() + s < max_size && queue.size() > 0) 
@@ -642,15 +711,26 @@ P SearchSpace::make_program(int max_d, int max_size)
             {
                 // choose terminal of matching type
                 /* cout << "getting " << DataTypeName[t] << " terminal\n"; */ 
-                // qspot = get_terminal(t);
-                Tree.replace(qspot, get_terminal(t));
-                // Tree.append_child(qspot, get_terminal(t));
+                // qspot = sample_terminal(t);
+                // Tree.replace(qspot, sample_terminal(t));
+                // Tree.append_child(qspot, sample_terminal(t));
+
+                auto opt = sample_terminal(t);
+
+                // TODO: we can get an infinite loop here. Maybe I should put a constant (or a neutral element of the node type)
+                if (!opt) { // lets push back and try again later
+                    queue.push_back(make_tuple(qspot, t, d));
+                    continue;
+                }
+
+                // If we successfully get a terminal, use it
+                Tree.replace(qspot, opt.value());
             }
             else
             {
                 //choose a nonterminal of matching type
                 /* cout << "getting op of type " << DataTypeName[t] << endl; */
-                auto n = get_op(t);
+                auto n = sample_op(t);
                 /* cout << "chose " << n.name << endl; */
                 // TreeIter new_spot = Tree.append_child(qspot, n);
                 // qspot = n;
@@ -661,6 +741,7 @@ P SearchSpace::make_program(int max_d, int max_size)
                     /* cout << "queing a node of type " << DataTypeName[a] << endl; */
                     // queue.push_back(make_tuple(new_spot, a, d+1));
                     auto child_spot = Tree.append_child(newspot);
+
                     queue.push_back(make_tuple(child_spot, a, d+1));
                 }
             }
@@ -678,10 +759,18 @@ P SearchSpace::make_program(int max_d, int max_size)
             auto [qspot, t, d] = RandomDequeue(queue);
 
             /* cout << "getting " << DataTypeName[t] << " terminal\n"; */ 
-            // Tree.append_child(qspot, get_terminal(t));
-            // qspot = get_terminal(t);
-            auto newspot = Tree.replace(qspot, get_terminal(t));
+            // Tree.append_child(qspot, sample_terminal(t));
+            // qspot = sample_terminal(t);
+            // auto newspot = Tree.replace(qspot, sample_terminal(t));
 
+            auto opt = sample_terminal(t);
+
+            if (!opt) { // set push back and try again later
+                queue.push_back(make_tuple(qspot, t, d));
+                continue;
+            }
+
+            auto newspot = Tree.replace(qspot, opt.value());
         }
     }
     /* cout << "final tree:\n" */ 

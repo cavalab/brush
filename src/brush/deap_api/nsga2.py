@@ -45,13 +45,15 @@ def nsga2(toolbox, NGEN, MU, CXPB, verbosity):
 
         for ind1, ind2 in zip(parents[::2], parents[1::2]):
             if random.random() <= CXPB:
-                ind1, ind2 = toolbox.mate(ind1, ind2)
+                off1, off2 = toolbox.mate(ind1, ind2)
+            else:
+                off1, off2 = ind1, ind2
                 
-            off1 = toolbox.mutate(ind1)
-            off2 = toolbox.mutate(ind2)
-
             # avoid inserting empty solutions
+            if off1: off1 = toolbox.mutate(off1)
             if off1: offspring.extend([off1])
+
+            if off2: off2 = toolbox.mutate(off2)
             if off2: offspring.extend([off2])
 
         # archive.update(offspring)
