@@ -20,7 +20,7 @@ TEST(Data, MixedVariableTypes)
 
     X.transposeInPlace();
 
-    ArrayXf y(5); 
+    ArrayXf y(3); 
 
     y << 6.1, 7.7, -4.2; // y = x_0 + x_1 + x_2
     

@@ -115,9 +115,12 @@ class BrushEstimator(BaseEstimator):
         offspring = [] 
 
         for i,j in [(ind1,ind2),(ind2,ind1)]:
-            off = creator.Individual(i.prg.cross(j.prg))
-            # off.fitness.valid = False
-            offspring.append(off)
+            child = i.prg.cross(j.prg)
+            if child:
+                off = creator.Individual(child)
+                offspring.append(off)
+            else: # so we'll always have two elements in `offspring`
+                offspring.append(None)
 
         return offspring[0], offspring[1]
 
