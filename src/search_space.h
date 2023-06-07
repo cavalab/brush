@@ -356,7 +356,7 @@ struct SearchSpace
         if ( (terminal_map.find(R) == terminal_map.end())
         ||   (std::all_of(terminal_weights.at(R).begin(), 
                            terminal_weights.at(R).end(),
-                           [](int i) { return i==0.0; })) )
+                           [](int i) { return i<=0.0; })) )
         {
             return std::nullopt;
         }
@@ -370,7 +370,7 @@ struct SearchSpace
     /// @brief get an operator matching return type `ret`. 
     /// @param ret return type
     /// @return `std::optional` that may contain a randomly chosen operator matching return type `ret`
-    Node sample_op(DataType ret) const
+    std::optional<Node> sample_op(DataType ret) const
     {
         // check(ret);
 
@@ -379,12 +379,28 @@ struct SearchSpace
 
         vector<float> args_w = get_weights(ret);
 
+        if (std::all_of(args_w.begin(), 
+                        args_w.end(),
+                        [](int i) { return i<=0.0; }))
+        {
+            return std::nullopt;
+        }
+
         auto arg_match = *r.select_randomly(ret_match.begin(), 
                                             ret_match.end(), 
                                             args_w.begin(), 
                                             args_w.end());
 
         vector<float> name_w = get_weights(ret, arg_match.first);
+
+        // TODO: This could be a function check_weights
+        if (std::all_of(name_w.begin(), 
+                        name_w.end(),
+                        [](int i) { return i<=0.0; }))
+        {
+            return std::nullopt;
+        }
+
         return (*r.select_randomly(arg_match.second.begin(), 
                                    arg_match.second.end(), 
                                    name_w.begin(), 
@@ -679,8 +695,15 @@ P SearchSpace::make_program(int max_d, int max_size)
             n.set_prob_change(0.0);
             n.fixed=true;
         }
-        else
-            n = sample_op(root_type);
+        else // TODO: how to avoid infinite loop here? (may be impossible to have one though,
+             // only if user gives really bad input. Maybe SS should do a check on constructor?)
+        {
+            auto opt = sample_op(root_type);
+            while (!opt) {
+                opt = sample_op(root_type);
+            }
+            n = opt.value();
+        }
 
         /* cout << "chose " << n.name << endl; */
         // auto spot = Tree.set_head(n);
@@ -703,6 +726,9 @@ P SearchSpace::make_program(int max_d, int max_size)
         /* cout << "entering first while loop...\n"; */
         while (queue.size() + s < max_size && queue.size() > 0) 
         {
+            // TODO: we can get an infinite loop here (due to the way we handle
+            // optional). Maybe I should put a constant (or a neutral element of the node type)
+            
             /* cout << "queue size: " << queue.size() << endl; */ 
             auto [qspot, t, d] = RandomDequeue(queue);
 
@@ -717,7 +743,6 @@ P SearchSpace::make_program(int max_d, int max_size)
 
                 auto opt = sample_terminal(t);
 
-                // TODO: we can get an infinite loop here. Maybe I should put a constant (or a neutral element of the node type)
                 if (!opt) { // lets push back and try again later
                     queue.push_back(make_tuple(qspot, t, d));
                     continue;
@@ -730,10 +755,18 @@ P SearchSpace::make_program(int max_d, int max_size)
             {
                 //choose a nonterminal of matching type
                 /* cout << "getting op of type " << DataTypeName[t] << endl; */
-                auto n = sample_op(t);
+                auto opt = sample_op(t);
                 /* cout << "chose " << n.name << endl; */
                 // TreeIter new_spot = Tree.append_child(qspot, n);
                 // qspot = n;
+
+                if (!opt) { // lets push back and try again later
+                    queue.push_back(make_tuple(qspot, t, d));
+                    continue;
+                }
+
+                n = opt.value();
+
                 auto newspot = Tree.replace(qspot, n);
                 // For each arg of n, add to queue
                 for (auto a : n.arg_types)
