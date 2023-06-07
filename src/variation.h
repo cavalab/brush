@@ -68,7 +68,7 @@ inline bool insert_mutation(tree<Node>& Tree, Iter spot, const SearchSpace& SS)
     // size restriction, which will be relaxed here (just as it is in the PTC2
     // algorithm). This mutation can create a new expression that exceeds the
     // maximum size by the highest arity among the operators.
-    std::optional<Node> n = SS.get_op_with_arg(spot_type, spot_type, true,
+    std::optional<Node> n = SS.sample_op_with_arg(spot_type, spot_type, true,
                                 PARAMS["max_size"].get<int>()-Tree.size()-1); 
 
     if (!n) // there is no operator with compatible arguments
@@ -84,15 +84,27 @@ inline bool insert_mutation(tree<Node>& Tree, Iter spot, const SearchSpace& SS)
         if (spot_filled)
         {
             // if spot is in its child position, append children.
-            // reminding that get_terminal may fail as well
-            Tree.append_child(parent_node, SS.get_terminal(a));
+            // TODO: reminding that sample_terminal may fail as well
+            auto opt = SS.sample_terminal(a);
+
+            if (!opt)
+                return false;
+
+            Tree.append_child(parent_node, opt.value());
         }
         // if types match, treat this spot as filled by the spot node 
         else if (a == spot_type)
             spot_filled = true;
         // otherwise, add siblings before spot node
-        else
-            Tree.insert(spot, SS.get_terminal(a));
+        else {
+            auto opt = SS.sample_terminal(a);
+
+            if (!opt)
+                return false;
+
+            Tree.insert(spot, opt.value());
+        }
+            
     } 
 
     return true;
@@ -107,13 +119,16 @@ inline bool delete_mutation(tree<Node>& Tree, Iter spot, const SearchSpace& SS)
 {
     // cout << "delete mutation\n";
 
-    // get_terminal will sample based on terminal_weights
-    // TODO: this may fail. I need to return optional here as well
-    auto terminal = SS.get_terminal(spot.node->data.ret_type); 
+    // sample_terminal will sample based on terminal_weights. If it succeeds, 
+    // then the new terminal will be in `opt.value()`
+    auto opt = SS.sample_terminal(spot.node->data.ret_type); 
     
+    if (!opt) // there is no terminal with compatible arguments
+        return false;
+
     Tree.erase_children(spot); 
 
-    Tree.replace(spot, terminal);
+    Tree.replace(spot, opt.value());
 
     return true;
 };
