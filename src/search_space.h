@@ -228,6 +228,18 @@ struct SearchSpace
         return true;
     }
 
+    /// @brief Takes iterators to weight vectors and checks if they have a
+    /// non-empty solution space. An empty solution space is defined as
+    /// having no non-zero, positive values
+    /// @tparam T type of iterator.  
+    /// @param start Start iterator
+    /// @param end End iterator
+    /// @return true if at least one weight is positive
+    template<typename Iter>
+    bool has_solution_space(Iter start, Iter end) const {
+        return !std::all_of(start, end, [](const auto& w) { return w<=0.0; });
+    }
+
     template<typename F> Node get(const string& name);
 
     /// @brief get a typed node 
@@ -264,7 +276,6 @@ struct SearchSpace
                 {
                     v.back() += w; 
                 }
-
             }
         }
         return v;
@@ -319,13 +330,9 @@ struct SearchSpace
                 return std::reduce(tw.second.begin(), tw.second.end()); }
         );
         
-        // empty solution space, or candidates have weight zero
-        if (std::all_of(data_type_weights.begin(), 
-                        data_type_weights.end(),
-                        [](const auto& weight) { return weight<=0.0; }))
-        {
+        if (!has_solution_space(data_type_weights.begin(), 
+                                data_type_weights.end()))
             return std::nullopt;
-        }
 
         // If we got this far, then it is garanteed that we'll return something
         // The match take into account datatypes with non-zero weights
@@ -354,13 +361,10 @@ struct SearchSpace
         // }
 
         if ( (terminal_map.find(R) == terminal_map.end())
-        ||   (std::all_of(terminal_weights.at(R).begin(), 
-                           terminal_weights.at(R).end(),
-                           [](int i) { return i<=0.0; })) )
-        {
+        ||   (!has_solution_space(terminal_weights.at(R).begin(), 
+                                  terminal_weights.at(R).end())) )
             return std::nullopt;
-        }
-
+        
         return *r.select_randomly(terminal_map.at(R).begin(), 
                                   terminal_map.at(R).end(), 
                                   terminal_weights.at(R).begin(),
@@ -379,12 +383,8 @@ struct SearchSpace
 
         vector<float> args_w = get_weights(ret);
 
-        if (std::all_of(args_w.begin(), 
-                        args_w.end(),
-                        [](int i) { return i<=0.0; }))
-        {
+        if (!has_solution_space(args_w.begin(), args_w.end()))
             return std::nullopt;
-        }
 
         auto arg_match = *r.select_randomly(ret_match.begin(), 
                                             ret_match.end(), 
@@ -393,13 +393,8 @@ struct SearchSpace
 
         vector<float> name_w = get_weights(ret, arg_match.first);
 
-        // TODO: This could be a function check_weights
-        if (std::all_of(name_w.begin(), 
-                        name_w.end(),
-                        [](int i) { return i<=0.0; }))
-        {
+        if (!has_solution_space(name_w.begin(), name_w.end()))
             return std::nullopt;
-        }
 
         return (*r.select_randomly(arg_match.second.begin(), 
                                    arg_match.second.end(), 
@@ -430,14 +425,10 @@ struct SearchSpace
             }
         }
 
-        // empty solution space, or candidates have weight zero
         if ( (weights.size()==0)
-        ||   (std::all_of(weights.begin(), 
-                          weights.end(),
-                          [](float i) { return i<=0.0; })) )
-        {
+        ||   (!has_solution_space(weights.begin(), 
+                                  weights.end())) )
             return std::nullopt;
-        }
         
         return (*r.select_randomly(matches.begin(),
                                    matches.end(),
@@ -497,14 +488,10 @@ struct SearchSpace
             }
         }
 
-        // empty solution space, or candidates have weight zero
         if ( (weights.size()==0)
-        ||   (std::all_of(weights.begin(), 
-                          weights.end(),
-                          [](float i) { return i<=0.0; })) )
-        {
+        ||   (!has_solution_space(weights.begin(), 
+                                  weights.end())) )
             return std::nullopt;
-        }
 
         return (*r.select_randomly(matches.begin(), matches.end(), 
                                    weights.begin(), weights.end()));
@@ -522,14 +509,10 @@ struct SearchSpace
         auto matches = node_map.at(node.ret_type).at(node.args_type());
         auto match_weights = get_weights(node.ret_type, node.args_type());
 
-        // empty solution space, or candidates have weight zero
         if ( (match_weights.size()==0)
-        ||   (std::all_of(match_weights.begin(), 
-                          match_weights.end(),
-                          [](float i) { return i<=0.0; })) )
-        {
+        ||   (!has_solution_space(match_weights.begin(), 
+                                  match_weights.end())) )
             return std::nullopt;
-        }
 
         return (*r.select_randomly(matches.begin(), 
                                    matches.end(), 
