@@ -3,6 +3,28 @@
 #include "../../src/program/program.h"
 #include "../../src/program/dispatch_table.h"
 
+TEST(Data, ErrorHandling)
+{
+    // Creating an empty dataset throws error
+    EXPECT_THROW({
+        MatrixXf X(0,0);
+        ArrayXf y(0); 
+
+        try
+        {
+            Dataset dt(X, y);
+        }
+        catch( const std::runtime_error& err )
+        {
+            const string msg = err.what();
+            ASSERT_NE(
+                msg.find("Error during the initialization of the dataset"),
+                std::string::npos);
+            throw;
+        }
+    }, std::runtime_error);
+}
+
 TEST(Data, MixedVariableTypes)
 {
     // We need to set at least the mutation options (and respective
