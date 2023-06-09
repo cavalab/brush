@@ -158,7 +158,7 @@ TEST(Operators, MutationSizeAndDepthLimit)
                     d, s, 
                     PRG.get_model("compact", true),
                     Child.get_model("compact", true),
-                    Child.max_depth(),
+                    Child.depth(),
                     Child.size()
                 );
 
@@ -171,8 +171,8 @@ TEST(Operators, MutationSizeAndDepthLimit)
                 ASSERT_TRUE(Child.size() > 0);
                 ASSERT_TRUE(Child.size() <= s);
 
-                ASSERT_TRUE(Child.max_depth() >= 0);
-                ASSERT_TRUE(Child.max_depth() <= d);
+                ASSERT_TRUE(Child.depth() >= 0);
+                ASSERT_TRUE(Child.depth() <= d);
             }
         }
         ASSERT_TRUE(successes > 0);
@@ -295,28 +295,24 @@ TEST(Operators, CrossoverSizeAndDepthLimit)
 
             fmt::print(
                 "=================================================\n"
+                "settings: depth = {}, size= {}\n"
+                "Original model 1: {}\n"
                 "depth = {}, size= {}\n"
-                "Initial Model 1: {}\n"
-                "Initial Model 2: {}\n",
+                "Original model 2: {}\n"
+                "depth = {}, size= {}\n",
                 d, s, 
                 PRG1.get_model("compact", true),
-                PRG2.get_model("compact", true)
+                PRG1.depth(), PRG1.size(),
+                PRG2.get_model("compact", true),
+                PRG2.depth(), PRG2.size()
             );
 
             fmt::print("cross\n");
             auto opt = PRG1.cross(PRG2);
 
             if (!opt){
-                fmt::print(
-                    "=================================================\n"
-                    "depth = {}, size= {}\n"
-                    "Original model 1: {}\n"
-                    "Original model 2: {}\n",
-                    "Crossover failed to create a child",
-                    d, s, 
-                    PRG1.get_model("compact", true),
-                    PRG2.get_model("compact", true)
-                );
+                fmt::print("Crossover failed to create a child"
+                    "=================================================\n");
             }
             else {
                 successes += 1;
@@ -327,7 +323,7 @@ TEST(Operators, CrossoverSizeAndDepthLimit)
                     "Child Model size : {}\n"
                     "=================================================\n",
                     Child.get_model("compact", true),
-                    Child.max_depth(), Child.size()
+                    Child.depth(), Child.size()
                 );
 
                 // Original didn't change
@@ -340,8 +336,8 @@ TEST(Operators, CrossoverSizeAndDepthLimit)
                 ASSERT_TRUE(Child.size() > 0);
                 ASSERT_TRUE(Child.size() <= s);
 
-                ASSERT_TRUE(Child.max_depth() >= 0);
-                ASSERT_TRUE(Child.max_depth() <= d);
+                ASSERT_TRUE(Child.depth() >= 0);
+                ASSERT_TRUE(Child.depth() <= d);
             }
         }
         ASSERT_TRUE(successes > 0);
