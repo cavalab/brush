@@ -87,9 +87,19 @@ template<PT PType> struct Program
         SSref = std::optional<std::reference_wrapper<SearchSpace>>{s};
     }
 
-    /// @brief count the tree size of the program
+    /// @brief count the tree size of the program, including the weights in weighted nodes
     int size(){
-        return Tree.size();
+        int acc = 0;
+
+        // iterate through each node to calculate tree size
+        std::for_each(Tree.begin(), Tree.end(), 
+            [&acc](auto& node){ 
+                acc += 1; // the node operator or terminal
+                if (node.get_is_weighted()==true)
+                    acc += 2; // weight and multiplication, if it exists
+             });
+
+        return acc;
     }
 
     /// @brief count the tree depth of the program
