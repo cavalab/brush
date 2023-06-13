@@ -715,6 +715,8 @@ P SearchSpace::make_program(int max_d, int max_size)
             /* cout << "queue size: " << queue.size() << endl; */ 
             auto [qspot, t, d] = RandomDequeue(queue);
 
+            int extra_size = 0;
+
             /* cout << "current depth: " << d << endl; */
             if (d == max_d)
             {
@@ -732,7 +734,11 @@ P SearchSpace::make_program(int max_d, int max_size)
                 }
 
                 // If we successfully get a terminal, use it
-                Tree.replace(qspot, opt.value());
+                n = opt.value();
+                if (n.get_is_weighted())
+                    extra_size = 2;
+
+                Tree.replace(qspot, n);
             }
             else
             {
@@ -749,8 +755,11 @@ P SearchSpace::make_program(int max_d, int max_size)
                 }
 
                 n = opt.value();
+                if (n.get_is_weighted())
+                    extra_size = 2;
 
                 auto newspot = Tree.replace(qspot, n);
+
                 // For each arg of n, add to queue
                 for (auto a : n.arg_types)
                 {
@@ -761,7 +770,7 @@ P SearchSpace::make_program(int max_d, int max_size)
                     queue.push_back(make_tuple(child_spot, a, d+1));
                 }
             }
-            ++s;
+            ++s += extra_size;
             /* cout << "current tree size: " << s << endl; */
         } 
         /* cout << "entering second while loop...\n"; */
@@ -786,7 +795,12 @@ P SearchSpace::make_program(int max_d, int max_size)
                 continue;
             }
 
-            auto newspot = Tree.replace(qspot, opt.value());
+            // here we are already at maximum size, but there are some random
+            // leafs without any content. We'll fill them with terminals, and
+            // force them to have its weights turned off
+            n = opt.value();
+            n.set_is_weighted(false);
+            auto newspot = Tree.replace(qspot, n);
         }
     }
     /* cout << "final tree:\n" */ 

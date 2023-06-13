@@ -90,7 +90,7 @@ template<PT PType> struct Program
     /// @brief count the tree size of the program, including the weights in weighted nodes.
     /// @param include_weight whether to include the node's weight in the count.
     /// @return int number of nodes.
-    int size(bool include_weight=false) const{
+    int size(bool include_weight=true) const{
         int acc = 0;
 
         std::for_each(Tree.begin(), Tree.end(), 
@@ -109,7 +109,7 @@ template<PT PType> struct Program
     /// @param top root node of the subtree.
     /// @param include_weight whether to include the node's weight in the count.
     /// @return int number of nodes.
-    int size_at(Iter& top, bool include_weight=false) const{
+    int size_at(Iter& top, bool include_weight=true) const{
 
         int acc = 0;
 
