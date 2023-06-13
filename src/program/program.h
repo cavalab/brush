@@ -95,10 +95,11 @@ template<PT PType> struct Program
 
         // iterate through each node to calculate tree size
         std::for_each(Tree.begin(), Tree.end(), 
-            [&acc](auto& node){ 
+            [include_weight, &acc](auto& node){ 
                 acc += 1; // the node operator or terminal
-                if (include_weights && node.get_is_weighted()==true)
-                    acc += 2; // weight and multiplication, if it exists
+                
+                if (include_weight && node.get_is_weighted()==true)
+                    acc += 2; // weight and multiplication, if enabled
              });
 
         return acc;
