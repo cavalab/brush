@@ -33,6 +33,9 @@ vector<Node> generate_terminals(const Dataset& d)
 
     // add a constant
     terminals.push_back( Node(NodeType::Constant, Signature<ArrayXf()>{}, true, "C"));
+    terminals.push_back( Node(NodeType::Constant, Signature<ArrayXi()>{}, true, "C"));
+    terminals.push_back( Node(NodeType::Constant, Signature<ArrayXb()>{}, false, "C"));
+
     return terminals;
 };
 
