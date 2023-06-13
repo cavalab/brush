@@ -104,12 +104,12 @@ template<PT PType> struct Program
         return acc;
     }
 
-    /// @brief count the subtree size, including the weights in weighted nodes.
-    /// this function is not exposed to the python wrapper.
+    /// @brief count the size of a given subtree, optionally including the
+    /// weights in weighted nodes. This function is not exposed to the python wrapper.
     /// @param top root node of the subtree.
     /// @param include_weight whether to include the node's weight in the count.
     /// @return int number of nodes.
-    int size_at(const tree_node_<Node>& top, bool include_weight=false) const{
+    int size_at(Iter& top, bool include_weight=false) const{
 
         int acc = 0;
 
@@ -141,14 +141,20 @@ template<PT PType> struct Program
         return 1+Tree.max_depth();
     }
 
-    /// @brief count the subtree depth. The depth is not influenced by weighted nodes.
-    /// this function is not exposed to the python wrapper.
+    /// @brief count the depth of a given subtree. The depth is not influenced by
+    /// weighted nodes. This function is not exposed to the python wrapper.
     /// @param top root node of the subtree.
     /// @return int tree depth.
-    int depth_at(const tree_node_<Node>& top) const{
-        Iter it = top;
+    int depth_at(Iter& top) const{
+        return 1+Tree.max_depth(top);
+    }
 
-        return 1+Tree.max_depth(it);
+    /// @brief count the depth until reaching the given subtree. The depth is
+    /// not influenced by weighted nodes. This function is not exposed to the python wrapper.
+    /// @param top root node of the subtree.
+    /// @return int tree depth.
+    int depth_to_reach(Iter& top) const{
+        return 1+Tree.depth(top);
     }
 
     Program<PType>& fit(const Dataset& d)

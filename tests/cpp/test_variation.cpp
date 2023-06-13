@@ -333,8 +333,6 @@ TEST(Operators, CrossoverSizeAndDepthLimit)
                 // Child is within restrictions
                 ASSERT_TRUE(Child.size() > 0);
                 ASSERT_TRUE(Child.size() <= s);
-                ASSERT_TRUE(Child.size() > 0);
-                ASSERT_TRUE(Child.size() <= s);
 
                 ASSERT_TRUE(Child.depth() >= 0);
                 ASSERT_TRUE(Child.depth() <= d);

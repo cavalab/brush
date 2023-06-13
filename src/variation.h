@@ -179,9 +179,10 @@ inline bool toggle_weight_mutation(tree<Node>& Tree, Iter spot, const SearchSpac
 template<ProgramType T>
 std::optional<Program<T>> mutate(const Program<T>& parent, const SearchSpace& SS)
 {
+    // all mutation validation and setup should be done here. Specific mutaiton
+    // functions are intended to work on the program tree thus cannot access
+    // program functions and attributes.
     Program<T> child(parent);
-
-    // TODO: update documentation
 
     // choose location by weighted sampling of program
     vector<float> weights(child.Tree.size());
@@ -200,16 +201,17 @@ std::optional<Program<T>> mutate(const Program<T>& parent, const SearchSpace& SS
     // don't increase an expression already at its maximum size!!
     // Setting to zero the weight of variations that increase the expression
     // if the expression is already at the maximum size or depth
-    if (child.Tree.size()+1      >= PARAMS["max_size"].get<int>()
-    ||  child.Tree.max_depth()+1 >= PARAMS["max_depth"].get<int>())
+    if (child.size()+1  >= PARAMS["max_size"].get<int>()
+    ||  child.depth()+1 >= PARAMS["max_depth"].get<int>())
     {
         // avoid using mutations that increase size/depth. New mutations that
         // has similar behavior should be listed here.
         options["insert"] = 0.0;
+        options["toggle_weight"] = 0.0;
     }
 
     // don't shrink an expression already at its minimum size
-    if (child.Tree.size() <= 1 || child.Tree.max_depth() <= 1)
+    if (child.size() <= 1 || child.depth() <= 1)
     {
         // avoid using mutations that decrease size/depth. New mutations that
         // has similar behavior should be listed here.
@@ -240,8 +242,8 @@ std::optional<Program<T>> mutate(const Program<T>& parent, const SearchSpace& SS
 
     bool success = it->second(child.Tree, spot, SS);
     if (success
-    && ((child.Tree.size()      <= PARAMS["max_size"].get<int>())
-    &&  (child.Tree.max_depth() <= PARAMS["max_depth"].get<int>())) ){
+    && ((child.size()  <= PARAMS["max_size"].get<int>())
+    &&  (child.depth() <= PARAMS["max_depth"].get<int>())) ){
         return child;
     } else {
         return std::nullopt;
@@ -282,9 +284,9 @@ std::optional<Program<T>> cross(const Program<T>& root, const Program<T>& other)
     // pick a subtree to replace
     vector<float> child_weights(child.Tree.size());
     std::transform(child.Tree.begin(), child.Tree.end(), 
-                    child_weights.begin(),
-                    [](const auto& n){ return n.get_prob_change(); }
-                    );
+                   child_weights.begin(),
+                   [](const auto& n){ return n.get_prob_change(); }
+                   );
     
     auto child_spot = r.select_randomly(child.Tree.begin(), 
                                         child.Tree.end(), 
@@ -295,9 +297,9 @@ std::optional<Program<T>> cross(const Program<T>& root, const Program<T>& other)
     auto child_ret_type = child_spot.node->data.ret_type;
 
     auto allowed_size  = PARAMS["max_size"].get<int>() -
-                            ( child.Tree.size() - child.Tree.size(child_spot) );
+                         ( child.size() - child.size_at(child_spot) );
     auto allowed_depth = PARAMS["max_depth"].get<int>() - 
-                            ( child.Tree.depth(child_spot) );
+                         ( child.depth_to_reach(child_spot) );
 
     // pick a subtree to insert. Selection is based on other_weights
     vector<float> other_weights(other.Tree.size());
@@ -307,8 +309,8 @@ std::optional<Program<T>> cross(const Program<T>& root, const Program<T>& other)
 
     // lambda function to check feasibility of solution and increment the iterator 
     const auto check_and_incrm = [other, &other_iter, allowed_size, allowed_depth]() -> bool {
-        int s = other.Tree.size(other_iter);
-        int d = other.Tree.max_depth(other_iter);
+        int s = other.size_at( other_iter );
+        int d = other.depth_at( other_iter );
 
         std::advance(other_iter, 1);
         return (s <= allowed_size) && (d <= allowed_depth);
