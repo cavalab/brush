@@ -45,7 +45,7 @@ void bind_program(py::module& m, string name)
             )
         .def("get_dot_model", &T::get_dot_model, py::arg("extras")="")
         .def("get_weights", &T::get_weights)
-        .def("size", &T::size, py::arg("include_weight")=false)
+        .def("size", &T::size, py::arg("include_weight")=true)
         .def("depth", &T::depth)
         .def("cross", &T::cross, py::return_value_policy::automatic,
              "Performs one attempt to stochastically swap subtrees between two programs and generate a child")
