@@ -15,7 +15,7 @@ def nsga2(toolbox, NGEN, MU, CXPB, verbosity):
     # stats.register("max", np.max, axis=0)
 
     logbook = tools.Logbook()
-    logbook.header = "gen", "evals", "offspring", "ave", "std", "min" 
+    logbook.header = "gen", "evals", "ave", "std", "min" 
 
     pop = toolbox.population(n=MU)
 
@@ -66,7 +66,7 @@ def nsga2(toolbox, NGEN, MU, CXPB, verbosity):
         # Select the next generation population
         pop = toolbox.survive(pop + offspring, MU)
         record = stats.compile(pop)
-        logbook.record(gen=gen, evals=len(invalid_ind), offspring=len(offspring), **record)
+        logbook.record(gen=gen, evals=len(offspring), **record)
         if verbosity > 0: 
             print(logbook.stream)
 
