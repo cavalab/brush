@@ -133,10 +133,9 @@ class Dataset
         };
         auto get_X() const
         {
-            if (Xref.has_value())
-                return this->Xref.value().get();
-            else
+            if (!Xref.has_value())
                 HANDLE_ERROR_THROW("Dataset does not hold a reference to X.");
+            return this->Xref.value().get();
         }
         void set_validation(bool v=true);
         inline int get_n_samples() const { 

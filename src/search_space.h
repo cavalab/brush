@@ -16,7 +16,6 @@ license: GNU/GPL v3
 #include <utility>
 #include <optional>
 
-
 /* Defines the search space of Brush. 
  *  The search spaces consists of nodes and their accompanying probability
  *  distribution. 
@@ -53,32 +52,32 @@ vector<Node> generate_terminals(const Dataset& d);
 extern std::unordered_map<std::size_t, std::string> ArgsName; 
 
 /*! @brief Holds a search space, consisting of operations and terminals
-    * and functions, and methods to sample that space to create programs. 
-    *
-    * The set of operators is a user controlled parameter; however, we can 
-    * automate, to some extent, the set of possible operators based on the 
-    * data types in the problem. 
-    * Constraints on operators based on data types: 
-    *  - only user specified operators are included. 
-    *  - operators whose arguments are covered by terminal types are included
-    *      first. Then, a second pass includes any operators whose arguments
-    *      are covered by terminal_types + return types of the current set of 
-    *      operators. One could imagine this continuing ad infinitum, but we
-    *      just do two passes for simplicity. 
-    *  - assertion check to make sure there is at least one operator that 
-    *      returns the output type of the model. 
-    *
-    * When sampling in the search space (using any of the sampling functions
-    * `sample_op` or `sample_terminal`), some methods can fail to return a 
-    * value --- given a specific set of parameters to a function, the candidate
-    * solutions set may be empty --- and, for these methods, the return type is
-    * either a valid value, or a `std::nullopt`. This is controlled wrapping
-    * the return type with `std::optional`.
-    *
-    * Parameters
-    * ----------
-    *
-*/
+ * and functions, and methods to sample that space to create programs. 
+ *
+ * The set of operators is a user controlled parameter; however, we can 
+ * automate, to some extent, the set of possible operators based on the 
+ * data types in the problem. 
+ * Constraints on operators based on data types: 
+ *  - only user specified operators are included. 
+ *  - operators whose arguments are covered by terminal types are included
+ *      first. Then, a second pass includes any operators whose arguments
+ *      are covered by terminal_types + return types of the current set of 
+ *      operators. One could imagine this continuing ad infinitum, but we
+ *      just do two passes for simplicity. 
+ *  - assertion check to make sure there is at least one operator that 
+ *      returns the output type of the model. 
+ *
+ * When sampling in the search space (using any of the sampling functions
+ * `sample_op` or `sample_terminal`), some methods can fail to return a 
+ * value --- given a specific set of parameters to a function, the candidate
+ * solutions set may be empty --- and, for these methods, the return type is
+ * either a valid value, or a `std::nullopt`. This is controlled wrapping
+ * the return type with `std::optional`.
+ *
+ * Parameters
+ * ----------
+ *
+ */
 struct SearchSpace
 {
     using ArgsHash = std::size_t; 
@@ -360,6 +359,7 @@ struct SearchSpace
         //     HANDLE_ERROR_THROW(msg); 
         // }
 
+        // TODO: try to combine with above function
         if ( (terminal_map.find(R) == terminal_map.end())
         ||   (!has_solution_space(terminal_weights.at(R).begin(), 
                                   terminal_weights.at(R).end())) )
@@ -678,8 +678,7 @@ P SearchSpace::make_program(int max_d, int max_size)
             n.set_prob_change(0.0);
             n.fixed=true;
         }
-        else // TODO: how to avoid infinite loop here? (may be impossible to have one though,
-             // only if user gives really bad input. Maybe SS should do a check on constructor?)
+        else
         {
             auto opt = sample_op(root_type);
             while (!opt) {
@@ -708,14 +707,9 @@ P SearchSpace::make_program(int max_d, int max_size)
         /* cout << "queue size: " << queue.size() << endl; */ 
         /* cout << "entering first while loop...\n"; */
         while (queue.size() + s < max_size && queue.size() > 0) 
-        {
-            // TODO: we can get an infinite loop here (due to the way we handle
-            // optional). Maybe I should put a constant (or a neutral element of the node type)
-            
+        {            
             /* cout << "queue size: " << queue.size() << endl; */ 
             auto [qspot, t, d] = RandomDequeue(queue);
-
-            int extra_size = 0;
 
             /* cout << "current depth: " << d << endl; */
             if (d == max_d)
@@ -735,8 +729,6 @@ P SearchSpace::make_program(int max_d, int max_size)
 
                 // If we successfully get a terminal, use it
                 n = opt.value();
-                if (n.get_is_weighted())
-                    extra_size = 2;
 
                 Tree.replace(qspot, n);
             }
@@ -755,9 +747,7 @@ P SearchSpace::make_program(int max_d, int max_size)
                 }
 
                 n = opt.value();
-                if (n.get_is_weighted())
-                    extra_size = 2;
-
+                
                 auto newspot = Tree.replace(qspot, n);
 
                 // For each arg of n, add to queue
@@ -770,7 +760,8 @@ P SearchSpace::make_program(int max_d, int max_size)
                     queue.push_back(make_tuple(child_spot, a, d+1));
                 }
             }
-            ++s += extra_size;
+
+            ++s
             /* cout << "current tree size: " << s << endl; */
         } 
         /* cout << "entering second while loop...\n"; */
