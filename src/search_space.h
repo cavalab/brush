@@ -761,7 +761,7 @@ P SearchSpace::make_program(int max_d, int max_size)
                 }
             }
 
-            ++s
+            ++s;
             /* cout << "current tree size: " << s << endl; */
         } 
         /* cout << "entering second while loop...\n"; */
@@ -785,12 +785,8 @@ P SearchSpace::make_program(int max_d, int max_size)
                 queue.push_back(make_tuple(qspot, t, d));
                 continue;
             }
-
-            // here we are already at maximum size, but there are some random
-            // leafs without any content. We'll fill them with terminals, and
-            // force them to have its weights turned off
             n = opt.value();
-            n.set_is_weighted(false);
+            
             auto newspot = Tree.replace(qspot, n);
         }
     }
