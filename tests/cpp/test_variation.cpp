@@ -158,8 +158,8 @@ TEST(Operators, MutationSizeAndDepthLimit)
                     d, s, 
                     PRG.get_model("compact", true),
                     Child.get_model("compact", true),
-                    Child.Tree.max_depth(),
-                    Child.Tree.size()
+                    Child.max_depth(),
+                    Child.size()
                 );
 
                 // Original didn't change
@@ -168,11 +168,11 @@ TEST(Operators, MutationSizeAndDepthLimit)
                 ASSERT_TRUE(Child.size() > 0);
                 ASSERT_TRUE(Child.size() <= s);
 
-                ASSERT_TRUE(Child.Tree.size() > 0);
-                ASSERT_TRUE(Child.Tree.size() <= s);
+                ASSERT_TRUE(Child.size() > 0);
+                ASSERT_TRUE(Child.size() <= s);
 
-                ASSERT_TRUE(Child.Tree.max_depth() >= 0);
-                ASSERT_TRUE(Child.Tree.max_depth() <= d);
+                ASSERT_TRUE(Child.max_depth() >= 0);
+                ASSERT_TRUE(Child.max_depth() <= d);
             }
         }
         ASSERT_TRUE(successes > 0);
@@ -327,7 +327,7 @@ TEST(Operators, CrossoverSizeAndDepthLimit)
                     "Child Model size : {}\n"
                     "=================================================\n",
                     Child.get_model("compact", true),
-                    Child.Tree.max_depth(), Child.Tree.size()
+                    Child.max_depth(), Child.size()
                 );
 
                 // Original didn't change
@@ -337,11 +337,11 @@ TEST(Operators, CrossoverSizeAndDepthLimit)
                 // Child is within restrictions
                 ASSERT_TRUE(Child.size() > 0);
                 ASSERT_TRUE(Child.size() <= s);
-                ASSERT_TRUE(Child.Tree.size() > 0);
-                ASSERT_TRUE(Child.Tree.size() <= s);
+                ASSERT_TRUE(Child.size() > 0);
+                ASSERT_TRUE(Child.size() <= s);
 
-                ASSERT_TRUE(Child.Tree.max_depth() >= 0);
-                ASSERT_TRUE(Child.Tree.max_depth() <= d);
+                ASSERT_TRUE(Child.max_depth() >= 0);
+                ASSERT_TRUE(Child.max_depth() <= d);
             }
         }
         ASSERT_TRUE(successes > 0);

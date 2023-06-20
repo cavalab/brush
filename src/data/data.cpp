@@ -153,6 +153,13 @@ void Dataset::init()
     // note this will have to change in unsupervised settings
     // n_samples = this->y.size();
 
+    if (this->features.size() == 0){
+        HANDLE_ERROR_THROW(
+            fmt::format("Error during the initialization of the dataset. It "
+                        "does not contain any data\n") 
+            );
+    }
+
     // fmt::print("Dataset::init()\n");
     for (const auto& [name, value]: this->features)
     {

@@ -42,3 +42,5 @@ TEST(SearchSpace, Initialization)
 /*     dtable_fit.print(); */
 /*     dtable_predict.print(); */
 }
+
+// TODO: check if searchspace recognizes when PTC2 is not going to work (avoid infinite loops)

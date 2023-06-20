@@ -9,8 +9,6 @@ TEST(Program, MakeRegressor)
         
     Dataset data = Data::read_csv("docs/examples/datasets/d_enc.csv","label");
 
-
-
     SearchSpace SS;
     SS.init(data);
 
