@@ -104,7 +104,6 @@ inline bool insert_mutation(tree<Node>& Tree, Iter spot, const SearchSpace& SS)
 
             Tree.insert(spot, opt.value());
         }
-            
     } 
 
     return true;
@@ -218,6 +217,12 @@ std::optional<Program<T>> mutate(const Program<T>& parent, const SearchSpace& SS
         options["delete"] = 0.0;
     }
 
+    // No mutation can be successfully applied to this solution
+    if (std::all_of(options.begin(), options.end(), [](const auto& kv) {
+        return kv.second<=0.0;
+    }))
+        return std::nullopt;
+
     // choose a valid mutation option
     string choice = r.random_choice(options);
 
@@ -242,7 +247,7 @@ std::optional<Program<T>> mutate(const Program<T>& parent, const SearchSpace& SS
 
     bool success = it->second(child.Tree, spot, SS);
     if (success
-    && ((child.size()  <= PARAMS["max_size"].get<int>())
+    && ((child.size()  <= PARAMS["max_size"].get<int>() )
     &&  (child.depth() <= PARAMS["max_depth"].get<int>())) ){
         return child;
     } else {
