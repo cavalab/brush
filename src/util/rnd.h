@@ -12,6 +12,8 @@ license: GNU/GPL v3
 
 #include "../init.h"
 
+// Defines a multi-core random number generator and its operators.
+
 using namespace std;
 using std::swap;
 
@@ -123,7 +125,6 @@ namespace Brush { namespace Util{
                     && " attemping to return random choice from empty vector");
                 return *select_randomly(v.begin(),v.end());
             }
- 
            
             template<template<class, class> class C, class T>
             T random_choice(const C<T, std::allocator<T>>& v, const vector<float>& w )
@@ -164,7 +165,6 @@ namespace Brush { namespace Util{
             vector<std::mt19937> rg;
             
             static Rnd* instance;
-     
     };
     
     static Rnd &r = *Rnd::initRand();

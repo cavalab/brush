@@ -44,3 +44,5 @@ TEST(SearchSpace, Initialization)
 }
 
 // TODO: check if searchspace recognizes when PTC2 is not going to work (avoid infinite loops)
+
+// TODO: test search space when I set only incompatible functions and terminals (should work)

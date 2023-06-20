@@ -87,14 +87,74 @@ template<PT PType> struct Program
         SSref = std::optional<std::reference_wrapper<SearchSpace>>{s};
     }
 
-    /// @brief count the tree size of the program
-    int size(){
-        return Tree.size();
+    /// @brief count the tree size of the program, including the weights in weighted nodes.
+    /// @param include_weight whether to include the node's weight in the count.
+    /// @return int number of nodes.
+    int size(bool include_weight=true) const{
+        int acc = 0;
+
+        std::for_each(Tree.begin(), Tree.end(), 
+            [include_weight, &acc](auto& node){ 
+                ++acc; // the node operator or terminal
+                
+                if (include_weight && node.get_is_weighted()==true)
+                    acc += 2; // weight and multiplication, if enabled
+             });
+
+        return acc;
     }
 
-    /// @brief count the tree depth of the program
-    int depth(){
-        return Tree.max_depth();
+    /// @brief count the size of a given subtree, optionally including the
+    /// weights in weighted nodes. This function is not exposed to the python wrapper.
+    /// @param top root node of the subtree.
+    /// @param include_weight whether to include the node's weight in the count.
+    /// @return int number of nodes.
+    int size_at(Iter& top, bool include_weight=true) const{
+
+        int acc = 0;
+
+        // inspired in tree.hh size. First create two identical iterators
+        Iter it=top, eit=top;
+        
+        // Then make the second one point to the next sibling
+        eit.skip_children();
+        ++eit;
+
+        // calculate tree size for each node until reach next sibling
+        while(it!=eit) {
+            ++acc; // counting the node operator/terminal
+                        
+            if (include_weight && it.node->data.get_is_weighted()==true)
+                acc += 2; // weight and multiplication, if enabled
+
+            ++it;
+        }
+        
+        return acc;
+    }
+
+    /// @brief count the tree depth of the program. The depth is not influenced by weighted nodes.
+    /// @return int tree depth.
+    int depth() const{
+        //tree.hh count the number of edges. We need to ensure that a single-node
+        //tree has depth>0
+        return 1+Tree.max_depth();
+    }
+
+    /// @brief count the depth of a given subtree. The depth is not influenced by
+    /// weighted nodes. This function is not exposed to the python wrapper.
+    /// @param top root node of the subtree.
+    /// @return int tree depth.
+    int depth_at(Iter& top) const{
+        return 1+Tree.max_depth(top);
+    }
+
+    /// @brief count the depth until reaching the given subtree. The depth is
+    /// not influenced by weighted nodes. This function is not exposed to the python wrapper.
+    /// @param top root node of the subtree.
+    /// @return int tree depth.
+    int depth_to_reach(Iter& top) const{
+        return 1+Tree.depth(top);
     }
 
     Program<PType>& fit(const Dataset& d)

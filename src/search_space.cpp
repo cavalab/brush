@@ -33,6 +33,9 @@ vector<Node> generate_terminals(const Dataset& d)
 
     // add a constant
     terminals.push_back( Node(NodeType::Constant, Signature<ArrayXf()>{}, true, "C"));
+    terminals.push_back( Node(NodeType::Constant, Signature<ArrayXi()>{}, true, "C"));
+    terminals.push_back( Node(NodeType::Constant, Signature<ArrayXb()>{}, false, "C"));
+
     return terminals;
 };
 
@@ -56,7 +59,6 @@ void SearchSpace::init(const Dataset& d, const unordered_map<string,float>& user
     for (const auto& [op, weight] : user_ops)
         op_names.push_back(op);
 
-
     // create nodes based on data types 
     terminal_types = d.unique_data_types;
 
@@ -72,12 +74,11 @@ void SearchSpace::init(const Dataset& d, const unordered_map<string,float>& user
         /* fmt::print("adding {} to search space...\n", term.get_name()); */
         if (terminal_map.find(term.ret_type) == terminal_map.end())
             terminal_map[term.ret_type] = vector<Node>();
+
         /* fmt::print("terminal ret_type: {}\n", DataTypeName[term.ret_type]); */
         terminal_map[term.ret_type].push_back(term);
         terminal_weights[term.ret_type].push_back(1.0);
     }
-
-
 };
 
 RegressorProgram SearchSpace::make_regressor(int max_d, int max_size)
