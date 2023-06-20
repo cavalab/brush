@@ -23,7 +23,6 @@ class BrushEstimator(BaseEstimator):
     This class shouldn't be called directly; instead, call a child class like 
     :py:class:`BrushRegressor <brush.estimator.BrushRegressor>` or :py:class:`BrushClassifier <brush.estimator.BrushClassifier>`. 
     All of the shared parameters are documented here. 
-    
 
     Parameters
     ----------
@@ -91,10 +90,10 @@ class BrushEstimator(BaseEstimator):
         # creator.create is used to "create new functions", and takes at least
         # 2 arguments: the name of the newly created class and a base class
 
-        # minimize MAE, minimize size. When solving multi-objective problems,
-        # selection and survival must support this feature. This means that 
-        # these selection operators must accept a tuple of fitnesses as argument)
-        creator.create("FitnessMulti", base.Fitness, weights=(-1.0,-0.5))
+        # Minimizing/maximizing problem: negative/positive weight, respectively.
+        # Our classification is using the error as a metric
+        # Comparing fitnesses: https://deap.readthedocs.io/en/master/api/base.html#deap.base.Fitness
+        creator.create("FitnessMulti", base.Fitness, weights=(+1.0,-1.0))
 
         # create Individual class, inheriting from self.Individual with a fitness attribute
         creator.create("Individual", DeapIndividual, fitness=creator.FitnessMulti)  
@@ -102,6 +101,9 @@ class BrushEstimator(BaseEstimator):
         toolbox.register("mate", self._crossover)
         toolbox.register("mutate", self._mutate)
 
+        # When solving multi-objective problems, selection and survival must
+        # support this feature. This means that these selection operators must
+        # accept a tuple of fitnesses as argument)
         toolbox.register("select", tools.selTournamentDCD) 
         toolbox.register("survive", tools.selNSGA2)
 
@@ -117,9 +119,8 @@ class BrushEstimator(BaseEstimator):
         for i,j in [(ind1,ind2),(ind2,ind1)]:
             child = i.prg.cross(j.prg)
             if child:
-                off = creator.Individual(child)
-                offspring.append(off)
-            else: # so we'll always have two elements in `offspring`
+                offspring.append(creator.Individual(child))
+            else: # so we'll always have two elements to unpack in `offspring`
                 offspring.append(None)
 
         return offspring[0], offspring[1]
@@ -164,8 +165,11 @@ class BrushEstimator(BaseEstimator):
         self.logbook_ = logbook
         self.best_estimator_ = self.archive_[0].prg
 
-        if self.verbosity > 0:             
-            print('best model:',self.best_estimator_.get_model())
+        if self.verbosity > 0:
+            print(f'best model {self.best_estimator_.get_model()}'+
+                  f' with size {self.best_estimator_.size()}, '   +
+                  f' depth {self.best_estimator_.depth()}, '      +
+                  f' and fitness {self.archive_[0].fitness}'      )
 
         return self
     
@@ -231,16 +235,21 @@ class BrushClassifier(BrushEstimator,ClassifierMixin):
 
     def _fitness_function(self, ind, data: _brush.Dataset):
         ind.prg.fit(data)
-        return (
-            np.abs(data.y-ind.prg.predict(data)).sum(), 
+        return ( # (accuracy, size)
+            (data.y==ind.prg.predict(data)).sum() / data.y.shape[0], 
             ind.prg.size()
         )
     
     def _make_individual(self):
+        # C++'s PTC2-based `make_individual` will create a tree of at least
+        # the given size. By uniformly sampling the size, we can instantiate a
+        # population with more diversity
+        s = np.random.randint(1, self.max_size)
+
         return creator.Individual(
-            self.search_space_.make_classifier(self.max_depth, self.max_size)
+            self.search_space_.make_classifier(self.max_depth, s)
             if self.n_classes_ == 2 else
-            self.search_space_.make_multiclass_classifier(self.max_depth, self.max_size)
+            self.search_space_.make_multiclass_classifier(self.max_depth, s)
             )
 
     def predict_proba(self, X):
@@ -283,14 +292,18 @@ class BrushRegressor(BrushEstimator, RegressorMixin):
 
     def _fitness_function(self, ind, data: _brush.Dataset):
         ind.prg.fit(data)
-        return (
-            np.mean((data.y- ind.prg.predict(data))**2),
+
+        # We are squash the error and making it a maximization problem
+        return ( # (1/(1+MSE), size)
+            1/(1+np.mean( (data.y-ind.prg.predict(data))**2 )),
             ind.prg.size()
         )
 
     def _make_individual(self):
+        s = np.random.randint(1, self.max_size)
+        
         return creator.Individual(
-            self.search_space_.make_regressor(self.max_depth, self.max_size)
+            self.search_space_.make_regressor(self.max_depth, s)
         )
 
 # Under development
