@@ -4,6 +4,113 @@
 #include "../../src/program/dispatch_table.h"
 #include "../../src/data/io.h"
 
+TEST(Operators, InsertMutationWorks)
+{
+    // TODO: this tests could be parameterized.
+    // To understand design implementation of this test, check Mutation test
+
+    PARAMS["mutation_options"] = {
+        {"point", 0.0}, {"insert", 1.0}, {"delete", 0.0}, {"toggle_weight", 0.0}
+    };
+
+    // retrieving the options to check if everything was set right
+    std::cout << "Initial mutation configuration" << std::endl;
+    auto options = PARAMS["mutation_options"].get<std::map<string,float>>();
+    for (const auto& [k, v] : options)
+        std::cout << k << " : " << v << std::endl;
+
+    MatrixXf X(10,2);
+    ArrayXf y(10);
+    X << 0.85595296, 0.55417453, 0.8641915 , 0.99481109, 0.99123376,
+         0.9742618 , 0.70894019, 0.94940306, 0.99748867, 0.54205151,
+
+         0.5170537 , 0.8324005 , 0.50316305, 0.10173936, 0.13211973,
+         0.2254195 , 0.70526861, 0.31406024, 0.07082619, 0.84034526;
+
+    y << 3.55634251, 3.13854087, 3.55887523, 3.29462895, 3.33443517,
+         3.4378868 , 3.41092345, 3.5087468 , 3.25110243, 3.11382179;
+
+    Dataset data(X,y);
+
+    SearchSpace SS;
+    SS.init(data);
+
+    int successes = 0;
+    for (int attempt = 0; attempt < 100; ++attempt)
+    {
+        // we need to have big values here so the mutation will work
+        // (when the xmen child exceeds the maximum limits, mutation returns
+        // std::nullopt)
+        PARAMS["max_size"]  = 20;
+        PARAMS["max_depth"] = 10;
+        
+        fmt::print("d={},s={}\n", PARAMS["max_depth"].get<int>(), PARAMS["max_size"].get<int>());
+        fmt::print("make_regressor\n");
+
+        // creating a "small" program (with a plenty amount of space to insert stuff)
+        RegressorProgram PRG = SS.make_regressor(5, 5);
+
+        fmt::print("PRG.fit(data);\n");
+        PRG.fit(data);
+        ArrayXf y_pred = PRG.predict(data);
+        
+        // applying mutation and checking if the optional result is non-empty
+        fmt::print("auto Child = PRG.mutate();\n");
+        auto opt = PRG.mutate(); // We should assume that it will be always the insert mutation
+
+        if (opt){
+            successes += 1;
+            auto Child = opt.value();
+            fmt::print(
+                "=================================================\n"
+                "depth = {}, size= {}\n"
+                "Initial Model: {}\n"
+                "Mutated Model: {}\n",
+                PARAMS["max_depth"].get<int>(), PARAMS["max_size"].get<int>(),
+                PRG.get_model("compact", true),
+                Child.get_model("compact", true)
+            );
+
+            fmt::print("child fit\n");
+            Child.fit(data);
+            y_pred = Child.predict(data);
+
+            // since we successfully inserted a node, this should be always true
+            ASSERT_TRUE(Child.size() > PRG.size());
+
+            // maybe the insertion spot was a shorter branch than the maximum
+            // depth. At least, xmen depth should be equal to its parent
+            ASSERT_TRUE(Child.depth() >= PRG.depth());
+        }
+
+        // lets also see if it always fails when the child exceeds the maximum limits
+        PARAMS["max_size"]  = PRG.size();
+        PARAMS["max_depth"] = PRG.depth();
+
+        auto opt2 = PRG.mutate();
+        if (opt2){ // This shoudl't happen. We'll print then error
+            auto Child2 = opt2.value();
+
+            std::cout << "Fail failed. Mutation weights:" << std::endl;
+            auto options2 = PARAMS["mutation_options"].get<std::map<string,float>>();
+            for (const auto& [k, v] : options2)
+                std::cout << k << " : " << v << std::endl;
+
+            fmt::print(
+                "=================================================\n"
+                "depth = {}, size= {}\n"
+                "Initial Model: {}\n"
+                "Mutated Model: {}\n",
+                PARAMS["max_depth"].get<int>(), PARAMS["max_size"].get<int>(),
+                PRG.get_model("compact", true),
+                Child2.get_model("compact", true)
+            );
+            ASSERT_TRUE(opt2==std::nullopt);
+        }
+    }
+    ASSERT_TRUE(successes > 0);
+}
+
 TEST(Operators, Mutation)
 {
     // test mutation
