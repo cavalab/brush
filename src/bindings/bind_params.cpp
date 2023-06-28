@@ -10,4 +10,5 @@ void bind_params(py::module& m)
     //       .def(py::init<>())
 
     m.def("set_params", &Brush::set_params);
+    m.def("get_params", &Brush::get_params);
 }
