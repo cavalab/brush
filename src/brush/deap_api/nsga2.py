@@ -19,7 +19,6 @@ def nsga2(toolbox, NGEN, MU, CXPB, verbosity):
 
     pop = toolbox.population(n=MU)
 
-
     # Evaluate the individuals with an invalid fitness
     invalid_ind = [ind for ind in pop if not ind.fitness.valid]
     fitnesses = toolbox.map(toolbox.evaluate, invalid_ind)
@@ -50,11 +49,11 @@ def nsga2(toolbox, NGEN, MU, CXPB, verbosity):
                 off1, off2 = ind1, ind2
                 
             # avoid inserting empty solutions
-            if off1: off1 = toolbox.mutate(off1)
-            if off1: offspring.extend([off1])
+            if off1 != None: off1 = toolbox.mutate(off1)
+            if off1 != None: offspring.extend([off1])
 
-            if off2: off2 = toolbox.mutate(off2)
-            if off2: offspring.extend([off2])
+            if off2 != None: off2 = toolbox.mutate(off2)
+            if off2 != None: offspring.extend([off2])
 
         # archive.update(offspring)
         # Evaluate the individuals with an invalid fitness
