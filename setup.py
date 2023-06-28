@@ -126,7 +126,7 @@ setup(
         'scikit-learn',
         'sphinx'
     ],
-    tests_require=['pytest', 'pmlb', 'pathos'],
+    tests_require=['pytest', 'pmlb'],
     extras_require={
         'docs': [
             'sphinx_rtd_theme',

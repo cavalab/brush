@@ -2,7 +2,7 @@ import pytest
 
 import _brush
 import time
-from pathos.multiprocessing import Pool
+from multiprocessing import Pool
 
 def _change_and_wait(config):
     "Will change the mutation weights to set only the `index` to 1, then wait "
