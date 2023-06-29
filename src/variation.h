@@ -197,11 +197,11 @@ std::optional<Program<T>> mutate(const Program<T>& parent, const SearchSpace& SS
 
     // these restrictions below increase the performance
 
-    // don't increase an expression already at its maximum size!!
+    // don't increase an expression already at its maximum size!
     // Setting to zero the weight of variations that increase the expression
     // if the expression is already at the maximum size or depth
-    if (child.size()  >= PARAMS["max_size"].get<int>()
-    ||  child.depth() >= PARAMS["max_depth"].get<int>())
+    if (child.size() >= PARAMS["max_size"].get<int>()
+    ||  child.depth_to_reach(spot) >= PARAMS["max_depth"].get<int>())
     {
         // avoid using mutations that increase size/depth. New mutations that
         // has similar behavior should be listed here.
@@ -341,8 +341,8 @@ std::optional<Program<T>> cross(const Program<T>& root, const Program<T>& other)
             else
                 // setting the weight to zero to indicate a non-feasible crossover point
                 return float(0.0);
-            }
-        );
+        }
+    );
 
     bool matching_spots_found = false;
     for (const auto& w: other_weights)
