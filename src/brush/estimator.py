@@ -38,6 +38,8 @@ class BrushEstimator(BaseEstimator):
         Maximum depth of GP trees in the GP program. Use 0 for no limit.
     max_size : int, default 0
         Maximum number of nodes in a tree. Use 0 for no limit.
+    cx_prob : float, default 0.9
+        Probability of applying the crossover variation when generating the offspring
     mutation_options : dict, default {"point":0.5, "insert": 0.25, "delete":  0.25}
         A dictionary with keys naming the types of mutation and floating point 
         values specifying the fraction of total mutations to do with that method. 
@@ -68,6 +70,7 @@ class BrushEstimator(BaseEstimator):
         verbosity=0,
         max_depth=3,
         max_size=20,
+        cx_prob=0.9,
         mutation_options = {"point":0.4, "insert": 0.25, "delete":  0.25, "toggle_weight": 0.1},
         functions: list[str]|dict[str,float] = {},
         batch_size: int = 0
@@ -78,6 +81,7 @@ class BrushEstimator(BaseEstimator):
         self.mode=mode
         self.max_depth=max_depth
         self.max_size=max_size
+        self.cx_prob=cx_prob
         self.mutation_options=mutation_options
         self.functions=functions
         self.batch_size=batch_size
@@ -160,7 +164,7 @@ class BrushEstimator(BaseEstimator):
         self.search_space_ = _brush.SearchSpace(self.data_, self.functions_)
         self.toolbox_ = self._setup_toolbox(data=self.data_)
 
-        archive, logbook = nsga2(self.toolbox_, self.max_gen, self.pop_size, 0.9, self.verbosity)
+        archive, logbook = nsga2(self.toolbox_, self.max_gen, self.pop_size, self.cx_prob, self.verbosity)
         self.archive_ = archive
         self.logbook_ = logbook
         self.best_estimator_ = self.archive_[0].prg
@@ -293,11 +297,12 @@ class BrushRegressor(BrushEstimator, RegressorMixin):
     def _fitness_function(self, ind, data: _brush.Dataset):
         ind.prg.fit(data)
 
+        MSE = np.mean( (data.y-ind.prg.predict(data))**2 )
+        if not np.isfinite(MSE): # numeric erros, np.nan, +-np.inf
+            MSE = np.inf
+
         # We are squash the error and making it a maximization problem
-        return ( # (1/(1+MSE), size)
-            1/(1+np.mean( (data.y-ind.prg.predict(data))**2 )),
-            ind.prg.size()
-        )
+        return ( 1/(1+MSE), ind.prg.size() )
 
     def _make_individual(self):
         s = np.random.randint(1, self.max_size)
