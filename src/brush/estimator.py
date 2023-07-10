@@ -40,7 +40,7 @@ class BrushEstimator(BaseEstimator):
         Maximum number of nodes in a tree. Use 0 for no limit.
     cx_prob : float, default 0.9
         Probability of applying the crossover variation when generating the offspring
-    mutation_options : dict, default {"point":0.5, "insert": 0.25, "delete":  0.25}
+    mutation_options : dict, default {"point":0.4, "insert":0.25, "delete":0.25, "toggle_weight":0.1}
         A dictionary with keys naming the types of mutation and floating point 
         values specifying the fraction of total mutations to do with that method. 
     functions: dict[str,float] or list[str], default {}
@@ -71,7 +71,7 @@ class BrushEstimator(BaseEstimator):
         max_depth=3,
         max_size=20,
         cx_prob=0.9,
-        mutation_options = {"point":0.4, "insert": 0.25, "delete":  0.25, "toggle_weight": 0.1},
+        mutation_options = {"point":0.4, "insert":0.25, "delete":0.25, "toggle_weight":0.1},
         functions: list[str]|dict[str,float] = {},
         batch_size: int = 0
         ):
