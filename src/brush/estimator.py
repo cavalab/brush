@@ -71,7 +71,7 @@ class BrushEstimator(BaseEstimator):
         max_depth=3,
         max_size=20,
         cx_prob=0.9,
-        mutation_options = {"point":0.4, "insert":0.25, "delete":0.25, "toggle_weight":0.1},
+        mutation_options = {"point":0.25, "insert":0.25, "delete":0.25, "toggle_weight":0.25},
         functions: list[str]|dict[str,float] = {},
         batch_size: int = 0
         ):
@@ -248,12 +248,11 @@ class BrushClassifier(BrushEstimator,ClassifierMixin):
         # C++'s PTC2-based `make_individual` will create a tree of at least
         # the given size. By uniformly sampling the size, we can instantiate a
         # population with more diversity
-        s = np.random.randint(1, self.max_size)
 
         return creator.Individual(
-            self.search_space_.make_classifier(self.max_depth, s)
+            self.search_space_.make_classifier(self.max_depth, self.max_size)
             if self.n_classes_ == 2 else
-            self.search_space_.make_multiclass_classifier(self.max_depth, s)
+            self.search_space_.make_multiclass_classifier(self.max_depth, self.max_size)
             )
 
     def predict_proba(self, X):
@@ -304,11 +303,9 @@ class BrushRegressor(BrushEstimator, RegressorMixin):
         # We are squash the error and making it a maximization problem
         return ( 1/(1+MSE), ind.prg.size() )
 
-    def _make_individual(self):
-        s = np.random.randint(1, self.max_size)
-        
+    def _make_individual(self):        
         return creator.Individual(
-            self.search_space_.make_regressor(self.max_depth, s)
+            self.search_space_.make_regressor(self.max_depth, self.max_size)
         )
 
 # Under development

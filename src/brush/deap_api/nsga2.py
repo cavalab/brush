@@ -43,7 +43,7 @@ def nsga2(toolbox, NGEN, MU, CXPB, verbosity):
         offspring = []
 
         for ind1, ind2 in zip(parents[::2], parents[1::2]):
-            if random.random() <= CXPB:
+            if random.random() < CXPB:
                 off1, off2 = toolbox.mate(ind1, ind2)
             else:
                 off1, off2 = ind1, ind2
