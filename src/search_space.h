@@ -107,7 +107,6 @@ struct SearchSpace
      * 
      *      { return_type : vector of Nodes } 
      *
-     * 
      */
     unordered_map<DataType, vector<Node>> terminal_map;
 

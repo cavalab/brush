@@ -156,8 +156,8 @@ struct Node {
 
         W = 1.0;
         // set_node_hash();
-        set_prob_change(1.0);
         fixed=false;
+        set_prob_change(1.0);
 
         // cant weight an boolean terminal
         if (!IsWeighable(this->ret_type)) 
