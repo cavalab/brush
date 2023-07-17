@@ -190,50 +190,27 @@ std::optional<Program<T>> mutate(const Program<T>& parent, const SearchSpace& SS
                     [](const auto& n){ return n.get_prob_change(); }
                     );
 
-    auto spot = r.select_randomly(child.Tree.begin(), child.Tree.end(), 
-                                    weights.begin(), weights.end());
-
     auto options = PARAMS["mutation_options"].get<std::map<string,float>>();
 
-    // these restrictions below increase the performance
-
-    // don't increase an expression already at its maximum size!
-    // Setting to zero the weight of variations that increase the expression
-    // if the expression is already at the maximum size or depth
-    if (child.size() >= PARAMS["max_size"].get<int>()
-    ||  child.depth_to_reach(spot) >= PARAMS["max_depth"].get<int>())
-    {
-        // avoid using mutations that increase size/depth. New mutations that
-        // has similar behavior should be listed here.
-        options["insert"] = 0.0;
+    if (std::all_of(weights.begin(), weights.end(), [](const auto& w) {
+        return w<=0.0;
+    }))
+    { // There is no spot that has a probability to be selected
+        return std::nullopt;
     }
 
-    // don't shrink an expression already at its minimum size
-    if (child.size() <= 1 || child.depth() <= 1)
-    {
-        // avoid using mutations that decrease size/depth. New mutations that
-        // has similar behavior should be listed here.
-        options["delete"] = 0.0;
-    }
+    auto spot = r.select_randomly(child.Tree.begin(), child.Tree.end(), 
+                                  weights.begin(), weights.end());
 
-    // This one can increase and decrease, depending on the spot. However, if
-    // decreasing the program size, it will always be >= 1. We need to avoid this
-    // one only when the node is not weighted yet
-    if (!spot.node->data.get_is_weighted() && child.size()>=PARAMS["max_size"].get<int>())
-        options["toggle_weight"] = 0.0;
-
-    // No mutation can be successfully applied to this solution
     if (std::all_of(options.begin(), options.end(), [](const auto& kv) {
         return kv.second<=0.0;
     }))
+    { // No mutation can be successfully applied to this solution  
         return std::nullopt;
-
+    }
+        
     // choose a valid mutation option
     string choice = r.random_choice(options);
-
-    // std::cout << "mutation configuration (choice was " << choice << "):" << std::endl;
-    // for (const auto& [k, v] : options)
-    //     std::cout << " - " << k << " : " << v << std::endl;
 
     // Every mutation here works inplace, so they return bool instead of
     // std::optional to indicare the result of their manipulation over the
@@ -254,11 +231,12 @@ std::optional<Program<T>> mutate(const Program<T>& parent, const SearchSpace& SS
         HANDLE_ERROR_THROW(msg);
     }
 
+    // apply the mutation and check if it succeeded
     bool success = it->second(child.Tree, spot, SS);
+
     if (success
-    && ((child.size()  <= PARAMS["max_size"].get<int>() )
-    &&  (child.depth() <= PARAMS["max_depth"].get<int>())) ){
-        // std::cout << "mutation success: " << success << std::endl;
+    && ( (child.size()  <= PARAMS["max_size"].get<int>() )
+    &&   (child.depth() <= PARAMS["max_depth"].get<int>()) )){
         return child;
     } else {
         return std::nullopt;
@@ -303,6 +281,13 @@ std::optional<Program<T>> cross(const Program<T>& root, const Program<T>& other)
                    [](const auto& n){ return n.get_prob_change(); }
                    );
     
+    if (std::all_of(child_weights.begin(), child_weights.end(), [](const auto& w) {
+        return w<=0.0;
+    }))
+    { // There is no spot that has a probability to be selected
+        return std::nullopt;
+    }
+
     auto child_spot = r.select_randomly(child.Tree.begin(), 
                                         child.Tree.end(), 
                                         child_weights.begin(), 
@@ -363,6 +348,7 @@ std::optional<Program<T>> cross(const Program<T>& root, const Program<T>& other)
             return child;
         }
     }
+
     return std::nullopt;
 };
 } //namespace variation
