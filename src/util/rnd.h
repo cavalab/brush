@@ -34,7 +34,7 @@ namespace Brush { namespace Util{
             
             static void destroy();
 
-            void set_seed(int seed);
+            void set_seed(unsigned int seed);
             
             int rnd_int( int lowerLimit, int upperLimit );
 
@@ -164,9 +164,15 @@ namespace Brush { namespace Util{
             // Vector of pseudo-random number generators, one for each thread
             vector<std::mt19937> rg;
             
+            // private static attribute used by every instance of the class.
+            // All threads share common static members of the class
             static Rnd* instance;
     };
     
+    // `Brush.Util` static attribute holding an singleton instance of Rnd.
+    // the instance is created by calling `initRand`, which creates
+    // an instance of the private static attribute `instance`. `r` will contain
+    // one generator for each thread (since it called the constructor) 
     static Rnd &r = *Rnd::initRand();
 } // Util
 } // Brush
