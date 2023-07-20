@@ -46,6 +46,9 @@ class BrushEstimator(BaseEstimator):
     functions: dict[str,float] or list[str], default {}
         A dictionary with keys naming the function set and values giving the probability of sampling them, or a list of functions which will be weighted uniformly.
         If empty, all available functions are included in the search space.
+    random_state: int or None, default None
+        If int, then the value is used to seed the c++ random generator; if None,
+        then a seed will be generated using a non-deterministic generator.
 
     Attributes
     ----------
