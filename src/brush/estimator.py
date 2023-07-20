@@ -40,12 +40,15 @@ class BrushEstimator(BaseEstimator):
         Maximum number of nodes in a tree. Use 0 for no limit.
     cx_prob : float, default 0.9
         Probability of applying the crossover variation when generating the offspring
-    mutation_options : dict, default {"point":0.4, "insert":0.25, "delete":0.25, "toggle_weight":0.1}
+    mutation_options : dict, default {"point":0.25, "insert":0.25, "delete":0.25, "toggle_weight":0.25}
         A dictionary with keys naming the types of mutation and floating point 
         values specifying the fraction of total mutations to do with that method. 
     functions: dict[str,float] or list[str], default {}
         A dictionary with keys naming the function set and values giving the probability of sampling them, or a list of functions which will be weighted uniformly.
         If empty, all available functions are included in the search space.
+    random_state: int or None, default None
+        If int, then the value is used to seed the c++ random generator; if None,
+        then a seed will be generated using a non-deterministic generator.
 
     Attributes
     ----------
@@ -73,6 +76,7 @@ class BrushEstimator(BaseEstimator):
         cx_prob=0.9,
         mutation_options = {"point":0.25, "insert":0.25, "delete":0.25, "toggle_weight":0.25},
         functions: list[str]|dict[str,float] = {},
+        random_state=None,
         batch_size: int = 0
         ):
         self.pop_size=pop_size
@@ -84,6 +88,7 @@ class BrushEstimator(BaseEstimator):
         self.cx_prob=cx_prob
         self.mutation_options=mutation_options
         self.functions=functions
+        self.random_state=random_state
         self.batch_size=batch_size
 
 
@@ -151,6 +156,9 @@ class BrushEstimator(BaseEstimator):
         """
         _brush.set_params(self.get_params())
         self.data_ = self._make_data(X,y)
+
+        if self.random_state != None:
+            _brush.set_random_state(self.random_state)
 
         # set n classes if relevant
         if self.mode=="classification":

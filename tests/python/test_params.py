@@ -3,6 +3,36 @@ import pytest
 import _brush
 import time
 from multiprocessing import Pool
+import numpy as np
+
+
+def test_random_state():
+    test_y = np.array([1.,0.,1.4,1.,0.,1.,1.,0.,0.,0.])
+    test_X = np.array([[1.1,2.0,3.0,4.0,5.0,6.5,7.0,8.0,9.0,10.0],
+                       [2.0,1.2,6.0,4.0,5.0,8.0,7.0,5.0,9.0,10.0]])
+    
+    data = _brush.Dataset(test_X, test_y)
+    SS   = _brush.SearchSpace(data)
+    
+    _brush.set_random_state(123)
+
+    first_run = []
+    for d in range(1,4):
+        for s in range(1,20):
+            prg = SS.make_regressor(d, s)
+            first_run.append(prg.get_model())
+    
+    _brush.set_random_state(123)
+
+    second_run = []
+    for d in range(1,4):
+        for s in range(1,20):
+            prg = SS.make_regressor(d, s)
+            second_run.append(prg.get_model())
+        
+    for fr, sr in zip(first_run, second_run):
+        assert fr==sr,  "random state failed to generate same expressions"
+
 
 def _change_and_wait(config):
     "Will change the mutation weights to set only the `index` to 1, then wait "
@@ -38,11 +68,10 @@ def _change_and_wait(config):
     assert params['mutation_options']==_brush.get_params()['mutation_options'], \
         f"(Thread id {index}{seconds}) BRUSH FAILED TO KEEP SEPARATE INSTANCES OF `PARAMS` BETWEEN MULTIPLE THREADS"
     
-
 def test_global_PARAMS_sharing():
     print("By default, all threads starts with all mutations having weight zero.")
     
-    scale = 1 # Scale the time of each thread (for human manual checking) 
+    scale = 0.25 # Scale the time of each thread (for human manual checking) 
 
     # Checking if brush's PARAMS can be modified inside a pool without colateral effects.
     # Each configuration will start in the same order as they are listed, but they
@@ -50,3 +79,4 @@ def test_global_PARAMS_sharing():
     Pool(processes=3).map(_change_and_wait, [(0, 3*scale),
                                              (1, 1*scale),
                                              (2, 2*scale)])
+    
