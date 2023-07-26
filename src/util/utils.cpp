@@ -105,10 +105,10 @@ void Normalizer::fit(MatrixXf& X, const vector<char>& dt)
     for (unsigned int i=0; i<X.cols(); ++i)
     {
         // mean center
-        VectorXf tmp = X.row(i).array()-X.row(i).mean();
+        VectorXf tmp = X.col(i).array()-X.col(i).mean();
         // scale by the standard deviation
-        scale.push_back(std::sqrt((tmp.array()).square().sum()/(tmp.size()-1)));
-        offset.push_back(X.row(i).mean());
+        scale.push_back(std::sqrt((tmp.array()).square().sum()/(tmp.size())));
+        offset.push_back(X.col(i).mean());
     }
       
 }
@@ -121,15 +121,15 @@ void Normalizer::normalize(MatrixXf& X)
     {
         if (std::isinf(scale.at(i)))
         {
-            X.row(i) = VectorXf::Zero(X.row(i).size());
+            X.col(i) = VectorXf::Zero(X.col(i).size());
             continue;
         }
-        // scale, potentially skipping binary and categorical rows
+        // scale, potentially skipping binary and categorical cols
         if (this->scale_all || dtypes.at(i)=='f')                   
         {
-            X.row(i) = X.row(i).array() - offset.at(i);
+            X.col(i) = X.col(i).array() - offset.at(i);
             if (scale.at(i) > NEAR_ZERO)
-                X.row(i) = X.row(i).array()/scale.at(i);
+                X.col(i) = X.col(i).array()/scale.at(i);
         }
     }
 }
