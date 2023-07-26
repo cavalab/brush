@@ -7,9 +7,9 @@ import numpy as np
 
 
 def test_random_state():
-    test_y = np.array([1.,0.,1.4,1.,0.,1.,1.,0.,0.,0.])
-    test_X = np.array([[1.1,2.0,3.0,4.0,5.0,6.5,7.0,8.0,9.0,10.0],
-                       [2.0,1.2,6.0,4.0,5.0,8.0,7.0,5.0,9.0,10.0]])
+    test_y = np.array( [1. , 0. , 1.4, 1. , 0. , 1. , 1. , 0. , 0. , 0.  ])
+    test_X = np.array([[1.1, 2.0, 3.0, 4.0, 5.0, 6.5, 7.0, 8.0, 9.0, 10.0],
+                       [2.0, 1.2, 6.0, 4.0, 5.0, 8.0, 7.0, 5.0, 9.0, 10.0]]).T
     
     data = _brush.Dataset(test_X, test_y)
     SS   = _brush.SearchSpace(data)

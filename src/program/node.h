@@ -39,7 +39,7 @@ using Brush::Data::Dataset;
 
 namespace Brush{
 
-// should I move this declaration to another place?
+// TODO: should I move this declaration to another place?
 template <DataType... T>
 inline auto Isnt(DataType dt) -> bool { return !((dt == T) || ...); }
 
