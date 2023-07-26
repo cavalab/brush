@@ -48,7 +48,12 @@ class BrushEstimator(BaseEstimator):
         If empty, all available functions are included in the search space.
     random_state: int or None, default None
         If int, then the value is used to seed the c++ random generator; if None,
-        then a seed will be generated using a non-deterministic generator.
+        then a seed will be generated using a non-deterministic generator. It is
+        important to notice that, even if the random state is fixed, it is
+        unlikely that running brush using multiple threads will have the same
+        results. This happens because the Operating System's scheduler is
+        responsible to choose which thread will run at any given time, thus 
+        reproductibility is not guaranteed.
 
     Attributes
     ----------
