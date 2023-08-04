@@ -9,29 +9,90 @@ namespace nl = nlohmann;
 void bind_dataset(py::module & m)
 {
     py::class_<br::Data::Dataset>(m, "Dataset")
+
         // construct from X 
-        .def(py::init<Ref<const ArrayXXf> &>())
+        // .def(py::init<Ref<const ArrayXXf> &>())
+        // construct from X (and optional validation and batch sizes) with constructor 3.
+        .def(py::init([](const Ref<const ArrayXXf>& X,
+                         const float validation_size=0.0,
+                         const float batch_size=1.0){
+                return br::Data::Dataset(
+                    X, {}, validation_size, batch_size);
+            }), 
+            py::arg("X"),
+            py::arg("validation_size") = 0.0,
+            py::arg("batch_size") = 1.0
+        )
         // construct from X, feature names 
-        .def(py::init<
-                const Ref<const ArrayXXf>&, 
-                const vector<string>&
-            >()
+        // .def(py::init<
+        //         const Ref<const ArrayXXf>&, 
+        //         const vector<string>&
+        //     >()
+        // )
+        // construct from X, feature names (and optional validation and batch sizes) with constructor 3.
+        .def(py::init([](const Ref<const ArrayXXf>& X, 
+                         const vector<string>& vn,
+                         const float validation_size=0.0,
+                         const float batch_size=1.0){
+                return br::Data::Dataset(
+                    X, vn, validation_size, batch_size);
+            }), 
+            py::arg("X"),
+            py::arg("vn"),
+            py::arg("validation_size") = 0.0,
+            py::arg("batch_size") = 1.0
         )
-        // construct from X,y arrays
-        .def(py::init<Ref<const ArrayXXf> &, Ref<const ArrayXf> &>())
+
+        // construct from X, y arrays
+        // .def(py::init<Ref<const ArrayXXf> &, Ref<const ArrayXf> &>())
+        // construct from X, y arrays (and optional validation and batch sizes) with constructor 2.
+        .def(py::init([](const Ref<const ArrayXXf>& X, 
+                         const Ref<const ArrayXf>& y,
+                         const float validation_size=0.0,
+                         const float batch_size=1.0){
+                return br::Data::Dataset(
+                    X, y, {}, {}, false, validation_size, batch_size);
+            }), 
+            py::arg("X"),
+            py::arg("y"),
+            py::arg("validation_size") = 0.0,
+            py::arg("batch_size") = 1.0
+        )
+
         // construct from X, y, feature names 
-        .def(py::init<
-                const Ref<const ArrayXXf>&, 
-                const Ref<const ArrayXf>&,
-                const vector<string>&
-            >()
+        // .def(py::init<
+        //         const Ref<const ArrayXXf>&, 
+        //         const Ref<const ArrayXf>&,
+        //         const vector<string>&
+        //     >()
+        // )
+        // construct from X, y, feature names (and optional validation and batch sizes) with constructor 2.
+        .def(py::init([](const Ref<const ArrayXXf>& X, 
+                         const Ref<const ArrayXf>& y,
+                         const vector<string>& vn,
+                         const float validation_size=0.0,
+                         const float batch_size=1.0){
+                return br::Data::Dataset(
+                    X, y, vn, {}, false, validation_size, batch_size);
+            }), 
+            py::arg("X"),
+            py::arg("y"),
+            py::arg("vn"),
+            py::arg("validation_size") = 0.0,
+            py::arg("batch_size") = 1.0
         )
+        
         .def_readwrite("y", &br::Data::Dataset::y)
-    //     .def_readwrite("features", &br::Data::Dataset::features)
+        // .def_readwrite("features", &br::Data::Dataset::features)
         .def("get_n_samples", &br::Data::Dataset::get_n_samples)
         .def("get_n_features", &br::Data::Dataset::get_n_features)
         .def("print", &br::Data::Dataset::print)
         .def("get_batch", &br::Data::Dataset::get_batch)
+        .def("get_training_data", &br::Data::Dataset::get_training_data)
+        .def("get_validation_data", &br::Data::Dataset::get_validation_data)
+        .def("get_batch_size", &br::Data::Dataset::get_batch_size)
+        .def("set_batch_size", &br::Data::Dataset::set_batch_size)
+        .def("split", &br::Data::Dataset::split)
         .def("get_X", &br::Data::Dataset::get_X)
         ;
 
