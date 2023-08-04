@@ -630,7 +630,7 @@ P SearchSpace::make_program(int max_d, int max_size)
     // highest operator arity, and the real maximum depth is `max_depth` plus one.
 
     if (max_d == 0)
-        max_d = r.rnd_int(1, PARAMS["max_depth"].get<int>());
+        max_d = PARAMS["max_depth"].get<int>();
     if (max_size == 0)
         max_size = r.rnd_int(1, PARAMS["max_size"].get<int>());
 
@@ -678,7 +678,7 @@ P SearchSpace::make_program(int max_d, int max_size)
             n.fixed=true;
         }
         else
-        {
+        { // we start with a non-terminal
             auto opt = sample_op(root_type);
             while (!opt) {
                 opt = sample_op(root_type);
@@ -699,7 +699,7 @@ P SearchSpace::make_program(int max_d, int max_size)
         { 
             /* cout << "queing a node of type " << DataTypeName[a] << endl; */
             auto child_spot = Tree.append_child(spot);
-            queue.push_back(make_tuple(child_spot, a, d));
+            queue.push_back(make_tuple(child_spot, a, d+1));
         }
 
         // Now we actually start the PTC2 procedure to create the program tree
@@ -720,10 +720,8 @@ P SearchSpace::make_program(int max_d, int max_size)
                 // Tree.append_child(qspot, sample_terminal(t));
 
                 auto opt = sample_terminal(t);
-
-                if (!opt) { // lets push back and try again later
-                    queue.push_back(make_tuple(qspot, t, d));
-                    continue;
+                while (!opt) {
+                    opt = sample_terminal(t);
                 }
 
                 // If we successfully get a terminal, use it
@@ -740,9 +738,8 @@ P SearchSpace::make_program(int max_d, int max_size)
                 // TreeIter new_spot = Tree.append_child(qspot, n);
                 // qspot = n;
 
-                if (!opt) { // lets push back and try again later
-                    queue.push_back(make_tuple(qspot, t, d));
-                    continue;
+                while (!opt) {
+                    opt = sample_op(t);
                 }
 
                 n = opt.value();
@@ -779,11 +776,10 @@ P SearchSpace::make_program(int max_d, int max_size)
             // auto newspot = Tree.replace(qspot, sample_terminal(t));
 
             auto opt = sample_terminal(t);
-
-            if (!opt) { // set push back and try again later
-                queue.push_back(make_tuple(qspot, t, d));
-                continue;
+            while (!opt) {
+                opt = sample_terminal(t);
             }
+
             n = opt.value();
             
             auto newspot = Tree.replace(qspot, n);

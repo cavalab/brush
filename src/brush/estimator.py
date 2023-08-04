@@ -5,7 +5,6 @@ See brushgp.cpp for Python (via pybind11) modules that give more fine-grained
 control of the underlying GP objects.
 """
 from sklearn.base import BaseEstimator, ClassifierMixin, RegressorMixin, TransformerMixin
-from sklearn.utils import check_random_state
 # from sklearn.metrics import mean_squared_error
 import numpy as np
 import pandas as pd
@@ -119,7 +118,7 @@ class BrushEstimator(BaseEstimator):
         self.validation_size=validation_size
 
 
-    def _setup_toolbox(self, data_train, data_validation, rng):
+    def _setup_toolbox(self, data_train, data_validation):
         """Setup the deap toolbox"""
         toolbox: base.Toolbox = base.Toolbox()
 
@@ -130,6 +129,8 @@ class BrushEstimator(BaseEstimator):
         # Our classification is using the error as a metric
         # Comparing fitnesses: https://deap.readthedocs.io/en/master/api/base.html#deap.base.Fitness
         creator.create("FitnessMulti", base.Fitness, weights=(+1.0,-1.0))
+
+        # TODO: make this weights attributes of each derivate class (creator is global)
 
         # create Individual class, inheriting from self.Individual with a fitness attribute
         creator.create("Individual", DeapIndividual, fitness=creator.FitnessMulti)  
@@ -144,7 +145,7 @@ class BrushEstimator(BaseEstimator):
         toolbox.register("survive", tools.selNSGA2)
 
         # toolbox.population will return a list of elements by calling toolbox.individual
-        toolbox.register("createRandom", self._make_individual, rng=rng)
+        toolbox.register("createRandom", self._make_individual)
         toolbox.register("population", tools.initRepeat, list, toolbox.createRandom)
 
         toolbox.register("getBatch", data_train.get_batch)
@@ -190,7 +191,6 @@ class BrushEstimator(BaseEstimator):
         """
         _brush.set_params(self.get_params())
         
-        rng = check_random_state(self.random_state)
         if self.random_state != None:
             _brush.set_random_state(self.random_state)
 
@@ -212,17 +212,28 @@ class BrushEstimator(BaseEstimator):
             self.functions_ = self.functions
 
         self.search_space_ = _brush.SearchSpace(self.train_, self.functions_)
-        self.toolbox_ = self._setup_toolbox(data_train=self.train_, data_validation=self.validation_, rng=rng)
+        self.toolbox_ = self._setup_toolbox(data_train=self.train_, data_validation=self.validation_)
 
         archive, logbook = nsga2(
             self.toolbox_, self.max_gen, self.pop_size, self.cx_prob, 
-            (0.0<self.batch_size<1.0), self.verbosity, rng)
+            (0.0<self.batch_size<1.0), self.verbosity, _brush.rnd_flt)
         
         self.archive_ = archive
         self.logbook_ = logbook
 
         # Selecting the best estimator using validation data and multi-criteria decision making
-        self.best_estimator_ = self.archive_[0].prg
+        points = np.array([self.toolbox_.evaluateValidation(ind) for ind in self.archive_])
+        points = points*np.array([+1.0,-1.0]) #Multiply by the weights TODO: use weights here instead of hardcoded
+
+        # Normalizing
+        min_vals = np.min(points, axis=0)
+        max_vals = np.max(points, axis=0)
+        points = (points - min_vals) / (max_vals - min_vals)
+        
+        reference = np.array([0, 0])
+        closest_idx = np.argmin( np.linalg.norm(points - reference, axis=1) )
+
+        self.best_estimator_ = self.archive_[closest_idx].prg
 
         if self.verbosity > 0:
             print(f'best model {self.best_estimator_.get_model()}'+
@@ -311,24 +322,22 @@ class BrushClassifier(BrushEstimator,ClassifierMixin):
             ind.prg.size()
         )
     
-    def _make_individual(self, rng):
+    def _make_individual(self):
         # C++'s PTC2-based `make_individual` will create a tree of at least
         # the given size. By uniformly sampling the size, we can instantiate a
         # population with more diversity
-        s = 0  
-        if self.initialization=="grow":
-            s = rng.randint(1, self.max_size)
-        elif self.initialization=="full":
-            s = self.max_size
-        else:
+        
+        if self.initialization not in ["grow", "full"]:
             raise ValueError(f"Invalid argument value for `initialization`. "
                              f"expected 'full' or 'grow'. got {self.initialization}")
 
         return creator.Individual(
-                self.search_space_.make_classifier(self.max_depth, s)
-            if self.n_classes_ == 2 else
-                self.search_space_.make_multiclass_classifier(self.max_depth, s)
-            )
+            self.search_space_.make_classifier(
+                self.max_depth,(0 if self.initialization=='grow' else self.max_size))
+        if self.n_classes_ == 2 else
+            self.search_space_.make_multiclass_classifier(
+                self.max_depth, (0 if self.initialization=='grow' else self.max_size))
+        )
 
     def predict_proba(self, X):
         """Predict class probabilities for X.
@@ -389,19 +398,17 @@ class BrushRegressor(BrushEstimator, RegressorMixin):
         return ( 1/(1+MSE), ind.prg.size() )
 
 
-    def _make_individual(self, rng):
-        s = 0  
-        if self.initialization=="grow":
-            s = rng.randint(1, self.max_size)
-        elif self.initialization=="full":
-            s = self.max_size
-        else:
+    def _make_individual(self):
+        if self.initialization not in ["grow", "full"]:
             raise ValueError(f"Invalid argument value for `initialization`. "
                              f"expected 'full' or 'grow'. got {self.initialization}")
-
-        return creator.Individual(
-            self.search_space_.make_regressor(self.max_depth, s)
+        
+        return creator.Individual( # No arguments (or zero): brush will use PARAMS passed in set_params. max_size is sampled between 1 and params['max_size'] if zero is provided
+            self.search_space_.make_regressor(
+            self.max_depth, (0 if self.initialization=='grow' else self.max_size))
         )
+
+
 
 # Under development
 # class BrushRepresenter(BrushEstimator, TransformerMixin):

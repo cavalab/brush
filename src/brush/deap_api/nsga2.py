@@ -4,10 +4,11 @@ import numpy as np
 import functools
 
 
-def nsga2(toolbox, NGEN, MU, CXPB, use_batch, verbosity, rng):
+def nsga2(toolbox, NGEN, MU, CXPB, use_batch, verbosity, rnd_flt):
     # NGEN = 250
     # MU = 100
     # CXPB = 0.9
+    # rnd_flt: random number generator to sample crossover prob
 
     def calculate_statistics(ind):
         on_train = ind.fitness.values
@@ -17,19 +18,15 @@ def nsga2(toolbox, NGEN, MU, CXPB, use_batch, verbosity, rng):
 
     stats = tools.Statistics(calculate_statistics)
 
-    stats.register("ave train", np.mean, axis=0)
-    stats.register("std train", np.std, axis=0)
-    stats.register("min train", np.min, axis=0)
-
-    stats.register("ave val", np.mean, axis=0)
-    stats.register("std val", np.std, axis=0)
-    stats.register("min val", np.min, axis=0)
-
-    # stats.register("max", np.max, axis=0)
+    stats.register("ave", np.mean, axis=0)
+    stats.register("std", np.std, axis=0)
+    stats.register("min", np.min, axis=0)
+    stats.register("max", np.max, axis=0)
 
     logbook = tools.Logbook()
-    logbook.header = "gen", "evals", "ave train", "std train", "min train", \
-                     "ave val", "std val", "min val"
+    logbook.header = "gen", "evals", "ave (O1 train, O2 train, O1 val, O2 val)", \
+                                     "std (O1 train, O2 train, O1 val, O2 val)", \
+                                     "min (O1 train, O2 train, O1 val, O2 val)"
 
     pop = toolbox.population(n=MU)
 
@@ -68,7 +65,7 @@ def nsga2(toolbox, NGEN, MU, CXPB, use_batch, verbosity, rng):
         offspring = []
 
         for ind1, ind2 in zip(parents[::2], parents[1::2]):
-            if rng.random() < CXPB:
+            if rnd_flt() < CXPB:
                 off1, off2 = toolbox.mate(ind1, ind2)
             else:
                 off1, off2 = ind1, ind2
