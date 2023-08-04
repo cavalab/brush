@@ -6,7 +6,8 @@ from multiprocessing import Pool
 import numpy as np
 
 
-def test_random_state():
+def test_param_random_state():
+    # Check if make_regressor, mutation and crossover will create the same expressions
     test_y = np.array( [1. , 0. , 1.4, 1. , 0. , 1. , 1. , 0. , 0. , 0.  ])
     test_X = np.array([[1.1, 2.0, 3.0, 4.0, 5.0, 6.5, 7.0, 8.0, 9.0, 10.0],
                        [2.0, 1.2, 6.0, 4.0, 5.0, 8.0, 7.0, 5.0, 9.0, 10.0]]).T
@@ -20,16 +21,26 @@ def test_random_state():
     for d in range(1,4):
         for s in range(1,20):
             prg = SS.make_regressor(d, s)
-            first_run.append(prg.get_model())
+            prg = prg.mutate()
+            
+            if prg != None: prg = prg.cross(prg)    
+            if prg != None: first_run.append(prg.get_model())
     
+    assert len(first_run) > 0, "either mutation or crossover is always failing"
+
     _brush.set_random_state(123)
 
     second_run = []
     for d in range(1,4):
         for s in range(1,20):
             prg = SS.make_regressor(d, s)
-            second_run.append(prg.get_model())
+            prg = prg.mutate()
+
+            if prg != None: prg = prg.cross(prg)
+            if prg != None: second_run.append(prg.get_model())
         
+    assert len(second_run) > 0, "either mutation or crossover is always failing"
+
     for fr, sr in zip(first_run, second_run):
         assert fr==sr,  "random state failed to generate same expressions"
 
