@@ -5,6 +5,7 @@ See brushgp.cpp for Python (via pybind11) modules that give more fine-grained
 control of the underlying GP objects.
 """
 from sklearn.base import BaseEstimator, ClassifierMixin, RegressorMixin, TransformerMixin
+from sklearn.utils import check_random_state
 # from sklearn.metrics import mean_squared_error
 import numpy as np
 import pandas as pd
@@ -44,8 +45,21 @@ class BrushEstimator(BaseEstimator):
         A dictionary with keys naming the types of mutation and floating point 
         values specifying the fraction of total mutations to do with that method. 
     functions: dict[str,float] or list[str], default {}
-        A dictionary with keys naming the function set and values giving the probability of sampling them, or a list of functions which will be weighted uniformly.
+        A dictionary with keys naming the function set and values giving the probability
+        of sampling them, or a list of functions which will be weighted uniformly.
         If empty, all available functions are included in the search space.
+    initialization : {"grow", "full"}, default "grow" 
+        Strategy to create the initial population. If `full`, then every expression is created
+        with `max_size` nodes. If `grow`, size will be uniformly distributed.
+    validation_size : float, default 0.0
+        Percentage of samples to use as a hold-out partition. These samples are used
+        to calculate statistics during evolution, but not used to train the models.
+        The `best_estimator_` will be selected using this partition. If zero, then
+        the same data used for training is used for validation.
+    batch_size : float, default 1.0
+        Percentage of training data to sample every generation. If `1.0`, then
+        all data is used. Very small values can improve execution time, but 
+        also lead to underfit.
     random_state: int or None, default None
         If int, then the value is used to seed the c++ random generator; if None,
         then a seed will be generated using a non-deterministic generator. It is
@@ -62,7 +76,11 @@ class BrushEstimator(BaseEstimator):
     archive_ : list[deap_api.DeapIndividual]
         The final population from training. 
     data_ : _brush.Dataset
-        The training data in Brush format. 
+        The complete data in Brush format. 
+    train_ : _brush.Dataset
+        Partition of `data_` containing `(1-validation_size)`% of the data, in Brush format.
+    validation_ : _brush.Dataset
+        Partition of `data_` containing `(validation_size)`% of the data, in Brush format.
     search_space_ : a Brush `SearchSpace` object. 
         Holds the operators and terminals and sampling utilities to update programs.
     toolbox_ : deap.Toolbox
@@ -81,8 +99,10 @@ class BrushEstimator(BaseEstimator):
         cx_prob=0.9,
         mutation_options = {"point":0.25, "insert":0.25, "delete":0.25, "toggle_weight":0.25},
         functions: list[str]|dict[str,float] = {},
+        initialization="grow",
         random_state=None,
-        batch_size: int = 0
+        validation_size: float = 0.0,
+        batch_size: float = 1.0
         ):
         self.pop_size=pop_size
         self.max_gen=max_gen
@@ -93,11 +113,13 @@ class BrushEstimator(BaseEstimator):
         self.cx_prob=cx_prob
         self.mutation_options=mutation_options
         self.functions=functions
+        self.initialization=initialization
         self.random_state=random_state
         self.batch_size=batch_size
+        self.validation_size=validation_size
 
 
-    def _setup_toolbox(self, data):
+    def _setup_toolbox(self, data_train, data_validation, rng):
         """Setup the deap toolbox"""
         toolbox: base.Toolbox = base.Toolbox()
 
@@ -122,10 +144,15 @@ class BrushEstimator(BaseEstimator):
         toolbox.register("survive", tools.selNSGA2)
 
         # toolbox.population will return a list of elements by calling toolbox.individual
-        toolbox.register("population", tools.initRepeat, list, self._make_individual)
-        toolbox.register( "evaluate", self._fitness_function, data=data)
+        toolbox.register("createRandom", self._make_individual, rng=rng)
+        toolbox.register("population", tools.initRepeat, list, toolbox.createRandom)
+
+        toolbox.register("getBatch", data_train.get_batch)
+        toolbox.register("evaluate", self._fitness_function)
+        toolbox.register("evaluateValidation", self._fitness_validation, data=data_validation)
 
         return toolbox
+
 
     def _crossover(self, ind1, ind2):
         offspring = [] 
@@ -138,6 +165,7 @@ class BrushEstimator(BaseEstimator):
                 offspring.append(None)
 
         return offspring[0], offspring[1]
+    
 
     def _mutate(self, ind1):
         # offspring = (creator.Individual(ind1.prg.mutate(self.search_space_)),)
@@ -147,6 +175,7 @@ class BrushEstimator(BaseEstimator):
             return creator.Individual(offspring)
         
         return None
+
 
     def fit(self, X, y):
         """
@@ -160,26 +189,39 @@ class BrushEstimator(BaseEstimator):
             1-d array of (boolean) target values.
         """
         _brush.set_params(self.get_params())
-        self.data_ = self._make_data(X,y)
-
+        
+        rng = check_random_state(self.random_state)
         if self.random_state != None:
             _brush.set_random_state(self.random_state)
+
+        self.data_ = self._make_data(X,y)
 
         # set n classes if relevant
         if self.mode=="classification":
             self.n_classes_ = len(np.unique(y))
+
+        # These have a default behavior to return something meaningfull if 
+        # no values are set
+        self.train_ = self.data_.get_training_data()
+        self.train_.set_batch_size(self.batch_size)
+        self.validation_ = self.data_.get_validation_data()
 
         if isinstance(self.functions, list):
             self.functions_ = {k:1.0 for k in self.functions}
         else:
             self.functions_ = self.functions
 
-        self.search_space_ = _brush.SearchSpace(self.data_, self.functions_)
-        self.toolbox_ = self._setup_toolbox(data=self.data_)
+        self.search_space_ = _brush.SearchSpace(self.train_, self.functions_)
+        self.toolbox_ = self._setup_toolbox(data_train=self.train_, data_validation=self.validation_, rng=rng)
 
-        archive, logbook = nsga2(self.toolbox_, self.max_gen, self.pop_size, self.cx_prob, self.verbosity)
+        archive, logbook = nsga2(
+            self.toolbox_, self.max_gen, self.pop_size, self.cx_prob, 
+            (0.0<self.batch_size<1.0), self.verbosity, rng)
+        
         self.archive_ = archive
         self.logbook_ = logbook
+
+        # Selecting the best estimator using validation data and multi-criteria decision making
         self.best_estimator_ = self.archive_[0].prg
 
         if self.verbosity > 0:
@@ -191,6 +233,9 @@ class BrushEstimator(BaseEstimator):
         return self
     
     def _make_data(self, X, y=None):
+        # This function should not partition data (as it is used in predict).
+        # partitioning is done in fit().
+
         if isinstance(y, pd.Series):
             y = y.values
         if isinstance(X, pd.DataFrame):
@@ -203,11 +248,13 @@ class BrushEstimator(BaseEstimator):
                 return _brush.Dataset(X, y, feature_names)
 
         assert isinstance(X, np.ndarray)
+
         # if there is no label, don't include it in library call to Dataset
         if isinstance(y, NoneType):
             return _brush.Dataset(X)
 
-        return _brush.Dataset(X,y)
+        return _brush.Dataset(X, y)
+
 
     def predict(self, X):
         """Predict using the best estimator in the archive. """
@@ -250,6 +297,13 @@ class BrushClassifier(BrushEstimator,ClassifierMixin):
     def __init__( self, **kwargs):
         super().__init__(mode='classification',**kwargs)
 
+    def _fitness_validation(self, ind, data: _brush.Dataset):
+        return ( # (accuracy, size)
+            (data.y==ind.prg.predict(data)).sum() / data.y.shape[0], 
+            ind.prg.size()
+        )
+
+
     def _fitness_function(self, ind, data: _brush.Dataset):
         ind.prg.fit(data)
         return ( # (accuracy, size)
@@ -257,15 +311,23 @@ class BrushClassifier(BrushEstimator,ClassifierMixin):
             ind.prg.size()
         )
     
-    def _make_individual(self):
+    def _make_individual(self, rng):
         # C++'s PTC2-based `make_individual` will create a tree of at least
         # the given size. By uniformly sampling the size, we can instantiate a
         # population with more diversity
+        s = 0  
+        if self.initialization=="grow":
+            s = rng.randint(1, self.max_size)
+        elif self.initialization=="full":
+            s = self.max_size
+        else:
+            raise ValueError(f"Invalid argument value for `initialization`. "
+                             f"expected 'full' or 'grow'. got {self.initialization}")
 
         return creator.Individual(
-            self.search_space_.make_classifier(self.max_depth, self.max_size)
+                self.search_space_.make_classifier(self.max_depth, s)
             if self.n_classes_ == 2 else
-            self.search_space_.make_multiclass_classifier(self.max_depth, self.max_size)
+                self.search_space_.make_multiclass_classifier(self.max_depth, s)
             )
 
     def predict_proba(self, X):
@@ -306,6 +368,16 @@ class BrushRegressor(BrushEstimator, RegressorMixin):
     def __init__(self, **kwargs):
         super().__init__(mode='regressor',**kwargs)
 
+
+    def _fitness_validation(self, ind, data: _brush.Dataset):
+        MSE = np.mean( (data.y-ind.prg.predict(data))**2 )
+        if not np.isfinite(MSE): # numeric erros, np.nan, +-np.inf
+            MSE = np.inf
+
+        # We are squash the error and making it a maximization problem
+        return ( 1/(1+MSE), ind.prg.size() )
+
+
     def _fitness_function(self, ind, data: _brush.Dataset):
         ind.prg.fit(data)
 
@@ -316,9 +388,19 @@ class BrushRegressor(BrushEstimator, RegressorMixin):
         # We are squash the error and making it a maximization problem
         return ( 1/(1+MSE), ind.prg.size() )
 
-    def _make_individual(self):        
+
+    def _make_individual(self, rng):
+        s = 0  
+        if self.initialization=="grow":
+            s = rng.randint(1, self.max_size)
+        elif self.initialization=="full":
+            s = self.max_size
+        else:
+            raise ValueError(f"Invalid argument value for `initialization`. "
+                             f"expected 'full' or 'grow'. got {self.initialization}")
+
         return creator.Individual(
-            self.search_space_.make_regressor(self.max_depth, self.max_size)
+            self.search_space_.make_regressor(self.max_depth, s)
         )
 
 # Under development
