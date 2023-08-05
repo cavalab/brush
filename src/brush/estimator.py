@@ -40,7 +40,7 @@ class BrushEstimator(BaseEstimator):
         Maximum number of nodes in a tree. Use 0 for no limit.
     cx_prob : float, default 0.9
         Probability of applying the crossover variation when generating the offspring
-    mutation_options : dict, default {"point":0.25, "insert":0.25, "delete":0.25, "toggle_weight":0.25}
+    mutation_options : dict, default {"point":0.2, "insert":0.2, "delete":0.2, "subtree":0.2, "toggle_weight":0.2}
         A dictionary with keys naming the types of mutation and floating point 
         values specifying the fraction of total mutations to do with that method. 
     functions: dict[str,float] or list[str], default {}
@@ -96,7 +96,7 @@ class BrushEstimator(BaseEstimator):
         max_depth=3,
         max_size=20,
         cx_prob=0.9,
-        mutation_options = {"point":0.25, "insert":0.25, "delete":0.25, "toggle_weight":0.25},
+        mutation_options = {"point":0.2, "insert":0.2, "delete":0.2, "subtree":0.2, "toggle_weight":0.2},
         functions: list[str]|dict[str,float] = {},
         initialization="grow",
         random_state=None,
@@ -149,7 +149,7 @@ class BrushEstimator(BaseEstimator):
         toolbox.register("population", tools.initRepeat, list, toolbox.createRandom)
 
         toolbox.register("getBatch", data_train.get_batch)
-        toolbox.register("evaluate", self._fitness_function)
+        toolbox.register("evaluate", self._fitness_function, data=data_train)
         toolbox.register("evaluateValidation", self._fitness_validation, data=data_validation)
 
         return toolbox
@@ -194,7 +194,7 @@ class BrushEstimator(BaseEstimator):
         if self.random_state != None:
             _brush.set_random_state(self.random_state)
 
-        self.data_ = self._make_data(X,y)
+        self.data_ = self._make_data(X,y, validation_size=self.validation_size)
 
         # set n classes if relevant
         if self.mode=="classification":
@@ -243,7 +243,7 @@ class BrushEstimator(BaseEstimator):
 
         return self
     
-    def _make_data(self, X, y=None):
+    def _make_data(self, X, y=None, validation_size=0.0):
         # This function should not partition data (as it is used in predict).
         # partitioning is done in fit().
 
@@ -254,17 +254,19 @@ class BrushEstimator(BaseEstimator):
             feature_names = X.columns.to_list()
             X = X.values
             if isinstance(y, NoneType):
-                return _brush.Dataset(X, feature_names)
+                return _brush.Dataset(X,
+                    feature_names=feature_names, validation_size=validation_size)
             else:
-                return _brush.Dataset(X, y, feature_names)
+                return _brush.Dataset(X, y,
+                    feature_names=feature_names, validation_size=validation_size)
 
         assert isinstance(X, np.ndarray)
 
         # if there is no label, don't include it in library call to Dataset
         if isinstance(y, NoneType):
-            return _brush.Dataset(X)
+            return _brush.Dataset(X, validation_size=validation_size)
 
-        return _brush.Dataset(X, y)
+        return _brush.Dataset(X, y, validation_size=validation_size)
 
 
     def predict(self, X):

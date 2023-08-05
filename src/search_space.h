@@ -520,10 +520,18 @@ struct SearchSpace
                ).second;
     };
 
+    /// @brief create a subtree with maximum size and depth restrictions and root of type `root_type`
+    /// @param root_type return type
+    /// @param max_d the maximum depth
+    /// @param max_size the maximum size of the tree (will be sampled between [1, max_size]) 
+    /// @return `std::optional` that may contain a tree 
+    std::optional<tree<Node>> sample_subtree(Node root, int max_d, int max_size) const;
+
     /// @brief prints the search space map. 
     void print() const; 
 
     private:
+        tree<Node> PTC2(Node root, int max_d, int max_size) const;
 
         template<NodeType NT, typename S>
         requires (!is_in_v<NT, NodeType::Terminal, NodeType::Constant>)
@@ -623,12 +631,6 @@ T RandomDequeue(std::vector<T>& Q)
 template<typename P>
 P SearchSpace::make_program(int max_d, int max_size)
 {
-    // A comment about PTC2 method:            
-    // PTC2 can work with depth or size restriction, but it does not strictly
-    // satisfies these conditions all time. Given a `max_size` and `max_depth`
-    // parameters, the real maximum size that can occur is `max_size` plus the
-    // highest operator arity, and the real maximum depth is `max_depth` plus one.
-
     if (max_d == 0)
         max_d = PARAMS["max_depth"].get<int>();
     if (max_size == 0)
@@ -637,14 +639,8 @@ P SearchSpace::make_program(int max_d, int max_size)
     DataType root_type = DataTypeEnum<typename P::TreeType>::value;
     ProgramType program_type = P::program_type;
     // ProgramType program_type = ProgramTypeEnum<PT>::value;
-
+    
     auto Tree = tree<Node>();
-
-    /* fmt::print("building program with max size {}, max depth {}",max_size,max_d); */ 
-
-    // Queue of nodes that need children
-    vector<tuple<TreeIter, DataType, int>> queue; 
-
     if (max_size == 1)
     {
         // auto root = Tree.insert(Tree.begin(), sample_terminal(root_type));
@@ -659,137 +655,39 @@ P SearchSpace::make_program(int max_d, int max_size)
             HANDLE_ERROR_THROW(msg); 
         }
 
-        auto root = Tree.insert(Tree.begin(), opt.value());
+        Tree.insert(Tree.begin(), opt.value());
     }
-    else // Our program can (and will) be grater than 1 node
-    {
+    else {// Our program can (and will) be grater than 1 node
+
+        // building the root node for each program case. We give the root, and it 
+        // fills the rest of the tree
+        Node root;
+
         // building the root node for each program case
-        Node n;
         if (P::program_type == ProgramType::BinaryClassifier)
         {
-            n = get(NodeType::Logistic, DataType::ArrayF, Signature<ArrayXf(ArrayXf)>());
-            n.set_prob_change(0.0);
-            n.fixed=true;
+            root = get(NodeType::Logistic, DataType::ArrayF, Signature<ArrayXf(ArrayXf)>());
+            root.set_prob_change(0.0);
+            root.fixed=true;
+
         }
         else if (P::program_type == ProgramType::MulticlassClassifier)
         {
-            n = get(NodeType::Softmax, DataType::MatrixF, Signature<ArrayXXf(ArrayXXf)>());
-            n.set_prob_change(0.0);
-            n.fixed=true;
+            root = get(NodeType::Softmax, DataType::MatrixF, Signature<ArrayXXf(ArrayXXf)>());
+            root.set_prob_change(0.0);
+            root.fixed=true;
         }
-        else
-        { // we start with a non-terminal
+        else {
+            // we start with a non-terminal (can be replaced inside PTC2 though, if max_size==1)
             auto opt = sample_op(root_type);
             while (!opt) {
                 opt = sample_op(root_type);
             }
-            n = opt.value();
+            root = opt.value();
         }
-
-        /* cout << "chose " << n.name << endl; */
-        // auto spot = Tree.set_head(n);
-        /* cout << "inserting...\n"; */
-        auto spot = Tree.insert(Tree.begin(), n);
-        // node depth
-        int d = 1;
-        // current tree size
-        int s = 1;
-        //For each argument position a of n, Enqueue(a; g) 
-        for (auto a : n.arg_types)
-        { 
-            /* cout << "queing a node of type " << DataTypeName[a] << endl; */
-            auto child_spot = Tree.append_child(spot);
-            queue.push_back(make_tuple(child_spot, a, d+1));
-        }
-
-        // Now we actually start the PTC2 procedure to create the program tree
-        /* cout << "queue size: " << queue.size() << endl; */ 
-        /* cout << "entering first while loop...\n"; */
-        while (queue.size() + s < max_size && queue.size() > 0) 
-        {            
-            /* cout << "queue size: " << queue.size() << endl; */ 
-            auto [qspot, t, d] = RandomDequeue(queue);
-
-            /* cout << "current depth: " << d << endl; */
-            if (d == max_d)
-            {
-                // choose terminal of matching type
-                /* cout << "getting " << DataTypeName[t] << " terminal\n"; */ 
-                // qspot = sample_terminal(t);
-                // Tree.replace(qspot, sample_terminal(t));
-                // Tree.append_child(qspot, sample_terminal(t));
-
-                auto opt = sample_terminal(t);
-                while (!opt) {
-                    opt = sample_terminal(t);
-                }
-
-                // If we successfully get a terminal, use it
-                n = opt.value();
-
-                Tree.replace(qspot, n);
-            }
-            else
-            {
-                //choose a nonterminal of matching type
-                /* cout << "getting op of type " << DataTypeName[t] << endl; */
-                auto opt = sample_op(t);
-                /* cout << "chose " << n.name << endl; */
-                // TreeIter new_spot = Tree.append_child(qspot, n);
-                // qspot = n;
-
-                while (!opt) {
-                    opt = sample_op(t);
-                }
-
-                n = opt.value();
-                
-                auto newspot = Tree.replace(qspot, n);
-
-                // For each arg of n, add to queue
-                for (auto a : n.arg_types)
-                {
-                    /* cout << "queing a node of type " << DataTypeName[a] << endl; */
-                    // queue.push_back(make_tuple(new_spot, a, d+1));
-                    auto child_spot = Tree.append_child(newspot);
-
-                    queue.push_back(make_tuple(child_spot, a, d+1));
-                }
-            }
-
-            ++s;
-            /* cout << "current tree size: " << s << endl; */
-        } 
-        /* cout << "entering second while loop...\n"; */
-        while (queue.size() > 0)
-        {
-            if (queue.size() == 0)
-                break;
-
-            /* cout << "queue size: " << queue.size() << endl; */ 
-
-            auto [qspot, t, d] = RandomDequeue(queue);
-
-            /* cout << "getting " << DataTypeName[t] << " terminal\n"; */ 
-            // Tree.append_child(qspot, sample_terminal(t));
-            // qspot = sample_terminal(t);
-            // auto newspot = Tree.replace(qspot, sample_terminal(t));
-
-            auto opt = sample_terminal(t);
-            while (!opt) {
-                opt = sample_terminal(t);
-            }
-
-            n = opt.value();
-            
-            auto newspot = Tree.replace(qspot, n);
-        }
+        
+        Tree = PTC2(root, max_d, max_size);
     }
-    /* cout << "final tree:\n" */ 
-    /*     << Tree.begin().node->get_model() << "\n" */
-    /*     << Tree.begin().node->get_tree_model(true) << endl; */
-         /* << Tree.get_model() << "\n" */ 
-         /* << Tree.get_model(true) << endl; // pretty */
 
     return P(*this,Tree);
 };
