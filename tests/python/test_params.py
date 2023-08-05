@@ -60,11 +60,12 @@ def _change_and_wait(config):
         'mutation_options': {'point'        : 0.0,
                              'insert'       : 0.0,
                              'delete'       : 0.0,
+                             'subtree'      : 0.0,
                              'toggle_weight': 0.0}
     }
 
     # We need to guarantee order to use the index correctly
-    mutations = ['point', 'insert', 'delete', 'toggle_weight']
+    mutations = ['point', 'insert', 'delete', 'subtree', 'toggle_weight']
 
     for i, m in enumerate(mutations):
         params['mutation_options'][m] = 0 if i != index else 1.0

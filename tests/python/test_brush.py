@@ -61,7 +61,7 @@ def test_fit(setup, brush_args, request):
         logging.error(traceback.format_exc())
         
 
-# def test_random_state():
+# def test_random_state(): # TODO: make it work
 #     test_y = np.array( [1. , 0. , 1.4, 1. , 0. , 1. , 1. , 0. , 0. , 0.  ])
 #     test_X = np.array([[1.1, 2.0, 3.0, 4.0, 5.0, 6.5, 7.0, 8.0, 9.0, 10.0],
 #                        [2.0, 1.2, 6.0, 4.0, 5.0, 8.0, 7.0, 5.0, 9.0, 10.0]]).T
