@@ -31,14 +31,14 @@ void bind_dataset(py::module & m)
         // )
         // construct from X, feature names (and optional validation and batch sizes) with constructor 3.
         .def(py::init([](const Ref<const ArrayXXf>& X, 
-                         const vector<string>& vn,
+                         const vector<string>& feature_names,
                          const float validation_size=0.0,
                          const float batch_size=1.0){
                 return br::Data::Dataset(
-                    X, vn, validation_size, batch_size);
+                    X, feature_names, validation_size, batch_size);
             }), 
             py::arg("X"),
-            py::arg("vn"),
+            py::arg("feature_names"),
             py::arg("validation_size") = 0.0,
             py::arg("batch_size") = 1.0
         )
@@ -69,15 +69,15 @@ void bind_dataset(py::module & m)
         // construct from X, y, feature names (and optional validation and batch sizes) with constructor 2.
         .def(py::init([](const Ref<const ArrayXXf>& X, 
                          const Ref<const ArrayXf>& y,
-                         const vector<string>& vn,
+                         const vector<string>& feature_names,
                          const float validation_size=0.0,
                          const float batch_size=1.0){
                 return br::Data::Dataset(
-                    X, y, vn, {}, false, validation_size, batch_size);
+                    X, y, feature_names, {}, false, validation_size, batch_size);
             }), 
             py::arg("X"),
             py::arg("y"),
-            py::arg("vn"),
+            py::arg("feature_names"),
             py::arg("validation_size") = 0.0,
             py::arg("batch_size") = 1.0
         )
