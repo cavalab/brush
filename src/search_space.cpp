@@ -222,6 +222,9 @@ tree<Node> SearchSpace::PTC2(Node root, int max_d, int max_size) const
             n = opt.value();
 
             Tree.replace(qspot, n);
+
+            s=s+2; // (*) and (weight) nodes of the terminal. terminal itself is 
+                   // incremented at the end of the while loop
         }
         else
         {
