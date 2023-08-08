@@ -55,13 +55,47 @@ vector<Node> generate_terminals(const Dataset& d)
                     feature_name
                 );
 
-                float prob_change = 1.0;
+                float prob_change = 1.0; // default value
                 
                 // if the value can be casted to float array, we can calculate slope
-                if (std::holds_alternative<ArrayXf>(value)) {
+                if (std::holds_alternative<ArrayXf>(value)) 
+                {
                     prob_change = calc_initial_weight(std::get<ArrayXf>(value), d.y);
                 }
+                else if (std::holds_alternative<ArrayXi>(value))
+                {
+                    // for each variable we create a one-vs-all binary variable, then
+                    // calculate slope. Final value will be the average of slopes
 
+                    auto tmp = std::get<ArrayXi>(value);
+
+                    //get number of unique values
+                    std::map<float, bool> uniqueMap;
+                    for(int i = 0; i < tmp.size(); i++)
+                        uniqueMap[(float)tmp(i)] = true;
+
+                    ArrayXf slopes = ArrayXf::Ones(uniqueMap.size());
+                    int slopesIterator = 0;
+                    for (const auto& pair : uniqueMap)
+                    {
+                        auto one_vs_all = ArrayXf::Ones(tmp.size()).array() * (tmp.array()==pair.first).cast<float>();
+
+                        slopes[slopesIterator++] = calc_initial_weight(one_vs_all, d.y);
+                    }
+                    
+                    prob_change = slopes.mean();
+                }
+                else if (std::holds_alternative<ArrayXb>(value))
+                {
+                    auto tmp = std::get<ArrayXb>(value).template cast<float>();
+                    prob_change = calc_initial_weight(tmp, d.y);
+                }
+                else
+                {
+                    auto msg = fmt::format("Brush coudn't calculate the initial weight of variable {}\n",feature_name);
+                    HANDLE_ERROR_THROW(msg);
+                }
+                
                 n.set_prob_change( prob_change );
 
                 terminals.push_back(n);
@@ -71,18 +105,32 @@ vector<Node> generate_terminals(const Dataset& d)
         ++i;
     };
 
-    // add constants
-    float num_const_prob_change = calc_initial_weight(VectorXf::Ones(d.y.size()), d.y);
+    // iterate through terminals and take the average of values of same signature
+    auto signature_avg = [terminals](DataType ret_type){
+        float sum = 0.0;
+        int count = 0;
+
+        for (const auto& n : terminals) {
+            if (n.ret_type == ret_type) {
+                sum += n.get_prob_change();
+                count++;
+            }
+        }
+
+        return sum / count;
+    };
 
     auto cXf = Node(NodeType::Constant, Signature<ArrayXf()>{}, true, "C");
-    // cXf.set_prob_change(num_const_prob_change);
+    cXf.set_prob_change(signature_avg(cXf.ret_type));
     terminals.push_back(cXf);
 
     auto cXi = Node(NodeType::Constant, Signature<ArrayXi()>{}, true, "C");
-    // cXi.set_prob_change(num_const_prob_change);
+    cXi.set_prob_change(signature_avg(cXi.ret_type));
     terminals.push_back(cXi);
 
-    terminals.push_back( Node(NodeType::Constant, Signature<ArrayXb()>{}, false, "C"));
+    auto cXb = Node(NodeType::Constant, Signature<ArrayXb()>{}, false, "C");
+    cXb.set_prob_change(signature_avg(cXb.ret_type));
+    terminals.push_back(cXb);
 
     return terminals;
 };
@@ -222,9 +270,6 @@ tree<Node> SearchSpace::PTC2(Node root, int max_d, int max_size) const
             n = opt.value();
 
             Tree.replace(qspot, n);
-
-            s=s+2; // (*) and (weight) nodes of the terminal. terminal itself is 
-                   // incremented at the end of the while loop
         }
         else
         {
@@ -253,7 +298,11 @@ tree<Node> SearchSpace::PTC2(Node root, int max_d, int max_size) const
             }
         }
 
+        // increment is different based on node weights
         ++s;
+        if  (n.get_is_weighted())
+            s += 2;
+
         /* cout << "current tree size: " << s << endl; */
     } 
     /* cout << "entering second while loop...\n"; */
