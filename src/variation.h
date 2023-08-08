@@ -217,23 +217,6 @@ std::optional<Program<T>> mutate(const Program<T>& parent, const SearchSpace& SS
 
     auto options = PARAMS["mutation_options"].get<std::map<string,float>>();
 
-    // whether we should write everything that happened inside the method
-    if (PARAMS.value("write_mutation_trace", false)==true) {
-        // Default fields of the trace. Initialize with default values, which are
-        // gradually changed throughout the execution of the method.
-        PARAMS["mutation_trace"] = json({
-            {"parent",           child.get_model("compact", true)},
-            {"spot_weights",     weights},
-            {"mutation_weights", options},
-            // default values, to be changed in case mutation works
-            {"spot",             "not selected"},
-            {"mutation",         "not selected"},
-            {"child",            "failed to generate"},
-            {"status",           "initialized weight vectors"},
-            {"success",          "false"}
-        });
-    }
-
     if (std::all_of(weights.begin(), weights.end(), [](const auto& w) {
         return w<=0.0;
     }))
@@ -243,12 +226,6 @@ std::optional<Program<T>> mutate(const Program<T>& parent, const SearchSpace& SS
 
     auto spot = r.select_randomly(child.Tree.begin(), child.Tree.end(), 
                                   weights.begin(), weights.end());
-
-    // whether we should write everything that happened inside the method
-    if (PARAMS.value("write_mutation_trace", false)==true) {
-        PARAMS["mutation_trace"]["spot"] = spot.node->get_model(false);
-        PARAMS["mutation_trace"]["status"] = "sampled the mutation spot";
-    }
 
     if (std::all_of(options.begin(), options.end(), [](const auto& kv) {
         return kv.second<=0.0;
@@ -287,27 +264,13 @@ std::optional<Program<T>> mutate(const Program<T>& parent, const SearchSpace& SS
     // apply the mutation and check if it succeeded
     bool success = it->second(child.Tree, spot, SS);
 
-    if (PARAMS.value("write_mutation_trace", false)==true) {
-        PARAMS["mutation_trace"]["mutation"] = choice;
-        PARAMS["mutation_trace"]["status"] = "sampled and aplied the mutation";
-        if (success)
-            PARAMS["mutation_trace"]["child"] = child.get_model("compact", true);
-    }
-
     if (success
     && ( (child.size()  <= PARAMS["max_size"].get<int>() )
     &&   (child.depth() <= PARAMS["max_depth"].get<int>()) )){
-        // success is true only if mutation returned a valid program
-        if (PARAMS.value("write_mutation_trace", false)==true)
-            PARAMS["mutation_trace"]["success"] = true;
-        
+
         return child;
     } else {
-        // here we have a string in PARAMS["mutation_trace"]["child"],
-        // but success is false since it didnt return an valid program
-        if (PARAMS.value("write_mutation_trace", false)==true)
-            PARAMS["mutation_trace"]["status"] = "children exceeds max_size or max_depth";
-
+        
         return std::nullopt;
     }
 };
