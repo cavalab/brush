@@ -39,7 +39,7 @@ using Brush::Data::Dataset;
 
 namespace Brush{
 
-// should I move this declaration to another place?
+// TODO: should I move this declaration to another place?
 template <DataType... T>
 inline auto Isnt(DataType dt) -> bool { return !((dt == T) || ...); }
 
@@ -237,7 +237,7 @@ struct Node {
     ////////////////////////////////////////////////////////////////////////////////
     // getters and setters
     //TODO revisit
-    float get_prob_change() const { return this->prob_change;};
+    float get_prob_change() const { return fixed ? 0.0 : this->prob_change;};
     void set_prob_change(float w){ if (!fixed) this->prob_change = w;};
     float get_prob_keep() const { return 1-this->prob_change;};
 

@@ -17,4 +17,5 @@ void bind_params(py::module& m)
     m.def("set_random_state", [](unsigned int seed)
                                 { br::Util::r = *br::Util::Rnd::initRand(); 
                                   br::Util::r.set_seed(seed); });
+    m.def("rnd_flt", [](){ return br::Util::r.rnd_flt(); });
 }

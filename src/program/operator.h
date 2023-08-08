@@ -16,7 +16,7 @@ namespace util{
     /// @param weights option pointer to a weight array, used in place of node weight
     /// @return 
     template<typename T, typename Scalar, typename W> 
-        requires (!is_one_of_v<Scalar,bool, bJet>)
+        requires (!is_one_of_v<Scalar,bool,bJet>)
     Scalar get_weight(const TreeNode& tn, const W** weights=nullptr)
     { 
         Scalar w;
@@ -46,7 +46,7 @@ namespace util{
         return w;
     };
     template<typename T, typename Scalar, typename W> 
-        requires (is_one_of_v<Scalar,bool, bJet>)
+        requires (is_one_of_v<Scalar,bool,bJet>)
     Scalar get_weight(const TreeNode& tn, const W** weights=nullptr)
     {
         // we cannot weight a boolean feature. Nevertheless, we need to provide

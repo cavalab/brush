@@ -203,6 +203,10 @@ TEST(Operators, ProgramSizeAndDepthPARAMS)
             // and PTC2 uses the tree size (not the program size), it is not 
             // expected that initial trees will strictly respect `max_size`.
             ASSERT_TRUE(PRG.size() > 0); // size is always positive
+            
+            // PTC2: maximum size is s+max(arity). Since in Brush terminals are
+            // weighted by default, we set it to 3*max(arity)
+            ASSERT_TRUE(PRG.size() <= s+3*4); 
 
             ASSERT_TRUE(PRG.depth() <= d+1);
             ASSERT_TRUE(PRG.depth() > 0); // depth is always positive

@@ -50,26 +50,38 @@ class Dataset
     //Dataset(ArrayXXf& X, ArrayXf& y, std::map<string, 
     //std::pair<vector<ArrayXf>, vector<ArrayXf>>>& Z): X(X), y(y), Z(Z){}
     private:
+        vector<size_t> training_data_idx;
+        vector<size_t> validation_data_idx;
+
     public:
         /// @brief keeps track of the unique data types in the dataset. 
         std::vector<DataType> unique_data_types;
+
         /// @brief types of data in the features.  
         std::vector<DataType> feature_types;
+
         /// @brief map from data types to features having that type.
         std::unordered_map<DataType,vector<string>> features_of_type;
-
         
         /// @brief dataset features, as key value pairs
         std::map<string, State> features;
         // TODO: this should probably be a more complex type to include feature type 
         // and potentially other info, like arbitrary relations between features
 
-        
         /// @brief length N array, the target label
         ArrayXf y;
+
         /// @brief whether this is a classification problem
         bool classification;
         std::optional<std::reference_wrapper<const ArrayXXf>> Xref;
+
+        /// @brief percentage of original data used for train. if 0.0, then all data is used for train and validation
+        float validation_size; 
+        bool use_validation;
+
+        /// @brief percentage of training data size to use in each batch. if 1.0, then all data is used
+        float batch_size;
+        bool use_batch;
 
         Dataset operator()(const vector<size_t>& idx) const;
         /// call init at the end of constructors
@@ -82,34 +94,53 @@ class Dataset
                                         const vector<string>& vn = {}
                                        );
 
-        /// initialize data from a map.
+        /// 1. initialize data from a map.
         Dataset(std::map<string, State>& d, 
              const Ref<const ArrayXf>& y_ = ArrayXf(), 
-             bool c = false
+             bool c = false,
+             float validation_size = 0.0,
+             float batch_size = 1.0
              ) 
              : features(d) 
              , y(y_)
              , classification(c) 
+             , validation_size(validation_size)
+             , use_validation(validation_size > 0.0 && validation_size < 1.0)
+             , batch_size(batch_size)
+             , use_batch(batch_size > 0.0 && batch_size < 1.0)
              {init();};
 
-        /// initialize data from a matrix with feature columns.
+        /// 2. initialize data from a matrix with feature columns.
         Dataset(const ArrayXXf& X, 
              const Ref<const ArrayXf>& y_ = ArrayXf(), 
              const vector<string>& vn = {}, 
              const map<string, State>& Z = {},
-             bool c = false
+             bool c = false,
+             float validation_size = 0.0,
+             float batch_size = 1.0
             ) 
             : features(make_features(X,Z,vn))
             , y(y_)
             , classification(c)
+            , validation_size(validation_size)
+            , use_validation(validation_size > 0.0 && validation_size < 1.0)
+            , batch_size(batch_size)
+            , use_batch(batch_size > 0.0 && batch_size < 1.0)
             {
                 init();
                 Xref = optional<reference_wrapper<const ArrayXXf>>{X};
             } 
 
-        Dataset(const ArrayXXf& X, const vector<string>& vn) 
+        /// 3. initialize data from X and feature names
+        Dataset(const ArrayXXf& X, const vector<string>& vn,
+             float validation_size = 0.0,
+             float batch_size = 1.0) 
             : classification(false)
             , features(make_features(X,map<string, State>{},vn))
+            , validation_size(validation_size)
+            , use_validation(validation_size > 0.0 && validation_size < 1.0)
+            , batch_size(batch_size)
+            , use_batch(batch_size > 0.0 && batch_size < 1.0)
             {
                 init();
                 Xref = optional<reference_wrapper<const ArrayXXf>>{X};
@@ -137,7 +168,12 @@ class Dataset
                 HANDLE_ERROR_THROW("Dataset does not hold a reference to X.");
             return this->Xref.value().get();
         }
-        void set_validation(bool v=true);
+        
+        // inner partition of original dataset for train and validation.
+        // if split is not set, then training = validation.
+        Dataset get_training_data() const;
+        Dataset get_validation_data() const;
+
         inline int get_n_samples() const { 
             return std::visit(
                 [&](auto&& arg) -> int { return int(arg.size());}, 
@@ -146,7 +182,10 @@ class Dataset
         };
         inline int get_n_features() const { return this->features.size(); };
         /// select random subset of data for training weights.
-        Dataset get_batch(int batch_size) const;
+        Dataset get_batch() const;
+
+        float get_batch_size();
+        void set_batch_size(float new_size);
 
         std::array<Dataset, 2> split(const ArrayXb& mask) const;
 
