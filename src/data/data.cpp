@@ -90,7 +90,7 @@ State check_type(const ArrayXf& x)
     }
     else
     {
-        if(isCategorical && uniqueMap.size() < 10)
+        if(isCategorical && uniqueMap.size() <= 10)
         {
             tmp = ArrayXi(x.cast<int>());
         }
