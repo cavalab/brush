@@ -5,44 +5,37 @@
 
 TEST(SearchSpace, Initialization)
 {
-	
-    MatrixXf X(4,2); 
-    MatrixXf X_v(3,2); 
-    X << 0,1,  
-         0.47942554,0.87758256,  
-         0.84147098,  0.54030231,
-         0.99749499,  0.0707372;
-    X_v <<  0.90929743, -0.41614684,
-         0.59847214, -0.80114362,
-         0.14112001,-0.9899925;
-
-    X.transposeInPlace();
-    X_v.transposeInPlace();
-
     ArrayXf y(4); 
-    ArrayXf y_v(3); 
-    // y = 2*x1 + 3.x2
-    y << 3.0,  3.59159876,  3.30384889,  2.20720158;
-    y_v << 0.57015434, -1.20648656, -2.68773747;
-    
+    y << 3.00000,  3.59876, 7.18622, 15.19294;
+
+    // variables have different pairwise correlations with y. The idea is to 
+    // see the mutation weights for each floating variable. The slope were
+    // calculated using python np.cov(xprime, yprime)[0][1]/np.var(xprime),
+    // where xprime and yprime are the z-score normalized arrays obtained
+    // from x and y.
+    MatrixXf X(5,4); 
+    X <<       0,       0,       1,       1, // x0, binary, expected weight=1
+               2,       0,       1,       2, // x1, categorical, expected weight=1
+         0.05699, 0.62737, 0.72406, 0.99294, // x2, slope ~= 1.069
+         0.03993, 0.36558, 0.01393, 0.25878, // x3, slope ~= 0.25
+         5.17539, 7.63579,-2.82560, 0.24645; // x4, slope ~= -0.799
+    X.transposeInPlace(); // 4 rows x 5 variables
+
 	Dataset dt(X, y);
-    Dataset dv(X_v, y_v);
-    
+
+    // different weights to check if searchspace is initialized correctnly
     unordered_map<string, float> user_ops = {
-        {"Add", 1},
-        {"Sub", 1},
-        {"Div", .5},
-        {"Times", 0.5}
+        {"Add",   1},
+        {"Sub",   1},
+        {"Div",  .5},
+        {"Mul", 0.5}
     };
 
-    // SearchSpace SS;
     SearchSpace SS;
     SS.init(dt, user_ops);
 
-/*     dtable_fit.print(); */
-/*     dtable_predict.print(); */
+    dt.print();
+    SS.print();
+    // dtable_fit.print();
+    // dtable_predict.print();
 }
-
-// TODO: check if searchspace recognizes when PTC2 is not going to work (avoid infinite loops)
-
-// TODO: test search space when I set only incompatible functions and terminals (should work)

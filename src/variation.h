@@ -144,6 +144,31 @@ inline bool toggle_weight_mutation(tree<Node>& Tree, Iter spot, const SearchSpac
     return true;
 }
 
+/// @brief replaces the subtree rooted in `spot`
+/// @param Tree the program tree
+/// @param spot an iterator to the node that is being mutated
+/// @param SS the search space to generate a compatible subtree
+/// @return boolean indicating the success (true) or fail (false) of the operation
+inline bool subtree_mutation(tree<Node>& Tree, Iter spot, const SearchSpace& SS)
+{
+    auto spot_type = spot.node->data.ret_type;
+    auto max_size  = PARAMS["max_size"].get<int>() - (Tree.size() - Tree.size(spot));
+    auto max_depth = PARAMS["max_depth"].get<int>() - (Tree.depth(spot));
+
+    // sample subtree uses PTC2, which operates on depth and size of the tree<Node> 
+    // (and not on the program!). we shoudn't care for weights here
+    auto subtree = SS.sample_subtree(spot.node->data, max_depth, max_size); 
+
+    if (!subtree) // there is no terminal with compatible arguments
+        return false;
+
+    // if optional contains a Node, we access its contained value
+    Tree.erase_children(spot); 
+    Tree.replace(spot, subtree.value().begin());
+
+    return true;
+}
+
 /**
  * @brief Stochastically mutate a program.
  * 
@@ -248,6 +273,7 @@ std::optional<Program<T>> mutate(const Program<T>& parent, const SearchSpace& SS
         {"insert",        insert_mutation},
         {"delete",        delete_mutation},
         {"point",         point_mutation},
+        {"subtree",       subtree_mutation},
         {"toggle_weight", toggle_weight_mutation}
     };
 
