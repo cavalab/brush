@@ -26,8 +26,8 @@ float calc_initial_weight(const ArrayXf& value, const ArrayXf& y)
     // The feature should be the first value, and the true value the second
     // (it will divide covar(arg1, arg2) by var(arg2)).
     // Since z-score normalizes so mean=0 and std=1, then order doesnt matter
-    float prob_change = std::abs(slope(data.col(0).array(),   // x
-                                       data.col(1).array())); // y
+    float prob_change = std::abs(slope(data.col(0).array() ,   // x=variable
+                                       data.col(1).array() )); // y=target
 
     return prob_change;
 }
