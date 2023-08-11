@@ -219,25 +219,32 @@ class BrushEstimator(BaseEstimator):
         self.archive_ = archive
         self.logbook_ = logbook
 
-        closest_idx = 0
-        if self.validation_size==0.0:
+        final_ind_idx = 0
+
+        # Each individual is a point in the Multi-Objective space. We multiply
+        # the fitness by the weights so greater numbers are always better
+        points = np.array([self.toolbox_.evaluateValidation(ind) for ind in self.archive_])
+        points = points*np.array(self.weights)
+
+        if self.validation_size==0.0:  # Using the multi-criteria decision making on training data
             # Selecting the best estimator using training data
             # (train data==val data if validation_size is set to 0.0)
             # and multi-criteria decision making
-            points = np.array([self.toolbox_.evaluateValidation(ind) for ind in self.archive_])
-
-            #Multiply by the weights so reference can be agnostic of min/max problems
-            points = points*np.array(self.weights)
 
             # Normalizing
             min_vals = np.min(points, axis=0)
             max_vals = np.max(points, axis=0)
             points = (points - min_vals) / (max_vals - min_vals)
             
-            reference = np.array([0, 0])
-            closest_idx = np.argmin( np.linalg.norm(points - reference, axis=1) )
+            # Reference should be best value each obj. can have (after normalization)
+            reference = np.array([1, 1])
 
-        self.best_estimator_ = self.archive_[closest_idx].prg
+            # closest to the reference
+            final_ind_idx = np.argmin( np.linalg.norm(points - reference, axis=1) )
+        else: # Best in obj.1 (loss) in validation data
+            final_ind_idx = np.argmax( points[:, 0] )
+
+        self.best_estimator_ = self.archive_[final_ind_idx].prg
 
         if self.verbosity > 0:
             print(f'best model {self.best_estimator_.get_model()}'+
