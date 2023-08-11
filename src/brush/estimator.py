@@ -128,9 +128,7 @@ class BrushEstimator(BaseEstimator):
         # Minimizing/maximizing problem: negative/positive weight, respectively.
         # Our classification is using the error as a metric
         # Comparing fitnesses: https://deap.readthedocs.io/en/master/api/base.html#deap.base.Fitness
-        creator.create("FitnessMulti", base.Fitness, weights=(+1.0,-1.0))
-
-        # TODO: make this weights attributes of each derivate class (creator is global)
+        creator.create("FitnessMulti", base.Fitness, weights=self.weights)
 
         # create Individual class, inheriting from self.Individual with a fitness attribute
         creator.create("Individual", DeapIndividual, fitness=creator.FitnessMulti)  
@@ -221,17 +219,23 @@ class BrushEstimator(BaseEstimator):
         self.archive_ = archive
         self.logbook_ = logbook
 
-        # Selecting the best estimator using validation data and multi-criteria decision making
-        points = np.array([self.toolbox_.evaluateValidation(ind) for ind in self.archive_])
-        points = points*np.array([+1.0,-1.0]) #Multiply by the weights TODO: use weights here instead of hardcoded
+        closest_idx = 0
+        if self.validation_size==0.0:
+            # Selecting the best estimator using training data
+            # (train data==val data if validation_size is set to 0.0)
+            # and multi-criteria decision making
+            points = np.array([self.toolbox_.evaluateValidation(ind) for ind in self.archive_])
 
-        # Normalizing
-        min_vals = np.min(points, axis=0)
-        max_vals = np.max(points, axis=0)
-        points = (points - min_vals) / (max_vals - min_vals)
-        
-        reference = np.array([0, 0])
-        closest_idx = np.argmin( np.linalg.norm(points - reference, axis=1) )
+            #Multiply by the weights so reference can be agnostic of min/max problems
+            points = points*np.array(self.weights)
+
+            # Normalizing
+            min_vals = np.min(points, axis=0)
+            max_vals = np.max(points, axis=0)
+            points = (points - min_vals) / (max_vals - min_vals)
+            
+            reference = np.array([0, 0])
+            closest_idx = np.argmin( np.linalg.norm(points - reference, axis=1) )
 
         self.best_estimator_ = self.archive_[closest_idx].prg
 
@@ -290,6 +294,7 @@ class BrushEstimator(BaseEstimator):
 
     def get_params(self):
         return {k:v for k,v in self.__dict__.items() if not k.endswith('_')}
+    
 
 class BrushClassifier(BrushEstimator,ClassifierMixin):
     """Brush for classification.
@@ -310,12 +315,15 @@ class BrushClassifier(BrushEstimator,ClassifierMixin):
     def __init__( self, **kwargs):
         super().__init__(mode='classification',**kwargs)
 
+        # Weight of each objective (+ for maximization, - for minimization)
+        self.weights = (+1.0,-1.0)
+
     def _fitness_validation(self, ind, data: _brush.Dataset):
+        # Fitness without fitting the expression, used with validation data
         return ( # (accuracy, size)
             (data.y==ind.prg.predict(data)).sum() / data.y.shape[0], 
             ind.prg.size()
         )
-
 
     def _fitness_function(self, ind, data: _brush.Dataset):
         ind.prg.fit(data)
@@ -379,15 +387,17 @@ class BrushRegressor(BrushEstimator, RegressorMixin):
     def __init__(self, **kwargs):
         super().__init__(mode='regressor',**kwargs)
 
+        # Weight of each objective (+ for maximization, - for minimization)
+        self.weights = (-1.0,-1.0)
 
     def _fitness_validation(self, ind, data: _brush.Dataset):
+        # Fitness without fitting the expression, used with validation data
+
         MSE = np.mean( (data.y-ind.prg.predict(data))**2 )
         if not np.isfinite(MSE): # numeric erros, np.nan, +-np.inf
             MSE = np.inf
 
-        # We are squash the error and making it a maximization problem
-        return ( 1/(1+MSE), ind.prg.size() )
-
+        return ( MSE, ind.prg.size() )
 
     def _fitness_function(self, ind, data: _brush.Dataset):
         ind.prg.fit(data)
@@ -396,9 +406,7 @@ class BrushRegressor(BrushEstimator, RegressorMixin):
         if not np.isfinite(MSE): # numeric erros, np.nan, +-np.inf
             MSE = np.inf
 
-        # We are squash the error and making it a maximization problem
-        return ( 1/(1+MSE), ind.prg.size() )
-
+        return ( MSE, ind.prg.size() )
 
     def _make_individual(self):
         if self.initialization not in ["grow", "full"]:
@@ -409,8 +417,6 @@ class BrushRegressor(BrushEstimator, RegressorMixin):
             self.search_space_.make_regressor(
             self.max_depth, (0 if self.initialization=='grow' else self.max_size))
         )
-
-
 
 # Under development
 # class BrushRepresenter(BrushEstimator, TransformerMixin):
