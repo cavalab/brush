@@ -68,11 +68,12 @@ def nsga2(toolbox, NGEN, MU, CXPB, use_batch, verbosity, rnd_flt):
         offspring = []
 
         for ind1, ind2 in zip(parents[::2], parents[1::2]):
+            off1, off2 = None, None
             if rnd_flt() < CXPB:
                 off1, off2 = toolbox.mate(ind1, ind2)
             else:
-                off1 = toolbox.mutate(off1)
-                off2 = toolbox.mutate(off2)
+                off1 = toolbox.mutate(ind1)
+                off2 = toolbox.mutate(ind2)
             
             # avoid inserting empty solutions
             if off1 is not None: offspring.extend([off1])

@@ -189,7 +189,7 @@ class BrushEstimator(BaseEstimator):
         """
         _brush.set_params(self.get_params())
         
-        if self.random_state != None:
+        if self.random_state is not None:
             _brush.set_random_state(self.random_state)
 
         self.data_ = self._make_data(X,y, validation_size=self.validation_size)
