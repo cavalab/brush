@@ -30,7 +30,7 @@ TEST(Data, MixedVariableTypes)
     // We need to set at least the mutation options (and respective
     // probabilities) in order to call PRG.predict()
     PARAMS["mutation_options"] = {
-        {"point",0.25}, {"insert", 0.25}, {"delete", 0.25}, {"toggle_weight", 0.25}
+        {"point",0.25}, {"insert", 0.25}, {"delete", 0.25}, {"toggle_weight_on", 0.125}, {"toggle_weight_off", 0.125}
     };
 
     MatrixXf X(5,3);
