@@ -132,15 +132,32 @@ inline bool delete_mutation(tree<Node>& Tree, Iter spot, const SearchSpace& SS)
     return true;
 };
 
-/// @brief toggle the node's weight on or off. 
+/// @brief toggle the node's weight ON. 
 /// @param Tree the program tree
 /// @param spot an iterator to the node that is being mutated
 /// @param SS the search space (unused)
 /// @return boolean indicating the success (true) or fail (false) of the operation
-inline bool toggle_weight_mutation(tree<Node>& Tree, Iter spot, const SearchSpace& SS)
+inline bool toggle_weight_on_mutation(tree<Node>& Tree, Iter spot, const SearchSpace& SS)
 {
-    spot.node->data.set_is_weighted(!spot.node->data.get_is_weighted());
+    if (spot.node->data.get_is_weighted()==true // cant turn on whats already on
+    ||  !IsWeighable(spot.node->data.ret_type)) // does not accept weights (e.g. boolean)
+        return false; // false indicates that mutation failed and should return std::nullopt
 
+    spot.node->data.set_is_weighted(true);
+    return true;
+}
+
+/// @brief toggle the node's weight OFF. 
+/// @param Tree the program tree
+/// @param spot an iterator to the node that is being mutated
+/// @param SS the search space (unused)
+/// @return boolean indicating the success (true) or fail (false) of the operation
+inline bool toggle_weight_off_mutation(tree<Node>& Tree, Iter spot, const SearchSpace& SS)
+{
+    if (spot.node->data.get_is_weighted()==false)
+        return false; 
+
+    spot.node->data.set_is_weighted(false);
     return true;
 }
 
@@ -176,8 +193,10 @@ inline bool subtree_mutation(tree<Node>& Tree, Iter spot, const SearchSpace& SS)
  * 
  *  - point mutation changes a single node. 
  *  - insertion mutation inserts a node as the parent of an existing node, and fills in the other arguments. 
- *  - deletion mutation deletes a node
- *  - toggle_weight mutation turns a node's weight on or off.
+ *  - deletion mutation deletes a node.
+ *  - subtree mutation inserts a new subtree into the program. 
+ *  - toggle_weight_on mutation turns a node's weight ON.
+ *  - toggle_weight_off mutation turns a node's weight OFF.
  * 
  * Every mutation has a probability (weight) based on global parameters. The
  * spot where the mutation will take place is sampled based on attribute 
@@ -247,11 +266,12 @@ std::optional<Program<T>> mutate(const Program<T>& parent, const SearchSpace& SS
     using MutationFunc = std::function<bool(tree<Node>&, Iter, const SearchSpace&)>;
 
     std::map<std::string, MutationFunc> mutations{
-        {"insert",        insert_mutation},
-        {"delete",        delete_mutation},
-        {"point",         point_mutation},
-        {"subtree",       subtree_mutation},
-        {"toggle_weight", toggle_weight_mutation}
+        {"insert",            insert_mutation},
+        {"delete",            delete_mutation},
+        {"point",             point_mutation},
+        {"subtree",           subtree_mutation},
+        {"toggle_weight_on",  toggle_weight_on_mutation},
+        {"toggle_weight_off", toggle_weight_off_mutation}
     };
 
     // Try to find the mutation function based on the choice
@@ -270,7 +290,6 @@ std::optional<Program<T>> mutate(const Program<T>& parent, const SearchSpace& SS
 
         return child;
     } else {
-        
         return std::nullopt;
     }
 };

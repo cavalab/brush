@@ -10,7 +10,7 @@ TEST(Operators, InsertMutationWorks)
     // To understand design implementation of this test, check Mutation test
 
     PARAMS["mutation_options"] = {
-        {"point", 0.0}, {"insert", 1.0}, {"delete", 0.0}, {"subtree", 0.0}, {"toggle_weight", 0.0}
+        {"point", 0.0}, {"insert", 1.0}, {"delete", 0.0}, {"subtree", 0.0}, {"toggle_weight_on", 0.0}, {"toggle_weight_off", 0.0}
     };
 
     // retrieving the options to check if everything was set right
@@ -117,7 +117,7 @@ TEST(Operators, Mutation)
     // TODO: set random seed
 
     PARAMS["mutation_options"] = {
-        {"point",0.25}, {"insert", 0.25}, {"delete", 0.25}, {"subtree", 0.0}, {"toggle_weight", 0.25}
+        {"point",0.25}, {"insert", 0.25}, {"delete", 0.25}, {"subtree", 0.0}, {"toggle_weight_on", 0.125}, {"toggle_weight_off", 0.125}
     };
     
     MatrixXf X(10,2);
@@ -193,7 +193,7 @@ TEST(Operators, Mutation)
 TEST(Operators, MutationSizeAndDepthLimit)
 {
     PARAMS["mutation_options"] = {
-        {"point",0.25}, {"insert", 0.25}, {"delete", 0.25}, {"subtree", 0.0}, {"toggle_weight", 0.25}
+        {"point",0.25}, {"insert", 0.25}, {"delete", 0.25}, {"subtree", 0.0}, {"toggle_weight_on", 0.125}, {"toggle_weight_off", 0.125}
     };
         
     MatrixXf X(10,2);
