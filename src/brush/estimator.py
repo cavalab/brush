@@ -38,11 +38,20 @@ class BrushEstimator(BaseEstimator):
         Maximum depth of GP trees in the GP program. Use 0 for no limit.
     max_size : int, default 0
         Maximum number of nodes in a tree. Use 0 for no limit.
-    cx_prob : float, default 0.9
-        Probability of applying the crossover variation when generating the offspring
-    mutation_options : dict, default {"point":0.2, "insert":0.2, "delete":0.2, "subtree":0.2, "toggle_weight_on":0.1, "toggle_weight_off":0.1}
+    cx_prob : float, default 1/7
+        Probability of applying the crossover variation when generating the offspring,
+        must be between 0 and 1.
+        Given that there are `n` mutations, and either crossover or mutation is 
+        used to generate each individual in the offspring (but not both at the
+        same time), we want to have by default an uniform probability between
+        crossover and every possible mutation. By setting `cx_prob=1/(n+1)`, and
+        `1/n` for each mutation, we can achieve an uniform distribution.
+    mutation_options : dict, default {"point":1/6, "insert":1/6, "delete":1/6, "subtree":1/6, "toggle_weight_on":1/6, "toggle_weight_off":1/6}
         A dictionary with keys naming the types of mutation and floating point 
-        values specifying the fraction of total mutations to do with that method. 
+        values specifying the fraction of total mutations to do with that method.
+        The probability of having a mutation is `(1-cx_prob)` and, in case the mutation
+        is applied, then each mutation option is sampled based on the probabilities
+        defined in `mutation_options`. The set of probabilities should add up to 1.0.
     functions: dict[str,float] or list[str], default {}
         A dictionary with keys naming the function set and values giving the probability
         of sampling them, or a list of functions which will be weighted uniformly.
@@ -95,8 +104,9 @@ class BrushEstimator(BaseEstimator):
         verbosity=0,
         max_depth=3,
         max_size=20,
-        cx_prob=0.9,
-        mutation_options = {"point":0.2, "insert":0.2, "delete":0.2, "subtree":0.2, "toggle_weight_on":0.1, "toggle_weight_off":0.1},
+        cx_prob= 1/7,
+        mutation_options = {"point":1/6, "insert":1/6, "delete":1/6, "subtree":1/6,
+                            "toggle_weight_on":1/6, "toggle_weight_off":1/6},
         functions: list[str]|dict[str,float] = {},
         initialization="grow",
         random_state=None,
