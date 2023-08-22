@@ -9,8 +9,6 @@ TEST(Program, MakeRegressor)
         
     Dataset data = Data::read_csv("docs/examples/datasets/d_enc.csv","label");
 
-
-
     SearchSpace SS;
     SS.init(data);
 
@@ -179,10 +177,6 @@ TEST(Operators, ProgramSizeAndDepthPARAMS)
     SearchSpace SS;
     SS.init(data);
 
-    // split operator --> arity 3
-    // prod operator  --> arity 4
-    int max_arity = 4;
-
     for (int d = 1; d < 10; ++d)
     {
         for (int s = 1; s < 10; ++s)
@@ -201,23 +195,21 @@ TEST(Operators, ProgramSizeAndDepthPARAMS)
                 "Model size     : {}\n"
                 "=================================================\n",
                 d, s, 
-                PRG.get_model("compact", true), PRG.Tree.max_depth(), PRG.Tree.size()
+                PRG.get_model("compact", true), PRG.depth(), PRG.size()
             );
 
-            // There are two ways of assessing the size of a program
-            // GUI TODO: which style are we going to use? i) implement
-            // PRG.max_depth() (or PRG.depth()); or ii) get rid of PRG.size()
-            // and use always PRG.Tree.<>)
-            ASSERT_TRUE(PRG.Tree.size() > 0);
-            ASSERT_TRUE(PRG.Tree.size() <= s+max_arity);
+            // Terminals are weighted by default, while operators not. Since we
+            // include the weights in the calculation of the size of the program,
+            // and PTC2 uses the tree size (not the program size), it is not 
+            // expected that initial trees will strictly respect `max_size`.
+            ASSERT_TRUE(PRG.size() > 0); // size is always positive
+            
+            // PTC2: maximum size is s+max(arity). Since in Brush terminals are
+            // weighted by default, we set it to 3*max(arity)
+            ASSERT_TRUE(PRG.size() <= s+3*4); 
 
-            ASSERT_TRUE(PRG.size() > 0);
-            ASSERT_TRUE(PRG.size() <= s+max_arity);
-
-            // GUI TODO: max_depth() counts the number of edges (so a program with
-            // one node has max_depth()==0). Is this how it should behave?
-            ASSERT_TRUE(PRG.Tree.max_depth() >= 0);
-            ASSERT_TRUE(PRG.Tree.max_depth() <= d+1);
+            ASSERT_TRUE(PRG.depth() <= d+1);
+            ASSERT_TRUE(PRG.depth() > 0); // depth is always positive
         }
     }
 }

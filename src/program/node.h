@@ -39,6 +39,28 @@ using Brush::Data::Dataset;
 
 namespace Brush{
 
+// TODO: should I move this declaration to another place?
+template <DataType... T>
+inline auto Isnt(DataType dt) -> bool { return !((dt == T) || ...); }
+
+template<DataType DT>
+inline auto IsWeighable() noexcept -> bool { 
+        return Isnt<DataType::ArrayB,
+                    DataType::MatrixB,
+                    DataType::TimeSeriesB,
+                    DataType::ArrayBJet,
+                    DataType::MatrixBJet
+                    >(DT);                
+}
+inline auto IsWeighable(DataType dt) noexcept -> bool { 
+        return Isnt<DataType::ArrayB,
+                    DataType::MatrixB,
+                    DataType::TimeSeriesB,
+                    DataType::ArrayBJet,
+                    DataType::MatrixBJet
+                    >(dt);                
+}
+
 struct uint32_vector_hasher {
     std::size_t operator()(std::vector<uint32_t> const& vec) const {
       std::size_t seed = vec.size();
@@ -134,9 +156,12 @@ struct Node {
 
         W = 1.0;
         // set_node_hash();
-        set_prob_change(1.0);
         fixed=false;
+        set_prob_change(1.0);
 
+        // cant weight an boolean terminal
+        if (!IsWeighable(this->ret_type)) 
+            this->is_weighted = false;
     }
 
     /// @brief gets a string version of the node for printing.
@@ -212,12 +237,19 @@ struct Node {
     ////////////////////////////////////////////////////////////////////////////////
     // getters and setters
     //TODO revisit
-    float get_prob_change() const { return this->prob_change;};
+    float get_prob_change() const { return fixed ? 0.0 : this->prob_change;};
     void set_prob_change(float w){ if (!fixed) this->prob_change = w;};
     float get_prob_keep() const { return 1-this->prob_change;};
 
     inline void set_feature(string f){ feature = f; };
     inline string get_feature() const { return feature; };
+
+    inline bool get_is_weighted() const {return this->is_weighted;};
+    inline void set_is_weighted(bool is_weighted){
+        // cant change the weight of a boolean terminal
+        if (IsWeighable(this->ret_type)) 
+            this->is_weighted = is_weighted;
+    };
 
     private:
 
@@ -225,7 +257,6 @@ struct Node {
         string feature; 
 };
 
-//TODO: add nt to template as first argument, make these constexpr
 template <NodeType... T>
 inline auto Is(NodeType nt) -> bool { return ((nt == T) || ...); }
 
@@ -278,6 +309,7 @@ inline auto IsWeighable(NodeType nt) noexcept -> bool {
                     NodeType::SplitBest 
                     >(nt);                
 }
+
 ostream& operator<<(ostream& os, const Node& n);
 ostream& operator<<(ostream& os, const NodeType& nt);
 

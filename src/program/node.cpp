@@ -183,8 +183,10 @@ void from_json(const json &j, Node& p)
 
     if (j.contains("center_op"))
         j.at("center_op").get_to(p.center_op);
+
     if (j.contains("fixed"))
         j.at("fixed").get_to(p.fixed);
+
     if (j.contains("feature"))
     {
         // j.at("feature").get_to(p.feature);
@@ -194,6 +196,12 @@ void from_json(const json &j, Node& p)
         j.at("is_weighted").get_to(p.is_weighted);
     else
         p.is_weighted=false;
+
+    if (j.contains("prob_change"))
+        j.at("prob_change").get_to(p.prob_change);
+    else
+        p.prob_change=1.0;
+    
 
     // if node has a ret_type and arg_types, get them. if not we need to make 
     // a signature

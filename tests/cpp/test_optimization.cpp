@@ -7,9 +7,9 @@
 using testing::TestWithParam;
 
 // Hashes corresponding to a 3-ary Prod operator
-const std::size_t sig_hash      = 5617655905677279916;
-const std::size_t sig_dual_hash = 10188582206427064428;
-const std::size_t complete_hash = 1786662244046809282;
+const std::size_t sig_hash      = 5617655905677279916u;
+const std::size_t sig_dual_hash = 10188582206427064428u;
+const std::size_t complete_hash = 1786662244046809282u;
 
 class OptimizerTest 
     : public TestWithParam< std::tuple<string,json,std::function<bool(ArrayXf)>> > {

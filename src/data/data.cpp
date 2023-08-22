@@ -90,7 +90,7 @@ State check_type(const ArrayXf& x)
     }
     else
     {
-        if(isCategorical && uniqueMap.size() < 10)
+        if(isCategorical && uniqueMap.size() <= 10)
         {
             tmp = ArrayXi(x.cast<int>());
         }
@@ -130,20 +130,36 @@ Dataset Dataset::operator()(const vector<size_t>& idx) const
     return Dataset(new_features, new_y, this->classification);
 }
 
-Dataset Dataset::get_batch(int batch_size) const
+Dataset Dataset::get_batch() const
 {
+    // will always return a new dataset, even when use_batch is false (this case, returns itself)
 
-    batch_size =  std::min(batch_size,int(this->get_n_samples()));
-    return (*this)(r.shuffled_index(get_n_samples()));
+    if (!use_batch) 
+        return (*this);
+
+    auto n_samples = int(this->get_n_samples());
+    // garantee that at least one sample is going to be returned, since
+    // use_batch is true only if batch_size is (0, 1), and ceil will round
+    // up
+    n_samples = int(ceil(n_samples*batch_size));
+
+    return (*this)(r.shuffled_index(n_samples));
 }
 
 array<Dataset, 2> Dataset::split(const ArrayXb& mask) const
 {
+    // TODO: assert that mask is not filled with zeros or ones (would create
+    // one empty partition)
+
     // split data into two based on mask. 
     auto idx1 = Util::mask_to_index(mask);
     auto idx2 = Util::mask_to_index((!mask));
     return std::array<Dataset, 2>{ (*this)(idx1), (*this)(idx2) };
 }
+
+Dataset Dataset::get_training_data() const { return (*this)(training_data_idx); }
+Dataset Dataset::get_validation_data() const { return (*this)(validation_data_idx); }
+
 /// call init at the end of constructors
 /// to define metafeatures of the data.
 void Dataset::init()
@@ -152,6 +168,13 @@ void Dataset::init()
     // n_features = this->features.size();
     // note this will have to change in unsupervised settings
     // n_samples = this->y.size();
+
+    if (this->features.size() == 0){
+        HANDLE_ERROR_THROW(
+            fmt::format("Error during the initialization of the dataset. It "
+                        "does not contain any data\n") 
+            );
+    }
 
     // fmt::print("Dataset::init()\n");
     for (const auto& [name, value]: this->features)
@@ -165,6 +188,36 @@ void Dataset::init()
         // add feature to appropriate map list 
         this->features_of_type[feature_type].push_back(name);
     }
+
+    // setting the training and validation data indexes
+    auto n_samples = int(this->get_n_samples());
+    auto idx = r.shuffled_index(n_samples);
+
+    // garantee that at least one sample is going to be returned, since
+    // use_batch is true only if batch_size is (0, 1), and ceil will round
+    // up
+    auto n_train_samples = int(ceil(n_samples*(1-validation_size)));
+
+    training_data_idx.resize(0);
+    std::transform(idx.begin(), idx.begin() + n_train_samples,
+            back_inserter(training_data_idx),
+            [&](int element) { return element; });
+
+    if ( use_validation && (n_samples - n_train_samples != 0) ) {
+        validation_data_idx.resize(0);
+        std::transform(idx.begin() + n_train_samples, idx.end(),
+                back_inserter(validation_data_idx),
+                [&](int element) { return element; });
+    }
+    else {
+        validation_data_idx = training_data_idx;
+    } 
+}
+
+float Dataset::get_batch_size() { return batch_size; }
+void Dataset::set_batch_size(float new_size) {
+    batch_size = new_size;
+    use_batch = batch_size > 0.0 && batch_size < 1.0;
 }
 
 /// turns input data into a feature map

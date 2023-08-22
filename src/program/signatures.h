@@ -195,8 +195,9 @@ template<NodeType N, typename T = void> struct Signatures;
 template<NodeType N>
 struct Signatures<N, enable_if_t<is_in_v<N, NodeType::Constant, NodeType::Terminal>>>{ 
     using type = std::tuple< 
-          Signature<ArrayXf()>, 
-          Signature<ArrayXi()> 
+          Signature<ArrayXf()>,
+          Signature<ArrayXi()>,
+          Signature<ArrayXb()> 
           >; 
 }; 
 

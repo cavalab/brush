@@ -87,8 +87,74 @@ template<PT PType> struct Program
         SSref = std::optional<std::reference_wrapper<SearchSpace>>{s};
     }
 
-    int size(){
-        return Tree.size();
+    /// @brief count the tree size of the program, including the weights in weighted nodes.
+    /// @param include_weight whether to include the node's weight in the count.
+    /// @return int number of nodes.
+    int size(bool include_weight=true) const{
+        int acc = 0;
+
+        std::for_each(Tree.begin(), Tree.end(), 
+            [include_weight, &acc](auto& node){ 
+                ++acc; // the node operator or terminal
+                
+                if (include_weight && node.get_is_weighted()==true)
+                    acc += 2; // weight and multiplication, if enabled
+             });
+
+        return acc;
+    }
+
+    /// @brief count the size of a given subtree, optionally including the
+    /// weights in weighted nodes. This function is not exposed to the python wrapper.
+    /// @param top root node of the subtree.
+    /// @param include_weight whether to include the node's weight in the count.
+    /// @return int number of nodes.
+    int size_at(Iter& top, bool include_weight=true) const{
+
+        int acc = 0;
+
+        // inspired in tree.hh size. First create two identical iterators
+        Iter it=top, eit=top;
+        
+        // Then make the second one point to the next sibling
+        eit.skip_children();
+        ++eit;
+
+        // calculate tree size for each node until reach next sibling
+        while(it!=eit) {
+            ++acc; // counting the node operator/terminal
+                        
+            if (include_weight && it.node->data.get_is_weighted()==true)
+                acc += 2; // weight and multiplication, if enabled
+
+            ++it;
+        }
+        
+        return acc;
+    }
+
+    /// @brief count the tree depth of the program. The depth is not influenced by weighted nodes.
+    /// @return int tree depth.
+    int depth() const{
+        //tree.hh count the number of edges. We need to ensure that a single-node
+        //tree has depth>0
+        return 1+Tree.max_depth();
+    }
+
+    /// @brief count the depth of a given subtree. The depth is not influenced by
+    /// weighted nodes. This function is not exposed to the python wrapper.
+    /// @param top root node of the subtree.
+    /// @return int tree depth.
+    int depth_at(Iter& top) const{
+        return 1+Tree.max_depth(top);
+    }
+
+    /// @brief count the depth until reaching the given subtree. The depth is
+    /// not influenced by weighted nodes. This function is not exposed to the python wrapper.
+    /// @param top root node of the subtree.
+    /// @return int tree depth.
+    int depth_to_reach(Iter& top) const{
+        return 1+Tree.depth(top);
     }
 
     Program<PType>& fit(const Dataset& d)
@@ -215,7 +281,7 @@ template<PT PType> struct Program
         for (PostIter i = Tree.begin_post(); i != Tree.end_post(); ++i)
         {
             const auto& node = i.node->data; 
-            if (node.is_weighted)
+            if (node.get_is_weighted())
                 ++count;
         }
         return count;
@@ -233,7 +299,7 @@ template<PT PType> struct Program
         for (PostIter t = Tree.begin_post(); t != Tree.end_post(); ++t)
         {
             const auto& node = t.node->data; 
-            if (node.is_weighted)
+            if (node.get_is_weighted())
             {
                 weights(i) = node.W;
                 ++i;
@@ -258,7 +324,7 @@ template<PT PType> struct Program
         for (PostIter i = Tree.begin_post(); i != Tree.end_post(); ++i)
         {
             auto& node = i.node->data; 
-            if (node.is_weighted)
+            if (node.get_is_weighted())
             {
                 node.W = weights(j);
                 ++j;
@@ -327,7 +393,7 @@ template<PT PType> struct Program
 
             // if the first node is weighted, make a dummy output node so that the 
             // first node's weight can be shown
-            if (i==0 && parent->data.is_weighted)
+            if (i==0 && parent->data.get_is_weighted())
             {
                 out += "y [shape=box];\n";
                 out += fmt::format("y -> \"{}\" [label=\"{:.2f}\"];\n", 
@@ -360,7 +426,7 @@ template<PT PType> struct Program
                 // string kid_id = fmt::format("{}",fmt::ptr(kid));
                 // kid_id = kid_id.substr(2);
 
-                if (kid->data.is_weighted && Isnt<NodeType::Constant>(kid->data.node_type)){
+                if (kid->data.get_is_weighted() && Isnt<NodeType::Constant>(kid->data.node_type)){
                     edge_label = fmt::format("{:.2f}",kid->data.W);
                 }
 
@@ -415,15 +481,15 @@ template<PT PType> struct Program
 
     /// @brief convenience wrapper for :cpp:func:`variation:mutate()` in variation.h
     /// @return a mutated version of this program
-    Program<PType> mutate() const;
+    std::optional<Program<PType>> mutate() const;
 
     /**
      * @brief convenience wrapper for :cpp:func:`variation:cross` in variation.h
      * 
      * @param other another program to cross with this one. 
-     * @return a mutated version of this and the other program
+     * @return a new version of this and the other program
      */
-    Program<PType> cross(Program<PType> other) const;
+    std::optional<Program<PType>> cross(Program<PType> other) const;
 
     /// @brief turns program tree into a linear program. 
     /// @return a vector of nodes encoding the program in reverse polish notation
@@ -455,14 +521,14 @@ void Program<PType>::update_weights(const Dataset& d)
 // mutation and crossover
 #include "../variation.h"
 template<ProgramType PType>
-Program<PType> Program<PType>::mutate() const
+std::optional<Program<PType>> Program<PType>::mutate() const
 {
     return variation::mutate(*this, this->SSref.value().get());
 };
 
 /// swaps subtrees between this and other (note the pass by copy)
 template<ProgramType PType>
-Program<PType> Program<PType>::cross(Program<PType> other) const
+std::optional<Program<PType>> Program<PType>::cross(Program<PType> other) const
 {
     return variation::cross(*this, other);
 };
