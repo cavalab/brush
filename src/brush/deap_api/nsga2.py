@@ -54,7 +54,9 @@ def nsga2(toolbox, NGEN, MU, CXPB, use_batch, verbosity, rnd_flt):
 
     # Begin the generational process
     for gen in range(1, NGEN):
-        if (use_batch): #batch will be random only if it is not the size of the entire train set. In this case, we dont need to reevaluate the whole pop
+        # The batch will be random only if it is not the size of the entire train set.
+        # In this case, we dont need to reevaluate the whole pop
+        if (use_batch): 
             batch = toolbox.getBatch()
             fitnesses = toolbox.map(functools.partial(toolbox.evaluate, data=batch), pop)
         
