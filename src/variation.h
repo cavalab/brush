@@ -26,165 +26,377 @@ license: GNU/GPL v3
  * 
  */
 namespace variation {
-
-typedef tree<Node>::pre_order_iterator Iter; 
-
-/// @brief replace node with same typed node
-/// @param Tree the program tree
-/// @param spot an iterator to the node that is being mutated
-/// @param SS the search space to sample a node like `spot`
-/// @return boolean indicating the success (true) or fail (false) of the operation
-inline bool point_mutation(tree<Node>& Tree, Iter spot, const SearchSpace& SS)
-{
-    // cout << "point mutation\n";
-
-    // get_node_like will sample a similar node based on node_map_weights or
-    // terminal_weights, and maybe will return a Node.
-    std::optional<Node> newNode = SS.get_node_like(spot.node->data);
-
-    if (!newNode) // newNode == std::nullopt
-        return false;
-
-    // if optional contains a Node, we access its contained value
-    Tree.replace(spot, *newNode);
-
-    return true;
-}
-
-/// @brief insert a node with spot as a child
-/// @param Tree the program tree
-/// @param spot an iterator to the node that is being mutated
-/// @param SS the search space to sample a node like `spot`
-/// @return boolean indicating the success (true) or fail (false) of the operation
-inline bool insert_mutation(tree<Node>& Tree, Iter spot, const SearchSpace& SS)
-{
-    // cout << "insert mutation\n";
-    auto spot_type = spot.node->data.ret_type;
     
-    // pick a random compatible node to insert (with probabilities given by
-    // node_map_weights). The `-1` represents the node being inserted.
-    // Ideally, it should always find at least one match (the same node
-    // used as a reference when calling the function). However, we have a 
-    // size restriction, which will be relaxed here (just as it is in the PTC2
-    // algorithm). This mutation can create a new expression that exceeds the
-    // maximum size by the highest arity among the operators.
-    std::optional<Node> n = SS.sample_op_with_arg(spot_type, spot_type, true,
-                                PARAMS["max_size"].get<int>()-Tree.size()-1); 
+class MutationBase {
+public:
+    using Iter = tree<Node>::pre_order_iterator;
 
-    if (!n) // there is no operator with compatible arguments
-        return false;
-
-    // make node n wrap the subtree at the chosen spot
-    auto parent_node = Tree.wrap(spot, *n);
-
-    // now fill the arguments of n appropriately
-    bool spot_filled = false;
-    for (auto a: (*n).arg_types)
+    MutationBase(const SearchSpace& SS, size_t max_size, size_t max_depth)
+        : SS_(SS)
+        , max_size_(max_size)
+        , max_depth_(max_depth)
     {
-        if (spot_filled)
-        {
-            // if spot is in its child position, append children.
-            // TODO: reminding that sample_terminal may fail as well
-            auto opt = SS.sample_terminal(a);
+    }
+        
+    template<ProgramType T>
+    auto find_spots(const Program<T>& prog) const -> vector<float> // override for custom behavior
+    {
+        // It is important to use prog.Tree.size instead of prog.size(). The
+        // later takes into account node weights (coefficients), but we want
+        // weight of nodes that are actually in the tree structure
+        vector<float> weights(prog.Tree.size());
 
-            if (!opt)
-                return false;
+        // by default, mutation can happen anywhere, based on node weights
+        std::transform(prog.Tree.begin(), prog.Tree.end(), weights.begin(),
+                        [&](const auto& n){ 
+                            return n.get_prob_change();});
+        
+        // Should have same size as prog.Tree.size, even if all weights <= 0.0
+        return weights;
+    }
 
-            Tree.append_child(parent_node, opt.value());
-        }
-        // if types match, treat this spot as filled by the spot node 
-        else if (a == spot_type)
-            spot_filled = true;
-        // otherwise, add siblings before spot node
-        else {
-            auto opt = SS.sample_terminal(a);
+    virtual auto mutate_inplace(tree<Node>& Tree, Iter spot) const -> bool = 0;
 
-            if (!opt)
-                return false;
+    auto SS() const -> SearchSpace { return SS_; }
+    auto max_size() const -> size_t { return max_size_; }
+    auto max_depth() const -> size_t{ return max_depth_; }
+private:
+    SearchSpace SS_; // where to sample nodes to change the program
 
-            Tree.insert(spot, opt.value());
-        }
-    } 
-
-    return true;
-}
-
-/// @brief delete subtree and replace it with a terminal of the same return type
-/// @param Tree the program tree
-/// @param spot an iterator to the node that is being mutated
-/// @param SS the search space to sample a node like `spot`
-/// @return boolean indicating the success (true) or fail (false) of the operation
-inline bool delete_mutation(tree<Node>& Tree, Iter spot, const SearchSpace& SS)
-{
-    // cout << "delete mutation\n";
-
-    // sample_terminal will sample based on terminal_weights. If it succeeds, 
-    // then the new terminal will be in `opt.value()`
-    auto opt = SS.sample_terminal(spot.node->data.ret_type); 
-    
-    if (!opt) // there is no terminal with compatible arguments
-        return false;
-
-    Tree.erase_children(spot); 
-
-    Tree.replace(spot, opt.value());
-
-    return true;
+    // constrains
+    size_t max_size_;
+    size_t max_depth_;
 };
 
-/// @brief toggle the node's weight ON. 
+/// @brief replace node with same typed node
+/// @param prog the program
+/// @param Tree the program tree
+/// @param spot an iterator to the node that is being mutated
+/// @param SS the search space to sample a node like `spot`
+/// @return boolean indicating the success (true) or fail (false) of the operation
+class PointMutation : public MutationBase
+{
+public:
+    explicit PointMutation(const SearchSpace& SS, size_t max_size=0, size_t max_depth=0)
+        : MutationBase(SS, max_size, max_depth)
+    {
+    }
+
+    auto mutate_inplace(tree<Node>& Tree, Iter spot) const -> bool override
+    {
+        // cout << "point mutation\n";
+
+        // get_node_like will sample a similar node based on node_map_weights or
+        // terminal_weights, and maybe will return a Node.
+        optional<Node> newNode = SS().get_node_like(spot.node->data);
+
+        if (!newNode) // overload to check if newNode == nullopt
+            return false;
+
+        // if optional contains a Node, we access its contained value
+        Tree.replace(spot, *newNode);
+
+        return true;
+    }
+};
+
+/// @brief insert a node with spot as a child
+/// @param prog the program
+/// @param Tree the program tree
+/// @param spot an iterator to the node that is being mutated
+/// @param SS the search space to sample a node like `spot`
+/// @return boolean indicating the success (true) or fail (false) of the operation
+class InsertMutation : public MutationBase
+{
+public:
+    explicit InsertMutation(const SearchSpace& SS, size_t max_size=0, size_t max_depth=0)
+        : MutationBase(SS, max_size, max_depth)
+    {
+    }
+
+    template<ProgramType T>
+    auto find_spots(const Program<T>& prog) const -> vector<float>
+    {
+        vector<float> weights(prog.Tree.size());
+
+        if (prog.size() < max_size()) {
+            auto prog_iter = prog.Tree.begin();
+            std::transform(prog.Tree.begin(), prog.Tree.end(), weights.begin(),
+                        [&](const auto& n){ 
+                            size_t d = prog.depth_to_reach( prog_iter );
+
+                            std::advance(prog_iter, 1);
+
+                            if (d < max_depth()) 
+                                return n.get_prob_change();
+                            else
+                                return 0.0f; 
+                        });
+        }
+        else {
+            // fill the vector with zeros, since we're already at max_size
+            std::fill(weights.begin(), weights.end(), 0.0f); 
+        }
+        
+        return weights;
+    }
+
+    auto mutate_inplace(tree<Node>& Tree, Iter spot) const -> bool override
+    {
+        // cout << "insert mutation\n";
+        auto spot_type = spot.node->data.ret_type;
+        
+        // pick a random compatible node to insert (with probabilities given by
+        // node_map_weights). The `-1` represents the node being inserted.
+        // Ideally, it should always find at least one match (the same node
+        // used as a reference when calling the function). However, we have a 
+        // size restriction, which will be relaxed here (just as it is in the PTC2
+        // algorithm). This mutation can create a new expression that exceeds the
+        // maximum size by the highest arity among the operators.
+        std::optional<Node> n = SS().sample_op_with_arg(spot_type, spot_type, true,
+                                    max_size()-Tree.size()-1); 
+
+        if (!n) // there is no operator with compatible arguments
+            return false;
+
+        // make node n wrap the subtree at the chosen spot
+        auto parent_node = Tree.wrap(spot, *n);
+
+        // now fill the arguments of n appropriately
+        bool spot_filled = false;
+        for (auto a: (*n).arg_types)
+        {
+            if (spot_filled)
+            {
+                // if spot is in its child position, append children.
+                // TODO: reminding that sample_terminal may fail as well
+                auto opt = SS().sample_terminal(a);
+
+                if (!opt)
+                    return false;
+
+                Tree.append_child(parent_node, opt.value());
+            }
+            // if types match, treat this spot as filled by the spot node 
+            else if (a == spot_type)
+                spot_filled = true;
+            // otherwise, add siblings before spot node
+            else {
+                auto opt = SS().sample_terminal(a);
+
+                if (!opt)
+                    return false;
+
+                Tree.insert(spot, opt.value());
+            }
+        } 
+
+        return true;
+    }
+};
+
+/// @brief delete subtree and replace it with a terminal of the same return type
+/// @param prog the program
+/// @param Tree the program tree
+/// @param spot an iterator to the node that is being mutated
+/// @param SS the search space to sample a node like `spot`
+/// @return boolean indicating the success (true) or fail (false) of the operation
+class DeleteMutation : public MutationBase
+{
+public:
+    explicit DeleteMutation(const SearchSpace& SS, size_t max_size=0, size_t max_depth=0)
+        : MutationBase(SS, max_size, max_depth)
+    {
+    }
+
+    auto mutate_inplace(tree<Node>& Tree, Iter spot) const -> bool override
+    {
+        // cout << "delete mutation\n";
+
+        // sample_terminal will sample based on terminal_weights. If it succeeds, 
+        // then the new terminal will be in `opt.value()`
+        auto opt = SS().sample_terminal(spot.node->data.ret_type); 
+        
+        if (!opt) // there is no terminal with compatible arguments
+            return false;
+
+        Tree.erase_children(spot); 
+
+        Tree.replace(spot, opt.value());
+
+        return true;
+    }
+};
+
+/// @brief toggle the node's weight ON
+/// @param prog the program
 /// @param Tree the program tree
 /// @param spot an iterator to the node that is being mutated
 /// @param SS the search space (unused)
 /// @return boolean indicating the success (true) or fail (false) of the operation
-inline bool toggle_weight_on_mutation(tree<Node>& Tree, Iter spot, const SearchSpace& SS)
+class ToggleWeightOnMutation : public MutationBase
 {
-    if (spot.node->data.get_is_weighted()==true // cant turn on whats already on
-    ||  !IsWeighable(spot.node->data.ret_type)) // does not accept weights (e.g. boolean)
-        return false; // false indicates that mutation failed and should return std::nullopt
+public:
+    explicit ToggleWeightOnMutation(const SearchSpace& SS, size_t max_size=0, size_t max_depth=0)
+        : MutationBase(SS, max_size, max_depth)
+    {
+    }
 
-    spot.node->data.set_is_weighted(true);
-    return true;
-}
+    template<ProgramType T>
+    auto find_spots(const Program<T>& prog) const -> vector<float>
+    {
+        vector<float> weights(prog.Tree.size());
 
-/// @brief toggle the node's weight OFF. 
+        if (prog.size() < max_size()) {
+            std::transform(prog.Tree.begin(), prog.Tree.end(), weights.begin(),
+                        [&](const auto& n){
+                            // only weighted nodes can be toggled off
+                            if (!n.node->data.get_is_weighted()) 
+                                return n.get_prob_change();
+                            else
+                                return 0.0; 
+                        });
+        }
+        else {
+            // fill the vector with zeros, since we're already at max_size
+            std::fill(weights.begin(), weights.end(), 0.0f); 
+        }
+
+        return weights;
+    }
+
+    auto mutate_inplace(tree<Node>& Tree, Iter spot) const -> bool override
+    {
+        // cout << "toggle_weight_on mutation\n";
+
+        if (spot.node->data.get_is_weighted()==true // cant turn on whats already on
+        ||  !IsWeighable(spot.node->data.ret_type)) // does not accept weights (e.g. boolean)
+            return false; // false indicates that mutation failed and should return std::nullopt
+
+        spot.node->data.set_is_weighted(true);
+        return true;
+    }
+};
+
+/// @brief toggle the node's weight OFF
+/// @param prog the program
 /// @param Tree the program tree
 /// @param spot an iterator to the node that is being mutated
 /// @param SS the search space (unused)
 /// @return boolean indicating the success (true) or fail (false) of the operation
-inline bool toggle_weight_off_mutation(tree<Node>& Tree, Iter spot, const SearchSpace& SS)
+class ToggleWeightOffMutation : public MutationBase
 {
-    if (spot.node->data.get_is_weighted()==false)
-        return false; 
+public:
+    explicit ToggleWeightOffMutation(const SearchSpace& SS, size_t max_size=0, size_t max_depth=0)
+        : MutationBase(SS, max_size, max_depth)
+    {
+    }
 
-    spot.node->data.set_is_weighted(false);
-    return true;
-}
+    template<ProgramType T>
+    auto find_spots(const Program<T>& prog) const -> vector<float>
+    {
+        vector<float> weights(prog.Tree.size());
+
+        std::transform(prog.Tree.begin(), prog.Tree.end(), weights.begin(),
+                    [&](const auto& n){
+                        if (n.node->data.get_is_weighted()) 
+                            return n.get_prob_change();
+                        else
+                            return 0.0; 
+                    });
+
+        return weights;
+    }
+
+    auto mutate_inplace(tree<Node>& Tree, Iter spot) const -> bool override
+    {
+        // cout << "toggle_weight_off mutation\n";
+
+        if (spot.node->data.get_is_weighted()==false)
+            return false; 
+
+        spot.node->data.set_is_weighted(false);
+        return true;
+    }
+};
 
 /// @brief replaces the subtree rooted in `spot`
+/// @param prog the program
 /// @param Tree the program tree
 /// @param spot an iterator to the node that is being mutated
 /// @param SS the search space to generate a compatible subtree
 /// @return boolean indicating the success (true) or fail (false) of the operation
-inline bool subtree_mutation(tree<Node>& Tree, Iter spot, const SearchSpace& SS)
+class SubtreeMutation : public MutationBase
 {
-    auto spot_type = spot.node->data.ret_type;
-    auto max_size  = PARAMS["max_size"].get<int>() - (Tree.size() - Tree.size(spot));
-    auto max_depth = PARAMS["max_depth"].get<int>() - (Tree.depth(spot));
+public:
+    explicit SubtreeMutation(const SearchSpace& SS, size_t max_size=0, size_t max_depth=0)
+        : MutationBase(SS, max_size, max_depth) // TODO: change order size and depth
+    {
+    }
 
-    // sample subtree uses PTC2, which operates on depth and size of the tree<Node> 
-    // (and not on the program!). we shoudn't care for weights here
-    auto subtree = SS.sample_subtree(spot.node->data, max_depth, max_size); 
+    // TODO: make different private functions to find spots and use them. theres too much copy and paste here
+    template<ProgramType T>
+    auto find_spots(const Program<T>& prog) const -> vector<float>
+    {
+        vector<float> weights(prog.Tree.size());
 
-    if (!subtree) // there is no terminal with compatible arguments
-        return false;
+        if (prog.size() < max_size()) {
+            auto prog_iter = prog.Tree.begin();
+            std::transform(prog.Tree.begin(), prog.Tree.end(), weights.begin(),
+                        [&](const auto& n){ 
+                            size_t d = prog.depth_to_reach( prog_iter );
 
-    // if optional contains a Node, we access its contained value
-    Tree.erase_children(spot); 
-    Tree.replace(spot, subtree.value().begin());
+                            std::advance(prog_iter, 1);
 
-    return true;
-}
+                            if (d < max_depth()) 
+                                return n.get_prob_change();
+                            else
+                                return 0.0f; 
+                        });
+        }
+        else {
+            // fill the vector with zeros, since we're already at max_size
+            std::fill(weights.begin(), weights.end(), 0.0f); 
+        }
+        
+        return weights;
+    }
+
+    auto mutate_inplace(tree<Node>& Tree, Iter spot) const -> bool override
+    {
+        // cout << "subtree mutation\n";
+
+        // check if we exceeded the size/depth constrains (without subtracting,
+        // to avoid overflow cases if the user sets max_size smaller than arity
+        // of smallest operator. The overflow would happen when calculating d and
+        // s in the following lines, to choose the PTC2 limits)
+        if ( max_size()  <= (Tree.size() - Tree.size(spot))
+        ||   max_depth() <= Tree.depth(spot) )
+            return false;
+
+        auto spot_type = spot.node->data.ret_type;
+
+        // d and s must be compatible with PTC2 --- they should be based on 
+        // tree structure, not program structure
+        size_t d = max_depth() - Tree.depth(spot);
+        size_t s = max_size() - (Tree.size() - Tree.size(spot));
+
+        s = r.rnd_int(1, s);
+
+        // sample subtree uses PTC2, which operates on depth and size of the tree<Node> 
+        // (and not on the program!). we shoudn't care for weights here
+        auto subtree = SS().sample_subtree(spot.node->data, d, s); 
+
+        if (!subtree) // there is no terminal with compatible arguments
+            return false;
+
+        // if optional contains a Node, we access its contained value
+        Tree.erase_children(spot); 
+        Tree.replace(spot, subtree.value().begin());
+
+        return true;
+    }
+};
 
 /**
  * @brief Stochastically mutate a program.
@@ -222,18 +434,6 @@ inline bool subtree_mutation(tree<Node>& Tree, Iter spot, const SearchSpace& SS)
 template<ProgramType T>
 std::optional<Program<T>> mutate(const Program<T>& parent, const SearchSpace& SS)
 {
-    // all mutation validation and setup should be done here. Specific mutaiton
-    // functions are intended to work on the program tree thus cannot access
-    // program functions and attributes.
-    Program<T> child(parent);
-
-    // choose location by weighted sampling of program
-    vector<float> weights(child.Tree.size());
-    std::transform(child.Tree.begin(), child.Tree.end(), 
-                    weights.begin(),
-                    [](const auto& n){ return n.get_prob_change(); }
-                    );
-
     auto options = PARAMS["mutation_options"].get<std::map<string,float>>();
 
     // whether we should write everything that happened inside the method
@@ -241,17 +441,60 @@ std::optional<Program<T>> mutate(const Program<T>& parent, const SearchSpace& SS
         // Default fields of the trace. Initialize with default values, which are
         // gradually changed throughout the execution of the method.
         PARAMS["mutation_trace"] = json({
-            {"parent",           child.get_model("compact", true)},
-            {"spot_weights",     weights},
+            {"parent",           parent.get_model("compact", true)},
             {"mutation_weights", options},
             // default values, to be changed in case mutation works
-            {"spot",             "not selected"},
             {"mutation",         "not selected"},
+            {"spot_weights",     "not calculated"},
+            {"spot",             "not selected"},
             {"child",            "failed to generate"},
             {"status",           "initialized weight vectors"},
             {"success",          "false"}
         });
     }
+    if (std::all_of(options.begin(), options.end(),
+                    [](const auto& kv) { return kv.second<=0.0; })
+    )
+    { // No mutation can be successfully applied to this solution  
+        return std::nullopt;
+    }
+
+    // choose a valid mutation option
+    string choice = r.random_choice(options);
+
+    // TODO: this could be improved
+    std::unique_ptr<MutationBase> mutation;
+    if (choice == "point") 
+        mutation = std::make_unique<PointMutation>(
+            SS, PARAMS["max_size"].get<int>(), PARAMS["max_depth"].get<int>());
+    else if (choice == "insert") 
+        mutation = std::make_unique<InsertMutation>(
+            SS, PARAMS["max_size"].get<int>(), PARAMS["max_depth"].get<int>());
+    else if (choice == "delete") 
+        mutation = std::make_unique<DeleteMutation>(
+            SS, PARAMS["max_size"].get<int>(), PARAMS["max_depth"].get<int>());
+    else if (choice == "toggle_weight_on") 
+        mutation = std::make_unique<ToggleWeightOnMutation>(
+            SS, PARAMS["max_size"].get<int>(), PARAMS["max_depth"].get<int>());
+    else if (choice == "toggle_weight_off") 
+        mutation = std::make_unique<ToggleWeightOffMutation>(
+            SS, PARAMS["max_size"].get<int>(), PARAMS["max_depth"].get<int>());
+    else if (choice == "subtree") 
+        mutation = std::make_unique<SubtreeMutation>(
+            SS, PARAMS["max_size"].get<int>(), PARAMS["max_depth"].get<int>());
+    else {
+        std::string msg = fmt::format("{} not a valid mutation choice", choice);
+        HANDLE_ERROR_THROW(msg);
+    }
+
+    if (PARAMS.value("write_mutation_trace", false)==true)
+        PARAMS["mutation_trace"]["mutation"] = choice;
+
+    // choose location by weighted sampling of program
+    auto weights = mutation->find_spots(parent);
+
+    if (PARAMS.value("write_mutation_trace", false)==true)
+        PARAMS["mutation_trace"]["spot_weights"] = weights;
 
     if (std::all_of(weights.begin(), weights.end(), [](const auto& w) {
         return w<=0.0;
@@ -259,56 +502,21 @@ std::optional<Program<T>> mutate(const Program<T>& parent, const SearchSpace& SS
     { // There is no spot that has a probability to be selected
         return std::nullopt;
     }
+    
+    // if we got this far, mutation is going to happen
+    Program<T> child(parent);
 
-    auto spot = r.select_randomly(child.Tree.begin(), child.Tree.end(), 
-                                  weights.begin(), weights.end());
-
-    // whether we should write everything that happened inside the method
-    if (PARAMS.value("write_mutation_trace", false)==true) {
-        PARAMS["mutation_trace"]["spot"] = spot.node->get_model(false);
-        PARAMS["mutation_trace"]["status"] = "sampled the mutation spot";
-    }
-
-    if (std::all_of(options.begin(), options.end(), [](const auto& kv) {
-        return kv.second<=0.0;
-    }))
-    { // No mutation can be successfully applied to this solution  
-        return std::nullopt;
-    }
-        
-    // choose a valid mutation option
-    string choice = r.random_choice(options);
-
-    // std::cout << "mutation configuration (choice was " << choice << "):" << std::endl;
-    // for (const auto& [k, v] : options)
-    //     std::cout << " - " << k << " : " << v << std::endl;
+    // apply the mutation and check if it succeeded
+    auto spot = r.select_randomly(child.Tree.begin(), child.Tree.end(),  // TODO: get weights from mutation
+                             weights.begin(), weights.end());
 
     // Every mutation here works inplace, so they return bool instead of
     // std::optional to indicare the result of their manipulation over the
     // program tree. Here we call the mutation function and return the result
-    using MutationFunc = std::function<bool(tree<Node>&, Iter, const SearchSpace&)>;
-
-    std::map<std::string, MutationFunc> mutations{
-        {"insert",            insert_mutation},
-        {"delete",            delete_mutation},
-        {"point",             point_mutation},
-        {"subtree",           subtree_mutation},
-        {"toggle_weight_on",  toggle_weight_on_mutation},
-        {"toggle_weight_off", toggle_weight_off_mutation}
-    };
-
-    // Try to find the mutation function based on the choice
-    auto it = mutations.find(choice);
-    if (it == mutations.end()) {
-        std::string msg = fmt::format("{} not a valid mutation choice", choice);
-        HANDLE_ERROR_THROW(msg);
-    }
-
-    // apply the mutation and check if it succeeded
-    bool success = it->second(child.Tree, spot, SS);
+    bool success = mutation->mutate_inplace(child.Tree, spot);
 
     if (PARAMS.value("write_mutation_trace", false)==true) {
-        PARAMS["mutation_trace"]["mutation"] = choice;
+        PARAMS["mutation_trace"]["spot"] = choice;
         PARAMS["mutation_trace"]["status"] = "sampled and aplied the mutation";
 
         if (success)
@@ -329,7 +537,7 @@ std::optional<Program<T>> mutate(const Program<T>& parent, const SearchSpace& SS
         // here we have a string in PARAMS["mutation_trace"]["child"],
         // but success is false since it didnt return an valid program
         if (PARAMS.value("write_mutation_trace", false)==true)
-            PARAMS["mutation_trace"]["status"] = "children exceeds max_size or max_depth";
+            PARAMS["mutation_trace"]["status"] = "mutation returned child, but it exceeds max_size or max_depth";
 
         return std::nullopt;
     }
