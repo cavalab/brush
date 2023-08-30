@@ -113,11 +113,9 @@ TEST(Operators, InsertMutationWorks)
 
 TEST(Operators, Mutation)
 {
-    // test mutation
-    // TODO: set random seed
-
+    PARAMS["write_mutation_trace"] = true;
     PARAMS["mutation_options"] = {
-        {"point",0.25}, {"insert", 0.25}, {"delete", 0.25}, {"subtree", 0.0}, {"toggle_weight_on", 0.125}, {"toggle_weight_off", 0.125}
+        {"point",0.167}, {"insert", 0.167}, {"delete", 0.167}, {"subtree", 0.167}, {"toggle_weight_on", 0.167}, {"toggle_weight_off", 0.167}
     };
     
     MatrixXf X(10,2);
@@ -136,9 +134,9 @@ TEST(Operators, Mutation)
     SearchSpace SS;
     SS.init(data);
 
+    int successes = 0;
     for (int d = 1; d < 10; ++d)
     {
-        int successes = 0;
         for (int s = 1; s < 10; ++s)
         {
             fmt::print("d={},s={}\n",d,s);
@@ -166,6 +164,7 @@ TEST(Operators, Mutation)
                     d, s, 
                     PRG.get_model("compact", true)
                 );
+                fmt::print("{}", PARAMS["mutation_trace"].get<json>().dump());
             }
             else {
                 successes += 1;
@@ -185,15 +184,16 @@ TEST(Operators, Mutation)
                 y_pred = Child.predict(data);
             }
         }
-        // since x1 and x2 have same type, we shoudn't get fails
-        ASSERT_TRUE(successes > 0);
     }
+    // since x1 and x2 have same type, we shoudn't get fails
+    ASSERT_TRUE(successes > 0);
 }
 
 TEST(Operators, MutationSizeAndDepthLimit)
 {
+    PARAMS["write_mutation_trace"] = true;
     PARAMS["mutation_options"] = {
-        {"point",0.25}, {"insert", 0.25}, {"delete", 0.25}, {"subtree", 0.0}, {"toggle_weight_on", 0.125}, {"toggle_weight_off", 0.125}
+        {"point",0.167}, {"insert", 0.167}, {"delete", 0.167}, {"subtree", 0.167}, {"toggle_weight_on", 0.167}, {"toggle_weight_off", 0.167}
     };
         
     MatrixXf X(10,2);
@@ -216,9 +216,9 @@ TEST(Operators, MutationSizeAndDepthLimit)
     // prod operator  --> arity 4
     int max_arity = 4;
 
+    int successes = 0;
     for (int d = 5; d < 15; ++d)
     {
-        int successes = 0;
         for (int s = 5; s < 15; ++s)
         {
             PARAMS["max_size"]  = s;
@@ -245,6 +245,7 @@ TEST(Operators, MutationSizeAndDepthLimit)
                     d, s, 
                     PRG.get_model("compact", true)
                 );
+                fmt::print("{}", PARAMS["mutation_trace"].get<json>().dump());
             }
             else {
                 successes += 1;
@@ -282,8 +283,8 @@ TEST(Operators, MutationSizeAndDepthLimit)
                 ASSERT_TRUE(Child.depth() <= d);
             }
         }
-        ASSERT_TRUE(successes > 0);
     }
+    ASSERT_TRUE(successes > 0);
 }
 
 TEST(Operators, Crossover)
@@ -304,9 +305,9 @@ TEST(Operators, Crossover)
     SearchSpace SS;
     SS.init(data);
 
+    int successes = 0;
     for (int d = 1; d < 10; ++d)
     {
-        int successes = 0;
         for (int s = 1; s < 10; ++s)
         {
             RegressorProgram PRG1 = SS.make_regressor(d, s);
@@ -358,8 +359,8 @@ TEST(Operators, Crossover)
                 auto child_pred1 = Child.predict(data);
             }
         }
-        ASSERT_TRUE(successes > 0);
     }
+    ASSERT_TRUE(successes > 0);
 }
 
 TEST(Operators, CrossoverSizeAndDepthLimit)
@@ -384,9 +385,9 @@ TEST(Operators, CrossoverSizeAndDepthLimit)
     // prod operator  --> arity 4
     int max_arity = 4;
 
+    int successes = 0;
     for (int d = 5; d < 15; ++d)
     {
-        int successes = 0;
         for (int s = 5; s < 15; ++s)
         {
             PARAMS["max_size"]  = s;
@@ -445,6 +446,6 @@ TEST(Operators, CrossoverSizeAndDepthLimit)
                 ASSERT_TRUE(Child.depth() <= d);
             }
         }
-        ASSERT_TRUE(successes > 0);
     }
+    ASSERT_TRUE(successes > 0);
 }

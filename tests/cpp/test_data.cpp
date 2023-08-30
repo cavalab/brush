@@ -29,8 +29,9 @@ TEST(Data, MixedVariableTypes)
 {
     // We need to set at least the mutation options (and respective
     // probabilities) in order to call PRG.predict()
+    PARAMS["write_mutation_trace"] = true;
     PARAMS["mutation_options"] = {
-        {"point",0.25}, {"insert", 0.25}, {"delete", 0.25}, {"toggle_weight_on", 0.125}, {"toggle_weight_off", 0.125}
+        {"point",0.167}, {"insert", 0.167}, {"delete", 0.167}, {"subtree", 0.167}, {"toggle_weight_on", 0.167}, {"toggle_weight_off", 0.167}
     };
 
     MatrixXf X(5,3);
@@ -59,14 +60,14 @@ TEST(Data, MixedVariableTypes)
     dt.print();
     SS.print();
 
-    for (int d = 1; d < 5; ++d)
-        for (int s = 1; s < 5; ++s)
+    for (size_t d = 5; d < 10; ++d)
+        for (size_t s = 5; s < 20; ++s)
         {
             
             PARAMS["max_size"]  = s;
             PARAMS["max_depth"] = d;
 
-            RegressorProgram PRG = SS.make_regressor(d, s);
+            RegressorProgram PRG = SS.make_regressor(s-4, d-4);
             fmt::print(
                 "=================================================\n"
                 "Tree model for depth = {}, size= {}: {}\n",
@@ -95,6 +96,7 @@ TEST(Data, MixedVariableTypes)
 
             if (!opt){
                 fmt::print("Mutation failed to create a child\n");
+                fmt::print("{}", PARAMS["mutation_trace"].get<json>().dump());
             }
             else {
                 auto Child = opt.value();
