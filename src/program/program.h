@@ -343,7 +343,7 @@ template<PT PType> struct Program
      * @param pretty currently unused. 
      * @return string the model in string form.  
      */
-    string get_model(string fmt="compact", bool pretty=false)
+    string get_model(string fmt="compact", bool pretty=false) const
     {
         auto head = Tree.begin(); 
         if (fmt=="tree")
@@ -359,7 +359,7 @@ template<PT PType> struct Program
      * @param extras extra code passed to the beginning of the dot code. 
      * @return string the model in dot language. 
      */
-    string get_dot_model(string extras="")
+    string get_dot_model(string extras="") const
     {
         // TODO: make the node names their hash or index, and the node label the nodetype name. 
         // ref: https://stackoverflow.com/questions/10579041/graphviz-create-new-node-with-this-same-label#10579155
@@ -381,7 +381,6 @@ template<PT PType> struct Program
             const auto& parent = iter.node;
             // const auto& parent_data = iter.node->data;
 
-
             string parent_id = get_id(parent);
             // if (Is<NodeType::Terminal>(parent_data.node_type)) 
             //     parent_id = parent_data.get_name(false);
@@ -389,7 +388,6 @@ template<PT PType> struct Program
             //     parent_id = fmt::format("{}",fmt::ptr(iter.node)).substr(2);
             // }
             // // parent_id = parent_id.substr(2);
-
 
             // if the first node is weighted, make a dummy output node so that the 
             // first node's weight can be shown
@@ -401,7 +399,6 @@ template<PT PType> struct Program
                         parent_id,
                         parent->data.W
                         );
-
             }
 
             // add the node
@@ -459,7 +456,6 @@ template<PT PType> struct Program
                             head_label,
                             tail_label
                             );
-
                 }
                 else{
                     out += fmt::format("\"{}\" -> \"{}\" [label=\"{}\"];\n", 
