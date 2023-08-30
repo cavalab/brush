@@ -631,9 +631,11 @@ T RandomDequeue(std::vector<T>& Q)
 template<typename P>
 P SearchSpace::make_program(int max_d, int max_size)
 {
+    // this is what makes `make_program` create uniformly distributed
+    // individuals to feed initial population
     if (max_d == 0)
         max_d = PARAMS["max_depth"].get<int>();
-    if (max_size == 0)
+    if (max_size == 0) 
         max_size = r.rnd_int(1, PARAMS["max_size"].get<int>());
 
     DataType root_type = DataTypeEnum<typename P::TreeType>::value;
@@ -641,7 +643,7 @@ P SearchSpace::make_program(int max_d, int max_size)
     // ProgramType program_type = ProgramTypeEnum<PT>::value;
     
     auto Tree = tree<Node>();
-    if (max_size == 1)
+    if (max_size == 1 || max_d == 1)
     {
         // auto root = Tree.insert(Tree.begin(), sample_terminal(root_type));
 
