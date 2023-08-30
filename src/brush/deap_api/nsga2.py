@@ -69,15 +69,15 @@ def nsga2(toolbox, NGEN, MU, CXPB, use_batch, verbosity, rnd_flt):
 
         for ind1, ind2 in zip(parents[::2], parents[1::2]):
             off1, off2 = None, None
-            if rnd_flt() < CXPB:
+            if rnd_flt() < CXPB: # either mutation or crossover
                 off1, off2 = toolbox.mate(ind1, ind2)
             else:
                 off1 = toolbox.mutate(ind1)
                 off2 = toolbox.mutate(ind2)
             
-            # avoid inserting empty solutions
-            if off1 is not None: offspring.extend([off1])
-            if off2 is not None: offspring.extend([off2])
+            # Inserting parent if mutation failed
+            offspring.append(off1 if off1 is not None else ind1)
+            offspring.append(off2 if off2 is not None else ind2)
 
         # archive.update(offspring)
         # Evaluate the individuals with an invalid fitness
