@@ -63,15 +63,18 @@ TEST(Data, MixedVariableTypes)
     for (size_t d = 5; d < 10; ++d)
         for (size_t s = 5; s < 20; ++s)
         {
-            
+            fmt::print(
+                "=================================================\n"
+                "depth={}, size={}. ", d, s
+            );
+
             PARAMS["max_size"]  = s;
             PARAMS["max_depth"] = d;
 
             RegressorProgram PRG = SS.make_regressor(s-4, d-4);
+
             fmt::print(
-                "=================================================\n"
-                "Tree model for depth = {}, size= {}: {}\n",
-                d, s, PRG.get_model("compact", true)
+                "Tree model: {}\n", PRG.get_model("compact", true)
             );
 
             // visualizing detailed information for the model
@@ -96,7 +99,7 @@ TEST(Data, MixedVariableTypes)
 
             if (!opt){
                 fmt::print("Mutation failed to create a child\n");
-                fmt::print("{}", PARAMS["mutation_trace"].get<json>().dump());
+                fmt::print("{}\n", PARAMS["mutation_trace"].get<json>().dump());
             }
             else {
                 auto Child = opt.value();
