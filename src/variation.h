@@ -38,28 +38,39 @@ public:
     {
     }
         
-    template<ProgramType T>
-    auto find_spots(const Program<T>& prog) const -> vector<float> // override for custom behavior
+    virtual auto find_spots(tree<Node>& Tree) const -> vector<float>
     {
-        // It is important to use prog.Tree.size instead of prog.size(). The
-        // later takes into account node weights (coefficients), but we want
-        // weight of nodes that are actually in the tree structure
-        vector<float> weights(prog.Tree.size());
+        vector<float> weights(Tree.size());
 
         // by default, mutation can happen anywhere, based on node weights
-        std::transform(prog.Tree.begin(), prog.Tree.end(), weights.begin(),
-                        [&](const auto& n){ 
-                            return n.get_prob_change();});
+        std::transform(Tree.begin(), Tree.end(), weights.begin(),
+                       [&](const auto& n){ return n.get_prob_change();});
         
         // Should have same size as prog.Tree.size, even if all weights <= 0.0
         return weights;
     }
 
-    virtual auto mutate_inplace(tree<Node>& Tree, Iter spot) const -> bool = 0;
+    virtual auto operator()(tree<Node>& Tree, Iter spot) const -> bool = 0;
 
     auto SS() const -> SearchSpace { return SS_; }
     auto max_size() const -> size_t { return max_size_; }
     auto max_depth() const -> size_t{ return max_depth_; }
+protected:
+    static size_t size_with_weights(tree<Node>& Tree, bool include_weight=true)
+    {
+        size_t acc = 0;
+
+        std::for_each(Tree.begin(), Tree.end(), 
+            [include_weight, &acc](auto& node){ 
+                ++acc; // the node operator or terminal
+                
+                if (include_weight && node.get_is_weighted()==true)
+                    acc += 2; // weight and multiplication, if enabled
+             });
+
+        return acc;
+    }
+
 private:
     SearchSpace SS_; // where to sample nodes to change the program
 
@@ -82,7 +93,7 @@ public:
     {
     }
 
-    auto mutate_inplace(tree<Node>& Tree, Iter spot) const -> bool override
+    auto operator()(tree<Node>& Tree, Iter spot) const -> bool override
     {
         // cout << "point mutation\n";
 
@@ -114,34 +125,37 @@ public:
     {
     }
 
-    template<ProgramType T>
-    auto find_spots(const Program<T>& prog) const -> vector<float>
+    auto find_spots(tree<Node>& Tree) const -> vector<float> override
     {
-        vector<float> weights(prog.Tree.size());
+        vector<float> weights;
 
-        if (prog.size() < max_size()) {
-            auto prog_iter = prog.Tree.begin();
-            std::transform(prog.Tree.begin(), prog.Tree.end(), weights.begin(),
+        if (size_with_weights(Tree) < max_size()) {
+            Iter iter = Tree.begin();
+            std::transform(Tree.begin(), Tree.end(), std::back_inserter(weights),
                         [&](const auto& n){ 
-                            size_t d = prog.depth_to_reach( prog_iter );
+                            size_t d = 1+Tree.depth(iter);
+                            std::advance(iter, 1);
 
-                            std::advance(prog_iter, 1);
-
-                            if (d < max_depth()) 
-                                return n.get_prob_change();
-                            else
-                                return 0.0f; 
+                            // check if SS holds an operator to avoid failing `check` in sample_op_with_arg
+                            if ((d >= max_depth())
+                            ||  (SS().node_map.find(n.ret_type) == SS().node_map.end())) {
+                                return 0.0f;
+                            }
+                            else {
+                                return n.get_prob_change(); 
+                            }
                         });
         }
         else {
             // fill the vector with zeros, since we're already at max_size
+            weights.resize(Tree.size());
             std::fill(weights.begin(), weights.end(), 0.0f); 
         }
         
         return weights;
     }
 
-    auto mutate_inplace(tree<Node>& Tree, Iter spot) const -> bool override
+    auto operator()(tree<Node>& Tree, Iter spot) const -> bool override
     {
         // cout << "insert mutation\n";
         auto spot_type = spot.node->data.ret_type;
@@ -209,7 +223,7 @@ public:
     {
     }
 
-    auto mutate_inplace(tree<Node>& Tree, Iter spot) const -> bool override
+    auto operator()(tree<Node>& Tree, Iter spot) const -> bool override
     {
         // cout << "delete mutation\n";
 
@@ -242,19 +256,19 @@ public:
     {
     }
 
-    template<ProgramType T>
-    auto find_spots(const Program<T>& prog) const -> vector<float>
+    auto find_spots(tree<Node>& Tree) const -> vector<float> override
     {
-        vector<float> weights(prog.Tree.size());
+        vector<float> weights(Tree.size());
 
-        if (prog.size() < max_size()) {
-            std::transform(prog.Tree.begin(), prog.Tree.end(), weights.begin(),
+        if (size_with_weights(Tree) < max_size()) {
+            std::transform(Tree.begin(), Tree.end(), weights.begin(),
                         [&](const auto& n){
                             // only weighted nodes can be toggled off
-                            if (!n.node->data.get_is_weighted()) 
+                            if (!n.get_is_weighted()
+                            &&  IsWeighable(n.ret_type))
                                 return n.get_prob_change();
                             else
-                                return 0.0; 
+                                return 0.0f; 
                         });
         }
         else {
@@ -265,7 +279,7 @@ public:
         return weights;
     }
 
-    auto mutate_inplace(tree<Node>& Tree, Iter spot) const -> bool override
+    auto operator()(tree<Node>& Tree, Iter spot) const -> bool override
     {
         // cout << "toggle_weight_on mutation\n";
 
@@ -292,23 +306,23 @@ public:
     {
     }
 
-    template<ProgramType T>
-    auto find_spots(const Program<T>& prog) const -> vector<float>
+    auto find_spots(tree<Node>& Tree) const -> vector<float> override
     {
-        vector<float> weights(prog.Tree.size());
+        vector<float> weights(Tree.size());
 
-        std::transform(prog.Tree.begin(), prog.Tree.end(), weights.begin(),
+        std::transform(Tree.begin(), Tree.end(), weights.begin(),
                     [&](const auto& n){
-                        if (n.node->data.get_is_weighted()) 
+                        if (n.get_is_weighted()
+                        &&  IsWeighable(n.ret_type))
                             return n.get_prob_change();
                         else
-                            return 0.0; 
+                            return 0.0f;
                     });
 
         return weights;
     }
 
-    auto mutate_inplace(tree<Node>& Tree, Iter spot) const -> bool override
+    auto operator()(tree<Node>& Tree, Iter spot) const -> bool override
     {
         // cout << "toggle_weight_off mutation\n";
 
@@ -335,34 +349,37 @@ public:
     }
 
     // TODO: make different private functions to find spots and use them. theres too much copy and paste here
-    template<ProgramType T>
-    auto find_spots(const Program<T>& prog) const -> vector<float>
+    auto find_spots(tree<Node>& Tree) const -> vector<float> override
     {
-        vector<float> weights(prog.Tree.size());
+        vector<float> weights;
 
-        if (prog.size() < max_size()) {
-            auto prog_iter = prog.Tree.begin();
-            std::transform(prog.Tree.begin(), prog.Tree.end(), weights.begin(),
+        auto node_map = SS().node_map;
+
+        if (size_with_weights(Tree) < max_size()) {
+            Iter iter = Tree.begin();
+            std::transform(Tree.begin(), Tree.end(), std::back_inserter(weights),
                         [&](const auto& n){ 
-                            size_t d = prog.depth_to_reach( prog_iter );
+                            size_t d = 1+Tree.depth(iter);
+                            std::advance(iter, 1);
 
-                            std::advance(prog_iter, 1);
-
-                            if (d < max_depth()) 
-                                return n.get_prob_change();
+                            // we need to make sure there's some node to start the subtree
+                            if ((d >= max_depth())
+                            ||  (SS().node_map.find(n.ret_type) == SS().node_map.end())
+                            ||  (SS().node_map.find(n.ret_type) == SS().node_map.end()) )
+                                return 0.0f;
                             else
-                                return 0.0f; 
+                                return n.get_prob_change(); 
                         });
         }
         else {
-            // fill the vector with zeros, since we're already at max_size
+            weights.resize(Tree.size());
             std::fill(weights.begin(), weights.end(), 0.0f); 
         }
         
         return weights;
     }
 
-    auto mutate_inplace(tree<Node>& Tree, Iter spot) const -> bool override
+    auto operator()(tree<Node>& Tree, Iter spot) const -> bool override
     {
         // cout << "subtree mutation\n";
 
@@ -487,14 +504,18 @@ std::optional<Program<T>> mutate(const Program<T>& parent, const SearchSpace& SS
         HANDLE_ERROR_THROW(msg);
     }
 
-    if (PARAMS.value("write_mutation_trace", false)==true)
+    if (PARAMS.value("write_mutation_trace", false)==true) {
         PARAMS["mutation_trace"]["mutation"] = choice;
+    }
+
+    Program<T> child(parent);
 
     // choose location by weighted sampling of program
-    auto weights = mutation->find_spots(parent);
+    auto weights = mutation->find_spots(child.Tree);
 
-    if (PARAMS.value("write_mutation_trace", false)==true)
+    if (PARAMS.value("write_mutation_trace", false)==true) {
         PARAMS["mutation_trace"]["spot_weights"] = weights;
+    }
 
     if (std::all_of(weights.begin(), weights.end(), [](const auto& w) {
         return w<=0.0;
@@ -502,25 +523,26 @@ std::optional<Program<T>> mutate(const Program<T>& parent, const SearchSpace& SS
     { // There is no spot that has a probability to be selected
         return std::nullopt;
     }
-    
-    // if we got this far, mutation is going to happen
-    Program<T> child(parent);
 
     // apply the mutation and check if it succeeded
-    auto spot = r.select_randomly(child.Tree.begin(), child.Tree.end(),  // TODO: get weights from mutation
-                             weights.begin(), weights.end());
+    auto spot = r.select_randomly(child.Tree.begin(), child.Tree.end(),
+                                  weights.begin(), weights.end());
 
+    if (PARAMS.value("write_mutation_trace", false)==true) {
+        PARAMS["mutation_trace"]["spot"] = spot.node->get_model(false);
+        PARAMS["mutation_trace"]["status"] = "sampled the spot";
+    }
+    
     // Every mutation here works inplace, so they return bool instead of
     // std::optional to indicare the result of their manipulation over the
     // program tree. Here we call the mutation function and return the result
-    bool success = mutation->mutate_inplace(child.Tree, spot);
+    bool success = (*mutation)(child.Tree, spot);
 
     if (PARAMS.value("write_mutation_trace", false)==true) {
-        PARAMS["mutation_trace"]["spot"] = choice;
-        PARAMS["mutation_trace"]["status"] = "sampled and aplied the mutation";
-
+        PARAMS["mutation_trace"]["status"] = "aplied the mutation";
         if (success)
             PARAMS["mutation_trace"]["child"] = child.get_model("compact", true);
+
     }
 
     if (success
@@ -528,17 +550,19 @@ std::optional<Program<T>> mutate(const Program<T>& parent, const SearchSpace& SS
     &&   (child.depth() <= PARAMS["max_depth"].get<int>()) )){
 
         // success is true only if mutation returned a valid program
-        if (PARAMS.value("write_mutation_trace", false)==true)
+        if (PARAMS.value("write_mutation_trace", false)==true) {
             PARAMS["mutation_trace"]["success"] = true;
+        }
 
         return child;
     } else {
         
         // here we have a string in PARAMS["mutation_trace"]["child"],
         // but success is false since it didnt return an valid program
-        if (PARAMS.value("write_mutation_trace", false)==true)
+        if (PARAMS.value("write_mutation_trace", false)==true) {
             PARAMS["mutation_trace"]["status"] = "mutation returned child, but it exceeds max_size or max_depth";
-
+            //fmt::print("{}\n", PARAMS["mutation_trace"].get<json>().dump());
+        }
         return std::nullopt;
     }
 };
@@ -625,7 +649,7 @@ std::optional<Program<T>> cross(const Program<T>& root, const Program<T>& other)
                 return n.get_prob_change(); 
             else
                 // setting the weight to zero to indicate a non-feasible crossover point
-                return float(0.0);
+                return 0.0f;
         }
     );
 
