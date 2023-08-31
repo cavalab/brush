@@ -120,15 +120,15 @@ vector<Node> generate_terminals(const Dataset& d)
         return sum / count;
     };
 
-    auto cXf = Node(NodeType::Constant, Signature<ArrayXf()>{}, true, "C");
+    auto cXf = Node(NodeType::Constant, Signature<ArrayXf()>{}, true, "Cf");
     cXf.set_prob_change(signature_avg(cXf.ret_type));
     terminals.push_back(cXf);
 
-    auto cXi = Node(NodeType::Constant, Signature<ArrayXi()>{}, true, "C");
+    auto cXi = Node(NodeType::Constant, Signature<ArrayXi()>{}, true, "Ci");
     cXi.set_prob_change(signature_avg(cXi.ret_type));
     terminals.push_back(cXi);
 
-    auto cXb = Node(NodeType::Constant, Signature<ArrayXb()>{}, false, "C");
+    auto cXb = Node(NodeType::Constant, Signature<ArrayXb()>{}, false, "Cb");
     cXb.set_prob_change(signature_avg(cXb.ret_type));
     terminals.push_back(cXb);
 
@@ -263,8 +263,11 @@ tree<Node> SearchSpace::PTC2(Node root, int max_d, int max_size) const
             // Tree.append_child(qspot, sample_terminal(t));
 
             auto opt = sample_terminal(t);
-            while (!opt)
-                opt = sample_terminal(t);
+
+            // if it returned optional, then there's nothing to sample based on weights.
+            // We'll force sampling again with uniform probs
+            if (!opt)
+                opt = sample_terminal(t, true);
 
             // If we successfully get a terminal, use it
             n = opt.value();
@@ -280,8 +283,8 @@ tree<Node> SearchSpace::PTC2(Node root, int max_d, int max_size) const
             // TreeIter new_spot = Tree.append_child(qspot, n);
             // qspot = n;
 
-            while (!opt)
-                opt = sample_op(t);
+            if (!opt)
+                opt = sample_terminal(t, true);
 
             n = opt.value();
             
@@ -321,9 +324,8 @@ tree<Node> SearchSpace::PTC2(Node root, int max_d, int max_size) const
         // auto newspot = Tree.replace(qspot, sample_terminal(t));
 
         auto opt = sample_terminal(t);
-        while (!opt) {
-            opt = sample_terminal(t);
-        }
+        if (!opt)
+            opt = sample_terminal(t, true);
 
         n = opt.value();
         

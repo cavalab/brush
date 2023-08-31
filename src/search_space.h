@@ -312,7 +312,7 @@ struct SearchSpace
 
     /// @brief Get a random terminal 
     /// @return `std::optional` that may contain a terminal Node.     
-    std::optional<Node> sample_terminal() const
+    std::optional<Node> sample_terminal(bool force_return=false) const
     {
         //TODO: match terminal args_type (probably '{}' or something?)
         //  make a separate terminal_map
@@ -320,17 +320,24 @@ struct SearchSpace
         // We'll make terminal types to have its weights proportional to the
         // DataTypes Weights they hold
         vector<float> data_type_weights(terminal_weights.size());
-        std::transform(
-            terminal_weights.begin(),
-            terminal_weights.end(),
-            data_type_weights.begin(),
-            [](const auto& tw){ 
-                return std::reduce(tw.second.begin(), tw.second.end()); }
-        );
-        
-        if (!has_solution_space(data_type_weights.begin(), 
-                                data_type_weights.end()))
-            return std::nullopt;
+        if (force_return)
+        {
+            std::fill(data_type_weights.begin(), data_type_weights.end(), 1.0f); 
+        }
+        else
+        {
+            std::transform(
+                terminal_weights.begin(),
+                terminal_weights.end(),
+                data_type_weights.begin(),
+                [](const auto& tw){ 
+                    return std::reduce(tw.second.begin(), tw.second.end()); }
+            );
+            
+            if (!has_solution_space(data_type_weights.begin(), 
+                                    data_type_weights.end()))
+                return std::nullopt;
+        }
 
         // If we got this far, then it is garanteed that we'll return something
         // The match take into account datatypes with non-zero weights
@@ -341,16 +348,32 @@ struct SearchSpace
             data_type_weights.end()
         );
 
-        return *r.select_randomly(
-                    match.second.begin(), match.second.end(), 
-                    terminal_weights.at(match.first).begin(), 
-                    terminal_weights.at(match.first).end()
-                );
+        // theres always a constant of each data type
+        vector<float> match_weights(match.second.size());
+        if (force_return)
+        {
+            std::fill(match_weights.begin(), match_weights.end(), 1.0f); 
+        }
+        else
+        {
+            std::transform(
+                terminal_weights.at(match.first).begin(),
+                terminal_weights.at(match.first).end(),
+                match_weights.begin(),
+                [](const auto& w){ return w; });
+            
+            if (!has_solution_space(match_weights.begin(), 
+                                    match_weights.end()))
+                return std::nullopt;
+        }
+
+        return *r.select_randomly(match.second.begin(),  match.second.end(), 
+                                  match_weights.begin(), match_weights.end());
     };
 
     /// @brief Get a random terminal with return type `R` 
     /// @return `std::optional` that may contain a terminal Node of type `R`.     
-    std::optional<Node> sample_terminal(DataType R) const
+    std::optional<Node> sample_terminal(DataType R, bool force_return=false) const
     {
         // should I keep doing this check?
         // if (terminal_map.find(R) == terminal_map.end()){
@@ -358,16 +381,33 @@ struct SearchSpace
         //     HANDLE_ERROR_THROW(msg); 
         // }
 
+        // If there's at least one constant for every data type, its always possible to force sample_terminal to return something
+
         // TODO: try to combine with above function
-        if ( (terminal_map.find(R) == terminal_map.end())
-        ||   (!has_solution_space(terminal_weights.at(R).begin(), 
-                                  terminal_weights.at(R).end())) )
+        vector<float> match_weights(terminal_weights.at(R).size());
+        if (force_return)
+        {
+            std::fill(match_weights.begin(), match_weights.end(), 1.0f); 
+        }
+        else
+        {
+            std::transform(
+                terminal_weights.at(R).begin(),
+                terminal_weights.at(R).end(),
+                match_weights.begin(),
+                [](const auto& w){  return w; }
+            );
+
+            if ( (terminal_map.find(R) == terminal_map.end())
+            ||   (!has_solution_space(match_weights.begin(), 
+                                      match_weights.end())) )
             return std::nullopt;
-        
+        }
+    
         return *r.select_randomly(terminal_map.at(R).begin(), 
-                                  terminal_map.at(R).end(), 
-                                  terminal_weights.at(R).begin(),
-                                  terminal_weights.at(R).end());
+                                  terminal_map.at(R).end(),
+                                  match_weights.begin(),
+                                  match_weights.end());
     };
 
     /// @brief get an operator matching return type `ret`. 
@@ -376,6 +416,8 @@ struct SearchSpace
     std::optional<Node> sample_op(DataType ret) const
     {
         // check(ret);
+        if (node_map.find(ret) == node_map.end())
+            return std::nullopt;
 
         //TODO: match terminal args_type (probably '{}' or something?)
         auto ret_match = node_map.at(ret);
@@ -408,6 +450,8 @@ struct SearchSpace
     std::optional<Node> sample_op(NodeType type, DataType R)
     {
         // check(R);
+        if (node_map.find(R) == node_map.end())
+            return std::nullopt;
 
         auto ret_match = node_map.at(R);
         
@@ -649,6 +693,8 @@ P SearchSpace::make_program(int max_d, int max_size)
 
         // We can only have a terminal here, but the terminal must be compatible
         auto opt = sample_terminal(root_type);
+        if (!opt)
+            opt = sample_terminal(root_type, true);
 
         if (!opt){
             auto msg = fmt::format("Program with size=1 could not be created. "
@@ -682,9 +728,8 @@ P SearchSpace::make_program(int max_d, int max_size)
         else {
             // we start with a non-terminal (can be replaced inside PTC2 though, if max_size==1)
             auto opt = sample_op(root_type);
-            while (!opt) {
-                opt = sample_op(root_type);
-            }
+            if (!opt)
+                opt = sample_terminal(root_type, true);
             root = opt.value();
         }
         
