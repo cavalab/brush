@@ -76,8 +76,8 @@ def nsga2(toolbox, NGEN, MU, CXPB, use_batch, verbosity, rnd_flt):
                 off2 = toolbox.mutate(ind2)
             
             # Inserting parent if mutation failed
-            offspring.append(off1 if off1 is not None else ind1)
-            offspring.append(off2 if off2 is not None else ind2)
+            offspring.extend([off1 if off1 is not None else ind1])
+            offspring.extend([off2 if off2 is not None else ind2])
 
         # archive.update(offspring)
         # Evaluate the individuals with an invalid fitness
