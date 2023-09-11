@@ -19,10 +19,18 @@ TEST(Program, MakeRegressor)
             RegressorProgram PRG = SS.make_regressor(d, s);
             fmt::print(
                 "=================================================\n"
-                "Tree model for depth = {}, size= {}: {}\n"
-                "=================================================\n",
+                "Tree model for depth = {}, size= {}: {}\n",
                 d, s, PRG.get_model("compact", true)
             );
+
+            auto clone = PRG.copy();
+            fmt::print(
+                "Copy of the original model: {}\n"
+                "=================================================\n",
+                clone.get_model("compact", true)
+            );
+
+            ASSERT_TRUE( PRG.get_model("compact", true)==clone.get_model("compact", true) );
         }
 }
 
