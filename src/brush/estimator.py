@@ -13,7 +13,7 @@ from deap import algorithms, base, creator, tools
 # from tqdm import tqdm
 from types import NoneType
 import _brush
-from .deap_api import nsga2, DeapIndividual 
+from .deap_api import nsga2, ga, DeapIndividual 
 # from _brush import Dataset, SearchSpace
 
 
@@ -59,6 +59,8 @@ class BrushEstimator(BaseEstimator):
     initialization : {"grow", "full"}, default "grow" 
         Strategy to create the initial population. If `full`, then every expression is created
         with `max_size` nodes. If `grow`, size will be uniformly distributed.
+    algorithm : {"nsga2", "ga"}, default "nsga2"
+        Which Evolutionary Algorithm framework to use to evolve the population.
     validation_size : float, default 0.0
         Percentage of samples to use as a hold-out partition. These samples are used
         to calculate statistics during evolution, but not used to train the models.
@@ -109,6 +111,7 @@ class BrushEstimator(BaseEstimator):
                             "toggle_weight_on":1/6, "toggle_weight_off":1/6},
         functions: list[str]|dict[str,float] = {},
         initialization="grow",
+        algorithm="nsga2",
         random_state=None,
         validation_size: float = 0.0,
         batch_size: float = 1.0
@@ -116,6 +119,7 @@ class BrushEstimator(BaseEstimator):
         self.pop_size=pop_size
         self.max_gen=max_gen
         self.verbosity=verbosity
+        self.algorithm=algorithm
         self.mode=mode
         self.max_depth=max_depth
         self.max_size=max_size
@@ -142,6 +146,8 @@ class BrushEstimator(BaseEstimator):
 
         # create Individual class, inheriting from self.Individual with a fitness attribute
         creator.create("Individual", DeapIndividual, fitness=creator.FitnessMulti)  
+
+        toolbox.register("Clone", lambda ind: creator.Individual(ind.prg.copy()))
         
         toolbox.register("mate", self._crossover)
         toolbox.register("mutate", self._mutate)
@@ -149,8 +155,12 @@ class BrushEstimator(BaseEstimator):
         # When solving multi-objective problems, selection and survival must
         # support this feature. This means that these selection operators must
         # accept a tuple of fitnesses as argument)
-        toolbox.register("select", tools.selTournamentDCD) 
-        toolbox.register("survive", tools.selNSGA2)
+        if self.algorithm=="nsga2":
+            toolbox.register("select", tools.selTournamentDCD) 
+            toolbox.register("survive", tools.selNSGA2)
+        elif self.algorithm=="ga":
+            toolbox.register("select", tools.selTournament, tournsize=3) 
+            toolbox.register("survive", tools.selNSGA2)
 
         # toolbox.population will return a list of elements by calling toolbox.individual
         toolbox.register("createRandom", self._make_individual)
@@ -222,12 +232,15 @@ class BrushEstimator(BaseEstimator):
         self.search_space_ = _brush.SearchSpace(self.train_, self.functions_)
         self.toolbox_ = self._setup_toolbox(data_train=self.train_, data_validation=self.validation_)
 
-        archive, logbook = nsga2(
-            self.toolbox_, self.max_gen, self.pop_size, self.cx_prob, 
-            (0.0<self.batch_size<1.0), self.verbosity, _brush.rnd_flt)
-        
-        self.archive_ = archive
-        self.logbook_ = logbook
+        if self.algorithm=="nsga2":
+            self.archive_, self.logbook_ = nsga2(
+                self.toolbox_, self.max_gen, self.pop_size, self.cx_prob, 
+                (0.0<self.batch_size<1.0), self.verbosity, _brush.rnd_flt)
+        elif self.algorithm=="ga":
+            self.archive_, self.logbook_ = ga(
+                self.toolbox_, self.max_gen, self.pop_size, self.cx_prob, 
+                (0.0<self.batch_size<1.0), self.verbosity, _brush.rnd_flt)
+
 
         final_ind_idx = 0
 
@@ -432,7 +445,7 @@ class BrushRegressor(BrushEstimator, RegressorMixin):
         
         return creator.Individual( # No arguments (or zero): brush will use PARAMS passed in set_params. max_size is sampled between 1 and params['max_size'] if zero is provided
             self.search_space_.make_regressor(
-            self.max_depth, (0 if self.initialization=='grow' else self.max_size))
+                self.max_depth, (0 if self.initialization=='grow' else self.max_size))
         )
 
 # Under development
