@@ -52,6 +52,8 @@ void bind_program(py::module& m, string name)
         .def("mutate", &T::mutate, py::return_value_policy::automatic,
              "Performs one attempt to stochastically mutate the program and generate a child")
         .def("set_search_space", &T::set_search_space)
+        //.def("copy", &T::copy<>, py::return_value_policy::copy)
+        .def("copy", [](const T& self){ T clone(self); return clone; })
         .def(py::pickle(
             [](const T &p) { // __getstate__
                 /* Return a tuple that fully encodes the state of the object */

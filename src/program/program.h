@@ -82,6 +82,8 @@ template<PT PType> struct Program
         SSref = std::optional<std::reference_wrapper<SearchSpace>>{s};
     }
 
+    Program<PType> copy() { return Program<PType>(*this); }
+
     inline void set_search_space(const std::reference_wrapper<SearchSpace> s)
     {
         SSref = std::optional<std::reference_wrapper<SearchSpace>>{s};
