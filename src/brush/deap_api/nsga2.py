@@ -33,12 +33,9 @@ def nsga2(toolbox, NGEN, MU, CXPB, use_batch, verbosity, rnd_flt):
 
     pop = toolbox.population(n=MU)
 
-    batch = toolbox.getBatch() # everytime this function is called, a new random batch is generated
-    
     # OBS: evaluate calls fit in the individual. It is different from using it to predict. The
     # function evaluateValidation don't call the fit
-    fitnesses = toolbox.map(functools.partial(toolbox.evaluate, data=batch), pop)
-    
+    fitnesses = toolbox.map(functools.partial(toolbox.evaluate), pop)
     for ind, fit in zip(pop, fitnesses):
         ind.fitness.values = fit
 
@@ -54,9 +51,14 @@ def nsga2(toolbox, NGEN, MU, CXPB, use_batch, verbosity, rnd_flt):
 
     # Begin the generational process
     for gen in range(1, NGEN):
-        if (use_batch): #batch will be random only if it is not the size of the entire train set. In this case, we dont need to reevaluate the whole pop
-            batch = toolbox.getBatch()
-            fitnesses = toolbox.map(functools.partial(toolbox.evaluate, data=batch), pop)
+        batch = toolbox.getBatch() # batch will be a random subset only if it was not defined as the size of the train set.
+                                   # everytime this function is called, a new random batch is generated.
+        if (use_batch): # recalculate the fitness for the parents
+            # use_batch is false if batch_size is different from train set size.
+            # If we're using batch, we need to re-evaluate every model (without changing its weights).
+            # evaluateValidation doesnt fit the weights
+            fitnesses = toolbox.map( 
+                functools.partial(toolbox.evaluateValidation, data=batch), pop)
         
             for ind, fit in zip(pop, fitnesses):
                 ind.fitness.values = fit
@@ -76,18 +78,20 @@ def nsga2(toolbox, NGEN, MU, CXPB, use_batch, verbosity, rnd_flt):
                 off2 = toolbox.mutate(ind2)
             
             # Inserting parent if mutation failed
-            offspring.extend([off1 if off1 is not None else ind1])
-            offspring.extend([off2 if off2 is not None else ind2])
+            offspring.extend([off1 if off1 is not None else toolbox.Clone(ind1)])
+            offspring.extend([off2 if off2 is not None else toolbox.Clone(ind2)])
 
-        # archive.update(offspring)
-        # Evaluate the individuals with an invalid fitness
-        invalid_ind = [ind for ind in offspring if not ind.fitness.valid]
-        fitnesses = toolbox.map(functools.partial(toolbox.evaluate, data=batch), invalid_ind)
-        for ind, fit in zip(invalid_ind, fitnesses):
+        # Evaluate (instead of evaluateValidation) to fit the weights of the offspring
+        fitnesses = toolbox.map(functools.partial(toolbox.evaluate), offspring)
+        if (use_batch): #calculating objectives based on batch
+            fitnesses = toolbox.map(functools.partial(toolbox.evaluateValidation, data=batch), offspring)
+
+        for ind, fit in zip(offspring, fitnesses):
             ind.fitness.values = fit
 
         # Select the next generation population
         pop = toolbox.survive(pop + offspring, MU)
+
         record = stats.compile(pop)
         logbook.record(gen=gen, evals=len(offspring)+(len(pop) if use_batch else 0), **record)
 
