@@ -160,7 +160,8 @@ class BrushEstimator(BaseEstimator):
             toolbox.register("survive", tools.selNSGA2)
         elif self.algorithm=="ga":
             toolbox.register("select", tools.selTournament, tournsize=3) 
-            toolbox.register("survive", tools.selNSGA2)
+            def offspring(pop, MU): return pop[-MU:]
+            toolbox.register("survive", offspring)
 
         # toolbox.population will return a list of elements by calling toolbox.individual
         toolbox.register("createRandom", self._make_individual)
@@ -232,14 +233,9 @@ class BrushEstimator(BaseEstimator):
         self.search_space_ = _brush.SearchSpace(self.train_, self.functions_)
         self.toolbox_ = self._setup_toolbox(data_train=self.train_, data_validation=self.validation_)
 
-        if self.algorithm=="nsga2":
-            self.archive_, self.logbook_ = nsga2(
-                self.toolbox_, self.max_gen, self.pop_size, self.cx_prob, 
-                (0.0<self.batch_size<1.0), self.verbosity, _brush.rnd_flt)
-        elif self.algorithm=="ga":
-            self.archive_, self.logbook_ = ga(
-                self.toolbox_, self.max_gen, self.pop_size, self.cx_prob, 
-                (0.0<self.batch_size<1.0), self.verbosity, _brush.rnd_flt)
+        self.archive_, self.logbook_ = nsga2(
+            self.toolbox_, self.max_gen, self.pop_size, self.cx_prob, 
+            (0.0<self.batch_size<1.0), self.verbosity, _brush.rnd_flt)
 
 
         final_ind_idx = 0
