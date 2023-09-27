@@ -318,8 +318,15 @@ class BrushEstimator(BaseEstimator):
     #     # return [self._create_deap_individual_(p) for p in programs]
     #     return programs
 
-    def get_params(self):
-        return {k:v for k,v in self.__dict__.items() if not k.endswith('_')}
+    def get_params(self, deep=True):
+        out = dict()
+        for (key, value) in self.__dict__.items():
+            if not key.endswith('_'):
+                if deep and hasattr(value, "get_params") and not isinstance(value, type):
+                    deep_items = value.get_params().items()
+                    out.update((key + "__" + k, val) for k, val in deep_items)
+                out[key] = value
+        return out
     
 
 class BrushClassifier(BrushEstimator,ClassifierMixin):
