@@ -13,7 +13,7 @@ from deap import algorithms, base, creator, tools
 # from tqdm import tqdm
 from types import NoneType
 import _brush
-from .deap_api import nsga2, ga, DeapIndividual 
+from .deap_api import nsga2, DeapIndividual 
 # from _brush import Dataset, SearchSpace
 
 
