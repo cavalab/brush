@@ -288,25 +288,30 @@ class BrushEstimator(BaseEstimator):
             y = y.values
         if isinstance(X, pd.DataFrame):
             X = X.values
-            if isinstance(y, NoneType):
-                return _brush.Dataset(X,
-                    feature_names=feature_names, validation_size=validation_size)
-            else:
-                return _brush.Dataset(X, y,
-                    feature_names=feature_names, validation_size=validation_size)
-
+        
         assert isinstance(X, np.ndarray)
 
-        # if there is no label, don't include it in library call to Dataset
         if isinstance(y, NoneType):
-            return _brush.Dataset(X,feature_names=feature_names, validation_size=validation_size)
+            return _brush.Dataset(X=X,
+                    feature_names=feature_names, validation_size=validation_size)
 
-        return _brush.Dataset(X, y, feature_names=feature_names, validation_size=validation_size)
+        return _brush.Dataset(X=X, y=y,
+            feature_names=feature_names, validation_size=validation_size)
 
 
     def predict(self, X):
         """Predict using the best estimator in the archive. """
-        data = self._make_data(X, feature_names=self.feature_names_)
+
+        if isinstance(X, pd.DataFrame):
+            X = X.values
+
+        assert isinstance(X, np.ndarray)
+
+        data = _brush.Dataset(X=X, ref_dataset=self.data_, 
+                              feature_names=self.feature_names_)
+        
+        # data = self._make_data(X, feature_names=self.feature_names_)
+
         return self.best_estimator_.predict(data)
 
     # def _setup_population(self):
@@ -403,7 +408,17 @@ class BrushClassifier(BrushEstimator,ClassifierMixin):
             classes corresponds to that in the attribute :term:`classes_`.
 
         """
-        data = self._make_data(X)
+
+        if isinstance(X, pd.DataFrame):
+            X = X.values
+
+        assert isinstance(X, np.ndarray)
+
+        data = _brush.Dataset(X=X, ref_dataset=self.data_, 
+                              feature_names=self.feature_names_)
+
+        # data = self._make_data(X, feature_names=self.feature_names_)
+
         return self.best_estimator_.predict_proba(data)
 
 class BrushRegressor(BrushEstimator, RegressorMixin):
