@@ -213,7 +213,13 @@ class BrushEstimator(BaseEstimator):
         if self.random_state is not None:
             _brush.set_random_state(self.random_state)
 
-        self.data_ = self._make_data(X,y, validation_size=self.validation_size)
+        self.feature_names_ = []
+        if isinstance(X, pd.DataFrame):
+            self.feature_names_ = X.columns.to_list()
+
+        self.data_ = self._make_data(X, y, 
+                                     feature_names=self.feature_names_,
+                                     validation_size=self.validation_size)
 
         # set n classes if relevant
         if self.mode=="classification":
@@ -236,7 +242,6 @@ class BrushEstimator(BaseEstimator):
         self.archive_, self.logbook_ = nsga2(
             self.toolbox_, self.max_gen, self.pop_size, self.cx_prob, 
             (0.0<self.batch_size<1.0), self.verbosity, _brush.rnd_flt)
-
 
         final_ind_idx = 0
 
@@ -273,15 +278,15 @@ class BrushEstimator(BaseEstimator):
 
         return self
     
-    def _make_data(self, X, y=None, validation_size=0.0):
-        # This function should not partition data (as it is used in predict).
-        # partitioning is done in fit().
+    def _make_data(self, X, y=None, feature_names=[], validation_size=0.0):
+        # This function should not partition data (since it may be used in `predict`).
+        # partitioning is done by `fit`. Feature names should be inferred
+        # before calling _make_data (so predict can be made with np arrays or
+        # pd dataframes).
 
         if isinstance(y, pd.Series):
             y = y.values
         if isinstance(X, pd.DataFrame):
-            # self.data_ = _brush.Dataset(X.to_dict(orient='list'), y)
-            feature_names = X.columns.to_list()
             X = X.values
             if isinstance(y, NoneType):
                 return _brush.Dataset(X,
@@ -294,14 +299,14 @@ class BrushEstimator(BaseEstimator):
 
         # if there is no label, don't include it in library call to Dataset
         if isinstance(y, NoneType):
-            return _brush.Dataset(X, validation_size=validation_size)
+            return _brush.Dataset(X,feature_names=feature_names, validation_size=validation_size)
 
-        return _brush.Dataset(X, y, validation_size=validation_size)
+        return _brush.Dataset(X, y, feature_names=feature_names, validation_size=validation_size)
 
 
     def predict(self, X):
         """Predict using the best estimator in the archive. """
-        data = self._make_data(X)
+        data = self._make_data(X, feature_names=self.feature_names_)
         return self.best_estimator_.predict(data)
 
     # def _setup_population(self):
