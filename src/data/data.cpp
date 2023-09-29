@@ -303,12 +303,12 @@ map<string,State> Dataset::copy_and_make_features(const ArrayXXf& X,
         var_names = vn;
     }
 
-    if (ref_dataset.features.size() != vn.size())
+    if (ref_dataset.features.size() != var_names.size())
         HANDLE_ERROR_THROW(
             fmt::format("Reference dataset with incompatible number of variables: "
             "Reference has {} variable names, but X has {}", 
             ref_dataset.features.size(), 
-            vn.size()
+            var_names.size()
             )
         );
 
