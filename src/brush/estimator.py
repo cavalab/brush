@@ -5,6 +5,7 @@ See brushgp.cpp for Python (via pybind11) modules that give more fine-grained
 control of the underlying GP objects.
 """
 from sklearn.base import BaseEstimator, ClassifierMixin, RegressorMixin, TransformerMixin
+from sklearn.utils.validation  import check_is_fitted
 # from sklearn.metrics import mean_squared_error
 import numpy as np
 import pandas as pd
@@ -302,6 +303,8 @@ class BrushEstimator(BaseEstimator):
     def predict(self, X):
         """Predict using the best estimator in the archive. """
 
+        check_is_fitted(self)
+
         if isinstance(X, pd.DataFrame):
             X = X.values
 
@@ -408,6 +411,8 @@ class BrushClassifier(BrushEstimator,ClassifierMixin):
             classes corresponds to that in the attribute :term:`classes_`.
 
         """
+        
+        check_is_fitted(self)
 
         if isinstance(X, pd.DataFrame):
             X = X.values
@@ -419,7 +424,14 @@ class BrushClassifier(BrushEstimator,ClassifierMixin):
 
         # data = self._make_data(X, feature_names=self.feature_names_)
 
-        return self.best_estimator_.predict_proba(data)
+        prob = self.best_estimator_.predict_proba(data)
+
+        if self.n_classes_ <= 2:
+            prob = np.hstack( (np.ones(X.shape[0]).reshape(-1,1), prob.reshape(-1,1)) )  
+            prob[:, 0] -= prob[:, 1]
+
+        return prob
+
 
 class BrushRegressor(BrushEstimator, RegressorMixin):
     """Brush for regression.
