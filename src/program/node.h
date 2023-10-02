@@ -239,7 +239,7 @@ struct Node {
     //TODO revisit
     float get_prob_change() const { return fixed ? 0.0 : this->prob_change;};
     void set_prob_change(float w){ if (!fixed) this->prob_change = w;};
-    float get_prob_keep() const { return 1-this->prob_change;};
+    float get_prob_keep() const { return fixed ? 1.0 : 1.0-this->prob_change;};
 
     inline void set_feature(string f){ feature = f; };
     inline string get_feature() const { return feature; };

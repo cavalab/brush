@@ -542,7 +542,6 @@ std::optional<Program<T>> mutate(const Program<T>& parent, const SearchSpace& SS
         PARAMS["mutation_trace"]["status"] = "aplied the mutation";
         if (success)
             PARAMS["mutation_trace"]["child"] = child.get_model("compact", true);
-
     }
 
     if (success
