@@ -4,7 +4,101 @@
 #include "../../src/program/dispatch_table.h"
 #include "../../src/data/io.h"
 
-TEST(Operators, InsertMutationWorks)
+TEST(Variation, FixedRootDoesntChange)
+{
+    PARAMS["mutation_options"] = {
+        {"point",0.167}, {"insert", 0.167}, {"delete", 0.167}, {"subtree", 0.167}, {"toggle_weight_on", 0.167}, {"toggle_weight_off", 0.167}
+    };
+    PARAMS["max_size"]  = 20;
+    PARAMS["max_depth"] = 10;
+
+    MatrixXf X(10,2);
+    ArrayXf y(10);
+    X << 0.85595296, 0.55417453, 0.8641915 , 0.99481109, 0.99123376,
+         0.9742618 , 0.70894019, 0.94940306, 0.99748867, 0.54205151,
+
+         0.5170537 , 0.8324005 , 0.50316305, 0.10173936, 0.13211973,
+         0.2254195 , 0.70526861, 0.31406024, 0.07082619, 0.84034526;
+
+    y << 1.0, 1.0, 1.0, 1.0, 1.0, 0.0, 0.0, 0.0, 0.0, 0.0;
+
+    Dataset data(X,y);
+
+    SearchSpace SS;
+    SS.init(data);
+
+    auto logistic_hash = Signature<ArrayXf(ArrayXf)>().hash();
+
+    for (int d = 1; d < 10; ++d)
+    {
+        for (int s = 1; s < 10; ++s) 
+        {
+            int successes = 0;
+            for (int attempt = 0; attempt < 10; ++attempt)
+            {
+                // different program types changes how predict works (and the rettype of predict)
+                ClassifierProgram PRG = SS.make_classifier(d, s);
+                fmt::print(
+                    "=================================================\n"
+                    "depth = {}, size= {}\n"
+                    "Initial Model 1: {}\n",
+                    d, s, 
+                    PRG.get_model("compact", true)
+                );
+
+                Node root = *(PRG.Tree.begin());
+                ASSERT_TRUE(root.node_type == NodeType::Logistic);
+                ASSERT_TRUE(root.ret_type == DataType::ArrayF);
+                ASSERT_TRUE(root.sig_hash == logistic_hash);
+                ASSERT_TRUE(root.get_prob_change()==0.0);
+                ASSERT_TRUE(root.fixed==true);
+
+                auto opt_mutation = PRG.mutate();
+                if (opt_mutation)
+                {
+                    successes += 1;
+                    auto Mut_Child = opt_mutation.value();
+                    fmt::print("After mutation : {}\n",
+                               Mut_Child.get_model("compact", true));
+
+                    Node mut_child_root = *(Mut_Child.Tree.begin());
+                    ASSERT_TRUE(mut_child_root.node_type == NodeType::Logistic);
+                    ASSERT_TRUE(mut_child_root.ret_type == DataType::ArrayF);
+                    ASSERT_TRUE(mut_child_root.sig_hash == logistic_hash);
+                    ASSERT_TRUE(mut_child_root.get_prob_change()==0.0);
+                    ASSERT_TRUE(mut_child_root.fixed==true);
+                }
+
+                ClassifierProgram PRG2 = SS.make_classifier(d, s);
+                auto opt_cx = PRG.cross(PRG2);
+                if (opt_cx)
+                {
+                    successes += 1;
+                    auto CX_Child = opt_cx.value();
+                    fmt::print("After crossover: {}\n",
+                               CX_Child.get_model("compact", true));
+
+                    Node cx_child_root = *(CX_Child.Tree.begin());
+                    ASSERT_TRUE(cx_child_root.node_type == NodeType::Logistic);
+                    ASSERT_TRUE(cx_child_root.ret_type == DataType::ArrayF);
+                    ASSERT_TRUE(cx_child_root.sig_hash == logistic_hash);
+                    ASSERT_TRUE(cx_child_root.get_prob_change()==0.0);
+                    ASSERT_TRUE(cx_child_root.fixed==true);
+                }
+
+                // root remained unchanged
+                ASSERT_TRUE(root.node_type == NodeType::Logistic);
+                ASSERT_TRUE(root.ret_type == DataType::ArrayF);
+                ASSERT_TRUE(root.sig_hash == logistic_hash);
+                ASSERT_TRUE(root.get_prob_change()==0.0);
+                ASSERT_TRUE(root.fixed==true);
+            }
+            ASSERT_TRUE(successes > 0);
+        }
+    }
+}
+
+TEST(Variation, InsertMutationWorks)
 {
     // TODO: this tests could be parameterized.
     // To understand design implementation of this test, check Mutation test
@@ -111,7 +205,7 @@ TEST(Operators, InsertMutationWorks)
     ASSERT_TRUE(successes > 0);
 }
 
-TEST(Operators, Mutation)
+TEST(Variation, Mutation)
 {
     PARAMS["write_mutation_trace"] = true;
     PARAMS["mutation_options"] = {
@@ -189,7 +283,7 @@ TEST(Operators, Mutation)
     ASSERT_TRUE(successes > 0);
 }
 
-TEST(Operators, MutationSizeAndDepthLimit)
+TEST(Variation, MutationSizeAndDepthLimit)
 {
     PARAMS["write_mutation_trace"] = true;
     PARAMS["mutation_options"] = {
@@ -287,7 +381,7 @@ TEST(Operators, MutationSizeAndDepthLimit)
     ASSERT_TRUE(successes > 0);
 }
 
-TEST(Operators, Crossover)
+TEST(Variation, Crossover)
 {
     MatrixXf X(10,2);
     ArrayXf y(10);
@@ -363,7 +457,7 @@ TEST(Operators, Crossover)
     ASSERT_TRUE(successes > 0);
 }
 
-TEST(Operators, CrossoverSizeAndDepthLimit)
+TEST(Variation, CrossoverSizeAndDepthLimit)
 {
     MatrixXf X(10,2);
     ArrayXf y(10);

@@ -99,8 +99,17 @@ template<PT PType> struct Program
             [include_weight, &acc](auto& node){ 
                 ++acc; // the node operator or terminal
                 
-                if (include_weight && node.get_is_weighted()==true)
-                    acc += 2; // weight and multiplication, if enabled
+                // SplitBest has an optimizable decision tree consisting of 3 nodes
+                // (terminal, arithmetic comparison, value) that needs to be taken
+                // into account
+                if (Is<NodeType::SplitBest>(node.node_type))
+                    acc += 3;
+
+                if ( (include_weight && node.get_is_weighted()==true)
+                &&   Isnt<NodeType::Constant>(node.node_type) )
+                    // weighted constants still count as 1 (simpler than constant terminals)
+                    // Taking into account the weight and multiplication, if enabled
+                    acc += 2;
              });
 
         return acc;
