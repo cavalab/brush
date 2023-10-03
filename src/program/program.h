@@ -107,8 +107,8 @@ template<PT PType> struct Program
 
                 if ( (include_weight && node.get_is_weighted()==true)
                 &&   Isnt<NodeType::Constant>(node.node_type) )
+                    // Taking into account the weight and multiplication, if enabled.
                     // weighted constants still count as 1 (simpler than constant terminals)
-                    // Taking into account the weight and multiplication, if enabled
                     acc += 2;
              });
 
@@ -130,13 +130,22 @@ template<PT PType> struct Program
         // Then make the second one point to the next sibling
         eit.skip_children();
         ++eit;
-
+        
         // calculate tree size for each node until reach next sibling
         while(it!=eit) {
             ++acc; // counting the node operator/terminal
                         
-            if (include_weight && it.node->data.get_is_weighted()==true)
-                acc += 2; // weight and multiplication, if enabled
+            // SplitBest has an optimizable decision tree consisting of 3 nodes
+            // (terminal, arithmetic comparison, value) that needs to be taken
+            // into account
+            if (Is<NodeType::SplitBest>(it.node->data.node_type))
+                acc += 3;
+
+            if ( (include_weight && it.node->data.get_is_weighted()==true)
+            &&   Isnt<NodeType::Constant>(it.node->data.node_type) )
+                // Taking into account the weight and multiplication, if enabled.
+                // weighted constants still count as 1 (simpler than constant terminals)
+                acc += 2;
 
             ++it;
         }

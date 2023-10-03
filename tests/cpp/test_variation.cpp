@@ -305,10 +305,10 @@ TEST(Variation, MutationSizeAndDepthLimit)
 
     SearchSpace SS;
     SS.init(data);
-
-    // split operator --> arity 3
-    // prod operator  --> arity 4
-    int max_arity = 4;
+    
+    // prod operator  --> arity 4: prod(T1, T2, T3)
+    // split best     --> arity 6: if(terminal > value, T_case_true, T_case_false)
+    int max_arity = 6;
 
     int successes = 0;
     for (int d = 5; d < 15; ++d)
@@ -475,9 +475,9 @@ TEST(Variation, CrossoverSizeAndDepthLimit)
     SearchSpace SS;
     SS.init(data);
 
-    // split operator --> arity 3
-    // prod operator  --> arity 4
-    int max_arity = 4;
+    // prod operator  --> arity 4: prod(T1, T2, T3)
+    // split best     --> arity 6: if(terminal > value, T_case_true, T_case_false)
+    int max_arity = 6;
 
     int successes = 0;
     for (int d = 5; d < 15; ++d)
