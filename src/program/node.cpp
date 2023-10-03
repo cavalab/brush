@@ -199,8 +199,6 @@ void from_json(const json &j, Node& p)
 
     if (j.contains("prob_change"))
         j.at("prob_change").get_to(p.prob_change);
-    else
-        p.prob_change=1.0;
     
 
     // if node has a ret_type and arg_types, get them. if not we need to make 
