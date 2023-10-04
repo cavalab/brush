@@ -66,6 +66,9 @@ std::map<std::string, NodeType> NodeNameType = {
     {"SplitBest", NodeType::SplitBest},
     {"SplitOn", NodeType::SplitOn},
 
+    //mean label
+    {"MeanLabel", NodeType::MeanLabel},
+
     // leaves
     {"Constant", NodeType::Constant},
     {"Terminal", NodeType::Terminal},

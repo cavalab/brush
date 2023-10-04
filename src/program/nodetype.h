@@ -72,6 +72,8 @@ enum class NodeType : uint64_t {
     //split
     SplitBest           = 1UL << 35UL,
     SplitOn             = 1UL << 36UL,
+    // mean label of a split
+    MeanLabel           = 1UL << 37UL,
     // these ones change type
     /* Equals              = 1UL << 39UL, */
     /* LessThan            = 1UL << 40UL, */
@@ -79,14 +81,14 @@ enum class NodeType : uint64_t {
     /* Leq                 = 1UL << 42UL, */
     /* Geq                 = 1UL << 43UL, */
     // leaves
-    Constant            = 1UL << 37UL,
-    Terminal            = 1UL << 38UL,
-    ArgMax              = 1UL << 39UL,
-    Count               = 1UL << 40UL,
+    Constant            = 1UL << 38UL,
+    Terminal            = 1UL << 39UL,
+    ArgMax              = 1UL << 40UL,
+    Count               = 1UL << 41UL,
     // custom
-    CustomUnaryOp       = 1UL << 41UL,
-    CustomBinaryOp      = 1UL << 42UL,
-    CustomSplit         = 1UL << 43UL
+    CustomUnaryOp       = 1UL << 42UL,
+    CustomBinaryOp      = 1UL << 43UL,
+    CustomSplit         = 1UL << 44UL
     // boolean
     // And                 = 1UL << 37UL,
     // Or                  = 1UL << 38UL,
@@ -98,7 +100,7 @@ enum class NodeType : uint64_t {
 using UnderlyingNodeType = std::underlying_type_t<NodeType>;
 struct NodeTypes {
     // magic number keeping track of the number of different node types
-    static constexpr size_t Count = 39;
+    static constexpr size_t Count = 40;
     static constexpr size_t OpCount = Count-2;
 
     // returns the index of the given type in the NodeType enum
@@ -200,6 +202,9 @@ NLOHMANN_JSON_SERIALIZE_ENUM( NodeType, {
     {NodeType::SplitBest,"SplitBest" },
     {NodeType::SplitOn,"SplitOn" },
 
+    //mean label
+    {NodeType::MeanLabel,"MeanLabel" },
+
     // leaves
     {NodeType::Constant,"Constant" },
     {NodeType::Terminal,"Terminal" },
@@ -265,6 +270,7 @@ static constexpr bool BinaryOp = is_in_v<nt,
     NT::Div,
     NT::Pow
 >;
+
 template<NT nt>
 static constexpr bool AssociativeBinaryOp = is_in_v<nt, 
     NT::Add,
@@ -281,6 +287,12 @@ static constexpr bool NaryOp = is_in_v<nt,
     NT::Prod,
     NT::Softmax
 >;
+
+template<NT nt>
+static constexpr bool NullaryOp = is_in_v<nt, 
+    NT::MeanLabel
+>;
+
 // // TODO: make this work 
 // template<typename NT, size_t ArgCount>
 // concept Transformer = requires(NT n, size_t ArgCount) 
