@@ -264,7 +264,7 @@ template <NodeType... T>
 inline auto Isnt(NodeType nt) -> bool { return !((nt == T) || ...); }
 
 inline auto IsLeaf(NodeType nt) noexcept -> bool { 
-    return Is<NodeType::Constant, NodeType::Terminal>(nt); 
+    return Is<NodeType::Constant, NodeType::Terminal, NodeType::MeanLabel>(nt); 
 }
 
 inline auto IsCommutative(NodeType nt) noexcept -> bool { 

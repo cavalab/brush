@@ -31,6 +31,10 @@ auto Node::get_name(bool include_weight) const noexcept -> std::string
     {
         return fmt::format("{:.2f}", W);
     }
+    else if (Is<NodeType::MeanLabel>(node_type) && include_weight)
+    {
+        return fmt::format("MeanLabel");
+    }
     else if (is_weighted && include_weight)
         return fmt::format("{:.2f}*{}",W,name);
     return name;

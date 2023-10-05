@@ -382,8 +382,8 @@ struct Signatures<NodeType::SplitOn>{
 template<NodeType N>
 struct Signatures<N, enable_if_t<is_in_v<N,NodeType::MeanLabel>>>{ 
         using type = std::tuple<
-            Signature<ArrayXf()>
-        >;
+              Signature<ArrayXf()>
+              >;
     }; 
 } // namespace Brush
 #endif

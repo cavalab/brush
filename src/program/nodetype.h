@@ -72,8 +72,6 @@ enum class NodeType : uint64_t {
     //split
     SplitBest           = 1UL << 35UL,
     SplitOn             = 1UL << 36UL,
-    // mean label of a split
-    MeanLabel           = 1UL << 37UL,
     // these ones change type
     /* Equals              = 1UL << 39UL, */
     /* LessThan            = 1UL << 40UL, */
@@ -81,6 +79,7 @@ enum class NodeType : uint64_t {
     /* Leq                 = 1UL << 42UL, */
     /* Geq                 = 1UL << 43UL, */
     // leaves
+    MeanLabel           = 1UL << 37UL,
     Constant            = 1UL << 38UL,
     Terminal            = 1UL << 39UL,
     ArgMax              = 1UL << 40UL,
@@ -101,7 +100,7 @@ using UnderlyingNodeType = std::underlying_type_t<NodeType>;
 struct NodeTypes {
     // magic number keeping track of the number of different node types
     static constexpr size_t Count = 40;
-    static constexpr size_t OpCount = Count-2;
+    static constexpr size_t OpCount = Count-3; // subtracting leaves
 
     // returns the index of the given type in the NodeType enum
     static auto GetIndex(NodeType type) -> size_t
@@ -202,10 +201,8 @@ NLOHMANN_JSON_SERIALIZE_ENUM( NodeType, {
     {NodeType::SplitBest,"SplitBest" },
     {NodeType::SplitOn,"SplitOn" },
 
-    //mean label
-    {NodeType::MeanLabel,"MeanLabel" },
-
     // leaves
+    {NodeType::MeanLabel,"MeanLabel" },
     {NodeType::Constant,"Constant" },
     {NodeType::Terminal,"Terminal" },
 

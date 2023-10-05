@@ -545,7 +545,7 @@ struct SearchSpace
     /// @return `std::optional` that may contain a Node 
     std::optional<Node> get_node_like(Node node) const
     {
-        if (Is<NodeType::Terminal, NodeType::Constant>(node.node_type)){
+        if (Is<NodeType::Terminal, NodeType::Constant, NodeType::MeanLabel>(node.node_type)){
             return sample_terminal(node.ret_type);
         }
 
@@ -578,7 +578,7 @@ struct SearchSpace
         tree<Node> PTC2(Node root, int max_d, int max_size) const;
 
         template<NodeType NT, typename S>
-        requires (!is_in_v<NT, NodeType::Terminal, NodeType::Constant>)
+        requires (!is_in_v<NT, NodeType::Terminal, NodeType::Constant, NodeType::MeanLabel>)
         static constexpr std::optional<Node> CreateNode(
             const auto& unique_data_types, 
             bool use_all, 
@@ -632,7 +632,7 @@ struct SearchSpace
                        const vector<DataType>& unique_data_types
                       ) 
         {
-            if (Is<NodeType::Terminal, NodeType::Constant>(NT))
+            if (Is<NodeType::Terminal, NodeType::Constant, NodeType::MeanLabel>(NT))
                 return;
             bool use_all = user_ops.size() == 0;
             auto name = NodeTypeName.at(NT);

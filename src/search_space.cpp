@@ -121,7 +121,8 @@ vector<Node> generate_terminals(const Dataset& d)
     };
 
     auto cXf = Node(NodeType::Constant, Signature<ArrayXf()>{}, true, "Cf");
-    cXf.set_prob_change(signature_avg(cXf.ret_type));
+    float floats_avg_weights = signature_avg(cXf.ret_type);
+    cXf.set_prob_change(floats_avg_weights);
     terminals.push_back(cXf);
 
     auto cXi = Node(NodeType::Constant, Signature<ArrayXi()>{}, true, "Ci");
@@ -131,6 +132,11 @@ vector<Node> generate_terminals(const Dataset& d)
     auto cXb = Node(NodeType::Constant, Signature<ArrayXb()>{}, false, "Cb");
     cXb.set_prob_change(signature_avg(cXb.ret_type));
     terminals.push_back(cXb);
+
+    // mean label node
+    auto meanlabel = Node(NodeType::MeanLabel, Signature<ArrayXf()>{}, true, "MeanLabel");
+    meanlabel.set_prob_change(floats_avg_weights);
+    terminals.push_back(meanlabel);
 
     return terminals;
 };
