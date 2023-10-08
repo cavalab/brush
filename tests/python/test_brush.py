@@ -44,16 +44,19 @@ def regression_setup():
     return brush.BrushRegressor, X, y
 
 @pytest.mark.parametrize('setup,algorithm',
-                         [('classification_setup', 'nsga2'),
-                          ('classification_setup', 'ga'   ),
-                          ('regression_setup',     'nsga2'),
-                          ('regression_setup',     'ga'   )])
+                         [('classification_setup', 'nsga2island'),
+                          ('classification_setup', 'nsga2'      ),
+                          ('classification_setup', 'ga'         ),
+                          ('regression_setup',     'nsga2island'),
+                          ('regression_setup',     'nsga2'      ),
+                          ('regression_setup',     'ga'         )])
 def test_fit(setup, algorithm, brush_args, request):
     """Testing common utilities related to fitting and generic brush estimator.
     """
     
     Estimator, X, y = request.getfixturevalue(setup)
 
+    brush_args["algorithm"] = algorithm
     try:
         est = Estimator(**brush_args)
         est.fit(X, y)

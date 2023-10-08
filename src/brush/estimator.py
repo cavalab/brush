@@ -13,7 +13,7 @@ from deap import algorithms, base, creator, tools
 # from tqdm import tqdm
 from types import NoneType
 import _brush
-from .deap_api import nsga2, ga, DeapIndividual 
+from .deap_api import nsga2, ga, nsga2island, DeapIndividual 
 # from _brush import Dataset, SearchSpace
 
 
@@ -38,6 +38,12 @@ class BrushEstimator(BaseEstimator):
         Maximum depth of GP trees in the GP program. Use 0 for no limit.
     max_size : int, default 0
         Maximum number of nodes in a tree. Use 0 for no limit.
+    n_islands : int, default 5
+        Number of independent islands to use in evolutionary framework. 
+        Ignored if `algorithm!="nsga2island"`.
+    mig_prob : float, default 0.05
+        Probability of occuring a migration between two random islands at the
+        end of a generation, must be between 0 and 1.
     cx_prob : float, default 1/7
         Probability of applying the crossover variation when generating the offspring,
         must be between 0 and 1.
@@ -59,7 +65,7 @@ class BrushEstimator(BaseEstimator):
     initialization : {"grow", "full"}, default "grow" 
         Strategy to create the initial population. If `full`, then every expression is created
         with `max_size` nodes. If `grow`, size will be uniformly distributed.
-    algorithm : {"nsga2", "ga"}, default "nsga2"
+    algorithm : {"nsga2island", "nsga2", "ga"}, default "nsga2island"
         Which Evolutionary Algorithm framework to use to evolve the population.
     validation_size : float, default 0.0
         Percentage of samples to use as a hold-out partition. These samples are used
@@ -106,12 +112,14 @@ class BrushEstimator(BaseEstimator):
         verbosity=0,
         max_depth=3,
         max_size=20,
+        n_islands=5,
+        mig_prob=0.05,
         cx_prob= 1/7,
         mutation_options = {"point":1/6, "insert":1/6, "delete":1/6, "subtree":1/6,
                             "toggle_weight_on":1/6, "toggle_weight_off":1/6},
         functions: list[str]|dict[str,float] = {},
         initialization="grow",
-        algorithm="nsga2",
+        algorithm="nsga2island",
         random_state=None,
         validation_size: float = 0.0,
         batch_size: float = 1.0
@@ -123,6 +131,8 @@ class BrushEstimator(BaseEstimator):
         self.mode=mode
         self.max_depth=max_depth
         self.max_size=max_size
+        self.n_islands=n_islands
+        self.mig_prob=mig_prob
         self.cx_prob=cx_prob
         self.mutation_options=mutation_options
         self.functions=functions
@@ -155,7 +165,7 @@ class BrushEstimator(BaseEstimator):
         # When solving multi-objective problems, selection and survival must
         # support this feature. This means that these selection operators must
         # accept a tuple of fitnesses as argument)
-        if self.algorithm=="nsga2":
+        if self.algorithm=="nsga2" or self.algorithm=="nsga2island":
             toolbox.register("select", tools.selTournamentDCD) 
             toolbox.register("survive", tools.selNSGA2)
         elif self.algorithm=="ga":
@@ -232,7 +242,12 @@ class BrushEstimator(BaseEstimator):
         self.search_space_ = _brush.SearchSpace(self.train_, self.functions_)
         self.toolbox_ = self._setup_toolbox(data_train=self.train_, data_validation=self.validation_)
 
-        if self.algorithm=="nsga2":
+        if self.algorithm=="nsga2island":
+            self.archive_, self.logbook_ = nsga2island(
+                self.toolbox_, self.max_gen, self.pop_size, self.n_islands,
+                self.mig_prob, self.cx_prob, 
+                (0.0<self.batch_size<1.0), self.verbosity, _brush.rnd_flt)
+        elif self.algorithm=="nsga2":
             self.archive_, self.logbook_ = nsga2(
                 self.toolbox_, self.max_gen, self.pop_size, self.cx_prob, 
                 (0.0<self.batch_size<1.0), self.verbosity, _brush.rnd_flt)
