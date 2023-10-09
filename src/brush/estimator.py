@@ -222,20 +222,30 @@ class BrushEstimator(BaseEstimator):
                                      feature_names=self.feature_names_,
                                      validation_size=self.validation_size)
 
+        if isinstance(self.functions, list):
+            self.functions_ = {k:1.0 for k in self.functions}
+        else:
+            self.functions_ = self.functions
+
         # set n classes if relevant
         if self.mode=="classification":
             self.n_classes_ = len(np.unique(y))
+
+            # Including necessary functions for classification programs. We'll insert
+            # it with zero probability, so it doesn't interfer in the user-defined
+            # functions, but allows the search space to create the hash and mapping to
+            # use the functions.
+            if self.n_classes_ == 2 and "Logistic" not in self.functions_.keys():
+                self.functions_["Logistic"] = 0.0 
+            elif "Softmax" not in self.functions_.keys():
+                self.functions_["Softmax"] = 0.0 
+
 
         # These have a default behavior to return something meaningfull if 
         # no values are set
         self.train_ = self.data_.get_training_data()
         self.train_.set_batch_size(self.batch_size)
         self.validation_ = self.data_.get_validation_data()
-
-        if isinstance(self.functions, list):
-            self.functions_ = {k:1.0 for k in self.functions}
-        else:
-            self.functions_ = self.functions
 
         self.search_space_ = _brush.SearchSpace(self.train_, self.functions_)
         self.toolbox_ = self._setup_toolbox(data_train=self.train_, data_validation=self.validation_)
@@ -264,7 +274,7 @@ class BrushEstimator(BaseEstimator):
             # Reference should be best value each obj. can have (after normalization)
             reference = np.array([1, 1])
 
-            # closest to the reference
+            # closest to the reference (smallest distance)
             final_ind_idx = np.argmin( np.linalg.norm(points - reference, axis=1) )
         else: # Best in obj.1 (loss) in validation data
             final_ind_idx = np.argmax( points[:, 0] )
