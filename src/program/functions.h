@@ -402,12 +402,40 @@ https://eigen.tuxfamily.org/dox/group__QuickRefPage.html#arrayonly
           return this->softmax(t);
        }
 
-    //    template<typename T, typename ...Ts>
-    //    inline auto operator()(const Array<T,-1,1>& first, const Ts& ... inputs) 
-    //    { 
-    //        auto output = Stack<T>(first, inputs...);
-    //        return this->softmax(output);
-    //    }
+       // template<typename T, typename ...Ts>
+       // inline auto operator()(const Array<T,-1,1>& first, const Ts& ... inputs) 
+       // { 
+       //     auto output = Stack<T>(first, inputs...);
+       //     return this->softmax(output);
+       // }
+    };
+
+    /* logical and -- mul with boolean inputs */
+    template<>
+    struct Function<NodeType::And>
+    {
+        template<typename T1, typename T2>
+        inline auto operator()(const T1& t1, const T2& t2) {
+            return t1 * t2;
+        }
+    };
+
+    /* logical or -- add with boolean inputs */
+    template<>
+    struct Function<NodeType::Or>
+    {
+        template<typename T1, typename T2>
+        inline auto operator()(const T1& t1, const T2& t2) {
+            return t1 + t2;
+        }
+    };
+
+    /* logical not */
+    template<>
+    struct Function<NodeType::Not>
+    {
+        template<typename T>
+        inline auto operator()(const T& t) { return t; }
     };
 
 } // Brush

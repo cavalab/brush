@@ -201,6 +201,13 @@ struct Signatures<N, enable_if_t<is_in_v<N, NodeType::Constant, NodeType::Termin
           >; 
 }; 
 
+template<>
+struct Signatures<NodeType::MeanLabel>{ 
+    using type = std::tuple<
+          Signature<ArrayXf()>
+          >;
+}; 
+
 template<NodeType N>
 struct Signatures<N, enable_if_t<is_in_v<N, 
     NodeType::Add,
@@ -215,25 +222,26 @@ struct Signatures<N, enable_if_t<is_in_v<N,
         >; 
     }; 
 
-// template<NodeType N>
-// struct Signatures<N, enable_if_t<is_in_v<N,
-//     NodeType::And,
-//     NodeType::Or,
-//     NodeType::Xor
-//     >>>{ 
-//         using type = std::tuple< 
-//             Signature<ArrayXb(ArrayXb,ArrayXb)>,
-//             Signature<ArrayXXb(ArrayXXb,ArrayXXb)>
-//         >; 
-//     }; 
+template<NodeType N>
+struct Signatures<N, enable_if_t<is_in_v<N,
+    NodeType::And,
+    NodeType::Or
+    >>>{ 
+        using type = std::tuple<
+            Signature<ArrayXb(ArrayXb,ArrayXb)>
+            // Signature<ArrayXb(ArrayXXb,ArrayXXb)>,
+            // Signature<ArrayXf(ArrayXf,ArrayXf)> // TODO: just for testing. delete later
+        >;
+    }; 
 
-// template<> 
-// struct Signatures<NodeType::Not> { 
-//     using type = std::tuple<
-//         Signature<ArrayXb(ArrayXb)>,
-//         Signature<ArrayXXb(ArrayXXb)>
-//     >;
-// };
+template<>
+struct Signatures<NodeType::Not>{ 
+        using type = std::tuple<
+              Signature<ArrayXb(ArrayXb)>
+            //   Signature<ArrayXb(ArrayXXb)>,
+            //   Signature<ArrayXf(ArrayXf)> // TODO: just for testing. delete later
+        >;
+    }; 
 
 template<NodeType N> 
 struct Signatures<N, enable_if_t<is_in_v<N,
@@ -362,16 +370,16 @@ struct Signatures<NodeType::SplitOn>{
             Signature<ArrayXf(ArrayXi,ArrayXf,ArrayXf)>,
             Signature<ArrayXf(ArrayXb,ArrayXf,ArrayXf)>,
             Signature<ArrayXi(ArrayXf,ArrayXi,ArrayXi)>,
-            Signature<ArrayXi(ArrayXi,ArrayXi,ArrayXi)>
-            /* Signature<ArrayXi(ArrayXb,ArrayXi,ArrayXi)>, */
-            /* Signature<ArrayXb(ArrayXf,ArrayXb,ArrayXb)>, */
-            /* Signature<ArrayXb(ArrayXi,ArrayXb,ArrayXb)>, */
-            /* Signature<ArrayXb(ArrayXb,ArrayXb,ArrayXb)> */
+            Signature<ArrayXi(ArrayXi,ArrayXi,ArrayXi)>,
+            Signature<ArrayXi(ArrayXb,ArrayXi,ArrayXi)>,
+            Signature<ArrayXb(ArrayXf,ArrayXb,ArrayXb)>,
+            Signature<ArrayXb(ArrayXi,ArrayXb,ArrayXb)>,
+            Signature<ArrayXb(ArrayXb,ArrayXb,ArrayXb)>
         >;
     }; 
 
-    template <>
-    struct Signatures<NodeType::Softmax>
+template <>
+struct Signatures<NodeType::Softmax>
     {
         using unaryTuple = std::tuple< Signature<ArrayXXf(ArrayXXf)> >;
         using naryTuple = NarySignatures_t<ArrayXXf,ArrayXf,MAX_ARGS>;
@@ -379,11 +387,5 @@ struct Signatures<NodeType::SplitOn>{
         using type = decltype(std::tuple_cat(unaryTuple(), naryTuple()));
     };
 
-template<NodeType N>
-struct Signatures<N, enable_if_t<is_in_v<N,NodeType::MeanLabel>>>{ 
-        using type = std::tuple<
-              Signature<ArrayXf()>
-              >;
-    }; 
 } // namespace Brush
 #endif

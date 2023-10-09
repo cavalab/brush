@@ -244,12 +244,17 @@ tree<Node> SearchSpace::PTC2(Node root, int max_d, int max_size) const
         queue.push_back(make_tuple(child_spot, a, d));
     }
 
+    int max_arity = 3;
+
     Node n;
     // Now we actually start the PTC2 procedure to create the program tree
     /* cout << "queue size: " << queue.size() << endl; */ 
     /* cout << "entering first while loop...\n"; */
-    while ( 3*(queue.size()-1) + s < max_size && queue.size() > 0) 
+    while ( max_arity*(queue.size()-1) + s < max_size && queue.size() > 0) 
     {            
+        // including the queue size in the max_size, since each element in queue
+        // can grow up exponentially
+
         // by default, terminals are weighted (counts as 3 nodes in program size).
         // since every spot in queue has potential to be a terminal, we multiply
         // its size by 3. Subtracting one due to the fact that this loop will
@@ -260,7 +265,7 @@ tree<Node> SearchSpace::PTC2(Node root, int max_d, int max_size) const
         auto [qspot, t, d] = RandomDequeue(queue);
 
         /* cout << "current depth: " << d << endl; */
-        if (d == max_d)
+        if (d >= max_d)
         {
             // choose terminal of matching type
             /* cout << "getting " << DataTypeName[t] << " terminal\n"; */ 
@@ -309,7 +314,10 @@ tree<Node> SearchSpace::PTC2(Node root, int max_d, int max_size) const
 
         // increment is different based on node weights
         ++s;
-        if  (n.get_is_weighted())
+        if (Is<NodeType::SplitBest>(n.node_type))
+            s += 3;
+        if ( n.get_is_weighted()==true
+        &&   Isnt<NodeType::Constant, NodeType::MeanLabel>(n.node_type) )
             s += 2;
 
         /* cout << "current tree size: " << s << endl; */

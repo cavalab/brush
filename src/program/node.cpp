@@ -33,7 +33,7 @@ auto Node::get_name(bool include_weight) const noexcept -> std::string
     }
     else if (Is<NodeType::MeanLabel>(node_type) && include_weight)
     {
-        return fmt::format("MeanLabel");
+        return fmt::format("MeanLabel({:.2f})", W);
     }
     else if (is_weighted && include_weight)
         return fmt::format("{:.2f}*{}",W,name);
@@ -52,7 +52,7 @@ string Node::get_model(const vector<string>& children) const noexcept
             children.at(1)
             );
     }
-    else if (Is<NodeType::SplitOn>(node_type)){
+    else if (Is<NodeType::SplitOn>(node_type)){ // TODO: have a better print for splitOn, based on child type
         return fmt::format("If({}>{:.2f},{},{})",
             children.at(0),
             W,
@@ -143,9 +143,22 @@ void init_node_with_default_signature(Node& node)
         NT::SplitBest,
         NT::CustomSplit
         >(n))
-     {
+    {
         node.set_signature<Signature<ArrayXf(ArrayXf,ArrayXf)>>();
+    }
+    else if (Is<
+        NT::And,
+        NT::Or
+        >(n))
+    {
+        node.set_signature<Signature<ArrayXb(ArrayXb,ArrayXb)>>();
     }  
+    // else if (Is<
+    //     NT::Not
+    //     >(n))
+    // {
+    //     node.set_signature<Signature<ArrayXb(ArrayXb)>>();
+    // }  
     else if (Is<
         NT::Min,
         NT::Max,

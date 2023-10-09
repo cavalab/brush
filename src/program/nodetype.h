@@ -50,10 +50,12 @@ enum class NodeType : uint64_t {
     Sqrtabs             = 1UL << 17UL,
     Square              = 1UL << 18UL,
     Logistic            = 1UL << 19UL,
+
     // timing masks
     Before              = 1UL << 20UL,
     After               = 1UL << 21UL,
     During              = 1UL << 22UL,
+
     // Reducers
     Min                 = 1UL << 23UL,
     Max                 = 1UL << 24UL,
@@ -61,45 +63,52 @@ enum class NodeType : uint64_t {
     Median              = 1UL << 26UL,
     Sum                 = 1UL << 27UL,
     Prod                = 1UL << 28UL,
+
     // Transformers 
     Softmax             = 1UL << 29UL,
+
     // Binary
     Add                 = 1UL << 30UL,
     Sub                 = 1UL << 31UL,
     Mul                 = 1UL << 32UL,
     Div                 = 1UL << 33UL,
     Pow                 = 1UL << 34UL,
+
     //split
     SplitBest           = 1UL << 35UL,
     SplitOn             = 1UL << 36UL,
+
     // these ones change type
     /* Equals              = 1UL << 39UL, */
     /* LessThan            = 1UL << 40UL, */
     /* GreaterThan         = 1UL << 41UL, */
     /* Leq                 = 1UL << 42UL, */
     /* Geq                 = 1UL << 43UL, */
-    // leaves
-    MeanLabel           = 1UL << 37UL,
-    Constant            = 1UL << 38UL,
-    Terminal            = 1UL << 39UL,
-    ArgMax              = 1UL << 40UL,
-    Count               = 1UL << 41UL,
-    // custom
-    CustomUnaryOp       = 1UL << 42UL,
-    CustomBinaryOp      = 1UL << 43UL,
-    CustomSplit         = 1UL << 44UL
+
     // boolean
-    // And                 = 1UL << 37UL,
-    // Or                  = 1UL << 38UL,
+    And                 = 1UL << 37UL,
+    Or                  = 1UL << 38UL,
+    Not                 = 1UL << 39UL,
     // Xor                 = 1UL << 39UL,
-    // Not                 = 1UL << 19UL,
+
+    // leaves (must be the last ones in this enum)
+    MeanLabel           = 1UL << 40UL,
+    Constant            = 1UL << 41UL,
+    Terminal            = 1UL << 42UL,
+    ArgMax              = 1UL << 43UL,
+    Count               = 1UL << 44UL, // TODO: move before leaves
+    
+    // custom
+    CustomUnaryOp       = 1UL << 44UL,
+    CustomBinaryOp      = 1UL << 45UL,
+    CustomSplit         = 1UL << 46UL
 };
 
 
 using UnderlyingNodeType = std::underlying_type_t<NodeType>;
 struct NodeTypes {
     // magic number keeping track of the number of different node types
-    static constexpr size_t Count = 40;
+    static constexpr size_t Count = 43;
     static constexpr size_t OpCount = Count-3; // subtracting leaves
 
     // returns the index of the given type in the NodeType enum
@@ -166,10 +175,10 @@ NLOHMANN_JSON_SERIALIZE_ENUM( NodeType, {
     {NodeType::Pow,"Pow" },
     {NodeType::Logistic,"Logistic" },
 
-    // logic; not sure these will make it in
-    // {NodeType::And,"And" },
-    // {NodeType::Or,"Or" },
-    // {NodeType::Not,"Not" },
+    // logic
+    {NodeType::And,"And" },
+    {NodeType::Or,"Or" },
+    {NodeType::Not,"Not" },
     // {NodeType::Xor,"Xor" },
 
     // decision (same)
@@ -209,7 +218,7 @@ NLOHMANN_JSON_SERIALIZE_ENUM( NodeType, {
     // custom
     {NodeType::CustomUnaryOp,"CustomUnaryOp" },
     {NodeType::CustomBinaryOp,"CustomBinaryOp" },
-    {NodeType::CustomSplit,"CustomSplit" },
+    {NodeType::CustomSplit,"CustomSplit" }
 })   
 #endif
 
@@ -257,6 +266,7 @@ static constexpr bool UnaryOp = is_in_v<nt,
     NT::Sqrtabs,
     NT::Square,
     NT::Logistic
+    // NT::Not
 >;
 
 template<NT nt>
@@ -283,11 +293,6 @@ static constexpr bool NaryOp = is_in_v<nt,
     NT::Sum,
     NT::Prod,
     NT::Softmax
->;
-
-template<NT nt>
-static constexpr bool NullaryOp = is_in_v<nt, 
-    NT::MeanLabel
 >;
 
 // // TODO: make this work 
