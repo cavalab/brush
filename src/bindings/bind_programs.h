@@ -76,7 +76,7 @@ void bind_program(py::module& m, string name)
                 "predict from Dataset object")
            .def("predict_proba",
                 static_cast<ArrayXf (T::*)(const Ref<const ArrayXXf> &X)>(&T::predict_proba),
-                "fit from X,y data");
+                "predict from X data");
     }
 
 }

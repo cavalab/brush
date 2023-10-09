@@ -58,14 +58,27 @@ public:
 protected:
     static size_t size_with_weights(tree<Node>& Tree, bool include_weight=true)
     {
+        // re-implementation of int Node::size(bool include_weight=true) meant
+        // to work with the tree<Node> instead of brush's programs.
+        // TODO: find a better way to have this function available to mutations
+        // and avoid repeated functions
         size_t acc = 0;
 
         std::for_each(Tree.begin(), Tree.end(), 
             [include_weight, &acc](auto& node){ 
                 ++acc; // the node operator or terminal
                 
-                if (include_weight && node.get_is_weighted()==true)
-                    acc += 2; // weight and multiplication, if enabled
+                // SplitBest has an optimizable decision tree consisting of 3 nodes
+                // (terminal, arithmetic comparison, value) that needs to be taken
+                // into account
+                if (Is<NodeType::SplitBest>(node.node_type))
+                    acc += 3;
+
+                if ( (include_weight && node.get_is_weighted()==true)
+                &&   Isnt<NodeType::Constant>(node.node_type) )
+                    // Taking into account the weight and multiplication, if enabled.
+                    // weighted constants still count as 1 (simpler than constant terminals)
+                    acc += 2;
              });
 
         return acc;
@@ -542,7 +555,6 @@ std::optional<Program<T>> mutate(const Program<T>& parent, const SearchSpace& SS
         PARAMS["mutation_trace"]["status"] = "aplied the mutation";
         if (success)
             PARAMS["mutation_trace"]["child"] = child.get_model("compact", true);
-
     }
 
     if (success

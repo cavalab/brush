@@ -89,8 +89,11 @@ def nsga2(toolbox, NGEN, MU, CXPB, use_batch, verbosity, rnd_flt):
         for ind, fit in zip(offspring, fitnesses):
             ind.fitness.values = fit
 
-        # Select the next generation population
+        # Select the next generation population (no sorting before this step, as 
+        # survive==offspring will cut it in half)
         pop = toolbox.survive(pop + offspring, MU)
+
+        pop.sort(key=lambda x: x.fitness, reverse=True)
 
         record = stats.compile(pop)
         logbook.record(gen=gen, evals=len(offspring)+(len(pop) if use_batch else 0), **record)

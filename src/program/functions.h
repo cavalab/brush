@@ -202,7 +202,6 @@ https://eigen.tuxfamily.org/dox/group__QuickRefPage.html#arrayonly
                 t.row(i).maxCoeff(&idx(i));
             return idx;
         }
-
     };
 
     template<>

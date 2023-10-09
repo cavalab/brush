@@ -686,55 +686,32 @@ P SearchSpace::make_program(int max_d, int max_size)
     ProgramType program_type = P::program_type;
     // ProgramType program_type = ProgramTypeEnum<PT>::value;
     
-    auto Tree = tree<Node>();
-    if (max_size == 1 || max_d == 1)
-    {
-        // auto root = Tree.insert(Tree.begin(), sample_terminal(root_type));
+    // building the root node for each program case. We give the root, and it 
+    // fills the rest of the tree
+    Node root;
 
-        // We can only have a terminal here, but the terminal must be compatible
-        auto opt = sample_terminal(root_type);
+    // building the root node for each program case
+    if (P::program_type == ProgramType::BinaryClassifier)
+    {
+        root = get(NodeType::Logistic, DataType::ArrayF, Signature<ArrayXf(ArrayXf)>());
+        root.set_prob_change(0.0);
+        root.fixed=true;
+    }
+    else if (P::program_type == ProgramType::MulticlassClassifier)
+    {
+        root = get(NodeType::Softmax, DataType::MatrixF, Signature<ArrayXXf(ArrayXXf)>());
+        root.set_prob_change(0.0);
+        root.fixed=true;
+    }
+    else {
+        // we start with a non-terminal (can be replaced inside PTC2 though, if max_size==1)
+        auto opt = sample_op(root_type);
         if (!opt)
             opt = sample_terminal(root_type, true);
-
-        if (!opt){
-            auto msg = fmt::format("Program with size=1 could not be created. "
-            "The search space does not contain any terminal with data type {}./n",
-            root_type);
-            HANDLE_ERROR_THROW(msg); 
-        }
-
-        Tree.insert(Tree.begin(), opt.value());
+        root = opt.value();
     }
-    else {// Our program can (and will) be grater than 1 node
-
-        // building the root node for each program case. We give the root, and it 
-        // fills the rest of the tree
-        Node root;
-
-        // building the root node for each program case
-        if (P::program_type == ProgramType::BinaryClassifier)
-        {
-            root = get(NodeType::Logistic, DataType::ArrayF, Signature<ArrayXf(ArrayXf)>());
-            root.set_prob_change(0.0);
-            root.fixed=true;
-
-        }
-        else if (P::program_type == ProgramType::MulticlassClassifier)
-        {
-            root = get(NodeType::Softmax, DataType::MatrixF, Signature<ArrayXXf(ArrayXXf)>());
-            root.set_prob_change(0.0);
-            root.fixed=true;
-        }
-        else {
-            // we start with a non-terminal (can be replaced inside PTC2 though, if max_size==1)
-            auto opt = sample_op(root_type);
-            if (!opt)
-                opt = sample_terminal(root_type, true);
-            root = opt.value();
-        }
-        
-        Tree = PTC2(root, max_d, max_size);
-    }
+    
+    auto Tree = PTC2(root, max_d, max_size);
 
     return P(*this,Tree);
 };

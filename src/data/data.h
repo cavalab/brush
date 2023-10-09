@@ -36,6 +36,10 @@ namespace Data
 /// determines data types of columns of matrix X.
 State check_type(const ArrayXf& x);
 DataType StateType(const State& arg);
+
+template<typename StateRef>
+State cast_type(const ArrayXf& x, const StateRef& x_ref);
+
 ///////////////////////////////////////////////////////////////////////////////
 
 /*!
@@ -94,6 +98,12 @@ class Dataset
                                         const vector<string>& vn = {}
                                        );
 
+        /// turns input into a feature map, with feature types copied from a reference
+        map<string,State> copy_and_make_features(const ArrayXXf& X,
+                                                 const Dataset& ref_dataset,
+                                                 const vector<string>& vn = {}
+                                                );
+
         /// 1. initialize data from a map.
         Dataset(std::map<string, State>& d, 
              const Ref<const ArrayXf>& y_ = ArrayXf(), 
@@ -134,13 +144,31 @@ class Dataset
         /// 3. initialize data from X and feature names
         Dataset(const ArrayXXf& X, const vector<string>& vn,
              float validation_size = 0.0,
-             float batch_size = 1.0) 
+             float batch_size = 1.0
+            ) 
             : classification(false)
             , features(make_features(X,map<string, State>{},vn))
             , validation_size(validation_size)
             , use_validation(validation_size > 0.0 && validation_size < 1.0)
             , batch_size(batch_size)
             , use_batch(batch_size > 0.0 && batch_size < 1.0)
+            {
+                init();
+                Xref = optional<reference_wrapper<const ArrayXXf>>{X};
+            }
+
+        //// 4. initialize data from X, but feature types are copied from a
+        //// reference dataset. Useful for bypass Brush's type sniffer and
+        //// doing predictions with small number of samples
+        Dataset(const ArrayXXf& X, const Dataset& ref_dataset,
+             const vector<string>& vn
+            )
+            : classification(false)
+            , features(copy_and_make_features(X,ref_dataset,vn))
+            , validation_size(0.0)
+            , use_validation(false)
+            , batch_size(1.0)
+            , use_batch(false)
             {
                 init();
                 Xref = optional<reference_wrapper<const ArrayXXf>>{X};

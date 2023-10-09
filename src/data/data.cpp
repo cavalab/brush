@@ -100,7 +100,17 @@ State check_type(const ArrayXf& x)
         }
     }
     return tmp;
+}
 
+template<typename StateRef>
+State cast_type(const ArrayXf& x, const StateRef& x_ref)
+{
+    if (std::holds_alternative<ArrayXi>(x_ref))
+        return ArrayXi(x.cast<int>());
+    else if (std::holds_alternative<ArrayXb>(x_ref))
+        return ArrayXb(x.cast<bool>());
+    
+    return x;
 }
 
 /// return a slice of the data using indices idx
@@ -222,9 +232,9 @@ void Dataset::set_batch_size(float new_size) {
 
 /// turns input data into a feature map
 map<string, State> Dataset::make_features(const ArrayXXf& X,
-                                       const map<string,State>& Z,
-                                       const vector<string>& vn 
-                                       ) 
+                                          const map<string,State>& Z,
+                                          const vector<string>& vn 
+                                         ) 
 {
     // fmt::print("Dataset::make_features()\n");
     map<string, State> tmp_features;
@@ -262,6 +272,57 @@ map<string, State> Dataset::make_features(const ArrayXXf& X,
     }
     // fmt::print("tmp_features insert\n");
     tmp_features.insert(Z.begin(), Z.end());
+    return tmp_features;
+};
+
+/// turns input into a feature map, with feature types copied from a reference
+map<string,State> Dataset::copy_and_make_features(const ArrayXXf& X,
+                                         const Dataset& ref_dataset,
+                                         const vector<string>& vn
+                                        )
+{
+    vector<string> var_names;
+    if (vn.empty())
+    {
+        for (int i = 0; i < X.cols(); ++i)
+        {
+            string v = "x_"+to_string(i);
+            var_names.push_back(v);
+        }
+    }
+    else
+    {
+        if (vn.size() != X.cols())
+            HANDLE_ERROR_THROW(
+                fmt::format("Variable names and data size mismatch: "
+                "{} variable names and {} features in X", 
+                vn.size(), 
+                X.cols()
+                )
+            );
+        var_names = vn;
+    }
+
+    if (ref_dataset.features.size() != var_names.size())
+        HANDLE_ERROR_THROW(
+            fmt::format("Reference dataset with incompatible number of variables: "
+            "Reference has {} variable names, but X has {}", 
+            ref_dataset.features.size(), 
+            var_names.size()
+            )
+        );
+
+    map<string, State> tmp_features;
+    for (int i = 0; i < X.cols(); ++i)
+    {
+        State tmp = cast_type(
+            X.col(i).array(),
+            ref_dataset.features.at(var_names.at(i))
+        );
+
+        tmp_features[var_names.at(i)] = tmp;
+    }
+
     return tmp_features;
 };
 

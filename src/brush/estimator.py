@@ -5,6 +5,7 @@ See brushgp.cpp for Python (via pybind11) modules that give more fine-grained
 control of the underlying GP objects.
 """
 from sklearn.base import BaseEstimator, ClassifierMixin, RegressorMixin, TransformerMixin
+from sklearn.utils.validation  import check_is_fitted
 # from sklearn.metrics import mean_squared_error
 import numpy as np
 import pandas as pd
@@ -13,7 +14,7 @@ from deap import algorithms, base, creator, tools
 # from tqdm import tqdm
 from types import NoneType
 import _brush
-from .deap_api import nsga2, ga, nsga2island, DeapIndividual 
+from .deap_api import nsga2, nsga2island, DeapIndividual 
 # from _brush import Dataset, SearchSpace
 
 
@@ -170,7 +171,8 @@ class BrushEstimator(BaseEstimator):
             toolbox.register("survive", tools.selNSGA2)
         elif self.algorithm=="ga":
             toolbox.register("select", tools.selTournament, tournsize=3) 
-            toolbox.register("survive", tools.selNSGA2)
+            def offspring(pop, MU): return pop[-MU:]
+            toolbox.register("survive", offspring)
 
         # toolbox.population will return a list of elements by calling toolbox.individual
         toolbox.register("createRandom", self._make_individual)
@@ -222,7 +224,13 @@ class BrushEstimator(BaseEstimator):
         if self.random_state is not None:
             _brush.set_random_state(self.random_state)
 
-        self.data_ = self._make_data(X,y, validation_size=self.validation_size)
+        self.feature_names_ = []
+        if isinstance(X, pd.DataFrame):
+            self.feature_names_ = X.columns.to_list()
+
+        self.data_ = self._make_data(X, y, 
+                                     feature_names=self.feature_names_,
+                                     validation_size=self.validation_size)
 
         # set n classes if relevant
         if self.mode=="classification":
@@ -247,12 +255,9 @@ class BrushEstimator(BaseEstimator):
                 self.toolbox_, self.max_gen, self.pop_size, self.n_islands,
                 self.mig_prob, self.cx_prob, 
                 (0.0<self.batch_size<1.0), self.verbosity, _brush.rnd_flt)
-        elif self.algorithm=="nsga2":
+        elif self.algorithm=="nsga2" or self.algorithm=="ga":
+            # nsga2 and ga differ in the toolbox
             self.archive_, self.logbook_ = nsga2(
-                self.toolbox_, self.max_gen, self.pop_size, self.cx_prob, 
-                (0.0<self.batch_size<1.0), self.verbosity, _brush.rnd_flt)
-        elif self.algorithm=="ga":
-            self.archive_, self.logbook_ = ga(
                 self.toolbox_, self.max_gen, self.pop_size, self.cx_prob, 
                 (0.0<self.batch_size<1.0), self.verbosity, _brush.rnd_flt)
 
@@ -292,35 +297,42 @@ class BrushEstimator(BaseEstimator):
 
         return self
     
-    def _make_data(self, X, y=None, validation_size=0.0):
-        # This function should not partition data (as it is used in predict).
-        # partitioning is done in fit().
+    def _make_data(self, X, y=None, feature_names=[], validation_size=0.0):
+        # This function should not partition data (since it may be used in `predict`).
+        # partitioning is done by `fit`. Feature names should be inferred
+        # before calling _make_data (so predict can be made with np arrays or
+        # pd dataframes).
 
         if isinstance(y, pd.Series):
             y = y.values
         if isinstance(X, pd.DataFrame):
-            # self.data_ = _brush.Dataset(X.to_dict(orient='list'), y)
-            feature_names = X.columns.to_list()
             X = X.values
-            if isinstance(y, NoneType):
-                return _brush.Dataset(X,
-                    feature_names=feature_names, validation_size=validation_size)
-            else:
-                return _brush.Dataset(X, y,
-                    feature_names=feature_names, validation_size=validation_size)
-
+        
         assert isinstance(X, np.ndarray)
 
-        # if there is no label, don't include it in library call to Dataset
         if isinstance(y, NoneType):
-            return _brush.Dataset(X, validation_size=validation_size)
+            return _brush.Dataset(X=X,
+                    feature_names=feature_names, validation_size=validation_size)
 
-        return _brush.Dataset(X, y, validation_size=validation_size)
+        return _brush.Dataset(X=X, y=y,
+            feature_names=feature_names, validation_size=validation_size)
 
 
     def predict(self, X):
         """Predict using the best estimator in the archive. """
-        data = self._make_data(X)
+
+        check_is_fitted(self)
+
+        if isinstance(X, pd.DataFrame):
+            X = X.values
+
+        assert isinstance(X, np.ndarray)
+
+        data = _brush.Dataset(X=X, ref_dataset=self.data_, 
+                              feature_names=self.feature_names_)
+        
+        # data = self._make_data(X, feature_names=self.feature_names_)
+
         return self.best_estimator_.predict(data)
 
     # def _setup_population(self):
@@ -337,8 +349,15 @@ class BrushEstimator(BaseEstimator):
     #     # return [self._create_deap_individual_(p) for p in programs]
     #     return programs
 
-    def get_params(self):
-        return {k:v for k,v in self.__dict__.items() if not k.endswith('_')}
+    def get_params(self, deep=True):
+        out = dict()
+        for (key, value) in self.__dict__.items():
+            if not key.endswith('_'):
+                if deep and hasattr(value, "get_params") and not isinstance(value, type):
+                    deep_items = value.get_params().items()
+                    out.update((key + "__" + k, val) for k, val in deep_items)
+                out[key] = value
+        return out
     
 
 class BrushClassifier(BrushEstimator,ClassifierMixin):
@@ -410,8 +429,27 @@ class BrushClassifier(BrushEstimator,ClassifierMixin):
             classes corresponds to that in the attribute :term:`classes_`.
 
         """
-        data = self._make_data(X)
-        return self.best_estimator_.predict_proba(data)
+        
+        check_is_fitted(self)
+
+        if isinstance(X, pd.DataFrame):
+            X = X.values
+
+        assert isinstance(X, np.ndarray)
+
+        data = _brush.Dataset(X=X, ref_dataset=self.data_, 
+                              feature_names=self.feature_names_)
+
+        # data = self._make_data(X, feature_names=self.feature_names_)
+
+        prob = self.best_estimator_.predict_proba(data)
+
+        if self.n_classes_ <= 2:
+            prob = np.hstack( (np.ones(X.shape[0]).reshape(-1,1), prob.reshape(-1,1)) )  
+            prob[:, 0] -= prob[:, 1]
+
+        return prob
+
 
 class BrushRegressor(BrushEstimator, RegressorMixin):
     """Brush for regression.

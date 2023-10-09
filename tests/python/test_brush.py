@@ -66,6 +66,22 @@ def test_fit(setup, algorithm, brush_args, request):
     except Exception as e:
         pytest.fail(f"Unexpected Exception caught: {e}")
         logging.error(traceback.format_exc())
+
+@pytest.mark.parametrize('setup',
+                         [('classification_setup'),
+                          ('multiclass_classification_setup')])
+def test_predict_proba(setup, brush_args, request):
+
+    Estimator, X, y = request.getfixturevalue(setup)
+
+    est = Estimator(**brush_args)
+    est.fit(X, y)
+
+    y_prob = est.predict_proba(X)
+    assert len(y_prob.shape) == 2, "predict_proba should be 2-dimensional"
+    assert y_prob.shape[1] >= 2, \
+        "every class should have its own column (even for binary clf)"
+            
         
 
 # def test_random_state(): # TODO: make it work
