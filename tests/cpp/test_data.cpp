@@ -50,8 +50,10 @@ TEST(Data, MixedVariableTypes)
     unordered_map<string, float> user_ops = {
         {"Add", 1.0},
         {"Sub", 1.0},
-        {"SplitOn", 1.0},
-        {"MeanLabel", 1.0}
+        // a boolean operator
+        {"And",       1.0},
+        // operator that takes boolean as argument
+        {"SplitOn",   1.0}
     };
 
     Dataset dt(X, y);
