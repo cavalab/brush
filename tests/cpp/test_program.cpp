@@ -31,6 +31,26 @@ TEST(Program, MakeRegressor)
             );
 
             ASSERT_TRUE( PRG.get_model("compact", true)==clone.get_model("compact", true) );
+            fmt::print("Models have the same representation\n");
+
+            // weights didnt changed
+            vector<float> PRG_weights(PRG.Tree.size());
+            std::transform(PRG.Tree.begin(), PRG.Tree.end(), PRG_weights.begin(),
+                        [&](const auto& n){ return n.get_prob_change();});
+
+            vector<float> clone_weights(clone.Tree.size());
+            std::transform(clone.Tree.begin(), clone.Tree.end(), clone_weights.begin(),
+                        [&](const auto& n){ return n.get_prob_change();});
+                        
+            ASSERT_TRUE( PRG_weights.size()==clone_weights.size() );
+            fmt::print("Models have the same number of node weights\n");
+
+            for (size_t i=0; i<PRG_weights.size(); ++i){
+                fmt::print("Weight {}: original {}, clone {}\n", i, 
+                           PRG_weights.at(i), clone_weights.at(i) );
+                ASSERT_TRUE( PRG_weights.at(i) == clone_weights.at(i) );
+            }
+            fmt::print("Models have the same node weights probabilities\n");
         }
 }
 
