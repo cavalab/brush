@@ -38,7 +38,6 @@ def nsga2island(toolbox, NGEN, MU, N_ISLANDS, MIGPX, CXPB, use_batch, verbosity,
     island_indexes = [((i*MU)//N_ISLANDS, ((i+1)*MU)//N_ISLANDS)
                       for i in range(N_ISLANDS)]
 
-    print("island_indexes", island_indexes)
     pop = toolbox.population(n=MU)
 
     fitnesses = toolbox.map(functools.partial(toolbox.evaluate), pop)
@@ -125,9 +124,7 @@ def nsga2island(toolbox, NGEN, MU, N_ISLANDS, MIGPX, CXPB, use_batch, verbosity,
                     pop.append(new_pop[idx_other_individual])
                 else:
                     pop.append(new_pop[idx_individual])
-        print(len(pop))
-        for p in pop:
-            print(type(p), p)
+                    
         record = stats.compile(pop)
         logbook.record(gen=gen, evals=len(offspring)+(len(pop) if use_batch else 0), **record)
 

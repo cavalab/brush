@@ -66,7 +66,7 @@ class BrushEstimator(BaseEstimator):
     initialization : {"grow", "full"}, default "grow" 
         Strategy to create the initial population. If `full`, then every expression is created
         with `max_size` nodes. If `grow`, size will be uniformly distributed.
-    algorithm : {"nsga2island", "nsga2", "ga"}, default "nsga2island"
+    algorithm : {"nsga2island", "nsga2", "gaisland", "ga"}, default "nsga2island"
         Which Evolutionary Algorithm framework to use to evolve the population.
     validation_size : float, default 0.0
         Percentage of samples to use as a hold-out partition. These samples are used
@@ -169,7 +169,7 @@ class BrushEstimator(BaseEstimator):
         if self.algorithm=="nsga2" or self.algorithm=="nsga2island":
             toolbox.register("select", tools.selTournamentDCD) 
             toolbox.register("survive", tools.selNSGA2)
-        elif self.algorithm=="ga":
+        elif self.algorithm=="ga" or self.algorithm=="gaisland":
             toolbox.register("select", tools.selTournament, tournsize=3) 
             def offspring(pop, MU): return pop[-MU:]
             toolbox.register("survive", offspring)
@@ -250,7 +250,7 @@ class BrushEstimator(BaseEstimator):
         self.search_space_ = _brush.SearchSpace(self.train_, self.functions_)
         self.toolbox_ = self._setup_toolbox(data_train=self.train_, data_validation=self.validation_)
 
-        if self.algorithm=="nsga2island":
+        if self.algorithm=="nsga2island" or self.algorithm=="gaisland":
             self.archive_, self.logbook_ = nsga2island(
                 self.toolbox_, self.max_gen, self.pop_size, self.n_islands,
                 self.mig_prob, self.cx_prob, 

@@ -680,6 +680,7 @@ std::optional<Program<T>> cross(const Program<T>& root, const Program<T>& other)
                             
             // fmt::print("other_spot : {}\n",other_spot.node->data);
             // swap subtrees at child_spot and other_spot
+            // TODO: do I need to delete the removed node?
             child.Tree.move_ontop(child_spot, other_spot);
             return child;
         }

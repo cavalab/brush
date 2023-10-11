@@ -31,6 +31,14 @@ TEST(Program, MakeRegressor)
             );
 
             ASSERT_TRUE( PRG.get_model("compact", true)==clone.get_model("compact", true) );
+
+            // probabilities are the same
+            vector<float> PRG_weights(PRG.Tree.size());
+            std::transform(PRG.Tree.begin(), PRG.Tree.end(), 
+                        PRG_weights.begin(),
+                        [](const auto& n){ return n.get_prob_change(); }
+                        );
+            ASSERT_TRUE( PRG.get_model("compact", true)==clone.get_model("compact", true) );
         }
 }
 

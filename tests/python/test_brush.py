@@ -46,9 +46,11 @@ def regression_setup():
 @pytest.mark.parametrize('setup,algorithm',
                          [('classification_setup', 'nsga2island'),
                           ('classification_setup', 'nsga2'      ),
+                          ('classification_setup', 'gaisland'   ),
                           ('classification_setup', 'ga'         ),
                           ('regression_setup',     'nsga2island'),
                           ('regression_setup',     'nsga2'      ),
+                          ('regression_setup',     'gaisland'   ),
                           ('regression_setup',     'ga'         )])
 def test_fit(setup, algorithm, brush_args, request):
     """Testing common utilities related to fitting and generic brush estimator.
