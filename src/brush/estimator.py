@@ -231,14 +231,13 @@ class BrushEstimator(BaseEstimator):
         if self.mode=="classification":
             self.n_classes_ = len(np.unique(y))
 
-            # Including necessary functions for classification programs. We'll insert
-            # it with zero probability, so it doesn't interfer in the user-defined
-            # functions, but allows the search space to create the hash and mapping to
-            # use the functions.
-            if self.n_classes_ == 2 and "Logistic" not in self.functions_.keys():
-                self.functions_["Logistic"] = 0.0 
-            elif "Softmax" not in self.functions_.keys():
-                self.functions_["Softmax"] = 0.0 
+            # Including necessary functions for classification programs. This
+            # is needed so the search space can create the hash and mapping of
+            # the functions.
+            if self.n_classes_ == 2 and "Logistic" not in self.functions_:
+                self.functions_["Logistic"] = 1.0 
+            # elif "Softmax" not in self.functions_: # TODO: implement multiclassific.
+            #     self.functions_["Softmax"] = 1.0 
 
 
         # These have a default behavior to return something meaningfull if 
