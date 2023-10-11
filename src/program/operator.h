@@ -306,6 +306,37 @@ struct Operator<NodeType::Constant, S, Fit>
 };
 
 ////////////////////////////////////////////////////////////////////////////
+// MeanLabel overload
+template<typename S, bool Fit> 
+struct Operator<NodeType::MeanLabel, S, Fit>
+{
+    using RetType = typename S::RetType;
+    using W = typename S::WeightType; 
+
+    RetType fit(const Dataset& d, TreeNode& tn) const {
+        tn.data.W = d.y.mean();
+        return predict(d, tn);
+    };
+
+    template<typename T=RetType, typename Scalar=T::Scalar, int N=T::NumDimensions> 
+    RetType predict(const Dataset& d, TreeNode& tn, const W** weights=nullptr) const 
+    { 
+        Scalar w = util::get_weight<RetType,Scalar,W>(tn, weights);
+        if constexpr (N == 1)
+            return RetType::Constant(d.get_n_samples(), w); 
+        else
+            return RetType::Constant(d.get_n_samples(), d.get_n_features(), w); 
+    };
+
+    RetType eval(const Dataset& d, TreeNode& tn, const W** weights=nullptr) const {
+        if constexpr (Fit)
+            return fit(d,tn); 
+        else
+            return predict(d,tn,weights);
+    };
+};
+
+////////////////////////////////////////////////////////////////////////////
 // Operator overloads 
 //  Split
 #include "split.h"

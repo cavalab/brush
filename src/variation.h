@@ -75,7 +75,7 @@ protected:
                     acc += 3;
 
                 if ( (include_weight && node.get_is_weighted()==true)
-                &&   Isnt<NodeType::Constant>(node.node_type) )
+                &&   Isnt<NodeType::Constant, NodeType::MeanLabel>(node.node_type) )
                     // Taking into account the weight and multiplication, if enabled.
                     // weighted constants still count as 1 (simpler than constant terminals)
                     acc += 2;

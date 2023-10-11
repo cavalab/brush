@@ -25,10 +25,10 @@ TEST(SearchSpace, Initialization)
 
     // different weights to check if searchspace is initialized correctnly
     unordered_map<string, float> user_ops = {
-        {"Add",   1},
-        {"Sub",   1},
-        {"Div",  .5},
-        {"Mul", 0.5}
+        {"Add",         1},
+        {"Sub",         1},
+        {"Div",        .5},
+        {"Mul",       0.5}
     };
 
     SearchSpace SS;
@@ -40,8 +40,8 @@ TEST(SearchSpace, Initialization)
     // dtable_predict.print();
 
     // manually calculated. last value is the avg of prev values
-    ArrayXf expected_weights_Xf(4); // 4 elements (x3, x4, x5 and c)    
-    expected_weights_Xf << 0.80240685, 0.19270448, 0.5994426, 0.531518;
+    ArrayXf expected_weights_Xf(4); // 5 elements (x3, x4, x5, c, meanLabel)    
+    expected_weights_Xf << 0.80240685, 0.19270448, 0.5994426, 0.531518, 0.531518;
 
     auto actual_weights_f = SS.terminal_weights.at(DataType::ArrayF);
     Eigen::Map<ArrayXf> actual_weights_Xf(actual_weights_f.data(), actual_weights_f.size());
