@@ -31,6 +31,7 @@ TEST(Program, MakeRegressor)
             );
 
             ASSERT_TRUE( PRG.get_model("compact", true)==clone.get_model("compact", true) );
+
             fmt::print("Models have the same representation\n");
 
             // weights didnt changed
