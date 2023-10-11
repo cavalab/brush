@@ -48,9 +48,13 @@ TEST(Data, MixedVariableTypes)
     y << 6.1, 7.7, -4.2; // y = x_0 + x_1 + x_2
     
     unordered_map<string, float> user_ops = {
-        {"Add", 1},
-        {"Sub", 1},
-        {"SplitOn", 1}
+        {"Add", 0.5},
+        {"Sub", 0.5},
+        // a boolean operator
+        {"And",       1.0},
+        {"Or",        1.0},
+        // operator that takes boolean as argument
+        {"SplitOn",   1.0}
     };
 
     Dataset dt(X, y);

@@ -31,10 +31,10 @@ std::map<std::string, NodeType> NodeNameType = {
     {"Pow", NodeType::Pow},
     {"Logistic", NodeType::Logistic},
 
-    // logic; not sure these will make it in
-    // {"And", NodeType::And},
-    // {"Or", NodeType::Or},
-    // {"Not", NodeType::Not},
+    // logic
+    {"And", NodeType::And},
+    {"Or", NodeType::Or},
+    {"Not", NodeType::Not},
     // {"Xor", NodeType::Xor},
 
     // decision (same)
@@ -67,13 +67,14 @@ std::map<std::string, NodeType> NodeNameType = {
     {"SplitOn", NodeType::SplitOn},
 
     // leaves
+    {"MeanLabel", NodeType::MeanLabel},
     {"Constant", NodeType::Constant},
     {"Terminal", NodeType::Terminal},
 
     // custom
     {"CustomUnaryOp", NodeType::CustomUnaryOp},
     {"CustomBinaryOp", NodeType::CustomBinaryOp},
-    {"CustomSplit", NodeType::CustomSplit},
+    {"CustomSplit", NodeType::CustomSplit}
 };
 
 std::map<NodeType,std::string> NodeTypeName = Util::reverse_map(NodeNameType);

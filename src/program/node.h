@@ -264,14 +264,15 @@ template <NodeType... T>
 inline auto Isnt(NodeType nt) -> bool { return !((nt == T) || ...); }
 
 inline auto IsLeaf(NodeType nt) noexcept -> bool { 
-    return Is<NodeType::Constant, NodeType::Terminal>(nt); 
+    return Is<NodeType::Constant, NodeType::Terminal, NodeType::MeanLabel>(nt); 
 }
 
 inline auto IsCommutative(NodeType nt) noexcept -> bool { 
     return Is<NodeType::Add,
               NodeType::Mul,
               NodeType::Min,
-              NodeType::Max>(nt); 
+              NodeType::Max
+              >(nt); 
 }
 
 inline auto IsDifferentiable(NodeType nt) noexcept -> bool { 
@@ -281,7 +282,10 @@ inline auto IsDifferentiable(NodeType nt) noexcept -> bool {
                 NodeType::Before,       
                 NodeType::After,          
                 NodeType::During,
-                NodeType::Count
+                NodeType::Count,
+                NodeType::And, 
+                NodeType::Or,
+                NodeType::Not
                 >(nt);                
 }
 template<NodeType NT>
@@ -294,7 +298,10 @@ inline auto IsWeighable() noexcept -> bool {
                     NodeType::During,
                     NodeType::Count,
                     NodeType::SplitOn,
-                    NodeType::SplitBest 
+                    NodeType::SplitBest,
+                    NodeType::And, 
+                    NodeType::Or,
+                    NodeType::Not 
                     >(NT);                
 }
 inline auto IsWeighable(NodeType nt) noexcept -> bool { 
@@ -306,7 +313,10 @@ inline auto IsWeighable(NodeType nt) noexcept -> bool {
                     NodeType::During,
                     NodeType::Count,
                     NodeType::SplitOn,
-                    NodeType::SplitBest 
+                    NodeType::SplitBest,
+                    NodeType::And, 
+                    NodeType::Or,
+                    NodeType::Not
                     >(nt);                
 }
 
