@@ -1,6 +1,5 @@
 #include "search_space.h"
 #include "program/program.h"
-#include <iostream>
 
 namespace Brush{
 
@@ -250,7 +249,7 @@ tree<Node> SearchSpace::PTC2(Node root, int max_d, int max_size) const
     // Now we actually start the PTC2 procedure to create the program tree
     /* cout << "queue size: " << queue.size() << endl; */ 
     /* cout << "entering first while loop...\n"; */
-    while ( max_arity*(queue.size()-1) + s < max_size && queue.size() > 0) 
+    while ( queue.size() + s < max_size && queue.size() > 0) 
     {            
         // including the queue size in the max_size, since each element in queue
         // can grow up exponentially
@@ -295,7 +294,7 @@ tree<Node> SearchSpace::PTC2(Node root, int max_d, int max_size) const
             // qspot = n;
 
             if (!opt)
-                opt = sample_terminal(t, true);
+                queue.push_back(make_tuple(qspot, t, d));
 
             n = opt.value();
             

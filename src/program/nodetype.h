@@ -95,8 +95,8 @@ enum class NodeType : uint64_t {
     MeanLabel           = 1UL << 40UL,
     Constant            = 1UL << 41UL,
     Terminal            = 1UL << 42UL,
-    ArgMax              = 1UL << 43UL,
-    Count               = 1UL << 44UL, // TODO: move before leaves
+    ArgMax              = 1UL << 43UL, // TODO: move before leaves
+    Count               = 1UL << 44UL, 
     
     // custom
     CustomUnaryOp       = 1UL << 44UL,

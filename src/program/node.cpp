@@ -33,7 +33,8 @@ auto Node::get_name(bool include_weight) const noexcept -> std::string
     }
     else if (Is<NodeType::MeanLabel>(node_type) && include_weight)
     {
-        return fmt::format("MeanLabel({:.2f})", W);
+        // return fmt::format("MeanLabel({:.2f})", W);
+        return fmt::format("MeanLabel{:.2f}", W);
     }
     else if (is_weighted && include_weight)
         return fmt::format("{:.2f}*{}",W,name);
@@ -52,7 +53,17 @@ string Node::get_model(const vector<string>& children) const noexcept
             children.at(1)
             );
     }
-    else if (Is<NodeType::SplitOn>(node_type)){ // TODO: have a better print for splitOn, based on child type
+    else if (Is<NodeType::SplitOn>(node_type)){
+        if (arg_types.at(0) == DataType::ArrayB)
+        {
+            // booleans dont use thresholds (they are used directly as mask in split)
+            return fmt::format("If({},{},{})",
+                children.at(0),
+                children.at(1),
+                children.at(2)
+            );
+        }
+        // integers or floating points (they have a threshold)
         return fmt::format("If({}>{:.2f},{},{})",
             children.at(0),
             W,

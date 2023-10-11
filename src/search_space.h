@@ -15,6 +15,7 @@ license: GNU/GPL v3
 #include "params.h"
 #include <utility>
 #include <optional>
+#include <iostream>
 
 /* Defines the search space of Brush. 
  *  The search spaces consists of nodes and their accompanying probability

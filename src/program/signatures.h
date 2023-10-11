@@ -229,8 +229,6 @@ struct Signatures<N, enable_if_t<is_in_v<N,
     >>>{ 
         using type = std::tuple<
             Signature<ArrayXb(ArrayXb,ArrayXb)>
-            // Signature<ArrayXb(ArrayXXb,ArrayXXb)>,
-            // Signature<ArrayXf(ArrayXf,ArrayXf)> // TODO: just for testing. delete later
         >;
     }; 
 
@@ -238,8 +236,6 @@ template<>
 struct Signatures<NodeType::Not>{ 
         using type = std::tuple<
               Signature<ArrayXb(ArrayXb)>
-            //   Signature<ArrayXb(ArrayXXb)>,
-            //   Signature<ArrayXf(ArrayXf)> // TODO: just for testing. delete later
         >;
     }; 
 
@@ -369,9 +365,11 @@ struct Signatures<NodeType::SplitOn>{
             Signature<ArrayXf(ArrayXf,ArrayXf,ArrayXf)>,
             Signature<ArrayXf(ArrayXi,ArrayXf,ArrayXf)>,
             Signature<ArrayXf(ArrayXb,ArrayXf,ArrayXf)>,
+
             Signature<ArrayXi(ArrayXf,ArrayXi,ArrayXi)>,
             Signature<ArrayXi(ArrayXi,ArrayXi,ArrayXi)>,
             Signature<ArrayXi(ArrayXb,ArrayXi,ArrayXi)>,
+
             Signature<ArrayXb(ArrayXf,ArrayXb,ArrayXb)>,
             Signature<ArrayXb(ArrayXi,ArrayXb,ArrayXb)>,
             Signature<ArrayXb(ArrayXb,ArrayXb,ArrayXb)>
