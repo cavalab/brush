@@ -76,3 +76,86 @@ void from_json(const json &j, tree<Node> &t)
     }
     t = stack.back();
 }
+
+unordered_map<NodeType, int> operator_complexities = {
+    // Unary
+    {NodeType::Abs     , 3},
+    {NodeType::Acos    , 3},
+    {NodeType::Asin    , 3},
+    {NodeType::Atan    , 3},
+    {NodeType::Cos     , 3},
+    {NodeType::Cosh    , 3},
+    {NodeType::Sin     , 3},
+    {NodeType::Sinh    , 3},
+    {NodeType::Tan     , 3},
+    {NodeType::Tanh    , 3},
+    {NodeType::Ceil    , 3},
+    {NodeType::Floor   , 3},
+    {NodeType::Exp     , 3},
+    {NodeType::Log     , 3},
+    {NodeType::Logabs  , 3},
+    {NodeType::Log1p   , 3},
+    {NodeType::Sqrt    , 3},
+    {NodeType::Sqrtabs , 3},
+    {NodeType::Square  , 3},
+    {NodeType::Logistic, 3},
+
+    // timing masks
+    {NodeType::Before, 2},
+    {NodeType::After , 2},
+    {NodeType::During, 2},
+
+    // Reducers
+    {NodeType::Min   , 4},
+    {NodeType::Max   , 4},
+    {NodeType::Mean  , 4},
+    {NodeType::Median, 4},
+    {NodeType::Sum   , 4},
+    {NodeType::Prod  , 4},
+
+    // Transformers 
+    {NodeType::Softmax, 4},
+
+    // Binary
+    {NodeType::Add, 1},
+    {NodeType::Sub, 1},
+    {NodeType::Mul, 1},
+    {NodeType::Div, 1},
+    {NodeType::Pow, 1},
+
+    //split
+    {NodeType::SplitBest, 2},
+    {NodeType::SplitOn  , 2},
+
+    // boolean
+    {NodeType::And, 1},
+    {NodeType::Or , 1},
+    {NodeType::Not, 1},
+
+    // leaves
+    {NodeType::MeanLabel, 1},
+    {NodeType::Constant , 1},
+    {NodeType::Terminal , 2},
+    {NodeType::ArgMax   , 2},
+    {NodeType::Count    , 2},
+    
+    // custom
+    {NodeType::CustomUnaryOp , 5},
+    {NodeType::CustomBinaryOp, 5},
+    {NodeType::CustomSplit   , 5}
+};
+
+int TreeNode::get_complexity() const 
+{
+    int node_complexity = operator_complexities.at(data.node_type);
+    int children_complexity = 0;
+
+    auto child = first_child;
+    for(int i = 0; i < data.get_arg_count(); ++i)
+    {
+        children_complexity += child->get_complexity();
+        child = child->next_sibling;
+    }
+    
+    return node_complexity*children_complexity;
+}

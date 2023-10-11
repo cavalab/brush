@@ -28,7 +28,8 @@ using Brush::Data::TimeSeriesf;
 
 namespace Brush {
 
-enum class NodeType : uint64_t {
+enum class NodeType : uint64_t { // Each node type must have a complexity
+                                 // in operator_complexities@tree_node.cpp
     // Unary
     Abs                 = 1UL << 0UL,
     Acos                = 1UL << 1UL,

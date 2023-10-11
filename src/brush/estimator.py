@@ -57,6 +57,10 @@ class BrushEstimator(BaseEstimator):
         A dictionary with keys naming the function set and values giving the probability
         of sampling them, or a list of functions which will be weighted uniformly.
         If empty, all available functions are included in the search space.
+    objectives : list[str], default ["error", "size"]
+        list with one or more objectives to use. Options are `"error", "size", "complexity"`.
+        If `"error"` is used, then it will be the mean squared error for regression,
+        and accuracy for classification.
     initialization : {"grow", "full"}, default "grow" 
         Strategy to create the initial population. If `full`, then every expression is created
         with `max_size` nodes. If `grow`, size will be uniformly distributed.
@@ -111,6 +115,7 @@ class BrushEstimator(BaseEstimator):
         mutation_options = {"point":1/6, "insert":1/6, "delete":1/6, "subtree":1/6,
                             "toggle_weight_on":1/6, "toggle_weight_off":1/6},
         functions: list[str]|dict[str,float] = {},
+        objectives=["error", "size"],
         initialization="grow",
         algorithm="nsga2",
         random_state=None,
@@ -127,6 +132,7 @@ class BrushEstimator(BaseEstimator):
         self.cx_prob=cx_prob
         self.mutation_options=mutation_options
         self.functions=functions
+        self.objectives=objectives
         self.initialization=initialization
         self.random_state=random_state
         self.batch_size=batch_size
@@ -239,6 +245,13 @@ class BrushEstimator(BaseEstimator):
             # elif "Softmax" not in self.functions_: # TODO: implement multiclassific.
             #     self.functions_["Softmax"] = 1.0 
 
+        # Weight of each objective (+ for maximization, - for minimization)
+        obj_weight = {
+            "error"      : +1.0 if self.mode=="classification" else -1.0,
+            "size"       : -1.0,
+            "complexity" : -1.0
+        }
+        self.weights = [obj_weight[w] for w in self.objectives]
 
         # These have a default behavior to return something meaningfull if 
         # no values are set
@@ -370,23 +383,24 @@ class BrushClassifier(BrushEstimator,ClassifierMixin):
     def __init__( self, **kwargs):
         super().__init__(mode='classification',**kwargs)
 
-        # Weight of each objective (+ for maximization, - for minimization)
-        self.weights = (+1.0,-1.0)
-
+    def _error(self, ind, data: _brush.Dataset):
+        return (data.y==ind.prg.predict(data)).sum() / data.y.shape[0]
+    
     def _fitness_validation(self, ind, data: _brush.Dataset):
         # Fitness without fitting the expression, used with validation data
-        return ( # (accuracy, size)
-            (data.y==ind.prg.predict(data)).sum() / data.y.shape[0], 
-            ind.prg.size()
-        )
+
+        ind_objectives = {
+            "error"     : self._error(ind, data),
+            "size"      : ind.prg.size(),
+            "complexity": ind.prg.complexity()
+        }
+        return [ ind_objectives[obj] for obj in self.objectives ]
 
     def _fitness_function(self, ind, data: _brush.Dataset):
         ind.prg.fit(data)
-        return ( # (accuracy, size)
-            (data.y==ind.prg.predict(data)).sum() / data.y.shape[0], 
-            ind.prg.size()
-        )
-    
+
+        return self._fitness_validation(ind, data)
+
     def _make_individual(self):
         # C++'s PTC2-based `make_individual` will create a tree of at least
         # the given size. By uniformly sampling the size, we can instantiate a
@@ -461,26 +475,27 @@ class BrushRegressor(BrushEstimator, RegressorMixin):
     def __init__(self, **kwargs):
         super().__init__(mode='regressor',**kwargs)
 
-        # Weight of each objective (+ for maximization, - for minimization)
-        self.weights = (-1.0,-1.0)
+    def _error(self, ind, data: _brush.Dataset):
+        MSE = np.mean( (data.y-ind.prg.predict(data))**2 )
+        if not np.isfinite(MSE): # numeric erros, np.nan, +-np.inf
+            MSE = np.inf
+
+        return MSE
 
     def _fitness_validation(self, ind, data: _brush.Dataset):
         # Fitness without fitting the expression, used with validation data
 
-        MSE = np.mean( (data.y-ind.prg.predict(data))**2 )
-        if not np.isfinite(MSE): # numeric erros, np.nan, +-np.inf
-            MSE = np.inf
-
-        return ( MSE, ind.prg.size() )
+        ind_objectives = {
+            "error"     : self._error(ind, data),
+            "size"      : ind.prg.size(),
+            "complexity": ind.prg.complexity()
+        }
+        return [ ind_objectives[obj] for obj in self.objectives ]
 
     def _fitness_function(self, ind, data: _brush.Dataset):
         ind.prg.fit(data)
 
-        MSE = np.mean( (data.y-ind.prg.predict(data))**2 )
-        if not np.isfinite(MSE): # numeric erros, np.nan, +-np.inf
-            MSE = np.inf
-
-        return ( MSE, ind.prg.size() )
+        return self._fitness_validation(ind, data)
 
     def _make_individual(self):
         if self.initialization not in ["grow", "full"]:
