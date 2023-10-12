@@ -28,6 +28,11 @@ float calc_initial_weight(const ArrayXf& value, const ArrayXf& y)
     float prob_change = std::abs(slope(data.col(0).array() ,   // x=variable
                                        data.col(1).array() )); // y=target
 
+    // prob_change will evaluate to nan if variance(x)==0. Features with
+    // zero variance should not be used (as they behave just like a constant).
+    if (std::isnan(prob_change))
+        prob_change = 0.0;
+
     return prob_change;
 }
 

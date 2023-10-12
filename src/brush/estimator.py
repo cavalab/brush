@@ -100,7 +100,6 @@ class BrushEstimator(BaseEstimator):
         Holds the operators and terminals and sampling utilities to update programs.
     toolbox_ : deap.Toolbox
         The toolbox used by DEAP for EA algorithm. 
-
     """
     
     def __init__(
@@ -187,9 +186,9 @@ class BrushEstimator(BaseEstimator):
         for i,j in [(ind1,ind2),(ind2,ind1)]:
             child = i.prg.cross(j.prg)
             if child:
-                offspring.append(creator.Individual(child))
+                offspring.extend([creator.Individual(child)])
             else: # so we'll always have two elements to unpack in `offspring`
-                offspring.append(None)
+                offspring.extend([None])
 
         return offspring[0], offspring[1]
     
