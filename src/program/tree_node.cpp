@@ -157,5 +157,5 @@ int TreeNode::get_complexity() const
         child = child->next_sibling;
     }
     
-    return node_complexity*children_complexity;
+    return node_complexity*max(children_complexity, 1);
 }
