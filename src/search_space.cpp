@@ -1,6 +1,5 @@
 #include "search_space.h"
 #include "program/program.h"
-#include <iostream>
 
 namespace Brush{
 
@@ -28,6 +27,11 @@ float calc_initial_weight(const ArrayXf& value, const ArrayXf& y)
     // Since z-score normalizes so mean=0 and std=1, then order doesnt matter
     float prob_change = std::abs(slope(data.col(0).array() ,   // x=variable
                                        data.col(1).array() )); // y=target
+
+    // prob_change will evaluate to nan if variance(x)==0. Features with
+    // zero variance should not be used (as they behave just like a constant).
+    if (std::isnan(prob_change))
+        prob_change = 0.0;
 
     return prob_change;
 }
@@ -121,7 +125,8 @@ vector<Node> generate_terminals(const Dataset& d)
     };
 
     auto cXf = Node(NodeType::Constant, Signature<ArrayXf()>{}, true, "Cf");
-    cXf.set_prob_change(signature_avg(cXf.ret_type));
+    float floats_avg_weights = signature_avg(cXf.ret_type);
+    cXf.set_prob_change(floats_avg_weights);
     terminals.push_back(cXf);
 
     auto cXi = Node(NodeType::Constant, Signature<ArrayXi()>{}, true, "Ci");
@@ -131,6 +136,11 @@ vector<Node> generate_terminals(const Dataset& d)
     auto cXb = Node(NodeType::Constant, Signature<ArrayXb()>{}, false, "Cb");
     cXb.set_prob_change(signature_avg(cXb.ret_type));
     terminals.push_back(cXb);
+
+    // mean label node
+    auto meanlabel = Node(NodeType::MeanLabel, Signature<ArrayXf()>{}, true, "MeanLabel");
+    meanlabel.set_prob_change(floats_avg_weights);
+    terminals.push_back(meanlabel);
 
     return terminals;
 };
@@ -238,12 +248,17 @@ tree<Node> SearchSpace::PTC2(Node root, int max_d, int max_size) const
         queue.push_back(make_tuple(child_spot, a, d));
     }
 
+    int max_arity = 3;
+
     Node n;
     // Now we actually start the PTC2 procedure to create the program tree
     /* cout << "queue size: " << queue.size() << endl; */ 
     /* cout << "entering first while loop...\n"; */
-    while ( 3*(queue.size()-1) + s < max_size && queue.size() > 0) 
+    while ( queue.size() + s < max_size && queue.size() > 0) 
     {            
+        // including the queue size in the max_size, since each element in queue
+        // can grow up exponentially
+
         // by default, terminals are weighted (counts as 3 nodes in program size).
         // since every spot in queue has potential to be a terminal, we multiply
         // its size by 3. Subtracting one due to the fact that this loop will
@@ -254,7 +269,7 @@ tree<Node> SearchSpace::PTC2(Node root, int max_d, int max_size) const
         auto [qspot, t, d] = RandomDequeue(queue);
 
         /* cout << "current depth: " << d << endl; */
-        if (d == max_d)
+        if (d >= max_d)
         {
             // choose terminal of matching type
             /* cout << "getting " << DataTypeName[t] << " terminal\n"; */ 
@@ -284,7 +299,7 @@ tree<Node> SearchSpace::PTC2(Node root, int max_d, int max_size) const
             // qspot = n;
 
             if (!opt)
-                opt = sample_terminal(t, true);
+                queue.push_back(make_tuple(qspot, t, d));
 
             n = opt.value();
             
@@ -303,7 +318,10 @@ tree<Node> SearchSpace::PTC2(Node root, int max_d, int max_size) const
 
         // increment is different based on node weights
         ++s;
-        if  (n.get_is_weighted())
+        if (Is<NodeType::SplitBest>(n.node_type))
+            s += 3;
+        if ( n.get_is_weighted()==true
+        &&   Isnt<NodeType::Constant, NodeType::MeanLabel>(n.node_type) )
             s += 2;
 
         /* cout << "current tree size: " << s << endl; */

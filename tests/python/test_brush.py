@@ -16,7 +16,9 @@ def brush_args():
         pop_size=20, 
         max_size=50, 
         max_depth=6,
-        mutation_options = {"point":0.25, "insert": 0.5, "delete":  0.25},
+        cx_prob= 1/7,
+        mutation_options = {"point":1/6, "insert":1/6, "delete":1/6, "subtree":1/6,
+                            "toggle_weight_on":1/6, "toggle_weight_off":1/6},
     )
     
 @pytest.fixture
@@ -44,16 +46,21 @@ def regression_setup():
     return brush.BrushRegressor, X, y
 
 @pytest.mark.parametrize('setup,algorithm',
-                         [('classification_setup', 'nsga2'),
-                          ('classification_setup', 'ga'   ),
-                          ('regression_setup',     'nsga2'),
-                          ('regression_setup',     'ga'   )])
+                         [('classification_setup', 'nsga2island'),
+                          ('classification_setup', 'nsga2'      ),
+                          ('classification_setup', 'gaisland'   ),
+                          ('classification_setup', 'ga'         ),
+                          ('regression_setup',     'nsga2island'),
+                          ('regression_setup',     'nsga2'      ),
+                          ('regression_setup',     'gaisland'   ),
+                          ('regression_setup',     'ga'         )])
 def test_fit(setup, algorithm, brush_args, request):
     """Testing common utilities related to fitting and generic brush estimator.
     """
     
     Estimator, X, y = request.getfixturevalue(setup)
 
+    brush_args["algorithm"] = algorithm
     try:
         est = Estimator(**brush_args)
         est.fit(X, y)
@@ -79,7 +86,61 @@ def test_predict_proba(setup, brush_args, request):
     assert y_prob.shape[1] >= 2, \
         "every class should have its own column (even for binary clf)"
             
+@pytest.mark.parametrize('setup,fixed_node', [
+                                                ('classification_setup', 'Logistic'),
+                                                # ('multiclass_classification_setup', 'Softmax')
+                                             ])
+def test_fixed_nodes(setup, fixed_node, brush_args, request):
+    # Classification has a fixed root that should not change after mutation or crossover
+
+    Estimator, X, y = request.getfixturevalue(setup)
+
+    est = Estimator(**brush_args)
+    est.fit(X, y) # Calling fit to make it create the setup toolbox and variation functions
+
+    for i in range(10):
+        # Initial population
+        pop = est.toolbox_.population(n=100)
+        pop_models = []
+        for p in pop:
+            pop_models.append(p.prg.get_model())
+            assert p.prg.get_model().startswith(fixed_node), \
+                (f"An individual for {setup} was criated without {fixed_node} " +
+                 f"node on root. Model was {p.ind.get_model()}")
+
+        # Clones
+        clones = [est.toolbox_.Clone(p) for p in pop]
+        for c in clones:
+            assert c.prg.get_model().startswith(fixed_node), \
+                (f"An individual for {setup} was cloned without {fixed_node} " +
+                 f"node on root. Model was {c.ind.get_model()}")
+
+        # Mutation
+        xmen = [est.toolbox_.mutate(c) for c in clones]
+        xmen = [x for x in xmen if x is not None]
+        assert len(xmen) > 0, "Mutation didn't worked for any individual"
+        for x in xmen:
+            assert x.prg.get_model().startswith(fixed_node), \
+                (f"An individual for {setup} was mutated without {fixed_node} " +
+                 f"node on root. Model was {x.ind.get_model()}")
         
+        # Crossover
+        cxmen = []
+        [cxmen.extend(est.toolbox_.mate(c1, c2))
+         for (c1, c2) in zip(clones[::2], clones[1::2])]
+        cxmen = [x for x in cxmen if x is not None]
+        assert len(cxmen) > 0, "Crossover didn't worked for any individual"
+        for cx in cxmen:
+            assert cx.prg.get_model().startswith(fixed_node), \
+                (f"An individual for {setup} was crossovered without {fixed_node} " +
+                 f"node on root. Model was {cx.ind.get_model()}")
+            
+        # Originals still the same
+        for p, p_original_model in zip(pop, pop_models):
+            assert p.prg.get_model() == p_original_model, \
+                "Variation operator changed the original model."
+        
+
 
 # def test_random_state(): # TODO: make it work
 #     test_y = np.array( [1. , 0. , 1.4, 1. , 0. , 1. , 1. , 0. , 0. , 0.  ])

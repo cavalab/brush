@@ -14,7 +14,7 @@ from deap import algorithms, base, creator, tools
 # from tqdm import tqdm
 from types import NoneType
 import _brush
-from .deap_api import nsga2, DeapIndividual 
+from .deap_api import nsga2, nsga2island, DeapIndividual 
 # from _brush import Dataset, SearchSpace
 
 
@@ -39,6 +39,12 @@ class BrushEstimator(BaseEstimator):
         Maximum depth of GP trees in the GP program. Use 0 for no limit.
     max_size : int, default 0
         Maximum number of nodes in a tree. Use 0 for no limit.
+    n_islands : int, default 5
+        Number of independent islands to use in evolutionary framework. 
+        Ignored if `algorithm!="nsga2island"`.
+    mig_prob : float, default 0.05
+        Probability of occuring a migration between two random islands at the
+        end of a generation, must be between 0 and 1.
     cx_prob : float, default 1/7
         Probability of applying the crossover variation when generating the offspring,
         must be between 0 and 1.
@@ -61,7 +67,11 @@ class BrushEstimator(BaseEstimator):
         Distribution of sizes on the initial population. If `max_size`, then every
         expression is created with `max_size` nodes. If `uniform`, size will be
         uniformly distributed between 1 and `max_size`.
-    algorithm : {"nsga2", "ga"}, default "nsga2"
+    objectives : list[str], default ["error", "size"]
+        list with one or more objectives to use. Options are `"error", "size", "complexity"`.
+        If `"error"` is used, then it will be the mean squared error for regression,
+        and accuracy for classification.
+    algorithm : {"nsga2island", "nsga2", "gaisland", "ga"}, default "nsga2"
         Which Evolutionary Algorithm framework to use to evolve the population.
     validation_size : float, default 0.0
         Percentage of samples to use as a hold-out partition. These samples are used
@@ -97,7 +107,6 @@ class BrushEstimator(BaseEstimator):
         Holds the operators and terminals and sampling utilities to update programs.
     toolbox_ : deap.Toolbox
         The toolbox used by DEAP for EA algorithm. 
-
     """
     
     def __init__(
@@ -108,12 +117,15 @@ class BrushEstimator(BaseEstimator):
         verbosity=0,
         max_depth=3,
         max_size=20,
+        n_islands=5,
+        mig_prob=0.05,
         cx_prob= 1/7,
         mutation_options = {"point":1/6, "insert":1/6, "delete":1/6, "subtree":1/6,
                             "toggle_weight_on":1/6, "toggle_weight_off":1/6},
         functions: list[str]|dict[str,float] = {},
         initialization="uniform",
         algorithm="nsga2",
+        objectives=["error", "size"],
         random_state=None,
         validation_size: float = 0.0,
         batch_size: float = 1.0
@@ -125,9 +137,12 @@ class BrushEstimator(BaseEstimator):
         self.mode=mode
         self.max_depth=max_depth
         self.max_size=max_size
+        self.n_islands=n_islands
+        self.mig_prob=mig_prob
         self.cx_prob=cx_prob
         self.mutation_options=mutation_options
         self.functions=functions
+        self.objectives=objectives
         self.initialization=initialization
         self.random_state=random_state
         self.batch_size=batch_size
@@ -157,10 +172,10 @@ class BrushEstimator(BaseEstimator):
         # When solving multi-objective problems, selection and survival must
         # support this feature. This means that these selection operators must
         # accept a tuple of fitnesses as argument)
-        if self.algorithm=="nsga2":
+        if self.algorithm=="nsga2" or self.algorithm=="nsga2island":
             toolbox.register("select", tools.selTournamentDCD) 
             toolbox.register("survive", tools.selNSGA2)
-        elif self.algorithm=="ga":
+        elif self.algorithm=="ga" or self.algorithm=="gaisland":
             toolbox.register("select", tools.selTournament, tournsize=3) 
             def offspring(pop, MU): return pop[-MU:]
             toolbox.register("survive", offspring)
@@ -182,9 +197,9 @@ class BrushEstimator(BaseEstimator):
         for i,j in [(ind1,ind2),(ind2,ind1)]:
             child = i.prg.cross(j.prg)
             if child:
-                offspring.append(creator.Individual(child))
+                offspring.extend([creator.Individual(child)])
             else: # so we'll always have two elements to unpack in `offspring`
-                offspring.append(None)
+                offspring.extend([None])
 
         return offspring[0], offspring[1]
     
@@ -223,9 +238,30 @@ class BrushEstimator(BaseEstimator):
                                      feature_names=self.feature_names_,
                                      validation_size=self.validation_size)
 
+        if isinstance(self.functions, list):
+            self.functions_ = {k:1.0 for k in self.functions}
+        else:
+            self.functions_ = self.functions
+
         # set n classes if relevant
         if self.mode=="classification":
             self.n_classes_ = len(np.unique(y))
+
+            # Including necessary functions for classification programs. This
+            # is needed so the search space can create the hash and mapping of
+            # the functions.
+            if self.n_classes_ == 2 and "Logistic" not in self.functions_:
+                self.functions_["Logistic"] = 1.0 
+            # elif "Softmax" not in self.functions_: # TODO: implement multiclassific.
+            #     self.functions_["Softmax"] = 1.0 
+
+        # Weight of each objective (+ for maximization, - for minimization)
+        obj_weight = {
+            "error"      : +1.0 if self.mode=="classification" else -1.0,
+            "size"       : -1.0,
+            "complexity" : -1.0
+        }
+        self.weights = [obj_weight[w] for w in self.objectives]
 
         # These have a default behavior to return something meaningfull if 
         # no values are set
@@ -233,17 +269,20 @@ class BrushEstimator(BaseEstimator):
         self.train_.set_batch_size(self.batch_size)
         self.validation_ = self.data_.get_validation_data()
 
-        if isinstance(self.functions, list):
-            self.functions_ = {k:1.0 for k in self.functions}
-        else:
-            self.functions_ = self.functions
-
         self.search_space_ = _brush.SearchSpace(self.train_, self.functions_)
         self.toolbox_ = self._setup_toolbox(data_train=self.train_, data_validation=self.validation_)
 
-        self.archive_, self.logbook_ = nsga2(
-            self.toolbox_, self.max_gen, self.pop_size, self.cx_prob, 
-            (0.0<self.batch_size<1.0), self.verbosity, _brush.rnd_flt)
+        if self.algorithm=="nsga2island" or self.algorithm=="gaisland":
+            self.archive_, self.logbook_ = nsga2island(
+                self.toolbox_, self.max_gen, self.pop_size, self.n_islands,
+                self.mig_prob, self.cx_prob, 
+                (0.0<self.batch_size<1.0), self.verbosity, _brush.rnd_flt)
+        elif self.algorithm=="nsga2" or self.algorithm=="ga":
+            # nsga2 and ga differ in the toolbox
+            self.archive_, self.logbook_ = nsga2(
+                self.toolbox_, self.max_gen, self.pop_size, self.cx_prob, 
+                (0.0<self.batch_size<1.0), self.verbosity, _brush.rnd_flt)
+
 
         final_ind_idx = 0
 
@@ -265,7 +304,7 @@ class BrushEstimator(BaseEstimator):
             # Reference should be best value each obj. can have (after normalization)
             reference = np.array([1, 1])
 
-            # closest to the reference
+            # closest to the reference (smallest distance)
             final_ind_idx = np.argmin( np.linalg.norm(points - reference, axis=1) )
         else: # Best in obj.1 (loss) in validation data
             final_ind_idx = np.argmax( points[:, 0] )
@@ -362,23 +401,24 @@ class BrushClassifier(BrushEstimator,ClassifierMixin):
     def __init__( self, **kwargs):
         super().__init__(mode='classification',**kwargs)
 
-        # Weight of each objective (+ for maximization, - for minimization)
-        self.weights = (+1.0,-1.0)
-
+    def _error(self, ind, data: _brush.Dataset):
+        return (data.y==ind.prg.predict(data)).sum() / data.y.shape[0]
+    
     def _fitness_validation(self, ind, data: _brush.Dataset):
         # Fitness without fitting the expression, used with validation data
-        return ( # (accuracy, size)
-            (data.y==ind.prg.predict(data)).sum() / data.y.shape[0], 
-            ind.prg.size()
-        )
+
+        ind_objectives = {
+            "error"     : self._error(ind, data),
+            "size"      : ind.prg.size(),
+            "complexity": ind.prg.complexity()
+        }
+        return [ ind_objectives[obj] for obj in self.objectives ]
 
     def _fitness_function(self, ind, data: _brush.Dataset):
         ind.prg.fit(data)
-        return ( # (accuracy, size)
-            (data.y==ind.prg.predict(data)).sum() / data.y.shape[0], 
-            ind.prg.size()
-        )
-    
+
+        return self._fitness_validation(ind, data)
+
     def _make_individual(self):
         # C++'s PTC2-based `make_individual` will create a tree of at least
         # the given size. By uniformly sampling the size, we can instantiate a
@@ -453,26 +493,27 @@ class BrushRegressor(BrushEstimator, RegressorMixin):
     def __init__(self, **kwargs):
         super().__init__(mode='regressor',**kwargs)
 
-        # Weight of each objective (+ for maximization, - for minimization)
-        self.weights = (-1.0,-1.0)
+    def _error(self, ind, data: _brush.Dataset):
+        MSE = np.mean( (data.y-ind.prg.predict(data))**2 )
+        if not np.isfinite(MSE): # numeric erros, np.nan, +-np.inf
+            MSE = np.inf
+
+        return MSE
 
     def _fitness_validation(self, ind, data: _brush.Dataset):
         # Fitness without fitting the expression, used with validation data
 
-        MSE = np.mean( (data.y-ind.prg.predict(data))**2 )
-        if not np.isfinite(MSE): # numeric erros, np.nan, +-np.inf
-            MSE = np.inf
-
-        return ( MSE, ind.prg.size() )
+        ind_objectives = {
+            "error"     : self._error(ind, data),
+            "size"      : ind.prg.size(),
+            "complexity": ind.prg.complexity()
+        }
+        return [ ind_objectives[obj] for obj in self.objectives ]
 
     def _fitness_function(self, ind, data: _brush.Dataset):
         ind.prg.fit(data)
 
-        MSE = np.mean( (data.y-ind.prg.predict(data))**2 )
-        if not np.isfinite(MSE): # numeric erros, np.nan, +-np.inf
-            MSE = np.inf
-
-        return ( MSE, ind.prg.size() )
+        return self._fitness_validation(ind, data)
 
     def _make_individual(self):
         if self.initialization not in ["uniform", "max_size"]:

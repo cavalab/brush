@@ -75,7 +75,7 @@ protected:
                     acc += 3;
 
                 if ( (include_weight && node.get_is_weighted()==true)
-                &&   Isnt<NodeType::Constant>(node.node_type) )
+                &&   Isnt<NodeType::Constant, NodeType::MeanLabel>(node.node_type) )
                     // Taking into account the weight and multiplication, if enabled.
                     // weighted constants still count as 1 (simpler than constant terminals)
                     acc += 2;
@@ -680,6 +680,7 @@ std::optional<Program<T>> cross(const Program<T>& root, const Program<T>& other)
                             
             // fmt::print("other_spot : {}\n",other_spot.node->data);
             // swap subtrees at child_spot and other_spot
+            // TODO: do I need to delete the removed node?
             child.Tree.move_ontop(child_spot, other_spot);
             return child;
         }

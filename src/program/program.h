@@ -89,6 +89,14 @@ template<PT PType> struct Program
         SSref = std::optional<std::reference_wrapper<SearchSpace>>{s};
     }
 
+    /// @brief count the complexity of the program.
+    /// @return int complexity.
+    int complexity() const{
+        auto head = Tree.begin(); 
+        
+        return head.node->get_complexity();
+    }
+
     /// @brief count the tree size of the program, including the weights in weighted nodes.
     /// @param include_weight whether to include the node's weight in the count.
     /// @return int number of nodes.
@@ -106,7 +114,7 @@ template<PT PType> struct Program
                     acc += 3;
 
                 if ( (include_weight && node.get_is_weighted()==true)
-                &&   Isnt<NodeType::Constant>(node.node_type) )
+                &&   Isnt<NodeType::Constant, NodeType::MeanLabel>(node.node_type) )
                     // Taking into account the weight and multiplication, if enabled.
                     // weighted constants still count as 1 (simpler than constant terminals)
                     acc += 2;
@@ -142,7 +150,7 @@ template<PT PType> struct Program
                 acc += 3;
 
             if ( (include_weight && it.node->data.get_is_weighted()==true)
-            &&   Isnt<NodeType::Constant>(it.node->data.node_type) )
+            &&   Isnt<NodeType::Constant, NodeType::MeanLabel>(it.node->data.node_type) )
                 // Taking into account the weight and multiplication, if enabled.
                 // weighted constants still count as 1 (simpler than constant terminals)
                 acc += 2;
@@ -422,7 +430,7 @@ template<PT PType> struct Program
             }
 
             // add the node
-            bool is_constant = Is<NodeType::Constant>(parent->data.node_type);
+            bool is_constant = Is<NodeType::Constant, NodeType::MeanLabel>(parent->data.node_type);
             string node_label = parent->data.get_name(is_constant);
 
             if (Is<NodeType::SplitBest>(parent->data.node_type)){
