@@ -57,9 +57,10 @@ class BrushEstimator(BaseEstimator):
         A dictionary with keys naming the function set and values giving the probability
         of sampling them, or a list of functions which will be weighted uniformly.
         If empty, all available functions are included in the search space.
-    initialization : {"grow", "full"}, default "grow" 
-        Strategy to create the initial population. If `full`, then every expression is created
-        with `max_size` nodes. If `grow`, size will be uniformly distributed.
+    initialization : {"uniform", "max_size"}, default "uniform" 
+        Distribution of sizes on the initial population. If `max_size`, then every
+        expression is created with `max_size` nodes. If `uniform`, size will be
+        uniformly distributed between 1 and `max_size`.
     algorithm : {"nsga2", "ga"}, default "nsga2"
         Which Evolutionary Algorithm framework to use to evolve the population.
     validation_size : float, default 0.0
@@ -111,7 +112,7 @@ class BrushEstimator(BaseEstimator):
         mutation_options = {"point":1/6, "insert":1/6, "delete":1/6, "subtree":1/6,
                             "toggle_weight_on":1/6, "toggle_weight_off":1/6},
         functions: list[str]|dict[str,float] = {},
-        initialization="grow",
+        initialization="uniform",
         algorithm="nsga2",
         random_state=None,
         validation_size: float = 0.0,
@@ -383,16 +384,16 @@ class BrushClassifier(BrushEstimator,ClassifierMixin):
         # the given size. By uniformly sampling the size, we can instantiate a
         # population with more diversity
         
-        if self.initialization not in ["grow", "full"]:
+        if self.initialization not in ["uniform", "max_size"]:
             raise ValueError(f"Invalid argument value for `initialization`. "
-                             f"expected 'full' or 'grow'. got {self.initialization}")
+                             f"expected 'max_size' or 'uniform'. got {self.initialization}")
 
         return creator.Individual(
             self.search_space_.make_classifier(
-                self.max_depth,(0 if self.initialization=='grow' else self.max_size))
+                self.max_depth,(0 if self.initialization=='uniform' else self.max_size))
         if self.n_classes_ == 2 else
             self.search_space_.make_multiclass_classifier(
-                self.max_depth, (0 if self.initialization=='grow' else self.max_size))
+                self.max_depth, (0 if self.initialization=='uniform' else self.max_size))
         )
 
     def predict_proba(self, X):
@@ -474,13 +475,15 @@ class BrushRegressor(BrushEstimator, RegressorMixin):
         return ( MSE, ind.prg.size() )
 
     def _make_individual(self):
-        if self.initialization not in ["grow", "full"]:
+        if self.initialization not in ["uniform", "max_size"]:
             raise ValueError(f"Invalid argument value for `initialization`. "
-                             f"expected 'full' or 'grow'. got {self.initialization}")
+                             f"expected 'max_size' or 'uniform'. got {self.initialization}")
         
-        return creator.Individual( # No arguments (or zero): brush will use PARAMS passed in set_params. max_size is sampled between 1 and params['max_size'] if zero is provided
+        # No arguments (or zero): brush will use PARAMS passed in set_params.
+        # max_size is sampled between 1 and params['max_size'] if zero is provided
+        return creator.Individual(
             self.search_space_.make_regressor(
-                self.max_depth, (0 if self.initialization=='grow' else self.max_size))
+                self.max_depth, (0 if self.initialization=='uniform' else self.max_size))
         )
 
 # Under development
