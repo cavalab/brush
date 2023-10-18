@@ -13,12 +13,20 @@ void bind_search_space(py::module &m)
     // constructing it with a Dataset object, rather than initializing it as an
     // empty struct and then calling init() with the Dataset object.
     py::class_<br::SearchSpace>(m, "SearchSpace")
-        .def(py::init([](br::Data::Dataset data)
-                    {
+        .def(py::init([](br::Data::Dataset data, bool weights_init=true){
                 SearchSpace SS;
-                SS.init(data);
-                return SS; }))
-        .def(py::init<const Dataset&, const unordered_map<string,float>&>())
+                SS.init(data, {}, weights_init);
+                return SS;
+            }),
+            py::arg("data"),
+            py::arg("weights_init") = true
+        )
+        .def(py::init<const Dataset&, const unordered_map<string,float>&, 
+            bool>(),
+            py::arg("data"),
+            py::arg("user_ops"),
+            py::arg("weights_init") = true
+        )
         .def("make_regressor", &br::SearchSpace::make_regressor)
         .def("make_classifier", &br::SearchSpace::make_classifier)
         .def("make_multiclass_classifier", &br::SearchSpace::make_multiclass_classifier)
