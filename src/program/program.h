@@ -396,7 +396,7 @@ template<PT PType> struct Program
             out += fmt::format("{}\n", extras);
 
         auto get_id = [](const auto& n){
-            if (Is<NodeType::Terminal>(n->data.node_type)) 
+            if (Is<NodeType::Terminal, NodeType::MeanLabel>(n->data.node_type)) 
                 return n->data.get_name(false);
 
             return fmt::format("{}",fmt::ptr(n)).substr(2);
@@ -451,7 +451,8 @@ template<PT PType> struct Program
                 // string kid_id = fmt::format("{}",fmt::ptr(kid));
                 // kid_id = kid_id.substr(2);
 
-                if (kid->data.get_is_weighted() && Isnt<NodeType::Constant>(kid->data.node_type)){
+                if (kid->data.get_is_weighted()
+                && Isnt<NodeType::Constant, NodeType::MeanLabel>(kid->data.node_type)){
                     edge_label = fmt::format("{:.2f}",kid->data.W);
                 }
 
