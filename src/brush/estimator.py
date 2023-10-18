@@ -316,8 +316,11 @@ class BrushEstimator(BaseEstimator):
             max_vals = np.max(points, axis=0)
             points = (points - min_vals) / (max_vals - min_vals)
             
+            # nan means division by zero --- no solution dominates in that obj.
+            points = np.nan_to_num(points, nan=1.0)
+
             # Reference should be best value each obj. can have (after normalization)
-            reference = np.array([1, 1])
+            reference = np.array([1.0, 1.0])
 
             # closest to the reference (smallest distance)
             final_ind_idx = np.argmin( np.linalg.norm(points - reference, axis=1) )
