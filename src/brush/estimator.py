@@ -73,6 +73,11 @@ class BrushEstimator(BaseEstimator):
         and accuracy for classification.
     algorithm : {"nsga2island", "nsga2", "gaisland", "ga"}, default "nsga2"
         Which Evolutionary Algorithm framework to use to evolve the population.
+    weights_init : bool, default True
+        Whether the search space should initialize the sampling weights of terminal nodes
+        based on the correlation with the output y. If `False`, then all terminal nodes
+        will have the same probability of 1.0.
+
     validation_size : float, default 0.0
         Percentage of samples to use as a hold-out partition. These samples are used
         to calculate statistics during evolution, but not used to train the models.

@@ -42,8 +42,9 @@ float calc_initial_weight(const ArrayXf& value, const ArrayXf& y)
 
 /// @brief generate terminals from the dataset features and random constants.
 /// @param d a dataset
+/// @param weights_init whether the terminal prob_change should be estimated from correlations with the target value
 /// @return a vector of nodes 
-vector<Node> generate_terminals(const Dataset& d)
+vector<Node> generate_terminals(const Dataset& d, const bool weights_init)
 {
     vector<Node> terminals;
     int i = 0;
@@ -64,43 +65,46 @@ vector<Node> generate_terminals(const Dataset& d)
 
                 float prob_change = 1.0; // default value
                 
-                // if the value can be casted to float array, we can calculate slope
-                if (std::holds_alternative<ArrayXf>(value)) 
+                if (d.y.size()>0 && weights_init) 
                 {
-                    prob_change = calc_initial_weight(std::get<ArrayXf>(value), d.y);
-                }
-                else if (std::holds_alternative<ArrayXi>(value))
-                {
-                    // for each variable we create a one-vs-all binary variable, then
-                    // calculate slope. Final value will be the average of slopes
-
-                    auto tmp = std::get<ArrayXi>(value);
-
-                    //get number of unique values
-                    std::map<float, bool> uniqueMap;
-                    for(int i = 0; i < tmp.size(); i++)
-                        uniqueMap[(float)tmp(i)] = true;
-
-                    ArrayXf slopes = ArrayXf::Ones(uniqueMap.size());
-                    int slopesIterator = 0;
-                    for (const auto& pair : uniqueMap)
+                    // if the value can be casted to float array, we can calculate slope
+                    if (std::holds_alternative<ArrayXf>(value) && d.y.size()>0) 
                     {
-                        auto one_vs_all = ArrayXf::Ones(tmp.size()).array() * (tmp.array()==pair.first).cast<float>();
-
-                        slopes[slopesIterator++] = calc_initial_weight(one_vs_all, d.y);
+                        prob_change = calc_initial_weight(std::get<ArrayXf>(value), d.y);
                     }
-                    
-                    prob_change = slopes.mean();
-                }
-                else if (std::holds_alternative<ArrayXb>(value))
-                {
-                    auto tmp = std::get<ArrayXb>(value).template cast<float>();
-                    prob_change = calc_initial_weight(tmp, d.y);
-                }
-                else
-                {
-                    auto msg = fmt::format("Brush coudn't calculate the initial weight of variable {}\n",feature_name);
-                    HANDLE_ERROR_THROW(msg);
+                    else if (std::holds_alternative<ArrayXi>(value))
+                    {
+                        // for each variable we create a one-vs-all binary variable, then
+                        // calculate slope. Final value will be the average of slopes
+
+                        auto tmp = std::get<ArrayXi>(value);
+
+                        //get number of unique values
+                        std::map<float, bool> uniqueMap;
+                        for(int i = 0; i < tmp.size(); i++)
+                            uniqueMap[(float)tmp(i)] = true;
+
+                        ArrayXf slopes = ArrayXf::Ones(uniqueMap.size());
+                        int slopesIterator = 0;
+                        for (const auto& pair : uniqueMap)
+                        {
+                            auto one_vs_all = ArrayXf::Ones(tmp.size()).array() * (tmp.array()==pair.first).cast<float>();
+
+                            slopes[slopesIterator++] = calc_initial_weight(one_vs_all, d.y);
+                        }
+                        
+                        prob_change = slopes.mean();
+                    }
+                    else if (std::holds_alternative<ArrayXb>(value))
+                    {
+                        auto tmp = std::get<ArrayXb>(value).template cast<float>();
+                        prob_change = calc_initial_weight(tmp, d.y);
+                    }
+                    else
+                    {
+                        auto msg = fmt::format("Brush coudn't calculate the initial weight of variable {}\n",feature_name);
+                        HANDLE_ERROR_THROW(msg);
+                    }
                 }
                 
                 n.set_prob_change( prob_change );
@@ -154,7 +158,8 @@ void SearchSpace::print() const {
     std::cout << fmt::format("{}\n", *this) << std::flush; 
 }
 
-void SearchSpace::init(const Dataset& d, const unordered_map<string,float>& user_ops)
+void SearchSpace::init(const Dataset& d, const unordered_map<string,float>& user_ops,
+                       bool weights_init)
 {
     // fmt::print("constructing search space...\n");
     this->node_map.clear();
@@ -171,7 +176,7 @@ void SearchSpace::init(const Dataset& d, const unordered_map<string,float>& user
     // create nodes based on data types 
     terminal_types = d.unique_data_types;
 
-    vector<Node> terminals = generate_terminals(d);
+    vector<Node> terminals = generate_terminals(d, weights_init);
     
     /* fmt::print("generate nodetype\n"); */
     GenerateNodeMap(user_ops, d.unique_data_types, 
