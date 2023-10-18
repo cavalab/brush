@@ -195,21 +195,31 @@ class BrushEstimator(BaseEstimator):
         offspring = [] 
 
         for i,j in [(ind1,ind2),(ind2,ind1)]:
-            child = i.prg.cross(j.prg)
-            if child:
-                offspring.extend([creator.Individual(child)])
-            else: # so we'll always have two elements to unpack in `offspring`
-                offspring.extend([None])
+            attempts = 0
+            child = None
+            while (attempts < 3 and child is None):
+                child = i.prg.cross(j.prg)
 
+                if child is not None:
+                    child = creator.Individual(child)
+                attempts = attempts + 1
+
+            offspring.extend([child])
+
+        # so we always need to have two elements to unpack inside `offspring`
         return offspring[0], offspring[1]
     
 
     def _mutate(self, ind1):
         # offspring = (creator.Individual(ind1.prg.mutate(self.search_space_)),)
-        offspring = ind1.prg.mutate()
-        
-        if offspring:
-            return creator.Individual(offspring)
+        attempts = 0
+        offspring = None
+        while (attempts < 3 and offspring is None):
+            offspring = ind1.prg.mutate()
+            
+            if offspring is not None:
+                return creator.Individual(offspring)
+            attempts = attempts + 1
         
         return None
 
