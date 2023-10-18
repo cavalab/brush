@@ -32,6 +32,9 @@ float calc_initial_weight(const ArrayXf& value, const ArrayXf& y)
     // zero variance should not be used (as they behave just like a constant).
     if (std::isnan(prob_change))
         prob_change = 0.0;
+    else
+        // having a minimum feature weight if it was not set to zero
+        prob_change += 1e-5;
 
     return prob_change;
 }
