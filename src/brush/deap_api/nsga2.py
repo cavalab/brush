@@ -67,8 +67,7 @@ def nsga2(toolbox, NGEN, MU, CXPB, use_batch, verbosity, rnd_flt):
         # offspring = tools.selTournamentDCD(pop, len(pop))
         parents = toolbox.select(pop, len(pop))
         # offspring = [toolbox.clone(ind) for ind in offspring]
-        offspring = []
-
+        offspring, successfull = [], 0
         for ind1, ind2 in zip(parents[::2], parents[1::2]):
             off1, off2 = None, None
             if rnd_flt() < CXPB: # either mutation or crossover
@@ -77,17 +76,24 @@ def nsga2(toolbox, NGEN, MU, CXPB, use_batch, verbosity, rnd_flt):
                 off1 = toolbox.mutate(ind1)
                 off2 = toolbox.mutate(ind2)
             
-            # Inserting parent if mutation failed
-            offspring.extend([off1 if off1 is not None else toolbox.Clone(ind1)])
-            offspring.extend([off2 if off2 is not None else toolbox.Clone(ind2)])
+            if off1 is not None: # first we fit
+                successfull = successfull + 1
+                # Evaluate (instead of evaluateValidation) to fit the weights of the offspring
+                off1.fitness.values = toolbox.evaluate(off1) 
+                if use_batch: # Adjust fitness to the same data as parents
+                    off1.fitness.values = toolbox.evaluateValidation(off1, data=batch)
+            elif off1 is None: # Mutation failed
+                off1 = ind1 # just reinsert the individual in the population
+            offspring.extend([off1])
 
-        # Evaluate (instead of evaluateValidation) to fit the weights of the offspring
-        fitnesses = toolbox.map(functools.partial(toolbox.evaluate), offspring)
-        if (use_batch): #calculating objectives based on batch
-            fitnesses = toolbox.map(functools.partial(toolbox.evaluateValidation, data=batch), offspring)
-
-        for ind, fit in zip(offspring, fitnesses):
-            ind.fitness.values = fit
+            if off2 is not None:
+                successfull = successfull + 1
+                off2.fitness.values = toolbox.evaluate(off2) 
+                if use_batch:
+                    off2.fitness.values = toolbox.evaluateValidation(off2, data=batch)
+            elif off2 is None:
+                off2 = ind1
+            offspring.extend([off2])
 
         # Select the next generation population (no sorting before this step, as 
         # survive==offspring will cut it in half)
@@ -96,7 +102,7 @@ def nsga2(toolbox, NGEN, MU, CXPB, use_batch, verbosity, rnd_flt):
         pop.sort(key=lambda x: x.fitness, reverse=True)
 
         record = stats.compile(pop)
-        logbook.record(gen=gen, evals=len(offspring)+(len(pop) if use_batch else 0), **record)
+        logbook.record(gen=gen, evals=successfull+(len(pop) if use_batch else 0), **record)
 
         if verbosity > 0: 
             print(logbook.stream)
