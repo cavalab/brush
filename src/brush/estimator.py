@@ -77,7 +77,6 @@ class BrushEstimator(BaseEstimator):
         Whether the search space should initialize the sampling weights of terminal nodes
         based on the correlation with the output y. If `False`, then all terminal nodes
         will have the same probability of 1.0.
-
     validation_size : float, default 0.0
         Percentage of samples to use as a hold-out partition. These samples are used
         to calculate statistics during evolution, but not used to train the models.
@@ -132,6 +131,7 @@ class BrushEstimator(BaseEstimator):
         algorithm="nsga2",
         objectives=["error", "size"],
         random_state=None,
+        weights_init=True,
         validation_size: float = 0.0,
         batch_size: float = 1.0
         ):
@@ -151,6 +151,7 @@ class BrushEstimator(BaseEstimator):
         self.initialization=initialization
         self.random_state=random_state
         self.batch_size=batch_size
+        self.weights_init=weights_init
         self.validation_size=validation_size
 
 
@@ -284,7 +285,7 @@ class BrushEstimator(BaseEstimator):
         self.train_.set_batch_size(self.batch_size)
         self.validation_ = self.data_.get_validation_data()
 
-        self.search_space_ = _brush.SearchSpace(self.train_, self.functions_)
+        self.search_space_ = _brush.SearchSpace(self.train_, self.functions_, self.weights_init)
         self.toolbox_ = self._setup_toolbox(data_train=self.train_, data_validation=self.validation_)
 
         if self.algorithm=="nsga2island" or self.algorithm=="gaisland":
