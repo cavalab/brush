@@ -148,14 +148,23 @@ unordered_map<NodeType, int> operator_complexities = {
 int TreeNode::get_complexity() const 
 {
     int node_complexity = operator_complexities.at(data.node_type);
-    int children_complexity = 0;
+    int children_complexity_sum = 0; // acumulator for children complexities
 
     auto child = first_child;
     for(int i = 0; i < data.get_arg_count(); ++i)
     {
-        children_complexity += child->get_complexity();
+        children_complexity_sum += child->get_complexity();
         child = child->next_sibling;
     }
-    
-    return node_complexity*max(children_complexity, 1);
+
+    // avoid multiplication by zero if the node is a terminal
+    children_complexity_sum = max(children_complexity_sum, 1);
+
+    if (data.get_is_weighted()) // include the `w` and `*` if the node is weighted
+        return operator_complexities.at(NodeType::Mul)*(
+            operator_complexities.at(NodeType::Constant) + 
+            node_complexity*(children_complexity_sum)
+        );
+
+    return node_complexity*(children_complexity_sum);
 }
