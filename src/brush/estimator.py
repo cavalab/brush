@@ -13,6 +13,7 @@ import pandas as pd
 from deap import algorithms, base, creator, tools
 # from tqdm import tqdm
 from types import NoneType
+from sklearn.metrics import average_precision_score
 import _brush
 from .deap_api import nsga2, nsga2island, DeapIndividual 
 # from _brush import Dataset, SearchSpace
@@ -421,7 +422,8 @@ class BrushClassifier(BrushEstimator,ClassifierMixin):
         super().__init__(mode='classification',**kwargs)
 
     def _error(self, ind, data: _brush.Dataset):
-        return (data.y==ind.prg.predict(data)).sum() / data.y.shape[0]
+        #return (data.y==ind.prg.predict(data)).sum() / data.y.shape[0]
+        return average_precision_score(data.y, ind.prg.predict(data))
     
     def _fitness_validation(self, ind, data: _brush.Dataset):
         # Fitness without fitting the expression, used with validation data
