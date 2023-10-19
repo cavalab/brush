@@ -34,7 +34,7 @@ float calc_initial_weight(const ArrayXf& value, const ArrayXf& y)
         prob_change = 0.0;
     else
         // having a minimum feature weight if it was not set to zero
-        prob_change += 1e-5;
+        prob_change += 1e-1;
 
     return prob_change;
 }
