@@ -14,6 +14,7 @@ from deap import algorithms, base, creator, tools
 # from tqdm import tqdm
 from types import NoneType
 from sklearn.metrics import average_precision_score
+from sklearn.preprocessing import MinMaxScaler
 import _brush
 from .deap_api import nsga2, nsga2island, DeapIndividual 
 # from _brush import Dataset, SearchSpace
@@ -163,6 +164,12 @@ class BrushEstimator(BaseEstimator):
         # creator.create is used to "create new functions", and takes at least
         # 2 arguments: the name of the newly created class and a base class
 
+        # Cleaning possible previous classes that are model-dependent (clf and reg are differente)
+        if hasattr(creator, "FitnessMulti"):
+            del creator.FitnessMulti
+        if hasattr(creator, "Individual"):
+            del creator.Individual
+
         # Minimizing/maximizing problem: negative/positive weight, respectively.
         # Our classification is using the error as a metric
         # Comparing fitnesses: https://deap.readthedocs.io/en/master/api/base.html#deap.base.Fitness
@@ -191,6 +198,7 @@ class BrushEstimator(BaseEstimator):
         toolbox.register("createRandom", self._make_individual)
         toolbox.register("population", tools.initRepeat, list, toolbox.createRandom)
 
+        toolbox.register("get_objectives", lambda: self.objectives)
         toolbox.register("getBatch", data_train.get_batch)
         toolbox.register("evaluate", self._fitness_function, data=data_train)
         toolbox.register("evaluateValidation", self._fitness_validation, data=data_validation)
@@ -300,7 +308,6 @@ class BrushEstimator(BaseEstimator):
                 self.toolbox_, self.max_gen, self.pop_size, self.cx_prob, 
                 (0.0<self.batch_size<1.0), self.verbosity, _brush.rnd_flt)
 
-
         final_ind_idx = 0
 
         # Each individual is a point in the Multi-Objective space. We multiply
@@ -314,13 +321,8 @@ class BrushEstimator(BaseEstimator):
             # and multi-criteria decision making
 
             # Normalizing
-            min_vals = np.min(points, axis=0)
-            max_vals = np.max(points, axis=0)
-            points = (points - min_vals) / (max_vals - min_vals)
+            points = MinMaxScaler().fit_transform(points)
             
-            # nan means division by zero --- no solution dominates in that obj.
-            points = np.nan_to_num(points, nan=1.0)
-
             # Reference should be best value each obj. can have (after normalization)
             reference = np.array([1.0, 1.0])
 

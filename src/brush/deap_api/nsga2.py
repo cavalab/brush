@@ -1,5 +1,5 @@
 from deap import tools 
-from deap.benchmarks.tools import diversity, convergence, hypervolume
+from deap.benchmarks.tools import hypervolume
 import numpy as np
 import functools
 
@@ -18,18 +18,18 @@ def nsga2(toolbox, NGEN, MU, CXPB, use_batch, verbosity, rnd_flt):
 
     stats = tools.Statistics(calculate_statistics)
 
-    stats.register("avg", np.mean, axis=0)
-    stats.register("med", np.median, axis=0)
-    stats.register("std", np.std, axis=0)
-    stats.register("min", np.min, axis=0)
-    stats.register("max", np.max, axis=0)
+    stats.register("avg", np.nanmean, axis=0)
+    stats.register("med", np.nanmedian, axis=0)
+    stats.register("std", np.nanstd, axis=0)
+    stats.register("min", np.nanmin, axis=0)
+    stats.register("max", np.nanmax, axis=0)
 
     logbook = tools.Logbook()
-    logbook.header = "gen", "evals", "avg (O1 train, O2 train, O1 val, O2 val)", \
-                                     "med (O1 train, O2 train, O1 val, O2 val)", \
-                                     "std (O1 train, O2 train, O1 val, O2 val)", \
-                                     "min (O1 train, O2 train, O1 val, O2 val)", \
-                                     "max (O1 train, O2 train, O1 val, O2 val)"
+    logbook.header = ['gen', 'evals'] + \
+                     [f"{stat} {partition} O{objective}"
+                         for stat in ['avg', 'med', 'std', 'min', 'max']
+                         for partition in ['train', 'val']
+                         for objective in toolbox.get_objectives()]
 
     pop = toolbox.population(n=MU)
 
