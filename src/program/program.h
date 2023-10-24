@@ -396,7 +396,7 @@ template<PT PType> struct Program
             out += fmt::format("{}\n", extras);
 
         auto get_id = [](const auto& n){
-            if (Is<NodeType::Terminal, NodeType::MeanLabel>(n->data.node_type)) 
+            if (Is<NodeType::Terminal>(n->data.node_type)) 
                 return n->data.get_name(false);
 
             return fmt::format("{}",fmt::ptr(n)).substr(2);

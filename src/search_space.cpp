@@ -28,13 +28,14 @@ float calc_initial_weight(const ArrayXf& value, const ArrayXf& y)
     float prob_change = std::abs(slope(data.col(0).array() ,   // x=variable
                                        data.col(1).array() )); // y=target
 
+    // having a minimum feature weight if it was not set to zero
+    if (std::abs(prob_change)<1e-4)
+        prob_change = 1e-1;
+
     // prob_change will evaluate to nan if variance(x)==0. Features with
     // zero variance should not be used (as they behave just like a constant).
     if (std::isnan(prob_change))
         prob_change = 0.0;
-    else
-        // having a minimum feature weight if it was not set to zero
-        prob_change += 1e-1;
 
     return prob_change;
 }
@@ -131,6 +132,7 @@ vector<Node> generate_terminals(const Dataset& d, const bool weights_init)
         return sum / count;
     };
 
+    // constants for each type
     auto cXf = Node(NodeType::Constant, Signature<ArrayXf()>{}, true, "Cf");
     float floats_avg_weights = signature_avg(cXf.ret_type);
     cXf.set_prob_change(floats_avg_weights);
