@@ -76,24 +76,20 @@ def nsga2(toolbox, NGEN, MU, CXPB, use_batch, verbosity, rnd_flt):
                 off1 = toolbox.mutate(ind1)
                 off2 = toolbox.mutate(ind2)
             
-            if off1 is not None: # first we fit
+            if off1 is not None: # Mutation worked. first we fit, then add to offspring
                 successfull = successfull + 1
                 # Evaluate (instead of evaluateValidation) to fit the weights of the offspring
                 off1.fitness.values = toolbox.evaluate(off1) 
                 if use_batch: # Adjust fitness to the same data as parents
                     off1.fitness.values = toolbox.evaluateValidation(off1, data=batch)
-            elif off1 is None: # Mutation failed
-                off1 = ind1 # just reinsert the individual in the population
-            offspring.extend([off1])
+                offspring.extend([off1])
 
             if off2 is not None:
                 successfull = successfull + 1
                 off2.fitness.values = toolbox.evaluate(off2) 
                 if use_batch:
                     off2.fitness.values = toolbox.evaluateValidation(off2, data=batch)
-            elif off2 is None:
-                off2 = ind1
-            offspring.extend([off2])
+                offspring.extend([off2])
 
         # Select the next generation population (no sorting before this step, as 
         # survive==offspring will cut it in half)
