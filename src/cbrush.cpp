@@ -1,11 +1,11 @@
-#include "brushGA.h"
+#include "cbrush.h"
 #include <iostream>
 
 
 using namespace Brush;
 
 /// @brief initialize Feat object for fitting.
-void BrushGA::init()
+void CBrush::init()
 {
     
 }
