@@ -109,6 +109,7 @@ def nsga2island(toolbox, NGEN, MU, N_ISLANDS, MIGPX, CXPB, use_batch, verbosity,
                     offspring.extend([off2])
                 else:
                     failed_variations += 1
+            island_failed_variations.append(failed_variations)
 
         # Evaluate (instead of evaluateValidation) to fit the weights of the offspring
         fitnesses = toolbox.map(functools.partial(toolbox.evaluate), offspring)
