@@ -67,7 +67,7 @@ def nsga2(toolbox, NGEN, MU, CXPB, use_batch, verbosity, rnd_flt):
         # offspring = tools.selTournamentDCD(pop, len(pop))
         parents = toolbox.select(pop, len(pop))
         # offspring = [toolbox.clone(ind) for ind in offspring]
-        offspring, successfull = [], 0
+        offspring = []
         for ind1, ind2 in zip(parents[::2], parents[1::2]):
             off1, off2 = None, None
             if rnd_flt() < CXPB: # either mutation or crossover
@@ -77,7 +77,6 @@ def nsga2(toolbox, NGEN, MU, CXPB, use_batch, verbosity, rnd_flt):
                 off2 = toolbox.mutate(ind2)
             
             if off1 is not None: # Mutation worked. first we fit, then add to offspring
-                successfull = successfull + 1
                 # Evaluate (instead of evaluateValidation) to fit the weights of the offspring
                 off1.fitness.values = toolbox.evaluate(off1) 
                 if use_batch: # Adjust fitness to the same data as parents
@@ -85,7 +84,6 @@ def nsga2(toolbox, NGEN, MU, CXPB, use_batch, verbosity, rnd_flt):
                 offspring.extend([off1])
 
             if off2 is not None:
-                successfull = successfull + 1
                 off2.fitness.values = toolbox.evaluate(off2) 
                 if use_batch:
                     off2.fitness.values = toolbox.evaluateValidation(off2, data=batch)
@@ -98,7 +96,7 @@ def nsga2(toolbox, NGEN, MU, CXPB, use_batch, verbosity, rnd_flt):
         pop.sort(key=lambda x: x.fitness, reverse=True)
 
         record = stats.compile(pop)
-        logbook.record(gen=gen, evals=successfull+(len(pop) if use_batch else 0), **record)
+        logbook.record(gen=gen, evals=len(offspring)+(len(pop) if use_batch else 0), **record)
 
         if verbosity > 0: 
             print(logbook.stream)
