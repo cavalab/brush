@@ -1,5 +1,5 @@
 from deap import tools 
-from deap.benchmarks.tools import diversity, convergence, hypervolume
+from deap.benchmarks.tools import hypervolume
 import numpy as np
 import functools
 
@@ -18,18 +18,18 @@ def nsga2(toolbox, NGEN, MU, CXPB, use_batch, verbosity, rnd_flt):
 
     stats = tools.Statistics(calculate_statistics)
 
-    stats.register("avg", np.mean, axis=0)
-    stats.register("med", np.median, axis=0)
-    stats.register("std", np.std, axis=0)
-    stats.register("min", np.min, axis=0)
-    stats.register("max", np.max, axis=0)
+    stats.register("avg", np.nanmean, axis=0)
+    stats.register("med", np.nanmedian, axis=0)
+    stats.register("std", np.nanstd, axis=0)
+    stats.register("min", np.nanmin, axis=0)
+    stats.register("max", np.nanmax, axis=0)
 
     logbook = tools.Logbook()
-    logbook.header = "gen", "evals", "avg (O1 train, O2 train, O1 val, O2 val)", \
-                                     "med (O1 train, O2 train, O1 val, O2 val)", \
-                                     "std (O1 train, O2 train, O1 val, O2 val)", \
-                                     "min (O1 train, O2 train, O1 val, O2 val)", \
-                                     "max (O1 train, O2 train, O1 val, O2 val)"
+    logbook.header = ['gen', 'evals'] + \
+                     [f"{stat} {partition} O{objective}"
+                         for stat in ['avg', 'med', 'std', 'min', 'max']
+                         for partition in ['train', 'val']
+                         for objective in toolbox.get_objectives()]
 
     pop = toolbox.population(n=MU)
 
@@ -68,7 +68,6 @@ def nsga2(toolbox, NGEN, MU, CXPB, use_batch, verbosity, rnd_flt):
         parents = toolbox.select(pop, len(pop))
         # offspring = [toolbox.clone(ind) for ind in offspring]
         offspring = []
-
         for ind1, ind2 in zip(parents[::2], parents[1::2]):
             off1, off2 = None, None
             if rnd_flt() < CXPB: # either mutation or crossover
@@ -77,17 +76,18 @@ def nsga2(toolbox, NGEN, MU, CXPB, use_batch, verbosity, rnd_flt):
                 off1 = toolbox.mutate(ind1)
                 off2 = toolbox.mutate(ind2)
             
-            # Inserting parent if mutation failed
-            offspring.extend([off1 if off1 is not None else toolbox.Clone(ind1)])
-            offspring.extend([off2 if off2 is not None else toolbox.Clone(ind2)])
+            if off1 is not None: # Mutation worked. first we fit, then add to offspring
+                # Evaluate (instead of evaluateValidation) to fit the weights of the offspring
+                off1.fitness.values = toolbox.evaluate(off1) 
+                if use_batch: # Adjust fitness to the same data as parents
+                    off1.fitness.values = toolbox.evaluateValidation(off1, data=batch)
+                offspring.extend([off1])
 
-        # Evaluate (instead of evaluateValidation) to fit the weights of the offspring
-        fitnesses = toolbox.map(functools.partial(toolbox.evaluate), offspring)
-        if (use_batch): #calculating objectives based on batch
-            fitnesses = toolbox.map(functools.partial(toolbox.evaluateValidation, data=batch), offspring)
-
-        for ind, fit in zip(offspring, fitnesses):
-            ind.fitness.values = fit
+            if off2 is not None:
+                off2.fitness.values = toolbox.evaluate(off2) 
+                if use_batch:
+                    off2.fitness.values = toolbox.evaluateValidation(off2, data=batch)
+                offspring.extend([off2])
 
         # Select the next generation population (no sorting before this step, as 
         # survive==offspring will cut it in half)

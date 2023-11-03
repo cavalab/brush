@@ -89,6 +89,14 @@ template<PT PType> struct Program
         SSref = std::optional<std::reference_wrapper<SearchSpace>>{s};
     }
 
+    /// @brief count the complexity of the program.
+    /// @return int complexity.
+    int complexity() const{
+        auto head = Tree.begin(); 
+        
+        return head.node->get_complexity();
+    }
+
     /// @brief count the tree size of the program, including the weights in weighted nodes.
     /// @param include_weight whether to include the node's weight in the count.
     /// @return int number of nodes.
@@ -443,7 +451,8 @@ template<PT PType> struct Program
                 // string kid_id = fmt::format("{}",fmt::ptr(kid));
                 // kid_id = kid_id.substr(2);
 
-                if (kid->data.get_is_weighted() && Isnt<NodeType::Constant>(kid->data.node_type)){
+                if (kid->data.get_is_weighted()
+                && Isnt<NodeType::Constant, NodeType::MeanLabel>(kid->data.node_type)){
                     edge_label = fmt::format("{:.2f}",kid->data.W);
                 }
 

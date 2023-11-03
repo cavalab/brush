@@ -414,7 +414,7 @@ https://eigen.tuxfamily.org/dox/group__QuickRefPage.html#arrayonly
     template<>
     struct Function<NodeType::And>
     {
-        template<typename T> requires (!same_as<typename T::Scalar, bJet>)
+        template<typename T>
         inline auto operator()(const ArrayBase<T>& t1, const ArrayBase<T>& t2) {
             return t1 && t2;
         }
@@ -437,7 +437,7 @@ https://eigen.tuxfamily.org/dox/group__QuickRefPage.html#arrayonly
     template<>
     struct Function<NodeType::Or>
     {
-        template<typename T> requires (!same_as<typename T::Scalar, bJet>)
+        template<typename T>
         inline auto operator()(const ArrayBase<T>& t1, const ArrayBase<T>& t2) {
             return t1 || t2;
         }
@@ -451,17 +451,20 @@ https://eigen.tuxfamily.org/dox/group__QuickRefPage.html#arrayonly
     template<>
     struct Function<NodeType::Not>
     {
-        template<typename T> requires (!same_as<typename T::Scalar, bJet>)
+        template<typename T> 
         inline auto operator()(const ArrayBase<T>& t) {
-            auto trues = ArrayXb::Constant(t.size(), true);
-
-            return t != trues;
+            return !t;
         }
         template<typename T> requires same_as<typename T::Scalar, bJet>
         inline auto operator()(const ArrayBase<T>& t) {
             auto trues = ArrayXb::Constant(t.size(), true);
-
             return (t - trues);
+         
+            // for (size_t i = 0; i < t.size(); ++i) {
+            //     t.at(i).a = !t.at(i).a;
+            // }
+
+            // return t;
         }
     };
 } // Brush

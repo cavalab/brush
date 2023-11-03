@@ -27,11 +27,11 @@ def nsga2island(toolbox, NGEN, MU, N_ISLANDS, MIGPX, CXPB, use_batch, verbosity,
     stats.register("max", np.max, axis=0)
 
     logbook = tools.Logbook()
-    logbook.header = "gen", "evals", "avg (O1 train, O2 train, O1 val, O2 val)", \
-                                     "med (O1 train, O2 train, O1 val, O2 val)", \
-                                     "std (O1 train, O2 train, O1 val, O2 val)", \
-                                     "min (O1 train, O2 train, O1 val, O2 val)", \
-                                     "max (O1 train, O2 train, O1 val, O2 val)"
+    logbook.header = ['gen', 'evals'] + \
+                     [f"{stat} {partition} O{objective}"
+                         for stat in ['avg', 'med', 'std', 'min', 'max']
+                         for partition in ['train', 'val']
+                         for objective in toolbox.get_objectives()]
 
     # Tuples with start and end indexes for each island. Number of individuals
     # in each island can slightly differ if N_ISLANDS is not a divisor of MU
@@ -81,7 +81,9 @@ def nsga2island(toolbox, NGEN, MU, N_ISLANDS, MIGPX, CXPB, use_batch, verbosity,
             parents.extend(island_parents)
     
         offspring = [] # Will have the same size as pop
+        island_failed_variations = []
         for (idx_start, idx_end) in island_indexes:
+            failed_variations = 0
             for ind1, ind2 in zip(parents[idx_start:idx_end:2],
                                   parents[idx_start+1:idx_end:2]
             ):
@@ -92,9 +94,22 @@ def nsga2island(toolbox, NGEN, MU, N_ISLANDS, MIGPX, CXPB, use_batch, verbosity,
                     off1 = toolbox.mutate(ind1)
                     off2 = toolbox.mutate(ind2)
                 
-                # Inserting parent if mutation failed
-                offspring.extend([off1 if off1 is not None else toolbox.Clone(ind1)])
-                offspring.extend([off2 if off2 is not None else toolbox.Clone(ind2)])
+                if off1 is not None:
+                    off1.fitness.values = toolbox.evaluate(off1) 
+                    if use_batch:
+                        off1.fitness.values = toolbox.evaluateValidation(off1, data=batch)
+                    offspring.extend([off1])
+                else:
+                    failed_variations += 1
+
+                if off2 is not None:
+                    off2.fitness.values = toolbox.evaluate(off2) 
+                    if use_batch:
+                        off2.fitness.values = toolbox.evaluateValidation(off2, data=batch)
+                    offspring.extend([off2])
+                else:
+                    failed_variations += 1
+            island_failed_variations.append(failed_variations)
 
         # Evaluate (instead of evaluateValidation) to fit the weights of the offspring
         fitnesses = toolbox.map(functools.partial(toolbox.evaluate), offspring)
@@ -107,10 +122,15 @@ def nsga2island(toolbox, NGEN, MU, N_ISLANDS, MIGPX, CXPB, use_batch, verbosity,
 
         # Select the next generation population
         new_pop = []
-        for (idx_start, idx_end) in island_indexes:
-            island_new_pop = toolbox.survive(pop[idx_start:idx_end] \
-                                            +offspring[idx_start:idx_end], 
-                                            idx_end-idx_start)
+        for i, (idx_start, idx_end) in enumerate(island_indexes):
+            # original population combined with offspring, taking into account that variations can fail
+            island_new_pop = toolbox.survive(
+                pop[idx_start:idx_end] \
+                + offspring[
+                    idx_start-sum(island_failed_variations[:i]):idx_end+island_failed_variations[i]
+                ], 
+                idx_end-idx_start # number of selected individuals should still the same
+            )
             new_pop.extend(island_new_pop)
 
         # Migration to fill up the islands for the next generation

@@ -13,6 +13,8 @@ import pandas as pd
 from deap import algorithms, base, creator, tools
 # from tqdm import tqdm
 from types import NoneType
+from sklearn.metrics import average_precision_score
+from sklearn.preprocessing import MinMaxScaler
 import _brush
 from .deap_api import nsga2, nsga2island, DeapIndividual 
 # from _brush import Dataset, SearchSpace
@@ -63,11 +65,20 @@ class BrushEstimator(BaseEstimator):
         A dictionary with keys naming the function set and values giving the probability
         of sampling them, or a list of functions which will be weighted uniformly.
         If empty, all available functions are included in the search space.
-    initialization : {"grow", "full"}, default "grow" 
-        Strategy to create the initial population. If `full`, then every expression is created
-        with `max_size` nodes. If `grow`, size will be uniformly distributed.
-    algorithm : {"nsga2island", "nsga2", "gaisland", "ga"}, default "nsga2island"
+    initialization : {"uniform", "max_size"}, default "uniform" 
+        Distribution of sizes on the initial population. If `max_size`, then every
+        expression is created with `max_size` nodes. If `uniform`, size will be
+        uniformly distributed between 1 and `max_size`.
+    objectives : list[str], default ["error", "size"]
+        list with one or more objectives to use. Options are `"error", "size", "complexity"`.
+        If `"error"` is used, then it will be the mean squared error for regression,
+        and accuracy for classification.
+    algorithm : {"nsga2island", "nsga2", "gaisland", "ga"}, default "nsga2"
         Which Evolutionary Algorithm framework to use to evolve the population.
+    weights_init : bool, default True
+        Whether the search space should initialize the sampling weights of terminal nodes
+        based on the correlation with the output y. If `False`, then all terminal nodes
+        will have the same probability of 1.0.
     validation_size : float, default 0.0
         Percentage of samples to use as a hold-out partition. These samples are used
         to calculate statistics during evolution, but not used to train the models.
@@ -102,7 +113,6 @@ class BrushEstimator(BaseEstimator):
         Holds the operators and terminals and sampling utilities to update programs.
     toolbox_ : deap.Toolbox
         The toolbox used by DEAP for EA algorithm. 
-
     """
     
     def __init__(
@@ -119,9 +129,11 @@ class BrushEstimator(BaseEstimator):
         mutation_options = {"point":1/6, "insert":1/6, "delete":1/6, "subtree":1/6,
                             "toggle_weight_on":1/6, "toggle_weight_off":1/6},
         functions: list[str]|dict[str,float] = {},
-        initialization="grow",
-        algorithm="nsga2island",
+        initialization="uniform",
+        algorithm="nsga2",
+        objectives=["error", "size"],
         random_state=None,
+        weights_init=True,
         validation_size: float = 0.0,
         batch_size: float = 1.0
         ):
@@ -137,9 +149,11 @@ class BrushEstimator(BaseEstimator):
         self.cx_prob=cx_prob
         self.mutation_options=mutation_options
         self.functions=functions
+        self.objectives=objectives
         self.initialization=initialization
         self.random_state=random_state
         self.batch_size=batch_size
+        self.weights_init=weights_init
         self.validation_size=validation_size
 
 
@@ -149,6 +163,12 @@ class BrushEstimator(BaseEstimator):
 
         # creator.create is used to "create new functions", and takes at least
         # 2 arguments: the name of the newly created class and a base class
+
+        # Cleaning possible previous classes that are model-dependent (clf and reg are differente)
+        if hasattr(creator, "FitnessMulti"):
+            del creator.FitnessMulti
+        if hasattr(creator, "Individual"):
+            del creator.Individual
 
         # Minimizing/maximizing problem: negative/positive weight, respectively.
         # Our classification is using the error as a metric
@@ -178,6 +198,7 @@ class BrushEstimator(BaseEstimator):
         toolbox.register("createRandom", self._make_individual)
         toolbox.register("population", tools.initRepeat, list, toolbox.createRandom)
 
+        toolbox.register("get_objectives", lambda: self.objectives)
         toolbox.register("getBatch", data_train.get_batch)
         toolbox.register("evaluate", self._fitness_function, data=data_train)
         toolbox.register("evaluateValidation", self._fitness_validation, data=data_validation)
@@ -189,21 +210,31 @@ class BrushEstimator(BaseEstimator):
         offspring = [] 
 
         for i,j in [(ind1,ind2),(ind2,ind1)]:
-            child = i.prg.cross(j.prg)
-            if child:
-                offspring.append(creator.Individual(child))
-            else: # so we'll always have two elements to unpack in `offspring`
-                offspring.append(None)
+            attempts = 0
+            child = None
+            while (attempts < 3 and child is None):
+                child = i.prg.cross(j.prg)
 
+                if child is not None:
+                    child = creator.Individual(child)
+                attempts = attempts + 1
+
+            offspring.extend([child])
+
+        # so we always need to have two elements to unpack inside `offspring`
         return offspring[0], offspring[1]
     
 
     def _mutate(self, ind1):
         # offspring = (creator.Individual(ind1.prg.mutate(self.search_space_)),)
-        offspring = ind1.prg.mutate()
-        
-        if offspring:
-            return creator.Individual(offspring)
+        attempts = 0
+        offspring = None
+        while (attempts < 3 and offspring is None):
+            offspring = ind1.prg.mutate()
+            
+            if offspring is not None:
+                return creator.Individual(offspring)
+            attempts = attempts + 1
         
         return None
 
@@ -249,6 +280,13 @@ class BrushEstimator(BaseEstimator):
             # elif "Softmax" not in self.functions_: # TODO: implement multiclassific.
             #     self.functions_["Softmax"] = 1.0 
 
+        # Weight of each objective (+ for maximization, - for minimization)
+        obj_weight = {
+            "error"      : +1.0 if self.mode=="classification" else -1.0,
+            "size"       : -1.0,
+            "complexity" : -1.0
+        }
+        self.weights = [obj_weight[w] for w in self.objectives]
 
         # These have a default behavior to return something meaningfull if 
         # no values are set
@@ -256,7 +294,7 @@ class BrushEstimator(BaseEstimator):
         self.train_.set_batch_size(self.batch_size)
         self.validation_ = self.data_.get_validation_data()
 
-        self.search_space_ = _brush.SearchSpace(self.train_, self.functions_)
+        self.search_space_ = _brush.SearchSpace(self.train_, self.functions_, self.weights_init)
         self.toolbox_ = self._setup_toolbox(data_train=self.train_, data_validation=self.validation_)
 
         if self.algorithm=="nsga2island" or self.algorithm=="gaisland":
@@ -269,7 +307,6 @@ class BrushEstimator(BaseEstimator):
             self.archive_, self.logbook_ = nsga2(
                 self.toolbox_, self.max_gen, self.pop_size, self.cx_prob, 
                 (0.0<self.batch_size<1.0), self.verbosity, _brush.rnd_flt)
-
 
         final_ind_idx = 0
 
@@ -284,12 +321,10 @@ class BrushEstimator(BaseEstimator):
             # and multi-criteria decision making
 
             # Normalizing
-            min_vals = np.min(points, axis=0)
-            max_vals = np.max(points, axis=0)
-            points = (points - min_vals) / (max_vals - min_vals)
+            points = MinMaxScaler().fit_transform(points)
             
             # Reference should be best value each obj. can have (after normalization)
-            reference = np.array([1, 1])
+            reference = np.array([1.0, 1.0])
 
             # closest to the reference (smallest distance)
             final_ind_idx = np.argmin( np.linalg.norm(points - reference, axis=1) )
@@ -388,38 +423,40 @@ class BrushClassifier(BrushEstimator,ClassifierMixin):
     def __init__( self, **kwargs):
         super().__init__(mode='classification',**kwargs)
 
-        # Weight of each objective (+ for maximization, - for minimization)
-        self.weights = (+1.0,-1.0)
-
+    def _error(self, ind, data: _brush.Dataset):
+        #return (data.y==ind.prg.predict(data)).sum() / data.y.shape[0]
+        return average_precision_score(data.y, ind.prg.predict(data))
+    
     def _fitness_validation(self, ind, data: _brush.Dataset):
         # Fitness without fitting the expression, used with validation data
-        return ( # (accuracy, size)
-            (data.y==ind.prg.predict(data)).sum() / data.y.shape[0], 
-            ind.prg.size()
-        )
+
+        ind_objectives = {
+            "error"     : self._error(ind, data),
+            "size"      : ind.prg.size(),
+            "complexity": ind.prg.complexity()
+        }
+        return [ ind_objectives[obj] for obj in self.objectives ]
 
     def _fitness_function(self, ind, data: _brush.Dataset):
         ind.prg.fit(data)
-        return ( # (accuracy, size)
-            (data.y==ind.prg.predict(data)).sum() / data.y.shape[0], 
-            ind.prg.size()
-        )
-    
+
+        return self._fitness_validation(ind, data)
+
     def _make_individual(self):
         # C++'s PTC2-based `make_individual` will create a tree of at least
         # the given size. By uniformly sampling the size, we can instantiate a
         # population with more diversity
         
-        if self.initialization not in ["grow", "full"]:
+        if self.initialization not in ["uniform", "max_size"]:
             raise ValueError(f"Invalid argument value for `initialization`. "
-                             f"expected 'full' or 'grow'. got {self.initialization}")
+                             f"expected 'max_size' or 'uniform'. got {self.initialization}")
 
         return creator.Individual(
             self.search_space_.make_classifier(
-                self.max_depth,(0 if self.initialization=='grow' else self.max_size))
+                self.max_depth,(0 if self.initialization=='uniform' else self.max_size))
         if self.n_classes_ == 2 else
             self.search_space_.make_multiclass_classifier(
-                self.max_depth, (0 if self.initialization=='grow' else self.max_size))
+                self.max_depth, (0 if self.initialization=='uniform' else self.max_size))
         )
 
     def predict_proba(self, X):
@@ -479,35 +516,38 @@ class BrushRegressor(BrushEstimator, RegressorMixin):
     def __init__(self, **kwargs):
         super().__init__(mode='regressor',**kwargs)
 
-        # Weight of each objective (+ for maximization, - for minimization)
-        self.weights = (-1.0,-1.0)
+    def _error(self, ind, data: _brush.Dataset):
+        MSE = np.mean( (data.y-ind.prg.predict(data))**2 )
+        if not np.isfinite(MSE): # numeric erros, np.nan, +-np.inf
+            MSE = np.inf
+
+        return MSE
 
     def _fitness_validation(self, ind, data: _brush.Dataset):
         # Fitness without fitting the expression, used with validation data
 
-        MSE = np.mean( (data.y-ind.prg.predict(data))**2 )
-        if not np.isfinite(MSE): # numeric erros, np.nan, +-np.inf
-            MSE = np.inf
-
-        return ( MSE, ind.prg.size() )
+        ind_objectives = {
+            "error"     : self._error(ind, data),
+            "size"      : ind.prg.size(),
+            "complexity": ind.prg.complexity()
+        }
+        return [ ind_objectives[obj] for obj in self.objectives ]
 
     def _fitness_function(self, ind, data: _brush.Dataset):
         ind.prg.fit(data)
 
-        MSE = np.mean( (data.y-ind.prg.predict(data))**2 )
-        if not np.isfinite(MSE): # numeric erros, np.nan, +-np.inf
-            MSE = np.inf
-
-        return ( MSE, ind.prg.size() )
+        return self._fitness_validation(ind, data)
 
     def _make_individual(self):
-        if self.initialization not in ["grow", "full"]:
+        if self.initialization not in ["uniform", "max_size"]:
             raise ValueError(f"Invalid argument value for `initialization`. "
-                             f"expected 'full' or 'grow'. got {self.initialization}")
+                             f"expected 'max_size' or 'uniform'. got {self.initialization}")
         
-        return creator.Individual( # No arguments (or zero): brush will use PARAMS passed in set_params. max_size is sampled between 1 and params['max_size'] if zero is provided
+        # No arguments (or zero): brush will use PARAMS passed in set_params.
+        # max_size is sampled between 1 and params['max_size'] if zero is provided
+        return creator.Individual(
             self.search_space_.make_regressor(
-                self.max_depth, (0 if self.initialization=='grow' else self.max_size))
+                self.max_depth, (0 if self.initialization=='uniform' else self.max_size))
         )
 
 # Under development

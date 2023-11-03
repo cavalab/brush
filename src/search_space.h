@@ -46,7 +46,7 @@ using TreeIter = tree<Node>::pre_order_iterator;
 // enum class ProgramType: uint32_t;
 // template<typename T> struct ProgramTypeEnum; 
 
-vector<Node> generate_terminals(const Dataset& d);
+vector<Node> generate_terminals(const Dataset& d, const bool weights_init);
 
 ////////////////////////////////////////////////////////////////////////////////
 
@@ -176,14 +176,16 @@ struct SearchSpace
     /// @brief Construct a search space
     /// @param d A dataset containing terminal definitions
     /// @param user_ops Optional user-provided dictionary of operators with their probability of being chosen
-    SearchSpace(const Dataset& d, const unordered_map<string,float>& user_ops = {}){
-        init(d,user_ops);
+    /// @param weights_init whether the terminal prob_change should be estimated from correlations with the target value
+    SearchSpace(const Dataset& d, const unordered_map<string,float>& user_ops = {}, bool weights_init = true){
+        init(d,user_ops,weights_init);
     }
 
     /// @brief Called by the constructor to initialize the search space
     /// @param d A dataset containing terminal definitions
     /// @param user_ops Optional user-provided dictionary of operators with their probability of being chosen
-    void init(const Dataset& d, const unordered_map<string,float>& user_ops = {});
+    /// @param weights_init whether the terminal prob_change should be estimated from correlations with the target value
+    void init(const Dataset& d, const unordered_map<string,float>& user_ops = {}, bool weights_init = true);
 
     /// @brief check if a return type is in the node map
     /// @param R data type

@@ -49,6 +49,8 @@ class tree_node_<Node> { // size: 5*4=20 bytes (on 32 bit arch), can be reduced 
 
 		string get_model(bool pretty=false) const;
 		string get_tree_model(bool pretty=false, string offset="") const;
+
+        int get_complexity() const;
 }; 
 using TreeNode = class tree_node_<Node>; 
 

@@ -5,6 +5,8 @@
 
 TEST(SearchSpace, Initialization)
 {
+    float minimum_prob = 1e-1f; // minimum probability of changing
+    
     ArrayXf y(4); 
     y << 3.00000,  3.59876, 7.18622, 15.19294;
 
@@ -25,10 +27,10 @@ TEST(SearchSpace, Initialization)
 
     // different weights to check if searchspace is initialized correctnly
     unordered_map<string, float> user_ops = {
-        {"Add",         1},
-        {"Sub",         1},
-        {"Div",        .5},
-        {"Mul",       0.5}
+        {"Add",   1},
+        {"Sub",   1},
+        {"Div",  .5},
+        {"Mul", 0.5}
     };
 
     SearchSpace SS;
@@ -42,12 +44,11 @@ TEST(SearchSpace, Initialization)
     // manually calculated. last value is the avg of prev values
     ArrayXf expected_weights_Xf(4); // 5 elements (x3, x4, x5, c, meanLabel)    
     expected_weights_Xf << 0.80240685, 0.19270448, 0.5994426, 0.531518, 0.531518;
-
+    
     auto actual_weights_f = SS.terminal_weights.at(DataType::ArrayF);
     Eigen::Map<ArrayXf> actual_weights_Xf(actual_weights_f.data(), actual_weights_f.size());
     
     ASSERT_TRUE(expected_weights_Xf.isApprox(actual_weights_Xf));
-
     
     ArrayXf expected_weights_Xi(2); // 2 elements (x2 and c)    
     expected_weights_Xi << 0.2736814, 0.2736814;
@@ -56,7 +57,6 @@ TEST(SearchSpace, Initialization)
     Eigen::Map<ArrayXf> actual_weights_Xi(actual_weights_i.data(), actual_weights_i.size());
     
     ASSERT_TRUE(expected_weights_Xi.isApprox(actual_weights_Xi));
-
 
     ArrayXf expected_weights_Xb(2); // 2 elements (x0 and c)    
     expected_weights_Xb << 0.8117065, 0.8117065;
