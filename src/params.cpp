@@ -5,7 +5,10 @@ license: GNU/GPL v3
 #include "params.h"
 namespace Brush
 {
-    nlohmann::json PARAMS;
-    void set_params(const ns::json& j) { PARAMS = j; }
-    ns::json get_params(){ return PARAMS;}
-}
+void Parameters::init(const MatrixXf& X, const VectorXf& y) {};// TODO: implement this
+
+nlohmann::json PARAMS;
+void set_params(const ns::json& j) { PARAMS = j; }
+ns::json get_params(){ return PARAMS;}
+
+} // Brush

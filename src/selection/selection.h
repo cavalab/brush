@@ -44,19 +44,6 @@ struct Selection
     
     Selection(); 
     ~Selection();
-    Selection(string type, bool survival);
-
-    void set_operator();
-    
-    /// return type of selectionoperator
-    string get_type();
-    void set_type(string);
-    
-    /// perform selection 
-    vector<size_t> select();
-    
-    /// perform survival
-    vector<size_t> survive();
 };
 
 NLOHMANN_DEFINE_TYPE_NON_INTRUSIVE(Selection, type, survival);    

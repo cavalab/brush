@@ -24,6 +24,7 @@ namespace Brush{ namespace Util {
     #define HANDLE_ERROR_THROW( err ) (Brush::Util::HandleErrorThrow( err, __FILE__, __LINE__ ))
     #define HANDLE_WARNING( err ) (Brush::Util::HandleErrorNoThrow( err, __FILE__, __LINE__ ))
 
+    // TODO: have more errors
 }}
 
 #endif
