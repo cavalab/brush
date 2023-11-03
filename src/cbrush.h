@@ -24,7 +24,7 @@ namespace Brush
 
 class CBrush{
 public:
-    CBrush(){};         
+    CBrush(){};         // TODO: constructor should create a new parameters and use it in every other stuff
     ~CBrush(){};
     void init();
 

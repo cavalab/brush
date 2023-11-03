@@ -16,12 +16,11 @@ template<ProgramType T>
 class Population{
 public:        
     vector<Individual<T>*> individuals; 
-    Population(int p=0);
-    ~Population();
 
-    // fitness, objetives, complexity, etc
-    // setters and getters
-    // wrappers (fit, predict). This class should also have its own cpp wrapper
+    Population(int p=0);
+    ~Population(){};
+
+    void init(const SearchSpace& ss, const Parameters& params);
 };
 
 }// Pop

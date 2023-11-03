@@ -28,15 +28,22 @@ public:
     Individual();
 
     // fitness, objetives, complexity, etc
-    // setters and getters
-    // wrappers (fit, predict). This class should also have its own cpp wrapper
+    void fit(Dataset& data) { program.fit(data); };
+    auto predict(Dataset& data) { return program.predict(data); };
 
-    void initialize(const SearchSpace& ss, const Parameters& params);
+    // TODO: predict proba and classification related methods.
+
+    // setters and getters
+
+    // TODO: This class should also have its own cpp wrapper. Update it into the deap api (the idea is that the user is still able to prototype with brush, I dont think we should disable that feature)
+
+    void init(const SearchSpace& ss, const Parameters& params);
 
     // getters
     string get_model() { return program.get_model(); };
     size_t get_size() { return program.size(); };
     size_t get_depth() { return program.depth(); };
+    size_t get_complexity() { return program.complexity(); };
 };
 
 } // Pop

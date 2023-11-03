@@ -20,7 +20,7 @@ Individual<T>::Individual()
 }
 
 template<ProgramType T> 
-void Individual<T>::initialize(const SearchSpace& ss, const Parameters& params)
+void Individual<T>::init(const SearchSpace& ss, const Parameters& params)
 {
     // TODO: make searchspace use params, so it will generate something valid
     program = SS.make_program<T>(params.max_depth, params.max_size);

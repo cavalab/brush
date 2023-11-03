@@ -10,7 +10,11 @@ license: GNU/GPL v3
 #include "../params.h"
 #include "../population.h"
 
+namespace Brush {
 namespace selection {
+
+using namespace Brush;
+using namespace Pop;
 
 /*!
  * @class SelectionOperator
@@ -25,9 +29,21 @@ struct SelectionOperator
 
     virtual ~SelectionOperator();
     
-    virtual vector<size_t> select();
+    template<ProgramType T>  // TODO: HOW TO STOP TEMPLATING EVERYTHING???
+    vector<size_t> select(Population<T>& pop,  
+            const Parameters& p, const Dataset& data)
+    {   
+        // THROW_INVALID_ARGUMENT("Undefined select() operation");
+        return vector<size_t>();
+    }
     
-    virtual vector<size_t> survive();
+    template<ProgramType T>
+    vector<size_t> survive(Population<T>& pop,  
+            const Parameters& p, const Dataset& data)
+    {   
+        // THROW_INVALID_ARGUMENT("Undefined select() operation");
+        return vector<size_t>();
+    }
 };
 
 struct Parameters; // forward declaration of Parameters      
@@ -44,9 +60,27 @@ struct Selection
     
     Selection(); 
     ~Selection();
+    Selection(string type, bool survival);
+
+    void set_operator();
+    
+    /// return type of selectionoperator
+    string get_type();
+    void set_type(string);
+    
+    /// perform selection 
+    template<ProgramType T> 
+    vector<size_t> select(Population<T>& pop,  
+            const Parameters& params, const Dataset& data);
+    
+    /// perform survival
+    template<ProgramType T> 
+    vector<size_t> survive(Population<T>& pop,  
+            const Parameters& params, const Dataset& data);
 };
 
 NLOHMANN_DEFINE_TYPE_NON_INTRUSIVE(Selection, type, survival);    
 
 } // selection
+} // Brush
 #endif
