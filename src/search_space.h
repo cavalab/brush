@@ -682,6 +682,7 @@ P SearchSpace::make_program(int max_d, int max_size)
         max_d = PARAMS["max_depth"].get<int>();
     if (max_size == 0) 
         max_size = r.rnd_int(1, PARAMS["max_size"].get<int>());
+    // TODO: searchspace should infer max_size from parameters class
 
     DataType root_type = DataTypeEnum<typename P::TreeType>::value;
     ProgramType program_type = P::program_type;
