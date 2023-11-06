@@ -18,32 +18,54 @@ private:
     float fitness;     ///< aggregate fitness score
     float fitness_v;   ///< aggregate validation fitness score
 
+    size_t complexity;
     unsigned int dcounter;  ///< number of individuals this dominates
 
-    vector<unsigned int> dominated; ///< individual indices this dominates
     unsigned int rank;             ///< pareto front rank
     float crowd_dist;   ///< crowding distance on the Pareto front
 
 public:        
-    Individual();
+    Individual()
+    { // TODO: calculate this stuff
+        fitness = -1;
+        fitness_v = -1;
+        
+        complexity=-1;
+        dcounter=-1;
+        rank=-1;
+        crowd_dist = -1;
+    };
+
+    void init(const SearchSpace& ss, const Parameters& params)
+    {
+        // TODO: make searchspace use params, so it will generate something valid
+        program = SS.make_program<T>(params.max_depth, params.max_size);
+    };
 
     // fitness, objetives, complexity, etc
     void fit(Dataset& data) { program.fit(data); };
     auto predict(Dataset& data) { return program.predict(data); };
 
     // TODO: predict proba and classification related methods.
-
-    // setters and getters
-
     // TODO: This class should also have its own cpp wrapper. Update it into the deap api (the idea is that the user is still able to prototype with brush, I dont think we should disable that feature)
 
-    void init(const SearchSpace& ss, const Parameters& params);
-
-    // getters
+    // just getters
     string get_model() { return program.get_model(); };
     size_t get_size() { return program.size(); };
     size_t get_depth() { return program.depth(); };
-    size_t get_complexity() { return program.complexity(); };
+
+    // setters and getters
+    size_t set_complexity() {
+        complexity = program.complexity();
+        return complexity;
+    }; // sets and returns it
+    size_t get_complexity() const { return complexity; };
+
+    void set_rank(unsigned r){ rank=r; };
+    size_t get_rank() const { return rank; };
+
+    void set_crowd_dist(unsigned cd){ crowd_dist=cd; };
+    size_t get_crow_dist() const { return crowd_dist; };
 };
 
 } // Pop
