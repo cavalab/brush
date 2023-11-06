@@ -14,13 +14,65 @@ namespace Pop {
 
 template<ProgramType T> 
 class Population{
-public:        
-    vector<Individual<T>*> individuals; 
+private:
+    void set_island_ranges();
+public:
+    bool offspring_ready;
+    vector<Individual<T>*> individuals;
+    vector<tuple<size_t, size_t>> island_ranges;
+    vector<size_t> island_skip; // number of indexes to skip for each island (when variation fails)
+    unsigned int n_islands;
 
-    Population(int p=0);
-    ~Population(){};
-
+    Population(int p = 0, int n_islands=1);
+    
+    ~Population();
+    
+    /// initialize population of programs with a starting model and/or from file 
     void init(const SearchSpace& ss, const Parameters& params);
+
+    /// returns population size
+    int size() { return individuals.size(); };
+
+    /// update individual vector size, distributing the expressions in n_islands
+    void prep_offspring_slots();
+    
+    // TODO: WORK WITH ISLANDS
+    /// reduce programs to the indices in survivors. 
+    void update(vector<size_t> survivors);
+    
+    /// setting and getting from individuals vector (will ignore islands)
+    const Individual<T> operator [](size_t i) const {return individuals.at(i);}
+    const Individual<T> & operator [](size_t i) {return individuals.at(i);}
+
+    /// return population equations. 
+    string print_models(bool just_offspring=false, string sep="\n");
+
+    // TODO: WORK WITH ISLANDS (vector of vectors, one for each island)
+    /// return complexity-sorted Pareto front indices. 
+    vector<vector<size_t>> sorted_front(unsigned rank=1);
+    
+    /// Sort each island in increasing complexity.
+    struct SortComplexity
+    {
+        Population& pop;
+        SortComplexity(Population& p): pop(p){}
+        bool operator()(size_t i, size_t j)
+        { 
+            return pop.individuals[i].set_complexity() < pop.individuals[j].set_complexity();
+        }
+    };
+    
+    /// check for same fitness and complexity to filter uniqueness. 
+    struct SameFitComplexity
+    {
+        Population<T> & pop;
+        SameFitComplexity(Population<T>& p): pop(p){}
+        bool operator()(size_t i, size_t j)
+        {
+            return (pop.individuals[i].fitness == pop.individuals[j].fitness &&
+                   pop.individuals[i].set_complexity() == pop.individuals[j].set_complexity());
+        }
+    };
 };
 
 }// Pop
