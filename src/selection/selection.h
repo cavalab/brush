@@ -10,6 +10,9 @@ license: GNU/GPL v3
 #include "../params.h"
 #include "../population.h"
 
+// including other selection file headers
+#include "nsga2.h"
+
 namespace Brush {
 namespace selection {
 
@@ -29,7 +32,7 @@ struct SelectionOperator
 
     virtual ~SelectionOperator();
     
-    template<ProgramType T>  // TODO: HOW TO STOP TEMPLATING EVERYTHING???
+    template<ProgramType T> 
     vector<size_t> select(Population<T>& pop,  
             const Parameters& p, const Dataset& data)
     {   
