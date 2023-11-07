@@ -2,7 +2,7 @@
 
 // TODO: organize all namespaces
 namespace Brush {
-namespace selection {
+namespace Sel {
 
 using namespace Brush;
 using namespace Pop;

@@ -10,11 +10,8 @@ license: GNU/GPL v3
 #include "../params.h"
 #include "../population.h"
 
-// including other selection file headers
-#include "nsga2.h"
-
 namespace Brush {
-namespace selection {
+namespace Sel {
 
 using namespace Brush;
 using namespace Pop;
@@ -23,12 +20,13 @@ using namespace Pop;
  * @class SelectionOperator
  * @brief base class for selection operators.
  */ 
-struct SelectionOperator 
+class SelectionOperator 
 {
+public:
     bool survival; 
     string name;
 
-    //SelectionOperator(){}
+    SelectionOperator(){}
 
     virtual ~SelectionOperator();
     
@@ -57,6 +55,7 @@ struct Parameters; // forward declaration of Parameters
 */
 struct Selection
 {
+public:
     shared_ptr<SelectionOperator> pselector; 
     string type;
     bool survival;

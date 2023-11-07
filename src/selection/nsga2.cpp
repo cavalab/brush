@@ -1,7 +1,7 @@
 #include "nsga2.h"
 
 namespace Brush {
-namespace selection {
+namespace Sel {
 
 using namespace Brush;
 using namespace Pop;
