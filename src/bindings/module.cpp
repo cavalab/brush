@@ -19,6 +19,7 @@ void bind_dataset(py::module &);
 void bind_search_space(py::module &);
 void bind_programs(py::module &);
 void bind_params(py::module &);
+void bind_cbrush(py::module &);
 
 PYBIND11_MODULE(_brush, m) {
 
@@ -31,6 +32,7 @@ PYBIND11_MODULE(_brush, m) {
      bind_params(m);
      bind_dataset(m);
      bind_search_space(m);
+     bind_cbrush(m);
      py::module_ m2 = m.def_submodule("program", "Contains Program classes.");
      bind_programs(m2);
 

@@ -22,6 +22,7 @@ license: GNU/GPL v3
 #include "../params.h"
 #include "../util/utils.h"
 #include "functions.h"
+// #include "../variation.h"
 // #include "weight_optimizer.h"
 
 
@@ -530,6 +531,7 @@ template<PT PType> struct Program
 ////////////////////////////////////////////////////////////////////////////////
 // weight optimization
 #include "optimizer/weight_optimizer.h"
+#include "../variation.h"
 namespace Brush{
 
 template<ProgramType PType> 
@@ -542,20 +544,20 @@ void Program<PType>::update_weights(const Dataset& d)
     WO.update((*this), d);
 };
 
+
 ////////////////////////////////////////////////////////////////////////////////
 // mutation and crossover
-#include "../variation.h"
 template<ProgramType PType>
 std::optional<Program<PType>> Program<PType>::mutate() const
 {
-    return variation::mutate(*this, this->SSref.value().get());
+    return Brush::Var::mutate(*this, this->SSref.value().get());
 };
 
 /// swaps subtrees between this and other (note the pass by copy)
 template<ProgramType PType>
 std::optional<Program<PType>> Program<PType>::cross(Program<PType> other) const
 {
-    return variation::cross(*this, other);
+    return Brush::Var::cross(*this, other);
 };
 
 
@@ -576,5 +578,7 @@ void from_json(const json &j, Program<PType>& p)
 }
 
 }//namespace Brush
+
+
 
 #endif

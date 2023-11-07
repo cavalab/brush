@@ -9,7 +9,7 @@ namespace Brush{
 namespace Pop{
         
 
-template<Brush::ProgramType T>
+template<ProgramType T>
 void Population<T>::set_island_ranges()
 {
     // everytime we change popsize, this function must be called
@@ -29,7 +29,7 @@ void Population<T>::set_island_ranges()
     };
 }
 
-template<Brush::ProgramType T>
+template<ProgramType T>
 Population<T>::Population(int p, int n_islands)
 {
     individuals.resize(p);
@@ -43,7 +43,7 @@ Population<T>::Population(int p, int n_islands)
     offspring_ready = false;
 }
 
-template<Brush::ProgramType T>
+template<ProgramType T>
 void Population<T>::init(const SearchSpace& ss, const Parameters& params)
 {
    // TODO: load file (like feat)
@@ -55,7 +55,7 @@ void Population<T>::init(const SearchSpace& ss, const Parameters& params)
 }
 
 /// update individual vector size and island indexes
-template<Brush::ProgramType T>
+template<ProgramType T>
 void Population<T>::prep_offspring_slots()
 {	   
     if (offspring_ready)
@@ -84,7 +84,7 @@ void Population<T>::prep_offspring_slots()
     offspring_ready = true;
 }
 
-template<Brush::ProgramType T>
+template<ProgramType T>
 void Population<T>::update(vector<size_t> survivors)
 {
     if (!offspring_ready)
@@ -104,7 +104,7 @@ void Population<T>::update(vector<size_t> survivors)
     offspring_ready = false;
 }
 
-template<Brush::ProgramType T>
+template<ProgramType T>
 string Population<T>::print_models(bool just_offspring, string sep)
 {
     // not printing the island each individual belongs to
@@ -129,10 +129,10 @@ string Population<T>::print_models(bool just_offspring, string sep)
     return output;
 }
 
-template<Brush::ProgramType T>
+template<ProgramType T>
 vector<vector<size_t>> Population<T>::sorted_front(unsigned rank)
 {
-    // this is used to update archive at the end of a generation. Supose islands without offspring
+    // this is used to update archive at the end of a generation. expect islands without offspring
 
     /* Returns individuals on the Pareto front, sorted by increasign complexity. */
     vector<vector<size_t>> pf_islands;
@@ -158,7 +158,6 @@ vector<vector<size_t>> Population<T>::sorted_front(unsigned rank)
 
     return pf_islands;
 }
-
 
 } // Pop
 } // Brush

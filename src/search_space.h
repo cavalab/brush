@@ -10,6 +10,7 @@ license: GNU/GPL v3
 #include "program/nodetype.h"
 #include "program/tree_node.h"
 // #include "program/program.h"
+#include "util/error.h"
 #include "util/utils.h"
 #include "util/rnd.h"
 #include "params.h"
