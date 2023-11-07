@@ -9,6 +9,7 @@ license: GNU/GPL v3
 #include "init.h"
 #include "params.h"
 #include "selection/selection.h"
+#include "./util/rnd.h"
 #include "population.h"
 #include "taskflow/taskflow.hpp"
 
@@ -24,7 +25,7 @@ namespace Brush
 
 class CBrush{
 public:
-    CBrush(){};         // TODO: constructor should create a new parameters and use it in every other stuff
+    CBrush(){ params = Parameters(); };
     ~CBrush(){};
     void init();
 
@@ -33,82 +34,96 @@ public:
     inline void set_is_fitted(bool f){is_fitted=f;}
     inline bool get_is_fitted(){return is_fitted;}
 
-    /// set size of population 
-    void set_pop_size(int pop_size);
-    /// return population size
-    int get_pop_size();
-    
-    /// set size of max generations              
-    void set_gens(int gens);
-    ///return size of max generations
-    int get_gens();
-                
-    /// set EProblemType for shogun              
-    void set_classification(bool classification);
-    ///return type of classification flag set
-    bool get_classification();
-          
-    /// set selection method              
-    void set_selection(string sel);
-    string get_selection();
-                
-    /// set survivability              
-    void set_survival(string surv);
-    string get_survival();
-                
-    ///return cross rate for variation
-    float get_cross_rate();
-    /// set cross rate in variation              
-    void set_cross_rate(float cross_rate);
-    
-    /// sets available functions based on comma-separated list.
-    // void set_functions(const vector<string>& fns){ params.set_functions(fns); };
-    // vector<string> get_functions(){return params.get_functions();};
-                
-    ///return max_depth of programs
-    int get_max_depth();
-    /// set max depth of programs              
-    void set_max_depth(unsigned int max_depth);
-      
-    ///return max dimensionality of programs
-    int get_max_size();
-    /// set maximum sizeensionality of programs              
-    void set_max_size(unsigned int max_dim);
-    
-    /// set seeds for each core's random number generator              
-    // void set_random_state(int random_state);
-    // int get_random_state() { return params.random_state; };
-    // /// returns the actual seed determined by the input argument.
-    // int get_random_state_() { return r.get_seed(); };
-                
-    ///return fraction of data to use for training
-    float get_split();
-    /// set train fraction of dataset
-    void set_split(float sp);
+    // TODO: WRAPPER SHOULD SET ALL THESE
 
+    void set_pop_size(int pop_size){ params.pop_size = pop_size; };
+    int get_pop_size(){ return params.pop_size; };
+    
+    void set_gens(int gens){ params.gens = gens; };
+    int get_gens(){ return params.gens; };
+                
+    void set_max_depth(unsigned int max_depth){ params.max_depth = max_depth; };
+    int get_max_depth(){ return params.max_depth; };
+
+    void set_max_size(unsigned int max_size){ params.max_size = max_size; };
+    int get_max_size(){ return params.max_size; };
+    
+    void set_mode(string mode) { params.mode = mode; };
+    string get_mode(){ return params.mode; };
+
+    void set_selection(string sel){ params.sel = sel; };
+    string get_selection(){ return params.sel; };
+
+    void set_survival(string surv){ params.surv = surv; };
+    string get_survival(){ return params.surv; };
+                    
+    void set_num_islands(int n_islands){ params.num_islands = n_islands; };
+    int get_num_islands(){ return params.num_islands; };
+             
+    void set_objectives(const vector<string>& obj){params.objectives = obj; };
+    auto get_objectives(){return params.objectives; };  
+         
+    void set_random_state(int random_state) {
+        params.random_state = random_state;
+        r.set_seed(params.random_state);
+    };
+    int get_random_state() { return params.random_state; };
+    
+    void set_mig_prob(float mig_prob){ params.mig_prob = mig_prob;};
+    float get_mig_prob(){ return params.mig_prob; };
+    
+    void set_cross_prob(float cross_prob){ params.cx_prob = cross_prob;};
+    float get_cross_prob(){ return params.cx_prob; };
+    
+    // sets available functions based on comma-separated list.
+    void set_functions(const vector<string>& fns){ params.functions = fns; };
+    vector<string> get_functions(){ return params.functions; };
+                
+    void set_mutation_probs(std::map<std::string, float> mutation_probs){ params.mutation_probs = mutation_probs;};
+    std::map<std::string, float> get_mutation_probs(){ return params.mutation_probs; };
+    
+    //TODO
+    ///return fraction of data to use for training
+    // float get_split();
+    // /// set train fraction of dataset
+    // void set_split(float sp);
+
+    // TODO
     // int get_batch_size(){return params.bp.batch_size;};
     // void set_batch_size(int bs);
       
-    ///set number of threads
+    // TODO
+    ///set number of threads (and use them in taskflow)
     // void set_n_jobs(unsigned t);
     // int get_n_jobs(){return omp_get_num_threads();};
     
     ///set flag to use batch for training
-    void set_use_batch();
+    // void set_use_batch();
     
-    // getters and setters for the best solution found after evolution
+    // TODO getters and setters for the best solution found after evolution
     // predict, transform, predict_proba, etc.
     // get statistics
     // load and save best individuals
     // logger, save to file
     // execution archive
-    // random state control
     // score functions
-    // fit methods (this will run the evolution), run a single generation 
+    // fit methods (this will run the evolution)
 
+    /// train a model. TODO: take arguments needed to build the dataset. once we have it, go through params to set global options and use them
+    void fit(MatrixXf& X);
+    void fit(MatrixXf& X, VectorXf& y);
+    
     bool is_fitted; ///< keeps track of whether fit was called.
+
+    void run_generation(unsigned int g,
+                        vector<size_t> survivors,
+                        Dataset &d,
+                        float percentage,
+                        unsigned& stall_count);
 private:
-    Parameters params;  ///< hyperparameters of Feat 
+    Parameters params;  ///< hyperparameters of brush 
+
+    // TODO
     // attributes (hyperparameters)
     // update best
     // calculate/print stats
