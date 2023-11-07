@@ -19,34 +19,38 @@ using namespace Sel;
 template<ProgramType T> 
 class NSGA2 : public SelectionOperator
 {
+    // should operate only on a given island index
     /** NSGA-II based selection and survival methods. */
 
-    NSGA2(bool surv);
-    ~NSGA2();
+    // if any of the islands have overlapping indexes, parallel access and modification should be ok (because i dont increase or decrease pop size, not change island ranges inside selection)
+
+    NSGA2(bool surv){ name = "nsga2"; survival = surv; };
+    ~NSGA2(){};
 
     /// selection according to the survival scheme of NSGA-II
-    vector<size_t> select(Population<T>& pop,  
+    vector<size_t> select(Population<T>& pop, tuple<size_t, size_t> island_range,   
             const Parameters& p, const Dataset& d);
     
     /// survival according to the survival scheme of NSGA-II
-    vector<size_t> survive(Population<T>& pop,  
+    vector<size_t> survive(Population<T>& pop, tuple<size_t, size_t> island_range, 
             const Parameters& p, const Dataset& d);
     
-    //< the Pareto fronts
-    vector<vector<int>> front;                
-
     //< Fast non-dominated sorting
-    void fast_nds(vector<Individual<T>>&);                
+    vector<vector<int>> fast_nds(vector<Individual<T>>&, vector<size_t>&);                
+
+    // front cannot be an attribute because selection will be executed in different threads for different islands (this is a modificationf rom original FEAT code that I got inspiration)
 
     //< crowding distance of a front i
-    void crowding_distance(Population<T>&, int); 
+    void crowding_distance(Population<T>&, vector<vector<int>>&, int); 
         
     private:
         /// sort based on rank, breaking ties with crowding distance
         struct sort_n 
         {
             const Population<T>& pop;          ///< population address
+
             sort_n(const Population<T>& population) : pop(population) {};
+
             bool operator() (int i, int j) {
                 const Individual<T>& ind1 = pop.individuals[i];
                 const Individual<T>& ind2 = pop.individuals[j];
@@ -64,8 +68,10 @@ class NSGA2 : public SelectionOperator
         {
             const Population<T>& pop;      ///< population address
             int m;                      ///< objective index 
+
             comparator_obj(const Population<T>& population, int index) 
                 : pop(population), m(index) {};
+
             bool operator() (int i, int j) { return pop[i].obj[m] < pop[j].obj[m]; };
         };
     
