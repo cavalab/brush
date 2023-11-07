@@ -688,5 +688,7 @@ std::optional<Program<T>> cross(const Program<T>& root, const Program<T>& other)
 
     return std::nullopt;
 };
+
+// TODO: implement migration as a variation method?
 } //namespace variation
 #endif

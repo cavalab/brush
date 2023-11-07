@@ -19,6 +19,7 @@ private:
     int random_state; // TODO: constructor should set the global rng to random_state (if given, otherwise just let it work normally)
     int verbosity = 0;    
 
+    // TODO: python wrapper should have getters and setters for all this stuff
     // Evolutionary stuff
     string mode="regression"; 
     int pop_size = 100;
