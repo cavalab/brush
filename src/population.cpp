@@ -114,7 +114,7 @@ string Population<T>::print_models(bool just_offspring, string sep)
     {
         auto [idx_start, idx_end] = island_ranges.at(i);
         size_t skip = island_skip.at(i); // number of individuals to ignore because variation failed
-        
+        //TODO: use taskflow and pragma once correctly (search and fix code)
         if (just_offspring) {
             size_t delta = idx_end - idx_start; // starting from the middle of the island (where the offspring lives)
             idx_start = idx_start + delta/2;
