@@ -31,7 +31,7 @@ public:
     virtual ~SelectionOperator();
     
     template<ProgramType T> 
-    vector<size_t> select(Population<T>& pop,  
+    vector<size_t> select(Population<T>& pop, tuple<size_t, size_t> island_range, 
             const Parameters& p, const Dataset& data)
     {   
         // THROW_INVALID_ARGUMENT("Undefined select() operation");
@@ -39,7 +39,7 @@ public:
     }
     
     template<ProgramType T>
-    vector<size_t> survive(Population<T>& pop,  
+    vector<size_t> survive(Population<T>& pop, tuple<size_t, size_t> island_range, 
             const Parameters& p, const Dataset& data)
     {   
         // THROW_INVALID_ARGUMENT("Undefined select() operation");
@@ -70,14 +70,14 @@ public:
     string get_type();
     void set_type(string);
     
-    /// perform selection 
+    /// perform selection. selection uses a pop that has no offspring space
     template<ProgramType T> 
-    vector<size_t> select(Population<T>& pop,  
+    vector<size_t> select(Population<T>& pop, tuple<size_t, size_t> island_range, 
             const Parameters& params, const Dataset& data);
     
-    /// perform survival
+    /// perform survival. uses a pop with offspring space
     template<ProgramType T> 
-    vector<size_t> survive(Population<T>& pop,  
+    vector<size_t> survive(Population<T>& pop, tuple<size_t, size_t> island_range,  
             const Parameters& params, const Dataset& data);
 };
 

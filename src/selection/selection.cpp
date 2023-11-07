@@ -60,7 +60,7 @@ void Selection::set_type(string in){ type = in; set_operator();}
 
 /// perform selection 
 template<ProgramType T> 
-vector<size_t> Selection::select(Population<T>& pop,  
+vector<size_t> Selection::select(Population<T>& pop, tuple<size_t, size_t> island_range,  
         const Parameters& params, const Dataset& data)
 {       
     return pselector->select(pop, params, data);
@@ -68,7 +68,7 @@ vector<size_t> Selection::select(Population<T>& pop,
 
 /// perform survival
 template<ProgramType T> 
-vector<size_t> Selection::survive(Population<T>& pop, 
+vector<size_t> Selection::survive(Population<T>& pop, tuple<size_t, size_t> island_range, 
         const Parameters& params, const Dataset& data)
 {       
     return pselector->survive(pop, params, data);
