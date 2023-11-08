@@ -39,8 +39,11 @@ public:
 
     void init(const SearchSpace& ss, const Parameters& params)
     {
-        // TODO: make searchspace use params, so it will generate something valid
-        program = SS.make_program<T>(params.max_depth, params.max_size);
+        program = SS.make_program<T>(params, 0, 0);
+
+        // If different from zero, then the program is created with a fixed depth and size.
+        // If zero, it samples the value
+        // program = SS.make_program<T>(params, params.max_depth, params.max_size);
     };
 
     // fitness, objetives, complexity, etc

@@ -250,6 +250,14 @@ tree<Node> SearchSpace::PTC2(Node root, int max_d, int max_size) const
     int d = 1;
     // current tree size
     int s = 1;
+
+    // updating size accordingly to root node
+    if (Is<NodeType::SplitBest>(root.node_type))
+        s += 3;
+    if ( root.get_is_weighted()==true
+    &&   Isnt<NodeType::Constant, NodeType::MeanLabel>(root.node_type) )
+        s += 2;
+        
     //For each argument position a of n, Enqueue(a; g) 
     for (auto a : root.arg_types)
     { 
@@ -308,8 +316,10 @@ tree<Node> SearchSpace::PTC2(Node root, int max_d, int max_size) const
             // TreeIter new_spot = Tree.append_child(qspot, n);
             // qspot = n;
 
-            if (!opt)
+            if (!opt) {
                 queue.push_back(make_tuple(qspot, t, d));
+                continue;
+            }
 
             n = opt.value();
             
@@ -369,25 +379,29 @@ tree<Node> SearchSpace::PTC2(Node root, int max_d, int max_size) const
     return Tree;
 };
 
-RegressorProgram SearchSpace::make_regressor(int max_d, int max_size)
+// TODO: stop using params as a default argument and actually pass it (also update tests)
+RegressorProgram SearchSpace::make_regressor(int max_d, int max_size, const Parameters& params)
 {
-    return make_program<RegressorProgram>(max_d, max_size);
+    return make_program<RegressorProgram>(params, max_d, max_size);
 };
 
-ClassifierProgram SearchSpace::make_classifier(int max_d, int max_size)
+// TODO: stop using params as a default argument and actually pass it (also update tests)
+ClassifierProgram SearchSpace::make_classifier(int max_d, int max_size, const Parameters& params)
 {
-    return make_program<ClassifierProgram>(max_d, max_size);
+    return make_program<ClassifierProgram>(params, max_d, max_size);
 };
 
+// TODO: stop using params as a default argument and actually pass it (also update tests)
 MulticlassClassifierProgram SearchSpace::make_multiclass_classifier(
-    int max_d, int max_size)
+    int max_d, int max_size, const Parameters& params)
 {
-    return make_program<MulticlassClassifierProgram>(max_d, max_size);
+    return make_program<MulticlassClassifierProgram>(params, max_d, max_size);
 };
 
-RepresenterProgram SearchSpace::make_representer(int max_d, int max_size)
+// TODO: stop using params as a default argument and actually pass it (also update tests)
+RepresenterProgram SearchSpace::make_representer(int max_d, int max_size, const Parameters& params)
 {
-    return make_program<RepresenterProgram>(max_d, max_size);
+    return make_program<RepresenterProgram>(params, max_d, max_size);
 };
 
 } //Brush

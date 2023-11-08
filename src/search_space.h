@@ -146,31 +146,31 @@ struct SearchSpace
      * 
      */
     template<typename PT>
-    PT make_program(int max_d=0, int max_size=0);
+    PT make_program(const Parameters& params, int max_d=0, int max_size=0);
 
     /// @brief Makes a random regressor program. Convenience wrapper for @ref make_program
     /// @param max_d max depth of the program
     /// @param max_size max size of the program
     /// @return a regressor program 
-    RegressorProgram make_regressor(int max_d = 0, int max_size = 0);
+    RegressorProgram make_regressor(int max_d = 0, int max_size = 0, const Parameters& params=Parameters());
 
     /// @brief Makes a random classifier program. Convenience wrapper for @ref make_program
     /// @param max_d max depth of the program
     /// @param max_size max size of the program
     /// @return a classifier program 
-    ClassifierProgram make_classifier(int max_d = 0, int max_size = 0);
+    ClassifierProgram make_classifier(int max_d = 0, int max_size = 0,  const Parameters& params=Parameters());
 
     /// @brief Makes a random multiclass classifier program. Convenience wrapper for @ref make_program
     /// @param max_d max depth of the program
     /// @param max_size max size of the program
     /// @return a multiclass classifier program 
-    MulticlassClassifierProgram make_multiclass_classifier(int max_d = 0, int max_size = 0);
+    MulticlassClassifierProgram make_multiclass_classifier(int max_d = 0, int max_size = 0,  const Parameters& params=Parameters());
 
     /// @brief Makes a random representer program. Convenience wrapper for @ref make_program
     /// @param max_d max depth of the program
     /// @param max_size max size of the program
     /// @return a representer program 
-    RepresenterProgram make_representer(int max_d = 0, int max_size = 0);
+    RepresenterProgram make_representer(int max_d = 0, int max_size = 0,  const Parameters& params=Parameters());
 
     SearchSpace() = default;
 
@@ -677,15 +677,14 @@ T RandomDequeue(std::vector<T>& Q)
 };
 
 template<typename P>
-P SearchSpace::make_program(int max_d, int max_size)
+P SearchSpace::make_program(const Parameters& params, int max_d, int max_size)
 {
     // this is what makes `make_program` create uniformly distributed
     // individuals to feed initial population
-    if (max_d == 0)
-        max_d = PARAMS["max_depth"].get<int>();
-    if (max_size == 0) 
-        max_size = r.rnd_int(1, PARAMS["max_size"].get<int>());
-    // TODO: searchspace should infer max_size from parameters class
+    if (max_d < 1)
+        max_d = r.rnd_int(1, params.max_depth);
+    if (max_size < 1) 
+        max_size = r.rnd_int(1, params.max_size);
 
     DataType root_type = DataTypeEnum<typename P::TreeType>::value;
     ProgramType program_type = P::program_type;
@@ -709,9 +708,12 @@ P SearchSpace::make_program(int max_d, int max_size)
         root.fixed=true;
     }
     else {
-        // we start with a non-terminal (can be replaced inside PTC2 though, if max_size==1)
-        auto opt = sample_op(root_type);
-        if (!opt)
+        std::optional<Node> opt=std::nullopt;
+
+        if (max_size>1 && max_d>1)
+            opt = sample_op(root_type);
+
+        if (!opt) // if failed, then we dont have any operator to use as root...
             opt = sample_terminal(root_type, true);
         root = opt.value();
     }
