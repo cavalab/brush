@@ -9,8 +9,8 @@ license: GNU/GPL v3
 // #include "util/error.h"
 // #include "util/utils.h"
 
-#include "search_space.h"
-// #include "population.h"
+//#include "search_space.h"
+#include "population.h"
 
 #include <map>
 #include <optional>
@@ -21,6 +21,8 @@ license: GNU/GPL v3
 
 ////////////////////////////////////////////////////////////////////////////
 // Mutation & Crossover
+
+using namespace Brush::Pop;
 
 /**
  * @brief Namespace for variation functions like crossover and mutation. 
@@ -93,12 +95,6 @@ private:
     size_t max_depth_;
 };
 
-template<ProgramType T>
-std::optional<Program<T>> cross(const Program<T>& root, const Program<T>& other);
-
-template<ProgramType T>
-std::optional<Program<T>> mutate(const Program<T>& parent, const SearchSpace& SS);
-
 // TODO: make crossover and mutation private functions of a variation class
 // variation class should get params as argument
 // TODO: make sure every method doesnt store information, instead they retrieve it from parameters (so there's no side effect)
@@ -123,9 +119,10 @@ public:
     {};
 
     ~Variation();
-                
+
     /// method to handle variation of population
-    // void vary(Population<T>& pop, const vector<size_t>& parents);
+    void vary(Population<T>& pop, tuple<size_t, size_t> island_range, 
+              const vector<size_t>& parents);
 };
 
 

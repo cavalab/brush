@@ -339,158 +339,6 @@ public:
     }
 };
 
-
-/**
- * @brief Stochastically mutate a program.
- * 
- * Types of mutation:
- * 
- *  - point mutation changes a single node. 
- *  - insertion mutation inserts a node as the parent of an existing node, and fills in the other arguments. 
- *  - deletion mutation deletes a node.
- *  - subtree mutation inserts a new subtree into the program. 
- *  - toggle_weight_on mutation turns a node's weight ON.
- *  - toggle_weight_off mutation turns a node's weight OFF.
- * 
- * Every mutation has a probability (weight) based on global parameters. The
- * spot where the mutation will take place is sampled based on attribute 
- * `get_prob_change` of each node in the tree. Inside each type of mutation, 
- * when a new node is inserted, it is sampled based on `terminal_weights`.
- * 
- * Due to the stochastic behavior, and the several sampling steps, it may come to
- * a case where the search space does not hold any possible modification to do in
- * the program. In this case, the method returns `std::nullopt` (and has overloads
- * so it can be used in a boolean context).
- * 
- * If the mutation succeeds, the mutated program can be accessed through the
- * `.value()` attribute of the `std::optional`. 
- * 
- * This means that, if you use the mutation as `auto opt = mutate(parent, SS)`,
- * either `opt==false` or `opt.value()` contains the child program.
- * 
- * @tparam T program type
- * @param parent the program to be mutated
- * @param SS a search space
- * @return `std::optional` that may contain the child program of type `T`
- */
-template<ProgramType T>
-std::optional<Program<T>> mutate(const Program<T>& parent, const SearchSpace& SS)
-{
-    auto options = PARAMS["mutation_options"].get<std::map<string,float>>();
-
-    // whether we should write everything that happened inside the method
-    if (PARAMS.value("write_mutation_trace", false)==true) {
-        // Default fields of the trace. Initialize with default values, which are
-        // gradually changed throughout the execution of the method.
-        PARAMS["mutation_trace"] = json({
-            {"parent",           parent.get_model("compact", true)},
-            {"mutation_weights", options},
-            // default values, to be changed in case mutation works
-            {"mutation",         "not selected"},
-            {"spot_weights",     "not calculated"},
-            {"spot",             "not selected"},
-            {"child",            "failed to generate"},
-            {"status",           "initialized weight vectors"},
-            {"success",          "false"}
-        });
-    }
-    if (std::all_of(options.begin(), options.end(),
-                    [](const auto& kv) { return kv.second<=0.0; })
-    )
-    { // No mutation can be successfully applied to this solution  
-        return std::nullopt;
-    }
-
-    // choose a valid mutation option
-    string choice = r.random_choice(options);
-
-    // TODO: this could be improved (specially with the Variation class)
-    std::unique_ptr<MutationBase> mutation;
-    if (choice == "point") 
-        mutation = std::make_unique<PointMutation>(
-            SS, PARAMS["max_size"].get<int>(), PARAMS["max_depth"].get<int>());
-    else if (choice == "insert") 
-        mutation = std::make_unique<InsertMutation>(
-            SS, PARAMS["max_size"].get<int>(), PARAMS["max_depth"].get<int>());
-    else if (choice == "delete") 
-        mutation = std::make_unique<DeleteMutation>(
-            SS, PARAMS["max_size"].get<int>(), PARAMS["max_depth"].get<int>());
-    else if (choice == "toggle_weight_on") 
-        mutation = std::make_unique<ToggleWeightOnMutation>(
-            SS, PARAMS["max_size"].get<int>(), PARAMS["max_depth"].get<int>());
-    else if (choice == "toggle_weight_off") 
-        mutation = std::make_unique<ToggleWeightOffMutation>(
-            SS, PARAMS["max_size"].get<int>(), PARAMS["max_depth"].get<int>());
-    else if (choice == "subtree") 
-        mutation = std::make_unique<SubtreeMutation>(
-            SS, PARAMS["max_size"].get<int>(), PARAMS["max_depth"].get<int>());
-    else {
-        std::string msg = fmt::format("{} not a valid mutation choice", choice);
-        HANDLE_ERROR_THROW(msg);
-    }
-
-    if (PARAMS.value("write_mutation_trace", false)==true) {
-        PARAMS["mutation_trace"]["mutation"] = choice;
-    }
-
-    Program<T> child(parent);
-
-    // choose location by weighted sampling of program
-    auto weights = mutation->find_spots(child.Tree);
-
-    if (PARAMS.value("write_mutation_trace", false)==true) {
-        PARAMS["mutation_trace"]["spot_weights"] = weights;
-    }
-
-    if (std::all_of(weights.begin(), weights.end(), [](const auto& w) {
-        return w<=0.0;
-    }))
-    { // There is no spot that has a probability to be selected
-        return std::nullopt;
-    }
-
-    // apply the mutation and check if it succeeded
-    auto spot = r.select_randomly(child.Tree.begin(), child.Tree.end(),
-                                  weights.begin(), weights.end());
-
-    if (PARAMS.value("write_mutation_trace", false)==true) {
-        PARAMS["mutation_trace"]["spot"] = spot.node->get_model(false);
-        PARAMS["mutation_trace"]["status"] = "sampled the spot";
-    }
-    
-    // Every mutation here works inplace, so they return bool instead of
-    // std::optional to indicare the result of their manipulation over the
-    // program tree. Here we call the mutation function and return the result
-    bool success = (*mutation)(child.Tree, spot);
-
-    if (PARAMS.value("write_mutation_trace", false)==true) {
-        PARAMS["mutation_trace"]["status"] = "aplied the mutation";
-        if (success)
-            PARAMS["mutation_trace"]["child"] = child.get_model("compact", true);
-    }
-
-    if (success
-    && ( (child.size()  <= PARAMS["max_size"].get<int>() )
-    &&   (child.depth() <= PARAMS["max_depth"].get<int>()) )){
-
-        // success is true only if mutation returned a valid program
-        if (PARAMS.value("write_mutation_trace", false)==true) {
-            PARAMS["mutation_trace"]["success"] = true;
-        }
-
-        return child;
-    } else {
-        
-        // here we have a string in PARAMS["mutation_trace"]["child"],
-        // but success is false since it didnt return an valid program
-        if (PARAMS.value("write_mutation_trace", false)==true) {
-            PARAMS["mutation_trace"]["status"] = "mutation returned child, but it exceeds max_size or max_depth";
-            //fmt::print("{}\n", PARAMS["mutation_trace"].get<json>().dump());
-        }
-        return std::nullopt;
-    }
-}
-
 /**
  * @brief Stochastically swaps subtrees between root and other, returning a new program. 
  * 
@@ -514,102 +362,6 @@ std::optional<Program<T>> mutate(const Program<T>& parent, const SearchSpace& SS
  * @param other the donating parent
  * @return `std::optional` that may contain the child program of type `T`
  */
-template<ProgramType T>
-std::optional<Program<T>> cross(const Program<T>& root, const Program<T>& other) 
-{
-    /* subtree crossover between this and other, producing new Program */
-    // choose location by weighted sampling of program
-    // TODO: why doesn't this copy the search space reference to child?
-    Program<T> child(root);
-
-    // pick a subtree to replace
-    vector<float> child_weights(child.Tree.size());
-    std::transform(child.Tree.begin(), child.Tree.end(), 
-                   child_weights.begin(),
-                   [](const auto& n){ return n.get_prob_change(); }
-                   );
-    
-    if (std::all_of(child_weights.begin(), child_weights.end(), [](const auto& w) {
-        return w<=0.0;
-    }))
-    { // There is no spot that has a probability to be selected
-        return std::nullopt;
-    }
-
-    auto child_spot = r.select_randomly(child.Tree.begin(), 
-                                        child.Tree.end(), 
-                                        child_weights.begin(), 
-                                        child_weights.end()
-                                    );
-
-    auto child_ret_type = child_spot.node->data.ret_type;
-
-    auto allowed_size  = PARAMS["max_size"].get<int>() -
-                         ( child.size() - child.size_at(child_spot) );
-    auto allowed_depth = PARAMS["max_depth"].get<int>() - 
-                         ( child.depth_to_reach(child_spot) );
-
-    // pick a subtree to insert. Selection is based on other_weights
-    vector<float> other_weights(other.Tree.size());
-
-    // iterator to get the size of subtrees inside transform
-    auto other_iter = other.Tree.begin();
-
-    // lambda function to check feasibility of solution and increment the iterator 
-    const auto check_and_incrm = [other, &other_iter, allowed_size, allowed_depth]() -> bool {
-        int s = other.size_at( other_iter );
-        int d = other.depth_at( other_iter );
-
-        std::advance(other_iter, 1);
-        return (s <= allowed_size) && (d <= allowed_depth);
-    };
-
-    // TODO: something like `is_valid_program` in FEAT
-    std::transform(other.Tree.begin(), other.Tree.end(), 
-        other_weights.begin(),
-        [child_ret_type, check_and_incrm](const auto& n){
-            // need to pick a node that has a matching output type to the child_spot.
-            // also need to check if swaping this node wouldn't exceed max_size
-            if (check_and_incrm() && (n.ret_type == child_ret_type))
-                return n.get_prob_change(); 
-            else
-                // setting the weight to zero to indicate a non-feasible crossover point
-                return 0.0f;
-        }
-    );
-
-    bool matching_spots_found = false;
-    for (const auto& w: other_weights)
-    {
-        matching_spots_found = w > 0.0;
-
-        if (matching_spots_found) {
-            auto other_spot = r.select_randomly(
-                other.Tree.begin(), 
-                other.Tree.end(), 
-                other_weights.begin(), 
-                other_weights.end()
-            );
-                            
-            // fmt::print("other_spot : {}\n",other_spot.node->data);
-            // swap subtrees at child_spot and other_spot
-            // TODO: do I need to delete the removed node?
-            child.Tree.move_ontop(child_spot, other_spot);
-            return child;
-        }
-    }
-
-    return std::nullopt;
-}
-
-
-// TODO: make crossover and mutation private functions of a variation class
-// variation class should get params as argument
-// TODO: make sure every method doesnt store information, instead they retrieve it from parameters (so there's no side effect)
-// TODO: implement migration as a variation method?
-// TODO: delete previous mutation and crossover, and use just the variation class (implement the log for having the mutation trace)
-// A BANDIT WOULD GO HERE INSIDE VARIATION (or population?)
-
 template<Brush::ProgramType T>
 std::optional<Program<T>> Variation<T>::cross(
     const Program<T>& root, const Program<T>& other) 
@@ -698,6 +450,39 @@ std::optional<Program<T>> Variation<T>::cross(
     return std::nullopt;
 }
 
+/**
+ * @brief Stochastically mutate a program.
+ * 
+ * Types of mutation:
+ * 
+ *  - point mutation changes a single node. 
+ *  - insertion mutation inserts a node as the parent of an existing node, and fills in the other arguments. 
+ *  - deletion mutation deletes a node.
+ *  - subtree mutation inserts a new subtree into the program. 
+ *  - toggle_weight_on mutation turns a node's weight ON.
+ *  - toggle_weight_off mutation turns a node's weight OFF.
+ * 
+ * Every mutation has a probability (weight) based on global parameters. The
+ * spot where the mutation will take place is sampled based on attribute 
+ * `get_prob_change` of each node in the tree. Inside each type of mutation, 
+ * when a new node is inserted, it is sampled based on `terminal_weights`.
+ * 
+ * Due to the stochastic behavior, and the several sampling steps, it may come to
+ * a case where the search space does not hold any possible modification to do in
+ * the program. In this case, the method returns `std::nullopt` (and has overloads
+ * so it can be used in a boolean context).
+ * 
+ * If the mutation succeeds, the mutated program can be accessed through the
+ * `.value()` attribute of the `std::optional`. 
+ * 
+ * This means that, if you use the mutation as `auto opt = mutate(parent, SS)`,
+ * either `opt==false` or `opt.value()` contains the child program.
+ * 
+ * @tparam T program type
+ * @param parent the program to be mutated
+ * @param SS a search space
+ * @return `std::optional` that may contain the child program of type `T`
+ */
 template<Brush::ProgramType T>
 std::optional<Program<T>> Variation<T>::mutate(const Program<T>& parent)
 {
@@ -768,6 +553,65 @@ std::optional<Program<T>> Variation<T>::mutate(const Program<T>& parent)
 
         return std::nullopt;
     }
+}
+
+template <Brush::ProgramType T>
+void Variation<T>::vary(Population<T>& pop, tuple<size_t, size_t> island_range, 
+          const vector<size_t>& parents)
+{
+    /*!
+     * performs variation on the current population. 
+     *
+     * @param   pop: current population
+     * @param  	parents: indices of population to use for variation
+     * @param  	params: feat parameters
+     *
+     * @return  appends params.pop_size offspring derived from parent variation
+     */
+
+    assert(pop.offspring_ready
+        && ("Population does not have slots for generating the offspring. "
+           +"You should `prep_offspring_slots`. `vary` will add new xmen individuals "
+           +"starting from the middle of the island"));
+
+    // parents should be within island range. TODO: assert that they are
+
+    auto [idx_start, idx_end] = island_range;
+    size_t delta = idx_end - idx_start;
+    size_t vary_start = delta/2;
+    
+    // TODO: fix pragma omp usage
+    //#pragma omp parallel for
+    for (unsigned i = vary_start; i<idx_end; ++i)
+    {
+        // pass check for children undergoing variation     
+        std::optional<Program<T>> opt=std::nullopt; // new individual                   
+        while (!opt)
+        {
+            Individual<T>& mom = pop.individuals.at(
+                r.select_randomly(parents.begin(), parents.end()));
+      
+            if ( r() < parameters.cx_prob)      // crossover
+            {
+                // get random mom and dad, make copies 
+                Individual<T>& dad = pop.individuals.at(
+                    r.select_randomly(parents.begin(), parents.end()));
+                
+                opt = cross(mom, dad);                
+            }
+            else                        // mutation
+            {
+               opt = mutate(mom);
+            }
+
+            if (opt) // no optional value was returned
+            {
+                auto child = opt.value();
+                assert(child.size()>0);
+                pop.individuals.at(i) = child;
+            }
+        }    
+   }
 }
 
 } //namespace Var

@@ -505,17 +505,17 @@ template<PT PType> struct Program
     ////////////////////////////////////////////////////////////////////////////
     // Mutation & Crossover
 
-    /// @brief convenience wrapper for :cpp:func:`variation:mutate()` in variation.h
-    /// @return a mutated version of this program
-    std::optional<Program<PType>> mutate() const;
+    // /// @brief convenience wrapper for :cpp:func:`variation:mutate()` in variation.h
+    // /// @return a mutated version of this program
+    // std::optional<Program<PType>> mutate() const;
 
-    /**
-     * @brief convenience wrapper for :cpp:func:`variation:cross` in variation.h
-     * 
-     * @param other another program to cross with this one. 
-     * @return a new version of this and the other program
-     */
-    std::optional<Program<PType>> cross(Program<PType> other) const;
+    // /**
+    //  * @brief convenience wrapper for :cpp:func:`variation:cross` in variation.h
+    //  * 
+    //  * @param other another program to cross with this one. 
+    //  * @return a new version of this and the other program
+    //  */
+    // std::optional<Program<PType>> cross(Program<PType> other) const;
 
     /// @brief turns program tree into a linear program. 
     /// @return a vector of nodes encoding the program in reverse polish notation
@@ -531,7 +531,7 @@ template<PT PType> struct Program
 ////////////////////////////////////////////////////////////////////////////////
 // weight optimization
 #include "optimizer/weight_optimizer.h"
-#include "../variation.h"
+// #include "../variation.h"
 namespace Brush{
 
 template<ProgramType PType> 
@@ -547,18 +547,18 @@ void Program<PType>::update_weights(const Dataset& d)
 
 ////////////////////////////////////////////////////////////////////////////////
 // mutation and crossover
-template<ProgramType PType>
-std::optional<Program<PType>> Program<PType>::mutate() const
-{
-    return Brush::Var::mutate(*this, this->SSref.value().get());
-};
+// template<ProgramType PType>
+// std::optional<Program<PType>> Program<PType>::mutate() const
+// {
+//     return Brush::Var::mutate(*this, this->SSref.value().get());
+// };
 
-/// swaps subtrees between this and other (note the pass by copy)
-template<ProgramType PType>
-std::optional<Program<PType>> Program<PType>::cross(Program<PType> other) const
-{
-    return Brush::Var::cross(*this, other);
-};
+// /// swaps subtrees between this and other (note the pass by copy)
+// template<ProgramType PType>
+// std::optional<Program<PType>> Program<PType>::cross(Program<PType> other) const
+// {
+//     return Brush::Var::cross(*this, other);
+// };
 
 
 ////////////////////////////////////////////////////////////////////////////////
