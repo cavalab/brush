@@ -9,6 +9,7 @@ license: GNU/GPL v3
 #include "init.h"
 #include "population.h"
 #include "params.h"
+#include "./eval/evaluation.h"
 #include "selection/selection.h"
 #include "./util/rnd.h"
 #include "taskflow/taskflow.hpp"
@@ -23,6 +24,7 @@ namespace Brush
 
 using namespace Pop;
 using namespace Sel;
+using namespace Eval;
 
 // using namespace variation;
 
@@ -135,17 +137,20 @@ private:
 
     Population<T> pop;       	///< population of programs
     Selection selector;        	///< selection algorithm
+    Evaluation<T> evaluator;      	///< evaluation code
     Variation<T> variator;  	///< variation operators
     Selection survivor;       	///< survival algorithm
     
+    // TODO: MISSING CLASSES: timer, archive, logger
+
     // TODO
-    // attributes (hyperparameters)
     // update best
     // calculate/print stats
 };
 
 int main(){
   
+  // TODO: USE TASKFLOW TO DO THE ISLAND STUFF
   tf::Executor executor;
   tf::Taskflow taskflow;
 

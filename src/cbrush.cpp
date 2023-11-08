@@ -39,6 +39,7 @@ void CBrush<T>::run_generation(unsigned int g,
                             float fraction,
                             unsigned& stall_count)
 {
+    // TODO: implement custom behavior for first generation (specially regarding evaluator)
     params.current_gen = g;
 
     // select parents
@@ -47,7 +48,9 @@ void CBrush<T>::run_generation(unsigned int g,
     // // variation to produce offspring
     variator.vary(pop, pop.get_island_range(0), parents);
 
-    // TODO: needs to create the evaluator
+    // TODO: needs to create the evaluator (and calculate the information on train and validation partition)
+    evaluator.fitness(pop.individuals, data, params, true);
+    evaluator.validation(pop.individuals, data, params, true);
 
     // // select survivors from combined pool of parents and offspring
     survivors = survivor.survive(pop, pop.get_island_range(0), data);
