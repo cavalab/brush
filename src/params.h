@@ -17,15 +17,16 @@ struct Parameters
 public:
     // TODO: setters and getters for all parameters? (and do checks in setters?)
 
-    // TODO: attribute current_gen 
-
     // settings
     int random_state; // TODO: constructor should set the global rng to random_state (if given, otherwise just let it work normally)
     //int verbosity = 0; // TODO: implement log and verbosity    
 
+    // TODO: every parameter should have a default value
     // TODO: python wrapper should have getters and setters for all this stuff
     // Evolutionary stuff
     string mode="regression"; 
+
+    unsigned int current_gen = 1;
 
     int pop_size = 100;
     int gens = 100;      
@@ -38,8 +39,8 @@ public:
     int num_islands=5;
 
     // variation
-    std::map<std::string, float> mutation_probs; // TODO: should be an map
-    float cx_prob;         ///< cross rate for variation
+    std::map<std::string, float> mutation_probs;
+    float cx_prob=0.2;         ///< cross rate for variation
     float mig_prob = 0.05;
     
     string scorer_;   ///< actual loss function used, determined by error

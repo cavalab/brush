@@ -7,22 +7,24 @@ license: GNU/GPL v3
 #define CBrush_H
 
 #include "init.h"
+#include "population.h"
 #include "params.h"
 #include "selection/selection.h"
 #include "./util/rnd.h"
-#include "population.h"
 #include "taskflow/taskflow.hpp"
 
 // TODO: improve the includes (why does this lines below does not work?)
 // #include "variation.h"
 // #include "selection.h"
 
-// using namespace selection;
-// using namespace variation;
 
 namespace Brush
 {
 
+using namespace Pop;
+// using namespace variation;
+
+template <ProgramType T>
 class CBrush{
 public:
     CBrush(){ params = Parameters(); };
@@ -123,6 +125,11 @@ public:
 private:
     Parameters params;  ///< hyperparameters of brush 
 
+    Population<T> pop;       	///< population of programs
+    // Selection selector;        	///< selection algorithm
+    // Variation<T> variator;  	///< variation operators
+    // Selection survivor;       	///< survival algorithm
+    
     // TODO
     // attributes (hyperparameters)
     // update best
