@@ -22,12 +22,19 @@ namespace Brush
 {
 
 using namespace Pop;
+using namespace Sel;
+
 // using namespace variation;
 
 template <ProgramType T>
 class CBrush{
 public:
-    CBrush(){ params = Parameters(); };
+    CBrush()
+    : params(Parameters())
+    , ss(SearchSpace())
+    , variator(Variation<T>(params, ss))
+    {};
+
     ~CBrush(){};
     void init();
 
@@ -124,11 +131,12 @@ public:
                         unsigned& stall_count);
 private:
     Parameters params;  ///< hyperparameters of brush 
+    SearchSpace ss;
 
     Population<T> pop;       	///< population of programs
-    // Selection selector;        	///< selection algorithm
-    // Variation<T> variator;  	///< variation operators
-    // Selection survivor;       	///< survival algorithm
+    Selection selector;        	///< selection algorithm
+    Variation<T> variator;  	///< variation operators
+    Selection survivor;       	///< survival algorithm
     
     // TODO
     // attributes (hyperparameters)

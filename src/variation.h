@@ -95,12 +95,7 @@ private:
     size_t max_depth_;
 };
 
-// TODO: make crossover and mutation private functions of a variation class
-// variation class should get params as argument
 // TODO: make sure every method doesnt store information, instead they retrieve it from parameters (so there's no side effect)
-// TODO: implement migration as a variation method?
-// TODO: delete previous mutation and crossover, and use just the variation class (implement the log for having the mutation trace)
-    // A BANDIT WOULD GO HERE INSIDE VARIATION (or population?)
 
 template<ProgramType T>
 class Variation 
@@ -113,19 +108,24 @@ private:
 
     std::optional<Program<T>> mutate(const Program<T>& parent);
 public:
-    Variation(const Parameters& params, const SearchSpace& ss)
+    Variation() = default;
+    
+    Variation(Parameters& params, SearchSpace& ss)
         : parameters(params)
         , search_space(ss)
     {};
 
-    ~Variation();
+    ~Variation() {};
+
+    void init(Parameters& params, SearchSpace& ss){
+        parameters = params;
+        search_space = ss;
+    };
 
     /// method to handle variation of population
     void vary(Population<T>& pop, tuple<size_t, size_t> island_range, 
               const vector<size_t>& parents);
 };
-
-
 
 } //namespace Var
 } //namespace Brush

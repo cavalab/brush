@@ -9,12 +9,14 @@ license: GNU/GPL v3
 #include "../init.h"
 #include "../params.h"
 #include "../population.h"
+#include "../variation.h"
 
 namespace Brush {
 namespace Sel {
 
 using namespace Brush;
 using namespace Pop;
+using namespace Var;
 
 /*!
  * @class SelectionOperator
@@ -47,7 +49,7 @@ public:
     }
 };
 
-struct Parameters; // forward declaration of Parameters      
+// struct Parameters; // forward declaration of Parameters      
 
 /*!
 * @class Selection

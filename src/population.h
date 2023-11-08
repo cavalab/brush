@@ -34,6 +34,9 @@ public:
     /// returns population size
     int size() { return individuals.size(); };
 
+    tuple<size_t, size_t> get_island_range(int island) {
+        return island_ranges.at(island); };
+
     /// update individual vector size, distributing the expressions in n_islands
     void prep_offspring_slots();
     

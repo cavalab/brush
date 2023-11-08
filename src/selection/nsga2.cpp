@@ -15,6 +15,7 @@ size_t NSGA2<T>::tournament(vector<Individual<T>>& pop, size_t i, size_t j) cons
     Individual<T>& ind1 = pop.at(i);
     Individual<T>& ind2 = pop.at(j);
 
+    // TODO: implement this 
     int flag = ind1.check_dominance(ind2);
     
     if (flag == 1) // ind1 dominates ind2

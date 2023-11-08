@@ -15,6 +15,8 @@ void CBrush<T>::init()
     // set up the pop, variator, etc
     set_is_fitted(false);
 
+    // TODO: INIT SEARCH SPACE AND VARIATION HERE
+
     // TODO: implement stuff below
     // // start the clock
     // timer.Reset();
@@ -33,27 +35,25 @@ void CBrush<T>::init()
 template <ProgramType T>
 void CBrush<T>::run_generation(unsigned int g,
                             vector<size_t> survivors,
-                            Dataset &d,
+                            Dataset &data,
                             float fraction,
                             unsigned& stall_count)
 {
     params.current_gen = g;
 
     // select parents
-    // vector<size_t> parents = selector.select(pop, params, *d.t);
+    vector<size_t> parents = selector.select(pop, pop.get_island_range(0), data);
     
     // // variation to produce offspring
-    // variator.vary(pop, parents, params,*d.t);
+    variator.vary(pop, pop.get_island_range(0), parents);
 
-    // // evaluate offspring
-    // evaluator.fitness(pop.individuals, *d.t, params, true);
-    // evaluator.validation(pop.individuals, *d.v, params, true);
+    // TODO: needs to create the evaluator
 
     // // select survivors from combined pool of parents and offspring
-    // survivors = survivor.survive(pop, params, *d.t);
+    survivors = survivor.survive(pop, pop.get_island_range(0), data);
    
     // // reduce population to survivors
-    // pop.update(survivors);
+    pop.update(survivors);
     
     // bool updated_best = update_best(d);
 }
