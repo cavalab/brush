@@ -1,9 +1,9 @@
 #ifndef POPULATION_H
 #define POPULATION_H
 
-#include "program/program.h"
 #include "search_space.h"
 #include "individual.h"
+#include "program/program.h"
 
 using std::vector;
 using std::string;
@@ -22,6 +22,7 @@ public:
     vector<tuple<size_t, size_t>> island_ranges;
     vector<size_t> island_skip; // number of indexes to skip for each island (when variation fails)
     unsigned int n_islands;
+    float mig_prob;
 
     Population(int p = 0, int n_islands=1);
     
@@ -47,10 +48,16 @@ public:
     /// return population equations. 
     string print_models(bool just_offspring=false, string sep="\n");
 
-    // TODO: WORK WITH ISLANDS (vector of vectors, one for each island)
-    /// return complexity-sorted Pareto front indices. 
+    /// return complexity-sorted Pareto front indices for each island
     vector<vector<size_t>> sorted_front(unsigned rank=1);
+
+    // pareto front ignoring island divisions
+    vector<size_t> hall_of_fame(unsigned rank=1);
     
+    // perform a migration in the population. Individuals from sorted front or hall of fame will replace others by the
+    // probability set in parameters. Expects a population without offspring
+    void migrate();
+
     /// Sort each island in increasing complexity.
     struct SortComplexity
     {

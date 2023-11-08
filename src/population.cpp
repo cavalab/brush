@@ -46,6 +46,8 @@ Population<T>::Population(int p, int n_islands)
 template<ProgramType T>
 void Population<T>::init(const SearchSpace& ss, const Parameters& params)
 {
+    this->mig_prob = params.mig_prob;
+
    // TODO: load file (like feat)
     #pragma omp parallel for
     for (int i = 0; i< individuals.size(); ++i)
@@ -58,6 +60,12 @@ void Population<T>::init(const SearchSpace& ss, const Parameters& params)
 template<ProgramType T>
 void Population<T>::prep_offspring_slots()
 {	   
+    // reading and writing is thread-safe, as long as there's no overlap on island ranges.
+    // manipulating a vector IS NOT thread-safe (inserting and erasing elements).
+    // So, prep_offspring_slots and update should be the synchronization points, not 
+    // operations performed concurrently
+
+    // TODO: add _SingleThreaded in funcname
     if (offspring_ready)
         HANDLE_ERROR_THROW("Allocating space in population that already has active offspring slots");
 
@@ -132,10 +140,41 @@ string Population<T>::print_models(bool just_offspring, string sep)
 template<ProgramType T>
 vector<vector<size_t>> Population<T>::sorted_front(unsigned rank)
 {
-    // this is used to update archive at the end of a generation. expect islands without offspring
+    // this is used to migration and update archive at the end of a generation. expect islands without offspring
 
     /* Returns individuals on the Pareto front, sorted by increasign complexity. */
     vector<vector<size_t>> pf_islands;
+    pf_islands.resize(n_islands);
+
+    for (int i=0; i<n_islands; ++i)
+    {
+        auto [idx_start, idx_end] = island_ranges.at(i);
+        vector<size_t> pf;
+
+        for (unsigned int i =idx_start; i<idx_end; ++i)
+        {
+            // this assumes that rank was previously calculated. It is set in selection (ie nsga2) if the information is useful to select/survive
+            if (individuals.at(i).rank == rank)
+                pf.push_back(i);
+        }
+        std::sort(pf.begin(),pf.end(),SortComplexity(*this)); 
+        auto it = std::unique(pf.begin(),pf.end(),SameFitComplexity(*this));
+        
+        pf.resize(std::distance(pf.begin(),it));
+        pf_islands.at(i) = pf;
+    }
+
+    return pf_islands;
+}
+
+
+template<ProgramType T>
+vector<size_t> Population<T>::hall_of_fame(unsigned rank)
+{
+    // this is used to migration and update archive at the end of a generation. expect islands without offspring
+
+    /* Returns individuals on the Pareto front, sorted by increasign complexity. */
+    vector<size_t> pf_islands;
     pf_islands.resize(n_islands);
 
     for (int i=0; i<n_islands; ++i)
@@ -157,7 +196,72 @@ vector<vector<size_t>> Population<T>::sorted_front(unsigned rank)
     }
 
     return pf_islands;
+
+    vector<size_t> pf(0);
+    for (unsigned int i =0; i<individuals.size(); ++i)
+    {
+        if (individuals.at(i).rank == rank)
+            pf.push_back(i);
+    }
+    std::sort(pf.begin(),pf.end(),SortComplexity(*this)); 
+    auto it = std::unique(pf.begin(),pf.end(),SameFitComplexity(*this));
+    pf.resize(std::distance(pf.begin(),it));
+    return pf;
 }
+
+
+template<ProgramType T>
+void Population<T>::migrate()
+{
+    assert(!offspring_ready
+        && "pop with offspring dont migrate (run update before calling this)");
+
+    auto island_fronts = sorted_front();
+    auto global_hall_of_fame = hall_of_fame();
+
+    // This is not thread safe (as it is now)
+    for (int island=0; island<n_islands; ++island)
+    {
+        auto [idx_start, idx_end] = island_ranges.at(island);
+        for (unsigned int i =idx_start; i<idx_end; ++i)
+        {
+            if (r() < mig_prob)
+            {
+                size_t migrating_idx;
+                // determine if incoming individual comes from global or local hall of fame
+                if (r() < 0.5 && n_islands>1) { // from global hall of fame
+                    migrating_idx = r.select_randomly(
+                        global_hall_of_fame.begin(),
+                        global_hall_of_fame.end());
+                }
+                else { // from any other local hall of fame
+                    // finding other island indexes
+                    vector<int> other_islands(n_islands-1);
+                    iota(other_islands.begin(), other_islands.end(), 0);
+
+                    // skipping current island
+                    auto it = other_islands.begin();
+                    std::advance(it, island);
+                    for (;it != other_islands.end(); ++it) {
+                        ++(*it);
+                    }
+
+                    // picking other island
+                    int other_island = r.select_randomly(
+                        other_islands.begin(),
+                        other_islands.end());
+
+                    migrating_idx = r.select_randomly(
+                        island_fronts.at(other_island).begin(),
+                        island_fronts.at(other_island).end());
+                }
+                
+                individuals.at(i) = individuals.at(migrating_idx);
+            }
+        }
+    }
+}
+
 
 } // Pop
 } // Brush
