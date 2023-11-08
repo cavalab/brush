@@ -28,7 +28,9 @@ using std::stof;
 #include "../../src/init.h"
 #include "../../src/data/data.h"
 #include "../../src/program/operator.h"
+#include "../../src/variation.h"
 using namespace Brush;
 using namespace Brush::Data;
+using namespace Brush::Var;
 
 #endif
