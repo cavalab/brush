@@ -578,14 +578,19 @@ void Variation<T>::vary(Population<T>& pop, tuple<size_t, size_t> island_range,
 
     auto [idx_start, idx_end] = island_range;
     size_t delta = idx_end - idx_start;
-    size_t vary_start = delta/2;
+    
+    idx_start = idx_start + (delta/2);
     
     // TODO: fix pragma omp usage
     //#pragma omp parallel for
-    for (unsigned i = vary_start; i<idx_end; ++i)
+    for (unsigned i = idx_start; i<idx_end; ++i)
     {
         // pass check for children undergoing variation     
-        std::optional<Program<T>> opt=std::nullopt; // new individual                   
+        std::optional<Program<T>> opt=std::nullopt; // new individual  
+        // TODO: do it a certain number of times. after that, assume that variation cant
+        // change individual and add it to the island failures
+        // TODO: use island failures everytime that I'm iterating on the offspring of an
+        // island (with island range)                
         while (!opt)
         {
             Individual<T>& mom = pop.individuals.at(

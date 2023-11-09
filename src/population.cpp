@@ -90,6 +90,11 @@ void Population<T>::prep_offspring_slots()
 
     this->individuals = &expanded_pop;
     offspring_ready = true;
+
+    // Im keeping the offspring and parents in the same population object, because we
+    // have operations that require them together (archive, hall of fame.)
+    // The downside is having to be aware that islands will create offsprings
+    // intercalated with other islands
 }
 
 template<ProgramType T>

@@ -1,7 +1,4 @@
-#ifndef METRICS_H
-#define METRICS_H
-
-#include "../data/data.h"
+#include "metrics.h"
 
 namespace Brush {
 namespace Eval {
@@ -10,11 +7,14 @@ namespace Eval {
 
 /// mean squared error
 float mse(const VectorXf& y, const VectorXf& yhat, VectorXf& loss, 
-            const vector<float>& weights=vector<float>() );
-            
+            const vector<float>& weights)
+{
+    loss = (yhat - y).array().pow(2);
+    return loss.mean(); 
+}
+
+
 // TODO: implement other metrics. Right know I have just the MSE
 
 } // metrics
 } // Brush
-
-#endif

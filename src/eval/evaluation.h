@@ -8,6 +8,8 @@
 #include "../individual.h"
 #include "../program/program.h"
 #include "../data/data.h"
+#include "scorer.h"
+#include "../population.h"
 
 using std::string;
 
@@ -20,34 +22,36 @@ namespace Eval {
 template<ProgramType T> 
 class Evaluation {
 public:
-    Evaluation(string scorer="");
-    ~Evaluation();
+    Scorer S;
+
+    Evaluation(string scorer="mse"): S(scorer) { this->S.set_scorer(scorer); };
+    ~Evaluation(){};
         
     // TODO: IMPLEMENT THIS
     /// validation of population.
-    void validation(vector<Individual<T>>& individuals,
+    void validation(Population<T>& pop,
+                    tuple<size_t, size_t> island_range, 
                     const Dataset& data, 
                     const Parameters& params, 
                     bool offspring = false
                     );
 
-
-    // TODO: EVALUATOR CALCULATE ERROR BASED ON TEMPLATING
+    // TODO: EVALUATOR CALCULATE ERROR BASED ON TEMPLATING? (caps)
 
     /// fitness of population.
-    void fitness(vector<Individual<T>>& individuals,
-                    const Dataset& data, 
-                    const Parameters& params, 
-                    bool offspring = false
-                    );
+    void fitness(Population<T>& pop,
+                 tuple<size_t, size_t> island_range, 
+                 const Dataset& data, 
+                 const Parameters& params, 
+                 bool offspring = false
+                 );
     
     // TODO: implement other eval methods
-    /// assign fitness to an individual.  
-    // void assign_fit(Individual<T>& ind,
-    //         const Dataset& data, 
-    //         const Parameters& params,bool val=false);       
 
-    // Scorer S;
+    /// assign fitness to an individual.  
+    void assign_fit(Individual<T>& ind, VectorXf& y_pred,
+            const Dataset& data, const Parameters& params, bool val=false);       
+
 };
 
 } //selection

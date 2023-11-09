@@ -27,11 +27,12 @@ private:
 
 public:        
     Individual()
-    { // TODO: calculate this stuff
+    {
         fitness = -1;
         fitness_v = -1;
         
         complexity=-1;
+
         dcounter=-1;
         rank=-1;
         crowd_dist = -1;
