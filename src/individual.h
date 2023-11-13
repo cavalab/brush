@@ -24,6 +24,7 @@ private:
     
     unsigned int rank;             ///< pareto front rank
     float crowd_dist;   ///< crowding distance on the Pareto front
+    vector<float> obj; ///< objectives for use with Pareto selection
 
 public:        
     Individual()
@@ -71,6 +72,10 @@ public:
 
     void set_crowd_dist(unsigned cd){ crowd_dist=cd; };
     size_t get_crow_dist() const { return crowd_dist; };
+
+    /// set obj vector given a string of objective names
+    void set_obj(const vector<string>&); 
+    int check_dominance(const Individual<T>& b) const;
 };
 
 } // Pop

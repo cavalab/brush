@@ -62,6 +62,10 @@ vector<size_t> NSGA2<T>::select(Population<T>& pop, tuple<size_t, size_t> island
     if (params.current_gen==0)
         return island_pool;
 
+    // setting the objectives
+    for (unsigned int i=0; i<delta; ++i)
+        pop.individuals.at(island_pool[i]).set_obj(params.objectives);
+
     vector<size_t> selected(0); 
 
     for (int i = 0; i < delta; ++i) // selecting based on island_pool size
@@ -103,7 +107,7 @@ vector<size_t> NSGA2<T>::survive(Population<T>& pop, tuple<size_t, size_t> islan
     vector<size_t> island_pool(delta); // array with indexes for the specific island_pool
     std::iota(island_pool.begin(), island_pool.end(), idx_start);
 
-    // set objectives
+    // set objectives (this is when the obj vector is updated.)
     #pragma omp parallel for
     for (unsigned int i=0; i<delta; ++i)
         pop.individuals.at(island_pool[i]).set_obj(params.objectives);
