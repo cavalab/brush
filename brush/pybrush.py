@@ -1,8 +1,10 @@
 
-from _brush import CBrush
+from _brush import CBrush # TODO: stop calling cbrush
 from sklearn.base import BaseEstimator, ClassifierMixin, RegressorMixin, TransformerMixin
 
+# TODO? LOGGER AND ARCHIVE
 
+# TODO: GET DOCUMENTATION BACK
 class PybrushEstimator(BaseEstimator):
     def __init__(self):
         self.cbrush_ = CBrush()
