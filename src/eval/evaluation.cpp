@@ -63,6 +63,7 @@ void Evaluation<T>::fitness(Population<T>& pop,
                     tuple<size_t, size_t> island_range, 
                     const Dataset& data, 
                     const Parameters& params, 
+                    bool fit,
                     bool offspring
                     )
 {
@@ -97,7 +98,8 @@ void Evaluation<T>::fitness(Population<T>& pop,
         else
         {
             // assign weights to individual
-            ind.fit(data);
+            if (fit)
+                ind.fit(data);
             
             auto y_pred =  ind.predict(data.get_training_data);
             assign_fit(ind, y_pred, data, params, false);

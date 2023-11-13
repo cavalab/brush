@@ -37,12 +37,13 @@ public:
                     );
 
     // TODO: EVALUATOR CALCULATE ERROR BASED ON TEMPLATING? (caps)
-
+    // TODO: MAKE it work for classification (do I need to have a way to set accuracy as a minimization problem?)
     /// fitness of population.
     void fitness(Population<T>& pop,
                  tuple<size_t, size_t> island_range, 
                  const Dataset& data, 
                  const Parameters& params, 
+                 bool fit=true,
                  bool offspring = false
                  );
     

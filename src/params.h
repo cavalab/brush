@@ -28,12 +28,12 @@ public:
 
     unsigned int current_gen = 1;
 
-    int pop_size = 100;
-    int gens = 100;      
-    unsigned int max_depth=10;
-    unsigned int max_size=100;
+    int pop_size           = 100;
+    int gens               = 100;      
+    unsigned int max_depth = 10;
+    unsigned int max_size  = 100;
     vector<string> objectives{"error","complexity"}; // error should be generic and deducted based on mode
-    string sel = "nsga2"; //selection method
+    string sel  = "nsga2"; //selection method
     string surv = "nsga2"; //survival method
     vector<string> functions;
     int num_islands=5;
@@ -43,7 +43,7 @@ public:
     float cx_prob=0.2;         ///< cross rate for variation
     float mig_prob = 0.05;
     
-    string scorer_;   ///< actual loss function used, determined by error
+    string scorer_="mse";   ///< actual loss function used, determined by error
 
     // for classification (TODO: should I have these, or they could be just dataset arguments (except the ones needed to use in dataset constructor))
     unsigned int n_classes;   ///< number of classes for classification 
@@ -51,7 +51,7 @@ public:
     vector<float> class_weights;  ///< weights for each class
     vector<float> sample_weights; ///< weights for each sample 
     
-    // for dataset
+    // for dataset. TODO: make it work
     bool shuffle = true;             ///< option to shuffle the data
     float split = 0.75;              ///< fraction of data to use for training
     vector<string> feature_names; ///< names of features
