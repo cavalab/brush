@@ -120,17 +120,16 @@ public:
     // score functions
     // fit methods (this will run the evolution)
 
+    /// updates best score
+    bool update_best(const Dataset& data, bool val=false);    
+    
     /// train a model. TODO: take arguments needed to build the dataset. once we have it, go through params to set global options and use them
     void fit(MatrixXf& X);
     void fit(MatrixXf& X, VectorXf& y);
     
     bool is_fitted; ///< keeps track of whether fit was called.
 
-    void run_generation(unsigned int g,
-                        vector<size_t> survivors,
-                        Dataset &d,
-                        float percentage,
-                        unsigned& stall_count);
+    void run_generation(unsigned int g, Dataset &data);
 private:
     Parameters params;  ///< hyperparameters of brush 
     SearchSpace ss;
@@ -144,16 +143,20 @@ private:
     // TODO: MISSING CLASSES: timer, archive, logger
 
     // TODO
+    // results so far
+    float best_loss;
+    int best_complexity;
+    Individual<T> best_ind;
+
     // update best
     // calculate/print stats
 };
 
 int main(){
-  
-  // TODO: USE TASKFLOW TO DO THE ISLAND STUFF
-  tf::Executor executor;
-  tf::Taskflow taskflow;
 
+    tf::Executor executor;
+    tf::Taskflow taskflow;
+  
   auto [A, B, C, D] = taskflow.emplace(  // create four tasks
     [] () { std::cout << "TaskA\n"; },
     [] () { std::cout << "TaskB\n"; },
