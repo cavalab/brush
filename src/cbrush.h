@@ -88,7 +88,7 @@ public:
     
     // sets available functions based on comma-separated list.
     void set_functions(const vector<string>& fns){ params.functions = fns; };
-    vector<string> get_functions(){ return params.functions; };
+    unordered_map<string, float> get_functions(){ return params.functions; };
                 
     void set_mutation_probs(std::map<std::string, float> mutation_probs){ params.mutation_probs = mutation_probs;};
     std::map<std::string, float> get_mutation_probs(){ return params.mutation_probs; };

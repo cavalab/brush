@@ -39,6 +39,8 @@ public:
         crowd_dist = -1;
     };
 
+    Individual(Program<T>& prg) : Individual() { program = prg; };
+
     void init(const SearchSpace& ss, const Parameters& params)
     {
         program = SS.make_program<T>(params, 0, 0);
