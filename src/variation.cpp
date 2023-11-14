@@ -364,27 +364,37 @@ public:
  */
 template<Brush::ProgramType T>
 std::optional<Program<T>> Variation<T>::cross(
-    const Program<T>& root, const Program<T>& other) 
+    const Program<T>& mom, const Program<T>& dad) 
 {
     /* subtree crossover between this and other, producing new Program */
     // choose location by weighted sampling of program
     // TODO: why doesn't this copy the search space reference to child?
-    Program<T> child(root);
+    Program<T> child(mom);
 
     // pick a subtree to replace
     vector<float> child_weights(child.Tree.size());
-    std::transform(child.Tree.begin(), child.Tree.end(), 
-                child_weights.begin(),
-                [](const auto& n){ return n.get_prob_change(); }
-                );
-    
+    auto child_iter = child.Tree.begin();
+    std::transform(child.Tree.begin(), child.Tree.end(), child_weights.begin(),
+                [&](const auto& n){ 
+                    auto s_at = child.size_at(child_iter);
+                    auto d_at = child.depth_to_reach(child_iter);
+
+                    std::advance(child_iter, 1);
+
+                    if (s_at<parameters.max_size && d_at<parameters.max_depth)
+                        return n.get_prob_change(); 
+                    else
+                        return 0.0f;
+                }
+    );
+
     if (std::all_of(child_weights.begin(), child_weights.end(), [](const auto& w) {
         return w<=0.0;
     }))
     { // There is no spot that has a probability to be selected
         return std::nullopt;
     }
-
+    
     auto child_spot = r.select_randomly(child.Tree.begin(), 
                                         child.Tree.end(), 
                                         child_weights.begin(), 
@@ -397,8 +407,10 @@ std::optional<Program<T>> Variation<T>::cross(
                         ( child.size() - child.size_at(child_spot) );
     auto allowed_depth = parameters.max_depth - 
                         ( child.depth_to_reach(child_spot) );
-
+    
     // pick a subtree to insert. Selection is based on other_weights
+    Program<T> other(dad);
+
     vector<float> other_weights(other.Tree.size());
 
     // iterator to get the size of subtrees inside transform
@@ -426,7 +438,7 @@ std::optional<Program<T>> Variation<T>::cross(
                 return 0.0f;
         }
     );
-
+    
     bool matching_spots_found = false;
     for (const auto& w: other_weights)
     {
@@ -596,24 +608,23 @@ void Variation<T>::vary(Population<T>& pop, tuple<size_t, size_t> island_range,
             Individual<T>& mom = pop.individuals.at(
                 r.select_randomly(parents.begin(), parents.end()));
       
-            if ( r() < parameters.cx_prob)      // crossover
+            if ( r() < parameters.cx_prob) // crossover
             {
-                // get random mom and dad, make copies 
                 Individual<T>& dad = pop.individuals.at(
                     r.select_randomly(parents.begin(), parents.end()));
                 
-                opt = cross(mom, dad);                
+                opt = cross(mom.program, dad.program);                
             }
-            else                        // mutation
+            else // mutation
             {
-               opt = mutate(mom);
+               opt = mutate(mom.program);
             }
 
             if (opt) // no optional value was returned
             {
                 auto child = opt.value();
                 assert(child.size()>0);
-                pop.individuals.at(i) = child;
+                pop.individuals.at(i) = Individual<T>(child);
             }
         }    
    }

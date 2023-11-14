@@ -35,6 +35,7 @@ class MutationBase {
 public:
     using Iter = tree<Node>::pre_order_iterator;
 
+    // TODO: static methods, without storing information, and using just SS and params as arguments
     MutationBase(const SearchSpace& SS, size_t max_size, size_t max_depth)
         : SS_(SS)
         , max_size_(max_size)
@@ -103,10 +104,6 @@ class Variation
 private:
     SearchSpace& search_space;
     Parameters& parameters;
-
-    std::optional<Program<T>> cross(const Program<T>& root, const Program<T>& other);
-
-    std::optional<Program<T>> mutate(const Program<T>& parent);
 public:
     Variation() = default;
     
@@ -121,6 +118,10 @@ public:
         parameters = params;
         search_space = ss;
     };
+
+    // individual-level variations
+    std::optional<Program<T>> cross(const Program<T>& mom, const Program<T>& dad);
+    std::optional<Program<T>> mutate(const Program<T>& parent);
 
     /// method to handle variation of population
     void vary(Population<T>& pop, tuple<size_t, size_t> island_range, 
