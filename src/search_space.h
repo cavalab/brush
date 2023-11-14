@@ -718,7 +718,8 @@ P SearchSpace::make_program(const Parameters& params, int max_d, int max_size)
         root = opt.value();
     }
     
-    auto Tree = PTC2(root, max_d, max_size);
+    // max_d-1 because we always pick the root before calling ptc2
+    auto Tree = PTC2(root, max_d-1, max_size);
 
     return P(*this,Tree);
 };

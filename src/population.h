@@ -24,6 +24,7 @@ public:
     unsigned int n_islands;
     float mig_prob;
 
+    // TODO: taskflow needs to use n_islands as n_jobs
     Population(int p = 0, int n_islands=1);
     
     ~Population();

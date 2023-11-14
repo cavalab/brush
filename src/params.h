@@ -30,16 +30,23 @@ public:
 
     int pop_size           = 100;
     int gens               = 100;      
-    unsigned int max_depth = 10;
-    unsigned int max_size  = 100;
+    unsigned int max_depth = 6; // TODO: make all tests be based on these values for max depth and size
+    unsigned int max_size  = 50;
     vector<string> objectives{"error","complexity"}; // error should be generic and deducted based on mode
     string sel  = "nsga2"; //selection method
     string surv = "nsga2"; //survival method
-    vector<string> functions;
+    std::unordered_map<string, float> functions;
     int num_islands=5;
 
     // variation
-    std::map<std::string, float> mutation_probs;
+    std::map<std::string, float> mutation_probs = {
+        {"point", 0.167},
+        {"insert", 0.167},
+        {"delete", 0.167},
+        {"subtree", 0.167},
+        {"toggle_weight_on", 0.167},
+        {"toggle_weight_off", 0.167}
+    };
     float cx_prob=0.2;         ///< cross rate for variation
     float mig_prob = 0.05;
     
