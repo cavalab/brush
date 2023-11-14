@@ -603,20 +603,30 @@ std::optional<Program<T>> mutate(const Program<T>& parent, const SearchSpace& SS
  * @return `std::optional` that may contain the child program of type `T`
  */
 template<ProgramType T>
-std::optional<Program<T>> cross(const Program<T>& root, const Program<T>& other) 
+std::optional<Program<T>> cross(const Program<T>& mom, const Program<T>& dad) 
 {
     /* subtree crossover between this and other, producing new Program */
     // choose location by weighted sampling of program
     // TODO: why doesn't this copy the search space reference to child?
-    Program<T> child(root);
+    Program<T> child(mom);
 
     // pick a subtree to replace
-    vector<float> child_weights(child.Tree.size());
-    std::transform(child.Tree.begin(), child.Tree.end(), 
-                   child_weights.begin(),
-                   [](const auto& n){ return n.get_prob_change(); }
-                   );
-    
+    vector<float> child_weights(child.Tree.size());    
+    auto child_iter = child.Tree.begin();
+    std::transform(child.Tree.begin(), child.Tree.end(), child_weights.begin(),
+                [&](const auto& n){ 
+                    auto s_at = child.size_at(child_iter);
+                    auto d_at = child.depth_to_reach(child_iter);
+
+                    std::advance(child_iter, 1);
+
+                    if (s_at<PARAMS["max_size"].get<int>() && d_at<PARAMS["max_depth"].get<int>())
+                        return n.get_prob_change(); 
+                    else
+                        return 0.0f;
+                }
+    );
+
     if (std::all_of(child_weights.begin(), child_weights.end(), [](const auto& w) {
         return w<=0.0;
     }))
@@ -637,6 +647,7 @@ std::optional<Program<T>> cross(const Program<T>& root, const Program<T>& other)
     auto allowed_depth = PARAMS["max_depth"].get<int>() - 
                          ( child.depth_to_reach(child_spot) );
 
+    Program<T> other(dad);
     // pick a subtree to insert. Selection is based on other_weights
     vector<float> other_weights(other.Tree.size());
 
