@@ -26,9 +26,16 @@ using std::stof;
 
 #include <cstdio>
 #include "../../src/init.h"
+#include "../../src/params.h"
 #include "../../src/data/data.h"
 #include "../../src/program/operator.h"
+#include "../../src/program/dispatch_table.h"
+#include "../../src/program/program.h"
+#include "../../src/individual.h"
+#include "../../src/search_space.h"
 #include "../../src/variation.h"
+#include "../../src/variation.cpp" // TODO: is this ok?
+
 using namespace Brush;
 using namespace Brush::Data;
 using namespace Brush::Var;
