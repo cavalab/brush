@@ -33,8 +33,7 @@ using std::stof;
 #include "../../src/program/program.h"
 #include "../../src/individual.h"
 #include "../../src/search_space.h"
-#include "../../src/variation.h"
-#include "../../src/variation.cpp" // TODO: is this ok?
+#include "../../src/variation.cpp" // TODO: is this ok? (otherwise I would have to create a test separated file, or move the implementation to the header)
 
 using namespace Brush;
 using namespace Brush::Data;
