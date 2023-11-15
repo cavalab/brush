@@ -8,6 +8,7 @@ license: GNU/GPL v3
 
 #include "../init.h"
 #include "../params.h"
+#include "../types.h"
 #include "../population.h"
 #include "../variation.h"
 
@@ -22,31 +23,31 @@ using namespace Var;
  * @class SelectionOperator
  * @brief base class for selection operators.
  */ 
+template<ProgramType T> 
 class SelectionOperator 
 {
 public:
     bool survival; 
     string name;
 
-    SelectionOperator(){}
+    // shoudn't have a constructor
+    // SelectionOperator(){};
 
-    virtual ~SelectionOperator();
-    
-    template<ProgramType T> 
-    vector<size_t> select(Population<T>& pop, tuple<size_t, size_t> island_range, 
+    virtual ~SelectionOperator(){};
+     
+    virtual vector<size_t> select(Population<T>& pop, tuple<size_t, size_t> island_range, 
             const Parameters& p, const Dataset& data)
     {   
-        // THROW_INVALID_ARGUMENT("Undefined select() operation");
+        HANDLE_ERROR_THROW("Undefined select() operation");
         return vector<size_t>();
-    }
+    };
     
-    template<ProgramType T>
-    vector<size_t> survive(Population<T>& pop, tuple<size_t, size_t> island_range, 
+    virtual vector<size_t> survive(Population<T>& pop, tuple<size_t, size_t> island_range, 
             const Parameters& p, const Dataset& data)
     {   
-        // THROW_INVALID_ARGUMENT("Undefined select() operation");
+        HANDLE_ERROR_THROW("Undefined select() operation");
         return vector<size_t>();
-    }
+    };
 };
 
 // struct Parameters; // forward declaration of Parameters      
@@ -55,15 +56,23 @@ public:
 * @class Selection
 * @brief interfaces with selection operators. 
 */
+template<ProgramType T>
 struct Selection
 {
 public:
-    shared_ptr<SelectionOperator> pselector; 
+    SelectionOperator<T>* pselector; // TODO: THIS SHOULD BE A SHARED POINTER 
     string type;
     bool survival;
     
-    Selection(); 
-    ~Selection();
+    //TODO: rewrite it as initializing parameters
+    Selection()
+    {
+        this->type = "nsga2";
+        this->survival = false;
+        this->set_operator();
+    };
+
+    ~Selection(){};
     Selection(string type, bool survival);
 
     void set_operator();
@@ -73,17 +82,16 @@ public:
     void set_type(string);
     
     /// perform selection. selection uses a pop that has no offspring space
-    template<ProgramType T> 
     vector<size_t> select(Population<T>& pop, tuple<size_t, size_t> island_range, 
             const Parameters& params, const Dataset& data);
     
     /// perform survival. uses a pop with offspring space
-    template<ProgramType T> 
     vector<size_t> survive(Population<T>& pop, tuple<size_t, size_t> island_range,  
             const Parameters& params, const Dataset& data);
 };
 
-NLOHMANN_DEFINE_TYPE_NON_INTRUSIVE(Selection, type, survival);    
+// TODO: MAKE THIS WORK
+// NLOHMANN_DEFINE_TYPE_NON_INTRUSIVE(Selection, type, survival);    
 
 } // selection
 } // Brush

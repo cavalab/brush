@@ -17,14 +17,15 @@ using namespace Data;
 using namespace Sel;
 
 template<ProgramType T> 
-class NSGA2 : public SelectionOperator
+class NSGA2 : public SelectionOperator<T>
 {
+public:
     // should operate only on a given island index
     /** NSGA-II based selection and survival methods. */
 
     // if any of the islands have overlapping indexes, parallel access and modification should be ok (because i dont increase or decrease pop size, not change island ranges inside selection)
 
-    NSGA2(bool surv){ name = "nsga2"; survival = surv; };
+    NSGA2(bool surv);
     ~NSGA2(){};
 
     /// selection according to the survival scheme of NSGA-II

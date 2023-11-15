@@ -18,7 +18,7 @@ private:
     void set_island_ranges();
 public:
     bool offspring_ready;
-    vector<Individual<T>*> individuals;
+    vector<Individual<T>> individuals;
     vector<tuple<size_t, size_t>> island_ranges;
     vector<size_t> island_skip; // number of indexes to skip for each island (when variation fails)
     unsigned int n_islands;
@@ -27,10 +27,10 @@ public:
     // TODO: taskflow needs to use n_islands as n_jobs
     Population(int p = 0, int n_islands=1);
     
-    ~Population();
+    ~Population(){};
     
     /// initialize population of programs with a starting model and/or from file 
-    void init(const SearchSpace& ss, const Parameters& params);
+    void init(SearchSpace& ss, const Parameters& params);
 
     /// returns population size
     int size() { return individuals.size(); };

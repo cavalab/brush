@@ -1,4 +1,5 @@
 #include "selection.h"
+#include "nsga2.h"
 
 // TODO: organize all namespaces
 namespace Brush {
@@ -7,17 +8,8 @@ namespace Sel {
 using namespace Brush;
 using namespace Pop;
 
-Selection::Selection()
-{
-    /*!
-     * set type of selection operator.
-     */
-    this->type = "lexicase";
-    this->survival = false;
-    this->set_operator();
-}
-
-Selection::Selection(string type, bool survival)
+template<ProgramType T> 
+Selection<T>::Selection(string type, bool survival)
 {
     /*!
      * set type of selection operator.
@@ -27,51 +19,38 @@ Selection::Selection(string type, bool survival)
     this->set_operator();
 }
 
-void Selection::set_operator()
+template<ProgramType T>
+void Selection<T>::set_operator()
 {
-    // if (this->type == "lexicase")
-    //     pselector = std::make_shared<Lexicase>(survival); 
-    // else if (this->type == "fair_lexicase")
-    //     pselector = std::make_shared<FairLexicase>(survival);
-    // else if (this->type == "pareto_lexicase")
-    //     pselector = std::make_shared<ParetoLexicase>(survival);
-    // else if (this->type == "nsga2")
-    //     pselector = std::make_shared<NSGA2>(survival);
-    // else if (this->type == "tournament")
-    //     pselector = std::make_shared<Tournament>(survival);
-    // else if (this->type == "offspring")    // offspring survival
-    //     pselector = std::make_shared<Offspring>(survival);
-    // else if (this->type == "random")    // offspring survival
-    //     pselector = std::make_shared<Random>(survival);
-    // else if (this->type == "simanneal")    // offspring survival
-    //     pselector = std::make_shared<SimAnneal>(survival);
-    // else
-    //     WARN("Undefined Selection Operator " + this->type + "\n");
+    if (this->type == "nsga2")
+        pselector = new NSGA2<T>(survival);
+    else
+        HANDLE_ERROR_THROW("Undefined Selection Operator " + this->type + "\n");
         
 }
 
-Selection::~Selection(){}
-
 /// return type of selectionoperator
-string Selection::get_type(){ return pselector->name; }
+template<ProgramType T> 
+string Selection<T>::get_type(){ return pselector->name; }
 
 /// set type of selectionoperator
-void Selection::set_type(string in){ type = in; set_operator();}
+template<ProgramType T> 
+void Selection<T>::set_type(string in){ type = in; set_operator();}
 
 /// perform selection 
 template<ProgramType T> 
-vector<size_t> Selection::select(Population<T>& pop, tuple<size_t, size_t> island_range,  
+vector<size_t> Selection<T>::select(Population<T>& pop, tuple<size_t, size_t> island_range,  
         const Parameters& params, const Dataset& data)
 {       
-    return pselector->select(pop, params, data);
+    return pselector->select(pop, island_range, params, data);
 }
 
 /// perform survival
 template<ProgramType T> 
-vector<size_t> Selection::survive(Population<T>& pop, tuple<size_t, size_t> island_range, 
+vector<size_t> Selection<T>::survive(Population<T>& pop, tuple<size_t, size_t> island_range, 
         const Parameters& params, const Dataset& data)
 {       
-    return pselector->survive(pop, params, data);
+    return pselector->survive(pop, island_range, params, data);
 }
 
 } // selection

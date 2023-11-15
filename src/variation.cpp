@@ -605,13 +605,13 @@ void Variation<T>::vary(Population<T>& pop, tuple<size_t, size_t> island_range,
         // island (with island range)                
         while (!opt)
         {
-            Individual<T>& mom = pop.individuals.at(
-                r.select_randomly(parents.begin(), parents.end()));
+            const Individual<T>& mom = pop[
+                *r.select_randomly(parents.begin(), parents.end())];
       
             if ( r() < parameters.cx_prob) // crossover
             {
-                Individual<T>& dad = pop.individuals.at(
-                    r.select_randomly(parents.begin(), parents.end()));
+                const Individual<T>& dad = pop[
+                    *r.select_randomly(parents.begin(), parents.end())];
                 
                 opt = cross(mom.program, dad.program);                
             }
@@ -622,7 +622,8 @@ void Variation<T>::vary(Population<T>& pop, tuple<size_t, size_t> island_range,
 
             if (opt) // no optional value was returned
             {
-                auto child = opt.value();
+                Program<T> child = opt.value();
+
                 assert(child.size()>0);
                 pop.individuals.at(i) = Individual<T>(child);
             }

@@ -32,7 +32,7 @@ public:
     int gens               = 100;      
     unsigned int max_depth = 6; // TODO: make all tests be based on these values for max depth and size
     unsigned int max_size  = 50;
-    vector<string> objectives{"error","complexity"}; // error should be generic and deducted based on mode
+    vector<string> objectives{"fitness","complexity"}; // error should be generic and deducted based on mode
     string sel  = "nsga2"; //selection method
     string surv = "nsga2"; //survival method
     std::unordered_map<string, float> functions;

@@ -2,6 +2,7 @@
 #define INDIVIDUAL_H
 
 #include "program/program.h"
+#include "search_space.h"
 
 namespace Brush{
 namespace Pop{
@@ -41,9 +42,9 @@ public:
 
     Individual(Program<T>& prg) : Individual() { program = prg; };
 
-    void init(const SearchSpace& ss, const Parameters& params)
+    void init(SearchSpace& ss, const Parameters& params)
     {
-        program = SS.make_program<T>(params, 0, 0);
+        program = ss.make_program<Program<T>>(params, 0, 0);
 
         // If different from zero, then the program is created with a fixed depth and size.
         // If zero, it samples the value

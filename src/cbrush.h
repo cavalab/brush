@@ -134,11 +134,12 @@ private:
     Parameters params;  ///< hyperparameters of brush 
     SearchSpace ss;
 
+    // TODO: make other classes like selection (no template), or make selection like other classes?
     Population<T> pop;       	///< population of programs
-    Selection selector;        	///< selection algorithm
+    Selection<T> selector;        	///< selection algorithm
     Evaluation<T> evaluator;      	///< evaluation code
     Variation<T> variator;  	///< variation operators
-    Selection survivor;       	///< survival algorithm
+    Selection<T> survivor;       	///< survival algorithm
     
     // TODO: MISSING CLASSES: timer, archive, logger
 

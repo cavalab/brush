@@ -32,6 +32,7 @@ void Population<T>::set_island_ranges()
 template<ProgramType T>
 Population<T>::Population(int p, int n_islands)
 {
+    // this calls the default constructor for the container template class 
     individuals.resize(p);
 
     this->n_islands=n_islands;
@@ -44,7 +45,7 @@ Population<T>::Population(int p, int n_islands)
 }
 
 template<ProgramType T>
-void Population<T>::init(const SearchSpace& ss, const Parameters& params)
+void Population<T>::init(SearchSpace& ss, const Parameters& params)
 {
     this->mig_prob = params.mig_prob;
 
@@ -69,7 +70,7 @@ void Population<T>::prep_offspring_slots()
     if (offspring_ready)
         HANDLE_ERROR_THROW("Allocating space in population that already has active offspring slots");
 
-    vector<Individual<T>*> expanded_pop;
+    vector<Individual<T>> expanded_pop;
     expanded_pop.resize(2*individuals.size());
 
     for (int i=0; i<n_islands; ++i)
@@ -82,13 +83,14 @@ void Population<T>::prep_offspring_slots()
             expanded_pop.at(2*idx_start + j) = individuals.at(idx_start+j);
         }
         
-        // setting new island sizes (TODO: i think I can just call set island
-        // ranges again, but i need to do the math to see if floor operations
-        // will not accidentally migrate some individuals)
-        island_ranges.at(i) = {2*idx_start, 2*(idx_end + delta)};
+        // // setting new island sizes (TODO: i think I can just call set island
+        // // ranges again, but i need to do the math to see if floor operations
+        // // will not accidentally migrate some individuals)
+        // island_ranges.at(i) = {2*idx_start, 2*(idx_end + delta)};
     };
 
-    this->individuals = &expanded_pop;
+    this->individuals = expanded_pop;
+    set_island_ranges();
     offspring_ready = true;
 
     // Im keeping the offspring and parents in the same population object, because we
@@ -178,30 +180,6 @@ vector<size_t> Population<T>::hall_of_fame(unsigned rank)
 {
     // this is used to migration and update archive at the end of a generation. expect islands without offspring
 
-    /* Returns individuals on the Pareto front, sorted by increasign complexity. */
-    vector<size_t> pf_islands;
-    pf_islands.resize(n_islands);
-
-    for (int i=0; i<n_islands; ++i)
-    {
-        auto [idx_start, idx_end] = island_ranges.at(i);
-        vector<size_t> pf;
-
-        for (unsigned int i =idx_start; i<idx_end; ++i)
-        {
-            // this assumes that rank was previously calculated
-            if (individuals.at(i).rank == rank)
-                pf.push_back(i);
-        }
-        std::sort(pf.begin(),pf.end(),SortComplexity(*this)); 
-        auto it = std::unique(pf.begin(),pf.end(),SameFitComplexity(*this));
-        
-        pf.resize(std::distance(pf.begin(),it));
-        pf_islands.at(i) = pf;
-    }
-
-    return pf_islands;
-
     vector<size_t> pf(0);
     for (unsigned int i =0; i<individuals.size(); ++i)
     {
@@ -235,7 +213,7 @@ void Population<T>::migrate()
                 size_t migrating_idx;
                 // determine if incoming individual comes from global or local hall of fame
                 if (r() < 0.5 && n_islands>1) { // from global hall of fame
-                    migrating_idx = r.select_randomly(
+                    migrating_idx = *r.select_randomly(
                         global_hall_of_fame.begin(),
                         global_hall_of_fame.end());
                 }
@@ -252,11 +230,11 @@ void Population<T>::migrate()
                     }
 
                     // picking other island
-                    int other_island = r.select_randomly(
+                    int other_island = *r.select_randomly(
                         other_islands.begin(),
                         other_islands.end());
 
-                    migrating_idx = r.select_randomly(
+                    migrating_idx = *r.select_randomly(
                         island_fronts.at(other_island).begin(),
                         island_fronts.at(other_island).end());
                 }

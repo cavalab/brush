@@ -51,7 +51,7 @@ void Evaluation<T>::validation(Population<T>& pop,
         else
         {
             // TODO: implement the class weights and use it here (and on fitness)
-            auto y_pred =  ind.predict(data.get_validation_data);
+            VectorXf y_pred =  ind.program.predict(data.get_validation_data());
             assign_fit(ind, y_pred, data, params, true);
         }
     }
@@ -86,7 +86,7 @@ void Evaluation<T>::fitness(Population<T>& pop,
 
     for (unsigned i = idx_start; i<idx_end; ++i)
     {
-        Individual<T>& ind = pop[i];
+        Individual<T>& ind = pop.individuals.at(i);
 
         bool pass = true;
 
@@ -99,9 +99,9 @@ void Evaluation<T>::fitness(Population<T>& pop,
         {
             // assign weights to individual
             if (fit)
-                ind.fit(data);
+                ind.program.fit(data);
             
-            auto y_pred =  ind.predict(data.get_training_data);
+            VectorXf y_pred =  ind.program.predict(data.get_training_data());
             assign_fit(ind, y_pred, data, params, false);
         }
     }

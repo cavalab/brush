@@ -9,6 +9,13 @@ using namespace Data;
 using namespace Sel;
 
 template<ProgramType T>
+NSGA2<T>::NSGA2(bool surv)
+{ 
+    this->name = "nsga2"; 
+    this->survival = surv; 
+}
+
+template<ProgramType T>
 size_t NSGA2<T>::tournament(vector<Individual<T>>& pop, size_t i, size_t j) const 
 {
     // gets two individuals and compares them. i and j bhould be within island range
@@ -51,7 +58,7 @@ vector<size_t> NSGA2<T>::select(Population<T>& pop, tuple<size_t, size_t> island
     auto [idx_start, idx_end] = island_range;
 
     if (pop.offspring_ready) // dont look at offspring to select
-        idx_end = idx_end/2;
+        idx_end = (idx_end - idx_start)/2;
 
     size_t delta = idx_end - idx_start; 
 
@@ -71,8 +78,8 @@ vector<size_t> NSGA2<T>::select(Population<T>& pop, tuple<size_t, size_t> island
     for (int i = 0; i < delta; ++i) // selecting based on island_pool size
     {
         size_t winner = tournament(pop.individuals,
-            r.select_randomly(island_pool.begin(), island_pool.end()), 
-            r.select_randomly(island_pool.begin(), island_pool.end()));
+            *r.select_randomly(island_pool.begin(), island_pool.end()), 
+            *r.select_randomly(island_pool.begin(), island_pool.end()));
         
         selected.push_back(winner);
     }
@@ -102,27 +109,32 @@ vector<size_t> NSGA2<T>::survive(Population<T>& pop, tuple<size_t, size_t> islan
     assert(pop.offspring_ready 
         && "survival was called in an island with no offspring");
 
-    size_t delta = idx_end - idx_start; 
+    size_t delta = (idx_end - idx_start); // the whole island (pop + offspring)
 
     vector<size_t> island_pool(delta); // array with indexes for the specific island_pool
     std::iota(island_pool.begin(), island_pool.end(), idx_start);
 
     // set objectives (this is when the obj vector is updated.)
-    #pragma omp parallel for
+    
+    fmt::print("-- first loop\n");
     for (unsigned int i=0; i<delta; ++i)
         pop.individuals.at(island_pool[i]).set_obj(params.objectives);
 
     // fast non-dominated sort
+    fmt::print("-- fast nds\n");
     auto front = fast_nds(pop.individuals, island_pool);
     
+    fmt::print("-- while loop\n");
     // Push back selected individuals until full
     vector<size_t> selected(0);
     int i = 0;
     while ( selected.size() + front.at(i).size() < delta/2 ) // (delta/2) because we want to get to the original size (prepare_offspring_slots doubled it before survival operation)
     {
+        fmt::print("-- crawd dist\n");
         std::vector<int>& Fi = front.at(i);        // indices in front i
         crowding_distance(pop, front, i);          // calculate crowding in Fi
-
+        
+        fmt::print("-- select loop\n");
         for (int j = 0; j < Fi.size(); ++j)     // Pt+1 = Pt+1 U Fi
             selected.push_back(Fi.at(j));
         
@@ -131,8 +143,9 @@ vector<size_t> NSGA2<T>::survive(Population<T>& pop, tuple<size_t, size_t> islan
 
     crowding_distance(pop, front, i);   // calculate crowding in final front to include
     std::sort(front.at(i).begin(),front.at(i).end(),sort_n(pop));
-
-    const int extra = params.pop_size - selected.size();
+    
+    fmt::print("adding last front)\n");
+    const int extra = delta/2 - selected.size();
     for (int j = 0; j < extra; ++j) // Pt+1 = Pt+1 U Fi[1:N-|Pt+1|]
         selected.push_back(front.at(i).at(j));
     

@@ -84,21 +84,21 @@ void CBrush<T>::run_generation(unsigned int g, Dataset &data)
 
     auto batch = data.get_batch(); // will return the original dataset if it is set to dont use batch 
 
-    vector<vector<size_t>> island_parents;
+    vector<vector<size_t>> island_parents;      
     island_parents.resize(pop.n_islands);
     taskflow.for_each_index(0, pop.n_islands,  1, [&](int island) {
         tuple<size_t, size_t> island_range = pop.get_island_range(island);
 
         // fit the weights with all training data
-        evaluator.fitness(pop.individuals, island_range, data, params, true, false);
-        evaluator.validation(pop.individuals, island_range, data, params, false);
+        evaluator.fitness(pop, island_range, data, params, true, false);
+        evaluator.validation(pop, island_range, data, params, false);
     
         // TODO: if using batch, fitness should be called before selection to set the batch
         if (data.use_batch) // assign the batch error as fitness (but fit was done with training data)
-            evaluator.fitness(pop.individuals, island_range, batch, params, false, false);
+            evaluator.fitness(pop, island_range, batch, params, false, false);
 
         // select parents
-        vector<size_t> parents = selector.select(pop, island_range, data);
+        vector<size_t> parents = selector.select(pop, island_range, params, data);
         island_parents.at(island) = parents;
     });
     
@@ -111,15 +111,14 @@ void CBrush<T>::run_generation(unsigned int g, Dataset &data)
         // // variation to produce offspring
         variator.vary(pop, island_range, island_parents.at(island));
 
-        // TODO: needs to create the evaluator (and calculate the information on train and validation partition)
-        evaluator.fitness(pop.individuals, island_range, data, params, true, true);
-        evaluator.validation(pop.individuals, island_range, data, params, true);
+        evaluator.fitness(pop, island_range, data, params, true, true);
+        evaluator.validation(pop, island_range, data, params, true);
 
         if (data.use_batch) // assign the batch error as fitness (but fit was done with training data)
-            evaluator.fitness(pop.individuals, island_range, batch, params, false, true);
+            evaluator.fitness(pop, island_range, batch, params, false, true);
 
-        // // select survivors from combined pool of parents and offspring
-        auto island_survivors = survivor.survive(pop, island_range, data);
+        // select survivors from combined pool of parents and offspring
+        auto island_survivors = survivor.survive(pop, island_range, params, data);
         
         auto [idx_start, idx_end] = island_range;
         size_t delta = idx_end - idx_start;
@@ -131,6 +130,7 @@ void CBrush<T>::run_generation(unsigned int g, Dataset &data)
 
     // // reduce population to survivors
     pop.update(survivors);
+    // pop.migrate();
     bool updated_best = update_best(data);
 }
 
@@ -148,6 +148,7 @@ void CBrush<T>::fit(MatrixXf& X, VectorXf& y)
     this->selector = Selection(params.sel, false);
     this->survivor = Selection(params.surv, true);
 
+    // TODO: initialize (set operator) for survivor and selector
     // initialize population with initial model and/or starting pop
     pop.init(this->ss, this->params);
 
