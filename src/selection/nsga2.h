@@ -29,15 +29,15 @@ public:
     ~NSGA2(){};
 
     /// selection according to the survival scheme of NSGA-II
-    vector<size_t> select(Population<T>& pop, tuple<size_t, size_t> island_range,   
+    vector<size_t> select(Population<T>& pop, int island,   
             const Parameters& p, const Dataset& d);
     
     /// survival according to the survival scheme of NSGA-II
-    vector<size_t> survive(Population<T>& pop, tuple<size_t, size_t> island_range, 
+    vector<size_t> survive(Population<T>& pop, int island, 
             const Parameters& p, const Dataset& d);
     
     //< Fast non-dominated sorting
-    vector<vector<int>> fast_nds(vector<Individual<T>>&, vector<size_t>&);                
+    vector<vector<int>> fast_nds(Population<T>&, vector<size_t>&);                
 
     // front cannot be an attribute because selection will be executed in different threads for different islands (this is a modificationf rom original FEAT code that I got inspiration)
 
@@ -53,12 +53,13 @@ public:
             sort_n(const Population<T>& population) : pop(population) {};
 
             bool operator() (int i, int j) {
-                const Individual<T>& ind1 = pop.individuals[i];
-                const Individual<T>& ind2 = pop.individuals[j];
-                if (ind1.rank < ind2.rank)
+                // TODO: Improve operator[], and decrease use of pop.individuals.at(). Also, decrease number of auto declarations
+                auto ind1 = pop.individuals[i];
+                auto ind2 = pop.individuals[j];
+                if (ind1->rank < ind2->rank)
                     return true;
-                else if (ind1.rank == ind2.rank &&
-                            ind1.crowd_dist > ind2.crowd_dist)
+                else if (ind1->rank == ind2->rank &&
+                            ind1->crowd_dist > ind2->crowd_dist)
                     return true;
                 return false;
             };
@@ -76,7 +77,7 @@ public:
             bool operator() (int i, int j) { return pop[i].obj[m] < pop[j].obj[m]; };
         };
     
-        size_t tournament(vector<Individual<T>>& pop, size_t i, size_t j) const;
+        size_t tournament(Population<T>& pop, size_t i, size_t j) const;
 };
 
 } // selection

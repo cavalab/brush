@@ -16,11 +16,11 @@ NSGA2<T>::NSGA2(bool surv)
 }
 
 template<ProgramType T>
-size_t NSGA2<T>::tournament(vector<Individual<T>>& pop, size_t i, size_t j) const 
+size_t NSGA2<T>::tournament(Population<T>& pop, size_t i, size_t j) const 
 {
     // gets two individuals and compares them. i and j bhould be within island range
-    Individual<T>& ind1 = pop.at(i);
-    Individual<T>& ind2 = pop.at(j);
+    const Individual<T>& ind1 = pop[i];
+    const Individual<T>& ind2 = pop[j];
 
     // TODO: implement this 
     int flag = ind1.check_dominance(ind2);
@@ -38,46 +38,23 @@ size_t NSGA2<T>::tournament(vector<Individual<T>>& pop, size_t i, size_t j) cons
 }
 
 template<ProgramType T>
-vector<size_t> NSGA2<T>::select(Population<T>& pop, tuple<size_t, size_t> island_range, 
+vector<size_t> NSGA2<T>::select(Population<T>& pop, int island, 
         const Parameters& params, const Dataset& d)
 {
-    /* Selection using Pareto tournaments. 
-        *
-        * Input: 
-        *
-        *      pop: population of programs.
-        *      params: parameters.
-        *      r: random number generator
-        *
-        * Output:
-        *
-        *      selected: vector of indices corresponding to pop that are selected.
-        *      modifies individual ranks, objectives and dominations.
-        */
-
-    auto [idx_start, idx_end] = island_range;
-
-    if (pop.offspring_ready) // dont look at offspring to select
-        idx_end = (idx_end - idx_start)/2;
-
-    size_t delta = idx_end - idx_start; 
-
-    vector<size_t> island_pool(delta);
-    std::iota(island_pool.begin(), island_pool.end(), idx_start);
+    auto island_pool = pop.get_island_indexes(island);
 
     // if this is first generation, just return indices to pop
     if (params.current_gen==0)
         return island_pool;
 
     // setting the objectives
-    for (unsigned int i=0; i<delta; ++i)
-        pop.individuals.at(island_pool[i]).set_obj(params.objectives);
+    for (unsigned int i=0; i<island_pool.size(); ++i)
+        pop.individuals.at(island_pool[i])->set_obj(params.objectives);
 
     vector<size_t> selected(0); 
-
-    for (int i = 0; i < delta; ++i) // selecting based on island_pool size
+    for (int i = 0; i < island_pool.size(); ++i) // selecting based on island_pool size
     {
-        size_t winner = tournament(pop.individuals,
+        size_t winner = tournament(pop,
             *r.select_randomly(island_pool.begin(), island_pool.end()), 
             *r.select_randomly(island_pool.begin(), island_pool.end()));
         
@@ -87,48 +64,26 @@ vector<size_t> NSGA2<T>::select(Population<T>& pop, tuple<size_t, size_t> island
 }
 
 template<ProgramType T>
-vector<size_t> NSGA2<T>::survive(Population<T>& pop, tuple<size_t, size_t> island_range,
+vector<size_t> NSGA2<T>::survive(Population<T>& pop, int island,
         const Parameters& params, const Dataset& d)
 {
-    /* Selection using the survival scheme of NSGA-II. 
-        *
-        * Input: 
-        *
-        *      pop: population of programs.
-        *      params: parameters.
-        *      r: random number generator
-        *
-        * Output:
-        *
-        *      selected: vector of indices corresponding to pop that are selected.
-        *      modifies individual ranks, objectives and dominations.
-        */
-    
-    auto [idx_start, idx_end] = island_range;
-
-    assert(pop.offspring_ready 
-        && "survival was called in an island with no offspring");
-
-    size_t delta = (idx_end - idx_start); // the whole island (pop + offspring)
-
-    vector<size_t> island_pool(delta); // array with indexes for the specific island_pool
-    std::iota(island_pool.begin(), island_pool.end(), idx_start);
+    auto island_pool = pop.get_island_indexes(island);
 
     // set objectives (this is when the obj vector is updated.)
     
     fmt::print("-- first loop\n");
-    for (unsigned int i=0; i<delta; ++i)
-        pop.individuals.at(island_pool[i]).set_obj(params.objectives);
+    for (unsigned int i=0; i<island_pool.size(); ++i)
+        pop.individuals.at(island_pool[i])->set_obj(params.objectives);
 
     // fast non-dominated sort
     fmt::print("-- fast nds\n");
-    auto front = fast_nds(pop.individuals, island_pool);
+    auto front = fast_nds(pop, island_pool);
     
     fmt::print("-- while loop\n");
     // Push back selected individuals until full
     vector<size_t> selected(0);
     int i = 0;
-    while ( selected.size() + front.at(i).size() < delta/2 ) // (delta/2) because we want to get to the original size (prepare_offspring_slots doubled it before survival operation)
+    while ( selected.size() + front.at(i).size() < island_pool.size()/2 ) // (size/2) because we want to get to the original size (prepare_offspring_slots doubled it before survival operation)
     {
         fmt::print("-- crawd dist\n");
         std::vector<int>& Fi = front.at(i);        // indices in front i
@@ -145,7 +100,7 @@ vector<size_t> NSGA2<T>::survive(Population<T>& pop, tuple<size_t, size_t> islan
     std::sort(front.at(i).begin(),front.at(i).end(),sort_n(pop));
     
     fmt::print("adding last front)\n");
-    const int extra = delta/2 - selected.size();
+    const int extra = island_pool.size()/2 - selected.size();
     for (int j = 0; j < extra; ++j) // Pt+1 = Pt+1 U Fi[1:N-|Pt+1|]
         selected.push_back(front.at(i).at(j));
     
@@ -153,7 +108,7 @@ vector<size_t> NSGA2<T>::survive(Population<T>& pop, tuple<size_t, size_t> islan
 }
 
 template<ProgramType T>
-vector<vector<int>> NSGA2<T>::fast_nds(vector<Individual<T>>& individuals, vector<size_t>& island_pool) 
+vector<vector<int>> NSGA2<T>::fast_nds(Population<T>& pop, vector<size_t>& island_pool) 
 {
     //< the Pareto fronts
     vector<vector<int>> front;                
@@ -167,13 +122,13 @@ vector<vector<int>> NSGA2<T>::fast_nds(vector<Individual<T>>& individuals, vecto
         std::vector<unsigned int> dom;
         int dcount = 0;
     
-        Individual<T>& p = individuals.at(island_pool[i]);
+        auto p = pop.individuals.at(island_pool[i]);
 
         for (int j = 0; j < island_pool.size(); ++j) {
         
-            Individual<T>& q = individuals.at(island_pool[j]);
+            const Individual<T>& q = pop[island_pool[j]];
         
-            int compare = p.check_dominance(q);
+            int compare = p->check_dominance(q);
             if (compare == 1) { // p dominates q
                 //p.dominated.push_back(j);
                 dom.push_back(island_pool[j]);
@@ -185,12 +140,12 @@ vector<vector<int>> NSGA2<T>::fast_nds(vector<Individual<T>>& individuals, vecto
     
         #pragma omp critical
         {
-            p.dcounter  = dcount;
-            p.dominated.clear();
-            p.dominated = dom; // dom will have values already referring to island indexes
+            p->dcounter  = dcount;
+            p->dominated.clear();
+            p->dominated = dom; // dom will have values already referring to island indexes
         
-            if (p.dcounter == 0) {
-                p.set_rank(1);
+            if (p->dcounter == 0) {
+                p->set_rank(1);
                 // front will have values already referring to island indexes
                 front.at(0).push_back(island_pool[i]);
             }
@@ -209,16 +164,16 @@ vector<vector<int>> NSGA2<T>::fast_nds(vector<Individual<T>>& individuals, vecto
         std::vector<int> Q;
         for (int i = 0; i < fronti.size(); ++i) {
 
-            Individual<T>& p = individuals.at(fronti.at(i));
+            const Individual<T>& p = pop[fronti.at(i)];
 
             // iterating over dominated individuals
             for (int j = 0; j < p.dominated.size() ; ++j) {
 
-                Individual<T>& q = individuals.at(p.dominated.at(j));
-                q.dcounter -= 1;
+                auto q = pop.individuals.at(p.dominated.at(j));
+                q->dcounter -= 1;
 
-                if (q.dcounter == 0) {
-                    q.set_rank(fi+1);
+                if (q->dcounter == 0) {
+                    q->set_rank(fi+1);
                     Q.push_back(p.dominated.at(j));
                 }
             }
@@ -240,26 +195,26 @@ void NSGA2<T>::crowding_distance(Population<T>& pop, vector<vector<int>>& front,
     const int fsize = F.size();
 
     for (int i = 0; i < fsize; ++i)
-        pop.individuals.at(F.at(i)).crowd_dist = 0;
+        pop.individuals.at(F.at(i))->crowd_dist = 0;
 
-    const int limit = pop.individuals.at(0).obj.size();
+    const int limit = pop.individuals.at(0)->obj.size();
     for (int m = 0; m < limit; ++m) {
 
         std::sort(F.begin(), F.end(), comparator_obj(pop,m));
 
         // in the paper dist=INF for the first and last, in the code
         // this is only done to the first one or to the two first when size=2
-        pop.individuals.at(F.at(0)).crowd_dist = std::numeric_limits<float>::max();
+        pop.individuals.at(F.at(0))->crowd_dist = std::numeric_limits<float>::max();
         if (fsize > 1)
-            pop.individuals.at(F.at(fsize-1)).crowd_dist = std::numeric_limits<float>::max();
+            pop.individuals.at(F.at(fsize-1))->crowd_dist = std::numeric_limits<float>::max();
     
         for (int i = 1; i < fsize-1; ++i) 
         {
-            if (pop.individuals.at(F.at(i)).crowd_dist != std::numeric_limits<float>::max()) 
+            if (pop.individuals.at(F.at(i))->crowd_dist != std::numeric_limits<float>::max()) 
             {   // crowd over obj
-                pop.individuals.at(F.at(i)).crowd_dist +=
-                    (pop.individuals.at(F.at(i+1)).obj.at(m) - pop.individuals.at(F.at(i-1)).obj.at(m)) 
-                    / (pop.individuals.at(F.at(fsize-1)).obj.at(m) - pop.individuals.at(F.at(0)).obj.at(m));
+                pop.individuals.at(F.at(i))->crowd_dist +=
+                    (pop.individuals.at(F.at(i+1))->obj.at(m) - pop.individuals.at(F.at(i-1))->obj.at(m)) 
+                    / (pop.individuals.at(F.at(fsize-1))->obj.at(m) - pop.individuals.at(F.at(0))->obj.at(m));
             }
         }
     }        

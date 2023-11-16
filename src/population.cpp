@@ -1,97 +1,76 @@
-/* FEAT
-copyright 2017 William La Cava
-license: GNU/GPL v3
-*/
-
 #include "population.h"
 
 namespace Brush{   
 namespace Pop{
         
-
 template<ProgramType T>
-void Population<T>::set_island_ranges()
+Population<T>::Population()
 {
-    // everytime we change popsize, this function must be called
-
-    // Tuples with start and end indexes for each island. Number of individuals
-    // in each island can slightly differ if N_ISLANDS is not a divisor of p (popsize)
-    island_ranges.resize(n_islands);
-    
-    size_t p = size(); // population size
-
-    for (int i=0; i<n_islands; ++i)
-    {
-        island_ranges.at(i) = {
-            (size_t)std::floor(i*p/n_islands),
-            (size_t)std::floor((i+1)*p/n_islands)
-        };
-    };
-}
-
-template<ProgramType T>
-Population<T>::Population(int p, int n_islands)
-{
-    // this calls the default constructor for the container template class 
-    individuals.resize(p);
-
-    this->n_islands=n_islands;
-    set_island_ranges();
-
-    island_skip.resize(n_islands);
-    iota(island_skip.begin(), island_skip.end(), 0);
-
-    offspring_ready = false;
+    individuals.resize(0);
+    mig_prob = 0.0;
+    pop_size = 0;
+    n_islands = 0;
 }
 
 template<ProgramType T>
 void Population<T>::init(SearchSpace& ss, const Parameters& params)
 {
     this->mig_prob = params.mig_prob;
+    this->pop_size = params.pop_size;
+    this->n_islands=params.num_islands;
+    
+    // Tuples with start and end indexes for each island. Number of individuals
+    // in each island can slightly differ if N_ISLANDS is not a divisor of p (popsize)
+    island_indexes.resize(n_islands);
+    
+    size_t p = pop_size; // population size
+
+    for (int i=0; i<n_islands; ++i)
+    {
+        size_t idx_start = std::floor(i*p/n_islands);
+        size_t idx_end = std::floor((i+1)*p/n_islands);
+
+        auto delta = idx_end - idx_start;
+
+        island_indexes.at(i).resize(delta);
+        iota(island_indexes.at(i).begin(), island_indexes.at(i).end(), idx_start);
+    };
 
    // TODO: load file (like feat)
+
+    // this calls the default constructor for the container template class 
+    individuals.resize(2*p); // we will never increase or decrease the size during execution (because is not thread safe). this way, theres no need to sync between selecting and varying the population
+
     #pragma omp parallel for
-    for (int i = 0; i< individuals.size(); ++i)
+    for (int i = 0; i< p; ++i)
     {          
-        individuals.at(i).init(ss, params);
+        individuals.at(i) = std::make_shared<Individual<T>>();
+        individuals.at(i)->init(ss, params);
     }
 }
 
 /// update individual vector size and island indexes
 template<ProgramType T>
-void Population<T>::prep_offspring_slots()
+void Population<T>::prep_offspring_slots(int island)
 {	   
     // reading and writing is thread-safe, as long as there's no overlap on island ranges.
     // manipulating a vector IS NOT thread-safe (inserting and erasing elements).
     // So, prep_offspring_slots and update should be the synchronization points, not 
     // operations performed concurrently
 
-    // TODO: add _SingleThreaded in funcname
-    if (offspring_ready)
-        HANDLE_ERROR_THROW("Allocating space in population that already has active offspring slots");
+    size_t p = pop_size; // population size. prep_offspring slots will douple the population, adding the new expressions into the islands
+    
+    // this is going to be tricky (pay attention to delta and p use)
+    size_t idx_start = std::floor(island*p/n_islands);
+    size_t idx_end   = std::floor((island+1)*p/n_islands);
 
-    vector<Individual<T>> expanded_pop;
-    expanded_pop.resize(2*individuals.size());
+    auto delta = idx_end - idx_start;
 
-    for (int i=0; i<n_islands; ++i)
-    {
-        // old indexes
-        auto [idx_start, idx_end] = island_ranges.at(i);
-        size_t delta = idx_end - idx_start;
-        
-        for (int j=0; j<delta; j++) {
-            expanded_pop.at(2*idx_start + j) = individuals.at(idx_start+j);
-        }
-        
-        // // setting new island sizes (TODO: i think I can just call set island
-        // // ranges again, but i need to do the math to see if floor operations
-        // // will not accidentally migrate some individuals)
-        // island_ranges.at(i) = {2*idx_start, 2*(idx_end + delta)};
-    };
-
-    this->individuals = expanded_pop;
-    set_island_ranges();
-    offspring_ready = true;
+    // inserting indexes of the offspring
+    island_indexes.at(island).resize(delta*2);
+    iota(
+        island_indexes.at(island).begin() + p, island_indexes.at(island).end(),
+        p+idx_start);
 
     // Im keeping the offspring and parents in the same population object, because we
     // have operations that require them together (archive, hall of fame.)
@@ -100,23 +79,33 @@ void Population<T>::prep_offspring_slots()
 }
 
 template<ProgramType T>
-void Population<T>::update(vector<size_t> survivors)
+void Population<T>::update(vector<vector<size_t>> survivors)
 {
-    if (!offspring_ready)
-        HANDLE_ERROR_THROW("Shrinking a population that has no active offspring");
-
-    assert(survivors.size() == individuals.size()/2 
-        && "Cant shrink a population to a size different from the original initial size");
-
-    vector<size_t> pop_idx(individuals.size());
-    std::iota(pop_idx.begin(),pop_idx.end(),0);
-    std::reverse(pop_idx.begin(),pop_idx.end());
-    for (const auto& i : pop_idx)
-        if (!in(survivors,i))
-            individuals.erase(individuals.begin()+i);                         
+    vector<std::shared_ptr<Individual<T>>> new_pop;
+    new_pop.resize(pop_size);
+    size_t i=0;
+    for (int j=0; j<n_islands; ++j)
+    {
+        for (int k=0; k<survivors.at(j).size(); ++k){
+            new_pop.at(i) = individuals.at(survivors.at(j).at(k));
+            
+            // update will set the complexities (for migration step. we do it here because update handles non-thread safe operations)
+            new_pop.at(i)->set_complexity();
     
-    set_island_ranges();
-    offspring_ready = false;
+            ++i;
+        }
+
+        // need to make island point to original range
+        size_t idx_start = std::floor(j*size/n_islands);
+        size_t idx_end   = std::floor((j+1)*size/n_islands);
+
+        auto delta = idx_end - idx_start;
+
+        // inserting indexes of the offspring
+        island_indexes.at(j).resize(delta);
+        iota(island_indexes.at(j).begin(), island_indexes.at(j).end(), idx_start);
+    }
+    individuals = new_pop;
 }
 
 template<ProgramType T>
@@ -125,23 +114,15 @@ string Population<T>::print_models(bool just_offspring, string sep)
     // not printing the island each individual belongs to
     string output = "";
 
-    for (int i=0; i<n_islands; ++i)
-    {
-        auto [idx_start, idx_end] = island_ranges.at(i);
-        size_t skip = island_skip.at(i); // number of individuals to ignore because variation failed
-        //TODO: use taskflow and pragma once correctly (search and fix code)
-        if (just_offspring) {
-            size_t delta = idx_end - idx_start; // starting from the middle of the island (where the offspring lives)
-            idx_start = idx_start + delta/2;
-        }
-            
-        // (linear complexity on size of individuals, even with two nested loops)
-        for (int j=idx_start; j<idx_end-skip; j++) {
-            output += individuals.at(j).get_model() + sep;
-        }
-    };
+    int start = 0;
+   
+   if (just_offspring)
+       start = individuals.size()/2;
 
-    return output;
+   for (unsigned int i=start; i< individuals.size(); ++i)
+       output += individuals.at(i)->get_model() + sep;
+   
+   return output;
 }
 
 template<ProgramType T>
@@ -155,13 +136,13 @@ vector<vector<size_t>> Population<T>::sorted_front(unsigned rank)
 
     for (int i=0; i<n_islands; ++i)
     {
-        auto [idx_start, idx_end] = island_ranges.at(i);
+        auto idxs = island_indexes.at(i);
         vector<size_t> pf;
 
-        for (unsigned int i =idx_start; i<idx_end; ++i)
+        for (unsigned int& i : idxs)
         {
             // this assumes that rank was previously calculated. It is set in selection (ie nsga2) if the information is useful to select/survive
-            if (individuals.at(i).rank == rank)
+            if (individuals.at(i)->rank == rank)
                 pf.push_back(i);
         }
         std::sort(pf.begin(),pf.end(),SortComplexity(*this)); 
@@ -174,7 +155,6 @@ vector<vector<size_t>> Population<T>::sorted_front(unsigned rank)
     return pf_islands;
 }
 
-
 template<ProgramType T>
 vector<size_t> Population<T>::hall_of_fame(unsigned rank)
 {
@@ -183,12 +163,13 @@ vector<size_t> Population<T>::hall_of_fame(unsigned rank)
     vector<size_t> pf(0);
     for (unsigned int i =0; i<individuals.size(); ++i)
     {
-        if (individuals.at(i).rank == rank)
+        if (individuals.at(i)->rank == rank)
             pf.push_back(i);
     }
     std::sort(pf.begin(),pf.end(),SortComplexity(*this)); 
     auto it = std::unique(pf.begin(),pf.end(),SameFitComplexity(*this));
     pf.resize(std::distance(pf.begin(),it));
+
     return pf;
 }
 
@@ -196,8 +177,10 @@ vector<size_t> Population<T>::hall_of_fame(unsigned rank)
 template<ProgramType T>
 void Population<T>::migrate()
 {
-    assert(!offspring_ready
-        && "pop with offspring dont migrate (run update before calling this)");
+    // changes where island points to 
+
+    if (n_islands==1)
+        return;
 
     auto island_fronts = sorted_front();
     auto global_hall_of_fame = hall_of_fame();
@@ -205,14 +188,14 @@ void Population<T>::migrate()
     // This is not thread safe (as it is now)
     for (int island=0; island<n_islands; ++island)
     {
-        auto [idx_start, idx_end] = island_ranges.at(island);
-        for (unsigned int i =idx_start; i<idx_end; ++i)
+        auto idxs = island_indexes.at(island);
+        for (unsigned int i=0; i<idxs.size(); ++i)
         {
             if (r() < mig_prob)
             {
                 size_t migrating_idx;
                 // determine if incoming individual comes from global or local hall of fame
-                if (r() < 0.5 && n_islands>1) { // from global hall of fame
+                if (r() < 0.5) { // from global hall of fame
                     migrating_idx = *r.select_randomly(
                         global_hall_of_fame.begin(),
                         global_hall_of_fame.end());
@@ -239,12 +222,11 @@ void Population<T>::migrate()
                         island_fronts.at(other_island).end());
                 }
                 
-                individuals.at(i) = individuals.at(migrating_idx);
+                island_indexes.at(i) = migrating_idx;
             }
         }
     }
 }
-
 
 } // Pop
 } // Brush
