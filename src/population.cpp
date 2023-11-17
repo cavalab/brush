@@ -82,7 +82,7 @@ template<ProgramType T>
 void Population<T>::update(vector<vector<size_t>> survivors)
 {
     vector<std::shared_ptr<Individual<T>>> new_pop;
-    new_pop.resize(pop_size);
+    new_pop.resize(2*pop_size);
     size_t i=0;
     for (int j=0; j<n_islands; ++j)
     {
@@ -114,15 +114,19 @@ string Population<T>::print_models(bool just_offspring, string sep)
     // not printing the island each individual belongs to
     string output = "";
 
-    int start = 0;
-   
-   if (just_offspring)
-       start = individuals.size()/2;
+    for (int j=0; j<n_islands; ++j)
+    {
+        output += "island " + to_string(j) + ":\n";
 
-   for (unsigned int i=start; i< individuals.size(); ++i)
-       output += individuals.at(i)->get_model() + sep;
-   
-   return output;
+        int start = 0;
+    
+        if (just_offspring)
+            start = island_indexes.at(j).size()/2;
+
+        for (int k=start; k<island_indexes.at(j).size(); ++k)            
+            output += individuals.at(island_indexes.at(j).at(k))->get_model() + sep;
+    }
+    return output;
 }
 
 template<ProgramType T>

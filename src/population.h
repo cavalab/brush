@@ -4,6 +4,7 @@
 #include "search_space.h"
 #include "individual.h"
 #include "program/program.h"
+#include "util/error.h"
 
 using std::vector;
 using std::string;
@@ -34,8 +35,8 @@ public:
     /// initialize population of programs with a starting model and/or from file 
     void init(SearchSpace& ss, const Parameters& params);
 
-    /// returns population size
-    int size() { return pop_size; };
+    /// returns population size (the effective size of the individuals)
+    int size() { return individuals.size(); };
 
     vector<size_t> get_island_indexes(int island){ return island_indexes.at(island); };
 
