@@ -41,7 +41,6 @@ void Population<T>::init(SearchSpace& ss, const Parameters& params)
     // this calls the default constructor for the container template class 
     individuals.resize(2*p); // we will never increase or decrease the size during execution (because is not thread safe). this way, theres no need to sync between selecting and varying the population
 
-    #pragma omp parallel for
     for (int i = 0; i< p; ++i)
     {          
         individuals.at(i) = std::make_shared<Individual<T>>();
@@ -50,7 +49,7 @@ void Population<T>::init(SearchSpace& ss, const Parameters& params)
 }
 
 /// update individual vector size and island indexes
-template<ProgramType T>
+template<ProgramType T>     // TODO: rename to include_offspring_indexes or something like this
 void Population<T>::prep_offspring_slots(int island)
 {	   
     // reading and writing is thread-safe, as long as there's no overlap on island ranges.
@@ -64,12 +63,12 @@ void Population<T>::prep_offspring_slots(int island)
     size_t idx_start = std::floor(island*p/n_islands);
     size_t idx_end   = std::floor((island+1)*p/n_islands);
 
-    auto delta = idx_end - idx_start;
+    auto delta = idx_end - idx_start; // island size
 
     // inserting indexes of the offspring
     island_indexes.at(island).resize(delta*2);
     iota(
-        island_indexes.at(island).begin() + p, island_indexes.at(island).end(),
+        island_indexes.at(island).begin() + delta, island_indexes.at(island).end(),
         p+idx_start);
 
     // Im keeping the offspring and parents in the same population object, because we
@@ -92,12 +91,12 @@ void Population<T>::update(vector<vector<size_t>> survivors)
             // update will set the complexities (for migration step. we do it here because update handles non-thread safe operations)
             new_pop.at(i)->set_complexity();
     
-            ++i;
+            ++i; // this will fill just half of the pop
         }
 
         // need to make island point to original range
-        size_t idx_start = std::floor(j*size/n_islands);
-        size_t idx_end   = std::floor((j+1)*size/n_islands);
+        size_t idx_start = std::floor(j*pop_size/n_islands);
+        size_t idx_end   = std::floor((j+1)*pop_size/n_islands);
 
         auto delta = idx_end - idx_start;
 
@@ -119,12 +118,14 @@ string Population<T>::print_models(bool just_offspring, string sep)
         output += "island " + to_string(j) + ":\n";
 
         int start = 0;
-    
         if (just_offspring)
             start = island_indexes.at(j).size()/2;
 
-        for (int k=start; k<island_indexes.at(j).size(); ++k)            
-            output += individuals.at(island_indexes.at(j).at(k))->get_model() + sep;
+        for (int k=start; k<island_indexes.at(j).size(); ++k) {
+            fmt::print("ind {}", (island_indexes.at(j).at(k)));
+            Individual<T>& ind = *individuals.at(island_indexes.at(j).at(k)).get();
+            output += ind.get_model() + sep;
+        }
     }
     return output;
 }
@@ -138,12 +139,12 @@ vector<vector<size_t>> Population<T>::sorted_front(unsigned rank)
     vector<vector<size_t>> pf_islands;
     pf_islands.resize(n_islands);
 
-    for (int i=0; i<n_islands; ++i)
+    for (int j=0;j<n_islands; ++j)
     {
-        auto idxs = island_indexes.at(i);
+        auto idxs = island_indexes.at(j);
         vector<size_t> pf;
 
-        for (unsigned int& i : idxs)
+        for (unsigned int i : idxs)
         {
             // this assumes that rank was previously calculated. It is set in selection (ie nsga2) if the information is useful to select/survive
             if (individuals.at(i)->rank == rank)
@@ -153,7 +154,7 @@ vector<vector<size_t>> Population<T>::sorted_front(unsigned rank)
         auto it = std::unique(pf.begin(),pf.end(),SameFitComplexity(*this));
         
         pf.resize(std::distance(pf.begin(),it));
-        pf_islands.at(i) = pf;
+        pf_islands.at(j) = pf;
     }
 
     return pf_islands;
@@ -226,7 +227,7 @@ void Population<T>::migrate()
                         island_fronts.at(other_island).end());
                 }
                 
-                island_indexes.at(i) = migrating_idx;
+                island_indexes.at(island).at(i) = migrating_idx;
             }
         }
     }

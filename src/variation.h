@@ -124,8 +124,7 @@ public:
     std::optional<Program<T>> mutate(const Program<T>& parent);
 
     /// method to handle variation of population
-    void vary(Population<T>& pop, tuple<size_t, size_t> island_range, 
-              const vector<size_t>& parents);
+    void vary(Population<T>& pop, int island, const vector<size_t>& parents);
 };
 
 } //namespace Var

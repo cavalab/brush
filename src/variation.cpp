@@ -568,34 +568,17 @@ std::optional<Program<T>> Variation<T>::mutate(const Program<T>& parent)
 }
 
 template <Brush::ProgramType T>
-void Variation<T>::vary(Population<T>& pop, tuple<size_t, size_t> island_range, 
+void Variation<T>::vary(Population<T>& pop, int island, 
           const vector<size_t>& parents)
-{
-    /*!
-     * performs variation on the current population. 
-     *
-     * @param   pop: current population
-     * @param  	parents: indices of population to use for variation
-     * @param  	params: feat parameters
-     *
-     * @return  appends params.pop_size offspring derived from parent variation
-     */
+{    
+    auto idxs = pop.get_island_indexes(island);
 
-    assert(pop.offspring_ready
-        && ("Population does not have slots for generating the offspring. "
-           +"You should `prep_offspring_slots`. `vary` will add new xmen individuals "
-           +"starting from the middle of the island"));
-
-    // parents should be within island range. TODO: assert that they are
-
-    auto [idx_start, idx_end] = island_range;
-    size_t delta = idx_end - idx_start;
-    
-    idx_start = idx_start + (delta/2);
+    // assumes it should save new individuals in second half of the island
+    int start = idxs.size()/2;
     
     // TODO: fix pragma omp usage
     //#pragma omp parallel for
-    for (unsigned i = idx_start; i<idx_end; ++i)
+    for (unsigned i = start; i<idxs.size(); ++i)
     {
         // pass check for children undergoing variation     
         std::optional<Program<T>> opt=std::nullopt; // new individual  
@@ -625,7 +608,7 @@ void Variation<T>::vary(Population<T>& pop, tuple<size_t, size_t> island_range,
                 Program<T> child = opt.value();
 
                 assert(child.size()>0);
-                pop.individuals.at(i) = Individual<T>(child);
+                pop.individuals.at(idxs.at(i)) = std::make_shared<Individual<T>>(child);
             }
         }    
    }

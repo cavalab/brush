@@ -67,6 +67,12 @@ template<ProgramType T>
 vector<size_t> NSGA2<T>::survive(Population<T>& pop, int island,
         const Parameters& params, const Dataset& d)
 {
+
+    size_t idx_start = std::floor(island*pop.size()/pop.n_islands);
+    size_t idx_end   = std::floor((island+1)*pop.size()/pop.n_islands);
+
+    auto original_size = idx_end - idx_start; // island size
+
     auto island_pool = pop.get_island_indexes(island);
 
     // set objectives (this is when the obj vector is updated.)
@@ -83,7 +89,7 @@ vector<size_t> NSGA2<T>::survive(Population<T>& pop, int island,
     // Push back selected individuals until full
     vector<size_t> selected(0);
     int i = 0;
-    while ( selected.size() + front.at(i).size() < island_pool.size()/2 ) // (size/2) because we want to get to the original size (prepare_offspring_slots doubled it before survival operation)
+    while ( selected.size() + front.at(i).size() < original_size ) // (size/2) because we want to get to the original size (prepare_offspring_slots doubled it before survival operation)
     {
         fmt::print("-- crawd dist\n");
         std::vector<int>& Fi = front.at(i);        // indices in front i
@@ -100,7 +106,7 @@ vector<size_t> NSGA2<T>::survive(Population<T>& pop, int island,
     std::sort(front.at(i).begin(),front.at(i).end(),sort_n(pop));
     
     fmt::print("adding last front)\n");
-    const int extra = island_pool.size()/2 - selected.size();
+    const int extra = original_size - selected.size();
     for (int j = 0; j < extra; ++j) // Pt+1 = Pt+1 U Fi[1:N-|Pt+1|]
         selected.push_back(front.at(i).at(j));
     

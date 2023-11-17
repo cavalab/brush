@@ -6,32 +6,21 @@ namespace Eval{
 
 template<ProgramType T> 
 void Evaluation<T>::validation(Population<T>& pop,
-                    tuple<size_t, size_t> island_range, 
+                    int island, 
                     const Dataset& data, 
                     const Parameters& params, 
                     bool offspring
                     )
 {
-    // if offspring false --> if has offspring, do it on first half. else, do on entire island
-    // offspring true --> assert that has offspring, do it on the second half of the island
+    auto idxs = pop.get_island_indexes(island);
 
-    auto [idx_start, idx_end] = island_range;
-    size_t delta = idx_end - idx_start;
+    int start = 0;
     if (offspring)
-    {
-        assert(pop.offspring_ready
-            && ("Population does not have offspring to calculate validation fitness"));
-        
-        idx_start = idx_start + (delta/2);
-    }
-    else if (pop.offspring_ready) // offspring is false. We need to see where we sould stop
-    {
-        idx_end = idx_end - (delta/2);
-    }
+        start = idxs.size()/2;
 
-    for (unsigned i = idx_start; i<idx_end; ++i)
+    for (unsigned i = start; i<idxs.size(); ++i)
     {
-        Individual<T>& ind = pop[i];
+        Individual<T>& ind = *pop.individuals.at(idxs.at(i)).get(); // we are modifying it, so operator[] wont work
         
         // if there is no validation data,
         // set fitness_v to fitness and return ( this assumes that fitness on train was calculated previously.)
@@ -60,33 +49,22 @@ void Evaluation<T>::validation(Population<T>& pop,
 // fitness of population
 template<ProgramType T> 
 void Evaluation<T>::fitness(Population<T>& pop,
-                    tuple<size_t, size_t> island_range, 
+                    int island,
                     const Dataset& data, 
                     const Parameters& params, 
                     bool fit,
                     bool offspring
                     )
 {
-    // if offspring false --> if has offspring, do it on first half. else, do on entire island
-    // offspring true --> assert that has offspring, do it on the second half of the island
+    auto idxs = pop.get_island_indexes(island);
 
-    auto [idx_start, idx_end] = island_range;
-    size_t delta = idx_end - idx_start;
+    int start = 0;
     if (offspring)
-    {
-        assert(pop.offspring_ready
-            && ("Population does not have offspring to calculate validation fitness"));
-        
-        idx_start = idx_start + (delta/2);
-    }
-    else if (pop.offspring_ready) // offspring is false. We need to see where we sould stop
-    {
-        idx_end = idx_end - (delta/2);
-    }
+        start = idxs.size()/2;
 
-    for (unsigned i = idx_start; i<idx_end; ++i)
+    for (unsigned i = start; i<idxs.size(); ++i)
     {
-        Individual<T>& ind = pop.individuals.at(i);
+        Individual<T>& ind = *pop.individuals.at(idxs.at(i)).get(); // we are modifying it, so operator[] wont work
 
         bool pass = true;
 

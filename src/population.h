@@ -71,7 +71,7 @@ public:
         SortComplexity(Population& p): pop(p){}
         bool operator()(size_t i, size_t j)
         { 
-            return pop.individuals[i].get_complexity() < pop.individuals[j].get_complexity();
+            return pop[i].get_complexity() < pop[j].get_complexity();
         }
     };
     
@@ -82,8 +82,8 @@ public:
         SameFitComplexity(Population<T>& p): pop(p){}
         bool operator()(size_t i, size_t j)
         {
-            return (pop.individuals[i].fitness == pop.individuals[j].fitness
-                   && pop.individuals[i].get_complexity() == pop.individuals[j].get_complexity());
+            return (pop[i].fitness == pop[j].fitness
+                   && pop[i].get_complexity() == pop[j].get_complexity());
         }
     };
 };

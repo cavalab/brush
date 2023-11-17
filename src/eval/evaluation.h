@@ -30,7 +30,7 @@ public:
     // TODO: IMPLEMENT THIS
     /// validation of population.
     void validation(Population<T>& pop,
-                    tuple<size_t, size_t> island_range, 
+                    int island, 
                     const Dataset& data, 
                     const Parameters& params, 
                     bool offspring = false
@@ -40,7 +40,7 @@ public:
     // TODO: MAKE it work for classification (do I need to have a way to set accuracy as a minimization problem?)
     /// fitness of population.
     void fitness(Population<T>& pop,
-                 tuple<size_t, size_t> island_range, 
+                 int island,
                  const Dataset& data, 
                  const Parameters& params, 
                  bool fit=true,
