@@ -77,7 +77,7 @@ void CBrush<T>::run_generation(unsigned int g, Dataset &data)
 {
     // https://taskflow.github.io/taskflow/ParallelIterations.html
     tf::Executor executor;
-    tf::Taskflow taskflow;
+    tf::Taskflow taskflow; // TODO: how to set number of threads?
 
     // TODO: implement custom behavior for first generation (specially regarding evaluator)
     params.current_gen = g;
@@ -103,7 +103,7 @@ void CBrush<T>::run_generation(unsigned int g, Dataset &data)
     });
     
     vector<size_t> survivors(pop.size());
-    pop.prep_offspring_slots();
+    pop.add_offspring_indexes();
 
     taskflow.for_each_index(0, pop.n_islands,  1, [&](int island) {
         tuple<size_t, size_t> island_range = pop.get_island_range(island);

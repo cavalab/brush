@@ -43,6 +43,7 @@ void Evaluation<T>::validation(Population<T>& pop,
             VectorXf y_pred =  ind.program.predict(data.get_validation_data());
             assign_fit(ind, y_pred, data, params, true);
         }
+        ind.set_obj(params.objectives);
     }
 }
 

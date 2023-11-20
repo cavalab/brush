@@ -69,11 +69,11 @@ TEST(Population, PopulationTests)
 
     // island sizes increases and comes back to the same values after update
     fmt::print("Performing all steps of an evolution (sequential, not parallel)\n");
-    for (int i=0; i<10; ++i) // update and prep offspring slots works properly
+    for (int i=0; i<100; ++i) // update and prep offspring slots works properly
     {
         vector<vector<size_t>> survivors(pop.n_islands);
 
-        fmt::print("Evolution step {}\n", i);
+        fmt::print("Fitting individuals\n"); // this must be done in one thread (or implement mutex), because we can have multiple islands pointing to same individuals
         for (int j=0; j<pop.n_islands; ++j)
         {
             fmt::print("Island {}, individuals {}\n", j, pop.get_island_indexes(j));
@@ -81,20 +81,25 @@ TEST(Population, PopulationTests)
             // we can calculate the fitness for each island
             fmt::print("Fitness\n");
             evaluator.fitness(pop, j, data, params, true, false);
+        }
 
+        // TODO: fix random state and make it work with taskflow
+        fmt::print("Evolution step {}\n", i);
+        for (int j=0; j<pop.n_islands; ++j)
+        {
             // just so we can call the update method
             fmt::print("Selection\n");
             vector<size_t> parents = selector.select(pop, j, params, data);
             ASSERT_TRUE(parents.size() > 0);
 
             fmt::print("Preparing offspring\n");
-            pop.prep_offspring_slots(j);
+            pop.add_offspring_indexes(j);
 
             // variation applied to population
             fmt::print("Variations for island {}\n", j);
             variator.vary(pop, j, parents);
 
-            fmt::print("fitting {}\n", j);
+            fmt::print("fitting {}\n", j); // at this step, we know that theres only one pointer to each individual being fitted, so we can perform it in parallel
             evaluator.fitness(pop, j, data, params, true, true);
         
             fmt::print("survivors\n", j);
@@ -106,7 +111,6 @@ TEST(Population, PopulationTests)
         pop.update(survivors); 
         pop.migrate();
 
-        // TODO: print islands
         fmt::print("Printing generation {} population:\n", i);
         for (int i=0; i<params.pop_size; ++i)
         {

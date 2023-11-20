@@ -36,7 +36,6 @@ void Individual<T>::set_obj(const vector<string>& objectives)
     
     for (const auto& n : objectives)
     {
-        // TODO: implement other objectives?
         if (n.compare("fitness")==0)
             obj.push_back(fitness); // fitness on training data, not validation.
                                     // if you use batch, this value will change every generation

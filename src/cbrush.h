@@ -134,44 +134,19 @@ private:
     Parameters params;  ///< hyperparameters of brush 
     SearchSpace ss;
 
-    // TODO: make other classes like selection (no template), or make selection like other classes?
     Population<T> pop;       	///< population of programs
-    Selection<T> selector;        	///< selection algorithm
-    Evaluation<T> evaluator;      	///< evaluation code
-    Variation<T> variator;  	///< variation operators
-    Selection<T> survivor;       	///< survival algorithm
+    Selection<T>  selector;   ///< selection algorithm
+    Evaluation<T> evaluator;  ///< evaluation code
+    Variation<T>  variator;  	///< variation operators
+    Selection<T>  survivor;   ///< survival algorithm
     
     // TODO: MISSING CLASSES: timer, archive, logger
-
-    // TODO
-    // results so far
     float best_loss;
     int best_complexity;
     Individual<T> best_ind;
 
-    // update best
     // calculate/print stats
 };
-
-int main(){
-
-    tf::Executor executor;
-    tf::Taskflow taskflow;
-  
-  auto [A, B, C, D] = taskflow.emplace(  // create four tasks
-    [] () { std::cout << "TaskA\n"; },
-    [] () { std::cout << "TaskB\n"; },
-    [] () { std::cout << "TaskC\n"; },
-    [] () { std::cout << "TaskD\n"; } 
-  );                                  
-                                      
-  A.precede(B, C);  // A runs before B and C
-  D.succeed(B, C);  // D runs after  B and C
-                                      
-  executor.run(taskflow).wait(); 
-
-  return 0;
-}
 
 } // Brush
 

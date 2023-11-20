@@ -22,7 +22,6 @@ size_t NSGA2<T>::tournament(Population<T>& pop, size_t i, size_t j) const
     const Individual<T>& ind1 = pop[i];
     const Individual<T>& ind2 = pop[j];
 
-    // TODO: implement this 
     int flag = ind1.check_dominance(ind2);
     
     if (flag == 1) // ind1 dominates ind2
@@ -48,8 +47,8 @@ vector<size_t> NSGA2<T>::select(Population<T>& pop, int island,
         return island_pool;
 
     // setting the objectives
-    for (unsigned int i=0; i<island_pool.size(); ++i)
-        pop.individuals.at(island_pool[i])->set_obj(params.objectives);
+    // for (unsigned int i=0; i<island_pool.size(); ++i)
+    //     pop.individuals.at(island_pool[i])->set_obj(params.objectives);
 
     vector<size_t> selected(0); 
     for (int i = 0; i < island_pool.size(); ++i) // selecting based on island_pool size
@@ -77,25 +76,21 @@ vector<size_t> NSGA2<T>::survive(Population<T>& pop, int island,
 
     // set objectives (this is when the obj vector is updated.)
     
-    fmt::print("-- first loop\n");
-    for (unsigned int i=0; i<island_pool.size(); ++i)
-        pop.individuals.at(island_pool[i])->set_obj(params.objectives);
+    // for loop below (originally performed in selection in FEAT) was moved to evaluation --- multiple islands may have the same individual
+    // for (unsigned int i=0; i<island_pool.size(); ++i)
+    //     pop.individuals.at(island_pool[i])->set_obj(params.objectives);
 
     // fast non-dominated sort
-    fmt::print("-- fast nds\n");
     auto front = fast_nds(pop, island_pool);
     
-    fmt::print("-- while loop\n");
     // Push back selected individuals until full
     vector<size_t> selected(0);
     int i = 0;
     while ( selected.size() + front.at(i).size() < original_size ) // (size/2) because we want to get to the original size (prepare_offspring_slots doubled it before survival operation)
     {
-        fmt::print("-- crawd dist\n");
         std::vector<int>& Fi = front.at(i);        // indices in front i
         crowding_distance(pop, front, i);          // calculate crowding in Fi
         
-        fmt::print("-- select loop\n");
         for (int j = 0; j < Fi.size(); ++j)     // Pt+1 = Pt+1 U Fi
             selected.push_back(Fi.at(j));
         

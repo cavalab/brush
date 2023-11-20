@@ -27,7 +27,6 @@ public:
     Evaluation(string scorer="mse"): S(scorer) { this->S.set_scorer(scorer); };
     ~Evaluation(){};
         
-    // TODO: IMPLEMENT THIS
     /// validation of population.
     void validation(Population<T>& pop,
                     int island, 

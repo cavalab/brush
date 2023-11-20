@@ -65,7 +65,6 @@ public:
     string type;
     bool survival;
     
-    //TODO: rewrite it as initializing parameters
     Selection()
     {
         this->type = "nsga2";

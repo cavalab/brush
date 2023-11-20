@@ -49,12 +49,12 @@ void Population<T>::init(SearchSpace& ss, const Parameters& params)
 }
 
 /// update individual vector size and island indexes
-template<ProgramType T>     // TODO: rename to include_offspring_indexes or something like this
-void Population<T>::prep_offspring_slots(int island)
+template<ProgramType T>
+void Population<T>::add_offspring_indexes(int island)
 {	   
     // reading and writing is thread-safe, as long as there's no overlap on island ranges.
     // manipulating a vector IS NOT thread-safe (inserting and erasing elements).
-    // So, prep_offspring_slots and update should be the synchronization points, not 
+    // So, add_offspring_indexes and update should be the synchronization points, not 
     // operations performed concurrently
 
     size_t p = pop_size; // population size. prep_offspring slots will douple the population, adding the new expressions into the islands
@@ -131,7 +131,7 @@ string Population<T>::print_models(bool just_offspring, string sep)
 }
 
 template<ProgramType T>
-vector<vector<size_t>> Population<T>::sorted_front(unsigned rank)
+vector<vector<size_t>> Population<T>::sorted_front(unsigned rank, bool ignore_offspring)
 {
     // this is used to migration and update archive at the end of a generation. expect islands without offspring
 
@@ -144,12 +144,17 @@ vector<vector<size_t>> Population<T>::sorted_front(unsigned rank)
         auto idxs = island_indexes.at(j);
         vector<size_t> pf;
 
-        for (unsigned int i : idxs)
+        auto end = idxs.size();
+        if (ignore_offspring)
+            end = end/2;
+
+        for (int i=0; i<end; ++i)
         {
             // this assumes that rank was previously calculated. It is set in selection (ie nsga2) if the information is useful to select/survive
-            if (individuals.at(i)->rank == rank)
+            if (individuals.at(idxs.at(i))->rank == rank)
                 pf.push_back(i);
         }
+
         std::sort(pf.begin(),pf.end(),SortComplexity(*this)); 
         auto it = std::unique(pf.begin(),pf.end(),SameFitComplexity(*this));
         
@@ -161,12 +166,17 @@ vector<vector<size_t>> Population<T>::sorted_front(unsigned rank)
 }
 
 template<ProgramType T>
-vector<size_t> Population<T>::hall_of_fame(unsigned rank)
+vector<size_t> Population<T>::hall_of_fame(unsigned rank, bool ignore_offspring)
 {
     // this is used to migration and update archive at the end of a generation. expect islands without offspring
 
     vector<size_t> pf(0);
-    for (unsigned int i =0; i<individuals.size(); ++i)
+    
+    auto end = individuals.size();
+    if (ignore_offspring)
+        end = end/2;
+
+    for (unsigned int i =0; i<end; ++i)
     {
         if (individuals.at(i)->rank == rank)
             pf.push_back(i);
@@ -187,8 +197,9 @@ void Population<T>::migrate()
     if (n_islands==1)
         return;
 
-    auto island_fronts = sorted_front();
-    auto global_hall_of_fame = hall_of_fame();
+    // we cant use more than half of population here
+    auto island_fronts = sorted_front(1, true);
+    auto global_hall_of_fame = hall_of_fame(1, true);
 
     // This is not thread safe (as it is now)
     for (int island=0; island<n_islands; ++island)

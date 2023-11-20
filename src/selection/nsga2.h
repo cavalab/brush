@@ -56,6 +56,7 @@ public:
                 // TODO: Improve operator[], and decrease use of pop.individuals.at(). Also, decrease number of auto declarations
                 auto ind1 = pop.individuals[i];
                 auto ind2 = pop.individuals[j];
+                
                 if (ind1->rank < ind2->rank)
                     return true;
                 else if (ind1->rank == ind2->rank &&

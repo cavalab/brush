@@ -22,14 +22,13 @@ public:
     //int verbosity = 0; // TODO: implement log and verbosity    
 
     // TODO: every parameter should have a default value
-    // TODO: python wrapper should have getters and setters for all this stuff
     // Evolutionary stuff
     string mode="regression"; 
 
     unsigned int current_gen = 1;
 
     int pop_size           = 100;
-    int gens               = 100;      
+    int gens               = 1000;      
     unsigned int max_depth = 6; // TODO: make all tests be based on these values for max depth and size
     unsigned int max_size  = 50;
     vector<string> objectives{"fitness","complexity"}; // error should be generic and deducted based on mode
