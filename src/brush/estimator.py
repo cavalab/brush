@@ -329,15 +329,17 @@ class BrushEstimator(BaseEstimator):
             # closest to the reference (smallest distance)
             final_ind_idx = np.argmin( np.linalg.norm(points - reference, axis=1) )
         else: # Best in obj.1 (loss) in validation data
-            final_ind_idx = np.argmax( points[:, 0] )
+            final_ind_idx = max(
+                range(len(points)),
+                key=lambda index: (points[index][0], points[index][1]) )
 
         self.best_estimator_ = self.archive_[final_ind_idx].prg
 
         if self.verbosity > 0:
-            print(f'best model {self.best_estimator_.get_model()}'+
-                  f' with size {self.best_estimator_.size()}, '   +
-                  f' depth {self.best_estimator_.depth()}, '      +
-                  f' and fitness {self.archive_[0].fitness}'      )
+            print(f'best model {self.best_estimator_.get_model()}'      +
+                  f' with size {self.best_estimator_.size()}, '         +
+                  f' depth {self.best_estimator_.depth()}, '            +
+                  f' and fitness {self.archive_[final_ind_idx].fitness}')
 
         return self
     
