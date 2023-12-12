@@ -99,11 +99,11 @@ class CMakeBuild(build_ext):
         )
 
 # # # Clean old build/ directory if it exists
-# try:
-#     remove_tree("./build")
-#     print("Removed old build directory.")
-# except FileNotFoundError:
-#     print("No existing build directory found - skipping.")
+try:
+    remove_tree("./build")
+    print("Removed old build directory.")
+except FileNotFoundError:
+    print("No existing build directory found - skipping.")
 
 setup(
     name="pybrush",
@@ -117,9 +117,9 @@ setup(
     project_urls={
         "Bug Tracker": "https://github.com/lacava/brush/issues",
     },
-    package_dir={"": "src"},
-    packages=find_packages(where="src"),
-    # cmake_install_dir="src/brush",
+    package_dir={"": "."},
+    packages=find_packages(where="."),
+    #cmake_install_dir="src/",
     python_requires=">=3.6",
     install_requires=[
         'numpy',

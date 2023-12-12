@@ -1,13 +1,14 @@
 
-from _brush import CBrush, Dataset, SearchSpace # TODO: stop calling cbrush, rename it
+from _brush import Dataset, SearchSpace # TODO: stop calling cbrush, rename it
 from sklearn.base import BaseEstimator, ClassifierMixin, RegressorMixin, TransformerMixin
 
-# TODO? LOGGER AND ARCHIVE
+# TODO: LOGGER AND ARCHIVE
 
 # TODO: GET DOCUMENTATION BACK
 class BrushEstimator(BaseEstimator):
     def __init__(self):
-        self.cbrush_ = CBrush()
+        # self.cbrush_ = CBrush()
+        pass
 
     def fit(self, X, y, Z=None):
         pass
