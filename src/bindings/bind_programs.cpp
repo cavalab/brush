@@ -11,6 +11,7 @@ namespace nl = nlohmann;
 
 void bind_programs(py::module& m)
 {
+     // fitness is used to prototype with deap API. TODO: replace deapIndividual with brush individual (once it gets implemented)
      py::class_<br::Fitness>(m, "Fitness", py::dynamic_attr())
           .def(py::init<>())
           .def_readwrite("values", &br::Fitness::values)
@@ -21,5 +22,4 @@ void bind_programs(py::module& m)
      bind_program<br::ClassifierProgram>(m, "Classifier");
      bind_program<br::MulticlassClassifierProgram>(m, "MultiClassifier");
      bind_program<br::RepresenterProgram>(m, "Representer");
-
 }
