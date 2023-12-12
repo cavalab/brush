@@ -80,6 +80,24 @@ typedef Program<PT::BinaryClassifier> ClassifierProgram;
 typedef Program<PT::MulticlassClassifier> MulticlassClassifierProgram;
 typedef Program<PT::Representer> RepresenterProgram;
 
+////////////////////////////////////////////////////////////////////////////////
+// Individual 
+namespace Pop {
+    template<Brush::ProgramType T> class Individual;
+}
+typedef Pop::Individual<PT::Regressor> RegressorIndividual;
+typedef Pop::Individual<PT::BinaryClassifier> ClassifierIndividual;
+typedef Pop::Individual<PT::MulticlassClassifier> MulticlassClassifierIndividual;
+typedef Pop::Individual<PT::Representer> RepresenterIndividual;
+
+////////////////////////////////////////////////////////////////////////////////
+// Estimator 
+using PT = ProgramType;
+template<PT T> class CBrush;
+typedef CBrush<PT::Regressor> RegressorEstimator;
+typedef CBrush<PT::BinaryClassifier> ClassifierEstimator;
+typedef CBrush<PT::MulticlassClassifier> MulticlassClassifierEstimator;
+typedef CBrush<PT::Representer> RepresenterEstimator;
 
 ////////////////////////////////////////////////////////////////////////////////
 // Data 

@@ -498,18 +498,31 @@ std::optional<Program<T>> Variation<T>::cross(
 template<Brush::ProgramType T>
 std::optional<Program<T>> Variation<T>::mutate(const Program<T>& parent)
 {
+    std::cout << "selecting options" << parameters.mutation_probs.size() << std::endl;
     auto options = parameters.mutation_probs;
 
-    if (std::all_of(options.begin(), options.end(),
-                    [](const auto& kv) { return kv.second<=0.0; })
-    )
+    std::cout << "selecting options2" << options.size() << std::endl;
+
+    bool all_zero = true;
+    for (auto &it : parameters.mutation_probs) {
+        std::cout << it.first << it.second << std::endl;
+        if (it.second > 0.0) {
+            all_zero = false;
+            break;
+        }
+    }
+
+    if (all_zero)
     { // No mutation can be successfully applied to this solution  
+        std::cout << "no viable one" << std::endl;
         return std::nullopt;
     }
 
+    std::cout << "selecting (not all are zero)" << std::endl;
     // choose a valid mutation option
-    string choice = r.random_choice(options);
+    string choice = r.random_choice(parameters.mutation_probs);
 
+    std::cout << "picked mutation" << choice <<  std::endl;
     // TODO: this could be improved (specially with the Variation class)
     std::unique_ptr<MutationBase> mutation;
     if (choice == "point") 
@@ -535,8 +548,10 @@ std::optional<Program<T>> Variation<T>::mutate(const Program<T>& parent)
         HANDLE_ERROR_THROW(msg);
     }
 
+    std::cout << "cloning parent" << std::endl;
     Program<T> child(parent);
 
+    std::cout << "findind spot" << std::endl;
     // choose location by weighted sampling of program
     auto weights = mutation->find_spots(child.Tree);
 
@@ -544,18 +559,22 @@ std::optional<Program<T>> Variation<T>::mutate(const Program<T>& parent)
         return w<=0.0;
     }))
     { // There is no spot that has a probability to be selected
+        std::cout << "no spots" << std::endl;
         return std::nullopt;
     }
 
+    std::cout << "apickingt spot" << std::endl;
     // apply the mutation and check if it succeeded
     auto spot = r.select_randomly(child.Tree.begin(), child.Tree.end(),
                                 weights.begin(), weights.end());
 
+    std::cout << "mutating" << std::endl;
     // Every mutation here works inplace, so they return bool instead of
     // std::optional to indicare the result of their manipulation over the
     // program tree. Here we call the mutation function and return the result
     bool success = (*mutation)(child.Tree, spot);
 
+    std::cout << "returning" << std::endl;
     if (success
     && ( (child.size()  <= parameters.max_size)
     &&   (child.depth() <= parameters.max_depth) )){

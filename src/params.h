@@ -15,8 +15,8 @@ namespace Brush
 struct Parameters
 {
 public:
-    // TODO: setters and getters for all parameters? (and do checks in setters?)
-
+    // TODO: setters and getters for all parameters? (and do checks in setters?). Also make them private, and use the getters and setters in the code
+    
     // settings
     int random_state; // TODO: constructor should set the global rng to random_state (if given, otherwise just let it work normally)
     //int verbosity = 0; // TODO: implement log and verbosity    
@@ -46,6 +46,7 @@ public:
         {"toggle_weight_on", 0.167},
         {"toggle_weight_off", 0.167}
     };
+
     float cx_prob=0.2;         ///< cross rate for variation
     float mig_prob = 0.05;
     
@@ -68,6 +69,13 @@ public:
 
     Parameters(){}; 
     ~Parameters(){};
+
+    void set_pop_size(int new_pop_size){ pop_size = new_pop_size; };
+    int get_pop_size(){ return pop_size; };
+
+
+    void set_mutation_probs(std::map<std::string, float> new_mutation_probs){ mutation_probs = new_mutation_probs; };
+    std::map<std::string, float> get_mutation_probs(){ return mutation_probs; };
 };
 
 // Global (deprecated) params

@@ -29,7 +29,7 @@ using namespace Eval;
 // using namespace variation;
 
 template <ProgramType T>
-class CBrush{
+class CBrush{ // TODO: rename it to BrushEstimator
 public:
     CBrush()
     : params(Parameters())
@@ -45,7 +45,7 @@ public:
     inline void set_is_fitted(bool f){is_fitted=f;}
     inline bool get_is_fitted(){return is_fitted;}
 
-    // TODO: WRAPPER SHOULD SET ALL THESE
+    // TODO: WRAPPER SHOULD SET ALL THESE (by changing the inner parameter instance)
 
     void set_pop_size(int pop_size){ params.pop_size = pop_size; };
     int get_pop_size(){ return params.pop_size; };
