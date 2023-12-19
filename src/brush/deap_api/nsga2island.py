@@ -27,7 +27,7 @@ def nsga2island(toolbox, NGEN, MU, N_ISLANDS, MIGPX, CXPB, use_batch, verbosity,
     stats.register("max", np.max, axis=0)
 
     logbook = tools.Logbook()
-    logbook.header = ['gen', 'evals'] + \
+    logbook.header = ['gen', 'evals', 'best_size'] + \
                      [f"{stat} {partition} O{objective}"
                          for stat in ['avg', 'med', 'std', 'min', 'max']
                          for partition in ['train', 'val']
@@ -52,7 +52,13 @@ def nsga2island(toolbox, NGEN, MU, N_ISLANDS, MIGPX, CXPB, use_batch, verbosity,
     pop = survived
 
     record = stats.compile(pop)
-    logbook.record(gen=0, evals=len(pop), **record)
+
+    best_size = max( range(len(pop)),
+        key=lambda index: ( pop[index].fitness.values[0]*pop[index].fitness.weights[0],
+                            pop[index].fitness.values[1]*pop[index].fitness.weights[1]) )
+    
+    logbook.record(gen=0, evals=len(pop), 
+                   best_size=pop[best_size].fitness.values[1], **record)
 
     if verbosity > 0: 
         print(logbook.stream)
@@ -146,7 +152,13 @@ def nsga2island(toolbox, NGEN, MU, N_ISLANDS, MIGPX, CXPB, use_batch, verbosity,
                     pop.append(new_pop[idx_individual])
                     
         record = stats.compile(pop)
-        logbook.record(gen=gen, evals=len(offspring)+(len(pop) if use_batch else 0), **record)
+
+        best_size = max( range(len(pop)),
+            key=lambda index: ( pop[index].fitness.values[0]*pop[index].fitness.weights[0],
+                                pop[index].fitness.values[1]*pop[index].fitness.weights[1]) )
+        
+        logbook.record(gen=gen, evals=len(offspring)+(len(pop) if use_batch else 0),
+                       best_size=pop[best_size].fitness.values[1], **record)
 
         if verbosity > 0: 
             print(logbook.stream)

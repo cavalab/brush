@@ -25,7 +25,7 @@ def nsga2(toolbox, NGEN, MU, CXPB, use_batch, verbosity, rnd_flt):
     stats.register("max", np.nanmax, axis=0)
 
     logbook = tools.Logbook()
-    logbook.header = ['gen', 'evals'] + \
+    logbook.header = ['gen', 'evals', 'best_size'] + \
                      [f"{stat} {partition} O{objective}"
                          for stat in ['avg', 'med', 'std', 'min', 'max']
                          for partition in ['train', 'val']
@@ -44,7 +44,14 @@ def nsga2(toolbox, NGEN, MU, CXPB, use_batch, verbosity, rnd_flt):
     pop = toolbox.survive(pop, len(pop))
 
     record = stats.compile(pop)
-    logbook.record(gen=0, evals=len(pop), **record)
+
+    # Finding the size (obj2) of the individual with best error (obj1)
+    best_size = max( range(len(pop)),
+        key=lambda index: ( pop[index].fitness.values[0]*pop[index].fitness.weights[0],
+                            pop[index].fitness.values[1]*pop[index].fitness.weights[1]) )
+    
+    logbook.record(gen=0, evals=len(pop), 
+                   best_size=pop[best_size].fitness.values[1], **record)
 
     if verbosity > 0: 
         print(logbook.stream)
@@ -96,7 +103,13 @@ def nsga2(toolbox, NGEN, MU, CXPB, use_batch, verbosity, rnd_flt):
         pop.sort(key=lambda x: x.fitness, reverse=True)
 
         record = stats.compile(pop)
-        logbook.record(gen=gen, evals=len(offspring)+(len(pop) if use_batch else 0), **record)
+
+        best_size = max( range(len(pop)),
+            key=lambda index: ( pop[index].fitness.values[0]*pop[index].fitness.weights[0],
+                                pop[index].fitness.values[1]*pop[index].fitness.weights[1]) )
+        
+        logbook.record(gen=gen, evals=len(offspring)+(len(pop) if use_batch else 0),
+                       best_size=pop[best_size].fitness.values[1], **record)
 
         if verbosity > 0: 
             print(logbook.stream)
