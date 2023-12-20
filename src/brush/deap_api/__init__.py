@@ -1,3 +1,3 @@
 from .nsga2 import nsga2
 from .nsga2island import nsga2island
-from .utils import DeapIndividual
+from .utils import DeapIndividual, e_lexicase

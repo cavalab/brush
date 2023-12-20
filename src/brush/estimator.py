@@ -16,7 +16,7 @@ from types import NoneType
 from sklearn.metrics import average_precision_score
 from sklearn.preprocessing import MinMaxScaler
 import _brush
-from .deap_api import nsga2, nsga2island, DeapIndividual 
+from .deap_api import nsga2, nsga2island, DeapIndividual, e_lexicase
 # from _brush import Dataset, SearchSpace
 
 
@@ -163,6 +163,26 @@ class BrushEstimator(BaseEstimator):
         self.weights_init=weights_init
         self.validation_size=validation_size
 
+    def _fitness_validation(self, ind, data: _brush.Dataset):
+        # Fitness without fitting the expression, used with validation data
+
+        ind_objectives = {
+            "error"     : self._error(ind, data),
+            "size"      : ind.prg.size(),
+            "complexity": ind.prg.complexity()
+        }
+
+        # Setting individual errors for lexicase
+        ind.errors = np.power( data.y - ind.prg.predict(data), 2 )
+
+        return [ ind_objectives[obj] for obj in self.objectives ]
+
+
+    def _fitness_function(self, ind, data: _brush.Dataset):
+        ind.prg.fit(data)
+
+        return self._fitness_validation(ind, data)
+
 
     def _setup_toolbox(self, data_train, data_validation):
         """Setup the deap toolbox"""
@@ -195,7 +215,7 @@ class BrushEstimator(BaseEstimator):
         # accept a tuple of fitnesses as argument)
         if self.algorithm=="nsga2" or self.algorithm=="nsga2island":
             if self.selection == "e-lexicase":
-                toolbox.register("select", tools.selAutomaticEpsilonLexicase) 
+                toolbox.register("select", e_lexicase) 
             elif self.selection == "tournament":
                 toolbox.register("select", tools.selTournamentDCD) 
             toolbox.register("survive", tools.selNSGA2)
@@ -439,21 +459,6 @@ class BrushClassifier(BrushEstimator,ClassifierMixin):
         #return (data.y==ind.prg.predict(data)).sum() / data.y.shape[0]
         return average_precision_score(data.y, ind.prg.predict(data))
     
-    def _fitness_validation(self, ind, data: _brush.Dataset):
-        # Fitness without fitting the expression, used with validation data
-
-        ind_objectives = {
-            "error"     : self._error(ind, data),
-            "size"      : ind.prg.size(),
-            "complexity": ind.prg.complexity()
-        }
-        return [ ind_objectives[obj] for obj in self.objectives ]
-
-    def _fitness_function(self, ind, data: _brush.Dataset):
-        ind.prg.fit(data)
-
-        return self._fitness_validation(ind, data)
-
     def _make_individual(self):
         # C++'s PTC2-based `make_individual` will create a tree of at least
         # the given size. By uniformly sampling the size, we can instantiate a
@@ -534,21 +539,6 @@ class BrushRegressor(BrushEstimator, RegressorMixin):
             MSE = np.inf
 
         return MSE
-
-    def _fitness_validation(self, ind, data: _brush.Dataset):
-        # Fitness without fitting the expression, used with validation data
-
-        ind_objectives = {
-            "error"     : self._error(ind, data),
-            "size"      : ind.prg.size(),
-            "complexity": ind.prg.complexity()
-        }
-        return [ ind_objectives[obj] for obj in self.objectives ]
-
-    def _fitness_function(self, ind, data: _brush.Dataset):
-        ind.prg.fit(data)
-
-        return self._fitness_validation(ind, data)
 
     def _make_individual(self):
         if self.initialization not in ["uniform", "max_size"]:
