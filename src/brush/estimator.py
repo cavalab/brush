@@ -69,12 +69,17 @@ class BrushEstimator(BaseEstimator):
         Distribution of sizes on the initial population. If `max_size`, then every
         expression is created with `max_size` nodes. If `uniform`, size will be
         uniformly distributed between 1 and `max_size`.
+    selection : {"e-lexicase", "tournament"}, default "e-lexicase"
+        A string with the selection method to use. Default is automatic epsilon
+        lexicase. Ignored if algorithm is not "nsga2" or "nsga2island".
     objectives : list[str], default ["error", "size"]
         list with one or more objectives to use. Options are `"error", "size", "complexity"`.
         If `"error"` is used, then it will be the mean squared error for regression,
         and accuracy for classification.
     algorithm : {"nsga2island", "nsga2", "gaisland", "ga"}, default "nsga2"
         Which Evolutionary Algorithm framework to use to evolve the population.
+        nsga2 will solve a multi-objective problem, while ga will use only the first
+        objective as fitness.
     weights_init : bool, default True
         Whether the search space should initialize the sampling weights of terminal nodes
         based on the correlation with the output y. If `False`, then all terminal nodes
@@ -130,6 +135,7 @@ class BrushEstimator(BaseEstimator):
                             "toggle_weight_on":1/6, "toggle_weight_off":1/6},
         functions: list[str]|dict[str,float] = {},
         initialization="uniform",
+        selection="e-lexicase",
         algorithm="nsga2",
         objectives=["error", "size"],
         random_state=None,
@@ -151,6 +157,7 @@ class BrushEstimator(BaseEstimator):
         self.functions=functions
         self.objectives=objectives
         self.initialization=initialization
+        self.selection=selection
         self.random_state=random_state
         self.batch_size=batch_size
         self.weights_init=weights_init
@@ -187,7 +194,10 @@ class BrushEstimator(BaseEstimator):
         # support this feature. This means that these selection operators must
         # accept a tuple of fitnesses as argument)
         if self.algorithm=="nsga2" or self.algorithm=="nsga2island":
-            toolbox.register("select", tools.selTournamentDCD) 
+            if self.selection == "e-lexicase":
+                toolbox.register("select", tools.selAutomaticEpsilonLexicase) 
+            elif self.selection == "tournament":
+                toolbox.register("select", tools.selTournamentDCD) 
             toolbox.register("survive", tools.selNSGA2)
         elif self.algorithm=="ga" or self.algorithm=="gaisland":
             toolbox.register("select", tools.selTournament, tournsize=3) 

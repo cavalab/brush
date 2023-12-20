@@ -64,7 +64,7 @@ def nsga2island(toolbox, NGEN, MU, N_ISLANDS, MIGPX, CXPB, use_batch, verbosity,
         print(logbook.stream)
 
     # Begin the generational process
-    for gen in range(1, NGEN):
+    for gen in range(1, NGEN+1):
         batch = toolbox.getBatch() # batch will be a random subset only if it was not
                                    # defined as the size of the train set. everytime
                                    # this function is called, a new random batch is generated.
