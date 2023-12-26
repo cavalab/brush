@@ -172,14 +172,17 @@ class BrushEstimator(BaseEstimator):
             "complexity": ind.prg.complexity()
         }
 
-        # Setting individual errors for lexicase
-        ind.errors = np.power( data.y - ind.prg.predict(data), 2 )
-
         return [ ind_objectives[obj] for obj in self.objectives ]
 
 
     def _fitness_function(self, ind, data: _brush.Dataset):
+        # fit the expression, then evaluate.
+
         ind.prg.fit(data)
+
+        # Setting individual errors for lexicase
+        ind.errors = np.nan_to_num(
+            np.abs( data.y - ind.prg.predict(data) ), nan=np.inf)
 
         return self._fitness_validation(ind, data)
 

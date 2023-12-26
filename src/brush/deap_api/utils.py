@@ -25,10 +25,14 @@ def e_lexicase(individuals, k):
 
         while len(cases) > 0 and len(candidates) > 1:
             errors_on_case = np.array([x.errors[cases[0]] for x in candidates])
-
+            
             MAD = np.median(np.abs(errors_on_case - np.median(errors_on_case)))
-
             best_on_case = np.min(errors_on_case)
+
+            # Skip if this case is np.inf for all individuals
+            if not np.isfinite(best_on_case+MAD):
+                continue
+            
             candidates = [x for x in candidates
                           if x.errors[cases[0]] <= best_on_case + MAD]
 
