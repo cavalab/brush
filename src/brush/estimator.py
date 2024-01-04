@@ -155,6 +155,7 @@ class BrushEstimator(BaseEstimator):
         self.max_gen=max_gen
         self.verbosity=verbosity
         self.algorithm=algorithm
+        self.pick_criteria=pick_criteria
         self.mode=mode
         self.max_depth=max_depth
         self.max_size=max_size
