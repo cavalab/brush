@@ -80,6 +80,13 @@ class BrushEstimator(BaseEstimator):
         Which Evolutionary Algorithm framework to use to evolve the population.
         nsga2 will solve a multi-objective problem, while ga will use only the first
         objective as fitness.
+    pick_criteria : {"error", "MCDM"}, default "error"
+        How to chose the best individual from final population. If `"error"`,
+        then the individual with best value for the first objective will be selected.
+        MCDM stands for multi-criteria decision making, and tries to get the
+        knee of the pareto frontier of the final population.
+        The criteria is based on validation partition if `0<validation_size<=1` ---
+        otherwise it will use training partition. 
     weights_init : bool, default True
         Whether the search space should initialize the sampling weights of terminal nodes
         based on the correlation with the output y. If `False`, then all terminal nodes
@@ -137,6 +144,7 @@ class BrushEstimator(BaseEstimator):
         initialization="uniform",
         selection="e-lexicase",
         algorithm="nsga2",
+        pick_criteria="error",
         objectives=["error", "size"],
         random_state=None,
         weights_init=True,
@@ -292,6 +300,7 @@ class BrushEstimator(BaseEstimator):
         if isinstance(X, pd.DataFrame):
             self.feature_names_ = X.columns.to_list()
 
+        # OBS: validation data is going to be the same as train if no split is set
         self.data_ = self._make_data(X, y, 
                                      feature_names=self.feature_names_,
                                      validation_size=self.validation_size)
@@ -348,20 +357,25 @@ class BrushEstimator(BaseEstimator):
         points = np.array([self.toolbox_.evaluateValidation(ind) for ind in self.archive_])
         points = points*np.array(self.weights)
 
-        if self.validation_size==0.0:  # Using the multi-criteria decision making on training data
+        # Using the multi-criteria decision making on:
+        # - test data if pick_criteria is MCDM
+        if self.pick_criteria=="MCDM":
             # Selecting the best estimator using training data
             # (train data==val data if validation_size is set to 0.0)
             # and multi-criteria decision making
 
             # Normalizing
-            points = MinMaxScaler().fit_transform(points)
+            min_vals = np.min(points, axis=0)
+            max_vals = np.max(points, axis=0)
+            points = (points - min_vals) / (max_vals - min_vals)
+            points = np.nan_to_num(points, nan=0)
             
             # Reference should be best value each obj. can have (after normalization)
-            reference = np.array([1.0, 1.0])
+            reference = [1 for _ in range(len(self.weights))]
 
-            # closest to the reference (smallest distance)
+            # closest to the reference
             final_ind_idx = np.argmin( np.linalg.norm(points - reference, axis=1) )
-        else: # Best in obj.1 (loss) in validation data
+        else: # Best in obj.1 (loss) in validation data (or training data)
             final_ind_idx = max(
                 range(len(points)),
                 key=lambda index: (points[index][0], points[index][1]) )
@@ -473,7 +487,7 @@ class BrushClassifier(BrushEstimator,ClassifierMixin):
 
         return creator.Individual(
             self.search_space_.make_classifier(
-                self.max_depth,(0 if self.initialization=='uniform' else self.max_size))
+                self.max_depth, (0 if self.initialization=='uniform' else self.max_size))
         if self.n_classes_ == 2 else
             self.search_space_.make_multiclass_classifier(
                 self.max_depth, (0 if self.initialization=='uniform' else self.max_size))

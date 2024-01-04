@@ -47,7 +47,7 @@ def nsga2island(toolbox, NGEN, MU, N_ISLANDS, MIGPX, CXPB, use_batch, verbosity,
     survived = []
     for (idx_start, idx_end) in island_indexes:
         survived_parents = toolbox.survive(pop[idx_start:idx_end],
-                                        idx_end-idx_start)
+                                           idx_end-idx_start)
         survived.extend(survived_parents)
     pop = survived
 
