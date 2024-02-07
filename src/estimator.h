@@ -3,21 +3,17 @@ copyright 2020 William La Cava
 license: GNU/GPL v3
 */
 
-#ifndef CBrush_H
-#define CBrush_H
+#ifndef Estimator_H
+#define Estimator_H
 
-#include "init.h"
-#include "population.h"
-#include "params.h"
-#include "./eval/evaluation.h"
-#include "selection/selection.h"
 #include "./util/rnd.h"
+#include "init.h"
+#include "params.h"
+#include "population.h"
+#include "./eval/evaluation.h"
+#include "variation.h"
+#include "selection/selection.h"
 #include "taskflow/taskflow.hpp"
-
-// TODO: improve the includes (why does this lines below does not work?)
-// #include "variation.h"
-// #include "selection.h"
-
 
 namespace Brush
 {
@@ -25,19 +21,18 @@ namespace Brush
 using namespace Pop;
 using namespace Sel;
 using namespace Eval;
-
-// using namespace variation;
+using namespace Var;
 
 template <ProgramType T>
-class CBrush{ // TODO: rename it to BrushEstimator
+class Estimator{
 public:
-    CBrush()
+    Estimator()
     : params(Parameters())
     , ss(SearchSpace())
     , variator(Variation<T>(params, ss))
     {};
 
-    ~CBrush(){};
+    ~Estimator(){};
     void init();
 
     //getters and setters for GA configuration ---------------------------------
@@ -68,7 +63,7 @@ public:
     void set_survival(string surv){ params.surv = surv; };
     string get_survival(){ return params.surv; };
                     
-    void set_num_islands(int n_islands){ params.num_islands = n_islands; };
+    void set_num_islands(int num_islands){ params.num_islands = num_islands; };
     int get_num_islands(){ return params.num_islands; };
              
     void set_objectives(const vector<string>& obj){params.objectives = obj; };
@@ -86,9 +81,10 @@ public:
     void set_cross_prob(float cross_prob){ params.cx_prob = cross_prob;};
     float get_cross_prob(){ return params.cx_prob; };
     
+    // TODO:  MAKE functions work
     // sets available functions based on comma-separated list.
-    void set_functions(const vector<string>& fns){ params.functions = fns; };
-    unordered_map<string, float> get_functions(){ return params.functions; };
+    // void set_functions(const vector<string>& fns){ params.functions = fns; };
+    // unordered_map<string, float> get_functions(){ return params.functions; };
                 
     void set_mutation_probs(std::map<std::string, float> mutation_probs){ params.mutation_probs = mutation_probs;};
     std::map<std::string, float> get_mutation_probs(){ return params.mutation_probs; };

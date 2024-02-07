@@ -31,7 +31,7 @@ public:
     int gens               = 1000;      
     unsigned int max_depth = 6; // TODO: make all tests be based on these values for max depth and size
     unsigned int max_size  = 50;
-    vector<string> objectives{"fitness","complexity"}; // error should be generic and deducted based on mode
+    vector<string> objectives{"error","complexity"}; // error should be generic and deducted based on mode
     string sel  = "nsga2"; //selection method
     string surv = "nsga2"; //survival method
     std::unordered_map<string, float> functions;
@@ -73,9 +73,39 @@ public:
     void set_pop_size(int new_pop_size){ pop_size = new_pop_size; };
     int get_pop_size(){ return pop_size; };
 
+    void set_gens(int new_gens){ gens = new_gens; };
+    int get_gens(){ return gens; };
 
+    void set_num_islands(int new_num_islands){ num_islands = new_num_islands; };
+    int get_num_islands(){ return num_islands; };
+
+    void set_max_depth(unsigned new_max_depth){ max_depth = new_max_depth; };
+    unsigned get_max_depth(){ return max_depth; };
+
+    void set_max_size(unsigned new_max_size){ max_size = new_max_size; };
+    unsigned get_max_size(){ return max_size; };
+
+    void set_objectives(vector<string> new_objectives){ objectives = new_objectives; };
+    vector<string> get_objectives(){ return objectives; };
+
+    void set_sel(string new_sel){ sel = new_sel; };
+    string get_sel(){ return sel; };
+
+    void set_surv(string new_surv){ surv = new_surv; };
+    string get_surv(){ return surv; };
+
+    void set_cx_prob(float new_cx_prob){ cx_prob = new_cx_prob; };
+    float get_cx_prob(){ return cx_prob; };
+
+    void set_mig_prob(float new_mig_prob){ mig_prob = new_mig_prob; };
+    float get_mig_prob(){ return mig_prob; };
+
+    //TODO: unify unordered or ordered
     void set_mutation_probs(std::map<std::string, float> new_mutation_probs){ mutation_probs = new_mutation_probs; };
     std::map<std::string, float> get_mutation_probs(){ return mutation_probs; };
+
+    void set_functions(std::unordered_map<std::string, float> new_functions){ functions = new_functions; };
+    std::unordered_map<std::string, float> get_functions(){ return functions; };
 };
 
 // Global (deprecated) params

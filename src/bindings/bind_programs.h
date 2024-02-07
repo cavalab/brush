@@ -24,7 +24,6 @@ void bind_program(py::module& m, string name)
         .def(py::init(
             [](const json& j){ T p = j; return p; })
         )
-        .def_readwrite("fitness", &T::fitness)
         .def("fit",
             static_cast<T &(T::*)(const Dataset &d)>(&T::fit),
             "fit from Dataset object")

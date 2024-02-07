@@ -35,10 +35,12 @@ public:
                     bool offspring = false
                     );
 
+    // TODO: set objectives
+    // TODO: evaluation bind 
     // TODO: EVALUATOR CALCULATE ERROR BASED ON TEMPLATING? (caps)
     // TODO: MAKE it work for classification (do I need to have a way to set accuracy as a minimization problem?)
     /// fitness of population.
-    void fitness(Population<T>& pop,
+    void update_fitness(Population<T>& pop,
                  int island,
                  const Dataset& data, 
                  const Parameters& params, 

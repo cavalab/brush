@@ -23,8 +23,18 @@ void bind_params(py::module& m)
     py::class_<Brush::Parameters>(m, "Parameters")
         .def(py::init([]()
                       { Brush::Parameters p; return p; }))
-        // TODO: define getters and setters, and create the bindings here. Make the Brush bindings use these here
         .def_property("pop_size", &Brush::Parameters::get_pop_size, &Brush::Parameters::set_pop_size)
+        .def_property("gens", &Brush::Parameters::get_gens, &Brush::Parameters::set_gens)
+        .def_property("num_islands", &Brush::Parameters::get_num_islands, &Brush::Parameters::set_num_islands)
+        .def_property("max_depth", &Brush::Parameters::get_max_depth, &Brush::Parameters::set_max_depth)
+        .def_property("max_size", &Brush::Parameters::get_max_size, &Brush::Parameters::set_max_size)
+        .def_property("objectives", &Brush::Parameters::get_objectives, &Brush::Parameters::set_objectives)
+        .def_property("sel", &Brush::Parameters::get_sel, &Brush::Parameters::set_sel)
+        .def_property("surv", &Brush::Parameters::get_surv, &Brush::Parameters::set_surv)
+        .def_property("cx_prob", &Brush::Parameters::get_cx_prob, &Brush::Parameters::set_cx_prob)
+        .def_property("mig_prob", &Brush::Parameters::get_mig_prob, &Brush::Parameters::set_mig_prob)
+        .def_property("functions", &Brush::Parameters::get_functions, &Brush::Parameters::set_functions)
         .def_property("mutation_probs", &Brush::Parameters::get_mutation_probs, &Brush::Parameters::set_mutation_probs)
+        
         ;    
 }

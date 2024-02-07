@@ -1,4 +1,5 @@
-#include "cbrush.h"
+#include "estimator.h"
+
 #include <iostream>
 
 
@@ -6,7 +7,7 @@ namespace Brush{
 
 /// @brief initialize Feat object for fitting.
 template <ProgramType T>
-void CBrush<T>::init()
+void Estimator<T>::init()
 {
     if (params.n_jobs!=0) // TODO: change this to set taskflow jobs
         omp_set_num_threads(params.n_jobs);
@@ -34,7 +35,7 @@ void CBrush<T>::init()
 }
 
 template <ProgramType T>
-bool CBrush<T>::update_best(const Dataset& data, bool val)
+bool Estimator<T>::update_best(const Dataset& data, bool val)
 {
     float bs;
     bs = this->best_loss; 
@@ -73,7 +74,7 @@ bool CBrush<T>::update_best(const Dataset& data, bool val)
 
 
 template <ProgramType T>
-void CBrush<T>::run_generation(unsigned int g, Dataset &data)
+void Estimator<T>::run_generation(unsigned int g, Dataset &data)
 {
     // https://taskflow.github.io/taskflow/ParallelIterations.html
     tf::Executor executor;
@@ -85,17 +86,17 @@ void CBrush<T>::run_generation(unsigned int g, Dataset &data)
     auto batch = data.get_batch(); // will return the original dataset if it is set to dont use batch 
 
     vector<vector<size_t>> island_parents;      
-    island_parents.resize(pop.n_islands);
-    taskflow.for_each_index(0, pop.n_islands,  1, [&](int island) {
+    island_parents.resize(pop.num_islands);
+    taskflow.for_each_index(0, pop.num_islands,  1, [&](int island) {
         tuple<size_t, size_t> island_range = pop.get_island_range(island);
 
         // fit the weights with all training data
-        evaluator.fitness(pop, island_range, data, params, true, false);
+        evaluator.update_fitness(pop, island_range, data, params, true, false);
         evaluator.validation(pop, island_range, data, params, false);
     
         // TODO: if using batch, fitness should be called before selection to set the batch
         if (data.use_batch) // assign the batch error as fitness (but fit was done with training data)
-            evaluator.fitness(pop, island_range, batch, params, false, false);
+            evaluator.update_fitness(pop, island_range, batch, params, false, false);
 
         // select parents
         vector<size_t> parents = selector.select(pop, island_range, params, data);
@@ -105,17 +106,17 @@ void CBrush<T>::run_generation(unsigned int g, Dataset &data)
     vector<size_t> survivors(pop.size());
     pop.add_offspring_indexes();
 
-    taskflow.for_each_index(0, pop.n_islands,  1, [&](int island) {
+    taskflow.for_each_index(0, pop.num_islands,  1, [&](int island) {
         tuple<size_t, size_t> island_range = pop.get_island_range(island);
 
         // // variation to produce offspring
         variator.vary(pop, island_range, island_parents.at(island));
 
-        evaluator.fitness(pop, island_range, data, params, true, true);
+        evaluator.update_fitness(pop, island_range, data, params, true, true);
         evaluator.validation(pop, island_range, data, params, true);
 
         if (data.use_batch) // assign the batch error as fitness (but fit was done with training data)
-            evaluator.fitness(pop, island_range, batch, params, false, true);
+            evaluator.update_fitness(pop, island_range, batch, params, false, true);
 
         // select survivors from combined pool of parents and offspring
         auto island_survivors = survivor.survive(pop, island_range, params, data);
@@ -135,13 +136,14 @@ void CBrush<T>::run_generation(unsigned int g, Dataset &data)
 }
 
 template <ProgramType T>
-void CBrush<T>::fit(MatrixXf& X, VectorXf& y)
+void Estimator<T>::fit(MatrixXf& X, VectorXf& y)
 {
     this->init();
 
     // TODO: fit method that takes different arguments?
     Dataset data(X, y);
 
+    //TODO: i need to make sure i initialize everything (pybind needs to have constructors without arguments to work, and i need to handle correcting these values before running)
     this->ss = SearchSpace(data, params.functions);
     this->pop = Population(params.pop_size, params.num_islands);
     this->evaluator = Evaluation(params.scorer_);

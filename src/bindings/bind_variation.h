@@ -1,6 +1,6 @@
 #include "module.h"
 #include "../variation.h"
-#include "../variation.cpp" // TODO: figure out why im having symbol errors
+#include "../variation.cpp" // TODO: figure out why im having symbol errors (if i dont include the cpp here as well)
 
 namespace py = pybind11;
 namespace nl = nlohmann;
@@ -19,5 +19,6 @@ void bind_variation(py::module& m, string name)
              return variation; }))
         .def("mutate", &Class::mutate, py::return_value_policy::automatic)
         .def("cross", &Class::cross, py::return_value_policy::automatic)
+        // .def("vary", &Class::vary) // apply variation to the population TODO: implement it: wrap a list of individuals into  a population, modify it, return as a vector of individuals (so we dont have to expose population to python)
         ;
 }

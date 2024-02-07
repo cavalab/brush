@@ -9,7 +9,7 @@ Population<T>::Population()
     individuals.resize(0);
     mig_prob = 0.0;
     pop_size = 0;
-    n_islands = 0;
+    num_islands = 0;
 }
 
 template<ProgramType T>
@@ -17,18 +17,18 @@ void Population<T>::init(SearchSpace& ss, const Parameters& params)
 {
     this->mig_prob = params.mig_prob;
     this->pop_size = params.pop_size;
-    this->n_islands=params.num_islands;
+    this->num_islands=params.num_islands;
     
     // Tuples with start and end indexes for each island. Number of individuals
-    // in each island can slightly differ if N_ISLANDS is not a divisor of p (popsize)
-    island_indexes.resize(n_islands);
+    // in each island can slightly differ if num_islands is not a divisor of p (popsize)
+    island_indexes.resize(num_islands);
     
     size_t p = pop_size; // population size
 
-    for (int i=0; i<n_islands; ++i)
+    for (int i=0; i<num_islands; ++i)
     {
-        size_t idx_start = std::floor(i*p/n_islands);
-        size_t idx_end = std::floor((i+1)*p/n_islands);
+        size_t idx_start = std::floor(i*p/num_islands);
+        size_t idx_end = std::floor((i+1)*p/num_islands);
 
         auto delta = idx_end - idx_start;
 
@@ -45,6 +45,7 @@ void Population<T>::init(SearchSpace& ss, const Parameters& params)
     {          
         individuals.at(i) = std::make_shared<Individual<T>>();
         individuals.at(i)->init(ss, params);
+        individuals.at(i)->set_objectives(params.objectives);
     }
 }
 
@@ -60,8 +61,8 @@ void Population<T>::add_offspring_indexes(int island)
     size_t p = pop_size; // population size. prep_offspring slots will douple the population, adding the new expressions into the islands
     
     // this is going to be tricky (pay attention to delta and p use)
-    size_t idx_start = std::floor(island*p/n_islands);
-    size_t idx_end   = std::floor((island+1)*p/n_islands);
+    size_t idx_start = std::floor(island*p/num_islands);
+    size_t idx_end   = std::floor((island+1)*p/num_islands);
 
     auto delta = idx_end - idx_start; // island size
 
@@ -83,20 +84,20 @@ void Population<T>::update(vector<vector<size_t>> survivors)
     vector<std::shared_ptr<Individual<T>>> new_pop;
     new_pop.resize(2*pop_size);
     size_t i=0;
-    for (int j=0; j<n_islands; ++j)
+    for (int j=0; j<num_islands; ++j)
     {
         for (int k=0; k<survivors.at(j).size(); ++k){
             new_pop.at(i) = individuals.at(survivors.at(j).at(k));
             
             // update will set the complexities (for migration step. we do it here because update handles non-thread safe operations)
-            new_pop.at(i)->set_complexity();
+            // new_pop.at(i)->set_complexity();
     
             ++i; // this will fill just half of the pop
         }
 
         // need to make island point to original range
-        size_t idx_start = std::floor(j*pop_size/n_islands);
-        size_t idx_end   = std::floor((j+1)*pop_size/n_islands);
+        size_t idx_start = std::floor(j*pop_size/num_islands);
+        size_t idx_end   = std::floor((j+1)*pop_size/num_islands);
 
         auto delta = idx_end - idx_start;
 
@@ -113,7 +114,7 @@ string Population<T>::print_models(bool just_offspring, string sep)
     // not printing the island each individual belongs to
     string output = "";
 
-    for (int j=0; j<n_islands; ++j)
+    for (int j=0; j<num_islands; ++j)
     {
         output += "island " + to_string(j) + ":\n";
 
@@ -137,9 +138,9 @@ vector<vector<size_t>> Population<T>::sorted_front(unsigned rank, bool ignore_of
 
     /* Returns individuals on the Pareto front, sorted by increasign complexity. */
     vector<vector<size_t>> pf_islands;
-    pf_islands.resize(n_islands);
+    pf_islands.resize(num_islands);
 
-    for (int j=0;j<n_islands; ++j)
+    for (int j=0;j<num_islands; ++j)
     {
         auto idxs = island_indexes.at(j);
         vector<size_t> pf;
@@ -188,13 +189,13 @@ vector<size_t> Population<T>::hall_of_fame(unsigned rank, bool ignore_offspring)
     return pf;
 }
 
-
+//  TODO:  check why im getting core  dump  in migrate  or NSGA2
 template<ProgramType T>
 void Population<T>::migrate()
 {
     // changes where island points to 
 
-    if (n_islands==1)
+    if (num_islands==1)
         return;
 
     // we cant use more than half of population here
@@ -202,7 +203,7 @@ void Population<T>::migrate()
     auto global_hall_of_fame = hall_of_fame(1, true);
 
     // This is not thread safe (as it is now)
-    for (int island=0; island<n_islands; ++island)
+    for (int island=0; island<num_islands; ++island)
     {
         auto idxs = island_indexes.at(island);
         for (unsigned int i=0; i<idxs.size(); ++i)
@@ -218,7 +219,7 @@ void Population<T>::migrate()
                 }
                 else { // from any other local hall of fame
                     // finding other island indexes
-                    vector<int> other_islands(n_islands-1);
+                    vector<int> other_islands(num_islands-1);
                     iota(other_islands.begin(), other_islands.end(), 0);
 
                     // skipping current island

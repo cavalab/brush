@@ -1,12 +1,7 @@
 #ifndef NSGA2_H
 #define NSGA2_H
 
-#include "selection.h"
-#include "../init.h"
-#include "../program/program.h"
-#include "../population.h"
-#include "../individual.h"
-#include "../data/data.h"
+#include "selection_operator.h"
 
 namespace Brush {
 namespace Sel {
@@ -25,7 +20,7 @@ public:
 
     // if any of the islands have overlapping indexes, parallel access and modification should be ok (because i dont increase or decrease pop size, not change island ranges inside selection)
 
-    NSGA2(bool surv);
+    NSGA2(bool surv=false);
     ~NSGA2(){};
 
     /// selection according to the survival scheme of NSGA-II
@@ -60,7 +55,7 @@ public:
                 if (ind1->rank < ind2->rank)
                     return true;
                 else if (ind1->rank == ind2->rank &&
-                            ind1->crowd_dist > ind2->crowd_dist)
+                            ind1->crowding_dist > ind2->crowding_dist)
                     return true;
                 return false;
             };
@@ -75,7 +70,8 @@ public:
             comparator_obj(const Population<T>& population, int index) 
                 : pop(population), m(index) {};
 
-            bool operator() (int i, int j) { return pop[i].obj[m] < pop[j].obj[m]; };
+            bool operator() (int i, int j) { 
+                return pop[i].fitness.get_wvalues()[m] < pop[j].fitness.get_wvalues()[m]; };
         };
     
         size_t tournament(Population<T>& pop, size_t i, size_t j) const;

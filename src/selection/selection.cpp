@@ -1,5 +1,4 @@
 #include "selection.h"
-#include "nsga2.h"
 
 // TODO: organize all namespaces
 namespace Brush {
@@ -7,6 +6,16 @@ namespace Sel {
 
 using namespace Brush;
 using namespace Pop;
+
+
+template<ProgramType T> 
+Selection<T>::Selection()
+{
+    this->type = "nsga2";
+    this->survival = false;
+    this->set_operator();
+}
+
 
 template<ProgramType T> 
 Selection<T>::Selection(string type, bool survival)

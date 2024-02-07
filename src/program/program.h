@@ -37,10 +37,6 @@ namespace Brush {
 typedef tree<Node>::pre_order_iterator Iter; 
 typedef tree<Node>::post_order_iterator PostIter; 
 
-struct Fitness {
-    vector<float> values;
-    bool valid;
-};
 using PT = ProgramType;
 
 // for unsupervised learning, classification and regression. 
@@ -68,8 +64,9 @@ template<PT PType> struct Program
 
     /// whether fit has been called
     bool is_fitted_;
+
     /// fitness 
-    Fitness fitness;
+    // Fitness fitness;
     
     /// the underlying tree
     tree<Node> Tree; 

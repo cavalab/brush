@@ -1,10 +1,8 @@
 #ifndef POPULATION_H
 #define POPULATION_H
 
-#include "search_space.h"
-#include "individual.h"
-#include "program/program.h"
 #include "util/error.h"
+#include "individual.h"
 
 using std::vector;
 using std::string;
@@ -17,7 +15,7 @@ template<ProgramType T>
 class Population{
 public:
     size_t pop_size;
-    unsigned int n_islands;
+    unsigned int num_islands;
     float mig_prob;
 
     vector<std::shared_ptr<Individual<T>>> individuals;
@@ -27,7 +25,7 @@ public:
     // - prepare offspring and update are not thread safe because we insert/delete elements from the array. 
     vector<vector<size_t>> island_indexes;
 
-    // TODO: taskflow needs to use n_islands as n_jobs
+    // TODO: taskflow needs to use num_islands as n_jobs
     Population();
     
     ~Population(){};
@@ -42,7 +40,7 @@ public:
 
     vector<size_t> get_island_indexes(int island){ return island_indexes.at(island); };
 
-    /// update individual vector size, distributing the expressions in n_islands
+    /// update individual vector size, distributing the expressions in num_islands
     void add_offspring_indexes(int island);
     
     /// reduce programs to the indices in survivors. Not thread safe,as it removes elements

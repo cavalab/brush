@@ -93,11 +93,11 @@ typedef Pop::Individual<PT::Representer> RepresenterIndividual;
 ////////////////////////////////////////////////////////////////////////////////
 // Estimator 
 using PT = ProgramType;
-template<PT T> class CBrush;
-typedef CBrush<PT::Regressor> RegressorEstimator;
-typedef CBrush<PT::BinaryClassifier> ClassifierEstimator;
-typedef CBrush<PT::MulticlassClassifier> MulticlassClassifierEstimator;
-typedef CBrush<PT::Representer> RepresenterEstimator;
+template<PT T> class Estimator;
+typedef Estimator<PT::Regressor> RegressorEstimator;
+typedef Estimator<PT::BinaryClassifier> ClassifierEstimator;
+typedef Estimator<PT::MulticlassClassifier> MulticlassClassifierEstimator;
+typedef Estimator<PT::Representer> RepresenterEstimator;
 
 ////////////////////////////////////////////////////////////////////////////////
 // Data 

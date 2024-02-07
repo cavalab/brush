@@ -1,18 +1,53 @@
 #include "individual.h"
 
-namespace Brush{   
-namespace Pop{
-        
-template<ProgramType T>
-int Individual<T>::check_dominance(const Individual<T>& b) const
+namespace Brush{  
+
+void to_json(json &j, const Fitness &f)
+{
+    j = json{
+        {"values",  f.values},
+        {"weights", f.weights},
+        {"wvalues", f.wvalues},
+        {"loss", f.loss},
+        {"loss_v", f.loss_v},
+        {"complexity", f.complexity},
+        {"size", f.size},
+        {"depth", f.depth},
+        {"dcounter", f.dcounter},
+        {"dominated", f.dominated},
+        {"rank", f.rank},
+        {"crowding_dist", f.crowding_dist}
+    };
+}
+
+void from_json(const json &j, Fitness& f)
+{
+    j.at("values").get_to(  f.values );
+    j.at("weights").get_to( f.weights );
+    j.at("wvalues").get_to( f.wvalues );
+    j.at("loss").get_to( f.loss );
+    j.at("loss_v").get_to( f.loss_v );
+    j.at("complexity").get_to( f.complexity );
+    j.at("size").get_to( f.size );
+    j.at("depth").get_to( f.depth );
+    j.at("dcounter").get_to( f.dcounter );
+    j.at("dominated").get_to( f.dominated );
+    j.at("rank").get_to( f.rank );
+    j.at("crowding_dist").get_to( f.crowding_dist );
+}
+
+
+int Fitness::dominates(const Fitness& b) const
 {
     int flag1 = 0, // to check if this has a smaller objective
         flag2 = 0; // to check if b    has a smaller objective
 
-    for (int i=0; i<obj.size(); ++i) {
-        if (obj.at(i) < b.obj.at(i)) 
+    // TODO: replace comparison of individual values by   using the overloaded  operators (here and in nsga2)
+    // TODO: save fitness in an temporary variable and stop accessing it everytime
+    for (int i=0; i<get_wvalues().size(); ++i) {
+        if (get_wvalues().at(i) < b.get_wvalues().at(i)) 
             flag1 = 1;
-        else if (obj.at(i) > b.obj.at(i)) 
+        else if (get_wvalues().at(i) > b.get_wvalues().at(i)) 
             flag2 = 1;                       
     }
 
@@ -29,25 +64,9 @@ int Individual<T>::check_dominance(const Individual<T>& b) const
         return 0;
 }
 
-template<ProgramType T>
-void Individual<T>::set_obj(const vector<string>& objectives)
-{
-    obj.clear();
-    
-    for (const auto& n : objectives)
-    {
-        if (n.compare("fitness")==0)
-            obj.push_back(fitness); // fitness on training data, not validation.
-                                    // if you use batch, this value will change every generation
-        else if (n.compare("complexity")==0)
-            obj.push_back(set_complexity());
-        else if (n.compare("size")==0)
-            obj.push_back(program.size());
-        else
-            HANDLE_ERROR_THROW(n+" is not a known objective");
-    }
 
-}
+namespace Pop{
+
 
 } // Pop
 } // Brush
