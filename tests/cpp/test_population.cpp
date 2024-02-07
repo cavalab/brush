@@ -91,7 +91,7 @@ TEST(Population, PopulationTests)
         {
             // just so we can call the update method
             fmt::print("Selection\n");
-            vector<size_t> parents = selector.select(pop, j, params, data);
+            vector<size_t> parents = selector.select(pop, j, params);
             ASSERT_TRUE(parents.size() > 0);
 
             fmt::print("Preparing offspring\n");
@@ -105,7 +105,7 @@ TEST(Population, PopulationTests)
             evaluator.update_fitness(pop, j, data, params, true, true);
         
             fmt::print("survivors {}\n", j);
-            auto island_survivors = survivor.survive(pop, j, params, data);
+            auto island_survivors = survivor.survive(pop, j, params);
             survivors.at(j) = island_survivors;
         }
         

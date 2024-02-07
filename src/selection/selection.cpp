@@ -49,17 +49,17 @@ void Selection<T>::set_type(string in){ type = in; set_operator();}
 /// perform selection 
 template<ProgramType T> 
 vector<size_t> Selection<T>::select(Population<T>& pop, int island,  
-        const Parameters& params, const Dataset& data)
+        const Parameters& params)
 {       
-    return pselector->select(pop, island, params, data);
+    return pselector->select(pop, island, params);
 }
 
 /// perform survival
 template<ProgramType T> 
 vector<size_t> Selection<T>::survive(Population<T>& pop, int island, 
-        const Parameters& params, const Dataset& data)
+        const Parameters& params)
 {       
-    return pselector->survive(pop, island, params, data);
+    return pselector->survive(pop, island, params);
 }
 
 } // selection

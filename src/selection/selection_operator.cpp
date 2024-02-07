@@ -11,7 +11,7 @@ SelectionOperator<T>::~SelectionOperator(){};
     
 template<ProgramType T> 
 vector<size_t> SelectionOperator<T>::select(Population<T>& pop, int island, 
-        const Parameters& p, const Dataset& data)
+        const Parameters& p)
 {   
     HANDLE_ERROR_THROW("Undefined select() operation");
     return vector<size_t>();
@@ -19,7 +19,7 @@ vector<size_t> SelectionOperator<T>::select(Population<T>& pop, int island,
 
 template<ProgramType T> 
 vector<size_t> SelectionOperator<T>::survive(Population<T>& pop, int island, 
-        const Parameters& p, const Dataset& data)
+        const Parameters& p)
 {   
     HANDLE_ERROR_THROW("Undefined select() operation");
     return vector<size_t>();

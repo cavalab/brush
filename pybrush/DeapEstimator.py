@@ -180,8 +180,8 @@ class DeapEstimator(BaseEstimator):
         
         toolbox.register("Clone", lambda ind: creator.Individual(ind.program.copy()))
         
-        toolbox.register("mate", self._crossover)
-        toolbox.register("mutate", self._mutate)
+        toolbox.register("mate", self.variator_.cross)
+        toolbox.register("mutate", self.variator_.mutate)
 
         # When solving multi-objective problems, selection and survival must
         # support this feature. This means that these selection operators must
@@ -204,49 +204,6 @@ class DeapEstimator(BaseEstimator):
         toolbox.register("evaluateValidation", self._fitness_validation, data=data_validation)
 
         return toolbox
-
-
-    def _crossover(self, ind1, ind2):
-        offspring = [] 
-
-        for i,j in [(ind1,ind2),(ind2,ind1)]:
-            attempts = 0
-            child = None
-            while (attempts < 3 and child is None):
-                attempts = attempts + 1
-                child = self.variator_.cross(i.program, j.program)
-
-                if child is not None:
-                    child = creator.Individual(child)
-                    child.objectives = self.objectives
-                    
-
-            offspring.extend([child])
-
-        # so we always need to have two elements to unpack inside `offspring`
-        return offspring[0], offspring[1]
-    
-
-    def _mutate(self, ind1):
-        # offspring = (creator.Individual(ind1.program.mutate(self.search_space_)),)
-        attempts = 0
-        offspring = None
-        # print("starting mutation")
-        while (attempts < 3 and offspring is None):
-            # print("attempt", attempts)
-            offspring = self.variator_.mutate(ind1.program)
-            # print("got offspring")
-
-            if offspring is not None:
-                # print('and it wasnt none')
-                xmen = creator.Individual(offspring)
-                xmen.objectives = self.objectives
-                return xmen
-            attempts = attempts + 1
-        
-        # print("i failed")
-        return None
-
 
     def fit(self, X, y):
         """

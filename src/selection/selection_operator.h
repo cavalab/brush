@@ -34,10 +34,10 @@ public:
     virtual ~SelectionOperator();
      
     virtual vector<size_t> select(Population<T>& pop, int island, 
-            const Parameters& p, const Dataset& data);
+            const Parameters& p);
     
     virtual vector<size_t> survive(Population<T>& pop, int island, 
-            const Parameters& p, const Dataset& data);
+            const Parameters& p);
 };
 
 } // selection

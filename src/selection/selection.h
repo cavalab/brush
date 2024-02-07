@@ -41,11 +41,11 @@ public:
     
     /// perform selection. selection uses a pop that has no offspring space
     vector<size_t> select(Population<T>& pop, int island, 
-            const Parameters& params, const Dataset& data);
+            const Parameters& params);
     
     /// perform survival. uses a pop with offspring space
     vector<size_t> survive(Population<T>& pop, int island,  
-            const Parameters& params, const Dataset& data);
+            const Parameters& params);
 };
 
 // TODO: MAKE THIS WORK

@@ -52,16 +52,17 @@ TEST(Variation, FixedRootDoesntChange)
                 ASSERT_TRUE(root.get_prob_change()==0.0);
                 ASSERT_TRUE(root.fixed==true);
 
-                auto opt_mutation = variator.mutate(PRG);
+                Individual<PT::BinaryClassifier> IND(PRG);
+                auto opt_mutation = variator.mutate(IND);
                 
                 if (opt_mutation)
                 {
                     successes += 1;
                     auto Mut_Child = opt_mutation.value();
                     fmt::print("After mutation : {}\n",
-                               Mut_Child.get_model("compact", true));
+                               Mut_Child.program.get_model("compact", true));
 
-                    Node mut_child_root = *(Mut_Child.Tree.begin());
+                    Node mut_child_root = *(Mut_Child.program.Tree.begin());
 
                     ASSERT_TRUE(mut_child_root.node_type == NodeType::Logistic);
                     ASSERT_TRUE(mut_child_root.ret_type == DataType::ArrayF);
@@ -71,16 +72,18 @@ TEST(Variation, FixedRootDoesntChange)
                 }
 
                 ClassifierProgram PRG2 = SS.make_classifier(0, 0, params);
-                auto opt_cx = variator.cross(PRG, PRG2);
+
+                Individual<PT::BinaryClassifier> IND2(PRG2);
+                auto opt_cx = variator.cross(IND, IND2);
 
                 if (opt_cx)
                 {
                     successes += 1;
                     auto CX_Child = opt_cx.value();
                     fmt::print("After crossover: {}\n",
-                               CX_Child.get_model("compact", true));
+                               CX_Child.program.get_model("compact", true));
 
-                    Node cx_child_root = *(CX_Child.Tree.begin());
+                    Node cx_child_root = *(CX_Child.program.Tree.begin());
 
                     ASSERT_TRUE(cx_child_root.node_type == NodeType::Logistic);
                     ASSERT_TRUE(cx_child_root.ret_type == DataType::ArrayF);
@@ -159,7 +162,10 @@ TEST(Variation, InsertMutationWorks)
         fmt::print("auto Child = PRG.mutate();\n");
 
         // We should assume that it will be always the insert mutation
-        auto opt = variator.mutate(PRG); 
+
+        Individual<PT::Regressor> IND(PRG);
+
+        auto opt = variator.mutate(IND); 
 
         if (opt){
             successes += 1;
@@ -170,8 +176,8 @@ TEST(Variation, InsertMutationWorks)
                 "Initial Model: {}\n"
                 "Mutated Model: {}\n",
                 params.max_depth, params.max_size,
-                PRG.get_model("compact", true),
-                Child.get_model("compact", true)
+                IND.program.get_model("compact", true),
+                Child.program.get_model("compact", true)
             );
 
             fmt::print("child fit\n");
@@ -179,18 +185,18 @@ TEST(Variation, InsertMutationWorks)
             y_pred = Child.predict(data);
 
             // since we successfully inserted a node, this should be always true
-            ASSERT_TRUE(Child.size() > PRG.size());
+            ASSERT_TRUE(Child.program.size() > IND.program.size());
 
             // maybe the insertion spot was a shorter branch than the maximum
             // depth. At least, xmen depth should be equal to its parent
-            ASSERT_TRUE(Child.depth() >= PRG.depth());
+            ASSERT_TRUE(Child.program.depth() >= IND.program.depth());
         }
 
         // lets also see if it always fails when the child exceeds the maximum limits
-        params.max_size  = PRG.size();
-        params.max_depth = PRG.depth();
+        params.max_size  = IND.program.size();
+        params.max_depth = IND.program.depth();
 
-        auto opt2 = variator.mutate(PRG);
+        auto opt2 = variator.mutate(IND);
         if (opt2){ // This shoudl't happen. We'll print then error
             auto Child2 = opt2.value();
 
@@ -204,8 +210,8 @@ TEST(Variation, InsertMutationWorks)
                 "Initial Model: {}\n"
                 "Mutated Model: {}\n",
                 params.max_depth, params.max_size,
-                PRG.get_model("compact", true),
-                Child2.get_model("compact", true)
+                IND.program.get_model("compact", true),
+                Child2.program.get_model("compact", true)
             );
             ASSERT_TRUE(opt2==std::nullopt);
         }
@@ -266,7 +272,9 @@ TEST(Variation, Mutation)
             
             // applying mutation and checking if the optional result is non-empty
             fmt::print("auto Child = PRG.mutate();\n");
-            auto opt = variator.mutate(PRG);
+
+            Individual<PT::Regressor> IND(PRG);
+            auto opt = variator.mutate(IND);
 
             if (!opt){
                 fmt::print(
@@ -275,7 +283,7 @@ TEST(Variation, Mutation)
                     "Initial Model: {}\n"
                     "Mutation failed to create a child",
                     d, s, 
-                    PRG.get_model("compact", true)
+                    IND.program.get_model("compact", true)
                 );
             }
             else {
@@ -287,8 +295,8 @@ TEST(Variation, Mutation)
                     "Initial Model: {}\n"
                     "Mutated Model: {}\n",
                     d, s, 
-                    PRG.get_model("compact", true),
-                    Child.get_model("compact", true)
+                    IND.program.get_model("compact", true),
+                    Child.program.get_model("compact", true)
                 );
 
                 fmt::print("child fit\n");
@@ -296,7 +304,7 @@ TEST(Variation, Mutation)
                 y_pred = Child.predict(data);
 
                 // no collateral effect (parent still the same)
-                ASSERT_TRUE(PRG_model == PRG.get_model("compact", true));
+                ASSERT_TRUE(PRG_model == IND.program.get_model("compact", true));
             }
         }
     }
@@ -348,7 +356,9 @@ TEST(Variation, MutationSizeAndDepthLimit)
             RegressorProgram PRG = SS.make_regressor(0, 0, params);
             
             auto PRG_model = PRG.get_model("compact", true);
-            auto opt = variator.mutate(PRG);
+
+            Individual<PT::Regressor> IND(PRG);
+            auto opt = variator.mutate(IND);
 
             if (!opt){
                 fmt::print(
@@ -357,7 +367,7 @@ TEST(Variation, MutationSizeAndDepthLimit)
                     "Initial Model: {}\n"
                     "Mutation failed to create a child",
                     d, s, 
-                    PRG.get_model("compact", true)
+                    IND.program.get_model("compact", true)
                 );
             }
             else {
@@ -377,23 +387,23 @@ TEST(Variation, MutationSizeAndDepthLimit)
                     "Mutated depth: {}\n"
                     "Mutated size : {}\n",
                     d, s, 
-                    PRG.get_model("compact", true),
-                    Child.get_model("compact", true),
-                    Child.depth(),
-                    Child.size()
+                    IND.program.get_model("compact", true),
+                    Child.program.get_model("compact", true),
+                    Child.program.depth(),
+                    Child.program.size()
                 );
 
                 // Original didn't change
-                ASSERT_TRUE(PRG_model == PRG.get_model("compact", true));
+                ASSERT_TRUE(PRG_model == IND.program.get_model("compact", true));
                 
-                ASSERT_TRUE(Child.size() > 0);
-                ASSERT_TRUE(Child.size() <= s);
+                ASSERT_TRUE(Child.program.size() > 0);
+                ASSERT_TRUE(Child.program.size() <= s);
 
-                ASSERT_TRUE(Child.size() > 0);
-                ASSERT_TRUE(Child.size() <= s);
+                ASSERT_TRUE(Child.program.size() > 0);
+                ASSERT_TRUE(Child.program.size() <= s);
 
-                ASSERT_TRUE(Child.depth() >= 0);
-                ASSERT_TRUE(Child.depth() <= d);
+                ASSERT_TRUE(Child.program.depth() >= 0);
+                ASSERT_TRUE(Child.program.depth() <= d);
             }
         }
     }
@@ -451,7 +461,10 @@ TEST(Variation, Crossover)
             ArrayXf y_pred = PRG1.predict(data);
             fmt::print("cross one\n");
 
-            auto opt = variator.cross(PRG1, PRG2);
+            Individual<PT::Regressor> IND1(PRG1);
+            Individual<PT::Regressor> IND2(PRG2);
+            auto opt = variator.cross(IND1, IND2);
+
             if (!opt){
                 fmt::print(
                     "=================================================\n"
@@ -460,8 +473,8 @@ TEST(Variation, Crossover)
                     "Original model 2: {}\n",
                     "Crossover failed to create a child",
                     d, s, 
-                    PRG1.get_model("compact", true),
-                    PRG2.get_model("compact", true)
+                    IND1.program.get_model("compact", true),
+                    IND2.program.get_model("compact", true)
                 );
             }
             else {
@@ -470,20 +483,20 @@ TEST(Variation, Crossover)
                 fmt::print(
                     "Original model 1 after cross: {}\n"
                     "Original model 2 after cross: {}\n",
-                    PRG1.get_model("compact", true),
-                    PRG2.get_model("compact", true)
+                    IND1.program.get_model("compact", true),
+                    IND2.program.get_model("compact", true)
                 );
                 fmt::print(
                     "Crossed Model: {}\n"
                     "=================================================\n",
-                    Child.get_model("compact", true)
+                    Child.program.get_model("compact", true)
                 );
                 Child.fit(data);
                 auto child_pred1 = Child.predict(data);
 
                 // no collateral effect (parent still the same)
-                ASSERT_TRUE(PRG1_model == PRG1.get_model("compact", true));
-                ASSERT_TRUE(PRG2_model == PRG2.get_model("compact", true));
+                ASSERT_TRUE(PRG1_model == IND1.program.get_model("compact", true));
+                ASSERT_TRUE(PRG2_model == IND2.program.get_model("compact", true));
             }
         }
     }
@@ -546,7 +559,9 @@ TEST(Variation, CrossoverSizeAndDepthLimit)
             );
 
             fmt::print("cross\n");
-            auto opt = variator.cross(PRG1, PRG2);
+            Individual<PT::Regressor> IND1(PRG1);
+            Individual<PT::Regressor> IND2(PRG2);
+            auto opt = variator.cross(IND1, IND2);
 
             if (!opt){
                 fmt::print("Crossover failed to create a child"
@@ -560,20 +575,20 @@ TEST(Variation, CrossoverSizeAndDepthLimit)
                     "Child Model depth: {}\n"
                     "Child Model size : {}\n"
                     "=================================================\n",
-                    Child.get_model("compact", true),
-                    Child.depth(), Child.size()
+                    Child.program.get_model("compact", true),
+                    Child.program.depth(), Child.program.size()
                 );
 
                 // Original didn't change
-                ASSERT_TRUE(PRG1_model == PRG1.get_model("compact", true));
-                ASSERT_TRUE(PRG2_model == PRG2.get_model("compact", true));
+                ASSERT_TRUE(PRG1_model == IND1.program.get_model("compact", true));
+                ASSERT_TRUE(PRG2_model == IND2.program.get_model("compact", true));
 
                 // Child is within restrictions
-                ASSERT_TRUE(Child.size() > 0);
-                ASSERT_TRUE(Child.size() <= s + 3*max_arity);
+                ASSERT_TRUE(Child.program.size() > 0);
+                ASSERT_TRUE(Child.program.size() <= s + 3*max_arity);
 
-                ASSERT_TRUE(Child.depth() >= 0);
-                ASSERT_TRUE(Child.depth() <= d);
+                ASSERT_TRUE(Child.program.depth() >= 0);
+                ASSERT_TRUE(Child.program.depth() <= d);
             }
         }
     }

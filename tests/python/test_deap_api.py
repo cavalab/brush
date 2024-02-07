@@ -127,7 +127,7 @@ def test_fixed_nodes(setup, fixed_node, brush_args, request):
         
         # Crossover
         cxmen = []
-        [cxmen.extend(est.toolbox_.mate(c1, c2))
+        [cxmen.append(est.toolbox_.mate(c1, c2))
          for (c1, c2) in zip(clones[::2], clones[1::2])]
         cxmen = [x for x in cxmen if x is not None]
         assert len(cxmen) > 0, "Crossover didn't worked for any individual"

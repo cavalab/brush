@@ -76,26 +76,19 @@ def nsga2(toolbox, NGEN, MU, CXPB, use_batch, verbosity, rnd_flt):
         parents = toolbox.select(pop, len(pop))
         # offspring = [toolbox.clone(ind) for ind in offspring]
         offspring = []
-        for ind1, ind2 in zip(parents[::2], parents[1::2]):
-            off1, off2 = None, None
+        for ind1, ind2 in zip(parents, parents[1:]):
+            off = None
             if rnd_flt() < CXPB: # either mutation or crossover. 
-                off1, off2 = toolbox.mate(ind1, ind2)
+                off = toolbox.mate(ind1, ind2)
             else:
-                off1 = toolbox.mutate(ind1)
-                off2 = toolbox.mutate(ind2)
+                off = toolbox.mutate(ind1)
             
-            if off1 is not None: # Mutation worked. first we fit, then add to offspring
+            if off is not None: # Mutation worked. first we fit, then add to offspring
                 # Evaluate (instead of evaluateValidation) to fit the weights of the offspring
-                off1.fitness.values = toolbox.evaluate(off1) 
+                off.fitness.values = toolbox.evaluate(off) 
                 if use_batch: # Adjust fitness to the same data as parents
-                    off1.fitness.values = toolbox.evaluateValidation(off1, data=batch)
-                offspring.extend([off1])
-
-            if off2 is not None:
-                off2.fitness.values = toolbox.evaluate(off2) 
-                if use_batch:
-                    off2.fitness.values = toolbox.evaluateValidation(off2, data=batch)
-                offspring.extend([off2])
+                    off.fitness.values = toolbox.evaluateValidation(off, data=batch)
+                offspring.extend([off])
 
         # print(2, offspring[0].fitness.values, offspring[0].fitness.weights)
 
@@ -110,8 +103,8 @@ def nsga2(toolbox, NGEN, MU, CXPB, use_batch, verbosity, rnd_flt):
 
         if verbosity > 0: 
             print(logbook.stream)
-            print(pop[0].program.get_model(),
-                  pop[0].fitness.values, pop[0].fitness.weights, pop[0].fitness.wvalues)
+            print(pop[0].fitness.values, pop[0].fitness.weights, pop[0].fitness.wvalues,
+                  pop[0].program.get_model(),)
 
     # if verbosity > 0: 
     #     print("Final population hypervolume is %f" % hypervolume(pop, [1000.0, 50.0]))

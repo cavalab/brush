@@ -27,11 +27,13 @@ public:
 
     // TODO: taskflow needs to use num_islands as n_jobs
     Population();
-    
     ~Population(){};
     
     /// initialize population of programs with a starting model and/or from file 
     void init(SearchSpace& ss, const Parameters& params);
+
+    // initialize based on list of individuals
+    void init(vector<Individual<T>&>& individuals, const Parameters& params);
 
     // TODO: init from file (like FEAT)
 

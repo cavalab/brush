@@ -5,7 +5,6 @@ namespace Sel {
 
 using namespace Brush;
 using namespace Pop;
-using namespace Data;
 using namespace Sel;
 
 template<ProgramType T>
@@ -38,7 +37,7 @@ size_t NSGA2<T>::tournament(Population<T>& pop, size_t i, size_t j) const
 
 template<ProgramType T>
 vector<size_t> NSGA2<T>::select(Population<T>& pop, int island, 
-        const Parameters& params, const Dataset& d)
+        const Parameters& params)
 {
     auto island_pool = pop.get_island_indexes(island);
 
@@ -64,7 +63,7 @@ vector<size_t> NSGA2<T>::select(Population<T>& pop, int island,
 
 template<ProgramType T>
 vector<size_t> NSGA2<T>::survive(Population<T>& pop, int island,
-        const Parameters& params, const Dataset& d)
+        const Parameters& params)
 {
 
     // fmt::print("starting\n");

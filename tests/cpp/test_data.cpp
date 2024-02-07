@@ -94,7 +94,10 @@ TEST(Data, MixedVariableTypes)
 
             // creating and fitting a child
             Variation variator = Variation<ProgramType::Regressor>(params, SS);
-            std::optional<RegressorProgram> opt = variator.mutate(PRG);
+
+            Individual<PT::Regressor> IND(PRG);
+            
+            std::optional<Individual<PT::Regressor>> opt = variator.mutate(IND);
 
             if (!opt){
                 fmt::print("Mutation failed to create a child\n");
@@ -102,14 +105,22 @@ TEST(Data, MixedVariableTypes)
             else {
                 auto Child = opt.value();
 
-                fmt::print("Child model: {}\n", Child.get_model("compact", true));
+                fmt::print("Child program model: {}\n", Child.program.get_model("compact", true));
 
                 fmt::print( "Child fit\n");
                 Child.fit(dt);
 
                 fmt::print( "Child predict\n");
                 ArrayXf y_pred_child = Child.predict(dt);
-                fmt::print( "y_pred: {}\n", y_pred);
+                fmt::print( "y_pred: {}\n", y_pred_child);
+
+                // should be the same as the fit and predict above
+                fmt::print( "Child program fit\n");
+                Child.program.fit(dt);
+
+                fmt::print( "Child program predict\n");
+                ArrayXf y_pred_child_program = Child.program.predict(dt);
+                fmt::print( "y_pred: {}\n", y_pred_child_program);
             }
         }
 

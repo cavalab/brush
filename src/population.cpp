@@ -12,6 +12,24 @@ Population<T>::Population()
     num_islands = 0;
 }
 
+
+template<ProgramType T>
+void Population<T>::init(vector<Individual<T>&>& individuals, const Parameters& params)
+{
+    this->mig_prob = params.mig_prob;
+    this->pop_size = params.pop_size;
+    this->num_islands=params.num_islands;
+
+    // If the assert fails, execution stops, but for completeness, you can also throw an exception
+    if (individuals.size() != this->pop_size) {
+        throw std::runtime_error("Individual vector has different number of individuals than pop_size.");
+    }
+    individuals.resize(0);
+    for (const auto& ind : individuals) {
+        individuals.push_back( std::make_shared<Individual<T>>(ind) );
+    }
+}
+
 template<ProgramType T>
 void Population<T>::init(SearchSpace& ss, const Parameters& params)
 {

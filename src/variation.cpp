@@ -353,7 +353,7 @@ public:
  * 
  * If the cross succeeds, the child program can be accessed through the
  * `.value()` attribute of the `std::optional`. 
- * 
+ * TODO: update this documentation (it doesnt take the program but the individual. also update mutation documentation)
  * This means that, if you use the cross as `auto opt = mutate(parent, SS)`,
  * either `opt==false` or `opt.value()` contains the child.
  * 
@@ -363,13 +363,13 @@ public:
  * @return `std::optional` that may contain the child program of type `T`
  */
 template<Brush::ProgramType T>
-std::optional<Program<T>> Variation<T>::cross(
-    const Program<T>& mom, const Program<T>& dad) 
+std::optional<Individual<T>> Variation<T>::cross(
+    const Individual<T>& mom, const Individual<T>& dad) 
 {
     /* subtree crossover between this and other, producing new Program */
     // choose location by weighted sampling of program
     // TODO: why doesn't this copy the search space reference to child?
-    Program<T> child(mom);
+    Program<T> child(mom.program);
 
     // pick a subtree to replace
     vector<float> child_weights(child.Tree.size());
@@ -395,70 +395,80 @@ std::optional<Program<T>> Variation<T>::cross(
         return std::nullopt;
     }
     
-    auto child_spot = r.select_randomly(child.Tree.begin(), 
-                                        child.Tree.end(), 
-                                        child_weights.begin(), 
-                                        child_weights.end()
-                                    );
-
-    auto child_ret_type = child_spot.node->data.ret_type;
-
-    auto allowed_size  = parameters.max_size -
-                        ( child.size() - child.size_at(child_spot) );
-    auto allowed_depth = parameters.max_depth - 
-                        ( child.depth_to_reach(child_spot) );
-    
     // pick a subtree to insert. Selection is based on other_weights
-    Program<T> other(dad);
+    Program<T> other(dad.program);
 
-    vector<float> other_weights(other.Tree.size());
-
-    // iterator to get the size of subtrees inside transform
-    auto other_iter = other.Tree.begin();
-
-    // lambda function to check feasibility of solution and increment the iterator 
-    const auto check_and_incrm = [other, &other_iter, allowed_size, allowed_depth]() -> bool {
-        int s = other.size_at( other_iter );
-        int d = other.depth_at( other_iter );
-
-        std::advance(other_iter, 1);
-        return (s <= allowed_size) && (d <= allowed_depth);
-    };
-
-    // TODO: something like `is_valid_program` in FEAT
-    std::transform(other.Tree.begin(), other.Tree.end(), 
-        other_weights.begin(),
-        [child_ret_type, check_and_incrm](const auto& n){
-            // need to pick a node that has a matching output type to the child_spot.
-            // also need to check if swaping this node wouldn't exceed max_size
-            if (check_and_incrm() && (n.ret_type == child_ret_type))
-                return n.get_prob_change(); 
-            else
-                // setting the weight to zero to indicate a non-feasible crossover point
-                return 0.0f;
-        }
-    );
-    
-    bool matching_spots_found = false;
-    for (const auto& w: other_weights)
+    int attempts = 0;
+    while (++attempts <= 3)
     {
-        matching_spots_found = w > 0.0;
+        auto child_spot = r.select_randomly(child.Tree.begin(), 
+                                            child.Tree.end(), 
+                                            child_weights.begin(), 
+                                            child_weights.end()
+                                        );
 
-        if (matching_spots_found) {
-            auto other_spot = r.select_randomly(
-                other.Tree.begin(), 
-                other.Tree.end(), 
-                other_weights.begin(), 
-                other_weights.end()
-            );
-                            
-            // fmt::print("other_spot : {}\n",other_spot.node->data);
-            // swap subtrees at child_spot and other_spot
-            // TODO: do I need to delete the removed node?
-            child.Tree.move_ontop(child_spot, other_spot);
-            return child;
+        auto child_ret_type = child_spot.node->data.ret_type;
+
+        auto allowed_size  = parameters.max_size -
+                            ( child.size() - child.size_at(child_spot) );
+        auto allowed_depth = parameters.max_depth - 
+                            ( child.depth_to_reach(child_spot) );
+        
+        vector<float> other_weights(other.Tree.size());
+
+        // iterator to get the size of subtrees inside transform
+        auto other_iter = other.Tree.begin();
+
+        // lambda function to check feasibility of solution and increment the iterator 
+        const auto check_and_incrm = [other, &other_iter, allowed_size, allowed_depth]() -> bool {
+            int s = other.size_at( other_iter );
+            int d = other.depth_at( other_iter );
+
+            std::advance(other_iter, 1);
+            return (s <= allowed_size) && (d <= allowed_depth);
+        };
+
+        // TODO: something like `is_valid_program` in FEAT
+        std::transform(other.Tree.begin(), other.Tree.end(), 
+            other_weights.begin(),
+            [child_ret_type, check_and_incrm](const auto& n){
+                // need to pick a node that has a matching output type to the child_spot.
+                // also need to check if swaping this node wouldn't exceed max_size
+                if (check_and_incrm() && (n.ret_type == child_ret_type))
+                    return n.get_prob_change(); 
+                else
+                    // setting the weight to zero to indicate a non-feasible crossover point
+                    return 0.0f;
+            }
+        );
+        
+        bool matching_spots_found = false;
+        for (const auto& w: other_weights)
+        {
+            // we found at least one weight that is non-zero
+            matching_spots_found = w > 0.0;
+
+            if (matching_spots_found) {
+                auto other_spot = r.select_randomly(
+                    other.Tree.begin(), 
+                    other.Tree.end(), 
+                    other_weights.begin(), 
+                    other_weights.end()
+                );
+                                
+                // fmt::print("other_spot : {}\n",other_spot.node->data);
+                // swap subtrees at child_spot and other_spot
+                // TODO: do I need to delete the removed node?
+                child.Tree.move_ontop(child_spot, other_spot);
+                
+                Individual<T> ind(child);
+                ind.set_objectives(mom.get_objectives()); // it will have an invalid fitness
+
+                return ind;
+            }
         }
     }
+
     return std::nullopt;
 }
 
@@ -496,7 +506,7 @@ std::optional<Program<T>> Variation<T>::cross(
  * @return `std::optional` that may contain the child program of type `T`
  */
 template<Brush::ProgramType T>
-std::optional<Program<T>> Variation<T>::mutate(const Program<T>& parent)
+std::optional<Individual<T>> Variation<T>::mutate(const Individual<T>& parent)
 {
     // std::cout << "selecting options" << parameters.mutation_probs.size() << std::endl;
     auto options = parameters.mutation_probs;
@@ -517,73 +527,81 @@ std::optional<Program<T>> Variation<T>::mutate(const Program<T>& parent)
         // std::cout << "no viable one" << std::endl;
         return std::nullopt;
     }
+    
+    int attempts = 0;
+    while(++attempts <= 3)
+    {
+        // std::cout << "selecting (not all are zero)" << std::endl;
+        // choose a valid mutation option
+        string choice = r.random_choice(parameters.mutation_probs);
 
-    // std::cout << "selecting (not all are zero)" << std::endl;
-    // choose a valid mutation option
-    string choice = r.random_choice(parameters.mutation_probs);
+        // std::cout << "picked mutation" << choice <<  std::endl;
+        // TODO: this could be improved (specially with the Variation class)
+        std::unique_ptr<MutationBase> mutation;
+        if (choice == "point") 
+            mutation = std::make_unique<PointMutation>(
+                search_space,parameters.max_size, parameters.max_depth);
+        else if (choice == "insert") 
+            mutation = std::make_unique<InsertMutation>(
+                search_space,parameters.max_size, parameters.max_depth);
+        else if (choice == "delete") 
+            mutation = std::make_unique<DeleteMutation>(
+                search_space,parameters.max_size, parameters.max_depth);
+        else if (choice == "toggle_weight_on") 
+            mutation = std::make_unique<ToggleWeightOnMutation>(
+                search_space,parameters.max_size, parameters.max_depth);
+        else if (choice == "toggle_weight_off") 
+            mutation = std::make_unique<ToggleWeightOffMutation>(
+                search_space,parameters.max_size, parameters.max_depth);
+        else if (choice == "subtree") 
+            mutation = std::make_unique<SubtreeMutation>(
+                search_space,parameters.max_size, parameters.max_depth);
+        else {
+            std::string msg = fmt::format("{} not a valid mutation choice", choice);
+            HANDLE_ERROR_THROW(msg);
+        }
 
-    // std::cout << "picked mutation" << choice <<  std::endl;
-    // TODO: this could be improved (specially with the Variation class)
-    std::unique_ptr<MutationBase> mutation;
-    if (choice == "point") 
-        mutation = std::make_unique<PointMutation>(
-            search_space,parameters.max_size, parameters.max_depth);
-    else if (choice == "insert") 
-        mutation = std::make_unique<InsertMutation>(
-            search_space,parameters.max_size, parameters.max_depth);
-    else if (choice == "delete") 
-        mutation = std::make_unique<DeleteMutation>(
-            search_space,parameters.max_size, parameters.max_depth);
-    else if (choice == "toggle_weight_on") 
-        mutation = std::make_unique<ToggleWeightOnMutation>(
-            search_space,parameters.max_size, parameters.max_depth);
-    else if (choice == "toggle_weight_off") 
-        mutation = std::make_unique<ToggleWeightOffMutation>(
-            search_space,parameters.max_size, parameters.max_depth);
-    else if (choice == "subtree") 
-        mutation = std::make_unique<SubtreeMutation>(
-            search_space,parameters.max_size, parameters.max_depth);
-    else {
-        std::string msg = fmt::format("{} not a valid mutation choice", choice);
-        HANDLE_ERROR_THROW(msg);
+        // std::cout << "cloning parent" << std::endl;
+        Program<T> child(parent.program);
+
+        // std::cout << "findind spot" << std::endl;
+        // choose location by weighted sampling of program
+        auto weights = mutation->find_spots(child.Tree);
+
+        if (std::all_of(weights.begin(), weights.end(), [](const auto& w) {
+            return w<=0.0;
+        }))
+        { // There is no spot that has a probability to be selected
+            // std::cout << "no spots" << std::endl;
+            continue;
+        }
+
+        // std::cout << "apickingt spot" << std::endl;
+        // apply the mutation and check if it succeeded
+        auto spot = r.select_randomly(child.Tree.begin(), child.Tree.end(),
+                                    weights.begin(), weights.end());
+
+        // std::cout << "mutating" << std::endl;
+        // Every mutation here works inplace, so they return bool instead of
+        // std::optional to indicare the result of their manipulation over the
+        // program tree. Here we call the mutation function and return the result
+        bool success = (*mutation)(child.Tree, spot);
+
+        // std::cout << "returning" << std::endl;
+        if (success
+        && ( (child.size()  <= parameters.max_size)
+        &&   (child.depth() <= parameters.max_depth) )){
+
+            Individual<T> ind(child);
+            ind.set_objectives(parent.get_objectives()); // it will have an invalid fitness
+
+            return ind;
+        } else {
+            continue;
+        }
     }
 
-    // std::cout << "cloning parent" << std::endl;
-    Program<T> child(parent);
-
-    // std::cout << "findind spot" << std::endl;
-    // choose location by weighted sampling of program
-    auto weights = mutation->find_spots(child.Tree);
-
-    if (std::all_of(weights.begin(), weights.end(), [](const auto& w) {
-        return w<=0.0;
-    }))
-    { // There is no spot that has a probability to be selected
-        // std::cout << "no spots" << std::endl;
-        return std::nullopt;
-    }
-
-    // std::cout << "apickingt spot" << std::endl;
-    // apply the mutation and check if it succeeded
-    auto spot = r.select_randomly(child.Tree.begin(), child.Tree.end(),
-                                weights.begin(), weights.end());
-
-    // std::cout << "mutating" << std::endl;
-    // Every mutation here works inplace, so they return bool instead of
-    // std::optional to indicare the result of their manipulation over the
-    // program tree. Here we call the mutation function and return the result
-    bool success = (*mutation)(child.Tree, spot);
-
-    // std::cout << "returning" << std::endl;
-    if (success
-    && ( (child.size()  <= parameters.max_size)
-    &&   (child.depth() <= parameters.max_depth) )){
-
-        return child;
-    } else {
-
-        return std::nullopt;
-    }
+    return std::nullopt;
 }
 
 template <Brush::ProgramType T>
@@ -600,7 +618,7 @@ void Variation<T>::vary(Population<T>& pop, int island,
     for (unsigned i = start; i<idxs.size(); ++i)
     {
         // pass check for children undergoing variation     
-        std::optional<Program<T>> opt=std::nullopt; // new individual  
+        std::optional<Individual<T>> opt=std::nullopt; // new individual  
         // TODO: do it a certain number of times. after that, assume that variation cant
         // change individual and add it to the island failures
         // TODO: use island failures everytime that I'm iterating on the offspring of an
@@ -615,19 +633,19 @@ void Variation<T>::vary(Population<T>& pop, int island,
                 const Individual<T>& dad = pop[
                     *r.select_randomly(parents.begin(), parents.end())];
                 
-                opt = cross(mom.program, dad.program);                
+                opt = cross(mom, dad);                
             }
             else // mutation
             {
-               opt = mutate(mom.program);
+               opt = mutate(mom);
             }
 
             if (opt) // no optional value was returned
             {
-                Program<T> child = opt.value();
+                Individual<T> ind = opt.value();
 
-                assert(child.size()>0);
-                pop.individuals.at(idxs.at(i)) = std::make_shared<Individual<T>>(child);
+                assert(ind.program.size()>0);
+                pop.individuals.at(idxs.at(i)) = std::make_shared<Individual<T>>(ind);
             }
         }    
    }

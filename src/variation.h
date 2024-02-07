@@ -31,6 +31,7 @@ using namespace Brush::Pop;
 namespace Brush {
 namespace Var {
 
+// base for MUTATION variators
 class MutationBase {
 public:
     using Iter = tree<Node>::pre_order_iterator;
@@ -120,8 +121,8 @@ public:
     };
 
     // individual-level variations
-    std::optional<Program<T>> cross(const Program<T>& mom, const Program<T>& dad);
-    std::optional<Program<T>> mutate(const Program<T>& parent);
+    std::optional<Individual<T>> cross(const Individual<T>& mom, const Individual<T>& dad);
+    std::optional<Individual<T>> mutate(const Individual<T>& parent);
 
     /// method to handle variation of population
     void vary(Population<T>& pop, int island, const vector<size_t>& parents);

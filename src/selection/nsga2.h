@@ -8,7 +8,6 @@ namespace Sel {
 
 using namespace Brush;
 using namespace Pop;
-using namespace Data;
 using namespace Sel;
 
 template<ProgramType T> 
@@ -25,11 +24,11 @@ public:
 
     /// selection according to the survival scheme of NSGA-II
     vector<size_t> select(Population<T>& pop, int island,   
-            const Parameters& p, const Dataset& d);
+            const Parameters& p);
     
     /// survival according to the survival scheme of NSGA-II
     vector<size_t> survive(Population<T>& pop, int island, 
-            const Parameters& p, const Dataset& d);
+            const Parameters& p);
     
     //< Fast non-dominated sorting
     vector<vector<int>> fast_nds(Population<T>&, vector<size_t>&);                

@@ -222,7 +222,10 @@ public: // TODO: make these private (and work with nlohman json)
     };
 
     // fitness, objetives, complexity, etc. TODO: create intermediate  functions to  interact  with fitness and program?
-    void fit(Dataset& data) { program.fit(data); };
+    void fit(Dataset& data) {
+        program.fit(data);
+        
+    };
     auto predict(Dataset& data) { return program.predict(data); };
 
     // TODO: predict proba and classification related methods.
