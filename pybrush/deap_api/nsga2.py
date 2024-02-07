@@ -5,8 +5,8 @@ import functools
 
 class DeapIndividual():
     """Class that wraps brush program for creator.Individual class from DEAP."""
-    def __init__(self, prg):
-        self.prg = prg
+    def __init__(self, program):
+        self.program = program
 
 def nsga2(toolbox, NGEN, MU, CXPB, use_batch, verbosity, rnd_flt):
     # NGEN = 250
@@ -43,6 +43,8 @@ def nsga2(toolbox, NGEN, MU, CXPB, use_batch, verbosity, rnd_flt):
     for ind, fit in zip(pop, fitnesses):
         ind.fitness.values = fit
 
+    #  print(0, pop[0].fitness.values, pop[0].fitness.weights)
+
     # This is just to assign the crowding distance to the individuals
     # no actual selection is done
     pop = toolbox.survive(pop, len(pop))
@@ -66,6 +68,8 @@ def nsga2(toolbox, NGEN, MU, CXPB, use_batch, verbosity, rnd_flt):
         
             for ind, fit in zip(pop, fitnesses):
                 ind.fitness.values = fit
+
+        # print(1, pop[0].fitness.values, pop[0].fitness.weights)
 
         # Vary the population
         # offspring = tools.selTournamentDCD(pop, len(pop))
@@ -93,6 +97,8 @@ def nsga2(toolbox, NGEN, MU, CXPB, use_batch, verbosity, rnd_flt):
                     off2.fitness.values = toolbox.evaluateValidation(off2, data=batch)
                 offspring.extend([off2])
 
+        # print(2, offspring[0].fitness.values, offspring[0].fitness.weights)
+
         # Select the next generation population (no sorting before this step, as 
         # survive==offspring will cut it in half)
         pop = toolbox.survive(pop + offspring, MU)
@@ -104,9 +110,11 @@ def nsga2(toolbox, NGEN, MU, CXPB, use_batch, verbosity, rnd_flt):
 
         if verbosity > 0: 
             print(logbook.stream)
+            print(pop[0].program.get_model(),
+                  pop[0].fitness.values, pop[0].fitness.weights, pop[0].fitness.wvalues)
 
-    if verbosity > 0: 
-        print("Final population hypervolume is %f" % hypervolume(pop, [1000.0, 50.0]))
+    # if verbosity > 0: 
+    #     print("Final population hypervolume is %f" % hypervolume(pop, [1000.0, 50.0]))
 
     archive = tools.ParetoFront() 
     archive.update(pop)

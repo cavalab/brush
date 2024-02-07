@@ -18,8 +18,10 @@ from sklearn.preprocessing import MinMaxScaler
 import _brush
 from pybrush.deap_api import nsga2, DeapIndividual 
 # from _brush import Dataset, SearchSpace
+from pybrush import RegressorIndividual, ClassifierIndividual, MultiClassifierIndividual
 
 
+# TODO: LOGGER AND ARCHIVE
 class DeapEstimator(BaseEstimator):
     """
     This is the base class for Deap-based Brush estimators. 
@@ -33,7 +35,7 @@ class DeapEstimator(BaseEstimator):
         The mode of the estimator. Used by subclasses
     pop_size : int, default 100
         Population size.
-    max_gen : int, default 100
+    gens : int, default 100
         Maximum iterations of the algorithm.
     verbosity : int, default 0
         Controls level of printouts.
@@ -41,7 +43,7 @@ class DeapEstimator(BaseEstimator):
         Maximum depth of GP trees in the GP program. Use 0 for no limit.
     max_size : int, default 0
         Maximum number of nodes in a tree. Use 0 for no limit.
-    n_islands : int, default 5
+    num_islands : int, default 5
         Number of independent islands to use in evolutionary framework. 
         Ignored if `algorithm!="nsga2island"`.
     mig_prob : float, default 0.05
@@ -55,12 +57,12 @@ class DeapEstimator(BaseEstimator):
         same time), we want to have by default an uniform probability between
         crossover and every possible mutation. By setting `cx_prob=1/(n+1)`, and
         `1/n` for each mutation, we can achieve an uniform distribution.
-    mutation_options : dict, default {"point":1/6, "insert":1/6, "delete":1/6, "subtree":1/6, "toggle_weight_on":1/6, "toggle_weight_off":1/6}
+    mutation_probs : dict, default {"point":1/6, "insert":1/6, "delete":1/6, "subtree":1/6, "toggle_weight_on":1/6, "toggle_weight_off":1/6}
         A dictionary with keys naming the types of mutation and floating point 
         values specifying the fraction of total mutations to do with that method.
         The probability of having a mutation is `(1-cx_prob)` and, in case the mutation
         is applied, then each mutation option is sampled based on the probabilities
-        defined in `mutation_options`. The set of probabilities should add up to 1.0.
+        defined in `mutation_probs`. The set of probabilities should add up to 1.0.
     functions: dict[str,float] or list[str], default {}
         A dictionary with keys naming the function set and values giving the probability
         of sampling them, or a list of functions which will be weighted uniformly.
@@ -119,14 +121,14 @@ class DeapEstimator(BaseEstimator):
         self, 
         mode='classification',
         pop_size=100,
-        max_gen=100,
+        gens=100,
         verbosity=0,
         max_depth=3,
         max_size=20,
-        n_islands=5,
+        num_islands=5,
         mig_prob=0.05,
         cx_prob= 1/7,
-        mutation_options = {"point":1/6, "insert":1/6, "delete":1/6, "subtree":1/6,
+        mutation_probs = {"point":1/6, "insert":1/6, "delete":1/6, "subtree":1/6,
                             "toggle_weight_on":1/6, "toggle_weight_off":1/6},
         functions: list[str]|dict[str,float] = {},
         initialization="uniform",
@@ -138,16 +140,16 @@ class DeapEstimator(BaseEstimator):
         batch_size: float = 1.0
         ):
         self.pop_size=pop_size
-        self.max_gen=max_gen
+        self.gens=gens
         self.verbosity=verbosity
         self.algorithm=algorithm
         self.mode=mode
         self.max_depth=max_depth
         self.max_size=max_size
-        self.n_islands=n_islands
+        self.num_islands=num_islands
         self.mig_prob=mig_prob
         self.cx_prob=cx_prob
-        self.mutation_options=mutation_options
+        self.mutation_probs=mutation_probs
         self.functions=functions
         self.objectives=objectives
         self.initialization=initialization
@@ -164,21 +166,19 @@ class DeapEstimator(BaseEstimator):
         # creator.create is used to "create new functions", and takes at least
         # 2 arguments: the name of the newly created class and a base class
 
-        # Cleaning possible previous classes that are model-dependent (clf and reg are differente)
-        if hasattr(creator, "FitnessMulti"):
-            del creator.FitnessMulti
         if hasattr(creator, "Individual"):
             del creator.Individual
 
-        # Minimizing/maximizing problem: negative/positive weight, respectively.
-        # Our classification is using the error as a metric
-        # Comparing fitnesses: https://deap.readthedocs.io/en/master/api/base.html#deap.base.Fitness
-        creator.create("FitnessMulti", base.Fitness, weights=self.weights)
-
         # create Individual class, inheriting from self.Individual with a fitness attribute
-        creator.create("Individual", DeapIndividual, fitness=creator.FitnessMulti)  
-
-        toolbox.register("Clone", lambda ind: creator.Individual(ind.prg.copy()))
+        if self.mode == 'classification':
+            if self.n_classes_ == 2:
+                creator.create("Individual", ClassifierIndividual)  
+            else:
+                creator.create("Individual", MultiClassifierIndividual)  
+        else:
+            creator.create("Individual", RegressorIndividual)  
+        
+        toolbox.register("Clone", lambda ind: creator.Individual(ind.program.copy()))
         
         toolbox.register("mate", self._crossover)
         toolbox.register("mutate", self._mutate)
@@ -214,10 +214,12 @@ class DeapEstimator(BaseEstimator):
             child = None
             while (attempts < 3 and child is None):
                 attempts = attempts + 1
-                child = self.variator_.cross(i.prg, j.prg)
+                child = self.variator_.cross(i.program, j.program)
 
                 if child is not None:
                     child = creator.Individual(child)
+                    child.objectives = self.objectives
+                    
 
             offspring.extend([child])
 
@@ -226,21 +228,23 @@ class DeapEstimator(BaseEstimator):
     
 
     def _mutate(self, ind1):
-        # offspring = (creator.Individual(ind1.prg.mutate(self.search_space_)),)
+        # offspring = (creator.Individual(ind1.program.mutate(self.search_space_)),)
         attempts = 0
         offspring = None
-        print("starting mutation")
+        # print("starting mutation")
         while (attempts < 3 and offspring is None):
-            print("attempt", attempts)
-            offspring = self.variator_.mutate(ind1.prg)
-            print("got offspring")
+            # print("attempt", attempts)
+            offspring = self.variator_.mutate(ind1.program)
+            # print("got offspring")
 
             if offspring is not None:
-                print('and it wasnt none')
-                return creator.Individual(offspring)
+                # print('and it wasnt none')
+                xmen = creator.Individual(offspring)
+                xmen.objectives = self.objectives
+                return xmen
             attempts = attempts + 1
         
-        print("i failed")
+        # print("i failed")
         return None
 
 
@@ -255,7 +259,6 @@ class DeapEstimator(BaseEstimator):
         y : np.ndarray
             1-d array of (boolean) target values.
         """
-        _brush.set_params(self.get_params())
         
         if self.random_state is not None:
             _brush.set_random_state(self.random_state)
@@ -301,9 +304,22 @@ class DeapEstimator(BaseEstimator):
 
         self.search_space_ = _brush.SearchSpace(self.train_, self.functions_, self.weights_init)
                 
+        # TODO: getters and setters in parameters. Use them to take the arguments from python and save in the cpp backend
         # TODO: use variation operator here instead of these functions
         # TODO: store parameters in Parameter and use it to create the variator, selector, survivor, etc.
         self.parameters_ = _brush.Parameters()
+
+        self.parameters_.pop_size = self.pop_size
+        self.parameters_.gens = self.gens
+        self.parameters_.num_islands = self.num_islands
+        self.parameters_.max_depth = self.max_depth
+        self.parameters_.max_size = self.max_size
+        self.parameters_.objectives = self.objectives
+        self.parameters_.cx_prob = self.cx_prob
+        self.parameters_.mig_prob = self.mig_prob
+        self.parameters_.functions = self.functions
+        self.parameters_.mutation_probs = self.mutation_probs
+
         if self.mode == "classification":
             self.variator_ = _brush.ClassifierVariator(self.parameters_, self.search_space_)
         elif self.mode == "regressor":
@@ -315,7 +331,7 @@ class DeapEstimator(BaseEstimator):
 
         # nsga2 and ga differ in the toolbox
         self.archive_, self.logbook_ = nsga2(
-            self.toolbox_, self.max_gen, self.pop_size, self.cx_prob, 
+            self.toolbox_, self.gens, self.pop_size, self.cx_prob, 
             (0.0<self.batch_size<1.0), self.verbosity, _brush.rnd_flt)
 
         final_ind_idx = 0
@@ -343,7 +359,7 @@ class DeapEstimator(BaseEstimator):
                 range(len(points)),
                 key=lambda index: (points[index][0], points[index][1]) )
 
-        self.best_estimator_ = self.archive_[final_ind_idx].prg
+        self.best_estimator_ = self.archive_[final_ind_idx].program
 
         if self.verbosity > 0:
             print(f'best model {self.best_estimator_.get_model()}'      +
@@ -374,6 +390,33 @@ class DeapEstimator(BaseEstimator):
             feature_names=feature_names, validation_size=validation_size)
 
 
+    def _make_individual(self):
+        # C++'s PTC2-based `make_individual` will create a tree of at least
+        # the given size. By uniformly sampling the size, we can instantiate a
+        # population with more diversity
+        
+        if self.initialization not in ["uniform", "max_size"]:
+            raise ValueError(f"Invalid argument value for `initialization`. "
+                             f"expected 'max_size' or 'uniform'. got {self.initialization}")
+
+        # TODO: implement initialization with uniform or max_size
+        # No arguments (or zero): brush will use PARAMS passed in set_params.
+        # max_size is sampled between 1 and params['max_size'] if zero is provided
+        
+        # return creator.Individual(
+        #     self.search_space_.make_classifier(
+        #         self.max_depth,(0 if self.initialization=='uniform' else self.max_size))
+        # if self.n_classes_ == 2 else
+        #     self.search_space_.make_multiclass_classifier(
+        #         self.max_depth, (0 if self.initialization=='uniform' else self.max_size))
+        # )
+        
+        ind = creator.Individual()
+        ind.init(self.search_space_, self.parameters_)
+        ind.objectives = self.objectives
+        
+        return ind
+    
     def predict(self, X):
         """Predict using the best estimator in the archive. """
 
@@ -430,46 +473,30 @@ class DeapClassifier(DeapEstimator,ClassifierMixin):
     >>> from pybrush import DeapClassifier
     >>> est = DeapClassifier()
     >>> est.fit(X,y)
-    >>> print('score:', est.score(X,y))
+    >>> # print('score:', est.score(X,y))
     """
     def __init__( self, **kwargs):
         super().__init__(mode='classification',**kwargs)
 
     def _error(self, ind, data: _brush.Dataset):
-        #return (data.y==ind.prg.predict(data)).sum() / data.y.shape[0]
-        return average_precision_score(data.y, ind.prg.predict(data))
+        #return (data.y==ind.program.predict(data)).sum() / data.y.shape[0]
+        return average_precision_score(data.y, ind.program.predict(data))
     
     def _fitness_validation(self, ind, data: _brush.Dataset):
         # Fitness without fitting the expression, used with validation data
 
         ind_objectives = {
             "error"     : self._error(ind, data),
-            "size"      : ind.prg.size(),
-            "complexity": ind.prg.complexity()
+            "size"      : ind.program.size(),
+            "complexity": ind.program.complexity()
         }
         return [ ind_objectives[obj] for obj in self.objectives ]
 
     def _fitness_function(self, ind, data: _brush.Dataset):
-        ind.prg.fit(data)
+        ind.program.fit(data)
 
         return self._fitness_validation(ind, data)
-
-    def _make_individual(self):
-        # C++'s PTC2-based `make_individual` will create a tree of at least
-        # the given size. By uniformly sampling the size, we can instantiate a
-        # population with more diversity
-        
-        if self.initialization not in ["uniform", "max_size"]:
-            raise ValueError(f"Invalid argument value for `initialization`. "
-                             f"expected 'max_size' or 'uniform'. got {self.initialization}")
-
-        return creator.Individual(
-            self.search_space_.make_classifier(
-                self.max_depth,(0 if self.initialization=='uniform' else self.max_size))
-        if self.n_classes_ == 2 else
-            self.search_space_.make_multiclass_classifier(
-                self.max_depth, (0 if self.initialization=='uniform' else self.max_size))
-        )
+    
 
     def predict_proba(self, X):
         """Predict class probabilities for X.
@@ -523,13 +550,13 @@ class DeapRegressor(DeapEstimator, RegressorMixin):
     >>> from pybrush import DeapRegressor
     >>> est = DeapRegressor()
     >>> est.fit(X,y)
-    >>> print('score:', est.score(X,y))
+    >>> # print('score:', est.score(X,y))
     """
     def __init__(self, **kwargs):
         super().__init__(mode='regressor',**kwargs)
 
     def _error(self, ind, data: _brush.Dataset):
-        MSE = np.mean( (data.y-ind.prg.predict(data))**2 )
+        MSE = np.mean( (data.y-ind.program.predict(data))**2 )
         if not np.isfinite(MSE): # numeric erros, np.nan, +-np.inf
             MSE = np.inf
 
@@ -540,27 +567,16 @@ class DeapRegressor(DeapEstimator, RegressorMixin):
 
         ind_objectives = {
             "error"     : self._error(ind, data),
-            "size"      : ind.prg.size(),
-            "complexity": ind.prg.complexity()
+            "size"      : ind.program.size(),
+            "complexity": ind.program.complexity()
         }
         return [ ind_objectives[obj] for obj in self.objectives ]
 
     def _fitness_function(self, ind, data: _brush.Dataset):
-        ind.prg.fit(data)
+        ind.program.fit(data)
 
         return self._fitness_validation(ind, data)
 
-    def _make_individual(self):
-        if self.initialization not in ["uniform", "max_size"]:
-            raise ValueError(f"Invalid argument value for `initialization`. "
-                             f"expected 'max_size' or 'uniform'. got {self.initialization}")
-        
-        # No arguments (or zero): brush will use PARAMS passed in set_params.
-        # max_size is sampled between 1 and params['max_size'] if zero is provided
-        return creator.Individual(
-            self.search_space_.make_regressor(
-                self.max_depth, (0 if self.initialization=='uniform' else self.max_size))
-        )
 
 # Under development
 # class DeapRepresenter(DeapEstimator, TransformerMixin):
@@ -577,17 +593,17 @@ class DeapRegressor(DeapEstimator, RegressorMixin):
 #     >>> from pybrush import DeapRegressor
 #     >>> est = DeapRegressor()
 #     >>> est.fit(X,y)
-#     >>> print('score:', est.score(X,y))
+#     >>> # print('score:', est.score(X,y))
 #     """
 #     def __init__(self, **kwargs):
 #         super().__init__(mode='regressor',**kwargs)
 
 #     def _fitness_function(self, ind, data: _brush.Dataset):
-#         ind.prg.fit(data)
+#         ind.program.fit(data)
 #         return (
 #             # todo: need to return a matrix from X for this
-#             np.sum((data.get_X()- ind.prg.predict(data))**2),
-#             ind.prg.size()
+#             np.sum((data.get_X()- ind.program.predict(data))**2),
+#             ind.program.size()
 #         )
 
 #     def _make_individual(self):

@@ -1,1 +1,1 @@
-__version__="i-never-tested-that-thing"
+__version__="v1.0"
