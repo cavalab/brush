@@ -6,6 +6,7 @@ from multiprocessing import Pool
 import numpy as np
 
 
+# TODO; get this to work again
 # def test_param_random_state():
 #     # Check if make_regressor, mutation and crossover will create the same expressions
 #     test_y = np.array( [1. , 0. , 1.4, 1. , 0. , 1. , 1. , 0. , 0. , 0.  ])
@@ -54,10 +55,10 @@ import numpy as np
 #     params = {
 #         'verbosity': False, 
 #         'pop_size' : 100,
-#         'max_gen'  : 100,
+#         'gens'  : 100,
 #         'max_depth': 5,
 #         'max_size' : 50,
-#         'mutation_options': {'point'            : 0.0,
+#         'mutation_probs': {'point'            : 0.0,
 #                              'insert'           : 0.0,
 #                              'delete'           : 0.0,
 #                              'subtree'          : 0.0,
@@ -69,16 +70,16 @@ import numpy as np
 #     mutations = ['point', 'insert', 'delete', 'subtree', 'toggle_weight_on', 'toggle_weight_off']
 
 #     for i, m in enumerate(mutations):
-#         params['mutation_options'][m] = 0 if i != index else 1.0
+#         params['mutation_probs'][m] = 0 if i != index else 1.0
 
 #     print(f"(Thread id {index}{seconds}) Setting mutation {mutations[index]} to 1 and wait {seconds} seconds")
 
 #     _brush.set_params(params)
 #     time.sleep(seconds)
     
-#     print(f"(Thread id {index}{seconds}) Retrieving PARAMS: {_brush.get_params()['mutation_options']}")
+#     print(f"(Thread id {index}{seconds}) Retrieving PARAMS: {_brush.get_params()['mutation_probs']}")
 
-#     assert params['mutation_options']==_brush.get_params()['mutation_options'], \
+#     assert params['mutation_probs']==_brush.get_params()['mutation_probs'], \
 #         f"(Thread id {index}{seconds}) BRUSH FAILED TO KEEP SEPARATE INSTANCES OF `PARAMS` BETWEEN MULTIPLE THREADS"
     
 # def test_global_PARAMS_sharing():

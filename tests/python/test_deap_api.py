@@ -13,12 +13,12 @@ import logging
 @pytest.fixture
 def brush_args():
     return dict(
-        max_gen=10, 
+        gens=10, 
         pop_size=20, 
         max_size=50, 
         max_depth=6,
         cx_prob= 1/7,
-        mutation_options = {"point":1/6, "insert":1/6, "delete":1/6, "subtree":1/6,
+        mutation_probs = {"point":1/6, "insert":1/6, "delete":1/6, "subtree":1/6,
                             "toggle_weight_on":1/6, "toggle_weight_off":1/6},
     )
     
@@ -104,15 +104,15 @@ def test_fixed_nodes(setup, fixed_node, brush_args, request):
         pop = est.toolbox_.population(n=100)
         pop_models = []
         for p in pop:
-            pop_models.append(p.prg.get_model())
-            assert p.prg.get_model().startswith(fixed_node), \
+            pop_models.append(p.program.get_model())
+            assert p.program.get_model().startswith(fixed_node), \
                 (f"An individual for {setup} was criated without {fixed_node} " +
                  f"node on root. Model was {p.ind.get_model()}")
 
         # Clones
         clones = [est.toolbox_.Clone(p) for p in pop]
         for c in clones:
-            assert c.prg.get_model().startswith(fixed_node), \
+            assert c.program.get_model().startswith(fixed_node), \
                 (f"An individual for {setup} was cloned without {fixed_node} " +
                  f"node on root. Model was {c.ind.get_model()}")
 
@@ -121,7 +121,7 @@ def test_fixed_nodes(setup, fixed_node, brush_args, request):
         xmen = [x for x in xmen if x is not None]
         assert len(xmen) > 0, "Mutation didn't worked for any individual"
         for x in xmen:
-            assert x.prg.get_model().startswith(fixed_node), \
+            assert x.program.get_model().startswith(fixed_node), \
                 (f"An individual for {setup} was mutated without {fixed_node} " +
                  f"node on root. Model was {x.ind.get_model()}")
         
@@ -132,13 +132,13 @@ def test_fixed_nodes(setup, fixed_node, brush_args, request):
         cxmen = [x for x in cxmen if x is not None]
         assert len(cxmen) > 0, "Crossover didn't worked for any individual"
         for cx in cxmen:
-            assert cx.prg.get_model().startswith(fixed_node), \
+            assert cx.program.get_model().startswith(fixed_node), \
                 (f"An individual for {setup} was crossovered without {fixed_node} " +
                  f"node on root. Model was {cx.ind.get_model()}")
             
         # Originals still the same
         for p, p_original_model in zip(pop, pop_models):
-            assert p.prg.get_model() == p_original_model, \
+            assert p.program.get_model() == p_original_model, \
                 "Variation operator changed the original model."
         
 

@@ -4,11 +4,13 @@
 #include "../../src/population.cpp" // TODO: figure out if thats ok to include cpps instead of headers
 #include "../../src/eval/evaluation.cpp"
 #include "../../src/selection/nsga2.cpp"
+#include "../../src/selection/selection_operator.cpp"
 #include "../../src/selection/selection.cpp"
 
 using namespace Brush::Pop;
 using namespace Brush::Sel;
 using namespace Brush::Eval;
+using namespace Brush::Sel;
 
 TEST(Population, PopulationTests)
 {    
@@ -71,21 +73,21 @@ TEST(Population, PopulationTests)
     fmt::print("Performing all steps of an evolution (sequential, not parallel)\n");
     for (int i=0; i<100; ++i) // update and prep offspring slots works properly
     {
-        vector<vector<size_t>> survivors(pop.n_islands);
+        vector<vector<size_t>> survivors(pop.num_islands);
 
         fmt::print("Fitting individuals\n"); // this must be done in one thread (or implement mutex), because we can have multiple islands pointing to same individuals
-        for (int j=0; j<pop.n_islands; ++j)
+        for (int j=0; j<pop.num_islands; ++j)
         {
             fmt::print("Island {}, individuals {}\n", j, pop.get_island_indexes(j));
 
             // we can calculate the fitness for each island
             fmt::print("Fitness\n");
-            evaluator.fitness(pop, j, data, params, true, false);
+            evaluator.update_fitness(pop, j, data, params, true, false);
         }
 
         // TODO: fix random state and make it work with taskflow
         fmt::print("Evolution step {}\n", i);
-        for (int j=0; j<pop.n_islands; ++j)
+        for (int j=0; j<pop.num_islands; ++j)
         {
             // just so we can call the update method
             fmt::print("Selection\n");
@@ -100,15 +102,16 @@ TEST(Population, PopulationTests)
             variator.vary(pop, j, parents);
 
             fmt::print("fitting {}\n", j); // at this step, we know that theres only one pointer to each individual being fitted, so we can perform it in parallel
-            evaluator.fitness(pop, j, data, params, true, true);
+            evaluator.update_fitness(pop, j, data, params, true, true);
         
-            fmt::print("survivors\n", j);
+            fmt::print("survivors {}\n", j);
             auto island_survivors = survivor.survive(pop, j, params, data);
             survivors.at(j) = island_survivors;
         }
         
         fmt::print("Updating and migrating\n");
         pop.update(survivors); 
+        fmt::print("Migrating\n");
         pop.migrate();
 
         fmt::print("Printing generation {} population:\n", i);
@@ -119,13 +122,13 @@ TEST(Population, PopulationTests)
             pop[i].program.get_model("compact", true));
         }
 
-        for (int j=0; j<pop.n_islands; ++j)
+        for (int j=0; j<pop.num_islands; ++j)
         {
             fmt::print("Island {}, idxs {}\n", j, pop.get_island_indexes(j));
             for (int k=0; k<pop.get_island_indexes(j).size(); ++k){
                 fmt::print("Individual {} (fitness {}): {}\n",
                         pop.get_island_indexes(j).at(k),
-                        pop[pop.get_island_indexes(j).at(k)].fitness,
+                        pop[pop.get_island_indexes(j).at(k)].fitness.values,
                         pop[pop.get_island_indexes(j).at(k)].program.get_model("compact", true));
             }
         }
