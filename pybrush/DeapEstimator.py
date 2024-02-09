@@ -139,6 +139,7 @@ class DeapEstimator(BaseEstimator):
         validation_size: float = 0.0,
         batch_size: float = 1.0
         ):
+
         self.pop_size=pop_size
         self.gens=gens
         self.verbosity=verbosity
@@ -171,10 +172,9 @@ class DeapEstimator(BaseEstimator):
 
         # create Individual class, inheriting from self.Individual with a fitness attribute
         if self.mode == 'classification':
-            if self.n_classes_ == 2:
-                creator.create("Individual", ClassifierIndividual)  
-            else:
-                creator.create("Individual", MultiClassifierIndividual)  
+            creator.create("Individual", ClassifierIndividual
+                                         if self.n_classes_ == 2 else
+                                         MultiClassifierIndividual)  
         else:
             creator.create("Individual", RegressorIndividual)  
         
@@ -261,11 +261,7 @@ class DeapEstimator(BaseEstimator):
 
         self.search_space_ = _brush.SearchSpace(self.train_, self.functions_, self.weights_init)
                 
-        # TODO: getters and setters in parameters. Use them to take the arguments from python and save in the cpp backend
-        # TODO: use variation operator here instead of these functions
-        # TODO: store parameters in Parameter and use it to create the variator, selector, survivor, etc.
         self.parameters_ = _brush.Parameters()
-
         self.parameters_.pop_size = self.pop_size
         self.parameters_.gens = self.gens
         self.parameters_.num_islands = self.num_islands
@@ -316,12 +312,12 @@ class DeapEstimator(BaseEstimator):
                 range(len(points)),
                 key=lambda index: (points[index][0], points[index][1]) )
 
-        self.best_estimator_ = self.archive_[final_ind_idx].program
+        self.best_estimator_ = self.archive_[final_ind_idx]
 
         if self.verbosity > 0:
-            print(f'best model {self.best_estimator_.get_model()}'      +
-                  f' with size {self.best_estimator_.size()}, '         +
-                  f' depth {self.best_estimator_.depth()}, '            +
+            print(f'best model {self.best_estimator_.program.get_model()}'      +
+                  f' with size {self.best_estimator_.program.size()}, '         +
+                  f' depth {self.best_estimator_.program.depth()}, '            +
                   f' and fitness {self.archive_[final_ind_idx].fitness}')
 
         return self
@@ -360,14 +356,6 @@ class DeapEstimator(BaseEstimator):
         # No arguments (or zero): brush will use PARAMS passed in set_params.
         # max_size is sampled between 1 and params['max_size'] if zero is provided
         
-        # return creator.Individual(
-        #     self.search_space_.make_classifier(
-        #         self.max_depth,(0 if self.initialization=='uniform' else self.max_size))
-        # if self.n_classes_ == 2 else
-        #     self.search_space_.make_multiclass_classifier(
-        #         self.max_depth, (0 if self.initialization=='uniform' else self.max_size))
-        # )
-        
         ind = creator.Individual()
         ind.init(self.search_space_, self.parameters_)
         ind.objectives = self.objectives
@@ -389,7 +377,7 @@ class DeapEstimator(BaseEstimator):
         
         # data = self._make_data(X, feature_names=self.feature_names_)
 
-        return self.best_estimator_.predict(data)
+        return self.best_estimator_.program.predict(data)
 
     # def _setup_population(self):
     #     """initialize programs"""
@@ -435,6 +423,8 @@ class DeapClassifier(DeapEstimator,ClassifierMixin):
     def __init__( self, **kwargs):
         super().__init__(mode='classification',**kwargs)
 
+    # TODO: test with number of islands =1
+        
     def _error(self, ind, data: _brush.Dataset):
         #return (data.y==ind.program.predict(data)).sum() / data.y.shape[0]
         return average_precision_score(data.y, ind.program.predict(data))
@@ -484,7 +474,7 @@ class DeapClassifier(DeapEstimator,ClassifierMixin):
 
         # data = self._make_data(X, feature_names=self.feature_names_)
 
-        prob = self.best_estimator_.predict_proba(data)
+        prob = self.best_estimator_.program.predict_proba(data)
 
         if self.n_classes_ <= 2:
             prob = np.hstack( (np.ones(X.shape[0]).reshape(-1,1), prob.reshape(-1,1)) )  

@@ -6,7 +6,6 @@
 
 #include "../search_space.h"
 #include "../individual.h"
-#include "../program/program.h"
 #include "../data/data.h"
 #include "scorer.h"
 #include "../population.h"
@@ -22,19 +21,22 @@ namespace Eval {
 template<ProgramType T> 
 class Evaluation {
 public:
-    Scorer S;
+    Scorer<T> S;
 
-    Evaluation(string scorer="mse"): S(scorer) { this->S.set_scorer(scorer); };
+    Evaluation(){
+        string scorer;
+        if ( (T == Brush::ProgramType::MulticlassClassifier)
+        ||   (T == Brush::ProgramType::Representer) )
+            scorer = "multi_log";
+        else if (T == Brush::ProgramType::BinaryClassifier)
+            scorer = "log";
+        else 
+            scorer = "mse";
+
+        this->S.set_scorer(scorer);
+    };
     ~Evaluation(){};
         
-    /// validation of population.
-    void validation(Population<T>& pop,
-                    int island, 
-                    const Dataset& data, 
-                    const Parameters& params, 
-                    bool offspring = false
-                    );
-
     // TODO: set objectives
     // TODO: evaluation bind 
     // TODO: EVALUATOR CALCULATE ERROR BASED ON TEMPLATING? (caps)
@@ -45,15 +47,15 @@ public:
                  const Dataset& data, 
                  const Parameters& params, 
                  bool fit=true,
-                 bool offspring = false
+                 bool offspring = false,
+                 bool validation=false
                  );
     
-    // TODO: implement other eval methods
+    /// assign fitness to an individual.
+    void assign_fit(Individual<T>& ind, const Dataset& data,
+                    const Parameters& params, bool val=false);
 
-    /// assign fitness to an individual.  
-    void assign_fit(Individual<T>& ind, VectorXf& y_pred,
-            const Dataset& data, const Parameters& params, bool val=false);       
-
+    // representation program (TODO: implement)
 };
 
 } //selection

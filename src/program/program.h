@@ -57,6 +57,7 @@ template<PT PType> struct Program
         std::conditional_t<PType == PT::MulticlassClassifier, ArrayXi,
         std::conditional_t<PType == PT::Representer, ArrayXXf, ArrayXf
         >>>>;
+
     /// the type of output from the tree object
     using TreeType = std::conditional_t<PType == PT::BinaryClassifier, ArrayXf,
         std::conditional_t<PType == PT::MulticlassClassifier, ArrayXXf, 
@@ -499,6 +500,7 @@ template<PT PType> struct Program
         return out;
     }
 
+    // TODO: delete this declarations
     ////////////////////////////////////////////////////////////////////////////
     // Mutation & Crossover
 
@@ -542,6 +544,7 @@ void Program<PType>::update_weights(const Dataset& d)
 };
 
 
+// TODO: delete this declarations
 ////////////////////////////////////////////////////////////////////////////////
 // mutation and crossover
 // template<ProgramType PType>

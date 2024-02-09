@@ -26,15 +26,6 @@ namespace Brush{
 // TODO: move fitness to eval folder
 // TODO make a better use of this (in selection, when fitting, etc)  (actually i need to start using it)
 struct Fitness {
-    // Static map for weights associated with strings
-    // TODO: weights for different values. loss should be calculated duing runtime, based on the metric
-    inline static std::map<std::string, float> weightsMap = {
-        {"error", -1.0}, // error should be the common error metrics for class (acc) and regression (mse) by default
-        {"complexity", -1.0},
-        {"size", -1.0}
-        // Add more key-value pairs as needed
-    };
-
 
     float loss;     ///< aggregate loss score
     float loss_v;   ///< aggregate validation loss score
@@ -88,6 +79,7 @@ struct Fitness {
         return wvalues;
     }
 
+    // TODO: debug size, it is giving weird values
     // Method to set values
     void set_values(vector<float>& v) {
         if (v.size() != weights.size()) {
@@ -253,6 +245,20 @@ public: // TODO: make these private (and work with nlohman json)
     float crowding_dist;   ///< crowding distance on the Pareto front
 
 
+    // Static map for weights associated with strings
+    // TODO: weights for different values. loss should be calculated duing runtime, based on the metric
+    inline static std::map<std::string, float> weightsMap = []() {
+        std::map<std::string, float> map = {
+            {"complexity", -1.0},
+            {"size", -1.0}
+            // Add more key-value pairs as needed
+        };
+        // example on how to have weight based on templated class
+        map["error"] = (T == Brush::ProgramType::Regressor) ?  -1.0 : -1.0;
+
+        return map;
+    }();
+
     vector<string> get_objectives() const { return objectives; };
     void set_objectives(vector<string> objs){
         objectives=objs;
@@ -260,8 +266,8 @@ public: // TODO: make these private (and work with nlohman json)
         vector<float> weights;
         weights.resize(0);
         for (const auto& obj : objectives) {
-            auto it = Fitness::weightsMap.find(obj);
-            if (it != Fitness::weightsMap.end()) {
+            auto it = weightsMap.find(obj);
+            if (it != weightsMap.end()) {
                 weights.push_back(it->second);
             } else {
                 // TODO: throw error here, unknown objective

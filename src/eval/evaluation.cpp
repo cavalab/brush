@@ -4,49 +4,7 @@ namespace Brush{
 namespace Eval{
 
 
-template<ProgramType T> 
-void Evaluation<T>::validation(Population<T>& pop,
-                    int island, 
-                    const Dataset& data, 
-                    const Parameters& params, 
-                    bool offspring
-                    )
-{
-    auto idxs = pop.get_island_indexes(island);
-
-    int start = 0;
-    if (offspring)
-        start = idxs.size()/2;
-
-    for (unsigned i = start; i<idxs.size(); ++i)
-    {
-        Individual<T>& ind = *pop.individuals.at(idxs.at(i)).get(); // we are modifying it, so operator[] wont work
-        
-        // if there is no validation data,
-        // set loss_v to loss and return ( this assumes that loss on train was calculated previously.)
-        if (!data.use_validation) 
-        {
-            ind.loss_v = ind.loss;
-            continue;
-        }
-
-        bool pass = true;
-
-        if (!pass)
-        {
-            // TODO: stop doing this hardcoded?
-            ind.loss_v = MAX_FLT; 
-        }
-        else
-        {
-            // TODO: implement the class weights and use it here (and on loss)
-            VectorXf y_pred =  ind.program.predict(data.get_validation_data());
-            assign_fit(ind, y_pred, data, params, true);
-        }
-        // ind.set_obj(params.objectives);
-    }
-}
-
+// TODO: merge validation and update fitness into one function
 // fitness of population
 template<ProgramType T> 
 void Evaluation<T>::update_fitness(Population<T>& pop,
@@ -54,7 +12,8 @@ void Evaluation<T>::update_fitness(Population<T>& pop,
                     const Dataset& data, 
                     const Parameters& params, 
                     bool fit,
-                    bool offspring
+                    bool offspring,
+                    bool validation
                     )
 {
     //TODO:  it could use the validation_loss     
@@ -74,6 +33,7 @@ void Evaluation<T>::update_fitness(Population<T>& pop,
         {
             // TODO: check if score was nan and assign the max float
             ind.fitness.loss = MAX_FLT;
+            ind.fitness.loss_v = MAX_FLT;
             ind.error = MAX_FLT*VectorXf::Ones(data.y.size());
         }
         else
@@ -82,32 +42,40 @@ void Evaluation<T>::update_fitness(Population<T>& pop,
             if (fit)
                 ind.program.fit(data);
             
-            VectorXf y_pred =  ind.program.predict(data.get_training_data());
-            assign_fit(ind, y_pred, data, params, false);
+            assign_fit(ind, data, params, validation);
         }
     }
 }
 
 // assign loss to program
 template<ProgramType T> 
-void Evaluation<T>::assign_fit(Individual<T>& ind,  
-        VectorXf& y_pred, const Dataset& data, 
-        const Parameters& params, bool val)
+void Evaluation<T>::assign_fit(Individual<T>& ind, const Dataset& data, 
+                               const Parameters& params, bool val)
 {
     VectorXf loss;
-
-    float f = S.score(data.y, y_pred, loss, params.class_weights);
+    using PT = ProgramType;
     
-    if (val)
-    {   // TODO: use this function to decide wether to take loss from validation or training
-        ind.fitness.loss_v = f;
-    }
-    else
-    {
-        // TODO: setter for loss  and loss_v
-        ind.fitness.loss = f;
-        ind.error = loss;
-    }
+    // we want the predict proba
+    using RetType =
+        typename std::conditional_t<T == PT::Regressor, ArrayXf,
+                    std::conditional_t<T == PT::BinaryClassifier, ArrayXf,
+                    std::conditional_t<T == PT::MulticlassClassifier, ArrayXXf,
+                    std::conditional_t<T == PT::Representer, ArrayXXf, ArrayXf
+        >>>>;
+
+    auto validation = data.get_validation_data();
+    RetType y_pred_validation = ind.predict(validation).template cast<float>();
+    float f_v = S.score(validation.y, y_pred_validation, loss, params.class_weights);
+
+    // TODO: implement the class weights and use it here (and on loss)
+    auto train = data.get_training_data();
+    RetType y_pred = ind.predict(train).template cast<float>();
+    float f = S.score(train.y, y_pred, loss, params.class_weights);
+    
+    // TODO: setter for loss and loss_v
+    ind.error = loss;
+    ind.fitness.loss = f;
+    ind.fitness.loss_v = f_v;
     ind.fitness.size = ind.program.size();
     ind.fitness.complexity = ind.program.complexity();
     ind.fitness.depth = ind.program.depth();
@@ -120,8 +88,7 @@ void Evaluation<T>::assign_fit(Individual<T>& ind,
     for (const auto& n : ind.get_objectives())
     {
         if (n.compare("error")==0)
-            values.push_back(f); // fitness on training data, not validation.
-                                    // if you use batch, this value will change every generation
+            values.push_back(val ? f_v : f);
         else if (n.compare("complexity")==0)
             values.push_back(ind.program.complexity());
         else if (n.compare("size")==0)

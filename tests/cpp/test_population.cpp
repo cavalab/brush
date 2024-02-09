@@ -36,7 +36,7 @@ TEST(Population, PopulationTests)
     Population pop = Population<ProgramType::Regressor>(); 
 
     // aux classes (they are not tested in-depth in this file)
-    Evaluation evaluator = Evaluation<ProgramType::Regressor>(params.scorer_);
+    Evaluation evaluator = Evaluation<ProgramType::Regressor>();
     Selection selector = Selection<ProgramType::Regressor>(params.sel, false);
     Selection survivor = Selection<ProgramType::Regressor>(params.surv, true);
     Variation variator = Variation<ProgramType::Regressor>(params, SS);
@@ -81,6 +81,7 @@ TEST(Population, PopulationTests)
             fmt::print("Island {}, individuals {}\n", j, pop.get_island_indexes(j));
 
             // we can calculate the fitness for each island
+            // TODO: have a flag that is set to false everytime we change the individual, and true when we already evaluated it on training. Use this flag to avoid evaluating the same individual multiple times (specially because we have a parameter tuning step, which can give a leverage to individuals evaluated several times, as it will have more iterations in the gradient descent optimization)
             fmt::print("Fitness\n");
             evaluator.update_fitness(pop, j, data, params, true, false);
         }

@@ -24,6 +24,7 @@ void bind_selections(py::module &);
 void bind_individuals(py::module &);
 void bind_populations(py::module &);
 void bind_estimators(py::module &);
+void bind_evaluators(py::module &);
 
 PYBIND11_MODULE(_brush, m) {
 
@@ -41,7 +42,7 @@ PYBIND11_MODULE(_brush, m) {
      bind_search_space(m);
      bind_variations(m);
      // bind_selections(m);
-     bind_populations(m);
+     // bind_populations(m);
 
      // solutions
      py::module_ m2 = m.def_submodule("program", "Contains Program classes.");
@@ -51,4 +52,5 @@ PYBIND11_MODULE(_brush, m) {
      bind_individuals(m3);
  
      // bind_estimators(m);
+     bind_evaluators(m);
 }

@@ -140,6 +140,9 @@ Dataset Dataset::operator()(const vector<size_t>& idx) const
     return Dataset(new_features, new_y, this->classification);
 }
 
+
+// TODO: i need to improve how   get batch works. Maybe a function to update batch indexes, and  always using the same dataset?
+// TODO: also, i need to make sure the get batch will sample only from training data and not test
 Dataset Dataset::get_batch() const
 {
     // will always return a new dataset, even when use_batch is false (this case, returns itself)
