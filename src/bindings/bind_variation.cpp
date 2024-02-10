@@ -14,7 +14,6 @@ void bind_variations(py::module& m)
 {
     bind_variation<br::ProgramType::Regressor>(m, "RegressorVariator");
     bind_variation<br::ProgramType::BinaryClassifier>(m, "ClassifierVariator");
-    
     bind_variation<br::ProgramType::MulticlassClassifier>(m, "MultiClassifierVariator");
     bind_variation<br::ProgramType::Representer>(m, "RepresenterVariator");
 }

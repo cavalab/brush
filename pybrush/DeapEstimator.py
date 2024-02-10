@@ -15,10 +15,12 @@ from deap import algorithms, base, creator, tools
 from types import NoneType
 from sklearn.metrics import average_precision_score
 from sklearn.preprocessing import MinMaxScaler
-import _brush
-from pybrush.deap_api import nsga2, DeapIndividual 
+import _brush # TODO: stop using _brush and use whats in pybrush
+import functools
+from pybrush.deap_api import nsga2
 # from _brush import Dataset, SearchSpace
 from pybrush import RegressorIndividual, ClassifierIndividual, MultiClassifierIndividual
+from pybrush import RegressorEvaluator, ClassifierEvaluator, MultiClassifierEvaluator
 
 
 # TODO: LOGGER AND ARCHIVE
@@ -160,7 +162,7 @@ class DeapEstimator(BaseEstimator):
         self.validation_size=validation_size
 
 
-    def _setup_toolbox(self, data_train, data_validation):
+    def _setup_toolbox(self):
         """Setup the deap toolbox"""
         toolbox: base.Toolbox = base.Toolbox()
 
@@ -175,8 +177,19 @@ class DeapEstimator(BaseEstimator):
             creator.create("Individual", ClassifierIndividual
                                          if self.n_classes_ == 2 else
                                          MultiClassifierIndividual)  
+            self.eval_ = ( ClassifierEvaluator()
+                     if self.n_classes_ == 2 else
+                     MultiClassifierEvaluator() )  
         else:
             creator.create("Individual", RegressorIndividual)  
+            self.eval_ = RegressorEvaluator()
+
+        def assign_fit(ind, validation=False):
+            ind.program.fit(self.data_.get_training_data())
+            self.eval_.assign_fit(ind, self.data_, self.parameters_, validation)
+            return ind
+        
+        toolbox.register("assign_fit", assign_fit)
         
         toolbox.register("Clone", lambda ind: creator.Individual(ind.program.copy()))
         
@@ -199,9 +212,6 @@ class DeapEstimator(BaseEstimator):
         toolbox.register("population", tools.initRepeat, list, toolbox.createRandom)
 
         toolbox.register("get_objectives", lambda: self.objectives)
-        toolbox.register("getBatch", data_train.get_batch)
-        toolbox.register("evaluate", self._fitness_function, data=data_train)
-        toolbox.register("evaluateValidation", self._fitness_validation, data=data_validation)
 
         return toolbox
 
@@ -245,18 +255,10 @@ class DeapEstimator(BaseEstimator):
             # elif "Softmax" not in self.functions_: # TODO: implement multiclassific.
             #     self.functions_["Softmax"] = 1.0 
 
-        # Weight of each objective (+ for maximization, - for minimization)
-        obj_weight = {
-            "error"      : +1.0 if self.mode=="classification" else -1.0,
-            "size"       : -1.0,
-            "complexity" : -1.0
-        }
-        self.weights = [obj_weight[w] for w in self.objectives]
-
         # These have a default behavior to return something meaningfull if 
         # no values are set
         self.train_ = self.data_.get_training_data()
-        self.train_.set_batch_size(self.batch_size)
+        self.train_.set_batch_size(self.batch_size) # TODO: update batch indexes at the beggining of every generation
         self.validation_ = self.data_.get_validation_data()
 
         self.search_space_ = _brush.SearchSpace(self.train_, self.functions_, self.weights_init)
@@ -274,13 +276,16 @@ class DeapEstimator(BaseEstimator):
         self.parameters_.mutation_probs = self.mutation_probs
 
         if self.mode == "classification":
-            self.variator_ = _brush.ClassifierVariator(self.parameters_, self.search_space_)
+            self.variator_ = (_brush.ClassifierVariator
+                              if self.n_classes_ == 2 else
+                              _brush.MultiClassifierVariator
+                              )(self.parameters_, self.search_space_)
         elif self.mode == "regressor":
             self.variator_ = _brush.RegressorVariator(self.parameters_, self.search_space_)
         else:
             raise("Unsupported mode")
         
-        self.toolbox_ = self._setup_toolbox(data_train=self.train_, data_validation=self.validation_)
+        self.toolbox_ = self._setup_toolbox()
 
         # nsga2 and ga differ in the toolbox
         self.archive_, self.logbook_ = nsga2(
@@ -291,8 +296,8 @@ class DeapEstimator(BaseEstimator):
 
         # Each individual is a point in the Multi-Objective space. We multiply
         # the fitness by the weights so greater numbers are always better
-        points = np.array([self.toolbox_.evaluateValidation(ind) for ind in self.archive_])
-        points = points*np.array(self.weights)
+        points = np.array([self.toolbox_.assign_fit(ind, True).fitness.wvalues
+                           for ind in self.archive_])
 
         if self.validation_size==0.0:  # Using the multi-criteria decision making on training data
             # Selecting the best estimator using training data
@@ -424,27 +429,7 @@ class DeapClassifier(DeapEstimator,ClassifierMixin):
         super().__init__(mode='classification',**kwargs)
 
     # TODO: test with number of islands =1
-        
-    def _error(self, ind, data: _brush.Dataset):
-        #return (data.y==ind.program.predict(data)).sum() / data.y.shape[0]
-        return average_precision_score(data.y, ind.program.predict(data))
-    
-    def _fitness_validation(self, ind, data: _brush.Dataset):
-        # Fitness without fitting the expression, used with validation data
-
-        ind_objectives = {
-            "error"     : self._error(ind, data),
-            "size"      : ind.program.size(),
-            "complexity": ind.program.complexity()
-        }
-        return [ ind_objectives[obj] for obj in self.objectives ]
-
-    def _fitness_function(self, ind, data: _brush.Dataset):
-        ind.program.fit(data)
-
-        return self._fitness_validation(ind, data)
-    
-
+       
     def predict_proba(self, X):
         """Predict class probabilities for X.
 
@@ -501,29 +486,6 @@ class DeapRegressor(DeapEstimator, RegressorMixin):
     """
     def __init__(self, **kwargs):
         super().__init__(mode='regressor',**kwargs)
-
-    def _error(self, ind, data: _brush.Dataset):
-        MSE = np.mean( (data.y-ind.program.predict(data))**2 )
-        if not np.isfinite(MSE): # numeric erros, np.nan, +-np.inf
-            MSE = np.inf
-
-        return MSE
-
-    def _fitness_validation(self, ind, data: _brush.Dataset):
-        # Fitness without fitting the expression, used with validation data
-
-        ind_objectives = {
-            "error"     : self._error(ind, data),
-            "size"      : ind.program.size(),
-            "complexity": ind.program.complexity()
-        }
-        return [ ind_objectives[obj] for obj in self.objectives ]
-
-    def _fitness_function(self, ind, data: _brush.Dataset):
-        ind.program.fit(data)
-
-        return self._fitness_validation(ind, data)
-
 
 # Under development
 # class DeapRepresenter(DeapEstimator, TransformerMixin):

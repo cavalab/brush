@@ -16,7 +16,8 @@ def nsga2(toolbox, NGEN, MU, CXPB, use_batch, verbosity, rnd_flt):
 
     def calculate_statistics(ind):
         on_train = ind.fitness.values
-        on_val   = toolbox.evaluateValidation(ind)
+        # TODO: make this work again
+        on_val   = ind.fitness.values #toolbox.evaluateValidation(ind)
 
         return (*on_train, *on_val) 
 
@@ -36,14 +37,7 @@ def nsga2(toolbox, NGEN, MU, CXPB, use_batch, verbosity, rnd_flt):
                          for objective in toolbox.get_objectives()]
 
     pop = toolbox.population(n=MU)
-
-    # OBS: evaluate calls fit in the individual. It is different from using it to predict. The
-    # function evaluateValidation don't call the fit
-    fitnesses = toolbox.map(functools.partial(toolbox.evaluate), pop)
-    for ind, fit in zip(pop, fitnesses):
-        ind.fitness.values = fit
-
-    #  print(0, pop[0].fitness.values, pop[0].fitness.weights)
+    pop = list(toolbox.map(toolbox.assign_fit, pop))
 
     # This is just to assign the crowding distance to the individuals
     # no actual selection is done
@@ -57,41 +51,20 @@ def nsga2(toolbox, NGEN, MU, CXPB, use_batch, verbosity, rnd_flt):
 
     # Begin the generational process
     for gen in range(1, NGEN):
-        batch = toolbox.getBatch() # batch will be a random subset only if it was not defined as the size of the train set.
-                                   # everytime this function is called, a new random batch is generated.
-        if (use_batch): # recalculate the fitness for the parents
-            # use_batch is false if batch_size is different from train set size.
-            # If we're using batch, we need to re-evaluate every model (without changing its weights).
-            # evaluateValidation doesnt fit the weights
-            fitnesses = toolbox.map( 
-                functools.partial(toolbox.evaluateValidation, data=batch), pop)
-        
-            for ind, fit in zip(pop, fitnesses):
-                ind.fitness.values = fit
-
-        # print(1, pop[0].fitness.values, pop[0].fitness.weights)
-
         # Vary the population
-        # offspring = tools.selTournamentDCD(pop, len(pop))
         parents = toolbox.select(pop, len(pop))
-        # offspring = [toolbox.clone(ind) for ind in offspring]
         offspring = []
         for ind1, ind2 in zip(parents, parents[1:]):
             off = None
-            if rnd_flt() < CXPB: # either mutation or crossover. 
+            if rnd_flt() < CXPB: # either mutation or crossover
                 off = toolbox.mate(ind1, ind2)
             else:
                 off = toolbox.mutate(ind1)
             
-            if off is not None: # Mutation worked. first we fit, then add to offspring
-                # Evaluate (instead of evaluateValidation) to fit the weights of the offspring
-                off.fitness.values = toolbox.evaluate(off) 
-                if use_batch: # Adjust fitness to the same data as parents
-                    off.fitness.values = toolbox.evaluateValidation(off, data=batch)
+            if off is not None: # first we fit, then add to offspring
                 offspring.extend([off])
 
-        # print(2, offspring[0].fitness.values, offspring[0].fitness.weights)
-
+        offspring = list(toolbox.map(toolbox.assign_fit, offspring))
         # Select the next generation population (no sorting before this step, as 
         # survive==offspring will cut it in half)
         pop = toolbox.survive(pop + offspring, MU)
