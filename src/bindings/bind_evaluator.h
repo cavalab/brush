@@ -16,5 +16,6 @@ void bind_evaluator(py::module& m, string name)
     py::class_<Class> eval(m, name.data() ); 
     eval.def(py::init<>())    
         .def("assign_fit", &Class::assign_fit)
+        .def_property("scorer", &Class::get_scorer, &Class::set_scorer)
         ;
 }

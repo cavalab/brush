@@ -55,22 +55,13 @@ void Evaluation<T>::assign_fit(Individual<T>& ind, const Dataset& data,
     VectorXf loss;
     using PT = ProgramType;
     
-    // we want the predict proba
-    using RetType =
-        typename std::conditional_t<T == PT::Regressor, ArrayXf,
-                    std::conditional_t<T == PT::BinaryClassifier, ArrayXf,
-                    std::conditional_t<T == PT::MulticlassClassifier, ArrayXXf,
-                    std::conditional_t<T == PT::Representer, ArrayXXf, ArrayXf
-        >>>>;
-
-    auto validation = data.get_validation_data();
-    RetType y_pred_validation = ind.predict(validation).template cast<float>();
-    float f_v = S.score(validation.y, y_pred_validation, loss, params.class_weights);
+    Dataset validation = data.get_validation_data();
+    float f_v = S.score(ind, validation, loss, params);
 
     // TODO: implement the class weights and use it here (and on loss)
-    auto train = data.get_training_data();
-    RetType y_pred = ind.predict(train).template cast<float>();
-    float f = S.score(train.y, y_pred, loss, params.class_weights);
+
+    Dataset train = data.get_training_data();
+    float f = S.score(ind, train, loss, params);
     
     // TODO: setter for loss and loss_v
     ind.error = loss;
@@ -102,6 +93,7 @@ void Evaluation<T>::assign_fit(Individual<T>& ind, const Dataset& data,
     // will use inner attributes to set the fitness object
     ind.fitness.set_values(values); 
 }
+
 
 } // Pop
 } // Brush

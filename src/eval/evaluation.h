@@ -37,6 +37,8 @@ public:
     };
     ~Evaluation(){};
         
+    void set_scorer(string scorer){this->S.set_scorer(scorer);};
+    string get_scorer(){return this->S.get_scorer();};
     // TODO: set objectives
     // TODO: evaluation bind 
     // TODO: EVALUATOR CALCULATE ERROR BASED ON TEMPLATING? (caps)
