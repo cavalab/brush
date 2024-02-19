@@ -403,7 +403,7 @@ class BrushEstimator(BaseEstimator):
         
         assert isinstance(X, np.ndarray)
 
-        if isinstance(y, None):
+        if y is None:
             return _brush.Dataset(X=X,
                     feature_names=feature_names, validation_size=validation_size)
 
