@@ -12,7 +12,6 @@ import pandas as pd
 # import deap as dp
 from deap import algorithms, base, creator, tools
 # from tqdm import tqdm
-from types import NoneType
 from sklearn.metrics import average_precision_score
 from sklearn.preprocessing import MinMaxScaler
 import _brush
@@ -404,7 +403,7 @@ class BrushEstimator(BaseEstimator):
         
         assert isinstance(X, np.ndarray)
 
-        if isinstance(y, NoneType):
+        if isinstance(y, None):
             return _brush.Dataset(X=X,
                     feature_names=feature_names, validation_size=validation_size)
 
