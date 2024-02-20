@@ -17,6 +17,7 @@ from sklearn.preprocessing import MinMaxScaler
 import _brush
 from .deap_api import nsga2, nsga2island, DeapIndividual, e_lexicase
 # from _brush import Dataset, SearchSpace
+from typing import Union, List, Dict
 
 
 class BrushEstimator(BaseEstimator):
@@ -139,7 +140,7 @@ class BrushEstimator(BaseEstimator):
         cx_prob= 1/7,
         mutation_options = {"point":1/6, "insert":1/6, "delete":1/6, "subtree":1/6,
                             "toggle_weight_on":1/6, "toggle_weight_off":1/6},
-        functions: list[str]|dict[str,float] = {},
+        functions: Union[List[str], Dict[str, float]] = {},
         initialization="uniform",
         selection="e-lexicase",
         algorithm="nsga2",
