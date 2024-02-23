@@ -50,9 +50,9 @@ bool Estimator<T>::update_best(const Dataset& data, bool val)
         if (ind.rank == 1)
         {
             if (val)
-                f = ind.fitness_v;
+                f = ind.fitness.loss_v;
             else
-                f = ind.fitness;
+                f = ind.fitness.loss;
 
             if (f < bs 
                 || (f == bs && ind.get_complexity() < this->best_complexity)
@@ -103,7 +103,7 @@ void Estimator<T>::run_generation(unsigned int g, Dataset &data)
         island_parents.at(island) = parents;
     });
     
-    vector<size_t> survivors(pop.size());
+    vector<size_t> survivors(params.pop_size); // TODO: check that I dont use pop.size() (or I use correctly, because it will return the size with the slots for the offspring)
     pop.add_offspring_indexes();
 
     taskflow.for_each_index(0, pop.num_islands,  1, [&](int island) {

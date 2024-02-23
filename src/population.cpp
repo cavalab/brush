@@ -14,19 +14,44 @@ Population<T>::Population()
 
 
 template<ProgramType T>
-void Population<T>::init(vector<Individual<T>&>& individuals, const Parameters& params)
+void Population<T>::init(vector<Individual<T>>& new_individuals, const Parameters& params)
 {
+    if (new_individuals.size() != params.pop_size
+    &&  new_individuals.size() != 2*params.pop_size ) {
+        throw std::runtime_error("Individual vector has different number of individuals than pop_size. popsize is "+to_string(params.pop_size)+", number of individuals is " + to_string(new_individuals.size()));
+    }
+
     this->mig_prob = params.mig_prob;
     this->pop_size = params.pop_size;
     this->num_islands=params.num_islands;
 
+    island_indexes.resize(num_islands);
+    
     // If the assert fails, execution stops, but for completeness, you can also throw an exception
-    if (individuals.size() != this->pop_size) {
-        throw std::runtime_error("Individual vector has different number of individuals than pop_size.");
-    }
-    individuals.resize(0);
-    for (const auto& ind : individuals) {
-        individuals.push_back( std::make_shared<Individual<T>>(ind) );
+    size_t p = pop_size;
+
+    individuals.resize(2*p);
+
+    for (int i=0; i<num_islands; ++i)
+    {
+        size_t idx_start = std::floor(i*p/num_islands);
+        size_t idx_end   = std::floor((i+1)*p/num_islands);
+
+        auto delta = idx_end - idx_start;
+
+        island_indexes.at(i).resize(delta);
+        iota(island_indexes.at(i).begin(), island_indexes.at(i).end(), idx_start);
+    
+        if (new_individuals.size() == 2*params.pop_size) { // pop + offspring
+            island_indexes.at(i).resize(delta*2);
+            iota(
+                island_indexes.at(i).begin() + delta, island_indexes.at(i).end(),
+                p+idx_start);
+        }
+    };
+
+    for (int j=0; j< new_individuals.size(); j++) {
+        individuals.at(j) = std::make_shared<Individual<T>>(new_individuals.at(j));
     }
 }
 
@@ -46,7 +71,7 @@ void Population<T>::init(SearchSpace& ss, const Parameters& params)
     for (int i=0; i<num_islands; ++i)
     {
         size_t idx_start = std::floor(i*p/num_islands);
-        size_t idx_end = std::floor((i+1)*p/num_islands);
+        size_t idx_end   = std::floor((i+1)*p/num_islands);
 
         auto delta = idx_end - idx_start;
 

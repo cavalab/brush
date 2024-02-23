@@ -34,17 +34,24 @@ struct Fitness {
     size_t complexity;
     size_t size;
     size_t depth;
+
     unsigned int dcounter;  ///< number of individuals this dominates
+
     vector<unsigned int> dominated; ///< individual indices this dominates
-    
     unsigned int rank;             ///< pareto front rank
     float crowding_dist;   ///< crowding distance on the Pareto front
+
+    void set_dominated(vector<unsigned int>& dom){ dominated=dom; };
+    vector<unsigned int> get_dominated() const { return dominated; };
 
     void set_loss(float f){ loss=f; };
     float get_loss() const { return loss; };
 
     void set_loss_v(float f_v){ loss_v=f_v; };
     float get_loss_v() const { return loss_v; };
+
+    void set_dcounter(unsigned int d){ dcounter=d; };
+    unsigned int get_dcounter() const { return dcounter; };
 
     void set_rank(unsigned r){ rank=r; };
     size_t get_rank() const { return rank; };
@@ -61,7 +68,12 @@ struct Fitness {
     vector<float> wvalues;
 
     // Constructor with initializer list for weights
-    Fitness(const vector<float>& w={}) : values(), wvalues(), weights(w) { }
+    Fitness(const vector<float>& w={}) : values(), wvalues(), weights(w) {
+        dcounter = 0;
+        set_rank(0);
+        set_crowding_dist(0);
+        dominated.resize(0);
+    }
     
     // Hash function
     size_t hash() const {
@@ -69,6 +81,9 @@ struct Fitness {
         return h;
     }
 
+    void set_weights(vector<float>& w) {
+        weights = w;
+    }
     vector<float> get_weights() const {
         return weights;
     }
@@ -238,11 +253,11 @@ public: // TODO: make these private (and work with nlohman json)
     // void Individual<T>::set_objectives(const vector<string>& objectives)
 
     // TODO:  fix   to use these with fitness instead of with individual
-    unsigned int dcounter;  ///< number of individuals this dominates
-    vector<unsigned int> dominated; ///< individual indices this dominates
+    // unsigned int dcounter;  ///< number of individuals this dominates
+    // vector<unsigned int> dominated; ///< individual indices this dominates
     
-    unsigned int rank;             ///< pareto front rank
-    float crowding_dist;   ///< crowding distance on the Pareto front
+    // unsigned int rank;             ///< pareto front rank
+    // float crowding_dist;   ///< crowding distance on the Pareto front
 
 
     // Static map for weights associated with strings
@@ -275,7 +290,7 @@ public: // TODO: make these private (and work with nlohman json)
             }
         }
 
-        fitness = Fitness(weights);
+        fitness.set_weights(weights);
     };
 };
 

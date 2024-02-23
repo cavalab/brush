@@ -35,7 +35,7 @@ public:
     string sel  = "nsga2"; //selection method
     string surv = "nsga2"; //survival method
     std::unordered_map<string, float> functions;
-    int num_islands=5;
+    int num_islands=1;
 
     // variation
     std::map<std::string, float> mutation_probs = {
@@ -75,6 +75,9 @@ public:
 
     void set_gens(int new_gens){ gens = new_gens; };
     int get_gens(){ return gens; };
+
+    void set_current_gen(unsigned int gen){ current_gen = gen; };
+    unsigned int get_current_gen(){ return current_gen; };
 
     void set_num_islands(int new_num_islands){ num_islands = new_num_islands; };
     int get_num_islands(){ return num_islands; };

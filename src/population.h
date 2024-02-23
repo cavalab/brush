@@ -33,7 +33,7 @@ public:
     void init(SearchSpace& ss, const Parameters& params);
 
     // initialize based on list of individuals
-    void init(vector<Individual<T>&>& individuals, const Parameters& params);
+    void init(vector<Individual<T>>& individuals, const Parameters& params);
 
     // TODO: init from file (like FEAT)
 
@@ -83,8 +83,7 @@ public:
         SameFitComplexity(Population<T>& p): pop(p){}
         bool operator()(size_t i, size_t j)
         {
-            return (pop[i].fitness == pop[j].fitness
-                   && pop[i].get_complexity() == pop[j].get_complexity());
+            return pop[i].fitness == pop[j].fitness;
         }
     };
 };
