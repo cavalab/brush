@@ -73,6 +73,8 @@ TEST(Population, PopulationTests)
     fmt::print("Performing all steps of an evolution (sequential, not parallel)\n");
     for (int i=0; i<100; ++i) // update and prep offspring slots works properly
     {
+        params.set_current_gen(i);
+        
         vector<vector<size_t>> survivors(pop.num_islands);
 
         fmt::print("Fitting individuals\n"); // this must be done in one thread (or implement mutex), because we can have multiple islands pointing to same individuals
