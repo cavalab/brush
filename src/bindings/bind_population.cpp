@@ -17,5 +17,5 @@ void bind_populations(py::module& m)
     bind_population<br::ProgramType::BinaryClassifier>(m, "ClassifierPopulation");
     
     bind_population<br::ProgramType::MulticlassClassifier>(m, "MultiClassifierPopulation");
-    bind_population<br::ProgramType::Representer>(m, "RepresenterPopulation");
+    // bind_population<br::ProgramType::Representer>(m, "RepresenterPopulation");
 }

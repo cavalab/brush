@@ -50,5 +50,5 @@ void bind_individuals(py::module& m)
      bind_individual<br::ProgramType::Regressor>(m, "RegressorIndividual");
      bind_individual<br::ProgramType::BinaryClassifier>(m, "ClassifierIndividual");
      bind_individual<br::ProgramType::MulticlassClassifier>(m, "MultiClassifierIndividual");
-     bind_individual<br::ProgramType::Representer>(m, "RepresenterIndividual");
+     // bind_individual<br::ProgramType::Representer>(m, "RepresenterIndividual");
 }

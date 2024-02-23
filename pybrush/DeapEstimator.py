@@ -12,7 +12,6 @@ import pandas as pd
 # import deap as dp
 from deap import algorithms, base, creator, tools
 # from tqdm import tqdm
-from types import NoneType
 from sklearn.metrics import average_precision_score
 from sklearn.preprocessing import MinMaxScaler
 import _brush # TODO: stop using _brush and use whats in pybrush
@@ -21,6 +20,7 @@ from pybrush.deap_api import nsga2
 # from _brush import Dataset, SearchSpace
 from pybrush import RegressorIndividual, ClassifierIndividual, MultiClassifierIndividual
 from pybrush import RegressorEvaluator, ClassifierEvaluator, MultiClassifierEvaluator
+from pybrush import RegressorSelector, ClassifierSelector, MultiClassifierSelector
 
 
 # TODO: LOGGER AND ARCHIVE
@@ -127,7 +127,7 @@ class DeapEstimator(BaseEstimator):
         verbosity=0,
         max_depth=3,
         max_size=20,
-        num_islands=5,
+        num_islands=1,
         mig_prob=0.05,
         cx_prob= 1/7,
         mutation_probs = {"point":1/6, "insert":1/6, "delete":1/6, "subtree":1/6,
@@ -180,9 +180,23 @@ class DeapEstimator(BaseEstimator):
             self.eval_ = ( ClassifierEvaluator()
                      if self.n_classes_ == 2 else
                      MultiClassifierEvaluator() )  
+            self.sel_  = ( ClassifierSelector("nsga2", False)
+                     if self.n_classes_ == 2 else
+                     MultiClassifierSelector("nsga2", False) )  
+            self.surv_ = ( ClassifierSelector("nsga2", True)
+                     if self.n_classes_ == 2 else
+                     MultiClassifierSelector("nsga2", True) )  
         else:
             creator.create("Individual", RegressorIndividual)  
+            self.sel_  = RegressorSelector("nsga2", False)
+            self.surv_ = RegressorSelector("nsga2", True)
             self.eval_ = RegressorEvaluator()
+
+        toolbox.register("select",  lambda pop: self.sel_.select(pop, self.parameters_)) 
+        toolbox.register("survive", lambda pop: self.surv_.survive(pop, self.parameters_)) 
+
+        def update_current_gen(gen): self.parameters_.current_gen = gen
+        toolbox.register("update_current_gen", update_current_gen) 
 
         def assign_fit(ind, validation=False):
             ind.program.fit(self.data_.get_training_data())
@@ -199,13 +213,14 @@ class DeapEstimator(BaseEstimator):
         # When solving multi-objective problems, selection and survival must
         # support this feature. This means that these selection operators must
         # accept a tuple of fitnesses as argument)
-        if self.algorithm=="nsga2" or self.algorithm=="nsga2island":
-            toolbox.register("select", tools.selTournamentDCD) 
-            toolbox.register("survive", tools.selNSGA2)
-        elif self.algorithm=="ga" or self.algorithm=="gaisland":
-            toolbox.register("select", tools.selTournament, tournsize=3) 
-            def offspring(pop, MU): return pop[-MU:]
-            toolbox.register("survive", offspring)
+        # if self.algorithm=="nsga2" or self.algorithm=="nsga2island":
+        #     toolbox.register("select", tools.selTournamentDCD) 
+        #     toolbox.register("survive", tools.selNSGA2)
+        # elif self.algorithm=="ga" or self.algorithm=="gaisland":
+        #     toolbox.register("select", tools.selTournament, tournsize=3) 
+        #     def offspring(pop, MU): return pop[-MU:]
+        #     toolbox.register("survive", offspring)
+
 
         # toolbox.population will return a list of elements by calling toolbox.individual
         toolbox.register("createRandom", self._make_individual)
@@ -340,7 +355,7 @@ class DeapEstimator(BaseEstimator):
         
         assert isinstance(X, np.ndarray)
 
-        if isinstance(y, NoneType):
+        if y is None:
             return _brush.Dataset(X=X,
                     feature_names=feature_names, validation_size=validation_size)
 

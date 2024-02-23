@@ -41,7 +41,7 @@ PYBIND11_MODULE(_brush, m) {
      bind_dataset(m);
      bind_search_space(m);
      bind_variations(m);
-     // bind_selections(m);
+     bind_selections(m);
      // bind_populations(m);
 
      // solutions

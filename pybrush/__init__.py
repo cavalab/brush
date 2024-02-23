@@ -3,6 +3,7 @@ from _brush import Dataset
 from _brush import SearchSpace
 from _brush import Parameters
 from _brush import RegressorEvaluator, ClassifierEvaluator, MultiClassifierEvaluator
+from _brush import RegressorSelector, ClassifierSelector, MultiClassifierSelector
 
 # Individuals
 from _brush.individual import RegressorIndividual, \

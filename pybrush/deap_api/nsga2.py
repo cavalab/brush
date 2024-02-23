@@ -39,10 +39,6 @@ def nsga2(toolbox, NGEN, MU, CXPB, use_batch, verbosity, rnd_flt):
     pop = toolbox.population(n=MU)
     pop = list(toolbox.map(toolbox.assign_fit, pop))
 
-    # This is just to assign the crowding distance to the individuals
-    # no actual selection is done
-    pop = toolbox.survive(pop, len(pop))
-
     record = stats.compile(pop)
     logbook.record(gen=0, evals=len(pop), **record)
 
@@ -51,10 +47,48 @@ def nsga2(toolbox, NGEN, MU, CXPB, use_batch, verbosity, rnd_flt):
 
     # Begin the generational process
     for gen in range(1, NGEN):
+
+        # this is used in cpp to decide if we are going to do some calculations or not
+        toolbox.update_current_gen(gen)
+
         # Vary the population
-        parents = toolbox.select(pop, len(pop))
+        # print("--"*20)
+        # print("pop before select")
+        # for p in pop:
+        #     print(p.program.get_model())
+        #     print(p.fitness.values)
+        #     print(p.fitness.weights)
+        #     print(p.fitness.wvalues)
+        #     print(p.fitness.rank)
+        #     print(p.fitness.loss_v)
+        #     print(p.fitness.crowding_dist)
+
+        parents = toolbox.select(pop) # , len(pop) # select method from brush's cpp side will use the values in self.parameters_ to decide how many individuals it should select
+        
+        # print("--"*20)
+        # print("pop after select")
+        # for p in pop:
+        #     print(p.program.get_model())
+        #     print(p.fitness.values)
+        #     print(p.fitness.weights)
+        #     print(p.fitness.wvalues)
+        #     print(p.fitness.rank)
+        #     print(p.fitness.loss_v)
+        #     print(p.fitness.crowding_dist)
+
+        # print("--"*20)
+        # print("selected parents")
+        # for p in parents:
+        #     print(p.program.get_model())
+        #     print(p.fitness.values)
+        #     print(p.fitness.weights)
+        #     print(p.fitness.wvalues)
+        #     print(p.fitness.rank)
+        #     print(p.fitness.loss_v)
+        #     print(p.fitness.crowding_dist)
+
         offspring = []
-        for ind1, ind2 in zip(parents, parents[1:]):
+        for ind1, ind2 in zip(parents, parents[1:]+parents[0:1]):
             off = None
             if rnd_flt() < CXPB: # either mutation or crossover
                 off = toolbox.mate(ind1, ind2)
@@ -64,10 +98,13 @@ def nsga2(toolbox, NGEN, MU, CXPB, use_batch, verbosity, rnd_flt):
             if off is not None: # first we fit, then add to offspring
                 offspring.extend([off])
 
+        # filling offspring empty slots
+        offspring = offspring + toolbox.population(n=MU - len(offspring))
+
         offspring = list(toolbox.map(toolbox.assign_fit, offspring))
         # Select the next generation population (no sorting before this step, as 
         # survive==offspring will cut it in half)
-        pop = toolbox.survive(pop + offspring, MU)
+        pop = toolbox.survive(pop + offspring)
 
         pop.sort(key=lambda x: x.fitness, reverse=True)
 
