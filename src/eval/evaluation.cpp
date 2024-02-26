@@ -32,6 +32,7 @@ void Evaluation<T>::update_fitness(Population<T>& pop,
         if (!pass)
         {
             // TODO: check if score was nan and assign the max float
+            // TODO: better handling of nan or inf scores when doing selection and survival (and hall of fame and rank for migration)
             ind.fitness.loss = MAX_FLT;
             ind.fitness.loss_v = MAX_FLT;
             ind.error = MAX_FLT*VectorXf::Ones(data.y.size());

@@ -8,6 +8,7 @@ license: GNU/GPL v3
 
 #include "selection_operator.h"
 #include "nsga2.h"
+#include "lexicase.h"
 
 namespace Brush {
 namespace Sel {

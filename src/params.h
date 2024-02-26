@@ -32,7 +32,7 @@ public:
     unsigned int max_depth = 6; // TODO: make all tests be based on these values for max depth and size
     unsigned int max_size  = 50;
     vector<string> objectives{"error","complexity"}; // error should be generic and deducted based on mode
-    string sel  = "nsga2"; //selection method
+    string sel  = "lexicase"; //selection method
     string surv = "nsga2"; //survival method
     std::unordered_map<string, float> functions;
     int num_islands=1;
@@ -53,7 +53,10 @@ public:
     string scorer_="mse";   ///< actual loss function used, determined by error
 
     // for classification (TODO: should I have these, or they could be just dataset arguments (except the ones needed to use in dataset constructor))
+    bool classification;
     unsigned int n_classes;   ///< number of classes for classification 
+
+    // TODO: set these values when creating the parameters in python side
     vector<int> classes;      ///< class labels
     vector<float> class_weights;  ///< weights for each class
     vector<float> sample_weights; ///< weights for each sample 
@@ -102,6 +105,12 @@ public:
 
     void set_mig_prob(float new_mig_prob){ mig_prob = new_mig_prob; };
     float get_mig_prob(){ return mig_prob; };
+
+    void set_classification(bool c){ classification = c; };
+    bool get_classification(){ return classification; };
+
+    void set_n_classes(unsigned int new_n_classes){ n_classes = new_n_classes; };
+    unsigned int get_n_classes(){ return n_classes; };
 
     //TODO: unify unordered or ordered
     void set_mutation_probs(std::map<std::string, float> new_mutation_probs){ mutation_probs = new_mutation_probs; };

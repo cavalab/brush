@@ -188,12 +188,15 @@ class DeapEstimator(BaseEstimator):
                      MultiClassifierSelector("nsga2", True) )  
         else:
             creator.create("Individual", RegressorIndividual)  
-            self.sel_  = RegressorSelector("nsga2", False)
+            self.sel_  = RegressorSelector("lexicase", False)
             self.surv_ = RegressorSelector("nsga2", True)
             self.eval_ = RegressorEvaluator()
 
         toolbox.register("select",  lambda pop: self.sel_.select(pop, self.parameters_)) 
-        toolbox.register("survive", lambda pop: self.surv_.survive(pop, self.parameters_)) 
+        toolbox.register("survive", lambda pop: self.surv_.survive(pop, self.parameters_))
+
+        # it could be both sel or surv. 
+        toolbox.register("migrate", lambda pop: self.surv_.migrate(pop, self.parameters_)) 
 
         def update_current_gen(gen): self.parameters_.current_gen = gen
         toolbox.register("update_current_gen", update_current_gen) 
@@ -259,6 +262,7 @@ class DeapEstimator(BaseEstimator):
             self.functions_ = self.functions
 
         # set n classes if relevant
+        self.n_classes_ = 0
         if self.mode=="classification":
             self.n_classes_ = len(np.unique(y))
 
@@ -279,6 +283,8 @@ class DeapEstimator(BaseEstimator):
         self.search_space_ = _brush.SearchSpace(self.train_, self.functions_, self.weights_init)
                 
         self.parameters_ = _brush.Parameters()
+        self.parameters_.classification = self.mode == "classification"
+        self.parameters_.n_classes = self.n_classes_
         self.parameters_.pop_size = self.pop_size
         self.parameters_.gens = self.gens
         self.parameters_.num_islands = self.num_islands

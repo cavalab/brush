@@ -195,7 +195,7 @@ vector<vector<size_t>> Population<T>::sorted_front(unsigned rank, bool ignore_of
         for (int i=0; i<end; ++i)
         {
             // this assumes that rank was previously calculated. It is set in selection (ie nsga2) if the information is useful to select/survive
-            if (individuals.at(idxs.at(i))->rank == rank)
+            if (individuals.at(idxs.at(i))->fitness.rank == rank)
                 pf.push_back(i);
         }
 
@@ -222,7 +222,7 @@ vector<size_t> Population<T>::hall_of_fame(unsigned rank, bool ignore_offspring)
 
     for (unsigned int i =0; i<end; ++i)
     {
-        if (individuals.at(i)->rank == rank)
+        if (individuals.at(i)->fitness.rank == rank)
             pf.push_back(i);
     }
     std::sort(pf.begin(),pf.end(),SortComplexity(*this)); 
@@ -253,14 +253,18 @@ void Population<T>::migrate()
         {
             if (r() < mig_prob)
             {
+                // std::cout << "migrating in island" << island << std::endl;
+
                 size_t migrating_idx;
                 // determine if incoming individual comes from global or local hall of fame
                 if (r() < 0.5) { // from global hall of fame
+                    // std::cout << "from hall of fame" << std::endl;
                     migrating_idx = *r.select_randomly(
                         global_hall_of_fame.begin(),
                         global_hall_of_fame.end());
                 }
                 else { // from any other local hall of fame
+                    // std::cout << "from other island" << std::endl;
                     // finding other island indexes
                     vector<int> other_islands(num_islands-1);
                     iota(other_islands.begin(), other_islands.end(), 0);
@@ -281,6 +285,8 @@ void Population<T>::migrate()
                         island_fronts.at(other_island).begin(),
                         island_fronts.at(other_island).end());
                 }
+
+                // std::cout << "index " << i << " of island " << island << " is now" << migrating_idx << std::endl;
                 
                 island_indexes.at(island).at(i) = migrating_idx;
             }

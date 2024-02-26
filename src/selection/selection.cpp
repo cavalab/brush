@@ -33,6 +33,8 @@ void Selection<T>::set_operator()
 {
     if (this->type == "nsga2")
         pselector = new NSGA2<T>(survival);
+    else if (this->type == "lexicase")
+        pselector = new Lexicase<T>(survival);
     else
         HANDLE_ERROR_THROW("Undefined Selection Operator " + this->type + "\n");
         

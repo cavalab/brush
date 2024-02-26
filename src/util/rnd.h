@@ -136,13 +136,13 @@ namespace Brush { namespace Util{
                 if(w.size() == 0)
                 {   
                     fmt::format("w size = {} and v size = {}, returning uniform random choice\n",
-                            w.size(), v.size());
+                        w.size(), v.size());
                     return random_choice(v);
                 }
                 if(w.size() != v.size())
                 {   
                     fmt::format("w ({}) != v size ({}), returning uniform random choice\n",
-                            w.size(), v.size());
+                        w.size(), v.size());
                     return random_choice(v);
                 }
                 else

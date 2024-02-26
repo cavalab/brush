@@ -92,7 +92,7 @@ public:
     std::map<string, funcPointer> score_hash;
     string scorer;
 
-    Scorer(string scorer="multi_log") {
+    Scorer(string scorer="log") {
         score_hash["log"] = &mean_log_loss;
     
         this->set_scorer(scorer);

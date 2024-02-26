@@ -6,6 +6,8 @@
 #include "../selection/selection_operator.cpp"
 #include "../selection/nsga2.h"
 #include "../selection/nsga2.cpp"
+#include "../selection/lexicase.h"
+#include "../selection/lexicase.cpp"
 
 #include "../population.cpp"
 #include "../population.h"
@@ -37,13 +39,18 @@ void bind_selection(py::module& m, string name)
 
             pop.init(individuals, params);
 
-            vector<size_t> selected = self.select(pop, 0, params);
-
             vector<br::Pop::Individual<PT>> pool;
             pool.resize(0);
 
-            for (size_t idx : selected) {
-                pool.push_back(pop[idx]);
+            for (int island = 0; island < params.num_islands; ++island)
+            {
+                vector<size_t> selected = self.select(pop, island, params);
+
+                // std::cout << "selecting in island " << island << std::endl;
+
+                for (size_t idx : selected) {
+                    pool.push_back(pop[idx]);
+                }
             }
 
             // returns references   
@@ -55,30 +62,42 @@ void bind_selection(py::module& m, string name)
             // auto sel = Class("nsga2", false);
             auto pop = br::Pop::Population<PT>();
 
-            // std::cout << "created new population" << std::endl;
-
             pop.init(individuals, params);
 
-            // std::cout << "called init with individuals" << std::endl;
-
-            vector<size_t> selected = self.survive(pop, 0, params);
-
-            // std::cout << "survival" << std::endl;
-
             vector<br::Pop::Individual<PT>> pool;
-
-            // std::cout << "starting to fill the pool" << std::endl;
-
             pool.resize(0);
 
-            // std::cout << "pool is empty" << std::endl;
+            for (int island = 0; island < params.num_islands; ++island)
+            {
+                vector<size_t> selected = self.survive(pop, island, params);
 
-            for (size_t idx : selected) {
-                pool.push_back(pop[idx]);
+                for (size_t idx : selected) {
+                    pool.push_back(pop[idx]);
+                }
             }
 
-            // std::cout << "pool has size" << pool.size() << std::endl;
+            // returns references   
+            return pool;
+       })
+       .def("migrate", [](Class &self, std::vector<br::Pop::Individual<PT>>& individuals,
+                         const Parameters& params) {
 
+            auto pop = br::Pop::Population<PT>();
+
+            pop.init(individuals, params);
+            pop.migrate(); // this will modify island indexes inplace
+
+            vector<br::Pop::Individual<PT>> pool;
+            pool.resize(0);
+
+            for (int island = 0; island < params.num_islands; ++island)
+            {
+                vector<size_t> selected = pop.get_island_indexes(island);
+
+                for (size_t idx : selected) {
+                    pool.push_back(pop[idx]);
+                }
+            }
             // returns references   
             return pool;
        })

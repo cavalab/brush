@@ -46,7 +46,7 @@ def nsga2(toolbox, NGEN, MU, CXPB, use_batch, verbosity, rnd_flt):
         print(logbook.stream)
 
     # Begin the generational process
-    for gen in range(1, NGEN):
+    for gen in range(1, NGEN+1):
 
         # this is used in cpp to decide if we are going to do some calculations or not
         toolbox.update_current_gen(gen)
@@ -102,9 +102,45 @@ def nsga2(toolbox, NGEN, MU, CXPB, use_batch, verbosity, rnd_flt):
         offspring = offspring + toolbox.population(n=MU - len(offspring))
 
         offspring = list(toolbox.map(toolbox.assign_fit, offspring))
+
+        # print("--"*20)
+        # print("offspring")
+        # for p in offspring:
+        #     print(p.program.get_model())
+        #     print(p.fitness.values)
+        #     print(p.fitness.weights)
+        #     print(p.fitness.wvalues)
+        #     print(p.fitness.rank)
+        #     print(p.fitness.loss_v)
+        #     print(p.fitness.crowding_dist)
+
         # Select the next generation population (no sorting before this step, as 
         # survive==offspring will cut it in half)
         pop = toolbox.survive(pop + offspring)
+
+        # print("--"*20)
+        # print("pop after survival")
+        # for p in pop:
+        #     print(p.program.get_model())
+        #     print(p.fitness.values)
+        #     print(p.fitness.weights)
+        #     print(p.fitness.wvalues)
+        #     print(p.fitness.rank)
+        #     print(p.fitness.loss_v)
+        #     print(p.fitness.crowding_dist)
+
+        pop = toolbox.migrate(pop)
+
+        # print("--"*20)
+        # print("pop after migration")
+        # for p in pop:
+        #     print(p.program.get_model())
+        #     print(p.fitness.values)
+        #     print(p.fitness.weights)
+        #     print(p.fitness.wvalues)
+        #     print(p.fitness.rank)
+        #     print(p.fitness.loss_v)
+        #     print(p.fitness.crowding_dist)
 
         pop.sort(key=lambda x: x.fitness, reverse=True)
 

@@ -23,7 +23,7 @@ public:
     ~NSGA2(){};
 
     /// selection according to the survival scheme of NSGA-II
-    vector<size_t> select(Population<T>& pop, int island,   
+    vector<size_t> select(Population<T>& pop, int island,
             const Parameters& p);
     
     /// survival according to the survival scheme of NSGA-II
