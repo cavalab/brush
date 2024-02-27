@@ -57,7 +57,7 @@ vector<size_t> Lexicase<T>::select(Population<T>& pop, int island,
     vector<size_t> starting_pool;
     for (int i = 0; i < island_pool.size(); ++i)
     {
-        starting_pool.push_back(i);
+        starting_pool.push_back(island_pool[i]);
     }
     assert(starting_pool.size() == P);     
     
