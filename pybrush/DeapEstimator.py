@@ -212,6 +212,7 @@ class DeapEstimator(BaseEstimator):
         
         toolbox.register("mate", self.variator_.cross)
         toolbox.register("mutate", self.variator_.mutate)
+        toolbox.register("vary_pop", lambda pop: self.variator_.vary_pop(pop, self.parameters_))
 
         # When solving multi-objective problems, selection and survival must
         # support this feature. This means that these selection operators must

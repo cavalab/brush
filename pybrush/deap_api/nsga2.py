@@ -52,95 +52,96 @@ def nsga2(toolbox, NGEN, MU, CXPB, use_batch, verbosity, rnd_flt):
         toolbox.update_current_gen(gen)
 
         # Vary the population
-        # print("--"*20)
-        # print("pop before select")
-        # for p in pop:
-        #     print(p.program.get_model())
-        #     print(p.fitness.values)
-        #     print(p.fitness.weights)
-        #     print(p.fitness.wvalues)
-        #     print(p.fitness.rank)
-        #     print(p.fitness.loss_v)
-        #     print(p.fitness.crowding_dist)
+        print("--"*20)
+        print("pop before select")
+        for p in pop:
+            print(p.program.get_model())
+            # print(p.fitness.values)
+            # print(p.fitness.weights)
+            # print(p.fitness.wvalues)
+            # print(p.fitness.rank)
+            # print(p.fitness.loss_v)
+            # print(p.fitness.crowding_dist)
 
         parents = toolbox.select(pop) # , len(pop) # select method from brush's cpp side will use the values in self.parameters_ to decide how many individuals it should select
         
-        # print("--"*20)
-        # print("pop after select")
-        # for p in pop:
-        #     print(p.program.get_model())
-        #     print(p.fitness.values)
-        #     print(p.fitness.weights)
-        #     print(p.fitness.wvalues)
-        #     print(p.fitness.rank)
-        #     print(p.fitness.loss_v)
-        #     print(p.fitness.crowding_dist)
+        print("--"*20)
+        print("pop after select")
+        for p in pop:
+            print(p.program.get_model())
+            # print(p.fitness.values)
+            # print(p.fitness.weights)
+            # print(p.fitness.wvalues)
+            # print(p.fitness.rank)
+            # print(p.fitness.loss_v)
+            # print(p.fitness.crowding_dist)
 
-        # print("--"*20)
-        # print("selected parents")
-        # for p in parents:
-        #     print(p.program.get_model())
-        #     print(p.fitness.values)
-        #     print(p.fitness.weights)
-        #     print(p.fitness.wvalues)
-        #     print(p.fitness.rank)
-        #     print(p.fitness.loss_v)
-        #     print(p.fitness.crowding_dist)
+        print("--"*20)
+        print("selected parents")
+        for p in parents:
+            print(p.program.get_model())
+            # print(p.fitness.values)
+            # print(p.fitness.weights)
+            # print(p.fitness.wvalues)
+            # print(p.fitness.rank)
+            # print(p.fitness.loss_v)
+            # print(p.fitness.crowding_dist)
 
-        offspring = []
-        for ind1, ind2 in zip(parents, parents[1:]+parents[0:1]):
-            off = None
-            if rnd_flt() < CXPB: # either mutation or crossover
-                off = toolbox.mate(ind1, ind2)
-            else:
-                off = toolbox.mutate(ind1)
+        # offspring = []
+        # for ind1, ind2 in zip(parents, parents[1:]+parents[0:1]):
+        #     off = None
+        #     if rnd_flt() < CXPB: # either mutation or crossover
+        #         off = toolbox.mate(ind1, ind2)
+        #     else:
+        #         off = toolbox.mutate(ind1)
             
-            if off is not None: # first we fit, then add to offspring
-                offspring.extend([off])
+        #     if off is not None: # first we fit, then add to offspring
+        #         offspring.extend([off])
 
-        # filling offspring empty slots
-        offspring = offspring + toolbox.population(n=MU - len(offspring))
+        # # filling offspring empty slots
+        # offspring = offspring + toolbox.population(n=MU - len(offspring))
 
+        offspring = toolbox.vary_pop(parents)
         offspring = list(toolbox.map(toolbox.assign_fit, offspring))
 
-        # print("--"*20)
-        # print("offspring")
-        # for p in offspring:
-        #     print(p.program.get_model())
-        #     print(p.fitness.values)
-        #     print(p.fitness.weights)
-        #     print(p.fitness.wvalues)
-        #     print(p.fitness.rank)
-        #     print(p.fitness.loss_v)
-        #     print(p.fitness.crowding_dist)
+        print("--"*20)
+        print("offspring")
+        for p in offspring:
+            print(p.program.get_model())
+            # print(p.fitness.values)
+            # print(p.fitness.weights)
+            # print(p.fitness.wvalues)
+            # print(p.fitness.rank)
+            # print(p.fitness.loss_v)
+            # print(p.fitness.crowding_dist)
 
         # Select the next generation population (no sorting before this step, as 
         # survive==offspring will cut it in half)
         pop = toolbox.survive(pop + offspring)
 
-        # print("--"*20)
-        # print("pop after survival")
-        # for p in pop:
-        #     print(p.program.get_model())
-        #     print(p.fitness.values)
-        #     print(p.fitness.weights)
-        #     print(p.fitness.wvalues)
-        #     print(p.fitness.rank)
-        #     print(p.fitness.loss_v)
-        #     print(p.fitness.crowding_dist)
+        print("--"*20)
+        print("pop after survival")
+        for p in pop:
+            print(p.program.get_model())
+            # print(p.fitness.values)
+            # print(p.fitness.weights)
+            # print(p.fitness.wvalues)
+            # print(p.fitness.rank)
+            # print(p.fitness.loss_v)
+            # print(p.fitness.crowding_dist)
 
         pop = toolbox.migrate(pop)
 
-        # print("--"*20)
-        # print("pop after migration")
-        # for p in pop:
-        #     print(p.program.get_model())
-        #     print(p.fitness.values)
-        #     print(p.fitness.weights)
-        #     print(p.fitness.wvalues)
-        #     print(p.fitness.rank)
-        #     print(p.fitness.loss_v)
-        #     print(p.fitness.crowding_dist)
+        print("--"*20)
+        print("pop after migration")
+        for p in pop:
+            print(p.program.get_model())
+            # print(p.fitness.values)
+            # print(p.fitness.weights)
+            # print(p.fitness.wvalues)
+            # print(p.fitness.rank)
+            # print(p.fitness.loss_v)
+            # print(p.fitness.crowding_dist)
 
         pop.sort(key=lambda x: x.fitness, reverse=True)
 

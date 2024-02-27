@@ -20,6 +20,8 @@ public:
 
     vector<std::shared_ptr<Individual<T>>> individuals;
 
+    // TODO: right now, the number of islands must be a divisor of the popsize, and cannot be greater than half of the popsize (it cant be the same as popsize). Should this behavior change? Also, write this in docs
+
     // TODO: MAKE SURE THIS TWO ITEMS BELOW ARE TAKEN CARE IN THE MAIN LOOP AND IN TEST_POPULATION (I may need to create new methods for taking care of this)
     // - fitting, fitness calculation, and setting the objectives are not thread safe because we write in individual attributes.
     // - prepare offspring and update are not thread safe because we insert/delete elements from the array. 
