@@ -304,9 +304,16 @@ class DeapEstimator(BaseEstimator):
                               )(self.parameters_, self.search_space_)
         elif self.mode == "regressor":
             self.variator_ = _brush.RegressorVariator(self.parameters_, self.search_space_)
+            
+            # from pybrush import RegressorEngine
+            # brush_estimator = RegressorEngine(self.parameters_)
+            # brush_estimator.run(self.data_)
+            # print(brush_estimator.is_fitted)
+            # print(brush_estimator.best_ind)
         else:
             raise("Unsupported mode")
         
+
         self.toolbox_ = self._setup_toolbox()
 
         # nsga2 and ga differ in the toolbox

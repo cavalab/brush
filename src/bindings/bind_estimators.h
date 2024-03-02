@@ -1,5 +1,22 @@
 #include "module.h"
 #include "../estimator.h"
+#include "../estimator.cpp"
+
+// TODO: figure out why do I need to include the whole thing (otherwise it gives me symbol errors)
+#include "../selection/selection.h"
+#include "../selection/selection.cpp"
+#include "../selection/selection_operator.h"
+#include "../selection/selection_operator.cpp"
+#include "../selection/nsga2.h"
+#include "../selection/nsga2.cpp"
+#include "../selection/lexicase.h"
+#include "../selection/lexicase.cpp"
+
+#include "../eval/evaluation.h"
+#include "../eval/evaluation.cpp"
+
+#include "../population.cpp"
+#include "../population.h"
 
 using Reg = Brush::RegressorEstimator;
 using Cls = Brush::ClassifierEstimator;
@@ -13,7 +30,7 @@ using stream_redirect = py::call_guard<py::scoped_ostream_redirect, py::scoped_e
 
 template<typename T>
 void bind_estimator(py::module& m, string name)
-{
+{    
     using RetType = std::conditional_t<
             std::is_same_v<T,Reg>, ArrayXf, 
             std::conditional_t<std::is_same_v<T,Cls>, ArrayXb, 
@@ -21,8 +38,13 @@ void bind_estimator(py::module& m, string name)
 
     py::class_<T> estimator(m, name.data() ); 
     estimator.def(py::init<>())
-             .def_property("pop_size", &T::get_pop_size, &T::set_pop_size)
-             .def_property("gens", &T::get_gens, &T::set_gens)
+             .def(py::init([](br::Parameters& p){ T e(p);
+                                                  return e; })
+             )
+             .def_property("params", &T::get_params, &T::set_params)
+             .def_property_readonly("is_fitted", &T::get_is_fitted)
+             .def_property_readonly("best_ind", &T::get_best_ind)
+             .def("run", &T::run, "run from brush dataset")
              ;
 
     // specialization for subclasses

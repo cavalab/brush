@@ -11,3 +11,6 @@ from _brush.individual import RegressorIndividual, \
 
 # Prototyping an EA using brush classes, but other EA framework
 from pybrush.DeapEstimator import DeapClassifier, DeapRegressor
+
+# c++ learning engines. These are wrapped into a scikit-learn-like estimator in the python side
+from _brush.engine import RegressorEngine, ClassifierEngine, MultiClassifierEngine

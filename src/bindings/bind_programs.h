@@ -71,6 +71,7 @@ void bind_program(py::module& m, string name)
         ;
     if constexpr (std::is_same_v<T,Cls>)
     {
+        // TODO: have these in individual and wrapper
         prog.def("predict_proba",
                 static_cast<ArrayXf (T::*)(const Dataset &d)>(&T::predict_proba),
                 "predict from Dataset object")

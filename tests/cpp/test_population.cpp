@@ -59,6 +59,8 @@ TEST(Population, PopulationTests)
                                                 // Its size is actually the double,
                                                 // but the real value goes just up to the middle (no offspring was initialized)
 
+    // TODO: put a lot of asserts here between the steps
+    
     for (int i=0; i<params.pop_size; ++i)
     {
         fmt::print("{} ", i);

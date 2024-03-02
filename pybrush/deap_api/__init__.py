@@ -1,1 +1,1 @@
-from pybrush.deap_api.nsga2 import nsga2, DeapIndividual # TODO: use brush individual instead of deap
+from pybrush.deap_api.nsga2 import nsga2

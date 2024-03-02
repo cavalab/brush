@@ -40,8 +40,11 @@ PYBIND11_MODULE(_brush, m) {
      bind_params(m);
      bind_dataset(m);
      bind_search_space(m);
+
+     // should these 4 below be exposed?
      bind_variations(m);
      bind_selections(m);
+     bind_evaluators(m);
      // bind_populations(m);
 
      // solutions
@@ -50,7 +53,7 @@ PYBIND11_MODULE(_brush, m) {
 
      py::module_ m3 = m.def_submodule("individual", "Contains Individual classes.");
      bind_individuals(m3);
- 
-     // bind_estimators(m);
-     bind_evaluators(m);
+
+     py::module_ m4 = m.def_submodule("engine", "Learning engines (used inside the python estimators)."); 
+     bind_estimators(m4);
 }

@@ -33,6 +33,16 @@ using std::stof;
 #include "../../src/program/program.h"
 #include "../../src/individual.h"
 #include "../../src/search_space.h"
+#include "../../src/params.h"
+#include "../../src/variation.h"
+#include "../../src/selection/selection.h"
+#include "../../src/selection/selection_operator.h"
+#include "../../src/selection/nsga2.h"
+#include "../../src/selection/lexicase.h"
+#include "../../src/eval/evaluation.h"
+#include "../../src/eval/metrics.h"
+#include "../../src/eval/scorer.h"
+#include "../../src/estimator.h"
 #include "../../src/variation.cpp" // TODO: is this ok? (otherwise I would have to create a test separated file, or move the implementation to the header)
 
 using namespace Brush;
