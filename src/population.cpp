@@ -124,13 +124,14 @@ void Population<T>::add_offspring_indexes(int island)
 template<ProgramType T>
 void Population<T>::update(vector<vector<size_t>> survivors)
 {
-    vector<std::shared_ptr<Individual<T>>> new_pop;
+    vector<Individual<T>> new_pop;
     new_pop.resize(2*pop_size);
     size_t i=0;
     for (int j=0; j<num_islands; ++j)
     {
         for (int k=0; k<survivors.at(j).size(); ++k){
-            new_pop.at(i) = individuals.at(survivors.at(j).at(k));
+            // making hard copies of the individuals
+            new_pop.at(i) = *individuals.at(survivors.at(j).at(k));
             
             // update will set the complexities (for migration step. we do it here because update handles non-thread safe operations)
             // new_pop.at(i)->set_complexity();
@@ -142,13 +143,18 @@ void Population<T>::update(vector<vector<size_t>> survivors)
         size_t idx_start = std::floor(j*pop_size/num_islands);
         size_t idx_end   = std::floor((j+1)*pop_size/num_islands);
 
-        auto delta = idx_end - idx_start;
+        auto delta = survivors.at(j).size(); // should have the same size as idx_end - idx_start
 
         // inserting indexes of the offspring
         island_indexes.at(j).resize(delta);
         iota(island_indexes.at(j).begin(), island_indexes.at(j).end(), idx_start);
     }
-    individuals = new_pop;
+    this->individuals.resize(0);
+    for (auto ind : new_pop)
+    {
+        individuals.push_back(
+            std::make_shared<Individual<T>>(ind) );
+    }
 }
 
 template<ProgramType T>

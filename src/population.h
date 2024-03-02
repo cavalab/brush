@@ -15,7 +15,7 @@ template<ProgramType T>
 class Population{
 public:
     size_t pop_size;
-    unsigned int num_islands;
+    int num_islands;
     float mig_prob;
 
     vector<std::shared_ptr<Individual<T>>> individuals;
