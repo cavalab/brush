@@ -78,6 +78,7 @@ vector<size_t> NSGA2<T>::survive(Population<T>& pop, int island,
 
     auto island_pool = pop.get_island_indexes(island);
 
+    // TODO: do similar calculations in other selection survival and pop methods (so I dont mess up with anything)
     int original_size = params.pop_size/params.num_islands; // original island size (survive must   be  called with an island with offfspring)
 
     // fmt::print("original size {}\n", original_size);
