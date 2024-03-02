@@ -35,7 +35,7 @@ public:
     string sel  = "lexicase"; //selection method
     string surv = "nsga2"; //survival method
     std::unordered_map<string, float> functions;
-    int num_islands=1;
+    int num_islands=5;
 
     // variation
     std::map<std::string, float> mutation_probs = {
@@ -68,7 +68,7 @@ public:
     float batch_size = 0.0;
     bool use_batch = false; ///< whether to use mini batch for training
 
-    int n_jobs = 1; ///< number of parallel jobs (TODO if -1, equals the number of islands?)
+    int n_jobs = 1; // -1; ///< number of parallel jobs -1 use all threads; 0 use same as number of islands; positive number specify the amouut of threads
 
     Parameters(){}; 
     ~Parameters(){};
