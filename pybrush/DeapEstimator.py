@@ -128,6 +128,7 @@ class DeapEstimator(BaseEstimator):
         max_depth=3,
         max_size=20,
         num_islands=1,
+        n_jobs=1,
         mig_prob=0.05,
         cx_prob= 1/7,
         mutation_probs = {"point":1/6, "insert":1/6, "delete":1/6, "subtree":1/6,
@@ -151,6 +152,7 @@ class DeapEstimator(BaseEstimator):
         self.max_size=max_size
         self.num_islands=num_islands
         self.mig_prob=mig_prob
+        self.n_jobs=n_jobs
         self.cx_prob=cx_prob
         self.mutation_probs=mutation_probs
         self.functions=functions
@@ -286,6 +288,7 @@ class DeapEstimator(BaseEstimator):
         self.parameters_ = _brush.Parameters()
         self.parameters_.classification = self.mode == "classification"
         self.parameters_.n_classes = self.n_classes_
+        self.parameters_.n_jobs = self.n_jobs
         self.parameters_.pop_size = self.pop_size
         self.parameters_.gens = self.gens
         self.parameters_.num_islands = self.num_islands
@@ -305,11 +308,11 @@ class DeapEstimator(BaseEstimator):
         elif self.mode == "regressor":
             self.variator_ = _brush.RegressorVariator(self.parameters_, self.search_space_)
             
-            # from pybrush import RegressorEngine
-            # brush_estimator = RegressorEngine(self.parameters_)
-            # brush_estimator.run(self.data_)
-            # print(brush_estimator.is_fitted)
-            # print(brush_estimator.best_ind)
+            from pybrush import RegressorEngine
+            brush_estimator = RegressorEngine(self.parameters_)
+            brush_estimator.run(self.data_)
+            print(brush_estimator.is_fitted)
+            print(brush_estimator.best_ind)
         else:
             raise("Unsupported mode")
         

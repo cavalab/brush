@@ -105,7 +105,7 @@ bool Estimator<T>::update_best(const Dataset& data, bool val)
 
     std::cout << "inside loop" << std::endl;
 
-    vector<size_t> hof = this->pop.hall_of_fame(1, true);
+    vector<size_t> hof = this->pop.hall_of_fame(1);
 
     std::cout << "got hof" << std::endl;
 
@@ -160,7 +160,7 @@ void Estimator<T>::run(Dataset &data)
 
     pop.init(this->ss, this->params);
 
-    std::cout << "pop initialized" << std::endl;
+    std::cout << "pop initialized with size " << params.pop_size << " and " << params.num_islands << "islands" << std::endl;
     std::cout << pop.print_models() << std::endl;
 
     evaluator.set_scorer(params.scorer_);
@@ -195,10 +195,8 @@ void Estimator<T>::run(Dataset &data)
 
     // TODO: check that I dont use pop.size() (or I use correctly, because it will return the size with the slots for the offspring)
     // vectors to store each island separatedly
-    vector<vector<size_t>> island_parents;      
-    island_parents.resize(pop.num_islands);
+    vector<vector<size_t>> island_parents;
     vector<vector<size_t>> survivors;
-    survivors.resize(pop.num_islands);
 
     std::cout << "vectors are created " << std::endl;
     // TODO: progress bar? (it would be cool)
@@ -212,7 +210,7 @@ void Estimator<T>::run(Dataset &data)
             std::cout << "inside body" << std::endl;
             auto prepare_gen = subflow.emplace([&]() { 
                 std::cout << "inside prepare gen" << std::endl;
-                std::cout << "generation " << generation << std::endl;
+                std::cout << " -------------------- generation " << generation << " -------------------- " << std::endl;
                 params.set_current_gen(generation);
                 batch = data.get_batch(); // will return the original dataset if it is set to dont use batch 
 
@@ -222,45 +220,94 @@ void Estimator<T>::run(Dataset &data)
                 survivors.clear();
                 survivors.resize(pop.num_islands);
 
+                for (int i=0; i< params.num_islands; i++){
+                    size_t idx_start = std::floor(i*params.pop_size/params.num_islands);
+                    size_t idx_end   = std::floor((i+1)*params.pop_size/params.num_islands);
+
+                    // auto delta = survivors.at(j).size(); // should have the same size as idx_end - idx_start
+                    auto delta = idx_end - idx_start;
+
+                    survivors.at(i).clear();
+                    island_parents.at(i).clear();
+
+                    survivors.at(i).resize(delta);
+                    island_parents.at(i).resize(delta);
+                }
+            
                 ++generation;
             }).name("prepare generation");// set generation in params, get batch
 
             auto select_parents = subflow.for_each_index(0, this->params.num_islands, 1, [&](int island) {
                 std::cout << "inside select parents" << std::endl;
-                evaluator.update_fitness(this->pop, island, data, params, true, false); // fit the weights with all training data
+                evaluator.update_fitness(this->pop, island, data, params, true); // fit the weights with all training data
 
                 // TODO: have some way to set which fitness to use (for example in params, or it can infer based on split size idk)
                 // TODO: if using batch, fitness should be called before selection to set the batch
                 if (data.use_batch) // assign the batch error as fitness (but fit was done with training data)
-                    evaluator.update_fitness(this->pop, island, batch, params, false, false);
+                    evaluator.update_fitness(this->pop, island, batch, params, false);
 
                 vector<size_t> parents = selector.select(this->pop, island, params);
 
-                island_parents.at(island) = parents;
+                for (int i=0; i< parents.size(); i++){
+                    std::cout << i << std::endl;
+                    island_parents.at(island).at(i) = parents.at(i);
+                }
             }).name("select parents for each island");
 
-            auto generate_offspring = subflow.for_each_index(0, this->params.num_islands, 1, [&](int island) {
-                std::cout << "inside generate offspring" << std::endl;
-                this->pop.add_offspring_indexes(island); // we just need to add them, not remove (they are removed in survival step, that will return a selection with the same number of individuals as the original island size)
-
-                // // variation to produce offspring
-                variator.vary(this->pop, island, island_parents.at(island));
-
-                evaluator.update_fitness(this->pop, island, data, params, true, true);
-                // evaluator.validation(*this->pop, island_range, data, params, true);
+            // this is not thread safe. But it is nice to keep out of parallel execution the bits of the
+            // code that uses random generators (i think this helps to having random_seed to work properly). Also,
+            // fit and evaluation are paralellized in survive_population, and these are expensive to run 
+            auto generate_offspring = subflow.emplace([&]() {
+                
+                for (int island=0; island < params.num_islands; island++){
+                    std::cout << "inside generate offspring" << std::endl;
+                    this->pop.add_offspring_indexes(island); // we just need to add them, not remove (they are removed in survival step, that will return a selection with the same number of individuals as the original island size)
+                    
+                    std::cout << "before vary" << std::endl;
+                    
+                    // // variation to produce offspring
+                    variator.vary(this->pop, island, island_parents.at(island));
+                    std::cout << "before update fitness" << std::endl;
+                }
+            }).name("generate offspring for each island");
+            
+            auto survive_population = subflow.for_each_index(0, this->params.num_islands, 1, [&](int island) {
+                
+                evaluator.update_fitness(this->pop, island, data, params, true);
+                // evaluator.validation(*this->pop, island_range, data, params);
+                std::cout << "before batch update" << std::endl;
 
                 if (data.use_batch) // assign the batch error as fitness (but fit was done with training data)
-                    evaluator.update_fitness(this->pop, island, batch, params, false, true);
+                    evaluator.update_fitness(this->pop, island, batch, params, false);
+                std::cout << "before survive" << std::endl;
 
                 // select survivors from combined pool of parents and offspring
                 vector<size_t> island_survivors = survivor.survive(this->pop, island, params);
-                
-                survivors.at(island) = island_survivors;
-            }).name("generate offspring for each island");
+                std::cout << "before assign to survivors array" << std::endl;
 
-            auto survive = subflow.emplace([&]() { this->pop.update(survivors); }).name("survival of the fittest");
+                for (int i=0; i< island_survivors.size(); i++){
+                    std::cout << i << std::endl;
+                    survivors.at(island).at(i) = island_survivors.at(i);
+                }
+            }).name("evaluate offspring and select survivors");
+
+            auto update_pop = subflow.emplace([&]() {
+                std::cout << "before updating survivors" << std::endl;
+                std::cout << pop.print_models() << std::endl;
+                this->pop.update(survivors);
+                
+                std::cout << "after updating survivors" << std::endl;
+                std::cout << pop.print_models() << std::endl;
+            }).name("update population and detangle indexes");
             
-            auto migration = subflow.emplace([&]() { this->pop.migrate(); }).name("migration between islands");
+            auto migration = subflow.emplace([&]() {
+                std::cout << "before migrating" << std::endl;
+                std::cout << pop.print_models() << std::endl;
+                this->pop.migrate();
+                
+                std::cout << "after migrating" << std::endl;
+                std::cout << pop.print_models() << std::endl;
+                }).name("migration between islands");
             
             // TODO: update best, update log, increment generation counter (but not set in params)
             auto finish_gen = subflow.emplace([&]() { bool updated_best = this->update_best(data); }).name("update best, log, archive");
@@ -268,8 +315,9 @@ void Estimator<T>::run(Dataset &data)
             // set-up subflow graph
             prepare_gen.precede(select_parents);
             select_parents.precede(generate_offspring);
-            generate_offspring.precede(survive);
-            survive.precede(migration);
+            generate_offspring.precede(survive_population);
+            survive_population.precede(update_pop);
+            update_pop.precede(migration);
             migration.precede(finish_gen);
         },
 
@@ -292,6 +340,10 @@ void Estimator<T>::run(Dataset &data)
 
     std::cout << "taskflow configured " << std::endl;
     executor.run(taskflow);
+    
+    std::cout << "submitted jobs " << std::endl;
+
     executor.wait_for_all();
+    std::cout << "finished " << std::endl;
 }
 }

@@ -88,6 +88,9 @@ public:
     void set_max_depth(unsigned new_max_depth){ max_depth = new_max_depth; };
     unsigned get_max_depth(){ return max_depth; };
 
+    void set_n_jobs(int new_n_jobs){ n_jobs = new_n_jobs; };
+    int get_n_jobs(){ return n_jobs; };
+
     void set_max_size(unsigned new_max_size){ max_size = new_max_size; };
     unsigned get_max_size(){ return max_size; };
 

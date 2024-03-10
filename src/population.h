@@ -55,13 +55,13 @@ public:
     const Individual<T>& operator [](size_t i) {return *individuals.at(i);}
 
     /// return population equations. 
-    string print_models(bool just_offspring=false, string sep="\n");
+    string print_models(string sep="\n");
 
     /// return complexity-sorted Pareto front indices for each island
-    vector<vector<size_t>> sorted_front(unsigned rank=1, bool ignore_offspring=false);
+    vector<vector<size_t>> sorted_front(unsigned rank=1);
 
     // pareto front ignoring island divisions
-    vector<size_t> hall_of_fame(unsigned rank=1, bool ignore_offspring=false);
+    vector<size_t> hall_of_fame(unsigned rank=1);
     
     // perform a migration in the population. Individuals from sorted front or hall of fame will replace others by the
     // probability set in parameters. Expects a population without offspring
@@ -85,7 +85,7 @@ public:
         SameFitComplexity(Population<T>& p): pop(p){}
         bool operator()(size_t i, size_t j)
         {
-            return pop[i].fitness == pop[j].fitness;
+            return pop[i].get_complexity() == pop[j].get_complexity();
         }
     };
 };

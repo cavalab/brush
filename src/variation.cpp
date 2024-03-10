@@ -608,15 +608,18 @@ template <Brush::ProgramType T>
 void Variation<T>::vary(Population<T>& pop, int island, 
           const vector<size_t>& parents)
 {    
+    // TODO: fill indexes with nullptr, istead of using second half
     auto idxs = pop.get_island_indexes(island);
 
-    // assumes it should save new individuals in second half of the island
-    int start = idxs.size()/2;
-    
     // TODO: fix pragma omp usage
     //#pragma omp parallel for
-    for (unsigned i = start; i<idxs.size(); ++i)
+    for (unsigned i = 0; i<idxs.size(); ++i)
     {
+        if (pop.individuals.at(idxs.at(i)) != nullptr)
+        {
+            continue; // skipping if it is an individual
+        }
+        
         // pass check for children undergoing variation     
         std::optional<Individual<T>> opt=std::nullopt; // new individual  
             
