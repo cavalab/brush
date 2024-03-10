@@ -12,18 +12,14 @@ void Evaluation<T>::update_fitness(Population<T>& pop,
                     const Dataset& data, 
                     const Parameters& params, 
                     bool fit,
-                    bool offspring,
                     bool validation
                     )
 {
     //TODO:  it could use the validation_loss     
     auto idxs = pop.get_island_indexes(island);
 
-    int start = 0;
-    if (offspring)
-        start = idxs.size()/2;
-
-    for (unsigned i = start; i<idxs.size(); ++i)
+    int counter = 0;
+    for (unsigned i = 0; i<idxs.size(); ++i)
     {
         Individual<T>& ind = *pop.individuals.at(idxs.at(i)).get(); // we are modifying it, so operator[] wont work
 
@@ -45,7 +41,9 @@ void Evaluation<T>::update_fitness(Population<T>& pop,
             
             assign_fit(ind, data, params, validation);
         }
+        ++counter;
     }
+    assert(counter > 0);
 }
 
 // assign loss to program

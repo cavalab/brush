@@ -23,6 +23,7 @@ class Evaluation {
 public:
     Scorer<T> S;
 
+    // TODO: make eval update loss_v accordingly, and set to th same as train loss if there is no batch or no validation
     Evaluation(){
         string scorer;
         if ( (T == Brush::ProgramType::MulticlassClassifier)
@@ -49,7 +50,6 @@ public:
                  const Dataset& data, 
                  const Parameters& params, 
                  bool fit=true,
-                 bool offspring = false,
                  bool validation=false
                  );
     
