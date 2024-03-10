@@ -35,8 +35,9 @@ struct Fitness {
     size_t size;
     size_t depth;
 
-    unsigned int dcounter;  ///< number of individuals this dominates
 
+    // these can be different depending on the island the individual is
+    unsigned int dcounter;  ///< number of individuals this dominates
     vector<unsigned int> dominated; ///< individual indices this dominates
     unsigned int rank;             ///< pareto front rank
     float crowding_dist;   ///< crowding distance on the Pareto front

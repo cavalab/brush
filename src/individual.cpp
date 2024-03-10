@@ -43,13 +43,14 @@ int Fitness::dominates(const Fitness& b) const
         flag2 = 0; // to check if b    has a smaller objective
 
     // TODO: replace comparison of individual values by   using the overloaded  operators (here and in nsga2)
-    // TODO: save fitness in an temporary variable and stop accessing it everytime
     for (int i=0; i<get_wvalues().size(); ++i) {
         if (get_wvalues().at(i) > b.get_wvalues().at(i)
-        ||  std::isnan(b.get_wvalues().at(i)) ) 
+        || std::isnan(b.get_wvalues().at(i)) 
+        ) 
             flag1 = 1;
         if (get_wvalues().at(i) < b.get_wvalues().at(i)
-        ||  std::isnan(get_wvalues().at(i)) ) 
+        || std::isnan(get_wvalues().at(i))
+        ) 
             flag2 = 1;                       
     }
 
