@@ -345,5 +345,11 @@ void Engine<T>::run(Dataset &data)
 
     executor.wait_for_all();
     //std::cout << "finished " << std::endl;
+    
+    //When you have tasks that are created at runtime (e.g., subflow,
+    // cudaFlow), you need to execute the graph first to spawn these tasks and dump the entire graph.
+
+    //std::cout << "dumping taskflow in json " << std::endl;
+    taskflow.dump(std::cout); 
 }
 }

@@ -44,7 +44,7 @@ void bind_engine(py::module& m, string name)
              .def_property("params", &T::get_params, &T::set_params)
              .def_property_readonly("is_fitted", &T::get_is_fitted)
              .def_property_readonly("best_ind", &T::get_best_ind)
-             .def("run", &T::run, "run from brush dataset")
+             .def("run", &T::run, py::call_guard<py::gil_scoped_release>(), "run from brush dataset")
              ;
 
     // specialization for subclasses
