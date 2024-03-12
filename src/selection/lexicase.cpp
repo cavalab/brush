@@ -18,7 +18,7 @@ template<ProgramType T>
 vector<size_t> Lexicase<T>::select(Population<T>& pop, int island, 
         const Parameters& params)
 {
-    cout << "select lexicase island " << island << endl;
+    // cout << "select lexicase island " << island << endl;
 
     // this one can be executed in parallel because it is just reading the errors. This 
     // method assumes that the expressions have been fitted previously, and their respective
@@ -26,7 +26,7 @@ vector<size_t> Lexicase<T>::select(Population<T>& pop, int island,
 
     auto island_pool = pop.get_island_indexes(island);
 
-    cout << "got indexes " << endl;
+    // cout << "got indexes " << endl;
 
     // if this is first generation, just return indices to pop
     if (params.current_gen==0)
@@ -38,8 +38,8 @@ vector<size_t> Lexicase<T>::select(Population<T>& pop, int island,
     //< number of individuals
     unsigned int P = island_pool.size();          
        
-    cout << "pool size is " << P << endl;
-    cout << "epsilon size is " << N << endl;
+    // cout << "pool size is " << P << endl;
+    // cout << "epsilon size is " << N << endl;
 
     // define epsilon
     ArrayXf epsilon = ArrayXf::Zero(N);
@@ -48,7 +48,7 @@ vector<size_t> Lexicase<T>::select(Population<T>& pop, int island,
     if (!params.classification || params.scorer_.compare("log")==0 
     ||  params.scorer_.compare("multi_log")==0)
     {
-        cout << "using lexicase for regression " << endl;
+        // cout << "using lexicase for regression " << endl;
 
         // for each sample, calculate epsilon
         for (int i = 0; i<epsilon.size(); ++i)
@@ -76,12 +76,12 @@ vector<size_t> Lexicase<T>::select(Population<T>& pop, int island,
     // #pragma omp parallel for 
     for (unsigned int i = 0; i<P; ++i)  // selection loop
     {
-        cout << "parallel start index  " + to_string(i) << endl;
+        // cout << "parallel start index  " + to_string(i) << endl;
 
         vector<size_t> cases; // cases (samples)
         if (params.classification && !params.class_weights.empty()) 
         {
-            cout << "using WEIGHTED for classification " << endl;
+            // cout << "using WEIGHTED for classification " << endl;
 
             // for classification problems, weight case selection 
             // by class weights
@@ -162,13 +162,13 @@ vector<size_t> Lexicase<T>::select(Population<T>& pop, int island,
         selected.at(i) = *r.select_randomly(
                          winner.begin(), winner.end() );   
                          
-        cout << "parallel end index  " + to_string(i) << endl;
+        // cout << "parallel end index  " + to_string(i) << endl;
     }               
 
     if (selected.size() != island_pool.size())
     {
-        std::cout << "selected: " ;
-        for (auto s: selected) std::cout << s << " "; std::cout << "\n";
+        // std::cout << "selected: " ;
+        // for (auto s: selected) std::cout << s << " "; std::cout << "\n";
         HANDLE_ERROR_THROW("Lexicase did not select correct number of \
                 parents");
     }
