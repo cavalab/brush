@@ -168,17 +168,11 @@ class DeapEstimator(BaseEstimator):
         """Setup the deap toolbox"""
         toolbox: base.Toolbox = base.Toolbox()
 
-        # creator.create is used to "create new functions", and takes at least
-        # 2 arguments: the name of the newly created class and a base class
-
-        if hasattr(creator, "Individual"):
-            del creator.Individual
-
         # create Individual class, inheriting from self.Individual with a fitness attribute
         if self.mode == 'classification':
-            creator.create("Individual", ClassifierIndividual
-                                         if self.n_classes_ == 2 else
-                                         MultiClassifierIndividual)  
+            self.Individual = ( ClassifierIndividual
+                                 if self.n_classes_ == 2 else
+                                 MultiClassifierIndividual)  
             self.eval_ = ( ClassifierEvaluator()
                      if self.n_classes_ == 2 else
                      MultiClassifierEvaluator() )  
@@ -189,7 +183,7 @@ class DeapEstimator(BaseEstimator):
                      if self.n_classes_ == 2 else
                      MultiClassifierSelector("nsga2", True) )  
         else:
-            creator.create("Individual", RegressorIndividual)  
+            self.Individual = RegressorIndividual  
             self.sel_  = RegressorSelector("lexicase", False)
             self.surv_ = RegressorSelector("nsga2", True)
             self.eval_ = RegressorEvaluator()
@@ -210,7 +204,7 @@ class DeapEstimator(BaseEstimator):
         
         toolbox.register("assign_fit", assign_fit)
         
-        toolbox.register("Clone", lambda ind: creator.Individual(ind.program.copy()))
+        toolbox.register("Clone", lambda ind: self.Individual(ind.program.copy()))
         
         toolbox.register("mate", self.variator_.cross)
         toolbox.register("mutate", self.variator_.mutate)
@@ -308,15 +302,14 @@ class DeapEstimator(BaseEstimator):
         elif self.mode == "regressor":
             self.variator_ = _brush.RegressorVariator(self.parameters_, self.search_space_)
             
-            from pybrush import RegressorEngine
-            brush_estimator = RegressorEngine(self.parameters_)
-            brush_estimator.run(self.data_)
-            print(brush_estimator.is_fitted)
-            print(brush_estimator.best_ind)
+            # from pybrush import RegressorEngine
+            # brush_estimator = RegressorEngine(self.parameters_)
+            # brush_estimator.run(self.data_)
+            # print(brush_estimator.is_fitted)
+            # print(brush_estimator.best_ind)
         else:
             raise("Unsupported mode")
         
-
         self.toolbox_ = self._setup_toolbox()
 
         # nsga2 and ga differ in the toolbox
@@ -393,7 +386,7 @@ class DeapEstimator(BaseEstimator):
         # No arguments (or zero): brush will use PARAMS passed in set_params.
         # max_size is sampled between 1 and params['max_size'] if zero is provided
         
-        ind = creator.Individual()
+        ind = self.Individual()
         ind.init(self.search_space_, self.parameters_)
         ind.objectives = self.objectives
         
