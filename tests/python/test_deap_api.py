@@ -87,6 +87,26 @@ def test_predict_proba(setup, brush_args, request):
     assert y_prob.shape[1] >= 2, \
         "every class should have its own column (even for binary clf)"
             
+
+# @pytest.mark.parametrize('setup',
+#                          [('regression_setup')])
+# def test_brush_engine(setup, brush_args, request):
+
+#     Estimator, X, y = request.getfixturevalue(setup)
+
+#     dataset = pybrush.Dataset(X=X, y=y)
+    
+#     # TODO: pybrush parameters could have named arguments
+#     params = pybrush.Parameters()
+#     params.pop_size    = 10
+#     params.gens        = 10
+#     params.num_islands = 1
+
+#     eng = pybrush.RegressorEngine(params)
+#     # eng.run(dataset)
+
+            
+
 @pytest.mark.parametrize('setup,fixed_node', [
                                                 ('classification_setup', 'Logistic'),
                                                 # ('multiclass_classification_setup', 'Softmax')

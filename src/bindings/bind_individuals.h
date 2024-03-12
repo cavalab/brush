@@ -26,7 +26,6 @@ void bind_individual(py::module& m, string name)
        .def_property("objectives", &Class::get_objectives, &Class::set_objectives)
        .def_property_readonly("program", &Class::get_program) // program cannot be changed by the user. Either create a new instance with the program as argument (so it will be a clone), or  call init() (TODO: I should make init reset the attributes in the cpp end to avoid reseting the program but keeping the attributes)
        .def_property_readonly("fitness", &Class::get_fitness) // program cannot be changed by the user. Either create a new instance with the program as argument (so it will be a clone), or  call init() (TODO: I should make init reset the attributes in the cpp end to avoid reseting the program but keeping the attributes)
-    //    .def_property("fitness", &Class::get_fitness, &Class::set_fitness)
     //    .def_property("complexity", &Class::get_complexity, &Class::set_complexity)
        .def(py::pickle(
             [](const Class &p) { // __getstate__

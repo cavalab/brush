@@ -23,7 +23,7 @@ void bind_variations(py::module &);
 void bind_selections(py::module &);
 void bind_individuals(py::module &);
 void bind_populations(py::module &);
-void bind_estimators(py::module &);
+void bind_engines(py::module &);
 void bind_evaluators(py::module &);
 
 PYBIND11_MODULE(_brush, m) {
@@ -54,6 +54,6 @@ PYBIND11_MODULE(_brush, m) {
      py::module_ m3 = m.def_submodule("individual", "Contains Individual classes.");
      bind_individuals(m3);
 
-     py::module_ m4 = m.def_submodule("engine", "Learning engines (used inside the python estimators)."); 
-     bind_estimators(m4);
+     py::module_ m4 = m.def_submodule("engine", "Learning engines (used inside the python s)."); 
+     bind_engines(m4);
 }

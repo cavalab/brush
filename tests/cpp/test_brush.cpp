@@ -4,8 +4,8 @@
 #include "../../src/program/program.h"
 // #include "../../src/program/dispatch_table.h"
 #include "../../src/data/io.h"
-#include "../../src/estimator.h"
-#include "../../src/estimator.cpp"
+#include "../../src/engine.h"
+#include "../../src/engine.cpp"
 #include "../../src/selection/selection.h"
 #include "../../src/selection/selection_operator.h"
 #include "../../src/selection/nsga2.h"
@@ -43,22 +43,22 @@ TEST(Engine, EngineWorks)
 
     std::cout << "n jobs = 1" << std::endl;
     params.set_n_jobs(1);
-    Brush::RegressorEstimator est5(params);
+    Brush::RegressorEngine est5(params);
     est5.run(data);
     
     std::cout << "n jobs = 2" << std::endl;
     params.set_n_jobs(2);
-    Brush::RegressorEstimator est2(params);
+    Brush::RegressorEngine est2(params);
     est2.run(data);
 
     std::cout << "n jobs = -1" << std::endl;
     params.set_n_jobs(-1);
-    Brush::RegressorEstimator est3(params);
+    Brush::RegressorEngine est3(params);
     est3.run(data);
 
     std::cout << "n jobs = 0" << std::endl;
     params.set_n_jobs(0);
-    Brush::RegressorEstimator est4(params);
+    Brush::RegressorEngine est4(params);
     est4.run(data);
 
     std::cout << "testing migration" << std::endl;
@@ -69,22 +69,22 @@ TEST(Engine, EngineWorks)
 
     std::cout << "n jobs = 1" << std::endl;
     params.set_n_jobs(1);
-    Brush::RegressorEstimator est6(params);
+    Brush::RegressorEngine est6(params);
     est6.run(data);
     
     std::cout << "n jobs = 2" << std::endl;
     params.set_n_jobs(2);
-    Brush::RegressorEstimator est7(params);
+    Brush::RegressorEngine est7(params);
     est7.run(data);
 
     std::cout << "n jobs = -1" << std::endl;
     params.set_n_jobs(-1);
-    Brush::RegressorEstimator est8(params);
+    Brush::RegressorEngine est8(params);
     est8.run(data);
 
     std::cout << "n jobs = 0" << std::endl;
     params.set_n_jobs(0);
-    Brush::RegressorEstimator est9(params);
+    Brush::RegressorEngine est9(params);
     est9.run(data);
 
      // TODO: test classifier and multiclassifier 

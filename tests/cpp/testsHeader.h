@@ -42,7 +42,7 @@ using std::stof;
 #include "../../src/eval/evaluation.h"
 #include "../../src/eval/metrics.h"
 #include "../../src/eval/scorer.h"
-#include "../../src/estimator.h"
+#include "../../src/engine.h"
 #include "../../src/variation.cpp" // TODO: is this ok? (otherwise I would have to create a test separated file, or move the implementation to the header)
 
 using namespace Brush;

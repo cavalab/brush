@@ -1,4 +1,4 @@
-#include "estimator.h"
+#include "engine.h"
 
 
 #include <iostream>
@@ -14,9 +14,9 @@ using namespace Var;
 
 /// @brief initialize Feat object for fitting.
 template <ProgramType T>
-void Estimator<T>::init()
+void Engine<T>::init()
 {
-    std::cout << "inside init" << std::endl;
+    // std::cout << "inside init" << std::endl;
 
     // TODO: initialize (set operator) for survivor and selector
     // initialize population with initial model and/or starting pop
@@ -24,28 +24,28 @@ void Estimator<T>::init()
     if (params.n_jobs!=0) // TODO: change this to set taskflow jobs
         omp_set_num_threads(params.n_jobs);
 
-    std::cout << "set number of threads" << std::endl;
+    // std::cout << "set number of threads" << std::endl;
 
     r.set_seed(params.random_state);
-    std::cout << "set random state" << std::endl;
+    // std::cout << "set random state" << std::endl;
 
 
     // set up the pop, variator, etc
     set_is_fitted(false);
-    std::cout << "is fitted is false" << std::endl;
+    // std::cout << "is fitted is false" << std::endl;
 
 
     this->pop = Population<T>();
-    std::cout << "created population" << std::endl;
+    //std::cout << "created population" << std::endl;
 
     this->evaluator = Evaluation<T>();
-    std::cout << "created evaluator" << std::endl;
+    //std::cout << "created evaluator" << std::endl;
 
     this->selector = Selection<T>(params.sel, false);
-    std::cout << "created selector" << std::endl;
+    //std::cout << "created selector" << std::endl;
 
     this->survivor = Selection<T>(params.surv, true);
-    std::cout << "created survivor" << std::endl;
+    //std::cout << "created survivor" << std::endl;
 
     //TODO
     ///return fraction of data to use for training
@@ -91,9 +91,9 @@ void Estimator<T>::init()
 }
 
 template <ProgramType T> // TODO: use the dataset, or ignore it
-bool Estimator<T>::update_best(const Dataset& data, bool val)
+bool Engine<T>::update_best(const Dataset& data, bool val)
 {
-    std::cout << "updating best" << std::endl;
+    //std::cout << "updating best" << std::endl;
 
     float bs;
     bs = this->best_loss; 
@@ -103,22 +103,22 @@ bool Estimator<T>::update_best(const Dataset& data, bool val)
 
     bool updated = false; 
 
-    std::cout << "inside loop" << std::endl;
+    //std::cout << "inside loop" << std::endl;
 
     vector<size_t> hof = this->pop.hall_of_fame(1);
 
-    std::cout << "got hof" << std::endl;
+    //std::cout << "got hof" << std::endl;
 
     // will look only in the first half of the population (this is intended to be done after survival step)
     for (int i=0; i < hof.size(); ++i) 
     {
         // TODO: i guess the right way of doing this is using island indexes (or just take the hall of fame)
-        std::cout << "index" << hof[i] << std::endl;
+        //std::cout << "index" << hof[i] << std::endl;
         const auto& ind = *pop.individuals.at(hof[i]);
 
-        std::cout << ind.program.get_model() << std::endl;
+        //std::cout << ind.program.get_model() << std::endl;
 
-        std::cout << "got individual of rank" << ind.fitness.rank << std::endl;
+        //std::cout << "got individual of rank" << ind.fitness.rank << std::endl;
         if (val)
             f = ind.fitness.loss_v;
         else
@@ -128,7 +128,7 @@ bool Estimator<T>::update_best(const Dataset& data, bool val)
             || (f == bs && ind.fitness.complexity < this->best_complexity)
             )
         {
-            std::cout << "updated" << std::endl;
+            //std::cout << "updated" << std::endl;
         
             bs = f;
             this->best_ind = ind; 
@@ -145,26 +145,26 @@ bool Estimator<T>::update_best(const Dataset& data, bool val)
 
 
 template <ProgramType T>
-void Estimator<T>::run(Dataset &data)
+void Engine<T>::run(Dataset &data)
 {
     // It is up to the python side to create the dataset (we have a cool wrapper for that)
-    std::cout << "starting to run" << std::endl;
+    //std::cout << "starting to run" << std::endl;
 
     //TODO: i need to make sure i initialize everything (pybind needs to have constructors
     // without arguments to work, and i need to handle correcting these values before running)
     this->ss = SearchSpace(data, params.functions);
-    std::cout << "search space was set" << std::endl;
+    //std::cout << "search space was set" << std::endl;
 
     this->init();
-    std::cout << "estimator initialized" << std::endl;
+    //std::cout << "Engine initialized" << std::endl;
 
     pop.init(this->ss, this->params);
 
-    std::cout << "pop initialized with size " << params.pop_size << " and " << params.num_islands << "islands" << std::endl;
-    std::cout << pop.print_models() << std::endl;
+    //std::cout << "pop initialized with size " << params.pop_size << " and " << params.num_islands << "islands" << std::endl;
+    //std::cout << pop.print_models() << std::endl;
 
     evaluator.set_scorer(params.scorer_);
-    std::cout << "evaluator configured. starting to run " << std::endl;
+    //std::cout << "evaluator configured. starting to run " << std::endl;
 
     Dataset &batch = data;
 
@@ -177,7 +177,7 @@ void Estimator<T>::run(Dataset &data)
         threads = params.n_jobs;
 
     tf::Executor executor(threads); // TODO: executor could be an attribute (so I can move a lot of stuff here to init)
-    std::cout << "using n threads " << threads << std::endl;
+    //std::cout << "using n threads " << threads << std::endl;
 
     assert( (executor.num_workers() > 0) && "Invalid number of workers");
 
@@ -185,11 +185,11 @@ void Estimator<T>::run(Dataset &data)
 
     // TODO: get references to all classes ( so they can be captured by taskflow) (like some private getters and setters)
     
-    std::cout << "stop criteria is ready " << std::endl;
+    //std::cout << "stop criteria is ready " << std::endl;
     // stop criteria 
     unsigned generation = 0;
     auto stop = [&]() {
-        std::cout << "inside stop " << std::endl;
+        //std::cout << "inside stop " << std::endl;
         return generation == params.gens; // TODO: max stall, max time, etc
     };
 
@@ -198,7 +198,7 @@ void Estimator<T>::run(Dataset &data)
     vector<vector<size_t>> island_parents;
     vector<vector<size_t>> survivors;
 
-    std::cout << "vectors are created " << std::endl;
+    //std::cout << "vectors are created " << std::endl;
     // TODO: progress bar? (it would be cool)
     // heavily inspired in https://github.com/heal-research/operon/blob/main/source/algorithms/nsga2.cpp
     auto [init, cond, body, back, done] = taskflow.emplace(
@@ -207,10 +207,10 @@ void Estimator<T>::run(Dataset &data)
         stop, // loop condition
         
         [&](tf::Subflow& subflow) { // loop body (evolutionary main loop)
-            std::cout << "inside body" << std::endl;
+            //std::cout << "inside body" << std::endl;
             auto prepare_gen = subflow.emplace([&]() { 
-                std::cout << "inside prepare gen" << std::endl;
-                std::cout << " -------------------- generation " << generation << " -------------------- " << std::endl;
+                //std::cout << "inside prepare gen" << std::endl;
+                //std::cout << " -------------------- generation " << generation << " -------------------- " << std::endl;
                 params.set_current_gen(generation);
                 batch = data.get_batch(); // will return the original dataset if it is set to dont use batch 
 
@@ -238,7 +238,7 @@ void Estimator<T>::run(Dataset &data)
             }).name("prepare generation");// set generation in params, get batch
 
             auto select_parents = subflow.for_each_index(0, this->params.num_islands, 1, [&](int island) {
-                std::cout << "inside select parents" << std::endl;
+                //std::cout << "inside select parents" << std::endl;
                 evaluator.update_fitness(this->pop, island, data, params, true); // fit the weights with all training data
 
                 // TODO: have some way to set which fitness to use (for example in params, or it can infer based on split size idk)
@@ -249,7 +249,7 @@ void Estimator<T>::run(Dataset &data)
                 vector<size_t> parents = selector.select(this->pop, island, params);
 
                 for (int i=0; i< parents.size(); i++){
-                    std::cout << i << std::endl;
+                    //std::cout << i << std::endl;
                     island_parents.at(island).at(i) = parents.at(i);
                 }
             }).name("select parents for each island");
@@ -260,14 +260,14 @@ void Estimator<T>::run(Dataset &data)
             auto generate_offspring = subflow.emplace([&]() {
                 
                 for (int island=0; island < params.num_islands; island++){
-                    std::cout << "inside generate offspring" << std::endl;
+                    //std::cout << "inside generate offspring" << std::endl;
                     this->pop.add_offspring_indexes(island); // we just need to add them, not remove (they are removed in survival step, that will return a selection with the same number of individuals as the original island size)
                     
-                    std::cout << "before vary" << std::endl;
+                    //std::cout << "before vary" << std::endl;
                     
                     // // variation to produce offspring
                     variator.vary(this->pop, island, island_parents.at(island));
-                    std::cout << "before update fitness" << std::endl;
+                    //std::cout << "before update fitness" << std::endl;
                 }
             }).name("generate offspring for each island");
             
@@ -275,38 +275,38 @@ void Estimator<T>::run(Dataset &data)
                 
                 evaluator.update_fitness(this->pop, island, data, params, true);
                 // evaluator.validation(*this->pop, island_range, data, params);
-                std::cout << "before batch update" << std::endl;
+                //std::cout << "before batch update" << std::endl;
 
                 if (data.use_batch) // assign the batch error as fitness (but fit was done with training data)
                     evaluator.update_fitness(this->pop, island, batch, params, false);
-                std::cout << "before survive" << std::endl;
+                //std::cout << "before survive" << std::endl;
 
                 // select survivors from combined pool of parents and offspring
                 vector<size_t> island_survivors = survivor.survive(this->pop, island, params);
-                std::cout << "before assign to survivors array" << std::endl;
+                //std::cout << "before assign to survivors array" << std::endl;
 
                 for (int i=0; i< island_survivors.size(); i++){
-                    std::cout << i << std::endl;
+                    //std::cout << i << std::endl;
                     survivors.at(island).at(i) = island_survivors.at(i);
                 }
             }).name("evaluate offspring and select survivors");
 
             auto update_pop = subflow.emplace([&]() {
-                std::cout << "before updating survivors" << std::endl;
-                std::cout << pop.print_models() << std::endl;
+                //std::cout << "before updating survivors" << std::endl;
+                //std::cout << pop.print_models() << std::endl;
                 this->pop.update(survivors);
                 
-                std::cout << "after updating survivors" << std::endl;
-                std::cout << pop.print_models() << std::endl;
+                //std::cout << "after updating survivors" << std::endl;
+                //std::cout << pop.print_models() << std::endl;
             }).name("update population and detangle indexes");
             
             auto migration = subflow.emplace([&]() {
-                std::cout << "before migrating" << std::endl;
-                std::cout << pop.print_models() << std::endl;
+                //std::cout << "before migrating" << std::endl;
+                //std::cout << pop.print_models() << std::endl;
                 this->pop.migrate();
                 
-                std::cout << "after migrating" << std::endl;
-                std::cout << pop.print_models() << std::endl;
+                //std::cout << "after migrating" << std::endl;
+                //std::cout << pop.print_models() << std::endl;
                 }).name("migration between islands");
             
             // TODO: update best, update log, increment generation counter (but not set in params)
@@ -338,12 +338,12 @@ void Estimator<T>::run(Dataset &data)
     body.precede(back);
     back.precede(cond);
 
-    std::cout << "taskflow configured " << std::endl;
+    //std::cout << "taskflow configured " << std::endl;
     executor.run(taskflow);
     
-    std::cout << "submitted jobs " << std::endl;
+    //std::cout << "submitted jobs " << std::endl;
 
     executor.wait_for_all();
-    std::cout << "finished " << std::endl;
+    //std::cout << "finished " << std::endl;
 }
 }

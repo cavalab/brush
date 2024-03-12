@@ -3,8 +3,8 @@ copyright 2020 William La Cava
 license: GNU/GPL v3
 */
 
-#ifndef Estimator_H
-#define Estimator_H
+#ifndef Engine_H
+#define Engine_H
 
 #include "./util/rnd.h"
 #include "init.h"
@@ -17,6 +17,7 @@ license: GNU/GPL v3
 
 #include <taskflow/algorithm/for_each.hpp>
 
+// TODO: rename it to engine
 namespace Brush
 {
 
@@ -26,15 +27,15 @@ using namespace Eval;
 using namespace Var;
 
 template <ProgramType T>
-class Estimator{
+class Engine{
 public:
-    Estimator(const Parameters& p=Parameters())
+    Engine(const Parameters& p=Parameters())
     : params(p)
     , ss(SearchSpace()) // we need to initialize ss and variator. TODO: make them have a default way so we dont have to initialize here
     , variator(Variation<T>(params, ss)) 
     {};
     
-    ~Estimator(){};
+    ~Engine(){};
 
     // all hyperparameters are controlled by the parameter class. please refer to that to change something
     inline Parameters& get_params(){return params;}

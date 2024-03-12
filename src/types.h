@@ -91,13 +91,13 @@ typedef Pop::Individual<PT::MulticlassClassifier> MulticlassClassifierIndividual
 typedef Pop::Individual<PT::Representer> RepresenterIndividual;
 
 ////////////////////////////////////////////////////////////////////////////////
-// Estimator 
+// Engine 
 using PT = ProgramType;
-template<PT T> class Estimator;
-typedef Estimator<PT::Regressor> RegressorEstimator;
-typedef Estimator<PT::BinaryClassifier> ClassifierEstimator;
-typedef Estimator<PT::MulticlassClassifier> MulticlassClassifierEstimator;
-typedef Estimator<PT::Representer> RepresenterEstimator;
+template<PT T> class Engine;
+typedef Engine<PT::Regressor> RegressorEngine;
+typedef Engine<PT::BinaryClassifier> ClassifierEngine;
+typedef Engine<PT::MulticlassClassifier> MulticlassClassifierEngine;
+typedef Engine<PT::Representer> RepresenterEngine;
 
 ////////////////////////////////////////////////////////////////////////////////
 // Data 
