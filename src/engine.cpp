@@ -41,6 +41,10 @@ void Engine<T>::init()
     this->evaluator = Evaluation<T>();
     //std::cout << "created evaluator" << std::endl;
 
+    // TOD: make these classes have a default constructor, and stop recreating instances
+    this->variator.init(params, ss);
+    //std::cout << "initialized variator" << std::endl;
+
     this->selector = Selection<T>(params.sel, false);
     //std::cout << "created selector" << std::endl;
 
@@ -240,6 +244,8 @@ void Engine<T>::run(Dataset &data)
             auto select_parents = subflow.for_each_index(0, this->params.num_islands, 1, [&](int island) {
                 //std::cout << "inside select parents" << std::endl;
                 evaluator.update_fitness(this->pop, island, data, params, true); // fit the weights with all training data
+
+                // TODO: individuals should have a flag is_fitted so we avoid re-fitting them
 
                 // TODO: have some way to set which fitness to use (for example in params, or it can infer based on split size idk)
                 // TODO: if using batch, fitness should be called before selection to set the batch

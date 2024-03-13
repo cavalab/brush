@@ -103,8 +103,8 @@ template<ProgramType T>
 class Variation 
 {
 private:
-    SearchSpace& search_space;
-    Parameters& parameters;
+    SearchSpace search_space;
+    Parameters parameters;
 public:
     Variation() = default;
     
@@ -116,8 +116,8 @@ public:
     ~Variation() {};
 
     void init(Parameters& params, SearchSpace& ss){
-        parameters = params;
-        search_space = ss;
+        this->parameters = params;
+        this->search_space = ss;
     };
 
     // individual-level variations
