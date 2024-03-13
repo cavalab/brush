@@ -8,7 +8,6 @@ namespace nl = nlohmann;
 
 void bind_individuals(py::module& m)
 {
-     // fitness is used to prototype with deap API. TODO: replace deapIndividual with brush individual (once it gets implemented)
      py::class_<br::Fitness>(m, "Fitness", py::dynamic_attr())
           .def(py::init<>())
         .def(py::init<const std::vector<float>&>(), "Constructor with weights")

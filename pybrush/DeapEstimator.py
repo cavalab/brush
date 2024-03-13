@@ -14,13 +14,15 @@ from deap import algorithms, base, creator, tools
 # from tqdm import tqdm
 from sklearn.metrics import average_precision_score
 from sklearn.preprocessing import MinMaxScaler
-import _brush # TODO: stop using _brush and use whats in pybrush
 import functools
 from pybrush.deap_api import nsga2
-# from _brush import Dataset, SearchSpace
 from pybrush import RegressorIndividual, ClassifierIndividual, MultiClassifierIndividual
 from pybrush import RegressorEvaluator, ClassifierEvaluator, MultiClassifierEvaluator
 from pybrush import RegressorSelector, ClassifierSelector, MultiClassifierSelector
+from pybrush import RegressorVariator, ClassifierVariator, MultiClassifierVariator
+from pybrush import Parameters, Dataset, SearchSpace
+
+from pybrush brush_rng
 
 
 # TODO: LOGGER AND ARCHIVE
@@ -103,15 +105,15 @@ class DeapEstimator(BaseEstimator):
 
     Attributes
     ----------
-    best_estimator_ : _brush.Program
+    best_estimator_ : pybrush.Program
         The final model picked from training. Used in subsequent calls to :func:`predict`. 
     archive_ : list[deap_api.DeapIndividual]
         The final population from training. 
-    data_ : _brush.Dataset
+    data_ : pybrush.Dataset
         The complete data in Brush format. 
-    train_ : _brush.Dataset
+    train_ : pybrush.Dataset
         Partition of `data_` containing `(1-validation_size)`% of the data, in Brush format.
-    validation_ : _brush.Dataset
+    validation_ : pybrush.Dataset
         Partition of `data_` containing `(validation_size)`% of the data, in Brush format.
     search_space_ : a Brush `SearchSpace` object. 
         Holds the operators and terminals and sampling utilities to update programs.
@@ -242,9 +244,6 @@ class DeapEstimator(BaseEstimator):
             1-d array of (boolean) target values.
         """
         
-        if self.random_state is not None:
-            _brush.set_random_state(self.random_state)
-
         self.feature_names_ = []
         if isinstance(X, pd.DataFrame):
             self.feature_names_ = X.columns.to_list()
@@ -277,9 +276,9 @@ class DeapEstimator(BaseEstimator):
         self.train_.set_batch_size(self.batch_size) # TODO: update batch indexes at the beggining of every generation
         self.validation_ = self.data_.get_validation_data()
 
-        self.search_space_ = _brush.SearchSpace(self.train_, self.functions_, self.weights_init)
+        self.search_space_ = SearchSpace(self.train_, self.functions_, self.weights_init)
                 
-        self.parameters_ = _brush.Parameters()
+        self.parameters_ = Parameters()
         self.parameters_.classification = self.mode == "classification"
         self.parameters_.n_classes = self.n_classes_
         self.parameters_.n_jobs = self.n_jobs
@@ -294,13 +293,16 @@ class DeapEstimator(BaseEstimator):
         self.parameters_.functions = self.functions
         self.parameters_.mutation_probs = self.mutation_probs
 
+        if self.random_state is not None:
+            self.parameters_.random_state = self.random_state
+
         if self.mode == "classification":
-            self.variator_ = (_brush.ClassifierVariator
+            self.variator_ = (ClassifierVariator
                               if self.n_classes_ == 2 else
-                              _brush.MultiClassifierVariator
+                              MultiClassifierVariator
                               )(self.parameters_, self.search_space_)
         elif self.mode == "regressor":
-            self.variator_ = _brush.RegressorVariator(self.parameters_, self.search_space_)
+            self.variator_ = RegressorVariator(self.parameters_, self.search_space_)
             
             # from pybrush import RegressorEngine
             # brush_estimator = RegressorEngine(self.parameters_)
@@ -315,7 +317,7 @@ class DeapEstimator(BaseEstimator):
         # nsga2 and ga differ in the toolbox
         self.archive_, self.logbook_ = nsga2(
             self.toolbox_, self.gens, self.pop_size, self.cx_prob, 
-            (0.0<self.batch_size<1.0), self.verbosity, _brush.rnd_flt)
+            (0.0<self.batch_size<1.0), self.verbosity, brush_rng)
 
         final_ind_idx = 0
 
@@ -366,10 +368,10 @@ class DeapEstimator(BaseEstimator):
         assert isinstance(X, np.ndarray)
 
         if y is None:
-            return _brush.Dataset(X=X,
+            return Dataset(X=X,
                     feature_names=feature_names, validation_size=validation_size)
 
-        return _brush.Dataset(X=X, y=y,
+        return Dataset(X=X, y=y,
             feature_names=feature_names, validation_size=validation_size)
 
 
@@ -382,10 +384,6 @@ class DeapEstimator(BaseEstimator):
             raise ValueError(f"Invalid argument value for `initialization`. "
                              f"expected 'max_size' or 'uniform'. got {self.initialization}")
 
-        # TODO: implement initialization with uniform or max_size
-        # No arguments (or zero): brush will use PARAMS passed in set_params.
-        # max_size is sampled between 1 and params['max_size'] if zero is provided
-        
         ind = self.Individual()
         ind.init(self.search_space_, self.parameters_)
         ind.objectives = self.objectives
@@ -402,7 +400,7 @@ class DeapEstimator(BaseEstimator):
 
         assert isinstance(X, np.ndarray)
 
-        data = _brush.Dataset(X=X, ref_dataset=self.data_, 
+        data = Dataset(X=X, ref_dataset=self.data_, 
                               feature_names=self.feature_names_)
         
         # data = self._make_data(X, feature_names=self.feature_names_)
@@ -453,8 +451,6 @@ class DeapClassifier(DeapEstimator,ClassifierMixin):
     def __init__( self, **kwargs):
         super().__init__(mode='classification',**kwargs)
 
-    # TODO: test with number of islands =1
-       
     def predict_proba(self, X):
         """Predict class probabilities for X.
 
@@ -479,7 +475,7 @@ class DeapClassifier(DeapEstimator,ClassifierMixin):
 
         assert isinstance(X, np.ndarray)
 
-        data = _brush.Dataset(X=X, ref_dataset=self.data_, 
+        data = Dataset(X=X, ref_dataset=self.data_, 
                               feature_names=self.feature_names_)
 
         # data = self._make_data(X, feature_names=self.feature_names_)
@@ -532,7 +528,7 @@ class DeapRegressor(DeapEstimator, RegressorMixin):
 #     def __init__(self, **kwargs):
 #         super().__init__(mode='regressor',**kwargs)
 
-#     def _fitness_function(self, ind, data: _brush.Dataset):
+#     def _fitness_function(self, ind, data: Dataset):
 #         ind.program.fit(data)
 #         return (
 #             # todo: need to return a matrix from X for this

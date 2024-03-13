@@ -27,14 +27,13 @@ namespace Brush{
 // TODO make a better use of this (in selection, when fitting, etc)  (actually i need to start using it)
 struct Fitness {
 
+    // the loss is used in evolutionary functions
     float loss;     ///< aggregate loss score
     float loss_v;   ///< aggregate validation loss score
 
-    // TODO: maybe this should be all part of fitness, and individual should have only the fitness, program, and error (and objectives)
     size_t complexity;
     size_t size;
     size_t depth;
-
 
     // these can be different depending on the island the individual is
     unsigned int dcounter;  ///< number of individuals this dominates
@@ -62,8 +61,6 @@ struct Fitness {
 
     vector<float> values;
     vector<float> weights;
-
-    // TODO: fitness could have a function size()
 
     // weighted values
     vector<float> wvalues;
@@ -189,6 +186,8 @@ public: // TODO: make these private (and work with nlohman json)
 
     // store just info that we dont have a getter. size, depth, complexity: they can all be obtained with program.<function here>
 
+    // error is the aggregation of error vector, and can be user sppecified
+    
     VectorXf error;     ///< training error (used in lexicase selectors)
 
     Fitness fitness;     ///< aggregate fitness score
@@ -197,22 +196,7 @@ public: // TODO: make these private (and work with nlohman json)
        
     Individual()
     {
-        // TODO: default value for fitness
-        // the fitness is used in evolutionary functions
-        // fitness = -1;
-        
-        // loss is the aggregation of error vector, and can be user sppecified
-        // loss = -1;
-        // loss_v = -1;
-
-        // complexity=-1;
-        // size=-1;
-        // depth=-1;
-
-        // dcounter=-1;
-        // rank=-1;
-        // crowding_dist = -1;
-
+        // TODO: better initialization of arguments
         objectives = {"error", "complexity"}; 
     };
 

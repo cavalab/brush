@@ -187,7 +187,6 @@ vector<vector<int>> NSGA2<T>::fast_nds(Population<T>& pop, vector<size_t>& islan
     
         #pragma omp critical
         {
-            // TODO: dcounter rank etc should be local variables (because one individual can be in multiple islands)
             p->fitness.dcounter  = dcount;
             p->fitness.dominated.clear();
             p->fitness.dominated = dom; // dom will have values already referring to island indexes

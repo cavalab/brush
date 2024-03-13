@@ -31,8 +31,6 @@ float mean_multi_log_loss(const VectorXf& y, const ArrayXXf& predict_proba,
                           const vector<float>& class_weights=vector<float>());
 
 // TODO: average_precision_score for classification
-// TODO: implement other metrics. Right know I have just the MSE
-
 } // metrics
 } // Brush
 

@@ -26,8 +26,6 @@ public:
     bool survival; 
     string name;
 
-    // TODO: implement lexicase 
-
     // shoudn't have a constructor
     // SelectionOperator(){};
 

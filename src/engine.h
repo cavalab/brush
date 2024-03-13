@@ -17,7 +17,6 @@ license: GNU/GPL v3
 
 #include <taskflow/algorithm/for_each.hpp>
 
-// TODO: rename it to engine
 namespace Brush
 {
 
@@ -51,7 +50,7 @@ public:
     int best_complexity;
     Individual<T>& get_best_ind(){return best_ind;};  
     
-    /// train a model. TODO: take arguments needed to build the dataset. once we have it, go through params to set global options and use them
+    /// train the model
     void run(Dataset &d);
     
     Parameters params;  ///< hyperparameters of brush, which the user can interact

@@ -6,9 +6,4 @@ license: GNU/GPL v3
 
 namespace Brush
 {
-    
-nlohmann::json PARAMS;
-void set_params(const ns::json& j) { PARAMS = j; }
-ns::json get_params(){ return PARAMS;}
-
 } // Brush

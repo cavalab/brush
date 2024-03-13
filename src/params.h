@@ -21,7 +21,6 @@ public:
     int random_state; // TODO: constructor should set the global rng to random_state (if given, otherwise just let it work normally)
     //int verbosity = 0; // TODO: implement log and verbosity    
 
-    // TODO: every parameter should have a default value
     // Evolutionary stuff
     string mode="regression"; 
 
@@ -30,8 +29,10 @@ public:
     int pop_size           = 100;
     int gens               = 1000;      
     unsigned int max_depth = 6; // TODO: make all tests be based on these values for max depth and size
+
     unsigned int max_size  = 50;
     vector<string> objectives{"error","complexity"}; // error should be generic and deducted based on mode
+
     string sel  = "lexicase"; //selection method
     string surv = "nsga2"; //survival method
     std::unordered_map<string, float> functions;
@@ -53,6 +54,7 @@ public:
     string scorer_="mse";   ///< actual loss function used, determined by error
 
     // for classification (TODO: should I have these, or they could be just dataset arguments (except the ones needed to use in dataset constructor))
+
     bool classification;
     unsigned int n_classes;   ///< number of classes for classification 
 
@@ -122,12 +124,6 @@ public:
     void set_functions(std::unordered_map<std::string, float> new_functions){ functions = new_functions; };
     std::unordered_map<std::string, float> get_functions(){ return functions; };
 };
-
-// Global (deprecated) params
-extern ns::json PARAMS; 
-void set_params(const ns::json& j);
-ns::json get_params();
-
 } // Brush
 
 #endif

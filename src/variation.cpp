@@ -458,7 +458,6 @@ std::optional<Individual<T>> Variation<T>::cross(
                                 
                 // fmt::print("other_spot : {}\n",other_spot.node->data);
                 // swap subtrees at child_spot and other_spot
-                // TODO: do I need to delete the removed node?
                 child.Tree.move_ontop(child_spot, other_spot);
                 
                 Individual<T> ind(child);
@@ -608,7 +607,6 @@ template <Brush::ProgramType T>
 void Variation<T>::vary(Population<T>& pop, int island, 
           const vector<size_t>& parents)
 {    
-    // TODO: fill indexes with nullptr, istead of using second half
     auto idxs = pop.get_island_indexes(island);
 
     // TODO: fix pragma omp usage

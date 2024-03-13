@@ -27,7 +27,6 @@ public:
     // - prepare offspring and update are not thread safe because we insert/delete elements from the array. 
     vector<vector<size_t>> island_indexes;
 
-    // TODO: taskflow needs to use num_islands as n_jobs
     Population();
     ~Population(){};
     

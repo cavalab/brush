@@ -22,7 +22,6 @@ void bind_programs(py::module &);
 void bind_variations(py::module &);
 void bind_selections(py::module &);
 void bind_individuals(py::module &);
-void bind_populations(py::module &);
 void bind_engines(py::module &);
 void bind_evaluators(py::module &);
 
@@ -45,7 +44,6 @@ PYBIND11_MODULE(_brush, m) {
      bind_variations(m);
      bind_selections(m);
      bind_evaluators(m);
-     // bind_populations(m);
 
      // solutions
      py::module_ m2 = m.def_submodule("program", "Contains Program classes.");

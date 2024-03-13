@@ -4,7 +4,6 @@ namespace Brush{
 namespace Eval{
 
 
-// TODO: merge validation and update fitness into one function
 // fitness of population
 template<ProgramType T> 
 void Evaluation<T>::update_fitness(Population<T>& pop,

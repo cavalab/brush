@@ -51,24 +51,6 @@ void Engine<T>::init()
     this->survivor = Selection<T>(params.surv, true);
     //std::cout << "created survivor" << std::endl;
 
-    //TODO
-    ///return fraction of data to use for training
-    // float get_split();
-    // /// set train fraction of dataset
-    // void set_split(float sp);
-
-    // TODO
-    // int get_batch_size(){return params.bp.batch_size;};
-    // void set_batch_size(int bs);
-      
-    // TODO
-    ///set number of threads (and use them in taskflow)
-    // void set_n_jobs(unsigned t);
-    // int get_n_jobs(){return omp_get_num_threads();};
-    
-    ///set flag to use batch for training
-    // void set_use_batch();
-    
     // TODO getters and setters for the best solution found after evolution
     // predict, transform, predict_proba, etc.
     // get statistics
@@ -87,11 +69,6 @@ void Engine<T>::init()
 
     // // reset statistics
     // this->stats = Log_Stats();
-
-    // params.use_batch = params.bp.batch_size>0;    
-
-    // TODO: initialize dataset and search space here or inside fit?
-
 }
 
 template <ProgramType T> // TODO: use the dataset, or ignore it
@@ -113,10 +90,8 @@ bool Engine<T>::update_best(const Dataset& data, bool val)
 
     //std::cout << "got hof" << std::endl;
 
-    // will look only in the first half of the population (this is intended to be done after survival step)
     for (int i=0; i < hof.size(); ++i) 
     {
-        // TODO: i guess the right way of doing this is using island indexes (or just take the hall of fame)
         //std::cout << "index" << hof[i] << std::endl;
         const auto& ind = *pop.individuals.at(hof[i]);
 

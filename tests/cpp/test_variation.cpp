@@ -193,11 +193,11 @@ TEST(Variation, InsertMutationWorks)
         }
 
         // lets also see if it always fails when the child exceeds the maximum limits
-        params.max_size  = IND.program.size();
-        params.max_depth = IND.program.depth();
+        variator.parameters.set_max_depth(IND.program.depth());
+        variator.parameters.set_max_size(IND.program.size());
 
         auto opt2 = variator.mutate(IND);
-        if (opt2){ // This shoudl't happen. We'll print then error
+        if (opt2){ // This shoudl't happen. We'll print the error
             auto Child2 = opt2.value();
 
             std::cout << "Fail failed. Mutation weights:" << std::endl;
@@ -205,15 +205,15 @@ TEST(Variation, InsertMutationWorks)
                 std::cout << k << " : " << v << std::endl;
 
             fmt::print(
-                "=================================================\n"
-                "depth = {}, size= {}\n"
+                "max depth = {}, max size= {}\n"
                 "Initial Model: {}\n"
-                "Mutated Model: {}\n",
+                "Mutated Model: {}\n"
+                "=================================================\n",
                 params.max_depth, params.max_size,
                 IND.program.get_model("compact", true),
                 Child2.program.get_model("compact", true)
             );
-            ASSERT_TRUE(opt2==std::nullopt);
+            ASSERT_TRUE(opt2==std::nullopt); // this will fail, so we can see the log
         }
     }
     ASSERT_TRUE(successes > 0);
