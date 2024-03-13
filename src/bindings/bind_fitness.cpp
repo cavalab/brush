@@ -7,7 +7,6 @@ namespace br = Brush;
 
 using stream_redirect = py::call_guard<py::scoped_ostream_redirect, py::scoped_estream_redirect>;
 
-template <br::ProgramType T>
 void bind_fitness(py::module& m)
 {
     py::class_<br::Fitness>(m, "Fitness", py::dynamic_attr())
