@@ -14,10 +14,15 @@ license: GNU/GPL v3
 
 namespace py = pybind11;
 
-// forward declarations
+// forward declarations ------------------
+
+// non-templated bindings
 void bind_params(py::module &);
 void bind_dataset(py::module &);
 void bind_search_space(py::module &);
+void bind_fitness(py::module &);
+
+// templated bindings
 void bind_programs(py::module &);
 void bind_variations(py::module &);
 void bind_selections(py::module &);
@@ -32,13 +37,11 @@ PYBIND11_MODULE(_brush, m) {
 #else
      m.attr("__version__") = "dev";
 #endif
-     // main algorithm
-     // bind_cbrush(m);
-
-     // data structures to store solutions
+     // data structures
      bind_params(m);
      bind_dataset(m);
      bind_search_space(m);
+     bind_fitness(m);
 
      // should these 4 below be exposed?
      bind_variations(m);

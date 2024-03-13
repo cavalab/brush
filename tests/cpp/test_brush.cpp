@@ -87,5 +87,23 @@ TEST(Engine, EngineWorks)
     Brush::RegressorEngine est9(params);
     est9.run(data);
 
+     // when popsize is not divisible by num_islands
+    std::cout << "popsize not divisible by num_islands" << std::endl;
+    params.set_pop_size(15);
+    params.set_gens(10);
+    params.set_num_islands(4); // fewer individuals in one island
+    params.set_n_jobs(1);
+    Brush::RegressorEngine est_not_div1(params);
+    est_not_div1.run(data);
+
+    // TODO: logger
+    std::cout << "popsize not divisible by num_islands" << std::endl;
+    params.set_pop_size(10);
+    params.set_gens(10);
+    params.set_num_islands(3); // extra individuals in one island
+    params.set_n_jobs(1);
+    Brush::RegressorEngine est_not_div2(params);
+    est_not_div2.run(data);
+
      // TODO: test classifier and multiclassifier 
 }

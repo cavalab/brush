@@ -50,21 +50,20 @@ template<ProgramType T>
 void Evaluation<T>::assign_fit(Individual<T>& ind, const Dataset& data, 
                                const Parameters& params, bool val)
 {
-    VectorXf loss;
+    VectorXf errors;
     using PT = ProgramType;
     
     Dataset validation = data.get_validation_data();
-    float f_v = S.score(ind, validation, loss, params);
+    float f_v = S.score(ind, validation, errors, params);
 
-    // TODO: implement the class weights and use it here (and on loss)
+    // TODO: implement the class weights and use it here (and on errors)
 
     Dataset train = data.get_training_data();
-    float f = S.score(ind, train, loss, params);
+    float f = S.score(ind, train, errors, params);
     
-    // TODO: setter for loss and loss_v
-    ind.error = loss;
-    ind.fitness.loss = f;
-    ind.fitness.loss_v = f_v;
+    ind.error = errors;
+    ind.fitness.set_loss(f);
+    ind.fitness.set_loss_v(f_v);
     ind.fitness.size = ind.program.size();
     ind.fitness.complexity = ind.program.complexity();
     ind.fitness.depth = ind.program.depth();

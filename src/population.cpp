@@ -107,13 +107,6 @@ void Population<T>::init(SearchSpace& ss, const Parameters& params)
 template<ProgramType T>
 void Population<T>::add_offspring_indexes(int island)
 {	   
-    // TODO 2: i guess I dont need to do this (below) anymore
-    // TODO: find unused indexes and distribute them to the islands (I think islands can point to anywhere in the population. also make sure that the selection survival and mutation works like that)
-    // reading and writing is thread-safe, as long as there's no overlap on island ranges.
-    // manipulating a vector IS NOT thread-safe (inserting and erasing elements).
-    // So, add_offspring_indexes and update should be the synchronization points, not 
-    // operations performed concurrently
-
     size_t p = pop_size; // population size. prep_offspring slots will douple the population, adding the new expressions into the islands
     
     // this is going to be tricky (pay attention to delta and p use)

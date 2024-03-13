@@ -1,184 +1,16 @@
 #ifndef INDIVIDUAL_H
 #define INDIVIDUAL_H
 
-// #include "search_space.h"
 #include "program/program.h"
+#include "eval/fitness.h"
 
 #include <functional>
 
 using namespace nlohmann;
 
-template <> // this is intended to be used with DEAP. TODO: decide if im going to keep it
-struct std::hash<std::vector<float>> {
-    std::size_t operator()(const std::vector<float>& v) const {
-        std::size_t seed = v.size();
-        for (const auto& elem : v) {
-            seed ^= std::hash<float>{}(elem) +  0x9e3779b9 + (seed <<  6) + (seed >>  2);
-        }
-        return seed;
-    }
-};
-
 namespace Brush{
-
-
-// TODO: separate declaration from implementation
-// TODO: move fitness to eval folder
-// TODO make a better use of this (in selection, when fitting, etc)  (actually i need to start using it)
-struct Fitness {
-
-    // the loss is used in evolutionary functions
-    float loss;     ///< aggregate loss score
-    float loss_v;   ///< aggregate validation loss score
-
-    size_t complexity;
-    size_t size;
-    size_t depth;
-
-    // these can be different depending on the island the individual is
-    unsigned int dcounter;  ///< number of individuals this dominates
-    vector<unsigned int> dominated; ///< individual indices this dominates
-    unsigned int rank;             ///< pareto front rank
-    float crowding_dist;   ///< crowding distance on the Pareto front
-
-    void set_dominated(vector<unsigned int>& dom){ dominated=dom; };
-    vector<unsigned int> get_dominated() const { return dominated; };
-
-    void set_loss(float f){ loss=f; };
-    float get_loss() const { return loss; };
-
-    void set_loss_v(float f_v){ loss_v=f_v; };
-    float get_loss_v() const { return loss_v; };
-
-    void set_dcounter(unsigned int d){ dcounter=d; };
-    unsigned int get_dcounter() const { return dcounter; };
-
-    void set_rank(unsigned r){ rank=r; };
-    size_t get_rank() const { return rank; };
-
-    void set_crowding_dist(float cd){ crowding_dist=cd; };
-    float get_crowding_dist() const { return crowding_dist; };
-
-    vector<float> values;
-    vector<float> weights;
-
-    // weighted values
-    vector<float> wvalues;
-
-    // Constructor with initializer list for weights
-    Fitness(const vector<float>& w={}) : values(), wvalues(), weights(w) {
-        dcounter = 0;
-        set_rank(0);
-        set_crowding_dist(0);
-        dominated.resize(0);
-    }
-    
-    // Hash function
-    size_t hash() const {
-        std::size_t h = std::hash<vector<float>>{}(wvalues);
-        return h;
-    }
-
-    void set_weights(vector<float>& w) {
-        weights = w;
-    }
-    vector<float> get_weights() const {
-        return weights;
-    }
-    vector<float> get_values() const {
-        return values;
-    }
-    vector<float> get_wvalues() const {
-        return wvalues;
-    }
-
-    // TODO: debug size, it is giving weird values
-    // Method to set values
-    void set_values(vector<float>& v) {
-        if (v.size() != weights.size()) {
-            throw std::length_error("Assigned values have not the same length than current values");
-        }
-        // fmt::print("updated values\n");
-
-        values.resize(0);
-        for (const auto& element : v) {
-            values.push_back(element);
-        }
-
-        wvalues.resize(weights.size());
-
-        // Perform element-wise multiplication
-        std::transform(v.begin(), v.end(), 
-                       weights.begin(), wvalues.begin(),
-                        [](double a, double b) {
-                            return a * b;
-                        });
-    }
-
-    // Method to clear values
-    void clearValues() {
-        wvalues.clear();
-    }
-
-    bool valid() const {
-        return !wvalues.empty();
-    }
-
-    // Equality comparison
-    bool operator==(const Fitness& other) const {
-        return wvalues == other.wvalues;
-    }
-
-    // Inequality comparison
-    bool operator!=(const Fitness& other) const {
-        return !(*this == other);
-    }
-
-    // Less than comparison
-    bool operator<(const Fitness& other) const {
-        return std::lexicographical_compare(wvalues.begin(), wvalues.end(),
-                                            other.wvalues.begin(), other.wvalues.end());
-    }
-
-    // Greater than comparison
-    bool operator>(const Fitness& other) const {
-        return other < *this;
-    }
-
-    // Less than or equal to comparison
-    bool operator<=(const Fitness& other) const {
-        return !(other < *this);
-    }
-
-    // Greater than or equal to comparison
-    bool operator>=(const Fitness& other) const {
-        return !(*this < other);
-    }
-
-    // String representation
-    std::string toString() const {
-        if (valid()) {
-            return "TODO: implement string representation"; //std::to_string(wvalues);
-        } else {
-            return "Tuple()";
-        }
-    }
-
-    // Representation for debugging
-    std::string repr() const {
-        return "Fitness(TODO: implement string representation)";
-    }
-
-
-    /// set obj vector given a string of objective names
-    int dominates(const Fitness& b) const;
-};
-
-void to_json(json &j, const Fitness &f);
-void from_json(const json &j, Fitness& f);
-
 namespace Pop{
-    
+
 template<ProgramType T> 
 class Individual{
 public: // TODO: make these private (and work with nlohman json)
@@ -201,8 +33,6 @@ public: // TODO: make these private (and work with nlohman json)
     };
 
     Individual(Program<T>& prg) : Individual() { program = prg; };
-
-    // TODO: clone? maybe a constructor that takes another individual as arg and copies  everything
 
     void init(SearchSpace& ss, const Parameters& params)
     {
@@ -236,14 +66,6 @@ public: // TODO: make these private (and work with nlohman json)
     // TODO: USE setters and getters intead of accessing it directly
     // template<ProgramType T>
     // void Individual<T>::set_objectives(const vector<string>& objectives)
-
-    // TODO:  fix   to use these with fitness instead of with individual
-    // unsigned int dcounter;  ///< number of individuals this dominates
-    // vector<unsigned int> dominated; ///< individual indices this dominates
-    
-    // unsigned int rank;             ///< pareto front rank
-    // float crowding_dist;   ///< crowding distance on the Pareto front
-
 
     // Static map for weights associated with strings
     // TODO: weights for different values. loss should be calculated duing runtime, based on the metric
@@ -280,13 +102,11 @@ public: // TODO: make these private (and work with nlohman json)
 };
 
 
-// TODO: rename (something better (more meaningful) than p)
 // serialization for Individual
 template<ProgramType T>
 void to_json(json &j, const Individual<T> &p)
 {
     j = json{
-        // TODO: jsonify fitness struct, and new possible obj functions
         {"program", p.program},
         {"fitness", p.fitness},
         // {"loss", p.loss},
