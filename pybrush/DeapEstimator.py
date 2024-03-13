@@ -22,7 +22,7 @@ from pybrush import RegressorSelector, ClassifierSelector, MultiClassifierSelect
 from pybrush import RegressorVariator, ClassifierVariator, MultiClassifierVariator
 from pybrush import Parameters, Dataset, SearchSpace
 
-from pybrush brush_rng
+from pybrush import brush_rng
 
 
 # TODO: LOGGER AND ARCHIVE

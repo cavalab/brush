@@ -4,7 +4,7 @@ from _brush import SearchSpace
 from _brush import Parameters
 
 # geting random floats
-from _brush import rng_flt as brush_rng
+from _brush import rnd_flt as brush_rng
 
 # Population modifiers
 from _brush import RegressorEvaluator, ClassifierEvaluator, MultiClassifierEvaluator
