@@ -51,6 +51,8 @@ void Engine<T>::init()
     this->survivor = Selection<T>(params.surv, true);
     //std::cout << "created survivor" << std::endl;
 
+    this->best_loss = MAX_FLT;
+    this->best_complexity = MAX_FLT;
     // TODO getters and setters for the best solution found after evolution
     // predict, transform, predict_proba, etc.
     // get statistics

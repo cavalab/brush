@@ -45,7 +45,7 @@ public:
     /// updates best score by searching in the population for the individual that best fits the given data
     bool update_best(const Dataset& data, bool val=false);  
 
-    // TODO: im thinking about getting rid of these first two, and keep only the best ind
+    // TODO: best fitness instead of these. use fitness comparison
     float best_loss;
     int best_complexity;
     Individual<T>& get_best_ind(){return best_ind;};  

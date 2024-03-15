@@ -43,7 +43,8 @@ PYBIND11_MODULE(_brush, m) {
      bind_search_space(m);
      bind_fitness(m);
 
-     // should these 4 below be exposed?
+     // TODO: get rid of deap wrapper?
+     // should these 4 below be exposed? should i add them to submodules?
      bind_variations(m);
      bind_selections(m);
      bind_evaluators(m);

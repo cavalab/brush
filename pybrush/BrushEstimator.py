@@ -1,6 +1,7 @@
 """
 sklearn-compatible wrapper for GP analyses.
 
+TODO: update this docstring
 See brushgp.cpp for Python (via pybind11) modules that give more fine-grained
 control of the underlying GP objects.
 """
@@ -9,24 +10,15 @@ from sklearn.utils.validation  import check_is_fitted
 # from sklearn.metrics import mean_squared_error
 import numpy as np
 import pandas as pd
-# import deap as dp
-from deap import algorithms, base, creator, tools
-# from tqdm import tqdm
-from sklearn.metrics import average_precision_score
-from sklearn.preprocessing import MinMaxScaler
-import functools
-from pybrush.deap_api import nsga2
-from pybrush import individual
-from pybrush import RegressorEvaluator, ClassifierEvaluator, MultiClassifierEvaluator
-from pybrush import RegressorSelector, ClassifierSelector, MultiClassifierSelector
-from pybrush import RegressorVariator, ClassifierVariator, MultiClassifierVariator
-from pybrush import Parameters, Dataset, SearchSpace
 
+from _brush.individual import * # RegressorIndividual, ClassifierIndividual, MultiClassifierIndividual
+from _brush.engine import * # Regressor, Classifier, and MultiClassifier engines
+from pybrush import Parameters, Dataset, SearchSpace
 from pybrush import brush_rng
 
 
 # TODO: LOGGER AND ARCHIVE
-class DeapEstimator(BaseEstimator):
+class BrushEstimator(BaseEstimator):
     """
     This is the base class for Deap-based Brush estimators. 
     This class shouldn't be called directly; instead, call a child class like 
@@ -134,7 +126,7 @@ class DeapEstimator(BaseEstimator):
         mig_prob=0.05,
         cx_prob= 1/7,
         mutation_probs = {"point":1/6, "insert":1/6, "delete":1/6, "subtree":1/6,
-                            "toggle_weight_on":1/6, "toggle_weight_off":1/6},
+                          "toggle_weight_on":1/6, "toggle_weight_off":1/6},
         functions: list[str]|dict[str,float] = {},
         initialization="uniform",
         algorithm="nsga2",
@@ -165,72 +157,6 @@ class DeapEstimator(BaseEstimator):
         self.weights_init=weights_init
         self.validation_size=validation_size
 
-
-    def _setup_toolbox(self):
-        """Setup the deap toolbox"""
-        toolbox: base.Toolbox = base.Toolbox()
-
-        # create Individual class, inheriting from self.Individual with a fitness attribute
-        if self.mode == 'classification':
-            self.Individual = ( individual.ClassifierIndividual
-                                 if self.n_classes_ == 2 else
-                                 individual.MultiClassifierIndividual)  
-            self.eval_ = ( ClassifierEvaluator()
-                     if self.n_classes_ == 2 else
-                     MultiClassifierEvaluator() )  
-            self.sel_  = ( ClassifierSelector("nsga2", False)
-                     if self.n_classes_ == 2 else
-                     MultiClassifierSelector("nsga2", False) )  
-            self.surv_ = ( ClassifierSelector("nsga2", True)
-                     if self.n_classes_ == 2 else
-                     MultiClassifierSelector("nsga2", True) )  
-        else:
-            self.Individual = individual.RegressorIndividual  
-            self.sel_  = RegressorSelector("lexicase", False)
-            self.surv_ = RegressorSelector("nsga2", True)
-            self.eval_ = RegressorEvaluator()
-
-        toolbox.register("select",  lambda pop: self.sel_.select(pop, self.parameters_)) 
-        toolbox.register("survive", lambda pop: self.surv_.survive(pop, self.parameters_))
-
-        # it could be both sel or surv. 
-        toolbox.register("migrate", lambda pop: self.surv_.migrate(pop, self.parameters_)) 
-
-        def update_current_gen(gen): self.parameters_.current_gen = gen
-        toolbox.register("update_current_gen", update_current_gen) 
-
-        def assign_fit(ind, validation=False):
-            ind.program.fit(self.data_.get_training_data())
-            self.eval_.assign_fit(ind, self.data_, self.parameters_, validation)
-            return ind
-        
-        toolbox.register("assign_fit", assign_fit)
-        
-        toolbox.register("Clone", lambda ind: self.Individual(ind.program.copy()))
-        
-        toolbox.register("mate", self.variator_.cross)
-        toolbox.register("mutate", self.variator_.mutate)
-        toolbox.register("vary_pop", lambda pop: self.variator_.vary_pop(pop, self.parameters_))
-
-        # When solving multi-objective problems, selection and survival must
-        # support this feature. This means that these selection operators must
-        # accept a tuple of fitnesses as argument)
-        # if self.algorithm=="nsga2" or self.algorithm=="nsga2island":
-        #     toolbox.register("select", tools.selTournamentDCD) 
-        #     toolbox.register("survive", tools.selNSGA2)
-        # elif self.algorithm=="ga" or self.algorithm=="gaisland":
-        #     toolbox.register("select", tools.selTournament, tournsize=3) 
-        #     def offspring(pop, MU): return pop[-MU:]
-        #     toolbox.register("survive", offspring)
-
-
-        # toolbox.population will return a list of elements by calling toolbox.individual
-        toolbox.register("createRandom", self._make_individual)
-        toolbox.register("population", tools.initRepeat, list, toolbox.createRandom)
-
-        toolbox.register("get_objectives", lambda: self.objectives)
-
-        return toolbox
 
     def fit(self, X, y):
         """
@@ -296,61 +222,16 @@ class DeapEstimator(BaseEstimator):
         if self.random_state is not None:
             self.parameters_.random_state = self.random_state
 
-        if self.mode == "classification":
-            self.variator_ = (ClassifierVariator
-                              if self.n_classes_ == 2 else
-                              MultiClassifierVariator
-                              )(self.parameters_, self.search_space_)
-        elif self.mode == "regressor":
-            self.variator_ = RegressorVariator(self.parameters_, self.search_space_)
-            
-            # from pybrush import RegressorEngine
-            # brush_estimator = RegressorEngine(self.parameters_)
-            # brush_estimator.run(self.data_)
-            # print(brush_estimator.is_fitted)
-            # print(brush_estimator.best_ind)
+        self.engine_ = None
+        if self.mode == 'classification':
+            self.engine_ = ( ClassifierEngine
+                             if self.n_classes_ == 2 else
+                             MultiClassifierEngine)(self.parameters_)
         else:
-            raise("Unsupported mode")
-        
-        self.toolbox_ = self._setup_toolbox()
+            self.engine_ = RegressorEngine(self.parameters_)
 
-        # nsga2 and ga differ in the toolbox
-        self.archive_, self.logbook_ = nsga2(
-            self.toolbox_, self.gens, self.pop_size, self.cx_prob, 
-            (0.0<self.batch_size<1.0), self.verbosity, brush_rng)
-
-        final_ind_idx = 0
-
-        # Each individual is a point in the Multi-Objective space. We multiply
-        # the fitness by the weights so greater numbers are always better
-        points = np.array([self.toolbox_.assign_fit(ind, True).fitness.wvalues
-                           for ind in self.archive_])
-
-        if self.validation_size==0.0:  # Using the multi-criteria decision making on training data
-            # Selecting the best estimator using training data
-            # (train data==val data if validation_size is set to 0.0)
-            # and multi-criteria decision making
-
-            # Normalizing
-            points = MinMaxScaler().fit_transform(points)
-            
-            # Reference should be best value each obj. can have (after normalization)
-            reference = np.array([1.0, 1.0])
-
-            # closest to the reference (smallest distance)
-            final_ind_idx = np.argmin( np.linalg.norm(points - reference, axis=1) )
-        else: # Best in obj.1 (loss) in validation data
-            final_ind_idx = max(
-                range(len(points)),
-                key=lambda index: (points[index][0], points[index][1]) )
-
-        self.best_estimator_ = self.archive_[final_ind_idx]
-
-        if self.verbosity > 0:
-            print(f'best model {self.best_estimator_.program.get_model()}'      +
-                  f' with size {self.best_estimator_.program.size()}, '         +
-                  f' depth {self.best_estimator_.program.depth()}, '            +
-                  f' and fitness {self.archive_[final_ind_idx].fitness}')
+        self.engine_.run(self.data_)
+        self.best_estimator_ = self.engine_.best_ind
 
         return self
     
@@ -374,22 +255,6 @@ class DeapEstimator(BaseEstimator):
         return Dataset(X=X, y=y,
             feature_names=feature_names, validation_size=validation_size)
 
-
-    def _make_individual(self):
-        # C++'s PTC2-based `make_individual` will create a tree of at least
-        # the given size. By uniformly sampling the size, we can instantiate a
-        # population with more diversity
-        
-        if self.initialization not in ["uniform", "max_size"]:
-            raise ValueError(f"Invalid argument value for `initialization`. "
-                             f"expected 'max_size' or 'uniform'. got {self.initialization}")
-
-        ind = self.Individual()
-        ind.init(self.search_space_, self.parameters_)
-        ind.objectives = self.objectives
-        
-        return ind
-    
     def predict(self, X):
         """Predict using the best estimator in the archive. """
 
@@ -407,20 +272,6 @@ class DeapEstimator(BaseEstimator):
 
         return self.best_estimator_.program.predict(data)
 
-    # def _setup_population(self):
-    #     """initialize programs"""
-    #     if self.mode == 'classification':
-    #         generate = self.search_space_.make_classifier
-    #     else:
-    #         generate = self.search_space_.make_regressor
-
-    #     programs = [
-    #         DeapIndividual(generate(self.max_depth, self.max_size))
-    #         for i in range(self.pop_size)
-    #     ]
-    #     # return [self._create_deap_individual_(p) for p in programs]
-    #     return programs
-
     def get_params(self, deep=True):
         out = dict()
         for (key, value) in self.__dict__.items():
@@ -432,7 +283,7 @@ class DeapEstimator(BaseEstimator):
         return out
     
 
-class DeapClassifier(DeapEstimator,ClassifierMixin):
+class BrushClassifier(BrushEstimator,ClassifierMixin):
     """Deap-based Brush for classification.
 
     For options, see :py:class:`DeapEstimator <brush.estimator.DeapEstimator>`. 
@@ -489,58 +340,6 @@ class DeapClassifier(DeapEstimator,ClassifierMixin):
         return prob
 
 
-class DeapRegressor(DeapEstimator, RegressorMixin):
-    """Deap-based Brush for regression.
-
-    For options, see :py:class:`DeapEstimator <brush.estimator.DeapEstimator>`. 
-
-    Examples
-    --------
-    >>> import pandas as pd
-    >>> df = pd.read_csv('docs/examples/datasets/d_enc.csv')
-    >>> X = df.drop(columns='label')
-    >>> y = df['label']
-    >>> from pybrush import DeapRegressor
-    >>> est = DeapRegressor()
-    >>> est.fit(X,y)
-    >>> # print('score:', est.score(X,y))
-    """
+class BrushRegressor(BrushEstimator, RegressorMixin):
     def __init__(self, **kwargs):
         super().__init__(mode='regressor',**kwargs)
-
-# Under development
-# class DeapRepresenter(DeapEstimator, TransformerMixin):
-#     """Deap-based  Brush for representation learning.
-
-#     For options, see :py:class:`DeapEstimator <brush.estimator.DeapEstimator>`. 
-
-#     Examples
-#     --------
-#     >>> import pandas as pd
-#     >>> df = pd.read_csv('docs/examples/datasets/d_enc.csv')
-#     >>> X = df.drop(columns='label')
-#     >>> y = df['label']
-#     >>> from pybrush import DeapRegressor
-#     >>> est = DeapRegressor()
-#     >>> est.fit(X,y)
-#     >>> # print('score:', est.score(X,y))
-#     """
-#     def __init__(self, **kwargs):
-#         super().__init__(mode='regressor',**kwargs)
-
-#     def _fitness_function(self, ind, data: Dataset):
-#         ind.program.fit(data)
-#         return (
-#             # todo: need to return a matrix from X for this
-#             np.sum((data.get_X()- ind.program.predict(data))**2),
-#             ind.program.size()
-#         )
-
-#     def _make_individual(self):
-#         return creator.Individual(
-#             self.search_space_.make_representer(self.max_depth, self.max_size)
-#         )
-
-#     def transform(self, X):
-#         """Transform X using the best estimator in the archive. """
-#         return self.predict(X)
