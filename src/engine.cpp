@@ -23,11 +23,11 @@ void Engine<T>::init()
     // initialize population with initial model and/or starting pop
 
     if (params.n_jobs!=0) // TODO: change this to set taskflow jobs
-        omp_set_num_threads(params.n_jobs);
+        omp_set_num_threads(params.get_n_jobs());
 
     // std::cout << "set number of threads" << std::endl;
 
-    r.set_seed(params.random_state);
+    r.set_seed(params.get_random_state());
     // std::cout << "set random state" << std::endl;
 
     // set up the pop, variator, etc

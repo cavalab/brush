@@ -73,6 +73,7 @@ TEST(Population, PopulationTests)
     fmt::print("Printing from population method:\n");
     fmt::print("{}\n",pop.print_models()); // may yeld seg fault if string is too large for buffer
 
+    // this is basically the engine with some debug messages
     // island sizes increases and comes back to the same values after update
     fmt::print("Performing all steps of an evolution (sequential, not parallel)\n");
     for (int i=0; i<100; ++i) // update and prep offspring slots works properly
