@@ -15,10 +15,9 @@ namespace Brush
 struct Parameters
 {
 public:
-    // TODO: setters and getters for all parameters? (and do checks in setters?). Also make them private, and use the getters and setters in the code
+    // TODO: make parameters private, and use the getters and setters in the code
     
-    // settings
-    int random_state; // TODO: constructor should set the global rng to random_state (if given, otherwise just let it work normally)
+    int random_state = 0; // by default, the rng generator will use any random seed if random_state is zero
     //int verbosity = 0; // TODO: implement log and verbosity    
 
     // Evolutionary stuff
@@ -74,6 +73,9 @@ public:
 
     Parameters(){}; 
     ~Parameters(){};
+
+    void set_random_state(int new_random_state){random_state = new_random_state; };
+    int get_random_state(){ return random_state; };
 
     void set_pop_size(int new_pop_size){ pop_size = new_pop_size; };
     int get_pop_size(){ return pop_size; };
