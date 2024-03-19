@@ -18,6 +18,8 @@ using namespace Pop;
 
 // struct Parameters; // forward declaration of Parameters      
 
+// TODO: it seems that the selection is doing a poor job with the size. investigate it.
+
 /*!
 * @class Selection
 * @brief interfaces with selection operators. 
