@@ -8,6 +8,40 @@ using std::vector;
 using std::string;
 using Eigen::Map;
 
+// TODO: move this serialization elsewhere
+// serializing vector of shared ptr: https://github.com/nlohmann/json/discussions/2377
+namespace nlohmann
+{
+template <typename T>
+struct adl_serializer<std::shared_ptr<T>>
+{
+    static void to_json(json& j, const std::shared_ptr<T>& opt)
+    {
+        if (opt)
+        {
+            j = *opt;
+        }
+        else
+        {
+            j = nullptr;
+        }
+    }
+
+    static void from_json(const json& j, std::shared_ptr<T>& opt)
+    {
+        if (j.is_null())
+        {
+            opt = nullptr;
+        }
+        else
+        {
+            opt.reset(new T(j.get<T>()));
+        }
+    }
+};
+}
+
+
 namespace Brush {   
 namespace Pop {
 
@@ -16,7 +50,7 @@ class Population{
 public:
     size_t pop_size;
     int num_islands;
-    float mig_prob;
+    float mig_prob; // TODO: mig_prob should not be part of population
 
     vector<std::shared_ptr<Individual<T>>> individuals;
     vector<vector<size_t>> island_indexes;
@@ -31,6 +65,10 @@ public:
     void init(vector<Individual<T>>& individuals, const Parameters& params);
 
     // TODO: init from file (like FEAT)
+    // save serialized population
+    void save(string filename);
+    // load serialized population
+    void load(string filename);
 
     /// returns population size (the effective size of the individuals)
     int size() { return individuals.size(); };
@@ -82,6 +120,15 @@ public:
         }
     };
 };
+
+NLOHMANN_DEFINE_TYPE_NON_INTRUSIVE(
+    Population<PT::Regressor>, individuals, island_indexes, pop_size, num_islands);
+NLOHMANN_DEFINE_TYPE_NON_INTRUSIVE(
+    Population<PT::BinaryClassifier>, individuals, island_indexes, pop_size, num_islands);
+NLOHMANN_DEFINE_TYPE_NON_INTRUSIVE(
+    Population<PT::MulticlassClassifier>, individuals, island_indexes, pop_size, num_islands);
+NLOHMANN_DEFINE_TYPE_NON_INTRUSIVE(
+    Population<PT::Representer>, individuals, island_indexes, pop_size, num_islands);
 
 }// Pop
 }// Brush

@@ -22,3 +22,4 @@ from _brush import RegressorVariator, ClassifierVariator, MultiClassifierVariato
 # --------------------
 # Prototyping an EA using brush classes, but other EA framework
 from pybrush.DeapEstimator import DeapClassifier, DeapRegressor
+from pybrush.BrushEstimator import BrushClassifier, BrushRegressor

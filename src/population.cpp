@@ -103,6 +103,48 @@ void Population<T>::init(SearchSpace& ss, const Parameters& params)
     
 }
 
+template<ProgramType T>
+void Population<T>::save(string filename)
+{
+    std::ofstream out;                      
+    if (!filename.empty())
+        out.open(filename);
+    else
+        out.open("pop.json");
+
+    json j;
+    to_json(j, *this);
+    out << j ;
+    out.close();
+    logger.log("Saved population to file " + filename, 1);
+}
+
+template<ProgramType T>
+void Population<T>::load(string filename)
+{
+    
+    // TODO: if initializing from a population file, then this is where we should load previous models.
+    // three behaviors: if we have only 1 ind, then replicate it trought the entire pop
+    // if n_ind is the same as pop_size, load all models. if n_ind != pop_size, throw error
+
+    //TODO: replace with from_json(j, this) call
+    std::ifstream indata;
+    indata.open(filename);
+    if (!indata.good())
+        HANDLE_ERROR_THROW("Invalid input file " + filename + "\n"); 
+
+    std::string line;
+    indata >> line; 
+
+    json j = json::parse(line);
+    from_json(j, *this);
+
+    logger.log("Loaded population from " + filename + " of size = " 
+            + to_string(this->size()),1);
+
+    indata.close();
+}
+
 /// update individual vector size and island indexes
 template<ProgramType T>
 void Population<T>::add_offspring_indexes(int island)

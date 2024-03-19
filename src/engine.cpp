@@ -2,6 +2,7 @@
 
 
 #include <iostream>
+#include <fstream>
 
 
 namespace Brush{
@@ -29,14 +30,19 @@ void Engine<T>::init()
     r.set_seed(params.random_state);
     // std::cout << "set random state" << std::endl;
 
-
     // set up the pop, variator, etc
     set_is_fitted(false);
     // std::cout << "is fitted is false" << std::endl;
 
-
-    this->pop = Population<T>();
+   this->pop = Population<T>();
     //std::cout << "created population" << std::endl;
+
+    // TODO: load population into file
+    // TODO: if initializing from a population file, then this is where we should load previous models.
+    // three behaviors: if we have only 1 ind, then replicate it trought the entire pop
+    // if n_ind is the same as pop_size, load all models. if n_ind != pop_size, throw error
+    if (params.load_population != "")
+        this->pop.load(params.load_population);
 
     this->evaluator = Evaluation<T>();
     //std::cout << "created evaluator" << std::endl;
@@ -306,7 +312,11 @@ void Engine<T>::run(Dataset &data)
 
         [&]() { return 0; }, // jump back to the next iteration
 
-        [&]() { this->set_is_fitted(true); } // work done, report last gen and stop
+        [&]() {
+            if (params.save_population != "")
+                this->pop.save(params.save_population);
+            this->set_is_fitted(true);
+        } // work done, report last gen and stop
     ); // evolutionary loop
 
     init.name("init");

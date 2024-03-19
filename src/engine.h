@@ -44,6 +44,7 @@ public:
 
     /// updates best score by searching in the population for the individual that best fits the given data
     bool update_best(const Dataset& data, bool val=false);  
+    // TODO: hyperparameter to set how the best is picked (MCDM, best on val, pareto front, etc). one of the options should be getting the pareto front
 
     // TODO: best fitness instead of these. use fitness comparison
     float best_loss;

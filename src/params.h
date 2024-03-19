@@ -70,6 +70,9 @@ public:
     float batch_size = 0.0;
     bool use_batch = false; ///< whether to use mini batch for training
 
+    string load_population = "";
+    string save_population = "";
+
     int n_jobs = 1; // -1; ///< number of parallel jobs -1 use all threads; 0 use same as number of islands; positive number specify the amouut of threads
 
     Parameters(){}; 
@@ -80,6 +83,12 @@ public:
 
     void set_gens(int new_gens){ gens = new_gens; };
     int get_gens(){ return gens; };
+    
+    void set_load_population(string new_load_population){ load_population = new_load_population; };
+    string get_load_population(){ return load_population; };
+    
+    void set_save_population(string new_save_population){ save_population = new_save_population; };
+    string get_save_population(){ return save_population; };
 
     void set_current_gen(unsigned int gen){ current_gen = gen; };
     unsigned int get_current_gen(){ return current_gen; };
