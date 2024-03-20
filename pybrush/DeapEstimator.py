@@ -25,7 +25,6 @@ from pybrush import Parameters, Dataset, SearchSpace
 from pybrush import brush_rng
 
 
-# TODO: LOGGER AND ARCHIVE
 class DeapEstimator(BaseEstimator):
     """
     This is the base class for Deap-based Brush estimators. 

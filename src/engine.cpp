@@ -22,7 +22,8 @@ void Engine<T>::init()
     // TODO: initialize (set operator) for survivor and selector
     // initialize population with initial model and/or starting pop
 
-    if (params.n_jobs!=0) // TODO: change this to set taskflow jobs
+    // TODO: get rid of omp
+    if (params.n_jobs!=0) 
         omp_set_num_threads(params.get_n_jobs());
 
     // std::cout << "set number of threads" << std::endl;
@@ -184,6 +185,26 @@ void Engine<T>::run(Dataset &data)
     // vectors to store each island separatedly
     vector<vector<size_t>> island_parents;
     vector<vector<size_t>> survivors;
+    island_parents.clear();
+    island_parents.resize(pop.num_islands);
+
+    survivors.clear();
+    survivors.resize(pop.num_islands);
+
+    for (int i=0; i< params.num_islands; i++){
+        size_t idx_start = std::floor(i*params.pop_size/params.num_islands);
+        size_t idx_end   = std::floor((i+1)*params.pop_size/params.num_islands);
+
+        // auto delta = survivors.at(j).size(); // should have the same size as idx_end - idx_start
+        auto delta = idx_end - idx_start;
+
+        survivors.at(i).clear();
+        island_parents.at(i).clear();
+
+        survivors.at(i).resize(delta);
+        island_parents.at(i).resize(delta);
+    }
+
 
     //std::cout << "vectors are created " << std::endl;
     // TODO: progress bar? (it would be cool)
@@ -201,30 +222,30 @@ void Engine<T>::run(Dataset &data)
                 params.set_current_gen(generation);
                 batch = data.get_batch(); // will return the original dataset if it is set to dont use batch 
 
-                island_parents.clear();
-                island_parents.resize(pop.num_islands);
+                // island_parents.clear();
+                // island_parents.resize(pop.num_islands);
 
-                survivors.clear();
-                survivors.resize(pop.num_islands);
+                // survivors.clear();
+                // survivors.resize(pop.num_islands);
 
-                for (int i=0; i< params.num_islands; i++){
-                    size_t idx_start = std::floor(i*params.pop_size/params.num_islands);
-                    size_t idx_end   = std::floor((i+1)*params.pop_size/params.num_islands);
+                // for (int i=0; i< params.num_islands; i++){
+                //     size_t idx_start = std::floor(i*params.pop_size/params.num_islands);
+                //     size_t idx_end   = std::floor((i+1)*params.pop_size/params.num_islands);
 
-                    // auto delta = survivors.at(j).size(); // should have the same size as idx_end - idx_start
-                    auto delta = idx_end - idx_start;
+                //     // auto delta = survivors.at(j).size(); // should have the same size as idx_end - idx_start
+                //     auto delta = idx_end - idx_start;
 
-                    survivors.at(i).clear();
-                    island_parents.at(i).clear();
+                //     survivors.at(i).clear();
+                //     island_parents.at(i).clear();
 
-                    survivors.at(i).resize(delta);
-                    island_parents.at(i).resize(delta);
-                }
+                //     survivors.at(i).resize(delta);
+                //     island_parents.at(i).resize(delta);
+                // }
             
                 ++generation;
             }).name("prepare generation");// set generation in params, get batch
 
-            auto select_parents = subflow.for_each_index(0, this->params.num_islands, 1, [&](int island) {
+            auto run_generation = subflow.for_each_index(0, this->params.num_islands, 1, [&](int island) {
                 //std::cout << "inside select parents" << std::endl;
                 evaluator.update_fitness(this->pop, island, data, params, true); // fit the weights with all training data
 
@@ -241,26 +262,15 @@ void Engine<T>::run(Dataset &data)
                     //std::cout << i << std::endl;
                     island_parents.at(island).at(i) = parents.at(i);
                 }
-            }).name("select parents for each island");
-
-            // this is not thread safe. But it is nice to keep out of parallel execution the bits of the
-            // code that uses random generators (i think this helps to having random_seed to work properly). Also,
-            // fit and evaluation are paralellized in survive_population, and these are expensive to run 
-            auto generate_offspring = subflow.emplace([&]() {
                 
-                for (int island=0; island < params.num_islands; island++){
-                    //std::cout << "inside generate offspring" << std::endl;
-                    this->pop.add_offspring_indexes(island); // we just need to add them, not remove (they are removed in survival step, that will return a selection with the same number of individuals as the original island size)
-                    
-                    //std::cout << "before vary" << std::endl;
-                    
-                    // // variation to produce offspring
-                    variator.vary(this->pop, island, island_parents.at(island));
-                    //std::cout << "before update fitness" << std::endl;
-                }
-            }).name("generate offspring for each island");
-            
-            auto survive_population = subflow.for_each_index(0, this->params.num_islands, 1, [&](int island) {
+                //std::cout << "inside generate offspring" << std::endl;
+                this->pop.add_offspring_indexes(island); 
+
+                //std::cout << "before vary" << std::endl;
+                // // variation to produce offspring
+                variator.vary(this->pop, island, island_parents.at(island));
+                //std::cout << "before update fitness" << std::endl;
+
                 
                 evaluator.update_fitness(this->pop, island, data, params, true);
                 // evaluator.validation(*this->pop, island_range, data, params);
@@ -278,7 +288,7 @@ void Engine<T>::run(Dataset &data)
                     //std::cout << i << std::endl;
                     survivors.at(island).at(i) = island_survivors.at(i);
                 }
-            }).name("evaluate offspring and select survivors");
+            }).name("runs one generation at each island in parallel");
 
             auto update_pop = subflow.emplace([&]() {
                 //std::cout << "before updating survivors" << std::endl;
@@ -287,27 +297,22 @@ void Engine<T>::run(Dataset &data)
                 
                 //std::cout << "after updating survivors" << std::endl;
                 //std::cout << pop.print_models() << std::endl;
-            }).name("update population and detangle indexes");
-            
-            auto migration = subflow.emplace([&]() {
+                
                 //std::cout << "before migrating" << std::endl;
                 //std::cout << pop.print_models() << std::endl;
                 this->pop.migrate();
                 
                 //std::cout << "after migrating" << std::endl;
                 //std::cout << pop.print_models() << std::endl;
-                }).name("migration between islands");
+                }).name("update, migrate and disentangle indexes between islands");
             
             // TODO: update best, update log, increment generation counter (but not set in params)
             auto finish_gen = subflow.emplace([&]() { bool updated_best = this->update_best(data); }).name("update best, log, archive");
 
             // set-up subflow graph
-            prepare_gen.precede(select_parents);
-            select_parents.precede(generate_offspring);
-            generate_offspring.precede(survive_population);
-            survive_population.precede(update_pop);
-            update_pop.precede(migration);
-            migration.precede(finish_gen);
+            prepare_gen.precede(run_generation);
+            run_generation.precede(update_pop);
+            update_pop.precede(finish_gen);
         },
 
         [&]() { return 0; }, // jump back to the next iteration
@@ -315,6 +320,7 @@ void Engine<T>::run(Dataset &data)
         [&]() {
             if (params.save_population != "")
                 this->pop.save(params.save_population);
+
             this->set_is_fitted(true);
         } // work done, report last gen and stop
     ); // evolutionary loop

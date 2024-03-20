@@ -17,7 +17,8 @@ from pybrush import Parameters, Dataset, SearchSpace
 from pybrush import brush_rng
 
 
-# TODO: LOGGER AND ARCHIVE
+# TODO: fix deap estimator breaking with num_islands > 1. write a documentation 
+# on how to use brush with deap
 class BrushEstimator(BaseEstimator):
     """
     This is the base class for Deap-based Brush estimators. 
