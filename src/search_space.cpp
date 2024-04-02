@@ -258,7 +258,7 @@ tree<Node> SearchSpace::PTC2(Node root, int max_d, int max_size) const
         queue.push_back(make_tuple(child_spot, a, d));
     }
 
-    int max_arity = 3;
+    int max_arity = 4;
 
     Node n;
     // Now we actually start the PTC2 procedure to create the program tree
@@ -279,7 +279,7 @@ tree<Node> SearchSpace::PTC2(Node root, int max_d, int max_size) const
         auto [qspot, t, d] = RandomDequeue(queue);
 
         /* cout << "current depth: " << d << endl; */
-        if (d >= max_d)
+        if (d >= max_d || s >= max_size)
         {
             // choose terminal of matching type
             /* cout << "getting " << DataTypeName[t] << " terminal\n"; */ 
@@ -326,10 +326,14 @@ tree<Node> SearchSpace::PTC2(Node root, int max_d, int max_size) const
             }
         }
 
-        // increment is different based on node weights
+        // increment is different based on node weights (same rules as program::size)
         ++s;
+
         if (Is<NodeType::SplitBest>(n.node_type))
             s += 3;
+        else if (Is<NodeType::SplitOn>(n.node_type))
+            s += 2;
+
         if ( n.get_is_weighted()==true
         &&   Isnt<NodeType::Constant, NodeType::MeanLabel>(n.node_type) )
             s += 2;

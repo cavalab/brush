@@ -109,9 +109,13 @@ template<PT PType> struct Program
                 
                 // SplitBest has an optimizable decision tree consisting of 3 nodes
                 // (terminal, arithmetic comparison, value) that needs to be taken
-                // into account
+                // into account. Split on will have an random decision tree that can 
+                // have different sizes, but will also have the arithmetic comparison
+                // and a value.
                 if (Is<NodeType::SplitBest>(node.node_type))
                     acc += 3;
+                else if (Is<NodeType::SplitOn>(node.node_type))
+                    acc += 2;
 
                 if ( (include_weight && node.get_is_weighted()==true)
                 &&   Isnt<NodeType::Constant, NodeType::MeanLabel>(node.node_type) )
@@ -148,6 +152,8 @@ template<PT PType> struct Program
             // into account
             if (Is<NodeType::SplitBest>(it.node->data.node_type))
                 acc += 3;
+            else if (Is<NodeType::SplitOn>(it.node->data.node_type))
+                acc += 2;
 
             if ( (include_weight && it.node->data.get_is_weighted()==true)
             &&   Isnt<NodeType::Constant, NodeType::MeanLabel>(it.node->data.node_type) )
