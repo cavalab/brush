@@ -341,8 +341,12 @@ tree<Node> SearchSpace::PTC2(Node root, int max_d, int max_size) const
 
         // increment is different based on node weights
         ++s;
+        
         if (Is<NodeType::SplitBest>(n.node_type))
             s += 3;
+        else if (Is<NodeType::SplitOn>(n.node_type))
+            s += 2;
+
         if ( n.get_is_weighted()==true
         &&   Isnt<NodeType::Constant, NodeType::MeanLabel>(n.node_type) )
             s += 2;
