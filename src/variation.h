@@ -73,11 +73,14 @@ protected:
             [include_weight, &acc](auto& node){ 
                 ++acc; // the node operator or terminal
                 
+                // TODO: the same size check occurs in search_space.cpp and program.h. Make a function (stop doing hardcoded)
                 // SplitBest has an optimizable decision tree consisting of 3 nodes
                 // (terminal, arithmetic comparison, value) that needs to be taken
                 // into account
                 if (Is<NodeType::SplitBest>(node.node_type))
                     acc += 3;
+                else if (Is<NodeType::SplitOn>(node.node_type))
+                    acc += 2;
 
                 if ( (include_weight && node.get_is_weighted()==true)
                 &&   Isnt<NodeType::Constant, NodeType::MeanLabel>(node.node_type) )
