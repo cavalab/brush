@@ -86,6 +86,7 @@ struct WeightOptimizer
     {
         if (program.get_n_weights() == 0)
             return;
+            
         // fmt::print("number of weights: {}\n",program.get_n_weights());
         auto init_weights = program.get_weights();
 

@@ -143,10 +143,11 @@ class Dataset
 
         /// 3. initialize data from X and feature names
         Dataset(const ArrayXXf& X, const vector<string>& vn,
+             bool c = false,
              float validation_size = 0.0,
              float batch_size = 1.0
             ) 
-            : classification(false)
+            : classification(c)
             , features(make_features(X,map<string, State>{},vn))
             , validation_size(validation_size)
             , use_validation(validation_size > 0.0 && validation_size < 1.0)
@@ -161,9 +162,10 @@ class Dataset
         //// reference dataset. Useful for bypass Brush's type sniffer and
         //// doing predictions with small number of samples
         Dataset(const ArrayXXf& X, const Dataset& ref_dataset,
-             const vector<string>& vn
+             const vector<string>& vn,
+             bool c = false
             )
-            : classification(false)
+            : classification(c)
             , features(copy_and_make_features(X,ref_dataset,vn))
             , validation_size(0.0)
             , use_validation(false)

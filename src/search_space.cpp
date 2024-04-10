@@ -6,6 +6,8 @@ namespace Brush{
 
 float calc_initial_weight(const ArrayXf& value, const ArrayXf& y)
 {
+    // OBS: only for terminals!
+
     // weights are initialized as the slope of the z-score of x and y.
 
     // If y has different length from X, we get a core dump here. 
@@ -180,9 +182,37 @@ void SearchSpace::init(const Dataset& d, const unordered_map<string,float>& user
 
     vector<Node> terminals = generate_terminals(d, weights_init);
     
+    // If it is a classification problem, we need to add the fixed root nodes 
+    // (logistic for binary classification, softmax for multiclassification).
+    // Sometimes, the user may not specify these two nodes as candidates when 
+    // sampling functions, so we check if they are already in the terminal set, and
+    // we add them with zero prob if they are not. They need to be in the func set
+    // when calling GenerateNodeMap, so the search_space will contain all the hashes
+    // and signatures for them (and they can be used only in program root).
+    // TODO: fix softmax and add it here
+
+    // Copy the original map using the copy constructor
+    std::unordered_map<std::string, float> extended_user_ops(user_ops);
+
+    if (d.classification)
+    {        
+        // Convert ArrayXf to std::vector<float> for compatibility with std::set
+        std::vector<float> vec(d.y.data(), d.y.data() + d.y.size());
+
+        std::set<float> unique_classes(vec.begin(), vec.end());
+
+        if (unique_classes.size()==2 && (user_ops.find("Logistic") != user_ops.end())) {
+            extended_user_ops.insert({"Logistic", 0.0f});
+        }
+        else if (user_ops.find("Softmax") != user_ops.end()) {
+            // extended_user_ops.insert({"Softmax", 0.0f});
+        }
+    }
+
     /* fmt::print("generate nodetype\n"); */
-    GenerateNodeMap(user_ops, d.unique_data_types, 
+    GenerateNodeMap(extended_user_ops, d.unique_data_types, 
                     std::make_index_sequence<NodeTypes::OpCount>());
+
     // map terminals
     /* fmt::print("looping through terminals...\n"); */
     for (const auto& term : terminals)
@@ -246,6 +276,7 @@ tree<Node> SearchSpace::PTC2(Node root, int max_d, int max_size) const
     // auto spot = Tree.set_head(n);
     /* cout << "inserting...\n"; */
     auto spot = Tree.insert(Tree.begin(), root);
+    
     // node depth
     int d = 1;
     // current tree size

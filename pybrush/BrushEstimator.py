@@ -189,14 +189,6 @@ class BrushEstimator(BaseEstimator):
         if self.mode=="classification":
             self.n_classes_ = len(np.unique(y))
 
-            # Including necessary functions for classification programs. This
-            # is needed so the search space can create the hash and mapping of
-            # the functions.
-            if self.n_classes_ == 2 and "Logistic" not in self.functions_:
-                self.functions_["Logistic"] = 1.0 
-            # elif "Softmax" not in self.functions_: # TODO: implement multiclassific.
-            #     self.functions_["Softmax"] = 1.0 
-
         # These have a default behavior to return something meaningfull if 
         # no values are set
         self.train_ = self.data_.get_training_data()
@@ -219,6 +211,10 @@ class BrushEstimator(BaseEstimator):
         self.parameters_.mig_prob = self.mig_prob
         self.parameters_.functions = self.functions
         self.parameters_.mutation_probs = self.mutation_probs
+
+        self.parameters_.scorer_ = "mse"
+        if self.mode == "classification":
+            self.parameters_.scorer_ = "log" if self.n_classes_ == 2 else "multi_log"
 
         if self.random_state is not None:
             self.parameters_.random_state = self.random_state
@@ -251,10 +247,13 @@ class BrushEstimator(BaseEstimator):
 
         if y is None:
             return Dataset(X=X,
-                    feature_names=feature_names, validation_size=validation_size)
+                    feature_names=feature_names, c=self.mode == "classification", 
+                    validation_size=validation_size)
 
         return Dataset(X=X, y=y,
-            feature_names=feature_names, validation_size=validation_size)
+            feature_names=feature_names, c=self.mode == "classification",
+            validation_size=validation_size)
+
 
     def predict(self, X):
         """Predict using the best estimator in the archive. """
@@ -266,8 +265,8 @@ class BrushEstimator(BaseEstimator):
 
         assert isinstance(X, np.ndarray)
 
-        data = Dataset(X=X, ref_dataset=self.data_, 
-                              feature_names=self.feature_names_)
+        data = Dataset(X=X, ref_dataset=self.data_, c=self.mode == "classification",
+                       feature_names=self.feature_names_)
         
         # data = self._make_data(X, feature_names=self.feature_names_)
 
@@ -327,7 +326,7 @@ class BrushClassifier(BrushEstimator,ClassifierMixin):
 
         assert isinstance(X, np.ndarray)
 
-        data = Dataset(X=X, ref_dataset=self.data_, 
+        data = Dataset(X=X, ref_dataset=self.data_, c=True,
                               feature_names=self.feature_names_)
 
         # data = self._make_data(X, feature_names=self.feature_names_)
