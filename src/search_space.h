@@ -606,12 +606,13 @@ struct SearchSpace
             const vector<DataType>& unique_data_types
         )
         {
-            
             bool use_all = user_ops.size() == 0;
             auto name = NodeTypeName[NT];
-            //TODO: address this (whether weights should be included by default)
-            // bool weighted = (IsWeighable<NT>() && is_same_v<typename S::RetType::Scalar, float>);
+
             bool weighted = false;
+            if (Is<NodeType::OffsetSum>(NT)) // this has to have weights on by default
+                weighted = true;
+    
             auto n_maybe = CreateNode<NT,S>(unique_data_types, use_all, weighted);
 
             if (n_maybe){

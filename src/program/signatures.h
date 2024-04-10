@@ -295,6 +295,7 @@ struct Signatures<N, enable_if_t<is_in_v<N,
 template<NodeType N>
 struct Signatures<N, enable_if_t<is_in_v<N, 
     NodeType::Sum,
+    NodeType::OffsetSum,
     NodeType::Prod,
     NodeType::Min, 
     NodeType::Max,
@@ -304,7 +305,7 @@ struct Signatures<N, enable_if_t<is_in_v<N,
         using unaryTuple = std::tuple<
             Signature<ArrayXf(ArrayXXf)>,
             Signature<ArrayXf(TimeSeriesf)>
-        >;
+        >;// TODO: should I implement compatibility with integers?
 
         using naryTuple = NarySignatures_t<ArrayXf,ArrayXf,MAX_ARGS>;
 

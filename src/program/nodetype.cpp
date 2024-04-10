@@ -51,6 +51,7 @@ std::map<std::string, NodeType> NodeNameType = {
     {"Median", NodeType::Median},
     {"Count", NodeType::Count},
     {"Sum", NodeType::Sum},
+    {"OffsetSum", NodeType::OffsetSum},
     {"Prod", NodeType::Prod},
     {"ArgMax", NodeType::ArgMax},
 

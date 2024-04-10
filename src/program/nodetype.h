@@ -62,22 +62,23 @@ enum class NodeType : uint64_t { // Each node type must have a complexity
     Max                 = 1UL << 24UL,
     Mean                = 1UL << 25UL,
     Median              = 1UL << 26UL,
-    Sum                 = 1UL << 27UL,
-    Prod                = 1UL << 28UL,
+    Prod                = 1UL << 27UL,
+    Sum                 = 1UL << 28UL,
+    OffsetSum           = 1UL << 29UL, // Sum with weight as one of its arguments
 
     // Transformers 
-    Softmax             = 1UL << 29UL,
+    Softmax             = 1UL << 30UL,
 
     // Binary
-    Add                 = 1UL << 30UL,
-    Sub                 = 1UL << 31UL,
-    Mul                 = 1UL << 32UL,
-    Div                 = 1UL << 33UL,
-    Pow                 = 1UL << 34UL,
+    Add                 = 1UL << 31UL,
+    Sub                 = 1UL << 32UL,
+    Mul                 = 1UL << 33UL,
+    Div                 = 1UL << 34UL,
+    Pow                 = 1UL << 35UL,
 
     //split
-    SplitBest           = 1UL << 35UL,
-    SplitOn             = 1UL << 36UL,
+    SplitBest           = 1UL << 36UL,
+    SplitOn             = 1UL << 37UL,
 
     // these ones change type
     /* Equals              = 1UL << 39UL, */
@@ -87,29 +88,29 @@ enum class NodeType : uint64_t { // Each node type must have a complexity
     /* Geq                 = 1UL << 43UL, */
 
     // boolean
-    And                 = 1UL << 37UL,
-    Or                  = 1UL << 38UL,
-    Not                 = 1UL << 39UL,
+    And                 = 1UL << 38UL,
+    Or                  = 1UL << 39UL,
+    Not                 = 1UL << 40UL,
     // Xor                 = 1UL << 39UL,
 
     // leaves (must be the last ones in this enum)
-    MeanLabel           = 1UL << 40UL,
-    Constant            = 1UL << 41UL,
-    Terminal            = 1UL << 42UL,
-    ArgMax              = 1UL << 43UL, // TODO: move before leaves
-    Count               = 1UL << 44UL, 
+    MeanLabel           = 1UL << 41UL,
+    Constant            = 1UL << 42UL,
+    Terminal            = 1UL << 43UL,
+    ArgMax              = 1UL << 44UL, // TODO: move before leaves
+    Count               = 1UL << 45UL, 
     
     // custom
-    CustomUnaryOp       = 1UL << 44UL,
-    CustomBinaryOp      = 1UL << 45UL,
-    CustomSplit         = 1UL << 46UL
+    CustomUnaryOp       = 1UL << 46UL,
+    CustomBinaryOp      = 1UL << 47UL,
+    CustomSplit         = 1UL << 48UL
 };
 
 
 using UnderlyingNodeType = std::underlying_type_t<NodeType>;
 struct NodeTypes {
     // magic number keeping track of the number of different node types
-    static constexpr size_t Count = 43;
+    static constexpr size_t Count = 44;
     static constexpr size_t OpCount = Count-3; // subtracting leaves
 
     // returns the index of the given type in the NodeType enum
@@ -196,6 +197,7 @@ NLOHMANN_JSON_SERIALIZE_ENUM( NodeType, {
     {NodeType::Median,"Median" },
     {NodeType::Count,"Count" },
     {NodeType::Sum,"Sum" },
+    {NodeType::OffsetSum,"OffsetSum" },
     {NodeType::Prod,"Prod" },
     {NodeType::ArgMax,"ArgMax" },
 
@@ -292,6 +294,7 @@ static constexpr bool NaryOp = is_in_v<nt,
     NT::Mean,
     NT::Median,
     NT::Sum,
+    NT::OffsetSum,
     NT::Prod,
     NT::Softmax
 >;

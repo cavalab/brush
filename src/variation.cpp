@@ -187,10 +187,16 @@ public:
         if (size_with_weights(Tree) < max_size()) {
             std::transform(Tree.begin(), Tree.end(), weights.begin(),
                         [&](const auto& n){
+                            // some nodetypes must always have a weight                            
+                            if (Is<NodeType::OffsetSum>(n.node_type))
+                                return 0.0f;
+
                             // only weighted nodes can be toggled off
                             if (!n.get_is_weighted()
                             &&  IsWeighable(n.ret_type))
+                            {
                                 return n.get_prob_change();
+                            }
                             else
                                 return 0.0f; 
                         });
@@ -206,7 +212,7 @@ public:
     auto operator()(tree<Node>& Tree, Iter spot) const -> bool override
     {
         // cout << "toggle_weight_on mutation\n";
-
+        
         if (spot.node->data.get_is_weighted()==true // cant turn on whats already on
         ||  !IsWeighable(spot.node->data.ret_type)) // does not accept weights (e.g. boolean)
             return false; // false indicates that mutation failed and should return std::nullopt
@@ -236,6 +242,10 @@ public:
 
         std::transform(Tree.begin(), Tree.end(), weights.begin(),
                     [&](const auto& n){
+                        // some nodetypes must always have a weight                            
+                        if (Is<NodeType::OffsetSum>(n.node_type))
+                            return 0.0f;
+                            
                         if (n.get_is_weighted()
                         &&  IsWeighable(n.ret_type))
                             return n.get_prob_change();

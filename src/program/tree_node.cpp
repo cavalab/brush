@@ -106,12 +106,13 @@ unordered_map<NodeType, int> operator_complexities = {
     {NodeType::During, 3},
 
     // Reducers
-    {NodeType::Min   , 3},
-    {NodeType::Max   , 3},
-    {NodeType::Mean  , 3},
-    {NodeType::Median, 3},
-    {NodeType::Sum   , 2},
-    {NodeType::Prod  , 3},
+    {NodeType::Min      , 3},
+    {NodeType::Max      , 3},
+    {NodeType::Mean     , 3},
+    {NodeType::Median   , 3},
+    {NodeType::Sum      , 2},
+    {NodeType::OffsetSum, 2},
+    {NodeType::Prod     , 3},
 
     // Transformers 
     {NodeType::Softmax, 4},

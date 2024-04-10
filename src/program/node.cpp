@@ -73,6 +73,19 @@ string Node::get_model(const vector<string>& children) const noexcept
             children.at(2)
             );
     }
+    else if (Is<NodeType::OffsetSum>(node_type)){
+        // weight is part of the model
+        string args = fmt::format("{},", W);
+
+        for (int i = 0; i < children.size(); ++i){
+            args += children.at(i);
+            if (i < children.size()-1)
+                args += ",";
+        }
+
+        // TODO: rename it to just Sum (the user doesnt need to know the offset is fixed)
+        return fmt::format("OffsetSum({})", args);
+    }
     else{
         string args = "";
         for (int i = 0; i < children.size(); ++i){
@@ -178,6 +191,7 @@ void init_node_with_default_signature(Node& node)
         NT::Mean,
         NT::Median,
         NT::Sum,
+        NT::OffsetSum,
         NT::Prod,
         NT::Softmax
         >(n))
