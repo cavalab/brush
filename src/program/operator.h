@@ -337,6 +337,164 @@ struct Operator<NodeType::MeanLabel, S, Fit>
 };
 
 ////////////////////////////////////////////////////////////////////////////
+// OffsetSum overload
+template<NodeType NT, typename S, bool Fit> 
+struct Operator<NT, S, Fit, enable_if_t<is_in_v<NT, NodeType::OffsetSum>>> 
+{
+    /**
+    *   @brief set argument types to those of the signature unless:
+    * 
+    *   a) the operator is unary and there are more than one arguments
+    *   b) the operator is binary and associative  
+    * 
+    *   In the case of a) or b), arguments to the operator are stacked into an 
+    *   array and the operator is applied to that array
+    */
+    using ArgTypes = conditional_t<
+        ((UnaryOp<NT> || NaryOp<NT>) && S::ArgCount > 1),
+        Array<typename S::FirstArg::Scalar, -1, S::ArgCount>,
+        typename S::ArgTypes>;
+
+    /// @brief return type of the operator
+    using RetType = typename S::RetType;
+
+    /// @brief stores the argument count of the operator
+    static constexpr size_t ArgCount = S::ArgCount;
+
+    /// utility for returning the type of the Nth argument
+    template <std::size_t N>
+    using NthType = typename S::NthType<N>; 
+
+    /// set weight type
+    using W = typename S::WeightType; 
+
+    /// @brief wrapper function for the node function
+    static constexpr auto F = [](const auto& ...args) { 
+        Function<NT> f; 
+        return f(args...); 
+    }; 
+
+    Operator() = default;
+    ////////////////////////////////////////////////////////////////////////////////
+    // Utilities to grab child outputs.
+
+    /// get a std::array or eigen array of kids
+    template<typename T=ArgTypes> requires(is_std_array_v<T> || is_eigen_array_v<T>) 
+    T get_kids(const Dataset& d, TreeNode& tn, const W** weights=nullptr) const
+    {
+        T child_outputs;
+        using arg_type = std::conditional_t<is_std_array_v<T>,
+            typename T::value_type, Array<typename S::FirstArg::Scalar, -1, 1>>;
+        if constexpr (is_eigen_array_v<T>)
+            child_outputs.resize(d.get_n_samples(), Eigen::NoChange);
+
+        TreeNode* sib = tn.first_child;
+        for (int i = 0; i < ArgCount; ++i)
+        {
+            if (sib == nullptr)
+                HANDLE_ERROR_THROW("bad sibling ptr in get kids");
+            if constexpr (Fit){
+                if constexpr(is_std_array_v<T>)
+                    child_outputs.at(i) = sib->fit<arg_type>(d);
+                else
+                    child_outputs.col(i) = sib->fit<arg_type>(d);
+            }
+            else{
+                if constexpr(is_std_array_v<T>)
+                    child_outputs.at(i) = sib->predict<arg_type>(d, weights);
+                else
+                    child_outputs.col(i) = sib->predict<arg_type>(d, weights);
+            }
+            sib = sib->next_sibling;
+        }
+        return child_outputs;
+    };
+
+    /// gets one kid for a tuple of kids
+    template<int I>
+    NthType<I> get_kid(const Dataset& d,TreeNode& tn, const W** weights ) const
+    {
+        auto sib = tree<TreeNode>::sibling_iterator(tn.first_child) ;
+        sib += I;
+        if constexpr(Fit)
+            return sib->fit<NthType<I>>(d);
+        else
+            return sib->predict<NthType<I>>(d,weights);
+    };
+
+    /**
+     * @brief Makes and returns a tuple of child outputs
+     * 
+     * @tparam T a tuple  
+     * @tparam Is integer sequence 
+     * @param d dataset
+     * @param tn a tree node
+     * @return a tuple with elements corresponding to each child node
+     */
+    template<typename T, size_t ...Is> requires(is_tuple_v<T>) 
+    T get_kids_seq(const Dataset& d, TreeNode& tn, const W** weights, std::index_sequence<Is...>) const 
+    { 
+        return std::make_tuple(get_kid<Is>(d,tn,weights)...);
+    };
+
+    /// @brief get a std::tuple of kids. Used when child arguments are different types.
+    /// @tparam T argument types 
+    /// @param d the dataset
+    /// @param tn the tree node
+    /// @param weights option pointer to a weight array, used in place of node weight
+    /// @return a tuple of the child arguments
+    template<typename T=ArgTypes> requires(is_tuple_v<T>) 
+    T get_kids(const Dataset& d, TreeNode& tn, const W** weights=nullptr) const
+    {
+        return get_kids_seq<T>(d, tn, weights, std::make_index_sequence<ArgCount>{});
+    };
+
+    ///////////////////////////////////////////////////////////////////////////
+
+    /// @brief Apply node function in a functional style
+    /// @tparam T argument types
+    /// @param inputs the child node outputs
+    /// @return return values applying F to the inputs
+    template<typename T=ArgTypes> requires ( is_std_array_v<T> || is_tuple_v<T>)
+    RetType apply(const T& inputs) const
+    {
+        return std::apply(F, inputs);
+    }
+
+    /// @brief Apply the node function like a function
+    /// @tparam T argument types
+    /// @param inputs the child node outputs
+    /// @return return values applying F to the inputs
+    template<typename T=ArgTypes> requires ( is_eigen_array_v<T> && !is_std_array_v<T>)
+    RetType apply(const T& inputs) const
+    {
+        return F(inputs);
+    }
+
+    /// @brief evaluate the operator on the data. main entry point. 
+    /// @tparam T argument types
+    /// @tparam Scalar the underlying scalar type of the return type
+    /// @param d dataset
+    /// @param tn tree node
+    /// @param weights option pointer to a weight array, used in place of node weight
+    /// @return output values from applying operator function 
+    template<typename T=ArgTypes, typename Scalar=RetType::Scalar>
+    RetType eval(const Dataset& d, TreeNode& tn, const W** weights=nullptr) const
+    {
+        auto inputs = get_kids(d, tn, weights);
+        if constexpr (is_one_of_v<Scalar,float,fJet>)
+        {
+            if (tn.data.get_is_weighted())
+            {
+                auto w = util::get_weight<RetType,Scalar,W>(tn, weights);
+                return this->apply(inputs) + w;
+            }
+        }
+        return this->apply(inputs);
+    };
+};
+
+////////////////////////////////////////////////////////////////////////////
 // Operator overloads 
 //  Split
 #include "split.h"

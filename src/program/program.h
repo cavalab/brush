@@ -118,7 +118,7 @@ template<PT PType> struct Program
                     acc += 2;
 
                 if ( (include_weight && node.get_is_weighted()==true)
-                &&   Isnt<NodeType::Constant, NodeType::MeanLabel>(node.node_type) )
+                &&   Isnt<NodeType::Constant, NodeType::MeanLabel, NodeType::OffsetSum>(node.node_type) )
                     // Taking into account the weight and multiplication, if enabled.
                     // weighted constants still count as 1 (simpler than constant terminals)
                     acc += 2;
@@ -156,7 +156,7 @@ template<PT PType> struct Program
                 acc += 2;
 
             if ( (include_weight && it.node->data.get_is_weighted()==true)
-            &&   Isnt<NodeType::Constant, NodeType::MeanLabel>(it.node->data.node_type) )
+            &&   Isnt<NodeType::Constant, NodeType::MeanLabel, NodeType::OffsetSum>(it.node->data.node_type) )
                 // Taking into account the weight and multiplication, if enabled.
                 // weighted constants still count as 1 (simpler than constant terminals)
                 acc += 2;
@@ -458,7 +458,7 @@ template<PT PType> struct Program
                 // kid_id = kid_id.substr(2);
 
                 if (kid->data.get_is_weighted()
-                && Isnt<NodeType::Constant, NodeType::MeanLabel>(kid->data.node_type)){
+                && Isnt<NodeType::Constant, NodeType::MeanLabel, NodeType::OffsetSum>(kid->data.node_type)){
                     edge_label = fmt::format("{:.2f}",kid->data.W);
                 }
 

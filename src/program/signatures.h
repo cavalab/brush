@@ -295,6 +295,7 @@ struct Signatures<N, enable_if_t<is_in_v<N,
 template<NodeType N>
 struct Signatures<N, enable_if_t<is_in_v<N, 
     NodeType::Sum,
+    NodeType::OffsetSum,
     NodeType::Prod,
     NodeType::Min, 
     NodeType::Max,

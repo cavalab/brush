@@ -78,7 +78,7 @@ protected:
                     acc += 2;
 
                 if ( (include_weight && node.get_is_weighted()==true)
-                &&   Isnt<NodeType::Constant, NodeType::MeanLabel>(node.node_type) )
+                &&   Isnt<NodeType::Constant, NodeType::MeanLabel, NodeType::OffsetSum>(node.node_type) )
                     // Taking into account the weight and multiplication, if enabled.
                     // weighted constants still count as 1 (simpler than constant terminals)
                     acc += 2;
@@ -279,6 +279,10 @@ public:
         if (size_with_weights(Tree) < max_size()) {
             std::transform(Tree.begin(), Tree.end(), weights.begin(),
                         [&](const auto& n){
+                            // some nodetypes must always have a weight                            
+                            if (Is<NodeType::OffsetSum>(n.node_type))
+                                return 0.0f;
+                                
                             // only weighted nodes can be toggled off
                             if (!n.get_is_weighted()
                             &&  IsWeighable(n.ret_type))
@@ -328,6 +332,10 @@ public:
 
         std::transform(Tree.begin(), Tree.end(), weights.begin(),
                     [&](const auto& n){
+                        // some nodetypes must always have a weight                            
+                        if (Is<NodeType::OffsetSum>(n.node_type))
+                            return 0.0f;
+                            
                         if (n.get_is_weighted()
                         &&  IsWeighable(n.ret_type))
                             return n.get_prob_change();

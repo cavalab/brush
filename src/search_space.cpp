@@ -362,7 +362,7 @@ tree<Node> SearchSpace::PTC2(Node root, int max_d, int max_size) const
             s += 2;
 
         if ( n.get_is_weighted()==true
-        &&   Isnt<NodeType::Constant, NodeType::MeanLabel>(n.node_type) )
+        &&   Isnt<NodeType::Constant, NodeType::MeanLabel, NodeType::OffsetSum>(n.node_type) )
             s += 2;
 
         /* cout << "current tree size: " << s << endl; */
