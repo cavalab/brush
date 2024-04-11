@@ -315,14 +315,6 @@ class BrushEstimator(BaseEstimator):
         if self.mode=="classification":
             self.n_classes_ = len(np.unique(y))
 
-            # Including necessary functions for classification programs. This
-            # is needed so the search space can create the hash and mapping of
-            # the functions.
-            if self.n_classes_ == 2 and "Logistic" not in self.functions_:
-                self.functions_["Logistic"] = 1.0 
-            # elif "Softmax" not in self.functions_: # TODO: implement multiclassific.
-            #     self.functions_["Softmax"] = 1.0 
-
         # Weight of each objective (+ for maximization, - for minimization)
         obj_weight = {
             "error"      : +1.0 if self.mode=="classification" else -1.0,
@@ -406,10 +398,12 @@ class BrushEstimator(BaseEstimator):
 
         if y is None:
             return _brush.Dataset(X=X,
-                    feature_names=feature_names, validation_size=validation_size)
+                    feature_names=feature_names, c=self.mode == "classification", 
+                    validation_size=validation_size)
 
         return _brush.Dataset(X=X, y=y,
-            feature_names=feature_names, validation_size=validation_size)
+            feature_names=feature_names, c=self.mode == "classification",
+            validation_size=validation_size)
 
 
     def predict(self, X):
@@ -422,7 +416,7 @@ class BrushEstimator(BaseEstimator):
 
         assert isinstance(X, np.ndarray)
 
-        data = _brush.Dataset(X=X, ref_dataset=self.data_, 
+        data = _brush.Dataset(X=X, ref_dataset=self.data_, c=self.mode == "classification", 
                               feature_names=self.feature_names_)
         
         # data = self._make_data(X, feature_names=self.feature_names_)
@@ -518,7 +512,7 @@ class BrushClassifier(BrushEstimator,ClassifierMixin):
 
         assert isinstance(X, np.ndarray)
 
-        data = _brush.Dataset(X=X, ref_dataset=self.data_, 
+        data = _brush.Dataset(X=X, ref_dataset=self.data_, c=True,
                               feature_names=self.feature_names_)
 
         # data = self._make_data(X, feature_names=self.feature_names_)

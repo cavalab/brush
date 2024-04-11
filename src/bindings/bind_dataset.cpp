@@ -12,13 +12,15 @@ void bind_dataset(py::module & m)
         // construct from X, feature names (and optional validation and batch sizes) with constructor 3.
         .def(py::init([](const Ref<const ArrayXXf>& X, 
                          const vector<string>& feature_names=vector<string>(),
+                         const bool c=false,
                          const float validation_size=0.0,
                          const float batch_size=1.0){
                 return br::Data::Dataset(
-                    X, feature_names, validation_size, batch_size);
+                    X, feature_names, c, validation_size, batch_size);
             }), 
             py::arg("X"),
             py::arg("feature_names") = vector<string>(),
+            py::arg("c") = false,
             py::arg("validation_size") = 0.0,
             py::arg("batch_size") = 1.0
         )
@@ -26,14 +28,16 @@ void bind_dataset(py::module & m)
         .def(py::init([](const Ref<const ArrayXXf>& X, 
                          const Ref<const ArrayXf>& y,
                          const vector<string>& feature_names=vector<string>(),
+                         const bool c=false,
                          const float validation_size=0.0,
                          const float batch_size=1.0){
                 return br::Data::Dataset(
-                    X, y, feature_names, {}, false, validation_size, batch_size);
+                    X, y, feature_names, {}, c, validation_size, batch_size);
             }), 
             py::arg("X"),
             py::arg("y"),
             py::arg("feature_names") = vector<string>(),
+            py::arg("c") = false,
             py::arg("validation_size") = 0.0,
             py::arg("batch_size") = 1.0
         )
@@ -43,12 +47,14 @@ void bind_dataset(py::module & m)
         // no feature names).
         .def(py::init([](const Ref<const ArrayXXf>& X, 
                          const br::Data::Dataset& ref_dataset,
-                         const vector<string>& feature_names){
-                return br::Data::Dataset(X, ref_dataset, feature_names);
+                         const vector<string>& feature_names,
+                         const bool c=false){
+                return br::Data::Dataset(X, ref_dataset, feature_names, c);
             }), 
             py::arg("X"),
             py::arg("ref_dataset"),
-            py::arg("feature_names")
+            py::arg("feature_names"),
+            py::arg("c") = false
         )
         
         .def_readwrite("y", &br::Data::Dataset::y)
