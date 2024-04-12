@@ -201,10 +201,10 @@ void SearchSpace::init(const Dataset& d, const unordered_map<string,float>& user
 
         std::set<float> unique_classes(vec.begin(), vec.end());
 
-        if (unique_classes.size()==2 && (user_ops.find("Logistic") != user_ops.end())) {
+        if (unique_classes.size()==2 && (user_ops.find("Logistic") == user_ops.end())) {
             extended_user_ops.insert({"Logistic", 0.0f});
         }
-        else if (user_ops.find("Softmax") != user_ops.end()) {
+        else if (user_ops.find("Softmax") == user_ops.end()) {
             // extended_user_ops.insert({"Softmax", 0.0f});
         }
     }
