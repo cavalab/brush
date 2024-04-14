@@ -441,6 +441,9 @@ template<PT PType> struct Program
             if (Is<NodeType::SplitBest>(parent->data.node_type)){
                 node_label = fmt::format("{}>{:.2f}?", parent->data.get_feature(), parent->data.W); 
             }
+            if (Is<NodeType::OffsetSum>(parent->data.node_type)){
+                node_label = fmt::format("{:.2f} + Sum", parent->data.W); 
+            }
             out += fmt::format("\"{}\" [label=\"{}\"];\n", parent_id, node_label); 
 
             // add edges to the node's children
