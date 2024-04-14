@@ -97,6 +97,8 @@ TEST(Program, PredictWithWeights)
         
     Dataset data = Data::read_csv("docs/examples/datasets/d_enc.csv","label");
 
+    ASSERT_FALSE(data.classification);
+
     SearchSpace SS;
     SS.init(data);
     
@@ -138,16 +140,20 @@ TEST(Program, FitClassifier)
 {
     Parameters params;
         
-    Dataset data = Data::read_csv("docs/examples/datasets/d_analcatdata_aids.csv","target");
+    Dataset data = Data::read_csv("docs/examples/datasets/d_analcatdata_aids.csv", "target");
+    
+    ASSERT_TRUE(data.classification);
     SearchSpace SS;
+
     SS.init(data);
 
     for (int d = 1; d < 10; ++d) { 
         for (int s = 1; s < 100; s+=10) {
 
-            params.max_size  = s;
             params.max_depth = d;
+            params.max_size  = s;
 
+            fmt::print( "Calling make_classifier...\n");
             auto PRG = SS.make_classifier(0, 0, params);
 
             fmt::print(
@@ -156,8 +162,12 @@ TEST(Program, FitClassifier)
                 "=================================================\n",
                 d, s, PRG.get_model("compact", true)
             );
+
+            fmt::print( "Fitting the model...\n");
             PRG.fit(data);
+            fmt::print( "predict...\n");
             auto y = PRG.predict(data);
+            fmt::print( "predict proba...\n");
             auto yproba = PRG.predict_proba(data);
         }
     }
