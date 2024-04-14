@@ -176,9 +176,14 @@ void Engine<T>::run(Dataset &data)
     //std::cout << "stop criteria is ready " << std::endl;
     // stop criteria 
     unsigned generation = 0;
+    unsigned stall_count = 0;
+
     auto stop = [&]() {
         //std::cout << "inside stop " << std::endl;
-        return generation == params.gens; // TODO: max stall, max time, etc
+        // TODO: max time
+        return (  (generation == params.gens)
+               && (params.max_stall == 0 || stall_count < params.max_stall) 
+        );
     };
 
     // TODO: check that I dont use pop.size() (or I use correctly, because it will return the size with the slots for the offspring)
@@ -204,7 +209,6 @@ void Engine<T>::run(Dataset &data)
         survivors.at(i).resize(delta);
         island_parents.at(i).resize(delta);
     }
-
 
     //std::cout << "vectors are created " << std::endl;
     // TODO: progress bar? (it would be cool)
@@ -242,7 +246,6 @@ void Engine<T>::run(Dataset &data)
                 //     island_parents.at(i).resize(delta);
                 // }
             
-                ++generation;
             }).name("prepare generation");// set generation in params, get batch
 
             auto run_generation = subflow.for_each_index(0, this->params.num_islands, 1, [&](int island) {
@@ -306,8 +309,18 @@ void Engine<T>::run(Dataset &data)
                 //std::cout << pop.print_models() << std::endl;
             }).name("update, migrate and disentangle indexes between islands");
             
-            // TODO: update best, update log, increment generation counter (but not set in params)
-            auto finish_gen = subflow.emplace([&]() { bool updated_best = this->update_best(data); }).name("update best, log, archive");
+            // TODO: update log and archive
+            auto finish_gen = subflow.emplace([&]() {
+                bool updated_best = this->update_best(data);
+                
+                if (generation == 0 || updated_best )
+                    stall_count = 0;
+                else
+                    ++stall_count;
+                
+                ++generation;
+
+            }).name("update best, log, archive, stall");
 
             // set-up subflow graph
             prepare_gen.precede(run_generation);

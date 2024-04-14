@@ -25,11 +25,14 @@ public:
 
     unsigned int current_gen = 1;
 
-    int pop_size           = 100;
-    int gens               = 1000;      
-    unsigned int max_depth = 6; // TODO: make all tests be based on these values for max depth and size
+    // TODO: rename it to max_gens
+    int pop_size  = 100;
+    int gens      = 1000;  
+    int max_stall = 0;
 
+    unsigned int max_depth = 6; // TODO: make all tests be based on these values for max depth and size
     unsigned int max_size  = 50;
+
     vector<string> objectives{"error","complexity"}; // error should be generic and deducted based on mode
 
     string sel  = "lexicase"; //selection method
@@ -85,6 +88,9 @@ public:
 
     void set_gens(int new_gens){ gens = new_gens; };
     int get_gens(){ return gens; };
+    
+    void set_max_stall(int new_max_stall){ max_stall = new_max_stall; };
+    int get_max_stall(){ return max_stall; };
     
     void set_load_population(string new_load_population){ load_population = new_load_population; };
     string get_load_population(){ return load_population; };

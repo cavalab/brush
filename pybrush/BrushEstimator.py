@@ -34,6 +34,9 @@ class BrushEstimator(BaseEstimator):
         Population size.
     gens : int, default 100
         Maximum iterations of the algorithm.
+    max_stall: int, optional (default: 0)
+        How many generations to continue after the validation loss has
+        stalled. If 0, not used.
     verbosity : int, default 0
         Controls level of printouts.
     max_depth : int, default 0
@@ -119,6 +122,7 @@ class BrushEstimator(BaseEstimator):
         mode='classification',
         pop_size=100,
         gens=100,
+        max_stall=0,
         verbosity=0,
         max_depth=3,
         max_size=20,
@@ -140,6 +144,7 @@ class BrushEstimator(BaseEstimator):
 
         self.pop_size=pop_size
         self.gens=gens
+        self.max_stall=max_stall
         self.verbosity=verbosity
         self.algorithm=algorithm
         self.mode=mode
@@ -203,6 +208,7 @@ class BrushEstimator(BaseEstimator):
         self.parameters_.n_jobs = self.n_jobs
         self.parameters_.pop_size = self.pop_size
         self.parameters_.gens = self.gens
+        self.parameters_.max_stall = self.max_stall
         self.parameters_.num_islands = self.num_islands
         self.parameters_.max_depth = self.max_depth
         self.parameters_.max_size = self.max_size

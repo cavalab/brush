@@ -50,4 +50,6 @@ TEST(Params, ParamsTests)
 	// ft.params.set_verbosity(2);
 	// ASSERT_EQ(ft.params.verbosity, 2);
 	// ASSERT_STREQ("", logger.log("Hello", 3).c_str());
+	
+    // TODO: test termination criterion --- max stall, generations, time    
 }
