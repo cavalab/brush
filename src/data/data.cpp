@@ -227,6 +227,7 @@ void Dataset::init()
     } 
 }
 
+// TODO: use integer instead of percentage (or even better, have both)
 float Dataset::get_batch_size() { return batch_size; }
 void Dataset::set_batch_size(float new_size) {
     batch_size = new_size;

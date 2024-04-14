@@ -304,7 +304,7 @@ void Engine<T>::run(Dataset &data)
                 
                 //std::cout << "after migrating" << std::endl;
                 //std::cout << pop.print_models() << std::endl;
-                }).name("update, migrate and disentangle indexes between islands");
+            }).name("update, migrate and disentangle indexes between islands");
             
             // TODO: update best, update log, increment generation counter (but not set in params)
             auto finish_gen = subflow.emplace([&]() { bool updated_best = this->update_best(data); }).name("update best, log, archive");
