@@ -25,10 +25,11 @@ public:
 
     unsigned int current_gen = 1;
 
-    // TODO: rename it to max_gens
+    // termination criteria
     int pop_size  = 100;
-    int gens      = 1000;  
+    int gens      = 1000;   // TODO: rename it to max_gens
     int max_stall = 0;
+    int max_time  = -1;
 
     unsigned int max_depth = 6; // TODO: make all tests be based on these values for max depth and size
     unsigned int max_size  = 50;
@@ -91,6 +92,9 @@ public:
     
     void set_max_stall(int new_max_stall){ max_stall = new_max_stall; };
     int get_max_stall(){ return max_stall; };
+
+    void set_max_time(int new_max_time){ max_time = new_max_time; };
+    int get_max_time(){ return max_time; };
     
     void set_load_population(string new_load_population){ load_population = new_load_population; };
     string get_load_population(){ return load_population; };

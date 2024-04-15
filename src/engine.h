@@ -65,6 +65,8 @@ private:
     Selection<T>  survivor;   ///< survival algorithm
     
     // TODO: MISSING CLASSES: timer, archive, logger
+    Timer timer;       ///< start time of training
+
     Individual<T> best_ind;
     bool is_fitted; ///< keeps track of whether fit was called.
 

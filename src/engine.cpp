@@ -60,6 +60,7 @@ void Engine<T>::init()
 
     this->best_loss = MAX_FLT;
     this->best_complexity = MAX_FLT;
+
     // TODO getters and setters for the best solution found after evolution
     // predict, transform, predict_proba, etc.
     // get statistics
@@ -69,9 +70,8 @@ void Engine<T>::init()
     // score functions
     // fit methods (this will run the evolution)
 
-    // TODO: implement stuff below
-    // // start the clock
-    // timer.Reset();
+    // start the clock
+    timer.Reset();
 
     // // signal handler
     // signal(SIGINT, my_handler);
@@ -177,12 +177,14 @@ void Engine<T>::run(Dataset &data)
     // stop criteria 
     unsigned generation = 0;
     unsigned stall_count = 0;
+    float fraction = 0;
 
     auto stop = [&]() {
         //std::cout << "inside stop " << std::endl;
         // TODO: max time
         return (  (generation == params.gens)
                && (params.max_stall == 0 || stall_count < params.max_stall) 
+               && (params.max_time == -1 || params.max_time > timer.Elapsed().count())
         );
     };
 
