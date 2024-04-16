@@ -20,6 +20,8 @@ public: // TODO: make these private (and work with nlohman json)
 
     // error is the aggregation of error vector, and can be user sppecified
     
+    bool is_fitted_ = false;
+
     VectorXf error;     ///< training error (used in lexicase selectors)
 
     Fitness fitness;     ///< aggregate fitness score
@@ -46,7 +48,8 @@ public: // TODO: make these private (and work with nlohman json)
     // fitness, objetives, complexity, etc. TODO: create intermediate  functions to  interact  with fitness and program?
     void fit(Dataset& data) {
         program.fit(data);
-        
+        // this flag is used to avoid re-fitting an individual. the program is_fitted_ flag is used to perform checks (like in predict with weights). They are two different things and I think I;ll keep this way (individual is just a container to keep program and fitness together) 
+        this->is_fitted_ = true;
     };
     auto predict(Dataset& data) { return program.predict(data); };
 
@@ -54,6 +57,7 @@ public: // TODO: make these private (and work with nlohman json)
     // TODO: This class should also have its own cpp wrapper. Update it into the deap api (the idea is that the user is still able to prototype with brush, I dont think we should disable that feature)
 
     // just getters (TODO: use the attributes )
+    bool get_is_fitted() const { return this->is_fitted_; };
     string get_model() const { return program.get_model(); };
     size_t get_size() const { return program.size(); };
     size_t get_depth() const { return program.depth(); };

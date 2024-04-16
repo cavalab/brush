@@ -276,7 +276,6 @@ void Engine<T>::run(Dataset &data)
                 variator.vary(this->pop, island, island_parents.at(island));
                 //std::cout << "before update fitness" << std::endl;
 
-                
                 evaluator.update_fitness(this->pop, island, data, params, true);
                 // evaluator.validation(*this->pop, island_range, data, params);
                 //std::cout << "before batch update" << std::endl;

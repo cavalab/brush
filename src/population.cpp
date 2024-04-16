@@ -100,7 +100,6 @@ void Population<T>::init(SearchSpace& ss, const Parameters& params)
         // second half is space to the offspring (but we dont initialize them)
         individuals.at(p+i) = nullptr;
     }
-    
 }
 
 template<ProgramType T>

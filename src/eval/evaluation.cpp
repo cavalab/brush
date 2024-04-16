@@ -14,7 +14,7 @@ void Evaluation<T>::update_fitness(Population<T>& pop,
                     bool validation
                     )
 {
-    //TODO:  it could use the validation_loss     
+    //TODO: it could use the validation_loss     
     auto idxs = pop.get_island_indexes(island);
 
     int counter = 0;
@@ -35,13 +35,16 @@ void Evaluation<T>::update_fitness(Population<T>& pop,
         else
         {
             // assign weights to individual
-            if (fit)
+            if (fit && ind.get_is_fitted() == false)
+            {
                 ind.program.fit(data);
+            }
             
             assign_fit(ind, data, params, validation);
         }
         ++counter;
     }
+
     assert(counter > 0);
 }
 
@@ -90,7 +93,6 @@ void Evaluation<T>::assign_fit(Individual<T>& ind, const Dataset& data,
     // will use inner attributes to set the fitness object
     ind.fitness.set_values(values); 
 }
-
 
 } // Pop
 } // Brush
