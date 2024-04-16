@@ -201,6 +201,10 @@ void SearchSpace::init(const Dataset& d, const unordered_map<string,float>& user
 
         std::set<float> unique_classes(vec.begin(), vec.end());
 
+        // We need some ops in the search space so we can have the logit and offset
+        if (user_ops.find("OffsetSum") == user_ops.end())
+            extended_user_ops.insert({"OffsetSum", 0.0f});
+
         if (unique_classes.size()==2 && (user_ops.find("Logistic") == user_ops.end())) {
             extended_user_ops.insert({"Logistic", 0.0f});
         }
@@ -249,13 +253,19 @@ std::optional<tree<Node>> SearchSpace::sample_subtree(Node root, int max_d, int 
                               terminal_weights.at(root.ret_type).end())) )
         return std::nullopt;
 
+    auto Tree = tree<Node>();
+    auto spot = Tree.insert(Tree.begin(), root);
+
     // we should notice the difference between size of a PROGRAM and a TREE.
     // program count weights in its size, while the TREE structure dont. Wenever
     // using size of a program/tree, make sure you use the function from the correct class
-    return PTC2(root, max_d, max_size);
+    PTC2(Tree, spot, max_d, max_size);
+    
+    return Tree;
 };
 
-tree<Node> SearchSpace::PTC2(Node root, int max_d, int max_size) const
+tree<Node>& SearchSpace::PTC2(tree<Node>& Tree,
+    tree<Node>::iterator spot, int max_d, int max_size) const
 {
     // PTC2 is agnostic of program type
 
@@ -265,22 +275,22 @@ tree<Node> SearchSpace::PTC2(Node root, int max_d, int max_size) const
     // parameters, the real maximum size that can occur is `max_size` plus the
     // highest operator arity, and the real maximum depth is `max_depth` plus one.
 
-    auto Tree = tree<Node>();
+    // auto Tree = tree<Node>();
 
     fmt::print("building program with max size {}, max depth {}",max_size,max_d);
 
     // Queue of nodes that need children
     vector<tuple<TreeIter, DataType, int>> queue; 
 
-    cout << "root " << root.name << endl;
-    // auto spot = Tree.set_head(n);
-    cout << "inserting...\n";
-    auto spot = Tree.insert(Tree.begin(), root);
-    
     // node depth
     int d = 1;
     // current tree size
     int s = 1;
+
+    Node root = spot.node->data;
+
+    cout << "root " << root.name << endl;
+    // auto spot = Tree.set_head(n);
 
     // updating size accordingly to root node
     if (Is<NodeType::SplitBest>(root.node_type))
@@ -289,7 +299,7 @@ tree<Node> SearchSpace::PTC2(Node root, int max_d, int max_size) const
         s += 2;
     
     if ( root.get_is_weighted()==true
-    &&   Isnt<NodeType::Constant, NodeType::MeanLabel, NodeType::OffsetSum>(root.node_type) )
+    &&   Isnt<NodeType::Constant, NodeType::MeanLabel>(root.node_type) )
         s += 2;
         
     //For each argument position a of n, Enqueue(a; g) 
@@ -386,7 +396,7 @@ tree<Node> SearchSpace::PTC2(Node root, int max_d, int max_size) const
             s += 2;
 
         if ( n.get_is_weighted()==true
-        &&   Isnt<NodeType::Constant, NodeType::MeanLabel, NodeType::OffsetSum>(n.node_type) )
+        &&   Isnt<NodeType::Constant, NodeType::MeanLabel>(n.node_type) )
             s += 2;
 
         cout << "current tree size: " << s << endl;

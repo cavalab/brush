@@ -579,7 +579,7 @@ struct SearchSpace
     void print() const; 
 
     private:
-        tree<Node> PTC2(Node root, int max_d, int max_size) const;
+        tree<Node>& PTC2(tree<Node>& Tree, tree<Node>::iterator root, int max_d, int max_size) const;
 
         template<NodeType NT, typename S>
         requires (!is_in_v<NT, NodeType::Terminal, NodeType::Constant, NodeType::MeanLabel>)
@@ -691,24 +691,46 @@ P SearchSpace::make_program(const Parameters& params, int max_d, int max_size)
     ProgramType program_type = P::program_type;
     // ProgramType program_type = ProgramTypeEnum<PT>::value;
     
-    // building the root node for each program case. We give the root, and it 
-    // fills the rest of the tree
-    Node root;
+    // Tree is pre-filled with some fixed nodes depending on program type
+    auto Tree = tree<Node>();
+
+    // building the tree for each program case. Then, we give the spot to PTC2,
+    // and it will fill the rest of the tree
+    tree<Node>::iterator spot;
 
     // building the root node for each program case
     if (P::program_type == ProgramType::BinaryClassifier)
     {
-        root = get(NodeType::Logistic, DataType::ArrayF, Signature<ArrayXf(ArrayXf)>());
-        root.set_prob_change(0.0);
-        root.fixed=true;
+        Node node_logit = get(NodeType::Logistic, DataType::ArrayF, Signature<ArrayXf(ArrayXf)>());
+        node_logit.set_prob_change(0.0);
+        node_logit.fixed=true;
+        auto spot_logit = Tree.insert(Tree.begin(), node_logit);
+
+        if (true) { // Logistic(Add(Constant, <>)). 
+            Node node_offset = get(NodeType::OffsetSum, DataType::ArrayF, Signature<ArrayXf(ArrayXf)>());
+            node_offset.set_prob_change(0.0);
+            node_offset.fixed=true;
+
+            auto spot_offset = Tree.append_child(spot_logit);
+            
+            spot = Tree.replace(spot_offset, node_offset);
+        }
+        else { // If false, then model will be Logistic(<>)
+            spot = spot_logit;
+        }
     }
     else if (P::program_type == ProgramType::MulticlassClassifier)
     {
-        root = get(NodeType::Softmax, DataType::MatrixF, Signature<ArrayXXf(ArrayXXf)>());
-        root.set_prob_change(0.0);
-        root.fixed=true;
+        Node node_softmax = get(NodeType::Softmax, DataType::MatrixF, Signature<ArrayXXf(ArrayXXf)>());
+        node_softmax.set_prob_change(0.0);
+        node_softmax.fixed=true;
+        
+        spot = Tree.insert(Tree.begin(), node_softmax);
     }
-    else {
+    else // regression or representer --- sampling any candidate op or terminal
+    {
+        Node root;
+
         std::optional<Node> opt=std::nullopt;
 
         if (max_size>1 && max_d>1)
@@ -716,13 +738,16 @@ P SearchSpace::make_program(const Parameters& params, int max_d, int max_size)
 
         if (!opt) // if failed, then we dont have any operator to use as root...
             opt = sample_terminal(root_type, true);
-        root = opt.value();
-    }
-    
-    // max_d-1 because we always pick the root before calling ptc2
-    auto Tree = PTC2(root, max_d-1, max_size);
 
-    return P(*this,Tree);
+        root = opt.value();
+    
+        spot = Tree.insert(Tree.begin(), root);
+    }
+
+    // max_d-1 because we always pick the root before calling ptc2
+    PTC2(Tree, spot, max_d-1, max_size); // change inplace
+
+    return P(*this, Tree);
 };
 
 extern SearchSpace SS;
