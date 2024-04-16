@@ -183,19 +183,26 @@ https://eigen.tuxfamily.org/dox/group__QuickRefPage.html#arrayonly
         inline auto operator()(const TimeSeries<T>& t) { return t.sum(); } 
     };
 
-    /* OffsetSum */ // TODO: IMPLEMENT
+    /* OffsetSum */
     template<>
     struct Function<NodeType::OffsetSum>
     {
+        // just add with a constant (definition is like identity)
         template<typename T>
-        inline auto operator()(const T& t) { return t.rowwise().sum(); }
-
-        inline auto operator()(ArrayXXb t) { 
-            return (t.rowwise().count().cast <float> ());
+        inline auto operator()(const T& t) { 
+            return t; 
         }
 
-        template<typename T>
-        inline auto operator()(const TimeSeries<T>& t) { return t.sum(); } 
+        // n-ary version
+        // template<typename T>
+        // inline auto operator()(const T& t) { return t.rowwise().sum(); }
+
+        // inline auto operator()(ArrayXXb t) { 
+        //     return (t.rowwise().count().cast <float> ());
+        // }
+
+        // template<typename T>
+        // inline auto operator()(const TimeSeries<T>& t) { return t.sum(); } 
     };
 
     template<>
