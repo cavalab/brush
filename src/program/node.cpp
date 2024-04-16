@@ -83,8 +83,7 @@ string Node::get_model(const vector<string>& children) const noexcept
                 args += ",";
         }
 
-        // TODO: rename it to just Sum (the user doesnt need to know the offset is fixed)
-        return fmt::format("OffsetSum({})", args);
+        return fmt::format("Sum({})", args);
     }
     else{
         string args = "";
@@ -155,6 +154,7 @@ void init_node_with_default_signature(Node& node)
         NT::Sqrtabs,
         NT::Square,
         NT::Logistic,
+        NT::OffsetSum,
         NT::CustomUnaryOp
         >(n)) 
     {
@@ -191,7 +191,6 @@ void init_node_with_default_signature(Node& node)
         NT::Mean,
         NT::Median,
         NT::Sum,
-        NT::OffsetSum,
         NT::Prod,
         NT::Softmax
         >(n))

@@ -187,14 +187,19 @@ https://eigen.tuxfamily.org/dox/group__QuickRefPage.html#arrayonly
     struct Function<NodeType::OffsetSum>
     {
         template<typename T>
-        inline auto operator()(const T& t) { return t.rowwise().sum(); }
-
-        inline auto operator()(ArrayXXb t) { 
-            return (t.rowwise().count().cast <float> ());
+        inline auto operator()(const T& t) { 
+            return t; 
         }
 
-        template<typename T>
-        inline auto operator()(const TimeSeries<T>& t) { return t.sum(); } 
+        // template<typename T>
+        // inline auto operator()(const T& t) { return t.rowwise().sum(); }
+
+        // inline auto operator()(ArrayXXb t) { 
+        //     return (t.rowwise().count().cast <float> ());
+        // }
+
+        // template<typename T>
+        // inline auto operator()(const TimeSeries<T>& t) { return t.sum(); } 
     };
 
     template<>

@@ -99,6 +99,7 @@ unordered_map<NodeType, int> operator_complexities = {
     {NodeType::Sqrtabs , 4},
     {NodeType::Square  , 3},
     {NodeType::Logistic, 3},
+    {NodeType::OffsetSum, 2},
 
     // timing masks
     {NodeType::Before, 3},
@@ -111,7 +112,6 @@ unordered_map<NodeType, int> operator_complexities = {
     {NodeType::Mean     , 3},
     {NodeType::Median   , 3},
     {NodeType::Sum      , 2},
-    {NodeType::OffsetSum, 2},
     {NodeType::Prod     , 3},
 
     // Transformers 
