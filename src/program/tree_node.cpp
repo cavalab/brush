@@ -161,7 +161,9 @@ int TreeNode::get_complexity() const
     // avoid multiplication by zero if the node is a terminal
     children_complexity_sum = max(children_complexity_sum, 1);
 
-    if (data.get_is_weighted()) // include the `w` and `*` if the node is weighted
+    // include the `w` and `*` if the node is weighted (and it is not a constant or mean label)
+    if (data.get_is_weighted()
+    &&  (Is<NodeType::Constant>(data.node_type) || Is<NodeType::MeanLabel>(data.node_type)) )
         return operator_complexities.at(NodeType::Mul)*(
             operator_complexities.at(NodeType::Constant) + 
             node_complexity*(children_complexity_sum)
