@@ -96,6 +96,9 @@ public:
     void set_max_time(int new_max_time){ max_time = new_max_time; };
     int get_max_time(){ return max_time; };
     
+    void set_scorer_(string new_scorer_){ scorer_ = new_scorer_; };
+    string get_scorer_(){ return scorer_; };
+
     void set_load_population(string new_load_population){ load_population = new_load_population; };
     string get_load_population(){ return load_population; };
     

@@ -34,12 +34,16 @@ auto Node::get_name(bool include_weight) const noexcept -> std::string
     else if (Is<NodeType::MeanLabel>(node_type))
     {
         if (include_weight) 
-            return fmt::format("{:.2f}", W); // Handle as if it was a constant
-        //explicitly print as a MeanLabel and include weight on label            
-        return fmt::format("MeanLabel({:.2f})", W);
+            return fmt::format("{:.2f}*{}", W, feature);
+            
+        return feature;
+    }
+    else if (Is<NodeType::OffsetSum>(node_type)){
+        return fmt::format("{}+Sum", W);
     }
     else if (is_weighted && include_weight)
         return fmt::format("{:.2f}*{}",W,name);
+
     return name;
 }
 
