@@ -442,7 +442,7 @@ template<PT PType> struct Program
                 node_label = fmt::format("{}>{:.2f}?", parent->data.get_feature(), parent->data.W); 
             }
             if (Is<NodeType::OffsetSum>(parent->data.node_type)){
-                node_label = fmt::format("{:.2f} + Sum", parent->data.W); 
+                node_label = fmt::format("Add"); 
             }
             out += fmt::format("\"{}\" [label=\"{}\"];\n", parent_id, node_label); 
 
@@ -503,6 +503,22 @@ template<PT PType> struct Program
                 }
                 kid = kid->next_sibling;
             }
+        
+            // adding the offset as the last child
+            if (Is<NodeType::OffsetSum>(parent->data.node_type)){
+                // drawing the edge
+                out += fmt::format("\"{}\" -> \"{}\" [label=\"\"];\n", 
+                        parent_id,
+                        parent_id+"Offset"
+                        );
+                        
+                // drawing the node
+                out += fmt::format("\"{}\" [label=\"{}\"];\n",
+                        parent_id+"Offset",
+                        parent->data.W
+                        ); 
+            }
+                        
             ++i;
         }
         out += "}\n";
