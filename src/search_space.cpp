@@ -199,10 +199,10 @@ void SearchSpace::init(const Dataset& d, const unordered_map<string,float>& user
 
         std::set<float> unique_classes(vec.begin(), vec.end());
 
-        if (unique_classes.size()==2 && (user_ops.find("Logistic") != user_ops.end())) {
+        if (unique_classes.size()==2 && (user_ops.find("Logistic") == user_ops.end())) {
             extended_user_ops.insert({"Logistic", 0.0f});
         }
-        else if (user_ops.find("Softmax") != user_ops.end()) {
+        else if (user_ops.find("Softmax") == user_ops.end()) {
             // extended_user_ops.insert({"Softmax", 0.0f});
         }
     }
@@ -335,9 +335,21 @@ tree<Node> SearchSpace::PTC2(Node root, int max_d, int max_size) const
             // TreeIter new_spot = Tree.append_child(qspot, n);
             // qspot = n;
 
-            if (!opt)
-                queue.push_back(make_tuple(qspot, t, d));
+            // if (!opt)
+                // queue.push_back(make_tuple(qspot, t, d));
 
+            if (!opt) { // there is no operator for this node. sample a terminal instead
+                opt = sample_terminal(t);
+            }
+
+            if (!opt) { // no operator nor terminal. weird.
+                auto msg = fmt::format("Failed to sample operator AND terminal of data type  {} during PTC2.\n", DataTypeName[t]);
+                HANDLE_ERROR_THROW(msg);
+
+                // queue.push_back(make_tuple(qspot, t, d));
+                // continue;
+            }
+            
             n = opt.value();
             
             auto newspot = Tree.replace(qspot, n);
