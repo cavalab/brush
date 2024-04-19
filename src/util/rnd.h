@@ -12,6 +12,8 @@ license: GNU/GPL v3
 
 #include "../init.h"
 
+// Defines a multi-core random number generator and its operators.
+
 using namespace std;
 using std::swap;
 
@@ -32,7 +34,7 @@ namespace Brush { namespace Util{
             
             static void destroy();
 
-            void set_seed(int seed);
+            void set_seed(unsigned int seed);
             
             int rnd_int( int lowerLimit, int upperLimit );
 
@@ -123,7 +125,6 @@ namespace Brush { namespace Util{
                     && " attemping to return random choice from empty vector");
                 return *select_randomly(v.begin(),v.end());
             }
- 
            
             template<template<class, class> class C, class T>
             T random_choice(const C<T, std::allocator<T>>& v, const vector<float>& w )
@@ -163,10 +164,15 @@ namespace Brush { namespace Util{
             // Vector of pseudo-random number generators, one for each thread
             vector<std::mt19937> rg;
             
+            // private static attribute used by every instance of the class.
+            // All threads share common static members of the class
             static Rnd* instance;
-     
     };
     
+    // `Brush.Util` static attribute holding an singleton instance of Rnd.
+    // the instance is created by calling `initRand`, which creates
+    // an instance of the private static attribute `instance`. `r` will contain
+    // one generator for each thread (since it called the constructor) 
     static Rnd &r = *Rnd::initRand();
 } // Util
 } // Brush

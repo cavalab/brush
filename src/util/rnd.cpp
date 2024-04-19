@@ -12,17 +12,24 @@ namespace Brush { namespace Util{
     Rnd::Rnd()
     {
         /*!
-         * need a random generator for each core to do multiprocessing
+         * need a random generator for each core to do multiprocessing.
+         * The constructor will resize the random generators based on 
+         * the number of available cores. 
          */
+        
         //cout << "Max threads are " <<omp_get_max_threads()<<"\n";
+
+        // when we resize, the constructor of new elements are invoked.
         rg.resize(omp_get_max_threads());                      
     }
 
     Rnd* Rnd::initRand()
     {
+        // creates the static random generator by calling the constructor
         if (!instance)
         {
             instance = new Rnd();
+            instance->set_seed(0); // setting a random initial state
         }
 
         return instance;
@@ -36,28 +43,25 @@ namespace Brush { namespace Util{
         instance = NULL;
     }
     
-    void Rnd::set_seed(int seed)
+    void Rnd::set_seed(unsigned int seed)
     { 
         /*!
-         * set seeds for each core's random number generator
+         * set seeds for each core's random number generator.
          */
-        if (seed == 0)
-        {
+        if (seed == 0) {
+            // use a non-deterministic random generator to seed the deterministics
             std::random_device rd; 
-
-            for (auto& r : rg)
-                r.seed(rd());
+            seed = rd();
         }
-        else    // seed first rg with seed, then seed rest with random ints from rg[0]. 
-        {
-            rg[0].seed(seed);
-            
-            int imax = std::numeric_limits<int>::max();
-            
-            std::uniform_int_distribution<> dist(0, imax);
 
-            for (size_t i = 1; i < rg.size(); ++i)
-                rg[i].seed(dist(rg[0]));                     
+        // generating a seed sequence
+        std::seed_seq seq{seed};
+        
+        std::vector<std::uint32_t> seeds(rg.size());
+        seq.generate(seeds.begin(), seeds.end());
+
+        for (size_t i = 0; i < rg.size(); ++i) {
+            rg[i].seed(seeds[i]);
         }
     }
 
