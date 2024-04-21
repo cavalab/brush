@@ -4,9 +4,12 @@
     <member refid="db/d64/structBrush_1_1all__same_1a2451a4b50eda0715b566770d3b4dfb01" kind="variable"><name>value</name></member>
   </compound>
   <compound refid="d0/d6a/classbrush_1_1estimator_1_1BrushClassifier" kind="class"><name>brush::estimator::BrushClassifier</name>
+    <member refid="d0/d6a/classbrush_1_1estimator_1_1BrushClassifier_1a6523559d0596f47ca85c4dfb8bae407d" kind="variable"><name>weights</name></member>
+    <member refid="d0/d6a/classbrush_1_1estimator_1_1BrushClassifier_1a86b82af9915d8e9d11e28c81d75c7014" kind="variable"><name>initialization</name></member>
     <member refid="d0/d6a/classbrush_1_1estimator_1_1BrushClassifier_1aca99ed7b077b0023be91bbf4609511c1" kind="variable"><name>n_classes_</name></member>
     <member refid="d0/d6a/classbrush_1_1estimator_1_1BrushClassifier_1af96b165dab470191a26fcd9a87908040" kind="function"><name>__init__</name></member>
     <member refid="d0/d6a/classbrush_1_1estimator_1_1BrushClassifier_1a0a089fd905951f470a57fd267890511c" kind="function"><name>predict_proba</name></member>
+    <member refid="d0/d6a/classbrush_1_1estimator_1_1BrushClassifier_1a90c37921fdb354cbb7d90ab2caaf57aa" kind="function"><name>_fitness_validation</name></member>
     <member refid="d0/d6a/classbrush_1_1estimator_1_1BrushClassifier_1a57f9821e2eb132e67a4dcbd97ffa472f" kind="function"><name>_fitness_function</name></member>
     <member refid="d0/d6a/classbrush_1_1estimator_1_1BrushClassifier_1a2f7af58230ed6d27a92c6c727b600820" kind="function"><name>_make_individual</name></member>
   </compound>
@@ -17,27 +20,37 @@
     <member refid="d0/dc4/classbrush_1_1estimator_1_1BrushEstimator_1a5d1704a652d6d5ea0e5e98125702719a" kind="variable"><name>mode</name></member>
     <member refid="d0/dc4/classbrush_1_1estimator_1_1BrushEstimator_1a2526c6813d622c1ac125e5fb7b6ba128" kind="variable"><name>max_depth</name></member>
     <member refid="d0/dc4/classbrush_1_1estimator_1_1BrushEstimator_1af75977b66a8836d700221adcb701b067" kind="variable"><name>max_size</name></member>
+    <member refid="d0/dc4/classbrush_1_1estimator_1_1BrushEstimator_1a11b523668027fa92e77ca1733b884242" kind="variable"><name>cx_prob</name></member>
     <member refid="d0/dc4/classbrush_1_1estimator_1_1BrushEstimator_1a0174bd91eccdf68b8885ae6b5ef4db76" kind="variable"><name>mutation_options</name></member>
     <member refid="d0/dc4/classbrush_1_1estimator_1_1BrushEstimator_1af9065286a6d4c5f2dcd6e3bcc539c08b" kind="variable"><name>functions</name></member>
+    <member refid="d0/dc4/classbrush_1_1estimator_1_1BrushEstimator_1aaefc227004ceb4da83998e498e529afa" kind="variable"><name>initialization</name></member>
+    <member refid="d0/dc4/classbrush_1_1estimator_1_1BrushEstimator_1a4ee31cd0a6c1de0442588838b855e833" kind="variable"><name>random_state</name></member>
     <member refid="d0/dc4/classbrush_1_1estimator_1_1BrushEstimator_1aa71f7e6d68f5ce219d65b7f7b863fa6e" kind="variable"><name>batch_size</name></member>
+    <member refid="d0/dc4/classbrush_1_1estimator_1_1BrushEstimator_1ab63da0cd1f018c603a11cd246ecb26bf" kind="variable"><name>validation_size</name></member>
     <member refid="d0/dc4/classbrush_1_1estimator_1_1BrushEstimator_1a0a312180a4bb723670ab37a417074a0e" kind="variable"><name>data_</name></member>
     <member refid="d0/dc4/classbrush_1_1estimator_1_1BrushEstimator_1a0b22b0ef09f113dfd3871d328090499c" kind="variable"><name>n_classes_</name></member>
+    <member refid="d0/dc4/classbrush_1_1estimator_1_1BrushEstimator_1a792179c847ba4a82a276a93a70ce855b" kind="variable"><name>train_</name></member>
+    <member refid="d0/dc4/classbrush_1_1estimator_1_1BrushEstimator_1a294bbf4dffdc46c11d803297e7aedb49" kind="variable"><name>validation_</name></member>
     <member refid="d0/dc4/classbrush_1_1estimator_1_1BrushEstimator_1ab25513e9cb65475b41f18804257a49b6" kind="variable"><name>functions_</name></member>
     <member refid="d0/dc4/classbrush_1_1estimator_1_1BrushEstimator_1ae60d91755de9e541295e25c49ecfb591" kind="variable"><name>search_space_</name></member>
     <member refid="d0/dc4/classbrush_1_1estimator_1_1BrushEstimator_1ab7642f08b6d239392ecaa4a78b730957" kind="variable"><name>toolbox_</name></member>
     <member refid="d0/dc4/classbrush_1_1estimator_1_1BrushEstimator_1ada78ab3e85a2edecbd8bf256009f014c" kind="variable"><name>archive_</name></member>
+    <member refid="d0/dc4/classbrush_1_1estimator_1_1BrushEstimator_1adf8b06ad9d173369bed66b07444ddd6d" kind="variable"><name>logbook_</name></member>
     <member refid="d0/dc4/classbrush_1_1estimator_1_1BrushEstimator_1a44422c9d94c587951537f62fdfe95739" kind="variable"><name>best_estimator_</name></member>
-    <member refid="d0/dc4/classbrush_1_1estimator_1_1BrushEstimator_1a118d108e81e36cbd8a28b670eba7f9e0" kind="function"><name>__init__</name></member>
+    <member refid="d0/dc4/classbrush_1_1estimator_1_1BrushEstimator_1ae301c7dfd48f350b1f6ea6d0269bf0c1" kind="function"><name>__init__</name></member>
     <member refid="d0/dc4/classbrush_1_1estimator_1_1BrushEstimator_1a86918636dd7cd887005649b62d14d1be" kind="function"><name>fit</name></member>
     <member refid="d0/dc4/classbrush_1_1estimator_1_1BrushEstimator_1a87709a26a92ac4e24a4f3106b2bdd139" kind="function"><name>predict</name></member>
     <member refid="d0/dc4/classbrush_1_1estimator_1_1BrushEstimator_1a3808a9773d5a42827cc28aaf3f97b694" kind="function"><name>get_params</name></member>
-    <member refid="d0/dc4/classbrush_1_1estimator_1_1BrushEstimator_1a546c6a6230b2d4f9a960b38596f54820" kind="function"><name>_setup_toolbox</name></member>
+    <member refid="d0/dc4/classbrush_1_1estimator_1_1BrushEstimator_1a8e36fceb064db20d53b4043909a022a8" kind="function"><name>_setup_toolbox</name></member>
     <member refid="d0/dc4/classbrush_1_1estimator_1_1BrushEstimator_1af7d065d73b3f1ec7f9e11799167da014" kind="function"><name>_crossover</name></member>
     <member refid="d0/dc4/classbrush_1_1estimator_1_1BrushEstimator_1a8edd942e828516255af2ae908a8e4666" kind="function"><name>_mutate</name></member>
-    <member refid="d0/dc4/classbrush_1_1estimator_1_1BrushEstimator_1a8ee87e403b46c4f0d3c718a2c3fdc988" kind="function"><name>_make_data</name></member>
+    <member refid="d0/dc4/classbrush_1_1estimator_1_1BrushEstimator_1a1d3591f8cb1747d6d66ec6df612d13da" kind="function"><name>_make_data</name></member>
   </compound>
   <compound refid="da/d81/classbrush_1_1estimator_1_1BrushRegressor" kind="class"><name>brush::estimator::BrushRegressor</name>
+    <member refid="da/d81/classbrush_1_1estimator_1_1BrushRegressor_1a267dd11788897163c612378c232cb63f" kind="variable"><name>weights</name></member>
+    <member refid="da/d81/classbrush_1_1estimator_1_1BrushRegressor_1a36915e908169ee8f4ffeb65a6953d1f4" kind="variable"><name>initialization</name></member>
     <member refid="da/d81/classbrush_1_1estimator_1_1BrushRegressor_1a8f27759d9f9dbd6cc519a867e6a5822e" kind="function"><name>__init__</name></member>
+    <member refid="da/d81/classbrush_1_1estimator_1_1BrushRegressor_1aed568e829f5d037cab0f4abf70e27f5a" kind="function"><name>_fitness_validation</name></member>
     <member refid="da/d81/classbrush_1_1estimator_1_1BrushRegressor_1ac1eabaaaed9126e30f5858da65daf472" kind="function"><name>_fitness_function</name></member>
     <member refid="da/d81/classbrush_1_1estimator_1_1BrushRegressor_1aa2445be9821177293be3585174333928" kind="function"><name>_make_individual</name></member>
   </compound>
@@ -46,20 +59,38 @@
   <compound refid="d6/d53/structBrush_1_1DataEnumType_3_01DT_1_1ArrayB_01_4" kind="struct"><name>Brush::DataEnumType&lt; DT::ArrayB &gt;</name>
     <member refid="d6/d53/structBrush_1_1DataEnumType_3_01DT_1_1ArrayB_01_4_1a2e0fe0c7622c8ad9895035fb89c0e53b" kind="typedef"><name>type</name></member>
   </compound>
+  <compound refid="d4/dcb/structBrush_1_1DataEnumType_3_01DT_1_1ArrayBJet_01_4" kind="struct"><name>Brush::DataEnumType&lt; DT::ArrayBJet &gt;</name>
+    <member refid="d4/dcb/structBrush_1_1DataEnumType_3_01DT_1_1ArrayBJet_01_4_1add104431d70a2093bdc0e40b4a55d39b" kind="typedef"><name>type</name></member>
+  </compound>
   <compound refid="df/dc3/structBrush_1_1DataEnumType_3_01DT_1_1ArrayF_01_4" kind="struct"><name>Brush::DataEnumType&lt; DT::ArrayF &gt;</name>
     <member refid="df/dc3/structBrush_1_1DataEnumType_3_01DT_1_1ArrayF_01_4_1ac0521ea3233f494bb3b51211d396dbaf" kind="typedef"><name>type</name></member>
+  </compound>
+  <compound refid="d4/d9c/structBrush_1_1DataEnumType_3_01DT_1_1ArrayFJet_01_4" kind="struct"><name>Brush::DataEnumType&lt; DT::ArrayFJet &gt;</name>
+    <member refid="d4/d9c/structBrush_1_1DataEnumType_3_01DT_1_1ArrayFJet_01_4_1ad908427671cb10486f5ec72773748e4a" kind="typedef"><name>type</name></member>
   </compound>
   <compound refid="db/d06/structBrush_1_1DataEnumType_3_01DT_1_1ArrayI_01_4" kind="struct"><name>Brush::DataEnumType&lt; DT::ArrayI &gt;</name>
     <member refid="db/d06/structBrush_1_1DataEnumType_3_01DT_1_1ArrayI_01_4_1a6e6ec8c9b9fafdfb63109c1a5c9fe012" kind="typedef"><name>type</name></member>
   </compound>
+  <compound refid="dc/db4/structBrush_1_1DataEnumType_3_01DT_1_1ArrayIJet_01_4" kind="struct"><name>Brush::DataEnumType&lt; DT::ArrayIJet &gt;</name>
+    <member refid="dc/db4/structBrush_1_1DataEnumType_3_01DT_1_1ArrayIJet_01_4_1a4718f62ee99454302109fc30c4aee8e2" kind="typedef"><name>type</name></member>
+  </compound>
   <compound refid="de/dd1/structBrush_1_1DataEnumType_3_01DT_1_1MatrixB_01_4" kind="struct"><name>Brush::DataEnumType&lt; DT::MatrixB &gt;</name>
     <member refid="de/dd1/structBrush_1_1DataEnumType_3_01DT_1_1MatrixB_01_4_1a12b2801ebfbda0580a269a265fca7bfe" kind="typedef"><name>type</name></member>
+  </compound>
+  <compound refid="dd/d86/structBrush_1_1DataEnumType_3_01DT_1_1MatrixBJet_01_4" kind="struct"><name>Brush::DataEnumType&lt; DT::MatrixBJet &gt;</name>
+    <member refid="dd/d86/structBrush_1_1DataEnumType_3_01DT_1_1MatrixBJet_01_4_1a0de63590b8a3bbcbdf60b84cfaf75cce" kind="typedef"><name>type</name></member>
   </compound>
   <compound refid="d9/df1/structBrush_1_1DataEnumType_3_01DT_1_1MatrixF_01_4" kind="struct"><name>Brush::DataEnumType&lt; DT::MatrixF &gt;</name>
     <member refid="d9/df1/structBrush_1_1DataEnumType_3_01DT_1_1MatrixF_01_4_1abdb0a15f9338882190f87b6b28429f33" kind="typedef"><name>type</name></member>
   </compound>
+  <compound refid="d0/d7c/structBrush_1_1DataEnumType_3_01DT_1_1MatrixFJet_01_4" kind="struct"><name>Brush::DataEnumType&lt; DT::MatrixFJet &gt;</name>
+    <member refid="d0/d7c/structBrush_1_1DataEnumType_3_01DT_1_1MatrixFJet_01_4_1a861ae220e55eabe505859546bf87b1fa" kind="typedef"><name>type</name></member>
+  </compound>
   <compound refid="d6/de7/structBrush_1_1DataEnumType_3_01DT_1_1MatrixI_01_4" kind="struct"><name>Brush::DataEnumType&lt; DT::MatrixI &gt;</name>
     <member refid="d6/de7/structBrush_1_1DataEnumType_3_01DT_1_1MatrixI_01_4_1aaa00f8008f8ab1342bb67e807fcd5c53" kind="typedef"><name>type</name></member>
+  </compound>
+  <compound refid="dc/ded/structBrush_1_1DataEnumType_3_01DT_1_1MatrixIJet_01_4" kind="struct"><name>Brush::DataEnumType&lt; DT::MatrixIJet &gt;</name>
+    <member refid="dc/ded/structBrush_1_1DataEnumType_3_01DT_1_1MatrixIJet_01_4_1a4827704e56342b7611154adf99e05e2e" kind="typedef"><name>type</name></member>
   </compound>
   <compound refid="dc/dd6/structBrush_1_1DataEnumType_3_01DT_1_1TimeSeriesB_01_4" kind="struct"><name>Brush::DataEnumType&lt; DT::TimeSeriesB &gt;</name>
     <member refid="dc/dd6/structBrush_1_1DataEnumType_3_01DT_1_1TimeSeriesB_01_4_1a70f6787a7deeaabe744a3736e1ac052d" kind="typedef"><name>type</name></member>
@@ -71,6 +102,8 @@
     <member refid="dd/dff/structBrush_1_1DataEnumType_3_01DT_1_1TimeSeriesI_01_4_1a84c70e073df5b664a1cdc8fd9e552043" kind="typedef"><name>type</name></member>
   </compound>
   <compound refid="d2/d36/classBrush_1_1Data_1_1Dataset" kind="class"><name>Brush::Data::Dataset</name>
+    <member refid="d2/d36/classBrush_1_1Data_1_1Dataset_1a4112a2cb86ce4138c3c4bea966c96b65" kind="variable"><name>training_data_idx</name></member>
+    <member refid="d2/d36/classBrush_1_1Data_1_1Dataset_1ab8f3010fa3099efe3aac8fcd3140faf6" kind="variable"><name>validation_data_idx</name></member>
     <member refid="d2/d36/classBrush_1_1Data_1_1Dataset_1a96fc30b35f152f425377e1ae34398779" kind="variable"><name>unique_data_types</name></member>
     <member refid="d2/d36/classBrush_1_1Data_1_1Dataset_1a52d591cce797480e80f8cf1f1482702e" kind="variable"><name>feature_types</name></member>
     <member refid="d2/d36/classBrush_1_1Data_1_1Dataset_1a652aba735323fddf7bf79407e7e4fc83" kind="variable"><name>features_of_type</name></member>
@@ -78,18 +111,25 @@
     <member refid="d2/d36/classBrush_1_1Data_1_1Dataset_1ade105f069d4f745d44374b7b8a3a9b0d" kind="variable"><name>y</name></member>
     <member refid="d2/d36/classBrush_1_1Data_1_1Dataset_1a1a8a1e77afdecb032696bdf38e5c424c" kind="variable"><name>classification</name></member>
     <member refid="d2/d36/classBrush_1_1Data_1_1Dataset_1a8a1a428f46a5c80322000f4bef0a09d4" kind="variable"><name>Xref</name></member>
+    <member refid="d2/d36/classBrush_1_1Data_1_1Dataset_1aae2b4b532ccc55a95f65b75a5cd9e176" kind="variable"><name>validation_size</name></member>
+    <member refid="d2/d36/classBrush_1_1Data_1_1Dataset_1a6cadfbd9f8a4700361e63defb7d6f6e0" kind="variable"><name>use_validation</name></member>
+    <member refid="d2/d36/classBrush_1_1Data_1_1Dataset_1a6ac1f4f56991e43a782dd519c414916a" kind="variable"><name>batch_size</name></member>
+    <member refid="d2/d36/classBrush_1_1Data_1_1Dataset_1a8cba7a5f962538d67012264fb6c97ed4" kind="variable"><name>use_batch</name></member>
     <member refid="d2/d36/classBrush_1_1Data_1_1Dataset_1afa676d96150281b2384a07e4a3fcc352" kind="function"><name>operator()</name></member>
     <member refid="d2/d36/classBrush_1_1Data_1_1Dataset_1aacd5afd19b9cee9d9d84e4290eeabb6f" kind="function"><name>init</name></member>
     <member refid="d2/d36/classBrush_1_1Data_1_1Dataset_1ab709f6732a1854b45418e7f14dd759ea" kind="function"><name>make_features</name></member>
-    <member refid="d2/d36/classBrush_1_1Data_1_1Dataset_1ae6546575b94db839bd256e19ad936eea" kind="function"><name>Dataset</name></member>
-    <member refid="d2/d36/classBrush_1_1Data_1_1Dataset_1a35960657734ec9071c6f4a7e9830d6d0" kind="function"><name>Dataset</name></member>
-    <member refid="d2/d36/classBrush_1_1Data_1_1Dataset_1af5283fa3ea1d1aaf543ce9b394e7bf4b" kind="function"><name>Dataset</name></member>
+    <member refid="d2/d36/classBrush_1_1Data_1_1Dataset_1aa9fa70bb9e8720a3b9ceafb9aa643df4" kind="function"><name>Dataset</name></member>
+    <member refid="d2/d36/classBrush_1_1Data_1_1Dataset_1ac99a56b161c19d868efc3317545b6ca2" kind="function"><name>Dataset</name></member>
+    <member refid="d2/d36/classBrush_1_1Data_1_1Dataset_1ac8408acfe0af60124592299a1336166f" kind="function"><name>Dataset</name></member>
     <member refid="d2/d36/classBrush_1_1Data_1_1Dataset_1a59ec8554d617a4a99ba7feec09bdc62c" kind="function"><name>print</name></member>
     <member refid="d2/d36/classBrush_1_1Data_1_1Dataset_1a44ebc4ada574ea7a3a843ae74810aac9" kind="function"><name>get_X</name></member>
-    <member refid="d2/d36/classBrush_1_1Data_1_1Dataset_1ace534b17622ccb93170c74f99f30c7fa" kind="function"><name>set_validation</name></member>
+    <member refid="d2/d36/classBrush_1_1Data_1_1Dataset_1ae69087b8c020840f254e3679cd324ba5" kind="function"><name>get_training_data</name></member>
+    <member refid="d2/d36/classBrush_1_1Data_1_1Dataset_1a1ddb847fd1ceff63e60ffd79542409d9" kind="function"><name>get_validation_data</name></member>
     <member refid="d2/d36/classBrush_1_1Data_1_1Dataset_1a2b7b42b1b16630554b2e49102098a170" kind="function"><name>get_n_samples</name></member>
     <member refid="d2/d36/classBrush_1_1Data_1_1Dataset_1a6edc04702aee605a766f4a79c375d0c6" kind="function"><name>get_n_features</name></member>
-    <member refid="d2/d36/classBrush_1_1Data_1_1Dataset_1a3a5e9892d57ffee97276bbf30ede2582" kind="function"><name>get_batch</name></member>
+    <member refid="d2/d36/classBrush_1_1Data_1_1Dataset_1a5020e43def6267598be0ba3d2b46e616" kind="function"><name>get_batch</name></member>
+    <member refid="d2/d36/classBrush_1_1Data_1_1Dataset_1ade358be2a762f2a6df738a41fe1095b5" kind="function"><name>get_batch_size</name></member>
+    <member refid="d2/d36/classBrush_1_1Data_1_1Dataset_1afa07fa8dff0f8e01293509d6b7cc0dc3" kind="function"><name>set_batch_size</name></member>
     <member refid="d2/d36/classBrush_1_1Data_1_1Dataset_1ade5da9269ebc099385d6f79cf4a53f9f" kind="function"><name>split</name></member>
     <member refid="d2/d36/classBrush_1_1Data_1_1Dataset_1a86f779c55c96ff7182b4e649f87fbf24" kind="function"><name>operator[]</name></member>
   </compound>
@@ -447,6 +487,8 @@
     <member refid="d1/d3a/structBrush_1_1Node_1a087a9c51b46b3e801506415376cd0518" kind="function"><name>get_prob_keep</name></member>
     <member refid="d1/d3a/structBrush_1_1Node_1a7e8460b645f3d58c3093eda1d5d3166c" kind="function"><name>set_feature</name></member>
     <member refid="d1/d3a/structBrush_1_1Node_1a85a62efd4f1f99fa45eb52e4c0a1a26f" kind="function"><name>get_feature</name></member>
+    <member refid="d1/d3a/structBrush_1_1Node_1a8d884d5ad5f6825aa8f50039fb6baf9f" kind="function"><name>get_is_weighted</name></member>
+    <member refid="d1/d3a/structBrush_1_1Node_1a70fb9b583f72b67f6c24c2bbaae55267" kind="function"><name>set_is_weighted</name></member>
   </compound>
   <compound refid="db/d53/structBrush_1_1NodeTypes" kind="struct"><name>Brush::NodeTypes</name>
     <member refid="db/d53/structBrush_1_1NodeTypes_1a23df32f725c8ff1acf6b0ab2d9b57a78" kind="variable"><name>Count</name></member>
@@ -540,7 +582,11 @@
     <member refid="db/d88/structBrush_1_1Program_1ab5df93b7b0bf914455ffeb5cc7574543" kind="function"><name>Program</name></member>
     <member refid="db/d88/structBrush_1_1Program_1a00356ac7bbc5c1d8f70bc8d90f41d4ac" kind="function"><name>Program</name></member>
     <member refid="db/d88/structBrush_1_1Program_1aa24681261d191fdc486973820394d411" kind="function"><name>set_search_space</name></member>
-    <member refid="db/d88/structBrush_1_1Program_1a1910283c3cdd3adf53ae62def076396f" kind="function"><name>size</name></member>
+    <member refid="db/d88/structBrush_1_1Program_1af64e3100027b89fd4fffd50bfb843993" kind="function"><name>size</name></member>
+    <member refid="db/d88/structBrush_1_1Program_1a826ef90ae1aaf8f2637f551cfff0746a" kind="function"><name>size_at</name></member>
+    <member refid="db/d88/structBrush_1_1Program_1a91dd138edc7ecb5bc6d013ae68bf0e42" kind="function"><name>depth</name></member>
+    <member refid="db/d88/structBrush_1_1Program_1a9a1dd47fb6491ad830c147cced29752b" kind="function"><name>depth_at</name></member>
+    <member refid="db/d88/structBrush_1_1Program_1af1f9858cdb8c05bdcf5db55cab745f7c" kind="function"><name>depth_to_reach</name></member>
     <member refid="db/d88/structBrush_1_1Program_1aa2a1b3dbc41da0eebb3681b2bcdc6969" kind="function"><name>fit</name></member>
     <member refid="db/d88/structBrush_1_1Program_1a6a1237f15d7b9cc1e825e1a3213df58e" kind="function"><name>predict_with_weights</name></member>
     <member refid="db/d88/structBrush_1_1Program_1a93735deb988101774e8e58c5402e1a21" kind="function"><name>predict_with_weights</name></member>
@@ -560,8 +606,8 @@
     <member refid="db/d88/structBrush_1_1Program_1a5ba9c69ade043cacb917dfb654a57834" kind="function"><name>set_weights</name></member>
     <member refid="db/d88/structBrush_1_1Program_1a7ef9a37328467c60d86b78ebfd373810" kind="function"><name>get_model</name></member>
     <member refid="db/d88/structBrush_1_1Program_1a75df309b29521934822f8eced7be0418" kind="function"><name>get_dot_model</name></member>
-    <member refid="db/d88/structBrush_1_1Program_1a294cf928c4374ebf6fae5713f31f3c79" kind="function"><name>mutate</name></member>
-    <member refid="db/d88/structBrush_1_1Program_1a73fe32f4ee17a89b1044ec83f1b11766" kind="function"><name>cross</name></member>
+    <member refid="db/d88/structBrush_1_1Program_1a00cac102329788865e5822a6f5641423" kind="function"><name>mutate</name></member>
+    <member refid="db/d88/structBrush_1_1Program_1a750b6c66bebaa4f4163110eba7db6275" kind="function"><name>cross</name></member>
     <member refid="db/d88/structBrush_1_1Program_1ad30d126946a56dba56680f4f96cb3361" kind="function"><name>linearize</name></member>
   </compound>
   <compound refid="d4/d70/structBrush_1_1ResidualEvaluator" kind="struct"><name>Brush::ResidualEvaluator</name>
@@ -584,7 +630,7 @@
     <member refid="d2/d2d/classBrush_1_1Util_1_1Rnd_1aa459d569e44e12e26133da6069135b09" kind="variable"><name>instance</name></member>
     <member refid="d2/d2d/classBrush_1_1Util_1_1Rnd_1a4fee4453f2aff1384cda4e14d53234fe" kind="function"><name>initRand</name></member>
     <member refid="d2/d2d/classBrush_1_1Util_1_1Rnd_1a8dac84db3c306a00d3de09aa043b17e7" kind="function"><name>destroy</name></member>
-    <member refid="d2/d2d/classBrush_1_1Util_1_1Rnd_1a2fdc984e0cdd58be93c400671dff0649" kind="function"><name>set_seed</name></member>
+    <member refid="d2/d2d/classBrush_1_1Util_1_1Rnd_1a8357702cf1f426e4909c45b97a18bb0e" kind="function"><name>set_seed</name></member>
     <member refid="d2/d2d/classBrush_1_1Util_1_1Rnd_1aef0f2836321f651d5887d29739e180f5" kind="function"><name>rnd_int</name></member>
     <member refid="d2/d2d/classBrush_1_1Util_1_1Rnd_1a450979f31af93d8dffd7be006ee5d50b" kind="function"><name>rnd_flt</name></member>
     <member refid="d2/d2d/classBrush_1_1Util_1_1Rnd_1aa7cedc8c08588c4740e07da8d6c2cb9f" kind="function"><name>rnd_dbl</name></member>
@@ -605,7 +651,7 @@
     <member refid="d4/dc3/structBrush_1_1SearchSpace_1af004a91112f5e3994d7c90c8baa71310" kind="typedef"><name>ArgsHash</name></member>
     <member refid="d4/dc3/structBrush_1_1SearchSpace_1aa99f71f6328c8706a171c2f9c803b06d" kind="typedef"><name>Map</name></member>
     <member refid="d4/dc3/structBrush_1_1SearchSpace_1a4bd8ffb41071c9a6739f92b275a510f5" kind="variable"><name>node_map</name></member>
-    <member refid="d4/dc3/structBrush_1_1SearchSpace_1ae3c114b829c2059dcb6565d11de527af" kind="variable"><name>weight_map</name></member>
+    <member refid="d4/dc3/structBrush_1_1SearchSpace_1ae1e33e2c9ca2d6777a42f6234c3b9a17" kind="variable"><name>node_map_weights</name></member>
     <member refid="d4/dc3/structBrush_1_1SearchSpace_1a4c2acdd29d7465109ead9835f952fee0" kind="variable"><name>terminal_map</name></member>
     <member refid="d4/dc3/structBrush_1_1SearchSpace_1a990aab15f3645f7b13cd678473e9f2fb" kind="variable"><name>terminal_weights</name></member>
     <member refid="d4/dc3/structBrush_1_1SearchSpace_1af67633b1cb0d2ff56bec919e81d84ede" kind="variable"><name>terminal_types</name></member>
@@ -620,20 +666,23 @@
     <member refid="d4/dc3/structBrush_1_1SearchSpace_1a67cb58cf03f3114cd2230624b2e3dca9" kind="function"><name>check</name></member>
     <member refid="d4/dc3/structBrush_1_1SearchSpace_1aa75e6c82dc85e752b099d9adc1d24df8" kind="function"><name>check</name></member>
     <member refid="d4/dc3/structBrush_1_1SearchSpace_1a626c437dc8fb6bcac68f2dcae64c00cc" kind="function"><name>check</name></member>
+    <member refid="d4/dc3/structBrush_1_1SearchSpace_1af7aa6187e39acd43c442b36025ccd806" kind="function"><name>has_solution_space</name></member>
     <member refid="d4/dc3/structBrush_1_1SearchSpace_1a3f54812898af087a3bc6c1bfea8f4a87" kind="function"><name>get</name></member>
     <member refid="d4/dc3/structBrush_1_1SearchSpace_1a9f5632dcb5c60863face5d6e1fdd92ba" kind="function"><name>get</name></member>
     <member refid="d4/dc3/structBrush_1_1SearchSpace_1a6687f99606513848ee1042b90f7750dd" kind="function"><name>get</name></member>
-    <member refid="d4/dc3/structBrush_1_1SearchSpace_1a53c05b982db1d8efd46f6c5a5a57a533" kind="function"><name>get</name></member>
-    <member refid="d4/dc3/structBrush_1_1SearchSpace_1a6f491bad218a6482a66d32a790a2aa85" kind="function"><name>get_terminal</name></member>
-    <member refid="d4/dc3/structBrush_1_1SearchSpace_1a158036ea3930b5663adba0a779bce656" kind="function"><name>get_terminal</name></member>
     <member refid="d4/dc3/structBrush_1_1SearchSpace_1a038ae8b09e1482f69de9feaf22aeacdb" kind="function"><name>get_weights</name></member>
     <member refid="d4/dc3/structBrush_1_1SearchSpace_1a20915b371297c0b4aec69786f39053bb" kind="function"><name>get_weights</name></member>
     <member refid="d4/dc3/structBrush_1_1SearchSpace_1a3155097f992425ae7c303c6e1d15eee1" kind="function"><name>get_weights</name></member>
-    <member refid="d4/dc3/structBrush_1_1SearchSpace_1aaf0d192118f8c95a7b7232fb46920cc4" kind="function"><name>get_op</name></member>
-    <member refid="d4/dc3/structBrush_1_1SearchSpace_1a1016c29de8626a29c2208faa5482c9c2" kind="function"><name>get_op_with_arg</name></member>
-    <member refid="d4/dc3/structBrush_1_1SearchSpace_1aeadd5cc2c0b7f791299560dd0dea4e4e" kind="function"><name>get_node_like</name></member>
+    <member refid="d4/dc3/structBrush_1_1SearchSpace_1ab7799a89e862e19942db515d8963fca7" kind="function"><name>sample_terminal</name></member>
+    <member refid="d4/dc3/structBrush_1_1SearchSpace_1a1b7a19baa6a88424b08312cebfc610f3" kind="function"><name>sample_terminal</name></member>
+    <member refid="d4/dc3/structBrush_1_1SearchSpace_1a7d5e87a2f41fe1d4aa26cf285754841a" kind="function"><name>sample_op</name></member>
+    <member refid="d4/dc3/structBrush_1_1SearchSpace_1ab11002ad7d932b09e61d408e6b374c79" kind="function"><name>sample_op</name></member>
+    <member refid="d4/dc3/structBrush_1_1SearchSpace_1a64e90d0781395bf9a843b8806dc5e95b" kind="function"><name>sample_op_with_arg</name></member>
+    <member refid="d4/dc3/structBrush_1_1SearchSpace_1a14a4a3b020ec50ee277dfe07bc36f608" kind="function"><name>get_node_like</name></member>
+    <member refid="d4/dc3/structBrush_1_1SearchSpace_1aed45d3d8adbee89f02e709472fe88280" kind="function"><name>sample_subtree</name></member>
     <member refid="d4/dc3/structBrush_1_1SearchSpace_1a1cfbfca3a45987de45159bc4699a61bb" kind="function"><name>print</name></member>
     <member refid="d4/dc3/structBrush_1_1SearchSpace_1a30dc9740ebecad5267acd5e27b1a3953" kind="function"><name>make_program</name></member>
+    <member refid="d4/dc3/structBrush_1_1SearchSpace_1ac11ff8fbc623ac3b2b6d587a11de4a61" kind="function"><name>PTC2</name></member>
     <member refid="d4/dc3/structBrush_1_1SearchSpace_1a350a180311cc07e07788afc5f046de16" kind="function"><name>requires</name></member>
     <member refid="d4/dc3/structBrush_1_1SearchSpace_1a4a255b2a600b65c33dc7dad6dd6a4614" kind="function"><name>AddNode</name></member>
     <member refid="d4/dc3/structBrush_1_1SearchSpace_1a56e2beeb7aecac93840a237b7b9adf3b" kind="function"><name>AddNodes</name></member>
@@ -696,7 +745,7 @@
     <member refid="d8/de1/structBrush_1_1Signatures_3_01N_00_01enable__if__t_3_01is__in__v_3_01N_00_01NodeType_1_1Before_086362e8a3357214e4d1e7ae6488defd0_1a0020f6104a5dc3b297f23e7acb08d9ec" kind="typedef"><name>type</name></member>
   </compound>
   <compound refid="d6/d46/structBrush_1_1Signatures_3_01N_00_01enable__if__t_3_01is__in__v_3_01N_00_01NodeType_1_1Constant596b719ae2fbdba032d4d7caf610588d" kind="struct"><name>Brush::Signatures&lt; N, enable_if_t&lt; is_in_v&lt; N, NodeType::Constant, NodeType::Terminal &gt; &gt; &gt;</name>
-    <member refid="d6/d46/structBrush_1_1Signatures_3_01N_00_01enable__if__t_3_01is__in__v_3_01N_00_01NodeType_1_1Constant596b719ae2fbdba032d4d7caf610588d_1a96e9e6a4739b0da9ea65b95b71d56726" kind="typedef"><name>type</name></member>
+    <member refid="d6/d46/structBrush_1_1Signatures_3_01N_00_01enable__if__t_3_01is__in__v_3_01N_00_01NodeType_1_1Constant596b719ae2fbdba032d4d7caf610588d_1a966404d9eb45840a525f2b6e06e49cb6" kind="typedef"><name>type</name></member>
   </compound>
   <compound refid="d2/d1e/structBrush_1_1Signatures_3_01N_00_01enable__if__t_3_01is__in__v_3_01N_00_01NodeType_1_1SplitBesd813f162f676219afb7a127e3ee4a443" kind="struct"><name>Brush::Signatures&lt; N, enable_if_t&lt; is_in_v&lt; N, NodeType::SplitBest, NodeType::CustomSplit &gt; &gt; &gt;</name>
     <member refid="d2/d1e/structBrush_1_1Signatures_3_01N_00_01enable__if__t_3_01is__in__v_3_01N_00_01NodeType_1_1SplitBesd813f162f676219afb7a127e3ee4a443_1a8fa363035da95379364d7e23ae0032b6" kind="typedef"><name>type</name></member>
@@ -999,12 +1048,14 @@
     <member refid="dc/d5c/namespaceBrush_1a2277345e299e6d41c9573c59b32ad0aa" kind="function"><name>to_json</name></member>
     <member refid="dc/d5c/namespaceBrush_1a8f1ed90f7962fef5764e7be14845aa34" kind="function"><name>init_node_with_default_signature</name></member>
     <member refid="dc/d5c/namespaceBrush_1ad36f62c73493c032059be8cd18590d0e" kind="function"><name>from_json</name></member>
+    <member refid="dc/d5c/namespaceBrush_1a14447d2f04191fa6607e02077a4137ea" kind="function"><name>Isnt</name></member>
+    <member refid="dc/d5c/namespaceBrush_1a1d5a63450bcdb77bd08283c9f74ca53f" kind="function"><name>IsWeighable</name></member>
+    <member refid="dc/d5c/namespaceBrush_1a8b19fac06df5a0722bdb46eb9b9e50d3" kind="function"><name>IsWeighable</name></member>
     <member refid="dc/d5c/namespaceBrush_1a4f135739df5fe55a0ff81d943bec8be2" kind="function"><name>Is</name></member>
     <member refid="dc/d5c/namespaceBrush_1ac47c0777f99875f50e193b67b691cbb0" kind="function"><name>Isnt</name></member>
     <member refid="dc/d5c/namespaceBrush_1a21f448ef801105ba35186dae512bef06" kind="function"><name>IsLeaf</name></member>
     <member refid="dc/d5c/namespaceBrush_1a2b2fe399958c87099f03e33511fcd3d0" kind="function"><name>IsCommutative</name></member>
     <member refid="dc/d5c/namespaceBrush_1af66d4d1b86198350055ea499bb0238f7" kind="function"><name>IsDifferentiable</name></member>
-    <member refid="dc/d5c/namespaceBrush_1a1d5a63450bcdb77bd08283c9f74ca53f" kind="function"><name>IsWeighable</name></member>
     <member refid="dc/d5c/namespaceBrush_1a8dc5b7550111d2207dd36c94e4cb17cb" kind="function"><name>IsWeighable</name></member>
     <member refid="dc/d5c/namespaceBrush_1a6a72a3ce2992ed58a0637f86c798c9df" kind="function"><name>operator&amp;</name></member>
     <member refid="dc/d5c/namespaceBrush_1a04631eb64d85384617d3dbfc3da1485a" kind="function"><name>operator|</name></member>
@@ -1015,6 +1066,7 @@
     <member refid="dc/d5c/namespaceBrush_1a5f45985af0c3837f5eea9a9806768bb4" kind="function"><name>operator^=</name></member>
     <member refid="dc/d5c/namespaceBrush_1ab70b101224f05ee7cb285e1212137053" kind="function"><name>to_json</name></member>
     <member refid="dc/d5c/namespaceBrush_1a2360e8e22462df83dc799c8096ce5938" kind="function"><name>from_json</name></member>
+    <member refid="dc/d5c/namespaceBrush_1af6e4b7d5bbd50f46f8c96a356e19bdae" kind="function"><name>calc_initial_weight</name></member>
     <member refid="dc/d5c/namespaceBrush_1a08d191fd1a609031bd321d66312c988d" kind="function"><name>generate_terminals</name></member>
     <member refid="dc/d5c/namespaceBrush_1a819e6d35661a163c3f40d927766a3213" kind="function"><name>RandomDequeue</name></member>
   </compound>
@@ -1042,7 +1094,7 @@
   <compound refid="d9/d44/namespacebrush_1_1deap__api" kind="namespace"><name>brush::deap_api</name>
   </compound>
   <compound refid="d1/d49/namespacebrush_1_1deap__api_1_1nsga2" kind="namespace"><name>brush::deap_api::nsga2</name>
-    <member refid="d1/d49/namespacebrush_1_1deap__api_1_1nsga2_1a28c2ecf4b42f4456d964b7a6adce55e0" kind="function"><name>nsga2</name></member>
+    <member refid="d1/d49/namespacebrush_1_1deap__api_1_1nsga2_1add04e7f2398a62b2281dc302ff00f596" kind="function"><name>nsga2</name></member>
   </compound>
   <compound refid="d4/d33/namespacebrush_1_1deap__api_1_1utils" kind="namespace"><name>brush::deap_api::utils</name>
   </compound>
@@ -1064,7 +1116,9 @@
     <member refid="d7/da9/namespaceBrush_1_1Split_1aa3457f71fc041f0e6aad9e3b850ad6a1" kind="function"><name>gini_impurity_index</name></member>
   </compound>
   <compound refid="d7/d6b/namespaceBrush_1_1util" kind="namespace"><name>Brush::util</name>
-    <member refid="d7/d6b/namespaceBrush_1_1util_1acd1da211f39b8d4d52fb3811fb4c032b" kind="function"><name>get_weight</name></member>
+    <member refid="d7/d6b/namespaceBrush_1_1util_1ac363bc4b5411446ecf3133267c59cf5e" kind="variable"><name>weights</name></member>
+    <member refid="d7/d6b/namespaceBrush_1_1util_1a73dd47c6bb6f717c391c7e101898996d" kind="function"><name>requires</name></member>
+    <member refid="d7/d6b/namespaceBrush_1_1util_1ab2aa88900d0452d2cce1a71a992eeb6a" kind="function"><name>requires</name></member>
   </compound>
   <compound refid="d6/d2e/namespaceBrush_1_1Util" kind="namespace"><name>Brush::Util</name>
     <member refid="d6/d2e/namespaceBrush_1_1Util_1a9fb536ac40eb64d4b0233e56d3ce7109" kind="typedef"><name>TypeMap</name></member>
@@ -1146,12 +1200,14 @@
   </compound>
   <compound refid="d0/d24/namespacevariation" kind="namespace"><name>variation</name>
     <member refid="d0/d24/namespacevariation_1ace95ad8220efc40e8d89096ce61e6e60" kind="typedef"><name>Iter</name></member>
-    <member refid="d0/d24/namespacevariation_1a5d1fdeb5d33b06ee8847da09f58f0f5f" kind="function"><name>point_mutation</name></member>
-    <member refid="d0/d24/namespacevariation_1ab75fceda2c7aa69e59d3b55562937942" kind="function"><name>insert_mutation</name></member>
-    <member refid="d0/d24/namespacevariation_1ac09afe106fc118aa9dc82a1b8ce87b01" kind="function"><name>delete_mutation</name></member>
-    <member refid="d0/d24/namespacevariation_1acfeeba87c491e8c1e6c6e1ede19fc4bc" kind="function"><name>toggle_weight_mutation</name></member>
-    <member refid="d0/d24/namespacevariation_1abfa16e581c2548444df2bb4cbaa1b221" kind="function"><name>mutate</name></member>
-    <member refid="d0/d24/namespacevariation_1a3a3e45e3cbe090c29a47b3e60fdd3dac" kind="function"><name>cross</name></member>
+    <member refid="d0/d24/namespacevariation_1a170515efe6144a099812fc284c2ae10b" kind="function"><name>point_mutation</name></member>
+    <member refid="d0/d24/namespacevariation_1ad562aad1d00786b26a704f6b8db751c9" kind="function"><name>insert_mutation</name></member>
+    <member refid="d0/d24/namespacevariation_1a3f1ae4f750d7368932dae8e9b8fb7d20" kind="function"><name>delete_mutation</name></member>
+    <member refid="d0/d24/namespacevariation_1ae0d980dfd1c64597731f9cdde45e90b4" kind="function"><name>toggle_weight_on_mutation</name></member>
+    <member refid="d0/d24/namespacevariation_1afce849d082df7c278e5115ba64dd73ea" kind="function"><name>toggle_weight_off_mutation</name></member>
+    <member refid="d0/d24/namespacevariation_1ab3c6b50b00987b9b8f4a9ca98606860e" kind="function"><name>subtree_mutation</name></member>
+    <member refid="d0/d24/namespacevariation_1a3ceab1ae0c739084852ef04ebda17d6a" kind="function"><name>mutate</name></member>
+    <member refid="d0/d24/namespacevariation_1ac31f284c947a66d035b310513f4916c2" kind="function"><name>cross</name></member>
   </compound>
   <compound refid="d3/d9a/____init_____8py" kind="file"><name>__init__.py</name>
   </compound>

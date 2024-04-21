@@ -3,10 +3,10 @@
   <compounddef id="d1/d49/namespacebrush_1_1deap__api_1_1nsga2" kind="namespace" language="Python">
     <compoundname>brush::deap_api::nsga2</compoundname>
       <sectiondef kind="func">
-      <memberdef kind="function" id="d1/d49/namespacebrush_1_1deap__api_1_1nsga2_1a28c2ecf4b42f4456d964b7a6adce55e0" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+      <memberdef kind="function" id="d1/d49/namespacebrush_1_1deap__api_1_1nsga2_1add04e7f2398a62b2281dc302ff00f596" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>def</type>
         <definition>def brush.deap_api.nsga2.nsga2</definition>
-        <argsstring>(toolbox, NGEN, MU, CXPB, verbosity)</argsstring>
+        <argsstring>(toolbox, NGEN, MU, CXPB, use_batch, verbosity, rnd_flt)</argsstring>
         <name>nsga2</name>
         <param>
           <type>toolbox</type>
@@ -25,8 +25,16 @@
           <defname>CXPB</defname>
         </param>
         <param>
+          <type>use_batch</type>
+          <defname>use_batch</defname>
+        </param>
+        <param>
           <type>verbosity</type>
           <defname>verbosity</defname>
+        </param>
+        <param>
+          <type>rnd_flt</type>
+          <defname>rnd_flt</defname>
         </param>
         <briefdescription>
         </briefdescription>
@@ -34,7 +42,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/runner/work/brush/brush/src/brush/deap_api/nsga2.py" line="6" column="1" bodyfile="/home/runner/work/brush/brush/src/brush/deap_api/nsga2.py" bodystart="6" bodyend="75"/>
+        <location file="/home/runner/work/brush/brush/src/brush/deap_api/nsga2.py" line="7" column="1" bodyfile="/home/runner/work/brush/brush/src/brush/deap_api/nsga2.py" bodystart="7" bodyend="105"/>
         <references refid="d6/d2e/namespaceBrush_1_1Util_1a0fca88a717680a76c4b7b9b082675f89" compoundref="d5/d60/utils_8h" startline="455" endline="462">Brush::Util::print</references>
       </memberdef>
       </sectiondef>

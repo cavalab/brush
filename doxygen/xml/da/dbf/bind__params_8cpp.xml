@@ -4,12 +4,16 @@
     <compoundname>bind_params.cpp</compoundname>
     <includes refid="d5/d16/module_8h" local="yes">module.h</includes>
     <includes refid="da/d33/params_8h" local="yes">../params.h</includes>
+    <includes refid="d2/da9/rnd_8h" local="yes">../util/rnd.h</includes>
     <incdepgraph>
       <node id="7">
         <label>pybind11_json/pybind11_json.hpp</label>
       </node>
       <node id="22">
         <label>fmt/format.h</label>
+      </node>
+      <node id="30">
+        <label>limits</label>
       </node>
       <node id="9">
         <label>../params.h</label>
@@ -23,6 +27,8 @@
         <childnode refid="2" relation="include">
         </childnode>
         <childnode refid="9" relation="include">
+        </childnode>
+        <childnode refid="28" relation="include">
         </childnode>
       </node>
       <node id="11">
@@ -46,6 +52,18 @@
       <node id="17">
         <label>map</label>
       </node>
+      <node id="28">
+        <label>../util/rnd.h</label>
+        <link refid="d2/da9/rnd_8h"/>
+        <childnode refid="29" relation="include">
+        </childnode>
+        <childnode refid="30" relation="include">
+        </childnode>
+        <childnode refid="19" relation="include">
+        </childnode>
+        <childnode refid="10" relation="include">
+        </childnode>
+      </node>
       <node id="15">
         <label>fstream</label>
       </node>
@@ -58,6 +76,9 @@
         </childnode>
         <childnode refid="27" relation="include">
         </childnode>
+      </node>
+      <node id="29">
+        <label>random</label>
       </node>
       <node id="12">
         <label>Eigen/Dense</label>
@@ -162,8 +183,12 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/runner/work/brush/brush/src/bindings/bind_params.cpp" line="4" column="6" bodyfile="/home/runner/work/brush/brush/src/bindings/bind_params.cpp" bodystart="4" bodyend="13"/>
+        <location file="/home/runner/work/brush/brush/src/bindings/bind_params.cpp" line="7" column="6" bodyfile="/home/runner/work/brush/brush/src/bindings/bind_params.cpp" bodystart="7" bodyend="21"/>
+        <references refid="dc/d5c/namespaceBrush_1a42d2b278c90f5578287d8d2bafd77ea4" compoundref="dc/d4d/params_8cpp" startline="10" endline="10">Brush::get_params</references>
+        <references refid="d6/d2e/namespaceBrush_1_1Util_1af7dd70e54015821d96e3a1afed6344ca" compoundref="d2/da9/rnd_8h" startline="176">Brush::Util::r</references>
+        <references refid="d2/d2d/classBrush_1_1Util_1_1Rnd_1a450979f31af93d8dffd7be006ee5d50b" compoundref="de/d67/rnd_8cpp" startline="74" endline="78">Brush::Util::Rnd::rnd_flt</references>
         <references refid="dc/d5c/namespaceBrush_1a43eeef4bb05aa1be2b240b56fb3744fa" compoundref="dc/d4d/params_8cpp" startline="9" endline="9">Brush::set_params</references>
+        <references refid="d2/d2d/classBrush_1_1Util_1_1Rnd_1a8357702cf1f426e4909c45b97a18bb0e" compoundref="de/d67/rnd_8cpp" startline="46" endline="66">Brush::Util::Rnd::set_seed</references>
         <referencedby refid="dd/d30/module_8cpp_1ab3432520f506686ba18c7ce7758a6c69" compoundref="dd/d30/module_8cpp" startline="23" endline="37">PYBIND11_MODULE</referencedby>
       </memberdef>
       </sectiondef>
@@ -174,17 +199,25 @@
     <programlisting>
 <codeline lineno="1"><highlight class="preprocessor">#include<sp/>&quot;<ref refid="d5/d16/module_8h" kindref="compound">module.h</ref>&quot;</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="2"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;../params.h&quot;</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="3"><highlight class="normal"></highlight></codeline>
-<codeline lineno="4" refid="da/dbf/bind__params_8cpp_1a686c1dac4334b78b765f556f3069f661" refkind="member"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="da/dbf/bind__params_8cpp_1a686c1dac4334b78b765f556f3069f661" kindref="member">bind_params</ref>(py::module&amp;<sp/>m)</highlight></codeline>
-<codeline lineno="5"><highlight class="normal">{</highlight></codeline>
-<codeline lineno="6"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>py::object<sp/>params<sp/>=<sp/>Brush::PARAMS;</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="7"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>m.attr(&quot;PARAMS&quot;)<sp/>=<sp/>params;</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="8"><highlight class="normal"></highlight></codeline>
-<codeline lineno="9"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/><sp/>py::class_&lt;br::Params&gt;(m,<sp/>&quot;Params&quot;,<sp/>py::dynamic_attr())</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="10"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/><sp/><sp/><sp/><sp/><sp/><sp/>.def(py::init&lt;&gt;())</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="3"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;../util/rnd.h&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="4"><highlight class="normal"></highlight></codeline>
+<codeline lineno="5"><highlight class="normal"></highlight><highlight class="keyword">namespace<sp/></highlight><highlight class="normal"><ref refid="dc/d5c/namespaceBrush" kindref="compound">br</ref><sp/>=<sp/><ref refid="dc/d5c/namespaceBrush" kindref="compound">Brush</ref>;</highlight></codeline>
+<codeline lineno="6"><highlight class="normal"></highlight></codeline>
+<codeline lineno="7" refid="da/dbf/bind__params_8cpp_1a686c1dac4334b78b765f556f3069f661" refkind="member"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="da/dbf/bind__params_8cpp_1a686c1dac4334b78b765f556f3069f661" kindref="member">bind_params</ref>(py::module&amp;<sp/>m)</highlight></codeline>
+<codeline lineno="8"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="9"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>py::object<sp/>params<sp/>=<sp/>Brush::PARAMS;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="10"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>m.attr(&quot;PARAMS&quot;)<sp/>=<sp/>params;</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="11"><highlight class="normal"></highlight></codeline>
-<codeline lineno="12"><highlight class="normal"><sp/><sp/><sp/><sp/>m.def(</highlight><highlight class="stringliteral">&quot;set_params&quot;</highlight><highlight class="normal">,<sp/>&amp;<ref refid="dc/d5c/namespaceBrush_1a43eeef4bb05aa1be2b240b56fb3744fa" kindref="member">Brush::set_params</ref>);</highlight></codeline>
-<codeline lineno="13"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="12"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/><sp/>py::class_&lt;br::Params&gt;(m,<sp/>&quot;Params&quot;,<sp/>py::dynamic_attr())</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="13"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/><sp/><sp/><sp/><sp/><sp/><sp/>.def(py::init&lt;&gt;())</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="14"><highlight class="normal"></highlight></codeline>
+<codeline lineno="15"><highlight class="normal"><sp/><sp/><sp/><sp/>m.def(</highlight><highlight class="stringliteral">&quot;set_params&quot;</highlight><highlight class="normal">,<sp/>&amp;<ref refid="dc/d5c/namespaceBrush_1a43eeef4bb05aa1be2b240b56fb3744fa" kindref="member">br::set_params</ref>);</highlight></codeline>
+<codeline lineno="16"><highlight class="normal"><sp/><sp/><sp/><sp/>m.def(</highlight><highlight class="stringliteral">&quot;get_params&quot;</highlight><highlight class="normal">,<sp/>&amp;<ref refid="dc/d5c/namespaceBrush_1a42d2b278c90f5578287d8d2bafd77ea4" kindref="member">br::get_params</ref>);</highlight></codeline>
+<codeline lineno="17"><highlight class="normal"><sp/><sp/><sp/><sp/>m.def(</highlight><highlight class="stringliteral">&quot;set_random_state&quot;</highlight><highlight class="normal">,<sp/>[](</highlight><highlight class="keywordtype">unsigned</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>seed)</highlight></codeline>
+<codeline lineno="18"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{<sp/><ref refid="d6/d2e/namespaceBrush_1_1Util_1af7dd70e54015821d96e3a1afed6344ca" kindref="member">br::Util::r</ref><sp/>=<sp/>*br::Util::Rnd::initRand();<sp/></highlight></codeline>
+<codeline lineno="19"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="d6/d2e/namespaceBrush_1_1Util_1af7dd70e54015821d96e3a1afed6344ca" kindref="member">br::Util::r</ref>.<ref refid="d2/d2d/classBrush_1_1Util_1_1Rnd_1a8357702cf1f426e4909c45b97a18bb0e" kindref="member">set_seed</ref>(seed);<sp/>});</highlight></codeline>
+<codeline lineno="20"><highlight class="normal"><sp/><sp/><sp/><sp/>m.def(</highlight><highlight class="stringliteral">&quot;rnd_flt&quot;</highlight><highlight class="normal">,<sp/>[](){<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/><ref refid="d6/d2e/namespaceBrush_1_1Util_1af7dd70e54015821d96e3a1afed6344ca" kindref="member">br::Util::r</ref>.<ref refid="d2/d2d/classBrush_1_1Util_1_1Rnd_1a450979f31af93d8dffd7be006ee5d50b" kindref="member">rnd_flt</ref>();<sp/>});</highlight></codeline>
+<codeline lineno="21"><highlight class="normal">}</highlight></codeline>
     </programlisting>
     <location file="/home/runner/work/brush/brush/src/bindings/bind_params.cpp"/>
   </compounddef>

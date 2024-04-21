@@ -185,7 +185,7 @@ $(document).ready(function(){initNavTree('da/dc9/data_8cpp_source.html','../../'
 <div class="line"><a name="l00090"></a><span class="lineno">   90</span>&#160;    }</div>
 <div class="line"><a name="l00091"></a><span class="lineno">   91</span>&#160;    <span class="keywordflow">else</span></div>
 <div class="line"><a name="l00092"></a><span class="lineno">   92</span>&#160;    {</div>
-<div class="line"><a name="l00093"></a><span class="lineno">   93</span>&#160;        <span class="keywordflow">if</span>(isCategorical &amp;&amp; uniqueMap.size() &lt; 10)</div>
+<div class="line"><a name="l00093"></a><span class="lineno">   93</span>&#160;        <span class="keywordflow">if</span>(isCategorical &amp;&amp; uniqueMap.size() &lt;= 10)</div>
 <div class="line"><a name="l00094"></a><span class="lineno">   94</span>&#160;        {</div>
 <div class="line"><a name="l00095"></a><span class="lineno">   95</span>&#160;            tmp = <a class="code" href="../../dc/d5c/namespaceBrush.html#ac5cd76eed6ea70d1c8f429ee37ca9fc0">ArrayXi</a>(x.cast&lt;<span class="keywordtype">int</span>&gt;());</div>
 <div class="line"><a name="l00096"></a><span class="lineno">   96</span>&#160;        }</div>
@@ -224,95 +224,148 @@ $(document).ready(function(){initNavTree('da/dc9/data_8cpp_source.html','../../'
 <div class="line"><a name="l00130"></a><span class="lineno">  130</span>&#160;    <span class="keywordflow">return</span> <a class="code" href="../../d2/d36/classBrush_1_1Data_1_1Dataset.html">Dataset</a>(new_features, new_y, this-&gt;classification);</div>
 <div class="line"><a name="l00131"></a><span class="lineno">  131</span>&#160;}</div>
 <div class="line"><a name="l00132"></a><span class="lineno">  132</span>&#160; </div>
-<div class="line"><a name="l00133"></a><span class="lineno"><a class="line" href="../../d2/d36/classBrush_1_1Data_1_1Dataset.html#a3a5e9892d57ffee97276bbf30ede2582">  133</a></span>&#160;<a class="code" href="../../d2/d36/classBrush_1_1Data_1_1Dataset.html">Dataset</a> Dataset::get_batch(<span class="keywordtype">int</span> batch_size)<span class="keyword"> const</span></div>
+<div class="line"><a name="l00133"></a><span class="lineno"><a class="line" href="../../d2/d36/classBrush_1_1Data_1_1Dataset.html#a5020e43def6267598be0ba3d2b46e616">  133</a></span>&#160;<a class="code" href="../../d2/d36/classBrush_1_1Data_1_1Dataset.html">Dataset</a> Dataset::get_batch()<span class="keyword"> const</span></div>
 <div class="line"><a name="l00134"></a><span class="lineno">  134</span>&#160;<span class="keyword"></span>{</div>
-<div class="line"><a name="l00135"></a><span class="lineno">  135</span>&#160; </div>
-<div class="line"><a name="l00136"></a><span class="lineno">  136</span>&#160;    batch_size =  std::min(batch_size,<span class="keywordtype">int</span>(this-&gt;get_n_samples()));</div>
-<div class="line"><a name="l00137"></a><span class="lineno">  137</span>&#160;    <span class="keywordflow">return</span> (*<span class="keyword">this</span>)(<a class="code" href="../../d6/d2e/namespaceBrush_1_1Util.html#af7dd70e54015821d96e3a1afed6344ca">r</a>.<a class="code" href="../../d2/d2d/classBrush_1_1Util_1_1Rnd.html#a5ec3a29d75a9154bbfdf3488db64fb69">shuffled_index</a>(get_n_samples()));</div>
-<div class="line"><a name="l00138"></a><span class="lineno">  138</span>&#160;}</div>
+<div class="line"><a name="l00135"></a><span class="lineno">  135</span>&#160;    <span class="comment">// will always return a new dataset, even when use_batch is false (this case, returns itself)</span></div>
+<div class="line"><a name="l00136"></a><span class="lineno">  136</span>&#160; </div>
+<div class="line"><a name="l00137"></a><span class="lineno">  137</span>&#160;    <span class="keywordflow">if</span> (!use_batch) </div>
+<div class="line"><a name="l00138"></a><span class="lineno">  138</span>&#160;        <span class="keywordflow">return</span> (*<span class="keyword">this</span>);</div>
 <div class="line"><a name="l00139"></a><span class="lineno">  139</span>&#160; </div>
-<div class="line"><a name="l00140"></a><span class="lineno"><a class="line" href="../../d2/d36/classBrush_1_1Data_1_1Dataset.html#ade5da9269ebc099385d6f79cf4a53f9f">  140</a></span>&#160;array&lt;Dataset, 2&gt; <a class="code" href="../../d6/d2e/namespaceBrush_1_1Util.html#a1159db1e8024020d2e7a06845fc6254e">Dataset::split</a>(<span class="keyword">const</span> <a class="code" href="../../dc/d5c/namespaceBrush.html#a1c0079df772d6e050857327591514810">ArrayXb</a>&amp; mask)<span class="keyword"> const</span></div>
-<div class="line"><a name="l00141"></a><span class="lineno">  141</span>&#160;<span class="keyword"></span>{</div>
-<div class="line"><a name="l00142"></a><span class="lineno">  142</span>&#160;    <span class="comment">// split data into two based on mask. </span></div>
-<div class="line"><a name="l00143"></a><span class="lineno">  143</span>&#160;    <span class="keyword">auto</span> idx1 = <a class="code" href="../../d6/d2e/namespaceBrush_1_1Util.html#afc397ee448b473fec9502461f3e75eae">Util::mask_to_index</a>(mask);</div>
-<div class="line"><a name="l00144"></a><span class="lineno">  144</span>&#160;    <span class="keyword">auto</span> idx2 = <a class="code" href="../../d6/d2e/namespaceBrush_1_1Util.html#afc397ee448b473fec9502461f3e75eae">Util::mask_to_index</a>((!mask));</div>
-<div class="line"><a name="l00145"></a><span class="lineno">  145</span>&#160;    <span class="keywordflow">return</span> std::array&lt;Dataset, 2&gt;{ (*this)(idx1), (*<span class="keyword">this</span>)(idx2) };</div>
-<div class="line"><a name="l00146"></a><span class="lineno">  146</span>&#160;}</div>
-<div class="line"><a name="l00149"></a><span class="lineno"><a class="line" href="../../d2/d36/classBrush_1_1Data_1_1Dataset.html#aacd5afd19b9cee9d9d84e4290eeabb6f">  149</a></span>&#160;<span class="keywordtype">void</span> Dataset::init()</div>
-<div class="line"><a name="l00150"></a><span class="lineno">  150</span>&#160;{</div>
-<div class="line"><a name="l00151"></a><span class="lineno">  151</span>&#160;    <span class="comment">//TODO: populate var_names, var_data_types, data_types, features_of_type</span></div>
-<div class="line"><a name="l00152"></a><span class="lineno">  152</span>&#160;    <span class="comment">// n_features = this-&gt;features.size();</span></div>
-<div class="line"><a name="l00153"></a><span class="lineno">  153</span>&#160;    <span class="comment">// note this will have to change in unsupervised settings</span></div>
-<div class="line"><a name="l00154"></a><span class="lineno">  154</span>&#160;    <span class="comment">// n_samples = this-&gt;y.size();</span></div>
-<div class="line"><a name="l00155"></a><span class="lineno">  155</span>&#160; </div>
-<div class="line"><a name="l00156"></a><span class="lineno">  156</span>&#160;    <span class="comment">// fmt::print(&quot;Dataset::init()\n&quot;);</span></div>
-<div class="line"><a name="l00157"></a><span class="lineno">  157</span>&#160;    <span class="keywordflow">for</span> (<span class="keyword">const</span> <span class="keyword">auto</span>&amp; [name, value]: this-&gt;features)</div>
-<div class="line"><a name="l00158"></a><span class="lineno">  158</span>&#160;    {</div>
-<div class="line"><a name="l00159"></a><span class="lineno">  159</span>&#160;        <span class="comment">// fmt::print(&quot;name:{}\n&quot;,name);</span></div>
-<div class="line"><a name="l00160"></a><span class="lineno">  160</span>&#160;        <span class="comment">// save feature types</span></div>
-<div class="line"><a name="l00161"></a><span class="lineno">  161</span>&#160;        <span class="keyword">auto</span> feature_type = <a class="code" href="../../d9/d1c/namespaceBrush_1_1Data.html#a6c00d36ba6aefd852544da96a089754a">StateType</a>(value);</div>
+<div class="line"><a name="l00140"></a><span class="lineno">  140</span>&#160;    <span class="keyword">auto</span> n_samples = int(this-&gt;get_n_samples());</div>
+<div class="line"><a name="l00141"></a><span class="lineno">  141</span>&#160;    <span class="comment">// garantee that at least one sample is going to be returned, since</span></div>
+<div class="line"><a name="l00142"></a><span class="lineno">  142</span>&#160;    <span class="comment">// use_batch is true only if batch_size is (0, 1), and ceil will round</span></div>
+<div class="line"><a name="l00143"></a><span class="lineno">  143</span>&#160;    <span class="comment">// up</span></div>
+<div class="line"><a name="l00144"></a><span class="lineno">  144</span>&#160;    n_samples = int(ceil(n_samples*batch_size));</div>
+<div class="line"><a name="l00145"></a><span class="lineno">  145</span>&#160; </div>
+<div class="line"><a name="l00146"></a><span class="lineno">  146</span>&#160;    <span class="keywordflow">return</span> (*<span class="keyword">this</span>)(<a class="code" href="../../d6/d2e/namespaceBrush_1_1Util.html#af7dd70e54015821d96e3a1afed6344ca">r</a>.<a class="code" href="../../d2/d2d/classBrush_1_1Util_1_1Rnd.html#a5ec3a29d75a9154bbfdf3488db64fb69">shuffled_index</a>(n_samples));</div>
+<div class="line"><a name="l00147"></a><span class="lineno">  147</span>&#160;}</div>
+<div class="line"><a name="l00148"></a><span class="lineno">  148</span>&#160; </div>
+<div class="line"><a name="l00149"></a><span class="lineno"><a class="line" href="../../d2/d36/classBrush_1_1Data_1_1Dataset.html#ade5da9269ebc099385d6f79cf4a53f9f">  149</a></span>&#160;array&lt;Dataset, 2&gt; <a class="code" href="../../d6/d2e/namespaceBrush_1_1Util.html#a1159db1e8024020d2e7a06845fc6254e">Dataset::split</a>(<span class="keyword">const</span> <a class="code" href="../../dc/d5c/namespaceBrush.html#a1c0079df772d6e050857327591514810">ArrayXb</a>&amp; mask)<span class="keyword"> const</span></div>
+<div class="line"><a name="l00150"></a><span class="lineno">  150</span>&#160;<span class="keyword"></span>{</div>
+<div class="line"><a name="l00151"></a><span class="lineno">  151</span>&#160;    <span class="comment">// TODO: assert that mask is not filled with zeros or ones (would create</span></div>
+<div class="line"><a name="l00152"></a><span class="lineno">  152</span>&#160;    <span class="comment">// one empty partition)</span></div>
+<div class="line"><a name="l00153"></a><span class="lineno">  153</span>&#160; </div>
+<div class="line"><a name="l00154"></a><span class="lineno">  154</span>&#160;    <span class="comment">// split data into two based on mask. </span></div>
+<div class="line"><a name="l00155"></a><span class="lineno">  155</span>&#160;    <span class="keyword">auto</span> idx1 = <a class="code" href="../../d6/d2e/namespaceBrush_1_1Util.html#afc397ee448b473fec9502461f3e75eae">Util::mask_to_index</a>(mask);</div>
+<div class="line"><a name="l00156"></a><span class="lineno">  156</span>&#160;    <span class="keyword">auto</span> idx2 = <a class="code" href="../../d6/d2e/namespaceBrush_1_1Util.html#afc397ee448b473fec9502461f3e75eae">Util::mask_to_index</a>((!mask));</div>
+<div class="line"><a name="l00157"></a><span class="lineno">  157</span>&#160;    <span class="keywordflow">return</span> std::array&lt;Dataset, 2&gt;{ (*this)(idx1), (*<span class="keyword">this</span>)(idx2) };</div>
+<div class="line"><a name="l00158"></a><span class="lineno">  158</span>&#160;}</div>
+<div class="line"><a name="l00159"></a><span class="lineno">  159</span>&#160; </div>
+<div class="line"><a name="l00160"></a><span class="lineno"><a class="line" href="../../d2/d36/classBrush_1_1Data_1_1Dataset.html#ae69087b8c020840f254e3679cd324ba5">  160</a></span>&#160;<a class="code" href="../../d2/d36/classBrush_1_1Data_1_1Dataset.html">Dataset</a> Dataset::get_training_data()<span class="keyword"> const </span>{ <span class="keywordflow">return</span> (*<span class="keyword">this</span>)(training_data_idx); }</div>
+<div class="line"><a name="l00161"></a><span class="lineno"><a class="line" href="../../d2/d36/classBrush_1_1Data_1_1Dataset.html#a1ddb847fd1ceff63e60ffd79542409d9">  161</a></span>&#160;<a class="code" href="../../d2/d36/classBrush_1_1Data_1_1Dataset.html">Dataset</a> Dataset::get_validation_data()<span class="keyword"> const </span>{ <span class="keywordflow">return</span> (*<span class="keyword">this</span>)(validation_data_idx); }</div>
 <div class="line"><a name="l00162"></a><span class="lineno">  162</span>&#160; </div>
-<div class="line"><a name="l00163"></a><span class="lineno">  163</span>&#160;        <a class="code" href="../../d6/d2e/namespaceBrush_1_1Util.html#ac697e701ef641df7a4cff481c667c9f7">Util::unique_insert</a>(unique_data_types, feature_type);</div>
-<div class="line"><a name="l00164"></a><span class="lineno">  164</span>&#160;        feature_types.push_back( feature_type);</div>
-<div class="line"><a name="l00165"></a><span class="lineno">  165</span>&#160;        <span class="comment">// add feature to appropriate map list </span></div>
-<div class="line"><a name="l00166"></a><span class="lineno">  166</span>&#160;        this-&gt;features_of_type[feature_type].push_back(name);</div>
-<div class="line"><a name="l00167"></a><span class="lineno">  167</span>&#160;    }</div>
-<div class="line"><a name="l00168"></a><span class="lineno">  168</span>&#160;}</div>
-<div class="line"><a name="l00169"></a><span class="lineno">  169</span>&#160; </div>
-<div class="line"><a name="l00171"></a><span class="lineno"><a class="line" href="../../d2/d36/classBrush_1_1Data_1_1Dataset.html#ab709f6732a1854b45418e7f14dd759ea">  171</a></span>&#160;map&lt;string, State&gt; Dataset::make_features(<span class="keyword">const</span> ArrayXXf&amp; X,</div>
-<div class="line"><a name="l00172"></a><span class="lineno">  172</span>&#160;                                       <span class="keyword">const</span> map&lt;string,State&gt;&amp; Z,</div>
-<div class="line"><a name="l00173"></a><span class="lineno">  173</span>&#160;                                       <span class="keyword">const</span> vector&lt;string&gt;&amp; vn </div>
-<div class="line"><a name="l00174"></a><span class="lineno">  174</span>&#160;                                       ) </div>
-<div class="line"><a name="l00175"></a><span class="lineno">  175</span>&#160;{</div>
-<div class="line"><a name="l00176"></a><span class="lineno">  176</span>&#160;    <span class="comment">// fmt::print(&quot;Dataset::make_features()\n&quot;);</span></div>
-<div class="line"><a name="l00177"></a><span class="lineno">  177</span>&#160;    map&lt;string, State&gt; tmp_features;</div>
-<div class="line"><a name="l00178"></a><span class="lineno">  178</span>&#160;    vector&lt;string&gt; var_names;</div>
-<div class="line"><a name="l00179"></a><span class="lineno">  179</span>&#160;    <span class="comment">// fmt::print(&quot;vn: {}\n&quot;,vn);</span></div>
-<div class="line"><a name="l00180"></a><span class="lineno">  180</span>&#160;    <span class="comment">// check variable names</span></div>
-<div class="line"><a name="l00181"></a><span class="lineno">  181</span>&#160;    <span class="keywordflow">if</span> (vn.empty())</div>
-<div class="line"><a name="l00182"></a><span class="lineno">  182</span>&#160;    {</div>
-<div class="line"><a name="l00183"></a><span class="lineno">  183</span>&#160;        <span class="comment">// fmt::print(&quot;vn empty\n&quot;);</span></div>
-<div class="line"><a name="l00184"></a><span class="lineno">  184</span>&#160;        <span class="keywordflow">for</span> (<span class="keywordtype">int</span> i = 0; i &lt; X.cols(); ++i)</div>
-<div class="line"><a name="l00185"></a><span class="lineno">  185</span>&#160;        {</div>
-<div class="line"><a name="l00186"></a><span class="lineno">  186</span>&#160;            <span class="keywordtype">string</span> v = <span class="stringliteral">&quot;x_&quot;</span>+<a class="code" href="../../d6/d2e/namespaceBrush_1_1Util.html#a9cd8004de7aab46b7a06f27d440064ed">to_string</a>(i);</div>
-<div class="line"><a name="l00187"></a><span class="lineno">  187</span>&#160;            var_names.push_back(v);</div>
-<div class="line"><a name="l00188"></a><span class="lineno">  188</span>&#160;        }</div>
-<div class="line"><a name="l00189"></a><span class="lineno">  189</span>&#160;    }</div>
-<div class="line"><a name="l00190"></a><span class="lineno">  190</span>&#160;    <span class="keywordflow">else</span></div>
-<div class="line"><a name="l00191"></a><span class="lineno">  191</span>&#160;    {</div>
-<div class="line"><a name="l00192"></a><span class="lineno">  192</span>&#160;        <span class="keywordflow">if</span> (vn.size() != X.cols())</div>
-<div class="line"><a name="l00193"></a><span class="lineno">  193</span>&#160;            <a class="code" href="../../da/d41/error_8h.html#aa4c550bcd71e4ec1c97b111e1360509a">HANDLE_ERROR_THROW</a>(</div>
-<div class="line"><a name="l00194"></a><span class="lineno">  194</span>&#160;                fmt::format(<span class="stringliteral">&quot;Variable names and data size mismatch: &quot;</span></div>
-<div class="line"><a name="l00195"></a><span class="lineno">  195</span>&#160;                <span class="stringliteral">&quot;{} variable names and {} features in X&quot;</span>, </div>
-<div class="line"><a name="l00196"></a><span class="lineno">  196</span>&#160;                vn.size(), </div>
-<div class="line"><a name="l00197"></a><span class="lineno">  197</span>&#160;                X.cols()</div>
-<div class="line"><a name="l00198"></a><span class="lineno">  198</span>&#160;                )</div>
-<div class="line"><a name="l00199"></a><span class="lineno">  199</span>&#160;            );</div>
-<div class="line"><a name="l00200"></a><span class="lineno">  200</span>&#160;        var_names = vn;</div>
-<div class="line"><a name="l00201"></a><span class="lineno">  201</span>&#160;    }</div>
-<div class="line"><a name="l00202"></a><span class="lineno">  202</span>&#160; </div>
-<div class="line"><a name="l00203"></a><span class="lineno">  203</span>&#160;    <span class="keywordflow">for</span> (<span class="keywordtype">int</span> i = 0; i &lt; X.cols(); ++i)</div>
-<div class="line"><a name="l00204"></a><span class="lineno">  204</span>&#160;    {</div>
-<div class="line"><a name="l00205"></a><span class="lineno">  205</span>&#160;        <span class="comment">// fmt::print(&quot;X({}): {} \n&quot;,i,var_names.at(i));</span></div>
-<div class="line"><a name="l00206"></a><span class="lineno">  206</span>&#160;        <a class="code" href="../../d9/d1c/namespaceBrush_1_1Data.html#aeec1ea0d55dd44db207801471be4f09c">State</a> tmp = <a class="code" href="../../d9/d1c/namespaceBrush_1_1Data.html#a1087f7155f1e2855ed2821058b6ab036">check_type</a>(X.col(i).array());</div>
-<div class="line"><a name="l00207"></a><span class="lineno">  207</span>&#160; </div>
-<div class="line"><a name="l00208"></a><span class="lineno">  208</span>&#160;        tmp_features[var_names.at(i)] = tmp;</div>
-<div class="line"><a name="l00209"></a><span class="lineno">  209</span>&#160;    }</div>
-<div class="line"><a name="l00210"></a><span class="lineno">  210</span>&#160;    <span class="comment">// fmt::print(&quot;tmp_features insert\n&quot;);</span></div>
-<div class="line"><a name="l00211"></a><span class="lineno">  211</span>&#160;    tmp_features.insert(Z.begin(), Z.end());</div>
-<div class="line"><a name="l00212"></a><span class="lineno">  212</span>&#160;    <span class="keywordflow">return</span> tmp_features;</div>
-<div class="line"><a name="l00213"></a><span class="lineno">  213</span>&#160;};</div>
-<div class="line"><a name="l00214"></a><span class="lineno">  214</span>&#160; </div>
-<div class="line"><a name="l00215"></a><span class="lineno"><a class="line" href="../../d9/d1c/namespaceBrush_1_1Data.html#a167ca10243cde10177737a1e60a34a61">  215</a></span>&#160;ostream&amp; <a class="code" href="../../d6/d2e/namespaceBrush_1_1Util.html#ad910506fb00aa26aa8de5f608e6704a2">operator&lt;&lt;</a>(ostream&amp; os, <a class="code" href="../../dc/d5c/namespaceBrush.html#a3f2c9b744330ba4a561ac72f048a1a5f">DataType</a> dt)</div>
-<div class="line"><a name="l00216"></a><span class="lineno">  216</span>&#160;{</div>
-<div class="line"><a name="l00217"></a><span class="lineno">  217</span>&#160;    os &lt;&lt; <a class="code" href="../../dc/d5c/namespaceBrush.html#ab8d6c8427ade77c95f36ac1781279efb">DataTypeName</a>[dt];</div>
-<div class="line"><a name="l00218"></a><span class="lineno">  218</span>&#160;    <span class="keywordflow">return</span> os;</div>
-<div class="line"><a name="l00219"></a><span class="lineno">  219</span>&#160;}</div>
-<div class="line"><a name="l00220"></a><span class="lineno">  220</span>&#160;    </div>
-<div class="line"><a name="l00221"></a><span class="lineno">  221</span>&#160;} <span class="comment">// data</span></div>
-<div class="line"><a name="l00222"></a><span class="lineno">  222</span>&#160;} <span class="comment">// Brush</span></div>
+<div class="line"><a name="l00165"></a><span class="lineno"><a class="line" href="../../d2/d36/classBrush_1_1Data_1_1Dataset.html#aacd5afd19b9cee9d9d84e4290eeabb6f">  165</a></span>&#160;<span class="keywordtype">void</span> Dataset::init()</div>
+<div class="line"><a name="l00166"></a><span class="lineno">  166</span>&#160;{</div>
+<div class="line"><a name="l00167"></a><span class="lineno">  167</span>&#160;    <span class="comment">//TODO: populate var_names, var_data_types, data_types, features_of_type</span></div>
+<div class="line"><a name="l00168"></a><span class="lineno">  168</span>&#160;    <span class="comment">// n_features = this-&gt;features.size();</span></div>
+<div class="line"><a name="l00169"></a><span class="lineno">  169</span>&#160;    <span class="comment">// note this will have to change in unsupervised settings</span></div>
+<div class="line"><a name="l00170"></a><span class="lineno">  170</span>&#160;    <span class="comment">// n_samples = this-&gt;y.size();</span></div>
+<div class="line"><a name="l00171"></a><span class="lineno">  171</span>&#160; </div>
+<div class="line"><a name="l00172"></a><span class="lineno">  172</span>&#160;    <span class="keywordflow">if</span> (this-&gt;features.size() == 0){</div>
+<div class="line"><a name="l00173"></a><span class="lineno">  173</span>&#160;        <a class="code" href="../../da/d41/error_8h.html#aa4c550bcd71e4ec1c97b111e1360509a">HANDLE_ERROR_THROW</a>(</div>
+<div class="line"><a name="l00174"></a><span class="lineno">  174</span>&#160;            fmt::format(<span class="stringliteral">&quot;Error during the initialization of the dataset. It &quot;</span></div>
+<div class="line"><a name="l00175"></a><span class="lineno">  175</span>&#160;                        <span class="stringliteral">&quot;does not contain any data\n&quot;</span>) </div>
+<div class="line"><a name="l00176"></a><span class="lineno">  176</span>&#160;            );</div>
+<div class="line"><a name="l00177"></a><span class="lineno">  177</span>&#160;    }</div>
+<div class="line"><a name="l00178"></a><span class="lineno">  178</span>&#160; </div>
+<div class="line"><a name="l00179"></a><span class="lineno">  179</span>&#160;    <span class="comment">// fmt::print(&quot;Dataset::init()\n&quot;);</span></div>
+<div class="line"><a name="l00180"></a><span class="lineno">  180</span>&#160;    <span class="keywordflow">for</span> (<span class="keyword">const</span> <span class="keyword">auto</span>&amp; [name, value]: this-&gt;features)</div>
+<div class="line"><a name="l00181"></a><span class="lineno">  181</span>&#160;    {</div>
+<div class="line"><a name="l00182"></a><span class="lineno">  182</span>&#160;        <span class="comment">// fmt::print(&quot;name:{}\n&quot;,name);</span></div>
+<div class="line"><a name="l00183"></a><span class="lineno">  183</span>&#160;        <span class="comment">// save feature types</span></div>
+<div class="line"><a name="l00184"></a><span class="lineno">  184</span>&#160;        <span class="keyword">auto</span> feature_type = <a class="code" href="../../d9/d1c/namespaceBrush_1_1Data.html#a6c00d36ba6aefd852544da96a089754a">StateType</a>(value);</div>
+<div class="line"><a name="l00185"></a><span class="lineno">  185</span>&#160; </div>
+<div class="line"><a name="l00186"></a><span class="lineno">  186</span>&#160;        <a class="code" href="../../d6/d2e/namespaceBrush_1_1Util.html#ac697e701ef641df7a4cff481c667c9f7">Util::unique_insert</a>(unique_data_types, feature_type);</div>
+<div class="line"><a name="l00187"></a><span class="lineno">  187</span>&#160;        feature_types.push_back( feature_type);</div>
+<div class="line"><a name="l00188"></a><span class="lineno">  188</span>&#160;        <span class="comment">// add feature to appropriate map list </span></div>
+<div class="line"><a name="l00189"></a><span class="lineno">  189</span>&#160;        this-&gt;features_of_type[feature_type].push_back(name);</div>
+<div class="line"><a name="l00190"></a><span class="lineno">  190</span>&#160;    }</div>
+<div class="line"><a name="l00191"></a><span class="lineno">  191</span>&#160; </div>
+<div class="line"><a name="l00192"></a><span class="lineno">  192</span>&#160;    <span class="comment">// setting the training and validation data indexes</span></div>
+<div class="line"><a name="l00193"></a><span class="lineno">  193</span>&#160;    <span class="keyword">auto</span> n_samples = int(this-&gt;get_n_samples());</div>
+<div class="line"><a name="l00194"></a><span class="lineno">  194</span>&#160;    <span class="keyword">auto</span> idx = <a class="code" href="../../d6/d2e/namespaceBrush_1_1Util.html#af7dd70e54015821d96e3a1afed6344ca">r</a>.<a class="code" href="../../d2/d2d/classBrush_1_1Util_1_1Rnd.html#a5ec3a29d75a9154bbfdf3488db64fb69">shuffled_index</a>(n_samples);</div>
+<div class="line"><a name="l00195"></a><span class="lineno">  195</span>&#160; </div>
+<div class="line"><a name="l00196"></a><span class="lineno">  196</span>&#160;    <span class="comment">// garantee that at least one sample is going to be returned, since</span></div>
+<div class="line"><a name="l00197"></a><span class="lineno">  197</span>&#160;    <span class="comment">// use_batch is true only if batch_size is (0, 1), and ceil will round</span></div>
+<div class="line"><a name="l00198"></a><span class="lineno">  198</span>&#160;    <span class="comment">// up</span></div>
+<div class="line"><a name="l00199"></a><span class="lineno">  199</span>&#160;    <span class="keyword">auto</span> n_train_samples = int(ceil(n_samples*(1-validation_size)));</div>
+<div class="line"><a name="l00200"></a><span class="lineno">  200</span>&#160; </div>
+<div class="line"><a name="l00201"></a><span class="lineno">  201</span>&#160;    training_data_idx.resize(0);</div>
+<div class="line"><a name="l00202"></a><span class="lineno">  202</span>&#160;    std::transform(idx.begin(), idx.begin() + n_train_samples,</div>
+<div class="line"><a name="l00203"></a><span class="lineno">  203</span>&#160;            back_inserter(training_data_idx),</div>
+<div class="line"><a name="l00204"></a><span class="lineno">  204</span>&#160;            [&amp;](<span class="keywordtype">int</span> element) { <span class="keywordflow">return</span> element; });</div>
+<div class="line"><a name="l00205"></a><span class="lineno">  205</span>&#160; </div>
+<div class="line"><a name="l00206"></a><span class="lineno">  206</span>&#160;    <span class="keywordflow">if</span> ( use_validation &amp;&amp; (n_samples - n_train_samples != 0) ) {</div>
+<div class="line"><a name="l00207"></a><span class="lineno">  207</span>&#160;        validation_data_idx.resize(0);</div>
+<div class="line"><a name="l00208"></a><span class="lineno">  208</span>&#160;        std::transform(idx.begin() + n_train_samples, idx.end(),</div>
+<div class="line"><a name="l00209"></a><span class="lineno">  209</span>&#160;                back_inserter(validation_data_idx),</div>
+<div class="line"><a name="l00210"></a><span class="lineno">  210</span>&#160;                [&amp;](<span class="keywordtype">int</span> element) { <span class="keywordflow">return</span> element; });</div>
+<div class="line"><a name="l00211"></a><span class="lineno">  211</span>&#160;    }</div>
+<div class="line"><a name="l00212"></a><span class="lineno">  212</span>&#160;    <span class="keywordflow">else</span> {</div>
+<div class="line"><a name="l00213"></a><span class="lineno">  213</span>&#160;        validation_data_idx = training_data_idx;</div>
+<div class="line"><a name="l00214"></a><span class="lineno">  214</span>&#160;    } </div>
+<div class="line"><a name="l00215"></a><span class="lineno">  215</span>&#160;}</div>
+<div class="line"><a name="l00216"></a><span class="lineno">  216</span>&#160; </div>
+<div class="line"><a name="l00217"></a><span class="lineno"><a class="line" href="../../d2/d36/classBrush_1_1Data_1_1Dataset.html#ade358be2a762f2a6df738a41fe1095b5">  217</a></span>&#160;<span class="keywordtype">float</span> Dataset::get_batch_size() { <span class="keywordflow">return</span> batch_size; }</div>
+<div class="line"><a name="l00218"></a><span class="lineno"><a class="line" href="../../d2/d36/classBrush_1_1Data_1_1Dataset.html#afa07fa8dff0f8e01293509d6b7cc0dc3">  218</a></span>&#160;<span class="keywordtype">void</span> Dataset::set_batch_size(<span class="keywordtype">float</span> new_size) {</div>
+<div class="line"><a name="l00219"></a><span class="lineno">  219</span>&#160;    batch_size = new_size;</div>
+<div class="line"><a name="l00220"></a><span class="lineno">  220</span>&#160;    use_batch = batch_size &gt; 0.0 &amp;&amp; batch_size &lt; 1.0;</div>
+<div class="line"><a name="l00221"></a><span class="lineno">  221</span>&#160;}</div>
+<div class="line"><a name="l00222"></a><span class="lineno">  222</span>&#160; </div>
+<div class="line"><a name="l00224"></a><span class="lineno"><a class="line" href="../../d2/d36/classBrush_1_1Data_1_1Dataset.html#ab709f6732a1854b45418e7f14dd759ea">  224</a></span>&#160;map&lt;string, State&gt; Dataset::make_features(<span class="keyword">const</span> ArrayXXf&amp; X,</div>
+<div class="line"><a name="l00225"></a><span class="lineno">  225</span>&#160;                                       <span class="keyword">const</span> map&lt;string,State&gt;&amp; Z,</div>
+<div class="line"><a name="l00226"></a><span class="lineno">  226</span>&#160;                                       <span class="keyword">const</span> vector&lt;string&gt;&amp; vn </div>
+<div class="line"><a name="l00227"></a><span class="lineno">  227</span>&#160;                                       ) </div>
+<div class="line"><a name="l00228"></a><span class="lineno">  228</span>&#160;{</div>
+<div class="line"><a name="l00229"></a><span class="lineno">  229</span>&#160;    <span class="comment">// fmt::print(&quot;Dataset::make_features()\n&quot;);</span></div>
+<div class="line"><a name="l00230"></a><span class="lineno">  230</span>&#160;    map&lt;string, State&gt; tmp_features;</div>
+<div class="line"><a name="l00231"></a><span class="lineno">  231</span>&#160;    vector&lt;string&gt; var_names;</div>
+<div class="line"><a name="l00232"></a><span class="lineno">  232</span>&#160;    <span class="comment">// fmt::print(&quot;vn: {}\n&quot;,vn);</span></div>
+<div class="line"><a name="l00233"></a><span class="lineno">  233</span>&#160;    <span class="comment">// check variable names</span></div>
+<div class="line"><a name="l00234"></a><span class="lineno">  234</span>&#160;    <span class="keywordflow">if</span> (vn.empty())</div>
+<div class="line"><a name="l00235"></a><span class="lineno">  235</span>&#160;    {</div>
+<div class="line"><a name="l00236"></a><span class="lineno">  236</span>&#160;        <span class="comment">// fmt::print(&quot;vn empty\n&quot;);</span></div>
+<div class="line"><a name="l00237"></a><span class="lineno">  237</span>&#160;        <span class="keywordflow">for</span> (<span class="keywordtype">int</span> i = 0; i &lt; X.cols(); ++i)</div>
+<div class="line"><a name="l00238"></a><span class="lineno">  238</span>&#160;        {</div>
+<div class="line"><a name="l00239"></a><span class="lineno">  239</span>&#160;            <span class="keywordtype">string</span> v = <span class="stringliteral">&quot;x_&quot;</span>+<a class="code" href="../../d6/d2e/namespaceBrush_1_1Util.html#a9cd8004de7aab46b7a06f27d440064ed">to_string</a>(i);</div>
+<div class="line"><a name="l00240"></a><span class="lineno">  240</span>&#160;            var_names.push_back(v);</div>
+<div class="line"><a name="l00241"></a><span class="lineno">  241</span>&#160;        }</div>
+<div class="line"><a name="l00242"></a><span class="lineno">  242</span>&#160;    }</div>
+<div class="line"><a name="l00243"></a><span class="lineno">  243</span>&#160;    <span class="keywordflow">else</span></div>
+<div class="line"><a name="l00244"></a><span class="lineno">  244</span>&#160;    {</div>
+<div class="line"><a name="l00245"></a><span class="lineno">  245</span>&#160;        <span class="keywordflow">if</span> (vn.size() != X.cols())</div>
+<div class="line"><a name="l00246"></a><span class="lineno">  246</span>&#160;            <a class="code" href="../../da/d41/error_8h.html#aa4c550bcd71e4ec1c97b111e1360509a">HANDLE_ERROR_THROW</a>(</div>
+<div class="line"><a name="l00247"></a><span class="lineno">  247</span>&#160;                fmt::format(<span class="stringliteral">&quot;Variable names and data size mismatch: &quot;</span></div>
+<div class="line"><a name="l00248"></a><span class="lineno">  248</span>&#160;                <span class="stringliteral">&quot;{} variable names and {} features in X&quot;</span>, </div>
+<div class="line"><a name="l00249"></a><span class="lineno">  249</span>&#160;                vn.size(), </div>
+<div class="line"><a name="l00250"></a><span class="lineno">  250</span>&#160;                X.cols()</div>
+<div class="line"><a name="l00251"></a><span class="lineno">  251</span>&#160;                )</div>
+<div class="line"><a name="l00252"></a><span class="lineno">  252</span>&#160;            );</div>
+<div class="line"><a name="l00253"></a><span class="lineno">  253</span>&#160;        var_names = vn;</div>
+<div class="line"><a name="l00254"></a><span class="lineno">  254</span>&#160;    }</div>
+<div class="line"><a name="l00255"></a><span class="lineno">  255</span>&#160; </div>
+<div class="line"><a name="l00256"></a><span class="lineno">  256</span>&#160;    <span class="keywordflow">for</span> (<span class="keywordtype">int</span> i = 0; i &lt; X.cols(); ++i)</div>
+<div class="line"><a name="l00257"></a><span class="lineno">  257</span>&#160;    {</div>
+<div class="line"><a name="l00258"></a><span class="lineno">  258</span>&#160;        <span class="comment">// fmt::print(&quot;X({}): {} \n&quot;,i,var_names.at(i));</span></div>
+<div class="line"><a name="l00259"></a><span class="lineno">  259</span>&#160;        <a class="code" href="../../d9/d1c/namespaceBrush_1_1Data.html#aeec1ea0d55dd44db207801471be4f09c">State</a> tmp = <a class="code" href="../../d9/d1c/namespaceBrush_1_1Data.html#a1087f7155f1e2855ed2821058b6ab036">check_type</a>(X.col(i).array());</div>
+<div class="line"><a name="l00260"></a><span class="lineno">  260</span>&#160; </div>
+<div class="line"><a name="l00261"></a><span class="lineno">  261</span>&#160;        tmp_features[var_names.at(i)] = tmp;</div>
+<div class="line"><a name="l00262"></a><span class="lineno">  262</span>&#160;    }</div>
+<div class="line"><a name="l00263"></a><span class="lineno">  263</span>&#160;    <span class="comment">// fmt::print(&quot;tmp_features insert\n&quot;);</span></div>
+<div class="line"><a name="l00264"></a><span class="lineno">  264</span>&#160;    tmp_features.insert(Z.begin(), Z.end());</div>
+<div class="line"><a name="l00265"></a><span class="lineno">  265</span>&#160;    <span class="keywordflow">return</span> tmp_features;</div>
+<div class="line"><a name="l00266"></a><span class="lineno">  266</span>&#160;};</div>
+<div class="line"><a name="l00267"></a><span class="lineno">  267</span>&#160; </div>
+<div class="line"><a name="l00268"></a><span class="lineno"><a class="line" href="../../d9/d1c/namespaceBrush_1_1Data.html#a167ca10243cde10177737a1e60a34a61">  268</a></span>&#160;ostream&amp; <a class="code" href="../../d6/d2e/namespaceBrush_1_1Util.html#ad910506fb00aa26aa8de5f608e6704a2">operator&lt;&lt;</a>(ostream&amp; os, <a class="code" href="../../dc/d5c/namespaceBrush.html#a3f2c9b744330ba4a561ac72f048a1a5f">DataType</a> dt)</div>
+<div class="line"><a name="l00269"></a><span class="lineno">  269</span>&#160;{</div>
+<div class="line"><a name="l00270"></a><span class="lineno">  270</span>&#160;    os &lt;&lt; <a class="code" href="../../dc/d5c/namespaceBrush.html#ab8d6c8427ade77c95f36ac1781279efb">DataTypeName</a>[dt];</div>
+<div class="line"><a name="l00271"></a><span class="lineno">  271</span>&#160;    <span class="keywordflow">return</span> os;</div>
+<div class="line"><a name="l00272"></a><span class="lineno">  272</span>&#160;}</div>
+<div class="line"><a name="l00273"></a><span class="lineno">  273</span>&#160;    </div>
+<div class="line"><a name="l00274"></a><span class="lineno">  274</span>&#160;} <span class="comment">// data</span></div>
+<div class="line"><a name="l00275"></a><span class="lineno">  275</span>&#160;} <span class="comment">// Brush</span></div>
 <div class="ttc" id="aclassBrush_1_1Data_1_1Dataset_html"><div class="ttname"><a href="../../d2/d36/classBrush_1_1Data_1_1Dataset.html">Brush::Data::Dataset</a></div><div class="ttdoc">holds variable type data.</div><div class="ttdef"><b>Definition:</b> <a href="../../d2/dbd/data_8h_source.html#l00046">data.h:47</a></div></div>
-<div class="ttc" id="aclassBrush_1_1Util_1_1Rnd_html_a5ec3a29d75a9154bbfdf3488db64fb69"><div class="ttname"><a href="../../d2/d2d/classBrush_1_1Util_1_1Rnd.html#a5ec3a29d75a9154bbfdf3488db64fb69">Brush::Util::Rnd::shuffled_index</a></div><div class="ttdeci">vector&lt; size_t &gt; shuffled_index(size_t n)</div><div class="ttdoc">returns a shuffled index vector of length n</div><div class="ttdef"><b>Definition:</b> <a href="../../de/d67/rnd_8cpp_source.html#l00117">rnd.cpp:117</a></div></div>
+<div class="ttc" id="aclassBrush_1_1Util_1_1Rnd_html_a5ec3a29d75a9154bbfdf3488db64fb69"><div class="ttname"><a href="../../d2/d2d/classBrush_1_1Util_1_1Rnd.html#a5ec3a29d75a9154bbfdf3488db64fb69">Brush::Util::Rnd::shuffled_index</a></div><div class="ttdeci">vector&lt; size_t &gt; shuffled_index(size_t n)</div><div class="ttdoc">returns a shuffled index vector of length n</div><div class="ttdef"><b>Definition:</b> <a href="../../de/d67/rnd_8cpp_source.html#l00121">rnd.cpp:121</a></div></div>
 <div class="ttc" id="adata_8h_html"><div class="ttname"><a href="../../d2/dbd/data_8h.html">data.h</a></div></div>
 <div class="ttc" id="aerror_8h_html_aa4c550bcd71e4ec1c97b111e1360509a"><div class="ttname"><a href="../../da/d41/error_8h.html#aa4c550bcd71e4ec1c97b111e1360509a">HANDLE_ERROR_THROW</a></div><div class="ttdeci">#define HANDLE_ERROR_THROW(err)</div><div class="ttdef"><b>Definition:</b> <a href="../../da/d41/error_8h_source.html#l00024">error.h:24</a></div></div>
 <div class="ttc" id="anamespaceBrush_1_1Data_html_a024bc26071be66d565dd66852c79ada2"><div class="ttname"><a href="../../d9/d1c/namespaceBrush_1_1Data.html#a024bc26071be66d565dd66852c79ada2">Brush::Data::StateTypes</a></div><div class="ttdeci">std::vector&lt; DataType &gt; StateTypes</div><div class="ttdef"><b>Definition:</b> <a href="../../da/dc9/data_8cpp_source.html#l00051">data.cpp:51</a></div></div>
@@ -328,7 +381,7 @@ $(document).ready(function(){initNavTree('da/dc9/data_8cpp_source.html','../../'
 <div class="ttc" id="anamespaceBrush_1_1Util_html_ac697e701ef641df7a4cff481c667c9f7"><div class="ttname"><a href="../../d6/d2e/namespaceBrush_1_1Util.html#ac697e701ef641df7a4cff481c667c9f7">Brush::Util::unique_insert</a></div><div class="ttdeci">void unique_insert(Vector &amp;v, const T &amp;t)</div><div class="ttdoc">unique insertion into a vector. allows a vector to be used like a set. source: http://www....</div><div class="ttdef"><b>Definition:</b> <a href="../../d5/d60/utils_8h_source.html#l00602">utils.h:602</a></div></div>
 <div class="ttc" id="anamespaceBrush_1_1Util_html_acb304889eae44960a17ed276d815275a"><div class="ttname"><a href="../../d6/d2e/namespaceBrush_1_1Util.html#acb304889eae44960a17ed276d815275a">Brush::Util::reverse_map</a></div><div class="ttdeci">static map&lt; V, K &gt; reverse_map(const map&lt; K, V &gt; &amp;m)</div><div class="ttdoc">Given a map from keys to values, creates a new map from values to keys.</div><div class="ttdef"><b>Definition:</b> <a href="../../d5/d60/utils_8h_source.html#l00670">utils.h:670</a></div></div>
 <div class="ttc" id="anamespaceBrush_1_1Util_html_ad910506fb00aa26aa8de5f608e6704a2"><div class="ttname"><a href="../../d6/d2e/namespaceBrush_1_1Util.html#ad910506fb00aa26aa8de5f608e6704a2">Brush::Util::operator&lt;&lt;</a></div><div class="ttdeci">ostream &amp; operator&lt;&lt;(ostream &amp;os, const vector&lt; T &gt; &amp;v)</div><div class="ttdef"><b>Definition:</b> <a href="../../d5/d60/utils_8h_source.html#l00678">utils.h:678</a></div></div>
-<div class="ttc" id="anamespaceBrush_1_1Util_html_af7dd70e54015821d96e3a1afed6344ca"><div class="ttname"><a href="../../d6/d2e/namespaceBrush_1_1Util.html#af7dd70e54015821d96e3a1afed6344ca">Brush::Util::r</a></div><div class="ttdeci">static Rnd &amp; r</div><div class="ttdef"><b>Definition:</b> <a href="../../d2/da9/rnd_8h_source.html#l00170">rnd.h:170</a></div></div>
+<div class="ttc" id="anamespaceBrush_1_1Util_html_af7dd70e54015821d96e3a1afed6344ca"><div class="ttname"><a href="../../d6/d2e/namespaceBrush_1_1Util.html#af7dd70e54015821d96e3a1afed6344ca">Brush::Util::r</a></div><div class="ttdeci">static Rnd &amp; r</div><div class="ttdef"><b>Definition:</b> <a href="../../d2/da9/rnd_8h_source.html#l00176">rnd.h:176</a></div></div>
 <div class="ttc" id="anamespaceBrush_1_1Util_html_afc397ee448b473fec9502461f3e75eae"><div class="ttname"><a href="../../d6/d2e/namespaceBrush_1_1Util.html#afc397ee448b473fec9502461f3e75eae">Brush::Util::mask_to_index</a></div><div class="ttdeci">vector&lt; size_t &gt; mask_to_index(const ArrayXb &amp;mask)</div><div class="ttdoc">convert a boolean mask to an index array</div><div class="ttdef"><b>Definition:</b> <a href="../../de/d06/utils_8cpp_source.html#l00405">utils.cpp:405</a></div></div>
 <div class="ttc" id="anamespaceBrush_html"><div class="ttname"><a href="../../dc/d5c/namespaceBrush.html">Brush</a></div><div class="ttdef"><b>Definition:</b> <a href="../../da/dc9/data_8cpp_source.html#l00012">data.cpp:12</a></div></div>
 <div class="ttc" id="anamespaceBrush_html_a1c0079df772d6e050857327591514810"><div class="ttname"><a href="../../dc/d5c/namespaceBrush.html#a1c0079df772d6e050857327591514810">Brush::ArrayXb</a></div><div class="ttdeci">Eigen::Array&lt; bool, Eigen::Dynamic, 1 &gt; ArrayXb</div><div class="ttdef"><b>Definition:</b> <a href="../../d9/d49/types_8h_source.html#l00039">types.h:39</a></div></div>

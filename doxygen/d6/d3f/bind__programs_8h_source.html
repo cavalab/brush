@@ -140,36 +140,39 @@ $(document).ready(function(){initNavTree('d6/d3f/bind__programs_8h_source.html',
 <div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;            )</div>
 <div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;        .def(<span class="stringliteral">&quot;get_dot_model&quot;</span>, &amp;T::get_dot_model, py::arg(<span class="stringliteral">&quot;extras&quot;</span>)=<span class="stringliteral">&quot;&quot;</span>)</div>
 <div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;        .def(<span class="stringliteral">&quot;get_weights&quot;</span>, &amp;T::get_weights)</div>
-<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;        .def(<span class="stringliteral">&quot;size&quot;</span>, &amp;T::size)</div>
-<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;        .def(<span class="stringliteral">&quot;cross&quot;</span>, &amp;<a class="code" href="../../d0/d24/namespacevariation.html#a3a3e45e3cbe090c29a47b3e60fdd3dac">T::cross</a>)</div>
-<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;        .def(<span class="stringliteral">&quot;mutate&quot;</span>, &amp;<a class="code" href="../../d0/d24/namespacevariation.html#abfa16e581c2548444df2bb4cbaa1b221">T::mutate</a>) <span class="comment">// static_cast&lt;T &amp;(T::*)()&gt;(&amp;T::mutate))</span></div>
-<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;        .def(<span class="stringliteral">&quot;set_search_space&quot;</span>, &amp;T::set_search_space)</div>
-<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;        .def(py::pickle(</div>
-<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;            [](<span class="keyword">const</span> T &amp;p) { <span class="comment">// __getstate__</span></div>
-<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;                <span class="comment">/* Return a tuple that fully encodes the state of the object */</span></div>
-<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;                <span class="comment">// return py::make_tuple(p.value(), p.extra());</span></div>
-<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;                nl::json j = p;</div>
-<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;                <span class="keywordflow">return</span> j;</div>
-<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;            },</div>
-<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;            [](nl::json j) { <span class="comment">// __setstate__</span></div>
-<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;                T p = j;</div>
-<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160; </div>
-<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;                <span class="keywordflow">return</span> p;</div>
-<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;            }</div>
-<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;            )</div>
-<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;        )</div>
-<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;        ;</div>
-<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;    <span class="keywordflow">if</span> constexpr (std::is_same_v&lt;T,Cls&gt;)</div>
-<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;    {</div>
-<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;        prog.def(<span class="stringliteral">&quot;predict_proba&quot;</span>,</div>
-<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;                <span class="keyword">static_cast&lt;</span>ArrayXf (T::*)(<span class="keyword">const </span><a class="code" href="../../d2/d36/classBrush_1_1Data_1_1Dataset.html">Dataset</a> &amp;d)<span class="keyword">&gt;</span>(&amp;T::predict_proba),</div>
-<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;                <span class="stringliteral">&quot;predict from Dataset object&quot;</span>)</div>
-<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;           .def(<span class="stringliteral">&quot;predict_proba&quot;</span>,</div>
-<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;                <span class="keyword">static_cast&lt;</span>ArrayXf (T::*)(<span class="keyword">const </span>Ref&lt;const ArrayXXf&gt; &amp;X)<span class="keyword">&gt;</span>(&amp;T::predict_proba),</div>
-<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;                <span class="stringliteral">&quot;fit from X,y data&quot;</span>);</div>
-<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;    }</div>
-<div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160; </div>
-<div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;}</div>
+<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;        .def(<span class="stringliteral">&quot;size&quot;</span>, &amp;T::size, py::arg(<span class="stringliteral">&quot;include_weight&quot;</span>)=<span class="keyword">true</span>)</div>
+<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;        .def(<span class="stringliteral">&quot;depth&quot;</span>, &amp;T::depth)</div>
+<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;        .def(<span class="stringliteral">&quot;cross&quot;</span>, &amp;<a class="code" href="../../d0/d24/namespacevariation.html#ac31f284c947a66d035b310513f4916c2">T::cross</a>, py::return_value_policy::automatic,</div>
+<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;             <span class="stringliteral">&quot;Performs one attempt to stochastically swap subtrees between two programs and generate a child&quot;</span>)</div>
+<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;        .def(<span class="stringliteral">&quot;mutate&quot;</span>, &amp;<a class="code" href="../../d0/d24/namespacevariation.html#a3ceab1ae0c739084852ef04ebda17d6a">T::mutate</a>, py::return_value_policy::automatic,</div>
+<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;             <span class="stringliteral">&quot;Performs one attempt to stochastically mutate the program and generate a child&quot;</span>)</div>
+<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;        .def(<span class="stringliteral">&quot;set_search_space&quot;</span>, &amp;T::set_search_space)</div>
+<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;        .def(py::pickle(</div>
+<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;            [](<span class="keyword">const</span> T &amp;p) { <span class="comment">// __getstate__</span></div>
+<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;                <span class="comment">/* Return a tuple that fully encodes the state of the object */</span></div>
+<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;                <span class="comment">// return py::make_tuple(p.value(), p.extra());</span></div>
+<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;                nl::json j = p;</div>
+<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;                <span class="keywordflow">return</span> j;</div>
+<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;            },</div>
+<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;            [](nl::json j) { <span class="comment">// __setstate__</span></div>
+<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;                T p = j;</div>
+<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160; </div>
+<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;                <span class="keywordflow">return</span> p;</div>
+<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;            }</div>
+<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;            )</div>
+<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;        )</div>
+<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;        ;</div>
+<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;    <span class="keywordflow">if</span> constexpr (std::is_same_v&lt;T,Cls&gt;)</div>
+<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;    {</div>
+<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;        prog.def(<span class="stringliteral">&quot;predict_proba&quot;</span>,</div>
+<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;                <span class="keyword">static_cast&lt;</span>ArrayXf (T::*)(<span class="keyword">const </span><a class="code" href="../../d2/d36/classBrush_1_1Data_1_1Dataset.html">Dataset</a> &amp;d)<span class="keyword">&gt;</span>(&amp;T::predict_proba),</div>
+<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;                <span class="stringliteral">&quot;predict from Dataset object&quot;</span>)</div>
+<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;           .def(<span class="stringliteral">&quot;predict_proba&quot;</span>,</div>
+<div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;                <span class="keyword">static_cast&lt;</span>ArrayXf (T::*)(<span class="keyword">const </span>Ref&lt;const ArrayXXf&gt; &amp;X)<span class="keyword">&gt;</span>(&amp;T::predict_proba),</div>
+<div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;                <span class="stringliteral">&quot;fit from X,y data&quot;</span>);</div>
+<div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;    }</div>
+<div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160; </div>
+<div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;}</div>
 <div class="ttc" id="abind__programs_8h_html_a8284c80bb3c1dfb32250420f76a183fd"><div class="ttname"><a href="../../d6/d3f/bind__programs_8h.html#a8284c80bb3c1dfb32250420f76a183fd">bind_program</a></div><div class="ttdeci">void bind_program(py::module &amp;m, string name)</div><div class="ttdef"><b>Definition:</b> <a href="../../d6/d3f/bind__programs_8h_source.html#l00015">bind_programs.h:15</a></div></div>
 <div class="ttc" id="abind__programs_8h_html_ae2f679a1605bd79ee7983e55e31d6d2e"><div class="ttname"><a href="../../d6/d3f/bind__programs_8h.html#ae2f679a1605bd79ee7983e55e31d6d2e">stream_redirect</a></div><div class="ttdeci">py::call_guard&lt; py::scoped_ostream_redirect, py::scoped_estream_redirect &gt; stream_redirect</div><div class="ttdef"><b>Definition:</b> <a href="../../d6/d3f/bind__programs_8h_source.html#l00012">bind_programs.h:12</a></div></div>
 <div class="ttc" id="aclassBrush_1_1Data_1_1Dataset_html"><div class="ttname"><a href="../../d2/d36/classBrush_1_1Data_1_1Dataset.html">Brush::Data::Dataset</a></div><div class="ttdoc">holds variable type data.</div><div class="ttdef"><b>Definition:</b> <a href="../../d2/dbd/data_8h_source.html#l00046">data.h:47</a></div></div>
@@ -181,8 +184,8 @@ $(document).ready(function(){initNavTree('d6/d3f/bind__programs_8h_source.html',
 <div class="ttc" id="anamespaceBrush_html_ac5cd76eed6ea70d1c8f429ee37ca9fc0"><div class="ttname"><a href="../../dc/d5c/namespaceBrush.html#ac5cd76eed6ea70d1c8f429ee37ca9fc0">Brush::ArrayXi</a></div><div class="ttdeci">Eigen::Array&lt; int, Eigen::Dynamic, 1 &gt; ArrayXi</div><div class="ttdef"><b>Definition:</b> <a href="../../d9/d49/types_8h_source.html#l00040">types.h:40</a></div></div>
 <div class="ttc" id="anamespaceBrush_html_acf6a63881021ff8db344de980b599720"><div class="ttname"><a href="../../dc/d5c/namespaceBrush.html#acf6a63881021ff8db344de980b599720">Brush::RegressorProgram</a></div><div class="ttdeci">Program&lt; PT::Regressor &gt; RegressorProgram</div><div class="ttdef"><b>Definition:</b> <a href="../../d9/d49/types_8h_source.html#l00078">types.h:77</a></div></div>
 <div class="ttc" id="anamespaceBrush_html_af7783e75e847f650db4e32882f9dea29"><div class="ttname"><a href="../../dc/d5c/namespaceBrush.html#af7783e75e847f650db4e32882f9dea29">Brush::MulticlassClassifierProgram</a></div><div class="ttdeci">Program&lt; PT::MulticlassClassifier &gt; MulticlassClassifierProgram</div><div class="ttdef"><b>Definition:</b> <a href="../../d9/d49/types_8h_source.html#l00080">types.h:80</a></div></div>
-<div class="ttc" id="anamespacevariation_html_a3a3e45e3cbe090c29a47b3e60fdd3dac"><div class="ttname"><a href="../../d0/d24/namespacevariation.html#a3a3e45e3cbe090c29a47b3e60fdd3dac">variation::cross</a></div><div class="ttdeci">Program&lt; T &gt; cross(const Program&lt; T &gt; &amp;root, const Program&lt; T &gt; &amp;other)</div><div class="ttdoc">swaps subtrees between root and other, returning new program</div><div class="ttdef"><b>Definition:</b> <a href="../../d4/d1f/variation_8h_source.html#l00155">variation.h:155</a></div></div>
-<div class="ttc" id="anamespacevariation_html_abfa16e581c2548444df2bb4cbaa1b221"><div class="ttname"><a href="../../d0/d24/namespacevariation.html#abfa16e581c2548444df2bb4cbaa1b221">variation::mutate</a></div><div class="ttdeci">Program&lt; T &gt; mutate(const Program&lt; T &gt; &amp;parent, const SearchSpace &amp;SS)</div><div class="ttdoc">Mutate a program.</div><div class="ttdef"><b>Definition:</b> <a href="../../d4/d1f/variation_8h_source.html#l00105">variation.h:105</a></div></div>
+<div class="ttc" id="anamespacevariation_html_a3ceab1ae0c739084852ef04ebda17d6a"><div class="ttname"><a href="../../d0/d24/namespacevariation.html#a3ceab1ae0c739084852ef04ebda17d6a">variation::mutate</a></div><div class="ttdeci">std::optional&lt; Program&lt; T &gt; &gt; mutate(const Program&lt; T &gt; &amp;parent, const SearchSpace &amp;SS)</div><div class="ttdoc">Stochastically mutate a program.</div><div class="ttdef"><b>Definition:</b> <a href="../../d4/d1f/variation_8h_source.html#l00223">variation.h:223</a></div></div>
+<div class="ttc" id="anamespacevariation_html_ac31f284c947a66d035b310513f4916c2"><div class="ttname"><a href="../../d0/d24/namespacevariation.html#ac31f284c947a66d035b310513f4916c2">variation::cross</a></div><div class="ttdeci">std::optional&lt; Program&lt; T &gt; &gt; cross(const Program&lt; T &gt; &amp;root, const Program&lt; T &gt; &amp;other)</div><div class="ttdoc">Stochastically swaps subtrees between root and other, returning a new program.</div><div class="ttdef"><b>Definition:</b> <a href="../../d4/d1f/variation_8h_source.html#l00321">variation.h:321</a></div></div>
 <div class="ttc" id="astructBrush_1_1Program_html"><div class="ttname"><a href="../../db/d88/structBrush_1_1Program.html">Brush::Program</a></div><div class="ttdoc">An individual program, a.k.a. model.</div><div class="ttdef"><b>Definition:</b> <a href="../../d1/dea/program_8h_source.html#l00052">program.h:53</a></div></div>
 </div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->

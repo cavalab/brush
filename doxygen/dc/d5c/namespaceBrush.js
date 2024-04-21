@@ -17,7 +17,9 @@ var namespaceBrush =
       [ "threshold_mask< State >", "d7/da9/namespaceBrush_1_1Split.html#a31a254e869c995a17b22b0bd5adf9aa4", null ]
     ] ],
     [ "util", "d7/d6b/namespaceBrush_1_1util.html", [
-      [ "get_weight", "d7/d6b/namespaceBrush_1_1util.html#acd1da211f39b8d4d52fb3811fb4c032b", null ]
+      [ "requires", "d7/d6b/namespaceBrush_1_1util.html#a73dd47c6bb6f717c391c7e101898996d", null ],
+      [ "requires", "d7/d6b/namespaceBrush_1_1util.html#ab2aa88900d0452d2cce1a71a992eeb6a", null ],
+      [ "weights", "d7/d6b/namespaceBrush_1_1util.html#ac363bc4b5411446ecf3133267c59cf5e", null ]
     ] ],
     [ "Util", "d6/d2e/namespaceBrush_1_1Util.html", "d6/d2e/namespaceBrush_1_1Util" ],
     [ "DispatchTable", "d3/da8/structBrush_1_1DispatchTable.html", "d3/da8/structBrush_1_1DispatchTable" ],
@@ -123,6 +125,12 @@ var namespaceBrush =
     [ "DataEnumType< DT::TimeSeriesB >", "dc/dd6/structBrush_1_1DataEnumType_3_01DT_1_1TimeSeriesB_01_4.html", "dc/dd6/structBrush_1_1DataEnumType_3_01DT_1_1TimeSeriesB_01_4" ],
     [ "DataEnumType< DT::TimeSeriesI >", "dd/dff/structBrush_1_1DataEnumType_3_01DT_1_1TimeSeriesI_01_4.html", "dd/dff/structBrush_1_1DataEnumType_3_01DT_1_1TimeSeriesI_01_4" ],
     [ "DataEnumType< DT::TimeSeriesF >", "d2/db8/structBrush_1_1DataEnumType_3_01DT_1_1TimeSeriesF_01_4.html", "d2/db8/structBrush_1_1DataEnumType_3_01DT_1_1TimeSeriesF_01_4" ],
+    [ "DataEnumType< DT::ArrayBJet >", "d4/dcb/structBrush_1_1DataEnumType_3_01DT_1_1ArrayBJet_01_4.html", "d4/dcb/structBrush_1_1DataEnumType_3_01DT_1_1ArrayBJet_01_4" ],
+    [ "DataEnumType< DT::ArrayIJet >", "dc/db4/structBrush_1_1DataEnumType_3_01DT_1_1ArrayIJet_01_4.html", "dc/db4/structBrush_1_1DataEnumType_3_01DT_1_1ArrayIJet_01_4" ],
+    [ "DataEnumType< DT::ArrayFJet >", "d4/d9c/structBrush_1_1DataEnumType_3_01DT_1_1ArrayFJet_01_4.html", "d4/d9c/structBrush_1_1DataEnumType_3_01DT_1_1ArrayFJet_01_4" ],
+    [ "DataEnumType< DT::MatrixBJet >", "dd/d86/structBrush_1_1DataEnumType_3_01DT_1_1MatrixBJet_01_4.html", "dd/d86/structBrush_1_1DataEnumType_3_01DT_1_1MatrixBJet_01_4" ],
+    [ "DataEnumType< DT::MatrixIJet >", "dc/ded/structBrush_1_1DataEnumType_3_01DT_1_1MatrixIJet_01_4.html", "dc/ded/structBrush_1_1DataEnumType_3_01DT_1_1MatrixIJet_01_4" ],
+    [ "DataEnumType< DT::MatrixFJet >", "d0/d7c/structBrush_1_1DataEnumType_3_01DT_1_1MatrixFJet_01_4.html", "d0/d7c/structBrush_1_1DataEnumType_3_01DT_1_1MatrixFJet_01_4" ],
     [ "DataTypeEnum", "df/d3e/structBrush_1_1DataTypeEnum.html", null ],
     [ "DataTypeEnum< ArrayXb >", "d7/d9a/structBrush_1_1DataTypeEnum_3_01ArrayXb_01_4.html", "d7/d9a/structBrush_1_1DataTypeEnum_3_01ArrayXb_01_4" ],
     [ "DataTypeEnum< ArrayXi >", "d7/d35/structBrush_1_1DataTypeEnum_3_01ArrayXi_01_4.html", "d7/d35/structBrush_1_1DataTypeEnum_3_01ArrayXi_01_4" ],
@@ -249,6 +257,7 @@ var namespaceBrush =
       [ "MulticlassClassifier", "dc/d5c/namespaceBrush.html#ae591329af27c88b714d0f92b86276366ac62539fc5a23115fca906befbd511c0a", null ],
       [ "Representer", "dc/d5c/namespaceBrush.html#ae591329af27c88b714d0f92b86276366aca702b6b08355f71cf4b1a17a8e16b8b", null ]
     ] ],
+    [ "calc_initial_weight", "dc/d5c/namespaceBrush.html#af6e4b7d5bbd50f46f8c96a356e19bdae", null ],
     [ "DispatchOp", "dc/d5c/namespaceBrush.html#a835c559533dfd1b02fb7c2ded01c2442", null ],
     [ "DispatchOp", "dc/d5c/namespaceBrush.html#a295fffe6ae57b4a3c871c7cfe1450e1d", null ],
     [ "from_json", "dc/d5c/namespaceBrush.html#ad36f62c73493c032059be8cd18590d0e", null ],
@@ -260,8 +269,10 @@ var namespaceBrush =
     [ "IsCommutative", "dc/d5c/namespaceBrush.html#a2b2fe399958c87099f03e33511fcd3d0", null ],
     [ "IsDifferentiable", "dc/d5c/namespaceBrush.html#af66d4d1b86198350055ea499bb0238f7", null ],
     [ "IsLeaf", "dc/d5c/namespaceBrush.html#a21f448ef801105ba35186dae512bef06", null ],
+    [ "Isnt", "dc/d5c/namespaceBrush.html#a14447d2f04191fa6607e02077a4137ea", null ],
     [ "Isnt", "dc/d5c/namespaceBrush.html#ac47c0777f99875f50e193b67b691cbb0", null ],
     [ "IsWeighable", "dc/d5c/namespaceBrush.html#a1d5a63450bcdb77bd08283c9f74ca53f", null ],
+    [ "IsWeighable", "dc/d5c/namespaceBrush.html#a8b19fac06df5a0722bdb46eb9b9e50d3", null ],
     [ "IsWeighable", "dc/d5c/namespaceBrush.html#a8dc5b7550111d2207dd36c94e4cb17cb", null ],
     [ "operator&", "dc/d5c/namespaceBrush.html#a6a72a3ce2992ed58a0637f86c798c9df", null ],
     [ "operator&=", "dc/d5c/namespaceBrush.html#a4313dfea75f348899b090fc4ff693355", null ],

@@ -1,10 +1,12 @@
 var variation_8h =
 [
     [ "Iter", "d4/d1f/variation_8h.html#ace95ad8220efc40e8d89096ce61e6e60", null ],
-    [ "cross", "d4/d1f/variation_8h.html#a3a3e45e3cbe090c29a47b3e60fdd3dac", null ],
-    [ "delete_mutation", "d4/d1f/variation_8h.html#ac09afe106fc118aa9dc82a1b8ce87b01", null ],
-    [ "insert_mutation", "d4/d1f/variation_8h.html#ab75fceda2c7aa69e59d3b55562937942", null ],
-    [ "mutate", "d4/d1f/variation_8h.html#abfa16e581c2548444df2bb4cbaa1b221", null ],
-    [ "point_mutation", "d4/d1f/variation_8h.html#a5d1fdeb5d33b06ee8847da09f58f0f5f", null ],
-    [ "toggle_weight_mutation", "d4/d1f/variation_8h.html#acfeeba87c491e8c1e6c6e1ede19fc4bc", null ]
+    [ "cross", "d4/d1f/variation_8h.html#ac31f284c947a66d035b310513f4916c2", null ],
+    [ "delete_mutation", "d4/d1f/variation_8h.html#a3f1ae4f750d7368932dae8e9b8fb7d20", null ],
+    [ "insert_mutation", "d4/d1f/variation_8h.html#ad562aad1d00786b26a704f6b8db751c9", null ],
+    [ "mutate", "d4/d1f/variation_8h.html#a3ceab1ae0c739084852ef04ebda17d6a", null ],
+    [ "point_mutation", "d4/d1f/variation_8h.html#a170515efe6144a099812fc284c2ae10b", null ],
+    [ "subtree_mutation", "d4/d1f/variation_8h.html#ab3c6b50b00987b9b8f4a9ca98606860e", null ],
+    [ "toggle_weight_off_mutation", "d4/d1f/variation_8h.html#afce849d082df7c278e5115ba64dd73ea", null ],
+    [ "toggle_weight_on_mutation", "d4/d1f/variation_8h.html#ae0d980dfd1c64597731f9cdde45e90b4", null ]
 ];

@@ -136,7 +136,7 @@ struct Brush::Operator&lt; NodeType::Terminal, S, Fit &gt;</h3>
 
 <p>Terminal Overload. </p>
 
-<p class="definition">Definition at line <a class="el" href="../../d7/de0/operator_8h_source.html#l00216">216</a> of file <a class="el" href="../../d7/de0/operator_8h_source.html">operator.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="../../d7/de0/operator_8h_source.html#l00234">234</a> of file <a class="el" href="../../d7/de0/operator_8h_source.html">operator.h</a>.</p>
 </div><h2 class="groupheader">Member Typedef Documentation</h2>
 <a id="a13deb85d16b607e4842e7c0277db79c8"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a13deb85d16b607e4842e7c0277db79c8">&#9670;&nbsp;</a></span>RetType</h2>
@@ -152,7 +152,7 @@ template&lt;typename S , bool Fit&gt; </div>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="../../d7/de0/operator_8h_source.html#l00218">218</a> of file <a class="el" href="../../d7/de0/operator_8h_source.html">operator.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="../../d7/de0/operator_8h_source.html#l00236">236</a> of file <a class="el" href="../../d7/de0/operator_8h_source.html">operator.h</a>.</p>
 
 </div>
 </div>
@@ -170,7 +170,7 @@ template&lt;typename S , bool Fit&gt; </div>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="../../d7/de0/operator_8h_source.html#l00219">219</a> of file <a class="el" href="../../d7/de0/operator_8h_source.html">operator.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="../../d7/de0/operator_8h_source.html#l00237">237</a> of file <a class="el" href="../../d7/de0/operator_8h_source.html">operator.h</a>.</p>
 
 </div>
 </div>
@@ -213,7 +213,7 @@ template&lt;typename T &gt; </div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="../../d7/de0/operator_8h_source.html#l00253">253</a> of file <a class="el" href="../../d7/de0/operator_8h_source.html">operator.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="../../d7/de0/operator_8h_source.html#l00274">274</a> of file <a class="el" href="../../d7/de0/operator_8h_source.html">operator.h</a>.</p>
 
 </div>
 </div>
@@ -276,7 +276,7 @@ template&lt;typename S , bool Fit&gt; </div>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="../../d7/de0/operator_8h_source.html#l00223">223</a> of file <a class="el" href="../../d7/de0/operator_8h_source.html">operator.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="../../d7/de0/operator_8h_source.html#l00242">242</a> of file <a class="el" href="../../d7/de0/operator_8h_source.html">operator.h</a>.</p>
 
 </div>
 </div>
@@ -297,7 +297,7 @@ template&lt;typename S , bool Fit&gt; </div>
 <div class="line">    { </div>
 <div class="line">        <span class="keywordflow">if</span> constexpr (is_one_of_v&lt;Scalar,float,fJet&gt;)</div>
 <div class="line">        {</div>
-<div class="line">            <span class="keywordflow">if</span> (<a class="code" href="../../dd/d88/structBrush_1_1Operator_3_01NodeType_1_1Terminal_00_01S_00_01Fit_01_4.html#a87454e9050411ec3898d3599b50463c1">tn</a>.data.is_weighted)</div>
+<div class="line">            <span class="keywordflow">if</span> (<a class="code" href="../../dd/d88/structBrush_1_1Operator_3_01NodeType_1_1Terminal_00_01S_00_01Fit_01_4.html#a87454e9050411ec3898d3599b50463c1">tn</a>.data.get_is_weighted())</div>
 <div class="line">            {</div>
 <div class="line">                <span class="keyword">auto</span> w = util::get_weight&lt;RetType,Scalar,W&gt;(<a class="code" href="../../dd/d88/structBrush_1_1Operator_3_01NodeType_1_1Terminal_00_01S_00_01Fit_01_4.html#a87454e9050411ec3898d3599b50463c1">tn</a>, <a class="code" href="../../dd/d88/structBrush_1_1Operator_3_01NodeType_1_1Terminal_00_01S_00_01Fit_01_4.html#a6a6dab7428491549993f87476de904f6">weights</a>);</div>
 <div class="line">                <span class="keywordflow">return</span> this-&gt;get&lt;RetType&gt;(d, <a class="code" href="../../dd/d88/structBrush_1_1Operator_3_01NodeType_1_1Terminal_00_01S_00_01Fit_01_4.html#a87454e9050411ec3898d3599b50463c1">tn</a>.data.get_feature())*w;</div>
@@ -305,10 +305,10 @@ template&lt;typename S , bool Fit&gt; </div>
 <div class="line">        }</div>
 <div class="line">        <span class="keywordflow">return</span> this-&gt;get&lt;RetType&gt;(d,<a class="code" href="../../dd/d88/structBrush_1_1Operator_3_01NodeType_1_1Terminal_00_01S_00_01Fit_01_4.html#a87454e9050411ec3898d3599b50463c1">tn</a>.data.get_feature());</div>
 <div class="line">    }</div>
-<div class="ttc" id="astructBrush_1_1Operator_3_01NodeType_1_1Terminal_00_01S_00_01Fit_01_4_html_a6a6dab7428491549993f87476de904f6"><div class="ttname"><a href="../../dd/d88/structBrush_1_1Operator_3_01NodeType_1_1Terminal_00_01S_00_01Fit_01_4.html#a6a6dab7428491549993f87476de904f6">Brush::Operator&lt; NodeType::Terminal, S, Fit &gt;::weights</a></div><div class="ttdeci">const TreeNode const W ** weights</div><div class="ttdef"><b>Definition:</b> <a href="../../d7/de0/operator_8h_source.html#l00223">operator.h:223</a></div></div>
-<div class="ttc" id="astructBrush_1_1Operator_3_01NodeType_1_1Terminal_00_01S_00_01Fit_01_4_html_a87454e9050411ec3898d3599b50463c1"><div class="ttname"><a href="../../dd/d88/structBrush_1_1Operator_3_01NodeType_1_1Terminal_00_01S_00_01Fit_01_4.html#a87454e9050411ec3898d3599b50463c1">Brush::Operator&lt; NodeType::Terminal, S, Fit &gt;::tn</a></div><div class="ttdeci">const TreeNode &amp; tn</div><div class="ttdef"><b>Definition:</b> <a href="../../d7/de0/operator_8h_source.html#l00223">operator.h:223</a></div></div>
+<div class="ttc" id="astructBrush_1_1Operator_3_01NodeType_1_1Terminal_00_01S_00_01Fit_01_4_html_a6a6dab7428491549993f87476de904f6"><div class="ttname"><a href="../../dd/d88/structBrush_1_1Operator_3_01NodeType_1_1Terminal_00_01S_00_01Fit_01_4.html#a6a6dab7428491549993f87476de904f6">Brush::Operator&lt; NodeType::Terminal, S, Fit &gt;::weights</a></div><div class="ttdeci">const TreeNode const W ** weights</div><div class="ttdef"><b>Definition:</b> <a href="../../d7/de0/operator_8h_source.html#l00242">operator.h:242</a></div></div>
+<div class="ttc" id="astructBrush_1_1Operator_3_01NodeType_1_1Terminal_00_01S_00_01Fit_01_4_html_a87454e9050411ec3898d3599b50463c1"><div class="ttname"><a href="../../dd/d88/structBrush_1_1Operator_3_01NodeType_1_1Terminal_00_01S_00_01Fit_01_4.html#a87454e9050411ec3898d3599b50463c1">Brush::Operator&lt; NodeType::Terminal, S, Fit &gt;::tn</a></div><div class="ttdeci">const TreeNode &amp; tn</div><div class="ttdef"><b>Definition:</b> <a href="../../d7/de0/operator_8h_source.html#l00242">operator.h:242</a></div></div>
 </div><!-- fragment -->
-<p class="definition">Definition at line <a class="el" href="../../d7/de0/operator_8h_source.html#l00223">223</a> of file <a class="el" href="../../d7/de0/operator_8h_source.html">operator.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="../../d7/de0/operator_8h_source.html#l00242">242</a> of file <a class="el" href="../../d7/de0/operator_8h_source.html">operator.h</a>.</p>
 
 </div>
 </div>

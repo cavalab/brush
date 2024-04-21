@@ -1,9 +1,8 @@
 
-
 <!DOCTYPE html>
 
 
-<html lang="en" >
+<html lang="en" data-content_root="./" >
 
   <head>
     <meta charset="utf-8" />
@@ -18,37 +17,35 @@
   </script>
   
   <!-- Loaded before other Sphinx assets -->
-  <link href="_static/styles/theme.css?digest=e353d410970836974a52" rel="stylesheet" />
-<link href="_static/styles/bootstrap.css?digest=e353d410970836974a52" rel="stylesheet" />
-<link href="_static/styles/pydata-sphinx-theme.css?digest=e353d410970836974a52" rel="stylesheet" />
+  <link href="_static/styles/theme.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+<link href="_static/styles/bootstrap.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
 
   
-  <link href="_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=e353d410970836974a52" rel="stylesheet" />
-  <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
-<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
-<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
+  <link href="_static/vendor/fontawesome/6.5.1/css/all.min.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.1/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.1/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.1/webfonts/fa-regular-400.woff2" />
 
-    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
-    <link rel="stylesheet" href="_static/styles/sphinx-book-theme.css?digest=14f4ca6b54d191a8c7657f6c759bf11a5fb86285" type="text/css" />
-    <link rel="stylesheet" type="text/css" href="_static/graphviz.css" />
-    <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=a746c00c" />
+    <link rel="stylesheet" type="text/css" href="_static/styles/sphinx-book-theme.css?v=384b581d" />
+    <link rel="stylesheet" type="text/css" href="_static/graphviz.css?v=fd3f3429" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
     <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
   
   <!-- Pre-loaded scripts that we'll load fully later -->
-  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=e353d410970836974a52" />
-<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52" />
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=8d27b9dea8ad943066ae" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=8d27b9dea8ad943066ae" />
+  <script src="_static/vendor/fontawesome/6.5.1/js/all.min.js?digest=8d27b9dea8ad943066ae"></script>
 
-    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
-    <script src="_static/jquery.js"></script>
-    <script src="_static/underscore.js"></script>
-    <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
-    <script src="_static/doctools.js"></script>
-    <script src="_static/sphinx_highlight.js"></script>
-    <script src="_static/clipboard.min.js"></script>
-    <script src="_static/copybutton.js"></script>
-    <script src="_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
+    <script src="_static/documentation_options.js?v=74359811"></script>
+    <script src="_static/doctools.js?v=9a2dae69"></script>
+    <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="_static/copybutton.js?v=f281be69"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?v=efea14e4"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'genindex';</script>
-    <link rel="shortcut icon" href="_static/paint-brush-solid.svg"/>
+    <link rel="icon" href="_static/paint-brush-solid.svg"/>
     <link rel="index" title="Index" href="#" />
     <link rel="search" title="Search" href="search.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
@@ -60,7 +57,15 @@
 
   
   
-  <a class="skip-link" href="#main-content">Skip to main content</a>
+  <a id="pst-skip-link" class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>
+    Back to top
+  </button>
+
   
   <input type="checkbox"
           class="sidebar-toggle"
@@ -95,11 +100,16 @@
 </form></div>
   </div>
   
-    <nav class="bd-header navbar navbar-expand-lg bd-navbar">
-    </nav>
+    <header class="bd-header navbar navbar-expand-lg bd-navbar">
+    </header>
   
+
   <div class="bd-container">
     <div class="bd-container__inner bd-page-width">
+      
+      
+      
+        
       
       <div class="bd-sidebar-primary bd-sidebar">
         
@@ -114,6 +124,7 @@
   
     <div class="sidebar-primary-items__start sidebar-primary__section">
         <div class="sidebar-primary-item">
+
   
 
 <a class="navbar-brand logo" href="index.html">
@@ -122,10 +133,22 @@
   
   
   
+  
     <p class="title logo__title">Brush 0.1a documentation</p>
   
 </a></div>
-        <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn navbar-btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
     <div class="bd-toc-item navbar-nav active">
         
         <ul class="nav bd-sidenav bd-sidenav__home-link">
@@ -244,20 +267,22 @@
 </button>
 
 
+
 <script>
 document.write(`
-  <button class="theme-switch-button btn btn-sm btn-outline-primary navbar-btn rounded-circle" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
-    <span class="theme-switch" data-mode="light"><i class="fa-solid fa-sun"></i></span>
-    <span class="theme-switch" data-mode="dark"><i class="fa-solid fa-moon"></i></span>
-    <span class="theme-switch" data-mode="auto"><i class="fa-solid fa-circle-half-stroke"></i></span>
+  <button class="btn btn-sm navbar-btn theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch nav-link" data-mode="light"><i class="fa-solid fa-sun fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="dark"><i class="fa-solid fa-moon fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg"></i></span>
   </button>
 `);
 </script>
 
+
 <script>
 document.write(`
   <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
-    <i class="fa-solid fa-magnifying-glass"></i>
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
   </button>
 `);
 </script>
@@ -284,7 +309,7 @@ document.write(`
               
                 
 <div id="searchbox"></div>
-                <article class="bd-article" role="main">
+                <article class="bd-article">
                   
 
 <h1 id="index">Index</h1>
@@ -294,6 +319,7 @@ document.write(`
  | <a href="#F"><strong>F</strong></a>
  | <a href="#G"><strong>G</strong></a>
  | <a href="#P"><strong>P</strong></a>
+ | <a href="#S"><strong>S</strong></a>
  | <a href="#V"><strong>V</strong></a>
  
 </div>
@@ -302,9 +328,11 @@ document.write(`
   <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="cpp_api/data.html#_CPPv4N5Brush4Data7DatasetE">Brush::Data::Dataset (C++ class)</a>
 </li>
+      <li><a href="cpp_api/data.html#_CPPv4N5Brush4Data7Dataset10batch_sizeE">Brush::Data::Dataset::batch_size (C++ member)</a>
+</li>
       <li><a href="cpp_api/data.html#_CPPv4N5Brush4Data7Dataset14classificationE">Brush::Data::Dataset::classification (C++ member)</a>
 </li>
-      <li><a href="cpp_api/data.html#_CPPv4N5Brush4Data7Dataset7DatasetERK8ArrayXXfRK3RefIK7ArrayXfERK6vectorI6stringERK3mapI6string5StateEb">Brush::Data::Dataset::Dataset (C++ function)</a>, <a href="cpp_api/data.html#_CPPv4N5Brush4Data7Dataset7DatasetERK8ArrayXXfRK6vectorI6stringE">[1]</a>, <a href="cpp_api/data.html#_CPPv4N5Brush4Data7Dataset7DatasetERNSt3mapI6string5StateEERK3RefIK7ArrayXfEb">[2]</a>
+      <li><a href="cpp_api/data.html#_CPPv4N5Brush4Data7Dataset7DatasetERK8ArrayXXfRK3RefIK7ArrayXfERK6vectorI6stringERK3mapI6string5StateEbff">Brush::Data::Dataset::Dataset (C++ function)</a>, <a href="cpp_api/data.html#_CPPv4N5Brush4Data7Dataset7DatasetERK8ArrayXXfRK6vectorI6stringEff">[1]</a>, <a href="cpp_api/data.html#_CPPv4N5Brush4Data7Dataset7DatasetERNSt3mapI6string5StateEERK3RefIK7ArrayXfEbff">[2]</a>
 </li>
       <li><a href="cpp_api/data.html#_CPPv4N5Brush4Data7Dataset13feature_typesE">Brush::Data::Dataset::feature_types (C++ member)</a>
 </li>
@@ -312,11 +340,17 @@ document.write(`
 </li>
       <li><a href="cpp_api/data.html#_CPPv4N5Brush4Data7Dataset16features_of_typeE">Brush::Data::Dataset::features_of_type (C++ member)</a>
 </li>
-      <li><a href="cpp_api/data.html#_CPPv4NK5Brush4Data7Dataset9get_batchEi">Brush::Data::Dataset::get_batch (C++ function)</a>
+      <li><a href="cpp_api/data.html#_CPPv4NK5Brush4Data7Dataset9get_batchEv">Brush::Data::Dataset::get_batch (C++ function)</a>
+</li>
+      <li><a href="cpp_api/data.html#_CPPv4N5Brush4Data7Dataset14get_batch_sizeEv">Brush::Data::Dataset::get_batch_size (C++ function)</a>
 </li>
       <li><a href="cpp_api/data.html#_CPPv4NK5Brush4Data7Dataset14get_n_featuresEv">Brush::Data::Dataset::get_n_features (C++ function)</a>
 </li>
       <li><a href="cpp_api/data.html#_CPPv4NK5Brush4Data7Dataset13get_n_samplesEv">Brush::Data::Dataset::get_n_samples (C++ function)</a>
+</li>
+      <li><a href="cpp_api/data.html#_CPPv4NK5Brush4Data7Dataset17get_training_dataEv">Brush::Data::Dataset::get_training_data (C++ function)</a>
+</li>
+      <li><a href="cpp_api/data.html#_CPPv4NK5Brush4Data7Dataset19get_validation_dataEv">Brush::Data::Dataset::get_validation_data (C++ function)</a>
 </li>
       <li><a href="cpp_api/data.html#_CPPv4NK5Brush4Data7Dataset5get_XEv">Brush::Data::Dataset::get_X (C++ function)</a>
 </li>
@@ -330,11 +364,17 @@ document.write(`
 </li>
       <li><a href="cpp_api/data.html#_CPPv4NK5Brush4Data7Dataset5printEv">Brush::Data::Dataset::print (C++ function)</a>
 </li>
-      <li><a href="cpp_api/data.html#_CPPv4N5Brush4Data7Dataset14set_validationEb">Brush::Data::Dataset::set_validation (C++ function)</a>
+      <li><a href="cpp_api/data.html#_CPPv4N5Brush4Data7Dataset14set_batch_sizeEf">Brush::Data::Dataset::set_batch_size (C++ function)</a>
 </li>
       <li><a href="cpp_api/data.html#_CPPv4NK5Brush4Data7Dataset5splitERK7ArrayXb">Brush::Data::Dataset::split (C++ function)</a>
 </li>
       <li><a href="cpp_api/data.html#_CPPv4N5Brush4Data7Dataset17unique_data_typesE">Brush::Data::Dataset::unique_data_types (C++ member)</a>
+</li>
+      <li><a href="cpp_api/data.html#_CPPv4N5Brush4Data7Dataset9use_batchE">Brush::Data::Dataset::use_batch (C++ member)</a>
+</li>
+      <li><a href="cpp_api/data.html#_CPPv4N5Brush4Data7Dataset14use_validationE">Brush::Data::Dataset::use_validation (C++ member)</a>
+</li>
+      <li><a href="cpp_api/data.html#_CPPv4N5Brush4Data7Dataset15validation_sizeE">Brush::Data::Dataset::validation_size (C++ member)</a>
 </li>
       <li><a href="cpp_api/data.html#_CPPv4N5Brush4Data7Dataset4XrefE">Brush::Data::Dataset::Xref (C++ member)</a>
 </li>
@@ -470,6 +510,8 @@ document.write(`
 </li>
       <li><a href="cpp_api/node.html#_CPPv4NK5Brush4Node11get_featureEv">Brush::Node::get_feature (C++ function)</a>
 </li>
+      <li><a href="cpp_api/node.html#_CPPv4NK5Brush4Node15get_is_weightedEv">Brush::Node::get_is_weighted (C++ function)</a>
+</li>
       <li><a href="cpp_api/node.html#_CPPv4NK5Brush4Node9get_modelERK6vectorI6stringE">Brush::Node::get_model (C++ function)</a>
 </li>
       <li><a href="cpp_api/node.html#_CPPv4NK5Brush4Node8get_nameEb">Brush::Node::get_name (C++ function)</a>
@@ -513,6 +555,8 @@ document.write(`
       <li><a href="cpp_api/node.html#_CPPv4N5Brush4Node8ret_typeE">Brush::Node::ret_type (C++ member)</a>
 </li>
       <li><a href="cpp_api/node.html#_CPPv4N5Brush4Node11set_featureE6string">Brush::Node::set_feature (C++ function)</a>
+</li>
+      <li><a href="cpp_api/node.html#_CPPv4N5Brush4Node15set_is_weightedEb">Brush::Node::set_is_weighted (C++ function)</a>
 </li>
       <li><a href="cpp_api/node.html#_CPPv4N5Brush4Node15set_prob_changeEf">Brush::Node::set_prob_change (C++ function)</a>
 </li>
@@ -620,6 +664,12 @@ document.write(`
 </li>
       <li><a href="cpp_api/program.html#_CPPv4NK5Brush7Program5crossE7ProgramI5PTypeE">Brush::Program::cross (C++ function)</a>
 </li>
+      <li><a href="cpp_api/program.html#_CPPv4NK5Brush7Program5depthEv">Brush::Program::depth (C++ function)</a>
+</li>
+      <li><a href="cpp_api/program.html#_CPPv4NK5Brush7Program8depth_atER4Iter">Brush::Program::depth_at (C++ function)</a>
+</li>
+      <li><a href="cpp_api/program.html#_CPPv4NK5Brush7Program14depth_to_reachER4Iter">Brush::Program::depth_to_reach (C++ function)</a>
+</li>
       <li><a href="cpp_api/program.html#_CPPv4N5Brush7Program3fitERK3RefIK8ArrayXXfERK3RefIK7ArrayXfE">Brush::Program::fit (C++ function)</a>, <a href="cpp_api/program.html#_CPPv4N5Brush7Program3fitERK7Dataset">[1]</a>
 </li>
       <li><a href="cpp_api/program.html#_CPPv4N5Brush7Program7fitnessE">Brush::Program::fitness (C++ member)</a>
@@ -654,7 +704,9 @@ document.write(`
 </li>
       <li><a href="cpp_api/program.html#_CPPv4N5Brush7Program11set_weightsERK7ArrayXf">Brush::Program::set_weights (C++ function)</a>
 </li>
-      <li><a href="cpp_api/program.html#_CPPv4N5Brush7Program4sizeEv">Brush::Program::size (C++ function)</a>
+      <li><a href="cpp_api/program.html#_CPPv4NK5Brush7Program4sizeEb">Brush::Program::size (C++ function)</a>
+</li>
+      <li><a href="cpp_api/program.html#_CPPv4NK5Brush7Program7size_atER4Iterb">Brush::Program::size_at (C++ function)</a>
 </li>
       <li><a href="cpp_api/program.html#_CPPv4N5Brush7Program5SSrefE">Brush::Program::SSref (C++ member)</a>
 </li>
@@ -670,17 +722,13 @@ document.write(`
 </li>
       <li><a href="cpp_api/search_space.html#_CPPv4NK5Brush11SearchSpace5checkE8DataType">Brush::SearchSpace::check (C++ function)</a>, <a href="cpp_api/search_space.html#_CPPv4NK5Brush11SearchSpace5checkE8DataType6size_t">[1]</a>, <a href="cpp_api/search_space.html#_CPPv4NK5Brush11SearchSpace5checkE8DataType6size_t8NodeType">[2]</a>
 </li>
-      <li><a href="cpp_api/search_space.html#_CPPv4I0EN5Brush11SearchSpace3getE4Node8NodeType8DataType1S">Brush::SearchSpace::get (C++ function)</a>, <a href="cpp_api/search_space.html#_CPPv4I0EN5Brush11SearchSpace3getE4NodeRK6string">[1]</a>, <a href="cpp_api/search_space.html#_CPPv4N5Brush11SearchSpace3getE8NodeType8DataType">[2]</a>, <a href="cpp_api/search_space.html#_CPPv4N5Brush11SearchSpace3getE8NodeType8DataType6size_t">[3]</a>
+      <li><a href="cpp_api/search_space.html#_CPPv4I0EN5Brush11SearchSpace3getE4Node8NodeType8DataType1S">Brush::SearchSpace::get (C++ function)</a>, <a href="cpp_api/search_space.html#_CPPv4I0EN5Brush11SearchSpace3getE4NodeRK6string">[1]</a>, <a href="cpp_api/search_space.html#_CPPv4N5Brush11SearchSpace3getE8NodeType8DataType6size_t">[2]</a>
 </li>
       <li><a href="cpp_api/search_space.html#_CPPv4NK5Brush11SearchSpace13get_node_likeE4Node">Brush::SearchSpace::get_node_like (C++ function)</a>
 </li>
-      <li><a href="cpp_api/search_space.html#_CPPv4NK5Brush11SearchSpace6get_opE8DataType">Brush::SearchSpace::get_op (C++ function)</a>
-</li>
-      <li><a href="cpp_api/search_space.html#_CPPv4NK5Brush11SearchSpace15get_op_with_argE8DataType8DataTypebi">Brush::SearchSpace::get_op_with_arg (C++ function)</a>
-</li>
-      <li><a href="cpp_api/search_space.html#_CPPv4NK5Brush11SearchSpace12get_terminalE8DataType">Brush::SearchSpace::get_terminal (C++ function)</a>, <a href="cpp_api/search_space.html#_CPPv4NK5Brush11SearchSpace12get_terminalEv">[1]</a>
-</li>
       <li><a href="cpp_api/search_space.html#_CPPv4NK5Brush11SearchSpace11get_weightsE8DataType">Brush::SearchSpace::get_weights (C++ function)</a>, <a href="cpp_api/search_space.html#_CPPv4NK5Brush11SearchSpace11get_weightsE8DataType8ArgsHash">[1]</a>, <a href="cpp_api/search_space.html#_CPPv4NK5Brush11SearchSpace11get_weightsEv">[2]</a>
+</li>
+      <li><a href="cpp_api/search_space.html#_CPPv4I0ENK5Brush11SearchSpace18has_solution_spaceEb4Iter4Iter">Brush::SearchSpace::has_solution_space (C++ function)</a>
 </li>
       <li><a href="cpp_api/search_space.html#_CPPv4N5Brush11SearchSpace4initERK7DatasetRK13unordered_mapI6stringfE">Brush::SearchSpace::init (C++ function)</a>
 </li>
@@ -698,7 +746,17 @@ document.write(`
 </li>
       <li><a href="cpp_api/search_space.html#_CPPv4N5Brush11SearchSpace8node_mapE">Brush::SearchSpace::node_map (C++ member)</a>
 </li>
+      <li><a href="cpp_api/search_space.html#_CPPv4N5Brush11SearchSpace16node_map_weightsE">Brush::SearchSpace::node_map_weights (C++ member)</a>
+</li>
       <li><a href="cpp_api/search_space.html#_CPPv4NK5Brush11SearchSpace5printEv">Brush::SearchSpace::print (C++ function)</a>
+</li>
+      <li><a href="cpp_api/search_space.html#_CPPv4N5Brush11SearchSpace9sample_opE8NodeType8DataType">Brush::SearchSpace::sample_op (C++ function)</a>, <a href="cpp_api/search_space.html#_CPPv4NK5Brush11SearchSpace9sample_opE8DataType">[1]</a>
+</li>
+      <li><a href="cpp_api/search_space.html#_CPPv4NK5Brush11SearchSpace18sample_op_with_argE8DataType8DataTypebi">Brush::SearchSpace::sample_op_with_arg (C++ function)</a>
+</li>
+      <li><a href="cpp_api/search_space.html#_CPPv4NK5Brush11SearchSpace14sample_subtreeE4Nodeii">Brush::SearchSpace::sample_subtree (C++ function)</a>
+</li>
+      <li><a href="cpp_api/search_space.html#_CPPv4NK5Brush11SearchSpace15sample_terminalE8DataType">Brush::SearchSpace::sample_terminal (C++ function)</a>, <a href="cpp_api/search_space.html#_CPPv4NK5Brush11SearchSpace15sample_terminalEv">[1]</a>
 </li>
       <li><a href="cpp_api/search_space.html#_CPPv4N5Brush11SearchSpace11SearchSpaceERK7DatasetRK13unordered_mapI6stringfE">Brush::SearchSpace::SearchSpace (C++ function)</a>, <a href="cpp_api/search_space.html#_CPPv4N5Brush11SearchSpace11SearchSpaceEv">[1]</a>
 </li>
@@ -707,8 +765,6 @@ document.write(`
       <li><a href="cpp_api/search_space.html#_CPPv4N5Brush11SearchSpace14terminal_typesE">Brush::SearchSpace::terminal_types (C++ member)</a>
 </li>
       <li><a href="cpp_api/search_space.html#_CPPv4N5Brush11SearchSpace16terminal_weightsE">Brush::SearchSpace::terminal_weights (C++ member)</a>
-</li>
-      <li><a href="cpp_api/search_space.html#_CPPv4N5Brush11SearchSpace10weight_mapE">Brush::SearchSpace::weight_map (C++ member)</a>
 </li>
       <li><a href="python_api/classifier.html#brush.estimator.BrushClassifier">BrushClassifier (class in brush.estimator)</a>
 </li>
@@ -747,26 +803,42 @@ document.write(`
   </ul></td>
 </tr></table>
 
+<h2 id="S">S</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="python_api/classifier.html#brush.estimator.BrushClassifier.set_score_request">set_score_request() (brush.estimator.BrushClassifier method)</a>
+
+      <ul>
+        <li><a href="python_api/regressor.html#brush.estimator.BrushRegressor.set_score_request">(brush.estimator.BrushRegressor method)</a>
+</li>
+      </ul></li>
+  </ul></td>
+</tr></table>
+
 <h2 id="V">V</h2>
 <table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="cpp_api/variation.html#_CPPv49variation">variation (C++ type)</a>
 </li>
-      <li><a href="cpp_api/variation.html#_CPPv4I_11ProgramTypeEN9variation5crossE7ProgramI1TERK7ProgramI1TERK7ProgramI1TE">variation::cross (C++ function)</a>
+      <li><a href="cpp_api/variation.html#_CPPv4I_11ProgramTypeEN9variation5crossENSt8optionalI7ProgramI1TEEERK7ProgramI1TERK7ProgramI1TE">variation::cross (C++ function)</a>
 </li>
       <li><a href="cpp_api/variation.html#_CPPv4N9variation15delete_mutationER4treeI4NodeE4IterRK11SearchSpace">variation::delete_mutation (C++ function)</a>
 </li>
       <li><a href="cpp_api/variation.html#_CPPv4N9variation15insert_mutationER4treeI4NodeE4IterRK11SearchSpace">variation::insert_mutation (C++ function)</a>
 </li>
-  </ul></td>
-  <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="cpp_api/variation.html#_CPPv4N9variation4IterE">variation::Iter (C++ type)</a>
 </li>
-      <li><a href="cpp_api/variation.html#_CPPv4I_11ProgramTypeEN9variation6mutateE7ProgramI1TERK7ProgramI1TERK11SearchSpace">variation::mutate (C++ function)</a>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="cpp_api/variation.html#_CPPv4I_11ProgramTypeEN9variation6mutateENSt8optionalI7ProgramI1TEEERK7ProgramI1TERK11SearchSpace">variation::mutate (C++ function)</a>
 </li>
       <li><a href="cpp_api/variation.html#_CPPv4N9variation14point_mutationER4treeI4NodeE4IterRK11SearchSpace">variation::point_mutation (C++ function)</a>
 </li>
-      <li><a href="cpp_api/variation.html#_CPPv4N9variation22toggle_weight_mutationER4treeI4NodeE4IterRK11SearchSpace">variation::toggle_weight_mutation (C++ function)</a>
+      <li><a href="cpp_api/variation.html#_CPPv4N9variation16subtree_mutationER4treeI4NodeE4IterRK11SearchSpace">variation::subtree_mutation (C++ function)</a>
+</li>
+      <li><a href="cpp_api/variation.html#_CPPv4N9variation26toggle_weight_off_mutationER4treeI4NodeE4IterRK11SearchSpace">variation::toggle_weight_off_mutation (C++ function)</a>
+</li>
+      <li><a href="cpp_api/variation.html#_CPPv4N9variation25toggle_weight_on_mutationER4treeI4NodeE4IterRK11SearchSpace">variation::toggle_weight_on_mutation (C++ function)</a>
 </li>
   </ul></td>
 </tr></table>
@@ -778,21 +850,19 @@ document.write(`
 
               
               
-                <footer class="bd-footer-article">
+              
+              
+                <footer class="prev-next-footer">
                   
-<div class="footer-article-items footer-article__inner">
-  
-    <div class="footer-article-item"><!-- Previous / next buttons -->
 <div class="prev-next-area">
-</div></div>
-  
 </div>
-
                 </footer>
               
             </div>
             
             
+              
+                <div class="bd-sidebar-secondary bd-toc"></div>
               
             
           </div>
@@ -810,6 +880,7 @@ By William La Cava and Joseph D. Romano
   
   <div class="footer-item">
     
+
   <p class="copyright">
     
       © Copyright 2021, William La Cava and Joseph D. Romano.
@@ -836,8 +907,8 @@ By William La Cava and Joseph D. Romano
   </div>
   
   <!-- Scripts loaded after <body> so the DOM is not blocked -->
-  <script src="_static/scripts/bootstrap.js?digest=e353d410970836974a52"></script>
-<script src="_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52"></script>
+  <script src="_static/scripts/bootstrap.js?digest=8d27b9dea8ad943066ae"></script>
+<script src="_static/scripts/pydata-sphinx-theme.js?digest=8d27b9dea8ad943066ae"></script>
 
   <footer class="bd-footer">
   </footer>

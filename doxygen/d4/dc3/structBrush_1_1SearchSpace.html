@@ -165,6 +165,10 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a626c437dc8fb6bcac68f2dcae64c00cc"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d4/dc3/structBrush_1_1SearchSpace.html#a626c437dc8fb6bcac68f2dcae64c00cc">check</a> (<a class="el" href="../../dc/d5c/namespaceBrush.html#a3f2c9b744330ba4a561ac72f048a1a5f">DataType</a> R, size_t sig_hash, <a class="el" href="../../dc/d5c/namespaceBrush.html#a051322bb9fd1db4638b6eccd399a29c8">NodeType</a> type) const</td></tr>
 <tr class="memdesc:a626c437dc8fb6bcac68f2dcae64c00cc"><td class="mdescLeft">&#160;</td><td class="mdescRight">check if a typed <a class="el" href="../../d1/d3a/structBrush_1_1Node.html" title="class holding the data for a node in a tree.">Node</a> is in the search space  <a href="../../d4/dc3/structBrush_1_1SearchSpace.html#a626c437dc8fb6bcac68f2dcae64c00cc">More...</a><br /></td></tr>
 <tr class="separator:a626c437dc8fb6bcac68f2dcae64c00cc"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af7aa6187e39acd43c442b36025ccd806"><td class="memTemplParams" colspan="2">template&lt;typename Iter &gt; </td></tr>
+<tr class="memitem:af7aa6187e39acd43c442b36025ccd806"><td class="memTemplItemLeft" align="right" valign="top">bool&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="../../d4/dc3/structBrush_1_1SearchSpace.html#af7aa6187e39acd43c442b36025ccd806">has_solution_space</a> (<a class="el" href="../../dc/d5c/namespaceBrush.html#a822ae4ce07ba14ae433977a635675764">Iter</a> start, <a class="el" href="../../dc/d5c/namespaceBrush.html#a822ae4ce07ba14ae433977a635675764">Iter</a> end) const</td></tr>
+<tr class="memdesc:af7aa6187e39acd43c442b36025ccd806"><td class="mdescLeft">&#160;</td><td class="mdescRight">Takes iterators to weight vectors and checks if they have a non-empty solution space. An empty solution space is defined as having no non-zero, positive values.  <a href="../../d4/dc3/structBrush_1_1SearchSpace.html#af7aa6187e39acd43c442b36025ccd806">More...</a><br /></td></tr>
+<tr class="separator:af7aa6187e39acd43c442b36025ccd806"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a3f54812898af087a3bc6c1bfea8f4a87"><td class="memTemplParams" colspan="2">template&lt;typename F &gt; </td></tr>
 <tr class="memitem:a3f54812898af087a3bc6c1bfea8f4a87"><td class="memTemplItemLeft" align="right" valign="top"><a class="el" href="../../d1/d3a/structBrush_1_1Node.html">Node</a>&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="../../d4/dc3/structBrush_1_1SearchSpace.html#a3f54812898af087a3bc6c1bfea8f4a87">get</a> (const string &amp;name)</td></tr>
 <tr class="separator:a3f54812898af087a3bc6c1bfea8f4a87"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -175,15 +179,6 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a6687f99606513848ee1042b90f7750dd"><td class="memTemplItemLeft" align="right" valign="top"><a class="el" href="../../d1/d3a/structBrush_1_1Node.html">Node</a>&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="../../d4/dc3/structBrush_1_1SearchSpace.html#a6687f99606513848ee1042b90f7750dd">get</a> (<a class="el" href="../../dc/d5c/namespaceBrush.html#a051322bb9fd1db4638b6eccd399a29c8">NodeType</a> type, <a class="el" href="../../dc/d5c/namespaceBrush.html#a3f2c9b744330ba4a561ac72f048a1a5f">DataType</a> R, S sig)</td></tr>
 <tr class="memdesc:a6687f99606513848ee1042b90f7750dd"><td class="mdescLeft">&#160;</td><td class="mdescRight">get a typed node.  <a href="../../d4/dc3/structBrush_1_1SearchSpace.html#a6687f99606513848ee1042b90f7750dd">More...</a><br /></td></tr>
 <tr class="separator:a6687f99606513848ee1042b90f7750dd"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a53c05b982db1d8efd46f6c5a5a57a533"><td class="memItemLeft" align="right" valign="top"><a class="el" href="../../d1/d3a/structBrush_1_1Node.html">Node</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d4/dc3/structBrush_1_1SearchSpace.html#a53c05b982db1d8efd46f6c5a5a57a533">get</a> (<a class="el" href="../../dc/d5c/namespaceBrush.html#a051322bb9fd1db4638b6eccd399a29c8">NodeType</a> type, <a class="el" href="../../dc/d5c/namespaceBrush.html#a3f2c9b744330ba4a561ac72f048a1a5f">DataType</a> R)</td></tr>
-<tr class="memdesc:a53c05b982db1d8efd46f6c5a5a57a533"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get a specific node type that matches a return value.  <a href="../../d4/dc3/structBrush_1_1SearchSpace.html#a53c05b982db1d8efd46f6c5a5a57a533">More...</a><br /></td></tr>
-<tr class="separator:a53c05b982db1d8efd46f6c5a5a57a533"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a6f491bad218a6482a66d32a790a2aa85"><td class="memItemLeft" align="right" valign="top"><a class="el" href="../../d1/d3a/structBrush_1_1Node.html">Node</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d4/dc3/structBrush_1_1SearchSpace.html#a6f491bad218a6482a66d32a790a2aa85">get_terminal</a> () const</td></tr>
-<tr class="memdesc:a6f491bad218a6482a66d32a790a2aa85"><td class="mdescLeft">&#160;</td><td class="mdescRight">get a random terminal  <a href="../../d4/dc3/structBrush_1_1SearchSpace.html#a6f491bad218a6482a66d32a790a2aa85">More...</a><br /></td></tr>
-<tr class="separator:a6f491bad218a6482a66d32a790a2aa85"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a158036ea3930b5663adba0a779bce656"><td class="memItemLeft" align="right" valign="top"><a class="el" href="../../d1/d3a/structBrush_1_1Node.html">Node</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d4/dc3/structBrush_1_1SearchSpace.html#a158036ea3930b5663adba0a779bce656">get_terminal</a> (<a class="el" href="../../dc/d5c/namespaceBrush.html#a3f2c9b744330ba4a561ac72f048a1a5f">DataType</a> R) const</td></tr>
-<tr class="memdesc:a158036ea3930b5663adba0a779bce656"><td class="mdescLeft">&#160;</td><td class="mdescRight">get a terminal with return type <code>R</code>  <a href="../../d4/dc3/structBrush_1_1SearchSpace.html#a158036ea3930b5663adba0a779bce656">More...</a><br /></td></tr>
-<tr class="separator:a158036ea3930b5663adba0a779bce656"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a038ae8b09e1482f69de9feaf22aeacdb"><td class="memItemLeft" align="right" valign="top">vector&lt; float &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d4/dc3/structBrush_1_1SearchSpace.html#a038ae8b09e1482f69de9feaf22aeacdb">get_weights</a> () const</td></tr>
 <tr class="memdesc:a038ae8b09e1482f69de9feaf22aeacdb"><td class="mdescLeft">&#160;</td><td class="mdescRight">get weights of the return types  <a href="../../d4/dc3/structBrush_1_1SearchSpace.html#a038ae8b09e1482f69de9feaf22aeacdb">More...</a><br /></td></tr>
 <tr class="separator:a038ae8b09e1482f69de9feaf22aeacdb"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -193,15 +188,27 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a3155097f992425ae7c303c6e1d15eee1"><td class="memItemLeft" align="right" valign="top">vector&lt; float &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d4/dc3/structBrush_1_1SearchSpace.html#a3155097f992425ae7c303c6e1d15eee1">get_weights</a> (<a class="el" href="../../dc/d5c/namespaceBrush.html#a3f2c9b744330ba4a561ac72f048a1a5f">DataType</a> ret, <a class="el" href="../../d4/dc3/structBrush_1_1SearchSpace.html#af004a91112f5e3994d7c90c8baa71310">ArgsHash</a> sig_hash) const</td></tr>
 <tr class="memdesc:a3155097f992425ae7c303c6e1d15eee1"><td class="mdescLeft">&#160;</td><td class="mdescRight">get the weights of nodes matching a signature.  <a href="../../d4/dc3/structBrush_1_1SearchSpace.html#a3155097f992425ae7c303c6e1d15eee1">More...</a><br /></td></tr>
 <tr class="separator:a3155097f992425ae7c303c6e1d15eee1"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aaf0d192118f8c95a7b7232fb46920cc4"><td class="memItemLeft" align="right" valign="top"><a class="el" href="../../d1/d3a/structBrush_1_1Node.html">Node</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d4/dc3/structBrush_1_1SearchSpace.html#aaf0d192118f8c95a7b7232fb46920cc4">get_op</a> (<a class="el" href="../../dc/d5c/namespaceBrush.html#a3f2c9b744330ba4a561ac72f048a1a5f">DataType</a> ret) const</td></tr>
-<tr class="memdesc:aaf0d192118f8c95a7b7232fb46920cc4"><td class="mdescLeft">&#160;</td><td class="mdescRight">get an operator matching return type <code>ret</code>.  <a href="../../d4/dc3/structBrush_1_1SearchSpace.html#aaf0d192118f8c95a7b7232fb46920cc4">More...</a><br /></td></tr>
-<tr class="separator:aaf0d192118f8c95a7b7232fb46920cc4"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a1016c29de8626a29c2208faa5482c9c2"><td class="memItemLeft" align="right" valign="top"><a class="el" href="../../d1/d3a/structBrush_1_1Node.html">Node</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d4/dc3/structBrush_1_1SearchSpace.html#a1016c29de8626a29c2208faa5482c9c2">get_op_with_arg</a> (<a class="el" href="../../dc/d5c/namespaceBrush.html#a3f2c9b744330ba4a561ac72f048a1a5f">DataType</a> ret, <a class="el" href="../../dc/d5c/namespaceBrush.html#a3f2c9b744330ba4a561ac72f048a1a5f">DataType</a> arg, bool terminal_compatible=true, int max_arg_count=0) const</td></tr>
-<tr class="memdesc:a1016c29de8626a29c2208faa5482c9c2"><td class="mdescLeft">&#160;</td><td class="mdescRight">get operator with at least one argument matching arg  <a href="../../d4/dc3/structBrush_1_1SearchSpace.html#a1016c29de8626a29c2208faa5482c9c2">More...</a><br /></td></tr>
-<tr class="separator:a1016c29de8626a29c2208faa5482c9c2"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aeadd5cc2c0b7f791299560dd0dea4e4e"><td class="memItemLeft" align="right" valign="top"><a class="el" href="../../d1/d3a/structBrush_1_1Node.html">Node</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d4/dc3/structBrush_1_1SearchSpace.html#aeadd5cc2c0b7f791299560dd0dea4e4e">get_node_like</a> (<a class="el" href="../../d1/d3a/structBrush_1_1Node.html">Node</a> node) const</td></tr>
-<tr class="memdesc:aeadd5cc2c0b7f791299560dd0dea4e4e"><td class="mdescLeft">&#160;</td><td class="mdescRight">get a node with a signature matching <code>node</code>  <a href="../../d4/dc3/structBrush_1_1SearchSpace.html#aeadd5cc2c0b7f791299560dd0dea4e4e">More...</a><br /></td></tr>
-<tr class="separator:aeadd5cc2c0b7f791299560dd0dea4e4e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab7799a89e862e19942db515d8963fca7"><td class="memItemLeft" align="right" valign="top">std::optional&lt; <a class="el" href="../../d1/d3a/structBrush_1_1Node.html">Node</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d4/dc3/structBrush_1_1SearchSpace.html#ab7799a89e862e19942db515d8963fca7">sample_terminal</a> () const</td></tr>
+<tr class="memdesc:ab7799a89e862e19942db515d8963fca7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get a random terminal.  <a href="../../d4/dc3/structBrush_1_1SearchSpace.html#ab7799a89e862e19942db515d8963fca7">More...</a><br /></td></tr>
+<tr class="separator:ab7799a89e862e19942db515d8963fca7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1b7a19baa6a88424b08312cebfc610f3"><td class="memItemLeft" align="right" valign="top">std::optional&lt; <a class="el" href="../../d1/d3a/structBrush_1_1Node.html">Node</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d4/dc3/structBrush_1_1SearchSpace.html#a1b7a19baa6a88424b08312cebfc610f3">sample_terminal</a> (<a class="el" href="../../dc/d5c/namespaceBrush.html#a3f2c9b744330ba4a561ac72f048a1a5f">DataType</a> R) const</td></tr>
+<tr class="memdesc:a1b7a19baa6a88424b08312cebfc610f3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get a random terminal with return type <code>R</code>  <a href="../../d4/dc3/structBrush_1_1SearchSpace.html#a1b7a19baa6a88424b08312cebfc610f3">More...</a><br /></td></tr>
+<tr class="separator:a1b7a19baa6a88424b08312cebfc610f3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7d5e87a2f41fe1d4aa26cf285754841a"><td class="memItemLeft" align="right" valign="top">std::optional&lt; <a class="el" href="../../d1/d3a/structBrush_1_1Node.html">Node</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d4/dc3/structBrush_1_1SearchSpace.html#a7d5e87a2f41fe1d4aa26cf285754841a">sample_op</a> (<a class="el" href="../../dc/d5c/namespaceBrush.html#a3f2c9b744330ba4a561ac72f048a1a5f">DataType</a> ret) const</td></tr>
+<tr class="memdesc:a7d5e87a2f41fe1d4aa26cf285754841a"><td class="mdescLeft">&#160;</td><td class="mdescRight">get an operator matching return type <code>ret</code>.  <a href="../../d4/dc3/structBrush_1_1SearchSpace.html#a7d5e87a2f41fe1d4aa26cf285754841a">More...</a><br /></td></tr>
+<tr class="separator:a7d5e87a2f41fe1d4aa26cf285754841a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab11002ad7d932b09e61d408e6b374c79"><td class="memItemLeft" align="right" valign="top">std::optional&lt; <a class="el" href="../../d1/d3a/structBrush_1_1Node.html">Node</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d4/dc3/structBrush_1_1SearchSpace.html#ab11002ad7d932b09e61d408e6b374c79">sample_op</a> (<a class="el" href="../../dc/d5c/namespaceBrush.html#a051322bb9fd1db4638b6eccd399a29c8">NodeType</a> type, <a class="el" href="../../dc/d5c/namespaceBrush.html#a3f2c9b744330ba4a561ac72f048a1a5f">DataType</a> R)</td></tr>
+<tr class="memdesc:ab11002ad7d932b09e61d408e6b374c79"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get a specific node type that matches a return value.  <a href="../../d4/dc3/structBrush_1_1SearchSpace.html#ab11002ad7d932b09e61d408e6b374c79">More...</a><br /></td></tr>
+<tr class="separator:ab11002ad7d932b09e61d408e6b374c79"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a64e90d0781395bf9a843b8806dc5e95b"><td class="memItemLeft" align="right" valign="top">std::optional&lt; <a class="el" href="../../d1/d3a/structBrush_1_1Node.html">Node</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d4/dc3/structBrush_1_1SearchSpace.html#a64e90d0781395bf9a843b8806dc5e95b">sample_op_with_arg</a> (<a class="el" href="../../dc/d5c/namespaceBrush.html#a3f2c9b744330ba4a561ac72f048a1a5f">DataType</a> ret, <a class="el" href="../../dc/d5c/namespaceBrush.html#a3f2c9b744330ba4a561ac72f048a1a5f">DataType</a> arg, bool terminal_compatible=true, int max_args=0) const</td></tr>
+<tr class="memdesc:a64e90d0781395bf9a843b8806dc5e95b"><td class="mdescLeft">&#160;</td><td class="mdescRight">get operator with at least one argument matching arg  <a href="../../d4/dc3/structBrush_1_1SearchSpace.html#a64e90d0781395bf9a843b8806dc5e95b">More...</a><br /></td></tr>
+<tr class="separator:a64e90d0781395bf9a843b8806dc5e95b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a14a4a3b020ec50ee277dfe07bc36f608"><td class="memItemLeft" align="right" valign="top">std::optional&lt; <a class="el" href="../../d1/d3a/structBrush_1_1Node.html">Node</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d4/dc3/structBrush_1_1SearchSpace.html#a14a4a3b020ec50ee277dfe07bc36f608">get_node_like</a> (<a class="el" href="../../d1/d3a/structBrush_1_1Node.html">Node</a> node) const</td></tr>
+<tr class="memdesc:a14a4a3b020ec50ee277dfe07bc36f608"><td class="mdescLeft">&#160;</td><td class="mdescRight">get a node with a signature matching <code>node</code>  <a href="../../d4/dc3/structBrush_1_1SearchSpace.html#a14a4a3b020ec50ee277dfe07bc36f608">More...</a><br /></td></tr>
+<tr class="separator:a14a4a3b020ec50ee277dfe07bc36f608"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aed45d3d8adbee89f02e709472fe88280"><td class="memItemLeft" align="right" valign="top">std::optional&lt; tree&lt; <a class="el" href="../../d1/d3a/structBrush_1_1Node.html">Node</a> &gt; &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d4/dc3/structBrush_1_1SearchSpace.html#aed45d3d8adbee89f02e709472fe88280">sample_subtree</a> (<a class="el" href="../../d1/d3a/structBrush_1_1Node.html">Node</a> root, int max_d, int max_size) const</td></tr>
+<tr class="memdesc:aed45d3d8adbee89f02e709472fe88280"><td class="mdescLeft">&#160;</td><td class="mdescRight">create a subtree with maximum size and depth restrictions and root of type <code>root_type</code>  <a href="../../d4/dc3/structBrush_1_1SearchSpace.html#aed45d3d8adbee89f02e709472fe88280">More...</a><br /></td></tr>
+<tr class="separator:aed45d3d8adbee89f02e709472fe88280"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a1cfbfca3a45987de45159bc4699a61bb"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d4/dc3/structBrush_1_1SearchSpace.html#a1cfbfca3a45987de45159bc4699a61bb">print</a> () const</td></tr>
 <tr class="memdesc:a1cfbfca3a45987de45159bc4699a61bb"><td class="mdescLeft">&#160;</td><td class="mdescRight">prints the search space map.  <a href="../../d4/dc3/structBrush_1_1SearchSpace.html#a1cfbfca3a45987de45159bc4699a61bb">More...</a><br /></td></tr>
 <tr class="separator:a1cfbfca3a45987de45159bc4699a61bb"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -214,14 +221,14 @@ Public Attributes</h2></td></tr>
 <tr class="memitem:a4bd8ffb41071c9a6739f92b275a510f5"><td class="memItemLeft" align="right" valign="top"><a class="el" href="../../d4/dc3/structBrush_1_1SearchSpace.html#aa99f71f6328c8706a171c2f9c803b06d">Map</a>&lt; <a class="el" href="../../d1/d3a/structBrush_1_1Node.html">Node</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d4/dc3/structBrush_1_1SearchSpace.html#a4bd8ffb41071c9a6739f92b275a510f5">node_map</a></td></tr>
 <tr class="memdesc:a4bd8ffb41071c9a6739f92b275a510f5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Maps return types to argument types to node types.  <a href="../../d4/dc3/structBrush_1_1SearchSpace.html#a4bd8ffb41071c9a6739f92b275a510f5">More...</a><br /></td></tr>
 <tr class="separator:a4bd8ffb41071c9a6739f92b275a510f5"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ae3c114b829c2059dcb6565d11de527af"><td class="memItemLeft" align="right" valign="top"><a class="el" href="../../d4/dc3/structBrush_1_1SearchSpace.html#aa99f71f6328c8706a171c2f9c803b06d">Map</a>&lt; float &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d4/dc3/structBrush_1_1SearchSpace.html#ae3c114b829c2059dcb6565d11de527af">weight_map</a></td></tr>
-<tr class="memdesc:ae3c114b829c2059dcb6565d11de527af"><td class="mdescLeft">&#160;</td><td class="mdescRight">A map of weights corresponding to elements in <a class="el" href="../../d4/dc3/structBrush_1_1SearchSpace.html#a4bd8ffb41071c9a6739f92b275a510f5">node_map</a>, used to weight probabilities of each node being sampled from the map.  <a href="../../d4/dc3/structBrush_1_1SearchSpace.html#ae3c114b829c2059dcb6565d11de527af">More...</a><br /></td></tr>
-<tr class="separator:ae3c114b829c2059dcb6565d11de527af"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae1e33e2c9ca2d6777a42f6234c3b9a17"><td class="memItemLeft" align="right" valign="top"><a class="el" href="../../d4/dc3/structBrush_1_1SearchSpace.html#aa99f71f6328c8706a171c2f9c803b06d">Map</a>&lt; float &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d4/dc3/structBrush_1_1SearchSpace.html#ae1e33e2c9ca2d6777a42f6234c3b9a17">node_map_weights</a></td></tr>
+<tr class="memdesc:ae1e33e2c9ca2d6777a42f6234c3b9a17"><td class="mdescLeft">&#160;</td><td class="mdescRight">A map of weights corresponding to elements in <a class="el" href="../../d4/dc3/structBrush_1_1SearchSpace.html#a4bd8ffb41071c9a6739f92b275a510f5">node_map</a>, used to weight probabilities of each node being sampled from the map.  <a href="../../d4/dc3/structBrush_1_1SearchSpace.html#ae1e33e2c9ca2d6777a42f6234c3b9a17">More...</a><br /></td></tr>
+<tr class="separator:ae1e33e2c9ca2d6777a42f6234c3b9a17"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a4c2acdd29d7465109ead9835f952fee0"><td class="memItemLeft" align="right" valign="top">unordered_map&lt; <a class="el" href="../../dc/d5c/namespaceBrush.html#a3f2c9b744330ba4a561ac72f048a1a5f">DataType</a>, vector&lt; <a class="el" href="../../d1/d3a/structBrush_1_1Node.html">Node</a> &gt; &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d4/dc3/structBrush_1_1SearchSpace.html#a4c2acdd29d7465109ead9835f952fee0">terminal_map</a></td></tr>
 <tr class="memdesc:a4c2acdd29d7465109ead9835f952fee0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Maps return types to terminals.  <a href="../../d4/dc3/structBrush_1_1SearchSpace.html#a4c2acdd29d7465109ead9835f952fee0">More...</a><br /></td></tr>
 <tr class="separator:a4c2acdd29d7465109ead9835f952fee0"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a990aab15f3645f7b13cd678473e9f2fb"><td class="memItemLeft" align="right" valign="top">unordered_map&lt; <a class="el" href="../../dc/d5c/namespaceBrush.html#a3f2c9b744330ba4a561ac72f048a1a5f">DataType</a>, vector&lt; float &gt; &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d4/dc3/structBrush_1_1SearchSpace.html#a990aab15f3645f7b13cd678473e9f2fb">terminal_weights</a></td></tr>
-<tr class="memdesc:a990aab15f3645f7b13cd678473e9f2fb"><td class="mdescLeft">&#160;</td><td class="mdescRight">A map of weights corresponding to elements in <a class="el" href="../../d4/dc3/structBrush_1_1SearchSpace.html#a4c2acdd29d7465109ead9835f952fee0">terminal_map</a>, used to weight probabilities of each node being sampled from the map.  <a href="../../d4/dc3/structBrush_1_1SearchSpace.html#a990aab15f3645f7b13cd678473e9f2fb">More...</a><br /></td></tr>
+<tr class="memdesc:a990aab15f3645f7b13cd678473e9f2fb"><td class="mdescLeft">&#160;</td><td class="mdescRight">A map of weights corresponding to elements in <a class="el" href="../../d4/dc3/structBrush_1_1SearchSpace.html#a4c2acdd29d7465109ead9835f952fee0">terminal_map</a>, used to weight probabilities of each terminal being sampled from the map.  <a href="../../d4/dc3/structBrush_1_1SearchSpace.html#a990aab15f3645f7b13cd678473e9f2fb">More...</a><br /></td></tr>
 <tr class="separator:a990aab15f3645f7b13cd678473e9f2fb"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:af67633b1cb0d2ff56bec919e81d84ede"><td class="memItemLeft" align="right" valign="top">vector&lt; <a class="el" href="../../dc/d5c/namespaceBrush.html#a3f2c9b744330ba4a561ac72f048a1a5f">DataType</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d4/dc3/structBrush_1_1SearchSpace.html#af67633b1cb0d2ff56bec919e81d84ede">terminal_types</a></td></tr>
 <tr class="memdesc:af67633b1cb0d2ff56bec919e81d84ede"><td class="mdescLeft">&#160;</td><td class="mdescRight">A vector storing the available return types of terminals.  <a href="../../d4/dc3/structBrush_1_1SearchSpace.html#af67633b1cb0d2ff56bec919e81d84ede">More...</a><br /></td></tr>
@@ -229,6 +236,8 @@ Public Attributes</h2></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pri-methods"></a>
 Private Member Functions</h2></td></tr>
+<tr class="memitem:ac11ff8fbc623ac3b2b6d587a11de4a61"><td class="memItemLeft" align="right" valign="top">tree&lt; <a class="el" href="../../d1/d3a/structBrush_1_1Node.html">Node</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d4/dc3/structBrush_1_1SearchSpace.html#ac11ff8fbc623ac3b2b6d587a11de4a61">PTC2</a> (<a class="el" href="../../d1/d3a/structBrush_1_1Node.html">Node</a> root, int max_d, int max_size) const</td></tr>
+<tr class="separator:ac11ff8fbc623ac3b2b6d587a11de4a61"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a350a180311cc07e07788afc5f046de16"><td class="memTemplParams" colspan="2">template&lt;NodeType NT, typename S &gt; </td></tr>
 <tr class="memitem:a350a180311cc07e07788afc5f046de16"><td class="memTemplItemLeft" align="right" valign="top">&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="../../d4/dc3/structBrush_1_1SearchSpace.html#a350a180311cc07e07788afc5f046de16">requires</a> (!<a class="el" href="../../de/d26/nodetype_8h.html#a71f687f53e36ccdc3277214f2d535fe5">is_in_v</a>&lt; <a class="el" href="../../dc/d5c/namespaceBrush.html#a051322bb9fd1db4638b6eccd399a29c8">NT</a>, <a class="el" href="../../dc/d5c/namespaceBrush.html#a051322bb9fd1db4638b6eccd399a29c8a514d8a494f087c0d549b9536c2ef3bd9">NodeType::Terminal</a>, <a class="el" href="../../dc/d5c/namespaceBrush.html#a051322bb9fd1db4638b6eccd399a29c8acb17869fe51048b5a5c4c6106551a255">NodeType::Constant</a> &gt;) static const expr std</td></tr>
 <tr class="separator:a350a180311cc07e07788afc5f046de16"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -252,10 +261,11 @@ Private Member Functions</h2></td></tr>
 <li>operators whose arguments are covered by terminal types are included first. Then, a second pass includes any operators whose arguments are covered by terminal_types + return types of the current set of operators. One could imagine this continuing ad infinitum, but we just do two passes for simplicity.</li>
 <li>assertion check to make sure there is at least one operator that returns the output type of the model.</li>
 </ul>
+<p>When sampling in the search space (using any of the sampling functions <code>sample_op</code> or <code>sample_terminal</code>), some methods can fail to return a value &mdash; given a specific set of parameters to a function, the candidate solutions set may be empty &mdash; and, for these methods, the return type is either a valid value, or a <code>std::nullopt</code>. This is controlled wrapping the return type with <code>std::optional</code>.</p>
 <h2><a class="anchor" id="autotoc_md0"></a>
 Parameters</h2>
 
-<p class="definition">Definition at line <a class="el" href="../../d9/d99/search__space_8h_source.html#l00076">76</a> of file <a class="el" href="../../d9/d99/search__space_8h_source.html">search_space.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="../../d9/d99/search__space_8h_source.html#l00081">81</a> of file <a class="el" href="../../d9/d99/search__space_8h_source.html">search_space.h</a>.</p>
 </div><h2 class="groupheader">Member Typedef Documentation</h2>
 <a id="af004a91112f5e3994d7c90c8baa71310"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#af004a91112f5e3994d7c90c8baa71310">&#9670;&nbsp;</a></span>ArgsHash</h2>
@@ -269,7 +279,7 @@ Parameters</h2>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="../../d9/d99/search__space_8h_source.html#l00078">78</a> of file <a class="el" href="../../d9/d99/search__space_8h_source.html">search_space.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="../../d9/d99/search__space_8h_source.html#l00083">83</a> of file <a class="el" href="../../d9/d99/search__space_8h_source.html">search_space.h</a>.</p>
 
 </div>
 </div>
@@ -287,7 +297,7 @@ template&lt;typename T &gt; </div>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="../../d9/d99/search__space_8h_source.html#l00081">81</a> of file <a class="el" href="../../d9/d99/search__space_8h_source.html">search_space.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="../../d9/d99/search__space_8h_source.html#l00086">86</a> of file <a class="el" href="../../d9/d99/search__space_8h_source.html">search_space.h</a>.</p>
 
 </div>
 </div>
@@ -360,7 +370,7 @@ template&lt;typename T &gt; </div>
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="../../d9/d99/search__space_8h_source.html#l00174">174</a> of file <a class="el" href="../../d9/d99/search__space_8h_source.html">search_space.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="../../d9/d99/search__space_8h_source.html#l00178">178</a> of file <a class="el" href="../../d9/d99/search__space_8h_source.html">search_space.h</a>.</p>
 
 </div>
 </div>
@@ -401,7 +411,7 @@ template&lt;NodeType NT, typename S &gt; </div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="../../d9/d99/search__space_8h_source.html#l00475">475</a> of file <a class="el" href="../../d9/d99/search__space_8h_source.html">search_space.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="../../d9/d99/search__space_8h_source.html#l00556">556</a> of file <a class="el" href="../../d9/d99/search__space_8h_source.html">search_space.h</a>.</p>
 
 </div>
 </div>
@@ -447,7 +457,7 @@ template&lt;NodeType NT, typename Sigs , std::size_t... Is&gt; </div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="../../d9/d99/search__space_8h_source.html#l00498">498</a> of file <a class="el" href="../../d9/d99/search__space_8h_source.html">search_space.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="../../d9/d99/search__space_8h_source.html#l00579">579</a> of file <a class="el" href="../../d9/d99/search__space_8h_source.html">search_space.h</a>.</p>
 
 </div>
 </div>
@@ -484,7 +494,7 @@ template&lt;NodeType NT, typename Sigs , std::size_t... Is&gt; </div>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>true if it exists </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="../../d9/d99/search__space_8h_source.html#l00186">186</a> of file <a class="el" href="../../d9/d99/search__space_8h_source.html">search_space.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="../../d9/d99/search__space_8h_source.html#l00190">190</a> of file <a class="el" href="../../d9/d99/search__space_8h_source.html">search_space.h</a>.</p>
 
 </div>
 </div>
@@ -532,7 +542,7 @@ template&lt;NodeType NT, typename Sigs , std::size_t... Is&gt; </div>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>true if it exists </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="../../d9/d99/search__space_8h_source.html#l00198">198</a> of file <a class="el" href="../../d9/d99/search__space_8h_source.html">search_space.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="../../d9/d99/search__space_8h_source.html#l00202">202</a> of file <a class="el" href="../../d9/d99/search__space_8h_source.html">search_space.h</a>.</p>
 
 </div>
 </div>
@@ -587,7 +597,7 @@ template&lt;NodeType NT, typename Sigs , std::size_t... Is&gt; </div>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>true if it exists </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="../../d9/d99/search__space_8h_source.html#l00214">214</a> of file <a class="el" href="../../d9/d99/search__space_8h_source.html">search_space.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="../../d9/d99/search__space_8h_source.html#l00218">218</a> of file <a class="el" href="../../d9/d99/search__space_8h_source.html">search_space.h</a>.</p>
 
 </div>
 </div>
@@ -633,7 +643,7 @@ template&lt;std::size_t... Is&gt; </div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="../../d9/d99/search__space_8h_source.html#l00529">529</a> of file <a class="el" href="../../d9/d99/search__space_8h_source.html">search_space.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="../../d9/d99/search__space_8h_source.html#l00610">610</a> of file <a class="el" href="../../d9/d99/search__space_8h_source.html">search_space.h</a>.</p>
 <div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
@@ -649,7 +659,7 @@ Here is the caller graph for this function:</div>
 </div>
 </div>
 <a id="a3f54812898af087a3bc6c1bfea8f4a87"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a3f54812898af087a3bc6c1bfea8f4a87">&#9670;&nbsp;</a></span>get() <span class="overload">[1/4]</span></h2>
+<h2 class="memtitle"><span class="permalink"><a href="#a3f54812898af087a3bc6c1bfea8f4a87">&#9670;&nbsp;</a></span>get() <span class="overload">[1/3]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -668,65 +678,8 @@ template&lt;typename F &gt; </div>
 
 </div>
 </div>
-<a id="a53c05b982db1d8efd46f6c5a5a57a533"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a53c05b982db1d8efd46f6c5a5a57a533">&#9670;&nbsp;</a></span>get() <span class="overload">[2/4]</span></h2>
-
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname"><a class="el" href="../../d1/d3a/structBrush_1_1Node.html">Node</a> Brush::SearchSpace::get </td>
-          <td>(</td>
-          <td class="paramtype"><a class="el" href="../../dc/d5c/namespaceBrush.html#a051322bb9fd1db4638b6eccd399a29c8">NodeType</a>&#160;</td>
-          <td class="paramname"><em>type</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype"><a class="el" href="../../dc/d5c/namespaceBrush.html#a3f2c9b744330ba4a561ac72f048a1a5f">DataType</a>&#160;</td>
-          <td class="paramname"><em>R</em>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p>Get a specific node type that matches a return value. </p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">type</td><td>the node type </td></tr>
-    <tr><td class="paramname">R</td><td>the return type </td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="section return"><dt>Returns</dt><dd>A <a class="el" href="../../d1/d3a/structBrush_1_1Node.html" title="class holding the data for a node in a tree.">Node</a> of type <code>type</code> with return type <code>R</code>. </dd></dl>
-
-<p class="definition">Definition at line <a class="el" href="../../d9/d99/search__space_8h_source.html#l00251">251</a> of file <a class="el" href="../../d9/d99/search__space_8h_source.html">search_space.h</a>.</p>
-<div class="dynheader">
-Here is the call graph for this function:</div>
-<div class="dyncontent">
-<div class="center"><img src="../../d4/dc3/structBrush_1_1SearchSpace_a53c05b982db1d8efd46f6c5a5a57a533_cgraph.png" border="0" usemap="#ad4/dc3/structBrush_1_1SearchSpace_a53c05b982db1d8efd46f6c5a5a57a533_cgraph" alt=""/></div>
-<map name="ad4/dc3/structBrush_1_1SearchSpace_a53c05b982db1d8efd46f6c5a5a57a533_cgraph" id="ad4/dc3/structBrush_1_1SearchSpace_a53c05b982db1d8efd46f6c5a5a57a533_cgraph">
-<area shape="rect" title="Get a specific node type that matches a return value." alt="" coords="5,14,184,43"/>
-<area shape="rect" href="../../d2/d2d/classBrush_1_1Util_1_1Rnd.html#a9f0fe39c1fd498b378c8d4abe7b9d71b" title=" " alt="" coords="232,5,401,51"/>
-</map>
-</div>
-
-</div>
-</div>
 <a id="a6687f99606513848ee1042b90f7750dd"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a6687f99606513848ee1042b90f7750dd">&#9670;&nbsp;</a></span>get() <span class="overload">[3/4]</span></h2>
+<h2 class="memtitle"><span class="permalink"><a href="#a6687f99606513848ee1042b90f7750dd">&#9670;&nbsp;</a></span>get() <span class="overload">[2/3]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -785,7 +738,7 @@ template&lt;typename S &gt; </div>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>the matching <a class="el" href="../../d1/d3a/structBrush_1_1Node.html" title="class holding the data for a node in a tree.">Node</a> </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="../../d9/d99/search__space_8h_source.html#l00245">245</a> of file <a class="el" href="../../d9/d99/search__space_8h_source.html">search_space.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="../../d9/d99/search__space_8h_source.html#l00261">261</a> of file <a class="el" href="../../d9/d99/search__space_8h_source.html">search_space.h</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -806,7 +759,7 @@ Here is the caller graph for this function:</div>
 </div>
 </div>
 <a id="a9f5632dcb5c60863face5d6e1fdd92ba"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a9f5632dcb5c60863face5d6e1fdd92ba">&#9670;&nbsp;</a></span>get() <span class="overload">[4/4]</span></h2>
+<h2 class="memtitle"><span class="permalink"><a href="#a9f5632dcb5c60863face5d6e1fdd92ba">&#9670;&nbsp;</a></span>get() <span class="overload">[3/3]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -856,12 +809,12 @@ Here is the caller graph for this function:</div>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>the matching <a class="el" href="../../d1/d3a/structBrush_1_1Node.html">Node</a> </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="../../d9/d99/search__space_8h_source.html#l00232">232</a> of file <a class="el" href="../../d9/d99/search__space_8h_source.html">search_space.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="../../d9/d99/search__space_8h_source.html#l00248">248</a> of file <a class="el" href="../../d9/d99/search__space_8h_source.html">search_space.h</a>.</p>
 
 </div>
 </div>
-<a id="aeadd5cc2c0b7f791299560dd0dea4e4e"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#aeadd5cc2c0b7f791299560dd0dea4e4e">&#9670;&nbsp;</a></span>get_node_like()</h2>
+<a id="a14a4a3b020ec50ee277dfe07bc36f608"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a14a4a3b020ec50ee277dfe07bc36f608">&#9670;&nbsp;</a></span>get_node_like()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -870,7 +823,7 @@ Here is the caller graph for this function:</div>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="../../d1/d3a/structBrush_1_1Node.html">Node</a> Brush::SearchSpace::get_node_like </td>
+          <td class="memname">std::optional&lt;<a class="el" href="../../d1/d3a/structBrush_1_1Node.html">Node</a>&gt; Brush::SearchSpace::get_node_like </td>
           <td>(</td>
           <td class="paramtype"><a class="el" href="../../d1/d3a/structBrush_1_1Node.html">Node</a>&#160;</td>
           <td class="paramname"><em>node</em></td><td>)</td>
@@ -891,14 +844,14 @@ Here is the caller graph for this function:</div>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>a <a class="el" href="../../d1/d3a/structBrush_1_1Node.html" title="class holding the data for a node in a tree.">Node</a> </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd><code>std::optional</code> that may contain a <a class="el" href="../../d1/d3a/structBrush_1_1Node.html" title="class holding the data for a node in a tree.">Node</a> </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="../../d9/d99/search__space_8h_source.html#l00435">435</a> of file <a class="el" href="../../d9/d99/search__space_8h_source.html">search_space.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="../../d9/d99/search__space_8h_source.html#l00502">502</a> of file <a class="el" href="../../d9/d99/search__space_8h_source.html">search_space.h</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><img src="../../d4/dc3/structBrush_1_1SearchSpace_aeadd5cc2c0b7f791299560dd0dea4e4e_cgraph.png" border="0" usemap="#ad4/dc3/structBrush_1_1SearchSpace_aeadd5cc2c0b7f791299560dd0dea4e4e_cgraph" alt=""/></div>
-<map name="ad4/dc3/structBrush_1_1SearchSpace_aeadd5cc2c0b7f791299560dd0dea4e4e_cgraph" id="ad4/dc3/structBrush_1_1SearchSpace_aeadd5cc2c0b7f791299560dd0dea4e4e_cgraph">
+<div class="center"><img src="../../d4/dc3/structBrush_1_1SearchSpace_a14a4a3b020ec50ee277dfe07bc36f608_cgraph.png" border="0" usemap="#ad4/dc3/structBrush_1_1SearchSpace_a14a4a3b020ec50ee277dfe07bc36f608_cgraph" alt=""/></div>
+<map name="ad4/dc3/structBrush_1_1SearchSpace_a14a4a3b020ec50ee277dfe07bc36f608_cgraph" id="ad4/dc3/structBrush_1_1SearchSpace_a14a4a3b020ec50ee277dfe07bc36f608_cgraph">
 <area shape="rect" title="get a node with a signature matching node" alt="" coords="5,28,155,74"/>
 <area shape="rect" href="../../d1/d3a/structBrush_1_1Node.html#a9ec6ba08b0baebc0cd105e4ef774b7fb" title=" " alt="" coords="203,5,375,34"/>
 <area shape="rect" href="../../d2/d2d/classBrush_1_1Util_1_1Rnd.html#a9f0fe39c1fd498b378c8d4abe7b9d71b" title=" " alt="" coords="204,58,374,104"/>
@@ -907,233 +860,13 @@ Here is the call graph for this function:</div>
 <div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><img src="../../d4/dc3/structBrush_1_1SearchSpace_aeadd5cc2c0b7f791299560dd0dea4e4e_icgraph.png" border="0" usemap="#ad4/dc3/structBrush_1_1SearchSpace_aeadd5cc2c0b7f791299560dd0dea4e4e_icgraph" alt=""/></div>
-<map name="ad4/dc3/structBrush_1_1SearchSpace_aeadd5cc2c0b7f791299560dd0dea4e4e_icgraph" id="ad4/dc3/structBrush_1_1SearchSpace_aeadd5cc2c0b7f791299560dd0dea4e4e_icgraph">
+<div class="center"><img src="../../d4/dc3/structBrush_1_1SearchSpace_a14a4a3b020ec50ee277dfe07bc36f608_icgraph.png" border="0" usemap="#ad4/dc3/structBrush_1_1SearchSpace_a14a4a3b020ec50ee277dfe07bc36f608_icgraph" alt=""/></div>
+<map name="ad4/dc3/structBrush_1_1SearchSpace_a14a4a3b020ec50ee277dfe07bc36f608_icgraph" id="ad4/dc3/structBrush_1_1SearchSpace_a14a4a3b020ec50ee277dfe07bc36f608_icgraph">
 <area shape="rect" title="get a node with a signature matching node" alt="" coords="646,24,796,70"/>
-<area shape="rect" href="../../d0/d24/namespacevariation.html#a5d1fdeb5d33b06ee8847da09f58f0f5f" title="point mutation: replace node with same typed node" alt="" coords="412,32,598,61"/>
-<area shape="rect" href="../../d0/d24/namespacevariation.html#abfa16e581c2548444df2bb4cbaa1b221" title="Mutate a program." alt="" coords="230,32,364,61"/>
+<area shape="rect" href="../../d0/d24/namespacevariation.html#a170515efe6144a099812fc284c2ae10b" title="replace node with same typed node" alt="" coords="412,32,598,61"/>
+<area shape="rect" href="../../d0/d24/namespacevariation.html#a3ceab1ae0c739084852ef04ebda17d6a" title="Stochastically mutate a program." alt="" coords="230,32,364,61"/>
 <area shape="rect" href="../../d6/d3f/bind__programs_8h.html#a8284c80bb3c1dfb32250420f76a183fd" title=" " alt="" coords="38,5,149,34"/>
-<area shape="rect" href="../../db/d88/structBrush_1_1Program.html#a294cf928c4374ebf6fae5713f31f3c79" title="convenience wrapper for :cpp:func:variation:mutate() in variation.h" alt="" coords="5,59,182,88"/>
-</map>
-</div>
-
-</div>
-</div>
-<a id="aaf0d192118f8c95a7b7232fb46920cc4"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#aaf0d192118f8c95a7b7232fb46920cc4">&#9670;&nbsp;</a></span>get_op()</h2>
-
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname"><a class="el" href="../../d1/d3a/structBrush_1_1Node.html">Node</a> Brush::SearchSpace::get_op </td>
-          <td>(</td>
-          <td class="paramtype"><a class="el" href="../../dc/d5c/namespaceBrush.html#a3f2c9b744330ba4a561ac72f048a1a5f">DataType</a>&#160;</td>
-          <td class="paramname"><em>ret</em></td><td>)</td>
-          <td> const</td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p>get an operator matching return type <code>ret</code>. </p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">ret</td><td>return type </td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="section return"><dt>Returns</dt><dd>a randomly chosen operator </dd></dl>
-
-<p class="definition">Definition at line <a class="el" href="../../d9/d99/search__space_8h_source.html#l00355">355</a> of file <a class="el" href="../../d9/d99/search__space_8h_source.html">search_space.h</a>.</p>
-<div class="dynheader">
-Here is the call graph for this function:</div>
-<div class="dyncontent">
-<div class="center"><img src="../../d4/dc3/structBrush_1_1SearchSpace_aaf0d192118f8c95a7b7232fb46920cc4_cgraph.png" border="0" usemap="#ad4/dc3/structBrush_1_1SearchSpace_aaf0d192118f8c95a7b7232fb46920cc4_cgraph" alt=""/></div>
-<map name="ad4/dc3/structBrush_1_1SearchSpace_aaf0d192118f8c95a7b7232fb46920cc4_cgraph" id="ad4/dc3/structBrush_1_1SearchSpace_aaf0d192118f8c95a7b7232fb46920cc4_cgraph">
-<area shape="rect" title="get an operator matching return type ret." alt="" coords="5,5,155,51"/>
-<area shape="rect" href="../../d2/d2d/classBrush_1_1Util_1_1Rnd.html#a9f0fe39c1fd498b378c8d4abe7b9d71b" title=" " alt="" coords="203,5,372,51"/>
-</map>
-</div>
-
-</div>
-</div>
-<a id="a1016c29de8626a29c2208faa5482c9c2"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a1016c29de8626a29c2208faa5482c9c2">&#9670;&nbsp;</a></span>get_op_with_arg()</h2>
-
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname"><a class="el" href="../../d1/d3a/structBrush_1_1Node.html">Node</a> Brush::SearchSpace::get_op_with_arg </td>
-          <td>(</td>
-          <td class="paramtype"><a class="el" href="../../dc/d5c/namespaceBrush.html#a3f2c9b744330ba4a561ac72f048a1a5f">DataType</a>&#160;</td>
-          <td class="paramname"><em>ret</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype"><a class="el" href="../../dc/d5c/namespaceBrush.html#a3f2c9b744330ba4a561ac72f048a1a5f">DataType</a>&#160;</td>
-          <td class="paramname"><em>arg</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">bool&#160;</td>
-          <td class="paramname"><em>terminal_compatible</em> = <code>true</code>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">int&#160;</td>
-          <td class="paramname"><em>max_arg_count</em> = <code>0</code>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td> const</td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p>get operator with at least one argument matching arg </p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">ret</td><td>return type </td></tr>
-    <tr><td class="paramname">arg</td><td>argument type to match </td></tr>
-    <tr><td class="paramname">terminal_compatible</td><td>if true, the other args the returned operator takes must exist in the terminal types. </td></tr>
-    <tr><td class="paramname">max_arg_count</td><td>if zero, there is no limit on number of arguments of the operator. If not, the operator can have at most <code>max_arg_count</code> arguments. </td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="section return"><dt>Returns</dt><dd>a matching operator. </dd></dl>
-
-<p class="definition">Definition at line <a class="el" href="../../d9/d99/search__space_8h_source.html#l00382">382</a> of file <a class="el" href="../../d9/d99/search__space_8h_source.html">search_space.h</a>.</p>
-<div class="dynheader">
-Here is the call graph for this function:</div>
-<div class="dyncontent">
-<div class="center"><img src="../../d4/dc3/structBrush_1_1SearchSpace_a1016c29de8626a29c2208faa5482c9c2_cgraph.png" border="0" usemap="#ad4/dc3/structBrush_1_1SearchSpace_a1016c29de8626a29c2208faa5482c9c2_cgraph" alt=""/></div>
-<map name="ad4/dc3/structBrush_1_1SearchSpace_a1016c29de8626a29c2208faa5482c9c2_cgraph" id="ad4/dc3/structBrush_1_1SearchSpace_a1016c29de8626a29c2208faa5482c9c2_cgraph">
-<area shape="rect" title="get operator with at least one argument matching arg" alt="" coords="5,28,155,74"/>
-<area shape="rect" href="../../d6/d2e/namespaceBrush_1_1Util.html#ab03528e8d9652013786252f63b6d5840" title="check if element is in vector." alt="" coords="233,5,342,34"/>
-<area shape="rect" href="../../d2/d2d/classBrush_1_1Util_1_1Rnd.html#a9f0fe39c1fd498b378c8d4abe7b9d71b" title=" " alt="" coords="203,58,372,104"/>
-</map>
-</div>
-<div class="dynheader">
-Here is the caller graph for this function:</div>
-<div class="dyncontent">
-<div class="center"><img src="../../d4/dc3/structBrush_1_1SearchSpace_a1016c29de8626a29c2208faa5482c9c2_icgraph.png" border="0" usemap="#ad4/dc3/structBrush_1_1SearchSpace_a1016c29de8626a29c2208faa5482c9c2_icgraph" alt=""/></div>
-<map name="ad4/dc3/structBrush_1_1SearchSpace_a1016c29de8626a29c2208faa5482c9c2_icgraph" id="ad4/dc3/structBrush_1_1SearchSpace_a1016c29de8626a29c2208faa5482c9c2_icgraph">
-<area shape="rect" title="get operator with at least one argument matching arg" alt="" coords="650,24,800,70"/>
-<area shape="rect" href="../../d0/d24/namespacevariation.html#ab75fceda2c7aa69e59d3b55562937942" title="insert a node with spot as a child" alt="" coords="412,32,602,61"/>
-<area shape="rect" href="../../d0/d24/namespacevariation.html#abfa16e581c2548444df2bb4cbaa1b221" title="Mutate a program." alt="" coords="230,32,364,61"/>
-<area shape="rect" href="../../d6/d3f/bind__programs_8h.html#a8284c80bb3c1dfb32250420f76a183fd" title=" " alt="" coords="38,5,149,34"/>
-<area shape="rect" href="../../db/d88/structBrush_1_1Program.html#a294cf928c4374ebf6fae5713f31f3c79" title="convenience wrapper for :cpp:func:variation:mutate() in variation.h" alt="" coords="5,59,182,88"/>
-</map>
-</div>
-
-</div>
-</div>
-<a id="a6f491bad218a6482a66d32a790a2aa85"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a6f491bad218a6482a66d32a790a2aa85">&#9670;&nbsp;</a></span>get_terminal() <span class="overload">[1/2]</span></h2>
-
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname"><a class="el" href="../../d1/d3a/structBrush_1_1Node.html">Node</a> Brush::SearchSpace::get_terminal </td>
-          <td>(</td>
-          <td class="paramname"></td><td>)</td>
-          <td> const</td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p>get a random terminal </p>
-
-<p class="definition">Definition at line <a class="el" href="../../d9/d99/search__space_8h_source.html#l00275">275</a> of file <a class="el" href="../../d9/d99/search__space_8h_source.html">search_space.h</a>.</p>
-<div class="dynheader">
-Here is the call graph for this function:</div>
-<div class="dyncontent">
-<div class="center"><img src="../../d4/dc3/structBrush_1_1SearchSpace_a6f491bad218a6482a66d32a790a2aa85_cgraph.png" border="0" usemap="#ad4/dc3/structBrush_1_1SearchSpace_a6f491bad218a6482a66d32a790a2aa85_cgraph" alt=""/></div>
-<map name="ad4/dc3/structBrush_1_1SearchSpace_a6f491bad218a6482a66d32a790a2aa85_cgraph" id="ad4/dc3/structBrush_1_1SearchSpace_a6f491bad218a6482a66d32a790a2aa85_cgraph">
-<area shape="rect" title="get a random terminal" alt="" coords="5,5,155,51"/>
-<area shape="rect" href="../../d2/d2d/classBrush_1_1Util_1_1Rnd.html#a9f0fe39c1fd498b378c8d4abe7b9d71b" title=" " alt="" coords="203,5,372,51"/>
-</map>
-</div>
-<div class="dynheader">
-Here is the caller graph for this function:</div>
-<div class="dyncontent">
-<div class="center"><img src="../../d4/dc3/structBrush_1_1SearchSpace_a6f491bad218a6482a66d32a790a2aa85_icgraph.png" border="0" usemap="#ad4/dc3/structBrush_1_1SearchSpace_a6f491bad218a6482a66d32a790a2aa85_icgraph" alt=""/></div>
-<map name="ad4/dc3/structBrush_1_1SearchSpace_a6f491bad218a6482a66d32a790a2aa85_icgraph" id="ad4/dc3/structBrush_1_1SearchSpace_a6f491bad218a6482a66d32a790a2aa85_icgraph">
-<area shape="rect" title="get a random terminal" alt="" coords="654,24,804,70"/>
-<area shape="rect" href="../../d0/d24/namespacevariation.html#ac09afe106fc118aa9dc82a1b8ce87b01" title="delete subtree and replace it with a terminal of the same return type" alt="" coords="412,5,606,34"/>
-<area shape="rect" href="../../d0/d24/namespacevariation.html#ab75fceda2c7aa69e59d3b55562937942" title="insert a node with spot as a child" alt="" coords="414,59,604,88"/>
-<area shape="rect" href="../../d0/d24/namespacevariation.html#abfa16e581c2548444df2bb4cbaa1b221" title="Mutate a program." alt="" coords="230,32,364,61"/>
-<area shape="rect" href="../../d6/d3f/bind__programs_8h.html#a8284c80bb3c1dfb32250420f76a183fd" title=" " alt="" coords="38,5,149,34"/>
-<area shape="rect" href="../../db/d88/structBrush_1_1Program.html#a294cf928c4374ebf6fae5713f31f3c79" title="convenience wrapper for :cpp:func:variation:mutate() in variation.h" alt="" coords="5,59,182,88"/>
-</map>
-</div>
-
-</div>
-</div>
-<a id="a158036ea3930b5663adba0a779bce656"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a158036ea3930b5663adba0a779bce656">&#9670;&nbsp;</a></span>get_terminal() <span class="overload">[2/2]</span></h2>
-
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname"><a class="el" href="../../d1/d3a/structBrush_1_1Node.html">Node</a> Brush::SearchSpace::get_terminal </td>
-          <td>(</td>
-          <td class="paramtype"><a class="el" href="../../dc/d5c/namespaceBrush.html#a3f2c9b744330ba4a561ac72f048a1a5f">DataType</a>&#160;</td>
-          <td class="paramname"><em>R</em></td><td>)</td>
-          <td> const</td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p>get a terminal with return type <code>R</code> </p>
-
-<p class="definition">Definition at line <a class="el" href="../../d9/d99/search__space_8h_source.html#l00288">288</a> of file <a class="el" href="../../d9/d99/search__space_8h_source.html">search_space.h</a>.</p>
-<div class="dynheader">
-Here is the call graph for this function:</div>
-<div class="dyncontent">
-<div class="center"><img src="../../d4/dc3/structBrush_1_1SearchSpace_a158036ea3930b5663adba0a779bce656_cgraph.png" border="0" usemap="#ad4/dc3/structBrush_1_1SearchSpace_a158036ea3930b5663adba0a779bce656_cgraph" alt=""/></div>
-<map name="ad4/dc3/structBrush_1_1SearchSpace_a158036ea3930b5663adba0a779bce656_cgraph" id="ad4/dc3/structBrush_1_1SearchSpace_a158036ea3930b5663adba0a779bce656_cgraph">
-<area shape="rect" title="get a terminal with return type R" alt="" coords="5,5,155,51"/>
-<area shape="rect" href="../../d2/d2d/classBrush_1_1Util_1_1Rnd.html#a9f0fe39c1fd498b378c8d4abe7b9d71b" title=" " alt="" coords="203,5,372,51"/>
+<area shape="rect" href="../../db/d88/structBrush_1_1Program.html#a00cac102329788865e5822a6f5641423" title="convenience wrapper for :cpp:func:variation:mutate() in variation.h" alt="" coords="5,59,182,88"/>
 </map>
 </div>
 
@@ -1165,7 +898,20 @@ Here is the call graph for this function:</div>
 <p>get weights of the return types </p>
 <dl class="section return"><dt>Returns</dt><dd>a weight vector, each element corresponding to a return type. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="../../d9/d99/search__space_8h_source.html#l00303">303</a> of file <a class="el" href="../../d9/d99/search__space_8h_source.html">search_space.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="../../d9/d99/search__space_8h_source.html#l00265">265</a> of file <a class="el" href="../../d9/d99/search__space_8h_source.html">search_space.h</a>.</p>
+<div class="dynheader">
+Here is the caller graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="../../d4/dc3/structBrush_1_1SearchSpace_a038ae8b09e1482f69de9feaf22aeacdb_icgraph.png" border="0" usemap="#ad4/dc3/structBrush_1_1SearchSpace_a038ae8b09e1482f69de9feaf22aeacdb_icgraph" alt=""/></div>
+<map name="ad4/dc3/structBrush_1_1SearchSpace_a038ae8b09e1482f69de9feaf22aeacdb_icgraph" id="ad4/dc3/structBrush_1_1SearchSpace_a038ae8b09e1482f69de9feaf22aeacdb_icgraph">
+<area shape="rect" title="get weights of the return types" alt="" coords="794,24,943,70"/>
+<area shape="rect" href="../../d4/dc3/structBrush_1_1SearchSpace.html#aed45d3d8adbee89f02e709472fe88280" title="create a subtree with maximum size and depth restrictions and root of type root_type" alt="" coords="596,24,746,70"/>
+<area shape="rect" href="../../d0/d24/namespacevariation.html#ab3c6b50b00987b9b8f4a9ca98606860e" title="replaces the subtree rooted in spot" alt="" coords="412,24,548,70"/>
+<area shape="rect" href="../../d0/d24/namespacevariation.html#a3ceab1ae0c739084852ef04ebda17d6a" title="Stochastically mutate a program." alt="" coords="230,32,364,61"/>
+<area shape="rect" href="../../d6/d3f/bind__programs_8h.html#a8284c80bb3c1dfb32250420f76a183fd" title=" " alt="" coords="38,5,149,34"/>
+<area shape="rect" href="../../db/d88/structBrush_1_1Program.html#a00cac102329788865e5822a6f5641423" title="convenience wrapper for :cpp:func:variation:mutate() in variation.h" alt="" coords="5,59,182,88"/>
+</map>
+</div>
 
 </div>
 </div>
@@ -1202,7 +948,7 @@ Here is the call graph for this function:</div>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>a weight vector, each element corresponding to an args type. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="../../d9/d99/search__space_8h_source.html#l00324">324</a> of file <a class="el" href="../../d9/d99/search__space_8h_source.html">search_space.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="../../d9/d99/search__space_8h_source.html#l00285">285</a> of file <a class="el" href="../../d9/d99/search__space_8h_source.html">search_space.h</a>.</p>
 
 </div>
 </div>
@@ -1250,7 +996,77 @@ Here is the call graph for this function:</div>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>a weight vector, each element corresponding to a node. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="../../d9/d99/search__space_8h_source.html#l00343">343</a> of file <a class="el" href="../../d9/d99/search__space_8h_source.html">search_space.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="../../d9/d99/search__space_8h_source.html#l00304">304</a> of file <a class="el" href="../../d9/d99/search__space_8h_source.html">search_space.h</a>.</p>
+
+</div>
+</div>
+<a id="af7aa6187e39acd43c442b36025ccd806"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af7aa6187e39acd43c442b36025ccd806">&#9670;&nbsp;</a></span>has_solution_space()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename Iter &gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool Brush::SearchSpace::has_solution_space </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="../../dc/d5c/namespaceBrush.html#a822ae4ce07ba14ae433977a635675764">Iter</a>&#160;</td>
+          <td class="paramname"><em>start</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="../../dc/d5c/namespaceBrush.html#a822ae4ce07ba14ae433977a635675764">Iter</a>&#160;</td>
+          <td class="paramname"><em>end</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Takes iterators to weight vectors and checks if they have a non-empty solution space. An empty solution space is defined as having no non-zero, positive values. </p>
+<dl class="tparams"><dt>Template Parameters</dt><dd>
+  <table class="tparams">
+    <tr><td class="paramname">T</td><td>type of iterator. <br  />
+ </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">start</td><td>Start iterator </td></tr>
+    <tr><td class="paramname">end</td><td>End iterator </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>true if at least one weight is positive </dd></dl>
+
+<p class="definition">Definition at line <a class="el" href="../../d9/d99/search__space_8h_source.html#l00237">237</a> of file <a class="el" href="../../d9/d99/search__space_8h_source.html">search_space.h</a>.</p>
+<div class="dynheader">
+Here is the caller graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="../../d4/dc3/structBrush_1_1SearchSpace_af7aa6187e39acd43c442b36025ccd806_icgraph.png" border="0" usemap="#ad4/dc3/structBrush_1_1SearchSpace_af7aa6187e39acd43c442b36025ccd806_icgraph" alt=""/></div>
+<map name="ad4/dc3/structBrush_1_1SearchSpace_af7aa6187e39acd43c442b36025ccd806_icgraph" id="ad4/dc3/structBrush_1_1SearchSpace_af7aa6187e39acd43c442b36025ccd806_icgraph">
+<area shape="rect" title="Takes iterators to weight vectors and checks if they have a non&#45;empty solution space...." alt="" coords="794,24,950,70"/>
+<area shape="rect" href="../../d4/dc3/structBrush_1_1SearchSpace.html#aed45d3d8adbee89f02e709472fe88280" title="create a subtree with maximum size and depth restrictions and root of type root_type" alt="" coords="596,24,746,70"/>
+<area shape="rect" href="../../d0/d24/namespacevariation.html#ab3c6b50b00987b9b8f4a9ca98606860e" title="replaces the subtree rooted in spot" alt="" coords="412,24,548,70"/>
+<area shape="rect" href="../../d0/d24/namespacevariation.html#a3ceab1ae0c739084852ef04ebda17d6a" title="Stochastically mutate a program." alt="" coords="230,32,364,61"/>
+<area shape="rect" href="../../d6/d3f/bind__programs_8h.html#a8284c80bb3c1dfb32250420f76a183fd" title=" " alt="" coords="38,5,149,34"/>
+<area shape="rect" href="../../db/d88/structBrush_1_1Program.html#a00cac102329788865e5822a6f5641423" title="convenience wrapper for :cpp:func:variation:mutate() in variation.h" alt="" coords="5,59,182,88"/>
+</map>
+</div>
 
 </div>
 </div>
@@ -1289,15 +1105,23 @@ Here is the call graph for this function:</div>
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="../../da/d48/search__space_8cpp_source.html#l00045">45</a> of file <a class="el" href="../../da/d48/search__space_8cpp_source.html">search_space.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="../../da/d48/search__space_8cpp_source.html#l00144">144</a> of file <a class="el" href="../../da/d48/search__space_8cpp_source.html">search_space.cpp</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
 <div class="center"><img src="../../d4/dc3/structBrush_1_1SearchSpace_a88636b9ece72850950f3b37b660d0be0_cgraph.png" border="0" usemap="#ad4/dc3/structBrush_1_1SearchSpace_a88636b9ece72850950f3b37b660d0be0_cgraph" alt=""/></div>
 <map name="ad4/dc3/structBrush_1_1SearchSpace_a88636b9ece72850950f3b37b660d0be0_cgraph" id="ad4/dc3/structBrush_1_1SearchSpace_a88636b9ece72850950f3b37b660d0be0_cgraph">
-<area shape="rect" title="Called by the constructor to initialize the search space." alt="" coords="5,28,155,74"/>
-<area shape="rect" href="../../dc/d5c/namespaceBrush.html#a08d191fd1a609031bd321d66312c988d" title="generate terminals from the dataset features and random constants." alt="" coords="203,5,396,34"/>
-<area shape="rect" href="../../d4/dc3/structBrush_1_1SearchSpace.html#aaa7e4460ad218ff67bc4159aff77bdf3" title=" " alt="" coords="224,58,375,104"/>
+<area shape="rect" title="Called by the constructor to initialize the search space." alt="" coords="5,156,155,202"/>
+<area shape="rect" href="../../dc/d5c/namespaceBrush.html#a08d191fd1a609031bd321d66312c988d" title="generate terminals from the dataset features and random constants." alt="" coords="203,133,396,162"/>
+<area shape="rect" href="../../d4/dc3/structBrush_1_1SearchSpace.html#aaa7e4460ad218ff67bc4159aff77bdf3" title=" " alt="" coords="224,186,375,232"/>
+<area shape="rect" href="../../dc/d5c/namespaceBrush.html#af6e4b7d5bbd50f46f8c96a356e19bdae" title=" " alt="" coords="458,89,594,135"/>
+<area shape="rect" href="../../d1/d3a/structBrush_1_1Node.html#ad9e4f8654978a40e8266b20a4bb0950f" title=" " alt="" coords="444,160,608,206"/>
+<area shape="rect" href="../../d2/df8/structBrush_1_1Util_1_1Normalizer.html#ac58cb50d38623884ab64b854b2680ae0" title=" " alt="" coords="656,58,826,104"/>
+<area shape="rect" href="../../d6/d2e/namespaceBrush_1_1Util.html#a26cf881c06b230990b810de739347b58" title="slope of x/y" alt="" coords="675,128,807,157"/>
+<area shape="rect" href="../../d2/df8/structBrush_1_1Util_1_1Normalizer.html#a46115a5bd9d52f588f7553373b8b7480" title="fit the scale and offset of data." alt="" coords="874,5,1064,34"/>
+<area shape="rect" href="../../d2/df8/structBrush_1_1Util_1_1Normalizer.html#ade9d0b6a950174d04aed5624cba5c7f0" title="normalize matrix." alt="" coords="884,58,1054,104"/>
+<area shape="rect" href="../../d6/d2e/namespaceBrush_1_1Util.html#ae119a14eab4e4899608c4e766acf54c0" title="covariance of x and y" alt="" coords="885,128,1053,157"/>
+<area shape="rect" href="../../d6/d2e/namespaceBrush_1_1Util.html#ad88c0170839ba79e41dc5715e77abfc8" title="calculate variance" alt="" coords="892,181,1046,210"/>
 </map>
 </div>
 <div class="dynheader">
@@ -1349,7 +1173,7 @@ Here is the caller graph for this function:</div>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>a classifier program </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="../../da/d48/search__space_8cpp_source.html#l00088">88</a> of file <a class="el" href="../../da/d48/search__space_8cpp_source.html">search_space.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="../../da/d48/search__space_8cpp_source.html#l00347">347</a> of file <a class="el" href="../../da/d48/search__space_8cpp_source.html">search_space.cpp</a>.</p>
 <div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
@@ -1399,7 +1223,7 @@ Here is the caller graph for this function:</div>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>a multiclass classifier program </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="../../da/d48/search__space_8cpp_source.html#l00093">93</a> of file <a class="el" href="../../da/d48/search__space_8cpp_source.html">search_space.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="../../da/d48/search__space_8cpp_source.html#l00352">352</a> of file <a class="el" href="../../da/d48/search__space_8cpp_source.html">search_space.cpp</a>.</p>
 <div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
@@ -1441,16 +1265,15 @@ template&lt;typename P &gt; </div>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="../../d9/d99/search__space_8h_source.html#l00551">551</a> of file <a class="el" href="../../d9/d99/search__space_8h_source.html">search_space.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="../../d9/d99/search__space_8h_source.html#l00632">632</a> of file <a class="el" href="../../d9/d99/search__space_8h_source.html">search_space.h</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
 <div class="center"><img src="../../d4/dc3/structBrush_1_1SearchSpace_a30dc9740ebecad5267acd5e27b1a3953_cgraph.png" border="0" usemap="#ad4/dc3/structBrush_1_1SearchSpace_a30dc9740ebecad5267acd5e27b1a3953_cgraph" alt=""/></div>
 <map name="ad4/dc3/structBrush_1_1SearchSpace_a30dc9740ebecad5267acd5e27b1a3953_cgraph" id="ad4/dc3/structBrush_1_1SearchSpace_a30dc9740ebecad5267acd5e27b1a3953_cgraph">
-<area shape="rect" title=" " alt="" coords="5,49,155,95"/>
-<area shape="rect" href="../../dc/d5c/namespaceBrush.html#a819e6d35661a163c3f40d927766a3213" title="queue for make program" alt="" coords="203,5,381,34"/>
-<area shape="rect" href="../../d2/d2d/classBrush_1_1Util_1_1Rnd.html#aef0f2836321f651d5887d29739e180f5" title=" " alt="" coords="429,32,604,61"/>
-<area shape="rect" href="../../d1/d3a/structBrush_1_1Node.html#ad9e4f8654978a40e8266b20a4bb0950f" title=" " alt="" coords="210,109,374,155"/>
+<area shape="rect" title=" " alt="" coords="5,28,155,74"/>
+<area shape="rect" href="../../d2/d2d/classBrush_1_1Util_1_1Rnd.html#aef0f2836321f651d5887d29739e180f5" title=" " alt="" coords="203,5,378,34"/>
+<area shape="rect" href="../../d1/d3a/structBrush_1_1Node.html#ad9e4f8654978a40e8266b20a4bb0950f" title=" " alt="" coords="208,58,373,104"/>
 </map>
 </div>
 
@@ -1540,7 +1363,7 @@ template&lt;typename PT &gt; </div>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>a regressor program </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="../../da/d48/search__space_8cpp_source.html#l00083">83</a> of file <a class="el" href="../../da/d48/search__space_8cpp_source.html">search_space.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="../../da/d48/search__space_8cpp_source.html#l00342">342</a> of file <a class="el" href="../../da/d48/search__space_8cpp_source.html">search_space.cpp</a>.</p>
 <div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
@@ -1590,7 +1413,7 @@ Here is the caller graph for this function:</div>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>a representer program </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="../../da/d48/search__space_8cpp_source.html#l00099">99</a> of file <a class="el" href="../../da/d48/search__space_8cpp_source.html">search_space.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="../../da/d48/search__space_8cpp_source.html#l00358">358</a> of file <a class="el" href="../../da/d48/search__space_8cpp_source.html">search_space.cpp</a>.</p>
 <div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
@@ -1640,7 +1463,7 @@ template&lt;NodeType NT&gt; </div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="../../d9/d99/search__space_8h_source.html#l00506">506</a> of file <a class="el" href="../../d9/d99/search__space_8h_source.html">search_space.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="../../d9/d99/search__space_8h_source.html#l00587">587</a> of file <a class="el" href="../../d9/d99/search__space_8h_source.html">search_space.h</a>.</p>
 
 </div>
 </div>
@@ -1661,7 +1484,7 @@ template&lt;NodeType NT&gt; </div>
 
 <p>prints the search space map. </p>
 
-<p class="definition">Definition at line <a class="el" href="../../da/d48/search__space_8cpp_source.html#l00041">41</a> of file <a class="el" href="../../da/d48/search__space_8cpp_source.html">search_space.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="../../da/d48/search__space_8cpp_source.html#l00140">140</a> of file <a class="el" href="../../da/d48/search__space_8cpp_source.html">search_space.cpp</a>.</p>
 <div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
@@ -1670,6 +1493,77 @@ Here is the caller graph for this function:</div>
 <area shape="rect" title="prints the search space map." alt="" coords="396,5,545,51"/>
 <area shape="rect" href="../../d0/d94/bind__search__space_8cpp.html#a5dd9aae5c3af6fab760233deca1956cd" title=" " alt="" coords="204,14,348,43"/>
 <area shape="rect" href="../../dd/d30/module_8cpp.html#ab3432520f506686ba18c7ce7758a6c69" title=" " alt="" coords="5,14,156,43"/>
+</map>
+</div>
+
+</div>
+</div>
+<a id="ac11ff8fbc623ac3b2b6d587a11de4a61"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac11ff8fbc623ac3b2b6d587a11de4a61">&#9670;&nbsp;</a></span>PTC2()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">tree&lt; <a class="el" href="../../d1/d3a/structBrush_1_1Node.html">Node</a> &gt; Brush::SearchSpace::PTC2 </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="../../d1/d3a/structBrush_1_1Node.html">Node</a>&#160;</td>
+          <td class="paramname"><em>root</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>max_d</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>max_size</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="../../da/d48/search__space_8cpp_source.html#l00208">208</a> of file <a class="el" href="../../da/d48/search__space_8cpp_source.html">search_space.cpp</a>.</p>
+<div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="../../d4/dc3/structBrush_1_1SearchSpace_ac11ff8fbc623ac3b2b6d587a11de4a61_cgraph.png" border="0" usemap="#ad4/dc3/structBrush_1_1SearchSpace_ac11ff8fbc623ac3b2b6d587a11de4a61_cgraph" alt=""/></div>
+<map name="ad4/dc3/structBrush_1_1SearchSpace_ac11ff8fbc623ac3b2b6d587a11de4a61_cgraph" id="ad4/dc3/structBrush_1_1SearchSpace_ac11ff8fbc623ac3b2b6d587a11de4a61_cgraph">
+<area shape="rect" title=" " alt="" coords="5,97,155,143"/>
+<area shape="rect" href="../../d1/d3a/structBrush_1_1Node.html#a8d884d5ad5f6825aa8f50039fb6baf9f" title=" " alt="" coords="218,5,366,51"/>
+<area shape="rect" href="../../dc/d5c/namespaceBrush.html#a819e6d35661a163c3f40d927766a3213" title="queue for make program" alt="" coords="203,75,381,104"/>
+<area shape="rect" href="../../d4/dc3/structBrush_1_1SearchSpace.html#a7d5e87a2f41fe1d4aa26cf285754841a" title="get an operator matching return type ret." alt="" coords="217,128,367,174"/>
+<area shape="rect" href="../../d4/dc3/structBrush_1_1SearchSpace.html#ab7799a89e862e19942db515d8963fca7" title="Get a random terminal." alt="" coords="217,199,367,245"/>
+<area shape="rect" href="../../d2/d2d/classBrush_1_1Util_1_1Rnd.html#aef0f2836321f651d5887d29739e180f5" title=" " alt="" coords="429,75,604,104"/>
+<area shape="rect" href="../../d2/d2d/classBrush_1_1Util_1_1Rnd.html#a9f0fe39c1fd498b378c8d4abe7b9d71b" title=" " alt="" coords="432,163,601,209"/>
+</map>
+</div>
+<div class="dynheader">
+Here is the caller graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="../../d4/dc3/structBrush_1_1SearchSpace_ac11ff8fbc623ac3b2b6d587a11de4a61_icgraph.png" border="0" usemap="#ad4/dc3/structBrush_1_1SearchSpace_ac11ff8fbc623ac3b2b6d587a11de4a61_icgraph" alt=""/></div>
+<map name="ad4/dc3/structBrush_1_1SearchSpace_ac11ff8fbc623ac3b2b6d587a11de4a61_icgraph" id="ad4/dc3/structBrush_1_1SearchSpace_ac11ff8fbc623ac3b2b6d587a11de4a61_icgraph">
+<area shape="rect" title=" " alt="" coords="794,24,943,70"/>
+<area shape="rect" href="../../d4/dc3/structBrush_1_1SearchSpace.html#aed45d3d8adbee89f02e709472fe88280" title="create a subtree with maximum size and depth restrictions and root of type root_type" alt="" coords="596,24,746,70"/>
+<area shape="rect" href="../../d0/d24/namespacevariation.html#ab3c6b50b00987b9b8f4a9ca98606860e" title="replaces the subtree rooted in spot" alt="" coords="412,24,548,70"/>
+<area shape="rect" href="../../d0/d24/namespacevariation.html#a3ceab1ae0c739084852ef04ebda17d6a" title="Stochastically mutate a program." alt="" coords="230,32,364,61"/>
+<area shape="rect" href="../../d6/d3f/bind__programs_8h.html#a8284c80bb3c1dfb32250420f76a183fd" title=" " alt="" coords="38,5,149,34"/>
+<area shape="rect" href="../../db/d88/structBrush_1_1Program.html#a00cac102329788865e5822a6f5641423" title="convenience wrapper for :cpp:func:variation:mutate() in variation.h" alt="" coords="5,59,182,88"/>
 </map>
 </div>
 
@@ -1701,7 +1595,7 @@ template&lt;NodeType NT, typename S &gt; </div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="../../d9/d99/search__space_8h_source.html#l00456">456</a> of file <a class="el" href="../../d9/d99/search__space_8h_source.html">search_space.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="../../d9/d99/search__space_8h_source.html#l00537">537</a> of file <a class="el" href="../../d9/d99/search__space_8h_source.html">search_space.h</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -1709,6 +1603,380 @@ Here is the call graph for this function:</div>
 <map name="ad4/dc3/structBrush_1_1SearchSpace_a350a180311cc07e07788afc5f046de16_cgraph" id="ad4/dc3/structBrush_1_1SearchSpace_a350a180311cc07e07788afc5f046de16_cgraph">
 <area shape="rect" title=" " alt="" coords="5,5,155,51"/>
 <area shape="rect" href="../../d6/d2e/namespaceBrush_1_1Util.html#ab03528e8d9652013786252f63b6d5840" title="check if element is in vector." alt="" coords="203,14,312,43"/>
+</map>
+</div>
+
+</div>
+</div>
+<a id="a7d5e87a2f41fe1d4aa26cf285754841a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7d5e87a2f41fe1d4aa26cf285754841a">&#9670;&nbsp;</a></span>sample_op() <span class="overload">[1/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::optional&lt;<a class="el" href="../../d1/d3a/structBrush_1_1Node.html">Node</a>&gt; Brush::SearchSpace::sample_op </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="../../dc/d5c/namespaceBrush.html#a3f2c9b744330ba4a561ac72f048a1a5f">DataType</a>&#160;</td>
+          <td class="paramname"><em>ret</em></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>get an operator matching return type <code>ret</code>. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">ret</td><td>return type </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd><code>std::optional</code> that may contain a randomly chosen operator matching return type <code>ret</code> </dd></dl>
+
+<p class="definition">Definition at line <a class="el" href="../../d9/d99/search__space_8h_source.html#l00376">376</a> of file <a class="el" href="../../d9/d99/search__space_8h_source.html">search_space.h</a>.</p>
+<div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="../../d4/dc3/structBrush_1_1SearchSpace_a7d5e87a2f41fe1d4aa26cf285754841a_cgraph.png" border="0" usemap="#ad4/dc3/structBrush_1_1SearchSpace_a7d5e87a2f41fe1d4aa26cf285754841a_cgraph" alt=""/></div>
+<map name="ad4/dc3/structBrush_1_1SearchSpace_a7d5e87a2f41fe1d4aa26cf285754841a_cgraph" id="ad4/dc3/structBrush_1_1SearchSpace_a7d5e87a2f41fe1d4aa26cf285754841a_cgraph">
+<area shape="rect" title="get an operator matching return type ret." alt="" coords="5,5,155,51"/>
+<area shape="rect" href="../../d2/d2d/classBrush_1_1Util_1_1Rnd.html#a9f0fe39c1fd498b378c8d4abe7b9d71b" title=" " alt="" coords="203,5,372,51"/>
+</map>
+</div>
+<div class="dynheader">
+Here is the caller graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="../../d4/dc3/structBrush_1_1SearchSpace_a7d5e87a2f41fe1d4aa26cf285754841a_icgraph.png" border="0" usemap="#ad4/dc3/structBrush_1_1SearchSpace_a7d5e87a2f41fe1d4aa26cf285754841a_icgraph" alt=""/></div>
+<map name="ad4/dc3/structBrush_1_1SearchSpace_a7d5e87a2f41fe1d4aa26cf285754841a_icgraph" id="ad4/dc3/structBrush_1_1SearchSpace_a7d5e87a2f41fe1d4aa26cf285754841a_icgraph">
+<area shape="rect" title="get an operator matching return type ret." alt="" coords="991,24,1140,70"/>
+<area shape="rect" href="../../d4/dc3/structBrush_1_1SearchSpace.html#ac11ff8fbc623ac3b2b6d587a11de4a61" title=" " alt="" coords="794,24,943,70"/>
+<area shape="rect" href="../../d4/dc3/structBrush_1_1SearchSpace.html#aed45d3d8adbee89f02e709472fe88280" title="create a subtree with maximum size and depth restrictions and root of type root_type" alt="" coords="596,24,746,70"/>
+<area shape="rect" href="../../d0/d24/namespacevariation.html#ab3c6b50b00987b9b8f4a9ca98606860e" title="replaces the subtree rooted in spot" alt="" coords="412,24,548,70"/>
+<area shape="rect" href="../../d0/d24/namespacevariation.html#a3ceab1ae0c739084852ef04ebda17d6a" title="Stochastically mutate a program." alt="" coords="230,32,364,61"/>
+<area shape="rect" href="../../d6/d3f/bind__programs_8h.html#a8284c80bb3c1dfb32250420f76a183fd" title=" " alt="" coords="38,5,149,34"/>
+<area shape="rect" href="../../db/d88/structBrush_1_1Program.html#a00cac102329788865e5822a6f5641423" title="convenience wrapper for :cpp:func:variation:mutate() in variation.h" alt="" coords="5,59,182,88"/>
+</map>
+</div>
+
+</div>
+</div>
+<a id="ab11002ad7d932b09e61d408e6b374c79"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab11002ad7d932b09e61d408e6b374c79">&#9670;&nbsp;</a></span>sample_op() <span class="overload">[2/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::optional&lt;<a class="el" href="../../d1/d3a/structBrush_1_1Node.html">Node</a>&gt; Brush::SearchSpace::sample_op </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="../../dc/d5c/namespaceBrush.html#a051322bb9fd1db4638b6eccd399a29c8">NodeType</a>&#160;</td>
+          <td class="paramname"><em>type</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="../../dc/d5c/namespaceBrush.html#a3f2c9b744330ba4a561ac72f048a1a5f">DataType</a>&#160;</td>
+          <td class="paramname"><em>R</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Get a specific node type that matches a return value. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">type</td><td>the node type </td></tr>
+    <tr><td class="paramname">R</td><td>the return type </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd><code>std::optional</code> that may contain a <a class="el" href="../../d1/d3a/structBrush_1_1Node.html" title="class holding the data for a node in a tree.">Node</a> of type <code>type</code> with return type <code>R</code>. </dd></dl>
+
+<p class="definition">Definition at line <a class="el" href="../../d9/d99/search__space_8h_source.html#l00408">408</a> of file <a class="el" href="../../d9/d99/search__space_8h_source.html">search_space.h</a>.</p>
+<div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="../../d4/dc3/structBrush_1_1SearchSpace_ab11002ad7d932b09e61d408e6b374c79_cgraph.png" border="0" usemap="#ad4/dc3/structBrush_1_1SearchSpace_ab11002ad7d932b09e61d408e6b374c79_cgraph" alt=""/></div>
+<map name="ad4/dc3/structBrush_1_1SearchSpace_ab11002ad7d932b09e61d408e6b374c79_cgraph" id="ad4/dc3/structBrush_1_1SearchSpace_ab11002ad7d932b09e61d408e6b374c79_cgraph">
+<area shape="rect" title="Get a specific node type that matches a return value." alt="" coords="5,5,155,51"/>
+<area shape="rect" href="../../d2/d2d/classBrush_1_1Util_1_1Rnd.html#a9f0fe39c1fd498b378c8d4abe7b9d71b" title=" " alt="" coords="203,5,372,51"/>
+</map>
+</div>
+
+</div>
+</div>
+<a id="a64e90d0781395bf9a843b8806dc5e95b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a64e90d0781395bf9a843b8806dc5e95b">&#9670;&nbsp;</a></span>sample_op_with_arg()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::optional&lt;<a class="el" href="../../d1/d3a/structBrush_1_1Node.html">Node</a>&gt; Brush::SearchSpace::sample_op_with_arg </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="../../dc/d5c/namespaceBrush.html#a3f2c9b744330ba4a561ac72f048a1a5f">DataType</a>&#160;</td>
+          <td class="paramname"><em>ret</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="../../dc/d5c/namespaceBrush.html#a3f2c9b744330ba4a561ac72f048a1a5f">DataType</a>&#160;</td>
+          <td class="paramname"><em>arg</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">bool&#160;</td>
+          <td class="paramname"><em>terminal_compatible</em> = <code>true</code>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>max_args</em> = <code>0</code>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>get operator with at least one argument matching arg </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">ret</td><td>return type </td></tr>
+    <tr><td class="paramname">arg</td><td>argument type to match </td></tr>
+    <tr><td class="paramname">terminal_compatible</td><td>if true, the other args the returned operator takes must exist in the terminal types. </td></tr>
+    <tr><td class="paramname">max_args</td><td>if zero, there is no limit on number of arguments of the operator. If not, the operator can have at most <code>max_args</code> arguments. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd><code>std::optional</code> that may contain a matching operator respecting all restrictions. </dd></dl>
+
+<p class="definition">Definition at line <a class="el" href="../../d9/d99/search__space_8h_source.html#l00444">444</a> of file <a class="el" href="../../d9/d99/search__space_8h_source.html">search_space.h</a>.</p>
+<div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="../../d4/dc3/structBrush_1_1SearchSpace_a64e90d0781395bf9a843b8806dc5e95b_cgraph.png" border="0" usemap="#ad4/dc3/structBrush_1_1SearchSpace_a64e90d0781395bf9a843b8806dc5e95b_cgraph" alt=""/></div>
+<map name="ad4/dc3/structBrush_1_1SearchSpace_a64e90d0781395bf9a843b8806dc5e95b_cgraph" id="ad4/dc3/structBrush_1_1SearchSpace_a64e90d0781395bf9a843b8806dc5e95b_cgraph">
+<area shape="rect" title="get operator with at least one argument matching arg" alt="" coords="5,28,169,74"/>
+<area shape="rect" href="../../d6/d2e/namespaceBrush_1_1Util.html#ab03528e8d9652013786252f63b6d5840" title="check if element is in vector." alt="" coords="247,5,356,34"/>
+<area shape="rect" href="../../d2/d2d/classBrush_1_1Util_1_1Rnd.html#a9f0fe39c1fd498b378c8d4abe7b9d71b" title=" " alt="" coords="217,58,386,104"/>
+</map>
+</div>
+<div class="dynheader">
+Here is the caller graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="../../d4/dc3/structBrush_1_1SearchSpace_a64e90d0781395bf9a843b8806dc5e95b_icgraph.png" border="0" usemap="#ad4/dc3/structBrush_1_1SearchSpace_a64e90d0781395bf9a843b8806dc5e95b_icgraph" alt=""/></div>
+<map name="ad4/dc3/structBrush_1_1SearchSpace_a64e90d0781395bf9a843b8806dc5e95b_icgraph" id="ad4/dc3/structBrush_1_1SearchSpace_a64e90d0781395bf9a843b8806dc5e95b_icgraph">
+<area shape="rect" title="get operator with at least one argument matching arg" alt="" coords="650,24,814,70"/>
+<area shape="rect" href="../../d0/d24/namespacevariation.html#ad562aad1d00786b26a704f6b8db751c9" title="insert a node with spot as a child" alt="" coords="412,32,602,61"/>
+<area shape="rect" href="../../d0/d24/namespacevariation.html#a3ceab1ae0c739084852ef04ebda17d6a" title="Stochastically mutate a program." alt="" coords="230,32,364,61"/>
+<area shape="rect" href="../../d6/d3f/bind__programs_8h.html#a8284c80bb3c1dfb32250420f76a183fd" title=" " alt="" coords="38,5,149,34"/>
+<area shape="rect" href="../../db/d88/structBrush_1_1Program.html#a00cac102329788865e5822a6f5641423" title="convenience wrapper for :cpp:func:variation:mutate() in variation.h" alt="" coords="5,59,182,88"/>
+</map>
+</div>
+
+</div>
+</div>
+<a id="aed45d3d8adbee89f02e709472fe88280"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aed45d3d8adbee89f02e709472fe88280">&#9670;&nbsp;</a></span>sample_subtree()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::optional&lt; tree&lt; <a class="el" href="../../d1/d3a/structBrush_1_1Node.html">Node</a> &gt; &gt; Brush::SearchSpace::sample_subtree </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="../../d1/d3a/structBrush_1_1Node.html">Node</a>&#160;</td>
+          <td class="paramname"><em>root</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>max_d</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>max_size</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>create a subtree with maximum size and depth restrictions and root of type <code>root_type</code> </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">root_type</td><td>return type </td></tr>
+    <tr><td class="paramname">max_d</td><td>the maximum depth </td></tr>
+    <tr><td class="paramname">max_size</td><td>the maximum size of the tree (will be sampled between [1, max_size]) </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd><code>std::optional</code> that may contain a tree </dd></dl>
+
+<p class="definition">Definition at line <a class="el" href="../../da/d48/search__space_8cpp_source.html#l00180">180</a> of file <a class="el" href="../../da/d48/search__space_8cpp_source.html">search_space.cpp</a>.</p>
+<div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="../../d4/dc3/structBrush_1_1SearchSpace_aed45d3d8adbee89f02e709472fe88280_cgraph.png" border="0" usemap="#ad4/dc3/structBrush_1_1SearchSpace_aed45d3d8adbee89f02e709472fe88280_cgraph" alt=""/></div>
+<map name="ad4/dc3/structBrush_1_1SearchSpace_aed45d3d8adbee89f02e709472fe88280_cgraph" id="ad4/dc3/structBrush_1_1SearchSpace_aed45d3d8adbee89f02e709472fe88280_cgraph">
+<area shape="rect" title="create a subtree with maximum size and depth restrictions and root of type root_type" alt="" coords="5,76,155,122"/>
+<area shape="rect" href="../../d4/dc3/structBrush_1_1SearchSpace.html#a038ae8b09e1482f69de9feaf22aeacdb" title="get weights of the return types" alt="" coords="206,5,356,51"/>
+<area shape="rect" href="../../d4/dc3/structBrush_1_1SearchSpace.html#af7aa6187e39acd43c442b36025ccd806" title="Takes iterators to weight vectors and checks if they have a non&#45;empty solution space...." alt="" coords="203,76,359,122"/>
+<area shape="rect" href="../../d4/dc3/structBrush_1_1SearchSpace.html#ac11ff8fbc623ac3b2b6d587a11de4a61" title=" " alt="" coords="206,147,356,193"/>
+<area shape="rect" href="../../d1/d3a/structBrush_1_1Node.html#a8d884d5ad5f6825aa8f50039fb6baf9f" title=" " alt="" coords="423,55,570,101"/>
+<area shape="rect" href="../../dc/d5c/namespaceBrush.html#a819e6d35661a163c3f40d927766a3213" title="queue for make program" alt="" coords="407,125,585,154"/>
+<area shape="rect" href="../../d4/dc3/structBrush_1_1SearchSpace.html#a7d5e87a2f41fe1d4aa26cf285754841a" title="get an operator matching return type ret." alt="" coords="422,177,571,223"/>
+<area shape="rect" href="../../d4/dc3/structBrush_1_1SearchSpace.html#ab7799a89e862e19942db515d8963fca7" title="Get a random terminal." alt="" coords="422,248,571,294"/>
+<area shape="rect" href="../../d2/d2d/classBrush_1_1Util_1_1Rnd.html#aef0f2836321f651d5887d29739e180f5" title=" " alt="" coords="633,125,809,154"/>
+<area shape="rect" href="../../d2/d2d/classBrush_1_1Util_1_1Rnd.html#a9f0fe39c1fd498b378c8d4abe7b9d71b" title=" " alt="" coords="636,212,806,258"/>
+</map>
+</div>
+<div class="dynheader">
+Here is the caller graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="../../d4/dc3/structBrush_1_1SearchSpace_aed45d3d8adbee89f02e709472fe88280_icgraph.png" border="0" usemap="#ad4/dc3/structBrush_1_1SearchSpace_aed45d3d8adbee89f02e709472fe88280_icgraph" alt=""/></div>
+<map name="ad4/dc3/structBrush_1_1SearchSpace_aed45d3d8adbee89f02e709472fe88280_icgraph" id="ad4/dc3/structBrush_1_1SearchSpace_aed45d3d8adbee89f02e709472fe88280_icgraph">
+<area shape="rect" title="create a subtree with maximum size and depth restrictions and root of type root_type" alt="" coords="596,24,746,70"/>
+<area shape="rect" href="../../d0/d24/namespacevariation.html#ab3c6b50b00987b9b8f4a9ca98606860e" title="replaces the subtree rooted in spot" alt="" coords="412,24,548,70"/>
+<area shape="rect" href="../../d0/d24/namespacevariation.html#a3ceab1ae0c739084852ef04ebda17d6a" title="Stochastically mutate a program." alt="" coords="230,32,364,61"/>
+<area shape="rect" href="../../d6/d3f/bind__programs_8h.html#a8284c80bb3c1dfb32250420f76a183fd" title=" " alt="" coords="38,5,149,34"/>
+<area shape="rect" href="../../db/d88/structBrush_1_1Program.html#a00cac102329788865e5822a6f5641423" title="convenience wrapper for :cpp:func:variation:mutate() in variation.h" alt="" coords="5,59,182,88"/>
+</map>
+</div>
+
+</div>
+</div>
+<a id="ab7799a89e862e19942db515d8963fca7"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab7799a89e862e19942db515d8963fca7">&#9670;&nbsp;</a></span>sample_terminal() <span class="overload">[1/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::optional&lt;<a class="el" href="../../d1/d3a/structBrush_1_1Node.html">Node</a>&gt; Brush::SearchSpace::sample_terminal </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Get a random terminal. </p>
+<dl class="section return"><dt>Returns</dt><dd><code>std::optional</code> that may contain a terminal <a class="el" href="../../d1/d3a/structBrush_1_1Node.html" title="class holding the data for a node in a tree.">Node</a>. <br  />
+ </dd></dl>
+
+<p class="definition">Definition at line <a class="el" href="../../d9/d99/search__space_8h_source.html#l00315">315</a> of file <a class="el" href="../../d9/d99/search__space_8h_source.html">search_space.h</a>.</p>
+<div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="../../d4/dc3/structBrush_1_1SearchSpace_ab7799a89e862e19942db515d8963fca7_cgraph.png" border="0" usemap="#ad4/dc3/structBrush_1_1SearchSpace_ab7799a89e862e19942db515d8963fca7_cgraph" alt=""/></div>
+<map name="ad4/dc3/structBrush_1_1SearchSpace_ab7799a89e862e19942db515d8963fca7_cgraph" id="ad4/dc3/structBrush_1_1SearchSpace_ab7799a89e862e19942db515d8963fca7_cgraph">
+<area shape="rect" title="Get a random terminal." alt="" coords="5,5,155,51"/>
+<area shape="rect" href="../../d2/d2d/classBrush_1_1Util_1_1Rnd.html#a9f0fe39c1fd498b378c8d4abe7b9d71b" title=" " alt="" coords="203,5,372,51"/>
+</map>
+</div>
+<div class="dynheader">
+Here is the caller graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="../../d4/dc3/structBrush_1_1SearchSpace_ab7799a89e862e19942db515d8963fca7_icgraph.png" border="0" usemap="#ad4/dc3/structBrush_1_1SearchSpace_ab7799a89e862e19942db515d8963fca7_icgraph" alt=""/></div>
+<map name="ad4/dc3/structBrush_1_1SearchSpace_ab7799a89e862e19942db515d8963fca7_icgraph" id="ad4/dc3/structBrush_1_1SearchSpace_ab7799a89e862e19942db515d8963fca7_icgraph">
+<area shape="rect" title="Get a random terminal." alt="" coords="1090,49,1239,95"/>
+<area shape="rect" href="../../d0/d24/namespacevariation.html#a3f1ae4f750d7368932dae8e9b8fb7d20" title="delete subtree and replace it with a terminal of the same return type" alt="" coords="650,5,845,34"/>
+<area shape="rect" href="../../d0/d24/namespacevariation.html#ad562aad1d00786b26a704f6b8db751c9" title="insert a node with spot as a child" alt="" coords="412,57,602,86"/>
+<area shape="rect" href="../../d4/dc3/structBrush_1_1SearchSpace.html#ac11ff8fbc623ac3b2b6d587a11de4a61" title=" " alt="" coords="893,109,1042,155"/>
+<area shape="rect" href="../../d0/d24/namespacevariation.html#a3ceab1ae0c739084852ef04ebda17d6a" title="Stochastically mutate a program." alt="" coords="230,57,364,86"/>
+<area shape="rect" href="../../d6/d3f/bind__programs_8h.html#a8284c80bb3c1dfb32250420f76a183fd" title=" " alt="" coords="38,31,149,60"/>
+<area shape="rect" href="../../db/d88/structBrush_1_1Program.html#a00cac102329788865e5822a6f5641423" title="convenience wrapper for :cpp:func:variation:mutate() in variation.h" alt="" coords="5,84,182,113"/>
+<area shape="rect" href="../../d4/dc3/structBrush_1_1SearchSpace.html#aed45d3d8adbee89f02e709472fe88280" title="create a subtree with maximum size and depth restrictions and root of type root_type" alt="" coords="673,109,822,155"/>
+<area shape="rect" href="../../d0/d24/namespacevariation.html#ab3c6b50b00987b9b8f4a9ca98606860e" title="replaces the subtree rooted in spot" alt="" coords="439,110,575,156"/>
+</map>
+</div>
+
+</div>
+</div>
+<a id="a1b7a19baa6a88424b08312cebfc610f3"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1b7a19baa6a88424b08312cebfc610f3">&#9670;&nbsp;</a></span>sample_terminal() <span class="overload">[2/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::optional&lt;<a class="el" href="../../d1/d3a/structBrush_1_1Node.html">Node</a>&gt; Brush::SearchSpace::sample_terminal </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="../../dc/d5c/namespaceBrush.html#a3f2c9b744330ba4a561ac72f048a1a5f">DataType</a>&#160;</td>
+          <td class="paramname"><em>R</em></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Get a random terminal with return type <code>R</code> </p>
+<dl class="section return"><dt>Returns</dt><dd><code>std::optional</code> that may contain a terminal <a class="el" href="../../d1/d3a/structBrush_1_1Node.html" title="class holding the data for a node in a tree.">Node</a> of type <code>R</code>. <br  />
+ </dd></dl>
+
+<p class="definition">Definition at line <a class="el" href="../../d9/d99/search__space_8h_source.html#l00353">353</a> of file <a class="el" href="../../d9/d99/search__space_8h_source.html">search_space.h</a>.</p>
+<div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="../../d4/dc3/structBrush_1_1SearchSpace_a1b7a19baa6a88424b08312cebfc610f3_cgraph.png" border="0" usemap="#ad4/dc3/structBrush_1_1SearchSpace_a1b7a19baa6a88424b08312cebfc610f3_cgraph" alt=""/></div>
+<map name="ad4/dc3/structBrush_1_1SearchSpace_a1b7a19baa6a88424b08312cebfc610f3_cgraph" id="ad4/dc3/structBrush_1_1SearchSpace_a1b7a19baa6a88424b08312cebfc610f3_cgraph">
+<area shape="rect" title="Get a random terminal with return type R" alt="" coords="5,5,155,51"/>
+<area shape="rect" href="../../d2/d2d/classBrush_1_1Util_1_1Rnd.html#a9f0fe39c1fd498b378c8d4abe7b9d71b" title=" " alt="" coords="203,5,372,51"/>
 </map>
 </div>
 
@@ -1730,7 +1998,25 @@ Here is the call graph for this function:</div>
 <p>Maps return types to argument types to node types. </p>
 <p>schema: </p><pre class="fragment">{ return_type : { arguments_type : {node_type : node } }}
 </pre> 
-<p class="definition">Definition at line <a class="el" href="../../d9/d99/search__space_8h_source.html#l00093">93</a> of file <a class="el" href="../../d9/d99/search__space_8h_source.html">search_space.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="../../d9/d99/search__space_8h_source.html#l00098">98</a> of file <a class="el" href="../../d9/d99/search__space_8h_source.html">search_space.h</a>.</p>
+
+</div>
+</div>
+<a id="ae1e33e2c9ca2d6777a42f6234c3b9a17"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae1e33e2c9ca2d6777a42f6234c3b9a17">&#9670;&nbsp;</a></span>node_map_weights</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="../../d4/dc3/structBrush_1_1SearchSpace.html#aa99f71f6328c8706a171c2f9c803b06d">Map</a>&lt;float&gt; Brush::SearchSpace::node_map_weights</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>A map of weights corresponding to elements in <a class="el" href="../../d4/dc3/structBrush_1_1SearchSpace.html#a4bd8ffb41071c9a6739f92b275a510f5">node_map</a>, used to weight probabilities of each node being sampled from the map. </p>
+
+<p class="definition">Definition at line <a class="el" href="../../d9/d99/search__space_8h_source.html#l00101">101</a> of file <a class="el" href="../../d9/d99/search__space_8h_source.html">search_space.h</a>.</p>
 
 </div>
 </div>
@@ -1749,7 +2035,7 @@ Here is the call graph for this function:</div>
 <p>Maps return types to terminals. </p>
 <p>schema: </p><pre class="fragment"> { return_type : vector of Nodes } 
 </pre> 
-<p class="definition">Definition at line <a class="el" href="../../d9/d99/search__space_8h_source.html#l00107">107</a> of file <a class="el" href="../../d9/d99/search__space_8h_source.html">search_space.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="../../d9/d99/search__space_8h_source.html#l00111">111</a> of file <a class="el" href="../../d9/d99/search__space_8h_source.html">search_space.h</a>.</p>
 
 </div>
 </div>
@@ -1767,7 +2053,7 @@ Here is the call graph for this function:</div>
 
 <p>A vector storing the available return types of terminals. </p>
 
-<p class="definition">Definition at line <a class="el" href="../../d9/d99/search__space_8h_source.html#l00113">113</a> of file <a class="el" href="../../d9/d99/search__space_8h_source.html">search_space.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="../../d9/d99/search__space_8h_source.html#l00117">117</a> of file <a class="el" href="../../d9/d99/search__space_8h_source.html">search_space.h</a>.</p>
 
 </div>
 </div>
@@ -1783,27 +2069,9 @@ Here is the call graph for this function:</div>
       </table>
 </div><div class="memdoc">
 
-<p>A map of weights corresponding to elements in <a class="el" href="../../d4/dc3/structBrush_1_1SearchSpace.html#a4c2acdd29d7465109ead9835f952fee0">terminal_map</a>, used to weight probabilities of each node being sampled from the map. </p>
+<p>A map of weights corresponding to elements in <a class="el" href="../../d4/dc3/structBrush_1_1SearchSpace.html#a4c2acdd29d7465109ead9835f952fee0">terminal_map</a>, used to weight probabilities of each terminal being sampled from the map. </p>
 
-<p class="definition">Definition at line <a class="el" href="../../d9/d99/search__space_8h_source.html#l00110">110</a> of file <a class="el" href="../../d9/d99/search__space_8h_source.html">search_space.h</a>.</p>
-
-</div>
-</div>
-<a id="ae3c114b829c2059dcb6565d11de527af"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ae3c114b829c2059dcb6565d11de527af">&#9670;&nbsp;</a></span>weight_map</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname"><a class="el" href="../../d4/dc3/structBrush_1_1SearchSpace.html#aa99f71f6328c8706a171c2f9c803b06d">Map</a>&lt;float&gt; Brush::SearchSpace::weight_map</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>A map of weights corresponding to elements in <a class="el" href="../../d4/dc3/structBrush_1_1SearchSpace.html#a4bd8ffb41071c9a6739f92b275a510f5">node_map</a>, used to weight probabilities of each node being sampled from the map. </p>
-
-<p class="definition">Definition at line <a class="el" href="../../d9/d99/search__space_8h_source.html#l00096">96</a> of file <a class="el" href="../../d9/d99/search__space_8h_source.html">search_space.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="../../d9/d99/search__space_8h_source.html#l00114">114</a> of file <a class="el" href="../../d9/d99/search__space_8h_source.html">search_space.h</a>.</p>
 
 </div>
 </div>

@@ -15,7 +15,7 @@ var classBrush_1_1Util_1_1Rnd =
     [ "rnd_int", "d2/d2d/classBrush_1_1Util_1_1Rnd.html#aef0f2836321f651d5887d29739e180f5", null ],
     [ "select_randomly", "d2/d2d/classBrush_1_1Util_1_1Rnd.html#a9f0fe39c1fd498b378c8d4abe7b9d71b", null ],
     [ "select_randomly", "d2/d2d/classBrush_1_1Util_1_1Rnd.html#a6a38fe0711f752c14055257c4e25cbb2", null ],
-    [ "set_seed", "d2/d2d/classBrush_1_1Util_1_1Rnd.html#a2fdc984e0cdd58be93c400671dff0649", null ],
+    [ "set_seed", "d2/d2d/classBrush_1_1Util_1_1Rnd.html#a8357702cf1f426e4909c45b97a18bb0e", null ],
     [ "shuffle", "d2/d2d/classBrush_1_1Util_1_1Rnd.html#a377cd0c8d7f0fee5cdbd2489941ce7cd", null ],
     [ "shuffled_index", "d2/d2d/classBrush_1_1Util_1_1Rnd.html#a5ec3a29d75a9154bbfdf3488db64fb69", null ],
     [ "instance", "d2/d2d/classBrush_1_1Util_1_1Rnd.html#aa459d569e44e12e26133da6069135b09", null ],

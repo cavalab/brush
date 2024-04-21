@@ -198,10 +198,10 @@ $(document).ready(function(){initNavTree('de/d06/utils_8cpp_source.html','../../
 <div class="line"><a name="l00105"></a><span class="lineno">  105</span>&#160;    <span class="keywordflow">for</span> (<span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> i=0; i&lt;X.cols(); ++i)</div>
 <div class="line"><a name="l00106"></a><span class="lineno">  106</span>&#160;    {</div>
 <div class="line"><a name="l00107"></a><span class="lineno">  107</span>&#160;        <span class="comment">// mean center</span></div>
-<div class="line"><a name="l00108"></a><span class="lineno">  108</span>&#160;        VectorXf tmp = X.row(i).array()-X.row(i).mean();</div>
+<div class="line"><a name="l00108"></a><span class="lineno">  108</span>&#160;        VectorXf tmp = X.col(i).array()-X.col(i).mean();</div>
 <div class="line"><a name="l00109"></a><span class="lineno">  109</span>&#160;        <span class="comment">// scale by the standard deviation</span></div>
-<div class="line"><a name="l00110"></a><span class="lineno">  110</span>&#160;        <a class="code" href="../../d2/df8/structBrush_1_1Util_1_1Normalizer.html#acf13e625f058c227e745e4bd588a423a">scale</a>.push_back(std::sqrt((tmp.array()).square().sum()/(tmp.size()-1)));</div>
-<div class="line"><a name="l00111"></a><span class="lineno">  111</span>&#160;        <a class="code" href="../../d2/df8/structBrush_1_1Util_1_1Normalizer.html#a34e824201c3394b7d7bb5bb5fe49a5e8">offset</a>.push_back(X.row(i).mean());</div>
+<div class="line"><a name="l00110"></a><span class="lineno">  110</span>&#160;        <a class="code" href="../../d2/df8/structBrush_1_1Util_1_1Normalizer.html#acf13e625f058c227e745e4bd588a423a">scale</a>.push_back(std::sqrt((tmp.array()).square().sum()/(tmp.size())));</div>
+<div class="line"><a name="l00111"></a><span class="lineno">  111</span>&#160;        <a class="code" href="../../d2/df8/structBrush_1_1Util_1_1Normalizer.html#a34e824201c3394b7d7bb5bb5fe49a5e8">offset</a>.push_back(X.col(i).mean());</div>
 <div class="line"><a name="l00112"></a><span class="lineno">  112</span>&#160;    }</div>
 <div class="line"><a name="l00113"></a><span class="lineno">  113</span>&#160;      </div>
 <div class="line"><a name="l00114"></a><span class="lineno">  114</span>&#160;}</div>
@@ -213,15 +213,15 @@ $(document).ready(function(){initNavTree('de/d06/utils_8cpp_source.html','../../
 <div class="line"><a name="l00121"></a><span class="lineno">  121</span>&#160;    {</div>
 <div class="line"><a name="l00122"></a><span class="lineno">  122</span>&#160;        <span class="keywordflow">if</span> (std::isinf(<a class="code" href="../../d2/df8/structBrush_1_1Util_1_1Normalizer.html#acf13e625f058c227e745e4bd588a423a">scale</a>.at(i)))</div>
 <div class="line"><a name="l00123"></a><span class="lineno">  123</span>&#160;        {</div>
-<div class="line"><a name="l00124"></a><span class="lineno">  124</span>&#160;            X.row(i) = VectorXf::Zero(X.row(i).size());</div>
+<div class="line"><a name="l00124"></a><span class="lineno">  124</span>&#160;            X.col(i) = VectorXf::Zero(X.col(i).size());</div>
 <div class="line"><a name="l00125"></a><span class="lineno">  125</span>&#160;            <span class="keywordflow">continue</span>;</div>
 <div class="line"><a name="l00126"></a><span class="lineno">  126</span>&#160;        }</div>
-<div class="line"><a name="l00127"></a><span class="lineno">  127</span>&#160;        <span class="comment">// scale, potentially skipping binary and categorical rows</span></div>
+<div class="line"><a name="l00127"></a><span class="lineno">  127</span>&#160;        <span class="comment">// scale, potentially skipping binary and categorical cols</span></div>
 <div class="line"><a name="l00128"></a><span class="lineno">  128</span>&#160;        <span class="keywordflow">if</span> (this-&gt;<a class="code" href="../../d2/df8/structBrush_1_1Util_1_1Normalizer.html#a4073d38c4967258cec964c8f455a1d92">scale_all</a> || <a class="code" href="../../d2/df8/structBrush_1_1Util_1_1Normalizer.html#a574c6632238c45c3b505b2c0eab9744e">dtypes</a>.at(i)==<span class="charliteral">&#39;f&#39;</span>)                   </div>
 <div class="line"><a name="l00129"></a><span class="lineno">  129</span>&#160;        {</div>
-<div class="line"><a name="l00130"></a><span class="lineno">  130</span>&#160;            X.row(i) = X.row(i).array() - <a class="code" href="../../d2/df8/structBrush_1_1Util_1_1Normalizer.html#a34e824201c3394b7d7bb5bb5fe49a5e8">offset</a>.at(i);</div>
+<div class="line"><a name="l00130"></a><span class="lineno">  130</span>&#160;            X.col(i) = X.col(i).array() - <a class="code" href="../../d2/df8/structBrush_1_1Util_1_1Normalizer.html#a34e824201c3394b7d7bb5bb5fe49a5e8">offset</a>.at(i);</div>
 <div class="line"><a name="l00131"></a><span class="lineno">  131</span>&#160;            <span class="keywordflow">if</span> (<a class="code" href="../../d2/df8/structBrush_1_1Util_1_1Normalizer.html#acf13e625f058c227e745e4bd588a423a">scale</a>.at(i) &gt; <a class="code" href="../../d8/dc0/init_8h.html#a83abef40236b8b0305214b547c6db665">NEAR_ZERO</a>)</div>
-<div class="line"><a name="l00132"></a><span class="lineno">  132</span>&#160;                X.row(i) = X.row(i).array()/<a class="code" href="../../d2/df8/structBrush_1_1Util_1_1Normalizer.html#acf13e625f058c227e745e4bd588a423a">scale</a>.at(i);</div>
+<div class="line"><a name="l00132"></a><span class="lineno">  132</span>&#160;                X.col(i) = X.col(i).array()/<a class="code" href="../../d2/df8/structBrush_1_1Util_1_1Normalizer.html#acf13e625f058c227e745e4bd588a423a">scale</a>.at(i);</div>
 <div class="line"><a name="l00133"></a><span class="lineno">  133</span>&#160;        }</div>
 <div class="line"><a name="l00134"></a><span class="lineno">  134</span>&#160;    }</div>
 <div class="line"><a name="l00135"></a><span class="lineno">  135</span>&#160;}</div>

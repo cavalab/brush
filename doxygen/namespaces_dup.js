@@ -33,11 +33,13 @@ var namespaces_dup =
     ] ],
     [ "variation", "d0/d24/namespacevariation.html", [
       [ "Iter", "d0/d24/namespacevariation.html#ace95ad8220efc40e8d89096ce61e6e60", null ],
-      [ "cross", "d0/d24/namespacevariation.html#a3a3e45e3cbe090c29a47b3e60fdd3dac", null ],
-      [ "delete_mutation", "d0/d24/namespacevariation.html#ac09afe106fc118aa9dc82a1b8ce87b01", null ],
-      [ "insert_mutation", "d0/d24/namespacevariation.html#ab75fceda2c7aa69e59d3b55562937942", null ],
-      [ "mutate", "d0/d24/namespacevariation.html#abfa16e581c2548444df2bb4cbaa1b221", null ],
-      [ "point_mutation", "d0/d24/namespacevariation.html#a5d1fdeb5d33b06ee8847da09f58f0f5f", null ],
-      [ "toggle_weight_mutation", "d0/d24/namespacevariation.html#acfeeba87c491e8c1e6c6e1ede19fc4bc", null ]
+      [ "cross", "d0/d24/namespacevariation.html#ac31f284c947a66d035b310513f4916c2", null ],
+      [ "delete_mutation", "d0/d24/namespacevariation.html#a3f1ae4f750d7368932dae8e9b8fb7d20", null ],
+      [ "insert_mutation", "d0/d24/namespacevariation.html#ad562aad1d00786b26a704f6b8db751c9", null ],
+      [ "mutate", "d0/d24/namespacevariation.html#a3ceab1ae0c739084852ef04ebda17d6a", null ],
+      [ "point_mutation", "d0/d24/namespacevariation.html#a170515efe6144a099812fc284c2ae10b", null ],
+      [ "subtree_mutation", "d0/d24/namespacevariation.html#ab3c6b50b00987b9b8f4a9ca98606860e", null ],
+      [ "toggle_weight_off_mutation", "d0/d24/namespacevariation.html#afce849d082df7c278e5115ba64dd73ea", null ],
+      [ "toggle_weight_on_mutation", "d0/d24/namespacevariation.html#ae0d980dfd1c64597731f9cdde45e90b4", null ]
     ] ]
 ];

@@ -1,13 +1,12 @@
 
-
 <!DOCTYPE html>
 
 
-<html lang="en" >
+<html lang="en" data-content_root="../" >
 
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
     <title>BrushEstimator &#8212; Brush 0.1a documentation</title>
   
@@ -19,37 +18,35 @@
   </script>
   
   <!-- Loaded before other Sphinx assets -->
-  <link href="../_static/styles/theme.css?digest=e353d410970836974a52" rel="stylesheet" />
-<link href="../_static/styles/bootstrap.css?digest=e353d410970836974a52" rel="stylesheet" />
-<link href="../_static/styles/pydata-sphinx-theme.css?digest=e353d410970836974a52" rel="stylesheet" />
+  <link href="../_static/styles/theme.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+<link href="../_static/styles/bootstrap.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
 
   
-  <link href="../_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=e353d410970836974a52" rel="stylesheet" />
-  <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
-<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
-<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
+  <link href="../_static/vendor/fontawesome/6.5.1/css/all.min.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.1/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.1/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.1/webfonts/fa-regular-400.woff2" />
 
-    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
-    <link rel="stylesheet" href="../_static/styles/sphinx-book-theme.css?digest=14f4ca6b54d191a8c7657f6c759bf11a5fb86285" type="text/css" />
-    <link rel="stylesheet" type="text/css" href="../_static/graphviz.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=a746c00c" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=384b581d" />
+    <link rel="stylesheet" type="text/css" href="../_static/graphviz.css?v=fd3f3429" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
     <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
   
   <!-- Pre-loaded scripts that we'll load fully later -->
-  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=e353d410970836974a52" />
-<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52" />
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=8d27b9dea8ad943066ae" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=8d27b9dea8ad943066ae" />
+  <script src="../_static/vendor/fontawesome/6.5.1/js/all.min.js?digest=8d27b9dea8ad943066ae"></script>
 
-    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
-    <script src="../_static/jquery.js"></script>
-    <script src="../_static/underscore.js"></script>
-    <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
-    <script src="../_static/doctools.js"></script>
-    <script src="../_static/sphinx_highlight.js"></script>
-    <script src="../_static/clipboard.min.js"></script>
-    <script src="../_static/copybutton.js"></script>
-    <script src="../_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
+    <script src="../_static/documentation_options.js?v=74359811"></script>
+    <script src="../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../_static/copybutton.js?v=f281be69"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?v=efea14e4"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'python_api/estimator';</script>
-    <link rel="shortcut icon" href="../_static/paint-brush-solid.svg"/>
+    <link rel="icon" href="../_static/paint-brush-solid.svg"/>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="BrushRegressor" href="regressor.html" />
@@ -63,7 +60,15 @@
 
   
   
-  <a class="skip-link" href="#main-content">Skip to main content</a>
+  <a id="pst-skip-link" class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>
+    Back to top
+  </button>
+
   
   <input type="checkbox"
           class="sidebar-toggle"
@@ -98,11 +103,14 @@
 </form></div>
   </div>
   
-    <nav class="bd-header navbar navbar-expand-lg bd-navbar">
-    </nav>
+    <header class="bd-header navbar navbar-expand-lg bd-navbar">
+    </header>
   
+
   <div class="bd-container">
     <div class="bd-container__inner bd-page-width">
+      
+      
       
       <div class="bd-sidebar-primary bd-sidebar">
         
@@ -117,6 +125,7 @@
   
     <div class="sidebar-primary-items__start sidebar-primary__section">
         <div class="sidebar-primary-item">
+
   
 
 <a class="navbar-brand logo" href="../index.html">
@@ -125,10 +134,22 @@
   
   
   
+  
     <p class="title logo__title">Brush 0.1a documentation</p>
   
 </a></div>
-        <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn navbar-btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
     <div class="bd-toc-item navbar-nav active">
         
         <ul class="nav bd-sidenav bd-sidenav__home-link">
@@ -295,20 +316,22 @@
 </button>
 
 
+
 <script>
 document.write(`
-  <button class="theme-switch-button btn btn-sm btn-outline-primary navbar-btn rounded-circle" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
-    <span class="theme-switch" data-mode="light"><i class="fa-solid fa-sun"></i></span>
-    <span class="theme-switch" data-mode="dark"><i class="fa-solid fa-moon"></i></span>
-    <span class="theme-switch" data-mode="auto"><i class="fa-solid fa-circle-half-stroke"></i></span>
+  <button class="btn btn-sm navbar-btn theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch nav-link" data-mode="light"><i class="fa-solid fa-sun fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="dark"><i class="fa-solid fa-moon fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg"></i></span>
   </button>
 `);
 </script>
 
+
 <script>
 document.write(`
   <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
-    <i class="fa-solid fa-magnifying-glass"></i>
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
   </button>
 `);
 </script>
@@ -350,13 +373,13 @@ document.write(`
               
                 
 <div id="searchbox"></div>
-                <article class="bd-article" role="main">
+                <article class="bd-article">
                   
   <section id="brushestimator">
-<h1>BrushEstimator<a class="headerlink" href="#brushestimator" title="Permalink to this heading">#</a></h1>
+<h1>BrushEstimator<a class="headerlink" href="#brushestimator" title="Link to this heading">#</a></h1>
 <dl class="py class">
 <dt class="sig sig-object py" id="brush.estimator.BrushEstimator">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">brush.estimator.</span></span><span class="sig-name descname"><span class="pre">BrushEstimator</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">mode</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'classification'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pop_size</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">100</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">max_gen</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">100</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">verbosity</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">max_depth</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">3</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">max_size</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">20</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">mutation_options</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">{'delete':</span> <span class="pre">0.25,</span> <span class="pre">'insert':</span> <span class="pre">0.25,</span> <span class="pre">'point':</span> <span class="pre">0.4,</span> <span class="pre">'toggle_weight':</span> <span class="pre">0.1}</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">functions</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">list</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">float</span><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">{}</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">batch_size</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">0</span></span></em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/cavalab/brush/blob/master/src/brush/estimator.py#L20-L196"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#brush.estimator.BrushEstimator" title="Permalink to this definition">#</a></dt>
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">brush.estimator.</span></span><span class="sig-name descname"><span class="pre">BrushEstimator</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">mode</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'classification'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pop_size</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">100</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">max_gen</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">100</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">verbosity</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">max_depth</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">3</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">max_size</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">20</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cx_prob</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.14285714285714285</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">mutation_options</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">{'delete':</span> <span class="pre">0.16666666666666666,</span> <span class="pre">'insert':</span> <span class="pre">0.16666666666666666,</span> <span class="pre">'point':</span> <span class="pre">0.16666666666666666,</span> <span class="pre">'subtree':</span> <span class="pre">0.16666666666666666,</span> <span class="pre">'toggle_weight_off':</span> <span class="pre">0.16666666666666666,</span> <span class="pre">'toggle_weight_on':</span> <span class="pre">0.16666666666666666}</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">functions</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">list</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">float</span><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">{}</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">initialization</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'grow'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">random_state</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">validation_size</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">0.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">batch_size</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">1.0</span></span></em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/cavalab/brush/blob/master/src/brush/estimator.py#L20-L313"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#brush.estimator.BrushEstimator" title="Link to this definition">#</a></dt>
 <dd><p>This is the base class for Brush estimators. 
 This class shouldn’t be called directly; instead, call a child class like 
 <a class="reference internal" href="regressor.html#brush.estimator.BrushRegressor" title="brush.estimator.BrushRegressor"><code class="xref py py-class docutils literal notranslate"><span class="pre">BrushRegressor</span></code></a> or <a class="reference internal" href="classifier.html#brush.estimator.BrushClassifier" title="brush.estimator.BrushClassifier"><code class="xref py py-class docutils literal notranslate"><span class="pre">BrushClassifier</span></code></a>. 
@@ -376,11 +399,43 @@ All of the shared parameters are documented here.</p>
 </dd>
 <dt><strong>max_size</strong><span class="classifier">int, default 0</span></dt><dd><p>Maximum number of nodes in a tree. Use 0 for no limit.</p>
 </dd>
-<dt><strong>mutation_options</strong><span class="classifier">dict, default {“point”:0.5, “insert”: 0.25, “delete”:  0.25}</span></dt><dd><p>A dictionary with keys naming the types of mutation and floating point 
-values specifying the fraction of total mutations to do with that method.</p>
+<dt><strong>cx_prob</strong><span class="classifier">float, default 1/7</span></dt><dd><p>Probability of applying the crossover variation when generating the offspring,
+must be between 0 and 1.
+Given that there are <cite>n</cite> mutations, and either crossover or mutation is 
+used to generate each individual in the offspring (but not both at the
+same time), we want to have by default an uniform probability between
+crossover and every possible mutation. By setting <cite>cx_prob=1/(n+1)</cite>, and
+<cite>1/n</cite> for each mutation, we can achieve an uniform distribution.</p>
 </dd>
-<dt><strong>functions: dict[str,float] or list[str], default {}</strong></dt><dd><p>A dictionary with keys naming the function set and values giving the probability of sampling them, or a list of functions which will be weighted uniformly.
+<dt><strong>mutation_options</strong><span class="classifier">dict, default {“point”:1/6, “insert”:1/6, “delete”:1/6, “subtree”:1/6, “toggle_weight_on”:1/6, “toggle_weight_off”:1/6}</span></dt><dd><p>A dictionary with keys naming the types of mutation and floating point 
+values specifying the fraction of total mutations to do with that method.
+The probability of having a mutation is <cite>(1-cx_prob)</cite> and, in case the mutation
+is applied, then each mutation option is sampled based on the probabilities
+defined in <cite>mutation_options</cite>. The set of probabilities should add up to 1.0.</p>
+</dd>
+<dt><strong>functions: dict[str,float] or list[str], default {}</strong></dt><dd><p>A dictionary with keys naming the function set and values giving the probability
+of sampling them, or a list of functions which will be weighted uniformly.
 If empty, all available functions are included in the search space.</p>
+</dd>
+<dt><strong>initialization</strong><span class="classifier">{“grow”, “full”}, default “grow”</span></dt><dd><p>Strategy to create the initial population. If <cite>full</cite>, then every expression is created
+with <cite>max_size</cite> nodes. If <cite>grow</cite>, size will be uniformly distributed.</p>
+</dd>
+<dt><strong>validation_size</strong><span class="classifier">float, default 0.0</span></dt><dd><p>Percentage of samples to use as a hold-out partition. These samples are used
+to calculate statistics during evolution, but not used to train the models.
+The <cite>best_estimator_</cite> will be selected using this partition. If zero, then
+the same data used for training is used for validation.</p>
+</dd>
+<dt><strong>batch_size</strong><span class="classifier">float, default 1.0</span></dt><dd><p>Percentage of training data to sample every generation. If <cite>1.0</cite>, then
+all data is used. Very small values can improve execution time, but 
+also lead to underfit.</p>
+</dd>
+<dt><strong>random_state: int or None, default None</strong></dt><dd><p>If int, then the value is used to seed the c++ random generator; if None,
+then a seed will be generated using a non-deterministic generator. It is
+important to notice that, even if the random state is fixed, it is
+unlikely that running brush using multiple threads will have the same
+results. This happens because the Operating System’s scheduler is
+responsible to choose which thread will run at any given time, thus 
+reproductibility is not guaranteed.</p>
 </dd>
 </dl>
 </dd>
@@ -390,7 +445,11 @@ If empty, all available functions are included in the search space.</p>
 </dd>
 <dt><strong>archive_</strong><span class="classifier">list[deap_api.DeapIndividual]</span></dt><dd><p>The final population from training.</p>
 </dd>
-<dt><strong>data_</strong><span class="classifier">_brush.Dataset</span></dt><dd><p>The training data in Brush format.</p>
+<dt><strong>data_</strong><span class="classifier">_brush.Dataset</span></dt><dd><p>The complete data in Brush format.</p>
+</dd>
+<dt><strong>train_</strong><span class="classifier">_brush.Dataset</span></dt><dd><p>Partition of <cite>data_</cite> containing <a href="#id1"><span class="problematic" id="id2">`</span></a>(1-validation_size)`% of the data, in Brush format.</p>
+</dd>
+<dt><strong>validation_</strong><span class="classifier">_brush.Dataset</span></dt><dd><p>Partition of <cite>data_</cite> containing <a href="#id3"><span class="problematic" id="id4">`</span></a>(validation_size)`% of the data, in Brush format.</p>
 </dd>
 <dt><strong>search_space_</strong><span class="classifier">a Brush <cite>SearchSpace</cite> object.</span></dt><dd><p>Holds the operators and terminals and sampling utilities to update programs.</p>
 </dd>
@@ -405,20 +464,23 @@ If empty, all available functions are included in the search space.</p>
 <tr class="row-odd"><td><p><a class="reference internal" href="#brush.estimator.BrushEstimator.fit" title="brush.estimator.BrushEstimator.fit"><code class="xref py py-obj docutils literal notranslate"><span class="pre">fit</span></code></a>(X, y)</p></td>
 <td><p>Fit an estimator to X,y.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#brush.estimator.BrushEstimator.get_params" title="brush.estimator.BrushEstimator.get_params"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_params</span></code></a>()</p></td>
+<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_metadata_routing</span></code>()</p></td>
+<td><p>Get metadata routing of this object.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#brush.estimator.BrushEstimator.get_params" title="brush.estimator.BrushEstimator.get_params"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_params</span></code></a>()</p></td>
 <td><p>Get parameters for this estimator.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#brush.estimator.BrushEstimator.predict" title="brush.estimator.BrushEstimator.predict"><code class="xref py py-obj docutils literal notranslate"><span class="pre">predict</span></code></a>(X)</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#brush.estimator.BrushEstimator.predict" title="brush.estimator.BrushEstimator.predict"><code class="xref py py-obj docutils literal notranslate"><span class="pre">predict</span></code></a>(X)</p></td>
 <td><p>Predict using the best estimator in the archive.</p></td>
 </tr>
-<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">set_params</span></code>(**params)</p></td>
+<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">set_params</span></code>(**params)</p></td>
 <td><p>Set the parameters of this estimator.</p></td>
 </tr>
 </tbody>
 </table>
 <dl class="py method">
 <dt class="sig sig-object py" id="brush.estimator.BrushEstimator.fit">
-<span class="sig-name descname"><span class="pre">fit</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">X</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y</span></span></em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/cavalab/brush/blob/master/src/brush/estimator.py#L124-L155"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#brush.estimator.BrushEstimator.fit" title="Permalink to this definition">#</a></dt>
+<span class="sig-name descname"><span class="pre">fit</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">X</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y</span></span></em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/cavalab/brush/blob/master/src/brush/estimator.py#L189-L265"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#brush.estimator.BrushEstimator.fit" title="Link to this definition">#</a></dt>
 <dd><p>Fit an estimator to X,y.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
@@ -434,7 +496,7 @@ If empty, all available functions are included in the search space.</p>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="brush.estimator.BrushEstimator.get_params">
-<span class="sig-name descname"><span class="pre">get_params</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference external" href="https://github.com/cavalab/brush/blob/master/src/brush/estimator.py#L195-L196"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#brush.estimator.BrushEstimator.get_params" title="Permalink to this definition">#</a></dt>
+<span class="sig-name descname"><span class="pre">get_params</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference external" href="https://github.com/cavalab/brush/blob/master/src/brush/estimator.py#L312-L313"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#brush.estimator.BrushEstimator.get_params" title="Link to this definition">#</a></dt>
 <dd><p>Get parameters for this estimator.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
@@ -455,7 +517,7 @@ contained subobjects that are estimators.</p>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="brush.estimator.BrushEstimator.predict">
-<span class="sig-name descname"><span class="pre">predict</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">X</span></span></em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/cavalab/brush/blob/master/src/brush/estimator.py#L176-L179"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#brush.estimator.BrushEstimator.predict" title="Permalink to this definition">#</a></dt>
+<span class="sig-name descname"><span class="pre">predict</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">X</span></span></em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/cavalab/brush/blob/master/src/brush/estimator.py#L293-L296"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#brush.estimator.BrushEstimator.predict" title="Link to this definition">#</a></dt>
 <dd><p>Predict using the best estimator in the archive.</p>
 </dd></dl>
 
@@ -469,11 +531,10 @@ contained subobjects that are estimators.</p>
 
               
               
-                <footer class="bd-footer-article">
+              
+              
+                <footer class="prev-next-footer">
                   
-<div class="footer-article-items footer-article__inner">
-  
-    <div class="footer-article-item"><!-- Previous / next buttons -->
 <div class="prev-next-area">
     <a class="left-prev"
        href="index.html"
@@ -493,10 +554,7 @@ contained subobjects that are estimators.</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
-</div></div>
-  
 </div>
-
                 </footer>
               
             </div>
@@ -504,6 +562,7 @@ contained subobjects that are estimators.</p>
             
               
                 <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
 
   <div class="sidebar-secondary-item">
   <div class="page-toc tocsection onthispage">
@@ -538,6 +597,7 @@ By William La Cava and Joseph D. Romano
   
   <div class="footer-item">
     
+
   <p class="copyright">
     
       © Copyright 2021, William La Cava and Joseph D. Romano.
@@ -564,8 +624,8 @@ By William La Cava and Joseph D. Romano
   </div>
   
   <!-- Scripts loaded after <body> so the DOM is not blocked -->
-  <script src="../_static/scripts/bootstrap.js?digest=e353d410970836974a52"></script>
-<script src="../_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52"></script>
+  <script src="../_static/scripts/bootstrap.js?digest=8d27b9dea8ad943066ae"></script>
+<script src="../_static/scripts/pydata-sphinx-theme.js?digest=8d27b9dea8ad943066ae"></script>
 
   <footer class="bd-footer">
   </footer>
