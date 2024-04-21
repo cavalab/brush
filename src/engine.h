@@ -36,6 +36,12 @@ public:
     
     ~Engine(){};
 
+    // outputs a progress bar, filled according to @param percentage.
+    void print_progress(float percentage);
+    void calculate_stats(const Dataset& d);
+    void print_stats(std::ofstream& log, float fraction);      
+    void log_stats(std::ofstream& log);
+
     // all hyperparameters are controlled by the parameter class. please refer to that to change something
     inline Parameters& get_params(){return params;}
     inline void set_params(Parameters& p){params=p;}
@@ -47,8 +53,8 @@ public:
     // TODO: hyperparameter to set how the best is picked (MCDM, best on val, pareto front, etc). one of the options should be getting the pareto front
 
     // TODO: best fitness instead of these. use fitness comparison
-    float best_loss;
-    int best_complexity;
+    float best_score;
+    int best_complexity; // TODO: best complexity in log/print stats?
     Individual<T>& get_best_ind(){return best_ind;};  
     
     /// train the model
@@ -64,7 +70,9 @@ private:
     Variation<T>  variator;  	///< variation operators
     Selection<T>  survivor;   ///< survival algorithm
     
-    // TODO: MISSING CLASSES: timer, archive, logger
+    Log_Stats stats; ///< runtime stats
+
+    // TODO: MISSING CLASSES: archive
     Timer timer;       ///< start time of training
 
     Individual<T> best_ind;
@@ -74,8 +82,6 @@ private:
 
     /// set flag indicating whether fit has been called
     inline void set_is_fitted(bool f){is_fitted=f;}
-
-    // TODO: calculate/print stats
 };
 
 } // Brush

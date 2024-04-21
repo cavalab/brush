@@ -22,9 +22,9 @@ void Evaluation<T>::update_fitness(Population<T>& pop,
     {
         Individual<T>& ind = *pop.individuals.at(idxs.at(i)).get(); // we are modifying it, so operator[] wont work
 
-        bool pass = true;
+        bool pass = false;
 
-        if (!pass)
+        if (pass)
         {
             // TODO: check if score was nan and assign the max float
             // TODO: better handling of nan or inf scores when doing selection and survival (and hall of fame and rank for migration)
@@ -42,7 +42,7 @@ void Evaluation<T>::update_fitness(Population<T>& pop,
             
             assign_fit(ind, data, params, validation);
         }
-        ++counter;
+        ++counter;// TODO: get rid of this counter
     }
 
     assert(counter > 0);
@@ -56,20 +56,20 @@ void Evaluation<T>::assign_fit(Individual<T>& ind, const Dataset& data,
     VectorXf errors;
     using PT = ProgramType;
     
+    Dataset train = data.get_training_data();
+    float f = S.score(ind, train, errors, params);
+    
     Dataset validation = data.get_validation_data();
     float f_v = S.score(ind, validation, errors, params);
 
     // TODO: implement the class weights and use it here (and on errors)
 
-    Dataset train = data.get_training_data();
-    float f = S.score(ind, train, errors, params);
-    
     ind.error = errors;
     ind.fitness.set_loss(f);
     ind.fitness.set_loss_v(f_v);
-    ind.fitness.size = ind.program.size();
-    ind.fitness.complexity = ind.program.complexity();
-    ind.fitness.depth = ind.program.depth();
+    ind.fitness.size = ind.get_size();
+    ind.fitness.complexity = ind.get_complexity();
+    ind.fitness.depth = ind.get_depth();
 
     ind.set_objectives(params.objectives);
 

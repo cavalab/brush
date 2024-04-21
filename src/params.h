@@ -7,10 +7,12 @@ license: GNU/GPL v3
 #define PARAMS_H
 
 #include "init.h"
+#include "util/logger.h"
 
 namespace ns = nlohmann;
 namespace Brush
 {
+
 
 struct Parameters
 {
@@ -18,7 +20,7 @@ public:
     // TODO: make parameters private, and use the getters and setters in the code
     
     int random_state = 0; // by default, the rng generator will use any random seed if random_state is zero
-    //int verbosity = 0; // TODO: implement log and verbosity    
+    int verbosity = 0; 
 
     // Evolutionary stuff
     string mode="regression"; 
@@ -76,10 +78,17 @@ public:
     string load_population = "";
     string save_population = "";
 
+    string logfile = "";
+
     int n_jobs = 1; // -1; ///< number of parallel jobs -1 use all threads; 0 use same as number of islands; positive number specify the amouut of threads
 
     Parameters(){}; 
     ~Parameters(){};
+    
+    // TODO: use logger to log information
+    void set_verbosity(int new_verbosity){ Brush::Util::logger.set_log_level(new_verbosity);
+                                           verbosity = new_verbosity; };
+    int get_verbosity(){ return verbosity; };
 
     void set_random_state(int new_random_state){random_state = new_random_state; };
     int get_random_state(){ return random_state; };
@@ -105,6 +114,9 @@ public:
     void set_save_population(string new_save_population){ save_population = new_save_population; };
     string get_save_population(){ return save_population; };
 
+    string get_logfile(){ return logfile; };
+    void set_logfile(string s){ logfile=s; };
+    
     void set_current_gen(unsigned int gen){ current_gen = gen; };
     unsigned int get_current_gen(){ return current_gen; };
 

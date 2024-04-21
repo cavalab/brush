@@ -92,6 +92,8 @@ class BrushEstimator(BaseEstimator):
         Percentage of training data to sample every generation. If `1.0`, then
         all data is used. Very small values can improve execution time, but 
         also lead to underfit.
+    logfile: str, optional (default: "")
+        If specified, spits statistics into a logfile. "" means don't log.
     random_state: int or None, default None
         If int, then the value is used to seed the c++ random generator; if None,
         then a seed will be generated using a non-deterministic generator. It is
@@ -140,6 +142,7 @@ class BrushEstimator(BaseEstimator):
         algorithm="nsga2",
         objectives=["error", "size"],
         random_state=None,
+        logfile="",
         weights_init=True,
         validation_size: float = 0.0,
         batch_size: float = 1.0
@@ -158,6 +161,7 @@ class BrushEstimator(BaseEstimator):
         self.mig_prob=mig_prob
         self.n_jobs=n_jobs
         self.cx_prob=cx_prob
+        self.logfile=logfile
         self.mutation_probs=mutation_probs
         self.functions=functions
         self.objectives=objectives
@@ -209,9 +213,11 @@ class BrushEstimator(BaseEstimator):
         self.parameters_ = Parameters()
         self.parameters_.classification = self.mode == "classification"
         self.parameters_.n_classes = self.n_classes_
+        self.parameters_.verbosity = self.verbosity
         self.parameters_.n_jobs = self.n_jobs
         self.parameters_.pop_size = self.pop_size
         self.parameters_.gens = self.gens
+        self.parameters_.logfile = self.logfile
         self.parameters_.max_stall = self.max_stall
         self.parameters_.max_time = self.max_time
         self.parameters_.num_islands = self.num_islands

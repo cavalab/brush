@@ -72,6 +72,7 @@ public: // TODO: make these private (and work with nlohman json)
     // void Individual<T>::set_objectives(const vector<string>& objectives)
 
     // Static map for weights associated with strings
+    // TODO: change this to an attribute instead of a function
     // TODO: weights for different values. loss should be calculated duing runtime, based on the metric
     inline static std::map<std::string, float> weightsMap = []() {
         std::map<std::string, float> map = {
@@ -79,8 +80,15 @@ public: // TODO: make these private (and work with nlohman json)
             {"size", -1.0}
             // Add more key-value pairs as needed
         };
+
+        // TODO: move these key value initializations to line above
         // example on how to have weight based on templated class
-        map["error"] = (T == Brush::ProgramType::Regressor) ?  -1.0 : -1.0;
+        map["error"]     = (T == Brush::ProgramType::Regressor) ? -1.0 : +1.0;
+
+        // TODO: eu deveria fazer um check para ver se a string eh error e qual o scorer_ nesse caso
+        map["mse"]       = -1.0;
+        map["log"]       = +1.0;
+        map["multi_log"] = +1.0;
 
         return map;
     }();

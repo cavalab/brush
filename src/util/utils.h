@@ -350,28 +350,49 @@ struct Log_Stats
 {
     vector<int> generation;
     vector<float> time;
+
     vector<float> best_score;
     vector<float> best_score_v;
     vector<float> med_score;
-    vector<float> med_loss_v;
+    vector<float> med_score_v;
+
     vector<unsigned> med_size;
     vector<unsigned> med_complexity;
-    vector<unsigned> med_num_params;
-    vector<unsigned> med_dim;
-    
+    vector<unsigned> max_size;
+    vector<unsigned> max_complexity;
+
     void update(int index,
                 float timer_count,
+
                 float bst_score,
                 float bst_score_v,
                 float md_score,
-                float md_loss_v,
+                float md_score_v,
+
                 unsigned md_size,
                 unsigned md_complexity,
-                unsigned md_num_params,
-                unsigned md_dim);
+                unsigned mx_size,
+                unsigned mx_complexity
+                );
 };
 
 typedef struct Log_Stats Log_stats;
+
+// TODO: change this to something more modern 
+NLOHMANN_DEFINE_TYPE_NON_INTRUSIVE(Log_Stats,
+    generation,
+    time,
+
+    best_score,
+    best_score_v,
+    med_score,
+    med_score_v,
+
+    med_size,
+    med_complexity,
+    max_size,
+    max_complexity
+    );
 
 /// limits the output to finite real numbers
 template<typename T>

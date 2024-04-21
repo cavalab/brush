@@ -650,12 +650,15 @@ void Variation<T>::vary(Population<T>& pop, int island,
         if (opt) // no optional value was returned
         {
             Individual<T> ind = opt.value();
+            ind.is_fitted_ = false;
 
             assert(ind.program.size()>0);
             pop.individuals.at(idxs.at(i)) = std::make_shared<Individual<T>>(ind);
         }
         else {
             Individual<T> new_ind;
+            new_ind.is_fitted_ = false;
+            
             new_ind.init(search_space, parameters);
             new_ind.set_objectives(mom.get_objectives()); // it will have an invalid fitness
 

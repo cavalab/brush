@@ -58,7 +58,7 @@ void Engine<T>::init()
     this->survivor = Selection<T>(params.surv, true);
     //std::cout << "created survivor" << std::endl;
 
-    this->best_loss = MAX_FLT;
+    this->best_score = MAX_FLT;
     this->best_complexity = MAX_FLT;
 
     // TODO getters and setters for the best solution found after evolution
@@ -76,17 +76,160 @@ void Engine<T>::init()
     // // signal handler
     // signal(SIGINT, my_handler);
 
-    // // reset statistics
-    // this->stats = Log_Stats();
+    // reset statistics
+    this->stats = Log_Stats();
 }
+
+template <ProgramType T>
+void Engine<T>::print_progress(float percentage)
+{
+    int val = (int) (percentage * 100);
+    int lpad = (int) (percentage * PBWIDTH);
+    int rpad = PBWIDTH - lpad;
+
+    printf ("\rCompleted %3d%% [%.*s%*s]", val, lpad, PBSTR.c_str(), rpad, "");
+    
+    fflush (stdout);
+    
+    if(val == 100)
+        cout << "\n";
+}
+
+
+template <ProgramType T>
+void Engine<T>::calculate_stats(const Dataset& d)
+{
+    size_t pop_size = this->pop.size();
+
+    ArrayXf scores(pop_size);
+    ArrayXf scores_v(pop_size);
+    // TODO: change all size_t to unsigned?
+    ArrayXi sizes(pop_size);
+    ArrayXi complexities(pop_size); 
+
+    float error_weight = Individual<T>::weightsMap[params.scorer_];
+
+    int i=0;
+    for (int island=0; island<params.num_islands; ++island)
+    {
+
+        auto idxs = pop.island_indexes.at(island);
+        for (unsigned int i=0; i<idxs.size(); ++i)
+        {
+            const auto& p = this->pop.individuals.at(idxs[i]);
+
+            // Fitness class will store every information that can be used as
+            // fitness. you just need to access them. Multiplying by weight
+            // so we can find best score. From Fitness::dominates:
+            //     the proper way of comparing weighted values is considering
+            //     everything as a maximization problem
+            scores(i)       = p->fitness.loss;
+            scores_v(i)     = p->fitness.loss_v;
+            sizes(i)        = p->fitness.size; 
+            complexities(i) = p->fitness.complexity; 
+            scores_v(i)     = p->fitness.loss_v;
+
+            ++i;
+        }
+    }
+
+    assert(i == pop_size);
+
+    // multiply by weight again to get rid of signal
+    float    best_score     = (scores*error_weight).maxCoeff()*error_weight;
+    float    best_score_v   = (scores_v*error_weight).maxCoeff()*error_weight;
+    float    med_score      = median(scores); 
+    float    med_score_v    = median(scores_v); 
+    unsigned med_size       = median(sizes);                        
+    unsigned med_complexity = median(complexities);
+    unsigned max_size       = sizes.maxCoeff();
+    unsigned max_complexity = complexities.maxCoeff();
+    
+    // update stats
+    stats.update(params.current_gen,
+                 timer.Elapsed().count(),
+                 best_score,
+                 best_score_v,
+                 med_score,
+                 med_score_v,
+                 med_size,
+                 med_complexity,
+                 max_size,
+                 max_complexity);
+}
+
+
+template <ProgramType T>
+void Engine<T>::log_stats(std::ofstream& log)
+{
+    // print stats in tabular format
+    string sep = ",";
+    if (params.current_gen == 0) // print header
+    {
+        log << "generation"     << sep
+            << "time"           << sep
+            << "best_score"     << sep 
+            << "best_score_val" << sep 
+            << "med_score"      << sep 
+            << "med_score_val"  << sep 
+            << "med_size"       << sep 
+            << "med_complexity" << sep 
+            << "max_size"       << sep 
+            << "max_complexity" << "\n";
+    }
+    log << params.current_gen          << sep
+        << timer.Elapsed().count()     << sep
+        << stats.best_score.back()     << sep
+        << stats.best_score_v.back()   << sep
+        << stats.med_score.back()      << sep
+        << stats.med_score_v.back()    << sep
+        << stats.med_size.back()       << sep
+        << stats.med_complexity.back() << sep
+        << stats.max_size.back()       << sep
+        << stats.max_complexity.back() << "\n"; 
+}
+
+template <ProgramType T>
+void Engine<T>::print_stats(std::ofstream& log, float fraction)
+{
+    // progress bar
+    string bar, space = "";                                 
+    for (unsigned int i = 0; i<50; ++i)
+    {
+        if (i <= 50*fraction) bar += "/";
+        else space += " ";
+    }
+
+    std::cout.precision(5);
+    std::cout << std::scientific;
+    
+    if(params.max_time == -1)
+        std::cout << "Generation " << params.current_gen+1 << "/" 
+            << params.gens << " [" + bar + space + "]\n";
+    else
+        std::cout << std::fixed << "Time elapsed "<< timer 
+            << "/" << params.max_time 
+            << " seconds (Generation "<< params.current_gen+1 
+            << ") [" + bar + space + "]\n";
+        
+    std::cout << std::fixed
+              << "Train Loss (Med): " << stats.best_score.back() << " (" << stats.med_score.back() << ")\n"
+              << "Val Loss (Med): " << stats.best_score_v.back() << " (" << stats.med_score_v.back() << ")\n"
+              << "Median Size (Max): " << stats.med_size.back() << " (" << stats.max_size.back() << ")\n"
+              << "Time (s): " << timer
+              <<"\n\n";
+}
+
 
 template <ProgramType T> // TODO: use the dataset, or ignore it
 bool Engine<T>::update_best(const Dataset& data, bool val)
 {
     //std::cout << "updating best" << std::endl;
 
+    float error_weight = Individual<T>::weightsMap[params.scorer_];
+
     float bs;
-    bs = this->best_loss; 
+    bs = this->best_score; 
     
     float f; 
     // TODO: archive here?
@@ -112,9 +255,10 @@ bool Engine<T>::update_best(const Dataset& data, bool val)
         else
             f = ind.fitness.loss;
 
-        if (f < bs 
-            || (f == bs && ind.fitness.complexity < this->best_complexity)
-            )
+        // TODO: fix this by multiplying by weight
+        if (f*error_weight > bs*error_weight
+        || (f == bs && ind.fitness.complexity < this->best_complexity)
+        )
         {
             //std::cout << "updated" << std::endl;
         
@@ -126,7 +270,7 @@ bool Engine<T>::update_best(const Dataset& data, bool val)
         }
     }
 
-    this->best_loss = bs; 
+    this->best_score = bs; 
 
     return updated;
 }
@@ -147,6 +291,11 @@ void Engine<T>::run(Dataset &data)
     //std::cout << "Engine initialized" << std::endl;
 
     pop.init(this->ss, this->params);
+
+    // log file stream
+    std::ofstream log;
+    if (!params.logfile.empty())
+        log.open(params.logfile, std::ofstream::app);
 
     //std::cout << "pop initialized with size " << params.pop_size << " and " << params.num_islands << "islands" << std::endl;
     //std::cout << pop.print_models() << std::endl;
@@ -314,6 +463,31 @@ void Engine<T>::run(Dataset &data)
             auto finish_gen = subflow.emplace([&]() {
                 bool updated_best = this->update_best(data);
                 
+                // TODO: fix this code below (if needed. this is borrowed from feat)
+                // if ( (use_arch || params.verbosity>1) || !logfile.empty()) {
+                //     // set objectives to make sure they are reported in log/verbose/arch
+                //     #pragma omp parallel for
+                //     for (unsigned int i=0; i<pop.size(); ++i)
+                //         pop.individuals.at(i).set_obj(params.objectives);
+                // }
+
+                // TODO: logger working
+                // logger.log("calculate stats...",2);
+                calculate_stats(data); // TODO: calculate stats only if archive, logstats, or verbosity (otherwise it is not used)
+                // TODO: calculate stats does not need dataset
+
+                // if (use_arch)  // TODO: archive
+                //     archive.update(pop,params);
+                
+                // TODO: make verbosity print progress and stats
+                if(params.verbosity>1)
+                    print_stats(log, fraction);    
+                else if(params.verbosity == 1)
+                    print_progress(fraction);
+
+                if (!params.logfile.empty())
+                    log_stats(log);
+                    
                 if (generation == 0 || updated_best )
                     stall_count = 0;
                 else
@@ -336,6 +510,19 @@ void Engine<T>::run(Dataset &data)
                 this->pop.save(params.save_population);
 
             this->set_is_fitted(true);
+            
+            // TODO: make this work
+            // if (save_pop > 0)
+            // {
+            //     pop.save(this->logfile+".pop.gen" + to_string(params.current_gen) 
+            //             + ".json");
+            //     this->best_ind.save(this->logfile+".best.json");
+            // }
+            
+            // TODO: open, write, close? (to avoid breaking the file and allow some debugging if things dont work well)
+            if (log.is_open())
+                log.close();
+                
         } // work done, report last gen and stop
     ); // evolutionary loop
 

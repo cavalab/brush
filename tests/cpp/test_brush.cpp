@@ -21,6 +21,7 @@
 #include "../../src/eval/evaluation.cpp"
 #include "../../src/population.cpp"
 
+// TODO: test logger, verbose, print stats, etc.
 TEST(Engine, EngineWorks)
 {
     MatrixXf X(10,2);
@@ -37,9 +38,11 @@ TEST(Engine, EngineWorks)
     Dataset data(X,y);
 
     Parameters params;
-    params.set_pop_size(10);
+    params.set_pop_size(100);
     params.set_gens(10);
     params.set_mig_prob(0.0);
+
+    params.set_verbosity(2); // TODO: verbosity tests
 
     std::cout << "n jobs = 1" << std::endl;
     params.set_n_jobs(1);
@@ -73,9 +76,11 @@ TEST(Engine, EngineWorks)
     est6.run(data);
     
     std::cout << "n jobs = 2" << std::endl;
+    params.set_logfile("./tests/cpp/__logfile.csv"); // TODO: test classification and regression and save log so we can inspect it
     params.set_n_jobs(2);
     Brush::RegressorEngine est7(params);
     est7.run(data);
+    params.set_logfile("");
 
     std::cout << "n jobs = -1" << std::endl;
     params.set_n_jobs(-1);

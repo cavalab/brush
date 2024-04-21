@@ -229,22 +229,26 @@ void Log_Stats::update(int index,
                        float bst_score,
                        float bst_score_v,
                        float md_score,
-                       float md_loss_v,
+                       float md_score_v,
                        unsigned md_size,
                        unsigned md_complexity,
-                       unsigned md_num_params,
-                       unsigned md_dim)
+                       unsigned mx_size,
+                       unsigned mx_complexity
+                       )
 {
     generation.push_back(index+1);
     time.push_back(timer_count);
+    
     best_score.push_back(bst_score);
     best_score_v.push_back(bst_score_v);
     med_score.push_back(md_score);
-    med_loss_v.push_back(md_loss_v);
+    med_score_v.push_back(md_score_v);
+
     med_size.push_back(md_size);
     med_complexity.push_back(md_complexity);
-    med_num_params.push_back(md_num_params);
-    med_dim.push_back(md_dim);
+
+    max_size.push_back(mx_size);
+    max_complexity.push_back(mx_complexity);
 }
 
 /* array<ArrayXf, 2> split(ArrayXf& v, ArrayXb& mask) */
