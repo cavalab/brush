@@ -4,10 +4,12 @@
 #include "util/error.h"
 #include "individual.h"
 
+// TODO: do i really need these?
 using std::vector;
 using std::string;
 using Eigen::Map;
 
+// TODO: folder for population and archive
 // TODO: move this serialization elsewhere
 // serializing vector of shared ptr: https://github.com/nlohmann/json/discussions/2377
 namespace nlohmann

@@ -6,6 +6,8 @@ license: GNU/GPL v3
 #ifndef VARIATION_H
 #define VARIATION_H
 
+
+// TODO: folder for variation. move search_space and variation to this folder
 // #include "util/error.h"
 // #include "util/utils.h"
 

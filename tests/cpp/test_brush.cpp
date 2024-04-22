@@ -11,6 +11,7 @@
 #include "../../src/selection/nsga2.h"
 #include "../../src/selection/lexicase.h"
 #include "../../src/eval/evaluation.h"
+#include "../../src/pop/archive.h"
 #include "../../src/population.h"
 
 // TODO: omg i need to figure out why my code only works if i import basically the whole stuff
@@ -19,6 +20,7 @@
 #include "../../src/selection/nsga2.cpp"
 #include "../../src/selection/lexicase.cpp"
 #include "../../src/eval/evaluation.cpp"
+#include "../../src/pop/archive.cpp"
 #include "../../src/population.cpp"
 
 // TODO: test logger, verbose, print stats, etc.

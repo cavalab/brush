@@ -11,6 +11,8 @@ using namespace nlohmann;
 namespace Brush{
 namespace Pop{
 
+// TODO: folder for fitness and individual
+
 template<ProgramType T> 
 class Individual{
 public: // TODO: make these private (and work with nlohman json)

@@ -63,12 +63,13 @@ void Engine<T>::init()
 
     // TODO getters and setters for the best solution found after evolution
     // predict, transform, predict_proba, etc.
-    // get statistics
     // load and save best individuals
     // logger, save to file
     // execution archive
     // score functions
     // fit methods (this will run the evolution)
+
+    this->archive.set_objectives(params.objectives);
 
     // start the clock
     timer.Reset();

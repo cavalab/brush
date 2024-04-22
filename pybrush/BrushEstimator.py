@@ -88,6 +88,9 @@ class BrushEstimator(BaseEstimator):
         to calculate statistics during evolution, but not used to train the models.
         The `best_estimator_` will be selected using this partition. If zero, then
         the same data used for training is used for validation.
+    val_from_arch: boolean, optional (default: True)
+        Validates the final model using the archive rather than the whole 
+        population.
     batch_size : float, default 1.0
         Percentage of training data to sample every generation. If `1.0`, then
         all data is used. Very small values can improve execution time, but 
@@ -144,6 +147,7 @@ class BrushEstimator(BaseEstimator):
         random_state=None,
         logfile="",
         weights_init=True,
+        val_from_arch=True,
         validation_size: float = 0.0,
         batch_size: float = 1.0
         ):
@@ -163,6 +167,7 @@ class BrushEstimator(BaseEstimator):
         self.cx_prob=cx_prob
         self.logfile=logfile
         self.mutation_probs=mutation_probs
+        self.val_from_arch=val_from_arch # TODO: val from arch
         self.functions=functions
         self.objectives=objectives
         self.initialization=initialization

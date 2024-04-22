@@ -10,6 +10,7 @@ license: GNU/GPL v3
 #include "init.h"
 #include "params.h"
 #include "population.h"
+#include "pop/archive.h"
 #include "./eval/evaluation.h"
 #include "variation.h"
 #include "selection/selection.h"
@@ -24,6 +25,7 @@ using namespace Pop;
 using namespace Sel;
 using namespace Eval;
 using namespace Var;
+using namespace nlohmann;
 
 template <ProgramType T>
 class Engine{
@@ -57,6 +59,34 @@ public:
     int best_complexity; // TODO: best complexity in log/print stats?
     Individual<T>& get_best_ind(){return best_ind;};  
     
+    // TODO: starting pop (just like feat)
+
+    // TODO: make thesqe work
+    // /// predict on unseen data.             
+    // VectorXf predict(MatrixXf& X, LongData& Z);  
+    // VectorXf predict(MatrixXf& X);
+
+    // /// predict on unseen data. return CLabels.
+    // shared_ptr<CLabels> predict_labels(MatrixXf& X, LongData Z = LongData());  
+
+    // /// predict probabilities of each class.
+    // ArrayXXf predict_proba(MatrixXf& X, LongData& Z);  
+    // ArrayXXf predict_proba(MatrixXf& X);
+
+    // archive stuff
+    // TODO: make these work
+    ///return archive size
+    int get_archive_size(){ return this->archive.individuals.size(); };
+    ///return population as string
+    vector<json> get_archive(bool front);
+    
+    // /// predict on unseen data from the whole archive             
+    // VectorXf predict_archive(int id, MatrixXf& X);  
+    // VectorXf predict_archive(int id, MatrixXf& X, LongData& Z);
+    // ArrayXXf predict_proba_archive(int id, MatrixXf& X, LongData& Z);
+    // ArrayXXf predict_proba_archive(int id, MatrixXf& X);
+
+
     /// train the model
     void run(Dataset &d);
     
@@ -72,8 +102,8 @@ private:
     
     Log_Stats stats; ///< runtime stats
 
-    // TODO: MISSING CLASSES: archive
     Timer timer;       ///< start time of training
+    Archive<T> archive;          ///< pareto front archive
 
     Individual<T> best_ind;
     bool is_fitted; ///< keeps track of whether fit was called.
@@ -83,6 +113,8 @@ private:
     /// set flag indicating whether fit has been called
     inline void set_is_fitted(bool f){is_fitted=f;}
 };
+
+// TODO: serialization for engine with NLOHMANN_DEFINE_TYPE_NON_INTRUSIVE
 
 } // Brush
 
