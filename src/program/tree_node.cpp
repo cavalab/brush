@@ -163,7 +163,9 @@ int TreeNode::get_complexity() const
 
     // include the `w` and `*` if the node is weighted
     if (data.get_is_weighted()
-    && !(Is<NodeType::Constant>(data.node_type) || Is<NodeType::MeanLabel>(data.node_type)))
+    && !(Is<NodeType::Constant>(data.node_type)
+        || Is<NodeType::MeanLabel>(data.node_type))
+    )
         return operator_complexities.at(NodeType::Mul)*(
             operator_complexities.at(NodeType::Constant) + 
             node_complexity*(children_complexity_sum)
