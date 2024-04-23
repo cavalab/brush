@@ -277,7 +277,7 @@ tree<Node>& SearchSpace::PTC2(tree<Node>& Tree,
 
     // auto Tree = tree<Node>();
 
-    fmt::print("building program with max size {}, max depth {}",max_size,max_d);
+    // fmt::print("building program with max size {}, max depth {}",max_size,max_d);
 
     // Queue of nodes that need children
     vector<tuple<TreeIter, DataType, int>> queue; 
@@ -289,7 +289,7 @@ tree<Node>& SearchSpace::PTC2(tree<Node>& Tree,
 
     Node root = spot.node->data;
 
-    cout << "root " << root.name << endl;
+    // cout << "root " << root.name << endl;
     // auto spot = Tree.set_head(n);
 
     // updating size accordingly to root node
@@ -305,7 +305,7 @@ tree<Node>& SearchSpace::PTC2(tree<Node>& Tree,
     //For each argument position a of n, Enqueue(a; g) 
     for (auto a : root.arg_types)
     { 
-        cout << "queing a node of type " << DataTypeName[a] << endl;
+        // cout << "queing a node of type " << DataTypeName[a] << endl;
         auto child_spot = Tree.append_child(spot);
         queue.push_back(make_tuple(child_spot, a, d));
     }
@@ -314,8 +314,8 @@ tree<Node>& SearchSpace::PTC2(tree<Node>& Tree,
 
     Node n;
     // Now we actually start the PTC2 procedure to create the program tree
-    cout << "queue size: " << queue.size() << endl;
-    cout << "entering first while loop...\n";
+    // cout << "queue size: " << queue.size() << endl;
+    // cout << "entering first while loop...\n";
     while ( queue.size() + s < max_size && queue.size() > 0) 
     {            
         // including the queue size in the max_size, since each element in queue
@@ -327,14 +327,14 @@ tree<Node>& SearchSpace::PTC2(tree<Node>& Tree,
         // always insert a non terminal (which by default has weights off).
         // this way, we can have PTC2 working properly.
         
-        cout << "queue size: " << queue.size() << endl;
+        // cout << "queue size: " << queue.size() << endl;
         auto [qspot, t, d] = RandomDequeue(queue);
 
-        cout << "current depth: " << d << endl;
+        // cout << "current depth: " << d << endl;
         if (d >= max_d || s >= max_size)
         {
             // choose terminal of matching type
-            cout << "getting " << DataTypeName[t] << " terminal\n";
+            // cout << "getting " << DataTypeName[t] << " terminal\n";
             // qspot = sample_terminal(t);
             // Tree.replace(qspot, sample_terminal(t));
             // Tree.append_child(qspot, sample_terminal(t));
@@ -354,9 +354,9 @@ tree<Node>& SearchSpace::PTC2(tree<Node>& Tree,
         else
         {
             //choose a nonterminal of matching type
-            cout << "getting op of type " << DataTypeName[t] << endl;
+            // cout << "getting op of type " << DataTypeName[t] << endl;
             auto opt = sample_op(t);
-            cout << "chose " << n.name << endl;
+            // cout << "chose " << n.name << endl;
             // TreeIter new_spot = Tree.append_child(qspot, n);
             // qspot = n;
 
@@ -379,7 +379,7 @@ tree<Node>& SearchSpace::PTC2(tree<Node>& Tree,
             // For each arg of n, add to queue
             for (auto a : n.arg_types)
             {
-                cout << "queing a node of type " << DataTypeName[a] << endl;
+                // cout << "queing a node of type " << DataTypeName[a] << endl;
                 // queue.push_back(make_tuple(new_spot, a, d+1));
                 auto child_spot = Tree.append_child(newspot);
 
@@ -399,20 +399,20 @@ tree<Node>& SearchSpace::PTC2(tree<Node>& Tree,
         &&   Isnt<NodeType::Constant, NodeType::MeanLabel>(n.node_type) )
             s += 2;
 
-        cout << "current tree size: " << s << endl;
+        // cout << "current tree size: " << s << endl;
     } 
 
-    cout << "entering second while loop...\n";
+    // cout << "entering second while loop...\n";
     while (queue.size() > 0)
     {
         if (queue.size() == 0)
             break;
 
-        cout << "queue size: " << queue.size() << endl;
+        // cout << "queue size: " << queue.size() << endl;
 
         auto [qspot, t, d] = RandomDequeue(queue);
 
-        cout << "getting " << DataTypeName[t] << " terminal\n";
+        // cout << "getting " << DataTypeName[t] << " terminal\n";
         // Tree.append_child(qspot, sample_terminal(t));
         // qspot = sample_terminal(t);
         // auto newspot = Tree.replace(qspot, sample_terminal(t));
@@ -426,9 +426,9 @@ tree<Node>& SearchSpace::PTC2(tree<Node>& Tree,
         auto newspot = Tree.replace(qspot, n);
     }
 
-    cout << "final tree:\n"
-         << Tree.begin().node->get_model() << "\n"
-         << Tree.begin().node->get_tree_model(true) << endl;
+    // cout << "final tree:\n"
+    //  << Tree.begin().node->get_model() << "\n"
+    //  << Tree.begin().node->get_tree_model(true) << endl;
 
     return Tree;
 };
