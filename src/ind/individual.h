@@ -58,9 +58,9 @@ public: // TODO: make these private (and work with nlohman json)
     // just getters
     bool get_is_fitted() const { return this->is_fitted_; };
     string get_model() const { return program.get_model(); };
-    size_t get_size() const { return program.size(); };
-    size_t get_depth() const { return program.depth(); };
-    size_t get_complexity() const { return program.complexity(); };
+    unsigned int get_size() const { return program.size(); };
+    unsigned int get_depth() const { return program.depth(); };
+    unsigned int get_complexity() const { return program.complexity(); };
     Program<T>& get_program() { return program; };
 
     void set_fitness(Fitness &f) { fitness=f; };
@@ -77,13 +77,18 @@ public: // TODO: make these private (and work with nlohman json)
             {"complexity", -1.0},
             {"size",       -1.0},
             {"mse",        -1.0},
-            {"log",        +1.0},
-            {"multi_log",  +1.0},
+            {"log",        -1.0},
+            {"multi_log",  -1.0},
+
+            {"accuracy",   +1.0},
 
             // generic error metrics (will use default metrics for clf or reg)
-            {"error", (T == Brush::ProgramType::Regressor) ? -1.0 : +1.0}
-
-            // Add more key-value pairs as needed
+            // by default we use log and multi_log if the user specifies error 
+            // for a classification problem. However, other metrics (such as
+            // accuracy or precision or AUC) can be a maximization problem,
+            // so this map allow us to have flexibility when setting the
+            // objectives
+            {"error", (T == Brush::ProgramType::Regressor) ? -1.0 : -1.0}
         };
 
         return map;

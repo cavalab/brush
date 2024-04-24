@@ -87,20 +87,25 @@ void Engine<T>::print_progress(float percentage)
 template <ProgramType T>
 void Engine<T>::calculate_stats(const Dataset& d)
 {
-    size_t pop_size = this->pop.size();
+    int pop_size = 0;
+    for (int island=0; island<params.num_islands; ++island)
+    {
+        auto idxs = pop.island_indexes.at(island);
+        pop_size += idxs.size();
+    }
 
     ArrayXf scores(pop_size);
     ArrayXf scores_v(pop_size);
+    
     // TODO: change all size_t to unsigned?
     ArrayXi sizes(pop_size);
     ArrayXi complexities(pop_size); 
 
     float error_weight = Individual<T>::weightsMap[params.scorer_];
 
-    int i=0;
+    int index = 0;
     for (int island=0; island<params.num_islands; ++island)
     {
-
         auto idxs = pop.island_indexes.at(island);
         for (unsigned int i=0; i<idxs.size(); ++i)
         {
@@ -111,19 +116,18 @@ void Engine<T>::calculate_stats(const Dataset& d)
             // so we can find best score. From Fitness::dominates:
             //     the proper way of comparing weighted values is considering
             //     everything as a maximization problem
-            scores(i)       = p->fitness.loss;
-            scores_v(i)     = p->fitness.loss_v;
-            sizes(i)        = p->fitness.size; 
-            complexities(i) = p->fitness.complexity; 
-            scores_v(i)     = p->fitness.loss_v;
-
-            ++i;
+            scores(index)       = p->fitness.get_loss();
+            scores_v(index)     = p->fitness.get_loss_v();
+            sizes(index)        = p->get_size(); 
+            complexities(index) = p->get_complexity(); 
+            ++index;
         }
     }
 
-    assert(i == pop_size);
+    assert (pop_size == this->params.pop_size);
 
-    // multiply by weight again to get rid of signal
+    // Multiply by weight to make it a maximization problem.
+    // Then, multiply again to get rid of signal
     float    best_score     = (scores*error_weight).maxCoeff()*error_weight;
     float    best_score_v   = (scores_v*error_weight).maxCoeff()*error_weight;
     float    med_score      = median(scores); 
@@ -204,6 +208,7 @@ void Engine<T>::print_stats(std::ofstream& log, float fraction)
               << "Train Loss (Med): " << stats.best_score.back() << " (" << stats.med_score.back() << ")\n"
               << "Val Loss (Med): " << stats.best_score_v.back() << " (" << stats.med_score_v.back() << ")\n"
               << "Median Size (Max): " << stats.med_size.back() << " (" << stats.max_size.back() << ")\n"
+              << "Median complexity (Max): " << stats.med_complexity.back() << " (" << stats.max_complexity.back() << ")\n"
               << "Time (s): " << timer
               <<"\n\n";
 }
@@ -458,6 +463,9 @@ void Engine<T>::run(Dataset &data)
                 // if (use_arch)  // TODO: archive
                 //     archive.update(pop,params);
                 
+                fraction = params.max_time == -1 ? ((generation+1)*1.0)/params.gens : 
+                                                    timer.Elapsed().count()/params.max_time;
+
                 if(params.verbosity>1)
                     print_stats(log, fraction);    
                 else if(params.verbosity == 1)

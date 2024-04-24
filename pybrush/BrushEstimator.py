@@ -17,8 +17,6 @@ from pybrush import Parameters, Dataset, SearchSpace
 from pybrush import brush_rng
 
 
-# TODO: fix deap estimator breaking with num_islands > 1. write a documentation 
-# on how to use brush with deap
 class BrushEstimator(BaseEstimator):
     """
     This is the base class for Deap-based Brush estimators. 
@@ -176,7 +174,6 @@ class BrushEstimator(BaseEstimator):
         self.weights_init=weights_init
         self.validation_size=validation_size
 
-
     def fit(self, X, y):
         """
         Fit an estimator to X,y.
@@ -239,7 +236,15 @@ class BrushEstimator(BaseEstimator):
             self.parameters_.scorer_ = "log" if self.n_classes_ == 2 else "multi_log"
 
         if self.random_state is not None:
-            self.parameters_.random_state = self.random_state
+            seed = 0
+            if isinstance(self.random_state, np.random.Generator):
+                seed = self.random_state.integers(10000)
+            elif isinstance(self.random_state, int):
+                seed = self.random_state
+            else:
+                raise ValueError("random_state must be either a numpy random generator or an integer")
+
+            self.parameters_.random_state = seed
 
         self.engine_ = None
         if self.mode == 'classification':
@@ -355,7 +360,7 @@ class BrushClassifier(BrushEstimator,ClassifierMixin):
 
         prob = self.best_estimator_.program.predict_proba(data)
 
-        if self.n_classes_ <= 2:
+        if self.n_classes_ == 2:
             prob = np.hstack( (np.ones(X.shape[0]).reshape(-1,1), prob.reshape(-1,1)) )  
             prob[:, 0] -= prob[:, 1]
 

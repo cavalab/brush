@@ -9,7 +9,7 @@ from sklearn.utils import resample
 import traceback
 import logging
 
-# TODO: get deap api back and implement it as deap_nsga2 (or something like that. the idea is that it can be used as a reference. I could even do a documentation prototyping_with_brush.ipynb)
+# TODO: prototyping_with_brush.ipynb or something like that
 @pytest.fixture
 def brush_args():
     return dict(
@@ -18,12 +18,13 @@ def brush_args():
         max_size=50, 
         max_depth=6,
         cx_prob= 1/7,
+        num_islands=1,
         mutation_probs = {"point":1/6, "insert":1/6, "delete":1/6, "subtree":1/6,
                             "toggle_weight_on":1/6, "toggle_weight_off":1/6},
     )
     
 @pytest.fixture
-def classification_setup():
+def DEAP_classification_setup():
     df = pd.read_csv('docs/examples/datasets/d_analcatdata_aids.csv')
     X  = df.drop(columns='target')
     y  = df['target']
@@ -31,7 +32,7 @@ def classification_setup():
     return pybrush.DeapClassifier, X, y
 
 @pytest.fixture
-def multiclass_classification_setup():
+def DEAP_multiclass_classification_setup():
     df = pd.read_csv('docs/examples/datasets/d_analcatdata_aids.csv')
     X  = df.drop(columns='target')
     y  = df['target']
@@ -39,22 +40,52 @@ def multiclass_classification_setup():
     return pybrush.DeapClassifier, X, y
 
 @pytest.fixture
-def regression_setup():
+def DEAP_regression_setup():
     df = pd.read_csv('docs/examples/datasets/d_enc.csv')
     X  = df.drop(columns='label')
     y  = df['label']
 
     return pybrush.DeapRegressor, X, y
 
+
+@pytest.fixture
+def BRUSH_classification_setup():
+    df = pd.read_csv('docs/examples/datasets/d_analcatdata_aids.csv')
+    X  = df.drop(columns='target')
+    y  = df['target']
+
+    return pybrush.BrushClassifier, X, y
+
+@pytest.fixture
+def BRUSH_multiclass_classification_setup():
+    df = pd.read_csv('docs/examples/datasets/d_analcatdata_aids.csv')
+    X  = df.drop(columns='target')
+    y  = df['target']
+
+    return pybrush.BrushClassifier, X, y
+
+@pytest.fixture
+def BRUSH_regression_setup():
+    df = pd.read_csv('docs/examples/datasets/d_enc.csv')
+    X  = df.drop(columns='label')
+    y  = df['label']
+
+    return pybrush.BrushRegressor, X, y
+
+
 @pytest.mark.parametrize('setup,algorithm',
-                         [('classification_setup', 'nsga2island'),
-                          ('classification_setup', 'nsga2'      ),
-                          ('classification_setup', 'gaisland'   ),
-                          ('classification_setup', 'ga'         ),
-                          ('regression_setup',     'nsga2island'),
-                          ('regression_setup',     'nsga2'      ),
-                          ('regression_setup',     'gaisland'   ),
-                          ('regression_setup',     'ga'         )])
+                         [('DEAP_classification_setup', 'nsga2island'),
+                          ('DEAP_classification_setup', 'nsga2'      ),
+                          ('DEAP_classification_setup', 'gaisland'   ),
+                          ('DEAP_classification_setup', 'ga'         ),
+                          ('DEAP_regression_setup',     'nsga2island'),
+                          ('DEAP_regression_setup',     'nsga2'      ),
+                          ('DEAP_regression_setup',     'gaisland'   ),
+                          ('DEAP_regression_setup',     'ga'         ),
+
+                          ('BRUSH_classification_setup', 'nsga2island'),
+                          ('BRUSH_regression_setup',     'nsga2island')
+                          ])
 def test_fit(setup, algorithm, brush_args, request):
     """Testing common utilities related to fitting and generic brush estimator.
     """
@@ -72,9 +103,13 @@ def test_fit(setup, algorithm, brush_args, request):
         pytest.fail(f"Unexpected Exception caught: {e}")
         logging.error(traceback.format_exc())
 
+
 @pytest.mark.parametrize('setup',
-                         [('classification_setup'),
-                          ('multiclass_classification_setup')])
+                         [('DEAP_classification_setup'),
+                          ('DEAP_multiclass_classification_setup'),
+                          ('BRUSH_classification_setup'),
+                          ('BRUSH_multiclass_classification_setup'),
+                          ])
 def test_predict_proba(setup, brush_args, request):
 
     Estimator, X, y = request.getfixturevalue(setup)
@@ -83,34 +118,48 @@ def test_predict_proba(setup, brush_args, request):
     est.fit(X, y)
 
     y_prob = est.predict_proba(X)
+
     assert len(y_prob.shape) == 2, "predict_proba should be 2-dimensional"
     assert y_prob.shape[1] >= 2, \
         "every class should have its own column (even for binary clf)"
-            
 
-# @pytest.mark.parametrize('setup',
-#                          [('regression_setup')])
-# def test_brush_engine(setup, brush_args, request):
 
+# @pytest.mark.parametrize('setup,num_islands',
+#                          [('DEAP_classification_setup',  1),
+#                           ('DEAP_regression_setup',      1),
+#                           ('BRUSH_classification_setup', 1),
+#                           ('BRUSH_regression_setup',     1),
+                          
+#                           ('DEAP_classification_setup',  -1),
+#                           ('DEAP_regression_setup',      -1),
+#                           ('BRUSH_classification_setup', -1),
+#                           ('BRUSH_regression_setup',     -1),
+                          
+#                           ('DEAP_classification_setup',  2),
+#                           ('DEAP_regression_setup',      2),
+#                           ('BRUSH_classification_setup', 2),
+#                           ('BRUSH_regression_setup',     2)])
+# def test_num_islands(setup, num_islands, brush_args, request):
 #     Estimator, X, y = request.getfixturevalue(setup)
 
-#     dataset = pybrush.Dataset(X=X, y=y)
-    
-#     # TODO: pybrush parameters could have named arguments
-#     params = pybrush.Parameters()
-#     params.pop_size    = 10
-#     params.gens        = 10
-#     params.num_islands = 1
-
-#     eng = pybrush.RegressorEngine(params)
-#     # eng.run(dataset)
-
+#     brush_args["algorithm"] = 'nsga2island'
+#     brush_args["num_islands"] = num_islands
+#     try:
+#         est = Estimator(**brush_args)
+#         est.fit(X, y)
+        
+#         print('score:', est.score(X,y))
+        
+#     except Exception as e:
+#         pytest.fail(f"Unexpected Exception caught: {e}")
+#         logging.error(traceback.format_exc())
             
 
+# TODO: make this test for BRUSH_classification (it does not use toolbox)
 @pytest.mark.parametrize('setup,fixed_node', [
-                                                ('classification_setup', 'Logistic'),
-                                                # ('multiclass_classification_setup', 'Softmax')
-                                             ])
+                                            ('DEAP_classification_setup', 'Logistic'),
+                                            # ('DEAP_multiclass_classification_setup', 'Softmax'),
+                                            ])
 def test_fixed_nodes(setup, fixed_node, brush_args, request):
     # Classification has a fixed root that should not change after mutation or crossover
 
@@ -163,13 +212,14 @@ def test_fixed_nodes(setup, fixed_node, brush_args, request):
         
 
 
-# def test_random_state(): # TODO: make it work
+# TODO: make this work (i need to make each island (thread) use its own random generator)
+# def test_random_state():
 #     test_y = np.array( [1. , 0. , 1.4, 1. , 0. , 1. , 1. , 0. , 0. , 0.  ])
 #     test_X = np.array([[1.1, 2.0, 3.0, 4.0, 5.0, 6.5, 7.0, 8.0, 9.0, 10.0],
 #                        [2.0, 1.2, 6.0, 4.0, 5.0, 8.0, 7.0, 5.0, 9.0, 10.0]]).T
     
-#     est1 = brush.BrushRegressor(random_state=42).fit(test_X, test_y)
-#     est2 = brush.BrushRegressor(random_state=42).fit(test_X, test_y)
+#     est1 = pybrush.BrushRegressor(random_state=42).fit(test_X, test_y)
+#     est2 = pybrush.BrushRegressor(random_state=42).fit(test_X, test_y)
 
-#     assert est1.best_estimator_.get_model() == est2.best_estimator_.get_model(), \
+#     assert est1.best_estimator_.program.get_model() == est2.best_estimator_.program.get_model(), \
 #            "random state failed to generate same results"

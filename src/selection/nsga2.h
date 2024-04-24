@@ -69,8 +69,9 @@ public:
             comparator_obj(const Population<T>& population, int index) 
                 : pop(population), m(index) {};
 
+            // because of the weighted values, every objective is a maximization problem
             bool operator() (int i, int j) { 
-                return pop[i].fitness.get_wvalues()[m] < pop[j].fitness.get_wvalues()[m]; };
+                return pop[i].fitness.get_wvalues()[m] > pop[j].fitness.get_wvalues()[m]; };
         };
     
         size_t tournament(Population<T>& pop, size_t i, size_t j) const;

@@ -210,7 +210,7 @@ void SearchSpace::init(const Dataset& d, const unordered_map<string,float>& user
             extended_user_ops.insert({"Logistic", 0.0f});
         }
         else if (user_ops.find("Softmax") == user_ops.end()) {
-            // extended_user_ops.insert({"Softmax", 0.0f});
+            extended_user_ops.insert({"Softmax", 0.0f});
         }
     }
 

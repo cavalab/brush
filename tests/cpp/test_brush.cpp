@@ -112,5 +112,28 @@ TEST(Engine, EngineWorks)
     Brush::RegressorEngine est_not_div2(params);
     est_not_div2.run(data);
 
+    // TODO: test predict and predict proba
+
+     // TODO: why isnt this working for classification
+     // TODO: validation loss
+}
+
+
+TEST(Engine, ClassificationEngineWorks)
+{
      // TODO: test classifier and multiclassifier 
+    Dataset data = Data::read_csv("docs/examples/datasets/d_analcatdata_aids.csv", "target");
+    
+    ASSERT_TRUE(data.classification);
+
+    Parameters params;
+    params.set_pop_size(100);
+    params.set_gens(10);
+    params.set_mig_prob(0.0);
+    params.set_scorer_("log");
+
+    params.set_verbosity(2); // TODO: verbosity tests
+
+    Brush::ClassifierEngine est(params);
+    est.run(data);
 }

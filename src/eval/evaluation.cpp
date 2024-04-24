@@ -53,19 +53,22 @@ void Evaluation<T>::assign_fit(Individual<T>& ind, const Dataset& data,
     Dataset train = data.get_training_data();
     float f = S.score(ind, train, errors, params);
     
-    Dataset validation = data.get_validation_data();
-    float f_v = S.score(ind, validation, errors, params);
+    float f_v = f;
+    if (data.use_validation) {
+        Dataset validation = data.get_validation_data();
+        f_v = S.score(ind, validation, errors, params);
+    }
 
     // TODO: implement the class weights and use it here (and on errors)
+
+    ind.set_objectives(params.objectives);
 
     ind.error = errors;
     ind.fitness.set_loss(f);
     ind.fitness.set_loss_v(f_v);
-    ind.fitness.size = ind.get_size();
-    ind.fitness.complexity = ind.get_complexity();
-    ind.fitness.depth = ind.get_depth();
-
-    ind.set_objectives(params.objectives);
+    ind.fitness.set_size(ind.get_size());
+    ind.fitness.set_complexity(ind.get_complexity());
+    ind.fitness.set_depth(ind.get_depth());
 
     vector<float> values;
     values.resize(0);

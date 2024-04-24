@@ -26,9 +26,9 @@ struct Fitness {
     float loss;     ///< aggregate loss score
     float loss_v;   ///< aggregate validation loss score
 
-    size_t complexity;
-    size_t size;
-    size_t depth;
+    unsigned int complexity;
+    unsigned int size;
+    unsigned int depth;
 
     // these can be different depending on the island the individual is
     unsigned int dcounter;  ///< number of individuals this dominates
@@ -44,6 +44,15 @@ struct Fitness {
 
     void set_loss_v(float f_v){ loss_v=f_v; };
     float get_loss_v() const { return loss_v; };
+    
+    void set_size(unsigned int new_s){ size=new_s; };
+    unsigned int get_size() const { return size; };
+    
+    void set_complexity(unsigned int new_c){ complexity=new_c; };
+    unsigned int get_complexity() const { return complexity; };
+    
+    void set_depth(unsigned int new_d){ depth=new_d; };
+    unsigned int get_depth() const { return depth; };
 
     void set_dcounter(unsigned int d){ dcounter=d; };
     unsigned int get_dcounter() const { return dcounter; };
@@ -100,6 +109,7 @@ struct Fitness {
             values.push_back(element);
         }
 
+        // Minimizing/maximizing problem: negative/positive weight, respectively.
         wvalues.resize(weights.size());
 
         // Perform element-wise multiplication
@@ -131,8 +141,8 @@ struct Fitness {
 
     // Less than comparison
     bool operator<(const Fitness& other) const {
-        // Minimizing/maximizing problem: negative/positive weight, respectively.
-        return std::lexicographical_compare(wvalues.begin(), wvalues.end(),
+        // because of the weights, every objective is a maximization problem
+        return !std::lexicographical_compare(wvalues.begin(), wvalues.end(),
                                             other.wvalues.begin(), other.wvalues.end());
     }
 
