@@ -40,7 +40,7 @@ public:
 
     // outputs a progress bar, filled according to @param percentage.
     void print_progress(float percentage);
-    void calculate_stats(const Dataset& d);
+    void calculate_stats();
     void print_stats(std::ofstream& log, float fraction);      
     void log_stats(std::ofstream& log);
 

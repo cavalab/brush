@@ -85,7 +85,7 @@ void Engine<T>::print_progress(float percentage)
 
 
 template <ProgramType T>
-void Engine<T>::calculate_stats(const Dataset& d)
+void Engine<T>::calculate_stats()
 {
     int pop_size = 0;
     for (int island=0; island<params.num_islands; ++island)
@@ -311,8 +311,6 @@ void Engine<T>::run(Dataset &data)
 
     tf::Taskflow taskflow;
 
-    // TODO: get references to all classes ( so they can be captured by taskflow) (like some private getters and setters)
-    
     //std::cout << "stop criteria is ready " << std::endl;
     // stop criteria 
     unsigned generation = 0;
@@ -447,18 +445,13 @@ void Engine<T>::run(Dataset &data)
             auto finish_gen = subflow.emplace([&]() {
                 bool updated_best = this->update_best(data);
                 
-                // TODO: fix this code below (if needed. this is borrowed from feat)
-                // if ( (use_arch || params.verbosity>1) || !logfile.empty()) {
-                //     // set objectives to make sure they are reported in log/verbose/arch
-                //     #pragma omp parallel for
-                //     for (unsigned int i=0; i<pop.size(); ++i)
-                //         pop.individuals.at(i).set_obj(params.objectives);
-                // }
+                // TODO: use_arch
+                if ( params.verbosity>1 || !logfile.empty()) {
+                    calculate_stats();
+                }
 
                 // TODO: logger working
                 // logger.log("calculate stats...",2);
-                calculate_stats(data); // TODO: calculate stats only if archive, logstats, or verbosity (otherwise it is not used)
-                // TODO: calculate stats does not need dataset
 
                 // if (use_arch)  // TODO: archive
                 //     archive.update(pop,params);

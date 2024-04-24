@@ -77,7 +77,8 @@ struct Fitness {
         dominated.resize(0);
     }
     
-    // Hash function TODO: stop using it (i think only deap needs this)
+    // Hash function (deap requires individuals (and fitness by induction)
+    // to be hashable)
     size_t hash() const {
         std::size_t h = std::hash<vector<float>>{}(wvalues);
         return h;
@@ -96,7 +97,6 @@ struct Fitness {
         return wvalues;
     }
 
-    // TODO: debug size, it is giving weird values
     // Method to set values
     void set_values(vector<float>& v) {
         if (v.size() != weights.size()) {

@@ -13,8 +13,7 @@ void Evaluation<T>::update_fitness(Population<T>& pop,
                     bool fit,
                     bool validation
                     )
-{
-    //TODO: it could use the validation_loss     
+{   
     auto idxs = pop.get_island_indexes(island);
 
     for (unsigned i = 0; i<idxs.size(); ++i)

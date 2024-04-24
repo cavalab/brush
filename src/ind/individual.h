@@ -30,7 +30,6 @@ public: // TODO: make these private (and work with nlohman json)
        
     Individual()
     {
-        // TODO: better initialization of arguments
         objectives = {"error", "complexity"}; 
     };
 
@@ -45,12 +44,13 @@ public: // TODO: make these private (and work with nlohman json)
         // program = SS.make_program<T>(params, params.max_depth, params.max_size);
     };
 
-    // fitness, objetives, complexity, etc. TODO: create intermediate  functions to  interact  with fitness and program?
+    // fitness, objetives, complexity, etc.
     void fit(Dataset& data) {
         program.fit(data);
         // this flag is used to avoid re-fitting an individual. the program is_fitted_ flag is used to perform checks (like in predict with weights). They are two different things and I think I;ll keep this way (individual is just a container to keep program and fitness together) 
         this->is_fitted_ = true;
     };
+    
     auto predict(Dataset& data) { return program.predict(data); };
 
     // TODO: predict proba and classification related methods.
