@@ -113,8 +113,6 @@ TEST(Engine, EngineWorks)
     est_not_div2.run(data);
 
     // TODO: test predict and predict proba
-
-     // TODO: why isnt this working for classification
      // TODO: validation loss
 }
 

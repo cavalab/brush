@@ -81,6 +81,8 @@ That means it should be compatible with sklearn pipelines, wrappers, and so fort
 
 In addition, Brush provides functionality that allows you to feed in more complicated data types than just matrices of floating point values. 
 
+<!-- TODO: update these examples (at least check they still work) -->
+
 ## Regression
 
 ```python

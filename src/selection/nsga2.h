@@ -51,9 +51,9 @@ public:
                 auto ind1 = pop.individuals[i];
                 auto ind2 = pop.individuals[j];
                 
-                if (ind1->fitness.rank < ind2->fitness.rank)
+                if (ind1->fitness.get_rank() < ind2->fitness.get_rank())
                     return true;
-                else if (ind1->fitness.rank == ind2->fitness.rank &&
+                else if (ind1->fitness.get_rank() == ind2->fitness.get_rank() &&
                             ind1->fitness.crowding_dist > ind2->fitness.crowding_dist)
                     return true;
                 return false;
