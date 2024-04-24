@@ -69,7 +69,7 @@ class BrushEstimator(BaseEstimator):
         Distribution of sizes on the initial population. If `max_size`, then every
         expression is created with `max_size` nodes. If `uniform`, size will be
         uniformly distributed between 1 and `max_size`.
-    selection : {"e-lexicase", "tournament"}, default "e-lexicase"
+    selection : {"e-lexicase", "tournament"}, default "tournament"
         A string with the selection method to use. Default is automatic epsilon
         lexicase. Ignored if algorithm is not "nsga2" or "nsga2island".
     objectives : list[str], default ["error", "size"]
@@ -142,7 +142,7 @@ class BrushEstimator(BaseEstimator):
                             "toggle_weight_on":1/6, "toggle_weight_off":1/6},
         functions: Union[List[str], Dict[str, float]] = {},
         initialization="uniform",
-        selection="e-lexicase",
+        selection="tournament",
         algorithm="nsga2",
         pick_criteria="error",
         objectives=["error", "size"],
