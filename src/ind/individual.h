@@ -1,8 +1,8 @@
 #ifndef INDIVIDUAL_H
 #define INDIVIDUAL_H
 
-#include "program/program.h"
-#include "eval/fitness.h"
+#include "../program/program.h"
+#include "fitness.h"
 
 #include <functional>
 
@@ -10,8 +10,6 @@ using namespace nlohmann;
 
 namespace Brush{
 namespace Pop{
-
-// TODO: folder for fitness and individual
 
 template<ProgramType T> 
 class Individual{
@@ -56,9 +54,8 @@ public: // TODO: make these private (and work with nlohman json)
     auto predict(Dataset& data) { return program.predict(data); };
 
     // TODO: predict proba and classification related methods.
-    // TODO: This class should also have its own cpp wrapper. Update it into the deap api (the idea is that the user is still able to prototype with brush, I dont think we should disable that feature)
 
-    // just getters (TODO: use the attributes )
+    // just getters
     bool get_is_fitted() const { return this->is_fitted_; };
     string get_model() const { return program.get_model(); };
     size_t get_size() const { return program.size(); };
@@ -74,23 +71,20 @@ public: // TODO: make these private (and work with nlohman json)
     // void Individual<T>::set_objectives(const vector<string>& objectives)
 
     // Static map for weights associated with strings
-    // TODO: change this to an attribute instead of a function
-    // TODO: weights for different values. loss should be calculated duing runtime, based on the metric
     inline static std::map<std::string, float> weightsMap = []() {
         std::map<std::string, float> map = {
+            // this will determine each fitness metric to be a min/max problem
             {"complexity", -1.0},
-            {"size", -1.0}
+            {"size",       -1.0},
+            {"mse",        -1.0},
+            {"log",        +1.0},
+            {"multi_log",  +1.0},
+
+            // generic error metrics (will use default metrics for clf or reg)
+            {"error", (T == Brush::ProgramType::Regressor) ? -1.0 : +1.0}
+
             // Add more key-value pairs as needed
         };
-
-        // TODO: move these key value initializations to line above
-        // example on how to have weight based on templated class
-        map["error"]     = (T == Brush::ProgramType::Regressor) ? -1.0 : +1.0;
-
-        // TODO: eu deveria fazer um check para ver se a string eh error e qual o scorer_ nesse caso
-        map["mse"]       = -1.0;
-        map["log"]       = +1.0;
-        map["multi_log"] = +1.0;
 
         return map;
     }();
@@ -106,8 +100,8 @@ public: // TODO: make these private (and work with nlohman json)
             if (it != weightsMap.end()) {
                 weights.push_back(it->second);
             } else {
-                // TODO: throw error here, unknown objective
-                std::cout << obj << " not found in the weight map." << std::endl;
+                throw std::runtime_error(
+                    "Unknown metric used as fitness. Value was " + obj);
             }
         }
 

@@ -18,7 +18,7 @@ license: GNU/GPL v3
 #include "../init.h"
 #include "tree_node.h"
 #include "node.h"
-#include "../search_space.h"
+#include "../vary/search_space.h"
 #include "../params.h"
 #include "../util/utils.h"
 #include "functions.h"

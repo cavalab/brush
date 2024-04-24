@@ -4,11 +4,11 @@
 
 #include <string>
 
-#include "../search_space.h"
-#include "../individual.h"
+#include "../vary/search_space.h"
+#include "../ind/individual.h"
 #include "../data/data.h"
 #include "scorer.h"
-#include "../population.h"
+#include "../pop/population.h"
 
 using std::string;
 

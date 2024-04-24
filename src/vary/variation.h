@@ -7,12 +7,11 @@ license: GNU/GPL v3
 #define VARIATION_H
 
 
-// TODO: folder for variation. move search_space and variation to this folder
 // #include "util/error.h"
 // #include "util/utils.h"
 
 //#include "search_space.h"
-#include "population.h"
+#include "../pop/population.h"
 
 #include <map>
 #include <optional>

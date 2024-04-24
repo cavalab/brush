@@ -17,11 +17,6 @@ using namespace Var;
 template <ProgramType T>
 void Engine<T>::init()
 {
-    // std::cout << "inside init" << std::endl;
-
-    // TODO: initialize (set operator) for survivor and selector
-    // initialize population with initial model and/or starting pop
-
     // TODO: get rid of omp
     if (params.n_jobs!=0) 
         omp_set_num_threads(params.get_n_jobs());
@@ -52,22 +47,14 @@ void Engine<T>::init()
     this->variator.init(params, ss);
     //std::cout << "initialized variator" << std::endl;
 
+    // initializing survivor and selector based on params
     this->selector = Selection<T>(params.sel, false);
-    //std::cout << "created selector" << std::endl;
-
     this->survivor = Selection<T>(params.surv, true);
-    //std::cout << "created survivor" << std::endl;
 
     this->best_score = MAX_FLT;
     this->best_complexity = MAX_FLT;
 
-    // TODO getters and setters for the best solution found after evolution
-    // predict, transform, predict_proba, etc.
-    // load and save best individuals
-    // logger, save to file
-    // execution archive
-    // score functions
-    // fit methods (this will run the evolution)
+    // TODO: predict, transform, predict_proba, fit (will run the engine)
 
     this->archive.set_objectives(params.objectives);
 
@@ -232,8 +219,7 @@ bool Engine<T>::update_best(const Dataset& data, bool val)
     float bs;
     bs = this->best_score; 
     
-    float f; 
-    // TODO: archive here?
+    float f;
 
     bool updated = false; 
 
@@ -256,7 +242,6 @@ bool Engine<T>::update_best(const Dataset& data, bool val)
         else
             f = ind.fitness.loss;
 
-        // TODO: fix this by multiplying by weight
         if (f*error_weight > bs*error_weight
         || (f == bs && ind.fitness.complexity < this->best_complexity)
         )
@@ -330,11 +315,9 @@ void Engine<T>::run(Dataset &data)
     float fraction = 0;
 
     auto stop = [&]() {
-        //std::cout << "inside stop " << std::endl;
-        // TODO: max time
         return (  (generation == params.gens)
-               && (params.max_stall == 0 || stall_count < params.max_stall) 
-               && (params.max_time == -1 || params.max_time > timer.Elapsed().count())
+               && ((params.max_stall == 0 || stall_count < params.max_stall) 
+               &&  (params.max_time == -1 || params.max_time > timer.Elapsed().count()) )
         );
     };
 
@@ -362,8 +345,6 @@ void Engine<T>::run(Dataset &data)
         island_parents.at(i).resize(delta);
     }
 
-    //std::cout << "vectors are created " << std::endl;
-    // TODO: progress bar? (it would be cool)
     // heavily inspired in https://github.com/heal-research/operon/blob/main/source/algorithms/nsga2.cpp
     auto [init, cond, body, back, done] = taskflow.emplace(
         [&]() { /* done nothing to do */ }, // init (entry point for taskflow)
@@ -403,8 +384,6 @@ void Engine<T>::run(Dataset &data)
             auto run_generation = subflow.for_each_index(0, this->params.num_islands, 1, [&](int island) {
                 //std::cout << "inside select parents" << std::endl;
                 evaluator.update_fitness(this->pop, island, data, params, true); // fit the weights with all training data
-
-                // TODO: individuals should have a flag is_fitted so we avoid re-fitting them
 
                 // TODO: have some way to set which fitness to use (for example in params, or it can infer based on split size idk)
                 // TODO: if using batch, fitness should be called before selection to set the batch
@@ -460,7 +439,6 @@ void Engine<T>::run(Dataset &data)
                 //std::cout << pop.print_models() << std::endl;
             }).name("update, migrate and disentangle indexes between islands");
             
-            // TODO: update log and archive
             auto finish_gen = subflow.emplace([&]() {
                 bool updated_best = this->update_best(data);
                 
@@ -480,7 +458,6 @@ void Engine<T>::run(Dataset &data)
                 // if (use_arch)  // TODO: archive
                 //     archive.update(pop,params);
                 
-                // TODO: make verbosity print progress and stats
                 if(params.verbosity>1)
                     print_stats(log, fraction);    
                 else if(params.verbosity == 1)

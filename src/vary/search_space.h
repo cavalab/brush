@@ -5,15 +5,15 @@ license: GNU/GPL v3
 #ifndef SEARCHSPACE_H 
 #define SEARCHSPACE_H
 //internal includes
-#include "init.h"
-#include "program/node.h"
-#include "program/nodetype.h"
-#include "program/tree_node.h"
+#include "../init.h"
+#include "../program/node.h"
+#include "../program/nodetype.h"
+#include "../program/tree_node.h"
 // #include "program/program.h"
-#include "util/error.h"
-#include "util/utils.h"
-#include "util/rnd.h"
-#include "params.h"
+#include "../util/error.h"
+#include "../util/utils.h"
+#include "../util/rnd.h"
+#include "../params.h"
 #include <utility>
 #include <optional>
 #include <iostream>

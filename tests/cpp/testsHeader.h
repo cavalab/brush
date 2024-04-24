@@ -31,10 +31,10 @@ using std::stof;
 #include "../../src/program/operator.h"
 #include "../../src/program/dispatch_table.h"
 #include "../../src/program/program.h"
-#include "../../src/individual.h"
-#include "../../src/search_space.h"
+#include "../../src/ind/individual.h"
+#include "../../src/vary/search_space.h"
 #include "../../src/params.h"
-#include "../../src/variation.h"
+#include "../../src/vary/variation.h"
 #include "../../src/selection/selection.h"
 #include "../../src/selection/selection_operator.h"
 #include "../../src/selection/nsga2.h"
@@ -43,7 +43,7 @@ using std::stof;
 #include "../../src/eval/metrics.h"
 #include "../../src/eval/scorer.h"
 #include "../../src/engine.h"
-#include "../../src/variation.cpp" // TODO: is this ok? (otherwise I would have to create a test separated file, or move the implementation to the header)
+#include "../../src/vary/variation.cpp" // TODO: is this ok? (otherwise I would have to create a test separated file, or move the implementation to the header)
 
 using namespace Brush;
 using namespace Brush::Data;

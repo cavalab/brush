@@ -77,15 +77,13 @@ void Population<T>::init(SearchSpace& ss, const Parameters& params)
     for (int i=0; i<num_islands; ++i)
     {
         size_t idx_start = std::floor(i*p/num_islands);
-        size_t idx_end   = std::floor((i+1)*p/num_islands); // TODO: i should use this equation to restore the original number of individuals (so I can have the algorithm to work regardless of number of islands being a divisor of pop size)
-
+        size_t idx_end   = std::floor((i+1)*p/num_islands);
+        
         auto delta = idx_end - idx_start;
 
         island_indexes.at(i).resize(delta);
         iota(island_indexes.at(i).begin(), island_indexes.at(i).end(), idx_start);
     };
-
-   // TODO: load file (like feat)
 
     // this calls the default constructor for the container template class 
     individuals.resize(2*p); // we will never increase or decrease the size during execution (because is not thread safe). this way, theres no need to sync between selecting and varying the population
@@ -121,12 +119,6 @@ void Population<T>::save(string filename)
 template<ProgramType T>
 void Population<T>::load(string filename)
 {
-    
-    // TODO: if initializing from a population file, then this is where we should load previous models.
-    // three behaviors: if we have only 1 ind, then replicate it trought the entire pop
-    // if n_ind is the same as pop_size, load all models. if n_ind != pop_size, throw error
-
-    //TODO: replace with from_json(j, this) call
     std::ifstream indata;
     indata.open(filename);
     if (!indata.good())
@@ -275,8 +267,8 @@ vector<vector<size_t>> Population<T>::sorted_front(unsigned rank)
 template<ProgramType T>
 vector<size_t> Population<T>::hall_of_fame(unsigned rank)
 {
-    // TODO: remove this ignore offspring (things should work without it)
-    // this is used to migration and update archive at the end of a generation. expect islands without offspring
+    // this is used to migration and update archive at the end of a generation.
+    // Thiis function expects islands without offspring
 
     vector<size_t> pf(0);
     
@@ -297,137 +289,6 @@ vector<size_t> Population<T>::hall_of_fame(unsigned rank)
 
     return pf;
 }
-
-
-// template<ProgramType T>
-// void Population<T>::migrate()
-// {
-//     // changes where island points to based on HOF and pareto fronts
-
-//     if (num_islands==1)
-//         return; // skipping. this only work because update is fixing island indexes
-
-//     // we cant use more than half of population here
-//     // std::cout << "finding island sorted fronts" << std::endl;
-//     auto island_fronts = sorted_front(1);
-    
-//     // std::cout << "finding global hall of fame" << std::endl;
-//     auto global_hall_of_fame = hall_of_fame(1);
-
-//     // This method is not thread safe (as it is now)
-//     vector<vector<size_t>> new_island_indexes;
-//     new_island_indexes.resize(num_islands);
-
-//     // std::cout << "Looping" << std::endl;
-//     for (int island=0; island<num_islands; ++island)
-//     {
-//         new_island_indexes.at(island).resize(0);
-
-//         auto idxs = island_indexes.at(island);
-//         for (unsigned int i=0; i<idxs.size(); ++i)
-//         {
-//             if (r() < mig_prob)
-//             {
-//                 // std::cout << "migrating in island " << island << std::endl;
-
-//                 size_t migrating_idx;
-//                 // determine if incoming individual comes from global or local hall of fame
-//                 if (r() < 0.5) { // from global hall of fame
-//                     // std::cout << "from hall of fame" << std::endl;
-//                     migrating_idx = *r.select_randomly(
-//                         global_hall_of_fame.begin(),
-//                         global_hall_of_fame.end());
-                        
-//                     // std::cout << "mig idx" << migrating_idx << std::endl;
-//                 }
-//                 else { // from any other local hall of fame
-//                     // std::cout << "from other island" << std::endl;
-//                     // finding other island indexes
-//                     vector<int> other_islands(num_islands-1);
-//                     iota(other_islands.begin(), other_islands.end(), 0);
-
-//                     // skipping current island
-//                     auto it = other_islands.begin();
-//                     std::advance(it, island);
-//                     for (;it != other_islands.end(); ++it) {
-//                         ++(*it); // TODO: is this really skipping the current island?
-//                     }
-
-//                     // picking other island
-//                     int other_island = *r.select_randomly(
-//                         other_islands.begin(),
-//                         other_islands.end());
-
-//                     migrating_idx = *r.select_randomly(
-//                         island_fronts.at(other_island).begin(),
-//                         island_fronts.at(other_island).end());
-//                     // std::cout << "mig idx" << migrating_idx << std::endl;
-//                 }
-
-//                 // std::cout << "index " << i << " of island " << island;
-//                 // std::cout << " is now" << migrating_idx << std::endl;
-                
-//                 new_island_indexes.at(island).push_back(migrating_idx);
-//             }
-//             else
-//             {
-//                 new_island_indexes.at(island).push_back(idxs.at(i));
-//             }
-//         }
-//     }
-//     // making hard copies (so the next generation starts with islands that does not share individuals 
-//     // this is particularly important to avoid multiple threads assigning different rank/crowdist/dcounter 
-//     // or different fitness)
-    
-//     // std::cout << "starting to consolidate pop" << std::endl;
-//     vector<Individual<T>> new_pop;
-//     new_pop.resize(0);
-//     for (int j=0; j<num_islands; ++j)
-//     {
-//         for (int k=0; k<new_island_indexes.at(j).size(); ++k){
-//             new_pop.push_back(
-//                 *individuals.at(new_island_indexes.at(j).at(k)) );
-//         }
-
-//         // need to make island point to original range
-//         size_t idx_start = std::floor(j*pop_size/num_islands);
-//         size_t idx_end   = std::floor((j+1)*pop_size/num_islands);
-
-//         auto delta = idx_end - idx_start;
-
-//         assert(delta == new_island_indexes.at(j).size()
-//             && " new pop has the wrong number of new individuals");
-
-//         // inserting indexes of the offspring
-//         island_indexes.at(j).clear();
-//         island_indexes.at(j).resize(delta);
-//         iota(island_indexes.at(j).begin(), island_indexes.at(j).end(), idx_start);
-//     }
-
-//     // std::cout << "finished making copies" << std::endl;
-//     assert(new_pop.size() == pop_size
-//            && " migration ended up with a different popsize");
-
-    
-//     // std::cout << "filling individuals" << std::endl;
-//     this->individuals.resize(0);
-//     for (auto ind : new_pop)
-//     {
-//         // making hard copies of the individuals
-//         json ind_copy = ind;
-
-//         // this will fill just half of the pop
-//         individuals.push_back(
-//             std::make_shared<Individual<T>>(ind_copy) );
-//     }
-//     for (int i=0; i< pop_size; ++i)
-//     {
-//         // second half is space to the offspring (but we dont initialize them)
-//         individuals.push_back(nullptr);   
-//     }
-// }
-
-
 
 template<ProgramType T>
 void Population<T>::migrate()
@@ -462,7 +323,7 @@ void Population<T>::migrate()
                 auto it = other_islands.begin();
                 std::advance(it, island);
                 for (;it != other_islands.end(); ++it) {
-                    ++(*it); // TODO: is this really skipping the current island?
+                    ++(*it);
                 }
 
                 // picking other island

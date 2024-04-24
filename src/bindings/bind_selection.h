@@ -9,8 +9,8 @@
 #include "../selection/lexicase.h"
 #include "../selection/lexicase.cpp"
 
-#include "../population.cpp"
-#include "../population.h"
+#include "../pop/population.cpp"
+#include "../pop/population.h"
 
 // #include "../individual.h"
 //#include "../selection/selection.cpp" 

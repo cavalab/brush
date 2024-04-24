@@ -9,10 +9,10 @@ license: GNU/GPL v3
 #include "./util/rnd.h"
 #include "init.h"
 #include "params.h"
-#include "population.h"
+#include "pop/population.h"
 #include "pop/archive.h"
 #include "./eval/evaluation.h"
-#include "variation.h"
+#include "vary/variation.h"
 #include "selection/selection.h"
 #include "taskflow/taskflow.hpp"
 
@@ -56,7 +56,7 @@ public:
 
     // TODO: best fitness instead of these. use fitness comparison
     float best_score;
-    int best_complexity; // TODO: best complexity in log/print stats?
+    int best_complexity;
     Individual<T>& get_best_ind(){return best_ind;};  
     
     // TODO: starting pop (just like feat)

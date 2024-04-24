@@ -1,5 +1,5 @@
 #include "module.h"
-#include "../search_space.h"
+#include "../vary/search_space.h"
 #include "../program/program.h"
 namespace py = pybind11;
 namespace br = Brush;

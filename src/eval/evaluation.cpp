@@ -17,7 +17,6 @@ void Evaluation<T>::update_fitness(Population<T>& pop,
     //TODO: it could use the validation_loss     
     auto idxs = pop.get_island_indexes(island);
 
-    int counter = 0;
     for (unsigned i = 0; i<idxs.size(); ++i)
     {
         Individual<T>& ind = *pop.individuals.at(idxs.at(i)).get(); // we are modifying it, so operator[] wont work
@@ -26,8 +25,6 @@ void Evaluation<T>::update_fitness(Population<T>& pop,
 
         if (pass)
         {
-            // TODO: check if score was nan and assign the max float
-            // TODO: better handling of nan or inf scores when doing selection and survival (and hall of fame and rank for migration)
             ind.fitness.loss = MAX_FLT;
             ind.fitness.loss_v = MAX_FLT;
             ind.error = MAX_FLT*VectorXf::Ones(data.y.size());
@@ -42,10 +39,7 @@ void Evaluation<T>::update_fitness(Population<T>& pop,
             
             assign_fit(ind, data, params, validation);
         }
-        ++counter;// TODO: get rid of this counter
     }
-
-    assert(counter > 0);
 }
 
 // assign loss to program

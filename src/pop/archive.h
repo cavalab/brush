@@ -2,15 +2,10 @@
 #define ARCHIVE_H
 
 //#include "node.h" // including node.h since definition of node is in the header
-#include "../individual.h"
+#include "../ind/individual.h"
 
 ///< nsga2 selection operator for getting the front
 #include "../selection/nsga2.h"
-
-// TODO: do i really need these?
-using std::vector;
-using std::string;
-using Eigen::Map;
 
 namespace Brush{
 

@@ -1,6 +1,6 @@
 #include "module.h"
 
-#include "../individual.h"
+#include "../ind/individual.h"
 
 namespace nl = nlohmann;
 namespace br = Brush;

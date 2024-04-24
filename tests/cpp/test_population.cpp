@@ -1,7 +1,7 @@
 #include "testsHeader.h"
 
-#include "../../src/individual.cpp"
-#include "../../src/population.cpp" // TODO: figure out if thats ok to include cpps instead of headers
+#include "../../src/ind/individual.cpp"
+#include "../../src/pop/population.cpp" // TODO: figure out if thats ok to include cpps instead of headers
 #include "../../src/eval/evaluation.cpp"
 #include "../../src/selection/nsga2.cpp"
 #include "../../src/selection/lexicase.cpp"
@@ -141,6 +141,8 @@ TEST(Population, PopulationTests)
             }
         }
     }
+
+    // testing that we can save and load the population
     pop.save("./tests/cpp/__pop_save_100_gen.json");
     pop.load("./tests/cpp/__pop_save_100_gen.json");
 }

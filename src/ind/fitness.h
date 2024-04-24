@@ -8,7 +8,7 @@
 using namespace nlohmann;
 
 
-template <> // this is intended to be used with DEAP. TODO: decide if im going to keep it
+template <> // this is intended to be used with DEAP (so our brush individuals can be hashed and compared to each other in python side)
 struct std::hash<std::vector<float>> {
     std::size_t operator()(const std::vector<float>& v) const {
         std::size_t seed = v.size();
@@ -162,7 +162,7 @@ struct Fitness {
 
     // Representation for debugging
     std::string repr() const {
-        return "Fitness(TODO: implement string representation)";
+        return "TODO: implement string representation";
     }
 
 

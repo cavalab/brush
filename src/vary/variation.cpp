@@ -107,7 +107,6 @@ public:
             if (spot_filled)
             {
                 // if spot is in its child position, append children.
-                // TODO: reminding that sample_terminal may fail as well
                 auto opt = SS().sample_terminal(a);
 
                 if (!opt)

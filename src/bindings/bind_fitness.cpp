@@ -1,6 +1,6 @@
 #include "module.h"
 
-#include "../eval/fitness.h"
+#include "../ind/fitness.h"
 
 namespace nl = nlohmann;
 namespace br = Brush;

@@ -1,6 +1,6 @@
 #include "testsHeader.h"
 
-#include "../../src/search_space.h"
+#include "../../src/vary/search_space.h"
 #include "../../src/program/program.h"
 // #include "../../src/program/dispatch_table.h"
 #include "../../src/data/io.h"
@@ -12,7 +12,7 @@
 #include "../../src/selection/lexicase.h"
 #include "../../src/eval/evaluation.h"
 #include "../../src/pop/archive.h"
-#include "../../src/population.h"
+#include "../../src/pop/population.h"
 
 // TODO: omg i need to figure out why my code only works if i import basically the whole stuff
 #include "../../src/selection/selection.cpp"
@@ -21,7 +21,7 @@
 #include "../../src/selection/lexicase.cpp"
 #include "../../src/eval/evaluation.cpp"
 #include "../../src/pop/archive.cpp"
-#include "../../src/population.cpp"
+#include "../../src/pop/population.cpp"
 
 // TODO: test logger, verbose, print stats, etc.
 TEST(Engine, EngineWorks)

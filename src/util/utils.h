@@ -392,7 +392,7 @@ NLOHMANN_DEFINE_TYPE_NON_INTRUSIVE(Log_Stats,
     med_complexity,
     max_size,
     max_complexity
-    );
+);
 
 /// limits the output to finite real numbers
 template<typename T>

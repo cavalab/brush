@@ -50,7 +50,7 @@ enum class NodeType : uint64_t { // Each node type must have a complexity
     Sqrt                = 1UL << 16UL,
     Sqrtabs             = 1UL << 17UL,
     Square              = 1UL << 18UL,
-    Logistic            = 1UL << 19UL,
+    Logistic            = 1UL << 19UL, // used as root for classification trees
 
     // timing masks
     Before              = 1UL << 20UL,
@@ -67,7 +67,7 @@ enum class NodeType : uint64_t { // Each node type must have a complexity
     OffsetSum           = 1UL << 29UL, // Sum with weight as one of its arguments
 
     // Transformers 
-    Softmax             = 1UL << 30UL,
+    Softmax             = 1UL << 30UL, // used as root for multiclf trees
 
     // Binary
     Add                 = 1UL << 31UL,
@@ -97,7 +97,9 @@ enum class NodeType : uint64_t { // Each node type must have a complexity
     MeanLabel           = 1UL << 41UL,
     Constant            = 1UL << 42UL,
     Terminal            = 1UL << 43UL,
-    ArgMax              = 1UL << 44UL, // TODO: move before leaves
+
+    // TODO: implement operators below and move them before leaves
+    ArgMax              = 1UL << 44UL, 
     Count               = 1UL << 45UL, 
     
     // custom
@@ -110,8 +112,12 @@ enum class NodeType : uint64_t { // Each node type must have a complexity
 using UnderlyingNodeType = std::underlying_type_t<NodeType>;
 struct NodeTypes {
     // magic number keeping track of the number of different node types
+    
+    // index of last available node visible to search_space
     static constexpr size_t Count = 44;
-    static constexpr size_t OpCount = Count-3; // subtracting leaves
+
+    // subtracting leaves (leaving just the ops into this)
+    static constexpr size_t OpCount = Count-3;
 
     // returns the index of the given type in the NodeType enum
     static auto GetIndex(NodeType type) -> size_t

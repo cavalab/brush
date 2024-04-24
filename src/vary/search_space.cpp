@@ -1,5 +1,5 @@
 #include "search_space.h"
-#include "program/program.h"
+#include "../program/program.h" // TODO: dont import this header here
 
 namespace Brush{
 
@@ -10,7 +10,8 @@ float calc_initial_weight(const ArrayXf& value, const ArrayXf& y)
 
     // weights are initialized as the slope of the z-score of x and y.
 
-    // If y has different length from X, we get a core dump here. 
+    // If y has different length from X, we get a core dump in this function.
+    // That is why Dataset makes a check for this 
     // TODO: need to make SS (or Datasaet) check for this when loading the data
 
     vector<char> dtypes = {'f', 'f'};

@@ -7,7 +7,7 @@
 // #include "../data/data.h"
 // #include "../types.h"
 // #include "../params.h"
-#include "../population.h"
+#include "../pop/population.h"
 
 namespace Brush {
 namespace Sel {

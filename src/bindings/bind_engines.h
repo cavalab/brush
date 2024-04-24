@@ -15,8 +15,8 @@
 #include "../eval/evaluation.h"
 #include "../eval/evaluation.cpp"
 
-#include "../population.cpp"
-#include "../population.h"
+#include "../pop/population.cpp"
+#include "../pop/population.h"
 
 using Reg = Brush::RegressorEngine;
 using Cls = Brush::ClassifierEngine;

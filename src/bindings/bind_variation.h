@@ -1,9 +1,9 @@
 #include "module.h"
-#include "../variation.h"
-#include "../variation.cpp" // TODO: figure out why im having symbol errors (if i dont include the cpp here as well)
+#include "../vary/variation.h"
+#include "../vary/variation.cpp" // TODO: figure out why im having symbol errors (if i dont include the cpp here as well)
 
-#include "../population.cpp"
-#include "../population.h"
+#include "../pop/population.cpp"
+#include "../pop/population.h"
 
 namespace py = pybind11;
 namespace nl = nlohmann;

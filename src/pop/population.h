@@ -1,17 +1,12 @@
 #ifndef POPULATION_H
 #define POPULATION_H
 
-#include "util/error.h"
-#include "individual.h"
+#include "../util/error.h"
+#include "../ind/individual.h"
 
-// TODO: do i really need these?
-using std::vector;
-using std::string;
-using Eigen::Map;
-
-// TODO: folder for population and archive
 // TODO: move this serialization elsewhere
 // serializing vector of shared ptr: https://github.com/nlohmann/json/discussions/2377
+// (this is used by population, which has a shared_ptr vector)
 namespace nlohmann
 {
 template <typename T>
@@ -43,7 +38,6 @@ struct adl_serializer<std::shared_ptr<T>>
 };
 }
 
-
 namespace Brush {   
 namespace Pop {
 
@@ -66,7 +60,6 @@ public:
     // initialize based on list of individuals
     void init(vector<Individual<T>>& individuals, const Parameters& params);
 
-    // TODO: init from file (like FEAT)
     // save serialized population
     void save(string filename);
     // load serialized population
