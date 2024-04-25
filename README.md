@@ -45,6 +45,18 @@ GNU GPLv3, see [LICENSE](https://github.com/cavalab/brush/blob/master/LICENSE)
 
 ## Installation
 
+### Installation via Python wheel and `pip` (recommended)
+
+> **Important**: This method is only currently supported for CPython v3.11 running on the Linux x86_64 platform. Other Python versions and operating systems will be supported in the near future.
+
+To install a prebuilt version of `pybrush`, download the most recent release of the wheel file on the [Releases page](https://github.com/cavalab/brush/releases/) (e.g., `pybrush-0.1.1-cp311-linux_x86_64.whl`; you may need to expand "Assets" to see the file). Then, navigate to the directory containing the wheel file and install it using `pip`:
+
+```
+pip install pybrush-0.1.1-cp311-linux_x86_64.whl
+```
+
+### Manual installation
+
 <!-- start installation -->
 Clone the repo:
 
