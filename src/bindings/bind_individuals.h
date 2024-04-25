@@ -5,6 +5,11 @@
 namespace nl = nlohmann;
 namespace br = Brush;
 
+using Reg = br::Pop::Individual<br::ProgramType::Regressor>;
+using Cls = br::Pop::Individual<br::ProgramType::BinaryClassifier>;
+using MCls = br::Pop::Individual<br::ProgramType::MulticlassClassifier>;
+using Rep = br::Pop::Individual<br::ProgramType::Representer>;
+
 using stream_redirect = py::call_guard<py::scoped_ostream_redirect, py::scoped_estream_redirect>;
 
 // TODO: unify PT or T
@@ -12,6 +17,11 @@ template <br::ProgramType T>
 void bind_individual(py::module& m, string name)
 {
     using Class = br::Pop::Individual<T>;
+    
+    using RetType = std::conditional_t<
+            std::is_same_v<Class,Reg>, ArrayXf, 
+            std::conditional_t<std::is_same_v<Class,Cls>, ArrayXb, 
+            std::conditional_t<std::is_same_v<Class,MCls>, ArrayXi, ArrayXXf>>>;
 
     py::class_<Class> ind(m, name.data() ); 
     ind.def(py::init<>())
@@ -26,7 +36,18 @@ void bind_individual(py::module& m, string name)
        .def_property("objectives", &Class::get_objectives, &Class::set_objectives)
        .def_property_readonly("program", &Class::get_program)
        .def_property_readonly("fitness", &Class::get_fitness)
-    //    .def_property("complexity", &Class::get_complexity, &Class::set_complexity)
+       .def("fit",
+            static_cast<Class &(Class::*)(const Dataset &d)>(&Class::fit),
+            "fit from Dataset object")
+        .def("fit",
+            static_cast<Class &(Class::*)(const Ref<const ArrayXXf> &X, const Ref<const ArrayXf> &y)>(&Class::fit),
+            "fit from X,y data")
+        .def("predict",
+            static_cast<RetType (Class::*)(const Dataset &d)>(&Class::predict),
+            "predict from Dataset object")
+        .def("predict",
+            static_cast<RetType (Class::*)(const Ref<const ArrayXXf> &X)>(&Class::predict),
+            "predict from X data")
        .def(py::pickle(
             [](const Class &p) { // __getstate__
                 /* Return a tuple that fully encodes the state of the object */
@@ -42,9 +63,15 @@ void bind_individual(py::module& m, string name)
        )
        ;
 
-    // if constexpr (std::is_same_v<T,Cls>)
-    // {
-
-    // }
+    if constexpr (std::is_same_v<Class,Cls>)
+    {
+        ind.def("predict_proba",
+                static_cast<ArrayXf (Class::*)(const Dataset &d)>(&Class::predict_proba),
+                "predict from Dataset object")
+           .def("predict_proba",
+                static_cast<ArrayXf (Class::*)(const Ref<const ArrayXXf> &X)>(&Class::predict_proba),
+                "predict from X data")
+            ;
+    }
 
 }

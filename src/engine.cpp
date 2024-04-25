@@ -446,7 +446,7 @@ void Engine<T>::run(Dataset &data)
                 bool updated_best = this->update_best(data);
                 
                 // TODO: use_arch
-                if ( params.verbosity>1 || !logfile.empty()) {
+                if ( params.verbosity>1 || !params.logfile.empty()) {
                     calculate_stats();
                 }
 

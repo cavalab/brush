@@ -20,6 +20,7 @@ public: // TODO: make these private (and work with nlohman json)
 
     // error is the aggregation of error vector, and can be user sppecified
     
+    // this flag is used to avoid re-fitting an individual. the program is_fitted_ flag is used to perform checks (like in predict with weights). They are two different things and I think I;ll keep this way (individual is just a container to keep program and fitness together) 
     bool is_fitted_ = false;
 
     VectorXf error;     ///< training error (used in lexicase selectors)
@@ -44,16 +45,40 @@ public: // TODO: make these private (and work with nlohman json)
         // program = SS.make_program<T>(params, params.max_depth, params.max_size);
     };
 
-    // fitness, objetives, complexity, etc.
-    void fit(Dataset& data) {
+    // TODO: replace occurences of program.fit with these (also predict and predict_proba)
+    Individual<T> &fit(const Dataset& data) {
         program.fit(data);
-        // this flag is used to avoid re-fitting an individual. the program is_fitted_ flag is used to perform checks (like in predict with weights). They are two different things and I think I;ll keep this way (individual is just a container to keep program and fitness together) 
         this->is_fitted_ = true;
+        return *this;
     };
-    
-    auto predict(Dataset& data) { return program.predict(data); };
+    Individual<T> &fit(const Ref<const ArrayXXf>& X, const Ref<const ArrayXf>& y)
+    {
+        Dataset d(X,y);
+        return fit(d);
+    };
 
-    // TODO: predict proba and classification related methods.
+    auto predict(const Dataset& data) { return program.predict(data); };
+    auto predict(const Ref<const ArrayXXf>& X)
+    {
+        Dataset d(X);
+        return predict(d);
+    };
+
+    template <ProgramType P = T>
+        requires((P == PT::BinaryClassifier) || (P == PT::MulticlassClassifier))
+    auto predict_proba(const Dataset &d) 
+    { 
+        return program.predict_proba(d); 
+    };
+
+    template <ProgramType P = T>
+        requires((P == PT::BinaryClassifier) || (P == PT::MulticlassClassifier))
+    auto predict_proba(const Ref<const ArrayXXf>& X) 
+    {
+        Dataset d(X);
+        return predict_proba(d);
+    };
+
 
     // just getters
     bool get_is_fitted() const { return this->is_fitted_; };
