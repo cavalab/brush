@@ -46,10 +46,19 @@ TEST(Engine, EngineWorks)
 
     params.set_verbosity(2); // TODO: verbosity tests
 
+     // checking if validation size works
+    params.set_validation_size(0.2);
+
     std::cout << "n jobs = 1" << std::endl;
     params.set_n_jobs(1);
     Brush::RegressorEngine est5(params);
-    est5.run(data);
+    est5.run(data); // this will not use validation size from parameters
+    std::cout << "best individual using run(data)" << std::endl;
+    std::cout << est5.best_ind.program.get_model() << std::endl;
+   
+    est5.fit(X, y); // this will use validation size from parameters
+    std::cout << "best individual using fit(X, y)" << std::endl;
+    std::cout << est5.best_ind.program.get_model() << std::endl;
     
     std::cout << "n jobs = 2" << std::endl;
     params.set_n_jobs(2);

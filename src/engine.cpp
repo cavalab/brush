@@ -242,10 +242,9 @@ bool Engine<T>::update_best(const Dataset& data, bool val)
         //std::cout << ind.program.get_model() << std::endl;
 
         //std::cout << "got individual of rank" << ind.fitness.rank << std::endl;
-        if (val)
-            f = ind.fitness.loss_v;
-        else
-            f = ind.fitness.loss;
+        
+        // if there is no validation, then loss_v == loss and this should work just fine
+        f = ind.fitness.loss_v;
 
         if (f*error_weight > bs*error_weight
         || (f == bs && ind.fitness.complexity < this->best_complexity)
