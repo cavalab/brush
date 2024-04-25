@@ -378,7 +378,6 @@ struct Log_Stats
 
 typedef struct Log_Stats Log_stats;
 
-// TODO: change this to something more modern 
 NLOHMANN_DEFINE_TYPE_NON_INTRUSIVE(Log_Stats,
     generation,
     time,

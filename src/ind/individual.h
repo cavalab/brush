@@ -66,11 +66,7 @@ public: // TODO: make these private (and work with nlohman json)
 
     template <ProgramType P = T>
         requires((P == PT::BinaryClassifier) || (P == PT::MulticlassClassifier))
-    auto predict_proba(const Dataset &d) 
-    { 
-        return program.predict_proba(d); 
-    };
-
+    auto predict_proba(const Dataset &d) { return program.predict_proba(d); };
     template <ProgramType P = T>
         requires((P == PT::BinaryClassifier) || (P == PT::MulticlassClassifier))
     auto predict_proba(const Ref<const ArrayXXf>& X) 
@@ -78,7 +74,6 @@ public: // TODO: make these private (and work with nlohman json)
         Dataset d(X);
         return predict_proba(d);
     };
-
 
     // just getters
     bool get_is_fitted() const { return this->is_fitted_; };

@@ -28,6 +28,9 @@ void bind_params(py::module& m)
         .def_property("n_classes", &Brush::Parameters::get_n_classes, &Brush::Parameters::set_n_classes)
         .def_property("n_jobs", &Brush::Parameters::get_n_jobs, &Brush::Parameters::set_n_classes)
         .def_property("classification", &Brush::Parameters::get_classification, &Brush::Parameters::set_classification)
+        .def_property("validation_size", &Brush::Parameters::get_validation_size, &Brush::Parameters::set_validation_size)
+        .def_property("feature_names", &Brush::Parameters::get_feature_names, &Brush::Parameters::set_feature_names)
+        .def_property("batch_size", &Brush::Parameters::get_batch_size, &Brush::Parameters::set_batch_size)
         .def_property("max_depth", &Brush::Parameters::get_max_depth, &Brush::Parameters::set_max_depth)
         .def_property("max_size", &Brush::Parameters::get_max_size, &Brush::Parameters::set_max_size)
         .def_property("objectives", &Brush::Parameters::get_objectives, &Brush::Parameters::set_objectives)
@@ -37,6 +40,17 @@ void bind_params(py::module& m)
         .def_property("mig_prob", &Brush::Parameters::get_mig_prob, &Brush::Parameters::set_mig_prob)
         .def_property("functions", &Brush::Parameters::get_functions, &Brush::Parameters::set_functions)
         .def_property("mutation_probs", &Brush::Parameters::get_mutation_probs, &Brush::Parameters::set_mutation_probs)
-        
+        .def(py::pickle(
+          [](const Brush::Parameters &p) { // __getstate__
+              /* Return a tuple that fully encodes the state of the object */
+              // return py::make_tuple(p.value(), p.extra());
+              nl::json j = p;
+              return j;
+          },
+          [](nl::json j) { // __setstate__
+              Brush::Parameters p = j;
+              return p;
+          })
+        )
         ;    
 }

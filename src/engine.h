@@ -59,6 +59,36 @@ public:
     int best_complexity;
     Individual<T>& get_best_ind(){return best_ind;};  
     
+    Engine<T> &fit(Dataset& data) {
+        run(data);
+        return *this;
+    };
+    Engine<T> &fit(const Ref<const ArrayXXf>& X, const Ref<const ArrayXf>& y)
+    {
+        // Using constructor 2 to create the dataset
+        Dataset d(X,y,params.feature_names,{},params.classification,
+                params.validation_size, params.batch_size);
+        return fit(d);
+    };
+
+    auto predict(const Dataset& data) { return this->best_ind.predict(data); };
+    auto predict(const Ref<const ArrayXXf>& X)
+    {
+        Dataset d(X);
+        return predict(d);
+    };
+
+    template <ProgramType P = T>
+        requires((P == PT::BinaryClassifier) || (P == PT::MulticlassClassifier))
+    auto predict_proba(const Dataset &d) { return this->best_ind.predict_proba(d); };
+    template <ProgramType P = T>
+        requires((P == PT::BinaryClassifier) || (P == PT::MulticlassClassifier))
+    auto predict_proba(const Ref<const ArrayXXf>& X) 
+    {
+        Dataset d(X);
+        return predict_proba(d);
+    };
+
     // TODO: starting pop (just like feat)
 
     // TODO: make thesqe work
@@ -74,9 +104,11 @@ public:
     // ArrayXXf predict_proba(MatrixXf& X);
 
     // archive stuff
+
     // TODO: make these work
     ///return archive size
     int get_archive_size(){ return this->archive.individuals.size(); };
+
     ///return population as string
     vector<json> get_archive(bool front);
     
@@ -86,11 +118,11 @@ public:
     // ArrayXXf predict_proba_archive(int id, MatrixXf& X, LongData& Z);
     // ArrayXXf predict_proba_archive(int id, MatrixXf& X);
 
-
     /// train the model
     void run(Dataset &d);
     
     Parameters params;  ///< hyperparameters of brush, which the user can interact
+    Individual<T> best_ind;
 private:
     SearchSpace ss;
 
@@ -105,7 +137,6 @@ private:
     Timer timer;       ///< start time of training
     Archive<T> archive;          ///< pareto front archive
 
-    Individual<T> best_ind;
     bool is_fitted; ///< keeps track of whether fit was called.
 
     void init();
@@ -114,7 +145,11 @@ private:
     inline void set_is_fitted(bool f){is_fitted=f;}
 };
 
-// TODO: serialization for engine with NLOHMANN_DEFINE_TYPE_NON_INTRUSIVE
+// Only stuff to make new predictions or call fit again
+NLOHMANN_DEFINE_TYPE_NON_INTRUSIVE(Engine<PT::Regressor>, params, best_ind);
+NLOHMANN_DEFINE_TYPE_NON_INTRUSIVE(Engine<PT::BinaryClassifier>,params, best_ind);
+NLOHMANN_DEFINE_TYPE_NON_INTRUSIVE(Engine<PT::MulticlassClassifier>,params, best_ind);
+NLOHMANN_DEFINE_TYPE_NON_INTRUSIVE(Engine<PT::Representer>,params, best_ind);
 
 } // Brush
 

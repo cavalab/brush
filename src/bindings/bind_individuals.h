@@ -5,10 +5,10 @@
 namespace nl = nlohmann;
 namespace br = Brush;
 
-using Reg = br::Pop::Individual<br::ProgramType::Regressor>;
-using Cls = br::Pop::Individual<br::ProgramType::BinaryClassifier>;
-using MCls = br::Pop::Individual<br::ProgramType::MulticlassClassifier>;
-using Rep = br::Pop::Individual<br::ProgramType::Representer>;
+using Reg = Brush::RegressorIndividual;
+using Cls = Brush::ClassifierIndividual;
+using MCls = Brush::MulticlassClassifierIndividual;
+using Rep = Brush::RepresenterIndividual;
 
 using stream_redirect = py::call_guard<py::scoped_ostream_redirect, py::scoped_estream_redirect>;
 

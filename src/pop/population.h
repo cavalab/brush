@@ -124,7 +124,6 @@ NLOHMANN_DEFINE_TYPE_NON_INTRUSIVE(
     Population<PT::MulticlassClassifier>, individuals, island_indexes, pop_size, num_islands);
 NLOHMANN_DEFINE_TYPE_NON_INTRUSIVE(
     Population<PT::Representer>, individuals, island_indexes, pop_size, num_islands);
-
 }// Pop
 }// Brush
 

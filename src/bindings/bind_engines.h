@@ -44,12 +44,44 @@ void bind_engine(py::module& m, string name)
              .def_property("params", &T::get_params, &T::set_params)
              .def_property_readonly("is_fitted", &T::get_is_fitted)
              .def_property_readonly("best_ind", &T::get_best_ind)
-             .def("run", &T::run, py::call_guard<py::gil_scoped_release>(), "run from brush dataset")
+             //  .def("run", &T::run, py::call_guard<py::gil_scoped_release>(), "run from brush dataset")
+             .def("fit",
+                static_cast<T &(T::*)(Dataset &d)>(&T::fit),
+                py::call_guard<py::gil_scoped_release>(), 
+                "fit from Dataset object")
+            .def("fit",
+                static_cast<T &(T::*)(const Ref<const ArrayXXf> &X, const Ref<const ArrayXf> &y)>(&T::fit),
+                py::call_guard<py::gil_scoped_release>(), 
+                "fit from X,y data")
+            .def("predict",
+                static_cast<RetType (T::*)(const Dataset &d)>(&T::predict),
+                "predict from Dataset object")
+            .def("predict",
+                static_cast<RetType (T::*)(const Ref<const ArrayXXf> &X)>(&T::predict),
+                "predict from X data")
+            .def(py::pickle(
+                [](const T &p) { // __getstate__
+                    /* Return a tuple that fully encodes the state of the object */
+                    // return py::make_tuple(p.value(), p.extra());
+                    nl::json j = p;
+                    return j;
+                },
+                [](nl::json j) { // __setstate__
+                    T p = j;
+                    return p;
+                })
+             )
              ;
 
     // specialization for subclasses
     if constexpr (std::is_same_v<T,Cls>)
     {
-
+        engine.def("predict_proba",
+                static_cast<ArrayXf (T::*)(const Dataset &d)>(&T::predict_proba),
+                "predict from Dataset object")
+           .def("predict_proba",
+                static_cast<ArrayXf (T::*)(const Ref<const ArrayXXf> &X)>(&T::predict_proba),
+                "predict from X data")
+            ;
     }
 }

@@ -10,9 +10,9 @@ license: GNU/GPL v3
 #include "util/logger.h"
 
 namespace ns = nlohmann;
+
 namespace Brush
 {
-
 
 struct Parameters
 {
@@ -58,22 +58,18 @@ public:
     
     string scorer_="mse";   ///< actual loss function used, determined by error
 
-    // for classification (TODO: should I have these, or they could be just dataset arguments (except the ones needed to use in dataset constructor))
-
-    bool classification;
-    unsigned int n_classes;   ///< number of classes for classification 
-
     // TODO: set these values when creating the parameters in python side
-    vector<int> classes;      ///< class labels
+    vector<int>   classes;        ///< class labels
     vector<float> class_weights;  ///< weights for each class
     vector<float> sample_weights; ///< weights for each sample 
     
-    // for dataset. TODO: make it work
-    bool shuffle = true;             ///< option to shuffle the data
-    float split = 0.75;              ///< fraction of data to use for training
-    vector<string> feature_names; ///< names of features
+    // for creating dataset from X and y in Engine<T>::fit. Ignored if 
+    // the uses uses an dataset
+    bool classification;
+    unsigned int n_classes;
+    float validation_size = 0.75;
+    vector<string> feature_names = {};
     float batch_size = 0.0;
-    bool use_batch = false; ///< whether to use mini batch for training
 
     string load_population = "";
     string save_population = "";
@@ -153,6 +149,15 @@ public:
     void set_n_classes(unsigned int new_n_classes){ n_classes = new_n_classes; };
     unsigned int get_n_classes(){ return n_classes; };
 
+    void set_validation_size(float s){ validation_size = s; };
+    float get_validation_size(){ return validation_size; };
+
+    void set_feature_names(vector<string> vn){ feature_names = vn; };
+    vector<string> get_feature_names(){ return feature_names; };
+
+    void set_batch_size(float c){ batch_size = c; };
+    float get_batch_size(){ return batch_size; };
+
     //TODO: unify unordered or ordered
     void set_mutation_probs(std::map<std::string, float> new_mutation_probs){ mutation_probs = new_mutation_probs; };
     std::map<std::string, float> get_mutation_probs(){ return mutation_probs; };
@@ -160,6 +165,37 @@ public:
     void set_functions(std::unordered_map<std::string, float> new_functions){ functions = new_functions; };
     std::unordered_map<std::string, float> get_functions(){ return functions; };
 };
+
+NLOHMANN_DEFINE_TYPE_NON_INTRUSIVE(Parameters,
+    verbosity,
+    random_state,
+    pop_size,
+    gens,
+    max_stall,
+    max_time,
+    scorer_,
+    load_population,
+    save_population,
+    logfile,
+    current_gen,
+    num_islands,
+    max_depth,
+    n_jobs,
+    max_size,
+    objectives,
+    sel,
+    surv,
+    cx_prob,
+    mig_prob,
+    classification,
+    n_classes,
+    validation_size,
+    feature_names,
+    batch_size,
+    mutation_probs,
+    functions
+);
+
 } // Brush
 
 #endif

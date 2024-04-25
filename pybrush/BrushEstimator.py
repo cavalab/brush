@@ -230,7 +230,10 @@ class BrushEstimator(BaseEstimator):
         self.parameters_.mig_prob = self.mig_prob
         self.parameters_.functions = self.functions
         self.parameters_.mutation_probs = self.mutation_probs
-
+        self.parameters_.validation_size = self.validation_size
+        self.parameters_.batch_size = self.batch_size
+        self.parameters_.feature_names = self.feature_names_
+    
         self.parameters_.scorer_ = "mse"
         if self.mode == "classification":
             self.parameters_.scorer_ = "log" if self.n_classes_ == 2 else "multi_log"
@@ -254,7 +257,7 @@ class BrushEstimator(BaseEstimator):
         else:
             self.engine_ = RegressorEngine(self.parameters_)
 
-        self.engine_.run(self.data_)
+        self.engine_.fit(self.data_)
         self.best_estimator_ = self.engine_.best_ind
 
         return self
