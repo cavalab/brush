@@ -267,6 +267,10 @@ vector<vector<size_t>> Population<T>::sorted_front(unsigned rank)
 template<ProgramType T>
 vector<size_t> Population<T>::hall_of_fame(unsigned rank)
 {
+    // TODO: hall of fame should unify all pareto fronts by doing a new fast_nds.
+    // TODO: use hall of fame instead of re-implmementing this feature in
+    // archive init and update functions
+
     // this is used to migration and update archive at the end of a generation.
     // Thiis function expects islands without offspring
 

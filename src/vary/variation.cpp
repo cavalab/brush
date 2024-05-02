@@ -618,7 +618,7 @@ void Variation<T>::vary(Population<T>& pop, int island,
 {    
     auto idxs = pop.get_island_indexes(island);
 
-    // TODO: fix pragma omp usage
+    // TODO: fix pragma omp usage (by fix I mean remove)
     //#pragma omp parallel for
     for (unsigned i = 0; i<idxs.size(); ++i)
     {

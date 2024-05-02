@@ -44,6 +44,9 @@ TEST(Engine, EngineWorks)
     params.set_gens(10);
     params.set_mig_prob(0.0);
 
+     // TODO: archive tests
+     // TODO: solve issues from GH
+
     params.set_verbosity(2); // TODO: verbosity tests
 
      // checking if validation size works

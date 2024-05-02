@@ -62,6 +62,9 @@ void Evaluation<T>::assign_fit(Individual<T>& ind, const Dataset& data,
 
     ind.set_objectives(params.objectives);
 
+    // we will always set all values for fitness (regardless of being used).
+    // this will make sure the information is calculated and ready to be used
+    // regardless of how the program is set to run.
     ind.error = errors;
     ind.fitness.set_loss(f);
     ind.fitness.set_loss_v(f_v);

@@ -54,8 +54,6 @@ void Engine<T>::init()
     this->best_score = MAX_FLT;
     this->best_complexity = MAX_FLT;
 
-    // TODO: predict, transform, predict_proba, fit (will run the engine)
-
     this->archive.set_objectives(params.objectives);
 
     // start the clock
