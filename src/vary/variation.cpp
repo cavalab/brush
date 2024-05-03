@@ -614,7 +614,7 @@ std::optional<Individual<T>> Variation<T>::mutate(const Individual<T>& parent)
 
 template <Brush::ProgramType T>
 void Variation<T>::vary(Population<T>& pop, int island, 
-          const vector<size_t>& parents)
+          const vector<size_t>& parents, const Parameters& p)
 {    
     auto idxs = pop.get_island_indexes(island);
 
@@ -633,33 +633,45 @@ void Variation<T>::vary(Population<T>& pop, int island,
         const Individual<T>& mom = pop[
             *r.select_randomly(parents.begin(), parents.end())];
     
+        vector<Individual<T>> ind_parents;
         if ( r() < parameters.cx_prob) // crossover
         {
             const Individual<T>& dad = pop[
                 *r.select_randomly(parents.begin(), parents.end())];
             
-            opt = cross(mom, dad);                
+            opt = cross(mom, dad);   
+            ind_parents = {mom, dad};
         }
         else // mutation
         {
-            opt = mutate(mom);
+            opt = mutate(mom);   
+            ind_parents = {mom};
         }
 
+        // this assumes that islands do not share indexes before doing variation
+        unsigned id = p.current_gen*p.pop_size+idxs.at(i);
+
         // mutation and crossover will already perform 3 attempts. If it fails, we just fill with a random individual
-        if (opt) // no optional value was returned
+        if (opt) // variation worked, lets keep this
         {
             Individual<T> ind = opt.value();
+  
             ind.is_fitted_ = false;
+            ind.set_id(id);
+            ind.set_parents(ind_parents);
 
             assert(ind.program.size()>0);
             pop.individuals.at(idxs.at(i)) = std::make_shared<Individual<T>>(ind);
         }
-        else {
+        else {  // no optional value was returned
             Individual<T> new_ind;
-            new_ind.is_fitted_ = false;
             
+            // creating a new random individual from nothing
             new_ind.init(search_space, parameters);
+
             new_ind.set_objectives(mom.get_objectives()); // it will have an invalid fitness
+            new_ind.set_id(id);
+            new_ind.is_fitted_ = false;
 
             pop.individuals.at(idxs.at(i)) = std::make_shared<Individual<T>>(new_ind);
         }

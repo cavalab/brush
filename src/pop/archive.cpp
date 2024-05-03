@@ -27,8 +27,8 @@ bool Archive<T>::sortComplexity(const Individual<T>& lhs,
 }
 
 template<ProgramType T>
-bool Archive<T>::sortObj(const Individual<T>& lhs, 
-        const Individual<T>& rhs, const int index)
+bool Archive<T>::sortObj1(const Individual<T>& lhs, 
+        const Individual<T>& rhs)
 {
     // sort based on index (we can have more than 2 obj in brush implementation)
     // obs: because of the weights, every objective is a maximization problem
@@ -36,7 +36,10 @@ bool Archive<T>::sortObj(const Individual<T>& lhs,
     // the bigger the better. the weights allow us to use different min/max metrics
     // without having to deal with this particular details
 
-    return lhs.fitness.wvalues.at(index) > rhs.fitness.wvalues.at(index);
+    float lhs_obj1 = lhs.fitness.wvalues.at(0);
+    float rhs_obj1 = rhs.fitness.wvalues.at(0);
+
+    return lhs_obj1 > rhs_obj1;
 }
 
 template<ProgramType T>
@@ -54,15 +57,8 @@ template<ProgramType T>
 bool Archive<T>::sameObjectives(const Individual<T>& lhs, 
         const Individual<T>& rhs)
 {
-    for (const auto& o_lhs : lhs.fitness)
-    {
-        for (const auto& o_rhs : rhs.fitness)
-        {
-            if (o_lhs != o_rhs)
-                return false;
-        }
-    }
-    return true;
+    return (lhs.fitness == rhs.fitness);
+
 }
 
 template<ProgramType T>
@@ -75,7 +71,9 @@ void Archive<T>::init(Population<T>& pop)
 
     // dealing with islands --> fast nds for each island
     for (int island =0; island< pop.num_islands; ++island) {
-        selector.fast_nds(pop, island); 
+        vector<size_t> idxs = pop.get_island_indexes(island);
+
+        selector.fast_nds(pop, idxs); 
     }
 
     // OBS: fast_nds will change all individual fitness inplace.
@@ -89,7 +87,7 @@ void Archive<T>::init(Population<T>& pop)
 
         for (unsigned i = 0; i<idxs.size(); ++i)
         {
-            const auto& t = pop.individuals.at(idxs.at(i));
+            const auto& t = *pop.individuals.at(idxs.at(i));
 
             if (t.fitness.rank ==1){
                 // TODO: check if this is creating a copy
@@ -103,28 +101,33 @@ void Archive<T>::init(Population<T>& pop)
     if (this->sort_complexity)
         std::sort(individuals.begin(),individuals.end(), &sortComplexity); 
     else
-        std::sort(individuals.begin(),individuals.end(), &sortObj); 
+        std::sort(individuals.begin(),individuals.end(), &sortObj1); 
 
 }
 
 template<ProgramType T>
-void Archive<T>::update(const Population<T>& pop, const Parameters& params)
+void Archive<T>::update(Population<T>& pop, const Parameters& params)
 {
     individuals.resize(0);  // clear archive
 
     // refill archive with new pareto fronts (one pareto front for each island!)
     for (int island =0; island< pop.num_islands; ++island) {
-        auto front = selector.fast_nds(pop, island); 
-        for (const auto& i : front)
+        cout << "island" << island << endl;
+        vector<size_t> idxs = pop.get_island_indexes(island);
+
+        // TODO: can i just call fast nds with all indexes in idxs?
+        vector<vector<int>> front = selector.fast_nds(pop, idxs); 
+        for (const auto& i : front[0])
         {
-            individuals.push_back( pop.individuals.at(i) );
+            individuals.push_back( *pop.individuals.at(i) );
+            cout << "index" << i << endl;
         }
     }
     
     if (this->sort_complexity)
-        std::sort(individuals.begin(),individuals.end(),&sortComplexity); 
+        std::sort(individuals.begin(), individuals.end(), &sortComplexity); 
     else
-        std::sort(individuals.begin(),individuals.end(), &sortObj); 
+        std::sort(individuals.begin(), individuals.end(), &sortObj1); 
 
     /* auto it = std::unique(individuals.begin(),individuals.end(), &sameFitComplexity); */
     auto it = std::unique(individuals.begin(),individuals.end(), 

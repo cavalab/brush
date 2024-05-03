@@ -27,7 +27,7 @@ struct Archive
 
     void init(Population<T>& pop);
 
-    void update(const Population<T>& pop, const Parameters& params);
+    void update(Population<T>& pop, const Parameters& params);
    
     void set_objectives(vector<string> objectives);
 
@@ -36,8 +36,8 @@ struct Archive
             const Individual<T>& rhs);
 
     /// Sort population by first objective.
-    static bool sortObj(const Individual<T>& lhs, 
-            const Individual<T>& rhs, const int index=0);
+    static bool sortObj1(const Individual<T>& lhs, 
+            const Individual<T>& rhs);
 
     /// check for repeats
     static bool sameFitComplexity(const Individual<T>& lhs, 
@@ -47,10 +47,10 @@ struct Archive
 };
 
 //serialization
-NLOHMANN_DEFINE_TYPE_NON_INTRUSIVE(Archive<PT::Regressor>, individuals);
-NLOHMANN_DEFINE_TYPE_NON_INTRUSIVE(Archive<PT::BinaryClassifier>, individuals);
-NLOHMANN_DEFINE_TYPE_NON_INTRUSIVE(Archive<PT::MulticlassClassifier>, individuals);
-NLOHMANN_DEFINE_TYPE_NON_INTRUSIVE(Archive<PT::Representer>, individuals);
+NLOHMANN_DEFINE_TYPE_NON_INTRUSIVE(Archive<PT::Regressor>, individuals, sort_complexity);
+NLOHMANN_DEFINE_TYPE_NON_INTRUSIVE(Archive<PT::BinaryClassifier>, individuals, sort_complexity);
+NLOHMANN_DEFINE_TYPE_NON_INTRUSIVE(Archive<PT::MulticlassClassifier>, individuals, sort_complexity);
+NLOHMANN_DEFINE_TYPE_NON_INTRUSIVE(Archive<PT::Representer>, individuals, sort_complexity);
 
 } // Pop
 } // Brush

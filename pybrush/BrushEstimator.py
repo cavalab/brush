@@ -89,6 +89,9 @@ class BrushEstimator(BaseEstimator):
     val_from_arch: boolean, optional (default: True)
         Validates the final model using the archive rather than the whole 
         population.
+    use_arch: boolean, optional (default: False)
+        Determines if we should save pareto front of the entire evolution
+        (when set to  True) or just the final population (False).
     batch_size : float, default 1.0
         Percentage of training data to sample every generation. If `1.0`, then
         all data is used. Very small values can improve execution time, but 
@@ -146,6 +149,7 @@ class BrushEstimator(BaseEstimator):
         logfile="",
         weights_init=True,
         val_from_arch=True,
+        use_arch=False,
         validation_size: float = 0.0,
         batch_size: float = 1.0
         ):
@@ -165,7 +169,8 @@ class BrushEstimator(BaseEstimator):
         self.cx_prob=cx_prob
         self.logfile=logfile
         self.mutation_probs=mutation_probs
-        self.val_from_arch=val_from_arch # TODO: val from arch
+        self.val_from_arch=val_from_arch # TODO: val from arch implementation (in cpp side)
+        self.use_arch=use_arch
         self.functions=functions
         self.objectives=objectives
         self.initialization=initialization
@@ -227,6 +232,8 @@ class BrushEstimator(BaseEstimator):
         self.parameters_.max_size = self.max_size
         self.parameters_.objectives = self.objectives
         self.parameters_.cx_prob = self.cx_prob
+        self.parameters_.use_arch = self.use_arch
+        self.parameters_.val_from_arch = self.val_from_arch
         self.parameters_.mig_prob = self.mig_prob
         self.parameters_.functions = self.functions
         self.parameters_.mutation_probs = self.mutation_probs
@@ -312,6 +319,30 @@ class BrushEstimator(BaseEstimator):
                 out[key] = value
         return out
     
+    def predict_archive(self, X):
+        """Returns a list of dictionary predictions for all models."""
+        check_is_fitted(self)
+
+        if isinstance(X, pd.DataFrame):
+            X = X.values
+
+        assert isinstance(X, np.ndarray)
+
+        data = Dataset(X=X, ref_dataset=self.data_, c=self.mode == "classification",
+                       feature_names=self.feature_names_)
+
+        archive = self.engine_.get_archive()
+
+        preds = []
+        for ind in archive:
+            tmp = {
+                'id' : ind['id'],
+                'y_pred' : self.engine_.predict_archive(ind['id'], data)
+            }
+            preds.append(tmp)
+
+        return preds
+    
 
 class BrushClassifier(BrushEstimator,ClassifierMixin):
     """Deap-based Brush for classification.
@@ -368,6 +399,31 @@ class BrushClassifier(BrushEstimator,ClassifierMixin):
             prob[:, 0] -= prob[:, 1]
 
         return prob
+    
+        
+    def predict_archive(self, X):
+        """Returns a list of dictionary predictions for all models."""
+        check_is_fitted(self)
+
+        if isinstance(X, pd.DataFrame):
+            X = X.values
+
+        assert isinstance(X, np.ndarray)
+
+        data = Dataset(X=X, ref_dataset=self.data_, c=True,
+                       feature_names=self.feature_names_)
+
+        archive = self.engine_.get_archive()
+
+        preds = []
+        for ind in archive:
+            tmp = {
+                'id' : ind['id'],
+                'y_pred' : self.engine_.predict_proba_archive(ind['id'], data)
+            }
+            preds.append(tmp)
+
+        return preds
 
 
 class BrushRegressor(BrushEstimator, RegressorMixin):

@@ -59,6 +59,13 @@ void bind_engine(py::module& m, string name)
             .def("predict",
                 static_cast<RetType (T::*)(const Ref<const ArrayXXf> &X)>(&T::predict),
                 "predict from X data")
+            .def("predict_archive",
+                static_cast<RetType (T::*)(int id, const Dataset &d)>(&T::predict_archive),
+                "predict from individual in archive")
+            .def("predict_archive",
+                static_cast<RetType (T::*)(int id, const Ref<const ArrayXXf> &X)>(&T::predict_archive),
+                "predict from individual in archive")
+            .def("get_archive", &T::get_archive, py::arg("front") = false)
             .def(py::pickle(
                 [](const T &p) { // __getstate__
                     /* Return a tuple that fully encodes the state of the object */
@@ -82,6 +89,13 @@ void bind_engine(py::module& m, string name)
            .def("predict_proba",
                 static_cast<ArrayXf (T::*)(const Ref<const ArrayXXf> &X)>(&T::predict_proba),
                 "predict from X data")
+            .def("predict_proba_archive",
+                static_cast<ArrayXf (T::*)(int id, const Dataset &d)>(&T::predict_proba_archive),
+                "predict from individual in archive")
+            .def("predict_proba_archive",
+                static_cast<ArrayXf (T::*)(int id, const Ref<const ArrayXXf> &X)>(&T::predict_proba_archive),
+                "predict from individual in archive")
+            
             ;
     }
 }

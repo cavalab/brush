@@ -43,6 +43,11 @@ public:
     std::unordered_map<string, float> functions;
     int num_islands=5;
 
+    // if we should save pareto front of the entire evolution (use_arch=true)
+    // or just the final population (use_arch=false)
+    bool use_arch=false;
+    bool val_from_arch=true;
+
     // variation
     std::map<std::string, float> mutation_probs = {
         {"point", 0.167},
@@ -142,6 +147,12 @@ public:
 
     void set_mig_prob(float new_mig_prob){ mig_prob = new_mig_prob; };
     float get_mig_prob(){ return mig_prob; };
+
+    void set_use_arch(bool new_use_arch){ use_arch = new_use_arch; };
+    bool get_use_arch(){ return use_arch; };
+
+    void set_val_from_arch(bool new_val_from_arch){ val_from_arch = new_val_from_arch; };
+    bool get_val_from_arch(){ return val_from_arch; };
 
     void set_classification(bool c){ classification = c; };
     bool get_classification(){ return classification; };

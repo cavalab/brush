@@ -108,7 +108,7 @@ class Variation
 {
 private:
     SearchSpace search_space;
-    Parameters parameters;
+    Parameters parameters; // stop using this thing here and get parameter as argument
 public:
     Variation() = default;
     
@@ -129,7 +129,8 @@ public:
     std::optional<Individual<T>> mutate(const Individual<T>& parent);
 
     /// method to handle variation of population
-    void vary(Population<T>& pop, int island, const vector<size_t>& parents);
+    void vary(Population<T>& pop, int island, const vector<size_t>& parents,
+              const Parameters& p);
 };
 
 } //namespace Var

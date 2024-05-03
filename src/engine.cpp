@@ -211,6 +211,97 @@ void Engine<T>::print_stats(std::ofstream& log, float fraction)
               <<"\n\n";
 }
 
+template <ProgramType T>
+vector<json> Engine<T>::get_archive(bool front)
+{
+    json j; // TODO: use this front argument (or remove it). I think I can remove 
+    for (const auto& ind : archive.individuals) {
+        to_json(j, ind); // Serialize each individual
+    }
+    return j;
+}
+
+// TODO: private function called find_individual that searches for it based on id. Then,
+// use this function in predict_archive and predict_proba_archive.
+template <ProgramType T>
+auto Engine<T>::predict_archive(int id, const Dataset& data)
+{
+    if (id == best_ind.id)
+        return best_ind.predict(data);
+
+    for (int i = 0; i < this->archive.individuals.size(); ++i)
+    {
+        Individual<T>& ind = this->archive.individuals.at(i);
+
+        if (id == ind.id)
+            return ind.predict(data);
+    }
+    for (int island=0; island<pop.num_islands; ++island) {
+        auto idxs = pop.get_island_indexes(island);
+
+        for (unsigned i = 0; i<idxs.size(); ++i)
+        {
+            const auto& ind = pop.individuals.at(idxs.at(i));
+
+            if (id == ind->id)
+                return ind->predict(data);
+        } 
+    }
+
+    std::runtime_error("Could not find id = "
+            + to_string(id) + "in archive or population.");
+        
+    return best_ind.predict(data);
+}
+
+template <ProgramType T>
+auto Engine<T>::predict_archive(int id, const Ref<const ArrayXXf>& X)
+{
+    Dataset d(X);
+    return predict_archive(id, d);
+}
+
+template <ProgramType T>
+template <ProgramType P>
+    requires((P == PT::BinaryClassifier) || (P == PT::MulticlassClassifier))
+auto Engine<T>::predict_proba_archive(int id, const Dataset& data)
+{
+    if (id == best_ind.id)
+        return best_ind.predict_proba(data);
+
+    for (int i = 0; i < this->archive.individuals.size(); ++i)
+    {
+        Individual<T>& ind = this->archive.individuals.at(i);
+
+        if (id == ind.id)
+            return ind.predict_proba(data);
+    }
+    for (int island=0; island<pop.num_islands; ++island) {
+        auto idxs = pop.get_island_indexes(island);
+
+        for (unsigned i = 0; i<idxs.size(); ++i)
+        {
+            const auto& ind = pop.individuals.at(idxs.at(i));
+
+            if (id == ind->id)
+                return ind->predict_proba(data);
+        } 
+    }
+     
+    std::runtime_error("Could not find id = "
+            + to_string(id) + "in archive or population.");
+            
+    return best_ind.predict_proba(data);
+}
+
+template <ProgramType T>
+template <ProgramType P>
+    requires((P == PT::BinaryClassifier) || (P == PT::MulticlassClassifier))
+auto Engine<T>::predict_proba_archive(int id, const Ref<const ArrayXXf>& X)
+{
+    Dataset d(X);
+    return predict_proba_archive(id, d);
+}
 
 template <ProgramType T> // TODO: use the dataset, or ignore it
 bool Engine<T>::update_best(const Dataset& data, bool val)
@@ -313,6 +404,7 @@ void Engine<T>::run(Dataset &data)
     unsigned generation = 0;
     unsigned stall_count = 0;
     float fraction = 0;
+    bool use_arch;
 
     auto stop = [&]() {
         return (  (generation == params.gens)
@@ -402,7 +494,7 @@ void Engine<T>::run(Dataset &data)
 
                 //std::cout << "before vary" << std::endl;
                 // // variation to produce offspring
-                variator.vary(this->pop, island, island_parents.at(island));
+                variator.vary(this->pop, island, island_parents.at(island), params);
                 //std::cout << "before update fitness" << std::endl;
 
                 evaluator.update_fitness(this->pop, island, data, params, true);
@@ -442,16 +534,16 @@ void Engine<T>::run(Dataset &data)
             auto finish_gen = subflow.emplace([&]() {
                 bool updated_best = this->update_best(data);
                 
-                // TODO: use_arch
-                if ( params.verbosity>1 || !params.logfile.empty()) {
+                if ( (params.verbosity>1 || !params.logfile.empty() )
+                || params.use_arch ) {
                     calculate_stats();
                 }
 
                 // TODO: logger working
                 // logger.log("calculate stats...",2);
 
-                // if (use_arch)  // TODO: archive
-                //     archive.update(pop,params);
+                if (params.use_arch)
+                    archive.update(pop, params);
                 
                 fraction = params.max_time == -1 ? ((generation+1)*1.0)/params.gens : 
                                                     timer.Elapsed().count()/params.max_time;
@@ -498,6 +590,23 @@ void Engine<T>::run(Dataset &data)
             // TODO: open, write, close? (to avoid breaking the file and allow some debugging if things dont work well)
             if (log.is_open())
                 log.close();
+
+            // if we're not using an archive, let's store the final population in the 
+            // archive
+            if (!params.use_arch)
+            {
+                archive.individuals.resize(0);
+                for (int island =0; island< pop.num_islands; ++island) {
+                    // cout << "island" << island << endl;
+                    vector<size_t> idxs = pop.get_island_indexes(island);
+
+                    for (unsigned i = 0; i<idxs.size(); ++i)
+                    {
+                        archive.individuals.push_back( *pop.individuals.at(idxs.at(i)) );
+                        // cout << "index" << i << endl;
+                    }
+                }
+            }
                 
         } // work done, report last gen and stop
     ); // evolutionary loop

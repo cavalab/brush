@@ -23,6 +23,11 @@
 #include "../../src/pop/archive.cpp"
 #include "../../src/pop/population.cpp"
 
+// TODO: test predict from archive
+// TODO: rename it to test_engine 
+
+// TODO: test serialization of archive (get archive and save to json)
+
 // TODO: test logger, verbose, print stats, etc.
 TEST(Engine, EngineWorks)
 {
@@ -83,6 +88,9 @@ TEST(Engine, EngineWorks)
     params.set_pop_size(10);
     params.set_gens(10);
     params.set_mig_prob(0.5);
+
+    // just to see if nothing breaks
+    params.set_use_arch(true);
 
     std::cout << "n jobs = 1" << std::endl;
     params.set_n_jobs(1);

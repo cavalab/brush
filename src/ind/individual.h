@@ -23,6 +23,11 @@ public: // TODO: make these private (and work with nlohman json)
     // this flag is used to avoid re-fitting an individual. the program is_fitted_ flag is used to perform checks (like in predict with weights). They are two different things and I think I;ll keep this way (individual is just a container to keep program and fitness together) 
     bool is_fitted_ = false;
 
+    // archive utility (and also keep track of evolution) (this is meaningful only
+    // if variation is done using the vary() function)
+    unsigned id;                                ///< tracking id
+    vector<unsigned> parent_id;                      ///< ids of parents
+    
     VectorXf error;     ///< training error (used in lexicase selectors)
 
     Fitness fitness;     ///< aggregate fitness score
@@ -32,6 +37,7 @@ public: // TODO: make these private (and work with nlohman json)
     Individual()
     {
         objectives = {"error", "complexity"}; 
+        id = 0; // unsigned
     };
 
     Individual(Program<T>& prg) : Individual() { program = prg; };
@@ -85,6 +91,14 @@ public: // TODO: make these private (and work with nlohman json)
 
     void set_fitness(Fitness &f) { fitness=f; };
     Fitness& get_fitness() { return fitness; };
+    
+    void set_id(unsigned i){id = i;};
+    void set_parents(const vector<Individual<T>>& parents){
+        parent_id.clear();
+        for (const auto& p : parents)
+            parent_id.push_back(p.id);
+    };     /// set parent ids using parents  
+    void set_parents(const vector<unsigned>& parents){ parent_id = parents; };     /// set parent ids using id values 
 
     // TODO: USE setters and getters intead of accessing it directly
     // template<ProgramType T>
@@ -142,6 +156,8 @@ void to_json(json &j, const Individual<T> &p)
     j = json{
         {"program", p.program},
         {"fitness", p.fitness},
+        {"id", p.id},
+        {"parent_id", p.parent_id},
         // {"loss", p.loss},
         // {"loss_v", p.loss_v},
         // {"complexity", p.complexity},
@@ -158,6 +174,8 @@ void from_json(const json &j, Individual<T>& p)
 {// TODO: figure  out if this works  with private attributes and try to actually make them private (and use getters and setters)
     j.at("program").get_to( p.program );
     j.at("fitness").get_to( p.fitness );
+    j.at("id").get_to( p.id );
+    j.at("parent_id").get_to( p.parent_id );
     // j.at("loss").get_to( p.loss );
     // j.at("loss_v").get_to( p.loss_v );
     // j.at("complexity").get_to( p.complexity );

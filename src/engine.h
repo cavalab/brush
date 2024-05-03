@@ -91,7 +91,7 @@ public:
 
     // TODO: starting pop (just like feat)
 
-    // TODO: make thesqe work
+    // TODO: make these work
     // /// predict on unseen data.             
     // VectorXf predict(MatrixXf& X, LongData& Z);  
     // VectorXf predict(MatrixXf& X);
@@ -105,24 +105,34 @@ public:
 
     // archive stuff
 
-    // TODO: make these work
     ///return archive size
     int get_archive_size(){ return this->archive.individuals.size(); };
 
     ///return population as string
     vector<json> get_archive(bool front);
     
-    // /// predict on unseen data from the whole archive             
-    // VectorXf predict_archive(int id, MatrixXf& X);  
-    // VectorXf predict_archive(int id, MatrixXf& X, LongData& Z);
-    // ArrayXXf predict_proba_archive(int id, MatrixXf& X, LongData& Z);
-    // ArrayXXf predict_proba_archive(int id, MatrixXf& X);
+    /// predict on unseen data from the archive             
+    auto predict_archive(int id, const Dataset& data);
+    auto predict_archive(int id, const Ref<const ArrayXXf>& X);
+
+    template <ProgramType P = T>
+        requires((P == PT::BinaryClassifier) || (P == PT::MulticlassClassifier))
+    auto predict_proba_archive(int id, const Dataset& data);
+    template <ProgramType P = T>
+        requires((P == PT::BinaryClassifier) || (P == PT::MulticlassClassifier))
+    auto predict_proba_archive(int id, const Ref<const ArrayXXf>& X);
+
+    // TODO: make these work
+    // VectorXf predict_archive(int id, const Ref<const ArrayXXf>& X, LongData& Z);
+    // ArrayXXf predict_proba_archive(int id, const Ref<const ArrayXXf>& X, LongData& Z);
 
     /// train the model
     void run(Dataset &d);
     
     Parameters params;  ///< hyperparameters of brush, which the user can interact
     Individual<T> best_ind;
+    
+    Archive<T> archive;          ///< pareto front archive
 private:
     SearchSpace ss;
 
@@ -135,7 +145,6 @@ private:
     Log_Stats stats; ///< runtime stats
 
     Timer timer;       ///< start time of training
-    Archive<T> archive;          ///< pareto front archive
 
     bool is_fitted; ///< keeps track of whether fit was called.
 
@@ -146,10 +155,10 @@ private:
 };
 
 // Only stuff to make new predictions or call fit again
-NLOHMANN_DEFINE_TYPE_NON_INTRUSIVE(Engine<PT::Regressor>, params, best_ind);
-NLOHMANN_DEFINE_TYPE_NON_INTRUSIVE(Engine<PT::BinaryClassifier>,params, best_ind);
-NLOHMANN_DEFINE_TYPE_NON_INTRUSIVE(Engine<PT::MulticlassClassifier>,params, best_ind);
-NLOHMANN_DEFINE_TYPE_NON_INTRUSIVE(Engine<PT::Representer>,params, best_ind);
+NLOHMANN_DEFINE_TYPE_NON_INTRUSIVE(Engine<PT::Regressor>, params, best_ind, archive);
+NLOHMANN_DEFINE_TYPE_NON_INTRUSIVE(Engine<PT::BinaryClassifier>,params, best_ind, archive);
+NLOHMANN_DEFINE_TYPE_NON_INTRUSIVE(Engine<PT::MulticlassClassifier>,params, best_ind, archive);
+NLOHMANN_DEFINE_TYPE_NON_INTRUSIVE(Engine<PT::Representer>,params, best_ind, archive);
 
 } // Brush
 
