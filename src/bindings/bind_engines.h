@@ -18,6 +18,9 @@
 #include "../pop/population.cpp"
 #include "../pop/population.h"
 
+#include "../pop/archive.cpp"
+#include "../pop/archive.h"
+
 using Reg = Brush::RegressorEngine;
 using Cls = Brush::ClassifierEngine;
 using Rep = Brush::RepresenterEngine;
