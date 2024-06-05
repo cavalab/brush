@@ -243,4 +243,30 @@ If you are developing the cpp code and want to build the cpp tests, run the foll
 ./install tests
 ```
 
+## Building the docs locally
+
+To build the documentation you will need some additional requirements.
+Before proceeding, make sure you have the python wrapper installed, as the documentation have some sample notebooks that will run the code.
+
+First go to the `docs` folder:
+
+```bash
+cd docs/
+```
+
+Then, install additional python packages in the same environemnt as brush is intalled with:
+
+```bash
+conda activate brush
+pip install -r requirements.txt
+```
+
+Now just run:
+
+```bash
+make html
+```
+
+The static website is located in `-build/html`
+
 <!-- end development -->
