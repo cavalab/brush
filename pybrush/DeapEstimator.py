@@ -140,11 +140,6 @@ class DeapEstimator(EstimatorInterface, BaseEstimator):
                                      feature_names=self.feature_names_,
                                      validation_size=self.validation_size)
 
-        if isinstance(self.functions, list):
-            self.functions_ = {k:1.0 for k in self.functions}
-        else:
-            self.functions_ = self.functions
-
         # set n classes if relevant
         self.n_classes_ = 0
         if self.mode=="classification":
@@ -157,9 +152,8 @@ class DeapEstimator(EstimatorInterface, BaseEstimator):
         
         self.validation_ = self.data_.get_validation_data()
 
-        self.search_space_ = SearchSpace(self.data_, self.functions_, self.weights_init)
-                
         self.parameters_ = self._wrap_parameters()
+        self.search_space_ = SearchSpace(self.data_, self.parameters_.functions, self.weights_init)
 
         if self.mode == "classification":
             self.variator_ = (ClassifierVariator

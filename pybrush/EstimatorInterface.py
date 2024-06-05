@@ -5,6 +5,7 @@ This interface defines all the hyperparameters for Brush estimators and
 provides documentation for the hyperparameters.
 """
 
+import numpy as np
 from pybrush import Parameters
 
 class EstimatorInterface():
@@ -155,6 +156,11 @@ class EstimatorInterface():
         the algorithm to use.
         """
         
+        if isinstance(self.functions, list):
+            self.functions_ = {k:1.0 for k in self.functions}
+        else:
+            self.functions_ = self.functions
+
         params = Parameters()
 
         params.classification = self.mode == "classification"
@@ -174,7 +180,7 @@ class EstimatorInterface():
         params.use_arch = self.use_arch
         params.val_from_arch = self.val_from_arch
         params.mig_prob = self.mig_prob
-        params.functions = self.functions
+        params.functions = self.functions_
         params.mutation_probs = self.mutation_probs
         params.validation_size = self.validation_size
         params.batch_size = self.batch_size
@@ -187,7 +193,7 @@ class EstimatorInterface():
         if self.random_state is not None:
             seed = 0
             if isinstance(self.random_state, np.random.Generator):
-                seed = self.random_state.integers(10000)
+                seed = self.random_state.integers(1_000_000)
             elif isinstance(self.random_state, int):
                 seed = self.random_state
             else:
