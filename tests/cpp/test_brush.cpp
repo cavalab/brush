@@ -46,11 +46,10 @@ TEST(Engine, EngineWorks)
 
     Parameters params;
     params.set_pop_size(100);
-    params.set_gens(10);
+    params.set_max_gens(10);
     params.set_mig_prob(0.0);
 
      // TODO: archive tests
-     // TODO: solve issues from GH
 
     params.set_verbosity(2); // TODO: verbosity tests
 
@@ -86,7 +85,7 @@ TEST(Engine, EngineWorks)
     std::cout << "testing migration" << std::endl;
     
     params.set_pop_size(10);
-    params.set_gens(10);
+    params.set_max_gens(10);
     params.set_mig_prob(0.5);
 
     // just to see if nothing breaks
@@ -117,40 +116,39 @@ TEST(Engine, EngineWorks)
      // when popsize is not divisible by num_islands
     std::cout << "popsize not divisible by num_islands" << std::endl;
     params.set_pop_size(15);
-    params.set_gens(10);
+    params.set_max_gens(10);
     params.set_num_islands(4); // fewer individuals in one island
     params.set_n_jobs(1);
     Brush::RegressorEngine est_not_div1(params);
     est_not_div1.run(data);
 
-    // TODO: logger
+    // TODO: use logger in the tests
     std::cout << "popsize not divisible by num_islands" << std::endl;
     params.set_pop_size(10);
-    params.set_gens(10);
+    params.set_max_gens(10);
     params.set_num_islands(3); // extra individuals in one island
     params.set_n_jobs(1);
     Brush::RegressorEngine est_not_div2(params);
     est_not_div2.run(data);
 
-    // TODO: test predict and predict proba
-     // TODO: validation loss
+    // TODO: validation loss
 }
 
 
 TEST(Engine, ClassificationEngineWorks)
 {
-     // TODO: test classifier and multiclassifier 
+     // TODO: test regression and multiclassifier . add some asserts here
     Dataset data = Data::read_csv("docs/examples/datasets/d_analcatdata_aids.csv", "target");
     
     ASSERT_TRUE(data.classification);
 
     Parameters params;
     params.set_pop_size(100);
-    params.set_gens(10);
+    params.set_max_gens(10);
     params.set_mig_prob(0.0);
     params.set_scorer_("log");
 
-    params.set_verbosity(2); // TODO: verbosity tests
+    params.set_verbosity(2);
 
     Brush::ClassifierEngine est(params);
     est.run(data);

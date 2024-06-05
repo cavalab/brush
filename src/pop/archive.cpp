@@ -1,4 +1,3 @@
-// TODO: implement archive functions
 #include "archive.h"
 
 namespace Brush {
@@ -71,9 +70,9 @@ void Archive<T>::init(Population<T>& pop)
 
     // dealing with islands --> fast nds for each island
     for (int island =0; island< pop.num_islands; ++island) {
-        vector<size_t> idxs = pop.get_island_indexes(island);
+        vector<size_t> indices = pop.get_island_indexes(island);
 
-        selector.fast_nds(pop, idxs); 
+        selector.fast_nds(pop, indices); 
     }
 
     // OBS: fast_nds will change all individual fitness inplace.
@@ -83,11 +82,11 @@ void Archive<T>::init(Population<T>& pop)
 
     /* vector<size_t> front = this->sorted_front(); */
     for (int island =0; island< pop.num_islands; ++island) {
-        auto idxs = pop.get_island_indexes(island);
+        auto indices = pop.get_island_indexes(island);
 
-        for (unsigned i = 0; i<idxs.size(); ++i)
+        for (unsigned i = 0; i<indices.size(); ++i)
         {
-            const auto& t = *pop.individuals.at(idxs.at(i));
+            const auto& t = *pop.individuals.at(indices.at(i));
 
             if (t.fitness.rank ==1){
                 // TODO: check if this is creating a copy
@@ -113,10 +112,10 @@ void Archive<T>::update(Population<T>& pop, const Parameters& params)
     // refill archive with new pareto fronts (one pareto front for each island!)
     for (int island =0; island< pop.num_islands; ++island) {
         cout << "island" << island << endl;
-        vector<size_t> idxs = pop.get_island_indexes(island);
+        vector<size_t> indices = pop.get_island_indexes(island);
 
-        // TODO: can i just call fast nds with all indexes in idxs?
-        vector<vector<int>> front = selector.fast_nds(pop, idxs); 
+        // TODO: can i just call fast nds with all indexes in indices?
+        vector<vector<int>> front = selector.fast_nds(pop, indices); 
         for (const auto& i : front[0])
         {
             individuals.push_back( *pop.individuals.at(i) );
@@ -136,5 +135,5 @@ void Archive<T>::update(Population<T>& pop, const Parameters& params)
     individuals.resize(std::distance(individuals.begin(),it));
 }
 
-}
-}
+} // Pop
+} // Brush

@@ -19,7 +19,6 @@ struct std::hash<std::vector<float>> {
     }
 };
 
-// TODO: separate declaration from implementation (for all classes. have a folder with headers and other with srcs, just like operon)
 namespace Brush{
 struct Fitness {
     // the loss is used in evolutionary functions
@@ -183,9 +182,5 @@ struct Fitness {
 void to_json(json &j, const Fitness &f);
 void from_json(const json &j, Fitness& f);
 
-
 }
 #endif
-
-
-

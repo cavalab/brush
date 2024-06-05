@@ -18,15 +18,11 @@ template<ProgramType T>
 vector<size_t> Lexicase<T>::select(Population<T>& pop, int island, 
         const Parameters& params)
 {
-    // cout << "select lexicase island " << island << endl;
-
     // this one can be executed in parallel because it is just reading the errors. This 
     // method assumes that the expressions have been fitted previously, and their respective
     // error vectors are filled 
 
     auto island_pool = pop.get_island_indexes(island);
-
-    // cout << "got indexes " << endl;
 
     // if this is first generation, just return indices to pop
     if (params.current_gen==0)
@@ -37,9 +33,6 @@ vector<size_t> Lexicase<T>::select(Population<T>& pop, int island,
 
     //< number of individuals
     unsigned int P = island_pool.size();          
-       
-    // cout << "pool size is " << P << endl;
-    // cout << "epsilon size is " << N << endl;
 
     // define epsilon
     ArrayXf epsilon = ArrayXf::Zero(N);
@@ -48,8 +41,6 @@ vector<size_t> Lexicase<T>::select(Population<T>& pop, int island,
     if (!params.classification || params.scorer_.compare("log")==0 
     ||  params.scorer_.compare("multi_log")==0)
     {
-        // cout << "using lexicase for regression " << endl;
-
         // for each sample, calculate epsilon
         for (int i = 0; i<epsilon.size(); ++i)
         {
@@ -73,16 +64,11 @@ vector<size_t> Lexicase<T>::select(Population<T>& pop, int island,
     
     vector<size_t> selected(P,0); // selected individuals
 
-    // #pragma omp parallel for 
     for (unsigned int i = 0; i<P; ++i)  // selection loop
     {
-        // cout << "parallel start index  " + to_string(i) << endl;
-
         vector<size_t> cases; // cases (samples)
         if (params.classification && !params.class_weights.empty()) 
         {
-            // cout << "using WEIGHTED for classification " << endl;
-
             // for classification problems, weight case selection 
             // by class weights
             vector<size_t> choices(N);
@@ -92,11 +78,11 @@ vector<size_t> Lexicase<T>::select(Population<T>& pop, int island,
 
             for (unsigned i = 0; i<N; ++i)
             {
-                vector<size_t> choice_idxs(N-i);
-                std::iota(choice_idxs.begin(),choice_idxs.end(),0);
+                vector<size_t> choice_indices(N-i);
+                std::iota(choice_indices.begin(),choice_indices.end(),0);
 
                 size_t idx = *r.select_randomly(
-                        choice_idxs.begin(), choice_idxs.end(),
+                        choice_indices.begin(), choice_indices.end(),
                         sample_weights.begin(), sample_weights.end());
 
                 cases.push_back(choices.at(idx));
@@ -176,7 +162,6 @@ vector<size_t> Lexicase<T>::select(Population<T>& pop, int island,
     return selected;
 }
 
-
 template<ProgramType T>
 vector<size_t> Lexicase<T>::survive(Population<T>& pop, int island,
         const Parameters& params)
@@ -185,7 +170,6 @@ vector<size_t> Lexicase<T>::survive(Population<T>& pop, int island,
     HANDLE_ERROR_THROW("Lexicase survival not implemented");
     return vector<size_t>();
 }
-
 
 }
 }

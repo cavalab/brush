@@ -14,11 +14,11 @@ void Evaluation<T>::update_fitness(Population<T>& pop,
                     bool validation
                     )
 {   
-    auto idxs = pop.get_island_indexes(island);
+    auto indices = pop.get_island_indexes(island);
 
-    for (unsigned i = 0; i<idxs.size(); ++i)
+    for (unsigned i = 0; i<indices.size(); ++i)
     {
-        Individual<T>& ind = *pop.individuals.at(idxs.at(i)).get(); // we are modifying it, so operator[] wont work
+        Individual<T>& ind = *pop.individuals.at(indices.at(i)).get(); // we are modifying it, so operator[] wont work
 
         bool pass = false;
 

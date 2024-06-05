@@ -4,7 +4,6 @@
 #include "metrics.h"
 #include "../util/error.h"
 #include "../types.h"
-// #include "../individual.h"
 
 // code to evaluate GP programs.
 namespace Brush{
@@ -54,14 +53,11 @@ public:
     
         if ( score_hash.find(this->scorer) == score_hash.end() ) 
         {
-            // not found
-            HANDLE_ERROR_THROW("Scoring function '" + this->scorer
-                    + "' not defined");
+            HANDLE_ERROR_THROW("Scoring function '" + this->scorer + "' not defined");
             return 0.0;
         } 
         else 
         {
-            // found
             return score_hash.at(this->scorer)(y_true, y_pred, loss, w); 
         }
     };
@@ -122,8 +118,7 @@ public:
     float score(Individual<P>& ind, Dataset& data, 
                 VectorXf& loss, const Parameters& params)
     {
-        // TODO: individual should have a wrapper to predict proba
-        RetType y_pred = ind.program.predict_proba(data); // .template cast<float>();
+        RetType y_pred = ind.predict_proba(data); // .template cast<float>();
         return score(data.y, y_pred, loss, params.class_weights);
     }
 };
@@ -178,8 +173,7 @@ public:
     float score(Individual<P>& ind, Dataset& data, 
                 VectorXf& loss, const Parameters& params)
     {
-        // TODO: individual should have a wrapper to predict proba
-        RetType y_pred = ind.program.predict_proba(data); // .template cast<float>();
+        RetType y_pred = ind.predict_proba(data); // .template cast<float>();
         return score(data.y, y_pred, loss, params.class_weights);
     }
 };

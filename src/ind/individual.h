@@ -158,13 +158,6 @@ void to_json(json &j, const Individual<T> &p)
         {"fitness", p.fitness},
         {"id", p.id},
         {"parent_id", p.parent_id},
-        // {"loss", p.loss},
-        // {"loss_v", p.loss_v},
-        // {"complexity", p.complexity},
-        // {"size", p.size},
-        // {"depth", p.depth},
-        // {"rank", p.rank},
-        // {"crowding_dist", p.crowding_dist},
         {"objectives", p.objectives}
     }; 
 }
@@ -176,13 +169,6 @@ void from_json(const json &j, Individual<T>& p)
     j.at("fitness").get_to( p.fitness );
     j.at("id").get_to( p.id );
     j.at("parent_id").get_to( p.parent_id );
-    // j.at("loss").get_to( p.loss );
-    // j.at("loss_v").get_to( p.loss_v );
-    // j.at("complexity").get_to( p.complexity );
-    // j.at("size").get_to( p.size );
-    // j.at("depth").get_to( p.depth );
-    // j.at("rank").get_to( p.rank );
-    // j.at("crowding_dist").get_to( p.crowding_dist );
     j.at("objectives").get_to( p.objectives );
 }
 } // Pop

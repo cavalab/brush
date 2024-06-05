@@ -13,7 +13,7 @@ import logging
 @pytest.fixture
 def brush_args():
     return dict(
-        gens=10, 
+        max_gens=10, 
         pop_size=20, 
         max_size=50, 
         max_depth=6,

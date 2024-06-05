@@ -1,12 +1,10 @@
 #include "selection.h"
 
-// TODO: organize all namespaces
 namespace Brush {
 namespace Sel {
 
 using namespace Brush;
 using namespace Pop;
-
 
 template<ProgramType T> 
 Selection<T>::Selection()
@@ -64,5 +62,5 @@ vector<size_t> Selection<T>::survive(Population<T>& pop, int island,
     return pselector->survive(pop, island, params);
 }
 
-} // selection
+} // Sel
 } // Brush

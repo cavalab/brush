@@ -17,8 +17,8 @@ namespace Brush { namespace Util{
          * the number of available cores. 
          */
         
-        //cout << "Max threads are " <<omp_get_max_threads()<<"\n";
 
+        // TODO: stop using omp. this should be based on number of islands. make each island to use their respective
         // when we resize, the constructor of new elements are invoked.
         rg.resize(omp_get_max_threads());                      
     }

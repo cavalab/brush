@@ -17,21 +17,11 @@ using namespace Var;
 template <ProgramType T>
 void Engine<T>::init()
 {
-    // TODO: get rid of omp
-    if (params.n_jobs!=0) 
-        omp_set_num_threads(params.get_n_jobs());
-
-    // std::cout << "set number of threads" << std::endl;
-
     r.set_seed(params.get_random_state());
-    // std::cout << "set random state" << std::endl;
 
-    // set up the pop, variator, etc
     set_is_fitted(false);
-    // std::cout << "is fitted is false" << std::endl;
 
    this->pop = Population<T>();
-    //std::cout << "created population" << std::endl;
 
     // TODO: load population into file
     // TODO: if initializing from a population file, then this is where we should load previous models.
@@ -41,13 +31,10 @@ void Engine<T>::init()
         this->pop.load(params.load_population);
 
     this->evaluator = Evaluation<T>();
-    //std::cout << "created evaluator" << std::endl;
 
-    // TOD: make these classes have a default constructor, and stop recreating instances
+    // TODO: make these classes have a default constructor, and stop recreating instances
     this->variator.init(params, ss);
-    //std::cout << "initialized variator" << std::endl;
 
-    // initializing survivor and selector based on params
     this->selector = Selection<T>(params.sel, false);
     this->survivor = Selection<T>(params.surv, true);
 
@@ -56,11 +43,7 @@ void Engine<T>::init()
 
     this->archive.set_objectives(params.objectives);
 
-    // start the clock
     timer.Reset();
-
-    // // signal handler
-    // signal(SIGINT, my_handler);
 
     // reset statistics
     this->stats = Log_Stats();
@@ -88,8 +71,8 @@ void Engine<T>::calculate_stats()
     int pop_size = 0;
     for (int island=0; island<params.num_islands; ++island)
     {
-        auto idxs = pop.island_indexes.at(island);
-        pop_size += idxs.size();
+        auto indices = pop.island_indexes.at(island);
+        pop_size += indices.size();
     }
 
     ArrayXf scores(pop_size);
@@ -104,10 +87,10 @@ void Engine<T>::calculate_stats()
     int index = 0;
     for (int island=0; island<params.num_islands; ++island)
     {
-        auto idxs = pop.island_indexes.at(island);
-        for (unsigned int i=0; i<idxs.size(); ++i)
+        auto indices = pop.island_indexes.at(island);
+        for (unsigned int i=0; i<indices.size(); ++i)
         {
-            const auto& p = this->pop.individuals.at(idxs[i]);
+            const auto& p = this->pop.individuals.at(indices[i]);
 
             // Fitness class will store every information that can be used as
             // fitness. you just need to access them. Multiplying by weight
@@ -195,7 +178,7 @@ void Engine<T>::print_stats(std::ofstream& log, float fraction)
     
     if(params.max_time == -1)
         std::cout << "Generation " << params.current_gen+1 << "/" 
-            << params.gens << " [" + bar + space + "]\n";
+            << params.max_gens << " [" + bar + space + "]\n";
     else
         std::cout << std::fixed << "Time elapsed "<< timer 
             << "/" << params.max_time 
@@ -237,11 +220,11 @@ auto Engine<T>::predict_archive(int id, const Dataset& data)
             return ind.predict(data);
     }
     for (int island=0; island<pop.num_islands; ++island) {
-        auto idxs = pop.get_island_indexes(island);
+        auto indices = pop.get_island_indexes(island);
 
-        for (unsigned i = 0; i<idxs.size(); ++i)
+        for (unsigned i = 0; i<indices.size(); ++i)
         {
-            const auto& ind = pop.individuals.at(idxs.at(i));
+            const auto& ind = pop.individuals.at(indices.at(i));
 
             if (id == ind->id)
                 return ind->predict(data);
@@ -277,11 +260,11 @@ auto Engine<T>::predict_proba_archive(int id, const Dataset& data)
             return ind.predict_proba(data);
     }
     for (int island=0; island<pop.num_islands; ++island) {
-        auto idxs = pop.get_island_indexes(island);
+        auto indices = pop.get_island_indexes(island);
 
-        for (unsigned i = 0; i<idxs.size(); ++i)
+        for (unsigned i = 0; i<indices.size(); ++i)
         {
-            const auto& ind = pop.individuals.at(idxs.at(i));
+            const auto& ind = pop.individuals.at(indices.at(i));
 
             if (id == ind->id)
                 return ind->predict_proba(data);
@@ -303,44 +286,28 @@ auto Engine<T>::predict_proba_archive(int id, const Ref<const ArrayXXf>& X)
     return predict_proba_archive(id, d);
 }
 
-template <ProgramType T> // TODO: use the dataset, or ignore it
+template <ProgramType T>
 bool Engine<T>::update_best(const Dataset& data, bool val)
 {
-    //std::cout << "updating best" << std::endl;
-
     float error_weight = Individual<T>::weightsMap[params.scorer_];
-
-    float bs;
-    bs = this->best_score; 
     
     float f;
-
     bool updated = false; 
-
-    //std::cout << "inside loop" << std::endl;
+    float bs = this->best_score; 
 
     vector<size_t> hof = this->pop.hall_of_fame(1);
 
-    //std::cout << "got hof" << std::endl;
-
     for (int i=0; i < hof.size(); ++i) 
     {
-        //std::cout << "index" << hof[i] << std::endl;
         const auto& ind = *pop.individuals.at(hof[i]);
-
-        //std::cout << ind.program.get_model() << std::endl;
-
-        //std::cout << "got individual of rank" << ind.fitness.rank << std::endl;
         
-        // if there is no validation, then loss_v == loss and this should work just fine
+        // TODO: dataset arg here with null default value. if the user provides a dataset, we use it to update
+        // if there is no validation, then loss_v==loss and this should work just fine
         f = ind.fitness.loss_v;
 
         if (f*error_weight > bs*error_weight
-        || (f == bs && ind.fitness.complexity < this->best_complexity)
-        )
+        || (f == bs && ind.fitness.complexity < this->best_complexity) )
         {
-            //std::cout << "updated" << std::endl;
-        
             bs = f;
             this->best_ind = ind; 
             this->best_complexity = ind.fitness.complexity;
@@ -358,16 +325,12 @@ bool Engine<T>::update_best(const Dataset& data, bool val)
 template <ProgramType T>
 void Engine<T>::run(Dataset &data)
 {
-    // It is up to the python side to create the dataset (we have a cool wrapper for that)
-    //std::cout << "starting to run" << std::endl;
-
     //TODO: i need to make sure i initialize everything (pybind needs to have constructors
     // without arguments to work, and i need to handle correcting these values before running)
     this->ss = SearchSpace(data, params.functions);
     //std::cout << "search space was set" << std::endl;
 
     this->init();
-    //std::cout << "Engine initialized" << std::endl;
 
     pop.init(this->ss, this->params);
 
@@ -376,11 +339,7 @@ void Engine<T>::run(Dataset &data)
     if (!params.logfile.empty())
         log.open(params.logfile, std::ofstream::app);
 
-    //std::cout << "pop initialized with size " << params.pop_size << " and " << params.num_islands << "islands" << std::endl;
-    //std::cout << pop.print_models() << std::endl;
-
     evaluator.set_scorer(params.scorer_);
-    //std::cout << "evaluator configured. starting to run " << std::endl;
 
     Dataset &batch = data;
 
@@ -392,22 +351,21 @@ void Engine<T>::run(Dataset &data)
     else
         threads = params.n_jobs;
 
-    tf::Executor executor(threads); // TODO: executor could be an attribute (so I can move a lot of stuff here to init)
-    //std::cout << "using n threads " << threads << std::endl;
+    tf::Executor executor(threads);
 
     assert( (executor.num_workers() > 0) && "Invalid number of workers");
 
     tf::Taskflow taskflow;
 
-    //std::cout << "stop criteria is ready " << std::endl;
     // stop criteria 
     unsigned generation = 0;
     unsigned stall_count = 0;
     float fraction = 0;
+
     bool use_arch;
 
     auto stop = [&]() {
-        return (  (generation == params.gens)
+        return (  (generation == params.max_gens)
                && ((params.max_stall == 0 || stall_count < params.max_stall) 
                &&  (params.max_time == -1 || params.max_time > timer.Elapsed().count()) )
         );
@@ -427,7 +385,6 @@ void Engine<T>::run(Dataset &data)
         size_t idx_start = std::floor(i*params.pop_size/params.num_islands);
         size_t idx_end   = std::floor((i+1)*params.pop_size/params.num_islands);
 
-        // auto delta = survivors.at(j).size(); // should have the same size as idx_end - idx_start
         auto delta = idx_end - idx_start;
 
         survivors.at(i).clear();
@@ -450,27 +407,6 @@ void Engine<T>::run(Dataset &data)
                 //std::cout << " -------------------- generation " << generation << " -------------------- " << std::endl;
                 params.set_current_gen(generation);
                 batch = data.get_batch(); // will return the original dataset if it is set to dont use batch 
-
-                // island_parents.clear();
-                // island_parents.resize(pop.num_islands);
-
-                // survivors.clear();
-                // survivors.resize(pop.num_islands);
-
-                // for (int i=0; i< params.num_islands; i++){
-                //     size_t idx_start = std::floor(i*params.pop_size/params.num_islands);
-                //     size_t idx_end   = std::floor((i+1)*params.pop_size/params.num_islands);
-
-                //     // auto delta = survivors.at(j).size(); // should have the same size as idx_end - idx_start
-                //     auto delta = idx_end - idx_start;
-
-                //     survivors.at(i).clear();
-                //     island_parents.at(i).clear();
-
-                //     survivors.at(i).resize(delta);
-                //     island_parents.at(i).resize(delta);
-                // }
-            
             }).name("prepare generation");// set generation in params, get batch
 
             auto run_generation = subflow.for_each_index(0, this->params.num_islands, 1, [&](int island) {
@@ -489,46 +425,24 @@ void Engine<T>::run(Dataset &data)
                     island_parents.at(island).at(i) = parents.at(i);
                 }
                 
-                //std::cout << "inside generate offspring" << std::endl;
                 this->pop.add_offspring_indexes(island); 
-
-                //std::cout << "before vary" << std::endl;
-                // // variation to produce offspring
                 variator.vary(this->pop, island, island_parents.at(island), params);
-                //std::cout << "before update fitness" << std::endl;
-
                 evaluator.update_fitness(this->pop, island, data, params, true);
-                // evaluator.validation(*this->pop, island_range, data, params);
-                //std::cout << "before batch update" << std::endl;
 
                 if (data.use_batch) // assign the batch error as fitness (but fit was done with training data)
                     evaluator.update_fitness(this->pop, island, batch, params, false);
-                //std::cout << "before survive" << std::endl;
 
                 // select survivors from combined pool of parents and offspring
                 vector<size_t> island_survivors = survivor.survive(this->pop, island, params);
-                //std::cout << "before assign to survivors array" << std::endl;
 
                 for (int i=0; i< island_survivors.size(); i++){
-                    //std::cout << i << std::endl;
                     survivors.at(island).at(i) = island_survivors.at(i);
                 }
             }).name("runs one generation at each island in parallel");
 
             auto update_pop = subflow.emplace([&]() {
-                //std::cout << "before updating survivors" << std::endl;
-                //std::cout << pop.print_models() << std::endl;
                 this->pop.update(survivors);
-                
-                //std::cout << "after updating survivors" << std::endl;
-                //std::cout << pop.print_models() << std::endl;
-                
-                //std::cout << "before migrating" << std::endl;
-                //std::cout << pop.print_models() << std::endl;
                 this->pop.migrate();
-                
-                //std::cout << "after migrating" << std::endl;
-                //std::cout << pop.print_models() << std::endl;
             }).name("update, migrate and disentangle indexes between islands");
             
             auto finish_gen = subflow.emplace([&]() {
@@ -539,13 +453,10 @@ void Engine<T>::run(Dataset &data)
                     calculate_stats();
                 }
 
-                // TODO: logger working
-                // logger.log("calculate stats...",2);
-
                 if (params.use_arch)
                     archive.update(pop, params);
                 
-                fraction = params.max_time == -1 ? ((generation+1)*1.0)/params.gens : 
+                fraction = params.max_time == -1 ? ((generation+1)*1.0)/params.max_gens : 
                                                     timer.Elapsed().count()/params.max_time;
 
                 if(params.verbosity>1)
@@ -598,11 +509,11 @@ void Engine<T>::run(Dataset &data)
                 archive.individuals.resize(0);
                 for (int island =0; island< pop.num_islands; ++island) {
                     // cout << "island" << island << endl;
-                    vector<size_t> idxs = pop.get_island_indexes(island);
+                    vector<size_t> indices = pop.get_island_indexes(island);
 
-                    for (unsigned i = 0; i<idxs.size(); ++i)
+                    for (unsigned i = 0; i<indices.size(); ++i)
                     {
-                        archive.individuals.push_back( *pop.individuals.at(idxs.at(i)) );
+                        archive.individuals.push_back( *pop.individuals.at(indices.at(i)) );
                         // cout << "index" << i << endl;
                     }
                 }
@@ -634,7 +545,8 @@ void Engine<T>::run(Dataset &data)
     //When you have tasks that are created at runtime (e.g., subflow,
     // cudaFlow), you need to execute the graph first to spawn these tasks and dump the entire graph.
 
+    // printing the graph
     //std::cout << "dumping taskflow in json " << std::endl;
-    taskflow.dump(std::cout); 
+    // taskflow.dump(std::cout); 
 }
 }

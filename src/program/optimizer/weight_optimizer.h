@@ -74,6 +74,7 @@ private:
     size_t numParameters_; // cache the number of parameters in the tree
 };
 
+// TODO: see this struct and try to understand how to make non-templated classes
 struct WeightOptimizer
 {
     

@@ -16,10 +16,6 @@ namespace Sel {
 using namespace Brush;
 using namespace Pop;
 
-// struct Parameters; // forward declaration of Parameters      
-
-// TODO: it seems that the selection is doing a poor job with the size. investigate it.
-
 /*!
 * @class Selection
 * @brief interfaces with selection operators. 
@@ -51,9 +47,6 @@ public:
             const Parameters& params);
 };
 
-// TODO: MAKE THIS WORK
-// NLOHMANN_DEFINE_TYPE_NON_INTRUSIVE(Selection, type, survival);    
-
-} // selection
+} // Sel
 } // Brush
 #endif

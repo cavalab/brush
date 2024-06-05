@@ -35,7 +35,7 @@ PYBIND11_MODULE(_brush, m) {
 #ifdef VERSION_INFO
      m.attr("__version__") = MACRO_STRINGIFY(VERSION_INFO);
 #else
-     m.attr("__version__") = "dev";
+     m.attr("__version__") = "dev"; // TODO: uve version file
 #endif
      // data structures
      bind_params(m);
@@ -43,7 +43,7 @@ PYBIND11_MODULE(_brush, m) {
      bind_search_space(m);
      bind_fitness(m);
 
-     // TODO: should these 4 below be exposed? should i add them to submodules?
+     // TODO: create a submodule for them
      bind_variations(m);
      bind_selections(m);
      bind_evaluators(m);
@@ -55,6 +55,6 @@ PYBIND11_MODULE(_brush, m) {
      py::module_ m3 = m.def_submodule("individual", "Contains Individual classes.");
      bind_individuals(m3);
 
-     py::module_ m4 = m.def_submodule("engine", "Learning engines (used inside the python s)."); 
+     py::module_ m4 = m.def_submodule("engine", "Learning engines."); 
      bind_engines(m4);
 }

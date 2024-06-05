@@ -49,11 +49,6 @@ void Population<T>::init(vector<Individual<T>>& new_individuals, const Parameter
                 island_indexes.at(i).begin() + delta, island_indexes.at(i).end(),
                 p+idx_start);
         }
-        else 
-        {
-            // // second half is space to the offspring (but we dont initialize them)
-            // individuals.at(i) = std::make_shared<nullptr>;
-        }
     };
 
     for (int j=0; j< new_individuals.size(); j++) {
@@ -177,7 +172,6 @@ void Population<T>::update(vector<vector<size_t>> survivors)
         size_t idx_start = std::floor(j*pop_size/num_islands);
         size_t idx_end   = std::floor((j+1)*pop_size/num_islands);
 
-        // auto delta = survivors.at(j).size(); // should have the same size as idx_end - idx_start
         auto delta = idx_end - idx_start;
 
         assert(delta == survivors.at(j).size()
@@ -244,13 +238,13 @@ vector<vector<size_t>> Population<T>::sorted_front(unsigned rank)
 
     for (int j=0;j<num_islands; ++j)
     {
-        auto idxs = island_indexes.at(j);
+        auto indices = island_indexes.at(j);
         vector<size_t> pf;
 
-        for (int i=0; i<idxs.size(); ++i)
+        for (int i=0; i<indices.size(); ++i)
         {
             // this assumes that rank was previously calculated. It is set in selection (ie nsga2) if the information is useful to select/survive
-            if (individuals.at(idxs.at(i))->fitness.rank == rank)
+            if (individuals.at(indices.at(i))->fitness.rank == rank)
                 pf.push_back(i);
         }
 
@@ -278,11 +272,11 @@ vector<size_t> Population<T>::hall_of_fame(unsigned rank)
     
     for (int j=0;j<num_islands; ++j)
     {
-        auto idxs = island_indexes.at(j);
-        for (int i=0; i<idxs.size(); ++i)
+        auto indices = island_indexes.at(j);
+        for (int i=0; i<indices.size(); ++i)
         {
-            if (individuals.at(idxs.at(i))->fitness.rank == rank)
-                pf.push_back(idxs.at(i));
+            if (individuals.at(indices.at(i))->fitness.rank == rank)
+                pf.push_back(indices.at(i));
         }
     }
     std::sort(pf.begin(),pf.end(),SortComplexity(*this)); 
@@ -311,13 +305,11 @@ void Population<T>::migrate()
     {
         new_island_indexes.at(island).resize(0);
 
-        auto idxs = island_indexes.at(island);
-        for (unsigned int i=0; i<idxs.size(); ++i)
+        auto indices = island_indexes.at(island);
+        for (unsigned int i=0; i<indices.size(); ++i)
         {
             if (r() < mig_prob)
             {
-                // std::cout << "migrating in island " << island << std::endl;
-
                 size_t migrating_idx;
                 
                 vector<int> other_islands(num_islands-1);
@@ -338,20 +330,16 @@ void Population<T>::migrate()
                 migrating_idx = *r.select_randomly(
                     island_indexes.at(other_island).begin(),
                     island_indexes.at(other_island).end());
-                // std::cout << "mig idx" << migrating_idx << std::endl;
-            
 
-                // std::cout << "index " << i << " of island " << island;
-                // std::cout << " is now" << migrating_idx << std::endl;
-                
                 new_island_indexes.at(island).push_back(migrating_idx);
             }
             else
             {
-                new_island_indexes.at(island).push_back(idxs.at(i));
+                new_island_indexes.at(island).push_back(indices.at(i));
             }
         }
     }
+
     // making hard copies (so the next generation starts with islands that does not share individuals 
     // this is particularly important to avoid multiple threads assigning different rank/crowdist/dcounter 
     // or different fitness)
@@ -381,11 +369,9 @@ void Population<T>::migrate()
         iota(island_indexes.at(j).begin(), island_indexes.at(j).end(), idx_start);
     }
 
-    // std::cout << "finished making copies" << std::endl;
     assert(new_pop.size() == pop_size
            && " migration ended up with a different popsize");
 
-    // std::cout << "filling individuals" << std::endl;
     this->individuals.resize(0);
     for (auto ind : new_pop)
     {

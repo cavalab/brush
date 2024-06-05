@@ -46,12 +46,12 @@ void bind_variation(py::module& m, string name)
                 self.vary(pop, island, parents, params);
 
                 // making copies of the second half of the island individuals
-                vector<size_t> idxs = pop.get_island_indexes(island);
-                int start = idxs.size()/2;
-                for (unsigned i = start; i<idxs.size(); ++i)
+                vector<size_t> indices = pop.get_island_indexes(island);
+                int start = indices.size()/2;
+                for (unsigned i = start; i<indices.size(); ++i)
                 {
                     // this is where the offspring is saved
-                    pool.push_back(pop[idxs.at(i)]);
+                    pool.push_back(pop[indices.at(i)]);
                 }
             }
 

@@ -54,7 +54,7 @@ public:
     bool update_best(const Dataset& data, bool val=false);  
     // TODO: hyperparameter to set how the best is picked (MCDM, best on val, pareto front, etc). one of the options should be getting the pareto front
 
-    // TODO: best fitness instead of these. use fitness comparison
+    // TODO: best fitness (the class) instead of these. use fitness comparison
     float best_score;
     int best_complexity;
     Individual<T>& get_best_ind(){return best_ind;};  
@@ -103,7 +103,7 @@ public:
     // ArrayXXf predict_proba(MatrixXf& X, LongData& Z);  
     // ArrayXXf predict_proba(MatrixXf& X);
 
-    // archive stuff
+    // archive stuff ---
 
     ///return archive size
     int get_archive_size(){ return this->archive.individuals.size(); };
@@ -161,5 +161,4 @@ NLOHMANN_DEFINE_TYPE_NON_INTRUSIVE(Engine<PT::MulticlassClassifier>,params, best
 NLOHMANN_DEFINE_TYPE_NON_INTRUSIVE(Engine<PT::Representer>,params, best_ind, archive);
 
 } // Brush
-
 #endif

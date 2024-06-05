@@ -29,7 +29,7 @@ public:
 
     // termination criteria
     int pop_size  = 100;
-    int gens      = 1000;   // TODO: rename it to max_gens
+    int max_gens      = 100;
     int max_stall = 0;
     int max_time  = -1;
 
@@ -97,8 +97,8 @@ public:
     void set_pop_size(int new_pop_size){ pop_size = new_pop_size; };
     int get_pop_size(){ return pop_size; };
 
-    void set_gens(int new_gens){ gens = new_gens; };
-    int get_gens(){ return gens; };
+    void set_max_gens(int new_max_gens){ max_gens = new_max_gens; };
+    int get_max_gens(){ return max_gens; };
     
     void set_max_stall(int new_max_stall){ max_stall = new_max_stall; };
     int get_max_stall(){ return max_stall; };
@@ -169,7 +169,6 @@ public:
     void set_batch_size(float c){ batch_size = c; };
     float get_batch_size(){ return batch_size; };
 
-    //TODO: unify unordered or ordered
     void set_mutation_probs(std::map<std::string, float> new_mutation_probs){ mutation_probs = new_mutation_probs; };
     std::map<std::string, float> get_mutation_probs(){ return mutation_probs; };
 
@@ -181,7 +180,7 @@ NLOHMANN_DEFINE_TYPE_NON_INTRUSIVE(Parameters,
     verbosity,
     random_state,
     pop_size,
-    gens,
+    max_gens,
     max_stall,
     max_time,
     scorer_,

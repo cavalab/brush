@@ -63,6 +63,7 @@ float mean_log_loss(const VectorXf& y,
 VectorXf multi_log_loss(const VectorXf& y, const ArrayXXf& predict_proba, 
         const vector<float>& class_weights)
 {
+    // TODO: fix softmax and multiclassification, then implement this
     VectorXf loss = VectorXf::Zero(y.rows());  
     
     // TODO: needs to be the index of unique elements
@@ -121,9 +122,6 @@ float mean_multi_log_loss(const VectorXf& y,
     /* std::cout << "mean loss: " << loss.mean() << "\n"; */
     return loss.mean();
 }  
-
-
-// TODO: implement other metrics. Right know I have just the MSE
 
 } // metrics
 } // Brush

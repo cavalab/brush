@@ -516,14 +516,10 @@ std::optional<Individual<T>> Variation<T>::cross(
 template<Brush::ProgramType T>
 std::optional<Individual<T>> Variation<T>::mutate(const Individual<T>& parent)
 {
-    // std::cout << "selecting options" << parameters.mutation_probs.size() << std::endl;
     auto options = parameters.mutation_probs;
-
-    // std::cout << "selecting options2" << options.size() << std::endl;
 
     bool all_zero = true;
     for (auto &it : parameters.mutation_probs) {
-        // std::cout << it.first << it.second << std::endl;
         if (it.second > 0.0) {
             all_zero = false;
             break;
@@ -532,18 +528,15 @@ std::optional<Individual<T>> Variation<T>::mutate(const Individual<T>& parent)
 
     if (all_zero)
     { // No mutation can be successfully applied to this solution  
-        // std::cout << "no viable one" << std::endl;
         return std::nullopt;
     }
     
     int attempts = 0;
     while(++attempts <= 3)
     {
-        // std::cout << "selecting (not all are zero)" << std::endl;
         // choose a valid mutation option
         string choice = r.random_choice(parameters.mutation_probs);
 
-        // std::cout << "picked mutation" << choice <<  std::endl;
         // TODO: this could be improved (specially with the Variation class)
         std::unique_ptr<MutationBase> mutation;
         if (choice == "point") 
@@ -569,10 +562,8 @@ std::optional<Individual<T>> Variation<T>::mutate(const Individual<T>& parent)
             HANDLE_ERROR_THROW(msg);
         }
 
-        // std::cout << "cloning parent" << std::endl;
         Program<T> child(parent.program);
 
-        // std::cout << "findind spot" << std::endl;
         // choose location by weighted sampling of program
         auto weights = mutation->find_spots(child.Tree);
 
@@ -580,16 +571,13 @@ std::optional<Individual<T>> Variation<T>::mutate(const Individual<T>& parent)
             return w<=0.0;
         }))
         { // There is no spot that has a probability to be selected
-            // std::cout << "no spots" << std::endl;
             continue;
         }
 
-        // std::cout << "apickingt spot" << std::endl;
         // apply the mutation and check if it succeeded
         auto spot = r.select_randomly(child.Tree.begin(), child.Tree.end(),
                                     weights.begin(), weights.end());
 
-        // std::cout << "mutating" << std::endl;
         // Every mutation here works inplace, so they return bool instead of
         // std::optional to indicare the result of their manipulation over the
         // program tree. Here we call the mutation function and return the result
@@ -616,13 +604,11 @@ template <Brush::ProgramType T>
 void Variation<T>::vary(Population<T>& pop, int island, 
           const vector<size_t>& parents, const Parameters& p)
 {    
-    auto idxs = pop.get_island_indexes(island);
+    auto indices = pop.get_island_indexes(island);
 
-    // TODO: fix pragma omp usage (by fix I mean remove)
-    //#pragma omp parallel for
-    for (unsigned i = 0; i<idxs.size(); ++i)
+    for (unsigned i = 0; i<indices.size(); ++i)
     {
-        if (pop.individuals.at(idxs.at(i)) != nullptr)
+        if (pop.individuals.at(indices.at(i)) != nullptr)
         {
             continue; // skipping if it is an individual
         }
@@ -649,9 +635,9 @@ void Variation<T>::vary(Population<T>& pop, int island,
         }
 
         // this assumes that islands do not share indexes before doing variation
-        unsigned id = p.current_gen*p.pop_size+idxs.at(i);
+        unsigned id = p.current_gen*p.pop_size+indices.at(i);
 
-        // mutation and crossover will already perform 3 attempts. If it fails, we just fill with a random individual
+        // mutation and crossover already perform 3 attempts. If it fails, we just fill with a random individual
         if (opt) // variation worked, lets keep this
         {
             Individual<T> ind = opt.value();
@@ -661,23 +647,21 @@ void Variation<T>::vary(Population<T>& pop, int island,
             ind.set_parents(ind_parents);
 
             assert(ind.program.size()>0);
-            pop.individuals.at(idxs.at(i)) = std::make_shared<Individual<T>>(ind);
+            pop.individuals.at(indices.at(i)) = std::make_shared<Individual<T>>(ind);
         }
         else {  // no optional value was returned
             Individual<T> new_ind;
             
-            // creating a new random individual from nothing
+            // creating a new random individual
             new_ind.init(search_space, parameters);
-
             new_ind.set_objectives(mom.get_objectives()); // it will have an invalid fitness
             new_ind.set_id(id);
             new_ind.is_fitted_ = false;
 
-            pop.individuals.at(idxs.at(i)) = std::make_shared<Individual<T>>(new_ind);
+            pop.individuals.at(indices.at(i)) = std::make_shared<Individual<T>>(new_ind);
         }
    }
 }
 
 } //namespace Var
 } //namespace Brush
-

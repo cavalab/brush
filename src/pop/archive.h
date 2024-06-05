@@ -1,7 +1,6 @@
 #ifndef ARCHIVE_H
 #define ARCHIVE_H
 
-//#include "node.h" // including node.h since definition of node is in the header
 #include "../ind/individual.h"
 
 ///< nsga2 selection operator for getting the front

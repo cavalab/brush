@@ -3,23 +3,19 @@ from _brush import Dataset
 from _brush import SearchSpace
 from _brush import Parameters
 
-# geting random floats with the same engine
+# geting random floats with brush (avoid random state issues in parallel exec)
 from _brush import rnd_flt as brush_rng
 
-# Individuals
-from _brush import individual #RegressorIndividual, ClassifierIndividual, MultiClassifierIndividual
+from _brush import individual # Individual classes (specific for each task)
 
-# c++ learning engines. These are wrapped into a scikit-learn-like estimator in the python side
-from _brush import engine # RegressorEngine, ClassifierEngine, MultiClassifierEngine
+# c++ learning engines
+from _brush.engine import *
 
-
-# Population modifiers
+# Evaluation, selection, and variation. used in python estimators
 from _brush import RegressorEvaluator, ClassifierEvaluator, MultiClassifierEvaluator
 from _brush import RegressorSelector, ClassifierSelector, MultiClassifierSelector
 from _brush import RegressorVariator, ClassifierVariator, MultiClassifierVariator
-# --------------------
 
-# --------------------
-# Prototyping an EA using brush classes, but other EA framework
+# full estimator implementations --------------------
 from pybrush.DeapEstimator import DeapClassifier, DeapRegressor
 from pybrush.BrushEstimator import BrushClassifier, BrushRegressor

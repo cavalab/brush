@@ -81,7 +81,7 @@ class Dataset
 
         /// @brief percentage of original data used for train. if 0.0, then all data is used for train and validation
         float validation_size; 
-        bool use_validation;
+        bool use_validation; // TODO: shuffle before validation (this should be a parameter)
 
         /// @brief percentage of training data size to use in each batch. if 1.0, then all data is used
         float batch_size;
@@ -247,6 +247,7 @@ template <> struct fmt::formatter<Brush::DataType>: formatter<string_view> {
     return formatter<string_view>::format(Brush::DataTypeName.at(x), ctx);
   }
 };
+
 // TODO: fmt overload for Data
 // template <> struct fmt::formatter<Brush::Data::Dataset>: formatter<string_view> {
 //   template <typename FormatContext>

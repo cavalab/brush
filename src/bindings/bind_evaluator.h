@@ -12,7 +12,7 @@ template <br::ProgramType T>
 void bind_evaluator(py::module& m, string name)
 {
     using Class = br::Eval::Evaluation<T>;
-    
+    // TODO: will this part of c++ be exposed?
     py::class_<Class> eval(m, name.data() ); 
     eval.def(py::init<>())    
         .def("assign_fit", &Class::assign_fit)

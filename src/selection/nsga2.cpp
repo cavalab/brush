@@ -39,18 +39,12 @@ template<ProgramType T>
 vector<size_t> NSGA2<T>::select(Population<T>& pop, int island, 
         const Parameters& params)
 {
-    // cout << "select nsga island" << island << endl;
-
     // tournament selection. TODO: move this to tournament selection file, and throw not implemented error in nsga.
     auto island_pool = pop.get_island_indexes(island);
 
     // if this is first generation, just return indices to pop
     if (params.current_gen==0)
         return island_pool;
-
-    // setting the objectives (evaluator should do it. TODO: make sure it does)
-    // for (unsigned int i=0; i<island_pool.size(); ++i)
-    //     pop.individuals.at(island_pool[i])->set_obj(params.objectives);
 
     // i am not sure if I need this update of rank and crowding distance (bc first generation is ignored by if above, and the other generations will always have individuals that went through survival, which already calculates this information. TODO: in the final algorithm, I need to make sure this is correct)
     auto front = fast_nds(pop, island_pool);
@@ -75,62 +69,32 @@ template<ProgramType T>
 vector<size_t> NSGA2<T>::survive(Population<T>& pop, int island,
         const Parameters& params)
 {
-
-    // fmt::print("starting survive\n");
-
-    // cout << "survive nsga island " << island << endl;
-
     size_t idx_start = std::floor(island*params.pop_size/params.num_islands);
     size_t idx_end   = std::floor((island+1)*params.pop_size/params.num_islands);
 
     auto original_size = idx_end - idx_start; // original island size (survive must   be  called with an island with offfspring)
-
-    // fmt::print("original size {}\n", original_size);
     
     auto island_pool = pop.get_island_indexes(island);
     
-    // fmt::print("island size {}\n", island_pool.size());
-    
-    // set objectives (this is when the obj vector is updated.)
-    
-    // for loop below (originally performed in selection in FEAT) was moved to evaluation --- multiple islands may have the same individual
-    // for (unsigned int i=0; i<island_pool.size(); ++i)
-    //     pop.individuals.at(island_pool[i])->set_obj(params.objectives);
-
     // fast non-dominated sort
-    // fmt::print("fast nds for island {}\n", island);
     auto front = fast_nds(pop, island_pool);
     
-    // fmt::print("selecting...\n");
     // Push back selected individuals until full
     vector<size_t> selected;
-    // fmt::print("created array...\n");
     selected.resize(0);
-    // fmt::print("resized...\n");
     
     int i = 0;
-
-    // fmt::print("starting loop...\n");
-    // fmt::print("selected size {}...\n",selected.size());
-    // fmt::print("first front size {}...\n", front.at(i).size());
-    // fmt::print("goal is to select n individuals: {}...\n", original_size);
-
     while (
         i < front.size()
         && ( selected.size() + front.at(i).size() < original_size )
     )
     {
-        // fmt::print("1...\n");
         std::vector<int>& Fi = front.at(i);        // indices in front i
 
-        // fmt::print("2...\n");
         crowding_distance(pop, front, i);          // calculate crowding in Fi
 
-        // fmt::print("3...\n");    
         for (int j = 0; j < Fi.size(); ++j)     // Pt+1 = Pt+1 U Fi
             selected.push_back(Fi.at(j));
-        
-        // fmt::print("4...\n");  
 
         ++i;
     }
@@ -154,16 +118,12 @@ vector<vector<int>> NSGA2<T>::fast_nds(Population<T>& pop, vector<size_t>& islan
     // this will update pareto dominance attributes in fitness class
     // based on the population
 
-    // fmt::print("inside fast nds with island pool of size {} from pop of size {} and\n", island_pool.size(), pop.size());
-
     //< the Pareto fronts
     vector<vector<int>> front;                
 
     front.resize(1);
     front.at(0).clear();
 
-    // this pragma must go alongside with the inner pragma omp critical (to avoid racing conditions)
-    #pragma omp parallel for
     for (int i = 0; i < island_pool.size(); ++i) {
     
         std::vector<unsigned int> dom;
@@ -184,22 +144,17 @@ vector<vector<int>> NSGA2<T>::fast_nds(Population<T>& pop, vector<size_t>& islan
                 dcount += 1;
             }
         }
+        p->fitness.dcounter  = dcount;
+        p->fitness.dominated.clear();
+        p->fitness.dominated = dom; // dom will have values already referring to island indexes
     
-        #pragma omp critical
-        {
-            p->fitness.dcounter  = dcount;
-            p->fitness.dominated.clear();
-            p->fitness.dominated = dom; // dom will have values already referring to island indexes
-        
-            if (p->fitness.dcounter == 0) {
-                // fmt::print("pushing {}...\n", island_pool[i]);
-                p->fitness.set_rank(1);
-                // front will have values already referring to island indexes
-                front.at(0).push_back(island_pool[i]);
-            }
-
-            // fmt::print("... index {} dominates {} ({}) and was dominated by {} ({})\n", island_pool[i], dom.size(), p->fitness.get_dominated().size(), dcount, p->fitness.get_dcounter());
+        if (p->fitness.dcounter == 0) {
+            // fmt::print("pushing {}...\n", island_pool[i]);
+            p->fitness.set_rank(1);
+            // front will have values already referring to island indexes
+            front.at(0).push_back(island_pool[i]);
         }
+
     }
 
     // fmt::print("First front size {}...\n", front.at(0).size());
@@ -211,15 +166,11 @@ vector<vector<int>> NSGA2<T>::fast_nds(Population<T>& pop, vector<size_t>& islan
 
     int fi = 1;
     while (front.at(fi-1).size() > 0) {
-        // fmt::print("starting front {} with size {} \n", fi, front.at(fi-1).size());
-
         std::vector<int>& fronti = front.at(fi-1);
         std::vector<int> Q;
         for (int i = 0; i < fronti.size(); ++i) {
 
             const Individual<T>& p = pop[fronti.at(i)];
-
-            // fmt::print("ind {} dominated {} \n", fronti.at(i), p.fitness.dominated.size());
 
             // iterating over dominated individuals
             for (int j = 0; j < p.fitness.dominated.size() ; ++j) {
@@ -240,13 +191,9 @@ vector<vector<int>> NSGA2<T>::fast_nds(Population<T>& pop, vector<size_t>& islan
         }
 
         front.push_back(Q);
-        // fmt::print("front {} ended with size {}...\n", fi, Q.size());
 
         fi += 1;
     }
-
-    // fmt::print("finished\n");
-
     return front;
 }
 

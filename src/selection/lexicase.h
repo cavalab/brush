@@ -36,8 +36,6 @@ public:
             const Parameters& p);
 };
 
-
-}
-}
-
+} // Sel
+} // Brush
 #endif

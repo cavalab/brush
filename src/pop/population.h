@@ -46,8 +46,8 @@ class Population{
 public:
     size_t pop_size;
     int num_islands;
-    float mig_prob; // TODO: mig_prob should not be part of population
-
+    float mig_prob;
+    
     vector<std::shared_ptr<Individual<T>>> individuals;
     vector<vector<size_t>> island_indexes;
 
@@ -124,6 +124,7 @@ NLOHMANN_DEFINE_TYPE_NON_INTRUSIVE(
     Population<PT::MulticlassClassifier>, individuals, island_indexes, pop_size, num_islands);
 NLOHMANN_DEFINE_TYPE_NON_INTRUSIVE(
     Population<PT::Representer>, individuals, island_indexes, pop_size, num_islands);
+    
 }// Pop
 }// Brush
 

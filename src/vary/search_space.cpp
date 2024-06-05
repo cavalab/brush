@@ -440,20 +440,17 @@ RegressorProgram SearchSpace::make_regressor(int max_d, int max_size, const Para
     return make_program<RegressorProgram>(params, max_d, max_size);
 };
 
-// TODO: stop using params as a default argument and actually pass it (also update tests)
 ClassifierProgram SearchSpace::make_classifier(int max_d, int max_size, const Parameters& params)
 {
     return make_program<ClassifierProgram>(params, max_d, max_size);
 };
 
-// TODO: stop using params as a default argument and actually pass it (also update tests)
 MulticlassClassifierProgram SearchSpace::make_multiclass_classifier(
     int max_d, int max_size, const Parameters& params)
 {
     return make_program<MulticlassClassifierProgram>(params, max_d, max_size);
 };
 
-// TODO: stop using params as a default argument and actually pass it (also update tests)
 RepresenterProgram SearchSpace::make_representer(int max_d, int max_size, const Parameters& params)
 {
     return make_program<RepresenterProgram>(params, max_d, max_size);

@@ -132,7 +132,7 @@ TEST(Population, PopulationTests)
 
         for (int j=0; j<pop.num_islands; ++j)
         {
-            fmt::print("Island {}, idxs {}\n", j, pop.get_island_indexes(j));
+            fmt::print("Island {}, indices {}\n", j, pop.get_island_indexes(j));
             for (int k=0; k<pop.get_island_indexes(j).size(); ++k){
                 fmt::print("Individual {} (fitness {}): {}\n",
                         pop.get_island_indexes(j).at(k),
