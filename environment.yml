@@ -16,12 +16,14 @@ dependencies:
     - pydot
     - scikit-learn
     - pandas
-    # these are not required for install
+    # not required for install the c++ library (but used in the wrapper)
     - jupyter
     - ipython
     - pip
     - nlohmann_json
     - pybind11_json
+    # Building documentation
+    - doxygen
     - sphinx
     - pip:
       - graphviz

@@ -45,7 +45,7 @@ class CMakeBuild(build_ext):
             "-DEXAMPLE_VERSION_INFO={}".format(self.distribution.get_version()),
             "-DCMAKE_BUILD_TYPE={}".format(cfg),  # not used on MSVC, but no harm
             "-DGTEST=OFF",
-            "-DDOCS=OFF",
+            "-DDOCS=ON",
             "-DGTEST_INCLUDE_DIRS={}/include/".format(conda_prefix),
             "-DGTEST_LIBRARIES={}/lib/libgtest.so".format(conda_prefix),
             "-DEIGEN3_INCLUDE_DIR={}/include/eigen3/".format(conda_prefix),
@@ -107,7 +107,7 @@ except FileNotFoundError:
 
 setup(
     name="pybrush",
-    version="0.0.1",
+    version="0.0.1", # TODO: use versionstr here
     author="William La Cava, Joseph D. Romano",
     author_email="joseph.romano@pennmedicine.upenn.edu",  # can change to Bill
     license="GNU General Public License v3.0",
