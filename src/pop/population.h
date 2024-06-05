@@ -1,42 +1,9 @@
 #ifndef POPULATION_H
 #define POPULATION_H
 
+#include "../util/utils.h"
 #include "../util/error.h"
 #include "../ind/individual.h"
-
-// TODO: move this serialization elsewhere
-// serializing vector of shared ptr: https://github.com/nlohmann/json/discussions/2377
-// (this is used by population, which has a shared_ptr vector)
-namespace nlohmann
-{
-template <typename T>
-struct adl_serializer<std::shared_ptr<T>>
-{
-    static void to_json(json& j, const std::shared_ptr<T>& opt)
-    {
-        if (opt)
-        {
-            j = *opt;
-        }
-        else
-        {
-            j = nullptr;
-        }
-    }
-
-    static void from_json(const json& j, std::shared_ptr<T>& opt)
-    {
-        if (j.is_null())
-        {
-            opt = nullptr;
-        }
-        else
-        {
-            opt.reset(new T(j.get<T>()));
-        }
-    }
-};
-}
 
 namespace Brush {   
 namespace Pop {

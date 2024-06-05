@@ -1,4 +1,5 @@
 #include "module.h"
+
 // TODO: figure out why im having symbol errors (if i dont include the cpp here as well)
 #include "../selection/selection.h"
 #include "../selection/selection.cpp"
@@ -11,9 +12,6 @@
 
 #include "../pop/population.cpp"
 #include "../pop/population.h"
-
-// #include "../individual.h"
-//#include "../selection/selection.cpp" 
 
 namespace py = pybind11;
 namespace nl = nlohmann;
@@ -31,7 +29,8 @@ void bind_selection(py::module& m, string name)
        .def(py::init(
            [](string type, bool survival){ Class s(type, survival); return s; })
        )
-       .def("select", [](Class &self, std::vector<br::Pop::Individual<PT>>& individuals,
+       .def("select", [](Class &self,
+                         std::vector<br::Pop::Individual<PT>>& individuals,
                          const Parameters& params) {
                             
             // auto sel = Class("nsga2", false);
@@ -53,10 +52,10 @@ void bind_selection(py::module& m, string name)
                 }
             }
 
-            // returns references   
             return pool;
        })
-       .def("survive", [](Class &self, std::vector<br::Pop::Individual<PT>>& individuals,
+       .def("survive", [](Class &self,
+                         std::vector<br::Pop::Individual<PT>>& individuals,
                          const Parameters& params) {
                             
             // auto sel = Class("nsga2", false);
@@ -76,10 +75,10 @@ void bind_selection(py::module& m, string name)
                 }
             }
 
-            // returns references   
             return pool;
        })
-       .def("migrate", [](Class &self, std::vector<br::Pop::Individual<PT>>& individuals,
+       .def("migrate", [](Class &self,
+                         std::vector<br::Pop::Individual<PT>>& individuals,
                          const Parameters& params) {
 
             auto pop = br::Pop::Population<PT>();
@@ -98,7 +97,6 @@ void bind_selection(py::module& m, string name)
                     pool.push_back(pop[idx]);
                 }
             }
-            // returns references   
             return pool;
        })
        ;

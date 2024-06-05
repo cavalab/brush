@@ -39,7 +39,6 @@ using Brush::Data::Dataset;
 
 namespace Brush{
 
-// TODO: should I move this declaration to another place?
 template <DataType... T>
 inline auto Isnt(DataType dt) -> bool { return !((dt == T) || ...); }
 

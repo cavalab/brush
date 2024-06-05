@@ -83,11 +83,15 @@ public: // TODO: make these private (and work with nlohman json)
 
     // just getters
     bool get_is_fitted() const { return this->is_fitted_; };
-    string get_model() const { return program.get_model(); };
     unsigned int get_size() const { return program.size(); };
     unsigned int get_depth() const { return program.depth(); };
     unsigned int get_complexity() const { return program.complexity(); };
     Program<T>& get_program() { return program; };
+    
+    string get_model(string fmt="compact", bool pretty=false) {
+        return program.get_model(fmt, pretty); };
+    string get_dot_model(string extras="") {
+        return program.get_dot_model(extras); };
 
     void set_fitness(Fitness &f) { fitness=f; };
     Fitness& get_fitness() { return fitness; };

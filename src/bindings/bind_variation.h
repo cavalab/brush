@@ -1,9 +1,9 @@
 #include "module.h"
-#include "../vary/variation.h"
-#include "../vary/variation.cpp" // TODO: figure out why im having symbol errors (if i dont include the cpp here as well)
 
-#include "../pop/population.cpp"
+#include "../vary/variation.h"
+#include "../vary/variation.cpp"
 #include "../pop/population.h"
+#include "../pop/population.cpp"
 
 namespace py = pybind11;
 namespace nl = nlohmann;
@@ -22,10 +22,17 @@ void bind_variation(py::module& m, string name)
              return variation; }))
         .def("mutate", &Class::mutate, py::return_value_policy::automatic)
         .def("cross", &Class::cross, py::return_value_policy::automatic)
-        .def("vary_pop", [](Class &self, std::vector<br::Pop::Individual<PT>>& individuals, const Parameters& params) {
-
+        .def("vary_pop", [](Class &self, 
+                            std::vector<br::Pop::Individual<PT>>& individuals,
+                            const Parameters& params) {
             if (individuals.size() != params.pop_size) {
-                throw std::runtime_error("Individual vector has different number of individuals than pop_size. When calling variation, they should be the same. popsize is "+to_string(params.pop_size)+", number of individuals is " + to_string(individuals.size()));
+                string msg = "Individual vector has different number of "
+                             "individuals than pop_size. When calling "
+                             "variation, they should be the same. popsize is "+
+                             to_string(params.pop_size)+", number of "
+                             "individuals is "+to_string(individuals.size());
+
+                throw std::runtime_error(msg);
             }
 
             auto pop = br::Pop::Population<PT>();
@@ -37,10 +44,12 @@ void bind_variation(py::module& m, string name)
 
             for (int island = 0; island < params.num_islands; ++island)
             {
-                // I am assuming the individual vector passed as argument will contain the selected parents already
+                // I am assuming the individual vector passed as argument
+                // will contain the selected parents already
                 vector<size_t> parents = pop.get_island_indexes(island);
 
-                // including offspring indexes (the vary method will store the offspring in the second half of the index vector)
+                // including offspring indexes (the vary method will store the
+                // offspring in the second half of the index vector)
                 pop.add_offspring_indexes(island);
                 
                 self.vary(pop, island, parents, params);
@@ -53,9 +62,7 @@ void bind_variation(py::module& m, string name)
                     // this is where the offspring is saved
                     pool.push_back(pop[indices.at(i)]);
                 }
-            }
-
-            // returns references   
+            } 
             return pool;
         })
         ;

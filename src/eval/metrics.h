@@ -12,8 +12,6 @@ namespace Eval {
 float mse(const VectorXf& y, const VectorXf& yhat, VectorXf& loss, 
             const vector<float>& class_weights=vector<float>() );
 
-// TODO: test cases for the metrics
-
 /// log loss (2 methods below)
 VectorXf log_loss(const VectorXf& y, const VectorXf& predict_proba, 
                     const vector<float>& class_weights=vector<float>());

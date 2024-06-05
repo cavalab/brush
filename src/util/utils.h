@@ -27,6 +27,54 @@ using namespace std;
 * @brief namespace containing various utility functions 
 */
 
+// serializing vector of shared ptr: https://github.com/nlohmann/json/discussions/2377
+// (used in population.h, which has a shared_ptr vector)
+namespace nlohmann
+{
+template <typename T>
+struct adl_serializer<std::shared_ptr<T>>
+{
+    static void to_json(json& j, const std::shared_ptr<T>& opt)
+    {
+        if (opt)
+        {
+            j = *opt;
+        }
+        else
+        {
+            j = nullptr;
+        }
+    }
+
+    static void from_json(const json& j, std::shared_ptr<T>& opt)
+    {
+        if (j.is_null())
+        {
+            opt = nullptr;
+        }
+        else
+        {
+            opt.reset(new T(j.get<T>()));
+        }
+    }
+};
+}
+
+// to overload operators and compare our individuals, we need to be able to
+// serialize vectors.
+// this is intended to be used with DEAP (so our brush individuals
+// can be hashed and compared to each other in python side)
+template <> 
+struct std::hash<std::vector<float>> {
+    std::size_t operator()(const std::vector<float>& v) const {
+        std::size_t seed = v.size();
+        for (const auto& elem : v) {
+            seed ^= std::hash<float>{}(elem) +  0x9e3779b9 + (seed <<  6) + (seed >>  2);
+        }
+        return seed;
+    }
+};
+
 
 // namespace std
 // {

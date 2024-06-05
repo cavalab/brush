@@ -3,25 +3,15 @@
 
 #include <functional>
 #include "../init.h"
-
+#include "../util/utils.h"
 
 using namespace nlohmann;
 
-
-template <> // this is intended to be used with DEAP (so our brush individuals can be hashed and compared to each other in python side)
-struct std::hash<std::vector<float>> {
-    std::size_t operator()(const std::vector<float>& v) const {
-        std::size_t seed = v.size();
-        for (const auto& elem : v) {
-            seed ^= std::hash<float>{}(elem) +  0x9e3779b9 + (seed <<  6) + (seed >>  2);
-        }
-        return seed;
-    }
-};
-
 namespace Brush{
+    
 struct Fitness {
     // the loss is used in evolutionary functions
+    
     float loss;     ///< aggregate loss score
     float loss_v;   ///< aggregate validation loss score
 
@@ -163,17 +153,26 @@ struct Fitness {
     // String representation
     std::string toString() const {
         if (valid()) {
-            return "TODO: implement string representation"; //std::to_string(wvalues);
+            string s = "Fitness(";
+            for (auto& v : values)
+                s += to_string(v) + " ";
+            return s+")";
         } else {
-            return "Tuple()";
+            return "Fitness()";
         }
     }
 
     // Representation for debugging
     std::string repr() const {
-        return "TODO: implement string representation";
+        if (valid()) {
+            string s = "Fitness(";
+            for (auto& v : values)
+                s += to_string(v) + " ";
+            return s+")";
+        } else {
+            return "Fitness()";
+        }
     }
-
 
     /// set obj vector given a string of objective names
     int dominates(const Fitness& b) const;

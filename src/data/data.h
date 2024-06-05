@@ -98,6 +98,8 @@ class Dataset
                                         const vector<string>& vn = {}
                                        );
 
+        // TODO: let the user specify the datatypes 
+
         /// turns input into a feature map, with feature types copied from a reference
         map<string,State> copy_and_make_features(const ArrayXXf& X,
                                                  const Dataset& ref_dataset,

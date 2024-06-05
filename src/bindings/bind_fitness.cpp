@@ -30,21 +30,21 @@ void bind_fitness(py::module& m)
         .def("__gt__", &br::Fitness::operator>, py::is_operator())
         .def("__le__", &br::Fitness::operator<=, py::is_operator())
         .def("__ge__", &br::Fitness::operator>=, py::is_operator())
-     //    .def("__str__", &br::Fitness::toString, "String representation of the Fitness object")
-     //    .def("__repr__", &br::Fitness::repr, "Representation for debugging the Fitness object")
-          .def(py::pickle(
-               [](const br::Fitness &f) { // __getstate__
-                    /* Return a tuple that fully encodes the state of the object */
-                    // return py::make_tuple(p.value(), p.extra());
-                    nl::json j = f;
-                    return j;
-               },
-               [](nl::json j) { // __setstate__
-                    br::Fitness f = j;
-                    return f;
-               }
-               )
-          )
-          ;
+        .def("__str__", &br::Fitness::toString, "String representation of the Fitness object")
+        .def("__repr__", &br::Fitness::repr, "Representation for debugging the Fitness object")
+        .def(py::pickle(
+             [](const br::Fitness &f) { // __getstate__
+                  /* Return a tuple that fully encodes the state of the object */
+                  // return py::make_tuple(p.value(), p.extra());
+                  nl::json j = f;
+                  return j;
+             },
+             [](nl::json j) { // __setstate__
+                  br::Fitness f = j;
+                  return f;
+             }
+             )
+        )
+        ;
 
 }

@@ -36,6 +36,11 @@ void bind_individual(py::module& m, string name)
        .def_property("objectives", &Class::get_objectives, &Class::set_objectives)
        .def_property_readonly("program", &Class::get_program)
        .def_property_readonly("fitness", &Class::get_fitness)
+       .def("get_model", &Class::get_model, 
+            py::arg("fmt") = "compact",
+            py::arg("pretty") = false)
+       .def("get_dot_model", &Class::get_dot_model,
+            py::arg("extras") = "")
        .def("fit",
             static_cast<Class &(Class::*)(const Dataset &d)>(&Class::fit),
             "fit from Dataset object")
