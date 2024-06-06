@@ -1,14 +1,5 @@
 #include "testsHeader.h"
 
-//
-// #include "../../src/individual.cpp"
-// #include "../../src/population.cpp" // TODO: figure out if thats ok to include cpps instead of headers
-// #include "../../src/eval/evaluation.cpp"
-// #include "../../src/selection/nsga2.cpp"
-// #include "../../src/selection/lexicase.cpp"
-// #include "../../src/selection/selection_operator.cpp"
-// #include "../../src/selection/selection.cpp"
-
 using namespace Brush::Pop;
 using namespace Brush::Sel;
 using namespace Brush::Eval;
@@ -49,7 +40,5 @@ TEST(Params, ParamsTests)
 	
 	// ft.params.set_verbosity(2);
 	// ASSERT_EQ(ft.params.verbosity, 2);
-	// ASSERT_STREQ("", logger.log("Hello", 3).c_str());
-	
-    // TODO: test termination criterion --- max stall, generations, time    
+	// ASSERT_STREQ("", logger.log("Hello", 3).c_str());  
 }

@@ -50,6 +50,8 @@ TEST(Engine, EngineWorks)
     params.set_mig_prob(0.0);
 
      // TODO: archive tests
+     
+    // TODO: test termination criterion --- max stall, generations, time  
 
     params.set_verbosity(2); // TODO: verbosity tests
 
