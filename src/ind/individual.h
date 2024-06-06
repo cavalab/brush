@@ -108,29 +108,20 @@ public: // TODO: make these private (and work with nlohman json)
     // template<ProgramType T>
     // void Individual<T>::set_objectives(const vector<string>& objectives)
 
-    // Static map for weights associated with strings
-    inline static std::map<std::string, float> weightsMap = []() {
-        std::map<std::string, float> map = {
-            // this will determine each fitness metric to be a min/max problem
-            {"complexity", -1.0},
-            {"size",       -1.0},
-            {"mse",        -1.0},
-            {"log",        -1.0},
-            {"multi_log",  -1.0},
-
-            {"accuracy",   +1.0},
-
-            // generic error metrics (will use default metrics for clf or reg)
-            // by default we use log and multi_log if the user specifies error 
-            // for a classification problem. However, other metrics (such as
-            // accuracy or precision or AUC) can be a maximization problem,
-            // so this map allow us to have flexibility when setting the
-            // objectives
-            {"error", (T == Brush::ProgramType::Regressor) ? -1.0 : -1.0}
-        };
-
-        return map;
-    }();
+    // Static map for weights associated with strings.
+    // this will determine each fitness metric to be a min/max problem.
+    // generic error metric: by default log and multi_log if it is a
+    // classification problem, and MSE if it is a regression (so its always
+    // a minimization by default, thus "error" has weight -1.0)
+    inline static std::map<std::string, float> weightsMap = {
+        {"complexity", -1.0},
+        {"size",       -1.0},
+        {"mse",        -1.0},
+        {"log",        -1.0},
+        {"multi_log",  -1.0},
+        {"accuracy",   +1.0},
+        {"error",      -1.0}
+    };
 
     vector<string> get_objectives() const { return objectives; };
     void set_objectives(vector<string> objs){
