@@ -51,7 +51,7 @@ public:
     inline bool get_is_fitted(){return is_fitted;}
 
     /// updates best score by searching in the population for the individual that best fits the given data
-    bool update_best(const Dataset& data, bool val=false);  
+    bool update_best(const Dataset& data, bool val=false);
     // TODO: hyperparameter to set how the best is picked (MCDM, best on val, pareto front, etc). one of the options should be getting the pareto front
 
     // TODO: best fitness (the class) instead of these. use fitness comparison
@@ -89,22 +89,6 @@ public:
         return predict_proba(d);
     };
 
-    // TODO: starting pop (just like feat)
-
-    // TODO: make these work
-    // /// predict on unseen data.             
-    // VectorXf predict(MatrixXf& X, LongData& Z);  
-    // VectorXf predict(MatrixXf& X);
-
-    // /// predict on unseen data. return CLabels.
-    // shared_ptr<CLabels> predict_labels(MatrixXf& X, LongData Z = LongData());  
-
-    // /// predict probabilities of each class.
-    // ArrayXXf predict_proba(MatrixXf& X, LongData& Z);  
-    // ArrayXXf predict_proba(MatrixXf& X);
-
-    // archive stuff ---
-
     ///return archive size
     int get_archive_size(){ return this->archive.individuals.size(); };
 
@@ -122,9 +106,7 @@ public:
         requires((P == PT::BinaryClassifier) || (P == PT::MulticlassClassifier))
     auto predict_proba_archive(int id, const Ref<const ArrayXXf>& X);
 
-    // TODO: make these work
-    // VectorXf predict_archive(int id, const Ref<const ArrayXXf>& X, LongData& Z);
-    // ArrayXXf predict_proba_archive(int id, const Ref<const ArrayXXf>& X, LongData& Z);
+    // TODO: predict/predict_proba/archive with longitudinal data
 
     /// train the model
     void run(Dataset &d);

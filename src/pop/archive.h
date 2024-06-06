@@ -15,7 +15,8 @@ namespace Pop{
 template<ProgramType T> 
 struct Archive  
 {
-    // I dont need shared pointers here
+    // I dont need shared pointers here (this is not suposed to be operated
+    // by several threads)
     vector<Individual<T>> individuals; ///< individual programs in the archive
     bool sort_complexity;    ///< whether to sort archive by complexity
 

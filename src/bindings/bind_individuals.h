@@ -12,11 +12,10 @@ using Rep = Brush::RepresenterIndividual;
 
 using stream_redirect = py::call_guard<py::scoped_ostream_redirect, py::scoped_estream_redirect>;
 
-// TODO: unify PT or T
-template <br::ProgramType T>
+template <br::ProgramType PT>
 void bind_individual(py::module& m, string name)
 {
-    using Class = br::Pop::Individual<T>;
+    using Class = br::Pop::Individual<PT>;
     
     using RetType = std::conditional_t<
             std::is_same_v<Class,Reg>, ArrayXf, 
@@ -25,10 +24,10 @@ void bind_individual(py::module& m, string name)
 
     py::class_<Class> ind(m, name.data() ); 
     ind.def(py::init<>())
-       .def(py::init([](br::Program<T>& prg){ Class i(prg);
+       .def(py::init([](br::Program<PT>& prg){ Class i(prg);
                                                     return i; })
        )
-       .def(py::init([](const json& j){ br::Program<T> prg = j;
+       .def(py::init([](const json& j){ br::Program<PT> prg = j;
                                         Class i(prg);
                                         return i; })
        )

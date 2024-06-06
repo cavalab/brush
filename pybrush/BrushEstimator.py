@@ -88,6 +88,8 @@ class BrushEstimator(EstimatorInterface, BaseEstimator):
             self.engine_ = RegressorEngine(self.parameters_)
 
         self.engine_.fit(self.data_)
+        
+        self.archive_ = self.engine_.get_archive()
         self.best_estimator_ = self.engine_.best_ind
 
         return self
@@ -224,7 +226,7 @@ class BrushClassifier(BrushEstimator, ClassifierMixin):
         return prob
     
         
-    def predict_archive(self, X):
+    def predict_proba_archive(self, X):
         """Returns a list of dictionary predictions for all models."""
         check_is_fitted(self)
 

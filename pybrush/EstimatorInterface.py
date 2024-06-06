@@ -86,6 +86,16 @@ class EstimatorInterface():
         Percentage of training data to sample every generation. If `1.0`, then
         all data is used. Very small values can improve execution time, but 
         also lead to underfit.
+    save_population: str, optional (default "")
+        string containing the path to save the final population. Ignored if
+        not provided.
+    load_population: str, optional (default "")
+        string containing the path to load the initial population. Ignored
+        if not provided.
+    shuffle_split: boolean, optional (default False)
+        whether if the engine should shuffle the data before splitting it
+        into train and validation partitions. Ignored if `validation_size`
+        is set to zero.
     logfile: str, optional (default: "")
         If specified, spits statistics into a logfile. "" means don't log.
     random_state: int or None, default None
@@ -119,6 +129,9 @@ class EstimatorInterface():
         objectives=["error", "size"],
         random_state=None,
         logfile="",
+        save_population="",
+        load_population="",
+        shuffle_split=False,
         weights_init=True,
         val_from_arch=True,
         use_arch=False,
@@ -139,11 +152,14 @@ class EstimatorInterface():
         self.n_jobs=n_jobs
         self.cx_prob=cx_prob
         self.logfile=logfile
+        self.save_population=save_population
+        self.load_population=load_population
         self.mutation_probs=mutation_probs
         self.val_from_arch=val_from_arch # TODO: val from arch implementation (in cpp side)
         self.use_arch=use_arch
         self.functions=functions
         self.objectives=objectives
+        self.shuffle_split=shuffle_split
         self.initialization=initialization
         self.random_state=random_state
         self.batch_size=batch_size
@@ -170,12 +186,15 @@ class EstimatorInterface():
         params.pop_size = self.pop_size
         params.max_gens = self.max_gens
         params.logfile = self.logfile
+        params.save_population = self.save_population
+        params.load_population = self.load_population
         params.max_stall = self.max_stall
         params.max_time = self.max_time
         params.num_islands = self.num_islands
         params.max_depth = self.max_depth
         params.max_size = self.max_size
         params.objectives = self.objectives
+        params.shuffle_split = self.shuffle_split
         params.cx_prob = self.cx_prob
         params.use_arch = self.use_arch
         params.val_from_arch = self.val_from_arch

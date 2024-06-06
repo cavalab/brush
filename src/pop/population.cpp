@@ -102,7 +102,7 @@ void Population<T>::save(string filename)
     if (!filename.empty())
         out.open(filename);
     else
-        out.open("pop.json");
+        out.open("population.json");
 
     json j;
     to_json(j, *this);

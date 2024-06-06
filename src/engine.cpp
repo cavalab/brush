@@ -23,13 +23,6 @@ void Engine<T>::init()
 
    this->pop = Population<T>();
 
-    // TODO: load population into file
-    // TODO: if initializing from a population file, then this is where we should load previous models.
-    // three behaviors: if we have only 1 ind, then replicate it trought the entire pop
-    // if n_ind is the same as pop_size, load all models. if n_ind != pop_size, throw error
-    if (params.load_population != "")
-        this->pop.load(params.load_population);
-
     this->evaluator = Evaluation<T>();
 
     // TODO: make these classes have a default constructor, and stop recreating instances
@@ -197,11 +190,16 @@ void Engine<T>::print_stats(std::ofstream& log, float fraction)
 template <ProgramType T>
 vector<json> Engine<T>::get_archive(bool front)
 {
-    json j; // TODO: use this front argument (or remove it). I think I can remove 
+    vector<json> archive_vector; // Use a vector to store serialized individuals
+    
+    // TODO: use this front argument (or remove it). I think I can remove 
     for (const auto& ind : archive.individuals) {
-        to_json(j, ind); // Serialize each individual
+        json j;  // Serialize each individual
+        to_json(j, ind);
+        archive_vector.push_back(j);
     }
-    return j;
+
+    return archive_vector;
 }
 
 // TODO: private function called find_individual that searches for it based on id. Then,
@@ -332,7 +330,10 @@ void Engine<T>::run(Dataset &data)
 
     this->init();
 
-    pop.init(this->ss, this->params);
+    if (params.load_population != "")
+        this->pop.load(params.load_population);
+    else
+        this->pop.init(this->ss, this->params);
 
     // log file stream
     std::ofstream log;
@@ -490,14 +491,6 @@ void Engine<T>::run(Dataset &data)
 
             this->set_is_fitted(true);
             
-            // TODO: make this work
-            // if (save_pop > 0)
-            // {
-            //     pop.save(this->logfile+".pop.gen" + to_string(params.current_gen) 
-            //             + ".json");
-            //     this->best_ind.save(this->logfile+".best.json");
-            // }
-            
             // TODO: open, write, close? (to avoid breaking the file and allow some debugging if things dont work well)
             if (log.is_open())
                 log.close();
@@ -508,13 +501,11 @@ void Engine<T>::run(Dataset &data)
             {
                 archive.individuals.resize(0);
                 for (int island =0; island< pop.num_islands; ++island) {
-                    // cout << "island" << island << endl;
                     vector<size_t> indices = pop.get_island_indexes(island);
 
                     for (unsigned i = 0; i<indices.size(); ++i)
                     {
                         archive.individuals.push_back( *pop.individuals.at(indices.at(i)) );
-                        // cout << "index" << i << endl;
                     }
                 }
             }
@@ -534,19 +525,10 @@ void Engine<T>::run(Dataset &data)
     body.precede(back);
     back.precede(cond);
 
-    //std::cout << "taskflow configured " << std::endl;
     executor.run(taskflow);
-    
-    //std::cout << "submitted jobs " << std::endl;
-
     executor.wait_for_all();
-    //std::cout << "finished " << std::endl;
     
     //When you have tasks that are created at runtime (e.g., subflow,
     // cudaFlow), you need to execute the graph first to spawn these tasks and dump the entire graph.
-
-    // printing the graph
-    //std::cout << "dumping taskflow in json " << std::endl;
-    // taskflow.dump(std::cout); 
 }
 }

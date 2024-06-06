@@ -205,7 +205,7 @@ class Dataset
         // if split is not set, then training = validation.
         Dataset get_training_data() const;
         Dataset get_validation_data() const;
-
+        // TODO: shuffle split
         inline int get_n_samples() const { 
             return std::visit(
                 [&](auto&& arg) -> int { return int(arg.size());}, 

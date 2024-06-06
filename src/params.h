@@ -33,7 +33,7 @@ public:
     int max_stall = 0;
     int max_time  = -1;
 
-    unsigned int max_depth = 6; // TODO: make all tests be based on these values for max depth and size
+    unsigned int max_depth = 6;
     unsigned int max_size  = 50;
 
     vector<string> objectives{"error","complexity"}; // error should be generic and deducted based on mode
@@ -72,6 +72,9 @@ public:
     // the uses uses an dataset
     bool classification;
     unsigned int n_classes;
+
+    // validation partition
+    bool shuffle_split = false;
     float validation_size = 0.75;
     vector<string> feature_names = {};
     float batch_size = 0.0;
@@ -156,6 +159,9 @@ public:
 
     void set_classification(bool c){ classification = c; };
     bool get_classification(){ return classification; };
+
+    void set_shuffle_split(bool shuff){ shuffle_split = shuff; };
+    bool get_shuffle_split(){ return shuffle_split; };
 
     void set_n_classes(unsigned int new_n_classes){ n_classes = new_n_classes; };
     unsigned int get_n_classes(){ return n_classes; };

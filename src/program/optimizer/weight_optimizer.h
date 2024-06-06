@@ -77,7 +77,6 @@ private:
 // TODO: see this struct and try to understand how to make non-templated classes
 struct WeightOptimizer
 {
-    
     /// @brief Update program weights using non-linear least squares.
     /// @tparam PT the program type 
     /// @param program the program 

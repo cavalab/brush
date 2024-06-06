@@ -111,7 +111,6 @@ void Archive<T>::update(Population<T>& pop, const Parameters& params)
 
     // refill archive with new pareto fronts (one pareto front for each island!)
     for (int island =0; island< pop.num_islands; ++island) {
-        cout << "island" << island << endl;
         vector<size_t> indices = pop.get_island_indexes(island);
 
         // TODO: can i just call fast nds with all indexes in indices?
@@ -119,7 +118,6 @@ void Archive<T>::update(Population<T>& pop, const Parameters& params)
         for (const auto& i : front[0])
         {
             individuals.push_back( *pop.individuals.at(i) );
-            cout << "index" << i << endl;
         }
     }
     
