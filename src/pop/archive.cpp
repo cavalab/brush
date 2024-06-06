@@ -89,14 +89,14 @@ void Archive<T>::init(Population<T>& pop)
             const auto& t = *pop.individuals.at(indices.at(i));
 
             if (t.fitness.rank ==1){
-                // TODO: check if this is creating a copy
+                // we can store a reference for the original ind, since
+                // variation operators does not change inplace. Ideally, the
+                // original individual is modified inplace just by fit(), which
+                // is a side effect that is OK to have here
                 individuals.push_back(t);
             }
         } 
     }
-
-    // TODO: use this cout in the logger
-    cout << "intializing archive with " << individuals.size() << " inds\n"; 
     if (this->sort_complexity)
         std::sort(individuals.begin(),individuals.end(), &sortComplexity); 
     else

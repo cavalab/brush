@@ -326,7 +326,6 @@ void Engine<T>::run(Dataset &data)
     //TODO: i need to make sure i initialize everything (pybind needs to have constructors
     // without arguments to work, and i need to handle correcting these values before running)
     this->ss = SearchSpace(data, params.functions);
-    //std::cout << "search space was set" << std::endl;
 
     this->init();
 
@@ -402,16 +401,12 @@ void Engine<T>::run(Dataset &data)
         stop, // loop condition
         
         [&](tf::Subflow& subflow) { // loop body (evolutionary main loop)
-            //std::cout << "inside body" << std::endl;
             auto prepare_gen = subflow.emplace([&]() { 
-                //std::cout << "inside prepare gen" << std::endl;
-                //std::cout << " -------------------- generation " << generation << " -------------------- " << std::endl;
                 params.set_current_gen(generation);
                 batch = data.get_batch(); // will return the original dataset if it is set to dont use batch 
             }).name("prepare generation");// set generation in params, get batch
 
             auto run_generation = subflow.for_each_index(0, this->params.num_islands, 1, [&](int island) {
-                //std::cout << "inside select parents" << std::endl;
                 evaluator.update_fitness(this->pop, island, data, params, true); // fit the weights with all training data
 
                 // TODO: have some way to set which fitness to use (for example in params, or it can infer based on split size idk)
@@ -422,7 +417,6 @@ void Engine<T>::run(Dataset &data)
                 vector<size_t> parents = selector.select(this->pop, island, params);
 
                 for (int i=0; i< parents.size(); i++){
-                    //std::cout << i << std::endl;
                     island_parents.at(island).at(i) = parents.at(i);
                 }
                 
