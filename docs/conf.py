@@ -58,7 +58,7 @@ copyright = '2021, William La Cava and Joseph D. Romano'
 author = 'William La Cava and Joseph D. Romano'
 
 # The full version, including alpha/beta/rc tags
-release = '0.1a'
+release = '0.1a' # TODO: use versionstr here
 
 
 # -- General configuration ---------------------------------------------------
