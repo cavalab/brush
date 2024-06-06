@@ -1,4 +1,8 @@
 Variation (Crossover/Mutation)
 ==============================
 
-.. doxygenfile:: variation.h
+.. doxygenclass:: Brush::Vary::MutationBase
+   :members:
+
+.. doxygenclass:: Brush::Vary::Variation
+   :members:

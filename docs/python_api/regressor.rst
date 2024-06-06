@@ -1,6 +1,6 @@
 BrushRegressor
 ==============
 
-.. autoclass:: brush.estimator.BrushRegressor
+.. autoclass:: pybrush.BrushRegressor
    :members:
    :undoc-members:

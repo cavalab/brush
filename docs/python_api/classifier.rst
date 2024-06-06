@@ -1,7 +1,6 @@
 BrushClassifier
 ===============
 
-
-.. autoclass:: brush.estimator.BrushClassifier
+.. autoclass:: pybrush.BrushClassifier
    :members:
    :undoc-members:

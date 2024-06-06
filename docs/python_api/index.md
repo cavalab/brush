@@ -4,4 +4,5 @@
 estimator
 regressor
 classifier
+python_api
 ```
