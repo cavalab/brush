@@ -37,7 +37,6 @@ def configureDoxyfile(input_dir, output_dir):
 	with open('Doxyfile', 'w') as fp2:
 		fp2.write(filedata)
 
-
 ## Only trigger readthedocs build if running on readthedocs servers:
 # read_the_docs_build = os.environ.get('READTHEDOCS', None) == 'True'
 
@@ -112,7 +111,8 @@ html_extra_path = ['doxygen_build']
 breathe_default_project = "brush"
 breathe_default_members = ('members', 'undoc-members')
 breathe_projects_source = {
-	"brush": ("../src/", list(glob('../src/', recursive=True)))
+	"brush"  : ("../src/",     list(glob('../src/', recursive=True)) ),
+	"pybrush": ("../pybrush/", list(glob('../pybrush/', recursive=True)) ),
 }
 
 html_theme_options = {

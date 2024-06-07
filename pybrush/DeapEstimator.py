@@ -31,7 +31,7 @@ class DeapEstimator(EstimatorInterface, BaseEstimator):
     """
     This is the base class for Brush estimators in python. 
     
-    Parameters are defined and documented in pybrush.EstimatorInterface.
+    Parameters are defined and documented in pybrush.EstimatorInterface.EstimatorInterface
 
     Attributes
     ----------

@@ -21,7 +21,8 @@ class BrushEstimator(EstimatorInterface, BaseEstimator):
     """
     This is the base class for Brush estimators using the c++ engine. 
     
-    Parameters are defined and documented in pybrush.EstimatorInterface.
+    Parameters are defined and documented in 
+    :py:class:`EstimatorInterface <pybrush.EstimatorInterface.EstimatorInterface>`
 
     Attributes
     ----------
@@ -37,8 +38,6 @@ class BrushEstimator(EstimatorInterface, BaseEstimator):
         Partition of `data_` containing `(validation_size)`% of the data, in Brush format.
     search_space_ : a Brush `SearchSpace` object. 
         Holds the operators and terminals and sampling utilities to update programs.
-    toolbox_ : deap.Toolbox
-        The toolbox used by DEAP for EA algorithm. 
     """
     
     def __init__(self, **kwargs):
@@ -170,9 +169,13 @@ class BrushEstimator(EstimatorInterface, BaseEstimator):
     
 
 class BrushClassifier(BrushEstimator, ClassifierMixin):
-    """Deap-based Brush for classification.
+    """Brush with c++ engine for classification.
 
-    For options, see :py:class:`DeapEstimator <brush.estimator.DeapEstimator>`. 
+    Parameters are defined and documented in 
+    :py:class:`EstimatorInterface <pybrush.EstimatorInterface.EstimatorInterface>`
+
+    This class inherits from :py:class:`BrushEstimator <pybrush.BrushEstimator.BrushEstimator>`.
+    A full documentation of the methods and attributes can be found there.
 
     Examples
     --------
@@ -180,8 +183,8 @@ class BrushClassifier(BrushEstimator, ClassifierMixin):
     >>> df = pd.read_csv('docs/examples/datasets/d_analcatdata_aids.csv')
     >>> X = df.drop(columns='target')
     >>> y = df['target']
-    >>> from pybrush import DeapClassifier
-    >>> est = DeapClassifier()
+    >>> from pybrush import BrushClassifier
+    >>> est = BrushClassifier()
     >>> est.fit(X,y)
     >>> # print('score:', est.score(X,y))
     """
@@ -252,5 +255,25 @@ class BrushClassifier(BrushEstimator, ClassifierMixin):
 
 
 class BrushRegressor(BrushEstimator, RegressorMixin):
+    """Brush with c++ engine for regression.
+
+    Parameters are defined and documented in 
+    :py:class:`EstimatorInterface <pybrush.EstimatorInterface.EstimatorInterface>`
+
+    This class inherits from :py:class:`BrushEstimator <pybrush.BrushEstimator.BrushEstimator>`.
+    A full documentation of the methods and attributes can be found there.
+
+    Examples
+    --------
+    >>> import pandas as pd
+    >>> df = pd.read_csv('docs/examples/datasets/d_enc.csv')
+    >>> X = df.drop(columns='label')
+    >>> y = df['label']
+    >>> from pybrush import BrushRegressor
+    >>> est = BrushRegressor()
+    >>> est.fit(X,y)
+    >>> # print('score:', est.score(X,y))
+    """
+    
     def __init__(self, **kwargs):
         super().__init__(mode='regressor',**kwargs)

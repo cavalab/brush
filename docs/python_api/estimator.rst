@@ -1,6 +1,6 @@
 BrushEstimator
 ==============
 
-.. autoclass:: pybrush.BrushEstimator
+.. autoclass:: pybrush.BrushEstimator.BrushEstimator
    :members:
    :undoc-members:
