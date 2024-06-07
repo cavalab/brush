@@ -13,7 +13,7 @@ using namespace Pop;
 namespace Eval{
 
 
-template <ProgramType P> // requires(P == PT::Regressor || P == PT::BinaryClassifier)
+template <ProgramType P>
 class Scorer
 {
 
@@ -35,7 +35,6 @@ public:
     Scorer(string scorer="mse") {
         // TODO: use this idea of map functpointer to do the mutations
         score_hash["mse"] = &mse; 
-        // score_hash["multi_log"] = &mean_multi_log_loss; 
     
         this->set_scorer(scorer);
     };
@@ -90,6 +89,7 @@ public:
 
     Scorer(string scorer="log") {
         score_hash["log"] = &mean_log_loss;
+        score_hash["average_precision_score"] = &average_precision_score;
     
         this->set_scorer(scorer);
     };

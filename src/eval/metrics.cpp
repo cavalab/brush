@@ -52,12 +52,67 @@ float mean_log_loss(const VectorXf& y,
         const VectorXf& predict_proba, VectorXf& loss,
         const vector<float>& class_weights)
 {
-        
-    /* std::cout << "loss: " << loss.transpose() << "\n"; */
     loss = log_loss(y,predict_proba,class_weights);
     return loss.mean();
 }
 
+float average_precision_score(const VectorXf& y, const VectorXf& predict_proba,
+                          VectorXf& loss,
+                          const vector<float>& class_weights) {
+    
+    // get argsort of predict proba
+    vector<int> argsort(predict_proba.size());
+    iota(argsort.begin(), argsort.end(), 0);
+    sort(argsort.begin(), argsort.end(), [&](int i, int j) {
+        return predict_proba[i] > predict_proba[j];
+    });
+
+    float ysum = 0;
+    if (!class_weights.empty()) 
+        for (int i = 0; i < class_weights.size(); i++) {
+            ysum += y(i) * class_weights.at(y(i));
+        }
+    else
+        ysum = y.sum();
+
+    // Calculate the precision and recall values
+    VectorXf precision(predict_proba.size());
+    VectorXf recall(predict_proba.size());
+
+    float true_positives = 0;
+    float false_positives = 0;
+    float positives = 0;
+
+    for (int i = 0; i < predict_proba.size(); i++) {
+        if (predict_proba[argsort[i]] >= 0.5 && y[argsort[i]] == 1) {
+            true_positives += 1;
+        }
+        else {
+            if (!class_weights.empty())
+                false_positives = class_weights[y(argsort[i])];
+            else
+                false_positives += 1;
+        }
+        positives = true_positives + false_positives;
+
+        precision[i] = true_positives / (positives + 1);
+        recall[i]    = ysum==0.0 ? 1.0 : true_positives/ysum;
+    }
+
+    // Calculate the average precision score
+    float average_precision = 0;
+    float last_recall = 0;
+
+    for (int i = 0; i < predict_proba.size(); i++) {
+        if (recall[i] != last_recall) {
+            loss[i] = precision[i] * (recall[i] - last_recall);
+            average_precision += loss[i];
+            last_recall = recall[i];
+        }
+    }
+
+    return average_precision;
+}
 
 // multinomial log loss
 VectorXf multi_log_loss(const VectorXf& y, const ArrayXXf& predict_proba, 
@@ -110,7 +165,6 @@ VectorXf multi_log_loss(const VectorXf& y, const ArrayXXf& predict_proba,
     /* cout << "loss.sum(): " << loss.sum() << "\n"; */
     return loss;
 }
-
 
 float mean_multi_log_loss(const VectorXf& y, 
         const ArrayXXf& predict_proba, VectorXf& loss,

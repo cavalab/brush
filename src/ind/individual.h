@@ -114,13 +114,14 @@ public: // TODO: make these private (and work with nlohman json)
     // classification problem, and MSE if it is a regression (so its always
     // a minimization by default, thus "error" has weight -1.0)
     inline static std::map<std::string, float> weightsMap = {
-        {"complexity", -1.0},
-        {"size",       -1.0},
-        {"mse",        -1.0},
-        {"log",        -1.0},
-        {"multi_log",  -1.0},
-        {"accuracy",   +1.0},
-        {"error",      -1.0}
+        {"complexity",              -1.0},
+        {"size",                    -1.0},
+        {"mse",                     -1.0},
+        {"log",                     -1.0},
+        {"multi_log",               -1.0},
+        {"average_precision_score", +1.0},
+        {"accuracy",                +1.0},
+        {"error",                   -1.0}
     };
 
     vector<string> get_objectives() const { return objectives; };
