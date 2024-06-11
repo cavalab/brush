@@ -107,7 +107,7 @@ TEST(Population, PopulationTests)
 
             // variation applied to population
             fmt::print("Variations for island {}\n", j);
-            variator.vary(pop, j, parents, params);
+            variator.vary(pop, j, parents);
 
             fmt::print("fitting {}\n", j); // at this step, we know that theres only one pointer to each individual being fitted, so we can perform it in parallel
             evaluator.update_fitness(pop, j, data, params, true, true);
