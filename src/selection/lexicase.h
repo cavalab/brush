@@ -4,17 +4,14 @@
 #include "selection_operator.h"
 #include "../util/utils.h"
 
-
 namespace Brush {
 namespace Sel {
-
 
 using namespace Brush;
 using namespace Pop;
 using namespace Sel;
 
 
-////////////////////////////////////////////////////////////// Declarations
 /*!
 * @class Lexicase
 * @brief Lexicase selection operator.

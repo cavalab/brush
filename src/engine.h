@@ -27,8 +27,8 @@ using namespace Eval;
 using namespace Var;
 using namespace nlohmann;
 
-
-template <ProgramType T> class Engine{
+template <ProgramType T>
+class Engine{
 public:
     Engine(const Parameters& p=Parameters())
     : params(p)

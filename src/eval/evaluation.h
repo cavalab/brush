@@ -19,12 +19,20 @@ using namespace Pop;
 namespace Eval {
 
 template<ProgramType T> 
+/**
+ * @class Evaluation
+ * @brief Class for evaluating the fitness of individuals in a population.
+ */
 class Evaluation {
 public:
     Scorer<T> S;
-
-    // TODO: make eval update loss_v accordingly, and set to th same as train loss if there is no batch or no validation
+    /**
+     * @brief Constructor for Evaluation class.
+     * @details Initializes the scorer based on the program type.
+     */
     Evaluation(){
+        // TODO: make eval update loss_v accordingly, and set to th same as train loss if there is no batch or no validation
+    
         string scorer;
         if ( (T == Brush::ProgramType::MulticlassClassifier)
         ||   (T == Brush::ProgramType::Representer) )
@@ -38,10 +46,27 @@ public:
     };
     ~Evaluation(){};
         
+    /**
+     * @brief Set the scorer for evaluation.
+     * @param scorer The scorer to be set.
+     */
     void set_scorer(string scorer){this->S.set_scorer(scorer);};
+
+    /**
+     * @brief Get the current scorer.
+     * @return The current scorer.
+     */
     string get_scorer(){return this->S.get_scorer();};
     
-    /// fitness of population.
+    /**
+     * @brief Update the fitness of individuals in a population.
+     * @param pop The population to update.
+     * @param island The island index.
+     * @param data The dataset for evaluation.
+     * @param params The parameters for evaluation.
+     * @param fit Flag indicating whether to update fitness.
+     * @param validation Flag indicating whether to perform validation.
+     */
     void update_fitness(Population<T>& pop,
                  int island,
                  const Dataset& data, 
@@ -50,7 +75,13 @@ public:
                  bool validation=false
                  );
     
-    /// assign fitness to an individual.
+    /**
+     * @brief Assign fitness to an individual.
+     * @param ind The individual to assign fitness to.
+     * @param data The dataset for evaluation.
+     * @param params The parameters for evaluation.
+     * @param val Flag indicating whether it is validation fitness.
+     */
     void assign_fit(Individual<T>& ind, const Dataset& data,
                     const Parameters& params, bool val=false);
 

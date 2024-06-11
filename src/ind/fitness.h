@@ -8,7 +8,20 @@
 using namespace nlohmann;
 
 namespace Brush{
-    
+
+/**
+ * @brief Represents the fitness of an individual in the Brush namespace.
+ * 
+ * The `Fitness` struct stores various attributes related to the fitness of an individual in the Brush namespace.
+ * It includes the aggregate loss score, aggregate validation loss score, complexity, size, depth, dominance counter,
+ * dominated individuals, Pareto front rank, crowding distance on the Pareto front, weighted values, and weights.
+ * 
+ * The struct provides getter and setter methods for accessing and modifying these attributes.
+ * It also includes methods for calculating the hash value, setting values, clearing values, checking validity,
+ * and performing comparison operations.
+ * 
+ * Additionally, there are methods for converting the `Fitness` object to JSON format and vice versa.
+ */    
 struct Fitness {
     // the loss is used in evolutionary functions
     
@@ -24,6 +37,12 @@ struct Fitness {
     vector<unsigned int> dominated; ///< individual indices this dominates
     unsigned int rank;             ///< pareto front rank
     float crowding_dist;   ///< crowding distance on the Pareto front
+
+    vector<float> values;
+    vector<float> weights;
+
+    // weighted values
+    vector<float> wvalues;
 
     void set_dominated(vector<unsigned int>& dom){ dominated=dom; };
     vector<unsigned int> get_dominated() const { return dominated; };
@@ -51,12 +70,6 @@ struct Fitness {
 
     void set_crowding_dist(float cd){ crowding_dist=cd; };
     float get_crowding_dist() const { return crowding_dist; };
-
-    vector<float> values;
-    vector<float> weights;
-
-    // weighted values
-    vector<float> wvalues;
 
     // Constructor with initializer list for weights
     Fitness(const vector<float>& w={}) : values(), wvalues(), weights(w) {
@@ -91,7 +104,6 @@ struct Fitness {
         if (v.size() != weights.size()) {
             throw std::length_error("Assigned values have not the same length than current values");
         }
-        // fmt::print("updated values\n");
 
         values.resize(0);
         for (const auto& element : v) {
