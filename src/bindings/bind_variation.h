@@ -52,7 +52,7 @@ void bind_variation(py::module& m, string name)
                 // offspring in the second half of the index vector)
                 pop.add_offspring_indexes(island);
                 
-                self.vary(pop, island, parents, params);
+                self.vary(pop, island, parents);
 
                 // making copies of the second half of the island individuals
                 vector<size_t> indices = pop.get_island_indexes(island);

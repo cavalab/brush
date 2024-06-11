@@ -100,30 +100,9 @@ template<PT PType> struct Program
     /// @param include_weight whether to include the node's weight in the count.
     /// @return int number of nodes.
     int size(bool include_weight=true) const{
-        int acc = 0;
-
-        std::for_each(Tree.begin(), Tree.end(), 
-            [include_weight, &acc](auto& node){ 
-                ++acc; // the node operator or terminal
-                
-                // SplitBest has an optimizable decision tree consisting of 3 nodes
-                // (terminal, arithmetic comparison, value) that needs to be taken
-                // into account. Split on will have an random decision tree that can 
-                // have different sizes, but will also have the arithmetic comparison
-                // and a value.
-                if (Is<NodeType::SplitBest>(node.node_type))
-                    acc += 3;
-                else if (Is<NodeType::SplitOn>(node.node_type))
-                    acc += 2;
-
-                if ( (include_weight && node.get_is_weighted()==true)
-                &&   Isnt<NodeType::Constant, NodeType::MeanLabel>(node.node_type) )
-                    // Taking into account the weight and multiplication, if enabled.
-                    // weighted constants still count as 1 (simpler than constant terminals)
-                    acc += 2;
-             });
-
-        return acc;
+        auto head = Tree.begin(); 
+        
+        return head.node->get_size(include_weight);
     }
 
     /// @brief count the size of a given subtree, optionally including the
@@ -133,37 +112,7 @@ template<PT PType> struct Program
     /// @return int number of nodes.
     int size_at(Iter& top, bool include_weight=true) const{
 
-        int acc = 0;
-
-        // inspired in tree.hh size. First create two identical iterators
-        Iter it=top, eit=top;
-        
-        // Then make the second one point to the next sibling
-        eit.skip_children();
-        ++eit;
-        
-        // calculate tree size for each node until reach next sibling
-        while(it!=eit) {
-            ++acc; // counting the node operator/terminal
-                        
-            // SplitBest has an optimizable decision tree consisting of 3 nodes
-            // (terminal, arithmetic comparison, value) that needs to be taken
-            // into account
-            if (Is<NodeType::SplitBest>(it.node->data.node_type))
-                acc += 3;
-            else if (Is<NodeType::SplitOn>(it.node->data.node_type))
-                acc += 2;
-
-            if ( (include_weight && it.node->data.get_is_weighted()==true)
-            &&   Isnt<NodeType::Constant, NodeType::MeanLabel>(it.node->data.node_type) )
-                // Taking into account the weight and multiplication, if enabled.
-                // weighted constants still count as 1 (simpler than constant terminals)
-                acc += 2;
-
-            ++it;
-        }
-        
-        return acc;
+        return top.node->get_size(include_weight);
     }
 
     /// @brief count the tree depth of the program. The depth is not influenced by weighted nodes.

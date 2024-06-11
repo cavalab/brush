@@ -162,8 +162,8 @@ int TreeNode::get_complexity() const
     // include the `w` and `*` if the node is weighted (and it is not a constant or mean label)
     if (data.get_is_weighted()
     && !(Is<NodeType::Constant>(data.node_type)
-        || (Is<NodeType::MeanLabel>(data.node_type)
-        ||  Is<NodeType::OffsetSum>(data.node_type)) )
+        ||  (Is<NodeType::MeanLabel>(data.node_type)
+        ||   Is<NodeType::OffsetSum>(data.node_type)) )
     )
         return operator_complexities.at(NodeType::Mul)*(
             operator_complexities.at(NodeType::Constant) + 
@@ -171,4 +171,34 @@ int TreeNode::get_complexity() const
         );
 
     return node_complexity*(children_complexity_sum);
-}
+};
+
+int TreeNode::get_size(bool include_weight) const 
+{
+    int acc = 1; // the node operator or terminal
+
+    // SplitBest has an optimizable decision tree consisting of 3 nodes
+    // (terminal, arithmetic comparison, value) that needs to be taken
+    // into account. Split on will have an random decision tree that can 
+    // have different sizes, but will also have the arithmetic comparison
+    // and a value.
+    if (Is<NodeType::SplitBest>(data.node_type))
+        acc += 3;
+    else if (Is<NodeType::SplitOn>(data.node_type))
+        acc += 2;
+
+    if ( (include_weight && data.get_is_weighted()==true)
+    &&   Isnt<NodeType::Constant, NodeType::MeanLabel>(data.node_type) )
+        // Taking into account the weight and multiplication, if enabled.
+        // weighted constants still count as 1 (simpler than constant terminals)
+        acc += 2;
+
+    auto child = first_child;
+    for(int i = 0; i < data.get_arg_count(); ++i)
+    {
+        acc += child->get_size(include_weight);
+        child = child->next_sibling;
+    }
+
+    return acc;
+};

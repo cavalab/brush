@@ -17,19 +17,18 @@ namespace Brush
 struct Parameters
 {
 public:
-    // TODO: make parameters private, and use the getters and setters in the code
-    
-    int random_state = 0; // by default, the rng generator will use any random seed if random_state is zero
+    // by default, the rng generator will use any random seed if random_state is zero
+    int random_state = 0;
     int verbosity = 0; 
 
-    // Evolutionary stuff
+    // Evolutionary algorithm settings
     string mode="regression"; 
 
     unsigned int current_gen = 1;
 
     // termination criteria
     int pop_size  = 100;
-    int max_gens      = 100;
+    int max_gens  = 100;
     int max_stall = 0;
     int max_time  = -1;
 
@@ -58,12 +57,11 @@ public:
         {"toggle_weight_off", 0.167}
     };
 
-    float cx_prob=0.2;         ///< cross rate for variation
+    float cx_prob=0.2;  ///< cross rate for variation
     float mig_prob = 0.05;
     
     string scorer_="mse";   ///< actual loss function used, determined by error
 
-    // TODO: set these values when creating the parameters in python side
     vector<int>   classes;        ///< class labels
     vector<float> class_weights;  ///< weights for each class
     vector<float> sample_weights; ///< weights for each sample 
@@ -84,12 +82,12 @@ public:
 
     string logfile = "";
 
-    int n_jobs = 1; // -1; ///< number of parallel jobs -1 use all threads; 0 use same as number of islands; positive number specify the amouut of threads
+    int n_jobs = 1; ///< number of parallel jobs -1 use all threads; 0 use same as number of islands; positive number specify the amouut of threads
 
     Parameters(){}; 
     ~Parameters(){};
     
-    // TODO: use logger to log information
+    // TODO: use logger to log information. Make getters const  
     void set_verbosity(int new_verbosity){ Brush::Util::logger.set_log_level(new_verbosity);
                                            verbosity = new_verbosity; };
     int get_verbosity(){ return verbosity; };
@@ -128,13 +126,13 @@ public:
     int get_num_islands(){ return num_islands; };
 
     void set_max_depth(unsigned new_max_depth){ max_depth = new_max_depth; };
-    unsigned get_max_depth(){ return max_depth; };
+    unsigned get_max_depth() const { return max_depth; };
 
     void set_n_jobs(int new_n_jobs){ n_jobs = new_n_jobs; };
     int get_n_jobs(){ return n_jobs; };
 
     void set_max_size(unsigned new_max_size){ max_size = new_max_size; };
-    unsigned get_max_size(){ return max_size; };
+    unsigned get_max_size() const { return max_size; };
 
     void set_objectives(vector<string> new_objectives){ objectives = new_objectives; };
     vector<string> get_objectives(){ return objectives; };

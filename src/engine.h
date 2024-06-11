@@ -27,8 +27,8 @@ using namespace Eval;
 using namespace Var;
 using namespace nlohmann;
 
-template <ProgramType T>
-class Engine{
+
+template <ProgramType T> class Engine{
 public:
     Engine(const Parameters& p=Parameters())
     : params(p)
@@ -52,6 +52,7 @@ public:
 
     /// updates best score by searching in the population for the individual that best fits the given data
     bool update_best(const Dataset& data, bool val=false);
+    
     // TODO: hyperparameter to set how the best is picked (MCDM, best on val, pareto front, etc). one of the options should be getting the pareto front
 
     // TODO: best fitness (the class) instead of these. use fitness comparison

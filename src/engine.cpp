@@ -421,7 +421,7 @@ void Engine<T>::run(Dataset &data)
                 }
                 
                 this->pop.add_offspring_indexes(island); 
-                variator.vary(this->pop, island, island_parents.at(island), params);
+                variator.vary(this->pop, island, island_parents.at(island));
                 evaluator.update_fitness(this->pop, island, data, params, true);
 
                 if (data.use_batch) // assign the batch error as fitness (but fit was done with training data)

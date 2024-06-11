@@ -33,7 +33,6 @@ public:
 
     // TODO: add more scores, include them here, add to score_hash
     Scorer(string scorer="mse") {
-        // TODO: use this idea of map functpointer to do the mutations
         score_hash["mse"] = &mse; 
     
         this->set_scorer(scorer);
