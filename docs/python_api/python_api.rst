@@ -3,7 +3,7 @@ Python API
 
 .. With doxygennamespace:
 
-.. .. doxygennamespace:: brush
+.. .. doxygennamespace:: pybrush
 ..    :members: 
 
 

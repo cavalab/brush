@@ -98,13 +98,16 @@ In addition, Brush provides functionality that allows you to feed in more compli
 ```python
 # load data
 import pandas as pd
+
 df = pd.read_csv('docs/examples/datasets/d_enc.csv')
 X = df.drop(columns='label')
 y = df['label']
 
 # import and make a regressor
-from brush import BrushRegressor
-est = BrushRegressor()
+from pybrush import BrushRegressor
+
+# you can set verbosity=1 to see the progress bar
+est = BrushRegressor(verbosity=1)
 
 # use like you would a sklearn regressor
 est.fit(X,y)
@@ -118,15 +121,18 @@ print('score:', est.score(X,y))
 ```python
 # load data
 import pandas as pd
+
 df = pd.read_csv('docs/examples/datasets/d_analcatdata_aids.csv')
 X = df.drop(columns='target')
 y = df['target']
 
 # import and make a classifier
-from brush import BrushClassifier
-est = BrushClassifier()
+from pybrush import BrushClassifier
+est = BrushClassifier(verbosity=1)
+
 # use like you would a sklearn classifier
 est.fit(X,y)
+
 y_pred = est.predict(X)
 y_pred_proba = est.predict_proba(X)
 
@@ -236,5 +242,31 @@ If you are developing the cpp code and want to build the cpp tests, run the foll
 ./configure
 ./install tests
 ```
+
+## Building the docs locally
+
+To build the documentation you will need some additional requirements.
+Before proceeding, make sure you have the python wrapper installed, as the documentation have some sample notebooks that will run the code.
+
+First go to the `docs` folder:
+
+```bash
+cd docs/
+```
+
+Then, install additional python packages in the same environemnt as brush is intalled with:
+
+```bash
+conda activate brush
+pip install -r requirements.txt
+```
+
+Now just run:
+
+```bash
+make html
+```
+
+The static website is located in `-build/html`
 
 <!-- end development -->

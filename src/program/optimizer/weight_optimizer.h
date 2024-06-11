@@ -74,9 +74,9 @@ private:
     size_t numParameters_; // cache the number of parameters in the tree
 };
 
+// TODO: see this struct and try to understand how to make non-templated classes
 struct WeightOptimizer
 {
-    
     /// @brief Update program weights using non-linear least squares.
     /// @tparam PT the program type 
     /// @param program the program 
@@ -86,6 +86,7 @@ struct WeightOptimizer
     {
         if (program.get_n_weights() == 0)
             return;
+            
         // fmt::print("number of weights: {}\n",program.get_n_weights());
         auto init_weights = program.get_weights();
 

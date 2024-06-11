@@ -167,6 +167,7 @@ https://eigen.tuxfamily.org/dox/group__QuickRefPage.html#arrayonly
         template<typename T>
         inline auto operator()(const TimeSeries<T>& t) { return t.prod(); } 
     };
+    
     /* sum */
     template<>
     struct Function<NodeType::Sum>
@@ -180,6 +181,28 @@ https://eigen.tuxfamily.org/dox/group__QuickRefPage.html#arrayonly
 
         template<typename T>
         inline auto operator()(const TimeSeries<T>& t) { return t.sum(); } 
+    };
+
+    /* OffsetSum */
+    template<>
+    struct Function<NodeType::OffsetSum>
+    {
+        // just add with a constant (definition is like identity)
+        template<typename T>
+        inline auto operator()(const T& t) { 
+            return t; 
+        }
+
+        // n-ary version
+        // template<typename T>
+        // inline auto operator()(const T& t) { return t.rowwise().sum(); }
+
+        // inline auto operator()(ArrayXXb t) { 
+        //     return (t.rowwise().count().cast <float> ());
+        // }
+
+        // template<typename T>
+        // inline auto operator()(const TimeSeries<T>& t) { return t.sum(); } 
     };
 
     template<>
@@ -202,7 +225,6 @@ https://eigen.tuxfamily.org/dox/group__QuickRefPage.html#arrayonly
                 t.row(i).maxCoeff(&idx(i));
             return idx;
         }
-
     };
 
     template<>
@@ -403,14 +425,71 @@ https://eigen.tuxfamily.org/dox/group__QuickRefPage.html#arrayonly
           return this->softmax(t);
        }
 
-    //    template<typename T, typename ...Ts>
-    //    inline auto operator()(const Array<T,-1,1>& first, const Ts& ... inputs) 
-    //    { 
-    //        auto output = Stack<T>(first, inputs...);
-    //        return this->softmax(output);
-    //    }
+       // template<typename T, typename ...Ts>
+       // inline auto operator()(const Array<T,-1,1>& first, const Ts& ... inputs) 
+       // { 
+       //     auto output = Stack<T>(first, inputs...);
+       //     return this->softmax(output);
+       // }
     };
 
+    /* logical and -- mul with boolean inputs */
+    template<>
+    struct Function<NodeType::And>
+    {
+        template<typename T>
+        inline auto operator()(const ArrayBase<T>& t1, const ArrayBase<T>& t2) {
+            return t1 && t2;
+        }
+        template<typename T> requires same_as<typename T::Scalar, bJet>
+        inline auto operator()(const ArrayBase<T>& t1, const ArrayBase<T>& t2) {
+            // ArrayXb t1_bool(t1.size());
+            // for (int i = 0; i< t1.size(); ++i)
+            //     t1_bool(i) = t1(i).a;
+
+            // ArrayXb t2_bool(t2.size());
+            // for (int i = 0; i< t2.size(); ++i)
+            //     t2_bool(i) = t2(i).a;
+            
+            // return (t1_bool || t2_bool).cast<bool>();
+            return t1 * t2;
+        }
+    };
+
+    /* logical or -- add with boolean inputs */
+    template<>
+    struct Function<NodeType::Or>
+    {
+        template<typename T>
+        inline auto operator()(const ArrayBase<T>& t1, const ArrayBase<T>& t2) {
+            return t1 || t2;
+        }
+        template<typename T> requires same_as<typename T::Scalar, bJet>
+        inline auto operator()(const ArrayBase<T>& t1, const ArrayBase<T>& t2) {
+            return t1 + t2;
+        }
+    };
+
+    /* logical not -- negate the input */
+    template<>
+    struct Function<NodeType::Not>
+    {
+        template<typename T> 
+        inline auto operator()(const ArrayBase<T>& t) {
+            return !t;
+        }
+        template<typename T> requires same_as<typename T::Scalar, bJet>
+        inline auto operator()(const ArrayBase<T>& t) {
+            auto trues = ArrayXb::Constant(t.size(), true);
+            return (t - trues);
+         
+            // for (size_t i = 0; i < t.size(); ++i) {
+            //     t.at(i).a = !t.at(i).a;
+            // }
+
+            // return t;
+        }
+    };
 } // Brush
 
 #endif

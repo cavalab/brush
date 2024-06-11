@@ -81,9 +81,10 @@ Dataset read_csv (
     // check if endpoint is binary
     bool binary_endpoint = (y.array() == 0 || y.array() == 1).all();
 
-    auto result = Dataset(features,y,binary_endpoint);
-    return result;
-    
+    // using constructor 1. (initializing data from a map)
+    auto result = Dataset(features, y, binary_endpoint);
+
+    return result;    
 }
 
 } // Brush

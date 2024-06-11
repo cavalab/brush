@@ -226,6 +226,22 @@ struct Operator
         return this->apply(inputs);
     };
 
+    // overloaded version for offset sum
+    template<typename T=ArgTypes, typename Scalar=RetType::Scalar>
+    requires is_in_v<NT, NodeType::OffsetSum>
+    RetType eval(const Dataset& d, TreeNode& tn, const W** weights=nullptr) const
+    {
+        auto inputs = get_kids(d, tn, weights);
+        if constexpr (is_one_of_v<Scalar,float,fJet>)
+        {
+            if (tn.data.get_is_weighted())
+            {
+                auto w = util::get_weight<RetType,Scalar,W>(tn, weights);
+                return this->apply(inputs) + w;
+            }
+        }
+        return this->apply(inputs);
+    };
 };
 
 //////////////////////////////////////////////////////////////////////////////////
@@ -302,6 +318,38 @@ struct Operator<NodeType::Constant, S, Fit>
             return RetType::Constant(d.get_n_samples(), w); 
         else
             return RetType::Constant(d.get_n_samples(), d.get_n_features(), w); 
+    };
+    
+};
+
+////////////////////////////////////////////////////////////////////////////
+// MeanLabel overload
+template<typename S, bool Fit> 
+struct Operator<NodeType::MeanLabel, S, Fit>
+{
+    using RetType = typename S::RetType;
+    using W = typename S::WeightType; 
+
+    RetType fit(const Dataset& d, TreeNode& tn) const {
+        tn.data.W = d.y.mean();
+        return predict(d, tn);
+    };
+
+    template<typename T=RetType, typename Scalar=T::Scalar, int N=T::NumDimensions> 
+    RetType predict(const Dataset& d, TreeNode& tn, const W** weights=nullptr) const 
+    { 
+        Scalar w = util::get_weight<RetType,Scalar,W>(tn, weights);
+        if constexpr (N == 1)
+            return RetType::Constant(d.get_n_samples(), w); 
+        else
+            return RetType::Constant(d.get_n_samples(), d.get_n_features(), w); 
+    };
+
+    RetType eval(const Dataset& d, TreeNode& tn, const W** weights=nullptr) const {
+        if constexpr (Fit)
+            return fit(d,tn); 
+        else
+            return predict(d,tn,weights);
     };
 };
 

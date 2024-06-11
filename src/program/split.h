@@ -181,6 +181,7 @@ namespace Split{
 
     }
 } // namespace Split
+
 ////////////////////////////////////////////////////////////////////////////////
 // Split operator overload
 template<NodeType NT, typename S, bool Fit> 

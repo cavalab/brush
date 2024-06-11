@@ -36,6 +36,10 @@ namespace Data
 /// determines data types of columns of matrix X.
 State check_type(const ArrayXf& x);
 DataType StateType(const State& arg);
+
+template<typename StateRef>
+State cast_type(const ArrayXf& x, const StateRef& x_ref);
+
 ///////////////////////////////////////////////////////////////////////////////
 
 /*!
@@ -77,7 +81,7 @@ class Dataset
 
         /// @brief percentage of original data used for train. if 0.0, then all data is used for train and validation
         float validation_size; 
-        bool use_validation;
+        bool use_validation; // TODO: shuffle before validation (this should be a parameter)
 
         /// @brief percentage of training data size to use in each batch. if 1.0, then all data is used
         float batch_size;
@@ -93,6 +97,14 @@ class Dataset
                                         const map<string, State>& Z = {},
                                         const vector<string>& vn = {}
                                        );
+
+        // TODO: let the user specify the datatypes 
+
+        /// turns input into a feature map, with feature types copied from a reference
+        map<string,State> copy_and_make_features(const ArrayXXf& X,
+                                                 const Dataset& ref_dataset,
+                                                 const vector<string>& vn = {}
+                                                );
 
         /// 1. initialize data from a map.
         Dataset(std::map<string, State>& d, 
@@ -133,14 +145,34 @@ class Dataset
 
         /// 3. initialize data from X and feature names
         Dataset(const ArrayXXf& X, const vector<string>& vn,
+             bool c = false,
              float validation_size = 0.0,
-             float batch_size = 1.0) 
-            : classification(false)
+             float batch_size = 1.0
+            ) 
+            : classification(c)
             , features(make_features(X,map<string, State>{},vn))
             , validation_size(validation_size)
             , use_validation(validation_size > 0.0 && validation_size < 1.0)
             , batch_size(batch_size)
             , use_batch(batch_size > 0.0 && batch_size < 1.0)
+            {
+                init();
+                Xref = optional<reference_wrapper<const ArrayXXf>>{X};
+            }
+
+        //// 4. initialize data from X, but feature types are copied from a
+        //// reference dataset. Useful for bypass Brush's type sniffer and
+        //// doing predictions with small number of samples
+        Dataset(const ArrayXXf& X, const Dataset& ref_dataset,
+             const vector<string>& vn,
+             bool c = false
+            )
+            : classification(c)
+            , features(copy_and_make_features(X,ref_dataset,vn))
+            , validation_size(0.0)
+            , use_validation(false)
+            , batch_size(1.0)
+            , use_batch(false)
             {
                 init();
                 Xref = optional<reference_wrapper<const ArrayXXf>>{X};
@@ -173,7 +205,7 @@ class Dataset
         // if split is not set, then training = validation.
         Dataset get_training_data() const;
         Dataset get_validation_data() const;
-
+        // TODO: shuffle split
         inline int get_n_samples() const { 
             return std::visit(
                 [&](auto&& arg) -> int { return int(arg.size());}, 
@@ -217,6 +249,7 @@ template <> struct fmt::formatter<Brush::DataType>: formatter<string_view> {
     return formatter<string_view>::format(Brush::DataTypeName.at(x), ctx);
   }
 };
+
 // TODO: fmt overload for Data
 // template <> struct fmt::formatter<Brush::Data::Dataset>: formatter<string_view> {
 //   template <typename FormatContext>

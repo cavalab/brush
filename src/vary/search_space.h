@@ -5,16 +5,18 @@ license: GNU/GPL v3
 #ifndef SEARCHSPACE_H 
 #define SEARCHSPACE_H
 //internal includes
-#include "init.h"
-#include "program/node.h"
-#include "program/nodetype.h"
-#include "program/tree_node.h"
+#include "../init.h"
+#include "../program/node.h"
+#include "../program/nodetype.h"
+#include "../program/tree_node.h"
 // #include "program/program.h"
-#include "util/utils.h"
-#include "util/rnd.h"
-#include "params.h"
+#include "../util/error.h"
+#include "../util/utils.h"
+#include "../util/rnd.h"
+#include "../params.h"
 #include <utility>
 #include <optional>
+#include <iostream>
 
 /* Defines the search space of Brush. 
  *  The search spaces consists of nodes and their accompanying probability
@@ -45,7 +47,7 @@ using TreeIter = tree<Node>::pre_order_iterator;
 // enum class ProgramType: uint32_t;
 // template<typename T> struct ProgramTypeEnum; 
 
-vector<Node> generate_terminals(const Dataset& d);
+vector<Node> generate_terminals(const Dataset& d, const bool weights_init);
 
 ////////////////////////////////////////////////////////////////////////////////
 
@@ -144,45 +146,47 @@ struct SearchSpace
      * 
      */
     template<typename PT>
-    PT make_program(int max_d=0, int max_size=0);
+    PT make_program(const Parameters& params, int max_d=0, int max_size=0);
 
     /// @brief Makes a random regressor program. Convenience wrapper for @ref make_program
     /// @param max_d max depth of the program
     /// @param max_size max size of the program
     /// @return a regressor program 
-    RegressorProgram make_regressor(int max_d = 0, int max_size = 0);
+    RegressorProgram make_regressor(int max_d = 0, int max_size = 0, const Parameters& params=Parameters());
 
     /// @brief Makes a random classifier program. Convenience wrapper for @ref make_program
     /// @param max_d max depth of the program
     /// @param max_size max size of the program
     /// @return a classifier program 
-    ClassifierProgram make_classifier(int max_d = 0, int max_size = 0);
+    ClassifierProgram make_classifier(int max_d = 0, int max_size = 0,  const Parameters& params=Parameters());
 
     /// @brief Makes a random multiclass classifier program. Convenience wrapper for @ref make_program
     /// @param max_d max depth of the program
     /// @param max_size max size of the program
     /// @return a multiclass classifier program 
-    MulticlassClassifierProgram make_multiclass_classifier(int max_d = 0, int max_size = 0);
+    MulticlassClassifierProgram make_multiclass_classifier(int max_d = 0, int max_size = 0,  const Parameters& params=Parameters());
 
     /// @brief Makes a random representer program. Convenience wrapper for @ref make_program
     /// @param max_d max depth of the program
     /// @param max_size max size of the program
     /// @return a representer program 
-    RepresenterProgram make_representer(int max_d = 0, int max_size = 0);
+    RepresenterProgram make_representer(int max_d = 0, int max_size = 0,  const Parameters& params=Parameters());
 
     SearchSpace() = default;
 
     /// @brief Construct a search space
     /// @param d A dataset containing terminal definitions
     /// @param user_ops Optional user-provided dictionary of operators with their probability of being chosen
-    SearchSpace(const Dataset& d, const unordered_map<string,float>& user_ops = {}){
-        init(d,user_ops);
+    /// @param weights_init whether the terminal prob_change should be estimated from correlations with the target value
+    SearchSpace(const Dataset& d, const unordered_map<string,float>& user_ops = {}, bool weights_init = true){
+        init(d,user_ops,weights_init);
     }
 
     /// @brief Called by the constructor to initialize the search space
     /// @param d A dataset containing terminal definitions
     /// @param user_ops Optional user-provided dictionary of operators with their probability of being chosen
-    void init(const Dataset& d, const unordered_map<string,float>& user_ops = {});
+    /// @param weights_init whether the terminal prob_change should be estimated from correlations with the target value
+    void init(const Dataset& d, const unordered_map<string,float>& user_ops = {}, bool weights_init = true);
 
     /// @brief check if a return type is in the node map
     /// @param R data type
@@ -312,7 +316,7 @@ struct SearchSpace
 
     /// @brief Get a random terminal 
     /// @return `std::optional` that may contain a terminal Node.     
-    std::optional<Node> sample_terminal() const
+    std::optional<Node> sample_terminal(bool force_return=false) const
     {
         //TODO: match terminal args_type (probably '{}' or something?)
         //  make a separate terminal_map
@@ -320,17 +324,24 @@ struct SearchSpace
         // We'll make terminal types to have its weights proportional to the
         // DataTypes Weights they hold
         vector<float> data_type_weights(terminal_weights.size());
-        std::transform(
-            terminal_weights.begin(),
-            terminal_weights.end(),
-            data_type_weights.begin(),
-            [](const auto& tw){ 
-                return std::reduce(tw.second.begin(), tw.second.end()); }
-        );
-        
-        if (!has_solution_space(data_type_weights.begin(), 
-                                data_type_weights.end()))
-            return std::nullopt;
+        if (force_return)
+        {
+            std::fill(data_type_weights.begin(), data_type_weights.end(), 1.0f); 
+        }
+        else
+        {
+            std::transform(
+                terminal_weights.begin(),
+                terminal_weights.end(),
+                data_type_weights.begin(),
+                [](const auto& tw){ 
+                    return std::reduce(tw.second.begin(), tw.second.end()); }
+            );
+            
+            if (!has_solution_space(data_type_weights.begin(), 
+                                    data_type_weights.end()))
+                return std::nullopt;
+        }
 
         // If we got this far, then it is garanteed that we'll return something
         // The match take into account datatypes with non-zero weights
@@ -341,16 +352,32 @@ struct SearchSpace
             data_type_weights.end()
         );
 
-        return *r.select_randomly(
-                    match.second.begin(), match.second.end(), 
-                    terminal_weights.at(match.first).begin(), 
-                    terminal_weights.at(match.first).end()
-                );
+        // theres always a constant of each data type
+        vector<float> match_weights(match.second.size());
+        if (force_return)
+        {
+            std::fill(match_weights.begin(), match_weights.end(), 1.0f); 
+        }
+        else
+        {
+            std::transform(
+                terminal_weights.at(match.first).begin(),
+                terminal_weights.at(match.first).end(),
+                match_weights.begin(),
+                [](const auto& w){ return w; });
+            
+            if (!has_solution_space(match_weights.begin(), 
+                                    match_weights.end()))
+                return std::nullopt;
+        }
+
+        return *r.select_randomly(match.second.begin(),  match.second.end(), 
+                                  match_weights.begin(), match_weights.end());
     };
 
     /// @brief Get a random terminal with return type `R` 
     /// @return `std::optional` that may contain a terminal Node of type `R`.     
-    std::optional<Node> sample_terminal(DataType R) const
+    std::optional<Node> sample_terminal(DataType R, bool force_return=false) const
     {
         // should I keep doing this check?
         // if (terminal_map.find(R) == terminal_map.end()){
@@ -358,16 +385,33 @@ struct SearchSpace
         //     HANDLE_ERROR_THROW(msg); 
         // }
 
+        // If there's at least one constant for every data type, its always possible to force sample_terminal to return something
+
         // TODO: try to combine with above function
-        if ( (terminal_map.find(R) == terminal_map.end())
-        ||   (!has_solution_space(terminal_weights.at(R).begin(), 
-                                  terminal_weights.at(R).end())) )
+        vector<float> match_weights(terminal_weights.at(R).size());
+        if (force_return)
+        {
+            std::fill(match_weights.begin(), match_weights.end(), 1.0f); 
+        }
+        else
+        {
+            std::transform(
+                terminal_weights.at(R).begin(),
+                terminal_weights.at(R).end(),
+                match_weights.begin(),
+                [](const auto& w){  return w; }
+            );
+
+            if ( (terminal_map.find(R) == terminal_map.end())
+            ||   (!has_solution_space(match_weights.begin(), 
+                                      match_weights.end())) )
             return std::nullopt;
-        
+        }
+    
         return *r.select_randomly(terminal_map.at(R).begin(), 
-                                  terminal_map.at(R).end(), 
-                                  terminal_weights.at(R).begin(),
-                                  terminal_weights.at(R).end());
+                                  terminal_map.at(R).end(),
+                                  match_weights.begin(),
+                                  match_weights.end());
     };
 
     /// @brief get an operator matching return type `ret`. 
@@ -376,6 +420,8 @@ struct SearchSpace
     std::optional<Node> sample_op(DataType ret) const
     {
         // check(ret);
+        if (node_map.find(ret) == node_map.end())
+            return std::nullopt;
 
         //TODO: match terminal args_type (probably '{}' or something?)
         auto ret_match = node_map.at(ret);
@@ -408,6 +454,8 @@ struct SearchSpace
     std::optional<Node> sample_op(NodeType type, DataType R)
     {
         // check(R);
+        if (node_map.find(R) == node_map.end())
+            return std::nullopt;
 
         auto ret_match = node_map.at(R);
         
@@ -501,7 +549,7 @@ struct SearchSpace
     /// @return `std::optional` that may contain a Node 
     std::optional<Node> get_node_like(Node node) const
     {
-        if (Is<NodeType::Terminal, NodeType::Constant>(node.node_type)){
+        if (Is<NodeType::Terminal, NodeType::Constant, NodeType::MeanLabel>(node.node_type)){
             return sample_terminal(node.ret_type);
         }
 
@@ -531,10 +579,10 @@ struct SearchSpace
     void print() const; 
 
     private:
-        tree<Node> PTC2(Node root, int max_d, int max_size) const;
+        tree<Node>& PTC2(tree<Node>& Tree, tree<Node>::iterator root, int max_d, int max_size) const;
 
         template<NodeType NT, typename S>
-        requires (!is_in_v<NT, NodeType::Terminal, NodeType::Constant>)
+        requires (!is_in_v<NT, NodeType::Terminal, NodeType::Constant, NodeType::MeanLabel>)
         static constexpr std::optional<Node> CreateNode(
             const auto& unique_data_types, 
             bool use_all, 
@@ -558,12 +606,13 @@ struct SearchSpace
             const vector<DataType>& unique_data_types
         )
         {
-            
             bool use_all = user_ops.size() == 0;
             auto name = NodeTypeName[NT];
-            //TODO: address this (whether weights should be included by default)
-            // bool weighted = (IsWeighable<NT>() && is_same_v<typename S::RetType::Scalar, float>);
+
             bool weighted = false;
+            if (Is<NodeType::OffsetSum>(NT)) // this has to have weights on by default
+                weighted = true;
+    
             auto n_maybe = CreateNode<NT,S>(unique_data_types, use_all, weighted);
 
             if (n_maybe){
@@ -588,7 +637,7 @@ struct SearchSpace
                        const vector<DataType>& unique_data_types
                       ) 
         {
-            if (Is<NodeType::Terminal, NodeType::Constant>(NT))
+            if (Is<NodeType::Terminal, NodeType::Constant, NodeType::MeanLabel>(NT))
                 return;
             bool use_all = user_ops.size() == 0;
             auto name = NodeTypeName.at(NT);
@@ -629,67 +678,76 @@ T RandomDequeue(std::vector<T>& Q)
 };
 
 template<typename P>
-P SearchSpace::make_program(int max_d, int max_size)
+P SearchSpace::make_program(const Parameters& params, int max_d, int max_size)
 {
-    if (max_d == 0)
-        max_d = PARAMS["max_depth"].get<int>();
-    if (max_size == 0)
-        max_size = r.rnd_int(1, PARAMS["max_size"].get<int>());
+    // this is what makes `make_program` create uniformly distributed
+    // individuals to feed initial population
+    if (max_d < 1)
+        max_d = r.rnd_int(1, params.max_depth);
+    if (max_size < 1) 
+        max_size = r.rnd_int(1, params.max_size);
 
     DataType root_type = DataTypeEnum<typename P::TreeType>::value;
     ProgramType program_type = P::program_type;
     // ProgramType program_type = ProgramTypeEnum<PT>::value;
     
+    // Tree is pre-filled with some fixed nodes depending on program type
     auto Tree = tree<Node>();
-    if (max_size == 1)
+
+    // building the tree for each program case. Then, we give the spot to PTC2,
+    // and it will fill the rest of the tree
+    tree<Node>::iterator spot;
+
+    // building the root node for each program case
+    if (P::program_type == ProgramType::BinaryClassifier)
     {
-        // auto root = Tree.insert(Tree.begin(), sample_terminal(root_type));
+        Node node_logit = get(NodeType::Logistic, DataType::ArrayF, Signature<ArrayXf(ArrayXf)>());
+        node_logit.set_prob_change(0.0);
+        node_logit.fixed=true;
+        auto spot_logit = Tree.insert(Tree.begin(), node_logit);
 
-        // We can only have a terminal here, but the terminal must be compatible
-        auto opt = sample_terminal(root_type);
+        if (true) { // Logistic(Add(Constant, <>)). 
+            Node node_offset = get(NodeType::OffsetSum, DataType::ArrayF, Signature<ArrayXf(ArrayXf)>());
+            node_offset.set_prob_change(0.0);
+            node_offset.fixed=true;
 
-        if (!opt){
-            auto msg = fmt::format("Program with size=1 could not be created. "
-            "The search space does not contain any terminal with data type {}./n",
-            root_type);
-            HANDLE_ERROR_THROW(msg); 
+            auto spot_offset = Tree.append_child(spot_logit);
+            
+            spot = Tree.replace(spot_offset, node_offset);
         }
-
-        Tree.insert(Tree.begin(), opt.value());
+        else { // If false, then model will be Logistic(<>)
+            spot = spot_logit;
+        }
     }
-    else {// Our program can (and will) be grater than 1 node
-
-        // building the root node for each program case. We give the root, and it 
-        // fills the rest of the tree
+    else if (P::program_type == ProgramType::MulticlassClassifier)
+    {
+        Node node_softmax = get(NodeType::Softmax, DataType::MatrixF, Signature<ArrayXXf(ArrayXXf)>());
+        node_softmax.set_prob_change(0.0);
+        node_softmax.fixed=true;
+        
+        spot = Tree.insert(Tree.begin(), node_softmax);
+    }
+    else // regression or representer --- sampling any candidate op or terminal
+    {
         Node root;
 
-        // building the root node for each program case
-        if (P::program_type == ProgramType::BinaryClassifier)
-        {
-            root = get(NodeType::Logistic, DataType::ArrayF, Signature<ArrayXf(ArrayXf)>());
-            root.set_prob_change(0.0);
-            root.fixed=true;
+        std::optional<Node> opt=std::nullopt;
 
-        }
-        else if (P::program_type == ProgramType::MulticlassClassifier)
-        {
-            root = get(NodeType::Softmax, DataType::MatrixF, Signature<ArrayXXf(ArrayXXf)>());
-            root.set_prob_change(0.0);
-            root.fixed=true;
-        }
-        else {
-            // we start with a non-terminal (can be replaced inside PTC2 though, if max_size==1)
-            auto opt = sample_op(root_type);
-            while (!opt) {
-                opt = sample_op(root_type);
-            }
-            root = opt.value();
-        }
-        
-        Tree = PTC2(root, max_d, max_size);
+        if (max_size>1 && max_d>1)
+            opt = sample_op(root_type);
+
+        if (!opt) // if failed, then we dont have any operator to use as root...
+            opt = sample_terminal(root_type, true);
+
+        root = opt.value();
+    
+        spot = Tree.insert(Tree.begin(), root);
     }
 
-    return P(*this,Tree);
+    // max_d-1 because we always pick the root before calling ptc2
+    PTC2(Tree, spot, max_d-1, max_size); // change inplace
+
+    return P(*this, Tree);
 };
 
 extern SearchSpace SS;

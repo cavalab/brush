@@ -201,6 +201,13 @@ struct Signatures<N, enable_if_t<is_in_v<N, NodeType::Constant, NodeType::Termin
           >; 
 }; 
 
+template<>
+struct Signatures<NodeType::MeanLabel>{ 
+    using type = std::tuple<
+          Signature<ArrayXf()>
+          >;
+}; 
+
 template<NodeType N>
 struct Signatures<N, enable_if_t<is_in_v<N, 
     NodeType::Add,
@@ -215,25 +222,22 @@ struct Signatures<N, enable_if_t<is_in_v<N,
         >; 
     }; 
 
-// template<NodeType N>
-// struct Signatures<N, enable_if_t<is_in_v<N,
-//     NodeType::And,
-//     NodeType::Or,
-//     NodeType::Xor
-//     >>>{ 
-//         using type = std::tuple< 
-//             Signature<ArrayXb(ArrayXb,ArrayXb)>,
-//             Signature<ArrayXXb(ArrayXXb,ArrayXXb)>
-//         >; 
-//     }; 
+template<NodeType N>
+struct Signatures<N, enable_if_t<is_in_v<N,
+    NodeType::And,
+    NodeType::Or
+    >>>{ 
+        using type = std::tuple<
+            Signature<ArrayXb(ArrayXb,ArrayXb)>
+        >;
+    }; 
 
-// template<> 
-// struct Signatures<NodeType::Not> { 
-//     using type = std::tuple<
-//         Signature<ArrayXb(ArrayXb)>,
-//         Signature<ArrayXXb(ArrayXXb)>
-//     >;
-// };
+template<>
+struct Signatures<NodeType::Not>{ 
+        using type = std::tuple<
+              Signature<ArrayXb(ArrayXb)>
+        >;
+    }; 
 
 template<NodeType N> 
 struct Signatures<N, enable_if_t<is_in_v<N,
@@ -256,7 +260,8 @@ struct Signatures<N, enable_if_t<is_in_v<N,
     NodeType::Sqrt,
     NodeType::Sqrtabs,
     NodeType::Square,
-    NodeType::Logistic
+    NodeType::Logistic,
+    NodeType::OffsetSum
     >>>{ 
         // using type = std::tuple< 
         //     Signature<ArrayXf(ArrayXf)>,
@@ -300,7 +305,7 @@ struct Signatures<N, enable_if_t<is_in_v<N,
         using unaryTuple = std::tuple<
             Signature<ArrayXf(ArrayXXf)>,
             Signature<ArrayXf(TimeSeriesf)>
-        >;
+        >;// TODO: should I implement compatibility with integers?
 
         using naryTuple = NarySignatures_t<ArrayXf,ArrayXf,MAX_ARGS>;
 
@@ -361,22 +366,25 @@ struct Signatures<NodeType::SplitOn>{
             Signature<ArrayXf(ArrayXf,ArrayXf,ArrayXf)>,
             Signature<ArrayXf(ArrayXi,ArrayXf,ArrayXf)>,
             Signature<ArrayXf(ArrayXb,ArrayXf,ArrayXf)>,
+
             Signature<ArrayXi(ArrayXf,ArrayXi,ArrayXi)>,
-            Signature<ArrayXi(ArrayXi,ArrayXi,ArrayXi)>
-            /* Signature<ArrayXi(ArrayXb,ArrayXi,ArrayXi)>, */
-            /* Signature<ArrayXb(ArrayXf,ArrayXb,ArrayXb)>, */
-            /* Signature<ArrayXb(ArrayXi,ArrayXb,ArrayXb)>, */
-            /* Signature<ArrayXb(ArrayXb,ArrayXb,ArrayXb)> */
+            Signature<ArrayXi(ArrayXi,ArrayXi,ArrayXi)>,
+            Signature<ArrayXi(ArrayXb,ArrayXi,ArrayXi)>,
+
+            Signature<ArrayXb(ArrayXf,ArrayXb,ArrayXb)>,
+            Signature<ArrayXb(ArrayXi,ArrayXb,ArrayXb)>,
+            Signature<ArrayXb(ArrayXb,ArrayXb,ArrayXb)>
         >;
     }; 
 
-    template <>
-    struct Signatures<NodeType::Softmax>
+template <>
+struct Signatures<NodeType::Softmax>
     {
         using unaryTuple = std::tuple< Signature<ArrayXXf(ArrayXXf)> >;
         using naryTuple = NarySignatures_t<ArrayXXf,ArrayXf,MAX_ARGS>;
 
         using type = decltype(std::tuple_cat(unaryTuple(), naryTuple()));
     };
+
 } // namespace Brush
 #endif

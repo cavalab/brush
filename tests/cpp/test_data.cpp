@@ -1,7 +1,5 @@
 #include "testsHeader.h"
-#include "../../src/search_space.h"
-#include "../../src/program/program.h"
-#include "../../src/program/dispatch_table.h"
+
 
 TEST(Data, ErrorHandling)
 {
@@ -27,11 +25,7 @@ TEST(Data, ErrorHandling)
 
 TEST(Data, MixedVariableTypes)
 {
-    // We need to set at least the mutation options (and respective
-    // probabilities) in order to call PRG.predict()
-    PARAMS["mutation_options"] = {
-        {"point",0.25}, {"insert", 0.25}, {"delete", 0.25}, {"toggle_weight_on", 0.125}, {"toggle_weight_off", 0.125}
-    };
+    Parameters params;
 
     MatrixXf X(5,3);
     X << 0  , 1,    0  , // binary with integer values
@@ -46,31 +40,39 @@ TEST(Data, MixedVariableTypes)
 
     y << 6.1, 7.7, -4.2; // y = x_0 + x_1 + x_2
     
-    unordered_map<string, float> user_ops = {
-        {"Add", 1},
-        {"Sub", 1},
-        {"SplitOn", 1}
+    params.functions = {
+        {"Add", 0.5},
+        {"Sub", 0.5},
+        // a boolean operator
+        {"And",       1.0},
+        {"Or",        1.0},
+        // operator that takes boolean as argument
+        {"SplitOn",   1.0}
     };
 
     Dataset dt(X, y);
     SearchSpace SS;
-    SS.init(dt, user_ops);
+    SS.init(dt, params.functions);
 
     dt.print();
     SS.print();
 
-    for (int d = 1; d < 5; ++d)
-        for (int s = 1; s < 5; ++s)
+    for (size_t d = 5; d < 10; ++d)
+        for (size_t s = 5; s < 20; ++s)
         {
-            
-            PARAMS["max_size"]  = s;
-            PARAMS["max_depth"] = d;
-
-            RegressorProgram PRG = SS.make_regressor(d, s);
             fmt::print(
                 "=================================================\n"
-                "Tree model for depth = {}, size= {}: {}\n",
-                d, s, PRG.get_model("compact", true)
+                "depth={}, size={}. ", d, s
+            );
+
+            params.max_size  = s;
+            params.max_depth = d;
+
+            // TODO: update all calls of make_<program> to use params 
+            RegressorProgram PRG = SS.make_regressor(0, 0, params);
+
+            fmt::print(
+                "Tree model: {}\n", PRG.get_model("compact", true)
             );
 
             // visualizing detailed information for the model
@@ -81,17 +83,21 @@ TEST(Data, MixedVariableTypes)
                                n.name, n.node_type, n.get_feature(),
                                n.sig_hash, n.ret_type, typeid(n.ret_type).name());
                 });
-
             std::cout << std::endl;
 
             fmt::print( "PRG fit\n");
             PRG.fit(dt);
+
             fmt::print( "PRG predict\n");
             ArrayXf y_pred = PRG.predict(dt);
             fmt::print( "y_pred: {}\n", y_pred);
 
             // creating and fitting a child
-            auto opt = PRG.mutate();
+            Variation variator = Variation<ProgramType::Regressor>(params, SS);
+
+            Individual<PT::Regressor> IND(PRG);
+            
+            std::optional<Individual<PT::Regressor>> opt = variator.mutate(IND);
 
             if (!opt){
                 fmt::print("Mutation failed to create a child\n");
@@ -99,13 +105,22 @@ TEST(Data, MixedVariableTypes)
             else {
                 auto Child = opt.value();
 
-                fmt::print("Child model: {}\n", Child.get_model("compact", true));
+                fmt::print("Child program model: {}\n", Child.program.get_model("compact", true));
 
                 fmt::print( "Child fit\n");
                 Child.fit(dt);
+
                 fmt::print( "Child predict\n");
                 ArrayXf y_pred_child = Child.predict(dt);
-                fmt::print( "y_pred: {}\n", y_pred);
+                fmt::print( "y_pred: {}\n", y_pred_child);
+
+                // should be the same as the fit and predict above
+                fmt::print( "Child program fit\n");
+                Child.program.fit(dt);
+
+                fmt::print( "Child program predict\n");
+                ArrayXf y_pred_child_program = Child.program.predict(dt);
+                fmt::print( "y_pred: {}\n", y_pred_child_program);
             }
         }
 

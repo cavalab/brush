@@ -26,9 +26,27 @@ using std::stof;
 
 #include <cstdio>
 #include "../../src/init.h"
+#include "../../src/params.h"
 #include "../../src/data/data.h"
 #include "../../src/program/operator.h"
+#include "../../src/program/dispatch_table.h"
+#include "../../src/program/program.h"
+#include "../../src/ind/individual.h"
+#include "../../src/vary/search_space.h"
+#include "../../src/params.h"
+#include "../../src/vary/variation.h"
+#include "../../src/selection/selection.h"
+#include "../../src/selection/selection_operator.h"
+#include "../../src/selection/nsga2.h"
+#include "../../src/selection/lexicase.h"
+#include "../../src/eval/evaluation.h"
+#include "../../src/eval/metrics.h"
+#include "../../src/eval/scorer.h"
+#include "../../src/engine.h"
+#include "../../src/vary/variation.cpp" // TODO: is this ok? (otherwise I would have to create a test separated file, or move the implementation to the header)
+
 using namespace Brush;
 using namespace Brush::Data;
+using namespace Brush::Var;
 
 #endif

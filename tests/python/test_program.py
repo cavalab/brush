@@ -87,22 +87,22 @@ def test_json_regressor():
     #assert all(round(i,4) == round(j, 4) for i,j in zip(learned_weights, true_weights)) 
     np.allclose(learned_weights, true_weights, atol=1e-4)
 
-# def test_serialization():
-#     data = _brush.read_csv("docs/examples/datasets/d_2x1_plus_3x2.csv","target")
-#     SS   = _brush.SearchSpace(data)
+def test_serialization():
+    data = _brush.read_csv("docs/examples/datasets/d_2x1_plus_3x2.csv","target")
+    SS   = _brush.SearchSpace(data)
 
-#     for d in range(1,4):
-#         for s in range(1, 20):
-#             prg = SS.make_regressor(d, s)
-#             prg.fit(data)
-#             print(f"Initial Model:", prg.get_model())
-#             y_pred = prg.predict(data)
-#             pgr_pickle = pickle.dumps(prg)
+    for d in range(1,4):
+        for s in range(1, 20):
+            prg = SS.make_regressor(d, s)
+            prg.fit(data)
+            print(f"Initial Model:", prg.get_model())
+            y_pred = prg.predict(data)
+            pgr_pickle = pickle.dumps(prg)
 
-#             new_pgr = pickle.loads(pgr_pickle)
-#             new_pgr.fit(data)
-#             print(f"Loaded  Model:", new_pgr.get_model())
-#             new_y_pred = new_pgr.predict(data)
+            new_pgr = pickle.loads(pgr_pickle)
+            #new_pgr.fit(data)
+            print(f"Loaded  Model:", new_pgr.get_model())
+            new_y_pred = new_pgr.predict(data)
 
-#             assert prg.get_model() == new_pgr.get_model()
-#             assert np.allclose(new_y_pred, y_pred, atol=1e-3)
+            assert prg.get_model() == new_pgr.get_model()
+            assert np.allclose(new_y_pred, y_pred, atol=1e-3, equal_nan=True)

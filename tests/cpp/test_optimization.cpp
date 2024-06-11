@@ -1,5 +1,5 @@
 #include "testsHeader.h"
-#include "../../src/search_space.h"
+#include "../../src/vary/search_space.h"
 #include "../../src/program/program.h"
 #include "../../src/program/dispatch_table.h"
 #include "../../src/data/io.h"
@@ -66,7 +66,7 @@ TEST_P(OptimizerTest, OptimizeWeightsWorksCorrectly) {
     fmt::print( "weights: {}\n", learned_weights);
 
     // calculating the MSE
-    float mse = (data.y - y_pred).square().mean();
+    float mse_error = (data.y - y_pred).square().mean();
 
     ASSERT_TRUE(data.y.isApprox(y_pred, 1e-3)) << "Not all predictions " 
         "are close to the correct values. Predictions are\n" << y_pred <<
@@ -75,7 +75,7 @@ TEST_P(OptimizerTest, OptimizeWeightsWorksCorrectly) {
     ASSERT_TRUE(check_fit(learned_weights)) << "Check of learned weights "
         "didn't pass. Learned weights are\n" << learned_weights << std::endl;
 
-    ASSERT_TRUE(mse <= 1e-3) << "The MSE " << mse << "obtained after fitting "
+    ASSERT_TRUE(mse_error <= 1e-3) << "The MSE " << mse_error << "obtained after fitting "
         "the expression is not smaller than threshold of 1e-3" << std::endl;
 }
 

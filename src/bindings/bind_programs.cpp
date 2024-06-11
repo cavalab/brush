@@ -11,15 +11,8 @@ namespace nl = nlohmann;
 
 void bind_programs(py::module& m)
 {
-     py::class_<br::Fitness>(m, "Fitness", py::dynamic_attr())
-          .def(py::init<>())
-          .def_readwrite("values", &br::Fitness::values)
-          .def_readwrite("valid", &br::Fitness::valid)
-          ;
-
      bind_program<br::RegressorProgram>(m, "Regressor");
      bind_program<br::ClassifierProgram>(m, "Classifier");
      bind_program<br::MulticlassClassifierProgram>(m, "MultiClassifier");
      bind_program<br::RepresenterProgram>(m, "Representer");
-
 }

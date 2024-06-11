@@ -1,6 +1,5 @@
 #!/usr/bin/env python3
 
-import brush
 import pytest
 import numpy as np
 import pandas as pd

@@ -18,10 +18,11 @@ license: GNU/GPL v3
 #include "../init.h"
 #include "tree_node.h"
 #include "node.h"
-#include "../search_space.h"
+#include "../vary/search_space.h"
 #include "../params.h"
 #include "../util/utils.h"
 #include "functions.h"
+// #include "../variation.h"
 // #include "weight_optimizer.h"
 
 
@@ -36,10 +37,6 @@ namespace Brush {
 typedef tree<Node>::pre_order_iterator Iter; 
 typedef tree<Node>::post_order_iterator PostIter; 
 
-struct Fitness {
-    vector<float> values;
-    bool valid;
-};
 using PT = ProgramType;
 
 // for unsupervised learning, classification and regression. 
@@ -60,6 +57,7 @@ template<PT PType> struct Program
         std::conditional_t<PType == PT::MulticlassClassifier, ArrayXi,
         std::conditional_t<PType == PT::Representer, ArrayXXf, ArrayXf
         >>>>;
+
     /// the type of output from the tree object
     using TreeType = std::conditional_t<PType == PT::BinaryClassifier, ArrayXf,
         std::conditional_t<PType == PT::MulticlassClassifier, ArrayXXf, 
@@ -67,8 +65,9 @@ template<PT PType> struct Program
 
     /// whether fit has been called
     bool is_fitted_;
+
     /// fitness 
-    Fitness fitness;
+    // Fitness fitness;
     
     /// the underlying tree
     tree<Node> Tree; 
@@ -82,26 +81,28 @@ template<PT PType> struct Program
         SSref = std::optional<std::reference_wrapper<SearchSpace>>{s};
     }
 
+    Program<PType> copy() { return Program<PType>(*this); }
+
     inline void set_search_space(const std::reference_wrapper<SearchSpace> s)
     {
         SSref = std::optional<std::reference_wrapper<SearchSpace>>{s};
+    }
+
+    /// @brief count the complexity of the program.
+    /// @return int complexity.
+    int complexity() const{
+        auto head = Tree.begin(); 
+        
+        return head.node->get_complexity();
     }
 
     /// @brief count the tree size of the program, including the weights in weighted nodes.
     /// @param include_weight whether to include the node's weight in the count.
     /// @return int number of nodes.
     int size(bool include_weight=true) const{
-        int acc = 0;
-
-        std::for_each(Tree.begin(), Tree.end(), 
-            [include_weight, &acc](auto& node){ 
-                ++acc; // the node operator or terminal
-                
-                if (include_weight && node.get_is_weighted()==true)
-                    acc += 2; // weight and multiplication, if enabled
-             });
-
-        return acc;
+        auto head = Tree.begin(); 
+        
+        return head.node->get_size(include_weight);
     }
 
     /// @brief count the size of a given subtree, optionally including the
@@ -111,26 +112,7 @@ template<PT PType> struct Program
     /// @return int number of nodes.
     int size_at(Iter& top, bool include_weight=true) const{
 
-        int acc = 0;
-
-        // inspired in tree.hh size. First create two identical iterators
-        Iter it=top, eit=top;
-        
-        // Then make the second one point to the next sibling
-        eit.skip_children();
-        ++eit;
-
-        // calculate tree size for each node until reach next sibling
-        while(it!=eit) {
-            ++acc; // counting the node operator/terminal
-                        
-            if (include_weight && it.node->data.get_is_weighted()==true)
-                acc += 2; // weight and multiplication, if enabled
-
-            ++it;
-        }
-        
-        return acc;
+        return top.node->get_size(include_weight);
     }
 
     /// @brief count the tree depth of the program. The depth is not influenced by weighted nodes.
@@ -343,7 +325,7 @@ template<PT PType> struct Program
      * @param pretty currently unused. 
      * @return string the model in string form.  
      */
-    string get_model(string fmt="compact", bool pretty=false)
+    string get_model(string fmt="compact", bool pretty=false) const
     {
         auto head = Tree.begin(); 
         if (fmt=="tree")
@@ -359,7 +341,7 @@ template<PT PType> struct Program
      * @param extras extra code passed to the beginning of the dot code. 
      * @return string the model in dot language. 
      */
-    string get_dot_model(string extras="")
+    string get_dot_model(string extras="") const
     {
         // TODO: make the node names their hash or index, and the node label the nodetype name. 
         // ref: https://stackoverflow.com/questions/10579041/graphviz-create-new-node-with-this-same-label#10579155
@@ -381,7 +363,6 @@ template<PT PType> struct Program
             const auto& parent = iter.node;
             // const auto& parent_data = iter.node->data;
 
-
             string parent_id = get_id(parent);
             // if (Is<NodeType::Terminal>(parent_data.node_type)) 
             //     parent_id = parent_data.get_name(false);
@@ -389,7 +370,6 @@ template<PT PType> struct Program
             //     parent_id = fmt::format("{}",fmt::ptr(iter.node)).substr(2);
             // }
             // // parent_id = parent_id.substr(2);
-
 
             // if the first node is weighted, make a dummy output node so that the 
             // first node's weight can be shown
@@ -401,15 +381,17 @@ template<PT PType> struct Program
                         parent_id,
                         parent->data.W
                         );
-
             }
 
             // add the node
-            bool is_constant = Is<NodeType::Constant>(parent->data.node_type);
+            bool is_constant = Is<NodeType::Constant, NodeType::MeanLabel>(parent->data.node_type);
             string node_label = parent->data.get_name(is_constant);
 
             if (Is<NodeType::SplitBest>(parent->data.node_type)){
                 node_label = fmt::format("{}>{:.2f}?", parent->data.get_feature(), parent->data.W); 
+            }
+            if (Is<NodeType::OffsetSum>(parent->data.node_type)){
+                node_label = fmt::format("Add"); 
             }
             out += fmt::format("\"{}\" [label=\"{}\"];\n", parent_id, node_label); 
 
@@ -426,7 +408,8 @@ template<PT PType> struct Program
                 // string kid_id = fmt::format("{}",fmt::ptr(kid));
                 // kid_id = kid_id.substr(2);
 
-                if (kid->data.get_is_weighted() && Isnt<NodeType::Constant>(kid->data.node_type)){
+                if (kid->data.get_is_weighted()
+                && Isnt<NodeType::Constant, NodeType::MeanLabel, NodeType::OffsetSum>(kid->data.node_type)){
                     edge_label = fmt::format("{:.2f}",kid->data.W);
                 }
 
@@ -459,7 +442,6 @@ template<PT PType> struct Program
                             head_label,
                             tail_label
                             );
-
                 }
                 else{
                     out += fmt::format("\"{}\" -> \"{}\" [label=\"{}\"];\n", 
@@ -470,26 +452,27 @@ template<PT PType> struct Program
                 }
                 kid = kid->next_sibling;
             }
+        
+            // adding the offset as the last child
+            if (Is<NodeType::OffsetSum>(parent->data.node_type)){
+                // drawing the edge
+                out += fmt::format("\"{}\" -> \"{}\" [label=\"\"];\n", 
+                        parent_id,
+                        parent_id+"Offset"
+                        );
+                        
+                // drawing the node
+                out += fmt::format("\"{}\" [label=\"{}\"];\n",
+                        parent_id+"Offset",
+                        parent->data.W
+                        ); 
+            }
+                        
             ++i;
         }
         out += "}\n";
         return out;
     }
-
-    ////////////////////////////////////////////////////////////////////////////
-    // Mutation & Crossover
-
-    /// @brief convenience wrapper for :cpp:func:`variation:mutate()` in variation.h
-    /// @return a mutated version of this program
-    std::optional<Program<PType>> mutate() const;
-
-    /**
-     * @brief convenience wrapper for :cpp:func:`variation:cross` in variation.h
-     * 
-     * @param other another program to cross with this one. 
-     * @return a new version of this and the other program
-     */
-    std::optional<Program<PType>> cross(Program<PType> other) const;
 
     /// @brief turns program tree into a linear program. 
     /// @return a vector of nodes encoding the program in reverse polish notation
@@ -505,6 +488,7 @@ template<PT PType> struct Program
 ////////////////////////////////////////////////////////////////////////////////
 // weight optimization
 #include "optimizer/weight_optimizer.h"
+// #include "../variation.h"
 namespace Brush{
 
 template<ProgramType PType> 
@@ -515,22 +499,6 @@ void Program<PType>::update_weights(const Dataset& d)
     auto WO = WeightOptimizer(); 
     // get new weights from optimization.
     WO.update((*this), d);
-};
-
-////////////////////////////////////////////////////////////////////////////////
-// mutation and crossover
-#include "../variation.h"
-template<ProgramType PType>
-std::optional<Program<PType>> Program<PType>::mutate() const
-{
-    return variation::mutate(*this, this->SSref.value().get());
-};
-
-/// swaps subtrees between this and other (note the pass by copy)
-template<ProgramType PType>
-std::optional<Program<PType>> Program<PType>::cross(Program<PType> other) const
-{
-    return variation::cross(*this, other);
 };
 
 
@@ -551,5 +519,7 @@ void from_json(const json &j, Program<PType>& p)
 }
 
 }//namespace Brush
+
+
 
 #endif

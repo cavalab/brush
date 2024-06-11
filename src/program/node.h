@@ -39,7 +39,6 @@ using Brush::Data::Dataset;
 
 namespace Brush{
 
-// TODO: should I move this declaration to another place?
 template <DataType... T>
 inline auto Isnt(DataType dt) -> bool { return !((dt == T) || ...); }
 
@@ -238,8 +237,8 @@ struct Node {
     // getters and setters
     //TODO revisit
     float get_prob_change() const { return fixed ? 0.0 : this->prob_change;};
-    void set_prob_change(float w){ if (!fixed) this->prob_change = w;};
-    float get_prob_keep() const { return 1-this->prob_change;};
+    void set_prob_change(float w){ this->prob_change = w;};
+    float get_prob_keep() const { return fixed ? 1.0 : 1.0-this->prob_change;};
 
     inline void set_feature(string f){ feature = f; };
     inline string get_feature() const { return feature; };
@@ -264,14 +263,15 @@ template <NodeType... T>
 inline auto Isnt(NodeType nt) -> bool { return !((nt == T) || ...); }
 
 inline auto IsLeaf(NodeType nt) noexcept -> bool { 
-    return Is<NodeType::Constant, NodeType::Terminal>(nt); 
+    return Is<NodeType::Constant, NodeType::Terminal, NodeType::MeanLabel>(nt); 
 }
 
 inline auto IsCommutative(NodeType nt) noexcept -> bool { 
     return Is<NodeType::Add,
               NodeType::Mul,
               NodeType::Min,
-              NodeType::Max>(nt); 
+              NodeType::Max
+              >(nt); 
 }
 
 inline auto IsDifferentiable(NodeType nt) noexcept -> bool { 
@@ -281,7 +281,10 @@ inline auto IsDifferentiable(NodeType nt) noexcept -> bool {
                 NodeType::Before,       
                 NodeType::After,          
                 NodeType::During,
-                NodeType::Count
+                NodeType::Count,
+                NodeType::And, 
+                NodeType::Or,
+                NodeType::Not
                 >(nt);                
 }
 template<NodeType NT>
@@ -294,7 +297,10 @@ inline auto IsWeighable() noexcept -> bool {
                     NodeType::During,
                     NodeType::Count,
                     NodeType::SplitOn,
-                    NodeType::SplitBest 
+                    NodeType::SplitBest,
+                    NodeType::And, 
+                    NodeType::Or,
+                    NodeType::Not 
                     >(NT);                
 }
 inline auto IsWeighable(NodeType nt) noexcept -> bool { 
@@ -306,7 +312,10 @@ inline auto IsWeighable(NodeType nt) noexcept -> bool {
                     NodeType::During,
                     NodeType::Count,
                     NodeType::SplitOn,
-                    NodeType::SplitBest 
+                    NodeType::SplitBest,
+                    NodeType::And, 
+                    NodeType::Or,
+                    NodeType::Not
                     >(nt);                
 }
 

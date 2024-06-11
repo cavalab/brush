@@ -11,16 +11,19 @@ dependencies:
     - ninja
     - ceres-solver=2.1.0
     - pybind11>=2.6.2
+    - taskflow
     - pytest #=6.2.4
     - pydot
     - scikit-learn
     - pandas
-    # these are not required for install
+    # not required for install the c++ library (but used in the wrapper)
     - jupyter
     - ipython
     - pip
     - nlohmann_json
     - pybind11_json
+    # Building documentation
+    - doxygen
     - sphinx
     - pip:
       - graphviz

@@ -31,8 +31,19 @@ auto Node::get_name(bool include_weight) const noexcept -> std::string
     {
         return fmt::format("{:.2f}", W);
     }
+    else if (Is<NodeType::MeanLabel>(node_type))
+    {
+        if (include_weight) 
+            return fmt::format("{:.2f}*{}", W, feature);
+            
+        return feature;
+    }
+    else if (Is<NodeType::OffsetSum>(node_type)){
+        return fmt::format("{}+Sum", W);
+    }
     else if (is_weighted && include_weight)
         return fmt::format("{:.2f}*{}",W,name);
+
     return name;
 }
 
@@ -49,12 +60,34 @@ string Node::get_model(const vector<string>& children) const noexcept
             );
     }
     else if (Is<NodeType::SplitOn>(node_type)){
+        if (arg_types.at(0) == DataType::ArrayB)
+        {
+            // booleans dont use thresholds (they are used directly as mask in split)
+            return fmt::format("If({},{},{})",
+                children.at(0),
+                children.at(1),
+                children.at(2)
+            );
+        }
+        // integers or floating points (they have a threshold)
         return fmt::format("If({}>{:.2f},{},{})",
             children.at(0),
             W,
             children.at(1),
             children.at(2)
             );
+    }
+    else if (Is<NodeType::OffsetSum>(node_type)){
+        // weight is part of the model
+        string args = fmt::format("{},", W);
+
+        for (int i = 0; i < children.size(); ++i){
+            args += children.at(i);
+            if (i < children.size()-1)
+                args += ",";
+        }
+
+        return fmt::format("Sum({})", args);
     }
     else{
         string args = "";
@@ -125,6 +158,7 @@ void init_node_with_default_signature(Node& node)
         NT::Sqrtabs,
         NT::Square,
         NT::Logistic,
+        NT::OffsetSum, // unary version
         NT::CustomUnaryOp
         >(n)) 
     {
@@ -139,15 +173,29 @@ void init_node_with_default_signature(Node& node)
         NT::SplitBest,
         NT::CustomSplit
         >(n))
-     {
+    {
         node.set_signature<Signature<ArrayXf(ArrayXf,ArrayXf)>>();
+    }
+    else if (Is<
+        NT::And,
+        NT::Or
+        >(n))
+    {
+        node.set_signature<Signature<ArrayXb(ArrayXb,ArrayXb)>>();
     }  
+    // else if (Is<
+    //     NT::Not
+    //     >(n))
+    // {
+    //     node.set_signature<Signature<ArrayXb(ArrayXb)>>();
+    // }  
     else if (Is<
         NT::Min,
         NT::Max,
         NT::Mean,
         NT::Median,
         NT::Sum,
+        // NT::OffsetSum, // n-ary version
         NT::Prod,
         NT::Softmax
         >(n))
@@ -199,8 +247,6 @@ void from_json(const json &j, Node& p)
 
     if (j.contains("prob_change"))
         j.at("prob_change").get_to(p.prob_change);
-    else
-        p.prob_change=1.0;
     
 
     // if node has a ret_type and arg_types, get them. if not we need to make 

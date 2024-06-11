@@ -24,7 +24,6 @@ void bind_program(py::module& m, string name)
         .def(py::init(
             [](const json& j){ T p = j; return p; })
         )
-        .def_readwrite("fitness", &T::fitness)
         .def("fit",
             static_cast<T &(T::*)(const Dataset &d)>(&T::fit),
             "fit from Dataset object")
@@ -46,12 +45,15 @@ void bind_program(py::module& m, string name)
         .def("get_dot_model", &T::get_dot_model, py::arg("extras")="")
         .def("get_weights", &T::get_weights)
         .def("size", &T::size, py::arg("include_weight")=true)
+        .def("complexity", &T::complexity)
         .def("depth", &T::depth)
-        .def("cross", &T::cross, py::return_value_policy::automatic,
-             "Performs one attempt to stochastically swap subtrees between two programs and generate a child")
-        .def("mutate", &T::mutate, py::return_value_policy::automatic,
-             "Performs one attempt to stochastically mutate the program and generate a child")
+        // .def("cross", &T::cross, py::return_value_policy::automatic,
+        //      "Performs one attempt to stochastically swap subtrees between two programs and generate a child")
+        // .def("mutate", &T::mutate, py::return_value_policy::automatic,
+        //      "Performs one attempt to stochastically mutate the program and generate a child")
         .def("set_search_space", &T::set_search_space)
+        //.def("copy", &T::copy<>, py::return_value_policy::copy)
+        .def("copy", [](const T& self){ T clone(self); return clone; })
         .def(py::pickle(
             [](const T &p) { // __getstate__
                 /* Return a tuple that fully encodes the state of the object */
@@ -74,7 +76,8 @@ void bind_program(py::module& m, string name)
                 "predict from Dataset object")
            .def("predict_proba",
                 static_cast<ArrayXf (T::*)(const Ref<const ArrayXXf> &X)>(&T::predict_proba),
-                "fit from X,y data");
+                "predict from X data")
+            ;
     }
 
 }

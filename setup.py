@@ -45,7 +45,7 @@ class CMakeBuild(build_ext):
             "-DEXAMPLE_VERSION_INFO={}".format(self.distribution.get_version()),
             "-DCMAKE_BUILD_TYPE={}".format(cfg),  # not used on MSVC, but no harm
             "-DGTEST=OFF",
-            "-DDOCS=OFF",
+            "-DDOCS=ON",
             "-DGTEST_INCLUDE_DIRS={}/include/".format(conda_prefix),
             "-DGTEST_LIBRARIES={}/lib/libgtest.so".format(conda_prefix),
             "-DEIGEN3_INCLUDE_DIR={}/include/eigen3/".format(conda_prefix),
@@ -99,15 +99,15 @@ class CMakeBuild(build_ext):
         )
 
 # # # Clean old build/ directory if it exists
-# try:
-#     remove_tree("./build")
-#     print("Removed old build directory.")
-# except FileNotFoundError:
-#     print("No existing build directory found - skipping.")
+try:
+    remove_tree("./build")
+    print("Removed old build directory.")
+except FileNotFoundError:
+    print("No existing build directory found - skipping.")
 
 setup(
     name="pybrush",
-    version="0.0.1",
+    version="0.0.1", # TODO: use versionstr here
     author="William La Cava, Joseph D. Romano",
     author_email="joseph.romano@pennmedicine.upenn.edu",  # can change to Bill
     license="GNU General Public License v3.0",
@@ -117,9 +117,9 @@ setup(
     project_urls={
         "Bug Tracker": "https://github.com/lacava/brush/issues",
     },
-    package_dir={"": "src"},
-    packages=find_packages(where="src"),
-    # cmake_install_dir="src/brush",
+    package_dir={"": "."},
+    packages=find_packages(where="."),
+    #cmake_install_dir="src/",
     python_requires=">=3.6",
     install_requires=[
         'numpy',

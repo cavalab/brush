@@ -1,5 +1,5 @@
 #include "module.h"
-#include "../search_space.h"
+#include "../vary/search_space.h"
 #include "../program/program.h"
 namespace py = pybind11;
 namespace br = Brush;
@@ -13,16 +13,35 @@ void bind_search_space(py::module &m)
     // constructing it with a Dataset object, rather than initializing it as an
     // empty struct and then calling init() with the Dataset object.
     py::class_<br::SearchSpace>(m, "SearchSpace")
-        .def(py::init([](br::Data::Dataset data)
-                    {
+        .def(py::init([](br::Data::Dataset data, bool weights_init=true){
                 SearchSpace SS;
-                SS.init(data);
-                return SS; }))
-        .def(py::init<const Dataset&, const unordered_map<string,float>&>())
-        .def("make_regressor", &br::SearchSpace::make_regressor)
-        .def("make_classifier", &br::SearchSpace::make_classifier)
-        .def("make_multiclass_classifier", &br::SearchSpace::make_multiclass_classifier)
-        .def("make_representer", &br::SearchSpace::make_representer)
+                SS.init(data, {}, weights_init);
+                return SS;
+            }),
+            py::arg("data"),
+            py::arg("weights_init") = true )
+        .def(py::init<const Dataset&, const unordered_map<string,float>&, 
+            bool>(),
+            py::arg("data"),
+            py::arg("user_ops"),
+            py::arg("weights_init") = true )
+        .def("make_regressor", &br::SearchSpace::make_regressor,
+             py::arg("max_d") = 0,
+             py::arg("max_size") = 0,
+             py::arg("params") = Brush::Parameters() )
+        .def("make_classifier", &br::SearchSpace::make_classifier,
+             py::arg("max_d") = 0,
+             py::arg("max_size") = 0,
+             py::arg("params") = Brush::Parameters() )
+        .def("make_multiclass_classifier",
+             &br::SearchSpace::make_multiclass_classifier,
+             py::arg("max_d") = 0,
+             py::arg("max_size") = 0,
+             py::arg("params") = Brush::Parameters() )
+        .def("make_representer", &br::SearchSpace::make_representer,
+             py::arg("max_d") = 0,
+             py::arg("max_size") = 0,
+             py::arg("params") = Brush::Parameters() )
         .def("print", 
             &br::SearchSpace::print, 
             stream_redirect()

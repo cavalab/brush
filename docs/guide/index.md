@@ -13,5 +13,7 @@ data
 search_space
 working_with_programs
 json
+saving_loading_populations
+archive
 deap
 ```

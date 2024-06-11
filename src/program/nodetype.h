@@ -28,7 +28,8 @@ using Brush::Data::TimeSeriesf;
 
 namespace Brush {
 
-enum class NodeType : uint64_t {
+enum class NodeType : uint64_t { // Each node type must have a complexity
+                                 // in operator_complexities@tree_node.cpp
     // Unary
     Abs                 = 1UL << 0UL,
     Acos                = 1UL << 1UL,
@@ -49,57 +50,74 @@ enum class NodeType : uint64_t {
     Sqrt                = 1UL << 16UL,
     Sqrtabs             = 1UL << 17UL,
     Square              = 1UL << 18UL,
-    Logistic            = 1UL << 19UL,
+    Logistic            = 1UL << 19UL, // used as root for classification trees
+
     // timing masks
     Before              = 1UL << 20UL,
     After               = 1UL << 21UL,
     During              = 1UL << 22UL,
+
     // Reducers
     Min                 = 1UL << 23UL,
     Max                 = 1UL << 24UL,
     Mean                = 1UL << 25UL,
     Median              = 1UL << 26UL,
-    Sum                 = 1UL << 27UL,
-    Prod                = 1UL << 28UL,
+    Prod                = 1UL << 27UL,
+    Sum                 = 1UL << 28UL,
+    OffsetSum           = 1UL << 29UL, // Sum with weight as one of its arguments
+
     // Transformers 
-    Softmax             = 1UL << 29UL,
+    Softmax             = 1UL << 30UL, // used as root for multiclf trees
+
     // Binary
-    Add                 = 1UL << 30UL,
-    Sub                 = 1UL << 31UL,
-    Mul                 = 1UL << 32UL,
-    Div                 = 1UL << 33UL,
-    Pow                 = 1UL << 34UL,
+    Add                 = 1UL << 31UL,
+    Sub                 = 1UL << 32UL,
+    Mul                 = 1UL << 33UL,
+    Div                 = 1UL << 34UL,
+    Pow                 = 1UL << 35UL,
+
     //split
-    SplitBest           = 1UL << 35UL,
-    SplitOn             = 1UL << 36UL,
+    SplitBest           = 1UL << 36UL,
+    SplitOn             = 1UL << 37UL,
+
     // these ones change type
     /* Equals              = 1UL << 39UL, */
     /* LessThan            = 1UL << 40UL, */
     /* GreaterThan         = 1UL << 41UL, */
     /* Leq                 = 1UL << 42UL, */
     /* Geq                 = 1UL << 43UL, */
-    // leaves
-    Constant            = 1UL << 37UL,
-    Terminal            = 1UL << 38UL,
-    ArgMax              = 1UL << 39UL,
-    Count               = 1UL << 40UL,
-    // custom
-    CustomUnaryOp       = 1UL << 41UL,
-    CustomBinaryOp      = 1UL << 42UL,
-    CustomSplit         = 1UL << 43UL
+
     // boolean
-    // And                 = 1UL << 37UL,
-    // Or                  = 1UL << 38UL,
+    And                 = 1UL << 38UL,
+    Or                  = 1UL << 39UL,
+    Not                 = 1UL << 40UL,
     // Xor                 = 1UL << 39UL,
-    // Not                 = 1UL << 19UL,
+
+    // leaves (must be the last ones in this enum)
+    MeanLabel           = 1UL << 41UL,
+    Constant            = 1UL << 42UL,
+    Terminal            = 1UL << 43UL,
+
+    // TODO: implement operators below and move them before leaves
+    ArgMax              = 1UL << 44UL, 
+    Count               = 1UL << 45UL, 
+    
+    // custom
+    CustomUnaryOp       = 1UL << 46UL,
+    CustomBinaryOp      = 1UL << 47UL,
+    CustomSplit         = 1UL << 48UL
 };
 
 
 using UnderlyingNodeType = std::underlying_type_t<NodeType>;
 struct NodeTypes {
     // magic number keeping track of the number of different node types
-    static constexpr size_t Count = 39;
-    static constexpr size_t OpCount = Count-2;
+    
+    // index of last available node visible to search_space
+    static constexpr size_t Count = 44;
+
+    // subtracting leaves (leaving just the ops into this)
+    static constexpr size_t OpCount = Count-3;
 
     // returns the index of the given type in the NodeType enum
     static auto GetIndex(NodeType type) -> size_t
@@ -165,10 +183,10 @@ NLOHMANN_JSON_SERIALIZE_ENUM( NodeType, {
     {NodeType::Pow,"Pow" },
     {NodeType::Logistic,"Logistic" },
 
-    // logic; not sure these will make it in
-    // {NodeType::And,"And" },
-    // {NodeType::Or,"Or" },
-    // {NodeType::Not,"Not" },
+    // logic
+    {NodeType::And,"And" },
+    {NodeType::Or,"Or" },
+    {NodeType::Not,"Not" },
     // {NodeType::Xor,"Xor" },
 
     // decision (same)
@@ -185,6 +203,7 @@ NLOHMANN_JSON_SERIALIZE_ENUM( NodeType, {
     {NodeType::Median,"Median" },
     {NodeType::Count,"Count" },
     {NodeType::Sum,"Sum" },
+    {NodeType::OffsetSum,"OffsetSum" },
     {NodeType::Prod,"Prod" },
     {NodeType::ArgMax,"ArgMax" },
 
@@ -201,13 +220,14 @@ NLOHMANN_JSON_SERIALIZE_ENUM( NodeType, {
     {NodeType::SplitOn,"SplitOn" },
 
     // leaves
+    {NodeType::MeanLabel,"MeanLabel" },
     {NodeType::Constant,"Constant" },
     {NodeType::Terminal,"Terminal" },
 
     // custom
     {NodeType::CustomUnaryOp,"CustomUnaryOp" },
     {NodeType::CustomBinaryOp,"CustomBinaryOp" },
-    {NodeType::CustomSplit,"CustomSplit" },
+    {NodeType::CustomSplit,"CustomSplit" }
 })   
 #endif
 
@@ -255,6 +275,7 @@ static constexpr bool UnaryOp = is_in_v<nt,
     NT::Sqrtabs,
     NT::Square,
     NT::Logistic
+    // NT::Not
 >;
 
 template<NT nt>
@@ -265,6 +286,7 @@ static constexpr bool BinaryOp = is_in_v<nt,
     NT::Div,
     NT::Pow
 >;
+
 template<NT nt>
 static constexpr bool AssociativeBinaryOp = is_in_v<nt, 
     NT::Add,
@@ -278,9 +300,11 @@ static constexpr bool NaryOp = is_in_v<nt,
     NT::Mean,
     NT::Median,
     NT::Sum,
+    NT::OffsetSum,
     NT::Prod,
     NT::Softmax
 >;
+
 // // TODO: make this work 
 // template<typename NT, size_t ArgCount>
 // concept Transformer = requires(NT n, size_t ArgCount) 

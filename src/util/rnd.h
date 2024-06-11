@@ -25,7 +25,6 @@ namespace Brush { namespace Util{
      * @class Rnd
      * @brief Defines a multi-core random number generator and its operators.
      */
-
     class Rnd
     {
         public:
@@ -66,7 +65,6 @@ namespace Brush { namespace Util{
                 return start;
             }
 
-            // TODO: write doxygen documentation for this source code.
             /// select randomly with weighted distribution.
             // The probability of picking the i-th element is w_i/S, with S
             // being the sum of all weights. select_randomly works even if the
@@ -136,13 +134,13 @@ namespace Brush { namespace Util{
                 if(w.size() == 0)
                 {   
                     fmt::format("w size = {} and v size = {}, returning uniform random choice\n",
-                            w.size(), v.size());
+                        w.size(), v.size());
                     return random_choice(v);
                 }
                 if(w.size() != v.size())
                 {   
                     fmt::format("w ({}) != v size ({}), returning uniform random choice\n",
-                            w.size(), v.size());
+                        w.size(), v.size());
                     return random_choice(v);
                 }
                 else
