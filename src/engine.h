@@ -28,6 +28,18 @@ using namespace Var;
 using namespace nlohmann;
 
 template <ProgramType T>
+/**
+ * @brief The `Engine` class represents the core engine of the brush library.
+ * 
+ * It encapsulates the functionality for training and predicting with programs
+ * in a genetic programming framework. The `Engine` class manages the population
+ * of programs, selection algorithms, evaluation code, variation operators, and
+ * survival algorithms. It also provides methods for training the model, making
+ * predictions, and accessing runtime statistics.
+ * 
+ * The `Engine` class is parameterized by the program type `T`, which determines
+ * the type of programs that can be evolved and evaluated by the engine.
+ */
 class Engine{
 public:
     Engine(const Parameters& p=Parameters())
