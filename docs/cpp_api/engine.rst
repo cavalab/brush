@@ -1,7 +1,7 @@
 Engine (and parameters)
 =======================
 
-.. doxygenclass:: Brush::Parameters
+.. doxygenstruct:: Brush::Parameters
    :members:
 
 .. doxygenclass:: Brush::Engine

@@ -4,5 +4,5 @@ Evaluation
 .. doxygenclass:: Brush::Eval::Evaluation
    :members:
 
-.. doxygenclass:: Brush::Scorer
+.. doxygenclass:: Brush::Eval::Scorer
    :members:

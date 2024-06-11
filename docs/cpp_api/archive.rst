@@ -1,5 +1,5 @@
 Archive
 =======
 
-.. doxygenclass:: Brush::Pop::Archive
+.. doxygenstruct:: Brush::Pop::Archive
    :members:
