@@ -166,7 +166,7 @@ class EstimatorInterface():
         self.weights_init=weights_init
         self.validation_size=validation_size
 
-    def _wrap_parameters(self):
+    def _wrap_parameters(self, **extra_kwargs):
         """
         Creates a `Parameters` class to send to c++ backend the settings for
         the algorithm to use.
@@ -219,5 +219,8 @@ class EstimatorInterface():
                 raise ValueError("random_state must be either a numpy random generator or an integer")
 
             params.random_state = seed
+
+        for k, v in extra_kwargs.items():
+            setattr(params, k, v)
 
         return params

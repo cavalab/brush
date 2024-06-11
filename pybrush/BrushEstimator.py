@@ -74,7 +74,7 @@ class BrushEstimator(EstimatorInterface, BaseEstimator):
         self.train_.set_batch_size(self.batch_size) # TODO: update batch indexes at the beggining of every generation
         self.validation_ = self.data_.get_validation_data()
 
-        self.parameters_ = self._wrap_parameters()
+        self.parameters_ = self._wrap_parameters(n_classes=self.n_classes_)
 
         self.search_space_ = SearchSpace(self.data_, self.parameters_.functions, self.weights_init)
                 
@@ -94,6 +94,25 @@ class BrushEstimator(EstimatorInterface, BaseEstimator):
         return self
     
     def _make_data(self, X, y=None, feature_names=[], validation_size=0.0):
+        """
+        Prepare the data for training or prediction.
+
+        Parameters:
+        - X: array-like or pandas DataFrame, shape (n_samples, n_features)
+            The input features.
+        - y: array-like or pandas Series, shape (n_samples,), optional (default=None)
+            The target variable.
+        - feature_names: list, optional (default=[])
+            The names of the features.
+        - validation_size: float, optional (default=0.0)
+            The proportion of the data to be used for validation.
+
+        Returns:
+        - dataset: Dataset
+            The prepared dataset object containing the input features, target variable,
+            feature names, and validation size.
+        """
+
         # This function should not partition data (since it may be used in `predict`).
         # partitioning is done by `fit`. Feature names should be inferred
         # before calling _make_data (so predict can be made with np arrays or
@@ -145,6 +164,7 @@ class BrushEstimator(EstimatorInterface, BaseEstimator):
     
     def predict_archive(self, X):
         """Returns a list of dictionary predictions for all models."""
+
         check_is_fitted(self)
 
         if isinstance(X, pd.DataFrame):
@@ -196,15 +216,13 @@ class BrushClassifier(BrushEstimator, ClassifierMixin):
 
         Parameters
         ----------
-        X : {array-like, sparse matrix} of shape (n_samples, n_features)
-            The input samples. Internally, it will be converted to
-            ``dtype=np.float32``.
+        X : {array-like} of shape (n_samples, n_features)
+            The input samples.
 
         Returns
         -------
         p : ndarray of shape (n_samples, n_classes)
-            The class probabilities of the input samples. The order of the
-            classes corresponds to that in the attribute :term:`classes_`.
+            The class probabilities of the input samples.
 
         """
         
@@ -231,6 +249,7 @@ class BrushClassifier(BrushEstimator, ClassifierMixin):
         
     def predict_proba_archive(self, X):
         """Returns a list of dictionary predictions for all models."""
+
         check_is_fitted(self)
 
         if isinstance(X, pd.DataFrame):
