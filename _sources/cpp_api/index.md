@@ -13,5 +13,11 @@ search_space
 program
 node
 nodetypes
+individual
+evaluation
+population
 variation
+selection
+archive
+engine
 ```

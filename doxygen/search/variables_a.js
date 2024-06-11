@@ -1,20 +1,9 @@
 var searchData=
 [
-  ['map_5f_1357',['map_',['../d3/da8/structBrush_1_1DispatchTable.html#ae48467d85705b8884940ac89db77d914',1,'Brush::DispatchTable']]],
-  ['max_1358',['Max',['../d9/da6/structBrush_1_1NarySignatures.html#a3a49e995edfd861599610048749f25eb',1,'Brush::NarySignatures']]],
-  ['max_5fargs_1359',['MAX_ARGS',['../dc/d5c/namespaceBrush.html#a5720ee549e0df722bd77a7495c0c6f60',1,'Brush']]],
-  ['max_5fdepth_1360',['max_depth',['../d0/dc4/classbrush_1_1estimator_1_1BrushEstimator.html#a2526c6813d622c1ac125e5fb7b6ba128',1,'brush::estimator::BrushEstimator']]],
-  ['max_5fflt_1361',['MAX_FLT',['../d8/dc0/init_8h.html#a0c86fe7dc09ca580e891580bf302e659',1,'init.h']]],
-  ['max_5fgen_1362',['max_gen',['../d0/dc4/classbrush_1_1estimator_1_1BrushEstimator.html#a3b4adff253c20efd315e9f8789503b4b',1,'brush::estimator::BrushEstimator']]],
-  ['max_5fsize_1363',['max_size',['../d0/dc4/classbrush_1_1estimator_1_1BrushEstimator.html#af75977b66a8836d700221adcb701b067',1,'brush::estimator::BrushEstimator']]],
-  ['med_5fcomplexity_1364',['med_complexity',['../db/d7e/structBrush_1_1Util_1_1Log__Stats.html#ad6978c4386468c44dd252345c11ca126',1,'Brush::Util::Log_Stats']]],
-  ['med_5fdim_1365',['med_dim',['../db/d7e/structBrush_1_1Util_1_1Log__Stats.html#a6fea2e0bdb545bca73ba9907fdf88f89',1,'Brush::Util::Log_Stats']]],
-  ['med_5floss_5fv_1366',['med_loss_v',['../db/d7e/structBrush_1_1Util_1_1Log__Stats.html#a058bb22893088e18b23023df52998ada',1,'Brush::Util::Log_Stats']]],
-  ['med_5fnum_5fparams_1367',['med_num_params',['../db/d7e/structBrush_1_1Util_1_1Log__Stats.html#a18bae5820cd7b84d9a97a82c08d555df',1,'Brush::Util::Log_Stats']]],
-  ['med_5fscore_1368',['med_score',['../db/d7e/structBrush_1_1Util_1_1Log__Stats.html#ac23e8ca79f408dfc07c4f86a8e89a9ca',1,'Brush::Util::Log_Stats']]],
-  ['med_5fsize_1369',['med_size',['../db/d7e/structBrush_1_1Util_1_1Log__Stats.html#ac158480ad1d6fc12ea5a20811b115d1e',1,'Brush::Util::Log_Stats']]],
-  ['min_1370',['Min',['../d9/da6/structBrush_1_1NarySignatures.html#aae71c5366cc66eabaf9a2126ac6507d4',1,'Brush::NarySignatures']]],
-  ['min_5fflt_1371',['MIN_FLT',['../d8/dc0/init_8h.html#a8213bd26dbb943e499d0e227fa9b3159',1,'init.h']]],
-  ['mode_1372',['mode',['../d0/dc4/classbrush_1_1estimator_1_1BrushEstimator.html#a5d1704a652d6d5ea0e5e98125702719a',1,'brush::estimator::BrushEstimator']]],
-  ['mutation_5foptions_1373',['mutation_options',['../d0/dc4/classbrush_1_1estimator_1_1BrushEstimator.html#a0174bd91eccdf68b8885ae6b5ef4db76',1,'brush::estimator::BrushEstimator']]]
+  ['last_5fchild_0',['last_child',['../dc/d90/classtree__node___3_01Node_01_4.html#ae083431203606b1cc63675d1c767a1e0',1,'tree_node_&lt; Node &gt;']]],
+  ['load_5fpopulation_1',['load_population',['../de/deb/structBrush_1_1Parameters.html#ad1a131cf61b76ff1ab4b576f5fd1df9b',1,'Brush::Parameters']]],
+  ['logfile_2',['logfile',['../de/deb/structBrush_1_1Parameters.html#ab800a9c06c4bbfd47f031659ff7bb7b8',1,'Brush::Parameters']]],
+  ['logger_3',['logger',['../d6/d2e/namespaceBrush_1_1Util.html#aa6d49e22e6193fabd31fde261f607560',1,'Brush::Util']]],
+  ['loss_4',['loss',['../d6/dd0/structBrush_1_1Fitness.html#a30e994e0b4aa0a8febfe7d7a09529f04',1,'Brush::Fitness']]],
+  ['loss_5fv_5',['loss_v',['../d6/dd0/structBrush_1_1Fitness.html#aa8cd674fad6f65c344f008c3e2442491',1,'Brush::Fitness']]]
 ];

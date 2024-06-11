@@ -28,13 +28,14 @@ var NAVTREE =
     [ "Namespaces", "namespaces.html", [
       [ "Namespace List", "namespaces.html", "namespaces_dup" ],
       [ "Namespace Members", "namespacemembers.html", [
-        [ "All", "namespacemembers.html", null ],
+        [ "All", "namespacemembers.html", "namespacemembers_dup" ],
         [ "Functions", "namespacemembers_func.html", null ],
         [ "Variables", "namespacemembers_vars.html", null ],
         [ "Typedefs", "namespacemembers_type.html", null ],
         [ "Enumerations", "namespacemembers_enum.html", null ]
       ] ]
     ] ],
+    [ "Concepts", "concepts.html", "concepts" ],
     [ "Classes", "annotated.html", [
       [ "Class List", "annotated.html", "annotated_dup" ],
       [ "Class Index", "classes.html", null ],
@@ -42,10 +43,10 @@ var NAVTREE =
       [ "Class Members", "functions.html", [
         [ "All", "functions.html", "functions_dup" ],
         [ "Functions", "functions_func.html", "functions_func" ],
-        [ "Variables", "functions_vars.html", null ],
+        [ "Variables", "functions_vars.html", "functions_vars" ],
         [ "Typedefs", "functions_type.html", null ],
         [ "Enumerator", "functions_eval.html", null ],
-        [ "Related Functions", "functions_rela.html", null ]
+        [ "Related Symbols", "functions_rela.html", null ]
       ] ]
     ] ],
     [ "Files", "files.html", [
@@ -63,13 +64,19 @@ var NAVTREE =
 
 var NAVTREEINDEX =
 [
-"",
-"d2/df8/structBrush_1_1Util_1_1Normalizer.html#a574c6632238c45c3b505b2c0eab9744e",
-"d5/dd4/structfmt_1_1formatter_3_01Brush_1_1Data_1_1TimeSeriesf_01_4.html#a005f01289d7b31d245cea506fa4a81b2",
-"d8/dc0/init_8h.html#a6c9a5070ffbcf71c795073cbb2a88964",
-"db/d88/structBrush_1_1Program.html#a750b6c66bebaa4f4163110eba7db6275",
-"dc/dac/io_8h.html",
-"functions_func_m.html"
+"annotated.html",
+"d1/d3a/structBrush_1_1Node.html#aed6c2af0fae3dd8e5a8aa2fab77479fd",
+"d2/d84/structBrush_1_1Function_3_01NodeType_1_1Median_01_4.html#a226a9b29496d0d09fb55055ca23a3c86",
+"d4/d93/bind__engines_8h.html",
+"d5/d7d/structBrush_1_1Signature_3_01R_07Args_8_8_8_08_4.html#a7ace5066b187efa33260b6b979451bd9",
+"d7/d17/structBrush_1_1DataTypeEnum_3_01ArrayXXb_01_4.html",
+"d8/da4/classBrush_1_1Util_1_1Timer.html",
+"da/d4c/classBrush_1_1Eval_1_1Scorer.html#ad88baa386d47e6464c130f0da3858325",
+"db/d88/structBrush_1_1Program.html#ab5df93b7b0bf914455ffeb5cc7574543",
+"dc/d84/structBrush_1_1DataTypeEnum_3_01ArrayXXiJet_01_4.html",
+"de/d06/utils_8cpp.html#ae119a14eab4e4899608c4e766acf54c0",
+"de/deb/structBrush_1_1Parameters.html#a21e3da5422ccf31326362f1806ac3eae",
+"dir_f89e4c745b153bebdf6a1c6589fa5209.html"
 ];
 
 var SYNCONMSG = 'click to disable panel synchronisation';

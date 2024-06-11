@@ -1,0 +1,6 @@
+var structBrush_1_1Signatures_3_01N_00_01enable__if__t_3_01is__in__v_3_01N_00_01NodeType_1_1Abs_00_0aeef5405a01257b84f9033923028819e =
+[
+    [ "naryTuple", "d2/def/structBrush_1_1Signatures_3_01N_00_01enable__if__t_3_01is__in__v_3_01N_00_01NodeType_1_1Abs_00_0aeef5405a01257b84f9033923028819e.html#a709e0271571818fce754af8484b855da", null ],
+    [ "type", "d2/def/structBrush_1_1Signatures_3_01N_00_01enable__if__t_3_01is__in__v_3_01N_00_01NodeType_1_1Abs_00_0aeef5405a01257b84f9033923028819e.html#a6207cc0b0ead13f9029d433c6495c237", null ],
+    [ "unaryTuple", "d2/def/structBrush_1_1Signatures_3_01N_00_01enable__if__t_3_01is__in__v_3_01N_00_01NodeType_1_1Abs_00_0aeef5405a01257b84f9033923028819e.html#adfa5c6b02b4c29b34245b1ab69938cd8", null ]
+];

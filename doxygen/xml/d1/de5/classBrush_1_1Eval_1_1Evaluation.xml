@@ -1,0 +1,331 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.10.0" xml:lang="en-US">
+  <compounddef id="d1/de5/classBrush_1_1Eval_1_1Evaluation" kind="class" language="C++" prot="public">
+    <compoundname>Brush::Eval::Evaluation</compoundname>
+    <includes refid="d3/df9/evaluation_8h" local="no">evaluation.h</includes>
+    <templateparamlist>
+      <param>
+        <type><ref refid="dc/d5c/namespaceBrush_1ae591329af27c88b714d0f92b86276366" kindref="member">ProgramType</ref></type>
+        <declname>T</declname>
+        <defname>T</defname>
+      </param>
+    </templateparamlist>
+    <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="d1/de5/classBrush_1_1Eval_1_1Evaluation_1a8b0cbe86a7f12660f9ff1df7d4ef6835" prot="public" static="no" mutable="no">
+        <type><ref refid="da/d4c/classBrush_1_1Eval_1_1Scorer" kindref="compound">Scorer</ref>&lt; T &gt;</type>
+        <definition>Scorer&lt;T&gt; Brush::Eval::Evaluation&lt; T &gt;::S</definition>
+        <argsstring></argsstring>
+        <name>S</name>
+        <qualifiedname>Brush::Eval::Evaluation::S</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/runner/work/brush/brush/src/eval/evaluation.h" line="28" column="12" bodyfile="/home/runner/work/brush/brush/src/eval/evaluation.h" bodystart="28" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="public-func">
+      <memberdef kind="function" id="d1/de5/classBrush_1_1Eval_1_1Evaluation_1a97f33d97eef93cbe4f38168957a7ee7e" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>Brush::Eval::Evaluation&lt; T &gt;::Evaluation</definition>
+        <argsstring>()</argsstring>
+        <name>Evaluation</name>
+        <qualifiedname>Brush::Eval::Evaluation::Evaluation</qualifiedname>
+        <briefdescription>
+<para>Constructor for <ref refid="d1/de5/classBrush_1_1Eval_1_1Evaluation" kindref="compound">Evaluation</ref> class. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>Initializes the scorer based on the program type. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/runner/work/brush/brush/src/eval/evaluation.h" line="33" column="5" bodyfile="/home/runner/work/brush/brush/src/eval/evaluation.h" bodystart="33" bodyend="46"/>
+        <references refid="dc/d5c/namespaceBrush_1ae591329af27c88b714d0f92b86276366a3cdc33a35d0e4f3b9bae953babd8f9b4">Brush::BinaryClassifier</references>
+        <references refid="dc/d5c/namespaceBrush_1ae591329af27c88b714d0f92b86276366ac62539fc5a23115fca906befbd511c0a">Brush::MulticlassClassifier</references>
+        <references refid="dc/d5c/namespaceBrush_1ae591329af27c88b714d0f92b86276366aca702b6b08355f71cf4b1a17a8e16b8b">Brush::Representer</references>
+        <references refid="da/d4c/classBrush_1_1Eval_1_1Scorer_1a29a78f6ded6e276708939f562e3b1153" compoundref="da/d3b/scorer_8h" startline="41" endline="41">Brush::Eval::Scorer&lt; P &gt;::set_scorer</references>
+      </memberdef>
+      <memberdef kind="function" id="d1/de5/classBrush_1_1Eval_1_1Evaluation_1a7a35cc80ebd4d2573151270caacaa03e" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>Brush::Eval::Evaluation&lt; T &gt;::~Evaluation</definition>
+        <argsstring>()</argsstring>
+        <name>~Evaluation</name>
+        <qualifiedname>Brush::Eval::Evaluation::~Evaluation</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/runner/work/brush/brush/src/eval/evaluation.h" line="47" column="5" bodyfile="/home/runner/work/brush/brush/src/eval/evaluation.h" bodystart="47" bodyend="47"/>
+      </memberdef>
+      <memberdef kind="function" id="d1/de5/classBrush_1_1Eval_1_1Evaluation_1a87c9ee9700af58b3d96469b6cd50bf1b" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">void</ref></type>
+        <definition>void Brush::Eval::Evaluation&lt; T &gt;::set_scorer</definition>
+        <argsstring>(string scorer)</argsstring>
+        <name>set_scorer</name>
+        <qualifiedname>Brush::Eval::Evaluation::set_scorer</qualifiedname>
+        <param>
+          <type>string</type>
+          <declname>scorer</declname>
+        </param>
+        <briefdescription>
+<para>Set the scorer for evaluation. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>scorer</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The scorer to be set. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/runner/work/brush/brush/src/eval/evaluation.h" line="53" column="10" bodyfile="/home/runner/work/brush/brush/src/eval/evaluation.h" bodystart="53" bodyend="53"/>
+        <references refid="da/d4c/classBrush_1_1Eval_1_1Scorer_1a29a78f6ded6e276708939f562e3b1153" compoundref="da/d3b/scorer_8h" startline="41" endline="41">Brush::Eval::Scorer&lt; P &gt;::set_scorer</references>
+      </memberdef>
+      <memberdef kind="function" id="d1/de5/classBrush_1_1Eval_1_1Evaluation_1ab85a890810fbb2f047ddd689aea80ed9" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>string</type>
+        <definition>string Brush::Eval::Evaluation&lt; T &gt;::get_scorer</definition>
+        <argsstring>()</argsstring>
+        <name>get_scorer</name>
+        <qualifiedname>Brush::Eval::Evaluation::get_scorer</qualifiedname>
+        <briefdescription>
+<para>Get the current scorer. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>The current scorer. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/runner/work/brush/brush/src/eval/evaluation.h" line="59" column="12" bodyfile="/home/runner/work/brush/brush/src/eval/evaluation.h" bodystart="59" bodyend="59"/>
+        <references refid="da/d4c/classBrush_1_1Eval_1_1Scorer_1a074ffe387edb4090061c5aa0402ebb1d" compoundref="da/d3b/scorer_8h" startline="42" endline="42">Brush::Eval::Scorer&lt; P &gt;::get_scorer</references>
+      </memberdef>
+      <memberdef kind="function" id="d1/de5/classBrush_1_1Eval_1_1Evaluation_1a1d652164264243bd40efcfd38ba6d569" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">void</ref></type>
+        <definition>void Brush::Eval::Evaluation&lt; T &gt;::update_fitness</definition>
+        <argsstring>(Population&lt; T &gt; &amp;pop, int island, const Dataset &amp;data, const Parameters &amp;params, bool fit=true, bool validation=false)</argsstring>
+        <name>update_fitness</name>
+        <qualifiedname>Brush::Eval::Evaluation::update_fitness</qualifiedname>
+        <param>
+          <type><ref refid="da/da3/classBrush_1_1Pop_1_1Population" kindref="compound">Population</ref>&lt; T &gt; &amp;</type>
+          <declname>pop</declname>
+        </param>
+        <param>
+          <type><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">int</ref></type>
+          <declname>island</declname>
+        </param>
+        <param>
+          <type><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">const</ref> <ref refid="d2/d36/classBrush_1_1Data_1_1Dataset" kindref="compound">Dataset</ref> &amp;</type>
+          <declname>data</declname>
+        </param>
+        <param>
+          <type><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">const</ref> <ref refid="de/deb/structBrush_1_1Parameters" kindref="compound">Parameters</ref> &amp;</type>
+          <declname>params</declname>
+        </param>
+        <param>
+          <type><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">bool</ref></type>
+          <declname>fit</declname>
+          <defval><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">true</ref></defval>
+        </param>
+        <param>
+          <type><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">bool</ref></type>
+          <declname>validation</declname>
+          <defval><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">false</ref></defval>
+        </param>
+        <briefdescription>
+<para>Update the fitness of individuals in a population. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>pop</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The population to update. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>island</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The island index. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>data</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The dataset for evaluation. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>params</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The parameters for evaluation. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>fit</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Flag indicating whether to update fitness. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>validation</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Flag indicating whether to perform validation. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/runner/work/brush/brush/src/eval/evaluation.h" line="70" column="10" bodyfile="/home/runner/work/brush/brush/src/eval/evaluation.cpp" bodystart="9" bodyend="42"/>
+        <references refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" compoundref="d4/d93/bind__engines_8h" startline="35" endline="104">bind_engine</references>
+        <references refid="da/da3/classBrush_1_1Pop_1_1Population_1a2bf4066c7a32ec3bd85c96bd80098de6" compoundref="d2/d76/population_8h" startline="38" endline="38">Brush::Pop::Population&lt; T &gt;::get_island_indexes</references>
+        <references refid="da/da3/classBrush_1_1Pop_1_1Population_1a7b529af66e90f378ca96a54ee5ce0c71" compoundref="d2/d76/population_8h" startline="18">Brush::Pop::Population&lt; T &gt;::individuals</references>
+        <references refid="d8/dc0/init_8h_1a0c86fe7dc09ca580e891580bf302e659" compoundref="d8/dc0/init_8h" startline="61">MAX_FLT</references>
+        <references refid="d2/d36/classBrush_1_1Data_1_1Dataset_1ade105f069d4f745d44374b7b8a3a9b0d" compoundref="d2/dbd/data_8h" startline="76">Brush::Data::Dataset::y</references>
+      </memberdef>
+      <memberdef kind="function" id="d1/de5/classBrush_1_1Eval_1_1Evaluation_1ac7562624d114b22b19720729d599a40a" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">void</ref></type>
+        <definition>void Brush::Eval::Evaluation&lt; T &gt;::assign_fit</definition>
+        <argsstring>(Individual&lt; T &gt; &amp;ind, const Dataset &amp;data, const Parameters &amp;params, bool val=false)</argsstring>
+        <name>assign_fit</name>
+        <qualifiedname>Brush::Eval::Evaluation::assign_fit</qualifiedname>
+        <param>
+          <type><ref refid="de/d83/classBrush_1_1Pop_1_1Individual" kindref="compound">Individual</ref>&lt; T &gt; &amp;</type>
+          <declname>ind</declname>
+        </param>
+        <param>
+          <type><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">const</ref> <ref refid="d2/d36/classBrush_1_1Data_1_1Dataset" kindref="compound">Dataset</ref> &amp;</type>
+          <declname>data</declname>
+        </param>
+        <param>
+          <type><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">const</ref> <ref refid="de/deb/structBrush_1_1Parameters" kindref="compound">Parameters</ref> &amp;</type>
+          <declname>params</declname>
+        </param>
+        <param>
+          <type><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">bool</ref></type>
+          <declname>val</declname>
+          <defval><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">false</ref></defval>
+        </param>
+        <briefdescription>
+<para>Assign fitness to an individual. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>ind</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The individual to assign fitness to. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>data</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The dataset for evaluation. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>params</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The parameters for evaluation. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>val</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Flag indicating whether it is validation fitness. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/runner/work/brush/brush/src/eval/evaluation.h" line="85" column="10" bodyfile="/home/runner/work/brush/brush/src/eval/evaluation.cpp" bodystart="46" bodyend="94"/>
+        <references refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" compoundref="d4/d93/bind__engines_8h" startline="35" endline="104">bind_engine</references>
+        <references refid="d2/d36/classBrush_1_1Data_1_1Dataset_1ae69087b8c020840f254e3679cd324ba5" compoundref="da/dc9/data_8cpp" startline="173" endline="173">Brush::Data::Dataset::get_training_data</references>
+        <references refid="d2/d36/classBrush_1_1Data_1_1Dataset_1a1ddb847fd1ceff63e60ffd79542409d9" compoundref="da/dc9/data_8cpp" startline="174" endline="174">Brush::Data::Dataset::get_validation_data</references>
+        <references refid="da/d41/error_8h_1aa4c550bcd71e4ec1c97b111e1360509a" compoundref="da/d41/error_8h" startline="27">HANDLE_ERROR_THROW</references>
+        <references refid="de/deb/structBrush_1_1Parameters_1a110a7c46dffa83836fb155a566219292" compoundref="da/d33/params_8h" startline="38" endline="38">Brush::Parameters::objectives</references>
+        <references refid="d2/d36/classBrush_1_1Data_1_1Dataset_1a6cadfbd9f8a4700361e63defb7d6f6e0" compoundref="d2/dbd/data_8h" startline="84">Brush::Data::Dataset::use_validation</references>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+<para>Class for evaluating the fitness of individuals in a population. </para>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <collaborationgraph>
+      <node id="1">
+        <label>Brush::Eval::Evaluation&lt; T &gt;</label>
+        <link refid="d1/de5/classBrush_1_1Eval_1_1Evaluation"/>
+        <childnode refid="2" relation="usage">
+          <edgelabel>S</edgelabel>
+        </childnode>
+      </node>
+      <node id="2">
+        <label>Brush::Eval::Scorer&lt; T &gt;</label>
+        <link refid="da/d4c/classBrush_1_1Eval_1_1Scorer"/>
+        <childnode refid="3" relation="usage">
+          <edgelabel>score_hash</edgelabel>
+        </childnode>
+        <childnode refid="4" relation="usage">
+          <edgelabel>scorer</edgelabel>
+        </childnode>
+      </node>
+      <node id="3">
+        <label>std::map&lt; string, funcPointer &gt;</label>
+        <childnode refid="4" relation="usage">
+          <edgelabel>keys</edgelabel>
+        </childnode>
+      </node>
+      <node id="5">
+        <label>std::basic_string&lt; Char &gt;</label>
+      </node>
+      <node id="4">
+        <label>std::string</label>
+        <childnode refid="5" relation="public-inheritance">
+        </childnode>
+      </node>
+    </collaborationgraph>
+    <location file="/home/runner/work/brush/brush/src/eval/evaluation.h" line="26" column="1" bodyfile="/home/runner/work/brush/brush/src/eval/evaluation.h" bodystart="26" bodyend="89"/>
+    <listofallmembers>
+      <member refid="d1/de5/classBrush_1_1Eval_1_1Evaluation_1ac7562624d114b22b19720729d599a40a" prot="public" virt="non-virtual"><scope>Brush::Eval::Evaluation</scope><name>assign_fit</name></member>
+      <member refid="d1/de5/classBrush_1_1Eval_1_1Evaluation_1a97f33d97eef93cbe4f38168957a7ee7e" prot="public" virt="non-virtual"><scope>Brush::Eval::Evaluation</scope><name>Evaluation</name></member>
+      <member refid="d1/de5/classBrush_1_1Eval_1_1Evaluation_1ab85a890810fbb2f047ddd689aea80ed9" prot="public" virt="non-virtual"><scope>Brush::Eval::Evaluation</scope><name>get_scorer</name></member>
+      <member refid="d1/de5/classBrush_1_1Eval_1_1Evaluation_1a8b0cbe86a7f12660f9ff1df7d4ef6835" prot="public" virt="non-virtual"><scope>Brush::Eval::Evaluation</scope><name>S</name></member>
+      <member refid="d1/de5/classBrush_1_1Eval_1_1Evaluation_1a87c9ee9700af58b3d96469b6cd50bf1b" prot="public" virt="non-virtual"><scope>Brush::Eval::Evaluation</scope><name>set_scorer</name></member>
+      <member refid="d1/de5/classBrush_1_1Eval_1_1Evaluation_1a1d652164264243bd40efcfd38ba6d569" prot="public" virt="non-virtual"><scope>Brush::Eval::Evaluation</scope><name>update_fitness</name></member>
+      <member refid="d1/de5/classBrush_1_1Eval_1_1Evaluation_1a7a35cc80ebd4d2573151270caacaa03e" prot="public" virt="non-virtual"><scope>Brush::Eval::Evaluation</scope><name>~Evaluation</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

@@ -1,0 +1,661 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.10.0" xml:lang="en-US">
+  <compounddef id="d8/df7/bind__variation_8h" kind="file" language="C++">
+    <compoundname>bind_variation.h</compoundname>
+    <includes refid="d5/d16/module_8h" local="yes">module.h</includes>
+    <includes refid="d4/d1f/variation_8h" local="yes">../vary/variation.h</includes>
+    <includes refid="d1/d64/variation_8cpp" local="yes">../vary/variation.cpp</includes>
+    <includes refid="d2/d76/population_8h" local="yes">../pop/population.h</includes>
+    <includes refid="d7/d4a/population_8cpp" local="yes">../pop/population.cpp</includes>
+    <includedby refid="df/d41/bind__variation_8cpp" local="yes">bind_variation.cpp</includedby>
+    <incdepgraph>
+      <node id="58">
+        <label>../../thirdparty/tree.hh</label>
+      </node>
+      <node id="1">
+        <label>bind_variation.h</label>
+        <link refid="d8/df7/bind__variation_8h"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="9" relation="include">
+        </childnode>
+        <childnode refid="71" relation="include">
+        </childnode>
+        <childnode refid="10" relation="include">
+        </childnode>
+        <childnode refid="72" relation="include">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>module.h</label>
+        <link refid="d5/d16/module_8h"/>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="5" relation="include">
+        </childnode>
+        <childnode refid="6" relation="include">
+        </childnode>
+        <childnode refid="7" relation="include">
+        </childnode>
+        <childnode refid="8" relation="include">
+        </childnode>
+      </node>
+      <node id="42">
+        <label>../data/data.h</label>
+        <link refid="d2/dbd/data_8h"/>
+        <childnode refid="19" relation="include">
+        </childnode>
+        <childnode refid="11" relation="include">
+        </childnode>
+        <childnode refid="32" relation="include">
+        </childnode>
+        <childnode refid="43" relation="include">
+        </childnode>
+        <childnode refid="44" relation="include">
+        </childnode>
+        <childnode refid="47" relation="include">
+        </childnode>
+        <childnode refid="29" relation="include">
+        </childnode>
+        <childnode refid="48" relation="include">
+        </childnode>
+      </node>
+      <node id="47">
+        <label>timeseries.h</label>
+        <link refid="d9/df7/timeseries_8h"/>
+        <childnode refid="19" relation="include">
+        </childnode>
+        <childnode refid="11" relation="include">
+        </childnode>
+        <childnode refid="32" relation="include">
+        </childnode>
+      </node>
+      <node id="70">
+        <label>fitness.h</label>
+        <link refid="dc/d7a/fitness_8h"/>
+        <childnode refid="57" relation="include">
+        </childnode>
+        <childnode refid="19" relation="include">
+        </childnode>
+        <childnode refid="11" relation="include">
+        </childnode>
+      </node>
+      <node id="37">
+        <label>../ind/individual.h</label>
+        <link refid="d5/d1f/individual_8h"/>
+        <childnode refid="38" relation="include">
+        </childnode>
+        <childnode refid="70" relation="include">
+        </childnode>
+        <childnode refid="57" relation="include">
+        </childnode>
+      </node>
+      <node id="19">
+        <label>../init.h</label>
+        <link refid="d8/dc0/init_8h"/>
+        <childnode refid="20" relation="include">
+        </childnode>
+        <childnode refid="12" relation="include">
+        </childnode>
+        <childnode refid="21" relation="include">
+        </childnode>
+        <childnode refid="22" relation="include">
+        </childnode>
+        <childnode refid="15" relation="include">
+        </childnode>
+        <childnode refid="23" relation="include">
+        </childnode>
+        <childnode refid="18" relation="include">
+        </childnode>
+        <childnode refid="14" relation="include">
+        </childnode>
+        <childnode refid="13" relation="include">
+        </childnode>
+        <childnode refid="24" relation="include">
+        </childnode>
+        <childnode refid="25" relation="include">
+        </childnode>
+        <childnode refid="26" relation="include">
+        </childnode>
+        <childnode refid="27" relation="include">
+        </childnode>
+        <childnode refid="8" relation="include">
+        </childnode>
+        <childnode refid="28" relation="include">
+        </childnode>
+      </node>
+      <node id="62">
+        <label>../params.h</label>
+        <link refid="da/d33/params_8h"/>
+        <childnode refid="19" relation="include">
+        </childnode>
+        <childnode refid="43" relation="include">
+        </childnode>
+      </node>
+      <node id="72">
+        <label>../pop/population.cpp</label>
+        <link refid="d7/d4a/population_8cpp"/>
+        <childnode refid="10" relation="include">
+        </childnode>
+      </node>
+      <node id="10">
+        <label>../pop/population.h</label>
+        <link refid="d2/d76/population_8h"/>
+        <childnode refid="11" relation="include">
+        </childnode>
+        <childnode refid="32" relation="include">
+        </childnode>
+        <childnode refid="37" relation="include">
+        </childnode>
+      </node>
+      <node id="59">
+        <label>dispatch_table.h</label>
+        <link refid="df/d61/dispatch__table_8h"/>
+        <childnode refid="19" relation="include">
+        </childnode>
+        <childnode refid="42" relation="include">
+        </childnode>
+        <childnode refid="50" relation="include">
+        </childnode>
+        <childnode refid="49" relation="include">
+        </childnode>
+        <childnode refid="48" relation="include">
+        </childnode>
+        <childnode refid="60" relation="include">
+        </childnode>
+        <childnode refid="36" relation="include">
+        </childnode>
+      </node>
+      <node id="55">
+        <label>functions.h</label>
+        <link refid="d8/d5c/functions_8h"/>
+        <childnode refid="56" relation="include">
+        </childnode>
+        <childnode refid="34" relation="include">
+        </childnode>
+        <childnode refid="57" relation="include">
+        </childnode>
+        <childnode refid="23" relation="include">
+        </childnode>
+        <childnode refid="52" relation="include">
+        </childnode>
+        <childnode refid="19" relation="include">
+        </childnode>
+        <childnode refid="50" relation="include">
+        </childnode>
+        <childnode refid="11" relation="include">
+        </childnode>
+        <childnode refid="42" relation="include">
+        </childnode>
+        <childnode refid="49" relation="include">
+        </childnode>
+      </node>
+      <node id="49">
+        <label>node.h</label>
+        <link refid="d1/d77/node_8h"/>
+        <childnode refid="42" relation="include">
+        </childnode>
+        <childnode refid="50" relation="include">
+        </childnode>
+        <childnode refid="11" relation="include">
+        </childnode>
+        <childnode refid="22" relation="include">
+        </childnode>
+      </node>
+      <node id="50">
+        <label>nodetype.h</label>
+        <link refid="de/d26/nodetype_8h"/>
+        <childnode refid="51" relation="include">
+        </childnode>
+        <childnode refid="52" relation="include">
+        </childnode>
+        <childnode refid="53" relation="include">
+        </childnode>
+        <childnode refid="19" relation="include">
+        </childnode>
+        <childnode refid="42" relation="include">
+        </childnode>
+        <childnode refid="11" relation="include">
+        </childnode>
+        <childnode refid="44" relation="include">
+        </childnode>
+        <childnode refid="54" relation="include">
+        </childnode>
+      </node>
+      <node id="69">
+        <label>tiny_cost_function.h</label>
+        <link refid="dd/d1b/tiny__cost__function_8h"/>
+      </node>
+      <node id="63">
+        <label>optimizer/weight_optimizer.h</label>
+        <link refid="d7/de3/weight__optimizer_8h"/>
+        <childnode refid="64" relation="include">
+        </childnode>
+        <childnode refid="65" relation="include">
+        </childnode>
+        <childnode refid="66" relation="include">
+        </childnode>
+        <childnode refid="67" relation="include">
+        </childnode>
+        <childnode refid="68" relation="include">
+        </childnode>
+        <childnode refid="69" relation="include">
+        </childnode>
+      </node>
+      <node id="38">
+        <label>../program/program.h</label>
+        <link refid="d1/dea/program_8h"/>
+        <childnode refid="24" relation="include">
+        </childnode>
+        <childnode refid="39" relation="include">
+        </childnode>
+        <childnode refid="19" relation="include">
+        </childnode>
+        <childnode refid="40" relation="include">
+        </childnode>
+        <childnode refid="49" relation="include">
+        </childnode>
+        <childnode refid="61" relation="include">
+        </childnode>
+        <childnode refid="62" relation="include">
+        </childnode>
+        <childnode refid="11" relation="include">
+        </childnode>
+        <childnode refid="55" relation="include">
+        </childnode>
+        <childnode refid="63" relation="include">
+        </childnode>
+      </node>
+      <node id="54">
+        <label>signatures.h</label>
+        <link refid="d8/d8b/signatures_8h"/>
+      </node>
+      <node id="40">
+        <label>tree_node.h</label>
+        <link refid="d1/da6/tree__node_8h"/>
+        <childnode refid="36" relation="include">
+        </childnode>
+        <childnode refid="41" relation="include">
+        </childnode>
+        <childnode refid="19" relation="include">
+        </childnode>
+        <childnode refid="42" relation="include">
+        </childnode>
+        <childnode refid="49" relation="include">
+        </childnode>
+        <childnode refid="55" relation="include">
+        </childnode>
+        <childnode refid="50" relation="include">
+        </childnode>
+        <childnode refid="58" relation="include">
+        </childnode>
+        <childnode refid="59" relation="include">
+        </childnode>
+      </node>
+      <node id="28">
+        <label>types.h</label>
+        <link refid="d9/d49/types_8h"/>
+        <childnode refid="29" relation="include">
+        </childnode>
+        <childnode refid="30" relation="include">
+        </childnode>
+        <childnode refid="31" relation="include">
+        </childnode>
+      </node>
+      <node id="32">
+        <label>error.h</label>
+        <link refid="da/d41/error_8h"/>
+        <childnode refid="24" relation="include">
+        </childnode>
+        <childnode refid="22" relation="include">
+        </childnode>
+      </node>
+      <node id="43">
+        <label>../util/logger.h</label>
+        <link refid="d1/d8c/logger_8h"/>
+        <childnode refid="22" relation="include">
+        </childnode>
+      </node>
+      <node id="44">
+        <label>../util/rnd.h</label>
+        <link refid="d2/da9/rnd_8h"/>
+        <childnode refid="45" relation="include">
+        </childnode>
+        <childnode refid="46" relation="include">
+        </childnode>
+        <childnode refid="13" relation="include">
+        </childnode>
+        <childnode refid="19" relation="include">
+        </childnode>
+      </node>
+      <node id="11">
+        <label>../util/utils.h</label>
+        <link refid="d5/d60/utils_8h"/>
+        <childnode refid="12" relation="include">
+        </childnode>
+        <childnode refid="13" relation="include">
+        </childnode>
+        <childnode refid="14" relation="include">
+        </childnode>
+        <childnode refid="15" relation="include">
+        </childnode>
+        <childnode refid="16" relation="include">
+        </childnode>
+        <childnode refid="17" relation="include">
+        </childnode>
+        <childnode refid="18" relation="include">
+        </childnode>
+        <childnode refid="19" relation="include">
+        </childnode>
+        <childnode refid="32" relation="include">
+        </childnode>
+        <childnode refid="33" relation="include">
+        </childnode>
+        <childnode refid="34" relation="include">
+        </childnode>
+        <childnode refid="35" relation="include">
+        </childnode>
+        <childnode refid="36" relation="include">
+        </childnode>
+      </node>
+      <node id="61">
+        <label>../vary/search_space.h</label>
+        <link refid="d9/d99/search__space_8h"/>
+        <childnode refid="19" relation="include">
+        </childnode>
+        <childnode refid="49" relation="include">
+        </childnode>
+        <childnode refid="50" relation="include">
+        </childnode>
+        <childnode refid="40" relation="include">
+        </childnode>
+        <childnode refid="32" relation="include">
+        </childnode>
+        <childnode refid="11" relation="include">
+        </childnode>
+        <childnode refid="44" relation="include">
+        </childnode>
+        <childnode refid="62" relation="include">
+        </childnode>
+        <childnode refid="53" relation="include">
+        </childnode>
+        <childnode refid="48" relation="include">
+        </childnode>
+        <childnode refid="22" relation="include">
+        </childnode>
+      </node>
+      <node id="71">
+        <label>../vary/variation.cpp</label>
+        <link refid="d1/d64/variation_8cpp"/>
+        <childnode refid="9" relation="include">
+        </childnode>
+      </node>
+      <node id="9">
+        <label>../vary/variation.h</label>
+        <link refid="d4/d1f/variation_8h"/>
+        <childnode refid="10" relation="include">
+        </childnode>
+        <childnode refid="18" relation="include">
+        </childnode>
+        <childnode refid="48" relation="include">
+        </childnode>
+      </node>
+      <node id="12">
+        <label>Eigen/Dense</label>
+      </node>
+      <node id="39">
+        <label>assert.h</label>
+      </node>
+      <node id="51">
+        <label>bitset</label>
+      </node>
+      <node id="64">
+        <label>ceres/dynamic_autodiff_cost_function.h</label>
+      </node>
+      <node id="65">
+        <label>ceres/dynamic_numeric_diff_cost_function.h</label>
+      </node>
+      <node id="30">
+        <label>ceres/jet.h</label>
+      </node>
+      <node id="66">
+        <label>ceres/loss_function.h</label>
+      </node>
+      <node id="67">
+        <label>ceres/solver.h</label>
+      </node>
+      <node id="68">
+        <label>ceres/tiny_solver.h</label>
+      </node>
+      <node id="16">
+        <label>chrono</label>
+      </node>
+      <node id="56">
+        <label>cmath</label>
+      </node>
+      <node id="31">
+        <label>concepts</label>
+      </node>
+      <node id="60">
+        <label>cstddef</label>
+      </node>
+      <node id="35">
+        <label>execution</label>
+      </node>
+      <node id="26">
+        <label>fmt/format.h</label>
+      </node>
+      <node id="25">
+        <label>fmt/ostream.h</label>
+      </node>
+      <node id="27">
+        <label>fmt/ranges.h</label>
+      </node>
+      <node id="15">
+        <label>fstream</label>
+      </node>
+      <node id="57">
+        <label>functional</label>
+      </node>
+      <node id="22">
+        <label>iostream</label>
+      </node>
+      <node id="34">
+        <label>iterator</label>
+      </node>
+      <node id="46">
+        <label>limits</label>
+      </node>
+      <node id="18">
+        <label>map</label>
+      </node>
+      <node id="21">
+        <label>memory</label>
+      </node>
+      <node id="8">
+        <label>nlohmann/json.hpp</label>
+      </node>
+      <node id="23">
+        <label>numeric</label>
+      </node>
+      <node id="48">
+        <label>optional</label>
+      </node>
+      <node id="17">
+        <label>ostream</label>
+      </node>
+      <node id="4">
+        <label>pybind11/eigen.h</label>
+      </node>
+      <node id="6">
+        <label>pybind11/iostream.h</label>
+      </node>
+      <node id="3">
+        <label>pybind11/pybind11.h</label>
+      </node>
+      <node id="5">
+        <label>pybind11/stl.h</label>
+      </node>
+      <node id="7">
+        <label>pybind11_json/pybind11_json.hpp</label>
+      </node>
+      <node id="45">
+        <label>random</label>
+      </node>
+      <node id="14">
+        <label>set</label>
+      </node>
+      <node id="20">
+        <label>stdint.h</label>
+      </node>
+      <node id="24">
+        <label>string</label>
+      </node>
+      <node id="36">
+        <label>tuple</label>
+      </node>
+      <node id="52">
+        <label>type_traits</label>
+      </node>
+      <node id="33">
+        <label>typeindex</label>
+      </node>
+      <node id="41">
+        <label>unordered_map</label>
+      </node>
+      <node id="53">
+        <label>utility</label>
+      </node>
+      <node id="29">
+        <label>variant</label>
+      </node>
+      <node id="13">
+        <label>vector</label>
+      </node>
+    </incdepgraph>
+    <invincdepgraph>
+      <node id="2">
+        <label>bind_variation.cpp</label>
+        <link refid="df/d41/bind__variation_8cpp"/>
+      </node>
+      <node id="1">
+        <label>bind_variation.h</label>
+        <link refid="d8/df7/bind__variation_8h"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+      </node>
+    </invincdepgraph>
+    <sectiondef kind="func">
+      <memberdef kind="function" id="d8/df7/bind__variation_8h_1aa00827ef4bd73eeb7c3e30717bf91a74" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type><ref refid="dc/d5c/namespaceBrush_1ae591329af27c88b714d0f92b86276366" kindref="member">br::ProgramType</ref></type>
+            <declname>PT</declname>
+            <defname>PT</defname>
+          </param>
+        </templateparamlist>
+        <type><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">void</ref></type>
+        <definition>void bind_variation</definition>
+        <argsstring>(py::module &amp;m, string name)</argsstring>
+        <name>bind_variation</name>
+        <param>
+          <type><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">py::module</ref> &amp;</type>
+          <declname>m</declname>
+        </param>
+        <param>
+          <type>string</type>
+          <declname>name</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/runner/work/brush/brush/src/bindings/bind_variation.h" line="13" column="6" bodyfile="/home/runner/work/brush/brush/src/bindings/bind_variation.h" bodystart="13" bodyend="69"/>
+        <references refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" compoundref="d4/d93/bind__engines_8h" startline="35" endline="104">bind_engine</references>
+        <references refid="de/deb/structBrush_1_1Parameters_1a93ed229becd162e94722e034f8e5bebc" compoundref="da/d33/params_8h" startline="43">Brush::Parameters::num_islands</references>
+        <references refid="de/deb/structBrush_1_1Parameters_1a139004f9fa652376afabd690dac242e5" compoundref="da/d33/params_8h" startline="30">Brush::Parameters::pop_size</references>
+        <references refid="d6/d2e/namespaceBrush_1_1Util_1a9cd8004de7aab46b7a06f27d440064ed" compoundref="d5/d60/utils_8h" startline="369" endline="374">Brush::Util::to_string</references>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"><highlight class="preprocessor">#include<sp/>&quot;<ref refid="d5/d16/module_8h" kindref="compound">module.h</ref>&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="2"><highlight class="normal"></highlight></codeline>
+<codeline lineno="3"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;<ref refid="d4/d1f/variation_8h" kindref="compound">../vary/variation.h</ref>&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="4"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;<ref refid="d1/d64/variation_8cpp" kindref="compound">../vary/variation.cpp</ref>&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="5"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;<ref refid="d2/d76/population_8h" kindref="compound">../pop/population.h</ref>&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="6"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;<ref refid="d7/d4a/population_8cpp" kindref="compound">../pop/population.cpp</ref>&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="7"><highlight class="normal"></highlight></codeline>
+<codeline lineno="8"><highlight class="normal"></highlight><highlight class="keyword">namespace<sp/></highlight><highlight class="normal"><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">py</ref><sp/>=<sp/><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">pybind11</ref>;</highlight></codeline>
+<codeline lineno="9"><highlight class="normal"></highlight><highlight class="keyword">namespace<sp/></highlight><highlight class="normal"><ref refid="d3/d9b/namespacenlohmann" kindref="compound">nl</ref><sp/>=<sp/><ref refid="d3/d9b/namespacenlohmann" kindref="compound">nlohmann</ref>;</highlight></codeline>
+<codeline lineno="10"><highlight class="normal"></highlight><highlight class="keyword">namespace<sp/></highlight><highlight class="normal"><ref refid="dc/d5c/namespaceBrush" kindref="compound">br</ref><sp/>=<sp/><ref refid="dc/d5c/namespaceBrush" kindref="compound">Brush</ref>;</highlight></codeline>
+<codeline lineno="11"><highlight class="normal"></highlight></codeline>
+<codeline lineno="12"><highlight class="normal"></highlight><highlight class="keyword">template</highlight><highlight class="normal">&lt;br::ProgramType<sp/>PT&gt;</highlight></codeline>
+<codeline lineno="13" refid="d8/df7/bind__variation_8h_1aa00827ef4bd73eeb7c3e30717bf91a74" refkind="member"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="d8/df7/bind__variation_8h_1aa00827ef4bd73eeb7c3e30717bf91a74" kindref="member">bind_variation</ref>(py::module&amp;<sp/>m,<sp/></highlight><highlight class="keywordtype">string</highlight><highlight class="normal"><sp/>name)</highlight></codeline>
+<codeline lineno="14"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="15"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">using<sp/></highlight><highlight class="normal"><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">Class</ref><sp/>=<sp/>br::Var::Variation&lt;PT&gt;;</highlight></codeline>
+<codeline lineno="16"><highlight class="normal"></highlight></codeline>
+<codeline lineno="17"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>TODO:<sp/>make<sp/>variation<sp/>a<sp/>non-templated<sp/>class</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="18"><highlight class="normal"><sp/><sp/><sp/><sp/>py::class_&lt;Class&gt;<sp/>vary(m,<sp/>name.data()<sp/>);</highlight></codeline>
+<codeline lineno="19"><highlight class="normal"></highlight></codeline>
+<codeline lineno="20"><highlight class="normal"><sp/><sp/><sp/><sp/>vary.def(py::init&lt;&gt;([](<ref refid="de/deb/structBrush_1_1Parameters" kindref="compound">br::Parameters</ref>&amp;<sp/><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">p</ref>,<sp/><ref refid="d4/dc3/structBrush_1_1SearchSpace" kindref="compound">br::SearchSpace</ref>&amp;<sp/>ss){</highlight></codeline>
+<codeline lineno="21"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">Class</ref><sp/><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">variation</ref>(<ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">p</ref>,<sp/>ss);</highlight></codeline>
+<codeline lineno="22"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">variation</ref>;<sp/>}))</highlight></codeline>
+<codeline lineno="23"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>.def(</highlight><highlight class="stringliteral">&quot;mutate&quot;</highlight><highlight class="normal">,<sp/>&amp;Class::mutate,<sp/>py::return_value_policy::automatic)</highlight></codeline>
+<codeline lineno="24"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>.def(</highlight><highlight class="stringliteral">&quot;cross&quot;</highlight><highlight class="normal">,<sp/>&amp;Class::cross,<sp/>py::return_value_policy::automatic)</highlight></codeline>
+<codeline lineno="25"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>.def(</highlight><highlight class="stringliteral">&quot;vary_pop&quot;</highlight><highlight class="normal">,<sp/>[](<ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">Class</ref><sp/>&amp;<ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">self</ref>,<sp/></highlight></codeline>
+<codeline lineno="26"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>std::vector&lt;br::Pop::Individual&lt;PT&gt;&gt;&amp;<sp/>individuals,</highlight></codeline>
+<codeline lineno="27"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="de/deb/structBrush_1_1Parameters" kindref="compound">Parameters</ref>&amp;<sp/>params)<sp/>{</highlight></codeline>
+<codeline lineno="28"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(individuals.size()<sp/>!=<sp/>params.<ref refid="de/deb/structBrush_1_1Parameters_1a139004f9fa652376afabd690dac242e5" kindref="member">pop_size</ref>)<sp/>{</highlight></codeline>
+<codeline lineno="29"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">string</highlight><highlight class="normal"><sp/><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">msg</ref><sp/>=<sp/></highlight><highlight class="stringliteral">&quot;Individual<sp/>vector<sp/>has<sp/>different<sp/>number<sp/>of<sp/>&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="30"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="stringliteral">&quot;individuals<sp/>than<sp/>pop_size.<sp/>When<sp/>calling<sp/>&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="31"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="stringliteral">&quot;variation,<sp/>they<sp/>should<sp/>be<sp/>the<sp/>same.<sp/>popsize<sp/>is<sp/>&quot;</highlight><highlight class="normal">+</highlight></codeline>
+<codeline lineno="32"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="d6/d2e/namespaceBrush_1_1Util_1a9cd8004de7aab46b7a06f27d440064ed" kindref="member">to_string</ref>(params.<ref refid="de/deb/structBrush_1_1Parameters_1a139004f9fa652376afabd690dac242e5" kindref="member">pop_size</ref>)+</highlight><highlight class="stringliteral">&quot;,<sp/>number<sp/>of<sp/>&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="33"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="stringliteral">&quot;individuals<sp/>is<sp/>&quot;</highlight><highlight class="normal">+<ref refid="d6/d2e/namespaceBrush_1_1Util_1a9cd8004de7aab46b7a06f27d440064ed" kindref="member">to_string</ref>(individuals.size());</highlight></codeline>
+<codeline lineno="34"><highlight class="normal"></highlight></codeline>
+<codeline lineno="35"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">throw</highlight><highlight class="normal"><sp/>std::runtime_error(<ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">msg</ref>);</highlight></codeline>
+<codeline lineno="36"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="37"><highlight class="normal"></highlight></codeline>
+<codeline lineno="38"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/>pop<sp/>=<sp/>br::Pop::Population&lt;PT&gt;();</highlight></codeline>
+<codeline lineno="39"><highlight class="normal"></highlight></codeline>
+<codeline lineno="40"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>pop.init(individuals,<sp/>params);</highlight></codeline>
+<codeline lineno="41"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="42"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>vector&lt;br::Pop::Individual&lt;PT&gt;&gt;<sp/><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">pool</ref>;</highlight></codeline>
+<codeline lineno="43"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">pool</ref>.resize(0);</highlight></codeline>
+<codeline lineno="44"><highlight class="normal"></highlight></codeline>
+<codeline lineno="45"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>(</highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">island</ref><sp/>=<sp/>0;<sp/><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">island</ref><sp/>&lt;<sp/>params.<ref refid="de/deb/structBrush_1_1Parameters_1a93ed229becd162e94722e034f8e5bebc" kindref="member">num_islands</ref>;<sp/>++<ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">island</ref>)</highlight></codeline>
+<codeline lineno="46"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="47"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>I<sp/>am<sp/>assuming<sp/>the<sp/>individual<sp/>vector<sp/>passed<sp/>as<sp/>argument</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="48"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>will<sp/>contain<sp/>the<sp/>selected<sp/>parents<sp/>already</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="49"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>vector&lt;size_t&gt;<sp/><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">parents</ref><sp/>=<sp/>pop.get_island_indexes(<ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">island</ref>);</highlight></codeline>
+<codeline lineno="50"><highlight class="normal"></highlight></codeline>
+<codeline lineno="51"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>including<sp/>offspring<sp/>indexes<sp/>(the<sp/>vary<sp/>method<sp/>will<sp/>store<sp/>the</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="52"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>offspring<sp/>in<sp/>the<sp/>second<sp/>half<sp/>of<sp/>the<sp/>index<sp/>vector)</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="53"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>pop.add_offspring_indexes(<ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">island</ref>);</highlight></codeline>
+<codeline lineno="54"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="55"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">self</ref>.vary(pop,<sp/><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">island</ref>,<sp/><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">parents</ref>);</highlight></codeline>
+<codeline lineno="56"><highlight class="normal"></highlight></codeline>
+<codeline lineno="57"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>making<sp/>copies<sp/>of<sp/>the<sp/>second<sp/>half<sp/>of<sp/>the<sp/>island<sp/>individuals</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="58"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>vector&lt;size_t&gt;<sp/><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">indices</ref><sp/>=<sp/>pop.get_island_indexes(<ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">island</ref>);</highlight></codeline>
+<codeline lineno="59"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">start</ref><sp/>=<sp/><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">indices</ref>.size()/2;</highlight></codeline>
+<codeline lineno="60"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>(</highlight><highlight class="keywordtype">unsigned</highlight><highlight class="normal"><sp/><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">i</ref><sp/>=<sp/><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">start</ref>;<sp/><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">i</ref>&lt;<ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">indices</ref>.size();<sp/>++<ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">i</ref>)</highlight></codeline>
+<codeline lineno="61"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="62"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>this<sp/>is<sp/>where<sp/>the<sp/>offspring<sp/>is<sp/>saved</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="63"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">pool</ref>.push_back(pop[<ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">indices</ref>.at(<ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">i</ref>)]);</highlight></codeline>
+<codeline lineno="64"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="65"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}<sp/></highlight></codeline>
+<codeline lineno="66"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">pool</ref>;</highlight></codeline>
+<codeline lineno="67"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>})</highlight></codeline>
+<codeline lineno="68"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>;</highlight></codeline>
+<codeline lineno="69"><highlight class="normal">}</highlight></codeline>
+    </programlisting>
+    <location file="/home/runner/work/brush/brush/src/bindings/bind_variation.h"/>
+  </compounddef>
+</doxygen>

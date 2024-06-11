@@ -1,0 +1,658 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.10.0" xml:lang="en-US">
+  <compounddef id="d7/d05/archive_8cpp" kind="file" language="C++">
+    <compoundname>archive.cpp</compoundname>
+    <includes refid="d9/d28/archive_8h" local="yes">archive.h</includes>
+    <includedby refid="d4/d93/bind__engines_8h" local="yes">bind_engines.h</includedby>
+    <incdepgraph>
+      <node id="51">
+        <label>../../thirdparty/tree.hh</label>
+      </node>
+      <node id="28">
+        <label>../data/data.h</label>
+        <link refid="d2/dbd/data_8h"/>
+        <childnode refid="7" relation="include">
+        </childnode>
+        <childnode refid="29" relation="include">
+        </childnode>
+        <childnode refid="32" relation="include">
+        </childnode>
+        <childnode refid="36" relation="include">
+        </childnode>
+        <childnode refid="37" relation="include">
+        </childnode>
+        <childnode refid="40" relation="include">
+        </childnode>
+        <childnode refid="22" relation="include">
+        </childnode>
+        <childnode refid="41" relation="include">
+        </childnode>
+      </node>
+      <node id="40">
+        <label>timeseries.h</label>
+        <link refid="d9/df7/timeseries_8h"/>
+        <childnode refid="7" relation="include">
+        </childnode>
+        <childnode refid="29" relation="include">
+        </childnode>
+        <childnode refid="32" relation="include">
+        </childnode>
+      </node>
+      <node id="63">
+        <label>fitness.h</label>
+        <link refid="dc/d7a/fitness_8h"/>
+        <childnode refid="50" relation="include">
+        </childnode>
+        <childnode refid="7" relation="include">
+        </childnode>
+        <childnode refid="29" relation="include">
+        </childnode>
+      </node>
+      <node id="3">
+        <label>../ind/individual.h</label>
+        <link refid="d5/d1f/individual_8h"/>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="63" relation="include">
+        </childnode>
+        <childnode refid="50" relation="include">
+        </childnode>
+      </node>
+      <node id="7">
+        <label>../init.h</label>
+        <link refid="d8/dc0/init_8h"/>
+        <childnode refid="8" relation="include">
+        </childnode>
+        <childnode refid="9" relation="include">
+        </childnode>
+        <childnode refid="10" relation="include">
+        </childnode>
+        <childnode refid="11" relation="include">
+        </childnode>
+        <childnode refid="12" relation="include">
+        </childnode>
+        <childnode refid="13" relation="include">
+        </childnode>
+        <childnode refid="14" relation="include">
+        </childnode>
+        <childnode refid="15" relation="include">
+        </childnode>
+        <childnode refid="16" relation="include">
+        </childnode>
+        <childnode refid="5" relation="include">
+        </childnode>
+        <childnode refid="17" relation="include">
+        </childnode>
+        <childnode refid="18" relation="include">
+        </childnode>
+        <childnode refid="19" relation="include">
+        </childnode>
+        <childnode refid="20" relation="include">
+        </childnode>
+        <childnode refid="21" relation="include">
+        </childnode>
+      </node>
+      <node id="55">
+        <label>../params.h</label>
+        <link refid="da/d33/params_8h"/>
+        <childnode refid="7" relation="include">
+        </childnode>
+        <childnode refid="36" relation="include">
+        </childnode>
+      </node>
+      <node id="1">
+        <label>archive.cpp</label>
+        <link refid="d7/d05/archive_8cpp"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>archive.h</label>
+        <link refid="d9/d28/archive_8h"/>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="64" relation="include">
+        </childnode>
+      </node>
+      <node id="66">
+        <label>../pop/population.h</label>
+        <link refid="d2/d76/population_8h"/>
+        <childnode refid="29" relation="include">
+        </childnode>
+        <childnode refid="32" relation="include">
+        </childnode>
+        <childnode refid="3" relation="include">
+        </childnode>
+      </node>
+      <node id="52">
+        <label>dispatch_table.h</label>
+        <link refid="df/d61/dispatch__table_8h"/>
+        <childnode refid="7" relation="include">
+        </childnode>
+        <childnode refid="28" relation="include">
+        </childnode>
+        <childnode refid="43" relation="include">
+        </childnode>
+        <childnode refid="42" relation="include">
+        </childnode>
+        <childnode refid="41" relation="include">
+        </childnode>
+        <childnode refid="53" relation="include">
+        </childnode>
+        <childnode refid="26" relation="include">
+        </childnode>
+      </node>
+      <node id="48">
+        <label>functions.h</label>
+        <link refid="d8/d5c/functions_8h"/>
+        <childnode refid="49" relation="include">
+        </childnode>
+        <childnode refid="34" relation="include">
+        </childnode>
+        <childnode refid="50" relation="include">
+        </childnode>
+        <childnode refid="13" relation="include">
+        </childnode>
+        <childnode refid="45" relation="include">
+        </childnode>
+        <childnode refid="7" relation="include">
+        </childnode>
+        <childnode refid="43" relation="include">
+        </childnode>
+        <childnode refid="29" relation="include">
+        </childnode>
+        <childnode refid="28" relation="include">
+        </childnode>
+        <childnode refid="42" relation="include">
+        </childnode>
+      </node>
+      <node id="42">
+        <label>node.h</label>
+        <link refid="d1/d77/node_8h"/>
+        <childnode refid="28" relation="include">
+        </childnode>
+        <childnode refid="43" relation="include">
+        </childnode>
+        <childnode refid="29" relation="include">
+        </childnode>
+        <childnode refid="11" relation="include">
+        </childnode>
+      </node>
+      <node id="43">
+        <label>nodetype.h</label>
+        <link refid="de/d26/nodetype_8h"/>
+        <childnode refid="44" relation="include">
+        </childnode>
+        <childnode refid="45" relation="include">
+        </childnode>
+        <childnode refid="46" relation="include">
+        </childnode>
+        <childnode refid="7" relation="include">
+        </childnode>
+        <childnode refid="28" relation="include">
+        </childnode>
+        <childnode refid="29" relation="include">
+        </childnode>
+        <childnode refid="37" relation="include">
+        </childnode>
+        <childnode refid="47" relation="include">
+        </childnode>
+      </node>
+      <node id="62">
+        <label>tiny_cost_function.h</label>
+        <link refid="dd/d1b/tiny__cost__function_8h"/>
+      </node>
+      <node id="56">
+        <label>optimizer/weight_optimizer.h</label>
+        <link refid="d7/de3/weight__optimizer_8h"/>
+        <childnode refid="57" relation="include">
+        </childnode>
+        <childnode refid="58" relation="include">
+        </childnode>
+        <childnode refid="59" relation="include">
+        </childnode>
+        <childnode refid="60" relation="include">
+        </childnode>
+        <childnode refid="61" relation="include">
+        </childnode>
+        <childnode refid="62" relation="include">
+        </childnode>
+      </node>
+      <node id="4">
+        <label>../program/program.h</label>
+        <link refid="d1/dea/program_8h"/>
+        <childnode refid="5" relation="include">
+        </childnode>
+        <childnode refid="6" relation="include">
+        </childnode>
+        <childnode refid="7" relation="include">
+        </childnode>
+        <childnode refid="25" relation="include">
+        </childnode>
+        <childnode refid="42" relation="include">
+        </childnode>
+        <childnode refid="54" relation="include">
+        </childnode>
+        <childnode refid="55" relation="include">
+        </childnode>
+        <childnode refid="29" relation="include">
+        </childnode>
+        <childnode refid="48" relation="include">
+        </childnode>
+        <childnode refid="56" relation="include">
+        </childnode>
+      </node>
+      <node id="47">
+        <label>signatures.h</label>
+        <link refid="d8/d8b/signatures_8h"/>
+      </node>
+      <node id="25">
+        <label>tree_node.h</label>
+        <link refid="d1/da6/tree__node_8h"/>
+        <childnode refid="26" relation="include">
+        </childnode>
+        <childnode refid="27" relation="include">
+        </childnode>
+        <childnode refid="7" relation="include">
+        </childnode>
+        <childnode refid="28" relation="include">
+        </childnode>
+        <childnode refid="42" relation="include">
+        </childnode>
+        <childnode refid="48" relation="include">
+        </childnode>
+        <childnode refid="43" relation="include">
+        </childnode>
+        <childnode refid="51" relation="include">
+        </childnode>
+        <childnode refid="52" relation="include">
+        </childnode>
+      </node>
+      <node id="64">
+        <label>../selection/nsga2.h</label>
+        <link refid="d3/d06/nsga2_8h"/>
+        <childnode refid="65" relation="include">
+        </childnode>
+      </node>
+      <node id="65">
+        <label>selection_operator.h</label>
+        <link refid="dd/d5d/selection__operator_8h"/>
+        <childnode refid="66" relation="include">
+        </childnode>
+      </node>
+      <node id="21">
+        <label>types.h</label>
+        <link refid="d9/d49/types_8h"/>
+        <childnode refid="22" relation="include">
+        </childnode>
+        <childnode refid="23" relation="include">
+        </childnode>
+        <childnode refid="24" relation="include">
+        </childnode>
+      </node>
+      <node id="32">
+        <label>error.h</label>
+        <link refid="da/d41/error_8h"/>
+        <childnode refid="5" relation="include">
+        </childnode>
+        <childnode refid="11" relation="include">
+        </childnode>
+      </node>
+      <node id="36">
+        <label>../util/logger.h</label>
+        <link refid="d1/d8c/logger_8h"/>
+        <childnode refid="11" relation="include">
+        </childnode>
+      </node>
+      <node id="37">
+        <label>../util/rnd.h</label>
+        <link refid="d2/da9/rnd_8h"/>
+        <childnode refid="38" relation="include">
+        </childnode>
+        <childnode refid="39" relation="include">
+        </childnode>
+        <childnode refid="16" relation="include">
+        </childnode>
+        <childnode refid="7" relation="include">
+        </childnode>
+      </node>
+      <node id="29">
+        <label>../util/utils.h</label>
+        <link refid="d5/d60/utils_8h"/>
+        <childnode refid="9" relation="include">
+        </childnode>
+        <childnode refid="16" relation="include">
+        </childnode>
+        <childnode refid="15" relation="include">
+        </childnode>
+        <childnode refid="12" relation="include">
+        </childnode>
+        <childnode refid="30" relation="include">
+        </childnode>
+        <childnode refid="31" relation="include">
+        </childnode>
+        <childnode refid="14" relation="include">
+        </childnode>
+        <childnode refid="7" relation="include">
+        </childnode>
+        <childnode refid="32" relation="include">
+        </childnode>
+        <childnode refid="33" relation="include">
+        </childnode>
+        <childnode refid="34" relation="include">
+        </childnode>
+        <childnode refid="35" relation="include">
+        </childnode>
+        <childnode refid="26" relation="include">
+        </childnode>
+      </node>
+      <node id="54">
+        <label>../vary/search_space.h</label>
+        <link refid="d9/d99/search__space_8h"/>
+        <childnode refid="7" relation="include">
+        </childnode>
+        <childnode refid="42" relation="include">
+        </childnode>
+        <childnode refid="43" relation="include">
+        </childnode>
+        <childnode refid="25" relation="include">
+        </childnode>
+        <childnode refid="32" relation="include">
+        </childnode>
+        <childnode refid="29" relation="include">
+        </childnode>
+        <childnode refid="37" relation="include">
+        </childnode>
+        <childnode refid="55" relation="include">
+        </childnode>
+        <childnode refid="46" relation="include">
+        </childnode>
+        <childnode refid="41" relation="include">
+        </childnode>
+        <childnode refid="11" relation="include">
+        </childnode>
+      </node>
+      <node id="9">
+        <label>Eigen/Dense</label>
+      </node>
+      <node id="6">
+        <label>assert.h</label>
+      </node>
+      <node id="44">
+        <label>bitset</label>
+      </node>
+      <node id="57">
+        <label>ceres/dynamic_autodiff_cost_function.h</label>
+      </node>
+      <node id="58">
+        <label>ceres/dynamic_numeric_diff_cost_function.h</label>
+      </node>
+      <node id="23">
+        <label>ceres/jet.h</label>
+      </node>
+      <node id="59">
+        <label>ceres/loss_function.h</label>
+      </node>
+      <node id="60">
+        <label>ceres/solver.h</label>
+      </node>
+      <node id="61">
+        <label>ceres/tiny_solver.h</label>
+      </node>
+      <node id="30">
+        <label>chrono</label>
+      </node>
+      <node id="49">
+        <label>cmath</label>
+      </node>
+      <node id="24">
+        <label>concepts</label>
+      </node>
+      <node id="53">
+        <label>cstddef</label>
+      </node>
+      <node id="35">
+        <label>execution</label>
+      </node>
+      <node id="18">
+        <label>fmt/format.h</label>
+      </node>
+      <node id="17">
+        <label>fmt/ostream.h</label>
+      </node>
+      <node id="19">
+        <label>fmt/ranges.h</label>
+      </node>
+      <node id="12">
+        <label>fstream</label>
+      </node>
+      <node id="50">
+        <label>functional</label>
+      </node>
+      <node id="11">
+        <label>iostream</label>
+      </node>
+      <node id="34">
+        <label>iterator</label>
+      </node>
+      <node id="39">
+        <label>limits</label>
+      </node>
+      <node id="14">
+        <label>map</label>
+      </node>
+      <node id="10">
+        <label>memory</label>
+      </node>
+      <node id="20">
+        <label>nlohmann/json.hpp</label>
+      </node>
+      <node id="13">
+        <label>numeric</label>
+      </node>
+      <node id="41">
+        <label>optional</label>
+      </node>
+      <node id="31">
+        <label>ostream</label>
+      </node>
+      <node id="38">
+        <label>random</label>
+      </node>
+      <node id="15">
+        <label>set</label>
+      </node>
+      <node id="8">
+        <label>stdint.h</label>
+      </node>
+      <node id="5">
+        <label>string</label>
+      </node>
+      <node id="26">
+        <label>tuple</label>
+      </node>
+      <node id="45">
+        <label>type_traits</label>
+      </node>
+      <node id="33">
+        <label>typeindex</label>
+      </node>
+      <node id="27">
+        <label>unordered_map</label>
+      </node>
+      <node id="46">
+        <label>utility</label>
+      </node>
+      <node id="22">
+        <label>variant</label>
+      </node>
+      <node id="16">
+        <label>vector</label>
+      </node>
+    </incdepgraph>
+    <invincdepgraph>
+      <node id="3">
+        <label>bind_engines.cpp</label>
+        <link refid="d1/df0/bind__engines_8cpp"/>
+      </node>
+      <node id="2">
+        <label>bind_engines.h</label>
+        <link refid="d4/d93/bind__engines_8h"/>
+        <childnode refid="3" relation="include">
+        </childnode>
+      </node>
+      <node id="1">
+        <label>archive.cpp</label>
+        <link refid="d7/d05/archive_8cpp"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+      </node>
+    </invincdepgraph>
+    <innernamespace refid="dc/d5c/namespaceBrush">Brush</innernamespace>
+    <innernamespace refid="dd/d56/namespaceBrush_1_1Pop">Brush::Pop</innernamespace>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"><highlight class="preprocessor">#include<sp/>&quot;<ref refid="d9/d28/archive_8h" kindref="compound">archive.h</ref>&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="2"><highlight class="normal"></highlight></codeline>
+<codeline lineno="3"><highlight class="normal"></highlight><highlight class="keyword">namespace<sp/></highlight><highlight class="normal"><ref refid="dc/d5c/namespaceBrush" kindref="compound">Brush</ref><sp/>{</highlight></codeline>
+<codeline lineno="4"><highlight class="normal"></highlight><highlight class="keyword">namespace<sp/></highlight><highlight class="normal">Pop<sp/>{</highlight></codeline>
+<codeline lineno="5"><highlight class="normal"></highlight></codeline>
+<codeline lineno="6"><highlight class="normal"></highlight><highlight class="keyword">template</highlight><highlight class="normal">&lt;ProgramType<sp/>T&gt;</highlight></codeline>
+<codeline lineno="7" refid="d1/d30/structBrush_1_1Pop_1_1Archive_1af697a235df24c3c180a2d726eadb8b51" refkind="member"><highlight class="normal"><ref refid="d1/d30/structBrush_1_1Pop_1_1Archive_1af697a235df24c3c180a2d726eadb8b51" kindref="member">Archive&lt;T&gt;::Archive</ref>():<sp/><sp/>selector(<ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">true</ref>)<sp/>{};</highlight></codeline>
+<codeline lineno="8"><highlight class="normal"></highlight></codeline>
+<codeline lineno="9"><highlight class="normal"></highlight><highlight class="keyword">template</highlight><highlight class="normal">&lt;ProgramType<sp/>T&gt;</highlight></codeline>
+<codeline lineno="10" refid="d1/d30/structBrush_1_1Pop_1_1Archive_1a073b0ac31fc55c35e2a8296b919c1876" refkind="member"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="d1/d30/structBrush_1_1Pop_1_1Archive_1a073b0ac31fc55c35e2a8296b919c1876" kindref="member">Archive&lt;T&gt;::set_objectives</ref>(vector&lt;string&gt;<sp/>objectives)</highlight></codeline>
+<codeline lineno="11"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="12"><highlight class="normal"><sp/><sp/><sp/><sp/>this-&gt;sort_complexity<sp/>=<sp/><ref refid="d6/d2e/namespaceBrush_1_1Util_1ab03528e8d9652013786252f63b6d5840" kindref="member">in</ref>(objectives,<sp/>std::string(</highlight><highlight class="stringliteral">&quot;complexity&quot;</highlight><highlight class="normal">));</highlight></codeline>
+<codeline lineno="13"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="14"><highlight class="normal"></highlight></codeline>
+<codeline lineno="15"><highlight class="normal"></highlight><highlight class="comment">//<sp/>sorting<sp/>etc<sp/>---<sp/>all<sp/>done<sp/>using<sp/>fitness<sp/>class<sp/>(easier<sp/>to<sp/>compare<sp/>regardless<sp/>of<sp/>obj<sp/>func)</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="16"><highlight class="normal"></highlight><highlight class="keyword">template</highlight><highlight class="normal">&lt;ProgramType<sp/>T&gt;</highlight></codeline>
+<codeline lineno="17" refid="d1/d30/structBrush_1_1Pop_1_1Archive_1a8e11ee4659b1dc0a4332ffad5690e30f" refkind="member"><highlight class="normal"></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/><ref refid="d1/d30/structBrush_1_1Pop_1_1Archive_1a8e11ee4659b1dc0a4332ffad5690e30f" kindref="member">Archive&lt;T&gt;::sortComplexity</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="de/d83/classBrush_1_1Pop_1_1Individual" kindref="compound">Individual&lt;T&gt;</ref>&amp;<sp/><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">lhs</ref>,<sp/></highlight></codeline>
+<codeline lineno="18"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="de/d83/classBrush_1_1Pop_1_1Individual" kindref="compound">Individual&lt;T&gt;</ref>&amp;<sp/><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">rhs</ref>)</highlight></codeline>
+<codeline lineno="19"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="20"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>TODO:<sp/>use<sp/>getters<sp/>for<sp/>all<sp/>info<sp/>in<sp/>fitness<sp/>(instead<sp/>of<sp/>directly<sp/>accessing<sp/>them?).</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="21"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>other<sp/>option<sp/>would<sp/>be<sp/>having<sp/>the<sp/>getters<sp/>and<sp/>setters<sp/>to<sp/>use<sp/>iin<sp/>pybind11,<sp/>but</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="22"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>in<sp/>cpp<sp/>we<sp/>do<sp/>it<sp/>directly<sp/>(we<sp/>know<sp/>how<sp/>to<sp/>manipulate<sp/>this<sp/>thing,<sp/>but<sp/>users<sp/>may<sp/>not,</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="23"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>so<sp/>these<sp/>setters<sp/>could<sp/>do<sp/>some<sp/>validation<sp/>to<sp/>justify<sp/>its<sp/>existence).</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="24"><highlight class="normal"></highlight></codeline>
+<codeline lineno="25"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">lhs</ref>.fitness.complexity<sp/>&lt;<sp/><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">rhs</ref>.fitness.complexity;</highlight></codeline>
+<codeline lineno="26"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="27"><highlight class="normal"></highlight></codeline>
+<codeline lineno="28"><highlight class="normal"></highlight><highlight class="keyword">template</highlight><highlight class="normal">&lt;ProgramType<sp/>T&gt;</highlight></codeline>
+<codeline lineno="29" refid="d1/d30/structBrush_1_1Pop_1_1Archive_1a8407a45b676b80bbf7197dbdd96d2c30" refkind="member"><highlight class="normal"></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/><ref refid="d1/d30/structBrush_1_1Pop_1_1Archive_1a8407a45b676b80bbf7197dbdd96d2c30" kindref="member">Archive&lt;T&gt;::sortObj1</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="de/d83/classBrush_1_1Pop_1_1Individual" kindref="compound">Individual&lt;T&gt;</ref>&amp;<sp/><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">lhs</ref>,<sp/></highlight></codeline>
+<codeline lineno="30"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="de/d83/classBrush_1_1Pop_1_1Individual" kindref="compound">Individual&lt;T&gt;</ref>&amp;<sp/><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">rhs</ref>)</highlight></codeline>
+<codeline lineno="31"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="32"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>sort<sp/>based<sp/>on<sp/>index<sp/>(we<sp/>can<sp/>have<sp/>more<sp/>than<sp/>2<sp/>obj<sp/>in<sp/>brush<sp/>implementation)</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="33"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>obs:<sp/>because<sp/>of<sp/>the<sp/>weights,<sp/>every<sp/>objective<sp/>is<sp/>a<sp/>maximization<sp/>problem</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="34"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>when<sp/>comparing<sp/>weighted<sp/>values<sp/>(which<sp/>should<sp/>be<sp/>the<sp/>right<sp/>way<sp/>of<sp/>doing<sp/>it)</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="35"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>the<sp/>bigger<sp/>the<sp/>better.<sp/>the<sp/>weights<sp/>allow<sp/>us<sp/>to<sp/>use<sp/>different<sp/>min/max<sp/>metrics</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="36"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>without<sp/>having<sp/>to<sp/>deal<sp/>with<sp/>this<sp/>particular<sp/>details</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="37"><highlight class="normal"></highlight></codeline>
+<codeline lineno="38"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">float</highlight><highlight class="normal"><sp/><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">lhs_obj1</ref><sp/>=<sp/><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">lhs</ref>.fitness.wvalues.at(0);</highlight></codeline>
+<codeline lineno="39"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">float</highlight><highlight class="normal"><sp/><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">rhs_obj1</ref><sp/>=<sp/><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">rhs</ref>.fitness.wvalues.at(0);</highlight></codeline>
+<codeline lineno="40"><highlight class="normal"></highlight></codeline>
+<codeline lineno="41"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">lhs_obj1</ref><sp/>&gt;<sp/><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">rhs_obj1</ref>;</highlight></codeline>
+<codeline lineno="42"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="43"><highlight class="normal"></highlight></codeline>
+<codeline lineno="44"><highlight class="normal"></highlight><highlight class="keyword">template</highlight><highlight class="normal">&lt;ProgramType<sp/>T&gt;</highlight></codeline>
+<codeline lineno="45" refid="d1/d30/structBrush_1_1Pop_1_1Archive_1a7510447de2f87201fa3d7977f3a3e8d8" refkind="member"><highlight class="normal"></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/><ref refid="d1/d30/structBrush_1_1Pop_1_1Archive_1a7510447de2f87201fa3d7977f3a3e8d8" kindref="member">Archive&lt;T&gt;::sameFitComplexity</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="de/d83/classBrush_1_1Pop_1_1Individual" kindref="compound">Individual&lt;T&gt;</ref>&amp;<sp/><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">lhs</ref>,<sp/></highlight></codeline>
+<codeline lineno="46"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="de/d83/classBrush_1_1Pop_1_1Individual" kindref="compound">Individual&lt;T&gt;</ref>&amp;<sp/><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">rhs</ref>)</highlight></codeline>
+<codeline lineno="47"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="48"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>fitness&apos;<sp/>operator==<sp/>is<sp/>overloaded<sp/>to<sp/>compare<sp/>wvalues.</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="49"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>we<sp/>also<sp/>check<sp/>complexity<sp/>equality<sp/>to<sp/>avoid<sp/>the<sp/>case<sp/>where<sp/>the<sp/>user</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="50"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>did<sp/>not<sp/>specified<sp/>complexity<sp/>as<sp/>one<sp/>of<sp/>the<sp/>objectives</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="51"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>(<ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">lhs</ref>.fitness<sp/>==<sp/><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">rhs</ref>.fitness<sp/>&amp;&amp;</highlight></codeline>
+<codeline lineno="52"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">lhs</ref>.fitness.complexity<sp/>==<sp/><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">rhs</ref>.fitness.complexity);</highlight></codeline>
+<codeline lineno="53"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="54"><highlight class="normal"></highlight></codeline>
+<codeline lineno="55"><highlight class="normal"></highlight><highlight class="keyword">template</highlight><highlight class="normal">&lt;ProgramType<sp/>T&gt;</highlight></codeline>
+<codeline lineno="56" refid="d1/d30/structBrush_1_1Pop_1_1Archive_1ae48c8db22bdf072955564c079e379610" refkind="member"><highlight class="normal"></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/><ref refid="d1/d30/structBrush_1_1Pop_1_1Archive_1ae48c8db22bdf072955564c079e379610" kindref="member">Archive&lt;T&gt;::sameObjectives</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="de/d83/classBrush_1_1Pop_1_1Individual" kindref="compound">Individual&lt;T&gt;</ref>&amp;<sp/><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">lhs</ref>,<sp/></highlight></codeline>
+<codeline lineno="57"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="de/d83/classBrush_1_1Pop_1_1Individual" kindref="compound">Individual&lt;T&gt;</ref>&amp;<sp/><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">rhs</ref>)</highlight></codeline>
+<codeline lineno="58"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="59"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>(<ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">lhs</ref>.fitness<sp/>==<sp/><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">rhs</ref>.fitness);</highlight></codeline>
+<codeline lineno="60"><highlight class="normal"></highlight></codeline>
+<codeline lineno="61"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="62"><highlight class="normal"></highlight></codeline>
+<codeline lineno="63"><highlight class="normal"></highlight><highlight class="keyword">template</highlight><highlight class="normal">&lt;ProgramType<sp/>T&gt;</highlight></codeline>
+<codeline lineno="64" refid="d1/d30/structBrush_1_1Pop_1_1Archive_1a5e6c6513918f87a8a68c2a7a162edb27" refkind="member"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="d1/d30/structBrush_1_1Pop_1_1Archive_1a5e6c6513918f87a8a68c2a7a162edb27" kindref="member">Archive&lt;T&gt;::init</ref>(<ref refid="da/da3/classBrush_1_1Pop_1_1Population" kindref="compound">Population&lt;T&gt;</ref>&amp;<sp/>pop)<sp/></highlight></codeline>
+<codeline lineno="65"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="66"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>TODO:<sp/>copy<sp/>the<sp/>population<sp/>to<sp/>a<sp/>new<sp/>vector<sp/>(instead<sp/>of<sp/>changing<sp/>inplace).</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="67"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>also,<sp/>fix<sp/>this<sp/>in<sp/>update<sp/>function</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="68"><highlight class="normal"></highlight></codeline>
+<codeline lineno="69"><highlight class="normal"><sp/><sp/><sp/><sp/>individuals.resize(0);</highlight></codeline>
+<codeline lineno="70"><highlight class="normal"></highlight></codeline>
+<codeline lineno="71"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>dealing<sp/>with<sp/>islands<sp/>--&gt;<sp/>fast<sp/>nds<sp/>for<sp/>each<sp/>island</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="72"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>(</highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">island</ref><sp/>=0;<sp/><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">island</ref>&lt;<sp/>pop.<ref refid="da/da3/classBrush_1_1Pop_1_1Population_1a0a1f364040ce0de2ab17ae82e0faac76" kindref="member">num_islands</ref>;<sp/>++<ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">island</ref>)<sp/>{</highlight></codeline>
+<codeline lineno="73"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>vector&lt;size_t&gt;<sp/><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">indices</ref><sp/>=<sp/>pop.<ref refid="da/da3/classBrush_1_1Pop_1_1Population_1a2bf4066c7a32ec3bd85c96bd80098de6" kindref="member">get_island_indexes</ref>(<ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">island</ref>);</highlight></codeline>
+<codeline lineno="74"><highlight class="normal"></highlight></codeline>
+<codeline lineno="75"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>selector.fast_nds(pop,<sp/><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">indices</ref>);<sp/></highlight></codeline>
+<codeline lineno="76"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="77"><highlight class="normal"></highlight></codeline>
+<codeline lineno="78"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>OBS:<sp/>fast_nds<sp/>will<sp/>change<sp/>all<sp/>individual<sp/>fitness<sp/>inplace.</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="79"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>It<sp/>will<sp/>update<sp/>the<sp/>values<sp/>for<sp/>dcounter,<sp/>rank,<sp/>and<sp/>dominated<sp/>individuals.</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="80"><highlight class="normal"></highlight></codeline>
+<codeline lineno="81"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>TODO:<sp/>fix<sp/>this<sp/>way<sp/>of<sp/>getting<sp/>pareto<sp/>front<sp/>(the<sp/>pareto<sp/>front<sp/>of<sp/>different<sp/>islands<sp/>combined<sp/>will<sp/>not<sp/>necessarily<sp/>be<sp/>the<sp/>final<sp/>pareto<sp/>front).<sp/>Also<sp/>fix<sp/>this<sp/>in<sp/>update</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="82"><highlight class="normal"></highlight></codeline>
+<codeline lineno="83"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>vector&lt;size_t&gt;<sp/>front<sp/>=<sp/>this-&gt;sorted_front();<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="84"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>(</highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">island</ref><sp/>=0;<sp/><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">island</ref>&lt;<sp/>pop.<ref refid="da/da3/classBrush_1_1Pop_1_1Population_1a0a1f364040ce0de2ab17ae82e0faac76" kindref="member">num_islands</ref>;<sp/>++<ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">island</ref>)<sp/>{</highlight></codeline>
+<codeline lineno="85"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">indices</ref><sp/>=<sp/>pop.<ref refid="da/da3/classBrush_1_1Pop_1_1Population_1a2bf4066c7a32ec3bd85c96bd80098de6" kindref="member">get_island_indexes</ref>(<ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">island</ref>);</highlight></codeline>
+<codeline lineno="86"><highlight class="normal"></highlight></codeline>
+<codeline lineno="87"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>(</highlight><highlight class="keywordtype">unsigned</highlight><highlight class="normal"><sp/><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">i</ref><sp/>=<sp/>0;<sp/><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">i</ref>&lt;<ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">indices</ref>.size();<sp/>++<ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">i</ref>)</highlight></codeline>
+<codeline lineno="88"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="89"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal">&amp;<sp/><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">t</ref><sp/>=<sp/>*pop.<ref refid="da/da3/classBrush_1_1Pop_1_1Population_1a7b529af66e90f378ca96a54ee5ce0c71" kindref="member">individuals</ref>.at(<ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">indices</ref>.at(<ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">i</ref>));</highlight></codeline>
+<codeline lineno="90"><highlight class="normal"></highlight></codeline>
+<codeline lineno="91"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(<ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">t</ref>.fitness.rank<sp/>==1){</highlight></codeline>
+<codeline lineno="92"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>we<sp/>can<sp/>store<sp/>a<sp/>reference<sp/>for<sp/>the<sp/>original<sp/>ind,<sp/>since</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="93"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>variation<sp/>operators<sp/>does<sp/>not<sp/>change<sp/>inplace.<sp/>Ideally,<sp/>the</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="94"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>original<sp/>individual<sp/>is<sp/>modified<sp/>inplace<sp/>just<sp/>by<sp/>fit(),<sp/>which</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="95"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>is<sp/>a<sp/>side<sp/>effect<sp/>that<sp/>is<sp/>OK<sp/>to<sp/>have<sp/>here</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="96"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>individuals.push_back(<ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">t</ref>);</highlight></codeline>
+<codeline lineno="97"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="98"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}<sp/></highlight></codeline>
+<codeline lineno="99"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="100"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(this-&gt;sort_complexity)</highlight></codeline>
+<codeline lineno="101"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>std::sort(individuals.begin(),individuals.end(),<sp/>&amp;sortComplexity);<sp/></highlight></codeline>
+<codeline lineno="102"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">else</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="103"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>std::sort(individuals.begin(),individuals.end(),<sp/>&amp;sortObj1);<sp/></highlight></codeline>
+<codeline lineno="104"><highlight class="normal"></highlight></codeline>
+<codeline lineno="105"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="106"><highlight class="normal"></highlight></codeline>
+<codeline lineno="107"><highlight class="normal"></highlight><highlight class="keyword">template</highlight><highlight class="normal">&lt;ProgramType<sp/>T&gt;</highlight></codeline>
+<codeline lineno="108" refid="d1/d30/structBrush_1_1Pop_1_1Archive_1a14ec57dcaf13d237552d7fa46f58f3c3" refkind="member"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="d1/d30/structBrush_1_1Pop_1_1Archive_1a14ec57dcaf13d237552d7fa46f58f3c3" kindref="member">Archive&lt;T&gt;::update</ref>(<ref refid="da/da3/classBrush_1_1Pop_1_1Population" kindref="compound">Population&lt;T&gt;</ref>&amp;<sp/>pop,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="de/deb/structBrush_1_1Parameters" kindref="compound">Parameters</ref>&amp;<sp/>params)</highlight></codeline>
+<codeline lineno="109"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="110"><highlight class="normal"><sp/><sp/><sp/><sp/>individuals.resize(0);<sp/><sp/></highlight><highlight class="comment">//<sp/>clear<sp/>archive</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="111"><highlight class="normal"></highlight></codeline>
+<codeline lineno="112"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>refill<sp/>archive<sp/>with<sp/>new<sp/>pareto<sp/>fronts<sp/>(one<sp/>pareto<sp/>front<sp/>for<sp/>each<sp/>island!)</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="113"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>(</highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">island</ref><sp/>=0;<sp/><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">island</ref>&lt;<sp/>pop.<ref refid="da/da3/classBrush_1_1Pop_1_1Population_1a0a1f364040ce0de2ab17ae82e0faac76" kindref="member">num_islands</ref>;<sp/>++<ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">island</ref>)<sp/>{</highlight></codeline>
+<codeline lineno="114"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>vector&lt;size_t&gt;<sp/><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">indices</ref><sp/>=<sp/>pop.<ref refid="da/da3/classBrush_1_1Pop_1_1Population_1a2bf4066c7a32ec3bd85c96bd80098de6" kindref="member">get_island_indexes</ref>(<ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">island</ref>);</highlight></codeline>
+<codeline lineno="115"><highlight class="normal"></highlight></codeline>
+<codeline lineno="116"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>TODO:<sp/>can<sp/>i<sp/>just<sp/>call<sp/>fast<sp/>nds<sp/>with<sp/>all<sp/>indexes<sp/>in<sp/>indices?</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="117"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>vector&lt;vector&lt;int&gt;&gt;<sp/><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">front</ref><sp/>=<sp/>selector.fast_nds(pop,<sp/><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">indices</ref>);<sp/></highlight></codeline>
+<codeline lineno="118"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal">&amp;<sp/><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">i</ref><sp/>:<sp/><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">front</ref>[0])</highlight></codeline>
+<codeline lineno="119"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="120"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>individuals.push_back(<sp/>*pop.<ref refid="da/da3/classBrush_1_1Pop_1_1Population_1a7b529af66e90f378ca96a54ee5ce0c71" kindref="member">individuals</ref>.at(<ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">i</ref>)<sp/>);</highlight></codeline>
+<codeline lineno="121"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="122"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="123"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="124"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(this-&gt;sort_complexity)</highlight></codeline>
+<codeline lineno="125"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>std::sort(individuals.begin(),<sp/>individuals.end(),<sp/>&amp;sortComplexity);<sp/></highlight></codeline>
+<codeline lineno="126"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">else</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="127"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>std::sort(individuals.begin(),<sp/>individuals.end(),<sp/>&amp;sortObj1);<sp/></highlight></codeline>
+<codeline lineno="128"><highlight class="normal"></highlight></codeline>
+<codeline lineno="129"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>auto<sp/>it<sp/>=<sp/>std::unique(individuals.begin(),individuals.end(),<sp/>&amp;sameFitComplexity);<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="130"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">it</ref><sp/>=<sp/>std::unique(individuals.begin(),individuals.end(),<sp/></highlight></codeline>
+<codeline lineno="131"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>&amp;sameObjectives);</highlight></codeline>
+<codeline lineno="132"><highlight class="normal"></highlight></codeline>
+<codeline lineno="133"><highlight class="normal"><sp/><sp/><sp/><sp/>individuals.resize(std::distance(individuals.begin(),<ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">it</ref>));</highlight></codeline>
+<codeline lineno="134"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="135"><highlight class="normal"></highlight></codeline>
+<codeline lineno="136"><highlight class="normal">}<sp/></highlight><highlight class="comment">//<sp/>Pop</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="137"><highlight class="normal">}<sp/></highlight><highlight class="comment">//<sp/>Brush</highlight></codeline>
+    </programlisting>
+    <location file="/home/runner/work/brush/brush/src/pop/archive.cpp"/>
+  </compounddef>
+</doxygen>

@@ -1,15 +1,15 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
-<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.10.0" xml:lang="en-US">
   <compounddef id="d4/df1/structBrush_1_1is__std__array_3_01std_1_1array_3_01V_00_01n_01_4_01_4" kind="struct" language="C++" prot="public">
     <compoundname>Brush::is_std_array&lt; std::array&lt; V, n &gt; &gt;</compoundname>
     <basecompoundref prot="public" virt="non-virtual">std::true_type</basecompoundref>
     <includes refid="d9/d49/types_8h" local="no">types.h</includes>
     <templateparamlist>
       <param>
-        <type>typename V</type>
+        <type><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">typename</ref> <ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">V</ref></type>
       </param>
       <param>
-        <type>size_t</type>
+        <type><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">size_t</ref></type>
         <declname>n</declname>
         <defname>n</defname>
       </param>
@@ -19,28 +19,28 @@
     <detaileddescription>
     </detaileddescription>
     <inheritancegraph>
-      <node id="2">
-        <label>std::true_type</label>
-      </node>
       <node id="1">
         <label>Brush::is_std_array&lt; std::array&lt; V, n &gt; &gt;</label>
         <link refid="d4/df1/structBrush_1_1is__std__array_3_01std_1_1array_3_01V_00_01n_01_4_01_4"/>
         <childnode refid="2" relation="public-inheritance">
         </childnode>
+      </node>
+      <node id="2">
+        <label>std::true_type</label>
       </node>
     </inheritancegraph>
     <collaborationgraph>
-      <node id="2">
-        <label>std::true_type</label>
-      </node>
       <node id="1">
         <label>Brush::is_std_array&lt; std::array&lt; V, n &gt; &gt;</label>
         <link refid="d4/df1/structBrush_1_1is__std__array_3_01std_1_1array_3_01V_00_01n_01_4_01_4"/>
         <childnode refid="2" relation="public-inheritance">
         </childnode>
       </node>
+      <node id="2">
+        <label>std::true_type</label>
+      </node>
     </collaborationgraph>
-    <location file="/home/runner/work/brush/brush/src/types.h" line="225" column="1" bodyfile="/home/runner/work/brush/brush/src/types.h" bodystart="225" bodyend="225"/>
+    <location file="/home/runner/work/brush/brush/src/types.h" line="243" column="1" bodyfile="/home/runner/work/brush/brush/src/types.h" bodystart="243" bodyend="243"/>
     <listofallmembers>
     </listofallmembers>
   </compounddef>

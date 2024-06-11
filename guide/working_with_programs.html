@@ -14,19 +14,19 @@
   
   <script data-cfasync="false">
     document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
-    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
   </script>
   
   <!-- Loaded before other Sphinx assets -->
-  <link href="../_static/styles/theme.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
-<link href="../_static/styles/bootstrap.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
-<link href="../_static/styles/pydata-sphinx-theme.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+  <link href="../_static/styles/theme.css?digest=3ee479438cf8b5e0d341" rel="stylesheet" />
+<link href="../_static/styles/bootstrap.css?digest=3ee479438cf8b5e0d341" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=3ee479438cf8b5e0d341" rel="stylesheet" />
 
   
-  <link href="../_static/vendor/fontawesome/6.5.1/css/all.min.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
-  <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.1/webfonts/fa-solid-900.woff2" />
-<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.1/webfonts/fa-brands-400.woff2" />
-<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.1/webfonts/fa-regular-400.woff2" />
+  <link href="../_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=3ee479438cf8b5e0d341" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
 
     <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=a746c00c" />
     <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=384b581d" />
@@ -35,9 +35,9 @@
     <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
   
   <!-- Pre-loaded scripts that we'll load fully later -->
-  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=8d27b9dea8ad943066ae" />
-<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=8d27b9dea8ad943066ae" />
-  <script src="../_static/vendor/fontawesome/6.5.1/js/all.min.js?digest=8d27b9dea8ad943066ae"></script>
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=3ee479438cf8b5e0d341" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=3ee479438cf8b5e0d341" />
+  <script src="../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=3ee479438cf8b5e0d341"></script>
 
     <script src="../_static/documentation_options.js?v=74359811"></script>
     <script src="../_static/doctools.js?v=9a2dae69"></script>
@@ -61,27 +61,23 @@
 
   
   
-  <a id="pst-skip-link" class="skip-link" href="#main-content">Skip to main content</a>
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
   
   <div id="pst-scroll-pixel-helper"></div>
   
   <button type="button" class="btn rounded-pill" id="pst-back-to-top">
-    <i class="fa-solid fa-arrow-up"></i>
-    Back to top
-  </button>
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
 
   
   <input type="checkbox"
           class="sidebar-toggle"
-          name="__primary"
-          id="__primary"/>
-  <label class="overlay overlay-primary" for="__primary"></label>
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
   
   <input type="checkbox"
           class="sidebar-toggle"
-          name="__secondary"
-          id="__secondary"/>
-  <label class="overlay overlay-secondary" for="__secondary"></label>
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
   
   <div class="search-button__wrapper">
     <div class="search-button__overlay"></div>
@@ -103,8 +99,13 @@
   <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
 </form></div>
   </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
   
-    <header class="bd-header navbar navbar-expand-lg bd-navbar">
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
     </header>
   
 
@@ -167,35 +168,45 @@
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">User Guide</span></p>
 <ul class="current nav bd-sidenav">
-<li class="toctree-l1 current active has-children"><a class="reference internal" href="index.html">Cookbook</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-1"><i class="fa-solid fa-chevron-down"></i></label><ul class="current">
+<li class="toctree-l1 current active has-children"><a class="reference internal" href="index.html">Cookbook</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="current">
 <li class="toctree-l2"><a class="reference internal" href="data.html">Working with Data</a></li>
 <li class="toctree-l2"><a class="reference internal" href="search_space.html">The Search Space</a></li>
 <li class="toctree-l2 current active"><a class="current reference internal" href="#">Working with Programs</a></li>
 <li class="toctree-l2"><a class="reference internal" href="json.html">JSON Interoperability</a></li>
+<li class="toctree-l2"><a class="reference internal" href="saving_loading_populations.html">Saving and loading populations</a></li>
+<li class="toctree-l2"><a class="reference internal" href="archive.html">The archive</a></li>
 <li class="toctree-l2"><a class="reference internal" href="deap.html">Using Deap</a></li>
 </ul>
-</li>
+</details></li>
 <li class="toctree-l1"><a class="reference internal" href="contributing.html">Contributing</a></li>
 <li class="toctree-l1"><a class="reference internal" href="development.html">Development</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">API</span></p>
 <ul class="nav bd-sidenav">
-<li class="toctree-l1 has-children"><a class="reference internal" href="../python_api/index.html">Python API</a><input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-2"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../python_api/index.html">Python API</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
 <li class="toctree-l2"><a class="reference internal" href="../python_api/estimator.html">BrushEstimator</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../python_api/interface.html">EstimatorInterface</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../python_api/regressor.html">BrushRegressor</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../python_api/classifier.html">BrushClassifier</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../python_api/python_api.html">Python API</a></li>
 </ul>
-</li>
-<li class="toctree-l1 has-children"><a class="reference internal" href="../cpp_api/index.html">C++ API</a><input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-3"><i class="fa-solid fa-chevron-down"></i></label><ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../cpp_api/index.html">C++ API</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
 <li class="toctree-l2"><a class="reference internal" href="../cpp_api/data.html">Dataset</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../cpp_api/timeseries.html">TimeSeries</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../cpp_api/search_space.html">SearchSpace</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../cpp_api/program.html">Program</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../cpp_api/node.html">Node</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../cpp_api/nodetypes.html">NodeTypes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../cpp_api/individual.html">Individual and Fitness</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../cpp_api/evaluation.html">Evaluation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../cpp_api/population.html">Population</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../cpp_api/variation.html">Variation (Crossover/Mutation)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../cpp_api/selection.html">Selection</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../cpp_api/archive.html">Archive</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../cpp_api/engine.html">Engine (and parameters)</a></li>
 </ul>
-</li>
+</details></li>
 </ul>
 
     </div>
@@ -211,7 +222,7 @@
 
       </div>
       
-      <main id="main-content" class="bd-main">
+      <main id="main-content" class="bd-main" role="main">
         
         
 
@@ -220,7 +231,7 @@
           <div class="bd-content">
             <div class="bd-article-container">
               
-              <div class="bd-header-article">
+              <div class="bd-header-article d-print-none">
 <div class="header-article-items header-article__inner">
   
     <div class="header-article-items__start">
@@ -363,7 +374,8 @@ document.write(`
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#representation">Representation</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#generation">Generation</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#evaluation">Evaluation</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#visualizing-programs">Visualizing Programs</a><ul class="nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#visualizing-programs">Visualizing Programs</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#serialization">Serialization</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#string">String</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#quick-little-tree">Quick Little Tree</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#graphviz">GraphViz</a></li>
@@ -431,8 +443,7 @@ We use the <a class="reference external" href="https://github.com/kpeeters/tree.
 <div class="cell tag_remove-output docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
-<span class="kn">from</span> <span class="nn">brush</span> <span class="kn">import</span> <span class="n">BrushRegressor</span>
-<span class="kn">from</span> <span class="nn">pmlb</span> <span class="kn">import</span> <span class="n">fetch_data</span>
+<span class="kn">from</span> <span class="nn">pybrush</span> <span class="kn">import</span> <span class="n">BrushRegressor</span>
 
 <span class="c1"># load data</span>
 <span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">&#39;../examples/datasets/d_enc.csv&#39;</span><span class="p">)</span>
@@ -446,7 +457,8 @@ We use the <a class="reference external" href="https://github.com/kpeeters/tree.
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># import and make a regressor</span>
 <span class="n">est</span> <span class="o">=</span> <span class="n">BrushRegressor</span><span class="p">(</span>
-    <span class="n">functions</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;SplitBest&#39;</span><span class="p">,</span><span class="s1">&#39;Add&#39;</span><span class="p">,</span><span class="s1">&#39;Mul&#39;</span><span class="p">,</span><span class="s1">&#39;Sin&#39;</span><span class="p">,</span><span class="s1">&#39;Cos&#39;</span><span class="p">,</span><span class="s1">&#39;Exp&#39;</span><span class="p">,</span><span class="s1">&#39;Logabs&#39;</span><span class="p">]</span>
+    <span class="n">functions</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;SplitBest&#39;</span><span class="p">,</span><span class="s1">&#39;Add&#39;</span><span class="p">,</span><span class="s1">&#39;Mul&#39;</span><span class="p">,</span><span class="s1">&#39;Sin&#39;</span><span class="p">,</span><span class="s1">&#39;Cos&#39;</span><span class="p">,</span><span class="s1">&#39;Exp&#39;</span><span class="p">,</span><span class="s1">&#39;Logabs&#39;</span><span class="p">],</span>
+    <span class="n">verbosity</span><span class="o">=</span><span class="mi">1</span> <span class="c1"># set verbosity==1 to see a progress bar</span>
 <span class="p">)</span>
 
 <span class="c1"># use like you would a sklearn regressor</span>
@@ -457,7 +469,93 @@ We use the <a class="reference external" href="https://github.com/kpeeters/tree.
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>best model: Add(10.57*x6,If(x0&gt;0.75,Add(8.50*x6,If(x0&gt;0.81,26.02,Add(-9.31*x4,127.74*x0))),Add(Add(13.60*x4,0.11*x2),-0.09*x1)))
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Completed 100% [====================]
+score: 0.8972961690538603
+</pre></div>
+</div>
+</div>
+</div>
+<p>You can see the fitness of the final individual by accessing the <code class="docutils literal notranslate"><span class="pre">fitness</span></code> attribute. Each fitness value corresponds to the objective of same index defined earlier for the <code class="docutils literal notranslate"><span class="pre">BrushRegressor</span></code> class. By default, it will try to minimize <code class="docutils literal notranslate"><span class="pre">&quot;error&quot;</span></code> and <code class="docutils literal notranslate"><span class="pre">&quot;size&quot;</span></code>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">est</span><span class="o">.</span><span class="n">best_estimator_</span><span class="o">.</span><span class="n">fitness</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">est</span><span class="o">.</span><span class="n">objectives</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Fitness(9.282899 19.000000 )
+[&#39;error&#39;, &#39;size&#39;]
+</pre></div>
+</div>
+</div>
+</div>
+<p>A <code class="docutils literal notranslate"><span class="pre">fitness</span></code> in Brush is actually more than a tuple. It is a class that has all boolean comparison operators overloaded to allow an ease of use when prototyping with Brush.</p>
+<p>It also infers the weight of each objective to automatically handle minimization or maximization objetives.</p>
+<p>To see the weights, you can try:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">est</span><span class="o">.</span><span class="n">best_estimator_</span><span class="o">.</span><span class="n">fitness</span><span class="o">.</span><span class="n">weights</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[-1.0, -1.0]
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="serialization">
+<h2>Serialization<a class="headerlink" href="#serialization" title="Link to this heading">#</a></h2>
+<p>Brush let’s you serialize the entire individual, or just the program or fitness it wraps. It uses JSON to serialize the objects, and this is implemented with the get and set states of an object:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">estimator_dict</span> <span class="o">=</span> <span class="n">est</span><span class="o">.</span><span class="n">best_estimator_</span><span class="o">.</span><span class="n">__getstate__</span><span class="p">()</span>
+
+<span class="k">for</span> <span class="n">k</span><span class="p">,</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">estimator_dict</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">k</span><span class="p">,</span> <span class="n">v</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>fitness {&#39;complexity&#39;: 304, &#39;crowding_dist&#39;: 3.4028234663852886e+38, &#39;dcounter&#39;: 0, &#39;depth&#39;: 3, &#39;dominated&#39;: [0, 2, 29, 62, 80, 127, 146], &#39;loss&#39;: 9.282898902893066, &#39;loss_v&#39;: 9.282898902893066, &#39;rank&#39;: 1, &#39;size&#39;: 19, &#39;values&#39;: [9.282898902893066, 19.0], &#39;weights&#39;: [-1.0, -1.0], &#39;wvalues&#39;: [-9.282898902893066, -19.0]}
+id 1910
+objectives [&#39;error&#39;, &#39;size&#39;]
+parent_id [1858]
+program {&#39;Tree&#39;: [{&#39;W&#39;: 0.75, &#39;arg_types&#39;: [&#39;ArrayF&#39;, &#39;ArrayF&#39;], &#39;center_op&#39;: True, &#39;feature&#39;: &#39;x0&#39;, &#39;fixed&#39;: False, &#39;is_weighted&#39;: False, &#39;name&#39;: &#39;SplitBest&#39;, &#39;node_type&#39;: &#39;SplitBest&#39;, &#39;prob_change&#39;: 1.0, &#39;ret_type&#39;: &#39;ArrayF&#39;, &#39;sig_dual_hash&#39;: 9996486434638833164, &#39;sig_hash&#39;: 10001460114883919497}, {&#39;W&#39;: 0.8050000071525574, &#39;arg_types&#39;: [&#39;ArrayF&#39;, &#39;ArrayF&#39;], &#39;center_op&#39;: True, &#39;feature&#39;: &#39;x0&#39;, &#39;fixed&#39;: False, &#39;is_weighted&#39;: False, &#39;name&#39;: &#39;SplitBest&#39;, &#39;node_type&#39;: &#39;SplitBest&#39;, &#39;prob_change&#39;: 1.0, &#39;ret_type&#39;: &#39;ArrayF&#39;, &#39;sig_dual_hash&#39;: 9996486434638833164, &#39;sig_hash&#39;: 10001460114883919497}, {&#39;W&#39;: 30.494491577148438, &#39;arg_types&#39;: [], &#39;center_op&#39;: True, &#39;feature&#39;: &#39;MeanLabel&#39;, &#39;fixed&#39;: False, &#39;is_weighted&#39;: True, &#39;name&#39;: &#39;MeanLabel&#39;, &#39;node_type&#39;: &#39;MeanLabel&#39;, &#39;prob_change&#39;: 1.0, &#39;ret_type&#39;: &#39;ArrayF&#39;, &#39;sig_dual_hash&#39;: 509529941281334733, &#39;sig_hash&#39;: 17717457037689164349}, {&#39;W&#39;: 49.47871017456055, &#39;arg_types&#39;: [], &#39;center_op&#39;: True, &#39;feature&#39;: &#39;x0&#39;, &#39;fixed&#39;: False, &#39;is_weighted&#39;: True, &#39;name&#39;: &#39;Terminal&#39;, &#39;node_type&#39;: &#39;Terminal&#39;, &#39;prob_change&#39;: 1.0, &#39;ret_type&#39;: &#39;ArrayF&#39;, &#39;sig_dual_hash&#39;: 509529941281334733, &#39;sig_hash&#39;: 17717457037689164349}, {&#39;W&#39;: 1.0, &#39;arg_types&#39;: [&#39;ArrayF&#39;, &#39;ArrayF&#39;], &#39;center_op&#39;: True, &#39;feature&#39;: &#39;&#39;, &#39;fixed&#39;: False, &#39;is_weighted&#39;: False, &#39;name&#39;: &#39;Add&#39;, &#39;node_type&#39;: &#39;Add&#39;, &#39;prob_change&#39;: 1.0, &#39;ret_type&#39;: &#39;ArrayF&#39;, &#39;sig_dual_hash&#39;: 9996486434638833164, &#39;sig_hash&#39;: 10001460114883919497}, {&#39;W&#39;: 0.018234524875879288, &#39;arg_types&#39;: [], &#39;center_op&#39;: True, &#39;feature&#39;: &#39;x1&#39;, &#39;fixed&#39;: False, &#39;is_weighted&#39;: True, &#39;name&#39;: &#39;Terminal&#39;, &#39;node_type&#39;: &#39;Terminal&#39;, &#39;prob_change&#39;: 1.0, &#39;ret_type&#39;: &#39;ArrayF&#39;, &#39;sig_dual_hash&#39;: 509529941281334733, &#39;sig_hash&#39;: 17717457037689164349}, {&#39;W&#39;: 10.46687126159668, &#39;arg_types&#39;: [], &#39;center_op&#39;: True, &#39;feature&#39;: &#39;x6&#39;, &#39;fixed&#39;: False, &#39;is_weighted&#39;: True, &#39;name&#39;: &#39;Terminal&#39;, &#39;node_type&#39;: &#39;Terminal&#39;, &#39;prob_change&#39;: 1.0, &#39;ret_type&#39;: &#39;ArrayF&#39;, &#39;sig_dual_hash&#39;: 509529941281334733, &#39;sig_hash&#39;: 17717457037689164349}], &#39;is_fitted_&#39;: True}
+</pre></div>
+</div>
+</div>
+</div>
+<p>With serialization, you can use pickle to save and load just programs or even the entire individual.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pickle</span>
+<span class="kn">import</span> <span class="nn">os</span><span class="o">,</span> <span class="nn">tempfile</span>
+
+<span class="n">individual_file</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">tempfile</span><span class="o">.</span><span class="n">mkdtemp</span><span class="p">(),</span> <span class="s1">&#39;individual.json&#39;</span><span class="p">)</span>
+<span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">individual_file</span><span class="p">,</span> <span class="s2">&quot;wb&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+    <span class="n">pickle</span><span class="o">.</span><span class="n">dump</span><span class="p">(</span><span class="n">est</span><span class="o">.</span><span class="n">best_estimator_</span><span class="p">,</span> <span class="n">f</span><span class="p">)</span>
+
+<span class="n">program_file</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">tempfile</span><span class="o">.</span><span class="n">mkdtemp</span><span class="p">(),</span> <span class="s1">&#39;program.json&#39;</span><span class="p">)</span>
+<span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">program_file</span><span class="p">,</span> <span class="s2">&quot;wb&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+    <span class="n">pickle</span><span class="o">.</span><span class="n">dump</span><span class="p">(</span><span class="n">est</span><span class="o">.</span><span class="n">best_estimator_</span><span class="o">.</span><span class="n">program</span><span class="p">,</span> <span class="n">f</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Then we can load it later with:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">individual_file</span><span class="p">,</span> <span class="s2">&quot;rb&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+    <span class="n">loaded_estimator</span> <span class="o">=</span> <span class="n">pickle</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">f</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">loaded_estimator</span><span class="o">.</span><span class="n">get_model</span><span class="p">())</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>If(x0&gt;0.75,If(x0&gt;0.81,30.49*MeanLabel,49.48*x0),Add(0.02*x1,10.47*x6))
 </pre></div>
 </div>
 </div>
@@ -473,7 +571,7 @@ We can view it as a string:</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Add(10.57*x6,If(x0&gt;0.75,Add(8.50*x6,If(x0&gt;0.81,26.02,Add(-9.31*x4,127.74*x0))),Add(Add(13.60*x4,0.11*x2),-0.09*x1)))
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>If(x0&gt;0.75,If(x0&gt;0.81,30.49*MeanLabel,49.48*x0),Add(0.02*x1,10.47*x6))
 </pre></div>
 </div>
 </div>
@@ -489,21 +587,13 @@ We can view it as a string:</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Add
-|-10.57*x6
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>SplitBest
 |-SplitBest
-|  |-Add
-|    |-8.50*x6
-|    |-SplitBest
-|    |  |-26.02
-|    |  |-Add
-|    |  |  |--9.31*x4
-|    |  |  |-127.74*x0
-|  |-Add
-|  |  |-Add
-|  |    |-13.60*x4
-|  |    |-0.11*x2
-|  |  |--0.09*x1
+  |-30.49*MeanLabel
+  |-49.48*x0
+|-Add
+|  |-0.02*x1
+|  |-10.47*x6
 </pre></div>
 </div>
 </div>
@@ -523,7 +613,7 @@ Let’s import graphviz and make a nicer plot.</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/894e562a34cef47c1913c648404bd64ccabf59c3b9cbdf3b269807c2c874b5f3.svg" src="../_images/894e562a34cef47c1913c648404bd64ccabf59c3b9cbdf3b269807c2c874b5f3.svg" /></div>
+<img alt="../_images/f565a56baa5caba4a8da5631b725e656c6e86247681e12b581b9f77f59485b4f.svg" src="../_images/f565a56baa5caba4a8da5631b725e656c6e86247681e12b581b9f77f59485b4f.svg" /></div>
 </div>
 <p>The <code class="docutils literal notranslate"><span class="pre">model</span></code> variable is now a little program in the <a class="reference external" href="https://graphviz.org/docs/layouts/dot/">dot language</a>, which we can inspect directly.</p>
 <div class="cell docutils container">
@@ -534,35 +624,19 @@ Let’s import graphviz and make a nicer plot.</p>
 </div>
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>digraph G {
-&quot;5625d27dfb10&quot; [label=&quot;Add&quot;];
-&quot;5625d27dfb10&quot; -&gt; &quot;x6&quot; [label=&quot;10.57&quot;];
-&quot;5625d27dfb10&quot; -&gt; &quot;5625d1de0610&quot; [label=&quot;&quot;];
-&quot;x6&quot; [label=&quot;x6&quot;];
-&quot;5625d1de0610&quot; [label=&quot;x0&gt;0.75?&quot;];
-&quot;5625d1de0610&quot; -&gt; &quot;5625d3c02820&quot; [headlabel=&quot;&quot;,taillabel=&quot;Y&quot;];
-&quot;5625d1de0610&quot; -&gt; &quot;5625d1ddc200&quot; [headlabel=&quot;&quot;,taillabel=&quot;N&quot;];
-&quot;5625d3c02820&quot; [label=&quot;Add&quot;];
-&quot;5625d3c02820&quot; -&gt; &quot;x6&quot; [label=&quot;8.50&quot;];
-&quot;5625d3c02820&quot; -&gt; &quot;5625d27cb4a0&quot; [label=&quot;&quot;];
-&quot;x6&quot; [label=&quot;x6&quot;];
-&quot;5625d27cb4a0&quot; [label=&quot;x0&gt;0.81?&quot;];
-&quot;5625d27cb4a0&quot; -&gt; &quot;5625d1c92dc0&quot; [headlabel=&quot;&quot;,taillabel=&quot;Y&quot;];
-&quot;5625d27cb4a0&quot; -&gt; &quot;5625d2515750&quot; [headlabel=&quot;&quot;,taillabel=&quot;N&quot;];
-&quot;5625d1c92dc0&quot; [label=&quot;26.02&quot;];
-&quot;5625d2515750&quot; [label=&quot;Add&quot;];
-&quot;5625d2515750&quot; -&gt; &quot;x4&quot; [label=&quot;-9.31&quot;];
-&quot;5625d2515750&quot; -&gt; &quot;x0&quot; [label=&quot;127.74&quot;];
-&quot;x4&quot; [label=&quot;x4&quot;];
+&quot;7f370003ebc0&quot; [label=&quot;x0&gt;0.75?&quot;];
+&quot;7f370003ebc0&quot; -&gt; &quot;7f37000b5410&quot; [headlabel=&quot;&quot;,taillabel=&quot;Y&quot;];
+&quot;7f370003ebc0&quot; -&gt; &quot;7f370003f120&quot; [headlabel=&quot;&quot;,taillabel=&quot;N&quot;];
+&quot;7f37000b5410&quot; [label=&quot;x0&gt;0.81?&quot;];
+&quot;7f37000b5410&quot; -&gt; &quot;7f370003ef80&quot; [headlabel=&quot;&quot;,taillabel=&quot;Y&quot;];
+&quot;7f37000b5410&quot; -&gt; &quot;x0&quot; [headlabel=&quot;49.48&quot;,taillabel=&quot;N&quot;];
+&quot;7f370003ef80&quot; [label=&quot;30.49*MeanLabel&quot;];
 &quot;x0&quot; [label=&quot;x0&quot;];
-&quot;5625d1ddc200&quot; [label=&quot;Add&quot;];
-&quot;5625d1ddc200&quot; -&gt; &quot;5625d1d1bc10&quot; [label=&quot;&quot;];
-&quot;5625d1ddc200&quot; -&gt; &quot;x1&quot; [label=&quot;-0.09&quot;];
-&quot;5625d1d1bc10&quot; [label=&quot;Add&quot;];
-&quot;5625d1d1bc10&quot; -&gt; &quot;x4&quot; [label=&quot;13.60&quot;];
-&quot;5625d1d1bc10&quot; -&gt; &quot;x2&quot; [label=&quot;0.11&quot;];
-&quot;x4&quot; [label=&quot;x4&quot;];
-&quot;x2&quot; [label=&quot;x2&quot;];
+&quot;7f370003f120&quot; [label=&quot;Add&quot;];
+&quot;7f370003f120&quot; -&gt; &quot;x1&quot; [label=&quot;0.02&quot;];
+&quot;7f370003f120&quot; -&gt; &quot;x6&quot; [label=&quot;10.47&quot;];
 &quot;x1&quot; [label=&quot;x1&quot;];
+&quot;x6&quot; [label=&quot;x6&quot;];
 }
 </pre></div>
 </div>
@@ -582,7 +656,7 @@ You can do this by manually editing <code class="docutils literal notranslate"><
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/7d4b1063bc811772fc8dcbff5aed8ee77b52ae3c799643d01c84309270b5b983.svg" src="../_images/7d4b1063bc811772fc8dcbff5aed8ee77b52ae3c799643d01c84309270b5b983.svg" /></div>
+<img alt="../_images/ece6b5dce4ed21d79db83a73c56ed18c60f1b752ea1eb6474fcc6d722b2e1082.svg" src="../_images/ece6b5dce4ed21d79db83a73c56ed18c60f1b752ea1eb6474fcc6d722b2e1082.svg" /></div>
 </div>
 </section>
 </section>
@@ -596,7 +670,7 @@ You can do this by manually editing <code class="docutils literal notranslate"><
               
               
               
-                <footer class="prev-next-footer">
+                <footer class="prev-next-footer d-print-none">
                   
 <div class="prev-next-area">
     <a class="left-prev"
@@ -637,7 +711,8 @@ You can do this by manually editing <code class="docutils literal notranslate"><
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#representation">Representation</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#generation">Generation</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#evaluation">Evaluation</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#visualizing-programs">Visualizing Programs</a><ul class="nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#visualizing-programs">Visualizing Programs</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#serialization">Serialization</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#string">String</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#quick-little-tree">Quick Little Tree</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#graphviz">GraphViz</a></li>
@@ -692,8 +767,8 @@ By William La Cava and Joseph D. Romano
   </div>
   
   <!-- Scripts loaded after <body> so the DOM is not blocked -->
-  <script src="../_static/scripts/bootstrap.js?digest=8d27b9dea8ad943066ae"></script>
-<script src="../_static/scripts/pydata-sphinx-theme.js?digest=8d27b9dea8ad943066ae"></script>
+  <script src="../_static/scripts/bootstrap.js?digest=3ee479438cf8b5e0d341"></script>
+<script src="../_static/scripts/pydata-sphinx-theme.js?digest=3ee479438cf8b5e0d341"></script>
 
   <footer class="bd-footer">
   </footer>

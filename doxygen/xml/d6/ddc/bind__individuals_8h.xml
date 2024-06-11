@@ -1,0 +1,696 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.10.0" xml:lang="en-US">
+  <compounddef id="d6/ddc/bind__individuals_8h" kind="file" language="C++">
+    <compoundname>bind_individuals.h</compoundname>
+    <includes refid="d5/d16/module_8h" local="yes">module.h</includes>
+    <includes refid="d5/d1f/individual_8h" local="yes">../ind/individual.h</includes>
+    <includedby refid="d9/d27/bind__individuals_8cpp" local="yes">bind_individuals.cpp</includedby>
+    <incdepgraph>
+      <node id="56">
+        <label>../../thirdparty/tree.hh</label>
+      </node>
+      <node id="1">
+        <label>bind_individuals.h</label>
+        <link refid="d6/ddc/bind__individuals_8h"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="9" relation="include">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>module.h</label>
+        <link refid="d5/d16/module_8h"/>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="5" relation="include">
+        </childnode>
+        <childnode refid="6" relation="include">
+        </childnode>
+        <childnode refid="7" relation="include">
+        </childnode>
+        <childnode refid="8" relation="include">
+        </childnode>
+      </node>
+      <node id="33">
+        <label>../data/data.h</label>
+        <link refid="d2/dbd/data_8h"/>
+        <childnode refid="13" relation="include">
+        </childnode>
+        <childnode refid="34" relation="include">
+        </childnode>
+        <childnode refid="37" relation="include">
+        </childnode>
+        <childnode refid="41" relation="include">
+        </childnode>
+        <childnode refid="42" relation="include">
+        </childnode>
+        <childnode refid="45" relation="include">
+        </childnode>
+        <childnode refid="27" relation="include">
+        </childnode>
+        <childnode refid="46" relation="include">
+        </childnode>
+      </node>
+      <node id="45">
+        <label>timeseries.h</label>
+        <link refid="d9/df7/timeseries_8h"/>
+        <childnode refid="13" relation="include">
+        </childnode>
+        <childnode refid="34" relation="include">
+        </childnode>
+        <childnode refid="37" relation="include">
+        </childnode>
+      </node>
+      <node id="68">
+        <label>fitness.h</label>
+        <link refid="dc/d7a/fitness_8h"/>
+        <childnode refid="55" relation="include">
+        </childnode>
+        <childnode refid="13" relation="include">
+        </childnode>
+        <childnode refid="34" relation="include">
+        </childnode>
+      </node>
+      <node id="9">
+        <label>../ind/individual.h</label>
+        <link refid="d5/d1f/individual_8h"/>
+        <childnode refid="10" relation="include">
+        </childnode>
+        <childnode refid="68" relation="include">
+        </childnode>
+        <childnode refid="55" relation="include">
+        </childnode>
+      </node>
+      <node id="13">
+        <label>../init.h</label>
+        <link refid="d8/dc0/init_8h"/>
+        <childnode refid="14" relation="include">
+        </childnode>
+        <childnode refid="15" relation="include">
+        </childnode>
+        <childnode refid="16" relation="include">
+        </childnode>
+        <childnode refid="17" relation="include">
+        </childnode>
+        <childnode refid="18" relation="include">
+        </childnode>
+        <childnode refid="19" relation="include">
+        </childnode>
+        <childnode refid="20" relation="include">
+        </childnode>
+        <childnode refid="21" relation="include">
+        </childnode>
+        <childnode refid="22" relation="include">
+        </childnode>
+        <childnode refid="11" relation="include">
+        </childnode>
+        <childnode refid="23" relation="include">
+        </childnode>
+        <childnode refid="24" relation="include">
+        </childnode>
+        <childnode refid="25" relation="include">
+        </childnode>
+        <childnode refid="8" relation="include">
+        </childnode>
+        <childnode refid="26" relation="include">
+        </childnode>
+      </node>
+      <node id="60">
+        <label>../params.h</label>
+        <link refid="da/d33/params_8h"/>
+        <childnode refid="13" relation="include">
+        </childnode>
+        <childnode refid="41" relation="include">
+        </childnode>
+      </node>
+      <node id="57">
+        <label>dispatch_table.h</label>
+        <link refid="df/d61/dispatch__table_8h"/>
+        <childnode refid="13" relation="include">
+        </childnode>
+        <childnode refid="33" relation="include">
+        </childnode>
+        <childnode refid="48" relation="include">
+        </childnode>
+        <childnode refid="47" relation="include">
+        </childnode>
+        <childnode refid="46" relation="include">
+        </childnode>
+        <childnode refid="58" relation="include">
+        </childnode>
+        <childnode refid="31" relation="include">
+        </childnode>
+      </node>
+      <node id="53">
+        <label>functions.h</label>
+        <link refid="d8/d5c/functions_8h"/>
+        <childnode refid="54" relation="include">
+        </childnode>
+        <childnode refid="39" relation="include">
+        </childnode>
+        <childnode refid="55" relation="include">
+        </childnode>
+        <childnode refid="19" relation="include">
+        </childnode>
+        <childnode refid="50" relation="include">
+        </childnode>
+        <childnode refid="13" relation="include">
+        </childnode>
+        <childnode refid="48" relation="include">
+        </childnode>
+        <childnode refid="34" relation="include">
+        </childnode>
+        <childnode refid="33" relation="include">
+        </childnode>
+        <childnode refid="47" relation="include">
+        </childnode>
+      </node>
+      <node id="47">
+        <label>node.h</label>
+        <link refid="d1/d77/node_8h"/>
+        <childnode refid="33" relation="include">
+        </childnode>
+        <childnode refid="48" relation="include">
+        </childnode>
+        <childnode refid="34" relation="include">
+        </childnode>
+        <childnode refid="17" relation="include">
+        </childnode>
+      </node>
+      <node id="48">
+        <label>nodetype.h</label>
+        <link refid="de/d26/nodetype_8h"/>
+        <childnode refid="49" relation="include">
+        </childnode>
+        <childnode refid="50" relation="include">
+        </childnode>
+        <childnode refid="51" relation="include">
+        </childnode>
+        <childnode refid="13" relation="include">
+        </childnode>
+        <childnode refid="33" relation="include">
+        </childnode>
+        <childnode refid="34" relation="include">
+        </childnode>
+        <childnode refid="42" relation="include">
+        </childnode>
+        <childnode refid="52" relation="include">
+        </childnode>
+      </node>
+      <node id="67">
+        <label>tiny_cost_function.h</label>
+        <link refid="dd/d1b/tiny__cost__function_8h"/>
+      </node>
+      <node id="61">
+        <label>optimizer/weight_optimizer.h</label>
+        <link refid="d7/de3/weight__optimizer_8h"/>
+        <childnode refid="62" relation="include">
+        </childnode>
+        <childnode refid="63" relation="include">
+        </childnode>
+        <childnode refid="64" relation="include">
+        </childnode>
+        <childnode refid="65" relation="include">
+        </childnode>
+        <childnode refid="66" relation="include">
+        </childnode>
+        <childnode refid="67" relation="include">
+        </childnode>
+      </node>
+      <node id="10">
+        <label>../program/program.h</label>
+        <link refid="d1/dea/program_8h"/>
+        <childnode refid="11" relation="include">
+        </childnode>
+        <childnode refid="12" relation="include">
+        </childnode>
+        <childnode refid="13" relation="include">
+        </childnode>
+        <childnode refid="30" relation="include">
+        </childnode>
+        <childnode refid="47" relation="include">
+        </childnode>
+        <childnode refid="59" relation="include">
+        </childnode>
+        <childnode refid="60" relation="include">
+        </childnode>
+        <childnode refid="34" relation="include">
+        </childnode>
+        <childnode refid="53" relation="include">
+        </childnode>
+        <childnode refid="61" relation="include">
+        </childnode>
+      </node>
+      <node id="52">
+        <label>signatures.h</label>
+        <link refid="d8/d8b/signatures_8h"/>
+      </node>
+      <node id="30">
+        <label>tree_node.h</label>
+        <link refid="d1/da6/tree__node_8h"/>
+        <childnode refid="31" relation="include">
+        </childnode>
+        <childnode refid="32" relation="include">
+        </childnode>
+        <childnode refid="13" relation="include">
+        </childnode>
+        <childnode refid="33" relation="include">
+        </childnode>
+        <childnode refid="47" relation="include">
+        </childnode>
+        <childnode refid="53" relation="include">
+        </childnode>
+        <childnode refid="48" relation="include">
+        </childnode>
+        <childnode refid="56" relation="include">
+        </childnode>
+        <childnode refid="57" relation="include">
+        </childnode>
+      </node>
+      <node id="26">
+        <label>types.h</label>
+        <link refid="d9/d49/types_8h"/>
+        <childnode refid="27" relation="include">
+        </childnode>
+        <childnode refid="28" relation="include">
+        </childnode>
+        <childnode refid="29" relation="include">
+        </childnode>
+      </node>
+      <node id="37">
+        <label>error.h</label>
+        <link refid="da/d41/error_8h"/>
+        <childnode refid="11" relation="include">
+        </childnode>
+        <childnode refid="17" relation="include">
+        </childnode>
+      </node>
+      <node id="41">
+        <label>../util/logger.h</label>
+        <link refid="d1/d8c/logger_8h"/>
+        <childnode refid="17" relation="include">
+        </childnode>
+      </node>
+      <node id="42">
+        <label>../util/rnd.h</label>
+        <link refid="d2/da9/rnd_8h"/>
+        <childnode refid="43" relation="include">
+        </childnode>
+        <childnode refid="44" relation="include">
+        </childnode>
+        <childnode refid="22" relation="include">
+        </childnode>
+        <childnode refid="13" relation="include">
+        </childnode>
+      </node>
+      <node id="34">
+        <label>../util/utils.h</label>
+        <link refid="d5/d60/utils_8h"/>
+        <childnode refid="15" relation="include">
+        </childnode>
+        <childnode refid="22" relation="include">
+        </childnode>
+        <childnode refid="21" relation="include">
+        </childnode>
+        <childnode refid="18" relation="include">
+        </childnode>
+        <childnode refid="35" relation="include">
+        </childnode>
+        <childnode refid="36" relation="include">
+        </childnode>
+        <childnode refid="20" relation="include">
+        </childnode>
+        <childnode refid="13" relation="include">
+        </childnode>
+        <childnode refid="37" relation="include">
+        </childnode>
+        <childnode refid="38" relation="include">
+        </childnode>
+        <childnode refid="39" relation="include">
+        </childnode>
+        <childnode refid="40" relation="include">
+        </childnode>
+        <childnode refid="31" relation="include">
+        </childnode>
+      </node>
+      <node id="59">
+        <label>../vary/search_space.h</label>
+        <link refid="d9/d99/search__space_8h"/>
+        <childnode refid="13" relation="include">
+        </childnode>
+        <childnode refid="47" relation="include">
+        </childnode>
+        <childnode refid="48" relation="include">
+        </childnode>
+        <childnode refid="30" relation="include">
+        </childnode>
+        <childnode refid="37" relation="include">
+        </childnode>
+        <childnode refid="34" relation="include">
+        </childnode>
+        <childnode refid="42" relation="include">
+        </childnode>
+        <childnode refid="60" relation="include">
+        </childnode>
+        <childnode refid="51" relation="include">
+        </childnode>
+        <childnode refid="46" relation="include">
+        </childnode>
+        <childnode refid="17" relation="include">
+        </childnode>
+      </node>
+      <node id="15">
+        <label>Eigen/Dense</label>
+      </node>
+      <node id="12">
+        <label>assert.h</label>
+      </node>
+      <node id="49">
+        <label>bitset</label>
+      </node>
+      <node id="62">
+        <label>ceres/dynamic_autodiff_cost_function.h</label>
+      </node>
+      <node id="63">
+        <label>ceres/dynamic_numeric_diff_cost_function.h</label>
+      </node>
+      <node id="28">
+        <label>ceres/jet.h</label>
+      </node>
+      <node id="64">
+        <label>ceres/loss_function.h</label>
+      </node>
+      <node id="65">
+        <label>ceres/solver.h</label>
+      </node>
+      <node id="66">
+        <label>ceres/tiny_solver.h</label>
+      </node>
+      <node id="35">
+        <label>chrono</label>
+      </node>
+      <node id="54">
+        <label>cmath</label>
+      </node>
+      <node id="29">
+        <label>concepts</label>
+      </node>
+      <node id="58">
+        <label>cstddef</label>
+      </node>
+      <node id="40">
+        <label>execution</label>
+      </node>
+      <node id="24">
+        <label>fmt/format.h</label>
+      </node>
+      <node id="23">
+        <label>fmt/ostream.h</label>
+      </node>
+      <node id="25">
+        <label>fmt/ranges.h</label>
+      </node>
+      <node id="18">
+        <label>fstream</label>
+      </node>
+      <node id="55">
+        <label>functional</label>
+      </node>
+      <node id="17">
+        <label>iostream</label>
+      </node>
+      <node id="39">
+        <label>iterator</label>
+      </node>
+      <node id="44">
+        <label>limits</label>
+      </node>
+      <node id="20">
+        <label>map</label>
+      </node>
+      <node id="16">
+        <label>memory</label>
+      </node>
+      <node id="8">
+        <label>nlohmann/json.hpp</label>
+      </node>
+      <node id="19">
+        <label>numeric</label>
+      </node>
+      <node id="46">
+        <label>optional</label>
+      </node>
+      <node id="36">
+        <label>ostream</label>
+      </node>
+      <node id="4">
+        <label>pybind11/eigen.h</label>
+      </node>
+      <node id="6">
+        <label>pybind11/iostream.h</label>
+      </node>
+      <node id="3">
+        <label>pybind11/pybind11.h</label>
+      </node>
+      <node id="5">
+        <label>pybind11/stl.h</label>
+      </node>
+      <node id="7">
+        <label>pybind11_json/pybind11_json.hpp</label>
+      </node>
+      <node id="43">
+        <label>random</label>
+      </node>
+      <node id="21">
+        <label>set</label>
+      </node>
+      <node id="14">
+        <label>stdint.h</label>
+      </node>
+      <node id="11">
+        <label>string</label>
+      </node>
+      <node id="31">
+        <label>tuple</label>
+      </node>
+      <node id="50">
+        <label>type_traits</label>
+      </node>
+      <node id="38">
+        <label>typeindex</label>
+      </node>
+      <node id="32">
+        <label>unordered_map</label>
+      </node>
+      <node id="51">
+        <label>utility</label>
+      </node>
+      <node id="27">
+        <label>variant</label>
+      </node>
+      <node id="22">
+        <label>vector</label>
+      </node>
+    </incdepgraph>
+    <invincdepgraph>
+      <node id="2">
+        <label>bind_individuals.cpp</label>
+        <link refid="d9/d27/bind__individuals_8cpp"/>
+      </node>
+      <node id="1">
+        <label>bind_individuals.h</label>
+        <link refid="d6/ddc/bind__individuals_8h"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+      </node>
+    </invincdepgraph>
+    <sectiondef kind="typedef">
+      <memberdef kind="typedef" id="d6/ddc/bind__individuals_8h_1ae1a124ba67832fd07085cfce6097a454" prot="public" static="no">
+        <type><ref refid="dc/d5c/namespaceBrush_1af63e934d73c24d47ebde647322ae859a" kindref="member">Brush::RegressorIndividual</ref></type>
+        <definition>using Reg =  Brush::RegressorIndividual</definition>
+        <argsstring></argsstring>
+        <name>Reg</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/runner/work/brush/brush/src/bindings/bind_individuals.h" line="8" column="1" bodyfile="/home/runner/work/brush/brush/src/bindings/bind_individuals.h" bodystart="8" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="typedef" id="d6/ddc/bind__individuals_8h_1a61f8768b3e0ec7e7e76ab523d89273c9" prot="public" static="no">
+        <type><ref refid="dc/d5c/namespaceBrush_1adb2705880c4bbd253cdfca5b43710083" kindref="member">Brush::ClassifierIndividual</ref></type>
+        <definition>using Cls =  Brush::ClassifierIndividual</definition>
+        <argsstring></argsstring>
+        <name>Cls</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/runner/work/brush/brush/src/bindings/bind_individuals.h" line="9" column="1" bodyfile="/home/runner/work/brush/brush/src/bindings/bind_individuals.h" bodystart="9" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="typedef" id="d6/ddc/bind__individuals_8h_1a10f753e05956cda3dd559d9821a9ec16" prot="public" static="no">
+        <type><ref refid="dc/d5c/namespaceBrush_1aad3ae8c87c76e0b51947fab62a7e4a75" kindref="member">Brush::MulticlassClassifierIndividual</ref></type>
+        <definition>using MCls =  Brush::MulticlassClassifierIndividual</definition>
+        <argsstring></argsstring>
+        <name>MCls</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/runner/work/brush/brush/src/bindings/bind_individuals.h" line="10" column="1" bodyfile="/home/runner/work/brush/brush/src/bindings/bind_individuals.h" bodystart="10" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="typedef" id="d6/ddc/bind__individuals_8h_1a10473b306d65231405c94d8b2698314d" prot="public" static="no">
+        <type><ref refid="dc/d5c/namespaceBrush_1ac7fe1afe7d05e592f2af141df650c141" kindref="member">Brush::RepresenterIndividual</ref></type>
+        <definition>using Rep =  Brush::RepresenterIndividual</definition>
+        <argsstring></argsstring>
+        <name>Rep</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/runner/work/brush/brush/src/bindings/bind_individuals.h" line="11" column="1" bodyfile="/home/runner/work/brush/brush/src/bindings/bind_individuals.h" bodystart="11" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="typedef" id="d6/ddc/bind__individuals_8h_1ae2f679a1605bd79ee7983e55e31d6d2e" prot="public" static="no">
+        <type><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">py::call_guard</ref>&lt; <ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">py::scoped_ostream_redirect</ref>, <ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">py::scoped_estream_redirect</ref> &gt;</type>
+        <definition>using stream_redirect =  py::call_guard&lt;py::scoped_ostream_redirect, py::scoped_estream_redirect&gt;</definition>
+        <argsstring></argsstring>
+        <name>stream_redirect</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/runner/work/brush/brush/src/bindings/bind_individuals.h" line="13" column="1" bodyfile="/home/runner/work/brush/brush/src/bindings/bind_individuals.h" bodystart="13" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="func">
+      <memberdef kind="function" id="d6/ddc/bind__individuals_8h_1a366723239dbf6fafb7bc0a9a5c5aa6f0" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type><ref refid="dc/d5c/namespaceBrush_1ae591329af27c88b714d0f92b86276366" kindref="member">br::ProgramType</ref></type>
+            <declname>PT</declname>
+            <defname>PT</defname>
+          </param>
+        </templateparamlist>
+        <type><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">void</ref></type>
+        <definition>void bind_individual</definition>
+        <argsstring>(py::module &amp;m, string name)</argsstring>
+        <name>bind_individual</name>
+        <param>
+          <type><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">py::module</ref> &amp;</type>
+          <declname>m</declname>
+        </param>
+        <param>
+          <type>string</type>
+          <declname>name</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/runner/work/brush/brush/src/bindings/bind_individuals.h" line="16" column="6" bodyfile="/home/runner/work/brush/brush/src/bindings/bind_individuals.h" bodystart="16" bodyend="81"/>
+        <references refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" compoundref="d4/d93/bind__engines_8h" startline="35" endline="104">bind_engine</references>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"><highlight class="preprocessor">#include<sp/>&quot;<ref refid="d5/d16/module_8h" kindref="compound">module.h</ref>&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="2"><highlight class="normal"></highlight></codeline>
+<codeline lineno="3"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;<ref refid="d5/d1f/individual_8h" kindref="compound">../ind/individual.h</ref>&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="4"><highlight class="normal"></highlight></codeline>
+<codeline lineno="5"><highlight class="normal"></highlight><highlight class="keyword">namespace<sp/></highlight><highlight class="normal"><ref refid="d3/d9b/namespacenlohmann" kindref="compound">nl</ref><sp/>=<sp/><ref refid="d3/d9b/namespacenlohmann" kindref="compound">nlohmann</ref>;</highlight></codeline>
+<codeline lineno="6"><highlight class="normal"></highlight><highlight class="keyword">namespace<sp/></highlight><highlight class="normal"><ref refid="dc/d5c/namespaceBrush" kindref="compound">br</ref><sp/>=<sp/><ref refid="dc/d5c/namespaceBrush" kindref="compound">Brush</ref>;</highlight></codeline>
+<codeline lineno="7"><highlight class="normal"></highlight></codeline>
+<codeline lineno="8" refid="d6/ddc/bind__individuals_8h_1ae1a124ba67832fd07085cfce6097a454" refkind="member"><highlight class="normal"></highlight><highlight class="keyword">using<sp/></highlight><highlight class="normal"><ref refid="d0/d75/classBrush_1_1Engine" kindref="compound">Reg</ref><sp/>=<sp/><ref refid="dc/d5c/namespaceBrush_1af63e934d73c24d47ebde647322ae859a" kindref="member">Brush::RegressorIndividual</ref>;</highlight></codeline>
+<codeline lineno="9" refid="d6/ddc/bind__individuals_8h_1a61f8768b3e0ec7e7e76ab523d89273c9" refkind="member"><highlight class="normal"></highlight><highlight class="keyword">using<sp/></highlight><highlight class="normal"><ref refid="d0/d75/classBrush_1_1Engine" kindref="compound">Cls</ref><sp/>=<sp/><ref refid="dc/d5c/namespaceBrush_1adb2705880c4bbd253cdfca5b43710083" kindref="member">Brush::ClassifierIndividual</ref>;</highlight></codeline>
+<codeline lineno="10" refid="d6/ddc/bind__individuals_8h_1a10f753e05956cda3dd559d9821a9ec16" refkind="member"><highlight class="normal"></highlight><highlight class="keyword">using<sp/></highlight><highlight class="normal"><ref refid="d0/d75/classBrush_1_1Engine" kindref="compound">MCls</ref><sp/>=<sp/><ref refid="dc/d5c/namespaceBrush_1aad3ae8c87c76e0b51947fab62a7e4a75" kindref="member">Brush::MulticlassClassifierIndividual</ref>;</highlight></codeline>
+<codeline lineno="11" refid="d6/ddc/bind__individuals_8h_1a10473b306d65231405c94d8b2698314d" refkind="member"><highlight class="normal"></highlight><highlight class="keyword">using<sp/></highlight><highlight class="normal"><ref refid="d0/d75/classBrush_1_1Engine" kindref="compound">Rep</ref><sp/>=<sp/><ref refid="dc/d5c/namespaceBrush_1ac7fe1afe7d05e592f2af141df650c141" kindref="member">Brush::RepresenterIndividual</ref>;</highlight></codeline>
+<codeline lineno="12"><highlight class="normal"></highlight></codeline>
+<codeline lineno="13" refid="d6/ddc/bind__individuals_8h_1ae2f679a1605bd79ee7983e55e31d6d2e" refkind="member"><highlight class="normal"></highlight><highlight class="keyword">using<sp/></highlight><highlight class="normal"><ref refid="d4/d93/bind__engines_8h_1ae2f679a1605bd79ee7983e55e31d6d2e" kindref="member">stream_redirect</ref><sp/>=<sp/>py::call_guard&lt;py::scoped_ostream_redirect,<sp/>py::scoped_estream_redirect&gt;;</highlight></codeline>
+<codeline lineno="14"><highlight class="normal"></highlight></codeline>
+<codeline lineno="15"><highlight class="normal"></highlight><highlight class="keyword">template</highlight><highlight class="normal"><sp/>&lt;br::ProgramType<sp/>PT&gt;</highlight></codeline>
+<codeline lineno="16" refid="d6/ddc/bind__individuals_8h_1a366723239dbf6fafb7bc0a9a5c5aa6f0" refkind="member"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="d6/ddc/bind__individuals_8h_1a366723239dbf6fafb7bc0a9a5c5aa6f0" kindref="member">bind_individual</ref>(py::module&amp;<sp/>m,<sp/></highlight><highlight class="keywordtype">string</highlight><highlight class="normal"><sp/>name)</highlight></codeline>
+<codeline lineno="17"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="18"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">using<sp/></highlight><highlight class="normal"><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">Class</ref><sp/>=<sp/>br::Pop::Individual&lt;PT&gt;;</highlight></codeline>
+<codeline lineno="19"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="20"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">using<sp/></highlight><highlight class="normal">RetType<sp/>=<sp/>std::conditional_t&lt;</highlight></codeline>
+<codeline lineno="21"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>std::is_same_v&lt;Class,Reg&gt;,<sp/>ArrayXf,<sp/></highlight></codeline>
+<codeline lineno="22"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>std::conditional_t&lt;std::is_same_v&lt;Class,Cls&gt;,<sp/><ref refid="dc/d5c/namespaceBrush_1a1c0079df772d6e050857327591514810" kindref="member">ArrayXb</ref>,<sp/></highlight></codeline>
+<codeline lineno="23"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>std::conditional_t&lt;std::is_same_v&lt;Class,MCls&gt;,<sp/><ref refid="dc/d5c/namespaceBrush_1ac5cd76eed6ea70d1c8f429ee37ca9fc0" kindref="member">ArrayXi</ref>,<sp/>ArrayXXf&gt;&gt;&gt;;</highlight></codeline>
+<codeline lineno="24"><highlight class="normal"></highlight></codeline>
+<codeline lineno="25"><highlight class="normal"><sp/><sp/><sp/><sp/>py::class_&lt;Class&gt;<sp/><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">ind</ref>(m,<sp/>name.data()<sp/>);<sp/></highlight></codeline>
+<codeline lineno="26"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">ind</ref>.def(py::init&lt;&gt;())</highlight></codeline>
+<codeline lineno="27"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/>.def(py::init([](<ref refid="db/d88/structBrush_1_1Program" kindref="compound">br::Program&lt;PT&gt;</ref>&amp;<sp/><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">prg</ref>){<sp/><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">Class</ref><sp/><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">i</ref>(<ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">prg</ref>);</highlight></codeline>
+<codeline lineno="28"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">i</ref>;<sp/>})</highlight></codeline>
+<codeline lineno="29"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/>)</highlight></codeline>
+<codeline lineno="30"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/>.def(py::init([](</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>json&amp;<sp/><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">j</ref>){<sp/><ref refid="db/d88/structBrush_1_1Program" kindref="compound">br::Program&lt;PT&gt;</ref><sp/><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">prg</ref><sp/>=<sp/><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">j</ref>;</highlight></codeline>
+<codeline lineno="31"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">Class</ref><sp/><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">i</ref>(<ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">prg</ref>);</highlight></codeline>
+<codeline lineno="32"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">i</ref>;<sp/>})</highlight></codeline>
+<codeline lineno="33"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/>)</highlight></codeline>
+<codeline lineno="34"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/>.def(</highlight><highlight class="stringliteral">&quot;init&quot;</highlight><highlight class="normal">,<sp/>&amp;Class::init)</highlight></codeline>
+<codeline lineno="35"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/>.def_property(</highlight><highlight class="stringliteral">&quot;objectives&quot;</highlight><highlight class="normal">,<sp/>&amp;Class::get_objectives,<sp/>&amp;Class::set_objectives)</highlight></codeline>
+<codeline lineno="36"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/>.def_property_readonly(</highlight><highlight class="stringliteral">&quot;program&quot;</highlight><highlight class="normal">,<sp/>&amp;Class::get_program)</highlight></codeline>
+<codeline lineno="37"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/>.def_property_readonly(</highlight><highlight class="stringliteral">&quot;fitness&quot;</highlight><highlight class="normal">,<sp/>&amp;Class::get_fitness)</highlight></codeline>
+<codeline lineno="38"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/>.def(</highlight><highlight class="stringliteral">&quot;get_model&quot;</highlight><highlight class="normal">,<sp/>&amp;Class::get_model,<sp/></highlight></codeline>
+<codeline lineno="39"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>py::arg(</highlight><highlight class="stringliteral">&quot;fmt&quot;</highlight><highlight class="normal">)<sp/>=<sp/></highlight><highlight class="stringliteral">&quot;compact&quot;</highlight><highlight class="normal">,</highlight></codeline>
+<codeline lineno="40"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>py::arg(</highlight><highlight class="stringliteral">&quot;pretty&quot;</highlight><highlight class="normal">)<sp/>=<sp/></highlight><highlight class="keyword">false</highlight><highlight class="normal">)</highlight></codeline>
+<codeline lineno="41"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/>.<ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">def</ref>(</highlight><highlight class="stringliteral">&quot;get_dot_model&quot;</highlight><highlight class="normal">,<sp/>&amp;Class::get_dot_model,</highlight></codeline>
+<codeline lineno="42"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>py::arg(</highlight><highlight class="stringliteral">&quot;extras&quot;</highlight><highlight class="normal">)<sp/>=<sp/></highlight><highlight class="stringliteral">&quot;&quot;</highlight><highlight class="normal">)</highlight></codeline>
+<codeline lineno="43"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/>.<ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">def</ref>(</highlight><highlight class="stringliteral">&quot;fit&quot;</highlight><highlight class="normal">,</highlight></codeline>
+<codeline lineno="44"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">static_cast&lt;</highlight><highlight class="normal"><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">Class</ref><sp/>&amp;(<ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">Class</ref>::*)(</highlight><highlight class="keyword">const<sp/></highlight><highlight class="normal"><ref refid="d2/d36/classBrush_1_1Data_1_1Dataset" kindref="compound">Dataset</ref><sp/>&amp;<ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">d</ref>)</highlight><highlight class="keyword">&gt;</highlight><highlight class="normal">(&amp;Class::fit),</highlight></codeline>
+<codeline lineno="45"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="stringliteral">&quot;fit<sp/>from<sp/>Dataset<sp/>object&quot;</highlight><highlight class="normal">)</highlight></codeline>
+<codeline lineno="46"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>.<ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">def</ref>(</highlight><highlight class="stringliteral">&quot;fit&quot;</highlight><highlight class="normal">,</highlight></codeline>
+<codeline lineno="47"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">static_cast&lt;</highlight><highlight class="normal"><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">Class</ref><sp/>&amp;(<ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">Class</ref>::*)(</highlight><highlight class="keyword">const<sp/></highlight><highlight class="normal"><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">Ref&lt;const ArrayXXf&gt;</ref><sp/>&amp;<ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">X</ref>,<sp/></highlight><highlight class="keyword">const<sp/></highlight><highlight class="normal"><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">Ref&lt;const ArrayXf&gt;</ref><sp/>&amp;y)</highlight><highlight class="keyword">&gt;</highlight><highlight class="normal">(&amp;Class::fit),</highlight></codeline>
+<codeline lineno="48"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="stringliteral">&quot;fit<sp/>from<sp/>X,y<sp/>data&quot;</highlight><highlight class="normal">)</highlight></codeline>
+<codeline lineno="49"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>.<ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">def</ref>(</highlight><highlight class="stringliteral">&quot;predict&quot;</highlight><highlight class="normal">,</highlight></codeline>
+<codeline lineno="50"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">static_cast&lt;</highlight><highlight class="normal">RetType<sp/>(<ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">Class</ref>::*)(</highlight><highlight class="keyword">const<sp/></highlight><highlight class="normal"><ref refid="d2/d36/classBrush_1_1Data_1_1Dataset" kindref="compound">Dataset</ref><sp/>&amp;<ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">d</ref>)</highlight><highlight class="keyword">&gt;</highlight><highlight class="normal">(&amp;Class::predict),</highlight></codeline>
+<codeline lineno="51"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="stringliteral">&quot;predict<sp/>from<sp/>Dataset<sp/>object&quot;</highlight><highlight class="normal">)</highlight></codeline>
+<codeline lineno="52"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>.<ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">def</ref>(</highlight><highlight class="stringliteral">&quot;predict&quot;</highlight><highlight class="normal">,</highlight></codeline>
+<codeline lineno="53"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">static_cast&lt;</highlight><highlight class="normal">RetType<sp/>(<ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">Class</ref>::*)(</highlight><highlight class="keyword">const<sp/></highlight><highlight class="normal"><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">Ref&lt;const ArrayXXf&gt;</ref><sp/>&amp;<ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">X</ref>)</highlight><highlight class="keyword">&gt;</highlight><highlight class="normal">(&amp;Class::predict),</highlight></codeline>
+<codeline lineno="54"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="stringliteral">&quot;predict<sp/>from<sp/>X<sp/>data&quot;</highlight><highlight class="normal">)</highlight></codeline>
+<codeline lineno="55"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/>.<ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">def</ref>(py::pickle(</highlight></codeline>
+<codeline lineno="56"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>[](</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">Class</ref><sp/>&amp;<ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">p</ref>)<sp/>{<sp/></highlight><highlight class="comment">//<sp/>__getstate__</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="57"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>Return<sp/>a<sp/>tuple<sp/>that<sp/>fully<sp/>encodes<sp/>the<sp/>state<sp/>of<sp/>the<sp/>object<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="58"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>return<sp/>py::make_tuple(p.value(),<sp/>p.extra());</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="59"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>nl::json<sp/><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">j</ref><sp/>=<sp/><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">p</ref>;</highlight></codeline>
+<codeline lineno="60"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">j</ref>;</highlight></codeline>
+<codeline lineno="61"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>},</highlight></codeline>
+<codeline lineno="62"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>[](nl::json<sp/><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">j</ref>)<sp/>{<sp/></highlight><highlight class="comment">//<sp/>__setstate__</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="63"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">Class</ref><sp/><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">p</ref><sp/>=<sp/><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">j</ref>;</highlight></codeline>
+<codeline lineno="64"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">p</ref>;</highlight></codeline>
+<codeline lineno="65"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="66"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>)</highlight></codeline>
+<codeline lineno="67"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/>)</highlight></codeline>
+<codeline lineno="68"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/>;</highlight></codeline>
+<codeline lineno="69"><highlight class="normal"></highlight></codeline>
+<codeline lineno="70"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">constexpr</highlight><highlight class="normal"><sp/>(std::is_same_v&lt;Class,Cls&gt;)</highlight></codeline>
+<codeline lineno="71"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="72"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">ind</ref>.def(</highlight><highlight class="stringliteral">&quot;predict_proba&quot;</highlight><highlight class="normal">,</highlight></codeline>
+<codeline lineno="73"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">static_cast&lt;</highlight><highlight class="normal">ArrayXf<sp/>(<ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">Class</ref>::*)(</highlight><highlight class="keyword">const<sp/></highlight><highlight class="normal"><ref refid="d2/d36/classBrush_1_1Data_1_1Dataset" kindref="compound">Dataset</ref><sp/>&amp;<ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">d</ref>)</highlight><highlight class="keyword">&gt;</highlight><highlight class="normal">(&amp;Class::predict_proba),</highlight></codeline>
+<codeline lineno="74"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="stringliteral">&quot;predict<sp/>from<sp/>Dataset<sp/>object&quot;</highlight><highlight class="normal">)</highlight></codeline>
+<codeline lineno="75"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>.<ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">def</ref>(</highlight><highlight class="stringliteral">&quot;predict_proba&quot;</highlight><highlight class="normal">,</highlight></codeline>
+<codeline lineno="76"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">static_cast&lt;</highlight><highlight class="normal">ArrayXf<sp/>(<ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">Class</ref>::*)(</highlight><highlight class="keyword">const<sp/></highlight><highlight class="normal"><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">Ref&lt;const ArrayXXf&gt;</ref><sp/>&amp;<ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">X</ref>)</highlight><highlight class="keyword">&gt;</highlight><highlight class="normal">(&amp;Class::predict_proba),</highlight></codeline>
+<codeline lineno="77"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="stringliteral">&quot;predict<sp/>from<sp/>X<sp/>data&quot;</highlight><highlight class="normal">)</highlight></codeline>
+<codeline lineno="78"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>;</highlight></codeline>
+<codeline lineno="79"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="80"><highlight class="normal"></highlight></codeline>
+<codeline lineno="81"><highlight class="normal">}</highlight></codeline>
+    </programlisting>
+    <location file="/home/runner/work/brush/brush/src/bindings/bind_individuals.h"/>
+  </compounddef>
+</doxygen>

@@ -1,31 +1,32 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
-<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.10.0" xml:lang="en-US">
   <compounddef id="df/d09/structBrush_1_1TinyCostFunction" kind="struct" language="C++" prot="public">
     <compoundname>Brush::TinyCostFunction</compoundname>
     <includes refid="dd/d1b/tiny__cost__function_8h" local="no">tiny_cost_function.h</includes>
     <templateparamlist>
       <param>
-        <type>typename CostFunctor</type>
+        <type><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">typename</ref> <ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">CostFunctor</ref></type>
       </param>
       <param>
-        <type>typename DualType</type>
+        <type><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">typename</ref> <ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">DualType</ref></type>
         <defval><ref refid="dc/d5c/namespaceBrush_1afca2eb9cd1e30d788f324d15a9af500a" kindref="member">fJet</ref></defval>
       </param>
       <param>
-        <type>typename ScalarType</type>
-        <defval>float</defval>
+        <type><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">typename</ref> <ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">ScalarType</ref></type>
+        <defval><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">float</ref></defval>
       </param>
       <param>
-        <type>int</type>
+        <type><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">int</ref></type>
         <declname>StorageOrder</declname>
         <defname>StorageOrder</defname>
         <defval>Eigen::ColMajor</defval>
       </param>
     </templateparamlist>
-      <sectiondef kind="public-type">
+    <sectiondef kind="public-type">
       <memberdef kind="enum" id="df/d09/structBrush_1_1TinyCostFunction_1a7a47161b3cba2b074960cefdee603756" prot="public" static="no" strong="no">
         <type></type>
-        <name>@0</name>
+        <name></name>
+        <qualifiedname>Brush::TinyCostFunction</qualifiedname>
         <enumvalue id="df/d09/structBrush_1_1TinyCostFunction_1a7a47161b3cba2b074960cefdee603756a84a3f9e5e53b45bf9681e5879ba49166" prot="public">
           <name>NUM_RESIDUALS</name>
           <initializer>= Eigen::Dynamic</initializer>
@@ -51,10 +52,11 @@
         <location file="/home/runner/work/brush/brush/src/program/optimizer/tiny_cost_function.h" line="86" column="5" bodyfile="/home/runner/work/brush/brush/src/program/optimizer/tiny_cost_function.h" bodystart="86" bodyend="89"/>
       </memberdef>
       <memberdef kind="typedef" id="df/d09/structBrush_1_1TinyCostFunction_1a1e18dcb3d7eb5c68907c0c7126d59ece" prot="public" static="no">
-        <type>ScalarType</type>
+        <type><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">ScalarType</ref></type>
         <definition>using Brush::TinyCostFunction&lt; CostFunctor, DualType, ScalarType, StorageOrder &gt;::Scalar =  ScalarType</definition>
         <argsstring></argsstring>
         <name>Scalar</name>
+        <qualifiedname>Brush::TinyCostFunction::Scalar</qualifiedname>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
@@ -64,10 +66,11 @@
         <location file="/home/runner/work/brush/brush/src/program/optimizer/tiny_cost_function.h" line="84" column="5" bodyfile="/home/runner/work/brush/brush/src/program/optimizer/tiny_cost_function.h" bodystart="84" bodyend="-1"/>
       </memberdef>
       <memberdef kind="typedef" id="df/d09/structBrush_1_1TinyCostFunction_1ab74d94553ca55069ad39dbda4ce73c8b" prot="public" static="no">
-        <type>Eigen::Matrix&lt; <ref refid="dc/d5c/namespaceBrush_1ac3467b794678aa79ffba2438c8fbd16b" kindref="member">Brush::Scalar</ref>, -1, -1 &gt;</type>
+        <type>Eigen::Matrix&lt; <ref refid="dc/d5c/namespaceBrush_1a5b9f71c99a1fe42d359ae45033b58620" kindref="member">Brush::Scalar</ref>, -1, -1 &gt;</type>
         <definition>using Brush::TinyCostFunction&lt; CostFunctor, DualType, ScalarType, StorageOrder &gt;::JacobianType =  Eigen::Matrix&lt;Brush::Scalar, -1, -1&gt;</definition>
         <argsstring></argsstring>
         <name>JacobianType</name>
+        <qualifiedname>Brush::TinyCostFunction::JacobianType</qualifiedname>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
@@ -81,6 +84,7 @@
         <definition>using Brush::TinyCostFunction&lt; CostFunctor, DualType, ScalarType, StorageOrder &gt;::QRSolver =  Eigen::ColPivHouseholderQR&lt;JacobianType&gt;</definition>
         <argsstring></argsstring>
         <name>QRSolver</name>
+        <qualifiedname>Brush::TinyCostFunction::QRSolver</qualifiedname>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
@@ -89,13 +93,14 @@
         </inbodydescription>
         <location file="/home/runner/work/brush/brush/src/program/optimizer/tiny_cost_function.h" line="113" column="5" bodyfile="/home/runner/work/brush/brush/src/program/optimizer/tiny_cost_function.h" bodystart="113" bodyend="-1"/>
       </memberdef>
-      </sectiondef>
-      <sectiondef kind="public-static-attrib">
+    </sectiondef>
+    <sectiondef kind="public-static-attrib">
       <memberdef kind="variable" id="df/d09/structBrush_1_1TinyCostFunction_1a1e1831616fb4ebc67aade514d0fb224e" prot="public" static="yes" constexpr="yes" mutable="no">
-        <type>constexpr int</type>
+        <type><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">constexpr</ref> <ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">int</ref></type>
         <definition>constexpr int Brush::TinyCostFunction&lt; CostFunctor, DualType, ScalarType, StorageOrder &gt;::Stride</definition>
         <argsstring></argsstring>
         <name>Stride</name>
+        <qualifiedname>Brush::TinyCostFunction::Stride</qualifiedname>
         <initializer>= DualType::DIMENSION</initializer>
         <briefdescription>
         </briefdescription>
@@ -106,11 +111,12 @@
         <location file="/home/runner/work/brush/brush/src/program/optimizer/tiny_cost_function.h" line="82" column="26" bodyfile="/home/runner/work/brush/brush/src/program/optimizer/tiny_cost_function.h" bodystart="82" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="df/d09/structBrush_1_1TinyCostFunction_1a6e468d63ff6887868052dc771a3281ca" prot="public" static="yes" constexpr="yes" mutable="no">
-        <type>constexpr int</type>
+        <type><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">constexpr</ref> <ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">int</ref></type>
         <definition>constexpr int Brush::TinyCostFunction&lt; CostFunctor, DualType, ScalarType, StorageOrder &gt;::Storage</definition>
         <argsstring></argsstring>
         <name>Storage</name>
-        <initializer>= StorageOrder</initializer>
+        <qualifiedname>Brush::TinyCostFunction::Storage</qualifiedname>
+        <initializer>= <ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">StorageOrder</ref></initializer>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
@@ -119,13 +125,14 @@
         </inbodydescription>
         <location file="/home/runner/work/brush/brush/src/program/optimizer/tiny_cost_function.h" line="83" column="26" bodyfile="/home/runner/work/brush/brush/src/program/optimizer/tiny_cost_function.h" bodystart="83" bodyend="-1"/>
       </memberdef>
-      </sectiondef>
-      <sectiondef kind="private-attrib">
+    </sectiondef>
+    <sectiondef kind="private-attrib">
       <memberdef kind="variable" id="df/d09/structBrush_1_1TinyCostFunction_1a78af5167fa8aeaa9326dc7fc87418185" prot="private" static="no" mutable="no">
-        <type>CostFunctor</type>
+        <type><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">CostFunctor</ref></type>
         <definition>CostFunctor Brush::TinyCostFunction&lt; CostFunctor, DualType, ScalarType, StorageOrder &gt;::functor_</definition>
         <argsstring></argsstring>
         <name>functor_</name>
+        <qualifiedname>Brush::TinyCostFunction::functor_</qualifiedname>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
@@ -137,15 +144,16 @@
         <referencedby refid="df/d09/structBrush_1_1TinyCostFunction_1ad21ab65a5d23fc3f0b5e0a812a7215ba" compoundref="dd/d1b/tiny__cost__function_8h" startline="109" endline="109">Brush::TinyCostFunction&lt; CostFunctor, DualType, ScalarType, StorageOrder &gt;::NumParameters</referencedby>
         <referencedby refid="df/d09/structBrush_1_1TinyCostFunction_1a713b8084e828215cec8ea822841ec732" compoundref="dd/d1b/tiny__cost__function_8h" startline="108" endline="108">Brush::TinyCostFunction&lt; CostFunctor, DualType, ScalarType, StorageOrder &gt;::NumResiduals</referencedby>
       </memberdef>
-      </sectiondef>
-      <sectiondef kind="public-func">
+    </sectiondef>
+    <sectiondef kind="public-func">
       <memberdef kind="function" id="df/d09/structBrush_1_1TinyCostFunction_1a81e83e5c0b620ee5c25da852a33d5f57" prot="public" static="no" const="no" explicit="yes" inline="yes" virt="non-virtual">
         <type></type>
         <definition>Brush::TinyCostFunction&lt; CostFunctor, DualType, ScalarType, StorageOrder &gt;::TinyCostFunction</definition>
         <argsstring>(CostFunctor const &amp;functor)</argsstring>
         <name>TinyCostFunction</name>
+        <qualifiedname>Brush::TinyCostFunction::TinyCostFunction</qualifiedname>
         <param>
-          <type>CostFunctor const &amp;</type>
+          <type><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">CostFunctor</ref> <ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">const</ref> &amp;</type>
           <declname>functor</declname>
         </param>
         <briefdescription>
@@ -157,12 +165,13 @@
         <location file="/home/runner/work/brush/brush/src/program/optimizer/tiny_cost_function.h" line="91" column="14" bodyfile="/home/runner/work/brush/brush/src/program/optimizer/tiny_cost_function.h" bodystart="91" bodyend="94"/>
       </memberdef>
       <memberdef kind="function" id="df/d09/structBrush_1_1TinyCostFunction_1a65a0b55ab386a3727ee7cd800fabf3f6" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
-        <type>auto</type>
+        <type><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">auto</ref></type>
         <definition>auto Brush::TinyCostFunction&lt; CostFunctor, DualType, ScalarType, StorageOrder &gt;::Evaluate</definition>
         <argsstring>(Scalar const *parameters, Scalar *residuals, Scalar *jacobian) const -&gt; bool</argsstring>
         <name>Evaluate</name>
+        <qualifiedname>Brush::TinyCostFunction::Evaluate</qualifiedname>
         <param>
-          <type><ref refid="df/d09/structBrush_1_1TinyCostFunction_1a1e18dcb3d7eb5c68907c0c7126d59ece" kindref="member">Scalar</ref> const *</type>
+          <type><ref refid="df/d09/structBrush_1_1TinyCostFunction_1a1e18dcb3d7eb5c68907c0c7126d59ece" kindref="member">Scalar</ref> <ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">const</ref> *</type>
           <declname>parameters</declname>
         </param>
         <param>
@@ -180,17 +189,20 @@
         <inbodydescription>
         </inbodydescription>
         <location file="/home/runner/work/brush/brush/src/program/optimizer/tiny_cost_function.h" line="96" column="10" bodyfile="/home/runner/work/brush/brush/src/program/optimizer/tiny_cost_function.h" bodystart="96" bodyend="99"/>
+        <references refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" compoundref="d4/d93/bind__engines_8h" startline="35" endline="104">bind_engine</references>
         <references refid="df/d09/structBrush_1_1TinyCostFunction_1a78af5167fa8aeaa9326dc7fc87418185" compoundref="dd/d1b/tiny__cost__function_8h" startline="134">Brush::TinyCostFunction&lt; CostFunctor, DualType, ScalarType, StorageOrder &gt;::functor_</references>
         <referencedby refid="df/d09/structBrush_1_1TinyCostFunction_1aa2bfb371b47dee9dea885199da1dcc22" compoundref="dd/d1b/tiny__cost__function_8h" startline="123" endline="128">Brush::TinyCostFunction&lt; CostFunctor, DualType, ScalarType, StorageOrder &gt;::df</referencedby>
+        <referencedby refid="df/d09/structBrush_1_1TinyCostFunction_1a6cb6f6e6034df71e2d2bfe9d3dc1c6a1" compoundref="dd/d1b/tiny__cost__function_8h" startline="117" endline="121">Brush::TinyCostFunction&lt; CostFunctor, DualType, ScalarType, StorageOrder &gt;::operator()</referencedby>
         <referencedby refid="df/d09/structBrush_1_1TinyCostFunction_1a452ba7eb4e251b6b16c8d5fc3b02dc55" compoundref="dd/d1b/tiny__cost__function_8h" startline="103" endline="106">Brush::TinyCostFunction&lt; CostFunctor, DualType, ScalarType, StorageOrder &gt;::operator()</referencedby>
       </memberdef>
       <memberdef kind="function" id="df/d09/structBrush_1_1TinyCostFunction_1a452ba7eb4e251b6b16c8d5fc3b02dc55" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
-        <type>auto</type>
+        <type><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">auto</ref></type>
         <definition>auto Brush::TinyCostFunction&lt; CostFunctor, DualType, ScalarType, StorageOrder &gt;::operator()</definition>
         <argsstring>(Scalar const *parameters, Scalar *residuals, Scalar *jacobian) const -&gt; bool</argsstring>
         <name>operator()</name>
+        <qualifiedname>Brush::TinyCostFunction::operator()</qualifiedname>
         <param>
-          <type><ref refid="df/d09/structBrush_1_1TinyCostFunction_1a1e18dcb3d7eb5c68907c0c7126d59ece" kindref="member">Scalar</ref> const *</type>
+          <type><ref refid="df/d09/structBrush_1_1TinyCostFunction_1a1e18dcb3d7eb5c68907c0c7126d59ece" kindref="member">Scalar</ref> <ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">const</ref> *</type>
           <declname>parameters</declname>
         </param>
         <param>
@@ -208,13 +220,15 @@
         <inbodydescription>
         </inbodydescription>
         <location file="/home/runner/work/brush/brush/src/program/optimizer/tiny_cost_function.h" line="103" column="10" bodyfile="/home/runner/work/brush/brush/src/program/optimizer/tiny_cost_function.h" bodystart="103" bodyend="106"/>
+        <references refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" compoundref="d4/d93/bind__engines_8h" startline="35" endline="104">bind_engine</references>
         <references refid="df/d09/structBrush_1_1TinyCostFunction_1a65a0b55ab386a3727ee7cd800fabf3f6" compoundref="dd/d1b/tiny__cost__function_8h" startline="96" endline="99">Brush::TinyCostFunction&lt; CostFunctor, DualType, ScalarType, StorageOrder &gt;::Evaluate</references>
       </memberdef>
       <memberdef kind="function" id="df/d09/structBrush_1_1TinyCostFunction_1a713b8084e828215cec8ea822841ec732" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
-        <type>auto</type>
+        <type><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">auto</ref></type>
         <definition>auto Brush::TinyCostFunction&lt; CostFunctor, DualType, ScalarType, StorageOrder &gt;::NumResiduals</definition>
         <argsstring>() const -&gt; int</argsstring>
         <name>NumResiduals</name>
+        <qualifiedname>Brush::TinyCostFunction::NumResiduals</qualifiedname>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
@@ -226,10 +240,11 @@
         <referencedby refid="df/d09/structBrush_1_1TinyCostFunction_1a2245262594736571bea9e0018ee6aef6" compoundref="dd/d1b/tiny__cost__function_8h" startline="130" endline="130">Brush::TinyCostFunction&lt; CostFunctor, DualType, ScalarType, StorageOrder &gt;::values</referencedby>
       </memberdef>
       <memberdef kind="function" id="df/d09/structBrush_1_1TinyCostFunction_1ad21ab65a5d23fc3f0b5e0a812a7215ba" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
-        <type>auto</type>
+        <type><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">auto</ref></type>
         <definition>auto Brush::TinyCostFunction&lt; CostFunctor, DualType, ScalarType, StorageOrder &gt;::NumParameters</definition>
         <argsstring>() const -&gt; int</argsstring>
         <name>NumParameters</name>
+        <qualifiedname>Brush::TinyCostFunction::NumParameters</qualifiedname>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
@@ -241,12 +256,13 @@
         <referencedby refid="df/d09/structBrush_1_1TinyCostFunction_1aa39289bac5f4ffdac9e6534e8d58ae9c" compoundref="dd/d1b/tiny__cost__function_8h" startline="131" endline="131">Brush::TinyCostFunction&lt; CostFunctor, DualType, ScalarType, StorageOrder &gt;::inputs</referencedby>
       </memberdef>
       <memberdef kind="function" id="df/d09/structBrush_1_1TinyCostFunction_1a6cb6f6e6034df71e2d2bfe9d3dc1c6a1" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
-        <type>auto</type>
+        <type><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">auto</ref></type>
         <definition>auto Brush::TinyCostFunction&lt; CostFunctor, DualType, ScalarType, StorageOrder &gt;::operator()</definition>
         <argsstring>(Eigen::Matrix&lt; Scalar, -1, 1 &gt; const &amp;input, Eigen::Matrix&lt; Scalar, -1, 1 &gt; &amp;residual) -&gt; int</argsstring>
         <name>operator()</name>
+        <qualifiedname>Brush::TinyCostFunction::operator()</qualifiedname>
         <param>
-          <type>Eigen::Matrix&lt; <ref refid="df/d09/structBrush_1_1TinyCostFunction_1a1e18dcb3d7eb5c68907c0c7126d59ece" kindref="member">Scalar</ref>, -1, 1 &gt; const &amp;</type>
+          <type>Eigen::Matrix&lt; <ref refid="df/d09/structBrush_1_1TinyCostFunction_1a1e18dcb3d7eb5c68907c0c7126d59ece" kindref="member">Scalar</ref>, -1, 1 &gt; <ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">const</ref> &amp;</type>
           <declname>input</declname>
         </param>
         <param>
@@ -260,15 +276,17 @@
         <inbodydescription>
         </inbodydescription>
         <location file="/home/runner/work/brush/brush/src/program/optimizer/tiny_cost_function.h" line="117" column="10" bodyfile="/home/runner/work/brush/brush/src/program/optimizer/tiny_cost_function.h" bodystart="117" bodyend="121"/>
+        <references refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" compoundref="d4/d93/bind__engines_8h" startline="35" endline="104">bind_engine</references>
         <references refid="df/d09/structBrush_1_1TinyCostFunction_1a65a0b55ab386a3727ee7cd800fabf3f6" compoundref="dd/d1b/tiny__cost__function_8h" startline="96" endline="99">Brush::TinyCostFunction&lt; CostFunctor, DualType, ScalarType, StorageOrder &gt;::Evaluate</references>
       </memberdef>
       <memberdef kind="function" id="df/d09/structBrush_1_1TinyCostFunction_1aa2bfb371b47dee9dea885199da1dcc22" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
-        <type>auto</type>
+        <type><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">auto</ref></type>
         <definition>auto Brush::TinyCostFunction&lt; CostFunctor, DualType, ScalarType, StorageOrder &gt;::df</definition>
         <argsstring>(Eigen::Matrix&lt; Scalar, -1, 1 &gt; const &amp;input, Eigen::Matrix&lt; Scalar, -1, -1 &gt; &amp;jacobian) -&gt; int</argsstring>
         <name>df</name>
+        <qualifiedname>Brush::TinyCostFunction::df</qualifiedname>
         <param>
-          <type>Eigen::Matrix&lt; <ref refid="df/d09/structBrush_1_1TinyCostFunction_1a1e18dcb3d7eb5c68907c0c7126d59ece" kindref="member">Scalar</ref>, -1, 1 &gt; const &amp;</type>
+          <type>Eigen::Matrix&lt; <ref refid="df/d09/structBrush_1_1TinyCostFunction_1a1e18dcb3d7eb5c68907c0c7126d59ece" kindref="member">Scalar</ref>, -1, 1 &gt; <ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">const</ref> &amp;</type>
           <declname>input</declname>
         </param>
         <param>
@@ -282,13 +300,15 @@
         <inbodydescription>
         </inbodydescription>
         <location file="/home/runner/work/brush/brush/src/program/optimizer/tiny_cost_function.h" line="123" column="10" bodyfile="/home/runner/work/brush/brush/src/program/optimizer/tiny_cost_function.h" bodystart="123" bodyend="128"/>
+        <references refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" compoundref="d4/d93/bind__engines_8h" startline="35" endline="104">bind_engine</references>
         <references refid="df/d09/structBrush_1_1TinyCostFunction_1a65a0b55ab386a3727ee7cd800fabf3f6" compoundref="dd/d1b/tiny__cost__function_8h" startline="96" endline="99">Brush::TinyCostFunction&lt; CostFunctor, DualType, ScalarType, StorageOrder &gt;::Evaluate</references>
       </memberdef>
       <memberdef kind="function" id="df/d09/structBrush_1_1TinyCostFunction_1a2245262594736571bea9e0018ee6aef6" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
-        <type>auto</type>
+        <type><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">auto</ref></type>
         <definition>auto Brush::TinyCostFunction&lt; CostFunctor, DualType, ScalarType, StorageOrder &gt;::values</definition>
         <argsstring>() const -&gt; int</argsstring>
         <name>values</name>
+        <qualifiedname>Brush::TinyCostFunction::values</qualifiedname>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
@@ -299,10 +319,11 @@
         <references refid="df/d09/structBrush_1_1TinyCostFunction_1a713b8084e828215cec8ea822841ec732" compoundref="dd/d1b/tiny__cost__function_8h" startline="108" endline="108">Brush::TinyCostFunction&lt; CostFunctor, DualType, ScalarType, StorageOrder &gt;::NumResiduals</references>
       </memberdef>
       <memberdef kind="function" id="df/d09/structBrush_1_1TinyCostFunction_1aa39289bac5f4ffdac9e6534e8d58ae9c" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
-        <type>auto</type>
+        <type><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">auto</ref></type>
         <definition>auto Brush::TinyCostFunction&lt; CostFunctor, DualType, ScalarType, StorageOrder &gt;::inputs</definition>
         <argsstring>() const -&gt; int</argsstring>
         <name>inputs</name>
+        <qualifiedname>Brush::TinyCostFunction::inputs</qualifiedname>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
@@ -312,7 +333,7 @@
         <location file="/home/runner/work/brush/brush/src/program/optimizer/tiny_cost_function.h" line="131" column="11" bodyfile="/home/runner/work/brush/brush/src/program/optimizer/tiny_cost_function.h" bodystart="131" bodyend="131"/>
         <references refid="df/d09/structBrush_1_1TinyCostFunction_1ad21ab65a5d23fc3f0b5e0a812a7215ba" compoundref="dd/d1b/tiny__cost__function_8h" startline="109" endline="109">Brush::TinyCostFunction&lt; CostFunctor, DualType, ScalarType, StorageOrder &gt;::NumParameters</references>
       </memberdef>
-      </sectiondef>
+    </sectiondef>
     <briefdescription>
     </briefdescription>
     <detaileddescription>

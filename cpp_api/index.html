@@ -14,19 +14,19 @@
   
   <script data-cfasync="false">
     document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
-    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
   </script>
   
   <!-- Loaded before other Sphinx assets -->
-  <link href="../_static/styles/theme.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
-<link href="../_static/styles/bootstrap.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
-<link href="../_static/styles/pydata-sphinx-theme.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+  <link href="../_static/styles/theme.css?digest=3ee479438cf8b5e0d341" rel="stylesheet" />
+<link href="../_static/styles/bootstrap.css?digest=3ee479438cf8b5e0d341" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=3ee479438cf8b5e0d341" rel="stylesheet" />
 
   
-  <link href="../_static/vendor/fontawesome/6.5.1/css/all.min.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
-  <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.1/webfonts/fa-solid-900.woff2" />
-<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.1/webfonts/fa-brands-400.woff2" />
-<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.1/webfonts/fa-regular-400.woff2" />
+  <link href="../_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=3ee479438cf8b5e0d341" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
 
     <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=a746c00c" />
     <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=384b581d" />
@@ -35,9 +35,9 @@
     <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
   
   <!-- Pre-loaded scripts that we'll load fully later -->
-  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=8d27b9dea8ad943066ae" />
-<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=8d27b9dea8ad943066ae" />
-  <script src="../_static/vendor/fontawesome/6.5.1/js/all.min.js?digest=8d27b9dea8ad943066ae"></script>
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=3ee479438cf8b5e0d341" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=3ee479438cf8b5e0d341" />
+  <script src="../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=3ee479438cf8b5e0d341"></script>
 
     <script src="../_static/documentation_options.js?v=74359811"></script>
     <script src="../_static/doctools.js?v=9a2dae69"></script>
@@ -50,7 +50,7 @@
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="Dataset" href="data.html" />
-    <link rel="prev" title="BrushClassifier" href="../python_api/classifier.html" />
+    <link rel="prev" title="Python API" href="../python_api/python_api.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   </head>
@@ -60,27 +60,23 @@
 
   
   
-  <a id="pst-skip-link" class="skip-link" href="#main-content">Skip to main content</a>
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
   
   <div id="pst-scroll-pixel-helper"></div>
   
   <button type="button" class="btn rounded-pill" id="pst-back-to-top">
-    <i class="fa-solid fa-arrow-up"></i>
-    Back to top
-  </button>
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
 
   
   <input type="checkbox"
           class="sidebar-toggle"
-          name="__primary"
-          id="__primary"/>
-  <label class="overlay overlay-primary" for="__primary"></label>
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
   
   <input type="checkbox"
           class="sidebar-toggle"
-          name="__secondary"
-          id="__secondary"/>
-  <label class="overlay overlay-secondary" for="__secondary"></label>
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
   
   <div class="search-button__wrapper">
     <div class="search-button__overlay"></div>
@@ -102,8 +98,13 @@
   <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
 </form></div>
   </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
   
-    <header class="bd-header navbar navbar-expand-lg bd-navbar">
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
     </header>
   
 
@@ -166,35 +167,45 @@
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">User Guide</span></p>
 <ul class="nav bd-sidenav">
-<li class="toctree-l1 has-children"><a class="reference internal" href="../guide/index.html">Cookbook</a><input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-1"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../guide/index.html">Cookbook</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
 <li class="toctree-l2"><a class="reference internal" href="../guide/data.html">Working with Data</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../guide/search_space.html">The Search Space</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../guide/working_with_programs.html">Working with Programs</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../guide/json.html">JSON Interoperability</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../guide/saving_loading_populations.html">Saving and loading populations</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../guide/archive.html">The archive</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../guide/deap.html">Using Deap</a></li>
 </ul>
-</li>
+</details></li>
 <li class="toctree-l1"><a class="reference internal" href="../guide/contributing.html">Contributing</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../guide/development.html">Development</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">API</span></p>
 <ul class="current nav bd-sidenav">
-<li class="toctree-l1 has-children"><a class="reference internal" href="../python_api/index.html">Python API</a><input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-2"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../python_api/index.html">Python API</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
 <li class="toctree-l2"><a class="reference internal" href="../python_api/estimator.html">BrushEstimator</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../python_api/interface.html">EstimatorInterface</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../python_api/regressor.html">BrushRegressor</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../python_api/classifier.html">BrushClassifier</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../python_api/python_api.html">Python API</a></li>
 </ul>
-</li>
-<li class="toctree-l1 current active has-children"><a class="current reference internal" href="#">C++ API</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-3"><i class="fa-solid fa-chevron-down"></i></label><ul>
+</details></li>
+<li class="toctree-l1 current active has-children"><a class="current reference internal" href="#">C++ API</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
 <li class="toctree-l2"><a class="reference internal" href="data.html">Dataset</a></li>
 <li class="toctree-l2"><a class="reference internal" href="timeseries.html">TimeSeries</a></li>
 <li class="toctree-l2"><a class="reference internal" href="search_space.html">SearchSpace</a></li>
 <li class="toctree-l2"><a class="reference internal" href="program.html">Program</a></li>
 <li class="toctree-l2"><a class="reference internal" href="node.html">Node</a></li>
 <li class="toctree-l2"><a class="reference internal" href="nodetypes.html">NodeTypes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="individual.html">Individual and Fitness</a></li>
+<li class="toctree-l2"><a class="reference internal" href="evaluation.html">Evaluation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="population.html">Population</a></li>
 <li class="toctree-l2"><a class="reference internal" href="variation.html">Variation (Crossover/Mutation)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="selection.html">Selection</a></li>
+<li class="toctree-l2"><a class="reference internal" href="archive.html">Archive</a></li>
+<li class="toctree-l2"><a class="reference internal" href="engine.html">Engine (and parameters)</a></li>
 </ul>
-</li>
+</details></li>
 </ul>
 
     </div>
@@ -210,7 +221,7 @@
 
       </div>
       
-      <main id="main-content" class="bd-main">
+      <main id="main-content" class="bd-main" role="main">
         
         
 
@@ -219,7 +230,7 @@
           <div class="bd-content">
             <div class="bd-article-container">
               
-              <div class="bd-header-article">
+              <div class="bd-header-article d-print-none">
 <div class="header-article-items header-article__inner">
   
     <div class="header-article-items__start">
@@ -374,9 +385,11 @@ document.write(`
 <li class="toctree-l3"><a class="reference internal" href="data.html#_CPPv4NK5Brush4Data7DatasetclERK6vectorI6size_tE"><code class="docutils literal notranslate"><span class="pre">Dataset::operator()()</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="data.html#_CPPv4N5Brush4Data7Dataset4initEv"><code class="docutils literal notranslate"><span class="pre">Dataset::init()</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="data.html#_CPPv4N5Brush4Data7Dataset13make_featuresERK8ArrayXXfRK3mapI6string5StateERK6vectorI6stringE"><code class="docutils literal notranslate"><span class="pre">Dataset::make_features()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="data.html#_CPPv4N5Brush4Data7Dataset22copy_and_make_featuresERK8ArrayXXfRK7DatasetRK6vectorI6stringE"><code class="docutils literal notranslate"><span class="pre">Dataset::copy_and_make_features()</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="data.html#_CPPv4N5Brush4Data7Dataset7DatasetERNSt3mapI6string5StateEERK3RefIK7ArrayXfEbff"><code class="docutils literal notranslate"><span class="pre">Dataset::Dataset()</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="data.html#_CPPv4N5Brush4Data7Dataset7DatasetERK8ArrayXXfRK3RefIK7ArrayXfERK6vectorI6stringERK3mapI6string5StateEbff"><code class="docutils literal notranslate"><span class="pre">Dataset::Dataset()</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="data.html#_CPPv4N5Brush4Data7Dataset7DatasetERK8ArrayXXfRK6vectorI6stringEff"><code class="docutils literal notranslate"><span class="pre">Dataset::Dataset()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="data.html#_CPPv4N5Brush4Data7Dataset7DatasetERK8ArrayXXfRK6vectorI6stringEbff"><code class="docutils literal notranslate"><span class="pre">Dataset::Dataset()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="data.html#_CPPv4N5Brush4Data7Dataset7DatasetERK8ArrayXXfRK7DatasetRK6vectorI6stringEb"><code class="docutils literal notranslate"><span class="pre">Dataset::Dataset()</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="data.html#_CPPv4NK5Brush4Data7Dataset5printEv"><code class="docutils literal notranslate"><span class="pre">Dataset::print()</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="data.html#_CPPv4NK5Brush4Data7Dataset5get_XEv"><code class="docutils literal notranslate"><span class="pre">Dataset::get_X()</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="data.html#_CPPv4NK5Brush4Data7Dataset17get_training_dataEv"><code class="docutils literal notranslate"><span class="pre">Dataset::get_training_data()</span></code></a></li>
@@ -470,14 +483,14 @@ document.write(`
 <li class="toctree-l2"><a class="reference internal" href="search_space.html#_CPPv4N5Brush11SearchSpaceE"><code class="docutils literal notranslate"><span class="pre">SearchSpace</span></code></a><ul>
 <li class="toctree-l3"><a class="reference internal" href="search_space.html#_CPPv4N5Brush11SearchSpace8ArgsHashE"><code class="docutils literal notranslate"><span class="pre">SearchSpace::ArgsHash</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="search_space.html#_CPPv4I0EN5Brush11SearchSpace3MapE"><code class="docutils literal notranslate"><span class="pre">SearchSpace::Map</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="search_space.html#_CPPv4I0EN5Brush11SearchSpace12make_programE2PTii"><code class="docutils literal notranslate"><span class="pre">SearchSpace::make_program()</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="search_space.html#_CPPv4N5Brush11SearchSpace14make_regressorEii"><code class="docutils literal notranslate"><span class="pre">SearchSpace::make_regressor()</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="search_space.html#_CPPv4N5Brush11SearchSpace15make_classifierEii"><code class="docutils literal notranslate"><span class="pre">SearchSpace::make_classifier()</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="search_space.html#_CPPv4N5Brush11SearchSpace26make_multiclass_classifierEii"><code class="docutils literal notranslate"><span class="pre">SearchSpace::make_multiclass_classifier()</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="search_space.html#_CPPv4N5Brush11SearchSpace16make_representerEii"><code class="docutils literal notranslate"><span class="pre">SearchSpace::make_representer()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="search_space.html#_CPPv4I0EN5Brush11SearchSpace12make_programE2PTRK10Parametersii"><code class="docutils literal notranslate"><span class="pre">SearchSpace::make_program()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="search_space.html#_CPPv4N5Brush11SearchSpace14make_regressorEiiRK10Parameters"><code class="docutils literal notranslate"><span class="pre">SearchSpace::make_regressor()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="search_space.html#_CPPv4N5Brush11SearchSpace15make_classifierEiiRK10Parameters"><code class="docutils literal notranslate"><span class="pre">SearchSpace::make_classifier()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="search_space.html#_CPPv4N5Brush11SearchSpace26make_multiclass_classifierEiiRK10Parameters"><code class="docutils literal notranslate"><span class="pre">SearchSpace::make_multiclass_classifier()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="search_space.html#_CPPv4N5Brush11SearchSpace16make_representerEiiRK10Parameters"><code class="docutils literal notranslate"><span class="pre">SearchSpace::make_representer()</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="search_space.html#_CPPv4N5Brush11SearchSpace11SearchSpaceEv"><code class="docutils literal notranslate"><span class="pre">SearchSpace::SearchSpace()</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="search_space.html#_CPPv4N5Brush11SearchSpace11SearchSpaceERK7DatasetRK13unordered_mapI6stringfE"><code class="docutils literal notranslate"><span class="pre">SearchSpace::SearchSpace()</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="search_space.html#_CPPv4N5Brush11SearchSpace4initERK7DatasetRK13unordered_mapI6stringfE"><code class="docutils literal notranslate"><span class="pre">SearchSpace::init()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="search_space.html#_CPPv4N5Brush11SearchSpace11SearchSpaceERK7DatasetRK13unordered_mapI6stringfEb"><code class="docutils literal notranslate"><span class="pre">SearchSpace::SearchSpace()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="search_space.html#_CPPv4N5Brush11SearchSpace4initERK7DatasetRK13unordered_mapI6stringfEb"><code class="docutils literal notranslate"><span class="pre">SearchSpace::init()</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="search_space.html#_CPPv4NK5Brush11SearchSpace5checkE8DataType"><code class="docutils literal notranslate"><span class="pre">SearchSpace::check()</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="search_space.html#_CPPv4NK5Brush11SearchSpace5checkE8DataType6size_t"><code class="docutils literal notranslate"><span class="pre">SearchSpace::check()</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="search_space.html#_CPPv4NK5Brush11SearchSpace5checkE8DataType6size_t8NodeType"><code class="docutils literal notranslate"><span class="pre">SearchSpace::check()</span></code></a></li>
@@ -488,15 +501,15 @@ document.write(`
 <li class="toctree-l3"><a class="reference internal" href="search_space.html#_CPPv4NK5Brush11SearchSpace11get_weightsEv"><code class="docutils literal notranslate"><span class="pre">SearchSpace::get_weights()</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="search_space.html#_CPPv4NK5Brush11SearchSpace11get_weightsE8DataType"><code class="docutils literal notranslate"><span class="pre">SearchSpace::get_weights()</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="search_space.html#_CPPv4NK5Brush11SearchSpace11get_weightsE8DataType8ArgsHash"><code class="docutils literal notranslate"><span class="pre">SearchSpace::get_weights()</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="search_space.html#_CPPv4NK5Brush11SearchSpace15sample_terminalEv"><code class="docutils literal notranslate"><span class="pre">SearchSpace::sample_terminal()</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="search_space.html#_CPPv4NK5Brush11SearchSpace15sample_terminalE8DataType"><code class="docutils literal notranslate"><span class="pre">SearchSpace::sample_terminal()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="search_space.html#_CPPv4NK5Brush11SearchSpace15sample_terminalEb"><code class="docutils literal notranslate"><span class="pre">SearchSpace::sample_terminal()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="search_space.html#_CPPv4NK5Brush11SearchSpace15sample_terminalE8DataTypeb"><code class="docutils literal notranslate"><span class="pre">SearchSpace::sample_terminal()</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="search_space.html#_CPPv4NK5Brush11SearchSpace9sample_opE8DataType"><code class="docutils literal notranslate"><span class="pre">SearchSpace::sample_op()</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="search_space.html#_CPPv4N5Brush11SearchSpace9sample_opE8NodeType8DataType"><code class="docutils literal notranslate"><span class="pre">SearchSpace::sample_op()</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="search_space.html#_CPPv4NK5Brush11SearchSpace18sample_op_with_argE8DataType8DataTypebi"><code class="docutils literal notranslate"><span class="pre">SearchSpace::sample_op_with_arg()</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="search_space.html#_CPPv4NK5Brush11SearchSpace13get_node_likeE4Node"><code class="docutils literal notranslate"><span class="pre">SearchSpace::get_node_like()</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="search_space.html#_CPPv4NK5Brush11SearchSpace14sample_subtreeE4Nodeii"><code class="docutils literal notranslate"><span class="pre">SearchSpace::sample_subtree()</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="search_space.html#_CPPv4NK5Brush11SearchSpace5printEv"><code class="docutils literal notranslate"><span class="pre">SearchSpace::print()</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="search_space.html#_CPPv4I0EN5Brush11SearchSpace12make_programE1Pii"><code class="docutils literal notranslate"><span class="pre">SearchSpace::make_program()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="search_space.html#_CPPv4I0EN5Brush11SearchSpace12make_programE1PRK10Parametersii"><code class="docutils literal notranslate"><span class="pre">SearchSpace::make_program()</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="search_space.html#_CPPv4N5Brush11SearchSpace8node_mapE"><code class="docutils literal notranslate"><span class="pre">SearchSpace::node_map</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="search_space.html#_CPPv4N5Brush11SearchSpace16node_map_weightsE"><code class="docutils literal notranslate"><span class="pre">SearchSpace::node_map_weights</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="search_space.html#_CPPv4N5Brush11SearchSpace12terminal_mapE"><code class="docutils literal notranslate"><span class="pre">SearchSpace::terminal_map</span></code></a></li>
@@ -512,7 +525,9 @@ document.write(`
 <li class="toctree-l3"><a class="reference internal" href="program.html#_CPPv4N5Brush7Program8TreeTypeE"><code class="docutils literal notranslate"><span class="pre">Program::TreeType</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="program.html#_CPPv4N5Brush7Program7ProgramEv"><code class="docutils literal notranslate"><span class="pre">Program::Program()</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="program.html#_CPPv4N5Brush7Program7ProgramEKNSt17reference_wrapperI11SearchSpaceEEK4treeI4NodeE"><code class="docutils literal notranslate"><span class="pre">Program::Program()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="program.html#_CPPv4N5Brush7Program4copyEv"><code class="docutils literal notranslate"><span class="pre">Program::copy()</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="program.html#_CPPv4N5Brush7Program16set_search_spaceEKNSt17reference_wrapperI11SearchSpaceEE"><code class="docutils literal notranslate"><span class="pre">Program::set_search_space()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="program.html#_CPPv4NK5Brush7Program10complexityEv"><code class="docutils literal notranslate"><span class="pre">Program::complexity()</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="program.html#_CPPv4NK5Brush7Program4sizeEb"><code class="docutils literal notranslate"><span class="pre">Program::size()</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="program.html#_CPPv4NK5Brush7Program7size_atER4Iterb"><code class="docutils literal notranslate"><span class="pre">Program::size_at()</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="program.html#_CPPv4NK5Brush7Program5depthEv"><code class="docutils literal notranslate"><span class="pre">Program::depth()</span></code></a></li>
@@ -521,23 +536,23 @@ document.write(`
 <li class="toctree-l3"><a class="reference internal" href="program.html#_CPPv4N5Brush7Program3fitERK7Dataset"><code class="docutils literal notranslate"><span class="pre">Program::fit()</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="program.html#_CPPv4I00EN5Brush7Program20predict_with_weightsE1RRK7DatasetPPK1W"><code class="docutils literal notranslate"><span class="pre">Program::predict_with_weights()</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="program.html#_CPPv4N5Brush7Program20predict_with_weightsERK7DatasetRK7ArrayXf"><code class="docutils literal notranslate"><span class="pre">Program::predict_with_weights()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="program.html#_CPPv4I0EN5Brush7Program7predictE8TreeTypeRK7Dataset"><code class="docutils literal notranslate"><span class="pre">Program::predict()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="program.html#_CPPv4I0EN5Brush7Program7predictE7ArrayXbRK7Dataset"><code class="docutils literal notranslate"><span class="pre">Program::predict()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="program.html#_CPPv4I0EN5Brush7Program7predictE7ArrayXiRK7Dataset"><code class="docutils literal notranslate"><span class="pre">Program::predict()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="program.html#_CPPv4I_2PTEN5Brush7Program13predict_probaE8TreeTypeRK7Dataset"><code class="docutils literal notranslate"><span class="pre">Program::predict_proba()</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="program.html#_CPPv4N5Brush7Program3fitERK3RefIK8ArrayXXfERK3RefIK7ArrayXfE"><code class="docutils literal notranslate"><span class="pre">Program::fit()</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="program.html#_CPPv4N5Brush7Program7predictERK3RefIK8ArrayXXfE"><code class="docutils literal notranslate"><span class="pre">Program::predict()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="program.html#_CPPv4I_2PTEN5Brush7Program13predict_probaE8TreeTypeRK3RefIK8ArrayXXfE"><code class="docutils literal notranslate"><span class="pre">Program::predict_proba()</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="program.html#_CPPv4N5Brush7Program14update_weightsERK7Dataset"><code class="docutils literal notranslate"><span class="pre">Program::update_weights()</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="program.html#_CPPv4NK5Brush7Program13get_n_weightsEv"><code class="docutils literal notranslate"><span class="pre">Program::get_n_weights()</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="program.html#_CPPv4N5Brush7Program11get_weightsEv"><code class="docutils literal notranslate"><span class="pre">Program::get_weights()</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="program.html#_CPPv4N5Brush7Program11set_weightsERK7ArrayXf"><code class="docutils literal notranslate"><span class="pre">Program::set_weights()</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="program.html#_CPPv4N5Brush7Program9get_modelE6stringb"><code class="docutils literal notranslate"><span class="pre">Program::get_model()</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="program.html#_CPPv4N5Brush7Program13get_dot_modelE6string"><code class="docutils literal notranslate"><span class="pre">Program::get_dot_model()</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="program.html#_CPPv4NK5Brush7Program6mutateEv"><code class="docutils literal notranslate"><span class="pre">Program::mutate()</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="program.html#_CPPv4NK5Brush7Program5crossE7ProgramI5PTypeE"><code class="docutils literal notranslate"><span class="pre">Program::cross()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="program.html#_CPPv4NK5Brush7Program9get_modelE6stringb"><code class="docutils literal notranslate"><span class="pre">Program::get_model()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="program.html#_CPPv4NK5Brush7Program13get_dot_modelE6string"><code class="docutils literal notranslate"><span class="pre">Program::get_dot_model()</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="program.html#_CPPv4NK5Brush7Program9linearizeEv"><code class="docutils literal notranslate"><span class="pre">Program::linearize()</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="program.html#_CPPv4N5Brush7Program10is_fitted_E"><code class="docutils literal notranslate"><span class="pre">Program::is_fitted_</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="program.html#_CPPv4N5Brush7Program7fitnessE"><code class="docutils literal notranslate"><span class="pre">Program::fitness</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="program.html#_CPPv4N5Brush7Program4TreeE"><code class="docutils literal notranslate"><span class="pre">Program::Tree</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="program.html#_CPPv4N5Brush7Program5SSrefE"><code class="docutils literal notranslate"><span class="pre">Program::SSref</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="program.html#_CPPv4N5Brush7Program3outE"><code class="docutils literal notranslate"><span class="pre">Program::out</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="program.html#_CPPv4N5Brush7Program6argmaxE"><code class="docutils literal notranslate"><span class="pre">Program::argmax</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="program.html#_CPPv4N5Brush7Program12program_typeE"><code class="docutils literal notranslate"><span class="pre">Program::program_type</span></code></a></li>
 </ul>
 </li>
@@ -614,8 +629,9 @@ document.write(`
 <li class="toctree-l3"><a class="reference internal" href="nodetypes.html#_CPPv4N5Brush8NodeType3MaxE"><code class="docutils literal notranslate"><span class="pre">NodeType::Max</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="nodetypes.html#_CPPv4N5Brush8NodeType4MeanE"><code class="docutils literal notranslate"><span class="pre">NodeType::Mean</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="nodetypes.html#_CPPv4N5Brush8NodeType6MedianE"><code class="docutils literal notranslate"><span class="pre">NodeType::Median</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="nodetypes.html#_CPPv4N5Brush8NodeType3SumE"><code class="docutils literal notranslate"><span class="pre">NodeType::Sum</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="nodetypes.html#_CPPv4N5Brush8NodeType4ProdE"><code class="docutils literal notranslate"><span class="pre">NodeType::Prod</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="nodetypes.html#_CPPv4N5Brush8NodeType3SumE"><code class="docutils literal notranslate"><span class="pre">NodeType::Sum</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="nodetypes.html#_CPPv4N5Brush8NodeType9OffsetSumE"><code class="docutils literal notranslate"><span class="pre">NodeType::OffsetSum</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="nodetypes.html#_CPPv4N5Brush8NodeType7SoftmaxE"><code class="docutils literal notranslate"><span class="pre">NodeType::Softmax</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="nodetypes.html#_CPPv4N5Brush8NodeType3AddE"><code class="docutils literal notranslate"><span class="pre">NodeType::Add</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="nodetypes.html#_CPPv4N5Brush8NodeType3SubE"><code class="docutils literal notranslate"><span class="pre">NodeType::Sub</span></code></a></li>
@@ -624,6 +640,10 @@ document.write(`
 <li class="toctree-l3"><a class="reference internal" href="nodetypes.html#_CPPv4N5Brush8NodeType3PowE"><code class="docutils literal notranslate"><span class="pre">NodeType::Pow</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="nodetypes.html#_CPPv4N5Brush8NodeType9SplitBestE"><code class="docutils literal notranslate"><span class="pre">NodeType::SplitBest</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="nodetypes.html#_CPPv4N5Brush8NodeType7SplitOnE"><code class="docutils literal notranslate"><span class="pre">NodeType::SplitOn</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="nodetypes.html#_CPPv4N5Brush8NodeType3AndE"><code class="docutils literal notranslate"><span class="pre">NodeType::And</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="nodetypes.html#_CPPv4N5Brush8NodeType2OrE"><code class="docutils literal notranslate"><span class="pre">NodeType::Or</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="nodetypes.html#_CPPv4N5Brush8NodeType3NotE"><code class="docutils literal notranslate"><span class="pre">NodeType::Not</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="nodetypes.html#_CPPv4N5Brush8NodeType9MeanLabelE"><code class="docutils literal notranslate"><span class="pre">NodeType::MeanLabel</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="nodetypes.html#_CPPv4N5Brush8NodeType8ConstantE"><code class="docutils literal notranslate"><span class="pre">NodeType::Constant</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="nodetypes.html#_CPPv4N5Brush8NodeType8TerminalE"><code class="docutils literal notranslate"><span class="pre">NodeType::Terminal</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="nodetypes.html#_CPPv4N5Brush8NodeType6ArgMaxE"><code class="docutils literal notranslate"><span class="pre">NodeType::ArgMax</span></code></a></li>
@@ -635,17 +655,363 @@ document.write(`
 </li>
 </ul>
 </li>
+<li class="toctree-l1"><a class="reference internal" href="individual.html">Individual and Fitness</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="individual.html#_CPPv4I_11ProgramTypeEN5Brush3Pop10IndividualE"><code class="docutils literal notranslate"><span class="pre">Individual</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="individual.html#_CPPv4N5Brush3Pop10Individual10IndividualEv"><code class="docutils literal notranslate"><span class="pre">Individual::Individual()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="individual.html#_CPPv4N5Brush3Pop10Individual10IndividualER7ProgramI1TE"><code class="docutils literal notranslate"><span class="pre">Individual::Individual()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="individual.html#_CPPv4N5Brush3Pop10Individual4initER11SearchSpaceRK10Parameters"><code class="docutils literal notranslate"><span class="pre">Individual::init()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="individual.html#_CPPv4N5Brush3Pop10Individual3fitERK7Dataset"><code class="docutils literal notranslate"><span class="pre">Individual::fit()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="individual.html#_CPPv4N5Brush3Pop10Individual3fitERK3RefIK8ArrayXXfERK3RefIK7ArrayXfE"><code class="docutils literal notranslate"><span class="pre">Individual::fit()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="individual.html#_CPPv4N5Brush3Pop10Individual7predictERK7Dataset"><code class="docutils literal notranslate"><span class="pre">Individual::predict()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="individual.html#_CPPv4N5Brush3Pop10Individual7predictERK3RefIK8ArrayXXfE"><code class="docutils literal notranslate"><span class="pre">Individual::predict()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="individual.html#_CPPv4I_11ProgramTypeEN5Brush3Pop10Individual13predict_probaEDaRK7Dataset"><code class="docutils literal notranslate"><span class="pre">Individual::predict_proba()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="individual.html#_CPPv4I_11ProgramTypeEN5Brush3Pop10Individual13predict_probaEDaRK3RefIK8ArrayXXfE"><code class="docutils literal notranslate"><span class="pre">Individual::predict_proba()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="individual.html#_CPPv4NK5Brush3Pop10Individual13get_is_fittedEv"><code class="docutils literal notranslate"><span class="pre">Individual::get_is_fitted()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="individual.html#_CPPv4NK5Brush3Pop10Individual8get_sizeEv"><code class="docutils literal notranslate"><span class="pre">Individual::get_size()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="individual.html#_CPPv4NK5Brush3Pop10Individual9get_depthEv"><code class="docutils literal notranslate"><span class="pre">Individual::get_depth()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="individual.html#_CPPv4NK5Brush3Pop10Individual14get_complexityEv"><code class="docutils literal notranslate"><span class="pre">Individual::get_complexity()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="individual.html#_CPPv4N5Brush3Pop10Individual11get_programEv"><code class="docutils literal notranslate"><span class="pre">Individual::get_program()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="individual.html#_CPPv4N5Brush3Pop10Individual9get_modelE6stringb"><code class="docutils literal notranslate"><span class="pre">Individual::get_model()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="individual.html#_CPPv4N5Brush3Pop10Individual13get_dot_modelE6string"><code class="docutils literal notranslate"><span class="pre">Individual::get_dot_model()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="individual.html#_CPPv4N5Brush3Pop10Individual11set_fitnessER7Fitness"><code class="docutils literal notranslate"><span class="pre">Individual::set_fitness()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="individual.html#_CPPv4N5Brush3Pop10Individual11get_fitnessEv"><code class="docutils literal notranslate"><span class="pre">Individual::get_fitness()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="individual.html#_CPPv4N5Brush3Pop10Individual6set_idEj"><code class="docutils literal notranslate"><span class="pre">Individual::set_id()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="individual.html#_CPPv4N5Brush3Pop10Individual11set_parentsERK6vectorI10IndividualI1TEE"><code class="docutils literal notranslate"><span class="pre">Individual::set_parents()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="individual.html#_CPPv4N5Brush3Pop10Individual11set_parentsERK6vectorIjE"><code class="docutils literal notranslate"><span class="pre">Individual::set_parents()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="individual.html#_CPPv4NK5Brush3Pop10Individual14get_objectivesEv"><code class="docutils literal notranslate"><span class="pre">Individual::get_objectives()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="individual.html#_CPPv4N5Brush3Pop10Individual14set_objectivesE6vectorI6stringE"><code class="docutils literal notranslate"><span class="pre">Individual::set_objectives()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="individual.html#_CPPv4N5Brush3Pop10Individual7programE"><code class="docutils literal notranslate"><span class="pre">Individual::program</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="individual.html#_CPPv4N5Brush3Pop10Individual10is_fitted_E"><code class="docutils literal notranslate"><span class="pre">Individual::is_fitted_</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="individual.html#_CPPv4N5Brush3Pop10Individual2idE"><code class="docutils literal notranslate"><span class="pre">Individual::id</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="individual.html#_CPPv4N5Brush3Pop10Individual9parent_idE"><code class="docutils literal notranslate"><span class="pre">Individual::parent_id</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="individual.html#_CPPv4N5Brush3Pop10Individual5errorE"><code class="docutils literal notranslate"><span class="pre">Individual::error</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="individual.html#_CPPv4N5Brush3Pop10Individual7fitnessE"><code class="docutils literal notranslate"><span class="pre">Individual::fitness</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="individual.html#_CPPv4N5Brush3Pop10Individual10objectivesE"><code class="docutils literal notranslate"><span class="pre">Individual::objectives</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="individual.html#_CPPv4N5Brush3Pop10Individual10weightsMapE"><code class="docutils literal notranslate"><span class="pre">Individual::weightsMap</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="individual.html#_CPPv4N5Brush7FitnessE"><code class="docutils literal notranslate"><span class="pre">Fitness</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="individual.html#_CPPv4N5Brush7Fitness13set_dominatedER6vectorIjE"><code class="docutils literal notranslate"><span class="pre">Fitness::set_dominated()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="individual.html#_CPPv4NK5Brush7Fitness13get_dominatedEv"><code class="docutils literal notranslate"><span class="pre">Fitness::get_dominated()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="individual.html#_CPPv4N5Brush7Fitness8set_lossEf"><code class="docutils literal notranslate"><span class="pre">Fitness::set_loss()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="individual.html#_CPPv4NK5Brush7Fitness8get_lossEv"><code class="docutils literal notranslate"><span class="pre">Fitness::get_loss()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="individual.html#_CPPv4N5Brush7Fitness10set_loss_vEf"><code class="docutils literal notranslate"><span class="pre">Fitness::set_loss_v()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="individual.html#_CPPv4NK5Brush7Fitness10get_loss_vEv"><code class="docutils literal notranslate"><span class="pre">Fitness::get_loss_v()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="individual.html#_CPPv4N5Brush7Fitness8set_sizeEj"><code class="docutils literal notranslate"><span class="pre">Fitness::set_size()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="individual.html#_CPPv4NK5Brush7Fitness8get_sizeEv"><code class="docutils literal notranslate"><span class="pre">Fitness::get_size()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="individual.html#_CPPv4N5Brush7Fitness14set_complexityEj"><code class="docutils literal notranslate"><span class="pre">Fitness::set_complexity()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="individual.html#_CPPv4NK5Brush7Fitness14get_complexityEv"><code class="docutils literal notranslate"><span class="pre">Fitness::get_complexity()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="individual.html#_CPPv4N5Brush7Fitness9set_depthEj"><code class="docutils literal notranslate"><span class="pre">Fitness::set_depth()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="individual.html#_CPPv4NK5Brush7Fitness9get_depthEv"><code class="docutils literal notranslate"><span class="pre">Fitness::get_depth()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="individual.html#_CPPv4N5Brush7Fitness12set_dcounterEj"><code class="docutils literal notranslate"><span class="pre">Fitness::set_dcounter()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="individual.html#_CPPv4NK5Brush7Fitness12get_dcounterEv"><code class="docutils literal notranslate"><span class="pre">Fitness::get_dcounter()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="individual.html#_CPPv4N5Brush7Fitness8set_rankEj"><code class="docutils literal notranslate"><span class="pre">Fitness::set_rank()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="individual.html#_CPPv4NK5Brush7Fitness8get_rankEv"><code class="docutils literal notranslate"><span class="pre">Fitness::get_rank()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="individual.html#_CPPv4N5Brush7Fitness17set_crowding_distEf"><code class="docutils literal notranslate"><span class="pre">Fitness::set_crowding_dist()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="individual.html#_CPPv4NK5Brush7Fitness17get_crowding_distEv"><code class="docutils literal notranslate"><span class="pre">Fitness::get_crowding_dist()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="individual.html#_CPPv4N5Brush7Fitness7FitnessERK6vectorIfE"><code class="docutils literal notranslate"><span class="pre">Fitness::Fitness()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="individual.html#_CPPv4NK5Brush7Fitness4hashEv"><code class="docutils literal notranslate"><span class="pre">Fitness::hash()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="individual.html#_CPPv4N5Brush7Fitness11set_weightsER6vectorIfE"><code class="docutils literal notranslate"><span class="pre">Fitness::set_weights()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="individual.html#_CPPv4NK5Brush7Fitness11get_weightsEv"><code class="docutils literal notranslate"><span class="pre">Fitness::get_weights()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="individual.html#_CPPv4NK5Brush7Fitness10get_valuesEv"><code class="docutils literal notranslate"><span class="pre">Fitness::get_values()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="individual.html#_CPPv4NK5Brush7Fitness11get_wvaluesEv"><code class="docutils literal notranslate"><span class="pre">Fitness::get_wvalues()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="individual.html#_CPPv4N5Brush7Fitness10set_valuesER6vectorIfE"><code class="docutils literal notranslate"><span class="pre">Fitness::set_values()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="individual.html#_CPPv4N5Brush7Fitness11clearValuesEv"><code class="docutils literal notranslate"><span class="pre">Fitness::clearValues()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="individual.html#_CPPv4NK5Brush7Fitness5validEv"><code class="docutils literal notranslate"><span class="pre">Fitness::valid()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="individual.html#_CPPv4NK5Brush7FitnesseqERK7Fitness"><code class="docutils literal notranslate"><span class="pre">Fitness::operator==()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="individual.html#_CPPv4NK5Brush7FitnessneERK7Fitness"><code class="docutils literal notranslate"><span class="pre">Fitness::operator!=()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="individual.html#_CPPv4NK5Brush7FitnessltERK7Fitness"><code class="docutils literal notranslate"><span class="pre">Fitness::operator&lt;()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="individual.html#_CPPv4NK5Brush7FitnessgtERK7Fitness"><code class="docutils literal notranslate"><span class="pre">Fitness::operator&gt;()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="individual.html#_CPPv4NK5Brush7FitnessleERK7Fitness"><code class="docutils literal notranslate"><span class="pre">Fitness::operator&lt;=()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="individual.html#_CPPv4NK5Brush7FitnessgeERK7Fitness"><code class="docutils literal notranslate"><span class="pre">Fitness::operator&gt;=()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="individual.html#_CPPv4NK5Brush7Fitness8toStringEv"><code class="docutils literal notranslate"><span class="pre">Fitness::toString()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="individual.html#_CPPv4NK5Brush7Fitness4reprEv"><code class="docutils literal notranslate"><span class="pre">Fitness::repr()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="individual.html#_CPPv4NK5Brush7Fitness9dominatesERK7Fitness"><code class="docutils literal notranslate"><span class="pre">Fitness::dominates()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="individual.html#_CPPv4N5Brush7Fitness4lossE"><code class="docutils literal notranslate"><span class="pre">Fitness::loss</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="individual.html#_CPPv4N5Brush7Fitness6loss_vE"><code class="docutils literal notranslate"><span class="pre">Fitness::loss_v</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="individual.html#_CPPv4N5Brush7Fitness10complexityE"><code class="docutils literal notranslate"><span class="pre">Fitness::complexity</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="individual.html#_CPPv4N5Brush7Fitness4sizeE"><code class="docutils literal notranslate"><span class="pre">Fitness::size</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="individual.html#_CPPv4N5Brush7Fitness5depthE"><code class="docutils literal notranslate"><span class="pre">Fitness::depth</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="individual.html#_CPPv4N5Brush7Fitness8dcounterE"><code class="docutils literal notranslate"><span class="pre">Fitness::dcounter</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="individual.html#_CPPv4N5Brush7Fitness9dominatedE"><code class="docutils literal notranslate"><span class="pre">Fitness::dominated</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="individual.html#_CPPv4N5Brush7Fitness4rankE"><code class="docutils literal notranslate"><span class="pre">Fitness::rank</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="individual.html#_CPPv4N5Brush7Fitness13crowding_distE"><code class="docutils literal notranslate"><span class="pre">Fitness::crowding_dist</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="individual.html#_CPPv4N5Brush7Fitness6valuesE"><code class="docutils literal notranslate"><span class="pre">Fitness::values</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="individual.html#_CPPv4N5Brush7Fitness7weightsE"><code class="docutils literal notranslate"><span class="pre">Fitness::weights</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="individual.html#_CPPv4N5Brush7Fitness7wvaluesE"><code class="docutils literal notranslate"><span class="pre">Fitness::wvalues</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="evaluation.html">Evaluation</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="evaluation.html#_CPPv4I_11ProgramTypeEN5Brush4Eval10EvaluationE"><code class="docutils literal notranslate"><span class="pre">Evaluation</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="evaluation.html#_CPPv4N5Brush4Eval10Evaluation10EvaluationEv"><code class="docutils literal notranslate"><span class="pre">Evaluation::Evaluation()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="evaluation.html#_CPPv4N5Brush4Eval10EvaluationD0Ev"><code class="docutils literal notranslate"><span class="pre">Evaluation::~Evaluation()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="evaluation.html#_CPPv4N5Brush4Eval10Evaluation10set_scorerE6string"><code class="docutils literal notranslate"><span class="pre">Evaluation::set_scorer()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="evaluation.html#_CPPv4N5Brush4Eval10Evaluation10get_scorerEv"><code class="docutils literal notranslate"><span class="pre">Evaluation::get_scorer()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="evaluation.html#_CPPv4N5Brush4Eval10Evaluation14update_fitnessER10PopulationI1TEiRK7DatasetRK10Parametersbb"><code class="docutils literal notranslate"><span class="pre">Evaluation::update_fitness()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="evaluation.html#_CPPv4N5Brush4Eval10Evaluation10assign_fitER10IndividualI1TERK7DatasetRK10Parametersb"><code class="docutils literal notranslate"><span class="pre">Evaluation::assign_fit()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="evaluation.html#_CPPv4N5Brush4Eval10Evaluation1SE"><code class="docutils literal notranslate"><span class="pre">Evaluation::S</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="evaluation.html#_CPPv4I_11ProgramTypeEN5Brush4Eval6ScorerE"><code class="docutils literal notranslate"><span class="pre">Scorer</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="evaluation.html#_CPPv4N5Brush4Eval6Scorer6ScorerE6string"><code class="docutils literal notranslate"><span class="pre">Scorer::Scorer()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="evaluation.html#_CPPv4N5Brush4Eval6Scorer10set_scorerE6string"><code class="docutils literal notranslate"><span class="pre">Scorer::set_scorer()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="evaluation.html#_CPPv4N5Brush4Eval6Scorer10get_scorerEv"><code class="docutils literal notranslate"><span class="pre">Scorer::get_scorer()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="evaluation.html#_CPPv4N5Brush4Eval6Scorer5scoreERK8VectorXfRK8VectorXfR8VectorXfRK6vectorIfE"><code class="docutils literal notranslate"><span class="pre">Scorer::score()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="evaluation.html#_CPPv4N5Brush4Eval6Scorer5scoreER10IndividualI1PER7DatasetR8VectorXfRK10Parameters"><code class="docutils literal notranslate"><span class="pre">Scorer::score()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="evaluation.html#_CPPv4N5Brush4Eval6Scorer10score_hashE"><code class="docutils literal notranslate"><span class="pre">Scorer::score_hash</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="evaluation.html#_CPPv4N5Brush4Eval6Scorer6scorerE"><code class="docutils literal notranslate"><span class="pre">Scorer::scorer</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="population.html">Population</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="population.html#_CPPv4I_11ProgramTypeEN5Brush3Pop10PopulationE"><code class="docutils literal notranslate"><span class="pre">Population</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="population.html#_CPPv4N5Brush3Pop10Population10PopulationEv"><code class="docutils literal notranslate"><span class="pre">Population::Population()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="population.html#_CPPv4N5Brush3Pop10PopulationD0Ev"><code class="docutils literal notranslate"><span class="pre">Population::~Population()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="population.html#_CPPv4N5Brush3Pop10Population4initER11SearchSpaceRK10Parameters"><code class="docutils literal notranslate"><span class="pre">Population::init()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="population.html#_CPPv4N5Brush3Pop10Population4initER6vectorI10IndividualI1TEERK10Parameters"><code class="docutils literal notranslate"><span class="pre">Population::init()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="population.html#_CPPv4N5Brush3Pop10Population4saveE6string"><code class="docutils literal notranslate"><span class="pre">Population::save()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="population.html#_CPPv4N5Brush3Pop10Population4loadE6string"><code class="docutils literal notranslate"><span class="pre">Population::load()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="population.html#_CPPv4N5Brush3Pop10Population4sizeEv"><code class="docutils literal notranslate"><span class="pre">Population::size()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="population.html#_CPPv4N5Brush3Pop10Population18get_island_indexesEi"><code class="docutils literal notranslate"><span class="pre">Population::get_island_indexes()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="population.html#_CPPv4N5Brush3Pop10Population21add_offspring_indexesEi"><code class="docutils literal notranslate"><span class="pre">Population::add_offspring_indexes()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="population.html#_CPPv4N5Brush3Pop10Population6updateE6vectorI6vectorI6size_tEE"><code class="docutils literal notranslate"><span class="pre">Population::update()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="population.html#_CPPv4NK5Brush3Pop10PopulationixE6size_t"><code class="docutils literal notranslate"><span class="pre">Population::operator[]()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="population.html#_CPPv4N5Brush3Pop10PopulationixE6size_t"><code class="docutils literal notranslate"><span class="pre">Population::operator[]()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="population.html#_CPPv4N5Brush3Pop10Population12print_modelsE6string"><code class="docutils literal notranslate"><span class="pre">Population::print_models()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="population.html#_CPPv4N5Brush3Pop10Population12sorted_frontEj"><code class="docutils literal notranslate"><span class="pre">Population::sorted_front()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="population.html#_CPPv4N5Brush3Pop10Population12hall_of_fameEj"><code class="docutils literal notranslate"><span class="pre">Population::hall_of_fame()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="population.html#_CPPv4N5Brush3Pop10Population7migrateEv"><code class="docutils literal notranslate"><span class="pre">Population::migrate()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="population.html#_CPPv4N5Brush3Pop10Population8pop_sizeE"><code class="docutils literal notranslate"><span class="pre">Population::pop_size</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="population.html#_CPPv4N5Brush3Pop10Population11num_islandsE"><code class="docutils literal notranslate"><span class="pre">Population::num_islands</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="population.html#_CPPv4N5Brush3Pop10Population8mig_probE"><code class="docutils literal notranslate"><span class="pre">Population::mig_prob</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="population.html#_CPPv4N5Brush3Pop10Population11individualsE"><code class="docutils literal notranslate"><span class="pre">Population::individuals</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="population.html#_CPPv4N5Brush3Pop10Population14island_indexesE"><code class="docutils literal notranslate"><span class="pre">Population::island_indexes</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="population.html#_CPPv4N5Brush3Pop10Population17SameFitComplexityE"><code class="docutils literal notranslate"><span class="pre">Population::SameFitComplexity</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="population.html#_CPPv4N5Brush3Pop10Population17SameFitComplexity17SameFitComplexityER10PopulationI1TE"><code class="docutils literal notranslate"><span class="pre">Population::SameFitComplexity::SameFitComplexity()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="population.html#_CPPv4N5Brush3Pop10Population17SameFitComplexityclE6size_t6size_t"><code class="docutils literal notranslate"><span class="pre">Population::SameFitComplexity::operator()()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="population.html#_CPPv4N5Brush3Pop10Population17SameFitComplexity3popE"><code class="docutils literal notranslate"><span class="pre">Population::SameFitComplexity::pop</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="population.html#_CPPv4N5Brush3Pop10Population14SortComplexityE"><code class="docutils literal notranslate"><span class="pre">Population::SortComplexity</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="population.html#_CPPv4N5Brush3Pop10Population14SortComplexity14SortComplexityER10Population"><code class="docutils literal notranslate"><span class="pre">Population::SortComplexity::SortComplexity()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="population.html#_CPPv4N5Brush3Pop10Population14SortComplexityclE6size_t6size_t"><code class="docutils literal notranslate"><span class="pre">Population::SortComplexity::operator()()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="population.html#_CPPv4N5Brush3Pop10Population14SortComplexity3popE"><code class="docutils literal notranslate"><span class="pre">Population::SortComplexity::pop</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
 <li class="toctree-l1"><a class="reference internal" href="variation.html">Variation (Crossover/Mutation)</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="variation.html#_CPPv49variation"><code class="docutils literal notranslate"><span class="pre">variation</span></code></a><ul>
-<li class="toctree-l3"><a class="reference internal" href="variation.html#_CPPv4N9variation4IterE"><code class="docutils literal notranslate"><span class="pre">variation::Iter</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="variation.html#_CPPv4N9variation14point_mutationER4treeI4NodeE4IterRK11SearchSpace"><code class="docutils literal notranslate"><span class="pre">variation::point_mutation()</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="variation.html#_CPPv4N9variation15insert_mutationER4treeI4NodeE4IterRK11SearchSpace"><code class="docutils literal notranslate"><span class="pre">variation::insert_mutation()</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="variation.html#_CPPv4N9variation15delete_mutationER4treeI4NodeE4IterRK11SearchSpace"><code class="docutils literal notranslate"><span class="pre">variation::delete_mutation()</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="variation.html#_CPPv4N9variation25toggle_weight_on_mutationER4treeI4NodeE4IterRK11SearchSpace"><code class="docutils literal notranslate"><span class="pre">variation::toggle_weight_on_mutation()</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="variation.html#_CPPv4N9variation26toggle_weight_off_mutationER4treeI4NodeE4IterRK11SearchSpace"><code class="docutils literal notranslate"><span class="pre">variation::toggle_weight_off_mutation()</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="variation.html#_CPPv4N9variation16subtree_mutationER4treeI4NodeE4IterRK11SearchSpace"><code class="docutils literal notranslate"><span class="pre">variation::subtree_mutation()</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="variation.html#_CPPv4I_11ProgramTypeEN9variation6mutateENSt8optionalI7ProgramI1TEEERK7ProgramI1TERK11SearchSpace"><code class="docutils literal notranslate"><span class="pre">variation::mutate()</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="variation.html#_CPPv4I_11ProgramTypeEN9variation5crossENSt8optionalI7ProgramI1TEEERK7ProgramI1TERK7ProgramI1TE"><code class="docutils literal notranslate"><span class="pre">variation::cross()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="variation.html#_CPPv4N5Brush3Var12MutationBaseE"><code class="docutils literal notranslate"><span class="pre">MutationBase</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="variation.html#_CPPv4N5Brush3Var12MutationBase4IterE"><code class="docutils literal notranslate"><span class="pre">MutationBase::Iter</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="variation.html#_CPPv4N5Brush3Var12MutationBase10find_spotsER4treeI4NodeERK11SearchSpaceRK10Parameters"><code class="docutils literal notranslate"><span class="pre">MutationBase::find_spots()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="variation.html#_CPPv4N5Brush3Var12MutationBase6mutateER4treeI4NodeE4IterRK11SearchSpaceRK10Parameters"><code class="docutils literal notranslate"><span class="pre">MutationBase::mutate()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="variation.html#_CPPv4I_11ProgramTypeEN5Brush3Var9VariationE"><code class="docutils literal notranslate"><span class="pre">Variation</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="variation.html#_CPPv4N5Brush3Var9Variation9VariationEv"><code class="docutils literal notranslate"><span class="pre">Variation::Variation()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="variation.html#_CPPv4N5Brush3Var9Variation9VariationER10ParametersR11SearchSpace"><code class="docutils literal notranslate"><span class="pre">Variation::Variation()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="variation.html#_CPPv4N5Brush3Var9VariationD0Ev"><code class="docutils literal notranslate"><span class="pre">Variation::~Variation()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="variation.html#_CPPv4N5Brush3Var9Variation4initER10ParametersR11SearchSpace"><code class="docutils literal notranslate"><span class="pre">Variation::init()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="variation.html#_CPPv4N5Brush3Var9Variation5crossERK10IndividualI1TERK10IndividualI1TE"><code class="docutils literal notranslate"><span class="pre">Variation::cross()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="variation.html#_CPPv4N5Brush3Var9Variation6mutateERK10IndividualI1TE"><code class="docutils literal notranslate"><span class="pre">Variation::mutate()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="variation.html#_CPPv4N5Brush3Var9Variation4varyER10PopulationI1TEiRK6vectorI6size_tE"><code class="docutils literal notranslate"><span class="pre">Variation::vary()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="selection.html">Selection</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="selection.html#_CPPv4I_11ProgramTypeEN5Brush3Sel9SelectionE"><code class="docutils literal notranslate"><span class="pre">Selection</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="selection.html#_CPPv4N5Brush3Sel9Selection9SelectionEv"><code class="docutils literal notranslate"><span class="pre">Selection::Selection()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="selection.html#_CPPv4N5Brush3Sel9SelectionD0Ev"><code class="docutils literal notranslate"><span class="pre">Selection::~Selection()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="selection.html#_CPPv4N5Brush3Sel9Selection9SelectionE6stringb"><code class="docutils literal notranslate"><span class="pre">Selection::Selection()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="selection.html#_CPPv4N5Brush3Sel9Selection12set_operatorEv"><code class="docutils literal notranslate"><span class="pre">Selection::set_operator()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="selection.html#_CPPv4N5Brush3Sel9Selection8get_typeEv"><code class="docutils literal notranslate"><span class="pre">Selection::get_type()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="selection.html#_CPPv4N5Brush3Sel9Selection8set_typeE6string"><code class="docutils literal notranslate"><span class="pre">Selection::set_type()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="selection.html#_CPPv4N5Brush3Sel9Selection6selectER10PopulationI1TEiRK10Parameters"><code class="docutils literal notranslate"><span class="pre">Selection::select()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="selection.html#_CPPv4N5Brush3Sel9Selection7surviveER10PopulationI1TEiRK10Parameters"><code class="docutils literal notranslate"><span class="pre">Selection::survive()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="selection.html#_CPPv4N5Brush3Sel9Selection9pselectorE"><code class="docutils literal notranslate"><span class="pre">Selection::pselector</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="selection.html#_CPPv4N5Brush3Sel9Selection4typeE"><code class="docutils literal notranslate"><span class="pre">Selection::type</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="selection.html#_CPPv4N5Brush3Sel9Selection8survivalE"><code class="docutils literal notranslate"><span class="pre">Selection::survival</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="selection.html#_CPPv4I_11ProgramTypeEN5Brush3Sel17SelectionOperatorE"><code class="docutils literal notranslate"><span class="pre">SelectionOperator</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="selection.html#_CPPv4N5Brush3Sel17SelectionOperatorD0Ev"><code class="docutils literal notranslate"><span class="pre">SelectionOperator::~SelectionOperator()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="selection.html#_CPPv4N5Brush3Sel17SelectionOperator6selectER10PopulationI1TEiRK10Parameters"><code class="docutils literal notranslate"><span class="pre">SelectionOperator::select()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="selection.html#_CPPv4N5Brush3Sel17SelectionOperator7surviveER10PopulationI1TEiRK10Parameters"><code class="docutils literal notranslate"><span class="pre">SelectionOperator::survive()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="selection.html#_CPPv4N5Brush3Sel17SelectionOperator8survivalE"><code class="docutils literal notranslate"><span class="pre">SelectionOperator::survival</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="selection.html#_CPPv4N5Brush3Sel17SelectionOperator4nameE"><code class="docutils literal notranslate"><span class="pre">SelectionOperator::name</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="selection.html#_CPPv4I_11ProgramTypeEN5Brush3Sel5NSGA2E"><code class="docutils literal notranslate"><span class="pre">NSGA2</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="selection.html#_CPPv4N5Brush3Sel5NSGA25NSGA2Eb"><code class="docutils literal notranslate"><span class="pre">NSGA2::NSGA2()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="selection.html#_CPPv4N5Brush3Sel5NSGA2D0Ev"><code class="docutils literal notranslate"><span class="pre">NSGA2::~NSGA2()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="selection.html#_CPPv4N5Brush3Sel5NSGA26selectER10PopulationI1TEiRK10Parameters"><code class="docutils literal notranslate"><span class="pre">NSGA2::select()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="selection.html#_CPPv4N5Brush3Sel5NSGA27surviveER10PopulationI1TEiRK10Parameters"><code class="docutils literal notranslate"><span class="pre">NSGA2::survive()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="selection.html#_CPPv4N5Brush3Sel5NSGA28fast_ndsER10PopulationI1TER6vectorI6size_tE"><code class="docutils literal notranslate"><span class="pre">NSGA2::fast_nds()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="selection.html#_CPPv4N5Brush3Sel5NSGA217crowding_distanceER10PopulationI1TER6vectorI6vectorIiEEi"><code class="docutils literal notranslate"><span class="pre">NSGA2::crowding_distance()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="selection.html#_CPPv4I_11ProgramTypeEN5Brush3Sel8LexicaseE"><code class="docutils literal notranslate"><span class="pre">Lexicase</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="selection.html#_CPPv4N5Brush3Sel8Lexicase8LexicaseEb"><code class="docutils literal notranslate"><span class="pre">Lexicase::Lexicase()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="selection.html#_CPPv4N5Brush3Sel8LexicaseD0Ev"><code class="docutils literal notranslate"><span class="pre">Lexicase::~Lexicase()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="selection.html#_CPPv4N5Brush3Sel8Lexicase6selectER10PopulationI1TEiRK10Parameters"><code class="docutils literal notranslate"><span class="pre">Lexicase::select()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="selection.html#_CPPv4N5Brush3Sel8Lexicase7surviveER10PopulationI1TEiRK10Parameters"><code class="docutils literal notranslate"><span class="pre">Lexicase::survive()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="archive.html">Archive</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="archive.html#_CPPv4I_11ProgramTypeEN5Brush3Pop7ArchiveE"><code class="docutils literal notranslate"><span class="pre">Archive</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="archive.html#_CPPv4N5Brush3Pop7Archive7ArchiveEv"><code class="docutils literal notranslate"><span class="pre">Archive::Archive()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="archive.html#_CPPv4N5Brush3Pop7Archive4initER10PopulationI1TE"><code class="docutils literal notranslate"><span class="pre">Archive::init()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="archive.html#_CPPv4N5Brush3Pop7Archive6updateER10PopulationI1TERK10Parameters"><code class="docutils literal notranslate"><span class="pre">Archive::update()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="archive.html#_CPPv4N5Brush3Pop7Archive14set_objectivesE6vectorI6stringE"><code class="docutils literal notranslate"><span class="pre">Archive::set_objectives()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="archive.html#_CPPv4N5Brush3Pop7Archive11individualsE"><code class="docutils literal notranslate"><span class="pre">Archive::individuals</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="archive.html#_CPPv4N5Brush3Pop7Archive15sort_complexityE"><code class="docutils literal notranslate"><span class="pre">Archive::sort_complexity</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="archive.html#_CPPv4N5Brush3Pop7Archive8selectorE"><code class="docutils literal notranslate"><span class="pre">Archive::selector</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="archive.html#_CPPv4N5Brush3Pop7Archive14sortComplexityERK10IndividualI1TERK10IndividualI1TE"><code class="docutils literal notranslate"><span class="pre">Archive::sortComplexity()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="archive.html#_CPPv4N5Brush3Pop7Archive8sortObj1ERK10IndividualI1TERK10IndividualI1TE"><code class="docutils literal notranslate"><span class="pre">Archive::sortObj1()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="archive.html#_CPPv4N5Brush3Pop7Archive17sameFitComplexityERK10IndividualI1TERK10IndividualI1TE"><code class="docutils literal notranslate"><span class="pre">Archive::sameFitComplexity()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="archive.html#_CPPv4N5Brush3Pop7Archive14sameObjectivesERK10IndividualI1TERK10IndividualI1TE"><code class="docutils literal notranslate"><span class="pre">Archive::sameObjectives()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="engine.html">Engine (and parameters)</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="engine.html#_CPPv4N5Brush10ParametersE"><code class="docutils literal notranslate"><span class="pre">Parameters</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="engine.html#_CPPv4N5Brush10Parameters10ParametersEv"><code class="docutils literal notranslate"><span class="pre">Parameters::Parameters()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="engine.html#_CPPv4N5Brush10ParametersD0Ev"><code class="docutils literal notranslate"><span class="pre">Parameters::~Parameters()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="engine.html#_CPPv4N5Brush10Parameters13set_verbosityEi"><code class="docutils literal notranslate"><span class="pre">Parameters::set_verbosity()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="engine.html#_CPPv4N5Brush10Parameters13get_verbosityEv"><code class="docutils literal notranslate"><span class="pre">Parameters::get_verbosity()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="engine.html#_CPPv4N5Brush10Parameters16set_random_stateEi"><code class="docutils literal notranslate"><span class="pre">Parameters::set_random_state()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="engine.html#_CPPv4N5Brush10Parameters16get_random_stateEv"><code class="docutils literal notranslate"><span class="pre">Parameters::get_random_state()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="engine.html#_CPPv4N5Brush10Parameters12set_pop_sizeEi"><code class="docutils literal notranslate"><span class="pre">Parameters::set_pop_size()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="engine.html#_CPPv4N5Brush10Parameters12get_pop_sizeEv"><code class="docutils literal notranslate"><span class="pre">Parameters::get_pop_size()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="engine.html#_CPPv4N5Brush10Parameters12set_max_gensEi"><code class="docutils literal notranslate"><span class="pre">Parameters::set_max_gens()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="engine.html#_CPPv4N5Brush10Parameters12get_max_gensEv"><code class="docutils literal notranslate"><span class="pre">Parameters::get_max_gens()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="engine.html#_CPPv4N5Brush10Parameters13set_max_stallEi"><code class="docutils literal notranslate"><span class="pre">Parameters::set_max_stall()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="engine.html#_CPPv4N5Brush10Parameters13get_max_stallEv"><code class="docutils literal notranslate"><span class="pre">Parameters::get_max_stall()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="engine.html#_CPPv4N5Brush10Parameters12set_max_timeEi"><code class="docutils literal notranslate"><span class="pre">Parameters::set_max_time()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="engine.html#_CPPv4N5Brush10Parameters12get_max_timeEv"><code class="docutils literal notranslate"><span class="pre">Parameters::get_max_time()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="engine.html#_CPPv4N5Brush10Parameters11set_scorer_E6string"><code class="docutils literal notranslate"><span class="pre">Parameters::set_scorer_()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="engine.html#_CPPv4N5Brush10Parameters11get_scorer_Ev"><code class="docutils literal notranslate"><span class="pre">Parameters::get_scorer_()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="engine.html#_CPPv4N5Brush10Parameters19set_load_populationE6string"><code class="docutils literal notranslate"><span class="pre">Parameters::set_load_population()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="engine.html#_CPPv4N5Brush10Parameters19get_load_populationEv"><code class="docutils literal notranslate"><span class="pre">Parameters::get_load_population()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="engine.html#_CPPv4N5Brush10Parameters19set_save_populationE6string"><code class="docutils literal notranslate"><span class="pre">Parameters::set_save_population()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="engine.html#_CPPv4N5Brush10Parameters19get_save_populationEv"><code class="docutils literal notranslate"><span class="pre">Parameters::get_save_population()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="engine.html#_CPPv4N5Brush10Parameters11get_logfileEv"><code class="docutils literal notranslate"><span class="pre">Parameters::get_logfile()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="engine.html#_CPPv4N5Brush10Parameters11set_logfileE6string"><code class="docutils literal notranslate"><span class="pre">Parameters::set_logfile()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="engine.html#_CPPv4N5Brush10Parameters15set_current_genEj"><code class="docutils literal notranslate"><span class="pre">Parameters::set_current_gen()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="engine.html#_CPPv4N5Brush10Parameters15get_current_genEv"><code class="docutils literal notranslate"><span class="pre">Parameters::get_current_gen()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="engine.html#_CPPv4N5Brush10Parameters15set_num_islandsEi"><code class="docutils literal notranslate"><span class="pre">Parameters::set_num_islands()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="engine.html#_CPPv4N5Brush10Parameters15get_num_islandsEv"><code class="docutils literal notranslate"><span class="pre">Parameters::get_num_islands()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="engine.html#_CPPv4N5Brush10Parameters13set_max_depthEj"><code class="docutils literal notranslate"><span class="pre">Parameters::set_max_depth()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="engine.html#_CPPv4NK5Brush10Parameters13get_max_depthEv"><code class="docutils literal notranslate"><span class="pre">Parameters::get_max_depth()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="engine.html#_CPPv4N5Brush10Parameters10set_n_jobsEi"><code class="docutils literal notranslate"><span class="pre">Parameters::set_n_jobs()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="engine.html#_CPPv4N5Brush10Parameters10get_n_jobsEv"><code class="docutils literal notranslate"><span class="pre">Parameters::get_n_jobs()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="engine.html#_CPPv4N5Brush10Parameters12set_max_sizeEj"><code class="docutils literal notranslate"><span class="pre">Parameters::set_max_size()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="engine.html#_CPPv4NK5Brush10Parameters12get_max_sizeEv"><code class="docutils literal notranslate"><span class="pre">Parameters::get_max_size()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="engine.html#_CPPv4N5Brush10Parameters14set_objectivesE6vectorI6stringE"><code class="docutils literal notranslate"><span class="pre">Parameters::set_objectives()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="engine.html#_CPPv4N5Brush10Parameters14get_objectivesEv"><code class="docutils literal notranslate"><span class="pre">Parameters::get_objectives()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="engine.html#_CPPv4N5Brush10Parameters7set_selE6string"><code class="docutils literal notranslate"><span class="pre">Parameters::set_sel()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="engine.html#_CPPv4N5Brush10Parameters7get_selEv"><code class="docutils literal notranslate"><span class="pre">Parameters::get_sel()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="engine.html#_CPPv4N5Brush10Parameters8set_survE6string"><code class="docutils literal notranslate"><span class="pre">Parameters::set_surv()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="engine.html#_CPPv4N5Brush10Parameters8get_survEv"><code class="docutils literal notranslate"><span class="pre">Parameters::get_surv()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="engine.html#_CPPv4N5Brush10Parameters11set_cx_probEf"><code class="docutils literal notranslate"><span class="pre">Parameters::set_cx_prob()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="engine.html#_CPPv4N5Brush10Parameters11get_cx_probEv"><code class="docutils literal notranslate"><span class="pre">Parameters::get_cx_prob()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="engine.html#_CPPv4N5Brush10Parameters12set_mig_probEf"><code class="docutils literal notranslate"><span class="pre">Parameters::set_mig_prob()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="engine.html#_CPPv4N5Brush10Parameters12get_mig_probEv"><code class="docutils literal notranslate"><span class="pre">Parameters::get_mig_prob()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="engine.html#_CPPv4N5Brush10Parameters12set_use_archEb"><code class="docutils literal notranslate"><span class="pre">Parameters::set_use_arch()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="engine.html#_CPPv4N5Brush10Parameters12get_use_archEv"><code class="docutils literal notranslate"><span class="pre">Parameters::get_use_arch()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="engine.html#_CPPv4N5Brush10Parameters17set_val_from_archEb"><code class="docutils literal notranslate"><span class="pre">Parameters::set_val_from_arch()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="engine.html#_CPPv4N5Brush10Parameters17get_val_from_archEv"><code class="docutils literal notranslate"><span class="pre">Parameters::get_val_from_arch()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="engine.html#_CPPv4N5Brush10Parameters18set_classificationEb"><code class="docutils literal notranslate"><span class="pre">Parameters::set_classification()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="engine.html#_CPPv4N5Brush10Parameters18get_classificationEv"><code class="docutils literal notranslate"><span class="pre">Parameters::get_classification()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="engine.html#_CPPv4N5Brush10Parameters17set_shuffle_splitEb"><code class="docutils literal notranslate"><span class="pre">Parameters::set_shuffle_split()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="engine.html#_CPPv4N5Brush10Parameters17get_shuffle_splitEv"><code class="docutils literal notranslate"><span class="pre">Parameters::get_shuffle_split()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="engine.html#_CPPv4N5Brush10Parameters13set_n_classesEj"><code class="docutils literal notranslate"><span class="pre">Parameters::set_n_classes()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="engine.html#_CPPv4N5Brush10Parameters13get_n_classesEv"><code class="docutils literal notranslate"><span class="pre">Parameters::get_n_classes()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="engine.html#_CPPv4N5Brush10Parameters19set_validation_sizeEf"><code class="docutils literal notranslate"><span class="pre">Parameters::set_validation_size()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="engine.html#_CPPv4N5Brush10Parameters19get_validation_sizeEv"><code class="docutils literal notranslate"><span class="pre">Parameters::get_validation_size()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="engine.html#_CPPv4N5Brush10Parameters17set_feature_namesE6vectorI6stringE"><code class="docutils literal notranslate"><span class="pre">Parameters::set_feature_names()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="engine.html#_CPPv4N5Brush10Parameters17get_feature_namesEv"><code class="docutils literal notranslate"><span class="pre">Parameters::get_feature_names()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="engine.html#_CPPv4N5Brush10Parameters14set_batch_sizeEf"><code class="docutils literal notranslate"><span class="pre">Parameters::set_batch_size()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="engine.html#_CPPv4N5Brush10Parameters14get_batch_sizeEv"><code class="docutils literal notranslate"><span class="pre">Parameters::get_batch_size()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="engine.html#_CPPv4N5Brush10Parameters18set_mutation_probsENSt3mapINSt6stringEfEE"><code class="docutils literal notranslate"><span class="pre">Parameters::set_mutation_probs()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="engine.html#_CPPv4N5Brush10Parameters18get_mutation_probsEv"><code class="docutils literal notranslate"><span class="pre">Parameters::get_mutation_probs()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="engine.html#_CPPv4N5Brush10Parameters13set_functionsENSt13unordered_mapINSt6stringEfEE"><code class="docutils literal notranslate"><span class="pre">Parameters::set_functions()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="engine.html#_CPPv4N5Brush10Parameters13get_functionsEv"><code class="docutils literal notranslate"><span class="pre">Parameters::get_functions()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="engine.html#_CPPv4N5Brush10Parameters12random_stateE"><code class="docutils literal notranslate"><span class="pre">Parameters::random_state</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="engine.html#_CPPv4N5Brush10Parameters9verbosityE"><code class="docutils literal notranslate"><span class="pre">Parameters::verbosity</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="engine.html#_CPPv4N5Brush10Parameters4modeE"><code class="docutils literal notranslate"><span class="pre">Parameters::mode</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="engine.html#_CPPv4N5Brush10Parameters11current_genE"><code class="docutils literal notranslate"><span class="pre">Parameters::current_gen</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="engine.html#_CPPv4N5Brush10Parameters8pop_sizeE"><code class="docutils literal notranslate"><span class="pre">Parameters::pop_size</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="engine.html#_CPPv4N5Brush10Parameters8max_gensE"><code class="docutils literal notranslate"><span class="pre">Parameters::max_gens</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="engine.html#_CPPv4N5Brush10Parameters9max_stallE"><code class="docutils literal notranslate"><span class="pre">Parameters::max_stall</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="engine.html#_CPPv4N5Brush10Parameters8max_timeE"><code class="docutils literal notranslate"><span class="pre">Parameters::max_time</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="engine.html#_CPPv4N5Brush10Parameters9max_depthE"><code class="docutils literal notranslate"><span class="pre">Parameters::max_depth</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="engine.html#_CPPv4N5Brush10Parameters8max_sizeE"><code class="docutils literal notranslate"><span class="pre">Parameters::max_size</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="engine.html#_CPPv4N5Brush10Parameters10objectivesE"><code class="docutils literal notranslate"><span class="pre">Parameters::objectives</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="engine.html#_CPPv4N5Brush10Parameters3selE"><code class="docutils literal notranslate"><span class="pre">Parameters::sel</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="engine.html#_CPPv4N5Brush10Parameters4survE"><code class="docutils literal notranslate"><span class="pre">Parameters::surv</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="engine.html#_CPPv4N5Brush10Parameters9functionsE"><code class="docutils literal notranslate"><span class="pre">Parameters::functions</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="engine.html#_CPPv4N5Brush10Parameters11num_islandsE"><code class="docutils literal notranslate"><span class="pre">Parameters::num_islands</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="engine.html#_CPPv4N5Brush10Parameters8use_archE"><code class="docutils literal notranslate"><span class="pre">Parameters::use_arch</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="engine.html#_CPPv4N5Brush10Parameters13val_from_archE"><code class="docutils literal notranslate"><span class="pre">Parameters::val_from_arch</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="engine.html#_CPPv4N5Brush10Parameters14mutation_probsE"><code class="docutils literal notranslate"><span class="pre">Parameters::mutation_probs</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="engine.html#_CPPv4N5Brush10Parameters7cx_probE"><code class="docutils literal notranslate"><span class="pre">Parameters::cx_prob</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="engine.html#_CPPv4N5Brush10Parameters8mig_probE"><code class="docutils literal notranslate"><span class="pre">Parameters::mig_prob</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="engine.html#_CPPv4N5Brush10Parameters7scorer_E"><code class="docutils literal notranslate"><span class="pre">Parameters::scorer_</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="engine.html#_CPPv4N5Brush10Parameters7classesE"><code class="docutils literal notranslate"><span class="pre">Parameters::classes</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="engine.html#_CPPv4N5Brush10Parameters13class_weightsE"><code class="docutils literal notranslate"><span class="pre">Parameters::class_weights</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="engine.html#_CPPv4N5Brush10Parameters14sample_weightsE"><code class="docutils literal notranslate"><span class="pre">Parameters::sample_weights</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="engine.html#_CPPv4N5Brush10Parameters14classificationE"><code class="docutils literal notranslate"><span class="pre">Parameters::classification</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="engine.html#_CPPv4N5Brush10Parameters9n_classesE"><code class="docutils literal notranslate"><span class="pre">Parameters::n_classes</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="engine.html#_CPPv4N5Brush10Parameters13shuffle_splitE"><code class="docutils literal notranslate"><span class="pre">Parameters::shuffle_split</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="engine.html#_CPPv4N5Brush10Parameters15validation_sizeE"><code class="docutils literal notranslate"><span class="pre">Parameters::validation_size</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="engine.html#_CPPv4N5Brush10Parameters13feature_namesE"><code class="docutils literal notranslate"><span class="pre">Parameters::feature_names</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="engine.html#_CPPv4N5Brush10Parameters10batch_sizeE"><code class="docutils literal notranslate"><span class="pre">Parameters::batch_size</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="engine.html#_CPPv4N5Brush10Parameters15load_populationE"><code class="docutils literal notranslate"><span class="pre">Parameters::load_population</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="engine.html#_CPPv4N5Brush10Parameters15save_populationE"><code class="docutils literal notranslate"><span class="pre">Parameters::save_population</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="engine.html#_CPPv4N5Brush10Parameters7logfileE"><code class="docutils literal notranslate"><span class="pre">Parameters::logfile</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="engine.html#_CPPv4N5Brush10Parameters6n_jobsE"><code class="docutils literal notranslate"><span class="pre">Parameters::n_jobs</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="engine.html#_CPPv4I_11ProgramTypeEN5Brush6EngineE"><code class="docutils literal notranslate"><span class="pre">Engine</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="engine.html#_CPPv4N5Brush6Engine6EngineERK10Parameters"><code class="docutils literal notranslate"><span class="pre">Engine::Engine()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="engine.html#_CPPv4N5Brush6EngineD0Ev"><code class="docutils literal notranslate"><span class="pre">Engine::~Engine()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="engine.html#_CPPv4N5Brush6Engine14print_progressEf"><code class="docutils literal notranslate"><span class="pre">Engine::print_progress()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="engine.html#_CPPv4N5Brush6Engine15calculate_statsEv"><code class="docutils literal notranslate"><span class="pre">Engine::calculate_stats()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="engine.html#_CPPv4N5Brush6Engine11print_statsERNSt8ofstreamEf"><code class="docutils literal notranslate"><span class="pre">Engine::print_stats()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="engine.html#_CPPv4N5Brush6Engine9log_statsERNSt8ofstreamE"><code class="docutils literal notranslate"><span class="pre">Engine::log_stats()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="engine.html#_CPPv4N5Brush6Engine10get_paramsEv"><code class="docutils literal notranslate"><span class="pre">Engine::get_params()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="engine.html#_CPPv4N5Brush6Engine10set_paramsER10Parameters"><code class="docutils literal notranslate"><span class="pre">Engine::set_params()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="engine.html#_CPPv4N5Brush6Engine13get_is_fittedEv"><code class="docutils literal notranslate"><span class="pre">Engine::get_is_fitted()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="engine.html#_CPPv4N5Brush6Engine11update_bestERK7Datasetb"><code class="docutils literal notranslate"><span class="pre">Engine::update_best()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="engine.html#_CPPv4N5Brush6Engine12get_best_indEv"><code class="docutils literal notranslate"><span class="pre">Engine::get_best_ind()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="engine.html#_CPPv4N5Brush6Engine3fitER7Dataset"><code class="docutils literal notranslate"><span class="pre">Engine::fit()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="engine.html#_CPPv4N5Brush6Engine3fitERK3RefIK8ArrayXXfERK3RefIK7ArrayXfE"><code class="docutils literal notranslate"><span class="pre">Engine::fit()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="engine.html#_CPPv4N5Brush6Engine7predictERK7Dataset"><code class="docutils literal notranslate"><span class="pre">Engine::predict()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="engine.html#_CPPv4N5Brush6Engine7predictERK3RefIK8ArrayXXfE"><code class="docutils literal notranslate"><span class="pre">Engine::predict()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="engine.html#_CPPv4I_11ProgramTypeEN5Brush6Engine13predict_probaEDaRK7Dataset"><code class="docutils literal notranslate"><span class="pre">Engine::predict_proba()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="engine.html#_CPPv4I_11ProgramTypeEN5Brush6Engine13predict_probaEDaRK3RefIK8ArrayXXfE"><code class="docutils literal notranslate"><span class="pre">Engine::predict_proba()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="engine.html#_CPPv4N5Brush6Engine16get_archive_sizeEv"><code class="docutils literal notranslate"><span class="pre">Engine::get_archive_size()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="engine.html#_CPPv4N5Brush6Engine11get_archiveEb"><code class="docutils literal notranslate"><span class="pre">Engine::get_archive()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="engine.html#_CPPv4N5Brush6Engine15predict_archiveEiRK7Dataset"><code class="docutils literal notranslate"><span class="pre">Engine::predict_archive()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="engine.html#_CPPv4N5Brush6Engine15predict_archiveEiRK3RefIK8ArrayXXfE"><code class="docutils literal notranslate"><span class="pre">Engine::predict_archive()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="engine.html#_CPPv4I_11ProgramTypeEN5Brush6Engine21predict_proba_archiveEDaiRK7Dataset"><code class="docutils literal notranslate"><span class="pre">Engine::predict_proba_archive()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="engine.html#_CPPv4I_11ProgramTypeEN5Brush6Engine21predict_proba_archiveEDaiRK3RefIK8ArrayXXfE"><code class="docutils literal notranslate"><span class="pre">Engine::predict_proba_archive()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="engine.html#_CPPv4N5Brush6Engine3runER7Dataset"><code class="docutils literal notranslate"><span class="pre">Engine::run()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="engine.html#_CPPv4N5Brush6Engine10best_scoreE"><code class="docutils literal notranslate"><span class="pre">Engine::best_score</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="engine.html#_CPPv4N5Brush6Engine15best_complexityE"><code class="docutils literal notranslate"><span class="pre">Engine::best_complexity</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="engine.html#_CPPv4N5Brush6Engine6paramsE"><code class="docutils literal notranslate"><span class="pre">Engine::params</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="engine.html#_CPPv4N5Brush6Engine8best_indE"><code class="docutils literal notranslate"><span class="pre">Engine::best_ind</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="engine.html#_CPPv4N5Brush6Engine7archiveE"><code class="docutils literal notranslate"><span class="pre">Engine::archive</span></code></a></li>
 </ul>
 </li>
 </ul>
@@ -662,16 +1028,16 @@ document.write(`
               
               
               
-                <footer class="prev-next-footer">
+                <footer class="prev-next-footer d-print-none">
                   
 <div class="prev-next-area">
     <a class="left-prev"
-       href="../python_api/classifier.html"
+       href="../python_api/python_api.html"
        title="previous page">
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
         <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title">BrushClassifier</p>
+        <p class="prev-next-title">Python API</p>
       </div>
     </a>
     <a class="right-next"
@@ -689,8 +1055,6 @@ document.write(`
             </div>
             
             
-              
-                <div class="bd-sidebar-secondary bd-toc"></div>
               
             
           </div>
@@ -735,8 +1099,8 @@ By William La Cava and Joseph D. Romano
   </div>
   
   <!-- Scripts loaded after <body> so the DOM is not blocked -->
-  <script src="../_static/scripts/bootstrap.js?digest=8d27b9dea8ad943066ae"></script>
-<script src="../_static/scripts/pydata-sphinx-theme.js?digest=8d27b9dea8ad943066ae"></script>
+  <script src="../_static/scripts/bootstrap.js?digest=3ee479438cf8b5e0d341"></script>
+<script src="../_static/scripts/pydata-sphinx-theme.js?digest=3ee479438cf8b5e0d341"></script>
 
   <footer class="bd-footer">
   </footer>

@@ -14,19 +14,19 @@
   
   <script data-cfasync="false">
     document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
-    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
   </script>
   
   <!-- Loaded before other Sphinx assets -->
-  <link href="../_static/styles/theme.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
-<link href="../_static/styles/bootstrap.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
-<link href="../_static/styles/pydata-sphinx-theme.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+  <link href="../_static/styles/theme.css?digest=3ee479438cf8b5e0d341" rel="stylesheet" />
+<link href="../_static/styles/bootstrap.css?digest=3ee479438cf8b5e0d341" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=3ee479438cf8b5e0d341" rel="stylesheet" />
 
   
-  <link href="../_static/vendor/fontawesome/6.5.1/css/all.min.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
-  <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.1/webfonts/fa-solid-900.woff2" />
-<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.1/webfonts/fa-brands-400.woff2" />
-<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.1/webfonts/fa-regular-400.woff2" />
+  <link href="../_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=3ee479438cf8b5e0d341" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
 
     <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=a746c00c" />
     <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=384b581d" />
@@ -35,9 +35,9 @@
     <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
   
   <!-- Pre-loaded scripts that we'll load fully later -->
-  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=8d27b9dea8ad943066ae" />
-<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=8d27b9dea8ad943066ae" />
-  <script src="../_static/vendor/fontawesome/6.5.1/js/all.min.js?digest=8d27b9dea8ad943066ae"></script>
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=3ee479438cf8b5e0d341" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=3ee479438cf8b5e0d341" />
+  <script src="../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=3ee479438cf8b5e0d341"></script>
 
     <script src="../_static/documentation_options.js?v=74359811"></script>
     <script src="../_static/doctools.js?v=9a2dae69"></script>
@@ -49,7 +49,8 @@
     <link rel="icon" href="../_static/paint-brush-solid.svg"/>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="prev" title="NodeTypes" href="nodetypes.html" />
+    <link rel="next" title="Selection" href="selection.html" />
+    <link rel="prev" title="Population" href="population.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   </head>
@@ -59,27 +60,23 @@
 
   
   
-  <a id="pst-skip-link" class="skip-link" href="#main-content">Skip to main content</a>
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
   
   <div id="pst-scroll-pixel-helper"></div>
   
   <button type="button" class="btn rounded-pill" id="pst-back-to-top">
-    <i class="fa-solid fa-arrow-up"></i>
-    Back to top
-  </button>
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
 
   
   <input type="checkbox"
           class="sidebar-toggle"
-          name="__primary"
-          id="__primary"/>
-  <label class="overlay overlay-primary" for="__primary"></label>
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
   
   <input type="checkbox"
           class="sidebar-toggle"
-          name="__secondary"
-          id="__secondary"/>
-  <label class="overlay overlay-secondary" for="__secondary"></label>
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
   
   <div class="search-button__wrapper">
     <div class="search-button__overlay"></div>
@@ -101,8 +98,13 @@
   <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
 </form></div>
   </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
   
-    <header class="bd-header navbar navbar-expand-lg bd-navbar">
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
     </header>
   
 
@@ -165,35 +167,45 @@
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">User Guide</span></p>
 <ul class="nav bd-sidenav">
-<li class="toctree-l1 has-children"><a class="reference internal" href="../guide/index.html">Cookbook</a><input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-1"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../guide/index.html">Cookbook</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
 <li class="toctree-l2"><a class="reference internal" href="../guide/data.html">Working with Data</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../guide/search_space.html">The Search Space</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../guide/working_with_programs.html">Working with Programs</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../guide/json.html">JSON Interoperability</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../guide/saving_loading_populations.html">Saving and loading populations</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../guide/archive.html">The archive</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../guide/deap.html">Using Deap</a></li>
 </ul>
-</li>
+</details></li>
 <li class="toctree-l1"><a class="reference internal" href="../guide/contributing.html">Contributing</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../guide/development.html">Development</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">API</span></p>
 <ul class="current nav bd-sidenav">
-<li class="toctree-l1 has-children"><a class="reference internal" href="../python_api/index.html">Python API</a><input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-2"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../python_api/index.html">Python API</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
 <li class="toctree-l2"><a class="reference internal" href="../python_api/estimator.html">BrushEstimator</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../python_api/interface.html">EstimatorInterface</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../python_api/regressor.html">BrushRegressor</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../python_api/classifier.html">BrushClassifier</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../python_api/python_api.html">Python API</a></li>
 </ul>
-</li>
-<li class="toctree-l1 current active has-children"><a class="reference internal" href="index.html">C++ API</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-3"><i class="fa-solid fa-chevron-down"></i></label><ul class="current">
+</details></li>
+<li class="toctree-l1 current active has-children"><a class="reference internal" href="index.html">C++ API</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="current">
 <li class="toctree-l2"><a class="reference internal" href="data.html">Dataset</a></li>
 <li class="toctree-l2"><a class="reference internal" href="timeseries.html">TimeSeries</a></li>
 <li class="toctree-l2"><a class="reference internal" href="search_space.html">SearchSpace</a></li>
 <li class="toctree-l2"><a class="reference internal" href="program.html">Program</a></li>
 <li class="toctree-l2"><a class="reference internal" href="node.html">Node</a></li>
 <li class="toctree-l2"><a class="reference internal" href="nodetypes.html">NodeTypes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="individual.html">Individual and Fitness</a></li>
+<li class="toctree-l2"><a class="reference internal" href="evaluation.html">Evaluation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="population.html">Population</a></li>
 <li class="toctree-l2 current active"><a class="current reference internal" href="#">Variation (Crossover/Mutation)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="selection.html">Selection</a></li>
+<li class="toctree-l2"><a class="reference internal" href="archive.html">Archive</a></li>
+<li class="toctree-l2"><a class="reference internal" href="engine.html">Engine (and parameters)</a></li>
 </ul>
-</li>
+</details></li>
 </ul>
 
     </div>
@@ -209,7 +221,7 @@
 
       </div>
       
-      <main id="main-content" class="bd-main">
+      <main id="main-content" class="bd-main" role="main">
         
         
 
@@ -218,7 +230,7 @@
           <div class="bd-content">
             <div class="bd-article-container">
               
-              <div class="bd-header-article">
+              <div class="bd-header-article d-print-none">
 <div class="header-article-items header-article__inner">
   
     <div class="header-article-items__start">
@@ -357,16 +369,20 @@ document.write(`
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#_CPPv49variation"><code class="docutils literal notranslate"><span class="pre">variation</span></code></a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#_CPPv4N9variation4IterE"><code class="docutils literal notranslate"><span class="pre">variation::Iter</span></code></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#_CPPv4N9variation14point_mutationER4treeI4NodeE4IterRK11SearchSpace"><code class="docutils literal notranslate"><span class="pre">variation::point_mutation()</span></code></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#_CPPv4N9variation15insert_mutationER4treeI4NodeE4IterRK11SearchSpace"><code class="docutils literal notranslate"><span class="pre">variation::insert_mutation()</span></code></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#_CPPv4N9variation15delete_mutationER4treeI4NodeE4IterRK11SearchSpace"><code class="docutils literal notranslate"><span class="pre">variation::delete_mutation()</span></code></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#_CPPv4N9variation25toggle_weight_on_mutationER4treeI4NodeE4IterRK11SearchSpace"><code class="docutils literal notranslate"><span class="pre">variation::toggle_weight_on_mutation()</span></code></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#_CPPv4N9variation26toggle_weight_off_mutationER4treeI4NodeE4IterRK11SearchSpace"><code class="docutils literal notranslate"><span class="pre">variation::toggle_weight_off_mutation()</span></code></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#_CPPv4N9variation16subtree_mutationER4treeI4NodeE4IterRK11SearchSpace"><code class="docutils literal notranslate"><span class="pre">variation::subtree_mutation()</span></code></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#_CPPv4I_11ProgramTypeEN9variation6mutateENSt8optionalI7ProgramI1TEEERK7ProgramI1TERK11SearchSpace"><code class="docutils literal notranslate"><span class="pre">variation::mutate()</span></code></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#_CPPv4I_11ProgramTypeEN9variation5crossENSt8optionalI7ProgramI1TEEERK7ProgramI1TERK7ProgramI1TE"><code class="docutils literal notranslate"><span class="pre">variation::cross()</span></code></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#_CPPv4N5Brush3Var12MutationBaseE"><code class="docutils literal notranslate"><span class="pre">MutationBase</span></code></a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#_CPPv4N5Brush3Var12MutationBase4IterE"><code class="docutils literal notranslate"><span class="pre">MutationBase::Iter</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#_CPPv4N5Brush3Var12MutationBase10find_spotsER4treeI4NodeERK11SearchSpaceRK10Parameters"><code class="docutils literal notranslate"><span class="pre">MutationBase::find_spots()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#_CPPv4N5Brush3Var12MutationBase6mutateER4treeI4NodeE4IterRK11SearchSpaceRK10Parameters"><code class="docutils literal notranslate"><span class="pre">MutationBase::mutate()</span></code></a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#_CPPv4I_11ProgramTypeEN5Brush3Var9VariationE"><code class="docutils literal notranslate"><span class="pre">Variation</span></code></a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#_CPPv4N5Brush3Var9Variation9VariationEv"><code class="docutils literal notranslate"><span class="pre">Variation::Variation()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#_CPPv4N5Brush3Var9Variation9VariationER10ParametersR11SearchSpace"><code class="docutils literal notranslate"><span class="pre">Variation::Variation()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#_CPPv4N5Brush3Var9VariationD0Ev"><code class="docutils literal notranslate"><span class="pre">Variation::~Variation()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#_CPPv4N5Brush3Var9Variation4initER10ParametersR11SearchSpace"><code class="docutils literal notranslate"><span class="pre">Variation::init()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#_CPPv4N5Brush3Var9Variation5crossERK10IndividualI1TERK10IndividualI1TE"><code class="docutils literal notranslate"><span class="pre">Variation::cross()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#_CPPv4N5Brush3Var9Variation6mutateERK10IndividualI1TE"><code class="docutils literal notranslate"><span class="pre">Variation::mutate()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#_CPPv4N5Brush3Var9Variation4varyER10PopulationI1TEiRK6vectorI6size_tE"><code class="docutils literal notranslate"><span class="pre">Variation::vary()</span></code></a></li>
 </ul>
 </li>
 </ul>
@@ -382,133 +398,117 @@ document.write(`
                   
   <section id="variation-crossover-mutation">
 <h1>Variation (Crossover/Mutation)<a class="headerlink" href="#variation-crossover-mutation" title="Link to this heading">#</a></h1>
-<dl class="cpp type">
-<dt class="sig sig-object cpp" id="_CPPv49variation">
-<span id="_CPPv39variation"></span><span id="_CPPv29variation"></span><span id="variation"></span><span class="target" id="d0/d24/namespacevariation"></span><span class="k"><span class="pre">namespace</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">variation</span></span></span><a class="headerlink" href="#_CPPv49variation" title="Link to this definition">#</a><br /></dt>
-<dd><p>Namespace for variation functions like crossover and mutation. </p>
+<dl class="cpp class">
+<dt class="sig sig-object cpp" id="_CPPv4N5Brush3Var12MutationBaseE">
+<span id="_CPPv3N5Brush3Var12MutationBaseE"></span><span id="_CPPv2N5Brush3Var12MutationBaseE"></span><span id="Brush::Var::MutationBase"></span><span class="target" id="d0/dec/classBrush_1_1Var_1_1MutationBase"></span><span class="k"><span class="pre">class</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">MutationBase</span></span></span><a class="headerlink" href="#_CPPv4N5Brush3Var12MutationBaseE" title="Link to this definition">#</a><br /></dt>
+<dd><p>Subclassed by Brush::Var::DeleteMutation, Brush::Var::InsertMutation, Brush::Var::PointMutation, Brush::Var::SubtreeMutation, Brush::Var::ToggleWeightOffMutation, Brush::Var::ToggleWeightOnMutation</p>
 <div class="breathe-sectiondef docutils container">
-<p class="breathe-sectiondef-title rubric" id="breathe-section-title-typedefs">Typedefs</p>
+<p class="breathe-sectiondef-title rubric" id="breathe-section-title-public-types">Public Types</p>
 <dl class="cpp type">
-<dt class="sig sig-object cpp" id="_CPPv4N9variation4IterE">
-<span id="_CPPv3N9variation4IterE"></span><span id="_CPPv2N9variation4IterE"></span><span id="variation::Iter"></span><span class="target" id="d0/d24/namespacevariation_1ace95ad8220efc40e8d89096ce61e6e60"></span><span class="k"><span class="pre">typedef</span></span><span class="w"> </span><span class="n"><span class="pre">tree</span></span><span class="p"><span class="pre">&lt;</span></span><span class="n"><span class="pre">Node</span></span><span class="p"><span class="pre">&gt;</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">pre_order_iterator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">Iter</span></span></span><a class="headerlink" href="#_CPPv4N9variation4IterE" title="Link to this definition">#</a><br /></dt>
+<dt class="sig sig-object cpp" id="_CPPv4N5Brush3Var12MutationBase4IterE">
+<span id="_CPPv3N5Brush3Var12MutationBase4IterE"></span><span id="_CPPv2N5Brush3Var12MutationBase4IterE"></span><span class="target" id="d0/dec/classBrush_1_1Var_1_1MutationBase_1a4cacb44817dc1e054fca562d703de50c"></span><span class="k"><span class="pre">using</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">Iter</span></span></span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="n"><span class="pre">tree</span></span><span class="p"><span class="pre">&lt;</span></span><a class="reference internal" href="node.html#_CPPv4N5Brush4NodeE" title="Brush::Node"><span class="n"><span class="pre">Node</span></span></a><span class="p"><span class="pre">&gt;</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">pre_order_iterator</span></span><a class="headerlink" href="#_CPPv4N5Brush3Var12MutationBase4IterE" title="Link to this definition">#</a><br /></dt>
 <dd></dd></dl>
 
 </div>
 <div class="breathe-sectiondef docutils container">
-<p class="breathe-sectiondef-title rubric" id="breathe-section-title-functions">Functions</p>
+<p class="breathe-sectiondef-title rubric" id="breathe-section-title-public-static-functions">Public Static Functions</p>
 <dl class="cpp function">
-<dt class="sig sig-object cpp" id="_CPPv4N9variation14point_mutationER4treeI4NodeE4IterRK11SearchSpace">
-<span id="_CPPv3N9variation14point_mutationER4treeI4NodeE4IterRK11SearchSpace"></span><span id="_CPPv2N9variation14point_mutationER4treeI4NodeE4IterRK11SearchSpace"></span><span id="variation::point_mutation__tree:Node:R.Iter.SearchSpaceCR"></span><span class="target" id="d0/d24/namespacevariation_1a170515efe6144a099812fc284c2ae10b"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="kt"><span class="pre">bool</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">point_mutation</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">tree</span></span><span class="p"><span class="pre">&lt;</span></span><span class="n"><span class="pre">Node</span></span><span class="p"><span class="pre">&gt;</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">Tree</span></span>, <a class="reference internal" href="#_CPPv4N9variation4IterE" title="variation::Iter"><span class="n"><span class="pre">Iter</span></span></a><span class="w"> </span><span class="n sig-param"><span class="pre">spot</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">SearchSpace</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">SS</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N9variation14point_mutationER4treeI4NodeE4IterRK11SearchSpace" title="Link to this definition">#</a><br /></dt>
-<dd><p>replace node with same typed node </p>
+<dt class="sig sig-object cpp" id="_CPPv4N5Brush3Var12MutationBase10find_spotsER4treeI4NodeERK11SearchSpaceRK10Parameters">
+<span id="_CPPv3N5Brush3Var12MutationBase10find_spotsER4treeI4NodeERK11SearchSpaceRK10Parameters"></span><span id="_CPPv2N5Brush3Var12MutationBase10find_spotsER4treeI4NodeERK11SearchSpaceRK10Parameters"></span><span id="Brush::Var::MutationBase::find_spots__tree:Node:R.SearchSpaceCR.ParametersCR"></span><span class="target" id="d0/dec/classBrush_1_1Var_1_1MutationBase_1a61da0cefa5bb01d41edff4e208372613"></span><span class="k"><span class="pre">static</span></span><span class="w"> </span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="kt"><span class="pre">auto</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">find_spots</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">tree</span></span><span class="p"><span class="pre">&lt;</span></span><a class="reference internal" href="node.html#_CPPv4N5Brush4NodeE" title="Brush::Node"><span class="n"><span class="pre">Node</span></span></a><span class="p"><span class="pre">&gt;</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">Tree</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="search_space.html#_CPPv4N5Brush11SearchSpaceE" title="Brush::SearchSpace"><span class="n"><span class="pre">SearchSpace</span></span></a><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">SS</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="engine.html#_CPPv4N5Brush10ParametersE" title="Brush::Parameters"><span class="n"><span class="pre">Parameters</span></span></a><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">params</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N5Brush3Var12MutationBase10find_spotsER4treeI4NodeERK11SearchSpaceRK10Parameters" title="Link to this definition">#</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N5Brush3Var12MutationBase6mutateER4treeI4NodeE4IterRK11SearchSpaceRK10Parameters">
+<span id="_CPPv3N5Brush3Var12MutationBase6mutateER4treeI4NodeE4IterRK11SearchSpaceRK10Parameters"></span><span id="_CPPv2N5Brush3Var12MutationBase6mutateER4treeI4NodeE4IterRK11SearchSpaceRK10Parameters"></span><span id="Brush::Var::MutationBase::mutate__tree:Node:R.Iter.SearchSpaceCR.ParametersCR"></span><span class="target" id="d0/dec/classBrush_1_1Var_1_1MutationBase_1aa62474cdb46944f81fd0921dcaddaa02"></span><span class="k"><span class="pre">static</span></span><span class="w"> </span><span class="kt"><span class="pre">auto</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">mutate</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">tree</span></span><span class="p"><span class="pre">&lt;</span></span><a class="reference internal" href="node.html#_CPPv4N5Brush4NodeE" title="Brush::Node"><span class="n"><span class="pre">Node</span></span></a><span class="p"><span class="pre">&gt;</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">Tree</span></span>, <a class="reference internal" href="#_CPPv4N5Brush3Var12MutationBase4IterE" title="Brush::Var::MutationBase::Iter"><span class="n"><span class="pre">Iter</span></span></a><span class="w"> </span><span class="n sig-param"><span class="pre">spot</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="search_space.html#_CPPv4N5Brush11SearchSpaceE" title="Brush::SearchSpace"><span class="n"><span class="pre">SearchSpace</span></span></a><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">SS</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="engine.html#_CPPv4N5Brush10ParametersE" title="Brush::Parameters"><span class="n"><span class="pre">Parameters</span></span></a><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">params</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N5Brush3Var12MutationBase6mutateER4treeI4NodeE4IterRK11SearchSpaceRK10Parameters" title="Link to this definition">#</a><br /></dt>
+<dd></dd></dl>
+
+</div>
+</dd></dl>
+
+<dl class="cpp class">
+<dt class="sig sig-object cpp" id="_CPPv4I_11ProgramTypeEN5Brush3Var9VariationE">
+<span id="_CPPv3I_11ProgramTypeEN5Brush3Var9VariationE"></span><span id="_CPPv2I_11ProgramTypeEN5Brush3Var9VariationE"></span><span class="k"><span class="pre">template</span></span><span class="p"><span class="pre">&lt;</span></span><span class="n"><span class="pre">ProgramType</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">T</span></span></span><span class="p"><span class="pre">&gt;</span></span><br /><span class="target" id="d5/d14/classBrush_1_1Var_1_1Variation"></span><span class="k"><span class="pre">class</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">Variation</span></span></span><a class="headerlink" href="#_CPPv4I_11ProgramTypeEN5Brush3Var9VariationE" title="Link to this definition">#</a><br /></dt>
+<dd><p>Class representing the variation operators in Brush. </p>
+<p>The <a class="reference internal" href="#d5/d14/classBrush_1_1Var_1_1Variation"><span class="std std-ref">Variation</span></a> class is responsible for performing individual-level variations and handling the variation of a population in Brush. It contains methods for crossing individuals, mutating individuals, and varying a population. </p>
+<div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric" id="breathe-section-title-public-functions">Public Functions</p>
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N5Brush3Var9Variation9VariationEv">
+<span id="_CPPv3N5Brush3Var9Variation9VariationEv"></span><span id="_CPPv2N5Brush3Var9Variation9VariationEv"></span><span id="Brush::Var::Variation::Variation"></span><span class="target" id="d5/d14/classBrush_1_1Var_1_1Variation_1a3df7d1814f29d5073fccce5a4c59311c"></span><span class="sig-name descname"><span class="n"><span class="pre">Variation</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="k"><span class="pre">default</span></span><a class="headerlink" href="#_CPPv4N5Brush3Var9Variation9VariationEv" title="Link to this definition">#</a><br /></dt>
+<dd><p>Default constructor. </p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N5Brush3Var9Variation9VariationER10ParametersR11SearchSpace">
+<span id="_CPPv3N5Brush3Var9Variation9VariationER10ParametersR11SearchSpace"></span><span id="_CPPv2N5Brush3Var9Variation9VariationER10ParametersR11SearchSpace"></span><span id="Brush::Var::Variation::Variation__ParametersR.SearchSpaceR"></span><span class="target" id="d5/d14/classBrush_1_1Var_1_1Variation_1adb0d1a96dcccf09834f7bfc266a535b2"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">Variation</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="engine.html#_CPPv4N5Brush10ParametersE" title="Brush::Parameters"><span class="n"><span class="pre">Parameters</span></span></a><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">params</span></span>, <a class="reference internal" href="search_space.html#_CPPv4N5Brush11SearchSpaceE" title="Brush::SearchSpace"><span class="n"><span class="pre">SearchSpace</span></span></a><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">ss</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N5Brush3Var9Variation9VariationER10ParametersR11SearchSpace" title="Link to this definition">#</a><br /></dt>
+<dd><p>Constructor that initializes the <a class="reference internal" href="#d5/d14/classBrush_1_1Var_1_1Variation"><span class="std std-ref">Variation</span></a> object with parameters and search space. </p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>Tree</strong> – the program tree </p></li>
-<li><p><strong>spot</strong> – an iterator to the node that is being mutated </p></li>
-<li><p><strong>SS</strong> – the search space to sample a node like <code class="docutils literal notranslate"><span class="pre">spot</span></code></p></li>
+<li><p><strong>params</strong> – The parameters for the variation operator. </p></li>
+<li><p><strong>ss</strong> – The search space for the variation operator. </p></li>
 </ul>
-</dd>
-<dt class="field-even">Returns<span class="colon">:</span></dt>
-<dd class="field-even"><p>boolean indicating the success (true) or fail (false) of the operation </p>
 </dd>
 </dl>
 </dd></dl>
 
 <dl class="cpp function">
-<dt class="sig sig-object cpp" id="_CPPv4N9variation15insert_mutationER4treeI4NodeE4IterRK11SearchSpace">
-<span id="_CPPv3N9variation15insert_mutationER4treeI4NodeE4IterRK11SearchSpace"></span><span id="_CPPv2N9variation15insert_mutationER4treeI4NodeE4IterRK11SearchSpace"></span><span id="variation::insert_mutation__tree:Node:R.Iter.SearchSpaceCR"></span><span class="target" id="d0/d24/namespacevariation_1ad562aad1d00786b26a704f6b8db751c9"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="kt"><span class="pre">bool</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">insert_mutation</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">tree</span></span><span class="p"><span class="pre">&lt;</span></span><span class="n"><span class="pre">Node</span></span><span class="p"><span class="pre">&gt;</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">Tree</span></span>, <a class="reference internal" href="#_CPPv4N9variation4IterE" title="variation::Iter"><span class="n"><span class="pre">Iter</span></span></a><span class="w"> </span><span class="n sig-param"><span class="pre">spot</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">SearchSpace</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">SS</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N9variation15insert_mutationER4treeI4NodeE4IterRK11SearchSpace" title="Link to this definition">#</a><br /></dt>
-<dd><p>insert a node with spot as a child </p>
+<dt class="sig sig-object cpp" id="_CPPv4N5Brush3Var9VariationD0Ev">
+<span id="_CPPv3N5Brush3Var9VariationD0Ev"></span><span id="_CPPv2N5Brush3Var9VariationD0Ev"></span><span id="Brush::Var::Variation::~Variation"></span><span class="target" id="d5/d14/classBrush_1_1Var_1_1Variation_1a68dde038b2d0554791ee4a8da2f7e623"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">~Variation</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N5Brush3Var9VariationD0Ev" title="Link to this definition">#</a><br /></dt>
+<dd><p>Destructor. </p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N5Brush3Var9Variation4initER10ParametersR11SearchSpace">
+<span id="_CPPv3N5Brush3Var9Variation4initER10ParametersR11SearchSpace"></span><span id="_CPPv2N5Brush3Var9Variation4initER10ParametersR11SearchSpace"></span><span id="Brush::Var::Variation::init__ParametersR.SearchSpaceR"></span><span class="target" id="d5/d14/classBrush_1_1Var_1_1Variation_1aab1cc3b5be6c321b56d4af61c7466f2b"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">init</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="engine.html#_CPPv4N5Brush10ParametersE" title="Brush::Parameters"><span class="n"><span class="pre">Parameters</span></span></a><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">params</span></span>, <a class="reference internal" href="search_space.html#_CPPv4N5Brush11SearchSpaceE" title="Brush::SearchSpace"><span class="n"><span class="pre">SearchSpace</span></span></a><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">ss</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N5Brush3Var9Variation4initER10ParametersR11SearchSpace" title="Link to this definition">#</a><br /></dt>
+<dd><p>Initializes the <a class="reference internal" href="#d5/d14/classBrush_1_1Var_1_1Variation"><span class="std std-ref">Variation</span></a> object with parameters and search space. </p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>Tree</strong> – the program tree </p></li>
-<li><p><strong>spot</strong> – an iterator to the node that is being mutated </p></li>
-<li><p><strong>SS</strong> – the search space to sample a node like <code class="docutils literal notranslate"><span class="pre">spot</span></code></p></li>
+<li><p><strong>params</strong> – The parameters for the variation operator. </p></li>
+<li><p><strong>ss</strong> – The search space for the variation operator. </p></li>
 </ul>
-</dd>
-<dt class="field-even">Returns<span class="colon">:</span></dt>
-<dd class="field-even"><p>boolean indicating the success (true) or fail (false) of the operation </p>
 </dd>
 </dl>
 </dd></dl>
 
 <dl class="cpp function">
-<dt class="sig sig-object cpp" id="_CPPv4N9variation15delete_mutationER4treeI4NodeE4IterRK11SearchSpace">
-<span id="_CPPv3N9variation15delete_mutationER4treeI4NodeE4IterRK11SearchSpace"></span><span id="_CPPv2N9variation15delete_mutationER4treeI4NodeE4IterRK11SearchSpace"></span><span id="variation::delete_mutation__tree:Node:R.Iter.SearchSpaceCR"></span><span class="target" id="d0/d24/namespacevariation_1a3f1ae4f750d7368932dae8e9b8fb7d20"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="kt"><span class="pre">bool</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">delete_mutation</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">tree</span></span><span class="p"><span class="pre">&lt;</span></span><span class="n"><span class="pre">Node</span></span><span class="p"><span class="pre">&gt;</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">Tree</span></span>, <a class="reference internal" href="#_CPPv4N9variation4IterE" title="variation::Iter"><span class="n"><span class="pre">Iter</span></span></a><span class="w"> </span><span class="n sig-param"><span class="pre">spot</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">SearchSpace</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">SS</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N9variation15delete_mutationER4treeI4NodeE4IterRK11SearchSpace" title="Link to this definition">#</a><br /></dt>
-<dd><p>delete subtree and replace it with a terminal of the same return type </p>
+<dt class="sig sig-object cpp" id="_CPPv4N5Brush3Var9Variation5crossERK10IndividualI1TERK10IndividualI1TE">
+<span id="_CPPv3N5Brush3Var9Variation5crossERK10IndividualI1TERK10IndividualI1TE"></span><span id="_CPPv2N5Brush3Var9Variation5crossERK10IndividualI1TERK10IndividualI1TE"></span><span id="Brush::Var::Variation::cross__Individual:T:CR.Individual:T:CR"></span><span class="target" id="d5/d14/classBrush_1_1Var_1_1Variation_1acf7d5d1c0d6a102eec277180dce590fe"></span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">optional</span></span><span class="p"><span class="pre">&lt;</span></span><span class="n"><span class="pre">Individual</span></span><span class="p"><span class="pre">&lt;</span></span><a class="reference internal" href="#_CPPv4I_11ProgramTypeEN5Brush3Var9VariationE" title="Brush::Var::Variation::T"><span class="n"><span class="pre">T</span></span></a><span class="p"><span class="pre">&gt;</span></span><span class="p"><span class="pre">&gt;</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">cross</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">Individual</span></span><span class="p"><span class="pre">&lt;</span></span><a class="reference internal" href="#_CPPv4I_11ProgramTypeEN5Brush3Var9VariationE" title="Brush::Var::Variation::T"><span class="n"><span class="pre">T</span></span></a><span class="p"><span class="pre">&gt;</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">mom</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">Individual</span></span><span class="p"><span class="pre">&lt;</span></span><a class="reference internal" href="#_CPPv4I_11ProgramTypeEN5Brush3Var9VariationE" title="Brush::Var::Variation::T"><span class="n"><span class="pre">T</span></span></a><span class="p"><span class="pre">&gt;</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">dad</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N5Brush3Var9Variation5crossERK10IndividualI1TERK10IndividualI1TE" title="Link to this definition">#</a><br /></dt>
+<dd><p>Performs crossover operation on two individuals. </p>
+<p>Stochastically swaps subtrees between root and other, returning a new program.</p>
+<p>
+The spot where the cross will take place in the <code class="docutils literal notranslate"><span class="pre">root</span></code> parent is sampled based on attribute <code class="docutils literal notranslate"><span class="pre">get_prob_change</span></code> of each node in the tree. After selecting the cross spot, the program will iterate through the <code class="docutils literal notranslate"><span class="pre">other</span></code> parent searching for all compatible sub-trees to replace.</p>
+<p>Due to the stochastic behavior, it may come to a case where there is no candidate to replace the spot node. In this case, the method returns <code class="docutils literal notranslate"><span class="pre">std::nullopt</span></code> (and has overloads so it can be used in a boolean context).</p>
+<p>If the cross succeeds, the child program can be accessed through the <code class="docutils literal notranslate"><span class="pre">.value()</span></code> attribute of the <code class="docutils literal notranslate"><span class="pre">std::optional</span></code>. TODO: update this documentation (it doesnt take the program but the individual. also update mutation documentation) This means that, if you use the cross as <code class="docutils literal notranslate"><span class="pre">auto</span> <span class="pre">opt</span> <span class="pre">=</span> <span class="pre">mutate(parent,</span> <span class="pre">SS)</span></code>, either <code class="docutils literal notranslate"><span class="pre">opt==false</span></code> or <code class="docutils literal notranslate"><span class="pre">opt.value()</span></code> contains the child.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>Tree</strong> – the program tree </p></li>
-<li><p><strong>spot</strong> – an iterator to the node that is being mutated </p></li>
-<li><p><strong>SS</strong> – the search space to sample a node like <code class="docutils literal notranslate"><span class="pre">spot</span></code></p></li>
+<li><p><strong>mom</strong> – The first parent individual. </p></li>
+<li><p><strong>dad</strong> – The second parent individual. </p></li>
+<li><p><strong>root</strong> – the root parent </p></li>
+<li><p><strong>other</strong> – the donating parent </p></li>
 </ul>
 </dd>
 <dt class="field-even">Returns<span class="colon">:</span></dt>
-<dd class="field-even"><p>boolean indicating the success (true) or fail (false) of the operation </p>
+<dd class="field-even"><p>An optional containing the offspring individual if the crossover is successful, or an empty optional otherwise.</p>
+</dd>
+<dt class="field-odd">Template Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>T</strong> – the program type </p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p><code class="docutils literal notranslate"><span class="pre">std::optional</span></code> that may contain the child program of type <code class="docutils literal notranslate"><span class="pre">T</span></code></p>
 </dd>
 </dl>
 </dd></dl>
 
 <dl class="cpp function">
-<dt class="sig sig-object cpp" id="_CPPv4N9variation25toggle_weight_on_mutationER4treeI4NodeE4IterRK11SearchSpace">
-<span id="_CPPv3N9variation25toggle_weight_on_mutationER4treeI4NodeE4IterRK11SearchSpace"></span><span id="_CPPv2N9variation25toggle_weight_on_mutationER4treeI4NodeE4IterRK11SearchSpace"></span><span id="variation::toggle_weight_on_mutation__tree:Node:R.Iter.SearchSpaceCR"></span><span class="target" id="d0/d24/namespacevariation_1ae0d980dfd1c64597731f9cdde45e90b4"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="kt"><span class="pre">bool</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">toggle_weight_on_mutation</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">tree</span></span><span class="p"><span class="pre">&lt;</span></span><span class="n"><span class="pre">Node</span></span><span class="p"><span class="pre">&gt;</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">Tree</span></span>, <a class="reference internal" href="#_CPPv4N9variation4IterE" title="variation::Iter"><span class="n"><span class="pre">Iter</span></span></a><span class="w"> </span><span class="n sig-param"><span class="pre">spot</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">SearchSpace</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">SS</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N9variation25toggle_weight_on_mutationER4treeI4NodeE4IterRK11SearchSpace" title="Link to this definition">#</a><br /></dt>
-<dd><p>toggle the node’s weight ON. </p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>Tree</strong> – the program tree </p></li>
-<li><p><strong>spot</strong> – an iterator to the node that is being mutated </p></li>
-<li><p><strong>SS</strong> – the search space (unused) </p></li>
-</ul>
-</dd>
-<dt class="field-even">Returns<span class="colon">:</span></dt>
-<dd class="field-even"><p>boolean indicating the success (true) or fail (false) of the operation </p>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="cpp function">
-<dt class="sig sig-object cpp" id="_CPPv4N9variation26toggle_weight_off_mutationER4treeI4NodeE4IterRK11SearchSpace">
-<span id="_CPPv3N9variation26toggle_weight_off_mutationER4treeI4NodeE4IterRK11SearchSpace"></span><span id="_CPPv2N9variation26toggle_weight_off_mutationER4treeI4NodeE4IterRK11SearchSpace"></span><span id="variation::toggle_weight_off_mutation__tree:Node:R.Iter.SearchSpaceCR"></span><span class="target" id="d0/d24/namespacevariation_1afce849d082df7c278e5115ba64dd73ea"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="kt"><span class="pre">bool</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">toggle_weight_off_mutation</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">tree</span></span><span class="p"><span class="pre">&lt;</span></span><span class="n"><span class="pre">Node</span></span><span class="p"><span class="pre">&gt;</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">Tree</span></span>, <a class="reference internal" href="#_CPPv4N9variation4IterE" title="variation::Iter"><span class="n"><span class="pre">Iter</span></span></a><span class="w"> </span><span class="n sig-param"><span class="pre">spot</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">SearchSpace</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">SS</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N9variation26toggle_weight_off_mutationER4treeI4NodeE4IterRK11SearchSpace" title="Link to this definition">#</a><br /></dt>
-<dd><p>toggle the node’s weight OFF. </p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>Tree</strong> – the program tree </p></li>
-<li><p><strong>spot</strong> – an iterator to the node that is being mutated </p></li>
-<li><p><strong>SS</strong> – the search space (unused) </p></li>
-</ul>
-</dd>
-<dt class="field-even">Returns<span class="colon">:</span></dt>
-<dd class="field-even"><p>boolean indicating the success (true) or fail (false) of the operation </p>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="cpp function">
-<dt class="sig sig-object cpp" id="_CPPv4N9variation16subtree_mutationER4treeI4NodeE4IterRK11SearchSpace">
-<span id="_CPPv3N9variation16subtree_mutationER4treeI4NodeE4IterRK11SearchSpace"></span><span id="_CPPv2N9variation16subtree_mutationER4treeI4NodeE4IterRK11SearchSpace"></span><span id="variation::subtree_mutation__tree:Node:R.Iter.SearchSpaceCR"></span><span class="target" id="d0/d24/namespacevariation_1ab3c6b50b00987b9b8f4a9ca98606860e"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="kt"><span class="pre">bool</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">subtree_mutation</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">tree</span></span><span class="p"><span class="pre">&lt;</span></span><span class="n"><span class="pre">Node</span></span><span class="p"><span class="pre">&gt;</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">Tree</span></span>, <a class="reference internal" href="#_CPPv4N9variation4IterE" title="variation::Iter"><span class="n"><span class="pre">Iter</span></span></a><span class="w"> </span><span class="n sig-param"><span class="pre">spot</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">SearchSpace</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">SS</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N9variation16subtree_mutationER4treeI4NodeE4IterRK11SearchSpace" title="Link to this definition">#</a><br /></dt>
-<dd><p>replaces the subtree rooted in <code class="docutils literal notranslate"><span class="pre">spot</span></code></p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>Tree</strong> – the program tree </p></li>
-<li><p><strong>spot</strong> – an iterator to the node that is being mutated </p></li>
-<li><p><strong>SS</strong> – the search space to generate a compatible subtree </p></li>
-</ul>
-</dd>
-<dt class="field-even">Returns<span class="colon">:</span></dt>
-<dd class="field-even"><p>boolean indicating the success (true) or fail (false) of the operation </p>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="cpp function">
-<dt class="sig sig-object cpp" id="_CPPv4I_11ProgramTypeEN9variation6mutateENSt8optionalI7ProgramI1TEEERK7ProgramI1TERK11SearchSpace">
-<span id="_CPPv3I_11ProgramTypeEN9variation6mutateERK7ProgramI1TERK11SearchSpace"></span><span id="_CPPv2I_11ProgramTypeEN9variation6mutateERK7ProgramI1TERK11SearchSpace"></span><span class="k"><span class="pre">template</span></span><span class="p"><span class="pre">&lt;</span></span><span class="n"><span class="pre">ProgramType</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">T</span></span></span><span class="p"><span class="pre">&gt;</span></span><br /><span class="target" id="d0/d24/namespacevariation_1a3ceab1ae0c739084852ef04ebda17d6a"></span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">optional</span></span><span class="p"><span class="pre">&lt;</span></span><span class="n"><span class="pre">Program</span></span><span class="p"><span class="pre">&lt;</span></span><a class="reference internal" href="#_CPPv4I_11ProgramTypeEN9variation6mutateENSt8optionalI7ProgramI1TEEERK7ProgramI1TERK11SearchSpace" title="variation::mutate::T"><span class="n"><span class="pre">T</span></span></a><span class="p"><span class="pre">&gt;</span></span><span class="p"><span class="pre">&gt;</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">mutate</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">Program</span></span><span class="p"><span class="pre">&lt;</span></span><a class="reference internal" href="#_CPPv4I_11ProgramTypeEN9variation6mutateENSt8optionalI7ProgramI1TEEERK7ProgramI1TERK11SearchSpace" title="variation::mutate::T"><span class="n"><span class="pre">T</span></span></a><span class="p"><span class="pre">&gt;</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">parent</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">SearchSpace</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">SS</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4I_11ProgramTypeEN9variation6mutateENSt8optionalI7ProgramI1TEEERK7ProgramI1TERK11SearchSpace" title="Link to this definition">#</a><br /></dt>
-<dd><p>Stochastically mutate a program. </p>
-<p>Types of mutation:</p>
+<dt class="sig sig-object cpp" id="_CPPv4N5Brush3Var9Variation6mutateERK10IndividualI1TE">
+<span id="_CPPv3N5Brush3Var9Variation6mutateERK10IndividualI1TE"></span><span id="_CPPv2N5Brush3Var9Variation6mutateERK10IndividualI1TE"></span><span id="Brush::Var::Variation::mutate__Individual:T:CR"></span><span class="target" id="d5/d14/classBrush_1_1Var_1_1Variation_1a024e971b0f8685c89d119c0af484284a"></span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">optional</span></span><span class="p"><span class="pre">&lt;</span></span><span class="n"><span class="pre">Individual</span></span><span class="p"><span class="pre">&lt;</span></span><a class="reference internal" href="#_CPPv4I_11ProgramTypeEN5Brush3Var9VariationE" title="Brush::Var::Variation::T"><span class="n"><span class="pre">T</span></span></a><span class="p"><span class="pre">&gt;</span></span><span class="p"><span class="pre">&gt;</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">mutate</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">Individual</span></span><span class="p"><span class="pre">&lt;</span></span><a class="reference internal" href="#_CPPv4I_11ProgramTypeEN5Brush3Var9VariationE" title="Brush::Var::Variation::T"><span class="n"><span class="pre">T</span></span></a><span class="p"><span class="pre">&gt;</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">parent</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N5Brush3Var9Variation6mutateERK10IndividualI1TE" title="Link to this definition">#</a><br /></dt>
+<dd><p>Performs mutation operation on an individual. </p>
+<p>Stochastically mutate a program.</p>
+<p>
+Types of mutation:</p>
 <p><ul class="simple">
 <li><p>point mutation changes a single node.</p></li>
 <li><p>insertion mutation inserts a node as the parent of an existing node, and fills in the other arguments.</p></li>
@@ -523,41 +523,37 @@ document.write(`
 <p>If the mutation succeeds, the mutated program can be accessed through the <code class="docutils literal notranslate"><span class="pre">.value()</span></code> attribute of the <code class="docutils literal notranslate"><span class="pre">std::optional</span></code>.</p>
 <p>This means that, if you use the mutation as <code class="docutils literal notranslate"><span class="pre">auto</span> <span class="pre">opt</span> <span class="pre">=</span> <span class="pre">mutate(parent,</span> <span class="pre">SS)</span></code>, either <code class="docutils literal notranslate"><span class="pre">opt==false</span></code> or <code class="docutils literal notranslate"><span class="pre">opt.value()</span></code> contains the child program.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Template Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><p><strong>T</strong> – program type </p>
-</dd>
-<dt class="field-even">Parameters<span class="colon">:</span></dt>
-<dd class="field-even"><ul class="simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>parent</strong> – The parent individual. </p></li>
 <li><p><strong>parent</strong> – the program to be mutated </p></li>
 <li><p><strong>SS</strong> – a search space </p></li>
 </ul>
 </dd>
-<dt class="field-odd">Returns<span class="colon">:</span></dt>
-<dd class="field-odd"><p><code class="docutils literal notranslate"><span class="pre">std::optional</span></code> that may contain the child program of type <code class="docutils literal notranslate"><span class="pre">T</span></code></p>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>An optional containing the mutated individual if the mutation is successful, or an empty optional otherwise.</p>
+</dd>
+<dt class="field-odd">Template Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>T</strong> – program type </p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p><code class="docutils literal notranslate"><span class="pre">std::optional</span></code> that may contain the child program of type <code class="docutils literal notranslate"><span class="pre">T</span></code></p>
 </dd>
 </dl>
 </dd></dl>
 
 <dl class="cpp function">
-<dt class="sig sig-object cpp" id="_CPPv4I_11ProgramTypeEN9variation5crossENSt8optionalI7ProgramI1TEEERK7ProgramI1TERK7ProgramI1TE">
-<span id="_CPPv3I_11ProgramTypeEN9variation5crossERK7ProgramI1TERK7ProgramI1TE"></span><span id="_CPPv2I_11ProgramTypeEN9variation5crossERK7ProgramI1TERK7ProgramI1TE"></span><span class="k"><span class="pre">template</span></span><span class="p"><span class="pre">&lt;</span></span><span class="n"><span class="pre">ProgramType</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">T</span></span></span><span class="p"><span class="pre">&gt;</span></span><br /><span class="target" id="d0/d24/namespacevariation_1ac31f284c947a66d035b310513f4916c2"></span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">optional</span></span><span class="p"><span class="pre">&lt;</span></span><span class="n"><span class="pre">Program</span></span><span class="p"><span class="pre">&lt;</span></span><a class="reference internal" href="#_CPPv4I_11ProgramTypeEN9variation5crossENSt8optionalI7ProgramI1TEEERK7ProgramI1TERK7ProgramI1TE" title="variation::cross::T"><span class="n"><span class="pre">T</span></span></a><span class="p"><span class="pre">&gt;</span></span><span class="p"><span class="pre">&gt;</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">cross</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">Program</span></span><span class="p"><span class="pre">&lt;</span></span><a class="reference internal" href="#_CPPv4I_11ProgramTypeEN9variation5crossENSt8optionalI7ProgramI1TEEERK7ProgramI1TERK7ProgramI1TE" title="variation::cross::T"><span class="n"><span class="pre">T</span></span></a><span class="p"><span class="pre">&gt;</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">root</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">Program</span></span><span class="p"><span class="pre">&lt;</span></span><a class="reference internal" href="#_CPPv4I_11ProgramTypeEN9variation5crossENSt8optionalI7ProgramI1TEEERK7ProgramI1TERK7ProgramI1TE" title="variation::cross::T"><span class="n"><span class="pre">T</span></span></a><span class="p"><span class="pre">&gt;</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">other</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4I_11ProgramTypeEN9variation5crossENSt8optionalI7ProgramI1TEEERK7ProgramI1TERK7ProgramI1TE" title="Link to this definition">#</a><br /></dt>
-<dd><p>Stochastically swaps subtrees between root and other, returning a new program. </p>
-<p>The spot where the cross will take place in the <code class="docutils literal notranslate"><span class="pre">root</span></code> parent is sampled based on attribute <code class="docutils literal notranslate"><span class="pre">get_prob_change</span></code> of each node in the tree. After selecting the cross spot, the program will iterate through the <code class="docutils literal notranslate"><span class="pre">other</span></code> parent searching for all compatible sub-trees to replace.</p>
-<p>Due to the stochastic behavior, it may come to a case where there is no candidate to replace the spot node. In this case, the method returns <code class="docutils literal notranslate"><span class="pre">std::nullopt</span></code> (and has overloads so it can be used in a boolean context).</p>
-<p>If the cross succeeds, the child program can be accessed through the <code class="docutils literal notranslate"><span class="pre">.value()</span></code> attribute of the <code class="docutils literal notranslate"><span class="pre">std::optional</span></code>.</p>
-<p>This means that, if you use the cross as <code class="docutils literal notranslate"><span class="pre">auto</span> <span class="pre">opt</span> <span class="pre">=</span> <span class="pre">mutate(parent,</span> <span class="pre">SS)</span></code>, either <code class="docutils literal notranslate"><span class="pre">opt==false</span></code> or <code class="docutils literal notranslate"><span class="pre">opt.value()</span></code> contains the child.</p>
+<dt class="sig sig-object cpp" id="_CPPv4N5Brush3Var9Variation4varyER10PopulationI1TEiRK6vectorI6size_tE">
+<span id="_CPPv3N5Brush3Var9Variation4varyER10PopulationI1TEiRK6vectorI6size_tE"></span><span id="_CPPv2N5Brush3Var9Variation4varyER10PopulationI1TEiRK6vectorI6size_tE"></span><span id="Brush::Var::Variation::vary__Population:T:R.i.vector:s:CR"></span><span class="target" id="d5/d14/classBrush_1_1Var_1_1Variation_1a344233ce053ca4b267539182fecbbc91"></span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">vary</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">Population</span></span><span class="p"><span class="pre">&lt;</span></span><a class="reference internal" href="#_CPPv4I_11ProgramTypeEN5Brush3Var9VariationE" title="Brush::Var::Variation::T"><span class="n"><span class="pre">T</span></span></a><span class="p"><span class="pre">&gt;</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">pop</span></span>, <span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">island</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">vector</span></span><span class="p"><span class="pre">&lt;</span></span><span class="n"><span class="pre">size_t</span></span><span class="p"><span class="pre">&gt;</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">parents</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N5Brush3Var9Variation4varyER10PopulationI1TEiRK6vectorI6size_tE" title="Link to this definition">#</a><br /></dt>
+<dd><p>Handles variation of a population. </p>
 <dl class="field-list simple">
-<dt class="field-odd">Template Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><p><strong>T</strong> – the program type </p>
-</dd>
-<dt class="field-even">Parameters<span class="colon">:</span></dt>
-<dd class="field-even"><ul class="simple">
-<li><p><strong>root</strong> – the root parent </p></li>
-<li><p><strong>other</strong> – the donating parent </p></li>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>pop</strong> – The population to be varied. </p></li>
+<li><p><strong>island</strong> – The island index. </p></li>
+<li><p><strong>parents</strong> – The indices of the parent individuals. </p></li>
+<li><p><strong>p</strong> – The parameters for the variation operator. </p></li>
 </ul>
-</dd>
-<dt class="field-odd">Returns<span class="colon">:</span></dt>
-<dd class="field-odd"><p><code class="docutils literal notranslate"><span class="pre">std::optional</span></code> that may contain the child program of type <code class="docutils literal notranslate"><span class="pre">T</span></code></p>
 </dd>
 </dl>
 </dd></dl>
@@ -575,17 +571,26 @@ document.write(`
               
               
               
-                <footer class="prev-next-footer">
+                <footer class="prev-next-footer d-print-none">
                   
 <div class="prev-next-area">
     <a class="left-prev"
-       href="nodetypes.html"
+       href="population.html"
        title="previous page">
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
         <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title">NodeTypes</p>
+        <p class="prev-next-title">Population</p>
       </div>
+    </a>
+    <a class="right-next"
+       href="selection.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Selection</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
     </a>
 </div>
                 </footer>
@@ -603,16 +608,20 @@ document.write(`
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#_CPPv49variation"><code class="docutils literal notranslate"><span class="pre">variation</span></code></a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#_CPPv4N9variation4IterE"><code class="docutils literal notranslate"><span class="pre">variation::Iter</span></code></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#_CPPv4N9variation14point_mutationER4treeI4NodeE4IterRK11SearchSpace"><code class="docutils literal notranslate"><span class="pre">variation::point_mutation()</span></code></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#_CPPv4N9variation15insert_mutationER4treeI4NodeE4IterRK11SearchSpace"><code class="docutils literal notranslate"><span class="pre">variation::insert_mutation()</span></code></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#_CPPv4N9variation15delete_mutationER4treeI4NodeE4IterRK11SearchSpace"><code class="docutils literal notranslate"><span class="pre">variation::delete_mutation()</span></code></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#_CPPv4N9variation25toggle_weight_on_mutationER4treeI4NodeE4IterRK11SearchSpace"><code class="docutils literal notranslate"><span class="pre">variation::toggle_weight_on_mutation()</span></code></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#_CPPv4N9variation26toggle_weight_off_mutationER4treeI4NodeE4IterRK11SearchSpace"><code class="docutils literal notranslate"><span class="pre">variation::toggle_weight_off_mutation()</span></code></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#_CPPv4N9variation16subtree_mutationER4treeI4NodeE4IterRK11SearchSpace"><code class="docutils literal notranslate"><span class="pre">variation::subtree_mutation()</span></code></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#_CPPv4I_11ProgramTypeEN9variation6mutateENSt8optionalI7ProgramI1TEEERK7ProgramI1TERK11SearchSpace"><code class="docutils literal notranslate"><span class="pre">variation::mutate()</span></code></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#_CPPv4I_11ProgramTypeEN9variation5crossENSt8optionalI7ProgramI1TEEERK7ProgramI1TERK7ProgramI1TE"><code class="docutils literal notranslate"><span class="pre">variation::cross()</span></code></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#_CPPv4N5Brush3Var12MutationBaseE"><code class="docutils literal notranslate"><span class="pre">MutationBase</span></code></a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#_CPPv4N5Brush3Var12MutationBase4IterE"><code class="docutils literal notranslate"><span class="pre">MutationBase::Iter</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#_CPPv4N5Brush3Var12MutationBase10find_spotsER4treeI4NodeERK11SearchSpaceRK10Parameters"><code class="docutils literal notranslate"><span class="pre">MutationBase::find_spots()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#_CPPv4N5Brush3Var12MutationBase6mutateER4treeI4NodeE4IterRK11SearchSpaceRK10Parameters"><code class="docutils literal notranslate"><span class="pre">MutationBase::mutate()</span></code></a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#_CPPv4I_11ProgramTypeEN5Brush3Var9VariationE"><code class="docutils literal notranslate"><span class="pre">Variation</span></code></a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#_CPPv4N5Brush3Var9Variation9VariationEv"><code class="docutils literal notranslate"><span class="pre">Variation::Variation()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#_CPPv4N5Brush3Var9Variation9VariationER10ParametersR11SearchSpace"><code class="docutils literal notranslate"><span class="pre">Variation::Variation()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#_CPPv4N5Brush3Var9VariationD0Ev"><code class="docutils literal notranslate"><span class="pre">Variation::~Variation()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#_CPPv4N5Brush3Var9Variation4initER10ParametersR11SearchSpace"><code class="docutils literal notranslate"><span class="pre">Variation::init()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#_CPPv4N5Brush3Var9Variation5crossERK10IndividualI1TERK10IndividualI1TE"><code class="docutils literal notranslate"><span class="pre">Variation::cross()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#_CPPv4N5Brush3Var9Variation6mutateERK10IndividualI1TE"><code class="docutils literal notranslate"><span class="pre">Variation::mutate()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#_CPPv4N5Brush3Var9Variation4varyER10PopulationI1TEiRK6vectorI6size_tE"><code class="docutils literal notranslate"><span class="pre">Variation::vary()</span></code></a></li>
 </ul>
 </li>
 </ul>
@@ -663,8 +672,8 @@ By William La Cava and Joseph D. Romano
   </div>
   
   <!-- Scripts loaded after <body> so the DOM is not blocked -->
-  <script src="../_static/scripts/bootstrap.js?digest=8d27b9dea8ad943066ae"></script>
-<script src="../_static/scripts/pydata-sphinx-theme.js?digest=8d27b9dea8ad943066ae"></script>
+  <script src="../_static/scripts/bootstrap.js?digest=3ee479438cf8b5e0d341"></script>
+<script src="../_static/scripts/pydata-sphinx-theme.js?digest=3ee479438cf8b5e0d341"></script>
 
   <footer class="bd-footer">
   </footer>

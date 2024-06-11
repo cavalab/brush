@@ -14,19 +14,19 @@
   
   <script data-cfasync="false">
     document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
-    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
   </script>
   
   <!-- Loaded before other Sphinx assets -->
-  <link href="../_static/styles/theme.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
-<link href="../_static/styles/bootstrap.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
-<link href="../_static/styles/pydata-sphinx-theme.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+  <link href="../_static/styles/theme.css?digest=3ee479438cf8b5e0d341" rel="stylesheet" />
+<link href="../_static/styles/bootstrap.css?digest=3ee479438cf8b5e0d341" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=3ee479438cf8b5e0d341" rel="stylesheet" />
 
   
-  <link href="../_static/vendor/fontawesome/6.5.1/css/all.min.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
-  <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.1/webfonts/fa-solid-900.woff2" />
-<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.1/webfonts/fa-brands-400.woff2" />
-<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.1/webfonts/fa-regular-400.woff2" />
+  <link href="../_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=3ee479438cf8b5e0d341" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
 
     <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=a746c00c" />
     <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=384b581d" />
@@ -35,9 +35,9 @@
     <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
   
   <!-- Pre-loaded scripts that we'll load fully later -->
-  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=8d27b9dea8ad943066ae" />
-<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=8d27b9dea8ad943066ae" />
-  <script src="../_static/vendor/fontawesome/6.5.1/js/all.min.js?digest=8d27b9dea8ad943066ae"></script>
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=3ee479438cf8b5e0d341" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=3ee479438cf8b5e0d341" />
+  <script src="../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=3ee479438cf8b5e0d341"></script>
 
     <script src="../_static/documentation_options.js?v=74359811"></script>
     <script src="../_static/doctools.js?v=9a2dae69"></script>
@@ -49,7 +49,7 @@
     <link rel="icon" href="../_static/paint-brush-solid.svg"/>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="Variation (Crossover/Mutation)" href="variation.html" />
+    <link rel="next" title="Individual and Fitness" href="individual.html" />
     <link rel="prev" title="Node" href="node.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
@@ -60,27 +60,23 @@
 
   
   
-  <a id="pst-skip-link" class="skip-link" href="#main-content">Skip to main content</a>
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
   
   <div id="pst-scroll-pixel-helper"></div>
   
   <button type="button" class="btn rounded-pill" id="pst-back-to-top">
-    <i class="fa-solid fa-arrow-up"></i>
-    Back to top
-  </button>
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
 
   
   <input type="checkbox"
           class="sidebar-toggle"
-          name="__primary"
-          id="__primary"/>
-  <label class="overlay overlay-primary" for="__primary"></label>
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
   
   <input type="checkbox"
           class="sidebar-toggle"
-          name="__secondary"
-          id="__secondary"/>
-  <label class="overlay overlay-secondary" for="__secondary"></label>
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
   
   <div class="search-button__wrapper">
     <div class="search-button__overlay"></div>
@@ -102,8 +98,13 @@
   <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
 </form></div>
   </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
   
-    <header class="bd-header navbar navbar-expand-lg bd-navbar">
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
     </header>
   
 
@@ -166,35 +167,45 @@
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">User Guide</span></p>
 <ul class="nav bd-sidenav">
-<li class="toctree-l1 has-children"><a class="reference internal" href="../guide/index.html">Cookbook</a><input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-1"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../guide/index.html">Cookbook</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
 <li class="toctree-l2"><a class="reference internal" href="../guide/data.html">Working with Data</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../guide/search_space.html">The Search Space</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../guide/working_with_programs.html">Working with Programs</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../guide/json.html">JSON Interoperability</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../guide/saving_loading_populations.html">Saving and loading populations</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../guide/archive.html">The archive</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../guide/deap.html">Using Deap</a></li>
 </ul>
-</li>
+</details></li>
 <li class="toctree-l1"><a class="reference internal" href="../guide/contributing.html">Contributing</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../guide/development.html">Development</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">API</span></p>
 <ul class="current nav bd-sidenav">
-<li class="toctree-l1 has-children"><a class="reference internal" href="../python_api/index.html">Python API</a><input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-2"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../python_api/index.html">Python API</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
 <li class="toctree-l2"><a class="reference internal" href="../python_api/estimator.html">BrushEstimator</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../python_api/interface.html">EstimatorInterface</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../python_api/regressor.html">BrushRegressor</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../python_api/classifier.html">BrushClassifier</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../python_api/python_api.html">Python API</a></li>
 </ul>
-</li>
-<li class="toctree-l1 current active has-children"><a class="reference internal" href="index.html">C++ API</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-3"><i class="fa-solid fa-chevron-down"></i></label><ul class="current">
+</details></li>
+<li class="toctree-l1 current active has-children"><a class="reference internal" href="index.html">C++ API</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="current">
 <li class="toctree-l2"><a class="reference internal" href="data.html">Dataset</a></li>
 <li class="toctree-l2"><a class="reference internal" href="timeseries.html">TimeSeries</a></li>
 <li class="toctree-l2"><a class="reference internal" href="search_space.html">SearchSpace</a></li>
 <li class="toctree-l2"><a class="reference internal" href="program.html">Program</a></li>
 <li class="toctree-l2"><a class="reference internal" href="node.html">Node</a></li>
 <li class="toctree-l2 current active"><a class="current reference internal" href="#">NodeTypes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="individual.html">Individual and Fitness</a></li>
+<li class="toctree-l2"><a class="reference internal" href="evaluation.html">Evaluation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="population.html">Population</a></li>
 <li class="toctree-l2"><a class="reference internal" href="variation.html">Variation (Crossover/Mutation)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="selection.html">Selection</a></li>
+<li class="toctree-l2"><a class="reference internal" href="archive.html">Archive</a></li>
+<li class="toctree-l2"><a class="reference internal" href="engine.html">Engine (and parameters)</a></li>
 </ul>
-</li>
+</details></li>
 </ul>
 
     </div>
@@ -210,7 +221,7 @@
 
       </div>
       
-      <main id="main-content" class="bd-main">
+      <main id="main-content" class="bd-main" role="main">
         
         
 
@@ -219,7 +230,7 @@
           <div class="bd-content">
             <div class="bd-article-container">
               
-              <div class="bd-header-article">
+              <div class="bd-header-article d-print-none">
 <div class="header-article-items header-article__inner">
   
     <div class="header-article-items__start">
@@ -386,8 +397,9 @@ document.write(`
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#_CPPv4N5Brush8NodeType3MaxE"><code class="docutils literal notranslate"><span class="pre">NodeType::Max</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#_CPPv4N5Brush8NodeType4MeanE"><code class="docutils literal notranslate"><span class="pre">NodeType::Mean</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#_CPPv4N5Brush8NodeType6MedianE"><code class="docutils literal notranslate"><span class="pre">NodeType::Median</span></code></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#_CPPv4N5Brush8NodeType3SumE"><code class="docutils literal notranslate"><span class="pre">NodeType::Sum</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#_CPPv4N5Brush8NodeType4ProdE"><code class="docutils literal notranslate"><span class="pre">NodeType::Prod</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#_CPPv4N5Brush8NodeType3SumE"><code class="docutils literal notranslate"><span class="pre">NodeType::Sum</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#_CPPv4N5Brush8NodeType9OffsetSumE"><code class="docutils literal notranslate"><span class="pre">NodeType::OffsetSum</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#_CPPv4N5Brush8NodeType7SoftmaxE"><code class="docutils literal notranslate"><span class="pre">NodeType::Softmax</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#_CPPv4N5Brush8NodeType3AddE"><code class="docutils literal notranslate"><span class="pre">NodeType::Add</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#_CPPv4N5Brush8NodeType3SubE"><code class="docutils literal notranslate"><span class="pre">NodeType::Sub</span></code></a></li>
@@ -396,6 +408,10 @@ document.write(`
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#_CPPv4N5Brush8NodeType3PowE"><code class="docutils literal notranslate"><span class="pre">NodeType::Pow</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#_CPPv4N5Brush8NodeType9SplitBestE"><code class="docutils literal notranslate"><span class="pre">NodeType::SplitBest</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#_CPPv4N5Brush8NodeType7SplitOnE"><code class="docutils literal notranslate"><span class="pre">NodeType::SplitOn</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#_CPPv4N5Brush8NodeType3AndE"><code class="docutils literal notranslate"><span class="pre">NodeType::And</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#_CPPv4N5Brush8NodeType2OrE"><code class="docutils literal notranslate"><span class="pre">NodeType::Or</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#_CPPv4N5Brush8NodeType3NotE"><code class="docutils literal notranslate"><span class="pre">NodeType::Not</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#_CPPv4N5Brush8NodeType9MeanLabelE"><code class="docutils literal notranslate"><span class="pre">NodeType::MeanLabel</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#_CPPv4N5Brush8NodeType8ConstantE"><code class="docutils literal notranslate"><span class="pre">NodeType::Constant</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#_CPPv4N5Brush8NodeType8TerminalE"><code class="docutils literal notranslate"><span class="pre">NodeType::Terminal</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#_CPPv4N5Brush8NodeType6ArgMaxE"><code class="docutils literal notranslate"><span class="pre">NodeType::ArgMax</span></code></a></li>
@@ -558,13 +574,18 @@ document.write(`
 <dd></dd></dl>
 
 <dl class="cpp enumerator">
+<dt class="sig sig-object cpp" id="_CPPv4N5Brush8NodeType4ProdE">
+<span id="_CPPv3N5Brush8NodeType4ProdE"></span><span id="_CPPv2N5Brush8NodeType4ProdE"></span><span class="target" id="dc/d5c/namespaceBrush_1a051322bb9fd1db4638b6eccd399a29c8a362a33c23b08e4a32a4ec53fbb82cccd"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">Prod</span></span></span><a class="headerlink" href="#_CPPv4N5Brush8NodeType4ProdE" title="Link to this definition">#</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp enumerator">
 <dt class="sig sig-object cpp" id="_CPPv4N5Brush8NodeType3SumE">
 <span id="_CPPv3N5Brush8NodeType3SumE"></span><span id="_CPPv2N5Brush8NodeType3SumE"></span><span class="target" id="dc/d5c/namespaceBrush_1a051322bb9fd1db4638b6eccd399a29c8aa0ec87054b5e5b7847d0d8780a01a3d5"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">Sum</span></span></span><a class="headerlink" href="#_CPPv4N5Brush8NodeType3SumE" title="Link to this definition">#</a><br /></dt>
 <dd></dd></dl>
 
 <dl class="cpp enumerator">
-<dt class="sig sig-object cpp" id="_CPPv4N5Brush8NodeType4ProdE">
-<span id="_CPPv3N5Brush8NodeType4ProdE"></span><span id="_CPPv2N5Brush8NodeType4ProdE"></span><span class="target" id="dc/d5c/namespaceBrush_1a051322bb9fd1db4638b6eccd399a29c8a362a33c23b08e4a32a4ec53fbb82cccd"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">Prod</span></span></span><a class="headerlink" href="#_CPPv4N5Brush8NodeType4ProdE" title="Link to this definition">#</a><br /></dt>
+<dt class="sig sig-object cpp" id="_CPPv4N5Brush8NodeType9OffsetSumE">
+<span id="_CPPv3N5Brush8NodeType9OffsetSumE"></span><span id="_CPPv2N5Brush8NodeType9OffsetSumE"></span><span class="target" id="dc/d5c/namespaceBrush_1a051322bb9fd1db4638b6eccd399a29c8a4d83dec288ae3948fe9a8e21a3c3c734"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">OffsetSum</span></span></span><a class="headerlink" href="#_CPPv4N5Brush8NodeType9OffsetSumE" title="Link to this definition">#</a><br /></dt>
 <dd></dd></dl>
 
 <dl class="cpp enumerator">
@@ -605,6 +626,26 @@ document.write(`
 <dl class="cpp enumerator">
 <dt class="sig sig-object cpp" id="_CPPv4N5Brush8NodeType7SplitOnE">
 <span id="_CPPv3N5Brush8NodeType7SplitOnE"></span><span id="_CPPv2N5Brush8NodeType7SplitOnE"></span><span class="target" id="dc/d5c/namespaceBrush_1a051322bb9fd1db4638b6eccd399a29c8a15c7aff4312b936aa10eb02272c40c7a"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">SplitOn</span></span></span><a class="headerlink" href="#_CPPv4N5Brush8NodeType7SplitOnE" title="Link to this definition">#</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp enumerator">
+<dt class="sig sig-object cpp" id="_CPPv4N5Brush8NodeType3AndE">
+<span id="_CPPv3N5Brush8NodeType3AndE"></span><span id="_CPPv2N5Brush8NodeType3AndE"></span><span class="target" id="dc/d5c/namespaceBrush_1a051322bb9fd1db4638b6eccd399a29c8ac33315685a0cba3ce53be378b3c7874b"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">And</span></span></span><a class="headerlink" href="#_CPPv4N5Brush8NodeType3AndE" title="Link to this definition">#</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp enumerator">
+<dt class="sig sig-object cpp" id="_CPPv4N5Brush8NodeType2OrE">
+<span id="_CPPv3N5Brush8NodeType2OrE"></span><span id="_CPPv2N5Brush8NodeType2OrE"></span><span class="target" id="dc/d5c/namespaceBrush_1a051322bb9fd1db4638b6eccd399a29c8a3a2d5fe857d8f9541136a124c2edec6c"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">Or</span></span></span><a class="headerlink" href="#_CPPv4N5Brush8NodeType2OrE" title="Link to this definition">#</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp enumerator">
+<dt class="sig sig-object cpp" id="_CPPv4N5Brush8NodeType3NotE">
+<span id="_CPPv3N5Brush8NodeType3NotE"></span><span id="_CPPv2N5Brush8NodeType3NotE"></span><span class="target" id="dc/d5c/namespaceBrush_1a051322bb9fd1db4638b6eccd399a29c8aa74c05d080620f087c4e523977230666"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">Not</span></span></span><a class="headerlink" href="#_CPPv4N5Brush8NodeType3NotE" title="Link to this definition">#</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp enumerator">
+<dt class="sig sig-object cpp" id="_CPPv4N5Brush8NodeType9MeanLabelE">
+<span id="_CPPv3N5Brush8NodeType9MeanLabelE"></span><span id="_CPPv2N5Brush8NodeType9MeanLabelE"></span><span class="target" id="dc/d5c/namespaceBrush_1a051322bb9fd1db4638b6eccd399a29c8a2636ffd13bc710aebeeb21c41a89eec9"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">MeanLabel</span></span></span><a class="headerlink" href="#_CPPv4N5Brush8NodeType9MeanLabelE" title="Link to this definition">#</a><br /></dt>
 <dd></dd></dl>
 
 <dl class="cpp enumerator">
@@ -654,7 +695,7 @@ document.write(`
               
               
               
-                <footer class="prev-next-footer">
+                <footer class="prev-next-footer d-print-none">
                   
 <div class="prev-next-area">
     <a class="left-prev"
@@ -667,11 +708,11 @@ document.write(`
       </div>
     </a>
     <a class="right-next"
-       href="variation.html"
+       href="individual.html"
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">Variation (Crossover/Mutation)</p>
+        <p class="prev-next-title">Individual and Fitness</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
@@ -719,8 +760,9 @@ document.write(`
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#_CPPv4N5Brush8NodeType3MaxE"><code class="docutils literal notranslate"><span class="pre">NodeType::Max</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#_CPPv4N5Brush8NodeType4MeanE"><code class="docutils literal notranslate"><span class="pre">NodeType::Mean</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#_CPPv4N5Brush8NodeType6MedianE"><code class="docutils literal notranslate"><span class="pre">NodeType::Median</span></code></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#_CPPv4N5Brush8NodeType3SumE"><code class="docutils literal notranslate"><span class="pre">NodeType::Sum</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#_CPPv4N5Brush8NodeType4ProdE"><code class="docutils literal notranslate"><span class="pre">NodeType::Prod</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#_CPPv4N5Brush8NodeType3SumE"><code class="docutils literal notranslate"><span class="pre">NodeType::Sum</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#_CPPv4N5Brush8NodeType9OffsetSumE"><code class="docutils literal notranslate"><span class="pre">NodeType::OffsetSum</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#_CPPv4N5Brush8NodeType7SoftmaxE"><code class="docutils literal notranslate"><span class="pre">NodeType::Softmax</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#_CPPv4N5Brush8NodeType3AddE"><code class="docutils literal notranslate"><span class="pre">NodeType::Add</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#_CPPv4N5Brush8NodeType3SubE"><code class="docutils literal notranslate"><span class="pre">NodeType::Sub</span></code></a></li>
@@ -729,6 +771,10 @@ document.write(`
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#_CPPv4N5Brush8NodeType3PowE"><code class="docutils literal notranslate"><span class="pre">NodeType::Pow</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#_CPPv4N5Brush8NodeType9SplitBestE"><code class="docutils literal notranslate"><span class="pre">NodeType::SplitBest</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#_CPPv4N5Brush8NodeType7SplitOnE"><code class="docutils literal notranslate"><span class="pre">NodeType::SplitOn</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#_CPPv4N5Brush8NodeType3AndE"><code class="docutils literal notranslate"><span class="pre">NodeType::And</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#_CPPv4N5Brush8NodeType2OrE"><code class="docutils literal notranslate"><span class="pre">NodeType::Or</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#_CPPv4N5Brush8NodeType3NotE"><code class="docutils literal notranslate"><span class="pre">NodeType::Not</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#_CPPv4N5Brush8NodeType9MeanLabelE"><code class="docutils literal notranslate"><span class="pre">NodeType::MeanLabel</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#_CPPv4N5Brush8NodeType8ConstantE"><code class="docutils literal notranslate"><span class="pre">NodeType::Constant</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#_CPPv4N5Brush8NodeType8TerminalE"><code class="docutils literal notranslate"><span class="pre">NodeType::Terminal</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#_CPPv4N5Brush8NodeType6ArgMaxE"><code class="docutils literal notranslate"><span class="pre">NodeType::ArgMax</span></code></a></li>
@@ -786,8 +832,8 @@ By William La Cava and Joseph D. Romano
   </div>
   
   <!-- Scripts loaded after <body> so the DOM is not blocked -->
-  <script src="../_static/scripts/bootstrap.js?digest=8d27b9dea8ad943066ae"></script>
-<script src="../_static/scripts/pydata-sphinx-theme.js?digest=8d27b9dea8ad943066ae"></script>
+  <script src="../_static/scripts/bootstrap.js?digest=3ee479438cf8b5e0d341"></script>
+<script src="../_static/scripts/pydata-sphinx-theme.js?digest=3ee479438cf8b5e0d341"></script>
 
   <footer class="bd-footer">
   </footer>

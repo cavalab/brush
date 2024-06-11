@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
-<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.10.0" xml:lang="en-US">
   <compounddef id="d9/d40/bind__dataset_8cpp" kind="file" language="C++">
     <compoundname>bind_dataset.cpp</compoundname>
     <includes refid="d5/d16/module_8h" local="yes">module.h</includes>
@@ -7,109 +7,6 @@
     <includes refid="d9/d49/types_8h" local="yes">../types.h</includes>
     <includes refid="dc/dac/io_8h" local="yes">../data/io.h</includes>
     <incdepgraph>
-      <node id="36">
-        <label>../util/logger.h</label>
-        <link refid="d1/d8c/logger_8h"/>
-        <childnode refid="14" relation="include">
-        </childnode>
-      </node>
-      <node id="7">
-        <label>pybind11_json/pybind11_json.hpp</label>
-      </node>
-      <node id="22">
-        <label>fmt/format.h</label>
-      </node>
-      <node id="39">
-        <label>limits</label>
-      </node>
-      <node id="33">
-        <label>iterator</label>
-      </node>
-      <node id="31">
-        <label>error.h</label>
-        <link refid="da/d41/error_8h"/>
-        <childnode refid="20" relation="include">
-        </childnode>
-        <childnode refid="14" relation="include">
-        </childnode>
-      </node>
-      <node id="11">
-        <label>stdint.h</label>
-      </node>
-      <node id="25">
-        <label>variant</label>
-      </node>
-      <node id="40">
-        <label>timeseries.h</label>
-        <link refid="d9/df7/timeseries_8h"/>
-        <childnode refid="10" relation="include">
-        </childnode>
-        <childnode refid="28" relation="include">
-        </childnode>
-        <childnode refid="31" relation="include">
-        </childnode>
-      </node>
-      <node id="21">
-        <label>fmt/ostream.h</label>
-      </node>
-      <node id="16">
-        <label>numeric</label>
-      </node>
-      <node id="20">
-        <label>string</label>
-      </node>
-      <node id="4">
-        <label>pybind11/eigen.h</label>
-      </node>
-      <node id="17">
-        <label>map</label>
-      </node>
-      <node id="37">
-        <label>../util/rnd.h</label>
-        <link refid="d2/da9/rnd_8h"/>
-        <childnode refid="38" relation="include">
-        </childnode>
-        <childnode refid="39" relation="include">
-        </childnode>
-        <childnode refid="19" relation="include">
-        </childnode>
-        <childnode refid="10" relation="include">
-        </childnode>
-      </node>
-      <node id="15">
-        <label>fstream</label>
-      </node>
-      <node id="30">
-        <label>ostream</label>
-      </node>
-      <node id="24">
-        <label>types.h</label>
-        <link refid="d9/d49/types_8h"/>
-        <childnode refid="25" relation="include">
-        </childnode>
-        <childnode refid="26" relation="include">
-        </childnode>
-        <childnode refid="27" relation="include">
-        </childnode>
-      </node>
-      <node id="38">
-        <label>random</label>
-      </node>
-      <node id="12">
-        <label>Eigen/Dense</label>
-      </node>
-      <node id="35">
-        <label>tuple</label>
-      </node>
-      <node id="6">
-        <label>pybind11/iostream.h</label>
-      </node>
-      <node id="23">
-        <label>fmt/ranges.h</label>
-      </node>
-      <node id="41">
-        <label>optional</label>
-      </node>
       <node id="1">
         <label>bind_dataset.cpp</label>
         <link refid="d9/d40/bind__dataset_8cpp"/>
@@ -122,8 +19,21 @@
         <childnode refid="42" relation="include">
         </childnode>
       </node>
-      <node id="19">
-        <label>vector</label>
+      <node id="2">
+        <label>module.h</label>
+        <link refid="d5/d16/module_8h"/>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="5" relation="include">
+        </childnode>
+        <childnode refid="6" relation="include">
+        </childnode>
+        <childnode refid="7" relation="include">
+        </childnode>
+        <childnode refid="8" relation="include">
+        </childnode>
       </node>
       <node id="9">
         <label>../data/data.h</label>
@@ -143,6 +53,38 @@
         <childnode refid="25" relation="include">
         </childnode>
         <childnode refid="41" relation="include">
+        </childnode>
+      </node>
+      <node id="42">
+        <label>../data/io.h</label>
+        <link refid="dc/dac/io_8h"/>
+        <childnode refid="12" relation="include">
+        </childnode>
+        <childnode refid="19" relation="include">
+        </childnode>
+        <childnode refid="15" relation="include">
+        </childnode>
+        <childnode refid="29" relation="include">
+        </childnode>
+        <childnode refid="30" relation="include">
+        </childnode>
+        <childnode refid="17" relation="include">
+        </childnode>
+        <childnode refid="10" relation="include">
+        </childnode>
+        <childnode refid="31" relation="include">
+        </childnode>
+        <childnode refid="9" relation="include">
+        </childnode>
+      </node>
+      <node id="40">
+        <label>timeseries.h</label>
+        <link refid="d9/df7/timeseries_8h"/>
+        <childnode refid="10" relation="include">
+        </childnode>
+        <childnode refid="28" relation="include">
+        </childnode>
+        <childnode refid="31" relation="include">
         </childnode>
       </node>
       <node id="10">
@@ -179,33 +121,41 @@
         <childnode refid="24" relation="include">
         </childnode>
       </node>
-      <node id="3">
-        <label>pybind11/pybind11.h</label>
+      <node id="24">
+        <label>types.h</label>
+        <link refid="d9/d49/types_8h"/>
+        <childnode refid="25" relation="include">
+        </childnode>
+        <childnode refid="26" relation="include">
+        </childnode>
+        <childnode refid="27" relation="include">
+        </childnode>
       </node>
-      <node id="42">
-        <label>../data/io.h</label>
-        <link refid="dc/dac/io_8h"/>
-        <childnode refid="12" relation="include">
+      <node id="31">
+        <label>error.h</label>
+        <link refid="da/d41/error_8h"/>
+        <childnode refid="20" relation="include">
+        </childnode>
+        <childnode refid="14" relation="include">
+        </childnode>
+      </node>
+      <node id="36">
+        <label>../util/logger.h</label>
+        <link refid="d1/d8c/logger_8h"/>
+        <childnode refid="14" relation="include">
+        </childnode>
+      </node>
+      <node id="37">
+        <label>../util/rnd.h</label>
+        <link refid="d2/da9/rnd_8h"/>
+        <childnode refid="38" relation="include">
+        </childnode>
+        <childnode refid="39" relation="include">
         </childnode>
         <childnode refid="19" relation="include">
         </childnode>
-        <childnode refid="15" relation="include">
-        </childnode>
-        <childnode refid="29" relation="include">
-        </childnode>
-        <childnode refid="30" relation="include">
-        </childnode>
-        <childnode refid="17" relation="include">
-        </childnode>
         <childnode refid="10" relation="include">
         </childnode>
-        <childnode refid="31" relation="include">
-        </childnode>
-        <childnode refid="9" relation="include">
-        </childnode>
-      </node>
-      <node id="14">
-        <label>iostream</label>
       </node>
       <node id="28">
         <label>../util/utils.h</label>
@@ -237,11 +187,11 @@
         <childnode refid="35" relation="include">
         </childnode>
       </node>
+      <node id="12">
+        <label>Eigen/Dense</label>
+      </node>
       <node id="26">
         <label>ceres/jet.h</label>
-      </node>
-      <node id="34">
-        <label>execution</label>
       </node>
       <node id="29">
         <label>chrono</label>
@@ -249,46 +199,96 @@
       <node id="27">
         <label>concepts</label>
       </node>
-      <node id="18">
-        <label>set</label>
+      <node id="34">
+        <label>execution</label>
       </node>
-      <node id="2">
-        <label>module.h</label>
-        <link refid="d5/d16/module_8h"/>
-        <childnode refid="3" relation="include">
-        </childnode>
-        <childnode refid="4" relation="include">
-        </childnode>
-        <childnode refid="5" relation="include">
-        </childnode>
-        <childnode refid="6" relation="include">
-        </childnode>
-        <childnode refid="7" relation="include">
-        </childnode>
-        <childnode refid="8" relation="include">
-        </childnode>
+      <node id="22">
+        <label>fmt/format.h</label>
       </node>
-      <node id="8">
-        <label>nlohmann/json.hpp</label>
+      <node id="21">
+        <label>fmt/ostream.h</label>
+      </node>
+      <node id="23">
+        <label>fmt/ranges.h</label>
+      </node>
+      <node id="15">
+        <label>fstream</label>
+      </node>
+      <node id="14">
+        <label>iostream</label>
+      </node>
+      <node id="33">
+        <label>iterator</label>
+      </node>
+      <node id="39">
+        <label>limits</label>
+      </node>
+      <node id="17">
+        <label>map</label>
       </node>
       <node id="13">
         <label>memory</label>
       </node>
-      <node id="32">
-        <label>typeindex</label>
+      <node id="8">
+        <label>nlohmann/json.hpp</label>
+      </node>
+      <node id="16">
+        <label>numeric</label>
+      </node>
+      <node id="41">
+        <label>optional</label>
+      </node>
+      <node id="30">
+        <label>ostream</label>
+      </node>
+      <node id="4">
+        <label>pybind11/eigen.h</label>
+      </node>
+      <node id="6">
+        <label>pybind11/iostream.h</label>
+      </node>
+      <node id="3">
+        <label>pybind11/pybind11.h</label>
       </node>
       <node id="5">
         <label>pybind11/stl.h</label>
       </node>
+      <node id="7">
+        <label>pybind11_json/pybind11_json.hpp</label>
+      </node>
+      <node id="38">
+        <label>random</label>
+      </node>
+      <node id="18">
+        <label>set</label>
+      </node>
+      <node id="11">
+        <label>stdint.h</label>
+      </node>
+      <node id="20">
+        <label>string</label>
+      </node>
+      <node id="35">
+        <label>tuple</label>
+      </node>
+      <node id="32">
+        <label>typeindex</label>
+      </node>
+      <node id="25">
+        <label>variant</label>
+      </node>
+      <node id="19">
+        <label>vector</label>
+      </node>
     </incdepgraph>
-      <sectiondef kind="func">
+    <sectiondef kind="func">
       <memberdef kind="function" id="d9/d40/bind__dataset_8cpp_1a3a32d76d471ed16427cad15ed2364f0f" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
-        <type>void</type>
+        <type><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">void</ref></type>
         <definition>void bind_dataset</definition>
         <argsstring>(py::module &amp;m)</argsstring>
         <name>bind_dataset</name>
         <param>
-          <type>py::module &amp;</type>
+          <type><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">py::module</ref> &amp;</type>
           <declname>m</declname>
         </param>
         <briefdescription>
@@ -297,118 +297,90 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/runner/work/brush/brush/src/bindings/bind_dataset.cpp" line="9" column="6" bodyfile="/home/runner/work/brush/brush/src/bindings/bind_dataset.cpp" bodystart="9" bodyend="100"/>
-        <references refid="d6/d2e/namespaceBrush_1_1Util_1a0fca88a717680a76c4b7b9b082675f89" compoundref="d5/d60/utils_8h" startline="455" endline="462">Brush::Util::print</references>
-        <references refid="d9/d1c/namespaceBrush_1_1Data_1ad4320ca3604e146155ccc7c55ea9006c" compoundref="d5/d5a/io_8cpp" startline="14" endline="87">Brush::Data::read_csv</references>
-        <references refid="d6/d2e/namespaceBrush_1_1Util_1a1159db1e8024020d2e7a06845fc6254e" compoundref="d5/d60/utils_8h" startline="428" endline="451">Brush::Util::split</references>
-        <referencedby refid="dd/d30/module_8cpp_1ab3432520f506686ba18c7ce7758a6c69" compoundref="dd/d30/module_8cpp" startline="23" endline="37">PYBIND11_MODULE</referencedby>
+        <location file="/home/runner/work/brush/brush/src/bindings/bind_dataset.cpp" line="9" column="6" bodyfile="/home/runner/work/brush/brush/src/bindings/bind_dataset.cpp" bodystart="9" bodyend="75"/>
+        <referencedby refid="dd/d30/module_8cpp_1ab3432520f506686ba18c7ce7758a6c69" compoundref="dd/d30/module_8cpp" startline="33" endline="60">PYBIND11_MODULE</referencedby>
       </memberdef>
-      </sectiondef>
+    </sectiondef>
     <briefdescription>
     </briefdescription>
     <detaileddescription>
     </detaileddescription>
     <programlisting>
 <codeline lineno="1"><highlight class="preprocessor">#include<sp/>&quot;<ref refid="d5/d16/module_8h" kindref="compound">module.h</ref>&quot;</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="2"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;../data/data.h&quot;</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="3"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;../types.h&quot;</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="4"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;../data/io.h&quot;</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="5"><highlight class="normal"></highlight><highlight class="keyword">namespace<sp/></highlight><highlight class="normal">py<sp/>=<sp/>pybind11;</highlight></codeline>
+<codeline lineno="2"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;<ref refid="d2/dbd/data_8h" kindref="compound">../data/data.h</ref>&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="3"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;<ref refid="d9/d49/types_8h" kindref="compound">../types.h</ref>&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="4"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;<ref refid="dc/dac/io_8h" kindref="compound">../data/io.h</ref>&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="5"><highlight class="normal"></highlight><highlight class="keyword">namespace<sp/></highlight><highlight class="normal"><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">py</ref><sp/>=<sp/><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">pybind11</ref>;</highlight></codeline>
 <codeline lineno="6"><highlight class="normal"></highlight><highlight class="keyword">namespace<sp/></highlight><highlight class="normal"><ref refid="dc/d5c/namespaceBrush" kindref="compound">br</ref><sp/>=<sp/><ref refid="dc/d5c/namespaceBrush" kindref="compound">Brush</ref>;</highlight></codeline>
-<codeline lineno="7"><highlight class="normal"></highlight><highlight class="keyword">namespace<sp/></highlight><highlight class="normal">nl<sp/>=<sp/>nlohmann;</highlight></codeline>
+<codeline lineno="7"><highlight class="normal"></highlight><highlight class="keyword">namespace<sp/></highlight><highlight class="normal"><ref refid="d3/d9b/namespacenlohmann" kindref="compound">nl</ref><sp/>=<sp/><ref refid="d3/d9b/namespacenlohmann" kindref="compound">nlohmann</ref>;</highlight></codeline>
 <codeline lineno="8"><highlight class="normal"></highlight></codeline>
 <codeline lineno="9" refid="d9/d40/bind__dataset_8cpp_1a3a32d76d471ed16427cad15ed2364f0f" refkind="member"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="d9/d40/bind__dataset_8cpp_1a3a32d76d471ed16427cad15ed2364f0f" kindref="member">bind_dataset</ref>(py::module<sp/>&amp;<sp/>m)</highlight></codeline>
 <codeline lineno="10"><highlight class="normal">{</highlight></codeline>
 <codeline lineno="11"><highlight class="normal"><sp/><sp/><sp/><sp/>py::class_&lt;br::Data::Dataset&gt;(m,<sp/></highlight><highlight class="stringliteral">&quot;Dataset&quot;</highlight><highlight class="normal">)</highlight></codeline>
-<codeline lineno="12"><highlight class="normal"></highlight></codeline>
-<codeline lineno="13"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>construct<sp/>from<sp/>X<sp/></highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="14"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>.def(py::init&lt;Ref&lt;const<sp/>ArrayXXf&gt;<sp/>&amp;&gt;())</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="15"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>construct<sp/>from<sp/>X<sp/>(and<sp/>optional<sp/>validation<sp/>and<sp/>batch<sp/>sizes)<sp/>with<sp/>constructor<sp/>3.</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="16"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>.def(py::init([](</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>Ref&lt;const<sp/>ArrayXXf&gt;&amp;<sp/>X,</highlight></codeline>
-<codeline lineno="17"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">float</highlight><highlight class="normal"><sp/>validation_size=0.0,</highlight></codeline>
-<codeline lineno="18"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">float</highlight><highlight class="normal"><sp/>batch_size=1.0){</highlight></codeline>
-<codeline lineno="19"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>br::Data::Dataset(</highlight></codeline>
-<codeline lineno="20"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>X,<sp/>{},<sp/>validation_size,<sp/>batch_size);</highlight></codeline>
-<codeline lineno="21"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}),<sp/></highlight></codeline>
-<codeline lineno="22"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>py::arg(</highlight><highlight class="stringliteral">&quot;X&quot;</highlight><highlight class="normal">),</highlight></codeline>
-<codeline lineno="23"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>py::arg(</highlight><highlight class="stringliteral">&quot;validation_size&quot;</highlight><highlight class="normal">)<sp/>=<sp/>0.0,</highlight></codeline>
-<codeline lineno="24"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>py::arg(</highlight><highlight class="stringliteral">&quot;batch_size&quot;</highlight><highlight class="normal">)<sp/>=<sp/>1.0</highlight></codeline>
-<codeline lineno="25"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>)</highlight></codeline>
-<codeline lineno="26"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>construct<sp/>from<sp/>X,<sp/>feature<sp/>names<sp/></highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="27"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>.def(py::init&lt;</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="28"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>const<sp/>Ref&lt;const<sp/>ArrayXXf&gt;&amp;,<sp/></highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="29"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>const<sp/>vector&lt;string&gt;&amp;</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="30"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/><sp/><sp/><sp/><sp/>&gt;()</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="31"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>)</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="32"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>construct<sp/>from<sp/>X,<sp/>feature<sp/>names<sp/>(and<sp/>optional<sp/>validation<sp/>and<sp/>batch<sp/>sizes)<sp/>with<sp/>constructor<sp/>3.</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="33"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>.def(py::init([](</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>Ref&lt;const<sp/>ArrayXXf&gt;&amp;<sp/>X,<sp/></highlight></codeline>
-<codeline lineno="34"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>vector&lt;string&gt;&amp;<sp/>feature_names,</highlight></codeline>
-<codeline lineno="35"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">float</highlight><highlight class="normal"><sp/>validation_size=0.0,</highlight></codeline>
-<codeline lineno="36"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">float</highlight><highlight class="normal"><sp/>batch_size=1.0){</highlight></codeline>
-<codeline lineno="37"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>br::Data::Dataset(</highlight></codeline>
-<codeline lineno="38"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>X,<sp/>feature_names,<sp/>validation_size,<sp/>batch_size);</highlight></codeline>
-<codeline lineno="39"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}),<sp/></highlight></codeline>
-<codeline lineno="40"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>py::arg(</highlight><highlight class="stringliteral">&quot;X&quot;</highlight><highlight class="normal">),</highlight></codeline>
-<codeline lineno="41"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>py::arg(</highlight><highlight class="stringliteral">&quot;feature_names&quot;</highlight><highlight class="normal">),</highlight></codeline>
-<codeline lineno="42"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>py::arg(</highlight><highlight class="stringliteral">&quot;validation_size&quot;</highlight><highlight class="normal">)<sp/>=<sp/>0.0,</highlight></codeline>
-<codeline lineno="43"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>py::arg(</highlight><highlight class="stringliteral">&quot;batch_size&quot;</highlight><highlight class="normal">)<sp/>=<sp/>1.0</highlight></codeline>
-<codeline lineno="44"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>)</highlight></codeline>
-<codeline lineno="45"><highlight class="normal"></highlight></codeline>
-<codeline lineno="46"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>construct<sp/>from<sp/>X,<sp/>y<sp/>arrays</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="47"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>.def(py::init&lt;Ref&lt;const<sp/>ArrayXXf&gt;<sp/>&amp;,<sp/>Ref&lt;const<sp/>ArrayXf&gt;<sp/>&amp;&gt;())</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="48"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>construct<sp/>from<sp/>X,<sp/>y<sp/>arrays<sp/>(and<sp/>optional<sp/>validation<sp/>and<sp/>batch<sp/>sizes)<sp/>with<sp/>constructor<sp/>2.</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="49"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>.def(py::init([](</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>Ref&lt;const<sp/>ArrayXXf&gt;&amp;<sp/>X,<sp/></highlight></codeline>
-<codeline lineno="50"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>Ref&lt;const<sp/>ArrayXf&gt;&amp;<sp/>y,</highlight></codeline>
-<codeline lineno="51"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">float</highlight><highlight class="normal"><sp/>validation_size=0.0,</highlight></codeline>
-<codeline lineno="52"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">float</highlight><highlight class="normal"><sp/>batch_size=1.0){</highlight></codeline>
-<codeline lineno="53"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>br::Data::Dataset(</highlight></codeline>
-<codeline lineno="54"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>X,<sp/>y,<sp/>{},<sp/>{},<sp/></highlight><highlight class="keyword">false</highlight><highlight class="normal">,<sp/>validation_size,<sp/>batch_size);</highlight></codeline>
-<codeline lineno="55"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}),<sp/></highlight></codeline>
-<codeline lineno="56"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>py::arg(</highlight><highlight class="stringliteral">&quot;X&quot;</highlight><highlight class="normal">),</highlight></codeline>
-<codeline lineno="57"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>py::arg(</highlight><highlight class="stringliteral">&quot;y&quot;</highlight><highlight class="normal">),</highlight></codeline>
-<codeline lineno="58"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>py::arg(</highlight><highlight class="stringliteral">&quot;validation_size&quot;</highlight><highlight class="normal">)<sp/>=<sp/>0.0,</highlight></codeline>
-<codeline lineno="59"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>py::arg(</highlight><highlight class="stringliteral">&quot;batch_size&quot;</highlight><highlight class="normal">)<sp/>=<sp/>1.0</highlight></codeline>
-<codeline lineno="60"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>)</highlight></codeline>
-<codeline lineno="61"><highlight class="normal"></highlight></codeline>
-<codeline lineno="62"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>construct<sp/>from<sp/>X,<sp/>y,<sp/>feature<sp/>names<sp/></highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="63"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>.def(py::init&lt;</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="64"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>const<sp/>Ref&lt;const<sp/>ArrayXXf&gt;&amp;,<sp/></highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="65"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>const<sp/>Ref&lt;const<sp/>ArrayXf&gt;&amp;,</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="66"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>const<sp/>vector&lt;string&gt;&amp;</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="67"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/><sp/><sp/><sp/><sp/>&gt;()</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="68"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>)</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="69"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>construct<sp/>from<sp/>X,<sp/>y,<sp/>feature<sp/>names<sp/>(and<sp/>optional<sp/>validation<sp/>and<sp/>batch<sp/>sizes)<sp/>with<sp/>constructor<sp/>2.</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="70"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>.def(py::init([](</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>Ref&lt;const<sp/>ArrayXXf&gt;&amp;<sp/>X,<sp/></highlight></codeline>
-<codeline lineno="71"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>Ref&lt;const<sp/>ArrayXf&gt;&amp;<sp/>y,</highlight></codeline>
-<codeline lineno="72"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>vector&lt;string&gt;&amp;<sp/>feature_names,</highlight></codeline>
-<codeline lineno="73"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">float</highlight><highlight class="normal"><sp/>validation_size=0.0,</highlight></codeline>
-<codeline lineno="74"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">float</highlight><highlight class="normal"><sp/>batch_size=1.0){</highlight></codeline>
-<codeline lineno="75"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>br::Data::Dataset(</highlight></codeline>
-<codeline lineno="76"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>X,<sp/>y,<sp/>feature_names,<sp/>{},<sp/></highlight><highlight class="keyword">false</highlight><highlight class="normal">,<sp/>validation_size,<sp/>batch_size);</highlight></codeline>
-<codeline lineno="77"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}),<sp/></highlight></codeline>
-<codeline lineno="78"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>py::arg(</highlight><highlight class="stringliteral">&quot;X&quot;</highlight><highlight class="normal">),</highlight></codeline>
-<codeline lineno="79"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>py::arg(</highlight><highlight class="stringliteral">&quot;y&quot;</highlight><highlight class="normal">),</highlight></codeline>
-<codeline lineno="80"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>py::arg(</highlight><highlight class="stringliteral">&quot;feature_names&quot;</highlight><highlight class="normal">),</highlight></codeline>
-<codeline lineno="81"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>py::arg(</highlight><highlight class="stringliteral">&quot;validation_size&quot;</highlight><highlight class="normal">)<sp/>=<sp/>0.0,</highlight></codeline>
-<codeline lineno="82"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>py::arg(</highlight><highlight class="stringliteral">&quot;batch_size&quot;</highlight><highlight class="normal">)<sp/>=<sp/>1.0</highlight></codeline>
-<codeline lineno="83"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>)</highlight></codeline>
-<codeline lineno="84"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
-<codeline lineno="85"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>.def_readwrite(</highlight><highlight class="stringliteral">&quot;y&quot;</highlight><highlight class="normal">,<sp/>&amp;br::Data::Dataset::y)</highlight></codeline>
-<codeline lineno="86"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>.def_readwrite(&quot;features&quot;,<sp/>&amp;br::Data::Dataset::features)</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="87"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>.def(</highlight><highlight class="stringliteral">&quot;get_n_samples&quot;</highlight><highlight class="normal">,<sp/>&amp;br::Data::Dataset::get_n_samples)</highlight></codeline>
-<codeline lineno="88"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>.def(</highlight><highlight class="stringliteral">&quot;get_n_features&quot;</highlight><highlight class="normal">,<sp/>&amp;br::Data::Dataset::get_n_features)</highlight></codeline>
-<codeline lineno="89"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>.def(</highlight><highlight class="stringliteral">&quot;print&quot;</highlight><highlight class="normal">,<sp/>&amp;<ref refid="d6/d2e/namespaceBrush_1_1Util_1a0fca88a717680a76c4b7b9b082675f89" kindref="member">br::Data::Dataset::print</ref>)</highlight></codeline>
-<codeline lineno="90"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>.def(</highlight><highlight class="stringliteral">&quot;get_batch&quot;</highlight><highlight class="normal">,<sp/>&amp;br::Data::Dataset::get_batch)</highlight></codeline>
-<codeline lineno="91"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>.def(</highlight><highlight class="stringliteral">&quot;get_training_data&quot;</highlight><highlight class="normal">,<sp/>&amp;br::Data::Dataset::get_training_data)</highlight></codeline>
-<codeline lineno="92"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>.def(</highlight><highlight class="stringliteral">&quot;get_validation_data&quot;</highlight><highlight class="normal">,<sp/>&amp;br::Data::Dataset::get_validation_data)</highlight></codeline>
-<codeline lineno="93"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>.def(</highlight><highlight class="stringliteral">&quot;get_batch_size&quot;</highlight><highlight class="normal">,<sp/>&amp;br::Data::Dataset::get_batch_size)</highlight></codeline>
-<codeline lineno="94"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>.def(</highlight><highlight class="stringliteral">&quot;set_batch_size&quot;</highlight><highlight class="normal">,<sp/>&amp;br::Data::Dataset::set_batch_size)</highlight></codeline>
-<codeline lineno="95"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>.def(</highlight><highlight class="stringliteral">&quot;split&quot;</highlight><highlight class="normal">,<sp/>&amp;<ref refid="d6/d2e/namespaceBrush_1_1Util_1a1159db1e8024020d2e7a06845fc6254e" kindref="member">br::Data::Dataset::split</ref>)</highlight></codeline>
-<codeline lineno="96"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>.def(</highlight><highlight class="stringliteral">&quot;get_X&quot;</highlight><highlight class="normal">,<sp/>&amp;br::Data::Dataset::get_X)</highlight></codeline>
-<codeline lineno="97"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>;</highlight></codeline>
-<codeline lineno="98"><highlight class="normal"></highlight></codeline>
-<codeline lineno="99"><highlight class="normal"><sp/><sp/><sp/><sp/>m.def(</highlight><highlight class="stringliteral">&quot;read_csv&quot;</highlight><highlight class="normal">,<sp/>&amp;<ref refid="d9/d1c/namespaceBrush_1_1Data_1ad4320ca3604e146155ccc7c55ea9006c" kindref="member">br::Data::read_csv</ref>,<sp/>py::arg(</highlight><highlight class="stringliteral">&quot;path&quot;</highlight><highlight class="normal">),<sp/>py::arg(</highlight><highlight class="stringliteral">&quot;target&quot;</highlight><highlight class="normal">),<sp/>py::arg(</highlight><highlight class="stringliteral">&quot;sep&quot;</highlight><highlight class="normal">)=</highlight><highlight class="charliteral">&apos;,&apos;</highlight><highlight class="normal">);</highlight></codeline>
-<codeline lineno="100"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="12"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>construct<sp/>from<sp/>X,<sp/>feature<sp/>names<sp/>(and<sp/>optional<sp/>validation<sp/>and<sp/>batch<sp/>sizes)<sp/>with<sp/>constructor<sp/>3.</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="13"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>.def(py::init([](</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">Ref&lt;const ArrayXXf&gt;</ref>&amp;<sp/><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">X</ref>,<sp/></highlight></codeline>
+<codeline lineno="14"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>vector&lt;string&gt;&amp;<sp/>feature_names=vector&lt;string&gt;(),</highlight></codeline>
+<codeline lineno="15"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">c</ref>=</highlight><highlight class="keyword">false</highlight><highlight class="normal">,</highlight></codeline>
+<codeline lineno="16"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">float</highlight><highlight class="normal"><sp/>validation_size=0.0,</highlight></codeline>
+<codeline lineno="17"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">float</highlight><highlight class="normal"><sp/>batch_size=1.0){</highlight></codeline>
+<codeline lineno="18"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>br::Data::Dataset(</highlight></codeline>
+<codeline lineno="19"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">X</ref>,<sp/>feature_names,<sp/><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">c</ref>,<sp/>validation_size,<sp/>batch_size);</highlight></codeline>
+<codeline lineno="20"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}),<sp/></highlight></codeline>
+<codeline lineno="21"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>py::arg(</highlight><highlight class="stringliteral">&quot;X&quot;</highlight><highlight class="normal">),</highlight></codeline>
+<codeline lineno="22"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>py::arg(</highlight><highlight class="stringliteral">&quot;feature_names&quot;</highlight><highlight class="normal">)<sp/>=<sp/>vector&lt;string&gt;(),</highlight></codeline>
+<codeline lineno="23"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>py::arg(</highlight><highlight class="stringliteral">&quot;c&quot;</highlight><highlight class="normal">)<sp/>=<sp/></highlight><highlight class="keyword">false</highlight><highlight class="normal">,</highlight></codeline>
+<codeline lineno="24"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>py::arg(</highlight><highlight class="stringliteral">&quot;validation_size&quot;</highlight><highlight class="normal">)<sp/>=<sp/>0.0,</highlight></codeline>
+<codeline lineno="25"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>py::arg(</highlight><highlight class="stringliteral">&quot;batch_size&quot;</highlight><highlight class="normal">)<sp/>=<sp/>1.0</highlight></codeline>
+<codeline lineno="26"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>)</highlight></codeline>
+<codeline lineno="27"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>construct<sp/>from<sp/>X,<sp/>y,<sp/>feature<sp/>names<sp/>(and<sp/>optional<sp/>validation<sp/>and<sp/>batch<sp/>sizes)<sp/>with<sp/>constructor<sp/>2.</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="28"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>.<ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">def</ref>(py::init([](</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">Ref&lt;const ArrayXXf&gt;</ref>&amp;<sp/><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">X</ref>,<sp/></highlight></codeline>
+<codeline lineno="29"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">Ref&lt;const ArrayXf&gt;</ref>&amp;<sp/>y,</highlight></codeline>
+<codeline lineno="30"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>vector&lt;string&gt;&amp;<sp/>feature_names=vector&lt;string&gt;(),</highlight></codeline>
+<codeline lineno="31"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">c</ref>=</highlight><highlight class="keyword">false</highlight><highlight class="normal">,</highlight></codeline>
+<codeline lineno="32"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">float</highlight><highlight class="normal"><sp/>validation_size=0.0,</highlight></codeline>
+<codeline lineno="33"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">float</highlight><highlight class="normal"><sp/>batch_size=1.0){</highlight></codeline>
+<codeline lineno="34"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>br::Data::Dataset(</highlight></codeline>
+<codeline lineno="35"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">X</ref>,<sp/>y,<sp/>feature_names,<sp/>{},<sp/><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">c</ref>,<sp/>validation_size,<sp/>batch_size);</highlight></codeline>
+<codeline lineno="36"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}),<sp/></highlight></codeline>
+<codeline lineno="37"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>py::arg(</highlight><highlight class="stringliteral">&quot;X&quot;</highlight><highlight class="normal">),</highlight></codeline>
+<codeline lineno="38"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>py::arg(</highlight><highlight class="stringliteral">&quot;y&quot;</highlight><highlight class="normal">),</highlight></codeline>
+<codeline lineno="39"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>py::arg(</highlight><highlight class="stringliteral">&quot;feature_names&quot;</highlight><highlight class="normal">)<sp/>=<sp/>vector&lt;string&gt;(),</highlight></codeline>
+<codeline lineno="40"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>py::arg(</highlight><highlight class="stringliteral">&quot;c&quot;</highlight><highlight class="normal">)<sp/>=<sp/></highlight><highlight class="keyword">false</highlight><highlight class="normal">,</highlight></codeline>
+<codeline lineno="41"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>py::arg(</highlight><highlight class="stringliteral">&quot;validation_size&quot;</highlight><highlight class="normal">)<sp/>=<sp/>0.0,</highlight></codeline>
+<codeline lineno="42"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>py::arg(</highlight><highlight class="stringliteral">&quot;batch_size&quot;</highlight><highlight class="normal">)<sp/>=<sp/>1.0</highlight></codeline>
+<codeline lineno="43"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>)</highlight></codeline>
+<codeline lineno="44"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>construct<sp/>from<sp/>X,<sp/>feature<sp/>names,<sp/>but<sp/>copying<sp/>the<sp/>feature<sp/>types<sp/>from<sp/>a</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="45"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>reference<sp/>dataset<sp/>with<sp/>constructor<sp/>4.<sp/>Useful<sp/>for<sp/>predicting<sp/>(specially</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="46"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>because<sp/>the<sp/>user<sp/>can<sp/>provide<sp/>a<sp/>single<sp/>element<sp/>matrix,<sp/>or<sp/>an<sp/>array<sp/>with</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="47"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>no<sp/>feature<sp/>names).</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="48"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>.<ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">def</ref>(py::init([](</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">Ref&lt;const ArrayXXf&gt;</ref>&amp;<sp/><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">X</ref>,<sp/></highlight></codeline>
+<codeline lineno="49"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>br::Data::Dataset&amp;<sp/><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">ref_dataset</ref>,</highlight></codeline>
+<codeline lineno="50"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>vector&lt;string&gt;&amp;<sp/>feature_names,</highlight></codeline>
+<codeline lineno="51"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">c</ref>=</highlight><highlight class="keyword">false</highlight><highlight class="normal">){</highlight></codeline>
+<codeline lineno="52"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>br::Data::Dataset(<ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">X</ref>,<sp/><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">ref_dataset</ref>,<sp/>feature_names,<sp/><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">c</ref>);</highlight></codeline>
+<codeline lineno="53"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}),<sp/></highlight></codeline>
+<codeline lineno="54"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>py::arg(</highlight><highlight class="stringliteral">&quot;X&quot;</highlight><highlight class="normal">),</highlight></codeline>
+<codeline lineno="55"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>py::arg(</highlight><highlight class="stringliteral">&quot;ref_dataset&quot;</highlight><highlight class="normal">),</highlight></codeline>
+<codeline lineno="56"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>py::arg(</highlight><highlight class="stringliteral">&quot;feature_names&quot;</highlight><highlight class="normal">),</highlight></codeline>
+<codeline lineno="57"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>py::arg(</highlight><highlight class="stringliteral">&quot;c&quot;</highlight><highlight class="normal">)<sp/>=<sp/><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">false</ref></highlight></codeline>
+<codeline lineno="58"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>)</highlight></codeline>
+<codeline lineno="59"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="60"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>.<ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">def_readwrite</ref>(</highlight><highlight class="stringliteral">&quot;y&quot;</highlight><highlight class="normal">,<sp/>&amp;br::Data::Dataset::y)</highlight></codeline>
+<codeline lineno="61"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>.def_readwrite(&quot;features&quot;,<sp/>&amp;br::Data::Dataset::features)</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="62"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>.def(</highlight><highlight class="stringliteral">&quot;get_n_samples&quot;</highlight><highlight class="normal">,<sp/>&amp;br::Data::Dataset::get_n_samples)</highlight></codeline>
+<codeline lineno="63"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>.def(</highlight><highlight class="stringliteral">&quot;get_n_features&quot;</highlight><highlight class="normal">,<sp/>&amp;br::Data::Dataset::get_n_features)</highlight></codeline>
+<codeline lineno="64"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>.def(</highlight><highlight class="stringliteral">&quot;print&quot;</highlight><highlight class="normal">,<sp/>&amp;br::Data::Dataset::print)</highlight></codeline>
+<codeline lineno="65"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>.def(</highlight><highlight class="stringliteral">&quot;get_batch&quot;</highlight><highlight class="normal">,<sp/>&amp;br::Data::Dataset::get_batch)</highlight></codeline>
+<codeline lineno="66"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>.def(</highlight><highlight class="stringliteral">&quot;get_training_data&quot;</highlight><highlight class="normal">,<sp/>&amp;br::Data::Dataset::get_training_data)</highlight></codeline>
+<codeline lineno="67"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>.def(</highlight><highlight class="stringliteral">&quot;get_validation_data&quot;</highlight><highlight class="normal">,<sp/>&amp;br::Data::Dataset::get_validation_data)</highlight></codeline>
+<codeline lineno="68"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>.def(</highlight><highlight class="stringliteral">&quot;get_batch_size&quot;</highlight><highlight class="normal">,<sp/>&amp;br::Data::Dataset::get_batch_size)</highlight></codeline>
+<codeline lineno="69"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>.def(</highlight><highlight class="stringliteral">&quot;set_batch_size&quot;</highlight><highlight class="normal">,<sp/>&amp;br::Data::Dataset::set_batch_size)</highlight></codeline>
+<codeline lineno="70"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>.def(</highlight><highlight class="stringliteral">&quot;split&quot;</highlight><highlight class="normal">,<sp/>&amp;br::Data::Dataset::split)</highlight></codeline>
+<codeline lineno="71"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>.def(</highlight><highlight class="stringliteral">&quot;get_X&quot;</highlight><highlight class="normal">,<sp/>&amp;br::Data::Dataset::get_X)</highlight></codeline>
+<codeline lineno="72"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>;</highlight></codeline>
+<codeline lineno="73"><highlight class="normal"></highlight></codeline>
+<codeline lineno="74"><highlight class="normal"><sp/><sp/><sp/><sp/>m.def(</highlight><highlight class="stringliteral">&quot;read_csv&quot;</highlight><highlight class="normal">,<sp/>&amp;br::Data::read_csv,<sp/>py::arg(</highlight><highlight class="stringliteral">&quot;path&quot;</highlight><highlight class="normal">),<sp/>py::arg(</highlight><highlight class="stringliteral">&quot;target&quot;</highlight><highlight class="normal">),<sp/>py::arg(</highlight><highlight class="stringliteral">&quot;sep&quot;</highlight><highlight class="normal">)=</highlight><highlight class="charliteral">&apos;,&apos;</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="75"><highlight class="normal">}</highlight></codeline>
     </programlisting>
     <location file="/home/runner/work/brush/brush/src/bindings/bind_dataset.cpp"/>
   </compounddef>

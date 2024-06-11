@@ -1,17 +1,17 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
-<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.10.0" xml:lang="en-US">
   <compounddef id="d8/de0/tuples_8h" kind="file" language="C++">
     <compoundname>tuples.h</compoundname>
     <includes local="no">variant</includes>
     <incdepgraph>
-      <node id="2">
-        <label>variant</label>
-      </node>
       <node id="1">
         <label>tuples.h</label>
         <link refid="d8/de0/tuples_8h"/>
         <childnode refid="2" relation="include">
         </childnode>
+      </node>
+      <node id="2">
+        <label>variant</label>
       </node>
     </incdepgraph>
     <briefdescription>
@@ -28,7 +28,7 @@
 <codeline lineno="7"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>TUPLES_H</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="8"><highlight class="normal"></highlight></codeline>
 <codeline lineno="9"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;variant&gt;</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="10"><highlight class="normal"></highlight><highlight class="keyword">using<sp/>namespace<sp/></highlight><highlight class="normal">std;</highlight></codeline>
+<codeline lineno="10"><highlight class="normal"></highlight><highlight class="keyword">using<sp/>namespace<sp/></highlight><highlight class="normal"><ref refid="d8/dcc/namespacestd" kindref="compound">std</ref>;</highlight></codeline>
 <codeline lineno="11"><highlight class="normal"></highlight><highlight class="comment">/*<sp/>This<sp/>code<sp/>taken<sp/>from<sp/></highlight></codeline>
 <codeline lineno="12"><highlight class="comment">https://changkun.de/modern-cpp/en-us/04-containers/index.html#4-3-Tuples<sp/></highlight></codeline>
 <codeline lineno="13"><highlight class="comment">to<sp/>enable<sp/>run-time<sp/>indexing<sp/>of<sp/>tuples</highlight></codeline>

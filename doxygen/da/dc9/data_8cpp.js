@@ -1,7 +1,8 @@
 var data_8cpp =
 [
+    [ "cast_type", "da/dc9/data_8cpp.html#a5e5f876d004717e85c08b7661e090e29", null ],
     [ "check_type", "da/dc9/data_8cpp.html#a1087f7155f1e2855ed2821058b6ab036", null ],
-    [ "operator<<", "da/dc9/data_8cpp.html#a167ca10243cde10177737a1e60a34a61", null ],
+    [ "operator<<", "da/dc9/data_8cpp.html#ad1be6b37dda8f94db59996bc060e5e2e", null ],
     [ "StateType", "da/dc9/data_8cpp.html#a6c00d36ba6aefd852544da96a089754a", null ],
     [ "DataIDType", "da/dc9/data_8cpp.html#ad90f755a36fec02b0be6867f5321e77e", null ],
     [ "DataNameType", "da/dc9/data_8cpp.html#ae8e6a6b88349644cf160c63559cddd9c", null ],

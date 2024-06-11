@@ -1,5 +1,11 @@
 var searchData=
 [
-  ['weightoptimizer_948',['WeightOptimizer',['../d7/d79/structBrush_1_1WeightOptimizer.html',1,'Brush']]],
-  ['weighttype_949',['WeightType',['../da/d54/structBrush_1_1WeightType.html',1,'Brush']]]
+  ['timer_0',['Timer',['../d8/da4/classBrush_1_1Util_1_1Timer.html',1,'Brush::Util']]],
+  ['timeseries_1',['TimeSeries',['../d7/d56/structBrush_1_1Data_1_1TimeSeries.html',1,'Brush::Data']]],
+  ['tinycostfunction_2',['TinyCostFunction',['../df/d09/structBrush_1_1TinyCostFunction.html',1,'Brush']]],
+  ['toggleweightoffmutation_3',['ToggleWeightOffMutation',['../dd/d55/classBrush_1_1Var_1_1ToggleWeightOffMutation.html',1,'Brush::Var']]],
+  ['toggleweightonmutation_4',['ToggleWeightOnMutation',['../d2/d1a/classBrush_1_1Var_1_1ToggleWeightOnMutation.html',1,'Brush::Var']]],
+  ['tree_5fnode_5f_5',['tree_node_',['../d0/d0e/classtree__node__.html',1,'']]],
+  ['tree_5fnode_5f_3c_20brush_3a_3anode_20_3e_6',['tree_node_&lt; Brush::Node &gt;',['../d0/d0e/classtree__node__.html',1,'']]],
+  ['tree_5fnode_5f_3c_20node_20_3e_7',['tree_node_&lt; Node &gt;',['../dc/d90/classtree__node___3_01Node_01_4.html',1,'']]]
 ];

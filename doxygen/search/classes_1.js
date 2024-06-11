@@ -1,6 +1,4 @@
 var searchData=
 [
-  ['brushclassifier_793',['BrushClassifier',['../d0/d6a/classbrush_1_1estimator_1_1BrushClassifier.html',1,'brush::estimator']]],
-  ['brushestimator_794',['BrushEstimator',['../d0/dc4/classbrush_1_1estimator_1_1BrushEstimator.html',1,'brush::estimator']]],
-  ['brushregressor_795',['BrushRegressor',['../da/d81/classbrush_1_1estimator_1_1BrushRegressor.html',1,'brush::estimator']]]
+  ['comparator_5fobj_0',['comparator_obj',['../dd/dc3/structBrush_1_1Sel_1_1NSGA2_1_1comparator__obj.html',1,'Brush::Sel::NSGA2']]]
 ];

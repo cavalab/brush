@@ -1,6 +1,9 @@
 var hierarchy =
 [
+    [ "nlohmann::adl_serializer< std::shared_ptr< T > >", "d8/d3c/structnlohmann_1_1adl__serializer_3_01std_1_1shared__ptr_3_01T_01_4_01_4.html", null ],
     [ "Brush::all_same< First, Next >", "db/d64/structBrush_1_1all__same.html", null ],
+    [ "Brush::Pop::Archive< T >", "d1/d30/structBrush_1_1Pop_1_1Archive.html", null ],
+    [ "Brush::Sel::NSGA2< T >::comparator_obj", "dd/dc3/structBrush_1_1Sel_1_1NSGA2_1_1comparator__obj.html", null ],
     [ "Brush::DataEnumType< D >", "d8/d17/structBrush_1_1DataEnumType.html", null ],
     [ "Brush::DataEnumType< DT::ArrayB >", "d6/d53/structBrush_1_1DataEnumType_3_01DT_1_1ArrayB_01_4.html", null ],
     [ "Brush::DataEnumType< DT::ArrayBJet >", "d4/dcb/structBrush_1_1DataEnumType_3_01DT_1_1ArrayBJet_01_4.html", null ],
@@ -37,8 +40,9 @@ var hierarchy =
     [ "Brush::DataTypeEnum< Data::TimeSeriesfJet >", "d1/d94/structBrush_1_1DataTypeEnum_3_01Data_1_1TimeSeriesfJet_01_4.html", null ],
     [ "Brush::DataTypeEnum< Data::TimeSeriesi >", "d5/d29/structBrush_1_1DataTypeEnum_3_01Data_1_1TimeSeriesi_01_4.html", null ],
     [ "Brush::DataTypeEnum< Data::TimeSeriesiJet >", "da/d56/structBrush_1_1DataTypeEnum_3_01Data_1_1TimeSeriesiJet_01_4.html", null ],
-    [ "brush.deap_api.utils.DeapIndividual", "d5/dca/classbrush_1_1deap__api_1_1utils_1_1DeapIndividual.html", null ],
     [ "Brush::DispatchTable< Fit >", "d3/da8/structBrush_1_1DispatchTable.html", null ],
+    [ "Brush::Engine< T >", "d0/d75/classBrush_1_1Engine.html", null ],
+    [ "Brush::Eval::Evaluation< T >", "d1/de5/classBrush_1_1Eval_1_1Evaluation.html", null ],
     [ "std::false_type", null, [
       [ "Brush::is_std_array< T >", "d6/dfa/structBrush_1_1is__std__array.html", null ],
       [ "Brush::is_tuple< typename >", "d0/d4c/structBrush_1_1is__tuple.html", null ]
@@ -58,6 +62,7 @@ var hierarchy =
     [ "Brush::Function< NodeType::Acos >", "d3/d84/structBrush_1_1Function_3_01NodeType_1_1Acos_01_4.html", null ],
     [ "Brush::Function< NodeType::Add >", "de/d7a/structBrush_1_1Function_3_01NodeType_1_1Add_01_4.html", null ],
     [ "Brush::Function< NodeType::After >", "d8/dca/structBrush_1_1Function_3_01NodeType_1_1After_01_4.html", null ],
+    [ "Brush::Function< NodeType::And >", "de/d19/structBrush_1_1Function_3_01NodeType_1_1And_01_4.html", null ],
     [ "Brush::Function< NodeType::ArgMax >", "d6/da6/structBrush_1_1Function_3_01NodeType_1_1ArgMax_01_4.html", null ],
     [ "Brush::Function< NodeType::Asin >", "d5/d79/structBrush_1_1Function_3_01NodeType_1_1Asin_01_4.html", null ],
     [ "Brush::Function< NodeType::Atan >", "d7/d62/structBrush_1_1Function_3_01NodeType_1_1Atan_01_4.html", null ],
@@ -79,6 +84,9 @@ var hierarchy =
     [ "Brush::Function< NodeType::Median >", "d2/d84/structBrush_1_1Function_3_01NodeType_1_1Median_01_4.html", null ],
     [ "Brush::Function< NodeType::Min >", "d8/d4a/structBrush_1_1Function_3_01NodeType_1_1Min_01_4.html", null ],
     [ "Brush::Function< NodeType::Mul >", "d7/dd7/structBrush_1_1Function_3_01NodeType_1_1Mul_01_4.html", null ],
+    [ "Brush::Function< NodeType::Not >", "d4/d67/structBrush_1_1Function_3_01NodeType_1_1Not_01_4.html", null ],
+    [ "Brush::Function< NodeType::OffsetSum >", "dc/dcc/structBrush_1_1Function_3_01NodeType_1_1OffsetSum_01_4.html", null ],
+    [ "Brush::Function< NodeType::Or >", "d4/d1b/structBrush_1_1Function_3_01NodeType_1_1Or_01_4.html", null ],
     [ "Brush::Function< NodeType::Pow >", "da/d0e/structBrush_1_1Function_3_01NodeType_1_1Pow_01_4.html", null ],
     [ "Brush::Function< NodeType::Prod >", "d7/d7e/structBrush_1_1Function_3_01NodeType_1_1Prod_01_4.html", null ],
     [ "Brush::Function< NodeType::Sin >", "d7/d76/structBrush_1_1Function_3_01NodeType_1_1Sin_01_4.html", null ],
@@ -93,6 +101,8 @@ var hierarchy =
     [ "Brush::Function< NodeType::Tan >", "d7/d8e/structBrush_1_1Function_3_01NodeType_1_1Tan_01_4.html", null ],
     [ "Brush::Function< NodeType::Tanh >", "dc/d5d/structBrush_1_1Function_3_01NodeType_1_1Tanh_01_4.html", null ],
     [ "std::hash< std::tuple< TT... > >", "de/d30/structstd_1_1hash_3_01std_1_1tuple_3_01TT_8_8_8_01_4_01_4.html", null ],
+    [ "std::hash< std::vector< float > >", "d4/d0d/structstd_1_1hash_3_01std_1_1vector_3_01float_01_4_01_4.html", null ],
+    [ "Brush::Pop::Individual< T >", "de/d83/classBrush_1_1Pop_1_1Individual.html", null ],
     [ "std::is_base_of", null, [
       [ "Brush::is_eigen_array< T >", "df/d72/structBrush_1_1is__eigen__array.html", null ]
     ] ],
@@ -110,6 +120,14 @@ var hierarchy =
     [ "Brush::Jetify< Data::TimeSeriesi >", "d9/da6/structBrush_1_1Jetify_3_01Data_1_1TimeSeriesi_01_4.html", null ],
     [ "Brush::Util::Log_Stats", "db/d7e/structBrush_1_1Util_1_1Log__Stats.html", null ],
     [ "Brush::Util::Logger", "dd/d56/classBrush_1_1Util_1_1Logger.html", null ],
+    [ "Brush::Var::MutationBase", "d0/dec/classBrush_1_1Var_1_1MutationBase.html", [
+      [ "Brush::Var::DeleteMutation", "d0/d6d/classBrush_1_1Var_1_1DeleteMutation.html", null ],
+      [ "Brush::Var::InsertMutation", "dc/de3/classBrush_1_1Var_1_1InsertMutation.html", null ],
+      [ "Brush::Var::PointMutation", "d4/d46/classBrush_1_1Var_1_1PointMutation.html", null ],
+      [ "Brush::Var::SubtreeMutation", "de/d23/classBrush_1_1Var_1_1SubtreeMutation.html", null ],
+      [ "Brush::Var::ToggleWeightOffMutation", "dd/d55/classBrush_1_1Var_1_1ToggleWeightOffMutation.html", null ],
+      [ "Brush::Var::ToggleWeightOnMutation", "d2/d1a/classBrush_1_1Var_1_1ToggleWeightOnMutation.html", null ]
+    ] ],
     [ "Brush::NarySignature< R, Arg, ArgCount, Indices >", "d6/df7/structBrush_1_1NarySignature.html", null ],
     [ "Brush::NarySignatures< R, Arg, MaxArgCount >", "d9/da6/structBrush_1_1NarySignatures.html", null ],
     [ "Brush::Node", "d1/d3a/structBrush_1_1Node.html", null ],
@@ -118,13 +136,26 @@ var hierarchy =
     [ "Brush::Data::OmopData", "dc/d67/structBrush_1_1Data_1_1OmopData.html", null ],
     [ "Brush::Operator< NT, S, Fit, E >", "dc/d31/structBrush_1_1Operator.html", null ],
     [ "Brush::Operator< NodeType::Constant, S, Fit >", "df/dc1/structBrush_1_1Operator_3_01NodeType_1_1Constant_00_01S_00_01Fit_01_4.html", null ],
+    [ "Brush::Operator< NodeType::MeanLabel, S, Fit >", "d9/d5e/structBrush_1_1Operator_3_01NodeType_1_1MeanLabel_00_01S_00_01Fit_01_4.html", null ],
     [ "Brush::Operator< NodeType::Terminal, S, Fit >", "dd/d88/structBrush_1_1Operator_3_01NodeType_1_1Terminal_00_01S_00_01Fit_01_4.html", null ],
     [ "Operator< NT, S, Fit, enable_if_t< is_in_v< NT, NodeType::SplitOn, NodeType::SplitBest > > >", "d3/df2/structOperator_3_01NT_00_01S_00_01Fit_00_01enable__if__t_3_01is__in__v_3_01NT_00_01NodeType_1_1Se4750a8ecc1d24ba81c8da2bd5c73a14.html", null ],
     [ "Brush::OptimizerSummary", "dc/d91/structBrush_1_1OptimizerSummary.html", null ],
+    [ "Brush::Parameters", "de/deb/structBrush_1_1Parameters.html", null ],
+    [ "Brush::Pop::Population< T >", "da/da3/classBrush_1_1Pop_1_1Population.html", null ],
     [ "Brush::Program< PType >", "db/d88/structBrush_1_1Program.html", null ],
+    [ "Brush::Program< T >", "db/d88/structBrush_1_1Program.html", null ],
     [ "Brush::ResidualEvaluator< PT >", "d4/d70/structBrush_1_1ResidualEvaluator.html", null ],
     [ "Brush::Util::Rnd", "d2/d2d/classBrush_1_1Util_1_1Rnd.html", null ],
+    [ "Brush::Pop::Population< T >::SameFitComplexity", "d4/de2/structBrush_1_1Pop_1_1Population_1_1SameFitComplexity.html", null ],
+    [ "Brush::Eval::Scorer< P >", "da/d4c/classBrush_1_1Eval_1_1Scorer.html", null ],
+    [ "Brush::Eval::Scorer< P >", "d1/d73/classBrush_1_1Eval_1_1Scorer_3_01P_01_4.html", null ],
+    [ "Brush::Eval::Scorer< T >", "da/d4c/classBrush_1_1Eval_1_1Scorer.html", null ],
     [ "Brush::SearchSpace", "d4/dc3/structBrush_1_1SearchSpace.html", null ],
+    [ "Brush::Sel::Selection< T >", "dd/d0f/structBrush_1_1Sel_1_1Selection.html", null ],
+    [ "Brush::Sel::SelectionOperator< T >", "de/db9/classBrush_1_1Sel_1_1SelectionOperator.html", [
+      [ "Brush::Sel::Lexicase< T >", "d2/dd0/classBrush_1_1Sel_1_1Lexicase.html", null ],
+      [ "Brush::Sel::NSGA2< T >", "d3/d7d/classBrush_1_1Sel_1_1NSGA2.html", null ]
+    ] ],
     [ "Brush::SigBase< R, Args >", "da/dd5/structBrush_1_1SigBase.html", null ],
     [ "Brush::SigBase< R >", "dc/da5/structBrush_1_1SigBase_3_01R_01_4.html", null ],
     [ "Brush::SigBase< R, Args... >", "da/dd5/structBrush_1_1SigBase.html", [
@@ -132,20 +163,26 @@ var hierarchy =
     ] ],
     [ "Brush::Signature< T >", "d2/d75/structBrush_1_1Signature.html", null ],
     [ "Brush::Signatures< N, T >", "d1/d9a/structBrush_1_1Signatures.html", null ],
-    [ "Brush::Signatures< N, enable_if_t< is_in_v< N, NodeType::Abs, NodeType::Acos, NodeType::Asin, NodeType::Atan, NodeType::Cos, NodeType::Cosh, NodeType::Sin, NodeType::Sinh, NodeType::Tan, NodeType::Tanh, NodeType::Ceil, NodeType::Floor, NodeType::Exp, NodeType::Log, NodeType::Logabs, NodeType::Log1p, NodeType::Sqrt, NodeType::Sqrtabs, NodeType::Square, NodeType::Logistic > > >", "d6/d13/structBrush_1_1Signatures_3_01N_00_01enable__if__t_3_01is__in__v_3_01N_00_01NodeType_1_1Abs_00_041c8b69233b6ea6ea1dff31c8b98dd13.html", null ],
+    [ "Brush::Signatures< N, enable_if_t< is_in_v< N, NodeType::Abs, NodeType::Acos, NodeType::Asin, NodeType::Atan, NodeType::Cos, NodeType::Cosh, NodeType::Sin, NodeType::Sinh, NodeType::Tan, NodeType::Tanh, NodeType::Ceil, NodeType::Floor, NodeType::Exp, NodeType::Log, NodeType::Logabs, NodeType::Log1p, NodeType::Sqrt, NodeType::Sqrtabs, NodeType::Square, NodeType::Logistic, NodeType::OffsetSum > > >", "d2/def/structBrush_1_1Signatures_3_01N_00_01enable__if__t_3_01is__in__v_3_01N_00_01NodeType_1_1Abs_00_0aeef5405a01257b84f9033923028819e.html", null ],
     [ "Brush::Signatures< N, enable_if_t< is_in_v< N, NodeType::Add, NodeType::Sub, NodeType::Mul, NodeType::Div, NodeType::Pow > > >", "d2/d82/structBrush_1_1Signatures_3_01N_00_01enable__if__t_3_01is__in__v_3_01N_00_01NodeType_1_1Add_00_02ae8c79e1c3eb458e9c5f6f94e9a9b11.html", null ],
+    [ "Brush::Signatures< N, enable_if_t< is_in_v< N, NodeType::And, NodeType::Or > > >", "d6/d2d/structBrush_1_1Signatures_3_01N_00_01enable__if__t_3_01is__in__v_3_01N_00_01NodeType_1_1And_00_01NodeType_1_1Or_01_4_01_4_01_4.html", null ],
     [ "Brush::Signatures< N, enable_if_t< is_in_v< N, NodeType::ArgMax > > >", "dd/d56/structBrush_1_1Signatures_3_01N_00_01enable__if__t_3_01is__in__v_3_01N_00_01NodeType_1_1ArgMax_01_4_01_4_01_4.html", null ],
     [ "Brush::Signatures< N, enable_if_t< is_in_v< N, NodeType::Before, NodeType::After, NodeType::During > > >", "d8/de1/structBrush_1_1Signatures_3_01N_00_01enable__if__t_3_01is__in__v_3_01N_00_01NodeType_1_1Before_086362e8a3357214e4d1e7ae6488defd0.html", null ],
     [ "Brush::Signatures< N, enable_if_t< is_in_v< N, NodeType::Constant, NodeType::Terminal > > >", "d6/d46/structBrush_1_1Signatures_3_01N_00_01enable__if__t_3_01is__in__v_3_01N_00_01NodeType_1_1Constant596b719ae2fbdba032d4d7caf610588d.html", null ],
     [ "Brush::Signatures< N, enable_if_t< is_in_v< N, NodeType::SplitBest, NodeType::CustomSplit > > >", "d2/d1e/structBrush_1_1Signatures_3_01N_00_01enable__if__t_3_01is__in__v_3_01N_00_01NodeType_1_1SplitBesd813f162f676219afb7a127e3ee4a443.html", null ],
     [ "Brush::Signatures< N, enable_if_t< is_in_v< N, NodeType::Sum, NodeType::Prod, NodeType::Min, NodeType::Max, NodeType::Mean, NodeType::Median > > >", "d6/da3/structBrush_1_1Signatures_3_01N_00_01enable__if__t_3_01is__in__v_3_01N_00_01NodeType_1_1Sum_00_083e8a3a604402dec7f5377fa9aae58ea.html", null ],
     [ "Brush::Signatures< NodeType::Count >", "d9/d74/structBrush_1_1Signatures_3_01NodeType_1_1Count_01_4.html", null ],
+    [ "Brush::Signatures< NodeType::MeanLabel >", "da/dca/structBrush_1_1Signatures_3_01NodeType_1_1MeanLabel_01_4.html", null ],
+    [ "Brush::Signatures< NodeType::Not >", "d3/d91/structBrush_1_1Signatures_3_01NodeType_1_1Not_01_4.html", null ],
     [ "Brush::Signatures< NodeType::Softmax >", "db/d1c/structBrush_1_1Signatures_3_01NodeType_1_1Softmax_01_4.html", null ],
     [ "Brush::Signatures< NodeType::SplitOn >", "dd/d50/structBrush_1_1Signatures_3_01NodeType_1_1SplitOn_01_4.html", null ],
+    [ "Brush::Sel::NSGA2< T >::sort_n", "d1/d20/structBrush_1_1Sel_1_1NSGA2_1_1sort__n.html", null ],
+    [ "Brush::Pop::Population< T >::SortComplexity", "d6/dd9/structBrush_1_1Pop_1_1Population_1_1SortComplexity.html", null ],
     [ "Brush::Util::Timer", "d8/da4/classBrush_1_1Util_1_1Timer.html", null ],
     [ "Brush::Data::TimeSeries< T >", "d7/d56/structBrush_1_1Data_1_1TimeSeries.html", null ],
     [ "Brush::TinyCostFunction< CostFunctor, DualType, ScalarType, StorageOrder >", "df/d09/structBrush_1_1TinyCostFunction.html", null ],
     [ "tree_node_< T >", "d0/d0e/classtree__node__.html", null ],
+    [ "tree_node_< Brush::Node >", "d0/d0e/classtree__node__.html", null ],
     [ "tree_node_< Node >", "dc/d90/classtree__node___3_01Node_01_4.html", null ],
     [ "std::true_type", null, [
       [ "Brush::is_std_array< std::array< V, n > >", "d4/df1/structBrush_1_1is__std__array_3_01std_1_1array_3_01V_00_01n_01_4_01_4.html", null ],
@@ -162,18 +199,7 @@ var hierarchy =
     [ "Brush::UnJetify< Data::TimeSeriesbJet >", "da/de1/structBrush_1_1UnJetify_3_01Data_1_1TimeSeriesbJet_01_4.html", null ],
     [ "Brush::UnJetify< Data::TimeSeriesfJet >", "df/d76/structBrush_1_1UnJetify_3_01Data_1_1TimeSeriesfJet_01_4.html", null ],
     [ "Brush::UnJetify< Data::TimeSeriesiJet >", "dc/d96/structBrush_1_1UnJetify_3_01Data_1_1TimeSeriesiJet_01_4.html", null ],
+    [ "Brush::Var::Variation< T >", "d5/d14/classBrush_1_1Var_1_1Variation.html", null ],
     [ "Brush::WeightOptimizer", "d7/d79/structBrush_1_1WeightOptimizer.html", null ],
-    [ "Brush::WeightType< T >", "da/d54/structBrush_1_1WeightType.html", null ],
-    [ "BaseEstimator", null, [
-      [ "brush.estimator.BrushEstimator", "d0/dc4/classbrush_1_1estimator_1_1BrushEstimator.html", [
-        [ "brush.estimator.BrushClassifier", "d0/d6a/classbrush_1_1estimator_1_1BrushClassifier.html", null ],
-        [ "brush.estimator.BrushRegressor", "da/d81/classbrush_1_1estimator_1_1BrushRegressor.html", null ]
-      ] ]
-    ] ],
-    [ "ClassifierMixin", null, [
-      [ "brush.estimator.BrushClassifier", "d0/d6a/classbrush_1_1estimator_1_1BrushClassifier.html", null ]
-    ] ],
-    [ "RegressorMixin", null, [
-      [ "brush.estimator.BrushRegressor", "da/d81/classbrush_1_1estimator_1_1BrushRegressor.html", null ]
-    ] ]
+    [ "Brush::WeightType< T >", "da/d54/structBrush_1_1WeightType.html", null ]
 ];

@@ -1,58 +1,939 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
-<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.10.0" xml:lang="en-US">
   <compounddef id="d6/dd0/structBrush_1_1Fitness" kind="struct" language="C++" prot="public">
     <compoundname>Brush::Fitness</compoundname>
-    <includes refid="d1/dea/program_8h" local="no">program.h</includes>
-      <sectiondef kind="public-attrib">
+    <includes refid="dc/d7a/fitness_8h" local="no">fitness.h</includes>
+    <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="d6/dd0/structBrush_1_1Fitness_1a30e994e0b4aa0a8febfe7d7a09529f04" prot="public" static="no" mutable="no">
+        <type><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">float</ref></type>
+        <definition>float Brush::Fitness::loss</definition>
+        <argsstring></argsstring>
+        <name>loss</name>
+        <qualifiedname>Brush::Fitness::loss</qualifiedname>
+        <briefdescription>
+<para>aggregate loss score </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/runner/work/brush/brush/src/ind/fitness.h" line="28" column="11" bodyfile="/home/runner/work/brush/brush/src/ind/fitness.h" bodystart="28" bodyend="-1"/>
+        <referencedby refid="d6/dd0/structBrush_1_1Fitness_1a3a12b069a168aa86d3e7bce0f4c56cad" compoundref="dc/d7a/fitness_8h" startline="51" endline="51">get_loss</referencedby>
+        <referencedby refid="d6/dd0/structBrush_1_1Fitness_1af8ccf40c598f102153c058e9f470c9a2" compoundref="dc/d7a/fitness_8h" startline="50" endline="50">set_loss</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="d6/dd0/structBrush_1_1Fitness_1aa8cd674fad6f65c344f008c3e2442491" prot="public" static="no" mutable="no">
+        <type><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">float</ref></type>
+        <definition>float Brush::Fitness::loss_v</definition>
+        <argsstring></argsstring>
+        <name>loss_v</name>
+        <qualifiedname>Brush::Fitness::loss_v</qualifiedname>
+        <briefdescription>
+<para>aggregate validation loss score </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/runner/work/brush/brush/src/ind/fitness.h" line="29" column="11" bodyfile="/home/runner/work/brush/brush/src/ind/fitness.h" bodystart="29" bodyend="-1"/>
+        <referencedby refid="d6/dd0/structBrush_1_1Fitness_1a735c8326b8e7750e500ead86f2ad2c31" compoundref="dc/d7a/fitness_8h" startline="54" endline="54">get_loss_v</referencedby>
+        <referencedby refid="d6/dd0/structBrush_1_1Fitness_1a777abbd7a2453ba1b580e28fb2f6f28a" compoundref="dc/d7a/fitness_8h" startline="53" endline="53">set_loss_v</referencedby>
+        <referencedby refid="d0/d75/classBrush_1_1Engine_1a9a15cd9b6bdcc6c7bee5a473ebff1081" compoundref="da/d5c/engine_8cpp" startline="288" endline="320">Brush::Engine&lt; T &gt;::update_best</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="d6/dd0/structBrush_1_1Fitness_1a2edfafc177c7f47f7c5fccc9238236cf" prot="public" static="no" mutable="no">
+        <type><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">unsigned</ref> <ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">int</ref></type>
+        <definition>unsigned int Brush::Fitness::complexity</definition>
+        <argsstring></argsstring>
+        <name>complexity</name>
+        <qualifiedname>Brush::Fitness::complexity</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/runner/work/brush/brush/src/ind/fitness.h" line="31" column="18" bodyfile="/home/runner/work/brush/brush/src/ind/fitness.h" bodystart="31" bodyend="-1"/>
+        <referencedby refid="d6/dd0/structBrush_1_1Fitness_1a8ab836a166ef8eba47a93b00d7bbb40c" compoundref="dc/d7a/fitness_8h" startline="60" endline="60">get_complexity</referencedby>
+        <referencedby refid="d6/dd0/structBrush_1_1Fitness_1a6624d493b11552c90ebd6a32567d4021" compoundref="dc/d7a/fitness_8h" startline="59" endline="59">set_complexity</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="d6/dd0/structBrush_1_1Fitness_1aa8d013edea014b30ff85fe341c8c3ea5" prot="public" static="no" mutable="no">
+        <type><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">unsigned</ref> <ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">int</ref></type>
+        <definition>unsigned int Brush::Fitness::size</definition>
+        <argsstring></argsstring>
+        <name>size</name>
+        <qualifiedname>Brush::Fitness::size</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/runner/work/brush/brush/src/ind/fitness.h" line="32" column="18" bodyfile="/home/runner/work/brush/brush/src/ind/fitness.h" bodystart="32" bodyend="-1"/>
+        <referencedby refid="d6/dd0/structBrush_1_1Fitness_1af1eac138217509d2ab3c5db903e05a09" compoundref="dc/d7a/fitness_8h" startline="57" endline="57">get_size</referencedby>
+        <referencedby refid="d6/dd0/structBrush_1_1Fitness_1ad18b85ddb700f0213b07ac662ce16980" compoundref="dc/d7a/fitness_8h" startline="56" endline="56">set_size</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="d6/dd0/structBrush_1_1Fitness_1ac5ea0f880c248e2426a132d1d151243a" prot="public" static="no" mutable="no">
+        <type><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">unsigned</ref> <ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">int</ref></type>
+        <definition>unsigned int Brush::Fitness::depth</definition>
+        <argsstring></argsstring>
+        <name>depth</name>
+        <qualifiedname>Brush::Fitness::depth</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/runner/work/brush/brush/src/ind/fitness.h" line="33" column="18" bodyfile="/home/runner/work/brush/brush/src/ind/fitness.h" bodystart="33" bodyend="-1"/>
+        <referencedby refid="d6/dd0/structBrush_1_1Fitness_1addbfaf0dd6163c1e5ebf8edb4788cc98" compoundref="dc/d7a/fitness_8h" startline="63" endline="63">get_depth</referencedby>
+        <referencedby refid="d6/dd0/structBrush_1_1Fitness_1a86d061384bf1df41de74a9fe1f1f7f47" compoundref="dc/d7a/fitness_8h" startline="62" endline="62">set_depth</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="d6/dd0/structBrush_1_1Fitness_1a76b3053e09f2fa0f08a5dc4abb1c8daf" prot="public" static="no" mutable="no">
+        <type><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">unsigned</ref> <ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">int</ref></type>
+        <definition>unsigned int Brush::Fitness::dcounter</definition>
+        <argsstring></argsstring>
+        <name>dcounter</name>
+        <qualifiedname>Brush::Fitness::dcounter</qualifiedname>
+        <briefdescription>
+<para>number of individuals this dominates </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/runner/work/brush/brush/src/ind/fitness.h" line="36" column="18" bodyfile="/home/runner/work/brush/brush/src/ind/fitness.h" bodystart="36" bodyend="-1"/>
+        <referencedby refid="d6/dd0/structBrush_1_1Fitness_1ab25babcc558853c2c270e6205c24b8bc" compoundref="dc/d7a/fitness_8h" startline="66" endline="66">get_dcounter</referencedby>
+        <referencedby refid="d6/dd0/structBrush_1_1Fitness_1aa6cf18d9db8de8609dd618c8c9f1e516" compoundref="dc/d7a/fitness_8h" startline="65" endline="65">set_dcounter</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="d6/dd0/structBrush_1_1Fitness_1ad66abe65f27bd44fc49975be3c2103cb" prot="public" static="no" mutable="no">
+        <type>vector&lt; <ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">unsigned</ref> <ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">int</ref> &gt;</type>
+        <definition>vector&lt;unsigned int&gt; Brush::Fitness::dominated</definition>
+        <argsstring></argsstring>
+        <name>dominated</name>
+        <qualifiedname>Brush::Fitness::dominated</qualifiedname>
+        <briefdescription>
+<para>individual indices this dominates </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/runner/work/brush/brush/src/ind/fitness.h" line="37" column="12" bodyfile="/home/runner/work/brush/brush/src/ind/fitness.h" bodystart="37" bodyend="-1"/>
+        <referencedby refid="d6/dd0/structBrush_1_1Fitness_1a1e6a7fbf8c83a164c3c8fca6108a1859" compoundref="dc/d7a/fitness_8h" startline="48" endline="48">get_dominated</referencedby>
+        <referencedby refid="d6/dd0/structBrush_1_1Fitness_1a7e7ad401b1d97b818bbc01fbb95355e1" compoundref="dc/d7a/fitness_8h" startline="47" endline="47">set_dominated</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="d6/dd0/structBrush_1_1Fitness_1aae177694d7f7bceaa8f907e317c328ab" prot="public" static="no" mutable="no">
+        <type><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">unsigned</ref> <ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">int</ref></type>
+        <definition>unsigned int Brush::Fitness::rank</definition>
+        <argsstring></argsstring>
+        <name>rank</name>
+        <qualifiedname>Brush::Fitness::rank</qualifiedname>
+        <briefdescription>
+<para>pareto front rank </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/runner/work/brush/brush/src/ind/fitness.h" line="38" column="18" bodyfile="/home/runner/work/brush/brush/src/ind/fitness.h" bodystart="38" bodyend="-1"/>
+        <referencedby refid="d6/dd0/structBrush_1_1Fitness_1a8ec7c6ed8c23c1a18036d546bcbd0aae" compoundref="dc/d7a/fitness_8h" startline="69" endline="69">get_rank</referencedby>
+        <referencedby refid="d6/dd0/structBrush_1_1Fitness_1ab92c03b4eac43138dfd59484c7f0ccc7" compoundref="dc/d7a/fitness_8h" startline="68" endline="68">set_rank</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="d6/dd0/structBrush_1_1Fitness_1a0998d4960cae30c329ae6d2f05a27c84" prot="public" static="no" mutable="no">
+        <type><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">float</ref></type>
+        <definition>float Brush::Fitness::crowding_dist</definition>
+        <argsstring></argsstring>
+        <name>crowding_dist</name>
+        <qualifiedname>Brush::Fitness::crowding_dist</qualifiedname>
+        <briefdescription>
+<para>crowding distance on the Pareto front </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/runner/work/brush/brush/src/ind/fitness.h" line="39" column="11" bodyfile="/home/runner/work/brush/brush/src/ind/fitness.h" bodystart="39" bodyend="-1"/>
+        <referencedby refid="d6/dd0/structBrush_1_1Fitness_1a2a732eff1606d1a9d932daf0a26f3f35" compoundref="dc/d7a/fitness_8h" startline="72" endline="72">get_crowding_dist</referencedby>
+        <referencedby refid="d6/dd0/structBrush_1_1Fitness_1ae1927c4532e152a318d5156cd3f83aa9" compoundref="dc/d7a/fitness_8h" startline="71" endline="71">set_crowding_dist</referencedby>
+      </memberdef>
       <memberdef kind="variable" id="d6/dd0/structBrush_1_1Fitness_1a853380ca80adf2ab47bc8d2fc34b09b4" prot="public" static="no" mutable="no">
-        <type>vector&lt; float &gt;</type>
+        <type>vector&lt; <ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">float</ref> &gt;</type>
         <definition>vector&lt;float&gt; Brush::Fitness::values</definition>
         <argsstring></argsstring>
         <name>values</name>
+        <qualifiedname>Brush::Fitness::values</qualifiedname>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/runner/work/brush/brush/src/program/program.h" line="40" column="12" bodyfile="/home/runner/work/brush/brush/src/program/program.h" bodystart="40" bodyend="-1"/>
-        <referencedby refid="d9/d26/bind__programs_8cpp_1a8435253e0dd2b6802297b820914051e5" compoundref="d9/d26/bind__programs_8cpp" startline="12" endline="25">bind_programs</referencedby>
+        <location file="/home/runner/work/brush/brush/src/ind/fitness.h" line="41" column="12" bodyfile="/home/runner/work/brush/brush/src/ind/fitness.h" bodystart="41" bodyend="-1"/>
+        <referencedby refid="d6/dd0/structBrush_1_1Fitness_1a512d328942d02c909b2e0c11c23ad1b2" compoundref="dc/d7a/fitness_8h" startline="95" endline="97">get_values</referencedby>
+        <referencedby refid="d6/dd0/structBrush_1_1Fitness_1a4bec036d5b4fa2acc82b2e934183a45c" compoundref="dc/d7a/fitness_8h" startline="178" endline="187">repr</referencedby>
+        <referencedby refid="d6/dd0/structBrush_1_1Fitness_1aaec7fc8a8c22af4fb6265beac92002a4" compoundref="dc/d7a/fitness_8h" startline="103" endline="122">set_values</referencedby>
+        <referencedby refid="d6/dd0/structBrush_1_1Fitness_1a6253406e0ac28947766a5f5afbb721e1" compoundref="dc/d7a/fitness_8h" startline="166" endline="175">toString</referencedby>
       </memberdef>
-      <memberdef kind="variable" id="d6/dd0/structBrush_1_1Fitness_1ae41414066bee664a1e5cae382667aec4" prot="public" static="no" mutable="no">
-        <type>bool</type>
-        <definition>bool Brush::Fitness::valid</definition>
+      <memberdef kind="variable" id="d6/dd0/structBrush_1_1Fitness_1a1207d03059fa2d786e983270388b1f16" prot="public" static="no" mutable="no">
+        <type>vector&lt; <ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">float</ref> &gt;</type>
+        <definition>vector&lt;float&gt; Brush::Fitness::weights</definition>
         <argsstring></argsstring>
-        <name>valid</name>
+        <name>weights</name>
+        <qualifiedname>Brush::Fitness::weights</qualifiedname>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/runner/work/brush/brush/src/program/program.h" line="41" column="10" bodyfile="/home/runner/work/brush/brush/src/program/program.h" bodystart="41" bodyend="-1"/>
-        <referencedby refid="d9/d26/bind__programs_8cpp_1a8435253e0dd2b6802297b820914051e5" compoundref="d9/d26/bind__programs_8cpp" startline="12" endline="25">bind_programs</referencedby>
+        <location file="/home/runner/work/brush/brush/src/ind/fitness.h" line="42" column="12" bodyfile="/home/runner/work/brush/brush/src/ind/fitness.h" bodystart="42" bodyend="-1"/>
+        <referencedby refid="d6/dd0/structBrush_1_1Fitness_1af274bda89992e906bd63904a471672c4" compoundref="dc/d7a/fitness_8h" startline="92" endline="94">get_weights</referencedby>
+        <referencedby refid="d6/dd0/structBrush_1_1Fitness_1aaec7fc8a8c22af4fb6265beac92002a4" compoundref="dc/d7a/fitness_8h" startline="103" endline="122">set_values</referencedby>
+        <referencedby refid="d6/dd0/structBrush_1_1Fitness_1aea7bd29487b3dda47a908ef049da7ddd" compoundref="dc/d7a/fitness_8h" startline="89" endline="91">set_weights</referencedby>
       </memberdef>
-      </sectiondef>
+      <memberdef kind="variable" id="d6/dd0/structBrush_1_1Fitness_1a972dd960fd7c2a68449827ec987d0671" prot="public" static="no" mutable="no">
+        <type>vector&lt; <ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">float</ref> &gt;</type>
+        <definition>vector&lt;float&gt; Brush::Fitness::wvalues</definition>
+        <argsstring></argsstring>
+        <name>wvalues</name>
+        <qualifiedname>Brush::Fitness::wvalues</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/runner/work/brush/brush/src/ind/fitness.h" line="45" column="12" bodyfile="/home/runner/work/brush/brush/src/ind/fitness.h" bodystart="45" bodyend="-1"/>
+        <referencedby refid="d6/dd0/structBrush_1_1Fitness_1a101d3e509a063d7d3ee16a43cd1f98f4" compoundref="dc/d7a/fitness_8h" startline="125" endline="127">clearValues</referencedby>
+        <referencedby refid="d6/dd0/structBrush_1_1Fitness_1aa9396fa7bd5d5b4c1858081ccd999567" compoundref="dc/d7a/fitness_8h" startline="98" endline="100">get_wvalues</referencedby>
+        <referencedby refid="d6/dd0/structBrush_1_1Fitness_1a74d3a57b040075bc8b036220d9b6e6da" compoundref="dc/d7a/fitness_8h" startline="84" endline="87">hash</referencedby>
+        <referencedby refid="d6/dd0/structBrush_1_1Fitness_1a84795f84cd165e72194fd65359fc7564" compoundref="dc/d7a/fitness_8h" startline="144" endline="148">operator&lt;</referencedby>
+        <referencedby refid="d6/dd0/structBrush_1_1Fitness_1a77280961992df506699026e7fe47adbe" compoundref="dc/d7a/fitness_8h" startline="134" endline="136">operator==</referencedby>
+        <referencedby refid="d6/dd0/structBrush_1_1Fitness_1aaec7fc8a8c22af4fb6265beac92002a4" compoundref="dc/d7a/fitness_8h" startline="103" endline="122">set_values</referencedby>
+        <referencedby refid="d6/dd0/structBrush_1_1Fitness_1a55b3762be6e11b3667eaf464657784c6" compoundref="dc/d7a/fitness_8h" startline="129" endline="131">valid</referencedby>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="public-func">
+      <memberdef kind="function" id="d6/dd0/structBrush_1_1Fitness_1a7e7ad401b1d97b818bbc01fbb95355e1" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">void</ref></type>
+        <definition>void Brush::Fitness::set_dominated</definition>
+        <argsstring>(vector&lt; unsigned int &gt; &amp;dom)</argsstring>
+        <name>set_dominated</name>
+        <qualifiedname>Brush::Fitness::set_dominated</qualifiedname>
+        <param>
+          <type>vector&lt; <ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">unsigned</ref> <ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">int</ref> &gt; &amp;</type>
+          <declname>dom</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/runner/work/brush/brush/src/ind/fitness.h" line="47" column="10" bodyfile="/home/runner/work/brush/brush/src/ind/fitness.h" bodystart="47" bodyend="47"/>
+        <references refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" compoundref="d4/d93/bind__engines_8h" startline="35" endline="104">bind_engine</references>
+        <references refid="d6/dd0/structBrush_1_1Fitness_1ad66abe65f27bd44fc49975be3c2103cb" compoundref="dc/d7a/fitness_8h" startline="37">dominated</references>
+      </memberdef>
+      <memberdef kind="function" id="d6/dd0/structBrush_1_1Fitness_1a1e6a7fbf8c83a164c3c8fca6108a1859" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>vector&lt; <ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">unsigned</ref> <ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">int</ref> &gt;</type>
+        <definition>vector&lt; unsigned int &gt; Brush::Fitness::get_dominated</definition>
+        <argsstring>() const</argsstring>
+        <name>get_dominated</name>
+        <qualifiedname>Brush::Fitness::get_dominated</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/runner/work/brush/brush/src/ind/fitness.h" line="48" column="12" bodyfile="/home/runner/work/brush/brush/src/ind/fitness.h" bodystart="48" bodyend="48"/>
+        <references refid="d6/dd0/structBrush_1_1Fitness_1ad66abe65f27bd44fc49975be3c2103cb" compoundref="dc/d7a/fitness_8h" startline="37">dominated</references>
+      </memberdef>
+      <memberdef kind="function" id="d6/dd0/structBrush_1_1Fitness_1af8ccf40c598f102153c058e9f470c9a2" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">void</ref></type>
+        <definition>void Brush::Fitness::set_loss</definition>
+        <argsstring>(float f)</argsstring>
+        <name>set_loss</name>
+        <qualifiedname>Brush::Fitness::set_loss</qualifiedname>
+        <param>
+          <type><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">float</ref></type>
+          <declname>f</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/runner/work/brush/brush/src/ind/fitness.h" line="50" column="10" bodyfile="/home/runner/work/brush/brush/src/ind/fitness.h" bodystart="50" bodyend="50"/>
+        <references refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" compoundref="d4/d93/bind__engines_8h" startline="35" endline="104">bind_engine</references>
+        <references refid="d6/dd0/structBrush_1_1Fitness_1a30e994e0b4aa0a8febfe7d7a09529f04" compoundref="dc/d7a/fitness_8h" startline="28">loss</references>
+      </memberdef>
+      <memberdef kind="function" id="d6/dd0/structBrush_1_1Fitness_1a3a12b069a168aa86d3e7bce0f4c56cad" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">float</ref></type>
+        <definition>float Brush::Fitness::get_loss</definition>
+        <argsstring>() const</argsstring>
+        <name>get_loss</name>
+        <qualifiedname>Brush::Fitness::get_loss</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/runner/work/brush/brush/src/ind/fitness.h" line="51" column="11" bodyfile="/home/runner/work/brush/brush/src/ind/fitness.h" bodystart="51" bodyend="51"/>
+        <references refid="d6/dd0/structBrush_1_1Fitness_1a30e994e0b4aa0a8febfe7d7a09529f04" compoundref="dc/d7a/fitness_8h" startline="28">loss</references>
+        <referencedby refid="d0/d75/classBrush_1_1Engine_1a215399033d10c86535f344e54937ea01" compoundref="da/d5c/engine_8cpp" startline="62" endline="125">Brush::Engine&lt; T &gt;::calculate_stats</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="d6/dd0/structBrush_1_1Fitness_1a777abbd7a2453ba1b580e28fb2f6f28a" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">void</ref></type>
+        <definition>void Brush::Fitness::set_loss_v</definition>
+        <argsstring>(float f_v)</argsstring>
+        <name>set_loss_v</name>
+        <qualifiedname>Brush::Fitness::set_loss_v</qualifiedname>
+        <param>
+          <type><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">float</ref></type>
+          <declname>f_v</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/runner/work/brush/brush/src/ind/fitness.h" line="53" column="10" bodyfile="/home/runner/work/brush/brush/src/ind/fitness.h" bodystart="53" bodyend="53"/>
+        <references refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" compoundref="d4/d93/bind__engines_8h" startline="35" endline="104">bind_engine</references>
+        <references refid="d6/dd0/structBrush_1_1Fitness_1aa8cd674fad6f65c344f008c3e2442491" compoundref="dc/d7a/fitness_8h" startline="29">loss_v</references>
+      </memberdef>
+      <memberdef kind="function" id="d6/dd0/structBrush_1_1Fitness_1a735c8326b8e7750e500ead86f2ad2c31" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">float</ref></type>
+        <definition>float Brush::Fitness::get_loss_v</definition>
+        <argsstring>() const</argsstring>
+        <name>get_loss_v</name>
+        <qualifiedname>Brush::Fitness::get_loss_v</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/runner/work/brush/brush/src/ind/fitness.h" line="54" column="11" bodyfile="/home/runner/work/brush/brush/src/ind/fitness.h" bodystart="54" bodyend="54"/>
+        <references refid="d6/dd0/structBrush_1_1Fitness_1aa8cd674fad6f65c344f008c3e2442491" compoundref="dc/d7a/fitness_8h" startline="29">loss_v</references>
+      </memberdef>
+      <memberdef kind="function" id="d6/dd0/structBrush_1_1Fitness_1ad18b85ddb700f0213b07ac662ce16980" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">void</ref></type>
+        <definition>void Brush::Fitness::set_size</definition>
+        <argsstring>(unsigned int new_s)</argsstring>
+        <name>set_size</name>
+        <qualifiedname>Brush::Fitness::set_size</qualifiedname>
+        <param>
+          <type><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">unsigned</ref> <ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">int</ref></type>
+          <declname>new_s</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/runner/work/brush/brush/src/ind/fitness.h" line="56" column="10" bodyfile="/home/runner/work/brush/brush/src/ind/fitness.h" bodystart="56" bodyend="56"/>
+        <references refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" compoundref="d4/d93/bind__engines_8h" startline="35" endline="104">bind_engine</references>
+        <references refid="d6/dd0/structBrush_1_1Fitness_1aa8d013edea014b30ff85fe341c8c3ea5" compoundref="dc/d7a/fitness_8h" startline="32">size</references>
+      </memberdef>
+      <memberdef kind="function" id="d6/dd0/structBrush_1_1Fitness_1af1eac138217509d2ab3c5db903e05a09" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">unsigned</ref> <ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">int</ref></type>
+        <definition>unsigned int Brush::Fitness::get_size</definition>
+        <argsstring>() const</argsstring>
+        <name>get_size</name>
+        <qualifiedname>Brush::Fitness::get_size</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/runner/work/brush/brush/src/ind/fitness.h" line="57" column="18" bodyfile="/home/runner/work/brush/brush/src/ind/fitness.h" bodystart="57" bodyend="57"/>
+        <references refid="d6/dd0/structBrush_1_1Fitness_1aa8d013edea014b30ff85fe341c8c3ea5" compoundref="dc/d7a/fitness_8h" startline="32">size</references>
+      </memberdef>
+      <memberdef kind="function" id="d6/dd0/structBrush_1_1Fitness_1a6624d493b11552c90ebd6a32567d4021" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">void</ref></type>
+        <definition>void Brush::Fitness::set_complexity</definition>
+        <argsstring>(unsigned int new_c)</argsstring>
+        <name>set_complexity</name>
+        <qualifiedname>Brush::Fitness::set_complexity</qualifiedname>
+        <param>
+          <type><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">unsigned</ref> <ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">int</ref></type>
+          <declname>new_c</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/runner/work/brush/brush/src/ind/fitness.h" line="59" column="10" bodyfile="/home/runner/work/brush/brush/src/ind/fitness.h" bodystart="59" bodyend="59"/>
+        <references refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" compoundref="d4/d93/bind__engines_8h" startline="35" endline="104">bind_engine</references>
+        <references refid="d6/dd0/structBrush_1_1Fitness_1a2edfafc177c7f47f7c5fccc9238236cf" compoundref="dc/d7a/fitness_8h" startline="31">complexity</references>
+      </memberdef>
+      <memberdef kind="function" id="d6/dd0/structBrush_1_1Fitness_1a8ab836a166ef8eba47a93b00d7bbb40c" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">unsigned</ref> <ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">int</ref></type>
+        <definition>unsigned int Brush::Fitness::get_complexity</definition>
+        <argsstring>() const</argsstring>
+        <name>get_complexity</name>
+        <qualifiedname>Brush::Fitness::get_complexity</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/runner/work/brush/brush/src/ind/fitness.h" line="60" column="18" bodyfile="/home/runner/work/brush/brush/src/ind/fitness.h" bodystart="60" bodyend="60"/>
+        <references refid="d6/dd0/structBrush_1_1Fitness_1a2edfafc177c7f47f7c5fccc9238236cf" compoundref="dc/d7a/fitness_8h" startline="31">complexity</references>
+      </memberdef>
+      <memberdef kind="function" id="d6/dd0/structBrush_1_1Fitness_1a86d061384bf1df41de74a9fe1f1f7f47" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">void</ref></type>
+        <definition>void Brush::Fitness::set_depth</definition>
+        <argsstring>(unsigned int new_d)</argsstring>
+        <name>set_depth</name>
+        <qualifiedname>Brush::Fitness::set_depth</qualifiedname>
+        <param>
+          <type><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">unsigned</ref> <ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">int</ref></type>
+          <declname>new_d</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/runner/work/brush/brush/src/ind/fitness.h" line="62" column="10" bodyfile="/home/runner/work/brush/brush/src/ind/fitness.h" bodystart="62" bodyend="62"/>
+        <references refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" compoundref="d4/d93/bind__engines_8h" startline="35" endline="104">bind_engine</references>
+        <references refid="d6/dd0/structBrush_1_1Fitness_1ac5ea0f880c248e2426a132d1d151243a" compoundref="dc/d7a/fitness_8h" startline="33">depth</references>
+      </memberdef>
+      <memberdef kind="function" id="d6/dd0/structBrush_1_1Fitness_1addbfaf0dd6163c1e5ebf8edb4788cc98" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">unsigned</ref> <ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">int</ref></type>
+        <definition>unsigned int Brush::Fitness::get_depth</definition>
+        <argsstring>() const</argsstring>
+        <name>get_depth</name>
+        <qualifiedname>Brush::Fitness::get_depth</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/runner/work/brush/brush/src/ind/fitness.h" line="63" column="18" bodyfile="/home/runner/work/brush/brush/src/ind/fitness.h" bodystart="63" bodyend="63"/>
+        <references refid="d6/dd0/structBrush_1_1Fitness_1ac5ea0f880c248e2426a132d1d151243a" compoundref="dc/d7a/fitness_8h" startline="33">depth</references>
+      </memberdef>
+      <memberdef kind="function" id="d6/dd0/structBrush_1_1Fitness_1aa6cf18d9db8de8609dd618c8c9f1e516" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">void</ref></type>
+        <definition>void Brush::Fitness::set_dcounter</definition>
+        <argsstring>(unsigned int d)</argsstring>
+        <name>set_dcounter</name>
+        <qualifiedname>Brush::Fitness::set_dcounter</qualifiedname>
+        <param>
+          <type><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">unsigned</ref> <ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">int</ref></type>
+          <declname>d</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/runner/work/brush/brush/src/ind/fitness.h" line="65" column="10" bodyfile="/home/runner/work/brush/brush/src/ind/fitness.h" bodystart="65" bodyend="65"/>
+        <references refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" compoundref="d4/d93/bind__engines_8h" startline="35" endline="104">bind_engine</references>
+        <references refid="d6/dd0/structBrush_1_1Fitness_1a76b3053e09f2fa0f08a5dc4abb1c8daf" compoundref="dc/d7a/fitness_8h" startline="36">dcounter</references>
+      </memberdef>
+      <memberdef kind="function" id="d6/dd0/structBrush_1_1Fitness_1ab25babcc558853c2c270e6205c24b8bc" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">unsigned</ref> <ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">int</ref></type>
+        <definition>unsigned int Brush::Fitness::get_dcounter</definition>
+        <argsstring>() const</argsstring>
+        <name>get_dcounter</name>
+        <qualifiedname>Brush::Fitness::get_dcounter</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/runner/work/brush/brush/src/ind/fitness.h" line="66" column="18" bodyfile="/home/runner/work/brush/brush/src/ind/fitness.h" bodystart="66" bodyend="66"/>
+        <references refid="d6/dd0/structBrush_1_1Fitness_1a76b3053e09f2fa0f08a5dc4abb1c8daf" compoundref="dc/d7a/fitness_8h" startline="36">dcounter</references>
+      </memberdef>
+      <memberdef kind="function" id="d6/dd0/structBrush_1_1Fitness_1ab92c03b4eac43138dfd59484c7f0ccc7" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">void</ref></type>
+        <definition>void Brush::Fitness::set_rank</definition>
+        <argsstring>(unsigned r)</argsstring>
+        <name>set_rank</name>
+        <qualifiedname>Brush::Fitness::set_rank</qualifiedname>
+        <param>
+          <type><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">unsigned</ref></type>
+          <declname>r</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/runner/work/brush/brush/src/ind/fitness.h" line="68" column="10" bodyfile="/home/runner/work/brush/brush/src/ind/fitness.h" bodystart="68" bodyend="68"/>
+        <references refid="d6/dd0/structBrush_1_1Fitness_1aae177694d7f7bceaa8f907e317c328ab" compoundref="dc/d7a/fitness_8h" startline="38">rank</references>
+      </memberdef>
+      <memberdef kind="function" id="d6/dd0/structBrush_1_1Fitness_1a8ec7c6ed8c23c1a18036d546bcbd0aae" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">size_t</ref></type>
+        <definition>size_t Brush::Fitness::get_rank</definition>
+        <argsstring>() const</argsstring>
+        <name>get_rank</name>
+        <qualifiedname>Brush::Fitness::get_rank</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/runner/work/brush/brush/src/ind/fitness.h" line="69" column="12" bodyfile="/home/runner/work/brush/brush/src/ind/fitness.h" bodystart="69" bodyend="69"/>
+        <references refid="d6/dd0/structBrush_1_1Fitness_1aae177694d7f7bceaa8f907e317c328ab" compoundref="dc/d7a/fitness_8h" startline="38">rank</references>
+      </memberdef>
+      <memberdef kind="function" id="d6/dd0/structBrush_1_1Fitness_1ae1927c4532e152a318d5156cd3f83aa9" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">void</ref></type>
+        <definition>void Brush::Fitness::set_crowding_dist</definition>
+        <argsstring>(float cd)</argsstring>
+        <name>set_crowding_dist</name>
+        <qualifiedname>Brush::Fitness::set_crowding_dist</qualifiedname>
+        <param>
+          <type><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">float</ref></type>
+          <declname>cd</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/runner/work/brush/brush/src/ind/fitness.h" line="71" column="10" bodyfile="/home/runner/work/brush/brush/src/ind/fitness.h" bodystart="71" bodyend="71"/>
+        <references refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" compoundref="d4/d93/bind__engines_8h" startline="35" endline="104">bind_engine</references>
+        <references refid="d6/dd0/structBrush_1_1Fitness_1a0998d4960cae30c329ae6d2f05a27c84" compoundref="dc/d7a/fitness_8h" startline="39">crowding_dist</references>
+      </memberdef>
+      <memberdef kind="function" id="d6/dd0/structBrush_1_1Fitness_1a2a732eff1606d1a9d932daf0a26f3f35" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">float</ref></type>
+        <definition>float Brush::Fitness::get_crowding_dist</definition>
+        <argsstring>() const</argsstring>
+        <name>get_crowding_dist</name>
+        <qualifiedname>Brush::Fitness::get_crowding_dist</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/runner/work/brush/brush/src/ind/fitness.h" line="72" column="11" bodyfile="/home/runner/work/brush/brush/src/ind/fitness.h" bodystart="72" bodyend="72"/>
+        <references refid="d6/dd0/structBrush_1_1Fitness_1a0998d4960cae30c329ae6d2f05a27c84" compoundref="dc/d7a/fitness_8h" startline="39">crowding_dist</references>
+      </memberdef>
+      <memberdef kind="function" id="d6/dd0/structBrush_1_1Fitness_1abe6bd05816dfb1c51f16e057c797cf84" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>Brush::Fitness::Fitness</definition>
+        <argsstring>(const vector&lt; float &gt; &amp;w={})</argsstring>
+        <name>Fitness</name>
+        <qualifiedname>Brush::Fitness::Fitness</qualifiedname>
+        <param>
+          <type><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">const</ref> vector&lt; <ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">float</ref> &gt; &amp;</type>
+          <declname>w</declname>
+          <defval>{}</defval>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/runner/work/brush/brush/src/ind/fitness.h" line="75" column="5" bodyfile="/home/runner/work/brush/brush/src/ind/fitness.h" bodystart="75" bodyend="80"/>
+      </memberdef>
+      <memberdef kind="function" id="d6/dd0/structBrush_1_1Fitness_1a74d3a57b040075bc8b036220d9b6e6da" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">size_t</ref></type>
+        <definition>size_t Brush::Fitness::hash</definition>
+        <argsstring>() const</argsstring>
+        <name>hash</name>
+        <qualifiedname>Brush::Fitness::hash</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/runner/work/brush/brush/src/ind/fitness.h" line="84" column="12" bodyfile="/home/runner/work/brush/brush/src/ind/fitness.h" bodystart="84" bodyend="87"/>
+        <references refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" compoundref="d4/d93/bind__engines_8h" startline="35" endline="104">bind_engine</references>
+        <references refid="d6/dd0/structBrush_1_1Fitness_1a972dd960fd7c2a68449827ec987d0671" compoundref="dc/d7a/fitness_8h" startline="45">wvalues</references>
+      </memberdef>
+      <memberdef kind="function" id="d6/dd0/structBrush_1_1Fitness_1aea7bd29487b3dda47a908ef049da7ddd" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">void</ref></type>
+        <definition>void Brush::Fitness::set_weights</definition>
+        <argsstring>(vector&lt; float &gt; &amp;w)</argsstring>
+        <name>set_weights</name>
+        <qualifiedname>Brush::Fitness::set_weights</qualifiedname>
+        <param>
+          <type>vector&lt; <ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">float</ref> &gt; &amp;</type>
+          <declname>w</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/runner/work/brush/brush/src/ind/fitness.h" line="89" column="10" bodyfile="/home/runner/work/brush/brush/src/ind/fitness.h" bodystart="89" bodyend="91"/>
+        <references refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" compoundref="d4/d93/bind__engines_8h" startline="35" endline="104">bind_engine</references>
+        <references refid="d6/dd0/structBrush_1_1Fitness_1a1207d03059fa2d786e983270388b1f16" compoundref="dc/d7a/fitness_8h" startline="42">weights</references>
+        <referencedby refid="de/d83/classBrush_1_1Pop_1_1Individual_1abbf86134203ab8b573dc043a3c10d388" compoundref="d5/d1f/individual_8h" startline="128" endline="144">Brush::Pop::Individual&lt; T &gt;::set_objectives</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="d6/dd0/structBrush_1_1Fitness_1af274bda89992e906bd63904a471672c4" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>vector&lt; <ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">float</ref> &gt;</type>
+        <definition>vector&lt; float &gt; Brush::Fitness::get_weights</definition>
+        <argsstring>() const</argsstring>
+        <name>get_weights</name>
+        <qualifiedname>Brush::Fitness::get_weights</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/runner/work/brush/brush/src/ind/fitness.h" line="92" column="12" bodyfile="/home/runner/work/brush/brush/src/ind/fitness.h" bodystart="92" bodyend="94"/>
+        <references refid="d6/dd0/structBrush_1_1Fitness_1a1207d03059fa2d786e983270388b1f16" compoundref="dc/d7a/fitness_8h" startline="42">weights</references>
+      </memberdef>
+      <memberdef kind="function" id="d6/dd0/structBrush_1_1Fitness_1a512d328942d02c909b2e0c11c23ad1b2" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>vector&lt; <ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">float</ref> &gt;</type>
+        <definition>vector&lt; float &gt; Brush::Fitness::get_values</definition>
+        <argsstring>() const</argsstring>
+        <name>get_values</name>
+        <qualifiedname>Brush::Fitness::get_values</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/runner/work/brush/brush/src/ind/fitness.h" line="95" column="12" bodyfile="/home/runner/work/brush/brush/src/ind/fitness.h" bodystart="95" bodyend="97"/>
+        <references refid="d6/dd0/structBrush_1_1Fitness_1a853380ca80adf2ab47bc8d2fc34b09b4" compoundref="dc/d7a/fitness_8h" startline="41">values</references>
+      </memberdef>
+      <memberdef kind="function" id="d6/dd0/structBrush_1_1Fitness_1aa9396fa7bd5d5b4c1858081ccd999567" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>vector&lt; <ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">float</ref> &gt;</type>
+        <definition>vector&lt; float &gt; Brush::Fitness::get_wvalues</definition>
+        <argsstring>() const</argsstring>
+        <name>get_wvalues</name>
+        <qualifiedname>Brush::Fitness::get_wvalues</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/runner/work/brush/brush/src/ind/fitness.h" line="98" column="12" bodyfile="/home/runner/work/brush/brush/src/ind/fitness.h" bodystart="98" bodyend="100"/>
+        <references refid="d6/dd0/structBrush_1_1Fitness_1a972dd960fd7c2a68449827ec987d0671" compoundref="dc/d7a/fitness_8h" startline="45">wvalues</references>
+        <referencedby refid="d6/dd0/structBrush_1_1Fitness_1aeb7b43cd4977e3c1e9c7feb3084de17a" compoundref="dc/d5c/fitness_8cpp" startline="41" endline="71">dominates</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="d6/dd0/structBrush_1_1Fitness_1aaec7fc8a8c22af4fb6265beac92002a4" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">void</ref></type>
+        <definition>void Brush::Fitness::set_values</definition>
+        <argsstring>(vector&lt; float &gt; &amp;v)</argsstring>
+        <name>set_values</name>
+        <qualifiedname>Brush::Fitness::set_values</qualifiedname>
+        <param>
+          <type>vector&lt; <ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">float</ref> &gt; &amp;</type>
+          <declname>v</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/runner/work/brush/brush/src/ind/fitness.h" line="103" column="10" bodyfile="/home/runner/work/brush/brush/src/ind/fitness.h" bodystart="103" bodyend="122"/>
+        <references refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" compoundref="d4/d93/bind__engines_8h" startline="35" endline="104">bind_engine</references>
+        <references refid="d6/dd0/structBrush_1_1Fitness_1a853380ca80adf2ab47bc8d2fc34b09b4" compoundref="dc/d7a/fitness_8h" startline="41">values</references>
+        <references refid="d6/dd0/structBrush_1_1Fitness_1a1207d03059fa2d786e983270388b1f16" compoundref="dc/d7a/fitness_8h" startline="42">weights</references>
+        <references refid="d6/dd0/structBrush_1_1Fitness_1a972dd960fd7c2a68449827ec987d0671" compoundref="dc/d7a/fitness_8h" startline="45">wvalues</references>
+      </memberdef>
+      <memberdef kind="function" id="d6/dd0/structBrush_1_1Fitness_1a101d3e509a063d7d3ee16a43cd1f98f4" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">void</ref></type>
+        <definition>void Brush::Fitness::clearValues</definition>
+        <argsstring>()</argsstring>
+        <name>clearValues</name>
+        <qualifiedname>Brush::Fitness::clearValues</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/runner/work/brush/brush/src/ind/fitness.h" line="125" column="10" bodyfile="/home/runner/work/brush/brush/src/ind/fitness.h" bodystart="125" bodyend="127"/>
+        <references refid="d6/dd0/structBrush_1_1Fitness_1a972dd960fd7c2a68449827ec987d0671" compoundref="dc/d7a/fitness_8h" startline="45">wvalues</references>
+      </memberdef>
+      <memberdef kind="function" id="d6/dd0/structBrush_1_1Fitness_1a55b3762be6e11b3667eaf464657784c6" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">bool</ref></type>
+        <definition>bool Brush::Fitness::valid</definition>
+        <argsstring>() const</argsstring>
+        <name>valid</name>
+        <qualifiedname>Brush::Fitness::valid</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/runner/work/brush/brush/src/ind/fitness.h" line="129" column="10" bodyfile="/home/runner/work/brush/brush/src/ind/fitness.h" bodystart="129" bodyend="131"/>
+        <references refid="d6/dd0/structBrush_1_1Fitness_1a972dd960fd7c2a68449827ec987d0671" compoundref="dc/d7a/fitness_8h" startline="45">wvalues</references>
+        <referencedby refid="d6/dd0/structBrush_1_1Fitness_1a4bec036d5b4fa2acc82b2e934183a45c" compoundref="dc/d7a/fitness_8h" startline="178" endline="187">repr</referencedby>
+        <referencedby refid="d6/dd0/structBrush_1_1Fitness_1a6253406e0ac28947766a5f5afbb721e1" compoundref="dc/d7a/fitness_8h" startline="166" endline="175">toString</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="d6/dd0/structBrush_1_1Fitness_1a77280961992df506699026e7fe47adbe" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">bool</ref></type>
+        <definition>bool Brush::Fitness::operator==</definition>
+        <argsstring>(const Fitness &amp;other) const</argsstring>
+        <name>operator==</name>
+        <qualifiedname>Brush::Fitness::operator==</qualifiedname>
+        <param>
+          <type><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">const</ref> <ref refid="d6/dd0/structBrush_1_1Fitness" kindref="compound">Fitness</ref> &amp;</type>
+          <declname>other</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/runner/work/brush/brush/src/ind/fitness.h" line="134" column="10" bodyfile="/home/runner/work/brush/brush/src/ind/fitness.h" bodystart="134" bodyend="136"/>
+        <references refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" compoundref="d4/d93/bind__engines_8h" startline="35" endline="104">bind_engine</references>
+        <references refid="d6/dd0/structBrush_1_1Fitness_1a972dd960fd7c2a68449827ec987d0671" compoundref="dc/d7a/fitness_8h" startline="45">wvalues</references>
+      </memberdef>
+      <memberdef kind="function" id="d6/dd0/structBrush_1_1Fitness_1a814e36bb358ad4a4729e72fc05ba4719" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">bool</ref></type>
+        <definition>bool Brush::Fitness::operator!=</definition>
+        <argsstring>(const Fitness &amp;other) const</argsstring>
+        <name>operator!=</name>
+        <qualifiedname>Brush::Fitness::operator!=</qualifiedname>
+        <param>
+          <type><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">const</ref> <ref refid="d6/dd0/structBrush_1_1Fitness" kindref="compound">Fitness</ref> &amp;</type>
+          <declname>other</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/runner/work/brush/brush/src/ind/fitness.h" line="139" column="10" bodyfile="/home/runner/work/brush/brush/src/ind/fitness.h" bodystart="139" bodyend="141"/>
+        <references refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" compoundref="d4/d93/bind__engines_8h" startline="35" endline="104">bind_engine</references>
+      </memberdef>
+      <memberdef kind="function" id="d6/dd0/structBrush_1_1Fitness_1a84795f84cd165e72194fd65359fc7564" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">bool</ref></type>
+        <definition>bool Brush::Fitness::operator&lt;</definition>
+        <argsstring>(const Fitness &amp;other) const</argsstring>
+        <name>operator&lt;</name>
+        <qualifiedname>Brush::Fitness::operator&lt;</qualifiedname>
+        <param>
+          <type><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">const</ref> <ref refid="d6/dd0/structBrush_1_1Fitness" kindref="compound">Fitness</ref> &amp;</type>
+          <declname>other</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/runner/work/brush/brush/src/ind/fitness.h" line="144" column="5" bodyfile="/home/runner/work/brush/brush/src/ind/fitness.h" bodystart="144" bodyend="148"/>
+        <references refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" compoundref="d4/d93/bind__engines_8h" startline="35" endline="104">bind_engine</references>
+        <references refid="d6/dd0/structBrush_1_1Fitness_1a972dd960fd7c2a68449827ec987d0671" compoundref="dc/d7a/fitness_8h" startline="45">wvalues</references>
+      </memberdef>
+      <memberdef kind="function" id="d6/dd0/structBrush_1_1Fitness_1a026384af1bce901c71eef83e93b4d0a5" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">bool</ref></type>
+        <definition>bool Brush::Fitness::operator&gt;</definition>
+        <argsstring>(const Fitness &amp;other) const</argsstring>
+        <name>operator&gt;</name>
+        <qualifiedname>Brush::Fitness::operator&gt;</qualifiedname>
+        <param>
+          <type><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">const</ref> <ref refid="d6/dd0/structBrush_1_1Fitness" kindref="compound">Fitness</ref> &amp;</type>
+          <declname>other</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/runner/work/brush/brush/src/ind/fitness.h" line="151" column="10" bodyfile="/home/runner/work/brush/brush/src/ind/fitness.h" bodystart="151" bodyend="153"/>
+        <references refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" compoundref="d4/d93/bind__engines_8h" startline="35" endline="104">bind_engine</references>
+      </memberdef>
+      <memberdef kind="function" id="d6/dd0/structBrush_1_1Fitness_1aab30800f8d856dfb2eba921a8e41272e" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">bool</ref></type>
+        <definition>bool Brush::Fitness::operator&lt;=</definition>
+        <argsstring>(const Fitness &amp;other) const</argsstring>
+        <name>operator&lt;=</name>
+        <qualifiedname>Brush::Fitness::operator&lt;=</qualifiedname>
+        <param>
+          <type><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">const</ref> <ref refid="d6/dd0/structBrush_1_1Fitness" kindref="compound">Fitness</ref> &amp;</type>
+          <declname>other</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/runner/work/brush/brush/src/ind/fitness.h" line="156" column="5" bodyfile="/home/runner/work/brush/brush/src/ind/fitness.h" bodystart="156" bodyend="158"/>
+        <references refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" compoundref="d4/d93/bind__engines_8h" startline="35" endline="104">bind_engine</references>
+      </memberdef>
+      <memberdef kind="function" id="d6/dd0/structBrush_1_1Fitness_1a2f88daa472f8df0bb4a6b2b7746fd2a2" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">bool</ref></type>
+        <definition>bool Brush::Fitness::operator&gt;=</definition>
+        <argsstring>(const Fitness &amp;other) const</argsstring>
+        <name>operator&gt;=</name>
+        <qualifiedname>Brush::Fitness::operator&gt;=</qualifiedname>
+        <param>
+          <type><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">const</ref> <ref refid="d6/dd0/structBrush_1_1Fitness" kindref="compound">Fitness</ref> &amp;</type>
+          <declname>other</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/runner/work/brush/brush/src/ind/fitness.h" line="161" column="10" bodyfile="/home/runner/work/brush/brush/src/ind/fitness.h" bodystart="161" bodyend="163"/>
+        <references refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" compoundref="d4/d93/bind__engines_8h" startline="35" endline="104">bind_engine</references>
+      </memberdef>
+      <memberdef kind="function" id="d6/dd0/structBrush_1_1Fitness_1a6253406e0ac28947766a5f5afbb721e1" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>std::string</type>
+        <definition>std::string Brush::Fitness::toString</definition>
+        <argsstring>() const</argsstring>
+        <name>toString</name>
+        <qualifiedname>Brush::Fitness::toString</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/runner/work/brush/brush/src/ind/fitness.h" line="166" column="17" bodyfile="/home/runner/work/brush/brush/src/ind/fitness.h" bodystart="166" bodyend="175"/>
+        <references refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" compoundref="d4/d93/bind__engines_8h" startline="35" endline="104">bind_engine</references>
+        <references refid="d6/dd0/structBrush_1_1Fitness_1a55b3762be6e11b3667eaf464657784c6" compoundref="dc/d7a/fitness_8h" startline="129" endline="131">valid</references>
+        <references refid="d6/dd0/structBrush_1_1Fitness_1a853380ca80adf2ab47bc8d2fc34b09b4" compoundref="dc/d7a/fitness_8h" startline="41">values</references>
+      </memberdef>
+      <memberdef kind="function" id="d6/dd0/structBrush_1_1Fitness_1a4bec036d5b4fa2acc82b2e934183a45c" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>std::string</type>
+        <definition>std::string Brush::Fitness::repr</definition>
+        <argsstring>() const</argsstring>
+        <name>repr</name>
+        <qualifiedname>Brush::Fitness::repr</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/runner/work/brush/brush/src/ind/fitness.h" line="178" column="17" bodyfile="/home/runner/work/brush/brush/src/ind/fitness.h" bodystart="178" bodyend="187"/>
+        <references refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" compoundref="d4/d93/bind__engines_8h" startline="35" endline="104">bind_engine</references>
+        <references refid="d6/dd0/structBrush_1_1Fitness_1a55b3762be6e11b3667eaf464657784c6" compoundref="dc/d7a/fitness_8h" startline="129" endline="131">valid</references>
+        <references refid="d6/dd0/structBrush_1_1Fitness_1a853380ca80adf2ab47bc8d2fc34b09b4" compoundref="dc/d7a/fitness_8h" startline="41">values</references>
+      </memberdef>
+      <memberdef kind="function" id="d6/dd0/structBrush_1_1Fitness_1aeb7b43cd4977e3c1e9c7feb3084de17a" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">int</ref></type>
+        <definition>int Brush::Fitness::dominates</definition>
+        <argsstring>(const Fitness &amp;b) const</argsstring>
+        <name>dominates</name>
+        <qualifiedname>Brush::Fitness::dominates</qualifiedname>
+        <param>
+          <type><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">const</ref> <ref refid="d6/dd0/structBrush_1_1Fitness" kindref="compound">Fitness</ref> &amp;</type>
+          <declname>b</declname>
+        </param>
+        <briefdescription>
+<para>set obj vector given a string of objective names </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/runner/work/brush/brush/src/ind/fitness.h" line="190" column="9" bodyfile="/home/runner/work/brush/brush/src/ind/fitness.cpp" bodystart="41" bodyend="71"/>
+        <references refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" compoundref="d4/d93/bind__engines_8h" startline="35" endline="104">bind_engine</references>
+        <references refid="d6/dd0/structBrush_1_1Fitness_1aa9396fa7bd5d5b4c1858081ccd999567" compoundref="dc/d7a/fitness_8h" startline="98" endline="100">get_wvalues</references>
+      </memberdef>
+    </sectiondef>
     <briefdescription>
+<para>Represents the fitness of an individual in the <ref refid="dc/d5c/namespaceBrush" kindref="compound">Brush</ref> namespace. </para>
     </briefdescription>
     <detaileddescription>
+<para>The <computeroutput><ref refid="d6/dd0/structBrush_1_1Fitness" kindref="compound">Fitness</ref></computeroutput> struct stores various attributes related to the fitness of an individual in the <ref refid="dc/d5c/namespaceBrush" kindref="compound">Brush</ref> namespace. It includes the aggregate loss score, aggregate validation loss score, complexity, size, depth, dominance counter, dominated individuals, Pareto front rank, crowding distance on the Pareto front, weighted values, and weights.</para>
+<para>The struct provides getter and setter methods for accessing and modifying these attributes. It also includes methods for calculating the hash value, setting values, clearing values, checking validity, and performing comparison operations.</para>
+<para>Additionally, there are methods for converting the <computeroutput><ref refid="d6/dd0/structBrush_1_1Fitness" kindref="compound">Fitness</ref></computeroutput> object to JSON format and vice versa. </para>
     </detaileddescription>
     <collaborationgraph>
-      <node id="2">
-        <label>std::vector&lt; float &gt;</label>
-      </node>
       <node id="1">
         <label>Brush::Fitness</label>
         <link refid="d6/dd0/structBrush_1_1Fitness"/>
         <childnode refid="2" relation="usage">
+          <edgelabel>dominated</edgelabel>
+        </childnode>
+        <childnode refid="3" relation="usage">
           <edgelabel>values</edgelabel>
+          <edgelabel>weights</edgelabel>
+          <edgelabel>wvalues</edgelabel>
         </childnode>
       </node>
+      <node id="3">
+        <label>std::vector&lt; float &gt;</label>
+      </node>
+      <node id="2">
+        <label>std::vector&lt; unsigned int &gt;</label>
+      </node>
     </collaborationgraph>
-    <location file="/home/runner/work/brush/brush/src/program/program.h" line="39" column="1" bodyfile="/home/runner/work/brush/brush/src/program/program.h" bodystart="39" bodyend="42"/>
+    <location file="/home/runner/work/brush/brush/src/ind/fitness.h" line="25" column="1" bodyfile="/home/runner/work/brush/brush/src/ind/fitness.h" bodystart="25" bodyend="191"/>
     <listofallmembers>
-      <member refid="d6/dd0/structBrush_1_1Fitness_1ae41414066bee664a1e5cae382667aec4" prot="public" virt="non-virtual"><scope>Brush::Fitness</scope><name>valid</name></member>
+      <member refid="d6/dd0/structBrush_1_1Fitness_1a101d3e509a063d7d3ee16a43cd1f98f4" prot="public" virt="non-virtual"><scope>Brush::Fitness</scope><name>clearValues</name></member>
+      <member refid="d6/dd0/structBrush_1_1Fitness_1a2edfafc177c7f47f7c5fccc9238236cf" prot="public" virt="non-virtual"><scope>Brush::Fitness</scope><name>complexity</name></member>
+      <member refid="d6/dd0/structBrush_1_1Fitness_1a0998d4960cae30c329ae6d2f05a27c84" prot="public" virt="non-virtual"><scope>Brush::Fitness</scope><name>crowding_dist</name></member>
+      <member refid="d6/dd0/structBrush_1_1Fitness_1a76b3053e09f2fa0f08a5dc4abb1c8daf" prot="public" virt="non-virtual"><scope>Brush::Fitness</scope><name>dcounter</name></member>
+      <member refid="d6/dd0/structBrush_1_1Fitness_1ac5ea0f880c248e2426a132d1d151243a" prot="public" virt="non-virtual"><scope>Brush::Fitness</scope><name>depth</name></member>
+      <member refid="d6/dd0/structBrush_1_1Fitness_1ad66abe65f27bd44fc49975be3c2103cb" prot="public" virt="non-virtual"><scope>Brush::Fitness</scope><name>dominated</name></member>
+      <member refid="d6/dd0/structBrush_1_1Fitness_1aeb7b43cd4977e3c1e9c7feb3084de17a" prot="public" virt="non-virtual"><scope>Brush::Fitness</scope><name>dominates</name></member>
+      <member refid="d6/dd0/structBrush_1_1Fitness_1abe6bd05816dfb1c51f16e057c797cf84" prot="public" virt="non-virtual"><scope>Brush::Fitness</scope><name>Fitness</name></member>
+      <member refid="d6/dd0/structBrush_1_1Fitness_1a8ab836a166ef8eba47a93b00d7bbb40c" prot="public" virt="non-virtual"><scope>Brush::Fitness</scope><name>get_complexity</name></member>
+      <member refid="d6/dd0/structBrush_1_1Fitness_1a2a732eff1606d1a9d932daf0a26f3f35" prot="public" virt="non-virtual"><scope>Brush::Fitness</scope><name>get_crowding_dist</name></member>
+      <member refid="d6/dd0/structBrush_1_1Fitness_1ab25babcc558853c2c270e6205c24b8bc" prot="public" virt="non-virtual"><scope>Brush::Fitness</scope><name>get_dcounter</name></member>
+      <member refid="d6/dd0/structBrush_1_1Fitness_1addbfaf0dd6163c1e5ebf8edb4788cc98" prot="public" virt="non-virtual"><scope>Brush::Fitness</scope><name>get_depth</name></member>
+      <member refid="d6/dd0/structBrush_1_1Fitness_1a1e6a7fbf8c83a164c3c8fca6108a1859" prot="public" virt="non-virtual"><scope>Brush::Fitness</scope><name>get_dominated</name></member>
+      <member refid="d6/dd0/structBrush_1_1Fitness_1a3a12b069a168aa86d3e7bce0f4c56cad" prot="public" virt="non-virtual"><scope>Brush::Fitness</scope><name>get_loss</name></member>
+      <member refid="d6/dd0/structBrush_1_1Fitness_1a735c8326b8e7750e500ead86f2ad2c31" prot="public" virt="non-virtual"><scope>Brush::Fitness</scope><name>get_loss_v</name></member>
+      <member refid="d6/dd0/structBrush_1_1Fitness_1a8ec7c6ed8c23c1a18036d546bcbd0aae" prot="public" virt="non-virtual"><scope>Brush::Fitness</scope><name>get_rank</name></member>
+      <member refid="d6/dd0/structBrush_1_1Fitness_1af1eac138217509d2ab3c5db903e05a09" prot="public" virt="non-virtual"><scope>Brush::Fitness</scope><name>get_size</name></member>
+      <member refid="d6/dd0/structBrush_1_1Fitness_1a512d328942d02c909b2e0c11c23ad1b2" prot="public" virt="non-virtual"><scope>Brush::Fitness</scope><name>get_values</name></member>
+      <member refid="d6/dd0/structBrush_1_1Fitness_1af274bda89992e906bd63904a471672c4" prot="public" virt="non-virtual"><scope>Brush::Fitness</scope><name>get_weights</name></member>
+      <member refid="d6/dd0/structBrush_1_1Fitness_1aa9396fa7bd5d5b4c1858081ccd999567" prot="public" virt="non-virtual"><scope>Brush::Fitness</scope><name>get_wvalues</name></member>
+      <member refid="d6/dd0/structBrush_1_1Fitness_1a74d3a57b040075bc8b036220d9b6e6da" prot="public" virt="non-virtual"><scope>Brush::Fitness</scope><name>hash</name></member>
+      <member refid="d6/dd0/structBrush_1_1Fitness_1a30e994e0b4aa0a8febfe7d7a09529f04" prot="public" virt="non-virtual"><scope>Brush::Fitness</scope><name>loss</name></member>
+      <member refid="d6/dd0/structBrush_1_1Fitness_1aa8cd674fad6f65c344f008c3e2442491" prot="public" virt="non-virtual"><scope>Brush::Fitness</scope><name>loss_v</name></member>
+      <member refid="d6/dd0/structBrush_1_1Fitness_1a814e36bb358ad4a4729e72fc05ba4719" prot="public" virt="non-virtual"><scope>Brush::Fitness</scope><name>operator!=</name></member>
+      <member refid="d6/dd0/structBrush_1_1Fitness_1a84795f84cd165e72194fd65359fc7564" prot="public" virt="non-virtual"><scope>Brush::Fitness</scope><name>operator&lt;</name></member>
+      <member refid="d6/dd0/structBrush_1_1Fitness_1aab30800f8d856dfb2eba921a8e41272e" prot="public" virt="non-virtual"><scope>Brush::Fitness</scope><name>operator&lt;=</name></member>
+      <member refid="d6/dd0/structBrush_1_1Fitness_1a77280961992df506699026e7fe47adbe" prot="public" virt="non-virtual"><scope>Brush::Fitness</scope><name>operator==</name></member>
+      <member refid="d6/dd0/structBrush_1_1Fitness_1a026384af1bce901c71eef83e93b4d0a5" prot="public" virt="non-virtual"><scope>Brush::Fitness</scope><name>operator&gt;</name></member>
+      <member refid="d6/dd0/structBrush_1_1Fitness_1a2f88daa472f8df0bb4a6b2b7746fd2a2" prot="public" virt="non-virtual"><scope>Brush::Fitness</scope><name>operator&gt;=</name></member>
+      <member refid="d6/dd0/structBrush_1_1Fitness_1aae177694d7f7bceaa8f907e317c328ab" prot="public" virt="non-virtual"><scope>Brush::Fitness</scope><name>rank</name></member>
+      <member refid="d6/dd0/structBrush_1_1Fitness_1a4bec036d5b4fa2acc82b2e934183a45c" prot="public" virt="non-virtual"><scope>Brush::Fitness</scope><name>repr</name></member>
+      <member refid="d6/dd0/structBrush_1_1Fitness_1a6624d493b11552c90ebd6a32567d4021" prot="public" virt="non-virtual"><scope>Brush::Fitness</scope><name>set_complexity</name></member>
+      <member refid="d6/dd0/structBrush_1_1Fitness_1ae1927c4532e152a318d5156cd3f83aa9" prot="public" virt="non-virtual"><scope>Brush::Fitness</scope><name>set_crowding_dist</name></member>
+      <member refid="d6/dd0/structBrush_1_1Fitness_1aa6cf18d9db8de8609dd618c8c9f1e516" prot="public" virt="non-virtual"><scope>Brush::Fitness</scope><name>set_dcounter</name></member>
+      <member refid="d6/dd0/structBrush_1_1Fitness_1a86d061384bf1df41de74a9fe1f1f7f47" prot="public" virt="non-virtual"><scope>Brush::Fitness</scope><name>set_depth</name></member>
+      <member refid="d6/dd0/structBrush_1_1Fitness_1a7e7ad401b1d97b818bbc01fbb95355e1" prot="public" virt="non-virtual"><scope>Brush::Fitness</scope><name>set_dominated</name></member>
+      <member refid="d6/dd0/structBrush_1_1Fitness_1af8ccf40c598f102153c058e9f470c9a2" prot="public" virt="non-virtual"><scope>Brush::Fitness</scope><name>set_loss</name></member>
+      <member refid="d6/dd0/structBrush_1_1Fitness_1a777abbd7a2453ba1b580e28fb2f6f28a" prot="public" virt="non-virtual"><scope>Brush::Fitness</scope><name>set_loss_v</name></member>
+      <member refid="d6/dd0/structBrush_1_1Fitness_1ab92c03b4eac43138dfd59484c7f0ccc7" prot="public" virt="non-virtual"><scope>Brush::Fitness</scope><name>set_rank</name></member>
+      <member refid="d6/dd0/structBrush_1_1Fitness_1ad18b85ddb700f0213b07ac662ce16980" prot="public" virt="non-virtual"><scope>Brush::Fitness</scope><name>set_size</name></member>
+      <member refid="d6/dd0/structBrush_1_1Fitness_1aaec7fc8a8c22af4fb6265beac92002a4" prot="public" virt="non-virtual"><scope>Brush::Fitness</scope><name>set_values</name></member>
+      <member refid="d6/dd0/structBrush_1_1Fitness_1aea7bd29487b3dda47a908ef049da7ddd" prot="public" virt="non-virtual"><scope>Brush::Fitness</scope><name>set_weights</name></member>
+      <member refid="d6/dd0/structBrush_1_1Fitness_1aa8d013edea014b30ff85fe341c8c3ea5" prot="public" virt="non-virtual"><scope>Brush::Fitness</scope><name>size</name></member>
+      <member refid="d6/dd0/structBrush_1_1Fitness_1a6253406e0ac28947766a5f5afbb721e1" prot="public" virt="non-virtual"><scope>Brush::Fitness</scope><name>toString</name></member>
+      <member refid="d6/dd0/structBrush_1_1Fitness_1a55b3762be6e11b3667eaf464657784c6" prot="public" virt="non-virtual"><scope>Brush::Fitness</scope><name>valid</name></member>
       <member refid="d6/dd0/structBrush_1_1Fitness_1a853380ca80adf2ab47bc8d2fc34b09b4" prot="public" virt="non-virtual"><scope>Brush::Fitness</scope><name>values</name></member>
+      <member refid="d6/dd0/structBrush_1_1Fitness_1a1207d03059fa2d786e983270388b1f16" prot="public" virt="non-virtual"><scope>Brush::Fitness</scope><name>weights</name></member>
+      <member refid="d6/dd0/structBrush_1_1Fitness_1a972dd960fd7c2a68449827ec987d0671" prot="public" virt="non-virtual"><scope>Brush::Fitness</scope><name>wvalues</name></member>
     </listofallmembers>
   </compounddef>
 </doxygen>

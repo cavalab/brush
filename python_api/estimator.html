@@ -14,19 +14,19 @@
   
   <script data-cfasync="false">
     document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
-    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
   </script>
   
   <!-- Loaded before other Sphinx assets -->
-  <link href="../_static/styles/theme.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
-<link href="../_static/styles/bootstrap.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
-<link href="../_static/styles/pydata-sphinx-theme.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+  <link href="../_static/styles/theme.css?digest=3ee479438cf8b5e0d341" rel="stylesheet" />
+<link href="../_static/styles/bootstrap.css?digest=3ee479438cf8b5e0d341" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=3ee479438cf8b5e0d341" rel="stylesheet" />
 
   
-  <link href="../_static/vendor/fontawesome/6.5.1/css/all.min.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
-  <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.1/webfonts/fa-solid-900.woff2" />
-<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.1/webfonts/fa-brands-400.woff2" />
-<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.1/webfonts/fa-regular-400.woff2" />
+  <link href="../_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=3ee479438cf8b5e0d341" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
 
     <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=a746c00c" />
     <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=384b581d" />
@@ -35,9 +35,9 @@
     <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
   
   <!-- Pre-loaded scripts that we'll load fully later -->
-  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=8d27b9dea8ad943066ae" />
-<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=8d27b9dea8ad943066ae" />
-  <script src="../_static/vendor/fontawesome/6.5.1/js/all.min.js?digest=8d27b9dea8ad943066ae"></script>
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=3ee479438cf8b5e0d341" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=3ee479438cf8b5e0d341" />
+  <script src="../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=3ee479438cf8b5e0d341"></script>
 
     <script src="../_static/documentation_options.js?v=74359811"></script>
     <script src="../_static/doctools.js?v=9a2dae69"></script>
@@ -49,7 +49,7 @@
     <link rel="icon" href="../_static/paint-brush-solid.svg"/>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="BrushRegressor" href="regressor.html" />
+    <link rel="next" title="EstimatorInterface" href="interface.html" />
     <link rel="prev" title="Python API" href="index.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
@@ -60,27 +60,23 @@
 
   
   
-  <a id="pst-skip-link" class="skip-link" href="#main-content">Skip to main content</a>
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
   
   <div id="pst-scroll-pixel-helper"></div>
   
   <button type="button" class="btn rounded-pill" id="pst-back-to-top">
-    <i class="fa-solid fa-arrow-up"></i>
-    Back to top
-  </button>
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
 
   
   <input type="checkbox"
           class="sidebar-toggle"
-          name="__primary"
-          id="__primary"/>
-  <label class="overlay overlay-primary" for="__primary"></label>
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
   
   <input type="checkbox"
           class="sidebar-toggle"
-          name="__secondary"
-          id="__secondary"/>
-  <label class="overlay overlay-secondary" for="__secondary"></label>
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
   
   <div class="search-button__wrapper">
     <div class="search-button__overlay"></div>
@@ -102,8 +98,13 @@
   <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
 </form></div>
   </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
   
-    <header class="bd-header navbar navbar-expand-lg bd-navbar">
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
     </header>
   
 
@@ -166,35 +167,45 @@
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">User Guide</span></p>
 <ul class="nav bd-sidenav">
-<li class="toctree-l1 has-children"><a class="reference internal" href="../guide/index.html">Cookbook</a><input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-1"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../guide/index.html">Cookbook</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
 <li class="toctree-l2"><a class="reference internal" href="../guide/data.html">Working with Data</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../guide/search_space.html">The Search Space</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../guide/working_with_programs.html">Working with Programs</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../guide/json.html">JSON Interoperability</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../guide/saving_loading_populations.html">Saving and loading populations</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../guide/archive.html">The archive</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../guide/deap.html">Using Deap</a></li>
 </ul>
-</li>
+</details></li>
 <li class="toctree-l1"><a class="reference internal" href="../guide/contributing.html">Contributing</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../guide/development.html">Development</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">API</span></p>
 <ul class="current nav bd-sidenav">
-<li class="toctree-l1 current active has-children"><a class="reference internal" href="index.html">Python API</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-2"><i class="fa-solid fa-chevron-down"></i></label><ul class="current">
+<li class="toctree-l1 current active has-children"><a class="reference internal" href="index.html">Python API</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="current">
 <li class="toctree-l2 current active"><a class="current reference internal" href="#">BrushEstimator</a></li>
+<li class="toctree-l2"><a class="reference internal" href="interface.html">EstimatorInterface</a></li>
 <li class="toctree-l2"><a class="reference internal" href="regressor.html">BrushRegressor</a></li>
 <li class="toctree-l2"><a class="reference internal" href="classifier.html">BrushClassifier</a></li>
+<li class="toctree-l2"><a class="reference internal" href="python_api.html">Python API</a></li>
 </ul>
-</li>
-<li class="toctree-l1 has-children"><a class="reference internal" href="../cpp_api/index.html">C++ API</a><input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-3"><i class="fa-solid fa-chevron-down"></i></label><ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../cpp_api/index.html">C++ API</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
 <li class="toctree-l2"><a class="reference internal" href="../cpp_api/data.html">Dataset</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../cpp_api/timeseries.html">TimeSeries</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../cpp_api/search_space.html">SearchSpace</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../cpp_api/program.html">Program</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../cpp_api/node.html">Node</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../cpp_api/nodetypes.html">NodeTypes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../cpp_api/individual.html">Individual and Fitness</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../cpp_api/evaluation.html">Evaluation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../cpp_api/population.html">Population</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../cpp_api/variation.html">Variation (Crossover/Mutation)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../cpp_api/selection.html">Selection</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../cpp_api/archive.html">Archive</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../cpp_api/engine.html">Engine (and parameters)</a></li>
 </ul>
-</li>
+</details></li>
 </ul>
 
     </div>
@@ -210,7 +221,7 @@
 
       </div>
       
-      <main id="main-content" class="bd-main">
+      <main id="main-content" class="bd-main" role="main">
         
         
 
@@ -219,7 +230,7 @@
           <div class="bd-content">
             <div class="bd-article-container">
               
-              <div class="bd-header-article">
+              <div class="bd-header-article d-print-none">
 <div class="header-article-items header-article__inner">
   
     <div class="header-article-items__start">
@@ -358,10 +369,11 @@ document.write(`
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#brush.estimator.BrushEstimator"><code class="docutils literal notranslate"><span class="pre">BrushEstimator</span></code></a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#brush.estimator.BrushEstimator.fit"><code class="docutils literal notranslate"><span class="pre">BrushEstimator.fit()</span></code></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#brush.estimator.BrushEstimator.get_params"><code class="docutils literal notranslate"><span class="pre">BrushEstimator.get_params()</span></code></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#brush.estimator.BrushEstimator.predict"><code class="docutils literal notranslate"><span class="pre">BrushEstimator.predict()</span></code></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pybrush.BrushEstimator.BrushEstimator"><code class="docutils literal notranslate"><span class="pre">BrushEstimator</span></code></a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#pybrush.BrushEstimator.BrushEstimator.fit"><code class="docutils literal notranslate"><span class="pre">BrushEstimator.fit()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#pybrush.BrushEstimator.BrushEstimator.get_params"><code class="docutils literal notranslate"><span class="pre">BrushEstimator.get_params()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#pybrush.BrushEstimator.BrushEstimator.predict"><code class="docutils literal notranslate"><span class="pre">BrushEstimator.predict()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#pybrush.BrushEstimator.BrushEstimator.predict_archive"><code class="docutils literal notranslate"><span class="pre">BrushEstimator.predict_archive()</span></code></a></li>
 </ul>
 </li>
 </ul>
@@ -378,109 +390,56 @@ document.write(`
   <section id="brushestimator">
 <h1>BrushEstimator<a class="headerlink" href="#brushestimator" title="Link to this heading">#</a></h1>
 <dl class="py class">
-<dt class="sig sig-object py" id="brush.estimator.BrushEstimator">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">brush.estimator.</span></span><span class="sig-name descname"><span class="pre">BrushEstimator</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">mode</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'classification'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pop_size</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">100</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">max_gen</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">100</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">verbosity</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">max_depth</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">3</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">max_size</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">20</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cx_prob</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.14285714285714285</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">mutation_options</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">{'delete':</span> <span class="pre">0.16666666666666666,</span> <span class="pre">'insert':</span> <span class="pre">0.16666666666666666,</span> <span class="pre">'point':</span> <span class="pre">0.16666666666666666,</span> <span class="pre">'subtree':</span> <span class="pre">0.16666666666666666,</span> <span class="pre">'toggle_weight_off':</span> <span class="pre">0.16666666666666666,</span> <span class="pre">'toggle_weight_on':</span> <span class="pre">0.16666666666666666}</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">functions</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">list</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">float</span><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">{}</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">initialization</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'grow'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">random_state</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">validation_size</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">0.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">batch_size</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">1.0</span></span></em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/cavalab/brush/blob/master/src/brush/estimator.py#L20-L313"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#brush.estimator.BrushEstimator" title="Link to this definition">#</a></dt>
-<dd><p>This is the base class for Brush estimators. 
-This class shouldn’t be called directly; instead, call a child class like 
-<a class="reference internal" href="regressor.html#brush.estimator.BrushRegressor" title="brush.estimator.BrushRegressor"><code class="xref py py-class docutils literal notranslate"><span class="pre">BrushRegressor</span></code></a> or <a class="reference internal" href="classifier.html#brush.estimator.BrushClassifier" title="brush.estimator.BrushClassifier"><code class="xref py py-class docutils literal notranslate"><span class="pre">BrushClassifier</span></code></a>. 
-All of the shared parameters are documented here.</p>
+<dt class="sig sig-object py" id="pybrush.BrushEstimator.BrushEstimator">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">pybrush.BrushEstimator.</span></span><span class="sig-name descname"><span class="pre">BrushEstimator</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/cavalab/brush/blob/master/../../../micromamba-root/envs/brush/lib/python3.12/site-packages/pybrush/BrushEstimator.py#L20-L188"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pybrush.BrushEstimator.BrushEstimator" title="Link to this definition">#</a></dt>
+<dd><p>This is the base class for Brush estimators using the c++ engine.</p>
+<p>Parameters are defined and documented in 
+<a class="reference internal" href="interface.html#pybrush.EstimatorInterface.EstimatorInterface" title="pybrush.EstimatorInterface.EstimatorInterface"><code class="xref py py-class docutils literal notranslate"><span class="pre">EstimatorInterface</span></code></a></p>
 <dl class="field-list">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><dl class="simple">
-<dt><strong>mode</strong><span class="classifier">str, default ‘classification’</span></dt><dd><p>The mode of the estimator. Used by subclasses</p>
-</dd>
-<dt><strong>pop_size</strong><span class="classifier">int, default 100</span></dt><dd><p>Population size.</p>
-</dd>
-<dt><strong>max_gen</strong><span class="classifier">int, default 100</span></dt><dd><p>Maximum iterations of the algorithm.</p>
-</dd>
-<dt><strong>verbosity</strong><span class="classifier">int, default 0</span></dt><dd><p>Controls level of printouts.</p>
-</dd>
-<dt><strong>max_depth</strong><span class="classifier">int, default 0</span></dt><dd><p>Maximum depth of GP trees in the GP program. Use 0 for no limit.</p>
-</dd>
-<dt><strong>max_size</strong><span class="classifier">int, default 0</span></dt><dd><p>Maximum number of nodes in a tree. Use 0 for no limit.</p>
-</dd>
-<dt><strong>cx_prob</strong><span class="classifier">float, default 1/7</span></dt><dd><p>Probability of applying the crossover variation when generating the offspring,
-must be between 0 and 1.
-Given that there are <cite>n</cite> mutations, and either crossover or mutation is 
-used to generate each individual in the offspring (but not both at the
-same time), we want to have by default an uniform probability between
-crossover and every possible mutation. By setting <cite>cx_prob=1/(n+1)</cite>, and
-<cite>1/n</cite> for each mutation, we can achieve an uniform distribution.</p>
-</dd>
-<dt><strong>mutation_options</strong><span class="classifier">dict, default {“point”:1/6, “insert”:1/6, “delete”:1/6, “subtree”:1/6, “toggle_weight_on”:1/6, “toggle_weight_off”:1/6}</span></dt><dd><p>A dictionary with keys naming the types of mutation and floating point 
-values specifying the fraction of total mutations to do with that method.
-The probability of having a mutation is <cite>(1-cx_prob)</cite> and, in case the mutation
-is applied, then each mutation option is sampled based on the probabilities
-defined in <cite>mutation_options</cite>. The set of probabilities should add up to 1.0.</p>
-</dd>
-<dt><strong>functions: dict[str,float] or list[str], default {}</strong></dt><dd><p>A dictionary with keys naming the function set and values giving the probability
-of sampling them, or a list of functions which will be weighted uniformly.
-If empty, all available functions are included in the search space.</p>
-</dd>
-<dt><strong>initialization</strong><span class="classifier">{“grow”, “full”}, default “grow”</span></dt><dd><p>Strategy to create the initial population. If <cite>full</cite>, then every expression is created
-with <cite>max_size</cite> nodes. If <cite>grow</cite>, size will be uniformly distributed.</p>
-</dd>
-<dt><strong>validation_size</strong><span class="classifier">float, default 0.0</span></dt><dd><p>Percentage of samples to use as a hold-out partition. These samples are used
-to calculate statistics during evolution, but not used to train the models.
-The <cite>best_estimator_</cite> will be selected using this partition. If zero, then
-the same data used for training is used for validation.</p>
-</dd>
-<dt><strong>batch_size</strong><span class="classifier">float, default 1.0</span></dt><dd><p>Percentage of training data to sample every generation. If <cite>1.0</cite>, then
-all data is used. Very small values can improve execution time, but 
-also lead to underfit.</p>
-</dd>
-<dt><strong>random_state: int or None, default None</strong></dt><dd><p>If int, then the value is used to seed the c++ random generator; if None,
-then a seed will be generated using a non-deterministic generator. It is
-important to notice that, even if the random state is fixed, it is
-unlikely that running brush using multiple threads will have the same
-results. This happens because the Operating System’s scheduler is
-responsible to choose which thread will run at any given time, thus 
-reproductibility is not guaranteed.</p>
-</dd>
-</dl>
-</dd>
-<dt class="field-even">Attributes<span class="colon">:</span></dt>
-<dd class="field-even"><dl>
-<dt><strong>best_estimator_</strong><span class="classifier">_brush.Program</span></dt><dd><p>The final model picked from training. Used in subsequent calls to <a class="reference internal" href="#brush.estimator.BrushEstimator.predict" title="brush.estimator.BrushEstimator.predict"><code class="xref py py-func docutils literal notranslate"><span class="pre">predict()</span></code></a>.</p>
+<dt class="field-odd">Attributes<span class="colon">:</span></dt>
+<dd class="field-odd"><dl>
+<dt><strong>best_estimator_</strong><span class="classifier">pybrush.Program</span></dt><dd><p>The final model picked from training. Used in subsequent calls to <a class="reference internal" href="#pybrush.BrushEstimator.BrushEstimator.predict" title="pybrush.BrushEstimator.BrushEstimator.predict"><code class="xref py py-func docutils literal notranslate"><span class="pre">predict()</span></code></a>.</p>
 </dd>
 <dt><strong>archive_</strong><span class="classifier">list[deap_api.DeapIndividual]</span></dt><dd><p>The final population from training.</p>
 </dd>
-<dt><strong>data_</strong><span class="classifier">_brush.Dataset</span></dt><dd><p>The complete data in Brush format.</p>
+<dt><strong>data_</strong><span class="classifier">pybrush.Dataset</span></dt><dd><p>The complete data in Brush format.</p>
 </dd>
-<dt><strong>train_</strong><span class="classifier">_brush.Dataset</span></dt><dd><p>Partition of <cite>data_</cite> containing <a href="#id1"><span class="problematic" id="id2">`</span></a>(1-validation_size)`% of the data, in Brush format.</p>
+<dt><strong>train_</strong><span class="classifier">pybrush.Dataset</span></dt><dd><p>Partition of <cite>data_</cite> containing <a href="#id1"><span class="problematic" id="id2">`</span></a>(1-validation_size)`% of the data, in Brush format.</p>
 </dd>
-<dt><strong>validation_</strong><span class="classifier">_brush.Dataset</span></dt><dd><p>Partition of <cite>data_</cite> containing <a href="#id3"><span class="problematic" id="id4">`</span></a>(validation_size)`% of the data, in Brush format.</p>
+<dt><strong>validation_</strong><span class="classifier">pybrush.Dataset</span></dt><dd><p>Partition of <cite>data_</cite> containing <a href="#id3"><span class="problematic" id="id4">`</span></a>(validation_size)`% of the data, in Brush format.</p>
 </dd>
 <dt><strong>search_space_</strong><span class="classifier">a Brush <cite>SearchSpace</cite> object.</span></dt><dd><p>Holds the operators and terminals and sampling utilities to update programs.</p>
-</dd>
-<dt><strong>toolbox_</strong><span class="classifier">deap.Toolbox</span></dt><dd><p>The toolbox used by DEAP for EA algorithm.</p>
 </dd>
 </dl>
 </dd>
 </dl>
 <p class="rubric">Methods</p>
-<table class="autosummary longtable table autosummary">
+<div class="pst-scrollable-table-container"><table class="autosummary longtable table autosummary">
 <tbody>
-<tr class="row-odd"><td><p><a class="reference internal" href="#brush.estimator.BrushEstimator.fit" title="brush.estimator.BrushEstimator.fit"><code class="xref py py-obj docutils literal notranslate"><span class="pre">fit</span></code></a>(X, y)</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#pybrush.BrushEstimator.BrushEstimator.fit" title="pybrush.BrushEstimator.BrushEstimator.fit"><code class="xref py py-obj docutils literal notranslate"><span class="pre">fit</span></code></a>(X, y)</p></td>
 <td><p>Fit an estimator to X,y.</p></td>
 </tr>
 <tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_metadata_routing</span></code>()</p></td>
 <td><p>Get metadata routing of this object.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#brush.estimator.BrushEstimator.get_params" title="brush.estimator.BrushEstimator.get_params"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_params</span></code></a>()</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#pybrush.BrushEstimator.BrushEstimator.get_params" title="pybrush.BrushEstimator.BrushEstimator.get_params"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_params</span></code></a>([deep])</p></td>
 <td><p>Get parameters for this estimator.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#brush.estimator.BrushEstimator.predict" title="brush.estimator.BrushEstimator.predict"><code class="xref py py-obj docutils literal notranslate"><span class="pre">predict</span></code></a>(X)</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#pybrush.BrushEstimator.BrushEstimator.predict" title="pybrush.BrushEstimator.BrushEstimator.predict"><code class="xref py py-obj docutils literal notranslate"><span class="pre">predict</span></code></a>(X)</p></td>
 <td><p>Predict using the best estimator in the archive.</p></td>
 </tr>
-<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">set_params</span></code>(**params)</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#pybrush.BrushEstimator.BrushEstimator.predict_archive" title="pybrush.BrushEstimator.BrushEstimator.predict_archive"><code class="xref py py-obj docutils literal notranslate"><span class="pre">predict_archive</span></code></a>(X)</p></td>
+<td><p>Returns a list of dictionary predictions for all models.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">set_params</span></code>(**params)</p></td>
 <td><p>Set the parameters of this estimator.</p></td>
 </tr>
 </tbody>
 </table>
+</div>
 <dl class="py method">
-<dt class="sig sig-object py" id="brush.estimator.BrushEstimator.fit">
-<span class="sig-name descname"><span class="pre">fit</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">X</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y</span></span></em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/cavalab/brush/blob/master/src/brush/estimator.py#L189-L265"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#brush.estimator.BrushEstimator.fit" title="Link to this definition">#</a></dt>
+<dt class="sig sig-object py" id="pybrush.BrushEstimator.BrushEstimator.fit">
+<span class="sig-name descname"><span class="pre">fit</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">X</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y</span></span></em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/cavalab/brush/blob/master/../../../micromamba-root/envs/brush/lib/python3.12/site-packages/pybrush/BrushEstimator.py#L46-L94"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pybrush.BrushEstimator.BrushEstimator.fit" title="Link to this definition">#</a></dt>
 <dd><p>Fit an estimator to X,y.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
@@ -495,8 +454,8 @@ reproductibility is not guaranteed.</p>
 </dd></dl>
 
 <dl class="py method">
-<dt class="sig sig-object py" id="brush.estimator.BrushEstimator.get_params">
-<span class="sig-name descname"><span class="pre">get_params</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference external" href="https://github.com/cavalab/brush/blob/master/src/brush/estimator.py#L312-L313"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#brush.estimator.BrushEstimator.get_params" title="Link to this definition">#</a></dt>
+<dt class="sig sig-object py" id="pybrush.BrushEstimator.BrushEstimator.get_params">
+<span class="sig-name descname"><span class="pre">get_params</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">deep</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/cavalab/brush/blob/master/../../../micromamba-root/envs/brush/lib/python3.12/site-packages/pybrush/BrushEstimator.py#L155-L163"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pybrush.BrushEstimator.BrushEstimator.get_params" title="Link to this definition">#</a></dt>
 <dd><p>Get parameters for this estimator.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
@@ -516,9 +475,15 @@ contained subobjects that are estimators.</p>
 </dd></dl>
 
 <dl class="py method">
-<dt class="sig sig-object py" id="brush.estimator.BrushEstimator.predict">
-<span class="sig-name descname"><span class="pre">predict</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">X</span></span></em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/cavalab/brush/blob/master/src/brush/estimator.py#L293-L296"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#brush.estimator.BrushEstimator.predict" title="Link to this definition">#</a></dt>
+<dt class="sig sig-object py" id="pybrush.BrushEstimator.BrushEstimator.predict">
+<span class="sig-name descname"><span class="pre">predict</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">X</span></span></em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/cavalab/brush/blob/master/../../../micromamba-root/envs/brush/lib/python3.12/site-packages/pybrush/BrushEstimator.py#L138-L153"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pybrush.BrushEstimator.BrushEstimator.predict" title="Link to this definition">#</a></dt>
 <dd><p>Predict using the best estimator in the archive.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pybrush.BrushEstimator.BrushEstimator.predict_archive">
+<span class="sig-name descname"><span class="pre">predict_archive</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">X</span></span></em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/cavalab/brush/blob/master/../../../micromamba-root/envs/brush/lib/python3.12/site-packages/pybrush/BrushEstimator.py#L165-L188"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pybrush.BrushEstimator.BrushEstimator.predict_archive" title="Link to this definition">#</a></dt>
+<dd><p>Returns a list of dictionary predictions for all models.</p>
 </dd></dl>
 
 </dd></dl>
@@ -533,7 +498,7 @@ contained subobjects that are estimators.</p>
               
               
               
-                <footer class="prev-next-footer">
+                <footer class="prev-next-footer d-print-none">
                   
 <div class="prev-next-area">
     <a class="left-prev"
@@ -546,11 +511,11 @@ contained subobjects that are estimators.</p>
       </div>
     </a>
     <a class="right-next"
-       href="regressor.html"
+       href="interface.html"
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">BrushRegressor</p>
+        <p class="prev-next-title">EstimatorInterface</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
@@ -570,10 +535,11 @@ contained subobjects that are estimators.</p>
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#brush.estimator.BrushEstimator"><code class="docutils literal notranslate"><span class="pre">BrushEstimator</span></code></a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#brush.estimator.BrushEstimator.fit"><code class="docutils literal notranslate"><span class="pre">BrushEstimator.fit()</span></code></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#brush.estimator.BrushEstimator.get_params"><code class="docutils literal notranslate"><span class="pre">BrushEstimator.get_params()</span></code></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#brush.estimator.BrushEstimator.predict"><code class="docutils literal notranslate"><span class="pre">BrushEstimator.predict()</span></code></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pybrush.BrushEstimator.BrushEstimator"><code class="docutils literal notranslate"><span class="pre">BrushEstimator</span></code></a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#pybrush.BrushEstimator.BrushEstimator.fit"><code class="docutils literal notranslate"><span class="pre">BrushEstimator.fit()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#pybrush.BrushEstimator.BrushEstimator.get_params"><code class="docutils literal notranslate"><span class="pre">BrushEstimator.get_params()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#pybrush.BrushEstimator.BrushEstimator.predict"><code class="docutils literal notranslate"><span class="pre">BrushEstimator.predict()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#pybrush.BrushEstimator.BrushEstimator.predict_archive"><code class="docutils literal notranslate"><span class="pre">BrushEstimator.predict_archive()</span></code></a></li>
 </ul>
 </li>
 </ul>
@@ -624,8 +590,8 @@ By William La Cava and Joseph D. Romano
   </div>
   
   <!-- Scripts loaded after <body> so the DOM is not blocked -->
-  <script src="../_static/scripts/bootstrap.js?digest=8d27b9dea8ad943066ae"></script>
-<script src="../_static/scripts/pydata-sphinx-theme.js?digest=8d27b9dea8ad943066ae"></script>
+  <script src="../_static/scripts/bootstrap.js?digest=3ee479438cf8b5e0d341"></script>
+<script src="../_static/scripts/pydata-sphinx-theme.js?digest=3ee479438cf8b5e0d341"></script>
 
   <footer class="bd-footer">
   </footer>

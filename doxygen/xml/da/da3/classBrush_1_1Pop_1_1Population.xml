@@ -1,0 +1,501 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.10.0" xml:lang="en-US">
+  <compounddef id="da/da3/classBrush_1_1Pop_1_1Population" kind="class" language="C++" prot="public">
+    <compoundname>Brush::Pop::Population</compoundname>
+    <includes refid="d2/d76/population_8h" local="no">population.h</includes>
+    <innerclass refid="d4/de2/structBrush_1_1Pop_1_1Population_1_1SameFitComplexity" prot="public">Brush::Pop::Population::SameFitComplexity</innerclass>
+    <innerclass refid="d6/dd9/structBrush_1_1Pop_1_1Population_1_1SortComplexity" prot="public">Brush::Pop::Population::SortComplexity</innerclass>
+    <templateparamlist>
+      <param>
+        <type><ref refid="dc/d5c/namespaceBrush_1ae591329af27c88b714d0f92b86276366" kindref="member">ProgramType</ref></type>
+        <declname>T</declname>
+        <defname>T</defname>
+      </param>
+    </templateparamlist>
+    <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="da/da3/classBrush_1_1Pop_1_1Population_1aada5cceb77f0823c7fdc99d21536146d" prot="public" static="no" mutable="no">
+        <type><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">size_t</ref></type>
+        <definition>size_t Brush::Pop::Population&lt; T &gt;::pop_size</definition>
+        <argsstring></argsstring>
+        <name>pop_size</name>
+        <qualifiedname>Brush::Pop::Population::pop_size</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/runner/work/brush/brush/src/pop/population.h" line="14" column="12" bodyfile="/home/runner/work/brush/brush/src/pop/population.h" bodystart="14" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="da/da3/classBrush_1_1Pop_1_1Population_1a0a1f364040ce0de2ab17ae82e0faac76" prot="public" static="no" mutable="no">
+        <type><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">int</ref></type>
+        <definition>int Brush::Pop::Population&lt; T &gt;::num_islands</definition>
+        <argsstring></argsstring>
+        <name>num_islands</name>
+        <qualifiedname>Brush::Pop::Population::num_islands</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/runner/work/brush/brush/src/pop/population.h" line="15" column="9" bodyfile="/home/runner/work/brush/brush/src/pop/population.h" bodystart="15" bodyend="-1"/>
+        <referencedby refid="d1/d30/structBrush_1_1Pop_1_1Archive_1a5e6c6513918f87a8a68c2a7a162edb27" compoundref="d7/d05/archive_8cpp" startline="64" endline="105">Brush::Pop::Archive&lt; T &gt;::init</referencedby>
+        <referencedby refid="d1/d30/structBrush_1_1Pop_1_1Archive_1a14ec57dcaf13d237552d7fa46f58f3c3" compoundref="d7/d05/archive_8cpp" startline="108" endline="134">Brush::Pop::Archive&lt; T &gt;::update</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="da/da3/classBrush_1_1Pop_1_1Population_1a31f1c6f4250a15d2b720483d98fb456d" prot="public" static="no" mutable="no">
+        <type><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">float</ref></type>
+        <definition>float Brush::Pop::Population&lt; T &gt;::mig_prob</definition>
+        <argsstring></argsstring>
+        <name>mig_prob</name>
+        <qualifiedname>Brush::Pop::Population::mig_prob</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/runner/work/brush/brush/src/pop/population.h" line="16" column="11" bodyfile="/home/runner/work/brush/brush/src/pop/population.h" bodystart="16" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="da/da3/classBrush_1_1Pop_1_1Population_1a7b529af66e90f378ca96a54ee5ce0c71" prot="public" static="no" mutable="no">
+        <type>vector&lt; std::shared_ptr&lt; <ref refid="de/d83/classBrush_1_1Pop_1_1Individual" kindref="compound">Individual</ref>&lt; T &gt; &gt; &gt;</type>
+        <definition>vector&lt;std::shared_ptr&lt;Individual&lt;T&gt; &gt; &gt; Brush::Pop::Population&lt; T &gt;::individuals</definition>
+        <argsstring></argsstring>
+        <name>individuals</name>
+        <qualifiedname>Brush::Pop::Population::individuals</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/runner/work/brush/brush/src/pop/population.h" line="18" column="12" bodyfile="/home/runner/work/brush/brush/src/pop/population.h" bodystart="18" bodyend="-1"/>
+        <referencedby refid="d3/d7d/classBrush_1_1Sel_1_1NSGA2_1a03190cdc845ff83c08c6d25681fc738c" compoundref="de/d0d/nsga2_8cpp" startline="201" endline="245">Brush::Sel::NSGA2&lt; T &gt;::crowding_distance</referencedby>
+        <referencedby refid="d3/d7d/classBrush_1_1Sel_1_1NSGA2_1a4196468152e50eed683b327b0b732f70" compoundref="de/d0d/nsga2_8cpp" startline="116" endline="198">Brush::Sel::NSGA2&lt; T &gt;::fast_nds</referencedby>
+        <referencedby refid="d1/d30/structBrush_1_1Pop_1_1Archive_1a5e6c6513918f87a8a68c2a7a162edb27" compoundref="d7/d05/archive_8cpp" startline="64" endline="105">Brush::Pop::Archive&lt; T &gt;::init</referencedby>
+        <referencedby refid="da/da3/classBrush_1_1Pop_1_1Population_1a149319e12e39ef62533b6240ad5359c6" compoundref="d2/d76/population_8h" startline="48" endline="48">Brush::Pop::Population&lt; T &gt;::operator[]</referencedby>
+        <referencedby refid="da/da3/classBrush_1_1Pop_1_1Population_1a281c5ef097d5fd90efba598c04826a50" compoundref="d2/d76/population_8h" startline="47" endline="47">Brush::Pop::Population&lt; T &gt;::operator[]</referencedby>
+        <referencedby refid="d2/dd0/classBrush_1_1Sel_1_1Lexicase_1ab9f17cd2c4452b05c96a17bb6c105fc2" compoundref="d8/dac/lexicase_8cpp" startline="18" endline="163">Brush::Sel::Lexicase&lt; T &gt;::select</referencedby>
+        <referencedby refid="da/da3/classBrush_1_1Pop_1_1Population_1a415c50b87a36ef476547ca965e4f341d" compoundref="d2/d76/population_8h" startline="36" endline="36">Brush::Pop::Population&lt; T &gt;::size</referencedby>
+        <referencedby refid="d1/d30/structBrush_1_1Pop_1_1Archive_1a14ec57dcaf13d237552d7fa46f58f3c3" compoundref="d7/d05/archive_8cpp" startline="108" endline="134">Brush::Pop::Archive&lt; T &gt;::update</referencedby>
+        <referencedby refid="d1/de5/classBrush_1_1Eval_1_1Evaluation_1a1d652164264243bd40efcfd38ba6d569" compoundref="d9/d6a/evaluation_8cpp" startline="9" endline="42">Brush::Eval::Evaluation&lt; T &gt;::update_fitness</referencedby>
+        <referencedby refid="d5/d14/classBrush_1_1Var_1_1Variation_1a344233ce053ca4b267539182fecbbc91" compoundref="d1/d64/variation_8cpp" startline="578" endline="638">Brush::Var::Variation&lt; T &gt;::vary</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="da/da3/classBrush_1_1Pop_1_1Population_1aa0bc73e0a032afefdf56a94aa27a68cf" prot="public" static="no" mutable="no">
+        <type>vector&lt; vector&lt; <ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">size_t</ref> &gt; &gt;</type>
+        <definition>vector&lt;vector&lt;size_t&gt; &gt; Brush::Pop::Population&lt; T &gt;::island_indexes</definition>
+        <argsstring></argsstring>
+        <name>island_indexes</name>
+        <qualifiedname>Brush::Pop::Population::island_indexes</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/runner/work/brush/brush/src/pop/population.h" line="19" column="12" bodyfile="/home/runner/work/brush/brush/src/pop/population.h" bodystart="19" bodyend="-1"/>
+        <referencedby refid="da/da3/classBrush_1_1Pop_1_1Population_1a2bf4066c7a32ec3bd85c96bd80098de6" compoundref="d2/d76/population_8h" startline="38" endline="38">Brush::Pop::Population&lt; T &gt;::get_island_indexes</referencedby>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="public-func">
+      <memberdef kind="function" id="da/da3/classBrush_1_1Pop_1_1Population_1accbe0e4c2b8bf582fc686d7b93d784c1" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>Brush::Pop::Population&lt; T &gt;::Population</definition>
+        <argsstring>()</argsstring>
+        <name>Population</name>
+        <qualifiedname>Brush::Pop::Population::Population</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/runner/work/brush/brush/src/pop/population.h" line="21" column="5" bodyfile="/home/runner/work/brush/brush/src/pop/population.cpp" bodystart="7" bodyend="13"/>
+      </memberdef>
+      <memberdef kind="function" id="da/da3/classBrush_1_1Pop_1_1Population_1a95bb307f431f7ab815f724c0e159b797" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>Brush::Pop::Population&lt; T &gt;::~Population</definition>
+        <argsstring>()</argsstring>
+        <name>~Population</name>
+        <qualifiedname>Brush::Pop::Population::~Population</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/runner/work/brush/brush/src/pop/population.h" line="22" column="5" bodyfile="/home/runner/work/brush/brush/src/pop/population.h" bodystart="22" bodyend="22"/>
+      </memberdef>
+      <memberdef kind="function" id="da/da3/classBrush_1_1Pop_1_1Population_1a8c4ce8e8bd8cedecb3d0ef621aad9d22" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">void</ref></type>
+        <definition>void Brush::Pop::Population&lt; T &gt;::init</definition>
+        <argsstring>(SearchSpace &amp;ss, const Parameters &amp;params)</argsstring>
+        <name>init</name>
+        <qualifiedname>Brush::Pop::Population::init</qualifiedname>
+        <param>
+          <type><ref refid="d4/dc3/structBrush_1_1SearchSpace" kindref="compound">SearchSpace</ref> &amp;</type>
+          <declname>ss</declname>
+        </param>
+        <param>
+          <type><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">const</ref> <ref refid="de/deb/structBrush_1_1Parameters" kindref="compound">Parameters</ref> &amp;</type>
+          <declname>params</declname>
+        </param>
+        <briefdescription>
+<para>initialize population of programs with a starting model and/or from file </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/runner/work/brush/brush/src/pop/population.h" line="25" column="10" bodyfile="/home/runner/work/brush/brush/src/pop/population.cpp" bodystart="60" bodyend="96"/>
+        <references refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" compoundref="d4/d93/bind__engines_8h" startline="35" endline="104">bind_engine</references>
+        <references refid="d9/d1c/namespaceBrush_1_1Data_1a7e8d2615fe3bb7ef5f2a7cc9c625f985a63bcabf86a9a991864777c631c5b7617">Brush::Data::delta</references>
+        <references refid="de/deb/structBrush_1_1Parameters_1aed0024de73a9fec99711efe303484ab8" compoundref="da/d33/params_8h" startline="61">Brush::Parameters::mig_prob</references>
+        <references refid="de/deb/structBrush_1_1Parameters_1a93ed229becd162e94722e034f8e5bebc" compoundref="da/d33/params_8h" startline="43">Brush::Parameters::num_islands</references>
+        <references refid="de/deb/structBrush_1_1Parameters_1a110a7c46dffa83836fb155a566219292" compoundref="da/d33/params_8h" startline="38" endline="38">Brush::Parameters::objectives</references>
+        <references refid="de/deb/structBrush_1_1Parameters_1a139004f9fa652376afabd690dac242e5" compoundref="da/d33/params_8h" startline="30">Brush::Parameters::pop_size</references>
+      </memberdef>
+      <memberdef kind="function" id="da/da3/classBrush_1_1Pop_1_1Population_1a46922ab810383db1271d700e03005962" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">void</ref></type>
+        <definition>void Brush::Pop::Population&lt; T &gt;::init</definition>
+        <argsstring>(vector&lt; Individual&lt; T &gt; &gt; &amp;individuals, const Parameters &amp;params)</argsstring>
+        <name>init</name>
+        <qualifiedname>Brush::Pop::Population::init</qualifiedname>
+        <param>
+          <type>vector&lt; <ref refid="de/d83/classBrush_1_1Pop_1_1Individual" kindref="compound">Individual</ref>&lt; T &gt; &gt; &amp;</type>
+          <declname>individuals</declname>
+        </param>
+        <param>
+          <type><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">const</ref> <ref refid="de/deb/structBrush_1_1Parameters" kindref="compound">Parameters</ref> &amp;</type>
+          <declname>params</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/runner/work/brush/brush/src/pop/population.h" line="28" column="10" bodyfile="/home/runner/work/brush/brush/src/pop/population.cpp" bodystart="17" bodyend="57"/>
+        <references refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" compoundref="d4/d93/bind__engines_8h" startline="35" endline="104">bind_engine</references>
+        <references refid="d9/d1c/namespaceBrush_1_1Data_1a7e8d2615fe3bb7ef5f2a7cc9c625f985a63bcabf86a9a991864777c631c5b7617">Brush::Data::delta</references>
+        <references refid="de/deb/structBrush_1_1Parameters_1aed0024de73a9fec99711efe303484ab8" compoundref="da/d33/params_8h" startline="61">Brush::Parameters::mig_prob</references>
+        <references refid="de/deb/structBrush_1_1Parameters_1a93ed229becd162e94722e034f8e5bebc" compoundref="da/d33/params_8h" startline="43">Brush::Parameters::num_islands</references>
+        <references refid="de/deb/structBrush_1_1Parameters_1a139004f9fa652376afabd690dac242e5" compoundref="da/d33/params_8h" startline="30">Brush::Parameters::pop_size</references>
+        <references refid="d6/d2e/namespaceBrush_1_1Util_1a9cd8004de7aab46b7a06f27d440064ed" compoundref="d5/d60/utils_8h" startline="369" endline="374">Brush::Util::to_string</references>
+      </memberdef>
+      <memberdef kind="function" id="da/da3/classBrush_1_1Pop_1_1Population_1a760c5b3804c92d23da170e37ecae158a" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">void</ref></type>
+        <definition>void Brush::Pop::Population&lt; T &gt;::save</definition>
+        <argsstring>(string filename)</argsstring>
+        <name>save</name>
+        <qualifiedname>Brush::Pop::Population::save</qualifiedname>
+        <param>
+          <type>string</type>
+          <declname>filename</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/runner/work/brush/brush/src/pop/population.h" line="31" column="10" bodyfile="/home/runner/work/brush/brush/src/pop/population.cpp" bodystart="99" bodyend="112"/>
+        <references refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" compoundref="d4/d93/bind__engines_8h" startline="35" endline="104">bind_engine</references>
+        <references refid="dd/d56/classBrush_1_1Util_1_1Logger_1ad91c0afb3eba406a0dff9316d3b2b80d" compoundref="d3/d30/logger_8cpp" startline="50" endline="61">Brush::Util::Logger::log</references>
+        <references refid="d6/d2e/namespaceBrush_1_1Util_1aa6d49e22e6193fabd31fde261f607560" compoundref="d1/d8c/logger_8h" startline="60">Brush::Util::logger</references>
+        <references refid="dd/d56/namespaceBrush_1_1Pop_1af4f50fb2e3fbad69b68d16d4d03d7c32" compoundref="d5/d1f/individual_8h" startline="150" endline="159">Brush::Pop::to_json</references>
+      </memberdef>
+      <memberdef kind="function" id="da/da3/classBrush_1_1Pop_1_1Population_1ad193aced6ffa6d3587f0f390d9ed0415" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">void</ref></type>
+        <definition>void Brush::Pop::Population&lt; T &gt;::load</definition>
+        <argsstring>(string filename)</argsstring>
+        <name>load</name>
+        <qualifiedname>Brush::Pop::Population::load</qualifiedname>
+        <param>
+          <type>string</type>
+          <declname>filename</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/runner/work/brush/brush/src/pop/population.h" line="33" column="10" bodyfile="/home/runner/work/brush/brush/src/pop/population.cpp" bodystart="115" bodyend="132"/>
+        <references refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" compoundref="d4/d93/bind__engines_8h" startline="35" endline="104">bind_engine</references>
+        <references refid="dd/d56/namespaceBrush_1_1Pop_1af7f97a6c5ba977ab4ef312a0ac71c828" compoundref="d5/d1f/individual_8h" startline="162" endline="169">Brush::Pop::from_json</references>
+        <references refid="da/d41/error_8h_1aa4c550bcd71e4ec1c97b111e1360509a" compoundref="da/d41/error_8h" startline="27">HANDLE_ERROR_THROW</references>
+        <references refid="dd/d56/classBrush_1_1Util_1_1Logger_1ad91c0afb3eba406a0dff9316d3b2b80d" compoundref="d3/d30/logger_8cpp" startline="50" endline="61">Brush::Util::Logger::log</references>
+        <references refid="d6/d2e/namespaceBrush_1_1Util_1aa6d49e22e6193fabd31fde261f607560" compoundref="d1/d8c/logger_8h" startline="60">Brush::Util::logger</references>
+        <references refid="d6/d2e/namespaceBrush_1_1Util_1a9cd8004de7aab46b7a06f27d440064ed" compoundref="d5/d60/utils_8h" startline="369" endline="374">Brush::Util::to_string</references>
+      </memberdef>
+      <memberdef kind="function" id="da/da3/classBrush_1_1Pop_1_1Population_1a415c50b87a36ef476547ca965e4f341d" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">int</ref></type>
+        <definition>int Brush::Pop::Population&lt; T &gt;::size</definition>
+        <argsstring>()</argsstring>
+        <name>size</name>
+        <qualifiedname>Brush::Pop::Population::size</qualifiedname>
+        <briefdescription>
+<para>returns population size (the effective size of the individuals) </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/runner/work/brush/brush/src/pop/population.h" line="36" column="9" bodyfile="/home/runner/work/brush/brush/src/pop/population.h" bodystart="36" bodyend="36"/>
+        <references refid="da/da3/classBrush_1_1Pop_1_1Population_1a7b529af66e90f378ca96a54ee5ce0c71" compoundref="d2/d76/population_8h" startline="18">Brush::Pop::Population&lt; T &gt;::individuals</references>
+      </memberdef>
+      <memberdef kind="function" id="da/da3/classBrush_1_1Pop_1_1Population_1a2bf4066c7a32ec3bd85c96bd80098de6" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>vector&lt; <ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">size_t</ref> &gt;</type>
+        <definition>vector&lt; size_t &gt; Brush::Pop::Population&lt; T &gt;::get_island_indexes</definition>
+        <argsstring>(int island)</argsstring>
+        <name>get_island_indexes</name>
+        <qualifiedname>Brush::Pop::Population::get_island_indexes</qualifiedname>
+        <param>
+          <type><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">int</ref></type>
+          <declname>island</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/runner/work/brush/brush/src/pop/population.h" line="38" column="12" bodyfile="/home/runner/work/brush/brush/src/pop/population.h" bodystart="38" bodyend="38"/>
+        <references refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" compoundref="d4/d93/bind__engines_8h" startline="35" endline="104">bind_engine</references>
+        <references refid="da/da3/classBrush_1_1Pop_1_1Population_1aa0bc73e0a032afefdf56a94aa27a68cf" compoundref="d2/d76/population_8h" startline="19">Brush::Pop::Population&lt; T &gt;::island_indexes</references>
+        <referencedby refid="d1/d30/structBrush_1_1Pop_1_1Archive_1a5e6c6513918f87a8a68c2a7a162edb27" compoundref="d7/d05/archive_8cpp" startline="64" endline="105">Brush::Pop::Archive&lt; T &gt;::init</referencedby>
+        <referencedby refid="d2/dd0/classBrush_1_1Sel_1_1Lexicase_1ab9f17cd2c4452b05c96a17bb6c105fc2" compoundref="d8/dac/lexicase_8cpp" startline="18" endline="163">Brush::Sel::Lexicase&lt; T &gt;::select</referencedby>
+        <referencedby refid="d3/d7d/classBrush_1_1Sel_1_1NSGA2_1a53788b6bda8ce09f644e2cc44c9aa478" compoundref="de/d0d/nsga2_8cpp" startline="39" endline="66">Brush::Sel::NSGA2&lt; T &gt;::select</referencedby>
+        <referencedby refid="d3/d7d/classBrush_1_1Sel_1_1NSGA2_1a2faddb61c1d9ce38a1bc994e9a9b08eb" compoundref="de/d0d/nsga2_8cpp" startline="69" endline="113">Brush::Sel::NSGA2&lt; T &gt;::survive</referencedby>
+        <referencedby refid="d1/d30/structBrush_1_1Pop_1_1Archive_1a14ec57dcaf13d237552d7fa46f58f3c3" compoundref="d7/d05/archive_8cpp" startline="108" endline="134">Brush::Pop::Archive&lt; T &gt;::update</referencedby>
+        <referencedby refid="d1/de5/classBrush_1_1Eval_1_1Evaluation_1a1d652164264243bd40efcfd38ba6d569" compoundref="d9/d6a/evaluation_8cpp" startline="9" endline="42">Brush::Eval::Evaluation&lt; T &gt;::update_fitness</referencedby>
+        <referencedby refid="d5/d14/classBrush_1_1Var_1_1Variation_1a344233ce053ca4b267539182fecbbc91" compoundref="d1/d64/variation_8cpp" startline="578" endline="638">Brush::Var::Variation&lt; T &gt;::vary</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="da/da3/classBrush_1_1Pop_1_1Population_1a74417ef86a9a4195d6422427d97347a5" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">void</ref></type>
+        <definition>void Brush::Pop::Population&lt; T &gt;::add_offspring_indexes</definition>
+        <argsstring>(int island)</argsstring>
+        <name>add_offspring_indexes</name>
+        <qualifiedname>Brush::Pop::Population::add_offspring_indexes</qualifiedname>
+        <param>
+          <type><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">int</ref></type>
+          <declname>island</declname>
+        </param>
+        <briefdescription>
+<para>update individual vector size, distributing the expressions in num_islands </para>
+        </briefdescription>
+        <detaileddescription>
+<para>update individual vector size and island indexes </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/runner/work/brush/brush/src/pop/population.h" line="41" column="10" bodyfile="/home/runner/work/brush/brush/src/pop/population.cpp" bodystart="136" bodyend="156"/>
+        <references refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" compoundref="d4/d93/bind__engines_8h" startline="35" endline="104">bind_engine</references>
+        <references refid="d9/d1c/namespaceBrush_1_1Data_1a7e8d2615fe3bb7ef5f2a7cc9c625f985a63bcabf86a9a991864777c631c5b7617">Brush::Data::delta</references>
+      </memberdef>
+      <memberdef kind="function" id="da/da3/classBrush_1_1Pop_1_1Population_1af76f3d5380e7def96176b72d4969b69e" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">void</ref></type>
+        <definition>void Brush::Pop::Population&lt; T &gt;::update</definition>
+        <argsstring>(vector&lt; vector&lt; size_t &gt; &gt; survivors)</argsstring>
+        <name>update</name>
+        <qualifiedname>Brush::Pop::Population::update</qualifiedname>
+        <param>
+          <type>vector&lt; vector&lt; <ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">size_t</ref> &gt; &gt;</type>
+          <declname>survivors</declname>
+        </param>
+        <briefdescription>
+<para>reduce programs to the indices in survivors. Not thread safe,as it removes elements </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/runner/work/brush/brush/src/pop/population.h" line="44" column="10" bodyfile="/home/runner/work/brush/brush/src/pop/population.cpp" bodystart="159" bodyend="208"/>
+        <references refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" compoundref="d4/d93/bind__engines_8h" startline="35" endline="104">bind_engine</references>
+        <references refid="d9/d1c/namespaceBrush_1_1Data_1a7e8d2615fe3bb7ef5f2a7cc9c625f985a63bcabf86a9a991864777c631c5b7617">Brush::Data::delta</references>
+      </memberdef>
+      <memberdef kind="function" id="da/da3/classBrush_1_1Pop_1_1Population_1a281c5ef097d5fd90efba598c04826a50" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">const</ref> <ref refid="de/d83/classBrush_1_1Pop_1_1Individual" kindref="compound">Individual</ref>&lt; T &gt; &amp;</type>
+        <definition>const Individual&lt; T &gt; &amp; Brush::Pop::Population&lt; T &gt;::operator[]</definition>
+        <argsstring>(size_t i) const</argsstring>
+        <name>operator[]</name>
+        <qualifiedname>Brush::Pop::Population::operator[]</qualifiedname>
+        <param>
+          <type><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">size_t</ref></type>
+          <declname>i</declname>
+        </param>
+        <briefdescription>
+<para>setting and getting from individuals vector (will ignore islands) </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/runner/work/brush/brush/src/pop/population.h" line="47" column="22" bodyfile="/home/runner/work/brush/brush/src/pop/population.h" bodystart="47" bodyend="47"/>
+        <references refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" compoundref="d4/d93/bind__engines_8h" startline="35" endline="104">bind_engine</references>
+        <references refid="da/da3/classBrush_1_1Pop_1_1Population_1a7b529af66e90f378ca96a54ee5ce0c71" compoundref="d2/d76/population_8h" startline="18">Brush::Pop::Population&lt; T &gt;::individuals</references>
+      </memberdef>
+      <memberdef kind="function" id="da/da3/classBrush_1_1Pop_1_1Population_1a149319e12e39ef62533b6240ad5359c6" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">const</ref> <ref refid="de/d83/classBrush_1_1Pop_1_1Individual" kindref="compound">Individual</ref>&lt; T &gt; &amp;</type>
+        <definition>const Individual&lt; T &gt; &amp; Brush::Pop::Population&lt; T &gt;::operator[]</definition>
+        <argsstring>(size_t i)</argsstring>
+        <name>operator[]</name>
+        <qualifiedname>Brush::Pop::Population::operator[]</qualifiedname>
+        <param>
+          <type><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">size_t</ref></type>
+          <declname>i</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/runner/work/brush/brush/src/pop/population.h" line="48" column="22" bodyfile="/home/runner/work/brush/brush/src/pop/population.h" bodystart="48" bodyend="48"/>
+        <references refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" compoundref="d4/d93/bind__engines_8h" startline="35" endline="104">bind_engine</references>
+        <references refid="da/da3/classBrush_1_1Pop_1_1Population_1a7b529af66e90f378ca96a54ee5ce0c71" compoundref="d2/d76/population_8h" startline="18">Brush::Pop::Population&lt; T &gt;::individuals</references>
+      </memberdef>
+      <memberdef kind="function" id="da/da3/classBrush_1_1Pop_1_1Population_1a92f851fffa86280c36cd54a8f670466e" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>string</type>
+        <definition>string Brush::Pop::Population&lt; T &gt;::print_models</definition>
+        <argsstring>(string sep=&quot;\n&quot;)</argsstring>
+        <name>print_models</name>
+        <qualifiedname>Brush::Pop::Population::print_models</qualifiedname>
+        <param>
+          <type>string</type>
+          <declname>sep</declname>
+          <defval>&quot;\n&quot;</defval>
+        </param>
+        <briefdescription>
+<para>return population equations. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/runner/work/brush/brush/src/pop/population.h" line="51" column="12" bodyfile="/home/runner/work/brush/brush/src/pop/population.cpp" bodystart="211" bodyend="228"/>
+        <references refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" compoundref="d4/d93/bind__engines_8h" startline="35" endline="104">bind_engine</references>
+        <references refid="de/d83/classBrush_1_1Pop_1_1Individual_1a17a796fd1d02a07d6bba2d1f1fd4e4d8" compoundref="d5/d1f/individual_8h" startline="91" endline="92">Brush::Pop::Individual&lt; T &gt;::get_model</references>
+        <references refid="d6/d2e/namespaceBrush_1_1Util_1a9cd8004de7aab46b7a06f27d440064ed" compoundref="d5/d60/utils_8h" startline="369" endline="374">Brush::Util::to_string</references>
+      </memberdef>
+      <memberdef kind="function" id="da/da3/classBrush_1_1Pop_1_1Population_1a78b95a2dc04224a015fdbe356cbf1e87" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>vector&lt; vector&lt; <ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">size_t</ref> &gt; &gt;</type>
+        <definition>vector&lt; vector&lt; size_t &gt; &gt; Brush::Pop::Population&lt; T &gt;::sorted_front</definition>
+        <argsstring>(unsigned rank=1)</argsstring>
+        <name>sorted_front</name>
+        <qualifiedname>Brush::Pop::Population::sorted_front</qualifiedname>
+        <param>
+          <type><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">unsigned</ref></type>
+          <declname>rank</declname>
+          <defval>1</defval>
+        </param>
+        <briefdescription>
+<para>return complexity-sorted Pareto front indices for each island </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/runner/work/brush/brush/src/pop/population.h" line="54" column="12" bodyfile="/home/runner/work/brush/brush/src/pop/population.cpp" bodystart="231" bodyend="259"/>
+        <references refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" compoundref="d4/d93/bind__engines_8h" startline="35" endline="104">bind_engine</references>
+      </memberdef>
+      <memberdef kind="function" id="da/da3/classBrush_1_1Pop_1_1Population_1aba7a86b4a919e95ca0bb4219ba469b74" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>vector&lt; <ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">size_t</ref> &gt;</type>
+        <definition>vector&lt; size_t &gt; Brush::Pop::Population&lt; T &gt;::hall_of_fame</definition>
+        <argsstring>(unsigned rank=1)</argsstring>
+        <name>hall_of_fame</name>
+        <qualifiedname>Brush::Pop::Population::hall_of_fame</qualifiedname>
+        <param>
+          <type><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">unsigned</ref></type>
+          <declname>rank</declname>
+          <defval>1</defval>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/runner/work/brush/brush/src/pop/population.h" line="57" column="12" bodyfile="/home/runner/work/brush/brush/src/pop/population.cpp" bodystart="262" bodyend="289"/>
+        <references refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" compoundref="d4/d93/bind__engines_8h" startline="35" endline="104">bind_engine</references>
+      </memberdef>
+      <memberdef kind="function" id="da/da3/classBrush_1_1Pop_1_1Population_1a450651324884449dbb76f32377bcb0fe" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">void</ref></type>
+        <definition>void Brush::Pop::Population&lt; T &gt;::migrate</definition>
+        <argsstring>()</argsstring>
+        <name>migrate</name>
+        <qualifiedname>Brush::Pop::Population::migrate</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/runner/work/brush/brush/src/pop/population.h" line="61" column="10" bodyfile="/home/runner/work/brush/brush/src/pop/population.cpp" bodystart="292" bodyend="390"/>
+        <references refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" compoundref="d4/d93/bind__engines_8h" startline="35" endline="104">bind_engine</references>
+        <references refid="d9/d1c/namespaceBrush_1_1Data_1a7e8d2615fe3bb7ef5f2a7cc9c625f985a63bcabf86a9a991864777c631c5b7617">Brush::Data::delta</references>
+        <references refid="d6/d2e/namespaceBrush_1_1Util_1af7dd70e54015821d96e3a1afed6344ca" compoundref="d2/da9/rnd_8h" startline="174">Brush::Util::r</references>
+        <references refid="d2/d2d/classBrush_1_1Util_1_1Rnd_1a9f0fe39c1fd498b378c8d4abe7b9d71b" compoundref="d2/da9/rnd_8h" startline="61" endline="66">Brush::Util::Rnd::select_randomly</references>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <collaborationgraph>
+      <node id="1">
+        <label>Brush::Pop::Population&lt; T &gt;</label>
+        <link refid="da/da3/classBrush_1_1Pop_1_1Population"/>
+        <childnode refid="2" relation="usage">
+          <edgelabel>individuals</edgelabel>
+        </childnode>
+        <childnode refid="4" relation="usage">
+          <edgelabel>island_indexes</edgelabel>
+        </childnode>
+      </node>
+      <node id="3">
+        <label>T</label>
+      </node>
+      <node id="5">
+        <label>std::vector&lt; size_t &gt;</label>
+      </node>
+      <node id="2">
+        <label>std::vector&lt; std::shared_ptr&lt; Brush::Pop::Individual&lt; T &gt; &gt; &gt;</label>
+        <childnode refid="3" relation="usage">
+          <edgelabel>elements</edgelabel>
+        </childnode>
+      </node>
+      <node id="4">
+        <label>std::vector&lt; vector&lt; size_t &gt; &gt;</label>
+        <childnode refid="5" relation="usage">
+          <edgelabel>elements</edgelabel>
+        </childnode>
+      </node>
+    </collaborationgraph>
+    <location file="/home/runner/work/brush/brush/src/pop/population.h" line="12" column="1" bodyfile="/home/runner/work/brush/brush/src/pop/population.h" bodystart="12" bodyend="84"/>
+    <listofallmembers>
+      <member refid="da/da3/classBrush_1_1Pop_1_1Population_1a74417ef86a9a4195d6422427d97347a5" prot="public" virt="non-virtual"><scope>Brush::Pop::Population</scope><name>add_offspring_indexes</name></member>
+      <member refid="da/da3/classBrush_1_1Pop_1_1Population_1a2bf4066c7a32ec3bd85c96bd80098de6" prot="public" virt="non-virtual"><scope>Brush::Pop::Population</scope><name>get_island_indexes</name></member>
+      <member refid="da/da3/classBrush_1_1Pop_1_1Population_1aba7a86b4a919e95ca0bb4219ba469b74" prot="public" virt="non-virtual"><scope>Brush::Pop::Population</scope><name>hall_of_fame</name></member>
+      <member refid="da/da3/classBrush_1_1Pop_1_1Population_1a7b529af66e90f378ca96a54ee5ce0c71" prot="public" virt="non-virtual"><scope>Brush::Pop::Population</scope><name>individuals</name></member>
+      <member refid="da/da3/classBrush_1_1Pop_1_1Population_1a8c4ce8e8bd8cedecb3d0ef621aad9d22" prot="public" virt="non-virtual"><scope>Brush::Pop::Population</scope><name>init</name></member>
+      <member refid="da/da3/classBrush_1_1Pop_1_1Population_1a46922ab810383db1271d700e03005962" prot="public" virt="non-virtual"><scope>Brush::Pop::Population</scope><name>init</name></member>
+      <member refid="da/da3/classBrush_1_1Pop_1_1Population_1aa0bc73e0a032afefdf56a94aa27a68cf" prot="public" virt="non-virtual"><scope>Brush::Pop::Population</scope><name>island_indexes</name></member>
+      <member refid="da/da3/classBrush_1_1Pop_1_1Population_1ad193aced6ffa6d3587f0f390d9ed0415" prot="public" virt="non-virtual"><scope>Brush::Pop::Population</scope><name>load</name></member>
+      <member refid="da/da3/classBrush_1_1Pop_1_1Population_1a31f1c6f4250a15d2b720483d98fb456d" prot="public" virt="non-virtual"><scope>Brush::Pop::Population</scope><name>mig_prob</name></member>
+      <member refid="da/da3/classBrush_1_1Pop_1_1Population_1a450651324884449dbb76f32377bcb0fe" prot="public" virt="non-virtual"><scope>Brush::Pop::Population</scope><name>migrate</name></member>
+      <member refid="da/da3/classBrush_1_1Pop_1_1Population_1a0a1f364040ce0de2ab17ae82e0faac76" prot="public" virt="non-virtual"><scope>Brush::Pop::Population</scope><name>num_islands</name></member>
+      <member refid="da/da3/classBrush_1_1Pop_1_1Population_1a281c5ef097d5fd90efba598c04826a50" prot="public" virt="non-virtual"><scope>Brush::Pop::Population</scope><name>operator[]</name></member>
+      <member refid="da/da3/classBrush_1_1Pop_1_1Population_1a149319e12e39ef62533b6240ad5359c6" prot="public" virt="non-virtual"><scope>Brush::Pop::Population</scope><name>operator[]</name></member>
+      <member refid="da/da3/classBrush_1_1Pop_1_1Population_1aada5cceb77f0823c7fdc99d21536146d" prot="public" virt="non-virtual"><scope>Brush::Pop::Population</scope><name>pop_size</name></member>
+      <member refid="da/da3/classBrush_1_1Pop_1_1Population_1accbe0e4c2b8bf582fc686d7b93d784c1" prot="public" virt="non-virtual"><scope>Brush::Pop::Population</scope><name>Population</name></member>
+      <member refid="da/da3/classBrush_1_1Pop_1_1Population_1a92f851fffa86280c36cd54a8f670466e" prot="public" virt="non-virtual"><scope>Brush::Pop::Population</scope><name>print_models</name></member>
+      <member refid="da/da3/classBrush_1_1Pop_1_1Population_1a760c5b3804c92d23da170e37ecae158a" prot="public" virt="non-virtual"><scope>Brush::Pop::Population</scope><name>save</name></member>
+      <member refid="da/da3/classBrush_1_1Pop_1_1Population_1a415c50b87a36ef476547ca965e4f341d" prot="public" virt="non-virtual"><scope>Brush::Pop::Population</scope><name>size</name></member>
+      <member refid="da/da3/classBrush_1_1Pop_1_1Population_1a78b95a2dc04224a015fdbe356cbf1e87" prot="public" virt="non-virtual"><scope>Brush::Pop::Population</scope><name>sorted_front</name></member>
+      <member refid="da/da3/classBrush_1_1Pop_1_1Population_1af76f3d5380e7def96176b72d4969b69e" prot="public" virt="non-virtual"><scope>Brush::Pop::Population</scope><name>update</name></member>
+      <member refid="da/da3/classBrush_1_1Pop_1_1Population_1a95bb307f431f7ab815f724c0e159b797" prot="public" virt="non-virtual"><scope>Brush::Pop::Population</scope><name>~Population</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

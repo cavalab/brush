@@ -1,23 +1,24 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
-<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.10.0" xml:lang="en-US">
   <compounddef id="d4/db0/structBrush_1_1Function_3_01NodeType_1_1Log_01_4" kind="struct" language="C++" prot="public">
     <compoundname>Brush::Function&lt; NodeType::Log &gt;</compoundname>
     <includes refid="d8/d5c/functions_8h" local="no">functions.h</includes>
     <templateparamlist>
     </templateparamlist>
-      <sectiondef kind="public-func">
+    <sectiondef kind="public-func">
       <memberdef kind="function" id="d4/db0/structBrush_1_1Function_3_01NodeType_1_1Log_01_4_1a9db054edd7e2ebff159b28ffb06b1ce0" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
         <templateparamlist>
           <param>
-            <type>typename T</type>
+            <type><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">typename</ref> T</type>
           </param>
         </templateparamlist>
-        <type>auto</type>
+        <type><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">auto</ref></type>
         <definition>auto Brush::Function&lt; NodeType::Log &gt;::operator()</definition>
         <argsstring>(const T &amp;t)</argsstring>
         <name>operator()</name>
+        <qualifiedname>Brush::Function&lt; NodeType::Log &gt;::operator()</qualifiedname>
         <param>
-          <type>const T &amp;</type>
+          <type><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">const</ref> T &amp;</type>
           <declname>t</declname>
         </param>
         <briefdescription>
@@ -26,14 +27,15 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/runner/work/brush/brush/src/program/functions.h" line="233" column="21" bodyfile="/home/runner/work/brush/brush/src/program/functions.h" bodystart="233" bodyend="233"/>
+        <location file="/home/runner/work/brush/brush/src/program/functions.h" line="255" column="21" bodyfile="/home/runner/work/brush/brush/src/program/functions.h" bodystart="255" bodyend="255"/>
+        <references refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" compoundref="d4/d93/bind__engines_8h" startline="35" endline="104">bind_engine</references>
       </memberdef>
-      </sectiondef>
+    </sectiondef>
     <briefdescription>
     </briefdescription>
     <detaileddescription>
     </detaileddescription>
-    <location file="/home/runner/work/brush/brush/src/program/functions.h" line="230" column="5" bodyfile="/home/runner/work/brush/brush/src/program/functions.h" bodystart="231" bodyend="234"/>
+    <location file="/home/runner/work/brush/brush/src/program/functions.h" line="252" column="5" bodyfile="/home/runner/work/brush/brush/src/program/functions.h" bodystart="253" bodyend="256"/>
     <listofallmembers>
       <member refid="d4/db0/structBrush_1_1Function_3_01NodeType_1_1Log_01_4_1a9db054edd7e2ebff159b28ffb06b1ce0" prot="public" virt="non-virtual"><scope>Brush::Function&lt; NodeType::Log &gt;</scope><name>operator()</name></member>
     </listofallmembers>

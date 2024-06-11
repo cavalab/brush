@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
-<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.10.0" xml:lang="en-US">
   <compounddef id="d7/de3/weight__optimizer_8h" kind="file" language="C++">
     <compoundname>weight_optimizer.h</compoundname>
     <includes local="no">ceres/dynamic_autodiff_cost_function.h</includes>
@@ -10,24 +10,9 @@
     <includes refid="dd/d1b/tiny__cost__function_8h" local="yes">tiny_cost_function.h</includes>
     <includedby refid="d1/dea/program_8h" local="yes">program.h</includedby>
     <incdepgraph>
-      <node id="5">
-        <label>ceres/solver.h</label>
-      </node>
       <node id="7">
         <label>tiny_cost_function.h</label>
         <link refid="dd/d1b/tiny__cost__function_8h"/>
-      </node>
-      <node id="4">
-        <label>ceres/loss_function.h</label>
-      </node>
-      <node id="2">
-        <label>ceres/dynamic_autodiff_cost_function.h</label>
-      </node>
-      <node id="6">
-        <label>ceres/tiny_solver.h</label>
-      </node>
-      <node id="3">
-        <label>ceres/dynamic_numeric_diff_cost_function.h</label>
       </node>
       <node id="1">
         <label>weight_optimizer.h</label>
@@ -45,8 +30,57 @@
         <childnode refid="7" relation="include">
         </childnode>
       </node>
+      <node id="2">
+        <label>ceres/dynamic_autodiff_cost_function.h</label>
+      </node>
+      <node id="3">
+        <label>ceres/dynamic_numeric_diff_cost_function.h</label>
+      </node>
+      <node id="4">
+        <label>ceres/loss_function.h</label>
+      </node>
+      <node id="5">
+        <label>ceres/solver.h</label>
+      </node>
+      <node id="6">
+        <label>ceres/tiny_solver.h</label>
+      </node>
     </incdepgraph>
     <invincdepgraph>
+      <node id="10">
+        <label>bind_engines.cpp</label>
+        <link refid="d1/df0/bind__engines_8cpp"/>
+      </node>
+      <node id="9">
+        <label>bind_engines.h</label>
+        <link refid="d4/d93/bind__engines_8h"/>
+        <childnode refid="10" relation="include">
+        </childnode>
+      </node>
+      <node id="17">
+        <label>bind_evaluator.cpp</label>
+        <link refid="da/dff/bind__evaluator_8cpp"/>
+      </node>
+      <node id="16">
+        <label>bind_evaluator.h</label>
+        <link refid="d0/d67/bind__evaluator_8h"/>
+        <childnode refid="17" relation="include">
+        </childnode>
+      </node>
+      <node id="14">
+        <label>bind_individuals.cpp</label>
+        <link refid="d9/d27/bind__individuals_8cpp"/>
+      </node>
+      <node id="13">
+        <label>bind_individuals.h</label>
+        <link refid="d6/ddc/bind__individuals_8h"/>
+        <childnode refid="14" relation="include">
+        </childnode>
+      </node>
+      <node id="4">
+        <label>bind_programs.cpp</label>
+        <link refid="d9/d26/bind__programs_8cpp"/>
+      </node>
       <node id="3">
         <label>bind_programs.h</label>
         <link refid="d6/d3f/bind__programs_8h"/>
@@ -57,13 +91,129 @@
         <label>bind_search_space.cpp</label>
         <link refid="d0/d94/bind__search__space_8cpp"/>
       </node>
-      <node id="6">
-        <label>search_space.cpp</label>
-        <link refid="da/d48/search__space_8cpp"/>
+      <node id="22">
+        <label>bind_selection.cpp</label>
+        <link refid="d7/dce/bind__selection_8cpp"/>
       </node>
-      <node id="4">
-        <label>bind_programs.cpp</label>
-        <link refid="d9/d26/bind__programs_8cpp"/>
+      <node id="21">
+        <label>bind_selection.h</label>
+        <link refid="da/d67/bind__selection_8h"/>
+        <childnode refid="22" relation="include">
+        </childnode>
+      </node>
+      <node id="24">
+        <label>bind_variation.cpp</label>
+        <link refid="df/d41/bind__variation_8cpp"/>
+      </node>
+      <node id="23">
+        <label>bind_variation.h</label>
+        <link refid="d8/df7/bind__variation_8h"/>
+        <childnode refid="24" relation="include">
+        </childnode>
+      </node>
+      <node id="12">
+        <label>engine.cpp</label>
+        <link refid="da/d5c/engine_8cpp"/>
+        <childnode refid="9" relation="include">
+        </childnode>
+      </node>
+      <node id="11">
+        <label>engine.h</label>
+        <link refid="d1/d55/engine_8h"/>
+        <childnode refid="9" relation="include">
+        </childnode>
+        <childnode refid="12" relation="include">
+        </childnode>
+      </node>
+      <node id="18">
+        <label>evaluation.cpp</label>
+        <link refid="d9/d6a/evaluation_8cpp"/>
+        <childnode refid="9" relation="include">
+        </childnode>
+        <childnode refid="16" relation="include">
+        </childnode>
+      </node>
+      <node id="15">
+        <label>evaluation.h</label>
+        <link refid="d3/df9/evaluation_8h"/>
+        <childnode refid="9" relation="include">
+        </childnode>
+        <childnode refid="16" relation="include">
+        </childnode>
+        <childnode refid="11" relation="include">
+        </childnode>
+        <childnode refid="18" relation="include">
+        </childnode>
+      </node>
+      <node id="19">
+        <label>individual.cpp</label>
+        <link refid="db/df6/individual_8cpp"/>
+      </node>
+      <node id="6">
+        <label>individual.h</label>
+        <link refid="d5/d1f/individual_8h"/>
+        <childnode refid="7" relation="include">
+        </childnode>
+        <childnode refid="13" relation="include">
+        </childnode>
+        <childnode refid="15" relation="include">
+        </childnode>
+        <childnode refid="19" relation="include">
+        </childnode>
+        <childnode refid="20" relation="include">
+        </childnode>
+      </node>
+      <node id="8">
+        <label>archive.cpp</label>
+        <link refid="d7/d05/archive_8cpp"/>
+        <childnode refid="9" relation="include">
+        </childnode>
+      </node>
+      <node id="7">
+        <label>archive.h</label>
+        <link refid="d9/d28/archive_8h"/>
+        <childnode refid="8" relation="include">
+        </childnode>
+        <childnode refid="9" relation="include">
+        </childnode>
+        <childnode refid="11" relation="include">
+        </childnode>
+      </node>
+      <node id="25">
+        <label>population.cpp</label>
+        <link refid="d7/d4a/population_8cpp"/>
+        <childnode refid="9" relation="include">
+        </childnode>
+        <childnode refid="21" relation="include">
+        </childnode>
+        <childnode refid="23" relation="include">
+        </childnode>
+      </node>
+      <node id="20">
+        <label>population.h</label>
+        <link refid="d2/d76/population_8h"/>
+        <childnode refid="9" relation="include">
+        </childnode>
+        <childnode refid="21" relation="include">
+        </childnode>
+        <childnode refid="23" relation="include">
+        </childnode>
+        <childnode refid="11" relation="include">
+        </childnode>
+        <childnode refid="15" relation="include">
+        </childnode>
+        <childnode refid="25" relation="include">
+        </childnode>
+        <childnode refid="26" relation="include">
+        </childnode>
+        <childnode refid="34" relation="include">
+        </childnode>
+      </node>
+      <node id="1">
+        <label>weight_optimizer.h</label>
+        <link refid="d7/de3/weight__optimizer_8h"/>
+        <childnode refid="2" relation="include">
+        </childnode>
       </node>
       <node id="2">
         <label>program.h</label>
@@ -74,11 +224,113 @@
         </childnode>
         <childnode refid="6" relation="include">
         </childnode>
+        <childnode refid="36" relation="include">
+        </childnode>
       </node>
-      <node id="1">
-        <label>weight_optimizer.h</label>
-        <link refid="d7/de3/weight__optimizer_8h"/>
-        <childnode refid="2" relation="include">
+      <node id="28">
+        <label>lexicase.cpp</label>
+        <link refid="d8/dac/lexicase_8cpp"/>
+        <childnode refid="9" relation="include">
+        </childnode>
+        <childnode refid="21" relation="include">
+        </childnode>
+      </node>
+      <node id="27">
+        <label>lexicase.h</label>
+        <link refid="d3/d12/lexicase_8h"/>
+        <childnode refid="9" relation="include">
+        </childnode>
+        <childnode refid="21" relation="include">
+        </childnode>
+        <childnode refid="28" relation="include">
+        </childnode>
+        <childnode refid="29" relation="include">
+        </childnode>
+      </node>
+      <node id="32">
+        <label>nsga2.cpp</label>
+        <link refid="de/d0d/nsga2_8cpp"/>
+        <childnode refid="9" relation="include">
+        </childnode>
+        <childnode refid="21" relation="include">
+        </childnode>
+      </node>
+      <node id="31">
+        <label>nsga2.h</label>
+        <link refid="d3/d06/nsga2_8h"/>
+        <childnode refid="7" relation="include">
+        </childnode>
+        <childnode refid="9" relation="include">
+        </childnode>
+        <childnode refid="21" relation="include">
+        </childnode>
+        <childnode refid="32" relation="include">
+        </childnode>
+        <childnode refid="29" relation="include">
+        </childnode>
+      </node>
+      <node id="30">
+        <label>selection.cpp</label>
+        <link refid="df/dbb/selection_8cpp"/>
+        <childnode refid="9" relation="include">
+        </childnode>
+        <childnode refid="21" relation="include">
+        </childnode>
+      </node>
+      <node id="29">
+        <label>selection.h</label>
+        <link refid="df/d48/selection_8h"/>
+        <childnode refid="9" relation="include">
+        </childnode>
+        <childnode refid="21" relation="include">
+        </childnode>
+        <childnode refid="11" relation="include">
+        </childnode>
+        <childnode refid="30" relation="include">
+        </childnode>
+      </node>
+      <node id="33">
+        <label>selection_operator.cpp</label>
+        <link refid="d4/db2/selection__operator_8cpp"/>
+        <childnode refid="9" relation="include">
+        </childnode>
+        <childnode refid="21" relation="include">
+        </childnode>
+      </node>
+      <node id="26">
+        <label>selection_operator.h</label>
+        <link refid="dd/d5d/selection__operator_8h"/>
+        <childnode refid="9" relation="include">
+        </childnode>
+        <childnode refid="21" relation="include">
+        </childnode>
+        <childnode refid="27" relation="include">
+        </childnode>
+        <childnode refid="31" relation="include">
+        </childnode>
+        <childnode refid="29" relation="include">
+        </childnode>
+        <childnode refid="33" relation="include">
+        </childnode>
+      </node>
+      <node id="36">
+        <label>search_space.cpp</label>
+        <link refid="da/d48/search__space_8cpp"/>
+      </node>
+      <node id="35">
+        <label>variation.cpp</label>
+        <link refid="d1/d64/variation_8cpp"/>
+        <childnode refid="23" relation="include">
+        </childnode>
+      </node>
+      <node id="34">
+        <label>variation.h</label>
+        <link refid="d4/d1f/variation_8h"/>
+        <childnode refid="23" relation="include">
+        </childnode>
+        <childnode refid="11" relation="include">
+        </childnode>
+        <childnode refid="35" relation="include">
         </childnode>
       </node>
     </invincdepgraph>
@@ -123,39 +375,39 @@
 <codeline lineno="30"><highlight class="normal"></highlight><highlight class="keyword">template</highlight><highlight class="normal">&lt;</highlight><highlight class="keyword">typename</highlight><highlight class="normal"><sp/>PT&gt;</highlight></codeline>
 <codeline lineno="31" refid="d4/d70/structBrush_1_1ResidualEvaluator" refkind="compound"><highlight class="normal"></highlight><highlight class="keyword">struct<sp/></highlight><highlight class="normal"><ref refid="d4/d70/structBrush_1_1ResidualEvaluator" kindref="compound">ResidualEvaluator</ref><sp/>{</highlight></codeline>
 <codeline lineno="32" refid="d4/d70/structBrush_1_1ResidualEvaluator_1aa5c8420cf3ed7735a715a962003015b1" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">typedef</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">float</highlight><highlight class="normal"><sp/><ref refid="d4/d70/structBrush_1_1ResidualEvaluator_1aa5c8420cf3ed7735a715a962003015b1" kindref="member">Scalar</ref>;<sp/></highlight></codeline>
-<codeline lineno="33" refid="d4/d70/structBrush_1_1ResidualEvaluator_1a68b50f100691a61d8a643dd903aafc74" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="d4/d70/structBrush_1_1ResidualEvaluator_1a68b50f100691a61d8a643dd903aafc74" kindref="member">ResidualEvaluator</ref>(<ref refid="dc/d5c/namespaceBrush_1ae591329af27c88b714d0f92b86276366" kindref="member">PT</ref>&amp;<sp/>program,<sp/>Dataset<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal">&amp;<sp/>dataset)</highlight></codeline>
+<codeline lineno="33" refid="d4/d70/structBrush_1_1ResidualEvaluator_1a68b50f100691a61d8a643dd903aafc74" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="d4/d70/structBrush_1_1ResidualEvaluator_1a68b50f100691a61d8a643dd903aafc74" kindref="member">ResidualEvaluator</ref>(<ref refid="dc/d5c/namespaceBrush_1ae591329af27c88b714d0f92b86276366" kindref="member">PT</ref>&amp;<sp/>program,<sp/>Dataset<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal">&amp;<sp/><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">dataset</ref>)</highlight></codeline>
 <codeline lineno="34"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>:<sp/><ref refid="d4/d70/structBrush_1_1ResidualEvaluator_1aae2fef497e53178a519b63f584256ee9" kindref="member">program_</ref>(program)</highlight></codeline>
-<codeline lineno="35"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>,<sp/><ref refid="d4/d70/structBrush_1_1ResidualEvaluator_1a55a8412152ed8ed7e5047d26672b563a" kindref="member">dataset_</ref>(dataset)</highlight></codeline>
+<codeline lineno="35"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>,<sp/><ref refid="d4/d70/structBrush_1_1ResidualEvaluator_1a55a8412152ed8ed7e5047d26672b563a" kindref="member">dataset_</ref>(<ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">dataset</ref>)</highlight></codeline>
 <codeline lineno="36"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>,<sp/><ref refid="d4/d70/structBrush_1_1ResidualEvaluator_1a9110c79615254a750c627945865b95bb" kindref="member">numParameters_</ref>(program.get_weights().size())</highlight></codeline>
-<codeline lineno="37"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>,<sp/><ref refid="d4/d70/structBrush_1_1ResidualEvaluator_1af3ebb3293b9922efe7e3173c7978c61f" kindref="member">y_true_</ref>(dataset.y)</highlight></codeline>
+<codeline lineno="37"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>,<sp/><ref refid="d4/d70/structBrush_1_1ResidualEvaluator_1af3ebb3293b9922efe7e3173c7978c61f" kindref="member">y_true_</ref>(<ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">dataset</ref>.y)</highlight></codeline>
 <codeline lineno="38"><highlight class="normal"><sp/><sp/><sp/><sp/>{}</highlight></codeline>
 <codeline lineno="39"><highlight class="normal"></highlight></codeline>
 <codeline lineno="40"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">template</highlight><highlight class="normal">&lt;</highlight><highlight class="keyword">typename</highlight><highlight class="normal"><sp/>T&gt;</highlight></codeline>
-<codeline lineno="41" refid="d4/d70/structBrush_1_1ResidualEvaluator_1a871644fc348c4daa7c64cdacf1100e06" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/><ref refid="d4/d70/structBrush_1_1ResidualEvaluator_1a871644fc348c4daa7c64cdacf1100e06" kindref="member">operator()</ref>(Eigen::DenseBase&lt;T&gt;&amp;<sp/>parameters,<sp/>Eigen::DenseBase&lt;T&gt;&amp;<sp/>residuals)<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>noexcept<sp/>-&gt;<sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="41" refid="d4/d70/structBrush_1_1ResidualEvaluator_1a871644fc348c4daa7c64cdacf1100e06" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/><ref refid="d4/d70/structBrush_1_1ResidualEvaluator_1a871644fc348c4daa7c64cdacf1100e06" kindref="member">operator()</ref>(Eigen::DenseBase&lt;T&gt;&amp;<sp/>parameters,<sp/>Eigen::DenseBase&lt;T&gt;&amp;<sp/><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">residuals</ref>)<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">noexcept</highlight><highlight class="normal"><sp/>-&gt;<sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="42"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
-<codeline lineno="43"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>(*</highlight><highlight class="keyword">this</highlight><highlight class="normal">)(parameters.data(),<sp/>residuals.data());</highlight></codeline>
+<codeline lineno="43"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>(*</highlight><highlight class="keyword">this</highlight><highlight class="normal">)(parameters.data(),<sp/><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">residuals</ref>.data());</highlight></codeline>
 <codeline lineno="44"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
 <codeline lineno="45"><highlight class="normal"></highlight></codeline>
 <codeline lineno="46"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">template</highlight><highlight class="normal"><sp/>&lt;</highlight><highlight class="keyword">typename</highlight><highlight class="normal"><sp/>T&gt;</highlight></codeline>
-<codeline lineno="47" refid="d4/d70/structBrush_1_1ResidualEvaluator_1abbb4f20316b249acc974d8d93e40d290" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/><ref refid="d4/d70/structBrush_1_1ResidualEvaluator_1abbb4f20316b249acc974d8d93e40d290" kindref="member">operator()</ref>(T<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal">*<sp/>parameters,<sp/>T*<sp/>residuals)<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>-&gt;<sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="47" refid="d4/d70/structBrush_1_1ResidualEvaluator_1abbb4f20316b249acc974d8d93e40d290" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/><ref refid="d4/d70/structBrush_1_1ResidualEvaluator_1abbb4f20316b249acc974d8d93e40d290" kindref="member">operator()</ref>(T<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal">*<sp/>parameters,<sp/>T*<sp/><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">residuals</ref>)<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>-&gt;<sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="48"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
-<codeline lineno="49"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">using</highlight><highlight class="normal"><sp/>ArrayType<sp/>=<sp/>Array&lt;T,<sp/>Dynamic,<sp/>1&gt;;<sp/></highlight><highlight class="comment">//<sp/>ColMajor?</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="50"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>T<sp/>**<sp/>new_weights<sp/>=<sp/>&amp;parameters;<sp/></highlight></codeline>
+<codeline lineno="49"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">using<sp/></highlight><highlight class="normal"><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">ArrayType</ref><sp/>=<sp/>Array&lt;T,<sp/>Dynamic,<sp/>1&gt;;<sp/></highlight><highlight class="comment">//<sp/>ColMajor?</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="50"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>T<sp/>**<sp/><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">new_weights</ref><sp/>=<sp/>&amp;parameters;<sp/></highlight></codeline>
 <codeline lineno="51"><highlight class="normal"></highlight></codeline>
-<codeline lineno="52"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>ArrayType<sp/>y_pred<sp/>=<sp/><ref refid="d4/d70/structBrush_1_1ResidualEvaluator_1ae7d77c6a5f27bb638c156ccfee0f0d97" kindref="member">GetProgram</ref>().template<sp/>predict_with_weights&lt;ArrayType&gt;(</highlight></codeline>
+<codeline lineno="52"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">ArrayType</ref><sp/><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">y_pred</ref><sp/>=<sp/><ref refid="d4/d70/structBrush_1_1ResidualEvaluator_1ae7d77c6a5f27bb638c156ccfee0f0d97" kindref="member">GetProgram</ref>().template<sp/><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">predict_with_weights&lt;ArrayType&gt;</ref>(</highlight></codeline>
 <codeline lineno="53"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="d4/d70/structBrush_1_1ResidualEvaluator_1a7944b5155a9e8fe6ba66bb5ba0af0011" kindref="member">GetDataset</ref>(),<sp/></highlight></codeline>
-<codeline lineno="54"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>new_weights</highlight></codeline>
+<codeline lineno="54"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">new_weights</ref></highlight></codeline>
 <codeline lineno="55"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>);</highlight></codeline>
 <codeline lineno="56"><highlight class="normal"></highlight></codeline>
-<codeline lineno="57"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/>residualMap<sp/>=<sp/>ArrayType::Map(residuals,<sp/><ref refid="d4/d70/structBrush_1_1ResidualEvaluator_1a7944b5155a9e8fe6ba66bb5ba0af0011" kindref="member">GetDataset</ref>().get_n_samples());</highlight></codeline>
+<codeline lineno="57"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">residualMap</ref><sp/>=<sp/>ArrayType::Map(<ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">residuals</ref>,<sp/><ref refid="d4/d70/structBrush_1_1ResidualEvaluator_1a7944b5155a9e8fe6ba66bb5ba0af0011" kindref="member">GetDataset</ref>().get_n_samples());</highlight></codeline>
 <codeline lineno="58"><highlight class="normal"></highlight></codeline>
-<codeline lineno="59"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>residualMap<sp/>=<sp/>(y_pred<sp/>-<sp/><ref refid="d4/d70/structBrush_1_1ResidualEvaluator_1a23e464d5154ea6803160a9a37b4181b8" kindref="member">GetTarget</ref>());<sp/></highlight></codeline>
+<codeline lineno="59"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">residualMap</ref><sp/>=<sp/>(<ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">y_pred</ref><sp/>-<sp/><ref refid="d4/d70/structBrush_1_1ResidualEvaluator_1a23e464d5154ea6803160a9a37b4181b8" kindref="member">GetTarget</ref>());<sp/></highlight></codeline>
 <codeline lineno="60"><highlight class="normal"></highlight></codeline>
 <codeline lineno="61"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">true</highlight><highlight class="normal">;</highlight></codeline>
 <codeline lineno="62"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
 <codeline lineno="63"><highlight class="normal"></highlight></codeline>
-<codeline lineno="64" refid="d4/d70/structBrush_1_1ResidualEvaluator_1aacc8ae1bb24e82c79735d70e81f9549f" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>[[nodiscard]]<sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/><ref refid="d4/d70/structBrush_1_1ResidualEvaluator_1aacc8ae1bb24e82c79735d70e81f9549f" kindref="member">NumParameters</ref>()<sp/>const<sp/>-&gt;<sp/></highlight><highlight class="keywordtype">size_t</highlight><highlight class="normal"><sp/>{<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/><ref refid="d4/d70/structBrush_1_1ResidualEvaluator_1a9110c79615254a750c627945865b95bb" kindref="member">numParameters_</ref>;<sp/>}</highlight></codeline>
-<codeline lineno="65" refid="d4/d70/structBrush_1_1ResidualEvaluator_1a136ca20e2ed36d766fce49a9871f2ae8" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>[[nodiscard]]<sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/><ref refid="d4/d70/structBrush_1_1ResidualEvaluator_1a136ca20e2ed36d766fce49a9871f2ae8" kindref="member">NumResiduals</ref>()<sp/>const<sp/>-&gt;<sp/></highlight><highlight class="keywordtype">size_t</highlight><highlight class="normal"><sp/>{<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/><ref refid="d4/d70/structBrush_1_1ResidualEvaluator_1af3ebb3293b9922efe7e3173c7978c61f" kindref="member">y_true_</ref>.get().size();<sp/>}</highlight></codeline>
+<codeline lineno="64" refid="d4/d70/structBrush_1_1ResidualEvaluator_1aacc8ae1bb24e82c79735d70e81f9549f" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>[[<ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">nodiscard</ref>]]<sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/><ref refid="d4/d70/structBrush_1_1ResidualEvaluator_1aacc8ae1bb24e82c79735d70e81f9549f" kindref="member">NumParameters</ref>()<sp/><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">const</ref><sp/>-&gt;<sp/></highlight><highlight class="keywordtype">size_t</highlight><highlight class="normal"><sp/>{<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/><ref refid="d4/d70/structBrush_1_1ResidualEvaluator_1a9110c79615254a750c627945865b95bb" kindref="member">numParameters_</ref>;<sp/>}</highlight></codeline>
+<codeline lineno="65" refid="d4/d70/structBrush_1_1ResidualEvaluator_1a136ca20e2ed36d766fce49a9871f2ae8" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>[[<ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">nodiscard</ref>]]<sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/><ref refid="d4/d70/structBrush_1_1ResidualEvaluator_1a136ca20e2ed36d766fce49a9871f2ae8" kindref="member">NumResiduals</ref>()<sp/><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">const</ref><sp/>-&gt;<sp/></highlight><highlight class="keywordtype">size_t</highlight><highlight class="normal"><sp/>{<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/><ref refid="d4/d70/structBrush_1_1ResidualEvaluator_1af3ebb3293b9922efe7e3173c7978c61f" kindref="member">y_true_</ref>.get().size();<sp/>}</highlight></codeline>
 <codeline lineno="66" refid="d4/d70/structBrush_1_1ResidualEvaluator_1ae7d77c6a5f27bb638c156ccfee0f0d97" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">inline</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/><ref refid="d4/d70/structBrush_1_1ResidualEvaluator_1ae7d77c6a5f27bb638c156ccfee0f0d97" kindref="member">GetProgram</ref>()</highlight><highlight class="keyword"><sp/>const<sp/></highlight><highlight class="normal">{<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/><ref refid="d4/d70/structBrush_1_1ResidualEvaluator_1aae2fef497e53178a519b63f584256ee9" kindref="member">program_</ref>.get();};</highlight></codeline>
 <codeline lineno="67" refid="d4/d70/structBrush_1_1ResidualEvaluator_1a7944b5155a9e8fe6ba66bb5ba0af0011" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">inline</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/><ref refid="d4/d70/structBrush_1_1ResidualEvaluator_1a7944b5155a9e8fe6ba66bb5ba0af0011" kindref="member">GetDataset</ref>()</highlight><highlight class="keyword"><sp/>const<sp/></highlight><highlight class="normal">{<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/><ref refid="d4/d70/structBrush_1_1ResidualEvaluator_1a55a8412152ed8ed7e5047d26672b563a" kindref="member">dataset_</ref>.get();};</highlight></codeline>
 <codeline lineno="68" refid="d4/d70/structBrush_1_1ResidualEvaluator_1a23e464d5154ea6803160a9a37b4181b8" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">inline</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/><ref refid="d4/d70/structBrush_1_1ResidualEvaluator_1a23e464d5154ea6803160a9a37b4181b8" kindref="member">GetTarget</ref>()</highlight><highlight class="keyword"><sp/>const<sp/></highlight><highlight class="normal">{<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/><ref refid="d4/d70/structBrush_1_1ResidualEvaluator_1af3ebb3293b9922efe7e3173c7978c61f" kindref="member">y_true_</ref>.get();};</highlight></codeline>
@@ -167,45 +419,46 @@
 <codeline lineno="74" refid="d4/d70/structBrush_1_1ResidualEvaluator_1a9110c79615254a750c627945865b95bb" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">size_t</highlight><highlight class="normal"><sp/><ref refid="d4/d70/structBrush_1_1ResidualEvaluator_1a9110c79615254a750c627945865b95bb" kindref="member">numParameters_</ref>;<sp/></highlight><highlight class="comment">//<sp/>cache<sp/>the<sp/>number<sp/>of<sp/>parameters<sp/>in<sp/>the<sp/>tree</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="75"><highlight class="normal">};</highlight></codeline>
 <codeline lineno="76"><highlight class="normal"></highlight></codeline>
-<codeline lineno="77" refid="d7/d79/structBrush_1_1WeightOptimizer" refkind="compound"><highlight class="normal"></highlight><highlight class="keyword">struct<sp/></highlight><highlight class="normal"><ref refid="d7/d79/structBrush_1_1WeightOptimizer" kindref="compound">WeightOptimizer</ref></highlight></codeline>
-<codeline lineno="78"><highlight class="normal">{</highlight></codeline>
-<codeline lineno="79"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="77"><highlight class="normal"></highlight><highlight class="comment">//<sp/>TODO:<sp/>see<sp/>this<sp/>struct<sp/>and<sp/>try<sp/>to<sp/>understand<sp/>how<sp/>to<sp/>make<sp/>non-templated<sp/>classes</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="78" refid="d7/d79/structBrush_1_1WeightOptimizer" refkind="compound"><highlight class="normal"></highlight><highlight class="keyword">struct<sp/></highlight><highlight class="normal"><ref refid="d7/d79/structBrush_1_1WeightOptimizer" kindref="compound">WeightOptimizer</ref></highlight></codeline>
+<codeline lineno="79"><highlight class="normal">{</highlight></codeline>
 <codeline lineno="84"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">template</highlight><highlight class="normal">&lt;</highlight><highlight class="keyword">typename</highlight><highlight class="normal"><sp/>PT&gt;</highlight></codeline>
-<codeline lineno="85" refid="d7/d79/structBrush_1_1WeightOptimizer_1a16d264faa5c311908f1761119acc64f0" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="d7/d79/structBrush_1_1WeightOptimizer_1a16d264faa5c311908f1761119acc64f0" kindref="member">update</ref>(<ref refid="dc/d5c/namespaceBrush_1ae591329af27c88b714d0f92b86276366" kindref="member">PT</ref>&amp;<sp/>program,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>Dataset&amp;<sp/>dataset)</highlight></codeline>
+<codeline lineno="85" refid="d7/d79/structBrush_1_1WeightOptimizer_1a16d264faa5c311908f1761119acc64f0" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="d7/d79/structBrush_1_1WeightOptimizer_1a16d264faa5c311908f1761119acc64f0" kindref="member">update</ref>(<ref refid="dc/d5c/namespaceBrush_1ae591329af27c88b714d0f92b86276366" kindref="member">PT</ref>&amp;<sp/>program,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>Dataset&amp;<sp/><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">dataset</ref>)</highlight></codeline>
 <codeline lineno="86"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
 <codeline lineno="87"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(program.get_n_weights()<sp/>==<sp/>0)</highlight></codeline>
 <codeline lineno="88"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal">;</highlight></codeline>
-<codeline lineno="89"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>fmt::print(&quot;number<sp/>of<sp/>weights:<sp/>{}\n&quot;,program.get_n_weights());</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="90"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/>init_weights<sp/>=<sp/>program.get_weights();</highlight></codeline>
-<codeline lineno="91"><highlight class="normal"></highlight></codeline>
-<codeline lineno="92"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">using</highlight><highlight class="normal"><sp/>CFType<sp/>=<sp/><ref refid="df/d09/structBrush_1_1TinyCostFunction" kindref="compound">Brush::TinyCostFunction&lt;ResidualEvaluator&lt;PT&gt;</ref>&gt;<sp/>;<sp/></highlight></codeline>
-<codeline lineno="93"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="d4/d70/structBrush_1_1ResidualEvaluator" kindref="compound">ResidualEvaluator&lt;PT&gt;</ref><sp/>evaluator(program,<sp/>dataset);</highlight></codeline>
-<codeline lineno="94"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>CFType<sp/>cost_function(evaluator);</highlight></codeline>
-<codeline lineno="95"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>ceres::TinySolver&lt;CFType&gt;<sp/>solver;</highlight></codeline>
-<codeline lineno="96"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>solver.options.max_num_iterations<sp/>=<sp/>10;</highlight></codeline>
-<codeline lineno="97"><highlight class="normal"></highlight></codeline>
-<codeline lineno="98"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">typename</highlight><highlight class="normal"><sp/>decltype(solver)::Parameters<sp/>parameters<sp/>=<sp/>program.get_weights();<sp/></highlight></codeline>
-<codeline lineno="99"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>solver.Solve(cost_function,<sp/>&amp;parameters);</highlight></codeline>
-<codeline lineno="100"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
-<codeline lineno="101"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>fmt::print(&quot;Summary:\nInitial<sp/>cost:<sp/>{}\nFinal<sp/>Cost:<sp/>{}\nIterations:<sp/>{}\n&quot;,</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="102"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/><sp/><sp/><sp/><sp/>solver.summary.initial_cost,</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="103"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/><sp/><sp/><sp/><sp/>solver.summary.final_cost,</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="104"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/><sp/><sp/><sp/><sp/>solver.summary.iterations</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="105"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>);</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="106"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>fmt::print(&quot;Initial<sp/>weights:<sp/>{}\nFinal<sp/>weights:<sp/>{}\n&quot;,<sp/></highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="107"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/><sp/><sp/><sp/><sp/>init_weights,<sp/></highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="108"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/><sp/><sp/><sp/><sp/>parameters</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="109"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>);</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="110"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(solver.summary.final_cost<sp/>&lt;<sp/>solver.summary.initial_cost)</highlight></codeline>
-<codeline lineno="111"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
-<codeline lineno="112"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>program.set_weights(parameters);</highlight></codeline>
-<codeline lineno="113"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
-<codeline lineno="114"><highlight class="normal"></highlight></codeline>
-<codeline lineno="115"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
-<codeline lineno="116"><highlight class="normal">};</highlight></codeline>
-<codeline lineno="117"><highlight class="normal"></highlight></codeline>
-<codeline lineno="118"><highlight class="normal">}<sp/></highlight><highlight class="comment">//<sp/>namespace<sp/>Brush</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="119"><highlight class="normal"></highlight><highlight class="preprocessor">#endif</highlight></codeline>
+<codeline lineno="89"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="90"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>fmt::print(&quot;number<sp/>of<sp/>weights:<sp/>{}\n&quot;,program.get_n_weights());</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="91"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">init_weights</ref><sp/>=<sp/>program.get_weights();</highlight></codeline>
+<codeline lineno="92"><highlight class="normal"></highlight></codeline>
+<codeline lineno="93"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">using<sp/></highlight><highlight class="normal"><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">CFType</ref><sp/>=<sp/><ref refid="df/d09/structBrush_1_1TinyCostFunction" kindref="compound">Brush::TinyCostFunction&lt;ResidualEvaluator&lt;PT&gt;</ref>&gt;<sp/>;<sp/></highlight></codeline>
+<codeline lineno="94"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="d4/d70/structBrush_1_1ResidualEvaluator" kindref="compound">ResidualEvaluator&lt;PT&gt;</ref><sp/>evaluator(program,<sp/><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">dataset</ref>);</highlight></codeline>
+<codeline lineno="95"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">CFType</ref><sp/><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">cost_function</ref>(evaluator);</highlight></codeline>
+<codeline lineno="96"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>ceres::TinySolver&lt;CFType&gt;<sp/><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">solver</ref>;</highlight></codeline>
+<codeline lineno="97"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">solver</ref>.options.max_num_iterations<sp/>=<sp/>10;</highlight></codeline>
+<codeline lineno="98"><highlight class="normal"></highlight></codeline>
+<codeline lineno="99"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">typename</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">decltype</highlight><highlight class="normal">(<ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">solver</ref>)::Parameters<sp/>parameters<sp/>=<sp/>program.get_weights();<sp/></highlight></codeline>
+<codeline lineno="100"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">solver</ref>.Solve(<ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">cost_function</ref>,<sp/>&amp;parameters);</highlight></codeline>
+<codeline lineno="101"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="102"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>fmt::print(&quot;Summary:\nInitial<sp/>cost:<sp/>{}\nFinal<sp/>Cost:<sp/>{}\nIterations:<sp/>{}\n&quot;,</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="103"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/><sp/><sp/><sp/><sp/>solver.summary.initial_cost,</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="104"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/><sp/><sp/><sp/><sp/>solver.summary.final_cost,</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="105"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/><sp/><sp/><sp/><sp/>solver.summary.iterations</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="106"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>);</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="107"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>fmt::print(&quot;Initial<sp/>weights:<sp/>{}\nFinal<sp/>weights:<sp/>{}\n&quot;,<sp/></highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="108"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/><sp/><sp/><sp/><sp/>init_weights,<sp/></highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="109"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/><sp/><sp/><sp/><sp/>parameters</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="110"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>);</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="111"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(<ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">solver</ref>.summary.final_cost<sp/>&lt;<sp/><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">solver</ref>.summary.initial_cost)</highlight></codeline>
+<codeline lineno="112"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="113"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>program.set_weights(parameters);</highlight></codeline>
+<codeline lineno="114"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="115"><highlight class="normal"></highlight></codeline>
+<codeline lineno="116"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="117"><highlight class="normal">};</highlight></codeline>
+<codeline lineno="118"><highlight class="normal"></highlight></codeline>
+<codeline lineno="119"><highlight class="normal">}<sp/></highlight><highlight class="comment">//<sp/>namespace<sp/>Brush</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="120"><highlight class="normal"></highlight><highlight class="preprocessor">#endif</highlight></codeline>
     </programlisting>
     <location file="/home/runner/work/brush/brush/src/program/optimizer/weight_optimizer.h"/>
   </compounddef>

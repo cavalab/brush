@@ -1,44 +1,45 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
-<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.10.0" xml:lang="en-US">
   <compounddef id="d5/d8a/namespaceBrush_1_1detail" kind="namespace" language="C++">
     <compoundname>Brush::detail</compoundname>
-      <sectiondef kind="func">
+    <sectiondef kind="func">
       <memberdef kind="function" id="d5/d8a/namespaceBrush_1_1detail_1a947dcae654755bd0bb2afa43b5507a84" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
         <templateparamlist>
           <param>
-            <type>typename CostFunctor</type>
+            <type><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">typename</ref> <ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">CostFunctor</ref></type>
           </param>
           <param>
-            <type>typename Dual</type>
+            <type><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">typename</ref> Dual</type>
           </param>
           <param>
-            <type>typename Scalar</type>
+            <type><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">typename</ref> Scalar</type>
           </param>
           <param>
-            <type>int</type>
+            <type><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">int</ref></type>
             <declname>JacobianLayout</declname>
             <defname>JacobianLayout</defname>
-            <defval>Eigen::ColMajor</defval>
+            <defval><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">Eigen::ColMajor</ref></defval>
           </param>
         </templateparamlist>
-        <type>auto</type>
+        <type><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">auto</ref></type>
         <definition>auto Brush::detail::Autodiff</definition>
         <argsstring>(CostFunctor const &amp;function, Scalar const *parameters, Scalar *residuals, Scalar *jacobian) -&gt; bool</argsstring>
         <name>Autodiff</name>
+        <qualifiedname>Brush::detail::Autodiff</qualifiedname>
         <param>
-          <type>CostFunctor const &amp;</type>
+          <type><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">CostFunctor</ref> <ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">const</ref> &amp;</type>
           <declname>function</declname>
         </param>
         <param>
-          <type><ref refid="dc/d5c/namespaceBrush_1ac3467b794678aa79ffba2438c8fbd16b" kindref="member">Scalar</ref> const *</type>
+          <type><ref refid="dc/d5c/namespaceBrush_1a5b9f71c99a1fe42d359ae45033b58620" kindref="member">Scalar</ref> <ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">const</ref> *</type>
           <declname>parameters</declname>
         </param>
         <param>
-          <type><ref refid="dc/d5c/namespaceBrush_1ac3467b794678aa79ffba2438c8fbd16b" kindref="member">Scalar</ref> *</type>
+          <type><ref refid="dc/d5c/namespaceBrush_1a5b9f71c99a1fe42d359ae45033b58620" kindref="member">Scalar</ref> *</type>
           <declname>residuals</declname>
         </param>
         <param>
-          <type><ref refid="dc/d5c/namespaceBrush_1ac3467b794678aa79ffba2438c8fbd16b" kindref="member">Scalar</ref> *</type>
+          <type><ref refid="dc/d5c/namespaceBrush_1a5b9f71c99a1fe42d359ae45033b58620" kindref="member">Scalar</ref> *</type>
           <declname>jacobian</declname>
         </param>
         <briefdescription>
@@ -48,9 +49,9 @@
         <inbodydescription>
         </inbodydescription>
         <location file="/home/runner/work/brush/brush/src/program/optimizer/tiny_cost_function.h" line="24" column="17" bodyfile="/home/runner/work/brush/brush/src/program/optimizer/tiny_cost_function.h" bodystart="24" bodyend="76"/>
-        <references refid="d6/d2e/namespaceBrush_1_1Util_1af7dd70e54015821d96e3a1afed6344ca" compoundref="d2/da9/rnd_8h" startline="176">Brush::Util::r</references>
+        <references refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" compoundref="d4/d93/bind__engines_8h" startline="35" endline="104">bind_engine</references>
       </memberdef>
-      </sectiondef>
+    </sectiondef>
     <briefdescription>
     </briefdescription>
     <detaileddescription>

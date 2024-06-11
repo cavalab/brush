@@ -1,30 +1,31 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
-<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.10.0" xml:lang="en-US">
   <compounddef id="d3/d6e/structBrush_1_1Function_3_01NodeType_1_1Div_01_4" kind="struct" language="C++" prot="public">
     <compoundname>Brush::Function&lt; NodeType::Div &gt;</compoundname>
     <includes refid="d8/d5c/functions_8h" local="no">functions.h</includes>
     <templateparamlist>
     </templateparamlist>
-      <sectiondef kind="public-func">
+    <sectiondef kind="public-func">
       <memberdef kind="function" id="d3/d6e/structBrush_1_1Function_3_01NodeType_1_1Div_01_4_1a658716df7b04f9fb8f48afc4a5221971" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
         <templateparamlist>
           <param>
-            <type>typename T1</type>
+            <type><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">typename</ref> T1</type>
           </param>
           <param>
-            <type>typename T2</type>
+            <type><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">typename</ref> T2</type>
           </param>
         </templateparamlist>
-        <type>auto</type>
+        <type><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">auto</ref></type>
         <definition>auto Brush::Function&lt; NodeType::Div &gt;::operator()</definition>
         <argsstring>(const T1 &amp;t1, const T2 &amp;t2)</argsstring>
         <name>operator()</name>
+        <qualifiedname>Brush::Function&lt; NodeType::Div &gt;::operator()</qualifiedname>
         <param>
-          <type>const T1 &amp;</type>
+          <type><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">const</ref> T1 &amp;</type>
           <declname>t1</declname>
         </param>
         <param>
-          <type>const T2 &amp;</type>
+          <type><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">const</ref> T2 &amp;</type>
           <declname>t2</declname>
         </param>
         <briefdescription>
@@ -34,8 +35,9 @@
         <inbodydescription>
         </inbodydescription>
         <location file="/home/runner/work/brush/brush/src/program/functions.h" line="80" column="21" bodyfile="/home/runner/work/brush/brush/src/program/functions.h" bodystart="80" bodyend="80"/>
+        <references refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" compoundref="d4/d93/bind__engines_8h" startline="35" endline="104">bind_engine</references>
       </memberdef>
-      </sectiondef>
+    </sectiondef>
     <briefdescription>
     </briefdescription>
     <detaileddescription>

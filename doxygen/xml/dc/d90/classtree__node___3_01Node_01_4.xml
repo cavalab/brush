@@ -1,16 +1,17 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
-<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.10.0" xml:lang="en-US">
   <compounddef id="dc/d90/classtree__node___3_01Node_01_4" kind="class" language="C++" prot="public">
     <compoundname>tree_node_&lt; Node &gt;</compoundname>
     <includes refid="d1/da6/tree__node_8h" local="no">tree_node.h</includes>
     <templateparamlist>
     </templateparamlist>
-      <sectiondef kind="public-attrib">
+    <sectiondef kind="public-attrib">
       <memberdef kind="variable" id="dc/d90/classtree__node___3_01Node_01_4_1a94e2e33eea46345ef22d714e8d6b535f" prot="public" static="no" mutable="no">
         <type><ref refid="d0/d0e/classtree__node__" kindref="compound">tree_node_</ref>&lt; <ref refid="d1/d3a/structBrush_1_1Node" kindref="compound">Node</ref> &gt; *</type>
         <definition>tree_node_&lt;Node&gt;* tree_node_&lt; Node &gt;::parent</definition>
         <argsstring></argsstring>
         <name>parent</name>
+        <qualifiedname>tree_node_&lt; Node &gt;::parent</qualifiedname>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
@@ -24,6 +25,7 @@
         <definition>tree_node_&lt;Node&gt;* tree_node_&lt; Node &gt;::first_child</definition>
         <argsstring></argsstring>
         <name>first_child</name>
+        <qualifiedname>tree_node_&lt; Node &gt;::first_child</qualifiedname>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
@@ -37,6 +39,7 @@
         <definition>tree_node_&lt;Node&gt; * tree_node_&lt; Node &gt;::last_child</definition>
         <argsstring></argsstring>
         <name>last_child</name>
+        <qualifiedname>tree_node_&lt; Node &gt;::last_child</qualifiedname>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
@@ -50,6 +53,7 @@
         <definition>tree_node_&lt;Node&gt;* tree_node_&lt; Node &gt;::prev_sibling</definition>
         <argsstring></argsstring>
         <name>prev_sibling</name>
+        <qualifiedname>tree_node_&lt; Node &gt;::prev_sibling</qualifiedname>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
@@ -63,6 +67,7 @@
         <definition>tree_node_&lt;Node&gt; * tree_node_&lt; Node &gt;::next_sibling</definition>
         <argsstring></argsstring>
         <name>next_sibling</name>
+        <qualifiedname>tree_node_&lt; Node &gt;::next_sibling</qualifiedname>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
@@ -76,6 +81,7 @@
         <definition>Node tree_node_&lt; Node &gt;::data</definition>
         <argsstring></argsstring>
         <name>data</name>
+        <qualifiedname>tree_node_&lt; Node &gt;::data</qualifiedname>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
@@ -84,13 +90,14 @@
         </inbodydescription>
         <location file="/home/runner/work/brush/brush/src/program/tree_node.h" line="39" column="6" bodyfile="/home/runner/work/brush/brush/src/program/tree_node.h" bodystart="39" bodyend="-1"/>
       </memberdef>
-      </sectiondef>
-      <sectiondef kind="public-func">
+    </sectiondef>
+    <sectiondef kind="public-func">
       <memberdef kind="function" id="dc/d90/classtree__node___3_01Node_01_4_1abb8174df1cf1bcc656c4177226bfb354" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
         <type></type>
         <definition>tree_node_&lt; Node &gt;::tree_node_</definition>
         <argsstring>()</argsstring>
         <name>tree_node_</name>
+        <qualifiedname>tree_node_&lt; Node &gt;::tree_node_</qualifiedname>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
@@ -104,8 +111,9 @@
         <definition>tree_node_&lt; Node &gt;::tree_node_</definition>
         <argsstring>(const Node &amp;val)</argsstring>
         <name>tree_node_</name>
+        <qualifiedname>tree_node_&lt; Node &gt;::tree_node_</qualifiedname>
         <param>
-          <type>const <ref refid="d1/d3a/structBrush_1_1Node" kindref="compound">Node</ref> &amp;</type>
+          <type><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">const</ref> <ref refid="d1/d3a/structBrush_1_1Node" kindref="compound">Node</ref> &amp;</type>
           <declname>val</declname>
         </param>
         <briefdescription>
@@ -121,6 +129,7 @@
         <definition>tree_node_&lt; Node &gt;::tree_node_</definition>
         <argsstring>(Node &amp;&amp;val)</argsstring>
         <name>tree_node_</name>
+        <qualifiedname>tree_node_&lt; Node &gt;::tree_node_</qualifiedname>
         <param>
           <type><ref refid="d1/d3a/structBrush_1_1Node" kindref="compound">Node</ref> &amp;&amp;</type>
           <declname>val</declname>
@@ -136,15 +145,16 @@
       <memberdef kind="function" id="dc/d90/classtree__node___3_01Node_01_4_1a0dfec2ce7f43ba74641899bcd3e3ffed" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <templateparamlist>
           <param>
-            <type>typename T</type>
+            <type><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">typename</ref> T</type>
           </param>
         </templateparamlist>
-        <type>auto</type>
+        <type><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">auto</ref></type>
         <definition>auto tree_node_&lt; Node &gt;::fit</definition>
         <argsstring>(const Dataset &amp;d)</argsstring>
         <name>fit</name>
+        <qualifiedname>tree_node_&lt; Node &gt;::fit</qualifiedname>
         <param>
-          <type>const <ref refid="d2/d36/classBrush_1_1Data_1_1Dataset" kindref="compound">Dataset</ref> &amp;</type>
+          <type><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">const</ref> <ref refid="d2/d36/classBrush_1_1Data_1_1Dataset" kindref="compound">Dataset</ref> &amp;</type>
           <declname>d</declname>
         </param>
         <briefdescription>
@@ -158,21 +168,22 @@
       <memberdef kind="function" id="dc/d90/classtree__node___3_01Node_01_4_1a461ca791befcd51a9c3d6edb1fe5a620" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <templateparamlist>
           <param>
-            <type>typename T</type>
+            <type><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">typename</ref> T</type>
           </param>
         </templateparamlist>
-        <type>auto</type>
+        <type><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">auto</ref></type>
         <definition>auto tree_node_&lt; Node &gt;::predict</definition>
         <argsstring>(const Dataset &amp;d, const float **weights=nullptr)</argsstring>
         <name>predict</name>
+        <qualifiedname>tree_node_&lt; Node &gt;::predict</qualifiedname>
         <param>
-          <type>const <ref refid="d2/d36/classBrush_1_1Data_1_1Dataset" kindref="compound">Dataset</ref> &amp;</type>
+          <type><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">const</ref> <ref refid="d2/d36/classBrush_1_1Data_1_1Dataset" kindref="compound">Dataset</ref> &amp;</type>
           <declname>d</declname>
         </param>
         <param>
-          <type>const float **</type>
+          <type><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">const</ref> <ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">float</ref> **</type>
           <declname>weights</declname>
-          <defval>nullptr</defval>
+          <defval><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">nullptr</ref></defval>
         </param>
         <briefdescription>
         </briefdescription>
@@ -185,22 +196,23 @@
       <memberdef kind="function" id="dc/d90/classtree__node___3_01Node_01_4_1a66eee7995ee557a45519f6e8e6f830ca" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <templateparamlist>
           <param>
-            <type>typename T</type>
+            <type><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">typename</ref> T</type>
           </param>
           <param>
-            <type>typename W</type>
+            <type><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">typename</ref> W</type>
           </param>
         </templateparamlist>
-        <type>auto</type>
+        <type><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">auto</ref></type>
         <definition>auto tree_node_&lt; Node &gt;::predict</definition>
         <argsstring>(const Dataset &amp;d, const W **weights)</argsstring>
         <name>predict</name>
+        <qualifiedname>tree_node_&lt; Node &gt;::predict</qualifiedname>
         <param>
-          <type>const <ref refid="d2/d36/classBrush_1_1Data_1_1Dataset" kindref="compound">Dataset</ref> &amp;</type>
+          <type><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">const</ref> <ref refid="d2/d36/classBrush_1_1Data_1_1Dataset" kindref="compound">Dataset</ref> &amp;</type>
           <declname>d</declname>
         </param>
         <param>
-          <type>const W **</type>
+          <type><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">const</ref> W **</type>
           <declname>weights</declname>
         </param>
         <briefdescription>
@@ -216,10 +228,11 @@
         <definition>string tree_node_&lt; Node &gt;::get_model</definition>
         <argsstring>(bool pretty=false) const</argsstring>
         <name>get_model</name>
+        <qualifiedname>tree_node_&lt; Node &gt;::get_model</qualifiedname>
         <param>
-          <type>bool</type>
+          <type><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">bool</ref></type>
           <declname>pretty</declname>
-          <defval>false</defval>
+          <defval><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">false</ref></defval>
         </param>
         <briefdescription>
         </briefdescription>
@@ -234,10 +247,11 @@
         <definition>string tree_node_&lt; Node &gt;::get_tree_model</definition>
         <argsstring>(bool pretty=false, string offset=&quot;&quot;) const</argsstring>
         <name>get_tree_model</name>
+        <qualifiedname>tree_node_&lt; Node &gt;::get_tree_model</qualifiedname>
         <param>
-          <type>bool</type>
+          <type><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">bool</ref></type>
           <declname>pretty</declname>
-          <defval>false</defval>
+          <defval><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">false</ref></defval>
         </param>
         <param>
           <type>string</type>
@@ -252,62 +266,101 @@
         </inbodydescription>
         <location file="/home/runner/work/brush/brush/src/program/tree_node.h" line="51" column="8"/>
       </memberdef>
-      </sectiondef>
+      <memberdef kind="function" id="dc/d90/classtree__node___3_01Node_01_4_1ade98b5591fd485a3bc81023e5d6221cb" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">int</ref></type>
+        <definition>int tree_node_&lt; Node &gt;::get_complexity</definition>
+        <argsstring>() const</argsstring>
+        <name>get_complexity</name>
+        <qualifiedname>tree_node_&lt; Node &gt;::get_complexity</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/runner/work/brush/brush/src/program/tree_node.h" line="53" column="13"/>
+      </memberdef>
+      <memberdef kind="function" id="dc/d90/classtree__node___3_01Node_01_4_1ad7f332d5e2607c3a8036d3e5eea19a13" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">int</ref></type>
+        <definition>int tree_node_&lt; Node &gt;::get_size</definition>
+        <argsstring>(bool include_weight=true) const</argsstring>
+        <name>get_size</name>
+        <qualifiedname>tree_node_&lt; Node &gt;::get_size</qualifiedname>
+        <param>
+          <type><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">bool</ref></type>
+          <declname>include_weight</declname>
+          <defval><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">true</ref></defval>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/runner/work/brush/brush/src/program/tree_node.h" line="54" column="13"/>
+      </memberdef>
+    </sectiondef>
     <briefdescription>
 <para>tree node specialization for Node. </para>
     </briefdescription>
     <detaileddescription>
     </detaileddescription>
     <collaborationgraph>
-      <node id="2">
+      <node id="7">
+        <label>DataType</label>
+      </node>
+      <node id="3">
         <label>Brush::Node</label>
         <link refid="d1/d3a/structBrush_1_1Node"/>
-        <childnode refid="3" relation="usage">
-          <edgelabel>arg_types</edgelabel>
-        </childnode>
-        <childnode refid="5" relation="usage">
+        <childnode refid="4" relation="usage">
           <edgelabel>feature</edgelabel>
           <edgelabel>name</edgelabel>
         </childnode>
-      </node>
-      <node id="3">
-        <label>std::vector&lt; DataType &gt;</label>
-        <childnode refid="4" relation="usage">
-          <edgelabel>elements</edgelabel>
+        <childnode refid="6" relation="usage">
+          <edgelabel>arg_types</edgelabel>
         </childnode>
       </node>
-      <node id="6">
+      <node id="5">
         <label>std::basic_string&lt; Char &gt;</label>
       </node>
       <node id="4">
-        <label>DataType</label>
+        <label>std::string</label>
+        <childnode refid="5" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>tree_node_&lt; Brush::Node &gt;</label>
+        <link refid="d0/d0e/classtree__node__"/>
       </node>
       <node id="1">
         <label>tree_node_&lt; Node &gt;</label>
         <link refid="dc/d90/classtree__node___3_01Node_01_4"/>
-        <childnode refid="1" relation="usage">
+        <childnode refid="2" relation="usage">
           <edgelabel>first_child</edgelabel>
           <edgelabel>last_child</edgelabel>
           <edgelabel>next_sibling</edgelabel>
           <edgelabel>parent</edgelabel>
           <edgelabel>prev_sibling</edgelabel>
         </childnode>
-        <childnode refid="2" relation="usage">
+        <childnode refid="3" relation="usage">
           <edgelabel>data</edgelabel>
         </childnode>
       </node>
-      <node id="5">
-        <label>std::string</label>
-        <childnode refid="6" relation="public-inheritance">
+      <node id="6">
+        <label>std::vector&lt; DataType &gt;</label>
+        <childnode refid="7" relation="usage">
+          <edgelabel>elements</edgelabel>
         </childnode>
       </node>
     </collaborationgraph>
-    <location file="/home/runner/work/brush/brush/src/program/tree_node.h" line="22" column="1" bodyfile="/home/runner/work/brush/brush/src/program/tree_node.h" bodystart="22" bodyend="52"/>
+    <location file="/home/runner/work/brush/brush/src/program/tree_node.h" line="22" column="1" bodyfile="/home/runner/work/brush/brush/src/program/tree_node.h" bodystart="22" bodyend="55"/>
     <listofallmembers>
       <member refid="dc/d90/classtree__node___3_01Node_01_4_1a868879d19d0ba329bcf2996ffd71e740" prot="public" virt="non-virtual"><scope>tree_node_&lt; Node &gt;</scope><name>data</name></member>
       <member refid="dc/d90/classtree__node___3_01Node_01_4_1ae7284cff9353b8dd4d599a21130ac432" prot="public" virt="non-virtual"><scope>tree_node_&lt; Node &gt;</scope><name>first_child</name></member>
       <member refid="dc/d90/classtree__node___3_01Node_01_4_1a0dfec2ce7f43ba74641899bcd3e3ffed" prot="public" virt="non-virtual"><scope>tree_node_&lt; Node &gt;</scope><name>fit</name></member>
+      <member refid="dc/d90/classtree__node___3_01Node_01_4_1ade98b5591fd485a3bc81023e5d6221cb" prot="public" virt="non-virtual"><scope>tree_node_&lt; Node &gt;</scope><name>get_complexity</name></member>
       <member refid="dc/d90/classtree__node___3_01Node_01_4_1a4419d3fd481991863578783f286eab93" prot="public" virt="non-virtual"><scope>tree_node_&lt; Node &gt;</scope><name>get_model</name></member>
+      <member refid="dc/d90/classtree__node___3_01Node_01_4_1ad7f332d5e2607c3a8036d3e5eea19a13" prot="public" virt="non-virtual"><scope>tree_node_&lt; Node &gt;</scope><name>get_size</name></member>
       <member refid="dc/d90/classtree__node___3_01Node_01_4_1a60f975dbb46739a9aaf7a7466ab13eda" prot="public" virt="non-virtual"><scope>tree_node_&lt; Node &gt;</scope><name>get_tree_model</name></member>
       <member refid="dc/d90/classtree__node___3_01Node_01_4_1ae083431203606b1cc63675d1c767a1e0" prot="public" virt="non-virtual"><scope>tree_node_&lt; Node &gt;</scope><name>last_child</name></member>
       <member refid="dc/d90/classtree__node___3_01Node_01_4_1af6a613c4ca33bb0da349f2f25e857beb" prot="public" virt="non-virtual"><scope>tree_node_&lt; Node &gt;</scope><name>next_sibling</name></member>

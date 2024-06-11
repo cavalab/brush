@@ -1,0 +1,676 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Saving and loading populations &#8212; Brush 0.1a documentation</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=3ee479438cf8b5e0d341" rel="stylesheet" />
+<link href="../_static/styles/bootstrap.css?digest=3ee479438cf8b5e0d341" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=3ee479438cf8b5e0d341" rel="stylesheet" />
+
+  
+  <link href="../_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=3ee479438cf8b5e0d341" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=a746c00c" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=384b581d" />
+    <link rel="stylesheet" type="text/css" href="../_static/graphviz.css?v=fd3f3429" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=3ee479438cf8b5e0d341" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=3ee479438cf8b5e0d341" />
+  <script src="../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=3ee479438cf8b5e0d341"></script>
+
+    <script src="../_static/documentation_options.js?v=74359811"></script>
+    <script src="../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../_static/copybutton.js?v=f281be69"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?v=efea14e4"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'guide/saving_loading_populations';</script>
+    <link rel="icon" href="../_static/paint-brush-solid.svg"/>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="The archive" href="archive.html" />
+    <link rel="prev" title="JSON Interoperability" href="json.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search..."
+         aria-label="Search..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+
+<a class="navbar-brand logo" href="../index.html">
+  
+  
+  
+  
+  
+  
+    <p class="title logo__title">Brush 0.1a documentation</p>
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn navbar-btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../index.html">
+                    Overview
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Quickstart</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../basics.html">Basic Usage</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">User Guide</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1 current active has-children"><a class="reference internal" href="index.html">Cookbook</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="data.html">Working with Data</a></li>
+<li class="toctree-l2"><a class="reference internal" href="search_space.html">The Search Space</a></li>
+<li class="toctree-l2"><a class="reference internal" href="working_with_programs.html">Working with Programs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="json.html">JSON Interoperability</a></li>
+<li class="toctree-l2 current active"><a class="current reference internal" href="#">Saving and loading populations</a></li>
+<li class="toctree-l2"><a class="reference internal" href="archive.html">The archive</a></li>
+<li class="toctree-l2"><a class="reference internal" href="deap.html">Using Deap</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1"><a class="reference internal" href="contributing.html">Contributing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="development.html">Development</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">API</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1 has-children"><a class="reference internal" href="../python_api/index.html">Python API</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../python_api/estimator.html">BrushEstimator</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../python_api/interface.html">EstimatorInterface</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../python_api/regressor.html">BrushRegressor</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../python_api/classifier.html">BrushClassifier</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../python_api/python_api.html">Python API</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../cpp_api/index.html">C++ API</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../cpp_api/data.html">Dataset</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../cpp_api/timeseries.html">TimeSeries</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../cpp_api/search_space.html">SearchSpace</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../cpp_api/program.html">Program</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../cpp_api/node.html">Node</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../cpp_api/nodetypes.html">NodeTypes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../cpp_api/individual.html">Individual and Fitness</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../cpp_api/evaluation.html">Evaluation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../cpp_api/population.html">Population</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../cpp_api/variation.html">Variation (Crossover/Mutation)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../cpp_api/selection.html">Selection</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../cpp_api/archive.html">Archive</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../cpp_api/engine.html">Engine (and parameters)</a></li>
+</ul>
+</details></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</label></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+<a href="https://github.com/cavalab/brush" target="_blank"
+   class="btn btn-sm btn-source-repository-button"
+   title="Source repository"
+   data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+
+</a>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../_sources/guide/saving_loading_populations.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch nav-link" data-mode="light"><i class="fa-solid fa-sun fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="dark"><i class="fa-solid fa-moon fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg"></i></span>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Saving and loading populations</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section id="saving-and-loading-populations">
+<h1>Saving and loading populations<a class="headerlink" href="#saving-and-loading-populations" title="Link to this heading">#</a></h1>
+<p>Another feature Brush implements is the ability to save and load entire populations.
+We use JSON notation to store the population into a file that is human readable. The same way, we can feed an estimator a previous population file to serve as starting point for the evolution.</p>
+<p>In this notebook, we will walk through how to use the <code class="docutils literal notranslate"><span class="pre">save_population</span></code> and <code class="docutils literal notranslate"><span class="pre">load_population</span></code> parameters.</p>
+<p>We start by getting a sample dataset and splitting it into <code class="docutils literal notranslate"><span class="pre">X</span></code> and <code class="docutils literal notranslate"><span class="pre">y</span></code>:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">from</span> <span class="nn">pybrush</span> <span class="kn">import</span> <span class="n">BrushRegressor</span>
+
+<span class="c1"># load data</span>
+<span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">&#39;../examples/datasets/d_enc.csv&#39;</span><span class="p">)</span>
+<span class="n">X</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="s1">&#39;label&#39;</span><span class="p">)</span>
+<span class="n">y</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;label&#39;</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>To save the population after finishing the evolution, you nee to set <code class="docutils literal notranslate"><span class="pre">save_population</span></code> parameter to a value different than an empty string. Then, the final population is going to be stored in that specific file.</p>
+<p>In this example, we create a temporary file.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pickle</span>
+<span class="kn">import</span> <span class="nn">os</span><span class="o">,</span> <span class="nn">tempfile</span>
+
+<span class="n">pop_file</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">tempfile</span><span class="o">.</span><span class="n">mkdtemp</span><span class="p">(),</span> <span class="s1">&#39;population.json&#39;</span><span class="p">)</span>
+
+<span class="c1"># set verbosity==2 to see the full report</span>
+<span class="n">est</span> <span class="o">=</span> <span class="n">BrushRegressor</span><span class="p">(</span>
+    <span class="n">functions</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;SplitBest&#39;</span><span class="p">,</span><span class="s1">&#39;Add&#39;</span><span class="p">,</span><span class="s1">&#39;Mul&#39;</span><span class="p">,</span><span class="s1">&#39;Sin&#39;</span><span class="p">,</span><span class="s1">&#39;Cos&#39;</span><span class="p">,</span><span class="s1">&#39;Exp&#39;</span><span class="p">,</span><span class="s1">&#39;Logabs&#39;</span><span class="p">],</span>
+    <span class="n">max_gens</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span>
+    <span class="n">save_population</span><span class="o">=</span><span class="n">pop_file</span><span class="p">,</span>
+    <span class="n">verbosity</span><span class="o">=</span><span class="mi">2</span>
+<span class="p">)</span>
+
+<span class="n">est</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X</span><span class="p">,</span><span class="n">y</span><span class="p">)</span>
+<span class="n">y_pred</span> <span class="o">=</span> <span class="n">est</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;score:&#39;</span><span class="p">,</span> <span class="n">est</span><span class="o">.</span><span class="n">score</span><span class="p">(</span><span class="n">X</span><span class="p">,</span><span class="n">y</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Generation 1/10 [//////                                            ]
+Train Loss (Med): 11.75939 (74.37032)
+Val Loss (Med): 11.75939 (74.37032)
+Median Size (Max): 3 (19)
+Median complexity (Max): 9 (432)
+Time (s): 0.12205
+
+Generation 2/10 [///////////                                       ]
+Train Loss (Med): 11.58283 (17.94969)
+Val Loss (Med): 11.58283 (17.94969)
+Median Size (Max): 3 (19)
+Median complexity (Max): 9 (368)
+Time (s): 0.27800
+
+Generation 3/10 [////////////////                                  ]
+Train Loss (Med): 11.15674 (17.94969)
+Val Loss (Med): 11.15674 (17.94969)
+Median Size (Max): 3 (20)
+Median complexity (Max): 10 (915)
+Time (s): 0.41845
+
+Generation 4/10 [/////////////////////                             ]
+Train Loss (Med): 10.62121 (17.94969)
+Val Loss (Med): 10.62121 (17.94969)
+Median Size (Max): 3 (20)
+Median complexity (Max): 9 (381)
+Time (s): 0.56585
+
+Generation 5/10 [//////////////////////////                        ]
+Train Loss (Med): 10.51181 (17.94969)
+Val Loss (Med): 10.51181 (17.94969)
+Median Size (Max): 3 (20)
+Median complexity (Max): 9 (412)
+Time (s): 0.73561
+
+Generation 6/10 [///////////////////////////////                   ]
+Train Loss (Med): 10.51181 (17.94969)
+Val Loss (Med): 10.51181 (17.94969)
+Median Size (Max): 3 (20)
+Median complexity (Max): 9 (412)
+Time (s): 0.89526
+
+Generation 7/10 [////////////////////////////////////              ]
+Train Loss (Med): 10.51181 (17.94969)
+Val Loss (Med): 10.51181 (17.94969)
+Median Size (Max): 3 (20)
+Median complexity (Max): 9 (412)
+Time (s): 1.03213
+
+Generation 8/10 [/////////////////////////////////////////         ]
+Train Loss (Med): 10.43982 (17.94969)
+Val Loss (Med): 10.43982 (17.94969)
+Median Size (Max): 3 (20)
+Median complexity (Max): 9 (412)
+Time (s): 1.19282
+
+Generation 9/10 [//////////////////////////////////////////////    ]
+Train Loss (Med): 10.33524 (17.94969)
+Val Loss (Med): 10.33524 (17.94969)
+Median Size (Max): 3 (20)
+Median complexity (Max): 9 (368)
+Time (s): 1.33781
+
+Generation 10/10 [//////////////////////////////////////////////////]
+Train Loss (Med): 10.33524 (17.94969)
+Val Loss (Med): 10.33524 (17.94969)
+Median Size (Max): 3 (20)
+Median complexity (Max): 9 (368)
+Time (s): 1.50192
+
+Saved population to file /tmp/tmpw7jkwa5m/population.json
+score: 0.8856532915521027
+</pre></div>
+</div>
+</div>
+</div>
+<p>Loading a previous population is done providing <code class="docutils literal notranslate"><span class="pre">load_population</span></code> a string value corresponding to a JSON file generated by Brush. In our case, we will use the same file from the previous code block.</p>
+<p>After loading the population, we run the evolution for 10 more generations, and we can see that the first generation started from the previous population. This means that the population was successfully saved and loaded.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">est</span> <span class="o">=</span> <span class="n">BrushRegressor</span><span class="p">(</span>
+    <span class="n">functions</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;SplitBest&#39;</span><span class="p">,</span><span class="s1">&#39;Add&#39;</span><span class="p">,</span><span class="s1">&#39;Mul&#39;</span><span class="p">,</span><span class="s1">&#39;Sin&#39;</span><span class="p">,</span><span class="s1">&#39;Cos&#39;</span><span class="p">,</span><span class="s1">&#39;Exp&#39;</span><span class="p">,</span><span class="s1">&#39;Logabs&#39;</span><span class="p">],</span>
+    <span class="n">load_population</span><span class="o">=</span><span class="n">pop_file</span><span class="p">,</span>
+    <span class="n">max_gens</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span>
+    <span class="n">verbosity</span><span class="o">=</span><span class="mi">2</span>
+<span class="p">)</span>
+
+<span class="n">est</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X</span><span class="p">,</span><span class="n">y</span><span class="p">)</span>
+<span class="n">y_pred</span> <span class="o">=</span> <span class="n">est</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;score:&#39;</span><span class="p">,</span> <span class="n">est</span><span class="o">.</span><span class="n">score</span><span class="p">(</span><span class="n">X</span><span class="p">,</span><span class="n">y</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Loaded population from /tmp/tmpw7jkwa5m/population.json of size = 200
+Generation 1/10 [//////                                            ]
+Train Loss (Med): 10.33524 (17.94969)
+Val Loss (Med): 10.33524 (17.94969)
+Median Size (Max): 3 (20)
+Median complexity (Max): 9 (368)
+Time (s): 0.16596
+
+Generation 2/10 [///////////                                       ]
+Train Loss (Med): 10.33524 (17.94969)
+Val Loss (Med): 10.33524 (17.94969)
+Median Size (Max): 3 (18)
+Median complexity (Max): 9 (240)
+Time (s): 0.31669
+
+Generation 3/10 [////////////////                                  ]
+Train Loss (Med): 10.26326 (17.94969)
+Val Loss (Med): 10.26326 (17.94969)
+Median Size (Max): 3 (20)
+Median complexity (Max): 9 (368)
+Time (s): 0.45045
+
+Generation 4/10 [/////////////////////                             ]
+Train Loss (Med): 10.26326 (17.94969)
+Val Loss (Med): 10.26326 (17.94969)
+Median Size (Max): 3 (19)
+Median complexity (Max): 9 (368)
+Time (s): 0.63331
+
+Generation 5/10 [//////////////////////////                        ]
+Train Loss (Med): 10.26326 (16.41696)
+Val Loss (Med): 10.26326 (16.41696)
+Median Size (Max): 5 (17)
+Median complexity (Max): 33 (330)
+Time (s): 0.78002
+
+Generation 6/10 [///////////////////////////////                   ]
+Train Loss (Med): 9.70269 (17.94969)
+Val Loss (Med): 9.70269 (17.94969)
+Median Size (Max): 3 (19)
+Median complexity (Max): 9 (330)
+Time (s): 0.91656
+
+Generation 7/10 [////////////////////////////////////              ]
+Train Loss (Med): 9.67577 (17.94969)
+Val Loss (Med): 9.67577 (17.94969)
+Median Size (Max): 3 (19)
+Median complexity (Max): 9 (330)
+Time (s): 1.10225
+
+Generation 8/10 [/////////////////////////////////////////         ]
+Train Loss (Med): 9.67577 (16.41696)
+Val Loss (Med): 9.67577 (16.41696)
+Median Size (Max): 5 (19)
+Median complexity (Max): 33 (330)
+Time (s): 1.30773
+
+Generation 9/10 [//////////////////////////////////////////////    ]
+Train Loss (Med): 9.67577 (16.41696)
+Val Loss (Med): 9.67577 (16.41696)
+Median Size (Max): 5 (19)
+Median complexity (Max): 33 (330)
+Time (s): 1.44840
+
+Generation 10/10 [//////////////////////////////////////////////////]
+Train Loss (Med): 9.67577 (15.67545)
+Val Loss (Med): 9.67577 (15.67545)
+Median Size (Max): 6 (19)
+Median complexity (Max): 36 (723)
+Time (s): 1.65144
+
+score: 0.892949582824199
+</pre></div>
+</div>
+</div>
+</div>
+<p>You can open the serialized file and change individuals’ programs manually.</p>
+<p>This also allow us to have checkpoints in the execution.</p>
+</section>
+
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="json.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">JSON Interoperability</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="archive.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">The archive</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By William La Cava and Joseph D. Romano
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2021, William La Cava and Joseph D. Romano.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/bootstrap.js?digest=3ee479438cf8b5e0d341"></script>
+<script src="../_static/scripts/pydata-sphinx-theme.js?digest=3ee479438cf8b5e0d341"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

@@ -1,57 +1,539 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
-<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.10.0" xml:lang="en-US">
   <compounddef id="d4/d1f/variation_8h" kind="file" language="C++">
     <compoundname>variation.h</compoundname>
+    <includes refid="d2/d76/population_8h" local="yes">../pop/population.h</includes>
     <includes local="no">map</includes>
-    <includedby refid="d1/dea/program_8h" local="yes">program.h</includedby>
+    <includes local="no">optional</includes>
+    <includedby refid="d8/df7/bind__variation_8h" local="yes">bind_variation.h</includedby>
+    <includedby refid="d1/d55/engine_8h" local="yes">engine.h</includedby>
+    <includedby refid="d1/d64/variation_8cpp" local="yes">variation.cpp</includedby>
     <incdepgraph>
-      <node id="1">
-        <label>variation.h</label>
-        <link refid="d4/d1f/variation_8h"/>
-        <childnode refid="2" relation="include">
+      <node id="51">
+        <label>../../thirdparty/tree.hh</label>
+      </node>
+      <node id="35">
+        <label>../data/data.h</label>
+        <link refid="d2/dbd/data_8h"/>
+        <childnode refid="11" relation="include">
+        </childnode>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="25" relation="include">
+        </childnode>
+        <childnode refid="36" relation="include">
+        </childnode>
+        <childnode refid="37" relation="include">
+        </childnode>
+        <childnode refid="40" relation="include">
+        </childnode>
+        <childnode refid="22" relation="include">
+        </childnode>
+        <childnode refid="41" relation="include">
         </childnode>
       </node>
-      <node id="2">
-        <label>map</label>
+      <node id="40">
+        <label>timeseries.h</label>
+        <link refid="d9/df7/timeseries_8h"/>
+        <childnode refid="11" relation="include">
+        </childnode>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="25" relation="include">
+        </childnode>
       </node>
-    </incdepgraph>
-    <invincdepgraph>
-      <node id="3">
-        <label>bind_programs.h</label>
-        <link refid="d6/d3f/bind__programs_8h"/>
+      <node id="63">
+        <label>fitness.h</label>
+        <link refid="dc/d7a/fitness_8h"/>
+        <childnode refid="50" relation="include">
+        </childnode>
+        <childnode refid="11" relation="include">
+        </childnode>
+        <childnode refid="3" relation="include">
+        </childnode>
+      </node>
+      <node id="30">
+        <label>../ind/individual.h</label>
+        <link refid="d5/d1f/individual_8h"/>
+        <childnode refid="31" relation="include">
+        </childnode>
+        <childnode refid="63" relation="include">
+        </childnode>
+        <childnode refid="50" relation="include">
+        </childnode>
+      </node>
+      <node id="11">
+        <label>../init.h</label>
+        <link refid="d8/dc0/init_8h"/>
+        <childnode refid="12" relation="include">
+        </childnode>
         <childnode refid="4" relation="include">
         </childnode>
-      </node>
-      <node id="1">
-        <label>variation.h</label>
-        <link refid="d4/d1f/variation_8h"/>
-        <childnode refid="2" relation="include">
+        <childnode refid="13" relation="include">
+        </childnode>
+        <childnode refid="14" relation="include">
+        </childnode>
+        <childnode refid="7" relation="include">
+        </childnode>
+        <childnode refid="15" relation="include">
+        </childnode>
+        <childnode refid="10" relation="include">
+        </childnode>
+        <childnode refid="6" relation="include">
+        </childnode>
+        <childnode refid="5" relation="include">
+        </childnode>
+        <childnode refid="16" relation="include">
+        </childnode>
+        <childnode refid="17" relation="include">
+        </childnode>
+        <childnode refid="18" relation="include">
+        </childnode>
+        <childnode refid="19" relation="include">
+        </childnode>
+        <childnode refid="20" relation="include">
+        </childnode>
+        <childnode refid="21" relation="include">
         </childnode>
       </node>
-      <node id="5">
-        <label>bind_search_space.cpp</label>
-        <link refid="d0/d94/bind__search__space_8cpp"/>
-      </node>
-      <node id="6">
-        <label>search_space.cpp</label>
-        <link refid="da/d48/search__space_8cpp"/>
-      </node>
-      <node id="4">
-        <label>bind_programs.cpp</label>
-        <link refid="d9/d26/bind__programs_8cpp"/>
+      <node id="55">
+        <label>../params.h</label>
+        <link refid="da/d33/params_8h"/>
+        <childnode refid="11" relation="include">
+        </childnode>
+        <childnode refid="36" relation="include">
+        </childnode>
       </node>
       <node id="2">
-        <label>program.h</label>
-        <link refid="d1/dea/program_8h"/>
+        <label>../pop/population.h</label>
+        <link refid="d2/d76/population_8h"/>
         <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="25" relation="include">
+        </childnode>
+        <childnode refid="30" relation="include">
+        </childnode>
+      </node>
+      <node id="52">
+        <label>dispatch_table.h</label>
+        <link refid="df/d61/dispatch__table_8h"/>
+        <childnode refid="11" relation="include">
+        </childnode>
+        <childnode refid="35" relation="include">
+        </childnode>
+        <childnode refid="43" relation="include">
+        </childnode>
+        <childnode refid="42" relation="include">
+        </childnode>
+        <childnode refid="41" relation="include">
+        </childnode>
+        <childnode refid="53" relation="include">
+        </childnode>
+        <childnode refid="29" relation="include">
+        </childnode>
+      </node>
+      <node id="48">
+        <label>functions.h</label>
+        <link refid="d8/d5c/functions_8h"/>
+        <childnode refid="49" relation="include">
+        </childnode>
+        <childnode refid="27" relation="include">
+        </childnode>
+        <childnode refid="50" relation="include">
+        </childnode>
+        <childnode refid="15" relation="include">
+        </childnode>
+        <childnode refid="45" relation="include">
+        </childnode>
+        <childnode refid="11" relation="include">
+        </childnode>
+        <childnode refid="43" relation="include">
+        </childnode>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="35" relation="include">
+        </childnode>
+        <childnode refid="42" relation="include">
+        </childnode>
+      </node>
+      <node id="42">
+        <label>node.h</label>
+        <link refid="d1/d77/node_8h"/>
+        <childnode refid="35" relation="include">
+        </childnode>
+        <childnode refid="43" relation="include">
+        </childnode>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="14" relation="include">
+        </childnode>
+      </node>
+      <node id="43">
+        <label>nodetype.h</label>
+        <link refid="de/d26/nodetype_8h"/>
+        <childnode refid="44" relation="include">
+        </childnode>
+        <childnode refid="45" relation="include">
+        </childnode>
+        <childnode refid="46" relation="include">
+        </childnode>
+        <childnode refid="11" relation="include">
+        </childnode>
+        <childnode refid="35" relation="include">
+        </childnode>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="37" relation="include">
+        </childnode>
+        <childnode refid="47" relation="include">
+        </childnode>
+      </node>
+      <node id="62">
+        <label>tiny_cost_function.h</label>
+        <link refid="dd/d1b/tiny__cost__function_8h"/>
+      </node>
+      <node id="56">
+        <label>optimizer/weight_optimizer.h</label>
+        <link refid="d7/de3/weight__optimizer_8h"/>
+        <childnode refid="57" relation="include">
+        </childnode>
+        <childnode refid="58" relation="include">
+        </childnode>
+        <childnode refid="59" relation="include">
+        </childnode>
+        <childnode refid="60" relation="include">
+        </childnode>
+        <childnode refid="61" relation="include">
+        </childnode>
+        <childnode refid="62" relation="include">
+        </childnode>
+      </node>
+      <node id="31">
+        <label>../program/program.h</label>
+        <link refid="d1/dea/program_8h"/>
+        <childnode refid="16" relation="include">
+        </childnode>
+        <childnode refid="32" relation="include">
+        </childnode>
+        <childnode refid="11" relation="include">
+        </childnode>
+        <childnode refid="33" relation="include">
+        </childnode>
+        <childnode refid="42" relation="include">
+        </childnode>
+        <childnode refid="54" relation="include">
+        </childnode>
+        <childnode refid="55" relation="include">
+        </childnode>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="48" relation="include">
+        </childnode>
+        <childnode refid="56" relation="include">
+        </childnode>
+      </node>
+      <node id="47">
+        <label>signatures.h</label>
+        <link refid="d8/d8b/signatures_8h"/>
+      </node>
+      <node id="33">
+        <label>tree_node.h</label>
+        <link refid="d1/da6/tree__node_8h"/>
+        <childnode refid="29" relation="include">
+        </childnode>
+        <childnode refid="34" relation="include">
+        </childnode>
+        <childnode refid="11" relation="include">
+        </childnode>
+        <childnode refid="35" relation="include">
+        </childnode>
+        <childnode refid="42" relation="include">
+        </childnode>
+        <childnode refid="48" relation="include">
+        </childnode>
+        <childnode refid="43" relation="include">
+        </childnode>
+        <childnode refid="51" relation="include">
+        </childnode>
+        <childnode refid="52" relation="include">
+        </childnode>
+      </node>
+      <node id="21">
+        <label>types.h</label>
+        <link refid="d9/d49/types_8h"/>
+        <childnode refid="22" relation="include">
+        </childnode>
+        <childnode refid="23" relation="include">
+        </childnode>
+        <childnode refid="24" relation="include">
+        </childnode>
+      </node>
+      <node id="25">
+        <label>error.h</label>
+        <link refid="da/d41/error_8h"/>
+        <childnode refid="16" relation="include">
+        </childnode>
+        <childnode refid="14" relation="include">
+        </childnode>
+      </node>
+      <node id="36">
+        <label>../util/logger.h</label>
+        <link refid="d1/d8c/logger_8h"/>
+        <childnode refid="14" relation="include">
+        </childnode>
+      </node>
+      <node id="37">
+        <label>../util/rnd.h</label>
+        <link refid="d2/da9/rnd_8h"/>
+        <childnode refid="38" relation="include">
+        </childnode>
+        <childnode refid="39" relation="include">
+        </childnode>
+        <childnode refid="5" relation="include">
+        </childnode>
+        <childnode refid="11" relation="include">
+        </childnode>
+      </node>
+      <node id="3">
+        <label>../util/utils.h</label>
+        <link refid="d5/d60/utils_8h"/>
+        <childnode refid="4" relation="include">
         </childnode>
         <childnode refid="5" relation="include">
         </childnode>
         <childnode refid="6" relation="include">
         </childnode>
+        <childnode refid="7" relation="include">
+        </childnode>
+        <childnode refid="8" relation="include">
+        </childnode>
+        <childnode refid="9" relation="include">
+        </childnode>
+        <childnode refid="10" relation="include">
+        </childnode>
+        <childnode refid="11" relation="include">
+        </childnode>
+        <childnode refid="25" relation="include">
+        </childnode>
+        <childnode refid="26" relation="include">
+        </childnode>
+        <childnode refid="27" relation="include">
+        </childnode>
+        <childnode refid="28" relation="include">
+        </childnode>
+        <childnode refid="29" relation="include">
+        </childnode>
+      </node>
+      <node id="54">
+        <label>../vary/search_space.h</label>
+        <link refid="d9/d99/search__space_8h"/>
+        <childnode refid="11" relation="include">
+        </childnode>
+        <childnode refid="42" relation="include">
+        </childnode>
+        <childnode refid="43" relation="include">
+        </childnode>
+        <childnode refid="33" relation="include">
+        </childnode>
+        <childnode refid="25" relation="include">
+        </childnode>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="37" relation="include">
+        </childnode>
+        <childnode refid="55" relation="include">
+        </childnode>
+        <childnode refid="46" relation="include">
+        </childnode>
+        <childnode refid="41" relation="include">
+        </childnode>
+        <childnode refid="14" relation="include">
+        </childnode>
+      </node>
+      <node id="1">
+        <label>variation.h</label>
+        <link refid="d4/d1f/variation_8h"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="10" relation="include">
+        </childnode>
+        <childnode refid="41" relation="include">
+        </childnode>
+      </node>
+      <node id="4">
+        <label>Eigen/Dense</label>
+      </node>
+      <node id="32">
+        <label>assert.h</label>
+      </node>
+      <node id="44">
+        <label>bitset</label>
+      </node>
+      <node id="57">
+        <label>ceres/dynamic_autodiff_cost_function.h</label>
+      </node>
+      <node id="58">
+        <label>ceres/dynamic_numeric_diff_cost_function.h</label>
+      </node>
+      <node id="23">
+        <label>ceres/jet.h</label>
+      </node>
+      <node id="59">
+        <label>ceres/loss_function.h</label>
+      </node>
+      <node id="60">
+        <label>ceres/solver.h</label>
+      </node>
+      <node id="61">
+        <label>ceres/tiny_solver.h</label>
+      </node>
+      <node id="8">
+        <label>chrono</label>
+      </node>
+      <node id="49">
+        <label>cmath</label>
+      </node>
+      <node id="24">
+        <label>concepts</label>
+      </node>
+      <node id="53">
+        <label>cstddef</label>
+      </node>
+      <node id="28">
+        <label>execution</label>
+      </node>
+      <node id="18">
+        <label>fmt/format.h</label>
+      </node>
+      <node id="17">
+        <label>fmt/ostream.h</label>
+      </node>
+      <node id="19">
+        <label>fmt/ranges.h</label>
+      </node>
+      <node id="7">
+        <label>fstream</label>
+      </node>
+      <node id="50">
+        <label>functional</label>
+      </node>
+      <node id="14">
+        <label>iostream</label>
+      </node>
+      <node id="27">
+        <label>iterator</label>
+      </node>
+      <node id="39">
+        <label>limits</label>
+      </node>
+      <node id="10">
+        <label>map</label>
+      </node>
+      <node id="13">
+        <label>memory</label>
+      </node>
+      <node id="20">
+        <label>nlohmann/json.hpp</label>
+      </node>
+      <node id="15">
+        <label>numeric</label>
+      </node>
+      <node id="41">
+        <label>optional</label>
+      </node>
+      <node id="9">
+        <label>ostream</label>
+      </node>
+      <node id="38">
+        <label>random</label>
+      </node>
+      <node id="6">
+        <label>set</label>
+      </node>
+      <node id="12">
+        <label>stdint.h</label>
+      </node>
+      <node id="16">
+        <label>string</label>
+      </node>
+      <node id="29">
+        <label>tuple</label>
+      </node>
+      <node id="45">
+        <label>type_traits</label>
+      </node>
+      <node id="26">
+        <label>typeindex</label>
+      </node>
+      <node id="34">
+        <label>unordered_map</label>
+      </node>
+      <node id="46">
+        <label>utility</label>
+      </node>
+      <node id="22">
+        <label>variant</label>
+      </node>
+      <node id="5">
+        <label>vector</label>
+      </node>
+    </incdepgraph>
+    <invincdepgraph>
+      <node id="6">
+        <label>bind_engines.cpp</label>
+        <link refid="d1/df0/bind__engines_8cpp"/>
+      </node>
+      <node id="5">
+        <label>bind_engines.h</label>
+        <link refid="d4/d93/bind__engines_8h"/>
+        <childnode refid="6" relation="include">
+        </childnode>
+      </node>
+      <node id="3">
+        <label>bind_variation.cpp</label>
+        <link refid="df/d41/bind__variation_8cpp"/>
+      </node>
+      <node id="2">
+        <label>bind_variation.h</label>
+        <link refid="d8/df7/bind__variation_8h"/>
+        <childnode refid="3" relation="include">
+        </childnode>
+      </node>
+      <node id="7">
+        <label>engine.cpp</label>
+        <link refid="da/d5c/engine_8cpp"/>
+        <childnode refid="5" relation="include">
+        </childnode>
+      </node>
+      <node id="4">
+        <label>engine.h</label>
+        <link refid="d1/d55/engine_8h"/>
+        <childnode refid="5" relation="include">
+        </childnode>
+        <childnode refid="7" relation="include">
+        </childnode>
+      </node>
+      <node id="8">
+        <label>variation.cpp</label>
+        <link refid="d1/d64/variation_8cpp"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+      </node>
+      <node id="1">
+        <label>variation.h</label>
+        <link refid="d4/d1f/variation_8h"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="8" relation="include">
+        </childnode>
       </node>
     </invincdepgraph>
-    <innernamespace refid="d0/d24/namespacevariation">variation</innernamespace>
+    <innerclass refid="d0/dec/classBrush_1_1Var_1_1MutationBase" prot="public">Brush::Var::MutationBase</innerclass>
+    <innerclass refid="d5/d14/classBrush_1_1Var_1_1Variation" prot="public">Brush::Var::Variation</innerclass>
+    <innernamespace refid="dc/d5c/namespaceBrush">Brush</innernamespace>
+    <innernamespace refid="d9/d9f/namespaceBrush_1_1Var">Brush::Var</innernamespace>
     <briefdescription>
     </briefdescription>
     <detaileddescription>
@@ -65,314 +547,70 @@
 <codeline lineno="6"><highlight class="normal"></highlight><highlight class="preprocessor">#ifndef<sp/>VARIATION_H</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="7"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>VARIATION_H</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="8"><highlight class="normal"></highlight></codeline>
-<codeline lineno="9"><highlight class="normal"></highlight><highlight class="comment">//<sp/>#include<sp/>&quot;search_space.h&quot;</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="10"><highlight class="normal"></highlight><highlight class="comment">//<sp/>#include<sp/>&quot;program/program.h&quot;</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="11"><highlight class="normal"></highlight><highlight class="comment">//<sp/>#include<sp/>&quot;program/tree_node.h&quot;</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="12"><highlight class="normal"></highlight><highlight class="comment">//<sp/>#include<sp/>&quot;node.h&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="9"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;<ref refid="d2/d76/population_8h" kindref="compound">../pop/population.h</ref>&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="10"><highlight class="normal"></highlight></codeline>
+<codeline lineno="11"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;map&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="12"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;optional&gt;</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="13"><highlight class="normal"></highlight></codeline>
-<codeline lineno="14"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;map&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="14"><highlight class="normal"></highlight><highlight class="keyword">using<sp/>namespace<sp/></highlight><highlight class="normal"><ref refid="dd/d56/namespaceBrush_1_1Pop" kindref="compound">Brush::Pop</ref>;</highlight></codeline>
 <codeline lineno="15"><highlight class="normal"></highlight></codeline>
-<codeline lineno="16"><highlight class="normal"></highlight><highlight class="comment">//<sp/>namespace<sp/>Brush{</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="17"><highlight class="normal"></highlight></codeline>
-<codeline lineno="18"><highlight class="normal"></highlight><highlight class="comment">//<sp/>typedef<sp/>tree&lt;Node&gt;::pre_order_iterator<sp/>Iter;<sp/></highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="19"><highlight class="normal"></highlight></codeline>
-<codeline lineno="21"><highlight class="comment">//<sp/>Mutation<sp/>&amp;<sp/>Crossover</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="20"><highlight class="normal"></highlight><highlight class="keyword">namespace<sp/></highlight><highlight class="normal"><ref refid="dc/d5c/namespaceBrush" kindref="compound">Brush</ref><sp/>{</highlight></codeline>
+<codeline lineno="21"><highlight class="normal"></highlight><highlight class="keyword">namespace<sp/></highlight><highlight class="normal">Var<sp/>{</highlight></codeline>
 <codeline lineno="22"><highlight class="normal"></highlight></codeline>
-<codeline lineno="23"><highlight class="normal"></highlight></codeline>
-<codeline lineno="28" refid="d0/d24/namespacevariation" refkind="compound"><highlight class="normal"></highlight><highlight class="keyword">namespace<sp/></highlight><highlight class="normal"><ref refid="d0/d24/namespacevariation" kindref="compound">variation</ref><sp/>{</highlight></codeline>
-<codeline lineno="29"><highlight class="normal"></highlight></codeline>
-<codeline lineno="30" refid="d0/d24/namespacevariation_1ace95ad8220efc40e8d89096ce61e6e60" refkind="member"><highlight class="normal"></highlight><highlight class="keyword">typedef</highlight><highlight class="normal"><sp/>tree&lt;Node&gt;::pre_order_iterator<sp/><ref refid="d0/d24/namespacevariation_1ace95ad8220efc40e8d89096ce61e6e60" kindref="member">Iter</ref>;<sp/></highlight></codeline>
+<codeline lineno="23" refid="d0/dec/classBrush_1_1Var_1_1MutationBase" refkind="compound"><highlight class="normal"></highlight><highlight class="keyword">class<sp/></highlight><highlight class="normal"><ref refid="d0/dec/classBrush_1_1Var_1_1MutationBase" kindref="compound">MutationBase</ref><sp/>{</highlight></codeline>
+<codeline lineno="24"><highlight class="normal"></highlight><highlight class="keyword">public</highlight><highlight class="normal">:</highlight></codeline>
+<codeline lineno="25" refid="d0/dec/classBrush_1_1Var_1_1MutationBase_1a4cacb44817dc1e054fca562d703de50c" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">using<sp/></highlight><highlight class="normal"><ref refid="d0/dec/classBrush_1_1Var_1_1MutationBase_1a4cacb44817dc1e054fca562d703de50c" kindref="member">Iter</ref><sp/>=<sp/>tree&lt;Node&gt;::pre_order_iterator;</highlight></codeline>
+<codeline lineno="26"><highlight class="normal"></highlight></codeline>
+<codeline lineno="27" refid="d0/dec/classBrush_1_1Var_1_1MutationBase_1a61da0cefa5bb01d41edff4e208372613" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/><ref refid="d0/dec/classBrush_1_1Var_1_1MutationBase_1a61da0cefa5bb01d41edff4e208372613" kindref="member">find_spots</ref>(<ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">tree&lt;Node&gt;</ref>&amp;<sp/>Tree,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="d4/dc3/structBrush_1_1SearchSpace" kindref="compound">SearchSpace</ref>&amp;<sp/><ref refid="dc/d5c/namespaceBrush_1ae41500fed38676f34a4d476a992d585d" kindref="member">SS</ref>,</highlight></codeline>
+<codeline lineno="28"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="de/deb/structBrush_1_1Parameters" kindref="compound">Parameters</ref>&amp;<sp/>params)</highlight></codeline>
+<codeline lineno="29"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="30"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>vector&lt;float&gt;<sp/>weights(Tree.size());</highlight></codeline>
 <codeline lineno="31"><highlight class="normal"></highlight></codeline>
-<codeline lineno="37" refid="d0/d24/namespacevariation_1a170515efe6144a099812fc284c2ae10b" refkind="member"><highlight class="keyword">inline</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/><ref refid="d0/d24/namespacevariation_1a170515efe6144a099812fc284c2ae10b" kindref="member">point_mutation</ref>(tree&lt;Node&gt;&amp;<sp/>Tree,<sp/><ref refid="d0/d24/namespacevariation_1ace95ad8220efc40e8d89096ce61e6e60" kindref="member">Iter</ref><sp/>spot,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>SearchSpace&amp;<sp/><ref refid="dc/d5c/namespaceBrush_1ae41500fed38676f34a4d476a992d585d" kindref="member">SS</ref>)</highlight></codeline>
-<codeline lineno="38"><highlight class="normal">{</highlight></codeline>
-<codeline lineno="39"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>cout<sp/>&lt;&lt;<sp/>&quot;point<sp/>mutation\n&quot;;</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="40"><highlight class="normal"></highlight></codeline>
-<codeline lineno="41"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>get_node_like<sp/>will<sp/>sample<sp/>a<sp/>similar<sp/>node<sp/>based<sp/>on<sp/>node_map_weights<sp/>or</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="42"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>terminal_weights,<sp/>and<sp/>maybe<sp/>will<sp/>return<sp/>a<sp/>Node.</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="43"><highlight class="normal"><sp/><sp/><sp/><sp/>std::optional&lt;Node&gt;<sp/>newNode<sp/>=<sp/><ref refid="dc/d5c/namespaceBrush_1ae41500fed38676f34a4d476a992d585d" kindref="member">SS</ref>.<ref refid="d4/dc3/structBrush_1_1SearchSpace_1a14a4a3b020ec50ee277dfe07bc36f608" kindref="member">get_node_like</ref>(spot.node-&gt;data);</highlight></codeline>
-<codeline lineno="44"><highlight class="normal"></highlight></codeline>
-<codeline lineno="45"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(!newNode)<sp/></highlight><highlight class="comment">//<sp/>newNode<sp/>==<sp/>std::nullopt</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="46"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">false</highlight><highlight class="normal">;</highlight></codeline>
-<codeline lineno="47"><highlight class="normal"></highlight></codeline>
-<codeline lineno="48"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>if<sp/>optional<sp/>contains<sp/>a<sp/>Node,<sp/>we<sp/>access<sp/>its<sp/>contained<sp/>value</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="49"><highlight class="normal"><sp/><sp/><sp/><sp/>Tree.replace(spot,<sp/>*newNode);</highlight></codeline>
-<codeline lineno="50"><highlight class="normal"></highlight></codeline>
-<codeline lineno="51"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">true</highlight><highlight class="normal">;</highlight></codeline>
-<codeline lineno="52"><highlight class="normal">}</highlight></codeline>
-<codeline lineno="53"><highlight class="normal"></highlight></codeline>
-<codeline lineno="59" refid="d0/d24/namespacevariation_1ad562aad1d00786b26a704f6b8db751c9" refkind="member"><highlight class="keyword">inline</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/><ref refid="d0/d24/namespacevariation_1ad562aad1d00786b26a704f6b8db751c9" kindref="member">insert_mutation</ref>(tree&lt;Node&gt;&amp;<sp/>Tree,<sp/><ref refid="d0/d24/namespacevariation_1ace95ad8220efc40e8d89096ce61e6e60" kindref="member">Iter</ref><sp/>spot,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>SearchSpace&amp;<sp/><ref refid="dc/d5c/namespaceBrush_1ae41500fed38676f34a4d476a992d585d" kindref="member">SS</ref>)</highlight></codeline>
-<codeline lineno="60"><highlight class="normal">{</highlight></codeline>
-<codeline lineno="61"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>cout<sp/>&lt;&lt;<sp/>&quot;insert<sp/>mutation\n&quot;;</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="62"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/>spot_type<sp/>=<sp/>spot.node-&gt;data.ret_type;</highlight></codeline>
-<codeline lineno="63"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
-<codeline lineno="64"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>pick<sp/>a<sp/>random<sp/>compatible<sp/>node<sp/>to<sp/>insert<sp/>(with<sp/>probabilities<sp/>given<sp/>by</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="65"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>node_map_weights).<sp/>The<sp/>`-1`<sp/>represents<sp/>the<sp/>node<sp/>being<sp/>inserted.</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="66"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Ideally,<sp/>it<sp/>should<sp/>always<sp/>find<sp/>at<sp/>least<sp/>one<sp/>match<sp/>(the<sp/>same<sp/>node</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="67"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>used<sp/>as<sp/>a<sp/>reference<sp/>when<sp/>calling<sp/>the<sp/>function).<sp/>However,<sp/>we<sp/>have<sp/>a<sp/></highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="68"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>size<sp/>restriction,<sp/>which<sp/>will<sp/>be<sp/>relaxed<sp/>here<sp/>(just<sp/>as<sp/>it<sp/>is<sp/>in<sp/>the<sp/>PTC2</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="69"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>algorithm).<sp/>This<sp/>mutation<sp/>can<sp/>create<sp/>a<sp/>new<sp/>expression<sp/>that<sp/>exceeds<sp/>the</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="70"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>maximum<sp/>size<sp/>by<sp/>the<sp/>highest<sp/>arity<sp/>among<sp/>the<sp/>operators.</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="71"><highlight class="normal"><sp/><sp/><sp/><sp/>std::optional&lt;Node&gt;<sp/>n<sp/>=<sp/><ref refid="dc/d5c/namespaceBrush_1ae41500fed38676f34a4d476a992d585d" kindref="member">SS</ref>.<ref refid="d4/dc3/structBrush_1_1SearchSpace_1a64e90d0781395bf9a843b8806dc5e95b" kindref="member">sample_op_with_arg</ref>(spot_type,<sp/>spot_type,<sp/></highlight><highlight class="keyword">true</highlight><highlight class="normal">,</highlight></codeline>
-<codeline lineno="72"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="dc/d5c/namespaceBrush_1a9c6fb4b74a0a8a8fd047a49f3c9e2283" kindref="member">PARAMS</ref>[</highlight><highlight class="stringliteral">&quot;max_size&quot;</highlight><highlight class="normal">].get&lt;int&gt;()-Tree.size()-1);<sp/></highlight></codeline>
-<codeline lineno="73"><highlight class="normal"></highlight></codeline>
-<codeline lineno="74"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(!n)<sp/></highlight><highlight class="comment">//<sp/>there<sp/>is<sp/>no<sp/>operator<sp/>with<sp/>compatible<sp/>arguments</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="75"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">false</highlight><highlight class="normal">;</highlight></codeline>
-<codeline lineno="76"><highlight class="normal"></highlight></codeline>
-<codeline lineno="77"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>make<sp/>node<sp/>n<sp/>wrap<sp/>the<sp/>subtree<sp/>at<sp/>the<sp/>chosen<sp/>spot</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="78"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/>parent_node<sp/>=<sp/>Tree.wrap(spot,<sp/>*n);</highlight></codeline>
-<codeline lineno="79"><highlight class="normal"></highlight></codeline>
-<codeline lineno="80"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>now<sp/>fill<sp/>the<sp/>arguments<sp/>of<sp/>n<sp/>appropriately</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="81"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/>spot_filled<sp/>=<sp/></highlight><highlight class="keyword">false</highlight><highlight class="normal">;</highlight></codeline>
-<codeline lineno="82"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>(</highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/>a:<sp/>(*n).arg_types)</highlight></codeline>
-<codeline lineno="83"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
-<codeline lineno="84"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(spot_filled)</highlight></codeline>
-<codeline lineno="85"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
-<codeline lineno="86"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>if<sp/>spot<sp/>is<sp/>in<sp/>its<sp/>child<sp/>position,<sp/>append<sp/>children.</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="87"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>TODO:<sp/>reminding<sp/>that<sp/>sample_terminal<sp/>may<sp/>fail<sp/>as<sp/>well</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="88"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/>opt<sp/>=<sp/><ref refid="dc/d5c/namespaceBrush_1ae41500fed38676f34a4d476a992d585d" kindref="member">SS</ref>.<ref refid="d4/dc3/structBrush_1_1SearchSpace_1ab7799a89e862e19942db515d8963fca7" kindref="member">sample_terminal</ref>(a);</highlight></codeline>
-<codeline lineno="89"><highlight class="normal"></highlight></codeline>
-<codeline lineno="90"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(!opt)</highlight></codeline>
-<codeline lineno="91"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">false</highlight><highlight class="normal">;</highlight></codeline>
-<codeline lineno="92"><highlight class="normal"></highlight></codeline>
-<codeline lineno="93"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>Tree.append_child(parent_node,<sp/>opt.value());</highlight></codeline>
-<codeline lineno="94"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
-<codeline lineno="95"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>if<sp/>types<sp/>match,<sp/>treat<sp/>this<sp/>spot<sp/>as<sp/>filled<sp/>by<sp/>the<sp/>spot<sp/>node<sp/></highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="96"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">else</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(a<sp/>==<sp/>spot_type)</highlight></codeline>
-<codeline lineno="97"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>spot_filled<sp/>=<sp/></highlight><highlight class="keyword">true</highlight><highlight class="normal">;</highlight></codeline>
-<codeline lineno="98"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>otherwise,<sp/>add<sp/>siblings<sp/>before<sp/>spot<sp/>node</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="99"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">else</highlight><highlight class="normal"><sp/>{</highlight></codeline>
-<codeline lineno="100"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/>opt<sp/>=<sp/><ref refid="dc/d5c/namespaceBrush_1ae41500fed38676f34a4d476a992d585d" kindref="member">SS</ref>.<ref refid="d4/dc3/structBrush_1_1SearchSpace_1ab7799a89e862e19942db515d8963fca7" kindref="member">sample_terminal</ref>(a);</highlight></codeline>
-<codeline lineno="101"><highlight class="normal"></highlight></codeline>
-<codeline lineno="102"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(!opt)</highlight></codeline>
-<codeline lineno="103"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">false</highlight><highlight class="normal">;</highlight></codeline>
-<codeline lineno="104"><highlight class="normal"></highlight></codeline>
-<codeline lineno="105"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>Tree.insert(spot,<sp/>opt.value());</highlight></codeline>
-<codeline lineno="106"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
-<codeline lineno="107"><highlight class="normal"><sp/><sp/><sp/><sp/>}<sp/></highlight></codeline>
-<codeline lineno="108"><highlight class="normal"></highlight></codeline>
-<codeline lineno="109"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">true</highlight><highlight class="normal">;</highlight></codeline>
-<codeline lineno="110"><highlight class="normal">}</highlight></codeline>
-<codeline lineno="111"><highlight class="normal"></highlight></codeline>
-<codeline lineno="117" refid="d0/d24/namespacevariation_1a3f1ae4f750d7368932dae8e9b8fb7d20" refkind="member"><highlight class="keyword">inline</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/><ref refid="d0/d24/namespacevariation_1a3f1ae4f750d7368932dae8e9b8fb7d20" kindref="member">delete_mutation</ref>(tree&lt;Node&gt;&amp;<sp/>Tree,<sp/><ref refid="d0/d24/namespacevariation_1ace95ad8220efc40e8d89096ce61e6e60" kindref="member">Iter</ref><sp/>spot,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>SearchSpace&amp;<sp/><ref refid="dc/d5c/namespaceBrush_1ae41500fed38676f34a4d476a992d585d" kindref="member">SS</ref>)</highlight></codeline>
-<codeline lineno="118"><highlight class="normal">{</highlight></codeline>
-<codeline lineno="119"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>cout<sp/>&lt;&lt;<sp/>&quot;delete<sp/>mutation\n&quot;;</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="120"><highlight class="normal"></highlight></codeline>
-<codeline lineno="121"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>sample_terminal<sp/>will<sp/>sample<sp/>based<sp/>on<sp/>terminal_weights.<sp/>If<sp/>it<sp/>succeeds,<sp/></highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="122"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>then<sp/>the<sp/>new<sp/>terminal<sp/>will<sp/>be<sp/>in<sp/>`opt.value()`</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="123"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/>opt<sp/>=<sp/><ref refid="dc/d5c/namespaceBrush_1ae41500fed38676f34a4d476a992d585d" kindref="member">SS</ref>.<ref refid="d4/dc3/structBrush_1_1SearchSpace_1ab7799a89e862e19942db515d8963fca7" kindref="member">sample_terminal</ref>(spot.node-&gt;data.ret_type);<sp/></highlight></codeline>
-<codeline lineno="124"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
-<codeline lineno="125"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(!opt)<sp/></highlight><highlight class="comment">//<sp/>there<sp/>is<sp/>no<sp/>terminal<sp/>with<sp/>compatible<sp/>arguments</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="126"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">false</highlight><highlight class="normal">;</highlight></codeline>
-<codeline lineno="127"><highlight class="normal"></highlight></codeline>
-<codeline lineno="128"><highlight class="normal"><sp/><sp/><sp/><sp/>Tree.erase_children(spot);<sp/></highlight></codeline>
-<codeline lineno="129"><highlight class="normal"></highlight></codeline>
-<codeline lineno="130"><highlight class="normal"><sp/><sp/><sp/><sp/>Tree.replace(spot,<sp/>opt.value());</highlight></codeline>
-<codeline lineno="131"><highlight class="normal"></highlight></codeline>
-<codeline lineno="132"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">true</highlight><highlight class="normal">;</highlight></codeline>
-<codeline lineno="133"><highlight class="normal">};</highlight></codeline>
-<codeline lineno="134"><highlight class="normal"></highlight></codeline>
-<codeline lineno="140" refid="d0/d24/namespacevariation_1ae0d980dfd1c64597731f9cdde45e90b4" refkind="member"><highlight class="keyword">inline</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/><ref refid="d0/d24/namespacevariation_1ae0d980dfd1c64597731f9cdde45e90b4" kindref="member">toggle_weight_on_mutation</ref>(tree&lt;Node&gt;&amp;<sp/>Tree,<sp/><ref refid="d0/d24/namespacevariation_1ace95ad8220efc40e8d89096ce61e6e60" kindref="member">Iter</ref><sp/>spot,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>SearchSpace&amp;<sp/><ref refid="dc/d5c/namespaceBrush_1ae41500fed38676f34a4d476a992d585d" kindref="member">SS</ref>)</highlight></codeline>
-<codeline lineno="141"><highlight class="normal">{</highlight></codeline>
-<codeline lineno="142"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(spot.node-&gt;data.get_is_weighted()==</highlight><highlight class="keyword">true</highlight><highlight class="normal"><sp/></highlight><highlight class="comment">//<sp/>cant<sp/>turn<sp/>on<sp/>whats<sp/>already<sp/>on</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="143"><highlight class="normal"><sp/><sp/><sp/><sp/>||<sp/><sp/>!<ref refid="dc/d5c/namespaceBrush_1a1d5a63450bcdb77bd08283c9f74ca53f" kindref="member">IsWeighable</ref>(spot.node-&gt;data.ret_type))<sp/></highlight><highlight class="comment">//<sp/>does<sp/>not<sp/>accept<sp/>weights<sp/>(e.g.<sp/>boolean)</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="144"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">false</highlight><highlight class="normal">;<sp/></highlight><highlight class="comment">//<sp/>false<sp/>indicates<sp/>that<sp/>mutation<sp/>failed<sp/>and<sp/>should<sp/>return<sp/>std::nullopt</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="145"><highlight class="normal"></highlight></codeline>
-<codeline lineno="146"><highlight class="normal"><sp/><sp/><sp/><sp/>spot.node-&gt;data.set_is_weighted(</highlight><highlight class="keyword">true</highlight><highlight class="normal">);</highlight></codeline>
-<codeline lineno="147"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">true</highlight><highlight class="normal">;</highlight></codeline>
-<codeline lineno="148"><highlight class="normal">}</highlight></codeline>
-<codeline lineno="149"><highlight class="normal"></highlight></codeline>
-<codeline lineno="155" refid="d0/d24/namespacevariation_1afce849d082df7c278e5115ba64dd73ea" refkind="member"><highlight class="keyword">inline</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/><ref refid="d0/d24/namespacevariation_1afce849d082df7c278e5115ba64dd73ea" kindref="member">toggle_weight_off_mutation</ref>(tree&lt;Node&gt;&amp;<sp/>Tree,<sp/><ref refid="d0/d24/namespacevariation_1ace95ad8220efc40e8d89096ce61e6e60" kindref="member">Iter</ref><sp/>spot,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>SearchSpace&amp;<sp/><ref refid="dc/d5c/namespaceBrush_1ae41500fed38676f34a4d476a992d585d" kindref="member">SS</ref>)</highlight></codeline>
-<codeline lineno="156"><highlight class="normal">{</highlight></codeline>
-<codeline lineno="157"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(spot.node-&gt;data.get_is_weighted()==</highlight><highlight class="keyword">false</highlight><highlight class="normal">)</highlight></codeline>
-<codeline lineno="158"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">false</highlight><highlight class="normal">;<sp/></highlight></codeline>
-<codeline lineno="159"><highlight class="normal"></highlight></codeline>
-<codeline lineno="160"><highlight class="normal"><sp/><sp/><sp/><sp/>spot.node-&gt;data.set_is_weighted(</highlight><highlight class="keyword">false</highlight><highlight class="normal">);</highlight></codeline>
-<codeline lineno="161"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">true</highlight><highlight class="normal">;</highlight></codeline>
-<codeline lineno="162"><highlight class="normal">}</highlight></codeline>
-<codeline lineno="163"><highlight class="normal"></highlight></codeline>
-<codeline lineno="169" refid="d0/d24/namespacevariation_1ab3c6b50b00987b9b8f4a9ca98606860e" refkind="member"><highlight class="keyword">inline</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/><ref refid="d0/d24/namespacevariation_1ab3c6b50b00987b9b8f4a9ca98606860e" kindref="member">subtree_mutation</ref>(tree&lt;Node&gt;&amp;<sp/>Tree,<sp/><ref refid="d0/d24/namespacevariation_1ace95ad8220efc40e8d89096ce61e6e60" kindref="member">Iter</ref><sp/>spot,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>SearchSpace&amp;<sp/><ref refid="dc/d5c/namespaceBrush_1ae41500fed38676f34a4d476a992d585d" kindref="member">SS</ref>)</highlight></codeline>
-<codeline lineno="170"><highlight class="normal">{</highlight></codeline>
-<codeline lineno="171"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/>spot_type<sp/>=<sp/>spot.node-&gt;data.ret_type;</highlight></codeline>
-<codeline lineno="172"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/>max_size<sp/><sp/>=<sp/><ref refid="dc/d5c/namespaceBrush_1a9c6fb4b74a0a8a8fd047a49f3c9e2283" kindref="member">PARAMS</ref>[</highlight><highlight class="stringliteral">&quot;max_size&quot;</highlight><highlight class="normal">].get&lt;</highlight><highlight class="keywordtype">int</highlight><highlight class="normal">&gt;()<sp/>-<sp/>(Tree.size()<sp/>-<sp/>Tree.size(spot));</highlight></codeline>
-<codeline lineno="173"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/>max_depth<sp/>=<sp/><ref refid="dc/d5c/namespaceBrush_1a9c6fb4b74a0a8a8fd047a49f3c9e2283" kindref="member">PARAMS</ref>[</highlight><highlight class="stringliteral">&quot;max_depth&quot;</highlight><highlight class="normal">].get&lt;</highlight><highlight class="keywordtype">int</highlight><highlight class="normal">&gt;()<sp/>-<sp/>(Tree.depth(spot));</highlight></codeline>
-<codeline lineno="174"><highlight class="normal"></highlight></codeline>
-<codeline lineno="175"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>sample<sp/>subtree<sp/>uses<sp/>PTC2,<sp/>which<sp/>operates<sp/>on<sp/>depth<sp/>and<sp/>size<sp/>of<sp/>the<sp/>tree&lt;Node&gt;<sp/></highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="176"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>(and<sp/>not<sp/>on<sp/>the<sp/>program!).<sp/>we<sp/>shoudn&apos;t<sp/>care<sp/>for<sp/>weights<sp/>here</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="177"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/>subtree<sp/>=<sp/><ref refid="dc/d5c/namespaceBrush_1ae41500fed38676f34a4d476a992d585d" kindref="member">SS</ref>.<ref refid="d4/dc3/structBrush_1_1SearchSpace_1aed45d3d8adbee89f02e709472fe88280" kindref="member">sample_subtree</ref>(spot.node-&gt;data,<sp/>max_depth,<sp/>max_size);<sp/></highlight></codeline>
-<codeline lineno="178"><highlight class="normal"></highlight></codeline>
-<codeline lineno="179"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(!subtree)<sp/></highlight><highlight class="comment">//<sp/>there<sp/>is<sp/>no<sp/>terminal<sp/>with<sp/>compatible<sp/>arguments</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="180"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">false</highlight><highlight class="normal">;</highlight></codeline>
-<codeline lineno="181"><highlight class="normal"></highlight></codeline>
-<codeline lineno="182"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>if<sp/>optional<sp/>contains<sp/>a<sp/>Node,<sp/>we<sp/>access<sp/>its<sp/>contained<sp/>value</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="183"><highlight class="normal"><sp/><sp/><sp/><sp/>Tree.erase_children(spot);<sp/></highlight></codeline>
-<codeline lineno="184"><highlight class="normal"><sp/><sp/><sp/><sp/>Tree.replace(spot,<sp/>subtree.value().begin());</highlight></codeline>
-<codeline lineno="185"><highlight class="normal"></highlight></codeline>
-<codeline lineno="186"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">true</highlight><highlight class="normal">;</highlight></codeline>
-<codeline lineno="187"><highlight class="normal">}</highlight></codeline>
-<codeline lineno="188"><highlight class="normal"></highlight></codeline>
-<codeline lineno="222"><highlight class="normal"></highlight><highlight class="keyword">template</highlight><highlight class="normal">&lt;ProgramType<sp/>T&gt;</highlight></codeline>
-<codeline lineno="223" refid="d0/d24/namespacevariation_1a3ceab1ae0c739084852ef04ebda17d6a" refkind="member"><highlight class="normal">std::optional&lt;Program&lt;T&gt;&gt;<sp/><ref refid="d0/d24/namespacevariation_1a3ceab1ae0c739084852ef04ebda17d6a" kindref="member">mutate</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>Program&lt;T&gt;&amp;<sp/>parent,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>SearchSpace&amp;<sp/><ref refid="dc/d5c/namespaceBrush_1ae41500fed38676f34a4d476a992d585d" kindref="member">SS</ref>)</highlight></codeline>
-<codeline lineno="224"><highlight class="normal">{</highlight></codeline>
-<codeline lineno="225"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>all<sp/>mutation<sp/>validation<sp/>and<sp/>setup<sp/>should<sp/>be<sp/>done<sp/>here.<sp/>Specific<sp/>mutaiton</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="226"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>functions<sp/>are<sp/>intended<sp/>to<sp/>work<sp/>on<sp/>the<sp/>program<sp/>tree<sp/>thus<sp/>cannot<sp/>access</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="227"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>program<sp/>functions<sp/>and<sp/>attributes.</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="228"><highlight class="normal"><sp/><sp/><sp/><sp/>Program&lt;T&gt;<sp/>child(parent);</highlight></codeline>
-<codeline lineno="229"><highlight class="normal"></highlight></codeline>
-<codeline lineno="230"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>choose<sp/>location<sp/>by<sp/>weighted<sp/>sampling<sp/>of<sp/>program</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="231"><highlight class="normal"><sp/><sp/><sp/><sp/>vector&lt;float&gt;<sp/><ref refid="d7/d6b/namespaceBrush_1_1util_1ac363bc4b5411446ecf3133267c59cf5e" kindref="member">weights</ref>(child.Tree.size());</highlight></codeline>
-<codeline lineno="232"><highlight class="normal"><sp/><sp/><sp/><sp/>std::transform(child.Tree.begin(),<sp/>child.Tree.end(),<sp/></highlight></codeline>
-<codeline lineno="233"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="d7/d6b/namespaceBrush_1_1util_1ac363bc4b5411446ecf3133267c59cf5e" kindref="member">weights</ref>.begin(),</highlight></codeline>
-<codeline lineno="234"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>[](</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal">&amp;<sp/>n){<sp/>return<sp/>n.get_prob_change();<sp/>}</highlight></codeline>
-<codeline lineno="235"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>);</highlight></codeline>
-<codeline lineno="236"><highlight class="normal"></highlight></codeline>
-<codeline lineno="237"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/>options<sp/>=<sp/><ref refid="dc/d5c/namespaceBrush_1a9c6fb4b74a0a8a8fd047a49f3c9e2283" kindref="member">PARAMS</ref>[</highlight><highlight class="stringliteral">&quot;mutation_options&quot;</highlight><highlight class="normal">].get&lt;std::map&lt;string,float&gt;&gt;();</highlight></codeline>
-<codeline lineno="238"><highlight class="normal"></highlight></codeline>
-<codeline lineno="239"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(std::all_of(<ref refid="d7/d6b/namespaceBrush_1_1util_1ac363bc4b5411446ecf3133267c59cf5e" kindref="member">weights</ref>.begin(),<sp/><ref refid="d7/d6b/namespaceBrush_1_1util_1ac363bc4b5411446ecf3133267c59cf5e" kindref="member">weights</ref>.end(),<sp/>[](</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal">&amp;<sp/>w)<sp/>{</highlight></codeline>
-<codeline lineno="240"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>return<sp/>w&lt;=0.0;</highlight></codeline>
-<codeline lineno="241"><highlight class="normal"><sp/><sp/><sp/><sp/>}))</highlight></codeline>
-<codeline lineno="242"><highlight class="normal"><sp/><sp/><sp/><sp/>{<sp/></highlight><highlight class="comment">//<sp/>There<sp/>is<sp/>no<sp/>spot<sp/>that<sp/>has<sp/>a<sp/>probability<sp/>to<sp/>be<sp/>selected</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="243"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>std::nullopt;</highlight></codeline>
-<codeline lineno="244"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
-<codeline lineno="245"><highlight class="normal"></highlight></codeline>
-<codeline lineno="246"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/>spot<sp/>=<sp/><ref refid="d6/d2e/namespaceBrush_1_1Util_1af7dd70e54015821d96e3a1afed6344ca" kindref="member">r</ref>.<ref refid="d2/d2d/classBrush_1_1Util_1_1Rnd_1a9f0fe39c1fd498b378c8d4abe7b9d71b" kindref="member">select_randomly</ref>(child.Tree.begin(),<sp/>child.Tree.end(),<sp/></highlight></codeline>
-<codeline lineno="247"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="d7/d6b/namespaceBrush_1_1util_1ac363bc4b5411446ecf3133267c59cf5e" kindref="member">weights</ref>.begin(),<sp/><ref refid="d7/d6b/namespaceBrush_1_1util_1ac363bc4b5411446ecf3133267c59cf5e" kindref="member">weights</ref>.end());</highlight></codeline>
-<codeline lineno="248"><highlight class="normal"></highlight></codeline>
-<codeline lineno="249"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(std::all_of(options.begin(),<sp/>options.end(),<sp/>[](</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal">&amp;<sp/>kv)<sp/>{</highlight></codeline>
-<codeline lineno="250"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>return<sp/>kv.second&lt;=0.0;</highlight></codeline>
-<codeline lineno="251"><highlight class="normal"><sp/><sp/><sp/><sp/>}))</highlight></codeline>
-<codeline lineno="252"><highlight class="normal"><sp/><sp/><sp/><sp/>{<sp/></highlight><highlight class="comment">//<sp/>No<sp/>mutation<sp/>can<sp/>be<sp/>successfully<sp/>applied<sp/>to<sp/>this<sp/>solution<sp/><sp/></highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="253"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>std::nullopt;</highlight></codeline>
-<codeline lineno="254"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
-<codeline lineno="255"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
-<codeline lineno="256"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>choose<sp/>a<sp/>valid<sp/>mutation<sp/>option</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="257"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">string</highlight><highlight class="normal"><sp/>choice<sp/>=<sp/><ref refid="d6/d2e/namespaceBrush_1_1Util_1af7dd70e54015821d96e3a1afed6344ca" kindref="member">r</ref>.<ref refid="d2/d2d/classBrush_1_1Util_1_1Rnd_1a18656ce513329b1c672f6ee15ab281b7" kindref="member">random_choice</ref>(options);</highlight></codeline>
-<codeline lineno="258"><highlight class="normal"></highlight></codeline>
-<codeline lineno="259"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>std::cout<sp/>&lt;&lt;<sp/>&quot;mutation<sp/>configuration<sp/>(choice<sp/>was<sp/>&quot;<sp/>&lt;&lt;<sp/>choice<sp/>&lt;&lt;<sp/>&quot;):&quot;<sp/>&lt;&lt;<sp/>std::endl;</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="260"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>for<sp/>(const<sp/>auto&amp;<sp/>[k,<sp/>v]<sp/>:<sp/>options)</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="261"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/><sp/><sp/><sp/><sp/>std::cout<sp/>&lt;&lt;<sp/>&quot;<sp/>-<sp/>&quot;<sp/>&lt;&lt;<sp/>k<sp/>&lt;&lt;<sp/>&quot;<sp/>:<sp/>&quot;<sp/>&lt;&lt;<sp/>v<sp/>&lt;&lt;<sp/>std::endl;</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="262"><highlight class="normal"></highlight></codeline>
-<codeline lineno="263"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Every<sp/>mutation<sp/>here<sp/>works<sp/>inplace,<sp/>so<sp/>they<sp/>return<sp/>bool<sp/>instead<sp/>of</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="264"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>std::optional<sp/>to<sp/>indicare<sp/>the<sp/>result<sp/>of<sp/>their<sp/>manipulation<sp/>over<sp/>the</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="265"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>program<sp/>tree.<sp/>Here<sp/>we<sp/>call<sp/>the<sp/>mutation<sp/>function<sp/>and<sp/>return<sp/>the<sp/>result</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="266"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">using</highlight><highlight class="normal"><sp/>MutationFunc<sp/>=<sp/>std::function&lt;bool(tree&lt;Node&gt;&amp;,<sp/><ref refid="d0/d24/namespacevariation_1ace95ad8220efc40e8d89096ce61e6e60" kindref="member">Iter</ref>,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>SearchSpace&amp;)&gt;;</highlight></codeline>
-<codeline lineno="267"><highlight class="normal"></highlight></codeline>
-<codeline lineno="268"><highlight class="normal"><sp/><sp/><sp/><sp/>std::map&lt;std::string,<sp/>MutationFunc&gt;<sp/>mutations{</highlight></codeline>
-<codeline lineno="269"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight><highlight class="stringliteral">&quot;insert&quot;</highlight><highlight class="normal">,<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="d0/d24/namespacevariation_1ad562aad1d00786b26a704f6b8db751c9" kindref="member">insert_mutation</ref>},</highlight></codeline>
-<codeline lineno="270"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight><highlight class="stringliteral">&quot;delete&quot;</highlight><highlight class="normal">,<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="d0/d24/namespacevariation_1a3f1ae4f750d7368932dae8e9b8fb7d20" kindref="member">delete_mutation</ref>},</highlight></codeline>
-<codeline lineno="271"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight><highlight class="stringliteral">&quot;point&quot;</highlight><highlight class="normal">,<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="d0/d24/namespacevariation_1a170515efe6144a099812fc284c2ae10b" kindref="member">point_mutation</ref>},</highlight></codeline>
-<codeline lineno="272"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight><highlight class="stringliteral">&quot;subtree&quot;</highlight><highlight class="normal">,<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="d0/d24/namespacevariation_1ab3c6b50b00987b9b8f4a9ca98606860e" kindref="member">subtree_mutation</ref>},</highlight></codeline>
-<codeline lineno="273"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight><highlight class="stringliteral">&quot;toggle_weight_on&quot;</highlight><highlight class="normal">,<sp/><sp/><ref refid="d0/d24/namespacevariation_1ae0d980dfd1c64597731f9cdde45e90b4" kindref="member">toggle_weight_on_mutation</ref>},</highlight></codeline>
-<codeline lineno="274"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight><highlight class="stringliteral">&quot;toggle_weight_off&quot;</highlight><highlight class="normal">,<sp/><ref refid="d0/d24/namespacevariation_1afce849d082df7c278e5115ba64dd73ea" kindref="member">toggle_weight_off_mutation</ref>}</highlight></codeline>
-<codeline lineno="275"><highlight class="normal"><sp/><sp/><sp/><sp/>};</highlight></codeline>
-<codeline lineno="276"><highlight class="normal"></highlight></codeline>
-<codeline lineno="277"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Try<sp/>to<sp/>find<sp/>the<sp/>mutation<sp/>function<sp/>based<sp/>on<sp/>the<sp/>choice</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="278"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/>it<sp/>=<sp/>mutations.find(choice);</highlight></codeline>
-<codeline lineno="279"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(it<sp/>==<sp/>mutations.end())<sp/>{</highlight></codeline>
-<codeline lineno="280"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>std::string<sp/>msg<sp/>=<sp/>fmt::format(</highlight><highlight class="stringliteral">&quot;{}<sp/>not<sp/>a<sp/>valid<sp/>mutation<sp/>choice&quot;</highlight><highlight class="normal">,<sp/>choice);</highlight></codeline>
-<codeline lineno="281"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="da/d41/error_8h_1aa4c550bcd71e4ec1c97b111e1360509a" kindref="member">HANDLE_ERROR_THROW</ref>(msg);</highlight></codeline>
-<codeline lineno="282"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
-<codeline lineno="283"><highlight class="normal"></highlight></codeline>
-<codeline lineno="284"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>apply<sp/>the<sp/>mutation<sp/>and<sp/>check<sp/>if<sp/>it<sp/>succeeded</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="285"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/>success<sp/>=<sp/>it-&gt;second(child.Tree,<sp/>spot,<sp/><ref refid="dc/d5c/namespaceBrush_1ae41500fed38676f34a4d476a992d585d" kindref="member">SS</ref>);</highlight></codeline>
-<codeline lineno="286"><highlight class="normal"></highlight></codeline>
-<codeline lineno="287"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(success</highlight></codeline>
-<codeline lineno="288"><highlight class="normal"><sp/><sp/><sp/><sp/>&amp;&amp;<sp/>(<sp/>(child.size()<sp/><sp/>&lt;=<sp/><ref refid="dc/d5c/namespaceBrush_1a9c6fb4b74a0a8a8fd047a49f3c9e2283" kindref="member">PARAMS</ref>[</highlight><highlight class="stringliteral">&quot;max_size&quot;</highlight><highlight class="normal">].get&lt;</highlight><highlight class="keywordtype">int</highlight><highlight class="normal">&gt;()<sp/>)</highlight></codeline>
-<codeline lineno="289"><highlight class="normal"><sp/><sp/><sp/><sp/>&amp;&amp;<sp/><sp/><sp/>(child.depth()<sp/>&lt;=<sp/><ref refid="dc/d5c/namespaceBrush_1a9c6fb4b74a0a8a8fd047a49f3c9e2283" kindref="member">PARAMS</ref>[</highlight><highlight class="stringliteral">&quot;max_depth&quot;</highlight><highlight class="normal">].get&lt;</highlight><highlight class="keywordtype">int</highlight><highlight class="normal">&gt;())<sp/>)){</highlight></codeline>
-<codeline lineno="290"><highlight class="normal"></highlight></codeline>
-<codeline lineno="291"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>child;</highlight></codeline>
-<codeline lineno="292"><highlight class="normal"><sp/><sp/><sp/><sp/>}<sp/></highlight><highlight class="keywordflow">else</highlight><highlight class="normal"><sp/>{</highlight></codeline>
-<codeline lineno="293"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>std::nullopt;</highlight></codeline>
-<codeline lineno="294"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
-<codeline lineno="295"><highlight class="normal">};</highlight></codeline>
-<codeline lineno="296"><highlight class="normal"></highlight></codeline>
-<codeline lineno="320"><highlight class="normal"></highlight><highlight class="keyword">template</highlight><highlight class="normal">&lt;ProgramType<sp/>T&gt;</highlight></codeline>
-<codeline lineno="321" refid="d0/d24/namespacevariation_1ac31f284c947a66d035b310513f4916c2" refkind="member"><highlight class="normal">std::optional&lt;Program&lt;T&gt;&gt;<sp/><ref refid="d0/d24/namespacevariation_1ac31f284c947a66d035b310513f4916c2" kindref="member">cross</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>Program&lt;T&gt;&amp;<sp/>root,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>Program&lt;T&gt;&amp;<sp/>other)<sp/></highlight></codeline>
-<codeline lineno="322"><highlight class="normal">{</highlight></codeline>
-<codeline lineno="323"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>subtree<sp/>crossover<sp/>between<sp/>this<sp/>and<sp/>other,<sp/>producing<sp/>new<sp/>Program<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="324"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>choose<sp/>location<sp/>by<sp/>weighted<sp/>sampling<sp/>of<sp/>program</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="325"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>TODO:<sp/>why<sp/>doesn&apos;t<sp/>this<sp/>copy<sp/>the<sp/>search<sp/>space<sp/>reference<sp/>to<sp/>child?</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="326"><highlight class="normal"><sp/><sp/><sp/><sp/>Program&lt;T&gt;<sp/>child(root);</highlight></codeline>
-<codeline lineno="327"><highlight class="normal"></highlight></codeline>
-<codeline lineno="328"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>pick<sp/>a<sp/>subtree<sp/>to<sp/>replace</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="329"><highlight class="normal"><sp/><sp/><sp/><sp/>vector&lt;float&gt;<sp/>child_weights(child.Tree.size());</highlight></codeline>
-<codeline lineno="330"><highlight class="normal"><sp/><sp/><sp/><sp/>std::transform(child.Tree.begin(),<sp/>child.Tree.end(),<sp/></highlight></codeline>
-<codeline lineno="331"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>child_weights.begin(),</highlight></codeline>
-<codeline lineno="332"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>[](</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal">&amp;<sp/>n){<sp/>return<sp/>n.get_prob_change();<sp/>}</highlight></codeline>
-<codeline lineno="333"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>);</highlight></codeline>
-<codeline lineno="334"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
-<codeline lineno="335"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(std::all_of(child_weights.begin(),<sp/>child_weights.end(),<sp/>[](</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal">&amp;<sp/>w)<sp/>{</highlight></codeline>
-<codeline lineno="336"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>return<sp/>w&lt;=0.0;</highlight></codeline>
-<codeline lineno="337"><highlight class="normal"><sp/><sp/><sp/><sp/>}))</highlight></codeline>
-<codeline lineno="338"><highlight class="normal"><sp/><sp/><sp/><sp/>{<sp/></highlight><highlight class="comment">//<sp/>There<sp/>is<sp/>no<sp/>spot<sp/>that<sp/>has<sp/>a<sp/>probability<sp/>to<sp/>be<sp/>selected</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="339"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>std::nullopt;</highlight></codeline>
-<codeline lineno="340"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
-<codeline lineno="341"><highlight class="normal"></highlight></codeline>
-<codeline lineno="342"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/>child_spot<sp/>=<sp/><ref refid="d6/d2e/namespaceBrush_1_1Util_1af7dd70e54015821d96e3a1afed6344ca" kindref="member">r</ref>.<ref refid="d2/d2d/classBrush_1_1Util_1_1Rnd_1a9f0fe39c1fd498b378c8d4abe7b9d71b" kindref="member">select_randomly</ref>(child.Tree.begin(),<sp/></highlight></codeline>
-<codeline lineno="343"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>child.Tree.end(),<sp/></highlight></codeline>
-<codeline lineno="344"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>child_weights.begin(),<sp/></highlight></codeline>
-<codeline lineno="345"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>child_weights.end()</highlight></codeline>
-<codeline lineno="346"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>);</highlight></codeline>
-<codeline lineno="347"><highlight class="normal"></highlight></codeline>
-<codeline lineno="348"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/>child_ret_type<sp/>=<sp/>child_spot.node-&gt;data.ret_type;</highlight></codeline>
-<codeline lineno="349"><highlight class="normal"></highlight></codeline>
-<codeline lineno="350"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/>allowed_size<sp/><sp/>=<sp/><ref refid="dc/d5c/namespaceBrush_1a9c6fb4b74a0a8a8fd047a49f3c9e2283" kindref="member">PARAMS</ref>[</highlight><highlight class="stringliteral">&quot;max_size&quot;</highlight><highlight class="normal">].get&lt;</highlight><highlight class="keywordtype">int</highlight><highlight class="normal">&gt;()<sp/>-</highlight></codeline>
-<codeline lineno="351"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>(<sp/>child.size()<sp/>-<sp/>child.size_at(child_spot)<sp/>);</highlight></codeline>
-<codeline lineno="352"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/>allowed_depth<sp/>=<sp/><ref refid="dc/d5c/namespaceBrush_1a9c6fb4b74a0a8a8fd047a49f3c9e2283" kindref="member">PARAMS</ref>[</highlight><highlight class="stringliteral">&quot;max_depth&quot;</highlight><highlight class="normal">].get&lt;</highlight><highlight class="keywordtype">int</highlight><highlight class="normal">&gt;()<sp/>-<sp/></highlight></codeline>
-<codeline lineno="353"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>(<sp/>child.depth_to_reach(child_spot)<sp/>);</highlight></codeline>
-<codeline lineno="354"><highlight class="normal"></highlight></codeline>
-<codeline lineno="355"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>pick<sp/>a<sp/>subtree<sp/>to<sp/>insert.<sp/>Selection<sp/>is<sp/>based<sp/>on<sp/>other_weights</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="356"><highlight class="normal"><sp/><sp/><sp/><sp/>vector&lt;float&gt;<sp/>other_weights(other.Tree.size());</highlight></codeline>
-<codeline lineno="357"><highlight class="normal"></highlight></codeline>
-<codeline lineno="358"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>iterator<sp/>to<sp/>get<sp/>the<sp/>size<sp/>of<sp/>subtrees<sp/>inside<sp/>transform</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="359"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/>other_iter<sp/>=<sp/>other.Tree.begin();</highlight></codeline>
-<codeline lineno="360"><highlight class="normal"></highlight></codeline>
-<codeline lineno="361"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>lambda<sp/>function<sp/>to<sp/>check<sp/>feasibility<sp/>of<sp/>solution<sp/>and<sp/>increment<sp/>the<sp/>iterator<sp/></highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="362"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/>check_and_incrm<sp/>=<sp/>[other,<sp/>&amp;other_iter,<sp/>allowed_size,<sp/>allowed_depth]()<sp/>-&gt;<sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/>{</highlight></codeline>
-<codeline lineno="363"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>s<sp/>=<sp/>other.size_at(<sp/>other_iter<sp/>);</highlight></codeline>
-<codeline lineno="364"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>d<sp/>=<sp/>other.depth_at(<sp/>other_iter<sp/>);</highlight></codeline>
-<codeline lineno="365"><highlight class="normal"></highlight></codeline>
-<codeline lineno="366"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>std::advance(other_iter,<sp/>1);</highlight></codeline>
-<codeline lineno="367"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>(s<sp/>&lt;=<sp/>allowed_size)<sp/>&amp;&amp;<sp/>(d<sp/>&lt;=<sp/>allowed_depth);</highlight></codeline>
-<codeline lineno="368"><highlight class="normal"><sp/><sp/><sp/><sp/>};</highlight></codeline>
-<codeline lineno="369"><highlight class="normal"></highlight></codeline>
-<codeline lineno="370"><highlight class="normal"><sp/><sp/><sp/><sp/>std::transform(other.Tree.begin(),<sp/>other.Tree.end(),<sp/></highlight></codeline>
-<codeline lineno="371"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>other_weights.begin(),</highlight></codeline>
-<codeline lineno="372"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>[child_ret_type,<sp/>check_and_incrm](</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal">&amp;<sp/>n){</highlight></codeline>
-<codeline lineno="373"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>need<sp/>to<sp/>pick<sp/>a<sp/>node<sp/>that<sp/>has<sp/>a<sp/>matching<sp/>output<sp/>type<sp/>to<sp/>the<sp/>child_spot.</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="374"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>also<sp/>need<sp/>to<sp/>check<sp/>if<sp/>swaping<sp/>this<sp/>node<sp/>wouldn&apos;t<sp/>exceed<sp/>max_size</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="375"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>if<sp/>(check_and_incrm()<sp/>&amp;&amp;<sp/>(n.ret_type<sp/>==<sp/>child_ret_type))</highlight></codeline>
-<codeline lineno="376"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>return<sp/>n.get_prob_change();<sp/></highlight></codeline>
-<codeline lineno="377"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>else</highlight></codeline>
-<codeline lineno="378"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>setting<sp/>the<sp/>weight<sp/>to<sp/>zero<sp/>to<sp/>indicate<sp/>a<sp/>non-feasible<sp/>crossover<sp/>point</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="379"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>return<sp/>float(0.0);</highlight></codeline>
-<codeline lineno="380"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
-<codeline lineno="381"><highlight class="normal"><sp/><sp/><sp/><sp/>);</highlight></codeline>
-<codeline lineno="382"><highlight class="normal"></highlight></codeline>
-<codeline lineno="383"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/>matching_spots_found<sp/>=<sp/></highlight><highlight class="keyword">false</highlight><highlight class="normal">;</highlight></codeline>
-<codeline lineno="384"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal">&amp;<sp/>w:<sp/>other_weights)</highlight></codeline>
-<codeline lineno="385"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
-<codeline lineno="386"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>matching_spots_found<sp/>=<sp/>w<sp/>&gt;<sp/>0.0;</highlight></codeline>
-<codeline lineno="387"><highlight class="normal"></highlight></codeline>
-<codeline lineno="388"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(matching_spots_found)<sp/>{</highlight></codeline>
-<codeline lineno="389"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/>other_spot<sp/>=<sp/><ref refid="d6/d2e/namespaceBrush_1_1Util_1af7dd70e54015821d96e3a1afed6344ca" kindref="member">r</ref>.<ref refid="d2/d2d/classBrush_1_1Util_1_1Rnd_1a9f0fe39c1fd498b378c8d4abe7b9d71b" kindref="member">select_randomly</ref>(</highlight></codeline>
-<codeline lineno="390"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>other.Tree.begin(),<sp/></highlight></codeline>
-<codeline lineno="391"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>other.Tree.end(),<sp/></highlight></codeline>
-<codeline lineno="392"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>other_weights.begin(),<sp/></highlight></codeline>
-<codeline lineno="393"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>other_weights.end()</highlight></codeline>
-<codeline lineno="394"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>);</highlight></codeline>
-<codeline lineno="395"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
-<codeline lineno="396"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>fmt::print(&quot;other_spot<sp/>:<sp/>{}\n&quot;,other_spot.node-&gt;data);</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="397"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>swap<sp/>subtrees<sp/>at<sp/>child_spot<sp/>and<sp/>other_spot</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="398"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>child.Tree.move_ontop(child_spot,<sp/>other_spot);</highlight></codeline>
-<codeline lineno="399"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>child;</highlight></codeline>
-<codeline lineno="400"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
-<codeline lineno="401"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
-<codeline lineno="402"><highlight class="normal"></highlight></codeline>
-<codeline lineno="403"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>std::nullopt;</highlight></codeline>
-<codeline lineno="404"><highlight class="normal">};</highlight></codeline>
-<codeline lineno="405"><highlight class="normal">}<sp/></highlight><highlight class="comment">//namespace<sp/>variation</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="406"><highlight class="normal"></highlight><highlight class="preprocessor">#endif</highlight></codeline>
+<codeline lineno="32"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>by<sp/>default,<sp/>mutation<sp/>can<sp/>happen<sp/>anywhere,<sp/>based<sp/>on<sp/>node<sp/>weights</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="33"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>std::transform(Tree.begin(),<sp/>Tree.end(),<sp/>weights.begin(),</highlight></codeline>
+<codeline lineno="34"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>[&amp;](</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal">&amp;<sp/><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">n</ref>){<sp/>return<sp/>n.get_prob_change();});</highlight></codeline>
+<codeline lineno="35"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="36"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Should<sp/>have<sp/>same<sp/>size<sp/>as<sp/>prog.Tree.size,<sp/>even<sp/>if<sp/>all<sp/>weights<sp/>&lt;=<sp/>0.0</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="37"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>weights;</highlight></codeline>
+<codeline lineno="38"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="39"><highlight class="normal"></highlight></codeline>
+<codeline lineno="40" refid="d0/dec/classBrush_1_1Var_1_1MutationBase_1aa62474cdb46944f81fd0921dcaddaa02" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/><ref refid="d0/dec/classBrush_1_1Var_1_1MutationBase_1aa62474cdb46944f81fd0921dcaddaa02" kindref="member">mutate</ref>(<ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">tree&lt;Node&gt;</ref>&amp;<sp/>Tree,<sp/><ref refid="d0/dec/classBrush_1_1Var_1_1MutationBase_1a4cacb44817dc1e054fca562d703de50c" kindref="member">Iter</ref><sp/><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">spot</ref>,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="d4/dc3/structBrush_1_1SearchSpace" kindref="compound">SearchSpace</ref>&amp;<sp/><ref refid="dc/d5c/namespaceBrush_1ae41500fed38676f34a4d476a992d585d" kindref="member">SS</ref>,</highlight></codeline>
+<codeline lineno="41"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="de/deb/structBrush_1_1Parameters" kindref="compound">Parameters</ref>&amp;<sp/>params);</highlight></codeline>
+<codeline lineno="42"><highlight class="normal">};</highlight></codeline>
+<codeline lineno="43"><highlight class="normal"></highlight></codeline>
+<codeline lineno="52"><highlight class="normal"></highlight><highlight class="keyword">template</highlight><highlight class="normal">&lt;ProgramType<sp/>T&gt;</highlight></codeline>
+<codeline lineno="53" refid="d5/d14/classBrush_1_1Var_1_1Variation" refkind="compound"><highlight class="normal"></highlight><highlight class="keyword">class<sp/></highlight><highlight class="normal"><ref refid="d5/d14/classBrush_1_1Var_1_1Variation" kindref="compound">Variation</ref><sp/>{</highlight></codeline>
+<codeline lineno="54"><highlight class="normal"></highlight><highlight class="keyword">public</highlight><highlight class="normal">:</highlight></codeline>
+<codeline lineno="58" refid="d5/d14/classBrush_1_1Var_1_1Variation_1a3df7d1814f29d5073fccce5a4c59311c" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="d5/d14/classBrush_1_1Var_1_1Variation_1a3df7d1814f29d5073fccce5a4c59311c" kindref="member">Variation</ref>()<sp/>=<sp/></highlight><highlight class="keywordflow">default</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="59"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="66" refid="d5/d14/classBrush_1_1Var_1_1Variation_1adb0d1a96dcccf09834f7bfc266a535b2" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="d5/d14/classBrush_1_1Var_1_1Variation_1adb0d1a96dcccf09834f7bfc266a535b2" kindref="member">Variation</ref>(<ref refid="de/deb/structBrush_1_1Parameters" kindref="compound">Parameters</ref>&amp;<sp/>params,<sp/><ref refid="d4/dc3/structBrush_1_1SearchSpace" kindref="compound">SearchSpace</ref>&amp;<sp/>ss)</highlight></codeline>
+<codeline lineno="67"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>:<sp/><ref refid="d5/d14/classBrush_1_1Var_1_1Variation_1adae97420f4b1ac89a28903fc473c9f57" kindref="member">parameters</ref>(params)</highlight></codeline>
+<codeline lineno="68"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>,<sp/><ref refid="d5/d14/classBrush_1_1Var_1_1Variation_1a656380481257dd8f03ceebcb07f0019f" kindref="member">search_space</ref>(ss)</highlight></codeline>
+<codeline lineno="69"><highlight class="normal"><sp/><sp/><sp/><sp/>{};</highlight></codeline>
+<codeline lineno="70"><highlight class="normal"></highlight></codeline>
+<codeline lineno="74" refid="d5/d14/classBrush_1_1Var_1_1Variation_1a68dde038b2d0554791ee4a8da2f7e623" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="d5/d14/classBrush_1_1Var_1_1Variation_1a68dde038b2d0554791ee4a8da2f7e623" kindref="member">~Variation</ref>()<sp/>{};</highlight></codeline>
+<codeline lineno="75"><highlight class="normal"></highlight></codeline>
+<codeline lineno="82" refid="d5/d14/classBrush_1_1Var_1_1Variation_1aab1cc3b5be6c321b56d4af61c7466f2b" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="d5/d14/classBrush_1_1Var_1_1Variation_1aab1cc3b5be6c321b56d4af61c7466f2b" kindref="member">init</ref>(<ref refid="de/deb/structBrush_1_1Parameters" kindref="compound">Parameters</ref>&amp;<sp/>params,<sp/><ref refid="d4/dc3/structBrush_1_1SearchSpace" kindref="compound">SearchSpace</ref>&amp;<sp/>ss){</highlight></codeline>
+<codeline lineno="83"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>this-&gt;<ref refid="d5/d14/classBrush_1_1Var_1_1Variation_1adae97420f4b1ac89a28903fc473c9f57" kindref="member">parameters</ref><sp/>=<sp/>params;</highlight></codeline>
+<codeline lineno="84"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>this-&gt;<ref refid="d5/d14/classBrush_1_1Var_1_1Variation_1a656380481257dd8f03ceebcb07f0019f" kindref="member">search_space</ref><sp/>=<sp/>ss;</highlight></codeline>
+<codeline lineno="85"><highlight class="normal"><sp/><sp/><sp/><sp/>};</highlight></codeline>
+<codeline lineno="86"><highlight class="normal"></highlight></codeline>
+<codeline lineno="95"><highlight class="normal"><sp/><sp/><sp/><sp/>std::optional&lt;Individual&lt;T&gt;&gt;<sp/><ref refid="d5/d14/classBrush_1_1Var_1_1Variation_1acf7d5d1c0d6a102eec277180dce590fe" kindref="member">cross</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="de/d83/classBrush_1_1Pop_1_1Individual" kindref="compound">Individual&lt;T&gt;</ref>&amp;<sp/><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">mom</ref>,</highlight></codeline>
+<codeline lineno="96"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="de/d83/classBrush_1_1Pop_1_1Individual" kindref="compound">Individual&lt;T&gt;</ref>&amp;<sp/><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">dad</ref>);</highlight></codeline>
+<codeline lineno="97"><highlight class="normal"></highlight></codeline>
+<codeline lineno="105"><highlight class="normal"><sp/><sp/><sp/><sp/>std::optional&lt;Individual&lt;T&gt;&gt;<sp/><ref refid="d5/d14/classBrush_1_1Var_1_1Variation_1a024e971b0f8685c89d119c0af484284a" kindref="member">mutate</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="de/d83/classBrush_1_1Pop_1_1Individual" kindref="compound">Individual&lt;T&gt;</ref>&amp;<sp/>parent);</highlight></codeline>
+<codeline lineno="106"><highlight class="normal"></highlight></codeline>
+<codeline lineno="115"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="d5/d14/classBrush_1_1Var_1_1Variation_1a344233ce053ca4b267539182fecbbc91" kindref="member">vary</ref>(<ref refid="da/da3/classBrush_1_1Pop_1_1Population" kindref="compound">Population&lt;T&gt;</ref>&amp;<sp/>pop,<sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">island</ref>,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>vector&lt;size_t&gt;&amp;<sp/><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">parents</ref>);</highlight></codeline>
+<codeline lineno="116"><highlight class="normal"></highlight></codeline>
+<codeline lineno="117"><highlight class="normal"></highlight><highlight class="keyword">private</highlight><highlight class="normal">:</highlight></codeline>
+<codeline lineno="118" refid="d5/d14/classBrush_1_1Var_1_1Variation_1a656380481257dd8f03ceebcb07f0019f" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="d4/dc3/structBrush_1_1SearchSpace" kindref="compound">SearchSpace</ref><sp/><ref refid="d5/d14/classBrush_1_1Var_1_1Variation_1a656380481257dd8f03ceebcb07f0019f" kindref="member">search_space</ref>;<sp/></highlight><highlight class="comment">//<sp/>The<sp/>search<sp/>space<sp/>for<sp/>the<sp/>variation<sp/>operator.</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="119" refid="d5/d14/classBrush_1_1Var_1_1Variation_1adae97420f4b1ac89a28903fc473c9f57" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="de/deb/structBrush_1_1Parameters" kindref="compound">Parameters</ref><sp/><ref refid="d5/d14/classBrush_1_1Var_1_1Variation_1adae97420f4b1ac89a28903fc473c9f57" kindref="member">parameters</ref>;<sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>The<sp/>parameters<sp/>for<sp/>the<sp/>variation<sp/>operator</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="120"><highlight class="normal">};</highlight></codeline>
+<codeline lineno="121"><highlight class="normal"></highlight></codeline>
+<codeline lineno="122"><highlight class="normal">}<sp/></highlight><highlight class="comment">//namespace<sp/>Var</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="123"><highlight class="normal">}<sp/></highlight><highlight class="comment">//namespace<sp/>Brush</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="124"><highlight class="normal"></highlight><highlight class="preprocessor">#endif</highlight></codeline>
     </programlisting>
-    <location file="/home/runner/work/brush/brush/src/variation.h"/>
+    <location file="/home/runner/work/brush/brush/src/vary/variation.h"/>
   </compounddef>
 </doxygen>

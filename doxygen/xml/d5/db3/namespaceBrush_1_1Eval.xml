@@ -1,0 +1,413 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.10.0" xml:lang="en-US">
+  <compounddef id="d5/db3/namespaceBrush_1_1Eval" kind="namespace" language="C++">
+    <compoundname>Brush::Eval</compoundname>
+    <innerclass refid="d1/de5/classBrush_1_1Eval_1_1Evaluation" prot="public">Brush::Eval::Evaluation</innerclass>
+    <innerclass refid="da/d4c/classBrush_1_1Eval_1_1Scorer" prot="public">Brush::Eval::Scorer</innerclass>
+    <innerclass refid="d1/d73/classBrush_1_1Eval_1_1Scorer_3_01P_01_4" prot="public">Brush::Eval::Scorer&lt; P &gt;</innerclass>
+    <sectiondef kind="func">
+      <memberdef kind="function" id="d5/db3/namespaceBrush_1_1Eval_1a4966de42610a227a10447790a79b0e60" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">float</ref></type>
+        <definition>float Brush::Eval::mse</definition>
+        <argsstring>(const VectorXf &amp;y, const VectorXf &amp;yhat, VectorXf &amp;loss, const vector&lt; float &gt; &amp;class_weights)</argsstring>
+        <name>mse</name>
+        <qualifiedname>Brush::Eval::mse</qualifiedname>
+        <param>
+          <type><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">const</ref> VectorXf &amp;</type>
+          <declname>y</declname>
+        </param>
+        <param>
+          <type><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">const</ref> VectorXf &amp;</type>
+          <declname>yhat</declname>
+        </param>
+        <param>
+          <type>VectorXf &amp;</type>
+          <declname>loss</declname>
+        </param>
+        <param>
+          <type><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">const</ref> vector&lt; <ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">float</ref> &gt; &amp;</type>
+          <declname>class_weights</declname>
+          <defval>vector&lt; <ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">float</ref> &gt;()</defval>
+        </param>
+        <briefdescription>
+<para>mean squared error </para>
+        </briefdescription>
+        <detaileddescription>
+<para>Calculates the mean squared error between the predicted values and the true values.</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>y</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The true values. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>yhat</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The predicted values. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>loss</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Reference to store the calculated losses for each sample. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>class_weights</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The optional class weights (not used for MSE). </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>The mean squared error. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/runner/work/brush/brush/src/eval/metrics.cpp" line="9" column="7" bodyfile="/home/runner/work/brush/brush/src/eval/metrics.cpp" bodystart="9" bodyend="14" declfile="/home/runner/work/brush/brush/src/eval/metrics.h" declline="25" declcolumn="7"/>
+        <references refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" compoundref="d4/d93/bind__engines_8h" startline="35" endline="104">bind_engine</references>
+        <referencedby refid="da/d4c/classBrush_1_1Eval_1_1Scorer_1ad88baa386d47e6464c130f0da3858325" compoundref="da/d3b/scorer_8h" startline="35" endline="39">Brush::Eval::Scorer&lt; P &gt;::Scorer</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="d5/db3/namespaceBrush_1_1Eval_1ab4118142943e05c08bdd5e5ad62d9127" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>VectorXf</type>
+        <definition>VectorXf Brush::Eval::log_loss</definition>
+        <argsstring>(const VectorXf &amp;y, const VectorXf &amp;predict_proba, const vector&lt; float &gt; &amp;class_weights=vector&lt; float &gt;())</argsstring>
+        <name>log_loss</name>
+        <qualifiedname>Brush::Eval::log_loss</qualifiedname>
+        <param>
+          <type><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">const</ref> VectorXf &amp;</type>
+          <declname>y</declname>
+        </param>
+        <param>
+          <type><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">const</ref> VectorXf &amp;</type>
+          <declname>predict_proba</declname>
+        </param>
+        <param>
+          <type><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">const</ref> vector&lt; <ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">float</ref> &gt; &amp;</type>
+          <declname>class_weights</declname>
+          <defval>vector&lt; <ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">float</ref> &gt;()</defval>
+        </param>
+        <briefdescription>
+<para>Calculates the log loss between the predicted probabilities and the true labels. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>y</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The true labels. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>predict_proba</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The predicted probabilities. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>class_weights</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The optional class weights. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>The log loss. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/runner/work/brush/brush/src/eval/metrics.cpp" line="16" column="10" bodyfile="/home/runner/work/brush/brush/src/eval/metrics.cpp" bodystart="16" bodyend="48" declfile="/home/runner/work/brush/brush/src/eval/metrics.h" declline="37" declcolumn="10"/>
+        <references refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" compoundref="d4/d93/bind__engines_8h" startline="35" endline="104">bind_engine</references>
+        <referencedby refid="d5/db3/namespaceBrush_1_1Eval_1a25e5d4e34f1e2789da6c67cb96146fad" compoundref="dd/da2/metrics_8cpp" startline="51" endline="57">mean_log_loss</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="d5/db3/namespaceBrush_1_1Eval_1a25e5d4e34f1e2789da6c67cb96146fad" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">float</ref></type>
+        <definition>float Brush::Eval::mean_log_loss</definition>
+        <argsstring>(const VectorXf &amp;y, const VectorXf &amp;predict_proba, VectorXf &amp;loss, const vector&lt; float &gt; &amp;class_weights)</argsstring>
+        <name>mean_log_loss</name>
+        <qualifiedname>Brush::Eval::mean_log_loss</qualifiedname>
+        <param>
+          <type><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">const</ref> VectorXf &amp;</type>
+          <declname>y</declname>
+        </param>
+        <param>
+          <type><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">const</ref> VectorXf &amp;</type>
+          <declname>predict_proba</declname>
+        </param>
+        <param>
+          <type>VectorXf &amp;</type>
+          <declname>loss</declname>
+        </param>
+        <param>
+          <type><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">const</ref> vector&lt; <ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">float</ref> &gt; &amp;</type>
+          <declname>class_weights</declname>
+          <defval>vector&lt; <ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">float</ref> &gt;()</defval>
+        </param>
+        <briefdescription>
+<para>log loss </para>
+        </briefdescription>
+        <detaileddescription>
+<para>Calculates the mean log loss between the predicted probabilities and the true labels.</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>y</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The true labels. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>predict_proba</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The predicted probabilities. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>loss</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Reference to store the calculated losses for each sample. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>class_weights</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The optional class weights. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>The mean log loss. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/runner/work/brush/brush/src/eval/metrics.cpp" line="51" column="7" bodyfile="/home/runner/work/brush/brush/src/eval/metrics.cpp" bodystart="51" bodyend="57" declfile="/home/runner/work/brush/brush/src/eval/metrics.h" declline="48" declcolumn="7"/>
+        <references refid="d5/db3/namespaceBrush_1_1Eval_1ab4118142943e05c08bdd5e5ad62d9127" compoundref="dd/da2/metrics_8cpp" startline="16" endline="48">log_loss</references>
+        <referencedby refid="d1/d73/classBrush_1_1Eval_1_1Scorer_3_01P_01_4_1a77c0fd125d62a7141e413ca7fe9f3c09" compoundref="da/d3b/scorer_8h" startline="89" endline="94">Brush::Eval::Scorer&lt; P &gt;::Scorer</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="d5/db3/namespaceBrush_1_1Eval_1a473e918fd1efdc6d5f91c65cd8ce3db4" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">float</ref></type>
+        <definition>float Brush::Eval::average_precision_score</definition>
+        <argsstring>(const VectorXf &amp;y, const VectorXf &amp;predict_proba, VectorXf &amp;loss, const vector&lt; float &gt; &amp;class_weights=vector&lt; float &gt;())</argsstring>
+        <name>average_precision_score</name>
+        <qualifiedname>Brush::Eval::average_precision_score</qualifiedname>
+        <param>
+          <type><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">const</ref> VectorXf &amp;</type>
+          <declname>y</declname>
+        </param>
+        <param>
+          <type><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">const</ref> VectorXf &amp;</type>
+          <declname>predict_proba</declname>
+        </param>
+        <param>
+          <type>VectorXf &amp;</type>
+          <declname>loss</declname>
+        </param>
+        <param>
+          <type><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">const</ref> vector&lt; <ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">float</ref> &gt; &amp;</type>
+          <declname>class_weights</declname>
+          <defval>vector&lt; <ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">float</ref> &gt;()</defval>
+        </param>
+        <briefdescription>
+<para>Calculates the average precision score between the predicted probabilities and the true labels. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>y</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The true labels. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>predict_proba</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The predicted probabilities. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>loss</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Reference to store the calculated losses for each sample. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>class_weights</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The optional class weights. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>The average precision score. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/runner/work/brush/brush/src/eval/metrics.cpp" line="59" column="7" bodyfile="/home/runner/work/brush/brush/src/eval/metrics.cpp" bodystart="59" bodyend="115" declfile="/home/runner/work/brush/brush/src/eval/metrics.h" declline="59" declcolumn="7"/>
+        <references refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" compoundref="d4/d93/bind__engines_8h" startline="35" endline="104">bind_engine</references>
+        <referencedby refid="d1/d73/classBrush_1_1Eval_1_1Scorer_3_01P_01_4_1a77c0fd125d62a7141e413ca7fe9f3c09" compoundref="da/d3b/scorer_8h" startline="89" endline="94">Brush::Eval::Scorer&lt; P &gt;::Scorer</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="d5/db3/namespaceBrush_1_1Eval_1a547663e116b3500703ca69aaa68831b7" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>VectorXf</type>
+        <definition>VectorXf Brush::Eval::multi_log_loss</definition>
+        <argsstring>(const VectorXf &amp;y, const ArrayXXf &amp;predict_proba, const vector&lt; float &gt; &amp;class_weights=vector&lt; float &gt;())</argsstring>
+        <name>multi_log_loss</name>
+        <qualifiedname>Brush::Eval::multi_log_loss</qualifiedname>
+        <param>
+          <type><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">const</ref> VectorXf &amp;</type>
+          <declname>y</declname>
+        </param>
+        <param>
+          <type><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">const</ref> ArrayXXf &amp;</type>
+          <declname>predict_proba</declname>
+        </param>
+        <param>
+          <type><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">const</ref> vector&lt; <ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">float</ref> &gt; &amp;</type>
+          <declname>class_weights</declname>
+          <defval>vector&lt; <ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">float</ref> &gt;()</defval>
+        </param>
+        <briefdescription>
+<para>Calculates the multinomial log loss between the predicted probabilities and the true labels. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>y</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The true labels. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>predict_proba</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The predicted probabilities. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>class_weights</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The optional class weights. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>The multinomial log loss. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/runner/work/brush/brush/src/eval/metrics.cpp" line="118" column="10" bodyfile="/home/runner/work/brush/brush/src/eval/metrics.cpp" bodystart="118" bodyend="167" declfile="/home/runner/work/brush/brush/src/eval/metrics.h" declline="72" declcolumn="10"/>
+        <referencedby refid="d5/db3/namespaceBrush_1_1Eval_1a44be437c0b947ccb876abd9fd8f38467" compoundref="dd/da2/metrics_8cpp" startline="169" endline="178">mean_multi_log_loss</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="d5/db3/namespaceBrush_1_1Eval_1a44be437c0b947ccb876abd9fd8f38467" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">float</ref></type>
+        <definition>float Brush::Eval::mean_multi_log_loss</definition>
+        <argsstring>(const VectorXf &amp;y, const ArrayXXf &amp;predict_proba, VectorXf &amp;loss, const vector&lt; float &gt; &amp;class_weights=vector&lt; float &gt;())</argsstring>
+        <name>mean_multi_log_loss</name>
+        <qualifiedname>Brush::Eval::mean_multi_log_loss</qualifiedname>
+        <param>
+          <type><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">const</ref> VectorXf &amp;</type>
+          <declname>y</declname>
+        </param>
+        <param>
+          <type><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">const</ref> ArrayXXf &amp;</type>
+          <declname>predict_proba</declname>
+        </param>
+        <param>
+          <type>VectorXf &amp;</type>
+          <declname>loss</declname>
+        </param>
+        <param>
+          <type><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">const</ref> vector&lt; <ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">float</ref> &gt; &amp;</type>
+          <declname>class_weights</declname>
+          <defval>vector&lt; <ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">float</ref> &gt;()</defval>
+        </param>
+        <briefdescription>
+<para>Calculates the mean multinomial log loss between the predicted probabilities and the true labels. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>y</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The true labels. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>predict_proba</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The predicted probabilities. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>loss</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Reference to store the calculated losses for each sample. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>class_weights</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The optional class weights. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>The mean multinomial log loss. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/runner/work/brush/brush/src/eval/metrics.cpp" line="169" column="7" bodyfile="/home/runner/work/brush/brush/src/eval/metrics.cpp" bodystart="169" bodyend="178" declfile="/home/runner/work/brush/brush/src/eval/metrics.h" declline="83" declcolumn="7"/>
+        <references refid="d5/db3/namespaceBrush_1_1Eval_1a547663e116b3500703ca69aaa68831b7" compoundref="dd/da2/metrics_8cpp" startline="118" endline="167">multi_log_loss</references>
+        <referencedby refid="d1/d73/classBrush_1_1Eval_1_1Scorer_3_01P_01_4_1a6157f327b01f05ceb05460ad058e18b6" compoundref="da/d3b/scorer_8h" startline="141" endline="145">Brush::Eval::Scorer&lt; P &gt;::Scorer</referencedby>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="/home/runner/work/brush/brush/src/eval/evaluation.cpp" line="4" column="1"/>
+  </compounddef>
+</doxygen>

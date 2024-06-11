@@ -1,0 +1,548 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.10.0" xml:lang="en-US">
+  <compounddef id="d5/d14/classBrush_1_1Var_1_1Variation" kind="class" language="C++" prot="public">
+    <compoundname>Brush::Var::Variation</compoundname>
+    <includes refid="d4/d1f/variation_8h" local="no">variation.h</includes>
+    <templateparamlist>
+      <param>
+        <type><ref refid="dc/d5c/namespaceBrush_1ae591329af27c88b714d0f92b86276366" kindref="member">ProgramType</ref></type>
+        <declname>T</declname>
+        <defname>T</defname>
+      </param>
+    </templateparamlist>
+    <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="d5/d14/classBrush_1_1Var_1_1Variation_1a656380481257dd8f03ceebcb07f0019f" prot="private" static="no" mutable="no">
+        <type><ref refid="d4/dc3/structBrush_1_1SearchSpace" kindref="compound">SearchSpace</ref></type>
+        <definition>SearchSpace Brush::Var::Variation&lt; T &gt;::search_space</definition>
+        <argsstring></argsstring>
+        <name>search_space</name>
+        <qualifiedname>Brush::Var::Variation::search_space</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/runner/work/brush/brush/src/vary/variation.h" line="118" column="17" bodyfile="/home/runner/work/brush/brush/src/vary/variation.h" bodystart="118" bodyend="-1"/>
+        <referencedby refid="d5/d14/classBrush_1_1Var_1_1Variation_1aab1cc3b5be6c321b56d4af61c7466f2b" compoundref="d4/d1f/variation_8h" startline="82" endline="85">Brush::Var::Variation&lt; T &gt;::init</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="d5/d14/classBrush_1_1Var_1_1Variation_1adae97420f4b1ac89a28903fc473c9f57" prot="private" static="no" mutable="no">
+        <type><ref refid="de/deb/structBrush_1_1Parameters" kindref="compound">Parameters</ref></type>
+        <definition>Parameters Brush::Var::Variation&lt; T &gt;::parameters</definition>
+        <argsstring></argsstring>
+        <name>parameters</name>
+        <qualifiedname>Brush::Var::Variation::parameters</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/runner/work/brush/brush/src/vary/variation.h" line="119" column="16" bodyfile="/home/runner/work/brush/brush/src/vary/variation.h" bodystart="119" bodyend="-1"/>
+        <referencedby refid="d5/d14/classBrush_1_1Var_1_1Variation_1aab1cc3b5be6c321b56d4af61c7466f2b" compoundref="d4/d1f/variation_8h" startline="82" endline="85">Brush::Var::Variation&lt; T &gt;::init</referencedby>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="public-func">
+      <memberdef kind="function" id="d5/d14/classBrush_1_1Var_1_1Variation_1a3df7d1814f29d5073fccce5a4c59311c" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>Brush::Var::Variation&lt; T &gt;::Variation</definition>
+        <argsstring>()=default</argsstring>
+        <name>Variation</name>
+        <qualifiedname>Brush::Var::Variation::Variation</qualifiedname>
+        <briefdescription>
+<para>Default constructor. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/runner/work/brush/brush/src/vary/variation.h" line="58" column="5"/>
+      </memberdef>
+      <memberdef kind="function" id="d5/d14/classBrush_1_1Var_1_1Variation_1adb0d1a96dcccf09834f7bfc266a535b2" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>Brush::Var::Variation&lt; T &gt;::Variation</definition>
+        <argsstring>(Parameters &amp;params, SearchSpace &amp;ss)</argsstring>
+        <name>Variation</name>
+        <qualifiedname>Brush::Var::Variation::Variation</qualifiedname>
+        <param>
+          <type><ref refid="de/deb/structBrush_1_1Parameters" kindref="compound">Parameters</ref> &amp;</type>
+          <declname>params</declname>
+        </param>
+        <param>
+          <type><ref refid="d4/dc3/structBrush_1_1SearchSpace" kindref="compound">SearchSpace</ref> &amp;</type>
+          <declname>ss</declname>
+        </param>
+        <briefdescription>
+<para>Constructor that initializes the <ref refid="d5/d14/classBrush_1_1Var_1_1Variation" kindref="compound">Variation</ref> object with parameters and search space. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>params</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The parameters for the variation operator. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>ss</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The search space for the variation operator. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/runner/work/brush/brush/src/vary/variation.h" line="66" column="5" bodyfile="/home/runner/work/brush/brush/src/vary/variation.h" bodystart="66" bodyend="69"/>
+      </memberdef>
+      <memberdef kind="function" id="d5/d14/classBrush_1_1Var_1_1Variation_1a68dde038b2d0554791ee4a8da2f7e623" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>Brush::Var::Variation&lt; T &gt;::~Variation</definition>
+        <argsstring>()</argsstring>
+        <name>~Variation</name>
+        <qualifiedname>Brush::Var::Variation::~Variation</qualifiedname>
+        <briefdescription>
+<para>Destructor. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/runner/work/brush/brush/src/vary/variation.h" line="74" column="5" bodyfile="/home/runner/work/brush/brush/src/vary/variation.h" bodystart="74" bodyend="74"/>
+      </memberdef>
+      <memberdef kind="function" id="d5/d14/classBrush_1_1Var_1_1Variation_1aab1cc3b5be6c321b56d4af61c7466f2b" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">void</ref></type>
+        <definition>void Brush::Var::Variation&lt; T &gt;::init</definition>
+        <argsstring>(Parameters &amp;params, SearchSpace &amp;ss)</argsstring>
+        <name>init</name>
+        <qualifiedname>Brush::Var::Variation::init</qualifiedname>
+        <param>
+          <type><ref refid="de/deb/structBrush_1_1Parameters" kindref="compound">Parameters</ref> &amp;</type>
+          <declname>params</declname>
+        </param>
+        <param>
+          <type><ref refid="d4/dc3/structBrush_1_1SearchSpace" kindref="compound">SearchSpace</ref> &amp;</type>
+          <declname>ss</declname>
+        </param>
+        <briefdescription>
+<para>Initializes the <ref refid="d5/d14/classBrush_1_1Var_1_1Variation" kindref="compound">Variation</ref> object with parameters and search space. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>params</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The parameters for the variation operator. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>ss</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The search space for the variation operator. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/runner/work/brush/brush/src/vary/variation.h" line="82" column="10" bodyfile="/home/runner/work/brush/brush/src/vary/variation.h" bodystart="82" bodyend="85"/>
+        <references refid="d5/d14/classBrush_1_1Var_1_1Variation_1adae97420f4b1ac89a28903fc473c9f57" compoundref="d4/d1f/variation_8h" startline="119">Brush::Var::Variation&lt; T &gt;::parameters</references>
+        <references refid="d5/d14/classBrush_1_1Var_1_1Variation_1a656380481257dd8f03ceebcb07f0019f" compoundref="d4/d1f/variation_8h" startline="118">Brush::Var::Variation&lt; T &gt;::search_space</references>
+      </memberdef>
+      <memberdef kind="function" id="d5/d14/classBrush_1_1Var_1_1Variation_1acf7d5d1c0d6a102eec277180dce590fe" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>std::optional&lt; <ref refid="de/d83/classBrush_1_1Pop_1_1Individual" kindref="compound">Individual</ref>&lt; T &gt; &gt;</type>
+        <definition>std::optional&lt; Individual&lt; T &gt; &gt; Brush::Var::Variation&lt; T &gt;::cross</definition>
+        <argsstring>(const Individual&lt; T &gt; &amp;mom, const Individual&lt; T &gt; &amp;dad)</argsstring>
+        <name>cross</name>
+        <qualifiedname>Brush::Var::Variation::cross</qualifiedname>
+        <param>
+          <type><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">const</ref> <ref refid="de/d83/classBrush_1_1Pop_1_1Individual" kindref="compound">Individual</ref>&lt; T &gt; &amp;</type>
+          <declname>mom</declname>
+        </param>
+        <param>
+          <type><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">const</ref> <ref refid="de/d83/classBrush_1_1Pop_1_1Individual" kindref="compound">Individual</ref>&lt; T &gt; &amp;</type>
+          <declname>dad</declname>
+        </param>
+        <briefdescription>
+<para>Performs crossover operation on two individuals. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>Stochastically swaps subtrees between root and other, returning a new program.</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>mom</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The first parent individual. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>dad</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The second parent individual. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>An optional containing the offspring individual if the crossover is successful, or an empty optional otherwise.</para>
+</simplesect>
+The spot where the cross will take place in the <computeroutput>root</computeroutput> parent is sampled based on attribute <computeroutput>get_prob_change</computeroutput> of each node in the tree. After selecting the cross spot, the program will iterate through the <computeroutput>other</computeroutput> parent searching for all compatible sub-trees to replace.</para>
+<para>Due to the stochastic behavior, it may come to a case where there is no candidate to replace the spot node. In this case, the method returns <computeroutput>std::nullopt</computeroutput> (and has overloads so it can be used in a boolean context).</para>
+<para>If the cross succeeds, the child program can be accessed through the <computeroutput>.value()</computeroutput> attribute of the <computeroutput>std::optional</computeroutput>. TODO: update this documentation (it doesnt take the program but the individual. also update mutation documentation) This means that, if you use the cross as <computeroutput>auto opt = mutate(parent, SS)</computeroutput>, either <computeroutput>opt==false</computeroutput> or <computeroutput>opt.value()</computeroutput> contains the child.</para>
+<para><parameterlist kind="templateparam"><parameteritem>
+<parameternamelist>
+<parametername>T</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the program type </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>root</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the root parent </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>other</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the donating parent </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para><computeroutput>std::optional</computeroutput> that may contain the child program of type <computeroutput>T</computeroutput> </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/runner/work/brush/brush/src/vary/variation.h" line="95" column="19" bodyfile="/home/runner/work/brush/brush/src/vary/variation.cpp" bodystart="345" bodyend="450"/>
+        <references refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" compoundref="d4/d93/bind__engines_8h" startline="35" endline="104">bind_engine</references>
+        <references refid="d6/d2e/namespaceBrush_1_1Util_1af7dd70e54015821d96e3a1afed6344ca" compoundref="d2/da9/rnd_8h" startline="174">Brush::Util::r</references>
+        <references refid="d2/d2d/classBrush_1_1Util_1_1Rnd_1a9f0fe39c1fd498b378c8d4abe7b9d71b" compoundref="d2/da9/rnd_8h" startline="61" endline="66">Brush::Util::Rnd::select_randomly</references>
+      </memberdef>
+      <memberdef kind="function" id="d5/d14/classBrush_1_1Var_1_1Variation_1a024e971b0f8685c89d119c0af484284a" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>std::optional&lt; <ref refid="de/d83/classBrush_1_1Pop_1_1Individual" kindref="compound">Individual</ref>&lt; T &gt; &gt;</type>
+        <definition>std::optional&lt; Individual&lt; T &gt; &gt; Brush::Var::Variation&lt; T &gt;::mutate</definition>
+        <argsstring>(const Individual&lt; T &gt; &amp;parent)</argsstring>
+        <name>mutate</name>
+        <qualifiedname>Brush::Var::Variation::mutate</qualifiedname>
+        <param>
+          <type><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">const</ref> <ref refid="de/d83/classBrush_1_1Pop_1_1Individual" kindref="compound">Individual</ref>&lt; T &gt; &amp;</type>
+          <declname>parent</declname>
+        </param>
+        <briefdescription>
+<para>Performs mutation operation on an individual. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>Stochastically mutate a program.</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>parent</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The parent individual. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>An optional containing the mutated individual if the mutation is successful, or an empty optional otherwise.</para>
+</simplesect>
+Types of mutation:</para>
+<para><itemizedlist>
+<listitem><para>point mutation changes a single node.</para>
+</listitem><listitem><para>insertion mutation inserts a node as the parent of an existing node, and fills in the other arguments.</para>
+</listitem><listitem><para>deletion mutation deletes a node.</para>
+</listitem><listitem><para>subtree mutation inserts a new subtree into the program.</para>
+</listitem><listitem><para>toggle_weight_on mutation turns a node&apos;s weight ON.</para>
+</listitem><listitem><para>toggle_weight_off mutation turns a node&apos;s weight OFF.</para>
+</listitem></itemizedlist>
+</para>
+<para>Every mutation has a probability (weight) based on global parameters. The spot where the mutation will take place is sampled based on attribute <computeroutput>get_prob_change</computeroutput> of each node in the tree. Inside each type of mutation, when a new node is inserted, it is sampled based on <computeroutput>terminal_weights</computeroutput>.</para>
+<para>Due to the stochastic behavior, and the several sampling steps, it may come to a case where the search space does not hold any possible modification to do in the program. In this case, the method returns <computeroutput>std::nullopt</computeroutput> (and has overloads so it can be used in a boolean context).</para>
+<para>If the mutation succeeds, the mutated program can be accessed through the <computeroutput>.value()</computeroutput> attribute of the <computeroutput>std::optional</computeroutput>.</para>
+<para>This means that, if you use the mutation as <computeroutput>auto opt = mutate(parent, SS)</computeroutput>, either <computeroutput>opt==false</computeroutput> or <computeroutput>opt.value()</computeroutput> contains the child program.</para>
+<para><parameterlist kind="templateparam"><parameteritem>
+<parameternamelist>
+<parametername>T</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>program type </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>parent</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the program to be mutated </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>SS</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>a search space </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para><computeroutput>std::optional</computeroutput> that may contain the child program of type <computeroutput>T</computeroutput> </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/runner/work/brush/brush/src/vary/variation.h" line="105" column="19" bodyfile="/home/runner/work/brush/brush/src/vary/variation.cpp" bodystart="486" bodyend="575"/>
+        <references refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" compoundref="d4/d93/bind__engines_8h" startline="35" endline="104">bind_engine</references>
+        <references refid="dc/de3/classBrush_1_1Var_1_1InsertMutation_1aa90d35c6a780c8d3884845b57b5ca304" compoundref="d1/d64/variation_8cpp" startline="41" endline="70">Brush::Var::InsertMutation::find_spots</references>
+        <references refid="d2/d1a/classBrush_1_1Var_1_1ToggleWeightOnMutation_1acbfb3c2ae246d8cab4a0619ab2f6f8bd" compoundref="d1/d64/variation_8cpp" startline="161" endline="189">Brush::Var::ToggleWeightOnMutation::find_spots</references>
+        <references refid="dd/d55/classBrush_1_1Var_1_1ToggleWeightOffMutation_1a99dc89128f212cac60285811f7e493f0" compoundref="d1/d64/variation_8cpp" startline="212" endline="231">Brush::Var::ToggleWeightOffMutation::find_spots</references>
+        <references refid="de/d23/classBrush_1_1Var_1_1SubtreeMutation_1a707240a87dd52b44df30fa628175c9d2" compoundref="d1/d64/variation_8cpp" startline="255" endline="284">Brush::Var::SubtreeMutation::find_spots</references>
+        <references refid="de/d83/classBrush_1_1Pop_1_1Individual_1ab6d50093f0d37ecccb4e0963b2b1b7e3" compoundref="d5/d1f/individual_8h" startline="127" endline="127">Brush::Pop::Individual&lt; T &gt;::get_objectives</references>
+        <references refid="da/d41/error_8h_1aa4c550bcd71e4ec1c97b111e1360509a" compoundref="da/d41/error_8h" startline="27">HANDLE_ERROR_THROW</references>
+        <references refid="d4/d46/classBrush_1_1Var_1_1PointMutation_1a6733e47e155ad86e2b162e24d5ea952b" compoundref="d1/d64/variation_8cpp" startline="15" endline="29">Brush::Var::PointMutation::mutate</references>
+        <references refid="dc/de3/classBrush_1_1Var_1_1InsertMutation_1ad1fba11352bfda9b6560b7dfc945391a" compoundref="d1/d64/variation_8cpp" startline="72" endline="122">Brush::Var::InsertMutation::mutate</references>
+        <references refid="d0/d6d/classBrush_1_1Var_1_1DeleteMutation_1a4e1145b8ea2e32cd18460ef1dbb85bf0" compoundref="d1/d64/variation_8cpp" startline="134" endline="149">Brush::Var::DeleteMutation::mutate</references>
+        <references refid="d2/d1a/classBrush_1_1Var_1_1ToggleWeightOnMutation_1acb87cf44e4a959a65d1139e6ab8691ab" compoundref="d1/d64/variation_8cpp" startline="191" endline="200">Brush::Var::ToggleWeightOnMutation::mutate</references>
+        <references refid="dd/d55/classBrush_1_1Var_1_1ToggleWeightOffMutation_1afc76eadd239937dae4e650080d0e7d25" compoundref="d1/d64/variation_8cpp" startline="233" endline="243">Brush::Var::ToggleWeightOffMutation::mutate</references>
+        <references refid="de/d23/classBrush_1_1Var_1_1SubtreeMutation_1aadf78b5db33c9595fd0656a9345efb67" compoundref="d1/d64/variation_8cpp" startline="286" endline="318">Brush::Var::SubtreeMutation::mutate</references>
+        <references refid="de/d83/classBrush_1_1Pop_1_1Individual_1af8eafd2aab3c3a683d6b3b80a649dfa6" compoundref="d5/d1f/individual_8h" startline="17">Brush::Pop::Individual&lt; T &gt;::program</references>
+        <references refid="d6/d2e/namespaceBrush_1_1Util_1af7dd70e54015821d96e3a1afed6344ca" compoundref="d2/da9/rnd_8h" startline="174">Brush::Util::r</references>
+        <references refid="d2/d2d/classBrush_1_1Util_1_1Rnd_1a18656ce513329b1c672f6ee15ab281b7" compoundref="d2/da9/rnd_8h" startline="96" endline="115">Brush::Util::Rnd::random_choice</references>
+        <references refid="d2/d2d/classBrush_1_1Util_1_1Rnd_1a9f0fe39c1fd498b378c8d4abe7b9d71b" compoundref="d2/da9/rnd_8h" startline="61" endline="66">Brush::Util::Rnd::select_randomly</references>
+      </memberdef>
+      <memberdef kind="function" id="d5/d14/classBrush_1_1Var_1_1Variation_1a344233ce053ca4b267539182fecbbc91" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">void</ref></type>
+        <definition>void Brush::Var::Variation&lt; T &gt;::vary</definition>
+        <argsstring>(Population&lt; T &gt; &amp;pop, int island, const vector&lt; size_t &gt; &amp;parents)</argsstring>
+        <name>vary</name>
+        <qualifiedname>Brush::Var::Variation::vary</qualifiedname>
+        <param>
+          <type><ref refid="da/da3/classBrush_1_1Pop_1_1Population" kindref="compound">Population</ref>&lt; T &gt; &amp;</type>
+          <declname>pop</declname>
+        </param>
+        <param>
+          <type><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">int</ref></type>
+          <declname>island</declname>
+        </param>
+        <param>
+          <type><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">const</ref> vector&lt; <ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">size_t</ref> &gt; &amp;</type>
+          <declname>parents</declname>
+        </param>
+        <briefdescription>
+<para>Handles variation of a population. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>pop</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The population to be varied. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>island</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The island index. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>parents</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The indices of the parent individuals. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>p</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The parameters for the variation operator. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/runner/work/brush/brush/src/vary/variation.h" line="115" column="10" bodyfile="/home/runner/work/brush/brush/src/vary/variation.cpp" bodystart="578" bodyend="638"/>
+        <references refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" compoundref="d4/d93/bind__engines_8h" startline="35" endline="104">bind_engine</references>
+        <references refid="da/da3/classBrush_1_1Pop_1_1Population_1a2bf4066c7a32ec3bd85c96bd80098de6" compoundref="d2/d76/population_8h" startline="38" endline="38">Brush::Pop::Population&lt; T &gt;::get_island_indexes</references>
+        <references refid="da/da3/classBrush_1_1Pop_1_1Population_1a7b529af66e90f378ca96a54ee5ce0c71" compoundref="d2/d76/population_8h" startline="18">Brush::Pop::Population&lt; T &gt;::individuals</references>
+        <references refid="de/d83/classBrush_1_1Pop_1_1Individual_1af679e70e78c8b0622ebd205bb91c5ffd" compoundref="d5/d1f/individual_8h" startline="45" endline="52">Brush::Pop::Individual&lt; T &gt;::init</references>
+        <references refid="de/d83/classBrush_1_1Pop_1_1Individual_1a4be0cd31ca91af4d113bee11793a4015" compoundref="d5/d1f/individual_8h" startline="24">Brush::Pop::Individual&lt; T &gt;::is_fitted_</references>
+        <references refid="d6/d2e/namespaceBrush_1_1Util_1af7dd70e54015821d96e3a1afed6344ca" compoundref="d2/da9/rnd_8h" startline="174">Brush::Util::r</references>
+        <references refid="d2/d2d/classBrush_1_1Util_1_1Rnd_1a9f0fe39c1fd498b378c8d4abe7b9d71b" compoundref="d2/da9/rnd_8h" startline="61" endline="66">Brush::Util::Rnd::select_randomly</references>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+<para>Class representing the variation operators in <ref refid="dc/d5c/namespaceBrush" kindref="compound">Brush</ref>. </para>
+    </briefdescription>
+    <detaileddescription>
+<para>The <ref refid="d5/d14/classBrush_1_1Var_1_1Variation" kindref="compound">Variation</ref> class is responsible for performing individual-level variations and handling the variation of a population in <ref refid="dc/d5c/namespaceBrush" kindref="compound">Brush</ref>. It contains methods for crossing individuals, mutating individuals, and varying a population. </para>
+    </detaileddescription>
+    <collaborationgraph>
+      <node id="4">
+        <label>DataType</label>
+      </node>
+      <node id="6">
+        <label>Brush::Node</label>
+        <link refid="d1/d3a/structBrush_1_1Node"/>
+        <childnode refid="7" relation="usage">
+          <edgelabel>feature</edgelabel>
+          <edgelabel>name</edgelabel>
+        </childnode>
+        <childnode refid="9" relation="usage">
+          <edgelabel>arg_types</edgelabel>
+        </childnode>
+      </node>
+      <node id="12">
+        <label>Brush::Parameters</label>
+        <link refid="de/deb/structBrush_1_1Parameters"/>
+        <childnode refid="7" relation="usage">
+          <edgelabel>load_population</edgelabel>
+          <edgelabel>logfile</edgelabel>
+          <edgelabel>mode</edgelabel>
+          <edgelabel>save_population</edgelabel>
+          <edgelabel>scorer_</edgelabel>
+          <edgelabel>sel</edgelabel>
+          <edgelabel>surv</edgelabel>
+        </childnode>
+        <childnode refid="13" relation="usage">
+          <edgelabel>feature_names</edgelabel>
+          <edgelabel>objectives</edgelabel>
+        </childnode>
+        <childnode refid="14" relation="usage">
+          <edgelabel>functions</edgelabel>
+        </childnode>
+        <childnode refid="15" relation="usage">
+          <edgelabel>mutation_probs</edgelabel>
+        </childnode>
+        <childnode refid="16" relation="usage">
+          <edgelabel>classes</edgelabel>
+        </childnode>
+        <childnode refid="11" relation="usage">
+          <edgelabel>class_weights</edgelabel>
+          <edgelabel>sample_weights</edgelabel>
+        </childnode>
+      </node>
+      <node id="2">
+        <label>Brush::SearchSpace</label>
+        <link refid="d4/dc3/structBrush_1_1SearchSpace"/>
+        <childnode refid="3" relation="usage">
+          <edgelabel>terminal_map</edgelabel>
+        </childnode>
+        <childnode refid="10" relation="usage">
+          <edgelabel>terminal_weights</edgelabel>
+        </childnode>
+        <childnode refid="9" relation="usage">
+          <edgelabel>terminal_types</edgelabel>
+        </childnode>
+      </node>
+      <node id="1">
+        <label>Brush::Var::Variation&lt; T &gt;</label>
+        <link refid="d5/d14/classBrush_1_1Var_1_1Variation"/>
+        <childnode refid="2" relation="usage">
+          <edgelabel>search_space</edgelabel>
+        </childnode>
+        <childnode refid="12" relation="usage">
+          <edgelabel>parameters</edgelabel>
+        </childnode>
+      </node>
+      <node id="15">
+        <label>std::map&lt; std::string, float &gt;</label>
+        <childnode refid="7" relation="usage">
+          <edgelabel>keys</edgelabel>
+        </childnode>
+      </node>
+      <node id="8">
+        <label>std::basic_string&lt; Char &gt;</label>
+      </node>
+      <node id="7">
+        <label>std::string</label>
+        <childnode refid="8" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="3">
+        <label>std::unordered_map&lt; DataType, vector&lt; Brush::Node &gt; &gt;</label>
+        <childnode refid="4" relation="usage">
+          <edgelabel>keys</edgelabel>
+        </childnode>
+        <childnode refid="5" relation="usage">
+          <edgelabel>elements</edgelabel>
+        </childnode>
+      </node>
+      <node id="10">
+        <label>std::unordered_map&lt; DataType, vector&lt; float &gt; &gt;</label>
+        <childnode refid="4" relation="usage">
+          <edgelabel>keys</edgelabel>
+        </childnode>
+        <childnode refid="11" relation="usage">
+          <edgelabel>elements</edgelabel>
+        </childnode>
+      </node>
+      <node id="14">
+        <label>std::unordered_map&lt; string, float &gt;</label>
+        <childnode refid="7" relation="usage">
+          <edgelabel>keys</edgelabel>
+        </childnode>
+      </node>
+      <node id="5">
+        <label>std::vector&lt; Brush::Node &gt;</label>
+        <childnode refid="6" relation="usage">
+          <edgelabel>elements</edgelabel>
+        </childnode>
+      </node>
+      <node id="9">
+        <label>std::vector&lt; DataType &gt;</label>
+        <childnode refid="4" relation="usage">
+          <edgelabel>elements</edgelabel>
+        </childnode>
+      </node>
+      <node id="11">
+        <label>std::vector&lt; float &gt;</label>
+      </node>
+      <node id="16">
+        <label>std::vector&lt; int &gt;</label>
+      </node>
+      <node id="13">
+        <label>std::vector&lt; string &gt;</label>
+        <childnode refid="7" relation="usage">
+          <edgelabel>elements</edgelabel>
+        </childnode>
+      </node>
+    </collaborationgraph>
+    <location file="/home/runner/work/brush/brush/src/vary/variation.h" line="53" column="1" bodyfile="/home/runner/work/brush/brush/src/vary/variation.h" bodystart="53" bodyend="120"/>
+    <listofallmembers>
+      <member refid="d5/d14/classBrush_1_1Var_1_1Variation_1acf7d5d1c0d6a102eec277180dce590fe" prot="public" virt="non-virtual"><scope>Brush::Var::Variation</scope><name>cross</name></member>
+      <member refid="d5/d14/classBrush_1_1Var_1_1Variation_1aab1cc3b5be6c321b56d4af61c7466f2b" prot="public" virt="non-virtual"><scope>Brush::Var::Variation</scope><name>init</name></member>
+      <member refid="d5/d14/classBrush_1_1Var_1_1Variation_1a024e971b0f8685c89d119c0af484284a" prot="public" virt="non-virtual"><scope>Brush::Var::Variation</scope><name>mutate</name></member>
+      <member refid="d5/d14/classBrush_1_1Var_1_1Variation_1adae97420f4b1ac89a28903fc473c9f57" prot="private" virt="non-virtual"><scope>Brush::Var::Variation</scope><name>parameters</name></member>
+      <member refid="d5/d14/classBrush_1_1Var_1_1Variation_1a656380481257dd8f03ceebcb07f0019f" prot="private" virt="non-virtual"><scope>Brush::Var::Variation</scope><name>search_space</name></member>
+      <member refid="d5/d14/classBrush_1_1Var_1_1Variation_1a3df7d1814f29d5073fccce5a4c59311c" prot="public" virt="non-virtual"><scope>Brush::Var::Variation</scope><name>Variation</name></member>
+      <member refid="d5/d14/classBrush_1_1Var_1_1Variation_1adb0d1a96dcccf09834f7bfc266a535b2" prot="public" virt="non-virtual"><scope>Brush::Var::Variation</scope><name>Variation</name></member>
+      <member refid="d5/d14/classBrush_1_1Var_1_1Variation_1a344233ce053ca4b267539182fecbbc91" prot="public" virt="non-virtual"><scope>Brush::Var::Variation</scope><name>vary</name></member>
+      <member refid="d5/d14/classBrush_1_1Var_1_1Variation_1a68dde038b2d0554791ee4a8da2f7e623" prot="public" virt="non-virtual"><scope>Brush::Var::Variation</scope><name>~Variation</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

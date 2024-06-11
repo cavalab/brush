@@ -2,5 +2,5 @@ var structBrush_1_1Signatures_3_01N_00_01enable__if__t_3_01is__in__v_3_01N_00_01
 [
     [ "naryTuple", "d6/da3/structBrush_1_1Signatures_3_01N_00_01enable__if__t_3_01is__in__v_3_01N_00_01NodeType_1_1Sum_00_083e8a3a604402dec7f5377fa9aae58ea.html#af3087e93c7af97478126bafc7b8c921c", null ],
     [ "type", "d6/da3/structBrush_1_1Signatures_3_01N_00_01enable__if__t_3_01is__in__v_3_01N_00_01NodeType_1_1Sum_00_083e8a3a604402dec7f5377fa9aae58ea.html#a15dbad135fc1dd3246b72122b11d3d78", null ],
-    [ "unaryTuple", "d6/da3/structBrush_1_1Signatures_3_01N_00_01enable__if__t_3_01is__in__v_3_01N_00_01NodeType_1_1Sum_00_083e8a3a604402dec7f5377fa9aae58ea.html#ab6d72fa994711231f1827804f62387b7", null ]
+    [ "unaryTuple", "d6/da3/structBrush_1_1Signatures_3_01N_00_01enable__if__t_3_01is__in__v_3_01N_00_01NodeType_1_1Sum_00_083e8a3a604402dec7f5377fa9aae58ea.html#a921e0cf2df1cacd408fc756ad4a66257", null ]
 ];

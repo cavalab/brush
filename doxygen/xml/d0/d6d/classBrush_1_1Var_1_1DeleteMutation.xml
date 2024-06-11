@@ -1,0 +1,114 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.10.0" xml:lang="en-US">
+  <compounddef id="d0/d6d/classBrush_1_1Var_1_1DeleteMutation" kind="class" language="C++" prot="public">
+    <compoundname>Brush::Var::DeleteMutation</compoundname>
+    <basecompoundref refid="d0/dec/classBrush_1_1Var_1_1MutationBase" prot="public" virt="non-virtual">Brush::Var::MutationBase</basecompoundref>
+    <sectiondef kind="public-static-func">
+      <memberdef kind="function" id="d0/d6d/classBrush_1_1Var_1_1DeleteMutation_1a4e1145b8ea2e32cd18460ef1dbb85bf0" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">auto</ref></type>
+        <definition>static auto Brush::Var::DeleteMutation::mutate</definition>
+        <argsstring>(tree&lt; Node &gt; &amp;Tree, Iter spot, const SearchSpace &amp;SS, const Parameters &amp;params)</argsstring>
+        <name>mutate</name>
+        <qualifiedname>Brush::Var::DeleteMutation::mutate</qualifiedname>
+        <param>
+          <type><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">tree</ref>&lt; <ref refid="d1/d3a/structBrush_1_1Node" kindref="compound">Node</ref> &gt; &amp;</type>
+          <declname>Tree</declname>
+        </param>
+        <param>
+          <type><ref refid="d0/dec/classBrush_1_1Var_1_1MutationBase_1a4cacb44817dc1e054fca562d703de50c" kindref="member">Iter</ref></type>
+          <declname>spot</declname>
+        </param>
+        <param>
+          <type><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">const</ref> <ref refid="d4/dc3/structBrush_1_1SearchSpace" kindref="compound">SearchSpace</ref> &amp;</type>
+          <declname>SS</declname>
+        </param>
+        <param>
+          <type><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">const</ref> <ref refid="de/deb/structBrush_1_1Parameters" kindref="compound">Parameters</ref> &amp;</type>
+          <declname>params</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/runner/work/brush/brush/src/vary/variation.cpp" line="134" column="17" bodyfile="/home/runner/work/brush/brush/src/vary/variation.cpp" bodystart="134" bodyend="149"/>
+        <references refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" compoundref="d4/d93/bind__engines_8h" startline="35" endline="104">bind_engine</references>
+        <references refid="d4/dc3/structBrush_1_1SearchSpace_1afed4d42914edd71c4b54fc3883d8d156" compoundref="d9/d99/search__space_8h" startline="319" endline="376">Brush::SearchSpace::sample_terminal</references>
+        <references refid="dc/d5c/namespaceBrush_1ae41500fed38676f34a4d476a992d585d">Brush::SS</references>
+        <referencedby refid="d5/d14/classBrush_1_1Var_1_1Variation_1a024e971b0f8685c89d119c0af484284a" compoundref="d1/d64/variation_8cpp" startline="486" endline="575">Brush::Var::Variation&lt; T &gt;::mutate</referencedby>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+<para>delete subtree and replace it with a terminal of the same return type </para>
+    </briefdescription>
+    <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>prog</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the program </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>Tree</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the program tree </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>spot</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>an iterator to the node that is being mutated </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>SS</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the search space to sample a node like <computeroutput>spot</computeroutput> </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>boolean indicating the success (true) or fail (false) of the operation </para>
+</simplesect>
+</para>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="1">
+        <label>Brush::Var::DeleteMutation</label>
+        <link refid="d0/d6d/classBrush_1_1Var_1_1DeleteMutation"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>Brush::Var::MutationBase</label>
+        <link refid="d0/dec/classBrush_1_1Var_1_1MutationBase"/>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="1">
+        <label>Brush::Var::DeleteMutation</label>
+        <link refid="d0/d6d/classBrush_1_1Var_1_1DeleteMutation"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>Brush::Var::MutationBase</label>
+        <link refid="d0/dec/classBrush_1_1Var_1_1MutationBase"/>
+      </node>
+    </collaborationgraph>
+    <location file="/home/runner/work/brush/brush/src/vary/variation.cpp" line="131" column="1" bodyfile="/home/runner/work/brush/brush/src/vary/variation.cpp" bodystart="132" bodyend="150"/>
+    <listofallmembers>
+      <member refid="d0/dec/classBrush_1_1Var_1_1MutationBase_1a61da0cefa5bb01d41edff4e208372613" prot="public" virt="non-virtual"><scope>Brush::Var::DeleteMutation</scope><name>find_spots</name></member>
+      <member refid="d0/dec/classBrush_1_1Var_1_1MutationBase_1a4cacb44817dc1e054fca562d703de50c" prot="public" virt="non-virtual"><scope>Brush::Var::DeleteMutation</scope><name>Iter</name></member>
+      <member refid="d0/d6d/classBrush_1_1Var_1_1DeleteMutation_1a4e1145b8ea2e32cd18460ef1dbb85bf0" prot="public" virt="non-virtual"><scope>Brush::Var::DeleteMutation</scope><name>mutate</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

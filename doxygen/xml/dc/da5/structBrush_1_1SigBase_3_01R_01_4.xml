@@ -1,19 +1,20 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
-<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.10.0" xml:lang="en-US">
   <compounddef id="dc/da5/structBrush_1_1SigBase_3_01R_01_4" kind="struct" language="C++" prot="public">
     <compoundname>Brush::SigBase&lt; R &gt;</compoundname>
     <includes refid="d8/d8b/signatures_8h" local="no">signatures.h</includes>
     <templateparamlist>
       <param>
-        <type>typename R</type>
+        <type><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">typename</ref> <ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">R</ref></type>
       </param>
     </templateparamlist>
-      <sectiondef kind="public-type">
+    <sectiondef kind="public-type">
       <memberdef kind="typedef" id="dc/da5/structBrush_1_1SigBase_3_01R_01_4_1aa99ffdbe9f4242358c67e3ae3446762c" prot="public" static="no">
-        <type>R</type>
+        <type><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">R</ref></type>
         <definition>using Brush::SigBase&lt; R &gt;::RetType =  R</definition>
         <argsstring></argsstring>
         <name>RetType</name>
+        <qualifiedname>Brush::SigBase&lt; R &gt;::RetType</qualifiedname>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
@@ -23,10 +24,11 @@
         <location file="/home/runner/work/brush/brush/src/program/signatures.h" line="114" column="5" bodyfile="/home/runner/work/brush/brush/src/program/signatures.h" bodystart="114" bodyend="-1"/>
       </memberdef>
       <memberdef kind="typedef" id="dc/da5/structBrush_1_1SigBase_3_01R_01_4_1a02eb6b0aa88e280113c60b47fe566527" prot="public" static="no">
-        <type>void</type>
+        <type><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">void</ref></type>
         <definition>using Brush::SigBase&lt; R &gt;::ArgTypes =  void</definition>
         <argsstring></argsstring>
         <name>ArgTypes</name>
+        <qualifiedname>Brush::SigBase&lt; R &gt;::ArgTypes</qualifiedname>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
@@ -36,10 +38,11 @@
         <location file="/home/runner/work/brush/brush/src/program/signatures.h" line="115" column="5" bodyfile="/home/runner/work/brush/brush/src/program/signatures.h" bodystart="115" bodyend="-1"/>
       </memberdef>
       <memberdef kind="typedef" id="dc/da5/structBrush_1_1SigBase_3_01R_01_4_1a5656fb72f8510ff2b5b8b41d00a87a5f" prot="public" static="no">
-        <type>void</type>
+        <type><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">void</ref></type>
         <definition>using Brush::SigBase&lt; R &gt;::FirstArg =  void</definition>
         <argsstring></argsstring>
         <name>FirstArg</name>
+        <qualifiedname>Brush::SigBase&lt; R &gt;::FirstArg</qualifiedname>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
@@ -49,10 +52,11 @@
         <location file="/home/runner/work/brush/brush/src/program/signatures.h" line="116" column="5" bodyfile="/home/runner/work/brush/brush/src/program/signatures.h" bodystart="116" bodyend="-1"/>
       </memberdef>
       <memberdef kind="typedef" id="dc/da5/structBrush_1_1SigBase_3_01R_01_4_1ad4623810d48636cef328a9cc02e385ab" prot="public" static="no">
-        <type>typename <ref refid="dc/da5/structBrush_1_1SigBase_3_01R_01_4_1ad4623810d48636cef328a9cc02e385ab" kindref="member">WeightType</ref>&lt; R &gt;::type</type>
+        <type><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">typename</ref> <ref refid="dc/da5/structBrush_1_1SigBase_3_01R_01_4_1ad4623810d48636cef328a9cc02e385ab" kindref="member">WeightType</ref>&lt; <ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">R</ref> &gt;::type</type>
         <definition>using Brush::SigBase&lt; R &gt;::WeightType =  typename WeightType&lt;R&gt;::type</definition>
         <argsstring></argsstring>
         <name>WeightType</name>
+        <qualifiedname>Brush::SigBase&lt; R &gt;::WeightType</qualifiedname>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
@@ -61,13 +65,14 @@
         </inbodydescription>
         <location file="/home/runner/work/brush/brush/src/program/signatures.h" line="117" column="5" bodyfile="/home/runner/work/brush/brush/src/program/signatures.h" bodystart="117" bodyend="-1"/>
       </memberdef>
-      </sectiondef>
-      <sectiondef kind="public-static-attrib">
+    </sectiondef>
+    <sectiondef kind="public-static-attrib">
       <memberdef kind="variable" id="dc/da5/structBrush_1_1SigBase_3_01R_01_4_1ae906d7b58748a0f3dc89117f0ce4a20b" prot="public" static="yes" constexpr="yes" mutable="no">
-        <type>constexpr std::size_t</type>
+        <type><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">constexpr</ref> std::size_t</type>
         <definition>constexpr std::size_t Brush::SigBase&lt; R &gt;::ArgCount</definition>
         <argsstring></argsstring>
         <name>ArgCount</name>
+        <qualifiedname>Brush::SigBase&lt; R &gt;::ArgCount</qualifiedname>
         <initializer>= 0</initializer>
         <briefdescription>
         </briefdescription>
@@ -77,13 +82,14 @@
         </inbodydescription>
         <location file="/home/runner/work/brush/brush/src/program/signatures.h" line="118" column="34" bodyfile="/home/runner/work/brush/brush/src/program/signatures.h" bodystart="118" bodyend="-1"/>
       </memberdef>
-      </sectiondef>
-      <sectiondef kind="public-static-func">
+    </sectiondef>
+    <sectiondef kind="public-static-func">
       <memberdef kind="function" id="dc/da5/structBrush_1_1SigBase_3_01R_01_4_1a063192a9d8744a15a4722d96332b5056" prot="public" static="yes" constexpr="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
-        <type>constexpr auto</type>
+        <type><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">constexpr</ref> <ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">auto</ref></type>
         <definition>static constexpr auto Brush::SigBase&lt; R &gt;::get_ret_type</definition>
         <argsstring>()</argsstring>
         <name>get_ret_type</name>
+        <qualifiedname>Brush::SigBase&lt; R &gt;::get_ret_type</qualifiedname>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
@@ -93,10 +99,11 @@
         <location file="/home/runner/work/brush/brush/src/program/signatures.h" line="119" column="27" bodyfile="/home/runner/work/brush/brush/src/program/signatures.h" bodystart="119" bodyend="119"/>
       </memberdef>
       <memberdef kind="function" id="dc/da5/structBrush_1_1SigBase_3_01R_01_4_1a13170e915899ecc960eca31cd5de9cf8" prot="public" static="yes" constexpr="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
-        <type>constexpr auto</type>
+        <type><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">constexpr</ref> <ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">auto</ref></type>
         <definition>static constexpr auto Brush::SigBase&lt; R &gt;::get_arg_types</definition>
         <argsstring>()</argsstring>
         <name>get_arg_types</name>
+        <qualifiedname>Brush::SigBase&lt; R &gt;::get_arg_types</qualifiedname>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
@@ -106,10 +113,11 @@
         <location file="/home/runner/work/brush/brush/src/program/signatures.h" line="120" column="27" bodyfile="/home/runner/work/brush/brush/src/program/signatures.h" bodystart="120" bodyend="120"/>
       </memberdef>
       <memberdef kind="function" id="dc/da5/structBrush_1_1SigBase_3_01R_01_4_1ab50d4ebcba078dfe4b43f6fd3dbf5810" prot="public" static="yes" constexpr="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
-        <type>constexpr auto</type>
+        <type><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">constexpr</ref> <ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">auto</ref></type>
         <definition>static constexpr auto Brush::SigBase&lt; R &gt;::get_args_type</definition>
         <argsstring>()</argsstring>
         <name>get_args_type</name>
+        <qualifiedname>Brush::SigBase&lt; R &gt;::get_args_type</qualifiedname>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
@@ -119,10 +127,11 @@
         <location file="/home/runner/work/brush/brush/src/program/signatures.h" line="121" column="27" bodyfile="/home/runner/work/brush/brush/src/program/signatures.h" bodystart="121" bodyend="121"/>
       </memberdef>
       <memberdef kind="function" id="dc/da5/structBrush_1_1SigBase_3_01R_01_4_1abdabfd8248d206d0613d798922556d20" prot="public" static="yes" constexpr="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
-        <type>constexpr std::size_t</type>
+        <type><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">constexpr</ref> std::size_t</type>
         <definition>static constexpr std::size_t Brush::SigBase&lt; R &gt;::hash</definition>
         <argsstring>()</argsstring>
         <name>hash</name>
+        <qualifiedname>Brush::SigBase&lt; R &gt;::hash</qualifiedname>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
@@ -130,8 +139,9 @@
         <inbodydescription>
         </inbodydescription>
         <location file="/home/runner/work/brush/brush/src/program/signatures.h" line="122" column="34" bodyfile="/home/runner/work/brush/brush/src/program/signatures.h" bodystart="122" bodyend="122"/>
+        <references refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" compoundref="d4/d93/bind__engines_8h" startline="35" endline="104">bind_engine</references>
       </memberdef>
-      </sectiondef>
+    </sectiondef>
     <briefdescription>
 <para>specialization for terminals </para>
     </briefdescription>

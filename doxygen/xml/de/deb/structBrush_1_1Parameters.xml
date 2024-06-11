@@ -1,0 +1,1926 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.10.0" xml:lang="en-US">
+  <compounddef id="de/deb/structBrush_1_1Parameters" kind="struct" language="C++" prot="public">
+    <compoundname>Brush::Parameters</compoundname>
+    <includes refid="da/d33/params_8h" local="no">params.h</includes>
+    <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="de/deb/structBrush_1_1Parameters_1abe9f1394bdf123d3186976d50bb89a70" prot="public" static="no" mutable="no">
+        <type><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">int</ref></type>
+        <definition>int Brush::Parameters::random_state</definition>
+        <argsstring></argsstring>
+        <name>random_state</name>
+        <qualifiedname>Brush::Parameters::random_state</qualifiedname>
+        <initializer>= 0</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/runner/work/brush/brush/src/params.h" line="21" column="9" bodyfile="/home/runner/work/brush/brush/src/params.h" bodystart="21" bodyend="-1"/>
+        <referencedby refid="de/deb/structBrush_1_1Parameters_1a65d0b2e202d140602ca832dbd0e3c9bc" compoundref="da/d33/params_8h" startline="96" endline="96">get_random_state</referencedby>
+        <referencedby refid="de/deb/structBrush_1_1Parameters_1a520456c57a2c3f8703036ae0d5142635" compoundref="da/d33/params_8h" startline="95" endline="95">set_random_state</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="de/deb/structBrush_1_1Parameters_1aa3266a1e88b1d869a94ab3b21152beda" prot="public" static="no" mutable="no">
+        <type><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">int</ref></type>
+        <definition>int Brush::Parameters::verbosity</definition>
+        <argsstring></argsstring>
+        <name>verbosity</name>
+        <qualifiedname>Brush::Parameters::verbosity</qualifiedname>
+        <initializer>= 0</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/runner/work/brush/brush/src/params.h" line="22" column="9" bodyfile="/home/runner/work/brush/brush/src/params.h" bodystart="22" bodyend="-1"/>
+        <referencedby refid="de/deb/structBrush_1_1Parameters_1a0b9ab7c9b3c3e3fcb4445b4acca9a7c9" compoundref="da/d33/params_8h" startline="93" endline="93">get_verbosity</referencedby>
+        <referencedby refid="de/deb/structBrush_1_1Parameters_1af232e2b8ac05a182b54437cbf03fc18c" compoundref="da/d33/params_8h" startline="91" endline="92">set_verbosity</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="de/deb/structBrush_1_1Parameters_1ad8ff63e4d1845c0b7fd85532e5edb48c" prot="public" static="no" mutable="no">
+        <type>string</type>
+        <definition>string Brush::Parameters::mode</definition>
+        <argsstring></argsstring>
+        <name>mode</name>
+        <qualifiedname>Brush::Parameters::mode</qualifiedname>
+        <initializer>=&quot;regression&quot;</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/runner/work/brush/brush/src/params.h" line="25" column="12" bodyfile="/home/runner/work/brush/brush/src/params.h" bodystart="25" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="de/deb/structBrush_1_1Parameters_1acd37c52e411d17126bff22dca19f0408" prot="public" static="no" mutable="no">
+        <type><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">unsigned</ref> <ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">int</ref></type>
+        <definition>unsigned int Brush::Parameters::current_gen</definition>
+        <argsstring></argsstring>
+        <name>current_gen</name>
+        <qualifiedname>Brush::Parameters::current_gen</qualifiedname>
+        <initializer>= 1</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/runner/work/brush/brush/src/params.h" line="27" column="18" bodyfile="/home/runner/work/brush/brush/src/params.h" bodystart="27" bodyend="-1"/>
+        <referencedby refid="de/deb/structBrush_1_1Parameters_1ae342f8777e40bb52f65cdb951a960603" compoundref="da/d33/params_8h" startline="123" endline="123">get_current_gen</referencedby>
+        <referencedby refid="d2/dd0/classBrush_1_1Sel_1_1Lexicase_1ab9f17cd2c4452b05c96a17bb6c105fc2" compoundref="d8/dac/lexicase_8cpp" startline="18" endline="163">Brush::Sel::Lexicase&lt; T &gt;::select</referencedby>
+        <referencedby refid="d3/d7d/classBrush_1_1Sel_1_1NSGA2_1a53788b6bda8ce09f644e2cc44c9aa478" compoundref="de/d0d/nsga2_8cpp" startline="39" endline="66">Brush::Sel::NSGA2&lt; T &gt;::select</referencedby>
+        <referencedby refid="de/deb/structBrush_1_1Parameters_1a83d1e4fc6ee0bab95df90583080a1bd7" compoundref="da/d33/params_8h" startline="122" endline="122">set_current_gen</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="de/deb/structBrush_1_1Parameters_1a139004f9fa652376afabd690dac242e5" prot="public" static="no" mutable="no">
+        <type><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">int</ref></type>
+        <definition>int Brush::Parameters::pop_size</definition>
+        <argsstring></argsstring>
+        <name>pop_size</name>
+        <qualifiedname>Brush::Parameters::pop_size</qualifiedname>
+        <initializer>= 100</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/runner/work/brush/brush/src/params.h" line="30" column="9" bodyfile="/home/runner/work/brush/brush/src/params.h" bodystart="30" bodyend="-1"/>
+        <referencedby refid="d8/df7/bind__variation_8h_1aa00827ef4bd73eeb7c3e30717bf91a74" compoundref="d8/df7/bind__variation_8h" startline="13" endline="69">bind_variation</referencedby>
+        <referencedby refid="de/deb/structBrush_1_1Parameters_1a7d391d24fbe78545ba09cf01a3634878" compoundref="da/d33/params_8h" startline="99" endline="99">get_pop_size</referencedby>
+        <referencedby refid="da/da3/classBrush_1_1Pop_1_1Population_1a8c4ce8e8bd8cedecb3d0ef621aad9d22" compoundref="d7/d4a/population_8cpp" startline="60" endline="96">Brush::Pop::Population&lt; T &gt;::init</referencedby>
+        <referencedby refid="da/da3/classBrush_1_1Pop_1_1Population_1a46922ab810383db1271d700e03005962" compoundref="d7/d4a/population_8cpp" startline="17" endline="57">Brush::Pop::Population&lt; T &gt;::init</referencedby>
+        <referencedby refid="de/deb/structBrush_1_1Parameters_1a4e5aa0dc57b760b0329483e64c3ccea3" compoundref="da/d33/params_8h" startline="98" endline="98">set_pop_size</referencedby>
+        <referencedby refid="d3/d7d/classBrush_1_1Sel_1_1NSGA2_1a2faddb61c1d9ce38a1bc994e9a9b08eb" compoundref="de/d0d/nsga2_8cpp" startline="69" endline="113">Brush::Sel::NSGA2&lt; T &gt;::survive</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="de/deb/structBrush_1_1Parameters_1ae8174a3006e30812afa63f1d74aeb6e9" prot="public" static="no" mutable="no">
+        <type><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">int</ref></type>
+        <definition>int Brush::Parameters::max_gens</definition>
+        <argsstring></argsstring>
+        <name>max_gens</name>
+        <qualifiedname>Brush::Parameters::max_gens</qualifiedname>
+        <initializer>= 100</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/runner/work/brush/brush/src/params.h" line="31" column="9" bodyfile="/home/runner/work/brush/brush/src/params.h" bodystart="31" bodyend="-1"/>
+        <referencedby refid="de/deb/structBrush_1_1Parameters_1a32be1d9b49a8ce5636de4828a15ec6c1" compoundref="da/d33/params_8h" startline="102" endline="102">get_max_gens</referencedby>
+        <referencedby refid="de/deb/structBrush_1_1Parameters_1a11a7976ca8a7aaa45d9722b74aeb5704" compoundref="da/d33/params_8h" startline="101" endline="101">set_max_gens</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="de/deb/structBrush_1_1Parameters_1a21e3da5422ccf31326362f1806ac3eae" prot="public" static="no" mutable="no">
+        <type><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">int</ref></type>
+        <definition>int Brush::Parameters::max_stall</definition>
+        <argsstring></argsstring>
+        <name>max_stall</name>
+        <qualifiedname>Brush::Parameters::max_stall</qualifiedname>
+        <initializer>= 0</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/runner/work/brush/brush/src/params.h" line="32" column="9" bodyfile="/home/runner/work/brush/brush/src/params.h" bodystart="32" bodyend="-1"/>
+        <referencedby refid="de/deb/structBrush_1_1Parameters_1a60eb890e9354559600d21c46e310bdd2" compoundref="da/d33/params_8h" startline="105" endline="105">get_max_stall</referencedby>
+        <referencedby refid="de/deb/structBrush_1_1Parameters_1a0ca031442d56216059f5fe520d493b9b" compoundref="da/d33/params_8h" startline="104" endline="104">set_max_stall</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="de/deb/structBrush_1_1Parameters_1a1625c1a71de2fdd1ccd0954a32fc4ead" prot="public" static="no" mutable="no">
+        <type><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">int</ref></type>
+        <definition>int Brush::Parameters::max_time</definition>
+        <argsstring></argsstring>
+        <name>max_time</name>
+        <qualifiedname>Brush::Parameters::max_time</qualifiedname>
+        <initializer>= -1</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/runner/work/brush/brush/src/params.h" line="33" column="9" bodyfile="/home/runner/work/brush/brush/src/params.h" bodystart="33" bodyend="-1"/>
+        <referencedby refid="de/deb/structBrush_1_1Parameters_1a2cbb237e04a742e5b7045213409f8810" compoundref="da/d33/params_8h" startline="108" endline="108">get_max_time</referencedby>
+        <referencedby refid="de/deb/structBrush_1_1Parameters_1a1961e03a4ec41dcc0fd1d384ebeca6cd" compoundref="da/d33/params_8h" startline="107" endline="107">set_max_time</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="de/deb/structBrush_1_1Parameters_1a22d49e1dbd59a355e5c234c7488595a6" prot="public" static="no" mutable="no">
+        <type><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">unsigned</ref> <ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">int</ref></type>
+        <definition>unsigned int Brush::Parameters::max_depth</definition>
+        <argsstring></argsstring>
+        <name>max_depth</name>
+        <qualifiedname>Brush::Parameters::max_depth</qualifiedname>
+        <initializer>= 6</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/runner/work/brush/brush/src/params.h" line="35" column="18" bodyfile="/home/runner/work/brush/brush/src/params.h" bodystart="35" bodyend="-1"/>
+        <referencedby refid="de/deb/structBrush_1_1Parameters_1a77aa7201a837482c7bf92579fe156811" compoundref="da/d33/params_8h" startline="129" endline="129">get_max_depth</referencedby>
+        <referencedby refid="d4/dc3/structBrush_1_1SearchSpace_1a810403a87eef0baded2aed2bb4f1979e" compoundref="d9/d99/search__space_8h" startline="681" endline="751">Brush::SearchSpace::make_program</referencedby>
+        <referencedby refid="de/d23/classBrush_1_1Var_1_1SubtreeMutation_1aadf78b5db33c9595fd0656a9345efb67" compoundref="d1/d64/variation_8cpp" startline="286" endline="318">Brush::Var::SubtreeMutation::mutate</referencedby>
+        <referencedby refid="de/deb/structBrush_1_1Parameters_1a09b2945802ab49e8510e16181a7d916e" compoundref="da/d33/params_8h" startline="128" endline="128">set_max_depth</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="de/deb/structBrush_1_1Parameters_1aeec98494c11bc2760b7feedf56741ff7" prot="public" static="no" mutable="no">
+        <type><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">unsigned</ref> <ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">int</ref></type>
+        <definition>unsigned int Brush::Parameters::max_size</definition>
+        <argsstring></argsstring>
+        <name>max_size</name>
+        <qualifiedname>Brush::Parameters::max_size</qualifiedname>
+        <initializer>= 50</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/runner/work/brush/brush/src/params.h" line="36" column="18" bodyfile="/home/runner/work/brush/brush/src/params.h" bodystart="36" bodyend="-1"/>
+        <referencedby refid="d2/d1a/classBrush_1_1Var_1_1ToggleWeightOnMutation_1acbfb3c2ae246d8cab4a0619ab2f6f8bd" compoundref="d1/d64/variation_8cpp" startline="161" endline="189">Brush::Var::ToggleWeightOnMutation::find_spots</referencedby>
+        <referencedby refid="de/d23/classBrush_1_1Var_1_1SubtreeMutation_1a707240a87dd52b44df30fa628175c9d2" compoundref="d1/d64/variation_8cpp" startline="255" endline="284">Brush::Var::SubtreeMutation::find_spots</referencedby>
+        <referencedby refid="de/deb/structBrush_1_1Parameters_1a122b7243856cd15f940b6d6b5ec1074f" compoundref="da/d33/params_8h" startline="135" endline="135">get_max_size</referencedby>
+        <referencedby refid="d4/dc3/structBrush_1_1SearchSpace_1a810403a87eef0baded2aed2bb4f1979e" compoundref="d9/d99/search__space_8h" startline="681" endline="751">Brush::SearchSpace::make_program</referencedby>
+        <referencedby refid="dc/de3/classBrush_1_1Var_1_1InsertMutation_1ad1fba11352bfda9b6560b7dfc945391a" compoundref="d1/d64/variation_8cpp" startline="72" endline="122">Brush::Var::InsertMutation::mutate</referencedby>
+        <referencedby refid="de/d23/classBrush_1_1Var_1_1SubtreeMutation_1aadf78b5db33c9595fd0656a9345efb67" compoundref="d1/d64/variation_8cpp" startline="286" endline="318">Brush::Var::SubtreeMutation::mutate</referencedby>
+        <referencedby refid="de/deb/structBrush_1_1Parameters_1ad36ed3c368c1cc152b179a824e9b3144" compoundref="da/d33/params_8h" startline="134" endline="134">set_max_size</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="de/deb/structBrush_1_1Parameters_1a110a7c46dffa83836fb155a566219292" prot="public" static="no" mutable="no">
+        <type>vector&lt; string &gt;</type>
+        <definition>vector&lt;string&gt; Brush::Parameters::objectives</definition>
+        <argsstring></argsstring>
+        <name>objectives</name>
+        <qualifiedname>Brush::Parameters::objectives</qualifiedname>
+        <initializer>{&quot;error&quot;,&quot;complexity&quot;}</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/runner/work/brush/brush/src/params.h" line="38" column="12" bodyfile="/home/runner/work/brush/brush/src/params.h" bodystart="38" bodyend="38"/>
+        <referencedby refid="d1/de5/classBrush_1_1Eval_1_1Evaluation_1ac7562624d114b22b19720729d599a40a" compoundref="d9/d6a/evaluation_8cpp" startline="46" endline="94">Brush::Eval::Evaluation&lt; T &gt;::assign_fit</referencedby>
+        <referencedby refid="de/deb/structBrush_1_1Parameters_1a1c9f68be4ca366f7658cc469c2f2f3b6" compoundref="da/d33/params_8h" startline="138" endline="138">get_objectives</referencedby>
+        <referencedby refid="da/da3/classBrush_1_1Pop_1_1Population_1a8c4ce8e8bd8cedecb3d0ef621aad9d22" compoundref="d7/d4a/population_8cpp" startline="60" endline="96">Brush::Pop::Population&lt; T &gt;::init</referencedby>
+        <referencedby refid="de/deb/structBrush_1_1Parameters_1abb9b1681e45572c95ce97f0e5aeefa05" compoundref="da/d33/params_8h" startline="137" endline="137">set_objectives</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="de/deb/structBrush_1_1Parameters_1a187fd63755c90c13f4b3723becd9bdd8" prot="public" static="no" mutable="no">
+        <type>string</type>
+        <definition>string Brush::Parameters::sel</definition>
+        <argsstring></argsstring>
+        <name>sel</name>
+        <qualifiedname>Brush::Parameters::sel</qualifiedname>
+        <initializer>= &quot;lexicase&quot;</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/runner/work/brush/brush/src/params.h" line="40" column="12" bodyfile="/home/runner/work/brush/brush/src/params.h" bodystart="40" bodyend="-1"/>
+        <referencedby refid="de/deb/structBrush_1_1Parameters_1afff93890adec7af136be0dc19ccdd35f" compoundref="da/d33/params_8h" startline="141" endline="141">get_sel</referencedby>
+        <referencedby refid="de/deb/structBrush_1_1Parameters_1a9a8f5f8dbfd009fd4aed4b322c19b429" compoundref="da/d33/params_8h" startline="140" endline="140">set_sel</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="de/deb/structBrush_1_1Parameters_1a4ff98035fbd50487abb5946504e8e4d6" prot="public" static="no" mutable="no">
+        <type>string</type>
+        <definition>string Brush::Parameters::surv</definition>
+        <argsstring></argsstring>
+        <name>surv</name>
+        <qualifiedname>Brush::Parameters::surv</qualifiedname>
+        <initializer>= &quot;nsga2&quot;</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/runner/work/brush/brush/src/params.h" line="41" column="12" bodyfile="/home/runner/work/brush/brush/src/params.h" bodystart="41" bodyend="-1"/>
+        <referencedby refid="de/deb/structBrush_1_1Parameters_1abbd954f5018446151e1f5711171476a9" compoundref="da/d33/params_8h" startline="144" endline="144">get_surv</referencedby>
+        <referencedby refid="de/deb/structBrush_1_1Parameters_1aaa61711b5534b0530b60cd11a7070e7c" compoundref="da/d33/params_8h" startline="143" endline="143">set_surv</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="de/deb/structBrush_1_1Parameters_1a6ad3da8ee5919f7f8d562348f99d9e36" prot="public" static="no" mutable="no">
+        <type>std::unordered_map&lt; string, <ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">float</ref> &gt;</type>
+        <definition>std::unordered_map&lt;string, float&gt; Brush::Parameters::functions</definition>
+        <argsstring></argsstring>
+        <name>functions</name>
+        <qualifiedname>Brush::Parameters::functions</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/runner/work/brush/brush/src/params.h" line="42" column="24" bodyfile="/home/runner/work/brush/brush/src/params.h" bodystart="42" bodyend="-1"/>
+        <referencedby refid="de/deb/structBrush_1_1Parameters_1aee62986fbd874d410a0d5d4ab81dce7b" compoundref="da/d33/params_8h" startline="180" endline="180">get_functions</referencedby>
+        <referencedby refid="de/deb/structBrush_1_1Parameters_1a2054b866fb2d2a08114ae9c468ad3863" compoundref="da/d33/params_8h" startline="179" endline="179">set_functions</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="de/deb/structBrush_1_1Parameters_1a93ed229becd162e94722e034f8e5bebc" prot="public" static="no" mutable="no">
+        <type><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">int</ref></type>
+        <definition>int Brush::Parameters::num_islands</definition>
+        <argsstring></argsstring>
+        <name>num_islands</name>
+        <qualifiedname>Brush::Parameters::num_islands</qualifiedname>
+        <initializer>=5</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/runner/work/brush/brush/src/params.h" line="43" column="9" bodyfile="/home/runner/work/brush/brush/src/params.h" bodystart="43" bodyend="-1"/>
+        <referencedby refid="da/d67/bind__selection_8h_1ab9984f712961be9a040dd775a1ab5bd0" compoundref="da/d67/bind__selection_8h" startline="21" endline="103">bind_selection</referencedby>
+        <referencedby refid="d8/df7/bind__variation_8h_1aa00827ef4bd73eeb7c3e30717bf91a74" compoundref="d8/df7/bind__variation_8h" startline="13" endline="69">bind_variation</referencedby>
+        <referencedby refid="de/deb/structBrush_1_1Parameters_1a908bc47bbc7691bf870a909c4eb80edb" compoundref="da/d33/params_8h" startline="126" endline="126">get_num_islands</referencedby>
+        <referencedby refid="da/da3/classBrush_1_1Pop_1_1Population_1a8c4ce8e8bd8cedecb3d0ef621aad9d22" compoundref="d7/d4a/population_8cpp" startline="60" endline="96">Brush::Pop::Population&lt; T &gt;::init</referencedby>
+        <referencedby refid="da/da3/classBrush_1_1Pop_1_1Population_1a46922ab810383db1271d700e03005962" compoundref="d7/d4a/population_8cpp" startline="17" endline="57">Brush::Pop::Population&lt; T &gt;::init</referencedby>
+        <referencedby refid="de/deb/structBrush_1_1Parameters_1a49b871e5bfa462b974e47112cc53ce53" compoundref="da/d33/params_8h" startline="125" endline="125">set_num_islands</referencedby>
+        <referencedby refid="d3/d7d/classBrush_1_1Sel_1_1NSGA2_1a2faddb61c1d9ce38a1bc994e9a9b08eb" compoundref="de/d0d/nsga2_8cpp" startline="69" endline="113">Brush::Sel::NSGA2&lt; T &gt;::survive</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="de/deb/structBrush_1_1Parameters_1a41a48deed7929591e10f9886c0d20ff6" prot="public" static="no" mutable="no">
+        <type><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">bool</ref></type>
+        <definition>bool Brush::Parameters::use_arch</definition>
+        <argsstring></argsstring>
+        <name>use_arch</name>
+        <qualifiedname>Brush::Parameters::use_arch</qualifiedname>
+        <initializer>=<ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">false</ref></initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/runner/work/brush/brush/src/params.h" line="47" column="10" bodyfile="/home/runner/work/brush/brush/src/params.h" bodystart="47" bodyend="-1"/>
+        <referencedby refid="de/deb/structBrush_1_1Parameters_1a18bd85faa68a7a7835f374ebaa08e029" compoundref="da/d33/params_8h" startline="153" endline="153">get_use_arch</referencedby>
+        <referencedby refid="de/deb/structBrush_1_1Parameters_1aab67dbc5fa33691d911959e0ab70b356" compoundref="da/d33/params_8h" startline="152" endline="152">set_use_arch</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="de/deb/structBrush_1_1Parameters_1a9d3932cd3266036a3db14445caee390c" prot="public" static="no" mutable="no">
+        <type><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">bool</ref></type>
+        <definition>bool Brush::Parameters::val_from_arch</definition>
+        <argsstring></argsstring>
+        <name>val_from_arch</name>
+        <qualifiedname>Brush::Parameters::val_from_arch</qualifiedname>
+        <initializer>=<ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">true</ref></initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/runner/work/brush/brush/src/params.h" line="48" column="10" bodyfile="/home/runner/work/brush/brush/src/params.h" bodystart="48" bodyend="-1"/>
+        <referencedby refid="de/deb/structBrush_1_1Parameters_1a24bd26badcac2c7285e9966b684ffd3b" compoundref="da/d33/params_8h" startline="156" endline="156">get_val_from_arch</referencedby>
+        <referencedby refid="de/deb/structBrush_1_1Parameters_1a3911c070b29e41bd9fa50dffcec77986" compoundref="da/d33/params_8h" startline="155" endline="155">set_val_from_arch</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="de/deb/structBrush_1_1Parameters_1a49392abcea1d48447c024a23137fd788" prot="public" static="no" mutable="no">
+        <type>std::map&lt; std::string, <ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">float</ref> &gt;</type>
+        <definition>std::map&lt;std::string, float&gt; Brush::Parameters::mutation_probs</definition>
+        <argsstring></argsstring>
+        <name>mutation_probs</name>
+        <qualifiedname>Brush::Parameters::mutation_probs</qualifiedname>
+        <initializer>= {
+        {&quot;point&quot;, 0.167},
+        {&quot;insert&quot;, 0.167},
+        {&quot;delete&quot;, 0.167},
+        {&quot;subtree&quot;, 0.167},
+        {&quot;toggle_weight_on&quot;, 0.167},
+        {&quot;toggle_weight_off&quot;, 0.167}
+    }</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/runner/work/brush/brush/src/params.h" line="51" column="14" bodyfile="/home/runner/work/brush/brush/src/params.h" bodystart="51" bodyend="58"/>
+        <referencedby refid="de/deb/structBrush_1_1Parameters_1ae663b0ea31743fceb203fe476f4ddc99" compoundref="da/d33/params_8h" startline="177" endline="177">get_mutation_probs</referencedby>
+        <referencedby refid="de/deb/structBrush_1_1Parameters_1a21bfb9aa5ac33bee26416611d51cee1a" compoundref="da/d33/params_8h" startline="176" endline="176">set_mutation_probs</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="de/deb/structBrush_1_1Parameters_1a1d0a366fbf2bb9d7d20d45309b97a7a1" prot="public" static="no" mutable="no">
+        <type><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">float</ref></type>
+        <definition>float Brush::Parameters::cx_prob</definition>
+        <argsstring></argsstring>
+        <name>cx_prob</name>
+        <qualifiedname>Brush::Parameters::cx_prob</qualifiedname>
+        <initializer>=0.2</initializer>
+        <briefdescription>
+<para>cross rate for variation </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/runner/work/brush/brush/src/params.h" line="60" column="11" bodyfile="/home/runner/work/brush/brush/src/params.h" bodystart="60" bodyend="-1"/>
+        <referencedby refid="de/deb/structBrush_1_1Parameters_1ad295afd17da08fdccb207f28caf07cc8" compoundref="da/d33/params_8h" startline="147" endline="147">get_cx_prob</referencedby>
+        <referencedby refid="de/deb/structBrush_1_1Parameters_1ae117be02b10c413ff07be95c2edf2417" compoundref="da/d33/params_8h" startline="146" endline="146">set_cx_prob</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="de/deb/structBrush_1_1Parameters_1aed0024de73a9fec99711efe303484ab8" prot="public" static="no" mutable="no">
+        <type><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">float</ref></type>
+        <definition>float Brush::Parameters::mig_prob</definition>
+        <argsstring></argsstring>
+        <name>mig_prob</name>
+        <qualifiedname>Brush::Parameters::mig_prob</qualifiedname>
+        <initializer>= 0.05</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/runner/work/brush/brush/src/params.h" line="61" column="11" bodyfile="/home/runner/work/brush/brush/src/params.h" bodystart="61" bodyend="-1"/>
+        <referencedby refid="de/deb/structBrush_1_1Parameters_1a62efc097c2a873a92515dd492a78a402" compoundref="da/d33/params_8h" startline="150" endline="150">get_mig_prob</referencedby>
+        <referencedby refid="da/da3/classBrush_1_1Pop_1_1Population_1a8c4ce8e8bd8cedecb3d0ef621aad9d22" compoundref="d7/d4a/population_8cpp" startline="60" endline="96">Brush::Pop::Population&lt; T &gt;::init</referencedby>
+        <referencedby refid="da/da3/classBrush_1_1Pop_1_1Population_1a46922ab810383db1271d700e03005962" compoundref="d7/d4a/population_8cpp" startline="17" endline="57">Brush::Pop::Population&lt; T &gt;::init</referencedby>
+        <referencedby refid="de/deb/structBrush_1_1Parameters_1afb6a671883dbfbde88932791fbb4de87" compoundref="da/d33/params_8h" startline="149" endline="149">set_mig_prob</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="de/deb/structBrush_1_1Parameters_1a7449c6a0796151829f3b5867019d4568" prot="public" static="no" mutable="no">
+        <type>string</type>
+        <definition>string Brush::Parameters::scorer_</definition>
+        <argsstring></argsstring>
+        <name>scorer_</name>
+        <qualifiedname>Brush::Parameters::scorer_</qualifiedname>
+        <initializer>=&quot;mse&quot;</initializer>
+        <briefdescription>
+<para>actual loss function used, determined by error </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/runner/work/brush/brush/src/params.h" line="63" column="12" bodyfile="/home/runner/work/brush/brush/src/params.h" bodystart="63" bodyend="-1"/>
+        <referencedby refid="de/deb/structBrush_1_1Parameters_1a6bfe2cf27c917e6b54f49529e1a23a81" compoundref="da/d33/params_8h" startline="111" endline="111">get_scorer_</referencedby>
+        <referencedby refid="d2/dd0/classBrush_1_1Sel_1_1Lexicase_1ab9f17cd2c4452b05c96a17bb6c105fc2" compoundref="d8/dac/lexicase_8cpp" startline="18" endline="163">Brush::Sel::Lexicase&lt; T &gt;::select</referencedby>
+        <referencedby refid="de/deb/structBrush_1_1Parameters_1ae5f2660ca53a25b460e23332b234230d" compoundref="da/d33/params_8h" startline="110" endline="110">set_scorer_</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="de/deb/structBrush_1_1Parameters_1a7e6f0518ea271df0c3f35a2313071202" prot="public" static="no" mutable="no">
+        <type>vector&lt; <ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">int</ref> &gt;</type>
+        <definition>vector&lt;int&gt; Brush::Parameters::classes</definition>
+        <argsstring></argsstring>
+        <name>classes</name>
+        <qualifiedname>Brush::Parameters::classes</qualifiedname>
+        <briefdescription>
+<para>class labels </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/runner/work/brush/brush/src/params.h" line="65" column="14" bodyfile="/home/runner/work/brush/brush/src/params.h" bodystart="65" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="de/deb/structBrush_1_1Parameters_1a88f5a4e906459cfc44ab04bca01fb333" prot="public" static="no" mutable="no">
+        <type>vector&lt; <ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">float</ref> &gt;</type>
+        <definition>vector&lt;float&gt; Brush::Parameters::class_weights</definition>
+        <argsstring></argsstring>
+        <name>class_weights</name>
+        <qualifiedname>Brush::Parameters::class_weights</qualifiedname>
+        <briefdescription>
+<para>weights for each class </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/runner/work/brush/brush/src/params.h" line="66" column="12" bodyfile="/home/runner/work/brush/brush/src/params.h" bodystart="66" bodyend="-1"/>
+        <referencedby refid="da/d4c/classBrush_1_1Eval_1_1Scorer_1a3797d5ee458a9b91b165b53a8e53cbf6" compoundref="da/d3b/scorer_8h" startline="63" endline="68">Brush::Eval::Scorer&lt; P &gt;::score</referencedby>
+        <referencedby refid="d2/dd0/classBrush_1_1Sel_1_1Lexicase_1ab9f17cd2c4452b05c96a17bb6c105fc2" compoundref="d8/dac/lexicase_8cpp" startline="18" endline="163">Brush::Sel::Lexicase&lt; T &gt;::select</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="de/deb/structBrush_1_1Parameters_1a0c58f9fade0aa2b61ce38213f1675cc5" prot="public" static="no" mutable="no">
+        <type>vector&lt; <ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">float</ref> &gt;</type>
+        <definition>vector&lt;float&gt; Brush::Parameters::sample_weights</definition>
+        <argsstring></argsstring>
+        <name>sample_weights</name>
+        <qualifiedname>Brush::Parameters::sample_weights</qualifiedname>
+        <briefdescription>
+<para>weights for each sample </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/runner/work/brush/brush/src/params.h" line="67" column="12" bodyfile="/home/runner/work/brush/brush/src/params.h" bodystart="67" bodyend="-1"/>
+        <referencedby refid="d2/dd0/classBrush_1_1Sel_1_1Lexicase_1ab9f17cd2c4452b05c96a17bb6c105fc2" compoundref="d8/dac/lexicase_8cpp" startline="18" endline="163">Brush::Sel::Lexicase&lt; T &gt;::select</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="de/deb/structBrush_1_1Parameters_1a72bfe23c101219ee3460ef8b9e1e1cbe" prot="public" static="no" mutable="no">
+        <type><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">bool</ref></type>
+        <definition>bool Brush::Parameters::classification</definition>
+        <argsstring></argsstring>
+        <name>classification</name>
+        <qualifiedname>Brush::Parameters::classification</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/runner/work/brush/brush/src/params.h" line="71" column="10" bodyfile="/home/runner/work/brush/brush/src/params.h" bodystart="71" bodyend="-1"/>
+        <referencedby refid="d0/d75/classBrush_1_1Engine_1aad11ac5c3f0adc14cabf465eeb7d3e91" compoundref="d1/d55/engine_8h" startline="79" endline="85">Brush::Engine&lt; T &gt;::fit</referencedby>
+        <referencedby refid="de/deb/structBrush_1_1Parameters_1a0941104c9a1c006e2d616b04fe8772f8" compoundref="da/d33/params_8h" startline="159" endline="159">get_classification</referencedby>
+        <referencedby refid="d2/dd0/classBrush_1_1Sel_1_1Lexicase_1ab9f17cd2c4452b05c96a17bb6c105fc2" compoundref="d8/dac/lexicase_8cpp" startline="18" endline="163">Brush::Sel::Lexicase&lt; T &gt;::select</referencedby>
+        <referencedby refid="de/deb/structBrush_1_1Parameters_1aadbf81786a17f23863c85f1896b7155d" compoundref="da/d33/params_8h" startline="158" endline="158">set_classification</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="de/deb/structBrush_1_1Parameters_1af6ac960263e42bba7e6a334fb86c5798" prot="public" static="no" mutable="no">
+        <type><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">unsigned</ref> <ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">int</ref></type>
+        <definition>unsigned int Brush::Parameters::n_classes</definition>
+        <argsstring></argsstring>
+        <name>n_classes</name>
+        <qualifiedname>Brush::Parameters::n_classes</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/runner/work/brush/brush/src/params.h" line="72" column="18" bodyfile="/home/runner/work/brush/brush/src/params.h" bodystart="72" bodyend="-1"/>
+        <referencedby refid="de/deb/structBrush_1_1Parameters_1a572e97fe2ee54989dc8c72ad322076f7" compoundref="da/d33/params_8h" startline="165" endline="165">get_n_classes</referencedby>
+        <referencedby refid="de/deb/structBrush_1_1Parameters_1a0f4d07dbdf17466810ef7e944cadf3f0" compoundref="da/d33/params_8h" startline="164" endline="164">set_n_classes</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="de/deb/structBrush_1_1Parameters_1a38f19ab73e20b7d19604338e7ea5f64e" prot="public" static="no" mutable="no">
+        <type><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">bool</ref></type>
+        <definition>bool Brush::Parameters::shuffle_split</definition>
+        <argsstring></argsstring>
+        <name>shuffle_split</name>
+        <qualifiedname>Brush::Parameters::shuffle_split</qualifiedname>
+        <initializer>= <ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">false</ref></initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/runner/work/brush/brush/src/params.h" line="75" column="10" bodyfile="/home/runner/work/brush/brush/src/params.h" bodystart="75" bodyend="-1"/>
+        <referencedby refid="de/deb/structBrush_1_1Parameters_1acaae679131485c3a26d673de03dec296" compoundref="da/d33/params_8h" startline="162" endline="162">get_shuffle_split</referencedby>
+        <referencedby refid="de/deb/structBrush_1_1Parameters_1a165c8b63ae6066b392ab945c2d04a7b5" compoundref="da/d33/params_8h" startline="161" endline="161">set_shuffle_split</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="de/deb/structBrush_1_1Parameters_1a56cb7729183a3d4bc9514e83198b99d5" prot="public" static="no" mutable="no">
+        <type><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">float</ref></type>
+        <definition>float Brush::Parameters::validation_size</definition>
+        <argsstring></argsstring>
+        <name>validation_size</name>
+        <qualifiedname>Brush::Parameters::validation_size</qualifiedname>
+        <initializer>= 0.75</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/runner/work/brush/brush/src/params.h" line="76" column="11" bodyfile="/home/runner/work/brush/brush/src/params.h" bodystart="76" bodyend="-1"/>
+        <referencedby refid="d0/d75/classBrush_1_1Engine_1aad11ac5c3f0adc14cabf465eeb7d3e91" compoundref="d1/d55/engine_8h" startline="79" endline="85">Brush::Engine&lt; T &gt;::fit</referencedby>
+        <referencedby refid="de/deb/structBrush_1_1Parameters_1aead717c90a933bdc5b1b149a4b40ec78" compoundref="da/d33/params_8h" startline="168" endline="168">get_validation_size</referencedby>
+        <referencedby refid="de/deb/structBrush_1_1Parameters_1adcfeb3fbcd6bb2ace4eb112dd1ac1fc7" compoundref="da/d33/params_8h" startline="167" endline="167">set_validation_size</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="de/deb/structBrush_1_1Parameters_1a9aefe0091a5fcba33a3d98c4716a6c4d" prot="public" static="no" mutable="no">
+        <type>vector&lt; string &gt;</type>
+        <definition>vector&lt;string&gt; Brush::Parameters::feature_names</definition>
+        <argsstring></argsstring>
+        <name>feature_names</name>
+        <qualifiedname>Brush::Parameters::feature_names</qualifiedname>
+        <initializer>= {}</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/runner/work/brush/brush/src/params.h" line="77" column="12" bodyfile="/home/runner/work/brush/brush/src/params.h" bodystart="77" bodyend="77"/>
+        <referencedby refid="d0/d75/classBrush_1_1Engine_1aad11ac5c3f0adc14cabf465eeb7d3e91" compoundref="d1/d55/engine_8h" startline="79" endline="85">Brush::Engine&lt; T &gt;::fit</referencedby>
+        <referencedby refid="de/deb/structBrush_1_1Parameters_1a503e5e39ff8078bfd0132399bc376651" compoundref="da/d33/params_8h" startline="171" endline="171">get_feature_names</referencedby>
+        <referencedby refid="de/deb/structBrush_1_1Parameters_1adce3ebf4b9d0aa35a4da35f33e5d9168" compoundref="da/d33/params_8h" startline="170" endline="170">set_feature_names</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="de/deb/structBrush_1_1Parameters_1a3079fe8703a9a8c57e06afd7425f48d4" prot="public" static="no" mutable="no">
+        <type><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">float</ref></type>
+        <definition>float Brush::Parameters::batch_size</definition>
+        <argsstring></argsstring>
+        <name>batch_size</name>
+        <qualifiedname>Brush::Parameters::batch_size</qualifiedname>
+        <initializer>= 0.0</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/runner/work/brush/brush/src/params.h" line="78" column="11" bodyfile="/home/runner/work/brush/brush/src/params.h" bodystart="78" bodyend="-1"/>
+        <referencedby refid="d0/d75/classBrush_1_1Engine_1aad11ac5c3f0adc14cabf465eeb7d3e91" compoundref="d1/d55/engine_8h" startline="79" endline="85">Brush::Engine&lt; T &gt;::fit</referencedby>
+        <referencedby refid="de/deb/structBrush_1_1Parameters_1a55829db9efdf15f588da5aed54fa42a8" compoundref="da/d33/params_8h" startline="174" endline="174">get_batch_size</referencedby>
+        <referencedby refid="de/deb/structBrush_1_1Parameters_1a3764d1c46477f804a75d58248cc64ea8" compoundref="da/d33/params_8h" startline="173" endline="173">set_batch_size</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="de/deb/structBrush_1_1Parameters_1ad1a131cf61b76ff1ab4b576f5fd1df9b" prot="public" static="no" mutable="no">
+        <type>string</type>
+        <definition>string Brush::Parameters::load_population</definition>
+        <argsstring></argsstring>
+        <name>load_population</name>
+        <qualifiedname>Brush::Parameters::load_population</qualifiedname>
+        <initializer>= &quot;&quot;</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/runner/work/brush/brush/src/params.h" line="80" column="12" bodyfile="/home/runner/work/brush/brush/src/params.h" bodystart="80" bodyend="-1"/>
+        <referencedby refid="de/deb/structBrush_1_1Parameters_1a714c905329b7ca861e5c7488c1415dbf" compoundref="da/d33/params_8h" startline="114" endline="114">get_load_population</referencedby>
+        <referencedby refid="de/deb/structBrush_1_1Parameters_1a7ccc0f7607fb73e0e3c37d7ac6305954" compoundref="da/d33/params_8h" startline="113" endline="113">set_load_population</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="de/deb/structBrush_1_1Parameters_1ad2ad3c96073fa555d752b20a182309bf" prot="public" static="no" mutable="no">
+        <type>string</type>
+        <definition>string Brush::Parameters::save_population</definition>
+        <argsstring></argsstring>
+        <name>save_population</name>
+        <qualifiedname>Brush::Parameters::save_population</qualifiedname>
+        <initializer>= &quot;&quot;</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/runner/work/brush/brush/src/params.h" line="81" column="12" bodyfile="/home/runner/work/brush/brush/src/params.h" bodystart="81" bodyend="-1"/>
+        <referencedby refid="de/deb/structBrush_1_1Parameters_1a5340c96aa233e2a9a631160b0b08099a" compoundref="da/d33/params_8h" startline="117" endline="117">get_save_population</referencedby>
+        <referencedby refid="de/deb/structBrush_1_1Parameters_1a03a5ec7ccfcba501d57264aeb3a41263" compoundref="da/d33/params_8h" startline="116" endline="116">set_save_population</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="de/deb/structBrush_1_1Parameters_1ab800a9c06c4bbfd47f031659ff7bb7b8" prot="public" static="no" mutable="no">
+        <type>string</type>
+        <definition>string Brush::Parameters::logfile</definition>
+        <argsstring></argsstring>
+        <name>logfile</name>
+        <qualifiedname>Brush::Parameters::logfile</qualifiedname>
+        <initializer>= &quot;&quot;</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/runner/work/brush/brush/src/params.h" line="83" column="12" bodyfile="/home/runner/work/brush/brush/src/params.h" bodystart="83" bodyend="-1"/>
+        <referencedby refid="de/deb/structBrush_1_1Parameters_1a9db4d0fc9bf85b823d8963382118fde5" compoundref="da/d33/params_8h" startline="119" endline="119">get_logfile</referencedby>
+        <referencedby refid="de/deb/structBrush_1_1Parameters_1a531d8a7a2fc8a402881be57b62f38e2c" compoundref="da/d33/params_8h" startline="120" endline="120">set_logfile</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="de/deb/structBrush_1_1Parameters_1a7fe27c4ba2a88aaea8fbed5a845e868e" prot="public" static="no" mutable="no">
+        <type><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">int</ref></type>
+        <definition>int Brush::Parameters::n_jobs</definition>
+        <argsstring></argsstring>
+        <name>n_jobs</name>
+        <qualifiedname>Brush::Parameters::n_jobs</qualifiedname>
+        <initializer>= 1</initializer>
+        <briefdescription>
+<para>number of parallel jobs -1 use all threads; 0 use same as number of islands; positive number specify the amouut of threads </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/runner/work/brush/brush/src/params.h" line="85" column="9" bodyfile="/home/runner/work/brush/brush/src/params.h" bodystart="85" bodyend="-1"/>
+        <referencedby refid="de/deb/structBrush_1_1Parameters_1a3bb3c39fa10b2087f5733d7ad47902de" compoundref="da/d33/params_8h" startline="132" endline="132">get_n_jobs</referencedby>
+        <referencedby refid="de/deb/structBrush_1_1Parameters_1ad5cf6dfc60d005e70ef569ac1e58bdeb" compoundref="da/d33/params_8h" startline="131" endline="131">set_n_jobs</referencedby>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="public-func">
+      <memberdef kind="function" id="de/deb/structBrush_1_1Parameters_1a8997d623bed2d28638bde6993f11f9c5" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>Brush::Parameters::Parameters</definition>
+        <argsstring>()</argsstring>
+        <name>Parameters</name>
+        <qualifiedname>Brush::Parameters::Parameters</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/runner/work/brush/brush/src/params.h" line="87" column="5" bodyfile="/home/runner/work/brush/brush/src/params.h" bodystart="87" bodyend="87"/>
+      </memberdef>
+      <memberdef kind="function" id="de/deb/structBrush_1_1Parameters_1a123bc3a7c8b17c0add03f6fbb128b6e4" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>Brush::Parameters::~Parameters</definition>
+        <argsstring>()</argsstring>
+        <name>~Parameters</name>
+        <qualifiedname>Brush::Parameters::~Parameters</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/runner/work/brush/brush/src/params.h" line="88" column="5" bodyfile="/home/runner/work/brush/brush/src/params.h" bodystart="88" bodyend="88"/>
+      </memberdef>
+      <memberdef kind="function" id="de/deb/structBrush_1_1Parameters_1af232e2b8ac05a182b54437cbf03fc18c" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">void</ref></type>
+        <definition>void Brush::Parameters::set_verbosity</definition>
+        <argsstring>(int new_verbosity)</argsstring>
+        <name>set_verbosity</name>
+        <qualifiedname>Brush::Parameters::set_verbosity</qualifiedname>
+        <param>
+          <type><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">int</ref></type>
+          <declname>new_verbosity</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/runner/work/brush/brush/src/params.h" line="91" column="10" bodyfile="/home/runner/work/brush/brush/src/params.h" bodystart="91" bodyend="92"/>
+        <references refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" compoundref="d4/d93/bind__engines_8h" startline="35" endline="104">bind_engine</references>
+        <references refid="d6/d2e/namespaceBrush_1_1Util_1aa6d49e22e6193fabd31fde261f607560" compoundref="d1/d8c/logger_8h" startline="60">Brush::Util::logger</references>
+        <references refid="dd/d56/classBrush_1_1Util_1_1Logger_1a9e88baaf25e97566fe654a0563253fd8" compoundref="d3/d30/logger_8cpp" startline="31" endline="42">Brush::Util::Logger::set_log_level</references>
+        <references refid="de/deb/structBrush_1_1Parameters_1aa3266a1e88b1d869a94ab3b21152beda" compoundref="da/d33/params_8h" startline="22">verbosity</references>
+        <referencedby refid="da/dbf/bind__params_8cpp_1a686c1dac4334b78b765f556f3069f661" compoundref="da/dbf/bind__params_8cpp" startline="7" endline="59">bind_params</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="de/deb/structBrush_1_1Parameters_1a0b9ab7c9b3c3e3fcb4445b4acca9a7c9" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">int</ref></type>
+        <definition>int Brush::Parameters::get_verbosity</definition>
+        <argsstring>()</argsstring>
+        <name>get_verbosity</name>
+        <qualifiedname>Brush::Parameters::get_verbosity</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/runner/work/brush/brush/src/params.h" line="93" column="9" bodyfile="/home/runner/work/brush/brush/src/params.h" bodystart="93" bodyend="93"/>
+        <references refid="de/deb/structBrush_1_1Parameters_1aa3266a1e88b1d869a94ab3b21152beda" compoundref="da/d33/params_8h" startline="22">verbosity</references>
+        <referencedby refid="da/dbf/bind__params_8cpp_1a686c1dac4334b78b765f556f3069f661" compoundref="da/dbf/bind__params_8cpp" startline="7" endline="59">bind_params</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="de/deb/structBrush_1_1Parameters_1a520456c57a2c3f8703036ae0d5142635" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">void</ref></type>
+        <definition>void Brush::Parameters::set_random_state</definition>
+        <argsstring>(int new_random_state)</argsstring>
+        <name>set_random_state</name>
+        <qualifiedname>Brush::Parameters::set_random_state</qualifiedname>
+        <param>
+          <type><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">int</ref></type>
+          <declname>new_random_state</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/runner/work/brush/brush/src/params.h" line="95" column="10" bodyfile="/home/runner/work/brush/brush/src/params.h" bodystart="95" bodyend="95"/>
+        <references refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" compoundref="d4/d93/bind__engines_8h" startline="35" endline="104">bind_engine</references>
+        <references refid="de/deb/structBrush_1_1Parameters_1abe9f1394bdf123d3186976d50bb89a70" compoundref="da/d33/params_8h" startline="21">random_state</references>
+        <referencedby refid="da/dbf/bind__params_8cpp_1a686c1dac4334b78b765f556f3069f661" compoundref="da/dbf/bind__params_8cpp" startline="7" endline="59">bind_params</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="de/deb/structBrush_1_1Parameters_1a65d0b2e202d140602ca832dbd0e3c9bc" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">int</ref></type>
+        <definition>int Brush::Parameters::get_random_state</definition>
+        <argsstring>()</argsstring>
+        <name>get_random_state</name>
+        <qualifiedname>Brush::Parameters::get_random_state</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/runner/work/brush/brush/src/params.h" line="96" column="9" bodyfile="/home/runner/work/brush/brush/src/params.h" bodystart="96" bodyend="96"/>
+        <references refid="de/deb/structBrush_1_1Parameters_1abe9f1394bdf123d3186976d50bb89a70" compoundref="da/d33/params_8h" startline="21">random_state</references>
+        <referencedby refid="da/dbf/bind__params_8cpp_1a686c1dac4334b78b765f556f3069f661" compoundref="da/dbf/bind__params_8cpp" startline="7" endline="59">bind_params</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="de/deb/structBrush_1_1Parameters_1a4e5aa0dc57b760b0329483e64c3ccea3" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">void</ref></type>
+        <definition>void Brush::Parameters::set_pop_size</definition>
+        <argsstring>(int new_pop_size)</argsstring>
+        <name>set_pop_size</name>
+        <qualifiedname>Brush::Parameters::set_pop_size</qualifiedname>
+        <param>
+          <type><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">int</ref></type>
+          <declname>new_pop_size</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/runner/work/brush/brush/src/params.h" line="98" column="10" bodyfile="/home/runner/work/brush/brush/src/params.h" bodystart="98" bodyend="98"/>
+        <references refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" compoundref="d4/d93/bind__engines_8h" startline="35" endline="104">bind_engine</references>
+        <references refid="de/deb/structBrush_1_1Parameters_1a139004f9fa652376afabd690dac242e5" compoundref="da/d33/params_8h" startline="30">pop_size</references>
+        <referencedby refid="da/dbf/bind__params_8cpp_1a686c1dac4334b78b765f556f3069f661" compoundref="da/dbf/bind__params_8cpp" startline="7" endline="59">bind_params</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="de/deb/structBrush_1_1Parameters_1a7d391d24fbe78545ba09cf01a3634878" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">int</ref></type>
+        <definition>int Brush::Parameters::get_pop_size</definition>
+        <argsstring>()</argsstring>
+        <name>get_pop_size</name>
+        <qualifiedname>Brush::Parameters::get_pop_size</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/runner/work/brush/brush/src/params.h" line="99" column="9" bodyfile="/home/runner/work/brush/brush/src/params.h" bodystart="99" bodyend="99"/>
+        <references refid="de/deb/structBrush_1_1Parameters_1a139004f9fa652376afabd690dac242e5" compoundref="da/d33/params_8h" startline="30">pop_size</references>
+        <referencedby refid="da/dbf/bind__params_8cpp_1a686c1dac4334b78b765f556f3069f661" compoundref="da/dbf/bind__params_8cpp" startline="7" endline="59">bind_params</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="de/deb/structBrush_1_1Parameters_1a11a7976ca8a7aaa45d9722b74aeb5704" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">void</ref></type>
+        <definition>void Brush::Parameters::set_max_gens</definition>
+        <argsstring>(int new_max_gens)</argsstring>
+        <name>set_max_gens</name>
+        <qualifiedname>Brush::Parameters::set_max_gens</qualifiedname>
+        <param>
+          <type><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">int</ref></type>
+          <declname>new_max_gens</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/runner/work/brush/brush/src/params.h" line="101" column="10" bodyfile="/home/runner/work/brush/brush/src/params.h" bodystart="101" bodyend="101"/>
+        <references refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" compoundref="d4/d93/bind__engines_8h" startline="35" endline="104">bind_engine</references>
+        <references refid="de/deb/structBrush_1_1Parameters_1ae8174a3006e30812afa63f1d74aeb6e9" compoundref="da/d33/params_8h" startline="31">max_gens</references>
+        <referencedby refid="da/dbf/bind__params_8cpp_1a686c1dac4334b78b765f556f3069f661" compoundref="da/dbf/bind__params_8cpp" startline="7" endline="59">bind_params</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="de/deb/structBrush_1_1Parameters_1a32be1d9b49a8ce5636de4828a15ec6c1" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">int</ref></type>
+        <definition>int Brush::Parameters::get_max_gens</definition>
+        <argsstring>()</argsstring>
+        <name>get_max_gens</name>
+        <qualifiedname>Brush::Parameters::get_max_gens</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/runner/work/brush/brush/src/params.h" line="102" column="9" bodyfile="/home/runner/work/brush/brush/src/params.h" bodystart="102" bodyend="102"/>
+        <references refid="de/deb/structBrush_1_1Parameters_1ae8174a3006e30812afa63f1d74aeb6e9" compoundref="da/d33/params_8h" startline="31">max_gens</references>
+        <referencedby refid="da/dbf/bind__params_8cpp_1a686c1dac4334b78b765f556f3069f661" compoundref="da/dbf/bind__params_8cpp" startline="7" endline="59">bind_params</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="de/deb/structBrush_1_1Parameters_1a0ca031442d56216059f5fe520d493b9b" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">void</ref></type>
+        <definition>void Brush::Parameters::set_max_stall</definition>
+        <argsstring>(int new_max_stall)</argsstring>
+        <name>set_max_stall</name>
+        <qualifiedname>Brush::Parameters::set_max_stall</qualifiedname>
+        <param>
+          <type><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">int</ref></type>
+          <declname>new_max_stall</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/runner/work/brush/brush/src/params.h" line="104" column="10" bodyfile="/home/runner/work/brush/brush/src/params.h" bodystart="104" bodyend="104"/>
+        <references refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" compoundref="d4/d93/bind__engines_8h" startline="35" endline="104">bind_engine</references>
+        <references refid="de/deb/structBrush_1_1Parameters_1a21e3da5422ccf31326362f1806ac3eae" compoundref="da/d33/params_8h" startline="32">max_stall</references>
+        <referencedby refid="da/dbf/bind__params_8cpp_1a686c1dac4334b78b765f556f3069f661" compoundref="da/dbf/bind__params_8cpp" startline="7" endline="59">bind_params</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="de/deb/structBrush_1_1Parameters_1a60eb890e9354559600d21c46e310bdd2" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">int</ref></type>
+        <definition>int Brush::Parameters::get_max_stall</definition>
+        <argsstring>()</argsstring>
+        <name>get_max_stall</name>
+        <qualifiedname>Brush::Parameters::get_max_stall</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/runner/work/brush/brush/src/params.h" line="105" column="9" bodyfile="/home/runner/work/brush/brush/src/params.h" bodystart="105" bodyend="105"/>
+        <references refid="de/deb/structBrush_1_1Parameters_1a21e3da5422ccf31326362f1806ac3eae" compoundref="da/d33/params_8h" startline="32">max_stall</references>
+        <referencedby refid="da/dbf/bind__params_8cpp_1a686c1dac4334b78b765f556f3069f661" compoundref="da/dbf/bind__params_8cpp" startline="7" endline="59">bind_params</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="de/deb/structBrush_1_1Parameters_1a1961e03a4ec41dcc0fd1d384ebeca6cd" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">void</ref></type>
+        <definition>void Brush::Parameters::set_max_time</definition>
+        <argsstring>(int new_max_time)</argsstring>
+        <name>set_max_time</name>
+        <qualifiedname>Brush::Parameters::set_max_time</qualifiedname>
+        <param>
+          <type><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">int</ref></type>
+          <declname>new_max_time</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/runner/work/brush/brush/src/params.h" line="107" column="10" bodyfile="/home/runner/work/brush/brush/src/params.h" bodystart="107" bodyend="107"/>
+        <references refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" compoundref="d4/d93/bind__engines_8h" startline="35" endline="104">bind_engine</references>
+        <references refid="de/deb/structBrush_1_1Parameters_1a1625c1a71de2fdd1ccd0954a32fc4ead" compoundref="da/d33/params_8h" startline="33">max_time</references>
+        <referencedby refid="da/dbf/bind__params_8cpp_1a686c1dac4334b78b765f556f3069f661" compoundref="da/dbf/bind__params_8cpp" startline="7" endline="59">bind_params</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="de/deb/structBrush_1_1Parameters_1a2cbb237e04a742e5b7045213409f8810" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">int</ref></type>
+        <definition>int Brush::Parameters::get_max_time</definition>
+        <argsstring>()</argsstring>
+        <name>get_max_time</name>
+        <qualifiedname>Brush::Parameters::get_max_time</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/runner/work/brush/brush/src/params.h" line="108" column="9" bodyfile="/home/runner/work/brush/brush/src/params.h" bodystart="108" bodyend="108"/>
+        <references refid="de/deb/structBrush_1_1Parameters_1a1625c1a71de2fdd1ccd0954a32fc4ead" compoundref="da/d33/params_8h" startline="33">max_time</references>
+        <referencedby refid="da/dbf/bind__params_8cpp_1a686c1dac4334b78b765f556f3069f661" compoundref="da/dbf/bind__params_8cpp" startline="7" endline="59">bind_params</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="de/deb/structBrush_1_1Parameters_1ae5f2660ca53a25b460e23332b234230d" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">void</ref></type>
+        <definition>void Brush::Parameters::set_scorer_</definition>
+        <argsstring>(string new_scorer_)</argsstring>
+        <name>set_scorer_</name>
+        <qualifiedname>Brush::Parameters::set_scorer_</qualifiedname>
+        <param>
+          <type>string</type>
+          <declname>new_scorer_</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/runner/work/brush/brush/src/params.h" line="110" column="10" bodyfile="/home/runner/work/brush/brush/src/params.h" bodystart="110" bodyend="110"/>
+        <references refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" compoundref="d4/d93/bind__engines_8h" startline="35" endline="104">bind_engine</references>
+        <references refid="de/deb/structBrush_1_1Parameters_1a7449c6a0796151829f3b5867019d4568" compoundref="da/d33/params_8h" startline="63">scorer_</references>
+        <referencedby refid="da/dbf/bind__params_8cpp_1a686c1dac4334b78b765f556f3069f661" compoundref="da/dbf/bind__params_8cpp" startline="7" endline="59">bind_params</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="de/deb/structBrush_1_1Parameters_1a6bfe2cf27c917e6b54f49529e1a23a81" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>string</type>
+        <definition>string Brush::Parameters::get_scorer_</definition>
+        <argsstring>()</argsstring>
+        <name>get_scorer_</name>
+        <qualifiedname>Brush::Parameters::get_scorer_</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/runner/work/brush/brush/src/params.h" line="111" column="12" bodyfile="/home/runner/work/brush/brush/src/params.h" bodystart="111" bodyend="111"/>
+        <references refid="de/deb/structBrush_1_1Parameters_1a7449c6a0796151829f3b5867019d4568" compoundref="da/d33/params_8h" startline="63">scorer_</references>
+        <referencedby refid="da/dbf/bind__params_8cpp_1a686c1dac4334b78b765f556f3069f661" compoundref="da/dbf/bind__params_8cpp" startline="7" endline="59">bind_params</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="de/deb/structBrush_1_1Parameters_1a7ccc0f7607fb73e0e3c37d7ac6305954" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">void</ref></type>
+        <definition>void Brush::Parameters::set_load_population</definition>
+        <argsstring>(string new_load_population)</argsstring>
+        <name>set_load_population</name>
+        <qualifiedname>Brush::Parameters::set_load_population</qualifiedname>
+        <param>
+          <type>string</type>
+          <declname>new_load_population</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/runner/work/brush/brush/src/params.h" line="113" column="10" bodyfile="/home/runner/work/brush/brush/src/params.h" bodystart="113" bodyend="113"/>
+        <references refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" compoundref="d4/d93/bind__engines_8h" startline="35" endline="104">bind_engine</references>
+        <references refid="de/deb/structBrush_1_1Parameters_1ad1a131cf61b76ff1ab4b576f5fd1df9b" compoundref="da/d33/params_8h" startline="80">load_population</references>
+        <referencedby refid="da/dbf/bind__params_8cpp_1a686c1dac4334b78b765f556f3069f661" compoundref="da/dbf/bind__params_8cpp" startline="7" endline="59">bind_params</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="de/deb/structBrush_1_1Parameters_1a714c905329b7ca861e5c7488c1415dbf" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>string</type>
+        <definition>string Brush::Parameters::get_load_population</definition>
+        <argsstring>()</argsstring>
+        <name>get_load_population</name>
+        <qualifiedname>Brush::Parameters::get_load_population</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/runner/work/brush/brush/src/params.h" line="114" column="12" bodyfile="/home/runner/work/brush/brush/src/params.h" bodystart="114" bodyend="114"/>
+        <references refid="de/deb/structBrush_1_1Parameters_1ad1a131cf61b76ff1ab4b576f5fd1df9b" compoundref="da/d33/params_8h" startline="80">load_population</references>
+        <referencedby refid="da/dbf/bind__params_8cpp_1a686c1dac4334b78b765f556f3069f661" compoundref="da/dbf/bind__params_8cpp" startline="7" endline="59">bind_params</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="de/deb/structBrush_1_1Parameters_1a03a5ec7ccfcba501d57264aeb3a41263" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">void</ref></type>
+        <definition>void Brush::Parameters::set_save_population</definition>
+        <argsstring>(string new_save_population)</argsstring>
+        <name>set_save_population</name>
+        <qualifiedname>Brush::Parameters::set_save_population</qualifiedname>
+        <param>
+          <type>string</type>
+          <declname>new_save_population</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/runner/work/brush/brush/src/params.h" line="116" column="10" bodyfile="/home/runner/work/brush/brush/src/params.h" bodystart="116" bodyend="116"/>
+        <references refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" compoundref="d4/d93/bind__engines_8h" startline="35" endline="104">bind_engine</references>
+        <references refid="de/deb/structBrush_1_1Parameters_1ad2ad3c96073fa555d752b20a182309bf" compoundref="da/d33/params_8h" startline="81">save_population</references>
+        <referencedby refid="da/dbf/bind__params_8cpp_1a686c1dac4334b78b765f556f3069f661" compoundref="da/dbf/bind__params_8cpp" startline="7" endline="59">bind_params</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="de/deb/structBrush_1_1Parameters_1a5340c96aa233e2a9a631160b0b08099a" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>string</type>
+        <definition>string Brush::Parameters::get_save_population</definition>
+        <argsstring>()</argsstring>
+        <name>get_save_population</name>
+        <qualifiedname>Brush::Parameters::get_save_population</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/runner/work/brush/brush/src/params.h" line="117" column="12" bodyfile="/home/runner/work/brush/brush/src/params.h" bodystart="117" bodyend="117"/>
+        <references refid="de/deb/structBrush_1_1Parameters_1ad2ad3c96073fa555d752b20a182309bf" compoundref="da/d33/params_8h" startline="81">save_population</references>
+        <referencedby refid="da/dbf/bind__params_8cpp_1a686c1dac4334b78b765f556f3069f661" compoundref="da/dbf/bind__params_8cpp" startline="7" endline="59">bind_params</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="de/deb/structBrush_1_1Parameters_1a9db4d0fc9bf85b823d8963382118fde5" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>string</type>
+        <definition>string Brush::Parameters::get_logfile</definition>
+        <argsstring>()</argsstring>
+        <name>get_logfile</name>
+        <qualifiedname>Brush::Parameters::get_logfile</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/runner/work/brush/brush/src/params.h" line="119" column="12" bodyfile="/home/runner/work/brush/brush/src/params.h" bodystart="119" bodyend="119"/>
+        <references refid="de/deb/structBrush_1_1Parameters_1ab800a9c06c4bbfd47f031659ff7bb7b8" compoundref="da/d33/params_8h" startline="83">logfile</references>
+        <referencedby refid="da/dbf/bind__params_8cpp_1a686c1dac4334b78b765f556f3069f661" compoundref="da/dbf/bind__params_8cpp" startline="7" endline="59">bind_params</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="de/deb/structBrush_1_1Parameters_1a531d8a7a2fc8a402881be57b62f38e2c" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">void</ref></type>
+        <definition>void Brush::Parameters::set_logfile</definition>
+        <argsstring>(string s)</argsstring>
+        <name>set_logfile</name>
+        <qualifiedname>Brush::Parameters::set_logfile</qualifiedname>
+        <param>
+          <type>string</type>
+          <declname>s</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/runner/work/brush/brush/src/params.h" line="120" column="10" bodyfile="/home/runner/work/brush/brush/src/params.h" bodystart="120" bodyend="120"/>
+        <references refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" compoundref="d4/d93/bind__engines_8h" startline="35" endline="104">bind_engine</references>
+        <references refid="de/deb/structBrush_1_1Parameters_1ab800a9c06c4bbfd47f031659ff7bb7b8" compoundref="da/d33/params_8h" startline="83">logfile</references>
+        <referencedby refid="da/dbf/bind__params_8cpp_1a686c1dac4334b78b765f556f3069f661" compoundref="da/dbf/bind__params_8cpp" startline="7" endline="59">bind_params</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="de/deb/structBrush_1_1Parameters_1a83d1e4fc6ee0bab95df90583080a1bd7" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">void</ref></type>
+        <definition>void Brush::Parameters::set_current_gen</definition>
+        <argsstring>(unsigned int gen)</argsstring>
+        <name>set_current_gen</name>
+        <qualifiedname>Brush::Parameters::set_current_gen</qualifiedname>
+        <param>
+          <type><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">unsigned</ref> <ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">int</ref></type>
+          <declname>gen</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/runner/work/brush/brush/src/params.h" line="122" column="10" bodyfile="/home/runner/work/brush/brush/src/params.h" bodystart="122" bodyend="122"/>
+        <references refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" compoundref="d4/d93/bind__engines_8h" startline="35" endline="104">bind_engine</references>
+        <references refid="de/deb/structBrush_1_1Parameters_1acd37c52e411d17126bff22dca19f0408" compoundref="da/d33/params_8h" startline="27">current_gen</references>
+        <referencedby refid="da/dbf/bind__params_8cpp_1a686c1dac4334b78b765f556f3069f661" compoundref="da/dbf/bind__params_8cpp" startline="7" endline="59">bind_params</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="de/deb/structBrush_1_1Parameters_1ae342f8777e40bb52f65cdb951a960603" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">unsigned</ref> <ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">int</ref></type>
+        <definition>unsigned int Brush::Parameters::get_current_gen</definition>
+        <argsstring>()</argsstring>
+        <name>get_current_gen</name>
+        <qualifiedname>Brush::Parameters::get_current_gen</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/runner/work/brush/brush/src/params.h" line="123" column="18" bodyfile="/home/runner/work/brush/brush/src/params.h" bodystart="123" bodyend="123"/>
+        <references refid="de/deb/structBrush_1_1Parameters_1acd37c52e411d17126bff22dca19f0408" compoundref="da/d33/params_8h" startline="27">current_gen</references>
+        <referencedby refid="da/dbf/bind__params_8cpp_1a686c1dac4334b78b765f556f3069f661" compoundref="da/dbf/bind__params_8cpp" startline="7" endline="59">bind_params</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="de/deb/structBrush_1_1Parameters_1a49b871e5bfa462b974e47112cc53ce53" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">void</ref></type>
+        <definition>void Brush::Parameters::set_num_islands</definition>
+        <argsstring>(int new_num_islands)</argsstring>
+        <name>set_num_islands</name>
+        <qualifiedname>Brush::Parameters::set_num_islands</qualifiedname>
+        <param>
+          <type><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">int</ref></type>
+          <declname>new_num_islands</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/runner/work/brush/brush/src/params.h" line="125" column="10" bodyfile="/home/runner/work/brush/brush/src/params.h" bodystart="125" bodyend="125"/>
+        <references refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" compoundref="d4/d93/bind__engines_8h" startline="35" endline="104">bind_engine</references>
+        <references refid="de/deb/structBrush_1_1Parameters_1a93ed229becd162e94722e034f8e5bebc" compoundref="da/d33/params_8h" startline="43">num_islands</references>
+        <referencedby refid="da/dbf/bind__params_8cpp_1a686c1dac4334b78b765f556f3069f661" compoundref="da/dbf/bind__params_8cpp" startline="7" endline="59">bind_params</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="de/deb/structBrush_1_1Parameters_1a908bc47bbc7691bf870a909c4eb80edb" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">int</ref></type>
+        <definition>int Brush::Parameters::get_num_islands</definition>
+        <argsstring>()</argsstring>
+        <name>get_num_islands</name>
+        <qualifiedname>Brush::Parameters::get_num_islands</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/runner/work/brush/brush/src/params.h" line="126" column="9" bodyfile="/home/runner/work/brush/brush/src/params.h" bodystart="126" bodyend="126"/>
+        <references refid="de/deb/structBrush_1_1Parameters_1a93ed229becd162e94722e034f8e5bebc" compoundref="da/d33/params_8h" startline="43">num_islands</references>
+        <referencedby refid="da/dbf/bind__params_8cpp_1a686c1dac4334b78b765f556f3069f661" compoundref="da/dbf/bind__params_8cpp" startline="7" endline="59">bind_params</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="de/deb/structBrush_1_1Parameters_1a09b2945802ab49e8510e16181a7d916e" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">void</ref></type>
+        <definition>void Brush::Parameters::set_max_depth</definition>
+        <argsstring>(unsigned new_max_depth)</argsstring>
+        <name>set_max_depth</name>
+        <qualifiedname>Brush::Parameters::set_max_depth</qualifiedname>
+        <param>
+          <type><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">unsigned</ref></type>
+          <declname>new_max_depth</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/runner/work/brush/brush/src/params.h" line="128" column="10" bodyfile="/home/runner/work/brush/brush/src/params.h" bodystart="128" bodyend="128"/>
+        <references refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" compoundref="d4/d93/bind__engines_8h" startline="35" endline="104">bind_engine</references>
+        <references refid="de/deb/structBrush_1_1Parameters_1a22d49e1dbd59a355e5c234c7488595a6" compoundref="da/d33/params_8h" startline="35">max_depth</references>
+        <referencedby refid="da/dbf/bind__params_8cpp_1a686c1dac4334b78b765f556f3069f661" compoundref="da/dbf/bind__params_8cpp" startline="7" endline="59">bind_params</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="de/deb/structBrush_1_1Parameters_1a77aa7201a837482c7bf92579fe156811" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">unsigned</ref></type>
+        <definition>unsigned Brush::Parameters::get_max_depth</definition>
+        <argsstring>() const</argsstring>
+        <name>get_max_depth</name>
+        <qualifiedname>Brush::Parameters::get_max_depth</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/runner/work/brush/brush/src/params.h" line="129" column="14" bodyfile="/home/runner/work/brush/brush/src/params.h" bodystart="129" bodyend="129"/>
+        <references refid="de/deb/structBrush_1_1Parameters_1a22d49e1dbd59a355e5c234c7488595a6" compoundref="da/d33/params_8h" startline="35">max_depth</references>
+        <referencedby refid="da/dbf/bind__params_8cpp_1a686c1dac4334b78b765f556f3069f661" compoundref="da/dbf/bind__params_8cpp" startline="7" endline="59">bind_params</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="de/deb/structBrush_1_1Parameters_1ad5cf6dfc60d005e70ef569ac1e58bdeb" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">void</ref></type>
+        <definition>void Brush::Parameters::set_n_jobs</definition>
+        <argsstring>(int new_n_jobs)</argsstring>
+        <name>set_n_jobs</name>
+        <qualifiedname>Brush::Parameters::set_n_jobs</qualifiedname>
+        <param>
+          <type><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">int</ref></type>
+          <declname>new_n_jobs</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/runner/work/brush/brush/src/params.h" line="131" column="10" bodyfile="/home/runner/work/brush/brush/src/params.h" bodystart="131" bodyend="131"/>
+        <references refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" compoundref="d4/d93/bind__engines_8h" startline="35" endline="104">bind_engine</references>
+        <references refid="de/deb/structBrush_1_1Parameters_1a7fe27c4ba2a88aaea8fbed5a845e868e" compoundref="da/d33/params_8h" startline="85">n_jobs</references>
+      </memberdef>
+      <memberdef kind="function" id="de/deb/structBrush_1_1Parameters_1a3bb3c39fa10b2087f5733d7ad47902de" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">int</ref></type>
+        <definition>int Brush::Parameters::get_n_jobs</definition>
+        <argsstring>()</argsstring>
+        <name>get_n_jobs</name>
+        <qualifiedname>Brush::Parameters::get_n_jobs</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/runner/work/brush/brush/src/params.h" line="132" column="9" bodyfile="/home/runner/work/brush/brush/src/params.h" bodystart="132" bodyend="132"/>
+        <references refid="de/deb/structBrush_1_1Parameters_1a7fe27c4ba2a88aaea8fbed5a845e868e" compoundref="da/d33/params_8h" startline="85">n_jobs</references>
+        <referencedby refid="da/dbf/bind__params_8cpp_1a686c1dac4334b78b765f556f3069f661" compoundref="da/dbf/bind__params_8cpp" startline="7" endline="59">bind_params</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="de/deb/structBrush_1_1Parameters_1ad36ed3c368c1cc152b179a824e9b3144" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">void</ref></type>
+        <definition>void Brush::Parameters::set_max_size</definition>
+        <argsstring>(unsigned new_max_size)</argsstring>
+        <name>set_max_size</name>
+        <qualifiedname>Brush::Parameters::set_max_size</qualifiedname>
+        <param>
+          <type><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">unsigned</ref></type>
+          <declname>new_max_size</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/runner/work/brush/brush/src/params.h" line="134" column="10" bodyfile="/home/runner/work/brush/brush/src/params.h" bodystart="134" bodyend="134"/>
+        <references refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" compoundref="d4/d93/bind__engines_8h" startline="35" endline="104">bind_engine</references>
+        <references refid="de/deb/structBrush_1_1Parameters_1aeec98494c11bc2760b7feedf56741ff7" compoundref="da/d33/params_8h" startline="36">max_size</references>
+        <referencedby refid="da/dbf/bind__params_8cpp_1a686c1dac4334b78b765f556f3069f661" compoundref="da/dbf/bind__params_8cpp" startline="7" endline="59">bind_params</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="de/deb/structBrush_1_1Parameters_1a122b7243856cd15f940b6d6b5ec1074f" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">unsigned</ref></type>
+        <definition>unsigned Brush::Parameters::get_max_size</definition>
+        <argsstring>() const</argsstring>
+        <name>get_max_size</name>
+        <qualifiedname>Brush::Parameters::get_max_size</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/runner/work/brush/brush/src/params.h" line="135" column="14" bodyfile="/home/runner/work/brush/brush/src/params.h" bodystart="135" bodyend="135"/>
+        <references refid="de/deb/structBrush_1_1Parameters_1aeec98494c11bc2760b7feedf56741ff7" compoundref="da/d33/params_8h" startline="36">max_size</references>
+        <referencedby refid="da/dbf/bind__params_8cpp_1a686c1dac4334b78b765f556f3069f661" compoundref="da/dbf/bind__params_8cpp" startline="7" endline="59">bind_params</referencedby>
+        <referencedby refid="dc/de3/classBrush_1_1Var_1_1InsertMutation_1aa90d35c6a780c8d3884845b57b5ca304" compoundref="d1/d64/variation_8cpp" startline="41" endline="70">Brush::Var::InsertMutation::find_spots</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="de/deb/structBrush_1_1Parameters_1abb9b1681e45572c95ce97f0e5aeefa05" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">void</ref></type>
+        <definition>void Brush::Parameters::set_objectives</definition>
+        <argsstring>(vector&lt; string &gt; new_objectives)</argsstring>
+        <name>set_objectives</name>
+        <qualifiedname>Brush::Parameters::set_objectives</qualifiedname>
+        <param>
+          <type>vector&lt; string &gt;</type>
+          <declname>new_objectives</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/runner/work/brush/brush/src/params.h" line="137" column="10" bodyfile="/home/runner/work/brush/brush/src/params.h" bodystart="137" bodyend="137"/>
+        <references refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" compoundref="d4/d93/bind__engines_8h" startline="35" endline="104">bind_engine</references>
+        <references refid="de/deb/structBrush_1_1Parameters_1a110a7c46dffa83836fb155a566219292" compoundref="da/d33/params_8h" startline="38" endline="38">objectives</references>
+        <referencedby refid="da/dbf/bind__params_8cpp_1a686c1dac4334b78b765f556f3069f661" compoundref="da/dbf/bind__params_8cpp" startline="7" endline="59">bind_params</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="de/deb/structBrush_1_1Parameters_1a1c9f68be4ca366f7658cc469c2f2f3b6" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>vector&lt; string &gt;</type>
+        <definition>vector&lt; string &gt; Brush::Parameters::get_objectives</definition>
+        <argsstring>()</argsstring>
+        <name>get_objectives</name>
+        <qualifiedname>Brush::Parameters::get_objectives</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/runner/work/brush/brush/src/params.h" line="138" column="12" bodyfile="/home/runner/work/brush/brush/src/params.h" bodystart="138" bodyend="138"/>
+        <references refid="de/deb/structBrush_1_1Parameters_1a110a7c46dffa83836fb155a566219292" compoundref="da/d33/params_8h" startline="38" endline="38">objectives</references>
+        <referencedby refid="da/dbf/bind__params_8cpp_1a686c1dac4334b78b765f556f3069f661" compoundref="da/dbf/bind__params_8cpp" startline="7" endline="59">bind_params</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="de/deb/structBrush_1_1Parameters_1a9a8f5f8dbfd009fd4aed4b322c19b429" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">void</ref></type>
+        <definition>void Brush::Parameters::set_sel</definition>
+        <argsstring>(string new_sel)</argsstring>
+        <name>set_sel</name>
+        <qualifiedname>Brush::Parameters::set_sel</qualifiedname>
+        <param>
+          <type>string</type>
+          <declname>new_sel</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/runner/work/brush/brush/src/params.h" line="140" column="10" bodyfile="/home/runner/work/brush/brush/src/params.h" bodystart="140" bodyend="140"/>
+        <references refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" compoundref="d4/d93/bind__engines_8h" startline="35" endline="104">bind_engine</references>
+        <references refid="de/deb/structBrush_1_1Parameters_1a187fd63755c90c13f4b3723becd9bdd8" compoundref="da/d33/params_8h" startline="40">sel</references>
+        <referencedby refid="da/dbf/bind__params_8cpp_1a686c1dac4334b78b765f556f3069f661" compoundref="da/dbf/bind__params_8cpp" startline="7" endline="59">bind_params</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="de/deb/structBrush_1_1Parameters_1afff93890adec7af136be0dc19ccdd35f" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>string</type>
+        <definition>string Brush::Parameters::get_sel</definition>
+        <argsstring>()</argsstring>
+        <name>get_sel</name>
+        <qualifiedname>Brush::Parameters::get_sel</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/runner/work/brush/brush/src/params.h" line="141" column="12" bodyfile="/home/runner/work/brush/brush/src/params.h" bodystart="141" bodyend="141"/>
+        <references refid="de/deb/structBrush_1_1Parameters_1a187fd63755c90c13f4b3723becd9bdd8" compoundref="da/d33/params_8h" startline="40">sel</references>
+        <referencedby refid="da/dbf/bind__params_8cpp_1a686c1dac4334b78b765f556f3069f661" compoundref="da/dbf/bind__params_8cpp" startline="7" endline="59">bind_params</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="de/deb/structBrush_1_1Parameters_1aaa61711b5534b0530b60cd11a7070e7c" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">void</ref></type>
+        <definition>void Brush::Parameters::set_surv</definition>
+        <argsstring>(string new_surv)</argsstring>
+        <name>set_surv</name>
+        <qualifiedname>Brush::Parameters::set_surv</qualifiedname>
+        <param>
+          <type>string</type>
+          <declname>new_surv</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/runner/work/brush/brush/src/params.h" line="143" column="10" bodyfile="/home/runner/work/brush/brush/src/params.h" bodystart="143" bodyend="143"/>
+        <references refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" compoundref="d4/d93/bind__engines_8h" startline="35" endline="104">bind_engine</references>
+        <references refid="de/deb/structBrush_1_1Parameters_1a4ff98035fbd50487abb5946504e8e4d6" compoundref="da/d33/params_8h" startline="41">surv</references>
+        <referencedby refid="da/dbf/bind__params_8cpp_1a686c1dac4334b78b765f556f3069f661" compoundref="da/dbf/bind__params_8cpp" startline="7" endline="59">bind_params</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="de/deb/structBrush_1_1Parameters_1abbd954f5018446151e1f5711171476a9" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>string</type>
+        <definition>string Brush::Parameters::get_surv</definition>
+        <argsstring>()</argsstring>
+        <name>get_surv</name>
+        <qualifiedname>Brush::Parameters::get_surv</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/runner/work/brush/brush/src/params.h" line="144" column="12" bodyfile="/home/runner/work/brush/brush/src/params.h" bodystart="144" bodyend="144"/>
+        <references refid="de/deb/structBrush_1_1Parameters_1a4ff98035fbd50487abb5946504e8e4d6" compoundref="da/d33/params_8h" startline="41">surv</references>
+        <referencedby refid="da/dbf/bind__params_8cpp_1a686c1dac4334b78b765f556f3069f661" compoundref="da/dbf/bind__params_8cpp" startline="7" endline="59">bind_params</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="de/deb/structBrush_1_1Parameters_1ae117be02b10c413ff07be95c2edf2417" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">void</ref></type>
+        <definition>void Brush::Parameters::set_cx_prob</definition>
+        <argsstring>(float new_cx_prob)</argsstring>
+        <name>set_cx_prob</name>
+        <qualifiedname>Brush::Parameters::set_cx_prob</qualifiedname>
+        <param>
+          <type><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">float</ref></type>
+          <declname>new_cx_prob</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/runner/work/brush/brush/src/params.h" line="146" column="10" bodyfile="/home/runner/work/brush/brush/src/params.h" bodystart="146" bodyend="146"/>
+        <references refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" compoundref="d4/d93/bind__engines_8h" startline="35" endline="104">bind_engine</references>
+        <references refid="de/deb/structBrush_1_1Parameters_1a1d0a366fbf2bb9d7d20d45309b97a7a1" compoundref="da/d33/params_8h" startline="60">cx_prob</references>
+        <referencedby refid="da/dbf/bind__params_8cpp_1a686c1dac4334b78b765f556f3069f661" compoundref="da/dbf/bind__params_8cpp" startline="7" endline="59">bind_params</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="de/deb/structBrush_1_1Parameters_1ad295afd17da08fdccb207f28caf07cc8" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">float</ref></type>
+        <definition>float Brush::Parameters::get_cx_prob</definition>
+        <argsstring>()</argsstring>
+        <name>get_cx_prob</name>
+        <qualifiedname>Brush::Parameters::get_cx_prob</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/runner/work/brush/brush/src/params.h" line="147" column="11" bodyfile="/home/runner/work/brush/brush/src/params.h" bodystart="147" bodyend="147"/>
+        <references refid="de/deb/structBrush_1_1Parameters_1a1d0a366fbf2bb9d7d20d45309b97a7a1" compoundref="da/d33/params_8h" startline="60">cx_prob</references>
+        <referencedby refid="da/dbf/bind__params_8cpp_1a686c1dac4334b78b765f556f3069f661" compoundref="da/dbf/bind__params_8cpp" startline="7" endline="59">bind_params</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="de/deb/structBrush_1_1Parameters_1afb6a671883dbfbde88932791fbb4de87" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">void</ref></type>
+        <definition>void Brush::Parameters::set_mig_prob</definition>
+        <argsstring>(float new_mig_prob)</argsstring>
+        <name>set_mig_prob</name>
+        <qualifiedname>Brush::Parameters::set_mig_prob</qualifiedname>
+        <param>
+          <type><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">float</ref></type>
+          <declname>new_mig_prob</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/runner/work/brush/brush/src/params.h" line="149" column="10" bodyfile="/home/runner/work/brush/brush/src/params.h" bodystart="149" bodyend="149"/>
+        <references refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" compoundref="d4/d93/bind__engines_8h" startline="35" endline="104">bind_engine</references>
+        <references refid="de/deb/structBrush_1_1Parameters_1aed0024de73a9fec99711efe303484ab8" compoundref="da/d33/params_8h" startline="61">mig_prob</references>
+        <referencedby refid="da/dbf/bind__params_8cpp_1a686c1dac4334b78b765f556f3069f661" compoundref="da/dbf/bind__params_8cpp" startline="7" endline="59">bind_params</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="de/deb/structBrush_1_1Parameters_1a62efc097c2a873a92515dd492a78a402" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">float</ref></type>
+        <definition>float Brush::Parameters::get_mig_prob</definition>
+        <argsstring>()</argsstring>
+        <name>get_mig_prob</name>
+        <qualifiedname>Brush::Parameters::get_mig_prob</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/runner/work/brush/brush/src/params.h" line="150" column="11" bodyfile="/home/runner/work/brush/brush/src/params.h" bodystart="150" bodyend="150"/>
+        <references refid="de/deb/structBrush_1_1Parameters_1aed0024de73a9fec99711efe303484ab8" compoundref="da/d33/params_8h" startline="61">mig_prob</references>
+        <referencedby refid="da/dbf/bind__params_8cpp_1a686c1dac4334b78b765f556f3069f661" compoundref="da/dbf/bind__params_8cpp" startline="7" endline="59">bind_params</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="de/deb/structBrush_1_1Parameters_1aab67dbc5fa33691d911959e0ab70b356" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">void</ref></type>
+        <definition>void Brush::Parameters::set_use_arch</definition>
+        <argsstring>(bool new_use_arch)</argsstring>
+        <name>set_use_arch</name>
+        <qualifiedname>Brush::Parameters::set_use_arch</qualifiedname>
+        <param>
+          <type><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">bool</ref></type>
+          <declname>new_use_arch</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/runner/work/brush/brush/src/params.h" line="152" column="10" bodyfile="/home/runner/work/brush/brush/src/params.h" bodystart="152" bodyend="152"/>
+        <references refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" compoundref="d4/d93/bind__engines_8h" startline="35" endline="104">bind_engine</references>
+        <references refid="de/deb/structBrush_1_1Parameters_1a41a48deed7929591e10f9886c0d20ff6" compoundref="da/d33/params_8h" startline="47">use_arch</references>
+        <referencedby refid="da/dbf/bind__params_8cpp_1a686c1dac4334b78b765f556f3069f661" compoundref="da/dbf/bind__params_8cpp" startline="7" endline="59">bind_params</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="de/deb/structBrush_1_1Parameters_1a18bd85faa68a7a7835f374ebaa08e029" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">bool</ref></type>
+        <definition>bool Brush::Parameters::get_use_arch</definition>
+        <argsstring>()</argsstring>
+        <name>get_use_arch</name>
+        <qualifiedname>Brush::Parameters::get_use_arch</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/runner/work/brush/brush/src/params.h" line="153" column="10" bodyfile="/home/runner/work/brush/brush/src/params.h" bodystart="153" bodyend="153"/>
+        <references refid="de/deb/structBrush_1_1Parameters_1a41a48deed7929591e10f9886c0d20ff6" compoundref="da/d33/params_8h" startline="47">use_arch</references>
+        <referencedby refid="da/dbf/bind__params_8cpp_1a686c1dac4334b78b765f556f3069f661" compoundref="da/dbf/bind__params_8cpp" startline="7" endline="59">bind_params</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="de/deb/structBrush_1_1Parameters_1a3911c070b29e41bd9fa50dffcec77986" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">void</ref></type>
+        <definition>void Brush::Parameters::set_val_from_arch</definition>
+        <argsstring>(bool new_val_from_arch)</argsstring>
+        <name>set_val_from_arch</name>
+        <qualifiedname>Brush::Parameters::set_val_from_arch</qualifiedname>
+        <param>
+          <type><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">bool</ref></type>
+          <declname>new_val_from_arch</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/runner/work/brush/brush/src/params.h" line="155" column="10" bodyfile="/home/runner/work/brush/brush/src/params.h" bodystart="155" bodyend="155"/>
+        <references refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" compoundref="d4/d93/bind__engines_8h" startline="35" endline="104">bind_engine</references>
+        <references refid="de/deb/structBrush_1_1Parameters_1a9d3932cd3266036a3db14445caee390c" compoundref="da/d33/params_8h" startline="48">val_from_arch</references>
+        <referencedby refid="da/dbf/bind__params_8cpp_1a686c1dac4334b78b765f556f3069f661" compoundref="da/dbf/bind__params_8cpp" startline="7" endline="59">bind_params</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="de/deb/structBrush_1_1Parameters_1a24bd26badcac2c7285e9966b684ffd3b" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">bool</ref></type>
+        <definition>bool Brush::Parameters::get_val_from_arch</definition>
+        <argsstring>()</argsstring>
+        <name>get_val_from_arch</name>
+        <qualifiedname>Brush::Parameters::get_val_from_arch</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/runner/work/brush/brush/src/params.h" line="156" column="10" bodyfile="/home/runner/work/brush/brush/src/params.h" bodystart="156" bodyend="156"/>
+        <references refid="de/deb/structBrush_1_1Parameters_1a9d3932cd3266036a3db14445caee390c" compoundref="da/d33/params_8h" startline="48">val_from_arch</references>
+        <referencedby refid="da/dbf/bind__params_8cpp_1a686c1dac4334b78b765f556f3069f661" compoundref="da/dbf/bind__params_8cpp" startline="7" endline="59">bind_params</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="de/deb/structBrush_1_1Parameters_1aadbf81786a17f23863c85f1896b7155d" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">void</ref></type>
+        <definition>void Brush::Parameters::set_classification</definition>
+        <argsstring>(bool c)</argsstring>
+        <name>set_classification</name>
+        <qualifiedname>Brush::Parameters::set_classification</qualifiedname>
+        <param>
+          <type><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">bool</ref></type>
+          <declname>c</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/runner/work/brush/brush/src/params.h" line="158" column="10" bodyfile="/home/runner/work/brush/brush/src/params.h" bodystart="158" bodyend="158"/>
+        <references refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" compoundref="d4/d93/bind__engines_8h" startline="35" endline="104">bind_engine</references>
+        <references refid="de/deb/structBrush_1_1Parameters_1a72bfe23c101219ee3460ef8b9e1e1cbe" compoundref="da/d33/params_8h" startline="71">classification</references>
+        <referencedby refid="da/dbf/bind__params_8cpp_1a686c1dac4334b78b765f556f3069f661" compoundref="da/dbf/bind__params_8cpp" startline="7" endline="59">bind_params</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="de/deb/structBrush_1_1Parameters_1a0941104c9a1c006e2d616b04fe8772f8" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">bool</ref></type>
+        <definition>bool Brush::Parameters::get_classification</definition>
+        <argsstring>()</argsstring>
+        <name>get_classification</name>
+        <qualifiedname>Brush::Parameters::get_classification</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/runner/work/brush/brush/src/params.h" line="159" column="10" bodyfile="/home/runner/work/brush/brush/src/params.h" bodystart="159" bodyend="159"/>
+        <references refid="de/deb/structBrush_1_1Parameters_1a72bfe23c101219ee3460ef8b9e1e1cbe" compoundref="da/d33/params_8h" startline="71">classification</references>
+        <referencedby refid="da/dbf/bind__params_8cpp_1a686c1dac4334b78b765f556f3069f661" compoundref="da/dbf/bind__params_8cpp" startline="7" endline="59">bind_params</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="de/deb/structBrush_1_1Parameters_1a165c8b63ae6066b392ab945c2d04a7b5" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">void</ref></type>
+        <definition>void Brush::Parameters::set_shuffle_split</definition>
+        <argsstring>(bool shuff)</argsstring>
+        <name>set_shuffle_split</name>
+        <qualifiedname>Brush::Parameters::set_shuffle_split</qualifiedname>
+        <param>
+          <type><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">bool</ref></type>
+          <declname>shuff</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/runner/work/brush/brush/src/params.h" line="161" column="10" bodyfile="/home/runner/work/brush/brush/src/params.h" bodystart="161" bodyend="161"/>
+        <references refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" compoundref="d4/d93/bind__engines_8h" startline="35" endline="104">bind_engine</references>
+        <references refid="de/deb/structBrush_1_1Parameters_1a38f19ab73e20b7d19604338e7ea5f64e" compoundref="da/d33/params_8h" startline="75">shuffle_split</references>
+        <referencedby refid="da/dbf/bind__params_8cpp_1a686c1dac4334b78b765f556f3069f661" compoundref="da/dbf/bind__params_8cpp" startline="7" endline="59">bind_params</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="de/deb/structBrush_1_1Parameters_1acaae679131485c3a26d673de03dec296" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">bool</ref></type>
+        <definition>bool Brush::Parameters::get_shuffle_split</definition>
+        <argsstring>()</argsstring>
+        <name>get_shuffle_split</name>
+        <qualifiedname>Brush::Parameters::get_shuffle_split</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/runner/work/brush/brush/src/params.h" line="162" column="10" bodyfile="/home/runner/work/brush/brush/src/params.h" bodystart="162" bodyend="162"/>
+        <references refid="de/deb/structBrush_1_1Parameters_1a38f19ab73e20b7d19604338e7ea5f64e" compoundref="da/d33/params_8h" startline="75">shuffle_split</references>
+        <referencedby refid="da/dbf/bind__params_8cpp_1a686c1dac4334b78b765f556f3069f661" compoundref="da/dbf/bind__params_8cpp" startline="7" endline="59">bind_params</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="de/deb/structBrush_1_1Parameters_1a0f4d07dbdf17466810ef7e944cadf3f0" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">void</ref></type>
+        <definition>void Brush::Parameters::set_n_classes</definition>
+        <argsstring>(unsigned int new_n_classes)</argsstring>
+        <name>set_n_classes</name>
+        <qualifiedname>Brush::Parameters::set_n_classes</qualifiedname>
+        <param>
+          <type><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">unsigned</ref> <ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">int</ref></type>
+          <declname>new_n_classes</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/runner/work/brush/brush/src/params.h" line="164" column="10" bodyfile="/home/runner/work/brush/brush/src/params.h" bodystart="164" bodyend="164"/>
+        <references refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" compoundref="d4/d93/bind__engines_8h" startline="35" endline="104">bind_engine</references>
+        <references refid="de/deb/structBrush_1_1Parameters_1af6ac960263e42bba7e6a334fb86c5798" compoundref="da/d33/params_8h" startline="72">n_classes</references>
+        <referencedby refid="da/dbf/bind__params_8cpp_1a686c1dac4334b78b765f556f3069f661" compoundref="da/dbf/bind__params_8cpp" startline="7" endline="59">bind_params</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="de/deb/structBrush_1_1Parameters_1a572e97fe2ee54989dc8c72ad322076f7" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">unsigned</ref> <ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">int</ref></type>
+        <definition>unsigned int Brush::Parameters::get_n_classes</definition>
+        <argsstring>()</argsstring>
+        <name>get_n_classes</name>
+        <qualifiedname>Brush::Parameters::get_n_classes</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/runner/work/brush/brush/src/params.h" line="165" column="18" bodyfile="/home/runner/work/brush/brush/src/params.h" bodystart="165" bodyend="165"/>
+        <references refid="de/deb/structBrush_1_1Parameters_1af6ac960263e42bba7e6a334fb86c5798" compoundref="da/d33/params_8h" startline="72">n_classes</references>
+        <referencedby refid="da/dbf/bind__params_8cpp_1a686c1dac4334b78b765f556f3069f661" compoundref="da/dbf/bind__params_8cpp" startline="7" endline="59">bind_params</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="de/deb/structBrush_1_1Parameters_1adcfeb3fbcd6bb2ace4eb112dd1ac1fc7" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">void</ref></type>
+        <definition>void Brush::Parameters::set_validation_size</definition>
+        <argsstring>(float s)</argsstring>
+        <name>set_validation_size</name>
+        <qualifiedname>Brush::Parameters::set_validation_size</qualifiedname>
+        <param>
+          <type><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">float</ref></type>
+          <declname>s</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/runner/work/brush/brush/src/params.h" line="167" column="10" bodyfile="/home/runner/work/brush/brush/src/params.h" bodystart="167" bodyend="167"/>
+        <references refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" compoundref="d4/d93/bind__engines_8h" startline="35" endline="104">bind_engine</references>
+        <references refid="de/deb/structBrush_1_1Parameters_1a56cb7729183a3d4bc9514e83198b99d5" compoundref="da/d33/params_8h" startline="76">validation_size</references>
+        <referencedby refid="da/dbf/bind__params_8cpp_1a686c1dac4334b78b765f556f3069f661" compoundref="da/dbf/bind__params_8cpp" startline="7" endline="59">bind_params</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="de/deb/structBrush_1_1Parameters_1aead717c90a933bdc5b1b149a4b40ec78" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">float</ref></type>
+        <definition>float Brush::Parameters::get_validation_size</definition>
+        <argsstring>()</argsstring>
+        <name>get_validation_size</name>
+        <qualifiedname>Brush::Parameters::get_validation_size</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/runner/work/brush/brush/src/params.h" line="168" column="11" bodyfile="/home/runner/work/brush/brush/src/params.h" bodystart="168" bodyend="168"/>
+        <references refid="de/deb/structBrush_1_1Parameters_1a56cb7729183a3d4bc9514e83198b99d5" compoundref="da/d33/params_8h" startline="76">validation_size</references>
+        <referencedby refid="da/dbf/bind__params_8cpp_1a686c1dac4334b78b765f556f3069f661" compoundref="da/dbf/bind__params_8cpp" startline="7" endline="59">bind_params</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="de/deb/structBrush_1_1Parameters_1adce3ebf4b9d0aa35a4da35f33e5d9168" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">void</ref></type>
+        <definition>void Brush::Parameters::set_feature_names</definition>
+        <argsstring>(vector&lt; string &gt; vn)</argsstring>
+        <name>set_feature_names</name>
+        <qualifiedname>Brush::Parameters::set_feature_names</qualifiedname>
+        <param>
+          <type>vector&lt; string &gt;</type>
+          <declname>vn</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/runner/work/brush/brush/src/params.h" line="170" column="10" bodyfile="/home/runner/work/brush/brush/src/params.h" bodystart="170" bodyend="170"/>
+        <references refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" compoundref="d4/d93/bind__engines_8h" startline="35" endline="104">bind_engine</references>
+        <references refid="de/deb/structBrush_1_1Parameters_1a9aefe0091a5fcba33a3d98c4716a6c4d" compoundref="da/d33/params_8h" startline="77" endline="77">feature_names</references>
+        <referencedby refid="da/dbf/bind__params_8cpp_1a686c1dac4334b78b765f556f3069f661" compoundref="da/dbf/bind__params_8cpp" startline="7" endline="59">bind_params</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="de/deb/structBrush_1_1Parameters_1a503e5e39ff8078bfd0132399bc376651" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>vector&lt; string &gt;</type>
+        <definition>vector&lt; string &gt; Brush::Parameters::get_feature_names</definition>
+        <argsstring>()</argsstring>
+        <name>get_feature_names</name>
+        <qualifiedname>Brush::Parameters::get_feature_names</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/runner/work/brush/brush/src/params.h" line="171" column="12" bodyfile="/home/runner/work/brush/brush/src/params.h" bodystart="171" bodyend="171"/>
+        <references refid="de/deb/structBrush_1_1Parameters_1a9aefe0091a5fcba33a3d98c4716a6c4d" compoundref="da/d33/params_8h" startline="77" endline="77">feature_names</references>
+        <referencedby refid="da/dbf/bind__params_8cpp_1a686c1dac4334b78b765f556f3069f661" compoundref="da/dbf/bind__params_8cpp" startline="7" endline="59">bind_params</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="de/deb/structBrush_1_1Parameters_1a3764d1c46477f804a75d58248cc64ea8" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">void</ref></type>
+        <definition>void Brush::Parameters::set_batch_size</definition>
+        <argsstring>(float c)</argsstring>
+        <name>set_batch_size</name>
+        <qualifiedname>Brush::Parameters::set_batch_size</qualifiedname>
+        <param>
+          <type><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">float</ref></type>
+          <declname>c</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/runner/work/brush/brush/src/params.h" line="173" column="10" bodyfile="/home/runner/work/brush/brush/src/params.h" bodystart="173" bodyend="173"/>
+        <references refid="de/deb/structBrush_1_1Parameters_1a3079fe8703a9a8c57e06afd7425f48d4" compoundref="da/d33/params_8h" startline="78">batch_size</references>
+        <references refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" compoundref="d4/d93/bind__engines_8h" startline="35" endline="104">bind_engine</references>
+        <referencedby refid="da/dbf/bind__params_8cpp_1a686c1dac4334b78b765f556f3069f661" compoundref="da/dbf/bind__params_8cpp" startline="7" endline="59">bind_params</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="de/deb/structBrush_1_1Parameters_1a55829db9efdf15f588da5aed54fa42a8" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">float</ref></type>
+        <definition>float Brush::Parameters::get_batch_size</definition>
+        <argsstring>()</argsstring>
+        <name>get_batch_size</name>
+        <qualifiedname>Brush::Parameters::get_batch_size</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/runner/work/brush/brush/src/params.h" line="174" column="11" bodyfile="/home/runner/work/brush/brush/src/params.h" bodystart="174" bodyend="174"/>
+        <references refid="de/deb/structBrush_1_1Parameters_1a3079fe8703a9a8c57e06afd7425f48d4" compoundref="da/d33/params_8h" startline="78">batch_size</references>
+        <referencedby refid="da/dbf/bind__params_8cpp_1a686c1dac4334b78b765f556f3069f661" compoundref="da/dbf/bind__params_8cpp" startline="7" endline="59">bind_params</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="de/deb/structBrush_1_1Parameters_1a21bfb9aa5ac33bee26416611d51cee1a" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">void</ref></type>
+        <definition>void Brush::Parameters::set_mutation_probs</definition>
+        <argsstring>(std::map&lt; std::string, float &gt; new_mutation_probs)</argsstring>
+        <name>set_mutation_probs</name>
+        <qualifiedname>Brush::Parameters::set_mutation_probs</qualifiedname>
+        <param>
+          <type>std::map&lt; std::string, <ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">float</ref> &gt;</type>
+          <declname>new_mutation_probs</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/runner/work/brush/brush/src/params.h" line="176" column="10" bodyfile="/home/runner/work/brush/brush/src/params.h" bodystart="176" bodyend="176"/>
+        <references refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" compoundref="d4/d93/bind__engines_8h" startline="35" endline="104">bind_engine</references>
+        <references refid="de/deb/structBrush_1_1Parameters_1a49392abcea1d48447c024a23137fd788" compoundref="da/d33/params_8h" startline="51" endline="58">mutation_probs</references>
+        <referencedby refid="da/dbf/bind__params_8cpp_1a686c1dac4334b78b765f556f3069f661" compoundref="da/dbf/bind__params_8cpp" startline="7" endline="59">bind_params</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="de/deb/structBrush_1_1Parameters_1ae663b0ea31743fceb203fe476f4ddc99" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>std::map&lt; std::string, <ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">float</ref> &gt;</type>
+        <definition>std::map&lt; std::string, float &gt; Brush::Parameters::get_mutation_probs</definition>
+        <argsstring>()</argsstring>
+        <name>get_mutation_probs</name>
+        <qualifiedname>Brush::Parameters::get_mutation_probs</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/runner/work/brush/brush/src/params.h" line="177" column="14" bodyfile="/home/runner/work/brush/brush/src/params.h" bodystart="177" bodyend="177"/>
+        <references refid="de/deb/structBrush_1_1Parameters_1a49392abcea1d48447c024a23137fd788" compoundref="da/d33/params_8h" startline="51" endline="58">mutation_probs</references>
+        <referencedby refid="da/dbf/bind__params_8cpp_1a686c1dac4334b78b765f556f3069f661" compoundref="da/dbf/bind__params_8cpp" startline="7" endline="59">bind_params</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="de/deb/structBrush_1_1Parameters_1a2054b866fb2d2a08114ae9c468ad3863" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">void</ref></type>
+        <definition>void Brush::Parameters::set_functions</definition>
+        <argsstring>(std::unordered_map&lt; std::string, float &gt; new_functions)</argsstring>
+        <name>set_functions</name>
+        <qualifiedname>Brush::Parameters::set_functions</qualifiedname>
+        <param>
+          <type>std::unordered_map&lt; std::string, <ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">float</ref> &gt;</type>
+          <declname>new_functions</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/runner/work/brush/brush/src/params.h" line="179" column="10" bodyfile="/home/runner/work/brush/brush/src/params.h" bodystart="179" bodyend="179"/>
+        <references refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" compoundref="d4/d93/bind__engines_8h" startline="35" endline="104">bind_engine</references>
+        <references refid="de/deb/structBrush_1_1Parameters_1a6ad3da8ee5919f7f8d562348f99d9e36" compoundref="da/d33/params_8h" startline="42">functions</references>
+        <referencedby refid="da/dbf/bind__params_8cpp_1a686c1dac4334b78b765f556f3069f661" compoundref="da/dbf/bind__params_8cpp" startline="7" endline="59">bind_params</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="de/deb/structBrush_1_1Parameters_1aee62986fbd874d410a0d5d4ab81dce7b" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>std::unordered_map&lt; std::string, <ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">float</ref> &gt;</type>
+        <definition>std::unordered_map&lt; std::string, float &gt; Brush::Parameters::get_functions</definition>
+        <argsstring>()</argsstring>
+        <name>get_functions</name>
+        <qualifiedname>Brush::Parameters::get_functions</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/runner/work/brush/brush/src/params.h" line="180" column="24" bodyfile="/home/runner/work/brush/brush/src/params.h" bodystart="180" bodyend="180"/>
+        <references refid="de/deb/structBrush_1_1Parameters_1a6ad3da8ee5919f7f8d562348f99d9e36" compoundref="da/d33/params_8h" startline="42">functions</references>
+        <referencedby refid="da/dbf/bind__params_8cpp_1a686c1dac4334b78b765f556f3069f661" compoundref="da/dbf/bind__params_8cpp" startline="7" endline="59">bind_params</referencedby>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <collaborationgraph>
+      <node id="1">
+        <label>Brush::Parameters</label>
+        <link refid="de/deb/structBrush_1_1Parameters"/>
+        <childnode refid="2" relation="usage">
+          <edgelabel>load_population</edgelabel>
+          <edgelabel>logfile</edgelabel>
+          <edgelabel>mode</edgelabel>
+          <edgelabel>save_population</edgelabel>
+          <edgelabel>scorer_</edgelabel>
+          <edgelabel>sel</edgelabel>
+          <edgelabel>surv</edgelabel>
+        </childnode>
+        <childnode refid="4" relation="usage">
+          <edgelabel>feature_names</edgelabel>
+          <edgelabel>objectives</edgelabel>
+        </childnode>
+        <childnode refid="5" relation="usage">
+          <edgelabel>functions</edgelabel>
+        </childnode>
+        <childnode refid="6" relation="usage">
+          <edgelabel>mutation_probs</edgelabel>
+        </childnode>
+        <childnode refid="7" relation="usage">
+          <edgelabel>classes</edgelabel>
+        </childnode>
+        <childnode refid="8" relation="usage">
+          <edgelabel>class_weights</edgelabel>
+          <edgelabel>sample_weights</edgelabel>
+        </childnode>
+      </node>
+      <node id="6">
+        <label>std::map&lt; std::string, float &gt;</label>
+        <childnode refid="2" relation="usage">
+          <edgelabel>keys</edgelabel>
+        </childnode>
+      </node>
+      <node id="3">
+        <label>std::basic_string&lt; Char &gt;</label>
+      </node>
+      <node id="2">
+        <label>std::string</label>
+        <childnode refid="3" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="5">
+        <label>std::unordered_map&lt; string, float &gt;</label>
+        <childnode refid="2" relation="usage">
+          <edgelabel>keys</edgelabel>
+        </childnode>
+      </node>
+      <node id="8">
+        <label>std::vector&lt; float &gt;</label>
+      </node>
+      <node id="7">
+        <label>std::vector&lt; int &gt;</label>
+      </node>
+      <node id="4">
+        <label>std::vector&lt; string &gt;</label>
+        <childnode refid="2" relation="usage">
+          <edgelabel>elements</edgelabel>
+        </childnode>
+      </node>
+    </collaborationgraph>
+    <location file="/home/runner/work/brush/brush/src/params.h" line="17" column="1" bodyfile="/home/runner/work/brush/brush/src/params.h" bodystart="18" bodyend="181"/>
+    <listofallmembers>
+      <member refid="de/deb/structBrush_1_1Parameters_1a3079fe8703a9a8c57e06afd7425f48d4" prot="public" virt="non-virtual"><scope>Brush::Parameters</scope><name>batch_size</name></member>
+      <member refid="de/deb/structBrush_1_1Parameters_1a88f5a4e906459cfc44ab04bca01fb333" prot="public" virt="non-virtual"><scope>Brush::Parameters</scope><name>class_weights</name></member>
+      <member refid="de/deb/structBrush_1_1Parameters_1a7e6f0518ea271df0c3f35a2313071202" prot="public" virt="non-virtual"><scope>Brush::Parameters</scope><name>classes</name></member>
+      <member refid="de/deb/structBrush_1_1Parameters_1a72bfe23c101219ee3460ef8b9e1e1cbe" prot="public" virt="non-virtual"><scope>Brush::Parameters</scope><name>classification</name></member>
+      <member refid="de/deb/structBrush_1_1Parameters_1acd37c52e411d17126bff22dca19f0408" prot="public" virt="non-virtual"><scope>Brush::Parameters</scope><name>current_gen</name></member>
+      <member refid="de/deb/structBrush_1_1Parameters_1a1d0a366fbf2bb9d7d20d45309b97a7a1" prot="public" virt="non-virtual"><scope>Brush::Parameters</scope><name>cx_prob</name></member>
+      <member refid="de/deb/structBrush_1_1Parameters_1a9aefe0091a5fcba33a3d98c4716a6c4d" prot="public" virt="non-virtual"><scope>Brush::Parameters</scope><name>feature_names</name></member>
+      <member refid="de/deb/structBrush_1_1Parameters_1a6ad3da8ee5919f7f8d562348f99d9e36" prot="public" virt="non-virtual"><scope>Brush::Parameters</scope><name>functions</name></member>
+      <member refid="de/deb/structBrush_1_1Parameters_1a55829db9efdf15f588da5aed54fa42a8" prot="public" virt="non-virtual"><scope>Brush::Parameters</scope><name>get_batch_size</name></member>
+      <member refid="de/deb/structBrush_1_1Parameters_1a0941104c9a1c006e2d616b04fe8772f8" prot="public" virt="non-virtual"><scope>Brush::Parameters</scope><name>get_classification</name></member>
+      <member refid="de/deb/structBrush_1_1Parameters_1ae342f8777e40bb52f65cdb951a960603" prot="public" virt="non-virtual"><scope>Brush::Parameters</scope><name>get_current_gen</name></member>
+      <member refid="de/deb/structBrush_1_1Parameters_1ad295afd17da08fdccb207f28caf07cc8" prot="public" virt="non-virtual"><scope>Brush::Parameters</scope><name>get_cx_prob</name></member>
+      <member refid="de/deb/structBrush_1_1Parameters_1a503e5e39ff8078bfd0132399bc376651" prot="public" virt="non-virtual"><scope>Brush::Parameters</scope><name>get_feature_names</name></member>
+      <member refid="de/deb/structBrush_1_1Parameters_1aee62986fbd874d410a0d5d4ab81dce7b" prot="public" virt="non-virtual"><scope>Brush::Parameters</scope><name>get_functions</name></member>
+      <member refid="de/deb/structBrush_1_1Parameters_1a714c905329b7ca861e5c7488c1415dbf" prot="public" virt="non-virtual"><scope>Brush::Parameters</scope><name>get_load_population</name></member>
+      <member refid="de/deb/structBrush_1_1Parameters_1a9db4d0fc9bf85b823d8963382118fde5" prot="public" virt="non-virtual"><scope>Brush::Parameters</scope><name>get_logfile</name></member>
+      <member refid="de/deb/structBrush_1_1Parameters_1a77aa7201a837482c7bf92579fe156811" prot="public" virt="non-virtual"><scope>Brush::Parameters</scope><name>get_max_depth</name></member>
+      <member refid="de/deb/structBrush_1_1Parameters_1a32be1d9b49a8ce5636de4828a15ec6c1" prot="public" virt="non-virtual"><scope>Brush::Parameters</scope><name>get_max_gens</name></member>
+      <member refid="de/deb/structBrush_1_1Parameters_1a122b7243856cd15f940b6d6b5ec1074f" prot="public" virt="non-virtual"><scope>Brush::Parameters</scope><name>get_max_size</name></member>
+      <member refid="de/deb/structBrush_1_1Parameters_1a60eb890e9354559600d21c46e310bdd2" prot="public" virt="non-virtual"><scope>Brush::Parameters</scope><name>get_max_stall</name></member>
+      <member refid="de/deb/structBrush_1_1Parameters_1a2cbb237e04a742e5b7045213409f8810" prot="public" virt="non-virtual"><scope>Brush::Parameters</scope><name>get_max_time</name></member>
+      <member refid="de/deb/structBrush_1_1Parameters_1a62efc097c2a873a92515dd492a78a402" prot="public" virt="non-virtual"><scope>Brush::Parameters</scope><name>get_mig_prob</name></member>
+      <member refid="de/deb/structBrush_1_1Parameters_1ae663b0ea31743fceb203fe476f4ddc99" prot="public" virt="non-virtual"><scope>Brush::Parameters</scope><name>get_mutation_probs</name></member>
+      <member refid="de/deb/structBrush_1_1Parameters_1a572e97fe2ee54989dc8c72ad322076f7" prot="public" virt="non-virtual"><scope>Brush::Parameters</scope><name>get_n_classes</name></member>
+      <member refid="de/deb/structBrush_1_1Parameters_1a3bb3c39fa10b2087f5733d7ad47902de" prot="public" virt="non-virtual"><scope>Brush::Parameters</scope><name>get_n_jobs</name></member>
+      <member refid="de/deb/structBrush_1_1Parameters_1a908bc47bbc7691bf870a909c4eb80edb" prot="public" virt="non-virtual"><scope>Brush::Parameters</scope><name>get_num_islands</name></member>
+      <member refid="de/deb/structBrush_1_1Parameters_1a1c9f68be4ca366f7658cc469c2f2f3b6" prot="public" virt="non-virtual"><scope>Brush::Parameters</scope><name>get_objectives</name></member>
+      <member refid="de/deb/structBrush_1_1Parameters_1a7d391d24fbe78545ba09cf01a3634878" prot="public" virt="non-virtual"><scope>Brush::Parameters</scope><name>get_pop_size</name></member>
+      <member refid="de/deb/structBrush_1_1Parameters_1a65d0b2e202d140602ca832dbd0e3c9bc" prot="public" virt="non-virtual"><scope>Brush::Parameters</scope><name>get_random_state</name></member>
+      <member refid="de/deb/structBrush_1_1Parameters_1a5340c96aa233e2a9a631160b0b08099a" prot="public" virt="non-virtual"><scope>Brush::Parameters</scope><name>get_save_population</name></member>
+      <member refid="de/deb/structBrush_1_1Parameters_1a6bfe2cf27c917e6b54f49529e1a23a81" prot="public" virt="non-virtual"><scope>Brush::Parameters</scope><name>get_scorer_</name></member>
+      <member refid="de/deb/structBrush_1_1Parameters_1afff93890adec7af136be0dc19ccdd35f" prot="public" virt="non-virtual"><scope>Brush::Parameters</scope><name>get_sel</name></member>
+      <member refid="de/deb/structBrush_1_1Parameters_1acaae679131485c3a26d673de03dec296" prot="public" virt="non-virtual"><scope>Brush::Parameters</scope><name>get_shuffle_split</name></member>
+      <member refid="de/deb/structBrush_1_1Parameters_1abbd954f5018446151e1f5711171476a9" prot="public" virt="non-virtual"><scope>Brush::Parameters</scope><name>get_surv</name></member>
+      <member refid="de/deb/structBrush_1_1Parameters_1a18bd85faa68a7a7835f374ebaa08e029" prot="public" virt="non-virtual"><scope>Brush::Parameters</scope><name>get_use_arch</name></member>
+      <member refid="de/deb/structBrush_1_1Parameters_1a24bd26badcac2c7285e9966b684ffd3b" prot="public" virt="non-virtual"><scope>Brush::Parameters</scope><name>get_val_from_arch</name></member>
+      <member refid="de/deb/structBrush_1_1Parameters_1aead717c90a933bdc5b1b149a4b40ec78" prot="public" virt="non-virtual"><scope>Brush::Parameters</scope><name>get_validation_size</name></member>
+      <member refid="de/deb/structBrush_1_1Parameters_1a0b9ab7c9b3c3e3fcb4445b4acca9a7c9" prot="public" virt="non-virtual"><scope>Brush::Parameters</scope><name>get_verbosity</name></member>
+      <member refid="de/deb/structBrush_1_1Parameters_1ad1a131cf61b76ff1ab4b576f5fd1df9b" prot="public" virt="non-virtual"><scope>Brush::Parameters</scope><name>load_population</name></member>
+      <member refid="de/deb/structBrush_1_1Parameters_1ab800a9c06c4bbfd47f031659ff7bb7b8" prot="public" virt="non-virtual"><scope>Brush::Parameters</scope><name>logfile</name></member>
+      <member refid="de/deb/structBrush_1_1Parameters_1a22d49e1dbd59a355e5c234c7488595a6" prot="public" virt="non-virtual"><scope>Brush::Parameters</scope><name>max_depth</name></member>
+      <member refid="de/deb/structBrush_1_1Parameters_1ae8174a3006e30812afa63f1d74aeb6e9" prot="public" virt="non-virtual"><scope>Brush::Parameters</scope><name>max_gens</name></member>
+      <member refid="de/deb/structBrush_1_1Parameters_1aeec98494c11bc2760b7feedf56741ff7" prot="public" virt="non-virtual"><scope>Brush::Parameters</scope><name>max_size</name></member>
+      <member refid="de/deb/structBrush_1_1Parameters_1a21e3da5422ccf31326362f1806ac3eae" prot="public" virt="non-virtual"><scope>Brush::Parameters</scope><name>max_stall</name></member>
+      <member refid="de/deb/structBrush_1_1Parameters_1a1625c1a71de2fdd1ccd0954a32fc4ead" prot="public" virt="non-virtual"><scope>Brush::Parameters</scope><name>max_time</name></member>
+      <member refid="de/deb/structBrush_1_1Parameters_1aed0024de73a9fec99711efe303484ab8" prot="public" virt="non-virtual"><scope>Brush::Parameters</scope><name>mig_prob</name></member>
+      <member refid="de/deb/structBrush_1_1Parameters_1ad8ff63e4d1845c0b7fd85532e5edb48c" prot="public" virt="non-virtual"><scope>Brush::Parameters</scope><name>mode</name></member>
+      <member refid="de/deb/structBrush_1_1Parameters_1a49392abcea1d48447c024a23137fd788" prot="public" virt="non-virtual"><scope>Brush::Parameters</scope><name>mutation_probs</name></member>
+      <member refid="de/deb/structBrush_1_1Parameters_1af6ac960263e42bba7e6a334fb86c5798" prot="public" virt="non-virtual"><scope>Brush::Parameters</scope><name>n_classes</name></member>
+      <member refid="de/deb/structBrush_1_1Parameters_1a7fe27c4ba2a88aaea8fbed5a845e868e" prot="public" virt="non-virtual"><scope>Brush::Parameters</scope><name>n_jobs</name></member>
+      <member refid="de/deb/structBrush_1_1Parameters_1a93ed229becd162e94722e034f8e5bebc" prot="public" virt="non-virtual"><scope>Brush::Parameters</scope><name>num_islands</name></member>
+      <member refid="de/deb/structBrush_1_1Parameters_1a110a7c46dffa83836fb155a566219292" prot="public" virt="non-virtual"><scope>Brush::Parameters</scope><name>objectives</name></member>
+      <member refid="de/deb/structBrush_1_1Parameters_1a8997d623bed2d28638bde6993f11f9c5" prot="public" virt="non-virtual"><scope>Brush::Parameters</scope><name>Parameters</name></member>
+      <member refid="de/deb/structBrush_1_1Parameters_1a139004f9fa652376afabd690dac242e5" prot="public" virt="non-virtual"><scope>Brush::Parameters</scope><name>pop_size</name></member>
+      <member refid="de/deb/structBrush_1_1Parameters_1abe9f1394bdf123d3186976d50bb89a70" prot="public" virt="non-virtual"><scope>Brush::Parameters</scope><name>random_state</name></member>
+      <member refid="de/deb/structBrush_1_1Parameters_1a0c58f9fade0aa2b61ce38213f1675cc5" prot="public" virt="non-virtual"><scope>Brush::Parameters</scope><name>sample_weights</name></member>
+      <member refid="de/deb/structBrush_1_1Parameters_1ad2ad3c96073fa555d752b20a182309bf" prot="public" virt="non-virtual"><scope>Brush::Parameters</scope><name>save_population</name></member>
+      <member refid="de/deb/structBrush_1_1Parameters_1a7449c6a0796151829f3b5867019d4568" prot="public" virt="non-virtual"><scope>Brush::Parameters</scope><name>scorer_</name></member>
+      <member refid="de/deb/structBrush_1_1Parameters_1a187fd63755c90c13f4b3723becd9bdd8" prot="public" virt="non-virtual"><scope>Brush::Parameters</scope><name>sel</name></member>
+      <member refid="de/deb/structBrush_1_1Parameters_1a3764d1c46477f804a75d58248cc64ea8" prot="public" virt="non-virtual"><scope>Brush::Parameters</scope><name>set_batch_size</name></member>
+      <member refid="de/deb/structBrush_1_1Parameters_1aadbf81786a17f23863c85f1896b7155d" prot="public" virt="non-virtual"><scope>Brush::Parameters</scope><name>set_classification</name></member>
+      <member refid="de/deb/structBrush_1_1Parameters_1a83d1e4fc6ee0bab95df90583080a1bd7" prot="public" virt="non-virtual"><scope>Brush::Parameters</scope><name>set_current_gen</name></member>
+      <member refid="de/deb/structBrush_1_1Parameters_1ae117be02b10c413ff07be95c2edf2417" prot="public" virt="non-virtual"><scope>Brush::Parameters</scope><name>set_cx_prob</name></member>
+      <member refid="de/deb/structBrush_1_1Parameters_1adce3ebf4b9d0aa35a4da35f33e5d9168" prot="public" virt="non-virtual"><scope>Brush::Parameters</scope><name>set_feature_names</name></member>
+      <member refid="de/deb/structBrush_1_1Parameters_1a2054b866fb2d2a08114ae9c468ad3863" prot="public" virt="non-virtual"><scope>Brush::Parameters</scope><name>set_functions</name></member>
+      <member refid="de/deb/structBrush_1_1Parameters_1a7ccc0f7607fb73e0e3c37d7ac6305954" prot="public" virt="non-virtual"><scope>Brush::Parameters</scope><name>set_load_population</name></member>
+      <member refid="de/deb/structBrush_1_1Parameters_1a531d8a7a2fc8a402881be57b62f38e2c" prot="public" virt="non-virtual"><scope>Brush::Parameters</scope><name>set_logfile</name></member>
+      <member refid="de/deb/structBrush_1_1Parameters_1a09b2945802ab49e8510e16181a7d916e" prot="public" virt="non-virtual"><scope>Brush::Parameters</scope><name>set_max_depth</name></member>
+      <member refid="de/deb/structBrush_1_1Parameters_1a11a7976ca8a7aaa45d9722b74aeb5704" prot="public" virt="non-virtual"><scope>Brush::Parameters</scope><name>set_max_gens</name></member>
+      <member refid="de/deb/structBrush_1_1Parameters_1ad36ed3c368c1cc152b179a824e9b3144" prot="public" virt="non-virtual"><scope>Brush::Parameters</scope><name>set_max_size</name></member>
+      <member refid="de/deb/structBrush_1_1Parameters_1a0ca031442d56216059f5fe520d493b9b" prot="public" virt="non-virtual"><scope>Brush::Parameters</scope><name>set_max_stall</name></member>
+      <member refid="de/deb/structBrush_1_1Parameters_1a1961e03a4ec41dcc0fd1d384ebeca6cd" prot="public" virt="non-virtual"><scope>Brush::Parameters</scope><name>set_max_time</name></member>
+      <member refid="de/deb/structBrush_1_1Parameters_1afb6a671883dbfbde88932791fbb4de87" prot="public" virt="non-virtual"><scope>Brush::Parameters</scope><name>set_mig_prob</name></member>
+      <member refid="de/deb/structBrush_1_1Parameters_1a21bfb9aa5ac33bee26416611d51cee1a" prot="public" virt="non-virtual"><scope>Brush::Parameters</scope><name>set_mutation_probs</name></member>
+      <member refid="de/deb/structBrush_1_1Parameters_1a0f4d07dbdf17466810ef7e944cadf3f0" prot="public" virt="non-virtual"><scope>Brush::Parameters</scope><name>set_n_classes</name></member>
+      <member refid="de/deb/structBrush_1_1Parameters_1ad5cf6dfc60d005e70ef569ac1e58bdeb" prot="public" virt="non-virtual"><scope>Brush::Parameters</scope><name>set_n_jobs</name></member>
+      <member refid="de/deb/structBrush_1_1Parameters_1a49b871e5bfa462b974e47112cc53ce53" prot="public" virt="non-virtual"><scope>Brush::Parameters</scope><name>set_num_islands</name></member>
+      <member refid="de/deb/structBrush_1_1Parameters_1abb9b1681e45572c95ce97f0e5aeefa05" prot="public" virt="non-virtual"><scope>Brush::Parameters</scope><name>set_objectives</name></member>
+      <member refid="de/deb/structBrush_1_1Parameters_1a4e5aa0dc57b760b0329483e64c3ccea3" prot="public" virt="non-virtual"><scope>Brush::Parameters</scope><name>set_pop_size</name></member>
+      <member refid="de/deb/structBrush_1_1Parameters_1a520456c57a2c3f8703036ae0d5142635" prot="public" virt="non-virtual"><scope>Brush::Parameters</scope><name>set_random_state</name></member>
+      <member refid="de/deb/structBrush_1_1Parameters_1a03a5ec7ccfcba501d57264aeb3a41263" prot="public" virt="non-virtual"><scope>Brush::Parameters</scope><name>set_save_population</name></member>
+      <member refid="de/deb/structBrush_1_1Parameters_1ae5f2660ca53a25b460e23332b234230d" prot="public" virt="non-virtual"><scope>Brush::Parameters</scope><name>set_scorer_</name></member>
+      <member refid="de/deb/structBrush_1_1Parameters_1a9a8f5f8dbfd009fd4aed4b322c19b429" prot="public" virt="non-virtual"><scope>Brush::Parameters</scope><name>set_sel</name></member>
+      <member refid="de/deb/structBrush_1_1Parameters_1a165c8b63ae6066b392ab945c2d04a7b5" prot="public" virt="non-virtual"><scope>Brush::Parameters</scope><name>set_shuffle_split</name></member>
+      <member refid="de/deb/structBrush_1_1Parameters_1aaa61711b5534b0530b60cd11a7070e7c" prot="public" virt="non-virtual"><scope>Brush::Parameters</scope><name>set_surv</name></member>
+      <member refid="de/deb/structBrush_1_1Parameters_1aab67dbc5fa33691d911959e0ab70b356" prot="public" virt="non-virtual"><scope>Brush::Parameters</scope><name>set_use_arch</name></member>
+      <member refid="de/deb/structBrush_1_1Parameters_1a3911c070b29e41bd9fa50dffcec77986" prot="public" virt="non-virtual"><scope>Brush::Parameters</scope><name>set_val_from_arch</name></member>
+      <member refid="de/deb/structBrush_1_1Parameters_1adcfeb3fbcd6bb2ace4eb112dd1ac1fc7" prot="public" virt="non-virtual"><scope>Brush::Parameters</scope><name>set_validation_size</name></member>
+      <member refid="de/deb/structBrush_1_1Parameters_1af232e2b8ac05a182b54437cbf03fc18c" prot="public" virt="non-virtual"><scope>Brush::Parameters</scope><name>set_verbosity</name></member>
+      <member refid="de/deb/structBrush_1_1Parameters_1a38f19ab73e20b7d19604338e7ea5f64e" prot="public" virt="non-virtual"><scope>Brush::Parameters</scope><name>shuffle_split</name></member>
+      <member refid="de/deb/structBrush_1_1Parameters_1a4ff98035fbd50487abb5946504e8e4d6" prot="public" virt="non-virtual"><scope>Brush::Parameters</scope><name>surv</name></member>
+      <member refid="de/deb/structBrush_1_1Parameters_1a41a48deed7929591e10f9886c0d20ff6" prot="public" virt="non-virtual"><scope>Brush::Parameters</scope><name>use_arch</name></member>
+      <member refid="de/deb/structBrush_1_1Parameters_1a9d3932cd3266036a3db14445caee390c" prot="public" virt="non-virtual"><scope>Brush::Parameters</scope><name>val_from_arch</name></member>
+      <member refid="de/deb/structBrush_1_1Parameters_1a56cb7729183a3d4bc9514e83198b99d5" prot="public" virt="non-virtual"><scope>Brush::Parameters</scope><name>validation_size</name></member>
+      <member refid="de/deb/structBrush_1_1Parameters_1aa3266a1e88b1d869a94ab3b21152beda" prot="public" virt="non-virtual"><scope>Brush::Parameters</scope><name>verbosity</name></member>
+      <member refid="de/deb/structBrush_1_1Parameters_1a123bc3a7c8b17c0add03f6fbb128b6e4" prot="public" virt="non-virtual"><scope>Brush::Parameters</scope><name>~Parameters</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

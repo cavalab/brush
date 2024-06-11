@@ -1,14 +1,19 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
-<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.10.0" xml:lang="en-US">
   <compounddef id="d9/d26/bind__programs_8cpp" kind="file" language="C++">
     <compoundname>bind_programs.cpp</compoundname>
     <includes refid="d5/d16/module_8h" local="yes">module.h</includes>
     <includes refid="d6/d3f/bind__programs_8h" local="yes">bind_programs.h</includes>
     <incdepgraph>
-      <node id="41">
-        <label>../util/logger.h</label>
-        <link refid="d1/d8c/logger_8h"/>
-        <childnode refid="17" relation="include">
+      <node id="56">
+        <label>../../thirdparty/tree.hh</label>
+      </node>
+      <node id="1">
+        <label>bind_programs.cpp</label>
+        <link refid="d9/d26/bind__programs_8cpp"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="9" relation="include">
         </childnode>
       </node>
       <node id="9">
@@ -19,173 +24,21 @@
         <childnode refid="10" relation="include">
         </childnode>
       </node>
-      <node id="68">
-        <label>../variation.h</label>
-        <link refid="d4/d1f/variation_8h"/>
-        <childnode refid="20" relation="include">
+      <node id="2">
+        <label>module.h</label>
+        <link refid="d5/d16/module_8h"/>
+        <childnode refid="3" relation="include">
         </childnode>
-      </node>
-      <node id="55">
-        <label>functional</label>
-      </node>
-      <node id="7">
-        <label>pybind11_json/pybind11_json.hpp</label>
-      </node>
-      <node id="24">
-        <label>fmt/format.h</label>
-      </node>
-      <node id="44">
-        <label>limits</label>
-      </node>
-      <node id="65">
-        <label>ceres/solver.h</label>
-      </node>
-      <node id="60">
-        <label>params.h</label>
-        <link refid="da/d33/params_8h"/>
-        <childnode refid="13" relation="include">
+        <childnode refid="4" relation="include">
         </childnode>
-      </node>
-      <node id="12">
-        <label>assert.h</label>
-      </node>
-      <node id="39">
-        <label>iterator</label>
-      </node>
-      <node id="37">
-        <label>error.h</label>
-        <link refid="da/d41/error_8h"/>
-        <childnode refid="11" relation="include">
+        <childnode refid="5" relation="include">
         </childnode>
-        <childnode refid="17" relation="include">
+        <childnode refid="6" relation="include">
         </childnode>
-      </node>
-      <node id="14">
-        <label>stdint.h</label>
-      </node>
-      <node id="27">
-        <label>variant</label>
-      </node>
-      <node id="45">
-        <label>timeseries.h</label>
-        <link refid="d9/df7/timeseries_8h"/>
-        <childnode refid="13" relation="include">
+        <childnode refid="7" relation="include">
         </childnode>
-        <childnode refid="34" relation="include">
+        <childnode refid="8" relation="include">
         </childnode>
-        <childnode refid="37" relation="include">
-        </childnode>
-      </node>
-      <node id="59">
-        <label>../search_space.h</label>
-        <link refid="d9/d99/search__space_8h"/>
-        <childnode refid="13" relation="include">
-        </childnode>
-        <childnode refid="47" relation="include">
-        </childnode>
-        <childnode refid="48" relation="include">
-        </childnode>
-        <childnode refid="30" relation="include">
-        </childnode>
-        <childnode refid="34" relation="include">
-        </childnode>
-        <childnode refid="42" relation="include">
-        </childnode>
-        <childnode refid="60" relation="include">
-        </childnode>
-        <childnode refid="51" relation="include">
-        </childnode>
-        <childnode refid="46" relation="include">
-        </childnode>
-      </node>
-      <node id="54">
-        <label>cmath</label>
-      </node>
-      <node id="23">
-        <label>fmt/ostream.h</label>
-      </node>
-      <node id="19">
-        <label>numeric</label>
-      </node>
-      <node id="11">
-        <label>string</label>
-      </node>
-      <node id="4">
-        <label>pybind11/eigen.h</label>
-      </node>
-      <node id="20">
-        <label>map</label>
-      </node>
-      <node id="42">
-        <label>../util/rnd.h</label>
-        <link refid="d2/da9/rnd_8h"/>
-        <childnode refid="43" relation="include">
-        </childnode>
-        <childnode refid="44" relation="include">
-        </childnode>
-        <childnode refid="22" relation="include">
-        </childnode>
-        <childnode refid="13" relation="include">
-        </childnode>
-      </node>
-      <node id="52">
-        <label>signatures.h</label>
-        <link refid="d8/d8b/signatures_8h"/>
-      </node>
-      <node id="18">
-        <label>fstream</label>
-      </node>
-      <node id="36">
-        <label>ostream</label>
-      </node>
-      <node id="26">
-        <label>types.h</label>
-        <link refid="d9/d49/types_8h"/>
-        <childnode refid="27" relation="include">
-        </childnode>
-        <childnode refid="28" relation="include">
-        </childnode>
-        <childnode refid="29" relation="include">
-        </childnode>
-      </node>
-      <node id="67">
-        <label>tiny_cost_function.h</label>
-        <link refid="dd/d1b/tiny__cost__function_8h"/>
-      </node>
-      <node id="64">
-        <label>ceres/loss_function.h</label>
-      </node>
-      <node id="43">
-        <label>random</label>
-      </node>
-      <node id="15">
-        <label>Eigen/Dense</label>
-      </node>
-      <node id="1">
-        <label>bind_programs.cpp</label>
-        <link refid="d9/d26/bind__programs_8cpp"/>
-        <childnode refid="2" relation="include">
-        </childnode>
-        <childnode refid="9" relation="include">
-        </childnode>
-      </node>
-      <node id="49">
-        <label>bitset</label>
-      </node>
-      <node id="31">
-        <label>tuple</label>
-      </node>
-      <node id="6">
-        <label>pybind11/iostream.h</label>
-      </node>
-      <node id="25">
-        <label>fmt/ranges.h</label>
-      </node>
-      <node id="46">
-        <label>optional</label>
-      </node>
-      <node id="22">
-        <label>vector</label>
       </node>
       <node id="33">
         <label>../data/data.h</label>
@@ -207,8 +60,15 @@
         <childnode refid="46" relation="include">
         </childnode>
       </node>
-      <node id="62">
-        <label>ceres/dynamic_autodiff_cost_function.h</label>
+      <node id="45">
+        <label>timeseries.h</label>
+        <link refid="d9/df7/timeseries_8h"/>
+        <childnode refid="13" relation="include">
+        </childnode>
+        <childnode refid="34" relation="include">
+        </childnode>
+        <childnode refid="37" relation="include">
+        </childnode>
       </node>
       <node id="13">
         <label>../init.h</label>
@@ -244,8 +104,107 @@
         <childnode refid="26" relation="include">
         </childnode>
       </node>
-      <node id="51">
-        <label>utility</label>
+      <node id="60">
+        <label>../params.h</label>
+        <link refid="da/d33/params_8h"/>
+        <childnode refid="13" relation="include">
+        </childnode>
+        <childnode refid="41" relation="include">
+        </childnode>
+      </node>
+      <node id="57">
+        <label>dispatch_table.h</label>
+        <link refid="df/d61/dispatch__table_8h"/>
+        <childnode refid="13" relation="include">
+        </childnode>
+        <childnode refid="33" relation="include">
+        </childnode>
+        <childnode refid="48" relation="include">
+        </childnode>
+        <childnode refid="47" relation="include">
+        </childnode>
+        <childnode refid="46" relation="include">
+        </childnode>
+        <childnode refid="58" relation="include">
+        </childnode>
+        <childnode refid="31" relation="include">
+        </childnode>
+      </node>
+      <node id="53">
+        <label>functions.h</label>
+        <link refid="d8/d5c/functions_8h"/>
+        <childnode refid="54" relation="include">
+        </childnode>
+        <childnode refid="39" relation="include">
+        </childnode>
+        <childnode refid="55" relation="include">
+        </childnode>
+        <childnode refid="19" relation="include">
+        </childnode>
+        <childnode refid="50" relation="include">
+        </childnode>
+        <childnode refid="13" relation="include">
+        </childnode>
+        <childnode refid="48" relation="include">
+        </childnode>
+        <childnode refid="34" relation="include">
+        </childnode>
+        <childnode refid="33" relation="include">
+        </childnode>
+        <childnode refid="47" relation="include">
+        </childnode>
+      </node>
+      <node id="47">
+        <label>node.h</label>
+        <link refid="d1/d77/node_8h"/>
+        <childnode refid="33" relation="include">
+        </childnode>
+        <childnode refid="48" relation="include">
+        </childnode>
+        <childnode refid="34" relation="include">
+        </childnode>
+        <childnode refid="17" relation="include">
+        </childnode>
+      </node>
+      <node id="48">
+        <label>nodetype.h</label>
+        <link refid="de/d26/nodetype_8h"/>
+        <childnode refid="49" relation="include">
+        </childnode>
+        <childnode refid="50" relation="include">
+        </childnode>
+        <childnode refid="51" relation="include">
+        </childnode>
+        <childnode refid="13" relation="include">
+        </childnode>
+        <childnode refid="33" relation="include">
+        </childnode>
+        <childnode refid="34" relation="include">
+        </childnode>
+        <childnode refid="42" relation="include">
+        </childnode>
+        <childnode refid="52" relation="include">
+        </childnode>
+      </node>
+      <node id="67">
+        <label>tiny_cost_function.h</label>
+        <link refid="dd/d1b/tiny__cost__function_8h"/>
+      </node>
+      <node id="61">
+        <label>optimizer/weight_optimizer.h</label>
+        <link refid="d7/de3/weight__optimizer_8h"/>
+        <childnode refid="62" relation="include">
+        </childnode>
+        <childnode refid="63" relation="include">
+        </childnode>
+        <childnode refid="64" relation="include">
+        </childnode>
+        <childnode refid="65" relation="include">
+        </childnode>
+        <childnode refid="66" relation="include">
+        </childnode>
+        <childnode refid="67" relation="include">
+        </childnode>
       </node>
       <node id="10">
         <label>../program/program.h</label>
@@ -270,35 +229,68 @@
         </childnode>
         <childnode refid="61" relation="include">
         </childnode>
-        <childnode refid="68" relation="include">
+      </node>
+      <node id="52">
+        <label>signatures.h</label>
+        <link refid="d8/d8b/signatures_8h"/>
+      </node>
+      <node id="30">
+        <label>tree_node.h</label>
+        <link refid="d1/da6/tree__node_8h"/>
+        <childnode refid="31" relation="include">
         </childnode>
-      </node>
-      <node id="3">
-        <label>pybind11/pybind11.h</label>
-      </node>
-      <node id="57">
-        <label>dispatch_table.h</label>
-        <link refid="df/d61/dispatch__table_8h"/>
+        <childnode refid="32" relation="include">
+        </childnode>
         <childnode refid="13" relation="include">
         </childnode>
         <childnode refid="33" relation="include">
         </childnode>
-        <childnode refid="48" relation="include">
-        </childnode>
         <childnode refid="47" relation="include">
         </childnode>
-        <childnode refid="46" relation="include">
+        <childnode refid="53" relation="include">
         </childnode>
-        <childnode refid="58" relation="include">
+        <childnode refid="48" relation="include">
         </childnode>
-        <childnode refid="31" relation="include">
+        <childnode refid="56" relation="include">
+        </childnode>
+        <childnode refid="57" relation="include">
         </childnode>
       </node>
-      <node id="17">
-        <label>iostream</label>
+      <node id="26">
+        <label>types.h</label>
+        <link refid="d9/d49/types_8h"/>
+        <childnode refid="27" relation="include">
+        </childnode>
+        <childnode refid="28" relation="include">
+        </childnode>
+        <childnode refid="29" relation="include">
+        </childnode>
       </node>
-      <node id="58">
-        <label>cstddef</label>
+      <node id="37">
+        <label>error.h</label>
+        <link refid="da/d41/error_8h"/>
+        <childnode refid="11" relation="include">
+        </childnode>
+        <childnode refid="17" relation="include">
+        </childnode>
+      </node>
+      <node id="41">
+        <label>../util/logger.h</label>
+        <link refid="d1/d8c/logger_8h"/>
+        <childnode refid="17" relation="include">
+        </childnode>
+      </node>
+      <node id="42">
+        <label>../util/rnd.h</label>
+        <link refid="d2/da9/rnd_8h"/>
+        <childnode refid="43" relation="include">
+        </childnode>
+        <childnode refid="44" relation="include">
+        </childnode>
+        <childnode refid="22" relation="include">
+        </childnode>
+        <childnode refid="13" relation="include">
+        </childnode>
       </node>
       <node id="34">
         <label>../util/utils.h</label>
@@ -330,167 +322,173 @@
         <childnode refid="31" relation="include">
         </childnode>
       </node>
-      <node id="32">
-        <label>unordered_map</label>
-      </node>
-      <node id="28">
-        <label>ceres/jet.h</label>
-      </node>
-      <node id="47">
-        <label>node.h</label>
-        <link refid="d1/d77/node_8h"/>
-        <childnode refid="33" relation="include">
-        </childnode>
-        <childnode refid="48" relation="include">
-        </childnode>
-        <childnode refid="34" relation="include">
-        </childnode>
-        <childnode refid="17" relation="include">
-        </childnode>
-      </node>
-      <node id="40">
-        <label>execution</label>
-      </node>
-      <node id="35">
-        <label>chrono</label>
-      </node>
-      <node id="56">
-        <label>../../thirdparty/tree.hh</label>
-      </node>
-      <node id="29">
-        <label>concepts</label>
-      </node>
-      <node id="66">
-        <label>ceres/tiny_solver.h</label>
-      </node>
-      <node id="50">
-        <label>type_traits</label>
-      </node>
-      <node id="21">
-        <label>set</label>
-      </node>
-      <node id="2">
-        <label>module.h</label>
-        <link refid="d5/d16/module_8h"/>
-        <childnode refid="3" relation="include">
-        </childnode>
-        <childnode refid="4" relation="include">
-        </childnode>
-        <childnode refid="5" relation="include">
-        </childnode>
-        <childnode refid="6" relation="include">
-        </childnode>
-        <childnode refid="7" relation="include">
-        </childnode>
-        <childnode refid="8" relation="include">
-        </childnode>
-      </node>
-      <node id="8">
-        <label>nlohmann/json.hpp</label>
-      </node>
-      <node id="53">
-        <label>functions.h</label>
-        <link refid="d8/d5c/functions_8h"/>
-        <childnode refid="54" relation="include">
-        </childnode>
-        <childnode refid="39" relation="include">
-        </childnode>
-        <childnode refid="55" relation="include">
-        </childnode>
-        <childnode refid="19" relation="include">
-        </childnode>
-        <childnode refid="50" relation="include">
-        </childnode>
+      <node id="59">
+        <label>../vary/search_space.h</label>
+        <link refid="d9/d99/search__space_8h"/>
         <childnode refid="13" relation="include">
-        </childnode>
-        <childnode refid="48" relation="include">
-        </childnode>
-        <childnode refid="34" relation="include">
-        </childnode>
-        <childnode refid="33" relation="include">
         </childnode>
         <childnode refid="47" relation="include">
         </childnode>
-      </node>
-      <node id="63">
-        <label>ceres/dynamic_numeric_diff_cost_function.h</label>
-      </node>
-      <node id="30">
-        <label>tree_node.h</label>
-        <link refid="d1/da6/tree__node_8h"/>
-        <childnode refid="31" relation="include">
-        </childnode>
-        <childnode refid="32" relation="include">
-        </childnode>
-        <childnode refid="13" relation="include">
-        </childnode>
-        <childnode refid="33" relation="include">
-        </childnode>
-        <childnode refid="47" relation="include">
-        </childnode>
-        <childnode refid="53" relation="include">
-        </childnode>
         <childnode refid="48" relation="include">
         </childnode>
-        <childnode refid="56" relation="include">
+        <childnode refid="30" relation="include">
         </childnode>
-        <childnode refid="57" relation="include">
-        </childnode>
-      </node>
-      <node id="61">
-        <label>optimizer/weight_optimizer.h</label>
-        <link refid="d7/de3/weight__optimizer_8h"/>
-        <childnode refid="62" relation="include">
-        </childnode>
-        <childnode refid="63" relation="include">
-        </childnode>
-        <childnode refid="64" relation="include">
-        </childnode>
-        <childnode refid="65" relation="include">
-        </childnode>
-        <childnode refid="66" relation="include">
-        </childnode>
-        <childnode refid="67" relation="include">
-        </childnode>
-      </node>
-      <node id="48">
-        <label>nodetype.h</label>
-        <link refid="de/d26/nodetype_8h"/>
-        <childnode refid="49" relation="include">
-        </childnode>
-        <childnode refid="50" relation="include">
-        </childnode>
-        <childnode refid="51" relation="include">
-        </childnode>
-        <childnode refid="13" relation="include">
-        </childnode>
-        <childnode refid="33" relation="include">
+        <childnode refid="37" relation="include">
         </childnode>
         <childnode refid="34" relation="include">
         </childnode>
         <childnode refid="42" relation="include">
         </childnode>
-        <childnode refid="52" relation="include">
+        <childnode refid="60" relation="include">
         </childnode>
+        <childnode refid="51" relation="include">
+        </childnode>
+        <childnode refid="46" relation="include">
+        </childnode>
+        <childnode refid="17" relation="include">
+        </childnode>
+      </node>
+      <node id="15">
+        <label>Eigen/Dense</label>
+      </node>
+      <node id="12">
+        <label>assert.h</label>
+      </node>
+      <node id="49">
+        <label>bitset</label>
+      </node>
+      <node id="62">
+        <label>ceres/dynamic_autodiff_cost_function.h</label>
+      </node>
+      <node id="63">
+        <label>ceres/dynamic_numeric_diff_cost_function.h</label>
+      </node>
+      <node id="28">
+        <label>ceres/jet.h</label>
+      </node>
+      <node id="64">
+        <label>ceres/loss_function.h</label>
+      </node>
+      <node id="65">
+        <label>ceres/solver.h</label>
+      </node>
+      <node id="66">
+        <label>ceres/tiny_solver.h</label>
+      </node>
+      <node id="35">
+        <label>chrono</label>
+      </node>
+      <node id="54">
+        <label>cmath</label>
+      </node>
+      <node id="29">
+        <label>concepts</label>
+      </node>
+      <node id="58">
+        <label>cstddef</label>
+      </node>
+      <node id="40">
+        <label>execution</label>
+      </node>
+      <node id="24">
+        <label>fmt/format.h</label>
+      </node>
+      <node id="23">
+        <label>fmt/ostream.h</label>
+      </node>
+      <node id="25">
+        <label>fmt/ranges.h</label>
+      </node>
+      <node id="18">
+        <label>fstream</label>
+      </node>
+      <node id="55">
+        <label>functional</label>
+      </node>
+      <node id="17">
+        <label>iostream</label>
+      </node>
+      <node id="39">
+        <label>iterator</label>
+      </node>
+      <node id="44">
+        <label>limits</label>
+      </node>
+      <node id="20">
+        <label>map</label>
       </node>
       <node id="16">
         <label>memory</label>
       </node>
-      <node id="38">
-        <label>typeindex</label>
+      <node id="8">
+        <label>nlohmann/json.hpp</label>
+      </node>
+      <node id="19">
+        <label>numeric</label>
+      </node>
+      <node id="46">
+        <label>optional</label>
+      </node>
+      <node id="36">
+        <label>ostream</label>
+      </node>
+      <node id="4">
+        <label>pybind11/eigen.h</label>
+      </node>
+      <node id="6">
+        <label>pybind11/iostream.h</label>
+      </node>
+      <node id="3">
+        <label>pybind11/pybind11.h</label>
       </node>
       <node id="5">
         <label>pybind11/stl.h</label>
       </node>
+      <node id="7">
+        <label>pybind11_json/pybind11_json.hpp</label>
+      </node>
+      <node id="43">
+        <label>random</label>
+      </node>
+      <node id="21">
+        <label>set</label>
+      </node>
+      <node id="14">
+        <label>stdint.h</label>
+      </node>
+      <node id="11">
+        <label>string</label>
+      </node>
+      <node id="31">
+        <label>tuple</label>
+      </node>
+      <node id="50">
+        <label>type_traits</label>
+      </node>
+      <node id="38">
+        <label>typeindex</label>
+      </node>
+      <node id="32">
+        <label>unordered_map</label>
+      </node>
+      <node id="51">
+        <label>utility</label>
+      </node>
+      <node id="27">
+        <label>variant</label>
+      </node>
+      <node id="22">
+        <label>vector</label>
+      </node>
     </incdepgraph>
-      <sectiondef kind="func">
+    <sectiondef kind="func">
       <memberdef kind="function" id="d9/d26/bind__programs_8cpp_1a8435253e0dd2b6802297b820914051e5" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
-        <type>void</type>
+        <type><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">void</ref></type>
         <definition>void bind_programs</definition>
         <argsstring>(py::module &amp;m)</argsstring>
         <name>bind_programs</name>
         <param>
-          <type>py::module &amp;</type>
+          <type><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">py::module</ref> &amp;</type>
           <declname>m</declname>
         </param>
         <briefdescription>
@@ -499,12 +497,11 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/runner/work/brush/brush/src/bindings/bind_programs.cpp" line="12" column="6" bodyfile="/home/runner/work/brush/brush/src/bindings/bind_programs.cpp" bodystart="12" bodyend="25"/>
-        <references refid="d6/dd0/structBrush_1_1Fitness_1ae41414066bee664a1e5cae382667aec4" compoundref="d1/dea/program_8h" startline="41">Brush::Fitness::valid</references>
-        <references refid="d6/dd0/structBrush_1_1Fitness_1a853380ca80adf2ab47bc8d2fc34b09b4" compoundref="d1/dea/program_8h" startline="40">Brush::Fitness::values</references>
-        <referencedby refid="dd/d30/module_8cpp_1ab3432520f506686ba18c7ce7758a6c69" compoundref="dd/d30/module_8cpp" startline="23" endline="37">PYBIND11_MODULE</referencedby>
+        <location file="/home/runner/work/brush/brush/src/bindings/bind_programs.cpp" line="12" column="6" bodyfile="/home/runner/work/brush/brush/src/bindings/bind_programs.cpp" bodystart="12" bodyend="18"/>
+        <references refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" compoundref="d4/d93/bind__engines_8h" startline="35" endline="104">bind_engine</references>
+        <referencedby refid="dd/d30/module_8cpp_1ab3432520f506686ba18c7ce7758a6c69" compoundref="dd/d30/module_8cpp" startline="33" endline="60">PYBIND11_MODULE</referencedby>
       </memberdef>
-      </sectiondef>
+    </sectiondef>
     <briefdescription>
     </briefdescription>
     <detaileddescription>
@@ -512,9 +509,9 @@
     <programlisting>
 <codeline lineno="1"><highlight class="preprocessor">#include<sp/>&quot;<ref refid="d5/d16/module_8h" kindref="compound">module.h</ref>&quot;</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="2"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;<ref refid="d6/d3f/bind__programs_8h" kindref="compound">bind_programs.h</ref>&quot;</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="3"><highlight class="normal"></highlight><highlight class="keyword">namespace<sp/></highlight><highlight class="normal">py<sp/>=<sp/>pybind11;</highlight></codeline>
+<codeline lineno="3"><highlight class="normal"></highlight><highlight class="keyword">namespace<sp/></highlight><highlight class="normal"><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">py</ref><sp/>=<sp/><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">pybind11</ref>;</highlight></codeline>
 <codeline lineno="4"><highlight class="normal"></highlight><highlight class="keyword">namespace<sp/></highlight><highlight class="normal"><ref refid="dc/d5c/namespaceBrush" kindref="compound">br</ref><sp/>=<sp/><ref refid="dc/d5c/namespaceBrush" kindref="compound">Brush</ref>;</highlight></codeline>
-<codeline lineno="5"><highlight class="normal"></highlight><highlight class="keyword">namespace<sp/></highlight><highlight class="normal">nl<sp/>=<sp/>nlohmann;</highlight></codeline>
+<codeline lineno="5"><highlight class="normal"></highlight><highlight class="keyword">namespace<sp/></highlight><highlight class="normal"><ref refid="d3/d9b/namespacenlohmann" kindref="compound">nl</ref><sp/>=<sp/><ref refid="d3/d9b/namespacenlohmann" kindref="compound">nlohmann</ref>;</highlight></codeline>
 <codeline lineno="6"><highlight class="normal"></highlight></codeline>
 <codeline lineno="7"><highlight class="normal"></highlight><highlight class="comment">//<sp/>using<sp/>Reg<sp/>=<sp/>br::Program&lt;ArrayXf&gt;;</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="8"><highlight class="normal"></highlight><highlight class="comment">//<sp/>using<sp/>Cls<sp/>=<sp/>br::Program&lt;ArrayXb&gt;;</highlight><highlight class="normal"></highlight></codeline>
@@ -523,18 +520,11 @@
 <codeline lineno="11"><highlight class="normal"></highlight></codeline>
 <codeline lineno="12" refid="d9/d26/bind__programs_8cpp_1a8435253e0dd2b6802297b820914051e5" refkind="member"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="d9/d26/bind__programs_8cpp_1a8435253e0dd2b6802297b820914051e5" kindref="member">bind_programs</ref>(py::module&amp;<sp/>m)</highlight></codeline>
 <codeline lineno="13"><highlight class="normal">{</highlight></codeline>
-<codeline lineno="14"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/>py::class_&lt;br::Fitness&gt;(m,<sp/></highlight><highlight class="stringliteral">&quot;Fitness&quot;</highlight><highlight class="normal">,<sp/>py::dynamic_attr())</highlight></codeline>
-<codeline lineno="15"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>.def(py::init&lt;&gt;())</highlight></codeline>
-<codeline lineno="16"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>.def_readwrite(</highlight><highlight class="stringliteral">&quot;values&quot;</highlight><highlight class="normal">,<sp/>&amp;<ref refid="d6/dd0/structBrush_1_1Fitness_1a853380ca80adf2ab47bc8d2fc34b09b4" kindref="member">br::Fitness::values</ref>)</highlight></codeline>
-<codeline lineno="17"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>.def_readwrite(</highlight><highlight class="stringliteral">&quot;valid&quot;</highlight><highlight class="normal">,<sp/>&amp;<ref refid="d6/dd0/structBrush_1_1Fitness_1ae41414066bee664a1e5cae382667aec4" kindref="member">br::Fitness::valid</ref>)</highlight></codeline>
-<codeline lineno="18"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>;</highlight></codeline>
-<codeline lineno="19"><highlight class="normal"></highlight></codeline>
-<codeline lineno="20"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/>bind_program&lt;br::RegressorProgram&gt;(m,<sp/></highlight><highlight class="stringliteral">&quot;Regressor&quot;</highlight><highlight class="normal">);</highlight></codeline>
-<codeline lineno="21"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/>bind_program&lt;br::ClassifierProgram&gt;(m,<sp/></highlight><highlight class="stringliteral">&quot;Classifier&quot;</highlight><highlight class="normal">);</highlight></codeline>
-<codeline lineno="22"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/>bind_program&lt;br::MulticlassClassifierProgram&gt;(m,<sp/></highlight><highlight class="stringliteral">&quot;MultiClassifier&quot;</highlight><highlight class="normal">);</highlight></codeline>
-<codeline lineno="23"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/>bind_program&lt;br::RepresenterProgram&gt;(m,<sp/></highlight><highlight class="stringliteral">&quot;Representer&quot;</highlight><highlight class="normal">);</highlight></codeline>
-<codeline lineno="24"><highlight class="normal"></highlight></codeline>
-<codeline lineno="25"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="14"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">bind_program&lt;br::RegressorProgram&gt;</ref>(m,<sp/></highlight><highlight class="stringliteral">&quot;Regressor&quot;</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="15"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">bind_program&lt;br::ClassifierProgram&gt;</ref>(m,<sp/></highlight><highlight class="stringliteral">&quot;Classifier&quot;</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="16"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">bind_program&lt;br::MulticlassClassifierProgram&gt;</ref>(m,<sp/></highlight><highlight class="stringliteral">&quot;MultiClassifier&quot;</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="17"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">bind_program&lt;br::RepresenterProgram&gt;</ref>(m,<sp/></highlight><highlight class="stringliteral">&quot;Representer&quot;</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="18"><highlight class="normal">}</highlight></codeline>
     </programlisting>
     <location file="/home/runner/work/brush/brush/src/bindings/bind_programs.cpp"/>
   </compounddef>

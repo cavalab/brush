@@ -1,16 +1,17 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
-<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.10.0" xml:lang="en-US">
   <compounddef id="d1/ddf/structBrush_1_1uint32__vector__hasher" kind="struct" language="C++" prot="public">
     <compoundname>Brush::uint32_vector_hasher</compoundname>
     <includes refid="d1/d77/node_8h" local="no">node.h</includes>
-      <sectiondef kind="public-func">
+    <sectiondef kind="public-func">
       <memberdef kind="function" id="d1/ddf/structBrush_1_1uint32__vector__hasher_1a8f09d6f3ab0be06464350c7be377911a" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
         <type>std::size_t</type>
         <definition>std::size_t Brush::uint32_vector_hasher::operator()</definition>
         <argsstring>(std::vector&lt; uint32_t &gt; const &amp;vec) const</argsstring>
         <name>operator()</name>
+        <qualifiedname>Brush::uint32_vector_hasher::operator()</qualifiedname>
         <param>
-          <type>std::vector&lt; uint32_t &gt; const &amp;</type>
+          <type>std::vector&lt; <ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">uint32_t</ref> &gt; <ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">const</ref> &amp;</type>
           <declname>vec</declname>
         </param>
         <briefdescription>
@@ -19,15 +20,17 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/runner/work/brush/brush/src/program/node.h" line="65" column="17" bodyfile="/home/runner/work/brush/brush/src/program/node.h" bodystart="65" bodyend="71"/>
+        <location file="/home/runner/work/brush/brush/src/program/node.h" line="64" column="17" bodyfile="/home/runner/work/brush/brush/src/program/node.h" bodystart="64" bodyend="70"/>
+        <references refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" compoundref="d4/d93/bind__engines_8h" startline="35" endline="104">bind_engine</references>
       </memberdef>
       <memberdef kind="function" id="d1/ddf/structBrush_1_1uint32__vector__hasher_1a108eb03221c0d3d3375be29f3b7a4c30" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
         <type>std::size_t</type>
         <definition>std::size_t Brush::uint32_vector_hasher::operator()</definition>
         <argsstring>(std::vector&lt; Brush::DataType &gt; const &amp;vec) const</argsstring>
         <name>operator()</name>
+        <qualifiedname>Brush::uint32_vector_hasher::operator()</qualifiedname>
         <param>
-          <type>std::vector&lt; <ref refid="dc/d5c/namespaceBrush_1a3f2c9b744330ba4a561ac72f048a1a5f" kindref="member">Brush::DataType</ref> &gt; const &amp;</type>
+          <type>std::vector&lt; <ref refid="dc/d5c/namespaceBrush_1a3f2c9b744330ba4a561ac72f048a1a5f" kindref="member">Brush::DataType</ref> &gt; <ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">const</ref> &amp;</type>
           <declname>vec</declname>
         </param>
         <briefdescription>
@@ -36,14 +39,15 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/runner/work/brush/brush/src/program/node.h" line="72" column="17" bodyfile="/home/runner/work/brush/brush/src/program/node.h" bodystart="72" bodyend="78"/>
+        <location file="/home/runner/work/brush/brush/src/program/node.h" line="71" column="17" bodyfile="/home/runner/work/brush/brush/src/program/node.h" bodystart="71" bodyend="77"/>
+        <references refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" compoundref="d4/d93/bind__engines_8h" startline="35" endline="104">bind_engine</references>
       </memberdef>
-      </sectiondef>
+    </sectiondef>
     <briefdescription>
     </briefdescription>
     <detaileddescription>
     </detaileddescription>
-    <location file="/home/runner/work/brush/brush/src/program/node.h" line="64" column="1" bodyfile="/home/runner/work/brush/brush/src/program/node.h" bodystart="64" bodyend="79"/>
+    <location file="/home/runner/work/brush/brush/src/program/node.h" line="63" column="1" bodyfile="/home/runner/work/brush/brush/src/program/node.h" bodystart="63" bodyend="78"/>
     <listofallmembers>
       <member refid="d1/ddf/structBrush_1_1uint32__vector__hasher_1a8f09d6f3ab0be06464350c7be377911a" prot="public" virt="non-virtual"><scope>Brush::uint32_vector_hasher</scope><name>operator()</name></member>
       <member refid="d1/ddf/structBrush_1_1uint32__vector__hasher_1a108eb03221c0d3d3375be29f3b7a4c30" prot="public" virt="non-virtual"><scope>Brush::uint32_vector_hasher</scope><name>operator()</name></member>

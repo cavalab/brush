@@ -1,0 +1,156 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.10.0" xml:lang="en-US">
+  <compounddef id="d9/d5e/structBrush_1_1Operator_3_01NodeType_1_1MeanLabel_00_01S_00_01Fit_01_4" kind="struct" language="C++" prot="public">
+    <compoundname>Brush::Operator&lt; NodeType::MeanLabel, S, Fit &gt;</compoundname>
+    <includes refid="d7/de0/operator_8h" local="no">operator.h</includes>
+    <templateparamlist>
+      <param>
+        <type><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">typename</ref> S</type>
+      </param>
+      <param>
+        <type><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">bool</ref></type>
+        <declname>Fit</declname>
+        <defname>Fit</defname>
+      </param>
+    </templateparamlist>
+    <sectiondef kind="public-type">
+      <memberdef kind="typedef" id="d9/d5e/structBrush_1_1Operator_3_01NodeType_1_1MeanLabel_00_01S_00_01Fit_01_4_1a7c8549ef9aed9cb5fd5cb47126f3731c" prot="public" static="no">
+        <type><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">typename</ref> S::RetType</type>
+        <definition>using Brush::Operator&lt; NodeType::MeanLabel, S, Fit &gt;::RetType =  typename S::RetType</definition>
+        <argsstring></argsstring>
+        <name>RetType</name>
+        <qualifiedname>Brush::Operator&lt; NodeType::MeanLabel, S, Fit &gt;::RetType</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/runner/work/brush/brush/src/program/operator.h" line="330" column="5" bodyfile="/home/runner/work/brush/brush/src/program/operator.h" bodystart="330" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="typedef" id="d9/d5e/structBrush_1_1Operator_3_01NodeType_1_1MeanLabel_00_01S_00_01Fit_01_4_1a6d0ef851de4d7697f92b8180647ff3ca" prot="public" static="no">
+        <type><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">typename</ref> S::WeightType</type>
+        <definition>using Brush::Operator&lt; NodeType::MeanLabel, S, Fit &gt;::W =  typename S::WeightType</definition>
+        <argsstring></argsstring>
+        <name>W</name>
+        <qualifiedname>Brush::Operator&lt; NodeType::MeanLabel, S, Fit &gt;::W</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/runner/work/brush/brush/src/program/operator.h" line="331" column="5" bodyfile="/home/runner/work/brush/brush/src/program/operator.h" bodystart="331" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="public-func">
+      <memberdef kind="function" id="d9/d5e/structBrush_1_1Operator_3_01NodeType_1_1MeanLabel_00_01S_00_01Fit_01_4_1a0a729da1a61e625544c79406c1d38a8f" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="d9/d5e/structBrush_1_1Operator_3_01NodeType_1_1MeanLabel_00_01S_00_01Fit_01_4_1a7c8549ef9aed9cb5fd5cb47126f3731c" kindref="member">RetType</ref></type>
+        <definition>RetType Brush::Operator&lt; NodeType::MeanLabel, S, Fit &gt;::fit</definition>
+        <argsstring>(const Dataset &amp;d, TreeNode &amp;tn) const</argsstring>
+        <name>fit</name>
+        <qualifiedname>Brush::Operator&lt; NodeType::MeanLabel, S, Fit &gt;::fit</qualifiedname>
+        <param>
+          <type><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">const</ref> <ref refid="d2/d36/classBrush_1_1Data_1_1Dataset" kindref="compound">Dataset</ref> &amp;</type>
+          <declname>d</declname>
+        </param>
+        <param>
+          <type><ref refid="df/d61/dispatch__table_8h_1a5d0d9e773ca46763fb1b1152cafc4179" kindref="member">TreeNode</ref> &amp;</type>
+          <declname>tn</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/runner/work/brush/brush/src/program/operator.h" line="333" column="13" bodyfile="/home/runner/work/brush/brush/src/program/operator.h" bodystart="333" bodyend="336"/>
+        <references refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" compoundref="d4/d93/bind__engines_8h" startline="35" endline="104">bind_engine</references>
+      </memberdef>
+      <memberdef kind="function" id="d9/d5e/structBrush_1_1Operator_3_01NodeType_1_1MeanLabel_00_01S_00_01Fit_01_4_1a56b67e05e4f1f89f7fd83f755d826d16" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">typename</ref> T</type>
+            <defval><ref refid="d9/d5e/structBrush_1_1Operator_3_01NodeType_1_1MeanLabel_00_01S_00_01Fit_01_4_1a7c8549ef9aed9cb5fd5cb47126f3731c" kindref="member">RetType</ref></defval>
+          </param>
+          <param>
+            <type><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">typename</ref> <ref refid="dc/d5c/namespaceBrush_1a5b9f71c99a1fe42d359ae45033b58620" kindref="member">Scalar</ref></type>
+            <defval>T::Scalar</defval>
+          </param>
+          <param>
+            <type><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">int</ref></type>
+            <declname>N</declname>
+            <defname>N</defname>
+            <defval>T::NumDimensions</defval>
+          </param>
+        </templateparamlist>
+        <type><ref refid="d9/d5e/structBrush_1_1Operator_3_01NodeType_1_1MeanLabel_00_01S_00_01Fit_01_4_1a7c8549ef9aed9cb5fd5cb47126f3731c" kindref="member">RetType</ref></type>
+        <definition>RetType Brush::Operator&lt; NodeType::MeanLabel, S, Fit &gt;::predict</definition>
+        <argsstring>(const Dataset &amp;d, TreeNode &amp;tn, const W **weights=nullptr) const</argsstring>
+        <name>predict</name>
+        <qualifiedname>Brush::Operator&lt; NodeType::MeanLabel, S, Fit &gt;::predict</qualifiedname>
+        <param>
+          <type><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">const</ref> <ref refid="d2/d36/classBrush_1_1Data_1_1Dataset" kindref="compound">Dataset</ref> &amp;</type>
+          <declname>d</declname>
+        </param>
+        <param>
+          <type><ref refid="df/d61/dispatch__table_8h_1a5d0d9e773ca46763fb1b1152cafc4179" kindref="member">TreeNode</ref> &amp;</type>
+          <declname>tn</declname>
+        </param>
+        <param>
+          <type><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">const</ref> <ref refid="d9/d5e/structBrush_1_1Operator_3_01NodeType_1_1MeanLabel_00_01S_00_01Fit_01_4_1a6d0ef851de4d7697f92b8180647ff3ca" kindref="member">W</ref> **</type>
+          <declname>weights</declname>
+          <defval><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">nullptr</ref></defval>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/runner/work/brush/brush/src/program/operator.h" line="339" column="13" bodyfile="/home/runner/work/brush/brush/src/program/operator.h" bodystart="339" bodyend="346"/>
+        <references refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" compoundref="d4/d93/bind__engines_8h" startline="35" endline="104">bind_engine</references>
+      </memberdef>
+      <memberdef kind="function" id="d9/d5e/structBrush_1_1Operator_3_01NodeType_1_1MeanLabel_00_01S_00_01Fit_01_4_1aff062ebffea0b39f39b6252fbb07cc86" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="d9/d5e/structBrush_1_1Operator_3_01NodeType_1_1MeanLabel_00_01S_00_01Fit_01_4_1a7c8549ef9aed9cb5fd5cb47126f3731c" kindref="member">RetType</ref></type>
+        <definition>RetType Brush::Operator&lt; NodeType::MeanLabel, S, Fit &gt;::eval</definition>
+        <argsstring>(const Dataset &amp;d, TreeNode &amp;tn, const W **weights=nullptr) const</argsstring>
+        <name>eval</name>
+        <qualifiedname>Brush::Operator&lt; NodeType::MeanLabel, S, Fit &gt;::eval</qualifiedname>
+        <param>
+          <type><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">const</ref> <ref refid="d2/d36/classBrush_1_1Data_1_1Dataset" kindref="compound">Dataset</ref> &amp;</type>
+          <declname>d</declname>
+        </param>
+        <param>
+          <type><ref refid="df/d61/dispatch__table_8h_1a5d0d9e773ca46763fb1b1152cafc4179" kindref="member">TreeNode</ref> &amp;</type>
+          <declname>tn</declname>
+        </param>
+        <param>
+          <type><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">const</ref> <ref refid="d9/d5e/structBrush_1_1Operator_3_01NodeType_1_1MeanLabel_00_01S_00_01Fit_01_4_1a6d0ef851de4d7697f92b8180647ff3ca" kindref="member">W</ref> **</type>
+          <declname>weights</declname>
+          <defval><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">nullptr</ref></defval>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/runner/work/brush/brush/src/program/operator.h" line="348" column="13" bodyfile="/home/runner/work/brush/brush/src/program/operator.h" bodystart="348" bodyend="353"/>
+        <references refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" compoundref="d4/d93/bind__engines_8h" startline="35" endline="104">bind_engine</references>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="/home/runner/work/brush/brush/src/program/operator.h" line="328" column="1" bodyfile="/home/runner/work/brush/brush/src/program/operator.h" bodystart="329" bodyend="354"/>
+    <listofallmembers>
+      <member refid="d9/d5e/structBrush_1_1Operator_3_01NodeType_1_1MeanLabel_00_01S_00_01Fit_01_4_1aff062ebffea0b39f39b6252fbb07cc86" prot="public" virt="non-virtual"><scope>Brush::Operator&lt; NodeType::MeanLabel, S, Fit &gt;</scope><name>eval</name></member>
+      <member refid="d9/d5e/structBrush_1_1Operator_3_01NodeType_1_1MeanLabel_00_01S_00_01Fit_01_4_1a0a729da1a61e625544c79406c1d38a8f" prot="public" virt="non-virtual"><scope>Brush::Operator&lt; NodeType::MeanLabel, S, Fit &gt;</scope><name>fit</name></member>
+      <member refid="d9/d5e/structBrush_1_1Operator_3_01NodeType_1_1MeanLabel_00_01S_00_01Fit_01_4_1a56b67e05e4f1f89f7fd83f755d826d16" prot="public" virt="non-virtual"><scope>Brush::Operator&lt; NodeType::MeanLabel, S, Fit &gt;</scope><name>predict</name></member>
+      <member refid="d9/d5e/structBrush_1_1Operator_3_01NodeType_1_1MeanLabel_00_01S_00_01Fit_01_4_1a7c8549ef9aed9cb5fd5cb47126f3731c" prot="public" virt="non-virtual"><scope>Brush::Operator&lt; NodeType::MeanLabel, S, Fit &gt;</scope><name>RetType</name></member>
+      <member refid="d9/d5e/structBrush_1_1Operator_3_01NodeType_1_1MeanLabel_00_01S_00_01Fit_01_4_1a6d0ef851de4d7697f92b8180647ff3ca" prot="public" virt="non-virtual"><scope>Brush::Operator&lt; NodeType::MeanLabel, S, Fit &gt;</scope><name>W</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

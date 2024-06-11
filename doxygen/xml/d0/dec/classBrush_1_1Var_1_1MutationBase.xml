@@ -1,0 +1,140 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.10.0" xml:lang="en-US">
+  <compounddef id="d0/dec/classBrush_1_1Var_1_1MutationBase" kind="class" language="C++" prot="public">
+    <compoundname>Brush::Var::MutationBase</compoundname>
+    <derivedcompoundref refid="d0/d6d/classBrush_1_1Var_1_1DeleteMutation" prot="public" virt="non-virtual">Brush::Var::DeleteMutation</derivedcompoundref>
+    <derivedcompoundref refid="dc/de3/classBrush_1_1Var_1_1InsertMutation" prot="public" virt="non-virtual">Brush::Var::InsertMutation</derivedcompoundref>
+    <derivedcompoundref refid="d4/d46/classBrush_1_1Var_1_1PointMutation" prot="public" virt="non-virtual">Brush::Var::PointMutation</derivedcompoundref>
+    <derivedcompoundref refid="de/d23/classBrush_1_1Var_1_1SubtreeMutation" prot="public" virt="non-virtual">Brush::Var::SubtreeMutation</derivedcompoundref>
+    <derivedcompoundref refid="dd/d55/classBrush_1_1Var_1_1ToggleWeightOffMutation" prot="public" virt="non-virtual">Brush::Var::ToggleWeightOffMutation</derivedcompoundref>
+    <derivedcompoundref refid="d2/d1a/classBrush_1_1Var_1_1ToggleWeightOnMutation" prot="public" virt="non-virtual">Brush::Var::ToggleWeightOnMutation</derivedcompoundref>
+    <includes refid="d4/d1f/variation_8h" local="no">variation.h</includes>
+    <sectiondef kind="public-type">
+      <memberdef kind="typedef" id="d0/dec/classBrush_1_1Var_1_1MutationBase_1a4cacb44817dc1e054fca562d703de50c" prot="public" static="no">
+        <type><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">tree</ref>&lt; <ref refid="d1/d3a/structBrush_1_1Node" kindref="compound">Node</ref> &gt;<ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">::pre_order_iterator</ref></type>
+        <definition>using Brush::Var::MutationBase::Iter =  tree&lt;Node&gt;::pre_order_iterator</definition>
+        <argsstring></argsstring>
+        <name>Iter</name>
+        <qualifiedname>Brush::Var::MutationBase::Iter</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/runner/work/brush/brush/src/vary/variation.h" line="25" column="5" bodyfile="/home/runner/work/brush/brush/src/vary/variation.h" bodystart="25" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="public-static-func">
+      <memberdef kind="function" id="d0/dec/classBrush_1_1Var_1_1MutationBase_1a61da0cefa5bb01d41edff4e208372613" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">auto</ref></type>
+        <definition>static auto Brush::Var::MutationBase::find_spots</definition>
+        <argsstring>(tree&lt; Node &gt; &amp;Tree, const SearchSpace &amp;SS, const Parameters &amp;params)</argsstring>
+        <name>find_spots</name>
+        <qualifiedname>Brush::Var::MutationBase::find_spots</qualifiedname>
+        <param>
+          <type><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">tree</ref>&lt; <ref refid="d1/d3a/structBrush_1_1Node" kindref="compound">Node</ref> &gt; &amp;</type>
+          <declname>Tree</declname>
+        </param>
+        <param>
+          <type><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">const</ref> <ref refid="d4/dc3/structBrush_1_1SearchSpace" kindref="compound">SearchSpace</ref> &amp;</type>
+          <declname>SS</declname>
+        </param>
+        <param>
+          <type><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">const</ref> <ref refid="de/deb/structBrush_1_1Parameters" kindref="compound">Parameters</ref> &amp;</type>
+          <declname>params</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/runner/work/brush/brush/src/vary/variation.h" line="27" column="17" bodyfile="/home/runner/work/brush/brush/src/vary/variation.h" bodystart="27" bodyend="38"/>
+        <references refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" compoundref="d4/d93/bind__engines_8h" startline="35" endline="104">bind_engine</references>
+      </memberdef>
+      <memberdef kind="function" id="d0/dec/classBrush_1_1Var_1_1MutationBase_1aa62474cdb46944f81fd0921dcaddaa02" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">auto</ref></type>
+        <definition>static auto Brush::Var::MutationBase::mutate</definition>
+        <argsstring>(tree&lt; Node &gt; &amp;Tree, Iter spot, const SearchSpace &amp;SS, const Parameters &amp;params)</argsstring>
+        <name>mutate</name>
+        <qualifiedname>Brush::Var::MutationBase::mutate</qualifiedname>
+        <param>
+          <type><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">tree</ref>&lt; <ref refid="d1/d3a/structBrush_1_1Node" kindref="compound">Node</ref> &gt; &amp;</type>
+          <declname>Tree</declname>
+        </param>
+        <param>
+          <type><ref refid="d0/dec/classBrush_1_1Var_1_1MutationBase_1a4cacb44817dc1e054fca562d703de50c" kindref="member">Iter</ref></type>
+          <declname>spot</declname>
+        </param>
+        <param>
+          <type><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">const</ref> <ref refid="d4/dc3/structBrush_1_1SearchSpace" kindref="compound">SearchSpace</ref> &amp;</type>
+          <declname>SS</declname>
+        </param>
+        <param>
+          <type><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">const</ref> <ref refid="de/deb/structBrush_1_1Parameters" kindref="compound">Parameters</ref> &amp;</type>
+          <declname>params</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/runner/work/brush/brush/src/vary/variation.h" line="40" column="17"/>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="2">
+        <label>Brush::Var::DeleteMutation</label>
+        <link refid="d0/d6d/classBrush_1_1Var_1_1DeleteMutation"/>
+        <childnode refid="1" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="3">
+        <label>Brush::Var::InsertMutation</label>
+        <link refid="dc/de3/classBrush_1_1Var_1_1InsertMutation"/>
+        <childnode refid="1" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="1">
+        <label>Brush::Var::MutationBase</label>
+        <link refid="d0/dec/classBrush_1_1Var_1_1MutationBase"/>
+      </node>
+      <node id="4">
+        <label>Brush::Var::PointMutation</label>
+        <link refid="d4/d46/classBrush_1_1Var_1_1PointMutation"/>
+        <childnode refid="1" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="5">
+        <label>Brush::Var::SubtreeMutation</label>
+        <link refid="de/d23/classBrush_1_1Var_1_1SubtreeMutation"/>
+        <childnode refid="1" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="6">
+        <label>Brush::Var::ToggleWeightOffMutation</label>
+        <link refid="dd/d55/classBrush_1_1Var_1_1ToggleWeightOffMutation"/>
+        <childnode refid="1" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="7">
+        <label>Brush::Var::ToggleWeightOnMutation</label>
+        <link refid="d2/d1a/classBrush_1_1Var_1_1ToggleWeightOnMutation"/>
+        <childnode refid="1" relation="public-inheritance">
+        </childnode>
+      </node>
+    </inheritancegraph>
+    <location file="/home/runner/work/brush/brush/src/vary/variation.h" line="23" column="1" bodyfile="/home/runner/work/brush/brush/src/vary/variation.h" bodystart="23" bodyend="42"/>
+    <listofallmembers>
+      <member refid="d0/dec/classBrush_1_1Var_1_1MutationBase_1a61da0cefa5bb01d41edff4e208372613" prot="public" virt="non-virtual"><scope>Brush::Var::MutationBase</scope><name>find_spots</name></member>
+      <member refid="d0/dec/classBrush_1_1Var_1_1MutationBase_1a4cacb44817dc1e054fca562d703de50c" prot="public" virt="non-virtual"><scope>Brush::Var::MutationBase</scope><name>Iter</name></member>
+      <member refid="d0/dec/classBrush_1_1Var_1_1MutationBase_1aa62474cdb46944f81fd0921dcaddaa02" prot="public" virt="non-virtual"><scope>Brush::Var::MutationBase</scope><name>mutate</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

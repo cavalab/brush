@@ -1,4 +1,4 @@
 var structBrush_1_1Signatures_3_01N_00_01enable__if__t_3_01is__in__v_3_01N_00_01NodeType_1_1ArgMax_01_4_01_4_01_4 =
 [
-    [ "type", "dd/d56/structBrush_1_1Signatures_3_01N_00_01enable__if__t_3_01is__in__v_3_01N_00_01NodeType_1_1ArgMax_01_4_01_4_01_4.html#a6aa38e8752c1c67bc19e130326c7f1f3", null ]
+    [ "type", "dd/d56/structBrush_1_1Signatures_3_01N_00_01enable__if__t_3_01is__in__v_3_01N_00_01NodeType_1_1ArgMax_01_4_01_4_01_4.html#a849fe2bf1f8cb9e64106555fdcb94b4d", null ]
 ];

@@ -1,0 +1,286 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.10.0" xml:lang="en-US">
+  <compounddef id="dd/d56/namespaceBrush_1_1Pop" kind="namespace" language="C++">
+    <compoundname>Brush::Pop</compoundname>
+    <innerclass refid="d1/d30/structBrush_1_1Pop_1_1Archive" prot="public">Brush::Pop::Archive</innerclass>
+    <innerclass refid="de/d83/classBrush_1_1Pop_1_1Individual" prot="public">Brush::Pop::Individual</innerclass>
+    <innerclass refid="da/da3/classBrush_1_1Pop_1_1Population" prot="public">Brush::Pop::Population</innerclass>
+    <sectiondef kind="func">
+      <memberdef kind="function" id="dd/d56/namespaceBrush_1_1Pop_1af4f50fb2e3fbad69b68d16d4d03d7c32" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type><ref refid="dc/d5c/namespaceBrush_1ae591329af27c88b714d0f92b86276366" kindref="member">ProgramType</ref></type>
+            <declname>T</declname>
+            <defname>T</defname>
+          </param>
+        </templateparamlist>
+        <type><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">void</ref></type>
+        <definition>void Brush::Pop::to_json</definition>
+        <argsstring>(json &amp;j, const Individual&lt; T &gt; &amp;p)</argsstring>
+        <name>to_json</name>
+        <qualifiedname>Brush::Pop::to_json</qualifiedname>
+        <param>
+          <type>json &amp;</type>
+          <declname>j</declname>
+        </param>
+        <param>
+          <type><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">const</ref> <ref refid="de/d83/classBrush_1_1Pop_1_1Individual" kindref="compound">Individual</ref>&lt; T &gt; &amp;</type>
+          <declname>p</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/runner/work/brush/brush/src/ind/individual.h" line="150" column="6" bodyfile="/home/runner/work/brush/brush/src/ind/individual.h" bodystart="150" bodyend="159"/>
+        <references refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" compoundref="d4/d93/bind__engines_8h" startline="35" endline="104">bind_engine</references>
+        <referencedby refid="da/da3/classBrush_1_1Pop_1_1Population_1a760c5b3804c92d23da170e37ecae158a" compoundref="d7/d4a/population_8cpp" startline="99" endline="112">Brush::Pop::Population&lt; T &gt;::save</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="dd/d56/namespaceBrush_1_1Pop_1af7f97a6c5ba977ab4ef312a0ac71c828" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type><ref refid="dc/d5c/namespaceBrush_1ae591329af27c88b714d0f92b86276366" kindref="member">ProgramType</ref></type>
+            <declname>T</declname>
+            <defname>T</defname>
+          </param>
+        </templateparamlist>
+        <type><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">void</ref></type>
+        <definition>void Brush::Pop::from_json</definition>
+        <argsstring>(const json &amp;j, Individual&lt; T &gt; &amp;p)</argsstring>
+        <name>from_json</name>
+        <qualifiedname>Brush::Pop::from_json</qualifiedname>
+        <param>
+          <type><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">const</ref> json &amp;</type>
+          <declname>j</declname>
+        </param>
+        <param>
+          <type><ref refid="de/d83/classBrush_1_1Pop_1_1Individual" kindref="compound">Individual</ref>&lt; T &gt; &amp;</type>
+          <declname>p</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/runner/work/brush/brush/src/ind/individual.h" line="162" column="6" bodyfile="/home/runner/work/brush/brush/src/ind/individual.h" bodystart="162" bodyend="169"/>
+        <references refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" compoundref="d4/d93/bind__engines_8h" startline="35" endline="104">bind_engine</references>
+        <referencedby refid="da/da3/classBrush_1_1Pop_1_1Population_1ad193aced6ffa6d3587f0f390d9ed0415" compoundref="d7/d4a/population_8cpp" startline="115" endline="132">Brush::Pop::Population&lt; T &gt;::load</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="dd/d56/namespaceBrush_1_1Pop_1a704ebba96b204fd356880daec211b4b1" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>Brush::Pop::NLOHMANN_DEFINE_TYPE_NON_INTRUSIVE</definition>
+        <argsstring>(Archive&lt; PT::Regressor &gt;, individuals, sort_complexity)</argsstring>
+        <name>NLOHMANN_DEFINE_TYPE_NON_INTRUSIVE</name>
+        <qualifiedname>Brush::Pop::NLOHMANN_DEFINE_TYPE_NON_INTRUSIVE</qualifiedname>
+        <param>
+          <type><ref refid="d1/d30/structBrush_1_1Pop_1_1Archive" kindref="compound">Archive</ref>&lt; <ref refid="dc/d5c/namespaceBrush_1ae591329af27c88b714d0f92b86276366abe2f9eac301f8c5b7acffd6b3c458faa" kindref="member">PT::Regressor</ref> &gt;</type>
+        </param>
+        <param>
+          <type>individuals</type>
+        </param>
+        <param>
+          <type>sort_complexity</type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/runner/work/brush/brush/src/pop/archive.h" line="105" column="1" declfile="/home/runner/work/brush/brush/src/pop/archive.h" declline="105" declcolumn="1"/>
+      </memberdef>
+      <memberdef kind="function" id="dd/d56/namespaceBrush_1_1Pop_1a1bc6dd0022e02a41da44b865ca82a51c" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>Brush::Pop::NLOHMANN_DEFINE_TYPE_NON_INTRUSIVE</definition>
+        <argsstring>(Archive&lt; PT::BinaryClassifier &gt;, individuals, sort_complexity)</argsstring>
+        <name>NLOHMANN_DEFINE_TYPE_NON_INTRUSIVE</name>
+        <qualifiedname>Brush::Pop::NLOHMANN_DEFINE_TYPE_NON_INTRUSIVE</qualifiedname>
+        <param>
+          <type><ref refid="d1/d30/structBrush_1_1Pop_1_1Archive" kindref="compound">Archive</ref>&lt; <ref refid="dc/d5c/namespaceBrush_1ae591329af27c88b714d0f92b86276366a3cdc33a35d0e4f3b9bae953babd8f9b4" kindref="member">PT::BinaryClassifier</ref> &gt;</type>
+        </param>
+        <param>
+          <type>individuals</type>
+        </param>
+        <param>
+          <type>sort_complexity</type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/runner/work/brush/brush/src/pop/archive.h" line="106" column="1" declfile="/home/runner/work/brush/brush/src/pop/archive.h" declline="106" declcolumn="1"/>
+      </memberdef>
+      <memberdef kind="function" id="dd/d56/namespaceBrush_1_1Pop_1a936f8f2f2c5a5ef5d7dbd8fe17703256" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>Brush::Pop::NLOHMANN_DEFINE_TYPE_NON_INTRUSIVE</definition>
+        <argsstring>(Archive&lt; PT::MulticlassClassifier &gt;, individuals, sort_complexity)</argsstring>
+        <name>NLOHMANN_DEFINE_TYPE_NON_INTRUSIVE</name>
+        <qualifiedname>Brush::Pop::NLOHMANN_DEFINE_TYPE_NON_INTRUSIVE</qualifiedname>
+        <param>
+          <type><ref refid="d1/d30/structBrush_1_1Pop_1_1Archive" kindref="compound">Archive</ref>&lt; <ref refid="dc/d5c/namespaceBrush_1ae591329af27c88b714d0f92b86276366ac62539fc5a23115fca906befbd511c0a" kindref="member">PT::MulticlassClassifier</ref> &gt;</type>
+        </param>
+        <param>
+          <type>individuals</type>
+        </param>
+        <param>
+          <type>sort_complexity</type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/runner/work/brush/brush/src/pop/archive.h" line="107" column="1" declfile="/home/runner/work/brush/brush/src/pop/archive.h" declline="107" declcolumn="1"/>
+      </memberdef>
+      <memberdef kind="function" id="dd/d56/namespaceBrush_1_1Pop_1abf5cb9ad76b5a93e72934329ba371293" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>Brush::Pop::NLOHMANN_DEFINE_TYPE_NON_INTRUSIVE</definition>
+        <argsstring>(Archive&lt; PT::Representer &gt;, individuals, sort_complexity)</argsstring>
+        <name>NLOHMANN_DEFINE_TYPE_NON_INTRUSIVE</name>
+        <qualifiedname>Brush::Pop::NLOHMANN_DEFINE_TYPE_NON_INTRUSIVE</qualifiedname>
+        <param>
+          <type><ref refid="d1/d30/structBrush_1_1Pop_1_1Archive" kindref="compound">Archive</ref>&lt; <ref refid="dc/d5c/namespaceBrush_1ae591329af27c88b714d0f92b86276366aca702b6b08355f71cf4b1a17a8e16b8b" kindref="member">PT::Representer</ref> &gt;</type>
+        </param>
+        <param>
+          <type>individuals</type>
+        </param>
+        <param>
+          <type>sort_complexity</type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/runner/work/brush/brush/src/pop/archive.h" line="108" column="1" declfile="/home/runner/work/brush/brush/src/pop/archive.h" declline="108" declcolumn="1"/>
+      </memberdef>
+      <memberdef kind="function" id="dd/d56/namespaceBrush_1_1Pop_1a2c1a836d405bf6be54d01f10af23a61d" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>Brush::Pop::NLOHMANN_DEFINE_TYPE_NON_INTRUSIVE</definition>
+        <argsstring>(Population&lt; PT::Regressor &gt;, individuals, island_indexes, pop_size, num_islands)</argsstring>
+        <name>NLOHMANN_DEFINE_TYPE_NON_INTRUSIVE</name>
+        <qualifiedname>Brush::Pop::NLOHMANN_DEFINE_TYPE_NON_INTRUSIVE</qualifiedname>
+        <param>
+          <type><ref refid="da/da3/classBrush_1_1Pop_1_1Population" kindref="compound">Population</ref>&lt; <ref refid="dc/d5c/namespaceBrush_1ae591329af27c88b714d0f92b86276366abe2f9eac301f8c5b7acffd6b3c458faa" kindref="member">PT::Regressor</ref> &gt;</type>
+        </param>
+        <param>
+          <type>individuals</type>
+        </param>
+        <param>
+          <type>island_indexes</type>
+        </param>
+        <param>
+          <type>pop_size</type>
+        </param>
+        <param>
+          <type>num_islands</type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/runner/work/brush/brush/src/pop/population.h" line="86" column="1" declfile="/home/runner/work/brush/brush/src/pop/population.h" declline="86" declcolumn="1"/>
+      </memberdef>
+      <memberdef kind="function" id="dd/d56/namespaceBrush_1_1Pop_1a595b84a0c7d0216623d689148d51e016" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>Brush::Pop::NLOHMANN_DEFINE_TYPE_NON_INTRUSIVE</definition>
+        <argsstring>(Population&lt; PT::BinaryClassifier &gt;, individuals, island_indexes, pop_size, num_islands)</argsstring>
+        <name>NLOHMANN_DEFINE_TYPE_NON_INTRUSIVE</name>
+        <qualifiedname>Brush::Pop::NLOHMANN_DEFINE_TYPE_NON_INTRUSIVE</qualifiedname>
+        <param>
+          <type><ref refid="da/da3/classBrush_1_1Pop_1_1Population" kindref="compound">Population</ref>&lt; <ref refid="dc/d5c/namespaceBrush_1ae591329af27c88b714d0f92b86276366a3cdc33a35d0e4f3b9bae953babd8f9b4" kindref="member">PT::BinaryClassifier</ref> &gt;</type>
+        </param>
+        <param>
+          <type>individuals</type>
+        </param>
+        <param>
+          <type>island_indexes</type>
+        </param>
+        <param>
+          <type>pop_size</type>
+        </param>
+        <param>
+          <type>num_islands</type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/runner/work/brush/brush/src/pop/population.h" line="88" column="1" declfile="/home/runner/work/brush/brush/src/pop/population.h" declline="88" declcolumn="1"/>
+      </memberdef>
+      <memberdef kind="function" id="dd/d56/namespaceBrush_1_1Pop_1a879da6f33849e3a286c51c26748f411c" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>Brush::Pop::NLOHMANN_DEFINE_TYPE_NON_INTRUSIVE</definition>
+        <argsstring>(Population&lt; PT::MulticlassClassifier &gt;, individuals, island_indexes, pop_size, num_islands)</argsstring>
+        <name>NLOHMANN_DEFINE_TYPE_NON_INTRUSIVE</name>
+        <qualifiedname>Brush::Pop::NLOHMANN_DEFINE_TYPE_NON_INTRUSIVE</qualifiedname>
+        <param>
+          <type><ref refid="da/da3/classBrush_1_1Pop_1_1Population" kindref="compound">Population</ref>&lt; <ref refid="dc/d5c/namespaceBrush_1ae591329af27c88b714d0f92b86276366ac62539fc5a23115fca906befbd511c0a" kindref="member">PT::MulticlassClassifier</ref> &gt;</type>
+        </param>
+        <param>
+          <type>individuals</type>
+        </param>
+        <param>
+          <type>island_indexes</type>
+        </param>
+        <param>
+          <type>pop_size</type>
+        </param>
+        <param>
+          <type>num_islands</type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/runner/work/brush/brush/src/pop/population.h" line="90" column="1" declfile="/home/runner/work/brush/brush/src/pop/population.h" declline="90" declcolumn="1"/>
+      </memberdef>
+      <memberdef kind="function" id="dd/d56/namespaceBrush_1_1Pop_1a7267710a488d4bbd2e0169f7b6a07e38" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>Brush::Pop::NLOHMANN_DEFINE_TYPE_NON_INTRUSIVE</definition>
+        <argsstring>(Population&lt; PT::Representer &gt;, individuals, island_indexes, pop_size, num_islands)</argsstring>
+        <name>NLOHMANN_DEFINE_TYPE_NON_INTRUSIVE</name>
+        <qualifiedname>Brush::Pop::NLOHMANN_DEFINE_TYPE_NON_INTRUSIVE</qualifiedname>
+        <param>
+          <type><ref refid="da/da3/classBrush_1_1Pop_1_1Population" kindref="compound">Population</ref>&lt; <ref refid="dc/d5c/namespaceBrush_1ae591329af27c88b714d0f92b86276366aca702b6b08355f71cf4b1a17a8e16b8b" kindref="member">PT::Representer</ref> &gt;</type>
+        </param>
+        <param>
+          <type>individuals</type>
+        </param>
+        <param>
+          <type>island_indexes</type>
+        </param>
+        <param>
+          <type>pop_size</type>
+        </param>
+        <param>
+          <type>num_islands</type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/runner/work/brush/brush/src/pop/population.h" line="92" column="1" declfile="/home/runner/work/brush/brush/src/pop/population.h" declline="92" declcolumn="1"/>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="/home/runner/work/brush/brush/src/ind/individual.cpp" line="4" column="1"/>
+  </compounddef>
+</doxygen>

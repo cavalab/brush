@@ -1,0 +1,149 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.10.0" xml:lang="en-US">
+  <compounddef id="de/d23/classBrush_1_1Var_1_1SubtreeMutation" kind="class" language="C++" prot="public">
+    <compoundname>Brush::Var::SubtreeMutation</compoundname>
+    <basecompoundref refid="d0/dec/classBrush_1_1Var_1_1MutationBase" prot="public" virt="non-virtual">Brush::Var::MutationBase</basecompoundref>
+    <sectiondef kind="public-static-func">
+      <memberdef kind="function" id="de/d23/classBrush_1_1Var_1_1SubtreeMutation_1a707240a87dd52b44df30fa628175c9d2" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">auto</ref></type>
+        <definition>static auto Brush::Var::SubtreeMutation::find_spots</definition>
+        <argsstring>(tree&lt; Node &gt; &amp;Tree, const SearchSpace &amp;SS, const Parameters &amp;params)</argsstring>
+        <name>find_spots</name>
+        <qualifiedname>Brush::Var::SubtreeMutation::find_spots</qualifiedname>
+        <param>
+          <type><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">tree</ref>&lt; <ref refid="d1/d3a/structBrush_1_1Node" kindref="compound">Node</ref> &gt; &amp;</type>
+          <declname>Tree</declname>
+        </param>
+        <param>
+          <type><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">const</ref> <ref refid="d4/dc3/structBrush_1_1SearchSpace" kindref="compound">SearchSpace</ref> &amp;</type>
+          <declname>SS</declname>
+        </param>
+        <param>
+          <type><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">const</ref> <ref refid="de/deb/structBrush_1_1Parameters" kindref="compound">Parameters</ref> &amp;</type>
+          <declname>params</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/runner/work/brush/brush/src/vary/variation.cpp" line="255" column="17" bodyfile="/home/runner/work/brush/brush/src/vary/variation.cpp" bodystart="255" bodyend="284"/>
+        <references refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" compoundref="d4/d93/bind__engines_8h" startline="35" endline="104">bind_engine</references>
+        <references refid="de/deb/structBrush_1_1Parameters_1aeec98494c11bc2760b7feedf56741ff7" compoundref="da/d33/params_8h" startline="36">Brush::Parameters::max_size</references>
+        <references refid="d4/dc3/structBrush_1_1SearchSpace_1a4bd8ffb41071c9a6739f92b275a510f5" compoundref="d9/d99/search__space_8h" startline="100">Brush::SearchSpace::node_map</references>
+        <references refid="dc/d5c/namespaceBrush_1ae41500fed38676f34a4d476a992d585d">Brush::SS</references>
+        <referencedby refid="d5/d14/classBrush_1_1Var_1_1Variation_1a024e971b0f8685c89d119c0af484284a" compoundref="d1/d64/variation_8cpp" startline="486" endline="575">Brush::Var::Variation&lt; T &gt;::mutate</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="de/d23/classBrush_1_1Var_1_1SubtreeMutation_1aadf78b5db33c9595fd0656a9345efb67" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">auto</ref></type>
+        <definition>static auto Brush::Var::SubtreeMutation::mutate</definition>
+        <argsstring>(tree&lt; Node &gt; &amp;Tree, Iter spot, const SearchSpace &amp;SS, const Parameters &amp;params)</argsstring>
+        <name>mutate</name>
+        <qualifiedname>Brush::Var::SubtreeMutation::mutate</qualifiedname>
+        <param>
+          <type><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">tree</ref>&lt; <ref refid="d1/d3a/structBrush_1_1Node" kindref="compound">Node</ref> &gt; &amp;</type>
+          <declname>Tree</declname>
+        </param>
+        <param>
+          <type><ref refid="d0/dec/classBrush_1_1Var_1_1MutationBase_1a4cacb44817dc1e054fca562d703de50c" kindref="member">Iter</ref></type>
+          <declname>spot</declname>
+        </param>
+        <param>
+          <type><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">const</ref> <ref refid="d4/dc3/structBrush_1_1SearchSpace" kindref="compound">SearchSpace</ref> &amp;</type>
+          <declname>SS</declname>
+        </param>
+        <param>
+          <type><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">const</ref> <ref refid="de/deb/structBrush_1_1Parameters" kindref="compound">Parameters</ref> &amp;</type>
+          <declname>params</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/runner/work/brush/brush/src/vary/variation.cpp" line="286" column="17" bodyfile="/home/runner/work/brush/brush/src/vary/variation.cpp" bodystart="286" bodyend="318"/>
+        <references refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" compoundref="d4/d93/bind__engines_8h" startline="35" endline="104">bind_engine</references>
+        <references refid="de/deb/structBrush_1_1Parameters_1a22d49e1dbd59a355e5c234c7488595a6" compoundref="da/d33/params_8h" startline="35">Brush::Parameters::max_depth</references>
+        <references refid="de/deb/structBrush_1_1Parameters_1aeec98494c11bc2760b7feedf56741ff7" compoundref="da/d33/params_8h" startline="36">Brush::Parameters::max_size</references>
+        <references refid="d6/d2e/namespaceBrush_1_1Util_1af7dd70e54015821d96e3a1afed6344ca" compoundref="d2/da9/rnd_8h" startline="174">Brush::Util::r</references>
+        <references refid="d2/d2d/classBrush_1_1Util_1_1Rnd_1aef0f2836321f651d5887d29739e180f5" compoundref="de/d67/rnd_8cpp" startline="68" endline="72">Brush::Util::Rnd::rnd_int</references>
+        <references refid="d4/dc3/structBrush_1_1SearchSpace_1aed45d3d8adbee89f02e709472fe88280" compoundref="da/d48/search__space_8cpp" startline="235" endline="266">Brush::SearchSpace::sample_subtree</references>
+        <references refid="dc/d5c/namespaceBrush_1ae41500fed38676f34a4d476a992d585d">Brush::SS</references>
+        <referencedby refid="d5/d14/classBrush_1_1Var_1_1Variation_1a024e971b0f8685c89d119c0af484284a" compoundref="d1/d64/variation_8cpp" startline="486" endline="575">Brush::Var::Variation&lt; T &gt;::mutate</referencedby>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+<para>replaces the subtree rooted in <computeroutput>spot</computeroutput> </para>
+    </briefdescription>
+    <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>prog</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the program </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>Tree</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the program tree </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>spot</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>an iterator to the node that is being mutated </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>SS</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the search space to generate a compatible subtree </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>boolean indicating the success (true) or fail (false) of the operation </para>
+</simplesect>
+</para>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="2">
+        <label>Brush::Var::MutationBase</label>
+        <link refid="d0/dec/classBrush_1_1Var_1_1MutationBase"/>
+      </node>
+      <node id="1">
+        <label>Brush::Var::SubtreeMutation</label>
+        <link refid="de/d23/classBrush_1_1Var_1_1SubtreeMutation"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="2">
+        <label>Brush::Var::MutationBase</label>
+        <link refid="d0/dec/classBrush_1_1Var_1_1MutationBase"/>
+      </node>
+      <node id="1">
+        <label>Brush::Var::SubtreeMutation</label>
+        <link refid="de/d23/classBrush_1_1Var_1_1SubtreeMutation"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+    </collaborationgraph>
+    <location file="/home/runner/work/brush/brush/src/vary/variation.cpp" line="252" column="1" bodyfile="/home/runner/work/brush/brush/src/vary/variation.cpp" bodystart="253" bodyend="319"/>
+    <listofallmembers>
+      <member refid="de/d23/classBrush_1_1Var_1_1SubtreeMutation_1a707240a87dd52b44df30fa628175c9d2" prot="public" virt="non-virtual"><scope>Brush::Var::SubtreeMutation</scope><name>find_spots</name></member>
+      <member refid="d0/dec/classBrush_1_1Var_1_1MutationBase_1a4cacb44817dc1e054fca562d703de50c" prot="public" virt="non-virtual"><scope>Brush::Var::SubtreeMutation</scope><name>Iter</name></member>
+      <member refid="de/d23/classBrush_1_1Var_1_1SubtreeMutation_1aadf78b5db33c9595fd0656a9345efb67" prot="public" virt="non-virtual"><scope>Brush::Var::SubtreeMutation</scope><name>mutate</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

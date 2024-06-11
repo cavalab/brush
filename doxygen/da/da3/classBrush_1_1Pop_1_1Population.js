@@ -1,0 +1,26 @@
+var classBrush_1_1Pop_1_1Population =
+[
+    [ "SameFitComplexity", "d4/de2/structBrush_1_1Pop_1_1Population_1_1SameFitComplexity.html", "d4/de2/structBrush_1_1Pop_1_1Population_1_1SameFitComplexity" ],
+    [ "SortComplexity", "d6/dd9/structBrush_1_1Pop_1_1Population_1_1SortComplexity.html", "d6/dd9/structBrush_1_1Pop_1_1Population_1_1SortComplexity" ],
+    [ "Population", "da/da3/classBrush_1_1Pop_1_1Population.html#accbe0e4c2b8bf582fc686d7b93d784c1", null ],
+    [ "~Population", "da/da3/classBrush_1_1Pop_1_1Population.html#a95bb307f431f7ab815f724c0e159b797", null ],
+    [ "add_offspring_indexes", "da/da3/classBrush_1_1Pop_1_1Population.html#a74417ef86a9a4195d6422427d97347a5", null ],
+    [ "get_island_indexes", "da/da3/classBrush_1_1Pop_1_1Population.html#a2bf4066c7a32ec3bd85c96bd80098de6", null ],
+    [ "hall_of_fame", "da/da3/classBrush_1_1Pop_1_1Population.html#aba7a86b4a919e95ca0bb4219ba469b74", null ],
+    [ "init", "da/da3/classBrush_1_1Pop_1_1Population.html#a8c4ce8e8bd8cedecb3d0ef621aad9d22", null ],
+    [ "init", "da/da3/classBrush_1_1Pop_1_1Population.html#a46922ab810383db1271d700e03005962", null ],
+    [ "load", "da/da3/classBrush_1_1Pop_1_1Population.html#ad193aced6ffa6d3587f0f390d9ed0415", null ],
+    [ "migrate", "da/da3/classBrush_1_1Pop_1_1Population.html#a450651324884449dbb76f32377bcb0fe", null ],
+    [ "operator[]", "da/da3/classBrush_1_1Pop_1_1Population.html#a149319e12e39ef62533b6240ad5359c6", null ],
+    [ "operator[]", "da/da3/classBrush_1_1Pop_1_1Population.html#a281c5ef097d5fd90efba598c04826a50", null ],
+    [ "print_models", "da/da3/classBrush_1_1Pop_1_1Population.html#a92f851fffa86280c36cd54a8f670466e", null ],
+    [ "save", "da/da3/classBrush_1_1Pop_1_1Population.html#a760c5b3804c92d23da170e37ecae158a", null ],
+    [ "size", "da/da3/classBrush_1_1Pop_1_1Population.html#a415c50b87a36ef476547ca965e4f341d", null ],
+    [ "sorted_front", "da/da3/classBrush_1_1Pop_1_1Population.html#a78b95a2dc04224a015fdbe356cbf1e87", null ],
+    [ "update", "da/da3/classBrush_1_1Pop_1_1Population.html#af76f3d5380e7def96176b72d4969b69e", null ],
+    [ "individuals", "da/da3/classBrush_1_1Pop_1_1Population.html#a7b529af66e90f378ca96a54ee5ce0c71", null ],
+    [ "island_indexes", "da/da3/classBrush_1_1Pop_1_1Population.html#aa0bc73e0a032afefdf56a94aa27a68cf", null ],
+    [ "mig_prob", "da/da3/classBrush_1_1Pop_1_1Population.html#a31f1c6f4250a15d2b720483d98fb456d", null ],
+    [ "num_islands", "da/da3/classBrush_1_1Pop_1_1Population.html#a0a1f364040ce0de2ab17ae82e0faac76", null ],
+    [ "pop_size", "da/da3/classBrush_1_1Pop_1_1Population.html#aada5cceb77f0823c7fdc99d21536146d", null ]
+];

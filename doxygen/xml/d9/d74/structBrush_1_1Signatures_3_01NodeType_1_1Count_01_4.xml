@@ -1,32 +1,38 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
-<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.10.0" xml:lang="en-US">
   <compounddef id="d9/d74/structBrush_1_1Signatures_3_01NodeType_1_1Count_01_4" kind="struct" language="C++" prot="public">
     <compoundname>Brush::Signatures&lt; NodeType::Count &gt;</compoundname>
     <includes refid="d8/d8b/signatures_8h" local="no">signatures.h</includes>
     <templateparamlist>
     </templateparamlist>
-      <sectiondef kind="public-type">
-      <memberdef kind="typedef" id="d9/d74/structBrush_1_1Signatures_3_01NodeType_1_1Count_01_4_1a70afe691691d74c7c0fca606c70e634b" prot="public" static="no">
+    <sectiondef kind="public-type">
+      <memberdef kind="typedef" id="d9/d74/structBrush_1_1Signatures_3_01NodeType_1_1Count_01_4_1a6ef81bbb76abcea772802329231bcbd4" prot="public" static="no">
         <type>std::tuple&lt; <ref refid="d2/d75/structBrush_1_1Signature" kindref="compound">Signature</ref>&lt; ArrayXf(TimeSeriesf)&gt;, <ref refid="d2/d75/structBrush_1_1Signature" kindref="compound">Signature</ref>&lt; ArrayXf(TimeSeriesi)&gt;, <ref refid="d2/d75/structBrush_1_1Signature" kindref="compound">Signature</ref>&lt; ArrayXf(TimeSeriesb)&gt; &gt;</type>
-        <definition>using Brush::Signatures&lt; NodeType::Count &gt;::type =  std::tuple&lt; Signature&lt;ArrayXf(TimeSeriesf)&gt;, Signature&lt;ArrayXf(TimeSeriesi)&gt;, Signature&lt;ArrayXf(TimeSeriesb)&gt; &gt;</definition>
+        <definition>using Brush::Signatures&lt; NodeType::Count &gt;::type =  std::tuple&lt;
+            
+            Signature&lt;ArrayXf(TimeSeriesf)&gt;,
+            Signature&lt;ArrayXf(TimeSeriesi)&gt;,
+            Signature&lt;ArrayXf(TimeSeriesb)&gt;
+        &gt;</definition>
         <argsstring></argsstring>
         <name>type</name>
+        <qualifiedname>Brush::Signatures&lt; NodeType::Count &gt;::type</qualifiedname>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/runner/work/brush/brush/src/program/signatures.h" line="312" column="9" bodyfile="/home/runner/work/brush/brush/src/program/signatures.h" bodystart="317" bodyend="-1"/>
+        <location file="/home/runner/work/brush/brush/src/program/signatures.h" line="317" column="9" bodyfile="/home/runner/work/brush/brush/src/program/signatures.h" bodystart="317" bodyend="-1"/>
       </memberdef>
-      </sectiondef>
+    </sectiondef>
     <briefdescription>
     </briefdescription>
     <detaileddescription>
     </detaileddescription>
-    <location file="/home/runner/work/brush/brush/src/program/signatures.h" line="311" column="1" bodyfile="/home/runner/work/brush/brush/src/program/signatures.h" bodystart="311" bodyend="318"/>
+    <location file="/home/runner/work/brush/brush/src/program/signatures.h" line="316" column="1" bodyfile="/home/runner/work/brush/brush/src/program/signatures.h" bodystart="316" bodyend="323"/>
     <listofallmembers>
-      <member refid="d9/d74/structBrush_1_1Signatures_3_01NodeType_1_1Count_01_4_1a70afe691691d74c7c0fca606c70e634b" prot="public" virt="non-virtual"><scope>Brush::Signatures&lt; NodeType::Count &gt;</scope><name>type</name></member>
+      <member refid="d9/d74/structBrush_1_1Signatures_3_01NodeType_1_1Count_01_4_1a6ef81bbb76abcea772802329231bcbd4" prot="public" virt="non-virtual"><scope>Brush::Signatures&lt; NodeType::Count &gt;</scope><name>type</name></member>
     </listofallmembers>
   </compounddef>
 </doxygen>

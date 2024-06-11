@@ -1,0 +1,4 @@
+var structBrush_1_1Signatures_3_01N_00_01enable__if__t_3_01is__in__v_3_01N_00_01NodeType_1_1And_00_01NodeType_1_1Or_01_4_01_4_01_4 =
+[
+    [ "type", "d6/d2d/structBrush_1_1Signatures_3_01N_00_01enable__if__t_3_01is__in__v_3_01N_00_01NodeType_1_1And_00_01NodeType_1_1Or_01_4_01_4_01_4.html#a6b5e4ff01893d3fb73cba72bc6880724", null ]
+];

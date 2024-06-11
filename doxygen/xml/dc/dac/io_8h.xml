@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
-<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.10.0" xml:lang="en-US">
   <compounddef id="dc/dac/io_8h" kind="file" language="C++">
     <compoundname>io.h</compoundname>
     <includes local="no">Eigen/Dense</includes>
@@ -14,103 +14,6 @@
     <includedby refid="d9/d40/bind__dataset_8cpp" local="yes">bind_dataset.cpp</includedby>
     <includedby refid="d5/d5a/io_8cpp" local="yes">io.cpp</includedby>
     <incdepgraph>
-      <node id="30">
-        <label>../util/logger.h</label>
-        <link refid="d1/d8c/logger_8h"/>
-        <childnode refid="11" relation="include">
-        </childnode>
-      </node>
-      <node id="16">
-        <label>fmt/format.h</label>
-      </node>
-      <node id="33">
-        <label>limits</label>
-      </node>
-      <node id="27">
-        <label>iterator</label>
-      </node>
-      <node id="23">
-        <label>../util/error.h</label>
-        <link refid="da/d41/error_8h"/>
-        <childnode refid="14" relation="include">
-        </childnode>
-        <childnode refid="11" relation="include">
-        </childnode>
-      </node>
-      <node id="9">
-        <label>stdint.h</label>
-      </node>
-      <node id="20">
-        <label>variant</label>
-      </node>
-      <node id="34">
-        <label>timeseries.h</label>
-        <link refid="d9/df7/timeseries_8h"/>
-        <childnode refid="8" relation="include">
-        </childnode>
-        <childnode refid="25" relation="include">
-        </childnode>
-        <childnode refid="23" relation="include">
-        </childnode>
-      </node>
-      <node id="15">
-        <label>fmt/ostream.h</label>
-      </node>
-      <node id="12">
-        <label>numeric</label>
-      </node>
-      <node id="14">
-        <label>string</label>
-      </node>
-      <node id="7">
-        <label>map</label>
-      </node>
-      <node id="31">
-        <label>../util/rnd.h</label>
-        <link refid="d2/da9/rnd_8h"/>
-        <childnode refid="32" relation="include">
-        </childnode>
-        <childnode refid="33" relation="include">
-        </childnode>
-        <childnode refid="3" relation="include">
-        </childnode>
-        <childnode refid="8" relation="include">
-        </childnode>
-      </node>
-      <node id="4">
-        <label>fstream</label>
-      </node>
-      <node id="6">
-        <label>ostream</label>
-      </node>
-      <node id="19">
-        <label>types.h</label>
-        <link refid="d9/d49/types_8h"/>
-        <childnode refid="20" relation="include">
-        </childnode>
-        <childnode refid="21" relation="include">
-        </childnode>
-        <childnode refid="22" relation="include">
-        </childnode>
-      </node>
-      <node id="32">
-        <label>random</label>
-      </node>
-      <node id="2">
-        <label>Eigen/Dense</label>
-      </node>
-      <node id="29">
-        <label>tuple</label>
-      </node>
-      <node id="17">
-        <label>fmt/ranges.h</label>
-      </node>
-      <node id="35">
-        <label>optional</label>
-      </node>
-      <node id="3">
-        <label>vector</label>
-      </node>
       <node id="24">
         <label>data.h</label>
         <link refid="d2/dbd/data_8h"/>
@@ -129,6 +32,38 @@
         <childnode refid="20" relation="include">
         </childnode>
         <childnode refid="35" relation="include">
+        </childnode>
+      </node>
+      <node id="1">
+        <label>io.h</label>
+        <link refid="dc/dac/io_8h"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="5" relation="include">
+        </childnode>
+        <childnode refid="6" relation="include">
+        </childnode>
+        <childnode refid="7" relation="include">
+        </childnode>
+        <childnode refid="8" relation="include">
+        </childnode>
+        <childnode refid="23" relation="include">
+        </childnode>
+        <childnode refid="24" relation="include">
+        </childnode>
+      </node>
+      <node id="34">
+        <label>timeseries.h</label>
+        <link refid="d9/df7/timeseries_8h"/>
+        <childnode refid="8" relation="include">
+        </childnode>
+        <childnode refid="25" relation="include">
+        </childnode>
+        <childnode refid="23" relation="include">
         </childnode>
       </node>
       <node id="8">
@@ -165,30 +100,41 @@
         <childnode refid="19" relation="include">
         </childnode>
       </node>
-      <node id="1">
-        <label>io.h</label>
-        <link refid="dc/dac/io_8h"/>
-        <childnode refid="2" relation="include">
+      <node id="19">
+        <label>types.h</label>
+        <link refid="d9/d49/types_8h"/>
+        <childnode refid="20" relation="include">
+        </childnode>
+        <childnode refid="21" relation="include">
+        </childnode>
+        <childnode refid="22" relation="include">
+        </childnode>
+      </node>
+      <node id="23">
+        <label>../util/error.h</label>
+        <link refid="da/d41/error_8h"/>
+        <childnode refid="14" relation="include">
+        </childnode>
+        <childnode refid="11" relation="include">
+        </childnode>
+      </node>
+      <node id="30">
+        <label>../util/logger.h</label>
+        <link refid="d1/d8c/logger_8h"/>
+        <childnode refid="11" relation="include">
+        </childnode>
+      </node>
+      <node id="31">
+        <label>../util/rnd.h</label>
+        <link refid="d2/da9/rnd_8h"/>
+        <childnode refid="32" relation="include">
+        </childnode>
+        <childnode refid="33" relation="include">
         </childnode>
         <childnode refid="3" relation="include">
         </childnode>
-        <childnode refid="4" relation="include">
-        </childnode>
-        <childnode refid="5" relation="include">
-        </childnode>
-        <childnode refid="6" relation="include">
-        </childnode>
-        <childnode refid="7" relation="include">
-        </childnode>
         <childnode refid="8" relation="include">
         </childnode>
-        <childnode refid="23" relation="include">
-        </childnode>
-        <childnode refid="24" relation="include">
-        </childnode>
-      </node>
-      <node id="11">
-        <label>iostream</label>
       </node>
       <node id="25">
         <label>../util/utils.h</label>
@@ -220,11 +166,11 @@
         <childnode refid="29" relation="include">
         </childnode>
       </node>
+      <node id="2">
+        <label>Eigen/Dense</label>
+      </node>
       <node id="21">
         <label>ceres/jet.h</label>
-      </node>
-      <node id="28">
-        <label>execution</label>
       </node>
       <node id="5">
         <label>chrono</label>
@@ -232,23 +178,81 @@
       <node id="22">
         <label>concepts</label>
       </node>
-      <node id="13">
-        <label>set</label>
+      <node id="28">
+        <label>execution</label>
       </node>
-      <node id="18">
-        <label>nlohmann/json.hpp</label>
+      <node id="16">
+        <label>fmt/format.h</label>
+      </node>
+      <node id="15">
+        <label>fmt/ostream.h</label>
+      </node>
+      <node id="17">
+        <label>fmt/ranges.h</label>
+      </node>
+      <node id="4">
+        <label>fstream</label>
+      </node>
+      <node id="11">
+        <label>iostream</label>
+      </node>
+      <node id="27">
+        <label>iterator</label>
+      </node>
+      <node id="33">
+        <label>limits</label>
+      </node>
+      <node id="7">
+        <label>map</label>
       </node>
       <node id="10">
         <label>memory</label>
       </node>
+      <node id="18">
+        <label>nlohmann/json.hpp</label>
+      </node>
+      <node id="12">
+        <label>numeric</label>
+      </node>
+      <node id="35">
+        <label>optional</label>
+      </node>
+      <node id="6">
+        <label>ostream</label>
+      </node>
+      <node id="32">
+        <label>random</label>
+      </node>
+      <node id="13">
+        <label>set</label>
+      </node>
+      <node id="9">
+        <label>stdint.h</label>
+      </node>
+      <node id="14">
+        <label>string</label>
+      </node>
+      <node id="29">
+        <label>tuple</label>
+      </node>
       <node id="26">
         <label>typeindex</label>
+      </node>
+      <node id="20">
+        <label>variant</label>
+      </node>
+      <node id="3">
+        <label>vector</label>
       </node>
     </incdepgraph>
     <invincdepgraph>
       <node id="2">
         <label>bind_dataset.cpp</label>
         <link refid="d9/d40/bind__dataset_8cpp"/>
+      </node>
+      <node id="3">
+        <label>io.cpp</label>
+        <link refid="d5/d5a/io_8cpp"/>
       </node>
       <node id="1">
         <label>io.h</label>
@@ -257,10 +261,6 @@
         </childnode>
         <childnode refid="3" relation="include">
         </childnode>
-      </node>
-      <node id="3">
-        <label>io.cpp</label>
-        <link refid="d5/d5a/io_8cpp"/>
       </node>
     </invincdepgraph>
     <innernamespace refid="dc/d5c/namespaceBrush">Brush</innernamespace>
@@ -285,8 +285,8 @@
 <codeline lineno="12"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;chrono&gt;</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="13"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;ostream&gt;</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="14"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;map&gt;</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="15"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;../init.h&quot;</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="16"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;../util/error.h&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="15"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;<ref refid="d8/dc0/init_8h" kindref="compound">../init.h</ref>&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="16"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;<ref refid="da/d41/error_8h" kindref="compound">../util/error.h</ref>&quot;</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="17"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;<ref refid="d2/dbd/data_8h" kindref="compound">data.h</ref>&quot;</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="18"><highlight class="normal"></highlight></codeline>
 <codeline lineno="19"><highlight class="normal"></highlight><highlight class="keyword">using<sp/>namespace<sp/></highlight><highlight class="normal">Eigen;</highlight></codeline>
@@ -295,9 +295,9 @@
 <codeline lineno="22"><highlight class="normal">{</highlight></codeline>
 <codeline lineno="23"><highlight class="normal"></highlight></codeline>
 <codeline lineno="25"><highlight class="normal">Dataset<sp/><ref refid="d9/d1c/namespaceBrush_1_1Data_1ad4320ca3604e146155ccc7c55ea9006c" kindref="member">read_csv</ref><sp/>(</highlight></codeline>
-<codeline lineno="26"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>std::string&amp;<sp/>path,</highlight></codeline>
-<codeline lineno="27"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>std::string&amp;<sp/>target,</highlight></codeline>
-<codeline lineno="28"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/>sep=</highlight><highlight class="charliteral">&apos;,&apos;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="26"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>std::string&amp;<sp/><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">path</ref>,</highlight></codeline>
+<codeline lineno="27"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>std::string&amp;<sp/><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">target</ref>,</highlight></codeline>
+<codeline lineno="28"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">sep</ref>=</highlight><highlight class="charliteral">&apos;,&apos;</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="29"><highlight class="normal">);</highlight></codeline>
 <codeline lineno="30"><highlight class="normal"></highlight></codeline>
 <codeline lineno="31"><highlight class="normal"></highlight><highlight class="comment">//<sp/>///<sp/><sp/>load<sp/>longitudinal<sp/>csv<sp/>file<sp/>into<sp/>matrix.<sp/></highlight><highlight class="normal"></highlight></codeline>

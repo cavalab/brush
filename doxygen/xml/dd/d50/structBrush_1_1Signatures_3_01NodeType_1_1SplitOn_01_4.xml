@@ -1,32 +1,45 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
-<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.10.0" xml:lang="en-US">
   <compounddef id="dd/d50/structBrush_1_1Signatures_3_01NodeType_1_1SplitOn_01_4" kind="struct" language="C++" prot="public">
     <compoundname>Brush::Signatures&lt; NodeType::SplitOn &gt;</compoundname>
     <includes refid="d8/d8b/signatures_8h" local="no">signatures.h</includes>
     <templateparamlist>
     </templateparamlist>
-      <sectiondef kind="public-type">
-      <memberdef kind="typedef" id="dd/d50/structBrush_1_1Signatures_3_01NodeType_1_1SplitOn_01_4_1ab8b49e457439632a42f62d5edee3c86b" prot="public" static="no">
-        <type>std::tuple&lt; <ref refid="d2/d75/structBrush_1_1Signature" kindref="compound">Signature</ref>&lt; ArrayXf(ArrayXf, ArrayXf, ArrayXf)&gt;, <ref refid="d2/d75/structBrush_1_1Signature" kindref="compound">Signature</ref>&lt; ArrayXf(<ref refid="dc/d5c/namespaceBrush_1ac5cd76eed6ea70d1c8f429ee37ca9fc0" kindref="member">ArrayXi</ref>, ArrayXf, ArrayXf)&gt;, <ref refid="d2/d75/structBrush_1_1Signature" kindref="compound">Signature</ref>&lt; ArrayXf(<ref refid="dc/d5c/namespaceBrush_1a1c0079df772d6e050857327591514810" kindref="member">ArrayXb</ref>, ArrayXf, ArrayXf)&gt;, <ref refid="d2/d75/structBrush_1_1Signature" kindref="compound">Signature</ref>&lt; <ref refid="dc/d5c/namespaceBrush_1ac5cd76eed6ea70d1c8f429ee37ca9fc0" kindref="member">ArrayXi</ref>(ArrayXf, <ref refid="dc/d5c/namespaceBrush_1ac5cd76eed6ea70d1c8f429ee37ca9fc0" kindref="member">ArrayXi</ref>, <ref refid="dc/d5c/namespaceBrush_1ac5cd76eed6ea70d1c8f429ee37ca9fc0" kindref="member">ArrayXi</ref>)&gt;, <ref refid="d2/d75/structBrush_1_1Signature" kindref="compound">Signature</ref>&lt; <ref refid="dc/d5c/namespaceBrush_1ac5cd76eed6ea70d1c8f429ee37ca9fc0" kindref="member">ArrayXi</ref>(<ref refid="dc/d5c/namespaceBrush_1ac5cd76eed6ea70d1c8f429ee37ca9fc0" kindref="member">ArrayXi</ref>, <ref refid="dc/d5c/namespaceBrush_1ac5cd76eed6ea70d1c8f429ee37ca9fc0" kindref="member">ArrayXi</ref>, <ref refid="dc/d5c/namespaceBrush_1ac5cd76eed6ea70d1c8f429ee37ca9fc0" kindref="member">ArrayXi</ref>)&gt; &gt;</type>
-        <definition>using Brush::Signatures&lt; NodeType::SplitOn &gt;::type =  std::tuple&lt; Signature&lt;ArrayXf(ArrayXf,ArrayXf,ArrayXf)&gt;, Signature&lt;ArrayXf(ArrayXi,ArrayXf,ArrayXf)&gt;, Signature&lt;ArrayXf(ArrayXb,ArrayXf,ArrayXf)&gt;, Signature&lt;ArrayXi(ArrayXf,ArrayXi,ArrayXi)&gt;, Signature&lt;ArrayXi(ArrayXi,ArrayXi,ArrayXi)&gt; &gt;</definition>
+    <sectiondef kind="public-type">
+      <memberdef kind="typedef" id="dd/d50/structBrush_1_1Signatures_3_01NodeType_1_1SplitOn_01_4_1a2895c014273efcb16c1b3b8da7a64a78" prot="public" static="no">
+        <type>std::tuple&lt; <ref refid="d2/d75/structBrush_1_1Signature" kindref="compound">Signature</ref>&lt; ArrayXf(ArrayXf, ArrayXf, ArrayXf)&gt;, <ref refid="d2/d75/structBrush_1_1Signature" kindref="compound">Signature</ref>&lt; ArrayXf(<ref refid="dc/d5c/namespaceBrush_1ac5cd76eed6ea70d1c8f429ee37ca9fc0" kindref="member">ArrayXi</ref>, ArrayXf, ArrayXf)&gt;, <ref refid="d2/d75/structBrush_1_1Signature" kindref="compound">Signature</ref>&lt; ArrayXf(<ref refid="dc/d5c/namespaceBrush_1a1c0079df772d6e050857327591514810" kindref="member">ArrayXb</ref>, ArrayXf, ArrayXf)&gt;, <ref refid="d2/d75/structBrush_1_1Signature" kindref="compound">Signature</ref>&lt; <ref refid="dc/d5c/namespaceBrush_1ac5cd76eed6ea70d1c8f429ee37ca9fc0" kindref="member">ArrayXi</ref>(ArrayXf, <ref refid="dc/d5c/namespaceBrush_1ac5cd76eed6ea70d1c8f429ee37ca9fc0" kindref="member">ArrayXi</ref>, <ref refid="dc/d5c/namespaceBrush_1ac5cd76eed6ea70d1c8f429ee37ca9fc0" kindref="member">ArrayXi</ref>)&gt;, <ref refid="d2/d75/structBrush_1_1Signature" kindref="compound">Signature</ref>&lt; <ref refid="dc/d5c/namespaceBrush_1ac5cd76eed6ea70d1c8f429ee37ca9fc0" kindref="member">ArrayXi</ref>(<ref refid="dc/d5c/namespaceBrush_1ac5cd76eed6ea70d1c8f429ee37ca9fc0" kindref="member">ArrayXi</ref>, <ref refid="dc/d5c/namespaceBrush_1ac5cd76eed6ea70d1c8f429ee37ca9fc0" kindref="member">ArrayXi</ref>, <ref refid="dc/d5c/namespaceBrush_1ac5cd76eed6ea70d1c8f429ee37ca9fc0" kindref="member">ArrayXi</ref>)&gt;, <ref refid="d2/d75/structBrush_1_1Signature" kindref="compound">Signature</ref>&lt; <ref refid="dc/d5c/namespaceBrush_1ac5cd76eed6ea70d1c8f429ee37ca9fc0" kindref="member">ArrayXi</ref>(<ref refid="dc/d5c/namespaceBrush_1a1c0079df772d6e050857327591514810" kindref="member">ArrayXb</ref>, <ref refid="dc/d5c/namespaceBrush_1ac5cd76eed6ea70d1c8f429ee37ca9fc0" kindref="member">ArrayXi</ref>, <ref refid="dc/d5c/namespaceBrush_1ac5cd76eed6ea70d1c8f429ee37ca9fc0" kindref="member">ArrayXi</ref>)&gt;, <ref refid="d2/d75/structBrush_1_1Signature" kindref="compound">Signature</ref>&lt; <ref refid="dc/d5c/namespaceBrush_1a1c0079df772d6e050857327591514810" kindref="member">ArrayXb</ref>(ArrayXf, <ref refid="dc/d5c/namespaceBrush_1a1c0079df772d6e050857327591514810" kindref="member">ArrayXb</ref>, <ref refid="dc/d5c/namespaceBrush_1a1c0079df772d6e050857327591514810" kindref="member">ArrayXb</ref>)&gt;, <ref refid="d2/d75/structBrush_1_1Signature" kindref="compound">Signature</ref>&lt; <ref refid="dc/d5c/namespaceBrush_1a1c0079df772d6e050857327591514810" kindref="member">ArrayXb</ref>(<ref refid="dc/d5c/namespaceBrush_1ac5cd76eed6ea70d1c8f429ee37ca9fc0" kindref="member">ArrayXi</ref>, <ref refid="dc/d5c/namespaceBrush_1a1c0079df772d6e050857327591514810" kindref="member">ArrayXb</ref>, <ref refid="dc/d5c/namespaceBrush_1a1c0079df772d6e050857327591514810" kindref="member">ArrayXb</ref>)&gt;, <ref refid="d2/d75/structBrush_1_1Signature" kindref="compound">Signature</ref>&lt; <ref refid="dc/d5c/namespaceBrush_1a1c0079df772d6e050857327591514810" kindref="member">ArrayXb</ref>(<ref refid="dc/d5c/namespaceBrush_1a1c0079df772d6e050857327591514810" kindref="member">ArrayXb</ref>, <ref refid="dc/d5c/namespaceBrush_1a1c0079df772d6e050857327591514810" kindref="member">ArrayXb</ref>, <ref refid="dc/d5c/namespaceBrush_1a1c0079df772d6e050857327591514810" kindref="member">ArrayXb</ref>)&gt; &gt;</type>
+        <definition>using Brush::Signatures&lt; NodeType::SplitOn &gt;::type =  std::tuple&lt; 
+            Signature&lt;ArrayXf(ArrayXf,ArrayXf,ArrayXf)&gt;,
+            Signature&lt;ArrayXf(ArrayXi,ArrayXf,ArrayXf)&gt;,
+            Signature&lt;ArrayXf(ArrayXb,ArrayXf,ArrayXf)&gt;,
+
+            Signature&lt;ArrayXi(ArrayXf,ArrayXi,ArrayXi)&gt;,
+            Signature&lt;ArrayXi(ArrayXi,ArrayXi,ArrayXi)&gt;,
+            Signature&lt;ArrayXi(ArrayXb,ArrayXi,ArrayXi)&gt;,
+
+            Signature&lt;ArrayXb(ArrayXf,ArrayXb,ArrayXb)&gt;,
+            Signature&lt;ArrayXb(ArrayXi,ArrayXb,ArrayXb)&gt;,
+            Signature&lt;ArrayXb(ArrayXb,ArrayXb,ArrayXb)&gt;
+        &gt;</definition>
         <argsstring></argsstring>
         <name>type</name>
+        <qualifiedname>Brush::Signatures&lt; NodeType::SplitOn &gt;::type</qualifiedname>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/runner/work/brush/brush/src/program/signatures.h" line="360" column="9" bodyfile="/home/runner/work/brush/brush/src/program/signatures.h" bodystart="370" bodyend="-1"/>
+        <location file="/home/runner/work/brush/brush/src/program/signatures.h" line="365" column="9" bodyfile="/home/runner/work/brush/brush/src/program/signatures.h" bodystart="365" bodyend="-1"/>
       </memberdef>
-      </sectiondef>
+    </sectiondef>
     <briefdescription>
     </briefdescription>
     <detaileddescription>
     </detaileddescription>
-    <location file="/home/runner/work/brush/brush/src/program/signatures.h" line="359" column="1" bodyfile="/home/runner/work/brush/brush/src/program/signatures.h" bodystart="359" bodyend="371"/>
+    <location file="/home/runner/work/brush/brush/src/program/signatures.h" line="364" column="1" bodyfile="/home/runner/work/brush/brush/src/program/signatures.h" bodystart="364" bodyend="378"/>
     <listofallmembers>
-      <member refid="dd/d50/structBrush_1_1Signatures_3_01NodeType_1_1SplitOn_01_4_1ab8b49e457439632a42f62d5edee3c86b" prot="public" virt="non-virtual"><scope>Brush::Signatures&lt; NodeType::SplitOn &gt;</scope><name>type</name></member>
+      <member refid="dd/d50/structBrush_1_1Signatures_3_01NodeType_1_1SplitOn_01_4_1a2895c014273efcb16c1b3b8da7a64a78" prot="public" virt="non-virtual"><scope>Brush::Signatures&lt; NodeType::SplitOn &gt;</scope><name>type</name></member>
     </listofallmembers>
   </compounddef>
 </doxygen>

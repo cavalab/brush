@@ -1,0 +1,231 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.10.0" xml:lang="en-US">
+  <compounddef id="de/db9/classBrush_1_1Sel_1_1SelectionOperator" kind="class" language="C++" prot="public">
+    <compoundname>Brush::Sel::SelectionOperator</compoundname>
+    <derivedcompoundref refid="d2/dd0/classBrush_1_1Sel_1_1Lexicase" prot="public" virt="non-virtual">Brush::Sel::Lexicase&lt; T &gt;</derivedcompoundref>
+    <derivedcompoundref refid="d3/d7d/classBrush_1_1Sel_1_1NSGA2" prot="public" virt="non-virtual">Brush::Sel::NSGA2&lt; T &gt;</derivedcompoundref>
+    <includes refid="dd/d5d/selection__operator_8h" local="no">selection_operator.h</includes>
+    <templateparamlist>
+      <param>
+        <type><ref refid="dc/d5c/namespaceBrush_1ae591329af27c88b714d0f92b86276366" kindref="member">ProgramType</ref></type>
+        <declname>T</declname>
+        <defname>T</defname>
+      </param>
+    </templateparamlist>
+    <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="de/db9/classBrush_1_1Sel_1_1SelectionOperator_1a612a07491346369b748198d11ae43675" prot="public" static="no" mutable="no">
+        <type><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">bool</ref></type>
+        <definition>bool Brush::Sel::SelectionOperator&lt; T &gt;::survival</definition>
+        <argsstring></argsstring>
+        <name>survival</name>
+        <qualifiedname>Brush::Sel::SelectionOperator::survival</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Flag indicating whether the selection operator is used for survival selection. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/runner/work/brush/brush/src/selection/selection_operator.h" line="31" column="10" bodyfile="/home/runner/work/brush/brush/src/selection/selection_operator.h" bodystart="31" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="de/db9/classBrush_1_1Sel_1_1SelectionOperator_1a66068ecfa22feb22c5c135caa7c2eb8d" prot="public" static="no" mutable="no">
+        <type>string</type>
+        <definition>string Brush::Sel::SelectionOperator&lt; T &gt;::name</definition>
+        <argsstring></argsstring>
+        <name>name</name>
+        <qualifiedname>Brush::Sel::SelectionOperator::name</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>The name of the selection operator. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/runner/work/brush/brush/src/selection/selection_operator.h" line="32" column="12" bodyfile="/home/runner/work/brush/brush/src/selection/selection_operator.h" bodystart="32" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="public-func">
+      <memberdef kind="function" id="de/db9/classBrush_1_1Sel_1_1SelectionOperator_1a67d05df40cbc572d3b950523d2daf786" prot="public" static="no" const="no" explicit="no" inline="no" virt="virtual">
+        <type></type>
+        <definition>Brush::Sel::SelectionOperator&lt; T &gt;::~SelectionOperator</definition>
+        <argsstring>()</argsstring>
+        <name>~SelectionOperator</name>
+        <qualifiedname>Brush::Sel::SelectionOperator::~SelectionOperator</qualifiedname>
+        <briefdescription>
+<para>Destructor for the <ref refid="de/db9/classBrush_1_1Sel_1_1SelectionOperator" kindref="compound">SelectionOperator</ref> class. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/runner/work/brush/brush/src/selection/selection_operator.h" line="37" column="13" bodyfile="/home/runner/work/brush/brush/src/selection/selection_operator.cpp" bodystart="10" bodyend="10"/>
+      </memberdef>
+      <memberdef kind="function" id="de/db9/classBrush_1_1Sel_1_1SelectionOperator_1a12d713c7ef31e9df5974ceb6d8708074" prot="public" static="no" const="no" explicit="no" inline="no" virt="virtual">
+        <type>vector&lt; <ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">size_t</ref> &gt;</type>
+        <definition>vector&lt; size_t &gt; Brush::Sel::SelectionOperator&lt; T &gt;::select</definition>
+        <argsstring>(Population&lt; T &gt; &amp;pop, int island, const Parameters &amp;p)</argsstring>
+        <name>select</name>
+        <qualifiedname>Brush::Sel::SelectionOperator::select</qualifiedname>
+        <reimplementedby refid="d2/dd0/classBrush_1_1Sel_1_1Lexicase_1ab9f17cd2c4452b05c96a17bb6c105fc2">select</reimplementedby>
+        <reimplementedby refid="d3/d7d/classBrush_1_1Sel_1_1NSGA2_1a53788b6bda8ce09f644e2cc44c9aa478">select</reimplementedby>
+        <param>
+          <type><ref refid="da/da3/classBrush_1_1Pop_1_1Population" kindref="compound">Population</ref>&lt; T &gt; &amp;</type>
+          <declname>pop</declname>
+        </param>
+        <param>
+          <type><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">int</ref></type>
+          <declname>island</declname>
+        </param>
+        <param>
+          <type><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">const</ref> <ref refid="de/deb/structBrush_1_1Parameters" kindref="compound">Parameters</ref> &amp;</type>
+          <declname>p</declname>
+        </param>
+        <briefdescription>
+<para>Selects individuals from the population based on the selection operator&apos;s strategy. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>pop</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The population from which to select individuals. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>island</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The index of the island in a parallel genetic algorithm. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>p</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The parameters for the selection operator. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>A vector of indices representing the selected individuals. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/runner/work/brush/brush/src/selection/selection_operator.h" line="47" column="20" bodyfile="/home/runner/work/brush/brush/src/selection/selection_operator.cpp" bodystart="13" bodyend="18"/>
+        <references refid="da/d41/error_8h_1aa4c550bcd71e4ec1c97b111e1360509a" compoundref="da/d41/error_8h" startline="27">HANDLE_ERROR_THROW</references>
+      </memberdef>
+      <memberdef kind="function" id="de/db9/classBrush_1_1Sel_1_1SelectionOperator_1aae4a8e2e3b4e14ca055312da466c8547" prot="public" static="no" const="no" explicit="no" inline="no" virt="virtual">
+        <type>vector&lt; <ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">size_t</ref> &gt;</type>
+        <definition>vector&lt; size_t &gt; Brush::Sel::SelectionOperator&lt; T &gt;::survive</definition>
+        <argsstring>(Population&lt; T &gt; &amp;pop, int island, const Parameters &amp;p)</argsstring>
+        <name>survive</name>
+        <qualifiedname>Brush::Sel::SelectionOperator::survive</qualifiedname>
+        <reimplementedby refid="d2/dd0/classBrush_1_1Sel_1_1Lexicase_1a87b97fde62b47d067ee9b4ac5b60c6a3">survive</reimplementedby>
+        <reimplementedby refid="d3/d7d/classBrush_1_1Sel_1_1NSGA2_1a2faddb61c1d9ce38a1bc994e9a9b08eb">survive</reimplementedby>
+        <param>
+          <type><ref refid="da/da3/classBrush_1_1Pop_1_1Population" kindref="compound">Population</ref>&lt; T &gt; &amp;</type>
+          <declname>pop</declname>
+        </param>
+        <param>
+          <type><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">int</ref></type>
+          <declname>island</declname>
+        </param>
+        <param>
+          <type><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">const</ref> <ref refid="de/deb/structBrush_1_1Parameters" kindref="compound">Parameters</ref> &amp;</type>
+          <declname>p</declname>
+        </param>
+        <briefdescription>
+<para>Applies the selection operator to determine which individuals survive in the population. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>pop</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The population in which to apply the survival selection. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>island</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The index of the island in a parallel genetic algorithm. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>p</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The parameters for the selection operator. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>A vector of indices representing the surviving individuals. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/runner/work/brush/brush/src/selection/selection_operator.h" line="57" column="20" bodyfile="/home/runner/work/brush/brush/src/selection/selection_operator.cpp" bodystart="21" bodyend="26"/>
+        <references refid="da/d41/error_8h_1aa4c550bcd71e4ec1c97b111e1360509a" compoundref="da/d41/error_8h" startline="27">HANDLE_ERROR_THROW</references>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+<para>The <ref refid="de/db9/classBrush_1_1Sel_1_1SelectionOperator" kindref="compound">SelectionOperator</ref> class represents a base class for selection operators in a genetic algorithm. </para>
+    </briefdescription>
+    <detaileddescription>
+<para>base class for selection operators.</para>
+<para>This class provides common functionality and interface for selection operators. </para>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="2">
+        <label>Brush::Sel::Lexicase&lt; T &gt;</label>
+        <link refid="d2/dd0/classBrush_1_1Sel_1_1Lexicase"/>
+        <childnode refid="1" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="3">
+        <label>Brush::Sel::NSGA2&lt; T &gt;</label>
+        <link refid="d3/d7d/classBrush_1_1Sel_1_1NSGA2"/>
+        <childnode refid="1" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="1">
+        <label>Brush::Sel::SelectionOperator&lt; T &gt;</label>
+        <link refid="de/db9/classBrush_1_1Sel_1_1SelectionOperator"/>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="1">
+        <label>Brush::Sel::SelectionOperator&lt; T &gt;</label>
+        <link refid="de/db9/classBrush_1_1Sel_1_1SelectionOperator"/>
+        <childnode refid="2" relation="usage">
+          <edgelabel>name</edgelabel>
+        </childnode>
+      </node>
+      <node id="3">
+        <label>std::basic_string&lt; Char &gt;</label>
+      </node>
+      <node id="2">
+        <label>std::string</label>
+        <childnode refid="3" relation="public-inheritance">
+        </childnode>
+      </node>
+    </collaborationgraph>
+    <location file="/home/runner/work/brush/brush/src/selection/selection_operator.h" line="28" column="1" bodyfile="/home/runner/work/brush/brush/src/selection/selection_operator.h" bodystart="29" bodyend="58"/>
+    <listofallmembers>
+      <member refid="de/db9/classBrush_1_1Sel_1_1SelectionOperator_1a66068ecfa22feb22c5c135caa7c2eb8d" prot="public" virt="non-virtual"><scope>Brush::Sel::SelectionOperator</scope><name>name</name></member>
+      <member refid="de/db9/classBrush_1_1Sel_1_1SelectionOperator_1a12d713c7ef31e9df5974ceb6d8708074" prot="public" virt="virtual"><scope>Brush::Sel::SelectionOperator</scope><name>select</name></member>
+      <member refid="de/db9/classBrush_1_1Sel_1_1SelectionOperator_1a612a07491346369b748198d11ae43675" prot="public" virt="non-virtual"><scope>Brush::Sel::SelectionOperator</scope><name>survival</name></member>
+      <member refid="de/db9/classBrush_1_1Sel_1_1SelectionOperator_1aae4a8e2e3b4e14ca055312da466c8547" prot="public" virt="virtual"><scope>Brush::Sel::SelectionOperator</scope><name>survive</name></member>
+      <member refid="de/db9/classBrush_1_1Sel_1_1SelectionOperator_1a67d05df40cbc572d3b950523d2daf786" prot="public" virt="virtual"><scope>Brush::Sel::SelectionOperator</scope><name>~SelectionOperator</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

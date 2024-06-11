@@ -1,0 +1,409 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.10.0" xml:lang="en-US">
+  <compounddef id="d1/d30/structBrush_1_1Pop_1_1Archive" kind="struct" language="C++" prot="public">
+    <compoundname>Brush::Pop::Archive</compoundname>
+    <includes refid="d9/d28/archive_8h" local="no">archive.h</includes>
+    <templateparamlist>
+      <param>
+        <type><ref refid="dc/d5c/namespaceBrush_1ae591329af27c88b714d0f92b86276366" kindref="member">ProgramType</ref></type>
+        <declname>T</declname>
+        <defname>T</defname>
+      </param>
+    </templateparamlist>
+    <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="d1/d30/structBrush_1_1Pop_1_1Archive_1a47b75ce0613b190b0b637ab4f8effa5a" prot="public" static="no" mutable="no">
+        <type>vector&lt; <ref refid="de/d83/classBrush_1_1Pop_1_1Individual" kindref="compound">Individual</ref>&lt; T &gt; &gt;</type>
+        <definition>vector&lt;Individual&lt;T&gt; &gt; Brush::Pop::Archive&lt; T &gt;::individuals</definition>
+        <argsstring></argsstring>
+        <name>individuals</name>
+        <qualifiedname>Brush::Pop::Archive::individuals</qualifiedname>
+        <briefdescription>
+<para>individual programs in the archive </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/runner/work/brush/brush/src/pop/archive.h" line="27" column="12" bodyfile="/home/runner/work/brush/brush/src/pop/archive.h" bodystart="27" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="d1/d30/structBrush_1_1Pop_1_1Archive_1a4b6989b7840a0bd9649ab5331eb43e48" prot="public" static="no" mutable="no">
+        <type><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">bool</ref></type>
+        <definition>bool Brush::Pop::Archive&lt; T &gt;::sort_complexity</definition>
+        <argsstring></argsstring>
+        <name>sort_complexity</name>
+        <qualifiedname>Brush::Pop::Archive::sort_complexity</qualifiedname>
+        <briefdescription>
+<para>whether to sort archive by complexity </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/runner/work/brush/brush/src/pop/archive.h" line="28" column="10" bodyfile="/home/runner/work/brush/brush/src/pop/archive.h" bodystart="28" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="d1/d30/structBrush_1_1Pop_1_1Archive_1a56b6da606397435d4e736e0ece911451" prot="public" static="no" mutable="no">
+        <type><ref refid="d3/d7d/classBrush_1_1Sel_1_1NSGA2" kindref="compound">NSGA2</ref>&lt; T &gt;</type>
+        <definition>NSGA2&lt;T&gt; Brush::Pop::Archive&lt; T &gt;::selector</definition>
+        <argsstring></argsstring>
+        <name>selector</name>
+        <qualifiedname>Brush::Pop::Archive::selector</qualifiedname>
+        <briefdescription>
+<para>using NSGA2 in survival mode (nsga2 does not implement selection) </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/runner/work/brush/brush/src/pop/archive.h" line="29" column="11" bodyfile="/home/runner/work/brush/brush/src/pop/archive.h" bodystart="29" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="public-func">
+      <memberdef kind="function" id="d1/d30/structBrush_1_1Pop_1_1Archive_1af697a235df24c3c180a2d726eadb8b51" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>Brush::Pop::Archive&lt; T &gt;::Archive</definition>
+        <argsstring>()</argsstring>
+        <name>Archive</name>
+        <qualifiedname>Brush::Pop::Archive::Archive</qualifiedname>
+        <briefdescription>
+<para>Default constructor for the <ref refid="d1/d30/structBrush_1_1Pop_1_1Archive" kindref="compound">Archive</ref> struct. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/runner/work/brush/brush/src/pop/archive.h" line="34" column="5" bodyfile="/home/runner/work/brush/brush/src/pop/archive.cpp" bodystart="7" bodyend="7"/>
+      </memberdef>
+      <memberdef kind="function" id="d1/d30/structBrush_1_1Pop_1_1Archive_1a5e6c6513918f87a8a68c2a7a162edb27" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">void</ref></type>
+        <definition>void Brush::Pop::Archive&lt; T &gt;::init</definition>
+        <argsstring>(Population&lt; T &gt; &amp;pop)</argsstring>
+        <name>init</name>
+        <qualifiedname>Brush::Pop::Archive::init</qualifiedname>
+        <param>
+          <type><ref refid="da/da3/classBrush_1_1Pop_1_1Population" kindref="compound">Population</ref>&lt; T &gt; &amp;</type>
+          <declname>pop</declname>
+        </param>
+        <briefdescription>
+<para>Initializes the archive with individuals from a population. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>pop</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The population from which to initialize the archive. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/runner/work/brush/brush/src/pop/archive.h" line="40" column="10" bodyfile="/home/runner/work/brush/brush/src/pop/archive.cpp" bodystart="64" bodyend="105"/>
+        <references refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" compoundref="d4/d93/bind__engines_8h" startline="35" endline="104">bind_engine</references>
+        <references refid="da/da3/classBrush_1_1Pop_1_1Population_1a2bf4066c7a32ec3bd85c96bd80098de6" compoundref="d2/d76/population_8h" startline="38" endline="38">Brush::Pop::Population&lt; T &gt;::get_island_indexes</references>
+        <references refid="da/da3/classBrush_1_1Pop_1_1Population_1a7b529af66e90f378ca96a54ee5ce0c71" compoundref="d2/d76/population_8h" startline="18">Brush::Pop::Population&lt; T &gt;::individuals</references>
+        <references refid="da/da3/classBrush_1_1Pop_1_1Population_1a0a1f364040ce0de2ab17ae82e0faac76" compoundref="d2/d76/population_8h" startline="15">Brush::Pop::Population&lt; T &gt;::num_islands</references>
+      </memberdef>
+      <memberdef kind="function" id="d1/d30/structBrush_1_1Pop_1_1Archive_1a14ec57dcaf13d237552d7fa46f58f3c3" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">void</ref></type>
+        <definition>void Brush::Pop::Archive&lt; T &gt;::update</definition>
+        <argsstring>(Population&lt; T &gt; &amp;pop, const Parameters &amp;params)</argsstring>
+        <name>update</name>
+        <qualifiedname>Brush::Pop::Archive::update</qualifiedname>
+        <param>
+          <type><ref refid="da/da3/classBrush_1_1Pop_1_1Population" kindref="compound">Population</ref>&lt; T &gt; &amp;</type>
+          <declname>pop</declname>
+        </param>
+        <param>
+          <type><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">const</ref> <ref refid="de/deb/structBrush_1_1Parameters" kindref="compound">Parameters</ref> &amp;</type>
+          <declname>params</declname>
+        </param>
+        <briefdescription>
+<para>Updates the archive with individuals from a population. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>pop</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The population from which to update the archive. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>params</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The parameters for the update. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/runner/work/brush/brush/src/pop/archive.h" line="47" column="10" bodyfile="/home/runner/work/brush/brush/src/pop/archive.cpp" bodystart="108" bodyend="134"/>
+        <references refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" compoundref="d4/d93/bind__engines_8h" startline="35" endline="104">bind_engine</references>
+        <references refid="da/da3/classBrush_1_1Pop_1_1Population_1a2bf4066c7a32ec3bd85c96bd80098de6" compoundref="d2/d76/population_8h" startline="38" endline="38">Brush::Pop::Population&lt; T &gt;::get_island_indexes</references>
+        <references refid="da/da3/classBrush_1_1Pop_1_1Population_1a7b529af66e90f378ca96a54ee5ce0c71" compoundref="d2/d76/population_8h" startline="18">Brush::Pop::Population&lt; T &gt;::individuals</references>
+        <references refid="da/da3/classBrush_1_1Pop_1_1Population_1a0a1f364040ce0de2ab17ae82e0faac76" compoundref="d2/d76/population_8h" startline="15">Brush::Pop::Population&lt; T &gt;::num_islands</references>
+      </memberdef>
+      <memberdef kind="function" id="d1/d30/structBrush_1_1Pop_1_1Archive_1a073b0ac31fc55c35e2a8296b919c1876" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">void</ref></type>
+        <definition>void Brush::Pop::Archive&lt; T &gt;::set_objectives</definition>
+        <argsstring>(vector&lt; string &gt; objectives)</argsstring>
+        <name>set_objectives</name>
+        <qualifiedname>Brush::Pop::Archive::set_objectives</qualifiedname>
+        <param>
+          <type>vector&lt; string &gt;</type>
+          <declname>objectives</declname>
+        </param>
+        <briefdescription>
+<para>Sets the objectives for the archive. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>This function sets the objectives for the archive. The objectives are used for sorting the archive.</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>objectives</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The objectives to set for the archive. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/runner/work/brush/brush/src/pop/archive.h" line="57" column="10" bodyfile="/home/runner/work/brush/brush/src/pop/archive.cpp" bodystart="10" bodyend="13"/>
+        <references refid="d6/d2e/namespaceBrush_1_1Util_1ab03528e8d9652013786252f63b6d5840" compoundref="d5/d60/utils_8h" startline="192" endline="195">Brush::Util::in</references>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="public-static-func">
+      <memberdef kind="function" id="d1/d30/structBrush_1_1Pop_1_1Archive_1a8e11ee4659b1dc0a4332ffad5690e30f" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">bool</ref></type>
+        <definition>bool Brush::Pop::Archive&lt; T &gt;::sortComplexity</definition>
+        <argsstring>(const Individual&lt; T &gt; &amp;lhs, const Individual&lt; T &gt; &amp;rhs)</argsstring>
+        <name>sortComplexity</name>
+        <qualifiedname>Brush::Pop::Archive::sortComplexity</qualifiedname>
+        <param>
+          <type><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">const</ref> <ref refid="de/d83/classBrush_1_1Pop_1_1Individual" kindref="compound">Individual</ref>&lt; T &gt; &amp;</type>
+          <declname>lhs</declname>
+        </param>
+        <param>
+          <type><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">const</ref> <ref refid="de/d83/classBrush_1_1Pop_1_1Individual" kindref="compound">Individual</ref>&lt; T &gt; &amp;</type>
+          <declname>rhs</declname>
+        </param>
+        <briefdescription>
+<para>Sorts the population in increasing complexity. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>This static function is used to sort the population in increasing complexity. It is used as a comparison function for sorting algorithms.</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>lhs</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The left-hand side individual to compare. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>rhs</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The right-hand side individual to compare. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/runner/work/brush/brush/src/pop/archive.h" line="68" column="17" bodyfile="/home/runner/work/brush/brush/src/pop/archive.cpp" bodystart="17" bodyend="26"/>
+        <references refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" compoundref="d4/d93/bind__engines_8h" startline="35" endline="104">bind_engine</references>
+      </memberdef>
+      <memberdef kind="function" id="d1/d30/structBrush_1_1Pop_1_1Archive_1a8407a45b676b80bbf7197dbdd96d2c30" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">bool</ref></type>
+        <definition>bool Brush::Pop::Archive&lt; T &gt;::sortObj1</definition>
+        <argsstring>(const Individual&lt; T &gt; &amp;lhs, const Individual&lt; T &gt; &amp;rhs)</argsstring>
+        <name>sortObj1</name>
+        <qualifiedname>Brush::Pop::Archive::sortObj1</qualifiedname>
+        <param>
+          <type><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">const</ref> <ref refid="de/d83/classBrush_1_1Pop_1_1Individual" kindref="compound">Individual</ref>&lt; T &gt; &amp;</type>
+          <declname>lhs</declname>
+        </param>
+        <param>
+          <type><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">const</ref> <ref refid="de/d83/classBrush_1_1Pop_1_1Individual" kindref="compound">Individual</ref>&lt; T &gt; &amp;</type>
+          <declname>rhs</declname>
+        </param>
+        <briefdescription>
+<para>Sorts the population by the first objective. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>This static function is used to sort the population by the first objective. It is used as a comparison function for sorting algorithms.</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>lhs</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The left-hand side individual to compare. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>rhs</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The right-hand side individual to compare. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/runner/work/brush/brush/src/pop/archive.h" line="79" column="17" bodyfile="/home/runner/work/brush/brush/src/pop/archive.cpp" bodystart="29" bodyend="42"/>
+        <references refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" compoundref="d4/d93/bind__engines_8h" startline="35" endline="104">bind_engine</references>
+      </memberdef>
+      <memberdef kind="function" id="d1/d30/structBrush_1_1Pop_1_1Archive_1a7510447de2f87201fa3d7977f3a3e8d8" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">bool</ref></type>
+        <definition>bool Brush::Pop::Archive&lt; T &gt;::sameFitComplexity</definition>
+        <argsstring>(const Individual&lt; T &gt; &amp;lhs, const Individual&lt; T &gt; &amp;rhs)</argsstring>
+        <name>sameFitComplexity</name>
+        <qualifiedname>Brush::Pop::Archive::sameFitComplexity</qualifiedname>
+        <param>
+          <type><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">const</ref> <ref refid="de/d83/classBrush_1_1Pop_1_1Individual" kindref="compound">Individual</ref>&lt; T &gt; &amp;</type>
+          <declname>lhs</declname>
+        </param>
+        <param>
+          <type><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">const</ref> <ref refid="de/d83/classBrush_1_1Pop_1_1Individual" kindref="compound">Individual</ref>&lt; T &gt; &amp;</type>
+          <declname>rhs</declname>
+        </param>
+        <briefdescription>
+<para>Checks if two individuals have the same fitness complexity. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>This static function is used to check if two individuals have the same fitness complexity. It is used as a comparison function for finding duplicates in the population.</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>lhs</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The left-hand side individual to compare. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>rhs</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The right-hand side individual to compare. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/runner/work/brush/brush/src/pop/archive.h" line="90" column="17" bodyfile="/home/runner/work/brush/brush/src/pop/archive.cpp" bodystart="45" bodyend="53"/>
+        <references refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" compoundref="d4/d93/bind__engines_8h" startline="35" endline="104">bind_engine</references>
+      </memberdef>
+      <memberdef kind="function" id="d1/d30/structBrush_1_1Pop_1_1Archive_1ae48c8db22bdf072955564c079e379610" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">bool</ref></type>
+        <definition>bool Brush::Pop::Archive&lt; T &gt;::sameObjectives</definition>
+        <argsstring>(const Individual&lt; T &gt; &amp;lhs, const Individual&lt; T &gt; &amp;rhs)</argsstring>
+        <name>sameObjectives</name>
+        <qualifiedname>Brush::Pop::Archive::sameObjectives</qualifiedname>
+        <param>
+          <type><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">const</ref> <ref refid="de/d83/classBrush_1_1Pop_1_1Individual" kindref="compound">Individual</ref>&lt; T &gt; &amp;</type>
+          <declname>lhs</declname>
+        </param>
+        <param>
+          <type><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">const</ref> <ref refid="de/d83/classBrush_1_1Pop_1_1Individual" kindref="compound">Individual</ref>&lt; T &gt; &amp;</type>
+          <declname>rhs</declname>
+        </param>
+        <briefdescription>
+<para>Checks if two individuals have the same objectives. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>This static function is used to check if two individuals have the same objectives. It is used as a comparison function for finding duplicates in the population.</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>lhs</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The left-hand side individual to compare. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>rhs</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The right-hand side individual to compare. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/runner/work/brush/brush/src/pop/archive.h" line="101" column="17" bodyfile="/home/runner/work/brush/brush/src/pop/archive.cpp" bodystart="56" bodyend="61"/>
+        <references refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" compoundref="d4/d93/bind__engines_8h" startline="35" endline="104">bind_engine</references>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+<para>The <ref refid="d1/d30/structBrush_1_1Pop_1_1Archive" kindref="compound">Archive</ref> struct represents a collection of individual programs. </para>
+    </briefdescription>
+    <detaileddescription>
+<para>The <ref refid="d1/d30/structBrush_1_1Pop_1_1Archive" kindref="compound">Archive</ref> struct is used to store individual programs in a collection. It provides functionality for initializing, updating, and sorting the archive based on complexity or objectives. The archive can be operated on by a single thread.</para>
+<para><parameterlist kind="templateparam"><parameteritem>
+<parameternamelist>
+<parametername>T</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The program type. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+    </detaileddescription>
+    <collaborationgraph>
+      <node id="1">
+        <label>Brush::Pop::Archive&lt; T &gt;</label>
+        <link refid="d1/d30/structBrush_1_1Pop_1_1Archive"/>
+        <childnode refid="2" relation="usage">
+          <edgelabel>individuals</edgelabel>
+        </childnode>
+      </node>
+      <node id="3">
+        <label>T</label>
+      </node>
+      <node id="2">
+        <label>std::vector&lt; Brush::Pop::Individual&lt; T &gt; &gt;</label>
+        <childnode refid="3" relation="usage">
+          <edgelabel>elements</edgelabel>
+        </childnode>
+      </node>
+    </collaborationgraph>
+    <location file="/home/runner/work/brush/brush/src/pop/archive.h" line="25" column="1" bodyfile="/home/runner/work/brush/brush/src/pop/archive.h" bodystart="26" bodyend="102"/>
+    <listofallmembers>
+      <member refid="d1/d30/structBrush_1_1Pop_1_1Archive_1af697a235df24c3c180a2d726eadb8b51" prot="public" virt="non-virtual"><scope>Brush::Pop::Archive</scope><name>Archive</name></member>
+      <member refid="d1/d30/structBrush_1_1Pop_1_1Archive_1a47b75ce0613b190b0b637ab4f8effa5a" prot="public" virt="non-virtual"><scope>Brush::Pop::Archive</scope><name>individuals</name></member>
+      <member refid="d1/d30/structBrush_1_1Pop_1_1Archive_1a5e6c6513918f87a8a68c2a7a162edb27" prot="public" virt="non-virtual"><scope>Brush::Pop::Archive</scope><name>init</name></member>
+      <member refid="d1/d30/structBrush_1_1Pop_1_1Archive_1a7510447de2f87201fa3d7977f3a3e8d8" prot="public" virt="non-virtual"><scope>Brush::Pop::Archive</scope><name>sameFitComplexity</name></member>
+      <member refid="d1/d30/structBrush_1_1Pop_1_1Archive_1ae48c8db22bdf072955564c079e379610" prot="public" virt="non-virtual"><scope>Brush::Pop::Archive</scope><name>sameObjectives</name></member>
+      <member refid="d1/d30/structBrush_1_1Pop_1_1Archive_1a56b6da606397435d4e736e0ece911451" prot="public" virt="non-virtual"><scope>Brush::Pop::Archive</scope><name>selector</name></member>
+      <member refid="d1/d30/structBrush_1_1Pop_1_1Archive_1a073b0ac31fc55c35e2a8296b919c1876" prot="public" virt="non-virtual"><scope>Brush::Pop::Archive</scope><name>set_objectives</name></member>
+      <member refid="d1/d30/structBrush_1_1Pop_1_1Archive_1a4b6989b7840a0bd9649ab5331eb43e48" prot="public" virt="non-virtual"><scope>Brush::Pop::Archive</scope><name>sort_complexity</name></member>
+      <member refid="d1/d30/structBrush_1_1Pop_1_1Archive_1a8e11ee4659b1dc0a4332ffad5690e30f" prot="public" virt="non-virtual"><scope>Brush::Pop::Archive</scope><name>sortComplexity</name></member>
+      <member refid="d1/d30/structBrush_1_1Pop_1_1Archive_1a8407a45b676b80bbf7197dbdd96d2c30" prot="public" virt="non-virtual"><scope>Brush::Pop::Archive</scope><name>sortObj1</name></member>
+      <member refid="d1/d30/structBrush_1_1Pop_1_1Archive_1a14ec57dcaf13d237552d7fa46f58f3c3" prot="public" virt="non-virtual"><scope>Brush::Pop::Archive</scope><name>update</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

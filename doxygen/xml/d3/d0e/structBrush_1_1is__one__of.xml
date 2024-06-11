@@ -1,34 +1,35 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
-<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.10.0" xml:lang="en-US">
   <compounddef id="d3/d0e/structBrush_1_1is__one__of" kind="struct" language="C++" prot="public">
     <compoundname>Brush::is_one_of</compoundname>
     <includes refid="d9/d49/types_8h" local="no">types.h</includes>
     <templateparamlist>
       <param>
-        <type>typename First</type>
+        <type><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">typename</ref> <ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">First</ref></type>
       </param>
       <param>
-        <type>typename ...</type>
+        <type><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">typename</ref> ...</type>
         <declname>Next</declname>
         <defname>Next</defname>
       </param>
     </templateparamlist>
-      <sectiondef kind="public-static-attrib">
+    <sectiondef kind="public-static-attrib">
       <memberdef kind="variable" id="d3/d0e/structBrush_1_1is__one__of_1a15d14c2d78985dd8213f240862875846" prot="public" static="yes" constexpr="yes" mutable="no">
-        <type>constexpr bool</type>
+        <type><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">constexpr</ref> <ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">bool</ref></type>
         <definition>constexpr bool Brush::is_one_of&lt; First, Next &gt;::value</definition>
         <argsstring></argsstring>
         <name>value</name>
-        <initializer>{(std::is_same_v&lt;First,Next&gt; || ...)}</initializer>
+        <qualifiedname>Brush::is_one_of::value</qualifiedname>
+        <initializer>{(std::is_same_v&lt;<ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">First</ref>,<ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">Next</ref>&gt; || ...)}</initializer>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/runner/work/brush/brush/src/types.h" line="30" column="27" bodyfile="/home/runner/work/brush/brush/src/types.h" bodystart="30" bodyend="-1"/>
+        <location file="/home/runner/work/brush/brush/src/types.h" line="30" column="27" bodyfile="/home/runner/work/brush/brush/src/types.h" bodystart="30" bodyend="30"/>
       </memberdef>
-      </sectiondef>
+    </sectiondef>
     <briefdescription>
 <para>checks whether any of the types match the first one. </para>
     </briefdescription>

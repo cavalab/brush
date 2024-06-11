@@ -13,19 +13,19 @@
   
   <script data-cfasync="false">
     document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
-    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
   </script>
   
   <!-- Loaded before other Sphinx assets -->
-  <link href="_static/styles/theme.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
-<link href="_static/styles/bootstrap.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
-<link href="_static/styles/pydata-sphinx-theme.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+  <link href="_static/styles/theme.css?digest=3ee479438cf8b5e0d341" rel="stylesheet" />
+<link href="_static/styles/bootstrap.css?digest=3ee479438cf8b5e0d341" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=3ee479438cf8b5e0d341" rel="stylesheet" />
 
   
-  <link href="_static/vendor/fontawesome/6.5.1/css/all.min.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
-  <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.1/webfonts/fa-solid-900.woff2" />
-<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.1/webfonts/fa-brands-400.woff2" />
-<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.1/webfonts/fa-regular-400.woff2" />
+  <link href="_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=3ee479438cf8b5e0d341" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
 
     <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=a746c00c" />
     <link rel="stylesheet" type="text/css" href="_static/styles/sphinx-book-theme.css?v=384b581d" />
@@ -34,9 +34,9 @@
     <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
   
   <!-- Pre-loaded scripts that we'll load fully later -->
-  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=8d27b9dea8ad943066ae" />
-<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=8d27b9dea8ad943066ae" />
-  <script src="_static/vendor/fontawesome/6.5.1/js/all.min.js?digest=8d27b9dea8ad943066ae"></script>
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=3ee479438cf8b5e0d341" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=3ee479438cf8b5e0d341" />
+  <script src="_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=3ee479438cf8b5e0d341"></script>
 
     <script src="_static/documentation_options.js?v=74359811"></script>
     <script src="_static/doctools.js?v=9a2dae69"></script>
@@ -57,27 +57,23 @@
 
   
   
-  <a id="pst-skip-link" class="skip-link" href="#main-content">Skip to main content</a>
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
   
   <div id="pst-scroll-pixel-helper"></div>
   
   <button type="button" class="btn rounded-pill" id="pst-back-to-top">
-    <i class="fa-solid fa-arrow-up"></i>
-    Back to top
-  </button>
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
 
   
   <input type="checkbox"
           class="sidebar-toggle"
-          name="__primary"
-          id="__primary"/>
-  <label class="overlay overlay-primary" for="__primary"></label>
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
   
   <input type="checkbox"
           class="sidebar-toggle"
-          name="__secondary"
-          id="__secondary"/>
-  <label class="overlay overlay-secondary" for="__secondary"></label>
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
   
   <div class="search-button__wrapper">
     <div class="search-button__overlay"></div>
@@ -99,8 +95,13 @@
   <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
 </form></div>
   </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
   
-    <header class="bd-header navbar navbar-expand-lg bd-navbar">
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
     </header>
   
 
@@ -165,35 +166,45 @@
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">User Guide</span></p>
 <ul class="nav bd-sidenav">
-<li class="toctree-l1 has-children"><a class="reference internal" href="guide/index.html">Cookbook</a><input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-1"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l1 has-children"><a class="reference internal" href="guide/index.html">Cookbook</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
 <li class="toctree-l2"><a class="reference internal" href="guide/data.html">Working with Data</a></li>
 <li class="toctree-l2"><a class="reference internal" href="guide/search_space.html">The Search Space</a></li>
 <li class="toctree-l2"><a class="reference internal" href="guide/working_with_programs.html">Working with Programs</a></li>
 <li class="toctree-l2"><a class="reference internal" href="guide/json.html">JSON Interoperability</a></li>
+<li class="toctree-l2"><a class="reference internal" href="guide/saving_loading_populations.html">Saving and loading populations</a></li>
+<li class="toctree-l2"><a class="reference internal" href="guide/archive.html">The archive</a></li>
 <li class="toctree-l2"><a class="reference internal" href="guide/deap.html">Using Deap</a></li>
 </ul>
-</li>
+</details></li>
 <li class="toctree-l1"><a class="reference internal" href="guide/contributing.html">Contributing</a></li>
 <li class="toctree-l1"><a class="reference internal" href="guide/development.html">Development</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">API</span></p>
 <ul class="nav bd-sidenav">
-<li class="toctree-l1 has-children"><a class="reference internal" href="python_api/index.html">Python API</a><input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-2"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l1 has-children"><a class="reference internal" href="python_api/index.html">Python API</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
 <li class="toctree-l2"><a class="reference internal" href="python_api/estimator.html">BrushEstimator</a></li>
+<li class="toctree-l2"><a class="reference internal" href="python_api/interface.html">EstimatorInterface</a></li>
 <li class="toctree-l2"><a class="reference internal" href="python_api/regressor.html">BrushRegressor</a></li>
 <li class="toctree-l2"><a class="reference internal" href="python_api/classifier.html">BrushClassifier</a></li>
+<li class="toctree-l2"><a class="reference internal" href="python_api/python_api.html">Python API</a></li>
 </ul>
-</li>
-<li class="toctree-l1 has-children"><a class="reference internal" href="cpp_api/index.html">C++ API</a><input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-3"><i class="fa-solid fa-chevron-down"></i></label><ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="cpp_api/index.html">C++ API</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
 <li class="toctree-l2"><a class="reference internal" href="cpp_api/data.html">Dataset</a></li>
 <li class="toctree-l2"><a class="reference internal" href="cpp_api/timeseries.html">TimeSeries</a></li>
 <li class="toctree-l2"><a class="reference internal" href="cpp_api/search_space.html">SearchSpace</a></li>
 <li class="toctree-l2"><a class="reference internal" href="cpp_api/program.html">Program</a></li>
 <li class="toctree-l2"><a class="reference internal" href="cpp_api/node.html">Node</a></li>
 <li class="toctree-l2"><a class="reference internal" href="cpp_api/nodetypes.html">NodeTypes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cpp_api/individual.html">Individual and Fitness</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cpp_api/evaluation.html">Evaluation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cpp_api/population.html">Population</a></li>
 <li class="toctree-l2"><a class="reference internal" href="cpp_api/variation.html">Variation (Crossover/Mutation)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cpp_api/selection.html">Selection</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cpp_api/archive.html">Archive</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cpp_api/engine.html">Engine (and parameters)</a></li>
 </ul>
-</li>
+</details></li>
 </ul>
 
     </div>
@@ -209,7 +220,7 @@
 
       </div>
       
-      <main id="main-content" class="bd-main">
+      <main id="main-content" class="bd-main" role="main">
         
         
 
@@ -218,7 +229,7 @@
           <div class="bd-content">
             <div class="bd-article-container">
               
-              <div class="bd-header-article">
+              <div class="bd-header-article d-print-none">
 <div class="header-article-items header-article__inner">
   
     <div class="header-article-items__start">
@@ -316,11 +327,11 @@ document.write(`
 
 <div class="genindex-jumpbox">
  <a href="#B"><strong>B</strong></a>
+ | <a href="#E"><strong>E</strong></a>
  | <a href="#F"><strong>F</strong></a>
  | <a href="#G"><strong>G</strong></a>
  | <a href="#P"><strong>P</strong></a>
  | <a href="#S"><strong>S</strong></a>
- | <a href="#V"><strong>V</strong></a>
  
 </div>
 <h2 id="B">B</h2>
@@ -332,7 +343,9 @@ document.write(`
 </li>
       <li><a href="cpp_api/data.html#_CPPv4N5Brush4Data7Dataset14classificationE">Brush::Data::Dataset::classification (C++ member)</a>
 </li>
-      <li><a href="cpp_api/data.html#_CPPv4N5Brush4Data7Dataset7DatasetERK8ArrayXXfRK3RefIK7ArrayXfERK6vectorI6stringERK3mapI6string5StateEbff">Brush::Data::Dataset::Dataset (C++ function)</a>, <a href="cpp_api/data.html#_CPPv4N5Brush4Data7Dataset7DatasetERK8ArrayXXfRK6vectorI6stringEff">[1]</a>, <a href="cpp_api/data.html#_CPPv4N5Brush4Data7Dataset7DatasetERNSt3mapI6string5StateEERK3RefIK7ArrayXfEbff">[2]</a>
+      <li><a href="cpp_api/data.html#_CPPv4N5Brush4Data7Dataset22copy_and_make_featuresERK8ArrayXXfRK7DatasetRK6vectorI6stringE">Brush::Data::Dataset::copy_and_make_features (C++ function)</a>
+</li>
+      <li><a href="cpp_api/data.html#_CPPv4N5Brush4Data7Dataset7DatasetERK8ArrayXXfRK3RefIK7ArrayXfERK6vectorI6stringERK3mapI6string5StateEbff">Brush::Data::Dataset::Dataset (C++ function)</a>, <a href="cpp_api/data.html#_CPPv4N5Brush4Data7Dataset7DatasetERK8ArrayXXfRK6vectorI6stringEbff">[1]</a>, <a href="cpp_api/data.html#_CPPv4N5Brush4Data7Dataset7DatasetERK8ArrayXXfRK7DatasetRK6vectorI6stringEb">[2]</a>, <a href="cpp_api/data.html#_CPPv4N5Brush4Data7Dataset7DatasetERNSt3mapI6string5StateEERK3RefIK7ArrayXfEbff">[3]</a>
 </li>
       <li><a href="cpp_api/data.html#_CPPv4N5Brush4Data7Dataset13feature_typesE">Brush::Data::Dataset::feature_types (C++ member)</a>
 </li>
@@ -494,6 +507,184 @@ document.write(`
 </li>
       <li><a href="cpp_api/timeseries.html#_CPPv4N5Brush4Data10TimeSeries5valueE">Brush::Data::TimeSeries::value (C++ member)</a>
 </li>
+      <li><a href="cpp_api/engine.html#_CPPv4I_11ProgramTypeEN5Brush6EngineE">Brush::Engine (C++ class)</a>
+</li>
+      <li><a href="cpp_api/engine.html#_CPPv4N5Brush6Engine7archiveE">Brush::Engine::archive (C++ member)</a>
+</li>
+      <li><a href="cpp_api/engine.html#_CPPv4N5Brush6Engine15best_complexityE">Brush::Engine::best_complexity (C++ member)</a>
+</li>
+      <li><a href="cpp_api/engine.html#_CPPv4N5Brush6Engine8best_indE">Brush::Engine::best_ind (C++ member)</a>
+</li>
+      <li><a href="cpp_api/engine.html#_CPPv4N5Brush6Engine10best_scoreE">Brush::Engine::best_score (C++ member)</a>
+</li>
+      <li><a href="cpp_api/engine.html#_CPPv4N5Brush6Engine15calculate_statsEv">Brush::Engine::calculate_stats (C++ function)</a>
+</li>
+      <li><a href="cpp_api/engine.html#_CPPv4N5Brush6Engine6EngineERK10Parameters">Brush::Engine::Engine (C++ function)</a>
+</li>
+      <li><a href="cpp_api/engine.html#_CPPv4N5Brush6Engine3fitER7Dataset">Brush::Engine::fit (C++ function)</a>, <a href="cpp_api/engine.html#_CPPv4N5Brush6Engine3fitERK3RefIK8ArrayXXfERK3RefIK7ArrayXfE">[1]</a>
+</li>
+      <li><a href="cpp_api/engine.html#_CPPv4N5Brush6Engine11get_archiveEb">Brush::Engine::get_archive (C++ function)</a>
+</li>
+      <li><a href="cpp_api/engine.html#_CPPv4N5Brush6Engine16get_archive_sizeEv">Brush::Engine::get_archive_size (C++ function)</a>
+</li>
+      <li><a href="cpp_api/engine.html#_CPPv4N5Brush6Engine12get_best_indEv">Brush::Engine::get_best_ind (C++ function)</a>
+</li>
+      <li><a href="cpp_api/engine.html#_CPPv4N5Brush6Engine13get_is_fittedEv">Brush::Engine::get_is_fitted (C++ function)</a>
+</li>
+      <li><a href="cpp_api/engine.html#_CPPv4N5Brush6Engine10get_paramsEv">Brush::Engine::get_params (C++ function)</a>
+</li>
+      <li><a href="cpp_api/engine.html#_CPPv4N5Brush6Engine9log_statsERNSt8ofstreamE">Brush::Engine::log_stats (C++ function)</a>
+</li>
+      <li><a href="cpp_api/engine.html#_CPPv4N5Brush6Engine6paramsE">Brush::Engine::params (C++ member)</a>
+</li>
+      <li><a href="cpp_api/engine.html#_CPPv4N5Brush6Engine7predictERK3RefIK8ArrayXXfE">Brush::Engine::predict (C++ function)</a>, <a href="cpp_api/engine.html#_CPPv4N5Brush6Engine7predictERK7Dataset">[1]</a>
+</li>
+      <li><a href="cpp_api/engine.html#_CPPv4N5Brush6Engine15predict_archiveEiRK3RefIK8ArrayXXfE">Brush::Engine::predict_archive (C++ function)</a>, <a href="cpp_api/engine.html#_CPPv4N5Brush6Engine15predict_archiveEiRK7Dataset">[1]</a>
+</li>
+      <li><a href="cpp_api/engine.html#_CPPv4I_11ProgramTypeEN5Brush6Engine13predict_probaEDaRK3RefIK8ArrayXXfE">Brush::Engine::predict_proba (C++ function)</a>, <a href="cpp_api/engine.html#_CPPv4I_11ProgramTypeEN5Brush6Engine13predict_probaEDaRK7Dataset">[1]</a>
+</li>
+      <li><a href="cpp_api/engine.html#_CPPv4I_11ProgramTypeEN5Brush6Engine21predict_proba_archiveEDaiRK3RefIK8ArrayXXfE">Brush::Engine::predict_proba_archive (C++ function)</a>, <a href="cpp_api/engine.html#_CPPv4I_11ProgramTypeEN5Brush6Engine21predict_proba_archiveEDaiRK7Dataset">[1]</a>
+</li>
+      <li><a href="cpp_api/engine.html#_CPPv4N5Brush6Engine14print_progressEf">Brush::Engine::print_progress (C++ function)</a>
+</li>
+      <li><a href="cpp_api/engine.html#_CPPv4N5Brush6Engine11print_statsERNSt8ofstreamEf">Brush::Engine::print_stats (C++ function)</a>
+</li>
+      <li><a href="cpp_api/engine.html#_CPPv4N5Brush6Engine3runER7Dataset">Brush::Engine::run (C++ function)</a>
+</li>
+      <li><a href="cpp_api/engine.html#_CPPv4N5Brush6Engine10set_paramsER10Parameters">Brush::Engine::set_params (C++ function)</a>
+</li>
+      <li><a href="cpp_api/engine.html#_CPPv4N5Brush6Engine11update_bestERK7Datasetb">Brush::Engine::update_best (C++ function)</a>
+</li>
+      <li><a href="cpp_api/engine.html#_CPPv4N5Brush6EngineD0Ev">Brush::Engine::~Engine (C++ function)</a>
+</li>
+      <li><a href="cpp_api/evaluation.html#_CPPv4I_11ProgramTypeEN5Brush4Eval10EvaluationE">Brush::Eval::Evaluation (C++ class)</a>
+</li>
+      <li><a href="cpp_api/evaluation.html#_CPPv4N5Brush4Eval10Evaluation10assign_fitER10IndividualI1TERK7DatasetRK10Parametersb">Brush::Eval::Evaluation::assign_fit (C++ function)</a>
+</li>
+      <li><a href="cpp_api/evaluation.html#_CPPv4N5Brush4Eval10Evaluation10EvaluationEv">Brush::Eval::Evaluation::Evaluation (C++ function)</a>
+</li>
+      <li><a href="cpp_api/evaluation.html#_CPPv4N5Brush4Eval10Evaluation10get_scorerEv">Brush::Eval::Evaluation::get_scorer (C++ function)</a>
+</li>
+      <li><a href="cpp_api/evaluation.html#_CPPv4N5Brush4Eval10Evaluation1SE">Brush::Eval::Evaluation::S (C++ member)</a>
+</li>
+      <li><a href="cpp_api/evaluation.html#_CPPv4N5Brush4Eval10Evaluation10set_scorerE6string">Brush::Eval::Evaluation::set_scorer (C++ function)</a>
+</li>
+      <li><a href="cpp_api/evaluation.html#_CPPv4N5Brush4Eval10Evaluation14update_fitnessER10PopulationI1TEiRK7DatasetRK10Parametersbb">Brush::Eval::Evaluation::update_fitness (C++ function)</a>
+</li>
+      <li><a href="cpp_api/evaluation.html#_CPPv4N5Brush4Eval10EvaluationD0Ev">Brush::Eval::Evaluation::~Evaluation (C++ function)</a>
+</li>
+      <li><a href="cpp_api/evaluation.html#_CPPv4I_11ProgramTypeEN5Brush4Eval6ScorerE">Brush::Eval::Scorer (C++ class)</a>
+</li>
+      <li><a href="cpp_api/evaluation.html#_CPPv4N5Brush4Eval6Scorer10get_scorerEv">Brush::Eval::Scorer::get_scorer (C++ function)</a>
+</li>
+      <li><a href="cpp_api/evaluation.html#_CPPv4N5Brush4Eval6Scorer5scoreER10IndividualI1PER7DatasetR8VectorXfRK10Parameters">Brush::Eval::Scorer::score (C++ function)</a>, <a href="cpp_api/evaluation.html#_CPPv4N5Brush4Eval6Scorer5scoreERK8VectorXfRK8VectorXfR8VectorXfRK6vectorIfE">[1]</a>
+</li>
+      <li><a href="cpp_api/evaluation.html#_CPPv4N5Brush4Eval6Scorer10score_hashE">Brush::Eval::Scorer::score_hash (C++ member)</a>
+</li>
+      <li><a href="cpp_api/evaluation.html#_CPPv4N5Brush4Eval6Scorer6ScorerE6string">Brush::Eval::Scorer::Scorer (C++ function)</a>
+</li>
+      <li><a href="cpp_api/evaluation.html#_CPPv4N5Brush4Eval6Scorer6scorerE">Brush::Eval::Scorer::scorer (C++ member)</a>
+</li>
+      <li><a href="cpp_api/evaluation.html#_CPPv4N5Brush4Eval6Scorer10set_scorerE6string">Brush::Eval::Scorer::set_scorer (C++ function)</a>
+</li>
+      <li><a href="cpp_api/individual.html#_CPPv4N5Brush7FitnessE">Brush::Fitness (C++ struct)</a>
+</li>
+      <li><a href="cpp_api/individual.html#_CPPv4N5Brush7Fitness11clearValuesEv">Brush::Fitness::clearValues (C++ function)</a>
+</li>
+      <li><a href="cpp_api/individual.html#_CPPv4N5Brush7Fitness10complexityE">Brush::Fitness::complexity (C++ member)</a>
+</li>
+      <li><a href="cpp_api/individual.html#_CPPv4N5Brush7Fitness13crowding_distE">Brush::Fitness::crowding_dist (C++ member)</a>
+</li>
+      <li><a href="cpp_api/individual.html#_CPPv4N5Brush7Fitness8dcounterE">Brush::Fitness::dcounter (C++ member)</a>
+</li>
+      <li><a href="cpp_api/individual.html#_CPPv4N5Brush7Fitness5depthE">Brush::Fitness::depth (C++ member)</a>
+</li>
+      <li><a href="cpp_api/individual.html#_CPPv4N5Brush7Fitness9dominatedE">Brush::Fitness::dominated (C++ member)</a>
+</li>
+      <li><a href="cpp_api/individual.html#_CPPv4NK5Brush7Fitness9dominatesERK7Fitness">Brush::Fitness::dominates (C++ function)</a>
+</li>
+      <li><a href="cpp_api/individual.html#_CPPv4N5Brush7Fitness7FitnessERK6vectorIfE">Brush::Fitness::Fitness (C++ function)</a>
+</li>
+      <li><a href="cpp_api/individual.html#_CPPv4NK5Brush7Fitness14get_complexityEv">Brush::Fitness::get_complexity (C++ function)</a>
+</li>
+      <li><a href="cpp_api/individual.html#_CPPv4NK5Brush7Fitness17get_crowding_distEv">Brush::Fitness::get_crowding_dist (C++ function)</a>
+</li>
+      <li><a href="cpp_api/individual.html#_CPPv4NK5Brush7Fitness12get_dcounterEv">Brush::Fitness::get_dcounter (C++ function)</a>
+</li>
+      <li><a href="cpp_api/individual.html#_CPPv4NK5Brush7Fitness9get_depthEv">Brush::Fitness::get_depth (C++ function)</a>
+</li>
+      <li><a href="cpp_api/individual.html#_CPPv4NK5Brush7Fitness13get_dominatedEv">Brush::Fitness::get_dominated (C++ function)</a>
+</li>
+      <li><a href="cpp_api/individual.html#_CPPv4NK5Brush7Fitness8get_lossEv">Brush::Fitness::get_loss (C++ function)</a>
+</li>
+      <li><a href="cpp_api/individual.html#_CPPv4NK5Brush7Fitness10get_loss_vEv">Brush::Fitness::get_loss_v (C++ function)</a>
+</li>
+      <li><a href="cpp_api/individual.html#_CPPv4NK5Brush7Fitness8get_rankEv">Brush::Fitness::get_rank (C++ function)</a>
+</li>
+      <li><a href="cpp_api/individual.html#_CPPv4NK5Brush7Fitness8get_sizeEv">Brush::Fitness::get_size (C++ function)</a>
+</li>
+      <li><a href="cpp_api/individual.html#_CPPv4NK5Brush7Fitness10get_valuesEv">Brush::Fitness::get_values (C++ function)</a>
+</li>
+      <li><a href="cpp_api/individual.html#_CPPv4NK5Brush7Fitness11get_weightsEv">Brush::Fitness::get_weights (C++ function)</a>
+</li>
+      <li><a href="cpp_api/individual.html#_CPPv4NK5Brush7Fitness11get_wvaluesEv">Brush::Fitness::get_wvalues (C++ function)</a>
+</li>
+      <li><a href="cpp_api/individual.html#_CPPv4NK5Brush7Fitness4hashEv">Brush::Fitness::hash (C++ function)</a>
+</li>
+      <li><a href="cpp_api/individual.html#_CPPv4N5Brush7Fitness4lossE">Brush::Fitness::loss (C++ member)</a>
+</li>
+      <li><a href="cpp_api/individual.html#_CPPv4N5Brush7Fitness6loss_vE">Brush::Fitness::loss_v (C++ member)</a>
+</li>
+      <li><a href="cpp_api/individual.html#_CPPv4NK5Brush7FitnessneERK7Fitness">Brush::Fitness::operator!= (C++ function)</a>
+</li>
+      <li><a href="cpp_api/individual.html#_CPPv4NK5Brush7FitnessltERK7Fitness">Brush::Fitness::operator&lt; (C++ function)</a>
+</li>
+      <li><a href="cpp_api/individual.html#_CPPv4NK5Brush7FitnessleERK7Fitness">Brush::Fitness::operator&lt;= (C++ function)</a>
+</li>
+      <li><a href="cpp_api/individual.html#_CPPv4NK5Brush7FitnesseqERK7Fitness">Brush::Fitness::operator== (C++ function)</a>
+</li>
+      <li><a href="cpp_api/individual.html#_CPPv4NK5Brush7FitnessgtERK7Fitness">Brush::Fitness::operator&gt; (C++ function)</a>
+</li>
+      <li><a href="cpp_api/individual.html#_CPPv4NK5Brush7FitnessgeERK7Fitness">Brush::Fitness::operator&gt;= (C++ function)</a>
+</li>
+      <li><a href="cpp_api/individual.html#_CPPv4N5Brush7Fitness4rankE">Brush::Fitness::rank (C++ member)</a>
+</li>
+      <li><a href="cpp_api/individual.html#_CPPv4NK5Brush7Fitness4reprEv">Brush::Fitness::repr (C++ function)</a>
+</li>
+      <li><a href="cpp_api/individual.html#_CPPv4N5Brush7Fitness14set_complexityEj">Brush::Fitness::set_complexity (C++ function)</a>
+</li>
+      <li><a href="cpp_api/individual.html#_CPPv4N5Brush7Fitness17set_crowding_distEf">Brush::Fitness::set_crowding_dist (C++ function)</a>
+</li>
+      <li><a href="cpp_api/individual.html#_CPPv4N5Brush7Fitness12set_dcounterEj">Brush::Fitness::set_dcounter (C++ function)</a>
+</li>
+      <li><a href="cpp_api/individual.html#_CPPv4N5Brush7Fitness9set_depthEj">Brush::Fitness::set_depth (C++ function)</a>
+</li>
+      <li><a href="cpp_api/individual.html#_CPPv4N5Brush7Fitness13set_dominatedER6vectorIjE">Brush::Fitness::set_dominated (C++ function)</a>
+</li>
+      <li><a href="cpp_api/individual.html#_CPPv4N5Brush7Fitness8set_lossEf">Brush::Fitness::set_loss (C++ function)</a>
+</li>
+      <li><a href="cpp_api/individual.html#_CPPv4N5Brush7Fitness10set_loss_vEf">Brush::Fitness::set_loss_v (C++ function)</a>
+</li>
+      <li><a href="cpp_api/individual.html#_CPPv4N5Brush7Fitness8set_rankEj">Brush::Fitness::set_rank (C++ function)</a>
+</li>
+      <li><a href="cpp_api/individual.html#_CPPv4N5Brush7Fitness8set_sizeEj">Brush::Fitness::set_size (C++ function)</a>
+</li>
+      <li><a href="cpp_api/individual.html#_CPPv4N5Brush7Fitness10set_valuesER6vectorIfE">Brush::Fitness::set_values (C++ function)</a>
+</li>
+      <li><a href="cpp_api/individual.html#_CPPv4N5Brush7Fitness11set_weightsER6vectorIfE">Brush::Fitness::set_weights (C++ function)</a>
+</li>
+      <li><a href="cpp_api/individual.html#_CPPv4N5Brush7Fitness4sizeE">Brush::Fitness::size (C++ member)</a>
+</li>
+      <li><a href="cpp_api/individual.html#_CPPv4NK5Brush7Fitness8toStringEv">Brush::Fitness::toString (C++ function)</a>
+</li>
+      <li><a href="cpp_api/individual.html#_CPPv4NK5Brush7Fitness5validEv">Brush::Fitness::valid (C++ function)</a>
+</li>
+      <li><a href="cpp_api/individual.html#_CPPv4N5Brush7Fitness6valuesE">Brush::Fitness::values (C++ member)</a>
+</li>
+      <li><a href="cpp_api/individual.html#_CPPv4N5Brush7Fitness7weightsE">Brush::Fitness::weights (C++ member)</a>
+</li>
+      <li><a href="cpp_api/individual.html#_CPPv4N5Brush7Fitness7wvaluesE">Brush::Fitness::wvalues (C++ member)</a>
+</li>
       <li><a href="cpp_api/node.html#_CPPv4N5Brush4NodeE">Brush::Node (C++ struct)</a>
 </li>
       <li><a href="cpp_api/node.html#_CPPv4N5Brush4Node9arg_typesE">Brush::Node::arg_types (C++ member)</a>
@@ -548,8 +739,6 @@ document.write(`
 </li>
       <li><a href="cpp_api/node.html#_CPPv4NK5Brush4NodegeERK4Node">Brush::Node::operator&gt;= (C++ function)</a>
 </li>
-  </ul></td>
-  <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="cpp_api/node.html#_CPPv4N5Brush4Node11prob_changeE">Brush::Node::prob_change (C++ member)</a>
 </li>
       <li><a href="cpp_api/node.html#_CPPv4N5Brush4Node8ret_typeE">Brush::Node::ret_type (C++ member)</a>
@@ -577,6 +766,8 @@ document.write(`
       <li><a href="cpp_api/nodetypes.html#_CPPv4N5Brush8NodeType3AddE">Brush::NodeType::Add (C++ enumerator)</a>
 </li>
       <li><a href="cpp_api/nodetypes.html#_CPPv4N5Brush8NodeType5AfterE">Brush::NodeType::After (C++ enumerator)</a>
+</li>
+      <li><a href="cpp_api/nodetypes.html#_CPPv4N5Brush8NodeType3AndE">Brush::NodeType::And (C++ enumerator)</a>
 </li>
       <li><a href="cpp_api/nodetypes.html#_CPPv4N5Brush8NodeType6ArgMaxE">Brush::NodeType::ArgMax (C++ enumerator)</a>
 </li>
@@ -622,11 +813,19 @@ document.write(`
 </li>
       <li><a href="cpp_api/nodetypes.html#_CPPv4N5Brush8NodeType4MeanE">Brush::NodeType::Mean (C++ enumerator)</a>
 </li>
+      <li><a href="cpp_api/nodetypes.html#_CPPv4N5Brush8NodeType9MeanLabelE">Brush::NodeType::MeanLabel (C++ enumerator)</a>
+</li>
       <li><a href="cpp_api/nodetypes.html#_CPPv4N5Brush8NodeType6MedianE">Brush::NodeType::Median (C++ enumerator)</a>
 </li>
       <li><a href="cpp_api/nodetypes.html#_CPPv4N5Brush8NodeType3MinE">Brush::NodeType::Min (C++ enumerator)</a>
 </li>
       <li><a href="cpp_api/nodetypes.html#_CPPv4N5Brush8NodeType3MulE">Brush::NodeType::Mul (C++ enumerator)</a>
+</li>
+      <li><a href="cpp_api/nodetypes.html#_CPPv4N5Brush8NodeType3NotE">Brush::NodeType::Not (C++ enumerator)</a>
+</li>
+      <li><a href="cpp_api/nodetypes.html#_CPPv4N5Brush8NodeType9OffsetSumE">Brush::NodeType::OffsetSum (C++ enumerator)</a>
+</li>
+      <li><a href="cpp_api/nodetypes.html#_CPPv4N5Brush8NodeType2OrE">Brush::NodeType::Or (C++ enumerator)</a>
 </li>
       <li><a href="cpp_api/nodetypes.html#_CPPv4N5Brush8NodeType3PowE">Brush::NodeType::Pow (C++ enumerator)</a>
 </li>
@@ -656,13 +855,343 @@ document.write(`
 </li>
       <li><a href="cpp_api/nodetypes.html#_CPPv4N5Brush8NodeType4TanhE">Brush::NodeType::Tanh (C++ enumerator)</a>
 </li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="cpp_api/nodetypes.html#_CPPv4N5Brush8NodeType8TerminalE">Brush::NodeType::Terminal (C++ enumerator)</a>
+</li>
+      <li><a href="cpp_api/engine.html#_CPPv4N5Brush10ParametersE">Brush::Parameters (C++ struct)</a>
+</li>
+      <li><a href="cpp_api/engine.html#_CPPv4N5Brush10Parameters10batch_sizeE">Brush::Parameters::batch_size (C++ member)</a>
+</li>
+      <li><a href="cpp_api/engine.html#_CPPv4N5Brush10Parameters13class_weightsE">Brush::Parameters::class_weights (C++ member)</a>
+</li>
+      <li><a href="cpp_api/engine.html#_CPPv4N5Brush10Parameters7classesE">Brush::Parameters::classes (C++ member)</a>
+</li>
+      <li><a href="cpp_api/engine.html#_CPPv4N5Brush10Parameters14classificationE">Brush::Parameters::classification (C++ member)</a>
+</li>
+      <li><a href="cpp_api/engine.html#_CPPv4N5Brush10Parameters11current_genE">Brush::Parameters::current_gen (C++ member)</a>
+</li>
+      <li><a href="cpp_api/engine.html#_CPPv4N5Brush10Parameters7cx_probE">Brush::Parameters::cx_prob (C++ member)</a>
+</li>
+      <li><a href="cpp_api/engine.html#_CPPv4N5Brush10Parameters13feature_namesE">Brush::Parameters::feature_names (C++ member)</a>
+</li>
+      <li><a href="cpp_api/engine.html#_CPPv4N5Brush10Parameters9functionsE">Brush::Parameters::functions (C++ member)</a>
+</li>
+      <li><a href="cpp_api/engine.html#_CPPv4N5Brush10Parameters14get_batch_sizeEv">Brush::Parameters::get_batch_size (C++ function)</a>
+</li>
+      <li><a href="cpp_api/engine.html#_CPPv4N5Brush10Parameters18get_classificationEv">Brush::Parameters::get_classification (C++ function)</a>
+</li>
+      <li><a href="cpp_api/engine.html#_CPPv4N5Brush10Parameters15get_current_genEv">Brush::Parameters::get_current_gen (C++ function)</a>
+</li>
+      <li><a href="cpp_api/engine.html#_CPPv4N5Brush10Parameters11get_cx_probEv">Brush::Parameters::get_cx_prob (C++ function)</a>
+</li>
+      <li><a href="cpp_api/engine.html#_CPPv4N5Brush10Parameters17get_feature_namesEv">Brush::Parameters::get_feature_names (C++ function)</a>
+</li>
+      <li><a href="cpp_api/engine.html#_CPPv4N5Brush10Parameters13get_functionsEv">Brush::Parameters::get_functions (C++ function)</a>
+</li>
+      <li><a href="cpp_api/engine.html#_CPPv4N5Brush10Parameters19get_load_populationEv">Brush::Parameters::get_load_population (C++ function)</a>
+</li>
+      <li><a href="cpp_api/engine.html#_CPPv4N5Brush10Parameters11get_logfileEv">Brush::Parameters::get_logfile (C++ function)</a>
+</li>
+      <li><a href="cpp_api/engine.html#_CPPv4NK5Brush10Parameters13get_max_depthEv">Brush::Parameters::get_max_depth (C++ function)</a>
+</li>
+      <li><a href="cpp_api/engine.html#_CPPv4N5Brush10Parameters12get_max_gensEv">Brush::Parameters::get_max_gens (C++ function)</a>
+</li>
+      <li><a href="cpp_api/engine.html#_CPPv4NK5Brush10Parameters12get_max_sizeEv">Brush::Parameters::get_max_size (C++ function)</a>
+</li>
+      <li><a href="cpp_api/engine.html#_CPPv4N5Brush10Parameters13get_max_stallEv">Brush::Parameters::get_max_stall (C++ function)</a>
+</li>
+      <li><a href="cpp_api/engine.html#_CPPv4N5Brush10Parameters12get_max_timeEv">Brush::Parameters::get_max_time (C++ function)</a>
+</li>
+      <li><a href="cpp_api/engine.html#_CPPv4N5Brush10Parameters12get_mig_probEv">Brush::Parameters::get_mig_prob (C++ function)</a>
+</li>
+      <li><a href="cpp_api/engine.html#_CPPv4N5Brush10Parameters18get_mutation_probsEv">Brush::Parameters::get_mutation_probs (C++ function)</a>
+</li>
+      <li><a href="cpp_api/engine.html#_CPPv4N5Brush10Parameters13get_n_classesEv">Brush::Parameters::get_n_classes (C++ function)</a>
+</li>
+      <li><a href="cpp_api/engine.html#_CPPv4N5Brush10Parameters10get_n_jobsEv">Brush::Parameters::get_n_jobs (C++ function)</a>
+</li>
+      <li><a href="cpp_api/engine.html#_CPPv4N5Brush10Parameters15get_num_islandsEv">Brush::Parameters::get_num_islands (C++ function)</a>
+</li>
+      <li><a href="cpp_api/engine.html#_CPPv4N5Brush10Parameters14get_objectivesEv">Brush::Parameters::get_objectives (C++ function)</a>
+</li>
+      <li><a href="cpp_api/engine.html#_CPPv4N5Brush10Parameters12get_pop_sizeEv">Brush::Parameters::get_pop_size (C++ function)</a>
+</li>
+      <li><a href="cpp_api/engine.html#_CPPv4N5Brush10Parameters16get_random_stateEv">Brush::Parameters::get_random_state (C++ function)</a>
+</li>
+      <li><a href="cpp_api/engine.html#_CPPv4N5Brush10Parameters19get_save_populationEv">Brush::Parameters::get_save_population (C++ function)</a>
+</li>
+      <li><a href="cpp_api/engine.html#_CPPv4N5Brush10Parameters11get_scorer_Ev">Brush::Parameters::get_scorer_ (C++ function)</a>
+</li>
+      <li><a href="cpp_api/engine.html#_CPPv4N5Brush10Parameters7get_selEv">Brush::Parameters::get_sel (C++ function)</a>
+</li>
+      <li><a href="cpp_api/engine.html#_CPPv4N5Brush10Parameters17get_shuffle_splitEv">Brush::Parameters::get_shuffle_split (C++ function)</a>
+</li>
+      <li><a href="cpp_api/engine.html#_CPPv4N5Brush10Parameters8get_survEv">Brush::Parameters::get_surv (C++ function)</a>
+</li>
+      <li><a href="cpp_api/engine.html#_CPPv4N5Brush10Parameters12get_use_archEv">Brush::Parameters::get_use_arch (C++ function)</a>
+</li>
+      <li><a href="cpp_api/engine.html#_CPPv4N5Brush10Parameters17get_val_from_archEv">Brush::Parameters::get_val_from_arch (C++ function)</a>
+</li>
+      <li><a href="cpp_api/engine.html#_CPPv4N5Brush10Parameters19get_validation_sizeEv">Brush::Parameters::get_validation_size (C++ function)</a>
+</li>
+      <li><a href="cpp_api/engine.html#_CPPv4N5Brush10Parameters13get_verbosityEv">Brush::Parameters::get_verbosity (C++ function)</a>
+</li>
+      <li><a href="cpp_api/engine.html#_CPPv4N5Brush10Parameters15load_populationE">Brush::Parameters::load_population (C++ member)</a>
+</li>
+      <li><a href="cpp_api/engine.html#_CPPv4N5Brush10Parameters7logfileE">Brush::Parameters::logfile (C++ member)</a>
+</li>
+      <li><a href="cpp_api/engine.html#_CPPv4N5Brush10Parameters9max_depthE">Brush::Parameters::max_depth (C++ member)</a>
+</li>
+      <li><a href="cpp_api/engine.html#_CPPv4N5Brush10Parameters8max_gensE">Brush::Parameters::max_gens (C++ member)</a>
+</li>
+      <li><a href="cpp_api/engine.html#_CPPv4N5Brush10Parameters8max_sizeE">Brush::Parameters::max_size (C++ member)</a>
+</li>
+      <li><a href="cpp_api/engine.html#_CPPv4N5Brush10Parameters9max_stallE">Brush::Parameters::max_stall (C++ member)</a>
+</li>
+      <li><a href="cpp_api/engine.html#_CPPv4N5Brush10Parameters8max_timeE">Brush::Parameters::max_time (C++ member)</a>
+</li>
+      <li><a href="cpp_api/engine.html#_CPPv4N5Brush10Parameters8mig_probE">Brush::Parameters::mig_prob (C++ member)</a>
+</li>
+      <li><a href="cpp_api/engine.html#_CPPv4N5Brush10Parameters4modeE">Brush::Parameters::mode (C++ member)</a>
+</li>
+      <li><a href="cpp_api/engine.html#_CPPv4N5Brush10Parameters14mutation_probsE">Brush::Parameters::mutation_probs (C++ member)</a>
+</li>
+      <li><a href="cpp_api/engine.html#_CPPv4N5Brush10Parameters9n_classesE">Brush::Parameters::n_classes (C++ member)</a>
+</li>
+      <li><a href="cpp_api/engine.html#_CPPv4N5Brush10Parameters6n_jobsE">Brush::Parameters::n_jobs (C++ member)</a>
+</li>
+      <li><a href="cpp_api/engine.html#_CPPv4N5Brush10Parameters11num_islandsE">Brush::Parameters::num_islands (C++ member)</a>
+</li>
+      <li><a href="cpp_api/engine.html#_CPPv4N5Brush10Parameters10objectivesE">Brush::Parameters::objectives (C++ member)</a>
+</li>
+      <li><a href="cpp_api/engine.html#_CPPv4N5Brush10Parameters10ParametersEv">Brush::Parameters::Parameters (C++ function)</a>
+</li>
+      <li><a href="cpp_api/engine.html#_CPPv4N5Brush10Parameters8pop_sizeE">Brush::Parameters::pop_size (C++ member)</a>
+</li>
+      <li><a href="cpp_api/engine.html#_CPPv4N5Brush10Parameters12random_stateE">Brush::Parameters::random_state (C++ member)</a>
+</li>
+      <li><a href="cpp_api/engine.html#_CPPv4N5Brush10Parameters14sample_weightsE">Brush::Parameters::sample_weights (C++ member)</a>
+</li>
+      <li><a href="cpp_api/engine.html#_CPPv4N5Brush10Parameters15save_populationE">Brush::Parameters::save_population (C++ member)</a>
+</li>
+      <li><a href="cpp_api/engine.html#_CPPv4N5Brush10Parameters7scorer_E">Brush::Parameters::scorer_ (C++ member)</a>
+</li>
+      <li><a href="cpp_api/engine.html#_CPPv4N5Brush10Parameters3selE">Brush::Parameters::sel (C++ member)</a>
+</li>
+      <li><a href="cpp_api/engine.html#_CPPv4N5Brush10Parameters14set_batch_sizeEf">Brush::Parameters::set_batch_size (C++ function)</a>
+</li>
+      <li><a href="cpp_api/engine.html#_CPPv4N5Brush10Parameters18set_classificationEb">Brush::Parameters::set_classification (C++ function)</a>
+</li>
+      <li><a href="cpp_api/engine.html#_CPPv4N5Brush10Parameters15set_current_genEj">Brush::Parameters::set_current_gen (C++ function)</a>
+</li>
+      <li><a href="cpp_api/engine.html#_CPPv4N5Brush10Parameters11set_cx_probEf">Brush::Parameters::set_cx_prob (C++ function)</a>
+</li>
+      <li><a href="cpp_api/engine.html#_CPPv4N5Brush10Parameters17set_feature_namesE6vectorI6stringE">Brush::Parameters::set_feature_names (C++ function)</a>
+</li>
+      <li><a href="cpp_api/engine.html#_CPPv4N5Brush10Parameters13set_functionsENSt13unordered_mapINSt6stringEfEE">Brush::Parameters::set_functions (C++ function)</a>
+</li>
+      <li><a href="cpp_api/engine.html#_CPPv4N5Brush10Parameters19set_load_populationE6string">Brush::Parameters::set_load_population (C++ function)</a>
+</li>
+      <li><a href="cpp_api/engine.html#_CPPv4N5Brush10Parameters11set_logfileE6string">Brush::Parameters::set_logfile (C++ function)</a>
+</li>
+      <li><a href="cpp_api/engine.html#_CPPv4N5Brush10Parameters13set_max_depthEj">Brush::Parameters::set_max_depth (C++ function)</a>
+</li>
+      <li><a href="cpp_api/engine.html#_CPPv4N5Brush10Parameters12set_max_gensEi">Brush::Parameters::set_max_gens (C++ function)</a>
+</li>
+      <li><a href="cpp_api/engine.html#_CPPv4N5Brush10Parameters12set_max_sizeEj">Brush::Parameters::set_max_size (C++ function)</a>
+</li>
+      <li><a href="cpp_api/engine.html#_CPPv4N5Brush10Parameters13set_max_stallEi">Brush::Parameters::set_max_stall (C++ function)</a>
+</li>
+      <li><a href="cpp_api/engine.html#_CPPv4N5Brush10Parameters12set_max_timeEi">Brush::Parameters::set_max_time (C++ function)</a>
+</li>
+      <li><a href="cpp_api/engine.html#_CPPv4N5Brush10Parameters12set_mig_probEf">Brush::Parameters::set_mig_prob (C++ function)</a>
+</li>
+      <li><a href="cpp_api/engine.html#_CPPv4N5Brush10Parameters18set_mutation_probsENSt3mapINSt6stringEfEE">Brush::Parameters::set_mutation_probs (C++ function)</a>
+</li>
+      <li><a href="cpp_api/engine.html#_CPPv4N5Brush10Parameters13set_n_classesEj">Brush::Parameters::set_n_classes (C++ function)</a>
+</li>
+      <li><a href="cpp_api/engine.html#_CPPv4N5Brush10Parameters10set_n_jobsEi">Brush::Parameters::set_n_jobs (C++ function)</a>
+</li>
+      <li><a href="cpp_api/engine.html#_CPPv4N5Brush10Parameters15set_num_islandsEi">Brush::Parameters::set_num_islands (C++ function)</a>
+</li>
+      <li><a href="cpp_api/engine.html#_CPPv4N5Brush10Parameters14set_objectivesE6vectorI6stringE">Brush::Parameters::set_objectives (C++ function)</a>
+</li>
+      <li><a href="cpp_api/engine.html#_CPPv4N5Brush10Parameters12set_pop_sizeEi">Brush::Parameters::set_pop_size (C++ function)</a>
+</li>
+      <li><a href="cpp_api/engine.html#_CPPv4N5Brush10Parameters16set_random_stateEi">Brush::Parameters::set_random_state (C++ function)</a>
+</li>
+      <li><a href="cpp_api/engine.html#_CPPv4N5Brush10Parameters19set_save_populationE6string">Brush::Parameters::set_save_population (C++ function)</a>
+</li>
+      <li><a href="cpp_api/engine.html#_CPPv4N5Brush10Parameters11set_scorer_E6string">Brush::Parameters::set_scorer_ (C++ function)</a>
+</li>
+      <li><a href="cpp_api/engine.html#_CPPv4N5Brush10Parameters7set_selE6string">Brush::Parameters::set_sel (C++ function)</a>
+</li>
+      <li><a href="cpp_api/engine.html#_CPPv4N5Brush10Parameters17set_shuffle_splitEb">Brush::Parameters::set_shuffle_split (C++ function)</a>
+</li>
+      <li><a href="cpp_api/engine.html#_CPPv4N5Brush10Parameters8set_survE6string">Brush::Parameters::set_surv (C++ function)</a>
+</li>
+      <li><a href="cpp_api/engine.html#_CPPv4N5Brush10Parameters12set_use_archEb">Brush::Parameters::set_use_arch (C++ function)</a>
+</li>
+      <li><a href="cpp_api/engine.html#_CPPv4N5Brush10Parameters17set_val_from_archEb">Brush::Parameters::set_val_from_arch (C++ function)</a>
+</li>
+      <li><a href="cpp_api/engine.html#_CPPv4N5Brush10Parameters19set_validation_sizeEf">Brush::Parameters::set_validation_size (C++ function)</a>
+</li>
+      <li><a href="cpp_api/engine.html#_CPPv4N5Brush10Parameters13set_verbosityEi">Brush::Parameters::set_verbosity (C++ function)</a>
+</li>
+      <li><a href="cpp_api/engine.html#_CPPv4N5Brush10Parameters13shuffle_splitE">Brush::Parameters::shuffle_split (C++ member)</a>
+</li>
+      <li><a href="cpp_api/engine.html#_CPPv4N5Brush10Parameters4survE">Brush::Parameters::surv (C++ member)</a>
+</li>
+      <li><a href="cpp_api/engine.html#_CPPv4N5Brush10Parameters8use_archE">Brush::Parameters::use_arch (C++ member)</a>
+</li>
+      <li><a href="cpp_api/engine.html#_CPPv4N5Brush10Parameters13val_from_archE">Brush::Parameters::val_from_arch (C++ member)</a>
+</li>
+      <li><a href="cpp_api/engine.html#_CPPv4N5Brush10Parameters15validation_sizeE">Brush::Parameters::validation_size (C++ member)</a>
+</li>
+      <li><a href="cpp_api/engine.html#_CPPv4N5Brush10Parameters9verbosityE">Brush::Parameters::verbosity (C++ member)</a>
+</li>
+      <li><a href="cpp_api/engine.html#_CPPv4N5Brush10ParametersD0Ev">Brush::Parameters::~Parameters (C++ function)</a>
+</li>
+      <li><a href="cpp_api/archive.html#_CPPv4I_11ProgramTypeEN5Brush3Pop7ArchiveE">Brush::Pop::Archive (C++ struct)</a>
+</li>
+      <li><a href="cpp_api/archive.html#_CPPv4N5Brush3Pop7Archive7ArchiveEv">Brush::Pop::Archive::Archive (C++ function)</a>
+</li>
+      <li><a href="cpp_api/archive.html#_CPPv4N5Brush3Pop7Archive11individualsE">Brush::Pop::Archive::individuals (C++ member)</a>
+</li>
+      <li><a href="cpp_api/archive.html#_CPPv4N5Brush3Pop7Archive4initER10PopulationI1TE">Brush::Pop::Archive::init (C++ function)</a>
+</li>
+      <li><a href="cpp_api/archive.html#_CPPv4N5Brush3Pop7Archive17sameFitComplexityERK10IndividualI1TERK10IndividualI1TE">Brush::Pop::Archive::sameFitComplexity (C++ function)</a>
+</li>
+      <li><a href="cpp_api/archive.html#_CPPv4N5Brush3Pop7Archive14sameObjectivesERK10IndividualI1TERK10IndividualI1TE">Brush::Pop::Archive::sameObjectives (C++ function)</a>
+</li>
+      <li><a href="cpp_api/archive.html#_CPPv4N5Brush3Pop7Archive8selectorE">Brush::Pop::Archive::selector (C++ member)</a>
+</li>
+      <li><a href="cpp_api/archive.html#_CPPv4N5Brush3Pop7Archive14set_objectivesE6vectorI6stringE">Brush::Pop::Archive::set_objectives (C++ function)</a>
+</li>
+      <li><a href="cpp_api/archive.html#_CPPv4N5Brush3Pop7Archive15sort_complexityE">Brush::Pop::Archive::sort_complexity (C++ member)</a>
+</li>
+      <li><a href="cpp_api/archive.html#_CPPv4N5Brush3Pop7Archive14sortComplexityERK10IndividualI1TERK10IndividualI1TE">Brush::Pop::Archive::sortComplexity (C++ function)</a>
+</li>
+      <li><a href="cpp_api/archive.html#_CPPv4N5Brush3Pop7Archive8sortObj1ERK10IndividualI1TERK10IndividualI1TE">Brush::Pop::Archive::sortObj1 (C++ function)</a>
+</li>
+      <li><a href="cpp_api/archive.html#_CPPv4N5Brush3Pop7Archive6updateER10PopulationI1TERK10Parameters">Brush::Pop::Archive::update (C++ function)</a>
+</li>
+      <li><a href="cpp_api/individual.html#_CPPv4I_11ProgramTypeEN5Brush3Pop10IndividualE">Brush::Pop::Individual (C++ class)</a>
+</li>
+      <li><a href="cpp_api/individual.html#_CPPv4N5Brush3Pop10Individual5errorE">Brush::Pop::Individual::error (C++ member)</a>
+</li>
+      <li><a href="cpp_api/individual.html#_CPPv4N5Brush3Pop10Individual3fitERK3RefIK8ArrayXXfERK3RefIK7ArrayXfE">Brush::Pop::Individual::fit (C++ function)</a>, <a href="cpp_api/individual.html#_CPPv4N5Brush3Pop10Individual3fitERK7Dataset">[1]</a>
+</li>
+      <li><a href="cpp_api/individual.html#_CPPv4N5Brush3Pop10Individual7fitnessE">Brush::Pop::Individual::fitness (C++ member)</a>
+</li>
+      <li><a href="cpp_api/individual.html#_CPPv4NK5Brush3Pop10Individual14get_complexityEv">Brush::Pop::Individual::get_complexity (C++ function)</a>
+</li>
+      <li><a href="cpp_api/individual.html#_CPPv4NK5Brush3Pop10Individual9get_depthEv">Brush::Pop::Individual::get_depth (C++ function)</a>
+</li>
+      <li><a href="cpp_api/individual.html#_CPPv4N5Brush3Pop10Individual13get_dot_modelE6string">Brush::Pop::Individual::get_dot_model (C++ function)</a>
+</li>
+      <li><a href="cpp_api/individual.html#_CPPv4N5Brush3Pop10Individual11get_fitnessEv">Brush::Pop::Individual::get_fitness (C++ function)</a>
+</li>
+      <li><a href="cpp_api/individual.html#_CPPv4NK5Brush3Pop10Individual13get_is_fittedEv">Brush::Pop::Individual::get_is_fitted (C++ function)</a>
+</li>
+      <li><a href="cpp_api/individual.html#_CPPv4N5Brush3Pop10Individual9get_modelE6stringb">Brush::Pop::Individual::get_model (C++ function)</a>
+</li>
+      <li><a href="cpp_api/individual.html#_CPPv4NK5Brush3Pop10Individual14get_objectivesEv">Brush::Pop::Individual::get_objectives (C++ function)</a>
+</li>
+      <li><a href="cpp_api/individual.html#_CPPv4N5Brush3Pop10Individual11get_programEv">Brush::Pop::Individual::get_program (C++ function)</a>
+</li>
+      <li><a href="cpp_api/individual.html#_CPPv4NK5Brush3Pop10Individual8get_sizeEv">Brush::Pop::Individual::get_size (C++ function)</a>
+</li>
+      <li><a href="cpp_api/individual.html#_CPPv4N5Brush3Pop10Individual2idE">Brush::Pop::Individual::id (C++ member)</a>
+</li>
+      <li><a href="cpp_api/individual.html#_CPPv4N5Brush3Pop10Individual10IndividualER7ProgramI1TE">Brush::Pop::Individual::Individual (C++ function)</a>, <a href="cpp_api/individual.html#_CPPv4N5Brush3Pop10Individual10IndividualEv">[1]</a>
+</li>
+      <li><a href="cpp_api/individual.html#_CPPv4N5Brush3Pop10Individual4initER11SearchSpaceRK10Parameters">Brush::Pop::Individual::init (C++ function)</a>
+</li>
+      <li><a href="cpp_api/individual.html#_CPPv4N5Brush3Pop10Individual10is_fitted_E">Brush::Pop::Individual::is_fitted_ (C++ member)</a>
+</li>
+      <li><a href="cpp_api/individual.html#_CPPv4N5Brush3Pop10Individual10objectivesE">Brush::Pop::Individual::objectives (C++ member)</a>
+</li>
+      <li><a href="cpp_api/individual.html#_CPPv4N5Brush3Pop10Individual9parent_idE">Brush::Pop::Individual::parent_id (C++ member)</a>
+</li>
+      <li><a href="cpp_api/individual.html#_CPPv4N5Brush3Pop10Individual7predictERK3RefIK8ArrayXXfE">Brush::Pop::Individual::predict (C++ function)</a>, <a href="cpp_api/individual.html#_CPPv4N5Brush3Pop10Individual7predictERK7Dataset">[1]</a>
+</li>
+      <li><a href="cpp_api/individual.html#_CPPv4I_11ProgramTypeEN5Brush3Pop10Individual13predict_probaEDaRK3RefIK8ArrayXXfE">Brush::Pop::Individual::predict_proba (C++ function)</a>, <a href="cpp_api/individual.html#_CPPv4I_11ProgramTypeEN5Brush3Pop10Individual13predict_probaEDaRK7Dataset">[1]</a>
+</li>
+      <li><a href="cpp_api/individual.html#_CPPv4N5Brush3Pop10Individual7programE">Brush::Pop::Individual::program (C++ member)</a>
+</li>
+      <li><a href="cpp_api/individual.html#_CPPv4N5Brush3Pop10Individual11set_fitnessER7Fitness">Brush::Pop::Individual::set_fitness (C++ function)</a>
+</li>
+      <li><a href="cpp_api/individual.html#_CPPv4N5Brush3Pop10Individual6set_idEj">Brush::Pop::Individual::set_id (C++ function)</a>
+</li>
+      <li><a href="cpp_api/individual.html#_CPPv4N5Brush3Pop10Individual14set_objectivesE6vectorI6stringE">Brush::Pop::Individual::set_objectives (C++ function)</a>
+</li>
+      <li><a href="cpp_api/individual.html#_CPPv4N5Brush3Pop10Individual11set_parentsERK6vectorI10IndividualI1TEE">Brush::Pop::Individual::set_parents (C++ function)</a>, <a href="cpp_api/individual.html#_CPPv4N5Brush3Pop10Individual11set_parentsERK6vectorIjE">[1]</a>
+</li>
+      <li><a href="cpp_api/individual.html#_CPPv4N5Brush3Pop10Individual10weightsMapE">Brush::Pop::Individual::weightsMap (C++ member)</a>
+</li>
+      <li><a href="cpp_api/population.html#_CPPv4I_11ProgramTypeEN5Brush3Pop10PopulationE">Brush::Pop::Population (C++ class)</a>
+</li>
+      <li><a href="cpp_api/population.html#_CPPv4N5Brush3Pop10Population21add_offspring_indexesEi">Brush::Pop::Population::add_offspring_indexes (C++ function)</a>
+</li>
+      <li><a href="cpp_api/population.html#_CPPv4N5Brush3Pop10Population18get_island_indexesEi">Brush::Pop::Population::get_island_indexes (C++ function)</a>
+</li>
+      <li><a href="cpp_api/population.html#_CPPv4N5Brush3Pop10Population12hall_of_fameEj">Brush::Pop::Population::hall_of_fame (C++ function)</a>
+</li>
+      <li><a href="cpp_api/population.html#_CPPv4N5Brush3Pop10Population11individualsE">Brush::Pop::Population::individuals (C++ member)</a>
+</li>
+      <li><a href="cpp_api/population.html#_CPPv4N5Brush3Pop10Population4initER11SearchSpaceRK10Parameters">Brush::Pop::Population::init (C++ function)</a>, <a href="cpp_api/population.html#_CPPv4N5Brush3Pop10Population4initER6vectorI10IndividualI1TEERK10Parameters">[1]</a>
+</li>
+      <li><a href="cpp_api/population.html#_CPPv4N5Brush3Pop10Population14island_indexesE">Brush::Pop::Population::island_indexes (C++ member)</a>
+</li>
+      <li><a href="cpp_api/population.html#_CPPv4N5Brush3Pop10Population4loadE6string">Brush::Pop::Population::load (C++ function)</a>
+</li>
+      <li><a href="cpp_api/population.html#_CPPv4N5Brush3Pop10Population8mig_probE">Brush::Pop::Population::mig_prob (C++ member)</a>
+</li>
+      <li><a href="cpp_api/population.html#_CPPv4N5Brush3Pop10Population7migrateEv">Brush::Pop::Population::migrate (C++ function)</a>
+</li>
+      <li><a href="cpp_api/population.html#_CPPv4N5Brush3Pop10Population11num_islandsE">Brush::Pop::Population::num_islands (C++ member)</a>
+</li>
+      <li><a href="cpp_api/population.html#_CPPv4N5Brush3Pop10PopulationixE6size_t">Brush::Pop::Population::operator[] (C++ function)</a>, <a href="cpp_api/population.html#_CPPv4NK5Brush3Pop10PopulationixE6size_t">[1]</a>
+</li>
+      <li><a href="cpp_api/population.html#_CPPv4N5Brush3Pop10Population8pop_sizeE">Brush::Pop::Population::pop_size (C++ member)</a>
+</li>
+      <li><a href="cpp_api/population.html#_CPPv4N5Brush3Pop10Population10PopulationEv">Brush::Pop::Population::Population (C++ function)</a>
+</li>
+      <li><a href="cpp_api/population.html#_CPPv4N5Brush3Pop10Population12print_modelsE6string">Brush::Pop::Population::print_models (C++ function)</a>
+</li>
+      <li><a href="cpp_api/population.html#_CPPv4N5Brush3Pop10Population17SameFitComplexityE">Brush::Pop::Population::SameFitComplexity (C++ struct)</a>
+</li>
+      <li><a href="cpp_api/population.html#_CPPv4N5Brush3Pop10Population17SameFitComplexityclE6size_t6size_t">Brush::Pop::Population::SameFitComplexity::operator() (C++ function)</a>
+</li>
+      <li><a href="cpp_api/population.html#_CPPv4N5Brush3Pop10Population17SameFitComplexity3popE">Brush::Pop::Population::SameFitComplexity::pop (C++ member)</a>
+</li>
+      <li><a href="cpp_api/population.html#_CPPv4N5Brush3Pop10Population17SameFitComplexity17SameFitComplexityER10PopulationI1TE">Brush::Pop::Population::SameFitComplexity::SameFitComplexity (C++ function)</a>
+</li>
+      <li><a href="cpp_api/population.html#_CPPv4N5Brush3Pop10Population4saveE6string">Brush::Pop::Population::save (C++ function)</a>
+</li>
+      <li><a href="cpp_api/population.html#_CPPv4N5Brush3Pop10Population4sizeEv">Brush::Pop::Population::size (C++ function)</a>
+</li>
+      <li><a href="cpp_api/population.html#_CPPv4N5Brush3Pop10Population14SortComplexityE">Brush::Pop::Population::SortComplexity (C++ struct)</a>
+</li>
+      <li><a href="cpp_api/population.html#_CPPv4N5Brush3Pop10Population14SortComplexityclE6size_t6size_t">Brush::Pop::Population::SortComplexity::operator() (C++ function)</a>
+</li>
+      <li><a href="cpp_api/population.html#_CPPv4N5Brush3Pop10Population14SortComplexity3popE">Brush::Pop::Population::SortComplexity::pop (C++ member)</a>
+</li>
+      <li><a href="cpp_api/population.html#_CPPv4N5Brush3Pop10Population14SortComplexity14SortComplexityER10Population">Brush::Pop::Population::SortComplexity::SortComplexity (C++ function)</a>
+</li>
+      <li><a href="cpp_api/population.html#_CPPv4N5Brush3Pop10Population12sorted_frontEj">Brush::Pop::Population::sorted_front (C++ function)</a>
+</li>
+      <li><a href="cpp_api/population.html#_CPPv4N5Brush3Pop10Population6updateE6vectorI6vectorI6size_tEE">Brush::Pop::Population::update (C++ function)</a>
+</li>
+      <li><a href="cpp_api/population.html#_CPPv4N5Brush3Pop10PopulationD0Ev">Brush::Pop::Population::~Population (C++ function)</a>
 </li>
       <li><a href="cpp_api/program.html#_CPPv4I_2PTEN5Brush7ProgramE">Brush::Program (C++ struct)</a>
 </li>
-      <li><a href="cpp_api/program.html#_CPPv4N5Brush7Program6argmaxE">Brush::Program::argmax (C++ member)</a>
+      <li><a href="cpp_api/program.html#_CPPv4NK5Brush7Program10complexityEv">Brush::Program::complexity (C++ function)</a>
 </li>
-      <li><a href="cpp_api/program.html#_CPPv4NK5Brush7Program5crossE7ProgramI5PTypeE">Brush::Program::cross (C++ function)</a>
+      <li><a href="cpp_api/program.html#_CPPv4N5Brush7Program4copyEv">Brush::Program::copy (C++ function)</a>
 </li>
       <li><a href="cpp_api/program.html#_CPPv4NK5Brush7Program5depthEv">Brush::Program::depth (C++ function)</a>
 </li>
@@ -672,11 +1201,9 @@ document.write(`
 </li>
       <li><a href="cpp_api/program.html#_CPPv4N5Brush7Program3fitERK3RefIK8ArrayXXfERK3RefIK7ArrayXfE">Brush::Program::fit (C++ function)</a>, <a href="cpp_api/program.html#_CPPv4N5Brush7Program3fitERK7Dataset">[1]</a>
 </li>
-      <li><a href="cpp_api/program.html#_CPPv4N5Brush7Program7fitnessE">Brush::Program::fitness (C++ member)</a>
+      <li><a href="cpp_api/program.html#_CPPv4NK5Brush7Program13get_dot_modelE6string">Brush::Program::get_dot_model (C++ function)</a>
 </li>
-      <li><a href="cpp_api/program.html#_CPPv4N5Brush7Program13get_dot_modelE6string">Brush::Program::get_dot_model (C++ function)</a>
-</li>
-      <li><a href="cpp_api/program.html#_CPPv4N5Brush7Program9get_modelE6stringb">Brush::Program::get_model (C++ function)</a>
+      <li><a href="cpp_api/program.html#_CPPv4NK5Brush7Program9get_modelE6stringb">Brush::Program::get_model (C++ function)</a>
 </li>
       <li><a href="cpp_api/program.html#_CPPv4NK5Brush7Program13get_n_weightsEv">Brush::Program::get_n_weights (C++ function)</a>
 </li>
@@ -686,11 +1213,9 @@ document.write(`
 </li>
       <li><a href="cpp_api/program.html#_CPPv4NK5Brush7Program9linearizeEv">Brush::Program::linearize (C++ function)</a>
 </li>
-      <li><a href="cpp_api/program.html#_CPPv4NK5Brush7Program6mutateEv">Brush::Program::mutate (C++ function)</a>
+      <li><a href="cpp_api/program.html#_CPPv4I0EN5Brush7Program7predictE7ArrayXbRK7Dataset">Brush::Program::predict (C++ function)</a>, <a href="cpp_api/program.html#_CPPv4I0EN5Brush7Program7predictE7ArrayXiRK7Dataset">[1]</a>, <a href="cpp_api/program.html#_CPPv4I0EN5Brush7Program7predictE8TreeTypeRK7Dataset">[2]</a>, <a href="cpp_api/program.html#_CPPv4N5Brush7Program7predictERK3RefIK8ArrayXXfE">[3]</a>
 </li>
-      <li><a href="cpp_api/program.html#_CPPv4N5Brush7Program3outE">Brush::Program::out (C++ member)</a>
-</li>
-      <li><a href="cpp_api/program.html#_CPPv4N5Brush7Program7predictERK3RefIK8ArrayXXfE">Brush::Program::predict (C++ function)</a>
+      <li><a href="cpp_api/program.html#_CPPv4I_2PTEN5Brush7Program13predict_probaE8TreeTypeRK3RefIK8ArrayXXfE">Brush::Program::predict_proba (C++ function)</a>, <a href="cpp_api/program.html#_CPPv4I_2PTEN5Brush7Program13predict_probaE8TreeTypeRK7Dataset">[1]</a>
 </li>
       <li><a href="cpp_api/program.html#_CPPv4I00EN5Brush7Program20predict_with_weightsE1RRK7DatasetPPK1W">Brush::Program::predict_with_weights (C++ function)</a>, <a href="cpp_api/program.html#_CPPv4N5Brush7Program20predict_with_weightsERK7DatasetRK7ArrayXf">[1]</a>
 </li>
@@ -730,17 +1255,17 @@ document.write(`
 </li>
       <li><a href="cpp_api/search_space.html#_CPPv4I0ENK5Brush11SearchSpace18has_solution_spaceEb4Iter4Iter">Brush::SearchSpace::has_solution_space (C++ function)</a>
 </li>
-      <li><a href="cpp_api/search_space.html#_CPPv4N5Brush11SearchSpace4initERK7DatasetRK13unordered_mapI6stringfE">Brush::SearchSpace::init (C++ function)</a>
+      <li><a href="cpp_api/search_space.html#_CPPv4N5Brush11SearchSpace4initERK7DatasetRK13unordered_mapI6stringfEb">Brush::SearchSpace::init (C++ function)</a>
 </li>
-      <li><a href="cpp_api/search_space.html#_CPPv4N5Brush11SearchSpace15make_classifierEii">Brush::SearchSpace::make_classifier (C++ function)</a>
+      <li><a href="cpp_api/search_space.html#_CPPv4N5Brush11SearchSpace15make_classifierEiiRK10Parameters">Brush::SearchSpace::make_classifier (C++ function)</a>
 </li>
-      <li><a href="cpp_api/search_space.html#_CPPv4N5Brush11SearchSpace26make_multiclass_classifierEii">Brush::SearchSpace::make_multiclass_classifier (C++ function)</a>
+      <li><a href="cpp_api/search_space.html#_CPPv4N5Brush11SearchSpace26make_multiclass_classifierEiiRK10Parameters">Brush::SearchSpace::make_multiclass_classifier (C++ function)</a>
 </li>
-      <li><a href="cpp_api/search_space.html#_CPPv4I0EN5Brush11SearchSpace12make_programE1Pii">Brush::SearchSpace::make_program (C++ function)</a>, <a href="cpp_api/search_space.html#_CPPv4I0EN5Brush11SearchSpace12make_programE2PTii">[1]</a>
+      <li><a href="cpp_api/search_space.html#_CPPv4I0EN5Brush11SearchSpace12make_programE1PRK10Parametersii">Brush::SearchSpace::make_program (C++ function)</a>, <a href="cpp_api/search_space.html#_CPPv4I0EN5Brush11SearchSpace12make_programE2PTRK10Parametersii">[1]</a>
 </li>
-      <li><a href="cpp_api/search_space.html#_CPPv4N5Brush11SearchSpace14make_regressorEii">Brush::SearchSpace::make_regressor (C++ function)</a>
+      <li><a href="cpp_api/search_space.html#_CPPv4N5Brush11SearchSpace14make_regressorEiiRK10Parameters">Brush::SearchSpace::make_regressor (C++ function)</a>
 </li>
-      <li><a href="cpp_api/search_space.html#_CPPv4N5Brush11SearchSpace16make_representerEii">Brush::SearchSpace::make_representer (C++ function)</a>
+      <li><a href="cpp_api/search_space.html#_CPPv4N5Brush11SearchSpace16make_representerEiiRK10Parameters">Brush::SearchSpace::make_representer (C++ function)</a>
 </li>
       <li><a href="cpp_api/search_space.html#_CPPv4I0EN5Brush11SearchSpace3MapE">Brush::SearchSpace::Map (C++ type)</a>
 </li>
@@ -756,9 +1281,9 @@ document.write(`
 </li>
       <li><a href="cpp_api/search_space.html#_CPPv4NK5Brush11SearchSpace14sample_subtreeE4Nodeii">Brush::SearchSpace::sample_subtree (C++ function)</a>
 </li>
-      <li><a href="cpp_api/search_space.html#_CPPv4NK5Brush11SearchSpace15sample_terminalE8DataType">Brush::SearchSpace::sample_terminal (C++ function)</a>, <a href="cpp_api/search_space.html#_CPPv4NK5Brush11SearchSpace15sample_terminalEv">[1]</a>
+      <li><a href="cpp_api/search_space.html#_CPPv4NK5Brush11SearchSpace15sample_terminalE8DataTypeb">Brush::SearchSpace::sample_terminal (C++ function)</a>, <a href="cpp_api/search_space.html#_CPPv4NK5Brush11SearchSpace15sample_terminalEb">[1]</a>
 </li>
-      <li><a href="cpp_api/search_space.html#_CPPv4N5Brush11SearchSpace11SearchSpaceERK7DatasetRK13unordered_mapI6stringfE">Brush::SearchSpace::SearchSpace (C++ function)</a>, <a href="cpp_api/search_space.html#_CPPv4N5Brush11SearchSpace11SearchSpaceEv">[1]</a>
+      <li><a href="cpp_api/search_space.html#_CPPv4N5Brush11SearchSpace11SearchSpaceERK7DatasetRK13unordered_mapI6stringfEb">Brush::SearchSpace::SearchSpace (C++ function)</a>, <a href="cpp_api/search_space.html#_CPPv4N5Brush11SearchSpace11SearchSpaceEv">[1]</a>
 </li>
       <li><a href="cpp_api/search_space.html#_CPPv4N5Brush11SearchSpace12terminal_mapE">Brush::SearchSpace::terminal_map (C++ member)</a>
 </li>
@@ -766,11 +1291,99 @@ document.write(`
 </li>
       <li><a href="cpp_api/search_space.html#_CPPv4N5Brush11SearchSpace16terminal_weightsE">Brush::SearchSpace::terminal_weights (C++ member)</a>
 </li>
-      <li><a href="python_api/classifier.html#brush.estimator.BrushClassifier">BrushClassifier (class in brush.estimator)</a>
+      <li><a href="cpp_api/selection.html#_CPPv4I_11ProgramTypeEN5Brush3Sel8LexicaseE">Brush::Sel::Lexicase (C++ class)</a>
 </li>
-      <li><a href="python_api/estimator.html#brush.estimator.BrushEstimator">BrushEstimator (class in brush.estimator)</a>
+      <li><a href="cpp_api/selection.html#_CPPv4N5Brush3Sel8Lexicase8LexicaseEb">Brush::Sel::Lexicase::Lexicase (C++ function)</a>
 </li>
-      <li><a href="python_api/regressor.html#brush.estimator.BrushRegressor">BrushRegressor (class in brush.estimator)</a>
+      <li><a href="cpp_api/selection.html#_CPPv4N5Brush3Sel8Lexicase6selectER10PopulationI1TEiRK10Parameters">Brush::Sel::Lexicase::select (C++ function)</a>
+</li>
+      <li><a href="cpp_api/selection.html#_CPPv4N5Brush3Sel8Lexicase7surviveER10PopulationI1TEiRK10Parameters">Brush::Sel::Lexicase::survive (C++ function)</a>
+</li>
+      <li><a href="cpp_api/selection.html#_CPPv4N5Brush3Sel8LexicaseD0Ev">Brush::Sel::Lexicase::~Lexicase (C++ function)</a>
+</li>
+      <li><a href="cpp_api/selection.html#_CPPv4I_11ProgramTypeEN5Brush3Sel5NSGA2E">Brush::Sel::NSGA2 (C++ class)</a>
+</li>
+      <li><a href="cpp_api/selection.html#_CPPv4N5Brush3Sel5NSGA217crowding_distanceER10PopulationI1TER6vectorI6vectorIiEEi">Brush::Sel::NSGA2::crowding_distance (C++ function)</a>
+</li>
+      <li><a href="cpp_api/selection.html#_CPPv4N5Brush3Sel5NSGA28fast_ndsER10PopulationI1TER6vectorI6size_tE">Brush::Sel::NSGA2::fast_nds (C++ function)</a>
+</li>
+      <li><a href="cpp_api/selection.html#_CPPv4N5Brush3Sel5NSGA25NSGA2Eb">Brush::Sel::NSGA2::NSGA2 (C++ function)</a>
+</li>
+      <li><a href="cpp_api/selection.html#_CPPv4N5Brush3Sel5NSGA26selectER10PopulationI1TEiRK10Parameters">Brush::Sel::NSGA2::select (C++ function)</a>
+</li>
+      <li><a href="cpp_api/selection.html#_CPPv4N5Brush3Sel5NSGA27surviveER10PopulationI1TEiRK10Parameters">Brush::Sel::NSGA2::survive (C++ function)</a>
+</li>
+      <li><a href="cpp_api/selection.html#_CPPv4N5Brush3Sel5NSGA2D0Ev">Brush::Sel::NSGA2::~NSGA2 (C++ function)</a>
+</li>
+      <li><a href="cpp_api/selection.html#_CPPv4I_11ProgramTypeEN5Brush3Sel9SelectionE">Brush::Sel::Selection (C++ class)</a>
+</li>
+      <li><a href="cpp_api/selection.html#_CPPv4N5Brush3Sel9Selection8get_typeEv">Brush::Sel::Selection::get_type (C++ function)</a>
+</li>
+      <li><a href="cpp_api/selection.html#_CPPv4N5Brush3Sel9Selection9pselectorE">Brush::Sel::Selection::pselector (C++ member)</a>
+</li>
+      <li><a href="cpp_api/selection.html#_CPPv4N5Brush3Sel9Selection6selectER10PopulationI1TEiRK10Parameters">Brush::Sel::Selection::select (C++ function)</a>
+</li>
+      <li><a href="cpp_api/selection.html#_CPPv4N5Brush3Sel9Selection9SelectionE6stringb">Brush::Sel::Selection::Selection (C++ function)</a>, <a href="cpp_api/selection.html#_CPPv4N5Brush3Sel9Selection9SelectionEv">[1]</a>
+</li>
+      <li><a href="cpp_api/selection.html#_CPPv4N5Brush3Sel9Selection12set_operatorEv">Brush::Sel::Selection::set_operator (C++ function)</a>
+</li>
+      <li><a href="cpp_api/selection.html#_CPPv4N5Brush3Sel9Selection8set_typeE6string">Brush::Sel::Selection::set_type (C++ function)</a>
+</li>
+      <li><a href="cpp_api/selection.html#_CPPv4N5Brush3Sel9Selection8survivalE">Brush::Sel::Selection::survival (C++ member)</a>
+</li>
+      <li><a href="cpp_api/selection.html#_CPPv4N5Brush3Sel9Selection7surviveER10PopulationI1TEiRK10Parameters">Brush::Sel::Selection::survive (C++ function)</a>
+</li>
+      <li><a href="cpp_api/selection.html#_CPPv4N5Brush3Sel9Selection4typeE">Brush::Sel::Selection::type (C++ member)</a>
+</li>
+      <li><a href="cpp_api/selection.html#_CPPv4N5Brush3Sel9SelectionD0Ev">Brush::Sel::Selection::~Selection (C++ function)</a>
+</li>
+      <li><a href="cpp_api/selection.html#_CPPv4I_11ProgramTypeEN5Brush3Sel17SelectionOperatorE">Brush::Sel::SelectionOperator (C++ class)</a>
+</li>
+      <li><a href="cpp_api/selection.html#_CPPv4N5Brush3Sel17SelectionOperator4nameE">Brush::Sel::SelectionOperator::name (C++ member)</a>
+</li>
+      <li><a href="cpp_api/selection.html#_CPPv4N5Brush3Sel17SelectionOperator6selectER10PopulationI1TEiRK10Parameters">Brush::Sel::SelectionOperator::select (C++ function)</a>
+</li>
+      <li><a href="cpp_api/selection.html#_CPPv4N5Brush3Sel17SelectionOperator8survivalE">Brush::Sel::SelectionOperator::survival (C++ member)</a>
+</li>
+      <li><a href="cpp_api/selection.html#_CPPv4N5Brush3Sel17SelectionOperator7surviveER10PopulationI1TEiRK10Parameters">Brush::Sel::SelectionOperator::survive (C++ function)</a>
+</li>
+      <li><a href="cpp_api/selection.html#_CPPv4N5Brush3Sel17SelectionOperatorD0Ev">Brush::Sel::SelectionOperator::~SelectionOperator (C++ function)</a>
+</li>
+      <li><a href="cpp_api/variation.html#_CPPv4N5Brush3Var12MutationBaseE">Brush::Var::MutationBase (C++ class)</a>
+</li>
+      <li><a href="cpp_api/variation.html#_CPPv4N5Brush3Var12MutationBase10find_spotsER4treeI4NodeERK11SearchSpaceRK10Parameters">Brush::Var::MutationBase::find_spots (C++ function)</a>
+</li>
+      <li><a href="cpp_api/variation.html#_CPPv4N5Brush3Var12MutationBase4IterE">Brush::Var::MutationBase::Iter (C++ type)</a>
+</li>
+      <li><a href="cpp_api/variation.html#_CPPv4N5Brush3Var12MutationBase6mutateER4treeI4NodeE4IterRK11SearchSpaceRK10Parameters">Brush::Var::MutationBase::mutate (C++ function)</a>
+</li>
+      <li><a href="cpp_api/variation.html#_CPPv4I_11ProgramTypeEN5Brush3Var9VariationE">Brush::Var::Variation (C++ class)</a>
+</li>
+      <li><a href="cpp_api/variation.html#_CPPv4N5Brush3Var9Variation5crossERK10IndividualI1TERK10IndividualI1TE">Brush::Var::Variation::cross (C++ function)</a>
+</li>
+      <li><a href="cpp_api/variation.html#_CPPv4N5Brush3Var9Variation4initER10ParametersR11SearchSpace">Brush::Var::Variation::init (C++ function)</a>
+</li>
+      <li><a href="cpp_api/variation.html#_CPPv4N5Brush3Var9Variation6mutateERK10IndividualI1TE">Brush::Var::Variation::mutate (C++ function)</a>
+</li>
+      <li><a href="cpp_api/variation.html#_CPPv4N5Brush3Var9Variation9VariationER10ParametersR11SearchSpace">Brush::Var::Variation::Variation (C++ function)</a>, <a href="cpp_api/variation.html#_CPPv4N5Brush3Var9Variation9VariationEv">[1]</a>
+</li>
+      <li><a href="cpp_api/variation.html#_CPPv4N5Brush3Var9Variation4varyER10PopulationI1TEiRK6vectorI6size_tE">Brush::Var::Variation::vary (C++ function)</a>
+</li>
+      <li><a href="cpp_api/variation.html#_CPPv4N5Brush3Var9VariationD0Ev">Brush::Var::Variation::~Variation (C++ function)</a>
+</li>
+      <li><a href="python_api/classifier.html#pybrush.BrushClassifier">BrushClassifier (class in pybrush)</a>
+</li>
+      <li><a href="python_api/estimator.html#pybrush.BrushEstimator.BrushEstimator">BrushEstimator (class in pybrush.BrushEstimator)</a>
+</li>
+      <li><a href="python_api/regressor.html#pybrush.BrushEstimator.BrushRegressor">BrushRegressor (class in pybrush.BrushEstimator)</a>
+</li>
+  </ul></td>
+</tr></table>
+
+<h2 id="E">E</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="python_api/interface.html#pybrush.EstimatorInterface.EstimatorInterface">EstimatorInterface (class in pybrush.EstimatorInterface)</a>
 </li>
   </ul></td>
 </tr></table>
@@ -778,7 +1391,7 @@ document.write(`
 <h2 id="F">F</h2>
 <table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="python_api/estimator.html#brush.estimator.BrushEstimator.fit">fit() (brush.estimator.BrushEstimator method)</a>
+      <li><a href="python_api/estimator.html#pybrush.BrushEstimator.BrushEstimator.fit">fit() (pybrush.BrushEstimator.BrushEstimator method)</a>
 </li>
   </ul></td>
 </tr></table>
@@ -786,7 +1399,7 @@ document.write(`
 <h2 id="G">G</h2>
 <table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="python_api/estimator.html#brush.estimator.BrushEstimator.get_params">get_params() (brush.estimator.BrushEstimator method)</a>
+      <li><a href="python_api/estimator.html#pybrush.BrushEstimator.BrushEstimator.get_params">get_params() (pybrush.BrushEstimator.BrushEstimator method)</a>
 </li>
   </ul></td>
 </tr></table>
@@ -794,11 +1407,15 @@ document.write(`
 <h2 id="P">P</h2>
 <table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="python_api/estimator.html#brush.estimator.BrushEstimator.predict">predict() (brush.estimator.BrushEstimator method)</a>
+      <li><a href="python_api/estimator.html#pybrush.BrushEstimator.BrushEstimator.predict">predict() (pybrush.BrushEstimator.BrushEstimator method)</a>
+</li>
+      <li><a href="python_api/estimator.html#pybrush.BrushEstimator.BrushEstimator.predict_archive">predict_archive() (pybrush.BrushEstimator.BrushEstimator method)</a>
 </li>
   </ul></td>
   <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="python_api/classifier.html#brush.estimator.BrushClassifier.predict_proba">predict_proba() (brush.estimator.BrushClassifier method)</a>
+      <li><a href="python_api/classifier.html#pybrush.BrushClassifier.predict_proba">predict_proba() (pybrush.BrushClassifier method)</a>
+</li>
+      <li><a href="python_api/classifier.html#pybrush.BrushClassifier.predict_proba_archive">predict_proba_archive() (pybrush.BrushClassifier method)</a>
 </li>
   </ul></td>
 </tr></table>
@@ -806,40 +1423,12 @@ document.write(`
 <h2 id="S">S</h2>
 <table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="python_api/classifier.html#brush.estimator.BrushClassifier.set_score_request">set_score_request() (brush.estimator.BrushClassifier method)</a>
+      <li><a href="python_api/classifier.html#pybrush.BrushClassifier.set_score_request">set_score_request() (pybrush.BrushClassifier method)</a>
 
       <ul>
-        <li><a href="python_api/regressor.html#brush.estimator.BrushRegressor.set_score_request">(brush.estimator.BrushRegressor method)</a>
+        <li><a href="python_api/regressor.html#pybrush.BrushEstimator.BrushRegressor.set_score_request">(pybrush.BrushEstimator.BrushRegressor method)</a>
 </li>
       </ul></li>
-  </ul></td>
-</tr></table>
-
-<h2 id="V">V</h2>
-<table style="width: 100%" class="indextable genindextable"><tr>
-  <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="cpp_api/variation.html#_CPPv49variation">variation (C++ type)</a>
-</li>
-      <li><a href="cpp_api/variation.html#_CPPv4I_11ProgramTypeEN9variation5crossENSt8optionalI7ProgramI1TEEERK7ProgramI1TERK7ProgramI1TE">variation::cross (C++ function)</a>
-</li>
-      <li><a href="cpp_api/variation.html#_CPPv4N9variation15delete_mutationER4treeI4NodeE4IterRK11SearchSpace">variation::delete_mutation (C++ function)</a>
-</li>
-      <li><a href="cpp_api/variation.html#_CPPv4N9variation15insert_mutationER4treeI4NodeE4IterRK11SearchSpace">variation::insert_mutation (C++ function)</a>
-</li>
-      <li><a href="cpp_api/variation.html#_CPPv4N9variation4IterE">variation::Iter (C++ type)</a>
-</li>
-  </ul></td>
-  <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="cpp_api/variation.html#_CPPv4I_11ProgramTypeEN9variation6mutateENSt8optionalI7ProgramI1TEEERK7ProgramI1TERK11SearchSpace">variation::mutate (C++ function)</a>
-</li>
-      <li><a href="cpp_api/variation.html#_CPPv4N9variation14point_mutationER4treeI4NodeE4IterRK11SearchSpace">variation::point_mutation (C++ function)</a>
-</li>
-      <li><a href="cpp_api/variation.html#_CPPv4N9variation16subtree_mutationER4treeI4NodeE4IterRK11SearchSpace">variation::subtree_mutation (C++ function)</a>
-</li>
-      <li><a href="cpp_api/variation.html#_CPPv4N9variation26toggle_weight_off_mutationER4treeI4NodeE4IterRK11SearchSpace">variation::toggle_weight_off_mutation (C++ function)</a>
-</li>
-      <li><a href="cpp_api/variation.html#_CPPv4N9variation25toggle_weight_on_mutationER4treeI4NodeE4IterRK11SearchSpace">variation::toggle_weight_on_mutation (C++ function)</a>
-</li>
   </ul></td>
 </tr></table>
 
@@ -852,7 +1441,7 @@ document.write(`
               
               
               
-                <footer class="prev-next-footer">
+                <footer class="prev-next-footer d-print-none">
                   
 <div class="prev-next-area">
 </div>
@@ -861,8 +1450,6 @@ document.write(`
             </div>
             
             
-              
-                <div class="bd-sidebar-secondary bd-toc"></div>
               
             
           </div>
@@ -907,8 +1494,8 @@ By William La Cava and Joseph D. Romano
   </div>
   
   <!-- Scripts loaded after <body> so the DOM is not blocked -->
-  <script src="_static/scripts/bootstrap.js?digest=8d27b9dea8ad943066ae"></script>
-<script src="_static/scripts/pydata-sphinx-theme.js?digest=8d27b9dea8ad943066ae"></script>
+  <script src="_static/scripts/bootstrap.js?digest=3ee479438cf8b5e0d341"></script>
+<script src="_static/scripts/pydata-sphinx-theme.js?digest=3ee479438cf8b5e0d341"></script>
 
   <footer class="bd-footer">
   </footer>

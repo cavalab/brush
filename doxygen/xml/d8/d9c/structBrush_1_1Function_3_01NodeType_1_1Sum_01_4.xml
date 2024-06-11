@@ -1,23 +1,24 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
-<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.10.0" xml:lang="en-US">
   <compounddef id="d8/d9c/structBrush_1_1Function_3_01NodeType_1_1Sum_01_4" kind="struct" language="C++" prot="public">
     <compoundname>Brush::Function&lt; NodeType::Sum &gt;</compoundname>
     <includes refid="d8/d5c/functions_8h" local="no">functions.h</includes>
     <templateparamlist>
     </templateparamlist>
-      <sectiondef kind="public-func">
+    <sectiondef kind="public-func">
       <memberdef kind="function" id="d8/d9c/structBrush_1_1Function_3_01NodeType_1_1Sum_01_4_1ab265c71845b47348b6f4b78434949e5d" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
         <templateparamlist>
           <param>
-            <type>typename T</type>
+            <type><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">typename</ref> T</type>
           </param>
         </templateparamlist>
-        <type>auto</type>
+        <type><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">auto</ref></type>
         <definition>auto Brush::Function&lt; NodeType::Sum &gt;::operator()</definition>
         <argsstring>(const T &amp;t)</argsstring>
         <name>operator()</name>
+        <qualifiedname>Brush::Function&lt; NodeType::Sum &gt;::operator()</qualifiedname>
         <param>
-          <type>const T &amp;</type>
+          <type><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">const</ref> T &amp;</type>
           <declname>t</declname>
         </param>
         <briefdescription>
@@ -26,13 +27,15 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/runner/work/brush/brush/src/program/functions.h" line="175" column="21" bodyfile="/home/runner/work/brush/brush/src/program/functions.h" bodystart="175" bodyend="175"/>
+        <location file="/home/runner/work/brush/brush/src/program/functions.h" line="176" column="21" bodyfile="/home/runner/work/brush/brush/src/program/functions.h" bodystart="176" bodyend="176"/>
+        <references refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" compoundref="d4/d93/bind__engines_8h" startline="35" endline="104">bind_engine</references>
       </memberdef>
       <memberdef kind="function" id="d8/d9c/structBrush_1_1Function_3_01NodeType_1_1Sum_01_4_1ac56fa91b9e9e42b2a13ad4370c04dbd9" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
-        <type>auto</type>
+        <type><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">auto</ref></type>
         <definition>auto Brush::Function&lt; NodeType::Sum &gt;::operator()</definition>
         <argsstring>(ArrayXXb t)</argsstring>
         <name>operator()</name>
+        <qualifiedname>Brush::Function&lt; NodeType::Sum &gt;::operator()</qualifiedname>
         <param>
           <type><ref refid="dc/d5c/namespaceBrush_1aa296f8bffc481f54826511e4c5172ff6" kindref="member">ArrayXXb</ref></type>
           <declname>t</declname>
@@ -43,20 +46,22 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/runner/work/brush/brush/src/program/functions.h" line="177" column="21" bodyfile="/home/runner/work/brush/brush/src/program/functions.h" bodystart="177" bodyend="179"/>
+        <location file="/home/runner/work/brush/brush/src/program/functions.h" line="178" column="21" bodyfile="/home/runner/work/brush/brush/src/program/functions.h" bodystart="178" bodyend="180"/>
+        <references refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" compoundref="d4/d93/bind__engines_8h" startline="35" endline="104">bind_engine</references>
       </memberdef>
       <memberdef kind="function" id="d8/d9c/structBrush_1_1Function_3_01NodeType_1_1Sum_01_4_1a95f5f6afa70ac1f0eb2bad0c86df8099" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
         <templateparamlist>
           <param>
-            <type>typename T</type>
+            <type><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">typename</ref> T</type>
           </param>
         </templateparamlist>
-        <type>auto</type>
+        <type><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">auto</ref></type>
         <definition>auto Brush::Function&lt; NodeType::Sum &gt;::operator()</definition>
         <argsstring>(const TimeSeries&lt; T &gt; &amp;t)</argsstring>
         <name>operator()</name>
+        <qualifiedname>Brush::Function&lt; NodeType::Sum &gt;::operator()</qualifiedname>
         <param>
-          <type>const <ref refid="d7/d56/structBrush_1_1Data_1_1TimeSeries" kindref="compound">TimeSeries</ref>&lt; T &gt; &amp;</type>
+          <type><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">const</ref> <ref refid="d7/d56/structBrush_1_1Data_1_1TimeSeries" kindref="compound">TimeSeries</ref>&lt; T &gt; &amp;</type>
           <declname>t</declname>
         </param>
         <briefdescription>
@@ -65,15 +70,15 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/runner/work/brush/brush/src/program/functions.h" line="182" column="21" bodyfile="/home/runner/work/brush/brush/src/program/functions.h" bodystart="182" bodyend="182"/>
-        <references refid="d7/d56/structBrush_1_1Data_1_1TimeSeries_1a183d78293a991b4c67912ab1bda4d0b7" compoundref="d9/df7/timeseries_8h" startline="136" endline="136">Brush::Data::TimeSeries&lt; T &gt;::sum</references>
+        <location file="/home/runner/work/brush/brush/src/program/functions.h" line="183" column="21" bodyfile="/home/runner/work/brush/brush/src/program/functions.h" bodystart="183" bodyend="183"/>
+        <references refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" compoundref="d4/d93/bind__engines_8h" startline="35" endline="104">bind_engine</references>
       </memberdef>
-      </sectiondef>
+    </sectiondef>
     <briefdescription>
     </briefdescription>
     <detaileddescription>
     </detaileddescription>
-    <location file="/home/runner/work/brush/brush/src/program/functions.h" line="172" column="5" bodyfile="/home/runner/work/brush/brush/src/program/functions.h" bodystart="173" bodyend="183"/>
+    <location file="/home/runner/work/brush/brush/src/program/functions.h" line="173" column="5" bodyfile="/home/runner/work/brush/brush/src/program/functions.h" bodystart="174" bodyend="184"/>
     <listofallmembers>
       <member refid="d8/d9c/structBrush_1_1Function_3_01NodeType_1_1Sum_01_4_1ab265c71845b47348b6f4b78434949e5d" prot="public" virt="non-virtual"><scope>Brush::Function&lt; NodeType::Sum &gt;</scope><name>operator()</name></member>
       <member refid="d8/d9c/structBrush_1_1Function_3_01NodeType_1_1Sum_01_4_1ac56fa91b9e9e42b2a13ad4370c04dbd9" prot="public" virt="non-virtual"><scope>Brush::Function&lt; NodeType::Sum &gt;</scope><name>operator()</name></member>

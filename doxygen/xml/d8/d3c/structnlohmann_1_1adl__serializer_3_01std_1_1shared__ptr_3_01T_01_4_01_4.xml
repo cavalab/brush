@@ -1,0 +1,69 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.10.0" xml:lang="en-US">
+  <compounddef id="d8/d3c/structnlohmann_1_1adl__serializer_3_01std_1_1shared__ptr_3_01T_01_4_01_4" kind="struct" language="C++" prot="public">
+    <compoundname>nlohmann::adl_serializer&lt; std::shared_ptr&lt; T &gt; &gt;</compoundname>
+    <includes refid="d5/d60/utils_8h" local="no">utils.h</includes>
+    <templateparamlist>
+      <param>
+        <type><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">typename</ref> T</type>
+      </param>
+    </templateparamlist>
+    <sectiondef kind="public-static-func">
+      <memberdef kind="function" id="d8/d3c/structnlohmann_1_1adl__serializer_3_01std_1_1shared__ptr_3_01T_01_4_01_4_1a92685b9751ed834e511152e058816f29" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">void</ref></type>
+        <definition>static void nlohmann::adl_serializer&lt; std::shared_ptr&lt; T &gt; &gt;::to_json</definition>
+        <argsstring>(json &amp;j, const std::shared_ptr&lt; T &gt; &amp;opt)</argsstring>
+        <name>to_json</name>
+        <qualifiedname>nlohmann::adl_serializer&lt; std::shared_ptr&lt; T &gt; &gt;::to_json</qualifiedname>
+        <param>
+          <type>json &amp;</type>
+          <declname>j</declname>
+        </param>
+        <param>
+          <type><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">const</ref> std::shared_ptr&lt; T &gt; &amp;</type>
+          <declname>opt</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/runner/work/brush/brush/src/util/utils.h" line="37" column="17" bodyfile="/home/runner/work/brush/brush/src/util/utils.h" bodystart="37" bodyend="47"/>
+        <references refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" compoundref="d4/d93/bind__engines_8h" startline="35" endline="104">bind_engine</references>
+      </memberdef>
+      <memberdef kind="function" id="d8/d3c/structnlohmann_1_1adl__serializer_3_01std_1_1shared__ptr_3_01T_01_4_01_4_1aac893bf742fa56d6b331b8047eb0eb7c" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">void</ref></type>
+        <definition>static void nlohmann::adl_serializer&lt; std::shared_ptr&lt; T &gt; &gt;::from_json</definition>
+        <argsstring>(const json &amp;j, std::shared_ptr&lt; T &gt; &amp;opt)</argsstring>
+        <name>from_json</name>
+        <qualifiedname>nlohmann::adl_serializer&lt; std::shared_ptr&lt; T &gt; &gt;::from_json</qualifiedname>
+        <param>
+          <type><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">const</ref> json &amp;</type>
+          <declname>j</declname>
+        </param>
+        <param>
+          <type>std::shared_ptr&lt; T &gt; &amp;</type>
+          <declname>opt</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/runner/work/brush/brush/src/util/utils.h" line="49" column="17" bodyfile="/home/runner/work/brush/brush/src/util/utils.h" bodystart="49" bodyend="59"/>
+        <references refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" compoundref="d4/d93/bind__engines_8h" startline="35" endline="104">bind_engine</references>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="/home/runner/work/brush/brush/src/util/utils.h" line="35" column="1" bodyfile="/home/runner/work/brush/brush/src/util/utils.h" bodystart="36" bodyend="60"/>
+    <listofallmembers>
+      <member refid="d8/d3c/structnlohmann_1_1adl__serializer_3_01std_1_1shared__ptr_3_01T_01_4_01_4_1aac893bf742fa56d6b331b8047eb0eb7c" prot="public" virt="non-virtual"><scope>nlohmann::adl_serializer&lt; std::shared_ptr&lt; T &gt; &gt;</scope><name>from_json</name></member>
+      <member refid="d8/d3c/structnlohmann_1_1adl__serializer_3_01std_1_1shared__ptr_3_01T_01_4_01_4_1a92685b9751ed834e511152e058816f29" prot="public" virt="non-virtual"><scope>nlohmann::adl_serializer&lt; std::shared_ptr&lt; T &gt; &gt;</scope><name>to_json</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

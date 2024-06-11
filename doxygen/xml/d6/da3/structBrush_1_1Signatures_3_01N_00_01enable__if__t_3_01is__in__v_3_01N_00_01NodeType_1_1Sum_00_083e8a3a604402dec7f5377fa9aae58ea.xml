@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
-<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.10.0" xml:lang="en-US">
   <compounddef id="d6/da3/structBrush_1_1Signatures_3_01N_00_01enable__if__t_3_01is__in__v_3_01N_00_01NodeType_1_1Sum_00_083e8a3a604402dec7f5377fa9aae58ea" kind="struct" language="C++" prot="public">
     <compoundname>Brush::Signatures&lt; N, enable_if_t&lt; is_in_v&lt; N, NodeType::Sum, NodeType::Prod, NodeType::Min, NodeType::Max, NodeType::Mean, NodeType::Median &gt; &gt; &gt;</compoundname>
     <includes refid="d8/d8b/signatures_8h" local="no">signatures.h</includes>
@@ -10,25 +10,16 @@
         <defname>N</defname>
       </param>
     </templateparamlist>
-      <sectiondef kind="public-type">
-      <memberdef kind="typedef" id="d6/da3/structBrush_1_1Signatures_3_01N_00_01enable__if__t_3_01is__in__v_3_01N_00_01NodeType_1_1Sum_00_083e8a3a604402dec7f5377fa9aae58ea_1ab6d72fa994711231f1827804f62387b7" prot="public" static="no">
+    <sectiondef kind="public-type">
+      <memberdef kind="typedef" id="d6/da3/structBrush_1_1Signatures_3_01N_00_01enable__if__t_3_01is__in__v_3_01N_00_01NodeType_1_1Sum_00_083e8a3a604402dec7f5377fa9aae58ea_1a921e0cf2df1cacd408fc756ad4a66257" prot="public" static="no">
         <type>std::tuple&lt; <ref refid="d2/d75/structBrush_1_1Signature" kindref="compound">Signature</ref>&lt; ArrayXf(ArrayXXf)&gt;, <ref refid="d2/d75/structBrush_1_1Signature" kindref="compound">Signature</ref>&lt; ArrayXf(TimeSeriesf)&gt; &gt;</type>
-        <definition>using Brush::Signatures&lt; N, enable_if_t&lt; is_in_v&lt; N, NodeType::Sum, NodeType::Prod, NodeType::Min, NodeType::Max, NodeType::Mean, NodeType::Median &gt; &gt; &gt;::unaryTuple =  std::tuple&lt; Signature&lt;ArrayXf(ArrayXXf)&gt;, Signature&lt;ArrayXf(TimeSeriesf)&gt; &gt;</definition>
+        <definition>using Brush::Signatures&lt; N, enable_if_t&lt; is_in_v&lt; N, NodeType::Sum, NodeType::Prod, NodeType::Min, NodeType::Max, NodeType::Mean, NodeType::Median &gt; &gt; &gt;::unaryTuple =  std::tuple&lt;
+            Signature&lt;ArrayXf(ArrayXXf)&gt;,
+            Signature&lt;ArrayXf(TimeSeriesf)&gt;
+        &gt;</definition>
         <argsstring></argsstring>
         <name>unaryTuple</name>
-        <briefdescription>
-        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="/home/runner/work/brush/brush/src/program/signatures.h" line="300" column="9" bodyfile="/home/runner/work/brush/brush/src/program/signatures.h" bodystart="303" bodyend="-1"/>
-      </memberdef>
-      <memberdef kind="typedef" id="d6/da3/structBrush_1_1Signatures_3_01N_00_01enable__if__t_3_01is__in__v_3_01N_00_01NodeType_1_1Sum_00_083e8a3a604402dec7f5377fa9aae58ea_1af3087e93c7af97478126bafc7b8c921c" prot="public" static="no">
-        <type><ref refid="dc/d5c/namespaceBrush_1a763dd4a06812eea6813add9bb539e061" kindref="member">NarySignatures_t</ref>&lt; ArrayXf, ArrayXf, <ref refid="dc/d5c/namespaceBrush_1a5720ee549e0df722bd77a7495c0c6f60" kindref="member">MAX_ARGS</ref> &gt;</type>
-        <definition>using Brush::Signatures&lt; N, enable_if_t&lt; is_in_v&lt; N, NodeType::Sum, NodeType::Prod, NodeType::Min, NodeType::Max, NodeType::Mean, NodeType::Median &gt; &gt; &gt;::naryTuple =  NarySignatures_t&lt;ArrayXf,ArrayXf,MAX_ARGS&gt;</definition>
-        <argsstring></argsstring>
-        <name>naryTuple</name>
+        <qualifiedname>Brush::Signatures&lt; N, enable_if_t&lt; is_in_v&lt; N, NodeType::Sum, NodeType::Prod, NodeType::Min, NodeType::Max, NodeType::Mean, NodeType::Median &gt; &gt; &gt;::unaryTuple</qualifiedname>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
@@ -37,29 +28,44 @@
         </inbodydescription>
         <location file="/home/runner/work/brush/brush/src/program/signatures.h" line="305" column="9" bodyfile="/home/runner/work/brush/brush/src/program/signatures.h" bodystart="305" bodyend="-1"/>
       </memberdef>
-      <memberdef kind="typedef" id="d6/da3/structBrush_1_1Signatures_3_01N_00_01enable__if__t_3_01is__in__v_3_01N_00_01NodeType_1_1Sum_00_083e8a3a604402dec7f5377fa9aae58ea_1a15dbad135fc1dd3246b72122b11d3d78" prot="public" static="no">
-        <type>decltype(std::tuple_cat(<ref refid="d6/da3/structBrush_1_1Signatures_3_01N_00_01enable__if__t_3_01is__in__v_3_01N_00_01NodeType_1_1Sum_00_083e8a3a604402dec7f5377fa9aae58ea_1ab6d72fa994711231f1827804f62387b7" kindref="member">unaryTuple</ref>(), <ref refid="d6/da3/structBrush_1_1Signatures_3_01N_00_01enable__if__t_3_01is__in__v_3_01N_00_01NodeType_1_1Sum_00_083e8a3a604402dec7f5377fa9aae58ea_1af3087e93c7af97478126bafc7b8c921c" kindref="member">naryTuple</ref>()))</type>
-        <definition>using Brush::Signatures&lt; N, enable_if_t&lt; is_in_v&lt; N, NodeType::Sum, NodeType::Prod, NodeType::Min, NodeType::Max, NodeType::Mean, NodeType::Median &gt; &gt; &gt;::type =  decltype(std::tuple_cat(unaryTuple(), naryTuple()))</definition>
+      <memberdef kind="typedef" id="d6/da3/structBrush_1_1Signatures_3_01N_00_01enable__if__t_3_01is__in__v_3_01N_00_01NodeType_1_1Sum_00_083e8a3a604402dec7f5377fa9aae58ea_1af3087e93c7af97478126bafc7b8c921c" prot="public" static="no">
+        <type><ref refid="dc/d5c/namespaceBrush_1aa7f62d6842debd5e9ff4afabeb46111a" kindref="member">NarySignatures_t</ref>&lt; ArrayXf, ArrayXf, <ref refid="dc/d5c/namespaceBrush_1a5720ee549e0df722bd77a7495c0c6f60" kindref="member">MAX_ARGS</ref> &gt;</type>
+        <definition>using Brush::Signatures&lt; N, enable_if_t&lt; is_in_v&lt; N, NodeType::Sum, NodeType::Prod, NodeType::Min, NodeType::Max, NodeType::Mean, NodeType::Median &gt; &gt; &gt;::naryTuple =  NarySignatures_t&lt;ArrayXf,ArrayXf,MAX_ARGS&gt;</definition>
         <argsstring></argsstring>
-        <name>type</name>
+        <name>naryTuple</name>
+        <qualifiedname>Brush::Signatures&lt; N, enable_if_t&lt; is_in_v&lt; N, NodeType::Sum, NodeType::Prod, NodeType::Min, NodeType::Max, NodeType::Mean, NodeType::Median &gt; &gt; &gt;::naryTuple</qualifiedname>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/runner/work/brush/brush/src/program/signatures.h" line="307" column="9" bodyfile="/home/runner/work/brush/brush/src/program/signatures.h" bodystart="307" bodyend="-1"/>
+        <location file="/home/runner/work/brush/brush/src/program/signatures.h" line="310" column="9" bodyfile="/home/runner/work/brush/brush/src/program/signatures.h" bodystart="310" bodyend="-1"/>
       </memberdef>
-      </sectiondef>
+      <memberdef kind="typedef" id="d6/da3/structBrush_1_1Signatures_3_01N_00_01enable__if__t_3_01is__in__v_3_01N_00_01NodeType_1_1Sum_00_083e8a3a604402dec7f5377fa9aae58ea_1a15dbad135fc1dd3246b72122b11d3d78" prot="public" static="no">
+        <type><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">decltype</ref>(std::tuple_cat(<ref refid="d6/da3/structBrush_1_1Signatures_3_01N_00_01enable__if__t_3_01is__in__v_3_01N_00_01NodeType_1_1Sum_00_083e8a3a604402dec7f5377fa9aae58ea_1a921e0cf2df1cacd408fc756ad4a66257" kindref="member">unaryTuple</ref>(), <ref refid="d6/da3/structBrush_1_1Signatures_3_01N_00_01enable__if__t_3_01is__in__v_3_01N_00_01NodeType_1_1Sum_00_083e8a3a604402dec7f5377fa9aae58ea_1af3087e93c7af97478126bafc7b8c921c" kindref="member">naryTuple</ref>()))</type>
+        <definition>using Brush::Signatures&lt; N, enable_if_t&lt; is_in_v&lt; N, NodeType::Sum, NodeType::Prod, NodeType::Min, NodeType::Max, NodeType::Mean, NodeType::Median &gt; &gt; &gt;::type =  decltype(std::tuple_cat(unaryTuple(), naryTuple()))</definition>
+        <argsstring></argsstring>
+        <name>type</name>
+        <qualifiedname>Brush::Signatures&lt; N, enable_if_t&lt; is_in_v&lt; N, NodeType::Sum, NodeType::Prod, NodeType::Min, NodeType::Max, NodeType::Mean, NodeType::Median &gt; &gt; &gt;::type</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/runner/work/brush/brush/src/program/signatures.h" line="312" column="9" bodyfile="/home/runner/work/brush/brush/src/program/signatures.h" bodystart="312" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
     <briefdescription>
     </briefdescription>
     <detaileddescription>
     </detaileddescription>
-    <location file="/home/runner/work/brush/brush/src/program/signatures.h" line="292" column="1" bodyfile="/home/runner/work/brush/brush/src/program/signatures.h" bodystart="299" bodyend="308"/>
+    <location file="/home/runner/work/brush/brush/src/program/signatures.h" line="297" column="1" bodyfile="/home/runner/work/brush/brush/src/program/signatures.h" bodystart="304" bodyend="313"/>
     <listofallmembers>
       <member refid="d6/da3/structBrush_1_1Signatures_3_01N_00_01enable__if__t_3_01is__in__v_3_01N_00_01NodeType_1_1Sum_00_083e8a3a604402dec7f5377fa9aae58ea_1af3087e93c7af97478126bafc7b8c921c" prot="public" virt="non-virtual"><scope>Brush::Signatures&lt; N, enable_if_t&lt; is_in_v&lt; N, NodeType::Sum, NodeType::Prod, NodeType::Min, NodeType::Max, NodeType::Mean, NodeType::Median &gt; &gt; &gt;</scope><name>naryTuple</name></member>
       <member refid="d6/da3/structBrush_1_1Signatures_3_01N_00_01enable__if__t_3_01is__in__v_3_01N_00_01NodeType_1_1Sum_00_083e8a3a604402dec7f5377fa9aae58ea_1a15dbad135fc1dd3246b72122b11d3d78" prot="public" virt="non-virtual"><scope>Brush::Signatures&lt; N, enable_if_t&lt; is_in_v&lt; N, NodeType::Sum, NodeType::Prod, NodeType::Min, NodeType::Max, NodeType::Mean, NodeType::Median &gt; &gt; &gt;</scope><name>type</name></member>
-      <member refid="d6/da3/structBrush_1_1Signatures_3_01N_00_01enable__if__t_3_01is__in__v_3_01N_00_01NodeType_1_1Sum_00_083e8a3a604402dec7f5377fa9aae58ea_1ab6d72fa994711231f1827804f62387b7" prot="public" virt="non-virtual"><scope>Brush::Signatures&lt; N, enable_if_t&lt; is_in_v&lt; N, NodeType::Sum, NodeType::Prod, NodeType::Min, NodeType::Max, NodeType::Mean, NodeType::Median &gt; &gt; &gt;</scope><name>unaryTuple</name></member>
+      <member refid="d6/da3/structBrush_1_1Signatures_3_01N_00_01enable__if__t_3_01is__in__v_3_01N_00_01NodeType_1_1Sum_00_083e8a3a604402dec7f5377fa9aae58ea_1a921e0cf2df1cacd408fc756ad4a66257" prot="public" virt="non-virtual"><scope>Brush::Signatures&lt; N, enable_if_t&lt; is_in_v&lt; N, NodeType::Sum, NodeType::Prod, NodeType::Min, NodeType::Max, NodeType::Mean, NodeType::Median &gt; &gt; &gt;</scope><name>unaryTuple</name></member>
     </listofallmembers>
   </compounddef>
 </doxygen>

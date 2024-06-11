@@ -1,23 +1,24 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
-<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.10.0" xml:lang="en-US">
   <compounddef id="d1/d36/structBrush_1_1Function_3_01NodeType_1_1Mean_01_4" kind="struct" language="C++" prot="public">
     <compoundname>Brush::Function&lt; NodeType::Mean &gt;</compoundname>
     <includes refid="d8/d5c/functions_8h" local="no">functions.h</includes>
     <templateparamlist>
     </templateparamlist>
-      <sectiondef kind="public-func">
+    <sectiondef kind="public-func">
       <memberdef kind="function" id="d1/d36/structBrush_1_1Function_3_01NodeType_1_1Mean_01_4_1ab9933c586bedbedca95320bd7c2b4836" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
         <templateparamlist>
           <param>
-            <type>typename T</type>
+            <type><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">typename</ref> T</type>
           </param>
         </templateparamlist>
-        <type>auto</type>
+        <type><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">auto</ref></type>
         <definition>auto Brush::Function&lt; NodeType::Mean &gt;::operator()</definition>
         <argsstring>(const T &amp;t)</argsstring>
         <name>operator()</name>
+        <qualifiedname>Brush::Function&lt; NodeType::Mean &gt;::operator()</qualifiedname>
         <param>
-          <type>const T &amp;</type>
+          <type><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">const</ref> T &amp;</type>
           <declname>t</declname>
         </param>
         <briefdescription>
@@ -27,19 +28,21 @@
         <inbodydescription>
         </inbodydescription>
         <location file="/home/runner/work/brush/brush/src/program/functions.h" line="118" column="21" bodyfile="/home/runner/work/brush/brush/src/program/functions.h" bodystart="118" bodyend="118"/>
+        <references refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" compoundref="d4/d93/bind__engines_8h" startline="35" endline="104">bind_engine</references>
       </memberdef>
       <memberdef kind="function" id="d1/d36/structBrush_1_1Function_3_01NodeType_1_1Mean_01_4_1ad9ecb768892d4d4da6cf7d989b6d90af" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
         <templateparamlist>
           <param>
-            <type>typename T</type>
+            <type><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">typename</ref> T</type>
           </param>
         </templateparamlist>
-        <type>auto</type>
+        <type><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">auto</ref></type>
         <definition>auto Brush::Function&lt; NodeType::Mean &gt;::operator()</definition>
         <argsstring>(const TimeSeries&lt; T &gt; &amp;t)</argsstring>
         <name>operator()</name>
+        <qualifiedname>Brush::Function&lt; NodeType::Mean &gt;::operator()</qualifiedname>
         <param>
-          <type>const <ref refid="d7/d56/structBrush_1_1Data_1_1TimeSeries" kindref="compound">TimeSeries</ref>&lt; T &gt; &amp;</type>
+          <type><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">const</ref> <ref refid="d7/d56/structBrush_1_1Data_1_1TimeSeries" kindref="compound">TimeSeries</ref>&lt; T &gt; &amp;</type>
           <declname>t</declname>
         </param>
         <briefdescription>
@@ -49,9 +52,9 @@
         <inbodydescription>
         </inbodydescription>
         <location file="/home/runner/work/brush/brush/src/program/functions.h" line="121" column="21" bodyfile="/home/runner/work/brush/brush/src/program/functions.h" bodystart="121" bodyend="121"/>
-        <references refid="d7/d56/structBrush_1_1Data_1_1TimeSeries_1abc0f2b34bc8b341ad4651b268646dc60" compoundref="d9/df7/timeseries_8h" startline="132" endline="132">Brush::Data::TimeSeries&lt; T &gt;::mean</references>
+        <references refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" compoundref="d4/d93/bind__engines_8h" startline="35" endline="104">bind_engine</references>
       </memberdef>
-      </sectiondef>
+    </sectiondef>
     <briefdescription>
     </briefdescription>
     <detaileddescription>

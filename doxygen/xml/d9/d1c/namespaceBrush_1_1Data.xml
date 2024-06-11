@@ -1,14 +1,15 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
-<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.10.0" xml:lang="en-US">
   <compounddef id="d9/d1c/namespaceBrush_1_1Data" kind="namespace" language="C++">
     <compoundname>Brush::Data</compoundname>
     <innerclass refid="d2/d36/classBrush_1_1Data_1_1Dataset" prot="public">Brush::Data::Dataset</innerclass>
     <innerclass refid="dc/d67/structBrush_1_1Data_1_1OmopData" prot="public">Brush::Data::OmopData</innerclass>
     <innerclass refid="d7/d56/structBrush_1_1Data_1_1TimeSeries" prot="public">Brush::Data::TimeSeries</innerclass>
-      <sectiondef kind="enum">
+    <sectiondef kind="enum">
       <memberdef kind="enum" id="d9/d1c/namespaceBrush_1_1Data_1a7e8d2615fe3bb7ef5f2a7cc9c625f985" prot="public" static="no" strong="yes">
         <type></type>
         <name>TimeValues</name>
+        <qualifiedname>Brush::Data::TimeValues</qualifiedname>
         <enumvalue id="d9/d1c/namespaceBrush_1_1Data_1a7e8d2615fe3bb7ef5f2a7cc9c625f985a7a86c157ee9713c34fbd7a1ee40f0c5a" prot="public">
           <name>offset</name>
           <briefdescription>
@@ -41,6 +42,7 @@
       <memberdef kind="enum" id="d9/d1c/namespaceBrush_1_1Data_1a901360c78c84846f943a6653336f82a3" prot="public" static="no" strong="yes">
         <type></type>
         <name>StringFeatures</name>
+        <qualifiedname>Brush::Data::StringFeatures</qualifiedname>
         <enumvalue id="d9/d1c/namespaceBrush_1_1Data_1a901360c78c84846f943a6653336f82a3a1d242f46959a33ab759e4f37b31df7f3" prot="public">
           <name>categorical</name>
           <briefdescription>
@@ -63,13 +65,14 @@
         </inbodydescription>
         <location file="/home/runner/work/brush/brush/src/data/omop.h" line="28" column="1" bodyfile="/home/runner/work/brush/brush/src/data/omop.h" bodystart="28" bodyend="31"/>
       </memberdef>
-      </sectiondef>
-      <sectiondef kind="typedef">
+    </sectiondef>
+    <sectiondef kind="typedef">
       <memberdef kind="typedef" id="d9/d1c/namespaceBrush_1_1Data_1a31f33981b7b5a0fd9f735aecac86bdf9" prot="public" static="no">
-        <type><ref refid="d7/d56/structBrush_1_1Data_1_1TimeSeries" kindref="compound">TimeSeries</ref>&lt; bool &gt;</type>
+        <type><ref refid="d7/d56/structBrush_1_1Data_1_1TimeSeries" kindref="compound">TimeSeries</ref>&lt; <ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">bool</ref> &gt;</type>
         <definition>typedef TimeSeries&lt;bool&gt; Brush::Data::TimeSeriesb</definition>
         <argsstring></argsstring>
         <name>TimeSeriesb</name>
+        <qualifiedname>Brush::Data::TimeSeriesb</qualifiedname>
         <briefdescription>
 <para><ref refid="d7/d56/structBrush_1_1Data_1_1TimeSeries" kindref="compound">TimeSeries</ref> convenience typedefs. </para>
         </briefdescription>
@@ -77,78 +80,84 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/runner/work/brush/brush/src/types.h" line="92" column="24" bodyfile="/home/runner/work/brush/brush/src/types.h" bodystart="87" bodyend="-1"/>
+        <location file="/home/runner/work/brush/brush/src/types.h" line="110" column="24" bodyfile="/home/runner/work/brush/brush/src/types.h" bodystart="110" bodyend="-1"/>
       </memberdef>
       <memberdef kind="typedef" id="d9/d1c/namespaceBrush_1_1Data_1af3754cc76393d77d2e246a50cf26789b" prot="public" static="no">
-        <type><ref refid="d7/d56/structBrush_1_1Data_1_1TimeSeries" kindref="compound">TimeSeries</ref>&lt; int &gt;</type>
+        <type><ref refid="d7/d56/structBrush_1_1Data_1_1TimeSeries" kindref="compound">TimeSeries</ref>&lt; <ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">int</ref> &gt;</type>
         <definition>typedef TimeSeries&lt;int&gt; Brush::Data::TimeSeriesi</definition>
         <argsstring></argsstring>
         <name>TimeSeriesi</name>
+        <qualifiedname>Brush::Data::TimeSeriesi</qualifiedname>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/runner/work/brush/brush/src/types.h" line="93" column="24" bodyfile="/home/runner/work/brush/brush/src/types.h" bodystart="93" bodyend="-1"/>
+        <location file="/home/runner/work/brush/brush/src/types.h" line="111" column="24" bodyfile="/home/runner/work/brush/brush/src/types.h" bodystart="111" bodyend="-1"/>
       </memberdef>
       <memberdef kind="typedef" id="d9/d1c/namespaceBrush_1_1Data_1a66dd2004d1ee46aa2b08a5b2ff462d29" prot="public" static="no">
-        <type><ref refid="d7/d56/structBrush_1_1Data_1_1TimeSeries" kindref="compound">TimeSeries</ref>&lt; float &gt;</type>
+        <type><ref refid="d7/d56/structBrush_1_1Data_1_1TimeSeries" kindref="compound">TimeSeries</ref>&lt; <ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">float</ref> &gt;</type>
         <definition>typedef TimeSeries&lt;float&gt; Brush::Data::TimeSeriesf</definition>
         <argsstring></argsstring>
         <name>TimeSeriesf</name>
+        <qualifiedname>Brush::Data::TimeSeriesf</qualifiedname>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/runner/work/brush/brush/src/types.h" line="94" column="24" bodyfile="/home/runner/work/brush/brush/src/types.h" bodystart="94" bodyend="-1"/>
+        <location file="/home/runner/work/brush/brush/src/types.h" line="112" column="24" bodyfile="/home/runner/work/brush/brush/src/types.h" bodystart="112" bodyend="-1"/>
       </memberdef>
       <memberdef kind="typedef" id="d9/d1c/namespaceBrush_1_1Data_1a8750de9f6997ddb7e3d08163690692e5" prot="public" static="no">
         <type><ref refid="d7/d56/structBrush_1_1Data_1_1TimeSeries" kindref="compound">TimeSeries</ref>&lt; <ref refid="dc/d5c/namespaceBrush_1a1dc15defd0ed08feac029e2844f7867e" kindref="member">bJet</ref> &gt;</type>
         <definition>typedef TimeSeries&lt;bJet&gt; Brush::Data::TimeSeriesbJet</definition>
         <argsstring></argsstring>
         <name>TimeSeriesbJet</name>
+        <qualifiedname>Brush::Data::TimeSeriesbJet</qualifiedname>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/runner/work/brush/brush/src/types.h" line="95" column="24" bodyfile="/home/runner/work/brush/brush/src/types.h" bodystart="95" bodyend="-1"/>
+        <location file="/home/runner/work/brush/brush/src/types.h" line="113" column="24" bodyfile="/home/runner/work/brush/brush/src/types.h" bodystart="113" bodyend="-1"/>
       </memberdef>
       <memberdef kind="typedef" id="d9/d1c/namespaceBrush_1_1Data_1a23a3cfbe568e9bb38ff52aeae1e536eb" prot="public" static="no">
         <type><ref refid="d7/d56/structBrush_1_1Data_1_1TimeSeries" kindref="compound">TimeSeries</ref>&lt; <ref refid="dc/d5c/namespaceBrush_1a12cdc4558b7841338641fdc58bbda013" kindref="member">iJet</ref> &gt;</type>
         <definition>typedef TimeSeries&lt;iJet&gt; Brush::Data::TimeSeriesiJet</definition>
         <argsstring></argsstring>
         <name>TimeSeriesiJet</name>
+        <qualifiedname>Brush::Data::TimeSeriesiJet</qualifiedname>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/runner/work/brush/brush/src/types.h" line="96" column="24" bodyfile="/home/runner/work/brush/brush/src/types.h" bodystart="96" bodyend="-1"/>
+        <location file="/home/runner/work/brush/brush/src/types.h" line="114" column="24" bodyfile="/home/runner/work/brush/brush/src/types.h" bodystart="114" bodyend="-1"/>
       </memberdef>
       <memberdef kind="typedef" id="d9/d1c/namespaceBrush_1_1Data_1a1e91de31054d32c664b20c9f9bf978d5" prot="public" static="no">
         <type><ref refid="d7/d56/structBrush_1_1Data_1_1TimeSeries" kindref="compound">TimeSeries</ref>&lt; <ref refid="dc/d5c/namespaceBrush_1afca2eb9cd1e30d788f324d15a9af500a" kindref="member">fJet</ref> &gt;</type>
         <definition>typedef TimeSeries&lt;fJet&gt; Brush::Data::TimeSeriesfJet</definition>
         <argsstring></argsstring>
         <name>TimeSeriesfJet</name>
+        <qualifiedname>Brush::Data::TimeSeriesfJet</qualifiedname>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/runner/work/brush/brush/src/types.h" line="97" column="24" bodyfile="/home/runner/work/brush/brush/src/types.h" bodystart="97" bodyend="-1"/>
+        <location file="/home/runner/work/brush/brush/src/types.h" line="115" column="24" bodyfile="/home/runner/work/brush/brush/src/types.h" bodystart="115" bodyend="-1"/>
       </memberdef>
       <memberdef kind="typedef" id="d9/d1c/namespaceBrush_1_1Data_1aeec1ea0d55dd44db207801471be4f09c" prot="public" static="no">
         <type>std::variant&lt; <ref refid="dc/d5c/namespaceBrush_1a1c0079df772d6e050857327591514810" kindref="member">ArrayXb</ref>, <ref refid="dc/d5c/namespaceBrush_1ac5cd76eed6ea70d1c8f429ee37ca9fc0" kindref="member">ArrayXi</ref>, ArrayXf, <ref refid="dc/d5c/namespaceBrush_1aa296f8bffc481f54826511e4c5172ff6" kindref="member">ArrayXXb</ref>, <ref refid="dc/d5c/namespaceBrush_1a1ebf835d71baed4d5d616491364856ff" kindref="member">ArrayXXi</ref>, ArrayXXf, <ref refid="d9/d1c/namespaceBrush_1_1Data_1a31f33981b7b5a0fd9f735aecac86bdf9" kindref="member">TimeSeriesb</ref>, <ref refid="d9/d1c/namespaceBrush_1_1Data_1af3754cc76393d77d2e246a50cf26789b" kindref="member">TimeSeriesi</ref>, <ref refid="d9/d1c/namespaceBrush_1_1Data_1a66dd2004d1ee46aa2b08a5b2ff462d29" kindref="member">TimeSeriesf</ref>, <ref refid="dc/d5c/namespaceBrush_1ac5d3cc055d05202b02d1c70993eb61b7" kindref="member">ArrayXbJet</ref>, <ref refid="dc/d5c/namespaceBrush_1ad4d3c3e8d9e723792930ef23b3a1da6f" kindref="member">ArrayXiJet</ref>, <ref refid="dc/d5c/namespaceBrush_1aa9f9c545473315b227a08920cf5882e4" kindref="member">ArrayXfJet</ref>, <ref refid="dc/d5c/namespaceBrush_1a1fa87bfd9d6d1e7705044eb5c431be7f" kindref="member">ArrayXXbJet</ref>, <ref refid="dc/d5c/namespaceBrush_1af5c48ba01828e9da34a2a539dd2e8a14" kindref="member">ArrayXXiJet</ref>, <ref refid="dc/d5c/namespaceBrush_1ac8f76bb8adc0e81c0e17a645a7447b64" kindref="member">ArrayXXfJet</ref>, <ref refid="d9/d1c/namespaceBrush_1_1Data_1a8750de9f6997ddb7e3d08163690692e5" kindref="member">TimeSeriesbJet</ref>, <ref refid="d9/d1c/namespaceBrush_1_1Data_1a23a3cfbe568e9bb38ff52aeae1e536eb" kindref="member">TimeSeriesiJet</ref>, <ref refid="d9/d1c/namespaceBrush_1_1Data_1a1e91de31054d32c664b20c9f9bf978d5" kindref="member">TimeSeriesfJet</ref> &gt;</type>
         <definition>typedef std::variant&lt; ArrayXb, ArrayXi, ArrayXf, ArrayXXb, ArrayXXi, ArrayXXf, TimeSeriesb, TimeSeriesi, TimeSeriesf, ArrayXbJet, ArrayXiJet, ArrayXfJet, ArrayXXbJet, ArrayXXiJet, ArrayXXfJet, TimeSeriesbJet, TimeSeriesiJet, TimeSeriesfJet &gt; Brush::Data::State</definition>
         <argsstring></argsstring>
         <name>State</name>
+        <qualifiedname>Brush::Data::State</qualifiedname>
         <briefdescription>
 <para>defines the possible types of data flowing thru nodes. </para>
         </briefdescription>
@@ -156,15 +165,16 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/runner/work/brush/brush/src/types.h" line="122" column="9" bodyfile="/home/runner/work/brush/brush/src/types.h" bodystart="122" bodyend="-1"/>
+        <location file="/home/runner/work/brush/brush/src/types.h" line="140" column="9" bodyfile="/home/runner/work/brush/brush/src/types.h" bodystart="140" bodyend="-1"/>
       </memberdef>
-      </sectiondef>
-      <sectiondef kind="var">
+    </sectiondef>
+    <sectiondef kind="var">
       <memberdef kind="variable" id="d9/d1c/namespaceBrush_1_1Data_1a024bc26071be66d565dd66852c79ada2" prot="public" static="no" mutable="no">
         <type>std::vector&lt; <ref refid="dc/d5c/namespaceBrush_1a3f2c9b744330ba4a561ac72f048a1a5f" kindref="member">DataType</ref> &gt;</type>
         <definition>std::vector&lt;DataType&gt; Brush::Data::StateTypes</definition>
         <argsstring></argsstring>
         <name>StateTypes</name>
+        <qualifiedname>Brush::Data::StateTypes</qualifiedname>
         <initializer>= {
     <ref refid="dc/d5c/namespaceBrush_1a3f2c9b744330ba4a561ac72f048a1a5fa3c119844524e715e16e6c9b36e6516f0" kindref="member">DataType::ArrayB</ref>,
     <ref refid="dc/d5c/namespaceBrush_1a3f2c9b744330ba4a561ac72f048a1a5fa2374ac8b377f9b738831879110e0a42f" kindref="member">DataType::ArrayI</ref>, 
@@ -182,18 +192,19 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/runner/work/brush/brush/src/data/data.cpp" line="51" column="13" bodyfile="/home/runner/work/brush/brush/src/data/data.cpp" bodystart="51" bodyend="-1"/>
+        <location file="/home/runner/work/brush/brush/src/data/data.cpp" line="51" column="13" bodyfile="/home/runner/work/brush/brush/src/data/data.cpp" bodystart="51" bodyend="61"/>
         <referencedby refid="d9/d1c/namespaceBrush_1_1Data_1a6c00d36ba6aefd852544da96a089754a" compoundref="da/dc9/data_8cpp" startline="64" endline="67">StateType</referencedby>
       </memberdef>
-      </sectiondef>
-      <sectiondef kind="func">
+    </sectiondef>
+    <sectiondef kind="func">
       <memberdef kind="function" id="d9/d1c/namespaceBrush_1_1Data_1a6c00d36ba6aefd852544da96a089754a" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type><ref refid="dc/d5c/namespaceBrush_1a3f2c9b744330ba4a561ac72f048a1a5f" kindref="member">DataType</ref></type>
         <definition>DataType Brush::Data::StateType</definition>
         <argsstring>(const State &amp;arg)</argsstring>
         <name>StateType</name>
+        <qualifiedname>Brush::Data::StateType</qualifiedname>
         <param>
-          <type>const <ref refid="d9/d1c/namespaceBrush_1_1Data_1aeec1ea0d55dd44db207801471be4f09c" kindref="member">State</ref> &amp;</type>
+          <type><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">const</ref> <ref refid="d9/d1c/namespaceBrush_1_1Data_1aeec1ea0d55dd44db207801471be4f09c" kindref="member">State</ref> &amp;</type>
           <declname>arg</declname>
         </param>
         <briefdescription>
@@ -203,16 +214,18 @@
         <inbodydescription>
         </inbodydescription>
         <location file="/home/runner/work/brush/brush/src/data/data.cpp" line="64" column="10" bodyfile="/home/runner/work/brush/brush/src/data/data.cpp" bodystart="64" bodyend="67" declfile="/home/runner/work/brush/brush/src/data/data.h" declline="38" declcolumn="10"/>
-        <references refid="d9/d1c/namespaceBrush_1_1Data_1a024bc26071be66d565dd66852c79ada2" compoundref="da/dc9/data_8cpp" startline="51">StateTypes</references>
-        <referencedby refid="d2/d36/classBrush_1_1Data_1_1Dataset_1aacd5afd19b9cee9d9d84e4290eeabb6f" compoundref="da/dc9/data_8cpp" startline="165" endline="215">Brush::Data::Dataset::init</referencedby>
+        <references refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" compoundref="d4/d93/bind__engines_8h" startline="35" endline="104">bind_engine</references>
+        <references refid="d9/d1c/namespaceBrush_1_1Data_1a024bc26071be66d565dd66852c79ada2" compoundref="da/dc9/data_8cpp" startline="51" endline="61">StateTypes</references>
+        <referencedby refid="d2/d36/classBrush_1_1Data_1_1Dataset_1aacd5afd19b9cee9d9d84e4290eeabb6f" compoundref="da/dc9/data_8cpp" startline="178" endline="228">Brush::Data::Dataset::init</referencedby>
       </memberdef>
       <memberdef kind="function" id="d9/d1c/namespaceBrush_1_1Data_1a1087f7155f1e2855ed2821058b6ab036" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type><ref refid="d9/d1c/namespaceBrush_1_1Data_1aeec1ea0d55dd44db207801471be4f09c" kindref="member">State</ref></type>
         <definition>State Brush::Data::check_type</definition>
         <argsstring>(const ArrayXf &amp;x)</argsstring>
         <name>check_type</name>
+        <qualifiedname>Brush::Data::check_type</qualifiedname>
         <param>
-          <type>const ArrayXf &amp;</type>
+          <type><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">const</ref> ArrayXf &amp;</type>
           <declname>x</declname>
         </param>
         <briefdescription>
@@ -222,15 +235,46 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/runner/work/brush/brush/src/data/data.cpp" line="68" column="7" bodyfile="/home/runner/work/brush/brush/src/data/data.cpp" bodystart="68" bodyend="104" declfile="/home/runner/work/brush/brush/src/data/data.h" declline="37" declcolumn="7"/>
-        <referencedby refid="d2/d36/classBrush_1_1Data_1_1Dataset_1ab709f6732a1854b45418e7f14dd759ea" compoundref="da/dc9/data_8cpp" startline="224" endline="266">Brush::Data::Dataset::make_features</referencedby>
-        <referencedby refid="d9/d1c/namespaceBrush_1_1Data_1ad4320ca3604e146155ccc7c55ea9006c" compoundref="d5/d5a/io_8cpp" startline="14" endline="87">read_csv</referencedby>
+        <location file="/home/runner/work/brush/brush/src/data/data.cpp" line="68" column="7" bodyfile="/home/runner/work/brush/brush/src/data/data.cpp" bodystart="68" bodyend="103" declfile="/home/runner/work/brush/brush/src/data/data.h" declline="37" declcolumn="7"/>
+        <references refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" compoundref="d4/d93/bind__engines_8h" startline="35" endline="104">bind_engine</references>
+        <referencedby refid="d2/d36/classBrush_1_1Data_1_1Dataset_1ab709f6732a1854b45418e7f14dd759ea" compoundref="da/dc9/data_8cpp" startline="238" endline="280">Brush::Data::Dataset::make_features</referencedby>
+        <referencedby refid="d9/d1c/namespaceBrush_1_1Data_1ad4320ca3604e146155ccc7c55ea9006c" compoundref="d5/d5a/io_8cpp" startline="14" endline="88">read_csv</referencedby>
       </memberdef>
-      <memberdef kind="function" id="d9/d1c/namespaceBrush_1_1Data_1a167ca10243cde10177737a1e60a34a61" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+      <memberdef kind="function" id="d9/d1c/namespaceBrush_1_1Data_1a5e5f876d004717e85c08b7661e090e29" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">typename</ref> <ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">StateRef</ref></type>
+          </param>
+        </templateparamlist>
+        <type><ref refid="d9/d1c/namespaceBrush_1_1Data_1aeec1ea0d55dd44db207801471be4f09c" kindref="member">State</ref></type>
+        <definition>State Brush::Data::cast_type</definition>
+        <argsstring>(const ArrayXf &amp;x, const StateRef &amp;x_ref)</argsstring>
+        <name>cast_type</name>
+        <qualifiedname>Brush::Data::cast_type</qualifiedname>
+        <param>
+          <type><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">const</ref> ArrayXf &amp;</type>
+          <declname>x</declname>
+        </param>
+        <param>
+          <type><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">const</ref> <ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">StateRef</ref> &amp;</type>
+          <declname>x_ref</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/runner/work/brush/brush/src/data/data.cpp" line="106" column="7" bodyfile="/home/runner/work/brush/brush/src/data/data.cpp" bodystart="106" bodyend="114" declfile="/home/runner/work/brush/brush/src/data/data.h" declline="41" declcolumn="7"/>
+        <references refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" compoundref="d4/d93/bind__engines_8h" startline="35" endline="104">bind_engine</references>
+        <referencedby refid="d2/d36/classBrush_1_1Data_1_1Dataset_1aa09045b1736581575ec928a7eba7dd98" compoundref="da/dc9/data_8cpp" startline="283" endline="331">Brush::Data::Dataset::copy_and_make_features</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="d9/d1c/namespaceBrush_1_1Data_1ad1be6b37dda8f94db59996bc060e5e2e" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>ostream &amp;</type>
-        <definition>ostream&amp; Brush::Data::operator&lt;&lt;</definition>
+        <definition>ostream &amp; Brush::Data::operator&lt;&lt;</definition>
         <argsstring>(ostream &amp;os, DataType dt)</argsstring>
         <name>operator&lt;&lt;</name>
+        <qualifiedname>Brush::Data::operator&lt;&lt;</qualifiedname>
         <param>
           <type>ostream &amp;</type>
           <declname>os</declname>
@@ -245,24 +289,26 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/runner/work/brush/brush/src/data/data.cpp" line="268" column="1" bodyfile="/home/runner/work/brush/brush/src/data/data.cpp" bodystart="268" bodyend="272"/>
-        <references refid="dc/d5c/namespaceBrush_1ab8d6c8427ade77c95f36ac1781279efb" compoundref="da/dc9/data_8cpp" startline="14">Brush::DataTypeName</references>
+        <location file="/home/runner/work/brush/brush/src/data/data.cpp" line="333" column="1" bodyfile="/home/runner/work/brush/brush/src/data/data.cpp" bodystart="333" bodyend="337"/>
+        <references refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" compoundref="d4/d93/bind__engines_8h" startline="35" endline="104">bind_engine</references>
+        <references refid="dc/d5c/namespaceBrush_1ab8d6c8427ade77c95f36ac1781279efb" compoundref="da/dc9/data_8cpp" startline="14" endline="33">Brush::DataTypeName</references>
       </memberdef>
       <memberdef kind="function" id="d9/d1c/namespaceBrush_1_1Data_1ad4320ca3604e146155ccc7c55ea9006c" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type><ref refid="d2/d36/classBrush_1_1Data_1_1Dataset" kindref="compound">Dataset</ref></type>
         <definition>Dataset Brush::Data::read_csv</definition>
         <argsstring>(const std::string &amp;path, const std::string &amp;target, char sep)</argsstring>
         <name>read_csv</name>
+        <qualifiedname>Brush::Data::read_csv</qualifiedname>
         <param>
-          <type>const std::string &amp;</type>
+          <type><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">const</ref> std::string &amp;</type>
           <declname>path</declname>
         </param>
         <param>
-          <type>const std::string &amp;</type>
+          <type><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">const</ref> std::string &amp;</type>
           <declname>target</declname>
         </param>
         <param>
-          <type>char</type>
+          <type><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">char</ref></type>
           <declname>sep</declname>
         </param>
         <briefdescription>
@@ -272,13 +318,13 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/runner/work/brush/brush/src/data/io.cpp" line="14" column="9" bodyfile="/home/runner/work/brush/brush/src/data/io.cpp" bodystart="14" bodyend="87" declfile="/home/runner/work/brush/brush/src/data/io.h" declline="25" declcolumn="9"/>
-        <references refid="d9/d1c/namespaceBrush_1_1Data_1a1087f7155f1e2855ed2821058b6ab036" compoundref="da/dc9/data_8cpp" startline="68" endline="104">check_type</references>
-        <references refid="da/d41/error_8h_1aa4c550bcd71e4ec1c97b111e1360509a" compoundref="da/d41/error_8h" startline="24">HANDLE_ERROR_THROW</references>
+        <location file="/home/runner/work/brush/brush/src/data/io.cpp" line="14" column="9" bodyfile="/home/runner/work/brush/brush/src/data/io.cpp" bodystart="14" bodyend="88" declfile="/home/runner/work/brush/brush/src/data/io.h" declline="25" declcolumn="9"/>
+        <references refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" compoundref="d4/d93/bind__engines_8h" startline="35" endline="104">bind_engine</references>
+        <references refid="d9/d1c/namespaceBrush_1_1Data_1a1087f7155f1e2855ed2821058b6ab036" compoundref="da/dc9/data_8cpp" startline="68" endline="103">check_type</references>
+        <references refid="da/d41/error_8h_1aa4c550bcd71e4ec1c97b111e1360509a" compoundref="da/d41/error_8h" startline="27">HANDLE_ERROR_THROW</references>
         <references refid="d6/d2e/namespaceBrush_1_1Util_1ad7cd519e42ccafa3c6f4242a0c2b6749" compoundref="de/d06/utils_8cpp" startline="36" endline="39">Brush::Util::trim</references>
-        <referencedby refid="d9/d40/bind__dataset_8cpp_1a3a32d76d471ed16427cad15ed2364f0f" compoundref="d9/d40/bind__dataset_8cpp" startline="9" endline="100">bind_dataset</referencedby>
       </memberdef>
-      </sectiondef>
+    </sectiondef>
     <briefdescription>
 <para>namespace containing <ref refid="d9/d1c/namespaceBrush_1_1Data" kindref="compound">Data</ref> structures used in <ref refid="dc/d5c/namespaceBrush" kindref="compound">Brush</ref> </para>
     </briefdescription>

@@ -1,0 +1,306 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.10.0" xml:lang="en-US">
+  <compounddef id="d8/d80/bind__fitness_8cpp" kind="file" language="C++">
+    <compoundname>bind_fitness.cpp</compoundname>
+    <includes refid="d5/d16/module_8h" local="yes">module.h</includes>
+    <includes refid="dc/d7a/fitness_8h" local="yes">../ind/fitness.h</includes>
+    <incdepgraph>
+      <node id="1">
+        <label>bind_fitness.cpp</label>
+        <link refid="d8/d80/bind__fitness_8cpp"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="9" relation="include">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>module.h</label>
+        <link refid="d5/d16/module_8h"/>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="5" relation="include">
+        </childnode>
+        <childnode refid="6" relation="include">
+        </childnode>
+        <childnode refid="7" relation="include">
+        </childnode>
+        <childnode refid="8" relation="include">
+        </childnode>
+      </node>
+      <node id="9">
+        <label>../ind/fitness.h</label>
+        <link refid="dc/d7a/fitness_8h"/>
+        <childnode refid="10" relation="include">
+        </childnode>
+        <childnode refid="11" relation="include">
+        </childnode>
+        <childnode refid="29" relation="include">
+        </childnode>
+      </node>
+      <node id="11">
+        <label>../init.h</label>
+        <link refid="d8/dc0/init_8h"/>
+        <childnode refid="12" relation="include">
+        </childnode>
+        <childnode refid="13" relation="include">
+        </childnode>
+        <childnode refid="14" relation="include">
+        </childnode>
+        <childnode refid="15" relation="include">
+        </childnode>
+        <childnode refid="16" relation="include">
+        </childnode>
+        <childnode refid="17" relation="include">
+        </childnode>
+        <childnode refid="18" relation="include">
+        </childnode>
+        <childnode refid="19" relation="include">
+        </childnode>
+        <childnode refid="20" relation="include">
+        </childnode>
+        <childnode refid="21" relation="include">
+        </childnode>
+        <childnode refid="22" relation="include">
+        </childnode>
+        <childnode refid="23" relation="include">
+        </childnode>
+        <childnode refid="24" relation="include">
+        </childnode>
+        <childnode refid="8" relation="include">
+        </childnode>
+        <childnode refid="25" relation="include">
+        </childnode>
+      </node>
+      <node id="25">
+        <label>types.h</label>
+        <link refid="d9/d49/types_8h"/>
+        <childnode refid="26" relation="include">
+        </childnode>
+        <childnode refid="27" relation="include">
+        </childnode>
+        <childnode refid="28" relation="include">
+        </childnode>
+      </node>
+      <node id="32">
+        <label>error.h</label>
+        <link refid="da/d41/error_8h"/>
+        <childnode refid="21" relation="include">
+        </childnode>
+        <childnode refid="15" relation="include">
+        </childnode>
+      </node>
+      <node id="29">
+        <label>../util/utils.h</label>
+        <link refid="d5/d60/utils_8h"/>
+        <childnode refid="13" relation="include">
+        </childnode>
+        <childnode refid="20" relation="include">
+        </childnode>
+        <childnode refid="19" relation="include">
+        </childnode>
+        <childnode refid="16" relation="include">
+        </childnode>
+        <childnode refid="30" relation="include">
+        </childnode>
+        <childnode refid="31" relation="include">
+        </childnode>
+        <childnode refid="18" relation="include">
+        </childnode>
+        <childnode refid="11" relation="include">
+        </childnode>
+        <childnode refid="32" relation="include">
+        </childnode>
+        <childnode refid="33" relation="include">
+        </childnode>
+        <childnode refid="34" relation="include">
+        </childnode>
+        <childnode refid="35" relation="include">
+        </childnode>
+        <childnode refid="36" relation="include">
+        </childnode>
+      </node>
+      <node id="13">
+        <label>Eigen/Dense</label>
+      </node>
+      <node id="27">
+        <label>ceres/jet.h</label>
+      </node>
+      <node id="30">
+        <label>chrono</label>
+      </node>
+      <node id="28">
+        <label>concepts</label>
+      </node>
+      <node id="35">
+        <label>execution</label>
+      </node>
+      <node id="23">
+        <label>fmt/format.h</label>
+      </node>
+      <node id="22">
+        <label>fmt/ostream.h</label>
+      </node>
+      <node id="24">
+        <label>fmt/ranges.h</label>
+      </node>
+      <node id="16">
+        <label>fstream</label>
+      </node>
+      <node id="10">
+        <label>functional</label>
+      </node>
+      <node id="15">
+        <label>iostream</label>
+      </node>
+      <node id="34">
+        <label>iterator</label>
+      </node>
+      <node id="18">
+        <label>map</label>
+      </node>
+      <node id="14">
+        <label>memory</label>
+      </node>
+      <node id="8">
+        <label>nlohmann/json.hpp</label>
+      </node>
+      <node id="17">
+        <label>numeric</label>
+      </node>
+      <node id="31">
+        <label>ostream</label>
+      </node>
+      <node id="4">
+        <label>pybind11/eigen.h</label>
+      </node>
+      <node id="6">
+        <label>pybind11/iostream.h</label>
+      </node>
+      <node id="3">
+        <label>pybind11/pybind11.h</label>
+      </node>
+      <node id="5">
+        <label>pybind11/stl.h</label>
+      </node>
+      <node id="7">
+        <label>pybind11_json/pybind11_json.hpp</label>
+      </node>
+      <node id="19">
+        <label>set</label>
+      </node>
+      <node id="12">
+        <label>stdint.h</label>
+      </node>
+      <node id="21">
+        <label>string</label>
+      </node>
+      <node id="36">
+        <label>tuple</label>
+      </node>
+      <node id="33">
+        <label>typeindex</label>
+      </node>
+      <node id="26">
+        <label>variant</label>
+      </node>
+      <node id="20">
+        <label>vector</label>
+      </node>
+    </incdepgraph>
+    <sectiondef kind="typedef">
+      <memberdef kind="typedef" id="d8/d80/bind__fitness_8cpp_1ae2f679a1605bd79ee7983e55e31d6d2e" prot="public" static="no">
+        <type><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">py::call_guard</ref>&lt; <ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">py::scoped_ostream_redirect</ref>, <ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">py::scoped_estream_redirect</ref> &gt;</type>
+        <definition>using stream_redirect =  py::call_guard&lt;py::scoped_ostream_redirect, py::scoped_estream_redirect&gt;</definition>
+        <argsstring></argsstring>
+        <name>stream_redirect</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/runner/work/brush/brush/src/bindings/bind_fitness.cpp" line="8" column="1" bodyfile="/home/runner/work/brush/brush/src/bindings/bind_fitness.cpp" bodystart="8" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="func">
+      <memberdef kind="function" id="d8/d80/bind__fitness_8cpp_1aa1d69f4eced5e5a4bfde7cac15a1b4d4" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">void</ref></type>
+        <definition>void bind_fitness</definition>
+        <argsstring>(py::module &amp;m)</argsstring>
+        <name>bind_fitness</name>
+        <param>
+          <type><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">py::module</ref> &amp;</type>
+          <declname>m</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/runner/work/brush/brush/src/bindings/bind_fitness.cpp" line="10" column="6" bodyfile="/home/runner/work/brush/brush/src/bindings/bind_fitness.cpp" bodystart="10" bodyend="50"/>
+        <references refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" compoundref="d4/d93/bind__engines_8h" startline="35" endline="104">bind_engine</references>
+        <referencedby refid="dd/d30/module_8cpp_1ab3432520f506686ba18c7ce7758a6c69" compoundref="dd/d30/module_8cpp" startline="33" endline="60">PYBIND11_MODULE</referencedby>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"><highlight class="preprocessor">#include<sp/>&quot;<ref refid="d5/d16/module_8h" kindref="compound">module.h</ref>&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="2"><highlight class="normal"></highlight></codeline>
+<codeline lineno="3"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;<ref refid="dc/d7a/fitness_8h" kindref="compound">../ind/fitness.h</ref>&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="4"><highlight class="normal"></highlight></codeline>
+<codeline lineno="5"><highlight class="normal"></highlight><highlight class="keyword">namespace<sp/></highlight><highlight class="normal"><ref refid="d3/d9b/namespacenlohmann" kindref="compound">nl</ref><sp/>=<sp/><ref refid="d3/d9b/namespacenlohmann" kindref="compound">nlohmann</ref>;</highlight></codeline>
+<codeline lineno="6"><highlight class="normal"></highlight><highlight class="keyword">namespace<sp/></highlight><highlight class="normal"><ref refid="dc/d5c/namespaceBrush" kindref="compound">br</ref><sp/>=<sp/><ref refid="dc/d5c/namespaceBrush" kindref="compound">Brush</ref>;</highlight></codeline>
+<codeline lineno="7"><highlight class="normal"></highlight></codeline>
+<codeline lineno="8" refid="d8/d80/bind__fitness_8cpp_1ae2f679a1605bd79ee7983e55e31d6d2e" refkind="member"><highlight class="normal"></highlight><highlight class="keyword">using<sp/></highlight><highlight class="normal"><ref refid="d4/d93/bind__engines_8h_1ae2f679a1605bd79ee7983e55e31d6d2e" kindref="member">stream_redirect</ref><sp/>=<sp/>py::call_guard&lt;py::scoped_ostream_redirect,<sp/>py::scoped_estream_redirect&gt;;</highlight></codeline>
+<codeline lineno="9"><highlight class="normal"></highlight></codeline>
+<codeline lineno="10" refid="d8/d80/bind__fitness_8cpp_1aa1d69f4eced5e5a4bfde7cac15a1b4d4" refkind="member"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="d8/d80/bind__fitness_8cpp_1aa1d69f4eced5e5a4bfde7cac15a1b4d4" kindref="member">bind_fitness</ref>(py::module&amp;<sp/>m)</highlight></codeline>
+<codeline lineno="11"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="12"><highlight class="normal"><sp/><sp/><sp/><sp/>py::class_&lt;br::Fitness&gt;(m,<sp/></highlight><highlight class="stringliteral">&quot;Fitness&quot;</highlight><highlight class="normal">,<sp/>py::dynamic_attr())</highlight></codeline>
+<codeline lineno="13"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>.def(py::init&lt;&gt;())</highlight></codeline>
+<codeline lineno="14"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>.def(py::init&lt;</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>std::vector&lt;float&gt;&amp;&gt;(),<sp/></highlight><highlight class="stringliteral">&quot;Constructor<sp/>with<sp/>weights&quot;</highlight><highlight class="normal">)</highlight></codeline>
+<codeline lineno="15"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>.def_property(</highlight><highlight class="stringliteral">&quot;values&quot;</highlight><highlight class="normal">,<sp/>&amp;br::Fitness::get_values,<sp/>&amp;br::Fitness::set_values)</highlight></codeline>
+<codeline lineno="16"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>.def_property_readonly(</highlight><highlight class="stringliteral">&quot;weights&quot;</highlight><highlight class="normal">,<sp/>&amp;br::Fitness::get_weights)</highlight></codeline>
+<codeline lineno="17"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>.def_property_readonly(</highlight><highlight class="stringliteral">&quot;wvalues&quot;</highlight><highlight class="normal">,<sp/>&amp;br::Fitness::get_wvalues)</highlight></codeline>
+<codeline lineno="18"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>.def(</highlight><highlight class="stringliteral">&quot;dominates&quot;</highlight><highlight class="normal">,<sp/>&amp;br::Fitness::dominates)</highlight></codeline>
+<codeline lineno="19"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>.def(</highlight><highlight class="stringliteral">&quot;clearValues&quot;</highlight><highlight class="normal">,<sp/>&amp;br::Fitness::clearValues,<sp/></highlight><highlight class="stringliteral">&quot;Clear<sp/>the<sp/>weighted<sp/>values<sp/>vector&quot;</highlight><highlight class="normal">)</highlight></codeline>
+<codeline lineno="20"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>.def_property(</highlight><highlight class="stringliteral">&quot;rank&quot;</highlight><highlight class="normal">,<sp/>&amp;br::Fitness::get_rank,<sp/>&amp;br::Fitness::set_rank)</highlight></codeline>
+<codeline lineno="21"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>.def_property(</highlight><highlight class="stringliteral">&quot;loss&quot;</highlight><highlight class="normal">,<sp/>&amp;br::Fitness::get_loss,<sp/>&amp;br::Fitness::set_loss)</highlight></codeline>
+<codeline lineno="22"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>.def_property(</highlight><highlight class="stringliteral">&quot;loss_v&quot;</highlight><highlight class="normal">,<sp/>&amp;br::Fitness::get_loss_v,<sp/>&amp;br::Fitness::set_loss_v)</highlight></codeline>
+<codeline lineno="23"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>.def_property(</highlight><highlight class="stringliteral">&quot;crowding_dist&quot;</highlight><highlight class="normal">,<sp/>&amp;br::Fitness::get_crowding_dist,<sp/>&amp;br::Fitness::set_crowding_dist)</highlight></codeline>
+<codeline lineno="24"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="25"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>.def(</highlight><highlight class="stringliteral">&quot;valid&quot;</highlight><highlight class="normal">,<sp/>&amp;br::Fitness::valid,<sp/></highlight><highlight class="stringliteral">&quot;Check<sp/>if<sp/>the<sp/>fitness<sp/>is<sp/>valid&quot;</highlight><highlight class="normal">)</highlight></codeline>
+<codeline lineno="26"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>.def(</highlight><highlight class="stringliteral">&quot;__hash__&quot;</highlight><highlight class="normal">,<sp/>&amp;br::Fitness::hash,<sp/>py::is_operator())</highlight></codeline>
+<codeline lineno="27"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>.def(</highlight><highlight class="stringliteral">&quot;__eq__&quot;</highlight><highlight class="normal">,<sp/>&amp;br::Fitness::operator==,<sp/>py::is_operator())</highlight></codeline>
+<codeline lineno="28"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>.def(</highlight><highlight class="stringliteral">&quot;__ne__&quot;</highlight><highlight class="normal">,<sp/>&amp;br::Fitness::operator!=,<sp/>py::is_operator())</highlight></codeline>
+<codeline lineno="29"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>.def(</highlight><highlight class="stringliteral">&quot;__lt__&quot;</highlight><highlight class="normal">,<sp/>&amp;br::Fitness::operator&lt;,<sp/>py::is_operator())</highlight></codeline>
+<codeline lineno="30"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>.def(</highlight><highlight class="stringliteral">&quot;__gt__&quot;</highlight><highlight class="normal">,<sp/>&amp;br::Fitness::operator&gt;,<sp/>py::is_operator())</highlight></codeline>
+<codeline lineno="31"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>.def(</highlight><highlight class="stringliteral">&quot;__le__&quot;</highlight><highlight class="normal">,<sp/>&amp;br::Fitness::operator&lt;=,<sp/>py::is_operator())</highlight></codeline>
+<codeline lineno="32"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>.def(</highlight><highlight class="stringliteral">&quot;__ge__&quot;</highlight><highlight class="normal">,<sp/>&amp;br::Fitness::operator&gt;=,<sp/>py::is_operator())</highlight></codeline>
+<codeline lineno="33"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>.def(</highlight><highlight class="stringliteral">&quot;__str__&quot;</highlight><highlight class="normal">,<sp/>&amp;br::Fitness::toString,<sp/></highlight><highlight class="stringliteral">&quot;String<sp/>representation<sp/>of<sp/>the<sp/>Fitness<sp/>object&quot;</highlight><highlight class="normal">)</highlight></codeline>
+<codeline lineno="34"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>.def(</highlight><highlight class="stringliteral">&quot;__repr__&quot;</highlight><highlight class="normal">,<sp/>&amp;br::Fitness::repr,<sp/></highlight><highlight class="stringliteral">&quot;Representation<sp/>for<sp/>debugging<sp/>the<sp/>Fitness<sp/>object&quot;</highlight><highlight class="normal">)</highlight></codeline>
+<codeline lineno="35"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>.def(py::pickle(</highlight></codeline>
+<codeline lineno="36"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>[](</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="d6/dd0/structBrush_1_1Fitness" kindref="compound">br::Fitness</ref><sp/>&amp;<ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">f</ref>)<sp/>{<sp/></highlight><highlight class="comment">//<sp/>__getstate__</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="37"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>Return<sp/>a<sp/>tuple<sp/>that<sp/>fully<sp/>encodes<sp/>the<sp/>state<sp/>of<sp/>the<sp/>object<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="38"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>return<sp/>py::make_tuple(p.value(),<sp/>p.extra());</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="39"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>nl::json<sp/><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">j</ref><sp/>=<sp/><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">f</ref>;</highlight></codeline>
+<codeline lineno="40"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">j</ref>;</highlight></codeline>
+<codeline lineno="41"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>},</highlight></codeline>
+<codeline lineno="42"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>[](nl::json<sp/><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">j</ref>)<sp/>{<sp/></highlight><highlight class="comment">//<sp/>__setstate__</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="43"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="d6/dd0/structBrush_1_1Fitness" kindref="compound">br::Fitness</ref><sp/><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">f</ref><sp/>=<sp/><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">j</ref>;</highlight></codeline>
+<codeline lineno="44"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">f</ref>;</highlight></codeline>
+<codeline lineno="45"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="46"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>)</highlight></codeline>
+<codeline lineno="47"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>)</highlight></codeline>
+<codeline lineno="48"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>;</highlight></codeline>
+<codeline lineno="49"><highlight class="normal"></highlight></codeline>
+<codeline lineno="50"><highlight class="normal">}</highlight></codeline>
+    </programlisting>
+    <location file="/home/runner/work/brush/brush/src/bindings/bind_fitness.cpp"/>
+  </compounddef>
+</doxygen>

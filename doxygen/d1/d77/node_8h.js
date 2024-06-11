@@ -1,8 +1,8 @@
 var node_8h =
 [
-    [ "uint32_vector_hasher", "d1/ddf/structBrush_1_1uint32__vector__hasher.html", "d1/ddf/structBrush_1_1uint32__vector__hasher" ],
-    [ "Node", "d1/d3a/structBrush_1_1Node.html", "d1/d3a/structBrush_1_1Node" ],
-    [ "formatter< Brush::Node >", "d4/d63/structfmt_1_1formatter_3_01Brush_1_1Node_01_4.html", "d4/d63/structfmt_1_1formatter_3_01Brush_1_1Node_01_4" ],
+    [ "Brush::uint32_vector_hasher", "d1/ddf/structBrush_1_1uint32__vector__hasher.html", "d1/ddf/structBrush_1_1uint32__vector__hasher" ],
+    [ "Brush::Node", "d1/d3a/structBrush_1_1Node.html", "d1/d3a/structBrush_1_1Node" ],
+    [ "fmt::formatter< Brush::Node >", "d4/d63/structfmt_1_1formatter_3_01Brush_1_1Node_01_4.html", "d4/d63/structfmt_1_1formatter_3_01Brush_1_1Node_01_4" ],
     [ "from_json", "d1/d77/node_8h.html#ad36f62c73493c032059be8cd18590d0e", null ],
     [ "Is", "d1/d77/node_8h.html#a4f135739df5fe55a0ff81d943bec8be2", null ],
     [ "IsCommutative", "d1/d77/node_8h.html#a2b2fe399958c87099f03e33511fcd3d0", null ],

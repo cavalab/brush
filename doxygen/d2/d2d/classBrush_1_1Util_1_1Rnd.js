@@ -7,7 +7,7 @@ var classBrush_1_1Util_1_1Rnd =
     [ "initRand", "d2/d2d/classBrush_1_1Util_1_1Rnd.html#a4fee4453f2aff1384cda4e14d53234fe", null ],
     [ "operator()", "d2/d2d/classBrush_1_1Util_1_1Rnd.html#aab34b78c05c7aa5edd63c6f4e8265351", null ],
     [ "operator()", "d2/d2d/classBrush_1_1Util_1_1Rnd.html#a840b7318ae8de499ad0b0bf151986382", null ],
-    [ "random_choice", "d2/d2d/classBrush_1_1Util_1_1Rnd.html#a7a25d2af76e790737f5f0d28e62877e3", null ],
+    [ "random_choice", "d2/d2d/classBrush_1_1Util_1_1Rnd.html#a9ea4fb27b340cdd054b1e271e76137e0", null ],
     [ "random_choice", "d2/d2d/classBrush_1_1Util_1_1Rnd.html#a18656ce513329b1c672f6ee15ab281b7", null ],
     [ "random_choice", "d2/d2d/classBrush_1_1Util_1_1Rnd.html#a318db1552e635b2cac649c0e1b1805f6", null ],
     [ "rnd_dbl", "d2/d2d/classBrush_1_1Util_1_1Rnd.html#aa7cedc8c08588c4740e07da8d6c2cb9f", null ],

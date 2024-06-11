@@ -1,11 +1,11 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
-<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.10.0" xml:lang="en-US">
   <compounddef id="d0/d80/structis__in" kind="struct" language="C++" prot="public">
     <compoundname>is_in</compoundname>
     <includes refid="de/d26/nodetype_8h" local="no">nodetype.h</includes>
     <templateparamlist>
       <param>
-        <type>NodeType</type>
+        <type><ref refid="dc/d5c/namespaceBrush_1a051322bb9fd1db4638b6eccd399a29c8" kindref="member">NodeType</ref></type>
         <declname>T</declname>
         <defname>T</defname>
       </param>
@@ -15,27 +15,28 @@
         <defname>Ts</defname>
       </param>
     </templateparamlist>
-      <sectiondef kind="public-static-attrib">
+    <sectiondef kind="public-static-attrib">
       <memberdef kind="variable" id="d0/d80/structis__in_1ab3c8d28cec054e6dc08780566a70876a" prot="public" static="yes" constexpr="yes" mutable="no">
-        <type>constexpr bool</type>
+        <type><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">constexpr</ref> <ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">bool</ref></type>
         <definition>constexpr bool is_in&lt; T, Ts &gt;::value</definition>
         <argsstring></argsstring>
         <name>value</name>
-        <initializer>= ((T == Ts) || ...)</initializer>
+        <qualifiedname>is_in::value</qualifiedname>
+        <initializer>= ((T == <ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">Ts</ref>) || ...)</initializer>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/runner/work/brush/brush/src/program/nodetype.h" line="228" column="27" bodyfile="/home/runner/work/brush/brush/src/program/nodetype.h" bodystart="228" bodyend="-1"/>
+        <location file="/home/runner/work/brush/brush/src/program/nodetype.h" line="248" column="27" bodyfile="/home/runner/work/brush/brush/src/program/nodetype.h" bodystart="248" bodyend="-1"/>
       </memberdef>
-      </sectiondef>
+    </sectiondef>
     <briefdescription>
     </briefdescription>
     <detaileddescription>
     </detaileddescription>
-    <location file="/home/runner/work/brush/brush/src/program/nodetype.h" line="226" column="1" bodyfile="/home/runner/work/brush/brush/src/program/nodetype.h" bodystart="227" bodyend="229"/>
+    <location file="/home/runner/work/brush/brush/src/program/nodetype.h" line="246" column="1" bodyfile="/home/runner/work/brush/brush/src/program/nodetype.h" bodystart="247" bodyend="249"/>
     <listofallmembers>
       <member refid="d0/d80/structis__in_1ab3c8d28cec054e6dc08780566a70876a" prot="public" virt="non-virtual"><scope>is_in</scope><name>value</name></member>
     </listofallmembers>

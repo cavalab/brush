@@ -1,14 +1,15 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
-<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.10.0" xml:lang="en-US">
   <compounddef id="dc/d67/structBrush_1_1Data_1_1OmopData" kind="struct" language="C++" prot="public">
     <compoundname>Brush::Data::OmopData</compoundname>
     <includes refid="d0/dea/omop_8h" local="no">omop.h</includes>
-      <sectiondef kind="public-attrib">
+    <sectiondef kind="public-attrib">
       <memberdef kind="variable" id="dc/d67/structBrush_1_1Data_1_1OmopData_1a33bc71d0a2b254f83094568cf9518ae7" prot="public" static="no" mutable="no">
         <type>std::string</type>
         <definition>std::string Brush::Data::OmopData::cdm_version</definition>
         <argsstring></argsstring>
         <name>cdm_version</name>
+        <qualifiedname>Brush::Data::OmopData::cdm_version</qualifiedname>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
@@ -22,6 +23,7 @@
         <definition>TimeValues Brush::Data::OmopData::tv</definition>
         <argsstring></argsstring>
         <name>tv</name>
+        <qualifiedname>Brush::Data::OmopData::tv</qualifiedname>
         <initializer>= <ref refid="d9/d1c/namespaceBrush_1_1Data_1a7e8d2615fe3bb7ef5f2a7cc9c625f985ad7e6d55ba379a13d08c25d15faf2a23b" kindref="member">TimeValues::timestamp</ref></initializer>
         <briefdescription>
         </briefdescription>
@@ -36,6 +38,7 @@
         <definition>StringFeatures Brush::Data::OmopData::sf</definition>
         <argsstring></argsstring>
         <name>sf</name>
+        <qualifiedname>Brush::Data::OmopData::sf</qualifiedname>
         <initializer>= <ref refid="d9/d1c/namespaceBrush_1_1Data_1a901360c78c84846f943a6653336f82a3a1d242f46959a33ab759e4f37b31df7f3" kindref="member">StringFeatures::categorical</ref></initializer>
         <briefdescription>
         </briefdescription>
@@ -45,13 +48,14 @@
         </inbodydescription>
         <location file="/home/runner/work/brush/brush/src/data/omop.h" line="37" column="20" bodyfile="/home/runner/work/brush/brush/src/data/omop.h" bodystart="37" bodyend="-1"/>
       </memberdef>
-      </sectiondef>
-      <sectiondef kind="public-func">
+    </sectiondef>
+    <sectiondef kind="public-func">
       <memberdef kind="function" id="dc/d67/structBrush_1_1Data_1_1OmopData_1a1f884542927a952356b10f691d8660d0" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type></type>
         <definition>Brush::Data::OmopData::OmopData</definition>
         <argsstring>(fs::directory_iterator omop_dir)</argsstring>
         <name>OmopData</name>
+        <qualifiedname>Brush::Data::OmopData::OmopData</qualifiedname>
         <param>
           <type>fs::directory_iterator</type>
           <declname>omop_dir</declname>
@@ -64,12 +68,14 @@
         <inbodydescription>
         </inbodydescription>
         <location file="/home/runner/work/brush/brush/src/data/omop.h" line="40" column="5" bodyfile="/home/runner/work/brush/brush/src/data/omop.cpp" bodystart="11" bodyend="17"/>
+        <references refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" compoundref="d4/d93/bind__engines_8h" startline="35" endline="104">bind_engine</references>
       </memberdef>
       <memberdef kind="function" id="dc/d67/structBrush_1_1Data_1_1OmopData_1a354a903446a0beaf5c63e3c63282c4fb" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type></type>
         <definition>Brush::Data::OmopData::OmopData</definition>
         <argsstring>(fs::path json_filename)</argsstring>
         <name>OmopData</name>
+        <qualifiedname>Brush::Data::OmopData::OmopData</qualifiedname>
         <param>
           <type>fs::path</type>
           <declname>json_filename</declname>
@@ -83,21 +89,21 @@
         </inbodydescription>
         <location file="/home/runner/work/brush/brush/src/data/omop.h" line="43" column="5" bodyfile="/home/runner/work/brush/brush/src/data/omop.cpp" bodystart="19" bodyend="21"/>
       </memberdef>
-      </sectiondef>
+    </sectiondef>
     <briefdescription>
     </briefdescription>
     <detaileddescription>
     </detaileddescription>
     <collaborationgraph>
-      <node id="3">
-        <label>std::basic_string&lt; Char &gt;</label>
-      </node>
       <node id="1">
         <label>Brush::Data::OmopData</label>
         <link refid="dc/d67/structBrush_1_1Data_1_1OmopData"/>
         <childnode refid="2" relation="usage">
           <edgelabel>cdm_version</edgelabel>
         </childnode>
+      </node>
+      <node id="3">
+        <label>std::basic_string&lt; Char &gt;</label>
       </node>
       <node id="2">
         <label>std::string</label>

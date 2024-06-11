@@ -1,14 +1,21 @@
 var searchData=
 [
-  ['pearson_5fcorrelation_1205',['pearson_correlation',['../d6/d2e/namespaceBrush_1_1Util.html#a3ecdd0fbfe8f46304f0b48992cf5726c',1,'Brush::Util']]],
-  ['point_5fmutation_1206',['point_mutation',['../d0/d24/namespacevariation.html#a170515efe6144a099812fc284c2ae10b',1,'variation']]],
-  ['pow_1207',['pow',['../d7/d56/structBrush_1_1Data_1_1TimeSeries.html#af2794548897e6940a8c4636c41960393',1,'Brush::Data::TimeSeries']]],
-  ['predict_1208',['predict',['../d0/dc4/classbrush_1_1estimator_1_1BrushEstimator.html#a87709a26a92ac4e24a4f3106b2bdd139',1,'brush.estimator.BrushEstimator.predict()'],['../db/d88/structBrush_1_1Program.html#a0dafcc2656df58585dc3d29b6e50dd1e',1,'Brush::Program::predict(const Dataset &amp;d) requires(is_same_v&lt; R'],['../db/d88/structBrush_1_1Program.html#ace998af38f1b2542faa6d94c9fa1eaa6',1,'Brush::Program::predict(const Dataset &amp;d) requires(is_same_v&lt; R'],['../db/d88/structBrush_1_1Program.html#abe17a66e4f4dce64dadc157f3031d178',1,'Brush::Program::predict(const Dataset &amp;d) requires(is_same_v&lt; R'],['../db/d88/structBrush_1_1Program.html#a59371dd699ddbb0bdb3b27237cb40e76',1,'Brush::Program::predict(const Ref&lt; const ArrayXXf &gt; &amp;X)'],['../d3/df2/structOperator_3_01NT_00_01S_00_01Fit_00_01enable__if__t_3_01is__in__v_3_01NT_00_01NodeType_1_1Se4750a8ecc1d24ba81c8da2bd5c73a14.html#af103a8ad8b7580d3c3a82b5c997b26c0',1,'Operator&lt; NT, S, Fit, enable_if_t&lt; is_in_v&lt; NT, NodeType::SplitOn, NodeType::SplitBest &gt; &gt; &gt;::predict()'],['../dc/d90/classtree__node___3_01Node_01_4.html#a461ca791befcd51a9c3d6edb1fe5a620',1,'tree_node_&lt; Node &gt;::predict(const Dataset &amp;d, const float **weights=nullptr)'],['../dc/d90/classtree__node___3_01Node_01_4.html#a66eee7995ee557a45519f6e8e6f830ca',1,'tree_node_&lt; Node &gt;::predict(const Dataset &amp;d, const W **weights)']]],
-  ['predict_5fproba_1209',['predict_proba',['../d0/d6a/classbrush_1_1estimator_1_1BrushClassifier.html#a0a089fd905951f470a57fd267890511c',1,'brush::estimator::BrushClassifier']]],
-  ['predict_5fwith_5fweights_1210',['predict_with_weights',['../db/d88/structBrush_1_1Program.html#a6a1237f15d7b9cc1e825e1a3213df58e',1,'Brush::Program::predict_with_weights(const Dataset &amp;d, const W **weights)'],['../db/d88/structBrush_1_1Program.html#a93735deb988101774e8e58c5402e1a21',1,'Brush::Program::predict_with_weights(const Dataset &amp;d, const ArrayXf &amp;weights)']]],
-  ['print_1211',['print',['../d2/d36/classBrush_1_1Data_1_1Dataset.html#a59ec8554d617a4a99ba7feec09bdc62c',1,'Brush::Data::Dataset::print()'],['../d6/d2e/namespaceBrush_1_1Util.html#a0fca88a717680a76c4b7b9b082675f89',1,'Brush::Util::print()'],['../d4/dc3/structBrush_1_1SearchSpace.html#a1cfbfca3a45987de45159bc4699a61bb',1,'Brush::SearchSpace::print()'],['../d3/da8/structBrush_1_1DispatchTable.html#a6f1cdf04bddfdd7cc09cc1e9d934dee6',1,'Brush::DispatchTable::print()'],['../d7/d56/structBrush_1_1Data_1_1TimeSeries.html#a45820a71d7cb5d552dce96fdce8db1d1',1,'Brush::Data::TimeSeries::print() const']]],
-  ['prod_1212',['prod',['../d7/d56/structBrush_1_1Data_1_1TimeSeries.html#a232a1f40343f5bf7937ee40580771564',1,'Brush::Data::TimeSeries']]],
-  ['program_1213',['Program',['../db/d88/structBrush_1_1Program.html#ab5df93b7b0bf914455ffeb5cc7574543',1,'Brush::Program::Program()=default'],['../db/d88/structBrush_1_1Program.html#a00356ac7bbc5c1d8f70bc8d90f41d4ac',1,'Brush::Program::Program(const std::reference_wrapper&lt; SearchSpace &gt; s, const tree&lt; Node &gt; t)']]],
-  ['ptc2_1214',['PTC2',['../d4/dc3/structBrush_1_1SearchSpace.html#ac11ff8fbc623ac3b2b6d587a11de4a61',1,'Brush::SearchSpace']]],
-  ['pybind11_5fmodule_1215',['PYBIND11_MODULE',['../dd/d30/module_8cpp.html#ab3432520f506686ba18c7ce7758a6c69',1,'module.cpp']]]
+  ['random_5fchoice_0',['random_choice',['../d2/d2d/classBrush_1_1Util_1_1Rnd.html#a18656ce513329b1c672f6ee15ab281b7',1,'Brush::Util::Rnd::random_choice(const map&lt; T, float &gt; &amp;m)'],['../d2/d2d/classBrush_1_1Util_1_1Rnd.html#a318db1552e635b2cac649c0e1b1805f6',1,'Brush::Util::Rnd::random_choice(const V &amp;v)'],['../d2/d2d/classBrush_1_1Util_1_1Rnd.html#a9ea4fb27b340cdd054b1e271e76137e0',1,'Brush::Util::Rnd::random_choice(const C&lt; T, std::allocator&lt; T &gt; &gt; &amp;v, const vector&lt; float &gt; &amp;w)']]],
+  ['randomdequeue_1',['RandomDequeue',['../dc/d5c/namespaceBrush.html#a819e6d35661a163c3f40d927766a3213',1,'Brush']]],
+  ['read_5fcsv_2',['read_csv',['../d9/d1c/namespaceBrush_1_1Data.html#ad4320ca3604e146155ccc7c55ea9006c',1,'Brush::Data']]],
+  ['reduce_3',['reduce',['../d7/d56/structBrush_1_1Data_1_1TimeSeries.html#a7ca5032a5eed35d0a1c97dffddd11321',1,'Brush::Data::TimeSeries']]],
+  ['reorder_4',['reorder',['../d6/d2e/namespaceBrush_1_1Util.html#a23d6d2f736db6e9d84cc27b58cc3bf27',1,'Brush::Util']]],
+  ['replacestring_5',['ReplaceString',['../d6/d2e/namespaceBrush_1_1Util.html#a0a7a059e331be3f8f7e5d1e0f1123f5a',1,'Brush::Util']]],
+  ['replacestringinplace_6',['ReplaceStringInPlace',['../d6/d2e/namespaceBrush_1_1Util.html#aa1982ec999d497f97eed7572863a58fa',1,'Brush::Util']]],
+  ['repr_7',['repr',['../d6/dd0/structBrush_1_1Fitness.html#a4bec036d5b4fa2acc82b2e934183a45c',1,'Brush::Fitness']]],
+  ['reset_8',['Reset',['../d8/da4/classBrush_1_1Util_1_1Timer.html#a2b0d0e5b94f317dcc50d7cffc45321e3',1,'Brush::Util::Timer']]],
+  ['residualevaluator_9',['ResidualEvaluator',['../d4/d70/structBrush_1_1ResidualEvaluator.html#a68b50f100691a61d8a643dd903aafc74',1,'Brush::ResidualEvaluator']]],
+  ['reverse_5fmap_10',['reverse_map',['../d6/d2e/namespaceBrush_1_1Util.html#a104f5440d54d751bac78c892b7022c71',1,'Brush::Util']]],
+  ['rnd_11',['Rnd',['../d2/d2d/classBrush_1_1Util_1_1Rnd.html#a9bd56ea15679d17f3577f59e46d6e065',1,'Brush::Util::Rnd']]],
+  ['rnd_5fdbl_12',['rnd_dbl',['../d2/d2d/classBrush_1_1Util_1_1Rnd.html#aa7cedc8c08588c4740e07da8d6c2cb9f',1,'Brush::Util::Rnd']]],
+  ['rnd_5fflt_13',['rnd_flt',['../d2/d2d/classBrush_1_1Util_1_1Rnd.html#a450979f31af93d8dffd7be006ee5d50b',1,'Brush::Util::Rnd']]],
+  ['rnd_5fint_14',['rnd_int',['../d2/d2d/classBrush_1_1Util_1_1Rnd.html#aef0f2836321f651d5887d29739e180f5',1,'Brush::Util::Rnd']]],
+  ['rows_15',['rows',['../d7/d56/structBrush_1_1Data_1_1TimeSeries.html#a79babb7d5c6bf6a94601eea0d1d176b4',1,'Brush::Data::TimeSeries']]],
+  ['rtrim_16',['rtrim',['../d6/d2e/namespaceBrush_1_1Util.html#a7ee435e912b43d1efe927860141fdafa',1,'Brush::Util']]],
+  ['run_17',['run',['../d0/d75/classBrush_1_1Engine.html#a4248c80ebcd035a70953065045e04705',1,'Brush::Engine']]]
 ];

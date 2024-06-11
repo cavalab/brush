@@ -1,7 +1,14 @@
 var searchData=
 [
-  ['values_1289',['values',['../df/d09/structBrush_1_1TinyCostFunction.html#a2245262594736571bea9e0018ee6aef6',1,'Brush::TinyCostFunction']]],
-  ['variance_1290',['variance',['../d6/d2e/namespaceBrush_1_1Util.html#ad88c0170839ba79e41dc5715e77abfc8',1,'Brush::Util::variance(const ArrayXf &amp;v)'],['../d6/d2e/namespaceBrush_1_1Util.html#a95368f7dc6c9ced55ce63b8c5f27a3ad',1,'Brush::Util::variance(const ArrayXf &amp;v, float mean)']]],
-  ['vectortotuple_1291',['vectorToTuple',['../d6/d2e/namespaceBrush_1_1Util.html#a7a0a0b4f0cab1c690fc54ea9126e6814',1,'Brush::Util']]],
-  ['vectortotuplehelper_1292',['vectorToTupleHelper',['../d6/d2e/namespaceBrush_1_1Util.html#a75d33dae3c8a1a36b1ef5f889d815d6e',1,'Brush::Util']]]
+  ['_7edispatchtable_0',['~DispatchTable',['../d3/da8/structBrush_1_1DispatchTable.html#aeaad2760d627909a9cf80fd6131f34e4',1,'Brush::DispatchTable']]],
+  ['_7eengine_1',['~Engine',['../d0/d75/classBrush_1_1Engine.html#a426bf144e6990e58cb1b1347c4a5795d',1,'Brush::Engine']]],
+  ['_7eevaluation_2',['~Evaluation',['../d1/de5/classBrush_1_1Eval_1_1Evaluation.html#a7a35cc80ebd4d2573151270caacaa03e',1,'Brush::Eval::Evaluation']]],
+  ['_7elexicase_3',['~Lexicase',['../d2/dd0/classBrush_1_1Sel_1_1Lexicase.html#a1df9142fbfc3995866d93f3cad5b6fd0',1,'Brush::Sel::Lexicase']]],
+  ['_7ensga2_4',['~NSGA2',['../d3/d7d/classBrush_1_1Sel_1_1NSGA2.html#a0566b494d27cacc5bebc27c280a47600',1,'Brush::Sel::NSGA2']]],
+  ['_7eparameters_5',['~Parameters',['../de/deb/structBrush_1_1Parameters.html#a123bc3a7c8b17c0add03f6fbb128b6e4',1,'Brush::Parameters']]],
+  ['_7epopulation_6',['~Population',['../da/da3/classBrush_1_1Pop_1_1Population.html#a95bb307f431f7ab815f724c0e159b797',1,'Brush::Pop::Population']]],
+  ['_7ernd_7',['~Rnd',['../d2/d2d/classBrush_1_1Util_1_1Rnd.html#a69f29eab729d9b0921b8b4a28c985d1c',1,'Brush::Util::Rnd']]],
+  ['_7eselection_8',['~Selection',['../dd/d0f/structBrush_1_1Sel_1_1Selection.html#a4e5b67978a7e599d86717deffa91b215',1,'Brush::Sel::Selection']]],
+  ['_7eselectionoperator_9',['~SelectionOperator',['../de/db9/classBrush_1_1Sel_1_1SelectionOperator.html#a67d05df40cbc572d3b950523d2daf786',1,'Brush::Sel::SelectionOperator']]],
+  ['_7evariation_10',['~Variation',['../d5/d14/classBrush_1_1Var_1_1Variation.html#a68dde038b2d0554791ee4a8da2f7e623',1,'Brush::Var::Variation']]]
 ];

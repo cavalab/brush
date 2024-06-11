@@ -1,19 +1,20 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
-<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.10.0" xml:lang="en-US">
   <compounddef id="da/d54/structBrush_1_1WeightType" kind="struct" language="C++" prot="public">
     <compoundname>Brush::WeightType</compoundname>
     <includes refid="d9/d49/types_8h" local="no">types.h</includes>
     <templateparamlist>
       <param>
-        <type>typename T</type>
+        <type><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">typename</ref> T</type>
       </param>
     </templateparamlist>
-      <sectiondef kind="public-type">
+    <sectiondef kind="public-type">
       <memberdef kind="typedef" id="da/d54/structBrush_1_1WeightType_1a40f52b2a8e4a4371254dc7545cc1a1af" prot="public" static="no">
-        <type>std::conditional_t&lt; <ref refid="dc/d5c/namespaceBrush_1a7e323244b7b57c08d6816a009e74eec6" kindref="member">is_one_of_v</ref>&lt; typename T::Scalar, <ref refid="dc/d5c/namespaceBrush_1afca2eb9cd1e30d788f324d15a9af500a" kindref="member">fJet</ref>, <ref refid="dc/d5c/namespaceBrush_1a12cdc4558b7841338641fdc58bbda013" kindref="member">iJet</ref>, <ref refid="dc/d5c/namespaceBrush_1a1dc15defd0ed08feac029e2844f7867e" kindref="member">bJet</ref> &gt;, <ref refid="dc/d5c/namespaceBrush_1afca2eb9cd1e30d788f324d15a9af500a" kindref="member">fJet</ref>, float &gt;</type>
+        <type>std::conditional_t&lt; <ref refid="dc/d5c/namespaceBrush_1a7e323244b7b57c08d6816a009e74eec6" kindref="member">is_one_of_v</ref>&lt; <ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">typename</ref> T::Scalar, <ref refid="dc/d5c/namespaceBrush_1afca2eb9cd1e30d788f324d15a9af500a" kindref="member">fJet</ref>, <ref refid="dc/d5c/namespaceBrush_1a12cdc4558b7841338641fdc58bbda013" kindref="member">iJet</ref>, <ref refid="dc/d5c/namespaceBrush_1a1dc15defd0ed08feac029e2844f7867e" kindref="member">bJet</ref> &gt;, <ref refid="dc/d5c/namespaceBrush_1afca2eb9cd1e30d788f324d15a9af500a" kindref="member">fJet</ref>, <ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">float</ref> &gt;</type>
         <definition>typedef std::conditional_t&lt; is_one_of_v&lt;typename T::Scalar, fJet, iJet, bJet&gt;, fJet, float &gt; Brush::WeightType&lt; T &gt;::type</definition>
         <argsstring></argsstring>
         <name>type</name>
+        <qualifiedname>Brush::WeightType::type</qualifiedname>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
@@ -22,7 +23,7 @@
         </inbodydescription>
         <location file="/home/runner/work/brush/brush/src/types.h" line="64" column="2" bodyfile="/home/runner/work/brush/brush/src/types.h" bodystart="64" bodyend="-1"/>
       </memberdef>
-      </sectiondef>
+    </sectiondef>
     <briefdescription>
 <para>Returns the weight type associated with the scalar type underlying T. </para>
     </briefdescription>

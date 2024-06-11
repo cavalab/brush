@@ -1,0 +1,79 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.10.0" xml:lang="en-US">
+  <compounddef id="d1/d20/structBrush_1_1Sel_1_1NSGA2_1_1sort__n" kind="struct" language="C++" prot="private">
+    <compoundname>Brush::Sel::NSGA2::sort_n</compoundname>
+    <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="d1/d20/structBrush_1_1Sel_1_1NSGA2_1_1sort__n_1a40b03cfa01716d6fb5fbbaafe60e0095" prot="public" static="no" mutable="no">
+        <type><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">const</ref> <ref refid="da/da3/classBrush_1_1Pop_1_1Population" kindref="compound">Population</ref>&lt; T &gt; &amp;</type>
+        <definition>const Population&lt;T&gt;&amp; Brush::Sel::NSGA2&lt; T &gt;::sort_n::pop</definition>
+        <argsstring></argsstring>
+        <name>pop</name>
+        <qualifiedname>Brush::Sel::NSGA2::sort_n::pop</qualifiedname>
+        <briefdescription>
+<para>population address </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/runner/work/brush/brush/src/selection/nsga2.h" line="45" column="30" bodyfile="/home/runner/work/brush/brush/src/selection/nsga2.h" bodystart="45" bodyend="-1"/>
+        <referencedby refid="d1/d20/structBrush_1_1Sel_1_1NSGA2_1_1sort__n_1a0134da68099ed303316f102e0c9bc942" compoundref="d3/d06/nsga2_8h" startline="49" endline="60">Brush::Sel::NSGA2&lt; T &gt;::sort_n::operator()</referencedby>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="public-func">
+      <memberdef kind="function" id="d1/d20/structBrush_1_1Sel_1_1NSGA2_1_1sort__n_1ad5506c24a9dc23e4e956a7ca024b622e" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>Brush::Sel::NSGA2&lt; T &gt;::sort_n::sort_n</definition>
+        <argsstring>(const Population&lt; T &gt; &amp;population)</argsstring>
+        <name>sort_n</name>
+        <qualifiedname>Brush::Sel::NSGA2::sort_n::sort_n</qualifiedname>
+        <param>
+          <type><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">const</ref> <ref refid="da/da3/classBrush_1_1Pop_1_1Population" kindref="compound">Population</ref>&lt; T &gt; &amp;</type>
+          <declname>population</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/runner/work/brush/brush/src/selection/nsga2.h" line="47" column="13" bodyfile="/home/runner/work/brush/brush/src/selection/nsga2.h" bodystart="47" bodyend="47"/>
+      </memberdef>
+      <memberdef kind="function" id="d1/d20/structBrush_1_1Sel_1_1NSGA2_1_1sort__n_1a0134da68099ed303316f102e0c9bc942" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">bool</ref></type>
+        <definition>bool Brush::Sel::NSGA2&lt; T &gt;::sort_n::operator()</definition>
+        <argsstring>(int i, int j)</argsstring>
+        <name>operator()</name>
+        <qualifiedname>Brush::Sel::NSGA2::sort_n::operator()</qualifiedname>
+        <param>
+          <type><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">int</ref></type>
+          <declname>i</declname>
+        </param>
+        <param>
+          <type><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">int</ref></type>
+          <declname>j</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/runner/work/brush/brush/src/selection/nsga2.h" line="49" column="18" bodyfile="/home/runner/work/brush/brush/src/selection/nsga2.h" bodystart="49" bodyend="60"/>
+        <references refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" compoundref="d4/d93/bind__engines_8h" startline="35" endline="104">bind_engine</references>
+        <references refid="d1/d20/structBrush_1_1Sel_1_1NSGA2_1_1sort__n_1a40b03cfa01716d6fb5fbbaafe60e0095" compoundref="d3/d06/nsga2_8h" startline="45">Brush::Sel::NSGA2&lt; T &gt;::sort_n::pop</references>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+<para>sort based on rank, breaking ties with crowding distance </para>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="/home/runner/work/brush/brush/src/selection/nsga2.h" line="43" column="9" bodyfile="/home/runner/work/brush/brush/src/selection/nsga2.h" bodystart="44" bodyend="61"/>
+    <listofallmembers>
+      <member refid="d1/d20/structBrush_1_1Sel_1_1NSGA2_1_1sort__n_1a0134da68099ed303316f102e0c9bc942" prot="public" virt="non-virtual"><scope>Brush::Sel::NSGA2::sort_n</scope><name>operator()</name></member>
+      <member refid="d1/d20/structBrush_1_1Sel_1_1NSGA2_1_1sort__n_1a40b03cfa01716d6fb5fbbaafe60e0095" prot="public" virt="non-virtual"><scope>Brush::Sel::NSGA2::sort_n</scope><name>pop</name></member>
+      <member refid="d1/d20/structBrush_1_1Sel_1_1NSGA2_1_1sort__n_1ad5506c24a9dc23e4e956a7ca024b622e" prot="public" virt="non-virtual"><scope>Brush::Sel::NSGA2::sort_n</scope><name>sort_n</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>
