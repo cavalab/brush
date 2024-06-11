@@ -25,7 +25,6 @@ namespace Brush { namespace Util{
      * @class Rnd
      * @brief Defines a multi-core random number generator and its operators.
      */
-
     class Rnd
     {
         public:
@@ -66,7 +65,6 @@ namespace Brush { namespace Util{
                 return start;
             }
 
-            // TODO: write doxygen documentation for this source code.
             /// select randomly with weighted distribution.
             // The probability of picking the i-th element is w_i/S, with S
             // being the sum of all weights. select_randomly works even if the
