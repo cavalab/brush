@@ -61,7 +61,7 @@ float average_precision_score(const VectorXf& y, const VectorXf& predict_proba,
                           const vector<float>& class_weights) {
     
     // get argsort of predict proba
-    vector<int> argsort(predict_proba.size());
+    vector<int> argsort(y.rows());
     iota(argsort.begin(), argsort.end(), 0);
     sort(argsort.begin(), argsort.end(), [&](int i, int j) {
         return predict_proba[i] > predict_proba[j];
@@ -69,22 +69,24 @@ float average_precision_score(const VectorXf& y, const VectorXf& predict_proba,
 
     float ysum = 0;
     if (!class_weights.empty()) 
-        for (int i = 0; i < class_weights.size(); i++) {
+        for (int i = 0; i < y.size(); i++) {
             ysum += y(i) * class_weights.at(y(i));
         }
     else
         ysum = y.sum();
 
     // Calculate the precision and recall values
-    VectorXf precision(predict_proba.size());
-    VectorXf recall(predict_proba.size());
+    VectorXf precision(y.rows());
+    VectorXf recall(y.rows());
+    
+    loss.resize(y.rows()); 
 
     float true_positives = 0;
     float false_positives = 0;
     float positives = 0;
 
-    for (int i = 0; i < predict_proba.size(); i++) {
-        if (predict_proba[argsort[i]] >= 0.5 && y[argsort[i]] == 1) {
+    for (int i = 0; i < y.rows(); i++) {
+        if (predict_proba[argsort[i]] > 0.5 && y[argsort[i]] == 1) {
             true_positives += 1;
         }
         else {
@@ -103,7 +105,7 @@ float average_precision_score(const VectorXf& y, const VectorXf& predict_proba,
     float average_precision = 0;
     float last_recall = 0;
 
-    for (int i = 0; i < predict_proba.size(); i++) {
+    for (int i = 0; i < y.rows(); i++) {
         if (recall[i] != last_recall) {
             loss[i] = precision[i] * (recall[i] - last_recall);
             average_precision += loss[i];

@@ -45,6 +45,8 @@ TEST(Population, PopulationTests)
     selector.set_operator();
     survivor.set_operator();
 
+    // TODO: test if loaded population does not double its size
+
     // size, all individuals were initialized
     ASSERT_TRUE(pop.size() == pop.individuals.size()
              && pop.size() == 0); //before initialization, it should be empty

@@ -88,7 +88,7 @@ void Population<T>::init(SearchSpace& ss, const Parameters& params)
         // first half will contain the initial population
         individuals.at(i) = std::make_shared<Individual<T>>();
         individuals.at(i)->init(ss, params);
-        individuals.at(i)->set_objectives(params.objectives);
+        individuals.at(i)->set_objectives(params.get_objectives());
         
         // second half is space to the offspring (but we dont initialize them)
         individuals.at(p+i) = nullptr;

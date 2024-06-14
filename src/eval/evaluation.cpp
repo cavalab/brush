@@ -60,7 +60,8 @@ void Evaluation<T>::assign_fit(Individual<T>& ind, const Dataset& data,
 
     // TODO: implement the class weights and use it here (and on errors)
 
-    ind.set_objectives(params.objectives);
+    // This is what is going to determine the weights for the individual's fitness
+    ind.set_objectives(params.get_objectives());
 
     // we will always set all values for fitness (regardless of being used).
     // this will make sure the information is calculated and ready to be used
@@ -77,7 +78,7 @@ void Evaluation<T>::assign_fit(Individual<T>& ind, const Dataset& data,
 
     for (const auto& n : ind.get_objectives())
     {
-        if (n.compare("error")==0)
+        if (n.compare(params.scorer)==0)
             values.push_back(val ? f_v : f);
         else if (n.compare("complexity")==0)
             values.push_back(ind.program.complexity());

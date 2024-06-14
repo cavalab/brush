@@ -38,8 +38,8 @@ vector<size_t> Lexicase<T>::select(Population<T>& pop, int island,
     ArrayXf epsilon = ArrayXf::Zero(N);
   
     // if output is continuous, use epsilon lexicase            
-    if (!params.classification || params.scorer_.compare("log")==0 
-    ||  params.scorer_.compare("multi_log")==0)
+    if (!params.classification || params.scorer.compare("log")==0 
+    ||  params.scorer.compare("multi_log")==0)
     {
         // for each sample, calculate epsilon
         for (int i = 0; i<epsilon.size(); ++i)

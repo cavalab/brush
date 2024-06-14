@@ -34,7 +34,7 @@ void Engine<T>::init()
     this->best_score = MAX_FLT;
     this->best_complexity = MAX_FLT;
 
-    this->archive.set_objectives(params.objectives);
+    this->archive.set_objectives(params.get_objectives());
 
     timer.Reset();
 
@@ -75,7 +75,7 @@ void Engine<T>::calculate_stats()
     ArrayXi sizes(pop_size);
     ArrayXi complexities(pop_size); 
 
-    float error_weight = Individual<T>::weightsMap[params.scorer_];
+    float error_weight = Individual<T>::weightsMap[params.scorer];
 
     int index = 0;
     for (int island=0; island<params.num_islands; ++island)
@@ -287,7 +287,7 @@ auto Engine<T>::predict_proba_archive(int id, const Ref<const ArrayXXf>& X)
 template <ProgramType T>
 bool Engine<T>::update_best(const Dataset& data, bool val)
 {
-    float error_weight = Individual<T>::weightsMap[params.scorer_];
+    float error_weight = Individual<T>::weightsMap[params.scorer];
     
     float f;
     bool updated = false; 
@@ -339,7 +339,7 @@ void Engine<T>::run(Dataset &data)
     if (!params.logfile.empty())
         log.open(params.logfile, std::ofstream::app);
 
-    evaluator.set_scorer(params.scorer_);
+    evaluator.set_scorer(params.scorer);
 
     Dataset &batch = data;
 
@@ -361,8 +361,6 @@ void Engine<T>::run(Dataset &data)
     unsigned generation = 0;
     unsigned stall_count = 0;
     float fraction = 0;
-
-    bool use_arch;
 
     auto stop = [&]() {
         return (  (generation == params.max_gens)
@@ -445,11 +443,14 @@ void Engine<T>::run(Dataset &data)
                 
                 if ( (params.verbosity>1 || !params.logfile.empty() )
                 || params.use_arch ) {
+                    std::cout << "Calculating stats..." << std::endl;
                     calculate_stats();
                 }
 
-                if (params.use_arch)
+                if (params.use_arch) {
+                    std::cout << "updating archive..." << std::endl;
                     archive.update(pop, params);
+                }
                 
                 fraction = params.max_time == -1 ? ((generation+1)*1.0)/params.max_gens : 
                                                     timer.Elapsed().count()/params.max_time;
@@ -493,6 +494,7 @@ void Engine<T>::run(Dataset &data)
             // archive
             if (!params.use_arch)
             {
+                std::cout << "savinig final population as archive..." << std::endl;
                 archive.individuals.resize(0);
                 for (int island =0; island< pop.num_islands; ++island) {
                     vector<size_t> indices = pop.get_island_indexes(island);

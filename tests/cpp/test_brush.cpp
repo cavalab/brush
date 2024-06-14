@@ -86,8 +86,6 @@ TEST(Engine, EngineWorks)
 
     std::cout << "testing migration" << std::endl;
     
-    params.set_pop_size(10);
-    params.set_max_gens(10);
     params.set_mig_prob(0.5);
 
     // just to see if nothing breaks
@@ -148,10 +146,15 @@ TEST(Engine, ClassificationEngineWorks)
     params.set_pop_size(100);
     params.set_max_gens(10);
     params.set_mig_prob(0.0);
-    params.set_scorer_("log");
+    params.set_scorer("log");
 
     params.set_verbosity(2);
 
     Brush::ClassifierEngine est(params);
     est.run(data);
+
+     // TODO: tests with all possible metrics
+    params.set_scorer("average_precision_score");
+    Brush::ClassifierEngine est2(params);
+    est2.run(data);
 }

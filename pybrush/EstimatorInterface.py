@@ -61,9 +61,13 @@ class EstimatorInterface():
         expression is created with `max_size` nodes. If `uniform`, size will be
         uniformly distributed between 1 and `max_size`.
     objectives : list[str], default ["error", "size"]
-        list with one or more objectives to use. Options are `"error", "size", "complexity"`.
+        list with one or more objectives to use. The first objective is the main.
         If `"error"` is used, then it will be the mean squared error for regression,
         and accuracy for classification.
+        Possible values are "error", "size", "complexity", and "depth".
+    scorer : str, default None
+        The metric to use for the "error" objective. If None, it will be set to
+        "mse" for regression and "log" for binary classification.
     algorithm : {"nsga2island", "nsga2", "gaisland", "ga"}, default "nsga2"
         Which Evolutionary Algorithm framework to use to evolve the population.
         This is used only in DeapEstimators.
@@ -135,6 +139,7 @@ class EstimatorInterface():
         weights_init=True,
         val_from_arch=True,
         use_arch=False,
+        scorer=None,
         validation_size: float = 0.0,
         batch_size: float = 1.0
     ):
@@ -159,6 +164,7 @@ class EstimatorInterface():
         self.use_arch=use_arch
         self.functions=functions
         self.objectives=objectives
+        self.scorer=scorer
         self.shuffle_split=shuffle_split
         self.initialization=initialization
         self.random_state=random_state
@@ -205,9 +211,22 @@ class EstimatorInterface():
         params.batch_size = self.batch_size
         params.feature_names = self.feature_names_
     
-        params.scorer_ = "mse"
-        if self.mode == "classification":
-            params.scorer_ = "log" if self.n_classes_ == 2 else "multi_log"
+        # Scorer is the metric associated with "error" objective. To optimize
+        # something else, set it in the objectives list.
+        if self.scorer is None:
+            scorer = "mse"
+            if self.mode == "classification":
+                scorer = "log" if self.n_classes_ == 2 else "multi_log"
+            self.scorer = scorer
+        else:
+            if self.mode == "regression":
+                assert self.scorer in ['mse'], \
+                    "Invalid scorer for the regression mode"
+            else:
+                assert self.scorer in ['log', 'multi_log', 'average_precision_score'], \
+                    "Invalid scorer for the classification mode"
+                
+        params.scorer = self.scorer
 
         if self.random_state is not None:
             seed = 0

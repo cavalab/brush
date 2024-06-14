@@ -60,7 +60,7 @@ public:
     float cx_prob=0.2;  ///< cross rate for variation
     float mig_prob = 0.05;
     
-    string scorer_="mse";   ///< actual loss function used, determined by error
+    string scorer="mse";   ///< actual loss function used, determined by error
 
     vector<int>   classes;        ///< class labels
     vector<float> class_weights;  ///< weights for each class
@@ -107,8 +107,8 @@ public:
     void set_max_time(int new_max_time){ max_time = new_max_time; };
     int get_max_time(){ return max_time; };
     
-    void set_scorer_(string new_scorer_){ scorer_ = new_scorer_; };
-    string get_scorer_(){ return scorer_; };
+    void set_scorer(string new_scorer){ scorer = new_scorer; };
+    string get_scorer(){ return scorer; };
 
     void set_load_population(string new_load_population){ load_population = new_load_population; };
     string get_load_population(){ return load_population; };
@@ -135,7 +135,21 @@ public:
     unsigned get_max_size() const { return max_size; };
 
     void set_objectives(vector<string> new_objectives){ objectives = new_objectives; };
-    vector<string> get_objectives(){ return objectives; };
+    vector<string> get_objectives() const {
+        // return objectives;
+        
+        // properly replace error with the specified scorer
+        vector<string> aux_objectives(0);
+
+        for (auto& objective : objectives) {
+            if (objective.compare("error")==0)
+                aux_objectives.push_back(scorer);
+            else
+                aux_objectives.push_back(objective);
+        }
+
+        return aux_objectives;
+    };
 
     void set_sel(string new_sel){ sel = new_sel; };
     string get_sel(){ return sel; };
@@ -187,7 +201,7 @@ NLOHMANN_DEFINE_TYPE_NON_INTRUSIVE(Parameters,
     max_gens,
     max_stall,
     max_time,
-    scorer_,
+    scorer,
     load_population,
     save_population,
     logfile,

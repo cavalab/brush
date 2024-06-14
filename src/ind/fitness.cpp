@@ -43,7 +43,7 @@ int Fitness::dominates(const Fitness& b) const
     int flag1 = 0, // to check if this has a better objective
         flag2 = 0; // to check if b    has a better objective
 
-    // TODO: replace comparison of individual values by using the overloaded  operators (here and in nsga2)
+    // TODO: replace comparison of individual values by using the overloaded operators (here and in nsga2)
     for (int i=0; i<get_wvalues().size(); ++i) {
         if (get_wvalues().at(i) > b.get_wvalues().at(i)
         || std::isnan(b.get_wvalues().at(i)) 
@@ -55,7 +55,7 @@ int Fitness::dominates(const Fitness& b) const
             flag2 = 1;                       
     }
 
-    // the proper way of comparing weighted values is considering everything as a maximization problem
+    // the proper way of comparing weighted values is considering everything as a MAXIMIIZATIION problem
     // (this is like deap does, and our fitness is inspired by them)
     if (flag1==1 && flag2==0)   
         // there is at least one smaller objective for this and none 
