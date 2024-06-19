@@ -79,8 +79,9 @@ public:
     Engine<T> &fit(const Ref<const ArrayXXf>& X, const Ref<const ArrayXf>& y)
     {
         // Using constructor 2 to create the dataset
-        Dataset d(X,y,params.feature_names,{},params.classification,
-                params.validation_size, params.batch_size);
+        Dataset d(X,y,params.feature_names,{},params.feature_types,
+                params.classification,params.validation_size,
+                params.batch_size, params.shuffle_split);
         return fit(d);
     };
 

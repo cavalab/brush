@@ -138,7 +138,8 @@ class DeapEstimator(EstimatorInterface, BaseEstimator):
 
         self.data_ = self._make_data(X, y, 
                                      feature_names=self.feature_names_,
-                                     validation_size=self.validation_size)
+                                     validation_size=self.validation_size,
+                                     shuffle_split=self.shuffle_split)
 
         # set n classes if relevant
         self.n_classes_ = 0
@@ -213,26 +214,6 @@ class DeapEstimator(EstimatorInterface, BaseEstimator):
 
         return self
     
-    def _make_data(self, X, y=None, feature_names=[], validation_size=0.0):
-        # This function should not partition data (since it may be used in `predict`).
-        # partitioning is done by `fit`. Feature names should be inferred
-        # before calling _make_data (so predict can be made with np arrays or
-        # pd dataframes).
-
-        if isinstance(y, pd.Series):
-            y = y.values
-        if isinstance(X, pd.DataFrame):
-            X = X.values
-        
-        assert isinstance(X, np.ndarray)
-
-        if y is None:
-            return Dataset(X=X,
-                    feature_names=feature_names, validation_size=validation_size)
-
-        return Dataset(X=X, y=y,
-            feature_names=feature_names, validation_size=validation_size)
-
 
     def _make_individual(self):
         # C++'s PTC2-based `make_individual` will create a tree of at least
@@ -259,11 +240,10 @@ class DeapEstimator(EstimatorInterface, BaseEstimator):
 
         assert isinstance(X, np.ndarray)
 
+        # Need to provide feature names because reference does not store order
         data = Dataset(X=X, ref_dataset=self.data_, 
                               feature_names=self.feature_names_)
         
-        # data = self._make_data(X, feature_names=self.feature_names_)
-
         return self.best_estimator_.program.predict(data)
 
     # def _setup_population(self):
@@ -334,10 +314,9 @@ class DeapClassifier(DeapEstimator,ClassifierMixin):
 
         assert isinstance(X, np.ndarray)
 
+        # Need to provide feature names because reference does not store order
         data = Dataset(X=X, ref_dataset=self.data_, 
                               feature_names=self.feature_names_)
-
-        # data = self._make_data(X, feature_names=self.feature_names_)
 
         prob = self.best_estimator_.program.predict_proba(data)
 

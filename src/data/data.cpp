@@ -48,6 +48,9 @@ map<std::type_index,DataType> DataIDType = Util::reverse_map(DataTypeID);
 
 namespace Data{
 
+// we have 3 basic types (bool, integer, float), specialized into
+// arrays, matrices, and timeseries. Notice that all dataset and operators
+// right now only work with arrays. TODO: implement timeseries and matrices.
 std::vector<DataType> StateTypes = {
     DataType::ArrayB,
     DataType::ArrayI, 
@@ -65,40 +68,60 @@ DataType StateType(const State& arg)
 {
     return StateTypes.at(arg.index());
 }
-State check_type(const ArrayXf& x)
+State check_type(const ArrayXf& x, const string t)
 {
-    // get feature types (binary or continuous/categorical)
-    bool isBinary = true;
-    bool isCategorical = true;
-    std::map<float, bool> uniqueMap;
-    for(int i = 0; i < x.size(); i++)
-    {
-        
-        if(x(i) != 0 && x(i) != 1)
-            isBinary = false;
-        if(x(i) != floor(x(i)) && x(i) != ceil(x(i)))
-            isCategorical = false;
-        else
-            uniqueMap[x(i)] = true;
-    } 
-    
-    State tmp; // = x;
+    State tmp;
 
-    if (isBinary)
+    if (!t.empty())
     {
-        tmp = ArrayXb(x.cast<bool>());
+        // Use DataNameType to get the statetype given the string representation
+        DataType feature_type = DataNameType.at(t);
+            
+        if (feature_type == DataType::ArrayB)
+            tmp = ArrayXb(x.cast<bool>());
+        else if (feature_type == DataType::ArrayI)
+            tmp = ArrayXi(x.cast<int>());
+        else if (feature_type == DataType::ArrayF)
+            tmp = ArrayXf(x.cast<float>());
+        else
+            HANDLE_ERROR_THROW(
+                "Invalid feature type. check_type does not support this type: " + t);
     }
     else
     {
-        if(isCategorical && uniqueMap.size() <= 10)
+        // get feature types (binary or continuous/categorical)
+        bool isBinary = true;
+        bool isCategorical = true;
+
+        std::map<float, bool> uniqueMap;
+        for(int i = 0; i < x.size(); i++)
         {
-            tmp = ArrayXi(x.cast<int>());
+            if(x(i) != 0 && x(i) != 1)
+                isBinary = false;
+            if(x(i) != floor(x(i)) && x(i) != ceil(x(i)))
+                isCategorical = false;
+            else
+                uniqueMap[x(i)] = true;
+        } 
+        
+
+        if (isBinary)
+        {
+            tmp = ArrayXb(x.cast<bool>());
         }
         else
         {
-            tmp = x;
+            if(isCategorical && uniqueMap.size() <= 10)
+            {
+                tmp = ArrayXi(x.cast<int>());
+            }
+            else
+            {
+                tmp = x;
+            }
         }
     }
+
     return tmp;
 }
 
@@ -141,7 +164,7 @@ Dataset Dataset::operator()(const vector<size_t>& idx) const
 }
 
 
-// TODO: i need to improve how   get batch works. Maybe a function to update batch indexes, and  always using the same dataset?
+// TODO: i need to improve how   get batch works. Maybe a function to update batch indexes, and always using the same dataset?
 // TODO: also, i need to make sure the get batch will sample only from training data and not test
 Dataset Dataset::get_batch() const
 {
@@ -197,14 +220,21 @@ void Dataset::init()
         auto feature_type = StateType(value);
 
         Util::unique_insert(unique_data_types, feature_type);
-        feature_types.push_back( feature_type);
+        feature_types.push_back( feature_type );
+
         // add feature to appropriate map list 
         this->features_of_type[feature_type].push_back(name);
     }
 
     // setting the training and validation data indexes
     auto n_samples = int(this->get_n_samples());
-    auto idx = r.shuffled_index(n_samples);
+
+    vector<size_t> idx(n_samples);
+
+    if (shuffle_split)
+        idx = r.shuffled_index(n_samples);
+    else
+        std::iota(idx.begin(), idx.end(), 0);
 
     // garantee that at least one sample is going to be returned, since
     // use_batch is true only if batch_size is (0, 1), and ceil will round
@@ -218,6 +248,7 @@ void Dataset::init()
 
     if ( use_validation && (n_samples - n_train_samples != 0) ) {
         validation_data_idx.resize(0);
+
         std::transform(idx.begin() + n_train_samples, idx.end(),
                 back_inserter(validation_data_idx),
                 [&](int element) { return element; });
@@ -227,7 +258,6 @@ void Dataset::init()
     } 
 }
 
-// TODO: use integer instead of percentage (or even better, have both)
 float Dataset::get_batch_size() { return batch_size; }
 void Dataset::set_batch_size(float new_size) {
     batch_size = new_size;
@@ -237,14 +267,17 @@ void Dataset::set_batch_size(float new_size) {
 /// turns input data into a feature map
 map<string, State> Dataset::make_features(const ArrayXXf& X,
                                           const map<string,State>& Z,
-                                          const vector<string>& vn 
+                                          const vector<string>& vn,
+                                          const vector<string>& ft
                                          ) 
 {
     // fmt::print("Dataset::make_features()\n");
     map<string, State> tmp_features;
-    vector<string> var_names;
+
     // fmt::print("vn: {}\n",vn);
+
     // check variable names
+    vector<string> var_names;
     if (vn.empty())
     {
         // fmt::print("vn empty\n");
@@ -260,22 +293,38 @@ map<string, State> Dataset::make_features(const ArrayXXf& X,
             HANDLE_ERROR_THROW(
                 fmt::format("Variable names and data size mismatch: "
                 "{} variable names and {} features in X", 
-                vn.size(), 
-                X.cols()
-                )
-            );
+                vn.size(), X.cols()) );
         var_names = vn;
+    }
+
+    // check variable types
+    vector<string> var_types;
+    if (ft.empty())
+    {
+        for (int i = 0; i < X.cols(); ++i)
+        {
+            var_types.push_back("");
+        }
+    }
+    else {
+    if (ft.size() != X.cols())
+        HANDLE_ERROR_THROW(
+            fmt::format("Feature type names and data size mismatch: "
+            "{} feature type names and {} features in X", 
+            ft.size(),  X.cols()) );
+        var_types = ft;
     }
 
     for (int i = 0; i < X.cols(); ++i)
     {
         // fmt::print("X({}): {} \n",i,var_names.at(i));
-        State tmp = check_type(X.col(i).array());
+        State tmp = check_type(X.col(i).array(), var_types.at(i));
 
         tmp_features[var_names.at(i)] = tmp;
     }
     // fmt::print("tmp_features insert\n");
     tmp_features.insert(Z.begin(), Z.end());
+
     return tmp_features;
 };
 

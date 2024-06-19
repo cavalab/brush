@@ -15,6 +15,8 @@ namespace Sel {
 using namespace Brush;
 using namespace Pop;
 
+// TODO: stop having to give the template for the selection operator (and also other places like pop)
+
 /*!
  * @class SelectionOperator
  * @brief base class for selection operators.

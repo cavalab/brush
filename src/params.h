@@ -75,6 +75,7 @@ public:
     bool shuffle_split = false;
     float validation_size = 0.75;
     vector<string> feature_names = {};
+    vector<string> feature_types = {};
     float batch_size = 0.0;
 
     string load_population = "";
@@ -183,6 +184,9 @@ public:
 
     void set_feature_names(vector<string> vn){ feature_names = vn; };
     vector<string> get_feature_names(){ return feature_names; };
+
+    void set_feature_types(vector<string> ft){ feature_types = ft; };
+    vector<string> get_feature_types(){ return feature_types; };
 
     void set_batch_size(float c){ batch_size = c; };
     float get_batch_size(){ return batch_size; };

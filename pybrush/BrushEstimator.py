@@ -61,7 +61,8 @@ class BrushEstimator(EstimatorInterface, BaseEstimator):
 
         self.data_ = self._make_data(X, y, 
                                      feature_names=self.feature_names_,
-                                     validation_size=self.validation_size)
+                                     validation_size=self.validation_size,
+                                     shuffle_split=self.shuffle_split)
 
         # set n classes if relevant
         self.n_classes_ = 0
@@ -92,48 +93,6 @@ class BrushEstimator(EstimatorInterface, BaseEstimator):
         self.best_estimator_ = self.engine_.best_ind
 
         return self
-    
-    def _make_data(self, X, y=None, feature_names=[], validation_size=0.0):
-        """
-        Prepare the data for training or prediction.
-
-        Parameters:
-        - X: array-like or pandas DataFrame, shape (n_samples, n_features)
-            The input features.
-        - y: array-like or pandas Series, shape (n_samples,), optional (default=None)
-            The target variable.
-        - feature_names: list, optional (default=[])
-            The names of the features.
-        - validation_size: float, optional (default=0.0)
-            The proportion of the data to be used for validation.
-
-        Returns:
-        - dataset: Dataset
-            The prepared dataset object containing the input features, target variable,
-            feature names, and validation size.
-        """
-
-        # This function should not partition data (since it may be used in `predict`).
-        # partitioning is done by `fit`. Feature names should be inferred
-        # before calling _make_data (so predict can be made with np arrays or
-        # pd dataframes).
-
-        if isinstance(y, pd.Series):
-            y = y.values
-        if isinstance(X, pd.DataFrame):
-            X = X.values
-        
-        assert isinstance(X, np.ndarray)
-
-        if y is None:
-            return Dataset(X=X,
-                    feature_names=feature_names, c=self.mode == "classification", 
-                    validation_size=validation_size)
-
-        return Dataset(X=X, y=y,
-            feature_names=feature_names, c=self.mode == "classification",
-            validation_size=validation_size)
-
 
     def predict(self, X):
         """Predict using the best estimator in the archive. """
@@ -145,11 +104,10 @@ class BrushEstimator(EstimatorInterface, BaseEstimator):
 
         assert isinstance(X, np.ndarray)
 
-        data = Dataset(X=X, ref_dataset=self.data_, c=self.mode == "classification",
-                       feature_names=self.feature_names_)
+        # Need to provide feature names because reference does not store order
+        data = Dataset(X=X, ref_dataset=self.data_, 
+                              feature_names=self.feature_names_)
         
-        # data = self._make_data(X, feature_names=self.feature_names_)
-
         return self.best_estimator_.program.predict(data)
 
     def get_params(self, deep=True):
@@ -172,8 +130,9 @@ class BrushEstimator(EstimatorInterface, BaseEstimator):
 
         assert isinstance(X, np.ndarray)
 
-        data = Dataset(X=X, ref_dataset=self.data_, c=self.mode == "classification",
-                       feature_names=self.feature_names_)
+        # Need to provide feature names because reference does not store order
+        data = Dataset(X=X, ref_dataset=self.data_, 
+                            feature_names=self.feature_names_)
 
         archive = self.engine_.get_archive()
 
@@ -233,10 +192,9 @@ class BrushClassifier(BrushEstimator, ClassifierMixin):
 
         assert isinstance(X, np.ndarray)
 
-        data = Dataset(X=X, ref_dataset=self.data_, c=True,
+        # Need to provide feature names because reference does not store order
+        data = Dataset(X=X, ref_dataset=self.data_, 
                               feature_names=self.feature_names_)
-
-        # data = self._make_data(X, feature_names=self.feature_names_)
 
         prob = self.best_estimator_.program.predict_proba(data)
 
@@ -257,9 +215,9 @@ class BrushClassifier(BrushEstimator, ClassifierMixin):
 
         assert isinstance(X, np.ndarray)
 
-        data = Dataset(X=X, ref_dataset=self.data_, c=True,
-                       feature_names=self.feature_names_)
-
+        # Need to provide feature names because reference does not store order
+        data = Dataset(X=X, ref_dataset=self.data_, 
+                              feature_names=self.feature_names_)
         archive = self.engine_.get_archive()
 
         preds = []

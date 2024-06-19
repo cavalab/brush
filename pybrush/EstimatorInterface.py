@@ -6,7 +6,9 @@ provides documentation for the hyperparameters.
 """
 
 import numpy as np
-from pybrush import Parameters
+import pandas as pd
+from pandas.api.types import is_float_dtype, is_bool_dtype, is_integer_dtype
+from pybrush import Parameters, Dataset
 
 class EstimatorInterface():
     """
@@ -243,3 +245,66 @@ class EstimatorInterface():
             setattr(params, k, v)
 
         return params
+
+    
+    def _make_data(self, X, y=None,
+                    feature_names=[],
+                    validation_size=0.0, shuffle_split=False):
+        """
+        Prepare the data for training or prediction.
+
+        Parameters:
+        - X: array-like or pandas DataFrame, shape (n_samples, n_features)
+            The input features.
+        - y: array-like or pandas Series, shape (n_samples,), optional (default=None)
+            The target variable.
+        - feature_names: list, optional (default=[])
+            The names of the features.
+        - feature_types: list, optional (default=[])
+            The types of the features.
+        - validation_size: float, optional (default=0.0)
+            The proportion of the data to be used for validation.
+        - shuffle_split: bool, optional (default=False)
+            Whether to shuffle and split the data.
+
+        Returns:
+        - dataset: Dataset
+            The prepared dataset object containing the input features, target variable,
+            feature names, and validation size.
+        """
+                
+        # This function should not split the data (since it may be used in `predict`).
+        # Partitioning is done by `fit`. Feature names should be inferred
+        # before calling `_make_data` (so predict can be made with np arrays or
+        # pd dataframes).
+
+        if isinstance(y, pd.Series):
+            y = y.values
+        if isinstance(X, pd.DataFrame):
+            feature_names = X.columns
+            feature_types = []
+            for dtype in X.dtypes:
+                if is_float_dtype(dtype):
+                    feature_types.append('ArrayF')
+                elif is_integer_dtype(dtype):
+                    feature_types.append('ArrayI')
+                elif is_bool_dtype(dtype):
+                    feature_types.append('ArrayB')
+                else:
+                    raise ValueError(
+                        "Unsupported data type. Please try using an "
+                        "encoding method to convert the data to a supported "
+                        "format.")
+            X = X.values
+
+        
+        assert isinstance(X, np.ndarray)
+
+        if y is None:
+            return Dataset(X=X,
+                    feature_names=feature_names, feature_types=feature_types,
+                    validation_size=validation_size)
+
+        return Dataset(X=X, y=y,
+            feature_names=feature_names, feature_types=feature_types,
+            validation_size=validation_size)

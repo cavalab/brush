@@ -3,6 +3,11 @@ from deap.benchmarks.tools import hypervolume
 import numpy as np
 import functools
 
+try:
+    import tqdm
+except ImportError:
+    tqdm = None
+
 def nsga2(toolbox, NGEN, MU, CXPB, use_batch, verbosity, rnd_flt):
     # NGEN = 250
     # MU   = 100
@@ -40,9 +45,13 @@ def nsga2(toolbox, NGEN, MU, CXPB, use_batch, verbosity, rnd_flt):
     if verbosity > 0: 
         print(logbook.stream)
 
-    # Begin the generational process
-    for gen in range(1, NGEN+1):
+    # Begin the generational processess
+    if tqdm is not None:
+        gen_range = tqdm.tqdm(range(1, NGEN+1), disable=verbosity < 1)
+    else:
+        gen_range = range(1, NGEN+1)
 
+    for gen in gen_range:
         # this is used in cpp to decide if we are going to do some calculations or not
         toolbox.update_current_gen(gen)
 
