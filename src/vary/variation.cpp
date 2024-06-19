@@ -612,28 +612,36 @@ void Variation<T>::vary(Population<T>& pop, int island,
         unsigned id = parameters.current_gen*parameters.pop_size+indices.at(i);
 
         // mutation and crossover already perform 3 attempts. If it fails, we just fill with a random individual
+        
+        Individual<T> ind;
         if (opt) // variation worked, lets keep this
         {
-            Individual<T> ind = opt.value();
-  
-            ind.is_fitted_ = false;
-            ind.set_id(id);
+            ind = opt.value();
             ind.set_parents(ind_parents);
-
-            assert(ind.program.size()>0);
-            pop.individuals.at(indices.at(i)) = std::make_shared<Individual<T>>(ind);
         }
-        else {  // no optional value was returned
-            Individual<T> new_ind;
+        else {  // no optional value was returned. creating a new random individual
+            ind.init(search_space, parameters);
+        }
+        
+        ind.is_fitted_ = false;
+        ind.set_id(id);
+        ind.set_objectives(mom.get_objectives()); // it will have an invalid fitness
+
+        // copying mom fitness to the new individual (without making the fitnes valid)
+        // so the bandits can access this information. Fitness will be valid
+        // only when we do set_values(). We are setting these parameters below
+        // because we want to keep the previous values for the bandits, and
+        // we are not updating the fitness values here.
+        ind.fitness.set_loss(mom.fitness.get_loss());
+        ind.fitness.set_loss_v(mom.fitness.get_loss_v());
+        ind.fitness.set_size(mom.fitness.get_size());
+        ind.fitness.set_complexity(mom.fitness.get_complexity());
+        ind.fitness.set_depth(mom.fitness.get_depth());
             
-            // creating a new random individual
-            new_ind.init(search_space, parameters);
-            new_ind.set_objectives(mom.get_objectives()); // it will have an invalid fitness
-            new_ind.set_id(id);
-            new_ind.is_fitted_ = false;
+        assert(ind.program.size()>0);
+        assert(ind.fitness.valid()==false);
 
-            pop.individuals.at(indices.at(i)) = std::make_shared<Individual<T>>(new_ind);
-        }
+        pop.individuals.at(indices.at(i)) = std::make_shared<Individual<T>>(ind);
    }
 }
 

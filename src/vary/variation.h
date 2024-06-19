@@ -7,6 +7,7 @@ license: GNU/GPL v3
 #define VARIATION_H
 
 #include "../pop/population.h"
+#include "../bandit/bandit.h"
 
 #include <map>
 #include <optional>
@@ -66,7 +67,17 @@ public:
     Variation(Parameters& params, SearchSpace& ss)
         : parameters(params)
         , search_space(ss)
-    {};
+    {
+        op_bandit = Bandit(parameters.bandit,
+                           search_space.node_map_weights.size() );
+        
+        for (const auto& entry : search_space.terminal_weights) {
+            // one bandit for each terminal type
+            if (terminal_bandit.find(entry.first) == terminal_bandit.end())
+                terminal_bandit[entry.first] = Bandit(parameters.bandit,
+                                                         entry.second.size());
+        }
+    };
 
     /**
      * @brief Destructor.
@@ -114,9 +125,27 @@ public:
      */
     void vary(Population<T>& pop, int island, const vector<size_t>& parents);
 
+    /**
+     * @brief Calculates the rewards for individuals in a population.
+     * 
+     * @param pop The population.
+     * @param island The island index.
+     * @return A vector of floats representing the rewards for each individual.
+     */
+    vector<float> calc_rewards(const Population<T>& pop, int island);
+
+    /**
+     * @brief Updates the search space based on the rewards obtained from the population.
+     * 
+     * @param rewards The flattened reward vector obtained from the population.
+     */
+    void update_ss(const vector<float>& rewards);
 private:
     SearchSpace search_space; // The search space for the variation operator.
     Parameters parameters;    // The parameters for the variation operator
+    
+    Bandit op_bandit; // Create an instance of the Bandit class called op_bandit
+    unordered_map<DataType, Bandit> terminal_bandits; // Create an instance of the Bandit class called terminal_bandit
 };
 
 } //namespace Var

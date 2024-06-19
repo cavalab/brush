@@ -24,8 +24,9 @@ void Evaluation<T>::update_fitness(Population<T>& pop,
 
         if (pass)
         {
-            ind.fitness.loss = MAX_FLT;
-            ind.fitness.loss_v = MAX_FLT;
+            ind.fitness.set_loss(MAX_FLT);
+            ind.fitness.set_loss_v(MAX_FLT);
+
             ind.error = MAX_FLT*VectorXf::Ones(data.y.size());
         }
         else
@@ -67,6 +68,8 @@ void Evaluation<T>::assign_fit(Individual<T>& ind, const Dataset& data,
     // this will make sure the information is calculated and ready to be used
     // regardless of how the program is set to run.
     ind.error = errors;
+
+    // when we use these setters, it updates its previous values references
     ind.fitness.set_loss(f);
     ind.fitness.set_loss_v(f_v);
     ind.fitness.set_size(ind.get_size());
