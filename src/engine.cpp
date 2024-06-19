@@ -373,11 +373,16 @@ void Engine<T>::run(Dataset &data)
     // vectors to store each island separatedly
     vector<vector<size_t>> island_parents;
     vector<vector<size_t>> survivors;
+    vector<vector<float>> rewards;
+    
     island_parents.clear();
     island_parents.resize(pop.num_islands);
 
     survivors.clear();
     survivors.resize(pop.num_islands);
+
+    rewards.clear();
+    rewards.resize(pop.num_islands);
 
     for (int i=0; i< params.num_islands; i++){
         size_t idx_start = std::floor(i*params.pop_size/params.num_islands);
@@ -425,15 +430,30 @@ void Engine<T>::run(Dataset &data)
                 if (data.use_batch) // assign the batch error as fitness (but fit was done with training data)
                     evaluator.update_fitness(this->pop, island, batch, params, false);
 
+                vector<float> island_rewards = variator.calc_rewards(this->pop, island);
+                for (int i=0; i< island_rewards.size(); i++){
+                    rewards.at(island).at(i) = island_rewards.at(i);
+                }
+
                 // select survivors from combined pool of parents and offspring
                 vector<size_t> island_survivors = survivor.survive(this->pop, island, params);
-
                 for (int i=0; i< island_survivors.size(); i++){
                     survivors.at(island).at(i) = island_survivors.at(i);
                 }
             }).name("runs one generation at each island in parallel");
 
             auto update_pop = subflow.emplace([&]() {
+                // Flatten the rewards vector
+                vector<float> flattened_rewards;
+                for (const auto& island_rewards : rewards) {
+                    flattened_rewards.insert(flattened_rewards.end(),
+                                             island_rewards.begin(),
+                                             island_rewards.end());
+                }
+
+                // Use the flattened rewards vector for updating the population
+                this->variator.update_ss(flattened_rewards);
+
                 this->pop.update(survivors);
                 this->pop.migrate();
             }).name("update, migrate and disentangle indexes between islands");

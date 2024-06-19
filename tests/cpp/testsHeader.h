@@ -34,6 +34,9 @@ using std::stof;
 #include "../../src/ind/individual.h"
 #include "../../src/vary/search_space.h"
 #include "../../src/params.h"
+#include "../../src/bandit/bandit.h"
+#include "../../src/bandit/bandit_operator.h"
+#include "../../src/bandit/dummy.h"
 #include "../../src/vary/variation.h"
 #include "../../src/selection/selection.h"
 #include "../../src/selection/selection_operator.h"
@@ -48,5 +51,6 @@ using std::stof;
 using namespace Brush;
 using namespace Brush::Data;
 using namespace Brush::Var;
+using namespace Brush::MAB;
 
 #endif

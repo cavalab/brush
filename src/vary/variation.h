@@ -13,6 +13,7 @@ license: GNU/GPL v3
 #include <optional>
 
 using namespace Brush::Pop;
+using namespace Brush::MAB;
 
 /**
  * @brief Namespace for variation functions like crossover and mutation. 
@@ -68,14 +69,14 @@ public:
         : parameters(params)
         , search_space(ss)
     {
-        op_bandit = Bandit(parameters.bandit,
-                           search_space.node_map_weights.size() );
+        this->op_bandit = Bandit(this->parameters.bandit,
+                           this->search_space.node_map_weights.size() );
         
-        for (const auto& entry : search_space.terminal_weights) {
+        for (const auto& entry : this->search_space.terminal_weights) {
             // one bandit for each terminal type
-            if (terminal_bandit.find(entry.first) == terminal_bandit.end())
-                terminal_bandit[entry.first] = Bandit(parameters.bandit,
-                                                         entry.second.size());
+            if (this->terminal_bandits.find(entry.first) == this->terminal_bandits.end())
+                this->terminal_bandits[entry.first] = Bandit(this->parameters.bandit,
+                                                             entry.second.size());
         }
     };
 
@@ -93,6 +94,16 @@ public:
     void init(Parameters& params, SearchSpace& ss){
         this->parameters = params;
         this->search_space = ss;
+        
+        this->op_bandit = Bandit(this->parameters.bandit,
+                           this->search_space.node_map_weights.size() );
+        
+        for (const auto& entry : this->search_space.terminal_weights) {
+            // one bandit for each terminal type
+            if (this->terminal_bandits.find(entry.first) == this->terminal_bandits.end())
+                this->terminal_bandits[entry.first] = Bandit(this->parameters.bandit,
+                                                             entry.second.size());
+        }
     };
 
     /**
@@ -132,14 +143,16 @@ public:
      * @param island The island index.
      * @return A vector of floats representing the rewards for each individual.
      */
-    vector<float> calc_rewards(const Population<T>& pop, int island);
+    vector<float> calc_rewards(const Population<T>& pop, int island) {
+        return {};
+    }
 
     /**
      * @brief Updates the search space based on the rewards obtained from the population.
      * 
      * @param rewards The flattened reward vector obtained from the population.
      */
-    void update_ss(const vector<float>& rewards);
+    void update_ss(const vector<float>& rewards){};
 private:
     SearchSpace search_space; // The search space for the variation operator.
     Parameters parameters;    // The parameters for the variation operator

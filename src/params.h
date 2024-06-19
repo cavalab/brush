@@ -36,7 +36,7 @@ public:
     unsigned int max_size  = 50;
 
     vector<string> objectives{"error","complexity"}; // error should be generic and deducted based on mode
-
+    string bandit = "dummy"; // should I rename that? 
     string sel  = "lexicase"; //selection method
     string surv = "nsga2"; //survival method
     std::unordered_map<string, float> functions;
@@ -102,6 +102,9 @@ public:
     void set_max_gens(int new_max_gens){ max_gens = new_max_gens; };
     int get_max_gens(){ return max_gens; };
     
+    void set_bandit(string new_bandit){ bandit = new_bandit; };
+    string get_bandit(){ return bandit; };
+
     void set_max_stall(int new_max_stall){ max_stall = new_max_stall; };
     int get_max_stall(){ return max_stall; };
 
