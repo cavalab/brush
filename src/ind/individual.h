@@ -25,15 +25,19 @@ public: // TODO: make these private (and work with nlohman json)
 
     // archive utility (and also keep track of evolution) (this is meaningful only
     // if variation is done using the vary() function)
-    unsigned id;                                ///< tracking id
-    vector<unsigned> parent_id;                      ///< ids of parents
+    unsigned id;                 ///< tracking id
+    vector<unsigned> parent_id;  ///< ids of parents
     
+    // storing what changed in relation to parent inside variation
+    string variation = "born"; // spontanegous generation (born), crossover, or which type of mutation
+
     VectorXf error;     ///< training error (used in lexicase selectors)
 
     Fitness fitness;     ///< aggregate fitness score
 
     vector<string> objectives; ///< objectives for use with Pareto selection
        
+
     Individual()
     {
         objectives = {"error", "complexity"}; 
@@ -95,6 +99,9 @@ public: // TODO: make these private (and work with nlohman json)
 
     void set_fitness(Fitness &f) { fitness=f; };
     Fitness& get_fitness() { return fitness; };
+
+    void set_variation(string v) { variation=v; };
+    string get_variatiion() { return variation; };
     
     void set_id(unsigned i){id = i;};
     void set_parents(const vector<Individual<T>>& parents){

@@ -392,9 +392,11 @@ void Engine<T>::run(Dataset &data)
 
         survivors.at(i).clear();
         island_parents.at(i).clear();
+        rewards.at(i).clear();
 
         survivors.at(i).resize(delta);
         island_parents.at(i).resize(delta);
+        rewards.at(i).resize(delta);
     }
 
     // heavily inspired in https://github.com/heal-research/operon/blob/main/source/algorithms/nsga2.cpp
@@ -424,7 +426,9 @@ void Engine<T>::run(Dataset &data)
                 }
                 
                 this->pop.add_offspring_indexes(island); 
+
                 variator.vary(this->pop, island, island_parents.at(island));
+                
                 evaluator.update_fitness(this->pop, island, data, params, true);
 
                 if (data.use_batch) // assign the batch error as fitness (but fit was done with training data)
@@ -442,7 +446,7 @@ void Engine<T>::run(Dataset &data)
                 }
             }).name("runs one generation at each island in parallel");
 
-            auto update_pop = subflow.emplace([&]() {
+            auto update_pop = subflow.emplace([&]() { // sync point
                 // Flatten the rewards vector
                 vector<float> flattened_rewards;
                 for (const auto& island_rewards : rewards) {
@@ -450,9 +454,9 @@ void Engine<T>::run(Dataset &data)
                                              island_rewards.begin(),
                                              island_rewards.end());
                 }
-
+                
                 // Use the flattened rewards vector for updating the population
-                this->variator.update_ss(flattened_rewards);
+                this->variator.update_ss(this->pop, flattened_rewards);
 
                 this->pop.update(survivors);
                 this->pop.migrate();
@@ -463,12 +467,10 @@ void Engine<T>::run(Dataset &data)
                 
                 if ( (params.verbosity>1 || !params.logfile.empty() )
                 || params.use_arch ) {
-                    std::cout << "Calculating stats..." << std::endl;
                     calculate_stats();
                 }
 
                 if (params.use_arch) {
-                    std::cout << "updating archive..." << std::endl;
                     archive.update(pop, params);
                 }
                 

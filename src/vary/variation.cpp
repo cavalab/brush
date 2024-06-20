@@ -440,6 +440,7 @@ std::optional<Individual<T>> Variation<T>::cross(
                 
                 Individual<T> ind(child);
                 ind.set_objectives(mom.get_objectives()); // it will have an invalid fitness
+                ind.set_variation("cx"); // TODO: use enum here to make it faster
 
                 return ind;
             }
@@ -564,6 +565,7 @@ std::optional<Individual<T>> Variation<T>::mutate(const Individual<T>& parent)
 
             Individual<T> ind(child);
             ind.set_objectives(parent.get_objectives()); // it will have an invalid fitness
+            ind.set_variation(choice);
 
             return ind;
         } else {
@@ -594,7 +596,9 @@ void Variation<T>::vary(Population<T>& pop, int island,
             *r.select_randomly(parents.begin(), parents.end())];
     
         vector<Individual<T>> ind_parents;
-        if ( r() < parameters.cx_prob) // crossover
+
+        bool crossover = ( r() < parameters.cx_prob );
+        if (crossover)
         {
             const Individual<T>& dad = pop[
                 *r.select_randomly(parents.begin(), parents.end())];
@@ -602,7 +606,7 @@ void Variation<T>::vary(Population<T>& pop, int island,
             opt = cross(mom, dad);   
             ind_parents = {mom, dad};
         }
-        else // mutation
+        else
         {
             opt = mutate(mom);   
             ind_parents = {mom};
@@ -620,12 +624,12 @@ void Variation<T>::vary(Population<T>& pop, int island,
             ind.set_parents(ind_parents);
         }
         else {  // no optional value was returned. creating a new random individual
-            ind.init(search_space, parameters);
+            ind.init(search_space, parameters); // ind.variation is born by default
+            ind.set_objectives(mom.get_objectives()); // it will have an invalid fitness
         }
         
         ind.is_fitted_ = false;
         ind.set_id(id);
-        ind.set_objectives(mom.get_objectives()); // it will have an invalid fitness
 
         // copying mom fitness to the new individual (without making the fitnes valid)
         // so the bandits can access this information. Fitness will be valid
@@ -643,6 +647,96 @@ void Variation<T>::vary(Population<T>& pop, int island,
 
         pop.individuals.at(indices.at(i)) = std::make_shared<Individual<T>>(ind);
    }
+}
+
+
+template <Brush::ProgramType T>
+vector<float> Variation<T>::calc_rewards(Population<T>& pop, int island)
+{
+    // get island indexes
+    // go to the offspring of the island
+    // find which objectives we are using
+    // calculate the rewards based on variation of the objectives (must take into account the weights)
+    // define which criteria for rewards we are going to use (dominates, improved at least one without changing the other, etc)
+    // return the rewards vector, which will be used to update the bandits
+
+    vector<float> rewards;
+    rewards.resize(0);
+
+    // this is done assuming index of offspring is valid and the second half
+    // of indices is the offspring. This is done in vary() function.
+    auto indices = pop.get_island_indexes(island);
+
+    for (unsigned i = 0 ; i < indices.size()/2; ++i)
+    {
+        // condition below shoudnt happen
+        // if (pop.individuals.at(indices.at(indices.size()/2 + i)) == nullptr)
+        // {
+        //     HANDLE_ERROR_THROW("bad loop");
+        //     continue;
+        // }
+        const Individual<T>& ind = *pop.individuals.at(
+            indices.at(indices.size()/2 + i) );
+
+        vector<float> deltas(ind.get_objectives().size(), 0.0f);
+        
+        float delta = 0.0f;
+        float weight = 0.0f;
+
+        for (const auto& obj : ind.get_objectives())
+        {   
+            // multiply by the weight so it is a maximization problem regardless of obj
+            if (obj.compare(parameters.scorer)==0)
+                delta = ind.fitness.get_loss_v()-ind.fitness.get_loss();
+            else if (obj.compare("complexity")==0)
+                delta = ind.fitness.get_complexity()-ind.fitness.get_prev_complexity();
+            else if (obj.compare("size")==0)
+                delta = ind.fitness.get_size()-ind.fitness.get_prev_size();
+            else if (obj.compare("depth")==0)
+                delta = ind.fitness.get_depth()-ind.fitness.get_prev_depth();
+            else
+                HANDLE_ERROR_THROW(obj+" is not a known objective");
+
+            auto it = Individual<T>::weightsMap.find(obj);
+            weight = it->second;
+            
+            deltas.push_back(delta*weight);
+        }
+
+        // calculate the rewards based on the objectives
+        bool allPositive = true;
+        for (float d : deltas) {
+            if (d < 0) {
+                allPositive = false;
+                break;
+            }
+        }
+
+        if (allPositive)
+            rewards.push_back(1.0f);
+        else
+            rewards.push_back(0.0f);
+    }
+    return rewards;
+}
+
+template <Brush::ProgramType T>
+void Variation<T>::update_ss(const Population<T>& pop, const vector<float>& rewards)
+{
+    // give all the rewards for the bandit. This is done in batches.
+    // the rewards and the offspring in the population are in the same order
+    // (it is important that we dont run pop.update() before updating the ss,
+    // so we can easily keep a way of pairing which variation each reward is
+    // reffering.)
+    // ask the bandit to sampl a new probability distribution.
+    // we update the varation bandit for all individuals, then, for each type
+    // of replacement, we update the bandit for the respective op/terminal nodes.
+
+    // update the variation bandit
+
+    // update the operators bandit
+
+    // update each terminal bandit
 }
 
 } //namespace Var

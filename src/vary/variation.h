@@ -72,6 +72,9 @@ public:
         this->op_bandit = Bandit(this->parameters.bandit,
                            this->search_space.node_map_weights.size() );
         
+        this->variation_bandit = Bandit(this->parameters.bandit,
+                           this->search_space.node_map_weights.size() );
+        
         for (const auto& entry : this->search_space.terminal_weights) {
             // one bandit for each terminal type
             if (this->terminal_bandits.find(entry.first) == this->terminal_bandits.end())
@@ -98,6 +101,9 @@ public:
         this->op_bandit = Bandit(this->parameters.bandit,
                            this->search_space.node_map_weights.size() );
         
+        this->variation_bandit = Bandit(this->parameters.bandit,
+                           this->search_space.node_map_weights.size() );
+                           
         for (const auto& entry : this->search_space.terminal_weights) {
             // one bandit for each terminal type
             if (this->terminal_bandits.find(entry.first) == this->terminal_bandits.end())
@@ -143,22 +149,22 @@ public:
      * @param island The island index.
      * @return A vector of floats representing the rewards for each individual.
      */
-    vector<float> calc_rewards(const Population<T>& pop, int island) {
-        return {};
-    }
+    vector<float> calc_rewards(Population<T>& pop, int island);
 
     /**
      * @brief Updates the search space based on the rewards obtained from the population.
      * 
+     * @param pop The population.
      * @param rewards The flattened reward vector obtained from the population.
      */
-    void update_ss(const vector<float>& rewards){};
+    void update_ss(const Population<T>& pop, const vector<float>& rewards);
 private:
     SearchSpace search_space; // The search space for the variation operator.
     Parameters parameters;    // The parameters for the variation operator
     
-    Bandit op_bandit; // Create an instance of the Bandit class called op_bandit
-    unordered_map<DataType, Bandit> terminal_bandits; // Create an instance of the Bandit class called terminal_bandit
+    Bandit variation_bandit;
+    Bandit op_bandit;
+    unordered_map<DataType, Bandit> terminal_bandits; 
 };
 
 } //namespace Var
