@@ -761,6 +761,7 @@ template <> struct fmt::formatter<Brush::SearchSpace>: formatter<string_view> {
     string output = "Search Space\n===\n";
     output += fmt::format("terminal_map: {}\n", SS.terminal_map);
     output += fmt::format("terminal_weights: {}\n", SS.terminal_weights);
+    
     for (const auto& [ret_type, v] : SS.node_map) {
         for (const auto& [args_type, v2] : v) {
             for (const auto& [node_type, node] : v2) {

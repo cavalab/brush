@@ -14,6 +14,7 @@ namespace MAB {
 
 using namespace Brush;
 
+// TODO: all templates, or require some specific types?
 template <typename T>
 struct Bandit
 {
@@ -24,66 +25,31 @@ public:
      * TODO: This should be a shared pointer to allow multiple instances of Bandit to share the same operator.
      */
     std::shared_ptr<BanditOperator<T>> pbandit;
-
-    /**
-     * @brief The type (policy) of the bandit.
-     */
     std::string type;
+    vector<T> arms;
 
-    /**
-     * @brief The number of arms in the bandit.
-     */
-    int arms;
+    std::map<T, float> probabilities;
 
     Bandit();
     ~Bandit(){};
 
-    /**
-     * @brief Constructor for Bandit.
-     * 
-     * @param type The type (policy) of the bandit.
-     * @param arms The number of arms in the bandit.
-     */
-    Bandit(string type, int arms);
+    Bandit(string type, vector<T> arms);
+    Bandit(string type, map<T, float> arms_probs);
 
-
-    /**
-     * @brief Set the bandit operator for the bandit.
-     * 
-     * This function sets the bandit operator (policy) for the bandit.
-     */
     void set_bandit();
 
-    /**
-     * @brief Get the type of the bandit.
-     * 
-     * @return The type (policy) of the bandit.
-     */
-    string get_type();
+    void set_arms(vector<T> arms);
+    vector<T> get_arms();
 
-    /**
-     * @brief Set the type of the bandit.
-     * 
-     * @param type The type (policy) of the bandit.
-     */
+    string get_type();
     void set_type(string type);
 
-    /**
-     * @brief Sample a probability distribution for each arm.
-     * 
-     * If update is true, the inner tracker of probabilities is updated.
-     * 
-     * @param update Flag indicating whether to update the inner tracker of probabilities.
-     * @return The sampled probability distribution.
-     */
+    map<T, float> get_probs();
+    void set_probs(map<T, float> arms_probs);
+
     map<T, float> sample_probs(bool update);
 
-    /**
-     * @brief Update the inner state of the bandit based on the rewards obtained from the arms.
-     * 
-     * @param rewards The rewards obtained from the arms.
-     */
-    void update_with_reward(vector<float> rewards);
+    void update(T arm, float reward);
 };
 
 //TODO: serialization should save the type of bandit and its parameters

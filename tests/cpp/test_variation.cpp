@@ -1,4 +1,5 @@
 #include "testsHeader.h"
+#include "../../src/bandit/bandit.cpp"
 
 TEST(Variation, FixedRootDoesntChange)
 {

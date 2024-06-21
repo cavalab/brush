@@ -70,18 +70,22 @@ public:
         : parameters(params)
         , search_space(ss)
     {
-        this->op_bandit = Bandit<DataType>(this->parameters.bandit,
-                           this->search_space.node_map_weights.size() );
+        auto variation_probs = this->parameters.mutation_probs;
+        if (params.cx_prob > 0.0) variation_probs["cx"] = params.cx_prob;
+
+        this->variation_bandit.set_type(parameters.bandit);
+        this->variation_bandit.set_probs(variation_probs);
+        this->variation_bandit.set_bandit();
+
+        // this->op_bandit = Bandit<DataType>(this->parameters.bandit,
+        //                    this->search_space.node_map_weights.size() );
         
-        this->variation_bandit = Bandit<string>(this->parameters.bandit,
-                           this->search_space.node_map_weights.size() );
-        
-        for (const auto& entry : this->search_space.terminal_weights) {
-            // one bandit for each terminal type
-            if (this->terminal_bandits.find(entry.first) == this->terminal_bandits.end())
-                this->terminal_bandits[entry.first] = Bandit<DataType>(this->parameters.bandit,
-                                                             entry.second.size());
-        }
+        // for (const auto& entry : this->search_space.terminal_weights) {
+        //     // one bandit for each terminal type
+        //     if (this->terminal_bandits.find(entry.first) == this->terminal_bandits.end())
+        //         this->terminal_bandits[entry.first] = Bandit<DataType>(this->parameters.bandit,
+        //                                                      entry.second.size());
+        // }
     };
 
     /**
@@ -99,18 +103,22 @@ public:
         this->parameters = params;
         this->search_space = ss;
         
-        this->op_bandit = Bandit<DataType>(this->parameters.bandit,
-                           this->search_space.node_map_weights.size() );
-        
-        this->variation_bandit = Bandit<string>(this->parameters.bandit,
-                           this->search_space.node_map_weights.size() );
-                           
-        for (const auto& entry : this->search_space.terminal_weights) {
-            // one bandit for each terminal type
-            if (this->terminal_bandits.find(entry.first) == this->terminal_bandits.end())
-                this->terminal_bandits[entry.first] = Bandit<DataType>(this->parameters.bandit,
-                                                             entry.second.size());
-        }
+        auto variation_probs = this->parameters.mutation_probs;
+        if (params.cx_prob > 0.0) variation_probs["cx"] = params.cx_prob;
+
+        this->variation_bandit.set_type(parameters.bandit);
+        this->variation_bandit.set_probs(variation_probs);
+        this->variation_bandit.set_bandit();
+
+        // this->op_bandit = Bandit<DataType>(this->parameters.bandit,
+        //                    this->search_space.node_map_weights.size() );
+                 
+        // for (const auto& entry : this->search_space.terminal_weights) {
+        //     // one bandit for each terminal type
+        //     if (this->terminal_bandits.find(entry.first) == this->terminal_bandits.end())
+        //         this->terminal_bandits[entry.first] = Bandit<DataType>(this->parameters.bandit,
+        //                                                      entry.second.size());
+        // }
     };
 
     /**

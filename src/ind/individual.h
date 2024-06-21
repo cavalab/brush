@@ -101,7 +101,7 @@ public: // TODO: make these private (and work with nlohman json)
     Fitness& get_fitness() { return fitness; };
 
     void set_variation(string v) { variation=v; };
-    string get_variatiion() { return variation; };
+    string get_variation() const { return variation; };
     
     void set_id(unsigned i){id = i;};
     void set_parents(const vector<Individual<T>>& parents){

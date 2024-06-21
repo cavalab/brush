@@ -4,18 +4,39 @@ namespace Brush {
 namespace MAB {
 
 template <typename T>
-Bandit<T>::Bandit() : type("dummy"), arms(0) { 
-    this->set_bandit();
+Bandit<T>::Bandit() { 
+    set_type("dummy");
+    set_arms({});
+    set_bandit();
 }
 
 template <typename T>
-Bandit<T>::Bandit(string type, int arms) : type(type), arms(arms) {
+Bandit<T>::Bandit(string type, vector<T> arms) : type(type) {
+    this->set_arms(arms);
+
+    map<T, float> arms_probs;
+    float prob = 1.0 / arms.size();
+    for (const auto& arm : arms) {
+        arms_probs[arm] = prob;
+    }
+    this->set_probs(arms_probs);
+}
+
+template <typename T>
+Bandit<T>::Bandit(string type, map<T, float> arms_probs) : type(type) {
+    this->set_probs(arms_probs);
+
+    vector<T> arms_names;
+    for (const auto& pair : arms_probs) {
+        arms_names.push_back(pair.first);
+    }
+    this->set_arms(arms_names);
 }
 
 template <typename T>
 void Bandit<T>::set_bandit() {
     if (type == "dummy") {
-        pbandit = make_unique<DummyBandit<T>>();
+        pbandit = make_unique<DummyBandit<T>>(probabilities);
     } else {
         HANDLE_ERROR_THROW("Undefined Selection Operator " + this->type + "\n");
     }
@@ -32,13 +53,33 @@ void Bandit<T>::set_type(string type) {
 }
 
 template <typename T>
-map<T, float> Bandit<T>::Bandit::sample_probs(bool update) {
+vector<T> Bandit<T>::get_arms() {
+    return arms;
+}
+
+template <typename T>
+void Bandit<T>::set_arms(vector<T> arms) {
+    this->arms = arms;
+}
+
+template <typename T>
+map<T, float> Bandit<T>::get_probs() {
+    return probabilities;
+}
+
+template <typename T>
+void Bandit<T>::set_probs(map<T, float> arms_probs) {
+    probabilities = arms_probs;
+}
+
+template <typename T>
+map<T, float> Bandit<T>::sample_probs(bool update) {
     return this->pbandit->sample_probs(update);
 }
 
 template <typename T>
-void Bandit<T>::update_with_reward(vector<float> rewards) {
-    // TODO: Implement the logic to update the inner state of the bandit based on the rewards obtained from the arms
+void Bandit<T>::update(T arm, float reward) {
+    this->pbandit->update(arm, reward);
 }
 
 } // MAB

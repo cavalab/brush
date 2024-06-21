@@ -12,14 +12,16 @@ template <typename T>
 class DummyBandit : public BanditOperator<T>
 {
 public:
-    DummyBandit();
+    DummyBandit(vector<T> arms)           : BanditOperator<T>(arms) {};
+    DummyBandit(map<T, float> arms_probs) : BanditOperator<T>(arms_probs) {};
     ~DummyBandit(){};
 
     map<T, float> sample_probs(bool update);
-    void update_with_reward(std::vector<float> rewards);
+    void update(T arm, float reward);
 
+private:
     std::map<T, float> probabilities;
-
+    
     // additional stuff should come here
 };
 

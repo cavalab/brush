@@ -512,7 +512,7 @@ std::optional<Individual<T>> Variation<T>::mutate(const Individual<T>& parent)
         vector<float> weights;
 
         // choose location by weighted sampling of program
-        if (choice == "point")
+        if (choice == "point") // TODO: use enum here to optimize
             weights = PointMutation::find_spots(child.Tree, search_space, parameters);
         else if (choice == "insert")
             weights = InsertMutation::find_spots(child.Tree, search_space, parameters);
@@ -746,12 +746,25 @@ void Variation<T>::update_ss(Population<T>& pop, const vector<float>& rewards)
             float r = rewards.at(index++);
 
             // update the variation bandit. get the variation (arm) and reward to update
+            this->variation_bandit.update(ind.get_variation(), r);
 
             // update the operators bandit (if thats the case)
 
             // update each terminal bandit (if thats the case)
         }
     }
+
+    // variation: getting new probabilities for the search space
+    // get the probs
+    // change cross rate
+    // change each mutation
+    auto variation_probs = variation_bandit.sample_probs(true);
+
+    if (variation_probs.find("cx") != variation_probs.end())
+        this->parameters.cx_prob = variation_probs.at("cx");
+    
+    for (const auto& mutation : parameters.mutation_probs)
+        this->parameters.mutation_probs[mutation.first] = mutation.second;
 
     assert(index == rewards.size());
 }

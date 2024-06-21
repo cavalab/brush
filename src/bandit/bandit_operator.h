@@ -15,17 +15,17 @@ template<typename T>
 class BanditOperator
 {
 public:
-    std::string name; 
+    std::map<T, float> probabilities;
 
-    BanditOperator() {};
-    virtual ~BanditOperator() {};
+    BanditOperator(vector<T> arms);
+    BanditOperator(map<T, float> arms_probs);
+    ~BanditOperator() {};
 
-    // TODO: rename to sample_new_probs and make it taking no arguments
     virtual std::map<T, float> sample_probs(bool update);
 
-    virtual void update_with_reward(std::vector<float> rewards);
+    virtual void update(T arm, float reward);
+};
 
-};;;
 } // MAB
 } // Brush
 

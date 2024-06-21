@@ -1,6 +1,5 @@
 #include "testsHeader.h"
 
-
 TEST(Data, ErrorHandling)
 {
     // Creating an empty dataset throws error
