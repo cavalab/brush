@@ -3,15 +3,18 @@
 namespace Brush {
 namespace MAB {
 
-DummyBandit::DummyBandit() {
+template <typename T>
+DummyBandit<T>::DummyBandit() {
     // Constructor implementation
 }
 
-vector<float> DummyBandit::sample_probs(bool update) {
-    return probabilities;
+template <typename T>
+map<T, float> DummyBandit<T>::sample_probs(bool update) {
+    return probabilities; // TODO: return the probabilities
 }
 
-void DummyBandit::update_with_reward(std::vector<float> rewards) {
+template <typename T>
+void DummyBandit<T>::update_with_reward(std::vector<float> rewards) {
 }
 
 } // MAB

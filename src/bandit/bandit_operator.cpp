@@ -3,7 +3,8 @@
 namespace Brush {
 namespace MAB {
 
-std::vector<float> BanditOperator::sample_probs(bool update)
+template<typename T>
+std::map<T, float> BanditOperator<T>::sample_probs(bool update)
 {
     // TODO: Implement the logic for sampling probabilities
     // based on the bandit operator's strategy
@@ -12,10 +13,11 @@ std::vector<float> BanditOperator::sample_probs(bool update)
     HANDLE_ERROR_THROW("Undefined bandit sample_probs() operation");
 
     // Return an empty vector
-    return std::vector<float>();
+    return std::map<T, float>();
 }
 
-void BanditOperator::update_with_reward(std::vector<float> rewards)
+template<typename T>
+void BanditOperator<T>::update_with_reward(std::vector<float> rewards)
 {
     // TODO: Implement the logic for updating the bandit operator's internal state
     // based on the received rewards

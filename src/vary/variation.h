@@ -7,6 +7,7 @@ license: GNU/GPL v3
 #define VARIATION_H
 
 #include "../pop/population.h"
+#include "../data/data.h"
 #include "../bandit/bandit.h"
 
 #include <map>
@@ -69,16 +70,16 @@ public:
         : parameters(params)
         , search_space(ss)
     {
-        this->op_bandit = Bandit(this->parameters.bandit,
+        this->op_bandit = Bandit<DataType>(this->parameters.bandit,
                            this->search_space.node_map_weights.size() );
         
-        this->variation_bandit = Bandit(this->parameters.bandit,
+        this->variation_bandit = Bandit<string>(this->parameters.bandit,
                            this->search_space.node_map_weights.size() );
         
         for (const auto& entry : this->search_space.terminal_weights) {
             // one bandit for each terminal type
             if (this->terminal_bandits.find(entry.first) == this->terminal_bandits.end())
-                this->terminal_bandits[entry.first] = Bandit(this->parameters.bandit,
+                this->terminal_bandits[entry.first] = Bandit<DataType>(this->parameters.bandit,
                                                              entry.second.size());
         }
     };
@@ -98,16 +99,16 @@ public:
         this->parameters = params;
         this->search_space = ss;
         
-        this->op_bandit = Bandit(this->parameters.bandit,
+        this->op_bandit = Bandit<DataType>(this->parameters.bandit,
                            this->search_space.node_map_weights.size() );
         
-        this->variation_bandit = Bandit(this->parameters.bandit,
+        this->variation_bandit = Bandit<string>(this->parameters.bandit,
                            this->search_space.node_map_weights.size() );
                            
         for (const auto& entry : this->search_space.terminal_weights) {
             // one bandit for each terminal type
             if (this->terminal_bandits.find(entry.first) == this->terminal_bandits.end())
-                this->terminal_bandits[entry.first] = Bandit(this->parameters.bandit,
+                this->terminal_bandits[entry.first] = Bandit<DataType>(this->parameters.bandit,
                                                              entry.second.size());
         }
     };
@@ -157,14 +158,14 @@ public:
      * @param pop The population.
      * @param rewards The flattened reward vector obtained from the population.
      */
-    void update_ss(const Population<T>& pop, const vector<float>& rewards);
+    void update_ss(Population<T>& pop, const vector<float>& rewards);
 private:
     SearchSpace search_space; // The search space for the variation operator.
     Parameters parameters;    // The parameters for the variation operator
     
-    Bandit variation_bandit;
-    Bandit op_bandit;
-    unordered_map<DataType, Bandit> terminal_bandits; 
+    Bandit<string> variation_bandit;
+    Bandit<DataType> op_bandit;
+    unordered_map<DataType, Bandit<DataType>> terminal_bandits; 
 };
 
 } //namespace Var

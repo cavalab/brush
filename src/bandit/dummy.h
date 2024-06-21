@@ -8,14 +8,17 @@
 namespace Brush {
 namespace MAB {
 
-class DummyBandit : public BanditOperator {
+template <typename T>
+class DummyBandit : public BanditOperator<T>
+{
 public:
     DummyBandit();
-
     ~DummyBandit(){};
 
-    vector<float> sample_probs(bool update);
+    map<T, float> sample_probs(bool update);
     void update_with_reward(std::vector<float> rewards);
+
+    std::map<T, float> probabilities;
 
     // additional stuff should come here
 };

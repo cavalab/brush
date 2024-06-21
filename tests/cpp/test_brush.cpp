@@ -2,6 +2,7 @@
 
 #include "../../src/vary/search_space.h"
 #include "../../src/program/program.h"
+
 // #include "../../src/program/dispatch_table.h"
 #include "../../src/data/io.h"
 #include "../../src/engine.h"
@@ -14,7 +15,7 @@
 #include "../../src/pop/archive.h"
 #include "../../src/pop/population.h"
 
-// TODO: omg i need to figure out why my code only works if i import basically the whole stuff
+// TODO: omg i need to figure out why my code only works if i import basically the whole stuff. It seems to be related to templating
 #include "../../src/selection/selection.cpp"
 #include "../../src/selection/selection_operator.cpp"
 #include "../../src/selection/nsga2.cpp"
@@ -22,6 +23,9 @@
 #include "../../src/eval/evaluation.cpp"
 #include "../../src/pop/archive.cpp"
 #include "../../src/pop/population.cpp"
+#include "../../src/bandit/bandit.cpp"
+#include "../../src/bandit/bandit_operator.cpp"
+#include "../../src/bandit/dummy.cpp"
 
 // TODO: test predict from archive
 // TODO: rename it to test_engine 

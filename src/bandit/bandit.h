@@ -14,6 +14,7 @@ namespace MAB {
 
 using namespace Brush;
 
+template <typename T>
 struct Bandit
 {
 public:
@@ -22,7 +23,7 @@ public:
      * 
      * TODO: This should be a shared pointer to allow multiple instances of Bandit to share the same operator.
      */
-    std::shared_ptr<BanditOperator> pbandit;
+    std::shared_ptr<BanditOperator<T>> pbandit;
 
     /**
      * @brief The type (policy) of the bandit.
@@ -43,7 +44,7 @@ public:
      * @param type The type (policy) of the bandit.
      * @param arms The number of arms in the bandit.
      */
-    Bandit(std::string type, int arms);
+    Bandit(string type, int arms);
 
 
     /**
@@ -58,14 +59,14 @@ public:
      * 
      * @return The type (policy) of the bandit.
      */
-    std::string get_type();
+    string get_type();
 
     /**
      * @brief Set the type of the bandit.
      * 
      * @param type The type (policy) of the bandit.
      */
-    void set_type(std::string type);
+    void set_type(string type);
 
     /**
      * @brief Sample a probability distribution for each arm.
@@ -75,17 +76,14 @@ public:
      * @param update Flag indicating whether to update the inner tracker of probabilities.
      * @return The sampled probability distribution.
      */
-    std::vector<float> sample_probs(bool update);
+    map<T, float> sample_probs(bool update);
 
     /**
      * @brief Update the inner state of the bandit based on the rewards obtained from the arms.
      * 
      * @param rewards The rewards obtained from the arms.
      */
-    void update_with_reward(std::vector<float> rewards);
-
-private:
-    std::vector<float> probabilities;
+    void update_with_reward(vector<float> rewards);
 };
 
 //TODO: serialization should save the type of bandit and its parameters

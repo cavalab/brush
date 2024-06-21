@@ -11,20 +11,21 @@
 namespace Brush {
 namespace MAB {
     
+template<typename T>
 class BanditOperator
 {
 public:
     std::string name; 
-    vector<float> probabilities;
 
-    virtual ~BanditOperator() {}
+    BanditOperator() {};
+    virtual ~BanditOperator() {};
 
     // TODO: rename to sample_new_probs and make it taking no arguments
-    virtual std::vector<float> sample_probs(bool update);
+    virtual std::map<T, float> sample_probs(bool update);
 
     virtual void update_with_reward(std::vector<float> rewards);
-};;
 
+};;;
 } // MAB
 } // Brush
 

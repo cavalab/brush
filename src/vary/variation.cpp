@@ -675,6 +675,7 @@ vector<float> Variation<T>::calc_rewards(Population<T>& pop, int island)
         //     HANDLE_ERROR_THROW("bad loop");
         //     continue;
         // }
+
         const Individual<T>& ind = *pop.individuals.at(
             indices.at(indices.size()/2 + i) );
 
@@ -721,9 +722,9 @@ vector<float> Variation<T>::calc_rewards(Population<T>& pop, int island)
 }
 
 template <Brush::ProgramType T>
-void Variation<T>::update_ss(const Population<T>& pop, const vector<float>& rewards)
+void Variation<T>::update_ss(Population<T>& pop, const vector<float>& rewards)
 {
-    // give all the rewards for the bandit. This is done in batches.
+    // give all the rewards for the bandits. This is done in batches.
     // the rewards and the offspring in the population are in the same order
     // (it is important that we dont run pop.update() before updating the ss,
     // so we can easily keep a way of pairing which variation each reward is
@@ -731,12 +732,28 @@ void Variation<T>::update_ss(const Population<T>& pop, const vector<float>& rewa
     // ask the bandit to sampl a new probability distribution.
     // we update the varation bandit for all individuals, then, for each type
     // of replacement, we update the bandit for the respective op/terminal nodes.
+    // This will update both variation params and search space
 
-    // update the variation bandit
+    int index = 0;
+    for (int island = 0; island < pop.num_islands; ++island) {
+        
+        auto indices = pop.get_island_indexes(island);
+        for (unsigned i = 0 ; i < indices.size()/2; ++i)
+        {
+            const Individual<T>& ind = *pop.individuals.at(
+                indices.at(indices.size()/2 + i) );
 
-    // update the operators bandit
+            float r = rewards.at(index++);
 
-    // update each terminal bandit
+            // update the variation bandit. get the variation (arm) and reward to update
+
+            // update the operators bandit (if thats the case)
+
+            // update each terminal bandit (if thats the case)
+        }
+    }
+
+    assert(index == rewards.size());
 }
 
 } //namespace Var
