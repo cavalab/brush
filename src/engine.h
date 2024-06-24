@@ -6,16 +6,16 @@ license: GNU/GPL v3
 #ifndef Engine_H
 #define Engine_H
 
-#include "./util/rnd.h"
+#include "util/rnd.h"
 #include "init.h"
 #include "params.h"
+#include "eval/evaluation.h"
+#include "vary/variation.h"
 #include "pop/population.h"
 #include "pop/archive.h"
-#include "./eval/evaluation.h"
-#include "vary/variation.h"
 #include "selection/selection.h"
-#include "taskflow/taskflow.hpp"
 
+#include "taskflow/taskflow.hpp"
 #include <taskflow/algorithm/for_each.hpp>
 
 namespace Brush

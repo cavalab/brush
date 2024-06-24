@@ -6,9 +6,13 @@ license: GNU/GPL v3
 #ifndef VARIATION_H
 #define VARIATION_H
 
-#include "../pop/population.h"
-#include "../data/data.h"
+#include "../ind/individual.h"
+
 #include "../bandit/bandit.h"
+#include "../bandit/bandit_operator.h"
+#include "../bandit/dummy.h"
+
+#include "../pop/population.h"
 
 #include <map>
 #include <optional>
@@ -106,6 +110,7 @@ public:
         auto variation_probs = this->parameters.mutation_probs;
         if (params.cx_prob > 0.0) variation_probs["cx"] = params.cx_prob;
 
+        this->variation_bandit = Bandit<string>();
         this->variation_bandit.set_type(parameters.bandit);
         this->variation_bandit.set_probs(variation_probs);
         this->variation_bandit.set_bandit();
@@ -152,19 +157,19 @@ public:
     void vary(Population<T>& pop, int island, const vector<size_t>& parents);
 
     /**
-     * @brief Calculates the rewards for individuals in a population.
-     * 
-     * @param pop The population.
+     * Calculates the rewards for the given population and island.
+     *
+     * @param pop The population to calculate rewards for.
      * @param island The island index.
-     * @return A vector of floats representing the rewards for each individual.
+     * @return A vector of rewards for the population.
      */
-    vector<float> calc_rewards(Population<T>& pop, int island);
+    vector<float> calculate_rewards(Population<T>& pop, int island);
 
     /**
-     * @brief Updates the search space based on the rewards obtained from the population.
-     * 
-     * @param pop The population.
-     * @param rewards The flattened reward vector obtained from the population.
+     * Updates the probability distribution sampling for variation and nodes based on the given rewards.
+     *
+     * @param pop The population to update the selection strategy for.
+     * @param rewards The rewards obtained from the evaluation of individuals.
      */
     void update_ss(Population<T>& pop, const vector<float>& rewards);
 private:
@@ -172,9 +177,15 @@ private:
     Parameters parameters;    // The parameters for the variation operator
     
     Bandit<string> variation_bandit;
-    Bandit<DataType> op_bandit;
-    unordered_map<DataType, Bandit<DataType>> terminal_bandits; 
+    // Bandit<DataType> op_bandit;
+    // unordered_map<DataType, Bandit<DataType>> terminal_bandits; 
 };
+
+// // Explicitly instantiate the template for brush program types
+// template class Variation<ProgramType::Regressor>;
+// template class Variation<ProgramType::BinaryClassifier>;
+// template class Variation<ProgramType::MulticlassClassifier>;
+// template class Variation<ProgramType::Representer>;
 
 } //namespace Var
 } //namespace Brush

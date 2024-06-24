@@ -20,8 +20,6 @@ public:
     void update(T arm, float reward);
 
 private:
-    std::map<T, float> probabilities;
-    
     // additional stuff should come here
 };
 

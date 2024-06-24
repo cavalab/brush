@@ -1,17 +1,15 @@
 #include "engine.h"
 
-
 #include <iostream>
 #include <fstream>
 
-
 namespace Brush{
-
 
 using namespace Pop;
 using namespace Sel;
 using namespace Eval;
 using namespace Var;
+using namespace MAB;
 
 /// @brief initialize Feat object for fitting.
 template <ProgramType T>
@@ -26,7 +24,7 @@ void Engine<T>::init()
     this->evaluator = Evaluation<T>();
 
     // TODO: make these classes have a default constructor, and stop recreating instances
-    this->variator.init(params, ss);
+    this->variator = Variation<T>(params, ss);
 
     this->selector = Selection<T>(params.sel, false);
     this->survivor = Selection<T>(params.surv, true);
@@ -434,7 +432,7 @@ void Engine<T>::run(Dataset &data)
                 if (data.use_batch) // assign the batch error as fitness (but fit was done with training data)
                     evaluator.update_fitness(this->pop, island, batch, params, false);
 
-                vector<float> island_rewards = variator.calc_rewards(this->pop, island);
+                vector<float> island_rewards = variator.calculate_rewards(this->pop, island);
                 for (int i=0; i< island_rewards.size(); i++){
                     rewards.at(island).at(i) = island_rewards.at(i);
                 }
@@ -455,6 +453,7 @@ void Engine<T>::run(Dataset &data)
                                              island_rewards.end());
                 }
                 
+                // TODO: do i need these next this-> pointers?
                 // Use the flattened rewards vector for updating the population
                 this->variator.update_ss(this->pop, flattened_rewards);
 

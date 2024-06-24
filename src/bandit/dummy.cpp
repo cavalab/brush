@@ -5,7 +5,7 @@ namespace MAB {
 
 template <typename T>
 map<T, float> DummyBandit<T>::sample_probs(bool update) {
-    return probabilities;
+    return this->probabilities;
 }
 
 template <typename T>

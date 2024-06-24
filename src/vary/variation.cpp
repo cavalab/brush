@@ -2,7 +2,12 @@
 
 namespace Brush {
 namespace Var {
-    
+
+
+using namespace Brush;
+using namespace Pop;
+using namespace MAB;
+
 /// @brief replace node with same typed node
 /// @param prog the program
 /// @param Tree the program tree
@@ -448,7 +453,7 @@ std::optional<Individual<T>> Variation<T>::cross(
     }
 
     return std::nullopt;
-}
+};
 
 /**
  * @brief Stochastically mutate a program.
@@ -574,9 +579,9 @@ std::optional<Individual<T>> Variation<T>::mutate(const Individual<T>& parent)
     }
 
     return std::nullopt;
-}
+};
 
-template <Brush::ProgramType T>
+template<Brush::ProgramType T>
 void Variation<T>::vary(Population<T>& pop, int island, 
                         const vector<size_t>& parents)
 {    
@@ -647,11 +652,10 @@ void Variation<T>::vary(Population<T>& pop, int island,
 
         pop.individuals.at(indices.at(i)) = std::make_shared<Individual<T>>(ind);
    }
-}
+};
 
-
-template <Brush::ProgramType T>
-vector<float> Variation<T>::calc_rewards(Population<T>& pop, int island)
+template<ProgramType T>
+vector<float> Variation<T>::calculate_rewards(Population<T>& pop, int island)
 {
     // get island indexes
     // go to the offspring of the island
@@ -669,12 +673,10 @@ vector<float> Variation<T>::calc_rewards(Population<T>& pop, int island)
 
     for (unsigned i = 0 ; i < indices.size()/2; ++i)
     {
-        // condition below shoudnt happen
-        // if (pop.individuals.at(indices.at(indices.size()/2 + i)) == nullptr)
-        // {
-        //     HANDLE_ERROR_THROW("bad loop");
-        //     continue;
-        // }
+        if (pop.individuals.at(indices.at(indices.size()/2 + i)) == nullptr)
+        {
+            HANDLE_ERROR_THROW("bad loop index in calculate_rewards");
+        }
 
         const Individual<T>& ind = *pop.individuals.at(
             indices.at(indices.size()/2 + i) );
@@ -714,12 +716,13 @@ vector<float> Variation<T>::calc_rewards(Population<T>& pop, int island)
         }
 
         if (allPositive)
-            rewards.push_back(1.0f);
+            rewards.push_back(1.0);
         else
-            rewards.push_back(0.0f);
+            rewards.push_back(0.0);
     }
+    
     return rewards;
-}
+};
 
 template <Brush::ProgramType T>
 void Variation<T>::update_ss(Population<T>& pop, const vector<float>& rewards)
@@ -767,7 +770,7 @@ void Variation<T>::update_ss(Population<T>& pop, const vector<float>& rewards)
         this->parameters.mutation_probs[mutation.first] = mutation.second;
 
     assert(index == rewards.size());
-}
+};
 
 } //namespace Var
 } //namespace Brush

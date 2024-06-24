@@ -9,16 +9,18 @@ BanditOperator<T>::BanditOperator(vector<T> arms)
     // Initialize the map with the keys and uniform distributed values
     float uniform_prob = 1.0 / arms.size();
 
+    this->probabilities = std::map<T, float>();
     for (const T& arm : arms) {
-        probabilities[arm] = uniform_prob;
+        this->probabilities[arm] = uniform_prob;
     }
 }
 
 template<typename T>
 BanditOperator<T>::BanditOperator(map<T, float> arms_probs)
 {
+    this->probabilities = std::map<T, float>();
     for (const auto& arm_prob : arms_probs) {
-        probabilities[arm_prob.first] = arm_prob.second;
+        this->probabilities[arm_prob.first] = arm_prob.second;
     }
 }
 
@@ -32,7 +34,7 @@ std::map<T, float> BanditOperator<T>::sample_probs(bool update)
     HANDLE_ERROR_THROW("Undefined bandit sample_probs() operation");
 
     // Return an empty vector
-    return std::map<T, float>();
+    return this->probabilities;
 }
 
 template<typename T>

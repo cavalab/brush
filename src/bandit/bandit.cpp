@@ -35,7 +35,11 @@ Bandit<T>::Bandit(string type, map<T, float> arms_probs) : type(type) {
 
 template <typename T>
 void Bandit<T>::set_bandit() {
-    if (type == "dummy") {
+    // TODO: a flag that is set to true when this function is called. make all
+    // other methods to raise an error if bandit was not set
+    if (type == "thompson") {
+        pbandit = make_unique<ThompsonSamplingBandit<T>>(probabilities);
+    } else if (type == "dummy") {
         pbandit = make_unique<DummyBandit<T>>(probabilities);
     } else {
         HANDLE_ERROR_THROW("Undefined Selection Operator " + this->type + "\n");

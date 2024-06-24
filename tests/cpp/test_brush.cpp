@@ -26,6 +26,7 @@
 #include "../../src/bandit/bandit.cpp"
 #include "../../src/bandit/bandit_operator.cpp"
 #include "../../src/bandit/dummy.cpp"
+#include "../../src/bandit/thompson.cpp"
 
 // TODO: test predict from archive
 // TODO: rename it to test_engine 

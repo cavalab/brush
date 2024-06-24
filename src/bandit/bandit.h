@@ -8,11 +8,14 @@ license: GNU/GPL v3
 
 #include "bandit_operator.h"
 #include "dummy.h"
+#include "thompson.h"
 
 namespace Brush {
 namespace MAB {
 
 using namespace Brush;
+
+// TODO: add bandit to parameters and write doc in estimatorinterface
 
 // TODO: all templates, or require some specific types?
 template <typename T>
@@ -47,7 +50,7 @@ public:
     map<T, float> get_probs();
     void set_probs(map<T, float> arms_probs);
 
-    map<T, float> sample_probs(bool update);
+    map<T, float> sample_probs(bool update=false);
 
     void update(T arm, float reward);
 };

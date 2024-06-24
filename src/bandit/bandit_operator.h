@@ -15,8 +15,6 @@ template<typename T>
 class BanditOperator
 {
 public:
-    std::map<T, float> probabilities;
-
     BanditOperator(vector<T> arms);
     BanditOperator(map<T, float> arms_probs);
     ~BanditOperator() {};
@@ -24,6 +22,8 @@ public:
     virtual std::map<T, float> sample_probs(bool update);
 
     virtual void update(T arm, float reward);
+protected:    
+    std::map<T, float> probabilities;
 };
 
 } // MAB
