@@ -24,11 +24,11 @@ void bind_fitness(py::module &);
 
 // templated bindings
 void bind_programs(py::module &);
+void bind_evaluators(py::module &);
+void bind_individuals(py::module &);
 void bind_variations(py::module &);
 void bind_selections(py::module &);
-void bind_individuals(py::module &);
 void bind_engines(py::module &);
-void bind_evaluators(py::module &);
 
 PYBIND11_MODULE(_brush, m) {
 
@@ -44,9 +44,9 @@ PYBIND11_MODULE(_brush, m) {
      bind_fitness(m);
 
      // TODO: create a submodule for them
-     bind_variations(m);
-     bind_selections(m);
      bind_evaluators(m);
+     bind_selections(m);
+     bind_variations(m);
 
      // solutions
      py::module_ m2 = m.def_submodule("program", "Contains Program classes.");

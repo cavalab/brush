@@ -3,6 +3,26 @@
 #include "../engine.cpp"
 
 // TODO: figure out why do I need to include the whole thing (otherwise it gives me symbol errors)
+#include "../bandit/bandit.h"
+#include "../bandit/bandit.cpp"
+#include "../bandit/bandit_operator.h"
+#include "../bandit/bandit_operator.cpp"
+#include "../bandit/dummy.h"
+#include "../bandit/dummy.cpp"
+#include "../bandit/thompson.h"
+#include "../bandit/thompson.cpp"
+
+#include "../ind/individual.h"
+#include "../ind/individual.cpp"
+#include "../vary/variation.h"
+#include "../vary/variation.cpp"
+
+#include "../eval/evaluation.h"
+#include "../eval/evaluation.cpp"
+
+#include "../pop/population.cpp"
+#include "../pop/population.h"
+
 #include "../selection/selection.h"
 #include "../selection/selection.cpp"
 #include "../selection/selection_operator.h"
@@ -11,12 +31,6 @@
 #include "../selection/nsga2.cpp"
 #include "../selection/lexicase.h"
 #include "../selection/lexicase.cpp"
-
-#include "../eval/evaluation.h"
-#include "../eval/evaluation.cpp"
-
-#include "../pop/population.cpp"
-#include "../pop/population.h"
 
 #include "../pop/archive.cpp"
 #include "../pop/archive.h"

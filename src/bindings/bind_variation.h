@@ -1,9 +1,22 @@
 #include "module.h"
 
-#include "../vary/variation.h"
-#include "../vary/variation.cpp"
 #include "../pop/population.h"
 #include "../pop/population.cpp"
+
+#include "../bandit/bandit.h"
+#include "../bandit/bandit.cpp"
+#include "../bandit/bandit_operator.h"
+#include "../bandit/bandit_operator.cpp"
+#include "../bandit/dummy.h"
+#include "../bandit/dummy.cpp"
+#include "../bandit/thompson.h"
+#include "../bandit/thompson.cpp"
+#include "../ind/individual.h"
+#include "../ind/individual.cpp"
+
+
+#include "../vary/variation.h"
+#include "../vary/variation.cpp"
 
 namespace py = pybind11;
 namespace nl = nlohmann;
