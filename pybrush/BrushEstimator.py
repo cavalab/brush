@@ -75,17 +75,21 @@ class BrushEstimator(EstimatorInterface, BaseEstimator):
         self.train_.set_batch_size(self.batch_size) # TODO: update batch indexes at the beggining of every generation
         self.validation_ = self.data_.get_validation_data()
 
+        # TODO: handle n_classes in wrap_parameters 
         self.parameters_ = self._wrap_parameters(n_classes=self.n_classes_)
 
-        self.search_space_ = SearchSpace(self.data_, self.parameters_.functions, self.weights_init)
+        self.search_space_ = SearchSpace(self.data_,
+                                         self.parameters_.functions,
+                                         self.parameters_.weights_init)
                 
         self.engine_ = None
         if self.mode == 'classification':
             self.engine_ = ( ClassifierEngine
                              if self.n_classes_ == 2 else
-                             MultiClassifierEngine)(self.parameters_)
+                             MultiClassifierEngine)(self.parameters_, 
+                                                    self.search_space_)
         else:
-            self.engine_ = RegressorEngine(self.parameters_)
+            self.engine_ = RegressorEngine(self.parameters_, self.search_space_)
 
         self.engine_.fit(self.data_)
         

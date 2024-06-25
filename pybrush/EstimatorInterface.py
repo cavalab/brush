@@ -54,6 +54,9 @@ class EstimatorInterface():
         The probability of having a mutation is `(1-cx_prob)` and, in case the mutation
         is applied, then each mutation option is sampled based on the probabilities
         defined in `mutation_probs`. The set of probabilities should add up to 1.0.
+        A non-positive value will disable the mutation, even if the multi armed
+        bandit strategy is turned on (the mutation will be hidden from the bandit 
+        at initialization).
     functions: dict[str,float] or list[str], default {}
         A dictionary with keys naming the function set and values giving the probability
         of sampling them, or a list of functions which will be weighted uniformly.
@@ -98,6 +101,8 @@ class EstimatorInterface():
     load_population: str, optional (default "")
         string containing the path to load the initial population. Ignored
         if not provided.
+    bandit : str
+        The bandit strategy to use for the estimator.
     shuffle_split: boolean, optional (default False)
         whether if the engine should shuffle the data before splitting it
         into train and validation partitions. Ignored if `validation_size`
@@ -138,6 +143,7 @@ class EstimatorInterface():
         save_population="",
         load_population="",
         shuffle_split=False,
+        bandit='dummy', # TODO: change this to have our mab on by default
         weights_init=True,
         val_from_arch=True,
         use_arch=False,
@@ -158,6 +164,7 @@ class EstimatorInterface():
         self.mig_prob=mig_prob
         self.n_jobs=n_jobs
         self.cx_prob=cx_prob
+        self.bandit=bandit
         self.logfile=logfile
         self.save_population=save_population
         self.load_population=load_population
@@ -187,6 +194,7 @@ class EstimatorInterface():
 
         params = Parameters()
 
+        # TODO: this could be a loop?
         params.classification = self.mode == "classification"
         params.n_classes = self.n_classes_
         params.verbosity = self.verbosity
@@ -202,10 +210,12 @@ class EstimatorInterface():
         params.max_depth = self.max_depth
         params.max_size = self.max_size
         params.objectives = self.objectives
+        params.bandit = self.bandit
         params.shuffle_split = self.shuffle_split
         params.cx_prob = self.cx_prob
         params.use_arch = self.use_arch
         params.val_from_arch = self.val_from_arch
+        params.weights_init=self.weights_init
         params.mig_prob = self.mig_prob
         params.functions = self.functions_
         params.mutation_probs = self.mutation_probs
@@ -297,7 +307,6 @@ class EstimatorInterface():
                         "format.")
             X = X.values
 
-        
         assert isinstance(X, np.ndarray)
 
         if y is None:
