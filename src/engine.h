@@ -42,11 +42,20 @@ template <ProgramType T>
  */
 class Engine{
 public:
-    Engine(const Parameters& p=Parameters())
-    : params(p)
-    , ss(SearchSpace()) // we need to initialize ss and variator. TODO: make them have a default way so we dont have to initialize here
-    , variator(Variation<T>(params, ss)) 
-    {};
+    Engine()
+    {
+        this->params = Parameters();
+        this->ss = SearchSpace();
+    };
+
+    Engine(Parameters& p, SearchSpace& s)
+    {
+        this->params = p;
+        this->ss = s;
+        // TODO: make variation to have a default constructor
+        // this->variator(Variation<T>(params, ss)) ;
+
+    };
     
     ~Engine(){};
 
@@ -59,6 +68,9 @@ public:
     // all hyperparameters are controlled by the parameter class. please refer to that to change something
     inline Parameters& get_params(){return params;}
     inline void set_params(Parameters& p){params=p;}
+
+    inline SearchSpace& get_search_space() { return ss; }
+    inline void set_search_space(SearchSpace& space) { ss = space; }
 
     inline bool get_is_fitted(){return is_fitted;}
 
@@ -125,12 +137,13 @@ public:
     /// train the model
     void run(Dataset &d);
     
+    // TODO: should params and ss be private? (that would require better json handling)
     Parameters params;  ///< hyperparameters of brush, which the user can interact
-    Individual<T> best_ind;
+    SearchSpace ss;
     
+    Individual<T> best_ind;
     Archive<T> archive;          ///< pareto front archive
 private:
-    SearchSpace ss;
 
     Population<T> pop;       	///< population of programs
     Selection<T>  selector;   ///< selection algorithm
@@ -150,11 +163,12 @@ private:
     inline void set_is_fitted(bool f){is_fitted=f;}
 };
 
+// TODO: should I serialize data and search space as well?
 // Only stuff to make new predictions or call fit again
 NLOHMANN_DEFINE_TYPE_NON_INTRUSIVE(Engine<PT::Regressor>, params, best_ind, archive);
-NLOHMANN_DEFINE_TYPE_NON_INTRUSIVE(Engine<PT::BinaryClassifier>,params, best_ind, archive);
-NLOHMANN_DEFINE_TYPE_NON_INTRUSIVE(Engine<PT::MulticlassClassifier>,params, best_ind, archive);
-NLOHMANN_DEFINE_TYPE_NON_INTRUSIVE(Engine<PT::Representer>,params, best_ind, archive);
+NLOHMANN_DEFINE_TYPE_NON_INTRUSIVE(Engine<PT::BinaryClassifier>, params, best_ind, archive);
+NLOHMANN_DEFINE_TYPE_NON_INTRUSIVE(Engine<PT::MulticlassClassifier>, params, best_ind, archive);
+NLOHMANN_DEFINE_TYPE_NON_INTRUSIVE(Engine<PT::Representer>, params, best_ind, archive);
 
 } // Brush
 #endif

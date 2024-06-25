@@ -572,6 +572,11 @@ std::optional<Individual<T>> Variation<T>::mutate(const Individual<T>& parent)
             ind.set_objectives(parent.get_objectives()); // it will have an invalid fitness
             ind.set_variation(choice);
 
+            // mutations that sampled from search space
+            if (choice == "point" || choice == "insert") {
+                ind.set_sampled_nodes({spot.node->data});
+            }
+
             return ind;
         } else {
             continue;
@@ -739,8 +744,8 @@ void Variation<T>::update_ss(Population<T>& pop, const vector<float>& rewards)
 
     int index = 0;
     for (int island = 0; island < pop.num_islands; ++island) {
-        
         auto indices = pop.get_island_indexes(island);
+
         for (unsigned i = 0 ; i < indices.size()/2; ++i)
         {
             const Individual<T>& ind = *pop.individuals.at(
@@ -751,25 +756,77 @@ void Variation<T>::update_ss(Population<T>& pop, const vector<float>& rewards)
             // update the variation bandit. get the variation (arm) and reward to update
             this->variation_bandit.update(ind.get_variation(), r);
 
-            // update the operators bandit (if thats the case)
+            // update the operators and terminal bandit (if thats the case)
+            if (ind.get_sampled_nodes().size() > 0) {
+                const auto& changed_nodes = ind.get_sampled_nodes();
+                for (const auto& node : changed_nodes) {
 
-            // update each terminal bandit (if thats the case)
+                    // upating reward for terminal nodes
+                    if (node.get_arg_count() == 0) {
+                        auto datatype = node.get_ret_type();
+                        this->terminal_bandits[datatype].update(node.get_feature(), r);
+                    }
+                    else // updating reward for operator nodes
+                    {
+
+                    }
+                }
+            }
         }
     }
 
-    // variation: getting new probabilities for the search space
+    // -------------------------------------------------------------------------
+
+    // variation: getting new probabilities for parameters
     // get the probs
     // change cross rate
     // change each mutation
     auto variation_probs = variation_bandit.sample_probs(true);
 
+    // std::cout << "Bandit probabilities (inside vary): ";
+    // for (const auto& prob : variation_probs) {
+    //     std::cout << "{" << prob.first << ", " << prob.second << "} ";
+    // }
+
     if (variation_probs.find("cx") != variation_probs.end())
-        this->parameters.cx_prob = variation_probs.at("cx");
+        parameters.set_cx_prob(variation_probs.at("cx"));
     
-    for (const auto& mutation : parameters.mutation_probs)
-        this->parameters.mutation_probs[mutation.first] = mutation.second;
+    for (const auto& variation : variation_probs)
+        if (variation.first != "cx")
+            parameters.mutation_probs[variation.first] = variation.second;
+
+    // std::cout << "parameters cx_prob: " << parameters.get_cx_prob() << std::endl;
+    // std::cout << "parameters mutation_probs: ";
+    // for (const auto& mutation : parameters.get_mutation_probs()) {
+    //     std::cout << "{" << mutation.first << ", " << mutation.second << "} ";
+    // }
+    // std::cout << std::endl;
+
+    // terminal: getting new probabilities for terminal nodes in search space
+    for (auto& bandit : terminal_bandits) {
+        auto datatype = bandit.first;
+        
+        auto terminal_probs = bandit.second.sample_probs(true);
+        for (auto& terminal : terminal_probs) {
+
+            auto terminal_name = terminal.first;
+            auto terminal_prob = terminal.second;
+
+            // Search for the index that matches the terminal name
+            auto it = std::find_if(
+            search_space.terminal_map.at(datatype).begin(),
+            search_space.terminal_map.at(datatype).end(), 
+            [&](auto& node) { return node.get_feature() == terminal_name; });
+
+            if (it != search_space.terminal_map.at(datatype).end()) {
+                // Update the terminal weights with the second value
+                search_space.terminal_weights.at(datatype)[it - search_space.terminal_map.at(datatype).begin()] = terminal_prob;
+            }
+        }
+    }
 
     assert(index == rewards.size());
+    
 };
 
 } //namespace Var

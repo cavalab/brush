@@ -25,7 +25,7 @@ ThompsonSamplingBandit<T>::ThompsonSamplingBandit(map<T, float> arms_probs)
     
 
 template <typename T>
-map<T, float> ThompsonSamplingBandit<T>::sample_probs(bool update) {
+std::map<T, float> ThompsonSamplingBandit<T>::sample_probs(bool update) {
 
     if (update) {
         for (const auto& pair : this->probabilities) {

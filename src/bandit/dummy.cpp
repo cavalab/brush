@@ -4,7 +4,7 @@ namespace Brush {
 namespace MAB {
 
 template <typename T>
-map<T, float> DummyBandit<T>::sample_probs(bool update) {
+std::map<T, float> DummyBandit<T>::sample_probs(bool update) {
     return this->probabilities;
 }
 

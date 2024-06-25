@@ -24,10 +24,10 @@ struct Bandit
 public:
     /**
      * @brief A shared pointer to the bandit operator (policy).
-     * 
-     * TODO: This should be a shared pointer to allow multiple instances of Bandit to share the same operator.
-     */
+    */
     std::shared_ptr<BanditOperator<T>> pbandit;
+    // TODO: This should be a shared pointer to allow multiple instances of Bandit to share the same operator.
+     
     std::string type;
     vector<T> arms;
 

@@ -8,6 +8,8 @@
 namespace Brush {
 namespace MAB {
 
+// TODO: rename dummy to static or fixed
+
 template <typename T>
 class DummyBandit : public BanditOperator<T>
 {
@@ -16,7 +18,7 @@ public:
     DummyBandit(map<T, float> arms_probs) : BanditOperator<T>(arms_probs) {};
     ~DummyBandit(){};
 
-    map<T, float> sample_probs(bool update);
+    std::map<T, float> sample_probs(bool update);
     void update(T arm, float reward);
 
 private:

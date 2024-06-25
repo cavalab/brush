@@ -24,7 +24,7 @@ void Engine<T>::init()
     this->evaluator = Evaluation<T>();
 
     // TODO: make these classes have a default constructor, and stop recreating instances
-    this->variator = Variation<T>(params, ss);
+    this->variator = Variation<T>(this->params, this->ss);
 
     this->selector = Selection<T>(params.sel, false);
     this->survivor = Selection<T>(params.surv, true);
@@ -323,8 +323,8 @@ void Engine<T>::run(Dataset &data)
 {
     //TODO: i need to make sure i initialize everything (pybind needs to have constructors
     // without arguments to work, and i need to handle correcting these values before running)
-    this->ss = SearchSpace(data, params.functions);
-
+    
+    this->ss.init(data, params.functions, params.weights_init);
     this->init();
 
     if (params.load_population != "")
@@ -453,9 +453,28 @@ void Engine<T>::run(Dataset &data)
                                              island_rewards.end());
                 }
                 
+                // Assert that flattened_rewards has the same size as popsize
+                assert(flattened_rewards.size() == this->pop.size());
+                
                 // TODO: do i need these next this-> pointers?
                 // Use the flattened rewards vector for updating the population
+   
                 this->variator.update_ss(this->pop, flattened_rewards);
+
+                // TODO: copy probabilities from variation to engine reference
+                // std::cout << "Bandit probabilities: ";
+                // std::cout << "{cx, " << params.cx_prob << "} ";
+                // auto variation_probs = params.mutation_probs;
+                // for (const auto& prob : variation_probs) {
+                //     std::cout << "{" << prob.first << ", " << prob.second << "} ";
+                // }
+                // std::cout << std::endl;
+
+                // std::cout << "Variator probabilities: ";
+                // for (const auto& prob : variator.parameters.mutation_probs) {
+                //     std::cout << "{" << prob.first << ", " << prob.second << "} ";
+                // }
+                // std::cout << std::endl;
 
                 this->pop.update(survivors);
                 this->pop.migrate();
@@ -502,6 +521,12 @@ void Engine<T>::run(Dataset &data)
         [&]() { return 0; }, // jump back to the next iteration
 
         [&]() {
+            // getting the updated versions
+            if (params.bandit != "duummy")
+            {
+                this->ss = variator.search_space;
+                this->params = variator.parameters;
+            }
             if (params.save_population != "")
                 this->pop.save(params.save_population);
 

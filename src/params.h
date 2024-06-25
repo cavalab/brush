@@ -77,6 +77,7 @@ public:
     vector<string> feature_names = {};
     vector<string> feature_types = {};
     float batch_size = 0.0;
+    bool weights_init=true;
 
     string load_population = "";
     string save_population = "";
@@ -178,6 +179,9 @@ public:
 
     void set_shuffle_split(bool shuff){ shuffle_split = shuff; };
     bool get_shuffle_split(){ return shuffle_split; };
+
+    void set_weights_init(bool init){ weights_init = init; };
+    bool get_weights_init(){ return weights_init; };
 
     void set_n_classes(unsigned int new_n_classes){ n_classes = new_n_classes; };
     unsigned int get_n_classes(){ return n_classes; };

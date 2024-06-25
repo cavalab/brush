@@ -7,6 +7,7 @@ template <typename T>
 Bandit<T>::Bandit() { 
     set_type("dummy");
     set_arms({});
+    set_probs({});
     set_bandit();
 }
 
@@ -20,6 +21,7 @@ Bandit<T>::Bandit(string type, vector<T> arms) : type(type) {
         arms_probs[arm] = prob;
     }
     this->set_probs(arms_probs);
+    this->set_bandit();
 }
 
 template <typename T>
@@ -31,6 +33,7 @@ Bandit<T>::Bandit(string type, map<T, float> arms_probs) : type(type) {
         arms_names.push_back(pair.first);
     }
     this->set_arms(arms_names);
+    this->set_bandit();
 }
 
 template <typename T>

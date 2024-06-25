@@ -9,6 +9,7 @@
 namespace Brush {
 namespace MAB {
 
+// TODO: rename thompson to proportional. implement thompson in other file
 using namespace boost::random;
 
 template <typename T>
@@ -19,7 +20,7 @@ public:
     ThompsonSamplingBandit(map<T, float> arms_probs);
     ~ThompsonSamplingBandit(){};
 
-    map<T, float> sample_probs(bool update);
+    std::map<T, float> sample_probs(bool update);
     void update(T arm, float reward);
 
 private:

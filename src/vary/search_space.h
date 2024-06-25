@@ -102,6 +102,8 @@ struct SearchSpace
     /// @brief A map of weights corresponding to elements in @ref node_map, used to weight probabilities of each node being sampled from the map. 
     Map<float> node_map_weights; 
 
+    // TODO: maybe we could flatten this terminal map
+    
     /**
      * @brief Maps return types to terminals. 
      * 

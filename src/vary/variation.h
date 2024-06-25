@@ -74,22 +74,7 @@ public:
         : parameters(params)
         , search_space(ss)
     {
-        auto variation_probs = this->parameters.mutation_probs;
-        if (params.cx_prob > 0.0) variation_probs["cx"] = params.cx_prob;
-
-        this->variation_bandit.set_type(parameters.bandit);
-        this->variation_bandit.set_probs(variation_probs);
-        this->variation_bandit.set_bandit();
-
-        // this->op_bandit = Bandit<DataType>(this->parameters.bandit,
-        //                    this->search_space.node_map_weights.size() );
-        
-        // for (const auto& entry : this->search_space.terminal_weights) {
-        //     // one bandit for each terminal type
-        //     if (this->terminal_bandits.find(entry.first) == this->terminal_bandits.end())
-        //         this->terminal_bandits[entry.first] = Bandit<DataType>(this->parameters.bandit,
-        //                                                      entry.second.size());
-        // }
+        init();
     };
 
     /**
@@ -103,27 +88,41 @@ public:
      * @param params The parameters for the variation operator.
      * @param ss The search space for the variation operator.
      */
-    void init(Parameters& params, SearchSpace& ss){
-        this->parameters = params;
-        this->search_space = ss;
+    void init(){
+        // initializing variation bandit with the probabilities of non-null variation
+        map<string, float> variation_probs;
+        for (const auto& mutation : parameters.get_mutation_probs())
+            if (mutation.second > 0.0)
+                variation_probs[mutation.first] = mutation.second;
+
+        if (parameters.cx_prob > 0.0)
+            variation_probs["cx"] = parameters.cx_prob;
         
-        auto variation_probs = this->parameters.mutation_probs;
-        if (params.cx_prob > 0.0) variation_probs["cx"] = params.cx_prob;
+        this->variation_bandit = Bandit<string>(parameters.bandit, variation_probs);
 
-        this->variation_bandit = Bandit<string>();
-        this->variation_bandit.set_type(parameters.bandit);
-        this->variation_bandit.set_probs(variation_probs);
-        this->variation_bandit.set_bandit();
+        // initializing one bandit for each terminal type
+        for (const auto& entry : this->search_space.terminal_weights) {
+            // entry is a tuple <dataType, vector<float>> where the vector is the weights
+            
+            if (terminal_bandits.find(entry.first) == terminal_bandits.end())
+            {
+                map<string, float> terminal_probs;
+                for (int i = 0; i < entry.second.size(); i++)
+                    if (entry.second[i] > 0.0)
+                    {
+                        auto node_name = search_space.terminal_map.at(entry.first).at(i).get_feature();
+                        terminal_probs[node_name] = entry.second[i];
+                    }
+                        
+                terminal_bandits[entry.first] = Bandit<string>(parameters.bandit,
+                                                               terminal_probs);
+            }
+        }
 
+        
         // this->op_bandit = Bandit<DataType>(this->parameters.bandit,
         //                    this->search_space.node_map_weights.size() );
                  
-        // for (const auto& entry : this->search_space.terminal_weights) {
-        //     // one bandit for each terminal type
-        //     if (this->terminal_bandits.find(entry.first) == this->terminal_bandits.end())
-        //         this->terminal_bandits[entry.first] = Bandit<DataType>(this->parameters.bandit,
-        //                                                      entry.second.size());
-        // }
     };
 
     /**
@@ -172,13 +171,18 @@ public:
      * @param rewards The rewards obtained from the evaluation of individuals.
      */
     void update_ss(Population<T>& pop, const vector<float>& rewards);
-private:
+    
+    // they need to be references because we are going to modify them
     SearchSpace search_space; // The search space for the variation operator.
     Parameters parameters;    // The parameters for the variation operator
-    
+private:
     Bandit<string> variation_bandit;
+
+    map<DataType, Bandit<string>> terminal_bandits; 
+
+    // TODO: implement bandit for operators
     // Bandit<DataType> op_bandit;
-    // unordered_map<DataType, Bandit<DataType>> terminal_bandits; 
+    
 };
 
 // // Explicitly instantiate the template for brush program types
