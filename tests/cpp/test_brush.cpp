@@ -48,6 +48,7 @@ TEST(Engine, EngineWorks)
          3.4378868 , 3.41092345, 3.5087468 , 3.25110243, 3.11382179;
 
     Dataset data(X,y);
+    SearchSpace ss(data);
 
     Parameters params;
     params.set_pop_size(100);
@@ -65,7 +66,7 @@ TEST(Engine, EngineWorks)
 
     std::cout << "n jobs = 1" << std::endl;
     params.set_n_jobs(1);
-    Brush::RegressorEngine est5(params);
+    Brush::RegressorEngine est5(params, ss);
     est5.run(data); // this will not use validation size from parameters
     std::cout << "best individual using run(data)" << std::endl;
     std::cout << est5.best_ind.program.get_model() << std::endl;
@@ -76,17 +77,17 @@ TEST(Engine, EngineWorks)
     
     std::cout << "n jobs = 2" << std::endl;
     params.set_n_jobs(2);
-    Brush::RegressorEngine est2(params);
+    Brush::RegressorEngine est2(params, ss);
     est2.run(data);
 
     std::cout << "n jobs = -1" << std::endl;
     params.set_n_jobs(-1);
-    Brush::RegressorEngine est3(params);
+    Brush::RegressorEngine est3(params, ss);
     est3.run(data);
 
     std::cout << "n jobs = 0" << std::endl;
     params.set_n_jobs(0);
-    Brush::RegressorEngine est4(params);
+    Brush::RegressorEngine est4(params, ss);
     est4.run(data);
 
     std::cout << "testing migration" << std::endl;
@@ -98,24 +99,24 @@ TEST(Engine, EngineWorks)
 
     std::cout << "n jobs = 1" << std::endl;
     params.set_n_jobs(1);
-    Brush::RegressorEngine est6(params);
+    Brush::RegressorEngine est6(params, ss);
     est6.run(data);
     
     std::cout << "n jobs = 2" << std::endl;
     params.set_logfile("./tests/cpp/__logfile.csv"); // TODO: test classification and regression and save log so we can inspect it
     params.set_n_jobs(2);
-    Brush::RegressorEngine est7(params);
+    Brush::RegressorEngine est7(params, ss);
     est7.run(data);
     params.set_logfile("");
 
     std::cout << "n jobs = -1" << std::endl;
     params.set_n_jobs(-1);
-    Brush::RegressorEngine est8(params);
+    Brush::RegressorEngine est8(params, ss);
     est8.run(data);
 
     std::cout << "n jobs = 0" << std::endl;
     params.set_n_jobs(0);
-    Brush::RegressorEngine est9(params);
+    Brush::RegressorEngine est9(params, ss);
     est9.run(data);
 
      // when popsize is not divisible by num_islands
@@ -124,7 +125,7 @@ TEST(Engine, EngineWorks)
     params.set_max_gens(10);
     params.set_num_islands(4); // fewer individuals in one island
     params.set_n_jobs(1);
-    Brush::RegressorEngine est_not_div1(params);
+    Brush::RegressorEngine est_not_div1(params, ss);
     est_not_div1.run(data);
 
     // TODO: use logger in the tests
@@ -133,7 +134,7 @@ TEST(Engine, EngineWorks)
     params.set_max_gens(10);
     params.set_num_islands(3); // extra individuals in one island
     params.set_n_jobs(1);
-    Brush::RegressorEngine est_not_div2(params);
+    Brush::RegressorEngine est_not_div2(params, ss);
     est_not_div2.run(data);
 
     // TODO: validation loss
@@ -145,21 +146,24 @@ TEST(Engine, ClassificationEngineWorks)
      // TODO: test regression and multiclassifier . add some asserts here
     Dataset data = Data::read_csv("docs/examples/datasets/d_analcatdata_aids.csv", "target");
     
+    SearchSpace ss(data);
+
     ASSERT_TRUE(data.classification);
 
     Parameters params;
     params.set_pop_size(100);
     params.set_max_gens(10);
+    params.set_bandit("thompson");
     params.set_mig_prob(0.0);
     params.set_scorer("log");
 
     params.set_verbosity(2);
 
-    Brush::ClassifierEngine est(params);
+    Brush::ClassifierEngine est(params, ss);
     est.run(data);
 
      // TODO: tests with all possible metrics
     params.set_scorer("average_precision_score");
-    Brush::ClassifierEngine est2(params);
+    Brush::ClassifierEngine est2(params, ss);
     est2.run(data);
 }

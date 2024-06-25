@@ -8,10 +8,16 @@
 #include "../../src/selection/selection_operator.cpp"
 #include "../../src/selection/selection.cpp"
 
+#include "../../src/bandit/bandit.cpp"
+#include "../../src/bandit/bandit_operator.cpp"
+#include "../../src/bandit/dummy.cpp"
+#include "../../src/bandit/thompson.cpp"
+
 using namespace Brush::Pop;
 using namespace Brush::Sel;
 using namespace Brush::Eval;
 using namespace Brush::Sel;
+using namespace Brush::MAB;
 
 TEST(Population, PopulationTests)
 {    
