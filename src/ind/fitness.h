@@ -29,6 +29,7 @@ struct Fitness {
     float loss_v;   ///< aggregate validation loss score
 
     unsigned int complexity;
+    unsigned int linear_complexity;
     unsigned int size;
     unsigned int depth;
 
@@ -38,6 +39,7 @@ struct Fitness {
     float prev_loss_v;
 
     unsigned int prev_complexity;
+    unsigned int prev_linear_complexity;
     unsigned int prev_size;
     unsigned int prev_depth;
 
@@ -73,10 +75,17 @@ struct Fitness {
     unsigned int get_size() const { return size; };
     unsigned int get_prev_size() const {return prev_size; };
     
-    void set_complexity(unsigned int new_c){ prev_complexity=complexity; complexity=new_c; };
+    void set_complexity(unsigned int new_c){
+        prev_complexity=complexity; complexity=new_c; };
 
     unsigned int get_complexity() const { return complexity; };
     unsigned int get_prev_complexity() const {return prev_complexity; };
+
+    void set_linear_complexity(unsigned int new_lc){
+        prev_linear_complexity=linear_complexity; linear_complexity=new_lc; };
+
+    unsigned int get_linear_complexity() const { return linear_complexity; };
+    unsigned int get_prev_linear_complexity() const {return prev_linear_complexity; };
 
     void set_depth(unsigned int new_d){ prev_depth=depth; depth=new_d; };
 

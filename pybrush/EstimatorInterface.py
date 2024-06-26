@@ -67,8 +67,9 @@ class EstimatorInterface():
         uniformly distributed between 1 and `max_size`.
     objectives : list[str], default ["error", "size"]
         list with one or more objectives to use. The first objective is the main.
-        If `"error"` is used, then the metric in `scorer` will be used.
-        Possible values are "error", "size", "complexity", and "depth".
+        If `"error"` is used, then the metric in `scorer` will be used as objective.
+        Possible values are "error", "size", "complexity", "linear_complexity",
+        and "depth".
     scorer : str, default None
         The metric to use for the "error" objective. If None, it will be set to
         "mse" for regression and "log" for binary classification.

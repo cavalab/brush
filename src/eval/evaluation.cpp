@@ -74,6 +74,7 @@ void Evaluation<T>::assign_fit(Individual<T>& ind, const Dataset& data,
     ind.fitness.set_loss_v(f_v);
     ind.fitness.set_size(ind.get_size());
     ind.fitness.set_complexity(ind.get_complexity());
+    ind.fitness.set_linear_complexity(ind.get_linear_complexity());
     ind.fitness.set_depth(ind.get_depth());
 
     vector<float> values;
@@ -84,11 +85,13 @@ void Evaluation<T>::assign_fit(Individual<T>& ind, const Dataset& data,
         if (n.compare(params.scorer)==0)
             values.push_back(val ? f_v : f);
         else if (n.compare("complexity")==0)
-            values.push_back(ind.program.complexity());
+            values.push_back(ind.get_complexity());
+        else if (n.compare("linear_complexity")==0)
+            values.push_back(ind.get_linear_complexity());
         else if (n.compare("size")==0)
-            values.push_back(ind.program.size());
+            values.push_back(ind.get_size());
         else if (n.compare("depth")==0)
-            values.push_back(ind.program.depth());
+            values.push_back(ind.get_depth());
         else
             HANDLE_ERROR_THROW(n+" is not a known objective");
     }

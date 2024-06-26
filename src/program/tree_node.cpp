@@ -144,6 +144,30 @@ unordered_map<NodeType, int> operator_complexities = {
     {NodeType::CustomSplit   , 5}
 };
 
+int TreeNode::get_linear_complexity() const 
+{
+    int tree_complexity = operator_complexities.at(data.node_type);
+
+    auto child = first_child;
+    for(int i = 0; i < data.get_arg_count(); ++i)
+    {
+        tree_complexity += child->get_linear_complexity();
+        child = child->next_sibling;
+    }
+
+    // include the `w` and `*` if the node is weighted (and it is not a constant or mean label)
+    if (data.get_is_weighted()
+    && !(Is<NodeType::Constant>(data.node_type)
+        || ( Is<NodeType::MeanLabel>(data.node_type)
+        ||   Is<NodeType::OffsetSum>(data.node_type)) )
+    )
+        return operator_complexities.at(NodeType::Mul) +
+               operator_complexities.at(NodeType::Constant) + 
+               tree_complexity;
+
+    return tree_complexity;
+};
+
 int TreeNode::get_complexity() const 
 {
     int node_complexity = operator_complexities.at(data.node_type);

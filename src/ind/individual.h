@@ -96,6 +96,7 @@ public: // TODO: make these private (and work with nlohman json)
     unsigned int get_size() const { return program.size(); };
     unsigned int get_depth() const { return program.depth(); };
     unsigned int get_complexity() const { return program.complexity(); };
+    unsigned int get_linear_complexity() const { return program.linear_complexity(); };
     Program<T>& get_program() { return program; };
     
     string get_model(string fmt="compact", bool pretty=false) {
@@ -134,6 +135,7 @@ public: // TODO: make these private (and work with nlohman json)
     // a minimization by default, thus "error" has weight -1.0)
     inline static std::map<std::string, float> weightsMap = {
         {"complexity",              -1.0},
+        {"linear_complexity",       -1.0},
         {"size",                    -1.0},
         {"mse",                     -1.0},
         {"log",                     -1.0},

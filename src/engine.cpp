@@ -32,7 +32,7 @@ void Engine<T>::init()
     
     float error_weight = Individual<T>::weightsMap[params.scorer];
     this->best_score      = -error_weight*MAX_FLT;
-    this->best_complexity = -error_weight*MAX_FLT;
+    this->best_complexity = -error_weight*MAX_FLT; // untie by complexity
 
     this->archive.set_objectives(params.get_objectives());
 

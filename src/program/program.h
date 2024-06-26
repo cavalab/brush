@@ -88,12 +88,20 @@ template<PT PType> struct Program
         SSref = std::optional<std::reference_wrapper<SearchSpace>>{s};
     }
 
-    /// @brief count the complexity of the program.
+    /// @brief count the (recursive) complexity of the program.
     /// @return int complexity.
     int complexity() const{
         auto head = Tree.begin(); 
         
         return head.node->get_complexity();
+    }
+
+    /// @brief count the linear complexity of the program.
+    /// @return int complexity.
+    int linear_complexity() const{
+        auto head = Tree.begin(); 
+        
+        return head.node->get_linear_complexity();
     }
 
     /// @brief count the tree size of the program, including the weights in weighted nodes.

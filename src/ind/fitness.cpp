@@ -12,6 +12,7 @@ void to_json(json &j, const Fitness &f)
         {"loss", f.loss},
         {"loss_v", f.loss_v},
         {"complexity", f.complexity},
+        {"linear_complexity", f.linear_complexity},
         {"size", f.size},
         {"depth", f.depth},
         {"dcounter", f.dcounter},
@@ -29,6 +30,7 @@ void from_json(const json &j, Fitness& f)
     j.at("loss").get_to( f.loss );
     j.at("loss_v").get_to( f.loss_v );
     j.at("complexity").get_to( f.complexity );
+    j.at("linear_complexity").get_to( f.linear_complexity );
     j.at("size").get_to( f.size );
     j.at("depth").get_to( f.depth );
     j.at("dcounter").get_to( f.dcounter );

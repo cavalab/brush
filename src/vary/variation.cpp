@@ -649,6 +649,7 @@ void Variation<T>::vary(Population<T>& pop, int island,
         ind.fitness.set_loss_v(mom.fitness.get_loss_v());
         ind.fitness.set_size(mom.fitness.get_size());
         ind.fitness.set_complexity(mom.fitness.get_complexity());
+        ind.fitness.set_linear_complexity(mom.fitness.get_linear_complexity());
         ind.fitness.set_depth(mom.fitness.get_depth());
             
         assert(ind.program.size()>0);
@@ -697,6 +698,8 @@ vector<float> Variation<T>::calculate_rewards(Population<T>& pop, int island)
                 delta = ind.fitness.get_loss_v()-ind.fitness.get_loss();
             else if (obj.compare("complexity")==0)
                 delta = ind.fitness.get_complexity()-ind.fitness.get_prev_complexity();
+            else if (obj.compare("linear_complexity")==0)
+                delta = ind.fitness.get_linear_complexity()-ind.fitness.get_prev_linear_complexity();
             else if (obj.compare("size")==0)
                 delta = ind.fitness.get_size()-ind.fitness.get_prev_size();
             else if (obj.compare("depth")==0)
