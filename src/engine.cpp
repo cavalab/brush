@@ -29,8 +29,10 @@ void Engine<T>::init()
     this->selector = Selection<T>(params.sel, false);
     this->survivor = Selection<T>(params.surv, true);
 
-    this->best_score = MAX_FLT;
-    this->best_complexity = MAX_FLT;
+    
+    float error_weight = Individual<T>::weightsMap[params.scorer];
+    this->best_score      = -error_weight*MAX_FLT;
+    this->best_complexity = -error_weight*MAX_FLT;
 
     this->archive.set_objectives(params.get_objectives());
 
@@ -287,7 +289,6 @@ bool Engine<T>::update_best(const Dataset& data, bool val)
 {
     float error_weight = Individual<T>::weightsMap[params.scorer];
     
-    float f;
     bool updated = false; 
     float bs = this->best_score; 
 
@@ -299,7 +300,7 @@ bool Engine<T>::update_best(const Dataset& data, bool val)
         
         // TODO: dataset arg here with null default value. if the user provides a dataset, we use it to update
         // if there is no validation, then loss_v==loss and this should work just fine
-        f = ind.fitness.loss_v;
+        float f = val ? ind.fitness.loss_v : ind.fitness.loss;
 
         if (f*error_weight > bs*error_weight
         || (f == bs && ind.fitness.complexity < this->best_complexity) )
@@ -327,8 +328,16 @@ void Engine<T>::run(Dataset &data)
     this->ss.init(data, params.functions, params.weights_init);
     this->init();
 
-    if (params.load_population != "")
+    if (params.load_population != "") {
         this->pop.load(params.load_population);
+
+        // invalidating all individuals
+        for (auto& individual : this->pop.individuals) {
+            if (individual != nullptr) {
+                individual->set_is_fitted(false);
+            }
+        }
+    }
     else
         this->pop.init(this->ss, this->params);
 
@@ -530,7 +539,7 @@ void Engine<T>::run(Dataset &data)
             if (params.save_population != "")
                 this->pop.save(params.save_population);
 
-            this->set_is_fitted(true);
+            set_is_fitted(true);
             
             // TODO: open, write, close? (to avoid breaking the file and allow some debugging if things dont work well)
             if (log.is_open())
@@ -540,7 +549,7 @@ void Engine<T>::run(Dataset &data)
             // archive
             if (!params.use_arch)
             {
-                std::cout << "savinig final population as archive..." << std::endl;
+                std::cout << "saving final population as archive..." << std::endl;
                 archive.individuals.resize(0);
                 for (int island =0; island< pop.num_islands; ++island) {
                     vector<size_t> indices = pop.get_island_indexes(island);

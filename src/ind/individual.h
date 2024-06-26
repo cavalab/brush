@@ -45,11 +45,17 @@ public: // TODO: make these private (and work with nlohman json)
         id = 0; // unsigned
     };
 
-    Individual(Program<T>& prg) : Individual() { program = prg; };
+    Individual(Program<T>& prg) : Individual() {
+        program = prg;
+    };
 
     void init(SearchSpace& ss, const Parameters& params)
     {
         program = ss.make_program<Program<T>>(params, 0, 0);
+
+        // overriding the objectives with the ones from params (to replace
+        // the generic "error" by the actual scorer set in the params object)
+        objectives = params.get_objectives();
 
         // If different from zero, then the program is created with a fixed depth and size.
         // If zero, it samples the value
@@ -87,7 +93,6 @@ public: // TODO: make these private (and work with nlohman json)
     };
 
     // just getters
-    bool get_is_fitted() const { return this->is_fitted_; };
     unsigned int get_size() const { return program.size(); };
     unsigned int get_depth() const { return program.depth(); };
     unsigned int get_complexity() const { return program.complexity(); };
@@ -103,6 +108,9 @@ public: // TODO: make these private (and work with nlohman json)
 
     void set_variation(string v) { variation=v; };
     string get_variation() const { return variation; };
+
+    bool get_is_fitted() const { return this->is_fitted_; };
+    void set_is_fitted(bool fitted) { this->is_fitted_ = fitted; };
 
     void set_sampled_nodes(const vector<Node>& nodes) { sampled_nodes = nodes; };
     vector<Node> get_sampled_nodes() const { return sampled_nodes; };
@@ -131,8 +139,8 @@ public: // TODO: make these private (and work with nlohman json)
         {"log",                     -1.0},
         {"multi_log",               -1.0},
         {"average_precision_score", +1.0},
-        {"accuracy",                +1.0},
-        {"error",                   -1.0}
+        {"accuracy",                +1.0}
+        // {"error",                   -1.0}
     };
 
     vector<string> get_objectives() const { return objectives; };
@@ -142,6 +150,7 @@ public: // TODO: make these private (and work with nlohman json)
         vector<float> weights;
         weights.resize(0);
         for (const auto& obj : objectives) {
+            // TODO: do i need to use find or this can be done directly?
             auto it = weightsMap.find(obj);
             if (it != weightsMap.end()) {
                 weights.push_back(it->second);

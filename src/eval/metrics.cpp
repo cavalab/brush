@@ -60,7 +60,7 @@ float average_precision_score(const VectorXf& y, const VectorXf& predict_proba,
                           VectorXf& loss,
                           const vector<float>& class_weights) {
     
-    // get argsort of predict proba
+    // get argsort of predict proba (descending)
     vector<int> argsort(y.rows());
     iota(argsort.begin(), argsort.end(), 0);
     sort(argsort.begin(), argsort.end(), [&](int i, int j) {
@@ -81,36 +81,52 @@ float average_precision_score(const VectorXf& y, const VectorXf& predict_proba,
     
     loss.resize(y.rows()); 
 
-    float true_positives = 0;
+    float true_positives  = 0;
     float false_positives = 0;
+
     float positives = 0;
 
     for (int i = 0; i < y.rows(); i++) {
-        if (predict_proba[argsort[i]] > 0.5 && y[argsort[i]] == 1) {
-            true_positives += 1;
-        }
-        else {
-            if (!class_weights.empty())
-                false_positives = class_weights[y(argsort[i])];
-            else
-                false_positives += 1;
+        if (predict_proba[argsort[i]] > 0.5)
+        {
+            if (y[argsort[i]] == 1) {
+                if (!class_weights.empty())
+                    true_positives = class_weights[y(argsort[i])];
+                else
+                    true_positives += 1;
+            }
+            else {
+                if (!class_weights.empty())
+                    false_positives = class_weights[y(argsort[i])];
+                else
+                    false_positives += 1;
+            }
         }
         positives = true_positives + false_positives;
 
-        precision[i] = true_positives / (positives + 1);
+        precision[i] = positives==0.0 ? 0.0 : true_positives/positives;
         recall[i]    = ysum==0.0 ? 1.0 : true_positives/ysum;
+
+        // cout << "i: " << i << ", predict_proba[argsort[i]]: " << predict_proba[argsort[i]] << ", y[argsort[i]]: " << y[argsort[i]] << ", true_positives: " << true_positives << ", false_positives: " << false_positives << ", precision[i]: " << precision[i] << ", recall[i]: " << recall[i] << endl;
     }
 
     // Calculate the average precision score
     float average_precision = 0;
     float last_recall = 0;
+    float last_loss   = 0;
 
     for (int i = 0; i < y.rows(); i++) {
         if (recall[i] != last_recall) {
             loss[i] = precision[i] * (recall[i] - last_recall);
             average_precision += loss[i];
+
             last_recall = recall[i];
+            last_loss = loss[i];
         }
+        else
+            loss[i] = last_loss;
+
+        // cout << "i: " << i << ", recall[i]: " << recall[i] << ", loss[i]: " << loss[i] << ", average_precision: " << average_precision << endl;
     }
 
     return average_precision;
