@@ -444,7 +444,6 @@ std::optional<Individual<T>> Variation<T>::cross(
                 child.Tree.move_ontop(child_spot, other_spot);
                 
                 Individual<T> ind(child);
-                ind.set_objectives(mom.get_objectives()); // it will have an invalid fitness
                 ind.set_variation("cx"); // TODO: use enum here to make it faster
 
                 return ind;
@@ -569,7 +568,6 @@ std::optional<Individual<T>> Variation<T>::mutate(const Individual<T>& parent)
         &&   (child.depth() <= parameters.max_depth) )){
 
             Individual<T> ind(child);
-            ind.set_objectives(parent.get_objectives()); // it will have an invalid fitness
             ind.set_variation(choice);
 
             // mutations that sampled from search space
@@ -635,9 +633,10 @@ void Variation<T>::vary(Population<T>& pop, int island,
         }
         else {  // no optional value was returned. creating a new random individual
             ind.init(search_space, parameters); // ind.variation is born by default
-            ind.set_objectives(mom.get_objectives()); // it will have an invalid fitness
         }
         
+        ind.set_objectives(mom.get_objectives()); // it will have an invalid fitness
+
         ind.is_fitted_ = false;
         ind.set_id(id);
 

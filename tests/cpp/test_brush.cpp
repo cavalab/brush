@@ -163,7 +163,8 @@ TEST(Engine, ClassificationEngineWorks)
     est.run(data);
 
      // TODO: tests with all possible metrics
-    params.set_scorer("average_precision_score");
-    Brush::ClassifierEngine est2(params, ss);
-    est2.run(data);
+
+     params.set_scorer("average_precision_score");
+     Brush::ClassifierEngine est2(params, ss);
+     est2.run(data);
 }

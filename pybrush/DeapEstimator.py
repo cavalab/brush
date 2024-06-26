@@ -226,7 +226,7 @@ class DeapEstimator(EstimatorInterface, BaseEstimator):
 
         ind = self.Individual()
         ind.init(self.search_space_, self.parameters_)
-        ind.objectives = self.objectives
+        # ind.objectives = self.parameters_.objectives
         
         return ind
     

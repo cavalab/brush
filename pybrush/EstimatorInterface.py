@@ -67,8 +67,7 @@ class EstimatorInterface():
         uniformly distributed between 1 and `max_size`.
     objectives : list[str], default ["error", "size"]
         list with one or more objectives to use. The first objective is the main.
-        If `"error"` is used, then it will be the mean squared error for regression,
-        and accuracy for classification.
+        If `"error"` is used, then the metric in `scorer` will be used.
         Possible values are "error", "size", "complexity", and "depth".
     scorer : str, default None
         The metric to use for the "error" objective. If None, it will be set to
@@ -312,8 +311,10 @@ class EstimatorInterface():
         if y is None:
             return Dataset(X=X,
                     feature_names=feature_names, feature_types=feature_types,
-                    validation_size=validation_size)
+                    validation_size=validation_size,
+                    c=(self.mode=='classification') )
 
         return Dataset(X=X, y=y,
             feature_names=feature_names, feature_types=feature_types,
-            validation_size=validation_size)
+            validation_size=validation_size,
+            c=(self.mode=='classification'))
