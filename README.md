@@ -68,7 +68,7 @@ Install the brush environment:
 
 ```
 cd brush
-conda env create
+conda env create -f environment.yml
 ```
 
 Install brush: 
