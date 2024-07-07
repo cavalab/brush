@@ -95,6 +95,10 @@ class EstimatorInterface():
         Percentage of training data to sample every generation. If `1.0`, then
         all data is used. Very small values can improve execution time, but 
         also lead to underfit.
+    sel : str, default 'lexicase'
+        The selection method to perform parent selection.
+    surv : str, default 'nsga2'
+        The survival method for selecting the next generation from parents and offspring.
     save_population: str, optional (default "")
         string containing the path to save the final population. Ignored if
         not provided.
@@ -148,6 +152,8 @@ class EstimatorInterface():
         val_from_arch=True,
         use_arch=False,
         scorer=None,
+        sel = "lexicase",
+        surv = "nsga2",
         validation_size: float = 0.0,
         batch_size: float = 1.0
     ):
@@ -178,6 +184,8 @@ class EstimatorInterface():
         self.initialization=initialization
         self.random_state=random_state
         self.batch_size=batch_size
+        self.sel=sel
+        self.surv=surv
         self.weights_init=weights_init
         self.validation_size=validation_size
 
@@ -221,6 +229,8 @@ class EstimatorInterface():
         params.mutation_probs = self.mutation_probs
         params.validation_size = self.validation_size
         params.batch_size = self.batch_size
+        params.sel = self.sel
+        params.surv = self.surv
         params.feature_names = self.feature_names_
     
         # Scorer is the metric associated with "error" objective. To optimize
