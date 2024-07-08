@@ -146,7 +146,7 @@ class EstimatorInterface():
         logfile="",
         save_population="",
         load_population="",
-        shuffle_split=False,
+        shuffle_split=True,
         bandit='dummy', # TODO: change this to have our mab on by default
         weights_init=True,
         val_from_arch=True,
@@ -280,8 +280,6 @@ class EstimatorInterface():
             The target variable.
         - feature_names: list, optional (default=[])
             The names of the features.
-        - feature_types: list, optional (default=[])
-            The types of the features.
         - validation_size: float, optional (default=0.0)
             The proportion of the data to be used for validation.
         - shuffle_split: bool, optional (default=False)
@@ -298,11 +296,11 @@ class EstimatorInterface():
         # before calling `_make_data` (so predict can be made with np arrays or
         # pd dataframes).
 
+        feature_types = []
         if isinstance(y, pd.Series):
             y = y.values
         if isinstance(X, pd.DataFrame):
             feature_names = X.columns
-            feature_types = []
             for dtype in X.dtypes:
                 if is_float_dtype(dtype):
                     feature_types.append('ArrayF')
@@ -321,11 +319,15 @@ class EstimatorInterface():
 
         if y is None:
             return Dataset(X=X,
-                    feature_names=feature_names, feature_types=feature_types,
+                    feature_names=feature_names,
+                    feature_types=feature_types,
                     validation_size=validation_size,
+                    shuffle_split=shuffle_split,
                     c=(self.mode=='classification') )
 
         return Dataset(X=X, y=y,
-            feature_names=feature_names, feature_types=feature_types,
+            feature_names=feature_names,
+            feature_types=feature_types,
             validation_size=validation_size,
+            shuffle_split=shuffle_split,
             c=(self.mode=='classification'))

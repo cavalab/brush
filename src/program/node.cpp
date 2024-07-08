@@ -39,7 +39,9 @@ auto Node::get_name(bool include_weight) const noexcept -> std::string
         return feature;
     }
     else if (Is<NodeType::OffsetSum>(node_type)){
-        return fmt::format("{}+Sum", W);
+        if (W != 1.0)
+            return fmt::format("{}+Sum", W);
+        return fmt::format("Sum", W);
     }
     else if (is_weighted && include_weight)
         return fmt::format("{:.2f}*{}",W,name);
@@ -78,9 +80,12 @@ string Node::get_model(const vector<string>& children) const noexcept
             );
     }
     else if (Is<NodeType::OffsetSum>(node_type)){
-        // weight is part of the model
-        string args = fmt::format("{},", W);
+        string args = "";
 
+        // weight is part of the model. displaying it if not
+        if (W != 1.0)
+            args = fmt::format("{},", W);
+    
         for (int i = 0; i < children.size(); ++i){
             args += children.at(i);
             if (i < children.size()-1)
