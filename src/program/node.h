@@ -153,7 +153,10 @@ struct Node {
 
     void init(){
 
-        W = 1.0;
+        // starting weights with neutral element of the operation. offsetsum
+        // is the only node that does not multiply the weight --- instead, it adds it
+        W = (node_type == NodeType::OffsetSum) ? 0.0 : 1.0;
+
         // set_node_hash();
         fixed=false;
         set_prob_change(1.0);
