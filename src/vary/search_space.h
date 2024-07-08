@@ -580,6 +580,28 @@ struct SearchSpace
     /// @brief prints the search space map. 
     void print() const; 
 
+    /// @brief returns a string with a json representation of the search space map
+    std::string repr() const {
+        string output = "=== Search space ===\n";
+        output += fmt::format("terminal_map: {}\n", this->terminal_map);
+        output += fmt::format("terminal_weights: {}\n", this->terminal_weights);
+        
+        for (const auto& [ret_type, v] : this->node_map) {
+            for (const auto& [args_type, v2] : v) {
+                for (const auto& [node_type, node] : v2) {
+                    output += fmt::format("node_map[{}][{}][{}] = {}, weight = {}\n", 
+                            ret_type,
+                            ArgsName[args_type],
+                            node_type,
+                            node,
+                            this->node_map_weights.at(ret_type).at(args_type).at(node_type)
+                            );
+                }
+            }
+        }
+        return output;
+    };
+
     private:
         tree<Node>& PTC2(tree<Node>& Tree, tree<Node>::iterator root, int max_d, int max_size) const;
 
@@ -757,28 +779,12 @@ extern SearchSpace SS;
 } // Brush
 
 // format overload 
-template <> struct fmt::formatter<Brush::SearchSpace>: formatter<string_view> {
-  template <typename FormatContext>
-  auto format(const Brush::SearchSpace& SS, FormatContext& ctx) const {
-    string output = "Search Space\n===\n";
-    output += fmt::format("terminal_map: {}\n", SS.terminal_map);
-    output += fmt::format("terminal_weights: {}\n", SS.terminal_weights);
-    
-    for (const auto& [ret_type, v] : SS.node_map) {
-        for (const auto& [args_type, v2] : v) {
-            for (const auto& [node_type, node] : v2) {
-                output += fmt::format("node_map[{}][{}][{}] = {}, weight = {}\n", 
-                        ret_type,
-                        ArgsName[args_type],
-                        node_type,
-                        node,
-                        SS.node_map_weights.at(ret_type).at(args_type).at(node_type)
-                        );
-            }
-        }
+template <>
+struct fmt::formatter<Brush::SearchSpace>: formatter<string_view> {
+    template <typename FormatContext>
+    auto format(const Brush::SearchSpace& SS, FormatContext& ctx) const {
+        string output = SS.repr();
+        return formatter<string_view>::format(output, ctx);
     }
-    output += "===";
-    return formatter<string_view>::format(output, ctx);
-  }
 };
 #endif
