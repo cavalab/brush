@@ -1,16 +1,20 @@
 #include "bandit_operator.h"
 
-// https://www.boost.org/doc/libs/1_85_0/doc/html/boost/random/beta_distribution.html
-#include <boost/random/beta_distribution.hpp>
+// #include <boost/random.hpp>
+// #include <boost/random/gamma_distribution.hpp>
+
+#include <boost/math/distributions/gamma.hpp>
+
+// // https://www.boost.org/doc/libs/1_85_0/doc/html/boost/random/beta_distribution.html
+// #include <boost/random/beta_distribution.hpp>
+
+#include "../util/utils.h" // to use random generator
 
 #ifndef THOMPSON_H
 #define THOMPSON_H
 
 namespace Brush {
 namespace MAB {
-
-// TODO: rename thompson to proportional. implement thompson in other file
-using namespace boost::random;
 
 template <typename T>
 class ThompsonSamplingBandit : public BanditOperator<T>
@@ -25,7 +29,6 @@ public:
 
 private:
     // additional stuff should come here
-    beta_distribution<> BetaDistribution;
 
     std::map<T, int> alphas;
     std::map<T, int> betas;
