@@ -197,6 +197,7 @@ template<PT PType> struct Program
     {
         if (!is_fitted_)
             HANDLE_ERROR_THROW("Program is not fitted. Call 'fit' first.\n");
+            
         return (Tree.begin().node->predict<TreeType>(d) > 0.5);
     };
 
@@ -209,6 +210,7 @@ template<PT PType> struct Program
     {
         if (!is_fitted_)
             HANDLE_ERROR_THROW("Program is not fitted. Call 'fit' first.\n");
+
         TreeType out = Tree.begin().node->predict<TreeType>(d);
         auto argmax = Function<NodeType::ArgMax>{};
         return argmax(out);

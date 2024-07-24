@@ -29,6 +29,7 @@ VectorXf log_loss(const VectorXf& y, const VectorXf& predict_proba,
             loss(i) = -(y(i)*log(eps) + (1-y(i))*log(1-eps));
         else
             loss(i) = -(y(i)*log(predict_proba(i)) + (1-y(i))*log(1-predict_proba(i)));
+
         if (loss(i)<0)
             std::runtime_error("loss(i)= " + to_string(loss(i)) 
                     + ". y = " + to_string(y(i)) + ", predict_proba(i) = " 
@@ -60,11 +61,17 @@ float average_precision_score(const VectorXf& y, const VectorXf& predict_proba,
                           VectorXf& loss,
                           const vector<float>& class_weights) {
     
+    float eps = pow(10,-10);
+
+    // Assuming y contains binary labels (0 or 1)
+    int num_instances = y.rows();
+
     // get argsort of predict proba (descending)
-    vector<int> argsort(y.rows());
+    vector<int> argsort(num_instances);
+
     iota(argsort.begin(), argsort.end(), 0);
     sort(argsort.begin(), argsort.end(), [&](int i, int j) {
-        return predict_proba[i] > predict_proba[j];
+        return predict_proba(i) > predict_proba(j);
     });
 
     float ysum = 0;
@@ -76,57 +83,63 @@ float average_precision_score(const VectorXf& y, const VectorXf& predict_proba,
         ysum = y.sum();
 
     // Calculate the precision and recall values
-    VectorXf precision(y.rows());
-    VectorXf recall(y.rows());
+    VectorXf precision(num_instances);
+    VectorXf recall(num_instances);
     
-    loss.resize(y.rows()); 
+    loss.resize(num_instances); 
 
     float true_positives  = 0;
     float false_positives = 0;
+    float positives = 0; // y.sum();
 
-    float positives = 0;
+    for (int i = 0; i < num_instances; ++i) {
+        int index = argsort[i];
+        
+        //assert(predict_proba(index) >= 0 && predict_proba(index) <= 1 && "Assertion failed: predict_proba is out of range");
 
-    for (int i = 0; i < y.rows(); i++) {
-        if (predict_proba[argsort[i]] > 0.5)
+        if (predict_proba(index) > 0.5)
         {
-            if (y[argsort[i]] == 1) {
-                if (!class_weights.empty())
-                    true_positives = class_weights[y(argsort[i])];
-                else
-                    true_positives += 1;
+            float weight = class_weights.empty() ? 1.0f : class_weights.at(y(index));
+
+            if (y(index) > 0.5) {
+                true_positives += weight;
             }
             else {
-                if (!class_weights.empty())
-                    false_positives = class_weights[y(argsort[i])];
-                else
-                    false_positives += 1;
+                false_positives += weight;
             }
         }
+        
         positives = true_positives + false_positives;
 
-        precision[i] = positives==0.0 ? 0.0 : true_positives/positives;
-        recall[i]    = ysum==0.0 ? 1.0 : true_positives/ysum;
-
-        // cout << "i: " << i << ", predict_proba[argsort[i]]: " << predict_proba[argsort[i]] << ", y[argsort[i]]: " << y[argsort[i]] << ", true_positives: " << true_positives << ", false_positives: " << false_positives << ", precision[i]: " << precision[i] << ", recall[i]: " << recall[i] << endl;
+        precision(i) = positives==0.0 ? 0.0 : true_positives/positives;
+        recall(i)    = ysum==0.0 ? 1.0 : true_positives/ysum;
     }
 
     // Calculate the average precision score
-    float average_precision = 0;
-    float last_recall = 0;
-    float last_loss   = 0;
+    float average_precision = 0.0;
+    float last_recall = recall(0);
 
-    for (int i = 0; i < y.rows(); i++) {
-        if (recall[i] != last_recall) {
-            loss[i] = precision[i] * (recall[i] - last_recall);
-            average_precision += loss[i];
+    for (int i = 0; i < num_instances; ++i) {
+        // if (recall(i) != last_recall) {
+        //     loss(i) = precision(i) * (recall(i) - last_recall);
+        //     average_precision += loss(i);
 
-            last_recall = recall[i];
-            last_loss = loss[i];
+        //     last_recall = recall(i);
+        // }
+        // else
+        //     loss(i) = loss(i-1);
+
+        if (recall(i) != last_recall) {
+            average_precision += precision(i) * (recall(i) - last_recall);
+            last_recall = recall(i);
         }
+        
+        // The loss vector is used in lexicase selection. we need to set something useful here
+        // that does make sense on individual level. Using log loss here.
+        if (predict_proba(i) < eps || 1 - predict_proba(i) < eps)
+            loss(i) = -(y(i)*log(eps) + (1-y(i))*log(1-eps));
         else
-            loss[i] = last_loss;
-
-        // cout << "i: " << i << ", recall[i]: " << recall[i] << ", loss[i]: " << loss[i] << ", average_precision: " << average_precision << endl;
+            loss(i) = -(y(i)*log(predict_proba(i)) + (1-y(i))*log(1-predict_proba(i)));
     }
 
     return average_precision;
