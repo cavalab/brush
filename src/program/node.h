@@ -161,9 +161,12 @@ struct Node {
         fixed=false;
         set_prob_change(1.0);
 
+        // TODO: confirm that this is really necessary (intializing this variable) and transform this line into a ternary if so
         // cant weight an boolean terminal
         if (!IsWeighable(this->ret_type)) 
             this->is_weighted = false;
+        else
+            this->is_weighted = true;
     }
 
     /// @brief gets a string version of the node for printing.

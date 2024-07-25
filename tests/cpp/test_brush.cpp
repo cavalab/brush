@@ -168,3 +168,60 @@ TEST(Engine, ClassificationEngineWorks)
      Brush::ClassifierEngine est2(params, ss);
      est2.run(data);
 }
+
+TEST(Engine, SavingLoadingFixedNodes)
+{
+    // runs a classification problem for 100 generations, save it to a file,
+    // then load it, then run for 100 more generations, and checks if all
+    // individuals in the population have the logistic node as its root.
+
+    Dataset data = Data::read_csv("docs/examples/datasets/d_analcatdata_aids.csv", "target");
+
+    SearchSpace ss(data);
+
+    Parameters params;
+    params.set_verbosity(2);
+    params.set_scorer("log");
+    params.set_cx_prob(0.0);
+    params.set_save_population("./tests/cpp/__pop_clf.json");
+
+    Brush::ClassifierEngine est(params, ss);
+    est.run(data);
+
+    cout << "Checking if all individuals in the population have the logistic node as its root after saving the population to a file" << endl;
+    for (auto& ind : est.archive.individuals)
+    {
+        std::cout << "-----" << std::endl << ind.program.get_model() << 
+                     ". last variation was: " << ind.variation << endl;
+
+        Node cx_child_root = *(ind.program.Tree.begin());
+
+        cout << "Root has a prob change of: " <<
+            std::to_string(cx_child_root.get_prob_change()) << std::endl;
+
+        ASSERT_TRUE(cx_child_root.node_type == NodeType::Logistic);
+        ASSERT_TRUE(cx_child_root.get_prob_change()==0.0);
+        ASSERT_TRUE(cx_child_root.fixed==true);
+    }
+
+    params.set_load_population("./tests/cpp/__pop_clf.json");
+    
+    Brush::ClassifierEngine est2(params, ss);
+    est2.run(data);
+
+    cout << "Checking if all individuals in the population have the logistic node as its root after loading a previously saved pop to resume execution" << endl;
+    for (auto& ind : est2.archive.individuals)
+    {
+        std::cout << "-----" << std::endl << ind.program.get_model() << 
+                     ". last variation was: " << ind.variation << endl;
+
+        Node cx_child_root = *(ind.program.Tree.begin());
+
+        cout << "Root has a prob change of: " <<
+            std::to_string(cx_child_root.get_prob_change()) << std::endl;
+
+        ASSERT_TRUE(cx_child_root.node_type == NodeType::Logistic);
+        ASSERT_TRUE(cx_child_root.get_prob_change()==0.0);
+        ASSERT_TRUE(cx_child_root.fixed==true);
+    }
+}

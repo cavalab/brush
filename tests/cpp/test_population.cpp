@@ -77,6 +77,7 @@ TEST(Population, PopulationTests)
     }
 
     pop.save("./tests/cpp/__pop_save_first_gen.json");
+
     // print models
     fmt::print("Printing from population method:\n");
     fmt::print("{}\n",pop.print_models()); // may yeld seg fault if string is too large for buffer
@@ -154,4 +155,3 @@ TEST(Population, PopulationTests)
     pop.save("./tests/cpp/__pop_save_100_gen.json");
     pop.load("./tests/cpp/__pop_save_100_gen.json");
 }
-

@@ -726,14 +726,16 @@ P SearchSpace::make_program(const Parameters& params, int max_d, int max_size)
     if (P::program_type == ProgramType::BinaryClassifier)
     {
         Node node_logit = get(NodeType::Logistic, DataType::ArrayF, Signature<ArrayXf(ArrayXf)>());
-        node_logit.set_prob_change(0.0);
         node_logit.fixed=true;
+        node_logit.set_prob_change(0.0);
+
         auto spot_logit = Tree.insert(Tree.begin(), node_logit);
 
         if (true) { // Logistic(Add(Constant, <>)). 
             Node node_offset = get(NodeType::OffsetSum, DataType::ArrayF, Signature<ArrayXf(ArrayXf)>());
-            node_offset.set_prob_change(0.0);
+
             node_offset.fixed=true;
+            node_offset.set_prob_change(0.0);
 
             auto spot_offset = Tree.append_child(spot_logit);
             
@@ -746,8 +748,9 @@ P SearchSpace::make_program(const Parameters& params, int max_d, int max_size)
     else if (P::program_type == ProgramType::MulticlassClassifier)
     {
         Node node_softmax = get(NodeType::Softmax, DataType::MatrixF, Signature<ArrayXXf(ArrayXXf)>());
-        node_softmax.set_prob_change(0.0);
+
         node_softmax.fixed=true;
+        node_softmax.set_prob_change(0.0);
         
         spot = Tree.insert(Tree.begin(), node_softmax);
     }

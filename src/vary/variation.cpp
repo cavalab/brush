@@ -632,7 +632,11 @@ void Variation<T>::vary(Population<T>& pop, int island,
             ind.set_parents(ind_parents);
         }
         else {  // no optional value was returned. creating a new random individual
+            // It seems that the line below will not fix the root in clf programs
             ind.init(search_space, parameters); // ind.variation is born by default
+        
+            // Program<T> p = search_space.make_program<Program<T>>(parameters, 0, 0);
+            // ind = Individual<T>(p);
         }
         
         ind.set_objectives(mom.get_objectives()); // it will have an invalid fitness

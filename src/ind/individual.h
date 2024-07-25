@@ -176,7 +176,8 @@ void to_json(json &j, const Individual<T> &p)
         {"fitness", p.fitness},
         {"id", p.id},
         {"parent_id", p.parent_id},
-        {"objectives", p.objectives}
+        {"objectives", p.objectives},
+        {"variation", p.variation}
     }; 
 }
 
@@ -188,6 +189,7 @@ void from_json(const json &j, Individual<T>& p)
     j.at("id").get_to( p.id );
     j.at("parent_id").get_to( p.parent_id );
     j.at("objectives").get_to( p.objectives );
+    j.at("variation").get_to( p.variation );
 }
 } // Pop
 } // Brush
