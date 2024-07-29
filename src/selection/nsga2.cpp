@@ -231,14 +231,18 @@ void NSGA2<T>::crowding_distance(Population<T>& pop, vector<vector<int>>& front,
         if (fsize > 1)
             pop.individuals.at(F.at(fsize-1))->fitness.crowding_dist = std::numeric_limits<float>::max();
     
+        float first_of_front = pop.individuals.at(F.at(0))->fitness.get_wvalues().at(m);
+        float last_of_front  = pop.individuals.at(F.at(fsize-1))->fitness.get_wvalues().at(m);
         for (int i = 1; i < fsize-1; ++i) 
         {
             if (pop.individuals.at(F.at(i))->fitness.crowding_dist != std::numeric_limits<float>::max()) 
-            {   // crowd over obj
-                // TODO: this could be improved
+            {
+                float next_of_front = pop.individuals.at(F.at(i+1))->fitness.get_wvalues().at(m);
+                float prev_of_front = pop.individuals.at(F.at(i-1))->fitness.get_wvalues().at(m);
+
+                // updating the value by aggregating crowd dist for each objective
                 pop.individuals.at(F.at(i))->fitness.crowding_dist +=
-                    (pop.individuals.at(F.at(i+1))->fitness.get_wvalues().at(m) - pop.individuals.at(F.at(i-1))->fitness.get_wvalues().at(m)) 
-                    / (pop.individuals.at(F.at(fsize-1))->fitness.get_wvalues().at(m) - pop.individuals.at(F.at(0))->fitness.get_wvalues().at(m));
+                    (next_of_front - prev_of_front) / (last_of_front - first_of_front);
             }
         }
     }        
