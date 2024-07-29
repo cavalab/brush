@@ -39,7 +39,8 @@ vector<size_t> Lexicase<T>::select(Population<T>& pop, int island,
   
     // if output is continuous, use epsilon lexicase            
     if (!params.classification || params.scorer.compare("log")==0 
-    ||  params.scorer.compare("multi_log")==0)
+                               || params.scorer.compare("multi_log")==0
+                               || params.scorer.compare("average_precision_score")==0 )
     {
         // for each sample, calculate epsilon
         for (int i = 0; i<epsilon.size(); ++i)
@@ -49,6 +50,9 @@ vector<size_t> Lexicase<T>::select(Population<T>& pop, int island,
             {
                 case_errors(j) = pop.individuals.at(island_pool[j])->error(i);
             }
+
+            // notice that metric used to calculate the error must be a
+            // minimization problem in order for lexicase to work
             epsilon(i) = mad(case_errors);
         }
     }
@@ -120,11 +124,16 @@ vector<size_t> Lexicase<T>::select(Population<T>& pop, int island,
             // criteria to stay in pool
             epsilon_threshold = minfit+epsilon[cases[h]];
 
-            // select best
+            // select best            
+            // lexicase threshold criteria assumes a minimization problem
+            float weight = 1.0 if !params.classification else -1.0 
+
             for (size_t j = 0; j<pool.size(); ++j)
+            {
                 if (pop.individuals.at(pool[j])->error(cases[h]) 
                         <= epsilon_threshold)
-                winner.push_back(pool[j]);                 
+                    winner.push_back(pool[j]);  
+            }
             
             ++h; // next case
             // only keep going if needed

@@ -48,11 +48,11 @@ int Fitness::dominates(const Fitness& b) const
     // TODO: replace comparison of individual values by using the overloaded operators (here and in nsga2)
     for (int i=0; i<get_wvalues().size(); ++i) {
         if (get_wvalues().at(i) > b.get_wvalues().at(i)
-        || std::isnan(b.get_wvalues().at(i)) 
+        ||  std::isnan(b.get_wvalues().at(i)) 
         ) 
             flag1 = 1;
         if (get_wvalues().at(i) < b.get_wvalues().at(i)
-        || std::isnan(get_wvalues().at(i))
+        ||  std::isnan(get_wvalues().at(i))
         ) 
             flag2 = 1;                       
     }

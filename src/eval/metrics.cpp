@@ -61,6 +61,8 @@ float average_precision_score(const VectorXf& y, const VectorXf& predict_proba,
                           VectorXf& loss,
                           const vector<float>& class_weights) {
     
+    // TODO: revisit this
+    
     float eps = pow(10,-10);
 
     // Assuming y contains binary labels (0 or 1)
@@ -95,8 +97,6 @@ float average_precision_score(const VectorXf& y, const VectorXf& predict_proba,
     for (int i = 0; i < num_instances; ++i) {
         int index = argsort[i];
         
-        //assert(predict_proba(index) >= 0 && predict_proba(index) <= 1 && "Assertion failed: predict_proba is out of range");
-
         if (predict_proba(index) > 0.5)
         {
             float weight = class_weights.empty() ? 1.0f : class_weights.at(y(index));
@@ -120,15 +120,6 @@ float average_precision_score(const VectorXf& y, const VectorXf& predict_proba,
     float last_recall = recall(0);
 
     for (int i = 0; i < num_instances; ++i) {
-        // if (recall(i) != last_recall) {
-        //     loss(i) = precision(i) * (recall(i) - last_recall);
-        //     average_precision += loss(i);
-
-        //     last_recall = recall(i);
-        // }
-        // else
-        //     loss(i) = loss(i-1);
-
         if (recall(i) != last_recall) {
             average_precision += precision(i) * (recall(i) - last_recall);
             last_recall = recall(i);
