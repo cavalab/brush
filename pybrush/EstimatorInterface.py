@@ -69,7 +69,9 @@ class EstimatorInterface():
         list with one or more objectives to use. The first objective is the main.
         If `"error"` is used, then the metric in `scorer` will be used as objective.
         Possible values are "error", "size", "complexity", "linear_complexity",
-        and "depth".
+        and "depth". The first objective will be used as criteria for Pareto
+        sorting when creating the archive, and the recursive complexity will be
+        used as secondary objective.
     scorer : str, default None
         The metric to use for the "error" objective. If None, it will be set to
         "mse" for regression and "log" for binary classification.
@@ -96,7 +98,9 @@ class EstimatorInterface():
         all data is used. Very small values can improve execution time, but 
         also lead to underfit.
     sel : str, default 'lexicase'
-        The selection method to perform parent selection.
+        The selection method to perform parent selection. When using lexicase,
+        the selection is done as if it was a single-objective problem, based on 
+        absolute error for regression, and log loss for classification.
     surv : str, default 'nsga2'
         The survival method for selecting the next generation from parents and offspring.
     save_population: str, optional (default "")
