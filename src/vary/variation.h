@@ -100,6 +100,11 @@ public:
         
         this->variation_bandit = Bandit<string>(parameters.bandit, variation_probs);
 
+        // TODO: should I set C parameter based on pop size or leave it fixed?
+        // TODO: update string comparisons to use .compare method
+        // if (parameters.bandit.compare("dynamic_thompson")==0)
+        //     this->variation_bandit.pbandit.set_C(parameters.pop_size);
+
         // initializing one bandit for each terminal type
         for (const auto& entry : this->search_space.terminal_weights) {
             // entry is a tuple <dataType, vector<float>> where the vector is the weights
@@ -119,7 +124,7 @@ public:
             }
         }
 
-        
+        // TODO: op bandit?
         // this->op_bandit = Bandit<DataType>(this->parameters.bandit,
         //                    this->search_space.node_map_weights.size() );
                  

@@ -36,7 +36,7 @@ public:
     unsigned int max_size  = 50;
 
     vector<string> objectives{"error","complexity"}; // error should be generic and deducted based on mode
-    string bandit = "dummy"; // should I rename that? 
+    string bandit = "dynamic_thompson"; // TODO: should I rename dummy? 
     string sel  = "lexicase"; //selection method
     string surv = "nsga2"; //survival method
     std::unordered_map<string, float> functions;

@@ -531,7 +531,7 @@ void Engine<T>::run(Dataset &data)
 
         [&]() {
             // getting the updated versions
-            if (params.bandit != "duummy")
+            if (params.bandit != "dummy")
             {
                 // TODO: make the probabilities add up to 1 (this doesnt matter for the cpp side, but it is a good practice and helps comparing different probabilities)
                 this->ss = variator.search_space;

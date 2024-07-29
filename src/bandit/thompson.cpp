@@ -4,8 +4,9 @@ namespace Brush {
 namespace MAB {
 
 template <typename T>
-ThompsonSamplingBandit<T>::ThompsonSamplingBandit(vector<T> arms)
+ThompsonSamplingBandit<T>::ThompsonSamplingBandit(vector<T> arms, bool dynamic)
     : BanditOperator<T>(arms)
+    , dynamic_update(dynamic)
 {
     for (const auto& arm : arms) {
         alphas[arm] = 2;
@@ -14,8 +15,9 @@ ThompsonSamplingBandit<T>::ThompsonSamplingBandit(vector<T> arms)
 }
 
 template <typename T>
-ThompsonSamplingBandit<T>::ThompsonSamplingBandit(map<T, float> arms_probs)
+ThompsonSamplingBandit<T>::ThompsonSamplingBandit(map<T, float> arms_probs, bool dynamic)
     : BanditOperator<T>(arms_probs)
+    , dynamic_update(dynamic)
 {
     for (const auto& pair : arms_probs) {
         alphas[pair.first] = 2;
@@ -26,7 +28,8 @@ ThompsonSamplingBandit<T>::ThompsonSamplingBandit(map<T, float> arms_probs)
 
 template <typename T>
 std::map<T, float> ThompsonSamplingBandit<T>::sample_probs(bool update) {
-    
+    // gets sampling probabilities using the bandit
+
     // from https://stackoverflow.com/questions/4181403/generate-random-number-based-on-beta-distribution-using-boost
     // You'll first want to draw a random number uniformly from the
     // range (0,1). Given any distribution, you can then plug that number
@@ -59,8 +62,16 @@ std::map<T, float> ThompsonSamplingBandit<T>::sample_probs(bool update) {
 
             prob =  X/(X+Y);
 
-            this->probabilities[arm] = prob;
+            // avoiding deadlocks when sampling from search space
+            this->probabilities[arm] = std::max(prob, 0.01f);
         }
+
+        // assert that the sum is not zero
+        float totalProb = 0.0f;
+        for (const auto& pair : this->probabilities) {
+            totalProb += pair.second;
+        }
+        assert(totalProb != 0.0f && "Sum of probabilities is zero!");
     }
 
     return this->probabilities;
@@ -69,8 +80,15 @@ std::map<T, float> ThompsonSamplingBandit<T>::sample_probs(bool update) {
 template <typename T>
 void ThompsonSamplingBandit<T>::update(T arm, float reward) {
     // reward must be either 0 or 1
+
     alphas[arm] += reward;
-    betas[arm]  += 1 - reward;
+    betas[arm]  += 1-reward;
+
+    if (dynamic_update && alphas[arm] + betas[arm] >= C)
+    {
+        alphas[arm] *= C/(C+1) ;
+        betas[arm]  *= C/(C+1) ;
+    }
 }
 
 } // MAB

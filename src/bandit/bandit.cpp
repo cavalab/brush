@@ -5,7 +5,7 @@ namespace MAB {
 
 template <typename T>
 Bandit<T>::Bandit() { 
-    set_type("dummy");
+    set_type("dynamic_thompson");
     set_arms({});
     set_probs({});
     set_bandit();
@@ -42,6 +42,8 @@ void Bandit<T>::set_bandit() {
     // other methods to raise an error if bandit was not set
     if (type == "thompson") {
         pbandit = make_unique<ThompsonSamplingBandit<T>>(probabilities);
+    } else if (type == "dynamic_thompson") {
+        pbandit = make_unique<ThompsonSamplingBandit<T>>(probabilities, true);
     } else if (type == "dummy") {
         pbandit = make_unique<DummyBandit<T>>(probabilities);
     } else {

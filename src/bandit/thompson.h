@@ -20,15 +20,15 @@ template <typename T>
 class ThompsonSamplingBandit : public BanditOperator<T>
 {
 public:
-    ThompsonSamplingBandit(vector<T> arms);
-    ThompsonSamplingBandit(map<T, float> arms_probs);
+    ThompsonSamplingBandit(vector<T> arms, bool dynamic=false);
+    ThompsonSamplingBandit(map<T, float> arms_probs, bool dynamic=false);
     ~ThompsonSamplingBandit(){};
 
     std::map<T, float> sample_probs(bool update);
     void update(T arm, float reward);
-
 private:
-    // additional stuff should come here
+    bool dynamic_update;
+    float C = 1000;
 
     std::map<T, int> alphas;
     std::map<T, int> betas;
