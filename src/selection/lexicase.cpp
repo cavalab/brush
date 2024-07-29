@@ -124,10 +124,7 @@ vector<size_t> Lexicase<T>::select(Population<T>& pop, int island,
             // criteria to stay in pool
             epsilon_threshold = minfit+epsilon[cases[h]];
 
-            // select best            
-            // lexicase threshold criteria assumes a minimization problem
-            float weight = 1.0 if !params.classification else -1.0 
-
+            // select best
             for (size_t j = 0; j<pool.size(); ++j)
             {
                 if (pop.individuals.at(pool[j])->error(cases[h]) 
