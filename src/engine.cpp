@@ -560,6 +560,15 @@ void Engine<T>::run(Dataset &data)
                         archive.individuals.push_back( *pop.individuals.at(indices.at(i)) );
                     }
                 }
+
+                // removing duplicates
+                std::sort(archive.individuals.begin(), archive.individuals.end(), 
+                          &archive.sortObj1);
+
+                auto it = std::unique(archive.individuals.begin(),archive.individuals.end(), 
+                                      &archive.sameObjectives);
+
+                archive.individuals.resize(std::distance(archive.individuals.begin(),it));
             }
                 
         } // work done, report last gen and stop
