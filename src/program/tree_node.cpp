@@ -157,14 +157,16 @@ int TreeNode::get_linear_complexity() const
 
     // include the `w` and `*` if the node is weighted (and it is not a constant or mean label)
     if (data.get_is_weighted()
-    && !(Is<NodeType::Constant>(data.node_type)
-        || ( Is<NodeType::MeanLabel>(data.node_type)
-        ||   Is<NodeType::OffsetSum>(data.node_type)) )
-    )
-        return operator_complexities.at(NodeType::Mul) +
-               operator_complexities.at(NodeType::Constant) + 
-               tree_complexity;
-
+    &&  Isnt<NodeType::Constant, NodeType::MeanLabel>(data.node_type) )
+    {
+        // ignoring weight if it has the value of neutral element of operation
+        if ((Is<NodeType::OffsetSum>(data.node_type) && data.W != 0.0)
+        ||  (data.W != 1.0))
+            return operator_complexities.at(NodeType::Mul) +
+                operator_complexities.at(NodeType::Constant) + 
+                tree_complexity;
+    }
+    
     return tree_complexity;
 };
 
@@ -185,14 +187,16 @@ int TreeNode::get_complexity() const
 
     // include the `w` and `*` if the node is weighted (and it is not a constant or mean label)
     if (data.get_is_weighted()
-    && !(Is<NodeType::Constant>(data.node_type)
-        ||  (Is<NodeType::MeanLabel>(data.node_type)
-        ||   Is<NodeType::OffsetSum>(data.node_type)) )
-    )
-        return operator_complexities.at(NodeType::Mul)*(
-            operator_complexities.at(NodeType::Constant) + 
-            node_complexity*(children_complexity_sum)
-        );
+    &&  Isnt<NodeType::Constant, NodeType::MeanLabel>(data.node_type) )
+    {
+        // ignoring weight if it has the value of neutral element of operation
+        if ((Is<NodeType::OffsetSum>(data.node_type) && data.W != 0.0)
+        ||  (data.W != 1.0))
+            return operator_complexities.at(NodeType::Mul)*(
+                       operator_complexities.at(NodeType::Constant) + 
+                       node_complexity*(children_complexity_sum)
+                   );
+    }
 
     return node_complexity*(children_complexity_sum);
 };
