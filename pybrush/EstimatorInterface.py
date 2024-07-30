@@ -310,11 +310,15 @@ class EstimatorInterface():
             y = y.values
         if isinstance(X, pd.DataFrame):
             feature_names = X.columns
-            for dtype in X.dtypes:
+            for values, dtype in zip(X.values.T, X.dtypes):
                 if is_float_dtype(dtype):
                     feature_types.append('ArrayF')
                 elif is_integer_dtype(dtype):
-                    feature_types.append('ArrayI')
+                    # For Brush, it does matter if it is realy an integer or a boolean in disguise
+                    if np.all(np.logical_or(values == 0, values == 1)):
+                        feature_types.append('ArrayB')
+                    else:
+                        feature_types.append('ArrayI')
                 elif is_bool_dtype(dtype):
                     feature_types.append('ArrayB')
                 else:
