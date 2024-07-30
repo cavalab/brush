@@ -141,7 +141,7 @@ class EstimatorInterface():
         verbosity=0,
         max_depth=3,
         max_size=20,
-        num_islands=1,
+        num_islands=5,
         n_jobs=1,
         mig_prob=0.05,
         cx_prob= 1/7,
