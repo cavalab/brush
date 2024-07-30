@@ -235,6 +235,12 @@ class DeapEstimator(EstimatorInterface, BaseEstimator):
 
         check_is_fitted(self)
 
+        if self.data_ is None:
+            self.data_ = self._make_data(X, 
+                                    feature_names=self.feature_names_,
+                                    validation_size=self.validation_size,
+                                    shuffle_split=self.shuffle_split)
+            
         if isinstance(X, pd.DataFrame):
             X = X.values
 
@@ -312,6 +318,12 @@ class DeapClassifier(DeapEstimator,ClassifierMixin):
         if isinstance(X, pd.DataFrame):
             X = X.values
 
+        if self.data_ is None:
+            self.data_ = self._make_data(X, 
+                                    feature_names=self.feature_names_,
+                                    validation_size=self.validation_size,
+                                    shuffle_split=self.shuffle_split)
+            
         assert isinstance(X, np.ndarray)
 
         # Need to provide feature names because reference does not store order

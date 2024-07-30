@@ -38,6 +38,8 @@ class BrushEstimator(EstimatorInterface, BaseEstimator):
         Partition of `data_` containing `(validation_size)`% of the data, in Brush format.
     search_space_ : a Brush `SearchSpace` object. 
         Holds the operators and terminals and sampling utilities to update programs.
+
+    > NOTE: as for now, when serializing the model with pickle, the objects of type `Dataset` and `SearchSpace` are not serialized.
     """
     
     def __init__(self, **kwargs):
@@ -103,6 +105,12 @@ class BrushEstimator(EstimatorInterface, BaseEstimator):
 
         check_is_fitted(self)
 
+        if self.data_ is None:
+            self.data_ = self._make_data(X, 
+                                    feature_names=self.feature_names_,
+                                    validation_size=self.validation_size,
+                                    shuffle_split=self.shuffle_split)
+            
         if isinstance(X, pd.DataFrame):
             X = X.values
 
@@ -129,6 +137,12 @@ class BrushEstimator(EstimatorInterface, BaseEstimator):
 
         check_is_fitted(self)
 
+        if self.data_ is None:
+            self.data_ = self._make_data(X, 
+                                    feature_names=self.feature_names_,
+                                    validation_size=self.validation_size,
+                                    shuffle_split=self.shuffle_split)
+            
         if isinstance(X, pd.DataFrame):
             X = X.values
 
@@ -191,6 +205,12 @@ class BrushClassifier(BrushEstimator, ClassifierMixin):
         
         check_is_fitted(self)
 
+        if self.data_ is None:
+            self.data_ = self._make_data(X, 
+                                    feature_names=self.feature_names_,
+                                    validation_size=self.validation_size,
+                                    shuffle_split=self.shuffle_split)
+            
         if isinstance(X, pd.DataFrame):
             X = X.values
 
@@ -214,6 +234,12 @@ class BrushClassifier(BrushEstimator, ClassifierMixin):
 
         check_is_fitted(self)
 
+        if self.data_ is None:
+            self.data_ = self._make_data(X, 
+                                    feature_names=self.feature_names_,
+                                    validation_size=self.validation_size,
+                                    shuffle_split=self.shuffle_split)
+            
         if isinstance(X, pd.DataFrame):
             X = X.values
 
@@ -221,7 +247,8 @@ class BrushClassifier(BrushEstimator, ClassifierMixin):
 
         # Need to provide feature names because reference does not store order
         data = Dataset(X=X, ref_dataset=self.data_, 
-                              feature_names=self.feature_names_)
+                            feature_names=self.feature_names_)
+        
         archive = self.engine_.get_archive()
 
         preds = []

@@ -109,8 +109,13 @@ class EstimatorInterface():
     load_population: str, optional (default "")
         string containing the path to load the initial population. Ignored
         if not provided.
-    bandit : str
-        The bandit strategy to use for the estimator.
+    bandit : str, optional (default: "dynamic_thompson")
+        The bandit strategy to use for the estimator. Options are `"dummy"` that
+        does not change the probabilities; `"thompson"` that uses static Thompson
+        sampling to update sampling probabilities for terminals in search space with
+        a static implementation; and `"dynamic_thompson" that implements a Thompson 
+        strategy that weights more recent rewards and applies exponential decay
+        to older observed rewards.
     shuffle_split: boolean, optional (default False)
         whether if the engine should shuffle the data before splitting it
         into train and validation partitions. Ignored if `validation_size`
@@ -151,7 +156,7 @@ class EstimatorInterface():
         save_population="",
         load_population="",
         shuffle_split=True,
-        bandit='dummy', # TODO: change this to have our mab on by default
+        bandit='dynamic_thompson',
         weights_init=True,
         val_from_arch=True,
         use_arch=False,
@@ -335,3 +340,19 @@ class EstimatorInterface():
             validation_size=validation_size,
             shuffle_split=shuffle_split,
             c=(self.mode=='classification'))
+
+    # Serializing only the stuff to make new predictions
+    def __getstate__(self):
+        state = self.__dict__.copy()
+
+        # Serialization of data is not yet supported. TODO.
+        del state["data_"]
+        del state["train_"]
+        del state["validation_"]
+        del state["search_space_"]
+
+        return state
+
+    def __setstate__(self, state):
+        self.__dict__.update(state)
+        self.data_ = None
