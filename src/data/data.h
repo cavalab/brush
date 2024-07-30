@@ -72,6 +72,7 @@ class Dataset
         
         /// @brief dataset features, as key value pairs
         std::map<string, State> features;
+
         // TODO: this should probably be a more complex type to include feature type 
         // and potentially other info, like arbitrary relations between features
 
@@ -92,6 +93,7 @@ class Dataset
         bool use_batch;
 
         Dataset operator()(const vector<size_t>& idx) const;
+
         /// call init at the end of constructors
         /// to define metafeatures of the data.
         void init();
@@ -241,6 +243,18 @@ class Dataset
 
         /* template<> ArrayXb get<ArrayXb>(std::string name) */
 }; // class data
+
+// TODO: serialization of features in order to nlohmann to work
+// NLOHMANN_DEFINE_TYPE_NON_INTRUSIVE(Dataset,
+//     features,
+//     y,
+//     classification,
+//     validation_size,
+//     use_validation,
+//     batch_size,
+//     use_batch,
+//     shuffle_split
+// );
 
 // // read csv
 // Dataset read_csv(const std::string & path, MatrixXf& X, VectorXf& y, 

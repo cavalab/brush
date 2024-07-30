@@ -82,12 +82,12 @@ void ThompsonSamplingBandit<T>::update(T arm, float reward) {
     // reward must be either 0 or 1
 
     alphas[arm] += reward;
-    betas[arm]  += 1-reward;
+    betas[arm]  += 1.0f-reward;
 
     if (dynamic_update && alphas[arm] + betas[arm] >= C)
     {
-        alphas[arm] *= C/(C+1) ;
-        betas[arm]  *= C/(C+1) ;
+        alphas[arm] *= C/(C+1.0f) ;
+        betas[arm]  *= C/(C+1.0f) ;
     }
 }
 

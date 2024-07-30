@@ -446,6 +446,8 @@ std::optional<Individual<T>> Variation<T>::cross(
                 Individual<T> ind(child);
                 ind.set_variation("cx"); // TODO: use enum here to make it faster
 
+                // std::cout << "returning after crossover" << std::endl;
+
                 return ind;
             }
         }
@@ -562,7 +564,8 @@ std::optional<Individual<T>> Variation<T>::mutate(const Individual<T>& parent)
         else // it must be"toggle_weight_off"
             success = ToggleWeightOffMutation::mutate(child.Tree, spot, search_space, parameters);
 
-        // std::cout << "returning" << std::endl;
+        // std::cout << "returning after mutation " << choice << std::endl;
+        
         if (success
         && ( (child.size()  <= parameters.max_size)
         &&   (child.depth() <= parameters.max_depth) )){
