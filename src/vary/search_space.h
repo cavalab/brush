@@ -726,16 +726,17 @@ P SearchSpace::make_program(const Parameters& params, int max_d, int max_size)
     if (P::program_type == ProgramType::BinaryClassifier)
     {
         Node node_logit = get(NodeType::Logistic, DataType::ArrayF, Signature<ArrayXf(ArrayXf)>());
-        node_logit.fixed=true;
+        node_logit.set_is_weighted(false);
         node_logit.set_prob_change(0.0);
+        node_logit.fixed=true;
 
         auto spot_logit = Tree.insert(Tree.begin(), node_logit);
 
-        if (true) { // Logistic(Add(Constant, <>)). 
+        if (true) { // Logistic(Add(Constant, <>)). TODO: let the user control this
             Node node_offset = get(NodeType::OffsetSum, DataType::ArrayF, Signature<ArrayXf(ArrayXf)>());
 
-            node_offset.fixed=true;
             node_offset.set_prob_change(0.0);
+            node_offset.fixed=true;
 
             auto spot_offset = Tree.append_child(spot_logit);
             
@@ -749,8 +750,9 @@ P SearchSpace::make_program(const Parameters& params, int max_d, int max_size)
     {
         Node node_softmax = get(NodeType::Softmax, DataType::MatrixF, Signature<ArrayXXf(ArrayXXf)>());
 
-        node_softmax.fixed=true;
         node_softmax.set_prob_change(0.0);
+        node_softmax.set_is_weighted(false);
+        node_softmax.fixed=true;
         
         spot = Tree.insert(Tree.begin(), node_softmax);
     }
@@ -773,6 +775,17 @@ P SearchSpace::make_program(const Parameters& params, int max_d, int max_size)
 
     // max_d-1 because we always pick the root before calling ptc2
     PTC2(Tree, spot, max_d-1, max_size); // change inplace
+
+    // weighting the tree if classification problem (so it can optimize the scale by default)
+    // if (P::program_type == ProgramType::BinaryClassifier
+    // ||  P::program_type == ProgramType::MulticlassClassifier)
+    // {
+    //     // Get the child of the spot
+    //     auto child = spot.begin();
+
+    //     // Turn on the weight for the child
+    //     child->set_prob_change(1.0);
+    // }
 
     return P(*this, Tree);
 };
