@@ -419,7 +419,9 @@ template<PT PType> struct Program
                 // kid_id = kid_id.substr(2);
 
                 if (kid->data.get_is_weighted()
-                && Isnt<NodeType::Constant, NodeType::MeanLabel, NodeType::OffsetSum>(kid->data.node_type)){
+                && Isnt<NodeType::Constant, NodeType::MeanLabel, 
+                        NodeType::OffsetSum, NodeType::SplitBest>(kid->data.node_type))
+                {
                     edge_label = fmt::format("{:.2f}",kid->data.W);
                 }
 
