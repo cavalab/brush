@@ -236,6 +236,8 @@ std::optional<tree<Node>> SearchSpace::sample_subtree(Node root, int max_d, int 
 {
     // public interface to use PTC2 algorithm
 
+    // std::cout << "Function name: sample_subtree" << std::endl;
+
     // PTC is designed to not fail (it will persistently try to find nodes with
     // sampling functions). In pop initialization, this shoudnt be a problem, but
     // during evolution, due to dynamic changes in node weights by the learners, 
@@ -344,6 +346,10 @@ tree<Node>& SearchSpace::PTC2(tree<Node>& Tree,
 
             if (!opt) { // there is no operator for this node. sample a terminal instead
                 opt = sample_terminal(t);
+
+                // didnt work the easy way, lets try the hard way
+                if (!opt)
+                    opt = sample_terminal(t, true);
             }
 
             if (!opt) { // no operator nor terminal. weird.
@@ -388,6 +394,7 @@ tree<Node>& SearchSpace::PTC2(tree<Node>& Tree,
         auto [qspot, t, d] = RandomDequeue(queue);
 
         auto opt = sample_terminal(t);
+
         if (!opt)
             opt = sample_terminal(t, true);
 

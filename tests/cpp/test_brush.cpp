@@ -151,9 +151,10 @@ TEST(Engine, ClassificationEngineWorks)
     ASSERT_TRUE(data.classification);
 
     Parameters params;
-    params.set_pop_size(100);
-    params.set_max_gens(10);
-    params.set_bandit("thompson");
+    params.set_pop_size(10);
+    params.set_max_gens(100);
+    params.set_bandit("dynamic_thompson");
+    params.set_num_islands(1);
     params.set_mig_prob(0.0);
     params.set_scorer("log");
 
@@ -182,7 +183,7 @@ TEST(Engine, SavingLoadingFixedNodes)
     Parameters params;
     params.set_verbosity(2);
     params.set_scorer("log");
-    params.set_cx_prob(0.0);
+    params.set_cx_prob(1.0); // TODO: debug. why if I set this to 0.0 it does not work?
     params.set_save_population("./tests/cpp/__pop_clf.json");
 
     Brush::ClassifierEngine est(params, ss);

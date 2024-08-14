@@ -30,8 +30,8 @@ private:
     bool dynamic_update;
     float C = 1000;
 
-    std::map<T, int> alphas;
-    std::map<T, int> betas;
+    std::map<T, float> alphas;
+    std::map<T, float> betas;
 };
 
 } // MAB

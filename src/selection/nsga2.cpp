@@ -147,6 +147,7 @@ vector<vector<int>> NSGA2<T>::fast_nds(Population<T>& pop, vector<size_t>& islan
         p->fitness.dcounter  = dcount;
         p->fitness.dominated.clear();
         p->fitness.dominated = dom; // dom will have values already referring to island indexes
+        p->fitness.set_crowding_dist(0.0f);
     
         if (p->fitness.dcounter == 0) {
             // fmt::print("pushing {}...\n", island_pool[i]);
@@ -213,7 +214,7 @@ void NSGA2<T>::crowding_distance(Population<T>& pop, vector<vector<int>>& front,
     // fmt::print("front size is {}...\n", fsize);
 
     for (int i = 0; i < fsize; ++i)
-        pop.individuals.at(F.at(i))->fitness.crowding_dist = 0;
+        pop.individuals.at(F.at(i))->fitness.set_crowding_dist(0.0f);
 
     // fmt::print("reseted crowding distance for individuals in this front\n");
 
@@ -235,7 +236,7 @@ void NSGA2<T>::crowding_distance(Population<T>& pop, vector<vector<int>>& front,
         float last_of_front  = pop.individuals.at(F.at(fsize-1))->fitness.get_wvalues().at(m);
         for (int i = 1; i < fsize-1; ++i) 
         {
-            if (pop.individuals.at(F.at(i))->fitness.crowding_dist != std::numeric_limits<float>::max()) 
+            if (pop.individuals.at(F.at(i))->fitness.crowding_dist != std::numeric_limits<float>::max())
             {
                 float next_of_front = pop.individuals.at(F.at(i+1))->fitness.get_wvalues().at(m);
                 float prev_of_front = pop.individuals.at(F.at(i-1))->fitness.get_wvalues().at(m);

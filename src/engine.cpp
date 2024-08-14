@@ -292,6 +292,7 @@ bool Engine<T>::update_best(const Dataset& data, bool val)
     bool updated = false; 
     float bs = this->best_score; 
 
+    // TODO: debug hall of fame
     vector<size_t> hof = this->pop.hall_of_fame(1);
 
     for (int i=0; i < hof.size(); ++i) 
@@ -302,6 +303,7 @@ bool Engine<T>::update_best(const Dataset& data, bool val)
         // if there is no validation, then loss_v==loss and this should work just fine
         float f = val ? ind.fitness.loss_v : ind.fitness.loss;
 
+        // TODO: iterate over the objective values to handle ties (instead of using fixed error and complexity)
         if (f*error_weight > bs*error_weight
         || (f == bs && ind.fitness.complexity < this->best_complexity) )
         {
@@ -313,6 +315,7 @@ bool Engine<T>::update_best(const Dataset& data, bool val)
         }
     }
 
+    // TODO: store a reference to the best individual (best score can change if using batch)
     this->best_score = bs; 
 
     return updated;
@@ -434,41 +437,54 @@ void Engine<T>::run(Dataset &data)
                 
                 this->pop.add_offspring_indexes(island); 
 
+                // std::cout << "VARY" << std::endl;
                 variator.vary(this->pop, island, island_parents.at(island));
                 
+                // std::cout << "UPDATE FITNESS" << std::endl;
                 evaluator.update_fitness(this->pop, island, data, params, true);
 
+                // std::cout << "success updating fitness" << std::endl;
                 if (data.use_batch) // assign the batch error as fitness (but fit was done with training data)
                     evaluator.update_fitness(this->pop, island, batch, params, false);
 
+                // std::cout << "reward?" << std::endl;
                 vector<float> island_rewards = variator.calculate_rewards(this->pop, island);
                 for (int i=0; i< island_rewards.size(); i++){
                     rewards.at(island).at(i) = island_rewards.at(i);
                 }
+                // std::cout << "reward!" << std::endl;
 
+                // std::cout << "survive?" << std::endl;
                 // select survivors from combined pool of parents and offspring
                 vector<size_t> island_survivors = survivor.survive(this->pop, island, params);
                 for (int i=0; i< island_survivors.size(); i++){
                     survivors.at(island).at(i) = island_survivors.at(i);
                 }
+                // std::cout << "survive!" << std::endl;
+
             }).name("runs one generation at each island in parallel");
 
             auto update_pop = subflow.emplace([&]() { // sync point
                 // Flatten the rewards vector
+                // std::cout << "flatten reward?" << std::endl;
+
                 vector<float> flattened_rewards;
                 for (const auto& island_rewards : rewards) {
                     flattened_rewards.insert(flattened_rewards.end(),
                                              island_rewards.begin(),
                                              island_rewards.end());
                 }
+                // std::cout << "flatten reward!" << std::endl;
                 
                 // Assert that flattened_rewards has the same size as popsize
                 assert(flattened_rewards.size() == this->pop.size());
                 
                 // TODO: do i need these next this-> pointers?
                 // Use the flattened rewards vector for updating the population
-   
+                
+                // std::cout << "update ss?" << std::endl;
                 this->variator.update_ss(this->pop, flattened_rewards);
+                // std::cout << "update ss!" << std::endl;
 
                 // TODO: copy probabilities from variation to engine reference
                 // std::cout << "Bandit probabilities: ";

@@ -278,6 +278,8 @@ vector<size_t> Population<T>::hall_of_fame(unsigned rank)
                 pf.push_back(indices.at(i));
         }
     }
+
+    // TODO: should I sort the hall of fame by complexity? or error?
     std::sort(pf.begin(),pf.end(),SortComplexity(*this)); 
 
     auto it = std::unique(pf.begin(),pf.end(),SameFitComplexity(*this));

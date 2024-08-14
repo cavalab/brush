@@ -608,9 +608,12 @@ void Variation<T>::vary(Population<T>& pop, int island,
     
         vector<Individual<T>> ind_parents;
 
+        // std::cout << "Going to variate..." << std::endl;
+        
         bool crossover = ( r() < parameters.cx_prob );
         if (crossover)
         {
+            // std::cout << "crossover..." << std::endl;
             const Individual<T>& dad = pop[
                 *r.select_randomly(parents.begin(), parents.end())];
             
@@ -619,10 +622,11 @@ void Variation<T>::vary(Population<T>& pop, int island,
         }
         else
         {
+            // std::cout << "mutation..." << std::endl;
             opt = mutate(mom);   
             ind_parents = {mom};
         }
-
+    
         // this assumes that islands do not share indexes before doing variation
         unsigned id = parameters.current_gen*parameters.pop_size+indices.at(i);
 
@@ -641,12 +645,19 @@ void Variation<T>::vary(Population<T>& pop, int island,
             // Program<T> p = search_space.make_program<Program<T>>(parameters, 0, 0);
             // ind = Individual<T>(p);
         }
+
+        // std::cout << "variation was " << ind.variation <<  std::endl;
         
         ind.set_objectives(mom.get_objectives()); // it will have an invalid fitness
+
+        // std::cout << "setted objectives" <<  std::endl;
 
         ind.is_fitted_ = false;
         ind.set_id(id);
 
+        // std::cout << "setted id" <<  std::endl;
+
+        // TODO: smarter way of copying the entire fitness
         // copying mom fitness to the new individual (without making the fitnes valid)
         // so the bandits can access this information. Fitness will be valid
         // only when we do set_values(). We are setting these parameters below
@@ -658,11 +669,20 @@ void Variation<T>::vary(Population<T>& pop, int island,
         ind.fitness.set_complexity(mom.fitness.get_complexity());
         ind.fitness.set_linear_complexity(mom.fitness.get_linear_complexity());
         ind.fitness.set_depth(mom.fitness.get_depth());
-            
+
+        // dont set stuff that is not used to calculate the rewards, like crowding_dist
+        // ind.fitness.set_crowding_dist(0.0);
+        
+        // std::cout << "setted fitness" <<  std::endl;
+
         assert(ind.program.size()>0);
         assert(ind.fitness.valid()==false);
 
+        // std::cout << "asserted" <<  std::endl;
+
         pop.individuals.at(indices.at(i)) = std::make_shared<Individual<T>>(ind);
+
+        // std::cout << "added to the pop at " << i << std::endl;
    }
 };
 
@@ -760,36 +780,50 @@ void Variation<T>::update_ss(Population<T>& pop, const vector<float>& rewards)
             const Individual<T>& ind = *pop.individuals.at(
                 indices.at(indices.size()/2 + i) );
 
+            // std::cout << "index" << index << std::endl;
             float r = rewards.at(index++);
 
             // update the variation bandit. get the variation (arm) and reward to update
             this->variation_bandit.update(ind.get_variation(), r);
 
-            // update the operators and terminal bandit (if thats the case)
-            if (ind.get_sampled_nodes().size() > 0) {
-                const auto& changed_nodes = ind.get_sampled_nodes();
-                for (const auto& node : changed_nodes) {
+            // std::cout << "update variation bandit: " << ind.get_variation() << std::endl;
+            if (ind.get_variation() != "born" && ind.get_variation() != "cx"
+            &&  ind.get_variation() != "subtree")
+            {                
+                // update the operators and terminal bandit (if thats the case)
+                if (ind.get_sampled_nodes().size() > 0) {
+                    // std::cout << "update terminal bandit" << std::endl;
+                    const auto& changed_nodes = ind.get_sampled_nodes();
+                    for (const auto& node : changed_nodes) {
 
-                    // upating reward for terminal nodes
-                    if (node.get_arg_count() == 0) {
-                        auto datatype = node.get_ret_type();
-                        this->terminal_bandits[datatype].update(node.get_feature(), r);
-                    }
-                    else // updating reward for operator nodes
-                    {
+                        // upating reward for terminal nodes
+                        if (node.get_arg_count() == 0) {
+                            auto datatype = node.get_ret_type();
+                            this->terminal_bandits[datatype].update(node.get_feature(), r);
+                        }
+                        else // updating reward for operator nodes
+                        {
 
+                        }
                     }
+                }
+                else
+                {
+                    // TODO: update node bandit
+                    // std::cout << "nope" << std::endl;
                 }
             }
         }
     }
 
+    // std::cout << "Done distributing rewards. time to update" << std::endl;
     // -------------------------------------------------------------------------
 
     // variation: getting new probabilities for parameters
     // get the probs
     // change cross rate
     // change each mutation
+    // std::cout << "sampling probs" << std::endl;
     auto variation_probs = variation_bandit.sample_probs(true);
 
     // std::cout << "Bandit probabilities (inside vary): ";
@@ -797,12 +831,14 @@ void Variation<T>::update_ss(Population<T>& pop, const vector<float>& rewards)
     //     std::cout << "{" << prob.first << ", " << prob.second << "} ";
     // }
 
+    // std::cout << "variation..." << std::endl;
     if (variation_probs.find("cx") != variation_probs.end())
         parameters.set_cx_prob(variation_probs.at("cx"));
     
     for (const auto& variation : variation_probs)
         if (variation.first != "cx")
             parameters.mutation_probs[variation.first] = variation.second;
+    // std::cout << "variation!" << std::endl;
 
     // std::cout << "parameters cx_prob: " << parameters.get_cx_prob() << std::endl;
     // std::cout << "parameters mutation_probs: ";
@@ -821,21 +857,27 @@ void Variation<T>::update_ss(Population<T>& pop, const vector<float>& rewards)
             auto terminal_name = terminal.first;
             auto terminal_prob = terminal.second;
 
+            // std::cout << "bandit for " << terminal_name << std::endl;
+            // std::cout << "prob " << terminal_prob << std::endl;
+
             // Search for the index that matches the terminal name
             auto it = std::find_if(
-            search_space.terminal_map.at(datatype).begin(),
-            search_space.terminal_map.at(datatype).end(), 
-            [&](auto& node) { return node.get_feature() == terminal_name; });
+                search_space.terminal_map.at(datatype).begin(),
+                search_space.terminal_map.at(datatype).end(), 
+                [&](auto& node) { return node.get_feature() == terminal_name; });
 
             if (it != search_space.terminal_map.at(datatype).end()) {
+                // std::cout << "found " << terminal_name << std::endl;
+                auto index = std::distance(search_space.terminal_map.at(datatype).begin(), it);
+
                 // Update the terminal weights with the second value
-                search_space.terminal_weights.at(datatype)[it - search_space.terminal_map.at(datatype).begin()] = terminal_prob;
+                search_space.terminal_weights.at(datatype)[index] = terminal_prob;
+                // std::cout << "done " << terminal_name << std::endl;
             }
         }
     }
 
-    assert(index == rewards.size());
-    
+    assert(index == rewards.size()); 
 };
 
 } //namespace Var

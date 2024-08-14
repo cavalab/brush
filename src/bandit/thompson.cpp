@@ -60,7 +60,7 @@ std::map<T, float> ThompsonSamplingBandit<T>::sample_probs(bool update) {
             X = boost::math::quantile(gammaX, Brush::Util::r.rnd_flt());
             Y = boost::math::quantile(gammaY, Brush::Util::r.rnd_flt());
 
-            prob =  X/(X+Y);
+            prob =  X/(X+Y+0.001f);
 
             // avoiding deadlocks when sampling from search space
             this->probabilities[arm] = std::max(prob, 0.01f);

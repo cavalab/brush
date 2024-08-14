@@ -106,7 +106,7 @@ struct Fitness {
     Fitness(const vector<float>& w={}) : values(), wvalues(), weights(w) {
         dcounter = 0;
         set_rank(0);
-        set_crowding_dist(0);
+        set_crowding_dist(0.0f);
         dominated.resize(0);
     }
     
