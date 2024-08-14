@@ -124,10 +124,34 @@ public:
             }
         }
 
-        // TODO: op bandit?
-        // this->op_bandit = Bandit<DataType>(this->parameters.bandit,
-        //                    this->search_space.node_map_weights.size() );
-                 
+        // one bandit for each return type. If we look at implementation of 
+        // sample op, the thing that matters is the most nested probabilities, so we will
+        // learn only that
+        for (auto& [ret_type, arg_w_map]: search_space.node_map) 
+        {
+            std::cout << "creating bandit..." << std::endl;
+
+            // TODO: this could be made much easier using user_ops
+            map<string, float> node_probs;
+            for (const auto& [args_type, node_map] : arg_w_map)
+            {
+                for (const auto& [node_type, node]: node_map)
+                {
+                    auto weight = search_space.node_map_weights.at(ret_type).at(args_type).at(node_type);
+                    
+                    // Attempt to emplace; if the key exists, do nothing
+                    auto [it, inserted] = node_probs.try_emplace(node.name, weight);
+                    
+                    // If the key already existed, update its value
+                    if (!inserted) {
+                        // it->second += weight;
+                    }
+                    
+                    std::cout << node.name << ", " << it->second << std::endl;
+                }
+            }
+            op_bandits[ret_type] = Bandit<string>(parameters.bandit, node_probs );
+        }
     };
 
     /**
@@ -185,9 +209,7 @@ private:
 
     map<DataType, Bandit<string>> terminal_bandits; 
 
-    // TODO: implement bandit for operators
-    // Bandit<DataType> op_bandit;
-    
+    map<DataType, Bandit<string>> op_bandits;    
 };
 
 // // Explicitly instantiate the template for brush program types

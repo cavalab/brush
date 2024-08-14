@@ -85,10 +85,10 @@ struct SearchSpace
     using ArgsHash = std::size_t; 
 
     template<typename T>
-    using Map = unordered_map<DataType,           // return type
-                    unordered_map<ArgsHash,         // hash of arg types
-                        unordered_map<NodeType,   // node type 
-                            T>>>;        // the data!
+    using Map = unordered_map<DataType,         // return type
+                    unordered_map<ArgsHash,     // hash of arg types
+                        unordered_map<NodeType, // node type 
+                            T>>>;               // the data!
     
     /**
      * @brief Maps return types to argument types to node types. 
