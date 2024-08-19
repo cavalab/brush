@@ -192,11 +192,14 @@ void SearchSpace::init(const Dataset& d, const unordered_map<string,float>& user
     // and signatures for them (and they can be used only in program root).
     // TODO: fix softmax and add it here
 
-    // Copy the original map using the copy constructor
-    std::unordered_map<std::string, float> extended_user_ops(user_ops);
+    /* fmt::print("generate nodetype\n"); */
+    GenerateNodeMap(user_ops, d.unique_data_types, 
+                    std::make_index_sequence<NodeTypes::OpCount>());
 
     if (d.classification)
     {        
+        std::unordered_map<std::string, float> extended_user_ops;
+        
         // Convert ArrayXf to std::vector<float> for compatibility with std::set
         std::vector<float> vec(d.y.data(), d.y.data() + d.y.size());
 
@@ -212,11 +215,14 @@ void SearchSpace::init(const Dataset& d, const unordered_map<string,float>& user
         else if (user_ops.find("Softmax") == user_ops.end()) {
             extended_user_ops.insert({"Softmax", 0.0f});
         }
-    }
 
-    /* fmt::print("generate nodetype\n"); */
-    GenerateNodeMap(extended_user_ops, d.unique_data_types, 
-                    std::make_index_sequence<NodeTypes::OpCount>());
+        if (extended_user_ops.size() > 0)
+        {
+            // fmt::print("generate nodetype\n");
+            GenerateNodeMap(extended_user_ops, d.unique_data_types, 
+                            std::make_index_sequence<NodeTypes::OpCount>());
+        }
+    }
 
     // map terminals
     /* fmt::print("looping through terminals...\n"); */

@@ -328,8 +328,8 @@ void Dataset::init()
         }   
     }
     
-    std::cout << "final Training data size: " << training_data_idx.size() << std::endl;
-    std::cout << "final Validation data size: " << validation_data_idx.size() << std::endl;
+    // std::cout << "final Training data size: " << training_data_idx.size() << std::endl;
+    // std::cout << "final Validation data size: " << validation_data_idx.size() << std::endl;
 }
 
 float Dataset::get_batch_size() { return batch_size; }
