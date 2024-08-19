@@ -374,8 +374,8 @@ void Engine<T>::run(Dataset &data)
 
     auto stop = [&]() {
         return (  (generation == params.max_gens)
-               && ((params.max_stall == 0 || stall_count < params.max_stall) 
-               &&  (params.max_time == -1 || params.max_time > timer.Elapsed().count()) )
+               || (params.max_stall != 0 && stall_count >= params.max_stall) 
+               || (params.max_time != -1 && timer.Elapsed().count() >= params.max_time)
         );
     };
 
