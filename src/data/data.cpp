@@ -229,33 +229,107 @@ void Dataset::init()
     // setting the training and validation data indexes
     auto n_samples = int(this->get_n_samples());
 
-    vector<size_t> idx(n_samples);
-
-    if (shuffle_split)
-        idx = r.shuffled_index(n_samples);
-    else
-        std::iota(idx.begin(), idx.end(), 0);
-
-    // garantee that at least one sample is going to be returned, since
-    // use_batch is true only if batch_size is (0, 1), and ceil will round
-    // up
-    auto n_train_samples = int(ceil(n_samples*(1-validation_size)));
-
     training_data_idx.resize(0);
-    std::transform(idx.begin(), idx.begin() + n_train_samples,
-            back_inserter(training_data_idx),
-            [&](int element) { return element; });
+    validation_data_idx.resize(0);
 
-    if ( use_validation && (n_samples - n_train_samples != 0) ) {
-        validation_data_idx.resize(0);
+    if (!use_validation)
+    {
+        vector<size_t> idx(n_samples);
 
-        std::transform(idx.begin() + n_train_samples, idx.end(),
+        std::iota(idx.begin(), idx.end(), 0);
+        
+        std::transform(idx.begin(), idx.end(),
+                back_inserter(training_data_idx),
+                [&](int element) { return element; });
+        
+        std::transform(idx.begin(), idx.end(),
                 back_inserter(validation_data_idx),
                 [&](int element) { return element; });
     }
-    else {
-        validation_data_idx = training_data_idx;
-    } 
+    else if (classification && true) // figuring out training and validation data indexes
+    { // Stratified split for classification problems. TODO: parameters to change stratify behavior? (false by default)
+        std::map<float, vector<int>> class_indices; // TODO: I think I can remove many std:: from the code..
+        for (size_t i = 0; i < n_samples; ++i) {
+            class_indices[y[i]].push_back(i);
+        }
+
+        for (const auto& class_group : class_indices) {
+            const auto& indices = class_group.second;
+            for (const auto& index : indices) {
+                std::cout << "Class: " << class_group.first << ", Index: " << index << std::endl;
+            }
+        }
+
+        for (auto& class_group : class_indices) {
+            std::cout << "Class: " << class_group.first << std::endl;
+            auto& indices = class_group.second;
+
+            int n_class_samples = indices.size();
+            std::cout << "n_class_samples: " << n_class_samples << std::endl;
+            
+            vector<size_t> idx(n_class_samples);
+            if (shuffle_split)
+                idx = r.shuffled_index(n_class_samples);
+            else
+                std::iota(idx.begin(), idx.end(), 0);
+
+            auto n_train_samples = int(ceil(n_class_samples*(1.0-validation_size)));
+
+            std::cout << "train samples: " << n_train_samples << std::endl;
+
+            std::transform(idx.begin(), idx.begin() + n_train_samples,
+                    back_inserter(training_data_idx),
+                    [&](int element) { return indices[element]; });
+                    
+            if (n_class_samples - n_train_samples == 0)
+            {
+                std::cout << "not using validation: "<< std::endl;
+                // same indices from the training data to the validation data
+                std::transform(idx.begin(), idx.begin() + n_train_samples,
+                        back_inserter(validation_data_idx),
+                        [&](int element) { return indices[element]; });
+            }
+            else 
+            {
+                std::transform(idx.begin() + n_train_samples, idx.end(),
+                        back_inserter(validation_data_idx),
+                        [&](int element) { return indices[element]; });
+            }
+            std::cout << "Training data size: " << training_data_idx.size() << std::endl;
+            std::cout << "Validation data size: " << validation_data_idx.size() << std::endl;
+        }
+    }
+    else { // regression, or classification without stratification
+        // logic for non-classification problems
+        vector<size_t> idx(n_samples);
+
+        if (shuffle_split) // TODO: make sure this works with multiple threads and fixed random state
+            idx = r.shuffled_index(n_samples);
+        else
+            std::iota(idx.begin(), idx.end(), 0);
+            
+        // garantee that at least one sample is going to be returned, since
+        // use_batch is true only if batch_size is (0, 1), and ceil will round
+        // up
+        auto n_train_samples = int(ceil(n_samples*(1-validation_size)));
+
+        std::transform(idx.begin(), idx.begin() + n_train_samples,
+                back_inserter(training_data_idx),
+                [&](int element) { return element; });
+
+        if (n_samples - n_train_samples == 0) { // training_data_idx contains all data
+            validation_data_idx = training_data_idx;
+        }
+        else 
+        {
+            std::transform(idx.begin() + n_train_samples, idx.end(),
+                    back_inserter(validation_data_idx),
+                    [&](int element) { return element; });
+        }   
+    }
+    
+    std::cout << "final Training data size: " << training_data_idx.size() << std::endl;
+    std::cout << "final Validation data size: " << validation_data_idx.size() << std::endl;
 }
 
 float Dataset::get_batch_size() { return batch_size; }
