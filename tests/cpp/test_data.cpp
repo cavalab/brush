@@ -130,3 +130,57 @@ TEST(Data, MixedVariableTypes)
     // dtable_fit.print();
     // dtable_predict.print();
 }
+TEST(Data, ShuffleTrueFalse)
+{
+    MatrixXf X(20,3);
+    X << 0  , 1,    0  ,
+         0.0, 1.0,  1.0,
+         2  , 1.0, -3.0,
+         2  , 1  ,  3  ,
+         2.1, 3.7, -5.2,
+         0  , 1,    0  ,
+         0.0, 1.0,  1.0,
+         2  , 1.0, -3.0,
+         2  , 1  ,  3  ,
+         2.1, 3.7, -5.2,
+         0  , 1,    0  ,
+         0.0, 1.0,  1.0,
+         2  , 1.0, -3.0,
+         2  , 1  ,  3  ,
+         2.1, 3.7, -5.2,
+         0  , 1,    0  ,
+         0.0, 1.0,  1.0,
+         2  , 1.0, -3.0,
+         2  , 1  ,  3  ,
+         2.1, 3.7, -5.2;
+
+    X.transposeInPlace();
+
+    ArrayXf y(20); 
+
+    y << 1.0, 1.0, 1.0, 1.0, 1.0, 0.0, 0.0, 0.0, 0.0, 0.0, 
+         0.0, 0.0, 0.0, 0.0, 0.0, 1.0, 1.0, 1.0, 1.0, 1.0;
+    
+    // vector<string> vn = {};
+    // map<string, State> Z = {};
+    // vector<string> ft = {};
+
+    // Dataset(const ArrayXXf& X, 
+    //          const Ref<const ArrayXf>& y_ = ArrayXf(), 
+    //          const vector<string>& vn = {}, 
+    //          const map<string, State>& Z = {},
+    //          const vector<string>& ft = {},
+    //          bool c = false,
+    //          float validation_size = 0.0,
+    //          float batch_size = 1.0,
+    //          bool shuffle_split = false
+
+    Dataset dt1(X, y, {}, {}, {}, true, 0.3, 1.0, true);
+    Dataset dt2(X, y, {}, {}, {}, true, 0.3, 1.0, false);
+    Dataset dt3(X, y, {}, {}, {}, true, 0.0, 1.0, true);
+    Dataset dt4(X, y, {}, {}, {}, true, 0.0, 1.0, false);
+    Dataset dt5(X, y, {}, {}, {}, true, 1.0, 1.0, true);
+    Dataset dt6(X, y, {}, {}, {}, true, 1.0, 1.0, false);
+
+    // TODO: write some assertions here
+}

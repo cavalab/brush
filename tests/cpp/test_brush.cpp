@@ -183,7 +183,7 @@ TEST(Engine, SavingLoadingFixedNodes)
     Parameters params;
     params.set_verbosity(2);
     params.set_scorer("log");
-    params.set_cx_prob(1.0); // TODO: debug. why if I set this to 0.0 it does not work?
+    params.set_cx_prob(0.0);
     params.set_save_population("./tests/cpp/__pop_clf.json");
 
     Brush::ClassifierEngine est(params, ss);
@@ -205,9 +205,14 @@ TEST(Engine, SavingLoadingFixedNodes)
         ASSERT_TRUE(cx_child_root.fixed==true);
     }
 
-    params.set_load_population("./tests/cpp/__pop_clf.json");
+    // TODO: why if I set cx_prob to 0.0 it does not work? (maybe because Im using the same params object for the two engines? do i need to remove save_pop file first?)
     
-    Brush::ClassifierEngine est2(params, ss);
+    Parameters params2;
+    params2.set_verbosity(2);
+    params2.set_scorer("log");
+    params2.set_load_population("./tests/cpp/__pop_clf.json");
+    
+    Brush::ClassifierEngine est2(params2, ss);
     est2.run(data);
 
     cout << "Checking if all individuals in the population have the logistic node as its root after loading a previously saved pop to resume execution" << endl;
@@ -225,4 +230,34 @@ TEST(Engine, SavingLoadingFixedNodes)
         ASSERT_TRUE(cx_child_root.get_prob_change()==0.0);
         ASSERT_TRUE(cx_child_root.fixed==true);
     }
+}
+
+
+TEST(Engine, MaxStall)
+{
+    MatrixXf X(10,2);
+    ArrayXf y(10);
+    X << 0.85595296, 0.55417453, 0.8641915 , 0.99481109, 0.99123376,
+         0.9742618 , 0.70894019, 0.94940306, 0.99748867, 0.54205151,
+
+         0.5170537 , 0.8324005 , 0.50316305, 0.10173936, 0.13211973,
+         0.2254195 , 0.70526861, 0.31406024, 0.07082619, 0.84034526;
+
+    y << 3.55634251, 3.13854087, 3.55887523, 3.29462895, 3.33443517,
+         3.4378868 , 3.41092345, 3.5087468 , 3.25110243, 3.11382179;
+
+    Dataset data(X,y);
+    SearchSpace ss(data);
+
+    Parameters params;
+    params.set_pop_size(100);
+    params.set_max_gens(1000000);
+    params.set_mig_prob(0.0);
+    params.set_max_stall(10);
+    params.set_verbosity(2);
+
+    Brush::RegressorEngine est(params, ss);
+    est.run(data);
+
+
 }

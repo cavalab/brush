@@ -129,7 +129,6 @@ public:
         // learn only that
         for (auto& [ret_type, arg_w_map]: search_space.node_map) 
         {
-            std::cout << "creating bandit..." << std::endl;
 
             // TODO: this could be made much easier using user_ops
             map<string, float> node_probs;
@@ -146,11 +145,9 @@ public:
                     if (!inserted) {
                         // it->second += weight;
                     }
-                    
-                    std::cout << node.name << ", " << it->second << std::endl;
                 }
             }
-            op_bandits[ret_type] = Bandit<string>(parameters.bandit, node_probs );
+            op_bandits[ret_type] = Bandit<string>(parameters.bandit, node_probs);
         }
     };
 
