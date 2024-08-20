@@ -54,7 +54,6 @@ public:
         this->ss = s;
         // TODO: make variation to have a default constructor
         // this->variator(Variation<T>(params, ss)) ;
-
     };
     
     ~Engine(){};
@@ -75,13 +74,10 @@ public:
     inline bool get_is_fitted(){return is_fitted;}
 
     /// updates best score by searching in the population for the individual that best fits the given data
-    bool update_best(const Dataset& data, bool val=false);
+    bool update_best();
     
     // TODO: hyperparameter to set how the best is picked (MCDM, best on val, pareto front, etc). one of the options should be getting the pareto front
 
-    // TODO: best fitness (the class) instead of these. use fitness comparison
-    float best_score;
-    int best_complexity;
     Individual<T>& get_best_ind(){return best_ind;};  
     
     Engine<T> &fit(Dataset& data) {
@@ -141,7 +137,7 @@ public:
     Parameters params;  ///< hyperparameters of brush, which the user can interact
     SearchSpace ss;
     
-    Individual<T> best_ind;
+    Individual<T> best_ind; ///< best individual found during training
     Archive<T> archive;          ///< pareto front archive
 private:
 

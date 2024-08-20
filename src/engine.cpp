@@ -29,11 +29,6 @@ void Engine<T>::init()
     this->selector = Selection<T>(params.sel, false);
     this->survivor = Selection<T>(params.surv, true);
 
-    
-    float error_weight = Individual<T>::weightsMap[params.scorer];
-    this->best_score      = -error_weight*MAX_FLT;
-    this->best_complexity = -error_weight*MAX_FLT; // untie by complexity
-
     this->archive.set_objectives(params.get_objectives());
 
     timer.Reset();
@@ -285,12 +280,10 @@ auto Engine<T>::predict_proba_archive(int id, const Ref<const ArrayXXf>& X)
 }
 
 template <ProgramType T>
-bool Engine<T>::update_best(const Dataset& data, bool val)
+bool Engine<T>::update_best()
 {
-    float error_weight = Individual<T>::weightsMap[params.scorer];
-    
-    bool updated = false; 
-    float bs = this->best_score; 
+    bool updated = false;
+    bool passed;
 
     // TODO: debug hall of fame
     vector<size_t> hof = this->pop.hall_of_fame(1);
@@ -298,25 +291,27 @@ bool Engine<T>::update_best(const Dataset& data, bool val)
     for (int i=0; i < hof.size(); ++i) 
     {
         const auto& ind = *pop.individuals.at(hof[i]);
-        
-        // TODO: dataset arg here with null default value. if the user provides a dataset, we use it to update
-        // if there is no validation, then loss_v==loss and this should work just fine
-        float f = val ? ind.fitness.loss_v : ind.fitness.loss;
 
-        // TODO: iterate over the objective values to handle ties (instead of using fixed error and complexity)
-        if (f*error_weight > bs*error_weight
-        || (f == bs && ind.fitness.complexity < this->best_complexity) )
+        // TODO: use intermediary variables for wvalues
+        // if there is no validation, then loss_v==loss and this should work just fine.
+        // Iterate over the weighted values to compare (everything is a maximization problem here)
+        passed = false;
+        for (size_t j = 0; j < this->best_ind.fitness.get_wvalues().size(); ++j) {
+            if (ind.fitness.get_wvalues()[j] > this->best_ind.fitness.get_wvalues()[j]) {
+                passed = true;
+            }
+            else if (ind.fitness.get_wvalues()[j] != this->best_ind.fitness.get_wvalues()[j]) {
+                // it is not better, and it is also not equal. So, it is worse. Stop here.
+                break;
+            }
+        }
+
+        if (passed)
         {
-            bs = f;
             this->best_ind = ind; 
-            this->best_complexity = ind.fitness.complexity;
-
             updated = true;
         }
     }
-
-    // TODO: store a reference to the best individual (best score can change if using batch)
-    this->best_score = bs; 
 
     return updated;
 }
@@ -374,8 +369,8 @@ void Engine<T>::run(Dataset &data)
 
     auto stop = [&]() {
         return (  (generation == params.max_gens)
-               || (params.max_stall != 0 && stall_count >= params.max_stall) 
-               || (params.max_time != -1 && timer.Elapsed().count() >= params.max_time)
+               || (params.max_stall != 0 && stall_count > params.max_stall) 
+               || (params.max_time != -1 && timer.Elapsed().count() > params.max_time)
         );
     };
 
@@ -437,36 +432,28 @@ void Engine<T>::run(Dataset &data)
                 
                 this->pop.add_offspring_indexes(island); 
 
-                // std::cout << "VARY" << std::endl;
                 variator.vary(this->pop, island, island_parents.at(island));
                 
-                // std::cout << "UPDATE FITNESS" << std::endl;
                 evaluator.update_fitness(this->pop, island, data, params, true);
 
-                // std::cout << "success updating fitness" << std::endl;
                 if (data.use_batch) // assign the batch error as fitness (but fit was done with training data)
                     evaluator.update_fitness(this->pop, island, batch, params, false);
 
-                // std::cout << "reward?" << std::endl;
                 vector<float> island_rewards = variator.calculate_rewards(this->pop, island);
                 for (int i=0; i< island_rewards.size(); i++){
                     rewards.at(island).at(i) = island_rewards.at(i);
                 }
-                // std::cout << "reward!" << std::endl;
 
-                // std::cout << "survive?" << std::endl;
                 // select survivors from combined pool of parents and offspring
                 vector<size_t> island_survivors = survivor.survive(this->pop, island, params);
                 for (int i=0; i< island_survivors.size(); i++){
                     survivors.at(island).at(i) = island_survivors.at(i);
                 }
-                // std::cout << "survive!" << std::endl;
 
             }).name("runs one generation at each island in parallel");
 
             auto update_pop = subflow.emplace([&]() { // sync point
                 // Flatten the rewards vector
-                // std::cout << "flatten reward?" << std::endl;
 
                 vector<float> flattened_rewards;
                 for (const auto& island_rewards : rewards) {
@@ -474,7 +461,6 @@ void Engine<T>::run(Dataset &data)
                                              island_rewards.begin(),
                                              island_rewards.end());
                 }
-                // std::cout << "flatten reward!" << std::endl;
                 
                 // Assert that flattened_rewards has the same size as popsize
                 assert(flattened_rewards.size() == this->pop.size());
@@ -482,31 +468,17 @@ void Engine<T>::run(Dataset &data)
                 // TODO: do i need these next this-> pointers?
                 // Use the flattened rewards vector for updating the population
                 
-                // std::cout << "update ss?" << std::endl;
                 this->variator.update_ss(this->pop, flattened_rewards);
-                // std::cout << "update ss!" << std::endl;
-
-                // TODO: copy probabilities from variation to engine reference
-                // std::cout << "Bandit probabilities: ";
-                // std::cout << "{cx, " << params.cx_prob << "} ";
-                // auto variation_probs = params.mutation_probs;
-                // for (const auto& prob : variation_probs) {
-                //     std::cout << "{" << prob.first << ", " << prob.second << "} ";
-                // }
-                // std::cout << std::endl;
-
-                // std::cout << "Variator probabilities: ";
-                // for (const auto& prob : variator.parameters.mutation_probs) {
-                //     std::cout << "{" << prob.first << ", " << prob.second << "} ";
-                // }
-                // std::cout << std::endl;
 
                 this->pop.update(survivors);
                 this->pop.migrate();
             }).name("update, migrate and disentangle indexes between islands");
             
             auto finish_gen = subflow.emplace([&]() {
-                bool updated_best = this->update_best(data);
+                // TODO: figure out a better way to initialize best individual
+                if (generation == 0)
+                    this->best_ind = *pop.individuals.at(0);
+                bool updated_best = this->update_best();
                 
                 if ( (params.verbosity>1 || !params.logfile.empty() )
                 || params.use_arch ) {
@@ -566,6 +538,7 @@ void Engine<T>::run(Dataset &data)
             // archive
             if (!params.use_arch)
             {
+                //TODO: make this a function (use update from archive instead of repeating it here)
                 std::cout << "saving final population as archive..." << std::endl;
                 archive.individuals.resize(0);
                 for (int island =0; island< pop.num_islands; ++island) {
