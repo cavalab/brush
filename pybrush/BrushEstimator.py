@@ -284,4 +284,4 @@ class BrushRegressor(BrushEstimator, RegressorMixin):
     """
     
     def __init__(self, **kwargs):
-        super().__init__(mode='regressor',**kwargs)
+        super().__init__(mode='regressor', **kwargs)
