@@ -242,8 +242,6 @@ std::optional<tree<Node>> SearchSpace::sample_subtree(Node root, int max_d, int 
 {
     // public interface to use PTC2 algorithm
 
-    // std::cout << "Function name: sample_subtree" << std::endl;
-
     // PTC is designed to not fail (it will persistently try to find nodes with
     // sampling functions). In pop initialization, this shoudnt be a problem, but
     // during evolution, due to dynamic changes in node weights by the learners, 
@@ -307,7 +305,6 @@ tree<Node>& SearchSpace::PTC2(tree<Node>& Tree,
     //For each argument position a of n, Enqueue(a; g) 
     for (auto a : root.arg_types)
     { 
-        // cout << "queing a node of type " << DataTypeName[a] << endl;
         auto child_spot = Tree.append_child(spot);
         queue.push_back(make_tuple(child_spot, a, d));
     }
@@ -327,10 +324,8 @@ tree<Node>& SearchSpace::PTC2(tree<Node>& Tree,
         // always insert a non terminal (which by default has weights off).
         // this way, we can have PTC2 working properly.
         
-        // cout << "queue size: " << queue.size() << endl;
         auto [qspot, t, d] = RandomDequeue(queue);
 
-        // cout << "current depth: " << d << endl;
         if (d >= max_d || s >= max_size)
         {
             auto opt = sample_terminal(t);

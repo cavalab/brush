@@ -320,8 +320,6 @@ struct SearchSpace
     /// @return `std::optional` that may contain a terminal Node.     
     std::optional<Node> sample_terminal(bool force_return=false) const
     {
-        // std::cout << "Function name: sample_terminal" << std::endl;
-        // std::cout << "Value of force: " << force_return << std::endl;
         //TODO: match terminal args_type (probably '{}' or something?)
         //  make a separate terminal_map
 
@@ -383,9 +381,6 @@ struct SearchSpace
     /// @return `std::optional` that may contain a terminal Node of type `R`.     
     std::optional<Node> sample_terminal(DataType R, bool force_return=false) const
     {
-        // std::cout << "Function name: sample_terminal(datatype R)" << std::endl;
-        // std::cout << "Value of force: " << force_return << std::endl;
-
         // should I keep doing this check?
         // if (terminal_map.find(R) == terminal_map.end()){
         //     auto msg = fmt::format("{} not in terminal_map\n",R);
@@ -403,12 +398,9 @@ struct SearchSpace
         }
         else
         {
-            // std::cout << "1" << std::endl;
-
             if (terminal_map.find(R) == terminal_map.end())
                 return std::nullopt;
 
-            // std::cout << "2" << std::endl;
             std::transform(
                 terminal_weights.at(R).begin(),
                 terminal_weights.at(R).end(),
@@ -416,12 +408,9 @@ struct SearchSpace
                 [](const auto& w){  return w; }
             );
 
-            // std::cout << "3" << std::endl;
             if (!has_solution_space(match_weights.begin(), 
                                     match_weights.end()))
                 return std::nullopt;
-                
-            // std::cout << "4" << std::endl;
         }
     
         return *r.select_randomly(terminal_map.at(R).begin(), 
@@ -435,9 +424,6 @@ struct SearchSpace
     /// @return `std::optional` that may contain a randomly chosen operator matching return type `ret`
     std::optional<Node> sample_op(DataType ret) const
     {
-        
-        // std::cout << "Function name: sample_op(DataType ret)" << std::endl;
-        
         check(ret);
         if (node_map.find(ret) == node_map.end())
             return std::nullopt;
@@ -472,8 +458,6 @@ struct SearchSpace
     /// @return `std::optional` that may contain a Node of type `type` with return type `R`. 
     std::optional<Node> sample_op(NodeType type, DataType R)
     {
-        // std::cout << "Function name: sample_op(NodeType type, DataType R)" << std::endl;
-
         check(R);
         if (node_map.find(R) == node_map.end())
             return std::nullopt;
@@ -514,8 +498,6 @@ struct SearchSpace
                               bool terminal_compatible=true,
                               int max_args=0) const
     {
-        // std::cout << "Function name: sample_op_with_arg" << std::endl;
-
         // thoughts (TODO):
         //  this could be templated by return type and arg. although the lookup in the map should be
         //  fairly fast. 
@@ -572,8 +554,6 @@ struct SearchSpace
     /// @return `std::optional` that may contain a Node 
     std::optional<Node> get_node_like(Node node) const
     {
-        // std::cout << "Function name: get_node_like" << std::endl;
-
         if (Is<NodeType::Terminal, NodeType::Constant, NodeType::MeanLabel>(node.node_type)){
             return sample_terminal(node.ret_type);
         }

@@ -177,7 +177,7 @@ public:
 
                             // only weighted nodes can be toggled off
                             if (!n.get_is_weighted()
-                            &&  IsWeighable(n.ret_type))
+                            &&  IsWeighable(n.node_type))
                             {
                                 return n.get_prob_change();
                             }
@@ -197,7 +197,7 @@ public:
                     const Parameters& params)
     {
         if (spot.node->data.get_is_weighted()==true // cant turn on whats already on
-        ||  !IsWeighable(spot.node->data.ret_type)) // does not accept weights (e.g. boolean)
+        ||  !IsWeighable(spot.node->data.node_type)) // does not accept weights (e.g. boolean)
             return false; // false indicates that mutation failed and should return std::nullopt
 
         spot.node->data.set_is_weighted(true);
@@ -226,7 +226,7 @@ public:
                             return 0.0f;
                             
                         if (n.get_is_weighted()
-                        &&  IsWeighable(n.ret_type))
+                        &&  IsWeighable(n.node_type))
                             return n.get_prob_change();
                         else
                             return 0.0f;
@@ -238,9 +238,7 @@ public:
     static auto mutate(tree<Node>& Tree, Iter spot, const SearchSpace& SS,
                     const Parameters& params)
     {
-        // cout << "toggle_weight_off mutation\n";
-
-        if (spot.node->data.get_is_weighted()==false)
+        if (spot.node->data.get_is_weighted()==false) // TODO: This condition should never happen. Make sure it dont, then remove it. (this is also true for toggleweighton, also fix that)
             return false; 
 
         spot.node->data.set_is_weighted(false);
@@ -320,6 +318,55 @@ public:
         Tree.replace(spot, subtree.value().begin());
 
         return true;
+    }
+};
+
+/// @brief Inserts an split node in the `spot`
+/// @param prog the program
+/// @param Tree the program tree
+/// @param spot an iterator to the node that is being mutated
+/// @param SS the search space to generate a compatible subtree
+/// @return boolean indicating the success (true) or fail (false) of the operation
+class SplitMutation : public MutationBase
+{
+public:
+    static auto find_spots(tree<Node>& Tree, const SearchSpace& SS,
+                    const Parameters& params)
+    {
+        vector<float> weights;
+
+        if (Tree.size() < params.get_max_size()) {
+            Iter iter = Tree.begin();
+            std::transform(Tree.begin(), Tree.end(), std::back_inserter(weights),
+                        [&](const auto& n){ 
+                            size_t d = 1+Tree.depth(iter);
+                            std::advance(iter, 1);
+
+                            // check if SS holds an operator to avoid failing `check` in sample_op_with_arg
+                            if (d >= params.get_max_depth()
+                            ||  SS.node_map.find(n.ret_type) == SS.node_map.end()
+                            // ||  check if n.ret_type can be splitted (e.g. DataType::ArrayF)
+                            ) {
+                                return 0.0f;
+                            }
+                            else {
+                                return n.get_prob_change(); 
+                            }
+                        });
+        }
+        else {
+            // fill the vector with zeros, since we're already at max_size
+            weights.resize(Tree.size());
+            std::fill(weights.begin(), weights.end(), 0.0f); 
+        }
+        
+        return weights;
+    }
+
+    static auto mutate(tree<Node>& Tree, Iter spot, const SearchSpace& SS,
+                    const Parameters& params)
+    {
+        return false;
     }
 };
 
@@ -446,8 +493,6 @@ std::optional<Individual<T>> Variation<T>::cross(
                 Individual<T> ind(child);
                 ind.set_variation("cx"); // TODO: use enum here to make it faster
 
-                // std::cout << "returning after crossover" << std::endl;
-
                 return ind;
             }
         }
@@ -564,8 +609,6 @@ std::optional<Individual<T>> Variation<T>::mutate(const Individual<T>& parent)
         else // it must be"toggle_weight_off"
             success = ToggleWeightOffMutation::mutate(child.Tree, spot, search_space, parameters);
 
-        // std::cout << "returning after mutation " << choice << std::endl;
-        
         if (success
         && ( (child.size()  <= parameters.max_size)
         &&   (child.depth() <= parameters.max_depth) )){
@@ -607,13 +650,10 @@ void Variation<T>::vary(Population<T>& pop, int island,
             *r.select_randomly(parents.begin(), parents.end())];
     
         vector<Individual<T>> ind_parents;
-
-        // std::cout << "Going to variate..." << std::endl;
         
         bool crossover = ( r() < parameters.cx_prob );
         if (crossover)
         {
-            // std::cout << "crossover..." << std::endl;
             const Individual<T>& dad = pop[
                 *r.select_randomly(parents.begin(), parents.end())];
             
@@ -622,7 +662,6 @@ void Variation<T>::vary(Population<T>& pop, int island,
         }
         else
         {
-            // std::cout << "mutation..." << std::endl;
             opt = mutate(mom);   
             ind_parents = {mom};
         }
@@ -646,16 +685,10 @@ void Variation<T>::vary(Population<T>& pop, int island,
             // ind = Individual<T>(p);
         }
 
-        // std::cout << "variation was " << ind.variation <<  std::endl;
-        
         ind.set_objectives(mom.get_objectives()); // it will have an invalid fitness
-
-        // std::cout << "setted objectives" <<  std::endl;
 
         ind.is_fitted_ = false;
         ind.set_id(id);
-
-        // std::cout << "setted id" <<  std::endl;
 
         // TODO: smarter way of copying the entire fitness
         // copying mom fitness to the new individual (without making the fitnes valid)
@@ -673,16 +706,10 @@ void Variation<T>::vary(Population<T>& pop, int island,
         // dont set stuff that is not used to calculate the rewards, like crowding_dist
         // ind.fitness.set_crowding_dist(0.0);
         
-        // std::cout << "setted fitness" <<  std::endl;
-
         assert(ind.program.size()>0);
         assert(ind.fitness.valid()==false);
 
-        // std::cout << "asserted" <<  std::endl;
-
         pop.individuals.at(indices.at(i)) = std::make_shared<Individual<T>>(ind);
-
-        // std::cout << "added to the pop at " << i << std::endl;
    }
 };
 
@@ -720,6 +747,7 @@ vector<float> Variation<T>::calculate_rewards(Population<T>& pop, int island)
 
         for (const auto& obj : ind.get_objectives())
         {   
+            // TODO: make this a function? I think this code below is repeated in other places
             // multiply by the weight so it is a maximization problem regardless of obj
             if (obj.compare(parameters.scorer)==0)
                 delta = ind.fitness.get_loss_v()-ind.fitness.get_loss();
@@ -780,19 +808,20 @@ void Variation<T>::update_ss(Population<T>& pop, const vector<float>& rewards)
             const Individual<T>& ind = *pop.individuals.at(
                 indices.at(indices.size()/2 + i) );
 
-            // std::cout << "index" << index << std::endl;
             float r = rewards.at(index++);
 
             // update the variation bandit. get the variation (arm) and reward to update
             this->variation_bandit.update(ind.get_variation(), r);
 
-            // std::cout << "update variation bandit: " << ind.get_variation() << std::endl;
+            // being born doesnt deserve a reward. cx does not perform sampling.
+            // subtree performs too much sampling, so we will not update it here.
+            // TODO: change this behavior for subtree in the future?
             if (ind.get_variation() != "born" && ind.get_variation() != "cx"
             &&  ind.get_variation() != "subtree")
             {                
-                // update the operators and terminal bandit (if thats the case)
+                // update the operators and terminal bandit (if thats the case) for all
+                // sampled nodes (should be just a few <=4)
                 if (ind.get_sampled_nodes().size() > 0) {
-                    // std::cout << "update terminal bandit" << std::endl;
                     const auto& changed_nodes = ind.get_sampled_nodes();
                     for (const auto& node : changed_nodes) {
 
@@ -803,50 +832,27 @@ void Variation<T>::update_ss(Population<T>& pop, const vector<float>& rewards)
                         }
                         else // updating reward for operator nodes
                         {
-
+                            // pick ret_type and node.name (all we need to update op bandit)
+                            auto ret_type = node.get_ret_type();
+                            auto name = node.name;
+                            this->op_bandits[ret_type].update(name, r);
                         }
                     }
-                }
-                else
-                {
-                    // TODO: update node bandit
-                    // std::cout << "nope" << std::endl;
                 }
             }
         }
     }
 
-    // std::cout << "Done distributing rewards. time to update" << std::endl;
-    // -------------------------------------------------------------------------
-
-    // variation: getting new probabilities for parameters
-    // get the probs
-    // change cross rate
-    // change each mutation
-    // std::cout << "sampling probs" << std::endl;
+    // variation: getting new probabilities for variation operators
     auto variation_probs = variation_bandit.sample_probs(true);
 
-    // std::cout << "Bandit probabilities (inside vary): ";
-    // for (const auto& prob : variation_probs) {
-    //     std::cout << "{" << prob.first << ", " << prob.second << "} ";
-    // }
-
-    // std::cout << "variation..." << std::endl;
     if (variation_probs.find("cx") != variation_probs.end())
         parameters.set_cx_prob(variation_probs.at("cx"));
     
     for (const auto& variation : variation_probs)
         if (variation.first != "cx")
             parameters.mutation_probs[variation.first] = variation.second;
-    // std::cout << "variation!" << std::endl;
-
-    // std::cout << "parameters cx_prob: " << parameters.get_cx_prob() << std::endl;
-    // std::cout << "parameters mutation_probs: ";
-    // for (const auto& mutation : parameters.get_mutation_probs()) {
-    //     std::cout << "{" << mutation.first << ", " << mutation.second << "} ";
-    // }
-    // std::cout << std::endl;
-
+            
     // terminal: getting new probabilities for terminal nodes in search space
     for (auto& bandit : terminal_bandits) {
         auto datatype = bandit.first;
@@ -857,9 +863,6 @@ void Variation<T>::update_ss(Population<T>& pop, const vector<float>& rewards)
             auto terminal_name = terminal.first;
             auto terminal_prob = terminal.second;
 
-            // std::cout << "bandit for " << terminal_name << std::endl;
-            // std::cout << "prob " << terminal_prob << std::endl;
-
             // Search for the index that matches the terminal name
             auto it = std::find_if(
                 search_space.terminal_map.at(datatype).begin(),
@@ -867,12 +870,39 @@ void Variation<T>::update_ss(Population<T>& pop, const vector<float>& rewards)
                 [&](auto& node) { return node.get_feature() == terminal_name; });
 
             if (it != search_space.terminal_map.at(datatype).end()) {
-                // std::cout << "found " << terminal_name << std::endl;
                 auto index = std::distance(search_space.terminal_map.at(datatype).begin(), it);
 
                 // Update the terminal weights with the second value
                 search_space.terminal_weights.at(datatype)[index] = terminal_prob;
-                // std::cout << "done " << terminal_name << std::endl;
+            }
+        }
+    }
+
+    // operators: getting new probabilities for op nodes
+    for (auto& bandit : op_bandits) {
+        auto ret_type = bandit.first;
+        
+        auto op_probs = bandit.second.sample_probs(true);
+        for (auto& op : op_probs) {
+
+            auto op_name = op.first;
+            auto op_prob = op.second;
+
+            // Search for the index that matches the op name (for all different arguments)
+            for (const auto& [args_type, node_map] : search_space.node_map.at(ret_type))
+            {
+                auto it = std::find_if(
+                    node_map.begin(),
+                    node_map.end(), 
+                    [&](auto& entry) { // entry is a pair of index and node
+                        return entry.second.name == op_name; });
+
+                if (it != node_map.end()) {
+                    auto index = it->first;
+
+                    // Update the node_map_weights with the second value
+                    search_space.node_map_weights.at(ret_type).at(args_type).at(index) = op_prob;
+                }
             }
         }
     }
