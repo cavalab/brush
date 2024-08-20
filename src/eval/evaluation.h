@@ -72,7 +72,7 @@ public:
                  const Dataset& data, 
                  const Parameters& params, 
                  bool fit=true,
-                 bool validation=false
+                 bool validation=true // if there is no validation, then loss_v==loss
                  );
     
     /**

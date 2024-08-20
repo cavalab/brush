@@ -253,19 +253,10 @@ void Dataset::init()
             class_indices[y[i]].push_back(i);
         }
 
-        for (const auto& class_group : class_indices) {
-            const auto& indices = class_group.second;
-            for (const auto& index : indices) {
-                // std::cout << "Class: " << class_group.first << ", Index: " << index << std::endl;
-            }
-        }
-
         for (auto& class_group : class_indices) {
-            // std::cout << "Class: " << class_group.first << std::endl;
             auto& indices = class_group.second;
 
             int n_class_samples = indices.size();
-            // std::cout << "n_class_samples: " << n_class_samples << std::endl;
             
             vector<size_t> idx(n_class_samples);
             if (shuffle_split)
@@ -275,15 +266,12 @@ void Dataset::init()
 
             auto n_train_samples = int(ceil(n_class_samples*(1.0-validation_size)));
 
-            // std::cout << "train samples: " << n_train_samples << std::endl;
-
             std::transform(idx.begin(), idx.begin() + n_train_samples,
                     back_inserter(training_data_idx),
                     [&](int element) { return indices[element]; });
                     
             if (n_class_samples - n_train_samples == 0)
             {
-                // std::cout << "not using validation: "<< std::endl;
                 // same indices from the training data to the validation data
                 std::transform(idx.begin(), idx.begin() + n_train_samples,
                         back_inserter(validation_data_idx),
@@ -295,8 +283,6 @@ void Dataset::init()
                         back_inserter(validation_data_idx),
                         [&](int element) { return indices[element]; });
             }
-            // std::cout << "Training data size: " << training_data_idx.size() << std::endl;
-            // std::cout << "Validation data size: " << validation_data_idx.size() << std::endl;
         }
     }
     else { // regression, or classification without stratification
@@ -327,9 +313,6 @@ void Dataset::init()
                     [&](int element) { return element; });
         }   
     }
-    
-    // std::cout << "final Training data size: " << training_data_idx.size() << std::endl;
-    // std::cout << "final Validation data size: " << validation_data_idx.size() << std::endl;
 }
 
 float Dataset::get_batch_size() { return batch_size; }
