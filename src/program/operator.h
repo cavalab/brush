@@ -336,7 +336,13 @@ struct Operator<NodeType::MeanLabel, S, Fit>
         {
             std::unordered_map<float, int> counters;
             for (float val : d.y) {
-                ++counters[val];
+                if (counters.find(val) != counters.end()) {
+                    counters[val] += 1;
+                }
+                else
+                {
+                    counters[val] = 1;
+                }
             }
 
             auto mode = std::max_element(
@@ -347,7 +353,9 @@ struct Operator<NodeType::MeanLabel, S, Fit>
             tn.data.W = mode->first;
         }
         else
+        {
             tn.data.W = d.y.mean();
+        }
             
         return predict(d, tn);
     };

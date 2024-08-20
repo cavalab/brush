@@ -273,7 +273,9 @@ template<PT PType> struct Program
         for (PostIter i = Tree.begin_post(); i != Tree.end_post(); ++i)
         {
             const auto& node = i.node->data; 
-            if (node.get_is_weighted())
+            // some nodes cannot have their weights optimized, others must have
+            if ( Is<NodeType::OffsetSum>(node.node_type)
+            ||   (node.get_is_weighted() && IsWeighable(node.node_type)) )
                 ++count;
         }
         return count;
@@ -291,7 +293,8 @@ template<PT PType> struct Program
         for (PostIter t = Tree.begin_post(); t != Tree.end_post(); ++t)
         {
             const auto& node = t.node->data; 
-            if (node.get_is_weighted())
+            if ( Is<NodeType::OffsetSum>(node.node_type)
+            ||   (node.get_is_weighted() && IsWeighable(node.node_type)) )
             {
                 weights(i) = node.W;
                 ++i;
@@ -316,7 +319,8 @@ template<PT PType> struct Program
         for (PostIter i = Tree.begin_post(); i != Tree.end_post(); ++i)
         {
             auto& node = i.node->data; 
-            if (node.get_is_weighted())
+            if ( Is<NodeType::OffsetSum>(node.node_type)
+            ||   (node.get_is_weighted() && IsWeighable(node.node_type)) )
             {
                 node.W = weights(j);
                 ++j;

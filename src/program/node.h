@@ -268,6 +268,8 @@ inline auto Is(NodeType nt) -> bool { return ((nt == T) || ...); }
 template <NodeType... T>
 inline auto Isnt(NodeType nt) -> bool { return !((nt == T) || ...); }
 
+// TODO: I think there are places where I can replace some logic with IsLeaf. Check that.
+// TODO: create IsConstant, and add Constant and MeanLabel to it.
 inline auto IsLeaf(NodeType nt) noexcept -> bool { 
     return Is<NodeType::Constant, NodeType::Terminal, NodeType::MeanLabel>(nt); 
 }
@@ -290,7 +292,7 @@ inline auto IsDifferentiable(NodeType nt) noexcept -> bool {
                 NodeType::Count,
                 NodeType::And, 
                 NodeType::Or,
-                NodeType::Not
+                NodeType::Not // TODO: should I include OffsetSum here? If I do so, then I should change the logic in the optimizer to not optimize the weight of OffsetSum nodes.
                 >(nt);                
 }
 template<NodeType NT>
@@ -306,7 +308,8 @@ inline auto IsWeighable() noexcept -> bool {
                     NodeType::SplitBest,
                     NodeType::And, 
                     NodeType::Or,
-                    NodeType::Not 
+                    NodeType::Not,
+                    NodeType::MeanLabel
                     >(NT);                
 }
 inline auto IsWeighable(NodeType nt) noexcept -> bool { 
@@ -321,7 +324,8 @@ inline auto IsWeighable(NodeType nt) noexcept -> bool {
                     NodeType::SplitBest,
                     NodeType::And, 
                     NodeType::Or,
-                    NodeType::Not
+                    NodeType::Not,
+                    NodeType::MeanLabel
                     >(nt);                
 }
 

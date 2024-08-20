@@ -127,6 +127,7 @@ void Archive<T>::update(Population<T>& pop, const Parameters& params)
     else {
         std::sort(individuals.begin(), individuals.end(), &sortObj1); 
     }
+    
     /* auto it = std::unique(individuals.begin(),individuals.end(), &sameFitComplexity); */
     auto it = std::unique(individuals.begin(),individuals.end(), 
             &sameObjectives);

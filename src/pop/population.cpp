@@ -301,7 +301,6 @@ void Population<T>::migrate()
     vector<vector<size_t>> new_island_indexes;
     new_island_indexes.resize(num_islands);
 
-    // std::cout << "Looping" << std::endl;
     for (int island=0; island<num_islands; ++island)
     {
         new_island_indexes.at(island).resize(0);
@@ -344,8 +343,7 @@ void Population<T>::migrate()
     // making hard copies (so the next generation starts with islands that does not share individuals 
     // this is particularly important to avoid multiple threads assigning different rank/crowdist/dcounter 
     // or different fitness)
-    
-    // std::cout << "starting to consolidate pop" << std::endl;
+
     vector<Individual<T>> new_pop;
     new_pop.resize(0);
     for (int j=0; j<num_islands; ++j)

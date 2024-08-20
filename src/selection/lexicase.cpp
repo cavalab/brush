@@ -153,14 +153,10 @@ vector<size_t> Lexicase<T>::select(Population<T>& pop, int island,
         //if more than one winner, pick randomly
         selected.at(i) = *r.select_randomly(
                          winner.begin(), winner.end() );   
-                         
-        // cout << "parallel end index  " + to_string(i) << endl;
     }               
 
     if (selected.size() != island_pool.size())
     {
-        // std::cout << "selected: " ;
-        // for (auto s: selected) std::cout << s << " "; std::cout << "\n";
         HANDLE_ERROR_THROW("Lexicase did not select correct number of \
                 parents");
     }

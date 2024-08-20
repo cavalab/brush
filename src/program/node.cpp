@@ -33,10 +33,7 @@ auto Node::get_name(bool include_weight) const noexcept -> std::string
     }
     else if (Is<NodeType::MeanLabel>(node_type))
     {
-        if (include_weight) 
-            return fmt::format("{:.2f}*{}", W, feature);
-            
-        return feature;
+        return fmt::format("{:.2f} ({})", W, feature);
     }
     else if (Is<NodeType::OffsetSum>(node_type)){
         if (W != 1.0)
@@ -272,25 +269,21 @@ void from_json(const json &j, Node& p)
     // these 4 below needs to be set after init(), since it resets these values
     if (j.contains("fixed"))
     {
-        // cout << "fixed: " << j.at("fixed") << endl;
         j.at("fixed").get_to(p.fixed);
     }
 
     if (j.contains("is_weighted"))
     {
-        // cout << "is_weighted: " << j.at("is_weighted") << endl;
         j.at("is_weighted").get_to(p.is_weighted);
     }
 
     if (j.contains("prob_change"))
     {
-        // cout << "prob_change: " << j.at("prob_change") << endl;
         j.at("prob_change").get_to(p.prob_change);
     }
     
     if (j.contains("W"))
     {
-        // cout << "W: " << j.at("W") << endl;
         j.at("W").get_to(p.W);
     }
 

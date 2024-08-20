@@ -77,49 +77,49 @@ void from_json(const json &j, tree<Node> &t)
 
 unordered_map<NodeType, int> operator_complexities = {
     // Unary
-    {NodeType::Abs     ,  3},
-    {NodeType::Acos    ,  5},
-    {NodeType::Asin    ,  5},
-    {NodeType::Atan    ,  5},
-    {NodeType::Cos     ,  5},
-    {NodeType::Cosh    ,  5},
-    {NodeType::Sin     ,  5},
-    {NodeType::Sinh    ,  5},
-    {NodeType::Tan     ,  5},
-    {NodeType::Tanh    ,  5},
-    {NodeType::Ceil    ,  4},
-    {NodeType::Floor   ,  4},
-    {NodeType::Exp     ,  4},
-    {NodeType::Log     ,  4},
-    {NodeType::Logabs  ,  12},
-    {NodeType::Log1p   ,  8},
-    {NodeType::Sqrt    ,  4},
-    {NodeType::Sqrtabs ,  4},
-    {NodeType::Square  ,  3},
-    {NodeType::Logistic,  3},
-    {NodeType::OffsetSum, 2},
+    {NodeType::Abs     ,  4},
+    {NodeType::Acos    ,  6},
+    {NodeType::Asin    ,  6},
+    {NodeType::Atan    ,  6},
+    {NodeType::Cos     ,  6},
+    {NodeType::Cosh    ,  6},
+    {NodeType::Sin     ,  6},
+    {NodeType::Sinh    ,  6},
+    {NodeType::Tan     ,  6},
+    {NodeType::Tanh    ,  6},
+    {NodeType::Ceil    ,  5},
+    {NodeType::Floor   ,  5},
+    {NodeType::Exp     ,  5},
+    {NodeType::Log     ,  5},
+    {NodeType::Logabs  ,  10},
+    {NodeType::Log1p   ,  9},
+    {NodeType::Sqrt    ,  5},
+    {NodeType::Sqrtabs ,  5},
+    {NodeType::Square  ,  4},
+    {NodeType::Logistic,  4},
+    {NodeType::OffsetSum, 3},
 
     // timing masks
-    {NodeType::Before, 3},
-    {NodeType::After , 3},
-    {NodeType::During, 3},
+    {NodeType::Before, 4},
+    {NodeType::After , 4},
+    {NodeType::During, 4},
 
     // Reducers
-    {NodeType::Min      , 3},
-    {NodeType::Max      , 3},
-    {NodeType::Mean     , 3},
-    {NodeType::Median   , 3},
-    {NodeType::Sum      , 2},
-    {NodeType::Prod     , 3},
+    {NodeType::Min      , 4},
+    {NodeType::Max      , 4},
+    {NodeType::Mean     , 4},
+    {NodeType::Median   , 4},
+    {NodeType::Sum      , 4},
+    {NodeType::Prod     , 4},
 
     // Transformers 
-    {NodeType::Softmax, 4},
+    {NodeType::Softmax, 5},
 
     // Binary
-    {NodeType::Add, 2},
-    {NodeType::Sub, 2},
-    {NodeType::Mul, 3},
-    {NodeType::Div, 4},
+    {NodeType::Add, 3},
+    {NodeType::Sub, 3},
+    {NodeType::Mul, 4},
+    {NodeType::Div, 5},
     {NodeType::Pow, 5},
 
     //split
@@ -127,16 +127,16 @@ unordered_map<NodeType, int> operator_complexities = {
     {NodeType::SplitOn  , 4},
 
     // boolean
-    {NodeType::And, 2},
-    {NodeType::Or , 2},
-    {NodeType::Not, 2},
+    {NodeType::And, 3},
+    {NodeType::Or , 3},
+    {NodeType::Not, 3},
 
     // leaves
     {NodeType::MeanLabel, 1},
-    {NodeType::Constant , 1},
-    {NodeType::Terminal , 2},
+    {NodeType::Constant , 2},
+    {NodeType::Terminal , 3},
     {NodeType::ArgMax   , 5},
-    {NodeType::Count    , 3},
+    {NodeType::Count    , 4},
     
     // custom
     {NodeType::CustomUnaryOp , 5},
