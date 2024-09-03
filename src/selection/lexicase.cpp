@@ -116,7 +116,7 @@ vector<size_t> Lexicase<T>::select(Population<T>& pop, int island,
             // minimum error on case
             float minfit = std::numeric_limits<float>::max();                     
 
-            // get minimum
+            // get minimum (assuming minization of indiviual errors)
             for (size_t j = 0; j<pool.size(); ++j)
                 if (pop.individuals.at(pool[j])->error(cases[h]) < minfit) 
                     minfit = pop.individuals.at(pool[j])->error(cases[h]);

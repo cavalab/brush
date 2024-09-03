@@ -260,7 +260,8 @@ vector<vector<size_t>> Population<T>::sorted_front(unsigned rank)
 template<ProgramType T>
 vector<size_t> Population<T>::hall_of_fame(unsigned rank)
 {
-    // TODO: hall of fame should unify all pareto fronts by doing a new fast_nds.
+    // Inspired in fast nds from nsga2
+
     // TODO: use hall of fame instead of re-implmementing this feature in
     // archive init and update functions
 
@@ -276,6 +277,33 @@ vector<size_t> Population<T>::hall_of_fame(unsigned rank)
         {
             if (individuals.at(indices.at(i))->fitness.rank == rank)
                 pf.push_back(indices.at(i));
+        }
+    }
+
+    // checking if there is no dominance between different fronts
+    // (without updating their fitness objects)
+    vector<int> hof;                
+    hof.clear();
+
+    for (int i = 0; i < pf.size(); ++i) {
+    
+        std::vector<unsigned int> dom;
+        int dcount = 0;
+    
+        auto p = individuals.at(pf[i]);
+
+        for (int j = 0; j < pf.size(); ++j) {
+            const Individual<T>& q = (*individuals.at(pf[j]));
+        
+            int compare = p->fitness.dominates(q.fitness);
+            if (compare == -1) { // q dominates p
+                //p.dcounter += 1;
+                dcount += 1;
+            }
+        }
+
+        if (dcount == 0) {
+            hof.push_back(pf[i]);
         }
     }
 

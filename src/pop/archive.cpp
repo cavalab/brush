@@ -110,6 +110,7 @@ void Archive<T>::update(Population<T>& pop, const Parameters& params)
     individuals.resize(0);  // clear archive
 
     // refill archive with new pareto fronts (one pareto front for each island!)
+    // TODO: refill with fast nds just like hall of fame
     for (int island =0; island< pop.num_islands; ++island) {
         vector<size_t> indices = pop.get_island_indexes(island);
 

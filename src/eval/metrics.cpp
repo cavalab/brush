@@ -57,6 +57,18 @@ float mean_log_loss(const VectorXf& y,
     return loss.mean();
 }
 
+float zero_one_loss(const VectorXf& y,
+        const VectorXf& predict_proba, VectorXf& loss, 
+        const vector<float>& class_weights )
+{
+    VectorXi yhat = (predict_proba.array() > 0.5).cast<int>();
+
+    loss = (yhat.array() != y.cast<int>().array()).cast<float>();
+
+    //TODO: weight loss by sample weights
+    return 1.0 - loss.mean();
+}
+
 float average_precision_score(const VectorXf& y, const VectorXf& predict_proba,
                           VectorXf& loss,
                           const vector<float>& class_weights) {
@@ -198,6 +210,56 @@ float mean_multi_log_loss(const VectorXf& y,
     /* std::cout << "mean loss: " << loss.mean() << "\n"; */
     return loss.mean();
 }  
+
+float bal_zero_one_loss(const VectorXf& y,
+    const ArrayXXf& predict_proba, VectorXf& loss, 
+    const vector<float>& class_weights )
+{
+    // TODO: implement this
+    // vector<float> uc = unique(y);
+    // vector<int> c;
+    // for (const auto& i : uc)
+    //     c.push_back(int(i));
+        
+    // // sensitivity (TP) and specificity (TN)
+    // vector<float> TP(c.size(),0.0), TN(c.size(), 0.0), P(c.size(),0.0), N(c.size(),0.0);
+    // ArrayXf class_accuracies(c.size());
+    
+    // // get class counts
+    
+    // for (unsigned i=0; i< c.size(); ++i)
+    // {
+    //     P.at(i) = (y.array().cast<int>() == c.at(i)).count();  // total positives for this class
+    //     N.at(i) = (y.array().cast<int>() != c.at(i)).count();  // total negatives for this class
+    // }
+    
+
+    // for (unsigned i = 0; i < y.rows(); ++i)
+    // {
+    //     if (yhat(i) == y(i))                    // true positive
+    //         ++TP.at(y(i) == -1 ? 0 : y(i));     // if-then ? accounts for -1 class encoding
+
+    //     for (unsigned j = 0; j < c.size(); ++j)
+    //         if ( y(i) !=c.at(j) && yhat(i) != c.at(j) )    // true negative
+    //             ++TN.at(j);    
+        
+    // }
+
+    // // class-wise accuracy = 1/2 ( true positive rate + true negative rate)
+    // for (unsigned i=0; i< c.size(); ++i){
+    //     class_accuracies(i) = (TP.at(i)/P.at(i) + TN.at(i)/N.at(i))/2; 
+    //     //std::cout << "TP(" << i << "): " << TP.at(i) << ", P[" << i << "]: " << P.at(i) << "\n";
+    //     //std::cout << "TN(" << i << "): " << TN.at(i) << ", N[" << i << "]: " << N.at(i) << "\n";
+    //     //std::cout << "class accuracy(" << i << "): " << class_accuracies(i) << "\n";
+    // }
+    
+    // // set loss vectors if third argument supplied
+    // loss = (yhat.cast<int>().array() != y.cast<int>().array()).cast<float>();
+
+    // return 1.0 - class_accuracies.mean();
+    
+    return 0.0;
+}
 
 } // metrics
 } // Brush

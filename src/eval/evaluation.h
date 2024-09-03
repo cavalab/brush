@@ -33,6 +33,7 @@ public:
     Evaluation(){
         // TODO: make eval update loss_v accordingly, and set to th same as train loss if there is no batch or no validation
     
+        // TODO: make accuracy the main classification metric?
         string scorer;
         if ( (T == Brush::ProgramType::MulticlassClassifier)
         ||   (T == Brush::ProgramType::Representer) )

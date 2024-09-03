@@ -60,6 +60,18 @@ float average_precision_score(const VectorXf& y, const VectorXf& predict_proba,
                           VectorXf& loss,
                           const vector<float>& class_weights=vector<float>());
 
+/**
+ * @brief Accuracy for binary classification
+ * @param y The true labels.
+ * @param predict_proba The predicted probabilities.
+ * @param loss Reference to store the calculated losses for each sample.
+ * @param class_weights The optional class weights.
+ * @return The final accuracy.
+ */
+float zero_one_loss(const VectorXf& y, const VectorXf& predict_proba,
+                        VectorXf& loss, 
+                        const vector<float>& class_weights=vector<float>() );
+                
 // multiclass classification ---------------------------------------------------
 
 /**
@@ -83,6 +95,19 @@ VectorXf multi_log_loss(const VectorXf& y, const ArrayXXf& predict_proba,
 float mean_multi_log_loss(const VectorXf& y, const ArrayXXf& predict_proba,
                           VectorXf& loss,
                           const vector<float>& class_weights=vector<float>());
+
+/**
+ * @brief Accuracy for multi-classification
+ * @param y The true labels.
+ * @param predict_proba The predicted probabilities.
+ * @param loss Reference to store the calculated losses for each sample.
+ * @param class_weights The optional class weights.
+ * @return The average accuracy in a one-vs-all schema.
+ */
+float bal_zero_one_loss(const VectorXf& y, const ArrayXXf& predict_proba,
+                        VectorXf& loss, 
+                        const vector<float>& class_weights=vector<float>() );
+
 
 } // metrics
 } // Brush

@@ -89,6 +89,7 @@ public:
     Scorer(string scorer="log") {
         score_hash["log"] = &mean_log_loss;
         score_hash["average_precision_score"] = &average_precision_score;
+        score_hash["accuracy"] = &zero_one_loss;
     
         this->set_scorer(scorer);
     };
@@ -138,8 +139,10 @@ public:
     std::map<string, funcPointer> score_hash;
     string scorer;
 
+    // TODO: I actually need to test this stuff
     Scorer(string scorer="multi_log") {
         score_hash["multi_log"] = &mean_multi_log_loss; 
+        score_hash["accuracy"] = &bal_zero_one_loss;
     
         this->set_scorer(scorer);
     };
