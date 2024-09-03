@@ -1,7 +1,59 @@
-// #include <gtest/gtest.h>
-// #include "evaluation.h"
+#include <gtest/gtest.h>
+#include "../../src/eval/evaluation.h"
+#include "../../src/eval/metrics.h"
+#include "../../src/eval/scorer.h"
 
-// using namespace Brush::Eval;
+using namespace Brush::Eval;
+
+TEST(Evaluation, accuracy)
+{
+    // test zero one loss
+    VectorXf yhat(10), y(10), res(10), loss(10);
+	
+    y << 0.0,
+         1.0,
+         0.0,
+         0.0,
+         1.0,
+         0.0,
+         0.0,
+         1.0,
+         0.0,
+         1.0;
+    
+    yhat << 0.0,  // correct
+	        1.0,  // correct
+	        1.0,  // incorrect
+	        0.0,  // correct
+	        0.0,  // incorrect
+	        1.0,  // incorrect
+	        1.0,  // incorrect
+	        0.0,  // incorrect
+	        0.0,  // correct
+	        0.0;  // incorrect
+	
+    res << 0.0, // should be 40% accuracy
+           0.0,
+           1.0,
+           0.0,
+           1.0,
+           1.0,
+           1.0,
+           1.0,
+           0.0,
+           1.0;
+           
+    float score = zero_one_loss(y, yhat, loss);
+    
+    if (loss != res)
+    {
+        std::cout << "loss:" << loss.transpose() << "\n";
+        std::cout << "res:" << res.transpose() << "\n";
+    }
+    ASSERT_TRUE(loss == res);
+    ASSERT_EQ(((int)(score*10000)), 3999);
+}
+
 
 // TEST(EvaluationTest, UpdateFitnessTest) {
 //     // TODO: Add test case for update_fitness function
