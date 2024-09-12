@@ -80,6 +80,8 @@ void Evaluation<T>::assign_fit(Individual<T>& ind, const Dataset& data,
     vector<float> values;
     values.resize(0);
 
+    // TODO: implement a better way of switching between train and val
+    // without the burden of calculating stuff everytime
     for (const auto& n : ind.get_objectives())
     {
         if (n.compare(params.scorer)==0)
