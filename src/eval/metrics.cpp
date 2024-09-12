@@ -64,9 +64,17 @@ float zero_one_loss(const VectorXf& y,
 {
     VectorXi yhat = (predict_proba.array() > 0.5).cast<int>();
 
+    // we are actually finding wrong predictions here
     loss = (yhat.array() != y.cast<int>().array()).cast<float>();
 
-    //TODO: weight loss by sample weights
+    // Apply class weights if provided
+    if (!class_weights.empty()) {
+        for (int i = 0; i < y.rows(); ++i) {
+            loss(i) *= class_weights.at(y(i));
+        }
+    }
+
+    // since loss is wrong predictions, we need to invert it
     return 1.0 - loss.mean();
 }
 
