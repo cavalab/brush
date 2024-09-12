@@ -90,6 +90,7 @@ public:
         score_hash["log"] = &mean_log_loss;
         score_hash["average_precision_score"] = &average_precision_score;
         score_hash["accuracy"] = &zero_one_loss;
+        score_hash["balanced_accuracy"] = &bal_zero_one_loss;
     
         this->set_scorer(scorer);
     };
@@ -142,7 +143,7 @@ public:
     // TODO: I actually need to test this stuff
     Scorer(string scorer="multi_log") {
         score_hash["multi_log"] = &mean_multi_log_loss; 
-        score_hash["accuracy"] = &bal_zero_one_loss;
+        score_hash["accuracy"] = &multi_zero_one_loss;
     
         this->set_scorer(scorer);
     };

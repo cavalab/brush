@@ -285,7 +285,6 @@ bool Engine<T>::update_best()
     bool updated = false;
     bool passed;
 
-    // TODO: debug hall of fame
     vector<size_t> hof = this->pop.hall_of_fame(1);
 
     for (int i=0; i < hof.size(); ++i) 

@@ -57,6 +57,7 @@ float mean_log_loss(const VectorXf& y,
     return loss.mean();
 }
 
+// accuracy
 float zero_one_loss(const VectorXf& y,
         const VectorXf& predict_proba, VectorXf& loss, 
         const vector<float>& class_weights )
@@ -67,6 +68,38 @@ float zero_one_loss(const VectorXf& y,
 
     //TODO: weight loss by sample weights
     return 1.0 - loss.mean();
+}
+
+// balanced accuracy
+float bal_zero_one_loss(const VectorXf& y,
+        const VectorXf& predict_proba, VectorXf& loss, 
+        const vector<float>& class_weights )
+{
+    VectorXi yhat = (predict_proba.array() > 0.5).cast<int>();
+
+    loss = (yhat.array() != y.cast<int>().array()).cast<float>();
+
+    float TP = 0;
+    float FP = 0;
+    float TN = 0;
+    float FN = 0;
+
+    int num_instances = y.rows();
+    for (int i = 0; i < num_instances; ++i) {
+        float weight = class_weights.empty() ? 1.0f : class_weights.at(y(i));
+        
+        if      (yhat(i) == 1.0 && y(i) == 1.0) TP += weight;
+        else if (yhat(i) == 1.0 && y(i) == 0.0) FP += weight;
+        else if (yhat(i) == 0.0 && y(i) == 0.0) TN += weight;
+        else                                    FN += weight;
+    }
+
+    float eps = pow(10,-10);
+    
+    float TPR = (TP + eps) / (TP + FN + eps);
+    float TNR = (TN + eps) / (TN + FP + eps);
+
+    return (TPR + TNR) / 2.0;
 }
 
 float average_precision_score(const VectorXf& y, const VectorXf& predict_proba,
@@ -211,7 +244,7 @@ float mean_multi_log_loss(const VectorXf& y,
     return loss.mean();
 }  
 
-float bal_zero_one_loss(const VectorXf& y,
+float multi_zero_one_loss(const VectorXf& y,
     const ArrayXXf& predict_proba, VectorXf& loss, 
     const vector<float>& class_weights )
 {
