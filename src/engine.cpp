@@ -416,12 +416,12 @@ void Engine<T>::run(Dataset &data)
             }).name("prepare generation");// set generation in params, get batch
 
             auto run_generation = subflow.for_each_index(0, this->params.num_islands, 1, [&](int island) {
-                evaluator.update_fitness(this->pop, island, data, params, true); // fit the weights with all training data
+                evaluator.update_fitness(this->pop, island, data, params, true, false); // fit the weights with all training data
 
                 // TODO: have some way to set which fitness to use (for example in params, or it can infer based on split size idk)
                 // TODO: if using batch, fitness should be called before selection to set the batch
                 if (data.use_batch) // assign the batch error as fitness (but fit was done with training data)
-                    evaluator.update_fitness(this->pop, island, batch, params, false);
+                    evaluator.update_fitness(this->pop, island, batch, params, false, false);
 
                 vector<size_t> parents = selector.select(this->pop, island, params);
 
@@ -433,10 +433,10 @@ void Engine<T>::run(Dataset &data)
 
                 variator.vary(this->pop, island, island_parents.at(island));
                 
-                evaluator.update_fitness(this->pop, island, data, params, true);
+                evaluator.update_fitness(this->pop, island, data, params, true, false);
 
                 if (data.use_batch) // assign the batch error as fitness (but fit was done with training data)
-                    evaluator.update_fitness(this->pop, island, batch, params, false);
+                    evaluator.update_fitness(this->pop, island, batch, params, false, false);
 
                 vector<float> island_rewards = variator.calculate_rewards(this->pop, island);
                 for (int i=0; i< island_rewards.size(); i++){
@@ -477,6 +477,9 @@ void Engine<T>::run(Dataset &data)
                 // TODO: figure out a better way to initialize best individual
                 if (generation == 0)
                     this->best_ind = *pop.individuals.at(0);
+
+                evaluator.update_fitness(this->pop, island, data, params, true, true);
+
                 bool updated_best = this->update_best();
                 
                 if ( (params.verbosity>1 || !params.logfile.empty() )

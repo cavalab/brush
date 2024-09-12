@@ -83,7 +83,7 @@ void Evaluation<T>::assign_fit(Individual<T>& ind, const Dataset& data,
     for (const auto& n : ind.get_objectives())
     {
         if (n.compare(params.scorer)==0)
-            values.push_back(val ? f_v : f);
+            values.push_back(f_v); // f_v == f if `val` is false
         else if (n.compare("complexity")==0)
             values.push_back(ind.get_complexity());
         else if (n.compare("linear_complexity")==0)
