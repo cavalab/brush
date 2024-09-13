@@ -478,7 +478,9 @@ void Engine<T>::run(Dataset &data)
                 if (generation == 0)
                     this->best_ind = *pop.individuals.at(0);
 
-                evaluator.update_fitness(this->pop, island, data, params, true, true);
+                subflow.for_each_index(0, this->params.num_islands, 1, [&](int island) {
+                    evaluator.update_fitness(this->pop, island, data, params, true, true);
+                }).name("Set validation loss to update best");
 
                 bool updated_best = this->update_best();
                 
