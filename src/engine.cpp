@@ -488,7 +488,7 @@ void Engine<T>::run(Dataset &data)
                 }
                 
                 subflow.for_each_index(0, this->params.num_islands, 1, [&](int island) {
-                    evaluator.update_fitness(this->pop, island, data, params, true, true);
+                    evaluator.update_fitness(this->pop, island, data, params, false, true);
                 }).name("Set validation loss to update best");
 
                 bool updated_best = this->update_best();
@@ -544,6 +544,7 @@ void Engine<T>::run(Dataset &data)
             {
                 //TODO: make this a function (use update from archive instead of repeating it here)
                 std::cout << "saving final population as archive..." << std::endl;
+
                 archive.individuals.resize(0);
                 for (int island =0; island< pop.num_islands; ++island) {
                     vector<size_t> indices = pop.get_island_indexes(island);
