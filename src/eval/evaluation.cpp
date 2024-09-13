@@ -58,9 +58,7 @@ void Evaluation<T>::assign_fit(Individual<T>& ind, const Dataset& data,
         Dataset validation = data.get_validation_data();
         f_v = S.score(ind, validation, errors, params);
     }
-
-    // TODO: implement the class weights and use it here (and on errors)
-
+    
     // This is what is going to determine the weights for the individual's fitness
     ind.set_objectives(params.get_objectives());
 
