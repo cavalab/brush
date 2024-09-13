@@ -478,12 +478,6 @@ void Engine<T>::run(Dataset &data)
                 if (generation == 0)
                     this->best_ind = *pop.individuals.at(0);
 
-                subflow.for_each_index(0, this->params.num_islands, 1, [&](int island) {
-                    evaluator.update_fitness(this->pop, island, data, params, true, true);
-                }).name("Set validation loss to update best");
-
-                bool updated_best = this->update_best();
-                
                 if ( (params.verbosity>1 || !params.logfile.empty() )
                 || params.use_arch ) {
                     calculate_stats();
@@ -492,6 +486,12 @@ void Engine<T>::run(Dataset &data)
                 if (params.use_arch) {
                     archive.update(pop, params);
                 }
+                
+                subflow.for_each_index(0, this->params.num_islands, 1, [&](int island) {
+                    evaluator.update_fitness(this->pop, island, data, params, true, true);
+                }).name("Set validation loss to update best");
+
+                bool updated_best = this->update_best();
                 
                 fraction = params.max_time == -1 ? ((generation+1)*1.0)/params.max_gens : 
                                                     timer.Elapsed().count()/params.max_time;
