@@ -141,7 +141,8 @@ public: // TODO: make these private (and work with nlohman json)
         {"log",                     -1.0},
         {"multi_log",               -1.0},
         {"average_precision_score", +1.0},
-        {"accuracy",                +1.0} // TODO: make sure we are maximizing accuracy
+        {"balanced_accuracy",       +1.0},
+        {"accuracy",                +1.0}
         // {"error",                   -1.0}
     };
 

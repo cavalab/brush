@@ -255,7 +255,7 @@ class EstimatorInterface():
                 assert self.scorer in ['mse'], \
                     "Invalid scorer for the regression mode"
             else:
-                assert self.scorer in ['log', 'multi_log', 
+                assert self.scorer in ['log', 'multi_log', 'balanced_accuracy',
                                        'accuracy', 'average_precision_score'], \
                     "Invalid scorer for the classification mode"
                 
