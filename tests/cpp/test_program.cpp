@@ -123,9 +123,18 @@ TEST(Program, PredictWithWeights)
 
                 PRG.fit(data);
                 auto y = PRG.predict(data);
+                for (int i = 0; i < std::min(10, static_cast<int>(y.size())); ++i) {
+                    fmt::print("Prediction {}: {}\n", i, y(i));
+                }
 
                 auto weights = PRG.get_weights();
+                fmt::print("Weights size: {}\n", weights.size());
+
                 auto yweights = PRG.predict_with_weights(data, weights);
+                
+                for (int i = 0; i < std::min(10, static_cast<int>(yweights.size())); ++i) {
+                    fmt::print("Prediction {}: {}\n", i, yweights(i));
+                }
 
                 for (int i = 0; i < y.size(); ++i){
                     if (std::isnan(y(i)))

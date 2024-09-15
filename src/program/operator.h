@@ -363,7 +363,7 @@ struct Operator<NodeType::MeanLabel, S, Fit>
     template<typename T=RetType, typename Scalar=T::Scalar, int N=T::NumDimensions> 
     RetType predict(const Dataset& d, TreeNode& tn, const W** weights=nullptr) const 
     { 
-        Scalar w = util::get_weight<RetType,Scalar,W>(tn, weights);
+        Scalar w = util::get_weight<RetType,Scalar,W>(tn);
         if constexpr (N == 1)
             return RetType::Constant(d.get_n_samples(), w); 
         else
