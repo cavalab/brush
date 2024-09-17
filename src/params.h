@@ -40,7 +40,7 @@ public:
     string sel  = "lexicase"; //selection method
     string surv = "nsga2"; //survival method
     std::unordered_map<string, float> functions;
-    int num_islands=5;
+    int num_islands=1;
 
     // if we should save pareto front of the entire evolution (use_arch=true)
     // or just the final population (use_arch=false)
@@ -127,7 +127,9 @@ public:
     void set_current_gen(unsigned int gen){ current_gen = gen; };
     unsigned int get_current_gen(){ return current_gen; };
 
-    void set_num_islands(int new_num_islands){ num_islands = new_num_islands; };
+    // TODO: fix vary_and_update and get parallelism working 
+    // void set_num_islands(int new_num_islands){ num_islands = new_num_islands; };
+    void set_num_islands(int new_num_islands){ num_islands = 1; };
     int get_num_islands(){ return num_islands; };
 
     void set_max_depth(unsigned new_max_depth){ max_depth = new_max_depth; };

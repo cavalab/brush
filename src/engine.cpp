@@ -431,17 +431,21 @@ void Engine<T>::run(Dataset &data)
                 
                 this->pop.add_offspring_indexes(island); 
 
-                variator.vary(this->pop, island, island_parents.at(island));
+                // TODO: optimize this and make it work with multiple islands in parallel.
+                variator.vary_and_update(this->pop, island, island_parents.at(island),
+                                         data, evaluator);
+
+                // variator.vary(this->pop, island, island_parents.at(island));
                 
-                evaluator.update_fitness(this->pop, island, data, params, true, false);
+                // evaluator.update_fitness(this->pop, island, data, params, true, false);
+
+                // vector<float> island_rewards = variator.calculate_rewards(this->pop, island);
+                // for (int i=0; i< island_rewards.size(); i++){
+                //     rewards.at(island).at(i) = island_rewards.at(i);
+                // }
 
                 if (data.use_batch) // assign the batch error as fitness (but fit was done with training data)
                     evaluator.update_fitness(this->pop, island, batch, params, false, false);
-
-                vector<float> island_rewards = variator.calculate_rewards(this->pop, island);
-                for (int i=0; i< island_rewards.size(); i++){
-                    rewards.at(island).at(i) = island_rewards.at(i);
-                }
 
                 // select survivors from combined pool of parents and offspring
                 vector<size_t> island_survivors = survivor.survive(this->pop, island, params);
@@ -454,20 +458,21 @@ void Engine<T>::run(Dataset &data)
             auto update_pop = subflow.emplace([&]() { // sync point
                 // Flatten the rewards vector
 
-                vector<float> flattened_rewards;
-                for (const auto& island_rewards : rewards) {
-                    flattened_rewards.insert(flattened_rewards.end(),
-                                             island_rewards.begin(),
-                                             island_rewards.end());
-                }
+                // TODO: improve vary_and_update and stop using this (as well as island_rewards in the subflow above)
+                // vector<float> flattened_rewards;
+                // for (const auto& island_rewards : rewards) {
+                //     flattened_rewards.insert(flattened_rewards.end(),
+                //                              island_rewards.begin(),
+                //                              island_rewards.end());
+                // }
                 
-                // Assert that flattened_rewards has the same size as popsize
-                assert(flattened_rewards.size() == this->pop.size());
+                // // Assert that flattened_rewards has the same size as popsize
+                // assert(flattened_rewards.size() == this->pop.size());
                 
-                // TODO: do i need these next this-> pointers?
-                // Use the flattened rewards vector for updating the population
+                // // TODO: do i need these next this-> pointers?
+                // // Use the flattened rewards vector for updating the population
                 
-                this->variator.update_ss(this->pop, flattened_rewards);
+                // this->variator.update_ss(this->pop, flattened_rewards);
 
                 this->pop.update(survivors);
                 this->pop.migrate();

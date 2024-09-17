@@ -13,12 +13,14 @@ license: GNU/GPL v3
 #include "../bandit/dummy.h"
 
 #include "../pop/population.h"
+#include "../eval/evaluation.h"
 
 #include <map>
 #include <optional>
 
 using namespace Brush::Pop;
 using namespace Brush::MAB;
+using namespace Brush::Eval;
 
 /**
  * @brief Namespace for variation functions like crossover and mutation. 
@@ -197,6 +199,209 @@ public:
      * @param rewards The rewards obtained from the evaluation of individuals.
      */
     void update_ss(Population<T>& pop, const vector<float>& rewards);
+
+    /**
+     * @brief Varies a population and updates the selection strategy based on rewards.
+     * 
+     * This function performs variation on a population, calculates rewards, and updates
+     * the selection strategy based on the obtained rewards.
+     * 
+     * @param pop The population to be varied and updated.
+     * @param island The island index.
+     * @param parents The indices of the parent individuals.
+     */
+    void vary_and_update(Population<T>& pop, int island, const vector<size_t>& parents,
+                         const Dataset& data, Evaluation<T>& evaluator) {
+
+    // TODO: rewrite this entire function to avoid repetition (this is a frankenstein)
+    auto indices = pop.get_island_indexes(island);
+
+    for (unsigned i = 0; i < indices.size(); ++i)
+    {
+        if (pop.individuals.at(indices.at(i)) != nullptr)
+        {
+            // std::cout << "Skipping individual at index " << indices.at(i) << std::endl;
+            continue; // skipping if it is an individual
+        }
+        
+        // std::cout << "Processing individual at index " << indices.at(i) << std::endl;
+
+        // pass check for children undergoing variation     
+        std::optional<Individual<T>> opt = std::nullopt; // new individual  
+            
+        const Individual<T>& mom = pop[
+            *r.select_randomly(parents.begin(), parents.end())];
+    
+        vector<Individual<T>> ind_parents;
+        
+        bool crossover = (r() < parameters.cx_prob);
+        if (crossover)
+        {
+            const Individual<T>& dad = pop[
+                *r.select_randomly(parents.begin(), parents.end())];
+            
+            // std::cout << "Performing crossover" << std::endl;
+            opt = cross(mom, dad);   
+            ind_parents = {mom, dad};
+        }
+        else
+        {
+            // std::cout << "Performing mutation" << std::endl;
+            opt = mutate(mom);   
+            ind_parents = {mom};
+        }
+    
+        // this assumes that islands do not share indexes before doing variation
+        unsigned id = parameters.current_gen * parameters.pop_size + indices.at(i);
+
+        Individual<T> ind;
+        if (opt) // variation worked, lets keep this
+        {
+            // std::cout << "Variation successful" << std::endl;
+            ind = opt.value();
+            ind.set_parents(ind_parents);
+        }
+        else {  // no optional value was returned. creating a new random individual
+            // std::cout << "Variation failed, creating a new random individual" << std::endl;
+            ind.init(search_space, parameters); // ind.variation is born by default
+        }
+
+        ind.set_objectives(mom.get_objectives()); // it will have an invalid fitness
+
+        ind.is_fitted_ = false;
+        ind.set_id(id);
+
+        ind.fitness.set_loss(mom.fitness.get_loss());
+        ind.fitness.set_loss_v(mom.fitness.get_loss_v());
+        ind.fitness.set_size(mom.fitness.get_size());
+        ind.fitness.set_complexity(mom.fitness.get_complexity());
+        ind.fitness.set_linear_complexity(mom.fitness.get_linear_complexity());
+        ind.fitness.set_depth(mom.fitness.get_depth());
+
+        assert(ind.program.size() > 0);
+        assert(ind.fitness.valid() == false);
+
+        ind.program.fit(data);
+        evaluator.assign_fit(ind, data, parameters, false);
+
+        vector<float> deltas(ind.get_objectives().size(), 0.0f);
+        
+        float delta = 0.0f;
+        float weight = 0.0f;
+
+        for (const auto& obj : ind.get_objectives())
+        {   
+            if (obj.compare(parameters.scorer) == 0)
+                delta = ind.fitness.get_loss_v() - ind.fitness.get_loss();
+            else if (obj.compare("complexity") == 0)
+                delta = ind.fitness.get_complexity() - ind.fitness.get_prev_complexity();
+            else if (obj.compare("linear_complexity") == 0)
+                delta = ind.fitness.get_linear_complexity() - ind.fitness.get_prev_linear_complexity();
+            else if (obj.compare("size") == 0)
+                delta = ind.fitness.get_size() - ind.fitness.get_prev_size();
+            else if (obj.compare("depth") == 0)
+                delta = ind.fitness.get_depth() - ind.fitness.get_prev_depth();
+            else
+                HANDLE_ERROR_THROW(obj + " is not a known objective");
+
+            auto it = Individual<T>::weightsMap.find(obj);
+            weight = it->second;
+            
+            deltas.push_back(delta * weight);
+        }
+
+        bool allPositive = true;
+        for (float d : deltas) {
+            if (d < 0) {
+                allPositive = false;
+                break;
+            }
+        }
+
+        float r = 0.0;
+        if (allPositive)
+            r = 1.0;
+
+        // std::cout << "Updating variation bandit with reward: " << r << std::endl;
+        this->variation_bandit.update(ind.get_variation(), r);
+
+        if (ind.get_variation() != "born" && ind.get_variation() != "cx"
+            && ind.get_variation() != "subtree")
+        {                
+            if (ind.get_sampled_nodes().size() > 0) {
+                const auto& changed_nodes = ind.get_sampled_nodes();
+                for (const auto& node : changed_nodes) {
+                    if (node.get_arg_count() == 0) {
+                        auto datatype = node.get_ret_type();
+                        // std::cout << "Updating terminal bandit for node: " << node.get_feature() << std::endl;
+                        this->terminal_bandits[datatype].update(node.get_feature(), r);
+                    }
+                    else {
+                        auto ret_type = node.get_ret_type();
+                        auto name = node.name;
+                        // std::cout << "Updating operator bandit for node: " << name << std::endl;
+                        this->op_bandits[ret_type].update(name, r);
+                    }
+                }
+            }
+        }
+
+        auto variation_probs = variation_bandit.sample_probs(true);
+
+        if (variation_probs.find("cx") != variation_probs.end())
+            parameters.set_cx_prob(variation_probs.at("cx"));
+        
+        for (const auto& variation : variation_probs)
+            if (variation.first != "cx")
+                parameters.mutation_probs[variation.first] = variation.second;
+        
+        for (auto& bandit : terminal_bandits) {
+            auto datatype = bandit.first;
+            
+            auto terminal_probs = bandit.second.sample_probs(true);
+            for (auto& terminal : terminal_probs) {
+                auto terminal_name = terminal.first;
+                auto terminal_prob = terminal.second;
+
+                auto it = std::find_if(
+                    search_space.terminal_map.at(datatype).begin(),
+                    search_space.terminal_map.at(datatype).end(), 
+                    [&](auto& node) { return node.get_feature() == terminal_name; });
+
+                if (it != search_space.terminal_map.at(datatype).end()) {
+                    auto index = std::distance(search_space.terminal_map.at(datatype).begin(), it);
+                    search_space.terminal_weights.at(datatype)[index] = terminal_prob;
+                }
+            }
+        }
+
+        for (auto& bandit : op_bandits) {
+            auto ret_type = bandit.first;
+            
+            auto op_probs = bandit.second.sample_probs(true);
+            for (auto& op : op_probs) {
+                auto op_name = op.first;
+                auto op_prob = op.second;
+
+                for (const auto& [args_type, node_map] : search_space.node_map.at(ret_type))
+                {
+                    auto it = std::find_if(
+                        node_map.begin(),
+                        node_map.end(), 
+                        [&](auto& entry) { return entry.second.name == op_name; });
+
+                    if (it != node_map.end()) {
+                        auto index = it->first;
+                        search_space.node_map_weights.at(ret_type).at(args_type).at(index) = op_prob;
+                    }
+                }
+            }
+        }  
+
+        pop.individuals.at(indices.at(i)) = std::make_shared<Individual<T>>(ind);
+        // std::cout << "Individual at index " << indices.at(i) << " updated successfully" << std::endl;
+    }
+}
     
     // they need to be references because we are going to modify them
     SearchSpace search_space; // The search space for the variation operator.

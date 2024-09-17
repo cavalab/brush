@@ -710,7 +710,7 @@ void Variation<T>::vary(Population<T>& pop, int island,
         assert(ind.fitness.valid()==false);
 
         pop.individuals.at(indices.at(i)) = std::make_shared<Individual<T>>(ind);
-   }
+    }
 };
 
 template<ProgramType T>

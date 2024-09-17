@@ -16,6 +16,7 @@ namespace Brush {
 
 using namespace Pop;
 
+// TODO: rename this file and class to evaluator?
 namespace Eval {
 
 template<ProgramType T> 
