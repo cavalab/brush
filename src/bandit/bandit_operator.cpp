@@ -38,6 +38,19 @@ std::map<T, float> BanditOperator<T>::sample_probs(bool update)
 }
 
 template<typename T>
+T BanditOperator<T>::choose(tree<Node>& tree, Fitness& f)
+{
+    // TODO: Implement the logic for sampling probabilities
+    // based on the bandit operator's strategy
+
+    HANDLE_ERROR_THROW("Undefined bandit choose() operation");
+
+    // Placeholder
+    return this->probabilities.begin()->first;
+}
+
+
+template<typename T>
 void BanditOperator<T>::update(T arm, float reward)
 {
     // TODO: Implement the logic for updating the bandit operator's internal state

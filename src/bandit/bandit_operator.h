@@ -5,6 +5,8 @@
 #include "../data/data.h"
 #include "../types.h"
 #include "../params.h"
+#include "../program/tree_node.h"
+#include "../ind/fitness.h"
 
 namespace Brush {
 namespace MAB {
@@ -18,6 +20,7 @@ namespace MAB {
  */
 template<typename T>
 class BanditOperator
+
 {
 public:
     /**
@@ -43,6 +46,15 @@ public:
      * @return A map of arms and their probabilities.
      */
     virtual std::map<T, float> sample_probs(bool update);
+
+    /**
+     * @brief Chooses an arm based on the given tree and fitness.
+     * 
+     * @param tree The tree structure used to choose the arm.
+     * @param f The fitness value used to influence the choice.
+     * @return The arm with highest probability.
+     */
+    virtual T choose(tree<Node>& tree, Fitness& f);
 
     /**
      * @brief Updates the reward for a specific arm.
