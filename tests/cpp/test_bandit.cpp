@@ -60,9 +60,12 @@ TEST_P(BanditTest, BanditProbabilities) {
     
     // things dont change
     std::map<string, float> sampledProbs = bandit.sample_probs(true);
-    
+
+    // Context we need to pass to the bandit    
+    VectorXf context = {};
+
     // Update the bandit with arm 1 and reward 1.0
-    bandit.update("foo1", 1.0);
+    bandit.update("foo1", 1.0, context);
     
     // Sample the bandit probabilities after updating
     sampledProbs = bandit.sample_probs(true);

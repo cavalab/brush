@@ -750,7 +750,7 @@ vector<float> Variation<T>::calculate_rewards(Population<T>& pop, int island)
             // TODO: make this a function? I think this code below is repeated in other places
             // multiply by the weight so it is a maximization problem regardless of obj
             if (obj.compare(parameters.scorer)==0)
-                delta = ind.fitness.get_loss_v()-ind.fitness.get_loss();
+                delta = ind.fitness.get_loss()-ind.fitness.get_prev_loss();
             else if (obj.compare("complexity")==0)
                 delta = ind.fitness.get_complexity()-ind.fitness.get_prev_complexity();
             else if (obj.compare("linear_complexity")==0)

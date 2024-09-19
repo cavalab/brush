@@ -26,7 +26,7 @@ public:
 
     std::map<T, float> sample_probs(bool update);
     T choose(tree<Node>& tree, Fitness& f);
-    void update(T arm, float reward, tree<Node>* tree=nullptr, Fitness* f=nullptr);
+    void update(T arm, float reward, VectorXf& context);
 private:
     bool dynamic_update;
     float C = 1000;

@@ -26,6 +26,7 @@ using namespace Brush;
 template <typename T>
 struct Bandit
 {
+    using Iter = tree<Node>::pre_order_iterator;
 public:
     /**
      * @brief A shared pointer to the bandit operator (policy).
@@ -113,7 +114,9 @@ public:
      * @param arm The chosen arm.
      * @param reward The received reward.
      */
-    void update(T arm, float reward, tree<Node>* tree=nullptr, Fitness* f=nullptr);
+    void update(T arm, float reward, VectorXf& context={});
+
+    VectorXf get_context(tree<Node>& tree, Iter spot, Fitness& f);
 };
 
 //TODO: serialization should save the type of bandit and its parameters

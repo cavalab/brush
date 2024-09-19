@@ -92,8 +92,13 @@ T Bandit<T>::choose(tree<Node>& tree, Fitness& f) {
 }
 
 template <typename T>
-void Bandit<T>::update(T arm, float reward, tree<Node>* tree, Fitness* f) {
-    this->pbandit->update(arm, reward, tree, f);
+void Bandit<T>::update(T arm, float reward, VectorXf& context) {
+    this->pbandit->update(arm, reward, context);
+}
+
+template <typename T>
+VectorXf Bandit<T>::get_context(tree<Node>& tree, Iter spot, Fitness& f) {
+    return {};
 }
 
 } // MAB

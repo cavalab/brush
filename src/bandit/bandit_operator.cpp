@@ -51,13 +51,13 @@ T BanditOperator<T>::choose(tree<Node>& tree, Fitness& f)
 
 
 template<typename T>
-void BanditOperator<T>::update(T arm, float reward, tree<Node>* tree, Fitness* f)
+void BanditOperator<T>::update(T arm, float reward, VectorXf& context)
 {
     // TODO: Implement the logic for updating the bandit operator's internal state
     // based on the received rewards
 
     // Throw an error if the update operation is undefined
-    HANDLE_ERROR_THROW("Undefined bandit update_with_reward() operation");
+    HANDLE_ERROR_THROW("Undefined bandit update() operation");
 }
 
 } // MAB

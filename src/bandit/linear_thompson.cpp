@@ -31,7 +31,7 @@ T LinearThompsonSamplingBandit<T>::choose(tree<Node>& tree, Fitness& f) {
 }
 
 template <typename T>
-void LinearThompsonSamplingBandit<T>::update(T arm, float reward, tree<Node>* tree, Fitness* f) {
+void LinearThompsonSamplingBandit<T>::update(T arm, float reward, VectorXf& context) {
 
 }
 

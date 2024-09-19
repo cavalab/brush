@@ -20,8 +20,8 @@ namespace MAB {
  */
 template<typename T>
 class BanditOperator
-
 {
+    using Iter = tree<Node>::pre_order_iterator;
 public:
     /**
      * @brief Constructs a BanditOperator object with a vector of arms.
@@ -62,7 +62,7 @@ public:
      * @param arm The arm for which to update the reward.
      * @param reward The reward value.
      */
-    virtual void update(T arm, float reward, tree<Node>* tree=nullptr, Fitness* f=nullptr); // TODO: this should not have a default value in the future
+    virtual void update(T arm, float reward, VectorXf& context);
 protected:    
     std::map<T, float> probabilities;
 };

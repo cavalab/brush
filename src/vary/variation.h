@@ -241,7 +241,7 @@ public:
                     *r.select_randomly(parents.begin(), parents.end())];
                 
                 // std::cout << "Performing crossover" << std::endl;
-                opt = cross(mom, dad);   
+                opt = cross(mom, dad);
                 ind_parents = {mom, dad};
             }
             else
@@ -251,6 +251,8 @@ public:
                 ind_parents = {mom};
             }
         
+            VectorXf context = {};
+
             // this assumes that islands do not share indexes before doing variation
             unsigned id = parameters.current_gen * parameters.pop_size + indices.at(i);
 
@@ -292,7 +294,7 @@ public:
             for (const auto& obj : ind.get_objectives())
             {   
                 if (obj.compare(parameters.scorer) == 0)
-                    delta = ind.fitness.get_loss_v() - ind.fitness.get_loss();
+                    delta = ind.fitness.get_loss_v() - ind.fitness.get_prev_loss();
                 else if (obj.compare("complexity") == 0)
                     delta = ind.fitness.get_complexity() - ind.fitness.get_prev_complexity();
                 else if (obj.compare("linear_complexity") == 0)
@@ -323,7 +325,7 @@ public:
                 r = 1.0;
 
             // std::cout << "Updating variation bandit with reward: " << r << std::endl;
-            this->variation_bandit.update(ind.get_variation(), r);
+            this->variation_bandit.update(ind.get_variation(), r, context);
 
             if (ind.get_variation() != "born" && ind.get_variation() != "cx"
                 && ind.get_variation() != "subtree")
@@ -334,13 +336,13 @@ public:
                         if (node.get_arg_count() == 0) {
                             auto datatype = node.get_ret_type();
                             // std::cout << "Updating terminal bandit for node: " << node.get_feature() << std::endl;
-                            this->terminal_bandits[datatype].update(node.get_feature(), r);
+                            this->terminal_bandits[datatype].update(node.get_feature(), r, context);
                         }
                         else {
                             auto ret_type = node.get_ret_type();
                             auto name = node.name;
                             // std::cout << "Updating operator bandit for node: " << name << std::endl;
-                            this->op_bandits[ret_type].update(name, r);
+                            this->op_bandits[ret_type].update(name, r, context);
                         }
                     }
                 }
