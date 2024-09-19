@@ -78,6 +78,13 @@ std::map<T, float> ThompsonSamplingBandit<T>::sample_probs(bool update) {
 }
 
 template <typename T>
+T ThompsonSamplingBandit<T>::choose(tree<Node>& tree, Fitness& f) {
+    std::map<T, float> probs = this->sample_probs(true);
+
+    return r.random_choice(probs);
+}
+
+template <typename T>
 void ThompsonSamplingBandit<T>::update(T arm, float reward) {
     // reward must be either 0 or 1
 

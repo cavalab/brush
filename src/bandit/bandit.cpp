@@ -87,6 +87,11 @@ map<T, float> Bandit<T>::sample_probs(bool update) {
 }
 
 template <typename T>
+T Bandit<T>::choose(tree<Node>& tree, Fitness& f) {
+    return this->pbandit->choose(tree, f);
+}
+
+template <typename T>
 void Bandit<T>::update(T arm, float reward) {
     this->pbandit->update(arm, reward);
 }

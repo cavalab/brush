@@ -14,7 +14,7 @@ namespace MAB {
 /**
  * @brief A **virtual** class representing a bandit operator.
  * 
- * This class provides functionality for sampling probabilities and updating rewards for different arms.
+ * This class provides functionality for sampling probabilities and updating rewards for different arms. The bandit should somehow behave stocasticaly when called twice in a row without being rewarded, because some mutations may require multiple sampling from the search space. Also, the bandit should have a functionality to return smapling probabilities, instead of just the chosen arm.
  * 
  * @tparam T The type of the arms.
  */
@@ -48,7 +48,7 @@ public:
     virtual std::map<T, float> sample_probs(bool update);
 
     /**
-     * @brief Chooses an arm based on the given tree and fitness.
+     * @brief Chooses an arm based on the given tree and fitness. Should call sample_probs internally.
      * 
      * @param tree The tree structure used to choose the arm.
      * @param f The fitness value used to influence the choice.

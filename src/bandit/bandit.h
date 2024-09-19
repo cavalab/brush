@@ -99,6 +99,16 @@ public:
     map<T, float> sample_probs(bool update=false);
 
     /**
+     * @brief Selects an arm using the tree and fitness as context.
+     * 
+     * @tparam T The type of the arms the bandit has.
+     * @param tree The tree structure containing nodes of type T.
+     * @param f The fitness function used to evaluate and select nodes.
+     * @return T The selected arm from the tree.
+     */
+    T choose(tree<Node>& tree, Fitness& f);
+
+    /**
      * @brief Updates the bandit's state based on the chosen arm and the received reward.
      * @param arm The chosen arm.
      * @param reward The received reward.

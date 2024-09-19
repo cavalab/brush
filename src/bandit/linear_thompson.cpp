@@ -22,6 +22,15 @@ std::map<T, float> LinearThompsonSamplingBandit<T>::sample_probs(bool update) {
 }
 
 template <typename T>
+T LinearThompsonSamplingBandit<T>::choose(tree<Node>& tree, Fitness& f) {
+    // TODO: use context here
+    
+    std::map<T, float> probs = this->sample_probs(true);
+
+    return r.random_choice(probs);
+}
+
+template <typename T>
 void LinearThompsonSamplingBandit<T>::update(T arm, float reward) {
 
 }

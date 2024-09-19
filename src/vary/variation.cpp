@@ -589,7 +589,7 @@ std::optional<Individual<T>> Variation<T>::mutate(const Individual<T>& parent)
 
         // apply the mutation and check if it succeeded
         auto spot = r.select_randomly(child.Tree.begin(), child.Tree.end(),
-                                    weights.begin(), weights.end());
+                                      weights.begin(), weights.end());
 
         // Every mutation here works inplace, so they return bool instead of
         // std::optional to indicare the result of their manipulation over the

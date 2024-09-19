@@ -19,6 +19,7 @@ public:
     ~DummyBandit(){};
 
     std::map<T, float> sample_probs(bool update);
+    T choose(tree<Node>& tree, Fitness& f);
     void update(T arm, float reward);
 
 private:
