@@ -92,8 +92,8 @@ T Bandit<T>::choose(tree<Node>& tree, Fitness& f) {
 }
 
 template <typename T>
-void Bandit<T>::update(T arm, float reward) {
-    this->pbandit->update(arm, reward);
+void Bandit<T>::update(T arm, float reward, tree<Node>* tree, Fitness* f) {
+    this->pbandit->update(arm, reward, tree, f);
 }
 
 } // MAB

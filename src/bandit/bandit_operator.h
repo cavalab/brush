@@ -62,7 +62,7 @@ public:
      * @param arm The arm for which to update the reward.
      * @param reward The reward value.
      */
-    virtual void update(T arm, float reward);
+    virtual void update(T arm, float reward, tree<Node>* tree=nullptr, Fitness* f=nullptr); // TODO: this should not have a default value in the future
 protected:    
     std::map<T, float> probabilities;
 };

@@ -16,7 +16,8 @@ T DummyBandit<T>::choose(tree<Node>& tree, Fitness& f) {
 }
 
 template <typename T>
-void DummyBandit<T>::update(T arm, float reward) {
+void DummyBandit<T>::update(T arm, float reward, tree<Node>* tree, Fitness* f) {
+    // Do nothing
 }
 
 } // MAB

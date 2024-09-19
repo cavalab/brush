@@ -113,7 +113,7 @@ public:
      * @param arm The chosen arm.
      * @param reward The received reward.
      */
-    void update(T arm, float reward);
+    void update(T arm, float reward, tree<Node>* tree=nullptr, Fitness* f=nullptr);
 };
 
 //TODO: serialization should save the type of bandit and its parameters

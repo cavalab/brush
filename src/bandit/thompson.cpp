@@ -85,7 +85,7 @@ T ThompsonSamplingBandit<T>::choose(tree<Node>& tree, Fitness& f) {
 }
 
 template <typename T>
-void ThompsonSamplingBandit<T>::update(T arm, float reward) {
+void ThompsonSamplingBandit<T>::update(T arm, float reward, tree<Node>* tree, Fitness* f) {
     // reward must be either 0 or 1
 
     alphas[arm] += reward;

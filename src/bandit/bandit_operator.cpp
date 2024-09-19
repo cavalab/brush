@@ -51,7 +51,7 @@ T BanditOperator<T>::choose(tree<Node>& tree, Fitness& f)
 
 
 template<typename T>
-void BanditOperator<T>::update(T arm, float reward)
+void BanditOperator<T>::update(T arm, float reward, tree<Node>* tree, Fitness* f)
 {
     // TODO: Implement the logic for updating the bandit operator's internal state
     // based on the received rewards
