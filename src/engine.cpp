@@ -458,6 +458,7 @@ void Engine<T>::run(Dataset &data)
             auto update_pop = subflow.emplace([&]() { // sync point
                 // Flatten the rewards vector
 
+                // TODO: stop using flattened_rewards
                 // TODO: improve vary_and_update and stop using this (as well as island_rewards in the subflow above)
                 // vector<float> flattened_rewards;
                 // for (const auto& island_rewards : rewards) {
@@ -472,8 +473,7 @@ void Engine<T>::run(Dataset &data)
                 // // TODO: do i need these next this-> pointers?
                 // // Use the flattened rewards vector for updating the population
                 
-                // this->variator.update_ss(this->pop, flattened_rewards);
-
+                this->variator.update_ss(this->pop);
                 this->pop.update(survivors);
                 this->pop.migrate();
             }).name("update, migrate and disentangle indexes between islands");

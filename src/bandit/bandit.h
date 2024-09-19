@@ -116,7 +116,7 @@ public:
      */
     void update(T arm, float reward, VectorXf& context={});
 
-    VectorXf get_context(tree<Node>& tree, Iter spot, Fitness& f);
+    VectorXf get_context(const tree<Node>& tree, Iter spot);
 };
 
 //TODO: serialization should save the type of bandit and its parameters

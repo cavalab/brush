@@ -394,7 +394,7 @@ public:
  * @return `std::optional` that may contain the child program of type `T`
  */
 template<Brush::ProgramType T>
-std::optional<Individual<T>> Variation<T>::cross(
+std::tuple<std::optional<Individual<T>>, VectorXf> Variation<T>::cross(
     const Individual<T>& mom, const Individual<T>& dad) 
 {
     /* subtree crossover between this and other, producing new Program */
@@ -423,7 +423,7 @@ std::optional<Individual<T>> Variation<T>::cross(
         return w<=0.0;
     }))
     { // There is no spot that has a probability to be selected
-        return std::nullopt;
+        return std::make_tuple(std::nullopt, VectorXf());
     }
     
     // pick a subtree to insert. Selection is based on other_weights
@@ -493,12 +493,14 @@ std::optional<Individual<T>> Variation<T>::cross(
                 Individual<T> ind(child);
                 ind.set_variation("cx"); // TODO: use enum here to make it faster
 
-                return ind;
+                VectorXf context = this->variation_bandit.get_context(mom.program.Tree, child_spot);
+
+                return std::make_tuple(ind, context);
             }
         }
     }
 
-    return std::nullopt;
+    return std::make_tuple(std::nullopt, VectorXf());
 };
 
 /**
@@ -535,7 +537,7 @@ std::optional<Individual<T>> Variation<T>::cross(
  * @return `std::optional` that may contain the child program of type `T`
  */
 template<Brush::ProgramType T>
-std::optional<Individual<T>> Variation<T>::mutate(const Individual<T>& parent)
+std::tuple<std::optional<Individual<T>>, VectorXf> Variation<T>::mutate(const Individual<T>& parent)
 {
     auto options = parameters.mutation_probs;
 
@@ -549,7 +551,7 @@ std::optional<Individual<T>> Variation<T>::mutate(const Individual<T>& parent)
 
     if (all_zero)
     { // No mutation can be successfully applied to this solution  
-        return std::nullopt;
+        return std::make_tuple(std::nullopt, VectorXf());
     }
     
     Program<T> child(parent.program);
@@ -621,13 +623,15 @@ std::optional<Individual<T>> Variation<T>::mutate(const Individual<T>& parent)
                 ind.set_sampled_nodes({spot.node->data});
             }
 
-            return ind;
+            VectorXf context = this->variation_bandit.get_context(parent.program.Tree, spot);
+
+            return std::make_tuple(ind, context);
         } else {
             continue;
         }
     }
 
-    return std::nullopt;
+    return std::make_tuple(std::nullopt, VectorXf());
 };
 
 template<Brush::ProgramType T>
@@ -650,6 +654,7 @@ void Variation<T>::vary(Population<T>& pop, int island,
             *r.select_randomly(parents.begin(), parents.end())];
     
         vector<Individual<T>> ind_parents;
+        VectorXf context = {};
         
         bool crossover = ( r() < parameters.cx_prob );
         if (crossover)
@@ -657,13 +662,15 @@ void Variation<T>::vary(Population<T>& pop, int island,
             const Individual<T>& dad = pop[
                 *r.select_randomly(parents.begin(), parents.end())];
             
-            opt = cross(mom, dad);   
+            auto variation_result = cross(mom, dad);
             ind_parents = {mom, dad};
+            tie(opt, context) = variation_result;
         }
         else
         {
-            opt = mutate(mom);   
+            auto variation_result = mutate(mom);   
             ind_parents = {mom};
+            tie(opt, context) = variation_result;
         }
     
         // this assumes that islands do not share indexes before doing variation
@@ -787,61 +794,9 @@ vector<float> Variation<T>::calculate_rewards(Population<T>& pop, int island)
 };
 
 template <Brush::ProgramType T>
-void Variation<T>::update_ss(Population<T>& pop, const vector<float>& rewards)
+void Variation<T>::update_ss(Population<T>& pop)
 {
-    // give all the rewards for the bandits. This is done in batches.
-    // the rewards and the offspring in the population are in the same order
-    // (it is important that we dont run pop.update() before updating the ss,
-    // so we can easily keep a way of pairing which variation each reward is
-    // reffering.)
-    // ask the bandit to sampl a new probability distribution.
-    // we update the varation bandit for all individuals, then, for each type
-    // of replacement, we update the bandit for the respective op/terminal nodes.
-    // This will update both variation params and search space
-
-    int index = 0;
-    for (int island = 0; island < pop.num_islands; ++island) {
-        auto indices = pop.get_island_indexes(island);
-
-        for (unsigned i = 0 ; i < indices.size()/2; ++i)
-        {
-            const Individual<T>& ind = *pop.individuals.at(
-                indices.at(indices.size()/2 + i) );
-
-            float r = rewards.at(index++);
-
-            // update the variation bandit. get the variation (arm) and reward to update
-            this->variation_bandit.update(ind.get_variation(), r);
-
-            // being born doesnt deserve a reward. cx does not perform sampling.
-            // subtree performs too much sampling, so we will not update it here.
-            // TODO: change this behavior for subtree in the future?
-            if (ind.get_variation() != "born" && ind.get_variation() != "cx"
-            &&  ind.get_variation() != "subtree")
-            {                
-                // update the operators and terminal bandit (if thats the case) for all
-                // sampled nodes (should be just a few <=4)
-                if (ind.get_sampled_nodes().size() > 0) {
-                    const auto& changed_nodes = ind.get_sampled_nodes();
-                    for (const auto& node : changed_nodes) {
-
-                        // upating reward for terminal nodes
-                        if (node.get_arg_count() == 0) {
-                            auto datatype = node.get_ret_type();
-                            this->terminal_bandits[datatype].update(node.get_feature(), r);
-                        }
-                        else // updating reward for operator nodes
-                        {
-                            // pick ret_type and node.name (all we need to update op bandit)
-                            auto ret_type = node.get_ret_type();
-                            auto name = node.name;
-                            this->op_bandits[ret_type].update(name, r);
-                        }
-                    }
-                }
-            }
-        }
-    }
+    // propagate bandits learnt information to the search space
 
     // variation: getting new probabilities for variation operators
     auto variation_probs = variation_bandit.sample_probs(true);
@@ -906,8 +861,6 @@ void Variation<T>::update_ss(Population<T>& pop, const vector<float>& rewards)
             }
         }
     }
-
-    assert(index == rewards.size()); 
 };
 
 } //namespace Var

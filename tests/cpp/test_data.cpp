@@ -97,7 +97,7 @@ TEST(Data, MixedVariableTypes)
 
             Individual<PT::Regressor> IND(PRG);
             
-            std::optional<Individual<PT::Regressor>> opt = variator.mutate(IND);
+            auto [opt, context] = variator.mutate(IND);
 
             if (!opt){
                 fmt::print("Mutation failed to create a child\n");

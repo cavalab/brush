@@ -97,7 +97,8 @@ void Bandit<T>::update(T arm, float reward, VectorXf& context) {
 }
 
 template <typename T>
-VectorXf Bandit<T>::get_context(tree<Node>& tree, Iter spot, Fitness& f) {
+VectorXf Bandit<T>::get_context(const tree<Node>& tree, Iter spot) {
+    // for performance, get_context should calculate the context only if the pbandit is of a contextual type. otherwise, return empty stuff
     return {};
 }
 

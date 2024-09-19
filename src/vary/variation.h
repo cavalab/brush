@@ -161,8 +161,8 @@ public:
      * @return An optional containing the offspring individual if the crossover 
      * is successful, or an empty optional otherwise.
      */
-    std::optional<Individual<T>> cross(const Individual<T>& mom,
-                                       const Individual<T>& dad);
+    std::tuple<std::optional<Individual<T>>, VectorXf> cross(
+        const Individual<T>& mom, const Individual<T>& dad);
 
     /**
      * @brief Performs mutation operation on an individual.
@@ -171,7 +171,8 @@ public:
      * @return An optional containing the mutated individual if the mutation is
      * successful, or an empty optional otherwise.
      */
-    std::optional<Individual<T>> mutate(const Individual<T>& parent);
+    std::tuple<std::optional<Individual<T>>, VectorXf> mutate(
+        const Individual<T>& parent);
 
     /**
      * @brief Handles variation of a population.
@@ -198,7 +199,7 @@ public:
      * @param pop The population to update the selection strategy for.
      * @param rewards The rewards obtained from the evaluation of individuals.
      */
-    void update_ss(Population<T>& pop, const vector<float>& rewards);
+    void update_ss(Population<T>& pop);
 
     /**
      * @brief Varies a population and updates the selection strategy based on rewards.
@@ -233,7 +234,8 @@ public:
                 *r.select_randomly(parents.begin(), parents.end())];
         
             vector<Individual<T>> ind_parents;
-            
+            VectorXf context = {};
+
             bool crossover = (r() < parameters.cx_prob);
             if (crossover)
             {
@@ -241,17 +243,17 @@ public:
                     *r.select_randomly(parents.begin(), parents.end())];
                 
                 // std::cout << "Performing crossover" << std::endl;
-                opt = cross(mom, dad);
+                auto variation_result = cross(mom, dad);
                 ind_parents = {mom, dad};
+                tie(opt, context) = variation_result;
             }
             else
             {
                 // std::cout << "Performing mutation" << std::endl;
-                opt = mutate(mom);   
+                auto variation_result = mutate(mom);   
                 ind_parents = {mom};
+                tie(opt, context) = variation_result;
             }
-        
-            VectorXf context = {};
 
             // this assumes that islands do not share indexes before doing variation
             unsigned id = parameters.current_gen * parameters.pop_size + indices.at(i);
@@ -347,58 +349,6 @@ public:
                     }
                 }
             }
-
-            auto variation_probs = variation_bandit.sample_probs(true);
-
-            if (variation_probs.find("cx") != variation_probs.end())
-                parameters.set_cx_prob(variation_probs.at("cx"));
-            
-            for (const auto& variation : variation_probs)
-                if (variation.first != "cx")
-                    parameters.mutation_probs[variation.first] = variation.second;
-            
-            for (auto& bandit : terminal_bandits) {
-                auto datatype = bandit.first;
-                
-                auto terminal_probs = bandit.second.sample_probs(true);
-                for (auto& terminal : terminal_probs) {
-                    auto terminal_name = terminal.first;
-                    auto terminal_prob = terminal.second;
-
-                    auto it = std::find_if(
-                        search_space.terminal_map.at(datatype).begin(),
-                        search_space.terminal_map.at(datatype).end(), 
-                        [&](auto& node) { return node.get_feature() == terminal_name; });
-
-                    if (it != search_space.terminal_map.at(datatype).end()) {
-                        auto index = std::distance(search_space.terminal_map.at(datatype).begin(), it);
-                        search_space.terminal_weights.at(datatype)[index] = terminal_prob;
-                    }
-                }
-            }
-
-            for (auto& bandit : op_bandits) {
-                auto ret_type = bandit.first;
-                
-                auto op_probs = bandit.second.sample_probs(true);
-                for (auto& op : op_probs) {
-                    auto op_name = op.first;
-                    auto op_prob = op.second;
-
-                    for (const auto& [args_type, node_map] : search_space.node_map.at(ret_type))
-                    {
-                        auto it = std::find_if(
-                            node_map.begin(),
-                            node_map.end(), 
-                            [&](auto& entry) { return entry.second.name == op_name; });
-
-                        if (it != node_map.end()) {
-                            auto index = it->first;
-                            search_space.node_map_weights.at(ret_type).at(args_type).at(index) = op_prob;
-                        }
-                    }
-                }
-            }  
 
             pop.individuals.at(indices.at(i)) = std::make_shared<Individual<T>>(ind);
             // std::cout << "Individual at index " << indices.at(i) << " updated successfully" << std::endl;
