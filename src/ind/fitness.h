@@ -163,7 +163,14 @@ struct Fitness {
 
     // Equality comparison
     bool operator==(const Fitness& other) const {
-        return wvalues == other.wvalues;
+        if (wvalues.size() != other.wvalues.size()) {
+            return false;
+        }
+        for (size_t i = 0; i < wvalues.size(); ++i)
+            if (fabs(wvalues[i] - other.wvalues[i]) > 1e-7)
+                return false;
+                
+        return true;
     }
 
     // Inequality comparison
