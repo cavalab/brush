@@ -96,8 +96,10 @@ class DeapEstimator(EstimatorInterface, BaseEstimator):
         
         toolbox.register("Clone", lambda ind: self.Individual(ind.program.copy()))
         
-        toolbox.register("mate", self.variator_.cross)
-        toolbox.register("mutate", self.variator_.mutate)
+        # crossover and mutation will return a tuple, the individual and context. Here 
+        # we are interested only in the context part
+        toolbox.register("mate", lambda ind1, ind2: self.variator_.cross(ind1, ind2)[0])
+        toolbox.register("mutate", lambda ind: self.variator_.mutate(ind, "")[0])
         toolbox.register("vary_pop", lambda pop: self.variator_.vary_pop(pop, self.parameters_))
 
         # When solving multi-objective problems, selection and survival must

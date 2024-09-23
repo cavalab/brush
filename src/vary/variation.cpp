@@ -541,7 +541,7 @@ std::tuple<std::optional<Individual<T>>, VectorXf> Variation<T>::mutate(const In
 {
     if (choice.empty())
     {
-        std::cout << "Will sample a mut choice" << std::endl;
+        // std::cout << "Will sample a mut choice" << std::endl;
         auto options = parameters.mutation_probs;
 
         bool all_zero = true;
