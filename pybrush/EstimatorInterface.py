@@ -82,7 +82,8 @@ class EstimatorInterface():
     weights_init : bool, default True
         Whether the search space should initialize the sampling weights of terminal nodes
         based on the correlation with the output y. If `False`, then all terminal nodes
-        will have the same probability of 1.0.
+        will have the same probability of 1.0. This parameter is ignored if the bandit
+        strategy is used, and weights will be learned dynamically during the run.
     validation_size : float, default 0.0
         Percentage of samples to use as a hold-out partition. These samples are used
         to calculate statistics during evolution, but not used to train the models.

@@ -25,7 +25,7 @@ public:
     ~ThompsonSamplingBandit(){};
 
     std::map<T, float> sample_probs(bool update);
-    T choose(tree<Node>& tree, Fitness& f);
+    T choose(VectorXf& context);
     void update(T arm, float reward, VectorXf& context);
 private:
     bool dynamic_update;

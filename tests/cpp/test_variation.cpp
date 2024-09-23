@@ -33,7 +33,7 @@ TEST(Variation, FixedRootDoesntChange)
             Variation variator = Variation<ProgramType::BinaryClassifier>(params, SS);
 
             int successes = 0;
-            for (int attempt = 0; attempt < 10; ++attempt)
+            for (int attempt = 0; attempt < 50; ++attempt)
             {
                 // different program types changes how predict works (and the rettype of predict)
                 ClassifierProgram PRG = SS.make_classifier(0, 0, params);

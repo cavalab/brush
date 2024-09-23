@@ -9,7 +9,7 @@ std::map<T, float> DummyBandit<T>::sample_probs(bool update) {
 }
 
 template <typename T>
-T DummyBandit<T>::choose(tree<Node>& tree, Fitness& f) {
+T DummyBandit<T>::choose(VectorXf& context) {
     // std::map<T, float> probs = this->sample_probs(false);
 
     return r.random_choice(this->probabilities);

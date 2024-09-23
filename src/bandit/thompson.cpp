@@ -78,7 +78,7 @@ std::map<T, float> ThompsonSamplingBandit<T>::sample_probs(bool update) {
 }
 
 template <typename T>
-T ThompsonSamplingBandit<T>::choose(tree<Node>& tree, Fitness& f) {
+T ThompsonSamplingBandit<T>::choose(VectorXf& context) {
     std::map<T, float> probs = this->sample_probs(true);
 
     return r.random_choice(probs);

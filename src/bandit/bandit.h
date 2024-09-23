@@ -107,7 +107,7 @@ public:
      * @param f The fitness function used to evaluate and select nodes.
      * @return T The selected arm from the tree.
      */
-    T choose(tree<Node>& tree, Fitness& f);
+    T choose(VectorXf& context);
 
     /**
      * @brief Updates the bandit's state based on the chosen arm and the received reward.

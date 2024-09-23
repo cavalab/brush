@@ -54,7 +54,7 @@ public:
      * @param f The fitness value used to influence the choice.
      * @return The arm with highest probability.
      */
-    virtual T choose(tree<Node>& tree, Fitness& f);
+    virtual T choose(VectorXf& context);
 
     /**
      * @brief Updates the reward for a specific arm.

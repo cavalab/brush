@@ -172,7 +172,7 @@ public:
      * successful, or an empty optional otherwise.
      */
     std::tuple<std::optional<Individual<T>>, VectorXf> mutate(
-        const Individual<T>& parent);
+        const Individual<T>& parent, string choice="");
 
     /**
      * @brief Handles variation of a population.
@@ -234,10 +234,11 @@ public:
                 *r.select_randomly(parents.begin(), parents.end())];
         
             vector<Individual<T>> ind_parents;
-            VectorXf context = {};
+            VectorXf context = this->variation_bandit.get_context(mom.program.Tree, mom.program.Tree.begin());
 
-            bool crossover = (r() < parameters.cx_prob);
-            if (crossover)
+            string choice = this->variation_bandit.choose(context);
+
+            if (choice == "cx")
             {
                 const Individual<T>& dad = pop[
                     *r.select_randomly(parents.begin(), parents.end())];
@@ -249,10 +250,12 @@ public:
             }
             else
             {
-                // std::cout << "Performing mutation" << std::endl;
-                auto variation_result = mutate(mom);   
+                // std::cout << "Performing mutation " << choice << std::endl;
+                auto variation_result = mutate(mom, choice);  
+                // cout << "finished mutation" << endl;
                 ind_parents = {mom};
                 tie(opt, context) = variation_result;
+                // cout << "unpacked" << endl;
             }
 
             // this assumes that islands do not share indexes before doing variation
@@ -327,10 +330,17 @@ public:
                 r = 1.0;
 
             // std::cout << "Updating variation bandit with reward: " << r << std::endl;
-            this->variation_bandit.update(ind.get_variation(), r, context);
 
-            if (ind.get_variation() != "born" && ind.get_variation() != "cx"
-                && ind.get_variation() != "subtree")
+            if (ind.get_variation() != "born")
+            {
+                this->variation_bandit.update(ind.get_variation(), r, context);
+            }
+            else
+            { // giving zero reward if the variation failed
+                this->variation_bandit.update(choice, 0.0, context);
+            }
+
+            if (ind.get_variation() != "born" && ind.get_variation() != "cx")
             {                
                 if (ind.get_sampled_nodes().size() > 0) {
                     const auto& changed_nodes = ind.get_sampled_nodes();
@@ -366,9 +376,14 @@ private:
     map<DataType, Bandit<string>> terminal_bandits; 
     map<DataType, Bandit<string>> op_bandits;    
 
-    // these functions will extract context and use it to choose the nodes to replace
+    // these functions below will extract context and use it to choose the nodes to replace
+    
+    // bandit_get_node_like
+    //bandit_sample_op_with_arg
     //bandit_sample_terminal
-    //bandit_sample_op
+    // bandit_sample_op
+    //bandit_sample_subtree
+
     //etc.
 };
 

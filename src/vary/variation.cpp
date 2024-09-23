@@ -537,57 +537,63 @@ std::tuple<std::optional<Individual<T>>, VectorXf> Variation<T>::cross(
  * @return `std::optional` that may contain the child program of type `T`
  */
 template<Brush::ProgramType T>
-std::tuple<std::optional<Individual<T>>, VectorXf> Variation<T>::mutate(const Individual<T>& parent)
+std::tuple<std::optional<Individual<T>>, VectorXf> Variation<T>::mutate(const Individual<T>& parent, string choice)
 {
-    auto options = parameters.mutation_probs;
+    if (choice.empty())
+    {
+        std::cout << "Will sample a mut choice" << std::endl;
+        auto options = parameters.mutation_probs;
 
-    bool all_zero = true;
-    for (auto &it : parameters.mutation_probs) {
-        if (it.second > 0.0) {
-            all_zero = false;
-            break;
+        bool all_zero = true;
+        for (auto &it : parameters.mutation_probs) {
+            if (it.second > 0.0) {
+                all_zero = false;
+                break;
+            }
         }
-    }
 
-    if (all_zero)
-    { // No mutation can be successfully applied to this solution  
-        return std::make_tuple(std::nullopt, VectorXf());
+        if (all_zero) { // No mutation can be successfully applied to this solution  
+            return std::make_tuple(std::nullopt, VectorXf());
+        }
+        
+        // picking a valid mutation option
+        choice = r.random_choice(parameters.mutation_probs);
     }
     
-    Program<T> child(parent.program);
+    // std::cout << "Mutation choice: " << choice << std::endl;
+
+    Program<T> copy(parent.program);
+
+    vector<float> weights; // choose location by weighted sampling of program
+    if (choice == "point") // TODO: use enum here to optimize
+        weights = PointMutation::find_spots(copy.Tree, search_space, parameters);
+    else if (choice == "insert")
+        weights = InsertMutation::find_spots(copy.Tree, search_space, parameters);
+    else if (choice == "delete")
+        weights = DeleteMutation::find_spots(copy.Tree, search_space, parameters);
+    else if (choice == "subtree")
+        weights = SubtreeMutation::find_spots(copy.Tree, search_space, parameters);
+    else if (choice == "toggle_weight_on")
+        weights = ToggleWeightOnMutation::find_spots(copy.Tree, search_space, parameters);
+    else if (choice == "toggle_weight_off")
+        weights = ToggleWeightOffMutation::find_spots(copy.Tree, search_space, parameters);
+    else {
+        std::string msg = fmt::format("{} not a valid mutation choice", choice);
+        HANDLE_ERROR_THROW(msg);
+    }
+
+    if (std::all_of(weights.begin(), weights.end(), [](const auto& w) {
+        return w<=0.0;
+    }))
+    { // There is no spot that has a probability to be selected
+        return std::make_tuple(std::nullopt, VectorXf());
+    }
 
     int attempts = 0;
     while(++attempts <= 3)
     {
-        // choose a valid mutation option
-        string choice = r.random_choice(parameters.mutation_probs);
-        
-        vector<float> weights;
-
-        // choose location by weighted sampling of program
-        if (choice == "point") // TODO: use enum here to optimize
-            weights = PointMutation::find_spots(child.Tree, search_space, parameters);
-        else if (choice == "insert")
-            weights = InsertMutation::find_spots(child.Tree, search_space, parameters);
-        else if (choice == "delete")
-            weights = DeleteMutation::find_spots(child.Tree, search_space, parameters);
-        else if (choice == "subtree")
-            weights = SubtreeMutation::find_spots(child.Tree, search_space, parameters);
-        else if (choice == "toggle_weight_on")
-            weights = ToggleWeightOnMutation::find_spots(child.Tree, search_space, parameters);
-        else if (choice == "toggle_weight_off")
-            weights = ToggleWeightOffMutation::find_spots(child.Tree, search_space, parameters);
-        else {
-            std::string msg = fmt::format("{} not a valid mutation choice", choice);
-            HANDLE_ERROR_THROW(msg);
-        }
-
-        if (std::all_of(weights.begin(), weights.end(), [](const auto& w) {
-            return w<=0.0;
-        }))
-        { // There is no spot that has a probability to be selected
-            continue;
-        }
+        // std::cout << "Attempt: " << attempts << std::endl;
+        Program<T> child(parent.program);
 
         // apply the mutation and check if it succeeded
         auto spot = r.select_randomly(child.Tree.begin(), child.Tree.end(),
@@ -614,7 +620,8 @@ std::tuple<std::optional<Individual<T>>, VectorXf> Variation<T>::mutate(const In
         if (success
         && ( (child.size()  <= parameters.max_size)
         &&   (child.depth() <= parameters.max_depth) )){
-
+            // std::cout << "Mutation succeeded on attempt " << attempts << std::endl;
+        
             Individual<T> ind(child);
             ind.set_variation(choice);
 
@@ -626,8 +633,9 @@ std::tuple<std::optional<Individual<T>>, VectorXf> Variation<T>::mutate(const In
             VectorXf context = this->variation_bandit.get_context(parent.program.Tree, spot);
 
             return std::make_tuple(ind, context);
-        } else {
-            continue;
+        }
+        else { // reseting 
+            // std::cout << "Mutation failed on attempt " << attempts << std::endl;
         }
     }
 
@@ -668,9 +676,12 @@ void Variation<T>::vary(Population<T>& pop, int island,
         }
         else
         {
+            std::cout << "Performing mutation " << std::endl;
             auto variation_result = mutate(mom);   
+            cout << "finished mutation" << endl;
             ind_parents = {mom};
             tie(opt, context) = variation_result;
+                cout << "unpacked" << endl;
         }
     
         // this assumes that islands do not share indexes before doing variation
