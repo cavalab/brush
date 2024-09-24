@@ -22,7 +22,7 @@ std::map<T, float> LinearThompsonSamplingBandit<T>::sample_probs(bool update) {
 }
 
 template <typename T>
-T LinearThompsonSamplingBandit<T>::choose(VectorXf& context) {
+T LinearThompsonSamplingBandit<T>::choose(const VectorXf& context) {
     // TODO: use context here
     
     std::map<T, float> probs = this->sample_probs(true);

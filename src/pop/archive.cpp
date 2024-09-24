@@ -54,13 +54,18 @@ template<ProgramType T>
 bool Archive<T>::sameFitComplexity(const Individual<T>& lhs, 
         const Individual<T>& rhs)
 {
+    // TODO: delete this one
+
+    return (lhs.fitness == rhs.fitness);
+
     // fitness' operator== is overloaded to compare wvalues.
     // we also check complexity equality to avoid the case where the user
     // did not specified complexity as one of the objectives
-    return (lhs.fitness == rhs.fitness
-        &&  lhs.fitness.complexity == rhs.fitness.complexity);
+    // return (lhs.fitness == rhs.fitness
+    //     &&  lhs.fitness.complexity == rhs.fitness.complexity);
 }
 
+// TODO: i could get rid of one of these
 template<ProgramType T>
 bool Archive<T>::sameObjectives(const Individual<T>& lhs, 
         const Individual<T>& rhs)

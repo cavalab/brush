@@ -38,7 +38,7 @@ std::map<T, float> BanditOperator<T>::sample_probs(bool update)
 }
 
 template<typename T>
-T BanditOperator<T>::choose(VectorXf& context)
+T BanditOperator<T>::choose(const VectorXf& context)
 {
     // TODO: Implement the logic for sampling probabilities
     // based on the bandit operator's strategy

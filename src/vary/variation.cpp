@@ -537,7 +537,8 @@ std::tuple<std::optional<Individual<T>>, VectorXf> Variation<T>::cross(
  * @return `std::optional` that may contain the child program of type `T`
  */
 template<Brush::ProgramType T>
-std::tuple<std::optional<Individual<T>>, VectorXf> Variation<T>::mutate(const Individual<T>& parent, string choice)
+std::tuple<std::optional<Individual<T>>, VectorXf> Variation<T>::mutate(
+    const Individual<T>& parent, string choice)
 {
     if (choice.empty())
     {

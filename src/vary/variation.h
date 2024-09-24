@@ -378,11 +378,29 @@ private:
 
     // these functions below will extract context and use it to choose the nodes to replace
     
+    // bandit_sample_terminal
+    std::optional<Node> bandit_sample_terminal(DataType R, VectorXf& context)
+    {
+        if (terminal_bandits.find(R) == terminal_bandits.end())
+            return std::nullopt;
+
+        auto& bandit = terminal_bandits.at(R);
+        string terminal_name = bandit.choose(context);
+        auto it = std::find_if(
+            search_space.terminal_map.at(R).begin(),
+            search_space.terminal_map.at(R).end(), 
+            [&](auto& node) { return node.get_feature() == terminal_name; });
+
+        if (it != search_space.terminal_map.at(R).end()) {
+            auto index = std::distance(search_space.terminal_map.at(R).begin(), it);
+            return search_space.terminal_map.at(R).at(index);
+        }
+    };
+
     // bandit_get_node_like
-    //bandit_sample_op_with_arg
-    //bandit_sample_terminal
+    // bandit_sample_op_with_arg
     // bandit_sample_op
-    //bandit_sample_subtree
+    // bandit_sample_subtree
 
     //etc.
 };

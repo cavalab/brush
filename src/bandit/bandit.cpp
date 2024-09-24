@@ -87,7 +87,7 @@ map<T, float> Bandit<T>::sample_probs(bool update) {
 }
 
 template <typename T>
-T Bandit<T>::choose(VectorXf& context) {
+T Bandit<T>::choose(const VectorXf& context) {
     return this->pbandit->choose(context);
 }
 

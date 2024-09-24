@@ -25,7 +25,7 @@ public:
     ~LinearThompsonSamplingBandit(){};
 
     std::map<T, float> sample_probs(bool update);
-    T choose(VectorXf& context);
+    T choose(const VectorXf& context);
     void update(T arm, float reward, VectorXf& context);
 private:
 };

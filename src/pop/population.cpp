@@ -10,6 +10,7 @@ Population<T>::Population()
     mig_prob = 0.0;
     pop_size = 0;
     num_islands = 0;
+    linear_complexity = false;
 }
 
 
@@ -24,6 +25,7 @@ void Population<T>::init(vector<Individual<T>>& new_individuals, const Parameter
     this->mig_prob = params.mig_prob;
     this->pop_size = params.pop_size;
     this->num_islands=params.num_islands;
+    this->linear_complexity = in(params.objectives, std::string("linear_complexity"));
 
     island_indexes.resize(num_islands);
     
@@ -62,6 +64,7 @@ void Population<T>::init(SearchSpace& ss, const Parameters& params)
     this->mig_prob = params.mig_prob;
     this->pop_size = params.pop_size;
     this->num_islands=params.num_islands;
+    this->linear_complexity = in(params.objectives, std::string("linear_complexity"));
     
     // Tuples with start and end indexes for each island. Number of individuals
     // in each island can slightly differ if num_islands is not a divisor of p (popsize)
@@ -247,7 +250,11 @@ vector<vector<size_t>> Population<T>::sorted_front(unsigned rank)
                 pf.push_back(i);
         }
 
-        std::sort(pf.begin(),pf.end(),SortComplexity(*this)); 
+        if (this->linear_complexity)
+            std::sort(pf.begin(),pf.end(),SortLinearComplexity(*this)); 
+        else
+            std::sort(pf.begin(),pf.end(),SortComplexity(*this)); 
+
         auto it = std::unique(pf.begin(),pf.end(),SameFitComplexity(*this));
         
         pf.resize(std::distance(pf.begin(),it));
@@ -307,9 +314,11 @@ vector<size_t> Population<T>::hall_of_fame(unsigned rank)
         }
     }
 
-    // TODO: should I sort the hall of fame by complexity? or error?
-    std::sort(pf.begin(),pf.end(),SortComplexity(*this)); 
-
+    if (this->linear_complexity)
+        std::sort(pf.begin(),pf.end(),SortLinearComplexity(*this)); 
+    else
+        std::sort(pf.begin(),pf.end(),SortComplexity(*this)); 
+        
     auto it = std::unique(pf.begin(),pf.end(),SameFitComplexity(*this));
     
     pf.resize(std::distance(pf.begin(),it));
