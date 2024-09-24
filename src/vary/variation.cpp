@@ -17,12 +17,13 @@ using namespace MAB;
 class PointMutation : public MutationBase
 {
 public:
-    static auto mutate(tree<Node>& Tree, Iter spot, const SearchSpace& SS,
+    template<Brush::ProgramType T>
+    static auto mutate(tree<Node>& Tree, Iter spot, Variation<T>& variator,
                     const Parameters& params)
     {
         // get_node_like will sample a similar node based on node_map_weights or
         // terminal_weights, and maybe will return a Node.
-        optional<Node> newNode = SS.get_node_like(spot.node->data);
+        optional<Node> newNode = variator.search_space.get_node_like(spot.node->data);
 
         if (!newNode) // overload to check if newNode == nullopt
             return false;
@@ -43,7 +44,8 @@ public:
 class InsertMutation : public MutationBase
 {
 public:
-    static auto find_spots(tree<Node>& Tree, const SearchSpace& SS,
+    template<Brush::ProgramType T>
+    static auto find_spots(tree<Node>& Tree, Variation<T>& variator,
                     const Parameters& params)
     {
         vector<float> weights;
@@ -57,7 +59,7 @@ public:
 
                             // check if SS holds an operator to avoid failing `check` in sample_op_with_arg
                             if ((d >= params.get_max_depth())
-                            ||  (SS.node_map.find(n.ret_type) == SS.node_map.end())) {
+                            ||  (variator.search_space.node_map.find(n.ret_type) == variator.search_space.node_map.end())) {
                                 return 0.0f;
                             }
                             else {
@@ -74,7 +76,8 @@ public:
         return weights;
     }
 
-    static auto mutate(tree<Node>& Tree, Iter spot, const SearchSpace& SS,
+    template<Brush::ProgramType T>
+    static auto mutate(tree<Node>& Tree, Iter spot, Variation<T>& variator,
                     const Parameters& params)
     {
         auto spot_type = spot.node->data.ret_type;
@@ -86,7 +89,7 @@ public:
         // size restriction, which will be relaxed here (just as it is in the PTC2
         // algorithm). This mutation can create a new expression that exceeds the
         // maximum size by the highest arity among the operators.
-        std::optional<Node> n = SS.sample_op_with_arg(
+        std::optional<Node> n = variator.search_space.sample_op_with_arg(
             spot_type, spot_type, true, params.max_size-Tree.size()-1); 
 
         if (!n) // there is no operator with compatible arguments
@@ -102,7 +105,8 @@ public:
             if (spot_filled)
             {
                 // if spot is in its child position, append children.
-                auto opt = SS.sample_terminal(a);
+                auto context = variator.get_context(Tree, spot);
+                auto opt = variator.bandit_sample_terminal(a, context);
 
                 if (!opt)
                     return false;
@@ -113,8 +117,9 @@ public:
             else if (a == spot_type)
                 spot_filled = true;
             // otherwise, add siblings before spot node
-            else {
-                auto opt = SS.sample_terminal(a);
+            else {        
+                auto context = variator.get_context(Tree, spot);
+                auto opt = variator.bandit_sample_terminal(a, context);
 
                 if (!opt)
                     return false;
@@ -136,12 +141,14 @@ public:
 class DeleteMutation : public MutationBase
 {
 public:
-    static auto mutate(tree<Node>& Tree, Iter spot, const SearchSpace& SS,
+    template<Brush::ProgramType T>
+    static auto mutate(tree<Node>& Tree, Iter spot, Variation<T>& variator,
                     const Parameters& params)
     {
         // sample_terminal will sample based on terminal_weights. If it succeeds, 
         // then the new terminal will be in `opt.value()`
-        auto opt = SS.sample_terminal(spot.node->data.ret_type); 
+        auto context = variator.get_context(Tree, spot);
+        auto opt = variator.bandit_sample_terminal(spot.node->data.ret_type, context); 
         
         if (!opt) // there is no terminal with compatible arguments
             return false;
@@ -163,7 +170,8 @@ public:
 class ToggleWeightOnMutation : public MutationBase
 {
 public:
-    static auto find_spots(tree<Node>& Tree, const SearchSpace& SS,
+    template<Brush::ProgramType T>
+    static auto find_spots(tree<Node>& Tree, Variation<T>& variator,
                     const Parameters& params)
     {
         vector<float> weights(Tree.size());
@@ -193,7 +201,8 @@ public:
         return weights;
     }
 
-    static auto mutate(tree<Node>& Tree, Iter spot, const SearchSpace& SS,
+    template<Brush::ProgramType T>
+    static auto mutate(tree<Node>& Tree, Iter spot, Variation<T>& variator,
                     const Parameters& params)
     {
         if (spot.node->data.get_is_weighted()==true // cant turn on whats already on
@@ -214,7 +223,8 @@ public:
 class ToggleWeightOffMutation : public MutationBase
 {
 public:
-    static auto find_spots(tree<Node>& Tree, const SearchSpace& SS,
+    template<Brush::ProgramType T>
+    static auto find_spots(tree<Node>& Tree, Variation<T>& variator,
                     const Parameters& params)
     {
         vector<float> weights(Tree.size());
@@ -235,7 +245,8 @@ public:
         return weights;
     }
 
-    static auto mutate(tree<Node>& Tree, Iter spot, const SearchSpace& SS,
+    template<Brush::ProgramType T>
+    static auto mutate(tree<Node>& Tree, Iter spot, Variation<T>& variator,
                     const Parameters& params)
     {
         if (spot.node->data.get_is_weighted()==false) // TODO: This condition should never happen. Make sure it dont, then remove it. (this is also true for toggleweighton, also fix that)
@@ -255,12 +266,13 @@ public:
 class SubtreeMutation : public MutationBase
 {
 public:
-    static auto find_spots(tree<Node>& Tree, const SearchSpace& SS,
+    template<Brush::ProgramType T>
+    static auto find_spots(tree<Node>& Tree, Variation<T>& variator,
                     const Parameters& params)
     {
         vector<float> weights;
 
-        auto node_map = SS.node_map;
+        auto node_map = variator.search_space.node_map;
 
         if (Tree.size() < params.max_size) {
             Iter iter = Tree.begin();
@@ -271,8 +283,8 @@ public:
 
                             // we need to make sure there's some node to start the subtree
                             if ((d >= params.max_depth)
-                            ||  (SS.node_map.find(n.ret_type) == SS.node_map.end())
-                            ||  (SS.node_map.find(n.ret_type) == SS.node_map.end()) )
+                            ||  (node_map.find(n.ret_type) == node_map.end())
+                            ||  (node_map.find(n.ret_type) == node_map.end()) )
                                 return 0.0f;
                             else
                                 return n.get_prob_change(); 
@@ -286,7 +298,8 @@ public:
         return weights;
     }
 
-    static auto mutate(tree<Node>& Tree, Iter spot, const SearchSpace& SS,
+    template<Brush::ProgramType T>
+    static auto mutate(tree<Node>& Tree, Iter spot, Variation<T>& variator,
                     const Parameters& params)
     {
         // check if we exceeded the size/depth constrains (without subtracting,
@@ -308,7 +321,7 @@ public:
 
         // sample subtree uses PTC2, which operates on depth and size of the tree<Node> 
         // (and not on the program!). we shoudn't care for weights here
-        auto subtree = SS.sample_subtree(spot.node->data, d, s); 
+        auto subtree = variator.search_space.sample_subtree(spot.node->data, d, s); 
 
         if (!subtree) // there is no terminal with compatible arguments
             return false;
@@ -330,7 +343,8 @@ public:
 class SplitMutation : public MutationBase
 {
 public:
-    static auto find_spots(tree<Node>& Tree, const SearchSpace& SS,
+    template<Brush::ProgramType T>
+    static auto find_spots(tree<Node>& Tree, Variation<T>& variator,
                     const Parameters& params)
     {
         vector<float> weights;
@@ -344,7 +358,7 @@ public:
 
                             // check if SS holds an operator to avoid failing `check` in sample_op_with_arg
                             if (d >= params.get_max_depth()
-                            ||  SS.node_map.find(n.ret_type) == SS.node_map.end()
+                            ||  variator.search_space.node_map.find(n.ret_type) == variator.search_space.node_map.end()
                             // ||  check if n.ret_type can be splitted (e.g. DataType::ArrayF)
                             ) {
                                 return 0.0f;
@@ -363,7 +377,8 @@ public:
         return weights;
     }
 
-    static auto mutate(tree<Node>& Tree, Iter spot, const SearchSpace& SS,
+    template<Brush::ProgramType T>
+    static auto mutate(tree<Node>& Tree, Iter spot, Variation<T>& variator,
                     const Parameters& params)
     {
         return false;
@@ -567,17 +582,17 @@ std::tuple<std::optional<Individual<T>>, VectorXf> Variation<T>::mutate(
 
     vector<float> weights; // choose location by weighted sampling of program
     if (choice == "point") // TODO: use enum here to optimize
-        weights = PointMutation::find_spots(copy.Tree, search_space, parameters);
+        weights = PointMutation::find_spots(copy.Tree, (*this), parameters);
     else if (choice == "insert")
-        weights = InsertMutation::find_spots(copy.Tree, search_space, parameters);
+        weights = InsertMutation::find_spots(copy.Tree, (*this), parameters);
     else if (choice == "delete")
-        weights = DeleteMutation::find_spots(copy.Tree, search_space, parameters);
+        weights = DeleteMutation::find_spots(copy.Tree, (*this), parameters);
     else if (choice == "subtree")
-        weights = SubtreeMutation::find_spots(copy.Tree, search_space, parameters);
+        weights = SubtreeMutation::find_spots(copy.Tree, (*this), parameters);
     else if (choice == "toggle_weight_on")
-        weights = ToggleWeightOnMutation::find_spots(copy.Tree, search_space, parameters);
+        weights = ToggleWeightOnMutation::find_spots(copy.Tree, (*this), parameters);
     else if (choice == "toggle_weight_off")
-        weights = ToggleWeightOffMutation::find_spots(copy.Tree, search_space, parameters);
+        weights = ToggleWeightOffMutation::find_spots(copy.Tree, (*this), parameters);
     else {
         std::string msg = fmt::format("{} not a valid mutation choice", choice);
         HANDLE_ERROR_THROW(msg);
@@ -606,17 +621,17 @@ std::tuple<std::optional<Individual<T>>, VectorXf> Variation<T>::mutate(
         
         bool success;
         if (choice == "point")
-            success = PointMutation::mutate(child.Tree, spot, search_space, parameters);
+            success = PointMutation::mutate(child.Tree, spot, (*this), parameters);
         else if (choice == "insert")
-            success = InsertMutation::mutate(child.Tree, spot, search_space, parameters);
+            success = InsertMutation::mutate(child.Tree, spot, (*this), parameters);
         else if (choice == "delete")
-            success = DeleteMutation::mutate(child.Tree, spot, search_space, parameters);
+            success = DeleteMutation::mutate(child.Tree, spot, (*this), parameters);
         else if (choice == "subtree")
-            success = SubtreeMutation::mutate(child.Tree, spot, search_space, parameters);
+            success = SubtreeMutation::mutate(child.Tree, spot, (*this), parameters);
         else if (choice == "toggle_weight_on")
-            success = ToggleWeightOnMutation::mutate(child.Tree, spot, search_space, parameters);
+            success = ToggleWeightOnMutation::mutate(child.Tree, spot, (*this), parameters);
         else // it must be"toggle_weight_off"
-            success = ToggleWeightOffMutation::mutate(child.Tree, spot, search_space, parameters);
+            success = ToggleWeightOffMutation::mutate(child.Tree, spot, (*this), parameters);
 
         if (success
         && ( (child.size()  <= parameters.max_size)

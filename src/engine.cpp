@@ -526,7 +526,11 @@ void Engine<T>::run(Dataset &data)
 
         [&]() { return 0; }, // jump back to the next iteration
 
-        [&]() {
+        [&](tf::Subflow& subflow) {            
+            subflow.for_each_index(0, this->params.num_islands, 1, [&](int island) {
+                evaluator.update_fitness(this->pop, island, data, params, false, false);
+            }).name("Set train loss as fitness");
+
             // getting the updated versions
             if (params.bandit != "dummy")
             {

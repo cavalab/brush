@@ -29,27 +29,6 @@ using namespace Brush::Eval;
 namespace Brush {
 namespace Var {
 
-class MutationBase {
-public:
-    using Iter = tree<Node>::pre_order_iterator;
-
-    static auto find_spots(tree<Node>& Tree, const SearchSpace& SS,
-                            const Parameters& params)
-    {
-        vector<float> weights(Tree.size());
-
-        // by default, mutation can happen anywhere, based on node weights
-        std::transform(Tree.begin(), Tree.end(), weights.begin(),
-                       [&](const auto& n){ return n.get_prob_change();});
-        
-        // Should have same size as prog.Tree.size, even if all weights <= 0.0
-        return weights;
-    }
-
-    static auto mutate(tree<Node>& Tree, Iter spot, const SearchSpace& SS,
-                            const Parameters& params);
-};
-
 /*!
  * @class Variation
  * @brief Class representing the variation operators in Brush.
@@ -234,7 +213,7 @@ public:
                 *r.select_randomly(parents.begin(), parents.end())];
         
             vector<Individual<T>> ind_parents;
-            VectorXf context = this->variation_bandit.get_context(mom.program.Tree, mom.program.Tree.begin());
+            VectorXf context = get_context(mom.program.Tree, mom.program.Tree.begin());
 
             string choice = this->variation_bandit.choose(context);
 
@@ -365,19 +344,7 @@ public:
         }
     }
     
-    // they need to be references because we are going to modify them
-    SearchSpace search_space; // The search space for the variation operator.
-    Parameters parameters;    // The parameters for the variation operator
-private:
-    // bandits will internaly work as an interface between variation and its searchspace.
-    // they will sample from the SS (instead of letting the search space do it directly),
-    // and also propagate what they learn back to the search space at the end of the execution.
-    Bandit<string> variation_bandit;
-    map<DataType, Bandit<string>> terminal_bandits; 
-    map<DataType, Bandit<string>> op_bandits;    
-
     // these functions below will extract context and use it to choose the nodes to replace
-    
     // bandit_sample_terminal
     std::optional<Node> bandit_sample_terminal(DataType R, VectorXf& context)
     {
@@ -395,6 +362,7 @@ private:
             auto index = std::distance(search_space.terminal_map.at(R).begin(), it);
             return search_space.terminal_map.at(R).at(index);
         }
+        return std::nullopt;
     };
 
     // bandit_get_node_like
@@ -402,7 +370,20 @@ private:
     // bandit_sample_op
     // bandit_sample_subtree
 
-    //etc.
+    
+    VectorXf get_context(const tree<Node>& tree, Iter spot) {
+        return variation_bandit.get_context(tree, spot); }
+
+    // they need to be references because we are going to modify them
+    SearchSpace search_space; // The search space for the variation operator.
+    Parameters parameters;    // The parameters for the variation operator
+private:
+    // bandits will internaly work as an interface between variation and its searchspace.
+    // they will sample from the SS (instead of letting the search space do it directly),
+    // and also propagate what they learn back to the search space at the end of the execution.
+    Bandit<string> variation_bandit;
+    map<DataType, Bandit<string>> terminal_bandits; 
+    map<DataType, Bandit<string>> op_bandits;    
 };
 
 // // Explicitly instantiate the template for brush program types
@@ -410,6 +391,29 @@ private:
 // template class Variation<ProgramType::BinaryClassifier>;
 // template class Variation<ProgramType::MulticlassClassifier>;
 // template class Variation<ProgramType::Representer>;
+
+class MutationBase {    
+public:
+    using Iter = tree<Node>::pre_order_iterator;
+
+    template<Brush::ProgramType T>
+    static auto find_spots(tree<Node>& Tree, Variation<T>& variator,
+                            const Parameters& params)
+    {
+        vector<float> weights(Tree.size());
+
+        // by default, mutation can happen anywhere, based on node weights
+        std::transform(Tree.begin(), Tree.end(), weights.begin(),
+                       [&](const auto& n){ return n.get_prob_change();});
+        
+        // Should have same size as prog.Tree.size, even if all weights <= 0.0
+        return weights;
+    }
+
+    template<Brush::ProgramType T>
+    static auto mutate(tree<Node>& Tree, Iter spot, Variation<T>& variator,
+                            const Parameters& params);
+};
 
 } //namespace Var
 } //namespace Brush
