@@ -275,32 +275,31 @@ vector<size_t> Population<T>::hall_of_fame(unsigned rank)
     // this is used to migration and update archive at the end of a generation.
     // Thiis function expects islands without offspring
 
-    vector<size_t> pf(0);
+    vector<size_t> merged_islands(0);
     
     for (int j=0;j<num_islands; ++j)
     {
         auto indices = island_indexes.at(j);
         for (int i=0; i<indices.size(); ++i)
         {
-            if (individuals.at(indices.at(i))->fitness.rank == rank)
-                pf.push_back(indices.at(i));
+            merged_islands.push_back(indices.at(i));
         }
     }
 
     // checking if there is no dominance between different fronts
     // (without updating their fitness objects)
-    vector<int> hof;                
+    vector<size_t> hof;                
     hof.clear();
 
-    for (int i = 0; i < pf.size(); ++i) {
+    for (int i = 0; i < merged_islands.size(); ++i) {
     
         std::vector<unsigned int> dom;
         int dcount = 0;
     
-        auto p = individuals.at(pf[i]);
+        auto p = individuals.at(merged_islands[i]);
 
-        for (int j = 0; j < pf.size(); ++j) {
-            const Individual<T>& q = (*individuals.at(pf[j]));
+        for (int j = 0; j < merged_islands.size(); ++j) {
+            const Individual<T>& q = (*individuals.at(merged_islands[j]));
         
             int compare = p->fitness.dominates(q.fitness);
             if (compare == -1) { // q dominates p
@@ -310,20 +309,20 @@ vector<size_t> Population<T>::hall_of_fame(unsigned rank)
         }
 
         if (dcount == 0) {
-            hof.push_back(pf[i]);
+            hof.push_back(merged_islands[i]);
         }
     }
 
     if (this->linear_complexity)
-        std::sort(pf.begin(),pf.end(),SortLinearComplexity(*this)); 
+        std::sort(hof.begin(),hof.end(),SortLinearComplexity(*this)); 
     else
-        std::sort(pf.begin(),pf.end(),SortComplexity(*this)); 
+        std::sort(hof.begin(),hof.end(),SortComplexity(*this)); 
         
-    auto it = std::unique(pf.begin(),pf.end(),SameFitComplexity(*this));
+    auto it = std::unique(hof.begin(),hof.end(),SameFitComplexity(*this));
     
-    pf.resize(std::distance(pf.begin(),it));
+    hof.resize(std::distance(hof.begin(),it));
 
-    return pf;
+    return hof;
 }
 
 template<ProgramType T>
