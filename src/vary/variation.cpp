@@ -23,7 +23,8 @@ public:
     {
         // get_node_like will sample a similar node based on node_map_weights or
         // terminal_weights, and maybe will return a Node.
-        optional<Node> newNode = variator.search_space.get_node_like(spot.node->data);
+        auto context = variator.get_context(Tree, spot);
+        optional<Node> newNode = variator.bandit_get_node_like(spot.node->data, context);
 
         if (!newNode) // overload to check if newNode == nullopt
             return false;
@@ -89,8 +90,9 @@ public:
         // size restriction, which will be relaxed here (just as it is in the PTC2
         // algorithm). This mutation can create a new expression that exceeds the
         // maximum size by the highest arity among the operators.
-        std::optional<Node> n = variator.search_space.sample_op_with_arg(
-            spot_type, spot_type, true, params.max_size-Tree.size()-1); 
+        auto context = variator.get_context(Tree, spot);
+        std::optional<Node> n = variator.bandit_sample_op_with_arg(
+            spot_type, spot_type, context, params.max_size-Tree.size()-1); 
 
         if (!n) // there is no operator with compatible arguments
             return false;
@@ -692,12 +694,12 @@ void Variation<T>::vary(Population<T>& pop, int island,
         }
         else
         {
-            std::cout << "Performing mutation " << std::endl;
+            // std::cout << "Performing mutation " << std::endl;
             auto variation_result = mutate(mom);   
-            cout << "finished mutation" << endl;
+            // cout << "finished mutation" << endl;
             ind_parents = {mom};
             tie(opt, context) = variation_result;
-                cout << "unpacked" << endl;
+            // cout << "unpacked" << endl;
         }
     
         // this assumes that islands do not share indexes before doing variation
@@ -861,29 +863,18 @@ void Variation<T>::update_ss(Population<T>& pop)
     }
 
     // operators: getting new probabilities for op nodes
-    for (auto& bandit : op_bandits) {
-        auto ret_type = bandit.first;
-        
-        auto op_probs = bandit.second.sample_probs(true);
-        for (auto& op : op_probs) {
+    for (auto& [ret_type, bandit_map] : op_bandits) {
+        for (auto& [args_type, bandit] : bandit_map) {
+            auto op_probs = bandit.sample_probs(true);
 
-            auto op_name = op.first;
-            auto op_prob = op.second;
+            for (auto& [op_name, op_prob] : op_probs) {
 
-            // Search for the index that matches the op name (for all different arguments)
-            for (const auto& [args_type, node_map] : search_space.node_map.at(ret_type))
-            {
-                auto it = std::find_if(
-                    node_map.begin(),
-                    node_map.end(), 
-                    [&](auto& entry) { // entry is a pair of index and node
-                        return entry.second.name == op_name; });
-
-                if (it != node_map.end()) {
-                    auto index = it->first;
-
-                    // Update the node_map_weights with the second value
-                    search_space.node_map_weights.at(ret_type).at(args_type).at(index) = op_prob;
+                for (const auto& [node_type, node_value]: search_space.node_map.at(ret_type).at(args_type))
+                {
+                    // std::cout << " - Node name: " << node_value.name << std::endl;
+                    if (node_value.name == op_name) {
+                        search_space.node_map_weights.at(ret_type).at(args_type).at(node_type) = op_prob;
+                    }
                 }
             }
         }

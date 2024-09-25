@@ -466,10 +466,8 @@ struct SearchSpace
         
         vector<Node> matches; 
         vector<float> weights; 
-        for (const auto& kv: ret_match)
+        for (const auto& [arg_hash, node_type_map]: ret_match)
         {
-            auto arg_hash = kv.first;
-            auto node_type_map = kv.second;
             if (node_type_map.find(type) != node_type_map.end())
             {
                 matches.push_back(node_type_map.at(type));
