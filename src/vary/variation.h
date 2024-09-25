@@ -135,6 +135,7 @@ public:
                 op_bandits[ret_type][args_type] = Bandit<string>(parameters.bandit, node_probs);
             }
         }
+
     };
 
     /**
@@ -218,7 +219,8 @@ public:
                 *r.select_randomly(parents.begin(), parents.end())];
         
             vector<Individual<T>> ind_parents;
-            VectorXf context = get_context(mom.program.Tree, mom.program.Tree.begin());
+            VectorXf context = get_context(mom.program.Tree,
+                                           mom.program.Tree.begin());
 
             string choice = this->variation_bandit.choose(context);
 
@@ -501,7 +503,7 @@ public:
     // of samplings, I think it is ok to not update them and just use the distribution they learned.
 
     VectorXf get_context(const tree<Node>& tree, Iter spot) {
-        return variation_bandit.get_context(tree, spot); }
+        return variation_bandit.get_context(tree, spot, search_space); }
 
     // they need to be references because we are going to modify them
     SearchSpace search_space; // The search space for the variation operator.
@@ -512,7 +514,7 @@ private:
     // and also propagate what they learn back to the search space at the end of the execution.
     Bandit<string> variation_bandit;
     map<DataType, Bandit<string>> terminal_bandits; 
-    map<DataType, map<size_t, Bandit<string>>> op_bandits;    
+    map<DataType, map<size_t, Bandit<string>>> op_bandits;  
 };
 
 // // Explicitly instantiate the template for brush program types

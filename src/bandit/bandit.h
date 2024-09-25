@@ -9,6 +9,8 @@ license: GNU/GPL v3
 #include "bandit_operator.h"
 #include "dummy.h"
 #include "thompson.h"
+#include "../program/nodetype.h"
+#include "../vary/search_space.h"
 
 namespace Brush {
 namespace MAB {
@@ -116,7 +118,7 @@ public:
      */
     void update(T arm, float reward, VectorXf& context={});
 
-    VectorXf get_context(const tree<Node>& tree, Iter spot);
+    VectorXf get_context(const tree<Node>& tree, Iter spot, const SearchSpace &ss);
 };
 
 //TODO: serialization should save the type of bandit and its parameters

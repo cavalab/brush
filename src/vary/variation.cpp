@@ -23,6 +23,8 @@ public:
     {
         // get_node_like will sample a similar node based on node_map_weights or
         // terminal_weights, and maybe will return a Node.
+
+        // std::cout << "point mutation" << std::endl;
         auto context = variator.get_context(Tree, spot);
         optional<Node> newNode = variator.bandit_get_node_like(spot.node->data, context);
 
@@ -90,6 +92,7 @@ public:
         // size restriction, which will be relaxed here (just as it is in the PTC2
         // algorithm). This mutation can create a new expression that exceeds the
         // maximum size by the highest arity among the operators.
+        // std::cout << "insert mutation" << std::endl;
         auto context = variator.get_context(Tree, spot);
         std::optional<Node> n = variator.bandit_sample_op_with_arg(
             spot_type, spot_type, context, params.max_size-Tree.size()-1); 
@@ -107,7 +110,7 @@ public:
             if (spot_filled)
             {
                 // if spot is in its child position, append children.
-                auto context = variator.get_context(Tree, spot);
+                // auto context = variator.get_context(Tree, spot);
                 auto opt = variator.bandit_sample_terminal(a, context);
 
                 if (!opt)
@@ -120,7 +123,7 @@ public:
                 spot_filled = true;
             // otherwise, add siblings before spot node
             else {        
-                auto context = variator.get_context(Tree, spot);
+                // auto context = variator.get_context(Tree, spot);
                 auto opt = variator.bandit_sample_terminal(a, context);
 
                 if (!opt)
@@ -149,6 +152,8 @@ public:
     {
         // sample_terminal will sample based on terminal_weights. If it succeeds, 
         // then the new terminal will be in `opt.value()`
+        
+        // std::cout << "delete mutation" << std::endl;
         auto context = variator.get_context(Tree, spot);
         auto opt = variator.bandit_sample_terminal(spot.node->data.ret_type, context); 
         
@@ -502,15 +507,16 @@ std::tuple<std::optional<Individual<T>>, VectorXf> Variation<T>::cross(
                     other_weights.begin(), 
                     other_weights.end()
                 );
-                                
+                     
+                // std::cout << "crossover" << std::endl;
+                VectorXf context = get_context(child.Tree, child_spot);
+           
                 // fmt::print("other_spot : {}\n",other_spot.node->data);
                 // swap subtrees at child_spot and other_spot
                 child.Tree.move_ontop(child_spot, other_spot);
                 
                 Individual<T> ind(child);
                 ind.set_variation("cx"); // TODO: use enum here to make it faster
-
-                VectorXf context = this->variation_bandit.get_context(mom.program.Tree, child_spot);
 
                 return std::make_tuple(ind, context);
             }
@@ -606,6 +612,7 @@ std::tuple<std::optional<Individual<T>>, VectorXf> Variation<T>::mutate(
     { // There is no spot that has a probability to be selected
         return std::make_tuple(std::nullopt, VectorXf());
     }
+    VectorXf context = {};
 
     int attempts = 0;
     while(++attempts <= 3)
@@ -621,6 +628,9 @@ std::tuple<std::optional<Individual<T>>, VectorXf> Variation<T>::mutate(
         // std::optional to indicare the result of their manipulation over the
         // program tree. Here we call the mutation function and return the result
         
+        // std::cout << "mutate()" << std::endl;
+        context = get_context(child.Tree, spot);
+
         bool success;
         if (choice == "point")
             success = PointMutation::mutate(child.Tree, spot, (*this), parameters);
@@ -648,8 +658,6 @@ std::tuple<std::optional<Individual<T>>, VectorXf> Variation<T>::mutate(
                 ind.set_sampled_nodes({spot.node->data});
             }
 
-            VectorXf context = this->variation_bandit.get_context(parent.program.Tree, spot);
-
             return std::make_tuple(ind, context);
         }
         else { // reseting 
@@ -657,7 +665,7 @@ std::tuple<std::optional<Individual<T>>, VectorXf> Variation<T>::mutate(
         }
     }
 
-    return std::make_tuple(std::nullopt, VectorXf());
+    return std::make_tuple(std::nullopt, context);
 };
 
 template<Brush::ProgramType T>

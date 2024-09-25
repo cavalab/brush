@@ -292,14 +292,13 @@ bool Engine<T>::update_best()
         const auto& ind = *pop.individuals.at(hof[i]);
 
         // TODO: use intermediary variables for wvalues
-        // if there is no validation, then loss_v==loss and this should work just fine.
         // Iterate over the weighted values to compare (everything is a maximization problem here)
         passed = false;
         for (size_t j = 0; j < this->best_ind.fitness.get_wvalues().size(); ++j) {
             if (ind.fitness.get_wvalues()[j] > this->best_ind.fitness.get_wvalues()[j]) {
                 passed = true;
             }
-            else if (ind.fitness.get_wvalues()[j] != this->best_ind.fitness.get_wvalues()[j]) {
+            else if (ind.fitness.get_wvalues()[j] < this->best_ind.fitness.get_wvalues()[j]) {
                 // it is not better, and it is also not equal. So, it is worse. Stop here.
                 break;
             }

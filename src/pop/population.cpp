@@ -275,6 +275,7 @@ vector<size_t> Population<T>::hall_of_fame(unsigned rank)
     // this is used to migration and update archive at the end of a generation.
     // Thiis function expects islands without offspring
 
+    // TODO: run fast_nds here to get the pareto fronts? I think this could improve performance
     vector<size_t> merged_islands(0);
     
     for (int j=0;j<num_islands; ++j)
