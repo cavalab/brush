@@ -4,11 +4,13 @@
 #include "../../src/bandit/bandit_operator.h"
 #include "../../src/bandit/dummy.h"
 #include "../../src/bandit/thompson.h"
+#include "../../src/bandit/linear_thompson.h"
 
 #include "../../src/bandit/bandit.cpp"
 #include "../../src/bandit/bandit_operator.cpp"
 #include "../../src/bandit/dummy.cpp"
 #include "../../src/bandit/thompson.cpp"
+#include "../../src/bandit/linear_thompson.cpp"
 
 using namespace Brush::MAB;
 using testing::TestWithParam;
@@ -30,7 +32,7 @@ class BanditTest
 TEST_P(BanditTest, BanditProbabilities) {
     // Create a DummyBandit with two arms
     std::vector<std::string> arms = {"foo1", "foo2"};
-    Bandit<string> bandit(banditType, arms);
+    Bandit<string> bandit(banditType, arms, 1);
 
     // this is required in order for it to work
     bandit.set_bandit();

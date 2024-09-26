@@ -163,11 +163,19 @@ TEST(Engine, ClassificationEngineWorks)
     Brush::ClassifierEngine est(params, ss);
     est.run(data);
 
-     // TODO: tests with all possible metrics
+    // TODO: tests with all possible metrics
 
-     params.set_scorer("average_precision_score");
-     Brush::ClassifierEngine est2(params, ss);
-     est2.run(data);
+    params.set_scorer("average_precision_score");
+    Brush::ClassifierEngine est2(params, ss);
+    est2.run(data);
+
+    std::cout << "Parameters probs:" << std::endl;
+    std::cout << "cx: " << params.get_cx_prob() << std::endl;
+    for (const auto& [name, prob] : params.get_mutation_probs())
+        std::cout << name << ": " << prob << std::endl;
+
+    std::cout << "Search Space:" << std::endl;
+    ss.print();
 }
 
 TEST(Engine, SavingLoadingFixedNodes)

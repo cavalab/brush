@@ -79,7 +79,14 @@ public:
         if (parameters.cx_prob > 0.0)
             variation_probs["cx"] = parameters.cx_prob;
         
-        this->variation_bandit = Bandit<string>(parameters.bandit, variation_probs);
+        size_t tot_operators = NodeTypes::Count;
+        size_t tot_features  = 0;
+        for (const auto& pair : search_space.terminal_map)
+            tot_features += pair.second.size();
+
+        int context_size = tot_operators + tot_features;
+
+        this->variation_bandit = Bandit<string>(parameters.bandit, variation_probs, context_size);
 
         // TODO: should I set C parameter based on pop size or leave it fixed?
         // TODO: update string comparisons to use .compare method
@@ -101,7 +108,8 @@ public:
                     }
                         
                 terminal_bandits[entry.first] = Bandit<string>(parameters.bandit,
-                                                               terminal_probs);
+                                                               terminal_probs,
+                                                               context_size);
             }
         }
 
@@ -132,14 +140,16 @@ public:
                         // it->second += weight;
                     }
                 }
-                op_bandits[ret_type][args_type] = Bandit<string>(parameters.bandit, node_probs);
+                op_bandits[ret_type][args_type] = Bandit<string>(parameters.bandit,
+                                                                 node_probs,
+                                                                 context_size);
             }
         }
 
     };
 
     /**
-     * @brief Performs crossover operation on two individuals.
+     * @brief Performs croearch_spaceover operation on two individuals.
      * 
      * @param mom The first parent individual.
      * @param dad The second parent individual.
@@ -184,7 +194,7 @@ public:
      * @param pop The population to update the selection strategy for.
      * @param rewards The rewards obtained from the evaluation of individuals.
      */
-    void update_ss(Population<T>& pop);
+    void update_ss();
 
     /**
      * @brief Varies a population and updates the selection strategy based on rewards.

@@ -8,11 +8,12 @@ Bandit<T>::Bandit() {
     set_type("dynamic_thompson");
     set_arms({});
     set_probs({});
+    set_context_size(1);
     set_bandit();
 }
 
 template <typename T>
-Bandit<T>::Bandit(string type, vector<T> arms) : type(type) {
+Bandit<T>::Bandit(string type, vector<T> arms, int c_size) : type(type) {
     this->set_arms(arms);
 
     map<T, float> arms_probs;
@@ -21,11 +22,12 @@ Bandit<T>::Bandit(string type, vector<T> arms) : type(type) {
         arms_probs[arm] = prob;
     }
     this->set_probs(arms_probs);
+    this->set_context_size(c_size);
     this->set_bandit();
 }
 
 template <typename T>
-Bandit<T>::Bandit(string type, map<T, float> arms_probs) : type(type) {
+Bandit<T>::Bandit(string type, map<T, float> arms_probs, int c_size) : type(type) {
     this->set_probs(arms_probs);
 
     vector<T> arms_names;
@@ -33,6 +35,7 @@ Bandit<T>::Bandit(string type, map<T, float> arms_probs) : type(type) {
         arms_names.push_back(pair.first);
     }
     this->set_arms(arms_names);
+    this->set_context_size(c_size);
     this->set_bandit();
 }
 
@@ -44,6 +47,8 @@ void Bandit<T>::set_bandit() {
         pbandit = make_unique<ThompsonSamplingBandit<T>>(probabilities);
     } else if (type == "dynamic_thompson") {
         pbandit = make_unique<ThompsonSamplingBandit<T>>(probabilities, true);
+    } else if (type == "linear_thompson") {
+        pbandit = make_unique<LinearThompsonSamplingBandit<T>>(probabilities, context_size);
     } else if (type == "dummy") {
         pbandit = make_unique<DummyBandit<T>>(probabilities);
     } else {
@@ -59,6 +64,16 @@ string Bandit<T>::get_type() {
 template <typename T>
 void Bandit<T>::set_type(string type) {
     this->type = type;
+}
+
+template <typename T>
+int Bandit<T>::get_context_size() {
+    return context_size;
+}
+
+template <typename T>
+void Bandit<T>::set_context_size(int new_context_size) {
+    this->context_size = new_context_size;
 }
 
 template <typename T>

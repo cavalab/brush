@@ -831,12 +831,17 @@ vector<float> Variation<T>::calculate_rewards(Population<T>& pop, int island)
 };
 
 template <Brush::ProgramType T>
-void Variation<T>::update_ss(Population<T>& pop)
+void Variation<T>::update_ss()
 {
     // propagate bandits learnt information to the search space
 
     // variation: getting new probabilities for variation operators
     auto variation_probs = variation_bandit.sample_probs(true);
+
+    std::cout << "Variation probabilities:" << std::endl;
+    for (const auto& variation : variation_probs) {
+        // std::cout << " - " << variation.first << ": " << variation.second << std::endl;
+    }
 
     if (variation_probs.find("cx") != variation_probs.end())
         parameters.set_cx_prob(variation_probs.at("cx"));
@@ -850,7 +855,9 @@ void Variation<T>::update_ss(Population<T>& pop)
         auto datatype = bandit.first;
         
         auto terminal_probs = bandit.second.sample_probs(true);
+        // std::cout << "Terminal probabilities for datatype " << std::endl;
         for (auto& terminal : terminal_probs) {
+            // std::cout << " - " << terminal.first << ": " << terminal.second << std::endl;
 
             auto terminal_name = terminal.first;
             auto terminal_prob = terminal.second;
@@ -876,17 +883,27 @@ void Variation<T>::update_ss(Population<T>& pop)
             auto op_probs = bandit.sample_probs(true);
 
             for (auto& [op_name, op_prob] : op_probs) {
+                // std::cout << " - " << op_name << ": " << op_prob << std::endl;
 
                 for (const auto& [node_type, node_value]: search_space.node_map.at(ret_type).at(args_type))
                 {
                     // std::cout << " - Node name: " << node_value.name << std::endl;
                     if (node_value.name == op_name) {
+                        // cout << "match" << endl;
                         search_space.node_map_weights.at(ret_type).at(args_type).at(node_type) = op_prob;
                     }
                 }
             }
         }
     }
+    
+    // std::cout << "inside update_ss(). Parameters probs:" << std::endl;
+    // std::cout << "cx: " << parameters.get_cx_prob() << std::endl;
+    // for (const auto& [name, prob] : parameters.get_mutation_probs())
+    //     std::cout << name << ": " << prob << std::endl;
+
+    // std::cout << "Search Space:" << std::endl;
+    // search_space.print();
 };
 
 } //namespace Var

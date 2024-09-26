@@ -472,7 +472,6 @@ void Engine<T>::run(Dataset &data)
                 // // TODO: do i need these next this-> pointers?
                 // // Use the flattened rewards vector for updating the population
                 
-                this->variator.update_ss(this->pop);
                 this->pop.update(survivors);
                 this->pop.migrate();
             }).name("update, migrate and disentangle indexes between islands");
@@ -495,6 +494,8 @@ void Engine<T>::run(Dataset &data)
                     evaluator.update_fitness(this->pop, island, data, params, false, true);
                 }).name("Set validation loss to update best");
 
+                variator.update_ss();
+
                 bool updated_best = this->update_best();
                 
                 fraction = params.max_time == -1 ? ((generation+1)*1.0)/params.max_gens : 
@@ -515,7 +516,7 @@ void Engine<T>::run(Dataset &data)
                 
                 ++generation;
 
-            }).name("update best, log, archive, stall");
+            }).name("update best, update ss, log, archive, stall");
 
             // set-up subflow graph
             prepare_gen.precede(run_generation);
@@ -531,12 +532,10 @@ void Engine<T>::run(Dataset &data)
             }).name("Set train loss as fitness");
 
             // getting the updated versions
-            if (params.bandit != "dummy")
-            {
-                // TODO: make the probabilities add up to 1 (this doesnt matter for the cpp side, but it is a good practice and helps comparing different probabilities)
-                this->ss = variator.search_space;
-                this->params = variator.parameters;
-            }
+            // TODO: make the probabilities add up to 1 (this doesnt matter for the cpp side, but it is a good practice and helps comparing different probabilities)
+            this->ss = variator.search_space;
+            this->params = variator.parameters;
+        
             if (params.save_population != "")
                 this->pop.save(params.save_population);
 

@@ -20,14 +20,25 @@ template <typename T>
 class LinearThompsonSamplingBandit : public BanditOperator<T>
 {
 public:
-    LinearThompsonSamplingBandit(vector<T> arms, bool dynamic=false);
-    LinearThompsonSamplingBandit(map<T, float> arms_probs, bool dynamic=false);
+    LinearThompsonSamplingBandit(vector<T> arms, int c_size=1);
+    LinearThompsonSamplingBandit(map<T, float> arms_probs, int c_size=1);
     ~LinearThompsonSamplingBandit(){};
 
     std::map<T, float> sample_probs(bool update);
     T choose(const VectorXf& context);
     void update(T arm, float reward, VectorXf& context);
 private:
+    int n_arms;
+    int context_size;
+
+    MatrixXf B;
+    MatrixXf m2_r;
+    MatrixXf B_inv;
+    MatrixXf B_inv_sqrt;
+    MatrixXf mean;
+    
+    // we need to make sure indexes does not change
+    std::map<int, T> arm_index_to_key;
 };
 
 } // MAB

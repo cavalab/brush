@@ -29,7 +29,7 @@ public:
     void update(T arm, float reward, VectorXf& context);
 private:
     bool dynamic_update;
-    float C = 1000;
+    float C = 250;
 
     std::map<T, float> alphas;
     std::map<T, float> betas;

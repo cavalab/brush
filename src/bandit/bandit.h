@@ -9,6 +9,7 @@ license: GNU/GPL v3
 #include "bandit_operator.h"
 #include "dummy.h"
 #include "thompson.h"
+#include "linear_thompson.h"
 #include "../program/nodetype.h"
 #include "../vary/search_space.h"
 
@@ -39,6 +40,8 @@ public:
     std::string type; /**< The type of the bandit. */
     vector<T> arms; /**< The arms of the bandit. */
 
+    int context_size;
+
     std::map<T, float> probabilities; /**< The probabilities associated with each arm. */
 
     Bandit();
@@ -49,14 +52,14 @@ public:
      * @param type The type of the bandit.
      * @param arms The arms of the bandit.
      */
-    Bandit(string type, vector<T> arms);
+    Bandit(string type, vector<T> arms, int c_size);
 
     /**
      * @brief Constructor for the Bandit struct.
      * @param type The type of the bandit.
      * @param arms_probs The arms and their associated probabilities.
      */
-    Bandit(string type, map<T, float> arms_probs);
+    Bandit(string type, map<T, float> arms_probs, int c_size);
 
     /**
      * @brief Sets the bandit operator (policy).
@@ -82,6 +85,9 @@ public:
      * @brief Sets the type of the bandit.
      */
     void set_type(string type);
+
+    int get_context_size();
+    void set_context_size(int new_context_size);
 
     /**
      * @brief Gets the probabilities associated with each arm.
