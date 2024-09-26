@@ -140,10 +140,15 @@ TEST(Engine, EngineWorks)
     // TODO: validation loss
 }
 
+#include <vector>
+#include <string>
 
-TEST(Engine, ClassificationEngineWorks)
+class EngineTest : public ::testing::TestWithParam<std::string> {};
+
+TEST_P(EngineTest, ClassificationEngineWorks)
 {
-     // TODO: test regression and multiclassifier . add some asserts here
+    std::string bandit_type = GetParam();
+
     Dataset data = Data::read_csv("docs/examples/datasets/d_analcatdata_aids.csv", "target");
     
     SearchSpace ss(data);
@@ -152,8 +157,8 @@ TEST(Engine, ClassificationEngineWorks)
 
     Parameters params;
     params.set_pop_size(10);
-    params.set_max_gens(100);
-    params.set_bandit("dynamic_thompson");
+    params.set_max_gens(10);
+    params.set_bandit(bandit_type);
     params.set_num_islands(1);
     params.set_mig_prob(0.0);
     params.set_scorer("log");
@@ -177,6 +182,17 @@ TEST(Engine, ClassificationEngineWorks)
     std::cout << "Search Space:" << std::endl;
     ss.print();
 }
+
+INSTANTIATE_TEST_SUITE_P(
+    BanditTypes,
+    EngineTest,
+    ::testing::Values(
+        "dummy",
+        "thompson",
+        "dynamic_thompson"
+        // "linear_thompson"
+    )
+);
 
 TEST(Engine, SavingLoadingFixedNodes)
 {

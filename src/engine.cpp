@@ -472,6 +472,7 @@ void Engine<T>::run(Dataset &data)
                 // // TODO: do i need these next this-> pointers?
                 // // Use the flattened rewards vector for updating the population
                 
+                this->variator.update_ss();
                 this->pop.update(survivors);
                 this->pop.migrate();
             }).name("update, migrate and disentangle indexes between islands");
@@ -493,8 +494,6 @@ void Engine<T>::run(Dataset &data)
                 subflow.for_each_index(0, this->params.num_islands, 1, [&](int island) {
                     evaluator.update_fitness(this->pop, island, data, params, false, true);
                 }).name("Set validation loss to update best");
-
-                variator.update_ss();
 
                 bool updated_best = this->update_best();
                 
@@ -535,7 +534,23 @@ void Engine<T>::run(Dataset &data)
             // TODO: make the probabilities add up to 1 (this doesnt matter for the cpp side, but it is a good practice and helps comparing different probabilities)
             this->ss = variator.search_space;
             this->params = variator.parameters;
+
+            // std::cout << "Variator probs:" << std::endl;
+            // std::cout << "cx: " << variator.parameters.get_cx_prob() << std::endl;
+            // for (const auto& [name, prob] : variator.parameters.get_mutation_probs())
+            //     std::cout << name << ": " << prob << std::endl;
+
+            // std::cout << "variator Search Space:" << std::endl;
+            // variator.search_space.print();
         
+            // std::cout << "Engine probs:" << std::endl;
+            // std::cout << "cx: " << params.get_cx_prob() << std::endl;
+            // for (const auto& [name, prob] : params.get_mutation_probs())
+            //     std::cout << name << ": " << prob << std::endl;
+
+            // std::cout << "Engine Search Space:" << std::endl;
+            // ss.print();
+
             if (params.save_population != "")
                 this->pop.save(params.save_population);
 
