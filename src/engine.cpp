@@ -530,11 +530,6 @@ void Engine<T>::run(Dataset &data)
                 evaluator.update_fitness(this->pop, island, data, params, false, false);
             }).name("Set train loss as fitness");
 
-            // getting the updated versions
-            // TODO: make the probabilities add up to 1 (this doesnt matter for the cpp side, but it is a good practice and helps comparing different probabilities)
-            this->ss = variator.search_space;
-            this->params = variator.parameters;
-
             // std::cout << "Variator probs:" << std::endl;
             // std::cout << "cx: " << variator.parameters.get_cx_prob() << std::endl;
             // for (const auto& [name, prob] : variator.parameters.get_mutation_probs())
@@ -586,7 +581,12 @@ void Engine<T>::run(Dataset &data)
 
                 archive.individuals.resize(std::distance(archive.individuals.begin(),it));
             }
-                
+
+            // getting the updated versions
+            // TODO: make the probabilities add up to 1 (this doesnt matter for the cpp side, but it is a good practice and helps comparing different probabilities)
+            this->ss = variator.search_space;
+            this->params = variator.parameters;
+
         } // work done, report last gen and stop
     ); // evolutionary loop
 

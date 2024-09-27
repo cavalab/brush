@@ -148,6 +148,7 @@ class EngineTest : public ::testing::TestWithParam<std::string> {};
 TEST_P(EngineTest, ClassificationEngineWorks)
 {
     std::string bandit_type = GetParam();
+    std::cout << "Bandit type: " << bandit_type << std::endl;
 
     Dataset data = Data::read_csv("docs/examples/datasets/d_analcatdata_aids.csv", "target");
     
@@ -175,12 +176,12 @@ TEST_P(EngineTest, ClassificationEngineWorks)
     est2.run(data);
 
     std::cout << "Parameters probs:" << std::endl;
-    std::cout << "cx: " << params.get_cx_prob() << std::endl;
-    for (const auto& [name, prob] : params.get_mutation_probs())
+    std::cout << "cx: " << est.params.get_cx_prob() << std::endl;
+    for (const auto& [name, prob] : est.params.get_mutation_probs())
         std::cout << name << ": " << prob << std::endl;
 
     std::cout << "Search Space:" << std::endl;
-    ss.print();
+    est.ss.print();
 }
 
 INSTANTIATE_TEST_SUITE_P(

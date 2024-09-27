@@ -46,20 +46,17 @@ LinearThompsonSamplingBandit<T>::LinearThompsonSamplingBandit(map<T, float> arms
 
 template <typename T>
 std::map<T, float> LinearThompsonSamplingBandit<T>::sample_probs(bool update) {
+    cout << "sampling probs started" << endl;
     if (update)
     {
         MatrixXf w = mean + (B_inv_sqrt * MatrixXf::Random(n_arms, context_size));
-        VectorXf u = w;
-
-        int max_index;
-        float max_value = u.maxCoeff(&max_index);
 
         // Calculate probabilities
         std::map<T, float> probs;
         float total_prob = 0.0f;
         
         for (int i = 0; i < n_arms; ++i) {
-            float prob = exp(u(i)) / exp(max_value);
+            float prob = exp(w(i)) / exp(w.maxCoeff());
             probs[arm_index_to_key[i]] = prob;
             total_prob += prob;
         }
@@ -73,22 +70,34 @@ std::map<T, float> LinearThompsonSamplingBandit<T>::sample_probs(bool update) {
     }
 
     return this->probabilities;
+    cout << "sampling probs finished" << endl;
 }
 
 template <typename T>
 T LinearThompsonSamplingBandit<T>::choose(const VectorXf& context) {
+    cout << "choose started" << endl;
+    assert(context.size() == context_size);
+
+    cout << "Context: " << context.transpose() << endl;
 
     MatrixXf w = mean + (B_inv_sqrt * MatrixXf::Random(n_arms, context_size));
-    VectorXf u = w * context;
+    cout << "w: " << w << endl;
 
-    int max_index;
+    VectorXf u = w * context;
+    cout << "u: " << u.transpose() << endl;
+
+    Eigen::Index max_index;
     float max_value = u.maxCoeff(&max_index);
-    
+    cout << "max_index: " << max_index << ", max_value: " << max_value << endl;
+
+    cout << "choose finished" << endl;
     return arm_index_to_key[max_index];
 }
 
 template <typename T>
 void LinearThompsonSamplingBandit<T>::update(T arm, float reward, VectorXf& context) {
+    cout << "update started" << endl;
+
     assert(context.size() == context_size && "Context vector size mismatch");
     
     // Find the arm index using our mapping
@@ -106,6 +115,8 @@ void LinearThompsonSamplingBandit<T>::update(T arm, float reward, VectorXf& cont
     B_inv.row(arm_index) = B.row(arm_index).inverse();
     B_inv_sqrt.row(arm_index) = B_inv.row(arm_index).llt().matrixL();
     mean.row(arm_index) = B_inv.row(arm_index) * m2_r.row(arm_index);
+    
+    cout << "update finished" << endl;
 }
 
 } // MAB
