@@ -11,16 +11,20 @@ LinearThompsonSamplingBandit<T>::LinearThompsonSamplingBandit(vector<T> arms, in
     n_arms = arms.size();
 
     // Initialize Eigen matrices
-    B = MatrixXf::Identity(context_size, context_size).replicate(1, n_arms);
-    m2_r = MatrixXf::Zero(n_arms, context_size);
-    B_inv = B;
-    B_inv_sqrt = B;
-    mean = MatrixXf::Zero(n_arms, context_size);
-
-    arm_index_to_key.resize(n_arms);
-    for (int i = 0; i < n_arms; ++i) {
+    arm_index_to_key.resize(0);
+    B.resize(0);
+    B_inv.resize(0);
+    B_inv_sqrt.resize(0);
+    for (int i = 0; i < n_arms; ++i) { // one for each arm
         arm_index_to_key[i] = arms[i];
+
+        B.push_back( MatrixXf::Identity(context_size, context_size) );
+        B_inv.push_back( MatrixXf::Identity(context_size, context_size) );
+        B_inv_sqrt.push_back( MatrixXf::Identity(context_size, context_size) );
     }
+
+    m2_r = MatrixXf::Zero(n_arms, context_size);
+    mean = MatrixXf::Zero(n_arms, context_size);
 }
 
 template <typename T>
@@ -30,15 +34,20 @@ LinearThompsonSamplingBandit<T>::LinearThompsonSamplingBandit(map<T, float> arms
 {
     n_arms = arms_probs.size();
 
-    // Initialize Eigen matrices
-    B = MatrixXf::Identity(context_size, context_size).replicate(1, n_arms);
+    B.resize(0);
+    B_inv.resize(0);
+    B_inv_sqrt.resize(0);
+    for (int i = 0; i < n_arms; ++i) { // one for each arm
+        B.push_back( MatrixXf::Identity(context_size, context_size) );
+        B_inv.push_back( MatrixXf::Identity(context_size, context_size) );
+        B_inv_sqrt.push_back( MatrixXf::Identity(context_size, context_size) );
+    }
+
     m2_r = MatrixXf::Zero(n_arms, context_size);
-    B_inv = B;
-    B_inv_sqrt = B;
     mean = MatrixXf::Zero(n_arms, context_size);
 
     int index = 0;
-    for (const auto& pair : arms_probs) {
+    for (const auto& pair : arms_probs) { // making sure we have the same order
         arm_index_to_key[index++] = pair.first;
     }
 };
@@ -46,11 +55,21 @@ LinearThompsonSamplingBandit<T>::LinearThompsonSamplingBandit(map<T, float> arms
 
 template <typename T>
 std::map<T, float> LinearThompsonSamplingBandit<T>::sample_probs(bool update) {
-    cout << "sampling probs started" << endl;
+    // cout << "sampling probs started" << endl;
     if (update)
     {
-        MatrixXf w = mean + (B_inv_sqrt * MatrixXf::Random(n_arms, context_size));
+        MatrixXf w(n_arms, context_size);
+        MatrixXf r = MatrixXf::Random(n_arms, context_size); // TODO: use random generator here
+        for (int i = 0; i < n_arms; ++i) {
+            w.row(i) = B_inv_sqrt[i] * r; // mat mul
+        }
 
+        w = mean + w;
+
+        VectorXf context(context_size); // generic context
+        context.setOnes();
+        VectorXf u = w * context; // mat mul
+        
         // Calculate probabilities
         std::map<T, float> probs;
         float total_prob = 0.0f;
@@ -70,53 +89,74 @@ std::map<T, float> LinearThompsonSamplingBandit<T>::sample_probs(bool update) {
     }
 
     return this->probabilities;
-    cout << "sampling probs finished" << endl;
+    // cout << "sampling probs finished" << endl;
 }
 
 template <typename T>
 T LinearThompsonSamplingBandit<T>::choose(const VectorXf& context) {
-    cout << "choose started" << endl;
+    // cout << "choose started" << endl;
     assert(context.size() == context_size);
 
-    cout << "Context: " << context.transpose() << endl;
+    // cout << "Context: " << context.transpose() << endl;
 
-    MatrixXf w = mean + (B_inv_sqrt * MatrixXf::Random(n_arms, context_size));
-    cout << "w: " << w << endl;
+    MatrixXf w(n_arms, context_size);
+    MatrixXf r = MatrixXf::Random(n_arms, context_size); // TODO: use random generator here
+    for (int i = 0; i < n_arms; ++i) {
+        w.row(i) = B_inv_sqrt[i] * r; // mat mul
+    }
 
-    VectorXf u = w * context;
-    cout << "u: " << u.transpose() << endl;
+    w = mean + w;
+        
+    // cout << "w: " << w << endl;
+
+    VectorXf u = w * context; // mat mul
+    // cout << "u: " << u.transpose() << endl;
 
     Eigen::Index max_index;
     float max_value = u.maxCoeff(&max_index);
-    cout << "max_index: " << max_index << ", max_value: " << max_value << endl;
+    // cout << "max_index: " << max_index << ", max_value: " << max_value << endl;
 
-    cout << "choose finished" << endl;
+    // cout << "choose finished" << endl;
     return arm_index_to_key[max_index];
 }
 
 template <typename T>
 void LinearThompsonSamplingBandit<T>::update(T arm, float reward, VectorXf& context) {
     cout << "update started" << endl;
-
     assert(context.size() == context_size && "Context vector size mismatch");
-    
+
+    // TODO: have a more efficient way of doing this
     // Find the arm index using our mapping
     auto it = std::find_if(arm_index_to_key.begin(), arm_index_to_key.end(),
                            [&arm](const auto& pair) { return pair.second == arm; });
-    
+
     if (it == arm_index_to_key.end()) {
         throw std::invalid_argument("Arm not found in the arm_index_to_key map");
     }
-    
+
     int arm_index = it->first;
 
-    B.row(arm_index) += context.transpose() * context;
-    m2_r.row(arm_index) += reward * context.transpose();
-    B_inv.row(arm_index) = B.row(arm_index).inverse();
-    B_inv_sqrt.row(arm_index) = B_inv.row(arm_index).llt().matrixL();
-    mean.row(arm_index) = B_inv.row(arm_index) * m2_r.row(arm_index);
-    
-    cout << "update finished" << endl;
+    // cout << "Arm index: " << arm_index << endl;
+    // cout << "Context: " << context.transpose() << endl;
+    // cout << "B[arm_index] before update: " << B[arm_index] << endl;
+    // cout << "m2_r.row(arm_index) before update: " << m2_r.row(arm_index) << endl;
+
+    B[arm_index] += context * context.transpose();
+    // cout << "B[arm_index] after update: " << B[arm_index] << endl;
+
+    m2_r.row(arm_index) += context * reward;
+    // cout << "m2_r.row(arm_index) after update: " << m2_r.row(arm_index) << endl;
+
+    B_inv[arm_index] = B[arm_index].inverse();
+    // cout << "B_inv[arm_index]: " << B_inv[arm_index] << endl;
+
+    B_inv_sqrt[arm_index] = B_inv[arm_index].ldlt().matrixL();
+    // cout << "B_inv_sqrt[arm_index]: " << B_inv_sqrt[arm_index] << endl;
+
+    mean.row(arm_index) = B_inv[arm_index] * m2_r.row(arm_index); // mat mul
+    // cout << "mean.row(arm_index): " << mean.row(arm_index) << endl;
+
+    // cout << "update finished" << endl;
 }
 
 } // MAB

@@ -31,10 +31,11 @@ private:
     int n_arms;
     int context_size;
 
-    MatrixXf B;
+    vector<MatrixXf> B;
+    vector<MatrixXf> B_inv;
+    vector<MatrixXf> B_inv_sqrt;
+    
     MatrixXf m2_r;
-    MatrixXf B_inv;
-    MatrixXf B_inv_sqrt;
     MatrixXf mean;
     
     // we need to make sure indexes does not change

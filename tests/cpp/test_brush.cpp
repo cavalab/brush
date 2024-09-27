@@ -190,8 +190,8 @@ INSTANTIATE_TEST_SUITE_P(
     ::testing::Values(
         "dummy",
         "thompson",
-        "dynamic_thompson"
-        // "linear_thompson"
+        "dynamic_thompson",
+        "linear_thompson"
     )
 );
 
