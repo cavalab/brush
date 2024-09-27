@@ -122,7 +122,7 @@ T LinearThompsonSamplingBandit<T>::choose(const VectorXf& context) {
 
 template <typename T>
 void LinearThompsonSamplingBandit<T>::update(T arm, float reward, VectorXf& context) {
-    cout << "update started" << endl;
+    // cout << "update started" << endl;
     assert(context.size() == context_size && "Context vector size mismatch");
 
     // TODO: have a more efficient way of doing this
