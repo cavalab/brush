@@ -297,11 +297,13 @@ bool Engine<T>::update_best()
         for (size_t j = 0; j < this->best_ind.fitness.get_wvalues().size(); ++j) {
             if (ind.fitness.get_wvalues()[j] > this->best_ind.fitness.get_wvalues()[j]) {
                 passed = true;
+                break;
             }
-            else if (ind.fitness.get_wvalues()[j] < this->best_ind.fitness.get_wvalues()[j]) {
+            if (ind.fitness.get_wvalues()[j] < this->best_ind.fitness.get_wvalues()[j]) {
                 // it is not better, and it is also not equal. So, it is worse. Stop here.
                 break;
             }
+            // if no break, then its equal, so we keep going
         }
 
         if (passed)

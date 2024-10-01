@@ -141,6 +141,9 @@ VectorXf Bandit<T>::get_context(const tree<Node>& tree, Iter spot, const SearchS
 
     size_t tot_symbols = tot_operators + tot_features;
 
+    // Assert that tot_symbols is the same as context_size
+    assert(tot_symbols == context_size);
+
     VectorXf context( 3 * tot_symbols );
     context.setZero();
     
@@ -149,67 +152,38 @@ VectorXf Bandit<T>::get_context(const tree<Node>& tree, Iter spot, const SearchS
             // std::cout << "Check succeeded for node: " << (*it).name << std::endl;
             // std::cout << "Depth of spot: " << tree.depth(spot) << std::endl;
             // std::cout << "Depth of it: " << tree.depth(it) << std::endl;
-            if (it == spot) {
-                // std::cout << "It is the spot, searching for it " << std::endl;
-                
-                if (Is<NodeType::Terminal>((*it).node_type)){
-                    size_t feature_index = 0;
+            // std::cout << "It is the spot, searching for it " << std::endl;
+            
+            // deciding if it is above or below the spot
+            size_t pos_shift = 0; // above
+            if (it == spot) { // spot
+                pos_shift = 1;
+            }
+            else if (tree.is_in_subtree(it, spot)) // below
+                pos_shift = 2;
 
-                    // iterating using terminal_types since it is ordered
-                    for (const auto& dtype : ss.terminal_types) {
-                        for (const auto& terminal : ss.terminal_map.at(dtype)) {
-                            if (terminal.name == (*it).name) {
-                                context((tot_operators + feature_index) + tot_symbols) += 1.0;
-                                // std::cout << "Spot terminal: " << terminal.name << " at feature index " << feature_index << std::endl;
-                                break;
-                            }
-                            ++feature_index;
-                        }
-                    }
-                } else {
-                    // finding the index of the operator
-                    size_t op_index=0;
-                    for (; op_index< NodeTypes::Count; op_index++){
-                        if (static_cast<NodeType>(1UL << op_index) == (*it).node_type)
-                            break;
-                    }
+            // std::cout << "Position shift: " << pos_shift << std::endl;
+            if (Is<NodeType::Terminal>((*it).node_type)){
+                size_t feature_index = 0;
 
-                    context(tot_symbols + op_index) += 1.0;
-                    // std::cout << "Spot operator: " << (*it).name << " of index " << tot_symbols + op_index << std::endl;
+                // iterating using terminal_types since it is ordered
+                for (const auto& terminal : ss.terminal_map.at((*it).ret_type)) {
+                    if (terminal.name == (*it).name) {
+                        context((tot_operators + feature_index) + pos_shift*tot_symbols) += 1.0;
+                        // std::cout << "Below spot, terminal: " << terminal.name << " at feature index " << feature_index << std::endl;
+                        break;
+                    }
+                    ++feature_index;
                 }
             } else {
-                // std::cout << "Below spot " << std::endl;
-
-                // deciding if it is above or below the spot
-                size_t pos_shift = 0;
-                if (tree.is_in_subtree(it, spot))
-                    pos_shift = 2;
-
-                // std::cout << "Position shift: " << pos_shift << std::endl;
-                if (Is<NodeType::Terminal>((*it).node_type)){
-                    size_t feature_index = 0;
-
-                    // iterating using terminal_types since it is ordered
-                    for (const auto& dtype : ss.terminal_types) {
-                        for (const auto& terminal : ss.terminal_map.at(dtype)) {
-                            if (terminal.name == (*it).name) {
-                                context((tot_operators + feature_index) + pos_shift*tot_symbols) += 1.0;
-                                // std::cout << "Below spot, terminal: " << terminal.name << " at feature index " << feature_index << std::endl;
-                                break;
-                            }
-                            ++feature_index;
-                        }
-                    }
-                } else {
-                    size_t op_index=0;
-                    for (; op_index< NodeTypes::Count; op_index++){
-                        if (static_cast<NodeType>(1UL << op_index) == (*it).node_type)
-                            break;
-                    }
-
-                    context( pos_shift*tot_symbols + op_index ) += 1.0;
-                    // std::cout << "Below spot, operator: " << (*it).name << " of index " << pos_shift*tot_symbols + op_index << std::endl;
+                size_t op_index=0; // doesnt care the arg type, as long as the operator is correct
+                for (; op_index< NodeTypes::Count; op_index++){
+                    if (static_cast<NodeType>(1UL << op_index) == (*it).node_type)
+                        break;
                 }
+
+                context( pos_shift*tot_symbols + op_index ) += 1.0;
+                // std::cout << "Below spot, operator: " << (*it).name << " of index " << pos_shift*tot_symbols + op_index << std::endl;
             }
         }
     }

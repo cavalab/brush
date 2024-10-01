@@ -293,8 +293,6 @@ vector<size_t> Population<T>::hall_of_fame(unsigned rank)
     hof.clear();
 
     for (int i = 0; i < merged_islands.size(); ++i) {
-    
-        std::vector<unsigned int> dom;
         int dcount = 0;
     
         auto p = individuals.at(merged_islands[i]);
