@@ -132,6 +132,9 @@ vector<Node> generate_terminals(const Dataset& d, const bool weights_init)
             }
         }
 
+        if (count==0) // no terminals of datatype. return 1.0 for the constant
+            return 1.0;
+
         return sum / count;
     };
 
