@@ -833,7 +833,10 @@ vector<float> Variation<T>::calculate_rewards(Population<T>& pop, int island)
 template <Brush::ProgramType T>
 void Variation<T>::update_ss()
 {
-    // propagate bandits learnt information to the search space
+    // propagate bandits learnt information to the search space.
+    // TODO: not all arms are initialized, if the user set something to zero then we must
+    // disable it. So, during update, we need to properly handle these skipped arms. --> remove this for nodes, allow it just for variations. If the user doesnt want to use a feature or op, he should not set it at the first place. We need to do this with variations because the user 
+    // can choose it directly instead of letting brush to figure out.
 
     // variation: getting new probabilities for variation operators
     auto variation_probs = variation_bandit.sample_probs(true);
@@ -868,12 +871,12 @@ void Variation<T>::update_ss()
                 search_space.terminal_map.at(datatype).end(), 
                 [&](auto& node) { return node.get_feature() == terminal_name; });
 
-            if (it != search_space.terminal_map.at(datatype).end()) {
+            // if (it != search_space.terminal_map.at(datatype).end()) {
                 auto index = std::distance(search_space.terminal_map.at(datatype).begin(), it);
 
                 // Update the terminal weights with the second value
                 search_space.terminal_weights.at(datatype)[index] = terminal_prob;
-            }
+            // }
         }
     }
 

@@ -34,6 +34,7 @@ private:
     vector<MatrixXf> B;
     vector<MatrixXf> B_inv;
     vector<MatrixXf> B_inv_sqrt;
+    VectorXf last_context;
     
     MatrixXf m2_r;
     MatrixXf mean;

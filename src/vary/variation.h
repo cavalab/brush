@@ -84,7 +84,7 @@ public:
         for (const auto& pair : search_space.terminal_map)
             tot_features += pair.second.size();
 
-        int context_size = tot_operators + tot_features;
+        int context_size = 3*(tot_operators + tot_features);
 
         this->variation_bandit = Bandit<string>(parameters.bandit, variation_probs, context_size);
 
@@ -97,11 +97,12 @@ public:
         for (const auto& entry : this->search_space.terminal_weights) {
             // entry is a tuple <dataType, vector<float>> where the vector is the weights
             
+            // TODO: I dont think we need this find ere
             if (terminal_bandits.find(entry.first) == terminal_bandits.end())
             {
                 map<string, float> terminal_probs;
                 for (int i = 0; i < entry.second.size(); i++)
-                    if (entry.second[i] > 0.0)
+                    // if (entry.second[i] > 0.0)
                     {
                         auto node_name = search_space.terminal_map.at(entry.first).at(i).get_feature();
                         terminal_probs[node_name] = entry.second[i];
@@ -121,12 +122,13 @@ public:
             // if (op_bandits.find(ret_type) == op_bandits.end())
             //     op_bandits.at(ret_type) = map<size_t, Bandit<string>>();
 
-            // TODO: this could be made much easier using user_ops
-            map<string, float> node_probs;
             for (const auto& [args_type, node_map] : arg_w_map)
             {
                 // if (op_bandits.at(ret_type).find(args_type) != op_bandits.at(ret_type).end())
                 //     continue
+
+                // TODO: this could be made much easier using user_ops
+                map<string, float> node_probs;
 
                 for (const auto& [node_type, node]: node_map)
                 {

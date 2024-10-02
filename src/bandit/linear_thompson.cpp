@@ -25,6 +25,9 @@ LinearThompsonSamplingBandit<T>::LinearThompsonSamplingBandit(vector<T> arms, in
 
     m2_r = MatrixXf::Zero(n_arms, context_size);
     mean = MatrixXf::Zero(n_arms, context_size);
+    
+    last_context.resize(context_size);
+    last_context.setOnes();
 }
 
 template <typename T>
@@ -50,6 +53,9 @@ LinearThompsonSamplingBandit<T>::LinearThompsonSamplingBandit(map<T, float> arms
     for (const auto& pair : arms_probs) { // making sure we have the same order
         arm_index_to_key[index++] = pair.first;
     }
+
+    last_context.resize(context_size);
+    last_context.setOnes();
 };
     
 
@@ -59,33 +65,48 @@ std::map<T, float> LinearThompsonSamplingBandit<T>::sample_probs(bool update) {
     if (update)
     {
         MatrixXf w(n_arms, context_size);
-        MatrixXf r = MatrixXf::Random(n_arms, context_size); // TODO: use random generator here
+        MatrixXf r = 0.5 + 0.5*MatrixXf::Random(n_arms, context_size); // TODO: use random generator here
         for (int i = 0; i < n_arms; ++i) {
             w.row(i) = B_inv_sqrt[i] * r; // mat mul
         }
 
         w = mean + w;
 
-        VectorXf context(context_size); // generic context
-        context.setOnes();
-        VectorXf u = w * context; // mat mul
-        
-        // Calculate probabilities
-        std::map<T, float> probs;
-        float total_prob = 0.0f;
-        
+        VectorXf u(n_arms);
+        // u = w * last_context; // mat mul
+
         for (int i = 0; i < n_arms; ++i) {
-            float prob = exp(w(i)) / exp(w.maxCoeff());
-            probs[arm_index_to_key[i]] = prob;
-            total_prob += prob;
+            // cout << "Dot product for row " << i;
+            float dot_product = w.row(i).dot(last_context);
+            if (std::isnan(dot_product))
+            {
+                dot_product = 0.0f;
+                // cout << "(nan)";
+            }
+            // cout << "Dot product for row " << i << ": " << dot_product << endl;
+                
+            u(i) = dot_product;
+        }
+        for (int i = 0; i < n_arms; ++i) {
+            this->probabilities[arm_index_to_key[i]] = u(i);
         }
 
-        // Normalize probabilities to ensure they sum to 1
-        for (auto& pair : probs) {
-            pair.second /= total_prob;
-        }
+        // // Calculate probabilities
+        // std::map<T, float> probs;
+        // float total_prob = 0.0f;
+        
+        // for (int i = 0; i < n_arms; ++i) {
+        //     float prob = exp(u(i)) / exp(u.maxCoeff());
+        //     probs[arm_index_to_key[i]] = prob;
+        //     total_prob += prob;
+        // }
 
-        this->probabilities = probs;
+        // // Normalize probabilities to ensure they sum to 1
+        // for (auto& pair : probs) {
+        //     pair.second /= total_prob;
+        // }
+
+        // this->probabilities = probs;
     }
 
     return this->probabilities;
@@ -95,7 +116,9 @@ std::map<T, float> LinearThompsonSamplingBandit<T>::sample_probs(bool update) {
 template <typename T>
 T LinearThompsonSamplingBandit<T>::choose(const VectorXf& context) {
     // cout << "choose started" << endl;
-    assert(context.size() == context_size);
+    assert(context.size() == context_size && "Context vector size mismatch in choose");
+
+    last_context = context;
 
     // cout << "Context: " << context.transpose() << endl;
 
@@ -108,9 +131,23 @@ T LinearThompsonSamplingBandit<T>::choose(const VectorXf& context) {
     w = mean + w;
         
     // cout << "w: " << w << endl;
+    VectorXf u(n_arms);
+    // u = w * context; // mat mul
+    // cout << "u: " << u << endl;
 
-    VectorXf u = w * context; // mat mul
-    // cout << "u: " << u.transpose() << endl;
+    for (int i = 0; i < n_arms; ++i) {
+        // cout << "Dot product for row " << i;
+        float dot_product = w.row(i).dot(context);
+        if (std::isnan(dot_product))
+        {
+            dot_product = 0.0f;
+            // cout << "(nan)";
+        }
+
+        // cout << "Dot product for row " << i << ": " << dot_product << endl;
+
+        u(i) = dot_product;
+    }
 
     Eigen::Index max_index;
     float max_value = u.maxCoeff(&max_index);
@@ -123,7 +160,7 @@ T LinearThompsonSamplingBandit<T>::choose(const VectorXf& context) {
 template <typename T>
 void LinearThompsonSamplingBandit<T>::update(T arm, float reward, VectorXf& context) {
     // cout << "update started" << endl;
-    assert(context.size() == context_size && "Context vector size mismatch");
+    assert(context.size() == context_size && "Context vector size mismatch in update");
 
     // TODO: have a more efficient way of doing this
     // Find the arm index using our mapping
