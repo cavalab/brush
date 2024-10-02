@@ -294,7 +294,7 @@ bool Engine<T>::update_best()
         // TODO: use intermediary variables for wvalues
         // Iterate over the weighted values to compare (everything is a maximization problem here)
         passed = false;
-        for (size_t j = 0; j < this->best_ind.fitness.get_wvalues().size(); ++j) {
+        for (size_t j = 0; j < ind.fitness.get_wvalues().size(); ++j) {
             if (ind.fitness.get_wvalues()[j] > this->best_ind.fitness.get_wvalues()[j]) {
                 passed = true;
                 break;

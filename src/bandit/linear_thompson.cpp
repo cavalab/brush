@@ -65,30 +65,31 @@ std::map<T, float> LinearThompsonSamplingBandit<T>::sample_probs(bool update) {
     if (update)
     {
         MatrixXf w(n_arms, context_size);
-        MatrixXf r = 0.5 + 0.5*MatrixXf::Random(n_arms, context_size); // TODO: use random generator here
+        MatrixXf r = MatrixXf::Random(n_arms, context_size); // TODO: use random generator here
         for (int i = 0; i < n_arms; ++i) {
-            w.row(i) = B_inv_sqrt[i] * r; // mat mul
+            w.row(i) = (B_inv_sqrt[i] * r.row(i)).transpose(); // mat mul
         }
 
         w = mean + w;
 
         VectorXf u(n_arms);
-        // u = w * last_context; // mat mul
+        u = (w * last_context).transpose(); // mat mul
+
+        // for (int i = 0; i < n_arms; ++i) {
+        //     // cout << "Dot product for row " << i;
+        //     float dot_product = w.row(i).dot(last_context);
+        //     if (std::isnan(dot_product))
+        //     {
+        //         dot_product = 0.0f;
+        //         // cout << "(nan)";
+        //     }
+        //     // cout << "Dot product for row " << i << ": " << dot_product << endl;
+                
+        //     u(i) = dot_product;
+        // }
 
         for (int i = 0; i < n_arms; ++i) {
-            // cout << "Dot product for row " << i;
-            float dot_product = w.row(i).dot(last_context);
-            if (std::isnan(dot_product))
-            {
-                dot_product = 0.0f;
-                // cout << "(nan)";
-            }
-            // cout << "Dot product for row " << i << ": " << dot_product << endl;
-                
-            u(i) = dot_product;
-        }
-        for (int i = 0; i < n_arms; ++i) {
-            this->probabilities[arm_index_to_key[i]] = u(i);
+            this->probabilities[arm_index_to_key[i]] = std::exp(u(i));
         }
 
         // // Calculate probabilities
@@ -125,29 +126,29 @@ T LinearThompsonSamplingBandit<T>::choose(const VectorXf& context) {
     MatrixXf w(n_arms, context_size);
     MatrixXf r = MatrixXf::Random(n_arms, context_size); // TODO: use random generator here
     for (int i = 0; i < n_arms; ++i) {
-        w.row(i) = B_inv_sqrt[i] * r; // mat mul
+        w.row(i) = (B_inv_sqrt[i] * r.row(i)).transpose(); // mat mul
     }
 
     w = mean + w;
         
     // cout << "w: " << w << endl;
     VectorXf u(n_arms);
-    // u = w * context; // mat mul
+    u = (w * context).transpose(); // mat mul
     // cout << "u: " << u << endl;
 
-    for (int i = 0; i < n_arms; ++i) {
-        // cout << "Dot product for row " << i;
-        float dot_product = w.row(i).dot(context);
-        if (std::isnan(dot_product))
-        {
-            dot_product = 0.0f;
-            // cout << "(nan)";
-        }
+    // for (int i = 0; i < n_arms; ++i) {
+    //     // cout << "Dot product for row " << i;
+    //     float dot_product = w.row(i).dot(context);
+    //     if (std::isnan(dot_product))
+    //     {
+    //         dot_product = 0.0f;
+    //         // cout << "(nan)";
+    //     }
 
-        // cout << "Dot product for row " << i << ": " << dot_product << endl;
+    //     // cout << "Dot product for row " << i << ": " << dot_product << endl;
 
-        u(i) = dot_product;
-    }
+    //     u(i) = dot_product;
+    // }
 
     Eigen::Index max_index;
     float max_value = u.maxCoeff(&max_index);
