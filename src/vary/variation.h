@@ -231,20 +231,23 @@ public:
                 *r.select_randomly(parents.begin(), parents.end())];
         
             vector<Individual<T>> ind_parents;
-            VectorXf context = get_context(mom.program.Tree,
+            VectorXf root_context = get_context(mom.program.Tree,
                                            mom.program.Tree.begin());
-
-            string choice = this->variation_bandit.choose(context);
+            VectorXf context;
+            string choice = this->variation_bandit.choose(root_context);
 
             if (choice == "cx")
             {
                 const Individual<T>& dad = pop[
                     *r.select_randomly(parents.begin(), parents.end())];
                 
+
                 // std::cout << "Performing crossover" << std::endl;
                 auto variation_result = cross(mom, dad);
                 ind_parents = {mom, dad};
                 tie(opt, context) = variation_result;
+
+                context = root_context;
             }
             else
             {
