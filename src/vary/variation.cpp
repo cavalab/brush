@@ -843,10 +843,10 @@ void Variation<T>::update_ss()
     // variation: getting new probabilities for variation operators
     auto variation_probs = variation_bandit.sample_probs(true);
 
-    std::cout << "Variation probabilities:" << std::endl;
-    for (const auto& variation : variation_probs) {
-        std::cout << " - " << variation.first << ": " << variation.second << std::endl;
-    }
+    // std::cout << "Variation probabilities:" << std::endl;
+    // for (const auto& variation : variation_probs) {
+    //     std::cout << " - " << variation.first << ": " << variation.second << std::endl;
+    // }
 
     if (variation_probs.find("cx") != variation_probs.end())
         parameters.set_cx_prob(variation_probs.at("cx"));

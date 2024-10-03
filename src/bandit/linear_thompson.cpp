@@ -131,10 +131,10 @@ T LinearThompsonSamplingBandit<T>::choose(const VectorXf& context) {
 
     w = mean + w;
         
-    cout << "w: " << w << endl;
+    // cout << "w: " << w << endl;
     VectorXf u(n_arms);
     u = w * context; // mat mul
-    cout << "u: " << u << endl;
+    // cout << "u: " << u << endl;
 
     // for (int i = 0; i < n_arms; ++i) {
     //     // cout << "Dot product for row " << i;
@@ -152,7 +152,7 @@ T LinearThompsonSamplingBandit<T>::choose(const VectorXf& context) {
 
     Eigen::Index max_index;
     float max_value = u.maxCoeff(&max_index);
-    cout << "max_index: " << max_index << ", max_value: " << max_value << endl;
+    // cout << "max_index: " << max_index << ", max_value: " << max_value << endl;
 
     // cout << "choose finished" << endl;
     return arm_index_to_key[max_index];

@@ -331,12 +331,12 @@ public:
 
             if (ind.get_variation().compare("born") != 0)
             {
-                std::cout << "Updating variation bandit with variation: " << ind.get_variation() << " and reward: " << r << ". choosen variation was: " << choice << std::endl;
+                // std::cout << "Updating variation bandit with variation: " << ind.get_variation() << " and reward: " << r << ". choosen variation was: " << choice << std::endl;
                 this->variation_bandit.update(ind.get_variation(), r, root_context);
             }
             else
             { // giving zero reward if the variation failed
-                std::cout << "Variation failed, updating variation bandit with choice: " << choice << " and reward: 0.0" << std::endl;
+                // std::cout << "Variation failed, updating variation bandit with choice: " << choice << " and reward: 0.0" << std::endl;
                 this->variation_bandit.update(choice, 0.0, root_context);
             }
 
@@ -344,7 +344,7 @@ public:
             &&  !ind.get_variation().compare("subtree"))
             {                
                 if (ind.get_sampled_nodes().size() > 0) {
-                    std::cout << "Updating terminal and operator bandits for sampled nodes" << std::endl;
+                    // std::cout << "Updating terminal and operator bandits for sampled nodes" << std::endl;
                     const auto& changed_nodes = ind.get_sampled_nodes();
                     for (auto& node : changed_nodes) {
                         if (node.get_arg_count() == 0) {
