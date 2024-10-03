@@ -287,6 +287,17 @@ bool Engine<T>::update_best()
 
     vector<size_t> hof = this->pop.hall_of_fame(1);
 
+    vector<size_t> merged_islands(0);
+    for (int j=0;j<pop.num_islands; ++j)
+    {
+        auto indices = pop.island_indexes.at(j);
+        for (int i=0; i<indices.size(); ++i)
+        {
+            merged_islands.push_back(indices.at(i));
+        }
+    }
+    hof = merged_islands;
+
     for (int i=0; i < hof.size(); ++i) 
     {
         const auto& ind = *pop.individuals.at(hof[i]);

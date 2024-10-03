@@ -234,20 +234,17 @@ public:
             VectorXf root_context = get_context(mom.program.Tree,
                                            mom.program.Tree.begin());
             VectorXf context;
-            string choice = this->variation_bandit.choose(root_context);
 
+            string choice = this->variation_bandit.choose(root_context);
             if (choice == "cx")
             {
                 const Individual<T>& dad = pop[
                     *r.select_randomly(parents.begin(), parents.end())];
                 
-
                 // std::cout << "Performing crossover" << std::endl;
                 auto variation_result = cross(mom, dad);
                 ind_parents = {mom, dad};
                 tie(opt, context) = variation_result;
-
-                context = root_context;
             }
             else
             {
@@ -294,13 +291,13 @@ public:
 
             vector<float> deltas(ind.get_objectives().size(), 0.0f);
             
-            float delta = 0.0f;
+            float delta  = 0.0f;
             float weight = 0.0f;
 
             for (const auto& obj : ind.get_objectives())
             {   
                 if (obj.compare(parameters.scorer) == 0)
-                    delta = ind.fitness.get_loss_v() - ind.fitness.get_prev_loss();
+                    delta = ind.fitness.get_loss() - ind.fitness.get_prev_loss();
                 else if (obj.compare("complexity") == 0)
                     delta = ind.fitness.get_complexity() - ind.fitness.get_prev_complexity();
                 else if (obj.compare("linear_complexity") == 0)
@@ -332,19 +329,22 @@ public:
 
             // std::cout << "Updating variation bandit with reward: " << r << std::endl;
 
-            if (ind.get_variation() != "born")
+            if (ind.get_variation().compare("born") != 0)
             {
-                this->variation_bandit.update(ind.get_variation(), r, context);
+                std::cout << "Updating variation bandit with variation: " << ind.get_variation() << " and reward: " << r << ". choosen variation was: " << choice << std::endl;
+                this->variation_bandit.update(ind.get_variation(), r, root_context);
             }
             else
             { // giving zero reward if the variation failed
-                this->variation_bandit.update(choice, 0.0, context);
+                std::cout << "Variation failed, updating variation bandit with choice: " << choice << " and reward: 0.0" << std::endl;
+                this->variation_bandit.update(choice, 0.0, root_context);
             }
 
-            if (ind.get_variation() != "born" && ind.get_variation() != "cx"
-            &&  ind.get_variation() != "subtree")
+            if (!ind.get_variation().compare("born") && !ind.get_variation().compare("cx")
+            &&  !ind.get_variation().compare("subtree"))
             {                
                 if (ind.get_sampled_nodes().size() > 0) {
+                    std::cout << "Updating terminal and operator bandits for sampled nodes" << std::endl;
                     const auto& changed_nodes = ind.get_sampled_nodes();
                     for (auto& node : changed_nodes) {
                         if (node.get_arg_count() == 0) {

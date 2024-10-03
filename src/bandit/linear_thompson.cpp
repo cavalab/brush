@@ -67,13 +67,13 @@ std::map<T, float> LinearThompsonSamplingBandit<T>::sample_probs(bool update) {
         MatrixXf w(n_arms, context_size);
         MatrixXf r = MatrixXf::Random(n_arms, context_size); // TODO: use random generator here
         for (int i = 0; i < n_arms; ++i) {
-            w.row(i) = (B_inv_sqrt[i] * r.row(i)).transpose(); // mat mul
+            w.row(i) = B_inv_sqrt[i] * r.row(i); // mat mul
         }
 
         w = mean + w;
 
         VectorXf u(n_arms);
-        u = (w * last_context).transpose(); // mat mul
+        u = w * last_context; // mat mul
 
         // for (int i = 0; i < n_arms; ++i) {
         //     // cout << "Dot product for row " << i;
@@ -126,15 +126,15 @@ T LinearThompsonSamplingBandit<T>::choose(const VectorXf& context) {
     MatrixXf w(n_arms, context_size);
     MatrixXf r = MatrixXf::Random(n_arms, context_size); // TODO: use random generator here
     for (int i = 0; i < n_arms; ++i) {
-        w.row(i) = (B_inv_sqrt[i] * r.row(i)).transpose(); // mat mul
+        w.row(i) = B_inv_sqrt[i] * r.row(i); // mat mul
     }
 
     w = mean + w;
         
-    // cout << "w: " << w << endl;
+    cout << "w: " << w << endl;
     VectorXf u(n_arms);
-    u = (w * context).transpose(); // mat mul
-    // cout << "u: " << u << endl;
+    u = w * context; // mat mul
+    cout << "u: " << u << endl;
 
     // for (int i = 0; i < n_arms; ++i) {
     //     // cout << "Dot product for row " << i;
@@ -152,7 +152,7 @@ T LinearThompsonSamplingBandit<T>::choose(const VectorXf& context) {
 
     Eigen::Index max_index;
     float max_value = u.maxCoeff(&max_index);
-    // cout << "max_index: " << max_index << ", max_value: " << max_value << endl;
+    cout << "max_index: " << max_index << ", max_value: " << max_value << endl;
 
     // cout << "choose finished" << endl;
     return arm_index_to_key[max_index];

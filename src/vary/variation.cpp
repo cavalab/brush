@@ -501,6 +501,9 @@ std::tuple<std::optional<Individual<T>>, VectorXf> Variation<T>::cross(
             matching_spots_found = w > 0.0;
 
             if (matching_spots_found) {
+                // std::cout << "crossover" << std::endl;
+                VectorXf context = get_context(child.Tree, child_spot);
+           
                 auto other_spot = r.select_randomly(
                     other.Tree.begin(), 
                     other.Tree.end(), 
@@ -508,9 +511,6 @@ std::tuple<std::optional<Individual<T>>, VectorXf> Variation<T>::cross(
                     other_weights.end()
                 );
                      
-                // std::cout << "crossover" << std::endl;
-                VectorXf context = get_context(child.Tree, child_spot);
-           
                 // fmt::print("other_spot : {}\n",other_spot.node->data);
                 // swap subtrees at child_spot and other_spot
                 child.Tree.move_ontop(child_spot, other_spot);
@@ -589,17 +589,17 @@ std::tuple<std::optional<Individual<T>>, VectorXf> Variation<T>::mutate(
     Program<T> copy(parent.program);
 
     vector<float> weights; // choose location by weighted sampling of program
-    if (choice == "point") // TODO: use enum here to optimize
+    if (choice.compare("point") == 0) // TODO: use enum here to optimize
         weights = PointMutation::find_spots(copy.Tree, (*this), parameters);
-    else if (choice == "insert")
+    else if (choice.compare("insert") == 0)
         weights = InsertMutation::find_spots(copy.Tree, (*this), parameters);
-    else if (choice == "delete")
+    else if (choice.compare("delete") == 0)
         weights = DeleteMutation::find_spots(copy.Tree, (*this), parameters);
-    else if (choice == "subtree")
+    else if (choice.compare("subtree") == 0)
         weights = SubtreeMutation::find_spots(copy.Tree, (*this), parameters);
-    else if (choice == "toggle_weight_on")
+    else if (choice.compare("toggle_weight_on") == 0)
         weights = ToggleWeightOnMutation::find_spots(copy.Tree, (*this), parameters);
-    else if (choice == "toggle_weight_off")
+    else if (choice.compare("toggle_weight_off") == 0)
         weights = ToggleWeightOffMutation::find_spots(copy.Tree, (*this), parameters);
     else {
         std::string msg = fmt::format("{} not a valid mutation choice", choice);
@@ -632,15 +632,15 @@ std::tuple<std::optional<Individual<T>>, VectorXf> Variation<T>::mutate(
         context = get_context(child.Tree, spot);
 
         bool success;
-        if (choice == "point")
+        if (choice.compare("point") == 0)
             success = PointMutation::mutate(child.Tree, spot, (*this), parameters);
-        else if (choice == "insert")
+        else if (choice.compare("insert") == 0)
             success = InsertMutation::mutate(child.Tree, spot, (*this), parameters);
-        else if (choice == "delete")
+        else if (choice.compare("delete") == 0)
             success = DeleteMutation::mutate(child.Tree, spot, (*this), parameters);
-        else if (choice == "subtree")
+        else if (choice.compare("subtree") == 0)
             success = SubtreeMutation::mutate(child.Tree, spot, (*this), parameters);
-        else if (choice == "toggle_weight_on")
+        else if (choice.compare("toggle_weight_on") == 0)
             success = ToggleWeightOnMutation::mutate(child.Tree, spot, (*this), parameters);
         else // it must be"toggle_weight_off"
             success = ToggleWeightOffMutation::mutate(child.Tree, spot, (*this), parameters);
@@ -654,7 +654,9 @@ std::tuple<std::optional<Individual<T>>, VectorXf> Variation<T>::mutate(
             ind.set_variation(choice);
 
             // mutations that sampled from search space
-            if (choice == "point" || choice == "insert") {
+            if (choice.compare("point")   == 0
+            ||  choice.compare("insert")  == 0
+            ||  choice.compare("subtree") == 0) {
                 ind.set_sampled_nodes({spot.node->data});
             }
 
@@ -841,10 +843,10 @@ void Variation<T>::update_ss()
     // variation: getting new probabilities for variation operators
     auto variation_probs = variation_bandit.sample_probs(true);
 
-    // std::cout << "Variation probabilities:" << std::endl;
-    // for (const auto& variation : variation_probs) {
-    //     // std::cout << " - " << variation.first << ": " << variation.second << std::endl;
-    // }
+    std::cout << "Variation probabilities:" << std::endl;
+    for (const auto& variation : variation_probs) {
+        std::cout << " - " << variation.first << ": " << variation.second << std::endl;
+    }
 
     if (variation_probs.find("cx") != variation_probs.end())
         parameters.set_cx_prob(variation_probs.at("cx"));

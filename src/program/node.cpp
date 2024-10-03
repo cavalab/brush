@@ -33,7 +33,10 @@ auto Node::get_name(bool include_weight) const noexcept -> std::string
     }
     else if (Is<NodeType::MeanLabel>(node_type))
     {
-        return fmt::format("{:.2f} ({})", W, feature);
+        // this will show (MeanLabel) in the terminal name
+        // return fmt::format("{:.2f} ({})", W, feature);
+
+        return fmt::format("{:.2f}", W, feature);
     }
     else if (Is<NodeType::OffsetSum>(node_type)){
         if (W != 1.0)

@@ -60,6 +60,8 @@ public: // TODO: make these private (and work with nlohman json)
         // If different from zero, then the program is created with a fixed depth and size.
         // If zero, it samples the value
         // program = SS.make_program<T>(params, params.max_depth, params.max_size);
+
+        variation = "born";
     };
 
     // TODO: replace occurences of program.fit with these (also predict and predict_proba)
