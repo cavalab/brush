@@ -504,9 +504,10 @@ void Engine<T>::run(Dataset &data)
                     archive.update(pop, params);
                 }
                 
-                subflow.for_each_index(0, this->params.num_islands, 1, [&](int island) {
+                // Set validation loss to update best
+                for (int island = 0; island < this->params.num_islands; ++island) {
                     evaluator.update_fitness(this->pop, island, data, params, false, true);
-                }).name("Set validation loss to update best");
+                }
 
                 bool updated_best = this->update_best();
                 
@@ -538,10 +539,11 @@ void Engine<T>::run(Dataset &data)
 
         [&]() { return 0; }, // jump back to the next iteration
 
-        [&](tf::Subflow& subflow) {            
-            subflow.for_each_index(0, this->params.num_islands, 1, [&](int island) {
+        [&](tf::Subflow& subflow) {
+            // set training loss for archive
+            for (int island = 0; island < this->params.num_islands; ++island) {
                 evaluator.update_fitness(this->pop, island, data, params, false, false);
-            }).name("Set train loss as fitness");
+            }
 
             // std::cout << "Variator probs:" << std::endl;
             // std::cout << "cx: " << variator.parameters.get_cx_prob() << std::endl;
