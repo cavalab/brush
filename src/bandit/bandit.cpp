@@ -133,13 +133,28 @@ VectorXf Bandit<T>::get_context(const tree<Node>& tree, Iter spot, const SearchS
 
     // std::cout << "Spot name: " << (*spot).name << std::endl;
 
-    size_t tot_operators = NodeTypes::Count;
+    size_t tot_operators = ss.op_names.size(); //NodeTypes::Count;
     size_t tot_features  = 0;
 
     for (const auto& pair : ss.terminal_map)
         tot_features += pair.second.size();
 
     size_t tot_symbols = tot_operators + tot_features;
+
+    // Print the header with the operator names and terminal names
+    // std::cout << "Operators: ";
+    // for (const auto& op_name : ss.op_names) {
+    //     std::cout << op_name << " ";
+    // }
+    // std::cout << std::endl;
+
+    // std::cout << "Terminals: ";
+    // for (const auto& pair : ss.terminal_map) {
+    //     for (const auto& terminal : pair.second) {
+    //         std::cout << terminal.name << " ";
+    //     }
+    // }
+    // std::cout << std::endl;
 
     // Assert that tot_symbols is the same as context_size
     assert(tot_symbols == context_size);
@@ -163,7 +178,7 @@ VectorXf Bandit<T>::get_context(const tree<Node>& tree, Iter spot, const SearchS
                 pos_shift = 2;
 
             // std::cout << "Position shift: " << pos_shift << std::endl;
-            if (Is<NodeType::Terminal>((*it).node_type)){
+            if (Is<NodeType::Terminal, NodeType::Constant, NodeType::MeanLabel>((*it).node_type)){
                 size_t feature_index = 0;
 
                 // iterating using terminal_types since it is ordered
@@ -176,14 +191,15 @@ VectorXf Bandit<T>::get_context(const tree<Node>& tree, Iter spot, const SearchS
                     ++feature_index;
                 }
             } else {
-                size_t op_index=0; // doesnt care the arg type, as long as the operator is correct
-                for (; op_index< NodeTypes::Count; op_index++){
-                    if (static_cast<NodeType>(1UL << op_index) == (*it).node_type)
-                        break;
+                auto it_op = std::find(ss.op_names.begin(), ss.op_names.end(), (*it).name);
+                if (it_op != ss.op_names.end()) {
+                    size_t op_index = std::distance(ss.op_names.begin(), it_op);
+                    context(pos_shift * tot_symbols + op_index) += 1.0;
+                    // std::cout << "Below spot, operator: " << (*it).name << " of index " << pos_shift*tot_symbols + op_index << std::endl;
                 }
-
-                context( pos_shift*tot_symbols + op_index ) += 1.0;
-                // std::cout << "Below spot, operator: " << (*it).name << " of index " << pos_shift*tot_symbols + op_index << std::endl;
+                else {
+                    HANDLE_ERROR_THROW("Undefined operator " + (*it).name + "\n");
+                }
             }
         }
     }

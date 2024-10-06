@@ -175,9 +175,19 @@ void SearchSpace::init(const Dataset& d, const unordered_map<string,float>& user
     this->terminal_map.clear();
     this->terminal_types.clear();
     this->terminal_weights.clear();
+    this->op_names.clear();
 
     bool use_all = user_ops.size() == 0;
-    vector<string> op_names;
+    if (use_all)
+    {
+        for (size_t op_index=0; op_index< NodeTypes::Count; op_index++){
+            op_names.push_back(    
+                NodeTypeName.at(static_cast<NodeType>(1UL << op_index))
+            );
+        }
+    }
+
+
     for (const auto& [op, weight] : user_ops)
         op_names.push_back(op);
 
@@ -211,12 +221,15 @@ void SearchSpace::init(const Dataset& d, const unordered_map<string,float>& user
         // We need some ops in the search space so we can have the logit and offset
         if (user_ops.find("OffsetSum") == user_ops.end())
             extended_user_ops.insert({"OffsetSum", 0.0f});
+            op_names.push_back("OffsetSum");
 
         if (unique_classes.size()==2 && (user_ops.find("Logistic") == user_ops.end())) {
             extended_user_ops.insert({"Logistic", 0.0f});
+            op_names.push_back("Logistic");
         }
         else if (user_ops.find("Softmax") == user_ops.end()) {
             extended_user_ops.insert({"Softmax", 0.0f});
+            op_names.push_back("Softmax");
         }
 
         if (extended_user_ops.size() > 0)

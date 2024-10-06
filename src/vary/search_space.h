@@ -120,6 +120,9 @@ struct SearchSpace
     /// @brief A vector storing the available return types of terminals. 
     vector<DataType> terminal_types;
 
+    /// @brief A vector storing the available operator names (used by bandits).
+    vector<string> op_names;
+
     // serialization
 #ifndef DOXYGEN_SKIP
 
@@ -128,7 +131,8 @@ struct SearchSpace
         node_map_weights,
         terminal_map,
         terminal_weights,
-        terminal_types
+        terminal_types,
+        op_names
     ) 
 
 #endif

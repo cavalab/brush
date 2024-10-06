@@ -79,7 +79,7 @@ public:
         if (parameters.cx_prob > 0.0)
             variation_probs["cx"] = parameters.cx_prob;
         
-        size_t tot_operators = NodeTypes::Count;
+        size_t tot_operators = search_space.op_names.size(); //NodeTypes::Count;
         size_t tot_features  = 0;
         for (const auto& pair : search_space.terminal_map)
             tot_features += pair.second.size();
@@ -327,6 +327,13 @@ public:
             if (allPositive)
                 r = 1.0;
 
+            // linear bandit can handle non-bernoulli-like rewards
+            if (parameters.bandit.compare("linear_thompson") == 0)
+            {
+                r = std::count_if(deltas.begin(), deltas.end(),
+                    [](float delta) { return delta > 0; });
+            }
+
             // std::cout << "Updating variation bandit with reward: " << r << std::endl;
 
             if (ind.get_variation().compare("born") != 0)
@@ -340,9 +347,9 @@ public:
                 this->variation_bandit.update(choice, 0.0, root_context);
             }
 
-            if (!ind.get_variation().compare("born") && !ind.get_variation().compare("cx")
-            &&  !ind.get_variation().compare("subtree"))
-            {                
+            // if (!ind.get_variation().compare("born") && !ind.get_variation().compare("cx")
+            // &&  !ind.get_variation().compare("subtree"))
+            // {                
                 if (ind.get_sampled_nodes().size() > 0) {
                     // std::cout << "Updating terminal and operator bandits for sampled nodes" << std::endl;
                     const auto& changed_nodes = ind.get_sampled_nodes();
@@ -361,7 +368,7 @@ public:
                         }
                     }
                 }
-            }
+            // }
 
             pop.individuals.at(indices.at(i)) = std::make_shared<Individual<T>>(ind);
             // std::cout << "Individual at index " << indices.at(i) << " updated successfully" << std::endl;

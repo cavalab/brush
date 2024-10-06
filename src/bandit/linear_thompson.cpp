@@ -88,26 +88,17 @@ std::map<T, float> LinearThompsonSamplingBandit<T>::sample_probs(bool update) {
         //     u(i) = dot_product;
         // }
 
+        float total_prob = 0.0f;
         for (int i = 0; i < n_arms; ++i) {
-            this->probabilities[arm_index_to_key[i]] = std::exp(u(i));
+            float prob = std::exp(u(i));
+            this->probabilities[arm_index_to_key[i]] = prob;
+            total_prob += prob;
         }
 
-        // // Calculate probabilities
-        // std::map<T, float> probs;
-        // float total_prob = 0.0f;
-        
-        // for (int i = 0; i < n_arms; ++i) {
-        //     float prob = exp(u(i)) / exp(u.maxCoeff());
-        //     probs[arm_index_to_key[i]] = prob;
-        //     total_prob += prob;
-        // }
-
-        // // Normalize probabilities to ensure they sum to 1
-        // for (auto& pair : probs) {
-        //     pair.second /= total_prob;
-        // }
-
-        // this->probabilities = probs;
+        // Normalize probabilities to ensure they sum to 1
+        for (auto& [k, v] : this->probabilities) {
+            this->probabilities[k] = std::min(this->probabilities[k] / total_prob, 1.0f);
+        }
     }
 
     return this->probabilities;
