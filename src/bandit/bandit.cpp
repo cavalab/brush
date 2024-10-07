@@ -142,19 +142,19 @@ VectorXf Bandit<T>::get_context(const tree<Node>& tree, Iter spot, const SearchS
     size_t tot_symbols = tot_operators + tot_features;
 
     // Print the header with the operator names and terminal names
-    std::cout << "Operators: ";
-    for (const auto& op_name : ss.op_names) {
-        std::cout << op_name << " ";
-    }
-    std::cout << std::endl;
+    // std::cout << "Operators: ";
+    // for (const auto& op_name : ss.op_names) {
+    //     std::cout << op_name << " ";
+    // }
+    // std::cout << std::endl;
 
-    std::cout << "Terminals: ";
-    for (const auto& pair : ss.terminal_map) {
-        for (const auto& terminal : pair.second) {
-            std::cout << terminal.name << " ";
-        }
-    }
-    std::cout << std::endl;
+    // std::cout << "Terminals: ";
+    // for (const auto& pair : ss.terminal_map) {
+    //     for (const auto& terminal : pair.second) {
+    //         std::cout << terminal.name << " ";
+    //     }
+    // }
+    // std::cout << std::endl;
 
     // Assert that tot_symbols is the same as context_size
     assert(tot_symbols == context_size);
@@ -204,9 +204,9 @@ VectorXf Bandit<T>::get_context(const tree<Node>& tree, Iter spot, const SearchS
         }
     }
 
-    std::cout << "Context part 1: " << context.head(tot_symbols).transpose() << std::endl;
-    std::cout << "Context part 2: " << context.segment(tot_symbols, tot_symbols).transpose() << std::endl;
-    std::cout << "Context part 3: " << context.tail(tot_symbols).transpose() << std::endl;
+    // std::cout << "Context part 1: " << context.head(tot_symbols).transpose() << std::endl;
+    // std::cout << "Context part 2: " << context.segment(tot_symbols, tot_symbols).transpose() << std::endl;
+    // std::cout << "Context part 3: " << context.tail(tot_symbols).transpose() << std::endl;
 
     return context;
 }
