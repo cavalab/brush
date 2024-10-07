@@ -73,24 +73,14 @@ std::map<T, float> LinearThompsonSamplingBandit<T>::sample_probs(bool update) {
         w = mean + w;
 
         VectorXf u(n_arms);
+        
+        last_context.setOnes();
+        
         u = w * last_context; // mat mul
-
-        // for (int i = 0; i < n_arms; ++i) {
-        //     // cout << "Dot product for row " << i;
-        //     float dot_product = w.row(i).dot(last_context);
-        //     if (std::isnan(dot_product))
-        //     {
-        //         dot_product = 0.0f;
-        //         // cout << "(nan)";
-        //     }
-        //     // cout << "Dot product for row " << i << ": " << dot_product << endl;
-                
-        //     u(i) = dot_product;
-        // }
 
         float total_prob = 0.0f;
         for (int i = 0; i < n_arms; ++i) {
-            float prob = std::exp(u(i));
+            float prob = std::exp(u(i)) / std::exp(u.maxCoeff());
             this->probabilities[arm_index_to_key[i]] = prob;
             total_prob += prob;
         }
@@ -127,20 +117,6 @@ T LinearThompsonSamplingBandit<T>::choose(const VectorXf& context) {
     u = w * context; // mat mul
     // cout << "u: " << u << endl;
 
-    // for (int i = 0; i < n_arms; ++i) {
-    //     // cout << "Dot product for row " << i;
-    //     float dot_product = w.row(i).dot(context);
-    //     if (std::isnan(dot_product))
-    //     {
-    //         dot_product = 0.0f;
-    //         // cout << "(nan)";
-    //     }
-
-    //     // cout << "Dot product for row " << i << ": " << dot_product << endl;
-
-    //     u(i) = dot_product;
-    // }
-
     Eigen::Index max_index;
     float max_value = u.maxCoeff(&max_index);
     // cout << "max_index: " << max_index << ", max_value: " << max_value << endl;
@@ -173,7 +149,7 @@ void LinearThompsonSamplingBandit<T>::update(T arm, float reward, VectorXf& cont
     B[arm_index] += context * context.transpose();
     // cout << "B[arm_index] after update: " << B[arm_index] << endl;
 
-    m2_r.row(arm_index) += context * reward;
+    m2_r.row(arm_index) += (context * reward);
     // cout << "m2_r.row(arm_index) after update: " << m2_r.row(arm_index) << endl;
 
     B_inv[arm_index] = B[arm_index].inverse();
@@ -182,7 +158,7 @@ void LinearThompsonSamplingBandit<T>::update(T arm, float reward, VectorXf& cont
     B_inv_sqrt[arm_index] = B_inv[arm_index].ldlt().matrixL();
     // cout << "B_inv_sqrt[arm_index]: " << B_inv_sqrt[arm_index] << endl;
 
-    mean.row(arm_index) = B_inv[arm_index] * m2_r.row(arm_index); // mat mul
+    mean.row(arm_index) = B_inv[arm_index] * m2_r.row(arm_index).transpose(); // mat mul
     // cout << "mean.row(arm_index): " << mean.row(arm_index) << endl;
 
     // cout << "update finished" << endl;
