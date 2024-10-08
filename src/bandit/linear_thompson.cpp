@@ -149,7 +149,7 @@ void LinearThompsonSamplingBandit<T>::update(T arm, float reward, VectorXf& cont
     B[arm_index] += context * context.transpose();
     // cout << "B[arm_index] after update: " << B[arm_index] << endl;
 
-    m2_r.row(arm_index) += (context * reward);
+    m2_r.row(arm_index) += (context * reward).transpose();
     // cout << "m2_r.row(arm_index) after update: " << m2_r.row(arm_index) << endl;
 
     B_inv[arm_index] = B[arm_index].inverse();
