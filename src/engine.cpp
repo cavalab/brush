@@ -98,7 +98,7 @@ void Engine<T>::calculate_stats()
     // Multiply by weight to make it a maximization problem.
     // Then, multiply again to get rid of signal
     float    best_score     = (scores*error_weight).maxCoeff()*error_weight;
-    float    best_score_v   = (scores_v*error_weight).maxCoeff()*error_weight;
+    float    best_score_v   = this->best_ind.fitness.get_loss_v();
     float    med_score      = median(scores); 
     float    med_score_v    = median(scores_v); 
     unsigned med_size       = median(sizes);                        
