@@ -184,7 +184,27 @@ VectorXf Bandit<T>::get_context(const tree<Node>& tree, Iter spot, const SearchS
                 // iterating using terminal_types since it is ordered
                 for (const auto& terminal : ss.terminal_map.at((*it).ret_type)) {
                     if (terminal.name == (*it).name) {
+                        // Just one hot encode --------------------------------------
                         context((tot_operators + feature_index) + pos_shift*tot_symbols) += 1.0;
+
+                        // encode with weights --------------------------------------
+                        // int tree_complexity = operator_complexities.at((*it).node_type);
+                        // if ((*it).get_is_weighted()
+                        // &&  Isnt<NodeType::Constant, NodeType::MeanLabel>((*it).node_type) )
+                        // {
+                        //     if ((Is<NodeType::OffsetSum>((*it).node_type) && (*it).W != 0.0)
+                        //     ||  ((*it).W != 1.0))
+                        //         tree_complexity = operator_complexities.at(NodeType::Mul) +
+                        //                           operator_complexities.at(NodeType::Constant) + 
+                        //                           tree_complexity;
+                        // }
+                        // context((tot_operators + feature_index) + pos_shift*tot_symbols) += static_cast<float>(tree_complexity);
+
+                        // use recursive evaluation to get the complexity of the subtree
+                        // linear complexity to avoid exponential increase of values
+                        // int complexity = it.node->get_linear_complexity();
+                        // context((tot_operators + feature_index) + pos_shift*tot_symbols) += static_cast<float>(complexity);
+
                         // std::cout << "Below spot, terminal: " << terminal.name << " at feature index " << feature_index << std::endl;
                         break;
                     }

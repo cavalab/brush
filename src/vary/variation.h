@@ -314,24 +314,36 @@ public:
                 
                 deltas.push_back(delta * weight);
             }
-
+            
             bool allPositive = true;
+            bool allNegative = true;
             for (float d : deltas) {
-                if (d < 0) {
+                if (d < 0)
                     allPositive = false;
-                    break;
-                }
+                if (d > 0)
+                    allNegative = false;
             }
 
             float r = 0.0;
-            if (allPositive)
+            if (allPositive && !allNegative)
                 r = 1.0;
 
             // linear bandit can handle non-bernoulli-like rewards
             if (parameters.bandit.compare("linear_thompson") == 0)
             {
-                r = std::count_if(deltas.begin(), deltas.end(),
-                    [](float delta) { return delta > 0; });
+                // r = std::accumulate(deltas.begin(), deltas.end(), 0.0f,
+                //                     [](float sum, float delta) {
+                //                         if (delta > 0) return sum + 1.0f;
+                //                         // if (delta < 0) return sum - 1.0f;
+                //                         return sum; // For delta == 0
+                //                     });
+                
+                // if (allPositive)
+                //     r = std::accumulate(deltas.begin(), deltas.end(),
+                //                         1.0f, std::multiplies<float>());
+
+                if ( allPositive && !allNegative) r =  1.0;
+                if (!allPositive &&  allNegative) r = -1.0;
             }
 
             // std::cout << "Updating variation bandit with reward: " << r << std::endl;

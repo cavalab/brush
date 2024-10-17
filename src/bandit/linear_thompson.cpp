@@ -85,9 +85,11 @@ std::map<T, float> LinearThompsonSamplingBandit<T>::sample_probs(bool update) {
             total_prob += prob;
         }
 
+        assert(total_prob > 0 && "Total probability must be greater than zero");
+
         // Normalize probabilities to ensure they sum to 1
         for (auto& [k, v] : this->probabilities) {
-            this->probabilities[k] = std::min(this->probabilities[k] / total_prob, 1.0f);
+            this->probabilities[k] = std::min(this->probabilities[k], 1.0f); // / total_prob
         }
     }
 

@@ -656,6 +656,7 @@ std::tuple<std::optional<Individual<T>>, VectorXf> Variation<T>::mutate(
             // mutations that sampled from search space
             if (choice.compare("point")   == 0
             ||  choice.compare("insert")  == 0
+            ||  choice.compare("delete")  == 0
             ||  choice.compare("subtree") == 0) {
                 ind.set_sampled_nodes({spot.node->data});
             }
