@@ -164,7 +164,7 @@ class EstimatorInterface():
         save_population: str = "",
         load_population: str = "",
         bandit: str = 'dynamic_thompson',
-        shuffle_split: bool = True,
+        shuffle_split: bool = False,
         logfile: str = "",
         random_state: int = None
     ) -> None:
