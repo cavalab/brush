@@ -96,8 +96,10 @@ class DeapEstimator(EstimatorInterface, BaseEstimator):
         
         toolbox.register("Clone", lambda ind: self.Individual(ind.program.copy()))
         
-        toolbox.register("mate", self.variator_.cross)
-        toolbox.register("mutate", self.variator_.mutate)
+        # crossover and mutation will return a tuple, the individual and context. Here 
+        # we are interested only in the context part
+        toolbox.register("mate", lambda ind1, ind2: self.variator_.cross(ind1, ind2)[0])
+        toolbox.register("mutate", lambda ind: self.variator_.mutate(ind, "")[0])
         toolbox.register("vary_pop", lambda pop: self.variator_.vary_pop(pop, self.parameters_))
 
         # When solving multi-objective problems, selection and survival must
@@ -138,7 +140,8 @@ class DeapEstimator(EstimatorInterface, BaseEstimator):
 
         self.data_ = self._make_data(X, y, 
                                      feature_names=self.feature_names_,
-                                     validation_size=self.validation_size)
+                                     validation_size=self.validation_size,
+                                     shuffle_split=self.shuffle_split)
 
         # set n classes if relevant
         self.n_classes_ = 0
@@ -213,26 +216,6 @@ class DeapEstimator(EstimatorInterface, BaseEstimator):
 
         return self
     
-    def _make_data(self, X, y=None, feature_names=[], validation_size=0.0):
-        # This function should not partition data (since it may be used in `predict`).
-        # partitioning is done by `fit`. Feature names should be inferred
-        # before calling _make_data (so predict can be made with np arrays or
-        # pd dataframes).
-
-        if isinstance(y, pd.Series):
-            y = y.values
-        if isinstance(X, pd.DataFrame):
-            X = X.values
-        
-        assert isinstance(X, np.ndarray)
-
-        if y is None:
-            return Dataset(X=X,
-                    feature_names=feature_names, validation_size=validation_size)
-
-        return Dataset(X=X, y=y,
-            feature_names=feature_names, validation_size=validation_size)
-
 
     def _make_individual(self):
         # C++'s PTC2-based `make_individual` will create a tree of at least
@@ -245,7 +228,7 @@ class DeapEstimator(EstimatorInterface, BaseEstimator):
 
         ind = self.Individual()
         ind.init(self.search_space_, self.parameters_)
-        ind.objectives = self.objectives
+        # ind.objectives = self.parameters_.objectives
         
         return ind
     
@@ -254,16 +237,21 @@ class DeapEstimator(EstimatorInterface, BaseEstimator):
 
         check_is_fitted(self)
 
+        if self.data_ is None:
+            self.data_ = self._make_data(X, 
+                                    feature_names=self.feature_names_,
+                                    validation_size=self.validation_size,
+                                    shuffle_split=self.shuffle_split)
+            
         if isinstance(X, pd.DataFrame):
             X = X.values
 
         assert isinstance(X, np.ndarray)
 
+        # Need to provide feature names because reference does not store order
         data = Dataset(X=X, ref_dataset=self.data_, 
                               feature_names=self.feature_names_)
         
-        # data = self._make_data(X, feature_names=self.feature_names_)
-
         return self.best_estimator_.program.predict(data)
 
     # def _setup_population(self):
@@ -332,12 +320,17 @@ class DeapClassifier(DeapEstimator,ClassifierMixin):
         if isinstance(X, pd.DataFrame):
             X = X.values
 
+        if self.data_ is None:
+            self.data_ = self._make_data(X, 
+                                    feature_names=self.feature_names_,
+                                    validation_size=self.validation_size,
+                                    shuffle_split=self.shuffle_split)
+            
         assert isinstance(X, np.ndarray)
 
+        # Need to provide feature names because reference does not store order
         data = Dataset(X=X, ref_dataset=self.data_, 
                               feature_names=self.feature_names_)
-
-        # data = self._make_data(X, feature_names=self.feature_names_)
 
         prob = self.best_estimator_.program.predict_proba(data)
 

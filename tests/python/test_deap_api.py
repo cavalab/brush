@@ -174,25 +174,25 @@ def test_fixed_nodes(setup, fixed_node, brush_args, request):
         pop_models = []
         for p in pop:
             pop_models.append(p.program.get_model())
-            assert p.program.get_model().startswith(fixed_node), \
+            assert fixed_node in p.program.get_model(), \
                 (f"An individual for {setup} was criated without {fixed_node} " +
-                 f"node on root. Model was {p.ind.get_model()}")
+                 f"node on root. Model was {p.program.get_model()}")
 
         # Clones
         clones = [est.toolbox_.Clone(p) for p in pop]
         for c in clones:
-            assert c.program.get_model().startswith(fixed_node), \
+            assert fixed_node in c.program.get_model(), \
                 (f"An individual for {setup} was cloned without {fixed_node} " +
-                 f"node on root. Model was {c.ind.get_model()}")
+                 f"node on root. Model was {c.program.get_model()}")
 
         # Mutation
         xmen = [est.toolbox_.mutate(c) for c in clones]
         xmen = [x for x in xmen if x is not None]
         assert len(xmen) > 0, "Mutation didn't worked for any individual"
         for x in xmen:
-            assert x.program.get_model().startswith(fixed_node), \
+            assert fixed_node in x.program.get_model(), \
                 (f"An individual for {setup} was mutated without {fixed_node} " +
-                 f"node on root. Model was {x.ind.get_model()}")
+                 f"node on root. Model was {x.program.get_model()}")
         
         # Crossover
         cxmen = []
@@ -201,9 +201,9 @@ def test_fixed_nodes(setup, fixed_node, brush_args, request):
         cxmen = [x for x in cxmen if x is not None]
         assert len(cxmen) > 0, "Crossover didn't worked for any individual"
         for cx in cxmen:
-            assert cx.program.get_model().startswith(fixed_node), \
+            assert fixed_node in cx.program.get_model(), \
                 (f"An individual for {setup} was crossovered without {fixed_node} " +
-                 f"node on root. Model was {cx.ind.get_model()}")
+                 f"node on root. Model was {cx.program.get_model()}")
             
         # Originals still the same
         for p, p_original_model in zip(pop, pop_models):

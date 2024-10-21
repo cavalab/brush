@@ -46,6 +46,7 @@ void bind_program(py::module& m, string name)
         .def("get_weights", &T::get_weights)
         .def("size", &T::size, py::arg("include_weight")=true)
         .def("complexity", &T::complexity)
+        .def("linear_complexity", &T::linear_complexity)
         .def("depth", &T::depth)
         // .def("cross", &T::cross, py::return_value_policy::automatic,
         //      "Performs one attempt to stochastically swap subtrees between two programs and generate a child")

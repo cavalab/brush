@@ -36,11 +36,11 @@ public:
     unsigned int max_size  = 50;
 
     vector<string> objectives{"error","complexity"}; // error should be generic and deducted based on mode
-
+    string bandit = "dynamic_thompson"; // TODO: should I rename dummy? 
     string sel  = "lexicase"; //selection method
     string surv = "nsga2"; //survival method
     std::unordered_map<string, float> functions;
-    int num_islands=5;
+    int num_islands=1;
 
     // if we should save pareto front of the entire evolution (use_arch=true)
     // or just the final population (use_arch=false)
@@ -60,7 +60,7 @@ public:
     float cx_prob=0.2;  ///< cross rate for variation
     float mig_prob = 0.05;
     
-    string scorer_="mse";   ///< actual loss function used, determined by error
+    string scorer="mse";   ///< actual loss function used, determined by error
 
     vector<int>   classes;        ///< class labels
     vector<float> class_weights;  ///< weights for each class
@@ -75,7 +75,9 @@ public:
     bool shuffle_split = false;
     float validation_size = 0.75;
     vector<string> feature_names = {};
+    vector<string> feature_types = {};
     float batch_size = 0.0;
+    bool weights_init=true;
 
     string load_population = "";
     string save_population = "";
@@ -101,14 +103,17 @@ public:
     void set_max_gens(int new_max_gens){ max_gens = new_max_gens; };
     int get_max_gens(){ return max_gens; };
     
+    void set_bandit(string new_bandit){ bandit = new_bandit; };
+    string get_bandit(){ return bandit; };
+
     void set_max_stall(int new_max_stall){ max_stall = new_max_stall; };
     int get_max_stall(){ return max_stall; };
 
     void set_max_time(int new_max_time){ max_time = new_max_time; };
     int get_max_time(){ return max_time; };
     
-    void set_scorer_(string new_scorer_){ scorer_ = new_scorer_; };
-    string get_scorer_(){ return scorer_; };
+    void set_scorer(string new_scorer){ scorer = new_scorer; };
+    string get_scorer(){ return scorer; };
 
     void set_load_population(string new_load_population){ load_population = new_load_population; };
     string get_load_population(){ return load_population; };
@@ -122,7 +127,9 @@ public:
     void set_current_gen(unsigned int gen){ current_gen = gen; };
     unsigned int get_current_gen(){ return current_gen; };
 
-    void set_num_islands(int new_num_islands){ num_islands = new_num_islands; };
+    // TODO: fix vary_and_update and get parallelism working 
+    // void set_num_islands(int new_num_islands){ num_islands = new_num_islands; };
+    void set_num_islands(int new_num_islands){ num_islands = 1; };
     int get_num_islands(){ return num_islands; };
 
     void set_max_depth(unsigned new_max_depth){ max_depth = new_max_depth; };
@@ -135,7 +142,21 @@ public:
     unsigned get_max_size() const { return max_size; };
 
     void set_objectives(vector<string> new_objectives){ objectives = new_objectives; };
-    vector<string> get_objectives(){ return objectives; };
+    vector<string> get_objectives() const {
+        // return objectives;
+        
+        // properly replace error with the specified scorer
+        vector<string> aux_objectives(0);
+
+        for (auto& objective : objectives) {
+            if (objective.compare("error")==0)
+                aux_objectives.push_back(scorer);
+            else
+                aux_objectives.push_back(objective);
+        }
+
+        return aux_objectives;
+    };
 
     void set_sel(string new_sel){ sel = new_sel; };
     string get_sel(){ return sel; };
@@ -161,6 +182,9 @@ public:
     void set_shuffle_split(bool shuff){ shuffle_split = shuff; };
     bool get_shuffle_split(){ return shuffle_split; };
 
+    void set_weights_init(bool init){ weights_init = init; };
+    bool get_weights_init(){ return weights_init; };
+
     void set_n_classes(unsigned int new_n_classes){ n_classes = new_n_classes; };
     unsigned int get_n_classes(){ return n_classes; };
 
@@ -169,6 +193,9 @@ public:
 
     void set_feature_names(vector<string> vn){ feature_names = vn; };
     vector<string> get_feature_names(){ return feature_names; };
+
+    void set_feature_types(vector<string> ft){ feature_types = ft; };
+    vector<string> get_feature_types(){ return feature_types; };
 
     void set_batch_size(float c){ batch_size = c; };
     float get_batch_size(){ return batch_size; };
@@ -187,7 +214,7 @@ NLOHMANN_DEFINE_TYPE_NON_INTRUSIVE(Parameters,
     max_gens,
     max_stall,
     max_time,
-    scorer_,
+    scorer,
     load_population,
     save_population,
     logfile,

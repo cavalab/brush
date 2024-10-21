@@ -73,9 +73,9 @@ std::map<std::string, NodeType> NodeNameType = {
     {"Terminal", NodeType::Terminal},
 
     // custom
-    {"CustomUnaryOp", NodeType::CustomUnaryOp},
-    {"CustomBinaryOp", NodeType::CustomBinaryOp},
-    {"CustomSplit", NodeType::CustomSplit}
+    // {"CustomUnaryOp", NodeType::CustomUnaryOp},
+    // {"CustomBinaryOp", NodeType::CustomBinaryOp},
+    // {"CustomSplit", NodeType::CustomSplit}
 };
 
 std::map<NodeType,std::string> NodeTypeName = Util::reverse_map(NodeNameType);

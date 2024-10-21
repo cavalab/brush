@@ -22,9 +22,9 @@ import numpy as np
 #     for d in range(1,4):
 #         for s in range(1,20):
 #             prg = SS.make_regressor(d, s)
-#             prg = prg.mutate()
+#             prg, _ = prg.mutate()
             
-#             if prg != None: prg = prg.cross(prg)    
+#             if prg != None: prg, _ = prg.cross(prg)    
 #             if prg != None: first_run.append(prg.get_model())
     
 #     assert len(first_run) > 0, "either mutation or crossover is always failing"
@@ -35,9 +35,9 @@ import numpy as np
 #     for d in range(1,4):
 #         for s in range(1,20):
 #             prg = SS.make_regressor(d, s)
-#             prg = prg.mutate()
+#             prg, _ = prg.mutate()
 
-#             if prg != None: prg = prg.cross(prg)
+#             if prg != None: prg, _ = prg.cross(prg)
 #             if prg != None: second_run.append(prg.get_model())
         
 #     assert len(second_run) > 0, "either mutation or crossover is always failing"

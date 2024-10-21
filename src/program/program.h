@@ -88,12 +88,20 @@ template<PT PType> struct Program
         SSref = std::optional<std::reference_wrapper<SearchSpace>>{s};
     }
 
-    /// @brief count the complexity of the program.
+    /// @brief count the (recursive) complexity of the program.
     /// @return int complexity.
     int complexity() const{
         auto head = Tree.begin(); 
         
         return head.node->get_complexity();
+    }
+
+    /// @brief count the linear complexity of the program.
+    /// @return int complexity.
+    int linear_complexity() const{
+        auto head = Tree.begin(); 
+        
+        return head.node->get_linear_complexity();
     }
 
     /// @brief count the tree size of the program, including the weights in weighted nodes.
@@ -189,6 +197,7 @@ template<PT PType> struct Program
     {
         if (!is_fitted_)
             HANDLE_ERROR_THROW("Program is not fitted. Call 'fit' first.\n");
+            
         return (Tree.begin().node->predict<TreeType>(d) > 0.5);
     };
 
@@ -201,6 +210,7 @@ template<PT PType> struct Program
     {
         if (!is_fitted_)
             HANDLE_ERROR_THROW("Program is not fitted. Call 'fit' first.\n");
+
         TreeType out = Tree.begin().node->predict<TreeType>(d);
         auto argmax = Function<NodeType::ArgMax>{};
         return argmax(out);
@@ -263,7 +273,9 @@ template<PT PType> struct Program
         for (PostIter i = Tree.begin_post(); i != Tree.end_post(); ++i)
         {
             const auto& node = i.node->data; 
-            if (node.get_is_weighted())
+            // some nodes cannot have their weights optimized, others must have
+            if ( Is<NodeType::OffsetSum>(node.node_type)
+            ||   (node.get_is_weighted() && IsWeighable(node.node_type)) )
                 ++count;
         }
         return count;
@@ -281,7 +293,8 @@ template<PT PType> struct Program
         for (PostIter t = Tree.begin_post(); t != Tree.end_post(); ++t)
         {
             const auto& node = t.node->data; 
-            if (node.get_is_weighted())
+            if ( Is<NodeType::OffsetSum>(node.node_type)
+            ||   (node.get_is_weighted() && IsWeighable(node.node_type)) )
             {
                 weights(i) = node.W;
                 ++i;
@@ -306,7 +319,8 @@ template<PT PType> struct Program
         for (PostIter i = Tree.begin_post(); i != Tree.end_post(); ++i)
         {
             auto& node = i.node->data; 
-            if (node.get_is_weighted())
+            if ( Is<NodeType::OffsetSum>(node.node_type)
+            ||   (node.get_is_weighted() && IsWeighable(node.node_type)) )
             {
                 node.W = weights(j);
                 ++j;
@@ -409,7 +423,9 @@ template<PT PType> struct Program
                 // kid_id = kid_id.substr(2);
 
                 if (kid->data.get_is_weighted()
-                && Isnt<NodeType::Constant, NodeType::MeanLabel, NodeType::OffsetSum>(kid->data.node_type)){
+                && Isnt<NodeType::Constant, NodeType::MeanLabel, 
+                        NodeType::OffsetSum, NodeType::SplitBest>(kid->data.node_type))
+                {
                     edge_label = fmt::format("{:.2f}",kid->data.W);
                 }
 
