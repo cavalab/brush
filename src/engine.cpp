@@ -388,15 +388,12 @@ void Engine<T>::run(Dataset &data)
     // TODO: check that I dont use pop.size() (or I use correctly, because it will return the size with the slots for the offspring)
     // vectors to store each island separatedly
     vector<vector<size_t>> island_parents;
-    vector<vector<size_t>> survivors;
     vector<vector<float>> rewards;
     
     island_parents.clear();
     island_parents.resize(pop.num_islands);
 
-    survivors.clear();
-    survivors.resize(pop.num_islands);
-
+    // TODO: get rid of this rewards
     rewards.clear();
     rewards.resize(pop.num_islands);
 
@@ -406,11 +403,9 @@ void Engine<T>::run(Dataset &data)
 
         auto delta = idx_end - idx_start;
 
-        survivors.at(i).clear();
         island_parents.at(i).clear();
         rewards.at(i).clear();
 
-        survivors.at(i).resize(delta);
         island_parents.at(i).resize(delta);
         rewards.at(i).resize(delta);
     }
@@ -459,28 +454,13 @@ void Engine<T>::run(Dataset &data)
                 if (data.use_batch) // assign the batch error as fitness (but fit was done with training data)
                     evaluator.update_fitness(this->pop, island, batch, params, false, false);
 
-                // select survivors from combined pool of parents and offspring
-                vector<size_t> island_survivors = survivor.survive(this->pop, island, params);
-                for (int i=0; i< island_survivors.size(); i++){
-                    survivors.at(island).at(i) = island_survivors.at(i);
-                }
-
             }).name("runs one generation at each island in parallel");
 
             auto update_pop = subflow.emplace([&]() { // sync point
-                // Flatten the rewards vector
-
-                // TODO: stop using flattened_rewards
-                // TODO: improve vary_and_update and stop using this (as well as island_rewards in the subflow above)
-                // vector<float> flattened_rewards;
-                // for (const auto& island_rewards : rewards) {
-                //     flattened_rewards.insert(flattened_rewards.end(),
-                //                              island_rewards.begin(),
-                //                              island_rewards.end());
-                // }
-                
-                // // Assert that flattened_rewards has the same size as popsize
-                // assert(flattened_rewards.size() == this->pop.size());
+                // select survivors from combined pool of parents and offspring.
+                // if the same individual exists in different islands, then it will be selected several times and the pareto front will have less diversity.
+                // to avoid this, survive should be unified
+                auto survivors = {survivor.survive(this->pop, 0, params)};
                 
                 // // TODO: do i need these next this-> pointers?
                 // // Use the flattened rewards vector for updating the population

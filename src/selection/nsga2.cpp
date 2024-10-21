@@ -72,9 +72,19 @@ vector<size_t> NSGA2<T>::survive(Population<T>& pop, int island,
     size_t idx_start = std::floor(island*params.pop_size/params.num_islands);
     size_t idx_end   = std::floor((island+1)*params.pop_size/params.num_islands);
 
-    auto original_size = idx_end - idx_start; // original island size (survive must   be  called with an island with offfspring)
+    // TODO: survive should be unified across islands, and stop taking island as argument
+    // auto original_size = idx_end - idx_start; // original island size (survive must   be  called with an island with offfspring)
     
-    auto island_pool = pop.get_island_indexes(island);
+    auto original_size = params.pop_size;
+
+    // TODO: clean up comments mess here 
+    // auto island_pool = pop.get_island_indexes(island);
+
+    std::vector<size_t> island_pool;
+    for (int i = 0; i < params.num_islands; ++i) {
+        auto indexes = pop.get_island_indexes(i);
+        island_pool.insert(island_pool.end(), indexes.begin(), indexes.end());
+    }
     
     // fast non-dominated sort
     auto front = fast_nds(pop, island_pool);

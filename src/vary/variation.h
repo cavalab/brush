@@ -202,6 +202,7 @@ public:
     void vary_and_update(Population<T>& pop, int island, const vector<size_t>& parents,
                          const Dataset& data, Evaluation<T>& evaluator) {
 
+        // TODO: move implementation to cpp file and keep only declarations here
         // TODO: rewrite this entire function to avoid repetition (this is a frankenstein)
         auto indices = pop.get_island_indexes(island);
 
