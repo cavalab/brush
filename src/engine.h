@@ -139,6 +139,8 @@ public:
     
     Individual<T> best_ind; ///< best individual found during training
     Archive<T> archive;          ///< pareto front archive
+
+    bool is_fitted; ///< keeps track of whether fit was called
 private:
 
     Population<T> pop;       	///< population of programs
@@ -151,8 +153,6 @@ private:
 
     Timer timer;       ///< start time of training
 
-    bool is_fitted; ///< keeps track of whether fit was called.
-
     void init();
 
     /// set flag indicating whether fit has been called
@@ -161,10 +161,10 @@ private:
 
 // TODO: should I serialize data and search space as well?
 // Only stuff to make new predictions should be serialized
-NLOHMANN_DEFINE_TYPE_NON_INTRUSIVE(Engine<PT::Regressor>, params, best_ind, archive);
-NLOHMANN_DEFINE_TYPE_NON_INTRUSIVE(Engine<PT::BinaryClassifier>, params, best_ind, archive);
-NLOHMANN_DEFINE_TYPE_NON_INTRUSIVE(Engine<PT::MulticlassClassifier>, params, best_ind, archive);
-NLOHMANN_DEFINE_TYPE_NON_INTRUSIVE(Engine<PT::Representer>, params, best_ind, archive);
+NLOHMANN_DEFINE_TYPE_NON_INTRUSIVE(Engine<PT::Regressor>, params, best_ind, archive, ss, is_fitted);
+NLOHMANN_DEFINE_TYPE_NON_INTRUSIVE(Engine<PT::BinaryClassifier>, params, best_ind, archive, ss, is_fitted);
+NLOHMANN_DEFINE_TYPE_NON_INTRUSIVE(Engine<PT::MulticlassClassifier>, params, best_ind, archive, ss, is_fitted);
+NLOHMANN_DEFINE_TYPE_NON_INTRUSIVE(Engine<PT::Representer>, params, best_ind, archive, ss, is_fitted);
 
 } // Brush
 #endif
