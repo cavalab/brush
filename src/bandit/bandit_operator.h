@@ -2,7 +2,7 @@
 #define BANDIT_OPERATOR_H
 
 #include "../init.h"
-#include "../data/data.h"
+// #include "../data/data.h"
 #include "../types.h"
 #include "../params.h"
 #include "../program/tree_node.h"

@@ -182,15 +182,6 @@ public:
     void vary(Population<T>& pop, int island, const vector<size_t>& parents);
 
     /**
-     * Calculates the rewards for the given population and island.
-     *
-     * @param pop The population to calculate rewards for.
-     * @param island The island index.
-     * @return A vector of rewards for the population.
-     */
-    vector<float> calculate_rewards(Population<T>& pop, int island);
-
-    /**
      * Updates the probability distribution sampling for variation and nodes based on the given rewards.
      *
      * @param pop The population to update the selection strategy for.

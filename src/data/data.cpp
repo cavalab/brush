@@ -247,7 +247,7 @@ void Dataset::init()
                 [&](int element) { return element; });
     }
     else if (classification && true) // figuring out training and validation data indexes
-    { // Stratified split for classification problems. TODO: parameters to change stratify behavior? (false by default)
+    { // Stratified split for classification problems. TODO: parameters to change stratify behavior? (and set false by default)
         std::map<float, vector<int>> class_indices; // TODO: I think I can remove many std:: from the code..
         for (size_t i = 0; i < n_samples; ++i) {
             class_indices[y[i]].push_back(i);
