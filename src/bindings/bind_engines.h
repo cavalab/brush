@@ -3,6 +3,26 @@
 #include "../engine.cpp"
 
 // TODO: figure out why do I need to include the whole thing (otherwise it gives me symbol errors)
+#include "../bandit/bandit.h"
+#include "../bandit/bandit.cpp"
+#include "../bandit/bandit_operator.h"
+#include "../bandit/bandit_operator.cpp"
+#include "../bandit/dummy.h"
+#include "../bandit/dummy.cpp"
+#include "../bandit/thompson.h"
+#include "../bandit/thompson.cpp"
+
+#include "../ind/individual.h"
+#include "../ind/individual.cpp"
+#include "../vary/variation.h"
+#include "../vary/variation.cpp"
+
+#include "../eval/evaluation.h"
+#include "../eval/evaluation.cpp"
+
+#include "../pop/population.cpp"
+#include "../pop/population.h"
+
 #include "../selection/selection.h"
 #include "../selection/selection.cpp"
 #include "../selection/selection_operator.h"
@@ -11,12 +31,6 @@
 #include "../selection/nsga2.cpp"
 #include "../selection/lexicase.h"
 #include "../selection/lexicase.cpp"
-
-#include "../eval/evaluation.h"
-#include "../eval/evaluation.cpp"
-
-#include "../pop/population.cpp"
-#include "../pop/population.h"
 
 #include "../pop/archive.cpp"
 #include "../pop/archive.h"
@@ -41,13 +55,13 @@ void bind_engine(py::module& m, string name)
 
     py::class_<T> engine(m, name.data() ); 
     engine.def(py::init<>())
-             .def(py::init([](br::Parameters& p){ T e(p);
-                                                  return e; })
+             .def(py::init([](br::Parameters& p, br::SearchSpace& s){
+                T e(p, s); return e; })
              )
              .def_property("params", &T::get_params, &T::set_params)
+             .def_property("search_space", &T::get_search_space, &T::set_search_space)
              .def_property_readonly("is_fitted", &T::get_is_fitted)
              .def_property_readonly("best_ind", &T::get_best_ind)
-             //  .def("run", &T::run, py::call_guard<py::gil_scoped_release>(), "run from brush dataset")
              .def("fit",
                 static_cast<T &(T::*)(Dataset &d)>(&T::fit),
                 py::call_guard<py::gil_scoped_release>(), 
@@ -78,6 +92,7 @@ void bind_engine(py::module& m, string name)
                 },
                 [](nl::json j) { // __setstate__
                     T p = j;
+                    // TODO: do I need to get the data and ss reference, then call init for this new instance?
                     return p;
                 })
              )

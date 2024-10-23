@@ -1,17 +1,15 @@
 #include "engine.h"
 
-
 #include <iostream>
 #include <fstream>
 
-
 namespace Brush{
-
 
 using namespace Pop;
 using namespace Sel;
 using namespace Eval;
 using namespace Var;
+using namespace MAB;
 
 /// @brief initialize Feat object for fitting.
 template <ProgramType T>
@@ -26,15 +24,12 @@ void Engine<T>::init()
     this->evaluator = Evaluation<T>();
 
     // TODO: make these classes have a default constructor, and stop recreating instances
-    this->variator.init(params, ss);
+    this->variator = Variation<T>(this->params, this->ss);
 
     this->selector = Selection<T>(params.sel, false);
     this->survivor = Selection<T>(params.surv, true);
 
-    this->best_score = MAX_FLT;
-    this->best_complexity = MAX_FLT;
-
-    this->archive.set_objectives(params.objectives);
+    this->archive.set_objectives(params.get_objectives());
 
     timer.Reset();
 
@@ -75,7 +70,7 @@ void Engine<T>::calculate_stats()
     ArrayXi sizes(pop_size);
     ArrayXi complexities(pop_size); 
 
-    float error_weight = Individual<T>::weightsMap[params.scorer_];
+    float error_weight = Individual<T>::weightsMap[params.scorer];
 
     int index = 0;
     for (int island=0; island<params.num_islands; ++island)
@@ -103,7 +98,7 @@ void Engine<T>::calculate_stats()
     // Multiply by weight to make it a maximization problem.
     // Then, multiply again to get rid of signal
     float    best_score     = (scores*error_weight).maxCoeff()*error_weight;
-    float    best_score_v   = (scores_v*error_weight).maxCoeff()*error_weight;
+    float    best_score_v   = this->best_ind.fitness.get_loss_v();
     float    med_score      = median(scores); 
     float    med_score_v    = median(scores_v); 
     unsigned med_size       = median(sizes);                        
@@ -285,36 +280,49 @@ auto Engine<T>::predict_proba_archive(int id, const Ref<const ArrayXXf>& X)
 }
 
 template <ProgramType T>
-bool Engine<T>::update_best(const Dataset& data, bool val)
+bool Engine<T>::update_best()
 {
-    float error_weight = Individual<T>::weightsMap[params.scorer_];
-    
-    float f;
-    bool updated = false; 
-    float bs = this->best_score; 
+    bool updated = false;
+    bool passed;
 
     vector<size_t> hof = this->pop.hall_of_fame(1);
+
+    vector<size_t> merged_islands(0);
+    for (int j=0;j<pop.num_islands; ++j)
+    {
+        auto indices = pop.island_indexes.at(j);
+        for (int i=0; i<indices.size(); ++i)
+        {
+            merged_islands.push_back(indices.at(i));
+        }
+    }
+    hof = merged_islands;
 
     for (int i=0; i < hof.size(); ++i) 
     {
         const auto& ind = *pop.individuals.at(hof[i]);
-        
-        // TODO: dataset arg here with null default value. if the user provides a dataset, we use it to update
-        // if there is no validation, then loss_v==loss and this should work just fine
-        f = ind.fitness.loss_v;
 
-        if (f*error_weight > bs*error_weight
-        || (f == bs && ind.fitness.complexity < this->best_complexity) )
+        // TODO: use intermediary variables for wvalues
+        // Iterate over the weighted values to compare (everything is a maximization problem here)
+        passed = false;
+        for (size_t j = 0; j < ind.fitness.get_wvalues().size(); ++j) {
+            if (ind.fitness.get_wvalues()[j] > this->best_ind.fitness.get_wvalues()[j]) {
+                passed = true;
+                break;
+            }
+            if (ind.fitness.get_wvalues()[j] < this->best_ind.fitness.get_wvalues()[j]) {
+                // it is not better, and it is also not equal. So, it is worse. Stop here.
+                break;
+            }
+            // if no break, then its equal, so we keep going
+        }
+
+        if (passed)
         {
-            bs = f;
             this->best_ind = ind; 
-            this->best_complexity = ind.fitness.complexity;
-
             updated = true;
         }
     }
-
-    this->best_score = bs; 
 
     return updated;
 }
@@ -325,12 +333,20 @@ void Engine<T>::run(Dataset &data)
 {
     //TODO: i need to make sure i initialize everything (pybind needs to have constructors
     // without arguments to work, and i need to handle correcting these values before running)
-    this->ss = SearchSpace(data, params.functions);
-
+    
+    this->ss.init(data, params.functions, params.weights_init);
     this->init();
 
-    if (params.load_population != "")
+    if (params.load_population != "") {
         this->pop.load(params.load_population);
+
+        // invalidating all individuals
+        for (auto& individual : this->pop.individuals) {
+            if (individual != nullptr) {
+                individual->set_is_fitted(false);
+            }
+        }
+    }
     else
         this->pop.init(this->ss, this->params);
 
@@ -339,7 +355,7 @@ void Engine<T>::run(Dataset &data)
     if (!params.logfile.empty())
         log.open(params.logfile, std::ofstream::app);
 
-    evaluator.set_scorer(params.scorer_);
+    evaluator.set_scorer(params.scorer);
 
     Dataset &batch = data;
 
@@ -362,24 +378,24 @@ void Engine<T>::run(Dataset &data)
     unsigned stall_count = 0;
     float fraction = 0;
 
-    bool use_arch;
-
     auto stop = [&]() {
         return (  (generation == params.max_gens)
-               && ((params.max_stall == 0 || stall_count < params.max_stall) 
-               &&  (params.max_time == -1 || params.max_time > timer.Elapsed().count()) )
+               || (params.max_stall != 0 && stall_count > params.max_stall) 
+               || (params.max_time != -1 && timer.Elapsed().count() > params.max_time)
         );
     };
 
     // TODO: check that I dont use pop.size() (or I use correctly, because it will return the size with the slots for the offspring)
     // vectors to store each island separatedly
     vector<vector<size_t>> island_parents;
-    vector<vector<size_t>> survivors;
+    vector<vector<float>> rewards;
+    
     island_parents.clear();
     island_parents.resize(pop.num_islands);
 
-    survivors.clear();
-    survivors.resize(pop.num_islands);
+    // TODO: get rid of this rewards
+    rewards.clear();
+    rewards.resize(pop.num_islands);
 
     for (int i=0; i< params.num_islands; i++){
         size_t idx_start = std::floor(i*params.pop_size/params.num_islands);
@@ -387,11 +403,11 @@ void Engine<T>::run(Dataset &data)
 
         auto delta = idx_end - idx_start;
 
-        survivors.at(i).clear();
         island_parents.at(i).clear();
+        rewards.at(i).clear();
 
-        survivors.at(i).resize(delta);
         island_parents.at(i).resize(delta);
+        rewards.at(i).resize(delta);
     }
 
     // heavily inspired in https://github.com/heal-research/operon/blob/main/source/algorithms/nsga2.cpp
@@ -407,12 +423,12 @@ void Engine<T>::run(Dataset &data)
             }).name("prepare generation");// set generation in params, get batch
 
             auto run_generation = subflow.for_each_index(0, this->params.num_islands, 1, [&](int island) {
-                evaluator.update_fitness(this->pop, island, data, params, true); // fit the weights with all training data
+                evaluator.update_fitness(this->pop, island, data, params, true, false); // fit the weights with all training data
 
                 // TODO: have some way to set which fitness to use (for example in params, or it can infer based on split size idk)
                 // TODO: if using batch, fitness should be called before selection to set the batch
                 if (data.use_batch) // assign the batch error as fitness (but fit was done with training data)
-                    evaluator.update_fitness(this->pop, island, batch, params, false);
+                    evaluator.update_fitness(this->pop, island, batch, params, false, false);
 
                 vector<size_t> parents = selector.select(this->pop, island, params);
 
@@ -421,35 +437,59 @@ void Engine<T>::run(Dataset &data)
                 }
                 
                 this->pop.add_offspring_indexes(island); 
-                variator.vary(this->pop, island, island_parents.at(island));
-                evaluator.update_fitness(this->pop, island, data, params, true);
+
+                // TODO: optimize this and make it work with multiple islands in parallel.
+                variator.vary_and_update(this->pop, island, island_parents.at(island),
+                                         data, evaluator);
+
+                // variator.vary(this->pop, island, island_parents.at(island));
+                
+                // evaluator.update_fitness(this->pop, island, data, params, true, false);
+
+                // vector<float> island_rewards = variator.calculate_rewards(this->pop, island);
+                // for (int i=0; i< island_rewards.size(); i++){
+                //     rewards.at(island).at(i) = island_rewards.at(i);
+                // }
 
                 if (data.use_batch) // assign the batch error as fitness (but fit was done with training data)
-                    evaluator.update_fitness(this->pop, island, batch, params, false);
+                    evaluator.update_fitness(this->pop, island, batch, params, false, false);
 
-                // select survivors from combined pool of parents and offspring
-                vector<size_t> island_survivors = survivor.survive(this->pop, island, params);
-
-                for (int i=0; i< island_survivors.size(); i++){
-                    survivors.at(island).at(i) = island_survivors.at(i);
-                }
             }).name("runs one generation at each island in parallel");
 
-            auto update_pop = subflow.emplace([&]() {
+            auto update_pop = subflow.emplace([&]() { // sync point
+                // select survivors from combined pool of parents and offspring.
+                // if the same individual exists in different islands, then it will be selected several times and the pareto front will have less diversity.
+                // to avoid this, survive should be unified
+                auto survivors = {survivor.survive(this->pop, 0, params)};
+                
+                // // TODO: do i need these next this-> pointers?
+                // // Use the flattened rewards vector for updating the population
+                
+                this->variator.update_ss();
                 this->pop.update(survivors);
                 this->pop.migrate();
             }).name("update, migrate and disentangle indexes between islands");
             
             auto finish_gen = subflow.emplace([&]() {
-                bool updated_best = this->update_best(data);
-                
+                // TODO: figure out a better way to initialize best individual
+                if (generation == 0)
+                    this->best_ind = *pop.individuals.at(0);
+
                 if ( (params.verbosity>1 || !params.logfile.empty() )
                 || params.use_arch ) {
                     calculate_stats();
                 }
 
-                if (params.use_arch)
+                if (params.use_arch) {
                     archive.update(pop, params);
+                }
+                
+                // Set validation loss to update best
+                for (int island = 0; island < this->params.num_islands; ++island) {
+                    evaluator.update_fitness(this->pop, island, data, params, false, true);
+                }
+
+                bool updated_best = this->update_best();
                 
                 fraction = params.max_time == -1 ? ((generation+1)*1.0)/params.max_gens : 
                                                     timer.Elapsed().count()/params.max_time;
@@ -469,7 +509,7 @@ void Engine<T>::run(Dataset &data)
                 
                 ++generation;
 
-            }).name("update best, log, archive, stall");
+            }).name("update best, update ss, log, archive, stall");
 
             // set-up subflow graph
             prepare_gen.precede(run_generation);
@@ -479,31 +519,87 @@ void Engine<T>::run(Dataset &data)
 
         [&]() { return 0; }, // jump back to the next iteration
 
-        [&]() {
-            if (params.save_population != "")
-                this->pop.save(params.save_population);
+        [&](tf::Subflow& subflow) {
+            // set training loss for archive
+            for (int island = 0; island < this->params.num_islands; ++island) {
+                evaluator.update_fitness(this->pop, island, data, params, false, false);
+            }
 
-            this->set_is_fitted(true);
-            
-            // TODO: open, write, close? (to avoid breaking the file and allow some debugging if things dont work well)
-            if (log.is_open())
-                log.close();
+            // std::cout << "Variator probs:" << std::endl;
+            // std::cout << "cx: " << variator.parameters.get_cx_prob() << std::endl;
+            // for (const auto& [name, prob] : variator.parameters.get_mutation_probs())
+            //     std::cout << name << ": " << prob << std::endl;
+
+            // std::cout << "variator Search Space:" << std::endl;
+            // variator.search_space.print();
+        
+            // std::cout << "Engine probs:" << std::endl;
+            // std::cout << "cx: " << params.get_cx_prob() << std::endl;
+            // for (const auto& [name, prob] : params.get_mutation_probs())
+            //     std::cout << name << ": " << prob << std::endl;
+
+            // std::cout << "Engine Search Space:" << std::endl;
+            // ss.print();
 
             // if we're not using an archive, let's store the final population in the 
             // archive
             if (!params.use_arch)
             {
-                archive.individuals.resize(0);
-                for (int island =0; island< pop.num_islands; ++island) {
-                    vector<size_t> indices = pop.get_island_indexes(island);
+                //TODO: make this a function (use update from archive instead of repeating it here)
+                std::cout << "saving final population as archive..." << std::endl;
 
-                    for (unsigned i = 0; i<indices.size(); ++i)
-                    {
-                        archive.individuals.push_back( *pop.individuals.at(indices.at(i)) );
-                    }
-                }
+                calculate_stats();
+                archive.update(pop, params);
+
+                // archive.individuals.resize(0);
+                // for (int island =0; island< pop.num_islands; ++island) {
+                //     vector<size_t> indices = pop.get_island_indexes(island);
+
+                //     for (unsigned i = 0; i<indices.size(); ++i)
+                //     {
+                //         assert(pop.individuals.at(indices.at(i)) != nullptr && "Error: Null individual found in population.");
+                //         archive.individuals.push_back( *pop.individuals.at(indices.at(i)) );
+                //     }
+                // }
+
+                // // setting other attributes for completeness (affects serialization)
+                // archive.set_objectives(params.get_objectives());
+
+                // if (archive.sort_complexity) {
+                //     if (archive.linear_complexity)
+                //         std::sort(archive.individuals.begin(), archive.individuals.end(),
+                //                   &archive.sortLinearComplexity); 
+                //     else
+                //         std::sort(archive.individuals.begin(), archive.individuals.end(),
+                //                   &archive.sortComplexity);
+                // }
+                // else {
+                //     std::sort(archive.individuals.begin(), archive.individuals.end(),
+                //               &archive.sortObj1); 
+                // }
+
+                // // removing duplicates
+                // auto it = std::unique(archive.individuals.begin(),archive.individuals.end(), 
+                //                       &archive.sameObjectives);
+
+                // archive.individuals.resize(std::distance(archive.individuals.begin(),it));
+
             }
-                
+
+            if (params.save_population != "")
+                this->pop.save(params.save_population);
+
+            set_is_fitted(true);
+            
+            // TODO: open, write, close? (to avoid breaking the file and allow some debugging if things dont work well)
+            if (log.is_open())
+                log.close();
+
+            // getting the updated versions
+            // TODO: make the probabilities add up to 1 (this doesnt matter for the cpp side, but it is a good practice and helps comparing different probabilities)
+            this->ss = variator.search_space;
+            this->params = variator.parameters;
+
         } // work done, report last gen and stop
     ); // evolutionary loop
 

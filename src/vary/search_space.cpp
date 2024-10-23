@@ -132,6 +132,9 @@ vector<Node> generate_terminals(const Dataset& d, const bool weights_init)
             }
         }
 
+        if (count==0) // no terminals of datatype. return 1.0 for the constant
+            return 1.0f;
+
         return sum / count;
     };
 
@@ -172,9 +175,19 @@ void SearchSpace::init(const Dataset& d, const unordered_map<string,float>& user
     this->terminal_map.clear();
     this->terminal_types.clear();
     this->terminal_weights.clear();
+    this->op_names.clear();
 
     bool use_all = user_ops.size() == 0;
-    vector<string> op_names;
+    if (use_all)
+    {
+        for (size_t op_index=0; op_index< NodeTypes::Count; op_index++){
+            op_names.push_back(    
+                NodeTypeName.at(static_cast<NodeType>(1UL << op_index))
+            );
+        }
+    }
+
+
     for (const auto& [op, weight] : user_ops)
         op_names.push_back(op);
 
@@ -192,11 +205,14 @@ void SearchSpace::init(const Dataset& d, const unordered_map<string,float>& user
     // and signatures for them (and they can be used only in program root).
     // TODO: fix softmax and add it here
 
-    // Copy the original map using the copy constructor
-    std::unordered_map<std::string, float> extended_user_ops(user_ops);
+    /* fmt::print("generate nodetype\n"); */
+    GenerateNodeMap(user_ops, d.unique_data_types, 
+                    std::make_index_sequence<NodeTypes::OpCount>());
 
     if (d.classification)
     {        
+        std::unordered_map<std::string, float> extended_user_ops;
+        
         // Convert ArrayXf to std::vector<float> for compatibility with std::set
         std::vector<float> vec(d.y.data(), d.y.data() + d.y.size());
 
@@ -205,18 +221,24 @@ void SearchSpace::init(const Dataset& d, const unordered_map<string,float>& user
         // We need some ops in the search space so we can have the logit and offset
         if (user_ops.find("OffsetSum") == user_ops.end())
             extended_user_ops.insert({"OffsetSum", 0.0f});
+            op_names.push_back("OffsetSum");
 
         if (unique_classes.size()==2 && (user_ops.find("Logistic") == user_ops.end())) {
             extended_user_ops.insert({"Logistic", 0.0f});
+            op_names.push_back("Logistic");
         }
         else if (user_ops.find("Softmax") == user_ops.end()) {
             extended_user_ops.insert({"Softmax", 0.0f});
+            op_names.push_back("Softmax");
+        }
+
+        if (extended_user_ops.size() > 0)
+        {
+            // fmt::print("generate nodetype\n");
+            GenerateNodeMap(extended_user_ops, d.unique_data_types, 
+                            std::make_index_sequence<NodeTypes::OpCount>());
         }
     }
-
-    /* fmt::print("generate nodetype\n"); */
-    GenerateNodeMap(extended_user_ops, d.unique_data_types, 
-                    std::make_index_sequence<NodeTypes::OpCount>());
 
     // map terminals
     /* fmt::print("looping through terminals...\n"); */
@@ -299,7 +321,6 @@ tree<Node>& SearchSpace::PTC2(tree<Node>& Tree,
     //For each argument position a of n, Enqueue(a; g) 
     for (auto a : root.arg_types)
     { 
-        // cout << "queing a node of type " << DataTypeName[a] << endl;
         auto child_spot = Tree.append_child(spot);
         queue.push_back(make_tuple(child_spot, a, d));
     }
@@ -319,10 +340,8 @@ tree<Node>& SearchSpace::PTC2(tree<Node>& Tree,
         // always insert a non terminal (which by default has weights off).
         // this way, we can have PTC2 working properly.
         
-        // cout << "queue size: " << queue.size() << endl;
         auto [qspot, t, d] = RandomDequeue(queue);
 
-        // cout << "current depth: " << d << endl;
         if (d >= max_d || s >= max_size)
         {
             auto opt = sample_terminal(t);
@@ -344,6 +363,10 @@ tree<Node>& SearchSpace::PTC2(tree<Node>& Tree,
 
             if (!opt) { // there is no operator for this node. sample a terminal instead
                 opt = sample_terminal(t);
+
+                // didnt work the easy way, lets try the hard way
+                if (!opt)
+                    opt = sample_terminal(t, true);
             }
 
             if (!opt) { // no operator nor terminal. weird.
@@ -388,6 +411,7 @@ tree<Node>& SearchSpace::PTC2(tree<Node>& Tree,
         auto [qspot, t, d] = RandomDequeue(queue);
 
         auto opt = sample_terminal(t);
+
         if (!opt)
             opt = sample_terminal(t, true);
 

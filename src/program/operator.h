@@ -331,14 +331,39 @@ struct Operator<NodeType::MeanLabel, S, Fit>
     using W = typename S::WeightType; 
 
     RetType fit(const Dataset& d, TreeNode& tn) const {
-        tn.data.W = d.y.mean();
+        // we take the mode of the labels if it is a classification problem
+        if (d.classification)
+        {
+            std::unordered_map<float, int> counters;
+            for (float val : d.y) {
+                if (counters.find(val) != counters.end()) {
+                    counters[val] += 1;
+                }
+                else
+                {
+                    counters[val] = 1;
+                }
+            }
+
+            auto mode = std::max_element(
+                counters.begin(), counters.end(),
+                [](const auto& a, const auto& b) { return a.second < b.second; }
+            );
+
+            tn.data.W = mode->first;
+        }
+        else
+        {
+            tn.data.W = d.y.mean();
+        }
+            
         return predict(d, tn);
     };
 
     template<typename T=RetType, typename Scalar=T::Scalar, int N=T::NumDimensions> 
     RetType predict(const Dataset& d, TreeNode& tn, const W** weights=nullptr) const 
     { 
-        Scalar w = util::get_weight<RetType,Scalar,W>(tn, weights);
+        Scalar w = util::get_weight<RetType,Scalar,W>(tn);
         if constexpr (N == 1)
             return RetType::Constant(d.get_n_samples(), w); 
         else

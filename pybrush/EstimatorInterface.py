@@ -6,7 +6,10 @@ provides documentation for the hyperparameters.
 """
 
 import numpy as np
-from pybrush import Parameters
+import pandas as pd
+from pandas.api.types import is_float_dtype, is_bool_dtype, is_integer_dtype
+from pybrush import Parameters, Dataset
+from typing import Union, List, Dict
 
 class EstimatorInterface():
     """
@@ -52,6 +55,9 @@ class EstimatorInterface():
         The probability of having a mutation is `(1-cx_prob)` and, in case the mutation
         is applied, then each mutation option is sampled based on the probabilities
         defined in `mutation_probs`. The set of probabilities should add up to 1.0.
+        A non-positive value will disable the mutation, even if the multi armed
+        bandit strategy is turned on (the mutation will be hidden from the bandit 
+        at initialization).
     functions: dict[str,float] or list[str], default {}
         A dictionary with keys naming the function set and values giving the probability
         of sampling them, or a list of functions which will be weighted uniformly.
@@ -61,16 +67,23 @@ class EstimatorInterface():
         expression is created with `max_size` nodes. If `uniform`, size will be
         uniformly distributed between 1 and `max_size`.
     objectives : list[str], default ["error", "size"]
-        list with one or more objectives to use. Options are `"error", "size", "complexity"`.
-        If `"error"` is used, then it will be the mean squared error for regression,
-        and accuracy for classification.
+        list with one or more objectives to use. The first objective is the main.
+        If `"error"` is used, then the metric in `scorer` will be used as objective.
+        Possible values are "error", "size", "complexity", "linear_complexity",
+        and "depth". The first objective will be used as criteria for Pareto
+        sorting when creating the archive, and the recursive complexity will be
+        used as secondary objective.
+    scorer : str, default None
+        The metric to use for the "error" objective. If None, it will be set to
+        "mse" for regression and "log" for binary classification.
     algorithm : {"nsga2island", "nsga2", "gaisland", "ga"}, default "nsga2"
         Which Evolutionary Algorithm framework to use to evolve the population.
         This is used only in DeapEstimators.
     weights_init : bool, default True
         Whether the search space should initialize the sampling weights of terminal nodes
         based on the correlation with the output y. If `False`, then all terminal nodes
-        will have the same probability of 1.0.
+        will have the same probability of 1.0. This parameter is ignored if the bandit
+        strategy is used, and weights will be learned dynamically during the run.
     validation_size : float, default 0.0
         Percentage of samples to use as a hold-out partition. These samples are used
         to calculate statistics during evolution, but not used to train the models.
@@ -86,12 +99,25 @@ class EstimatorInterface():
         Percentage of training data to sample every generation. If `1.0`, then
         all data is used. Very small values can improve execution time, but 
         also lead to underfit.
+    sel : str, default 'lexicase'
+        The selection method to perform parent selection. When using lexicase,
+        the selection is done as if it was a single-objective problem, based on 
+        absolute error for regression, and log loss for classification.
+    surv : str, default 'nsga2'
+        The survival method for selecting the next generation from parents and offspring.
     save_population: str, optional (default "")
         string containing the path to save the final population. Ignored if
         not provided.
     load_population: str, optional (default "")
         string containing the path to load the initial population. Ignored
         if not provided.
+    bandit : str, optional (default: "dynamic_thompson")
+        The bandit strategy to use for the estimator. Options are `"dummy"` that
+        does not change the probabilities; `"thompson"` that uses static Thompson
+        sampling to update sampling probabilities for terminals in search space with
+        a static implementation; and `"dynamic_thompson" that implements a Thompson 
+        strategy that weights more recent rewards and applies exponential decay
+        to older observed rewards.
     shuffle_split: boolean, optional (default False)
         whether if the engine should shuffle the data before splitting it
         into train and validation partitions. Ignored if `validation_size`
@@ -109,62 +135,70 @@ class EstimatorInterface():
     """
 
     def __init__(self,
-        mode='classification',
-        pop_size=100,
-        max_gens=100,
-        max_time=-1,
-        max_stall=0,
-        verbosity=0,
-        max_depth=3,
-        max_size=20,
-        num_islands=1,
-        n_jobs=1,
-        mig_prob=0.05,
-        cx_prob= 1/7,
-        mutation_probs = {"point":1/6, "insert":1/6, "delete":1/6, "subtree":1/6,
+        mode: str = 'classification',
+        pop_size: int = 100,
+        max_gens: int = 100,
+        max_time: int = -1,
+        max_stall: int = 0,
+        verbosity: int = 0,
+        max_depth: int = 3,
+        max_size: int = 20,
+        num_islands: int = 5,
+        n_jobs: int = 1,
+        mig_prob: float = 0.05,
+        cx_prob: float = 1/7,
+        mutation_probs: Dict[str, float] = {"point":1/6, "insert":1/6, "delete":1/6, "subtree":1/6,
                           "toggle_weight_on":1/6, "toggle_weight_off":1/6},
-        functions: list[str]|dict[str,float] = {},
-        initialization="uniform",
-        algorithm="nsga2",
-        objectives=["error", "size"],
-        random_state=None,
-        logfile="",
-        save_population="",
-        load_population="",
-        shuffle_split=False,
-        weights_init=True,
-        val_from_arch=True,
-        use_arch=False,
+        functions: Union[List[str], Dict[str, float]] = {},
+        initialization: str = "uniform",
+        objectives: List[str] = ["error", "size"],
+        scorer: str = None,
+        algorithm: str = "nsga2",
+        weights_init: bool = True,
         validation_size: float = 0.0,
-        batch_size: float = 1.0
-    ):
-        self.pop_size=pop_size
-        self.max_gens=max_gens
-        self.max_stall=max_stall
-        self.max_time=max_time
-        self.verbosity=verbosity
-        self.algorithm=algorithm
-        self.mode=mode
-        self.max_depth=max_depth
-        self.max_size=max_size
-        self.num_islands=num_islands
-        self.mig_prob=mig_prob
-        self.n_jobs=n_jobs
-        self.cx_prob=cx_prob
-        self.logfile=logfile
-        self.save_population=save_population
-        self.load_population=load_population
-        self.mutation_probs=mutation_probs
-        self.val_from_arch=val_from_arch # TODO: val from arch implementation (in cpp side)
-        self.use_arch=use_arch
-        self.functions=functions
-        self.objectives=objectives
-        self.shuffle_split=shuffle_split
-        self.initialization=initialization
-        self.random_state=random_state
-        self.batch_size=batch_size
-        self.weights_init=weights_init
-        self.validation_size=validation_size
+        use_arch: bool = False,
+        val_from_arch: bool = True,
+        batch_size: float = 1.0,
+        sel: str = "lexicase",
+        surv: str = "nsga2",
+        save_population: str = "",
+        load_population: str = "",
+        bandit: str = 'dynamic_thompson',
+        shuffle_split: bool = False,
+        logfile: str = "",
+        random_state: int = None
+    ) -> None:
+        self.pop_size = pop_size
+        self.max_gens = max_gens
+        self.max_stall = max_stall
+        self.max_time = max_time
+        self.verbosity = verbosity
+        self.algorithm = algorithm
+        self.mode = mode
+        self.max_depth = max_depth
+        self.max_size = max_size
+        self.num_islands = num_islands
+        self.mig_prob = mig_prob
+        self.n_jobs = n_jobs
+        self.cx_prob = cx_prob
+        self.bandit = bandit
+        self.logfile = logfile
+        self.save_population = save_population
+        self.load_population = load_population
+        self.mutation_probs = mutation_probs
+        self.val_from_arch = val_from_arch
+        self.use_arch = use_arch
+        self.functions = functions
+        self.objectives = objectives
+        self.scorer = scorer
+        self.shuffle_split = shuffle_split
+        self.initialization = initialization
+        self.random_state = random_state
+        self.batch_size = batch_size
+        self.sel = sel
+        self.surv = surv
+        self.weights_init = weights_init
+        self.validation_size = validation_size
 
     def _wrap_parameters(self, **extra_kwargs):
         """
@@ -179,6 +213,7 @@ class EstimatorInterface():
 
         params = Parameters()
 
+        # TODO: this could be a loop?
         params.classification = self.mode == "classification"
         params.n_classes = self.n_classes_
         params.verbosity = self.verbosity
@@ -194,20 +229,38 @@ class EstimatorInterface():
         params.max_depth = self.max_depth
         params.max_size = self.max_size
         params.objectives = self.objectives
+        params.bandit = self.bandit
         params.shuffle_split = self.shuffle_split
         params.cx_prob = self.cx_prob
         params.use_arch = self.use_arch
         params.val_from_arch = self.val_from_arch
+        params.weights_init=self.weights_init
         params.mig_prob = self.mig_prob
         params.functions = self.functions_
         params.mutation_probs = self.mutation_probs
         params.validation_size = self.validation_size
         params.batch_size = self.batch_size
+        params.sel = self.sel
+        params.surv = self.surv
         params.feature_names = self.feature_names_
     
-        params.scorer_ = "mse"
-        if self.mode == "classification":
-            params.scorer_ = "log" if self.n_classes_ == 2 else "multi_log"
+        # Scorer is the metric associated with "error" objective. To optimize
+        # something else, set it in the objectives list.
+        if self.scorer is None:
+            scorer = "mse"
+            if self.mode == "classification":
+                scorer = "log" if self.n_classes_ == 2 else "multi_log"
+            self.scorer = scorer
+        else:
+            if self.mode == "regression":
+                assert self.scorer in ['mse'], \
+                    "Invalid scorer for the regression mode"
+            else:
+                assert self.scorer in ['log', 'multi_log', 'balanced_accuracy',
+                                       'accuracy', 'average_precision_score'], \
+                    "Invalid scorer for the classification mode"
+                
+        params.scorer = self.scorer
 
         if self.random_state is not None:
             seed = 0
@@ -224,3 +277,89 @@ class EstimatorInterface():
             setattr(params, k, v)
 
         return params
+
+    
+    def _make_data(self, X, y=None,
+                    feature_names=[],
+                    validation_size=0.0, shuffle_split=False):
+        """
+        Prepare the data for training or prediction.
+
+        Parameters:
+        - X: array-like or pandas DataFrame, shape (n_samples, n_features)
+            The input features.
+        - y: array-like or pandas Series, shape (n_samples,), optional (default=None)
+            The target variable.
+        - feature_names: list, optional (default=[])
+            The names of the features.
+        - validation_size: float, optional (default=0.0)
+            The proportion of the data to be used for validation.
+        - shuffle_split: bool, optional (default=False)
+            Whether to shuffle and split the data.
+
+        Returns:
+        - dataset: Dataset
+            The prepared dataset object containing the input features, target variable,
+            feature names, and validation size.
+        """
+                
+        # This function should not split the data (since it may be used in `predict`).
+        # Partitioning is done by `fit`. Feature names should be inferred
+        # before calling `_make_data` (so predict can be made with np arrays or
+        # pd dataframes).
+
+        feature_types = []
+        if isinstance(y, pd.Series):
+            y = y.values
+        if isinstance(X, pd.DataFrame):
+            feature_names = X.columns
+            for values, dtype in zip(X.values.T, X.dtypes):
+                if is_float_dtype(dtype):
+                    feature_types.append('ArrayF')
+                elif is_integer_dtype(dtype):
+                    # For Brush, it does matter if it is realy an integer or a boolean in disguise
+                    if np.all(np.logical_or(values == 0, values == 1)):
+                        feature_types.append('ArrayB')
+                    else:
+                        feature_types.append('ArrayI')
+                elif is_bool_dtype(dtype):
+                    feature_types.append('ArrayB')
+                else:
+                    raise ValueError(
+                        "Unsupported data type. Please try using an "
+                        "encoding method to convert the data to a supported "
+                        "format.")
+            X = X.values
+
+        assert isinstance(X, np.ndarray)
+
+        if y is None:
+            return Dataset(X=X,
+                    feature_names=feature_names,
+                    feature_types=feature_types,
+                    validation_size=validation_size,
+                    shuffle_split=shuffle_split,
+                    c=(self.mode=='classification') )
+
+        return Dataset(X=X, y=y,
+            feature_names=feature_names,
+            feature_types=feature_types,
+            validation_size=validation_size,
+            shuffle_split=shuffle_split,
+            c=(self.mode=='classification'))
+
+    # Serializing only the stuff to make new predictions
+    def __getstate__(self):
+        state = self.__dict__.copy()
+
+        # Serialization of data is not yet supported. TODO.
+        del state["data_"]
+        del state["train_"]
+        del state["validation_"]
+        del state["search_space_"]
+
+        return state
+
+    def __setstate__(self, state):
+        self.__dict__.update(state)
+        self.data_ = None

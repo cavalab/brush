@@ -100,12 +100,14 @@ enum class NodeType : uint64_t { // Each node type must have a complexity
 
     // TODO: implement operators below and move them before leaves
     ArgMax              = 1UL << 44UL, 
-    Count               = 1UL << 45UL, 
-    
-    // custom
+    // count the number of elements in an array. Should be the last element in the enum
+    Count               = 1UL << 45UL,
+
+    // // custom
     CustomUnaryOp       = 1UL << 46UL,
     CustomBinaryOp      = 1UL << 47UL,
     CustomSplit         = 1UL << 48UL
+
 };
 
 
@@ -113,7 +115,8 @@ using UnderlyingNodeType = std::underlying_type_t<NodeType>;
 struct NodeTypes {
     // magic number keeping track of the number of different node types
     
-    // index of last available node visible to search_space
+    // index of last available node visible to search_space.
+    // It must match the highest bit used in the enum
     static constexpr size_t Count = 44;
 
     // subtracting leaves (leaving just the ops into this)
@@ -122,7 +125,12 @@ struct NodeTypes {
     // returns the index of the given type in the NodeType enum
     static auto GetIndex(NodeType type) -> size_t
     {
-        return std::bitset<Count>(static_cast<UnderlyingNodeType>(type)).count();
+        // Chad G. Pete did this
+        UnderlyingNodeType utype = static_cast<UnderlyingNodeType>(type);
+        size_t result = 0;
+        while (utype >>= 1) ++result;
+
+        return utype ? result + 1 : 0;
     }
 };
 
