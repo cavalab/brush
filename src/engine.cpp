@@ -541,6 +541,51 @@ void Engine<T>::run(Dataset &data)
             // std::cout << "Engine Search Space:" << std::endl;
             // ss.print();
 
+            // if we're not using an archive, let's store the final population in the 
+            // archive
+            if (!params.use_arch)
+            {
+                //TODO: make this a function (use update from archive instead of repeating it here)
+                std::cout << "saving final population as archive..." << std::endl;
+
+                calculate_stats();
+                archive.update(pop, params);
+
+                // archive.individuals.resize(0);
+                // for (int island =0; island< pop.num_islands; ++island) {
+                //     vector<size_t> indices = pop.get_island_indexes(island);
+
+                //     for (unsigned i = 0; i<indices.size(); ++i)
+                //     {
+                //         assert(pop.individuals.at(indices.at(i)) != nullptr && "Error: Null individual found in population.");
+                //         archive.individuals.push_back( *pop.individuals.at(indices.at(i)) );
+                //     }
+                // }
+
+                // // setting other attributes for completeness (affects serialization)
+                // archive.set_objectives(params.get_objectives());
+
+                // if (archive.sort_complexity) {
+                //     if (archive.linear_complexity)
+                //         std::sort(archive.individuals.begin(), archive.individuals.end(),
+                //                   &archive.sortLinearComplexity); 
+                //     else
+                //         std::sort(archive.individuals.begin(), archive.individuals.end(),
+                //                   &archive.sortComplexity);
+                // }
+                // else {
+                //     std::sort(archive.individuals.begin(), archive.individuals.end(),
+                //               &archive.sortObj1); 
+                // }
+
+                // // removing duplicates
+                // auto it = std::unique(archive.individuals.begin(),archive.individuals.end(), 
+                //                       &archive.sameObjectives);
+
+                // archive.individuals.resize(std::distance(archive.individuals.begin(),it));
+
+            }
+
             if (params.save_population != "")
                 this->pop.save(params.save_population);
 
@@ -549,33 +594,6 @@ void Engine<T>::run(Dataset &data)
             // TODO: open, write, close? (to avoid breaking the file and allow some debugging if things dont work well)
             if (log.is_open())
                 log.close();
-
-            // if we're not using an archive, let's store the final population in the 
-            // archive
-            if (!params.use_arch)
-            {
-                //TODO: make this a function (use update from archive instead of repeating it here)
-                std::cout << "saving final population as archive..." << std::endl;
-
-                archive.individuals.resize(0);
-                for (int island =0; island< pop.num_islands; ++island) {
-                    vector<size_t> indices = pop.get_island_indexes(island);
-
-                    for (unsigned i = 0; i<indices.size(); ++i)
-                    {
-                        archive.individuals.push_back( *pop.individuals.at(indices.at(i)) );
-                    }
-                }
-
-                // removing duplicates
-                std::sort(archive.individuals.begin(), archive.individuals.end(), 
-                          &archive.sortObj1);
-
-                auto it = std::unique(archive.individuals.begin(),archive.individuals.end(), 
-                                      &archive.sameObjectives);
-
-                archive.individuals.resize(std::distance(archive.individuals.begin(),it));
-            }
 
             // getting the updated versions
             // TODO: make the probabilities add up to 1 (this doesnt matter for the cpp side, but it is a good practice and helps comparing different probabilities)
