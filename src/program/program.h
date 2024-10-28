@@ -478,7 +478,7 @@ template<PT PType> struct Program
                         );
                         
                 // drawing the node
-                out += fmt::format("\"{}\" [label=\"{}\"];\n",
+                out += fmt::format("\"{}\" [label=\"{:.2f}\"];\n",
                         parent_id+"Offset",
                         parent->data.W
                         ); 

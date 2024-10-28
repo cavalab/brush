@@ -36,12 +36,13 @@ auto Node::get_name(bool include_weight) const noexcept -> std::string
         // this will show (MeanLabel) in the terminal name
         // return fmt::format("{:.2f} ({})", W, feature);
 
-        return fmt::format("{:.2f}", W, feature);
+        return fmt::format("{:.2f}", W);
     }
     else if (Is<NodeType::OffsetSum>(node_type)){
-        if (W != 1.0)
-            return fmt::format("{}+Sum", W);
-        return fmt::format("Sum", W);
+        // if (W != 1.0)
+        return fmt::format("{:.2f}+Sum", W);
+
+        // return fmt::format("Sum");
     }
     else if (is_weighted && include_weight)
         return fmt::format("{:.2f}*{}",W,name);
@@ -82,9 +83,8 @@ string Node::get_model(const vector<string>& children) const noexcept
     else if (Is<NodeType::OffsetSum>(node_type)){
         string args = "";
 
-        // weight is part of the model. displaying it if not
-        if (W != 1.0)
-            args = fmt::format("{},", W);
+        // if (W != 1.0)
+        args = fmt::format("{:.2f},", W);
     
         for (int i = 0; i < children.size(); ++i){
             args += children.at(i);

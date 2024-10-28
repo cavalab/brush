@@ -28,17 +28,32 @@ string TreeNode::get_tree_model(bool pretty, string offset) const
     auto sib = first_child;
     for(int i = 0; i < data.get_arg_count(); ++i)
     {
-        child_outputs += offset + "|-";
+        child_outputs += offset + "|- ";
         string s = sib->get_tree_model(pretty, offset+new_offset);
         sib = sib->next_sibling;
-        if (sib == nullptr)
+        // if (sib == nullptr)
             ReplaceStringInPlace(s, "\n"+offset, "\n"+offset+"|") ;
         child_outputs += s;
         if (sib != nullptr)
             child_outputs += "\n";
     }
     
-    return data.get_name() + child_outputs;
+    if (Is<NodeType::SplitBest>(data.node_type)){
+        return fmt::format("If({}>{:.2f})", data.get_feature(), data.W) +
+               child_outputs;
+    }
+    else if (Is<NodeType::SplitOn>(data.node_type)){
+        if (data.arg_types.at(0) == DataType::ArrayB)
+        {
+            // booleans dont use thresholds (they are used directly as mask in split)
+            return "If" + child_outputs;
+        }
+        // integers or floating points (they have a threshold)
+        return fmt::format("If(>{:.2f})", data.W) + child_outputs;
+    }
+    else{
+        return data.get_name() + child_outputs;
+    }
 };
 ////////////////////////////////////////////////////////////////////////////////
 // serialization for tree
