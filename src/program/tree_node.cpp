@@ -39,6 +39,9 @@ string TreeNode::get_tree_model(bool pretty, string offset) const
     }
     
     if (Is<NodeType::SplitBest>(data.node_type)){
+        if (data.W == 0.0) // likely it is a boolean (threshold is forced at zero)
+            return fmt::format("If({})", data.get_feature()) + child_outputs;
+
         return fmt::format("If({}>{:.2f})", data.get_feature(), data.W) +
                child_outputs;
     }
