@@ -121,7 +121,10 @@ vector<Node> generate_terminals(const Dataset& d, const bool weights_init)
     };
 
     // iterate through terminals and take the average of values of same signature
-    auto signature_avg = [terminals](DataType ret_type){
+    auto signature_avg = [terminals, weights_init](DataType ret_type){
+        if (!weights_init)
+            return 1.0f;
+
         float sum = 0.0;
         int count = 0;
 
@@ -138,24 +141,29 @@ vector<Node> generate_terminals(const Dataset& d, const bool weights_init)
         return sum / count;
     };
 
-    // constants for each type
-    auto cXf = Node(NodeType::Constant, Signature<ArrayXf()>{}, true, "Cf");
+    // constants for each type -- floats, integers, boolean. This is useful
+    // to ensure the search space will always have something to fill up open spaces
+    // when building/modifying trees
+    auto cXf = Node(NodeType::Constant, Signature<ArrayXf()>{}, true, "Constant");
     float floats_avg_weights = signature_avg(cXf.ret_type);
     cXf.set_prob_change(floats_avg_weights);
     terminals.push_back(cXf);
 
-    auto cXi = Node(NodeType::Constant, Signature<ArrayXi()>{}, true, "Ci");
+    auto cXi = Node(NodeType::Constant, Signature<ArrayXi()>{}, true, "Constant");
     cXi.set_prob_change(signature_avg(cXi.ret_type));
     terminals.push_back(cXi);
 
-    auto cXb = Node(NodeType::Constant, Signature<ArrayXb()>{}, false, "Cb");
+    auto cXb = Node(NodeType::Constant, Signature<ArrayXb()>{}, false, "Constant");
     cXb.set_prob_change(signature_avg(cXb.ret_type));
     terminals.push_back(cXb);
 
-    // mean label node
-    auto meanlabel = Node(NodeType::MeanLabel, Signature<ArrayXf()>{}, true, "MeanLabel");
-    meanlabel.set_prob_change(floats_avg_weights);
-    terminals.push_back(meanlabel);
+    // mean label node. Does not need to be part of symbols. works only for classification
+    if (d.classification)
+    {
+        auto meanlabel = Node(NodeType::MeanLabel, Signature<ArrayXf()>{}, true, "MeanLabel");
+        meanlabel.set_prob_change(floats_avg_weights);
+        terminals.push_back(meanlabel);
+    }
 
     return terminals;
 };
