@@ -56,7 +56,11 @@ void Evaluation<T>::assign_fit(Individual<T>& ind, const Dataset& data,
     float f_v = f;
     if (data.use_validation) {
         Dataset validation = data.get_validation_data();
-        f_v = S.score(ind, validation, errors, params);
+
+        // when calculating validation score, we should not let
+        // it write in errors vector. That would avoid validation data leakage
+        VectorXf val_errors;
+        f_v = S.score(ind, validation, val_errors, params);
     }
     
     // This is what is going to determine the weights for the individual's fitness

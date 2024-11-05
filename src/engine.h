@@ -75,8 +75,6 @@ public:
 
     /// updates best score by searching in the population for the individual that best fits the given data
     bool update_best();
-    
-    // TODO: hyperparameter to set how the best is picked (MCDM, best on val, pareto front, etc). one of the options should be getting the pareto front
 
     Individual<T>& get_best_ind(){return best_ind;};  
     
@@ -138,7 +136,7 @@ public:
     SearchSpace ss;
     
     Individual<T> best_ind; ///< best individual found during training
-    Archive<T> archive;          ///< pareto front archive
+    Archive<T> archive;     ///< pareto front archive
 
     bool is_fitted; ///< keeps track of whether fit was called
 private:
@@ -151,7 +149,7 @@ private:
     
     Log_Stats stats; ///< runtime stats
 
-    Timer timer;       ///< start time of training
+    Timer timer; ///< start time of training
 
     void init();
 

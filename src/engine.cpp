@@ -285,8 +285,6 @@ bool Engine<T>::update_best()
     bool updated = false;
     bool passed;
 
-    vector<size_t> hof = this->pop.hall_of_fame(1);
-
     vector<size_t> merged_islands(0);
     for (int j=0;j<pop.num_islands; ++j)
     {
@@ -296,11 +294,10 @@ bool Engine<T>::update_best()
             merged_islands.push_back(indices.at(i));
         }
     }
-    hof = merged_islands;
 
-    for (int i=0; i < hof.size(); ++i) 
+    for (int i=0; i < merged_islands.size(); ++i) 
     {
-        const auto& ind = *pop.individuals.at(hof[i]);
+        const auto& ind = *pop.individuals.at(merged_islands[i]);
 
         // TODO: use intermediary variables for wvalues
         // Iterate over the weighted values to compare (everything is a maximization problem here)
@@ -388,14 +385,9 @@ void Engine<T>::run(Dataset &data)
     // TODO: check that I dont use pop.size() (or I use correctly, because it will return the size with the slots for the offspring)
     // vectors to store each island separatedly
     vector<vector<size_t>> island_parents;
-    vector<vector<float>> rewards;
     
     island_parents.clear();
     island_parents.resize(pop.num_islands);
-
-    // TODO: get rid of this rewards
-    rewards.clear();
-    rewards.resize(pop.num_islands);
 
     for (int i=0; i< params.num_islands; i++){
         size_t idx_start = std::floor(i*params.pop_size/params.num_islands);
@@ -404,10 +396,7 @@ void Engine<T>::run(Dataset &data)
         auto delta = idx_end - idx_start;
 
         island_parents.at(i).clear();
-        rewards.at(i).clear();
-
         island_parents.at(i).resize(delta);
-        rewards.at(i).resize(delta);
     }
 
     // heavily inspired in https://github.com/heal-research/operon/blob/main/source/algorithms/nsga2.cpp
@@ -438,32 +427,25 @@ void Engine<T>::run(Dataset &data)
                 
                 this->pop.add_offspring_indexes(island); 
 
-                // TODO: optimize this and make it work with multiple islands in parallel.
-                variator.vary_and_update(this->pop, island, island_parents.at(island),
-                                         data, evaluator);
-
-                // variator.vary(this->pop, island, island_parents.at(island));
-                
-                // evaluator.update_fitness(this->pop, island, data, params, true, false);
-
-                // vector<float> island_rewards = variator.calculate_rewards(this->pop, island);
-                // for (int i=0; i< island_rewards.size(); i++){
-                //     rewards.at(island).at(i) = island_rewards.at(i);
-                // }
-
-                if (data.use_batch) // assign the batch error as fitness (but fit was done with training data)
-                    evaluator.update_fitness(this->pop, island, batch, params, false, false);
-
             }).name("runs one generation at each island in parallel");
 
             auto update_pop = subflow.emplace([&]() { // sync point
+                // Variation is not thread safe.
+                // TODO: optimize this and make it work with multiple islands in parallel.
+                for (int island = 0; island < this->params.num_islands; ++island) {
+                    variator.vary_and_update(this->pop, island, island_parents.at(island),
+                                             data, evaluator);
+                    if (data.use_batch) // assign the batch error as fitness (but fit was done with training data)
+                        evaluator.update_fitness(this->pop, island, batch, params, false, false);
+                }
+
                 // select survivors from combined pool of parents and offspring.
                 // if the same individual exists in different islands, then it will be selected several times and the pareto front will have less diversity.
                 // to avoid this, survive should be unified
+                // TODO: survivor should still take parameters?
                 auto survivors = {survivor.survive(this->pop, 0, params)};
                 
-                // // TODO: do i need these next this-> pointers?
-                // // Use the flattened rewards vector for updating the population
+                // // TODO: do i need these next this-> pointers?rewar
                 
                 this->variator.update_ss();
                 this->pop.update(survivors);
@@ -484,7 +466,7 @@ void Engine<T>::run(Dataset &data)
                     archive.update(pop, params);
                 }
                 
-                // Set validation loss to update best
+                // Set validation loss before calling update best
                 for (int island = 0; island < this->params.num_islands; ++island) {
                     evaluator.update_fitness(this->pop, island, data, params, false, true);
                 }
