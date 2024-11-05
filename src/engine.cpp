@@ -401,7 +401,24 @@ void Engine<T>::run(Dataset &data)
 
     // heavily inspired in https://github.com/heal-research/operon/blob/main/source/algorithms/nsga2.cpp
     auto [init, cond, body, back, done] = taskflow.emplace(
-        [&]() { /* done nothing to do */ }, // init (entry point for taskflow)
+        [&](tf::Subflow& subflow) { 
+            auto fit_init_pop = subflow.for_each_index(0, this->params.num_islands, 1, [&](int island) {
+                // Evaluate the individuals at least once
+                // Set validation loss before calling update best
+                evaluator.update_fitness(this->pop, island, data, params, true, true);
+            });
+
+            auto find_init_best = subflow.emplace([&]() { 
+                // Make sure we initialize it. We do this update here because we need to 
+                // have the individuals fitted before we can compare them. When update_best
+                // is called, we are garanteed that the individuals are fitted and have valid 
+                // fitnesses.
+                this->best_ind = *pop.individuals.at(0);
+                bool updated_best = this->update_best();
+            });
+
+            fit_init_pop.precede(find_init_best);
+         }, // init (entry point for taskflow)
 
         stop, // loop condition
         
@@ -412,7 +429,7 @@ void Engine<T>::run(Dataset &data)
             }).name("prepare generation");// set generation in params, get batch
 
             auto run_generation = subflow.for_each_index(0, this->params.num_islands, 1, [&](int island) {
-                evaluator.update_fitness(this->pop, island, data, params, true, false); // fit the weights with all training data
+                evaluator.update_fitness(this->pop, island, data, params, false, false); // fit the weights with all training data
 
                 // TODO: have some way to set which fitness to use (for example in params, or it can infer based on split size idk)
                 // TODO: if using batch, fitness should be called before selection to set the batch
@@ -453,15 +470,6 @@ void Engine<T>::run(Dataset &data)
             }).name("update, migrate and disentangle indexes between islands");
             
             auto finish_gen = subflow.emplace([&]() {
-                // TODO: figure out a better way to initialize best individual
-                if (generation == 0)
-                    this->best_ind = *pop.individuals.at(0);
-
-                if ( (params.verbosity>1 || !params.logfile.empty() )
-                || params.use_arch ) {
-                    calculate_stats();
-                }
-
                 if (params.use_arch) {
                     archive.update(pop, params);
                 }
@@ -475,6 +483,10 @@ void Engine<T>::run(Dataset &data)
                 
                 fraction = params.max_time == -1 ? ((generation+1)*1.0)/params.max_gens : 
                                                     timer.Elapsed().count()/params.max_time;
+
+                if ( params.verbosity>1 || !params.logfile.empty() || params.use_arch ) {
+                    calculate_stats();
+                }
 
                 if(params.verbosity>1)
                     print_stats(log, fraction);    
@@ -507,65 +519,14 @@ void Engine<T>::run(Dataset &data)
                 evaluator.update_fitness(this->pop, island, data, params, false, false);
             }
 
-            // std::cout << "Variator probs:" << std::endl;
-            // std::cout << "cx: " << variator.parameters.get_cx_prob() << std::endl;
-            // for (const auto& [name, prob] : variator.parameters.get_mutation_probs())
-            //     std::cout << name << ": " << prob << std::endl;
-
-            // std::cout << "variator Search Space:" << std::endl;
-            // variator.search_space.print();
-        
-            // std::cout << "Engine probs:" << std::endl;
-            // std::cout << "cx: " << params.get_cx_prob() << std::endl;
-            // for (const auto& [name, prob] : params.get_mutation_probs())
-            //     std::cout << name << ": " << prob << std::endl;
-
-            // std::cout << "Engine Search Space:" << std::endl;
-            // ss.print();
-
-            // if we're not using an archive, let's store the final population in the 
+            // TODO: if we're not using an archive, let's store the final population in the 
             // archive
             if (!params.use_arch)
             {
-                //TODO: make this a function (use update from archive instead of repeating it here)
                 std::cout << "saving final population as archive..." << std::endl;
 
                 calculate_stats();
                 archive.update(pop, params);
-
-                // archive.individuals.resize(0);
-                // for (int island =0; island< pop.num_islands; ++island) {
-                //     vector<size_t> indices = pop.get_island_indexes(island);
-
-                //     for (unsigned i = 0; i<indices.size(); ++i)
-                //     {
-                //         assert(pop.individuals.at(indices.at(i)) != nullptr && "Error: Null individual found in population.");
-                //         archive.individuals.push_back( *pop.individuals.at(indices.at(i)) );
-                //     }
-                // }
-
-                // // setting other attributes for completeness (affects serialization)
-                // archive.set_objectives(params.get_objectives());
-
-                // if (archive.sort_complexity) {
-                //     if (archive.linear_complexity)
-                //         std::sort(archive.individuals.begin(), archive.individuals.end(),
-                //                   &archive.sortLinearComplexity); 
-                //     else
-                //         std::sort(archive.individuals.begin(), archive.individuals.end(),
-                //                   &archive.sortComplexity);
-                // }
-                // else {
-                //     std::sort(archive.individuals.begin(), archive.individuals.end(),
-                //               &archive.sortObj1); 
-                // }
-
-                // // removing duplicates
-                // auto it = std::unique(archive.individuals.begin(),archive.individuals.end(), 
-                //                       &archive.sameObjectives);
-
-                // archive.individuals.resize(std::distance(archive.individuals.begin(),it));
-
             }
 
             if (params.save_population != "")
@@ -578,7 +539,6 @@ void Engine<T>::run(Dataset &data)
                 log.close();
 
             // getting the updated versions
-            // TODO: make the probabilities add up to 1 (this doesnt matter for the cpp side, but it is a good practice and helps comparing different probabilities)
             this->ss = variator.search_space;
             this->params = variator.parameters;
 

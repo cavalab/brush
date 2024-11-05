@@ -1,6 +1,7 @@
 import pytest
 
 import _brush
+from pybrush import BrushRegressor
 import time
 from multiprocessing import Pool
 import numpy as np
@@ -94,3 +95,20 @@ import numpy as np
 #                                              (1, 1*scale),
 #                                              (2, 2*scale)])
     
+
+def test_max_gens():
+    y = np.array( [1. , 0. , 1.4, 1. , 0. , 1. , 1. , 0. , 0. , 0.  ])
+    X = np.array([[1.1, 2.0, 3.0, 4.0, 5.0, 6.5, 7.0, 8.0, 9.0, 10.0],
+                       [2.0, 1.2, 6.0, 4.0, 5.0, 8.0, 7.0, 5.0, 9.0, 10.0]]).T
+    
+    for max_gen in [0, 1, 10]:
+        print(f"Testing with max_gen={max_gen}")
+        reg = BrushRegressor(max_gens=max_gen).fit(X, y)
+
+        predictions = reg.predict(X)
+        assert predictions is not None, "Prediction failed"
+
+        print(f"Best individual program: {reg.best_estimator_.program.get_model()}")
+        print(f"Best individual fitness: {reg.best_estimator_.fitness}")
+    
+    # assert False

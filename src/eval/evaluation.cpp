@@ -52,7 +52,8 @@ void Evaluation<T>::assign_fit(Individual<T>& ind, const Dataset& data,
     
     Dataset train = data.get_training_data();
     float f = S.score(ind, train, errors, params);
-    
+    ind.error = errors;
+
     float f_v = f;
     if (data.use_validation) {
         Dataset validation = data.get_validation_data();
@@ -61,15 +62,13 @@ void Evaluation<T>::assign_fit(Individual<T>& ind, const Dataset& data,
         // it write in errors vector. That would avoid validation data leakage
         VectorXf val_errors;
         f_v = S.score(ind, validation, val_errors, params);
+
+        if (val)
+            ind.error = val_errors;
     }
     
     // This is what is going to determine the weights for the individual's fitness
     ind.set_objectives(params.get_objectives());
-
-    // we will always set all values for fitness (regardless of being used).
-    // this will make sure the information is calculated and ready to be used
-    // regardless of how the program is set to run.
-    ind.error = errors;
 
     // when we use these setters, it updates its previous values references
     ind.fitness.set_loss(f);
