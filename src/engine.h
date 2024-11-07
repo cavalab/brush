@@ -137,14 +137,13 @@ public:
     
     Individual<T> best_ind; ///< best individual found during training
     Archive<T> archive;     ///< pareto front archive
+    Population<T> pop;      ///< population of programs
 
     bool is_fitted; ///< keeps track of whether fit was called
 private:
-
-    Population<T> pop;       	///< population of programs
     Selection<T>  selector;   ///< selection algorithm
     Evaluation<T> evaluator;  ///< evaluation code
-    Variation<T>  variator;  	///< variation operators
+    Variation<T>  variator;   ///< variation operators
     Selection<T>  survivor;   ///< survival algorithm
     
     Log_Stats stats; ///< runtime stats
@@ -159,10 +158,10 @@ private:
 
 // TODO: should I serialize data and search space as well?
 // Only stuff to make new predictions should be serialized
-NLOHMANN_DEFINE_TYPE_NON_INTRUSIVE(Engine<PT::Regressor>, params, best_ind, archive, ss, is_fitted);
-NLOHMANN_DEFINE_TYPE_NON_INTRUSIVE(Engine<PT::BinaryClassifier>, params, best_ind, archive, ss, is_fitted);
-NLOHMANN_DEFINE_TYPE_NON_INTRUSIVE(Engine<PT::MulticlassClassifier>, params, best_ind, archive, ss, is_fitted);
-NLOHMANN_DEFINE_TYPE_NON_INTRUSIVE(Engine<PT::Representer>, params, best_ind, archive, ss, is_fitted);
+NLOHMANN_DEFINE_TYPE_NON_INTRUSIVE(Engine<PT::Regressor>, params, best_ind, archive, pop, ss, is_fitted);
+NLOHMANN_DEFINE_TYPE_NON_INTRUSIVE(Engine<PT::BinaryClassifier>, params, best_ind, archive, pop, ss, is_fitted);
+NLOHMANN_DEFINE_TYPE_NON_INTRUSIVE(Engine<PT::MulticlassClassifier>, params, best_ind, archive, pop, ss, is_fitted);
+NLOHMANN_DEFINE_TYPE_NON_INTRUSIVE(Engine<PT::Representer>, params, best_ind, archive, pop, ss, is_fitted);
 
 } // Brush
 #endif
