@@ -6,13 +6,15 @@ license: GNU/GPL v3
 #ifndef PARAMS_H
 #define PARAMS_H
 
-#include "init.h"
 #include "util/logger.h"
+#include "util/utils.h"
 
 namespace ns = nlohmann;
 
 namespace Brush
 {
+
+using namespace Util;
 
 struct Parameters
 {
@@ -62,9 +64,9 @@ public:
     
     string scorer="mse";   ///< actual loss function used, determined by error
 
-    vector<int>   classes;        ///< class labels
-    vector<float> class_weights;  ///< weights for each class
-    vector<float> sample_weights; ///< weights for each sample 
+    vector<int>   classes;                          ///< class labels
+    vector<float> class_weights = vector<float>();  ///< weights for each class
+    vector<float> sample_weights = vector<float>(); ///< weights for each sample 
     
     // for creating dataset from X and y in Engine<T>::fit. Ignored if 
     // the uses uses an dataset
@@ -185,8 +187,37 @@ public:
     void set_weights_init(bool init){ weights_init = init; };
     bool get_weights_init(){ return weights_init; };
 
-    void set_n_classes(unsigned int new_n_classes){ n_classes = new_n_classes; };
+    void set_n_classes(const ArrayXf& y){
+        vector<int> uc = unique( ArrayXi(y.cast<int>()) );
+
+        if (int(uc.at(0)) != 0)
+            HANDLE_ERROR_THROW("Class labels must start at 0");
+
+        vector<int> cont_classes(uc.size());
+        iota(cont_classes.begin(), cont_classes.end(), 0);
+        for (int i = 0; i < cont_classes.size(); ++i)
+        {
+            if ( int(uc.at(i)) != cont_classes.at(i))
+                HANDLE_ERROR_THROW("Class labels must be contiguous");
+        }
+        n_classes = uc.size();
+    };
+    void set_class_weights(const ArrayXf& y){
+        class_weights.resize(n_classes); // set_n_classes must be called first
+        for (unsigned i = 0; i < n_classes; ++i){
+            class_weights.at(i) = float((y.cast<int>().array() == i).count())/y.size(); 
+            class_weights.at(i) = (1 - class_weights.at(i))*float(n_classes);
+        }
+    };
+    void set_sample_weights(const ArrayXf& y){
+        sample_weights.clear(); // set_class_weights must be called first
+        for (unsigned i = 0; i < y.size(); ++i)
+            sample_weights.push_back(class_weights.at(int(y(i))));
+    };
+
     unsigned int get_n_classes(){ return n_classes; };
+    vector<float> get_class_weights(){ return class_weights; };
+    vector<float> get_sample_weights(){ return sample_weights; };
 
     void set_validation_size(float s){ validation_size = s; };
     float get_validation_size(){ return validation_size; };

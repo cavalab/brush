@@ -66,19 +66,13 @@ class BrushEstimator(EstimatorInterface, BaseEstimator):
                                      validation_size=self.validation_size,
                                      shuffle_split=self.shuffle_split)
 
-        # set n classes if relevant
-        self.n_classes_ = 0
-        if self.mode=="classification":
-            self.n_classes_ = len(np.unique(y))
-
         # These have a default behavior to return something meaningfull if 
         # no values are set
         self.train_ = self.data_.get_training_data()
         self.train_.set_batch_size(self.batch_size) # TODO: update batch indexes at the beggining of every generation
         self.validation_ = self.data_.get_validation_data()
 
-        # TODO: handle n_classes in wrap_parameters 
-        self.parameters_ = self._wrap_parameters(n_classes=self.n_classes_)
+        self.parameters_ = self._wrap_parameters(y)
 
         self.search_space_ = SearchSpace(self.data_,
                                          self.parameters_.functions,
@@ -87,7 +81,7 @@ class BrushEstimator(EstimatorInterface, BaseEstimator):
         self.engine_ = None
         if self.mode == 'classification':
             self.engine_ = ( ClassifierEngine
-                             if self.n_classes_ == 2 else
+                             if self.parameters_.n_classes == 2 else
                              MultiClassifierEngine)(self.parameters_, 
                                                     self.search_space_)
         else:
@@ -222,7 +216,7 @@ class BrushClassifier(BrushEstimator, ClassifierMixin):
 
         prob = self.best_estimator_.program.predict_proba(data)
 
-        if self.n_classes_ == 2:
+        if self.parameters_.n_classes == 2:
             prob = np.hstack( (np.ones(X.shape[0]).reshape(-1,1), prob.reshape(-1,1)) )  
             prob[:, 0] -= prob[:, 1]
 

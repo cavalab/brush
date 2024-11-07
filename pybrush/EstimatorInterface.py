@@ -122,6 +122,11 @@ class EstimatorInterface():
         whether if the engine should shuffle the data before splitting it
         into train and validation partitions. Ignored if `validation_size`
         is set to zero.
+    class_weights : list of float, default []
+        List of weights to assign to each class in classification problems. 
+        The length of the list should match the number of classes. If empty, all
+        classes are assumed to have equal weight. This can be useful to handle
+        imbalanced datasets by assigning weights to underrepresented classes.
     logfile: str, optional (default: "")
         If specified, spits statistics into a logfile. "" means don't log.
     random_state: int or None, default None
@@ -166,7 +171,8 @@ class EstimatorInterface():
         bandit: str = 'dynamic_thompson',
         shuffle_split: bool = False,
         logfile: str = "",
-        random_state: int = None
+        random_state: int = None,
+        class_weights: List[float] = []
     ) -> None:
         self.pop_size = pop_size
         self.max_gens = max_gens
@@ -199,8 +205,9 @@ class EstimatorInterface():
         self.surv = surv
         self.weights_init = weights_init
         self.validation_size = validation_size
+        self.class_weights = class_weights
 
-    def _wrap_parameters(self, **extra_kwargs):
+    def _wrap_parameters(self, y, **extra_kwargs):
         """
         Creates a `Parameters` class to send to c++ backend the settings for
         the algorithm to use.
@@ -213,35 +220,51 @@ class EstimatorInterface():
 
         params = Parameters()
 
-        # TODO: this could be a loop?
+        # Setting up the classification or regression problem
         params.classification = self.mode == "classification"
-        params.n_classes = self.n_classes_
-        params.verbosity = self.verbosity
+        if params.classification:
+            params.set_n_classes(y)
+            params.set_class_weights(y)
+            params.set_sample_weights(y)
+
+        params.objectives = self.objectives
         params.n_jobs = self.n_jobs
-        params.pop_size = self.pop_size
-        params.max_gens = self.max_gens
+
+        # logging
+        params.verbosity = self.verbosity
         params.logfile = self.logfile
         params.save_population = self.save_population
         params.load_population = self.load_population
-        params.max_stall = self.max_stall
-        params.max_time = self.max_time
-        params.num_islands = self.num_islands
-        params.max_depth = self.max_depth
-        params.max_size = self.max_size
-        params.objectives = self.objectives
-        params.bandit = self.bandit
-        params.shuffle_split = self.shuffle_split
-        params.cx_prob = self.cx_prob
+
+        # Pop and archive
         params.use_arch = self.use_arch
         params.val_from_arch = self.val_from_arch
-        params.weights_init=self.weights_init
+
+        # Evolutionary loop
+        params.pop_size = self.pop_size
+        params.max_gens = self.max_gens
+        params.num_islands = self.num_islands
         params.mig_prob = self.mig_prob
-        params.functions = self.functions_
-        params.mutation_probs = self.mutation_probs
-        params.validation_size = self.validation_size
-        params.batch_size = self.batch_size
+        params.max_depth = self.max_depth
+        params.max_size = self.max_size
+        params.cx_prob = self.cx_prob
         params.sel = self.sel
         params.surv = self.surv
+
+        # Stop criteria 
+        params.max_stall = self.max_stall
+        params.max_time = self.max_time
+
+        # Sampling probabilities
+        params.weights_init=self.weights_init
+        params.bandit = self.bandit
+        params.mutation_probs = self.mutation_probs
+
+        # Data management
+        params.shuffle_split = self.shuffle_split
+        params.functions = self.functions_
+        params.validation_size = self.validation_size
+        params.batch_size = self.batch_size
         params.feature_names = self.feature_names_
     
         # Scorer is the metric associated with "error" objective. To optimize
@@ -249,7 +272,7 @@ class EstimatorInterface():
         if self.scorer is None:
             scorer = "mse"
             if self.mode == "classification":
-                scorer = "log" if self.n_classes_ == 2 else "multi_log"
+                scorer = "log" if params.n_classes == 2 else "multi_log"
             self.scorer = scorer
         else:
             if self.mode == "regression":

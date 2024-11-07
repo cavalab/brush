@@ -61,16 +61,16 @@ class DeapEstimator(EstimatorInterface, BaseEstimator):
         # create Individual class, inheriting from self.Individual with a fitness attribute
         if self.mode == 'classification':
             self.Individual = ( individual.ClassifierIndividual
-                                 if self.n_classes_ == 2 else
+                                 if self.parameters_.n_classes == 2 else
                                  individual.MultiClassifierIndividual)  
             self.eval_ = ( ClassifierEvaluator()
-                     if self.n_classes_ == 2 else
+                     if self.parameters_.n_classes == 2 else
                      MultiClassifierEvaluator() )  
             self.sel_  = ( ClassifierSelector("nsga2", False)
-                     if self.n_classes_ == 2 else
+                     if self.parameters_.n_classes == 2 else
                      MultiClassifierSelector("nsga2", False) )  
             self.surv_ = ( ClassifierSelector("nsga2", True)
-                     if self.n_classes_ == 2 else
+                     if self.parameters_.n_classes == 2 else
                      MultiClassifierSelector("nsga2", True) )  
         else:
             self.Individual = individual.RegressorIndividual  
@@ -143,11 +143,6 @@ class DeapEstimator(EstimatorInterface, BaseEstimator):
                                      validation_size=self.validation_size,
                                      shuffle_split=self.shuffle_split)
 
-        # set n classes if relevant
-        self.n_classes_ = 0
-        if self.mode=="classification":
-            self.n_classes_ = len(np.unique(y))
-
         # These have a default behavior to return something meaningfull if 
         # no values are set
         self.train_ = self.data_.get_training_data()
@@ -155,12 +150,12 @@ class DeapEstimator(EstimatorInterface, BaseEstimator):
         
         self.validation_ = self.data_.get_validation_data()
 
-        self.parameters_ = self._wrap_parameters(n_classes=self.n_classes_)
+        self.parameters_ = self._wrap_parameters(y)
         self.search_space_ = SearchSpace(self.data_, self.parameters_.functions, self.weights_init)
 
         if self.mode == "classification":
             self.variator_ = (ClassifierVariator
-                              if self.n_classes_ == 2 else
+                              if self.parameters_.n_classes == 2 else
                               MultiClassifierVariator
                               )(self.parameters_, self.search_space_)
         elif self.mode == "regressor":
@@ -334,7 +329,7 @@ class DeapClassifier(DeapEstimator,ClassifierMixin):
 
         prob = self.best_estimator_.program.predict_proba(data)
 
-        if self.n_classes_ <= 2:
+        if self.parameters_.n_classes <= 2:
             prob = np.hstack( (np.ones(X.shape[0]).reshape(-1,1), prob.reshape(-1,1)) )  
             prob[:, 0] -= prob[:, 1]
 

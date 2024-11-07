@@ -1,7 +1,7 @@
 import pytest
 
 import _brush
-from pybrush import BrushRegressor
+from pybrush import BrushRegressor, BrushClassifier
 import time
 from multiprocessing import Pool
 import numpy as np
@@ -112,3 +112,27 @@ def test_max_gens():
         print(f"Best individual fitness: {reg.best_estimator_.fitness}")
     
     # assert False
+
+def test_class_weights():
+    y = np.array([1, 1, 1, 0, 0, 0, 0, 0, 0, 0])
+    X = np.array([[1.1, 2.0, 3.0, 4.0, 5.0, 6.5, 7.0, 8.0, 9.0, 10.0],
+                    [2.0, 1.2, 6.0, 4.0, 5.0, 8.0, 7.0, 5.0, 9.0, 10.0]]).T
+
+    class_weights = [np.sum(y == 0)/len(y), np.sum(y == 1)/len(y)]
+
+    clf = BrushClassifier(class_weights=class_weights, max_gens=10).fit(X, y)
+
+    assert len(clf.parameters_.class_weights)==2, \
+        f"Expected class weights to be empty, but got {clf.class_weights}"
+    
+    # class weight = n_classes*(1 - (y==class)/n_samples)
+    assert np.allclose(clf.parameters_.class_weights,
+                       [(1 - 7/10)*2, (1 - 3/10)*2]), \
+        f"Expected class weights to be [0.6, 1.4], but got {clf.parameters_.class_weights}"
+    
+    predictions = clf.predict(X)
+    assert predictions is not None, "Prediction failed"
+
+    print(f"Best individual program: {clf.best_estimator_.program.get_model()}")
+    print(f"Best individual fitness: {clf.best_estimator_.fitness}")
+    print(f"Best individual score (acc): {clf.score(X, y)}")
