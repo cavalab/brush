@@ -39,7 +39,7 @@ string TreeNode::get_tree_model(bool pretty, string offset) const
     }
     
     if (Is<NodeType::SplitBest>(data.node_type)){
-        if (data.arg_types.at(0) == DataType::ArrayB)
+        if (data.get_feature_type() == DataType::ArrayB)
             return fmt::format("If({})", data.get_feature()) + child_outputs;
 
         return fmt::format("If({}>{:.2f})", data.get_feature(), data.W) +

@@ -241,6 +241,10 @@ void from_json(const json &j, Node& p)
         // j.at("feature").get_to(p.feature);
         p.set_feature(j.at("feature"));
     }
+    if (j.contains("feature_type"))
+    {
+        p.set_feature_type(j.at("feature_type"));
+    }
 
     // if node has a ret_type and arg_types, get them. if not we need to make 
     // a signature

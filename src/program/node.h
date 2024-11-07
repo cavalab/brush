@@ -248,6 +248,9 @@ struct Node {
 
     inline void set_feature(string f){ feature = f; };
     inline string get_feature() const { return feature; };
+    
+    inline void set_feature_type(DataType ft){ feature_type = ft; };
+    inline DataType get_feature_type() const { return feature_type; };
 
     inline bool get_is_weighted() const {return this->is_weighted;};
     inline void set_is_weighted(bool is_weighted){
@@ -257,9 +260,12 @@ struct Node {
     };
 
     private:
-
         /// @brief feature name for terminals or splitting nodes
         string feature; 
+        
+        /// @brief feature type for terminals or splitting nodes
+        DataType feature_type; 
+        
 };
 
 template <NodeType... T>
