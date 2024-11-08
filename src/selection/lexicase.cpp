@@ -75,6 +75,7 @@ vector<size_t> Lexicase<T>::select(Population<T>& pop, int island,
         {
             // for classification problems, weight case selection 
             // by class weights
+            cases.resize(0); 
             vector<size_t> choices(N);
             std::iota(choices.begin(), choices.end(),0);
 
