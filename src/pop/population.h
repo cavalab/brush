@@ -97,14 +97,14 @@ public:
     };
 };
 
-NLOHMANN_DEFINE_TYPE_NON_INTRUSIVE(
-    Population<PT::Regressor>, individuals, island_indexes, pop_size, num_islands, mig_prob, linear_complexity);
-NLOHMANN_DEFINE_TYPE_NON_INTRUSIVE(
-    Population<PT::BinaryClassifier>, individuals, island_indexes, pop_size, num_islands, mig_prob, linear_complexity);
-NLOHMANN_DEFINE_TYPE_NON_INTRUSIVE(
-    Population<PT::MulticlassClassifier>, individuals, island_indexes, pop_size, num_islands, mig_prob, linear_complexity);
-NLOHMANN_DEFINE_TYPE_NON_INTRUSIVE(
-    Population<PT::Representer>, individuals, island_indexes, pop_size, num_islands, mig_prob, linear_complexity);
+NLOHMANN_DEFINE_TYPE_NON_INTRUSIVE(Population<PT::Regressor>,
+    individuals, island_indexes, pop_size, num_islands, mig_prob, linear_complexity);
+NLOHMANN_DEFINE_TYPE_NON_INTRUSIVE(Population<PT::BinaryClassifier>,
+    individuals, island_indexes, pop_size, num_islands, mig_prob, linear_complexity);
+NLOHMANN_DEFINE_TYPE_NON_INTRUSIVE(Population<PT::MulticlassClassifier>,
+    individuals, island_indexes, pop_size, num_islands, mig_prob, linear_complexity);
+NLOHMANN_DEFINE_TYPE_NON_INTRUSIVE(Population<PT::Representer>,
+    individuals, island_indexes, pop_size, num_islands, mig_prob, linear_complexity);
     
 }// Pop
 }// Brush

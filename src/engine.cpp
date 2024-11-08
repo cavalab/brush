@@ -335,14 +335,17 @@ void Engine<T>::run(Dataset &data)
     this->init();
 
     if (params.load_population != "") {
+        // std::cout << "Loading population from: " << params.load_population << std::endl;
         this->pop.load(params.load_population);
 
         // invalidating all individuals
-        // for (auto& individual : this->pop.individuals) {
-        //     if (individual != nullptr) {
-        //         individual->set_is_fitted(false);
-        //     }
-        // }
+        for (auto& individual : this->pop.individuals) {
+            if (individual != nullptr) {
+                individual->set_is_fitted(false);
+                // std::cout << "Invalidated individual with ID: " << individual->id << std::endl;
+            }
+        }
+        // std::cout << "Population loaded and individuals invalidated." << std::endl;
     }
     else
         this->pop.init(this->ss, this->params);

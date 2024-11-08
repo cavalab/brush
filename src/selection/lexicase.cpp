@@ -73,6 +73,10 @@ vector<size_t> Lexicase<T>::select(Population<T>& pop, int island,
         vector<size_t> cases; // cases (samples)
         if (params.classification && !params.class_weights.empty()) 
         {
+            // NOTE: when calling lexicase, make sure `errors` is from training
+            // data, and not from validation data. This is because the sample 
+            // weights indexes are based on train partition
+        
             // for classification problems, weight case selection 
             // by class weights
             cases.resize(0); 

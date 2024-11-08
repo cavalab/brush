@@ -64,14 +64,14 @@ public:
     
     string scorer="mse";   ///< actual loss function used, determined by error
 
-    vector<int>   classes;                          ///< class labels
+    vector<int>   classes = vector<int>();          ///< class labels
     vector<float> class_weights = vector<float>();  ///< weights for each class
     vector<float> sample_weights = vector<float>(); ///< weights for each sample 
     
     // for creating dataset from X and y in Engine<T>::fit. Ignored if 
     // the uses uses an dataset
-    bool classification;
-    unsigned int n_classes;
+    bool classification = false;
+    unsigned int n_classes = 0;
 
     // validation partition
     bool shuffle_split = false;
@@ -188,31 +188,36 @@ public:
     bool get_weights_init(){ return weights_init; };
 
     void set_n_classes(const ArrayXf& y){
-        vector<int> uc = unique( ArrayXi(y.cast<int>()) );
-
-        if (int(uc.at(0)) != 0)
-            HANDLE_ERROR_THROW("Class labels must start at 0");
-
-        vector<int> cont_classes(uc.size());
-        iota(cont_classes.begin(), cont_classes.end(), 0);
-        for (int i = 0; i < cont_classes.size(); ++i)
+        if (classification)
         {
-            if ( int(uc.at(i)) != cont_classes.at(i))
-                HANDLE_ERROR_THROW("Class labels must be contiguous");
+            vector<int> uc = unique( ArrayXi(y.cast<int>()) );
+
+            if (int(uc.at(0)) != 0)
+                HANDLE_ERROR_THROW("Class labels must start at 0");
+
+            vector<int> cont_classes(uc.size());
+            iota(cont_classes.begin(), cont_classes.end(), 0);
+            for (int i = 0; i < cont_classes.size(); ++i)
+            {
+                if ( int(uc.at(i)) != cont_classes.at(i))
+                    HANDLE_ERROR_THROW("Class labels must be contiguous");
+            }
+            n_classes = uc.size();
+            // classes   = uc;
         }
-        n_classes = uc.size();
     };
     void set_class_weights(const ArrayXf& y){
         class_weights.resize(n_classes); // set_n_classes must be called first
         for (unsigned i = 0; i < n_classes; ++i){
             class_weights.at(i) = float((y.cast<int>().array() == i).count())/y.size(); 
-            class_weights.at(i) = (1 - class_weights.at(i))*float(n_classes);
+            class_weights.at(i) = (1.0 - class_weights.at(i))*float(n_classes);
         }
     };
     void set_sample_weights(const ArrayXf& y){
-        sample_weights.clear(); // set_class_weights must be called first
-        for (unsigned i = 0; i < y.size(); ++i)
-            sample_weights.push_back(class_weights.at(int(y(i))));
+        sample_weights.resize(0); // set_class_weights must be called first
+        if (!class_weights.empty())
+            for (unsigned i = 0; i < y.size(); ++i)
+                sample_weights.push_back(class_weights.at(int(y(i))));
     };
 
     unsigned int get_n_classes(){ return n_classes; };
@@ -261,6 +266,9 @@ NLOHMANN_DEFINE_TYPE_NON_INTRUSIVE(Parameters,
     mig_prob,
     classification,
     n_classes,
+    classes, // TODO: get rid of this parameter? for some reason, when i remove it (or set it to any value) the load population starts to fail with regression
+    class_weights,
+    sample_weights,
     validation_size,
     feature_names,
     batch_size,

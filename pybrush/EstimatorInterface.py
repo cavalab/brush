@@ -221,8 +221,8 @@ class EstimatorInterface():
         params = Parameters()
 
         # Setting up the classification or regression problem
-        params.classification = self.mode == "classification"
-        if params.classification:
+        if self.mode == "classification":
+            params.classification = True
             params.set_n_classes(y)
             params.set_class_weights(y)
             params.set_sample_weights(y)
@@ -256,7 +256,7 @@ class EstimatorInterface():
         params.max_time = self.max_time
 
         # Sampling probabilities
-        params.weights_init=self.weights_init
+        params.weights_init = self.weights_init
         params.bandit = self.bandit
         params.mutation_probs = self.mutation_probs
 

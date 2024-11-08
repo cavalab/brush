@@ -63,8 +63,8 @@ void Evaluation<T>::assign_fit(Individual<T>& ind, const Dataset& data,
         VectorXf val_errors;
         f_v = S.score(ind, validation, val_errors, params);
 
-        if (val)
-            ind.error = val_errors;
+        // if (val) // never use validation data here. This is used in lexicase selection
+        //     ind.error = val_errors;
     }
     
     // This is what is going to determine the weights for the individual's fitness

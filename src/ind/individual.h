@@ -30,7 +30,7 @@ public: // TODO: make these private (and work with nlohman json)
     
     // storing what changed in relation to parent inside variation
     string variation = "born"; // spontanegous generation (born), crossover, or which type of mutation
-    vector<Node> sampled_nodes; // nodes that were sampled in mutation
+    vector<Node> sampled_nodes = {}; // nodes that were sampled in mutation
 
     VectorXf error;     ///< training error (used in lexicase selectors)
 
