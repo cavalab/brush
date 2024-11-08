@@ -30,9 +30,9 @@ class EstimatorInterface():
         stalled. If 0, not used.
     verbosity : int, default 0
         Controls level of printouts.
-    max_depth : int, default 0
+    max_depth : int, default 10
         Maximum depth of GP trees in the GP program. Use 0 for no limit.
-    max_size : int, default 0
+    max_size : int, default 100
         Maximum number of nodes in a tree. Use 0 for no limit.
     num_islands : int, default 5
         Number of independent islands to use in evolutionary framework. 
@@ -146,8 +146,8 @@ class EstimatorInterface():
         max_time: int = -1,
         max_stall: int = 0,
         verbosity: int = 0,
-        max_depth: int = 3,
-        max_size: int = 20,
+        max_depth: int = 10,
+        max_size: int = 100,
         num_islands: int = 5,
         n_jobs: int = 1,
         mig_prob: float = 0.05,
