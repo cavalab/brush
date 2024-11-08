@@ -72,7 +72,7 @@ class BrushEstimator(EstimatorInterface, BaseEstimator):
         self.train_.set_batch_size(self.batch_size) # TODO: update batch indexes at the beggining of every generation
         self.validation_ = self.data_.get_validation_data()
 
-        self.parameters_ = self._wrap_parameters(y)
+        self.parameters_ = self._wrap_parameters(self.train_.y)
 
         self.search_space_ = SearchSpace(self.data_,
                                          self.parameters_.functions,

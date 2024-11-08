@@ -150,7 +150,7 @@ class DeapEstimator(EstimatorInterface, BaseEstimator):
         
         self.validation_ = self.data_.get_validation_data()
 
-        self.parameters_ = self._wrap_parameters(y)
+        self.parameters_ = self._wrap_parameters(self.train_.y)
         self.search_space_ = SearchSpace(self.data_, self.parameters_.functions, self.weights_init)
 
         if self.mode == "classification":
