@@ -37,7 +37,7 @@ public:
     unsigned int max_depth = 6;
     unsigned int max_size  = 50;
 
-    vector<string> objectives{"error","complexity"}; // error should be generic and deducted based on mode
+    vector<string> objectives{"scorer","complexity"}; // scorer should be generic and deducted based on mode
     string bandit = "dynamic_thompson"; // TODO: should I rename dummy? 
     string sel  = "lexicase"; //selection method
     string surv = "nsga2"; //survival method
@@ -147,11 +147,11 @@ public:
     vector<string> get_objectives() const {
         // return objectives;
         
-        // properly replace error with the specified scorer
+        // properly replace scorer with the specified scorer
         vector<string> aux_objectives(0);
 
         for (auto& objective : objectives) {
-            if (objective.compare("error")==0)
+            if (objective.compare("scorer")==0)
                 aux_objectives.push_back(scorer);
             else
                 aux_objectives.push_back(objective);

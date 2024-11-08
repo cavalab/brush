@@ -66,15 +66,15 @@ class EstimatorInterface():
         Distribution of sizes on the initial population. If `max_size`, then every
         expression is created with `max_size` nodes. If `uniform`, size will be
         uniformly distributed between 1 and `max_size`.
-    objectives : list[str], default ["error", "size"]
+    objectives : list[str], default ["scorer", "size"]
         list with one or more objectives to use. The first objective is the main.
-        If `"error"` is used, then the metric in `scorer` will be used as objective.
-        Possible values are "error", "size", "complexity", "linear_complexity",
+        If `"scorer"` is used, then the metric in `scorer` will be used as objective.
+        Possible values are "scorer", "size", "complexity", "linear_complexity",
         and "depth". The first objective will be used as criteria for Pareto
         sorting when creating the archive, and the recursive complexity will be
         used as secondary objective.
     scorer : str, default None
-        The metric to use for the "error" objective. If None, it will be set to
+        The metric to use for the "scorer" objective. If None, it will be set to
         "mse" for regression and "log" for binary classification.
     algorithm : {"nsga2island", "nsga2", "gaisland", "ga"}, default "nsga2"
         Which Evolutionary Algorithm framework to use to evolve the population.
@@ -156,7 +156,7 @@ class EstimatorInterface():
                           "toggle_weight_on":1/6, "toggle_weight_off":1/6},
         functions: Union[List[str], Dict[str, float]] = {},
         initialization: str = "uniform",
-        objectives: List[str] = ["error", "size"],
+        objectives: List[str] = ["scorer", "size"],
         scorer: str = None,
         algorithm: str = "nsga2",
         weights_init: bool = True,
@@ -267,7 +267,7 @@ class EstimatorInterface():
         params.batch_size = self.batch_size
         params.feature_names = self.feature_names_
     
-        # Scorer is the metric associated with "error" objective. To optimize
+        # Scorer is the metric associated with "scorer" objective. To optimize
         # something else, set it in the objectives list.
         if self.scorer is None:
             scorer = "mse"

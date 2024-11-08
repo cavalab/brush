@@ -41,7 +41,7 @@ public: // TODO: make these private (and work with nlohman json)
 
     Individual()
     {
-        objectives = {"error", "complexity"}; 
+        objectives = {"scorer", "complexity"}; 
         id = 0; // unsigned
     };
 
@@ -54,7 +54,7 @@ public: // TODO: make these private (and work with nlohman json)
         program = ss.make_program<Program<T>>(params, 0, 0);
 
         // overriding the objectives with the ones from params (to replace
-        // the generic "error" by the actual scorer set in the params object)
+        // the generic "scorer" by the actual scorer set in the params object)
         objectives = params.get_objectives();
 
         // If different from zero, then the program is created with a fixed depth and size.
@@ -134,7 +134,7 @@ public: // TODO: make these private (and work with nlohman json)
     // this will determine each fitness metric to be a min/max problem.
     // generic error metric: by default log and multi_log if it is a
     // classification problem, and MSE if it is a regression (so its always
-    // a minimization by default, thus "error" has weight -1.0)
+    // a minimization by default, thus "scorer" has weight -1.0)
     inline static std::map<std::string, float> weightsMap = {
         {"complexity",              -1.0},
         {"linear_complexity",       -1.0},
@@ -145,7 +145,7 @@ public: // TODO: make these private (and work with nlohman json)
         {"average_precision_score", +1.0},
         {"balanced_accuracy",       +1.0},
         {"accuracy",                +1.0}
-        // {"error",                   -1.0}
+        // {"scorer",                   -1.0}
     };
 
     vector<string> get_objectives() const { return objectives; };
