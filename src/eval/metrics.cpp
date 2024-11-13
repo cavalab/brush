@@ -13,6 +13,7 @@ float mse(const VectorXf& y, const VectorXf& yhat, VectorXf& loss,
     return loss.mean(); 
 }
 
+
 VectorXf log_loss(const VectorXf& y, const VectorXf& predict_proba, 
                     const vector<float>& class_weights)
 {
@@ -20,7 +21,6 @@ VectorXf log_loss(const VectorXf& y, const VectorXf& predict_proba,
     
     VectorXf loss;
     
-    float sum_weights = 0; 
     loss.resize(y.rows());  
     for (unsigned i = 0; i < y.rows(); ++i)
     {
@@ -34,16 +34,7 @@ VectorXf log_loss(const VectorXf& y, const VectorXf& predict_proba,
             std::runtime_error("loss(i)= " + to_string(loss(i)) 
                     + ". y = " + to_string(y(i)) + ", predict_proba(i) = " 
                     + to_string(predict_proba(i)));
-
-        if (!class_weights.empty())
-        {
-            loss(i) = loss(i) * class_weights.at(y(i));
-            sum_weights += class_weights.at(y(i));
-        }
     }
-    
-    if (sum_weights > 0)
-        loss = loss.array() / sum_weights * y.size(); // normalize weight contributions
     
     return loss;
 }   
@@ -54,6 +45,25 @@ float mean_log_loss(const VectorXf& y,
         const vector<float>& class_weights)
 {
     loss = log_loss(y,predict_proba,class_weights);
+    
+    if (!class_weights.empty())
+    {
+        float sum_weights = 0;
+
+        // we keep loss without weights, as this may affect lexicase
+        VectorXf weighted_loss;
+        weighted_loss.resize(y.rows());  
+        for (unsigned i = 0; i < y.rows(); ++i)
+        {
+            weighted_loss(i) = loss(i) * class_weights.at(y(i));      
+            sum_weights += class_weights.at(y(i));
+        }
+
+        // equivalent of sklearn's log_loss with weights. It uses np.average,
+        // which returns avg = sum(a * weights) / sum(weights)
+        return weighted_loss.sum() / sum_weights; // normalize weight contributions
+    }
+    
     return loss.mean();
 }
 
