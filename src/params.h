@@ -1,5 +1,5 @@
 /* Brush
-copyright 2020 William La Cava
+copyright 2024 William La Cava
 license: GNU/GPL v3
 */
 
@@ -210,7 +210,7 @@ public:
         class_weights.resize(n_classes); // set_n_classes must be called first
         for (unsigned i = 0; i < n_classes; ++i){
             class_weights.at(i) = float((y.cast<int>().array() == i).count())/y.size(); 
-            class_weights.at(i) = (1.0 - class_weights.at(i))*float(n_classes);
+            class_weights.at(i) = (1.0 - class_weights.at(i));
         }
     };
     void set_sample_weights(const ArrayXf& y){
