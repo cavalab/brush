@@ -90,6 +90,42 @@ class BrushEstimator(EstimatorInterface, BaseEstimator):
         self.engine_.fit(self.data_)
         
         self.archive_ = self.engine_.get_archive()
+        self.population_ = self.engine_.get_population()
+        self.best_estimator_ = self.engine_.best_ind
+
+        return self
+    
+    def partial_fit(self, X, y):
+        """
+        Fit an estimator to X,y, without reseting the estimator.
+
+        Parameters
+        ----------
+        X : np.ndarray
+            2-d array of input data.
+        y : np.ndarray
+            1-d array of (boolean) target values.
+        """
+
+        if isinstance(X, pd.DataFrame):
+            assert self.feature_names_ == X.columns.to_list(), \
+                "Feature names must be the same as in data from previous fit"
+
+        new_data = self._make_data(X, y, 
+                                     feature_names=self.feature_names_,
+                                     validation_size=self.validation_size,
+                                     shuffle_split=self.shuffle_split)
+        
+        new_parameters = self._wrap_parameters(new_data.get_training_data().y)
+
+        assert self.engine_ is not None, \
+            "You must call fit before calling partial_fit"
+        
+        self.engine_.params = new_parameters
+        self.engine_.fit(new_data)
+
+        self.archive_ = self.engine_.get_archive()
+        self.population_ = self.engine_.get_population()
         self.best_estimator_ = self.engine_.best_ind
 
         return self

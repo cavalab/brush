@@ -112,8 +112,9 @@ public:
     ///return archive size
     int get_archive_size(){ return this->archive.individuals.size(); };
 
-    ///return population as string
+    ///return archive/population as string
     vector<json> get_archive(bool front);
+    vector<json> get_population();
     
     /// predict on unseen data from the archive             
     auto predict_archive(int id, const Dataset& data);

@@ -197,6 +197,26 @@ vector<json> Engine<T>::get_archive(bool front)
     return archive_vector;
 }
 
+template <ProgramType T>
+vector<json> Engine<T>::get_population()
+{
+    vector<json> pop_vector; // Use a vector to store serialized individuals
+    for (const auto& ind : pop.individuals) {
+        if (ind == nullptr) {
+            // HANDLE_ERROR_THROW("get_population found a nullptr individual");
+            continue;
+        }
+
+        json j;  // Serialize each individual
+        to_json(j, *ind);
+        pop_vector.push_back(j);
+    }
+
+    if(pop_vector.size() != params.pop_size)  HANDLE_ERROR_THROW("Population size is different from pop_size");
+
+    return pop_vector;
+}
+
 // TODO: private function called find_individual that searches for it based on id. Then,
 // use this function in predict_archive and predict_proba_archive.
 template <ProgramType T>
