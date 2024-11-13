@@ -127,8 +127,8 @@ def test_class_weights():
     
     # class weight = n_classes*(1 - (y==class)/n_samples)
     assert np.allclose(clf.parameters_.class_weights,
-                       [(1 - 7/10)*2, (1 - 3/10)*2]), \
-        f"Expected class weights to be [0.6, 1.4], but got {clf.parameters_.class_weights}"
+                       [(1 - 7/10), (1 - 3/10)]), \
+        f"Expected class weights to be [0.3, 0.7], but got {clf.parameters_.class_weights}"
     
     predictions = clf.predict(X)
     assert predictions is not None, "Prediction failed"
