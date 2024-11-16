@@ -539,7 +539,7 @@ void Engine<T>::run(Dataset &data)
         [&](tf::Subflow& subflow) {
             // set training loss for archive
             for (int island = 0; island < this->params.num_islands; ++island) {
-                evaluator.update_fitness(this->pop, island, data, params, false, false);
+                evaluator.update_fitness(this->pop, island, data, params, true, false);
             }
 
             // TODO: if we're not using an archive, let's store the final population in the 

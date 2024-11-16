@@ -263,9 +263,8 @@ public:
                 ind.init(search_space, parameters); // ind.variation is born by default
             }
 
-            ind.set_objectives(mom.get_objectives()); // it will have an invalid fitness
+            // ind.set_objectives(mom.get_objectives()); // it will have an invalid fitness
 
-            ind.is_fitted_ = false;
             ind.set_id(id);
 
             ind.fitness.set_loss(mom.fitness.get_loss());
@@ -278,7 +277,7 @@ public:
             assert(ind.program.size() > 0);
             assert(ind.fitness.valid() == false);
 
-            ind.program.fit(data);
+            ind.program.fit(data.get_training_data());
             evaluator.assign_fit(ind, data, parameters, false);
 
             vector<float> deltas(ind.get_objectives().size(), 0.0f);

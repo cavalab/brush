@@ -20,9 +20,7 @@ void Evaluation<T>::update_fitness(Population<T>& pop,
     {
         Individual<T>& ind = *pop.individuals.at(indices.at(i)).get(); // we are modifying it, so operator[] wont work
 
-        bool pass = false;
-
-        if (pass)
+        if (false) // pass
         {
             ind.fitness.set_loss(MAX_FLT);
             ind.fitness.set_loss_v(MAX_FLT);
@@ -34,7 +32,7 @@ void Evaluation<T>::update_fitness(Population<T>& pop,
             // assign weights to individual
             if (fit && ind.get_is_fitted() == false)
             {
-                ind.program.fit(data);
+                ind.program.fit(data.get_training_data());
             }
             
             assign_fit(ind, data, params, validation);
@@ -66,7 +64,13 @@ void Evaluation<T>::assign_fit(Individual<T>& ind, const Dataset& data,
         // if (val) // never use validation data here. This is used in lexicase selection
         //     ind.error = val_errors;
     }
-    
+
+    float error_weight = Individual<T>::weightsMap[params.scorer];
+    if (std::isnan(f) || std::isinf(f))
+        f = error_weight > 0 ? -MAX_FLT : MAX_FLT;
+    if (std::isnan(f_v) || std::isinf(f_v))
+        f_v = error_weight > 0 ? -MAX_FLT : MAX_FLT;
+
     // This is what is going to determine the weights for the individual's fitness
     ind.set_objectives(params.get_objectives());
 

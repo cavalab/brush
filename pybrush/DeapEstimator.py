@@ -158,7 +158,7 @@ class DeapEstimator(EstimatorInterface, BaseEstimator):
                               if self.parameters_.n_classes == 2 else
                               MultiClassifierVariator
                               )(self.parameters_, self.search_space_)
-        elif self.mode == "regressor":
+        elif self.mode == "regression":
             self.variator_ = RegressorVariator(self.parameters_, self.search_space_)
             
             # from pybrush import RegressorEngine
@@ -353,7 +353,7 @@ class DeapRegressor(DeapEstimator, RegressorMixin):
     >>> # print('score:', est.score(X,y))
     """
     def __init__(self, **kwargs):
-        super().__init__(mode='regressor',**kwargs)
+        super().__init__(mode='regression',**kwargs)
 
 # Under development
 # class DeapRepresenter(DeapEstimator, TransformerMixin):
@@ -373,7 +373,7 @@ class DeapRegressor(DeapEstimator, RegressorMixin):
 #     >>> # print('score:', est.score(X,y))
 #     """
 #     def __init__(self, **kwargs):
-#         super().__init__(mode='regressor',**kwargs)
+#         super().__init__(mode='regression',**kwargs)
 
 #     def _fitness_function(self, ind, data: Dataset):
 #         ind.program.fit(data)
