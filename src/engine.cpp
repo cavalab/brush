@@ -19,15 +19,10 @@ void Engine<T>::init()
 
     set_is_fitted(false);
 
-   this->pop = Population<T>();
-
+    this->pop        = Population<T>();
     this->evaluator = Evaluation<T>();
-
-    // TODO: make these classes have a default constructor, and stop recreating instances
-    this->variator = Variation<T>(this->params, this->ss);
-
-    this->selector = Selection<T>(params.sel, false);
-    this->survivor = Selection<T>(params.surv, true);
+    this->selector  = Selection<T>(params.sel, false);
+    this->survivor  = Selection<T>(params.surv, true);
 
     this->archive.set_objectives(params.get_objectives());
 
@@ -350,8 +345,14 @@ void Engine<T>::run(Dataset &data)
 {
     //TODO: i need to make sure i initialize everything (pybind needs to have constructors
     // without arguments to work, and i need to handle correcting these values before running)
+
+    // initializing classes that need data references    
+    this->ss.init(data, params.functions, params.weights_init);    
     
-    this->ss.init(data, params.functions, params.weights_init);
+    // TODO: make variator have a default constructor and make it part of engine
+    Dataset training_data = data.get_training_data();
+    Variation<T> variator = Variation<T>(this->params, this->ss, training_data);
+
     this->init();
 
     if (params.load_population != "") {
@@ -486,8 +487,7 @@ void Engine<T>::run(Dataset &data)
                 auto survivors = {survivor.survive(this->pop, 0, params)};
                 
                 // // TODO: do i need these next this-> pointers?rewar
-                
-                this->variator.update_ss();
+                variator.update_ss();
                 this->pop.update(survivors);
                 this->pop.migrate();
             }).name("update, migrate and disentangle indexes between islands");

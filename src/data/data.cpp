@@ -160,11 +160,12 @@ Dataset Dataset::operator()(const vector<size_t>& idx) const
     {
         new_y = this->y(idx);
     }
+    // using constructor 1
     return Dataset(new_features, new_y, this->classification);
 }
 
 
-// TODO: i need to improve how   get batch works. Maybe a function to update batch indexes, and always using the same dataset?
+// TODO: i need to improve how get batch works. Maybe a function to update batch indexes, and always using the same dataset?
 // TODO: also, i need to make sure the get batch will sample only from training data and not test
 Dataset Dataset::get_batch() const
 {
@@ -200,7 +201,7 @@ Dataset Dataset::get_validation_data() const { return (*this)(validation_data_id
 /// to define metafeatures of the data.
 void Dataset::init()
 {
-    //TODO: populate var_names, var_data_types, data_types, features_of_type
+    //TODO: populate feature_names, var_data_types, data_types, features_of_type
     // n_features = this->features.size();
     // note this will have to change in unsupervised settings
     // n_samples = this->y.size();
@@ -334,14 +335,14 @@ map<string, State> Dataset::make_features(const ArrayXXf& X,
     // fmt::print("vn: {}\n",vn);
 
     // check variable names
-    vector<string> var_names;
+    feature_names.resize(0);
     if (vn.empty())
     {
         // fmt::print("vn empty\n");
         for (int i = 0; i < X.cols(); ++i)
         {
             string v = "x_"+to_string(i);
-            var_names.push_back(v);
+            feature_names.push_back(v);
         }
     }
     else
@@ -351,7 +352,7 @@ map<string, State> Dataset::make_features(const ArrayXXf& X,
                 fmt::format("Variable names and data size mismatch: "
                 "{} variable names and {} features in X", 
                 vn.size(), X.cols()) );
-        var_names = vn;
+        feature_names = vn;
     }
 
     // check variable types
@@ -374,10 +375,10 @@ map<string, State> Dataset::make_features(const ArrayXXf& X,
 
     for (int i = 0; i < X.cols(); ++i)
     {
-        // fmt::print("X({}): {} \n",i,var_names.at(i));
+        // fmt::print("X({}): {} \n",i,feature_names.at(i));
         State tmp = check_type(X.col(i).array(), var_types.at(i));
 
-        tmp_features[var_names.at(i)] = tmp;
+        tmp_features[feature_names.at(i)] = tmp;
     }
     // fmt::print("tmp_features insert\n");
     tmp_features.insert(Z.begin(), Z.end());
@@ -391,13 +392,13 @@ map<string,State> Dataset::copy_and_make_features(const ArrayXXf& X,
                                          const vector<string>& vn
                                         )
 {
-    vector<string> var_names;
+    feature_names.resize(0);
     if (vn.empty())
     {
         for (int i = 0; i < X.cols(); ++i)
         {
             string v = "x_"+to_string(i);
-            var_names.push_back(v);
+            feature_names.push_back(v);
         }
     }
     else
@@ -410,15 +411,15 @@ map<string,State> Dataset::copy_and_make_features(const ArrayXXf& X,
                 X.cols()
                 )
             );
-        var_names = vn;
+        feature_names = vn;
     }
 
-    if (ref_dataset.features.size() != var_names.size())
+    if (ref_dataset.features.size() != feature_names.size())
         HANDLE_ERROR_THROW(
             fmt::format("Reference dataset with incompatible number of variables: "
             "Reference has {} variable names, but X has {}", 
             ref_dataset.features.size(), 
-            var_names.size()
+            feature_names.size()
             )
         );
 
@@ -427,10 +428,10 @@ map<string,State> Dataset::copy_and_make_features(const ArrayXXf& X,
     {
         State tmp = cast_type(
             X.col(i).array(),
-            ref_dataset.features.at(var_names.at(i))
+            ref_dataset.features.at(feature_names.at(i))
         );
 
-        tmp_features[var_names.at(i)] = tmp;
+        tmp_features[feature_names.at(i)] = tmp;
     }
 
     return tmp_features;

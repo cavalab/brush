@@ -93,7 +93,7 @@ TEST(Data, MixedVariableTypes)
             fmt::print( "y_pred: {}\n", y_pred);
 
             // creating and fitting a child
-            Variation variator = Variation<ProgramType::Regressor>(params, SS);
+            Variation variator = Variation<ProgramType::Regressor>(params, SS, dt);
 
             Individual<PT::Regressor> IND(PRG);
             

@@ -144,7 +144,6 @@ public:
 private:
     Selection<T>  selector;   ///< selection algorithm
     Evaluation<T> evaluator;  ///< evaluation code
-    Variation<T>  variator;   ///< variation operators
     Selection<T>  survivor;   ///< survival algorithm
     
     Log_Stats stats; ///< runtime stats

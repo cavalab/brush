@@ -6,12 +6,15 @@ license: GNU/GPL v3
 #ifndef BANDIT_H
 #define BANDIT_H
 
+#include "../init.h"
+#include "../types.h"
+#include "../program/program.h"
+#include "../vary/search_space.h"
+#include "../util/utils.h"
 #include "bandit_operator.h"
 #include "dummy.h"
 #include "thompson.h"
 #include "linear_thompson.h"
-#include "../program/nodetype.h"
-#include "../vary/search_space.h"
 
 namespace Brush {
 namespace MAB {
@@ -30,6 +33,7 @@ template <typename T>
 struct Bandit
 {
     using Iter = tree<Node>::pre_order_iterator;
+    
 public:
     /**
      * @brief A shared pointer to the bandit operator (policy).
@@ -39,8 +43,6 @@ public:
      
     std::string type; /**< The type of the bandit. */
     vector<T> arms; /**< The arms of the bandit. */
-
-    int context_size;
 
     std::map<T, float> probabilities; /**< The probabilities associated with each arm. */
 
@@ -52,14 +54,14 @@ public:
      * @param type The type of the bandit.
      * @param arms The arms of the bandit.
      */
-    Bandit(string type, vector<T> arms, int c_size);
+    Bandit(string type, vector<T> arms);
 
     /**
      * @brief Constructor for the Bandit struct.
      * @param type The type of the bandit.
      * @param arms_probs The arms and their associated probabilities.
      */
-    Bandit(string type, map<T, float> arms_probs, int c_size);
+    Bandit(string type, map<T, float> arms_probs);
 
     /**
      * @brief Sets the bandit operator (policy).
@@ -85,9 +87,6 @@ public:
      * @brief Sets the type of the bandit.
      */
     void set_type(string type);
-
-    int get_context_size();
-    void set_context_size(int new_context_size);
 
     /**
      * @brief Gets the probabilities associated with each arm.
@@ -123,8 +122,10 @@ public:
      * @param reward The received reward.
      */
     void update(T arm, float reward, VectorXf& context={});
-
-    VectorXf get_context(const tree<Node>& tree, Iter spot, const SearchSpace &ss);
+    
+    template <ProgramType PT>
+    VectorXf get_context(const Program<PT>& program, Iter spot,
+                         const SearchSpace &ss, const Dataset &d);
 };
 
 //TODO: serialization should save the type of bandit and its parameters

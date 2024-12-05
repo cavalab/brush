@@ -32,8 +32,8 @@ void bind_variation(py::module& m, string name)
     // TODO: make variation a non-templated class
     py::class_<Class> vary(m, name.data() );
 
-    vary.def(py::init<>([](br::Parameters& p, br::SearchSpace& ss){
-             Class variation(p, ss);
+    vary.def(py::init<>([](br::Parameters& p, br::SearchSpace& ss, br::Data::Dataset& d){
+             Class variation(p, ss, d);
              return variation; }))
         .def("mutate", &Class::mutate, py::return_value_policy::automatic)
         .def("cross", &Class::cross, py::return_value_policy::automatic)

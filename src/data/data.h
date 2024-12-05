@@ -62,10 +62,10 @@ class Dataset
         std::vector<DataType> unique_data_types;
 
         /// @brief types of data in the features.  
-        std::vector<DataType> feature_types;
+        std::vector<DataType> feature_types; 
 
         /// @brief names of the feature types as string representations.
-        std::vector<string> feature_type_names;
+        std::vector<string> feature_names; // TODO: remove?
 
         /// @brief map from data types to features having that type.
         std::unordered_map<DataType,vector<string>> features_of_type;

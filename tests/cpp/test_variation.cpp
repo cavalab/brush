@@ -30,7 +30,7 @@ TEST(Variation, FixedRootDoesntChange)
             params.max_size  = s;
             params.max_depth = d;
 
-            Variation variator = Variation<ProgramType::BinaryClassifier>(params, SS);
+            Variation variator = Variation<ProgramType::BinaryClassifier>(params, SS, data);
 
             int successes = 0;
             for (int attempt = 0; attempt < 50; ++attempt)
@@ -141,7 +141,7 @@ TEST(Variation, InsertMutationWorks)
     SearchSpace SS;
     SS.init(data);
 
-    Variation variator = Variation<ProgramType::Regressor>(params, SS);
+    Variation variator = Variation<ProgramType::Regressor>(params, SS, data);
 
     int successes = 0;
     for (int attempt = 0; attempt < 100; ++attempt)
@@ -248,7 +248,7 @@ TEST(Variation, Mutation)
             params.max_size  = s;
             params.max_depth = d;
 
-            Variation variator = Variation<ProgramType::Regressor>(params, SS);
+            Variation variator = Variation<ProgramType::Regressor>(params, SS, data);
 
             fmt::print("d={},s={}\n",d,s);
             fmt::print("make_regressor\n");
@@ -346,7 +346,7 @@ TEST(Variation, MutationSizeAndDepthLimit)
             params.max_depth = d;
             
             // creating and fitting a child
-            Variation variator = Variation<ProgramType::Regressor>(params, SS);
+            Variation variator = Variation<ProgramType::Regressor>(params, SS, data);
 
             fmt::print("d={},s={}\n",d,s);
             fmt::print("make_regressor\n");
@@ -438,7 +438,7 @@ TEST(Variation, Crossover)
         {
             params.max_size  = s;
             params.max_depth = d;
-            Variation variator = Variation<ProgramType::Regressor>(params, SS);
+            Variation variator = Variation<ProgramType::Regressor>(params, SS, data);
             
             RegressorProgram PRG1 = SS.make_regressor(d, 0, params);
             PRG1.fit(data);
@@ -535,7 +535,7 @@ TEST(Variation, CrossoverSizeAndDepthLimit)
         {
             params.max_size  = s;
             params.max_depth = d;
-            Variation variator = Variation<ProgramType::Regressor>(params, SS);
+            Variation variator = Variation<ProgramType::Regressor>(params, SS, data);
 
             // Enforcing that the parents does not exceed max_size by
             // taking into account the highest arity of the function nodes

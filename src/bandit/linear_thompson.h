@@ -20,8 +20,8 @@ template <typename T>
 class LinearThompsonSamplingBandit : public BanditOperator<T>
 {
 public:
-    LinearThompsonSamplingBandit(vector<T> arms, int c_size=1);
-    LinearThompsonSamplingBandit(map<T, float> arms_probs, int c_size=1);
+    LinearThompsonSamplingBandit(vector<T> arms);
+    LinearThompsonSamplingBandit(map<T, float> arms_probs);
     ~LinearThompsonSamplingBandit(){};
 
     std::map<T, float> sample_probs(bool update);
@@ -29,12 +29,10 @@ public:
     void update(T arm, float reward, VectorXf& context);
 private:
     int n_arms;
-    int context_size;
 
     vector<MatrixXf> B;
     vector<MatrixXf> B_inv;
     vector<MatrixXf> B_inv_sqrt;
-    VectorXf last_context;
     
     MatrixXf m2_r;
     MatrixXf mean;

@@ -180,7 +180,7 @@ template<PT PType> struct Program
      * @return 
      */
     template <typename R = RetType>
-    TreeType predict(const Dataset &d)  requires(is_same_v<R, TreeType>)
+    TreeType predict(const Dataset &d) requires(is_same_v<R, TreeType>)
     {
         if (!is_fitted_)
             HANDLE_ERROR_THROW("Program is not fitted. Call 'fit' first.\n");

@@ -51,9 +51,10 @@ public:
      * @param params The parameters for the variation operator.
      * @param ss The search space for the variation operator.
      */
-    Variation(Parameters& params, SearchSpace& ss)
+    Variation(Parameters& params, SearchSpace& ss, Dataset &d)
         : parameters(params)
         , search_space(ss)
+        , data(d)
     {
         init();
     };
@@ -79,14 +80,7 @@ public:
         if (parameters.cx_prob > 0.0)
             variation_probs["cx"] = parameters.cx_prob;
         
-        size_t tot_operators = search_space.op_names.size(); //NodeTypes::Count;
-        size_t tot_features  = 0;
-        for (const auto& pair : search_space.terminal_map)
-            tot_features += pair.second.size();
-
-        int context_size = 3*(tot_operators + tot_features);
-
-        this->variation_bandit = Bandit<string>(parameters.bandit, variation_probs, context_size);
+        this->variation_bandit = Bandit<string>(parameters.bandit, variation_probs);
 
         // TODO: should I set C parameter based on pop size or leave it fixed?
         // TODO: update string comparisons to use .compare method
@@ -109,8 +103,7 @@ public:
                     }
                         
                 terminal_bandits[entry.first] = Bandit<string>(parameters.bandit,
-                                                               terminal_probs,
-                                                               context_size);
+                                                               terminal_probs);
             }
         }
 
@@ -143,11 +136,9 @@ public:
                     }
                 }
                 op_bandits[ret_type][args_type] = Bandit<string>(parameters.bandit,
-                                                                 node_probs,
-                                                                 context_size);
+                                                                 node_probs);
             }
         }
-
     };
 
     /**
@@ -223,8 +214,7 @@ public:
                 *r.select_randomly(parents.begin(), parents.end())];
         
             vector<Individual<T>> ind_parents;
-            VectorXf root_context = get_context(mom.program.Tree,
-                                           mom.program.Tree.begin());
+            VectorXf root_context = get_context(mom.program, mom.program.Tree.begin());
             VectorXf context;
 
             string choice = this->variation_bandit.choose(root_context);
@@ -527,11 +517,12 @@ public:
     // the sampled probabilities we update after every generation. Since there are lots
     // of samplings, I think it is ok to not update them and just use the distribution they learned.
 
-    VectorXf get_context(const tree<Node>& tree, Iter spot) {
-        return variation_bandit.get_context(tree, spot, search_space); }
+    VectorXf get_context(const Program<T>& program, Iter spot) {
+        return variation_bandit.get_context<T>(program, spot, search_space, data); }
 
     // they need to be references because we are going to modify them
     SearchSpace search_space; // The search space for the variation operator.
+    Dataset& data;             // the data used to extract context and evaluate the models
     Parameters parameters;    // The parameters for the variation operator
 private:
     // bandits will internaly work as an interface between variation and its searchspace.
@@ -553,21 +544,21 @@ public:
     using Iter = tree<Node>::pre_order_iterator;
 
     template<Brush::ProgramType T>
-    static auto find_spots(tree<Node>& Tree, Variation<T>& variator,
+    static auto find_spots(Program<T>& program, Variation<T>& variator,
                             const Parameters& params)
     {
-        vector<float> weights(Tree.size());
+        vector<float> weights(program.Tree.size());
 
         // by default, mutation can happen anywhere, based on node weights
-        std::transform(Tree.begin(), Tree.end(), weights.begin(),
+        std::transform(program.Tree.begin(), program.Tree.end(), weights.begin(),
                        [&](const auto& n){ return n.get_prob_change();});
         
-        // Should have same size as prog.Tree.size, even if all weights <= 0.0
+        // Must have same size as tree, even if all weights <= 0.0
         return weights;
     }
 
     template<Brush::ProgramType T>
-    static auto mutate(tree<Node>& Tree, Iter spot, Variation<T>& variator,
+    static auto mutate(Program<T>& program, Iter spot, Variation<T>& variator,
                             const Parameters& params);
 };
 

@@ -4,9 +4,8 @@ namespace Brush {
 namespace MAB {
 
 template <typename T>
-LinearThompsonSamplingBandit<T>::LinearThompsonSamplingBandit(vector<T> arms, int c_size)
+LinearThompsonSamplingBandit<T>::LinearThompsonSamplingBandit(vector<T> arms)
     : BanditOperator<T>(arms)
-    , context_size(c_size)
 {
     n_arms = arms.size();
 
@@ -15,55 +14,42 @@ LinearThompsonSamplingBandit<T>::LinearThompsonSamplingBandit(vector<T> arms, in
     B.resize(0);
     B_inv.resize(0);
     B_inv_sqrt.resize(0);
+
+    m2_r = MatrixXf::Zero(n_arms, 1);
+    mean = MatrixXf::Zero(n_arms, 1);
+
     for (int i = 0; i < n_arms; ++i) { // one for each arm
         arm_index_to_key[i] = arms[i];
-
-        B.push_back( MatrixXf::Identity(context_size, context_size) );
-        B_inv.push_back( MatrixXf::Identity(context_size, context_size) );
-        B_inv_sqrt.push_back( MatrixXf::Identity(context_size, context_size) );
     }
-
-    m2_r = MatrixXf::Zero(n_arms, context_size);
-    mean = MatrixXf::Zero(n_arms, context_size);
-    
-    last_context.resize(context_size);
-    last_context.setOnes();
 }
 
 template <typename T>
-LinearThompsonSamplingBandit<T>::LinearThompsonSamplingBandit(map<T, float> arms_probs, int c_size)
+LinearThompsonSamplingBandit<T>::LinearThompsonSamplingBandit(map<T, float> arms_probs)
     : BanditOperator<T>(arms_probs)
-    , context_size(c_size)
 {
     n_arms = arms_probs.size();
 
     B.resize(0);
     B_inv.resize(0);
     B_inv_sqrt.resize(0);
-    for (int i = 0; i < n_arms; ++i) { // one for each arm
-        B.push_back( MatrixXf::Identity(context_size, context_size) );
-        B_inv.push_back( MatrixXf::Identity(context_size, context_size) );
-        B_inv_sqrt.push_back( MatrixXf::Identity(context_size, context_size) );
-    }
 
-    m2_r = MatrixXf::Zero(n_arms, context_size);
-    mean = MatrixXf::Zero(n_arms, context_size);
+    m2_r = MatrixXf::Zero(n_arms, 1);
+    mean = MatrixXf::Zero(n_arms, 1);
 
     int index = 0;
     for (const auto& pair : arms_probs) { // making sure we have the same order
         arm_index_to_key[index++] = pair.first;
     }
-
-    last_context.resize(context_size);
-    last_context.setOnes();
 };
     
 
 template <typename T>
 std::map<T, float> LinearThompsonSamplingBandit<T>::sample_probs(bool update) {
     // cout << "sampling probs started" << endl;
-    if (update)
+    if (update && B.size()>0) // must be called after at least one choose
     {
+        int context_size = B.at(0).rows();
+
         MatrixXf w(n_arms, context_size);
         MatrixXf r = MatrixXf::Random(n_arms, context_size); // TODO: use random generator here
         for (int i = 0; i < n_arms; ++i) {
@@ -74,7 +60,7 @@ std::map<T, float> LinearThompsonSamplingBandit<T>::sample_probs(bool update) {
 
         VectorXf u(n_arms);
         
-        last_context.setOnes();
+        VectorXf last_context = ArrayXf::Random(context_size);
         
         u = w * last_context; // mat mul
 
@@ -99,12 +85,20 @@ std::map<T, float> LinearThompsonSamplingBandit<T>::sample_probs(bool update) {
 
 template <typename T>
 T LinearThompsonSamplingBandit<T>::choose(const VectorXf& context) {
-    // cout << "choose started" << endl;
-    assert(context.size() == context_size && "Context vector size mismatch in choose");
+    int context_size = context.size();
 
-    last_context = context;
+    if (B.size()==0){
+        // cout << "INITIALIZING BANDIT " << endl;
 
-    // cout << "Context: " << context.transpose() << endl;
+        for (int i = 0; i < n_arms; ++i) { // one for each arm
+            B.push_back( MatrixXf::Identity(context_size, context_size) );
+            B_inv.push_back( MatrixXf::Identity(context_size, context_size) );
+            B_inv_sqrt.push_back( MatrixXf::Identity(context_size, context_size) );
+        }
+
+        m2_r = MatrixXf::Zero(n_arms, context_size);
+        mean = MatrixXf::Zero(n_arms, context_size);
+    }
 
     MatrixXf w(n_arms, context_size);
     MatrixXf r = MatrixXf::Random(n_arms, context_size); // TODO: use random generator here
@@ -129,8 +123,19 @@ T LinearThompsonSamplingBandit<T>::choose(const VectorXf& context) {
 
 template <typename T>
 void LinearThompsonSamplingBandit<T>::update(T arm, float reward, VectorXf& context) {
-    // cout << "update started" << endl;
-    assert(context.size() == context_size && "Context vector size mismatch in update");
+    int context_size = context.size();
+
+    if (B.size()==0){
+        // cout << "INITIALIZING BANDIT " << endl;
+        for (int i = 0; i < n_arms; ++i) { // one for each arm
+            B.push_back( MatrixXf::Identity(context_size, context_size) );
+            B_inv.push_back( MatrixXf::Identity(context_size, context_size) );
+            B_inv_sqrt.push_back( MatrixXf::Identity(context_size, context_size) );
+        }
+
+        m2_r = MatrixXf::Zero(n_arms, context_size);
+        mean = MatrixXf::Zero(n_arms, context_size);
+    }
 
     // TODO: have a more efficient way of doing this
     // Find the arm index using our mapping
@@ -144,24 +149,24 @@ void LinearThompsonSamplingBandit<T>::update(T arm, float reward, VectorXf& cont
     int arm_index = it->first;
 
     // cout << "Arm index: " << arm_index << endl;
-    // cout << "Context: " << context.transpose() << endl;
-    // cout << "B[arm_index] before update: " << B[arm_index] << endl;
-    // cout << "m2_r.row(arm_index) before update: " << m2_r.row(arm_index) << endl;
+    // cout << "Context: " << context.size() << endl;
+    // cout << "B[arm_index] before update: " << B[arm_index].size() << endl;
+    // cout << "m2_r.row(arm_index) before update: " << m2_r.row(arm_index).size() << endl;
 
     B[arm_index] += context * context.transpose();
-    // cout << "B[arm_index] after update: " << B[arm_index] << endl;
+    // cout << "B[arm_index] after update: " << B[arm_index].size() << endl;
 
     m2_r.row(arm_index) += (context * reward).transpose();
-    // cout << "m2_r.row(arm_index) after update: " << m2_r.row(arm_index) << endl;
+    // cout << "m2_r.row(arm_index) after update: " << m2_r.row(arm_index).size() << endl;
 
     B_inv[arm_index] = B[arm_index].inverse();
-    // cout << "B_inv[arm_index]: " << B_inv[arm_index] << endl;
+    // cout << "B_inv[arm_index]: " << B_inv[arm_index].size() << endl;
 
     B_inv_sqrt[arm_index] = B_inv[arm_index].ldlt().matrixL();
-    // cout << "B_inv_sqrt[arm_index]: " << B_inv_sqrt[arm_index] << endl;
+    // cout << "B_inv_sqrt[arm_index]: " << B_inv_sqrt[arm_index].size() << endl;
 
     mean.row(arm_index) = B_inv[arm_index] * m2_r.row(arm_index).transpose(); // mat mul
-    // cout << "mean.row(arm_index): " << mean.row(arm_index) << endl;
+    // cout << "mean.row(arm_index): " << mean.row(arm_index).size() << endl;
 
     // cout << "update finished" << endl;
 }

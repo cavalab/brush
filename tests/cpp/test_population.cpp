@@ -46,7 +46,7 @@ TEST(Population, PopulationTests)
     Evaluation evaluator = Evaluation<ProgramType::Regressor>();
     Selection selector = Selection<ProgramType::Regressor>(params.sel, false);
     Selection survivor = Selection<ProgramType::Regressor>(params.surv, true);
-    Variation variator = Variation<ProgramType::Regressor>(params, SS);
+    Variation variator = Variation<ProgramType::Regressor>(params, SS, data);
             
     selector.set_operator();
     survivor.set_operator();
