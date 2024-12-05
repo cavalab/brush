@@ -157,9 +157,9 @@ class DeapEstimator(EstimatorInterface, BaseEstimator):
             self.variator_ = (ClassifierVariator
                               if self.parameters_.n_classes == 2 else
                               MultiClassifierVariator
-                              )(self.parameters_, self.search_space_)
+                              )(self.parameters_, self.search_space_, self.train_)
         elif self.mode == "regression":
-            self.variator_ = RegressorVariator(self.parameters_, self.search_space_)
+            self.variator_ = RegressorVariator(self.parameters_, self.search_space_, self.train_)
             
             # from pybrush import RegressorEngine
             # brush_estimator = RegressorEngine(self.parameters_)
