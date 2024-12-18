@@ -35,7 +35,7 @@ PYBIND11_MODULE(_brush, m) {
 #ifdef VERSION_INFO
      m.attr("__version__") = MACRO_STRINGIFY(VERSION_INFO);
 #else
-     m.attr("__version__") = "dev"; // TODO: uve version file
+     m.attr("__version__") = "dev"; // TODO: use version file
 #endif
      // data structures
      bind_params(m);
