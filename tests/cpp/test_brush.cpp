@@ -14,6 +14,7 @@
 #include "../../src/eval/evaluation.h"
 #include "../../src/pop/archive.h"
 #include "../../src/pop/population.h"
+#include "../../src/simplification/constants.h"
 
 // TODO: omg i need to figure out why my code only works if i import basically the whole stuff. It seems to be related to templating
 #include "../../src/selection/selection.cpp"
@@ -27,6 +28,7 @@
 #include "../../src/bandit/bandit_operator.cpp"
 #include "../../src/bandit/dummy.cpp"
 #include "../../src/bandit/thompson.cpp"
+#include "../../src/simplification/constants.cpp"
 
 // TODO: test predict from archive
 // TODO: rename it to test_engine 

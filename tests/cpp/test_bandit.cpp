@@ -1,5 +1,7 @@
 #include "testsHeader.h"
 
+#include "../../src/data/io.h"
+
 #include "../../src/bandit/bandit.h"
 #include "../../src/bandit/bandit_operator.h"
 #include "../../src/bandit/dummy.h"
@@ -93,32 +95,38 @@ INSTANTIATE_TEST_SUITE_P(BanditTypes, BanditTest, testing::Values(
 ));
 
 TEST(BanditTest, GetContext) {
-    // // Create a DummyBandit with two arms
-    // std::vector<std::string> arms = {"foo1", "foo2"};
-    // Bandit<string> bandit("linear_thompson", arms, 1);
+    
+    Dataset data = Data::read_csv("docs/examples/datasets/d_2x1_multiply_3x2.csv","target");
 
-    // // this is required in order for it to work
-    // bandit.set_bandit();
+    SearchSpace SS;
+    SS.init(data);
 
-    // // Create a dummy tree and search space
-    // tree<Node> dummyTree;
-    // auto root = dummyTree.insert(dummyTree.begin(), Node{"root", NodeType::Operator});
-    // auto child1 = dummyTree.append_child(root, Node{"child1", NodeType::Terminal});
-    // auto child2 = dummyTree.append_child(root, Node{"child2", NodeType::Terminal});
+    std::vector<std::string> arms = {"foo1", "foo2"};
+    Bandit<string> bandit("linear_thompson", arms);
+    bandit.set_bandit();
 
-    // SearchSpace ss;
-    // ss.terminal_map = {{"type1", {Node{"child1", NodeType::Terminal}, Node{"child2", NodeType::Terminal}}}};
-    // ss.terminal_types = {"type1"};
+    // Create a dummy tree and search space
+    json PRGjson = {{"Tree", {
+        { {"node_type","Sub"     },                   {"is_weighted", false} },
+        { {"node_type","Terminal"}, {"feature","x1"}, {"is_weighted", true } },
+        { {"node_type","Terminal"}, {"feature","x2"}, {"is_weighted", true } }
+    }}, {"is_fitted_",false}};
+    RegressorProgram PRG = PRGjson;
+    Iter spot = PRG.Tree.begin();
 
     // // Get context for a specific spot in the tree
-    // VectorXf context = bandit.get_context<T>(dummyTree, child1, ss);
+    VectorXf context = bandit.get_context(PRG, spot, SS, data);
 
+    std::cout << "First 5 elements of data y: ";
+    for (int i = 0; i < 5; ++i) {
+        std::cout << data.y[i] << " ";
+    }
+    std::cout << std::endl;
+
+    std::cout << "Tree:\n" << PRG.get_model("compact", true) << std::endl;
+
+    std::cout << "Spot name: " << (*spot).name << std::endl;
+    
     // std::cout << "Context: " << context.transpose() << std::endl;
-
-    // // Check if the context size is correct
-    // EXPECT_EQ(context.size(), 3 * (NodeTypes::Count + ss.terminal_map["type1"].size()));
-
-    // // Check if the context values are as expected
-    // // This is a simple check, you might need to adjust it based on your actual context calculation
-    // EXPECT_EQ(context.sum(), 1.0);
+    std::cout << "Context head: " << context.head(5).transpose() << std::endl;
 }

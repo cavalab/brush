@@ -14,6 +14,7 @@ license: GNU/GPL v3
 
 #include "../pop/population.h"
 #include "../eval/evaluation.h"
+#include "../simplification/constants.h"
 
 #include <map>
 #include <optional>
@@ -268,6 +269,10 @@ public:
             assert(ind.fitness.valid() == false);
 
             ind.program.fit(data.get_training_data());
+
+            // simplify before calculating fitness
+            Simpl::constants_simplifier.simplify_tree<T>(ind.program, search_space, data);
+            
             evaluator.assign_fit(ind, data, parameters, false);
 
             vector<float> deltas(ind.get_objectives().size(), 0.0f);
@@ -362,7 +367,7 @@ public:
                     }
                 }
             // }
-
+            
             pop.individuals.at(indices.at(i)) = std::make_shared<Individual<T>>(ind);
             // std::cout << "Individual at index " << indices.at(i) << " updated successfully" << std::endl;
         }

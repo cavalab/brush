@@ -255,7 +255,7 @@ struct SearchSpace
     /// @param R the return type of the node
     /// @param sig_hash the signature hash of the node
     /// @return the matching [Node](@ref Node)
-    Node get(NodeType type, DataType R, size_t sig_hash)
+    Node get(NodeType type, DataType R, size_t sig_hash) const 
     {
         check(R, sig_hash, type);
         return node_map.at(R).at(sig_hash).at(type);
@@ -268,7 +268,7 @@ struct SearchSpace
     /// @param sig the signature of the node 
     /// @return the matching Node 
     template<typename S>
-    Node get(NodeType type, DataType R, S sig){ return get(type, R, sig.hash()); };
+    Node get(NodeType type, DataType R, S sig) const { return get(type, R, sig.hash()); };
 
     /// @brief get weights of the return types 
     /// @return a weight vector, each element corresponding to a return type.

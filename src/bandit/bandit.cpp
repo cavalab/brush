@@ -113,21 +113,37 @@ VectorXf Bandit<T>::get_context(const Program<PT>& program, Iter spot,
     if constexpr (PT==ProgramType::Regressor)
     {
         // cout << "RegressorProgram detected\n" << endl;
+        
+        // use the code below to work with the whole tree prediction -----------
         ArrayXf out = (*program.Tree.begin().node).template predict<ArrayXf>(d);
         context = out;
+
+        // predicting the spot node --------------------------------------------
+        // context = (*spot.node).template predict<ArrayXf>(d);
     }
     else if constexpr (PT==ProgramType::BinaryClassifier)
     {
         // cout << "ClassifierProgram detected\n" << endl;
+
+        // use the code below to work with the whole tree prediction -----------
         ArrayXf out = (*program.Tree.begin().node).template predict<ArrayXf>(d);
         context = ArrayXf(out.template cast<float>());
+
+        // predicting the spot node --------------------------------------------
+        // ArrayXf logit = (*spot.node).template predict<ArrayXf>(d);
+        // ArrayXb pred  = (logit > 0.5);
+        // context = ArrayXf(pred.template cast<float>());
     }
     else if constexpr (PT==ProgramType::MulticlassClassifier)
     {
         // cout << "MulticlassClassifierProgram detected\n" << endl;
+
+        // use the code below to work with the whole tree prediction -----------
         ArrayXXf out = (*program.Tree.begin().node).template predict<ArrayXXf>(d);
         auto argmax = Function<NodeType::ArgMax>{};
         context = ArrayXf(argmax(out).template cast<float>());
+        
+        // predicting the spot node --------------------------------------------
     }
     else if constexpr (PT==ProgramType::Representer)
     {
