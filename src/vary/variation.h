@@ -15,7 +15,6 @@ license: GNU/GPL v3
 #include "../pop/population.h"
 #include "../eval/evaluation.h"
 #include "../simplification/constants.h"
-#include "../simplification/delete.h"
 
 #include <map>
 #include <optional>
@@ -272,8 +271,7 @@ public:
             ind.program.fit(data.get_training_data());
 
             // simplify before calculating fitness
-            Simpl::constants_simplifier.simplify_tree<T>(ind.program, search_space, data);
-            Simpl::delete_simplifier.simplify_tree<T>(ind.program, search_space, data);
+            Simpl::constants_simplifier.simplify_tree<T>(ind.program, search_space, data.get_training_data());
             
             evaluator.assign_fit(ind, data, parameters, false);
 

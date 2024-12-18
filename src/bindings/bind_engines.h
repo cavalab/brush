@@ -37,8 +37,6 @@
 
 #include "../simplification/constants.cpp"
 #include "../simplification/constants.h"
-#include "../simplification/delete.cpp"
-#include "../simplification/delete.h"
 
 using Reg = Brush::RegressorEngine;
 using Cls = Brush::ClassifierEngine;

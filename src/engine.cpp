@@ -350,8 +350,8 @@ void Engine<T>::run(Dataset &data)
     this->ss.init(data, params.functions, params.weights_init);    
     
     // TODO: make variator have a default constructor and make it part of engine
-    Dataset training_data = data.get_training_data();
-    Variation<T> variator = Variation<T>(this->params, this->ss, training_data);
+    Dataset training_data = data.get_training_data(); // TODO: I think I should not pass training_data here, because vary_and_update needs the test partition. 
+    Variation<T> variator = Variation<T>(this->params, this->ss, data);
 
     this->init();
 
@@ -474,6 +474,8 @@ void Engine<T>::run(Dataset &data)
                 // Variation is not thread safe.
                 // TODO: optimize this and make it work with multiple islands in parallel.
                 for (int island = 0; island < this->params.num_islands; ++island) {
+                    
+                    // TODO: do I have to pass data as an argument here? or can I use the instance reference
                     variator.vary_and_update(this->pop, island, island_parents.at(island),
                                              data, evaluator);
                     if (data.use_batch) // assign the batch error as fitness (but fit was done with training data)

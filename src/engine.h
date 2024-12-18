@@ -15,7 +15,6 @@ license: GNU/GPL v3
 #include "pop/archive.h"
 #include "selection/selection.h"
 #include "simplification/constants.h"
-#include "simplification/delete.h"
 
 #include "taskflow/taskflow.hpp"
 #include <taskflow/algorithm/for_each.hpp>
