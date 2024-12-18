@@ -1,28 +1,28 @@
 
-#include "constants.h"
+#include "delete.h"
 
 namespace Brush { namespace Simpl{
     
-    Constants_simplifier* Constants_simplifier::instance = NULL;
+    Delete_simplifier* Delete_simplifier::instance = NULL;
     
-    Constants_simplifier::Constants_simplifier()
+    Delete_simplifier::Delete_simplifier()
     {                   
     
     }
 
-    Constants_simplifier* Constants_simplifier::initSimplifier()
+    Delete_simplifier* Delete_simplifier::initSimplifier()
     {
         // creates the static random generator by calling the constructor
         if (!instance)
         {
-            instance = new Constants_simplifier();
+            instance = new Delete_simplifier();
         }
 
         return instance;
     }
 
     template <ProgramType PT>
-    Program<PT> Constants_simplifier::simplify_tree(
+    Program<PT> Delete_simplifier::simplify_tree(
         Program<PT>& program, const SearchSpace &ss, const Dataset &d)
     {
         VectorXf original_pred;
@@ -46,47 +46,28 @@ namespace Brush { namespace Simpl{
         // create a copy of the tree
         Program<PT> simplified_program(program);
         
-        // iterate over the tree, trying to replace each node with a constant, and keeping the change if the pred does not change.
-        vector<TreeIter> queue; 
-        queue.push_back(simplified_program.Tree.begin());
-        
-        while(queue.size()>0)
+        // iterate over the tree, trying to simulate a delete mutation, and keeping the change if the pred does not change.
+
+        int iter = 0;
+        while(++iter < 100)
         {
             // cout << "starting another interaction" << endl;
+            TreeIter spot = r.select_randomly(
+                    simplified_program.Tree.begin(), simplified_program.Tree.end() );
 
-            TreeIter spot = queue.back();
-            queue.pop_back();
-        
             Node n = spot.node->data;
-            // cout << spot.number_of_children() << endl;
-
-            // for (size_t i=0; i<spot.number_of_children(); ++i)
-            //     cout << i;
-            // cout << endl;
-
-            if (n.name == "Constant")
-                continue;
-
+            
             // skip it if fixed, and add its children to the queue
             if (n.get_prob_change()<=0)
-            {        
-                // cout << "fixed. skipping" << endl;
-                for (size_t i=0; i<spot.number_of_children(); ++i)
-                    queue.push_back(simplified_program.Tree.child(spot, i));
-                    
                 continue;
-            }
 
-            // get constant equivalent to its argtype (all data types should have
-            // a constant defined in the search space for its given type). It will be
-            // the last node of the terminal map for the given type
-            Node cte = ss.terminal_map.at(n.ret_type).at(
-                ss.terminal_map.at(n.ret_type).size()-1);
-
-            // TODO: figure out a better way of swaping these nodes and subtrees
-            // replace program tree with a terminal and store a backup
             tree<Node> backup(spot);
-            simplified_program.Tree.replace(spot, cte);
+
+            auto opt = ss.sample_terminal(n.ret_type, true);
+            if (!opt) // there is no terminal with compatible arguments
+                continue;
+
+            simplified_program.Tree.replace(spot, opt.value());
 
             // get new_pred with predictions after simplification
             VectorXf new_pred;
@@ -102,40 +83,20 @@ namespace Brush { namespace Simpl{
             // check for significant changes in predictions
             if (!original_pred.isApprox(new_pred, 1e-8))
             {
-                // for (size_t i=0; i<spot.number_of_children(); ++i)
-                //     cout << i;
-                // cout << endl;
-
                 // rollback and add its children to the queue
                 simplified_program.Tree.move_ontop(spot, backup.begin());
-
-                // cout << "Moved. checking" << endl;
-                    
-                // for (size_t i=0; i<backup.begin().number_of_children(); ++i)
-                //     cout << i;
-                // cout << endl;
-
-                for (size_t i=0; i<backup.begin().number_of_children(); ++i)
-                    queue.push_back(backup.child(backup.begin(), i));
-
             }   
-            else{            
+            else{ // clean up the children
                 simplified_program.Tree.erase_children(spot); 
             }
-            // else keep changes and do not append its children (since it does
-            //not have them anymore)  
         }
 
-        // cout << "finished. modifing reference" << endl;
-        // replace program's tree
         program.Tree = simplified_program.Tree;
-        
-        // cout << "exiting..." << endl;
-
+    
         return simplified_program;
     }
 
-    void Constants_simplifier::destroy()
+    void Delete_simplifier::destroy()
     {
         if (instance)
             delete instance;
@@ -143,5 +104,5 @@ namespace Brush { namespace Simpl{
         instance = NULL;
     }
     
-    Constants_simplifier::~Constants_simplifier() {}
+    Delete_simplifier::~Delete_simplifier() {}
 } }
