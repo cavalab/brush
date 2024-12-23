@@ -120,7 +120,20 @@ public:
                 VectorXf& loss, const Parameters& params)
     {
         RetType y_pred = ind.predict_proba(data); // .template cast<float>();
-        return score(data.y, y_pred, loss, params.class_weights);
+        
+        auto class_weights = params.class_weights;
+
+        // calculate class weights based on data instead of using a predetermined value
+        if (!class_weights.empty())
+        {            
+            class_weights.resize(params.n_classes);
+            for (unsigned i = 0; i < params.n_classes; ++i){
+                class_weights.at(i) = float((data.y.cast<int>().array() == i).count())/data.y.size(); 
+                class_weights.at(i) = (1.0 - class_weights.at(i));
+            }
+        }
+
+        return score(data.y, y_pred, loss, class_weights);
     }
 };
 
@@ -177,7 +190,20 @@ public:
                 VectorXf& loss, const Parameters& params)
     {
         RetType y_pred = ind.predict_proba(data); // .template cast<float>();
-        return score(data.y, y_pred, loss, params.class_weights);
+        
+        auto class_weights = params.class_weights;
+
+        // calculate class weights based on data instead of using a predetermined value
+        if (!class_weights.empty())
+        {            
+            class_weights.resize(params.n_classes);
+            for (unsigned i = 0; i < params.n_classes; ++i){
+                class_weights.at(i) = float((data.y.cast<int>().array() == i).count())/data.y.size(); 
+                class_weights.at(i) = (1.0 - class_weights.at(i));
+            }
+        }
+
+        return score(data.y, y_pred, loss, class_weights);
     }
 };
 

@@ -100,7 +100,7 @@ namespace Brush { namespace Simpl{
             }
 
             // check for significant changes in predictions
-            if (!original_pred.isApprox(new_pred, 1e-8))
+            if (!original_pred.isApprox(new_pred, 1e-2))
             {
                 // for (size_t i=0; i<spot.number_of_children(); ++i)
                 //     cout << i;
