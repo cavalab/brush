@@ -213,7 +213,7 @@ void init_node_with_default_signature(Node& node)
         NT::SplitOn
         >(n))
     {
-        node.set_signature<Signature<ArrayXf(ArrayXf,ArrayXf,ArrayXf)>>();
+        node.set_signature<Signature<ArrayXf(ArrayXb,ArrayXf,ArrayXf)>>();
     }
     else{
         node.set_signature<Signature<ArrayXf()>>();

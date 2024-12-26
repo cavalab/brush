@@ -360,19 +360,22 @@ struct Signatures<N, enable_if_t<is_in_v<N, NodeType::SplitBest, NodeType::Custo
             /* Signature<ArrayXXf,ArrayXXf,,ArrayXXf, */
         >; 
     }; 
+
 template<>
 struct Signatures<NodeType::SplitOn>{ 
+    // TODO: idea: if we have the LEQ or GEQ, we can have splitOn with all different data types without
+    // having to make it explicit in the signature. I think there is too many types of splitOn that makes it hard to actually be used
         using type = std::tuple< 
-            Signature<ArrayXf(ArrayXf,ArrayXf,ArrayXf)>,
-            Signature<ArrayXf(ArrayXi,ArrayXf,ArrayXf)>,
+            // Signature<ArrayXf(ArrayXf,ArrayXf,ArrayXf)>,
+            // Signature<ArrayXf(ArrayXi,ArrayXf,ArrayXf)>,
             Signature<ArrayXf(ArrayXb,ArrayXf,ArrayXf)>,
 
-            Signature<ArrayXi(ArrayXf,ArrayXi,ArrayXi)>,
-            Signature<ArrayXi(ArrayXi,ArrayXi,ArrayXi)>,
+            // Signature<ArrayXi(ArrayXf,ArrayXi,ArrayXi)>,
+            // Signature<ArrayXi(ArrayXi,ArrayXi,ArrayXi)>,
             Signature<ArrayXi(ArrayXb,ArrayXi,ArrayXi)>,
 
-            Signature<ArrayXb(ArrayXf,ArrayXb,ArrayXb)>,
-            Signature<ArrayXb(ArrayXi,ArrayXb,ArrayXb)>,
+            // Signature<ArrayXb(ArrayXf,ArrayXb,ArrayXb)>,
+            // Signature<ArrayXb(ArrayXi,ArrayXb,ArrayXb)>,
             Signature<ArrayXb(ArrayXb,ArrayXb,ArrayXb)>
         >;
     }; 

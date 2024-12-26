@@ -319,9 +319,11 @@ tree<Node>& SearchSpace::PTC2(tree<Node>& Tree,
     // updating size accordingly to root node
     if (Is<NodeType::SplitBest>(root.node_type))
         s += 3;
-    else if (Is<NodeType::SplitOn>(root.node_type))
+    else if (Is<NodeType::SplitOn>(root.node_type)){
         s += 2;
-    
+        // cout << "sampled split on node\n";
+    }
+        
     if ( root.get_is_weighted()==true
     &&   Isnt<NodeType::Constant, NodeType::MeanLabel>(root.node_type) )
         s += 2;
@@ -386,6 +388,9 @@ tree<Node>& SearchSpace::PTC2(tree<Node>& Tree,
             }
 
             n = opt.value();
+            // if (Is<NodeType::And>(n.node_type)){
+            //     cout << "AND\n";
+            // }
             
             auto newspot = Tree.replace(qspot, n);
 
@@ -403,8 +408,10 @@ tree<Node>& SearchSpace::PTC2(tree<Node>& Tree,
         
         if (Is<NodeType::SplitBest>(n.node_type))
             s += 3;
-        else if (Is<NodeType::SplitOn>(n.node_type))
+        else if (Is<NodeType::SplitOn>(n.node_type)){
+            // cout << "sampled split on node/n";
             s += 2;
+        }
 
         if ( n.get_is_weighted()==true
         &&   Isnt<NodeType::Constant, NodeType::MeanLabel>(n.node_type) )
