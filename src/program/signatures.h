@@ -203,6 +203,7 @@ struct Signatures<N, enable_if_t<is_in_v<N, NodeType::Constant, NodeType::Termin
 
 template<>
 struct Signatures<NodeType::MeanLabel>{ 
+    // meanlabel is based on y, so it is always a float ret_type
     using type = std::tuple<
           Signature<ArrayXf()>
           >;
@@ -218,7 +219,10 @@ struct Signatures<N, enable_if_t<is_in_v<N,
     >>>{
         using type = std::tuple< 
             Signature<ArrayXf(ArrayXf,ArrayXf)>,
-            Signature<ArrayXXf(ArrayXXf,ArrayXXf)>
+            Signature<ArrayXi(ArrayXi,ArrayXi)>,
+            // Signature<ArrayXf(ArrayXi,ArrayXf)>, // this will cast the integer to float. TODO: make this work (or figure out a better way of casting)
+            Signature<ArrayXXf(ArrayXXf,ArrayXXf)>,
+            Signature<ArrayXXi(ArrayXXi,ArrayXXi)>
         >; 
     }; 
 
@@ -363,6 +367,7 @@ struct Signatures<N, enable_if_t<is_in_v<N, NodeType::SplitBest, NodeType::Custo
 
 template<>
 struct Signatures<NodeType::SplitOn>{ 
+    // spliton and splitbest will always compare to the weight if is a number, otherwise will use the boolean value
     // TODO: idea: if we have the LEQ or GEQ, we can have splitOn with all different data types without
     // having to make it explicit in the signature. I think there is too many types of splitOn that makes it hard to actually be used
         using type = std::tuple< 
