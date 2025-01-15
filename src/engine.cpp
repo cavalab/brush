@@ -169,6 +169,7 @@ void Engine<T>::print_stats(std::ofstream& log, float fraction)
             << ") [" + bar + space + "]\n";
         
     std::cout << std::fixed
+              << "Best model on Val:" << best_ind.program.get_model() << "\n" 
               << "Train Loss (Med): " << stats.best_score.back() << " (" << stats.med_score.back() << ")\n"
               << "Val Loss (Med): " << stats.best_score_v.back() << " (" << stats.med_score_v.back() << ")\n"
               << "Median Size (Max): " << stats.med_size.back() << " (" << stats.max_size.back() << ")\n"
