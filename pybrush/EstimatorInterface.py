@@ -224,8 +224,11 @@ class EstimatorInterface():
         if self.mode == "classification":
             params.classification = True
             params.set_n_classes(y)
-            params.set_class_weights(y)
-            params.set_sample_weights(y)
+
+            # TODO: make a parameter to control whether to use class weights or calculate them on the fly
+            # this will use fixed values. disable to calculate class weights based on the data
+            # params.set_class_weights(y)
+            # params.set_sample_weights(y)
 
         params.objectives = self.objectives
         params.n_jobs = self.n_jobs
