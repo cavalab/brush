@@ -16,7 +16,7 @@
 namespace Brush {
 namespace MAB {
 
-template <typename T>
+template <typename T> // TODO: make templates to have a requirement on T (so compilation is faster)
 class ThompsonSamplingBandit : public BanditOperator<T>
 {
 public:

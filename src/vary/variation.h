@@ -15,6 +15,7 @@ license: GNU/GPL v3
 #include "../pop/population.h"
 #include "../eval/evaluation.h"
 #include "../simplification/constants.h"
+#include "../simplification/inexact.h"
 
 #include <map>
 #include <optional>
@@ -270,8 +271,15 @@ public:
 
             ind.program.fit(data.get_training_data());
 
-            // simplify before calculating fitness
+            // simplify before calculating fitness (order matters, as they are not refitted and constants simplifier does not replace with the right value.)
+            // TODO: constants_simplifier should set the correct value for the constant (so we dont have to refit).
+            // simplify constants first to avoid letting the lsh simplifier to visit redundant branches
+            // cout << "------" << endl;
+            // cout << "orig:  " << ind.program.get_model() << endl;
             Simpl::constants_simplifier.simplify_tree<T>(ind.program, search_space, data.get_training_data());
+            // cout << "const: " << ind.program.get_model() << endl;
+            // Simpl::inexact_simplifier.simplify_tree<T>(ind.program, search_space, data.get_training_data());
+            // cout << "inext: " << ind.program.get_model() << endl;
             
             evaluator.assign_fit(ind, data, parameters, false);
 

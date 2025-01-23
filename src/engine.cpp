@@ -353,8 +353,13 @@ void Engine<T>::run(Dataset &data)
     // TODO: make variator have a default constructor and make it part of engine
     Dataset training_data = data.get_training_data(); // TODO: I think I should not pass training_data here, because vary_and_update needs the test partition. 
     Variation<T> variator = Variation<T>(this->params, this->ss, data);
-
+    
+    // TODO: make init to take necessary arguments and perform all initializations inside that function
     this->init();
+
+    Simpl::constants_simplifier.initSimplifier();
+    Simpl::inexact_simplifier.initSimplifier();
+    Simpl::inexact_simplifier.initUniformPlanes(256, data.get_training_data().get_n_samples(), 5);
 
     if (params.load_population != "") {
         // std::cout << "Loading population from: " << params.load_population << std::endl;
