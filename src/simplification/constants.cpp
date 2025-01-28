@@ -68,7 +68,6 @@ namespace Brush { namespace Simpl{
             }
             ++spot;
         }
-
         program.Tree = simplified_program.Tree;
 
         return simplified_program;

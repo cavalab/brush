@@ -152,8 +152,6 @@ class EngineTest : public ::testing::TestWithParam<std::string> {};
 TEST_P(EngineTest, ClassificationEngineWorks)
 {
     std::string bandit_type = GetParam();
-    std::cout << "Bandit type: " << bandit_type << std::endl;
-
     Dataset data = Data::read_csv("docs/examples/datasets/d_analcatdata_aids.csv", "target");
     
     SearchSpace ss(data);
@@ -162,22 +160,46 @@ TEST_P(EngineTest, ClassificationEngineWorks)
 
     Parameters params;
     params.set_pop_size(10);
-    params.set_max_gens(10);
+
+    // We MUST set these three parameters to run a classification problem
+    params.set_n_classes(data.y);
+    params.set_class_weights(data.y);
+    params.set_sample_weights(data.y);
+
+    params.set_max_gens(1000);
     params.set_bandit(bandit_type);
     params.set_num_islands(1);
     params.set_mig_prob(0.0);
-    params.set_scorer("log");
 
     params.set_verbosity(2);
 
+    // Test with log loss score
+    params.set_scorer("log");
+    std::cout << "Bandit type: " << bandit_type << std::endl;
+    std::cout << "Metric: log" << std::endl;
     Brush::ClassifierEngine est(params, ss);
     est.run(data);
 
-    // TODO: tests with all possible metrics
-
+    // Test with average precision score
     params.set_scorer("average_precision_score");
+    std::cout << "Bandit type: " << bandit_type << std::endl;
+    std::cout << "Metric: average_precision_score" << std::endl;
     Brush::ClassifierEngine est2(params, ss);
     est2.run(data);
+
+    // Test with accuracy score
+    params.set_scorer("accuracy");
+    std::cout << "Bandit type: " << bandit_type << std::endl;
+    std::cout << "Metric: accuracy" << std::endl;
+    Brush::ClassifierEngine est3(params, ss);
+    est3.run(data);
+
+    // Test with f1 score
+    params.set_scorer("balanced_accuracy");
+    std::cout << "Bandit type: " << bandit_type << std::endl;
+    std::cout << "Metric: balanced_accuracy" << std::endl;
+    Brush::ClassifierEngine est4(params, ss);
+    est4.run(data);
 
     std::cout << "Parameters probs:" << std::endl;
     std::cout << "cx: " << est.params.get_cx_prob() << std::endl;
