@@ -37,6 +37,8 @@
 
 #include "../simplification/constants.cpp"
 #include "../simplification/constants.h"
+#include "../simplification/inexact.cpp"
+#include "../simplification/inexact.h"
 
 using Reg = Brush::RegressorEngine;
 using Cls = Brush::ClassifierEngine;
