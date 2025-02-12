@@ -359,7 +359,7 @@ void Engine<T>::run(Dataset &data)
 
     Simpl::constants_simplifier.initSimplifier();
     Simpl::inexact_simplifier.initSimplifier();
-    Simpl::inexact_simplifier.initUniformPlanes(256, data.get_training_data().get_n_samples(), 5);
+    Simpl::inexact_simplifier.initUniformPlanes(128, data.get_training_data().get_n_samples(), 1);
 
     if (params.load_population != "") {
         // std::cout << "Loading population from: " << params.load_population << std::endl;

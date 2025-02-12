@@ -60,9 +60,6 @@ private:
 class Inexact_simplifier
 {
     public:
-        //we'll have one storage instance for each datatype, and one list for each datatype as well.
-        // the storage will be used to calculate the hash and query the collection of hashes, returning the closest ones,
-        // and the list will contain equivalent expressions, ordered by size (or linear complexity). So we dont store pairs in the storage
         static Inexact_simplifier* initSimplifier();
         void initUniformPlanes(int hashSize, int inputDim, int numPlanes);
         
@@ -83,7 +80,12 @@ class Inexact_simplifier
         // will return the hash and the distance to the queryPoint
         optional<pair<size_t, string>> query(TreeIter& spot, const Dataset &d);
 
-        // one storage instance for each datatype. TODO: improve how I handle different return types
+        // one storage instance for each datatype/rettype.
+        // the storage will be used to calculate the hash and query the
+        // collection of hashes, returning the closest ones,
+        // and the list will contain equivalent expressions, ordered by size
+        // (or linear complexity). So we dont store pairs in the storage
+        // TODO: improve how I handle different return types (should I use a map?)
         HashStorage storageBool;
         HashStorage storageInt;
         HashStorage storageFloat;

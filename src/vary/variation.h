@@ -278,11 +278,12 @@ public:
             // cout << "orig:  " << ind.program.get_model() << endl;
             Simpl::constants_simplifier.simplify_tree<T>(ind.program, search_space, data.get_training_data());
             // cout << "const: " << ind.program.get_model() << endl;
-            // Simpl::inexact_simplifier.simplify_tree<T>(ind.program, search_space, data.get_training_data());
+            Simpl::inexact_simplifier.simplify_tree<T>(ind.program, search_space, data.get_training_data());
             // cout << "inext: " << ind.program.get_model() << endl;
             
             evaluator.assign_fit(ind, data, parameters, false);
-
+            // cout << "a fit: " << ind.program.get_model() << endl;
+            
             vector<float> deltas(ind.get_objectives().size(), 0.0f);
             
             float delta  = 0.0f;

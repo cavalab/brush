@@ -36,27 +36,29 @@ Program<PT> Inexact_simplifier::simplify_tree(Program<PT>& program,
     {
         // we dont index or simplify fixed stuff
         if (spot.node->data.get_prob_change() > 0) {
-            // indexing only small subtrees or non-constants
-            if (simplified_program.size_at(spot) <= 10
+            // indexing only small subtrees or non-constant-terminal nodes
+            if (simplified_program.size_at(spot) < 10
             ||  Isnt<NodeType::Constant, NodeType::MeanLabel>(spot.node->data.node_type)) {
                 inexact_simplifier.index(spot, d);
             }
 
-            // res will return the closest within the threshold, so we dont have to check distance here
-            auto res = inexact_simplifier.query(spot, d); // optional<pair<size_t, string>>
+            if (Isnt<NodeType::Constant, NodeType::MeanLabel, NodeType::Terminal>(spot.node->data.node_type)){
+                // res will return the closest within the threshold, so we dont have to check distance here
+                auto res = inexact_simplifier.query(spot, d); // optional<pair<size_t, string>>
 
-            if (res){
-                auto key = res.value(); // table index and hash
-                const tree<Node> branch(spot);
-                    
-                if (inexact_simplifier.equivalentExpression.find(key) == inexact_simplifier.equivalentExpression.end()) {
-                    inexact_simplifier.equivalentExpression[key] = branch;
-                } else if (spot.node->get_size(false) < inexact_simplifier.equivalentExpression[key].begin().node->get_size(false)){                
+                if (res){
+                    auto key = res.value(); // table index and hash
+                    const tree<Node> branch(spot);
+                        
+                    if (inexact_simplifier.equivalentExpression.find(key) == inexact_simplifier.equivalentExpression.end()) {
                         inexact_simplifier.equivalentExpression[key] = branch;
-                } else if (spot.node->get_size(false) > inexact_simplifier.equivalentExpression[key].begin().node->get_size(false)){                         
-                    const tree<Node> simplified_branch(inexact_simplifier.equivalentExpression[key]);
-                    simplified_program.Tree.erase_children(spot); 
-                    spot = simplified_program.Tree.move_ontop(spot, simplified_branch.begin());
+                    } else if (spot.node->get_size(false) < inexact_simplifier.equivalentExpression[key].begin().node->get_size(false)){                
+                            inexact_simplifier.equivalentExpression[key] = branch;
+                    } else if (spot.node->get_size(false) > inexact_simplifier.equivalentExpression[key].begin().node->get_size(false)){                         
+                        const tree<Node> simplified_branch(inexact_simplifier.equivalentExpression[key]);
+                        simplified_program.Tree.erase_children(spot); 
+                        spot = simplified_program.Tree.move_ontop(spot, simplified_branch.begin());
+                    }
                 }
             }
         }
@@ -91,15 +93,21 @@ vector<string> Inexact_simplifier::hash(const ArrayXf& inputPoint)
         // TODO: handle nan predictions here and on the index functions
         // std::cout << "Processing plane " << planeIdx << std::endl;
         const auto& plane = uniformPlanes[planeIdx];
-        ArrayXf projections = plane * inputPoint.transpose().matrix();
-        // // std::cout << "Projections: " << projections.transpose() << std::endl;
-        string hashString; // TODO: size_t instead of string
-        for (int i = 0; i < projections.cols(); ++i) // cols == hashSize
-        {
-            // TODO: i think this is not working
-            hashString += (projections(i) > 0) ? '1' : '0';
+        ArrayXf projections = (plane * inputPoint.matrix());
+        // std::cout << "Projections: " << projections.transpose() << std::endl;
+
+        ArrayXb comparison = (projections.array() > 0);
+        // std::cout << "Comparisons: " << comparison.transpose() << std::endl;
+
+        string hashString = ""; // TODO: size_t instead of string
+        // hashString.reserve(hashSize);
+        
+        for (bool v : comparison){
+            // std::cout << v << ", ";
+            hashString += v ? "1" : "0";
         }
-        // std::cout << "Generated hash string: " << hashString << std::endl;
+
+        // std::cout << std::endl << "Generated hash string: " << hashString << std::endl;
         hashes.push_back(hashString);
     }
     // std::cout << "Returning hashes" << std::endl;
@@ -144,37 +152,37 @@ optional<pair<size_t, string>> Inexact_simplifier::query(TreeIter& spot, const D
     HashStorage *storage;
     if (spot.node->data.ret_type==DataType::ArrayB) {
         storage = (&storageBool);
-        // // std::cout << "Using storageBool" << std::endl;
+        // std::cout << "Using storageBool" << std::endl;
     } else if (spot.node->data.ret_type==DataType::ArrayI) {
         storage = (&storageInt);
-        // // std::cout << "Using storageInt" << std::endl;
+        // std::cout << "Using storageInt" << std::endl;
     } else { // otherwise we store it as floats
         storage = (&storageFloat); // TODO: should throw an error
-        // // std::cout << "Using storageFloat" << std::endl;
+        // std::cout << "Using storageFloat" << std::endl;
     }
 
     vector<string> hashes = hash(v_float);
-    // // std::cout << "Hashes: ";
+    // std::cout << "Hashes: ";
     for (const auto& h : hashes) {
-        // // std::cout << h << " ";
+        // std::cout << h << " ";
     }
-    // // std::cout << std::endl;
+    // std::cout << std::endl;
 
     for (size_t i = 0; i < hashes.size(); ++i){
         auto newCandidates = storage->getList(hashes[i]);
-        // // std::cout << "Candidates for hash " << hashes[i] << ": " << newCandidates.size() << std::endl;
+        // std::cout << "Candidates for hash " << hashes[i] << ": " << newCandidates.size() << std::endl;
         
         for (const auto& cand : newCandidates) {
             float d = (v_float - cand).array().pow(2).mean();
             if (std::isnan(d) || std::isinf(d))
                 d = MAX_FLT;
 
-            // // std::cout << "Distance: " << d << std::endl;
+            // std::cout << "Distance: " << d << std::endl;
 
             if (d<threshold){
                 candidates.push_back(make_pair(i, hashes[i]));
                 distances.push_back(d);
-                // // std::cout << "Candidate added with distance: " << d << std::endl;
+                // std::cout << "Candidate added with distance: " << d << std::endl;
             }
         }
     }
@@ -182,10 +190,10 @@ optional<pair<size_t, string>> Inexact_simplifier::query(TreeIter& spot, const D
     if (distances.size() > 0){
         auto min_idx = std::distance(std::begin(distances),
             std::min_element(std::begin(distances), std::end(distances)));
-        // // std::cout << "Minimum distance index: " << min_idx << std::endl;
+        // std::cout << "Minimum distance index: " << min_idx << std::endl;
         return candidates[min_idx];
     } else {
-        // // std::cout << "No candidates found within threshold" << std::endl;
+        // std::cout << "No candidates found within threshold" << std::endl;
     }
 
     return std::nullopt;
