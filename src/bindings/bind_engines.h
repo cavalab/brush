@@ -35,11 +35,6 @@
 #include "../pop/archive.cpp"
 #include "../pop/archive.h"
 
-#include "../simplification/constants.cpp"
-#include "../simplification/constants.h"
-#include "../simplification/inexact.cpp"
-#include "../simplification/inexact.h"
-
 using Reg = Brush::RegressorEngine;
 using Cls = Brush::ClassifierEngine;
 using Rep = Brush::RepresenterEngine;

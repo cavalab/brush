@@ -47,6 +47,8 @@ using std::stof;
 #include "../../src/bandit/bandit_operator.h"
 #include "../../src/bandit/dummy.h"
 #include "../../src/bandit/thompson.h"
+#include "../../src/simplification/constants.h"
+#include "../../src/simplification/inexact.h"
 
 // TODO: is this ok? (otherwise I would have to create a test separated file, or move the implementation to the header)
 #include "../../src/vary/variation.cpp"

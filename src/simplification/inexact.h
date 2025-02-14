@@ -60,18 +60,61 @@ private:
 class Inexact_simplifier
 {
     public:
-        static Inexact_simplifier* initSimplifier();
+        // static Inexact_simplifier* initSimplifier();
         void initUniformPlanes(int hashSize, int inputDim, int numPlanes);
         
-        static void destroy();
+        // static void destroy();
 
+        // TODO: mode templated stuff to cpp. right now they are in the header
+        // because of the templating, that does not work with testing. 
+        // This is happening in inexact, constants, variation.
         template<Brush::ProgramType PT>
-        static Program<PT> simplify_tree(Program<PT>& program,
-                                    const SearchSpace &ss, const Dataset &d);
+        Program<PT> simplify_tree(Program<PT>& program,
+                                    const SearchSpace &ss, const Dataset &d)
+        {
+            Program<PT> simplified_program(program);
 
-    private:
+            // iterate over the tree, trying to replace each node with a constant, and keeping the change if the pred does not change.
+            TreeIter spot = simplified_program.Tree.begin();
+            while(spot != simplified_program.Tree.end())
+            {
+                // we dont index or simplify fixed stuff
+                if (spot.node->data.get_prob_change() > 0) {
+                    // indexing only small subtrees or non-constant-terminal nodes
+                    if (simplified_program.size_at(spot) < 10
+                    ||  Isnt<NodeType::Constant, NodeType::MeanLabel>(spot.node->data.node_type)) {
+                        index(spot, d);
+                    }
+
+                    if (Isnt<NodeType::Constant, NodeType::MeanLabel, NodeType::Terminal>(spot.node->data.node_type)){
+                        // res will return the closest within the threshold, so we dont have to check distance here
+                        auto res = query(spot, d); // optional<pair<size_t, string>>
+
+                        if (res){
+                            auto key = res.value(); // table index and hash
+                            const tree<Node> branch(spot);
+                                
+                            if (equivalentExpression.find(key) == equivalentExpression.end()) {
+                                equivalentExpression[key] = branch;
+                            } else if (spot.node->get_size(false) < equivalentExpression[key].begin().node->get_size(false)){                
+                                    equivalentExpression[key] = branch;
+                            } else if (spot.node->get_size(false) > equivalentExpression[key].begin().node->get_size(false)){                         
+                                const tree<Node> simplified_branch(equivalentExpression[key]);
+                                simplified_program.Tree.erase_children(spot); 
+                                spot = simplified_program.Tree.move_ontop(spot, simplified_branch.begin());
+                            }
+                        }
+                    }
+                }
+                ++spot;
+            }    
+            program.Tree = simplified_program.Tree;
+
+            return simplified_program;
+        }
         Inexact_simplifier();
         ~Inexact_simplifier();
+    private:
 
         vector<string> hash(const ArrayXf& inputPoint); // one string for each plane
 
@@ -95,10 +138,10 @@ class Inexact_simplifier
         vector<MatrixXf> uniformPlanes;
 
         // private static attribute used by every instance of the class
-        static Inexact_simplifier* instance;
+        // static Inexact_simplifier* instance;
 };
 
-static Inexact_simplifier &inexact_simplifier = *Inexact_simplifier::initSimplifier();
+// static Inexact_simplifier &inexact_simplifier = *Inexact_simplifier::initSimplifier();
 
 } // Simply
 } // Brush

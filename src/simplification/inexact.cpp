@@ -7,67 +7,23 @@
         
 namespace Brush { namespace Simpl{
     
-Inexact_simplifier* Inexact_simplifier::instance = NULL;
+// Inexact_simplifier* Inexact_simplifier::instance = NULL;
     
 Inexact_simplifier::Inexact_simplifier()
 {                   
 }
 
-Inexact_simplifier* Inexact_simplifier::initSimplifier()
-{
-    // creates the static random generator by calling the constructor
-    if (!instance)
-    {
-        instance = new Inexact_simplifier();
-    }
+// Inexact_simplifier* Inexact_simplifier::initSimplifier()
+// {
+//     // creates the static random generator by calling the constructor
+//     if (!instance)
+//     {
+//         instance = new Inexact_simplifier();
+//     }
 
-    return instance;
-}
+//     return instance;
+// }
 
-template<Brush::ProgramType PT>
-Program<PT> Inexact_simplifier::simplify_tree(Program<PT>& program,
-                            const SearchSpace &ss, const Dataset &d)
-{
-    Program<PT> simplified_program(program);
-
-    // iterate over the tree, trying to replace each node with a constant, and keeping the change if the pred does not change.
-    TreeIter spot = simplified_program.Tree.begin();
-    while(spot != simplified_program.Tree.end())
-    {
-        // we dont index or simplify fixed stuff
-        if (spot.node->data.get_prob_change() > 0) {
-            // indexing only small subtrees or non-constant-terminal nodes
-            if (simplified_program.size_at(spot) < 10
-            ||  Isnt<NodeType::Constant, NodeType::MeanLabel>(spot.node->data.node_type)) {
-                inexact_simplifier.index(spot, d);
-            }
-
-            if (Isnt<NodeType::Constant, NodeType::MeanLabel, NodeType::Terminal>(spot.node->data.node_type)){
-                // res will return the closest within the threshold, so we dont have to check distance here
-                auto res = inexact_simplifier.query(spot, d); // optional<pair<size_t, string>>
-
-                if (res){
-                    auto key = res.value(); // table index and hash
-                    const tree<Node> branch(spot);
-                        
-                    if (inexact_simplifier.equivalentExpression.find(key) == inexact_simplifier.equivalentExpression.end()) {
-                        inexact_simplifier.equivalentExpression[key] = branch;
-                    } else if (spot.node->get_size(false) < inexact_simplifier.equivalentExpression[key].begin().node->get_size(false)){                
-                            inexact_simplifier.equivalentExpression[key] = branch;
-                    } else if (spot.node->get_size(false) > inexact_simplifier.equivalentExpression[key].begin().node->get_size(false)){                         
-                        const tree<Node> simplified_branch(inexact_simplifier.equivalentExpression[key]);
-                        simplified_program.Tree.erase_children(spot); 
-                        spot = simplified_program.Tree.move_ontop(spot, simplified_branch.begin());
-                    }
-                }
-            }
-        }
-        ++spot;
-    }    
-    program.Tree = simplified_program.Tree;
-
-    return simplified_program;
-}
 
 void Inexact_simplifier::initUniformPlanes(int hashSize, int inputDim, int numPlanes)
 {
@@ -199,13 +155,13 @@ optional<pair<size_t, string>> Inexact_simplifier::query(TreeIter& spot, const D
     return std::nullopt;
 }
 
-void Inexact_simplifier::destroy()
-{
-    if (instance)
-        delete instance;
+// void Inexact_simplifier::destroy()
+// {
+//     if (instance)
+//         delete instance;
         
-    instance = NULL;
-}
+//     instance = NULL;
+// }
 
 Inexact_simplifier::~Inexact_simplifier() {}
 

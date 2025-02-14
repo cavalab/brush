@@ -49,6 +49,10 @@ public:
     bool use_arch=false;
     bool val_from_arch=true;
 
+    // Different simplification strategies
+    bool constants_simplification=true;
+    bool inexact_simplification=true;
+
     // variation
     std::map<std::string, float> mutation_probs = {
         {"point", 0.167},
@@ -183,6 +187,12 @@ public:
 
     void set_shuffle_split(bool shuff){ shuffle_split = shuff; };
     bool get_shuffle_split(){ return shuffle_split; };
+
+    void set_constants_simplification(bool cs){ constants_simplification = cs; };
+    bool get_constants_simplification(){ return constants_simplification; };
+    
+    void set_inexact_simplification(bool is){ inexact_simplification = is; };
+    bool get_inexact_simplification(){ return inexact_simplification; };
 
     void set_weights_init(bool init){ weights_init = init; };
     bool get_weights_init(){ return weights_init; };

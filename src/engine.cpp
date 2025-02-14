@@ -357,10 +357,6 @@ void Engine<T>::run(Dataset &data)
     // TODO: make init to take necessary arguments and perform all initializations inside that function
     this->init();
 
-    Simpl::constants_simplifier.initSimplifier();
-    Simpl::inexact_simplifier.initSimplifier();
-    Simpl::inexact_simplifier.initUniformPlanes(128, data.get_training_data().get_n_samples(), 1);
-
     if (params.load_population != "") {
         // std::cout << "Loading population from: " << params.load_population << std::endl;
         this->pop.load(params.load_population);

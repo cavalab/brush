@@ -16,6 +16,10 @@
 #include "../ind/individual.h"
 #include "../ind/individual.cpp"
 
+#include "../simplification/constants.cpp"
+#include "../simplification/constants.h"
+#include "../simplification/inexact.cpp"
+#include "../simplification/inexact.h"
 
 #include "../vary/variation.h"
 #include "../vary/variation.cpp"

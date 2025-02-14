@@ -23,6 +23,7 @@ license: GNU/GPL v3
 using namespace Brush::Pop;
 using namespace Brush::MAB;
 using namespace Brush::Eval;
+using namespace Brush::Simpl;
 
 /**
  * @brief Namespace for variation functions like crossover and mutation. 
@@ -141,6 +142,8 @@ public:
                                                                  node_probs);
             }
         }
+
+        inexact_simplifier.initUniformPlanes(128, data.get_training_data().get_n_samples(), 1);
     };
 
     /**
@@ -276,11 +279,17 @@ public:
             // simplify constants first to avoid letting the lsh simplifier to visit redundant branches
             // cout << "------" << endl;
             // cout << "orig:  " << ind.program.get_model() << endl;
-            Simpl::constants_simplifier.simplify_tree<T>(ind.program, search_space, data.get_training_data());
-            // cout << "const: " << ind.program.get_model() << endl;
-            Simpl::inexact_simplifier.simplify_tree<T>(ind.program, search_space, data.get_training_data());
-            // cout << "inext: " << ind.program.get_model() << endl;
-            
+            if (parameters.constants_simplification)
+            {
+                constants_simplifier.simplify_tree<T>(ind.program, search_space, data.get_training_data());            
+                // cout << "const: " << ind.program.get_model() << endl;
+            }
+            if (parameters.inexact_simplification)
+            {
+                // cout << "inext: " << ind.program.get_model() << endl;
+                inexact_simplifier.simplify_tree<T>(ind.program, search_space, data.get_training_data());
+            }
+        
             evaluator.assign_fit(ind, data, parameters, false);
             // cout << "a fit: " << ind.program.get_model() << endl;
             
@@ -545,6 +554,10 @@ private:
     Bandit<string> variation_bandit;
     map<DataType, Bandit<string>> terminal_bandits; 
     map<DataType, map<size_t, Bandit<string>>> op_bandits;  
+    
+    // simplification methods
+    Constants_simplifier constants_simplifier; 
+    Inexact_simplifier inexact_simplifier;
 };
 
 // // Explicitly instantiate the template for brush program types

@@ -92,6 +92,21 @@ class EstimatorInterface():
     val_from_arch: boolean, optional (default: True)
         Validates the final model using the archive rather than the whole 
         population.
+    constants_simplification: boolean, optional (default: True)
+        Whether if the program should check for constant sub-trees and replace
+        them with a single terminal with constant value or not.
+    inexact_simplification: boolean, optional (default: True)
+        Whether if the program should use the inexact simplification proposed in:
+
+        Guilherme Seidyo Imai Aldeia, Fabrício Olivetti de França, and William
+        G. La Cava. 2024. Inexact Simplification of Symbolic Regression Expressions
+        with Locality-sensitive Hashing. In Genetic and Evolutionary Computation
+        Conference (GECCO '24), July 14-18, 2024, Melbourne, VIC, Australia. ACM,
+        New York, NY, USA, 9 pages. https://doi.org/10.1145/3638529.3654147
+
+        The inexact simplification algorithm works by mapping similar expressions
+        to the same hash, and retrieving the simplest one when doing the
+        simplification of an expression.
     use_arch: boolean, optional (default: False)
         Determines if we should save pareto front of the entire evolution
         (when set to  True) or just the final population (False).
@@ -163,6 +178,8 @@ class EstimatorInterface():
         validation_size: float = 0.0,
         use_arch: bool = False,
         val_from_arch: bool = True,
+        constants_simplification=True,
+        inexact_simplification=True,
         batch_size: float = 1.0,
         sel: str = "lexicase",
         surv: str = "nsga2",
@@ -172,7 +189,7 @@ class EstimatorInterface():
         shuffle_split: bool = False,
         logfile: str = "",
         random_state: int = None,
-        class_weights: List[float] = []
+        # class_weights: List[float] = [] # TODO: should we allow the user to set it?
     ) -> None:
         self.pop_size = pop_size
         self.max_gens = max_gens
@@ -196,6 +213,8 @@ class EstimatorInterface():
         self.use_arch = use_arch
         self.functions = functions
         self.objectives = objectives
+        self.constants_simplification=constants_simplification
+        self.inexact_simplification=inexact_simplification
         self.scorer = scorer
         self.shuffle_split = shuffle_split
         self.initialization = initialization
@@ -205,7 +224,7 @@ class EstimatorInterface():
         self.surv = surv
         self.weights_init = weights_init
         self.validation_size = validation_size
-        self.class_weights = class_weights
+        # self.class_weights = class_weights
 
     def _wrap_parameters(self, y, **extra_kwargs):
         """
@@ -239,6 +258,10 @@ class EstimatorInterface():
         # Pop and archive
         params.use_arch = self.use_arch
         params.val_from_arch = self.val_from_arch
+
+        # Simplification
+        params.constants_simplification = self.constants_simplification
+        params.inexact_simplification = self.inexact_simplification
 
         # Evolutionary loop
         params.pop_size = self.pop_size
