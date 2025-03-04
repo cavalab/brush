@@ -216,6 +216,7 @@ class BrushClassifier(BrushEstimator, ClassifierMixin):
     >>> # print('score:', est.score(X,y))
     """
     def __init__( self, **kwargs):
+        kwargs.pop('mode', None)
         super().__init__(mode='classification',**kwargs)
 
     def predict_proba(self, X):
@@ -314,4 +315,5 @@ class BrushRegressor(BrushEstimator, RegressorMixin):
     """
     
     def __init__(self, **kwargs):
+        kwargs.pop('mode', None)
         super().__init__(mode='regression', **kwargs)
