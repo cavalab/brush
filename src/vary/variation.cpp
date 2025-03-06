@@ -426,6 +426,7 @@ std::tuple<std::optional<Individual<T>>, VectorXf> Variation<T>::cross(
 
     // pick a subtree to replace
     vector<float> child_weights(child.Tree.size());
+
     auto child_iter = child.Tree.begin();
     std::transform(child.Tree.begin(), child.Tree.end(), child_weights.begin(),
                 [&](const auto& n){ 

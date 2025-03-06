@@ -274,7 +274,7 @@ inline auto Is(NodeType nt) -> bool { return ((nt == T) || ...); }
 template <NodeType... T>
 inline auto Isnt(NodeType nt) -> bool { return !((nt == T) || ...); }
 
-// TODO: I think there are places where I can replace some logic with IsLeaf. Check that.
+// TODO: I think there are places where I can replace some logic with IsLeaf --> Check that.
 // TODO: create IsConstant, and add Constant and MeanLabel to it.
 inline auto IsLeaf(NodeType nt) noexcept -> bool { 
     return Is<NodeType::Constant, NodeType::Terminal, NodeType::MeanLabel>(nt); 

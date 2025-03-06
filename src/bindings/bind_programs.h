@@ -36,6 +36,17 @@ void bind_program(py::module& m, string name)
         .def("predict",
             static_cast<RetType (T::*)(const Ref<const ArrayXXf> &X)>(&T::predict),
             "predict from X data")
+        .def("lock_nodes",
+            &T::lock_nodes,
+            py::arg("end_depth") = 0,
+            py::arg("skip_leaves") = true,
+            stream_redirect()
+        )
+        .def("unlock_nodes",
+            &T::unlock_nodes,
+            py::arg("start_depth") = 0,
+            stream_redirect()
+        )
         .def("get_model",
             &T::get_model,
             py::arg("type") = "compact",

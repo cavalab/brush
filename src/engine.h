@@ -115,7 +115,11 @@ public:
     ///return archive/population as string
     vector<json> get_archive(bool front);
     vector<json> get_population();
-    
+
+    // locking and unlocking parts of the solutions
+    void lock_nodes(int end_depth=0, bool skip_leaves=true);
+    void unlock_nodes(int start_depth=0);
+
     /// predict on unseen data from the archive             
     auto predict_archive(int id, const Dataset& data);
     auto predict_archive(int id, const Ref<const ArrayXXf>& X);

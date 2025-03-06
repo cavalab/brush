@@ -213,6 +213,7 @@ vector<json> Engine<T>::get_population()
     return pop_vector;
 }
 
+
 // TODO: private function called find_individual that searches for it based on id. Then,
 // use this function in predict_archive and predict_proba_archive.
 template <ProgramType T>
@@ -296,6 +297,37 @@ auto Engine<T>::predict_proba_archive(int id, const Ref<const ArrayXXf>& X)
 }
 
 template <ProgramType T>
+void Engine<T>::lock_nodes(int end_depth, bool skip_leaves)
+{
+    // iterate over the population, locking the program's tree nodes
+    for (int island=0; island<pop.num_islands; ++island) {
+        auto indices = pop.get_island_indexes(island);
+
+        for (unsigned i = 0; i<indices.size(); ++i)
+        {
+            const auto& ind = pop.individuals.at(indices.at(i));
+            ind->program.lock_nodes(end_depth, skip_leaves);
+        }
+    }
+}
+
+template <ProgramType T>
+void Engine<T>::unlock_nodes(int start_depth)
+{
+    // iterate over the population, unlocking the program's tree nodes
+    for (int island=0; island<pop.num_islands; ++island) {
+        auto indices = pop.get_island_indexes(island);
+
+        for (unsigned i = 0; i<indices.size(); ++i)
+        {
+            const auto& ind = pop.individuals.at(indices.at(i));
+            ind->program.unlock_nodes(start_depth);
+        }
+    }
+
+}
+
+template <ProgramType T>
 bool Engine<T>::update_best()
 {
     bool updated = false;
@@ -370,9 +402,16 @@ void Engine<T>::run(Dataset &data)
         }
         // std::cout << "Population loaded and individuals invalidated." << std::endl;
     }
+    else if (this->pop.individuals.size() > 0) {
+        // std::cout << "Population was already initialized." << std::endl;
+        // This only works because the Population constructor resizes individuals to zero.
+    }
     else
+    {
+        // std::cout << "Initializing population." << std::endl;
         this->pop.init(this->ss, this->params);
-
+    }
+    
     // log file stream
     std::ofstream log;
     if (!params.logfile.empty())

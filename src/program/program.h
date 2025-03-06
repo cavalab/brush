@@ -327,6 +327,62 @@ template<PT PType> struct Program
             }
         }
     }
+
+    /**
+     * @brief Iterates over the program, locking the nodes until it reaches
+     * a certain depth.
+     * 
+     * @param end_depth the depth to stop locking nodes. Default 0.
+     * @param skip_leaves whether to skip leaves and leave them unlocked. 
+     * Default true.  
+     */
+    void lock_nodes(int end_depth=0, bool skip_leaves=true)
+    {
+        // iterate over the nodes, locking them if their depth does not exceed end_depth.
+        if (end_depth<=0)
+            return;
+
+        // we need the iterator to calculate the depth, but 
+        // the lambda below iterate using nodes. So we are creating an iterator
+        // and using it to access depth.
+        auto tree_iter = Tree.begin();
+
+        std::for_each(Tree.begin(), Tree.end(),
+            [&](auto& n){ 
+                auto d = Tree.depth(tree_iter);
+                std::advance(tree_iter, 1);
+
+                if (skip_leaves && IsLeaf(n.node_type))
+                    return;
+
+                if (d<=end_depth)
+                    n.set_prob_change(0.0f); 
+            }
+        );
+    }
+
+    /**
+     * @brief Iterates over the program, unlocking the nodes until it reaches
+     * a certain depth. It does not protect the root nodes of logistic regression
+     * models.
+     * 
+     * @param start_depth the depth to start unlocking nodes. Default 0.
+     */
+    void unlock_nodes(int start_depth=0)
+    {
+        auto tree_iter = Tree.begin();
+
+        std::for_each(Tree.begin(), Tree.end(),
+            [&](auto& n){ 
+                auto d = Tree.depth(tree_iter);
+                std::advance(tree_iter, 1);
+
+                if (d>=start_depth)
+                    n.set_prob_change(1.0f); 
+            }
+        );
+    }
+
     /**
      * @brief Get the model as a string
      * 
