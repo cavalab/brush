@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
-<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.10.0" xml:lang="en-US">
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.13.2" xml:lang="en-US">
   <compounddef id="d9/d26/bind__programs_8cpp" kind="file" language="C++">
     <compoundname>bind_programs.cpp</compoundname>
     <includes refid="d5/d16/module_8h" local="yes">module.h</includes>
@@ -483,12 +483,12 @@
     </incdepgraph>
     <sectiondef kind="func">
       <memberdef kind="function" id="d9/d26/bind__programs_8cpp_1a8435253e0dd2b6802297b820914051e5" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
-        <type><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">void</ref></type>
+        <type>void</type>
         <definition>void bind_programs</definition>
         <argsstring>(py::module &amp;m)</argsstring>
         <name>bind_programs</name>
         <param>
-          <type><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">py::module</ref> &amp;</type>
+          <type>py::module &amp;</type>
           <declname>m</declname>
         </param>
         <briefdescription>
@@ -498,7 +498,7 @@
         <inbodydescription>
         </inbodydescription>
         <location file="/home/runner/work/brush/brush/src/bindings/bind_programs.cpp" line="12" column="6" bodyfile="/home/runner/work/brush/brush/src/bindings/bind_programs.cpp" bodystart="12" bodyend="18"/>
-        <references refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" compoundref="d4/d93/bind__engines_8h" startline="35" endline="104">bind_engine</references>
+        <references refid="d6/d3f/bind__programs_8h_1a8284c80bb3c1dfb32250420f76a183fd" compoundref="d6/d3f/bind__programs_8h" startline="15" endline="83">bind_program</references>
         <referencedby refid="dd/d30/module_8cpp_1ab3432520f506686ba18c7ce7758a6c69" compoundref="dd/d30/module_8cpp" startline="33" endline="60">PYBIND11_MODULE</referencedby>
       </memberdef>
     </sectiondef>
@@ -509,7 +509,7 @@
     <programlisting>
 <codeline lineno="1"><highlight class="preprocessor">#include<sp/>&quot;<ref refid="d5/d16/module_8h" kindref="compound">module.h</ref>&quot;</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="2"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;<ref refid="d6/d3f/bind__programs_8h" kindref="compound">bind_programs.h</ref>&quot;</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="3"><highlight class="normal"></highlight><highlight class="keyword">namespace<sp/></highlight><highlight class="normal"><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">py</ref><sp/>=<sp/><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">pybind11</ref>;</highlight></codeline>
+<codeline lineno="3"><highlight class="normal"></highlight><highlight class="keyword">namespace<sp/></highlight><highlight class="normal">py<sp/>=<sp/>pybind11;</highlight></codeline>
 <codeline lineno="4"><highlight class="normal"></highlight><highlight class="keyword">namespace<sp/></highlight><highlight class="normal"><ref refid="dc/d5c/namespaceBrush" kindref="compound">br</ref><sp/>=<sp/><ref refid="dc/d5c/namespaceBrush" kindref="compound">Brush</ref>;</highlight></codeline>
 <codeline lineno="5"><highlight class="normal"></highlight><highlight class="keyword">namespace<sp/></highlight><highlight class="normal"><ref refid="d3/d9b/namespacenlohmann" kindref="compound">nl</ref><sp/>=<sp/><ref refid="d3/d9b/namespacenlohmann" kindref="compound">nlohmann</ref>;</highlight></codeline>
 <codeline lineno="6"><highlight class="normal"></highlight></codeline>
@@ -520,10 +520,10 @@
 <codeline lineno="11"><highlight class="normal"></highlight></codeline>
 <codeline lineno="12" refid="d9/d26/bind__programs_8cpp_1a8435253e0dd2b6802297b820914051e5" refkind="member"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="d9/d26/bind__programs_8cpp_1a8435253e0dd2b6802297b820914051e5" kindref="member">bind_programs</ref>(py::module&amp;<sp/>m)</highlight></codeline>
 <codeline lineno="13"><highlight class="normal">{</highlight></codeline>
-<codeline lineno="14"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">bind_program&lt;br::RegressorProgram&gt;</ref>(m,<sp/></highlight><highlight class="stringliteral">&quot;Regressor&quot;</highlight><highlight class="normal">);</highlight></codeline>
-<codeline lineno="15"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">bind_program&lt;br::ClassifierProgram&gt;</ref>(m,<sp/></highlight><highlight class="stringliteral">&quot;Classifier&quot;</highlight><highlight class="normal">);</highlight></codeline>
-<codeline lineno="16"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">bind_program&lt;br::MulticlassClassifierProgram&gt;</ref>(m,<sp/></highlight><highlight class="stringliteral">&quot;MultiClassifier&quot;</highlight><highlight class="normal">);</highlight></codeline>
-<codeline lineno="17"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">bind_program&lt;br::RepresenterProgram&gt;</ref>(m,<sp/></highlight><highlight class="stringliteral">&quot;Representer&quot;</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="14"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><ref refid="d6/d3f/bind__programs_8h_1a8284c80bb3c1dfb32250420f76a183fd" kindref="member">bind_program&lt;br::RegressorProgram&gt;</ref>(m,<sp/></highlight><highlight class="stringliteral">&quot;Regressor&quot;</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="15"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><ref refid="d6/d3f/bind__programs_8h_1a8284c80bb3c1dfb32250420f76a183fd" kindref="member">bind_program&lt;br::ClassifierProgram&gt;</ref>(m,<sp/></highlight><highlight class="stringliteral">&quot;Classifier&quot;</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="16"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><ref refid="d6/d3f/bind__programs_8h_1a8284c80bb3c1dfb32250420f76a183fd" kindref="member">bind_program&lt;br::MulticlassClassifierProgram&gt;</ref>(m,<sp/></highlight><highlight class="stringliteral">&quot;MultiClassifier&quot;</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="17"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><ref refid="d6/d3f/bind__programs_8h_1a8284c80bb3c1dfb32250420f76a183fd" kindref="member">bind_program&lt;br::RepresenterProgram&gt;</ref>(m,<sp/></highlight><highlight class="stringliteral">&quot;Representer&quot;</highlight><highlight class="normal">);</highlight></codeline>
 <codeline lineno="18"><highlight class="normal">}</highlight></codeline>
     </programlisting>
     <location file="/home/runner/work/brush/brush/src/bindings/bind_programs.cpp"/>

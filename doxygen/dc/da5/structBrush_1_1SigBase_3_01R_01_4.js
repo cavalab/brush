@@ -1,12 +1,26 @@
 var structBrush_1_1SigBase_3_01R_01_4 =
 [
+    [ "ArgTypes", "da/dd5/structBrush_1_1SigBase.html#a2401de48dbf92128bdb01ef0174cfa37", null ],
     [ "ArgTypes", "dc/da5/structBrush_1_1SigBase_3_01R_01_4.html#a02eb6b0aa88e280113c60b47fe566527", null ],
+    [ "FirstArg", "da/dd5/structBrush_1_1SigBase.html#a6edda5311818d26a34644c677ff71396", null ],
     [ "FirstArg", "dc/da5/structBrush_1_1SigBase_3_01R_01_4.html#a5656fb72f8510ff2b5b8b41d00a87a5f", null ],
+    [ "Function", "da/dd5/structBrush_1_1SigBase.html#a65aae1d226520ac153bb8d7ebc4c7a29", null ],
+    [ "NthType", "da/dd5/structBrush_1_1SigBase.html#aa946fff6ce82e839aa2315b03b5c61a1", null ],
+    [ "RetType", "da/dd5/structBrush_1_1SigBase.html#a648c74c8673cb0d89211dd3388d13274", null ],
     [ "RetType", "dc/da5/structBrush_1_1SigBase_3_01R_01_4.html#aa99ffdbe9f4242358c67e3ae3446762c", null ],
+    [ "WeightType", "da/dd5/structBrush_1_1SigBase.html#af330c93cdb4c2b8855a1224f65070f08", null ],
     [ "WeightType", "dc/da5/structBrush_1_1SigBase_3_01R_01_4.html#ad4623810d48636cef328a9cc02e385ab", null ],
+    [ "contains", "da/dd5/structBrush_1_1SigBase.html#afcea385152d72559a0544447c1467537", null ],
+    [ "get_arg_types", "da/dd5/structBrush_1_1SigBase.html#a08bcca0a17e3b39833be2c5a54fd7bcd", null ],
     [ "get_arg_types", "dc/da5/structBrush_1_1SigBase_3_01R_01_4.html#a13170e915899ecc960eca31cd5de9cf8", null ],
+    [ "get_arg_types", "da/dd5/structBrush_1_1SigBase.html#a88859bf40bef625cf9101dc9930f8440", null ],
+    [ "get_args_type", "da/dd5/structBrush_1_1SigBase.html#a8e6d6c978d88960b462d27a062778781", null ],
     [ "get_args_type", "dc/da5/structBrush_1_1SigBase_3_01R_01_4.html#ab50d4ebcba078dfe4b43f6fd3dbf5810", null ],
+    [ "get_ret_type", "da/dd5/structBrush_1_1SigBase.html#ad18cdd8caeb5828a9b55c6999b31d2f5", null ],
     [ "get_ret_type", "dc/da5/structBrush_1_1SigBase_3_01R_01_4.html#a063192a9d8744a15a4722d96332b5056", null ],
+    [ "hash", "da/dd5/structBrush_1_1SigBase.html#a5df3e3042b325ba5adcf5bd959760db0", null ],
     [ "hash", "dc/da5/structBrush_1_1SigBase_3_01R_01_4.html#abdabfd8248d206d0613d798922556d20", null ],
+    [ "hash_args", "da/dd5/structBrush_1_1SigBase.html#ad1fb7c49bbae03d555731a517a4329b7", null ],
+    [ "ArgCount", "da/dd5/structBrush_1_1SigBase.html#a42f0f8990030fdd8d7b3d5bb9af57464", null ],
     [ "ArgCount", "dc/da5/structBrush_1_1SigBase_3_01R_01_4.html#ae906d7b58748a0f3dc89117f0ce4a20b", null ]
 ];

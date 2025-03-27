@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
-<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.10.0" xml:lang="en-US">
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.13.2" xml:lang="en-US">
   <compounddef id="d3/d7d/classBrush_1_1Sel_1_1NSGA2" kind="class" language="C++" prot="public">
     <compoundname>Brush::Sel::NSGA2</compoundname>
     <basecompoundref refid="de/db9/classBrush_1_1Sel_1_1SelectionOperator" prot="public" virt="non-virtual">Brush::Sel::SelectionOperator&lt; T &gt;</basecompoundref>
@@ -21,9 +21,9 @@
         <name>NSGA2</name>
         <qualifiedname>Brush::Sel::NSGA2::NSGA2</qualifiedname>
         <param>
-          <type><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">bool</ref></type>
+          <type>bool</type>
           <declname>surv</declname>
-          <defval><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">false</ref></defval>
+          <defval>false</defval>
         </param>
         <briefdescription>
         </briefdescription>
@@ -33,6 +33,8 @@
         <inbodydescription>
         </inbodydescription>
         <location file="/home/runner/work/brush/brush/src/selection/nsga2.h" line="22" column="5" bodyfile="/home/runner/work/brush/brush/src/selection/nsga2.cpp" bodystart="11" bodyend="15"/>
+        <references refid="de/db9/classBrush_1_1Sel_1_1SelectionOperator_1a66068ecfa22feb22c5c135caa7c2eb8d" compoundref="dd/d5d/selection__operator_8h" startline="32">Brush::Sel::SelectionOperator&lt; T &gt;::name</references>
+        <references refid="de/db9/classBrush_1_1Sel_1_1SelectionOperator_1a612a07491346369b748198d11ae43675" compoundref="dd/d5d/selection__operator_8h" startline="31">Brush::Sel::SelectionOperator&lt; T &gt;::survival</references>
       </memberdef>
       <memberdef kind="function" id="d3/d7d/classBrush_1_1Sel_1_1NSGA2_1a0566b494d27cacc5bebc27c280a47600" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
         <type></type>
@@ -49,7 +51,7 @@
         <location file="/home/runner/work/brush/brush/src/selection/nsga2.h" line="23" column="5" bodyfile="/home/runner/work/brush/brush/src/selection/nsga2.h" bodystart="23" bodyend="23"/>
       </memberdef>
       <memberdef kind="function" id="d3/d7d/classBrush_1_1Sel_1_1NSGA2_1a53788b6bda8ce09f644e2cc44c9aa478" prot="public" static="no" const="no" explicit="no" inline="no" virt="virtual">
-        <type>vector&lt; <ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">size_t</ref> &gt;</type>
+        <type><ref refid="d7/dfc/classvector" kindref="compound">vector</ref>&lt; size_t &gt;</type>
         <definition>vector&lt; size_t &gt; Brush::Sel::NSGA2&lt; T &gt;::select</definition>
         <argsstring>(Population&lt; T &gt; &amp;pop, int island, const Parameters &amp;p)</argsstring>
         <name>select</name>
@@ -60,11 +62,11 @@
           <declname>pop</declname>
         </param>
         <param>
-          <type><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">int</ref></type>
+          <type>int</type>
           <declname>island</declname>
         </param>
         <param>
-          <type><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">const</ref> <ref refid="de/deb/structBrush_1_1Parameters" kindref="compound">Parameters</ref> &amp;</type>
+          <type>const <ref refid="de/deb/structBrush_1_1Parameters" kindref="compound">Parameters</ref> &amp;</type>
           <declname>p</declname>
         </param>
         <briefdescription>
@@ -75,14 +77,15 @@
         <inbodydescription>
         </inbodydescription>
         <location file="/home/runner/work/brush/brush/src/selection/nsga2.h" line="26" column="12" bodyfile="/home/runner/work/brush/brush/src/selection/nsga2.cpp" bodystart="39" bodyend="66"/>
-        <references refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" compoundref="d4/d93/bind__engines_8h" startline="35" endline="104">bind_engine</references>
+        <references refid="d3/d7d/classBrush_1_1Sel_1_1NSGA2_1a03190cdc845ff83c08c6d25681fc738c" compoundref="de/d0d/nsga2_8cpp" startline="201" endline="245">Brush::Sel::NSGA2&lt; T &gt;::crowding_distance</references>
         <references refid="de/deb/structBrush_1_1Parameters_1acd37c52e411d17126bff22dca19f0408" compoundref="da/d33/params_8h" startline="27">Brush::Parameters::current_gen</references>
+        <references refid="d3/d7d/classBrush_1_1Sel_1_1NSGA2_1a4196468152e50eed683b327b0b732f70" compoundref="de/d0d/nsga2_8cpp" startline="116" endline="198">Brush::Sel::NSGA2&lt; T &gt;::fast_nds</references>
         <references refid="da/da3/classBrush_1_1Pop_1_1Population_1a2bf4066c7a32ec3bd85c96bd80098de6" compoundref="d2/d76/population_8h" startline="38" endline="38">Brush::Pop::Population&lt; T &gt;::get_island_indexes</references>
         <references refid="d6/d2e/namespaceBrush_1_1Util_1af7dd70e54015821d96e3a1afed6344ca" compoundref="d2/da9/rnd_8h" startline="174">Brush::Util::r</references>
-        <references refid="d2/d2d/classBrush_1_1Util_1_1Rnd_1a9f0fe39c1fd498b378c8d4abe7b9d71b" compoundref="d2/da9/rnd_8h" startline="61" endline="66">Brush::Util::Rnd::select_randomly</references>
+        <references refid="d3/d7d/classBrush_1_1Sel_1_1NSGA2_1a263e5ab1678a79eb1cab18fce362b9f9" compoundref="de/d0d/nsga2_8cpp" startline="18" endline="36">Brush::Sel::NSGA2&lt; T &gt;::tournament</references>
       </memberdef>
       <memberdef kind="function" id="d3/d7d/classBrush_1_1Sel_1_1NSGA2_1a2faddb61c1d9ce38a1bc994e9a9b08eb" prot="public" static="no" const="no" explicit="no" inline="no" virt="virtual">
-        <type>vector&lt; <ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">size_t</ref> &gt;</type>
+        <type><ref refid="d7/dfc/classvector" kindref="compound">vector</ref>&lt; size_t &gt;</type>
         <definition>vector&lt; size_t &gt; Brush::Sel::NSGA2&lt; T &gt;::survive</definition>
         <argsstring>(Population&lt; T &gt; &amp;pop, int island, const Parameters &amp;p)</argsstring>
         <name>survive</name>
@@ -93,11 +96,11 @@
           <declname>pop</declname>
         </param>
         <param>
-          <type><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">int</ref></type>
+          <type>int</type>
           <declname>island</declname>
         </param>
         <param>
-          <type><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">const</ref> <ref refid="de/deb/structBrush_1_1Parameters" kindref="compound">Parameters</ref> &amp;</type>
+          <type>const <ref refid="de/deb/structBrush_1_1Parameters" kindref="compound">Parameters</ref> &amp;</type>
           <declname>p</declname>
         </param>
         <briefdescription>
@@ -108,13 +111,14 @@
         <inbodydescription>
         </inbodydescription>
         <location file="/home/runner/work/brush/brush/src/selection/nsga2.h" line="30" column="12" bodyfile="/home/runner/work/brush/brush/src/selection/nsga2.cpp" bodystart="69" bodyend="113"/>
-        <references refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" compoundref="d4/d93/bind__engines_8h" startline="35" endline="104">bind_engine</references>
+        <references refid="d3/d7d/classBrush_1_1Sel_1_1NSGA2_1a03190cdc845ff83c08c6d25681fc738c" compoundref="de/d0d/nsga2_8cpp" startline="201" endline="245">Brush::Sel::NSGA2&lt; T &gt;::crowding_distance</references>
+        <references refid="d3/d7d/classBrush_1_1Sel_1_1NSGA2_1a4196468152e50eed683b327b0b732f70" compoundref="de/d0d/nsga2_8cpp" startline="116" endline="198">Brush::Sel::NSGA2&lt; T &gt;::fast_nds</references>
         <references refid="da/da3/classBrush_1_1Pop_1_1Population_1a2bf4066c7a32ec3bd85c96bd80098de6" compoundref="d2/d76/population_8h" startline="38" endline="38">Brush::Pop::Population&lt; T &gt;::get_island_indexes</references>
         <references refid="de/deb/structBrush_1_1Parameters_1a93ed229becd162e94722e034f8e5bebc" compoundref="da/d33/params_8h" startline="43">Brush::Parameters::num_islands</references>
         <references refid="de/deb/structBrush_1_1Parameters_1a139004f9fa652376afabd690dac242e5" compoundref="da/d33/params_8h" startline="30">Brush::Parameters::pop_size</references>
       </memberdef>
       <memberdef kind="function" id="d3/d7d/classBrush_1_1Sel_1_1NSGA2_1a4196468152e50eed683b327b0b732f70" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
-        <type>vector&lt; vector&lt; <ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">int</ref> &gt; &gt;</type>
+        <type><ref refid="d7/dfc/classvector" kindref="compound">vector</ref>&lt; <ref refid="d7/dfc/classvector" kindref="compound">vector</ref>&lt; int &gt; &gt;</type>
         <definition>vector&lt; vector&lt; int &gt; &gt; Brush::Sel::NSGA2&lt; T &gt;::fast_nds</definition>
         <argsstring>(Population&lt; T &gt; &amp;, vector&lt; size_t &gt; &amp;)</argsstring>
         <name>fast_nds</name>
@@ -124,7 +128,7 @@
           <defname>pop</defname>
         </param>
         <param>
-          <type>vector&lt; <ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">size_t</ref> &gt; &amp;</type>
+          <type><ref refid="d7/dfc/classvector" kindref="compound">vector</ref>&lt; size_t &gt; &amp;</type>
           <defname>island_pool</defname>
         </param>
         <briefdescription>
@@ -134,11 +138,14 @@
         <inbodydescription>
         </inbodydescription>
         <location file="/home/runner/work/brush/brush/src/selection/nsga2.h" line="34" column="12" bodyfile="/home/runner/work/brush/brush/src/selection/nsga2.cpp" bodystart="116" bodyend="198"/>
-        <references refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" compoundref="d4/d93/bind__engines_8h" startline="35" endline="104">bind_engine</references>
+        <references refid="d6/dd0/structBrush_1_1Fitness_1ad66abe65f27bd44fc49975be3c2103cb" compoundref="dc/d7a/fitness_8h" startline="37">Brush::Fitness::dominated</references>
+        <references refid="de/d83/classBrush_1_1Pop_1_1Individual_1a96a4869472f1e11e19219c2d07fb6c53" compoundref="d5/d1f/individual_8h" startline="33">Brush::Pop::Individual&lt; T &gt;::fitness</references>
         <references refid="da/da3/classBrush_1_1Pop_1_1Population_1a7b529af66e90f378ca96a54ee5ce0c71" compoundref="d2/d76/population_8h" startline="18">Brush::Pop::Population&lt; T &gt;::individuals</references>
+        <referencedby refid="d3/d7d/classBrush_1_1Sel_1_1NSGA2_1a53788b6bda8ce09f644e2cc44c9aa478" compoundref="de/d0d/nsga2_8cpp" startline="39" endline="66">Brush::Sel::NSGA2&lt; T &gt;::select</referencedby>
+        <referencedby refid="d3/d7d/classBrush_1_1Sel_1_1NSGA2_1a2faddb61c1d9ce38a1bc994e9a9b08eb" compoundref="de/d0d/nsga2_8cpp" startline="69" endline="113">Brush::Sel::NSGA2&lt; T &gt;::survive</referencedby>
       </memberdef>
       <memberdef kind="function" id="d3/d7d/classBrush_1_1Sel_1_1NSGA2_1a03190cdc845ff83c08c6d25681fc738c" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
-        <type><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">void</ref></type>
+        <type>void</type>
         <definition>void Brush::Sel::NSGA2&lt; T &gt;::crowding_distance</definition>
         <argsstring>(Population&lt; T &gt; &amp;, vector&lt; vector&lt; int &gt; &gt; &amp;, int)</argsstring>
         <name>crowding_distance</name>
@@ -148,11 +155,11 @@
           <defname>pop</defname>
         </param>
         <param>
-          <type>vector&lt; vector&lt; <ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">int</ref> &gt; &gt; &amp;</type>
+          <type><ref refid="d7/dfc/classvector" kindref="compound">vector</ref>&lt; <ref refid="d7/dfc/classvector" kindref="compound">vector</ref>&lt; int &gt; &gt; &amp;</type>
           <defname>front</defname>
         </param>
         <param>
-          <type><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">int</ref></type>
+          <type>int</type>
           <defname>fronti</defname>
         </param>
         <briefdescription>
@@ -162,13 +169,14 @@
         <inbodydescription>
         </inbodydescription>
         <location file="/home/runner/work/brush/brush/src/selection/nsga2.h" line="39" column="10" bodyfile="/home/runner/work/brush/brush/src/selection/nsga2.cpp" bodystart="201" bodyend="245"/>
-        <references refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" compoundref="d4/d93/bind__engines_8h" startline="35" endline="104">bind_engine</references>
         <references refid="da/da3/classBrush_1_1Pop_1_1Population_1a7b529af66e90f378ca96a54ee5ce0c71" compoundref="d2/d76/population_8h" startline="18">Brush::Pop::Population&lt; T &gt;::individuals</references>
+        <referencedby refid="d3/d7d/classBrush_1_1Sel_1_1NSGA2_1a53788b6bda8ce09f644e2cc44c9aa478" compoundref="de/d0d/nsga2_8cpp" startline="39" endline="66">Brush::Sel::NSGA2&lt; T &gt;::select</referencedby>
+        <referencedby refid="d3/d7d/classBrush_1_1Sel_1_1NSGA2_1a2faddb61c1d9ce38a1bc994e9a9b08eb" compoundref="de/d0d/nsga2_8cpp" startline="69" endline="113">Brush::Sel::NSGA2&lt; T &gt;::survive</referencedby>
       </memberdef>
     </sectiondef>
     <sectiondef kind="private-func">
       <memberdef kind="function" id="d3/d7d/classBrush_1_1Sel_1_1NSGA2_1a263e5ab1678a79eb1cab18fce362b9f9" prot="private" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
-        <type><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">size_t</ref></type>
+        <type>size_t</type>
         <definition>size_t Brush::Sel::NSGA2&lt; T &gt;::tournament</definition>
         <argsstring>(Population&lt; T &gt; &amp;pop, size_t i, size_t j) const</argsstring>
         <name>tournament</name>
@@ -178,11 +186,11 @@
           <declname>pop</declname>
         </param>
         <param>
-          <type><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">size_t</ref></type>
+          <type>size_t</type>
           <declname>i</declname>
         </param>
         <param>
-          <type><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">size_t</ref></type>
+          <type>size_t</type>
           <declname>j</declname>
         </param>
         <briefdescription>
@@ -192,7 +200,10 @@
         <inbodydescription>
         </inbodydescription>
         <location file="/home/runner/work/brush/brush/src/selection/nsga2.h" line="77" column="16" bodyfile="/home/runner/work/brush/brush/src/selection/nsga2.cpp" bodystart="18" bodyend="36"/>
-        <references refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" compoundref="d4/d93/bind__engines_8h" startline="35" endline="104">bind_engine</references>
+        <references refid="d6/dd0/structBrush_1_1Fitness_1a0998d4960cae30c329ae6d2f05a27c84" compoundref="dc/d7a/fitness_8h" startline="39">Brush::Fitness::crowding_dist</references>
+        <references refid="d6/dd0/structBrush_1_1Fitness_1aeb7b43cd4977e3c1e9c7feb3084de17a" compoundref="dc/d5c/fitness_8cpp" startline="41" endline="71">Brush::Fitness::dominates</references>
+        <references refid="de/d83/classBrush_1_1Pop_1_1Individual_1a96a4869472f1e11e19219c2d07fb6c53" compoundref="d5/d1f/individual_8h" startline="33">Brush::Pop::Individual&lt; T &gt;::fitness</references>
+        <referencedby refid="d3/d7d/classBrush_1_1Sel_1_1NSGA2_1a53788b6bda8ce09f644e2cc44c9aa478" compoundref="de/d0d/nsga2_8cpp" startline="39" endline="66">Brush::Sel::NSGA2&lt; T &gt;::select</referencedby>
       </memberdef>
     </sectiondef>
     <briefdescription>

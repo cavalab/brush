@@ -1,0 +1,1028 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.13.2" xml:lang="en-US">
+  <compounddef id="d0/d8e/structTimeSeries" kind="struct" language="C++" prot="public">
+    <compoundname>TimeSeries</compoundname>
+    <includes refid="d9/df7/timeseries_8h" local="no">timeseries.h</includes>
+    <templateparamlist>
+      <param>
+        <type>class T</type>
+      </param>
+    </templateparamlist>
+    <sectiondef kind="public-type">
+      <memberdef kind="typedef" id="d0/d8e/structTimeSeries_1aa833203e5097827e5e395c9bd21d4be7" prot="public" static="no">
+        <type>T</type>
+        <definition>using Brush::Data::TimeSeries&lt; T &gt;::Scalar =  T</definition>
+        <argsstring></argsstring>
+        <name>Scalar</name>
+        <qualifiedname>TimeSeries::Scalar</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/runner/work/brush/brush/src/data/timeseries.h" line="27" column="5" bodyfile="/home/runner/work/brush/brush/src/data/timeseries.h" bodystart="27" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="typedef" id="d0/d8e/structTimeSeries_1a8b9d1462cec60687e36eb7d4f96c9051" prot="public" static="no">
+        <type>Eigen::Array&lt; T, Dynamic, 1 &gt;</type>
+        <definition>using Brush::Data::TimeSeries&lt; T &gt;::EntryType =  Eigen::Array&lt;T,Dynamic,1&gt;</definition>
+        <argsstring></argsstring>
+        <name>EntryType</name>
+        <qualifiedname>TimeSeries::EntryType</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/runner/work/brush/brush/src/data/timeseries.h" line="29" column="5" bodyfile="/home/runner/work/brush/brush/src/data/timeseries.h" bodystart="29" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="typedef" id="d0/d8e/structTimeSeries_1aef32cd8108ad378942c6c3af97902bd9" prot="public" static="no">
+        <type>std::vector&lt; <ref refid="d0/d8e/structTimeSeries_1a8b9d1462cec60687e36eb7d4f96c9051" kindref="member">EntryType</ref> &gt;</type>
+        <definition>using Brush::Data::TimeSeries&lt; T &gt;::ValType =  std::vector&lt;EntryType&gt;</definition>
+        <argsstring></argsstring>
+        <name>ValType</name>
+        <qualifiedname>TimeSeries::ValType</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/runner/work/brush/brush/src/data/timeseries.h" line="30" column="5" bodyfile="/home/runner/work/brush/brush/src/data/timeseries.h" bodystart="30" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="typedef" id="d0/d8e/structTimeSeries_1aa7a7bb5dcd813763c1cc2b52c77dc887" prot="public" static="no">
+        <type>std::vector&lt; Eigen::ArrayXi &gt;</type>
+        <definition>using Brush::Data::TimeSeries&lt; T &gt;::TimeType =  std::vector&lt;Eigen::ArrayXi&gt;</definition>
+        <argsstring></argsstring>
+        <name>TimeType</name>
+        <qualifiedname>TimeSeries::TimeType</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/runner/work/brush/brush/src/data/timeseries.h" line="31" column="5" bodyfile="/home/runner/work/brush/brush/src/data/timeseries.h" bodystart="31" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="public-static-attrib">
+      <memberdef kind="variable" id="d0/d8e/structTimeSeries_1a616d99c150250f53cd8c978b5002e2ba" prot="public" static="yes" mutable="no">
+        <type>const size_t</type>
+        <definition>const size_t Brush::Data::TimeSeries&lt; T &gt;::NumDimensions</definition>
+        <argsstring></argsstring>
+        <name>NumDimensions</name>
+        <qualifiedname>TimeSeries::NumDimensions</qualifiedname>
+        <initializer>=2</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/runner/work/brush/brush/src/data/timeseries.h" line="28" column="25" bodyfile="/home/runner/work/brush/brush/src/data/timeseries.h" bodystart="28" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="d0/d8e/structTimeSeries_1aa0654cb12a16531bdd8773699ea2e60e" prot="public" static="no" mutable="no">
+        <type><ref refid="d0/d8e/structTimeSeries_1aa7a7bb5dcd813763c1cc2b52c77dc887" kindref="member">TimeType</ref></type>
+        <definition>TimeType Brush::Data::TimeSeries&lt; T &gt;::time</definition>
+        <argsstring></argsstring>
+        <name>time</name>
+        <qualifiedname>TimeSeries::time</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/runner/work/brush/brush/src/data/timeseries.h" line="37" column="14" bodyfile="/home/runner/work/brush/brush/src/data/timeseries.h" bodystart="37" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="d0/d8e/structTimeSeries_1aec9be0a4a08b60d4d6121286de47e65f" prot="public" static="no" mutable="no">
+        <type><ref refid="d0/d8e/structTimeSeries_1aef32cd8108ad378942c6c3af97902bd9" kindref="member">ValType</ref></type>
+        <definition>ValType Brush::Data::TimeSeries&lt; T &gt;::value</definition>
+        <argsstring></argsstring>
+        <name>value</name>
+        <qualifiedname>TimeSeries::value</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/runner/work/brush/brush/src/data/timeseries.h" line="38" column="13" bodyfile="/home/runner/work/brush/brush/src/data/timeseries.h" bodystart="38" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="public-func">
+      <memberdef kind="function" id="d0/d8e/structTimeSeries_1a9df3733dc661535cfb6e22a9f34d0bb1" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>Brush::Data::TimeSeries&lt; T &gt;::TimeSeries</definition>
+        <argsstring>()=default</argsstring>
+        <name>TimeSeries</name>
+        <qualifiedname>TimeSeries::TimeSeries</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Wraps time and value slices to matrices TODO: define <ref refid="d0/d8e/structTimeSeries_1a4be907c10ce3806f68b946914d0b3aaf" kindref="member">begin()</ref> and <ref refid="d0/d8e/structTimeSeries_1a3f8e8843e94a653555c5fedf16155910" kindref="member">end()</ref> iterators? figure out how to handle operators that just use values versus time </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/runner/work/brush/brush/src/data/timeseries.h" line="35" column="5"/>
+      </memberdef>
+      <memberdef kind="function" id="d0/d8e/structTimeSeries_1a7def716cd7f6c5c071ac8eeb6f3a3dd3" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>Brush::Data::TimeSeries&lt; T &gt;::TimeSeries</definition>
+        <argsstring>(const TimeType &amp;t, const ValType &amp;v)</argsstring>
+        <name>TimeSeries</name>
+        <qualifiedname>TimeSeries::TimeSeries</qualifiedname>
+        <param>
+          <type>const <ref refid="d0/d8e/structTimeSeries_1aa7a7bb5dcd813763c1cc2b52c77dc887" kindref="member">TimeType</ref> &amp;</type>
+          <declname>t</declname>
+        </param>
+        <param>
+          <type>const <ref refid="d0/d8e/structTimeSeries_1aef32cd8108ad378942c6c3af97902bd9" kindref="member">ValType</ref> &amp;</type>
+          <declname>v</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/runner/work/brush/brush/src/data/timeseries.h" line="40" column="5" bodyfile="/home/runner/work/brush/brush/src/data/timeseries.h" bodystart="40" bodyend="41"/>
+      </memberdef>
+      <memberdef kind="function" id="d0/d8e/structTimeSeries_1af1ff3934c359ca5bd910a61fe083d5ce" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>typename U</type>
+          </param>
+          <param>
+            <type>typename V</type>
+          </param>
+        </templateparamlist>
+        <type><ref refid="d7/d56/structBrush_1_1Data_1_1TimeSeries" kindref="compound">TimeSeries</ref></type>
+        <definition>TimeSeries Brush::Data::TimeSeries&lt; T &gt;::operator()</definition>
+        <argsstring>(const U &amp;idx, const V &amp;idx2=Eigen::all) const</argsstring>
+        <name>operator()</name>
+        <qualifiedname>TimeSeries::operator()</qualifiedname>
+        <param>
+          <type>const U &amp;</type>
+          <declname>idx</declname>
+        </param>
+        <param>
+          <type>const V &amp;</type>
+          <declname>idx2</declname>
+          <defval>Eigen::all</defval>
+        </param>
+        <briefdescription>
+<para>return a slice of the data using indices idx </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/runner/work/brush/brush/src/data/timeseries.h" line="45" column="16" bodyfile="/home/runner/work/brush/brush/src/data/timeseries.h" bodystart="45" bodyend="50"/>
+      </memberdef>
+      <memberdef kind="function" id="d0/d8e/structTimeSeries_1ada37b34ebe2178b613d70fe8b0060346" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>size_t</type>
+        <definition>size_t Brush::Data::TimeSeries&lt; T &gt;::size</definition>
+        <argsstring>() const</argsstring>
+        <name>size</name>
+        <qualifiedname>TimeSeries::size</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/runner/work/brush/brush/src/data/timeseries.h" line="52" column="17" bodyfile="/home/runner/work/brush/brush/src/data/timeseries.h" bodystart="52" bodyend="52"/>
+      </memberdef>
+      <memberdef kind="function" id="d0/d8e/structTimeSeries_1a79babb7d5c6bf6a94601eea0d1d176b4" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>size_t</type>
+        <definition>size_t Brush::Data::TimeSeries&lt; T &gt;::rows</definition>
+        <argsstring>() const</argsstring>
+        <name>rows</name>
+        <qualifiedname>TimeSeries::rows</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/runner/work/brush/brush/src/data/timeseries.h" line="53" column="17" bodyfile="/home/runner/work/brush/brush/src/data/timeseries.h" bodystart="53" bodyend="53"/>
+      </memberdef>
+      <memberdef kind="function" id="d0/d8e/structTimeSeries_1a564eb61fe2e0a33b8ccafdf5635fd706" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>size_t</type>
+        <definition>size_t Brush::Data::TimeSeries&lt; T &gt;::cols</definition>
+        <argsstring>(int i=0) const</argsstring>
+        <name>cols</name>
+        <qualifiedname>TimeSeries::cols</qualifiedname>
+        <param>
+          <type>int</type>
+          <declname>i</declname>
+          <defval>0</defval>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/runner/work/brush/brush/src/data/timeseries.h" line="54" column="17" bodyfile="/home/runner/work/brush/brush/src/data/timeseries.h" bodystart="54" bodyend="54"/>
+      </memberdef>
+      <memberdef kind="function" id="d0/d8e/structTimeSeries_1a4be907c10ce3806f68b946914d0b3aaf" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>ValType::iterator</type>
+        <definition>ValType::iterator Brush::Data::TimeSeries&lt; T &gt;::begin</definition>
+        <argsstring>()</argsstring>
+        <name>begin</name>
+        <qualifiedname>TimeSeries::begin</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/runner/work/brush/brush/src/data/timeseries.h" line="60" column="32" bodyfile="/home/runner/work/brush/brush/src/data/timeseries.h" bodystart="60" bodyend="60"/>
+      </memberdef>
+      <memberdef kind="function" id="d0/d8e/structTimeSeries_1a3f8e8843e94a653555c5fedf16155910" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>ValType::iterator</type>
+        <definition>ValType::iterator Brush::Data::TimeSeries&lt; T &gt;::end</definition>
+        <argsstring>()</argsstring>
+        <name>end</name>
+        <qualifiedname>TimeSeries::end</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/runner/work/brush/brush/src/data/timeseries.h" line="61" column="32" bodyfile="/home/runner/work/brush/brush/src/data/timeseries.h" bodystart="61" bodyend="61"/>
+      </memberdef>
+      <memberdef kind="function" id="d0/d8e/structTimeSeries_1ac6f2b98f1f5f772302dc031e6255a357" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>auto</type>
+        <definition>auto Brush::Data::TimeSeries&lt; T &gt;::cbegin</definition>
+        <argsstring>() const</argsstring>
+        <name>cbegin</name>
+        <qualifiedname>TimeSeries::cbegin</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/runner/work/brush/brush/src/data/timeseries.h" line="62" column="10" bodyfile="/home/runner/work/brush/brush/src/data/timeseries.h" bodystart="62" bodyend="62"/>
+      </memberdef>
+      <memberdef kind="function" id="d0/d8e/structTimeSeries_1a9ad87fab8dcae913c54c73cf8663cca9" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>auto</type>
+        <definition>auto Brush::Data::TimeSeries&lt; T &gt;::cend</definition>
+        <argsstring>() const</argsstring>
+        <name>cend</name>
+        <qualifiedname>TimeSeries::cend</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/runner/work/brush/brush/src/data/timeseries.h" line="63" column="10" bodyfile="/home/runner/work/brush/brush/src/data/timeseries.h" bodystart="63" bodyend="63"/>
+      </memberdef>
+      <memberdef kind="function" id="d0/d8e/structTimeSeries_1a83e6a71bbf83792e8cbd64a1a3925de7" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>TimeType::iterator</type>
+        <definition>TimeType::iterator Brush::Data::TimeSeries&lt; T &gt;::tbegin</definition>
+        <argsstring>()</argsstring>
+        <name>tbegin</name>
+        <qualifiedname>TimeSeries::tbegin</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/runner/work/brush/brush/src/data/timeseries.h" line="64" column="33" bodyfile="/home/runner/work/brush/brush/src/data/timeseries.h" bodystart="64" bodyend="64"/>
+      </memberdef>
+      <memberdef kind="function" id="d0/d8e/structTimeSeries_1a68fa5ae9336ad4e58251695ee27634a9" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>TimeType::iterator</type>
+        <definition>TimeType::iterator Brush::Data::TimeSeries&lt; T &gt;::tend</definition>
+        <argsstring>()</argsstring>
+        <name>tend</name>
+        <qualifiedname>TimeSeries::tend</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/runner/work/brush/brush/src/data/timeseries.h" line="65" column="33" bodyfile="/home/runner/work/brush/brush/src/data/timeseries.h" bodystart="65" bodyend="65"/>
+      </memberdef>
+      <memberdef kind="function" id="d0/d8e/structTimeSeries_1a9617c8407eac0d7b260ff51a7a863635" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>auto</type>
+        <definition>auto Brush::Data::TimeSeries&lt; T &gt;::ctbegin</definition>
+        <argsstring>() const</argsstring>
+        <name>ctbegin</name>
+        <qualifiedname>TimeSeries::ctbegin</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/runner/work/brush/brush/src/data/timeseries.h" line="66" column="10" bodyfile="/home/runner/work/brush/brush/src/data/timeseries.h" bodystart="66" bodyend="66"/>
+      </memberdef>
+      <memberdef kind="function" id="d0/d8e/structTimeSeries_1a198011a9dfb8aeee496e073af6ea536c" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>auto</type>
+        <definition>auto Brush::Data::TimeSeries&lt; T &gt;::ctend</definition>
+        <argsstring>() const</argsstring>
+        <name>ctend</name>
+        <qualifiedname>TimeSeries::ctend</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/runner/work/brush/brush/src/data/timeseries.h" line="67" column="10" bodyfile="/home/runner/work/brush/brush/src/data/timeseries.h" bodystart="67" bodyend="67"/>
+      </memberdef>
+      <memberdef kind="function" id="d0/d8e/structTimeSeries_1a8fb9d6274f215e9bf1caa4317d3f70ad" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>typename ET</type>
+            <defval><ref refid="d0/d8e/structTimeSeries_1a8b9d1462cec60687e36eb7d4f96c9051" kindref="member">EntryType</ref></defval>
+          </param>
+        </templateparamlist>
+        <type>auto</type>
+        <definition>auto Brush::Data::TimeSeries&lt; T &gt;::transform</definition>
+        <argsstring>(std::function&lt; ET(EntryType)&gt; op) const</argsstring>
+        <name>transform</name>
+        <qualifiedname>TimeSeries::transform</qualifiedname>
+        <param>
+          <type>std::function&lt; ET(<ref refid="d0/d8e/structTimeSeries_1a8b9d1462cec60687e36eb7d4f96c9051" kindref="member">EntryType</ref>)&gt;</type>
+          <declname>op</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/runner/work/brush/brush/src/data/timeseries.h" line="78" column="10" bodyfile="/home/runner/work/brush/brush/src/data/timeseries.h" bodystart="78" bodyend="87"/>
+      </memberdef>
+      <memberdef kind="function" id="d0/d8e/structTimeSeries_1a7ca5032a5eed35d0a1c97dffddd11321" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>typename R</type>
+            <defval>T</defval>
+          </param>
+        </templateparamlist>
+        <type>auto</type>
+        <definition>auto Brush::Data::TimeSeries&lt; T &gt;::reduce</definition>
+        <argsstring>(const auto &amp;op) const</argsstring>
+        <name>reduce</name>
+        <qualifiedname>TimeSeries::reduce</qualifiedname>
+        <param>
+          <type>const auto &amp;</type>
+          <declname>op</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/runner/work/brush/brush/src/data/timeseries.h" line="90" column="10" bodyfile="/home/runner/work/brush/brush/src/data/timeseries.h" bodystart="90" bodyend="100"/>
+      </memberdef>
+      <memberdef kind="function" id="d0/d8e/structTimeSeries_1af4e6e61484151b99dc4a833f48fe73ac" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>typename C</type>
+          </param>
+        </templateparamlist>
+        <type>auto</type>
+        <definition>auto Brush::Data::TimeSeries&lt; T &gt;::cast</definition>
+        <argsstring>() const</argsstring>
+        <name>cast</name>
+        <qualifiedname>TimeSeries::cast</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/runner/work/brush/brush/src/data/timeseries.h" line="103" column="17" bodyfile="/home/runner/work/brush/brush/src/data/timeseries.h" bodystart="103" bodyend="107"/>
+      </memberdef>
+      <memberdef kind="function" id="d0/d8e/structTimeSeries_1a0713bbad886421937e47f11c79c1c03b" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>auto</type>
+        <definition>auto Brush::Data::TimeSeries&lt; T &gt;::abs</definition>
+        <argsstring>() const</argsstring>
+        <name>abs</name>
+        <qualifiedname>TimeSeries::abs</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/runner/work/brush/brush/src/data/timeseries.h" line="110" column="17" bodyfile="/home/runner/work/brush/brush/src/data/timeseries.h" bodystart="110" bodyend="110"/>
+      </memberdef>
+      <memberdef kind="function" id="d0/d8e/structTimeSeries_1af2794548897e6940a8c4636c41960393" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>auto</type>
+        <definition>auto Brush::Data::TimeSeries&lt; T &gt;::pow</definition>
+        <argsstring>() const</argsstring>
+        <name>pow</name>
+        <qualifiedname>TimeSeries::pow</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/runner/work/brush/brush/src/data/timeseries.h" line="111" column="17" bodyfile="/home/runner/work/brush/brush/src/data/timeseries.h" bodystart="111" bodyend="111"/>
+      </memberdef>
+      <memberdef kind="function" id="d0/d8e/structTimeSeries_1a89035e010d3469fc61ac8e4bdc855de2" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>auto</type>
+        <definition>auto Brush::Data::TimeSeries&lt; T &gt;::log</definition>
+        <argsstring>() const</argsstring>
+        <name>log</name>
+        <qualifiedname>TimeSeries::log</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/runner/work/brush/brush/src/data/timeseries.h" line="112" column="17" bodyfile="/home/runner/work/brush/brush/src/data/timeseries.h" bodystart="112" bodyend="112"/>
+      </memberdef>
+      <memberdef kind="function" id="d0/d8e/structTimeSeries_1aa298e6d97eb7bbc8a4eadcda159505ba" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>auto</type>
+        <definition>auto Brush::Data::TimeSeries&lt; T &gt;::logabs</definition>
+        <argsstring>() const</argsstring>
+        <name>logabs</name>
+        <qualifiedname>TimeSeries::logabs</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/runner/work/brush/brush/src/data/timeseries.h" line="113" column="17" bodyfile="/home/runner/work/brush/brush/src/data/timeseries.h" bodystart="113" bodyend="113"/>
+      </memberdef>
+      <memberdef kind="function" id="d0/d8e/structTimeSeries_1af8bb93e61e138809de23791eb0127673" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>auto</type>
+        <definition>auto Brush::Data::TimeSeries&lt; T &gt;::log1p</definition>
+        <argsstring>() const</argsstring>
+        <name>log1p</name>
+        <qualifiedname>TimeSeries::log1p</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/runner/work/brush/brush/src/data/timeseries.h" line="114" column="17" bodyfile="/home/runner/work/brush/brush/src/data/timeseries.h" bodystart="114" bodyend="114"/>
+      </memberdef>
+      <memberdef kind="function" id="d0/d8e/structTimeSeries_1a73824921377877bd26996a4e273dd5f0" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>auto</type>
+        <definition>auto Brush::Data::TimeSeries&lt; T &gt;::ceil</definition>
+        <argsstring>() const</argsstring>
+        <name>ceil</name>
+        <qualifiedname>TimeSeries::ceil</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/runner/work/brush/brush/src/data/timeseries.h" line="115" column="17" bodyfile="/home/runner/work/brush/brush/src/data/timeseries.h" bodystart="115" bodyend="115"/>
+      </memberdef>
+      <memberdef kind="function" id="d0/d8e/structTimeSeries_1a4a27161c86227c96dc688c2310683d7e" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>auto</type>
+        <definition>auto Brush::Data::TimeSeries&lt; T &gt;::floor</definition>
+        <argsstring>() const</argsstring>
+        <name>floor</name>
+        <qualifiedname>TimeSeries::floor</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/runner/work/brush/brush/src/data/timeseries.h" line="116" column="17" bodyfile="/home/runner/work/brush/brush/src/data/timeseries.h" bodystart="116" bodyend="116"/>
+      </memberdef>
+      <memberdef kind="function" id="d0/d8e/structTimeSeries_1a3a23a1d6a3ea3fd9b265a31ff0d9515f" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>auto</type>
+        <definition>auto Brush::Data::TimeSeries&lt; T &gt;::exp</definition>
+        <argsstring>() const</argsstring>
+        <name>exp</name>
+        <qualifiedname>TimeSeries::exp</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/runner/work/brush/brush/src/data/timeseries.h" line="117" column="17" bodyfile="/home/runner/work/brush/brush/src/data/timeseries.h" bodystart="117" bodyend="117"/>
+      </memberdef>
+      <memberdef kind="function" id="d0/d8e/structTimeSeries_1a6dc68fdee98044bbf60c04fbf8a5b6e3" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>auto</type>
+        <definition>auto Brush::Data::TimeSeries&lt; T &gt;::sin</definition>
+        <argsstring>() const</argsstring>
+        <name>sin</name>
+        <qualifiedname>TimeSeries::sin</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/runner/work/brush/brush/src/data/timeseries.h" line="118" column="17" bodyfile="/home/runner/work/brush/brush/src/data/timeseries.h" bodystart="118" bodyend="118"/>
+      </memberdef>
+      <memberdef kind="function" id="d0/d8e/structTimeSeries_1aadc2ceb5da1f1d988c689e40b4b35cc6" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>auto</type>
+        <definition>auto Brush::Data::TimeSeries&lt; T &gt;::cos</definition>
+        <argsstring>() const</argsstring>
+        <name>cos</name>
+        <qualifiedname>TimeSeries::cos</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/runner/work/brush/brush/src/data/timeseries.h" line="119" column="17" bodyfile="/home/runner/work/brush/brush/src/data/timeseries.h" bodystart="119" bodyend="119"/>
+      </memberdef>
+      <memberdef kind="function" id="d0/d8e/structTimeSeries_1ab053b2e275d8dbea327e98829eebbeb1" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>auto</type>
+        <definition>auto Brush::Data::TimeSeries&lt; T &gt;::tan</definition>
+        <argsstring>() const</argsstring>
+        <name>tan</name>
+        <qualifiedname>TimeSeries::tan</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/runner/work/brush/brush/src/data/timeseries.h" line="120" column="17" bodyfile="/home/runner/work/brush/brush/src/data/timeseries.h" bodystart="120" bodyend="120"/>
+      </memberdef>
+      <memberdef kind="function" id="d0/d8e/structTimeSeries_1a94655fb93885f74e588075d592901981" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>auto</type>
+        <definition>auto Brush::Data::TimeSeries&lt; T &gt;::asin</definition>
+        <argsstring>() const</argsstring>
+        <name>asin</name>
+        <qualifiedname>TimeSeries::asin</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/runner/work/brush/brush/src/data/timeseries.h" line="121" column="17" bodyfile="/home/runner/work/brush/brush/src/data/timeseries.h" bodystart="121" bodyend="121"/>
+      </memberdef>
+      <memberdef kind="function" id="d0/d8e/structTimeSeries_1aed1941ba67ba92fd9c3bb1fe2d136125" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>auto</type>
+        <definition>auto Brush::Data::TimeSeries&lt; T &gt;::acos</definition>
+        <argsstring>() const</argsstring>
+        <name>acos</name>
+        <qualifiedname>TimeSeries::acos</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/runner/work/brush/brush/src/data/timeseries.h" line="122" column="17" bodyfile="/home/runner/work/brush/brush/src/data/timeseries.h" bodystart="122" bodyend="122"/>
+      </memberdef>
+      <memberdef kind="function" id="d0/d8e/structTimeSeries_1aee09528bdc649c092bdc0f93313965d8" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>auto</type>
+        <definition>auto Brush::Data::TimeSeries&lt; T &gt;::atan</definition>
+        <argsstring>() const</argsstring>
+        <name>atan</name>
+        <qualifiedname>TimeSeries::atan</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/runner/work/brush/brush/src/data/timeseries.h" line="123" column="17" bodyfile="/home/runner/work/brush/brush/src/data/timeseries.h" bodystart="123" bodyend="123"/>
+      </memberdef>
+      <memberdef kind="function" id="d0/d8e/structTimeSeries_1ab8ce74e09ff5ee0f56b667abafb2c21d" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>auto</type>
+        <definition>auto Brush::Data::TimeSeries&lt; T &gt;::sinh</definition>
+        <argsstring>() const</argsstring>
+        <name>sinh</name>
+        <qualifiedname>TimeSeries::sinh</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/runner/work/brush/brush/src/data/timeseries.h" line="124" column="17" bodyfile="/home/runner/work/brush/brush/src/data/timeseries.h" bodystart="124" bodyend="124"/>
+      </memberdef>
+      <memberdef kind="function" id="d0/d8e/structTimeSeries_1af2974aceaf56b77cd3adfc10aa4831ed" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>auto</type>
+        <definition>auto Brush::Data::TimeSeries&lt; T &gt;::cosh</definition>
+        <argsstring>() const</argsstring>
+        <name>cosh</name>
+        <qualifiedname>TimeSeries::cosh</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/runner/work/brush/brush/src/data/timeseries.h" line="125" column="17" bodyfile="/home/runner/work/brush/brush/src/data/timeseries.h" bodystart="125" bodyend="125"/>
+      </memberdef>
+      <memberdef kind="function" id="d0/d8e/structTimeSeries_1ad7dd5ea00ff0320bbbb812faef090d9e" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>auto</type>
+        <definition>auto Brush::Data::TimeSeries&lt; T &gt;::tanh</definition>
+        <argsstring>() const</argsstring>
+        <name>tanh</name>
+        <qualifiedname>TimeSeries::tanh</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/runner/work/brush/brush/src/data/timeseries.h" line="126" column="17" bodyfile="/home/runner/work/brush/brush/src/data/timeseries.h" bodystart="126" bodyend="126"/>
+      </memberdef>
+      <memberdef kind="function" id="d0/d8e/structTimeSeries_1a082aa7f74f2d671f76cca96be985216f" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>auto</type>
+        <definition>auto Brush::Data::TimeSeries&lt; T &gt;::sqrt</definition>
+        <argsstring>() const</argsstring>
+        <name>sqrt</name>
+        <qualifiedname>TimeSeries::sqrt</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/runner/work/brush/brush/src/data/timeseries.h" line="127" column="17" bodyfile="/home/runner/work/brush/brush/src/data/timeseries.h" bodystart="127" bodyend="127"/>
+      </memberdef>
+      <memberdef kind="function" id="d0/d8e/structTimeSeries_1abdd94a996c4d1bb78dddb2ad530be5ec" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>auto</type>
+        <definition>auto Brush::Data::TimeSeries&lt; T &gt;::sqrtabs</definition>
+        <argsstring>() const</argsstring>
+        <name>sqrtabs</name>
+        <qualifiedname>TimeSeries::sqrtabs</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/runner/work/brush/brush/src/data/timeseries.h" line="128" column="17" bodyfile="/home/runner/work/brush/brush/src/data/timeseries.h" bodystart="128" bodyend="128"/>
+      </memberdef>
+      <memberdef kind="function" id="d0/d8e/structTimeSeries_1a1fbe66a7a89b8867dceb48b8073224d5" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>auto</type>
+        <definition>auto Brush::Data::TimeSeries&lt; T &gt;::square</definition>
+        <argsstring>() const</argsstring>
+        <name>square</name>
+        <qualifiedname>TimeSeries::square</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/runner/work/brush/brush/src/data/timeseries.h" line="129" column="17" bodyfile="/home/runner/work/brush/brush/src/data/timeseries.h" bodystart="129" bodyend="129"/>
+      </memberdef>
+      <memberdef kind="function" id="d0/d8e/structTimeSeries_1ae3c8babca545b4cb131aa6ec8f039ac3" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>auto</type>
+        <definition>auto Brush::Data::TimeSeries&lt; T &gt;::median</definition>
+        <argsstring>() const</argsstring>
+        <name>median</name>
+        <qualifiedname>TimeSeries::median</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/runner/work/brush/brush/src/data/timeseries.h" line="131" column="17" bodyfile="/home/runner/work/brush/brush/src/data/timeseries.h" bodystart="131" bodyend="131"/>
+      </memberdef>
+      <memberdef kind="function" id="d0/d8e/structTimeSeries_1abc0f2b34bc8b341ad4651b268646dc60" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>auto</type>
+        <definition>auto Brush::Data::TimeSeries&lt; T &gt;::mean</definition>
+        <argsstring>() const</argsstring>
+        <name>mean</name>
+        <qualifiedname>TimeSeries::mean</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/runner/work/brush/brush/src/data/timeseries.h" line="132" column="17" bodyfile="/home/runner/work/brush/brush/src/data/timeseries.h" bodystart="132" bodyend="132"/>
+      </memberdef>
+      <memberdef kind="function" id="d0/d8e/structTimeSeries_1a7bc529b50a25a8d76ad9c986292a99fe" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>auto</type>
+        <definition>auto Brush::Data::TimeSeries&lt; T &gt;::std</definition>
+        <argsstring>() const</argsstring>
+        <name>std</name>
+        <qualifiedname>TimeSeries::std</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/runner/work/brush/brush/src/data/timeseries.h" line="133" column="17" bodyfile="/home/runner/work/brush/brush/src/data/timeseries.h" bodystart="133" bodyend="133"/>
+      </memberdef>
+      <memberdef kind="function" id="d0/d8e/structTimeSeries_1a13d976221f4765b0dc6cde188b868c74" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>auto</type>
+        <definition>auto Brush::Data::TimeSeries&lt; T &gt;::max</definition>
+        <argsstring>() const</argsstring>
+        <name>max</name>
+        <qualifiedname>TimeSeries::max</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/runner/work/brush/brush/src/data/timeseries.h" line="134" column="17" bodyfile="/home/runner/work/brush/brush/src/data/timeseries.h" bodystart="134" bodyend="134"/>
+      </memberdef>
+      <memberdef kind="function" id="d0/d8e/structTimeSeries_1aedde07bb76cee5e2710cb6b94ddf4ab0" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>auto</type>
+        <definition>auto Brush::Data::TimeSeries&lt; T &gt;::min</definition>
+        <argsstring>() const</argsstring>
+        <name>min</name>
+        <qualifiedname>TimeSeries::min</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/runner/work/brush/brush/src/data/timeseries.h" line="135" column="17" bodyfile="/home/runner/work/brush/brush/src/data/timeseries.h" bodystart="135" bodyend="135"/>
+      </memberdef>
+      <memberdef kind="function" id="d0/d8e/structTimeSeries_1a183d78293a991b4c67912ab1bda4d0b7" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>auto</type>
+        <definition>auto Brush::Data::TimeSeries&lt; T &gt;::sum</definition>
+        <argsstring>() const</argsstring>
+        <name>sum</name>
+        <qualifiedname>TimeSeries::sum</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/runner/work/brush/brush/src/data/timeseries.h" line="136" column="17" bodyfile="/home/runner/work/brush/brush/src/data/timeseries.h" bodystart="136" bodyend="136"/>
+      </memberdef>
+      <memberdef kind="function" id="d0/d8e/structTimeSeries_1a50fb4bd079083eddab309e327754b4fa" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>auto</type>
+        <definition>auto Brush::Data::TimeSeries&lt; T &gt;::count</definition>
+        <argsstring>() const</argsstring>
+        <name>count</name>
+        <qualifiedname>TimeSeries::count</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/runner/work/brush/brush/src/data/timeseries.h" line="137" column="17" bodyfile="/home/runner/work/brush/brush/src/data/timeseries.h" bodystart="137" bodyend="137"/>
+      </memberdef>
+      <memberdef kind="function" id="d0/d8e/structTimeSeries_1a232a1f40343f5bf7937ee40580771564" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>auto</type>
+        <definition>auto Brush::Data::TimeSeries&lt; T &gt;::prod</definition>
+        <argsstring>() const</argsstring>
+        <name>prod</name>
+        <qualifiedname>TimeSeries::prod</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/runner/work/brush/brush/src/data/timeseries.h" line="138" column="17" bodyfile="/home/runner/work/brush/brush/src/data/timeseries.h" bodystart="138" bodyend="138"/>
+      </memberdef>
+      <memberdef kind="function" id="d0/d8e/structTimeSeries_1a3065c6c314ba16432bfbd8acdeb5fe88" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>typename T2</type>
+          </param>
+        </templateparamlist>
+        <type>auto</type>
+        <definition>auto Brush::Data::TimeSeries&lt; T &gt;::operator*</definition>
+        <argsstring>(T2 v)</argsstring>
+        <name>operator*</name>
+        <qualifiedname>TimeSeries::operator*</qualifiedname>
+        <param>
+          <type>T2</type>
+          <declname>v</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/runner/work/brush/brush/src/data/timeseries.h" line="144" column="17" bodyfile="/home/runner/work/brush/brush/src/data/timeseries.h" bodystart="144" bodyend="147"/>
+      </memberdef>
+      <memberdef kind="function" id="d0/d8e/structTimeSeries_1ae672d626332ece1cf54512346e831abc" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>typename T2</type>
+          </param>
+        </templateparamlist>
+        <type>auto</type>
+        <definition>auto Brush::Data::TimeSeries&lt; T &gt;::before</definition>
+        <argsstring>(const TimeSeries&lt; T2 &gt; &amp;t2) const</argsstring>
+        <name>before</name>
+        <qualifiedname>TimeSeries::before</qualifiedname>
+        <param>
+          <type>const <ref refid="d7/d56/structBrush_1_1Data_1_1TimeSeries" kindref="compound">TimeSeries</ref>&lt; T2 &gt; &amp;</type>
+          <declname>t2</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/runner/work/brush/brush/src/data/timeseries.h" line="150" column="17" bodyfile="/home/runner/work/brush/brush/src/data/timeseries.h" bodystart="150" bodyend="154"/>
+      </memberdef>
+      <memberdef kind="function" id="d0/d8e/structTimeSeries_1a78b41b9c1377d54b4c1ed04abd045640" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>typename T2</type>
+          </param>
+        </templateparamlist>
+        <type>auto</type>
+        <definition>auto Brush::Data::TimeSeries&lt; T &gt;::after</definition>
+        <argsstring>(const TimeSeries&lt; T2 &gt; &amp;t2) const</argsstring>
+        <name>after</name>
+        <qualifiedname>TimeSeries::after</qualifiedname>
+        <param>
+          <type>const <ref refid="d7/d56/structBrush_1_1Data_1_1TimeSeries" kindref="compound">TimeSeries</ref>&lt; T2 &gt; &amp;</type>
+          <declname>t2</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/runner/work/brush/brush/src/data/timeseries.h" line="156" column="17" bodyfile="/home/runner/work/brush/brush/src/data/timeseries.h" bodystart="156" bodyend="160"/>
+      </memberdef>
+      <memberdef kind="function" id="d0/d8e/structTimeSeries_1a5909f9853c5891a7369f378725a99550" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>typename T2</type>
+          </param>
+        </templateparamlist>
+        <type>auto</type>
+        <definition>auto Brush::Data::TimeSeries&lt; T &gt;::during</definition>
+        <argsstring>(const TimeSeries&lt; T2 &gt; &amp;t2) const</argsstring>
+        <name>during</name>
+        <qualifiedname>TimeSeries::during</qualifiedname>
+        <param>
+          <type>const <ref refid="d7/d56/structBrush_1_1Data_1_1TimeSeries" kindref="compound">TimeSeries</ref>&lt; T2 &gt; &amp;</type>
+          <declname>t2</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/runner/work/brush/brush/src/data/timeseries.h" line="162" column="17" bodyfile="/home/runner/work/brush/brush/src/data/timeseries.h" bodystart="162" bodyend="166"/>
+      </memberdef>
+      <memberdef kind="function" id="d0/d8e/structTimeSeries_1a45820a71d7cb5d552dce96fdce8db1d1" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>std::string</type>
+        <definition>std::string Brush::Data::TimeSeries&lt; T &gt;::print</definition>
+        <argsstring>() const</argsstring>
+        <name>print</name>
+        <qualifiedname>TimeSeries::print</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+<para>Print the time series.</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>output</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>ostream object </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>ts</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>time series object </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>ostream&amp;</para>
+</simplesect>
+</para>
+        </inbodydescription>
+        <location file="/home/runner/work/brush/brush/src/data/timeseries.h" line="168" column="17" bodyfile="/home/runner/work/brush/brush/src/data/timeseries.h" bodystart="168" bodyend="190"/>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+<para>Stores time series data and implements operators over it. </para>
+    </briefdescription>
+    <detaileddescription>
+<para><computeroutput><ref refid="d0/d8e/structTimeSeries" kindref="compound">TimeSeries</ref></computeroutput> contains two members: <computeroutput>time</computeroutput> and <computeroutput>value</computeroutput>, that have the same shape. Both are std::vectors of eigen arrays.</para>
+<para>Each element of the vector is intended to represent one person / sample. The values in that element (an Eigen array) are observations of <computeroutput>value</computeroutput> at time <computeroutput>t</computeroutput>.</para>
+<para><parameterlist kind="templateparam"><parameteritem>
+<parameternamelist>
+<parametername>T</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the scalar type of the underlying values. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+    </detaileddescription>
+    <collaborationgraph>
+      <node id="1">
+        <label>TimeSeries&lt; T &gt;</label>
+        <link refid="d0/d8e/structTimeSeries"/>
+        <childnode refid="2" relation="usage">
+          <edgelabel>time</edgelabel>
+        </childnode>
+        <childnode refid="3" relation="usage">
+          <edgelabel>value</edgelabel>
+        </childnode>
+      </node>
+      <node id="2">
+        <label>std::vector&lt; Eigen::ArrayXi &gt;</label>
+      </node>
+      <node id="3">
+        <label>std::vector&lt; EntryType &gt;</label>
+      </node>
+    </collaborationgraph>
+    <location file="/home/runner/work/brush/brush/src/data/timeseries.h" line="25" column="1" bodyfile="/home/runner/work/brush/brush/src/data/timeseries.h" bodystart="26" bodyend="191"/>
+    <listofallmembers>
+      <member refid="d0/d8e/structTimeSeries_1a0713bbad886421937e47f11c79c1c03b" prot="public" virt="non-virtual"><scope>TimeSeries</scope><name>abs</name></member>
+      <member refid="d0/d8e/structTimeSeries_1aed1941ba67ba92fd9c3bb1fe2d136125" prot="public" virt="non-virtual"><scope>TimeSeries</scope><name>acos</name></member>
+      <member refid="d0/d8e/structTimeSeries_1a78b41b9c1377d54b4c1ed04abd045640" prot="public" virt="non-virtual"><scope>TimeSeries</scope><name>after</name></member>
+      <member refid="d0/d8e/structTimeSeries_1a94655fb93885f74e588075d592901981" prot="public" virt="non-virtual"><scope>TimeSeries</scope><name>asin</name></member>
+      <member refid="d0/d8e/structTimeSeries_1aee09528bdc649c092bdc0f93313965d8" prot="public" virt="non-virtual"><scope>TimeSeries</scope><name>atan</name></member>
+      <member refid="d0/d8e/structTimeSeries_1ae672d626332ece1cf54512346e831abc" prot="public" virt="non-virtual"><scope>TimeSeries</scope><name>before</name></member>
+      <member refid="d0/d8e/structTimeSeries_1a4be907c10ce3806f68b946914d0b3aaf" prot="public" virt="non-virtual"><scope>TimeSeries</scope><name>begin</name></member>
+      <member refid="d0/d8e/structTimeSeries_1af4e6e61484151b99dc4a833f48fe73ac" prot="public" virt="non-virtual"><scope>TimeSeries</scope><name>cast</name></member>
+      <member refid="d0/d8e/structTimeSeries_1ac6f2b98f1f5f772302dc031e6255a357" prot="public" virt="non-virtual"><scope>TimeSeries</scope><name>cbegin</name></member>
+      <member refid="d0/d8e/structTimeSeries_1a73824921377877bd26996a4e273dd5f0" prot="public" virt="non-virtual"><scope>TimeSeries</scope><name>ceil</name></member>
+      <member refid="d0/d8e/structTimeSeries_1a9ad87fab8dcae913c54c73cf8663cca9" prot="public" virt="non-virtual"><scope>TimeSeries</scope><name>cend</name></member>
+      <member refid="d0/d8e/structTimeSeries_1a564eb61fe2e0a33b8ccafdf5635fd706" prot="public" virt="non-virtual"><scope>TimeSeries</scope><name>cols</name></member>
+      <member refid="d0/d8e/structTimeSeries_1aadc2ceb5da1f1d988c689e40b4b35cc6" prot="public" virt="non-virtual"><scope>TimeSeries</scope><name>cos</name></member>
+      <member refid="d0/d8e/structTimeSeries_1af2974aceaf56b77cd3adfc10aa4831ed" prot="public" virt="non-virtual"><scope>TimeSeries</scope><name>cosh</name></member>
+      <member refid="d0/d8e/structTimeSeries_1a50fb4bd079083eddab309e327754b4fa" prot="public" virt="non-virtual"><scope>TimeSeries</scope><name>count</name></member>
+      <member refid="d0/d8e/structTimeSeries_1a9617c8407eac0d7b260ff51a7a863635" prot="public" virt="non-virtual"><scope>TimeSeries</scope><name>ctbegin</name></member>
+      <member refid="d0/d8e/structTimeSeries_1a198011a9dfb8aeee496e073af6ea536c" prot="public" virt="non-virtual"><scope>TimeSeries</scope><name>ctend</name></member>
+      <member refid="d0/d8e/structTimeSeries_1a5909f9853c5891a7369f378725a99550" prot="public" virt="non-virtual"><scope>TimeSeries</scope><name>during</name></member>
+      <member refid="d0/d8e/structTimeSeries_1a3f8e8843e94a653555c5fedf16155910" prot="public" virt="non-virtual"><scope>TimeSeries</scope><name>end</name></member>
+      <member refid="d0/d8e/structTimeSeries_1a8b9d1462cec60687e36eb7d4f96c9051" prot="public" virt="non-virtual"><scope>TimeSeries</scope><name>EntryType</name></member>
+      <member refid="d0/d8e/structTimeSeries_1a3a23a1d6a3ea3fd9b265a31ff0d9515f" prot="public" virt="non-virtual"><scope>TimeSeries</scope><name>exp</name></member>
+      <member refid="d0/d8e/structTimeSeries_1a4a27161c86227c96dc688c2310683d7e" prot="public" virt="non-virtual"><scope>TimeSeries</scope><name>floor</name></member>
+      <member refid="d0/d8e/structTimeSeries_1a89035e010d3469fc61ac8e4bdc855de2" prot="public" virt="non-virtual"><scope>TimeSeries</scope><name>log</name></member>
+      <member refid="d0/d8e/structTimeSeries_1af8bb93e61e138809de23791eb0127673" prot="public" virt="non-virtual"><scope>TimeSeries</scope><name>log1p</name></member>
+      <member refid="d0/d8e/structTimeSeries_1aa298e6d97eb7bbc8a4eadcda159505ba" prot="public" virt="non-virtual"><scope>TimeSeries</scope><name>logabs</name></member>
+      <member refid="d0/d8e/structTimeSeries_1a13d976221f4765b0dc6cde188b868c74" prot="public" virt="non-virtual"><scope>TimeSeries</scope><name>max</name></member>
+      <member refid="d0/d8e/structTimeSeries_1abc0f2b34bc8b341ad4651b268646dc60" prot="public" virt="non-virtual"><scope>TimeSeries</scope><name>mean</name></member>
+      <member refid="d0/d8e/structTimeSeries_1ae3c8babca545b4cb131aa6ec8f039ac3" prot="public" virt="non-virtual"><scope>TimeSeries</scope><name>median</name></member>
+      <member refid="d0/d8e/structTimeSeries_1aedde07bb76cee5e2710cb6b94ddf4ab0" prot="public" virt="non-virtual"><scope>TimeSeries</scope><name>min</name></member>
+      <member refid="d0/d8e/structTimeSeries_1a616d99c150250f53cd8c978b5002e2ba" prot="public" virt="non-virtual"><scope>TimeSeries</scope><name>NumDimensions</name></member>
+      <member refid="d0/d8e/structTimeSeries_1af1ff3934c359ca5bd910a61fe083d5ce" prot="public" virt="non-virtual"><scope>TimeSeries</scope><name>operator()</name></member>
+      <member refid="d0/d8e/structTimeSeries_1a3065c6c314ba16432bfbd8acdeb5fe88" prot="public" virt="non-virtual"><scope>TimeSeries</scope><name>operator*</name></member>
+      <member refid="d0/d8e/structTimeSeries_1af2794548897e6940a8c4636c41960393" prot="public" virt="non-virtual"><scope>TimeSeries</scope><name>pow</name></member>
+      <member refid="d0/d8e/structTimeSeries_1a45820a71d7cb5d552dce96fdce8db1d1" prot="public" virt="non-virtual"><scope>TimeSeries</scope><name>print</name></member>
+      <member refid="d0/d8e/structTimeSeries_1a232a1f40343f5bf7937ee40580771564" prot="public" virt="non-virtual"><scope>TimeSeries</scope><name>prod</name></member>
+      <member refid="d0/d8e/structTimeSeries_1a7ca5032a5eed35d0a1c97dffddd11321" prot="public" virt="non-virtual"><scope>TimeSeries</scope><name>reduce</name></member>
+      <member refid="d0/d8e/structTimeSeries_1a79babb7d5c6bf6a94601eea0d1d176b4" prot="public" virt="non-virtual"><scope>TimeSeries</scope><name>rows</name></member>
+      <member refid="d0/d8e/structTimeSeries_1aa833203e5097827e5e395c9bd21d4be7" prot="public" virt="non-virtual"><scope>TimeSeries</scope><name>Scalar</name></member>
+      <member refid="d0/d8e/structTimeSeries_1a6dc68fdee98044bbf60c04fbf8a5b6e3" prot="public" virt="non-virtual"><scope>TimeSeries</scope><name>sin</name></member>
+      <member refid="d0/d8e/structTimeSeries_1ab8ce74e09ff5ee0f56b667abafb2c21d" prot="public" virt="non-virtual"><scope>TimeSeries</scope><name>sinh</name></member>
+      <member refid="d0/d8e/structTimeSeries_1ada37b34ebe2178b613d70fe8b0060346" prot="public" virt="non-virtual"><scope>TimeSeries</scope><name>size</name></member>
+      <member refid="d0/d8e/structTimeSeries_1a082aa7f74f2d671f76cca96be985216f" prot="public" virt="non-virtual"><scope>TimeSeries</scope><name>sqrt</name></member>
+      <member refid="d0/d8e/structTimeSeries_1abdd94a996c4d1bb78dddb2ad530be5ec" prot="public" virt="non-virtual"><scope>TimeSeries</scope><name>sqrtabs</name></member>
+      <member refid="d0/d8e/structTimeSeries_1a1fbe66a7a89b8867dceb48b8073224d5" prot="public" virt="non-virtual"><scope>TimeSeries</scope><name>square</name></member>
+      <member refid="d0/d8e/structTimeSeries_1a7bc529b50a25a8d76ad9c986292a99fe" prot="public" virt="non-virtual"><scope>TimeSeries</scope><name>std</name></member>
+      <member refid="d0/d8e/structTimeSeries_1a183d78293a991b4c67912ab1bda4d0b7" prot="public" virt="non-virtual"><scope>TimeSeries</scope><name>sum</name></member>
+      <member refid="d0/d8e/structTimeSeries_1ab053b2e275d8dbea327e98829eebbeb1" prot="public" virt="non-virtual"><scope>TimeSeries</scope><name>tan</name></member>
+      <member refid="d0/d8e/structTimeSeries_1ad7dd5ea00ff0320bbbb812faef090d9e" prot="public" virt="non-virtual"><scope>TimeSeries</scope><name>tanh</name></member>
+      <member refid="d0/d8e/structTimeSeries_1a83e6a71bbf83792e8cbd64a1a3925de7" prot="public" virt="non-virtual"><scope>TimeSeries</scope><name>tbegin</name></member>
+      <member refid="d0/d8e/structTimeSeries_1a68fa5ae9336ad4e58251695ee27634a9" prot="public" virt="non-virtual"><scope>TimeSeries</scope><name>tend</name></member>
+      <member refid="d0/d8e/structTimeSeries_1aa0654cb12a16531bdd8773699ea2e60e" prot="public" virt="non-virtual"><scope>TimeSeries</scope><name>time</name></member>
+      <member refid="d0/d8e/structTimeSeries_1a9df3733dc661535cfb6e22a9f34d0bb1" prot="public" virt="non-virtual"><scope>TimeSeries</scope><name>TimeSeries</name></member>
+      <member refid="d0/d8e/structTimeSeries_1a7def716cd7f6c5c071ac8eeb6f3a3dd3" prot="public" virt="non-virtual"><scope>TimeSeries</scope><name>TimeSeries</name></member>
+      <member refid="d0/d8e/structTimeSeries_1aa7a7bb5dcd813763c1cc2b52c77dc887" prot="public" virt="non-virtual"><scope>TimeSeries</scope><name>TimeType</name></member>
+      <member refid="d0/d8e/structTimeSeries_1a8fb9d6274f215e9bf1caa4317d3f70ad" prot="public" virt="non-virtual"><scope>TimeSeries</scope><name>transform</name></member>
+      <member refid="d0/d8e/structTimeSeries_1aef32cd8108ad378942c6c3af97902bd9" prot="public" virt="non-virtual"><scope>TimeSeries</scope><name>ValType</name></member>
+      <member refid="d0/d8e/structTimeSeries_1aec9be0a4a08b60d4d6121286de47e65f" prot="public" virt="non-virtual"><scope>TimeSeries</scope><name>value</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

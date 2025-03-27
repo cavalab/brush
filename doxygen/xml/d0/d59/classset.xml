@@ -1,0 +1,55 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.13.2" xml:lang="en-US">
+  <compounddef id="d0/d59/classset" kind="class" language="Unknown" prot="public">
+    <compoundname>set</compoundname>
+    <innerclass refid="d2/da2/classset_1_1const__iterator" prot="public">set::const_iterator</innerclass>
+    <innerclass refid="d0/d6a/classset_1_1const__reverse__iterator" prot="public">set::const_reverse_iterator</innerclass>
+    <innerclass refid="dd/d43/classset_1_1iterator" prot="public">set::iterator</innerclass>
+    <innerclass refid="d8/d5a/classset_1_1reverse__iterator" prot="public">set::reverse_iterator</innerclass>
+    <templateparamlist>
+      <param>
+        <type>typename</type>
+        <declname>K</declname>
+        <defname>K</defname>
+      </param>
+    </templateparamlist>
+    <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="d0/d59/classset_1a7f92ca6d6e5216b9c4be631bd87f1df4" prot="public" static="no" mutable="no">
+        <type>K</type>
+        <definition>K std::set&lt; K &gt;::keys</definition>
+        <argsstring></argsstring>
+        <name>keys</name>
+        <qualifiedname>set::keys</qualifiedname>
+        <briefdescription>
+<para>STL member. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="" line="1" column="1"/>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+<para>STL class. </para>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <collaborationgraph>
+      <node id="2">
+        <label>K</label>
+      </node>
+      <node id="1">
+        <label>set&lt; K &gt;</label>
+        <link refid="d0/d59/classset"/>
+        <childnode refid="2" relation="usage">
+          <edgelabel>keys</edgelabel>
+        </childnode>
+      </node>
+    </collaborationgraph>
+    <location file="[STL]" line="1" column="1"/>
+    <listofallmembers>
+      <member refid="d0/d59/classset_1a7f92ca6d6e5216b9c4be631bd87f1df4" prot="public" virt="non-virtual"><scope>set</scope><name>keys</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

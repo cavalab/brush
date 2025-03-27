@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
-<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.10.0" xml:lang="en-US">
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.13.2" xml:lang="en-US">
   <compounddef id="d2/dd0/classBrush_1_1Sel_1_1Lexicase" kind="class" language="C++" prot="public">
     <compoundname>Brush::Sel::Lexicase</compoundname>
     <basecompoundref refid="de/db9/classBrush_1_1Sel_1_1SelectionOperator" prot="public" virt="non-virtual">Brush::Sel::SelectionOperator&lt; T &gt;</basecompoundref>
@@ -19,9 +19,9 @@
         <name>Lexicase</name>
         <qualifiedname>Brush::Sel::Lexicase::Lexicase</qualifiedname>
         <param>
-          <type><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">bool</ref></type>
+          <type>bool</type>
           <declname>surv</declname>
-          <defval><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">false</ref></defval>
+          <defval>false</defval>
         </param>
         <briefdescription>
         </briefdescription>
@@ -30,6 +30,8 @@
         <inbodydescription>
         </inbodydescription>
         <location file="/home/runner/work/brush/brush/src/selection/lexicase.h" line="24" column="5" bodyfile="/home/runner/work/brush/brush/src/selection/lexicase.cpp" bodystart="11" bodyend="15"/>
+        <references refid="de/db9/classBrush_1_1Sel_1_1SelectionOperator_1a66068ecfa22feb22c5c135caa7c2eb8d" compoundref="dd/d5d/selection__operator_8h" startline="32">Brush::Sel::SelectionOperator&lt; T &gt;::name</references>
+        <references refid="de/db9/classBrush_1_1Sel_1_1SelectionOperator_1a612a07491346369b748198d11ae43675" compoundref="dd/d5d/selection__operator_8h" startline="31">Brush::Sel::SelectionOperator&lt; T &gt;::survival</references>
       </memberdef>
       <memberdef kind="function" id="d2/dd0/classBrush_1_1Sel_1_1Lexicase_1a1df9142fbfc3995866d93f3cad5b6fd0" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
         <type></type>
@@ -46,7 +48,7 @@
         <location file="/home/runner/work/brush/brush/src/selection/lexicase.h" line="25" column="5" bodyfile="/home/runner/work/brush/brush/src/selection/lexicase.h" bodystart="25" bodyend="25"/>
       </memberdef>
       <memberdef kind="function" id="d2/dd0/classBrush_1_1Sel_1_1Lexicase_1ab9f17cd2c4452b05c96a17bb6c105fc2" prot="public" static="no" const="no" explicit="no" inline="no" virt="virtual">
-        <type>vector&lt; <ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">size_t</ref> &gt;</type>
+        <type><ref refid="d7/dfc/classvector" kindref="compound">vector</ref>&lt; size_t &gt;</type>
         <definition>vector&lt; size_t &gt; Brush::Sel::Lexicase&lt; T &gt;::select</definition>
         <argsstring>(Population&lt; T &gt; &amp;pop, int island, const Parameters &amp;p)</argsstring>
         <name>select</name>
@@ -57,11 +59,11 @@
           <declname>pop</declname>
         </param>
         <param>
-          <type><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">int</ref></type>
+          <type>int</type>
           <declname>island</declname>
         </param>
         <param>
-          <type><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">const</ref> <ref refid="de/deb/structBrush_1_1Parameters" kindref="compound">Parameters</ref> &amp;</type>
+          <type>const <ref refid="de/deb/structBrush_1_1Parameters" kindref="compound">Parameters</ref> &amp;</type>
           <declname>p</declname>
         </param>
         <briefdescription>
@@ -72,7 +74,6 @@
         <inbodydescription>
         </inbodydescription>
         <location file="/home/runner/work/brush/brush/src/selection/lexicase.h" line="28" column="12" bodyfile="/home/runner/work/brush/brush/src/selection/lexicase.cpp" bodystart="18" bodyend="163"/>
-        <references refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" compoundref="d4/d93/bind__engines_8h" startline="35" endline="104">bind_engine</references>
         <references refid="de/deb/structBrush_1_1Parameters_1a88f5a4e906459cfc44ab04bca01fb333" compoundref="da/d33/params_8h" startline="66">Brush::Parameters::class_weights</references>
         <references refid="de/deb/structBrush_1_1Parameters_1a72bfe23c101219ee3460ef8b9e1e1cbe" compoundref="da/d33/params_8h" startline="71">Brush::Parameters::classification</references>
         <references refid="de/deb/structBrush_1_1Parameters_1acd37c52e411d17126bff22dca19f0408" compoundref="da/d33/params_8h" startline="27">Brush::Parameters::current_gen</references>
@@ -83,11 +84,9 @@
         <references refid="d6/d2e/namespaceBrush_1_1Util_1af7dd70e54015821d96e3a1afed6344ca" compoundref="d2/da9/rnd_8h" startline="174">Brush::Util::r</references>
         <references refid="de/deb/structBrush_1_1Parameters_1a0c58f9fade0aa2b61ce38213f1675cc5" compoundref="da/d33/params_8h" startline="67">Brush::Parameters::sample_weights</references>
         <references refid="de/deb/structBrush_1_1Parameters_1a7449c6a0796151829f3b5867019d4568" compoundref="da/d33/params_8h" startline="63">Brush::Parameters::scorer_</references>
-        <references refid="d2/d2d/classBrush_1_1Util_1_1Rnd_1a9f0fe39c1fd498b378c8d4abe7b9d71b" compoundref="d2/da9/rnd_8h" startline="61" endline="66">Brush::Util::Rnd::select_randomly</references>
-        <references refid="d2/d2d/classBrush_1_1Util_1_1Rnd_1a377cd0c8d7f0fee5cdbd2489941ce7cd" compoundref="d2/da9/rnd_8h" startline="49" endline="56">Brush::Util::Rnd::shuffle</references>
       </memberdef>
       <memberdef kind="function" id="d2/dd0/classBrush_1_1Sel_1_1Lexicase_1a87b97fde62b47d067ee9b4ac5b60c6a3" prot="public" static="no" const="no" explicit="no" inline="no" virt="virtual">
-        <type>vector&lt; <ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">size_t</ref> &gt;</type>
+        <type><ref refid="d7/dfc/classvector" kindref="compound">vector</ref>&lt; size_t &gt;</type>
         <definition>vector&lt; size_t &gt; Brush::Sel::Lexicase&lt; T &gt;::survive</definition>
         <argsstring>(Population&lt; T &gt; &amp;pop, int island, const Parameters &amp;p)</argsstring>
         <name>survive</name>
@@ -98,11 +97,11 @@
           <declname>pop</declname>
         </param>
         <param>
-          <type><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">int</ref></type>
+          <type>int</type>
           <declname>island</declname>
         </param>
         <param>
-          <type><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">const</ref> <ref refid="de/deb/structBrush_1_1Parameters" kindref="compound">Parameters</ref> &amp;</type>
+          <type>const <ref refid="de/deb/structBrush_1_1Parameters" kindref="compound">Parameters</ref> &amp;</type>
           <declname>p</declname>
         </param>
         <briefdescription>

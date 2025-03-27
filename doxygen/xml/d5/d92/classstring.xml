@@ -1,0 +1,41 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.13.2" xml:lang="en-US">
+  <compounddef id="d5/d92/classstring" kind="class" language="Unknown" prot="public">
+    <compoundname>string</compoundname>
+    <basecompoundref prot="public" virt="non-virtual">std::basic_string&lt; char &gt;</basecompoundref>
+    <innerclass refid="d1/df2/classstring_1_1const__iterator" prot="public">string::const_iterator</innerclass>
+    <innerclass refid="dc/dda/classstring_1_1const__reverse__iterator" prot="public">string::const_reverse_iterator</innerclass>
+    <innerclass refid="d5/d16/classstring_1_1iterator" prot="public">string::iterator</innerclass>
+    <innerclass refid="d0/d8d/classstring_1_1reverse__iterator" prot="public">string::reverse_iterator</innerclass>
+    <briefdescription>
+<para>STL class. </para>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="2">
+        <label>std::basic_string&lt; Char &gt;</label>
+      </node>
+      <node id="1">
+        <label>string</label>
+        <link refid="d5/d92/classstring"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="2">
+        <label>std::basic_string&lt; Char &gt;</label>
+      </node>
+      <node id="1">
+        <label>string</label>
+        <link refid="d5/d92/classstring"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+    </collaborationgraph>
+    <location file="[STL]" line="1" column="1"/>
+    <listofallmembers>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

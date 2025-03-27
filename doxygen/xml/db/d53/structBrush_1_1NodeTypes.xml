@@ -1,12 +1,12 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
-<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.10.0" xml:lang="en-US">
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.13.2" xml:lang="en-US">
   <compounddef id="db/d53/structBrush_1_1NodeTypes" kind="struct" language="C++" prot="public">
     <compoundname>Brush::NodeTypes</compoundname>
     <includes refid="de/d26/nodetype_8h" local="no">nodetype.h</includes>
     <sectiondef kind="public-static-attrib">
       <memberdef kind="variable" id="db/d53/structBrush_1_1NodeTypes_1a23df32f725c8ff1acf6b0ab2d9b57a78" prot="public" static="yes" constexpr="yes" mutable="no">
-        <type><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">constexpr</ref> <ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">size_t</ref></type>
-        <definition>constexpr size_t Brush::NodeTypes::Count</definition>
+        <type>size_t</type>
+        <definition>size_t Brush::NodeTypes::Count</definition>
         <argsstring></argsstring>
         <name>Count</name>
         <qualifiedname>Brush::NodeTypes::Count</qualifiedname>
@@ -20,8 +20,8 @@
         <location file="/home/runner/work/brush/brush/src/program/nodetype.h" line="117" column="29" bodyfile="/home/runner/work/brush/brush/src/program/nodetype.h" bodystart="117" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="db/d53/structBrush_1_1NodeTypes_1acf3e2b9f55d6886ee6190d05f3d2bd0b" prot="public" static="yes" constexpr="yes" mutable="no">
-        <type><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">constexpr</ref> <ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">size_t</ref></type>
-        <definition>constexpr size_t Brush::NodeTypes::OpCount</definition>
+        <type>size_t</type>
+        <definition>size_t Brush::NodeTypes::OpCount</definition>
         <argsstring></argsstring>
         <name>OpCount</name>
         <qualifiedname>Brush::NodeTypes::OpCount</qualifiedname>
@@ -37,9 +37,9 @@
     </sectiondef>
     <sectiondef kind="public-static-func">
       <memberdef kind="function" id="db/d53/structBrush_1_1NodeTypes_1a560225849a640cb91ed60227d653dbfa" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
-        <type><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">auto</ref></type>
-        <definition>static auto Brush::NodeTypes::GetIndex</definition>
-        <argsstring>(NodeType type) -&gt; size_t</argsstring>
+        <type>size_t</type>
+        <definition>static size_t Brush::NodeTypes::GetIndex</definition>
+        <argsstring>(NodeType type)</argsstring>
         <name>GetIndex</name>
         <qualifiedname>Brush::NodeTypes::GetIndex</qualifiedname>
         <param>

@@ -50,5 +50,6 @@ var searchData=
   ['function_3c_20nodetype_3a_3asub_20_3e_47',['Function&lt; NodeType::Sub &gt;',['../d0/d24/structBrush_1_1Function_3_01NodeType_1_1Sub_01_4.html',1,'Brush']]],
   ['function_3c_20nodetype_3a_3asum_20_3e_48',['Function&lt; NodeType::Sum &gt;',['../d8/d9c/structBrush_1_1Function_3_01NodeType_1_1Sum_01_4.html',1,'Brush']]],
   ['function_3c_20nodetype_3a_3atan_20_3e_49',['Function&lt; NodeType::Tan &gt;',['../d7/d8e/structBrush_1_1Function_3_01NodeType_1_1Tan_01_4.html',1,'Brush']]],
-  ['function_3c_20nodetype_3a_3atanh_20_3e_50',['Function&lt; NodeType::Tanh &gt;',['../dc/d5d/structBrush_1_1Function_3_01NodeType_1_1Tanh_01_4.html',1,'Brush']]]
+  ['function_3c_20nodetype_3a_3atanh_20_3e_50',['Function&lt; NodeType::Tanh &gt;',['../dc/d5d/structBrush_1_1Function_3_01NodeType_1_1Tanh_01_4.html',1,'Brush']]],
+  ['function_3c_20nt_20_3e_51',['Function&lt; NT &gt;',['../d9/d1b/structBrush_1_1Function.html',1,'Brush']]]
 ];

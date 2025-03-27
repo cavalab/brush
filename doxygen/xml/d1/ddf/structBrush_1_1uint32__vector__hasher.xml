@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
-<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.10.0" xml:lang="en-US">
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.13.2" xml:lang="en-US">
   <compounddef id="d1/ddf/structBrush_1_1uint32__vector__hasher" kind="struct" language="C++" prot="public">
     <compoundname>Brush::uint32_vector_hasher</compoundname>
     <includes refid="d1/d77/node_8h" local="no">node.h</includes>
@@ -11,7 +11,7 @@
         <name>operator()</name>
         <qualifiedname>Brush::uint32_vector_hasher::operator()</qualifiedname>
         <param>
-          <type>std::vector&lt; <ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">uint32_t</ref> &gt; <ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">const</ref> &amp;</type>
+          <type>std::vector&lt; uint32_t &gt; const &amp;</type>
           <declname>vec</declname>
         </param>
         <briefdescription>
@@ -21,7 +21,6 @@
         <inbodydescription>
         </inbodydescription>
         <location file="/home/runner/work/brush/brush/src/program/node.h" line="64" column="17" bodyfile="/home/runner/work/brush/brush/src/program/node.h" bodystart="64" bodyend="70"/>
-        <references refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" compoundref="d4/d93/bind__engines_8h" startline="35" endline="104">bind_engine</references>
       </memberdef>
       <memberdef kind="function" id="d1/ddf/structBrush_1_1uint32__vector__hasher_1a108eb03221c0d3d3375be29f3b7a4c30" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
         <type>std::size_t</type>
@@ -30,7 +29,7 @@
         <name>operator()</name>
         <qualifiedname>Brush::uint32_vector_hasher::operator()</qualifiedname>
         <param>
-          <type>std::vector&lt; <ref refid="dc/d5c/namespaceBrush_1a3f2c9b744330ba4a561ac72f048a1a5f" kindref="member">Brush::DataType</ref> &gt; <ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">const</ref> &amp;</type>
+          <type>std::vector&lt; <ref refid="dc/d5c/namespaceBrush_1a3f2c9b744330ba4a561ac72f048a1a5f" kindref="member">Brush::DataType</ref> &gt; const &amp;</type>
           <declname>vec</declname>
         </param>
         <briefdescription>
@@ -40,7 +39,6 @@
         <inbodydescription>
         </inbodydescription>
         <location file="/home/runner/work/brush/brush/src/program/node.h" line="71" column="17" bodyfile="/home/runner/work/brush/brush/src/program/node.h" bodystart="71" bodyend="77"/>
-        <references refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" compoundref="d4/d93/bind__engines_8h" startline="35" endline="104">bind_engine</references>
       </memberdef>
     </sectiondef>
     <briefdescription>

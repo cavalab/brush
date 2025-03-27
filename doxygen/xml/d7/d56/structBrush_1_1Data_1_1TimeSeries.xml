@@ -1,11 +1,11 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
-<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.10.0" xml:lang="en-US">
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.13.2" xml:lang="en-US">
   <compounddef id="d7/d56/structBrush_1_1Data_1_1TimeSeries" kind="struct" language="C++" prot="public">
     <compoundname>Brush::Data::TimeSeries</compoundname>
     <includes refid="d9/df7/timeseries_8h" local="no">timeseries.h</includes>
     <templateparamlist>
       <param>
-        <type><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">class</ref> T</type>
+        <type>class T</type>
       </param>
     </templateparamlist>
     <sectiondef kind="public-type">
@@ -68,7 +68,7 @@
     </sectiondef>
     <sectiondef kind="public-static-attrib">
       <memberdef kind="variable" id="d7/d56/structBrush_1_1Data_1_1TimeSeries_1a616d99c150250f53cd8c978b5002e2ba" prot="public" static="yes" mutable="no">
-        <type><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">const</ref> <ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">size_t</ref></type>
+        <type>const size_t</type>
         <definition>const size_t Brush::Data::TimeSeries&lt; T &gt;::NumDimensions</definition>
         <argsstring></argsstring>
         <name>NumDimensions</name>
@@ -111,9 +111,6 @@
         <inbodydescription>
         </inbodydescription>
         <location file="/home/runner/work/brush/brush/src/data/timeseries.h" line="38" column="13" bodyfile="/home/runner/work/brush/brush/src/data/timeseries.h" bodystart="38" bodyend="-1"/>
-        <referencedby refid="d7/d56/structBrush_1_1Data_1_1TimeSeries_1a564eb61fe2e0a33b8ccafdf5635fd706" compoundref="d9/df7/timeseries_8h" startline="54" endline="54">Brush::Data::TimeSeries&lt; T &gt;::cols</referencedby>
-        <referencedby refid="d7/d56/structBrush_1_1Data_1_1TimeSeries_1a79babb7d5c6bf6a94601eea0d1d176b4" compoundref="d9/df7/timeseries_8h" startline="53" endline="53">Brush::Data::TimeSeries&lt; T &gt;::rows</referencedby>
-        <referencedby refid="d7/d56/structBrush_1_1Data_1_1TimeSeries_1ada37b34ebe2178b613d70fe8b0060346" compoundref="d9/df7/timeseries_8h" startline="52" endline="52">Brush::Data::TimeSeries&lt; T &gt;::size</referencedby>
       </memberdef>
     </sectiondef>
     <sectiondef kind="public-func">
@@ -131,7 +128,8 @@
         <inbodydescription>
         </inbodydescription>
         <location file="/home/runner/work/brush/brush/src/data/timeseries.h" line="35" column="5"/>
-        <referencedby refid="d7/d56/structBrush_1_1Data_1_1TimeSeries_1af1ff3934c359ca5bd910a61fe083d5ce" compoundref="d9/df7/timeseries_8h" startline="45" endline="50">Brush::Data::TimeSeries&lt; T &gt;::operator()</referencedby>
+        <referencedby refid="d7/d56/structBrush_1_1Data_1_1TimeSeries_1af1ff3934c359ca5bd910a61fe083d5ce" compoundref="d9/df7/timeseries_8h" startline="45" endline="50">Brush::Data::TimeSeries&lt; bool &gt;::operator()</referencedby>
+        <referencedby refid="d7/d56/structBrush_1_1Data_1_1TimeSeries_1a8fb9d6274f215e9bf1caa4317d3f70ad" compoundref="d9/df7/timeseries_8h" startline="78" endline="87">Brush::Data::TimeSeries&lt; bool &gt;::transform</referencedby>
       </memberdef>
       <memberdef kind="function" id="d7/d56/structBrush_1_1Data_1_1TimeSeries_1a7def716cd7f6c5c071ac8eeb6f3a3dd3" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
         <type></type>
@@ -140,11 +138,11 @@
         <name>TimeSeries</name>
         <qualifiedname>Brush::Data::TimeSeries::TimeSeries</qualifiedname>
         <param>
-          <type><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">const</ref> <ref refid="d7/d56/structBrush_1_1Data_1_1TimeSeries_1aa7a7bb5dcd813763c1cc2b52c77dc887" kindref="member">TimeType</ref> &amp;</type>
+          <type>const <ref refid="d7/d56/structBrush_1_1Data_1_1TimeSeries_1aa7a7bb5dcd813763c1cc2b52c77dc887" kindref="member">TimeType</ref> &amp;</type>
           <declname>t</declname>
         </param>
         <param>
-          <type><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">const</ref> <ref refid="d7/d56/structBrush_1_1Data_1_1TimeSeries_1aef32cd8108ad378942c6c3af97902bd9" kindref="member">ValType</ref> &amp;</type>
+          <type>const <ref refid="d7/d56/structBrush_1_1Data_1_1TimeSeries_1aef32cd8108ad378942c6c3af97902bd9" kindref="member">ValType</ref> &amp;</type>
           <declname>v</declname>
         </param>
         <briefdescription>
@@ -158,10 +156,10 @@
       <memberdef kind="function" id="d7/d56/structBrush_1_1Data_1_1TimeSeries_1af1ff3934c359ca5bd910a61fe083d5ce" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
         <templateparamlist>
           <param>
-            <type><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">typename</ref> <ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">U</ref></type>
+            <type>typename U</type>
           </param>
           <param>
-            <type><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">typename</ref> <ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">V</ref></type>
+            <type>typename V</type>
           </param>
         </templateparamlist>
         <type><ref refid="d7/d56/structBrush_1_1Data_1_1TimeSeries" kindref="compound">TimeSeries</ref></type>
@@ -170,11 +168,11 @@
         <name>operator()</name>
         <qualifiedname>Brush::Data::TimeSeries::operator()</qualifiedname>
         <param>
-          <type><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">const</ref> <ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">U</ref> &amp;</type>
+          <type>const U &amp;</type>
           <declname>idx</declname>
         </param>
         <param>
-          <type><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">const</ref> <ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">V</ref> &amp;</type>
+          <type>const V &amp;</type>
           <declname>idx2</declname>
           <defval>Eigen::all</defval>
         </param>
@@ -186,14 +184,11 @@
         <inbodydescription>
         </inbodydescription>
         <location file="/home/runner/work/brush/brush/src/data/timeseries.h" line="45" column="16" bodyfile="/home/runner/work/brush/brush/src/data/timeseries.h" bodystart="45" bodyend="50"/>
-        <references refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" compoundref="d4/d93/bind__engines_8h" startline="35" endline="104">bind_engine</references>
-        <references refid="d6/d2e/namespaceBrush_1_1Util_1abbfd3f4b029bb0b27ba4746f12726df2" compoundref="d5/d60/utils_8h" startline="726" endline="734">Brush::Util::slice</references>
-        <references refid="d7/d56/structBrush_1_1Data_1_1TimeSeries_1a9df3733dc661535cfb6e22a9f34d0bb1">Brush::Data::TimeSeries&lt; T &gt;::TimeSeries</references>
       </memberdef>
       <memberdef kind="function" id="d7/d56/structBrush_1_1Data_1_1TimeSeries_1ada37b34ebe2178b613d70fe8b0060346" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
-        <type><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">auto</ref></type>
-        <definition>auto Brush::Data::TimeSeries&lt; T &gt;::size</definition>
-        <argsstring>() const -&gt; size_t</argsstring>
+        <type>size_t</type>
+        <definition>size_t Brush::Data::TimeSeries&lt; T &gt;::size</definition>
+        <argsstring>() const</argsstring>
         <name>size</name>
         <qualifiedname>Brush::Data::TimeSeries::size</qualifiedname>
         <briefdescription>
@@ -203,12 +198,11 @@
         <inbodydescription>
         </inbodydescription>
         <location file="/home/runner/work/brush/brush/src/data/timeseries.h" line="52" column="17" bodyfile="/home/runner/work/brush/brush/src/data/timeseries.h" bodystart="52" bodyend="52"/>
-        <references refid="d7/d56/structBrush_1_1Data_1_1TimeSeries_1aec9be0a4a08b60d4d6121286de47e65f" compoundref="d9/df7/timeseries_8h" startline="38">Brush::Data::TimeSeries&lt; T &gt;::value</references>
       </memberdef>
       <memberdef kind="function" id="d7/d56/structBrush_1_1Data_1_1TimeSeries_1a79babb7d5c6bf6a94601eea0d1d176b4" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
-        <type><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">auto</ref></type>
-        <definition>auto Brush::Data::TimeSeries&lt; T &gt;::rows</definition>
-        <argsstring>() const -&gt; size_t</argsstring>
+        <type>size_t</type>
+        <definition>size_t Brush::Data::TimeSeries&lt; T &gt;::rows</definition>
+        <argsstring>() const</argsstring>
         <name>rows</name>
         <qualifiedname>Brush::Data::TimeSeries::rows</qualifiedname>
         <briefdescription>
@@ -218,16 +212,15 @@
         <inbodydescription>
         </inbodydescription>
         <location file="/home/runner/work/brush/brush/src/data/timeseries.h" line="53" column="17" bodyfile="/home/runner/work/brush/brush/src/data/timeseries.h" bodystart="53" bodyend="53"/>
-        <references refid="d7/d56/structBrush_1_1Data_1_1TimeSeries_1aec9be0a4a08b60d4d6121286de47e65f" compoundref="d9/df7/timeseries_8h" startline="38">Brush::Data::TimeSeries&lt; T &gt;::value</references>
       </memberdef>
       <memberdef kind="function" id="d7/d56/structBrush_1_1Data_1_1TimeSeries_1a564eb61fe2e0a33b8ccafdf5635fd706" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
-        <type><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">auto</ref></type>
-        <definition>auto Brush::Data::TimeSeries&lt; T &gt;::cols</definition>
-        <argsstring>(int i=0) const -&gt; size_t</argsstring>
+        <type>size_t</type>
+        <definition>size_t Brush::Data::TimeSeries&lt; T &gt;::cols</definition>
+        <argsstring>(int i=0) const</argsstring>
         <name>cols</name>
         <qualifiedname>Brush::Data::TimeSeries::cols</qualifiedname>
         <param>
-          <type><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">int</ref></type>
+          <type>int</type>
           <declname>i</declname>
           <defval>0</defval>
         </param>
@@ -238,8 +231,6 @@
         <inbodydescription>
         </inbodydescription>
         <location file="/home/runner/work/brush/brush/src/data/timeseries.h" line="54" column="17" bodyfile="/home/runner/work/brush/brush/src/data/timeseries.h" bodystart="54" bodyend="54"/>
-        <references refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" compoundref="d4/d93/bind__engines_8h" startline="35" endline="104">bind_engine</references>
-        <references refid="d7/d56/structBrush_1_1Data_1_1TimeSeries_1aec9be0a4a08b60d4d6121286de47e65f" compoundref="d9/df7/timeseries_8h" startline="38">Brush::Data::TimeSeries&lt; T &gt;::value</references>
       </memberdef>
       <memberdef kind="function" id="d7/d56/structBrush_1_1Data_1_1TimeSeries_1a4be907c10ce3806f68b946914d0b3aaf" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
         <type>ValType::iterator</type>
@@ -270,7 +261,7 @@
         <location file="/home/runner/work/brush/brush/src/data/timeseries.h" line="61" column="32" bodyfile="/home/runner/work/brush/brush/src/data/timeseries.h" bodystart="61" bodyend="61"/>
       </memberdef>
       <memberdef kind="function" id="d7/d56/structBrush_1_1Data_1_1TimeSeries_1ac6f2b98f1f5f772302dc031e6255a357" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
-        <type><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">auto</ref></type>
+        <type>auto</type>
         <definition>auto Brush::Data::TimeSeries&lt; T &gt;::cbegin</definition>
         <argsstring>() const</argsstring>
         <name>cbegin</name>
@@ -282,11 +273,11 @@
         <inbodydescription>
         </inbodydescription>
         <location file="/home/runner/work/brush/brush/src/data/timeseries.h" line="62" column="10" bodyfile="/home/runner/work/brush/brush/src/data/timeseries.h" bodystart="62" bodyend="62"/>
-        <referencedby refid="d7/d56/structBrush_1_1Data_1_1TimeSeries_1a7ca5032a5eed35d0a1c97dffddd11321" compoundref="d9/df7/timeseries_8h" startline="90" endline="100">Brush::Data::TimeSeries&lt; T &gt;::reduce</referencedby>
-        <referencedby refid="d7/d56/structBrush_1_1Data_1_1TimeSeries_1a8fb9d6274f215e9bf1caa4317d3f70ad" compoundref="d9/df7/timeseries_8h" startline="78" endline="87">Brush::Data::TimeSeries&lt; T &gt;::transform</referencedby>
+        <referencedby refid="d7/d56/structBrush_1_1Data_1_1TimeSeries_1a7ca5032a5eed35d0a1c97dffddd11321" compoundref="d9/df7/timeseries_8h" startline="90" endline="100">Brush::Data::TimeSeries&lt; bool &gt;::reduce</referencedby>
+        <referencedby refid="d7/d56/structBrush_1_1Data_1_1TimeSeries_1a8fb9d6274f215e9bf1caa4317d3f70ad" compoundref="d9/df7/timeseries_8h" startline="78" endline="87">Brush::Data::TimeSeries&lt; bool &gt;::transform</referencedby>
       </memberdef>
       <memberdef kind="function" id="d7/d56/structBrush_1_1Data_1_1TimeSeries_1a9ad87fab8dcae913c54c73cf8663cca9" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
-        <type><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">auto</ref></type>
+        <type>auto</type>
         <definition>auto Brush::Data::TimeSeries&lt; T &gt;::cend</definition>
         <argsstring>() const</argsstring>
         <name>cend</name>
@@ -298,8 +289,8 @@
         <inbodydescription>
         </inbodydescription>
         <location file="/home/runner/work/brush/brush/src/data/timeseries.h" line="63" column="10" bodyfile="/home/runner/work/brush/brush/src/data/timeseries.h" bodystart="63" bodyend="63"/>
-        <referencedby refid="d7/d56/structBrush_1_1Data_1_1TimeSeries_1a7ca5032a5eed35d0a1c97dffddd11321" compoundref="d9/df7/timeseries_8h" startline="90" endline="100">Brush::Data::TimeSeries&lt; T &gt;::reduce</referencedby>
-        <referencedby refid="d7/d56/structBrush_1_1Data_1_1TimeSeries_1a8fb9d6274f215e9bf1caa4317d3f70ad" compoundref="d9/df7/timeseries_8h" startline="78" endline="87">Brush::Data::TimeSeries&lt; T &gt;::transform</referencedby>
+        <referencedby refid="d7/d56/structBrush_1_1Data_1_1TimeSeries_1a7ca5032a5eed35d0a1c97dffddd11321" compoundref="d9/df7/timeseries_8h" startline="90" endline="100">Brush::Data::TimeSeries&lt; bool &gt;::reduce</referencedby>
+        <referencedby refid="d7/d56/structBrush_1_1Data_1_1TimeSeries_1a8fb9d6274f215e9bf1caa4317d3f70ad" compoundref="d9/df7/timeseries_8h" startline="78" endline="87">Brush::Data::TimeSeries&lt; bool &gt;::transform</referencedby>
       </memberdef>
       <memberdef kind="function" id="d7/d56/structBrush_1_1Data_1_1TimeSeries_1a83e6a71bbf83792e8cbd64a1a3925de7" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
         <type>TimeType::iterator</type>
@@ -330,7 +321,7 @@
         <location file="/home/runner/work/brush/brush/src/data/timeseries.h" line="65" column="33" bodyfile="/home/runner/work/brush/brush/src/data/timeseries.h" bodystart="65" bodyend="65"/>
       </memberdef>
       <memberdef kind="function" id="d7/d56/structBrush_1_1Data_1_1TimeSeries_1a9617c8407eac0d7b260ff51a7a863635" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
-        <type><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">auto</ref></type>
+        <type>auto</type>
         <definition>auto Brush::Data::TimeSeries&lt; T &gt;::ctbegin</definition>
         <argsstring>() const</argsstring>
         <name>ctbegin</name>
@@ -344,7 +335,7 @@
         <location file="/home/runner/work/brush/brush/src/data/timeseries.h" line="66" column="10" bodyfile="/home/runner/work/brush/brush/src/data/timeseries.h" bodystart="66" bodyend="66"/>
       </memberdef>
       <memberdef kind="function" id="d7/d56/structBrush_1_1Data_1_1TimeSeries_1a198011a9dfb8aeee496e073af6ea536c" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
-        <type><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">auto</ref></type>
+        <type>auto</type>
         <definition>auto Brush::Data::TimeSeries&lt; T &gt;::ctend</definition>
         <argsstring>() const</argsstring>
         <name>ctend</name>
@@ -360,17 +351,17 @@
       <memberdef kind="function" id="d7/d56/structBrush_1_1Data_1_1TimeSeries_1a8fb9d6274f215e9bf1caa4317d3f70ad" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
         <templateparamlist>
           <param>
-            <type><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">typename</ref> <ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">ET</ref></type>
+            <type>typename ET</type>
             <defval><ref refid="d7/d56/structBrush_1_1Data_1_1TimeSeries_1a8b9d1462cec60687e36eb7d4f96c9051" kindref="member">EntryType</ref></defval>
           </param>
         </templateparamlist>
-        <type><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">auto</ref></type>
+        <type>auto</type>
         <definition>auto Brush::Data::TimeSeries&lt; T &gt;::transform</definition>
         <argsstring>(std::function&lt; ET(EntryType)&gt; op) const</argsstring>
         <name>transform</name>
         <qualifiedname>Brush::Data::TimeSeries::transform</qualifiedname>
         <param>
-          <type>std::function&lt; <ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">ET</ref>(<ref refid="d7/d56/structBrush_1_1Data_1_1TimeSeries_1a8b9d1462cec60687e36eb7d4f96c9051" kindref="member">EntryType</ref>)&gt;</type>
+          <type>std::function&lt; ET(<ref refid="d7/d56/structBrush_1_1Data_1_1TimeSeries_1a8b9d1462cec60687e36eb7d4f96c9051" kindref="member">EntryType</ref>)&gt;</type>
           <declname>op</declname>
         </param>
         <briefdescription>
@@ -380,44 +371,43 @@
         <inbodydescription>
         </inbodydescription>
         <location file="/home/runner/work/brush/brush/src/data/timeseries.h" line="78" column="10" bodyfile="/home/runner/work/brush/brush/src/data/timeseries.h" bodystart="78" bodyend="87"/>
-        <references refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" compoundref="d4/d93/bind__engines_8h" startline="35" endline="104">bind_engine</references>
-        <references refid="d7/d56/structBrush_1_1Data_1_1TimeSeries_1ac6f2b98f1f5f772302dc031e6255a357" compoundref="d9/df7/timeseries_8h" startline="62" endline="62">Brush::Data::TimeSeries&lt; T &gt;::cbegin</references>
-        <references refid="d7/d56/structBrush_1_1Data_1_1TimeSeries_1a9ad87fab8dcae913c54c73cf8663cca9" compoundref="d9/df7/timeseries_8h" startline="63" endline="63">Brush::Data::TimeSeries&lt; T &gt;::cend</references>
-        <referencedby refid="d7/d56/structBrush_1_1Data_1_1TimeSeries_1a0713bbad886421937e47f11c79c1c03b" compoundref="d9/df7/timeseries_8h" startline="110" endline="110">Brush::Data::TimeSeries&lt; T &gt;::abs</referencedby>
-        <referencedby refid="d7/d56/structBrush_1_1Data_1_1TimeSeries_1aed1941ba67ba92fd9c3bb1fe2d136125" compoundref="d9/df7/timeseries_8h" startline="122" endline="122">Brush::Data::TimeSeries&lt; T &gt;::acos</referencedby>
-        <referencedby refid="d7/d56/structBrush_1_1Data_1_1TimeSeries_1a94655fb93885f74e588075d592901981" compoundref="d9/df7/timeseries_8h" startline="121" endline="121">Brush::Data::TimeSeries&lt; T &gt;::asin</referencedby>
-        <referencedby refid="d7/d56/structBrush_1_1Data_1_1TimeSeries_1aee09528bdc649c092bdc0f93313965d8" compoundref="d9/df7/timeseries_8h" startline="123" endline="123">Brush::Data::TimeSeries&lt; T &gt;::atan</referencedby>
-        <referencedby refid="d7/d56/structBrush_1_1Data_1_1TimeSeries_1a73824921377877bd26996a4e273dd5f0" compoundref="d9/df7/timeseries_8h" startline="115" endline="115">Brush::Data::TimeSeries&lt; T &gt;::ceil</referencedby>
-        <referencedby refid="d7/d56/structBrush_1_1Data_1_1TimeSeries_1aadc2ceb5da1f1d988c689e40b4b35cc6" compoundref="d9/df7/timeseries_8h" startline="119" endline="119">Brush::Data::TimeSeries&lt; T &gt;::cos</referencedby>
-        <referencedby refid="d7/d56/structBrush_1_1Data_1_1TimeSeries_1af2974aceaf56b77cd3adfc10aa4831ed" compoundref="d9/df7/timeseries_8h" startline="125" endline="125">Brush::Data::TimeSeries&lt; T &gt;::cosh</referencedby>
-        <referencedby refid="d7/d56/structBrush_1_1Data_1_1TimeSeries_1a3a23a1d6a3ea3fd9b265a31ff0d9515f" compoundref="d9/df7/timeseries_8h" startline="117" endline="117">Brush::Data::TimeSeries&lt; T &gt;::exp</referencedby>
-        <referencedby refid="d7/d56/structBrush_1_1Data_1_1TimeSeries_1a4a27161c86227c96dc688c2310683d7e" compoundref="d9/df7/timeseries_8h" startline="116" endline="116">Brush::Data::TimeSeries&lt; T &gt;::floor</referencedby>
-        <referencedby refid="d7/d56/structBrush_1_1Data_1_1TimeSeries_1a89035e010d3469fc61ac8e4bdc855de2" compoundref="d9/df7/timeseries_8h" startline="112" endline="112">Brush::Data::TimeSeries&lt; T &gt;::log</referencedby>
-        <referencedby refid="d7/d56/structBrush_1_1Data_1_1TimeSeries_1af8bb93e61e138809de23791eb0127673" compoundref="d9/df7/timeseries_8h" startline="114" endline="114">Brush::Data::TimeSeries&lt; T &gt;::log1p</referencedby>
-        <referencedby refid="d7/d56/structBrush_1_1Data_1_1TimeSeries_1aa298e6d97eb7bbc8a4eadcda159505ba" compoundref="d9/df7/timeseries_8h" startline="113" endline="113">Brush::Data::TimeSeries&lt; T &gt;::logabs</referencedby>
-        <referencedby refid="d7/d56/structBrush_1_1Data_1_1TimeSeries_1af2794548897e6940a8c4636c41960393" compoundref="d9/df7/timeseries_8h" startline="111" endline="111">Brush::Data::TimeSeries&lt; T &gt;::pow</referencedby>
-        <referencedby refid="d7/d56/structBrush_1_1Data_1_1TimeSeries_1a6dc68fdee98044bbf60c04fbf8a5b6e3" compoundref="d9/df7/timeseries_8h" startline="118" endline="118">Brush::Data::TimeSeries&lt; T &gt;::sin</referencedby>
-        <referencedby refid="d7/d56/structBrush_1_1Data_1_1TimeSeries_1ab8ce74e09ff5ee0f56b667abafb2c21d" compoundref="d9/df7/timeseries_8h" startline="124" endline="124">Brush::Data::TimeSeries&lt; T &gt;::sinh</referencedby>
-        <referencedby refid="d7/d56/structBrush_1_1Data_1_1TimeSeries_1a082aa7f74f2d671f76cca96be985216f" compoundref="d9/df7/timeseries_8h" startline="127" endline="127">Brush::Data::TimeSeries&lt; T &gt;::sqrt</referencedby>
-        <referencedby refid="d7/d56/structBrush_1_1Data_1_1TimeSeries_1abdd94a996c4d1bb78dddb2ad530be5ec" compoundref="d9/df7/timeseries_8h" startline="128" endline="128">Brush::Data::TimeSeries&lt; T &gt;::sqrtabs</referencedby>
-        <referencedby refid="d7/d56/structBrush_1_1Data_1_1TimeSeries_1a1fbe66a7a89b8867dceb48b8073224d5" compoundref="d9/df7/timeseries_8h" startline="129" endline="129">Brush::Data::TimeSeries&lt; T &gt;::square</referencedby>
-        <referencedby refid="d7/d56/structBrush_1_1Data_1_1TimeSeries_1ab053b2e275d8dbea327e98829eebbeb1" compoundref="d9/df7/timeseries_8h" startline="120" endline="120">Brush::Data::TimeSeries&lt; T &gt;::tan</referencedby>
-        <referencedby refid="d7/d56/structBrush_1_1Data_1_1TimeSeries_1ad7dd5ea00ff0320bbbb812faef090d9e" compoundref="d9/df7/timeseries_8h" startline="126" endline="126">Brush::Data::TimeSeries&lt; T &gt;::tanh</referencedby>
+        <referencedby refid="d7/d56/structBrush_1_1Data_1_1TimeSeries_1a0713bbad886421937e47f11c79c1c03b" compoundref="d9/df7/timeseries_8h" startline="110" endline="110">Brush::Data::TimeSeries&lt; bool &gt;::abs</referencedby>
+        <referencedby refid="d7/d56/structBrush_1_1Data_1_1TimeSeries_1aed1941ba67ba92fd9c3bb1fe2d136125" compoundref="d9/df7/timeseries_8h" startline="122" endline="122">Brush::Data::TimeSeries&lt; bool &gt;::acos</referencedby>
+        <referencedby refid="d7/d56/structBrush_1_1Data_1_1TimeSeries_1a94655fb93885f74e588075d592901981" compoundref="d9/df7/timeseries_8h" startline="121" endline="121">Brush::Data::TimeSeries&lt; bool &gt;::asin</referencedby>
+        <referencedby refid="d7/d56/structBrush_1_1Data_1_1TimeSeries_1aee09528bdc649c092bdc0f93313965d8" compoundref="d9/df7/timeseries_8h" startline="123" endline="123">Brush::Data::TimeSeries&lt; bool &gt;::atan</referencedby>
+        <referencedby refid="d7/d56/structBrush_1_1Data_1_1TimeSeries_1af4e6e61484151b99dc4a833f48fe73ac" compoundref="d9/df7/timeseries_8h" startline="103" endline="107">Brush::Data::TimeSeries&lt; bool &gt;::cast</referencedby>
+        <referencedby refid="d7/d56/structBrush_1_1Data_1_1TimeSeries_1a73824921377877bd26996a4e273dd5f0" compoundref="d9/df7/timeseries_8h" startline="115" endline="115">Brush::Data::TimeSeries&lt; bool &gt;::ceil</referencedby>
+        <referencedby refid="d7/d56/structBrush_1_1Data_1_1TimeSeries_1aadc2ceb5da1f1d988c689e40b4b35cc6" compoundref="d9/df7/timeseries_8h" startline="119" endline="119">Brush::Data::TimeSeries&lt; bool &gt;::cos</referencedby>
+        <referencedby refid="d7/d56/structBrush_1_1Data_1_1TimeSeries_1af2974aceaf56b77cd3adfc10aa4831ed" compoundref="d9/df7/timeseries_8h" startline="125" endline="125">Brush::Data::TimeSeries&lt; bool &gt;::cosh</referencedby>
+        <referencedby refid="d7/d56/structBrush_1_1Data_1_1TimeSeries_1a3a23a1d6a3ea3fd9b265a31ff0d9515f" compoundref="d9/df7/timeseries_8h" startline="117" endline="117">Brush::Data::TimeSeries&lt; bool &gt;::exp</referencedby>
+        <referencedby refid="d7/d56/structBrush_1_1Data_1_1TimeSeries_1a4a27161c86227c96dc688c2310683d7e" compoundref="d9/df7/timeseries_8h" startline="116" endline="116">Brush::Data::TimeSeries&lt; bool &gt;::floor</referencedby>
+        <referencedby refid="d7/d56/structBrush_1_1Data_1_1TimeSeries_1a89035e010d3469fc61ac8e4bdc855de2" compoundref="d9/df7/timeseries_8h" startline="112" endline="112">Brush::Data::TimeSeries&lt; bool &gt;::log</referencedby>
+        <referencedby refid="d7/d56/structBrush_1_1Data_1_1TimeSeries_1af8bb93e61e138809de23791eb0127673" compoundref="d9/df7/timeseries_8h" startline="114" endline="114">Brush::Data::TimeSeries&lt; bool &gt;::log1p</referencedby>
+        <referencedby refid="d7/d56/structBrush_1_1Data_1_1TimeSeries_1aa298e6d97eb7bbc8a4eadcda159505ba" compoundref="d9/df7/timeseries_8h" startline="113" endline="113">Brush::Data::TimeSeries&lt; bool &gt;::logabs</referencedby>
+        <referencedby refid="d7/d56/structBrush_1_1Data_1_1TimeSeries_1a3065c6c314ba16432bfbd8acdeb5fe88" compoundref="d9/df7/timeseries_8h" startline="144" endline="147">Brush::Data::TimeSeries&lt; bool &gt;::operator*</referencedby>
+        <referencedby refid="d7/d56/structBrush_1_1Data_1_1TimeSeries_1af2794548897e6940a8c4636c41960393" compoundref="d9/df7/timeseries_8h" startline="111" endline="111">Brush::Data::TimeSeries&lt; bool &gt;::pow</referencedby>
+        <referencedby refid="d7/d56/structBrush_1_1Data_1_1TimeSeries_1a6dc68fdee98044bbf60c04fbf8a5b6e3" compoundref="d9/df7/timeseries_8h" startline="118" endline="118">Brush::Data::TimeSeries&lt; bool &gt;::sin</referencedby>
+        <referencedby refid="d7/d56/structBrush_1_1Data_1_1TimeSeries_1ab8ce74e09ff5ee0f56b667abafb2c21d" compoundref="d9/df7/timeseries_8h" startline="124" endline="124">Brush::Data::TimeSeries&lt; bool &gt;::sinh</referencedby>
+        <referencedby refid="d7/d56/structBrush_1_1Data_1_1TimeSeries_1a082aa7f74f2d671f76cca96be985216f" compoundref="d9/df7/timeseries_8h" startline="127" endline="127">Brush::Data::TimeSeries&lt; bool &gt;::sqrt</referencedby>
+        <referencedby refid="d7/d56/structBrush_1_1Data_1_1TimeSeries_1abdd94a996c4d1bb78dddb2ad530be5ec" compoundref="d9/df7/timeseries_8h" startline="128" endline="128">Brush::Data::TimeSeries&lt; bool &gt;::sqrtabs</referencedby>
+        <referencedby refid="d7/d56/structBrush_1_1Data_1_1TimeSeries_1a1fbe66a7a89b8867dceb48b8073224d5" compoundref="d9/df7/timeseries_8h" startline="129" endline="129">Brush::Data::TimeSeries&lt; bool &gt;::square</referencedby>
+        <referencedby refid="d7/d56/structBrush_1_1Data_1_1TimeSeries_1ab053b2e275d8dbea327e98829eebbeb1" compoundref="d9/df7/timeseries_8h" startline="120" endline="120">Brush::Data::TimeSeries&lt; bool &gt;::tan</referencedby>
+        <referencedby refid="d7/d56/structBrush_1_1Data_1_1TimeSeries_1ad7dd5ea00ff0320bbbb812faef090d9e" compoundref="d9/df7/timeseries_8h" startline="126" endline="126">Brush::Data::TimeSeries&lt; bool &gt;::tanh</referencedby>
       </memberdef>
       <memberdef kind="function" id="d7/d56/structBrush_1_1Data_1_1TimeSeries_1a7ca5032a5eed35d0a1c97dffddd11321" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
         <templateparamlist>
           <param>
-            <type><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">typename</ref> <ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">R</ref></type>
+            <type>typename R</type>
             <defval>T</defval>
           </param>
         </templateparamlist>
-        <type><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">auto</ref></type>
+        <type>auto</type>
         <definition>auto Brush::Data::TimeSeries&lt; T &gt;::reduce</definition>
         <argsstring>(const auto &amp;op) const</argsstring>
         <name>reduce</name>
         <qualifiedname>Brush::Data::TimeSeries::reduce</qualifiedname>
         <param>
-          <type><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">const</ref> <ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">auto</ref> &amp;</type>
+          <type>const auto &amp;</type>
           <declname>op</declname>
         </param>
         <briefdescription>
@@ -427,22 +417,22 @@
         <inbodydescription>
         </inbodydescription>
         <location file="/home/runner/work/brush/brush/src/data/timeseries.h" line="90" column="10" bodyfile="/home/runner/work/brush/brush/src/data/timeseries.h" bodystart="90" bodyend="100"/>
-        <references refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" compoundref="d4/d93/bind__engines_8h" startline="35" endline="104">bind_engine</references>
-        <references refid="d7/d56/structBrush_1_1Data_1_1TimeSeries_1ac6f2b98f1f5f772302dc031e6255a357" compoundref="d9/df7/timeseries_8h" startline="62" endline="62">Brush::Data::TimeSeries&lt; T &gt;::cbegin</references>
-        <references refid="d7/d56/structBrush_1_1Data_1_1TimeSeries_1a9ad87fab8dcae913c54c73cf8663cca9" compoundref="d9/df7/timeseries_8h" startline="63" endline="63">Brush::Data::TimeSeries&lt; T &gt;::cend</references>
-        <referencedby refid="d7/d56/structBrush_1_1Data_1_1TimeSeries_1a13d976221f4765b0dc6cde188b868c74" compoundref="d9/df7/timeseries_8h" startline="134" endline="134">Brush::Data::TimeSeries&lt; T &gt;::max</referencedby>
-        <referencedby refid="d7/d56/structBrush_1_1Data_1_1TimeSeries_1abc0f2b34bc8b341ad4651b268646dc60" compoundref="d9/df7/timeseries_8h" startline="132" endline="132">Brush::Data::TimeSeries&lt; T &gt;::mean</referencedby>
-        <referencedby refid="d7/d56/structBrush_1_1Data_1_1TimeSeries_1ae3c8babca545b4cb131aa6ec8f039ac3" compoundref="d9/df7/timeseries_8h" startline="131" endline="131">Brush::Data::TimeSeries&lt; T &gt;::median</referencedby>
-        <referencedby refid="d7/d56/structBrush_1_1Data_1_1TimeSeries_1aedde07bb76cee5e2710cb6b94ddf4ab0" compoundref="d9/df7/timeseries_8h" startline="135" endline="135">Brush::Data::TimeSeries&lt; T &gt;::min</referencedby>
-        <referencedby refid="d7/d56/structBrush_1_1Data_1_1TimeSeries_1a7bc529b50a25a8d76ad9c986292a99fe" compoundref="d9/df7/timeseries_8h" startline="133" endline="133">Brush::Data::TimeSeries&lt; T &gt;::std</referencedby>
+        <referencedby refid="d7/d56/structBrush_1_1Data_1_1TimeSeries_1a50fb4bd079083eddab309e327754b4fa" compoundref="d9/df7/timeseries_8h" startline="137" endline="137">Brush::Data::TimeSeries&lt; bool &gt;::count</referencedby>
+        <referencedby refid="d7/d56/structBrush_1_1Data_1_1TimeSeries_1a13d976221f4765b0dc6cde188b868c74" compoundref="d9/df7/timeseries_8h" startline="134" endline="134">Brush::Data::TimeSeries&lt; bool &gt;::max</referencedby>
+        <referencedby refid="d7/d56/structBrush_1_1Data_1_1TimeSeries_1abc0f2b34bc8b341ad4651b268646dc60" compoundref="d9/df7/timeseries_8h" startline="132" endline="132">Brush::Data::TimeSeries&lt; bool &gt;::mean</referencedby>
+        <referencedby refid="d7/d56/structBrush_1_1Data_1_1TimeSeries_1ae3c8babca545b4cb131aa6ec8f039ac3" compoundref="d9/df7/timeseries_8h" startline="131" endline="131">Brush::Data::TimeSeries&lt; bool &gt;::median</referencedby>
+        <referencedby refid="d7/d56/structBrush_1_1Data_1_1TimeSeries_1aedde07bb76cee5e2710cb6b94ddf4ab0" compoundref="d9/df7/timeseries_8h" startline="135" endline="135">Brush::Data::TimeSeries&lt; bool &gt;::min</referencedby>
+        <referencedby refid="d7/d56/structBrush_1_1Data_1_1TimeSeries_1a232a1f40343f5bf7937ee40580771564" compoundref="d9/df7/timeseries_8h" startline="138" endline="138">Brush::Data::TimeSeries&lt; bool &gt;::prod</referencedby>
+        <referencedby refid="d7/d56/structBrush_1_1Data_1_1TimeSeries_1a7bc529b50a25a8d76ad9c986292a99fe" compoundref="d9/df7/timeseries_8h" startline="133" endline="133">Brush::Data::TimeSeries&lt; bool &gt;::std</referencedby>
+        <referencedby refid="d7/d56/structBrush_1_1Data_1_1TimeSeries_1a183d78293a991b4c67912ab1bda4d0b7" compoundref="d9/df7/timeseries_8h" startline="136" endline="136">Brush::Data::TimeSeries&lt; bool &gt;::sum</referencedby>
       </memberdef>
       <memberdef kind="function" id="d7/d56/structBrush_1_1Data_1_1TimeSeries_1af4e6e61484151b99dc4a833f48fe73ac" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
         <templateparamlist>
           <param>
-            <type><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">typename</ref> <ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">C</ref></type>
+            <type>typename C</type>
           </param>
         </templateparamlist>
-        <type><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">auto</ref></type>
+        <type>auto</type>
         <definition>auto Brush::Data::TimeSeries&lt; T &gt;::cast</definition>
         <argsstring>() const</argsstring>
         <name>cast</name>
@@ -454,10 +444,10 @@
         <inbodydescription>
         </inbodydescription>
         <location file="/home/runner/work/brush/brush/src/data/timeseries.h" line="103" column="17" bodyfile="/home/runner/work/brush/brush/src/data/timeseries.h" bodystart="103" bodyend="107"/>
-        <references refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" compoundref="d4/d93/bind__engines_8h" startline="35" endline="104">bind_engine</references>
+        <referencedby refid="d7/d56/structBrush_1_1Data_1_1TimeSeries_1af4e6e61484151b99dc4a833f48fe73ac" compoundref="d9/df7/timeseries_8h" startline="103" endline="107">Brush::Data::TimeSeries&lt; bool &gt;::cast</referencedby>
       </memberdef>
       <memberdef kind="function" id="d7/d56/structBrush_1_1Data_1_1TimeSeries_1a0713bbad886421937e47f11c79c1c03b" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
-        <type><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">auto</ref></type>
+        <type>auto</type>
         <definition>auto Brush::Data::TimeSeries&lt; T &gt;::abs</definition>
         <argsstring>() const</argsstring>
         <name>abs</name>
@@ -469,11 +459,9 @@
         <inbodydescription>
         </inbodydescription>
         <location file="/home/runner/work/brush/brush/src/data/timeseries.h" line="110" column="17" bodyfile="/home/runner/work/brush/brush/src/data/timeseries.h" bodystart="110" bodyend="110"/>
-        <references refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" compoundref="d4/d93/bind__engines_8h" startline="35" endline="104">bind_engine</references>
-        <references refid="d7/d56/structBrush_1_1Data_1_1TimeSeries_1a8fb9d6274f215e9bf1caa4317d3f70ad" compoundref="d9/df7/timeseries_8h" startline="78" endline="87">Brush::Data::TimeSeries&lt; T &gt;::transform</references>
       </memberdef>
       <memberdef kind="function" id="d7/d56/structBrush_1_1Data_1_1TimeSeries_1af2794548897e6940a8c4636c41960393" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
-        <type><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">auto</ref></type>
+        <type>auto</type>
         <definition>auto Brush::Data::TimeSeries&lt; T &gt;::pow</definition>
         <argsstring>() const</argsstring>
         <name>pow</name>
@@ -485,11 +473,9 @@
         <inbodydescription>
         </inbodydescription>
         <location file="/home/runner/work/brush/brush/src/data/timeseries.h" line="111" column="17" bodyfile="/home/runner/work/brush/brush/src/data/timeseries.h" bodystart="111" bodyend="111"/>
-        <references refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" compoundref="d4/d93/bind__engines_8h" startline="35" endline="104">bind_engine</references>
-        <references refid="d7/d56/structBrush_1_1Data_1_1TimeSeries_1a8fb9d6274f215e9bf1caa4317d3f70ad" compoundref="d9/df7/timeseries_8h" startline="78" endline="87">Brush::Data::TimeSeries&lt; T &gt;::transform</references>
       </memberdef>
       <memberdef kind="function" id="d7/d56/structBrush_1_1Data_1_1TimeSeries_1a89035e010d3469fc61ac8e4bdc855de2" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
-        <type><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">auto</ref></type>
+        <type>auto</type>
         <definition>auto Brush::Data::TimeSeries&lt; T &gt;::log</definition>
         <argsstring>() const</argsstring>
         <name>log</name>
@@ -501,12 +487,9 @@
         <inbodydescription>
         </inbodydescription>
         <location file="/home/runner/work/brush/brush/src/data/timeseries.h" line="112" column="17" bodyfile="/home/runner/work/brush/brush/src/data/timeseries.h" bodystart="112" bodyend="112"/>
-        <references refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" compoundref="d4/d93/bind__engines_8h" startline="35" endline="104">bind_engine</references>
-        <references refid="d7/d56/structBrush_1_1Data_1_1TimeSeries_1a8fb9d6274f215e9bf1caa4317d3f70ad" compoundref="d9/df7/timeseries_8h" startline="78" endline="87">Brush::Data::TimeSeries&lt; T &gt;::transform</references>
-        <referencedby refid="d7/d56/structBrush_1_1Data_1_1TimeSeries_1aa298e6d97eb7bbc8a4eadcda159505ba" compoundref="d9/df7/timeseries_8h" startline="113" endline="113">Brush::Data::TimeSeries&lt; T &gt;::logabs</referencedby>
       </memberdef>
       <memberdef kind="function" id="d7/d56/structBrush_1_1Data_1_1TimeSeries_1aa298e6d97eb7bbc8a4eadcda159505ba" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
-        <type><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">auto</ref></type>
+        <type>auto</type>
         <definition>auto Brush::Data::TimeSeries&lt; T &gt;::logabs</definition>
         <argsstring>() const</argsstring>
         <name>logabs</name>
@@ -518,12 +501,9 @@
         <inbodydescription>
         </inbodydescription>
         <location file="/home/runner/work/brush/brush/src/data/timeseries.h" line="113" column="17" bodyfile="/home/runner/work/brush/brush/src/data/timeseries.h" bodystart="113" bodyend="113"/>
-        <references refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" compoundref="d4/d93/bind__engines_8h" startline="35" endline="104">bind_engine</references>
-        <references refid="d7/d56/structBrush_1_1Data_1_1TimeSeries_1a89035e010d3469fc61ac8e4bdc855de2" compoundref="d9/df7/timeseries_8h" startline="112" endline="112">Brush::Data::TimeSeries&lt; T &gt;::log</references>
-        <references refid="d7/d56/structBrush_1_1Data_1_1TimeSeries_1a8fb9d6274f215e9bf1caa4317d3f70ad" compoundref="d9/df7/timeseries_8h" startline="78" endline="87">Brush::Data::TimeSeries&lt; T &gt;::transform</references>
       </memberdef>
       <memberdef kind="function" id="d7/d56/structBrush_1_1Data_1_1TimeSeries_1af8bb93e61e138809de23791eb0127673" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
-        <type><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">auto</ref></type>
+        <type>auto</type>
         <definition>auto Brush::Data::TimeSeries&lt; T &gt;::log1p</definition>
         <argsstring>() const</argsstring>
         <name>log1p</name>
@@ -535,11 +515,9 @@
         <inbodydescription>
         </inbodydescription>
         <location file="/home/runner/work/brush/brush/src/data/timeseries.h" line="114" column="17" bodyfile="/home/runner/work/brush/brush/src/data/timeseries.h" bodystart="114" bodyend="114"/>
-        <references refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" compoundref="d4/d93/bind__engines_8h" startline="35" endline="104">bind_engine</references>
-        <references refid="d7/d56/structBrush_1_1Data_1_1TimeSeries_1a8fb9d6274f215e9bf1caa4317d3f70ad" compoundref="d9/df7/timeseries_8h" startline="78" endline="87">Brush::Data::TimeSeries&lt; T &gt;::transform</references>
       </memberdef>
       <memberdef kind="function" id="d7/d56/structBrush_1_1Data_1_1TimeSeries_1a73824921377877bd26996a4e273dd5f0" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
-        <type><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">auto</ref></type>
+        <type>auto</type>
         <definition>auto Brush::Data::TimeSeries&lt; T &gt;::ceil</definition>
         <argsstring>() const</argsstring>
         <name>ceil</name>
@@ -551,11 +529,9 @@
         <inbodydescription>
         </inbodydescription>
         <location file="/home/runner/work/brush/brush/src/data/timeseries.h" line="115" column="17" bodyfile="/home/runner/work/brush/brush/src/data/timeseries.h" bodystart="115" bodyend="115"/>
-        <references refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" compoundref="d4/d93/bind__engines_8h" startline="35" endline="104">bind_engine</references>
-        <references refid="d7/d56/structBrush_1_1Data_1_1TimeSeries_1a8fb9d6274f215e9bf1caa4317d3f70ad" compoundref="d9/df7/timeseries_8h" startline="78" endline="87">Brush::Data::TimeSeries&lt; T &gt;::transform</references>
       </memberdef>
       <memberdef kind="function" id="d7/d56/structBrush_1_1Data_1_1TimeSeries_1a4a27161c86227c96dc688c2310683d7e" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
-        <type><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">auto</ref></type>
+        <type>auto</type>
         <definition>auto Brush::Data::TimeSeries&lt; T &gt;::floor</definition>
         <argsstring>() const</argsstring>
         <name>floor</name>
@@ -567,11 +543,9 @@
         <inbodydescription>
         </inbodydescription>
         <location file="/home/runner/work/brush/brush/src/data/timeseries.h" line="116" column="17" bodyfile="/home/runner/work/brush/brush/src/data/timeseries.h" bodystart="116" bodyend="116"/>
-        <references refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" compoundref="d4/d93/bind__engines_8h" startline="35" endline="104">bind_engine</references>
-        <references refid="d7/d56/structBrush_1_1Data_1_1TimeSeries_1a8fb9d6274f215e9bf1caa4317d3f70ad" compoundref="d9/df7/timeseries_8h" startline="78" endline="87">Brush::Data::TimeSeries&lt; T &gt;::transform</references>
       </memberdef>
       <memberdef kind="function" id="d7/d56/structBrush_1_1Data_1_1TimeSeries_1a3a23a1d6a3ea3fd9b265a31ff0d9515f" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
-        <type><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">auto</ref></type>
+        <type>auto</type>
         <definition>auto Brush::Data::TimeSeries&lt; T &gt;::exp</definition>
         <argsstring>() const</argsstring>
         <name>exp</name>
@@ -583,11 +557,9 @@
         <inbodydescription>
         </inbodydescription>
         <location file="/home/runner/work/brush/brush/src/data/timeseries.h" line="117" column="17" bodyfile="/home/runner/work/brush/brush/src/data/timeseries.h" bodystart="117" bodyend="117"/>
-        <references refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" compoundref="d4/d93/bind__engines_8h" startline="35" endline="104">bind_engine</references>
-        <references refid="d7/d56/structBrush_1_1Data_1_1TimeSeries_1a8fb9d6274f215e9bf1caa4317d3f70ad" compoundref="d9/df7/timeseries_8h" startline="78" endline="87">Brush::Data::TimeSeries&lt; T &gt;::transform</references>
       </memberdef>
       <memberdef kind="function" id="d7/d56/structBrush_1_1Data_1_1TimeSeries_1a6dc68fdee98044bbf60c04fbf8a5b6e3" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
-        <type><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">auto</ref></type>
+        <type>auto</type>
         <definition>auto Brush::Data::TimeSeries&lt; T &gt;::sin</definition>
         <argsstring>() const</argsstring>
         <name>sin</name>
@@ -599,11 +571,9 @@
         <inbodydescription>
         </inbodydescription>
         <location file="/home/runner/work/brush/brush/src/data/timeseries.h" line="118" column="17" bodyfile="/home/runner/work/brush/brush/src/data/timeseries.h" bodystart="118" bodyend="118"/>
-        <references refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" compoundref="d4/d93/bind__engines_8h" startline="35" endline="104">bind_engine</references>
-        <references refid="d7/d56/structBrush_1_1Data_1_1TimeSeries_1a8fb9d6274f215e9bf1caa4317d3f70ad" compoundref="d9/df7/timeseries_8h" startline="78" endline="87">Brush::Data::TimeSeries&lt; T &gt;::transform</references>
       </memberdef>
       <memberdef kind="function" id="d7/d56/structBrush_1_1Data_1_1TimeSeries_1aadc2ceb5da1f1d988c689e40b4b35cc6" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
-        <type><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">auto</ref></type>
+        <type>auto</type>
         <definition>auto Brush::Data::TimeSeries&lt; T &gt;::cos</definition>
         <argsstring>() const</argsstring>
         <name>cos</name>
@@ -615,11 +585,9 @@
         <inbodydescription>
         </inbodydescription>
         <location file="/home/runner/work/brush/brush/src/data/timeseries.h" line="119" column="17" bodyfile="/home/runner/work/brush/brush/src/data/timeseries.h" bodystart="119" bodyend="119"/>
-        <references refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" compoundref="d4/d93/bind__engines_8h" startline="35" endline="104">bind_engine</references>
-        <references refid="d7/d56/structBrush_1_1Data_1_1TimeSeries_1a8fb9d6274f215e9bf1caa4317d3f70ad" compoundref="d9/df7/timeseries_8h" startline="78" endline="87">Brush::Data::TimeSeries&lt; T &gt;::transform</references>
       </memberdef>
       <memberdef kind="function" id="d7/d56/structBrush_1_1Data_1_1TimeSeries_1ab053b2e275d8dbea327e98829eebbeb1" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
-        <type><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">auto</ref></type>
+        <type>auto</type>
         <definition>auto Brush::Data::TimeSeries&lt; T &gt;::tan</definition>
         <argsstring>() const</argsstring>
         <name>tan</name>
@@ -631,11 +599,9 @@
         <inbodydescription>
         </inbodydescription>
         <location file="/home/runner/work/brush/brush/src/data/timeseries.h" line="120" column="17" bodyfile="/home/runner/work/brush/brush/src/data/timeseries.h" bodystart="120" bodyend="120"/>
-        <references refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" compoundref="d4/d93/bind__engines_8h" startline="35" endline="104">bind_engine</references>
-        <references refid="d7/d56/structBrush_1_1Data_1_1TimeSeries_1a8fb9d6274f215e9bf1caa4317d3f70ad" compoundref="d9/df7/timeseries_8h" startline="78" endline="87">Brush::Data::TimeSeries&lt; T &gt;::transform</references>
       </memberdef>
       <memberdef kind="function" id="d7/d56/structBrush_1_1Data_1_1TimeSeries_1a94655fb93885f74e588075d592901981" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
-        <type><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">auto</ref></type>
+        <type>auto</type>
         <definition>auto Brush::Data::TimeSeries&lt; T &gt;::asin</definition>
         <argsstring>() const</argsstring>
         <name>asin</name>
@@ -647,11 +613,9 @@
         <inbodydescription>
         </inbodydescription>
         <location file="/home/runner/work/brush/brush/src/data/timeseries.h" line="121" column="17" bodyfile="/home/runner/work/brush/brush/src/data/timeseries.h" bodystart="121" bodyend="121"/>
-        <references refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" compoundref="d4/d93/bind__engines_8h" startline="35" endline="104">bind_engine</references>
-        <references refid="d7/d56/structBrush_1_1Data_1_1TimeSeries_1a8fb9d6274f215e9bf1caa4317d3f70ad" compoundref="d9/df7/timeseries_8h" startline="78" endline="87">Brush::Data::TimeSeries&lt; T &gt;::transform</references>
       </memberdef>
       <memberdef kind="function" id="d7/d56/structBrush_1_1Data_1_1TimeSeries_1aed1941ba67ba92fd9c3bb1fe2d136125" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
-        <type><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">auto</ref></type>
+        <type>auto</type>
         <definition>auto Brush::Data::TimeSeries&lt; T &gt;::acos</definition>
         <argsstring>() const</argsstring>
         <name>acos</name>
@@ -663,11 +627,9 @@
         <inbodydescription>
         </inbodydescription>
         <location file="/home/runner/work/brush/brush/src/data/timeseries.h" line="122" column="17" bodyfile="/home/runner/work/brush/brush/src/data/timeseries.h" bodystart="122" bodyend="122"/>
-        <references refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" compoundref="d4/d93/bind__engines_8h" startline="35" endline="104">bind_engine</references>
-        <references refid="d7/d56/structBrush_1_1Data_1_1TimeSeries_1a8fb9d6274f215e9bf1caa4317d3f70ad" compoundref="d9/df7/timeseries_8h" startline="78" endline="87">Brush::Data::TimeSeries&lt; T &gt;::transform</references>
       </memberdef>
       <memberdef kind="function" id="d7/d56/structBrush_1_1Data_1_1TimeSeries_1aee09528bdc649c092bdc0f93313965d8" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
-        <type><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">auto</ref></type>
+        <type>auto</type>
         <definition>auto Brush::Data::TimeSeries&lt; T &gt;::atan</definition>
         <argsstring>() const</argsstring>
         <name>atan</name>
@@ -679,11 +641,9 @@
         <inbodydescription>
         </inbodydescription>
         <location file="/home/runner/work/brush/brush/src/data/timeseries.h" line="123" column="17" bodyfile="/home/runner/work/brush/brush/src/data/timeseries.h" bodystart="123" bodyend="123"/>
-        <references refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" compoundref="d4/d93/bind__engines_8h" startline="35" endline="104">bind_engine</references>
-        <references refid="d7/d56/structBrush_1_1Data_1_1TimeSeries_1a8fb9d6274f215e9bf1caa4317d3f70ad" compoundref="d9/df7/timeseries_8h" startline="78" endline="87">Brush::Data::TimeSeries&lt; T &gt;::transform</references>
       </memberdef>
       <memberdef kind="function" id="d7/d56/structBrush_1_1Data_1_1TimeSeries_1ab8ce74e09ff5ee0f56b667abafb2c21d" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
-        <type><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">auto</ref></type>
+        <type>auto</type>
         <definition>auto Brush::Data::TimeSeries&lt; T &gt;::sinh</definition>
         <argsstring>() const</argsstring>
         <name>sinh</name>
@@ -695,11 +655,9 @@
         <inbodydescription>
         </inbodydescription>
         <location file="/home/runner/work/brush/brush/src/data/timeseries.h" line="124" column="17" bodyfile="/home/runner/work/brush/brush/src/data/timeseries.h" bodystart="124" bodyend="124"/>
-        <references refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" compoundref="d4/d93/bind__engines_8h" startline="35" endline="104">bind_engine</references>
-        <references refid="d7/d56/structBrush_1_1Data_1_1TimeSeries_1a8fb9d6274f215e9bf1caa4317d3f70ad" compoundref="d9/df7/timeseries_8h" startline="78" endline="87">Brush::Data::TimeSeries&lt; T &gt;::transform</references>
       </memberdef>
       <memberdef kind="function" id="d7/d56/structBrush_1_1Data_1_1TimeSeries_1af2974aceaf56b77cd3adfc10aa4831ed" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
-        <type><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">auto</ref></type>
+        <type>auto</type>
         <definition>auto Brush::Data::TimeSeries&lt; T &gt;::cosh</definition>
         <argsstring>() const</argsstring>
         <name>cosh</name>
@@ -711,11 +669,9 @@
         <inbodydescription>
         </inbodydescription>
         <location file="/home/runner/work/brush/brush/src/data/timeseries.h" line="125" column="17" bodyfile="/home/runner/work/brush/brush/src/data/timeseries.h" bodystart="125" bodyend="125"/>
-        <references refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" compoundref="d4/d93/bind__engines_8h" startline="35" endline="104">bind_engine</references>
-        <references refid="d7/d56/structBrush_1_1Data_1_1TimeSeries_1a8fb9d6274f215e9bf1caa4317d3f70ad" compoundref="d9/df7/timeseries_8h" startline="78" endline="87">Brush::Data::TimeSeries&lt; T &gt;::transform</references>
       </memberdef>
       <memberdef kind="function" id="d7/d56/structBrush_1_1Data_1_1TimeSeries_1ad7dd5ea00ff0320bbbb812faef090d9e" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
-        <type><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">auto</ref></type>
+        <type>auto</type>
         <definition>auto Brush::Data::TimeSeries&lt; T &gt;::tanh</definition>
         <argsstring>() const</argsstring>
         <name>tanh</name>
@@ -727,11 +683,9 @@
         <inbodydescription>
         </inbodydescription>
         <location file="/home/runner/work/brush/brush/src/data/timeseries.h" line="126" column="17" bodyfile="/home/runner/work/brush/brush/src/data/timeseries.h" bodystart="126" bodyend="126"/>
-        <references refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" compoundref="d4/d93/bind__engines_8h" startline="35" endline="104">bind_engine</references>
-        <references refid="d7/d56/structBrush_1_1Data_1_1TimeSeries_1a8fb9d6274f215e9bf1caa4317d3f70ad" compoundref="d9/df7/timeseries_8h" startline="78" endline="87">Brush::Data::TimeSeries&lt; T &gt;::transform</references>
       </memberdef>
       <memberdef kind="function" id="d7/d56/structBrush_1_1Data_1_1TimeSeries_1a082aa7f74f2d671f76cca96be985216f" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
-        <type><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">auto</ref></type>
+        <type>auto</type>
         <definition>auto Brush::Data::TimeSeries&lt; T &gt;::sqrt</definition>
         <argsstring>() const</argsstring>
         <name>sqrt</name>
@@ -743,12 +697,9 @@
         <inbodydescription>
         </inbodydescription>
         <location file="/home/runner/work/brush/brush/src/data/timeseries.h" line="127" column="17" bodyfile="/home/runner/work/brush/brush/src/data/timeseries.h" bodystart="127" bodyend="127"/>
-        <references refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" compoundref="d4/d93/bind__engines_8h" startline="35" endline="104">bind_engine</references>
-        <references refid="d7/d56/structBrush_1_1Data_1_1TimeSeries_1a8fb9d6274f215e9bf1caa4317d3f70ad" compoundref="d9/df7/timeseries_8h" startline="78" endline="87">Brush::Data::TimeSeries&lt; T &gt;::transform</references>
-        <referencedby refid="d7/d56/structBrush_1_1Data_1_1TimeSeries_1abdd94a996c4d1bb78dddb2ad530be5ec" compoundref="d9/df7/timeseries_8h" startline="128" endline="128">Brush::Data::TimeSeries&lt; T &gt;::sqrtabs</referencedby>
       </memberdef>
       <memberdef kind="function" id="d7/d56/structBrush_1_1Data_1_1TimeSeries_1abdd94a996c4d1bb78dddb2ad530be5ec" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
-        <type><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">auto</ref></type>
+        <type>auto</type>
         <definition>auto Brush::Data::TimeSeries&lt; T &gt;::sqrtabs</definition>
         <argsstring>() const</argsstring>
         <name>sqrtabs</name>
@@ -760,12 +711,9 @@
         <inbodydescription>
         </inbodydescription>
         <location file="/home/runner/work/brush/brush/src/data/timeseries.h" line="128" column="17" bodyfile="/home/runner/work/brush/brush/src/data/timeseries.h" bodystart="128" bodyend="128"/>
-        <references refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" compoundref="d4/d93/bind__engines_8h" startline="35" endline="104">bind_engine</references>
-        <references refid="d7/d56/structBrush_1_1Data_1_1TimeSeries_1a082aa7f74f2d671f76cca96be985216f" compoundref="d9/df7/timeseries_8h" startline="127" endline="127">Brush::Data::TimeSeries&lt; T &gt;::sqrt</references>
-        <references refid="d7/d56/structBrush_1_1Data_1_1TimeSeries_1a8fb9d6274f215e9bf1caa4317d3f70ad" compoundref="d9/df7/timeseries_8h" startline="78" endline="87">Brush::Data::TimeSeries&lt; T &gt;::transform</references>
       </memberdef>
       <memberdef kind="function" id="d7/d56/structBrush_1_1Data_1_1TimeSeries_1a1fbe66a7a89b8867dceb48b8073224d5" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
-        <type><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">auto</ref></type>
+        <type>auto</type>
         <definition>auto Brush::Data::TimeSeries&lt; T &gt;::square</definition>
         <argsstring>() const</argsstring>
         <name>square</name>
@@ -777,11 +725,9 @@
         <inbodydescription>
         </inbodydescription>
         <location file="/home/runner/work/brush/brush/src/data/timeseries.h" line="129" column="17" bodyfile="/home/runner/work/brush/brush/src/data/timeseries.h" bodystart="129" bodyend="129"/>
-        <references refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" compoundref="d4/d93/bind__engines_8h" startline="35" endline="104">bind_engine</references>
-        <references refid="d7/d56/structBrush_1_1Data_1_1TimeSeries_1a8fb9d6274f215e9bf1caa4317d3f70ad" compoundref="d9/df7/timeseries_8h" startline="78" endline="87">Brush::Data::TimeSeries&lt; T &gt;::transform</references>
       </memberdef>
       <memberdef kind="function" id="d7/d56/structBrush_1_1Data_1_1TimeSeries_1ae3c8babca545b4cb131aa6ec8f039ac3" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
-        <type><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">auto</ref></type>
+        <type>auto</type>
         <definition>auto Brush::Data::TimeSeries&lt; T &gt;::median</definition>
         <argsstring>() const</argsstring>
         <name>median</name>
@@ -793,12 +739,10 @@
         <inbodydescription>
         </inbodydescription>
         <location file="/home/runner/work/brush/brush/src/data/timeseries.h" line="131" column="17" bodyfile="/home/runner/work/brush/brush/src/data/timeseries.h" bodystart="131" bodyend="131"/>
-        <references refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" compoundref="d4/d93/bind__engines_8h" startline="35" endline="104">bind_engine</references>
-        <references refid="d6/d2e/namespaceBrush_1_1Util_1a4d848757d9123e0562a7d87b44f1bdc6" compoundref="d5/d60/utils_8h" startline="202" endline="219">Brush::Util::median</references>
-        <references refid="d7/d56/structBrush_1_1Data_1_1TimeSeries_1a7ca5032a5eed35d0a1c97dffddd11321" compoundref="d9/df7/timeseries_8h" startline="90" endline="100">Brush::Data::TimeSeries&lt; T &gt;::reduce</references>
+        <referencedby refid="d2/d84/structBrush_1_1Function_3_01NodeType_1_1Median_01_4_1aedec89939e9612ace73a1de31e4d8b0d" compoundref="d8/d5c/functions_8h" startline="158" endline="158">Brush::Function&lt; NodeType::Median &gt;::operator()</referencedby>
       </memberdef>
       <memberdef kind="function" id="d7/d56/structBrush_1_1Data_1_1TimeSeries_1abc0f2b34bc8b341ad4651b268646dc60" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
-        <type><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">auto</ref></type>
+        <type>auto</type>
         <definition>auto Brush::Data::TimeSeries&lt; T &gt;::mean</definition>
         <argsstring>() const</argsstring>
         <name>mean</name>
@@ -810,11 +754,10 @@
         <inbodydescription>
         </inbodydescription>
         <location file="/home/runner/work/brush/brush/src/data/timeseries.h" line="132" column="17" bodyfile="/home/runner/work/brush/brush/src/data/timeseries.h" bodystart="132" bodyend="132"/>
-        <references refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" compoundref="d4/d93/bind__engines_8h" startline="35" endline="104">bind_engine</references>
-        <references refid="d7/d56/structBrush_1_1Data_1_1TimeSeries_1a7ca5032a5eed35d0a1c97dffddd11321" compoundref="d9/df7/timeseries_8h" startline="90" endline="100">Brush::Data::TimeSeries&lt; T &gt;::reduce</references>
+        <referencedby refid="d1/d36/structBrush_1_1Function_3_01NodeType_1_1Mean_01_4_1ad9ecb768892d4d4da6cf7d989b6d90af" compoundref="d8/d5c/functions_8h" startline="121" endline="121">Brush::Function&lt; NodeType::Mean &gt;::operator()</referencedby>
       </memberdef>
       <memberdef kind="function" id="d7/d56/structBrush_1_1Data_1_1TimeSeries_1a7bc529b50a25a8d76ad9c986292a99fe" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
-        <type><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">auto</ref></type>
+        <type>auto</type>
         <definition>auto Brush::Data::TimeSeries&lt; T &gt;::std</definition>
         <argsstring>() const</argsstring>
         <name>std</name>
@@ -826,11 +769,9 @@
         <inbodydescription>
         </inbodydescription>
         <location file="/home/runner/work/brush/brush/src/data/timeseries.h" line="133" column="17" bodyfile="/home/runner/work/brush/brush/src/data/timeseries.h" bodystart="133" bodyend="133"/>
-        <references refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" compoundref="d4/d93/bind__engines_8h" startline="35" endline="104">bind_engine</references>
-        <references refid="d7/d56/structBrush_1_1Data_1_1TimeSeries_1a7ca5032a5eed35d0a1c97dffddd11321" compoundref="d9/df7/timeseries_8h" startline="90" endline="100">Brush::Data::TimeSeries&lt; T &gt;::reduce</references>
       </memberdef>
       <memberdef kind="function" id="d7/d56/structBrush_1_1Data_1_1TimeSeries_1a13d976221f4765b0dc6cde188b868c74" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
-        <type><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">auto</ref></type>
+        <type>auto</type>
         <definition>auto Brush::Data::TimeSeries&lt; T &gt;::max</definition>
         <argsstring>() const</argsstring>
         <name>max</name>
@@ -842,11 +783,10 @@
         <inbodydescription>
         </inbodydescription>
         <location file="/home/runner/work/brush/brush/src/data/timeseries.h" line="134" column="17" bodyfile="/home/runner/work/brush/brush/src/data/timeseries.h" bodystart="134" bodyend="134"/>
-        <references refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" compoundref="d4/d93/bind__engines_8h" startline="35" endline="104">bind_engine</references>
-        <references refid="d7/d56/structBrush_1_1Data_1_1TimeSeries_1a7ca5032a5eed35d0a1c97dffddd11321" compoundref="d9/df7/timeseries_8h" startline="90" endline="100">Brush::Data::TimeSeries&lt; T &gt;::reduce</references>
+        <referencedby refid="d0/d4d/structBrush_1_1Function_3_01NodeType_1_1Max_01_4_1aadc20209f0121f60a5cd356a58ec0bb2" compoundref="d8/d5c/functions_8h" startline="109" endline="109">Brush::Function&lt; NodeType::Max &gt;::operator()</referencedby>
       </memberdef>
       <memberdef kind="function" id="d7/d56/structBrush_1_1Data_1_1TimeSeries_1aedde07bb76cee5e2710cb6b94ddf4ab0" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
-        <type><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">auto</ref></type>
+        <type>auto</type>
         <definition>auto Brush::Data::TimeSeries&lt; T &gt;::min</definition>
         <argsstring>() const</argsstring>
         <name>min</name>
@@ -858,11 +798,10 @@
         <inbodydescription>
         </inbodydescription>
         <location file="/home/runner/work/brush/brush/src/data/timeseries.h" line="135" column="17" bodyfile="/home/runner/work/brush/brush/src/data/timeseries.h" bodystart="135" bodyend="135"/>
-        <references refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" compoundref="d4/d93/bind__engines_8h" startline="35" endline="104">bind_engine</references>
-        <references refid="d7/d56/structBrush_1_1Data_1_1TimeSeries_1a7ca5032a5eed35d0a1c97dffddd11321" compoundref="d9/df7/timeseries_8h" startline="90" endline="100">Brush::Data::TimeSeries&lt; T &gt;::reduce</references>
+        <referencedby refid="d8/d4a/structBrush_1_1Function_3_01NodeType_1_1Min_01_4_1a237f0e13d1d82e6c9efa5a0a1e71da29" compoundref="d8/d5c/functions_8h" startline="95" endline="95">Brush::Function&lt; NodeType::Min &gt;::operator()</referencedby>
       </memberdef>
       <memberdef kind="function" id="d7/d56/structBrush_1_1Data_1_1TimeSeries_1a183d78293a991b4c67912ab1bda4d0b7" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
-        <type><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">auto</ref></type>
+        <type>auto</type>
         <definition>auto Brush::Data::TimeSeries&lt; T &gt;::sum</definition>
         <argsstring>() const</argsstring>
         <name>sum</name>
@@ -874,10 +813,10 @@
         <inbodydescription>
         </inbodydescription>
         <location file="/home/runner/work/brush/brush/src/data/timeseries.h" line="136" column="17" bodyfile="/home/runner/work/brush/brush/src/data/timeseries.h" bodystart="136" bodyend="136"/>
-        <references refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" compoundref="d4/d93/bind__engines_8h" startline="35" endline="104">bind_engine</references>
+        <referencedby refid="d8/d9c/structBrush_1_1Function_3_01NodeType_1_1Sum_01_4_1a95f5f6afa70ac1f0eb2bad0c86df8099" compoundref="d8/d5c/functions_8h" startline="183" endline="183">Brush::Function&lt; NodeType::Sum &gt;::operator()</referencedby>
       </memberdef>
       <memberdef kind="function" id="d7/d56/structBrush_1_1Data_1_1TimeSeries_1a50fb4bd079083eddab309e327754b4fa" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
-        <type><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">auto</ref></type>
+        <type>auto</type>
         <definition>auto Brush::Data::TimeSeries&lt; T &gt;::count</definition>
         <argsstring>() const</argsstring>
         <name>count</name>
@@ -889,10 +828,10 @@
         <inbodydescription>
         </inbodydescription>
         <location file="/home/runner/work/brush/brush/src/data/timeseries.h" line="137" column="17" bodyfile="/home/runner/work/brush/brush/src/data/timeseries.h" bodystart="137" bodyend="137"/>
-        <references refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" compoundref="d4/d93/bind__engines_8h" startline="35" endline="104">bind_engine</references>
+        <referencedby refid="d5/d32/structBrush_1_1Function_3_01NodeType_1_1Count_01_4_1ac3e0dc3887d06d753b86f23acdfbf487" compoundref="d8/d5c/functions_8h" startline="214" endline="214">Brush::Function&lt; NodeType::Count &gt;::operator()</referencedby>
       </memberdef>
       <memberdef kind="function" id="d7/d56/structBrush_1_1Data_1_1TimeSeries_1a232a1f40343f5bf7937ee40580771564" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
-        <type><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">auto</ref></type>
+        <type>auto</type>
         <definition>auto Brush::Data::TimeSeries&lt; T &gt;::prod</definition>
         <argsstring>() const</argsstring>
         <name>prod</name>
@@ -904,15 +843,15 @@
         <inbodydescription>
         </inbodydescription>
         <location file="/home/runner/work/brush/brush/src/data/timeseries.h" line="138" column="17" bodyfile="/home/runner/work/brush/brush/src/data/timeseries.h" bodystart="138" bodyend="138"/>
-        <references refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" compoundref="d4/d93/bind__engines_8h" startline="35" endline="104">bind_engine</references>
+        <referencedby refid="d7/d7e/structBrush_1_1Function_3_01NodeType_1_1Prod_01_4_1a2bc0d24a48f18149c038482a73cda9b1" compoundref="d8/d5c/functions_8h" startline="168" endline="168">Brush::Function&lt; NodeType::Prod &gt;::operator()</referencedby>
       </memberdef>
       <memberdef kind="function" id="d7/d56/structBrush_1_1Data_1_1TimeSeries_1a3065c6c314ba16432bfbd8acdeb5fe88" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
         <templateparamlist>
           <param>
-            <type><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">typename</ref> T2</type>
+            <type>typename T2</type>
           </param>
         </templateparamlist>
-        <type><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">auto</ref></type>
+        <type>auto</type>
         <definition>auto Brush::Data::TimeSeries&lt; T &gt;::operator*</definition>
         <argsstring>(T2 v)</argsstring>
         <name>operator*</name>
@@ -928,21 +867,20 @@
         <inbodydescription>
         </inbodydescription>
         <location file="/home/runner/work/brush/brush/src/data/timeseries.h" line="144" column="17" bodyfile="/home/runner/work/brush/brush/src/data/timeseries.h" bodystart="144" bodyend="147"/>
-        <references refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" compoundref="d4/d93/bind__engines_8h" startline="35" endline="104">bind_engine</references>
       </memberdef>
       <memberdef kind="function" id="d7/d56/structBrush_1_1Data_1_1TimeSeries_1ae672d626332ece1cf54512346e831abc" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
         <templateparamlist>
           <param>
-            <type><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">typename</ref> T2</type>
+            <type>typename T2</type>
           </param>
         </templateparamlist>
-        <type><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">auto</ref></type>
+        <type>auto</type>
         <definition>auto Brush::Data::TimeSeries&lt; T &gt;::before</definition>
         <argsstring>(const TimeSeries&lt; T2 &gt; &amp;t2) const</argsstring>
         <name>before</name>
         <qualifiedname>Brush::Data::TimeSeries::before</qualifiedname>
         <param>
-          <type><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">const</ref> <ref refid="d7/d56/structBrush_1_1Data_1_1TimeSeries" kindref="compound">TimeSeries</ref>&lt; T2 &gt; &amp;</type>
+          <type>const <ref refid="d7/d56/structBrush_1_1Data_1_1TimeSeries" kindref="compound">TimeSeries</ref>&lt; T2 &gt; &amp;</type>
           <declname>t2</declname>
         </param>
         <briefdescription>
@@ -956,16 +894,16 @@
       <memberdef kind="function" id="d7/d56/structBrush_1_1Data_1_1TimeSeries_1a78b41b9c1377d54b4c1ed04abd045640" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
         <templateparamlist>
           <param>
-            <type><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">typename</ref> T2</type>
+            <type>typename T2</type>
           </param>
         </templateparamlist>
-        <type><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">auto</ref></type>
+        <type>auto</type>
         <definition>auto Brush::Data::TimeSeries&lt; T &gt;::after</definition>
         <argsstring>(const TimeSeries&lt; T2 &gt; &amp;t2) const</argsstring>
         <name>after</name>
         <qualifiedname>Brush::Data::TimeSeries::after</qualifiedname>
         <param>
-          <type><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">const</ref> <ref refid="d7/d56/structBrush_1_1Data_1_1TimeSeries" kindref="compound">TimeSeries</ref>&lt; T2 &gt; &amp;</type>
+          <type>const <ref refid="d7/d56/structBrush_1_1Data_1_1TimeSeries" kindref="compound">TimeSeries</ref>&lt; T2 &gt; &amp;</type>
           <declname>t2</declname>
         </param>
         <briefdescription>
@@ -979,16 +917,16 @@
       <memberdef kind="function" id="d7/d56/structBrush_1_1Data_1_1TimeSeries_1a5909f9853c5891a7369f378725a99550" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
         <templateparamlist>
           <param>
-            <type><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">typename</ref> T2</type>
+            <type>typename T2</type>
           </param>
         </templateparamlist>
-        <type><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">auto</ref></type>
+        <type>auto</type>
         <definition>auto Brush::Data::TimeSeries&lt; T &gt;::during</definition>
         <argsstring>(const TimeSeries&lt; T2 &gt; &amp;t2) const</argsstring>
         <name>during</name>
         <qualifiedname>Brush::Data::TimeSeries::during</qualifiedname>
         <param>
-          <type><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">const</ref> <ref refid="d7/d56/structBrush_1_1Data_1_1TimeSeries" kindref="compound">TimeSeries</ref>&lt; T2 &gt; &amp;</type>
+          <type>const <ref refid="d7/d56/structBrush_1_1Data_1_1TimeSeries" kindref="compound">TimeSeries</ref>&lt; T2 &gt; &amp;</type>
           <declname>t2</declname>
         </param>
         <briefdescription>
@@ -1033,7 +971,12 @@
 </para>
         </inbodydescription>
         <location file="/home/runner/work/brush/brush/src/data/timeseries.h" line="168" column="17" bodyfile="/home/runner/work/brush/brush/src/data/timeseries.h" bodystart="168" bodyend="190"/>
-        <references refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" compoundref="d4/d93/bind__engines_8h" startline="35" endline="104">bind_engine</references>
+        <referencedby refid="db/d20/structfmt_1_1formatter_3_01Brush_1_1Data_1_1TimeSeriesb_01_4_1a29c877a88576c90a8569ae3d5cd67780" compoundref="d9/df7/timeseries_8h" startline="214" endline="217">fmt::formatter&lt; Brush::Data::TimeSeriesb &gt;::format</referencedby>
+        <referencedby refid="d5/dd4/structfmt_1_1formatter_3_01Brush_1_1Data_1_1TimeSeriesf_01_4_1a005f01289d7b31d245cea506fa4a81b2" compoundref="d9/df7/timeseries_8h" startline="223" endline="227">fmt::formatter&lt; Brush::Data::TimeSeriesf &gt;::format</referencedby>
+        <referencedby refid="dd/dc8/structfmt_1_1formatter_3_01Brush_1_1Data_1_1TimeSeriesi_01_4_1a1e8348a5b424ebf8b9382c0cfe830b4d" compoundref="d9/df7/timeseries_8h" startline="205" endline="208">fmt::formatter&lt; Brush::Data::TimeSeriesi &gt;::format</referencedby>
+        <referencedby refid="dc/d5c/namespaceBrush_1a5889414830fe5821779ecd3ec289a260" compoundref="d2/dee/timeseries_8cpp" startline="4" endline="6">Brush::operator&lt;&lt;</referencedby>
+        <referencedby refid="dc/d5c/namespaceBrush_1aa854a393be5276f95b956e85cffcd3a5" compoundref="d2/dee/timeseries_8cpp" startline="7" endline="9">Brush::operator&lt;&lt;</referencedby>
+        <referencedby refid="dc/d5c/namespaceBrush_1a4eba9c56cb84ac0d5d22f8dd207986fe" compoundref="d2/dee/timeseries_8cpp" startline="10" endline="12">Brush::operator&lt;&lt;</referencedby>
       </memberdef>
     </sectiondef>
     <briefdescription>
@@ -1060,20 +1003,14 @@
         <childnode refid="2" relation="usage">
           <edgelabel>time</edgelabel>
         </childnode>
-        <childnode refid="4" relation="usage">
+        <childnode refid="3" relation="usage">
           <edgelabel>value</edgelabel>
         </childnode>
       </node>
-      <node id="3">
-        <label>ArrayXi</label>
-      </node>
       <node id="2">
         <label>std::vector&lt; Eigen::ArrayXi &gt;</label>
-        <childnode refid="3" relation="usage">
-          <edgelabel>elements</edgelabel>
-        </childnode>
       </node>
-      <node id="4">
+      <node id="3">
         <label>std::vector&lt; EntryType &gt;</label>
       </node>
     </collaborationgraph>

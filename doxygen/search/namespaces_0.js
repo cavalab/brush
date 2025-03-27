@@ -7,7 +7,7 @@ var searchData=
   ['brush_3a_3apop_4',['Pop',['../dd/d56/namespaceBrush_1_1Pop.html',1,'Brush']]],
   ['brush_3a_3asel_5',['Sel',['../d9/df6/namespaceBrush_1_1Sel.html',1,'Brush']]],
   ['brush_3a_3asplit_6',['Split',['../d7/da9/namespaceBrush_1_1Split.html',1,'Brush']]],
-  ['brush_3a_3autil_7',['util',['../d7/d6b/namespaceBrush_1_1util.html',1,'Brush']]],
-  ['brush_3a_3autil_8',['Util',['../d6/d2e/namespaceBrush_1_1Util.html',1,'Brush']]],
+  ['brush_3a_3autil_7',['Util',['../d6/d2e/namespaceBrush_1_1Util.html',1,'Brush']]],
+  ['brush_3a_3autil_8',['util',['../d7/d6b/namespaceBrush_1_1util.html',1,'Brush']]],
   ['brush_3a_3avar_9',['Var',['../d9/d9f/namespaceBrush_1_1Var.html',1,'Brush']]]
 ];

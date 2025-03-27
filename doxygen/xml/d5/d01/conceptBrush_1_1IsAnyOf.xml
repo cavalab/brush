@@ -1,20 +1,20 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
-<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.10.0" xml:lang="en-US">
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.13.2" xml:lang="en-US">
   <compounddef id="d5/d01/conceptBrush_1_1IsAnyOf" kind="concept">
     <compoundname>Brush::IsAnyOf</compoundname>
     <includes refid="d9/d49/types_8h" local="no">types.h</includes>
     <templateparamlist>
       <param>
-        <type><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">typename</ref> T</type>
+        <type>typename T</type>
       </param>
       <param>
-        <type><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">typename</ref> ...</type>
+        <type>typename ...</type>
         <declname>U</declname>
         <defname>U</defname>
       </param>
     </templateparamlist>
-    <initializer><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">template</ref>&lt;<ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">typename</ref> T, <ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">typename</ref> ... <ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">U</ref>&gt;
-<ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">concept</ref> <ref refid="d5/d01/conceptBrush_1_1IsAnyOf" kindref="compound">Brush::IsAnyOf</ref> =  (<ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">std::same_as</ref>&lt;T, <ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">U</ref>&gt; || ...)    </initializer>
+    <initializer>template&lt;typename T, typename ... U&gt;
+concept <ref refid="d5/d01/conceptBrush_1_1IsAnyOf" kindref="compound">Brush::IsAnyOf</ref> =  (std::same_as&lt;T, U&gt; || ...)    </initializer>
     <briefdescription>
     </briefdescription>
     <detaileddescription>

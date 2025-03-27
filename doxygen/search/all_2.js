@@ -1,15 +1,15 @@
 var searchData=
 [
   ['base_0',['base',['../d5/d7d/structBrush_1_1Signature_3_01R_07Args_8_8_8_08_4.html#a5ba87bfe055a2d811d1e1732a8c7730b',1,'Brush::Signature&lt; R(Args...)&gt;']]],
-  ['batch_5fsize_1',['batch_size',['../d2/d36/classBrush_1_1Data_1_1Dataset.html#a6ac1f4f56991e43a782dd519c414916a',1,'Brush::Data::Dataset::batch_size'],['../de/deb/structBrush_1_1Parameters.html#a3079fe8703a9a8c57e06afd7425f48d4',1,'Brush::Parameters::batch_size']]],
-  ['before_2',['before',['../d7/d56/structBrush_1_1Data_1_1TimeSeries.html#ae672d626332ece1cf54512346e831abc',1,'Brush::Data::TimeSeries']]],
-  ['before_3',['Before',['../dc/d5c/namespaceBrush.html#a051322bb9fd1db4638b6eccd399a29c8a9060587edeb01a63e3d3edc959678d1e',1,'Brush']]],
-  ['begin_4',['begin',['../d7/d56/structBrush_1_1Data_1_1TimeSeries.html#a4be907c10ce3806f68b946914d0b3aaf',1,'Brush::Data::TimeSeries']]],
+  ['batch_5fsize_1',['batch_size',['../d2/d36/classBrush_1_1Data_1_1Dataset.html#a6ac1f4f56991e43a782dd519c414916a',1,'Brush::Data::Dataset::batch_size'],['../de/deb/structBrush_1_1Parameters.html#a3079fe8703a9a8c57e06afd7425f48d4',1,'Brush::Parameters::batch_size'],['../d7/da5/classDataset.html#a6ac1f4f56991e43a782dd519c414916a',1,'Dataset::batch_size']]],
+  ['before_2',['Before',['../dc/d5c/namespaceBrush.html#a051322bb9fd1db4638b6eccd399a29c8a9060587edeb01a63e3d3edc959678d1e',1,'Brush']]],
+  ['before_3',['before',['../d7/d56/structBrush_1_1Data_1_1TimeSeries.html#ae672d626332ece1cf54512346e831abc',1,'Brush::Data::TimeSeries::before()'],['../d0/d8e/structTimeSeries.html#ae672d626332ece1cf54512346e831abc',1,'TimeSeries::before()']]],
+  ['begin_4',['begin',['../d7/d56/structBrush_1_1Data_1_1TimeSeries.html#a4be907c10ce3806f68b946914d0b3aaf',1,'Brush::Data::TimeSeries::begin()'],['../d0/d8e/structTimeSeries.html#a4be907c10ce3806f68b946914d0b3aaf',1,'TimeSeries::begin()']]],
   ['best_5fcomplexity_5',['best_complexity',['../d0/d75/classBrush_1_1Engine.html#a3abf94acdca8101698f36c364f8e0145',1,'Brush::Engine']]],
   ['best_5find_6',['best_ind',['../d0/d75/classBrush_1_1Engine.html#a27fbc5f690c9952dc95ed5c3cce31418',1,'Brush::Engine']]],
   ['best_5fscore_7',['best_score',['../d0/d75/classBrush_1_1Engine.html#a16a22a02c2ff6d2c4fbd1b593e055a4f',1,'Brush::Engine::best_score'],['../db/d7e/structBrush_1_1Util_1_1Log__Stats.html#add898f2c47859b9c759a1cab4cda136c',1,'Brush::Util::Log_Stats::best_score']]],
   ['best_5fscore_5fv_8',['best_score_v',['../db/d7e/structBrush_1_1Util_1_1Log__Stats.html#ad14397a3403cfe63bfac32beea700c7a',1,'Brush::Util::Log_Stats']]],
-  ['best_5fthreshold_9',['best_threshold',['../de/dd1/namespaceSplit.html#a8933966c6b11cefe6449cb08ec900b09',1,'Split']]],
+  ['best_5fthreshold_9',['best_threshold',['../d7/da9/namespaceBrush_1_1Split.html#af6b5bdffd15b23bf2116c7732b3364f7',1,'Brush::Split::best_threshold()'],['../de/dd1/namespaceSplit.html#a8933966c6b11cefe6449cb08ec900b09',1,'Split::best_threshold()']]],
   ['binaryclassifier_10',['BinaryClassifier',['../dc/d5c/namespaceBrush.html#ae591329af27c88b714d0f92b86276366a3cdc33a35d0e4f3b9bae953babd8f9b4',1,'Brush']]],
   ['binaryop_11',['BinaryOp',['../de/d26/nodetype_8h.html#ae99fa5ab7f6193e3cb2056ba55cbb522',1,'nodetype.h']]],
   ['bind_5fdataset_12',['bind_dataset',['../d9/d40/bind__dataset_8cpp.html#a3a32d76d471ed16427cad15ed2364f0f',1,'bind_dataset(py::module &amp;m):&#160;bind_dataset.cpp'],['../dd/d30/module_8cpp.html#a995ca1cce898b8c2bab6ab3abd3e2997',1,'bind_dataset(py::module &amp;):&#160;bind_dataset.cpp']]],
@@ -49,11 +49,10 @@ var searchData=
   ['brush_3a_3adata_46',['Data',['../d9/d1c/namespaceBrush_1_1Data.html',1,'Brush']]],
   ['brush_3a_3adetail_47',['detail',['../d5/d8a/namespaceBrush_1_1detail.html',1,'Brush']]],
   ['brush_3a_3aeval_48',['Eval',['../d5/db3/namespaceBrush_1_1Eval.html',1,'Brush']]],
-  ['brush_3a_3aisanyof_49',['IsAnyOf',['../d5/d01/conceptBrush_1_1IsAnyOf.html',1,'Brush']]],
-  ['brush_3a_3apop_50',['Pop',['../dd/d56/namespaceBrush_1_1Pop.html',1,'Brush']]],
-  ['brush_3a_3asel_51',['Sel',['../d9/df6/namespaceBrush_1_1Sel.html',1,'Brush']]],
-  ['brush_3a_3asplit_52',['Split',['../d7/da9/namespaceBrush_1_1Split.html',1,'Brush']]],
+  ['brush_3a_3apop_49',['Pop',['../dd/d56/namespaceBrush_1_1Pop.html',1,'Brush']]],
+  ['brush_3a_3asel_50',['Sel',['../d9/df6/namespaceBrush_1_1Sel.html',1,'Brush']]],
+  ['brush_3a_3asplit_51',['Split',['../d7/da9/namespaceBrush_1_1Split.html',1,'Brush']]],
+  ['brush_3a_3autil_52',['Util',['../d6/d2e/namespaceBrush_1_1Util.html',1,'Brush']]],
   ['brush_3a_3autil_53',['util',['../d7/d6b/namespaceBrush_1_1util.html',1,'Brush']]],
-  ['brush_3a_3autil_54',['Util',['../d6/d2e/namespaceBrush_1_1Util.html',1,'Brush']]],
-  ['brush_3a_3avar_55',['Var',['../d9/d9f/namespaceBrush_1_1Var.html',1,'Brush']]]
+  ['brush_3a_3avar_54',['Var',['../d9/d9f/namespaceBrush_1_1Var.html',1,'Brush']]]
 ];

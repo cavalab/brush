@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
-<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.10.0" xml:lang="en-US">
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.13.2" xml:lang="en-US">
   <compounddef id="da/d4c/classBrush_1_1Eval_1_1Scorer" kind="class" language="C++" prot="public">
     <compoundname>Brush::Eval::Scorer</compoundname>
     <includes refid="da/d3b/scorer_8h" local="no">scorer.h</includes>
@@ -12,7 +12,7 @@
     </templateparamlist>
     <sectiondef kind="private-type">
       <memberdef kind="typedef" id="da/d4c/classBrush_1_1Eval_1_1Scorer_1a3991ec9d4af6ab8fb25fe8945b290ad4" prot="private" static="no">
-        <type><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">typename</ref> std::conditional_t&lt; <ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">P</ref>==<ref refid="dc/d5c/namespaceBrush_1ae591329af27c88b714d0f92b86276366abe2f9eac301f8c5b7acffd6b3c458faa" kindref="member">PT::Regressor</ref>, ArrayXf, std::conditional_t&lt; <ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">P</ref>==<ref refid="dc/d5c/namespaceBrush_1ae591329af27c88b714d0f92b86276366aca702b6b08355f71cf4b1a17a8e16b8b" kindref="member">PT::Representer</ref>, ArrayXXf, ArrayXf &gt; &gt;</type>
+        <type>typename std::conditional_t&lt; P==<ref refid="dc/d5c/namespaceBrush_1ae591329af27c88b714d0f92b86276366abe2f9eac301f8c5b7acffd6b3c458faa" kindref="member">PT::Regressor</ref>, ArrayXf, std::conditional_t&lt; P==<ref refid="dc/d5c/namespaceBrush_1ae591329af27c88b714d0f92b86276366aca702b6b08355f71cf4b1a17a8e16b8b" kindref="member">PT::Representer</ref>, ArrayXXf, ArrayXf &gt; &gt;</type>
         <definition>using Brush::Eval::Scorer&lt; P &gt;::RetType = 
         typename std::conditional_t&lt;P == PT::Regressor, ArrayXf,
                     std::conditional_t&lt;P == PT::Representer, ArrayXXf, ArrayXf
@@ -29,7 +29,7 @@
         <location file="/home/runner/work/brush/brush/src/eval/scorer.h" line="20" column="1" bodyfile="/home/runner/work/brush/brush/src/eval/scorer.h" bodystart="20" bodyend="-1"/>
       </memberdef>
       <memberdef kind="typedef" id="da/d4c/classBrush_1_1Eval_1_1Scorer_1af3946b7d7b31126563379e68591374ce" prot="private" static="no">
-        <type><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">float</ref>(*</type>
+        <type>float(*</type>
         <definition>typedef float(* Brush::Eval::Scorer&lt; P &gt;::funcPointer) (const VectorXf &amp;, const VectorXf &amp;, VectorXf &amp;, const vector&lt; float &gt; &amp;)</definition>
         <argsstring>)(const VectorXf &amp;, const VectorXf &amp;, VectorXf &amp;, const vector&lt; float &gt; &amp;)</argsstring>
         <name>funcPointer</name>
@@ -45,7 +45,7 @@
     </sectiondef>
     <sectiondef kind="public-attrib">
       <memberdef kind="variable" id="da/d4c/classBrush_1_1Eval_1_1Scorer_1ae0f2e1477d465c8a5f4db4e0c8554865" prot="public" static="no" mutable="no">
-        <type>std::map&lt; string, <ref refid="da/d4c/classBrush_1_1Eval_1_1Scorer_1af3946b7d7b31126563379e68591374ce" kindref="member">funcPointer</ref> &gt;</type>
+        <type>std::map&lt; <ref refid="d5/d92/classstring" kindref="compound">string</ref>, <ref refid="da/d4c/classBrush_1_1Eval_1_1Scorer_1af3946b7d7b31126563379e68591374ce" kindref="member">funcPointer</ref> &gt;</type>
         <definition>std::map&lt;string, funcPointer&gt; Brush::Eval::Scorer&lt; P &gt;::score_hash</definition>
         <argsstring></argsstring>
         <name>score_hash</name>
@@ -61,7 +61,7 @@
         <referencedby refid="da/d4c/classBrush_1_1Eval_1_1Scorer_1ad88baa386d47e6464c130f0da3858325" compoundref="da/d3b/scorer_8h" startline="35" endline="39">Brush::Eval::Scorer&lt; P &gt;::Scorer</referencedby>
       </memberdef>
       <memberdef kind="variable" id="da/d4c/classBrush_1_1Eval_1_1Scorer_1a9c85e27fd1be5f7bab4431332c30bae6" prot="public" static="no" mutable="no">
-        <type>string</type>
+        <type><ref refid="d5/d92/classstring" kindref="compound">string</ref></type>
         <definition>string Brush::Eval::Scorer&lt; P &gt;::scorer</definition>
         <argsstring></argsstring>
         <name>scorer</name>
@@ -73,7 +73,7 @@
         <inbodydescription>
         </inbodydescription>
         <location file="/home/runner/work/brush/brush/src/eval/scorer.h" line="32" column="12" bodyfile="/home/runner/work/brush/brush/src/eval/scorer.h" bodystart="32" bodyend="-1"/>
-        <referencedby refid="da/d4c/classBrush_1_1Eval_1_1Scorer_1a074ffe387edb4090061c5aa0402ebb1d" compoundref="da/d3b/scorer_8h" startline="42" endline="42">Brush::Eval::Scorer&lt; P &gt;::get_scorer</referencedby>
+        <referencedby refid="da/d4c/classBrush_1_1Eval_1_1Scorer_1ad88baa386d47e6464c130f0da3858325" compoundref="da/d3b/scorer_8h" startline="35" endline="39">Brush::Eval::Scorer&lt; P &gt;::Scorer</referencedby>
         <referencedby refid="da/d4c/classBrush_1_1Eval_1_1Scorer_1a29a78f6ded6e276708939f562e3b1153" compoundref="da/d3b/scorer_8h" startline="41" endline="41">Brush::Eval::Scorer&lt; P &gt;::set_scorer</referencedby>
       </memberdef>
     </sectiondef>
@@ -85,7 +85,7 @@
         <name>Scorer</name>
         <qualifiedname>Brush::Eval::Scorer::Scorer</qualifiedname>
         <param>
-          <type>string</type>
+          <type><ref refid="d5/d92/classstring" kindref="compound">string</ref></type>
           <declname>scorer</declname>
           <defval>&quot;mse&quot;</defval>
         </param>
@@ -98,16 +98,17 @@
         <location file="/home/runner/work/brush/brush/src/eval/scorer.h" line="35" column="5" bodyfile="/home/runner/work/brush/brush/src/eval/scorer.h" bodystart="35" bodyend="39"/>
         <references refid="d5/db3/namespaceBrush_1_1Eval_1a4966de42610a227a10447790a79b0e60" compoundref="dd/da2/metrics_8cpp" startline="9" endline="14">Brush::Eval::mse</references>
         <references refid="da/d4c/classBrush_1_1Eval_1_1Scorer_1ae0f2e1477d465c8a5f4db4e0c8554865" compoundref="da/d3b/scorer_8h" startline="31">Brush::Eval::Scorer&lt; P &gt;::score_hash</references>
+        <references refid="da/d4c/classBrush_1_1Eval_1_1Scorer_1a9c85e27fd1be5f7bab4431332c30bae6" compoundref="da/d3b/scorer_8h" startline="32">Brush::Eval::Scorer&lt; P &gt;::scorer</references>
         <references refid="da/d4c/classBrush_1_1Eval_1_1Scorer_1a29a78f6ded6e276708939f562e3b1153" compoundref="da/d3b/scorer_8h" startline="41" endline="41">Brush::Eval::Scorer&lt; P &gt;::set_scorer</references>
       </memberdef>
       <memberdef kind="function" id="da/d4c/classBrush_1_1Eval_1_1Scorer_1a29a78f6ded6e276708939f562e3b1153" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
-        <type><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">void</ref></type>
+        <type>void</type>
         <definition>void Brush::Eval::Scorer&lt; P &gt;::set_scorer</definition>
         <argsstring>(string scorer)</argsstring>
         <name>set_scorer</name>
         <qualifiedname>Brush::Eval::Scorer::set_scorer</qualifiedname>
         <param>
-          <type>string</type>
+          <type><ref refid="d5/d92/classstring" kindref="compound">string</ref></type>
           <declname>scorer</declname>
         </param>
         <briefdescription>
@@ -123,7 +124,7 @@
         <referencedby refid="d1/de5/classBrush_1_1Eval_1_1Evaluation_1a87c9ee9700af58b3d96469b6cd50bf1b" compoundref="d3/df9/evaluation_8h" startline="53" endline="53">Brush::Eval::Evaluation&lt; T &gt;::set_scorer</referencedby>
       </memberdef>
       <memberdef kind="function" id="da/d4c/classBrush_1_1Eval_1_1Scorer_1a074ffe387edb4090061c5aa0402ebb1d" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
-        <type>string</type>
+        <type><ref refid="d5/d92/classstring" kindref="compound">string</ref></type>
         <definition>string Brush::Eval::Scorer&lt; P &gt;::get_scorer</definition>
         <argsstring>()</argsstring>
         <name>get_scorer</name>
@@ -135,21 +136,20 @@
         <inbodydescription>
         </inbodydescription>
         <location file="/home/runner/work/brush/brush/src/eval/scorer.h" line="42" column="12" bodyfile="/home/runner/work/brush/brush/src/eval/scorer.h" bodystart="42" bodyend="42"/>
-        <references refid="da/d4c/classBrush_1_1Eval_1_1Scorer_1a9c85e27fd1be5f7bab4431332c30bae6" compoundref="da/d3b/scorer_8h" startline="32">Brush::Eval::Scorer&lt; P &gt;::scorer</references>
         <referencedby refid="d1/de5/classBrush_1_1Eval_1_1Evaluation_1ab85a890810fbb2f047ddd689aea80ed9" compoundref="d3/df9/evaluation_8h" startline="59" endline="59">Brush::Eval::Evaluation&lt; T &gt;::get_scorer</referencedby>
       </memberdef>
       <memberdef kind="function" id="da/d4c/classBrush_1_1Eval_1_1Scorer_1ae953bbf0a5e4f2d1d7feccfae1593193" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
-        <type><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">float</ref></type>
+        <type>float</type>
         <definition>float Brush::Eval::Scorer&lt; P &gt;::score</definition>
         <argsstring>(const VectorXf &amp;y_true, const VectorXf &amp;y_pred, VectorXf &amp;loss, const vector&lt; float &gt; &amp;w)</argsstring>
         <name>score</name>
         <qualifiedname>Brush::Eval::Scorer::score</qualifiedname>
         <param>
-          <type><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">const</ref> VectorXf &amp;</type>
+          <type>const VectorXf &amp;</type>
           <declname>y_true</declname>
         </param>
         <param>
-          <type><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">const</ref> VectorXf &amp;</type>
+          <type>const VectorXf &amp;</type>
           <declname>y_pred</declname>
         </param>
         <param>
@@ -157,7 +157,7 @@
           <declname>loss</declname>
         </param>
         <param>
-          <type><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">const</ref> vector&lt; <ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">float</ref> &gt; &amp;</type>
+          <type>const <ref refid="d7/dfc/classvector" kindref="compound">vector</ref>&lt; float &gt; &amp;</type>
           <declname>w</declname>
         </param>
         <briefdescription>
@@ -167,23 +167,22 @@
         <inbodydescription>
         </inbodydescription>
         <location file="/home/runner/work/brush/brush/src/eval/scorer.h" line="45" column="11" bodyfile="/home/runner/work/brush/brush/src/eval/scorer.h" bodystart="45" bodyend="61"/>
-        <references refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" compoundref="d4/d93/bind__engines_8h" startline="35" endline="104">bind_engine</references>
         <references refid="da/d41/error_8h_1aa4c550bcd71e4ec1c97b111e1360509a" compoundref="da/d41/error_8h" startline="27">HANDLE_ERROR_THROW</references>
         <references refid="da/d4c/classBrush_1_1Eval_1_1Scorer_1ae0f2e1477d465c8a5f4db4e0c8554865" compoundref="da/d3b/scorer_8h" startline="31">Brush::Eval::Scorer&lt; P &gt;::score_hash</references>
         <referencedby refid="da/d4c/classBrush_1_1Eval_1_1Scorer_1a3797d5ee458a9b91b165b53a8e53cbf6" compoundref="da/d3b/scorer_8h" startline="63" endline="68">Brush::Eval::Scorer&lt; P &gt;::score</referencedby>
       </memberdef>
       <memberdef kind="function" id="da/d4c/classBrush_1_1Eval_1_1Scorer_1a3797d5ee458a9b91b165b53a8e53cbf6" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
-        <type><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">float</ref></type>
+        <type>float</type>
         <definition>float Brush::Eval::Scorer&lt; P &gt;::score</definition>
         <argsstring>(Individual&lt; P &gt; &amp;ind, Dataset &amp;data, VectorXf &amp;loss, const Parameters &amp;params)</argsstring>
         <name>score</name>
         <qualifiedname>Brush::Eval::Scorer::score</qualifiedname>
         <param>
-          <type><ref refid="de/d83/classBrush_1_1Pop_1_1Individual" kindref="compound">Individual</ref>&lt; <ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">P</ref> &gt; &amp;</type>
+          <type><ref refid="de/d83/classBrush_1_1Pop_1_1Individual" kindref="compound">Individual</ref>&lt; P &gt; &amp;</type>
           <declname>ind</declname>
         </param>
         <param>
-          <type>Dataset &amp;</type>
+          <type><ref refid="d7/da5/classDataset" kindref="compound">Dataset</ref> &amp;</type>
           <declname>data</declname>
         </param>
         <param>
@@ -191,7 +190,7 @@
           <declname>loss</declname>
         </param>
         <param>
-          <type><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">const</ref> <ref refid="de/deb/structBrush_1_1Parameters" kindref="compound">Parameters</ref> &amp;</type>
+          <type>const <ref refid="de/deb/structBrush_1_1Parameters" kindref="compound">Parameters</ref> &amp;</type>
           <declname>params</declname>
         </param>
         <briefdescription>
@@ -201,9 +200,10 @@
         <inbodydescription>
         </inbodydescription>
         <location file="/home/runner/work/brush/brush/src/eval/scorer.h" line="63" column="11" bodyfile="/home/runner/work/brush/brush/src/eval/scorer.h" bodystart="63" bodyend="68"/>
-        <references refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" compoundref="d4/d93/bind__engines_8h" startline="35" endline="104">bind_engine</references>
         <references refid="de/deb/structBrush_1_1Parameters_1a88f5a4e906459cfc44ab04bca01fb333" compoundref="da/d33/params_8h" startline="66">Brush::Parameters::class_weights</references>
+        <references refid="de/d83/classBrush_1_1Pop_1_1Individual_1a4a67784960128ceeb0df3aac10c74cc1" compoundref="d5/d1f/individual_8h" startline="66" endline="66">Brush::Pop::Individual&lt; T &gt;::predict</references>
         <references refid="da/d4c/classBrush_1_1Eval_1_1Scorer_1ae953bbf0a5e4f2d1d7feccfae1593193" compoundref="da/d3b/scorer_8h" startline="45" endline="61">Brush::Eval::Scorer&lt; P &gt;::score</references>
+        <references refid="d7/da5/classDataset_1ade105f069d4f745d44374b7b8a3a9b0d" compoundref="d2/dbd/data_8h" startline="76">Dataset::y</references>
       </memberdef>
     </sectiondef>
     <briefdescription>
@@ -221,14 +221,14 @@
           <edgelabel>scorer</edgelabel>
         </childnode>
       </node>
+      <node id="4">
+        <label>std::basic_string&lt; Char &gt;</label>
+      </node>
       <node id="2">
         <label>std::map&lt; string, funcPointer &gt;</label>
         <childnode refid="3" relation="usage">
           <edgelabel>keys</edgelabel>
         </childnode>
-      </node>
-      <node id="4">
-        <label>std::basic_string&lt; Char &gt;</label>
       </node>
       <node id="3">
         <label>std::string</label>
@@ -244,8 +244,8 @@
       <member refid="da/d4c/classBrush_1_1Eval_1_1Scorer_1ae953bbf0a5e4f2d1d7feccfae1593193" prot="public" virt="non-virtual"><scope>Brush::Eval::Scorer</scope><name>score</name></member>
       <member refid="da/d4c/classBrush_1_1Eval_1_1Scorer_1a3797d5ee458a9b91b165b53a8e53cbf6" prot="public" virt="non-virtual"><scope>Brush::Eval::Scorer</scope><name>score</name></member>
       <member refid="da/d4c/classBrush_1_1Eval_1_1Scorer_1ae0f2e1477d465c8a5f4db4e0c8554865" prot="public" virt="non-virtual"><scope>Brush::Eval::Scorer</scope><name>score_hash</name></member>
-      <member refid="da/d4c/classBrush_1_1Eval_1_1Scorer_1a9c85e27fd1be5f7bab4431332c30bae6" prot="public" virt="non-virtual"><scope>Brush::Eval::Scorer</scope><name>scorer</name></member>
       <member refid="da/d4c/classBrush_1_1Eval_1_1Scorer_1ad88baa386d47e6464c130f0da3858325" prot="public" virt="non-virtual"><scope>Brush::Eval::Scorer</scope><name>Scorer</name></member>
+      <member refid="da/d4c/classBrush_1_1Eval_1_1Scorer_1a9c85e27fd1be5f7bab4431332c30bae6" prot="public" virt="non-virtual"><scope>Brush::Eval::Scorer</scope><name>scorer</name></member>
       <member refid="da/d4c/classBrush_1_1Eval_1_1Scorer_1a29a78f6ded6e276708939f562e3b1153" prot="public" virt="non-virtual"><scope>Brush::Eval::Scorer</scope><name>set_scorer</name></member>
     </listofallmembers>
   </compounddef>

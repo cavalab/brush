@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
-<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.10.0" xml:lang="en-US">
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.13.2" xml:lang="en-US">
   <compounddef id="dc/d31/structBrush_1_1Operator" kind="struct" language="C++" prot="public">
     <compoundname>Brush::Operator</compoundname>
     <includes refid="d7/de0/operator_8h" local="no">operator.h</includes>
@@ -10,21 +10,21 @@
         <defname>NT</defname>
       </param>
       <param>
-        <type><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">typename</ref> S</type>
+        <type>typename S</type>
       </param>
       <param>
-        <type><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">bool</ref></type>
+        <type>bool</type>
         <declname>Fit</declname>
         <defname>Fit</defname>
       </param>
       <param>
-        <type><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">typename</ref> <ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">E</ref></type>
-        <defval><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">void</ref></defval>
+        <type>typename E</type>
+        <defval>void</defval>
       </param>
     </templateparamlist>
     <sectiondef kind="public-type">
       <memberdef kind="typedef" id="dc/d31/structBrush_1_1Operator_1a6918e9c614dbbb417f98fe2b95199fea" prot="public" static="no">
-        <type><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">conditional_t</ref>&lt;((<ref refid="de/d26/nodetype_8h_1a876e80643fd688721e2b628ba2cd39cd" kindref="member">UnaryOp</ref>&lt; <ref refid="dc/d5c/namespaceBrush_1a051322bb9fd1db4638b6eccd399a29c8" kindref="member">NT</ref> &gt;||<ref refid="de/d26/nodetype_8h_1a82f43e5fe13312809d2411e25aff9e3a" kindref="member">NaryOp</ref>&lt; <ref refid="dc/d5c/namespaceBrush_1a051322bb9fd1db4638b6eccd399a29c8" kindref="member">NT</ref> &gt;) &amp;&amp;S::ArgCount &gt; 1), Array&lt; <ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">typename</ref> S::FirstArg::Scalar, -1, S::ArgCount &gt;, <ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">typename</ref> S::ArgTypes &gt;</type>
+        <type>conditional_t&lt;((<ref refid="de/d26/nodetype_8h_1a876e80643fd688721e2b628ba2cd39cd" kindref="member">UnaryOp</ref>&lt; <ref refid="dc/d5c/namespaceBrush_1a051322bb9fd1db4638b6eccd399a29c8" kindref="member">NT</ref> &gt;||<ref refid="de/d26/nodetype_8h_1a82f43e5fe13312809d2411e25aff9e3a" kindref="member">NaryOp</ref>&lt; <ref refid="dc/d5c/namespaceBrush_1a051322bb9fd1db4638b6eccd399a29c8" kindref="member">NT</ref> &gt;) &amp;&amp;S::ArgCount &gt; 1), Array&lt; typename S::FirstArg::Scalar, -1, S::ArgCount &gt;, typename S::ArgTypes &gt;</type>
         <definition>using Brush::Operator&lt; NT, S, Fit, E &gt;::ArgTypes =  conditional_t&lt;
         ((UnaryOp&lt;NT&gt; || NaryOp&lt;NT&gt;) &amp;&amp; S::ArgCount &gt; 1),
         Array&lt;typename S::FirstArg::Scalar, -1, S::ArgCount&gt;,
@@ -45,7 +45,7 @@
         <location file="/home/runner/work/brush/brush/src/program/operator.h" line="86" column="5" bodyfile="/home/runner/work/brush/brush/src/program/operator.h" bodystart="86" bodyend="-1"/>
       </memberdef>
       <memberdef kind="typedef" id="dc/d31/structBrush_1_1Operator_1a424bb09369598ed3d44f4d2b68eebcef" prot="public" static="no">
-        <type><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">typename</ref> S::RetType</type>
+        <type>typename S::RetType</type>
         <definition>using Brush::Operator&lt; NT, S, Fit, E &gt;::RetType =  typename S::RetType</definition>
         <argsstring></argsstring>
         <name>RetType</name>
@@ -67,7 +67,7 @@
             <defname>N</defname>
           </param>
         </templateparamlist>
-        <type><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">typename</ref> S::NthType&lt; <ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">N</ref> &gt;</type>
+        <type>typename S::NthType&lt; N &gt;</type>
         <definition>using Brush::Operator&lt; NT, S, Fit, E &gt;::NthType =  typename S::NthType&lt;N&gt;</definition>
         <argsstring></argsstring>
         <name>NthType</name>
@@ -82,7 +82,7 @@
         <location file="/home/runner/work/brush/brush/src/program/operator.h" line="99" column="5" bodyfile="/home/runner/work/brush/brush/src/program/operator.h" bodystart="99" bodyend="-1"/>
       </memberdef>
       <memberdef kind="typedef" id="dc/d31/structBrush_1_1Operator_1a33cf8494b82e7e0b7beb42fa376e9a6c" prot="public" static="no">
-        <type><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">typename</ref> S::WeightType</type>
+        <type>typename S::WeightType</type>
         <definition>using Brush::Operator&lt; NT, S, Fit, E &gt;::W =  typename S::WeightType</definition>
         <argsstring></argsstring>
         <name>W</name>
@@ -99,8 +99,8 @@
     </sectiondef>
     <sectiondef kind="public-static-attrib">
       <memberdef kind="variable" id="dc/d31/structBrush_1_1Operator_1a3510e6cd8f26f1f30ab53dcfafe08025" prot="public" static="yes" constexpr="yes" mutable="no">
-        <type><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">constexpr</ref> <ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">size_t</ref></type>
-        <definition>constexpr size_t Brush::Operator&lt; NT, S, Fit, E &gt;::ArgCount</definition>
+        <type>size_t</type>
+        <definition>size_t Brush::Operator&lt; NT, S, Fit, E &gt;::ArgCount</definition>
         <argsstring></argsstring>
         <name>ArgCount</name>
         <qualifiedname>Brush::Operator::ArgCount</qualifiedname>
@@ -116,14 +116,14 @@
         <referencedby refid="dc/d31/structBrush_1_1Operator_1aa4adc47d9cddb762f26e38747773bba6" compoundref="d7/de0/operator_8h" startline="116" endline="144">Brush::Operator&lt; NT, S, Fit, E &gt;::get_kids</referencedby>
       </memberdef>
       <memberdef kind="variable" id="dc/d31/structBrush_1_1Operator_1a5f08ba3c3b0e39c54b830845eba40b68" prot="public" static="yes" constexpr="yes" mutable="no">
-        <type><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">constexpr</ref> <ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">auto</ref></type>
-        <definition>constexpr auto Brush::Operator&lt; NT, S, Fit, E &gt;::F</definition>
+        <type>auto</type>
+        <definition>auto Brush::Operator&lt; NT, S, Fit, E &gt;::F</definition>
         <argsstring></argsstring>
         <name>F</name>
         <qualifiedname>Brush::Operator::F</qualifiedname>
-        <initializer>= [](<ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">const</ref> <ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">auto</ref>&amp; ...<ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">args</ref>) { 
-        <ref refid="d9/d1b/structBrush_1_1Function" kindref="compound">Function</ref>&lt;<ref refid="dc/d5c/namespaceBrush_1a051322bb9fd1db4638b6eccd399a29c8" kindref="member">NT</ref>&gt; <ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">f</ref>; 
-        <ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">return</ref> <ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">f</ref>(args...); 
+        <initializer>= [](const auto&amp; ...args) { 
+        <ref refid="d9/d1b/structBrush_1_1Function" kindref="compound">Function</ref>&lt;<ref refid="dc/d5c/namespaceBrush_1a051322bb9fd1db4638b6eccd399a29c8" kindref="member">NT</ref>&gt; f; 
+        return f(args...); 
     }</initializer>
         <briefdescription>
 <para>wrapper function for the node function </para>
@@ -133,7 +133,7 @@
         <inbodydescription>
         </inbodydescription>
         <location file="/home/runner/work/brush/brush/src/program/operator.h" line="105" column="27" bodyfile="/home/runner/work/brush/brush/src/program/operator.h" bodystart="105" bodyend="108"/>
-        <referencedby refid="dc/d31/structBrush_1_1Operator_1ab1ff8e429a35176b81c19079cd1397c4" compoundref="d7/de0/operator_8h" startline="192" endline="195">Brush::Operator&lt; NT, S, Fit, E &gt;::apply</referencedby>
+        <referencedby refid="db/d1f/structBrush_1_1Operator_3_01NT_00_01S_00_01Fit_00_01enable__if__t_3_01is__in__v_3_01NT_00_01Node0d34d2b97afea7b3bb37b94bd97cbb86_1a184e097f47b9205af5840971608d06ab" compoundref="d7/de0/operator_8h" startline="203" endline="224">Brush::Operator&lt; NT, S, Fit, enable_if_t&lt; is_in_v&lt; NT, NodeType::SplitOn, NodeType::SplitBest &gt; &gt; &gt;::get_kids</referencedby>
       </memberdef>
     </sectiondef>
     <sectiondef kind="public-func">
@@ -150,11 +150,13 @@
         <inbodydescription>
         </inbodydescription>
         <location file="/home/runner/work/brush/brush/src/program/operator.h" line="110" column="5"/>
+        <references refid="dc/d5c/namespaceBrush_1a6225fa35f6e06e54d4a31a8f25cd4a66" compoundref="d9/d49/types_8h" startline="253">Brush::is_eigen_array_v</references>
+        <references refid="dc/d5c/namespaceBrush_1af0a72d6e11b43912abc5bc15d19e66f3" compoundref="d9/d49/types_8h" startline="245">Brush::is_std_array_v</references>
       </memberdef>
       <memberdef kind="function" id="dc/d31/structBrush_1_1Operator_1aa4adc47d9cddb762f26e38747773bba6" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
         <templateparamlist>
           <param>
-            <type><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">typename</ref> T</type>
+            <type>typename T</type>
             <defval><ref refid="dc/d31/structBrush_1_1Operator_1a6918e9c614dbbb417f98fe2b95199fea" kindref="member">ArgTypes</ref></defval>
           </param>
         </templateparamlist>
@@ -164,7 +166,7 @@
         <name>get_kids</name>
         <qualifiedname>Brush::Operator::get_kids</qualifiedname>
         <param>
-          <type><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">const</ref> <ref refid="d2/d36/classBrush_1_1Data_1_1Dataset" kindref="compound">Dataset</ref> &amp;</type>
+          <type>const <ref refid="d2/d36/classBrush_1_1Data_1_1Dataset" kindref="compound">Dataset</ref> &amp;</type>
           <declname>d</declname>
         </param>
         <param>
@@ -172,9 +174,9 @@
           <declname>tn</declname>
         </param>
         <param>
-          <type><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">const</ref> <ref refid="dc/d31/structBrush_1_1Operator_1a33cf8494b82e7e0b7beb42fa376e9a6c" kindref="member">W</ref> **</type>
+          <type>const <ref refid="dc/d31/structBrush_1_1Operator_1a33cf8494b82e7e0b7beb42fa376e9a6c" kindref="member">W</ref> **</type>
           <declname>weights</declname>
-          <defval><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">nullptr</ref></defval>
+          <defval>nullptr</defval>
         </param>
     <requiresclause>(is_std_array_v&lt;T&gt; || is_eigen_array_v&lt;T&gt;)    </requiresclause>
         <briefdescription>
@@ -186,25 +188,27 @@
         </inbodydescription>
         <location file="/home/runner/work/brush/brush/src/program/operator.h" line="116" column="7" bodyfile="/home/runner/work/brush/brush/src/program/operator.h" bodystart="116" bodyend="144"/>
         <references refid="dc/d31/structBrush_1_1Operator_1a3510e6cd8f26f1f30ab53dcfafe08025" compoundref="d7/de0/operator_8h" startline="95">Brush::Operator&lt; NT, S, Fit, E &gt;::ArgCount</references>
-        <references refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" compoundref="d4/d93/bind__engines_8h" startline="35" endline="104">bind_engine</references>
+        <references refid="d2/d36/classBrush_1_1Data_1_1Dataset_1a2b7b42b1b16630554b2e49102098a170" compoundref="d2/dbd/data_8h" startline="209" endline="214">Brush::Data::Dataset::get_n_samples</references>
         <references refid="da/d41/error_8h_1aa4c550bcd71e4ec1c97b111e1360509a" compoundref="da/d41/error_8h" startline="27">HANDLE_ERROR_THROW</references>
+        <references refid="dc/d5c/namespaceBrush_1a6225fa35f6e06e54d4a31a8f25cd4a66" compoundref="d9/d49/types_8h" startline="253">Brush::is_eigen_array_v</references>
+        <references refid="dc/d5c/namespaceBrush_1af0a72d6e11b43912abc5bc15d19e66f3" compoundref="d9/d49/types_8h" startline="245">Brush::is_std_array_v</references>
         <referencedby refid="dc/d31/structBrush_1_1Operator_1a19c4d0c66ace631c3105e11bd75b4761" compoundref="d7/de0/operator_8h" startline="215" endline="227">Brush::Operator&lt; NT, S, Fit, E &gt;::eval</referencedby>
       </memberdef>
       <memberdef kind="function" id="dc/d31/structBrush_1_1Operator_1a9088496bd47b051080700b53f3cddd80" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
         <templateparamlist>
           <param>
-            <type><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">int</ref></type>
+            <type>int</type>
             <declname>I</declname>
             <defname>I</defname>
           </param>
         </templateparamlist>
-        <type><ref refid="dc/d31/structBrush_1_1Operator_1a395f3c1b1eefad96f02412b2dd74721e" kindref="member">NthType</ref>&lt; <ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">I</ref> &gt;</type>
+        <type><ref refid="dc/d31/structBrush_1_1Operator_1a395f3c1b1eefad96f02412b2dd74721e" kindref="member">NthType</ref>&lt; I &gt;</type>
         <definition>NthType&lt; I &gt; Brush::Operator&lt; NT, S, Fit, E &gt;::get_kid</definition>
         <argsstring>(const Dataset &amp;d, TreeNode &amp;tn, const W **weights) const</argsstring>
         <name>get_kid</name>
         <qualifiedname>Brush::Operator::get_kid</qualifiedname>
         <param>
-          <type><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">const</ref> <ref refid="d2/d36/classBrush_1_1Data_1_1Dataset" kindref="compound">Dataset</ref> &amp;</type>
+          <type>const <ref refid="d2/d36/classBrush_1_1Data_1_1Dataset" kindref="compound">Dataset</ref> &amp;</type>
           <declname>d</declname>
         </param>
         <param>
@@ -212,7 +216,7 @@
           <declname>tn</declname>
         </param>
         <param>
-          <type><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">const</ref> <ref refid="dc/d31/structBrush_1_1Operator_1a33cf8494b82e7e0b7beb42fa376e9a6c" kindref="member">W</ref> **</type>
+          <type>const <ref refid="dc/d31/structBrush_1_1Operator_1a33cf8494b82e7e0b7beb42fa376e9a6c" kindref="member">W</ref> **</type>
           <declname>weights</declname>
         </param>
         <briefdescription>
@@ -223,15 +227,15 @@
         <inbodydescription>
         </inbodydescription>
         <location file="/home/runner/work/brush/brush/src/program/operator.h" line="148" column="13" bodyfile="/home/runner/work/brush/brush/src/program/operator.h" bodystart="148" bodyend="156"/>
-        <references refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" compoundref="d4/d93/bind__engines_8h" startline="35" endline="104">bind_engine</references>
+        <referencedby refid="dc/d31/structBrush_1_1Operator_1a3494388e6927873c8ba8d296fbb30908" compoundref="d7/de0/operator_8h" startline="168" endline="171">Brush::Operator&lt; NT, S, Fit, E &gt;::get_kids_seq</referencedby>
       </memberdef>
       <memberdef kind="function" id="dc/d31/structBrush_1_1Operator_1a3494388e6927873c8ba8d296fbb30908" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
         <templateparamlist>
           <param>
-            <type><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">typename</ref> T</type>
+            <type>typename T</type>
           </param>
           <param>
-            <type><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">size_t</ref> ...</type>
+            <type>size_t ...</type>
             <declname>Is</declname>
             <defname>Is</defname>
           </param>
@@ -242,7 +246,7 @@
         <name>get_kids_seq</name>
         <qualifiedname>Brush::Operator::get_kids_seq</qualifiedname>
         <param>
-          <type><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">const</ref> <ref refid="d2/d36/classBrush_1_1Data_1_1Dataset" kindref="compound">Dataset</ref> &amp;</type>
+          <type>const <ref refid="d2/d36/classBrush_1_1Data_1_1Dataset" kindref="compound">Dataset</ref> &amp;</type>
           <declname>d</declname>
         </param>
         <param>
@@ -250,7 +254,7 @@
           <declname>tn</declname>
         </param>
         <param>
-          <type><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">const</ref> <ref refid="dc/d31/structBrush_1_1Operator_1a33cf8494b82e7e0b7beb42fa376e9a6c" kindref="member">W</ref> **</type>
+          <type>const <ref refid="dc/d31/structBrush_1_1Operator_1a33cf8494b82e7e0b7beb42fa376e9a6c" kindref="member">W</ref> **</type>
           <declname>weights</declname>
         </param>
         <param>
@@ -303,12 +307,13 @@
         <inbodydescription>
         </inbodydescription>
         <location file="/home/runner/work/brush/brush/src/program/operator.h" line="168" column="7" bodyfile="/home/runner/work/brush/brush/src/program/operator.h" bodystart="168" bodyend="171"/>
-        <references refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" compoundref="d4/d93/bind__engines_8h" startline="35" endline="104">bind_engine</references>
+        <references refid="dc/d31/structBrush_1_1Operator_1a9088496bd47b051080700b53f3cddd80" compoundref="d7/de0/operator_8h" startline="148" endline="156">Brush::Operator&lt; NT, S, Fit, E &gt;::get_kid</references>
+        <referencedby refid="dc/d31/structBrush_1_1Operator_1a91d6de562fe5a54112e3c746b4281f7e" compoundref="d7/de0/operator_8h" startline="180" endline="183">Brush::Operator&lt; NT, S, Fit, E &gt;::get_kids</referencedby>
       </memberdef>
       <memberdef kind="function" id="dc/d31/structBrush_1_1Operator_1a91d6de562fe5a54112e3c746b4281f7e" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
         <templateparamlist>
           <param>
-            <type><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">typename</ref> T</type>
+            <type>typename T</type>
             <defval><ref refid="dc/d31/structBrush_1_1Operator_1a6918e9c614dbbb417f98fe2b95199fea" kindref="member">ArgTypes</ref></defval>
           </param>
         </templateparamlist>
@@ -318,7 +323,7 @@
         <name>get_kids</name>
         <qualifiedname>Brush::Operator::get_kids</qualifiedname>
         <param>
-          <type><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">const</ref> <ref refid="d2/d36/classBrush_1_1Data_1_1Dataset" kindref="compound">Dataset</ref> &amp;</type>
+          <type>const <ref refid="d2/d36/classBrush_1_1Data_1_1Dataset" kindref="compound">Dataset</ref> &amp;</type>
           <declname>d</declname>
         </param>
         <param>
@@ -326,9 +331,9 @@
           <declname>tn</declname>
         </param>
         <param>
-          <type><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">const</ref> <ref refid="dc/d31/structBrush_1_1Operator_1a33cf8494b82e7e0b7beb42fa376e9a6c" kindref="member">W</ref> **</type>
+          <type>const <ref refid="dc/d31/structBrush_1_1Operator_1a33cf8494b82e7e0b7beb42fa376e9a6c" kindref="member">W</ref> **</type>
           <declname>weights</declname>
-          <defval><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">nullptr</ref></defval>
+          <defval>nullptr</defval>
         </param>
     <requiresclause>(is_tuple_v&lt;T&gt;)    </requiresclause>
         <briefdescription>
@@ -376,12 +381,12 @@
         <inbodydescription>
         </inbodydescription>
         <location file="/home/runner/work/brush/brush/src/program/operator.h" line="180" column="7" bodyfile="/home/runner/work/brush/brush/src/program/operator.h" bodystart="180" bodyend="183"/>
-        <references refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" compoundref="d4/d93/bind__engines_8h" startline="35" endline="104">bind_engine</references>
+        <references refid="dc/d31/structBrush_1_1Operator_1a3494388e6927873c8ba8d296fbb30908" compoundref="d7/de0/operator_8h" startline="168" endline="171">Brush::Operator&lt; NT, S, Fit, E &gt;::get_kids_seq</references>
       </memberdef>
       <memberdef kind="function" id="dc/d31/structBrush_1_1Operator_1ab1ff8e429a35176b81c19079cd1397c4" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
         <templateparamlist>
           <param>
-            <type><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">typename</ref> T</type>
+            <type>typename T</type>
             <defval><ref refid="dc/d31/structBrush_1_1Operator_1a6918e9c614dbbb417f98fe2b95199fea" kindref="member">ArgTypes</ref></defval>
           </param>
         </templateparamlist>
@@ -391,7 +396,7 @@
         <name>apply</name>
         <qualifiedname>Brush::Operator::apply</qualifiedname>
         <param>
-          <type><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">const</ref> T &amp;</type>
+          <type>const T &amp;</type>
           <declname>inputs</declname>
         </param>
     <requiresclause>( is_std_array_v&lt;T&gt; || is_tuple_v&lt;T&gt;)    </requiresclause>
@@ -424,13 +429,12 @@
         <inbodydescription>
         </inbodydescription>
         <location file="/home/runner/work/brush/brush/src/program/operator.h" line="192" column="13" bodyfile="/home/runner/work/brush/brush/src/program/operator.h" bodystart="192" bodyend="195"/>
-        <references refid="dc/d31/structBrush_1_1Operator_1a5f08ba3c3b0e39c54b830845eba40b68" compoundref="d7/de0/operator_8h" startline="105" endline="108">Brush::Operator&lt; NT, S, Fit, E &gt;::F</references>
         <referencedby refid="dc/d31/structBrush_1_1Operator_1a19c4d0c66ace631c3105e11bd75b4761" compoundref="d7/de0/operator_8h" startline="215" endline="227">Brush::Operator&lt; NT, S, Fit, E &gt;::eval</referencedby>
       </memberdef>
       <memberdef kind="function" id="dc/d31/structBrush_1_1Operator_1ab4b156eb563db21ac32223aabfb9b92c" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
         <templateparamlist>
           <param>
-            <type><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">typename</ref> T</type>
+            <type>typename T</type>
             <defval><ref refid="dc/d31/structBrush_1_1Operator_1a6918e9c614dbbb417f98fe2b95199fea" kindref="member">ArgTypes</ref></defval>
           </param>
         </templateparamlist>
@@ -440,7 +444,7 @@
         <name>apply</name>
         <qualifiedname>Brush::Operator::apply</qualifiedname>
         <param>
-          <type><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">const</ref> T &amp;</type>
+          <type>const T &amp;</type>
           <declname>inputs</declname>
         </param>
     <requiresclause>( is_eigen_array_v&lt;T&gt; &amp;&amp; !is_std_array_v&lt;T&gt;)    </requiresclause>
@@ -473,16 +477,15 @@
         <inbodydescription>
         </inbodydescription>
         <location file="/home/runner/work/brush/brush/src/program/operator.h" line="202" column="13" bodyfile="/home/runner/work/brush/brush/src/program/operator.h" bodystart="202" bodyend="205"/>
-        <references refid="dc/d31/structBrush_1_1Operator_1a5f08ba3c3b0e39c54b830845eba40b68" compoundref="d7/de0/operator_8h" startline="105" endline="108">Brush::Operator&lt; NT, S, Fit, E &gt;::F</references>
       </memberdef>
       <memberdef kind="function" id="dc/d31/structBrush_1_1Operator_1a19c4d0c66ace631c3105e11bd75b4761" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
         <templateparamlist>
           <param>
-            <type><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">typename</ref> T</type>
+            <type>typename T</type>
             <defval><ref refid="dc/d31/structBrush_1_1Operator_1a6918e9c614dbbb417f98fe2b95199fea" kindref="member">ArgTypes</ref></defval>
           </param>
           <param>
-            <type><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">typename</ref> <ref refid="dc/d5c/namespaceBrush_1a5b9f71c99a1fe42d359ae45033b58620" kindref="member">Scalar</ref></type>
+            <type>typename <ref refid="dc/d5c/namespaceBrush_1a5b9f71c99a1fe42d359ae45033b58620" kindref="member">Scalar</ref></type>
             <defval>RetType::Scalar</defval>
           </param>
         </templateparamlist>
@@ -492,7 +495,7 @@
         <name>eval</name>
         <qualifiedname>Brush::Operator::eval</qualifiedname>
         <param>
-          <type><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">const</ref> <ref refid="d2/d36/classBrush_1_1Data_1_1Dataset" kindref="compound">Dataset</ref> &amp;</type>
+          <type>const <ref refid="d2/d36/classBrush_1_1Data_1_1Dataset" kindref="compound">Dataset</ref> &amp;</type>
           <declname>d</declname>
         </param>
         <param>
@@ -500,9 +503,9 @@
           <declname>tn</declname>
         </param>
         <param>
-          <type><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">const</ref> <ref refid="dc/d31/structBrush_1_1Operator_1a33cf8494b82e7e0b7beb42fa376e9a6c" kindref="member">W</ref> **</type>
+          <type>const <ref refid="dc/d31/structBrush_1_1Operator_1a33cf8494b82e7e0b7beb42fa376e9a6c" kindref="member">W</ref> **</type>
           <declname>weights</declname>
-          <defval><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">nullptr</ref></defval>
+          <defval>nullptr</defval>
         </param>
         <briefdescription>
 <para>evaluate the operator on the data. main entry point. </para>
@@ -518,7 +521,7 @@
 </parameteritem>
 <parameteritem>
 <parameternamelist>
-<parametername>Scalar</parametername>
+<parametername><ref refid="dc/d5c/namespaceBrush_1a5b9f71c99a1fe42d359ae45033b58620" kindref="member">Scalar</ref></parametername>
 </parameternamelist>
 <parameterdescription>
 <para>the underlying scalar type of the return type </para>
@@ -558,19 +561,20 @@
         </inbodydescription>
         <location file="/home/runner/work/brush/brush/src/program/operator.h" line="215" column="13" bodyfile="/home/runner/work/brush/brush/src/program/operator.h" bodystart="215" bodyend="227"/>
         <references refid="dc/d31/structBrush_1_1Operator_1ab1ff8e429a35176b81c19079cd1397c4" compoundref="d7/de0/operator_8h" startline="192" endline="195">Brush::Operator&lt; NT, S, Fit, E &gt;::apply</references>
-        <references refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" compoundref="d4/d93/bind__engines_8h" startline="35" endline="104">bind_engine</references>
         <references refid="dc/d31/structBrush_1_1Operator_1aa4adc47d9cddb762f26e38747773bba6" compoundref="d7/de0/operator_8h" startline="116" endline="144">Brush::Operator&lt; NT, S, Fit, E &gt;::get_kids</references>
+        <references refid="d7/d6b/namespaceBrush_1_1util_1ac055af6270e6bbb0cef4f33d70f0cb04" compoundref="d7/de0/operator_8h" startline="20" endline="47">Brush::util::get_weight</references>
+        <references refid="dc/d5c/namespaceBrush_1a7e323244b7b57c08d6816a009e74eec6" compoundref="d9/d49/types_8h" startline="33">Brush::is_one_of_v</references>
         <referencedby refid="dc/d5c/namespaceBrush_1a835c559533dfd1b02fb7c2ded01c2442" compoundref="d7/de0/operator_8h" startline="370" endline="374">Brush::DispatchOp</referencedby>
         <referencedby refid="dc/d5c/namespaceBrush_1a295fffe6ae57b4a3c871c7cfe1450e1d" compoundref="d7/de0/operator_8h" startline="363" endline="367">Brush::DispatchOp</referencedby>
       </memberdef>
       <memberdef kind="function" id="dc/d31/structBrush_1_1Operator_1a2971efb3f05fd1ed22a5f805fe0720c7" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
         <templateparamlist>
           <param>
-            <type><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">typename</ref> T</type>
+            <type>typename T</type>
             <defval><ref refid="dc/d31/structBrush_1_1Operator_1a6918e9c614dbbb417f98fe2b95199fea" kindref="member">ArgTypes</ref></defval>
           </param>
           <param>
-            <type><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">typename</ref> <ref refid="dc/d5c/namespaceBrush_1a5b9f71c99a1fe42d359ae45033b58620" kindref="member">Scalar</ref></type>
+            <type>typename <ref refid="dc/d5c/namespaceBrush_1a5b9f71c99a1fe42d359ae45033b58620" kindref="member">Scalar</ref></type>
             <defval>RetType::Scalar</defval>
           </param>
         </templateparamlist>
@@ -580,7 +584,7 @@
         <name>eval</name>
         <qualifiedname>Brush::Operator::eval</qualifiedname>
         <param>
-          <type><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">const</ref> <ref refid="d2/d36/classBrush_1_1Data_1_1Dataset" kindref="compound">Dataset</ref> &amp;</type>
+          <type>const <ref refid="d2/d36/classBrush_1_1Data_1_1Dataset" kindref="compound">Dataset</ref> &amp;</type>
           <declname>d</declname>
         </param>
         <param>
@@ -588,9 +592,9 @@
           <declname>tn</declname>
         </param>
         <param>
-          <type><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">const</ref> <ref refid="dc/d31/structBrush_1_1Operator_1a33cf8494b82e7e0b7beb42fa376e9a6c" kindref="member">W</ref> **</type>
+          <type>const <ref refid="dc/d31/structBrush_1_1Operator_1a33cf8494b82e7e0b7beb42fa376e9a6c" kindref="member">W</ref> **</type>
           <declname>weights</declname>
-          <defval><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">nullptr</ref></defval>
+          <defval>nullptr</defval>
         </param>
     <requiresclause><ref refid="de/d26/nodetype_8h_1a71f687f53e36ccdc3277214f2d535fe5" kindref="member">is_in_v</ref>&lt;<ref refid="dc/d5c/namespaceBrush_1a051322bb9fd1db4638b6eccd399a29c8" kindref="member">NT</ref>, NodeType::OffsetSum&gt;    </requiresclause>
         <briefdescription>
@@ -601,8 +605,9 @@
         </inbodydescription>
         <location file="/home/runner/work/brush/brush/src/program/operator.h" line="232" column="13" bodyfile="/home/runner/work/brush/brush/src/program/operator.h" bodystart="232" bodyend="244"/>
         <references refid="dc/d31/structBrush_1_1Operator_1ab1ff8e429a35176b81c19079cd1397c4" compoundref="d7/de0/operator_8h" startline="192" endline="195">Brush::Operator&lt; NT, S, Fit, E &gt;::apply</references>
-        <references refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" compoundref="d4/d93/bind__engines_8h" startline="35" endline="104">bind_engine</references>
         <references refid="dc/d31/structBrush_1_1Operator_1aa4adc47d9cddb762f26e38747773bba6" compoundref="d7/de0/operator_8h" startline="116" endline="144">Brush::Operator&lt; NT, S, Fit, E &gt;::get_kids</references>
+        <references refid="d7/d6b/namespaceBrush_1_1util_1ac055af6270e6bbb0cef4f33d70f0cb04" compoundref="d7/de0/operator_8h" startline="20" endline="47">Brush::util::get_weight</references>
+        <references refid="dc/d5c/namespaceBrush_1a7e323244b7b57c08d6816a009e74eec6" compoundref="d9/d49/types_8h" startline="33">Brush::is_one_of_v</references>
       </memberdef>
     </sectiondef>
     <briefdescription>
@@ -619,7 +624,7 @@
 </parameteritem>
 <parameteritem>
 <parameternamelist>
-<parametername>NT</parametername>
+<parametername><ref refid="dc/d5c/namespaceBrush_1a9b0bd8b9146f84ced649709c94aa596b" kindref="member">NT</ref></parametername>
 </parameternamelist>
 <parameterdescription>
 <para>node type </para>

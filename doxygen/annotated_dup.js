@@ -145,6 +145,7 @@ var annotated_dup =
       [ "Operator< NodeType::Constant, S, Fit >", "df/dc1/structBrush_1_1Operator_3_01NodeType_1_1Constant_00_01S_00_01Fit_01_4.html", "df/dc1/structBrush_1_1Operator_3_01NodeType_1_1Constant_00_01S_00_01Fit_01_4" ],
       [ "Operator< NodeType::MeanLabel, S, Fit >", "d9/d5e/structBrush_1_1Operator_3_01NodeType_1_1MeanLabel_00_01S_00_01Fit_01_4.html", "d9/d5e/structBrush_1_1Operator_3_01NodeType_1_1MeanLabel_00_01S_00_01Fit_01_4" ],
       [ "Operator< NodeType::Terminal, S, Fit >", "dd/d88/structBrush_1_1Operator_3_01NodeType_1_1Terminal_00_01S_00_01Fit_01_4.html", "dd/d88/structBrush_1_1Operator_3_01NodeType_1_1Terminal_00_01S_00_01Fit_01_4" ],
+      [ "Operator< NT, S, Fit, enable_if_t< is_in_v< NT, NodeType::SplitOn, NodeType::SplitBest > > >", "db/d1f/structBrush_1_1Operator_3_01NT_00_01S_00_01Fit_00_01enable__if__t_3_01is__in__v_3_01NT_00_01Node0d34d2b97afea7b3bb37b94bd97cbb86.html", "db/d1f/structBrush_1_1Operator_3_01NT_00_01S_00_01Fit_00_01enable__if__t_3_01is__in__v_3_01NT_00_01Node0d34d2b97afea7b3bb37b94bd97cbb86" ],
       [ "OptimizerSummary", "dc/d91/structBrush_1_1OptimizerSummary.html", "dc/d91/structBrush_1_1OptimizerSummary" ],
       [ "Parameters", "de/deb/structBrush_1_1Parameters.html", "de/deb/structBrush_1_1Parameters" ],
       [ "Program", "db/d88/structBrush_1_1Program.html", "db/d88/structBrush_1_1Program" ],
@@ -199,8 +200,19 @@ var annotated_dup =
       [ "hash< std::tuple< TT... > >", "de/d30/structstd_1_1hash_3_01std_1_1tuple_3_01TT_8_8_8_01_4_01_4.html", "de/d30/structstd_1_1hash_3_01std_1_1tuple_3_01TT_8_8_8_01_4_01_4" ],
       [ "hash< std::vector< float > >", "d4/d0d/structstd_1_1hash_3_01std_1_1vector_3_01float_01_4_01_4.html", "d4/d0d/structstd_1_1hash_3_01std_1_1vector_3_01float_01_4_01_4" ]
     ] ],
+    [ "array", "d2/d41/classarray.html", "d2/d41/classarray" ],
+    [ "Dataset", "d7/da5/classDataset.html", "d7/da5/classDataset" ],
     [ "is_in", "d0/d80/structis__in.html", "d0/d80/structis__in" ],
+    [ "map", "d9/d28/classmap.html", "d9/d28/classmap" ],
+    [ "Node", "d8/d49/structNode.html", "d8/d49/structNode" ],
     [ "Operator< NT, S, Fit, enable_if_t< is_in_v< NT, NodeType::SplitOn, NodeType::SplitBest > > >", "d3/df2/structOperator_3_01NT_00_01S_00_01Fit_00_01enable__if__t_3_01is__in__v_3_01NT_00_01NodeType_1_1Se4750a8ecc1d24ba81c8da2bd5c73a14.html", "d3/df2/structOperator_3_01NT_00_01S_00_01Fit_00_01enable__if__t_3_01is__in__v_3_01NT_00_01NodeType_1_1Se4750a8ecc1d24ba81c8da2bd5c73a14" ],
+    [ "SearchSpace", "de/d87/structSearchSpace.html", "de/d87/structSearchSpace" ],
+    [ "set", "d0/d59/classset.html", "d0/d59/classset" ],
+    [ "shared_ptr", "d4/d67/classshared__ptr.html", "d4/d67/classshared__ptr" ],
+    [ "string", "d5/d92/classstring.html", "d5/d92/classstring" ],
+    [ "TimeSeries", "d0/d8e/structTimeSeries.html", "d0/d8e/structTimeSeries" ],
     [ "tree_node_", "d0/d0e/classtree__node__.html", null ],
-    [ "tree_node_< Node >", "dc/d90/classtree__node___3_01Node_01_4.html", "dc/d90/classtree__node___3_01Node_01_4" ]
+    [ "tree_node_< Node >", "dc/d90/classtree__node___3_01Node_01_4.html", "dc/d90/classtree__node___3_01Node_01_4" ],
+    [ "unique_ptr", "dd/d67/classunique__ptr.html", "dd/d67/classunique__ptr" ],
+    [ "vector", "d7/dfc/classvector.html", "d7/dfc/classvector" ]
 ];

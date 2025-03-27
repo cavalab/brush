@@ -1,11 +1,11 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
-<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.10.0" xml:lang="en-US">
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.13.2" xml:lang="en-US">
   <compounddef id="d1/d3a/structBrush_1_1Node" kind="struct" language="C++" prot="public">
     <compoundname>Brush::Node</compoundname>
     <includes refid="d1/d77/node_8h" local="no">node.h</includes>
     <sectiondef kind="public-type">
       <memberdef kind="typedef" id="d1/d3a/structBrush_1_1Node_1abd1037d20f96e122bc1305d70aab418a" prot="public" static="no">
-        <type>std::tuple&lt; <ref refid="dc/d5c/namespaceBrush_1a03de66d0fd6edab4d8a8ab5281e74dc3" kindref="member">UnderlyingNodeType</ref>, <ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">size_t</ref>, <ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">bool</ref>, string, <ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">bool</ref>, <ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">int</ref> &gt;</type>
+        <type>std::tuple&lt; <ref refid="dc/d5c/namespaceBrush_1a03de66d0fd6edab4d8a8ab5281e74dc3" kindref="member">UnderlyingNodeType</ref>, size_t, bool, <ref refid="d5/d92/classstring" kindref="compound">string</ref>, bool, int &gt;</type>
         <definition>using Brush::Node::HashTuple =  std::tuple&lt; 
         UnderlyingNodeType,     
         size_t,                 
@@ -30,7 +30,7 @@
     </sectiondef>
     <sectiondef kind="public-attrib">
       <memberdef kind="variable" id="d1/d3a/structBrush_1_1Node_1ad6b3fd4a54c813d066370defc8a85af1" prot="public" static="no" mutable="no">
-        <type>string</type>
+        <type><ref refid="d5/d92/classstring" kindref="compound">string</ref></type>
         <definition>string Brush::Node::name</definition>
         <argsstring></argsstring>
         <name>name</name>
@@ -43,9 +43,13 @@
         <inbodydescription>
         </inbodydescription>
         <location file="/home/runner/work/brush/brush/src/program/node.h" line="87" column="12" bodyfile="/home/runner/work/brush/brush/src/program/node.h" bodystart="87" bodyend="-1"/>
+        <referencedby refid="dc/d5c/namespaceBrush_1ad36f62c73493c032059be8cd18590d0e" compoundref="d7/d70/node_8cpp" startline="219" endline="283">Brush::from_json</referencedby>
+        <referencedby refid="d1/d3a/structBrush_1_1Node_1aaddaf7903795dfdcad487234d6dc380e" compoundref="d7/d70/node_8cpp" startline="20" endline="48">get_name</referencedby>
+        <referencedby refid="d1/d3a/structBrush_1_1Node_1a62f7ba79b38e86e54488e5dd9a6bdc93" compoundref="d1/d77/node_8h" startline="131" endline="142">Node</referencedby>
+        <referencedby refid="dc/d5c/namespaceBrush_1a2277345e299e6d41c9573c59b32ad0aa" compoundref="d7/d70/node_8cpp" startline="110" endline="127">Brush::to_json</referencedby>
       </memberdef>
       <memberdef kind="variable" id="d1/d3a/structBrush_1_1Node_1a0971012cfb2ae944f4bea0ea0dc9e5a3" prot="public" static="no" mutable="no">
-        <type><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">bool</ref></type>
+        <type>bool</type>
         <definition>bool Brush::Node::center_op</definition>
         <argsstring></argsstring>
         <name>center_op</name>
@@ -58,9 +62,11 @@
         <inbodydescription>
         </inbodydescription>
         <location file="/home/runner/work/brush/brush/src/program/node.h" line="89" column="10" bodyfile="/home/runner/work/brush/brush/src/program/node.h" bodystart="89" bodyend="-1"/>
+        <referencedby refid="dc/d5c/namespaceBrush_1ad36f62c73493c032059be8cd18590d0e" compoundref="d7/d70/node_8cpp" startline="219" endline="283">Brush::from_json</referencedby>
+        <referencedby refid="dc/d5c/namespaceBrush_1a2277345e299e6d41c9573c59b32ad0aa" compoundref="d7/d70/node_8cpp" startline="110" endline="127">Brush::to_json</referencedby>
       </memberdef>
       <memberdef kind="variable" id="d1/d3a/structBrush_1_1Node_1a9f5b2e34d8ba752e0f6bffebec8afdc0" prot="public" static="no" mutable="no">
-        <type><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">float</ref></type>
+        <type>float</type>
         <definition>float Brush::Node::prob_change</definition>
         <argsstring></argsstring>
         <name>prob_change</name>
@@ -73,11 +79,11 @@
         <inbodydescription>
         </inbodydescription>
         <location file="/home/runner/work/brush/brush/src/program/node.h" line="91" column="11" bodyfile="/home/runner/work/brush/brush/src/program/node.h" bodystart="91" bodyend="-1"/>
-        <referencedby refid="d1/d3a/structBrush_1_1Node_1a4fcf7feccb71d538f8614d3c51247eb4" compoundref="d1/d77/node_8h" startline="239" endline="239">get_prob_change</referencedby>
-        <referencedby refid="d1/d3a/structBrush_1_1Node_1a087a9c51b46b3e801506415376cd0518" compoundref="d1/d77/node_8h" startline="241" endline="241">get_prob_keep</referencedby>
+        <referencedby refid="dc/d5c/namespaceBrush_1ad36f62c73493c032059be8cd18590d0e" compoundref="d7/d70/node_8cpp" startline="219" endline="283">Brush::from_json</referencedby>
+        <referencedby refid="dc/d5c/namespaceBrush_1a2277345e299e6d41c9573c59b32ad0aa" compoundref="d7/d70/node_8cpp" startline="110" endline="127">Brush::to_json</referencedby>
       </memberdef>
       <memberdef kind="variable" id="d1/d3a/structBrush_1_1Node_1a32c73293ee4e02b6d828c2c213e06154" prot="public" static="no" mutable="no">
-        <type><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">bool</ref></type>
+        <type>bool</type>
         <definition>bool Brush::Node::fixed</definition>
         <argsstring></argsstring>
         <name>fixed</name>
@@ -90,10 +96,13 @@
         <inbodydescription>
         </inbodydescription>
         <location file="/home/runner/work/brush/brush/src/program/node.h" line="93" column="10" bodyfile="/home/runner/work/brush/brush/src/program/node.h" bodystart="93" bodyend="-1"/>
+        <referencedby refid="dc/d5c/namespaceBrush_1ad36f62c73493c032059be8cd18590d0e" compoundref="d7/d70/node_8cpp" startline="219" endline="283">Brush::from_json</referencedby>
         <referencedby refid="d1/d3a/structBrush_1_1Node_1a1aef5137dca5171a150c6d26ca43d9bc" compoundref="d1/d77/node_8h" startline="190" endline="199">get_node_hash</referencedby>
         <referencedby refid="d1/d3a/structBrush_1_1Node_1a4fcf7feccb71d538f8614d3c51247eb4" compoundref="d1/d77/node_8h" startline="239" endline="239">get_prob_change</referencedby>
         <referencedby refid="d1/d3a/structBrush_1_1Node_1a087a9c51b46b3e801506415376cd0518" compoundref="d1/d77/node_8h" startline="241" endline="241">get_prob_keep</referencedby>
         <referencedby refid="d1/d3a/structBrush_1_1Node_1a99e9db58c89646c630fb9d54b41ff2ba" compoundref="d1/d77/node_8h" startline="154" endline="164">init</referencedby>
+        <referencedby refid="d4/dc3/structBrush_1_1SearchSpace_1a810403a87eef0baded2aed2bb4f1979e" compoundref="d9/d99/search__space_8h" startline="681" endline="751">Brush::SearchSpace::make_program</referencedby>
+        <referencedby refid="dc/d5c/namespaceBrush_1a2277345e299e6d41c9573c59b32ad0aa" compoundref="d7/d70/node_8cpp" startline="110" endline="127">Brush::to_json</referencedby>
       </memberdef>
       <memberdef kind="variable" id="d1/d3a/structBrush_1_1Node_1a522791afe93c92442564356ff19ff55a" prot="public" static="no" mutable="no">
         <type><ref refid="dc/d5c/namespaceBrush_1a051322bb9fd1db4638b6eccd399a29c8" kindref="member">NodeType</ref></type>
@@ -109,7 +118,15 @@
         <inbodydescription>
         </inbodydescription>
         <location file="/home/runner/work/brush/brush/src/program/node.h" line="95" column="14" bodyfile="/home/runner/work/brush/brush/src/program/node.h" bodystart="95" bodyend="-1"/>
+        <referencedby refid="dc/d5c/namespaceBrush_1ad36f62c73493c032059be8cd18590d0e" compoundref="d7/d70/node_8cpp" startline="219" endline="283">Brush::from_json</referencedby>
+        <referencedby refid="d1/d3a/structBrush_1_1Node_1af621eb9463a3ed3434841565a849c03b" compoundref="d7/d70/node_8cpp" startline="50" endline="103">get_model</referencedby>
+        <referencedby refid="d1/d3a/structBrush_1_1Node_1aaddaf7903795dfdcad487234d6dc380e" compoundref="d7/d70/node_8cpp" startline="20" endline="48">get_name</referencedby>
         <referencedby refid="d1/d3a/structBrush_1_1Node_1a1aef5137dca5171a150c6d26ca43d9bc" compoundref="d1/d77/node_8h" startline="190" endline="199">get_node_hash</referencedby>
+        <referencedby refid="d4/dc3/structBrush_1_1SearchSpace_1ac51e5e0acb3a880ffd0f3b7fba2fd68f" compoundref="d9/d99/search__space_8h" startline="550" endline="569">Brush::SearchSpace::get_node_like</referencedby>
+        <referencedby refid="dc/d5c/namespaceBrush_1a8f1ed90f7962fef5764e7be14845aa34" compoundref="d7/d70/node_8cpp" startline="130" endline="217">Brush::init_node_with_default_signature</referencedby>
+        <referencedby refid="d1/d3a/structBrush_1_1Node_1a62f7ba79b38e86e54488e5dd9a6bdc93" compoundref="d1/d77/node_8h" startline="131" endline="142">Node</referencedby>
+        <referencedby refid="d4/dc3/structBrush_1_1SearchSpace_1ab1e6afddd1375b0f8cbd40f0033b32b1" compoundref="da/d48/search__space_8cpp" startline="268" endline="399">Brush::SearchSpace::PTC2</referencedby>
+        <referencedby refid="dc/d5c/namespaceBrush_1a2277345e299e6d41c9573c59b32ad0aa" compoundref="d7/d70/node_8cpp" startline="110" endline="127">Brush::to_json</referencedby>
       </memberdef>
       <memberdef kind="variable" id="d1/d3a/structBrush_1_1Node_1a889e0361b55a63a4510a3edabd2fa57c" prot="public" static="no" mutable="no">
         <type>std::size_t</type>
@@ -126,8 +143,11 @@
         </inbodydescription>
         <location file="/home/runner/work/brush/brush/src/program/node.h" line="97" column="17" bodyfile="/home/runner/work/brush/brush/src/program/node.h" bodystart="97" bodyend="-1"/>
         <referencedby refid="d1/d3a/structBrush_1_1Node_1a9ec6ba08b0baebc0cd105e4ef774b7fb" compoundref="d1/d77/node_8h" startline="174" endline="174">args_type</referencedby>
+        <referencedby refid="dc/d5c/namespaceBrush_1ad36f62c73493c032059be8cd18590d0e" compoundref="d7/d70/node_8cpp" startline="219" endline="283">Brush::from_json</referencedby>
         <referencedby refid="d1/d3a/structBrush_1_1Node_1a1aef5137dca5171a150c6d26ca43d9bc" compoundref="d1/d77/node_8h" startline="190" endline="199">get_node_hash</referencedby>
+        <referencedby refid="d1/d3a/structBrush_1_1Node_1a62f7ba79b38e86e54488e5dd9a6bdc93" compoundref="d1/d77/node_8h" startline="131" endline="142">Node</referencedby>
         <referencedby refid="d1/d3a/structBrush_1_1Node_1a24ab653c36833ab9cd301efe99b39d5f" compoundref="d1/d77/node_8h" startline="145" endline="152">set_signature</referencedby>
+        <referencedby refid="dc/d5c/namespaceBrush_1a2277345e299e6d41c9573c59b32ad0aa" compoundref="d7/d70/node_8cpp" startline="110" endline="127">Brush::to_json</referencedby>
       </memberdef>
       <memberdef kind="variable" id="d1/d3a/structBrush_1_1Node_1aed6c2af0fae3dd8e5a8aa2fab77479fd" prot="public" static="no" mutable="no">
         <type>std::size_t</type>
@@ -143,7 +163,10 @@
         <inbodydescription>
         </inbodydescription>
         <location file="/home/runner/work/brush/brush/src/program/node.h" line="99" column="17" bodyfile="/home/runner/work/brush/brush/src/program/node.h" bodystart="99" bodyend="-1"/>
+        <referencedby refid="dc/d5c/namespaceBrush_1ad36f62c73493c032059be8cd18590d0e" compoundref="d7/d70/node_8cpp" startline="219" endline="283">Brush::from_json</referencedby>
+        <referencedby refid="d1/d3a/structBrush_1_1Node_1a62f7ba79b38e86e54488e5dd9a6bdc93" compoundref="d1/d77/node_8h" startline="131" endline="142">Node</referencedby>
         <referencedby refid="d1/d3a/structBrush_1_1Node_1a24ab653c36833ab9cd301efe99b39d5f" compoundref="d1/d77/node_8h" startline="145" endline="152">set_signature</referencedby>
+        <referencedby refid="dc/d5c/namespaceBrush_1a2277345e299e6d41c9573c59b32ad0aa" compoundref="d7/d70/node_8cpp" startline="110" endline="127">Brush::to_json</referencedby>
       </memberdef>
       <memberdef kind="variable" id="d1/d3a/structBrush_1_1Node_1a65b283648fe779d81ac11f9e4714d920" prot="public" static="no" mutable="no">
         <type><ref refid="dc/d5c/namespaceBrush_1a3f2c9b744330ba4a561ac72f048a1a5f" kindref="member">DataType</ref></type>
@@ -159,8 +182,13 @@
         <inbodydescription>
         </inbodydescription>
         <location file="/home/runner/work/brush/brush/src/program/node.h" line="101" column="14" bodyfile="/home/runner/work/brush/brush/src/program/node.h" bodystart="101" bodyend="-1"/>
+        <referencedby refid="dc/d5c/namespaceBrush_1ad36f62c73493c032059be8cd18590d0e" compoundref="d7/d70/node_8cpp" startline="219" endline="283">Brush::from_json</referencedby>
+        <referencedby refid="d4/dc3/structBrush_1_1SearchSpace_1ac51e5e0acb3a880ffd0f3b7fba2fd68f" compoundref="d9/d99/search__space_8h" startline="550" endline="569">Brush::SearchSpace::get_node_like</referencedby>
         <referencedby refid="d1/d3a/structBrush_1_1Node_1a2d4b7a1f21f80ce980f4748432911964" compoundref="d1/d77/node_8h" startline="173" endline="173">get_ret_type</referencedby>
+        <referencedby refid="d1/d3a/structBrush_1_1Node_1a62f7ba79b38e86e54488e5dd9a6bdc93" compoundref="d1/d77/node_8h" startline="131" endline="142">Node</referencedby>
+        <referencedby refid="d4/dc3/structBrush_1_1SearchSpace_1aed45d3d8adbee89f02e709472fe88280" compoundref="da/d48/search__space_8cpp" startline="235" endline="266">Brush::SearchSpace::sample_subtree</referencedby>
         <referencedby refid="d1/d3a/structBrush_1_1Node_1a24ab653c36833ab9cd301efe99b39d5f" compoundref="d1/d77/node_8h" startline="145" endline="152">set_signature</referencedby>
+        <referencedby refid="dc/d5c/namespaceBrush_1a2277345e299e6d41c9573c59b32ad0aa" compoundref="d7/d70/node_8cpp" startline="110" endline="127">Brush::to_json</referencedby>
       </memberdef>
       <memberdef kind="variable" id="d1/d3a/structBrush_1_1Node_1a237b9208864ace5209edca01623f6b1e" prot="public" static="no" mutable="no">
         <type>std::vector&lt; <ref refid="dc/d5c/namespaceBrush_1a3f2c9b744330ba4a561ac72f048a1a5f" kindref="member">DataType</ref> &gt;</type>
@@ -176,12 +204,17 @@
         <inbodydescription>
         </inbodydescription>
         <location file="/home/runner/work/brush/brush/src/program/node.h" line="103" column="17" bodyfile="/home/runner/work/brush/brush/src/program/node.h" bodystart="103" bodyend="-1"/>
+        <referencedby refid="dc/d5c/namespaceBrush_1ad36f62c73493c032059be8cd18590d0e" compoundref="d7/d70/node_8cpp" startline="219" endline="283">Brush::from_json</referencedby>
         <referencedby refid="d1/d3a/structBrush_1_1Node_1ac2f0913b7a3e238d879722eb7f62aee2" compoundref="d1/d77/node_8h" startline="176" endline="176">get_arg_count</referencedby>
         <referencedby refid="d1/d3a/structBrush_1_1Node_1a754e5efb828686e30ebfa2174d56e37a" compoundref="d1/d77/node_8h" startline="175" endline="175">get_arg_types</referencedby>
+        <referencedby refid="d1/d3a/structBrush_1_1Node_1af621eb9463a3ed3434841565a849c03b" compoundref="d7/d70/node_8cpp" startline="50" endline="103">get_model</referencedby>
+        <referencedby refid="d1/d3a/structBrush_1_1Node_1a62f7ba79b38e86e54488e5dd9a6bdc93" compoundref="d1/d77/node_8h" startline="131" endline="142">Node</referencedby>
+        <referencedby refid="d4/dc3/structBrush_1_1SearchSpace_1ab1e6afddd1375b0f8cbd40f0033b32b1" compoundref="da/d48/search__space_8cpp" startline="268" endline="399">Brush::SearchSpace::PTC2</referencedby>
         <referencedby refid="d1/d3a/structBrush_1_1Node_1a24ab653c36833ab9cd301efe99b39d5f" compoundref="d1/d77/node_8h" startline="145" endline="152">set_signature</referencedby>
+        <referencedby refid="dc/d5c/namespaceBrush_1a2277345e299e6d41c9573c59b32ad0aa" compoundref="d7/d70/node_8cpp" startline="110" endline="127">Brush::to_json</referencedby>
       </memberdef>
       <memberdef kind="variable" id="d1/d3a/structBrush_1_1Node_1ab72b791f57011a032c6c89238db85845" prot="public" static="no" mutable="no">
-        <type><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">bool</ref></type>
+        <type>bool</type>
         <definition>bool Brush::Node::is_weighted</definition>
         <argsstring></argsstring>
         <name>is_weighted</name>
@@ -194,12 +227,15 @@
         <inbodydescription>
         </inbodydescription>
         <location file="/home/runner/work/brush/brush/src/program/node.h" line="105" column="10" bodyfile="/home/runner/work/brush/brush/src/program/node.h" bodystart="105" bodyend="-1"/>
-        <referencedby refid="d1/d3a/structBrush_1_1Node_1a8d884d5ad5f6825aa8f50039fb6baf9f" compoundref="d1/d77/node_8h" startline="246" endline="246">get_is_weighted</referencedby>
+        <referencedby refid="dc/d5c/namespaceBrush_1ad36f62c73493c032059be8cd18590d0e" compoundref="d7/d70/node_8cpp" startline="219" endline="283">Brush::from_json</referencedby>
+        <referencedby refid="d1/d3a/structBrush_1_1Node_1aaddaf7903795dfdcad487234d6dc380e" compoundref="d7/d70/node_8cpp" startline="20" endline="48">get_name</referencedby>
         <referencedby refid="d1/d3a/structBrush_1_1Node_1a1aef5137dca5171a150c6d26ca43d9bc" compoundref="d1/d77/node_8h" startline="190" endline="199">get_node_hash</referencedby>
+        <referencedby refid="d1/d3a/structBrush_1_1Node_1a62f7ba79b38e86e54488e5dd9a6bdc93" compoundref="d1/d77/node_8h" startline="131" endline="142">Node</referencedby>
         <referencedby refid="d1/d3a/structBrush_1_1Node_1a70fb9b583f72b67f6c24c2bbaae55267" compoundref="d1/d77/node_8h" startline="247" endline="251">set_is_weighted</referencedby>
+        <referencedby refid="dc/d5c/namespaceBrush_1a2277345e299e6d41c9573c59b32ad0aa" compoundref="d7/d70/node_8cpp" startline="110" endline="127">Brush::to_json</referencedby>
       </memberdef>
       <memberdef kind="variable" id="d1/d3a/structBrush_1_1Node_1ab719e64b13753515be49327d98bf2224" prot="public" static="no" mutable="no">
-        <type><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">float</ref></type>
+        <type>float</type>
         <definition>float Brush::Node::W</definition>
         <argsstring></argsstring>
         <name>W</name>
@@ -212,13 +248,17 @@
         <inbodydescription>
         </inbodydescription>
         <location file="/home/runner/work/brush/brush/src/program/node.h" line="107" column="11" bodyfile="/home/runner/work/brush/brush/src/program/node.h" bodystart="107" bodyend="-1"/>
+        <referencedby refid="dc/d5c/namespaceBrush_1ad36f62c73493c032059be8cd18590d0e" compoundref="d7/d70/node_8cpp" startline="219" endline="283">Brush::from_json</referencedby>
+        <referencedby refid="d1/d3a/structBrush_1_1Node_1af621eb9463a3ed3434841565a849c03b" compoundref="d7/d70/node_8cpp" startline="50" endline="103">get_model</referencedby>
+        <referencedby refid="d1/d3a/structBrush_1_1Node_1aaddaf7903795dfdcad487234d6dc380e" compoundref="d7/d70/node_8cpp" startline="20" endline="48">get_name</referencedby>
         <referencedby refid="d1/d3a/structBrush_1_1Node_1a1aef5137dca5171a150c6d26ca43d9bc" compoundref="d1/d77/node_8h" startline="190" endline="199">get_node_hash</referencedby>
         <referencedby refid="d1/d3a/structBrush_1_1Node_1a99e9db58c89646c630fb9d54b41ff2ba" compoundref="d1/d77/node_8h" startline="154" endline="164">init</referencedby>
+        <referencedby refid="dc/d5c/namespaceBrush_1a2277345e299e6d41c9573c59b32ad0aa" compoundref="d7/d70/node_8cpp" startline="110" endline="127">Brush::to_json</referencedby>
       </memberdef>
     </sectiondef>
     <sectiondef kind="private-attrib">
       <memberdef kind="variable" id="d1/d3a/structBrush_1_1Node_1ac5f37d638625468ed68de599a2a7d968" prot="private" static="no" mutable="no">
-        <type>string</type>
+        <type><ref refid="d5/d92/classstring" kindref="compound">string</ref></type>
         <definition>string Brush::Node::feature</definition>
         <argsstring></argsstring>
         <name>feature</name>
@@ -232,7 +272,10 @@
         </inbodydescription>
         <location file="/home/runner/work/brush/brush/src/program/node.h" line="256" column="16" bodyfile="/home/runner/work/brush/brush/src/program/node.h" bodystart="256" bodyend="-1"/>
         <referencedby refid="d1/d3a/structBrush_1_1Node_1a85a62efd4f1f99fa45eb52e4c0a1a26f" compoundref="d1/d77/node_8h" startline="244" endline="244">get_feature</referencedby>
+        <referencedby refid="d1/d3a/structBrush_1_1Node_1af621eb9463a3ed3434841565a849c03b" compoundref="d7/d70/node_8cpp" startline="50" endline="103">get_model</referencedby>
+        <referencedby refid="d1/d3a/structBrush_1_1Node_1aaddaf7903795dfdcad487234d6dc380e" compoundref="d7/d70/node_8cpp" startline="20" endline="48">get_name</referencedby>
         <referencedby refid="d1/d3a/structBrush_1_1Node_1a1aef5137dca5171a150c6d26ca43d9bc" compoundref="d1/d77/node_8h" startline="190" endline="199">get_node_hash</referencedby>
+        <referencedby refid="d1/d3a/structBrush_1_1Node_1a62f7ba79b38e86e54488e5dd9a6bdc93" compoundref="d1/d77/node_8h" startline="131" endline="142">Node</referencedby>
         <referencedby refid="d1/d3a/structBrush_1_1Node_1a7e8460b645f3d58c3093eda1d5d3166c" compoundref="d1/d77/node_8h" startline="243" endline="243">set_feature</referencedby>
       </memberdef>
     </sectiondef>
@@ -250,11 +293,17 @@
         <inbodydescription>
         </inbodydescription>
         <location file="/home/runner/work/brush/brush/src/program/node.h" line="122" column="5"/>
+        <referencedby refid="d1/d3a/structBrush_1_1Node_1ac854a6c4b96a0524e1371397c6fba4b1" compoundref="d1/d77/node_8h" startline="209" endline="212">operator!=</referencedby>
+        <referencedby refid="d1/d3a/structBrush_1_1Node_1aea5769142b80b211a53eb20d8a14507b" compoundref="d1/d77/node_8h" startline="214" endline="219">operator&lt;</referencedby>
+        <referencedby refid="d1/d3a/structBrush_1_1Node_1a62ae8b64fc43f5f13d697c481efb6588" compoundref="d1/d77/node_8h" startline="221" endline="224">operator&lt;=</referencedby>
+        <referencedby refid="d1/d3a/structBrush_1_1Node_1a7c46bb16fb006691be230d29b6e731fe" compoundref="d1/d77/node_8h" startline="202" endline="207">operator==</referencedby>
+        <referencedby refid="d1/d3a/structBrush_1_1Node_1a6dabaf6f3fcd362ff8fbc9e0bd37756f" compoundref="d1/d77/node_8h" startline="226" endline="229">operator&gt;</referencedby>
+        <referencedby refid="d1/d3a/structBrush_1_1Node_1aa020471209858e31cb4cf26453033929" compoundref="d1/d77/node_8h" startline="231" endline="234">operator&gt;=</referencedby>
       </memberdef>
       <memberdef kind="function" id="d1/d3a/structBrush_1_1Node_1a62f7ba79b38e86e54488e5dd9a6bdc93" prot="public" static="no" const="no" explicit="yes" inline="yes" noexcept="yes" virt="non-virtual">
         <templateparamlist>
           <param>
-            <type><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">typename</ref> S</type>
+            <type>typename S</type>
           </param>
         </templateparamlist>
         <type></type>
@@ -271,12 +320,12 @@
           <declname>signature</declname>
         </param>
         <param>
-          <type><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">bool</ref></type>
+          <type>bool</type>
           <declname>weighted</declname>
-          <defval><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">false</ref></defval>
+          <defval>false</defval>
         </param>
         <param>
-          <type>string</type>
+          <type><ref refid="d5/d92/classstring" kindref="compound">string</ref></type>
           <declname>feature_name</declname>
           <defval>&quot;&quot;</defval>
         </param>
@@ -323,15 +372,26 @@
         <inbodydescription>
         </inbodydescription>
         <location file="/home/runner/work/brush/brush/src/program/node.h" line="131" column="14" bodyfile="/home/runner/work/brush/brush/src/program/node.h" bodystart="131" bodyend="142"/>
+        <references refid="d1/d3a/structBrush_1_1Node_1a237b9208864ace5209edca01623f6b1e" compoundref="d1/d77/node_8h" startline="103">arg_types</references>
+        <references refid="d1/d3a/structBrush_1_1Node_1ac5f37d638625468ed68de599a2a7d968" compoundref="d1/d77/node_8h" startline="256">feature</references>
+        <references refid="d1/d3a/structBrush_1_1Node_1a754e5efb828686e30ebfa2174d56e37a" compoundref="d1/d77/node_8h" startline="175" endline="175">get_arg_types</references>
+        <references refid="d1/d3a/structBrush_1_1Node_1a2d4b7a1f21f80ce980f4748432911964" compoundref="d1/d77/node_8h" startline="173" endline="173">get_ret_type</references>
         <references refid="d1/d3a/structBrush_1_1Node_1a99e9db58c89646c630fb9d54b41ff2ba" compoundref="d1/d77/node_8h" startline="154" endline="164">init</references>
+        <references refid="d1/d3a/structBrush_1_1Node_1ab72b791f57011a032c6c89238db85845" compoundref="d1/d77/node_8h" startline="105">is_weighted</references>
+        <references refid="d1/d3a/structBrush_1_1Node_1ad6b3fd4a54c813d066370defc8a85af1" compoundref="d1/d77/node_8h" startline="87">name</references>
+        <references refid="d1/d3a/structBrush_1_1Node_1a522791afe93c92442564356ff19ff55a" compoundref="d1/d77/node_8h" startline="95">node_type</references>
+        <references refid="dc/d5c/namespaceBrush_1abfd0b15e0aacec494262585ad04fd79b" compoundref="df/dfe/nodetype_8cpp" startline="81">Brush::NodeTypeName</references>
+        <references refid="d1/d3a/structBrush_1_1Node_1a65b283648fe779d81ac11f9e4714d920" compoundref="d1/d77/node_8h" startline="101">ret_type</references>
+        <references refid="d1/d3a/structBrush_1_1Node_1aed6c2af0fae3dd8e5a8aa2fab77479fd" compoundref="d1/d77/node_8h" startline="99">sig_dual_hash</references>
+        <references refid="d1/d3a/structBrush_1_1Node_1a889e0361b55a63a4510a3edabd2fa57c" compoundref="d1/d77/node_8h" startline="97">sig_hash</references>
       </memberdef>
       <memberdef kind="function" id="d1/d3a/structBrush_1_1Node_1a24ab653c36833ab9cd301efe99b39d5f" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
         <templateparamlist>
           <param>
-            <type><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">typename</ref> S</type>
+            <type>typename S</type>
           </param>
         </templateparamlist>
-        <type><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">void</ref></type>
+        <type>void</type>
         <definition>void Brush::Node::set_signature</definition>
         <argsstring>()</argsstring>
         <name>set_signature</name>
@@ -347,9 +407,10 @@
         <references refid="d1/d3a/structBrush_1_1Node_1a65b283648fe779d81ac11f9e4714d920" compoundref="d1/d77/node_8h" startline="101">ret_type</references>
         <references refid="d1/d3a/structBrush_1_1Node_1aed6c2af0fae3dd8e5a8aa2fab77479fd" compoundref="d1/d77/node_8h" startline="99">sig_dual_hash</references>
         <references refid="d1/d3a/structBrush_1_1Node_1a889e0361b55a63a4510a3edabd2fa57c" compoundref="d1/d77/node_8h" startline="97">sig_hash</references>
+        <referencedby refid="dc/d5c/namespaceBrush_1a8f1ed90f7962fef5764e7be14845aa34" compoundref="d7/d70/node_8cpp" startline="130" endline="217">Brush::init_node_with_default_signature</referencedby>
       </memberdef>
       <memberdef kind="function" id="d1/d3a/structBrush_1_1Node_1a99e9db58c89646c630fb9d54b41ff2ba" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
-        <type><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">void</ref></type>
+        <type>void</type>
         <definition>void Brush::Node::init</definition>
         <argsstring>()</argsstring>
         <name>init</name>
@@ -365,18 +426,19 @@
         <references refid="dc/d5c/namespaceBrush_1a1d5a63450bcdb77bd08283c9f74ca53f" compoundref="d1/d77/node_8h" startline="46" endline="53">Brush::IsWeighable</references>
         <references refid="d1/d3a/structBrush_1_1Node_1ad9e4f8654978a40e8266b20a4bb0950f" compoundref="d1/d77/node_8h" startline="240" endline="240">set_prob_change</references>
         <references refid="d1/d3a/structBrush_1_1Node_1ab719e64b13753515be49327d98bf2224" compoundref="d1/d77/node_8h" startline="107">W</references>
+        <referencedby refid="dc/d5c/namespaceBrush_1ad36f62c73493c032059be8cd18590d0e" compoundref="d7/d70/node_8cpp" startline="219" endline="283">Brush::from_json</referencedby>
         <referencedby refid="d1/d3a/structBrush_1_1Node_1a62f7ba79b38e86e54488e5dd9a6bdc93" compoundref="d1/d77/node_8h" startline="131" endline="142">Node</referencedby>
       </memberdef>
       <memberdef kind="function" id="d1/d3a/structBrush_1_1Node_1aaddaf7903795dfdcad487234d6dc380e" prot="public" static="no" const="yes" explicit="no" inline="no" noexcept="yes" virt="non-virtual">
-        <type>string</type>
+        <type><ref refid="d5/d92/classstring" kindref="compound">string</ref></type>
         <definition>auto Brush::Node::get_name</definition>
         <argsstring>(bool include_weight=true) const noexcept</argsstring>
         <name>get_name</name>
         <qualifiedname>Brush::Node::get_name</qualifiedname>
         <param>
-          <type><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">bool</ref></type>
+          <type>bool</type>
           <declname>include_weight</declname>
-          <defval><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">true</ref></defval>
+          <defval>true</defval>
         </param>
         <briefdescription>
 <para>gets a string version of the node for printing. </para>
@@ -401,16 +463,24 @@
         <inbodydescription>
         </inbodydescription>
         <location file="/home/runner/work/brush/brush/src/program/node.h" line="169" column="12" bodyfile="/home/runner/work/brush/brush/src/program/node.cpp" bodystart="20" bodyend="48"/>
-        <references refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" compoundref="d4/d93/bind__engines_8h" startline="35" endline="104">bind_engine</references>
+        <references refid="d1/d3a/structBrush_1_1Node_1ac5f37d638625468ed68de599a2a7d968" compoundref="d1/d77/node_8h" startline="256">feature</references>
+        <references refid="dc/d5c/namespaceBrush_1a4f135739df5fe55a0ff81d943bec8be2" compoundref="d1/d77/node_8h" startline="260" endline="260">Brush::Is</references>
+        <references refid="d1/d3a/structBrush_1_1Node_1ab72b791f57011a032c6c89238db85845" compoundref="d1/d77/node_8h" startline="105">is_weighted</references>
+        <references refid="d1/d3a/structBrush_1_1Node_1ad6b3fd4a54c813d066370defc8a85af1" compoundref="d1/d77/node_8h" startline="87">name</references>
+        <references refid="d1/d3a/structBrush_1_1Node_1a522791afe93c92442564356ff19ff55a" compoundref="d1/d77/node_8h" startline="95">node_type</references>
+        <references refid="d1/d3a/structBrush_1_1Node_1ab719e64b13753515be49327d98bf2224" compoundref="d1/d77/node_8h" startline="107">W</references>
+        <referencedby refid="d4/d63/structfmt_1_1formatter_3_01Brush_1_1Node_01_4_1a3fbb52e5e3acf82d886c5c2f10a24df2" compoundref="d1/d77/node_8h" startline="335" endline="337">fmt::formatter&lt; Brush::Node &gt;::format</referencedby>
+        <referencedby refid="d1/d3a/structBrush_1_1Node_1af621eb9463a3ed3434841565a849c03b" compoundref="d7/d70/node_8cpp" startline="50" endline="103">get_model</referencedby>
+        <referencedby refid="dc/d5c/namespaceBrush_1a9f9e092d833b2604cd38086f8b344a10" compoundref="d7/d70/node_8cpp" startline="12" endline="16">Brush::operator&lt;&lt;</referencedby>
       </memberdef>
       <memberdef kind="function" id="d1/d3a/structBrush_1_1Node_1af621eb9463a3ed3434841565a849c03b" prot="public" static="no" const="yes" explicit="no" inline="no" noexcept="yes" virt="non-virtual">
-        <type>string</type>
+        <type><ref refid="d5/d92/classstring" kindref="compound">string</ref></type>
         <definition>string Brush::Node::get_model</definition>
         <argsstring>(const vector&lt; string &gt; &amp;) const noexcept</argsstring>
         <name>get_model</name>
         <qualifiedname>Brush::Node::get_model</qualifiedname>
         <param>
-          <type><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">const</ref> vector&lt; string &gt; &amp;</type>
+          <type>const <ref refid="d7/dfc/classvector" kindref="compound">vector</ref>&lt; <ref refid="d5/d92/classstring" kindref="compound">string</ref> &gt; &amp;</type>
           <defname>children</defname>
         </param>
         <briefdescription>
@@ -420,8 +490,13 @@
         <inbodydescription>
         </inbodydescription>
         <location file="/home/runner/work/brush/brush/src/program/node.h" line="170" column="12" bodyfile="/home/runner/work/brush/brush/src/program/node.cpp" bodystart="50" bodyend="103"/>
-        <references refid="dc/d5c/namespaceBrush_1a3f2c9b744330ba4a561ac72f048a1a5fa3c119844524e715e16e6c9b36e6516f0">Brush::ArrayB</references>
-        <references refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" compoundref="d4/d93/bind__engines_8h" startline="35" endline="104">bind_engine</references>
+        <references refid="d1/d3a/structBrush_1_1Node_1a237b9208864ace5209edca01623f6b1e" compoundref="d1/d77/node_8h" startline="103">arg_types</references>
+        <references refid="dc/d5c/namespaceBrush_1a3f2c9b744330ba4a561ac72f048a1a5fa3c119844524e715e16e6c9b36e6516f0" compoundref="d9/d49/types_8h" startline="144">Brush::ArrayB</references>
+        <references refid="d1/d3a/structBrush_1_1Node_1ac5f37d638625468ed68de599a2a7d968" compoundref="d1/d77/node_8h" startline="256">feature</references>
+        <references refid="d1/d3a/structBrush_1_1Node_1aaddaf7903795dfdcad487234d6dc380e" compoundref="d7/d70/node_8cpp" startline="20" endline="48">get_name</references>
+        <references refid="dc/d5c/namespaceBrush_1a4f135739df5fe55a0ff81d943bec8be2" compoundref="d1/d77/node_8h" startline="260" endline="260">Brush::Is</references>
+        <references refid="d1/d3a/structBrush_1_1Node_1a522791afe93c92442564356ff19ff55a" compoundref="d1/d77/node_8h" startline="95">node_type</references>
+        <references refid="d1/d3a/structBrush_1_1Node_1ab719e64b13753515be49327d98bf2224" compoundref="d1/d77/node_8h" startline="107">W</references>
       </memberdef>
       <memberdef kind="function" id="d1/d3a/structBrush_1_1Node_1a2d4b7a1f21f80ce980f4748432911964" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
         <type><ref refid="dc/d5c/namespaceBrush_1a3f2c9b744330ba4a561ac72f048a1a5f" kindref="member">DataType</ref></type>
@@ -436,7 +511,10 @@
         <inbodydescription>
         </inbodydescription>
         <location file="/home/runner/work/brush/brush/src/program/node.h" line="173" column="21" bodyfile="/home/runner/work/brush/brush/src/program/node.h" bodystart="173" bodyend="173"/>
+        <references refid="d1/d3a/structBrush_1_1Node_1a2d4b7a1f21f80ce980f4748432911964" compoundref="d1/d77/node_8h" startline="173" endline="173">get_ret_type</references>
         <references refid="d1/d3a/structBrush_1_1Node_1a65b283648fe779d81ac11f9e4714d920" compoundref="d1/d77/node_8h" startline="101">ret_type</references>
+        <referencedby refid="d1/d3a/structBrush_1_1Node_1a2d4b7a1f21f80ce980f4748432911964" compoundref="d1/d77/node_8h" startline="173" endline="173">get_ret_type</referencedby>
+        <referencedby refid="d1/d3a/structBrush_1_1Node_1a62f7ba79b38e86e54488e5dd9a6bdc93" compoundref="d1/d77/node_8h" startline="131" endline="142">Node</referencedby>
       </memberdef>
       <memberdef kind="function" id="d1/d3a/structBrush_1_1Node_1a9ec6ba08b0baebc0cd105e4ef774b7fb" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
         <type>std::size_t</type>
@@ -452,9 +530,10 @@
         </inbodydescription>
         <location file="/home/runner/work/brush/brush/src/program/node.h" line="174" column="24" bodyfile="/home/runner/work/brush/brush/src/program/node.h" bodystart="174" bodyend="174"/>
         <references refid="d1/d3a/structBrush_1_1Node_1a889e0361b55a63a4510a3edabd2fa57c" compoundref="d1/d77/node_8h" startline="97">sig_hash</references>
+        <referencedby refid="d4/dc3/structBrush_1_1SearchSpace_1ac51e5e0acb3a880ffd0f3b7fba2fd68f" compoundref="d9/d99/search__space_8h" startline="550" endline="569">Brush::SearchSpace::get_node_like</referencedby>
       </memberdef>
       <memberdef kind="function" id="d1/d3a/structBrush_1_1Node_1a754e5efb828686e30ebfa2174d56e37a" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
-        <type><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">auto</ref></type>
+        <type>auto</type>
         <definition>auto Brush::Node::get_arg_types</definition>
         <argsstring>() const</argsstring>
         <name>get_arg_types</name>
@@ -467,9 +546,10 @@
         </inbodydescription>
         <location file="/home/runner/work/brush/brush/src/program/node.h" line="175" column="17" bodyfile="/home/runner/work/brush/brush/src/program/node.h" bodystart="175" bodyend="175"/>
         <references refid="d1/d3a/structBrush_1_1Node_1a237b9208864ace5209edca01623f6b1e" compoundref="d1/d77/node_8h" startline="103">arg_types</references>
+        <referencedby refid="d1/d3a/structBrush_1_1Node_1a62f7ba79b38e86e54488e5dd9a6bdc93" compoundref="d1/d77/node_8h" startline="131" endline="142">Node</referencedby>
       </memberdef>
       <memberdef kind="function" id="d1/d3a/structBrush_1_1Node_1ac2f0913b7a3e238d879722eb7f62aee2" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
-        <type><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">size_t</ref></type>
+        <type>size_t</type>
         <definition>size_t Brush::Node::get_arg_count</definition>
         <argsstring>() const</argsstring>
         <name>get_arg_count</name>
@@ -484,7 +564,7 @@
         <references refid="d1/d3a/structBrush_1_1Node_1a237b9208864ace5209edca01623f6b1e" compoundref="d1/d77/node_8h" startline="103">arg_types</references>
       </memberdef>
       <memberdef kind="function" id="d1/d3a/structBrush_1_1Node_1a1aef5137dca5171a150c6d26ca43d9bc" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
-        <type><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">size_t</ref></type>
+        <type>size_t</type>
         <definition>size_t Brush::Node::get_node_hash</definition>
         <argsstring>() const</argsstring>
         <name>get_node_hash</name>
@@ -496,7 +576,6 @@
         <inbodydescription>
         </inbodydescription>
         <location file="/home/runner/work/brush/brush/src/program/node.h" line="190" column="12" bodyfile="/home/runner/work/brush/brush/src/program/node.h" bodystart="190" bodyend="199"/>
-        <references refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" compoundref="d4/d93/bind__engines_8h" startline="35" endline="104">bind_engine</references>
         <references refid="d1/d3a/structBrush_1_1Node_1ac5f37d638625468ed68de599a2a7d968" compoundref="d1/d77/node_8h" startline="256">feature</references>
         <references refid="d1/d3a/structBrush_1_1Node_1a32c73293ee4e02b6d828c2c213e06154" compoundref="d1/d77/node_8h" startline="93">fixed</references>
         <references refid="db/d53/structBrush_1_1NodeTypes_1a560225849a640cb91ed60227d653dbfa" compoundref="de/d26/nodetype_8h" startline="123" endline="126">Brush::NodeTypes::GetIndex</references>
@@ -508,13 +587,13 @@
         <referencedby refid="d1/d3a/structBrush_1_1Node_1a7c46bb16fb006691be230d29b6e731fe" compoundref="d1/d77/node_8h" startline="202" endline="207">operator==</referencedby>
       </memberdef>
       <memberdef kind="function" id="d1/d3a/structBrush_1_1Node_1a7c46bb16fb006691be230d29b6e731fe" prot="public" static="no" const="yes" explicit="no" inline="yes" noexcept="yes" virt="non-virtual">
-        <type><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">auto</ref></type>
-        <definition>auto Brush::Node::operator==</definition>
-        <argsstring>(const Node &amp;rhs) const noexcept -&gt; bool</argsstring>
+        <type>bool</type>
+        <definition>bool Brush::Node::operator==</definition>
+        <argsstring>(const Node &amp;rhs) const noexcept</argsstring>
         <name>operator==</name>
         <qualifiedname>Brush::Node::operator==</qualifiedname>
         <param>
-          <type><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">const</ref> <ref refid="d1/d3a/structBrush_1_1Node" kindref="compound">Node</ref> &amp;</type>
+          <type>const <ref refid="d1/d3a/structBrush_1_1Node" kindref="compound">Node</ref> &amp;</type>
           <declname>rhs</declname>
         </param>
         <briefdescription>
@@ -524,17 +603,17 @@
         <inbodydescription>
         </inbodydescription>
         <location file="/home/runner/work/brush/brush/src/program/node.h" line="202" column="17" bodyfile="/home/runner/work/brush/brush/src/program/node.h" bodystart="202" bodyend="207"/>
-        <references refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" compoundref="d4/d93/bind__engines_8h" startline="35" endline="104">bind_engine</references>
         <references refid="d1/d3a/structBrush_1_1Node_1a1aef5137dca5171a150c6d26ca43d9bc" compoundref="d1/d77/node_8h" startline="190" endline="199">get_node_hash</references>
+        <references refid="d1/d3a/structBrush_1_1Node_1adcd17b2d50bd124218a1ed472369d461">Node</references>
       </memberdef>
       <memberdef kind="function" id="d1/d3a/structBrush_1_1Node_1ac854a6c4b96a0524e1371397c6fba4b1" prot="public" static="no" const="yes" explicit="no" inline="yes" noexcept="yes" virt="non-virtual">
-        <type><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">auto</ref></type>
-        <definition>auto Brush::Node::operator!=</definition>
-        <argsstring>(const Node &amp;rhs) const noexcept -&gt; bool</argsstring>
+        <type>bool</type>
+        <definition>bool Brush::Node::operator!=</definition>
+        <argsstring>(const Node &amp;rhs) const noexcept</argsstring>
         <name>operator!=</name>
         <qualifiedname>Brush::Node::operator!=</qualifiedname>
         <param>
-          <type><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">const</ref> <ref refid="d1/d3a/structBrush_1_1Node" kindref="compound">Node</ref> &amp;</type>
+          <type>const <ref refid="d1/d3a/structBrush_1_1Node" kindref="compound">Node</ref> &amp;</type>
           <declname>rhs</declname>
         </param>
         <briefdescription>
@@ -544,16 +623,16 @@
         <inbodydescription>
         </inbodydescription>
         <location file="/home/runner/work/brush/brush/src/program/node.h" line="209" column="17" bodyfile="/home/runner/work/brush/brush/src/program/node.h" bodystart="209" bodyend="212"/>
-        <references refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" compoundref="d4/d93/bind__engines_8h" startline="35" endline="104">bind_engine</references>
+        <references refid="d1/d3a/structBrush_1_1Node_1adcd17b2d50bd124218a1ed472369d461">Node</references>
       </memberdef>
       <memberdef kind="function" id="d1/d3a/structBrush_1_1Node_1aea5769142b80b211a53eb20d8a14507b" prot="public" static="no" const="yes" explicit="no" inline="yes" noexcept="yes" virt="non-virtual">
-        <type><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">auto</ref></type>
-        <definition>auto Brush::Node::operator&lt;</definition>
-        <argsstring>(const Node &amp;rhs) const noexcept -&gt; bool</argsstring>
+        <type>bool</type>
+        <definition>bool Brush::Node::operator&lt;</definition>
+        <argsstring>(const Node &amp;rhs) const noexcept</argsstring>
         <name>operator&lt;</name>
         <qualifiedname>Brush::Node::operator&lt;</qualifiedname>
         <param>
-          <type><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">const</ref> <ref refid="d1/d3a/structBrush_1_1Node" kindref="compound">Node</ref> &amp;</type>
+          <type>const <ref refid="d1/d3a/structBrush_1_1Node" kindref="compound">Node</ref> &amp;</type>
           <declname>rhs</declname>
         </param>
         <briefdescription>
@@ -563,17 +642,17 @@
         <inbodydescription>
         </inbodydescription>
         <location file="/home/runner/work/brush/brush/src/program/node.h" line="214" column="12" bodyfile="/home/runner/work/brush/brush/src/program/node.h" bodystart="214" bodyend="219"/>
-        <references refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" compoundref="d4/d93/bind__engines_8h" startline="35" endline="104">bind_engine</references>
         <references refid="d1/d3a/structBrush_1_1Node_1a1aef5137dca5171a150c6d26ca43d9bc" compoundref="d1/d77/node_8h" startline="190" endline="199">get_node_hash</references>
+        <references refid="d1/d3a/structBrush_1_1Node_1adcd17b2d50bd124218a1ed472369d461">Node</references>
       </memberdef>
       <memberdef kind="function" id="d1/d3a/structBrush_1_1Node_1a62ae8b64fc43f5f13d697c481efb6588" prot="public" static="no" const="yes" explicit="no" inline="yes" noexcept="yes" virt="non-virtual">
-        <type><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">auto</ref></type>
-        <definition>auto Brush::Node::operator&lt;=</definition>
-        <argsstring>(const Node &amp;rhs) const noexcept -&gt; bool</argsstring>
+        <type>bool</type>
+        <definition>bool Brush::Node::operator&lt;=</definition>
+        <argsstring>(const Node &amp;rhs) const noexcept</argsstring>
         <name>operator&lt;=</name>
         <qualifiedname>Brush::Node::operator&lt;=</qualifiedname>
         <param>
-          <type><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">const</ref> <ref refid="d1/d3a/structBrush_1_1Node" kindref="compound">Node</ref> &amp;</type>
+          <type>const <ref refid="d1/d3a/structBrush_1_1Node" kindref="compound">Node</ref> &amp;</type>
           <declname>rhs</declname>
         </param>
         <briefdescription>
@@ -583,16 +662,16 @@
         <inbodydescription>
         </inbodydescription>
         <location file="/home/runner/work/brush/brush/src/program/node.h" line="221" column="12" bodyfile="/home/runner/work/brush/brush/src/program/node.h" bodystart="221" bodyend="224"/>
-        <references refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" compoundref="d4/d93/bind__engines_8h" startline="35" endline="104">bind_engine</references>
+        <references refid="d1/d3a/structBrush_1_1Node_1adcd17b2d50bd124218a1ed472369d461">Node</references>
       </memberdef>
       <memberdef kind="function" id="d1/d3a/structBrush_1_1Node_1a6dabaf6f3fcd362ff8fbc9e0bd37756f" prot="public" static="no" const="yes" explicit="no" inline="yes" noexcept="yes" virt="non-virtual">
-        <type><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">auto</ref></type>
-        <definition>auto Brush::Node::operator&gt;</definition>
-        <argsstring>(const Node &amp;rhs) const noexcept -&gt; bool</argsstring>
+        <type>bool</type>
+        <definition>bool Brush::Node::operator&gt;</definition>
+        <argsstring>(const Node &amp;rhs) const noexcept</argsstring>
         <name>operator&gt;</name>
         <qualifiedname>Brush::Node::operator&gt;</qualifiedname>
         <param>
-          <type><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">const</ref> <ref refid="d1/d3a/structBrush_1_1Node" kindref="compound">Node</ref> &amp;</type>
+          <type>const <ref refid="d1/d3a/structBrush_1_1Node" kindref="compound">Node</ref> &amp;</type>
           <declname>rhs</declname>
         </param>
         <briefdescription>
@@ -602,16 +681,16 @@
         <inbodydescription>
         </inbodydescription>
         <location file="/home/runner/work/brush/brush/src/program/node.h" line="226" column="17" bodyfile="/home/runner/work/brush/brush/src/program/node.h" bodystart="226" bodyend="229"/>
-        <references refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" compoundref="d4/d93/bind__engines_8h" startline="35" endline="104">bind_engine</references>
+        <references refid="d1/d3a/structBrush_1_1Node_1adcd17b2d50bd124218a1ed472369d461">Node</references>
       </memberdef>
       <memberdef kind="function" id="d1/d3a/structBrush_1_1Node_1aa020471209858e31cb4cf26453033929" prot="public" static="no" const="yes" explicit="no" inline="yes" noexcept="yes" virt="non-virtual">
-        <type><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">auto</ref></type>
-        <definition>auto Brush::Node::operator&gt;=</definition>
-        <argsstring>(const Node &amp;rhs) const noexcept -&gt; bool</argsstring>
+        <type>bool</type>
+        <definition>bool Brush::Node::operator&gt;=</definition>
+        <argsstring>(const Node &amp;rhs) const noexcept</argsstring>
         <name>operator&gt;=</name>
         <qualifiedname>Brush::Node::operator&gt;=</qualifiedname>
         <param>
-          <type><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">const</ref> <ref refid="d1/d3a/structBrush_1_1Node" kindref="compound">Node</ref> &amp;</type>
+          <type>const <ref refid="d1/d3a/structBrush_1_1Node" kindref="compound">Node</ref> &amp;</type>
           <declname>rhs</declname>
         </param>
         <briefdescription>
@@ -621,10 +700,10 @@
         <inbodydescription>
         </inbodydescription>
         <location file="/home/runner/work/brush/brush/src/program/node.h" line="231" column="17" bodyfile="/home/runner/work/brush/brush/src/program/node.h" bodystart="231" bodyend="234"/>
-        <references refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" compoundref="d4/d93/bind__engines_8h" startline="35" endline="104">bind_engine</references>
+        <references refid="d1/d3a/structBrush_1_1Node_1adcd17b2d50bd124218a1ed472369d461">Node</references>
       </memberdef>
       <memberdef kind="function" id="d1/d3a/structBrush_1_1Node_1a4fcf7feccb71d538f8614d3c51247eb4" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
-        <type><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">float</ref></type>
+        <type>float</type>
         <definition>float Brush::Node::get_prob_change</definition>
         <argsstring>() const</argsstring>
         <name>get_prob_change</name>
@@ -637,16 +716,15 @@
         </inbodydescription>
         <location file="/home/runner/work/brush/brush/src/program/node.h" line="239" column="11" bodyfile="/home/runner/work/brush/brush/src/program/node.h" bodystart="239" bodyend="239"/>
         <references refid="d1/d3a/structBrush_1_1Node_1a32c73293ee4e02b6d828c2c213e06154" compoundref="d1/d77/node_8h" startline="93">fixed</references>
-        <references refid="d1/d3a/structBrush_1_1Node_1a9f5b2e34d8ba752e0f6bffebec8afdc0" compoundref="d1/d77/node_8h" startline="91">prob_change</references>
       </memberdef>
       <memberdef kind="function" id="d1/d3a/structBrush_1_1Node_1ad9e4f8654978a40e8266b20a4bb0950f" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
-        <type><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">void</ref></type>
+        <type>void</type>
         <definition>void Brush::Node::set_prob_change</definition>
         <argsstring>(float w)</argsstring>
         <name>set_prob_change</name>
         <qualifiedname>Brush::Node::set_prob_change</qualifiedname>
         <param>
-          <type><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">float</ref></type>
+          <type>float</type>
           <declname>w</declname>
         </param>
         <briefdescription>
@@ -656,12 +734,12 @@
         <inbodydescription>
         </inbodydescription>
         <location file="/home/runner/work/brush/brush/src/program/node.h" line="240" column="10" bodyfile="/home/runner/work/brush/brush/src/program/node.h" bodystart="240" bodyend="240"/>
-        <references refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" compoundref="d4/d93/bind__engines_8h" startline="35" endline="104">bind_engine</references>
         <referencedby refid="dc/d5c/namespaceBrush_1a7d1315460dd7c6eb76e3ace99d4aad03" compoundref="da/d48/search__space_8cpp" startline="51" endline="158">Brush::generate_terminals</referencedby>
         <referencedby refid="d1/d3a/structBrush_1_1Node_1a99e9db58c89646c630fb9d54b41ff2ba" compoundref="d1/d77/node_8h" startline="154" endline="164">init</referencedby>
+        <referencedby refid="d4/dc3/structBrush_1_1SearchSpace_1a810403a87eef0baded2aed2bb4f1979e" compoundref="d9/d99/search__space_8h" startline="681" endline="751">Brush::SearchSpace::make_program</referencedby>
       </memberdef>
       <memberdef kind="function" id="d1/d3a/structBrush_1_1Node_1a087a9c51b46b3e801506415376cd0518" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
-        <type><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">float</ref></type>
+        <type>float</type>
         <definition>float Brush::Node::get_prob_keep</definition>
         <argsstring>() const</argsstring>
         <name>get_prob_keep</name>
@@ -674,16 +752,15 @@
         </inbodydescription>
         <location file="/home/runner/work/brush/brush/src/program/node.h" line="241" column="11" bodyfile="/home/runner/work/brush/brush/src/program/node.h" bodystart="241" bodyend="241"/>
         <references refid="d1/d3a/structBrush_1_1Node_1a32c73293ee4e02b6d828c2c213e06154" compoundref="d1/d77/node_8h" startline="93">fixed</references>
-        <references refid="d1/d3a/structBrush_1_1Node_1a9f5b2e34d8ba752e0f6bffebec8afdc0" compoundref="d1/d77/node_8h" startline="91">prob_change</references>
       </memberdef>
       <memberdef kind="function" id="d1/d3a/structBrush_1_1Node_1a7e8460b645f3d58c3093eda1d5d3166c" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
-        <type><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">void</ref></type>
+        <type>void</type>
         <definition>void Brush::Node::set_feature</definition>
         <argsstring>(string f)</argsstring>
         <name>set_feature</name>
         <qualifiedname>Brush::Node::set_feature</qualifiedname>
         <param>
-          <type>string</type>
+          <type><ref refid="d5/d92/classstring" kindref="compound">string</ref></type>
           <declname>f</declname>
         </param>
         <briefdescription>
@@ -693,11 +770,11 @@
         <inbodydescription>
         </inbodydescription>
         <location file="/home/runner/work/brush/brush/src/program/node.h" line="243" column="17" bodyfile="/home/runner/work/brush/brush/src/program/node.h" bodystart="243" bodyend="243"/>
-        <references refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" compoundref="d4/d93/bind__engines_8h" startline="35" endline="104">bind_engine</references>
         <references refid="d1/d3a/structBrush_1_1Node_1ac5f37d638625468ed68de599a2a7d968" compoundref="d1/d77/node_8h" startline="256">feature</references>
+        <referencedby refid="dc/d5c/namespaceBrush_1ad36f62c73493c032059be8cd18590d0e" compoundref="d7/d70/node_8cpp" startline="219" endline="283">Brush::from_json</referencedby>
       </memberdef>
       <memberdef kind="function" id="d1/d3a/structBrush_1_1Node_1a85a62efd4f1f99fa45eb52e4c0a1a26f" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
-        <type>string</type>
+        <type><ref refid="d5/d92/classstring" kindref="compound">string</ref></type>
         <definition>string Brush::Node::get_feature</definition>
         <argsstring>() const</argsstring>
         <name>get_feature</name>
@@ -710,9 +787,10 @@
         </inbodydescription>
         <location file="/home/runner/work/brush/brush/src/program/node.h" line="244" column="19" bodyfile="/home/runner/work/brush/brush/src/program/node.h" bodystart="244" bodyend="244"/>
         <references refid="d1/d3a/structBrush_1_1Node_1ac5f37d638625468ed68de599a2a7d968" compoundref="d1/d77/node_8h" startline="256">feature</references>
+        <referencedby refid="dc/d5c/namespaceBrush_1a2277345e299e6d41c9573c59b32ad0aa" compoundref="d7/d70/node_8cpp" startline="110" endline="127">Brush::to_json</referencedby>
       </memberdef>
       <memberdef kind="function" id="d1/d3a/structBrush_1_1Node_1a8d884d5ad5f6825aa8f50039fb6baf9f" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
-        <type><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">bool</ref></type>
+        <type>bool</type>
         <definition>bool Brush::Node::get_is_weighted</definition>
         <argsstring>() const</argsstring>
         <name>get_is_weighted</name>
@@ -724,16 +802,16 @@
         <inbodydescription>
         </inbodydescription>
         <location file="/home/runner/work/brush/brush/src/program/node.h" line="246" column="17" bodyfile="/home/runner/work/brush/brush/src/program/node.h" bodystart="246" bodyend="246"/>
-        <references refid="d1/d3a/structBrush_1_1Node_1ab72b791f57011a032c6c89238db85845" compoundref="d1/d77/node_8h" startline="105">is_weighted</references>
+        <referencedby refid="d4/dc3/structBrush_1_1SearchSpace_1ab1e6afddd1375b0f8cbd40f0033b32b1" compoundref="da/d48/search__space_8cpp" startline="268" endline="399">Brush::SearchSpace::PTC2</referencedby>
       </memberdef>
       <memberdef kind="function" id="d1/d3a/structBrush_1_1Node_1a70fb9b583f72b67f6c24c2bbaae55267" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
-        <type><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">void</ref></type>
+        <type>void</type>
         <definition>void Brush::Node::set_is_weighted</definition>
         <argsstring>(bool is_weighted)</argsstring>
         <name>set_is_weighted</name>
         <qualifiedname>Brush::Node::set_is_weighted</qualifiedname>
         <param>
-          <type><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">bool</ref></type>
+          <type>bool</type>
           <declname>is_weighted</declname>
         </param>
         <briefdescription>
@@ -753,9 +831,6 @@
     <detaileddescription>
     </detaileddescription>
     <collaborationgraph>
-      <node id="5">
-        <label>DataType</label>
-      </node>
       <node id="1">
         <label>Brush::Node</label>
         <link refid="d1/d3a/structBrush_1_1Node"/>
@@ -777,9 +852,6 @@
       </node>
       <node id="4">
         <label>std::vector&lt; DataType &gt;</label>
-        <childnode refid="5" relation="usage">
-          <edgelabel>elements</edgelabel>
-        </childnode>
       </node>
     </collaborationgraph>
     <location file="/home/runner/work/brush/brush/src/program/node.h" line="84" column="1" bodyfile="/home/runner/work/brush/brush/src/program/node.h" bodystart="84" bodyend="257"/>

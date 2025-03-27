@@ -12,7 +12,7 @@ var searchData=
   ['is_5fone_5fof_5fv_9',['is_one_of_v',['../dc/d5c/namespaceBrush.html#a7e323244b7b57c08d6816a009e74eec6',1,'Brush']]],
   ['is_5fstd_5farray_5fv_10',['is_std_array_v',['../dc/d5c/namespaceBrush.html#af0a72d6e11b43912abc5bc15d19e66f3',1,'Brush']]],
   ['is_5ftuple_5fv_11',['is_tuple_v',['../dc/d5c/namespaceBrush.html#a00b234ce343d03867e55d528f8cb8895',1,'Brush']]],
-  ['is_5fweighted_12',['is_weighted',['../d1/d3a/structBrush_1_1Node.html#ab72b791f57011a032c6c89238db85845',1,'Brush::Node']]],
+  ['is_5fweighted_12',['is_weighted',['../d1/d3a/structBrush_1_1Node.html#ab72b791f57011a032c6c89238db85845',1,'Brush::Node::is_weighted'],['../d8/d49/structNode.html#ab72b791f57011a032c6c89238db85845',1,'Node::is_weighted']]],
   ['island_5findexes_13',['island_indexes',['../da/da3/classBrush_1_1Pop_1_1Population.html#aa0bc73e0a032afefdf56a94aa27a68cf',1,'Brush::Pop::Population']]],
   ['iterations_14',['Iterations',['../dc/d91/structBrush_1_1OptimizerSummary.html#a9ff0ec42bcb2bab0edc16d75b664fb6c',1,'Brush::OptimizerSummary']]]
 ];

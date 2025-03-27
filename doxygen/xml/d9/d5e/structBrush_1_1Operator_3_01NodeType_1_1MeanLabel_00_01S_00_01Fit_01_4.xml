@@ -1,21 +1,21 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
-<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.10.0" xml:lang="en-US">
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.13.2" xml:lang="en-US">
   <compounddef id="d9/d5e/structBrush_1_1Operator_3_01NodeType_1_1MeanLabel_00_01S_00_01Fit_01_4" kind="struct" language="C++" prot="public">
     <compoundname>Brush::Operator&lt; NodeType::MeanLabel, S, Fit &gt;</compoundname>
     <includes refid="d7/de0/operator_8h" local="no">operator.h</includes>
     <templateparamlist>
       <param>
-        <type><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">typename</ref> S</type>
+        <type>typename S</type>
       </param>
       <param>
-        <type><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">bool</ref></type>
+        <type>bool</type>
         <declname>Fit</declname>
         <defname>Fit</defname>
       </param>
     </templateparamlist>
     <sectiondef kind="public-type">
       <memberdef kind="typedef" id="d9/d5e/structBrush_1_1Operator_3_01NodeType_1_1MeanLabel_00_01S_00_01Fit_01_4_1a7c8549ef9aed9cb5fd5cb47126f3731c" prot="public" static="no">
-        <type><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">typename</ref> S::RetType</type>
+        <type>typename S::RetType</type>
         <definition>using Brush::Operator&lt; NodeType::MeanLabel, S, Fit &gt;::RetType =  typename S::RetType</definition>
         <argsstring></argsstring>
         <name>RetType</name>
@@ -29,7 +29,7 @@
         <location file="/home/runner/work/brush/brush/src/program/operator.h" line="330" column="5" bodyfile="/home/runner/work/brush/brush/src/program/operator.h" bodystart="330" bodyend="-1"/>
       </memberdef>
       <memberdef kind="typedef" id="d9/d5e/structBrush_1_1Operator_3_01NodeType_1_1MeanLabel_00_01S_00_01Fit_01_4_1a6d0ef851de4d7697f92b8180647ff3ca" prot="public" static="no">
-        <type><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">typename</ref> S::WeightType</type>
+        <type>typename S::WeightType</type>
         <definition>using Brush::Operator&lt; NodeType::MeanLabel, S, Fit &gt;::W =  typename S::WeightType</definition>
         <argsstring></argsstring>
         <name>W</name>
@@ -42,6 +42,69 @@
         </inbodydescription>
         <location file="/home/runner/work/brush/brush/src/program/operator.h" line="331" column="5" bodyfile="/home/runner/work/brush/brush/src/program/operator.h" bodystart="331" bodyend="-1"/>
       </memberdef>
+      <memberdef kind="typedef" id="dc/d31/structBrush_1_1Operator_1a6918e9c614dbbb417f98fe2b95199fea" prot="public" static="no">
+        <type>conditional_t&lt;((<ref refid="de/d26/nodetype_8h_1a876e80643fd688721e2b628ba2cd39cd" kindref="member">UnaryOp</ref>&lt; <ref refid="dc/d5c/namespaceBrush_1a051322bb9fd1db4638b6eccd399a29c8" kindref="member">NT</ref> &gt;||<ref refid="de/d26/nodetype_8h_1a82f43e5fe13312809d2411e25aff9e3a" kindref="member">NaryOp</ref>&lt; <ref refid="dc/d5c/namespaceBrush_1a051322bb9fd1db4638b6eccd399a29c8" kindref="member">NT</ref> &gt;) &amp;&amp;S::ArgCount &gt; 1), Array&lt; typename S::FirstArg::Scalar, -1, S::ArgCount &gt;, typename S::ArgTypes &gt;</type>
+        <definition>using Brush::Operator&lt; NT, S, Fit, void &gt;::ArgTypes = </definition>
+        <argsstring></argsstring>
+        <name>ArgTypes</name>
+        <qualifiedname>Brush::Operator&lt; NodeType::MeanLabel, S, Fit &gt;::ArgTypes</qualifiedname>
+        <briefdescription>
+<para>set argument types to those of the signature unless: </para>
+        </briefdescription>
+        <detaileddescription>
+<para>a) the operator is unary and there are more than one arguments b) the operator is binary and associative <linebreak/>
+</para>
+<para>In the case of a) or b), arguments to the operator are stacked into an array and the operator is applied to that array </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/runner/work/brush/brush/src/program/operator.h" line="86" column="5" bodyfile="/home/runner/work/brush/brush/src/program/operator.h" bodystart="86" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="typedef" id="dc/d31/structBrush_1_1Operator_1a424bb09369598ed3d44f4d2b68eebcef" prot="public" static="no">
+        <type>typename S::RetType</type>
+        <definition>using Brush::Operator&lt; NT, S, Fit, void &gt;::RetType = </definition>
+        <argsstring></argsstring>
+        <name>RetType</name>
+        <qualifiedname>Brush::Operator&lt; NodeType::MeanLabel, S, Fit &gt;::RetType</qualifiedname>
+        <briefdescription>
+<para>return type of the operator </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/runner/work/brush/brush/src/program/operator.h" line="92" column="5" bodyfile="/home/runner/work/brush/brush/src/program/operator.h" bodystart="92" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="typedef" id="dc/d31/structBrush_1_1Operator_1a395f3c1b1eefad96f02412b2dd74721e" prot="public" static="no">
+        <type>typename S::NthType&lt; N &gt;</type>
+        <definition>using Brush::Operator&lt; NT, S, Fit, void &gt;::NthType = </definition>
+        <argsstring></argsstring>
+        <name>NthType</name>
+        <qualifiedname>Brush::Operator&lt; NodeType::MeanLabel, S, Fit &gt;::NthType</qualifiedname>
+        <briefdescription>
+<para>utility for returning the type of the Nth argument </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/runner/work/brush/brush/src/program/operator.h" line="99" column="5" bodyfile="/home/runner/work/brush/brush/src/program/operator.h" bodystart="99" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="typedef" id="dc/d31/structBrush_1_1Operator_1a33cf8494b82e7e0b7beb42fa376e9a6c" prot="public" static="no">
+        <type>typename S::WeightType</type>
+        <definition>using Brush::Operator&lt; NT, S, Fit, void &gt;::W = </definition>
+        <argsstring></argsstring>
+        <name>W</name>
+        <qualifiedname>Brush::Operator&lt; NodeType::MeanLabel, S, Fit &gt;::W</qualifiedname>
+        <briefdescription>
+<para>set weight type </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/runner/work/brush/brush/src/program/operator.h" line="102" column="5" bodyfile="/home/runner/work/brush/brush/src/program/operator.h" bodystart="102" bodyend="-1"/>
+      </memberdef>
     </sectiondef>
     <sectiondef kind="public-func">
       <memberdef kind="function" id="d9/d5e/structBrush_1_1Operator_3_01NodeType_1_1MeanLabel_00_01S_00_01Fit_01_4_1a0a729da1a61e625544c79406c1d38a8f" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
@@ -51,7 +114,7 @@
         <name>fit</name>
         <qualifiedname>Brush::Operator&lt; NodeType::MeanLabel, S, Fit &gt;::fit</qualifiedname>
         <param>
-          <type><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">const</ref> <ref refid="d2/d36/classBrush_1_1Data_1_1Dataset" kindref="compound">Dataset</ref> &amp;</type>
+          <type>const <ref refid="d2/d36/classBrush_1_1Data_1_1Dataset" kindref="compound">Dataset</ref> &amp;</type>
           <declname>d</declname>
         </param>
         <param>
@@ -65,20 +128,22 @@
         <inbodydescription>
         </inbodydescription>
         <location file="/home/runner/work/brush/brush/src/program/operator.h" line="333" column="13" bodyfile="/home/runner/work/brush/brush/src/program/operator.h" bodystart="333" bodyend="336"/>
-        <references refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" compoundref="d4/d93/bind__engines_8h" startline="35" endline="104">bind_engine</references>
+        <references refid="d9/d5e/structBrush_1_1Operator_3_01NodeType_1_1MeanLabel_00_01S_00_01Fit_01_4_1a56b67e05e4f1f89f7fd83f755d826d16" compoundref="d7/de0/operator_8h" startline="339" endline="346">predict</references>
+        <references refid="d2/d36/classBrush_1_1Data_1_1Dataset_1ade105f069d4f745d44374b7b8a3a9b0d" compoundref="d2/dbd/data_8h" startline="76">Brush::Data::Dataset::y</references>
+        <referencedby refid="d9/d5e/structBrush_1_1Operator_3_01NodeType_1_1MeanLabel_00_01S_00_01Fit_01_4_1aff062ebffea0b39f39b6252fbb07cc86" compoundref="d7/de0/operator_8h" startline="348" endline="353">eval</referencedby>
       </memberdef>
       <memberdef kind="function" id="d9/d5e/structBrush_1_1Operator_3_01NodeType_1_1MeanLabel_00_01S_00_01Fit_01_4_1a56b67e05e4f1f89f7fd83f755d826d16" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
         <templateparamlist>
           <param>
-            <type><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">typename</ref> T</type>
+            <type>typename T</type>
             <defval><ref refid="d9/d5e/structBrush_1_1Operator_3_01NodeType_1_1MeanLabel_00_01S_00_01Fit_01_4_1a7c8549ef9aed9cb5fd5cb47126f3731c" kindref="member">RetType</ref></defval>
           </param>
           <param>
-            <type><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">typename</ref> <ref refid="dc/d5c/namespaceBrush_1a5b9f71c99a1fe42d359ae45033b58620" kindref="member">Scalar</ref></type>
+            <type>typename <ref refid="dc/d5c/namespaceBrush_1a5b9f71c99a1fe42d359ae45033b58620" kindref="member">Scalar</ref></type>
             <defval>T::Scalar</defval>
           </param>
           <param>
-            <type><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">int</ref></type>
+            <type>int</type>
             <declname>N</declname>
             <defname>N</defname>
             <defval>T::NumDimensions</defval>
@@ -90,7 +155,7 @@
         <name>predict</name>
         <qualifiedname>Brush::Operator&lt; NodeType::MeanLabel, S, Fit &gt;::predict</qualifiedname>
         <param>
-          <type><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">const</ref> <ref refid="d2/d36/classBrush_1_1Data_1_1Dataset" kindref="compound">Dataset</ref> &amp;</type>
+          <type>const <ref refid="d2/d36/classBrush_1_1Data_1_1Dataset" kindref="compound">Dataset</ref> &amp;</type>
           <declname>d</declname>
         </param>
         <param>
@@ -98,9 +163,9 @@
           <declname>tn</declname>
         </param>
         <param>
-          <type><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">const</ref> <ref refid="d9/d5e/structBrush_1_1Operator_3_01NodeType_1_1MeanLabel_00_01S_00_01Fit_01_4_1a6d0ef851de4d7697f92b8180647ff3ca" kindref="member">W</ref> **</type>
+          <type>const <ref refid="d9/d5e/structBrush_1_1Operator_3_01NodeType_1_1MeanLabel_00_01S_00_01Fit_01_4_1a6d0ef851de4d7697f92b8180647ff3ca" kindref="member">W</ref> **</type>
           <declname>weights</declname>
-          <defval><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">nullptr</ref></defval>
+          <defval>nullptr</defval>
         </param>
         <briefdescription>
         </briefdescription>
@@ -109,7 +174,11 @@
         <inbodydescription>
         </inbodydescription>
         <location file="/home/runner/work/brush/brush/src/program/operator.h" line="339" column="13" bodyfile="/home/runner/work/brush/brush/src/program/operator.h" bodystart="339" bodyend="346"/>
-        <references refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" compoundref="d4/d93/bind__engines_8h" startline="35" endline="104">bind_engine</references>
+        <references refid="d2/d36/classBrush_1_1Data_1_1Dataset_1a6edc04702aee605a766f4a79c375d0c6" compoundref="d2/dbd/data_8h" startline="215" endline="215">Brush::Data::Dataset::get_n_features</references>
+        <references refid="d2/d36/classBrush_1_1Data_1_1Dataset_1a2b7b42b1b16630554b2e49102098a170" compoundref="d2/dbd/data_8h" startline="209" endline="214">Brush::Data::Dataset::get_n_samples</references>
+        <references refid="d7/d6b/namespaceBrush_1_1util_1ac055af6270e6bbb0cef4f33d70f0cb04" compoundref="d7/de0/operator_8h" startline="20" endline="47">Brush::util::get_weight</references>
+        <referencedby refid="d9/d5e/structBrush_1_1Operator_3_01NodeType_1_1MeanLabel_00_01S_00_01Fit_01_4_1aff062ebffea0b39f39b6252fbb07cc86" compoundref="d7/de0/operator_8h" startline="348" endline="353">eval</referencedby>
+        <referencedby refid="d9/d5e/structBrush_1_1Operator_3_01NodeType_1_1MeanLabel_00_01S_00_01Fit_01_4_1a0a729da1a61e625544c79406c1d38a8f" compoundref="d7/de0/operator_8h" startline="333" endline="336">fit</referencedby>
       </memberdef>
       <memberdef kind="function" id="d9/d5e/structBrush_1_1Operator_3_01NodeType_1_1MeanLabel_00_01S_00_01Fit_01_4_1aff062ebffea0b39f39b6252fbb07cc86" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
         <type><ref refid="d9/d5e/structBrush_1_1Operator_3_01NodeType_1_1MeanLabel_00_01S_00_01Fit_01_4_1a7c8549ef9aed9cb5fd5cb47126f3731c" kindref="member">RetType</ref></type>
@@ -118,7 +187,7 @@
         <name>eval</name>
         <qualifiedname>Brush::Operator&lt; NodeType::MeanLabel, S, Fit &gt;::eval</qualifiedname>
         <param>
-          <type><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">const</ref> <ref refid="d2/d36/classBrush_1_1Data_1_1Dataset" kindref="compound">Dataset</ref> &amp;</type>
+          <type>const <ref refid="d2/d36/classBrush_1_1Data_1_1Dataset" kindref="compound">Dataset</ref> &amp;</type>
           <declname>d</declname>
         </param>
         <param>
@@ -126,9 +195,9 @@
           <declname>tn</declname>
         </param>
         <param>
-          <type><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">const</ref> <ref refid="d9/d5e/structBrush_1_1Operator_3_01NodeType_1_1MeanLabel_00_01S_00_01Fit_01_4_1a6d0ef851de4d7697f92b8180647ff3ca" kindref="member">W</ref> **</type>
+          <type>const <ref refid="d9/d5e/structBrush_1_1Operator_3_01NodeType_1_1MeanLabel_00_01S_00_01Fit_01_4_1a6d0ef851de4d7697f92b8180647ff3ca" kindref="member">W</ref> **</type>
           <declname>weights</declname>
-          <defval><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">nullptr</ref></defval>
+          <defval>nullptr</defval>
         </param>
         <briefdescription>
         </briefdescription>
@@ -137,7 +206,422 @@
         <inbodydescription>
         </inbodydescription>
         <location file="/home/runner/work/brush/brush/src/program/operator.h" line="348" column="13" bodyfile="/home/runner/work/brush/brush/src/program/operator.h" bodystart="348" bodyend="353"/>
-        <references refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" compoundref="d4/d93/bind__engines_8h" startline="35" endline="104">bind_engine</references>
+        <references refid="d9/d5e/structBrush_1_1Operator_3_01NodeType_1_1MeanLabel_00_01S_00_01Fit_01_4_1a0a729da1a61e625544c79406c1d38a8f" compoundref="d7/de0/operator_8h" startline="333" endline="336">fit</references>
+        <references refid="d9/d5e/structBrush_1_1Operator_3_01NodeType_1_1MeanLabel_00_01S_00_01Fit_01_4_1a56b67e05e4f1f89f7fd83f755d826d16" compoundref="d7/de0/operator_8h" startline="339" endline="346">predict</references>
+      </memberdef>
+      <memberdef kind="function" id="dc/d31/structBrush_1_1Operator_1a09fa4721bd510aacdb5402dc4ce4b5ac" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>Brush::Operator&lt; NT, S, Fit, void &gt;::Operator</definition>
+        <argsstring>()=default</argsstring>
+        <name>Operator</name>
+        <qualifiedname>Brush::Operator&lt; NodeType::MeanLabel, S, Fit &gt;::Operator</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/runner/work/brush/brush/src/program/operator.h" line="110" column="5"/>
+      </memberdef>
+      <memberdef kind="function" id="dc/d31/structBrush_1_1Operator_1aa4adc47d9cddb762f26e38747773bba6" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>T</type>
+        <definition>T Brush::Operator&lt; NT, S, Fit, void &gt;::get_kids</definition>
+        <argsstring>(const Dataset &amp;d, TreeNode &amp;tn, const W **weights=nullptr) const</argsstring>
+        <name>get_kids</name>
+        <qualifiedname>Brush::Operator&lt; NodeType::MeanLabel, S, Fit &gt;::get_kids</qualifiedname>
+        <param>
+          <type>const <ref refid="d2/d36/classBrush_1_1Data_1_1Dataset" kindref="compound">Dataset</ref> &amp;</type>
+          <declname>d</declname>
+        </param>
+        <param>
+          <type><ref refid="df/d61/dispatch__table_8h_1a5d0d9e773ca46763fb1b1152cafc4179" kindref="member">TreeNode</ref> &amp;</type>
+          <declname>tn</declname>
+        </param>
+        <param>
+          <type>const <ref refid="d9/d5e/structBrush_1_1Operator_3_01NodeType_1_1MeanLabel_00_01S_00_01Fit_01_4_1a6d0ef851de4d7697f92b8180647ff3ca" kindref="member">W</ref> **</type>
+          <declname>weights</declname>
+          <defval>nullptr</defval>
+        </param>
+        <briefdescription>
+<para>get a std::array or eigen array of kids </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/runner/work/brush/brush/src/program/operator.h" line="116" column="7" bodyfile="/home/runner/work/brush/brush/src/program/operator.h" bodystart="116" bodyend="144"/>
+      </memberdef>
+      <memberdef kind="function" id="dc/d31/structBrush_1_1Operator_1a91d6de562fe5a54112e3c746b4281f7e" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>T</type>
+        <definition>T Brush::Operator&lt; NT, S, Fit, void &gt;::get_kids</definition>
+        <argsstring>(const Dataset &amp;d, TreeNode &amp;tn, const W **weights=nullptr) const</argsstring>
+        <name>get_kids</name>
+        <qualifiedname>Brush::Operator&lt; NodeType::MeanLabel, S, Fit &gt;::get_kids</qualifiedname>
+        <param>
+          <type>const <ref refid="d2/d36/classBrush_1_1Data_1_1Dataset" kindref="compound">Dataset</ref> &amp;</type>
+          <declname>d</declname>
+        </param>
+        <param>
+          <type><ref refid="df/d61/dispatch__table_8h_1a5d0d9e773ca46763fb1b1152cafc4179" kindref="member">TreeNode</ref> &amp;</type>
+          <declname>tn</declname>
+        </param>
+        <param>
+          <type>const <ref refid="d9/d5e/structBrush_1_1Operator_3_01NodeType_1_1MeanLabel_00_01S_00_01Fit_01_4_1a6d0ef851de4d7697f92b8180647ff3ca" kindref="member">W</ref> **</type>
+          <declname>weights</declname>
+          <defval>nullptr</defval>
+        </param>
+        <briefdescription>
+<para>get a std::tuple of kids. Used when child arguments are different types. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="templateparam"><parameteritem>
+<parameternamelist>
+<parametername>T</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>argument types </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>d</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the dataset </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>tn</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the tree node </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>weights</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>option pointer to a weight array, used in place of node weight </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>a tuple of the child arguments </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/runner/work/brush/brush/src/program/operator.h" line="180" column="7" bodyfile="/home/runner/work/brush/brush/src/program/operator.h" bodystart="180" bodyend="183"/>
+      </memberdef>
+      <memberdef kind="function" id="dc/d31/structBrush_1_1Operator_1a9088496bd47b051080700b53f3cddd80" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="dc/d31/structBrush_1_1Operator_1a395f3c1b1eefad96f02412b2dd74721e" kindref="member">NthType</ref>&lt; I &gt;</type>
+        <definition>NthType&lt; I &gt; Brush::Operator&lt; NT, S, Fit, void &gt;::get_kid</definition>
+        <argsstring>(const Dataset &amp;d, TreeNode &amp;tn, const W **weights) const</argsstring>
+        <name>get_kid</name>
+        <qualifiedname>Brush::Operator&lt; NodeType::MeanLabel, S, Fit &gt;::get_kid</qualifiedname>
+        <param>
+          <type>const <ref refid="d2/d36/classBrush_1_1Data_1_1Dataset" kindref="compound">Dataset</ref> &amp;</type>
+          <declname>d</declname>
+        </param>
+        <param>
+          <type><ref refid="df/d61/dispatch__table_8h_1a5d0d9e773ca46763fb1b1152cafc4179" kindref="member">TreeNode</ref> &amp;</type>
+          <declname>tn</declname>
+        </param>
+        <param>
+          <type>const <ref refid="d9/d5e/structBrush_1_1Operator_3_01NodeType_1_1MeanLabel_00_01S_00_01Fit_01_4_1a6d0ef851de4d7697f92b8180647ff3ca" kindref="member">W</ref> **</type>
+          <declname>weights</declname>
+        </param>
+        <briefdescription>
+<para>gets one kid for a tuple of kids </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/runner/work/brush/brush/src/program/operator.h" line="148" column="13" bodyfile="/home/runner/work/brush/brush/src/program/operator.h" bodystart="148" bodyend="156"/>
+      </memberdef>
+      <memberdef kind="function" id="dc/d31/structBrush_1_1Operator_1a3494388e6927873c8ba8d296fbb30908" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>T</type>
+        <definition>T Brush::Operator&lt; NT, S, Fit, void &gt;::get_kids_seq</definition>
+        <argsstring>(const Dataset &amp;d, TreeNode &amp;tn, const W **weights, std::index_sequence&lt; Is... &gt;) const</argsstring>
+        <name>get_kids_seq</name>
+        <qualifiedname>Brush::Operator&lt; NodeType::MeanLabel, S, Fit &gt;::get_kids_seq</qualifiedname>
+        <param>
+          <type>const <ref refid="d2/d36/classBrush_1_1Data_1_1Dataset" kindref="compound">Dataset</ref> &amp;</type>
+          <declname>d</declname>
+        </param>
+        <param>
+          <type><ref refid="df/d61/dispatch__table_8h_1a5d0d9e773ca46763fb1b1152cafc4179" kindref="member">TreeNode</ref> &amp;</type>
+          <declname>tn</declname>
+        </param>
+        <param>
+          <type>const <ref refid="d9/d5e/structBrush_1_1Operator_3_01NodeType_1_1MeanLabel_00_01S_00_01Fit_01_4_1a6d0ef851de4d7697f92b8180647ff3ca" kindref="member">W</ref> **</type>
+          <declname>weights</declname>
+        </param>
+        <param>
+          <type>std::index_sequence&lt; Is... &gt;</type>
+        </param>
+        <briefdescription>
+<para>Makes and returns a tuple of child outputs. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="templateparam"><parameteritem>
+<parameternamelist>
+<parametername>T</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>a tuple <linebreak/>
+ </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>Is</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>integer sequence </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>d</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>dataset </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>tn</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>a tree node </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>a tuple with elements corresponding to each child node </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/runner/work/brush/brush/src/program/operator.h" line="168" column="7" bodyfile="/home/runner/work/brush/brush/src/program/operator.h" bodystart="168" bodyend="171"/>
+      </memberdef>
+      <memberdef kind="function" id="dc/d31/structBrush_1_1Operator_1ab1ff8e429a35176b81c19079cd1397c4" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="d9/d5e/structBrush_1_1Operator_3_01NodeType_1_1MeanLabel_00_01S_00_01Fit_01_4_1a7c8549ef9aed9cb5fd5cb47126f3731c" kindref="member">RetType</ref></type>
+        <definition>RetType Brush::Operator&lt; NT, S, Fit, void &gt;::apply</definition>
+        <argsstring>(const T &amp;inputs) const</argsstring>
+        <name>apply</name>
+        <qualifiedname>Brush::Operator&lt; NodeType::MeanLabel, S, Fit &gt;::apply</qualifiedname>
+        <param>
+          <type>const T &amp;</type>
+          <declname>inputs</declname>
+        </param>
+        <briefdescription>
+<para>Apply node function in a functional style. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="templateparam"><parameteritem>
+<parameternamelist>
+<parametername>T</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>argument types </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>inputs</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the child node outputs </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>return values applying F to the inputs </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/runner/work/brush/brush/src/program/operator.h" line="192" column="13" bodyfile="/home/runner/work/brush/brush/src/program/operator.h" bodystart="192" bodyend="195"/>
+      </memberdef>
+      <memberdef kind="function" id="dc/d31/structBrush_1_1Operator_1ab4b156eb563db21ac32223aabfb9b92c" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="d9/d5e/structBrush_1_1Operator_3_01NodeType_1_1MeanLabel_00_01S_00_01Fit_01_4_1a7c8549ef9aed9cb5fd5cb47126f3731c" kindref="member">RetType</ref></type>
+        <definition>RetType Brush::Operator&lt; NT, S, Fit, void &gt;::apply</definition>
+        <argsstring>(const T &amp;inputs) const</argsstring>
+        <name>apply</name>
+        <qualifiedname>Brush::Operator&lt; NodeType::MeanLabel, S, Fit &gt;::apply</qualifiedname>
+        <param>
+          <type>const T &amp;</type>
+          <declname>inputs</declname>
+        </param>
+        <briefdescription>
+<para>Apply the node function like a function. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="templateparam"><parameteritem>
+<parameternamelist>
+<parametername>T</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>argument types </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>inputs</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the child node outputs </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>return values applying F to the inputs </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/runner/work/brush/brush/src/program/operator.h" line="202" column="13" bodyfile="/home/runner/work/brush/brush/src/program/operator.h" bodystart="202" bodyend="205"/>
+      </memberdef>
+      <memberdef kind="function" id="dc/d31/structBrush_1_1Operator_1a19c4d0c66ace631c3105e11bd75b4761" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="d9/d5e/structBrush_1_1Operator_3_01NodeType_1_1MeanLabel_00_01S_00_01Fit_01_4_1a7c8549ef9aed9cb5fd5cb47126f3731c" kindref="member">RetType</ref></type>
+        <definition>RetType Brush::Operator&lt; NT, S, Fit, void &gt;::eval</definition>
+        <argsstring>(const Dataset &amp;d, TreeNode &amp;tn, const W **weights=nullptr) const</argsstring>
+        <name>eval</name>
+        <qualifiedname>Brush::Operator&lt; NodeType::MeanLabel, S, Fit &gt;::eval</qualifiedname>
+        <param>
+          <type>const <ref refid="d2/d36/classBrush_1_1Data_1_1Dataset" kindref="compound">Dataset</ref> &amp;</type>
+          <declname>d</declname>
+        </param>
+        <param>
+          <type><ref refid="df/d61/dispatch__table_8h_1a5d0d9e773ca46763fb1b1152cafc4179" kindref="member">TreeNode</ref> &amp;</type>
+          <declname>tn</declname>
+        </param>
+        <param>
+          <type>const <ref refid="d9/d5e/structBrush_1_1Operator_3_01NodeType_1_1MeanLabel_00_01S_00_01Fit_01_4_1a6d0ef851de4d7697f92b8180647ff3ca" kindref="member">W</ref> **</type>
+          <declname>weights</declname>
+          <defval>nullptr</defval>
+        </param>
+        <briefdescription>
+<para>evaluate the operator on the data. main entry point. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="templateparam"><parameteritem>
+<parameternamelist>
+<parametername>T</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>argument types </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername><ref refid="dc/d5c/namespaceBrush_1a5b9f71c99a1fe42d359ae45033b58620" kindref="member">Scalar</ref></parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the underlying scalar type of the return type </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>d</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>dataset </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>tn</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>tree node </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>weights</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>option pointer to a weight array, used in place of node weight </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>output values from applying operator function </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/runner/work/brush/brush/src/program/operator.h" line="215" column="13" bodyfile="/home/runner/work/brush/brush/src/program/operator.h" bodystart="215" bodyend="227"/>
+      </memberdef>
+      <memberdef kind="function" id="dc/d31/structBrush_1_1Operator_1a2971efb3f05fd1ed22a5f805fe0720c7" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="d9/d5e/structBrush_1_1Operator_3_01NodeType_1_1MeanLabel_00_01S_00_01Fit_01_4_1a7c8549ef9aed9cb5fd5cb47126f3731c" kindref="member">RetType</ref></type>
+        <definition>RetType Brush::Operator&lt; NT, S, Fit, void &gt;::eval</definition>
+        <argsstring>(const Dataset &amp;d, TreeNode &amp;tn, const W **weights=nullptr) const</argsstring>
+        <name>eval</name>
+        <qualifiedname>Brush::Operator&lt; NodeType::MeanLabel, S, Fit &gt;::eval</qualifiedname>
+        <param>
+          <type>const <ref refid="d2/d36/classBrush_1_1Data_1_1Dataset" kindref="compound">Dataset</ref> &amp;</type>
+          <declname>d</declname>
+        </param>
+        <param>
+          <type><ref refid="df/d61/dispatch__table_8h_1a5d0d9e773ca46763fb1b1152cafc4179" kindref="member">TreeNode</ref> &amp;</type>
+          <declname>tn</declname>
+        </param>
+        <param>
+          <type>const <ref refid="d9/d5e/structBrush_1_1Operator_3_01NodeType_1_1MeanLabel_00_01S_00_01Fit_01_4_1a6d0ef851de4d7697f92b8180647ff3ca" kindref="member">W</ref> **</type>
+          <declname>weights</declname>
+          <defval>nullptr</defval>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/runner/work/brush/brush/src/program/operator.h" line="232" column="13" bodyfile="/home/runner/work/brush/brush/src/program/operator.h" bodystart="232" bodyend="244"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="public-static-attrib">
+      <memberdef kind="variable" id="dc/d31/structBrush_1_1Operator_1a3510e6cd8f26f1f30ab53dcfafe08025" prot="public" static="yes" constexpr="yes" mutable="no">
+        <type>size_t</type>
+        <definition>size_t Brush::Operator&lt; NT, S, Fit, void &gt;::ArgCount</definition>
+        <argsstring></argsstring>
+        <name>ArgCount</name>
+        <qualifiedname>Brush::Operator&lt; NodeType::MeanLabel, S, Fit &gt;::ArgCount</qualifiedname>
+        <briefdescription>
+<para>stores the argument count of the operator </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/runner/work/brush/brush/src/program/operator.h" line="95" column="29" bodyfile="/home/runner/work/brush/brush/src/program/operator.h" bodystart="95" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="dc/d31/structBrush_1_1Operator_1a5f08ba3c3b0e39c54b830845eba40b68" prot="public" static="yes" constexpr="yes" mutable="no">
+        <type>auto</type>
+        <definition>auto Brush::Operator&lt; NT, S, Fit, void &gt;::F</definition>
+        <argsstring></argsstring>
+        <name>F</name>
+        <qualifiedname>Brush::Operator&lt; NodeType::MeanLabel, S, Fit &gt;::F</qualifiedname>
+        <briefdescription>
+<para>wrapper function for the node function </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/runner/work/brush/brush/src/program/operator.h" line="105" column="27" bodyfile="/home/runner/work/brush/brush/src/program/operator.h" bodystart="105" bodyend="108"/>
       </memberdef>
     </sectiondef>
     <briefdescription>
@@ -146,11 +630,26 @@
     </detaileddescription>
     <location file="/home/runner/work/brush/brush/src/program/operator.h" line="328" column="1" bodyfile="/home/runner/work/brush/brush/src/program/operator.h" bodystart="329" bodyend="354"/>
     <listofallmembers>
+      <member refid="dc/d31/structBrush_1_1Operator_1ab1ff8e429a35176b81c19079cd1397c4" prot="public" virt="non-virtual"><scope>Brush::Operator&lt; NodeType::MeanLabel, S, Fit &gt;</scope><name>apply</name></member>
+      <member refid="dc/d31/structBrush_1_1Operator_1ab4b156eb563db21ac32223aabfb9b92c" prot="public" virt="non-virtual"><scope>Brush::Operator&lt; NodeType::MeanLabel, S, Fit &gt;</scope><name>apply</name></member>
+      <member refid="dc/d31/structBrush_1_1Operator_1a3510e6cd8f26f1f30ab53dcfafe08025" prot="public" virt="non-virtual"><scope>Brush::Operator&lt; NodeType::MeanLabel, S, Fit &gt;</scope><name>ArgCount</name></member>
+      <member refid="dc/d31/structBrush_1_1Operator_1a6918e9c614dbbb417f98fe2b95199fea" prot="public" virt="non-virtual"><scope>Brush::Operator&lt; NodeType::MeanLabel, S, Fit &gt;</scope><name>ArgTypes</name></member>
       <member refid="d9/d5e/structBrush_1_1Operator_3_01NodeType_1_1MeanLabel_00_01S_00_01Fit_01_4_1aff062ebffea0b39f39b6252fbb07cc86" prot="public" virt="non-virtual"><scope>Brush::Operator&lt; NodeType::MeanLabel, S, Fit &gt;</scope><name>eval</name></member>
+      <member refid="dc/d31/structBrush_1_1Operator_1a19c4d0c66ace631c3105e11bd75b4761" prot="public" virt="non-virtual"><scope>Brush::Operator&lt; NodeType::MeanLabel, S, Fit &gt;</scope><name>eval</name></member>
+      <member refid="dc/d31/structBrush_1_1Operator_1a2971efb3f05fd1ed22a5f805fe0720c7" prot="public" virt="non-virtual"><scope>Brush::Operator&lt; NodeType::MeanLabel, S, Fit &gt;</scope><name>eval</name></member>
+      <member refid="dc/d31/structBrush_1_1Operator_1a5f08ba3c3b0e39c54b830845eba40b68" prot="public" virt="non-virtual"><scope>Brush::Operator&lt; NodeType::MeanLabel, S, Fit &gt;</scope><name>F</name></member>
       <member refid="d9/d5e/structBrush_1_1Operator_3_01NodeType_1_1MeanLabel_00_01S_00_01Fit_01_4_1a0a729da1a61e625544c79406c1d38a8f" prot="public" virt="non-virtual"><scope>Brush::Operator&lt; NodeType::MeanLabel, S, Fit &gt;</scope><name>fit</name></member>
+      <member refid="dc/d31/structBrush_1_1Operator_1a9088496bd47b051080700b53f3cddd80" prot="public" virt="non-virtual"><scope>Brush::Operator&lt; NodeType::MeanLabel, S, Fit &gt;</scope><name>get_kid</name></member>
+      <member refid="dc/d31/structBrush_1_1Operator_1aa4adc47d9cddb762f26e38747773bba6" prot="public" virt="non-virtual"><scope>Brush::Operator&lt; NodeType::MeanLabel, S, Fit &gt;</scope><name>get_kids</name></member>
+      <member refid="dc/d31/structBrush_1_1Operator_1a91d6de562fe5a54112e3c746b4281f7e" prot="public" virt="non-virtual"><scope>Brush::Operator&lt; NodeType::MeanLabel, S, Fit &gt;</scope><name>get_kids</name></member>
+      <member refid="dc/d31/structBrush_1_1Operator_1a3494388e6927873c8ba8d296fbb30908" prot="public" virt="non-virtual"><scope>Brush::Operator&lt; NodeType::MeanLabel, S, Fit &gt;</scope><name>get_kids_seq</name></member>
+      <member refid="dc/d31/structBrush_1_1Operator_1a395f3c1b1eefad96f02412b2dd74721e" prot="public" virt="non-virtual"><scope>Brush::Operator&lt; NodeType::MeanLabel, S, Fit &gt;</scope><name>NthType</name></member>
+      <member refid="dc/d31/structBrush_1_1Operator_1a09fa4721bd510aacdb5402dc4ce4b5ac" prot="public" virt="non-virtual"><scope>Brush::Operator&lt; NodeType::MeanLabel, S, Fit &gt;</scope><name>Operator</name></member>
       <member refid="d9/d5e/structBrush_1_1Operator_3_01NodeType_1_1MeanLabel_00_01S_00_01Fit_01_4_1a56b67e05e4f1f89f7fd83f755d826d16" prot="public" virt="non-virtual"><scope>Brush::Operator&lt; NodeType::MeanLabel, S, Fit &gt;</scope><name>predict</name></member>
       <member refid="d9/d5e/structBrush_1_1Operator_3_01NodeType_1_1MeanLabel_00_01S_00_01Fit_01_4_1a7c8549ef9aed9cb5fd5cb47126f3731c" prot="public" virt="non-virtual"><scope>Brush::Operator&lt; NodeType::MeanLabel, S, Fit &gt;</scope><name>RetType</name></member>
+      <member refid="dc/d31/structBrush_1_1Operator_1a424bb09369598ed3d44f4d2b68eebcef" prot="public" virt="non-virtual"><scope>Brush::Operator&lt; NodeType::MeanLabel, S, Fit &gt;</scope><name>RetType</name></member>
       <member refid="d9/d5e/structBrush_1_1Operator_3_01NodeType_1_1MeanLabel_00_01S_00_01Fit_01_4_1a6d0ef851de4d7697f92b8180647ff3ca" prot="public" virt="non-virtual"><scope>Brush::Operator&lt; NodeType::MeanLabel, S, Fit &gt;</scope><name>W</name></member>
+      <member refid="dc/d31/structBrush_1_1Operator_1a33cf8494b82e7e0b7beb42fa376e9a6c" prot="public" virt="non-virtual"><scope>Brush::Operator&lt; NodeType::MeanLabel, S, Fit &gt;</scope><name>W</name></member>
     </listofallmembers>
   </compounddef>
 </doxygen>

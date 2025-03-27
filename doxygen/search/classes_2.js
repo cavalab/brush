@@ -16,7 +16,7 @@ var searchData=
   ['dataenumtype_3c_20dt_3a_3atimeseriesb_20_3e_13',['DataEnumType&lt; DT::TimeSeriesB &gt;',['../dc/dd6/structBrush_1_1DataEnumType_3_01DT_1_1TimeSeriesB_01_4.html',1,'Brush']]],
   ['dataenumtype_3c_20dt_3a_3atimeseriesf_20_3e_14',['DataEnumType&lt; DT::TimeSeriesF &gt;',['../d2/db8/structBrush_1_1DataEnumType_3_01DT_1_1TimeSeriesF_01_4.html',1,'Brush']]],
   ['dataenumtype_3c_20dt_3a_3atimeseriesi_20_3e_15',['DataEnumType&lt; DT::TimeSeriesI &gt;',['../dd/dff/structBrush_1_1DataEnumType_3_01DT_1_1TimeSeriesI_01_4.html',1,'Brush']]],
-  ['dataset_16',['Dataset',['../d2/d36/classBrush_1_1Data_1_1Dataset.html',1,'Brush::Data']]],
+  ['dataset_16',['Dataset',['../d2/d36/classBrush_1_1Data_1_1Dataset.html',1,'Brush::Data::Dataset'],['../d7/da5/classDataset.html',1,'Dataset']]],
   ['datatypeenum_17',['DataTypeEnum',['../df/d3e/structBrush_1_1DataTypeEnum.html',1,'Brush']]],
   ['datatypeenum_3c_20arrayxb_20_3e_18',['DataTypeEnum&lt; ArrayXb &gt;',['../d7/d9a/structBrush_1_1DataTypeEnum_3_01ArrayXb_01_4.html',1,'Brush']]],
   ['datatypeenum_3c_20arrayxbjet_20_3e_19',['DataTypeEnum&lt; ArrayXbJet &gt;',['../d7/d76/structBrush_1_1DataTypeEnum_3_01ArrayXbJet_01_4.html',1,'Brush']]],

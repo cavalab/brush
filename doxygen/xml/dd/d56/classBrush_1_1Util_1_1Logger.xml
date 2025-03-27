@@ -1,11 +1,11 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
-<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.10.0" xml:lang="en-US">
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.13.2" xml:lang="en-US">
   <compounddef id="dd/d56/classBrush_1_1Util_1_1Logger" kind="class" language="C++" prot="public">
     <compoundname>Brush::Util::Logger</compoundname>
     <includes refid="d1/d8c/logger_8h" local="no">logger.h</includes>
     <sectiondef kind="private-attrib">
       <memberdef kind="variable" id="dd/d56/classBrush_1_1Util_1_1Logger_1acfdc6d8167ea179d97c91512122e4873" prot="private" static="no" mutable="no">
-        <type><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">int</ref></type>
+        <type>int</type>
         <definition>int Brush::Util::Logger::verbosity</definition>
         <argsstring></argsstring>
         <name>verbosity</name>
@@ -30,7 +30,7 @@
         <argsstring></argsstring>
         <name>instance</name>
         <qualifiedname>Brush::Util::Logger::instance</qualifiedname>
-        <initializer>= <ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">NULL</ref></initializer>
+        <initializer>= NULL</initializer>
         <briefdescription>
 <para>The singleton instance of the logger. </para>
         </briefdescription>
@@ -64,7 +64,7 @@
         <references refid="dd/d56/classBrush_1_1Util_1_1Logger_1a66e978372533d5960afe73a702382cf0" compoundref="d1/d8c/logger_8h" startline="57">instance</references>
       </memberdef>
       <memberdef kind="function" id="dd/d56/classBrush_1_1Util_1_1Logger_1a192baac90d120fa142fbf385a802f73f" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
-        <type><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">void</ref></type>
+        <type>void</type>
         <definition>void Brush::Util::Logger::destroy</definition>
         <argsstring>()</argsstring>
         <name>destroy</name>
@@ -77,19 +77,18 @@
         <inbodydescription>
         </inbodydescription>
         <location file="/home/runner/work/brush/brush/src/util/logger.h" line="32" column="17" bodyfile="/home/runner/work/brush/brush/src/util/logger.cpp" bodystart="23" bodyend="29"/>
-        <references refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" compoundref="d4/d93/bind__engines_8h" startline="35" endline="104">bind_engine</references>
         <references refid="dd/d56/classBrush_1_1Util_1_1Logger_1a66e978372533d5960afe73a702382cf0" compoundref="d1/d8c/logger_8h" startline="57">instance</references>
       </memberdef>
     </sectiondef>
     <sectiondef kind="public-func">
       <memberdef kind="function" id="dd/d56/classBrush_1_1Util_1_1Logger_1a9e88baaf25e97566fe654a0563253fd8" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
-        <type><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">void</ref></type>
+        <type>void</type>
         <definition>void Brush::Util::Logger::set_log_level</definition>
         <argsstring>(int &amp;verbosity)</argsstring>
         <name>set_log_level</name>
         <qualifiedname>Brush::Util::Logger::set_log_level</qualifiedname>
         <param>
-          <type><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">int</ref> &amp;</type>
+          <type>int &amp;</type>
           <declname>verbosity</declname>
         </param>
         <briefdescription>
@@ -110,13 +109,11 @@
         <inbodydescription>
         </inbodydescription>
         <location file="/home/runner/work/brush/brush/src/util/logger.h" line="38" column="10" bodyfile="/home/runner/work/brush/brush/src/util/logger.cpp" bodystart="31" bodyend="42"/>
-        <references refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" compoundref="d4/d93/bind__engines_8h" startline="35" endline="104">bind_engine</references>
         <references refid="da/d41/error_8h_1a9073619c75b9b8e7c28be65e9afbcf6d" compoundref="da/d41/error_8h" startline="28">HANDLE_WARNING</references>
         <references refid="dd/d56/classBrush_1_1Util_1_1Logger_1acfdc6d8167ea179d97c91512122e4873" compoundref="d1/d8c/logger_8h" startline="56">verbosity</references>
-        <referencedby refid="de/deb/structBrush_1_1Parameters_1af232e2b8ac05a182b54437cbf03fc18c" compoundref="da/d33/params_8h" startline="91" endline="92">Brush::Parameters::set_verbosity</referencedby>
       </memberdef>
       <memberdef kind="function" id="dd/d56/classBrush_1_1Util_1_1Logger_1a628245421b92a8888c393de40b817363" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
-        <type><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">int</ref></type>
+        <type>int</type>
         <definition>int Brush::Util::Logger::get_log_level</definition>
         <argsstring>()</argsstring>
         <name>get_log_level</name>
@@ -135,21 +132,21 @@
         <references refid="dd/d56/classBrush_1_1Util_1_1Logger_1acfdc6d8167ea179d97c91512122e4873" compoundref="d1/d8c/logger_8h" startline="56">verbosity</references>
       </memberdef>
       <memberdef kind="function" id="dd/d56/classBrush_1_1Util_1_1Logger_1ad91c0afb3eba406a0dff9316d3b2b80d" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
-        <type>string</type>
+        <type><ref refid="d5/d92/classstring" kindref="compound">string</ref></type>
         <definition>string Brush::Util::Logger::log</definition>
         <argsstring>(string m, int v, string sep=&quot;\n&quot;) const</argsstring>
         <name>log</name>
         <qualifiedname>Brush::Util::Logger::log</qualifiedname>
         <param>
-          <type>string</type>
+          <type><ref refid="d5/d92/classstring" kindref="compound">string</ref></type>
           <declname>m</declname>
         </param>
         <param>
-          <type><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">int</ref></type>
+          <type>int</type>
           <declname>v</declname>
         </param>
         <param>
-          <type>string</type>
+          <type><ref refid="d5/d92/classstring" kindref="compound">string</ref></type>
           <declname>sep</declname>
           <defval>&quot;\n&quot;</defval>
         </param>
@@ -190,10 +187,7 @@
         <inbodydescription>
         </inbodydescription>
         <location file="/home/runner/work/brush/brush/src/util/logger.h" line="53" column="12" bodyfile="/home/runner/work/brush/brush/src/util/logger.cpp" bodystart="50" bodyend="61"/>
-        <references refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" compoundref="d4/d93/bind__engines_8h" startline="35" endline="104">bind_engine</references>
         <references refid="dd/d56/classBrush_1_1Util_1_1Logger_1acfdc6d8167ea179d97c91512122e4873" compoundref="d1/d8c/logger_8h" startline="56">verbosity</references>
-        <referencedby refid="da/da3/classBrush_1_1Pop_1_1Population_1ad193aced6ffa6d3587f0f390d9ed0415" compoundref="d7/d4a/population_8cpp" startline="115" endline="132">Brush::Pop::Population&lt; T &gt;::load</referencedby>
-        <referencedby refid="da/da3/classBrush_1_1Pop_1_1Population_1a760c5b3804c92d23da170e37ecae158a" compoundref="d7/d4a/population_8cpp" startline="99" endline="112">Brush::Pop::Population&lt; T &gt;::save</referencedby>
       </memberdef>
     </sectiondef>
     <briefdescription>

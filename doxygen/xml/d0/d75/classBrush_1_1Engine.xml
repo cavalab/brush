@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
-<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.10.0" xml:lang="en-US">
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.13.2" xml:lang="en-US">
   <compounddef id="d0/d75/classBrush_1_1Engine" kind="class" language="C++" prot="public">
     <compoundname>Brush::Engine</compoundname>
     <includes refid="d1/d55/engine_8h" local="no">engine.h</includes>
@@ -12,7 +12,7 @@
     </templateparamlist>
     <sectiondef kind="public-attrib">
       <memberdef kind="variable" id="d0/d75/classBrush_1_1Engine_1a16a22a02c2ff6d2c4fbd1b593e055a4f" prot="public" static="no" mutable="no">
-        <type><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">float</ref></type>
+        <type>float</type>
         <definition>float Brush::Engine&lt; T &gt;::best_score</definition>
         <argsstring></argsstring>
         <name>best_score</name>
@@ -24,9 +24,10 @@
         <inbodydescription>
         </inbodydescription>
         <location file="/home/runner/work/brush/brush/src/engine.h" line="71" column="11" bodyfile="/home/runner/work/brush/brush/src/engine.h" bodystart="71" bodyend="-1"/>
+        <referencedby refid="d0/d75/classBrush_1_1Engine_1abf9f9f0eec7c0c6d4cf9985d993e6018" compoundref="da/d5c/engine_8cpp" startline="18" endline="43">Brush::Engine&lt; T &gt;::init</referencedby>
       </memberdef>
       <memberdef kind="variable" id="d0/d75/classBrush_1_1Engine_1a3abf94acdca8101698f36c364f8e0145" prot="public" static="no" mutable="no">
-        <type><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">int</ref></type>
+        <type>int</type>
         <definition>int Brush::Engine&lt; T &gt;::best_complexity</definition>
         <argsstring></argsstring>
         <name>best_complexity</name>
@@ -38,6 +39,8 @@
         <inbodydescription>
         </inbodydescription>
         <location file="/home/runner/work/brush/brush/src/engine.h" line="72" column="9" bodyfile="/home/runner/work/brush/brush/src/engine.h" bodystart="72" bodyend="-1"/>
+        <referencedby refid="d0/d75/classBrush_1_1Engine_1abf9f9f0eec7c0c6d4cf9985d993e6018" compoundref="da/d5c/engine_8cpp" startline="18" endline="43">Brush::Engine&lt; T &gt;::init</referencedby>
+        <referencedby refid="d0/d75/classBrush_1_1Engine_1a9a15cd9b6bdcc6c7bee5a473ebff1081" compoundref="da/d5c/engine_8cpp" startline="288" endline="320">Brush::Engine&lt; T &gt;::update_best</referencedby>
       </memberdef>
       <memberdef kind="variable" id="d0/d75/classBrush_1_1Engine_1ab732127d18c12f7c5ea28fd33ee846e6" prot="public" static="no" mutable="no">
         <type><ref refid="de/deb/structBrush_1_1Parameters" kindref="compound">Parameters</ref></type>
@@ -53,9 +56,12 @@
         <inbodydescription>
         </inbodydescription>
         <location file="/home/runner/work/brush/brush/src/engine.h" line="127" column="16" bodyfile="/home/runner/work/brush/brush/src/engine.h" bodystart="127" bodyend="-1"/>
-        <referencedby refid="d0/d75/classBrush_1_1Engine_1aad11ac5c3f0adc14cabf465eeb7d3e91" compoundref="d1/d55/engine_8h" startline="79" endline="85">Brush::Engine&lt; T &gt;::fit</referencedby>
-        <referencedby refid="d0/d75/classBrush_1_1Engine_1a7c02eca29f421b7242a346ceaefd622b" compoundref="d1/d55/engine_8h" startline="60" endline="60">Brush::Engine&lt; T &gt;::get_params</referencedby>
-        <referencedby refid="d0/d75/classBrush_1_1Engine_1a7fdb1ff2afedbde73b8cf91d667f98b6" compoundref="d1/d55/engine_8h" startline="61" endline="61">Brush::Engine&lt; T &gt;::set_params</referencedby>
+        <referencedby refid="d0/d75/classBrush_1_1Engine_1a215399033d10c86535f344e54937ea01" compoundref="da/d5c/engine_8cpp" startline="62" endline="125">Brush::Engine&lt; T &gt;::calculate_stats</referencedby>
+        <referencedby refid="d0/d75/classBrush_1_1Engine_1abf9f9f0eec7c0c6d4cf9985d993e6018" compoundref="da/d5c/engine_8cpp" startline="18" endline="43">Brush::Engine&lt; T &gt;::init</referencedby>
+        <referencedby refid="d0/d75/classBrush_1_1Engine_1ae099086faca2e6ea54f5e85b380a8da8" compoundref="da/d5c/engine_8cpp" startline="129" endline="156">Brush::Engine&lt; T &gt;::log_stats</referencedby>
+        <referencedby refid="d0/d75/classBrush_1_1Engine_1ae246e0130aecd7b1a6680468b0fe9b9b" compoundref="da/d5c/engine_8cpp" startline="159" endline="188">Brush::Engine&lt; T &gt;::print_stats</referencedby>
+        <referencedby refid="d0/d75/classBrush_1_1Engine_1a4248c80ebcd035a70953065045e04705" compoundref="da/d5c/engine_8cpp" startline="324" endline="527">Brush::Engine&lt; T &gt;::run</referencedby>
+        <referencedby refid="d0/d75/classBrush_1_1Engine_1a9a15cd9b6bdcc6c7bee5a473ebff1081" compoundref="da/d5c/engine_8cpp" startline="288" endline="320">Brush::Engine&lt; T &gt;::update_best</referencedby>
       </memberdef>
       <memberdef kind="variable" id="d0/d75/classBrush_1_1Engine_1a27fbc5f690c9952dc95ed5c3cce31418" prot="public" static="no" mutable="no">
         <type><ref refid="de/d83/classBrush_1_1Pop_1_1Individual" kindref="compound">Individual</ref>&lt; T &gt;</type>
@@ -70,9 +76,9 @@
         <inbodydescription>
         </inbodydescription>
         <location file="/home/runner/work/brush/brush/src/engine.h" line="128" column="16" bodyfile="/home/runner/work/brush/brush/src/engine.h" bodystart="128" bodyend="-1"/>
-        <referencedby refid="d0/d75/classBrush_1_1Engine_1a7f2a508f9bd1860f0ab15dbbc1f306fc" compoundref="d1/d55/engine_8h" startline="73" endline="73">Brush::Engine&lt; T &gt;::get_best_ind</referencedby>
-        <referencedby refid="d0/d75/classBrush_1_1Engine_1a1b6447ad9d2eb1f0fc1252be14729e0f" compoundref="d1/d55/engine_8h" startline="87" endline="87">Brush::Engine&lt; T &gt;::predict</referencedby>
-        <referencedby refid="d0/d75/classBrush_1_1Engine_1a2375ba6f0ebb3119ccc91664b2f6a79a" compoundref="d1/d55/engine_8h" startline="96" endline="96">Brush::Engine&lt; T &gt;::predict_proba</referencedby>
+        <referencedby refid="d0/d75/classBrush_1_1Engine_1ac70f5fca40a2a058b187e579a7910ab3" compoundref="da/d5c/engine_8cpp" startline="208" endline="236">Brush::Engine&lt; T &gt;::predict_archive</referencedby>
+        <referencedby refid="d0/d75/classBrush_1_1Engine_1ac1f6620adc2dd0710a415a7e48b76650" compoundref="da/d5c/engine_8cpp" startline="248" endline="276">Brush::Engine&lt; T &gt;::predict_proba_archive</referencedby>
+        <referencedby refid="d0/d75/classBrush_1_1Engine_1a9a15cd9b6bdcc6c7bee5a473ebff1081" compoundref="da/d5c/engine_8cpp" startline="288" endline="320">Brush::Engine&lt; T &gt;::update_best</referencedby>
       </memberdef>
       <memberdef kind="variable" id="d0/d75/classBrush_1_1Engine_1a59769ad184bdcdf2032c99acf3a77410" prot="public" static="no" mutable="no">
         <type><ref refid="d1/d30/structBrush_1_1Pop_1_1Archive" kindref="compound">Archive</ref>&lt; T &gt;</type>
@@ -88,7 +94,11 @@
         <inbodydescription>
         </inbodydescription>
         <location file="/home/runner/work/brush/brush/src/engine.h" line="130" column="13" bodyfile="/home/runner/work/brush/brush/src/engine.h" bodystart="130" bodyend="-1"/>
-        <referencedby refid="d0/d75/classBrush_1_1Engine_1a830f938cd00be6c41d8effc07668feb8" compoundref="d1/d55/engine_8h" startline="106" endline="106">Brush::Engine&lt; T &gt;::get_archive_size</referencedby>
+        <referencedby refid="d0/d75/classBrush_1_1Engine_1ae11d9f38618b28e5e35912ee58419ed0" compoundref="da/d5c/engine_8cpp" startline="191" endline="203">Brush::Engine&lt; T &gt;::get_archive</referencedby>
+        <referencedby refid="d0/d75/classBrush_1_1Engine_1abf9f9f0eec7c0c6d4cf9985d993e6018" compoundref="da/d5c/engine_8cpp" startline="18" endline="43">Brush::Engine&lt; T &gt;::init</referencedby>
+        <referencedby refid="d0/d75/classBrush_1_1Engine_1ac70f5fca40a2a058b187e579a7910ab3" compoundref="da/d5c/engine_8cpp" startline="208" endline="236">Brush::Engine&lt; T &gt;::predict_archive</referencedby>
+        <referencedby refid="d0/d75/classBrush_1_1Engine_1ac1f6620adc2dd0710a415a7e48b76650" compoundref="da/d5c/engine_8cpp" startline="248" endline="276">Brush::Engine&lt; T &gt;::predict_proba_archive</referencedby>
+        <referencedby refid="d0/d75/classBrush_1_1Engine_1a4248c80ebcd035a70953065045e04705" compoundref="da/d5c/engine_8cpp" startline="324" endline="527">Brush::Engine&lt; T &gt;::run</referencedby>
       </memberdef>
     </sectiondef>
     <sectiondef kind="private-attrib">
@@ -105,6 +115,8 @@
         <inbodydescription>
         </inbodydescription>
         <location file="/home/runner/work/brush/brush/src/engine.h" line="132" column="17" bodyfile="/home/runner/work/brush/brush/src/engine.h" bodystart="132" bodyend="-1"/>
+        <referencedby refid="d0/d75/classBrush_1_1Engine_1abf9f9f0eec7c0c6d4cf9985d993e6018" compoundref="da/d5c/engine_8cpp" startline="18" endline="43">Brush::Engine&lt; T &gt;::init</referencedby>
+        <referencedby refid="d0/d75/classBrush_1_1Engine_1a4248c80ebcd035a70953065045e04705" compoundref="da/d5c/engine_8cpp" startline="324" endline="527">Brush::Engine&lt; T &gt;::run</referencedby>
       </memberdef>
       <memberdef kind="variable" id="d0/d75/classBrush_1_1Engine_1a5e0104eaadbe7a19722ee149d06a7c76" prot="private" static="no" mutable="no">
         <type><ref refid="da/da3/classBrush_1_1Pop_1_1Population" kindref="compound">Population</ref>&lt; T &gt;</type>
@@ -120,6 +132,11 @@
         <inbodydescription>
         </inbodydescription>
         <location file="/home/runner/work/brush/brush/src/engine.h" line="134" column="16" bodyfile="/home/runner/work/brush/brush/src/engine.h" bodystart="134" bodyend="-1"/>
+        <referencedby refid="d0/d75/classBrush_1_1Engine_1abf9f9f0eec7c0c6d4cf9985d993e6018" compoundref="da/d5c/engine_8cpp" startline="18" endline="43">Brush::Engine&lt; T &gt;::init</referencedby>
+        <referencedby refid="d0/d75/classBrush_1_1Engine_1ac70f5fca40a2a058b187e579a7910ab3" compoundref="da/d5c/engine_8cpp" startline="208" endline="236">Brush::Engine&lt; T &gt;::predict_archive</referencedby>
+        <referencedby refid="d0/d75/classBrush_1_1Engine_1ac1f6620adc2dd0710a415a7e48b76650" compoundref="da/d5c/engine_8cpp" startline="248" endline="276">Brush::Engine&lt; T &gt;::predict_proba_archive</referencedby>
+        <referencedby refid="d0/d75/classBrush_1_1Engine_1a4248c80ebcd035a70953065045e04705" compoundref="da/d5c/engine_8cpp" startline="324" endline="527">Brush::Engine&lt; T &gt;::run</referencedby>
+        <referencedby refid="d0/d75/classBrush_1_1Engine_1a9a15cd9b6bdcc6c7bee5a473ebff1081" compoundref="da/d5c/engine_8cpp" startline="288" endline="320">Brush::Engine&lt; T &gt;::update_best</referencedby>
       </memberdef>
       <memberdef kind="variable" id="d0/d75/classBrush_1_1Engine_1a1979bbf5e2af65845c461dbd2e0b9ef5" prot="private" static="no" mutable="no">
         <type><ref refid="dd/d0f/structBrush_1_1Sel_1_1Selection" kindref="compound">Selection</ref>&lt; T &gt;</type>
@@ -135,6 +152,7 @@
         <inbodydescription>
         </inbodydescription>
         <location file="/home/runner/work/brush/brush/src/engine.h" line="135" column="16" bodyfile="/home/runner/work/brush/brush/src/engine.h" bodystart="135" bodyend="-1"/>
+        <referencedby refid="d0/d75/classBrush_1_1Engine_1abf9f9f0eec7c0c6d4cf9985d993e6018" compoundref="da/d5c/engine_8cpp" startline="18" endline="43">Brush::Engine&lt; T &gt;::init</referencedby>
       </memberdef>
       <memberdef kind="variable" id="d0/d75/classBrush_1_1Engine_1aa8ccb37fe65cec921d9a155c1000cda7" prot="private" static="no" mutable="no">
         <type><ref refid="d1/de5/classBrush_1_1Eval_1_1Evaluation" kindref="compound">Evaluation</ref>&lt; T &gt;</type>
@@ -150,6 +168,8 @@
         <inbodydescription>
         </inbodydescription>
         <location file="/home/runner/work/brush/brush/src/engine.h" line="136" column="16" bodyfile="/home/runner/work/brush/brush/src/engine.h" bodystart="136" bodyend="-1"/>
+        <referencedby refid="d0/d75/classBrush_1_1Engine_1abf9f9f0eec7c0c6d4cf9985d993e6018" compoundref="da/d5c/engine_8cpp" startline="18" endline="43">Brush::Engine&lt; T &gt;::init</referencedby>
+        <referencedby refid="d0/d75/classBrush_1_1Engine_1a4248c80ebcd035a70953065045e04705" compoundref="da/d5c/engine_8cpp" startline="324" endline="527">Brush::Engine&lt; T &gt;::run</referencedby>
       </memberdef>
       <memberdef kind="variable" id="d0/d75/classBrush_1_1Engine_1a77c7fc26671fb2b064a4c588540ebed5" prot="private" static="no" mutable="no">
         <type><ref refid="d5/d14/classBrush_1_1Var_1_1Variation" kindref="compound">Variation</ref>&lt; T &gt;</type>
@@ -165,6 +185,8 @@
         <inbodydescription>
         </inbodydescription>
         <location file="/home/runner/work/brush/brush/src/engine.h" line="137" column="16" bodyfile="/home/runner/work/brush/brush/src/engine.h" bodystart="137" bodyend="-1"/>
+        <referencedby refid="d0/d75/classBrush_1_1Engine_1abf9f9f0eec7c0c6d4cf9985d993e6018" compoundref="da/d5c/engine_8cpp" startline="18" endline="43">Brush::Engine&lt; T &gt;::init</referencedby>
+        <referencedby refid="d0/d75/classBrush_1_1Engine_1a4248c80ebcd035a70953065045e04705" compoundref="da/d5c/engine_8cpp" startline="324" endline="527">Brush::Engine&lt; T &gt;::run</referencedby>
       </memberdef>
       <memberdef kind="variable" id="d0/d75/classBrush_1_1Engine_1a70abc4545878805cd572d110f21d1e7c" prot="private" static="no" mutable="no">
         <type><ref refid="dd/d0f/structBrush_1_1Sel_1_1Selection" kindref="compound">Selection</ref>&lt; T &gt;</type>
@@ -180,6 +202,8 @@
         <inbodydescription>
         </inbodydescription>
         <location file="/home/runner/work/brush/brush/src/engine.h" line="138" column="16" bodyfile="/home/runner/work/brush/brush/src/engine.h" bodystart="138" bodyend="-1"/>
+        <referencedby refid="d0/d75/classBrush_1_1Engine_1abf9f9f0eec7c0c6d4cf9985d993e6018" compoundref="da/d5c/engine_8cpp" startline="18" endline="43">Brush::Engine&lt; T &gt;::init</referencedby>
+        <referencedby refid="d0/d75/classBrush_1_1Engine_1a4248c80ebcd035a70953065045e04705" compoundref="da/d5c/engine_8cpp" startline="324" endline="527">Brush::Engine&lt; T &gt;::run</referencedby>
       </memberdef>
       <memberdef kind="variable" id="d0/d75/classBrush_1_1Engine_1a596db23cf521696b72b023bacbf3a737" prot="private" static="no" mutable="no">
         <type><ref refid="db/d7e/structBrush_1_1Util_1_1Log__Stats" kindref="compound">Log_Stats</ref></type>
@@ -195,6 +219,8 @@
         <inbodydescription>
         </inbodydescription>
         <location file="/home/runner/work/brush/brush/src/engine.h" line="140" column="15" bodyfile="/home/runner/work/brush/brush/src/engine.h" bodystart="140" bodyend="-1"/>
+        <referencedby refid="d0/d75/classBrush_1_1Engine_1abf9f9f0eec7c0c6d4cf9985d993e6018" compoundref="da/d5c/engine_8cpp" startline="18" endline="43">Brush::Engine&lt; T &gt;::init</referencedby>
+        <referencedby refid="d0/d75/classBrush_1_1Engine_1ae246e0130aecd7b1a6680468b0fe9b9b" compoundref="da/d5c/engine_8cpp" startline="159" endline="188">Brush::Engine&lt; T &gt;::print_stats</referencedby>
       </memberdef>
       <memberdef kind="variable" id="d0/d75/classBrush_1_1Engine_1a1c15a1ffc9ffcebee65da12242791b13" prot="private" static="no" mutable="no">
         <type><ref refid="d8/da4/classBrush_1_1Util_1_1Timer" kindref="compound">Timer</ref></type>
@@ -210,9 +236,12 @@
         <inbodydescription>
         </inbodydescription>
         <location file="/home/runner/work/brush/brush/src/engine.h" line="142" column="11" bodyfile="/home/runner/work/brush/brush/src/engine.h" bodystart="142" bodyend="-1"/>
+        <referencedby refid="d0/d75/classBrush_1_1Engine_1abf9f9f0eec7c0c6d4cf9985d993e6018" compoundref="da/d5c/engine_8cpp" startline="18" endline="43">Brush::Engine&lt; T &gt;::init</referencedby>
+        <referencedby refid="d0/d75/classBrush_1_1Engine_1ae246e0130aecd7b1a6680468b0fe9b9b" compoundref="da/d5c/engine_8cpp" startline="159" endline="188">Brush::Engine&lt; T &gt;::print_stats</referencedby>
+        <referencedby refid="d0/d75/classBrush_1_1Engine_1a4248c80ebcd035a70953065045e04705" compoundref="da/d5c/engine_8cpp" startline="324" endline="527">Brush::Engine&lt; T &gt;::run</referencedby>
       </memberdef>
       <memberdef kind="variable" id="d0/d75/classBrush_1_1Engine_1a1f3f589d727557956c89c6abc272c3c5" prot="private" static="no" mutable="no">
-        <type><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">bool</ref></type>
+        <type>bool</type>
         <definition>bool Brush::Engine&lt; T &gt;::is_fitted</definition>
         <argsstring></argsstring>
         <name>is_fitted</name>
@@ -225,8 +254,6 @@
         <inbodydescription>
         </inbodydescription>
         <location file="/home/runner/work/brush/brush/src/engine.h" line="144" column="10" bodyfile="/home/runner/work/brush/brush/src/engine.h" bodystart="144" bodyend="-1"/>
-        <referencedby refid="d0/d75/classBrush_1_1Engine_1aab1caca99728e672a5c78142546aa497" compoundref="d1/d55/engine_8h" startline="63" endline="63">Brush::Engine&lt; T &gt;::get_is_fitted</referencedby>
-        <referencedby refid="d0/d75/classBrush_1_1Engine_1a82422a2bb8061934c4be271ee7eef810" compoundref="d1/d55/engine_8h" startline="149" endline="149">Brush::Engine&lt; T &gt;::set_is_fitted</referencedby>
       </memberdef>
     </sectiondef>
     <sectiondef kind="public-func">
@@ -237,7 +264,7 @@
         <name>Engine</name>
         <qualifiedname>Brush::Engine::Engine</qualifiedname>
         <param>
-          <type><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">const</ref> <ref refid="de/deb/structBrush_1_1Parameters" kindref="compound">Parameters</ref> &amp;</type>
+          <type>const <ref refid="de/deb/structBrush_1_1Parameters" kindref="compound">Parameters</ref> &amp;</type>
           <declname>p</declname>
           <defval><ref refid="de/deb/structBrush_1_1Parameters" kindref="compound">Parameters</ref>()</defval>
         </param>
@@ -264,13 +291,13 @@
         <location file="/home/runner/work/brush/brush/src/engine.h" line="51" column="5" bodyfile="/home/runner/work/brush/brush/src/engine.h" bodystart="51" bodyend="51"/>
       </memberdef>
       <memberdef kind="function" id="d0/d75/classBrush_1_1Engine_1a33590e9eed9490be52dc2eedbb5b0feb" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
-        <type><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">void</ref></type>
+        <type>void</type>
         <definition>void Brush::Engine&lt; T &gt;::print_progress</definition>
         <argsstring>(float percentage)</argsstring>
         <name>print_progress</name>
         <qualifiedname>Brush::Engine::print_progress</qualifiedname>
         <param>
-          <type><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">float</ref></type>
+          <type>float</type>
           <declname>percentage</declname>
         </param>
         <briefdescription>
@@ -280,12 +307,12 @@
         <inbodydescription>
         </inbodydescription>
         <location file="/home/runner/work/brush/brush/src/engine.h" line="54" column="10" bodyfile="/home/runner/work/brush/brush/src/engine.cpp" bodystart="46" bodyend="58"/>
-        <references refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" compoundref="d4/d93/bind__engines_8h" startline="35" endline="104">bind_engine</references>
         <references refid="d6/d2e/namespaceBrush_1_1Util_1afa1fde52ad1a13ccf861682c1d37896a" compoundref="de/d06/utils_8cpp" startline="13">Brush::Util::PBSTR</references>
         <references refid="d6/d2e/namespaceBrush_1_1Util_1afdf0a27a6e1782537f1d1751e1efde51" compoundref="de/d06/utils_8cpp" startline="14">Brush::Util::PBWIDTH</references>
+        <referencedby refid="d0/d75/classBrush_1_1Engine_1a4248c80ebcd035a70953065045e04705" compoundref="da/d5c/engine_8cpp" startline="324" endline="527">Brush::Engine&lt; T &gt;::run</referencedby>
       </memberdef>
       <memberdef kind="function" id="d0/d75/classBrush_1_1Engine_1a215399033d10c86535f344e54937ea01" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
-        <type><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">void</ref></type>
+        <type>void</type>
         <definition>void Brush::Engine&lt; T &gt;::calculate_stats</definition>
         <argsstring>()</argsstring>
         <name>calculate_stats</name>
@@ -297,13 +324,11 @@
         <inbodydescription>
         </inbodydescription>
         <location file="/home/runner/work/brush/brush/src/engine.h" line="55" column="10" bodyfile="/home/runner/work/brush/brush/src/engine.cpp" bodystart="62" bodyend="125"/>
-        <references refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" compoundref="d4/d93/bind__engines_8h" startline="35" endline="104">bind_engine</references>
-        <references refid="de/d83/classBrush_1_1Pop_1_1Individual_1a96a4869472f1e11e19219c2d07fb6c53" compoundref="d5/d1f/individual_8h" startline="33">Brush::Pop::Individual&lt; T &gt;::fitness</references>
-        <references refid="d6/dd0/structBrush_1_1Fitness_1a3a12b069a168aa86d3e7bce0f4c56cad" compoundref="dc/d7a/fitness_8h" startline="51" endline="51">Brush::Fitness::get_loss</references>
-        <references refid="d6/d2e/namespaceBrush_1_1Util_1a4d848757d9123e0562a7d87b44f1bdc6" compoundref="d5/d60/utils_8h" startline="202" endline="219">Brush::Util::median</references>
+        <references refid="d0/d75/classBrush_1_1Engine_1ab732127d18c12f7c5ea28fd33ee846e6" compoundref="d1/d55/engine_8h" startline="127">Brush::Engine&lt; T &gt;::params</references>
+        <referencedby refid="d0/d75/classBrush_1_1Engine_1a4248c80ebcd035a70953065045e04705" compoundref="da/d5c/engine_8cpp" startline="324" endline="527">Brush::Engine&lt; T &gt;::run</referencedby>
       </memberdef>
       <memberdef kind="function" id="d0/d75/classBrush_1_1Engine_1ae246e0130aecd7b1a6680468b0fe9b9b" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
-        <type><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">void</ref></type>
+        <type>void</type>
         <definition>void Brush::Engine&lt; T &gt;::print_stats</definition>
         <argsstring>(std::ofstream &amp;log, float fraction)</argsstring>
         <name>print_stats</name>
@@ -313,7 +338,7 @@
           <declname>log</declname>
         </param>
         <param>
-          <type><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">float</ref></type>
+          <type>float</type>
           <declname>fraction</declname>
         </param>
         <briefdescription>
@@ -323,10 +348,13 @@
         <inbodydescription>
         </inbodydescription>
         <location file="/home/runner/work/brush/brush/src/engine.h" line="56" column="10" bodyfile="/home/runner/work/brush/brush/src/engine.cpp" bodystart="159" bodyend="188"/>
-        <references refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" compoundref="d4/d93/bind__engines_8h" startline="35" endline="104">bind_engine</references>
+        <references refid="d0/d75/classBrush_1_1Engine_1ab732127d18c12f7c5ea28fd33ee846e6" compoundref="d1/d55/engine_8h" startline="127">Brush::Engine&lt; T &gt;::params</references>
+        <references refid="d0/d75/classBrush_1_1Engine_1a596db23cf521696b72b023bacbf3a737" compoundref="d1/d55/engine_8h" startline="140">Brush::Engine&lt; T &gt;::stats</references>
+        <references refid="d0/d75/classBrush_1_1Engine_1a1c15a1ffc9ffcebee65da12242791b13" compoundref="d1/d55/engine_8h" startline="142">Brush::Engine&lt; T &gt;::timer</references>
+        <referencedby refid="d0/d75/classBrush_1_1Engine_1a4248c80ebcd035a70953065045e04705" compoundref="da/d5c/engine_8cpp" startline="324" endline="527">Brush::Engine&lt; T &gt;::run</referencedby>
       </memberdef>
       <memberdef kind="function" id="d0/d75/classBrush_1_1Engine_1ae099086faca2e6ea54f5e85b380a8da8" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
-        <type><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">void</ref></type>
+        <type>void</type>
         <definition>void Brush::Engine&lt; T &gt;::log_stats</definition>
         <argsstring>(std::ofstream &amp;log)</argsstring>
         <name>log_stats</name>
@@ -342,7 +370,8 @@
         <inbodydescription>
         </inbodydescription>
         <location file="/home/runner/work/brush/brush/src/engine.h" line="57" column="10" bodyfile="/home/runner/work/brush/brush/src/engine.cpp" bodystart="129" bodyend="156"/>
-        <references refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" compoundref="d4/d93/bind__engines_8h" startline="35" endline="104">bind_engine</references>
+        <references refid="d0/d75/classBrush_1_1Engine_1ab732127d18c12f7c5ea28fd33ee846e6" compoundref="d1/d55/engine_8h" startline="127">Brush::Engine&lt; T &gt;::params</references>
+        <referencedby refid="d0/d75/classBrush_1_1Engine_1a4248c80ebcd035a70953065045e04705" compoundref="da/d5c/engine_8cpp" startline="324" endline="527">Brush::Engine&lt; T &gt;::run</referencedby>
       </memberdef>
       <memberdef kind="function" id="d0/d75/classBrush_1_1Engine_1a7c02eca29f421b7242a346ceaefd622b" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
         <type><ref refid="de/deb/structBrush_1_1Parameters" kindref="compound">Parameters</ref> &amp;</type>
@@ -357,10 +386,9 @@
         <inbodydescription>
         </inbodydescription>
         <location file="/home/runner/work/brush/brush/src/engine.h" line="60" column="23" bodyfile="/home/runner/work/brush/brush/src/engine.h" bodystart="60" bodyend="60"/>
-        <references refid="d0/d75/classBrush_1_1Engine_1ab732127d18c12f7c5ea28fd33ee846e6" compoundref="d1/d55/engine_8h" startline="127">Brush::Engine&lt; T &gt;::params</references>
       </memberdef>
       <memberdef kind="function" id="d0/d75/classBrush_1_1Engine_1a7fdb1ff2afedbde73b8cf91d667f98b6" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
-        <type><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">void</ref></type>
+        <type>void</type>
         <definition>void Brush::Engine&lt; T &gt;::set_params</definition>
         <argsstring>(Parameters &amp;p)</argsstring>
         <name>set_params</name>
@@ -376,11 +404,9 @@
         <inbodydescription>
         </inbodydescription>
         <location file="/home/runner/work/brush/brush/src/engine.h" line="61" column="17" bodyfile="/home/runner/work/brush/brush/src/engine.h" bodystart="61" bodyend="61"/>
-        <references refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" compoundref="d4/d93/bind__engines_8h" startline="35" endline="104">bind_engine</references>
-        <references refid="d0/d75/classBrush_1_1Engine_1ab732127d18c12f7c5ea28fd33ee846e6" compoundref="d1/d55/engine_8h" startline="127">Brush::Engine&lt; T &gt;::params</references>
       </memberdef>
       <memberdef kind="function" id="d0/d75/classBrush_1_1Engine_1aab1caca99728e672a5c78142546aa497" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
-        <type><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">bool</ref></type>
+        <type>bool</type>
         <definition>bool Brush::Engine&lt; T &gt;::get_is_fitted</definition>
         <argsstring>()</argsstring>
         <name>get_is_fitted</name>
@@ -392,22 +418,21 @@
         <inbodydescription>
         </inbodydescription>
         <location file="/home/runner/work/brush/brush/src/engine.h" line="63" column="17" bodyfile="/home/runner/work/brush/brush/src/engine.h" bodystart="63" bodyend="63"/>
-        <references refid="d0/d75/classBrush_1_1Engine_1a1f3f589d727557956c89c6abc272c3c5" compoundref="d1/d55/engine_8h" startline="144">Brush::Engine&lt; T &gt;::is_fitted</references>
       </memberdef>
       <memberdef kind="function" id="d0/d75/classBrush_1_1Engine_1a9a15cd9b6bdcc6c7bee5a473ebff1081" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
-        <type><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">bool</ref></type>
+        <type>bool</type>
         <definition>bool Brush::Engine&lt; T &gt;::update_best</definition>
         <argsstring>(const Dataset &amp;data, bool val=false)</argsstring>
         <name>update_best</name>
         <qualifiedname>Brush::Engine::update_best</qualifiedname>
         <param>
-          <type><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">const</ref> <ref refid="d2/d36/classBrush_1_1Data_1_1Dataset" kindref="compound">Dataset</ref> &amp;</type>
+          <type>const <ref refid="d2/d36/classBrush_1_1Data_1_1Dataset" kindref="compound">Dataset</ref> &amp;</type>
           <declname>data</declname>
         </param>
         <param>
-          <type><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">bool</ref></type>
+          <type>bool</type>
           <declname>val</declname>
-          <defval><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">false</ref></defval>
+          <defval>false</defval>
         </param>
         <briefdescription>
 <para>updates best score by searching in the population for the individual that best fits the given data </para>
@@ -417,9 +442,12 @@
         <inbodydescription>
         </inbodydescription>
         <location file="/home/runner/work/brush/brush/src/engine.h" line="66" column="10" bodyfile="/home/runner/work/brush/brush/src/engine.cpp" bodystart="288" bodyend="320"/>
-        <references refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" compoundref="d4/d93/bind__engines_8h" startline="35" endline="104">bind_engine</references>
-        <references refid="de/d83/classBrush_1_1Pop_1_1Individual_1a96a4869472f1e11e19219c2d07fb6c53" compoundref="d5/d1f/individual_8h" startline="33">Brush::Pop::Individual&lt; T &gt;::fitness</references>
-        <references refid="d6/dd0/structBrush_1_1Fitness_1aa8cd674fad6f65c344f008c3e2442491" compoundref="dc/d7a/fitness_8h" startline="29">Brush::Fitness::loss_v</references>
+        <references refid="d0/d75/classBrush_1_1Engine_1a3abf94acdca8101698f36c364f8e0145" compoundref="d1/d55/engine_8h" startline="72">Brush::Engine&lt; T &gt;::best_complexity</references>
+        <references refid="d0/d75/classBrush_1_1Engine_1a27fbc5f690c9952dc95ed5c3cce31418" compoundref="d1/d55/engine_8h" startline="128">Brush::Engine&lt; T &gt;::best_ind</references>
+        <references refid="d0/d75/classBrush_1_1Engine_1ab732127d18c12f7c5ea28fd33ee846e6" compoundref="d1/d55/engine_8h" startline="127">Brush::Engine&lt; T &gt;::params</references>
+        <references refid="d0/d75/classBrush_1_1Engine_1a5e0104eaadbe7a19722ee149d06a7c76" compoundref="d1/d55/engine_8h" startline="134">Brush::Engine&lt; T &gt;::pop</references>
+        <references refid="de/d83/classBrush_1_1Pop_1_1Individual_1a0445d333388f2198459c25dd2b01794c" compoundref="d5/d1f/individual_8h" startline="116" endline="125">Brush::Pop::Individual&lt; T &gt;::weightsMap</references>
+        <referencedby refid="d0/d75/classBrush_1_1Engine_1a4248c80ebcd035a70953065045e04705" compoundref="da/d5c/engine_8cpp" startline="324" endline="527">Brush::Engine&lt; T &gt;::run</referencedby>
       </memberdef>
       <memberdef kind="function" id="d0/d75/classBrush_1_1Engine_1a7f2a508f9bd1860f0ab15dbbc1f306fc" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
         <type><ref refid="de/d83/classBrush_1_1Pop_1_1Individual" kindref="compound">Individual</ref>&lt; T &gt; &amp;</type>
@@ -434,7 +462,6 @@
         <inbodydescription>
         </inbodydescription>
         <location file="/home/runner/work/brush/brush/src/engine.h" line="73" column="16" bodyfile="/home/runner/work/brush/brush/src/engine.h" bodystart="73" bodyend="73"/>
-        <references refid="d0/d75/classBrush_1_1Engine_1a27fbc5f690c9952dc95ed5c3cce31418" compoundref="d1/d55/engine_8h" startline="128">Brush::Engine&lt; T &gt;::best_ind</references>
       </memberdef>
       <memberdef kind="function" id="d0/d75/classBrush_1_1Engine_1a55f5d4ccc161d1674c1ca63a917abd9f" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
         <type><ref refid="d0/d75/classBrush_1_1Engine" kindref="compound">Engine</ref>&lt; T &gt; &amp;</type>
@@ -453,8 +480,7 @@
         <inbodydescription>
         </inbodydescription>
         <location file="/home/runner/work/brush/brush/src/engine.h" line="75" column="12" bodyfile="/home/runner/work/brush/brush/src/engine.h" bodystart="75" bodyend="78"/>
-        <references refid="d0/d75/classBrush_1_1Engine_1a4248c80ebcd035a70953065045e04705" compoundref="da/d5c/engine_8cpp" startline="324" endline="527">Brush::Engine&lt; T &gt;::run</references>
-        <referencedby refid="d0/d75/classBrush_1_1Engine_1aad11ac5c3f0adc14cabf465eeb7d3e91" compoundref="d1/d55/engine_8h" startline="79" endline="85">Brush::Engine&lt; T &gt;::fit</referencedby>
+        <referencedby refid="d0/d75/classBrush_1_1Engine_1aad11ac5c3f0adc14cabf465eeb7d3e91" compoundref="d1/d55/engine_8h" startline="79" endline="85">Brush::Engine&lt; PT::Regressor &gt;::fit</referencedby>
       </memberdef>
       <memberdef kind="function" id="d0/d75/classBrush_1_1Engine_1aad11ac5c3f0adc14cabf465eeb7d3e91" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
         <type><ref refid="d0/d75/classBrush_1_1Engine" kindref="compound">Engine</ref>&lt; T &gt; &amp;</type>
@@ -463,11 +489,11 @@
         <name>fit</name>
         <qualifiedname>Brush::Engine::fit</qualifiedname>
         <param>
-          <type><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">const</ref> <ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">Ref</ref>&lt; <ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">const</ref> ArrayXXf &gt; &amp;</type>
+          <type>const Ref&lt; const ArrayXXf &gt; &amp;</type>
           <declname>X</declname>
         </param>
         <param>
-          <type><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">const</ref> <ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">Ref</ref>&lt; <ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">const</ref> ArrayXf &gt; &amp;</type>
+          <type>const Ref&lt; const ArrayXf &gt; &amp;</type>
           <declname>y</declname>
         </param>
         <briefdescription>
@@ -477,22 +503,15 @@
         <inbodydescription>
         </inbodydescription>
         <location file="/home/runner/work/brush/brush/src/engine.h" line="79" column="12" bodyfile="/home/runner/work/brush/brush/src/engine.h" bodystart="79" bodyend="85"/>
-        <references refid="de/deb/structBrush_1_1Parameters_1a3079fe8703a9a8c57e06afd7425f48d4" compoundref="da/d33/params_8h" startline="78">Brush::Parameters::batch_size</references>
-        <references refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" compoundref="d4/d93/bind__engines_8h" startline="35" endline="104">bind_engine</references>
-        <references refid="de/deb/structBrush_1_1Parameters_1a72bfe23c101219ee3460ef8b9e1e1cbe" compoundref="da/d33/params_8h" startline="71">Brush::Parameters::classification</references>
-        <references refid="de/deb/structBrush_1_1Parameters_1a9aefe0091a5fcba33a3d98c4716a6c4d" compoundref="da/d33/params_8h" startline="77" endline="77">Brush::Parameters::feature_names</references>
-        <references refid="d0/d75/classBrush_1_1Engine_1a55f5d4ccc161d1674c1ca63a917abd9f" compoundref="d1/d55/engine_8h" startline="75" endline="78">Brush::Engine&lt; T &gt;::fit</references>
-        <references refid="d0/d75/classBrush_1_1Engine_1ab732127d18c12f7c5ea28fd33ee846e6" compoundref="d1/d55/engine_8h" startline="127">Brush::Engine&lt; T &gt;::params</references>
-        <references refid="de/deb/structBrush_1_1Parameters_1a56cb7729183a3d4bc9514e83198b99d5" compoundref="da/d33/params_8h" startline="76">Brush::Parameters::validation_size</references>
       </memberdef>
       <memberdef kind="function" id="d0/d75/classBrush_1_1Engine_1a1b6447ad9d2eb1f0fc1252be14729e0f" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
-        <type><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">auto</ref></type>
+        <type>auto</type>
         <definition>auto Brush::Engine&lt; T &gt;::predict</definition>
         <argsstring>(const Dataset &amp;data)</argsstring>
         <name>predict</name>
         <qualifiedname>Brush::Engine::predict</qualifiedname>
         <param>
-          <type><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">const</ref> <ref refid="d2/d36/classBrush_1_1Data_1_1Dataset" kindref="compound">Dataset</ref> &amp;</type>
+          <type>const <ref refid="d2/d36/classBrush_1_1Data_1_1Dataset" kindref="compound">Dataset</ref> &amp;</type>
           <declname>data</declname>
         </param>
         <briefdescription>
@@ -502,17 +521,16 @@
         <inbodydescription>
         </inbodydescription>
         <location file="/home/runner/work/brush/brush/src/engine.h" line="87" column="10" bodyfile="/home/runner/work/brush/brush/src/engine.h" bodystart="87" bodyend="87"/>
-        <references refid="d0/d75/classBrush_1_1Engine_1a27fbc5f690c9952dc95ed5c3cce31418" compoundref="d1/d55/engine_8h" startline="128">Brush::Engine&lt; T &gt;::best_ind</references>
-        <referencedby refid="d0/d75/classBrush_1_1Engine_1a5f7b02e40b9cdabf1cf9ad6f3a99cc59" compoundref="d1/d55/engine_8h" startline="88" endline="92">Brush::Engine&lt; T &gt;::predict</referencedby>
+        <referencedby refid="d0/d75/classBrush_1_1Engine_1a5f7b02e40b9cdabf1cf9ad6f3a99cc59" compoundref="d1/d55/engine_8h" startline="88" endline="92">Brush::Engine&lt; PT::Regressor &gt;::predict</referencedby>
       </memberdef>
       <memberdef kind="function" id="d0/d75/classBrush_1_1Engine_1a5f7b02e40b9cdabf1cf9ad6f3a99cc59" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
-        <type><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">auto</ref></type>
+        <type>auto</type>
         <definition>auto Brush::Engine&lt; T &gt;::predict</definition>
         <argsstring>(const Ref&lt; const ArrayXXf &gt; &amp;X)</argsstring>
         <name>predict</name>
         <qualifiedname>Brush::Engine::predict</qualifiedname>
         <param>
-          <type><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">const</ref> <ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">Ref</ref>&lt; <ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">const</ref> ArrayXXf &gt; &amp;</type>
+          <type>const Ref&lt; const ArrayXXf &gt; &amp;</type>
           <declname>X</declname>
         </param>
         <briefdescription>
@@ -522,8 +540,6 @@
         <inbodydescription>
         </inbodydescription>
         <location file="/home/runner/work/brush/brush/src/engine.h" line="88" column="10" bodyfile="/home/runner/work/brush/brush/src/engine.h" bodystart="88" bodyend="92"/>
-        <references refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" compoundref="d4/d93/bind__engines_8h" startline="35" endline="104">bind_engine</references>
-        <references refid="d0/d75/classBrush_1_1Engine_1a1b6447ad9d2eb1f0fc1252be14729e0f" compoundref="d1/d55/engine_8h" startline="87" endline="87">Brush::Engine&lt; T &gt;::predict</references>
       </memberdef>
       <memberdef kind="function" id="d0/d75/classBrush_1_1Engine_1a2375ba6f0ebb3119ccc91664b2f6a79a" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
         <templateparamlist>
@@ -534,16 +550,16 @@
             <defval>T</defval>
           </param>
         </templateparamlist>
-        <type><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">auto</ref></type>
+        <type>auto</type>
         <definition>auto Brush::Engine&lt; T &gt;::predict_proba</definition>
         <argsstring>(const Dataset &amp;d)</argsstring>
         <name>predict_proba</name>
         <qualifiedname>Brush::Engine::predict_proba</qualifiedname>
         <param>
-          <type><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">const</ref> <ref refid="d2/d36/classBrush_1_1Data_1_1Dataset" kindref="compound">Dataset</ref> &amp;</type>
+          <type>const <ref refid="d2/d36/classBrush_1_1Data_1_1Dataset" kindref="compound">Dataset</ref> &amp;</type>
           <declname>d</declname>
         </param>
-    <requiresclause>((<ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">P</ref> == PT::BinaryClassifier) || (<ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">P</ref> == PT::MulticlassClassifier))    </requiresclause>
+    <requiresclause>((P == PT::BinaryClassifier) || (P == PT::MulticlassClassifier))    </requiresclause>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
@@ -551,9 +567,7 @@
         <inbodydescription>
         </inbodydescription>
         <location file="/home/runner/work/brush/brush/src/engine.h" line="96" column="10" bodyfile="/home/runner/work/brush/brush/src/engine.h" bodystart="96" bodyend="96"/>
-        <references refid="d0/d75/classBrush_1_1Engine_1a27fbc5f690c9952dc95ed5c3cce31418" compoundref="d1/d55/engine_8h" startline="128">Brush::Engine&lt; T &gt;::best_ind</references>
-        <referencedby refid="d0/d75/classBrush_1_1Engine_1a8020d8de0e61e5485a157229305ec126" compoundref="d1/d55/engine_8h" startline="99" endline="103">Brush::Engine&lt; T &gt;::predict_proba</referencedby>
-        <referencedby refid="d0/d75/classBrush_1_1Engine_1ac1f6620adc2dd0710a415a7e48b76650" compoundref="da/d5c/engine_8cpp" startline="248" endline="276">Brush::Engine&lt; T &gt;::predict_proba_archive</referencedby>
+        <referencedby refid="d0/d75/classBrush_1_1Engine_1a8020d8de0e61e5485a157229305ec126" compoundref="d1/d55/engine_8h" startline="99" endline="103">Brush::Engine&lt; PT::Regressor &gt;::predict_proba</referencedby>
       </memberdef>
       <memberdef kind="function" id="d0/d75/classBrush_1_1Engine_1a8020d8de0e61e5485a157229305ec126" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
         <templateparamlist>
@@ -564,16 +578,16 @@
             <defval>T</defval>
           </param>
         </templateparamlist>
-        <type><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">auto</ref></type>
+        <type>auto</type>
         <definition>auto Brush::Engine&lt; T &gt;::predict_proba</definition>
         <argsstring>(const Ref&lt; const ArrayXXf &gt; &amp;X)</argsstring>
         <name>predict_proba</name>
         <qualifiedname>Brush::Engine::predict_proba</qualifiedname>
         <param>
-          <type><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">const</ref> <ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">Ref</ref>&lt; <ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">const</ref> ArrayXXf &gt; &amp;</type>
+          <type>const Ref&lt; const ArrayXXf &gt; &amp;</type>
           <declname>X</declname>
         </param>
-    <requiresclause>((<ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">P</ref> == PT::BinaryClassifier) || (<ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">P</ref> == PT::MulticlassClassifier))    </requiresclause>
+    <requiresclause>((P == PT::BinaryClassifier) || (P == PT::MulticlassClassifier))    </requiresclause>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
@@ -581,11 +595,9 @@
         <inbodydescription>
         </inbodydescription>
         <location file="/home/runner/work/brush/brush/src/engine.h" line="99" column="10" bodyfile="/home/runner/work/brush/brush/src/engine.h" bodystart="99" bodyend="103"/>
-        <references refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" compoundref="d4/d93/bind__engines_8h" startline="35" endline="104">bind_engine</references>
-        <references refid="d0/d75/classBrush_1_1Engine_1a2375ba6f0ebb3119ccc91664b2f6a79a" compoundref="d1/d55/engine_8h" startline="96" endline="96">Brush::Engine&lt; T &gt;::predict_proba</references>
       </memberdef>
       <memberdef kind="function" id="d0/d75/classBrush_1_1Engine_1a830f938cd00be6c41d8effc07668feb8" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
-        <type><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">int</ref></type>
+        <type>int</type>
         <definition>int Brush::Engine&lt; T &gt;::get_archive_size</definition>
         <argsstring>()</argsstring>
         <name>get_archive_size</name>
@@ -598,16 +610,15 @@
         <inbodydescription>
         </inbodydescription>
         <location file="/home/runner/work/brush/brush/src/engine.h" line="106" column="9" bodyfile="/home/runner/work/brush/brush/src/engine.h" bodystart="106" bodyend="106"/>
-        <references refid="d0/d75/classBrush_1_1Engine_1a59769ad184bdcdf2032c99acf3a77410" compoundref="d1/d55/engine_8h" startline="130">Brush::Engine&lt; T &gt;::archive</references>
       </memberdef>
       <memberdef kind="function" id="d0/d75/classBrush_1_1Engine_1ae11d9f38618b28e5e35912ee58419ed0" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
-        <type>vector&lt; json &gt;</type>
+        <type><ref refid="d7/dfc/classvector" kindref="compound">vector</ref>&lt; json &gt;</type>
         <definition>vector&lt; json &gt; Brush::Engine&lt; T &gt;::get_archive</definition>
         <argsstring>(bool front)</argsstring>
         <name>get_archive</name>
         <qualifiedname>Brush::Engine::get_archive</qualifiedname>
         <param>
-          <type><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">bool</ref></type>
+          <type>bool</type>
           <declname>front</declname>
         </param>
         <briefdescription>
@@ -618,48 +629,51 @@
         <inbodydescription>
         </inbodydescription>
         <location file="/home/runner/work/brush/brush/src/engine.h" line="109" column="12" bodyfile="/home/runner/work/brush/brush/src/engine.cpp" bodystart="191" bodyend="203"/>
-        <references refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" compoundref="d4/d93/bind__engines_8h" startline="35" endline="104">bind_engine</references>
+        <references refid="d0/d75/classBrush_1_1Engine_1a59769ad184bdcdf2032c99acf3a77410" compoundref="d1/d55/engine_8h" startline="130">Brush::Engine&lt; T &gt;::archive</references>
         <references refid="dc/d5c/namespaceBrush_1a8cfe33753dda03e1480fdcbe62e1885d" compoundref="dc/d5c/fitness_8cpp" startline="6" endline="22">Brush::to_json</references>
       </memberdef>
       <memberdef kind="function" id="d0/d75/classBrush_1_1Engine_1ac70f5fca40a2a058b187e579a7910ab3" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
-        <type><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">auto</ref></type>
+        <type>auto</type>
         <definition>auto Brush::Engine&lt; T &gt;::predict_archive</definition>
         <argsstring>(int id, const Dataset &amp;data)</argsstring>
         <name>predict_archive</name>
         <qualifiedname>Brush::Engine::predict_archive</qualifiedname>
         <param>
-          <type><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">int</ref></type>
+          <type>int</type>
           <declname>id</declname>
         </param>
         <param>
-          <type><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">const</ref> <ref refid="d2/d36/classBrush_1_1Data_1_1Dataset" kindref="compound">Dataset</ref> &amp;</type>
+          <type>const <ref refid="d2/d36/classBrush_1_1Data_1_1Dataset" kindref="compound">Dataset</ref> &amp;</type>
           <declname>data</declname>
         </param>
         <briefdescription>
-<para>predict on unseen data from the archive <linebreak/>
- </para>
+<para>predict on unseen data from the archive </para>
         </briefdescription>
         <detaileddescription>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
         <location file="/home/runner/work/brush/brush/src/engine.h" line="112" column="10" bodyfile="/home/runner/work/brush/brush/src/engine.cpp" bodystart="208" bodyend="236"/>
-        <references refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" compoundref="d4/d93/bind__engines_8h" startline="35" endline="104">bind_engine</references>
+        <references refid="d0/d75/classBrush_1_1Engine_1a59769ad184bdcdf2032c99acf3a77410" compoundref="d1/d55/engine_8h" startline="130">Brush::Engine&lt; T &gt;::archive</references>
+        <references refid="d0/d75/classBrush_1_1Engine_1a27fbc5f690c9952dc95ed5c3cce31418" compoundref="d1/d55/engine_8h" startline="128">Brush::Engine&lt; T &gt;::best_ind</references>
+        <references refid="de/d83/classBrush_1_1Pop_1_1Individual_1a65ad1b63a3f74fc95d03584f9807efe8" compoundref="d5/d1f/individual_8h" startline="28">Brush::Pop::Individual&lt; T &gt;::id</references>
+        <references refid="d0/d75/classBrush_1_1Engine_1a5e0104eaadbe7a19722ee149d06a7c76" compoundref="d1/d55/engine_8h" startline="134">Brush::Engine&lt; T &gt;::pop</references>
         <references refid="de/d83/classBrush_1_1Pop_1_1Individual_1a4a67784960128ceeb0df3aac10c74cc1" compoundref="d5/d1f/individual_8h" startline="66" endline="66">Brush::Pop::Individual&lt; T &gt;::predict</references>
         <references refid="d6/d2e/namespaceBrush_1_1Util_1a9cd8004de7aab46b7a06f27d440064ed" compoundref="d5/d60/utils_8h" startline="369" endline="374">Brush::Util::to_string</references>
+        <referencedby refid="d0/d75/classBrush_1_1Engine_1a7dd0788450fa1c0b3f5b4687c0588e63" compoundref="da/d5c/engine_8cpp" startline="239" endline="243">Brush::Engine&lt; T &gt;::predict_archive</referencedby>
       </memberdef>
       <memberdef kind="function" id="d0/d75/classBrush_1_1Engine_1a7dd0788450fa1c0b3f5b4687c0588e63" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
-        <type><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">auto</ref></type>
+        <type>auto</type>
         <definition>auto Brush::Engine&lt; T &gt;::predict_archive</definition>
         <argsstring>(int id, const Ref&lt; const ArrayXXf &gt; &amp;X)</argsstring>
         <name>predict_archive</name>
         <qualifiedname>Brush::Engine::predict_archive</qualifiedname>
         <param>
-          <type><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">int</ref></type>
+          <type>int</type>
           <declname>id</declname>
         </param>
         <param>
-          <type><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">const</ref> <ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">Ref</ref>&lt; <ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">const</ref> ArrayXXf &gt; &amp;</type>
+          <type>const Ref&lt; const ArrayXXf &gt; &amp;</type>
           <declname>X</declname>
         </param>
         <briefdescription>
@@ -669,7 +683,7 @@
         <inbodydescription>
         </inbodydescription>
         <location file="/home/runner/work/brush/brush/src/engine.h" line="113" column="10" bodyfile="/home/runner/work/brush/brush/src/engine.cpp" bodystart="239" bodyend="243"/>
-        <references refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" compoundref="d4/d93/bind__engines_8h" startline="35" endline="104">bind_engine</references>
+        <references refid="d0/d75/classBrush_1_1Engine_1ac70f5fca40a2a058b187e579a7910ab3" compoundref="da/d5c/engine_8cpp" startline="208" endline="236">Brush::Engine&lt; T &gt;::predict_archive</references>
       </memberdef>
       <memberdef kind="function" id="d0/d75/classBrush_1_1Engine_1ac1f6620adc2dd0710a415a7e48b76650" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <templateparamlist>
@@ -680,20 +694,20 @@
             <defval>T</defval>
           </param>
         </templateparamlist>
-        <type><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">auto</ref></type>
+        <type>auto</type>
         <definition>auto Brush::Engine&lt; T &gt;::predict_proba_archive</definition>
         <argsstring>(int id, const Dataset &amp;data)</argsstring>
         <name>predict_proba_archive</name>
         <qualifiedname>Brush::Engine::predict_proba_archive</qualifiedname>
         <param>
-          <type><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">int</ref></type>
+          <type>int</type>
           <declname>id</declname>
         </param>
         <param>
-          <type><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">const</ref> <ref refid="d2/d36/classBrush_1_1Data_1_1Dataset" kindref="compound">Dataset</ref> &amp;</type>
+          <type>const <ref refid="d2/d36/classBrush_1_1Data_1_1Dataset" kindref="compound">Dataset</ref> &amp;</type>
           <declname>data</declname>
         </param>
-    <requiresclause>((<ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">P</ref> == PT::BinaryClassifier) || (<ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">P</ref> == PT::MulticlassClassifier))    </requiresclause>
+    <requiresclause>((P == PT::BinaryClassifier) || (P == PT::MulticlassClassifier))    </requiresclause>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
@@ -701,10 +715,15 @@
         <inbodydescription>
         </inbodydescription>
         <location file="/home/runner/work/brush/brush/src/engine.h" line="117" column="10" bodyfile="/home/runner/work/brush/brush/src/engine.cpp" bodystart="248" bodyend="276"/>
-        <references refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" compoundref="d4/d93/bind__engines_8h" startline="35" endline="104">bind_engine</references>
-        <references refid="d0/d75/classBrush_1_1Engine_1a2375ba6f0ebb3119ccc91664b2f6a79a" compoundref="d1/d55/engine_8h" startline="96" endline="96">Brush::Engine&lt; T &gt;::predict_proba</references>
+        <references refid="d0/d75/classBrush_1_1Engine_1a59769ad184bdcdf2032c99acf3a77410" compoundref="d1/d55/engine_8h" startline="130">Brush::Engine&lt; T &gt;::archive</references>
+        <references refid="d0/d75/classBrush_1_1Engine_1a27fbc5f690c9952dc95ed5c3cce31418" compoundref="d1/d55/engine_8h" startline="128">Brush::Engine&lt; T &gt;::best_ind</references>
+        <references refid="de/d83/classBrush_1_1Pop_1_1Individual_1a65ad1b63a3f74fc95d03584f9807efe8" compoundref="d5/d1f/individual_8h" startline="28">Brush::Pop::Individual&lt; T &gt;::id</references>
+        <references refid="d0/d75/classBrush_1_1Engine_1a5e0104eaadbe7a19722ee149d06a7c76" compoundref="d1/d55/engine_8h" startline="134">Brush::Engine&lt; T &gt;::pop</references>
         <references refid="de/d83/classBrush_1_1Pop_1_1Individual_1a4c8b9afd9297b200b8b0527353569297" compoundref="d5/d1f/individual_8h" startline="75" endline="75">Brush::Pop::Individual&lt; T &gt;::predict_proba</references>
+        <references refid="d0/d75/classBrush_1_1Engine_1ac1f6620adc2dd0710a415a7e48b76650" compoundref="da/d5c/engine_8cpp" startline="248" endline="276">Brush::Engine&lt; T &gt;::predict_proba_archive</references>
         <references refid="d6/d2e/namespaceBrush_1_1Util_1a9cd8004de7aab46b7a06f27d440064ed" compoundref="d5/d60/utils_8h" startline="369" endline="374">Brush::Util::to_string</references>
+        <referencedby refid="d0/d75/classBrush_1_1Engine_1ac1f6620adc2dd0710a415a7e48b76650" compoundref="da/d5c/engine_8cpp" startline="248" endline="276">Brush::Engine&lt; T &gt;::predict_proba_archive</referencedby>
+        <referencedby refid="d0/d75/classBrush_1_1Engine_1aef6812fe71d50d6e05cb432d226b4b37" compoundref="da/d5c/engine_8cpp" startline="281" endline="285">Brush::Engine&lt; T &gt;::predict_proba_archive</referencedby>
       </memberdef>
       <memberdef kind="function" id="d0/d75/classBrush_1_1Engine_1aef6812fe71d50d6e05cb432d226b4b37" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <templateparamlist>
@@ -715,20 +734,20 @@
             <defval>T</defval>
           </param>
         </templateparamlist>
-        <type><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">auto</ref></type>
+        <type>auto</type>
         <definition>auto Brush::Engine&lt; T &gt;::predict_proba_archive</definition>
         <argsstring>(int id, const Ref&lt; const ArrayXXf &gt; &amp;X)</argsstring>
         <name>predict_proba_archive</name>
         <qualifiedname>Brush::Engine::predict_proba_archive</qualifiedname>
         <param>
-          <type><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">int</ref></type>
+          <type>int</type>
           <declname>id</declname>
         </param>
         <param>
-          <type><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">const</ref> <ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">Ref</ref>&lt; <ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">const</ref> ArrayXXf &gt; &amp;</type>
+          <type>const Ref&lt; const ArrayXXf &gt; &amp;</type>
           <declname>X</declname>
         </param>
-    <requiresclause>((<ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">P</ref> == PT::BinaryClassifier) || (<ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">P</ref> == PT::MulticlassClassifier))    </requiresclause>
+    <requiresclause>((P == PT::BinaryClassifier) || (P == PT::MulticlassClassifier))    </requiresclause>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
@@ -736,10 +755,10 @@
         <inbodydescription>
         </inbodydescription>
         <location file="/home/runner/work/brush/brush/src/engine.h" line="120" column="10" bodyfile="/home/runner/work/brush/brush/src/engine.cpp" bodystart="281" bodyend="285"/>
-        <references refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" compoundref="d4/d93/bind__engines_8h" startline="35" endline="104">bind_engine</references>
+        <references refid="d0/d75/classBrush_1_1Engine_1ac1f6620adc2dd0710a415a7e48b76650" compoundref="da/d5c/engine_8cpp" startline="248" endline="276">Brush::Engine&lt; T &gt;::predict_proba_archive</references>
       </memberdef>
       <memberdef kind="function" id="d0/d75/classBrush_1_1Engine_1a4248c80ebcd035a70953065045e04705" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
-        <type><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">void</ref></type>
+        <type>void</type>
         <definition>void Brush::Engine&lt; T &gt;::run</definition>
         <argsstring>(Dataset &amp;d)</argsstring>
         <name>run</name>
@@ -756,16 +775,29 @@
         <inbodydescription>
         </inbodydescription>
         <location file="/home/runner/work/brush/brush/src/engine.h" line="125" column="10" bodyfile="/home/runner/work/brush/brush/src/engine.cpp" bodystart="324" bodyend="527"/>
-        <references refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" compoundref="d4/d93/bind__engines_8h" startline="35" endline="104">bind_engine</references>
-        <references refid="d9/d1c/namespaceBrush_1_1Data_1a7e8d2615fe3bb7ef5f2a7cc9c625f985a63bcabf86a9a991864777c631c5b7617">Brush::Data::delta</references>
+        <references refid="d0/d75/classBrush_1_1Engine_1a59769ad184bdcdf2032c99acf3a77410" compoundref="d1/d55/engine_8h" startline="130">Brush::Engine&lt; T &gt;::archive</references>
+        <references refid="d0/d75/classBrush_1_1Engine_1a215399033d10c86535f344e54937ea01" compoundref="da/d5c/engine_8cpp" startline="62" endline="125">Brush::Engine&lt; T &gt;::calculate_stats</references>
+        <references refid="d9/d1c/namespaceBrush_1_1Data_1a7e8d2615fe3bb7ef5f2a7cc9c625f985a63bcabf86a9a991864777c631c5b7617" compoundref="d0/dea/omop_8h" startline="24">Brush::Data::delta</references>
+        <references refid="d0/d75/classBrush_1_1Engine_1aa8ccb37fe65cec921d9a155c1000cda7" compoundref="d1/d55/engine_8h" startline="136">Brush::Engine&lt; T &gt;::evaluator</references>
         <references refid="d2/d36/classBrush_1_1Data_1_1Dataset_1a5020e43def6267598be0ba3d2b46e616" compoundref="da/dc9/data_8cpp" startline="146" endline="160">Brush::Data::Dataset::get_batch</references>
+        <references refid="d0/d75/classBrush_1_1Engine_1abf9f9f0eec7c0c6d4cf9985d993e6018" compoundref="da/d5c/engine_8cpp" startline="18" endline="43">Brush::Engine&lt; T &gt;::init</references>
+        <references refid="d0/d75/classBrush_1_1Engine_1ae099086faca2e6ea54f5e85b380a8da8" compoundref="da/d5c/engine_8cpp" startline="129" endline="156">Brush::Engine&lt; T &gt;::log_stats</references>
+        <references refid="d0/d75/classBrush_1_1Engine_1ab732127d18c12f7c5ea28fd33ee846e6" compoundref="d1/d55/engine_8h" startline="127">Brush::Engine&lt; T &gt;::params</references>
+        <references refid="d0/d75/classBrush_1_1Engine_1a5e0104eaadbe7a19722ee149d06a7c76" compoundref="d1/d55/engine_8h" startline="134">Brush::Engine&lt; T &gt;::pop</references>
+        <references refid="d0/d75/classBrush_1_1Engine_1a33590e9eed9490be52dc2eedbb5b0feb" compoundref="da/d5c/engine_8cpp" startline="46" endline="58">Brush::Engine&lt; T &gt;::print_progress</references>
+        <references refid="d0/d75/classBrush_1_1Engine_1ae246e0130aecd7b1a6680468b0fe9b9b" compoundref="da/d5c/engine_8cpp" startline="159" endline="188">Brush::Engine&lt; T &gt;::print_stats</references>
+        <references refid="d0/d75/classBrush_1_1Engine_1ae4708d8c80153665a35fdc298ec626f5" compoundref="d1/d55/engine_8h" startline="132">Brush::Engine&lt; T &gt;::ss</references>
+        <references refid="d0/d75/classBrush_1_1Engine_1a70abc4545878805cd572d110f21d1e7c" compoundref="d1/d55/engine_8h" startline="138">Brush::Engine&lt; T &gt;::survivor</references>
+        <references refid="d0/d75/classBrush_1_1Engine_1a1c15a1ffc9ffcebee65da12242791b13" compoundref="d1/d55/engine_8h" startline="142">Brush::Engine&lt; T &gt;::timer</references>
+        <references refid="d0/d75/classBrush_1_1Engine_1a9a15cd9b6bdcc6c7bee5a473ebff1081" compoundref="da/d5c/engine_8cpp" startline="288" endline="320">Brush::Engine&lt; T &gt;::update_best</references>
         <references refid="d2/d36/classBrush_1_1Data_1_1Dataset_1a8cba7a5f962538d67012264fb6c97ed4" compoundref="d2/dbd/data_8h" startline="88">Brush::Data::Dataset::use_batch</references>
-        <referencedby refid="d0/d75/classBrush_1_1Engine_1a55f5d4ccc161d1674c1ca63a917abd9f" compoundref="d1/d55/engine_8h" startline="75" endline="78">Brush::Engine&lt; T &gt;::fit</referencedby>
+        <references refid="d0/d75/classBrush_1_1Engine_1a77c7fc26671fb2b064a4c588540ebed5" compoundref="d1/d55/engine_8h" startline="137">Brush::Engine&lt; T &gt;::variator</references>
+        <referencedby refid="d0/d75/classBrush_1_1Engine_1a55f5d4ccc161d1674c1ca63a917abd9f" compoundref="d1/d55/engine_8h" startline="75" endline="78">Brush::Engine&lt; PT::Regressor &gt;::fit</referencedby>
       </memberdef>
     </sectiondef>
     <sectiondef kind="private-func">
       <memberdef kind="function" id="d0/d75/classBrush_1_1Engine_1abf9f9f0eec7c0c6d4cf9985d993e6018" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
-        <type><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">void</ref></type>
+        <type>void</type>
         <definition>void Brush::Engine&lt; T &gt;::init</definition>
         <argsstring>()</argsstring>
         <name>init</name>
@@ -778,19 +810,31 @@
         <inbodydescription>
         </inbodydescription>
         <location file="/home/runner/work/brush/brush/src/engine.h" line="146" column="10" bodyfile="/home/runner/work/brush/brush/src/engine.cpp" bodystart="18" bodyend="43"/>
-        <references refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" compoundref="d4/d93/bind__engines_8h" startline="35" endline="104">bind_engine</references>
+        <references refid="d0/d75/classBrush_1_1Engine_1a59769ad184bdcdf2032c99acf3a77410" compoundref="d1/d55/engine_8h" startline="130">Brush::Engine&lt; T &gt;::archive</references>
+        <references refid="d0/d75/classBrush_1_1Engine_1a3abf94acdca8101698f36c364f8e0145" compoundref="d1/d55/engine_8h" startline="72">Brush::Engine&lt; T &gt;::best_complexity</references>
+        <references refid="d0/d75/classBrush_1_1Engine_1a16a22a02c2ff6d2c4fbd1b593e055a4f" compoundref="d1/d55/engine_8h" startline="71">Brush::Engine&lt; T &gt;::best_score</references>
+        <references refid="d0/d75/classBrush_1_1Engine_1aa8ccb37fe65cec921d9a155c1000cda7" compoundref="d1/d55/engine_8h" startline="136">Brush::Engine&lt; T &gt;::evaluator</references>
         <references refid="d8/dc0/init_8h_1a0c86fe7dc09ca580e891580bf302e659" compoundref="d8/dc0/init_8h" startline="61">MAX_FLT</references>
+        <references refid="d0/d75/classBrush_1_1Engine_1ab732127d18c12f7c5ea28fd33ee846e6" compoundref="d1/d55/engine_8h" startline="127">Brush::Engine&lt; T &gt;::params</references>
+        <references refid="d0/d75/classBrush_1_1Engine_1a5e0104eaadbe7a19722ee149d06a7c76" compoundref="d1/d55/engine_8h" startline="134">Brush::Engine&lt; T &gt;::pop</references>
         <references refid="d6/d2e/namespaceBrush_1_1Util_1af7dd70e54015821d96e3a1afed6344ca" compoundref="d2/da9/rnd_8h" startline="174">Brush::Util::r</references>
-        <references refid="d2/d2d/classBrush_1_1Util_1_1Rnd_1a8357702cf1f426e4909c45b97a18bb0e" compoundref="de/d67/rnd_8cpp" startline="46" endline="66">Brush::Util::Rnd::set_seed</references>
+        <references refid="d0/d75/classBrush_1_1Engine_1a1979bbf5e2af65845c461dbd2e0b9ef5" compoundref="d1/d55/engine_8h" startline="135">Brush::Engine&lt; T &gt;::selector</references>
+        <references refid="d0/d75/classBrush_1_1Engine_1a82422a2bb8061934c4be271ee7eef810" compoundref="d1/d55/engine_8h" startline="149" endline="149">Brush::Engine&lt; T &gt;::set_is_fitted</references>
+        <references refid="d0/d75/classBrush_1_1Engine_1ae4708d8c80153665a35fdc298ec626f5" compoundref="d1/d55/engine_8h" startline="132">Brush::Engine&lt; T &gt;::ss</references>
+        <references refid="d0/d75/classBrush_1_1Engine_1a596db23cf521696b72b023bacbf3a737" compoundref="d1/d55/engine_8h" startline="140">Brush::Engine&lt; T &gt;::stats</references>
+        <references refid="d0/d75/classBrush_1_1Engine_1a70abc4545878805cd572d110f21d1e7c" compoundref="d1/d55/engine_8h" startline="138">Brush::Engine&lt; T &gt;::survivor</references>
+        <references refid="d0/d75/classBrush_1_1Engine_1a1c15a1ffc9ffcebee65da12242791b13" compoundref="d1/d55/engine_8h" startline="142">Brush::Engine&lt; T &gt;::timer</references>
+        <references refid="d0/d75/classBrush_1_1Engine_1a77c7fc26671fb2b064a4c588540ebed5" compoundref="d1/d55/engine_8h" startline="137">Brush::Engine&lt; T &gt;::variator</references>
+        <referencedby refid="d0/d75/classBrush_1_1Engine_1a4248c80ebcd035a70953065045e04705" compoundref="da/d5c/engine_8cpp" startline="324" endline="527">Brush::Engine&lt; T &gt;::run</referencedby>
       </memberdef>
       <memberdef kind="function" id="d0/d75/classBrush_1_1Engine_1a82422a2bb8061934c4be271ee7eef810" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
-        <type><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">void</ref></type>
+        <type>void</type>
         <definition>void Brush::Engine&lt; T &gt;::set_is_fitted</definition>
         <argsstring>(bool f)</argsstring>
         <name>set_is_fitted</name>
         <qualifiedname>Brush::Engine::set_is_fitted</qualifiedname>
         <param>
-          <type><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">bool</ref></type>
+          <type>bool</type>
           <declname>f</declname>
         </param>
         <briefdescription>
@@ -801,8 +845,7 @@
         <inbodydescription>
         </inbodydescription>
         <location file="/home/runner/work/brush/brush/src/engine.h" line="149" column="17" bodyfile="/home/runner/work/brush/brush/src/engine.h" bodystart="149" bodyend="149"/>
-        <references refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" compoundref="d4/d93/bind__engines_8h" startline="35" endline="104">bind_engine</references>
-        <references refid="d0/d75/classBrush_1_1Engine_1a1f3f589d727557956c89c6abc272c3c5" compoundref="d1/d55/engine_8h" startline="144">Brush::Engine&lt; T &gt;::is_fitted</references>
+        <referencedby refid="d0/d75/classBrush_1_1Engine_1abf9f9f0eec7c0c6d4cf9985d993e6018" compoundref="da/d5c/engine_8cpp" startline="18" endline="43">Brush::Engine&lt; T &gt;::init</referencedby>
       </memberdef>
     </sectiondef>
     <briefdescription>
@@ -813,9 +856,6 @@
 <para>The <computeroutput><ref refid="d0/d75/classBrush_1_1Engine" kindref="compound">Engine</ref></computeroutput> class is parameterized by the program type <computeroutput>T</computeroutput>, which determines the type of programs that can be evolved and evaluated by the engine. </para>
     </detaileddescription>
     <collaborationgraph>
-      <node id="12">
-        <label>DataType</label>
-      </node>
       <node id="1">
         <label>Brush::Engine&lt; T &gt;</label>
         <link refid="d0/d75/classBrush_1_1Engine"/>
@@ -825,22 +865,11 @@
         <childnode refid="10" relation="usage">
           <edgelabel>ss</edgelabel>
         </childnode>
-        <childnode refid="17" relation="usage">
+        <childnode refid="12" relation="usage">
           <edgelabel>stats</edgelabel>
         </childnode>
-        <childnode refid="19" relation="usage">
+        <childnode refid="14" relation="usage">
           <edgelabel>timer</edgelabel>
-        </childnode>
-      </node>
-      <node id="14">
-        <label>Brush::Node</label>
-        <link refid="d1/d3a/structBrush_1_1Node"/>
-        <childnode refid="3" relation="usage">
-          <edgelabel>feature</edgelabel>
-          <edgelabel>name</edgelabel>
-        </childnode>
-        <childnode refid="15" relation="usage">
-          <edgelabel>arg_types</edgelabel>
         </childnode>
       </node>
       <node id="2">
@@ -877,16 +906,10 @@
         <label>Brush::SearchSpace</label>
         <link refid="d4/dc3/structBrush_1_1SearchSpace"/>
         <childnode refid="11" relation="usage">
-          <edgelabel>terminal_map</edgelabel>
-        </childnode>
-        <childnode refid="16" relation="usage">
-          <edgelabel>terminal_weights</edgelabel>
-        </childnode>
-        <childnode refid="15" relation="usage">
           <edgelabel>terminal_types</edgelabel>
         </childnode>
       </node>
-      <node id="17">
+      <node id="12">
         <label>Brush::Util::Log_Stats</label>
         <link refid="db/d7e/structBrush_1_1Util_1_1Log__Stats"/>
         <childnode refid="8" relation="usage">
@@ -899,16 +922,19 @@
           <edgelabel>med_score_v</edgelabel>
           <edgelabel>time</edgelabel>
         </childnode>
-        <childnode refid="18" relation="usage">
+        <childnode refid="13" relation="usage">
           <edgelabel>max_complexity</edgelabel>
           <edgelabel>max_size</edgelabel>
           <edgelabel>med_complexity</edgelabel>
           <edgelabel>med_size</edgelabel>
         </childnode>
       </node>
-      <node id="19">
+      <node id="14">
         <label>Brush::Util::Timer</label>
         <link refid="d8/da4/classBrush_1_1Util_1_1Timer"/>
+      </node>
+      <node id="4">
+        <label>std::basic_string&lt; Char &gt;</label>
       </node>
       <node id="7">
         <label>std::map&lt; std::string, float &gt;</label>
@@ -916,30 +942,9 @@
           <edgelabel>keys</edgelabel>
         </childnode>
       </node>
-      <node id="4">
-        <label>std::basic_string&lt; Char &gt;</label>
-      </node>
       <node id="3">
         <label>std::string</label>
         <childnode refid="4" relation="public-inheritance">
-        </childnode>
-      </node>
-      <node id="11">
-        <label>std::unordered_map&lt; DataType, vector&lt; Brush::Node &gt; &gt;</label>
-        <childnode refid="12" relation="usage">
-          <edgelabel>keys</edgelabel>
-        </childnode>
-        <childnode refid="13" relation="usage">
-          <edgelabel>elements</edgelabel>
-        </childnode>
-      </node>
-      <node id="16">
-        <label>std::unordered_map&lt; DataType, vector&lt; float &gt; &gt;</label>
-        <childnode refid="12" relation="usage">
-          <edgelabel>keys</edgelabel>
-        </childnode>
-        <childnode refid="9" relation="usage">
-          <edgelabel>elements</edgelabel>
         </childnode>
       </node>
       <node id="6">
@@ -948,17 +953,8 @@
           <edgelabel>keys</edgelabel>
         </childnode>
       </node>
-      <node id="13">
-        <label>std::vector&lt; Brush::Node &gt;</label>
-        <childnode refid="14" relation="usage">
-          <edgelabel>elements</edgelabel>
-        </childnode>
-      </node>
-      <node id="15">
+      <node id="11">
         <label>std::vector&lt; DataType &gt;</label>
-        <childnode refid="12" relation="usage">
-          <edgelabel>elements</edgelabel>
-        </childnode>
       </node>
       <node id="9">
         <label>std::vector&lt; float &gt;</label>
@@ -972,7 +968,7 @@
           <edgelabel>elements</edgelabel>
         </childnode>
       </node>
-      <node id="18">
+      <node id="13">
         <label>std::vector&lt; unsigned &gt;</label>
       </node>
     </collaborationgraph>

@@ -1,22 +1,22 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
-<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.10.0" xml:lang="en-US">
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.13.2" xml:lang="en-US">
   <compounddef id="d6/df7/structBrush_1_1NarySignature" kind="struct" language="C++" prot="public">
     <compoundname>Brush::NarySignature</compoundname>
     <includes refid="d8/d8b/signatures_8h" local="no">signatures.h</includes>
     <templateparamlist>
       <param>
-        <type><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">typename</ref> <ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">R</ref></type>
+        <type>typename R</type>
       </param>
       <param>
-        <type><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">typename</ref> <ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">Arg</ref></type>
+        <type>typename Arg</type>
       </param>
       <param>
-        <type><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">size_t</ref></type>
+        <type>size_t</type>
         <declname>ArgCount</declname>
         <defname>ArgCount</defname>
       </param>
       <param>
-        <type><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">typename</ref> Indices</type>
+        <type>typename Indices</type>
         <defval>std::make_index_sequence&lt;ArgCount&gt;</defval>
       </param>
     </templateparamlist>
@@ -29,7 +29,7 @@
             <defname>N</defname>
           </param>
         </templateparamlist>
-        <type><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">Arg</ref></type>
+        <type>Arg</type>
         <definition>using Brush::NarySignature&lt; R, Arg, ArgCount, Indices &gt;::NthType =  Arg</definition>
         <argsstring></argsstring>
         <name>NthType</name>
@@ -43,7 +43,7 @@
         <location file="/home/runner/work/brush/brush/src/program/signatures.h" line="145" column="5" bodyfile="/home/runner/work/brush/brush/src/program/signatures.h" bodystart="145" bodyend="-1"/>
       </memberdef>
       <memberdef kind="typedef" id="d6/df7/structBrush_1_1NarySignature_1a83281f3b844194aedc35d82eb570d216" prot="public" static="no">
-        <type><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">decltype</ref>(<ref refid="d6/df7/structBrush_1_1NarySignature_1a25b7f2f0f9c380e5b8ed6cd81ee20e9c" kindref="member">make_signature</ref>(Indices{}))</type>
+        <type>decltype(<ref refid="d6/df7/structBrush_1_1NarySignature_1a25b7f2f0f9c380e5b8ed6cd81ee20e9c" kindref="member">make_signature</ref>(Indices{}))</type>
         <definition>using Brush::NarySignature&lt; R, Arg, ArgCount, Indices &gt;::type =  decltype(make_signature(Indices{}))</definition>
         <argsstring></argsstring>
         <name>type</name>
@@ -61,12 +61,12 @@
       <memberdef kind="function" id="d6/df7/structBrush_1_1NarySignature_1a25b7f2f0f9c380e5b8ed6cd81ee20e9c" prot="public" static="yes" constexpr="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
         <templateparamlist>
           <param>
-            <type><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">size_t</ref> ...</type>
+            <type>size_t ...</type>
             <declname>Is</declname>
             <defname>Is</defname>
           </param>
         </templateparamlist>
-        <type><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">constexpr</ref> <ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">auto</ref></type>
+        <type>auto</type>
         <definition>static constexpr auto Brush::NarySignature&lt; R, Arg, ArgCount, Indices &gt;::make_signature</definition>
         <argsstring>(std::index_sequence&lt; Is... &gt;)</argsstring>
         <name>make_signature</name>
@@ -81,7 +81,6 @@
         <inbodydescription>
         </inbodydescription>
         <location file="/home/runner/work/brush/brush/src/program/signatures.h" line="148" column="27" bodyfile="/home/runner/work/brush/brush/src/program/signatures.h" bodystart="148" bodyend="151"/>
-        <references refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" compoundref="d4/d93/bind__engines_8h" startline="35" endline="104">bind_engine</references>
       </memberdef>
     </sectiondef>
     <briefdescription>

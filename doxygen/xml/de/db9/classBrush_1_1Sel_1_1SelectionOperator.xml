@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
-<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.10.0" xml:lang="en-US">
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.13.2" xml:lang="en-US">
   <compounddef id="de/db9/classBrush_1_1Sel_1_1SelectionOperator" kind="class" language="C++" prot="public">
     <compoundname>Brush::Sel::SelectionOperator</compoundname>
     <derivedcompoundref refid="d2/dd0/classBrush_1_1Sel_1_1Lexicase" prot="public" virt="non-virtual">Brush::Sel::Lexicase&lt; T &gt;</derivedcompoundref>
@@ -14,7 +14,7 @@
     </templateparamlist>
     <sectiondef kind="public-attrib">
       <memberdef kind="variable" id="de/db9/classBrush_1_1Sel_1_1SelectionOperator_1a612a07491346369b748198d11ae43675" prot="public" static="no" mutable="no">
-        <type><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">bool</ref></type>
+        <type>bool</type>
         <definition>bool Brush::Sel::SelectionOperator&lt; T &gt;::survival</definition>
         <argsstring></argsstring>
         <name>survival</name>
@@ -27,9 +27,11 @@
         <inbodydescription>
         </inbodydescription>
         <location file="/home/runner/work/brush/brush/src/selection/selection_operator.h" line="31" column="10" bodyfile="/home/runner/work/brush/brush/src/selection/selection_operator.h" bodystart="31" bodyend="-1"/>
+        <referencedby refid="d2/dd0/classBrush_1_1Sel_1_1Lexicase_1a1d24f31743b9b76bf8c614b3ac6e1d97" compoundref="d8/dac/lexicase_8cpp" startline="11" endline="15">Brush::Sel::Lexicase&lt; T &gt;::Lexicase</referencedby>
+        <referencedby refid="d3/d7d/classBrush_1_1Sel_1_1NSGA2_1a3335532116a0c515eecbf30d0d521d78" compoundref="de/d0d/nsga2_8cpp" startline="11" endline="15">Brush::Sel::NSGA2&lt; T &gt;::NSGA2</referencedby>
       </memberdef>
       <memberdef kind="variable" id="de/db9/classBrush_1_1Sel_1_1SelectionOperator_1a66068ecfa22feb22c5c135caa7c2eb8d" prot="public" static="no" mutable="no">
-        <type>string</type>
+        <type><ref refid="d5/d92/classstring" kindref="compound">string</ref></type>
         <definition>string Brush::Sel::SelectionOperator&lt; T &gt;::name</definition>
         <argsstring></argsstring>
         <name>name</name>
@@ -42,6 +44,8 @@
         <inbodydescription>
         </inbodydescription>
         <location file="/home/runner/work/brush/brush/src/selection/selection_operator.h" line="32" column="12" bodyfile="/home/runner/work/brush/brush/src/selection/selection_operator.h" bodystart="32" bodyend="-1"/>
+        <referencedby refid="d2/dd0/classBrush_1_1Sel_1_1Lexicase_1a1d24f31743b9b76bf8c614b3ac6e1d97" compoundref="d8/dac/lexicase_8cpp" startline="11" endline="15">Brush::Sel::Lexicase&lt; T &gt;::Lexicase</referencedby>
+        <referencedby refid="d3/d7d/classBrush_1_1Sel_1_1NSGA2_1a3335532116a0c515eecbf30d0d521d78" compoundref="de/d0d/nsga2_8cpp" startline="11" endline="15">Brush::Sel::NSGA2&lt; T &gt;::NSGA2</referencedby>
       </memberdef>
     </sectiondef>
     <sectiondef kind="public-func">
@@ -61,7 +65,7 @@
         <location file="/home/runner/work/brush/brush/src/selection/selection_operator.h" line="37" column="13" bodyfile="/home/runner/work/brush/brush/src/selection/selection_operator.cpp" bodystart="10" bodyend="10"/>
       </memberdef>
       <memberdef kind="function" id="de/db9/classBrush_1_1Sel_1_1SelectionOperator_1a12d713c7ef31e9df5974ceb6d8708074" prot="public" static="no" const="no" explicit="no" inline="no" virt="virtual">
-        <type>vector&lt; <ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">size_t</ref> &gt;</type>
+        <type><ref refid="d7/dfc/classvector" kindref="compound">vector</ref>&lt; size_t &gt;</type>
         <definition>vector&lt; size_t &gt; Brush::Sel::SelectionOperator&lt; T &gt;::select</definition>
         <argsstring>(Population&lt; T &gt; &amp;pop, int island, const Parameters &amp;p)</argsstring>
         <name>select</name>
@@ -73,11 +77,11 @@
           <declname>pop</declname>
         </param>
         <param>
-          <type><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">int</ref></type>
+          <type>int</type>
           <declname>island</declname>
         </param>
         <param>
-          <type><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">const</ref> <ref refid="de/deb/structBrush_1_1Parameters" kindref="compound">Parameters</ref> &amp;</type>
+          <type>const <ref refid="de/deb/structBrush_1_1Parameters" kindref="compound">Parameters</ref> &amp;</type>
           <declname>p</declname>
         </param>
         <briefdescription>
@@ -119,7 +123,7 @@
         <references refid="da/d41/error_8h_1aa4c550bcd71e4ec1c97b111e1360509a" compoundref="da/d41/error_8h" startline="27">HANDLE_ERROR_THROW</references>
       </memberdef>
       <memberdef kind="function" id="de/db9/classBrush_1_1Sel_1_1SelectionOperator_1aae4a8e2e3b4e14ca055312da466c8547" prot="public" static="no" const="no" explicit="no" inline="no" virt="virtual">
-        <type>vector&lt; <ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">size_t</ref> &gt;</type>
+        <type><ref refid="d7/dfc/classvector" kindref="compound">vector</ref>&lt; size_t &gt;</type>
         <definition>vector&lt; size_t &gt; Brush::Sel::SelectionOperator&lt; T &gt;::survive</definition>
         <argsstring>(Population&lt; T &gt; &amp;pop, int island, const Parameters &amp;p)</argsstring>
         <name>survive</name>
@@ -131,11 +135,11 @@
           <declname>pop</declname>
         </param>
         <param>
-          <type><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">int</ref></type>
+          <type>int</type>
           <declname>island</declname>
         </param>
         <param>
-          <type><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">const</ref> <ref refid="de/deb/structBrush_1_1Parameters" kindref="compound">Parameters</ref> &amp;</type>
+          <type>const <ref refid="de/deb/structBrush_1_1Parameters" kindref="compound">Parameters</ref> &amp;</type>
           <declname>p</declname>
         </param>
         <briefdescription>

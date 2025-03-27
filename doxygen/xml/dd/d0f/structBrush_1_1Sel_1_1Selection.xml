@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
-<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.10.0" xml:lang="en-US">
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.13.2" xml:lang="en-US">
   <compounddef id="dd/d0f/structBrush_1_1Sel_1_1Selection" kind="class" language="C++" prot="public">
     <compoundname>Brush::Sel::Selection</compoundname>
     <includes refid="df/d48/selection_8h" local="no">selection.h</includes>
@@ -24,9 +24,13 @@
         <inbodydescription>
         </inbodydescription>
         <location file="/home/runner/work/brush/brush/src/selection/selection.h" line="27" column="23" bodyfile="/home/runner/work/brush/brush/src/selection/selection.h" bodystart="27" bodyend="-1"/>
+        <referencedby refid="dd/d0f/structBrush_1_1Sel_1_1Selection_1a41dca81be3743da59e8b6e3e003d1e6d" compoundref="df/dbb/selection_8cpp" startline="43" endline="43">Brush::Sel::Selection&lt; T &gt;::get_type</referencedby>
+        <referencedby refid="dd/d0f/structBrush_1_1Sel_1_1Selection_1a0816b0913a3449558a20832cc9b3bb9f" compoundref="df/dbb/selection_8cpp" startline="51" endline="55">Brush::Sel::Selection&lt; T &gt;::select</referencedby>
+        <referencedby refid="dd/d0f/structBrush_1_1Sel_1_1Selection_1ab8833e1b2487a8b1260e10c8b52e7c04" compoundref="df/dbb/selection_8cpp" startline="30" endline="39">Brush::Sel::Selection&lt; T &gt;::set_operator</referencedby>
+        <referencedby refid="dd/d0f/structBrush_1_1Sel_1_1Selection_1a717879ee6286397a025fe67b947283d2" compoundref="df/dbb/selection_8cpp" startline="59" endline="63">Brush::Sel::Selection&lt; T &gt;::survive</referencedby>
       </memberdef>
       <memberdef kind="variable" id="dd/d0f/structBrush_1_1Sel_1_1Selection_1a6dab234ca04ec9d080554e99aa0147d4" prot="public" static="no" mutable="no">
-        <type>string</type>
+        <type><ref refid="d5/d92/classstring" kindref="compound">string</ref></type>
         <definition>string Brush::Sel::Selection&lt; T &gt;::type</definition>
         <argsstring></argsstring>
         <name>type</name>
@@ -38,9 +42,13 @@
         <inbodydescription>
         </inbodydescription>
         <location file="/home/runner/work/brush/brush/src/selection/selection.h" line="28" column="12" bodyfile="/home/runner/work/brush/brush/src/selection/selection.h" bodystart="28" bodyend="-1"/>
+        <referencedby refid="dd/d0f/structBrush_1_1Sel_1_1Selection_1ad2ce5d0acef331dffa25f3e5ab0af306" compoundref="df/dbb/selection_8cpp" startline="10" endline="15">Brush::Sel::Selection&lt; T &gt;::Selection</referencedby>
+        <referencedby refid="dd/d0f/structBrush_1_1Sel_1_1Selection_1afb5b439f8700c4bc85ef2058333c4122" compoundref="df/dbb/selection_8cpp" startline="19" endline="27">Brush::Sel::Selection&lt; T &gt;::Selection</referencedby>
+        <referencedby refid="dd/d0f/structBrush_1_1Sel_1_1Selection_1ab8833e1b2487a8b1260e10c8b52e7c04" compoundref="df/dbb/selection_8cpp" startline="30" endline="39">Brush::Sel::Selection&lt; T &gt;::set_operator</referencedby>
+        <referencedby refid="dd/d0f/structBrush_1_1Sel_1_1Selection_1a6c1d8ad202376074ffaf3a64de74a711" compoundref="df/dbb/selection_8cpp" startline="47" endline="47">Brush::Sel::Selection&lt; T &gt;::set_type</referencedby>
       </memberdef>
       <memberdef kind="variable" id="dd/d0f/structBrush_1_1Sel_1_1Selection_1a3dc6778d19c18f6081f30ebf870eed3c" prot="public" static="no" mutable="no">
-        <type><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">bool</ref></type>
+        <type>bool</type>
         <definition>bool Brush::Sel::Selection&lt; T &gt;::survival</definition>
         <argsstring></argsstring>
         <name>survival</name>
@@ -52,6 +60,9 @@
         <inbodydescription>
         </inbodydescription>
         <location file="/home/runner/work/brush/brush/src/selection/selection.h" line="29" column="10" bodyfile="/home/runner/work/brush/brush/src/selection/selection.h" bodystart="29" bodyend="-1"/>
+        <referencedby refid="dd/d0f/structBrush_1_1Sel_1_1Selection_1ad2ce5d0acef331dffa25f3e5ab0af306" compoundref="df/dbb/selection_8cpp" startline="10" endline="15">Brush::Sel::Selection&lt; T &gt;::Selection</referencedby>
+        <referencedby refid="dd/d0f/structBrush_1_1Sel_1_1Selection_1afb5b439f8700c4bc85ef2058333c4122" compoundref="df/dbb/selection_8cpp" startline="19" endline="27">Brush::Sel::Selection&lt; T &gt;::Selection</referencedby>
+        <referencedby refid="dd/d0f/structBrush_1_1Sel_1_1Selection_1ab8833e1b2487a8b1260e10c8b52e7c04" compoundref="df/dbb/selection_8cpp" startline="30" endline="39">Brush::Sel::Selection&lt; T &gt;::set_operator</referencedby>
       </memberdef>
     </sectiondef>
     <sectiondef kind="public-func">
@@ -68,6 +79,9 @@
         <inbodydescription>
         </inbodydescription>
         <location file="/home/runner/work/brush/brush/src/selection/selection.h" line="31" column="5" bodyfile="/home/runner/work/brush/brush/src/selection/selection.cpp" bodystart="10" bodyend="15"/>
+        <references refid="dd/d0f/structBrush_1_1Sel_1_1Selection_1ab8833e1b2487a8b1260e10c8b52e7c04" compoundref="df/dbb/selection_8cpp" startline="30" endline="39">Brush::Sel::Selection&lt; T &gt;::set_operator</references>
+        <references refid="dd/d0f/structBrush_1_1Sel_1_1Selection_1a3dc6778d19c18f6081f30ebf870eed3c" compoundref="df/d48/selection_8h" startline="29">Brush::Sel::Selection&lt; T &gt;::survival</references>
+        <references refid="dd/d0f/structBrush_1_1Sel_1_1Selection_1a6dab234ca04ec9d080554e99aa0147d4" compoundref="df/d48/selection_8h" startline="28">Brush::Sel::Selection&lt; T &gt;::type</references>
       </memberdef>
       <memberdef kind="function" id="dd/d0f/structBrush_1_1Sel_1_1Selection_1a4e5b67978a7e599d86717deffa91b215" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
         <type></type>
@@ -90,11 +104,11 @@
         <name>Selection</name>
         <qualifiedname>Brush::Sel::Selection::Selection</qualifiedname>
         <param>
-          <type>string</type>
+          <type><ref refid="d5/d92/classstring" kindref="compound">string</ref></type>
           <declname>type</declname>
         </param>
         <param>
-          <type><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">bool</ref></type>
+          <type>bool</type>
           <declname>survival</declname>
         </param>
         <briefdescription>
@@ -105,9 +119,12 @@
 <para>set type of selection operator.</para>
         </inbodydescription>
         <location file="/home/runner/work/brush/brush/src/selection/selection.h" line="33" column="5" bodyfile="/home/runner/work/brush/brush/src/selection/selection.cpp" bodystart="19" bodyend="27"/>
+        <references refid="dd/d0f/structBrush_1_1Sel_1_1Selection_1ab8833e1b2487a8b1260e10c8b52e7c04" compoundref="df/dbb/selection_8cpp" startline="30" endline="39">Brush::Sel::Selection&lt; T &gt;::set_operator</references>
+        <references refid="dd/d0f/structBrush_1_1Sel_1_1Selection_1a3dc6778d19c18f6081f30ebf870eed3c" compoundref="df/d48/selection_8h" startline="29">Brush::Sel::Selection&lt; T &gt;::survival</references>
+        <references refid="dd/d0f/structBrush_1_1Sel_1_1Selection_1a6dab234ca04ec9d080554e99aa0147d4" compoundref="df/d48/selection_8h" startline="28">Brush::Sel::Selection&lt; T &gt;::type</references>
       </memberdef>
       <memberdef kind="function" id="dd/d0f/structBrush_1_1Sel_1_1Selection_1ab8833e1b2487a8b1260e10c8b52e7c04" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
-        <type><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">void</ref></type>
+        <type>void</type>
         <definition>void Brush::Sel::Selection&lt; T &gt;::set_operator</definition>
         <argsstring>()</argsstring>
         <name>set_operator</name>
@@ -119,11 +136,16 @@
         <inbodydescription>
         </inbodydescription>
         <location file="/home/runner/work/brush/brush/src/selection/selection.h" line="35" column="10" bodyfile="/home/runner/work/brush/brush/src/selection/selection.cpp" bodystart="30" bodyend="39"/>
-        <references refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" compoundref="d4/d93/bind__engines_8h" startline="35" endline="104">bind_engine</references>
         <references refid="da/d41/error_8h_1aa4c550bcd71e4ec1c97b111e1360509a" compoundref="da/d41/error_8h" startline="27">HANDLE_ERROR_THROW</references>
+        <references refid="dd/d0f/structBrush_1_1Sel_1_1Selection_1ae8f1575b42d096524f5c9f2fd2617de4" compoundref="df/d48/selection_8h" startline="27">Brush::Sel::Selection&lt; T &gt;::pselector</references>
+        <references refid="dd/d0f/structBrush_1_1Sel_1_1Selection_1a3dc6778d19c18f6081f30ebf870eed3c" compoundref="df/d48/selection_8h" startline="29">Brush::Sel::Selection&lt; T &gt;::survival</references>
+        <references refid="dd/d0f/structBrush_1_1Sel_1_1Selection_1a6dab234ca04ec9d080554e99aa0147d4" compoundref="df/d48/selection_8h" startline="28">Brush::Sel::Selection&lt; T &gt;::type</references>
+        <referencedby refid="dd/d0f/structBrush_1_1Sel_1_1Selection_1ad2ce5d0acef331dffa25f3e5ab0af306" compoundref="df/dbb/selection_8cpp" startline="10" endline="15">Brush::Sel::Selection&lt; T &gt;::Selection</referencedby>
+        <referencedby refid="dd/d0f/structBrush_1_1Sel_1_1Selection_1afb5b439f8700c4bc85ef2058333c4122" compoundref="df/dbb/selection_8cpp" startline="19" endline="27">Brush::Sel::Selection&lt; T &gt;::Selection</referencedby>
+        <referencedby refid="dd/d0f/structBrush_1_1Sel_1_1Selection_1a6c1d8ad202376074ffaf3a64de74a711" compoundref="df/dbb/selection_8cpp" startline="47" endline="47">Brush::Sel::Selection&lt; T &gt;::set_type</referencedby>
       </memberdef>
       <memberdef kind="function" id="dd/d0f/structBrush_1_1Sel_1_1Selection_1a41dca81be3743da59e8b6e3e003d1e6d" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
-        <type>string</type>
+        <type><ref refid="d5/d92/classstring" kindref="compound">string</ref></type>
         <definition>string Brush::Sel::Selection&lt; T &gt;::get_type</definition>
         <argsstring>()</argsstring>
         <name>get_type</name>
@@ -136,15 +158,16 @@
         <inbodydescription>
         </inbodydescription>
         <location file="/home/runner/work/brush/brush/src/selection/selection.h" line="38" column="12" bodyfile="/home/runner/work/brush/brush/src/selection/selection.cpp" bodystart="43" bodyend="43"/>
+        <references refid="dd/d0f/structBrush_1_1Sel_1_1Selection_1ae8f1575b42d096524f5c9f2fd2617de4" compoundref="df/d48/selection_8h" startline="27">Brush::Sel::Selection&lt; T &gt;::pselector</references>
       </memberdef>
       <memberdef kind="function" id="dd/d0f/structBrush_1_1Sel_1_1Selection_1a6c1d8ad202376074ffaf3a64de74a711" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
-        <type><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">void</ref></type>
+        <type>void</type>
         <definition>void Brush::Sel::Selection&lt; T &gt;::set_type</definition>
         <argsstring>(string)</argsstring>
         <name>set_type</name>
         <qualifiedname>Brush::Sel::Selection::set_type</qualifiedname>
         <param>
-          <type>string</type>
+          <type><ref refid="d5/d92/classstring" kindref="compound">string</ref></type>
           <defname>in</defname>
         </param>
         <briefdescription>
@@ -156,9 +179,11 @@
         </inbodydescription>
         <location file="/home/runner/work/brush/brush/src/selection/selection.h" line="39" column="10" bodyfile="/home/runner/work/brush/brush/src/selection/selection.cpp" bodystart="47" bodyend="47"/>
         <references refid="d6/d2e/namespaceBrush_1_1Util_1ab03528e8d9652013786252f63b6d5840" compoundref="d5/d60/utils_8h" startline="192" endline="195">Brush::Util::in</references>
+        <references refid="dd/d0f/structBrush_1_1Sel_1_1Selection_1ab8833e1b2487a8b1260e10c8b52e7c04" compoundref="df/dbb/selection_8cpp" startline="30" endline="39">Brush::Sel::Selection&lt; T &gt;::set_operator</references>
+        <references refid="dd/d0f/structBrush_1_1Sel_1_1Selection_1a6dab234ca04ec9d080554e99aa0147d4" compoundref="df/d48/selection_8h" startline="28">Brush::Sel::Selection&lt; T &gt;::type</references>
       </memberdef>
       <memberdef kind="function" id="dd/d0f/structBrush_1_1Sel_1_1Selection_1a0816b0913a3449558a20832cc9b3bb9f" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
-        <type>vector&lt; <ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">size_t</ref> &gt;</type>
+        <type><ref refid="d7/dfc/classvector" kindref="compound">vector</ref>&lt; size_t &gt;</type>
         <definition>vector&lt; size_t &gt; Brush::Sel::Selection&lt; T &gt;::select</definition>
         <argsstring>(Population&lt; T &gt; &amp;pop, int island, const Parameters &amp;params)</argsstring>
         <name>select</name>
@@ -168,11 +193,11 @@
           <declname>pop</declname>
         </param>
         <param>
-          <type><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">int</ref></type>
+          <type>int</type>
           <declname>island</declname>
         </param>
         <param>
-          <type><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">const</ref> <ref refid="de/deb/structBrush_1_1Parameters" kindref="compound">Parameters</ref> &amp;</type>
+          <type>const <ref refid="de/deb/structBrush_1_1Parameters" kindref="compound">Parameters</ref> &amp;</type>
           <declname>params</declname>
         </param>
         <briefdescription>
@@ -184,10 +209,10 @@
         <inbodydescription>
         </inbodydescription>
         <location file="/home/runner/work/brush/brush/src/selection/selection.h" line="42" column="12" bodyfile="/home/runner/work/brush/brush/src/selection/selection.cpp" bodystart="51" bodyend="55"/>
-        <references refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" compoundref="d4/d93/bind__engines_8h" startline="35" endline="104">bind_engine</references>
+        <references refid="dd/d0f/structBrush_1_1Sel_1_1Selection_1ae8f1575b42d096524f5c9f2fd2617de4" compoundref="df/d48/selection_8h" startline="27">Brush::Sel::Selection&lt; T &gt;::pselector</references>
       </memberdef>
       <memberdef kind="function" id="dd/d0f/structBrush_1_1Sel_1_1Selection_1a717879ee6286397a025fe67b947283d2" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
-        <type>vector&lt; <ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">size_t</ref> &gt;</type>
+        <type><ref refid="d7/dfc/classvector" kindref="compound">vector</ref>&lt; size_t &gt;</type>
         <definition>vector&lt; size_t &gt; Brush::Sel::Selection&lt; T &gt;::survive</definition>
         <argsstring>(Population&lt; T &gt; &amp;pop, int island, const Parameters &amp;params)</argsstring>
         <name>survive</name>
@@ -197,11 +222,11 @@
           <declname>pop</declname>
         </param>
         <param>
-          <type><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">int</ref></type>
+          <type>int</type>
           <declname>island</declname>
         </param>
         <param>
-          <type><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">const</ref> <ref refid="de/deb/structBrush_1_1Parameters" kindref="compound">Parameters</ref> &amp;</type>
+          <type>const <ref refid="de/deb/structBrush_1_1Parameters" kindref="compound">Parameters</ref> &amp;</type>
           <declname>params</declname>
         </param>
         <briefdescription>
@@ -213,7 +238,7 @@
         <inbodydescription>
         </inbodydescription>
         <location file="/home/runner/work/brush/brush/src/selection/selection.h" line="46" column="12" bodyfile="/home/runner/work/brush/brush/src/selection/selection.cpp" bodystart="59" bodyend="63"/>
-        <references refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" compoundref="d4/d93/bind__engines_8h" startline="35" endline="104">bind_engine</references>
+        <references refid="dd/d0f/structBrush_1_1Sel_1_1Selection_1ae8f1575b42d096524f5c9f2fd2617de4" compoundref="df/d48/selection_8h" startline="27">Brush::Sel::Selection&lt; T &gt;::pselector</references>
       </memberdef>
     </sectiondef>
     <briefdescription>

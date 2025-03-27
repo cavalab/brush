@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
-<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.10.0" xml:lang="en-US">
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.13.2" xml:lang="en-US">
   <compounddef id="d6/d2e/namespaceBrush_1_1Util" kind="namespace" language="C++">
     <compoundname>Brush::Util</compoundname>
     <innerclass refid="db/d7e/structBrush_1_1Util_1_1Log__Stats" prot="public">Brush::Util::Log_Stats</innerclass>
@@ -11,7 +11,7 @@
       <memberdef kind="typedef" id="d6/d2e/namespaceBrush_1_1Util_1adc1985a99c2dc32ac23e139322748380" prot="public" static="no">
         <templateparamlist>
           <param>
-            <type><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">typename</ref> T</type>
+            <type>typename T</type>
           </param>
         </templateparamlist>
         <type>std::map&lt; std::type_index, T &gt;</type>
@@ -28,7 +28,7 @@
         <location file="/home/runner/work/brush/brush/src/util/utils.h" line="175" column="1" bodyfile="/home/runner/work/brush/brush/src/util/utils.h" bodystart="175" bodyend="-1"/>
       </memberdef>
       <memberdef kind="typedef" id="d6/d2e/namespaceBrush_1_1Util_1a879344781baecb2119f7bde9bddd8660" prot="public" static="no">
-        <type><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">struct</ref> <ref refid="db/d7e/structBrush_1_1Util_1_1Log__Stats" kindref="compound">Log_Stats</ref></type>
+        <type>struct <ref refid="db/d7e/structBrush_1_1Util_1_1Log__Stats" kindref="compound">Log_Stats</ref></type>
         <definition>typedef struct Log_Stats Brush::Util::Log_stats</definition>
         <argsstring></argsstring>
         <name>Log_stats</name>
@@ -75,6 +75,7 @@
         <inbodydescription>
         </inbodydescription>
         <location file="/home/runner/work/brush/brush/src/util/rnd.h" line="174" column="16" bodyfile="/home/runner/work/brush/brush/src/util/rnd.h" bodystart="174" bodyend="-1"/>
+        <referencedby refid="da/dbf/bind__params_8cpp_1a686c1dac4334b78b765f556f3069f661" compoundref="da/dbf/bind__params_8cpp" startline="7" endline="59">bind_params</referencedby>
         <referencedby refid="d5/d14/classBrush_1_1Var_1_1Variation_1acf7d5d1c0d6a102eec277180dce590fe" compoundref="d1/d64/variation_8cpp" startline="345" endline="450">Brush::Var::Variation&lt; T &gt;::cross</referencedby>
         <referencedby refid="d2/d36/classBrush_1_1Data_1_1Dataset_1a5020e43def6267598be0ba3d2b46e616" compoundref="da/dc9/data_8cpp" startline="146" endline="160">Brush::Data::Dataset::get_batch</referencedby>
         <referencedby refid="d4/dc3/structBrush_1_1SearchSpace_1ac51e5e0acb3a880ffd0f3b7fba2fd68f" compoundref="d9/d99/search__space_8h" startline="550" endline="569">Brush::SearchSpace::get_node_like</referencedby>
@@ -83,8 +84,8 @@
         <referencedby refid="d4/dc3/structBrush_1_1SearchSpace_1a810403a87eef0baded2aed2bb4f1979e" compoundref="d9/d99/search__space_8h" startline="681" endline="751">Brush::SearchSpace::make_program</referencedby>
         <referencedby refid="d2/d84/structBrush_1_1Function_3_01NodeType_1_1Median_01_4_1ae43ba05c03d73ad8cbfcbf4d53caec58" compoundref="d8/d5c/functions_8h" startline="133" endline="139">Brush::Function&lt; NodeType::Median &gt;::median</referencedby>
         <referencedby refid="da/da3/classBrush_1_1Pop_1_1Population_1a450651324884449dbb76f32377bcb0fe" compoundref="d7/d4a/population_8cpp" startline="292" endline="390">Brush::Pop::Population&lt; T &gt;::migrate</referencedby>
-        <referencedby refid="d5/d14/classBrush_1_1Var_1_1Variation_1a024e971b0f8685c89d119c0af484284a" compoundref="d1/d64/variation_8cpp" startline="486" endline="575">Brush::Var::Variation&lt; T &gt;::mutate</referencedby>
         <referencedby refid="de/d23/classBrush_1_1Var_1_1SubtreeMutation_1aadf78b5db33c9595fd0656a9345efb67" compoundref="d1/d64/variation_8cpp" startline="286" endline="318">Brush::Var::SubtreeMutation::mutate</referencedby>
+        <referencedby refid="d5/d14/classBrush_1_1Var_1_1Variation_1a024e971b0f8685c89d119c0af484284a" compoundref="d1/d64/variation_8cpp" startline="486" endline="575">Brush::Var::Variation&lt; T &gt;::mutate</referencedby>
         <referencedby refid="dc/d5c/namespaceBrush_1a819e6d35661a163c3f40d927766a3213" compoundref="d9/d99/search__space_8h" startline="671" endline="678">Brush::RandomDequeue</referencedby>
         <referencedby refid="d6/d2e/namespaceBrush_1_1Util_1a104f5440d54d751bac78c892b7022c71" compoundref="d5/d60/utils_8h" startline="738" endline="743">reverse_map</referencedby>
         <referencedby refid="d4/dc3/structBrush_1_1SearchSpace_1ab23bc4732e733749b8aa1e8c2c2689a2" compoundref="d9/d99/search__space_8h" startline="420" endline="448">Brush::SearchSpace::sample_op</referencedby>
@@ -97,7 +98,7 @@
         <referencedby refid="d5/d14/classBrush_1_1Var_1_1Variation_1a344233ce053ca4b267539182fecbbc91" compoundref="d1/d64/variation_8cpp" startline="578" endline="638">Brush::Var::Variation&lt; T &gt;::vary</referencedby>
       </memberdef>
       <memberdef kind="variable" id="d6/d2e/namespaceBrush_1_1Util_1afa1fde52ad1a13ccf861682c1d37896a" prot="public" static="no" mutable="no">
-        <type>string</type>
+        <type><ref refid="d5/d92/classstring" kindref="compound">string</ref></type>
         <definition>string Brush::Util::PBSTR</definition>
         <argsstring></argsstring>
         <name>PBSTR</name>
@@ -113,7 +114,7 @@
         <referencedby refid="d0/d75/classBrush_1_1Engine_1a33590e9eed9490be52dc2eedbb5b0feb" compoundref="da/d5c/engine_8cpp" startline="46" endline="58">Brush::Engine&lt; T &gt;::print_progress</referencedby>
       </memberdef>
       <memberdef kind="variable" id="d6/d2e/namespaceBrush_1_1Util_1afdf0a27a6e1782537f1d1751e1efde51" prot="public" static="no" mutable="no">
-        <type><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">int</ref></type>
+        <type>int</type>
         <definition>int Brush::Util::PBWIDTH</definition>
         <argsstring></argsstring>
         <name>PBWIDTH</name>
@@ -135,12 +136,12 @@
         <name>type_names</name>
         <qualifiedname>Brush::Util::type_names</qualifiedname>
         <initializer>= {
-        { <ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">typeid</ref>(<ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">int</ref>) , &quot;int&quot; },
-        { <ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">typeid</ref>(<ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">float</ref>) , &quot;float&quot; },
-        { <ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">typeid</ref>(<ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">bool</ref>) , &quot;bool&quot; },
-        { <ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">typeid</ref>(ArrayXf) , &quot;ArrayXf&quot; },
-        { <ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">typeid</ref>(<ref refid="dc/d5c/namespaceBrush_1ac5cd76eed6ea70d1c8f429ee37ca9fc0" kindref="member">ArrayXi</ref>) , &quot;ArrayXi&quot; },
-        { <ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">typeid</ref>(<ref refid="dc/d5c/namespaceBrush_1a1c0079df772d6e050857327591514810" kindref="member">ArrayXb</ref>) , &quot;ArrayXb&quot; }
+        { typeid(int) , &quot;int&quot; },
+        { typeid(float) , &quot;float&quot; },
+        { typeid(bool) , &quot;bool&quot; },
+        { typeid(ArrayXf) , &quot;ArrayXf&quot; },
+        { typeid(<ref refid="dc/d5c/namespaceBrush_1ac5cd76eed6ea70d1c8f429ee37ca9fc0" kindref="member">ArrayXi</ref>) , &quot;ArrayXi&quot; },
+        { typeid(<ref refid="dc/d5c/namespaceBrush_1a1c0079df772d6e050857327591514810" kindref="member">ArrayXb</ref>) , &quot;ArrayXb&quot; }
     }</initializer>
         <briefdescription>
         </briefdescription>
@@ -153,21 +154,21 @@
     </sectiondef>
     <sectiondef kind="func">
       <memberdef kind="function" id="d6/d2e/namespaceBrush_1_1Util_1a3d3d6ff93c25e47eb7534665d7393c8d" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
-        <type><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">void</ref></type>
+        <type>void</type>
         <definition>void Brush::Util::HandleErrorThrow</definition>
         <argsstring>(string err, const char *file, int line)</argsstring>
         <name>HandleErrorThrow</name>
         <qualifiedname>Brush::Util::HandleErrorThrow</qualifiedname>
         <param>
-          <type>string</type>
+          <type><ref refid="d5/d92/classstring" kindref="compound">string</ref></type>
           <declname>err</declname>
         </param>
         <param>
-          <type><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">const</ref> <ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">char</ref> *</type>
+          <type>const char *</type>
           <declname>file</declname>
         </param>
         <param>
-          <type><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">int</ref></type>
+          <type>int</type>
           <declname>line</declname>
         </param>
         <briefdescription>
@@ -178,24 +179,23 @@
         <inbodydescription>
         </inbodydescription>
         <location file="/home/runner/work/brush/brush/src/util/error.cpp" line="13" column="14" bodyfile="/home/runner/work/brush/brush/src/util/error.cpp" bodystart="13" bodyend="22" declfile="/home/runner/work/brush/brush/src/util/error.h" declline="19" declcolumn="10"/>
-        <references refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" compoundref="d4/d93/bind__engines_8h" startline="35" endline="104">bind_engine</references>
       </memberdef>
       <memberdef kind="function" id="d6/d2e/namespaceBrush_1_1Util_1a34871e8de1fd6eabc81121b1af030b5a" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
-        <type><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">void</ref></type>
+        <type>void</type>
         <definition>void Brush::Util::HandleErrorNoThrow</definition>
         <argsstring>(string err, const char *file, int line)</argsstring>
         <name>HandleErrorNoThrow</name>
         <qualifiedname>Brush::Util::HandleErrorNoThrow</qualifiedname>
         <param>
-          <type>string</type>
+          <type><ref refid="d5/d92/classstring" kindref="compound">string</ref></type>
           <declname>err</declname>
         </param>
         <param>
-          <type><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">const</ref> <ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">char</ref> *</type>
+          <type>const char *</type>
           <declname>file</declname>
         </param>
         <param>
-          <type><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">int</ref></type>
+          <type>int</type>
           <declname>line</declname>
         </param>
         <briefdescription>
@@ -206,10 +206,9 @@
         <inbodydescription>
         </inbodydescription>
         <location file="/home/runner/work/brush/brush/src/util/error.cpp" line="25" column="14" bodyfile="/home/runner/work/brush/brush/src/util/error.cpp" bodystart="25" bodyend="28" declfile="/home/runner/work/brush/brush/src/util/error.h" declline="22" declcolumn="10"/>
-        <references refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" compoundref="d4/d93/bind__engines_8h" startline="35" endline="104">bind_engine</references>
       </memberdef>
       <memberdef kind="function" id="d6/d2e/namespaceBrush_1_1Util_1a61817392e38bfbd623504cd8def55b3f" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
-        <type><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">void</ref></type>
+        <type>void</type>
         <definition>void Brush::Util::clean</definition>
         <argsstring>(ArrayXf &amp;x)</argsstring>
         <name>clean</name>
@@ -226,7 +225,6 @@
         <inbodydescription>
         </inbodydescription>
         <location file="/home/runner/work/brush/brush/src/util/utils.cpp" line="17" column="6" bodyfile="/home/runner/work/brush/brush/src/util/utils.cpp" bodystart="17" bodyend="22" declfile="/home/runner/work/brush/brush/src/util/utils.h" declline="181" declcolumn="6"/>
-        <references refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" compoundref="d4/d93/bind__engines_8h" startline="35" endline="104">bind_engine</references>
         <references refid="d8/dc0/init_8h_1a0c86fe7dc09ca580e891580bf302e659" compoundref="d8/dc0/init_8h" startline="61">MAX_FLT</references>
         <references refid="d8/dc0/init_8h_1a8213bd26dbb943e499d0e227fa9b3159" compoundref="d8/dc0/init_8h" startline="62">MIN_FLT</references>
       </memberdef>
@@ -241,7 +239,7 @@
           <declname>str</declname>
         </param>
         <param>
-          <type><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">const</ref> std::string &amp;</type>
+          <type>const std::string &amp;</type>
           <declname>chars</declname>
         </param>
         <briefdescription>
@@ -251,7 +249,6 @@
         <inbodydescription>
         </inbodydescription>
         <location file="/home/runner/work/brush/brush/src/util/utils.cpp" line="24" column="13" bodyfile="/home/runner/work/brush/brush/src/util/utils.cpp" bodystart="24" bodyend="28" declfile="/home/runner/work/brush/brush/src/util/utils.h" declline="183" declcolumn="13"/>
-        <references refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" compoundref="d4/d93/bind__engines_8h" startline="35" endline="104">bind_engine</references>
         <referencedby refid="d6/d2e/namespaceBrush_1_1Util_1ad7cd519e42ccafa3c6f4242a0c2b6749" compoundref="de/d06/utils_8cpp" startline="36" endline="39">trim</referencedby>
       </memberdef>
       <memberdef kind="function" id="d6/d2e/namespaceBrush_1_1Util_1a7ee435e912b43d1efe927860141fdafa" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
@@ -265,7 +262,7 @@
           <declname>str</declname>
         </param>
         <param>
-          <type><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">const</ref> std::string &amp;</type>
+          <type>const std::string &amp;</type>
           <declname>chars</declname>
         </param>
         <briefdescription>
@@ -275,7 +272,6 @@
         <inbodydescription>
         </inbodydescription>
         <location file="/home/runner/work/brush/brush/src/util/utils.cpp" line="30" column="13" bodyfile="/home/runner/work/brush/brush/src/util/utils.cpp" bodystart="30" bodyend="34" declfile="/home/runner/work/brush/brush/src/util/utils.h" declline="185" declcolumn="13"/>
-        <references refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" compoundref="d4/d93/bind__engines_8h" startline="35" endline="104">bind_engine</references>
         <referencedby refid="d6/d2e/namespaceBrush_1_1Util_1ad7cd519e42ccafa3c6f4242a0c2b6749" compoundref="de/d06/utils_8cpp" startline="36" endline="39">trim</referencedby>
       </memberdef>
       <memberdef kind="function" id="d6/d2e/namespaceBrush_1_1Util_1ad7cd519e42ccafa3c6f4242a0c2b6749" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
@@ -289,7 +285,7 @@
           <declname>str</declname>
         </param>
         <param>
-          <type><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">const</ref> std::string &amp;</type>
+          <type>const std::string &amp;</type>
           <declname>chars</declname>
         </param>
         <briefdescription>
@@ -299,13 +295,12 @@
         <inbodydescription>
         </inbodydescription>
         <location file="/home/runner/work/brush/brush/src/util/utils.cpp" line="36" column="13" bodyfile="/home/runner/work/brush/brush/src/util/utils.cpp" bodystart="36" bodyend="39" declfile="/home/runner/work/brush/brush/src/util/utils.h" declline="187" declcolumn="13"/>
-        <references refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" compoundref="d4/d93/bind__engines_8h" startline="35" endline="104">bind_engine</references>
         <references refid="d6/d2e/namespaceBrush_1_1Util_1a3837fbd31ac81e3f8db8aaa399fda345" compoundref="de/d06/utils_8cpp" startline="24" endline="28">ltrim</references>
         <references refid="d6/d2e/namespaceBrush_1_1Util_1a7ee435e912b43d1efe927860141fdafa" compoundref="de/d06/utils_8cpp" startline="30" endline="34">rtrim</references>
         <referencedby refid="d9/d1c/namespaceBrush_1_1Data_1ad4320ca3604e146155ccc7c55ea9006c" compoundref="d5/d5a/io_8cpp" startline="14" endline="88">Brush::Data::read_csv</referencedby>
       </memberdef>
       <memberdef kind="function" id="d6/d2e/namespaceBrush_1_1Util_1a20071cbe143ed15f50742b8b7b1bf725" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
-        <type>vector&lt; type_index &gt;</type>
+        <type><ref refid="d7/dfc/classvector" kindref="compound">vector</ref>&lt; type_index &gt;</type>
         <definition>vector&lt; type_index &gt; Brush::Util::get_dtypes</definition>
         <argsstring>(MatrixXf &amp;X)</argsstring>
         <name>get_dtypes</name>
@@ -322,16 +317,15 @@
         <inbodydescription>
         </inbodydescription>
         <location file="/home/runner/work/brush/brush/src/util/utils.cpp" line="41" column="8" bodyfile="/home/runner/work/brush/brush/src/util/utils.cpp" bodystart="41" bodyend="82" declfile="/home/runner/work/brush/brush/src/util/utils.h" declline="330" declcolumn="8"/>
-        <references refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" compoundref="d4/d93/bind__engines_8h" startline="35" endline="104">bind_engine</references>
       </memberdef>
       <memberdef kind="function" id="d6/d2e/namespaceBrush_1_1Util_1a313cbd04c33a2fe62b87977739337658" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
-        <type><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">float</ref></type>
+        <type>float</type>
         <definition>float Brush::Util::condition_number</definition>
         <argsstring>(const MatrixXf &amp;X)</argsstring>
         <name>condition_number</name>
         <qualifiedname>Brush::Util::condition_number</qualifiedname>
         <param>
-          <type><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">const</ref> MatrixXf &amp;</type>
+          <type>const MatrixXf &amp;</type>
           <declname>X</declname>
         </param>
         <briefdescription>
@@ -343,7 +337,6 @@
         <inbodydescription>
         </inbodydescription>
         <location file="/home/runner/work/brush/brush/src/util/utils.cpp" line="172" column="7" bodyfile="/home/runner/work/brush/brush/src/util/utils.cpp" bodystart="172" bodyend="197" declfile="/home/runner/work/brush/brush/src/util/utils.h" declline="386" declcolumn="7"/>
-        <references refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" compoundref="d4/d93/bind__engines_8h" startline="35" endline="104">bind_engine</references>
         <references refid="d8/dc0/init_8h_1a0c86fe7dc09ca580e891580bf302e659" compoundref="d8/dc0/init_8h" startline="61">MAX_FLT</references>
       </memberdef>
       <memberdef kind="function" id="d6/d2e/namespaceBrush_1_1Util_1a1d2cb1b20c4767ecd0c4ee602b7cda55" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
@@ -353,7 +346,7 @@
         <name>corrcoef</name>
         <qualifiedname>Brush::Util::corrcoef</qualifiedname>
         <param>
-          <type><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">const</ref> MatrixXf &amp;</type>
+          <type>const MatrixXf &amp;</type>
           <declname>X</declname>
         </param>
         <briefdescription>
@@ -364,19 +357,18 @@
         <inbodydescription>
         </inbodydescription>
         <location file="/home/runner/work/brush/brush/src/util/utils.cpp" line="200" column="10" bodyfile="/home/runner/work/brush/brush/src/util/utils.cpp" bodystart="200" bodyend="216" declfile="/home/runner/work/brush/brush/src/util/utils.h" declline="389" declcolumn="10"/>
-        <references refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" compoundref="d4/d93/bind__engines_8h" startline="35" endline="104">bind_engine</references>
         <references refid="d6/d2e/namespaceBrush_1_1Util_1a1d2cb1b20c4767ecd0c4ee602b7cda55" compoundref="de/d06/utils_8cpp" startline="200" endline="216">corrcoef</references>
         <referencedby refid="d6/d2e/namespaceBrush_1_1Util_1a1d2cb1b20c4767ecd0c4ee602b7cda55" compoundref="de/d06/utils_8cpp" startline="200" endline="216">corrcoef</referencedby>
         <referencedby refid="d6/d2e/namespaceBrush_1_1Util_1a068c0960a6ac697bf70ff5dc762e96da" compoundref="de/d06/utils_8cpp" startline="219" endline="225">mean_square_corrcoef</referencedby>
       </memberdef>
       <memberdef kind="function" id="d6/d2e/namespaceBrush_1_1Util_1a068c0960a6ac697bf70ff5dc762e96da" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
-        <type><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">float</ref></type>
+        <type>float</type>
         <definition>float Brush::Util::mean_square_corrcoef</definition>
         <argsstring>(const MatrixXf &amp;X)</argsstring>
         <name>mean_square_corrcoef</name>
         <qualifiedname>Brush::Util::mean_square_corrcoef</qualifiedname>
         <param>
-          <type><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">const</ref> MatrixXf &amp;</type>
+          <type>const MatrixXf &amp;</type>
           <declname>X</declname>
         </param>
         <briefdescription>
@@ -386,17 +378,16 @@
         <inbodydescription>
         </inbodydescription>
         <location file="/home/runner/work/brush/brush/src/util/utils.cpp" line="219" column="7" bodyfile="/home/runner/work/brush/brush/src/util/utils.cpp" bodystart="219" bodyend="225" declfile="/home/runner/work/brush/brush/src/util/utils.h" declline="392" declcolumn="7"/>
-        <references refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" compoundref="d4/d93/bind__engines_8h" startline="35" endline="104">bind_engine</references>
         <references refid="d6/d2e/namespaceBrush_1_1Util_1a1d2cb1b20c4767ecd0c4ee602b7cda55" compoundref="de/d06/utils_8cpp" startline="200" endline="216">corrcoef</references>
       </memberdef>
       <memberdef kind="function" id="d6/d2e/namespaceBrush_1_1Util_1afbb579185a6522b235c40136b5858851" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
-        <type><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">int</ref></type>
+        <type>int</type>
         <definition>int Brush::Util::argmiddle</definition>
         <argsstring>(vector&lt; float &gt; &amp;v)</argsstring>
         <name>argmiddle</name>
         <qualifiedname>Brush::Util::argmiddle</qualifiedname>
         <param>
-          <type>vector&lt; <ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">float</ref> &gt; &amp;</type>
+          <type><ref refid="d7/dfc/classvector" kindref="compound">vector</ref>&lt; float &gt; &amp;</type>
           <declname>v</declname>
         </param>
         <briefdescription>
@@ -407,16 +398,15 @@
         <inbodydescription>
         </inbodydescription>
         <location file="/home/runner/work/brush/brush/src/util/utils.cpp" line="300" column="5" bodyfile="/home/runner/work/brush/brush/src/util/utils.cpp" bodystart="300" bodyend="315" declfile="/home/runner/work/brush/brush/src/util/utils.h" declline="395" declcolumn="5"/>
-        <references refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" compoundref="d4/d93/bind__engines_8h" startline="35" endline="104">bind_engine</references>
       </memberdef>
       <memberdef kind="function" id="d6/d2e/namespaceBrush_1_1Util_1ad88c0170839ba79e41dc5715e77abfc8" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
-        <type><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">float</ref></type>
+        <type>float</type>
         <definition>float Brush::Util::variance</definition>
         <argsstring>(const ArrayXf &amp;v)</argsstring>
         <name>variance</name>
         <qualifiedname>Brush::Util::variance</qualifiedname>
         <param>
-          <type><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">const</ref> ArrayXf &amp;</type>
+          <type>const ArrayXf &amp;</type>
           <declname>v</declname>
         </param>
         <briefdescription>
@@ -427,7 +417,6 @@
         <inbodydescription>
         </inbodydescription>
         <location file="/home/runner/work/brush/brush/src/util/utils.cpp" line="317" column="7" bodyfile="/home/runner/work/brush/brush/src/util/utils.cpp" bodystart="317" bodyend="320" declfile="/home/runner/work/brush/brush/src/util/utils.h" declline="225" declcolumn="7"/>
-        <references refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" compoundref="d4/d93/bind__engines_8h" startline="35" endline="104">bind_engine</references>
         <referencedby refid="d7/da9/namespaceBrush_1_1Split_1a34b904a04926a4b4280fb922618cfe19" compoundref="d4/d59/split_8cpp" startline="66" endline="91">Brush::Split::gain</referencedby>
         <referencedby refid="d6/d2e/namespaceBrush_1_1Util_1a647e7137bb014b8fb21cf0d9a985584b" compoundref="de/d06/utils_8cpp" startline="335" endline="344">kurtosis</referencedby>
         <referencedby refid="d6/d2e/namespaceBrush_1_1Util_1a3ecdd0fbfe8f46304f0b48992cf5726c" compoundref="de/d06/utils_8cpp" startline="366" endline="369">pearson_correlation</referencedby>
@@ -435,13 +424,13 @@
         <referencedby refid="d6/d2e/namespaceBrush_1_1Util_1a26cf881c06b230990b810de739347b58" compoundref="de/d06/utils_8cpp" startline="359" endline="363">slope</referencedby>
       </memberdef>
       <memberdef kind="function" id="d6/d2e/namespaceBrush_1_1Util_1a3a5e794811c2588fb5910b4d5b9abdcb" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
-        <type><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">float</ref></type>
+        <type>float</type>
         <definition>float Brush::Util::skew</definition>
         <argsstring>(const ArrayXf &amp;v)</argsstring>
         <name>skew</name>
         <qualifiedname>Brush::Util::skew</qualifiedname>
         <param>
-          <type><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">const</ref> ArrayXf &amp;</type>
+          <type>const ArrayXf &amp;</type>
           <declname>v</declname>
         </param>
         <briefdescription>
@@ -452,17 +441,16 @@
         <inbodydescription>
         </inbodydescription>
         <location file="/home/runner/work/brush/brush/src/util/utils.cpp" line="323" column="7" bodyfile="/home/runner/work/brush/brush/src/util/utils.cpp" bodystart="323" bodyend="332" declfile="/home/runner/work/brush/brush/src/util/utils.h" declline="228" declcolumn="7"/>
-        <references refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" compoundref="d4/d93/bind__engines_8h" startline="35" endline="104">bind_engine</references>
         <references refid="d6/d2e/namespaceBrush_1_1Util_1ad88c0170839ba79e41dc5715e77abfc8" compoundref="de/d06/utils_8cpp" startline="317" endline="320">variance</references>
       </memberdef>
       <memberdef kind="function" id="d6/d2e/namespaceBrush_1_1Util_1a647e7137bb014b8fb21cf0d9a985584b" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
-        <type><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">float</ref></type>
+        <type>float</type>
         <definition>float Brush::Util::kurtosis</definition>
         <argsstring>(const ArrayXf &amp;v)</argsstring>
         <name>kurtosis</name>
         <qualifiedname>Brush::Util::kurtosis</qualifiedname>
         <param>
-          <type><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">const</ref> ArrayXf &amp;</type>
+          <type>const ArrayXf &amp;</type>
           <declname>v</declname>
         </param>
         <briefdescription>
@@ -473,21 +461,20 @@
         <inbodydescription>
         </inbodydescription>
         <location file="/home/runner/work/brush/brush/src/util/utils.cpp" line="335" column="7" bodyfile="/home/runner/work/brush/brush/src/util/utils.cpp" bodystart="335" bodyend="344" declfile="/home/runner/work/brush/brush/src/util/utils.h" declline="231" declcolumn="7"/>
-        <references refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" compoundref="d4/d93/bind__engines_8h" startline="35" endline="104">bind_engine</references>
         <references refid="d6/d2e/namespaceBrush_1_1Util_1ad88c0170839ba79e41dc5715e77abfc8" compoundref="de/d06/utils_8cpp" startline="317" endline="320">variance</references>
       </memberdef>
       <memberdef kind="function" id="d6/d2e/namespaceBrush_1_1Util_1ae119a14eab4e4899608c4e766acf54c0" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
-        <type><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">float</ref></type>
+        <type>float</type>
         <definition>float Brush::Util::covariance</definition>
         <argsstring>(const ArrayXf &amp;x, const ArrayXf &amp;y)</argsstring>
         <name>covariance</name>
         <qualifiedname>Brush::Util::covariance</qualifiedname>
         <param>
-          <type><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">const</ref> ArrayXf &amp;</type>
+          <type>const ArrayXf &amp;</type>
           <declname>x</declname>
         </param>
         <param>
-          <type><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">const</ref> ArrayXf &amp;</type>
+          <type>const ArrayXf &amp;</type>
           <declname>y</declname>
         </param>
         <briefdescription>
@@ -498,22 +485,21 @@
         <inbodydescription>
         </inbodydescription>
         <location file="/home/runner/work/brush/brush/src/util/utils.cpp" line="346" column="7" bodyfile="/home/runner/work/brush/brush/src/util/utils.cpp" bodystart="346" bodyend="357" declfile="/home/runner/work/brush/brush/src/util/utils.h" declline="234" declcolumn="7"/>
-        <references refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" compoundref="d4/d93/bind__engines_8h" startline="35" endline="104">bind_engine</references>
         <referencedby refid="d6/d2e/namespaceBrush_1_1Util_1a3ecdd0fbfe8f46304f0b48992cf5726c" compoundref="de/d06/utils_8cpp" startline="366" endline="369">pearson_correlation</referencedby>
         <referencedby refid="d6/d2e/namespaceBrush_1_1Util_1a26cf881c06b230990b810de739347b58" compoundref="de/d06/utils_8cpp" startline="359" endline="363">slope</referencedby>
       </memberdef>
       <memberdef kind="function" id="d6/d2e/namespaceBrush_1_1Util_1a26cf881c06b230990b810de739347b58" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
-        <type><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">float</ref></type>
+        <type>float</type>
         <definition>float Brush::Util::slope</definition>
         <argsstring>(const ArrayXf &amp;x, const ArrayXf &amp;y)</argsstring>
         <name>slope</name>
         <qualifiedname>Brush::Util::slope</qualifiedname>
         <param>
-          <type><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">const</ref> ArrayXf &amp;</type>
+          <type>const ArrayXf &amp;</type>
           <declname>x</declname>
         </param>
         <param>
-          <type><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">const</ref> ArrayXf &amp;</type>
+          <type>const ArrayXf &amp;</type>
           <declname>y</declname>
         </param>
         <briefdescription>
@@ -524,23 +510,22 @@
         <inbodydescription>
         </inbodydescription>
         <location file="/home/runner/work/brush/brush/src/util/utils.cpp" line="359" column="7" bodyfile="/home/runner/work/brush/brush/src/util/utils.cpp" bodystart="359" bodyend="363" declfile="/home/runner/work/brush/brush/src/util/utils.h" declline="237" declcolumn="7"/>
-        <references refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" compoundref="d4/d93/bind__engines_8h" startline="35" endline="104">bind_engine</references>
         <references refid="d6/d2e/namespaceBrush_1_1Util_1ae119a14eab4e4899608c4e766acf54c0" compoundref="de/d06/utils_8cpp" startline="346" endline="357">covariance</references>
         <references refid="d6/d2e/namespaceBrush_1_1Util_1ad88c0170839ba79e41dc5715e77abfc8" compoundref="de/d06/utils_8cpp" startline="317" endline="320">variance</references>
         <referencedby refid="dc/d5c/namespaceBrush_1af6e4b7d5bbd50f46f8c96a356e19bdae" compoundref="da/d48/search__space_8cpp" startline="7" endline="44">Brush::calc_initial_weight</referencedby>
       </memberdef>
       <memberdef kind="function" id="d6/d2e/namespaceBrush_1_1Util_1a3ecdd0fbfe8f46304f0b48992cf5726c" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
-        <type><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">float</ref></type>
+        <type>float</type>
         <definition>float Brush::Util::pearson_correlation</definition>
         <argsstring>(const ArrayXf &amp;x, const ArrayXf &amp;y)</argsstring>
         <name>pearson_correlation</name>
         <qualifiedname>Brush::Util::pearson_correlation</qualifiedname>
         <param>
-          <type><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">const</ref> ArrayXf &amp;</type>
+          <type>const ArrayXf &amp;</type>
           <declname>x</declname>
         </param>
         <param>
-          <type><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">const</ref> ArrayXf &amp;</type>
+          <type>const ArrayXf &amp;</type>
           <declname>y</declname>
         </param>
         <briefdescription>
@@ -551,18 +536,17 @@
         <inbodydescription>
         </inbodydescription>
         <location file="/home/runner/work/brush/brush/src/util/utils.cpp" line="366" column="7" bodyfile="/home/runner/work/brush/brush/src/util/utils.cpp" bodystart="366" bodyend="369" declfile="/home/runner/work/brush/brush/src/util/utils.h" declline="240" declcolumn="7"/>
-        <references refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" compoundref="d4/d93/bind__engines_8h" startline="35" endline="104">bind_engine</references>
         <references refid="d6/d2e/namespaceBrush_1_1Util_1ae119a14eab4e4899608c4e766acf54c0" compoundref="de/d06/utils_8cpp" startline="346" endline="357">covariance</references>
         <references refid="d6/d2e/namespaceBrush_1_1Util_1ad88c0170839ba79e41dc5715e77abfc8" compoundref="de/d06/utils_8cpp" startline="317" endline="320">variance</references>
       </memberdef>
       <memberdef kind="function" id="d6/d2e/namespaceBrush_1_1Util_1a27c00366227bc7afa5d057ca555f9e12" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
-        <type><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">float</ref></type>
+        <type>float</type>
         <definition>float Brush::Util::mad</definition>
         <argsstring>(const ArrayXf &amp;x)</argsstring>
         <name>mad</name>
         <qualifiedname>Brush::Util::mad</qualifiedname>
         <param>
-          <type><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">const</ref> ArrayXf &amp;</type>
+          <type>const ArrayXf &amp;</type>
           <declname>x</declname>
         </param>
         <briefdescription>
@@ -573,7 +557,6 @@
         <inbodydescription>
         </inbodydescription>
         <location file="/home/runner/work/brush/brush/src/util/utils.cpp" line="373" column="7" bodyfile="/home/runner/work/brush/brush/src/util/utils.cpp" bodystart="373" bodyend="384" declfile="/home/runner/work/brush/brush/src/util/utils.h" declline="243" declcolumn="7"/>
-        <references refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" compoundref="d4/d93/bind__engines_8h" startline="35" endline="104">bind_engine</references>
         <references refid="d6/d2e/namespaceBrush_1_1Util_1a4d848757d9123e0562a7d87b44f1bdc6" compoundref="d5/d60/utils_8h" startline="202" endline="219">median</references>
         <referencedby refid="d2/dd0/classBrush_1_1Sel_1_1Lexicase_1ab9f17cd2c4452b05c96a17bb6c105fc2" compoundref="d8/dac/lexicase_8cpp" startline="18" endline="163">Brush::Sel::Lexicase&lt; T &gt;::select</referencedby>
       </memberdef>
@@ -588,11 +571,11 @@
           <declname>subject</declname>
         </param>
         <param>
-          <type><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">const</ref> std::string &amp;</type>
+          <type>const std::string &amp;</type>
           <declname>search</declname>
         </param>
         <param>
-          <type><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">const</ref> std::string &amp;</type>
+          <type>const std::string &amp;</type>
           <declname>replace</declname>
         </param>
         <briefdescription>
@@ -603,10 +586,9 @@
         <inbodydescription>
         </inbodydescription>
         <location file="/home/runner/work/brush/brush/src/util/utils.cpp" line="387" column="13" bodyfile="/home/runner/work/brush/brush/src/util/utils.cpp" bodystart="387" bodyend="396" declfile="/home/runner/work/brush/brush/src/util/utils.h" declline="376" declcolumn="13"/>
-        <references refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" compoundref="d4/d93/bind__engines_8h" startline="35" endline="104">bind_engine</references>
       </memberdef>
       <memberdef kind="function" id="d6/d2e/namespaceBrush_1_1Util_1aa1982ec999d497f97eed7572863a58fa" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
-        <type><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">void</ref></type>
+        <type>void</type>
         <definition>void Brush::Util::ReplaceStringInPlace</definition>
         <argsstring>(std::string &amp;subject, const std::string &amp;search, const std::string &amp;replace)</argsstring>
         <name>ReplaceStringInPlace</name>
@@ -616,11 +598,11 @@
           <declname>subject</declname>
         </param>
         <param>
-          <type><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">const</ref> std::string &amp;</type>
+          <type>const std::string &amp;</type>
           <declname>search</declname>
         </param>
         <param>
-          <type><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">const</ref> std::string &amp;</type>
+          <type>const std::string &amp;</type>
           <declname>replace</declname>
         </param>
         <briefdescription>
@@ -631,16 +613,15 @@
         <inbodydescription>
         </inbodydescription>
         <location file="/home/runner/work/brush/brush/src/util/utils.cpp" line="398" column="6" bodyfile="/home/runner/work/brush/brush/src/util/utils.cpp" bodystart="398" bodyend="406" declfile="/home/runner/work/brush/brush/src/util/utils.h" declline="380" declcolumn="6"/>
-        <references refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" compoundref="d4/d93/bind__engines_8h" startline="35" endline="104">bind_engine</references>
       </memberdef>
       <memberdef kind="function" id="d6/d2e/namespaceBrush_1_1Util_1afc397ee448b473fec9502461f3e75eae" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
-        <type>vector&lt; <ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">size_t</ref> &gt;</type>
+        <type><ref refid="d7/dfc/classvector" kindref="compound">vector</ref>&lt; size_t &gt;</type>
         <definition>vector&lt; size_t &gt; Brush::Util::mask_to_index</definition>
         <argsstring>(const ArrayXb &amp;mask)</argsstring>
         <name>mask_to_index</name>
         <qualifiedname>Brush::Util::mask_to_index</qualifiedname>
         <param>
-          <type><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">const</ref> <ref refid="dc/d5c/namespaceBrush_1a1c0079df772d6e050857327591514810" kindref="member">ArrayXb</ref> &amp;</type>
+          <type>const <ref refid="dc/d5c/namespaceBrush_1a1c0079df772d6e050857327591514810" kindref="member">ArrayXb</ref> &amp;</type>
           <declname>mask</declname>
         </param>
         <briefdescription>
@@ -651,17 +632,16 @@
         <inbodydescription>
         </inbodydescription>
         <location file="/home/runner/work/brush/brush/src/util/utils.cpp" line="409" column="8" bodyfile="/home/runner/work/brush/brush/src/util/utils.cpp" bodystart="409" bodyend="419" declfile="/home/runner/work/brush/brush/src/util/utils.h" declline="487" declcolumn="8"/>
-        <references refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" compoundref="d4/d93/bind__engines_8h" startline="35" endline="104">bind_engine</references>
         <referencedby refid="d2/d36/classBrush_1_1Data_1_1Dataset_1ade5da9269ebc099385d6f79cf4a53f9f" compoundref="da/dc9/data_8cpp" startline="162" endline="171">Brush::Data::Dataset::split</referencedby>
       </memberdef>
       <memberdef kind="function" id="d6/d2e/namespaceBrush_1_1Util_1a43f8d9d4ac086fe1166492d0751eb2db" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
-        <type>tuple&lt; vector&lt; <ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">size_t</ref> &gt;, vector&lt; <ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">size_t</ref> &gt; &gt;</type>
+        <type>tuple&lt; <ref refid="d7/dfc/classvector" kindref="compound">vector</ref>&lt; size_t &gt;, <ref refid="d7/dfc/classvector" kindref="compound">vector</ref>&lt; size_t &gt; &gt;</type>
         <definition>tuple&lt; vector&lt; size_t &gt;, vector&lt; size_t &gt; &gt; Brush::Util::mask_to_indices</definition>
         <argsstring>(const ArrayXb &amp;mask)</argsstring>
         <name>mask_to_indices</name>
         <qualifiedname>Brush::Util::mask_to_indices</qualifiedname>
         <param>
-          <type><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">const</ref> <ref refid="dc/d5c/namespaceBrush_1a1c0079df772d6e050857327591514810" kindref="member">ArrayXb</ref> &amp;</type>
+          <type>const <ref refid="dc/d5c/namespaceBrush_1a1c0079df772d6e050857327591514810" kindref="member">ArrayXb</ref> &amp;</type>
           <declname>mask</declname>
         </param>
         <briefdescription>
@@ -673,28 +653,27 @@
         <inbodydescription>
         </inbodydescription>
         <location file="/home/runner/work/brush/brush/src/util/utils.cpp" line="421" column="7" bodyfile="/home/runner/work/brush/brush/src/util/utils.cpp" bodystart="421" bodyend="432" declfile="/home/runner/work/brush/brush/src/util/utils.h" declline="489" declcolumn="7"/>
-        <references refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" compoundref="d4/d93/bind__engines_8h" startline="35" endline="104">bind_engine</references>
       </memberdef>
       <memberdef kind="function" id="d6/d2e/namespaceBrush_1_1Util_1ab03528e8d9652013786252f63b6d5840" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <templateparamlist>
           <param>
-            <type><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">typename</ref> <ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">V</ref></type>
+            <type>typename V</type>
           </param>
           <param>
-            <type><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">typename</ref> T</type>
+            <type>typename T</type>
           </param>
         </templateparamlist>
-        <type><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">bool</ref></type>
+        <type>bool</type>
         <definition>bool Brush::Util::in</definition>
         <argsstring>(const V &amp;v, const T &amp;i)</argsstring>
         <name>in</name>
         <qualifiedname>Brush::Util::in</qualifiedname>
         <param>
-          <type><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">const</ref> <ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">V</ref> &amp;</type>
+          <type>const V &amp;</type>
           <declname>v</declname>
         </param>
         <param>
-          <type><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">const</ref> T &amp;</type>
+          <type>const T &amp;</type>
           <declname>i</declname>
         </param>
         <briefdescription>
@@ -705,7 +684,6 @@
         <inbodydescription>
         </inbodydescription>
         <location file="/home/runner/work/brush/brush/src/util/utils.h" line="192" column="6" bodyfile="/home/runner/work/brush/brush/src/util/utils.h" bodystart="192" bodyend="195"/>
-        <references refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" compoundref="d4/d93/bind__engines_8h" startline="35" endline="104">bind_engine</references>
         <referencedby refid="d4/dc3/structBrush_1_1SearchSpace_1a35d500d78521e7fe880349c8006e55c7" compoundref="d9/d99/search__space_8h" startline="586" endline="601">Brush::SearchSpace::CreateNode</referencedby>
         <referencedby refid="d4/dc3/structBrush_1_1SearchSpace_1ad4ecbe9a8128d1a2b5aba0d5aeec686f" compoundref="d9/d99/search__space_8h" startline="492" endline="545">Brush::SearchSpace::sample_op_with_arg</referencedby>
         <referencedby refid="d1/d30/structBrush_1_1Pop_1_1Archive_1a073b0ac31fc55c35e2a8296b919c1876" compoundref="d7/d05/archive_8cpp" startline="10" endline="13">Brush::Pop::Archive&lt; T &gt;::set_objectives</referencedby>
@@ -714,10 +692,10 @@
       <memberdef kind="function" id="d6/d2e/namespaceBrush_1_1Util_1a4d848757d9123e0562a7d87b44f1bdc6" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <templateparamlist>
           <param>
-            <type><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">typename</ref> T</type>
+            <type>typename T</type>
           </param>
           <param>
-            <type><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">typename</ref> Scalar</type>
+            <type>typename Scalar</type>
             <defval>T::Scalar</defval>
           </param>
         </templateparamlist>
@@ -727,7 +705,7 @@
         <name>median</name>
         <qualifiedname>Brush::Util::median</qualifiedname>
         <param>
-          <type><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">const</ref> T &amp;</type>
+          <type>const T &amp;</type>
           <declname>v</declname>
         </param>
         <briefdescription>
@@ -739,24 +717,22 @@
         <inbodydescription>
         </inbodydescription>
         <location file="/home/runner/work/brush/brush/src/util/utils.h" line="202" column="8" bodyfile="/home/runner/work/brush/brush/src/util/utils.h" bodystart="202" bodyend="219"/>
-        <references refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" compoundref="d4/d93/bind__engines_8h" startline="35" endline="104">bind_engine</references>
-        <referencedby refid="d0/d75/classBrush_1_1Engine_1a215399033d10c86535f344e54937ea01" compoundref="da/d5c/engine_8cpp" startline="62" endline="125">Brush::Engine&lt; T &gt;::calculate_stats</referencedby>
         <referencedby refid="d6/d2e/namespaceBrush_1_1Util_1a27c00366227bc7afa5d057ca555f9e12" compoundref="de/d06/utils_8cpp" startline="373" endline="384">mad</referencedby>
-        <referencedby refid="d7/d56/structBrush_1_1Data_1_1TimeSeries_1ae3c8babca545b4cb131aa6ec8f039ac3" compoundref="d9/df7/timeseries_8h" startline="131" endline="131">Brush::Data::TimeSeries&lt; T &gt;::median</referencedby>
+        <referencedby refid="d7/d56/structBrush_1_1Data_1_1TimeSeries_1ae3c8babca545b4cb131aa6ec8f039ac3" compoundref="d9/df7/timeseries_8h" startline="131" endline="131">Brush::Data::TimeSeries&lt; bool &gt;::median</referencedby>
         <referencedby refid="d2/d84/structBrush_1_1Function_3_01NodeType_1_1Median_01_4_1a226a9b29496d0d09fb55055ca23a3c86" compoundref="d8/d5c/functions_8h" startline="142" endline="145">Brush::Function&lt; NodeType::Median &gt;::median</referencedby>
       </memberdef>
       <memberdef kind="function" id="d6/d2e/namespaceBrush_1_1Util_1a95368f7dc6c9ced55ce63b8c5f27a3ad" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
-        <type><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">float</ref></type>
+        <type>float</type>
         <definition>float Brush::Util::variance</definition>
         <argsstring>(const ArrayXf &amp;v, float mean)</argsstring>
         <name>variance</name>
         <qualifiedname>Brush::Util::variance</qualifiedname>
         <param>
-          <type><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">const</ref> ArrayXf &amp;</type>
+          <type>const ArrayXf &amp;</type>
           <declname>v</declname>
         </param>
         <param>
-          <type><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">float</ref></type>
+          <type>float</type>
           <declname>mean</declname>
         </param>
         <briefdescription>
@@ -771,22 +747,22 @@
       <memberdef kind="function" id="d6/d2e/namespaceBrush_1_1Util_1a3a18a9ccd426286d474e8507adee1025" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <templateparamlist>
           <param>
-            <type><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">typename</ref> T</type>
+            <type>typename T</type>
           </param>
         </templateparamlist>
-        <type>vector&lt; <ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">size_t</ref> &gt;</type>
+        <type><ref refid="d7/dfc/classvector" kindref="compound">vector</ref>&lt; size_t &gt;</type>
         <definition>vector&lt; size_t &gt; Brush::Util::argsort</definition>
         <argsstring>(const vector&lt; T &gt; &amp;v, bool ascending=true)</argsstring>
         <name>argsort</name>
         <qualifiedname>Brush::Util::argsort</qualifiedname>
         <param>
-          <type><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">const</ref> vector&lt; T &gt; &amp;</type>
+          <type>const <ref refid="d7/dfc/classvector" kindref="compound">vector</ref>&lt; T &gt; &amp;</type>
           <declname>v</declname>
         </param>
         <param>
-          <type><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">bool</ref></type>
+          <type>bool</type>
           <declname>ascending</declname>
-          <defval><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">true</ref></defval>
+          <defval>true</defval>
         </param>
         <briefdescription>
 <para>return indices that sort a vector </para>
@@ -796,21 +772,20 @@
         <inbodydescription>
         </inbodydescription>
         <location file="/home/runner/work/brush/brush/src/util/utils.h" line="247" column="8" bodyfile="/home/runner/work/brush/brush/src/util/utils.h" bodystart="247" bodyend="266"/>
-        <references refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" compoundref="d4/d93/bind__engines_8h" startline="35" endline="104">bind_engine</references>
       </memberdef>
       <memberdef kind="function" id="d6/d2e/namespaceBrush_1_1Util_1a49fa99aae6db3940dee2bca4e6358309" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <templateparamlist>
           <param>
-            <type><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">typename</ref> T</type>
+            <type>typename T</type>
           </param>
         </templateparamlist>
-        <type>vector&lt; T &gt;</type>
+        <type><ref refid="d7/dfc/classvector" kindref="compound">vector</ref>&lt; T &gt;</type>
         <definition>vector&lt; T &gt; Brush::Util::softmax</definition>
         <argsstring>(const vector&lt; T &gt; &amp;w)</argsstring>
         <name>softmax</name>
         <qualifiedname>Brush::Util::softmax</qualifiedname>
         <param>
-          <type><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">const</ref> vector&lt; T &gt; &amp;</type>
+          <type>const <ref refid="d7/dfc/classvector" kindref="compound">vector</ref>&lt; T &gt; &amp;</type>
           <declname>w</declname>
         </param>
         <briefdescription>
@@ -821,22 +796,21 @@
         <inbodydescription>
         </inbodydescription>
         <location file="/home/runner/work/brush/brush/src/util/utils.h" line="296" column="8" bodyfile="/home/runner/work/brush/brush/src/util/utils.h" bodystart="296" bodyend="309"/>
-        <references refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" compoundref="d4/d93/bind__engines_8h" startline="35" endline="104">bind_engine</references>
         <referencedby refid="d3/def/structBrush_1_1Function_3_01NodeType_1_1Softmax_01_4_1a973c465137ea44720d1ba0f16463f265" compoundref="d8/d5c/functions_8h" startline="423" endline="426">Brush::Function&lt; NodeType::Softmax &gt;::operator()</referencedby>
       </memberdef>
       <memberdef kind="function" id="d6/d2e/namespaceBrush_1_1Util_1abbcdb6fb60bd2927a57691262f14420a" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <templateparamlist>
           <param>
-            <type><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">typename</ref> T</type>
+            <type>typename T</type>
           </param>
         </templateparamlist>
-        <type>vector&lt; T &gt;</type>
+        <type><ref refid="d7/dfc/classvector" kindref="compound">vector</ref>&lt; T &gt;</type>
         <definition>vector&lt; T &gt; Brush::Util::unique</definition>
         <argsstring>(vector&lt; T &gt; w)</argsstring>
         <name>unique</name>
         <qualifiedname>Brush::Util::unique</qualifiedname>
         <param>
-          <type>vector&lt; T &gt;</type>
+          <type><ref refid="d7/dfc/classvector" kindref="compound">vector</ref>&lt; T &gt;</type>
           <declname>w</declname>
         </param>
         <briefdescription>
@@ -847,7 +821,6 @@
         <inbodydescription>
         </inbodydescription>
         <location file="/home/runner/work/brush/brush/src/util/utils.h" line="334" column="8" bodyfile="/home/runner/work/brush/brush/src/util/utils.h" bodystart="334" bodyend="341"/>
-        <references refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" compoundref="d4/d93/bind__engines_8h" startline="35" endline="104">bind_engine</references>
         <referencedby refid="d6/d2e/namespaceBrush_1_1Util_1ab1b4143c76ac0fdd7bf92e09472d3921" compoundref="d5/d60/utils_8h" startline="361" endline="365">unique</referencedby>
         <referencedby refid="d6/d2e/namespaceBrush_1_1Util_1af0c04b529ce6c3ee0a0c53dacd890aa4" compoundref="d5/d60/utils_8h" startline="345" endline="349">unique</referencedby>
         <referencedby refid="d6/d2e/namespaceBrush_1_1Util_1a4e939b6a15272c8db696bac9fd1a3cee" compoundref="d5/d60/utils_8h" startline="353" endline="357">unique</referencedby>
@@ -855,16 +828,16 @@
       <memberdef kind="function" id="d6/d2e/namespaceBrush_1_1Util_1af0c04b529ce6c3ee0a0c53dacd890aa4" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <templateparamlist>
           <param>
-            <type><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">typename</ref> T</type>
+            <type>typename T</type>
           </param>
         </templateparamlist>
-        <type>vector&lt; T &gt;</type>
+        <type><ref refid="d7/dfc/classvector" kindref="compound">vector</ref>&lt; T &gt;</type>
         <definition>vector&lt; T &gt; Brush::Util::unique</definition>
         <argsstring>(Matrix&lt; T, -1, -1 &gt; w)</argsstring>
         <name>unique</name>
         <qualifiedname>Brush::Util::unique</qualifiedname>
         <param>
-          <type><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">Matrix</ref>&lt; T, -1, -1 &gt;</type>
+          <type>Matrix&lt; T, -1, -1 &gt;</type>
           <declname>w</declname>
         </param>
         <briefdescription>
@@ -875,22 +848,21 @@
         <inbodydescription>
         </inbodydescription>
         <location file="/home/runner/work/brush/brush/src/util/utils.h" line="345" column="8" bodyfile="/home/runner/work/brush/brush/src/util/utils.h" bodystart="345" bodyend="349"/>
-        <references refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" compoundref="d4/d93/bind__engines_8h" startline="35" endline="104">bind_engine</references>
         <references refid="d6/d2e/namespaceBrush_1_1Util_1abbcdb6fb60bd2927a57691262f14420a" compoundref="d5/d60/utils_8h" startline="334" endline="341">unique</references>
       </memberdef>
       <memberdef kind="function" id="d6/d2e/namespaceBrush_1_1Util_1a4e939b6a15272c8db696bac9fd1a3cee" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <templateparamlist>
           <param>
-            <type><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">typename</ref> T</type>
+            <type>typename T</type>
           </param>
         </templateparamlist>
-        <type>vector&lt; T &gt;</type>
+        <type><ref refid="d7/dfc/classvector" kindref="compound">vector</ref>&lt; T &gt;</type>
         <definition>vector&lt; T &gt; Brush::Util::unique</definition>
         <argsstring>(Matrix&lt; T, -1, 1 &gt; w)</argsstring>
         <name>unique</name>
         <qualifiedname>Brush::Util::unique</qualifiedname>
         <param>
-          <type><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">Matrix</ref>&lt; T, -1, 1 &gt;</type>
+          <type>Matrix&lt; T, -1, 1 &gt;</type>
           <declname>w</declname>
         </param>
         <briefdescription>
@@ -901,16 +873,15 @@
         <inbodydescription>
         </inbodydescription>
         <location file="/home/runner/work/brush/brush/src/util/utils.h" line="353" column="8" bodyfile="/home/runner/work/brush/brush/src/util/utils.h" bodystart="353" bodyend="357"/>
-        <references refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" compoundref="d4/d93/bind__engines_8h" startline="35" endline="104">bind_engine</references>
         <references refid="d6/d2e/namespaceBrush_1_1Util_1abbcdb6fb60bd2927a57691262f14420a" compoundref="d5/d60/utils_8h" startline="334" endline="341">unique</references>
       </memberdef>
       <memberdef kind="function" id="d6/d2e/namespaceBrush_1_1Util_1ab1b4143c76ac0fdd7bf92e09472d3921" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <templateparamlist>
           <param>
-            <type><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">typename</ref> T</type>
+            <type>typename T</type>
           </param>
         </templateparamlist>
-        <type>vector&lt; T &gt;</type>
+        <type><ref refid="d7/dfc/classvector" kindref="compound">vector</ref>&lt; T &gt;</type>
         <definition>vector&lt; T &gt; Brush::Util::unique</definition>
         <argsstring>(Array&lt; T, -1, 1 &gt; w)</argsstring>
         <name>unique</name>
@@ -927,22 +898,21 @@
         <inbodydescription>
         </inbodydescription>
         <location file="/home/runner/work/brush/brush/src/util/utils.h" line="361" column="8" bodyfile="/home/runner/work/brush/brush/src/util/utils.h" bodystart="361" bodyend="365"/>
-        <references refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" compoundref="d4/d93/bind__engines_8h" startline="35" endline="104">bind_engine</references>
         <references refid="d6/d2e/namespaceBrush_1_1Util_1abbcdb6fb60bd2927a57691262f14420a" compoundref="d5/d60/utils_8h" startline="334" endline="341">unique</references>
       </memberdef>
       <memberdef kind="function" id="d6/d2e/namespaceBrush_1_1Util_1a9cd8004de7aab46b7a06f27d440064ed" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <templateparamlist>
           <param>
-            <type><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">typename</ref> T</type>
+            <type>typename T</type>
           </param>
         </templateparamlist>
-        <type>string</type>
+        <type><ref refid="d5/d92/classstring" kindref="compound">string</ref></type>
         <definition>string Brush::Util::to_string</definition>
         <argsstring>(const T &amp;value)</argsstring>
         <name>to_string</name>
         <qualifiedname>Brush::Util::to_string</qualifiedname>
         <param>
-          <type><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">const</ref> T &amp;</type>
+          <type>const T &amp;</type>
           <declname>value</declname>
         </param>
         <briefdescription>
@@ -1012,7 +982,7 @@
       <memberdef kind="function" id="d6/d2e/namespaceBrush_1_1Util_1a752c4caf35aeeb0e2c354ea7bc952eeb" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <templateparamlist>
           <param>
-            <type><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">typename</ref> T</type>
+            <type>typename T</type>
           </param>
         </templateparamlist>
         <type>std::enable_if_t&lt; std::is_scalar_v&lt; T &gt;, T &gt;</type>
@@ -1032,14 +1002,13 @@
         <inbodydescription>
         </inbodydescription>
         <location file="/home/runner/work/brush/brush/src/util/utils.h" line="447" column="1" bodyfile="/home/runner/work/brush/brush/src/util/utils.h" bodystart="447" bodyend="457"/>
-        <references refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" compoundref="d4/d93/bind__engines_8h" startline="35" endline="104">bind_engine</references>
         <references refid="d8/dc0/init_8h_1a0c86fe7dc09ca580e891580bf302e659" compoundref="d8/dc0/init_8h" startline="61">MAX_FLT</references>
         <references refid="d8/dc0/init_8h_1a8213bd26dbb943e499d0e227fa9b3159" compoundref="d8/dc0/init_8h" startline="62">MIN_FLT</references>
       </memberdef>
       <memberdef kind="function" id="d6/d2e/namespaceBrush_1_1Util_1a061629dafeb96a99b68d4c430838dc72" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <templateparamlist>
           <param>
-            <type><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">typename</ref> T</type>
+            <type>typename T</type>
           </param>
         </templateparamlist>
         <type>std::enable_if_t&lt; std::is_base_of_v&lt; Eigen::ArrayBase&lt; T &gt;, T &gt;, T &gt;</type>
@@ -1058,27 +1027,26 @@
         <inbodydescription>
         </inbodydescription>
         <location file="/home/runner/work/brush/brush/src/util/utils.h" line="461" column="1" bodyfile="/home/runner/work/brush/brush/src/util/utils.h" bodystart="461" bodyend="467"/>
-        <references refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" compoundref="d4/d93/bind__engines_8h" startline="35" endline="104">bind_engine</references>
         <references refid="d8/dc0/init_8h_1a0c86fe7dc09ca580e891580bf302e659" compoundref="d8/dc0/init_8h" startline="61">MAX_FLT</references>
         <references refid="d8/dc0/init_8h_1a8213bd26dbb943e499d0e227fa9b3159" compoundref="d8/dc0/init_8h" startline="62">MIN_FLT</references>
       </memberdef>
       <memberdef kind="function" id="d6/d2e/namespaceBrush_1_1Util_1a23d6d2f736db6e9d84cc27b58cc3bf27" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <templateparamlist>
           <param>
-            <type><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">typename</ref> T</type>
+            <type>typename T</type>
           </param>
         </templateparamlist>
-        <type><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">void</ref></type>
+        <type>void</type>
         <definition>void Brush::Util::reorder</definition>
         <argsstring>(vector&lt; T &gt; &amp;v, vector&lt; int &gt; const &amp;order)</argsstring>
         <name>reorder</name>
         <qualifiedname>Brush::Util::reorder</qualifiedname>
         <param>
-          <type>vector&lt; T &gt; &amp;</type>
+          <type><ref refid="d7/dfc/classvector" kindref="compound">vector</ref>&lt; T &gt; &amp;</type>
           <declname>v</declname>
         </param>
         <param>
-          <type>vector&lt; <ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">int</ref> &gt; <ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">const</ref> &amp;</type>
+          <type><ref refid="d7/dfc/classvector" kindref="compound">vector</ref>&lt; int &gt; const &amp;</type>
           <declname>order</declname>
         </param>
         <briefdescription>
@@ -1088,25 +1056,24 @@
         <inbodydescription>
         </inbodydescription>
         <location file="/home/runner/work/brush/brush/src/util/utils.h" line="470" column="6" bodyfile="/home/runner/work/brush/brush/src/util/utils.h" bodystart="470" bodyend="483"/>
-        <references refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" compoundref="d4/d93/bind__engines_8h" startline="35" endline="104">bind_engine</references>
       </memberdef>
       <memberdef kind="function" id="d6/d2e/namespaceBrush_1_1Util_1a8a14946733d9059bad0379e7666a3699" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <templateparamlist>
           <param>
-            <type><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">typename</ref> T</type>
+            <type>typename T</type>
           </param>
         </templateparamlist>
-        <type>array&lt; Array&lt; T,-1, 1 &gt;, 2 &gt;</type>
+        <type><ref refid="d2/d41/classarray" kindref="compound">array</ref>&lt; Array&lt; T,-1, 1 &gt;, 2 &gt;</type>
         <definition>array&lt; Array&lt; T,-1, 1 &gt;, 2 &gt; Brush::Util::split</definition>
         <argsstring>(const Array&lt; T,-1, 1 &gt; &amp;v, const ArrayXb &amp;mask)</argsstring>
         <name>split</name>
         <qualifiedname>Brush::Util::split</qualifiedname>
         <param>
-          <type><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">const</ref> Array&lt; T,-1, 1 &gt; &amp;</type>
+          <type>const Array&lt; T,-1, 1 &gt; &amp;</type>
           <declname>v</declname>
         </param>
         <param>
-          <type><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">const</ref> <ref refid="dc/d5c/namespaceBrush_1a1c0079df772d6e050857327591514810" kindref="member">ArrayXb</ref> &amp;</type>
+          <type>const <ref refid="dc/d5c/namespaceBrush_1a1c0079df772d6e050857327591514810" kindref="member">ArrayXb</ref> &amp;</type>
           <declname>mask</declname>
         </param>
         <briefdescription>
@@ -1117,17 +1084,16 @@
         <inbodydescription>
         </inbodydescription>
         <location file="/home/runner/work/brush/brush/src/util/utils.h" line="496" column="7" bodyfile="/home/runner/work/brush/brush/src/util/utils.h" bodystart="496" bodyend="519"/>
-        <references refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" compoundref="d4/d93/bind__engines_8h" startline="35" endline="104">bind_engine</references>
       </memberdef>
       <memberdef kind="function" id="d6/d2e/namespaceBrush_1_1Util_1a0fca88a717680a76c4b7b9b082675f89" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <templateparamlist>
           <param>
-            <type><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">std::ranges::range</ref></type>
+            <type>std::ranges::range</type>
             <declname>T</declname>
             <defname>T</defname>
           </param>
         </templateparamlist>
-        <type><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">void</ref></type>
+        <type>void</type>
         <definition>void Brush::Util::print</definition>
         <argsstring>(T t)</argsstring>
         <name>print</name>
@@ -1144,28 +1110,27 @@
         <inbodydescription>
         </inbodydescription>
         <location file="/home/runner/work/brush/brush/src/util/utils.h" line="523" column="6" bodyfile="/home/runner/work/brush/brush/src/util/utils.h" bodystart="523" bodyend="530"/>
-        <references refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" compoundref="d4/d93/bind__engines_8h" startline="35" endline="104">bind_engine</references>
       </memberdef>
       <memberdef kind="function" id="d6/d2e/namespaceBrush_1_1Util_1ac697e701ef641df7a4cff481c667c9f7" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <templateparamlist>
           <param>
-            <type><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">class</ref> <ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">Vector</ref></type>
+            <type>class Vector</type>
           </param>
           <param>
-            <type><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">class</ref> T</type>
+            <type>class T</type>
           </param>
         </templateparamlist>
-        <type><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">void</ref></type>
+        <type>void</type>
         <definition>void Brush::Util::unique_insert</definition>
         <argsstring>(Vector &amp;v, const T &amp;t)</argsstring>
         <name>unique_insert</name>
         <qualifiedname>Brush::Util::unique_insert</qualifiedname>
         <param>
-          <type><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">Vector</ref> &amp;</type>
+          <type>Vector &amp;</type>
           <declname>v</declname>
         </param>
         <param>
-          <type><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">const</ref> T &amp;</type>
+          <type>const T &amp;</type>
           <declname>t</declname>
         </param>
         <briefdescription>
@@ -1176,13 +1141,12 @@
         <inbodydescription>
         </inbodydescription>
         <location file="/home/runner/work/brush/brush/src/util/utils.h" line="670" column="6" bodyfile="/home/runner/work/brush/brush/src/util/utils.h" bodystart="670" bodyend="675"/>
-        <references refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" compoundref="d4/d93/bind__engines_8h" startline="35" endline="104">bind_engine</references>
         <referencedby refid="d2/d36/classBrush_1_1Data_1_1Dataset_1aacd5afd19b9cee9d9d84e4290eeabb6f" compoundref="da/dc9/data_8cpp" startline="178" endline="228">Brush::Data::Dataset::init</referencedby>
       </memberdef>
       <memberdef kind="function" id="d6/d2e/namespaceBrush_1_1Util_1a75d33dae3c8a1a36b1ef5f889d815d6e" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <templateparamlist>
           <param>
-            <type><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">typename</ref> T</type>
+            <type>typename T</type>
           </param>
           <param>
             <type>std::size_t...</type>
@@ -1190,13 +1154,13 @@
             <defname>Indices</defname>
           </param>
         </templateparamlist>
-        <type><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">auto</ref></type>
+        <type>auto</type>
         <definition>auto Brush::Util::vectorToTupleHelper</definition>
         <argsstring>(const std::vector&lt; T &gt; &amp;v, std::index_sequence&lt; Indices... &gt;)</argsstring>
         <name>vectorToTupleHelper</name>
         <qualifiedname>Brush::Util::vectorToTupleHelper</qualifiedname>
         <param>
-          <type><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">const</ref> std::vector&lt; T &gt; &amp;</type>
+          <type>const std::vector&lt; T &gt; &amp;</type>
           <declname>v</declname>
         </param>
         <param>
@@ -1209,27 +1173,26 @@
         <inbodydescription>
         </inbodydescription>
         <location file="/home/runner/work/brush/brush/src/util/utils.h" line="680" column="6" bodyfile="/home/runner/work/brush/brush/src/util/utils.h" bodystart="680" bodyend="682"/>
-        <references refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" compoundref="d4/d93/bind__engines_8h" startline="35" endline="104">bind_engine</references>
         <referencedby refid="d6/d2e/namespaceBrush_1_1Util_1a7a0a0b4f0cab1c690fc54ea9126e6814" compoundref="d5/d60/utils_8h" startline="685" endline="688">vectorToTuple</referencedby>
       </memberdef>
       <memberdef kind="function" id="d6/d2e/namespaceBrush_1_1Util_1a7a0a0b4f0cab1c690fc54ea9126e6814" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <templateparamlist>
           <param>
-            <type><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">std::size_t</ref></type>
+            <type>std::size_t</type>
             <declname>N</declname>
             <defname>N</defname>
           </param>
           <param>
-            <type><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">typename</ref> T</type>
+            <type>typename T</type>
           </param>
         </templateparamlist>
-        <type><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">auto</ref></type>
+        <type>auto</type>
         <definition>auto Brush::Util::vectorToTuple</definition>
         <argsstring>(const std::vector&lt; T &gt; &amp;v)</argsstring>
         <name>vectorToTuple</name>
         <qualifiedname>Brush::Util::vectorToTuple</qualifiedname>
         <param>
-          <type><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">const</ref> std::vector&lt; T &gt; &amp;</type>
+          <type>const std::vector&lt; T &gt; &amp;</type>
           <declname>v</declname>
         </param>
         <briefdescription>
@@ -1239,16 +1202,15 @@
         <inbodydescription>
         </inbodydescription>
         <location file="/home/runner/work/brush/brush/src/util/utils.h" line="685" column="6" bodyfile="/home/runner/work/brush/brush/src/util/utils.h" bodystart="685" bodyend="688"/>
-        <references refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" compoundref="d4/d93/bind__engines_8h" startline="35" endline="104">bind_engine</references>
         <references refid="d6/d2e/namespaceBrush_1_1Util_1a75d33dae3c8a1a36b1ef5f889d815d6e" compoundref="d5/d60/utils_8h" startline="680" endline="682">vectorToTupleHelper</references>
       </memberdef>
       <memberdef kind="function" id="d6/d2e/namespaceBrush_1_1Util_1a1381c5883d1216248a82c6aafdceb944" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <templateparamlist>
           <param>
-            <type><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">typename</ref> <ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">R</ref></type>
+            <type>typename R</type>
           </param>
           <param>
-            <type><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">typename</ref> <ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">Arg</ref></type>
+            <type>typename Arg</type>
           </param>
           <param>
             <type>typename...</type>
@@ -1256,17 +1218,17 @@
             <defname>Args</defname>
           </param>
         </templateparamlist>
-        <type><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">R</ref></type>
+        <type>R</type>
         <definition>R Brush::Util::apply</definition>
         <argsstring>(const std::function&lt; R(Args...)&gt; &amp;f, const vector&lt; Arg &gt; &amp;inputs)</argsstring>
         <name>apply</name>
         <qualifiedname>Brush::Util::apply</qualifiedname>
         <param>
-          <type><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">const</ref> std::function&lt; <ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">R</ref>(Args...)&gt; &amp;</type>
+          <type>const std::function&lt; R(Args...)&gt; &amp;</type>
           <declname>f</declname>
         </param>
         <param>
-          <type><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">const</ref> vector&lt; <ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">Arg</ref> &gt; &amp;</type>
+          <type>const <ref refid="d7/dfc/classvector" kindref="compound">vector</ref>&lt; Arg &gt; &amp;</type>
           <declname>inputs</declname>
         </param>
         <briefdescription>
@@ -1276,16 +1238,15 @@
         <inbodydescription>
         </inbodydescription>
         <location file="/home/runner/work/brush/brush/src/util/utils.h" line="691" column="3" bodyfile="/home/runner/work/brush/brush/src/util/utils.h" bodystart="691" bodyend="723"/>
-        <references refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" compoundref="d4/d93/bind__engines_8h" startline="35" endline="104">bind_engine</references>
         <references refid="da/d41/error_8h_1aa4c550bcd71e4ec1c97b111e1360509a" compoundref="da/d41/error_8h" startline="27">HANDLE_ERROR_THROW</references>
       </memberdef>
       <memberdef kind="function" id="d6/d2e/namespaceBrush_1_1Util_1abbfd3f4b029bb0b27ba4746f12726df2" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <templateparamlist>
           <param>
-            <type><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">class</ref> T</type>
+            <type>class T</type>
           </param>
           <param>
-            <type><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">class</ref> <ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">U</ref></type>
+            <type>class U</type>
           </param>
         </templateparamlist>
         <type>std::vector&lt; T &gt;</type>
@@ -1294,11 +1255,11 @@
         <name>slice</name>
         <qualifiedname>Brush::Util::slice</qualifiedname>
         <param>
-          <type><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">const</ref> vector&lt; T &gt; &amp;</type>
+          <type>const <ref refid="d7/dfc/classvector" kindref="compound">vector</ref>&lt; T &gt; &amp;</type>
           <declname>v</declname>
         </param>
         <param>
-          <type><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">const</ref> <ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">U</ref> &amp;</type>
+          <type>const U &amp;</type>
           <declname>idx</declname>
         </param>
         <briefdescription>
@@ -1308,25 +1269,24 @@
         <inbodydescription>
         </inbodydescription>
         <location file="/home/runner/work/brush/brush/src/util/utils.h" line="726" column="13" bodyfile="/home/runner/work/brush/brush/src/util/utils.h" bodystart="726" bodyend="734"/>
-        <references refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" compoundref="d4/d93/bind__engines_8h" startline="35" endline="104">bind_engine</references>
-        <referencedby refid="d7/d56/structBrush_1_1Data_1_1TimeSeries_1af1ff3934c359ca5bd910a61fe083d5ce" compoundref="d9/df7/timeseries_8h" startline="45" endline="50">Brush::Data::TimeSeries&lt; T &gt;::operator()</referencedby>
+        <referencedby refid="d7/d56/structBrush_1_1Data_1_1TimeSeries_1af1ff3934c359ca5bd910a61fe083d5ce" compoundref="d9/df7/timeseries_8h" startline="45" endline="50">Brush::Data::TimeSeries&lt; bool &gt;::operator()</referencedby>
       </memberdef>
       <memberdef kind="function" id="d6/d2e/namespaceBrush_1_1Util_1a104f5440d54d751bac78c892b7022c71" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
         <templateparamlist>
           <param>
-            <type><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">typename</ref> K</type>
+            <type>typename K</type>
           </param>
           <param>
-            <type><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">typename</ref> <ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">V</ref></type>
+            <type>typename V</type>
           </param>
         </templateparamlist>
-        <type>map&lt; <ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">V</ref>, K &gt;</type>
+        <type><ref refid="d9/d28/classmap" kindref="compound">map</ref>&lt; V, K &gt;</type>
         <definition>static map&lt; V, K &gt; Brush::Util::reverse_map</definition>
         <argsstring>(const map&lt; K, V &gt; &amp;m)</argsstring>
         <name>reverse_map</name>
         <qualifiedname>Brush::Util::reverse_map</qualifiedname>
         <param>
-          <type><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">const</ref> map&lt; K, <ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">V</ref> &gt; &amp;</type>
+          <type>const <ref refid="d9/d28/classmap" kindref="compound">map</ref>&lt; K, V &gt; &amp;</type>
           <declname>m</declname>
         </param>
         <briefdescription>
@@ -1337,13 +1297,12 @@
         <inbodydescription>
         </inbodydescription>
         <location file="/home/runner/work/brush/brush/src/util/utils.h" line="738" column="12" bodyfile="/home/runner/work/brush/brush/src/util/utils.h" bodystart="738" bodyend="743"/>
-        <references refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" compoundref="d4/d93/bind__engines_8h" startline="35" endline="104">bind_engine</references>
         <references refid="d6/d2e/namespaceBrush_1_1Util_1af7dd70e54015821d96e3a1afed6344ca" compoundref="d2/da9/rnd_8h" startline="174">r</references>
       </memberdef>
       <memberdef kind="function" id="d6/d2e/namespaceBrush_1_1Util_1af874ef4c659cfb3cb52fa8032f531beb" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <templateparamlist>
           <param>
-            <type><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">typename</ref> T</type>
+            <type>typename T</type>
           </param>
         </templateparamlist>
         <type>ostream &amp;</type>
@@ -1356,7 +1315,7 @@
           <declname>os</declname>
         </param>
         <param>
-          <type><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">const</ref> vector&lt; T &gt; &amp;</type>
+          <type>const <ref refid="d7/dfc/classvector" kindref="compound">vector</ref>&lt; T &gt; &amp;</type>
           <declname>v</declname>
         </param>
         <briefdescription>
@@ -1366,7 +1325,6 @@
         <inbodydescription>
         </inbodydescription>
         <location file="/home/runner/work/brush/brush/src/util/utils.h" line="746" column="1" bodyfile="/home/runner/work/brush/brush/src/util/utils.h" bodystart="746" bodyend="759"/>
-        <references refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" compoundref="d4/d93/bind__engines_8h" startline="35" endline="104">bind_engine</references>
       </memberdef>
     </sectiondef>
     <briefdescription>

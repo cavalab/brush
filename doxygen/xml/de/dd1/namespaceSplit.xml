@@ -1,12 +1,12 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
-<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.10.0" xml:lang="en-US">
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.13.2" xml:lang="en-US">
   <compounddef id="de/dd1/namespaceSplit" kind="namespace" language="C++">
     <compoundname>Split</compoundname>
     <sectiondef kind="func">
       <memberdef kind="function" id="de/dd1/namespaceSplit_1a32d9e8db103f509738ced38619513853" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <templateparamlist>
           <param>
-            <type><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">typename</ref> T</type>
+            <type>typename T</type>
           </param>
         </templateparamlist>
         <type><ref refid="d8/d5c/functions_8h_1a6a33354c51ab1e4986b2a222aac825a7" kindref="member">ArrayXb</ref></type>
@@ -15,11 +15,11 @@
         <name>threshold_mask</name>
         <qualifiedname>Split::threshold_mask</qualifiedname>
         <param>
-          <type><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">const</ref> T &amp;</type>
+          <type>const T &amp;</type>
           <declname>x</declname>
         </param>
         <param>
-          <type><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">const</ref> <ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">float</ref> &amp;</type>
+          <type>const float &amp;</type>
           <declname>threshold</declname>
         </param>
         <briefdescription>
@@ -30,14 +30,13 @@
         <inbodydescription>
         </inbodydescription>
         <location file="/home/runner/work/brush/brush/src/program/split.h" line="12" column="13" bodyfile="/home/runner/work/brush/brush/src/program/split.h" bodystart="15" bodyend="17" declfile="/home/runner/work/brush/brush/src/program/split.h" declline="12" declcolumn="13"/>
-        <references refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" compoundref="d4/d93/bind__engines_8h" startline="35" endline="104">bind_engine</references>
         <referencedby refid="de/dd1/namespaceSplit_1a8933966c6b11cefe6449cb08ec900b09" compoundref="d4/df2/split_8h" startline="61" endline="112">best_threshold</referencedby>
         <referencedby refid="d3/df2/structOperator_3_01NT_00_01S_00_01Fit_00_01enable__if__t_3_01is__in__v_3_01NT_00_01NodeType_1_1Se4750a8ecc1d24ba81c8da2bd5c73a14_1af103a8ad8b7580d3c3a82b5c997b26c0" compoundref="d4/df2/split_8h" startline="246" endline="276">Operator&lt; NT, S, Fit, enable_if_t&lt; is_in_v&lt; NT, NodeType::SplitOn, NodeType::SplitBest &gt; &gt; &gt;::predict</referencedby>
       </memberdef>
       <memberdef kind="function" id="de/dd1/namespaceSplit_1ae73fc4f202315cacaf7c7680a2cd4217" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <templateparamlist>
           <param>
-            <type><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">typename</ref> T</type>
+            <type>typename T</type>
           </param>
         </templateparamlist>
         <type><ref refid="d8/d5c/functions_8h_1a6a33354c51ab1e4986b2a222aac825a7" kindref="member">ArrayXb</ref></type>
@@ -46,14 +45,14 @@
         <name>threshold_mask</name>
         <qualifiedname>Split::threshold_mask</qualifiedname>
         <param>
-          <type><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">const</ref> T &amp;</type>
+          <type>const T &amp;</type>
           <declname>x</declname>
         </param>
         <param>
-          <type><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">const</ref> <ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">float</ref> &amp;</type>
+          <type>const float &amp;</type>
           <declname>threshold</declname>
         </param>
-    <requiresclause><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">same_as</ref>&lt;<ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">typename</ref> T::Scalar, <ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">bool</ref>&gt;    </requiresclause>
+    <requiresclause>same_as&lt;typename T::Scalar, bool&gt;    </requiresclause>
         <briefdescription>
 <para>Applies a learned threshold to a feature, returning a mask. </para>
         </briefdescription>
@@ -66,7 +65,7 @@
       <memberdef kind="function" id="de/dd1/namespaceSplit_1a21e9dc44f445afdd53e63cc5512a9ca0" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <templateparamlist>
           <param>
-            <type><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">typename</ref> T</type>
+            <type>typename T</type>
           </param>
         </templateparamlist>
         <type><ref refid="d8/d5c/functions_8h_1a6a33354c51ab1e4986b2a222aac825a7" kindref="member">ArrayXb</ref></type>
@@ -75,14 +74,14 @@
         <name>threshold_mask</name>
         <qualifiedname>Split::threshold_mask</qualifiedname>
         <param>
-          <type><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">const</ref> T &amp;</type>
+          <type>const T &amp;</type>
           <declname>x</declname>
         </param>
         <param>
-          <type><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">const</ref> <ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">float</ref> &amp;</type>
+          <type>const float &amp;</type>
           <declname>threshold</declname>
         </param>
-    <requiresclause><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">same_as</ref>&lt;<ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">typename</ref> T::Scalar, bJet&gt;    </requiresclause>
+    <requiresclause>same_as&lt;typename T::Scalar, bJet&gt;    </requiresclause>
         <briefdescription>
 <para>Applies a learned threshold to a feature, returning a mask. </para>
         </briefdescription>
@@ -91,12 +90,11 @@
         <inbodydescription>
         </inbodydescription>
         <location file="/home/runner/work/brush/brush/src/program/split.h" line="19" column="13" bodyfile="/home/runner/work/brush/brush/src/program/split.h" bodystart="19" bodyend="24"/>
-        <references refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" compoundref="d4/d93/bind__engines_8h" startline="35" endline="104">bind_engine</references>
       </memberdef>
       <memberdef kind="function" id="de/dd1/namespaceSplit_1a1dfc5a9b90b7f06e4ea6c89400dc2603" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <templateparamlist>
           <param>
-            <type><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">typename</ref> T</type>
+            <type>typename T</type>
           </param>
         </templateparamlist>
         <type><ref refid="d8/d5c/functions_8h_1a6a33354c51ab1e4986b2a222aac825a7" kindref="member">ArrayXb</ref></type>
@@ -105,14 +103,14 @@
         <name>threshold_mask</name>
         <qualifiedname>Split::threshold_mask</qualifiedname>
         <param>
-          <type><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">const</ref> T &amp;</type>
+          <type>const T &amp;</type>
           <declname>x</declname>
         </param>
         <param>
-          <type><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">const</ref> <ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">float</ref> &amp;</type>
+          <type>const float &amp;</type>
           <declname>threshold</declname>
         </param>
-    <requiresclause><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">same_as</ref>&lt;<ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">typename</ref> T::Scalar, <ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">float</ref>&gt;    </requiresclause>
+    <requiresclause>same_as&lt;typename T::Scalar, float&gt;    </requiresclause>
         <briefdescription>
 <para>Applies a learned threshold to a feature, returning a mask. </para>
         </briefdescription>
@@ -121,12 +119,11 @@
         <inbodydescription>
         </inbodydescription>
         <location file="/home/runner/work/brush/brush/src/program/split.h" line="26" column="13" bodyfile="/home/runner/work/brush/brush/src/program/split.h" bodystart="26" bodyend="28"/>
-        <references refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" compoundref="d4/d93/bind__engines_8h" startline="35" endline="104">bind_engine</references>
       </memberdef>
       <memberdef kind="function" id="de/dd1/namespaceSplit_1a693b1ac74f4848aebfeae3c8c62bb34a" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <templateparamlist>
           <param>
-            <type><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">typename</ref> T</type>
+            <type>typename T</type>
           </param>
         </templateparamlist>
         <type><ref refid="d8/d5c/functions_8h_1a6a33354c51ab1e4986b2a222aac825a7" kindref="member">ArrayXb</ref></type>
@@ -135,14 +132,14 @@
         <name>threshold_mask</name>
         <qualifiedname>Split::threshold_mask</qualifiedname>
         <param>
-          <type><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">const</ref> T &amp;</type>
+          <type>const T &amp;</type>
           <declname>x</declname>
         </param>
         <param>
-          <type><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">const</ref> <ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">float</ref> &amp;</type>
+          <type>const float &amp;</type>
           <declname>threshold</declname>
         </param>
-    <requiresclause><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">same_as</ref>&lt;<ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">typename</ref> T::Scalar, fJet&gt;    </requiresclause>
+    <requiresclause>same_as&lt;typename T::Scalar, fJet&gt;    </requiresclause>
         <briefdescription>
 <para>Applies a learned threshold to a feature, returning a mask. </para>
         </briefdescription>
@@ -151,12 +148,11 @@
         <inbodydescription>
         </inbodydescription>
         <location file="/home/runner/work/brush/brush/src/program/split.h" line="30" column="13" bodyfile="/home/runner/work/brush/brush/src/program/split.h" bodystart="30" bodyend="37"/>
-        <references refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" compoundref="d4/d93/bind__engines_8h" startline="35" endline="104">bind_engine</references>
       </memberdef>
       <memberdef kind="function" id="de/dd1/namespaceSplit_1a410b9c37ae273abf00f0697c82e90107" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <templateparamlist>
           <param>
-            <type><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">typename</ref> T</type>
+            <type>typename T</type>
           </param>
         </templateparamlist>
         <type><ref refid="d8/d5c/functions_8h_1a6a33354c51ab1e4986b2a222aac825a7" kindref="member">ArrayXb</ref></type>
@@ -165,14 +161,14 @@
         <name>threshold_mask</name>
         <qualifiedname>Split::threshold_mask</qualifiedname>
         <param>
-          <type><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">const</ref> T &amp;</type>
+          <type>const T &amp;</type>
           <declname>x</declname>
         </param>
         <param>
-          <type><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">const</ref> <ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">float</ref> &amp;</type>
+          <type>const float &amp;</type>
           <declname>threshold</declname>
         </param>
-    <requiresclause><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">same_as</ref>&lt;<ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">typename</ref> T::Scalar, <ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">int</ref>&gt;    </requiresclause>
+    <requiresclause>same_as&lt;typename T::Scalar, int&gt;    </requiresclause>
         <briefdescription>
 <para>Applies a learned threshold to a feature, returning a mask. </para>
         </briefdescription>
@@ -181,12 +177,11 @@
         <inbodydescription>
         </inbodydescription>
         <location file="/home/runner/work/brush/brush/src/program/split.h" line="39" column="13" bodyfile="/home/runner/work/brush/brush/src/program/split.h" bodystart="39" bodyend="41"/>
-        <references refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" compoundref="d4/d93/bind__engines_8h" startline="35" endline="104">bind_engine</references>
       </memberdef>
       <memberdef kind="function" id="de/dd1/namespaceSplit_1af4db5ae1dea3133b0d28f43cae62e322" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <templateparamlist>
           <param>
-            <type><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">typename</ref> T</type>
+            <type>typename T</type>
           </param>
         </templateparamlist>
         <type><ref refid="d8/d5c/functions_8h_1a6a33354c51ab1e4986b2a222aac825a7" kindref="member">ArrayXb</ref></type>
@@ -195,14 +190,14 @@
         <name>threshold_mask</name>
         <qualifiedname>Split::threshold_mask</qualifiedname>
         <param>
-          <type><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">const</ref> T &amp;</type>
+          <type>const T &amp;</type>
           <declname>x</declname>
         </param>
         <param>
-          <type><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">const</ref> <ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">float</ref> &amp;</type>
+          <type>const float &amp;</type>
           <declname>threshold</declname>
         </param>
-    <requiresclause><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">same_as</ref>&lt;<ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">typename</ref> T::Scalar, iJet&gt;    </requiresclause>
+    <requiresclause>same_as&lt;typename T::Scalar, iJet&gt;    </requiresclause>
         <briefdescription>
 <para>Applies a learned threshold to a feature, returning a mask. </para>
         </briefdescription>
@@ -211,22 +206,21 @@
         <inbodydescription>
         </inbodydescription>
         <location file="/home/runner/work/brush/brush/src/program/split.h" line="44" column="13" bodyfile="/home/runner/work/brush/brush/src/program/split.h" bodystart="44" bodyend="52"/>
-        <references refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" compoundref="d4/d93/bind__engines_8h" startline="35" endline="104">bind_engine</references>
         <referencedby refid="de/dd1/namespaceSplit_1a8933966c6b11cefe6449cb08ec900b09" compoundref="d4/df2/split_8h" startline="61" endline="112">best_threshold</referencedby>
         <referencedby refid="d3/df2/structOperator_3_01NT_00_01S_00_01Fit_00_01enable__if__t_3_01is__in__v_3_01NT_00_01NodeType_1_1Se4750a8ecc1d24ba81c8da2bd5c73a14_1af103a8ad8b7580d3c3a82b5c997b26c0" compoundref="d4/df2/split_8h" startline="246" endline="276">Operator&lt; NT, S, Fit, enable_if_t&lt; is_in_v&lt; NT, NodeType::SplitOn, NodeType::SplitBest &gt; &gt; &gt;::predict</referencedby>
       </memberdef>
       <memberdef kind="function" id="de/dd1/namespaceSplit_1acd99d8ce752cff6548bd895f2a3e619f" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
-        <type><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">float</ref></type>
+        <type>float</type>
         <definition>float Split::gini_impurity_index</definition>
         <argsstring>(const ArrayXf &amp;classes, const vector&lt; float &gt; &amp;uc)</argsstring>
         <name>gini_impurity_index</name>
         <qualifiedname>Split::gini_impurity_index</qualifiedname>
         <param>
-          <type><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">const</ref> ArrayXf &amp;</type>
+          <type>const ArrayXf &amp;</type>
           <declname>classes</declname>
         </param>
         <param>
-          <type><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">const</ref> vector&lt; <ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">float</ref> &gt; &amp;</type>
+          <type>const <ref refid="d7/dfc/classvector" kindref="compound">vector</ref>&lt; float &gt; &amp;</type>
           <declname>uc</declname>
         </param>
         <briefdescription>
@@ -238,25 +232,25 @@
         <location file="/home/runner/work/brush/brush/src/program/split.h" line="53" column="11" declfile="/home/runner/work/brush/brush/src/program/split.h" declline="53" declcolumn="11"/>
       </memberdef>
       <memberdef kind="function" id="de/dd1/namespaceSplit_1a80c2d566bfead7fb604689467324b611" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
-        <type><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">float</ref></type>
+        <type>float</type>
         <definition>float Split::gain</definition>
         <argsstring>(const ArrayXf &amp;lsplit, const ArrayXf &amp;rsplit, bool classification, vector&lt; float &gt; unique_classes)</argsstring>
         <name>gain</name>
         <qualifiedname>Split::gain</qualifiedname>
         <param>
-          <type><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">const</ref> ArrayXf &amp;</type>
+          <type>const ArrayXf &amp;</type>
           <declname>lsplit</declname>
         </param>
         <param>
-          <type><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">const</ref> ArrayXf &amp;</type>
+          <type>const ArrayXf &amp;</type>
           <declname>rsplit</declname>
         </param>
         <param>
-          <type><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">bool</ref></type>
+          <type>bool</type>
           <declname>classification</declname>
         </param>
         <param>
-          <type>vector&lt; <ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">float</ref> &gt;</type>
+          <type><ref refid="d7/dfc/classvector" kindref="compound">vector</ref>&lt; float &gt;</type>
           <declname>unique_classes</declname>
         </param>
         <briefdescription>
@@ -271,16 +265,16 @@
       <memberdef kind="function" id="de/dd1/namespaceSplit_1a6b748bcbfac42c22bb32903ece27548c" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <templateparamlist>
           <param>
-            <type><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">typename</ref> T</type>
+            <type>typename T</type>
           </param>
         </templateparamlist>
-        <type>vector&lt; <ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">float</ref> &gt;</type>
+        <type><ref refid="d7/dfc/classvector" kindref="compound">vector</ref>&lt; float &gt;</type>
         <definition>vector&lt; float &gt; Split::get_thresholds</definition>
         <argsstring>(const T &amp;x)</argsstring>
         <name>get_thresholds</name>
         <qualifiedname>Split::get_thresholds</qualifiedname>
         <param>
-          <type><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">const</ref> T &amp;</type>
+          <type>const T &amp;</type>
           <declname>x</declname>
         </param>
         <briefdescription>
@@ -293,13 +287,13 @@
         <referencedby refid="de/dd1/namespaceSplit_1a8933966c6b11cefe6449cb08ec900b09" compoundref="d4/df2/split_8h" startline="61" endline="112">best_threshold</referencedby>
       </memberdef>
       <memberdef kind="function" id="de/dd1/namespaceSplit_1aeeb954ceac763d5703017034b2d3191a" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
-        <type>tuple&lt; string, <ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">float</ref> &gt;</type>
+        <type>tuple&lt; <ref refid="d5/d92/classstring" kindref="compound">string</ref>, float &gt;</type>
         <definition>tuple&lt; string, float &gt; Split::get_best_variable_and_threshold</definition>
         <argsstring>(const Dataset &amp;d, TreeNode &amp;tn)</argsstring>
         <name>get_best_variable_and_threshold</name>
         <qualifiedname>Split::get_best_variable_and_threshold</qualifiedname>
         <param>
-          <type><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">const</ref> Dataset &amp;</type>
+          <type>const <ref refid="d7/da5/classDataset" kindref="compound">Dataset</ref> &amp;</type>
           <declname>d</declname>
         </param>
         <param>
@@ -318,24 +312,24 @@
       <memberdef kind="function" id="de/dd1/namespaceSplit_1a8933966c6b11cefe6449cb08ec900b09" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <templateparamlist>
           <param>
-            <type><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">typename</ref> T</type>
+            <type>typename T</type>
           </param>
         </templateparamlist>
-        <type>tuple&lt; <ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">float</ref>, <ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">float</ref> &gt;</type>
+        <type>tuple&lt; float, float &gt;</type>
         <definition>tuple&lt; float, float &gt; Split::best_threshold</definition>
         <argsstring>(const T &amp;x, const ArrayXf &amp;y, bool classification)</argsstring>
         <name>best_threshold</name>
         <qualifiedname>Split::best_threshold</qualifiedname>
         <param>
-          <type><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">const</ref> T &amp;</type>
+          <type>const T &amp;</type>
           <declname>x</declname>
         </param>
         <param>
-          <type><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">const</ref> ArrayXf &amp;</type>
+          <type>const ArrayXf &amp;</type>
           <declname>y</declname>
         </param>
         <param>
-          <type><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">bool</ref></type>
+          <type>bool</type>
           <declname>classification</declname>
         </param>
         <briefdescription>
@@ -345,7 +339,6 @@
         <inbodydescription>
         </inbodydescription>
         <location file="/home/runner/work/brush/brush/src/program/split.h" line="61" column="11" bodyfile="/home/runner/work/brush/brush/src/program/split.h" bodystart="61" bodyend="112"/>
-        <references refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" compoundref="d4/d93/bind__engines_8h" startline="35" endline="104">bind_engine</references>
         <references refid="de/dd1/namespaceSplit_1a80c2d566bfead7fb604689467324b611">gain</references>
         <references refid="de/dd1/namespaceSplit_1a6b748bcbfac42c22bb32903ece27548c">get_thresholds</references>
         <references refid="d8/dc0/init_8h_1a0c86fe7dc09ca580e891580bf302e659" compoundref="d8/dc0/init_8h" startline="61">MAX_FLT</references>
@@ -356,20 +349,20 @@
       <memberdef kind="function" id="de/dd1/namespaceSplit_1aafc092b8203061cdffb0278bc56ac377" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <templateparamlist>
           <param>
-            <type><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">typename</ref> T</type>
+            <type>typename T</type>
           </param>
         </templateparamlist>
-        <type><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">void</ref></type>
+        <type>void</type>
         <definition>void Split::get_best_threshold_by_type</definition>
         <argsstring>(const Dataset &amp;d, auto &amp;results)</argsstring>
         <name>get_best_threshold_by_type</name>
         <qualifiedname>Split::get_best_threshold_by_type</qualifiedname>
         <param>
-          <type><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">const</ref> Dataset &amp;</type>
+          <type>const <ref refid="d7/da5/classDataset" kindref="compound">Dataset</ref> &amp;</type>
           <declname>d</declname>
         </param>
         <param>
-          <type><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">auto</ref> &amp;</type>
+          <type>auto &amp;</type>
           <declname>results</declname>
         </param>
         <briefdescription>
@@ -380,13 +373,16 @@
         </inbodydescription>
         <location file="/home/runner/work/brush/brush/src/program/split.h" line="115" column="10" bodyfile="/home/runner/work/brush/brush/src/program/split.h" bodystart="115" bodyend="150"/>
         <references refid="de/dd1/namespaceSplit_1a8933966c6b11cefe6449cb08ec900b09" compoundref="d4/df2/split_8h" startline="61" endline="112">best_threshold</references>
-        <references refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" compoundref="d4/d93/bind__engines_8h" startline="35" endline="104">bind_engine</references>
+        <references refid="d7/da5/classDataset_1a1a8a1e77afdecb032696bdf38e5c424c" compoundref="d2/dbd/data_8h" startline="79">Dataset::classification</references>
+        <references refid="d7/da5/classDataset_1a652aba735323fddf7bf79407e7e4fc83" compoundref="d2/dbd/data_8h" startline="68">Dataset::features_of_type</references>
         <references refid="d8/dc0/init_8h_1a0c86fe7dc09ca580e891580bf302e659" compoundref="d8/dc0/init_8h" startline="61">MAX_FLT</references>
+        <references refid="d7/da5/classDataset_1ade105f069d4f745d44374b7b8a3a9b0d" compoundref="d2/dbd/data_8h" startline="76">Dataset::y</references>
+        <referencedby refid="de/dd1/namespaceSplit_1a48dabad3e3171cc9169551e1e9f37cf3" compoundref="d4/df2/split_8h" startline="153" endline="168">get_best_thresholds</referencedby>
       </memberdef>
       <memberdef kind="function" id="de/dd1/namespaceSplit_1a48dabad3e3171cc9169551e1e9f37cf3" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <templateparamlist>
           <param>
-            <type><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">typename</ref> <ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">Ts</ref></type>
+            <type>typename Ts</type>
           </param>
           <param>
             <type>std::size_t...</type>
@@ -394,13 +390,13 @@
             <defname>Is</defname>
           </param>
         </templateparamlist>
-        <type><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">auto</ref></type>
+        <type>auto</type>
         <definition>auto Split::get_best_thresholds</definition>
         <argsstring>(const Dataset &amp;d, std::index_sequence&lt; Is... &gt;)</argsstring>
         <name>get_best_thresholds</name>
         <qualifiedname>Split::get_best_thresholds</qualifiedname>
         <param>
-          <type><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">const</ref> Dataset &amp;</type>
+          <type>const <ref refid="d7/da5/classDataset" kindref="compound">Dataset</ref> &amp;</type>
           <declname>d</declname>
         </param>
         <param>
@@ -413,12 +409,12 @@
         <inbodydescription>
         </inbodydescription>
         <location file="/home/runner/work/brush/brush/src/program/split.h" line="153" column="10" bodyfile="/home/runner/work/brush/brush/src/program/split.h" bodystart="153" bodyend="168"/>
-        <references refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" compoundref="d4/d93/bind__engines_8h" startline="35" endline="104">bind_engine</references>
+        <references refid="de/dd1/namespaceSplit_1aafc092b8203061cdffb0278bc56ac377" compoundref="d4/df2/split_8h" startline="115" endline="150">get_best_threshold_by_type</references>
       </memberdef>
       <memberdef kind="function" id="de/dd1/namespaceSplit_1ad6013220c481c0b8720207da6814d690" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <templateparamlist>
           <param>
-            <type><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">typename</ref> T</type>
+            <type>typename T</type>
           </param>
         </templateparamlist>
         <type>T</type>
@@ -427,11 +423,11 @@
         <name>stitch</name>
         <qualifiedname>Split::stitch</qualifiedname>
         <param>
-          <type>array&lt; T, 2 &gt; &amp;</type>
+          <type><ref refid="d2/d41/classarray" kindref="compound">array</ref>&lt; T, 2 &gt; &amp;</type>
           <declname>child_outputs</declname>
         </param>
         <param>
-          <type><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">const</ref> <ref refid="d8/d5c/functions_8h_1a6a33354c51ab1e4986b2a222aac825a7" kindref="member">ArrayXb</ref> &amp;</type>
+          <type>const <ref refid="d8/d5c/functions_8h_1a6a33354c51ab1e4986b2a222aac825a7" kindref="member">ArrayXb</ref> &amp;</type>
           <declname>mask</declname>
         </param>
         <briefdescription>
@@ -442,7 +438,6 @@
         <inbodydescription>
         </inbodydescription>
         <location file="/home/runner/work/brush/brush/src/program/split.h" line="172" column="7" bodyfile="/home/runner/work/brush/brush/src/program/split.h" bodystart="172" bodyend="182"/>
-        <references refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" compoundref="d4/d93/bind__engines_8h" startline="35" endline="104">bind_engine</references>
         <referencedby refid="d3/df2/structOperator_3_01NT_00_01S_00_01Fit_00_01enable__if__t_3_01is__in__v_3_01NT_00_01NodeType_1_1Se4750a8ecc1d24ba81c8da2bd5c73a14_1af103a8ad8b7580d3c3a82b5c997b26c0" compoundref="d4/df2/split_8h" startline="246" endline="276">Operator&lt; NT, S, Fit, enable_if_t&lt; is_in_v&lt; NT, NodeType::SplitOn, NodeType::SplitBest &gt; &gt; &gt;::predict</referencedby>
       </memberdef>
     </sectiondef>

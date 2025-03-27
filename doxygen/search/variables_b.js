@@ -1,23 +1,9 @@
 var searchData=
 [
-  ['m_0',['m',['../dd/dc3/structBrush_1_1Sel_1_1NSGA2_1_1comparator__obj.html#a650d27227ffd3b334e6012624864e5b4',1,'Brush::Sel::NSGA2::comparator_obj']]],
-  ['map_5f_1',['map_',['../d3/da8/structBrush_1_1DispatchTable.html#ae48467d85705b8884940ac89db77d914',1,'Brush::DispatchTable']]],
-  ['max_2',['Max',['../d9/da6/structBrush_1_1NarySignatures.html#a3a49e995edfd861599610048749f25eb',1,'Brush::NarySignatures']]],
-  ['max_5fargs_3',['MAX_ARGS',['../dc/d5c/namespaceBrush.html#a5720ee549e0df722bd77a7495c0c6f60',1,'Brush']]],
-  ['max_5fcomplexity_4',['max_complexity',['../db/d7e/structBrush_1_1Util_1_1Log__Stats.html#a8d36cca3c88663adf33e28043d025b56',1,'Brush::Util::Log_Stats']]],
-  ['max_5fdepth_5',['max_depth',['../de/deb/structBrush_1_1Parameters.html#a22d49e1dbd59a355e5c234c7488595a6',1,'Brush::Parameters']]],
-  ['max_5fflt_6',['MAX_FLT',['../d8/dc0/init_8h.html#a0c86fe7dc09ca580e891580bf302e659',1,'init.h']]],
-  ['max_5fgens_7',['max_gens',['../de/deb/structBrush_1_1Parameters.html#ae8174a3006e30812afa63f1d74aeb6e9',1,'Brush::Parameters']]],
-  ['max_5fsize_8',['max_size',['../de/deb/structBrush_1_1Parameters.html#aeec98494c11bc2760b7feedf56741ff7',1,'Brush::Parameters::max_size'],['../db/d7e/structBrush_1_1Util_1_1Log__Stats.html#a07aeaad3d63ca1c76bd1c1fc55f944c2',1,'Brush::Util::Log_Stats::max_size']]],
-  ['max_5fstall_9',['max_stall',['../de/deb/structBrush_1_1Parameters.html#a21e3da5422ccf31326362f1806ac3eae',1,'Brush::Parameters']]],
-  ['max_5ftime_10',['max_time',['../de/deb/structBrush_1_1Parameters.html#a1625c1a71de2fdd1ccd0954a32fc4ead',1,'Brush::Parameters']]],
-  ['med_5fcomplexity_11',['med_complexity',['../db/d7e/structBrush_1_1Util_1_1Log__Stats.html#ad6978c4386468c44dd252345c11ca126',1,'Brush::Util::Log_Stats']]],
-  ['med_5fscore_12',['med_score',['../db/d7e/structBrush_1_1Util_1_1Log__Stats.html#ac23e8ca79f408dfc07c4f86a8e89a9ca',1,'Brush::Util::Log_Stats']]],
-  ['med_5fscore_5fv_13',['med_score_v',['../db/d7e/structBrush_1_1Util_1_1Log__Stats.html#aad65800dd14b817a5426312d43251e7b',1,'Brush::Util::Log_Stats']]],
-  ['med_5fsize_14',['med_size',['../db/d7e/structBrush_1_1Util_1_1Log__Stats.html#ac158480ad1d6fc12ea5a20811b115d1e',1,'Brush::Util::Log_Stats']]],
-  ['mig_5fprob_15',['mig_prob',['../de/deb/structBrush_1_1Parameters.html#aed0024de73a9fec99711efe303484ab8',1,'Brush::Parameters::mig_prob'],['../da/da3/classBrush_1_1Pop_1_1Population.html#a31f1c6f4250a15d2b720483d98fb456d',1,'Brush::Pop::Population::mig_prob']]],
-  ['min_16',['Min',['../d9/da6/structBrush_1_1NarySignatures.html#aae71c5366cc66eabaf9a2126ac6507d4',1,'Brush::NarySignatures']]],
-  ['min_5fflt_17',['MIN_FLT',['../d8/dc0/init_8h.html#a8213bd26dbb943e499d0e227fa9b3159',1,'init.h']]],
-  ['mode_18',['mode',['../de/deb/structBrush_1_1Parameters.html#ad8ff63e4d1845c0b7fd85532e5edb48c',1,'Brush::Parameters']]],
-  ['mutation_5fprobs_19',['mutation_probs',['../de/deb/structBrush_1_1Parameters.html#a49392abcea1d48447c024a23137fd788',1,'Brush::Parameters']]]
+  ['last_5fchild_0',['last_child',['../dc/d90/classtree__node___3_01Node_01_4.html#ae083431203606b1cc63675d1c767a1e0',1,'tree_node_&lt; Node &gt;']]],
+  ['load_5fpopulation_1',['load_population',['../de/deb/structBrush_1_1Parameters.html#ad1a131cf61b76ff1ab4b576f5fd1df9b',1,'Brush::Parameters']]],
+  ['logfile_2',['logfile',['../de/deb/structBrush_1_1Parameters.html#ab800a9c06c4bbfd47f031659ff7bb7b8',1,'Brush::Parameters']]],
+  ['logger_3',['logger',['../d6/d2e/namespaceBrush_1_1Util.html#aa6d49e22e6193fabd31fde261f607560',1,'Brush::Util']]],
+  ['loss_4',['loss',['../d6/dd0/structBrush_1_1Fitness.html#a30e994e0b4aa0a8febfe7d7a09529f04',1,'Brush::Fitness']]],
+  ['loss_5fv_5',['loss_v',['../d6/dd0/structBrush_1_1Fitness.html#aa8cd674fad6f65c344f008c3e2442491',1,'Brush::Fitness']]]
 ];

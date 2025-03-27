@@ -1,16 +1,300 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
-<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.10.0" xml:lang="en-US">
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.13.2" xml:lang="en-US">
   <compounddef id="d7/da9/namespaceBrush_1_1Split" kind="namespace" language="C++">
     <compoundname>Brush::Split</compoundname>
     <sectiondef kind="func">
+      <memberdef kind="function" id="d7/da9/namespaceBrush_1_1Split_1ae5981aac972763c24e7b668bfca35e96" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>typename T</type>
+          </param>
+        </templateparamlist>
+        <type><ref refid="dc/d5c/namespaceBrush_1a1c0079df772d6e050857327591514810" kindref="member">ArrayXb</ref></type>
+        <definition>ArrayXb Brush::Split::threshold_mask</definition>
+        <argsstring>(const T &amp;x, const float &amp;threshold)</argsstring>
+        <name>threshold_mask</name>
+        <qualifiedname>Brush::Split::threshold_mask</qualifiedname>
+        <param>
+          <type>const T &amp;</type>
+          <declname>x</declname>
+        </param>
+        <param>
+          <type>const float &amp;</type>
+          <declname>threshold</declname>
+        </param>
+        <briefdescription>
+<para>Applies a learned threshold to a feature, returning a mask. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/runner/work/brush/brush/src/program/split.h" line="13" column="13" bodyfile="/home/runner/work/brush/brush/src/program/operator.h" bodystart="16" bodyend="18" declfile="/home/runner/work/brush/brush/src/program/split.h" declline="13" declcolumn="13"/>
+        <references refid="dc/d5c/namespaceBrush_1a7e323244b7b57c08d6816a009e74eec6" compoundref="d9/d49/types_8h" startline="33">Brush::is_one_of_v</references>
+        <referencedby refid="d7/da9/namespaceBrush_1_1Split_1a31a254e869c995a17b22b0bd5adf9aa4" compoundref="d4/d59/split_8cpp" startline="54" endline="65">threshold_mask&lt; State &gt;</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="d7/da9/namespaceBrush_1_1Split_1ad3da08bcc3527be129a2dee104d10125" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>typename T</type>
+          </param>
+        </templateparamlist>
+        <type><ref refid="dc/d5c/namespaceBrush_1a1c0079df772d6e050857327591514810" kindref="member">ArrayXb</ref></type>
+        <definition>ArrayXb Brush::Split::threshold_mask</definition>
+        <argsstring>(const T &amp;x, const float &amp;threshold)</argsstring>
+        <name>threshold_mask</name>
+        <qualifiedname>Brush::Split::threshold_mask</qualifiedname>
+        <param>
+          <type>const T &amp;</type>
+          <declname>x</declname>
+        </param>
+        <param>
+          <type>const float &amp;</type>
+          <declname>threshold</declname>
+        </param>
+    <requiresclause>same_as&lt;typename T::Scalar, bool&gt;    </requiresclause>
+        <briefdescription>
+<para>Applies a learned threshold to a feature, returning a mask. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/runner/work/brush/brush/src/program/split.h" line="16" column="13" bodyfile="/home/runner/work/brush/brush/src/program/operator.h" bodystart="16" bodyend="18"/>
+      </memberdef>
+      <memberdef kind="function" id="d7/da9/namespaceBrush_1_1Split_1ab79ff675d214159c9ea8d1dae2d44e47" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>typename T</type>
+          </param>
+        </templateparamlist>
+        <type><ref refid="dc/d5c/namespaceBrush_1a1c0079df772d6e050857327591514810" kindref="member">ArrayXb</ref></type>
+        <definition>ArrayXb Brush::Split::threshold_mask</definition>
+        <argsstring>(const T &amp;x, const float &amp;threshold)</argsstring>
+        <name>threshold_mask</name>
+        <qualifiedname>Brush::Split::threshold_mask</qualifiedname>
+        <param>
+          <type>const T &amp;</type>
+          <declname>x</declname>
+        </param>
+        <param>
+          <type>const float &amp;</type>
+          <declname>threshold</declname>
+        </param>
+    <requiresclause>same_as&lt;typename T::Scalar, <ref refid="dc/d5c/namespaceBrush_1a1dc15defd0ed08feac029e2844f7867e" kindref="member">bJet</ref>&gt;    </requiresclause>
+        <briefdescription>
+<para>Applies a learned threshold to a feature, returning a mask. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/runner/work/brush/brush/src/program/split.h" line="20" column="13" bodyfile="/home/runner/work/brush/brush/src/program/operator.h" bodystart="20" bodyend="25"/>
+      </memberdef>
+      <memberdef kind="function" id="d7/da9/namespaceBrush_1_1Split_1a70ae464066cbd637d2f2a5f14bc1e138" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>typename T</type>
+          </param>
+        </templateparamlist>
+        <type><ref refid="dc/d5c/namespaceBrush_1a1c0079df772d6e050857327591514810" kindref="member">ArrayXb</ref></type>
+        <definition>ArrayXb Brush::Split::threshold_mask</definition>
+        <argsstring>(const T &amp;x, const float &amp;threshold)</argsstring>
+        <name>threshold_mask</name>
+        <qualifiedname>Brush::Split::threshold_mask</qualifiedname>
+        <param>
+          <type>const T &amp;</type>
+          <declname>x</declname>
+        </param>
+        <param>
+          <type>const float &amp;</type>
+          <declname>threshold</declname>
+        </param>
+    <requiresclause>same_as&lt;typename T::Scalar, float&gt;    </requiresclause>
+        <briefdescription>
+<para>Applies a learned threshold to a feature, returning a mask. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/runner/work/brush/brush/src/program/split.h" line="27" column="13" bodyfile="/home/runner/work/brush/brush/src/program/operator.h" bodystart="27" bodyend="29"/>
+      </memberdef>
+      <memberdef kind="function" id="d7/da9/namespaceBrush_1_1Split_1a43971b4fbb2d5f08a6565a670de1d2fa" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>typename T</type>
+          </param>
+        </templateparamlist>
+        <type><ref refid="dc/d5c/namespaceBrush_1a1c0079df772d6e050857327591514810" kindref="member">ArrayXb</ref></type>
+        <definition>ArrayXb Brush::Split::threshold_mask</definition>
+        <argsstring>(const T &amp;x, const float &amp;threshold)</argsstring>
+        <name>threshold_mask</name>
+        <qualifiedname>Brush::Split::threshold_mask</qualifiedname>
+        <param>
+          <type>const T &amp;</type>
+          <declname>x</declname>
+        </param>
+        <param>
+          <type>const float &amp;</type>
+          <declname>threshold</declname>
+        </param>
+    <requiresclause>same_as&lt;typename T::Scalar, <ref refid="dc/d5c/namespaceBrush_1afca2eb9cd1e30d788f324d15a9af500a" kindref="member">fJet</ref>&gt;    </requiresclause>
+        <briefdescription>
+<para>Applies a learned threshold to a feature, returning a mask. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/runner/work/brush/brush/src/program/split.h" line="31" column="13" bodyfile="/home/runner/work/brush/brush/src/program/operator.h" bodystart="31" bodyend="38"/>
+      </memberdef>
+      <memberdef kind="function" id="d7/da9/namespaceBrush_1_1Split_1af04abf98b358d36e56f13fe41110f9c3" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>typename T</type>
+          </param>
+        </templateparamlist>
+        <type><ref refid="dc/d5c/namespaceBrush_1a1c0079df772d6e050857327591514810" kindref="member">ArrayXb</ref></type>
+        <definition>ArrayXb Brush::Split::threshold_mask</definition>
+        <argsstring>(const T &amp;x, const float &amp;threshold)</argsstring>
+        <name>threshold_mask</name>
+        <qualifiedname>Brush::Split::threshold_mask</qualifiedname>
+        <param>
+          <type>const T &amp;</type>
+          <declname>x</declname>
+        </param>
+        <param>
+          <type>const float &amp;</type>
+          <declname>threshold</declname>
+        </param>
+    <requiresclause>same_as&lt;typename T::Scalar, int&gt;    </requiresclause>
+        <briefdescription>
+<para>Applies a learned threshold to a feature, returning a mask. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/runner/work/brush/brush/src/program/split.h" line="40" column="13" bodyfile="/home/runner/work/brush/brush/src/program/operator.h" bodystart="40" bodyend="42"/>
+      </memberdef>
+      <memberdef kind="function" id="d7/da9/namespaceBrush_1_1Split_1a6271c8c5797d64f510a2af77f22e92a8" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>typename T</type>
+          </param>
+        </templateparamlist>
+        <type><ref refid="dc/d5c/namespaceBrush_1a1c0079df772d6e050857327591514810" kindref="member">ArrayXb</ref></type>
+        <definition>ArrayXb Brush::Split::threshold_mask</definition>
+        <argsstring>(const T &amp;x, const float &amp;threshold)</argsstring>
+        <name>threshold_mask</name>
+        <qualifiedname>Brush::Split::threshold_mask</qualifiedname>
+        <param>
+          <type>const T &amp;</type>
+          <declname>x</declname>
+        </param>
+        <param>
+          <type>const float &amp;</type>
+          <declname>threshold</declname>
+        </param>
+    <requiresclause>same_as&lt;typename T::Scalar, <ref refid="dc/d5c/namespaceBrush_1a12cdc4558b7841338641fdc58bbda013" kindref="member">iJet</ref>&gt;    </requiresclause>
+        <briefdescription>
+<para>Applies a learned threshold to a feature, returning a mask. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/runner/work/brush/brush/src/program/split.h" line="45" column="13" bodyfile="/home/runner/work/brush/brush/src/program/operator.h" bodystart="45" bodyend="53"/>
+        <references refid="dc/d5c/namespaceBrush_1a7e323244b7b57c08d6816a009e74eec6" compoundref="d9/d49/types_8h" startline="33">Brush::is_one_of_v</references>
+        <referencedby refid="d7/da9/namespaceBrush_1_1Split_1a31a254e869c995a17b22b0bd5adf9aa4" compoundref="d4/d59/split_8cpp" startline="54" endline="65">threshold_mask&lt; State &gt;</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="d7/da9/namespaceBrush_1_1Split_1a702498ef9571a67ddbd364fa57bd97ea" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>float</type>
+        <definition>float Brush::Split::gini_impurity_index</definition>
+        <argsstring>(const ArrayXf &amp;classes, const vector&lt; float &gt; &amp;uc)</argsstring>
+        <name>gini_impurity_index</name>
+        <qualifiedname>Brush::Split::gini_impurity_index</qualifiedname>
+        <param>
+          <type>const ArrayXf &amp;</type>
+          <declname>classes</declname>
+        </param>
+        <param>
+          <type>const <ref refid="d7/dfc/classvector" kindref="compound">vector</ref>&lt; float &gt; &amp;</type>
+          <declname>uc</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/runner/work/brush/brush/src/program/split.cpp" line="93" column="7" bodyfile="/home/runner/work/brush/brush/src/program/split.cpp" bodystart="93" bodyend="107" declfile="/home/runner/work/brush/brush/src/program/split.h" declline="54" declcolumn="11"/>
+        <referencedby refid="d7/da9/namespaceBrush_1_1Split_1a34b904a04926a4b4280fb922618cfe19" compoundref="d4/d59/split_8cpp" startline="66" endline="91">gain</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="d7/da9/namespaceBrush_1_1Split_1a34b904a04926a4b4280fb922618cfe19" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>float</type>
+        <definition>float Brush::Split::gain</definition>
+        <argsstring>(const ArrayXf &amp;lsplit, const ArrayXf &amp;rsplit, bool classification, vector&lt; float &gt; unique_classes)</argsstring>
+        <name>gain</name>
+        <qualifiedname>Brush::Split::gain</qualifiedname>
+        <param>
+          <type>const ArrayXf &amp;</type>
+          <declname>lsplit</declname>
+        </param>
+        <param>
+          <type>const ArrayXf &amp;</type>
+          <declname>rsplit</declname>
+        </param>
+        <param>
+          <type>bool</type>
+          <declname>classification</declname>
+        </param>
+        <param>
+          <type><ref refid="d7/dfc/classvector" kindref="compound">vector</ref>&lt; float &gt;</type>
+          <declname>unique_classes</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/runner/work/brush/brush/src/program/split.cpp" line="66" column="7" bodyfile="/home/runner/work/brush/brush/src/program/split.cpp" bodystart="66" bodyend="91" declfile="/home/runner/work/brush/brush/src/program/split.h" declline="55" declcolumn="11"/>
+        <references refid="d7/da9/namespaceBrush_1_1Split_1a702498ef9571a67ddbd364fa57bd97ea" compoundref="d4/d59/split_8cpp" startline="93" endline="107">gini_impurity_index</references>
+        <references refid="d6/d2e/namespaceBrush_1_1Util_1ad88c0170839ba79e41dc5715e77abfc8" compoundref="de/d06/utils_8cpp" startline="317" endline="320">Brush::Util::variance</references>
+      </memberdef>
+      <memberdef kind="function" id="d7/da9/namespaceBrush_1_1Split_1a001740e0281a7ba6e86bb1107751126c" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>typename T</type>
+          </param>
+        </templateparamlist>
+        <type><ref refid="d7/dfc/classvector" kindref="compound">vector</ref>&lt; float &gt;</type>
+        <definition>vector&lt; float &gt; Brush::Split::get_thresholds</definition>
+        <argsstring>(const T &amp;x)</argsstring>
+        <name>get_thresholds</name>
+        <qualifiedname>Brush::Split::get_thresholds</qualifiedname>
+        <param>
+          <type>const T &amp;</type>
+          <declname>x</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/runner/work/brush/brush/src/program/split.h" line="58" column="23" declfile="/home/runner/work/brush/brush/src/program/split.h" declline="58" declcolumn="23"/>
+      </memberdef>
       <memberdef kind="function" id="d7/da9/namespaceBrush_1_1Split_1a24c9cbb45621f1a04737674db9e224e2" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
-        <type>tuple&lt; string, <ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">float</ref> &gt;</type>
+        <type>tuple&lt; <ref refid="d5/d92/classstring" kindref="compound">string</ref>, float &gt;</type>
         <definition>tuple&lt; string, float &gt; Brush::Split::get_best_variable_and_threshold</definition>
         <argsstring>(const Dataset &amp;d, TreeNode &amp;tn)</argsstring>
         <name>get_best_variable_and_threshold</name>
         <qualifiedname>Brush::Split::get_best_variable_and_threshold</qualifiedname>
         <param>
-          <type><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">const</ref> <ref refid="d2/d36/classBrush_1_1Data_1_1Dataset" kindref="compound">Dataset</ref> &amp;</type>
+          <type>const <ref refid="d2/d36/classBrush_1_1Data_1_1Dataset" kindref="compound">Dataset</ref> &amp;</type>
           <declname>d</declname>
         </param>
         <param>
@@ -23,19 +307,138 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/runner/work/brush/brush/src/program/split.cpp" line="7" column="7" bodyfile="/home/runner/work/brush/brush/src/program/split.cpp" bodystart="7" bodyend="16"/>
-        <references refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" compoundref="d4/d93/bind__engines_8h" startline="35" endline="104">bind_engine</references>
+        <location file="/home/runner/work/brush/brush/src/program/split.cpp" line="7" column="7" bodyfile="/home/runner/work/brush/brush/src/program/split.cpp" bodystart="7" bodyend="16" declfile="/home/runner/work/brush/brush/src/program/split.h" declline="59" declcolumn="11"/>
+        <references refid="d7/da9/namespaceBrush_1_1Split_1acd04486b86f474e72160c903df755c7d" compoundref="d7/de0/operator_8h" startline="154" endline="169">get_best_thresholds</references>
+      </memberdef>
+      <memberdef kind="function" id="d7/da9/namespaceBrush_1_1Split_1af6b5bdffd15b23bf2116c7732b3364f7" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>typename T</type>
+          </param>
+        </templateparamlist>
+        <type>tuple&lt; float, float &gt;</type>
+        <definition>tuple&lt; float, float &gt; Brush::Split::best_threshold</definition>
+        <argsstring>(const T &amp;x, const ArrayXf &amp;y, bool classification)</argsstring>
+        <name>best_threshold</name>
+        <qualifiedname>Brush::Split::best_threshold</qualifiedname>
+        <param>
+          <type>const T &amp;</type>
+          <declname>x</declname>
+        </param>
+        <param>
+          <type>const ArrayXf &amp;</type>
+          <declname>y</declname>
+        </param>
+        <param>
+          <type>bool</type>
+          <declname>classification</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/runner/work/brush/brush/src/program/split.h" line="62" column="11" bodyfile="/home/runner/work/brush/brush/src/program/operator.h" bodystart="62" bodyend="113"/>
+      </memberdef>
+      <memberdef kind="function" id="d7/da9/namespaceBrush_1_1Split_1ae36bf5405bc3681fef1f97bb36c2af36" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>typename T</type>
+          </param>
+        </templateparamlist>
+        <type>void</type>
+        <definition>void Brush::Split::get_best_threshold_by_type</definition>
+        <argsstring>(const Dataset &amp;d, auto &amp;results)</argsstring>
+        <name>get_best_threshold_by_type</name>
+        <qualifiedname>Brush::Split::get_best_threshold_by_type</qualifiedname>
+        <param>
+          <type>const <ref refid="d2/d36/classBrush_1_1Data_1_1Dataset" kindref="compound">Dataset</ref> &amp;</type>
+          <declname>d</declname>
+        </param>
+        <param>
+          <type>auto &amp;</type>
+          <declname>results</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/runner/work/brush/brush/src/program/split.h" line="116" column="10" bodyfile="/home/runner/work/brush/brush/src/program/operator.h" bodystart="116" bodyend="151"/>
+      </memberdef>
+      <memberdef kind="function" id="d7/da9/namespaceBrush_1_1Split_1acd04486b86f474e72160c903df755c7d" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>typename Ts</type>
+          </param>
+          <param>
+            <type>std::size_t...</type>
+            <declname>Is</declname>
+            <defname>Is</defname>
+          </param>
+        </templateparamlist>
+        <type>auto</type>
+        <definition>auto Brush::Split::get_best_thresholds</definition>
+        <argsstring>(const Dataset &amp;d, std::index_sequence&lt; Is... &gt;)</argsstring>
+        <name>get_best_thresholds</name>
+        <qualifiedname>Brush::Split::get_best_thresholds</qualifiedname>
+        <param>
+          <type>const <ref refid="d2/d36/classBrush_1_1Data_1_1Dataset" kindref="compound">Dataset</ref> &amp;</type>
+          <declname>d</declname>
+        </param>
+        <param>
+          <type>std::index_sequence&lt; Is... &gt;</type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/runner/work/brush/brush/src/program/split.h" line="154" column="10" bodyfile="/home/runner/work/brush/brush/src/program/operator.h" bodystart="154" bodyend="169"/>
+        <referencedby refid="d7/da9/namespaceBrush_1_1Split_1a24c9cbb45621f1a04737674db9e224e2" compoundref="d4/d59/split_8cpp" startline="7" endline="16">get_best_variable_and_threshold</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="d7/da9/namespaceBrush_1_1Split_1a8a06d80deee491d1f3e9af55efa9f68e" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>typename T</type>
+          </param>
+        </templateparamlist>
+        <type>T</type>
+        <definition>T Brush::Split::stitch</definition>
+        <argsstring>(array&lt; T, 2 &gt; &amp;child_outputs, const ArrayXb &amp;mask)</argsstring>
+        <name>stitch</name>
+        <qualifiedname>Brush::Split::stitch</qualifiedname>
+        <param>
+          <type><ref refid="d2/d41/classarray" kindref="compound">array</ref>&lt; T, 2 &gt; &amp;</type>
+          <declname>child_outputs</declname>
+        </param>
+        <param>
+          <type>const <ref refid="dc/d5c/namespaceBrush_1a1c0079df772d6e050857327591514810" kindref="member">ArrayXb</ref> &amp;</type>
+          <declname>mask</declname>
+        </param>
+        <briefdescription>
+<para>Stitches together outputs from left or right child based on threshold. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/runner/work/brush/brush/src/program/split.h" line="173" column="7" bodyfile="/home/runner/work/brush/brush/src/program/operator.h" bodystart="173" bodyend="183"/>
+        <references refid="dc/d5c/namespaceBrush_1a00b234ce343d03867e55d528f8cb8895" compoundref="d9/d49/types_8h" startline="259">Brush::is_tuple_v</references>
       </memberdef>
       <memberdef kind="function" id="d7/da9/namespaceBrush_1_1Split_1a2458c3bb89a9a2245899c6ab26ecf515" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <templateparamlist>
         </templateparamlist>
-        <type>vector&lt; <ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">float</ref> &gt;</type>
+        <type><ref refid="d7/dfc/classvector" kindref="compound">vector</ref>&lt; float &gt;</type>
         <definition>vector&lt; float &gt; Brush::Split::get_thresholds&lt; ArrayXb &gt;</definition>
         <argsstring>(const ArrayXb &amp;x)</argsstring>
         <name>get_thresholds&lt; ArrayXb &gt;</name>
         <qualifiedname>Brush::Split::get_thresholds&lt; ArrayXb &gt;</qualifiedname>
         <param>
-          <type><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">const</ref> <ref refid="dc/d5c/namespaceBrush_1a1c0079df772d6e050857327591514810" kindref="member">ArrayXb</ref> &amp;</type>
+          <type>const <ref refid="dc/d5c/namespaceBrush_1a1c0079df772d6e050857327591514810" kindref="member">ArrayXb</ref> &amp;</type>
           <declname>x</declname>
         </param>
         <briefdescription>
@@ -49,13 +452,13 @@
       <memberdef kind="function" id="d7/da9/namespaceBrush_1_1Split_1afedcaa3cd4c8945a45cf2ffd09b069cb" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <templateparamlist>
         </templateparamlist>
-        <type>vector&lt; <ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">float</ref> &gt;</type>
+        <type><ref refid="d7/dfc/classvector" kindref="compound">vector</ref>&lt; float &gt;</type>
         <definition>vector&lt; float &gt; Brush::Split::get_thresholds&lt; ArrayXbJet &gt;</definition>
         <argsstring>(const ArrayXbJet &amp;x)</argsstring>
         <name>get_thresholds&lt; ArrayXbJet &gt;</name>
         <qualifiedname>Brush::Split::get_thresholds&lt; ArrayXbJet &gt;</qualifiedname>
         <param>
-          <type><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">const</ref> <ref refid="dc/d5c/namespaceBrush_1ac5d3cc055d05202b02d1c70993eb61b7" kindref="member">ArrayXbJet</ref> &amp;</type>
+          <type>const <ref refid="dc/d5c/namespaceBrush_1ac5d3cc055d05202b02d1c70993eb61b7" kindref="member">ArrayXbJet</ref> &amp;</type>
           <declname>x</declname>
         </param>
         <briefdescription>
@@ -69,13 +472,13 @@
       <memberdef kind="function" id="d7/da9/namespaceBrush_1_1Split_1a938b791ea7fee55496f077ff72ad086c" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <templateparamlist>
         </templateparamlist>
-        <type>vector&lt; <ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">float</ref> &gt;</type>
+        <type><ref refid="d7/dfc/classvector" kindref="compound">vector</ref>&lt; float &gt;</type>
         <definition>vector&lt; float &gt; Brush::Split::get_thresholds&lt; ArrayXi &gt;</definition>
         <argsstring>(const ArrayXi &amp;x)</argsstring>
         <name>get_thresholds&lt; ArrayXi &gt;</name>
         <qualifiedname>Brush::Split::get_thresholds&lt; ArrayXi &gt;</qualifiedname>
         <param>
-          <type><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">const</ref> <ref refid="dc/d5c/namespaceBrush_1ac5cd76eed6ea70d1c8f429ee37ca9fc0" kindref="member">ArrayXi</ref> &amp;</type>
+          <type>const <ref refid="dc/d5c/namespaceBrush_1ac5cd76eed6ea70d1c8f429ee37ca9fc0" kindref="member">ArrayXi</ref> &amp;</type>
           <declname>x</declname>
         </param>
         <briefdescription>
@@ -89,13 +492,13 @@
       <memberdef kind="function" id="d7/da9/namespaceBrush_1_1Split_1ab096da9b935cd72a5b274cf4b8b3c838" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <templateparamlist>
         </templateparamlist>
-        <type>vector&lt; <ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">float</ref> &gt;</type>
+        <type><ref refid="d7/dfc/classvector" kindref="compound">vector</ref>&lt; float &gt;</type>
         <definition>vector&lt; float &gt; Brush::Split::get_thresholds&lt; ArrayXiJet &gt;</definition>
         <argsstring>(const ArrayXiJet &amp;x)</argsstring>
         <name>get_thresholds&lt; ArrayXiJet &gt;</name>
         <qualifiedname>Brush::Split::get_thresholds&lt; ArrayXiJet &gt;</qualifiedname>
         <param>
-          <type><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">const</ref> <ref refid="dc/d5c/namespaceBrush_1ad4d3c3e8d9e723792930ef23b3a1da6f" kindref="member">ArrayXiJet</ref> &amp;</type>
+          <type>const <ref refid="dc/d5c/namespaceBrush_1ad4d3c3e8d9e723792930ef23b3a1da6f" kindref="member">ArrayXiJet</ref> &amp;</type>
           <declname>x</declname>
         </param>
         <briefdescription>
@@ -109,13 +512,13 @@
       <memberdef kind="function" id="d7/da9/namespaceBrush_1_1Split_1aa11b0a18853ea5ce138a587d6adc845b" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <templateparamlist>
         </templateparamlist>
-        <type>vector&lt; <ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">float</ref> &gt;</type>
+        <type><ref refid="d7/dfc/classvector" kindref="compound">vector</ref>&lt; float &gt;</type>
         <definition>vector&lt; float &gt; Brush::Split::get_thresholds&lt; ArrayXf &gt;</definition>
         <argsstring>(const ArrayXf &amp;x)</argsstring>
         <name>get_thresholds&lt; ArrayXf &gt;</name>
         <qualifiedname>Brush::Split::get_thresholds&lt; ArrayXf &gt;</qualifiedname>
         <param>
-          <type><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">const</ref> ArrayXf &amp;</type>
+          <type>const ArrayXf &amp;</type>
           <declname>x</declname>
         </param>
         <briefdescription>
@@ -129,13 +532,13 @@
       <memberdef kind="function" id="d7/da9/namespaceBrush_1_1Split_1a2e0e2f52d0fe0a55b22d95cb6af72771" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <templateparamlist>
         </templateparamlist>
-        <type>vector&lt; <ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">float</ref> &gt;</type>
+        <type><ref refid="d7/dfc/classvector" kindref="compound">vector</ref>&lt; float &gt;</type>
         <definition>vector&lt; float &gt; Brush::Split::get_thresholds&lt; ArrayXfJet &gt;</definition>
         <argsstring>(const ArrayXfJet &amp;x)</argsstring>
         <name>get_thresholds&lt; ArrayXfJet &gt;</name>
         <qualifiedname>Brush::Split::get_thresholds&lt; ArrayXfJet &gt;</qualifiedname>
         <param>
-          <type><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">const</ref> <ref refid="dc/d5c/namespaceBrush_1aa9f9c545473315b227a08920cf5882e4" kindref="member">ArrayXfJet</ref> &amp;</type>
+          <type>const <ref refid="dc/d5c/namespaceBrush_1aa9f9c545473315b227a08920cf5882e4" kindref="member">ArrayXfJet</ref> &amp;</type>
           <declname>x</declname>
         </param>
         <briefdescription>
@@ -155,11 +558,11 @@
         <name>threshold_mask&lt; State &gt;</name>
         <qualifiedname>Brush::Split::threshold_mask&lt; State &gt;</qualifiedname>
         <param>
-          <type><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">const</ref> State &amp;</type>
+          <type>const <ref refid="d9/d1c/namespaceBrush_1_1Data_1aeec1ea0d55dd44db207801471be4f09c" kindref="member">State</ref> &amp;</type>
           <declname>x</declname>
         </param>
         <param>
-          <type><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">const</ref> <ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">float</ref> &amp;</type>
+          <type>const float &amp;</type>
           <declname>threshold</declname>
         </param>
         <briefdescription>
@@ -169,70 +572,13 @@
         <inbodydescription>
         </inbodydescription>
         <location file="/home/runner/work/brush/brush/src/program/split.cpp" line="54" column="1" bodyfile="/home/runner/work/brush/brush/src/program/split.cpp" bodystart="54" bodyend="65"/>
-        <references refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" compoundref="d4/d93/bind__engines_8h" startline="35" endline="104">bind_engine</references>
-      </memberdef>
-      <memberdef kind="function" id="d7/da9/namespaceBrush_1_1Split_1a34b904a04926a4b4280fb922618cfe19" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
-        <type><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">float</ref></type>
-        <definition>float Brush::Split::gain</definition>
-        <argsstring>(const ArrayXf &amp;lsplit, const ArrayXf &amp;rsplit, bool classification, vector&lt; float &gt; unique_classes)</argsstring>
-        <name>gain</name>
-        <qualifiedname>Brush::Split::gain</qualifiedname>
-        <param>
-          <type><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">const</ref> ArrayXf &amp;</type>
-          <declname>lsplit</declname>
-        </param>
-        <param>
-          <type><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">const</ref> ArrayXf &amp;</type>
-          <declname>rsplit</declname>
-        </param>
-        <param>
-          <type><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">bool</ref></type>
-          <declname>classification</declname>
-        </param>
-        <param>
-          <type>vector&lt; <ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">float</ref> &gt;</type>
-          <declname>unique_classes</declname>
-        </param>
-        <briefdescription>
-        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="/home/runner/work/brush/brush/src/program/split.cpp" line="66" column="7" bodyfile="/home/runner/work/brush/brush/src/program/split.cpp" bodystart="66" bodyend="91"/>
-        <references refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" compoundref="d4/d93/bind__engines_8h" startline="35" endline="104">bind_engine</references>
-        <references refid="d7/da9/namespaceBrush_1_1Split_1aa3457f71fc041f0e6aad9e3b850ad6a1" compoundref="d4/d59/split_8cpp" startline="93" endline="107">gini_impurity_index</references>
-        <references refid="d6/d2e/namespaceBrush_1_1Util_1ad88c0170839ba79e41dc5715e77abfc8" compoundref="de/d06/utils_8cpp" startline="317" endline="320">Brush::Util::variance</references>
-      </memberdef>
-      <memberdef kind="function" id="d7/da9/namespaceBrush_1_1Split_1aa3457f71fc041f0e6aad9e3b850ad6a1" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
-        <type><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">float</ref></type>
-        <definition>float Brush::Split::gini_impurity_index</definition>
-        <argsstring>(const ArrayXf &amp;classes, const vector&lt; float &gt; &amp;unique_classes)</argsstring>
-        <name>gini_impurity_index</name>
-        <qualifiedname>Brush::Split::gini_impurity_index</qualifiedname>
-        <param>
-          <type><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">const</ref> ArrayXf &amp;</type>
-          <declname>classes</declname>
-        </param>
-        <param>
-          <type><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">const</ref> vector&lt; <ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">float</ref> &gt; &amp;</type>
-          <declname>unique_classes</declname>
-        </param>
-        <briefdescription>
-        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="/home/runner/work/brush/brush/src/program/split.cpp" line="93" column="7" bodyfile="/home/runner/work/brush/brush/src/program/split.cpp" bodystart="93" bodyend="107"/>
-        <references refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" compoundref="d4/d93/bind__engines_8h" startline="35" endline="104">bind_engine</references>
-        <referencedby refid="d7/da9/namespaceBrush_1_1Split_1a34b904a04926a4b4280fb922618cfe19" compoundref="d4/d59/split_8cpp" startline="66" endline="91">gain</referencedby>
+        <references refid="d7/da9/namespaceBrush_1_1Split_1ae5981aac972763c24e7b668bfca35e96" compoundref="d7/de0/operator_8h" startline="16" endline="18">threshold_mask</references>
       </memberdef>
     </sectiondef>
     <briefdescription>
     </briefdescription>
     <detaileddescription>
     </detaileddescription>
-    <location file="/home/runner/work/brush/brush/src/program/split.cpp" line="5" column="1"/>
+    <location file="/home/runner/work/brush/brush/src/program/split.h" line="11" column="1"/>
   </compounddef>
 </doxygen>

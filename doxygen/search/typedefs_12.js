@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['valtype_0',['ValType',['../d7/d56/structBrush_1_1Data_1_1TimeSeries.html#aef32cd8108ad378942c6c3af97902bd9',1,'Brush::Data::TimeSeries']]]
+  ['valtype_0',['ValType',['../d7/d56/structBrush_1_1Data_1_1TimeSeries.html#aef32cd8108ad378942c6c3af97902bd9',1,'Brush::Data::TimeSeries::ValType'],['../d0/d8e/structTimeSeries.html#aef32cd8108ad378942c6c3af97902bd9',1,'TimeSeries::ValType']]]
 ];

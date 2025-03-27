@@ -1,4 +1,5 @@
 var structBrush_1_1Function_3_01NodeType_1_1Tanh_01_4 =
 [
-    [ "operator()", "dc/d5d/structBrush_1_1Function_3_01NodeType_1_1Tanh_01_4.html#aa0d02aa91a85f0cb1b39a7e0b165a741", null ]
+    [ "operator()", "dc/d5d/structBrush_1_1Function_3_01NodeType_1_1Tanh_01_4.html#aa0d02aa91a85f0cb1b39a7e0b165a741", null ],
+    [ "operator()", "d9/d1b/structBrush_1_1Function.html#a9ded8f668ece5beef07a87c790409fd7", null ]
 ];

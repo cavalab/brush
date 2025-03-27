@@ -1,8 +1,8 @@
 var searchData=
 [
-  ['before_0',['before',['../d7/d56/structBrush_1_1Data_1_1TimeSeries.html#ae672d626332ece1cf54512346e831abc',1,'Brush::Data::TimeSeries']]],
-  ['begin_1',['begin',['../d7/d56/structBrush_1_1Data_1_1TimeSeries.html#a4be907c10ce3806f68b946914d0b3aaf',1,'Brush::Data::TimeSeries']]],
-  ['best_5fthreshold_2',['best_threshold',['../de/dd1/namespaceSplit.html#a8933966c6b11cefe6449cb08ec900b09',1,'Split']]],
+  ['before_0',['before',['../d7/d56/structBrush_1_1Data_1_1TimeSeries.html#ae672d626332ece1cf54512346e831abc',1,'Brush::Data::TimeSeries::before()'],['../d0/d8e/structTimeSeries.html#ae672d626332ece1cf54512346e831abc',1,'TimeSeries::before()']]],
+  ['begin_1',['begin',['../d7/d56/structBrush_1_1Data_1_1TimeSeries.html#a4be907c10ce3806f68b946914d0b3aaf',1,'Brush::Data::TimeSeries::begin()'],['../d0/d8e/structTimeSeries.html#a4be907c10ce3806f68b946914d0b3aaf',1,'TimeSeries::begin()']]],
+  ['best_5fthreshold_2',['best_threshold',['../d7/da9/namespaceBrush_1_1Split.html#af6b5bdffd15b23bf2116c7732b3364f7',1,'Brush::Split::best_threshold()'],['../de/dd1/namespaceSplit.html#a8933966c6b11cefe6449cb08ec900b09',1,'Split::best_threshold()']]],
   ['bind_5fdataset_3',['bind_dataset',['../d9/d40/bind__dataset_8cpp.html#a3a32d76d471ed16427cad15ed2364f0f',1,'bind_dataset(py::module &amp;m):&#160;bind_dataset.cpp'],['../dd/d30/module_8cpp.html#a995ca1cce898b8c2bab6ab3abd3e2997',1,'bind_dataset(py::module &amp;):&#160;bind_dataset.cpp']]],
   ['bind_5fengine_4',['bind_engine',['../d4/d93/bind__engines_8h.html#a7084fed01f1c1153d0d06da9a828b5a3',1,'bind_engines.h']]],
   ['bind_5fengines_5',['bind_engines',['../d1/df0/bind__engines_8cpp.html#a5e9ee65a2fe83e25a41b3776034ca404',1,'bind_engines(py::module &amp;m):&#160;bind_engines.cpp'],['../dd/d30/module_8cpp.html#ac217bc6161b212344e576f7333ad9942',1,'bind_engines(py::module &amp;):&#160;bind_engines.cpp']]],

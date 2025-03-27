@@ -38,9 +38,9 @@ var signatures_8h =
     [ "Brush::Signatures< N, enable_if_t< is_in_v< N, NodeType::SplitBest, NodeType::CustomSplit > > >", "d2/d1e/structBrush_1_1Signatures_3_01N_00_01enable__if__t_3_01is__in__v_3_01N_00_01NodeType_1_1SplitBesd813f162f676219afb7a127e3ee4a443.html", "d2/d1e/structBrush_1_1Signatures_3_01N_00_01enable__if__t_3_01is__in__v_3_01N_00_01NodeType_1_1SplitBesd813f162f676219afb7a127e3ee4a443" ],
     [ "Brush::Signatures< NodeType::SplitOn >", "dd/d50/structBrush_1_1Signatures_3_01NodeType_1_1SplitOn_01_4.html", "dd/d50/structBrush_1_1Signatures_3_01NodeType_1_1SplitOn_01_4" ],
     [ "Brush::Signatures< NodeType::Softmax >", "db/d1c/structBrush_1_1Signatures_3_01NodeType_1_1Softmax_01_4.html", "db/d1c/structBrush_1_1Signatures_3_01NodeType_1_1Softmax_01_4" ],
-    [ "Jetify_t", "d8/d8b/signatures_8h.html#a7845c50e5beff50fa7f26e1974d6db16", null ],
-    [ "NarySignature_t", "d8/d8b/signatures_8h.html#a554cee03a084c9eff5d9fc51ca09138a", null ],
-    [ "NarySignatures_t", "d8/d8b/signatures_8h.html#aa7f62d6842debd5e9ff4afabeb46111a", null ],
-    [ "UnJetify_t", "d8/d8b/signatures_8h.html#a805656a0582c2089b72626de22177962", null ],
-    [ "MAX_ARGS", "d8/d8b/signatures_8h.html#a5720ee549e0df722bd77a7495c0c6f60", null ]
+    [ "Brush::Jetify_t", "dc/d5c/namespaceBrush.html#a7845c50e5beff50fa7f26e1974d6db16", null ],
+    [ "Brush::NarySignature_t", "dc/d5c/namespaceBrush.html#a554cee03a084c9eff5d9fc51ca09138a", null ],
+    [ "Brush::NarySignatures_t", "dc/d5c/namespaceBrush.html#aa7f62d6842debd5e9ff4afabeb46111a", null ],
+    [ "Brush::UnJetify_t", "dc/d5c/namespaceBrush.html#a805656a0582c2089b72626de22177962", null ],
+    [ "Brush::MAX_ARGS", "dc/d5c/namespaceBrush.html#a5720ee549e0df722bd77a7495c0c6f60", null ]
 ];

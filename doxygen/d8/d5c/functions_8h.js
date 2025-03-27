@@ -43,6 +43,9 @@ var functions_8h =
     [ "Brush::Function< NodeType::And >", "de/d19/structBrush_1_1Function_3_01NodeType_1_1And_01_4.html", "de/d19/structBrush_1_1Function_3_01NodeType_1_1And_01_4" ],
     [ "Brush::Function< NodeType::Or >", "d4/d1b/structBrush_1_1Function_3_01NodeType_1_1Or_01_4.html", "d4/d1b/structBrush_1_1Function_3_01NodeType_1_1Or_01_4" ],
     [ "Brush::Function< NodeType::Not >", "d4/d67/structBrush_1_1Function_3_01NodeType_1_1Not_01_4.html", "d4/d67/structBrush_1_1Function_3_01NodeType_1_1Not_01_4" ],
+    [ "TimeSeries< T >", "d0/d8e/structTimeSeries.html", "d0/d8e/structTimeSeries" ],
     [ "ArrayXb", "d8/d5c/functions_8h.html#a6a33354c51ab1e4986b2a222aac825a7", null ],
-    [ "Stack", "d8/d5c/functions_8h.html#a37e6a93b6978c3a875d719972ae1736a", null ]
+    [ "TimeSeriesf", "d8/d5c/functions_8h.html#a66dd2004d1ee46aa2b08a5b2ff462d29", null ],
+    [ "NodeType", "d8/d5c/functions_8h.html#a051322bb9fd1db4638b6eccd399a29c8", null ],
+    [ "Brush::Stack", "dc/d5c/namespaceBrush.html#a37e6a93b6978c3a875d719972ae1736a", null ]
 ];

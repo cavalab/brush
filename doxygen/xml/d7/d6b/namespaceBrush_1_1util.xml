@@ -1,18 +1,18 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
-<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.10.0" xml:lang="en-US">
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.13.2" xml:lang="en-US">
   <compounddef id="d7/d6b/namespaceBrush_1_1util" kind="namespace" language="C++">
     <compoundname>Brush::util</compoundname>
     <sectiondef kind="func">
       <memberdef kind="function" id="d7/d6b/namespaceBrush_1_1util_1ac055af6270e6bbb0cef4f33d70f0cb04" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <templateparamlist>
           <param>
-            <type><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">typename</ref> T</type>
+            <type>typename T</type>
           </param>
           <param>
-            <type><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">typename</ref> <ref refid="dc/d5c/namespaceBrush_1a5b9f71c99a1fe42d359ae45033b58620" kindref="member">Scalar</ref></type>
+            <type>typename <ref refid="dc/d5c/namespaceBrush_1a5b9f71c99a1fe42d359ae45033b58620" kindref="member">Scalar</ref></type>
           </param>
           <param>
-            <type><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">typename</ref> W</type>
+            <type>typename W</type>
           </param>
         </templateparamlist>
         <type><ref refid="dc/d5c/namespaceBrush_1a5b9f71c99a1fe42d359ae45033b58620" kindref="member">Scalar</ref></type>
@@ -21,15 +21,15 @@
         <name>get_weight</name>
         <qualifiedname>Brush::util::get_weight</qualifiedname>
         <param>
-          <type><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">const</ref> <ref refid="df/d61/dispatch__table_8h_1a5d0d9e773ca46763fb1b1152cafc4179" kindref="member">TreeNode</ref> &amp;</type>
+          <type>const <ref refid="df/d61/dispatch__table_8h_1a5d0d9e773ca46763fb1b1152cafc4179" kindref="member">TreeNode</ref> &amp;</type>
           <declname>tn</declname>
         </param>
         <param>
-          <type><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">const</ref> W **</type>
+          <type>const W **</type>
           <declname>weights</declname>
-          <defval><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">nullptr</ref></defval>
+          <defval>nullptr</defval>
         </param>
-    <requiresclause>(!is_one_of_v&lt;<ref refid="dc/d5c/namespaceBrush_1a5b9f71c99a1fe42d359ae45033b58620" kindref="member">Scalar</ref>,<ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">bool</ref>,<ref refid="dc/d5c/namespaceBrush_1a1dc15defd0ed08feac029e2844f7867e" kindref="member">bJet</ref>&gt;)    </requiresclause>
+    <requiresclause>(!is_one_of_v&lt;<ref refid="dc/d5c/namespaceBrush_1a5b9f71c99a1fe42d359ae45033b58620" kindref="member">Scalar</ref>,bool,<ref refid="dc/d5c/namespaceBrush_1a1dc15defd0ed08feac029e2844f7867e" kindref="member">bJet</ref>&gt;)    </requiresclause>
         <briefdescription>
 <para>get weight </para>
         </briefdescription>
@@ -44,7 +44,7 @@
 </parameteritem>
 <parameteritem>
 <parameternamelist>
-<parametername>Scalar</parametername>
+<parametername><ref refid="dc/d5c/namespaceBrush_1a5b9f71c99a1fe42d359ae45033b58620" kindref="member">Scalar</ref></parametername>
 </parameternamelist>
 <parameterdescription>
 <para>scalar type of return type </para>
@@ -75,18 +75,22 @@
         <inbodydescription>
         </inbodydescription>
         <location file="/home/runner/work/brush/brush/src/program/operator.h" line="20" column="12" bodyfile="/home/runner/work/brush/brush/src/program/operator.h" bodystart="20" bodyend="47"/>
-        <references refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" compoundref="d4/d93/bind__engines_8h" startline="35" endline="104">bind_engine</references>
+        <referencedby refid="dc/d31/structBrush_1_1Operator_1a19c4d0c66ace631c3105e11bd75b4761" compoundref="d7/de0/operator_8h" startline="215" endline="227">Brush::Operator&lt; NT, S, Fit, E &gt;::eval</referencedby>
+        <referencedby refid="df/dc1/structBrush_1_1Operator_3_01NodeType_1_1Constant_00_01S_00_01Fit_01_4_1a1309f7a7253c0899447c91ebfee84a3a" compoundref="d7/de0/operator_8h" startline="313" endline="321">Brush::Operator&lt; NodeType::Constant, S, Fit &gt;::eval</referencedby>
+        <referencedby refid="dd/d88/structBrush_1_1Operator_3_01NodeType_1_1Terminal_00_01S_00_01Fit_01_4_1ac4f981989fbe362656ac8294fa0d4ef3" compoundref="d7/de0/operator_8h" startline="258" endline="269">Brush::Operator&lt; NodeType::Terminal, S, Fit &gt;::eval</referencedby>
+        <referencedby refid="db/d1f/structBrush_1_1Operator_3_01NT_00_01S_00_01Fit_00_01enable__if__t_3_01is__in__v_3_01NT_00_01Node0d34d2b97afea7b3bb37b94bd97cbb86_1ae195a1f5837279cdad368eeb135bb9e1" compoundref="d7/de0/operator_8h" startline="278" endline="283">Brush::Operator&lt; NT, S, Fit, enable_if_t&lt; is_in_v&lt; NT, NodeType::SplitOn, NodeType::SplitBest &gt; &gt; &gt;::eval</referencedby>
+        <referencedby refid="d9/d5e/structBrush_1_1Operator_3_01NodeType_1_1MeanLabel_00_01S_00_01Fit_01_4_1a56b67e05e4f1f89f7fd83f755d826d16" compoundref="d7/de0/operator_8h" startline="339" endline="346">Brush::Operator&lt; NodeType::MeanLabel, S, Fit &gt;::predict</referencedby>
       </memberdef>
       <memberdef kind="function" id="d7/d6b/namespaceBrush_1_1util_1a2ccf781c58dfb5c3363b0a270381c87e" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <templateparamlist>
           <param>
-            <type><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">typename</ref> T</type>
+            <type>typename T</type>
           </param>
           <param>
-            <type><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">typename</ref> <ref refid="dc/d5c/namespaceBrush_1a5b9f71c99a1fe42d359ae45033b58620" kindref="member">Scalar</ref></type>
+            <type>typename <ref refid="dc/d5c/namespaceBrush_1a5b9f71c99a1fe42d359ae45033b58620" kindref="member">Scalar</ref></type>
           </param>
           <param>
-            <type><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">typename</ref> W</type>
+            <type>typename W</type>
           </param>
         </templateparamlist>
         <type><ref refid="dc/d5c/namespaceBrush_1a5b9f71c99a1fe42d359ae45033b58620" kindref="member">Scalar</ref></type>
@@ -95,15 +99,15 @@
         <name>get_weight</name>
         <qualifiedname>Brush::util::get_weight</qualifiedname>
         <param>
-          <type><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">const</ref> <ref refid="df/d61/dispatch__table_8h_1a5d0d9e773ca46763fb1b1152cafc4179" kindref="member">TreeNode</ref> &amp;</type>
+          <type>const <ref refid="df/d61/dispatch__table_8h_1a5d0d9e773ca46763fb1b1152cafc4179" kindref="member">TreeNode</ref> &amp;</type>
           <declname>tn</declname>
         </param>
         <param>
-          <type><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">const</ref> W **</type>
+          <type>const W **</type>
           <declname>weights</declname>
-          <defval><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">nullptr</ref></defval>
+          <defval>nullptr</defval>
         </param>
-    <requiresclause>(is_one_of_v&lt;<ref refid="dc/d5c/namespaceBrush_1a5b9f71c99a1fe42d359ae45033b58620" kindref="member">Scalar</ref>,<ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">bool</ref>,<ref refid="dc/d5c/namespaceBrush_1a1dc15defd0ed08feac029e2844f7867e" kindref="member">bJet</ref>&gt;)    </requiresclause>
+    <requiresclause>(is_one_of_v&lt;<ref refid="dc/d5c/namespaceBrush_1a5b9f71c99a1fe42d359ae45033b58620" kindref="member">Scalar</ref>,bool,<ref refid="dc/d5c/namespaceBrush_1a1dc15defd0ed08feac029e2844f7867e" kindref="member">bJet</ref>&gt;)    </requiresclause>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
@@ -111,8 +115,6 @@
         <inbodydescription>
         </inbodydescription>
         <location file="/home/runner/work/brush/brush/src/program/operator.h" line="50" column="12" bodyfile="/home/runner/work/brush/brush/src/program/operator.h" bodystart="50" bodyend="64"/>
-        <references refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" compoundref="d4/d93/bind__engines_8h" startline="35" endline="104">bind_engine</references>
-        <references refid="da/d41/error_8h_1aa4c550bcd71e4ec1c97b111e1360509a" compoundref="da/d41/error_8h" startline="27">HANDLE_ERROR_THROW</references>
       </memberdef>
     </sectiondef>
     <briefdescription>

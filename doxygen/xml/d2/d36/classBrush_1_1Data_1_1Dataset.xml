@@ -1,11 +1,11 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
-<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.10.0" xml:lang="en-US">
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.13.2" xml:lang="en-US">
   <compounddef id="d2/d36/classBrush_1_1Data_1_1Dataset" kind="class" language="C++" prot="public">
     <compoundname>Brush::Data::Dataset</compoundname>
     <includes refid="d2/dbd/data_8h" local="no">data.h</includes>
     <sectiondef kind="private-attrib">
       <memberdef kind="variable" id="d2/d36/classBrush_1_1Data_1_1Dataset_1a4112a2cb86ce4138c3c4bea966c96b65" prot="private" static="no" mutable="no">
-        <type>vector&lt; <ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">size_t</ref> &gt;</type>
+        <type><ref refid="d7/dfc/classvector" kindref="compound">vector</ref>&lt; size_t &gt;</type>
         <definition>vector&lt;size_t&gt; Brush::Data::Dataset::training_data_idx</definition>
         <argsstring></argsstring>
         <name>training_data_idx</name>
@@ -21,7 +21,7 @@
         <referencedby refid="d2/d36/classBrush_1_1Data_1_1Dataset_1aacd5afd19b9cee9d9d84e4290eeabb6f" compoundref="da/dc9/data_8cpp" startline="178" endline="228">init</referencedby>
       </memberdef>
       <memberdef kind="variable" id="d2/d36/classBrush_1_1Data_1_1Dataset_1ab8f3010fa3099efe3aac8fcd3140faf6" prot="private" static="no" mutable="no">
-        <type>vector&lt; <ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">size_t</ref> &gt;</type>
+        <type><ref refid="d7/dfc/classvector" kindref="compound">vector</ref>&lt; size_t &gt;</type>
         <definition>vector&lt;size_t&gt; Brush::Data::Dataset::validation_data_idx</definition>
         <argsstring></argsstring>
         <name>validation_data_idx</name>
@@ -53,6 +53,7 @@
         </inbodydescription>
         <location file="/home/runner/work/brush/brush/src/data/data.h" line="62" column="21" bodyfile="/home/runner/work/brush/brush/src/data/data.h" bodystart="62" bodyend="-1"/>
         <referencedby refid="d2/d36/classBrush_1_1Data_1_1Dataset_1aacd5afd19b9cee9d9d84e4290eeabb6f" compoundref="da/dc9/data_8cpp" startline="178" endline="228">init</referencedby>
+        <referencedby refid="d4/dc3/structBrush_1_1SearchSpace_1a5e4bea5b32dfe137262f014c8107a0f7" compoundref="da/d48/search__space_8cpp" startline="166" endline="233">Brush::SearchSpace::init</referencedby>
       </memberdef>
       <memberdef kind="variable" id="d2/d36/classBrush_1_1Data_1_1Dataset_1a52d591cce797480e80f8cf1f1482702e" prot="public" static="no" mutable="no">
         <type>std::vector&lt; <ref refid="dc/d5c/namespaceBrush_1a3f2c9b744330ba4a561ac72f048a1a5f" kindref="member">DataType</ref> &gt;</type>
@@ -61,8 +62,7 @@
         <name>feature_types</name>
         <qualifiedname>Brush::Data::Dataset::feature_types</qualifiedname>
         <briefdescription>
-<para>types of data in the features. <linebreak/>
- </para>
+<para>types of data in the features. </para>
         </briefdescription>
         <detaileddescription>
         </detaileddescription>
@@ -72,7 +72,7 @@
         <referencedby refid="d2/d36/classBrush_1_1Data_1_1Dataset_1aacd5afd19b9cee9d9d84e4290eeabb6f" compoundref="da/dc9/data_8cpp" startline="178" endline="228">init</referencedby>
       </memberdef>
       <memberdef kind="variable" id="d2/d36/classBrush_1_1Data_1_1Dataset_1a652aba735323fddf7bf79407e7e4fc83" prot="public" static="no" mutable="no">
-        <type>std::unordered_map&lt; <ref refid="dc/d5c/namespaceBrush_1a3f2c9b744330ba4a561ac72f048a1a5f" kindref="member">DataType</ref>, vector&lt; string &gt; &gt;</type>
+        <type>std::unordered_map&lt; <ref refid="dc/d5c/namespaceBrush_1a3f2c9b744330ba4a561ac72f048a1a5f" kindref="member">DataType</ref>, <ref refid="d7/dfc/classvector" kindref="compound">vector</ref>&lt; <ref refid="d5/d92/classstring" kindref="compound">string</ref> &gt; &gt;</type>
         <definition>std::unordered_map&lt;DataType,vector&lt;string&gt; &gt; Brush::Data::Dataset::features_of_type</definition>
         <argsstring></argsstring>
         <name>features_of_type</name>
@@ -88,7 +88,7 @@
         <referencedby refid="d2/d36/classBrush_1_1Data_1_1Dataset_1aacd5afd19b9cee9d9d84e4290eeabb6f" compoundref="da/dc9/data_8cpp" startline="178" endline="228">init</referencedby>
       </memberdef>
       <memberdef kind="variable" id="d2/d36/classBrush_1_1Data_1_1Dataset_1a23f1c86e056b6806e7fa66c8fe6ea9ff" prot="public" static="no" mutable="no">
-        <type>std::map&lt; string, <ref refid="d9/d1c/namespaceBrush_1_1Data_1aeec1ea0d55dd44db207801471be4f09c" kindref="member">State</ref> &gt;</type>
+        <type>std::map&lt; <ref refid="d5/d92/classstring" kindref="compound">string</ref>, <ref refid="d9/d1c/namespaceBrush_1_1Data_1aeec1ea0d55dd44db207801471be4f09c" kindref="member">State</ref> &gt;</type>
         <definition>std::map&lt;string, State&gt; Brush::Data::Dataset::features</definition>
         <argsstring></argsstring>
         <name>features</name>
@@ -101,11 +101,15 @@
         <inbodydescription>
         </inbodydescription>
         <location file="/home/runner/work/brush/brush/src/data/data.h" line="71" column="18" bodyfile="/home/runner/work/brush/brush/src/data/data.h" bodystart="71" bodyend="-1"/>
+        <referencedby refid="d2/d36/classBrush_1_1Data_1_1Dataset_1aa09045b1736581575ec928a7eba7dd98" compoundref="da/dc9/data_8cpp" startline="283" endline="331">copy_and_make_features</referencedby>
+        <referencedby refid="d2/d36/classBrush_1_1Data_1_1Dataset_1ac15d3e1c19c7d2acd3499a8392512a12" compoundref="d2/dbd/data_8h" startline="166" endline="179">Dataset</referencedby>
+        <referencedby refid="d2/d36/classBrush_1_1Data_1_1Dataset_1ab359a25094c452b49e0a998542e34a42" compoundref="d2/dbd/data_8h" startline="147" endline="161">Dataset</referencedby>
+        <referencedby refid="d2/d36/classBrush_1_1Data_1_1Dataset_1aa9fa70bb9e8720a3b9ceafb9aa643df4" compoundref="d2/dbd/data_8h" startline="110" endline="123">Dataset</referencedby>
+        <referencedby refid="dc/d5c/namespaceBrush_1a7d1315460dd7c6eb76e3ace99d4aad03" compoundref="da/d48/search__space_8cpp" startline="51" endline="158">Brush::generate_terminals</referencedby>
         <referencedby refid="d2/d36/classBrush_1_1Data_1_1Dataset_1a2b7b42b1b16630554b2e49102098a170" compoundref="d2/dbd/data_8h" startline="209" endline="214">get_n_samples</referencedby>
         <referencedby refid="d2/d36/classBrush_1_1Data_1_1Dataset_1aacd5afd19b9cee9d9d84e4290eeabb6f" compoundref="da/dc9/data_8cpp" startline="178" endline="228">init</referencedby>
         <referencedby refid="d2/d36/classBrush_1_1Data_1_1Dataset_1afa676d96150281b2384a07e4a3fcc352" compoundref="da/dc9/data_8cpp" startline="117" endline="141">operator()</referencedby>
         <referencedby refid="d2/d36/classBrush_1_1Data_1_1Dataset_1a86f779c55c96ff7182b4e649f87fbf24" compoundref="d2/dbd/data_8h" startline="224" endline="229">operator[]</referencedby>
-        <referencedby refid="d2/d36/classBrush_1_1Data_1_1Dataset_1a59ec8554d617a4a99ba7feec09bdc62c" compoundref="d2/dbd/data_8h" startline="181" endline="196">print</referencedby>
       </memberdef>
       <memberdef kind="variable" id="d2/d36/classBrush_1_1Data_1_1Dataset_1ade105f069d4f745d44374b7b8a3a9b0d" prot="public" static="no" mutable="no">
         <type>ArrayXf</type>
@@ -121,11 +125,16 @@
         <inbodydescription>
         </inbodydescription>
         <location file="/home/runner/work/brush/brush/src/data/data.h" line="76" column="17" bodyfile="/home/runner/work/brush/brush/src/data/data.h" bodystart="76" bodyend="-1"/>
+        <referencedby refid="d9/d40/bind__dataset_8cpp_1a3a32d76d471ed16427cad15ed2364f0f" compoundref="d9/d40/bind__dataset_8cpp" startline="9" endline="75">bind_dataset</referencedby>
+        <referencedby refid="d2/d36/classBrush_1_1Data_1_1Dataset_1aa9fa70bb9e8720a3b9ceafb9aa643df4" compoundref="d2/dbd/data_8h" startline="110" endline="123">Dataset</referencedby>
+        <referencedby refid="d9/d5e/structBrush_1_1Operator_3_01NodeType_1_1MeanLabel_00_01S_00_01Fit_01_4_1a0a729da1a61e625544c79406c1d38a8f" compoundref="d7/de0/operator_8h" startline="333" endline="336">Brush::Operator&lt; NodeType::MeanLabel, S, Fit &gt;::fit</referencedby>
+        <referencedby refid="dc/d5c/namespaceBrush_1a7d1315460dd7c6eb76e3ace99d4aad03" compoundref="da/d48/search__space_8cpp" startline="51" endline="158">Brush::generate_terminals</referencedby>
+        <referencedby refid="d4/dc3/structBrush_1_1SearchSpace_1a5e4bea5b32dfe137262f014c8107a0f7" compoundref="da/d48/search__space_8cpp" startline="166" endline="233">Brush::SearchSpace::init</referencedby>
         <referencedby refid="d2/d36/classBrush_1_1Data_1_1Dataset_1afa676d96150281b2384a07e4a3fcc352" compoundref="da/dc9/data_8cpp" startline="117" endline="141">operator()</referencedby>
         <referencedby refid="d1/de5/classBrush_1_1Eval_1_1Evaluation_1a1d652164264243bd40efcfd38ba6d569" compoundref="d9/d6a/evaluation_8cpp" startline="9" endline="42">Brush::Eval::Evaluation&lt; T &gt;::update_fitness</referencedby>
       </memberdef>
       <memberdef kind="variable" id="d2/d36/classBrush_1_1Data_1_1Dataset_1a1a8a1e77afdecb032696bdf38e5c424c" prot="public" static="no" mutable="no">
-        <type><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">bool</ref></type>
+        <type>bool</type>
         <definition>bool Brush::Data::Dataset::classification</definition>
         <argsstring></argsstring>
         <name>classification</name>
@@ -138,10 +147,14 @@
         <inbodydescription>
         </inbodydescription>
         <location file="/home/runner/work/brush/brush/src/data/data.h" line="79" column="14" bodyfile="/home/runner/work/brush/brush/src/data/data.h" bodystart="79" bodyend="-1"/>
+        <referencedby refid="d2/d36/classBrush_1_1Data_1_1Dataset_1ac15d3e1c19c7d2acd3499a8392512a12" compoundref="d2/dbd/data_8h" startline="166" endline="179">Dataset</referencedby>
+        <referencedby refid="d2/d36/classBrush_1_1Data_1_1Dataset_1ab359a25094c452b49e0a998542e34a42" compoundref="d2/dbd/data_8h" startline="147" endline="161">Dataset</referencedby>
+        <referencedby refid="d2/d36/classBrush_1_1Data_1_1Dataset_1aa9fa70bb9e8720a3b9ceafb9aa643df4" compoundref="d2/dbd/data_8h" startline="110" endline="123">Dataset</referencedby>
+        <referencedby refid="d4/dc3/structBrush_1_1SearchSpace_1a5e4bea5b32dfe137262f014c8107a0f7" compoundref="da/d48/search__space_8cpp" startline="166" endline="233">Brush::SearchSpace::init</referencedby>
         <referencedby refid="d2/d36/classBrush_1_1Data_1_1Dataset_1afa676d96150281b2384a07e4a3fcc352" compoundref="da/dc9/data_8cpp" startline="117" endline="141">operator()</referencedby>
       </memberdef>
       <memberdef kind="variable" id="d2/d36/classBrush_1_1Data_1_1Dataset_1a8a1a428f46a5c80322000f4bef0a09d4" prot="public" static="no" mutable="no">
-        <type>std::optional&lt; std::reference_wrapper&lt; <ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">const</ref> ArrayXXf &gt; &gt;</type>
+        <type>std::optional&lt; std::reference_wrapper&lt; const ArrayXXf &gt; &gt;</type>
         <definition>std::optional&lt;std::reference_wrapper&lt;const ArrayXXf&gt; &gt; Brush::Data::Dataset::Xref</definition>
         <argsstring></argsstring>
         <name>Xref</name>
@@ -157,7 +170,7 @@
         <referencedby refid="d2/d36/classBrush_1_1Data_1_1Dataset_1a44ebc4ada574ea7a3a843ae74810aac9" compoundref="d2/dbd/data_8h" startline="197" endline="202">get_X</referencedby>
       </memberdef>
       <memberdef kind="variable" id="d2/d36/classBrush_1_1Data_1_1Dataset_1aae2b4b532ccc55a95f65b75a5cd9e176" prot="public" static="no" mutable="no">
-        <type><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">float</ref></type>
+        <type>float</type>
         <definition>float Brush::Data::Dataset::validation_size</definition>
         <argsstring></argsstring>
         <name>validation_size</name>
@@ -170,10 +183,13 @@
         <inbodydescription>
         </inbodydescription>
         <location file="/home/runner/work/brush/brush/src/data/data.h" line="83" column="15" bodyfile="/home/runner/work/brush/brush/src/data/data.h" bodystart="83" bodyend="-1"/>
+        <referencedby refid="d2/d36/classBrush_1_1Data_1_1Dataset_1ac15d3e1c19c7d2acd3499a8392512a12" compoundref="d2/dbd/data_8h" startline="166" endline="179">Dataset</referencedby>
+        <referencedby refid="d2/d36/classBrush_1_1Data_1_1Dataset_1ab359a25094c452b49e0a998542e34a42" compoundref="d2/dbd/data_8h" startline="147" endline="161">Dataset</referencedby>
+        <referencedby refid="d2/d36/classBrush_1_1Data_1_1Dataset_1aa9fa70bb9e8720a3b9ceafb9aa643df4" compoundref="d2/dbd/data_8h" startline="110" endline="123">Dataset</referencedby>
         <referencedby refid="d2/d36/classBrush_1_1Data_1_1Dataset_1aacd5afd19b9cee9d9d84e4290eeabb6f" compoundref="da/dc9/data_8cpp" startline="178" endline="228">init</referencedby>
       </memberdef>
       <memberdef kind="variable" id="d2/d36/classBrush_1_1Data_1_1Dataset_1a6cadfbd9f8a4700361e63defb7d6f6e0" prot="public" static="no" mutable="no">
-        <type><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">bool</ref></type>
+        <type>bool</type>
         <definition>bool Brush::Data::Dataset::use_validation</definition>
         <argsstring></argsstring>
         <name>use_validation</name>
@@ -186,10 +202,12 @@
         </inbodydescription>
         <location file="/home/runner/work/brush/brush/src/data/data.h" line="84" column="14" bodyfile="/home/runner/work/brush/brush/src/data/data.h" bodystart="84" bodyend="-1"/>
         <referencedby refid="d1/de5/classBrush_1_1Eval_1_1Evaluation_1ac7562624d114b22b19720729d599a40a" compoundref="d9/d6a/evaluation_8cpp" startline="46" endline="94">Brush::Eval::Evaluation&lt; T &gt;::assign_fit</referencedby>
+        <referencedby refid="d2/d36/classBrush_1_1Data_1_1Dataset_1ac15d3e1c19c7d2acd3499a8392512a12" compoundref="d2/dbd/data_8h" startline="166" endline="179">Dataset</referencedby>
+        <referencedby refid="d2/d36/classBrush_1_1Data_1_1Dataset_1aa9fa70bb9e8720a3b9ceafb9aa643df4" compoundref="d2/dbd/data_8h" startline="110" endline="123">Dataset</referencedby>
         <referencedby refid="d2/d36/classBrush_1_1Data_1_1Dataset_1aacd5afd19b9cee9d9d84e4290eeabb6f" compoundref="da/dc9/data_8cpp" startline="178" endline="228">init</referencedby>
       </memberdef>
       <memberdef kind="variable" id="d2/d36/classBrush_1_1Data_1_1Dataset_1a6ac1f4f56991e43a782dd519c414916a" prot="public" static="no" mutable="no">
-        <type><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">float</ref></type>
+        <type>float</type>
         <definition>float Brush::Data::Dataset::batch_size</definition>
         <argsstring></argsstring>
         <name>batch_size</name>
@@ -202,12 +220,15 @@
         <inbodydescription>
         </inbodydescription>
         <location file="/home/runner/work/brush/brush/src/data/data.h" line="87" column="15" bodyfile="/home/runner/work/brush/brush/src/data/data.h" bodystart="87" bodyend="-1"/>
+        <referencedby refid="d2/d36/classBrush_1_1Data_1_1Dataset_1ac15d3e1c19c7d2acd3499a8392512a12" compoundref="d2/dbd/data_8h" startline="166" endline="179">Dataset</referencedby>
+        <referencedby refid="d2/d36/classBrush_1_1Data_1_1Dataset_1ab359a25094c452b49e0a998542e34a42" compoundref="d2/dbd/data_8h" startline="147" endline="161">Dataset</referencedby>
+        <referencedby refid="d2/d36/classBrush_1_1Data_1_1Dataset_1aa9fa70bb9e8720a3b9ceafb9aa643df4" compoundref="d2/dbd/data_8h" startline="110" endline="123">Dataset</referencedby>
         <referencedby refid="d2/d36/classBrush_1_1Data_1_1Dataset_1a5020e43def6267598be0ba3d2b46e616" compoundref="da/dc9/data_8cpp" startline="146" endline="160">get_batch</referencedby>
         <referencedby refid="d2/d36/classBrush_1_1Data_1_1Dataset_1ade358be2a762f2a6df738a41fe1095b5" compoundref="da/dc9/data_8cpp" startline="231" endline="231">get_batch_size</referencedby>
         <referencedby refid="d2/d36/classBrush_1_1Data_1_1Dataset_1afa07fa8dff0f8e01293509d6b7cc0dc3" compoundref="da/dc9/data_8cpp" startline="232" endline="235">set_batch_size</referencedby>
       </memberdef>
       <memberdef kind="variable" id="d2/d36/classBrush_1_1Data_1_1Dataset_1a8cba7a5f962538d67012264fb6c97ed4" prot="public" static="no" mutable="no">
-        <type><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">bool</ref></type>
+        <type>bool</type>
         <definition>bool Brush::Data::Dataset::use_batch</definition>
         <argsstring></argsstring>
         <name>use_batch</name>
@@ -219,6 +240,8 @@
         <inbodydescription>
         </inbodydescription>
         <location file="/home/runner/work/brush/brush/src/data/data.h" line="88" column="14" bodyfile="/home/runner/work/brush/brush/src/data/data.h" bodystart="88" bodyend="-1"/>
+        <referencedby refid="d2/d36/classBrush_1_1Data_1_1Dataset_1ac15d3e1c19c7d2acd3499a8392512a12" compoundref="d2/dbd/data_8h" startline="166" endline="179">Dataset</referencedby>
+        <referencedby refid="d2/d36/classBrush_1_1Data_1_1Dataset_1aa9fa70bb9e8720a3b9ceafb9aa643df4" compoundref="d2/dbd/data_8h" startline="110" endline="123">Dataset</referencedby>
         <referencedby refid="d2/d36/classBrush_1_1Data_1_1Dataset_1a5020e43def6267598be0ba3d2b46e616" compoundref="da/dc9/data_8cpp" startline="146" endline="160">get_batch</referencedby>
         <referencedby refid="d0/d75/classBrush_1_1Engine_1a4248c80ebcd035a70953065045e04705" compoundref="da/d5c/engine_8cpp" startline="324" endline="527">Brush::Engine&lt; T &gt;::run</referencedby>
         <referencedby refid="d2/d36/classBrush_1_1Data_1_1Dataset_1afa07fa8dff0f8e01293509d6b7cc0dc3" compoundref="da/dc9/data_8cpp" startline="232" endline="235">set_batch_size</referencedby>
@@ -232,7 +255,7 @@
         <name>operator()</name>
         <qualifiedname>Brush::Data::Dataset::operator()</qualifiedname>
         <param>
-          <type><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">const</ref> vector&lt; <ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">size_t</ref> &gt; &amp;</type>
+          <type>const <ref refid="d7/dfc/classvector" kindref="compound">vector</ref>&lt; size_t &gt; &amp;</type>
           <declname>idx</declname>
         </param>
         <briefdescription>
@@ -243,14 +266,14 @@
         <inbodydescription>
         </inbodydescription>
         <location file="/home/runner/work/brush/brush/src/data/data.h" line="90" column="17" bodyfile="/home/runner/work/brush/brush/src/data/data.cpp" bodystart="117" bodyend="141"/>
-        <references refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" compoundref="d4/d93/bind__engines_8h" startline="35" endline="104">bind_engine</references>
+        <references refid="dc/d5c/namespaceBrush_1a6c9a5070ffbcf71c795073cbb2a88964" compoundref="d8/dc0/init_8h" startline="67">Brush::always_false_v</references>
         <references refid="d2/d36/classBrush_1_1Data_1_1Dataset_1a1a8a1e77afdecb032696bdf38e5c424c" compoundref="d2/dbd/data_8h" startline="79">classification</references>
         <references refid="d2/d36/classBrush_1_1Data_1_1Dataset_1aa9fa70bb9e8720a3b9ceafb9aa643df4" compoundref="d2/dbd/data_8h" startline="110" endline="123">Dataset</references>
         <references refid="d2/d36/classBrush_1_1Data_1_1Dataset_1a23f1c86e056b6806e7fa66c8fe6ea9ff" compoundref="d2/dbd/data_8h" startline="71">features</references>
         <references refid="d2/d36/classBrush_1_1Data_1_1Dataset_1ade105f069d4f745d44374b7b8a3a9b0d" compoundref="d2/dbd/data_8h" startline="76">y</references>
       </memberdef>
       <memberdef kind="function" id="d2/d36/classBrush_1_1Data_1_1Dataset_1aacd5afd19b9cee9d9d84e4290eeabb6f" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
-        <type><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">void</ref></type>
+        <type>void</type>
         <definition>void Brush::Data::Dataset::init</definition>
         <argsstring>()</argsstring>
         <name>init</name>
@@ -263,14 +286,12 @@
         <inbodydescription>
         </inbodydescription>
         <location file="/home/runner/work/brush/brush/src/data/data.h" line="93" column="14" bodyfile="/home/runner/work/brush/brush/src/data/data.cpp" bodystart="178" bodyend="228"/>
-        <references refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" compoundref="d4/d93/bind__engines_8h" startline="35" endline="104">bind_engine</references>
         <references refid="d2/d36/classBrush_1_1Data_1_1Dataset_1a52d591cce797480e80f8cf1f1482702e" compoundref="d2/dbd/data_8h" startline="65">feature_types</references>
         <references refid="d2/d36/classBrush_1_1Data_1_1Dataset_1a23f1c86e056b6806e7fa66c8fe6ea9ff" compoundref="d2/dbd/data_8h" startline="71">features</references>
         <references refid="d2/d36/classBrush_1_1Data_1_1Dataset_1a652aba735323fddf7bf79407e7e4fc83" compoundref="d2/dbd/data_8h" startline="68">features_of_type</references>
         <references refid="d2/d36/classBrush_1_1Data_1_1Dataset_1a2b7b42b1b16630554b2e49102098a170" compoundref="d2/dbd/data_8h" startline="209" endline="214">get_n_samples</references>
         <references refid="da/d41/error_8h_1aa4c550bcd71e4ec1c97b111e1360509a" compoundref="da/d41/error_8h" startline="27">HANDLE_ERROR_THROW</references>
         <references refid="d6/d2e/namespaceBrush_1_1Util_1af7dd70e54015821d96e3a1afed6344ca" compoundref="d2/da9/rnd_8h" startline="174">Brush::Util::r</references>
-        <references refid="d2/d2d/classBrush_1_1Util_1_1Rnd_1a5ec3a29d75a9154bbfdf3488db64fb69" compoundref="de/d67/rnd_8cpp" startline="121" endline="127">Brush::Util::Rnd::shuffled_index</references>
         <references refid="d9/d1c/namespaceBrush_1_1Data_1a6c00d36ba6aefd852544da96a089754a" compoundref="da/dc9/data_8cpp" startline="64" endline="67">Brush::Data::StateType</references>
         <references refid="d2/d36/classBrush_1_1Data_1_1Dataset_1a4112a2cb86ce4138c3c4bea966c96b65" compoundref="d2/dbd/data_8h" startline="57">training_data_idx</references>
         <references refid="d2/d36/classBrush_1_1Data_1_1Dataset_1a96fc30b35f152f425377e1ae34398779" compoundref="d2/dbd/data_8h" startline="62">unique_data_types</references>
@@ -282,22 +303,22 @@
         <referencedby refid="d2/d36/classBrush_1_1Data_1_1Dataset_1aa9fa70bb9e8720a3b9ceafb9aa643df4" compoundref="d2/dbd/data_8h" startline="110" endline="123">Dataset</referencedby>
       </memberdef>
       <memberdef kind="function" id="d2/d36/classBrush_1_1Data_1_1Dataset_1ab709f6732a1854b45418e7f14dd759ea" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
-        <type>map&lt; string, <ref refid="d9/d1c/namespaceBrush_1_1Data_1aeec1ea0d55dd44db207801471be4f09c" kindref="member">State</ref> &gt;</type>
+        <type><ref refid="d9/d28/classmap" kindref="compound">map</ref>&lt; <ref refid="d5/d92/classstring" kindref="compound">string</ref>, <ref refid="d9/d1c/namespaceBrush_1_1Data_1aeec1ea0d55dd44db207801471be4f09c" kindref="member">State</ref> &gt;</type>
         <definition>map&lt; string, State &gt; Brush::Data::Dataset::make_features</definition>
         <argsstring>(const ArrayXXf &amp;X, const map&lt; string, State &gt; &amp;Z={}, const vector&lt; string &gt; &amp;vn={})</argsstring>
         <name>make_features</name>
         <qualifiedname>Brush::Data::Dataset::make_features</qualifiedname>
         <param>
-          <type><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">const</ref> ArrayXXf &amp;</type>
+          <type>const ArrayXXf &amp;</type>
           <declname>X</declname>
         </param>
         <param>
-          <type><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">const</ref> map&lt; string, <ref refid="d9/d1c/namespaceBrush_1_1Data_1aeec1ea0d55dd44db207801471be4f09c" kindref="member">State</ref> &gt; &amp;</type>
+          <type>const <ref refid="d9/d28/classmap" kindref="compound">map</ref>&lt; <ref refid="d5/d92/classstring" kindref="compound">string</ref>, <ref refid="d9/d1c/namespaceBrush_1_1Data_1aeec1ea0d55dd44db207801471be4f09c" kindref="member">State</ref> &gt; &amp;</type>
           <declname>Z</declname>
           <defval>{}</defval>
         </param>
         <param>
-          <type><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">const</ref> vector&lt; string &gt; &amp;</type>
+          <type>const <ref refid="d7/dfc/classvector" kindref="compound">vector</ref>&lt; <ref refid="d5/d92/classstring" kindref="compound">string</ref> &gt; &amp;</type>
           <declname>vn</declname>
           <defval>{}</defval>
         </param>
@@ -309,27 +330,27 @@
         <inbodydescription>
         </inbodydescription>
         <location file="/home/runner/work/brush/brush/src/data/data.h" line="96" column="13" bodyfile="/home/runner/work/brush/brush/src/data/data.cpp" bodystart="238" bodyend="280"/>
-        <references refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" compoundref="d4/d93/bind__engines_8h" startline="35" endline="104">bind_engine</references>
         <references refid="d9/d1c/namespaceBrush_1_1Data_1a1087f7155f1e2855ed2821058b6ab036" compoundref="da/dc9/data_8cpp" startline="68" endline="103">Brush::Data::check_type</references>
         <references refid="da/d41/error_8h_1aa4c550bcd71e4ec1c97b111e1360509a" compoundref="da/d41/error_8h" startline="27">HANDLE_ERROR_THROW</references>
         <references refid="d6/d2e/namespaceBrush_1_1Util_1a9cd8004de7aab46b7a06f27d440064ed" compoundref="d5/d60/utils_8h" startline="369" endline="374">Brush::Util::to_string</references>
+        <referencedby refid="d2/d36/classBrush_1_1Data_1_1Dataset_1ab359a25094c452b49e0a998542e34a42" compoundref="d2/dbd/data_8h" startline="147" endline="161">Dataset</referencedby>
       </memberdef>
       <memberdef kind="function" id="d2/d36/classBrush_1_1Data_1_1Dataset_1aa09045b1736581575ec928a7eba7dd98" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
-        <type>map&lt; string, <ref refid="d9/d1c/namespaceBrush_1_1Data_1aeec1ea0d55dd44db207801471be4f09c" kindref="member">State</ref> &gt;</type>
+        <type><ref refid="d9/d28/classmap" kindref="compound">map</ref>&lt; <ref refid="d5/d92/classstring" kindref="compound">string</ref>, <ref refid="d9/d1c/namespaceBrush_1_1Data_1aeec1ea0d55dd44db207801471be4f09c" kindref="member">State</ref> &gt;</type>
         <definition>map&lt; string, State &gt; Brush::Data::Dataset::copy_and_make_features</definition>
         <argsstring>(const ArrayXXf &amp;X, const Dataset &amp;ref_dataset, const vector&lt; string &gt; &amp;vn={})</argsstring>
         <name>copy_and_make_features</name>
         <qualifiedname>Brush::Data::Dataset::copy_and_make_features</qualifiedname>
         <param>
-          <type><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">const</ref> ArrayXXf &amp;</type>
+          <type>const ArrayXXf &amp;</type>
           <declname>X</declname>
         </param>
         <param>
-          <type><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">const</ref> <ref refid="d2/d36/classBrush_1_1Data_1_1Dataset" kindref="compound">Dataset</ref> &amp;</type>
+          <type>const <ref refid="d2/d36/classBrush_1_1Data_1_1Dataset" kindref="compound">Dataset</ref> &amp;</type>
           <declname>ref_dataset</declname>
         </param>
         <param>
-          <type><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">const</ref> vector&lt; string &gt; &amp;</type>
+          <type>const <ref refid="d7/dfc/classvector" kindref="compound">vector</ref>&lt; <ref refid="d5/d92/classstring" kindref="compound">string</ref> &gt; &amp;</type>
           <declname>vn</declname>
           <defval>{}</defval>
         </param>
@@ -341,10 +362,12 @@
         <inbodydescription>
         </inbodydescription>
         <location file="/home/runner/work/brush/brush/src/data/data.h" line="104" column="13" bodyfile="/home/runner/work/brush/brush/src/data/data.cpp" bodystart="283" bodyend="331"/>
-        <references refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" compoundref="d4/d93/bind__engines_8h" startline="35" endline="104">bind_engine</references>
         <references refid="d9/d1c/namespaceBrush_1_1Data_1a5e5f876d004717e85c08b7661e090e29" compoundref="da/dc9/data_8cpp" startline="106" endline="114">Brush::Data::cast_type</references>
+        <references refid="d2/d36/classBrush_1_1Data_1_1Dataset_1aa9fa70bb9e8720a3b9ceafb9aa643df4" compoundref="d2/dbd/data_8h" startline="110" endline="123">Dataset</references>
+        <references refid="d2/d36/classBrush_1_1Data_1_1Dataset_1a23f1c86e056b6806e7fa66c8fe6ea9ff" compoundref="d2/dbd/data_8h" startline="71">features</references>
         <references refid="da/d41/error_8h_1aa4c550bcd71e4ec1c97b111e1360509a" compoundref="da/d41/error_8h" startline="27">HANDLE_ERROR_THROW</references>
         <references refid="d6/d2e/namespaceBrush_1_1Util_1a9cd8004de7aab46b7a06f27d440064ed" compoundref="d5/d60/utils_8h" startline="369" endline="374">Brush::Util::to_string</references>
+        <referencedby refid="d2/d36/classBrush_1_1Data_1_1Dataset_1ac15d3e1c19c7d2acd3499a8392512a12" compoundref="d2/dbd/data_8h" startline="166" endline="179">Dataset</referencedby>
       </memberdef>
       <memberdef kind="function" id="d2/d36/classBrush_1_1Data_1_1Dataset_1aa9fa70bb9e8720a3b9ceafb9aa643df4" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
         <type></type>
@@ -353,26 +376,26 @@
         <name>Dataset</name>
         <qualifiedname>Brush::Data::Dataset::Dataset</qualifiedname>
         <param>
-          <type>std::map&lt; string, <ref refid="d9/d1c/namespaceBrush_1_1Data_1aeec1ea0d55dd44db207801471be4f09c" kindref="member">State</ref> &gt; &amp;</type>
+          <type>std::map&lt; <ref refid="d5/d92/classstring" kindref="compound">string</ref>, <ref refid="d9/d1c/namespaceBrush_1_1Data_1aeec1ea0d55dd44db207801471be4f09c" kindref="member">State</ref> &gt; &amp;</type>
           <declname>d</declname>
         </param>
         <param>
-          <type><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">const</ref> <ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">Ref</ref>&lt; <ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">const</ref> ArrayXf &gt; &amp;</type>
+          <type>const Ref&lt; const ArrayXf &gt; &amp;</type>
           <declname>y_</declname>
           <defval>ArrayXf()</defval>
         </param>
         <param>
-          <type><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">bool</ref></type>
+          <type>bool</type>
           <declname>c</declname>
-          <defval><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">false</ref></defval>
+          <defval>false</defval>
         </param>
         <param>
-          <type><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">float</ref></type>
+          <type>float</type>
           <declname>validation_size</declname>
           <defval>0.0</defval>
         </param>
         <param>
-          <type><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">float</ref></type>
+          <type>float</type>
           <declname>batch_size</declname>
           <defval>1.0</defval>
         </param>
@@ -387,7 +410,19 @@
         <inbodydescription>
         </inbodydescription>
         <location file="/home/runner/work/brush/brush/src/data/data.h" line="110" column="9" bodyfile="/home/runner/work/brush/brush/src/data/data.h" bodystart="110" bodyend="123"/>
+        <references refid="d2/d36/classBrush_1_1Data_1_1Dataset_1a6ac1f4f56991e43a782dd519c414916a" compoundref="d2/dbd/data_8h" startline="87">batch_size</references>
+        <references refid="d2/d36/classBrush_1_1Data_1_1Dataset_1a1a8a1e77afdecb032696bdf38e5c424c" compoundref="d2/dbd/data_8h" startline="79">classification</references>
+        <references refid="d2/d36/classBrush_1_1Data_1_1Dataset_1a23f1c86e056b6806e7fa66c8fe6ea9ff" compoundref="d2/dbd/data_8h" startline="71">features</references>
         <references refid="d2/d36/classBrush_1_1Data_1_1Dataset_1aacd5afd19b9cee9d9d84e4290eeabb6f" compoundref="da/dc9/data_8cpp" startline="178" endline="228">init</references>
+        <references refid="d2/d36/classBrush_1_1Data_1_1Dataset_1a8cba7a5f962538d67012264fb6c97ed4" compoundref="d2/dbd/data_8h" startline="88">use_batch</references>
+        <references refid="d2/d36/classBrush_1_1Data_1_1Dataset_1a6cadfbd9f8a4700361e63defb7d6f6e0" compoundref="d2/dbd/data_8h" startline="84">use_validation</references>
+        <references refid="d2/d36/classBrush_1_1Data_1_1Dataset_1aae2b4b532ccc55a95f65b75a5cd9e176" compoundref="d2/dbd/data_8h" startline="83">validation_size</references>
+        <references refid="d2/d36/classBrush_1_1Data_1_1Dataset_1ade105f069d4f745d44374b7b8a3a9b0d" compoundref="d2/dbd/data_8h" startline="76">y</references>
+        <referencedby refid="d2/d36/classBrush_1_1Data_1_1Dataset_1aa09045b1736581575ec928a7eba7dd98" compoundref="da/dc9/data_8cpp" startline="283" endline="331">copy_and_make_features</referencedby>
+        <referencedby refid="d2/d36/classBrush_1_1Data_1_1Dataset_1ac15d3e1c19c7d2acd3499a8392512a12" compoundref="d2/dbd/data_8h" startline="166" endline="179">Dataset</referencedby>
+        <referencedby refid="d2/d36/classBrush_1_1Data_1_1Dataset_1a5020e43def6267598be0ba3d2b46e616" compoundref="da/dc9/data_8cpp" startline="146" endline="160">get_batch</referencedby>
+        <referencedby refid="d2/d36/classBrush_1_1Data_1_1Dataset_1ae69087b8c020840f254e3679cd324ba5" compoundref="da/dc9/data_8cpp" startline="173" endline="173">get_training_data</referencedby>
+        <referencedby refid="d2/d36/classBrush_1_1Data_1_1Dataset_1a1ddb847fd1ceff63e60ffd79542409d9" compoundref="da/dc9/data_8cpp" startline="174" endline="174">get_validation_data</referencedby>
         <referencedby refid="d2/d36/classBrush_1_1Data_1_1Dataset_1afa676d96150281b2384a07e4a3fcc352" compoundref="da/dc9/data_8cpp" startline="117" endline="141">operator()</referencedby>
       </memberdef>
       <memberdef kind="function" id="d2/d36/classBrush_1_1Data_1_1Dataset_1ac99a56b161c19d868efc3317545b6ca2" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
@@ -397,36 +432,36 @@
         <name>Dataset</name>
         <qualifiedname>Brush::Data::Dataset::Dataset</qualifiedname>
         <param>
-          <type><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">const</ref> ArrayXXf &amp;</type>
+          <type>const ArrayXXf &amp;</type>
           <declname>X</declname>
         </param>
         <param>
-          <type><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">const</ref> <ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">Ref</ref>&lt; <ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">const</ref> ArrayXf &gt; &amp;</type>
+          <type>const Ref&lt; const ArrayXf &gt; &amp;</type>
           <declname>y_</declname>
           <defval>ArrayXf()</defval>
         </param>
         <param>
-          <type><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">const</ref> vector&lt; string &gt; &amp;</type>
+          <type>const <ref refid="d7/dfc/classvector" kindref="compound">vector</ref>&lt; <ref refid="d5/d92/classstring" kindref="compound">string</ref> &gt; &amp;</type>
           <declname>vn</declname>
           <defval>{}</defval>
         </param>
         <param>
-          <type><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">const</ref> map&lt; string, <ref refid="d9/d1c/namespaceBrush_1_1Data_1aeec1ea0d55dd44db207801471be4f09c" kindref="member">State</ref> &gt; &amp;</type>
+          <type>const <ref refid="d9/d28/classmap" kindref="compound">map</ref>&lt; <ref refid="d5/d92/classstring" kindref="compound">string</ref>, <ref refid="d9/d1c/namespaceBrush_1_1Data_1aeec1ea0d55dd44db207801471be4f09c" kindref="member">State</ref> &gt; &amp;</type>
           <declname>Z</declname>
           <defval>{}</defval>
         </param>
         <param>
-          <type><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">bool</ref></type>
+          <type>bool</type>
           <declname>c</declname>
-          <defval><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">false</ref></defval>
+          <defval>false</defval>
         </param>
         <param>
-          <type><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">float</ref></type>
+          <type>float</type>
           <declname>validation_size</declname>
           <defval>0.0</defval>
         </param>
         <param>
-          <type><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">float</ref></type>
+          <type>float</type>
           <declname>batch_size</declname>
           <defval>1.0</defval>
         </param>
@@ -449,25 +484,25 @@
         <name>Dataset</name>
         <qualifiedname>Brush::Data::Dataset::Dataset</qualifiedname>
         <param>
-          <type><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">const</ref> ArrayXXf &amp;</type>
+          <type>const ArrayXXf &amp;</type>
           <declname>X</declname>
         </param>
         <param>
-          <type><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">const</ref> vector&lt; string &gt; &amp;</type>
+          <type>const <ref refid="d7/dfc/classvector" kindref="compound">vector</ref>&lt; <ref refid="d5/d92/classstring" kindref="compound">string</ref> &gt; &amp;</type>
           <declname>vn</declname>
         </param>
         <param>
-          <type><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">bool</ref></type>
+          <type>bool</type>
           <declname>c</declname>
-          <defval><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">false</ref></defval>
+          <defval>false</defval>
         </param>
         <param>
-          <type><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">float</ref></type>
+          <type>float</type>
           <declname>validation_size</declname>
           <defval>0.0</defval>
         </param>
         <param>
-          <type><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">float</ref></type>
+          <type>float</type>
           <declname>batch_size</declname>
           <defval>1.0</defval>
         </param>
@@ -482,6 +517,11 @@
         <inbodydescription>
         </inbodydescription>
         <location file="/home/runner/work/brush/brush/src/data/data.h" line="147" column="9" bodyfile="/home/runner/work/brush/brush/src/data/data.h" bodystart="147" bodyend="161"/>
+        <references refid="d2/d36/classBrush_1_1Data_1_1Dataset_1a6ac1f4f56991e43a782dd519c414916a" compoundref="d2/dbd/data_8h" startline="87">batch_size</references>
+        <references refid="d2/d36/classBrush_1_1Data_1_1Dataset_1a1a8a1e77afdecb032696bdf38e5c424c" compoundref="d2/dbd/data_8h" startline="79">classification</references>
+        <references refid="d2/d36/classBrush_1_1Data_1_1Dataset_1a23f1c86e056b6806e7fa66c8fe6ea9ff" compoundref="d2/dbd/data_8h" startline="71">features</references>
+        <references refid="d2/d36/classBrush_1_1Data_1_1Dataset_1ab709f6732a1854b45418e7f14dd759ea" compoundref="da/dc9/data_8cpp" startline="238" endline="280">make_features</references>
+        <references refid="d2/d36/classBrush_1_1Data_1_1Dataset_1aae2b4b532ccc55a95f65b75a5cd9e176" compoundref="d2/dbd/data_8h" startline="83">validation_size</references>
       </memberdef>
       <memberdef kind="function" id="d2/d36/classBrush_1_1Data_1_1Dataset_1ac15d3e1c19c7d2acd3499a8392512a12" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
         <type></type>
@@ -490,21 +530,21 @@
         <name>Dataset</name>
         <qualifiedname>Brush::Data::Dataset::Dataset</qualifiedname>
         <param>
-          <type><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">const</ref> ArrayXXf &amp;</type>
+          <type>const ArrayXXf &amp;</type>
           <declname>X</declname>
         </param>
         <param>
-          <type><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">const</ref> <ref refid="d2/d36/classBrush_1_1Data_1_1Dataset" kindref="compound">Dataset</ref> &amp;</type>
+          <type>const <ref refid="d2/d36/classBrush_1_1Data_1_1Dataset" kindref="compound">Dataset</ref> &amp;</type>
           <declname>ref_dataset</declname>
         </param>
         <param>
-          <type><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">const</ref> vector&lt; string &gt; &amp;</type>
+          <type>const <ref refid="d7/dfc/classvector" kindref="compound">vector</ref>&lt; <ref refid="d5/d92/classstring" kindref="compound">string</ref> &gt; &amp;</type>
           <declname>vn</declname>
         </param>
         <param>
-          <type><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">bool</ref></type>
+          <type>bool</type>
           <declname>c</declname>
-          <defval><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">false</ref></defval>
+          <defval>false</defval>
         </param>
         <briefdescription>
         </briefdescription>
@@ -513,12 +553,19 @@
         <inbodydescription>
         </inbodydescription>
         <location file="/home/runner/work/brush/brush/src/data/data.h" line="166" column="9" bodyfile="/home/runner/work/brush/brush/src/data/data.h" bodystart="166" bodyend="179"/>
-        <references refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" compoundref="d4/d93/bind__engines_8h" startline="35" endline="104">bind_engine</references>
+        <references refid="d2/d36/classBrush_1_1Data_1_1Dataset_1a6ac1f4f56991e43a782dd519c414916a" compoundref="d2/dbd/data_8h" startline="87">batch_size</references>
+        <references refid="d2/d36/classBrush_1_1Data_1_1Dataset_1a1a8a1e77afdecb032696bdf38e5c424c" compoundref="d2/dbd/data_8h" startline="79">classification</references>
+        <references refid="d2/d36/classBrush_1_1Data_1_1Dataset_1aa09045b1736581575ec928a7eba7dd98" compoundref="da/dc9/data_8cpp" startline="283" endline="331">copy_and_make_features</references>
+        <references refid="d2/d36/classBrush_1_1Data_1_1Dataset_1aa9fa70bb9e8720a3b9ceafb9aa643df4" compoundref="d2/dbd/data_8h" startline="110" endline="123">Dataset</references>
+        <references refid="d2/d36/classBrush_1_1Data_1_1Dataset_1a23f1c86e056b6806e7fa66c8fe6ea9ff" compoundref="d2/dbd/data_8h" startline="71">features</references>
         <references refid="d2/d36/classBrush_1_1Data_1_1Dataset_1aacd5afd19b9cee9d9d84e4290eeabb6f" compoundref="da/dc9/data_8cpp" startline="178" endline="228">init</references>
+        <references refid="d2/d36/classBrush_1_1Data_1_1Dataset_1a8cba7a5f962538d67012264fb6c97ed4" compoundref="d2/dbd/data_8h" startline="88">use_batch</references>
+        <references refid="d2/d36/classBrush_1_1Data_1_1Dataset_1a6cadfbd9f8a4700361e63defb7d6f6e0" compoundref="d2/dbd/data_8h" startline="84">use_validation</references>
+        <references refid="d2/d36/classBrush_1_1Data_1_1Dataset_1aae2b4b532ccc55a95f65b75a5cd9e176" compoundref="d2/dbd/data_8h" startline="83">validation_size</references>
         <references refid="d2/d36/classBrush_1_1Data_1_1Dataset_1a8a1a428f46a5c80322000f4bef0a09d4" compoundref="d2/dbd/data_8h" startline="80">Xref</references>
       </memberdef>
       <memberdef kind="function" id="d2/d36/classBrush_1_1Data_1_1Dataset_1a59ec8554d617a4a99ba7feec09bdc62c" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
-        <type><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">void</ref></type>
+        <type>void</type>
         <definition>void Brush::Data::Dataset::print</definition>
         <argsstring>() const</argsstring>
         <name>print</name>
@@ -530,13 +577,12 @@
         <inbodydescription>
         </inbodydescription>
         <location file="/home/runner/work/brush/brush/src/data/data.h" line="181" column="14" bodyfile="/home/runner/work/brush/brush/src/data/data.h" bodystart="181" bodyend="196"/>
-        <references refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" compoundref="d4/d93/bind__engines_8h" startline="35" endline="104">bind_engine</references>
-        <references refid="d2/d36/classBrush_1_1Data_1_1Dataset_1a23f1c86e056b6806e7fa66c8fe6ea9ff" compoundref="d2/dbd/data_8h" startline="71">features</references>
         <references refid="d2/d36/classBrush_1_1Data_1_1Dataset_1a6edc04702aee605a766f4a79c375d0c6" compoundref="d2/dbd/data_8h" startline="215" endline="215">get_n_features</references>
         <references refid="d2/d36/classBrush_1_1Data_1_1Dataset_1a2b7b42b1b16630554b2e49102098a170" compoundref="d2/dbd/data_8h" startline="209" endline="214">get_n_samples</references>
+        <referencedby refid="d9/d40/bind__dataset_8cpp_1a3a32d76d471ed16427cad15ed2364f0f" compoundref="d9/d40/bind__dataset_8cpp" startline="9" endline="75">bind_dataset</referencedby>
       </memberdef>
       <memberdef kind="function" id="d2/d36/classBrush_1_1Data_1_1Dataset_1a44ebc4ada574ea7a3a843ae74810aac9" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
-        <type><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">auto</ref></type>
+        <type>auto</type>
         <definition>auto Brush::Data::Dataset::get_X</definition>
         <argsstring>() const</argsstring>
         <name>get_X</name>
@@ -550,6 +596,7 @@
         <location file="/home/runner/work/brush/brush/src/data/data.h" line="197" column="14" bodyfile="/home/runner/work/brush/brush/src/data/data.h" bodystart="197" bodyend="202"/>
         <references refid="da/d41/error_8h_1aa4c550bcd71e4ec1c97b111e1360509a" compoundref="da/d41/error_8h" startline="27">HANDLE_ERROR_THROW</references>
         <references refid="d2/d36/classBrush_1_1Data_1_1Dataset_1a8a1a428f46a5c80322000f4bef0a09d4" compoundref="d2/dbd/data_8h" startline="80">Xref</references>
+        <referencedby refid="d9/d40/bind__dataset_8cpp_1a3a32d76d471ed16427cad15ed2364f0f" compoundref="d9/d40/bind__dataset_8cpp" startline="9" endline="75">bind_dataset</referencedby>
       </memberdef>
       <memberdef kind="function" id="d2/d36/classBrush_1_1Data_1_1Dataset_1ae69087b8c020840f254e3679cd324ba5" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
         <type><ref refid="d2/d36/classBrush_1_1Data_1_1Dataset" kindref="compound">Dataset</ref></type>
@@ -564,8 +611,10 @@
         <inbodydescription>
         </inbodydescription>
         <location file="/home/runner/work/brush/brush/src/data/data.h" line="206" column="17" bodyfile="/home/runner/work/brush/brush/src/data/data.cpp" bodystart="173" bodyend="173"/>
+        <references refid="d2/d36/classBrush_1_1Data_1_1Dataset_1aa9fa70bb9e8720a3b9ceafb9aa643df4" compoundref="d2/dbd/data_8h" startline="110" endline="123">Dataset</references>
         <references refid="d2/d36/classBrush_1_1Data_1_1Dataset_1a4112a2cb86ce4138c3c4bea966c96b65" compoundref="d2/dbd/data_8h" startline="57">training_data_idx</references>
         <referencedby refid="d1/de5/classBrush_1_1Eval_1_1Evaluation_1ac7562624d114b22b19720729d599a40a" compoundref="d9/d6a/evaluation_8cpp" startline="46" endline="94">Brush::Eval::Evaluation&lt; T &gt;::assign_fit</referencedby>
+        <referencedby refid="d9/d40/bind__dataset_8cpp_1a3a32d76d471ed16427cad15ed2364f0f" compoundref="d9/d40/bind__dataset_8cpp" startline="9" endline="75">bind_dataset</referencedby>
       </memberdef>
       <memberdef kind="function" id="d2/d36/classBrush_1_1Data_1_1Dataset_1a1ddb847fd1ceff63e60ffd79542409d9" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
         <type><ref refid="d2/d36/classBrush_1_1Data_1_1Dataset" kindref="compound">Dataset</ref></type>
@@ -580,11 +629,13 @@
         <inbodydescription>
         </inbodydescription>
         <location file="/home/runner/work/brush/brush/src/data/data.h" line="207" column="17" bodyfile="/home/runner/work/brush/brush/src/data/data.cpp" bodystart="174" bodyend="174"/>
+        <references refid="d2/d36/classBrush_1_1Data_1_1Dataset_1aa9fa70bb9e8720a3b9ceafb9aa643df4" compoundref="d2/dbd/data_8h" startline="110" endline="123">Dataset</references>
         <references refid="d2/d36/classBrush_1_1Data_1_1Dataset_1ab8f3010fa3099efe3aac8fcd3140faf6" compoundref="d2/dbd/data_8h" startline="58">validation_data_idx</references>
         <referencedby refid="d1/de5/classBrush_1_1Eval_1_1Evaluation_1ac7562624d114b22b19720729d599a40a" compoundref="d9/d6a/evaluation_8cpp" startline="46" endline="94">Brush::Eval::Evaluation&lt; T &gt;::assign_fit</referencedby>
+        <referencedby refid="d9/d40/bind__dataset_8cpp_1a3a32d76d471ed16427cad15ed2364f0f" compoundref="d9/d40/bind__dataset_8cpp" startline="9" endline="75">bind_dataset</referencedby>
       </memberdef>
       <memberdef kind="function" id="d2/d36/classBrush_1_1Data_1_1Dataset_1a2b7b42b1b16630554b2e49102098a170" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
-        <type><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">int</ref></type>
+        <type>int</type>
         <definition>int Brush::Data::Dataset::get_n_samples</definition>
         <argsstring>() const</argsstring>
         <name>get_n_samples</name>
@@ -596,14 +647,17 @@
         <inbodydescription>
         </inbodydescription>
         <location file="/home/runner/work/brush/brush/src/data/data.h" line="209" column="20" bodyfile="/home/runner/work/brush/brush/src/data/data.h" bodystart="209" bodyend="214"/>
-        <references refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" compoundref="d4/d93/bind__engines_8h" startline="35" endline="104">bind_engine</references>
         <references refid="d2/d36/classBrush_1_1Data_1_1Dataset_1a23f1c86e056b6806e7fa66c8fe6ea9ff" compoundref="d2/dbd/data_8h" startline="71">features</references>
+        <referencedby refid="d9/d40/bind__dataset_8cpp_1a3a32d76d471ed16427cad15ed2364f0f" compoundref="d9/d40/bind__dataset_8cpp" startline="9" endline="75">bind_dataset</referencedby>
+        <referencedby refid="df/dc1/structBrush_1_1Operator_3_01NodeType_1_1Constant_00_01S_00_01Fit_01_4_1a1309f7a7253c0899447c91ebfee84a3a" compoundref="d7/de0/operator_8h" startline="313" endline="321">Brush::Operator&lt; NodeType::Constant, S, Fit &gt;::eval</referencedby>
         <referencedby refid="d2/d36/classBrush_1_1Data_1_1Dataset_1a5020e43def6267598be0ba3d2b46e616" compoundref="da/dc9/data_8cpp" startline="146" endline="160">get_batch</referencedby>
+        <referencedby refid="dc/d31/structBrush_1_1Operator_1aa4adc47d9cddb762f26e38747773bba6" compoundref="d7/de0/operator_8h" startline="116" endline="144">Brush::Operator&lt; NT, S, Fit, E &gt;::get_kids</referencedby>
         <referencedby refid="d2/d36/classBrush_1_1Data_1_1Dataset_1aacd5afd19b9cee9d9d84e4290eeabb6f" compoundref="da/dc9/data_8cpp" startline="178" endline="228">init</referencedby>
+        <referencedby refid="d9/d5e/structBrush_1_1Operator_3_01NodeType_1_1MeanLabel_00_01S_00_01Fit_01_4_1a56b67e05e4f1f89f7fd83f755d826d16" compoundref="d7/de0/operator_8h" startline="339" endline="346">Brush::Operator&lt; NodeType::MeanLabel, S, Fit &gt;::predict</referencedby>
         <referencedby refid="d2/d36/classBrush_1_1Data_1_1Dataset_1a59ec8554d617a4a99ba7feec09bdc62c" compoundref="d2/dbd/data_8h" startline="181" endline="196">print</referencedby>
       </memberdef>
       <memberdef kind="function" id="d2/d36/classBrush_1_1Data_1_1Dataset_1a6edc04702aee605a766f4a79c375d0c6" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
-        <type><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">int</ref></type>
+        <type>int</type>
         <definition>int Brush::Data::Dataset::get_n_features</definition>
         <argsstring>() const</argsstring>
         <name>get_n_features</name>
@@ -615,6 +669,9 @@
         <inbodydescription>
         </inbodydescription>
         <location file="/home/runner/work/brush/brush/src/data/data.h" line="215" column="20" bodyfile="/home/runner/work/brush/brush/src/data/data.h" bodystart="215" bodyend="215"/>
+        <referencedby refid="d9/d40/bind__dataset_8cpp_1a3a32d76d471ed16427cad15ed2364f0f" compoundref="d9/d40/bind__dataset_8cpp" startline="9" endline="75">bind_dataset</referencedby>
+        <referencedby refid="df/dc1/structBrush_1_1Operator_3_01NodeType_1_1Constant_00_01S_00_01Fit_01_4_1a1309f7a7253c0899447c91ebfee84a3a" compoundref="d7/de0/operator_8h" startline="313" endline="321">Brush::Operator&lt; NodeType::Constant, S, Fit &gt;::eval</referencedby>
+        <referencedby refid="d9/d5e/structBrush_1_1Operator_3_01NodeType_1_1MeanLabel_00_01S_00_01Fit_01_4_1a56b67e05e4f1f89f7fd83f755d826d16" compoundref="d7/de0/operator_8h" startline="339" endline="346">Brush::Operator&lt; NodeType::MeanLabel, S, Fit &gt;::predict</referencedby>
         <referencedby refid="d2/d36/classBrush_1_1Data_1_1Dataset_1a59ec8554d617a4a99ba7feec09bdc62c" compoundref="d2/dbd/data_8h" startline="181" endline="196">print</referencedby>
       </memberdef>
       <memberdef kind="function" id="d2/d36/classBrush_1_1Data_1_1Dataset_1a5020e43def6267598be0ba3d2b46e616" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
@@ -632,15 +689,15 @@
         </inbodydescription>
         <location file="/home/runner/work/brush/brush/src/data/data.h" line="217" column="17" bodyfile="/home/runner/work/brush/brush/src/data/data.cpp" bodystart="146" bodyend="160"/>
         <references refid="d2/d36/classBrush_1_1Data_1_1Dataset_1a6ac1f4f56991e43a782dd519c414916a" compoundref="d2/dbd/data_8h" startline="87">batch_size</references>
-        <references refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" compoundref="d4/d93/bind__engines_8h" startline="35" endline="104">bind_engine</references>
+        <references refid="d2/d36/classBrush_1_1Data_1_1Dataset_1aa9fa70bb9e8720a3b9ceafb9aa643df4" compoundref="d2/dbd/data_8h" startline="110" endline="123">Dataset</references>
         <references refid="d2/d36/classBrush_1_1Data_1_1Dataset_1a2b7b42b1b16630554b2e49102098a170" compoundref="d2/dbd/data_8h" startline="209" endline="214">get_n_samples</references>
         <references refid="d6/d2e/namespaceBrush_1_1Util_1af7dd70e54015821d96e3a1afed6344ca" compoundref="d2/da9/rnd_8h" startline="174">Brush::Util::r</references>
-        <references refid="d2/d2d/classBrush_1_1Util_1_1Rnd_1a5ec3a29d75a9154bbfdf3488db64fb69" compoundref="de/d67/rnd_8cpp" startline="121" endline="127">Brush::Util::Rnd::shuffled_index</references>
         <references refid="d2/d36/classBrush_1_1Data_1_1Dataset_1a8cba7a5f962538d67012264fb6c97ed4" compoundref="d2/dbd/data_8h" startline="88">use_batch</references>
+        <referencedby refid="d9/d40/bind__dataset_8cpp_1a3a32d76d471ed16427cad15ed2364f0f" compoundref="d9/d40/bind__dataset_8cpp" startline="9" endline="75">bind_dataset</referencedby>
         <referencedby refid="d0/d75/classBrush_1_1Engine_1a4248c80ebcd035a70953065045e04705" compoundref="da/d5c/engine_8cpp" startline="324" endline="527">Brush::Engine&lt; T &gt;::run</referencedby>
       </memberdef>
       <memberdef kind="function" id="d2/d36/classBrush_1_1Data_1_1Dataset_1ade358be2a762f2a6df738a41fe1095b5" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
-        <type><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">float</ref></type>
+        <type>float</type>
         <definition>float Brush::Data::Dataset::get_batch_size</definition>
         <argsstring>()</argsstring>
         <name>get_batch_size</name>
@@ -653,15 +710,16 @@
         </inbodydescription>
         <location file="/home/runner/work/brush/brush/src/data/data.h" line="219" column="15" bodyfile="/home/runner/work/brush/brush/src/data/data.cpp" bodystart="231" bodyend="231"/>
         <references refid="d2/d36/classBrush_1_1Data_1_1Dataset_1a6ac1f4f56991e43a782dd519c414916a" compoundref="d2/dbd/data_8h" startline="87">batch_size</references>
+        <referencedby refid="d9/d40/bind__dataset_8cpp_1a3a32d76d471ed16427cad15ed2364f0f" compoundref="d9/d40/bind__dataset_8cpp" startline="9" endline="75">bind_dataset</referencedby>
       </memberdef>
       <memberdef kind="function" id="d2/d36/classBrush_1_1Data_1_1Dataset_1afa07fa8dff0f8e01293509d6b7cc0dc3" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
-        <type><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">void</ref></type>
+        <type>void</type>
         <definition>void Brush::Data::Dataset::set_batch_size</definition>
         <argsstring>(float new_size)</argsstring>
         <name>set_batch_size</name>
         <qualifiedname>Brush::Data::Dataset::set_batch_size</qualifiedname>
         <param>
-          <type><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">float</ref></type>
+          <type>float</type>
           <declname>new_size</declname>
         </param>
         <briefdescription>
@@ -672,8 +730,8 @@
         </inbodydescription>
         <location file="/home/runner/work/brush/brush/src/data/data.h" line="220" column="14" bodyfile="/home/runner/work/brush/brush/src/data/data.cpp" bodystart="232" bodyend="235"/>
         <references refid="d2/d36/classBrush_1_1Data_1_1Dataset_1a6ac1f4f56991e43a782dd519c414916a" compoundref="d2/dbd/data_8h" startline="87">batch_size</references>
-        <references refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" compoundref="d4/d93/bind__engines_8h" startline="35" endline="104">bind_engine</references>
         <references refid="d2/d36/classBrush_1_1Data_1_1Dataset_1a8cba7a5f962538d67012264fb6c97ed4" compoundref="d2/dbd/data_8h" startline="88">use_batch</references>
+        <referencedby refid="d9/d40/bind__dataset_8cpp_1a3a32d76d471ed16427cad15ed2364f0f" compoundref="d9/d40/bind__dataset_8cpp" startline="9" endline="75">bind_dataset</referencedby>
       </memberdef>
       <memberdef kind="function" id="d2/d36/classBrush_1_1Data_1_1Dataset_1ade5da9269ebc099385d6f79cf4a53f9f" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
         <type>std::array&lt; <ref refid="d2/d36/classBrush_1_1Data_1_1Dataset" kindref="compound">Dataset</ref>, 2 &gt;</type>
@@ -682,7 +740,7 @@
         <name>split</name>
         <qualifiedname>Brush::Data::Dataset::split</qualifiedname>
         <param>
-          <type><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">const</ref> <ref refid="dc/d5c/namespaceBrush_1a1c0079df772d6e050857327591514810" kindref="member">ArrayXb</ref> &amp;</type>
+          <type>const <ref refid="dc/d5c/namespaceBrush_1a1c0079df772d6e050857327591514810" kindref="member">ArrayXb</ref> &amp;</type>
           <declname>mask</declname>
         </param>
         <briefdescription>
@@ -692,8 +750,8 @@
         <inbodydescription>
         </inbodydescription>
         <location file="/home/runner/work/brush/brush/src/data/data.h" line="222" column="20" bodyfile="/home/runner/work/brush/brush/src/data/data.cpp" bodystart="162" bodyend="171"/>
-        <references refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" compoundref="d4/d93/bind__engines_8h" startline="35" endline="104">bind_engine</references>
         <references refid="d6/d2e/namespaceBrush_1_1Util_1afc397ee448b473fec9502461f3e75eae" compoundref="de/d06/utils_8cpp" startline="409" endline="419">Brush::Util::mask_to_index</references>
+        <referencedby refid="d9/d40/bind__dataset_8cpp_1a3a32d76d471ed16427cad15ed2364f0f" compoundref="d9/d40/bind__dataset_8cpp" startline="9" endline="75">bind_dataset</referencedby>
       </memberdef>
       <memberdef kind="function" id="d2/d36/classBrush_1_1Data_1_1Dataset_1a86f779c55c96ff7182b4e649f87fbf24" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
         <type><ref refid="d9/d1c/namespaceBrush_1_1Data_1aeec1ea0d55dd44db207801471be4f09c" kindref="member">State</ref></type>
@@ -733,63 +791,42 @@
           <edgelabel>feature_types</edgelabel>
           <edgelabel>unique_data_types</edgelabel>
         </childnode>
-        <childnode refid="5" relation="usage">
+        <childnode refid="4" relation="usage">
           <edgelabel>features_of_type</edgelabel>
         </childnode>
-        <childnode refid="9" relation="usage">
+        <childnode refid="8" relation="usage">
           <edgelabel>features</edgelabel>
         </childnode>
-        <childnode refid="11" relation="usage">
-          <edgelabel>y</edgelabel>
-        </childnode>
-      </node>
-      <node id="10">
-        <label>State</label>
-      </node>
-      <node id="4">
-        <label>DataType</label>
-      </node>
-      <node id="11">
-        <label>ArrayXf</label>
-      </node>
-      <node id="9">
-        <label>std::map&lt; string, State &gt;</label>
-        <childnode refid="7" relation="usage">
-          <edgelabel>keys</edgelabel>
-        </childnode>
-        <childnode refid="10" relation="usage">
-          <edgelabel>elements</edgelabel>
-        </childnode>
-      </node>
-      <node id="8">
-        <label>std::basic_string&lt; Char &gt;</label>
       </node>
       <node id="7">
-        <label>std::string</label>
-        <childnode refid="8" relation="public-inheritance">
-        </childnode>
+        <label>std::basic_string&lt; Char &gt;</label>
       </node>
-      <node id="5">
-        <label>std::unordered_map&lt; DataType, vector&lt; string &gt; &gt;</label>
-        <childnode refid="4" relation="usage">
+      <node id="8">
+        <label>std::map&lt; string, State &gt;</label>
+        <childnode refid="6" relation="usage">
           <edgelabel>keys</edgelabel>
         </childnode>
-        <childnode refid="6" relation="usage">
+      </node>
+      <node id="6">
+        <label>std::string</label>
+        <childnode refid="7" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="4">
+        <label>std::unordered_map&lt; DataType, vector&lt; string &gt; &gt;</label>
+        <childnode refid="5" relation="usage">
           <edgelabel>elements</edgelabel>
         </childnode>
       </node>
       <node id="3">
         <label>std::vector&lt; DataType &gt;</label>
-        <childnode refid="4" relation="usage">
-          <edgelabel>elements</edgelabel>
-        </childnode>
       </node>
       <node id="2">
         <label>std::vector&lt; size_t &gt;</label>
       </node>
-      <node id="6">
+      <node id="5">
         <label>std::vector&lt; string &gt;</label>
-        <childnode refid="7" relation="usage">
+        <childnode refid="6" relation="usage">
           <edgelabel>elements</edgelabel>
         </childnode>
       </node>

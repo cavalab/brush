@@ -1,10 +1,10 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
-<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.10.0" xml:lang="en-US">
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.13.2" xml:lang="en-US">
   <compounddef id="dd/dc3/structBrush_1_1Sel_1_1NSGA2_1_1comparator__obj" kind="struct" language="C++" prot="private">
     <compoundname>Brush::Sel::NSGA2::comparator_obj</compoundname>
     <sectiondef kind="public-attrib">
       <memberdef kind="variable" id="dd/dc3/structBrush_1_1Sel_1_1NSGA2_1_1comparator__obj_1a685032b3b1c9d9cf8d1ae775a6374883" prot="public" static="no" mutable="no">
-        <type><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">const</ref> <ref refid="da/da3/classBrush_1_1Pop_1_1Population" kindref="compound">Population</ref>&lt; T &gt; &amp;</type>
+        <type>const <ref refid="da/da3/classBrush_1_1Pop_1_1Population" kindref="compound">Population</ref>&lt; T &gt; &amp;</type>
         <definition>const Population&lt;T&gt;&amp; Brush::Sel::NSGA2&lt; T &gt;::comparator_obj::pop</definition>
         <argsstring></argsstring>
         <name>pop</name>
@@ -17,10 +17,11 @@
         <inbodydescription>
         </inbodydescription>
         <location file="/home/runner/work/brush/brush/src/selection/nsga2.h" line="66" column="30" bodyfile="/home/runner/work/brush/brush/src/selection/nsga2.h" bodystart="66" bodyend="-1"/>
+        <referencedby refid="dd/dc3/structBrush_1_1Sel_1_1NSGA2_1_1comparator__obj_1aaac8eea61e4a045ca9c19633a17cf187" compoundref="d3/d06/nsga2_8h" startline="69" endline="70">Brush::Sel::NSGA2&lt; T &gt;::comparator_obj::comparator_obj</referencedby>
         <referencedby refid="dd/dc3/structBrush_1_1Sel_1_1NSGA2_1_1comparator__obj_1a0d7288597c5ebf25cc9ee9ea886275ff" compoundref="d3/d06/nsga2_8h" startline="73" endline="74">Brush::Sel::NSGA2&lt; T &gt;::comparator_obj::operator()</referencedby>
       </memberdef>
       <memberdef kind="variable" id="dd/dc3/structBrush_1_1Sel_1_1NSGA2_1_1comparator__obj_1a650d27227ffd3b334e6012624864e5b4" prot="public" static="no" mutable="no">
-        <type><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">int</ref></type>
+        <type>int</type>
         <definition>int Brush::Sel::NSGA2&lt; T &gt;::comparator_obj::m</definition>
         <argsstring></argsstring>
         <name>m</name>
@@ -33,6 +34,7 @@
         <inbodydescription>
         </inbodydescription>
         <location file="/home/runner/work/brush/brush/src/selection/nsga2.h" line="67" column="17" bodyfile="/home/runner/work/brush/brush/src/selection/nsga2.h" bodystart="67" bodyend="-1"/>
+        <referencedby refid="dd/dc3/structBrush_1_1Sel_1_1NSGA2_1_1comparator__obj_1aaac8eea61e4a045ca9c19633a17cf187" compoundref="d3/d06/nsga2_8h" startline="69" endline="70">Brush::Sel::NSGA2&lt; T &gt;::comparator_obj::comparator_obj</referencedby>
         <referencedby refid="dd/dc3/structBrush_1_1Sel_1_1NSGA2_1_1comparator__obj_1a0d7288597c5ebf25cc9ee9ea886275ff" compoundref="d3/d06/nsga2_8h" startline="73" endline="74">Brush::Sel::NSGA2&lt; T &gt;::comparator_obj::operator()</referencedby>
       </memberdef>
     </sectiondef>
@@ -44,11 +46,11 @@
         <name>comparator_obj</name>
         <qualifiedname>Brush::Sel::NSGA2::comparator_obj::comparator_obj</qualifiedname>
         <param>
-          <type><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">const</ref> <ref refid="da/da3/classBrush_1_1Pop_1_1Population" kindref="compound">Population</ref>&lt; T &gt; &amp;</type>
+          <type>const <ref refid="da/da3/classBrush_1_1Pop_1_1Population" kindref="compound">Population</ref>&lt; T &gt; &amp;</type>
           <declname>population</declname>
         </param>
         <param>
-          <type><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">int</ref></type>
+          <type>int</type>
           <declname>index</declname>
         </param>
         <briefdescription>
@@ -58,19 +60,21 @@
         <inbodydescription>
         </inbodydescription>
         <location file="/home/runner/work/brush/brush/src/selection/nsga2.h" line="69" column="13" bodyfile="/home/runner/work/brush/brush/src/selection/nsga2.h" bodystart="69" bodyend="70"/>
+        <references refid="dd/dc3/structBrush_1_1Sel_1_1NSGA2_1_1comparator__obj_1a650d27227ffd3b334e6012624864e5b4" compoundref="d3/d06/nsga2_8h" startline="67">Brush::Sel::NSGA2&lt; T &gt;::comparator_obj::m</references>
+        <references refid="dd/dc3/structBrush_1_1Sel_1_1NSGA2_1_1comparator__obj_1a685032b3b1c9d9cf8d1ae775a6374883" compoundref="d3/d06/nsga2_8h" startline="66">Brush::Sel::NSGA2&lt; T &gt;::comparator_obj::pop</references>
       </memberdef>
       <memberdef kind="function" id="dd/dc3/structBrush_1_1Sel_1_1NSGA2_1_1comparator__obj_1a0d7288597c5ebf25cc9ee9ea886275ff" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
-        <type><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">bool</ref></type>
+        <type>bool</type>
         <definition>bool Brush::Sel::NSGA2&lt; T &gt;::comparator_obj::operator()</definition>
         <argsstring>(int i, int j)</argsstring>
         <name>operator()</name>
         <qualifiedname>Brush::Sel::NSGA2::comparator_obj::operator()</qualifiedname>
         <param>
-          <type><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">int</ref></type>
+          <type>int</type>
           <declname>i</declname>
         </param>
         <param>
-          <type><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">int</ref></type>
+          <type>int</type>
           <declname>j</declname>
         </param>
         <briefdescription>
@@ -80,7 +84,6 @@
         <inbodydescription>
         </inbodydescription>
         <location file="/home/runner/work/brush/brush/src/selection/nsga2.h" line="73" column="18" bodyfile="/home/runner/work/brush/brush/src/selection/nsga2.h" bodystart="73" bodyend="74"/>
-        <references refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" compoundref="d4/d93/bind__engines_8h" startline="35" endline="104">bind_engine</references>
         <references refid="dd/dc3/structBrush_1_1Sel_1_1NSGA2_1_1comparator__obj_1a650d27227ffd3b334e6012624864e5b4" compoundref="d3/d06/nsga2_8h" startline="67">Brush::Sel::NSGA2&lt; T &gt;::comparator_obj::m</references>
         <references refid="dd/dc3/structBrush_1_1Sel_1_1NSGA2_1_1comparator__obj_1a685032b3b1c9d9cf8d1ae775a6374883" compoundref="d3/d06/nsga2_8h" startline="66">Brush::Sel::NSGA2&lt; T &gt;::comparator_obj::pop</references>
       </memberdef>

@@ -1,17 +1,17 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
-<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.10.0" xml:lang="en-US">
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.13.2" xml:lang="en-US">
   <compounddef id="d9/da6/structBrush_1_1NarySignatures" kind="struct" language="C++" prot="public">
     <compoundname>Brush::NarySignatures</compoundname>
     <includes refid="d8/d8b/signatures_8h" local="no">signatures.h</includes>
     <templateparamlist>
       <param>
-        <type><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">typename</ref> <ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">R</ref></type>
+        <type>typename R</type>
       </param>
       <param>
-        <type><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">typename</ref> <ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">Arg</ref></type>
+        <type>typename Arg</type>
       </param>
       <param>
-        <type><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">size_t</ref></type>
+        <type>size_t</type>
         <declname>MaxArgCount</declname>
         <defname>MaxArgCount</defname>
       </param>
@@ -25,7 +25,7 @@
             <defname>N</defname>
           </param>
         </templateparamlist>
-        <type><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">Arg</ref></type>
+        <type>Arg</type>
         <definition>using Brush::NarySignatures&lt; R, Arg, MaxArgCount &gt;::NthType =  Arg</definition>
         <argsstring></argsstring>
         <name>NthType</name>
@@ -39,7 +39,7 @@
         <location file="/home/runner/work/brush/brush/src/program/signatures.h" line="172" column="5" bodyfile="/home/runner/work/brush/brush/src/program/signatures.h" bodystart="172" bodyend="-1"/>
       </memberdef>
       <memberdef kind="typedef" id="d9/da6/structBrush_1_1NarySignatures_1aa831ed4ff505cd0c2ca95bc50eb1ba15" prot="public" static="no">
-        <type><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">decltype</ref>(<ref refid="d9/da6/structBrush_1_1NarySignatures_1a2c3db586df4a4d2a14f9b5336c63ab64" kindref="member">make_signatures</ref>(<ref refid="d9/da6/structBrush_1_1NarySignatures_1a6deae2da2f95f0bc1b4fe0b0705f7ef6" kindref="member">Indices</ref>))</type>
+        <type>decltype(<ref refid="d9/da6/structBrush_1_1NarySignatures_1a2c3db586df4a4d2a14f9b5336c63ab64" kindref="member">make_signatures</ref>(<ref refid="d9/da6/structBrush_1_1NarySignatures_1a6deae2da2f95f0bc1b4fe0b0705f7ef6" kindref="member">Indices</ref>))</type>
         <definition>using Brush::NarySignatures&lt; R, Arg, MaxArgCount &gt;::type =  decltype(make_signatures(Indices))</definition>
         <argsstring></argsstring>
         <name>type</name>
@@ -55,8 +55,8 @@
     </sectiondef>
     <sectiondef kind="public-static-attrib">
       <memberdef kind="variable" id="d9/da6/structBrush_1_1NarySignatures_1aae71c5366cc66eabaf9a2126ac6507d4" prot="public" static="yes" constexpr="yes" mutable="no">
-        <type><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">constexpr</ref> <ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">size_t</ref></type>
-        <definition>constexpr size_t Brush::NarySignatures&lt; R, Arg, MaxArgCount &gt;::Min</definition>
+        <type>size_t</type>
+        <definition>size_t Brush::NarySignatures&lt; R, Arg, MaxArgCount &gt;::Min</definition>
         <argsstring></argsstring>
         <name>Min</name>
         <qualifiedname>Brush::NarySignatures::Min</qualifiedname>
@@ -71,12 +71,12 @@
         <referencedby refid="d9/da6/structBrush_1_1NarySignatures_1a2c3db586df4a4d2a14f9b5336c63ab64" compoundref="d8/d8b/signatures_8h" startline="178" endline="181">Brush::NarySignatures&lt; R, Arg, MaxArgCount &gt;::make_signatures</referencedby>
       </memberdef>
       <memberdef kind="variable" id="d9/da6/structBrush_1_1NarySignatures_1a3a49e995edfd861599610048749f25eb" prot="public" static="yes" constexpr="yes" mutable="no">
-        <type><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">constexpr</ref> <ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">size_t</ref></type>
-        <definition>constexpr size_t Brush::NarySignatures&lt; R, Arg, MaxArgCount &gt;::Max</definition>
+        <type>size_t</type>
+        <definition>size_t Brush::NarySignatures&lt; R, Arg, MaxArgCount &gt;::Max</definition>
         <argsstring></argsstring>
         <name>Max</name>
         <qualifiedname>Brush::NarySignatures::Max</qualifiedname>
-        <initializer>= <ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">MaxArgCount</ref>-2</initializer>
+        <initializer>= MaxArgCount-2</initializer>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
@@ -86,8 +86,8 @@
         <location file="/home/runner/work/brush/brush/src/program/signatures.h" line="174" column="29" bodyfile="/home/runner/work/brush/brush/src/program/signatures.h" bodystart="174" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="d9/da6/structBrush_1_1NarySignatures_1a6deae2da2f95f0bc1b4fe0b0705f7ef6" prot="public" static="yes" constexpr="yes" mutable="no">
-        <type><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">constexpr</ref> <ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">auto</ref></type>
-        <definition>constexpr auto Brush::NarySignatures&lt; R, Arg, MaxArgCount &gt;::Indices</definition>
+        <type>auto</type>
+        <definition>auto Brush::NarySignatures&lt; R, Arg, MaxArgCount &gt;::Indices</definition>
         <argsstring></argsstring>
         <name>Indices</name>
         <qualifiedname>Brush::NarySignatures::Indices</qualifiedname>
@@ -105,12 +105,12 @@
       <memberdef kind="function" id="d9/da6/structBrush_1_1NarySignatures_1a2c3db586df4a4d2a14f9b5336c63ab64" prot="public" static="yes" constexpr="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
         <templateparamlist>
           <param>
-            <type><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">size_t</ref> ...</type>
+            <type>size_t ...</type>
             <declname>Is</declname>
             <defname>Is</defname>
           </param>
         </templateparamlist>
-        <type><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">constexpr</ref> <ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">auto</ref></type>
+        <type>auto</type>
         <definition>static constexpr auto Brush::NarySignatures&lt; R, Arg, MaxArgCount &gt;::make_signatures</definition>
         <argsstring>(std::index_sequence&lt; Is... &gt;)</argsstring>
         <name>make_signatures</name>
@@ -125,7 +125,6 @@
         <inbodydescription>
         </inbodydescription>
         <location file="/home/runner/work/brush/brush/src/program/signatures.h" line="178" column="27" bodyfile="/home/runner/work/brush/brush/src/program/signatures.h" bodystart="178" bodyend="181"/>
-        <references refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" compoundref="d4/d93/bind__engines_8h" startline="35" endline="104">bind_engine</references>
         <references refid="dc/d5c/namespaceBrush_1a4f135739df5fe55a0ff81d943bec8be2" compoundref="d1/d77/node_8h" startline="260" endline="260">Brush::Is</references>
         <references refid="d9/da6/structBrush_1_1NarySignatures_1aae71c5366cc66eabaf9a2126ac6507d4" compoundref="d8/d8b/signatures_8h" startline="173">Brush::NarySignatures&lt; R, Arg, MaxArgCount &gt;::Min</references>
       </memberdef>

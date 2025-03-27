@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
-<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.10.0" xml:lang="en-US">
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.13.2" xml:lang="en-US">
   <compounddef id="d0/d67/bind__evaluator_8h" kind="file" language="C++">
     <compoundname>bind_evaluator.h</compoundname>
     <includes refid="d5/d16/module_8h" local="yes">module.h</includes>
@@ -559,7 +559,7 @@
     </invincdepgraph>
     <sectiondef kind="typedef">
       <memberdef kind="typedef" id="d0/d67/bind__evaluator_8h_1ae2f679a1605bd79ee7983e55e31d6d2e" prot="public" static="no">
-        <type><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">py::call_guard</ref>&lt; <ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">py::scoped_ostream_redirect</ref>, <ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">py::scoped_estream_redirect</ref> &gt;</type>
+        <type>py::call_guard&lt; py::scoped_ostream_redirect, py::scoped_estream_redirect &gt;</type>
         <definition>using stream_redirect =  py::call_guard&lt;py::scoped_ostream_redirect, py::scoped_estream_redirect&gt;</definition>
         <argsstring></argsstring>
         <name>stream_redirect</name>
@@ -581,16 +581,16 @@
             <defname>T</defname>
           </param>
         </templateparamlist>
-        <type><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">void</ref></type>
+        <type>void</type>
         <definition>void bind_evaluator</definition>
         <argsstring>(py::module &amp;m, string name)</argsstring>
         <name>bind_evaluator</name>
         <param>
-          <type><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">py::module</ref> &amp;</type>
+          <type>py::module &amp;</type>
           <declname>m</declname>
         </param>
         <param>
-          <type>string</type>
+          <type><ref refid="d5/d92/classstring" kindref="compound">string</ref></type>
           <declname>name</declname>
         </param>
         <briefdescription>
@@ -600,7 +600,7 @@
         <inbodydescription>
         </inbodydescription>
         <location file="/home/runner/work/brush/brush/src/bindings/bind_evaluator.h" line="12" column="6" bodyfile="/home/runner/work/brush/brush/src/bindings/bind_evaluator.h" bodystart="12" bodyend="21"/>
-        <references refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" compoundref="d4/d93/bind__engines_8h" startline="35" endline="104">bind_engine</references>
+        <referencedby refid="da/dff/bind__evaluator_8cpp_1a42c2075ccc50fcb91a164963bb092be2" compoundref="da/dff/bind__evaluator_8cpp" startline="10" endline="16">bind_evaluators</referencedby>
       </memberdef>
     </sectiondef>
     <briefdescription>
@@ -612,7 +612,7 @@
 <codeline lineno="2"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;<ref refid="d3/df9/evaluation_8h" kindref="compound">../eval/evaluation.h</ref>&quot;</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="3"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;<ref refid="d9/d6a/evaluation_8cpp" kindref="compound">../eval/evaluation.cpp</ref>&quot;</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="4"><highlight class="normal"></highlight></codeline>
-<codeline lineno="5"><highlight class="normal"></highlight><highlight class="keyword">namespace<sp/></highlight><highlight class="normal"><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">py</ref><sp/>=<sp/><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">pybind11</ref>;</highlight></codeline>
+<codeline lineno="5"><highlight class="normal"></highlight><highlight class="keyword">namespace<sp/></highlight><highlight class="normal">py<sp/>=<sp/>pybind11;</highlight></codeline>
 <codeline lineno="6"><highlight class="normal"></highlight><highlight class="keyword">namespace<sp/></highlight><highlight class="normal"><ref refid="dc/d5c/namespaceBrush" kindref="compound">br</ref><sp/>=<sp/><ref refid="dc/d5c/namespaceBrush" kindref="compound">Brush</ref>;</highlight></codeline>
 <codeline lineno="7"><highlight class="normal"></highlight><highlight class="keyword">namespace<sp/></highlight><highlight class="normal"><ref refid="d3/d9b/namespacenlohmann" kindref="compound">nl</ref><sp/>=<sp/><ref refid="d3/d9b/namespacenlohmann" kindref="compound">nlohmann</ref>;</highlight></codeline>
 <codeline lineno="8"><highlight class="normal"></highlight></codeline>
@@ -621,7 +621,7 @@
 <codeline lineno="11"><highlight class="normal"></highlight><highlight class="keyword">template</highlight><highlight class="normal"><sp/>&lt;br::ProgramType<sp/>T&gt;</highlight></codeline>
 <codeline lineno="12" refid="d0/d67/bind__evaluator_8h_1a4a078fc3865f8ccc54a84f4a75c4fceb" refkind="member"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="d0/d67/bind__evaluator_8h_1a4a078fc3865f8ccc54a84f4a75c4fceb" kindref="member">bind_evaluator</ref>(py::module&amp;<sp/>m,<sp/></highlight><highlight class="keywordtype">string</highlight><highlight class="normal"><sp/>name)</highlight></codeline>
 <codeline lineno="13"><highlight class="normal">{</highlight></codeline>
-<codeline lineno="14"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">using<sp/></highlight><highlight class="normal"><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">Class</ref><sp/>=<sp/>br::Eval::Evaluation&lt;T&gt;;</highlight></codeline>
+<codeline lineno="14"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">using<sp/></highlight><highlight class="normal">Class<sp/>=<sp/><ref refid="d1/de5/classBrush_1_1Eval_1_1Evaluation" kindref="compound">br::Eval::Evaluation&lt;T&gt;</ref>;</highlight></codeline>
 <codeline lineno="15"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>TODO:<sp/>will<sp/>this<sp/>part<sp/>of<sp/>c++<sp/>be<sp/>exposed?</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="16"><highlight class="normal"><sp/><sp/><sp/><sp/>py::class_&lt;Class&gt;<sp/>eval(m,<sp/>name.data()<sp/>);<sp/></highlight></codeline>
 <codeline lineno="17"><highlight class="normal"><sp/><sp/><sp/><sp/>eval.def(py::init&lt;&gt;())<sp/><sp/><sp/><sp/></highlight></codeline>

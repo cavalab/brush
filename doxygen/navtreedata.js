@@ -56,6 +56,7 @@ var NAVTREE =
         [ "Functions", "globals_func.html", null ],
         [ "Variables", "globals_vars.html", null ],
         [ "Typedefs", "globals_type.html", null ],
+        [ "Enumerations", "globals_enum.html", null ],
         [ "Macros", "globals_defs.html", null ]
       ] ]
     ] ]
@@ -65,19 +66,20 @@ var NAVTREE =
 var NAVTREEINDEX =
 [
 "annotated.html",
-"d1/d3a/structBrush_1_1Node.html#aed6c2af0fae3dd8e5a8aa2fab77479fd",
-"d2/d84/structBrush_1_1Function_3_01NodeType_1_1Median_01_4.html#a226a9b29496d0d09fb55055ca23a3c86",
-"d4/d93/bind__engines_8h.html",
-"d5/d7d/structBrush_1_1Signature_3_01R_07Args_8_8_8_08_4.html#a7ace5066b187efa33260b6b979451bd9",
-"d7/d17/structBrush_1_1DataTypeEnum_3_01ArrayXXb_01_4.html",
-"d8/da4/classBrush_1_1Util_1_1Timer.html",
-"da/d4c/classBrush_1_1Eval_1_1Scorer.html#ad88baa386d47e6464c130f0da3858325",
-"db/d88/structBrush_1_1Program.html#ab5df93b7b0bf914455ffeb5cc7574543",
-"dc/d84/structBrush_1_1DataTypeEnum_3_01ArrayXXiJet_01_4.html",
-"de/d06/utils_8cpp.html#ae119a14eab4e4899608c4e766acf54c0",
-"de/deb/structBrush_1_1Parameters.html#a21e3da5422ccf31326362f1806ac3eae",
-"dir_f89e4c745b153bebdf6a1c6589fa5209.html"
+"d1/d3a/structBrush_1_1Node.html#a4fcf7feccb71d538f8614d3c51247eb4",
+"d2/d36/classBrush_1_1Data_1_1Dataset.html#ac15d3e1c19c7d2acd3499a8392512a12",
+"d4/d70/structBrush_1_1ResidualEvaluator.html#a7944b5155a9e8fe6ba66bb5ba0af0011",
+"d6/d2e/namespaceBrush_1_1Util.html#a313cbd04c33a2fe62b87977739337658",
+"d7/d56/structBrush_1_1Data_1_1TimeSeries.html#a564eb61fe2e0a33b8ccafdf5635fd706",
+"d8/d49/structNode.html#aed6c2af0fae3dd8e5a8aa2fab77479fd",
+"d9/da6/structBrush_1_1NarySignatures.html#aa831ed4ff505cd0c2ca95bc50eb1ba15",
+"db/d1f/structBrush_1_1Operator_3_01NT_00_01S_00_01Fit_00_01enable__if__t_3_01is__in__v_3_01NT_00_01Node0d34d2b97afea7b3bb37b94bd97cbb86.html#ae4852e75e91124556a838934d222fbc6",
+"dc/d31/structBrush_1_1Operator.html#aa4adc47d9cddb762f26e38747773bba6",
+"dc/d91/structBrush_1_1OptimizerSummary.html#ac5148f1dea89f3a5361bcbb668b8fb4d",
+"de/d30/structBrush_1_1Jetify.html#a41a88664219f863ac8fe341e03f5c21f",
+"de/deb/structBrush_1_1Parameters.html#a503e5e39ff8078bfd0132399bc376651",
+"functions_r.html"
 ];
 
-var SYNCONMSG = 'click to disable panel synchronisation';
-var SYNCOFFMSG = 'click to enable panel synchronisation';
+var SYNCONMSG = 'click to disable panel synchronization';
+var SYNCOFFMSG = 'click to enable panel synchronization';

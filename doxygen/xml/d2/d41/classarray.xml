@@ -1,0 +1,55 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.13.2" xml:lang="en-US">
+  <compounddef id="d2/d41/classarray" kind="class" language="Unknown" prot="public">
+    <compoundname>array</compoundname>
+    <innerclass refid="dc/d95/classarray_1_1const__iterator" prot="public">array::const_iterator</innerclass>
+    <innerclass refid="d3/d18/classarray_1_1const__reverse__iterator" prot="public">array::const_reverse_iterator</innerclass>
+    <innerclass refid="d9/dcc/classarray_1_1iterator" prot="public">array::iterator</innerclass>
+    <innerclass refid="dd/d20/classarray_1_1reverse__iterator" prot="public">array::reverse_iterator</innerclass>
+    <templateparamlist>
+      <param>
+        <type>typename</type>
+        <declname>T</declname>
+        <defname>T</defname>
+      </param>
+    </templateparamlist>
+    <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="d2/d41/classarray_1a7b7fb76e56127f8b1ea203967a406d0a" prot="public" static="no" mutable="no">
+        <type>T</type>
+        <definition>T std::array&lt; T &gt;::elements</definition>
+        <argsstring></argsstring>
+        <name>elements</name>
+        <qualifiedname>array::elements</qualifiedname>
+        <briefdescription>
+<para>STL member. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="" line="1" column="1"/>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+<para>STL class. </para>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <collaborationgraph>
+      <node id="2">
+        <label>T</label>
+      </node>
+      <node id="1">
+        <label>array&lt; T &gt;</label>
+        <link refid="d2/d41/classarray"/>
+        <childnode refid="2" relation="usage">
+          <edgelabel>elements</edgelabel>
+        </childnode>
+      </node>
+    </collaborationgraph>
+    <location file="[STL]" line="1" column="1"/>
+    <listofallmembers>
+      <member refid="d2/d41/classarray_1a7b7fb76e56127f8b1ea203967a406d0a" prot="public" virt="non-virtual"><scope>array</scope><name>elements</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

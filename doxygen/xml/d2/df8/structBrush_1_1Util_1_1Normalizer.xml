@@ -1,11 +1,11 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
-<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.10.0" xml:lang="en-US">
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.13.2" xml:lang="en-US">
   <compounddef id="d2/df8/structBrush_1_1Util_1_1Normalizer" kind="struct" language="C++" prot="public">
     <compoundname>Brush::Util::Normalizer</compoundname>
     <includes refid="d5/d60/utils_8h" local="no">utils.h</includes>
     <sectiondef kind="public-attrib">
       <memberdef kind="variable" id="d2/df8/structBrush_1_1Util_1_1Normalizer_1acf13e625f058c227e745e4bd588a423a" prot="public" static="no" mutable="no">
-        <type>vector&lt; <ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">float</ref> &gt;</type>
+        <type><ref refid="d7/dfc/classvector" kindref="compound">vector</ref>&lt; float &gt;</type>
         <definition>vector&lt;float&gt; Brush::Util::Normalizer::scale</definition>
         <argsstring></argsstring>
         <name>scale</name>
@@ -21,7 +21,7 @@
         <referencedby refid="d2/df8/structBrush_1_1Util_1_1Normalizer_1ade9d0b6a950174d04aed5624cba5c7f0" compoundref="de/d06/utils_8cpp" startline="117" endline="135">normalize</referencedby>
       </memberdef>
       <memberdef kind="variable" id="d2/df8/structBrush_1_1Util_1_1Normalizer_1a34e824201c3394b7d7bb5bb5fe49a5e8" prot="public" static="no" mutable="no">
-        <type>vector&lt; <ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">float</ref> &gt;</type>
+        <type><ref refid="d7/dfc/classvector" kindref="compound">vector</ref>&lt; float &gt;</type>
         <definition>vector&lt;float&gt; Brush::Util::Normalizer::offset</definition>
         <argsstring></argsstring>
         <name>offset</name>
@@ -37,7 +37,7 @@
         <referencedby refid="d2/df8/structBrush_1_1Util_1_1Normalizer_1ade9d0b6a950174d04aed5624cba5c7f0" compoundref="de/d06/utils_8cpp" startline="117" endline="135">normalize</referencedby>
       </memberdef>
       <memberdef kind="variable" id="d2/df8/structBrush_1_1Util_1_1Normalizer_1a574c6632238c45c3b505b2c0eab9744e" prot="public" static="no" mutable="no">
-        <type>vector&lt; <ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">char</ref> &gt;</type>
+        <type><ref refid="d7/dfc/classvector" kindref="compound">vector</ref>&lt; char &gt;</type>
         <definition>vector&lt;char&gt; Brush::Util::Normalizer::dtypes</definition>
         <argsstring></argsstring>
         <name>dtypes</name>
@@ -54,7 +54,7 @@
         <referencedby refid="d2/df8/structBrush_1_1Util_1_1Normalizer_1ade9d0b6a950174d04aed5624cba5c7f0" compoundref="de/d06/utils_8cpp" startline="117" endline="135">normalize</referencedby>
       </memberdef>
       <memberdef kind="variable" id="d2/df8/structBrush_1_1Util_1_1Normalizer_1a4073d38c4967258cec964c8f455a1d92" prot="public" static="no" mutable="no">
-        <type><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">bool</ref></type>
+        <type>bool</type>
         <definition>bool Brush::Util::Normalizer::scale_all</definition>
         <argsstring></argsstring>
         <name>scale_all</name>
@@ -67,6 +67,7 @@
         </inbodydescription>
         <location file="/home/runner/work/brush/brush/src/util/utils.h" line="318" column="10" bodyfile="/home/runner/work/brush/brush/src/util/utils.h" bodystart="318" bodyend="-1"/>
         <referencedby refid="d2/df8/structBrush_1_1Util_1_1Normalizer_1ade9d0b6a950174d04aed5624cba5c7f0" compoundref="de/d06/utils_8cpp" startline="117" endline="135">normalize</referencedby>
+        <referencedby refid="d2/df8/structBrush_1_1Util_1_1Normalizer_1a93074bf3c7c1853f9e7929ec4b221a8a" compoundref="d5/d60/utils_8h" startline="314" endline="314">Normalizer</referencedby>
       </memberdef>
     </sectiondef>
     <sectiondef kind="public-func">
@@ -77,9 +78,9 @@
         <name>Normalizer</name>
         <qualifiedname>Brush::Util::Normalizer::Normalizer</qualifiedname>
         <param>
-          <type><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">bool</ref></type>
+          <type>bool</type>
           <declname>sa</declname>
-          <defval><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">true</ref></defval>
+          <defval>true</defval>
         </param>
         <briefdescription>
         </briefdescription>
@@ -88,9 +89,10 @@
         <inbodydescription>
         </inbodydescription>
         <location file="/home/runner/work/brush/brush/src/util/utils.h" line="314" column="5" bodyfile="/home/runner/work/brush/brush/src/util/utils.h" bodystart="314" bodyend="314"/>
+        <references refid="d2/df8/structBrush_1_1Util_1_1Normalizer_1a4073d38c4967258cec964c8f455a1d92" compoundref="d5/d60/utils_8h" startline="318">scale_all</references>
       </memberdef>
       <memberdef kind="function" id="d2/df8/structBrush_1_1Util_1_1Normalizer_1a46115a5bd9d52f588f7553373b8b7480" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
-        <type><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">void</ref></type>
+        <type>void</type>
         <definition>void Brush::Util::Normalizer::fit</definition>
         <argsstring>(MatrixXf &amp;X, const vector&lt; char &gt; &amp;dt)</argsstring>
         <name>fit</name>
@@ -100,7 +102,7 @@
           <declname>X</declname>
         </param>
         <param>
-          <type><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">const</ref> vector&lt; <ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">char</ref> &gt; &amp;</type>
+          <type>const <ref refid="d7/dfc/classvector" kindref="compound">vector</ref>&lt; char &gt; &amp;</type>
           <declname>dt</declname>
         </param>
         <briefdescription>
@@ -111,14 +113,13 @@
         <inbodydescription>
         </inbodydescription>
         <location file="/home/runner/work/brush/brush/src/util/utils.h" line="321" column="10" bodyfile="/home/runner/work/brush/brush/src/util/utils.cpp" bodystart="100" bodyend="114"/>
-        <references refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" compoundref="d4/d93/bind__engines_8h" startline="35" endline="104">bind_engine</references>
         <references refid="d2/df8/structBrush_1_1Util_1_1Normalizer_1a574c6632238c45c3b505b2c0eab9744e" compoundref="d5/d60/utils_8h" startline="317">dtypes</references>
         <references refid="d2/df8/structBrush_1_1Util_1_1Normalizer_1a34e824201c3394b7d7bb5bb5fe49a5e8" compoundref="d5/d60/utils_8h" startline="316">offset</references>
         <references refid="d2/df8/structBrush_1_1Util_1_1Normalizer_1acf13e625f058c227e745e4bd588a423a" compoundref="d5/d60/utils_8h" startline="315">scale</references>
         <referencedby refid="d2/df8/structBrush_1_1Util_1_1Normalizer_1ac58cb50d38623884ab64b854b2680ae0" compoundref="de/d06/utils_8cpp" startline="137" endline="141">fit_normalize</referencedby>
       </memberdef>
       <memberdef kind="function" id="d2/df8/structBrush_1_1Util_1_1Normalizer_1ade9d0b6a950174d04aed5624cba5c7f0" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
-        <type><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">void</ref></type>
+        <type>void</type>
         <definition>void Brush::Util::Normalizer::normalize</definition>
         <argsstring>(MatrixXf &amp;X)</argsstring>
         <name>normalize</name>
@@ -135,7 +136,6 @@
         <inbodydescription>
         </inbodydescription>
         <location file="/home/runner/work/brush/brush/src/util/utils.h" line="324" column="10" bodyfile="/home/runner/work/brush/brush/src/util/utils.cpp" bodystart="117" bodyend="135"/>
-        <references refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" compoundref="d4/d93/bind__engines_8h" startline="35" endline="104">bind_engine</references>
         <references refid="d2/df8/structBrush_1_1Util_1_1Normalizer_1a574c6632238c45c3b505b2c0eab9744e" compoundref="d5/d60/utils_8h" startline="317">dtypes</references>
         <references refid="d8/dc0/init_8h_1a83abef40236b8b0305214b547c6db665" compoundref="d8/dc0/init_8h" startline="60">NEAR_ZERO</references>
         <references refid="d2/df8/structBrush_1_1Util_1_1Normalizer_1a34e824201c3394b7d7bb5bb5fe49a5e8" compoundref="d5/d60/utils_8h" startline="316">offset</references>
@@ -144,7 +144,7 @@
         <referencedby refid="d2/df8/structBrush_1_1Util_1_1Normalizer_1ac58cb50d38623884ab64b854b2680ae0" compoundref="de/d06/utils_8cpp" startline="137" endline="141">fit_normalize</referencedby>
       </memberdef>
       <memberdef kind="function" id="d2/df8/structBrush_1_1Util_1_1Normalizer_1ac58cb50d38623884ab64b854b2680ae0" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
-        <type><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">void</ref></type>
+        <type>void</type>
         <definition>void Brush::Util::Normalizer::fit_normalize</definition>
         <argsstring>(MatrixXf &amp;X, const vector&lt; char &gt; &amp;dtypes)</argsstring>
         <name>fit_normalize</name>
@@ -154,7 +154,7 @@
           <declname>X</declname>
         </param>
         <param>
-          <type><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">const</ref> vector&lt; <ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">char</ref> &gt; &amp;</type>
+          <type>const <ref refid="d7/dfc/classvector" kindref="compound">vector</ref>&lt; char &gt; &amp;</type>
           <declname>dtypes</declname>
         </param>
         <briefdescription>
@@ -164,10 +164,10 @@
         <inbodydescription>
         </inbodydescription>
         <location file="/home/runner/work/brush/brush/src/util/utils.h" line="326" column="10" bodyfile="/home/runner/work/brush/brush/src/util/utils.cpp" bodystart="137" bodyend="141"/>
-        <references refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" compoundref="d4/d93/bind__engines_8h" startline="35" endline="104">bind_engine</references>
         <references refid="d2/df8/structBrush_1_1Util_1_1Normalizer_1a574c6632238c45c3b505b2c0eab9744e" compoundref="d5/d60/utils_8h" startline="317">dtypes</references>
         <references refid="d2/df8/structBrush_1_1Util_1_1Normalizer_1a46115a5bd9d52f588f7553373b8b7480" compoundref="de/d06/utils_8cpp" startline="100" endline="114">fit</references>
         <references refid="d2/df8/structBrush_1_1Util_1_1Normalizer_1ade9d0b6a950174d04aed5624cba5c7f0" compoundref="de/d06/utils_8cpp" startline="117" endline="135">normalize</references>
+        <referencedby refid="dc/d5c/namespaceBrush_1af6e4b7d5bbd50f46f8c96a356e19bdae" compoundref="da/d48/search__space_8cpp" startline="7" endline="44">Brush::calc_initial_weight</referencedby>
       </memberdef>
     </sectiondef>
     <briefdescription>

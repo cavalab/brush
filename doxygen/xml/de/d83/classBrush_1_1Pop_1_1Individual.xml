@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
-<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.10.0" xml:lang="en-US">
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.13.2" xml:lang="en-US">
   <compounddef id="de/d83/classBrush_1_1Pop_1_1Individual" kind="class" language="C++" prot="public">
     <compoundname>Brush::Pop::Individual</compoundname>
     <includes refid="d5/d1f/individual_8h" local="no">individual.h</includes>
@@ -25,25 +25,21 @@
         <inbodydescription>
         </inbodydescription>
         <location file="/home/runner/work/brush/brush/src/ind/individual.h" line="17" column="13" bodyfile="/home/runner/work/brush/brush/src/ind/individual.h" bodystart="17" bodyend="-1"/>
-        <referencedby refid="de/d83/classBrush_1_1Pop_1_1Individual_1a4fbf8d65d5cfe6e28c655d6c2a543902" compoundref="d5/d1f/individual_8h" startline="55" endline="59">Brush::Pop::Individual&lt; T &gt;::fit</referencedby>
-        <referencedby refid="de/d83/classBrush_1_1Pop_1_1Individual_1a14fd7a5cc46f3dde2d71b6ef8f128e05" compoundref="d5/d1f/individual_8h" startline="88" endline="88">Brush::Pop::Individual&lt; T &gt;::get_complexity</referencedby>
-        <referencedby refid="de/d83/classBrush_1_1Pop_1_1Individual_1ad17e7fd9fab8894a38aa6a46653198d4" compoundref="d5/d1f/individual_8h" startline="87" endline="87">Brush::Pop::Individual&lt; T &gt;::get_depth</referencedby>
-        <referencedby refid="de/d83/classBrush_1_1Pop_1_1Individual_1aafddbfcf357d73a1ced6c4f50c21009d" compoundref="d5/d1f/individual_8h" startline="93" endline="94">Brush::Pop::Individual&lt; T &gt;::get_dot_model</referencedby>
-        <referencedby refid="de/d83/classBrush_1_1Pop_1_1Individual_1a17a796fd1d02a07d6bba2d1f1fd4e4d8" compoundref="d5/d1f/individual_8h" startline="91" endline="92">Brush::Pop::Individual&lt; T &gt;::get_model</referencedby>
-        <referencedby refid="de/d83/classBrush_1_1Pop_1_1Individual_1a6de9a64bd6963f896b8f45d291a3b8f4" compoundref="d5/d1f/individual_8h" startline="89" endline="89">Brush::Pop::Individual&lt; T &gt;::get_program</referencedby>
-        <referencedby refid="de/d83/classBrush_1_1Pop_1_1Individual_1acca3bba8a620c4498bf51dc1ddc9aea3" compoundref="d5/d1f/individual_8h" startline="43" endline="43">Brush::Pop::Individual&lt; T &gt;::Individual</referencedby>
-        <referencedby refid="de/d83/classBrush_1_1Pop_1_1Individual_1af679e70e78c8b0622ebd205bb91c5ffd" compoundref="d5/d1f/individual_8h" startline="45" endline="52">Brush::Pop::Individual&lt; T &gt;::init</referencedby>
+        <referencedby refid="d1/de5/classBrush_1_1Eval_1_1Evaluation_1ac7562624d114b22b19720729d599a40a" compoundref="d9/d6a/evaluation_8cpp" startline="46" endline="94">Brush::Eval::Evaluation&lt; T &gt;::assign_fit</referencedby>
+        <referencedby refid="d5/d14/classBrush_1_1Var_1_1Variation_1acf7d5d1c0d6a102eec277180dce590fe" compoundref="d1/d64/variation_8cpp" startline="345" endline="450">Brush::Var::Variation&lt; T &gt;::cross</referencedby>
+        <referencedby refid="dd/d56/namespaceBrush_1_1Pop_1af7f97a6c5ba977ab4ef312a0ac71c828" compoundref="d5/d1f/individual_8h" startline="162" endline="169">Brush::Pop::from_json</referencedby>
         <referencedby refid="d5/d14/classBrush_1_1Var_1_1Variation_1a024e971b0f8685c89d119c0af484284a" compoundref="d1/d64/variation_8cpp" startline="486" endline="575">Brush::Var::Variation&lt; T &gt;::mutate</referencedby>
-        <referencedby refid="de/d83/classBrush_1_1Pop_1_1Individual_1a4a67784960128ceeb0df3aac10c74cc1" compoundref="d5/d1f/individual_8h" startline="66" endline="66">Brush::Pop::Individual&lt; T &gt;::predict</referencedby>
-        <referencedby refid="de/d83/classBrush_1_1Pop_1_1Individual_1a4c8b9afd9297b200b8b0527353569297" compoundref="d5/d1f/individual_8h" startline="75" endline="75">Brush::Pop::Individual&lt; T &gt;::predict_proba</referencedby>
+        <referencedby refid="dd/d56/namespaceBrush_1_1Pop_1af4f50fb2e3fbad69b68d16d4d03d7c32" compoundref="d5/d1f/individual_8h" startline="150" endline="159">Brush::Pop::to_json</referencedby>
+        <referencedby refid="d1/de5/classBrush_1_1Eval_1_1Evaluation_1a1d652164264243bd40efcfd38ba6d569" compoundref="d9/d6a/evaluation_8cpp" startline="9" endline="42">Brush::Eval::Evaluation&lt; T &gt;::update_fitness</referencedby>
+        <referencedby refid="d5/d14/classBrush_1_1Var_1_1Variation_1a344233ce053ca4b267539182fecbbc91" compoundref="d1/d64/variation_8cpp" startline="578" endline="638">Brush::Var::Variation&lt; T &gt;::vary</referencedby>
       </memberdef>
       <memberdef kind="variable" id="de/d83/classBrush_1_1Pop_1_1Individual_1a4be0cd31ca91af4d113bee11793a4015" prot="public" static="no" mutable="no">
-        <type><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">bool</ref></type>
+        <type>bool</type>
         <definition>bool Brush::Pop::Individual&lt; T &gt;::is_fitted_</definition>
         <argsstring></argsstring>
         <name>is_fitted_</name>
         <qualifiedname>Brush::Pop::Individual::is_fitted_</qualifiedname>
-        <initializer>= <ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">false</ref></initializer>
+        <initializer>= false</initializer>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
@@ -51,11 +47,10 @@
         <inbodydescription>
         </inbodydescription>
         <location file="/home/runner/work/brush/brush/src/ind/individual.h" line="24" column="10" bodyfile="/home/runner/work/brush/brush/src/ind/individual.h" bodystart="24" bodyend="-1"/>
-        <referencedby refid="de/d83/classBrush_1_1Pop_1_1Individual_1afe255c458bb9558fdab16cccd01de0c6" compoundref="d5/d1f/individual_8h" startline="85" endline="85">Brush::Pop::Individual&lt; T &gt;::get_is_fitted</referencedby>
         <referencedby refid="d5/d14/classBrush_1_1Var_1_1Variation_1a344233ce053ca4b267539182fecbbc91" compoundref="d1/d64/variation_8cpp" startline="578" endline="638">Brush::Var::Variation&lt; T &gt;::vary</referencedby>
       </memberdef>
       <memberdef kind="variable" id="de/d83/classBrush_1_1Pop_1_1Individual_1a65ad1b63a3f74fc95d03584f9807efe8" prot="public" static="no" mutable="no">
-        <type><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">unsigned</ref></type>
+        <type>unsigned</type>
         <definition>unsigned Brush::Pop::Individual&lt; T &gt;::id</definition>
         <argsstring></argsstring>
         <name>id</name>
@@ -68,9 +63,13 @@
         <inbodydescription>
         </inbodydescription>
         <location file="/home/runner/work/brush/brush/src/ind/individual.h" line="28" column="14" bodyfile="/home/runner/work/brush/brush/src/ind/individual.h" bodystart="28" bodyend="-1"/>
+        <referencedby refid="dd/d56/namespaceBrush_1_1Pop_1af7f97a6c5ba977ab4ef312a0ac71c828" compoundref="d5/d1f/individual_8h" startline="162" endline="169">Brush::Pop::from_json</referencedby>
+        <referencedby refid="d0/d75/classBrush_1_1Engine_1ac70f5fca40a2a058b187e579a7910ab3" compoundref="da/d5c/engine_8cpp" startline="208" endline="236">Brush::Engine&lt; T &gt;::predict_archive</referencedby>
+        <referencedby refid="d0/d75/classBrush_1_1Engine_1ac1f6620adc2dd0710a415a7e48b76650" compoundref="da/d5c/engine_8cpp" startline="248" endline="276">Brush::Engine&lt; T &gt;::predict_proba_archive</referencedby>
+        <referencedby refid="dd/d56/namespaceBrush_1_1Pop_1af4f50fb2e3fbad69b68d16d4d03d7c32" compoundref="d5/d1f/individual_8h" startline="150" endline="159">Brush::Pop::to_json</referencedby>
       </memberdef>
       <memberdef kind="variable" id="de/d83/classBrush_1_1Pop_1_1Individual_1ad53a3b6ea8c53b2f615158081ea98584" prot="public" static="no" mutable="no">
-        <type>vector&lt; <ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">unsigned</ref> &gt;</type>
+        <type><ref refid="d7/dfc/classvector" kindref="compound">vector</ref>&lt; unsigned &gt;</type>
         <definition>vector&lt;unsigned&gt; Brush::Pop::Individual&lt; T &gt;::parent_id</definition>
         <argsstring></argsstring>
         <name>parent_id</name>
@@ -83,8 +82,8 @@
         <inbodydescription>
         </inbodydescription>
         <location file="/home/runner/work/brush/brush/src/ind/individual.h" line="29" column="12" bodyfile="/home/runner/work/brush/brush/src/ind/individual.h" bodystart="29" bodyend="-1"/>
-        <referencedby refid="de/d83/classBrush_1_1Pop_1_1Individual_1acc67d46bc2b684a68e59b500a2d9aa8a" compoundref="d5/d1f/individual_8h" startline="100" endline="104">Brush::Pop::Individual&lt; T &gt;::set_parents</referencedby>
-        <referencedby refid="de/d83/classBrush_1_1Pop_1_1Individual_1aad07cb9ef262458bfe335316c707f816" compoundref="d5/d1f/individual_8h" startline="105" endline="105">Brush::Pop::Individual&lt; T &gt;::set_parents</referencedby>
+        <referencedby refid="dd/d56/namespaceBrush_1_1Pop_1af7f97a6c5ba977ab4ef312a0ac71c828" compoundref="d5/d1f/individual_8h" startline="162" endline="169">Brush::Pop::from_json</referencedby>
+        <referencedby refid="dd/d56/namespaceBrush_1_1Pop_1af4f50fb2e3fbad69b68d16d4d03d7c32" compoundref="d5/d1f/individual_8h" startline="150" endline="159">Brush::Pop::to_json</referencedby>
       </memberdef>
       <memberdef kind="variable" id="de/d83/classBrush_1_1Pop_1_1Individual_1a7d8554e86a649d039be4bb367b879530" prot="public" static="no" mutable="no">
         <type>VectorXf</type>
@@ -100,6 +99,8 @@
         <inbodydescription>
         </inbodydescription>
         <location file="/home/runner/work/brush/brush/src/ind/individual.h" line="31" column="14" bodyfile="/home/runner/work/brush/brush/src/ind/individual.h" bodystart="31" bodyend="-1"/>
+        <referencedby refid="d1/de5/classBrush_1_1Eval_1_1Evaluation_1ac7562624d114b22b19720729d599a40a" compoundref="d9/d6a/evaluation_8cpp" startline="46" endline="94">Brush::Eval::Evaluation&lt; T &gt;::assign_fit</referencedby>
+        <referencedby refid="d1/de5/classBrush_1_1Eval_1_1Evaluation_1a1d652164264243bd40efcfd38ba6d569" compoundref="d9/d6a/evaluation_8cpp" startline="9" endline="42">Brush::Eval::Evaluation&lt; T &gt;::update_fitness</referencedby>
       </memberdef>
       <memberdef kind="variable" id="de/d83/classBrush_1_1Pop_1_1Individual_1a96a4869472f1e11e19219c2d07fb6c53" prot="public" static="no" mutable="no">
         <type><ref refid="d6/dd0/structBrush_1_1Fitness" kindref="compound">Fitness</ref></type>
@@ -115,14 +116,19 @@
         <inbodydescription>
         </inbodydescription>
         <location file="/home/runner/work/brush/brush/src/ind/individual.h" line="33" column="13" bodyfile="/home/runner/work/brush/brush/src/ind/individual.h" bodystart="33" bodyend="-1"/>
-        <referencedby refid="d0/d75/classBrush_1_1Engine_1a215399033d10c86535f344e54937ea01" compoundref="da/d5c/engine_8cpp" startline="62" endline="125">Brush::Engine&lt; T &gt;::calculate_stats</referencedby>
-        <referencedby refid="de/d83/classBrush_1_1Pop_1_1Individual_1a7b16f9c3d62d3cc345abdd12ab3105f6" compoundref="d5/d1f/individual_8h" startline="97" endline="97">Brush::Pop::Individual&lt; T &gt;::get_fitness</referencedby>
-        <referencedby refid="de/d83/classBrush_1_1Pop_1_1Individual_1a4c2c3c4064a3ef28edbec34421e968fd" compoundref="d5/d1f/individual_8h" startline="96" endline="96">Brush::Pop::Individual&lt; T &gt;::set_fitness</referencedby>
-        <referencedby refid="de/d83/classBrush_1_1Pop_1_1Individual_1abbf86134203ab8b573dc043a3c10d388" compoundref="d5/d1f/individual_8h" startline="128" endline="144">Brush::Pop::Individual&lt; T &gt;::set_objectives</referencedby>
-        <referencedby refid="d0/d75/classBrush_1_1Engine_1a9a15cd9b6bdcc6c7bee5a473ebff1081" compoundref="da/d5c/engine_8cpp" startline="288" endline="320">Brush::Engine&lt; T &gt;::update_best</referencedby>
+        <referencedby refid="d1/de5/classBrush_1_1Eval_1_1Evaluation_1ac7562624d114b22b19720729d599a40a" compoundref="d9/d6a/evaluation_8cpp" startline="46" endline="94">Brush::Eval::Evaluation&lt; T &gt;::assign_fit</referencedby>
+        <referencedby refid="d3/d7d/classBrush_1_1Sel_1_1NSGA2_1a4196468152e50eed683b327b0b732f70" compoundref="de/d0d/nsga2_8cpp" startline="116" endline="198">Brush::Sel::NSGA2&lt; T &gt;::fast_nds</referencedby>
+        <referencedby refid="dd/d56/namespaceBrush_1_1Pop_1af7f97a6c5ba977ab4ef312a0ac71c828" compoundref="d5/d1f/individual_8h" startline="162" endline="169">Brush::Pop::from_json</referencedby>
+        <referencedby refid="d1/d30/structBrush_1_1Pop_1_1Archive_1a7510447de2f87201fa3d7977f3a3e8d8" compoundref="d7/d05/archive_8cpp" startline="45" endline="53">Brush::Pop::Archive&lt; T &gt;::sameFitComplexity</referencedby>
+        <referencedby refid="d1/d30/structBrush_1_1Pop_1_1Archive_1ae48c8db22bdf072955564c079e379610" compoundref="d7/d05/archive_8cpp" startline="56" endline="61">Brush::Pop::Archive&lt; T &gt;::sameObjectives</referencedby>
+        <referencedby refid="d1/d30/structBrush_1_1Pop_1_1Archive_1a8e11ee4659b1dc0a4332ffad5690e30f" compoundref="d7/d05/archive_8cpp" startline="17" endline="26">Brush::Pop::Archive&lt; T &gt;::sortComplexity</referencedby>
+        <referencedby refid="d1/d30/structBrush_1_1Pop_1_1Archive_1a8407a45b676b80bbf7197dbdd96d2c30" compoundref="d7/d05/archive_8cpp" startline="29" endline="42">Brush::Pop::Archive&lt; T &gt;::sortObj1</referencedby>
+        <referencedby refid="dd/d56/namespaceBrush_1_1Pop_1af4f50fb2e3fbad69b68d16d4d03d7c32" compoundref="d5/d1f/individual_8h" startline="150" endline="159">Brush::Pop::to_json</referencedby>
+        <referencedby refid="d3/d7d/classBrush_1_1Sel_1_1NSGA2_1a263e5ab1678a79eb1cab18fce362b9f9" compoundref="de/d0d/nsga2_8cpp" startline="18" endline="36">Brush::Sel::NSGA2&lt; T &gt;::tournament</referencedby>
+        <referencedby refid="d1/de5/classBrush_1_1Eval_1_1Evaluation_1a1d652164264243bd40efcfd38ba6d569" compoundref="d9/d6a/evaluation_8cpp" startline="9" endline="42">Brush::Eval::Evaluation&lt; T &gt;::update_fitness</referencedby>
       </memberdef>
       <memberdef kind="variable" id="de/d83/classBrush_1_1Pop_1_1Individual_1a27993e06c9f048907ffaa42545a5a32e" prot="public" static="no" mutable="no">
-        <type>vector&lt; string &gt;</type>
+        <type><ref refid="d7/dfc/classvector" kindref="compound">vector</ref>&lt; <ref refid="d5/d92/classstring" kindref="compound">string</ref> &gt;</type>
         <definition>vector&lt;string&gt; Brush::Pop::Individual&lt; T &gt;::objectives</definition>
         <argsstring></argsstring>
         <name>objectives</name>
@@ -135,14 +141,13 @@
         <inbodydescription>
         </inbodydescription>
         <location file="/home/runner/work/brush/brush/src/ind/individual.h" line="35" column="12" bodyfile="/home/runner/work/brush/brush/src/ind/individual.h" bodystart="35" bodyend="-1"/>
-        <referencedby refid="de/d83/classBrush_1_1Pop_1_1Individual_1ab6d50093f0d37ecccb4e0963b2b1b7e3" compoundref="d5/d1f/individual_8h" startline="127" endline="127">Brush::Pop::Individual&lt; T &gt;::get_objectives</referencedby>
-        <referencedby refid="de/d83/classBrush_1_1Pop_1_1Individual_1a7224f798511c371e30acf92a8aa37a31" compoundref="d5/d1f/individual_8h" startline="37" endline="41">Brush::Pop::Individual&lt; T &gt;::Individual</referencedby>
-        <referencedby refid="de/d83/classBrush_1_1Pop_1_1Individual_1abbf86134203ab8b573dc043a3c10d388" compoundref="d5/d1f/individual_8h" startline="128" endline="144">Brush::Pop::Individual&lt; T &gt;::set_objectives</referencedby>
+        <referencedby refid="dd/d56/namespaceBrush_1_1Pop_1af7f97a6c5ba977ab4ef312a0ac71c828" compoundref="d5/d1f/individual_8h" startline="162" endline="169">Brush::Pop::from_json</referencedby>
+        <referencedby refid="dd/d56/namespaceBrush_1_1Pop_1af4f50fb2e3fbad69b68d16d4d03d7c32" compoundref="d5/d1f/individual_8h" startline="150" endline="159">Brush::Pop::to_json</referencedby>
       </memberdef>
     </sectiondef>
     <sectiondef kind="public-static-attrib">
       <memberdef kind="variable" id="de/d83/classBrush_1_1Pop_1_1Individual_1a0445d333388f2198459c25dd2b01794c" prot="public" static="yes" mutable="no">
-        <type>std::map&lt; std::string, <ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">float</ref> &gt;</type>
+        <type>std::map&lt; std::string, float &gt;</type>
         <definition>std::map&lt;std::string, float&gt; Brush::Pop::Individual&lt; T &gt;::weightsMap</definition>
         <argsstring></argsstring>
         <name>weightsMap</name>
@@ -165,7 +170,7 @@
         <inbodydescription>
         </inbodydescription>
         <location file="/home/runner/work/brush/brush/src/ind/individual.h" line="116" column="28" bodyfile="/home/runner/work/brush/brush/src/ind/individual.h" bodystart="116" bodyend="125"/>
-        <referencedby refid="de/d83/classBrush_1_1Pop_1_1Individual_1abbf86134203ab8b573dc043a3c10d388" compoundref="d5/d1f/individual_8h" startline="128" endline="144">Brush::Pop::Individual&lt; T &gt;::set_objectives</referencedby>
+        <referencedby refid="d0/d75/classBrush_1_1Engine_1a9a15cd9b6bdcc6c7bee5a473ebff1081" compoundref="da/d5c/engine_8cpp" startline="288" endline="320">Brush::Engine&lt; T &gt;::update_best</referencedby>
       </memberdef>
     </sectiondef>
     <sectiondef kind="public-func">
@@ -182,7 +187,6 @@
         <inbodydescription>
         </inbodydescription>
         <location file="/home/runner/work/brush/brush/src/ind/individual.h" line="37" column="5" bodyfile="/home/runner/work/brush/brush/src/ind/individual.h" bodystart="37" bodyend="41"/>
-        <references refid="de/d83/classBrush_1_1Pop_1_1Individual_1a27993e06c9f048907ffaa42545a5a32e" compoundref="d5/d1f/individual_8h" startline="35">Brush::Pop::Individual&lt; T &gt;::objectives</references>
       </memberdef>
       <memberdef kind="function" id="de/d83/classBrush_1_1Pop_1_1Individual_1acca3bba8a620c4498bf51dc1ddc9aea3" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
         <type></type>
@@ -201,11 +205,9 @@
         <inbodydescription>
         </inbodydescription>
         <location file="/home/runner/work/brush/brush/src/ind/individual.h" line="43" column="5" bodyfile="/home/runner/work/brush/brush/src/ind/individual.h" bodystart="43" bodyend="43"/>
-        <references refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" compoundref="d4/d93/bind__engines_8h" startline="35" endline="104">bind_engine</references>
-        <references refid="de/d83/classBrush_1_1Pop_1_1Individual_1af8eafd2aab3c3a683d6b3b80a649dfa6" compoundref="d5/d1f/individual_8h" startline="17">Brush::Pop::Individual&lt; T &gt;::program</references>
       </memberdef>
       <memberdef kind="function" id="de/d83/classBrush_1_1Pop_1_1Individual_1af679e70e78c8b0622ebd205bb91c5ffd" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
-        <type><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">void</ref></type>
+        <type>void</type>
         <definition>void Brush::Pop::Individual&lt; T &gt;::init</definition>
         <argsstring>(SearchSpace &amp;ss, const Parameters &amp;params)</argsstring>
         <name>init</name>
@@ -215,7 +217,7 @@
           <declname>ss</declname>
         </param>
         <param>
-          <type><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">const</ref> <ref refid="de/deb/structBrush_1_1Parameters" kindref="compound">Parameters</ref> &amp;</type>
+          <type>const <ref refid="de/deb/structBrush_1_1Parameters" kindref="compound">Parameters</ref> &amp;</type>
           <declname>params</declname>
         </param>
         <briefdescription>
@@ -225,8 +227,6 @@
         <inbodydescription>
         </inbodydescription>
         <location file="/home/runner/work/brush/brush/src/ind/individual.h" line="45" column="10" bodyfile="/home/runner/work/brush/brush/src/ind/individual.h" bodystart="45" bodyend="52"/>
-        <references refid="d4/dc3/structBrush_1_1SearchSpace_1af1f89bb898ffb7cb9622f33bdb2d8557">Brush::SearchSpace::make_program</references>
-        <references refid="de/d83/classBrush_1_1Pop_1_1Individual_1af8eafd2aab3c3a683d6b3b80a649dfa6" compoundref="d5/d1f/individual_8h" startline="17">Brush::Pop::Individual&lt; T &gt;::program</references>
         <referencedby refid="d5/d14/classBrush_1_1Var_1_1Variation_1a344233ce053ca4b267539182fecbbc91" compoundref="d1/d64/variation_8cpp" startline="578" endline="638">Brush::Var::Variation&lt; T &gt;::vary</referencedby>
       </memberdef>
       <memberdef kind="function" id="de/d83/classBrush_1_1Pop_1_1Individual_1a4fbf8d65d5cfe6e28c655d6c2a543902" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
@@ -236,7 +236,7 @@
         <name>fit</name>
         <qualifiedname>Brush::Pop::Individual::fit</qualifiedname>
         <param>
-          <type><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">const</ref> <ref refid="d2/d36/classBrush_1_1Data_1_1Dataset" kindref="compound">Dataset</ref> &amp;</type>
+          <type>const <ref refid="d2/d36/classBrush_1_1Data_1_1Dataset" kindref="compound">Dataset</ref> &amp;</type>
           <declname>data</declname>
         </param>
         <briefdescription>
@@ -246,9 +246,7 @@
         <inbodydescription>
         </inbodydescription>
         <location file="/home/runner/work/brush/brush/src/ind/individual.h" line="55" column="16" bodyfile="/home/runner/work/brush/brush/src/ind/individual.h" bodystart="55" bodyend="59"/>
-        <references refid="db/d88/structBrush_1_1Program_1a8ed721f103dd63c7adfc2934340097b4" compoundref="d1/dea/program_8h" startline="142" endline="149">Brush::Program&lt; PType &gt;::fit</references>
-        <references refid="de/d83/classBrush_1_1Pop_1_1Individual_1af8eafd2aab3c3a683d6b3b80a649dfa6" compoundref="d5/d1f/individual_8h" startline="17">Brush::Pop::Individual&lt; T &gt;::program</references>
-        <referencedby refid="de/d83/classBrush_1_1Pop_1_1Individual_1a96d05b4f293705a35f00f5f60db18a11" compoundref="d5/d1f/individual_8h" startline="60" endline="64">Brush::Pop::Individual&lt; T &gt;::fit</referencedby>
+        <referencedby refid="de/d83/classBrush_1_1Pop_1_1Individual_1a96d05b4f293705a35f00f5f60db18a11" compoundref="d5/d1f/individual_8h" startline="60" endline="64">Brush::Pop::Individual&lt; PT::Regressor &gt;::fit</referencedby>
       </memberdef>
       <memberdef kind="function" id="de/d83/classBrush_1_1Pop_1_1Individual_1a96d05b4f293705a35f00f5f60db18a11" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
         <type><ref refid="de/d83/classBrush_1_1Pop_1_1Individual" kindref="compound">Individual</ref>&lt; T &gt; &amp;</type>
@@ -257,11 +255,11 @@
         <name>fit</name>
         <qualifiedname>Brush::Pop::Individual::fit</qualifiedname>
         <param>
-          <type><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">const</ref> <ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">Ref</ref>&lt; <ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">const</ref> ArrayXXf &gt; &amp;</type>
+          <type>const Ref&lt; const ArrayXXf &gt; &amp;</type>
           <declname>X</declname>
         </param>
         <param>
-          <type><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">const</ref> <ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">Ref</ref>&lt; <ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">const</ref> ArrayXf &gt; &amp;</type>
+          <type>const Ref&lt; const ArrayXf &gt; &amp;</type>
           <declname>y</declname>
         </param>
         <briefdescription>
@@ -271,17 +269,15 @@
         <inbodydescription>
         </inbodydescription>
         <location file="/home/runner/work/brush/brush/src/ind/individual.h" line="60" column="16" bodyfile="/home/runner/work/brush/brush/src/ind/individual.h" bodystart="60" bodyend="64"/>
-        <references refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" compoundref="d4/d93/bind__engines_8h" startline="35" endline="104">bind_engine</references>
-        <references refid="de/d83/classBrush_1_1Pop_1_1Individual_1a4fbf8d65d5cfe6e28c655d6c2a543902" compoundref="d5/d1f/individual_8h" startline="55" endline="59">Brush::Pop::Individual&lt; T &gt;::fit</references>
       </memberdef>
       <memberdef kind="function" id="de/d83/classBrush_1_1Pop_1_1Individual_1a4a67784960128ceeb0df3aac10c74cc1" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
-        <type><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">auto</ref></type>
+        <type>auto</type>
         <definition>auto Brush::Pop::Individual&lt; T &gt;::predict</definition>
         <argsstring>(const Dataset &amp;data)</argsstring>
         <name>predict</name>
         <qualifiedname>Brush::Pop::Individual::predict</qualifiedname>
         <param>
-          <type><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">const</ref> <ref refid="d2/d36/classBrush_1_1Data_1_1Dataset" kindref="compound">Dataset</ref> &amp;</type>
+          <type>const <ref refid="d2/d36/classBrush_1_1Data_1_1Dataset" kindref="compound">Dataset</ref> &amp;</type>
           <declname>data</declname>
         </param>
         <briefdescription>
@@ -291,19 +287,18 @@
         <inbodydescription>
         </inbodydescription>
         <location file="/home/runner/work/brush/brush/src/ind/individual.h" line="66" column="10" bodyfile="/home/runner/work/brush/brush/src/ind/individual.h" bodystart="66" bodyend="66"/>
-        <references refid="db/d88/structBrush_1_1Program_1a68b5b3a1aedf1dfd2769dbba3a01a2ec" compoundref="d1/dea/program_8h" startline="175" endline="181">Brush::Program&lt; PType &gt;::predict</references>
-        <references refid="de/d83/classBrush_1_1Pop_1_1Individual_1af8eafd2aab3c3a683d6b3b80a649dfa6" compoundref="d5/d1f/individual_8h" startline="17">Brush::Pop::Individual&lt; T &gt;::program</references>
-        <referencedby refid="de/d83/classBrush_1_1Pop_1_1Individual_1ae73c2e6416a0ee2b7da2446969bdb6a8" compoundref="d5/d1f/individual_8h" startline="67" endline="71">Brush::Pop::Individual&lt; T &gt;::predict</referencedby>
+        <referencedby refid="de/d83/classBrush_1_1Pop_1_1Individual_1ae73c2e6416a0ee2b7da2446969bdb6a8" compoundref="d5/d1f/individual_8h" startline="67" endline="71">Brush::Pop::Individual&lt; PT::Regressor &gt;::predict</referencedby>
         <referencedby refid="d0/d75/classBrush_1_1Engine_1ac70f5fca40a2a058b187e579a7910ab3" compoundref="da/d5c/engine_8cpp" startline="208" endline="236">Brush::Engine&lt; T &gt;::predict_archive</referencedby>
+        <referencedby refid="da/d4c/classBrush_1_1Eval_1_1Scorer_1a3797d5ee458a9b91b165b53a8e53cbf6" compoundref="da/d3b/scorer_8h" startline="63" endline="68">Brush::Eval::Scorer&lt; P &gt;::score</referencedby>
       </memberdef>
       <memberdef kind="function" id="de/d83/classBrush_1_1Pop_1_1Individual_1ae73c2e6416a0ee2b7da2446969bdb6a8" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
-        <type><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">auto</ref></type>
+        <type>auto</type>
         <definition>auto Brush::Pop::Individual&lt; T &gt;::predict</definition>
         <argsstring>(const Ref&lt; const ArrayXXf &gt; &amp;X)</argsstring>
         <name>predict</name>
         <qualifiedname>Brush::Pop::Individual::predict</qualifiedname>
         <param>
-          <type><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">const</ref> <ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">Ref</ref>&lt; <ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">const</ref> ArrayXXf &gt; &amp;</type>
+          <type>const Ref&lt; const ArrayXXf &gt; &amp;</type>
           <declname>X</declname>
         </param>
         <briefdescription>
@@ -313,8 +308,6 @@
         <inbodydescription>
         </inbodydescription>
         <location file="/home/runner/work/brush/brush/src/ind/individual.h" line="67" column="10" bodyfile="/home/runner/work/brush/brush/src/ind/individual.h" bodystart="67" bodyend="71"/>
-        <references refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" compoundref="d4/d93/bind__engines_8h" startline="35" endline="104">bind_engine</references>
-        <references refid="de/d83/classBrush_1_1Pop_1_1Individual_1a4a67784960128ceeb0df3aac10c74cc1" compoundref="d5/d1f/individual_8h" startline="66" endline="66">Brush::Pop::Individual&lt; T &gt;::predict</references>
       </memberdef>
       <memberdef kind="function" id="de/d83/classBrush_1_1Pop_1_1Individual_1a4c8b9afd9297b200b8b0527353569297" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
         <templateparamlist>
@@ -325,16 +318,16 @@
             <defval>T</defval>
           </param>
         </templateparamlist>
-        <type><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">auto</ref></type>
+        <type>auto</type>
         <definition>auto Brush::Pop::Individual&lt; T &gt;::predict_proba</definition>
         <argsstring>(const Dataset &amp;d)</argsstring>
         <name>predict_proba</name>
         <qualifiedname>Brush::Pop::Individual::predict_proba</qualifiedname>
         <param>
-          <type><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">const</ref> <ref refid="d2/d36/classBrush_1_1Data_1_1Dataset" kindref="compound">Dataset</ref> &amp;</type>
+          <type>const <ref refid="d2/d36/classBrush_1_1Data_1_1Dataset" kindref="compound">Dataset</ref> &amp;</type>
           <declname>d</declname>
         </param>
-    <requiresclause>((<ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">P</ref> == PT::BinaryClassifier) || (<ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">P</ref> == PT::MulticlassClassifier))    </requiresclause>
+    <requiresclause>((P == PT::BinaryClassifier) || (P == PT::MulticlassClassifier))    </requiresclause>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
@@ -342,11 +335,9 @@
         <inbodydescription>
         </inbodydescription>
         <location file="/home/runner/work/brush/brush/src/ind/individual.h" line="75" column="10" bodyfile="/home/runner/work/brush/brush/src/ind/individual.h" bodystart="75" bodyend="75"/>
-        <references refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" compoundref="d4/d93/bind__engines_8h" startline="35" endline="104">bind_engine</references>
-        <references refid="db/d88/structBrush_1_1Program_1a166fc75406fd631070f4477a367c4bb8" compoundref="d1/dea/program_8h" startline="212" endline="215">Brush::Program&lt; PType &gt;::predict_proba</references>
-        <references refid="de/d83/classBrush_1_1Pop_1_1Individual_1af8eafd2aab3c3a683d6b3b80a649dfa6" compoundref="d5/d1f/individual_8h" startline="17">Brush::Pop::Individual&lt; T &gt;::program</references>
-        <referencedby refid="de/d83/classBrush_1_1Pop_1_1Individual_1ab9d112fc0bb31969e315346bbb51a4bc" compoundref="d5/d1f/individual_8h" startline="78" endline="82">Brush::Pop::Individual&lt; T &gt;::predict_proba</referencedby>
+        <referencedby refid="de/d83/classBrush_1_1Pop_1_1Individual_1ab9d112fc0bb31969e315346bbb51a4bc" compoundref="d5/d1f/individual_8h" startline="78" endline="82">Brush::Pop::Individual&lt; PT::Regressor &gt;::predict_proba</referencedby>
         <referencedby refid="d0/d75/classBrush_1_1Engine_1ac1f6620adc2dd0710a415a7e48b76650" compoundref="da/d5c/engine_8cpp" startline="248" endline="276">Brush::Engine&lt; T &gt;::predict_proba_archive</referencedby>
+        <referencedby refid="d1/d73/classBrush_1_1Eval_1_1Scorer_3_01P_01_4_1a3797d5ee458a9b91b165b53a8e53cbf6" compoundref="da/d3b/scorer_8h" startline="117" endline="122">Brush::Eval::Scorer&lt; P &gt;::score</referencedby>
       </memberdef>
       <memberdef kind="function" id="de/d83/classBrush_1_1Pop_1_1Individual_1ab9d112fc0bb31969e315346bbb51a4bc" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
         <templateparamlist>
@@ -357,16 +348,16 @@
             <defval>T</defval>
           </param>
         </templateparamlist>
-        <type><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">auto</ref></type>
+        <type>auto</type>
         <definition>auto Brush::Pop::Individual&lt; T &gt;::predict_proba</definition>
         <argsstring>(const Ref&lt; const ArrayXXf &gt; &amp;X)</argsstring>
         <name>predict_proba</name>
         <qualifiedname>Brush::Pop::Individual::predict_proba</qualifiedname>
         <param>
-          <type><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">const</ref> <ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">Ref</ref>&lt; <ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">const</ref> ArrayXXf &gt; &amp;</type>
+          <type>const Ref&lt; const ArrayXXf &gt; &amp;</type>
           <declname>X</declname>
         </param>
-    <requiresclause>((<ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">P</ref> == PT::BinaryClassifier) || (<ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">P</ref> == PT::MulticlassClassifier))    </requiresclause>
+    <requiresclause>((P == PT::BinaryClassifier) || (P == PT::MulticlassClassifier))    </requiresclause>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
@@ -374,11 +365,9 @@
         <inbodydescription>
         </inbodydescription>
         <location file="/home/runner/work/brush/brush/src/ind/individual.h" line="78" column="10" bodyfile="/home/runner/work/brush/brush/src/ind/individual.h" bodystart="78" bodyend="82"/>
-        <references refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" compoundref="d4/d93/bind__engines_8h" startline="35" endline="104">bind_engine</references>
-        <references refid="de/d83/classBrush_1_1Pop_1_1Individual_1a4c8b9afd9297b200b8b0527353569297" compoundref="d5/d1f/individual_8h" startline="75" endline="75">Brush::Pop::Individual&lt; T &gt;::predict_proba</references>
       </memberdef>
       <memberdef kind="function" id="de/d83/classBrush_1_1Pop_1_1Individual_1afe255c458bb9558fdab16cccd01de0c6" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
-        <type><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">bool</ref></type>
+        <type>bool</type>
         <definition>bool Brush::Pop::Individual&lt; T &gt;::get_is_fitted</definition>
         <argsstring>() const</argsstring>
         <name>get_is_fitted</name>
@@ -390,10 +379,10 @@
         <inbodydescription>
         </inbodydescription>
         <location file="/home/runner/work/brush/brush/src/ind/individual.h" line="85" column="10" bodyfile="/home/runner/work/brush/brush/src/ind/individual.h" bodystart="85" bodyend="85"/>
-        <references refid="de/d83/classBrush_1_1Pop_1_1Individual_1a4be0cd31ca91af4d113bee11793a4015" compoundref="d5/d1f/individual_8h" startline="24">Brush::Pop::Individual&lt; T &gt;::is_fitted_</references>
+        <referencedby refid="d1/de5/classBrush_1_1Eval_1_1Evaluation_1a1d652164264243bd40efcfd38ba6d569" compoundref="d9/d6a/evaluation_8cpp" startline="9" endline="42">Brush::Eval::Evaluation&lt; T &gt;::update_fitness</referencedby>
       </memberdef>
       <memberdef kind="function" id="de/d83/classBrush_1_1Pop_1_1Individual_1a5e9b0e440c94101e01f2d813453e6596" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
-        <type><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">unsigned</ref> <ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">int</ref></type>
+        <type>unsigned int</type>
         <definition>unsigned int Brush::Pop::Individual&lt; T &gt;::get_size</definition>
         <argsstring>() const</argsstring>
         <name>get_size</name>
@@ -405,10 +394,10 @@
         <inbodydescription>
         </inbodydescription>
         <location file="/home/runner/work/brush/brush/src/ind/individual.h" line="86" column="18" bodyfile="/home/runner/work/brush/brush/src/ind/individual.h" bodystart="86" bodyend="86"/>
-        <references refid="db/d88/structBrush_1_1Program_1af64e3100027b89fd4fffd50bfb843993" compoundref="d1/dea/program_8h" startline="102" endline="106">Brush::Program&lt; PType &gt;::size</references>
+        <referencedby refid="d1/de5/classBrush_1_1Eval_1_1Evaluation_1ac7562624d114b22b19720729d599a40a" compoundref="d9/d6a/evaluation_8cpp" startline="46" endline="94">Brush::Eval::Evaluation&lt; T &gt;::assign_fit</referencedby>
       </memberdef>
       <memberdef kind="function" id="de/d83/classBrush_1_1Pop_1_1Individual_1ad17e7fd9fab8894a38aa6a46653198d4" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
-        <type><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">unsigned</ref> <ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">int</ref></type>
+        <type>unsigned int</type>
         <definition>unsigned int Brush::Pop::Individual&lt; T &gt;::get_depth</definition>
         <argsstring>() const</argsstring>
         <name>get_depth</name>
@@ -420,11 +409,10 @@
         <inbodydescription>
         </inbodydescription>
         <location file="/home/runner/work/brush/brush/src/ind/individual.h" line="87" column="18" bodyfile="/home/runner/work/brush/brush/src/ind/individual.h" bodystart="87" bodyend="87"/>
-        <references refid="db/d88/structBrush_1_1Program_1a91dd138edc7ecb5bc6d013ae68bf0e42" compoundref="d1/dea/program_8h" startline="120" endline="124">Brush::Program&lt; PType &gt;::depth</references>
-        <references refid="de/d83/classBrush_1_1Pop_1_1Individual_1af8eafd2aab3c3a683d6b3b80a649dfa6" compoundref="d5/d1f/individual_8h" startline="17">Brush::Pop::Individual&lt; T &gt;::program</references>
+        <referencedby refid="d1/de5/classBrush_1_1Eval_1_1Evaluation_1ac7562624d114b22b19720729d599a40a" compoundref="d9/d6a/evaluation_8cpp" startline="46" endline="94">Brush::Eval::Evaluation&lt; T &gt;::assign_fit</referencedby>
       </memberdef>
       <memberdef kind="function" id="de/d83/classBrush_1_1Pop_1_1Individual_1a14fd7a5cc46f3dde2d71b6ef8f128e05" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
-        <type><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">unsigned</ref> <ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">int</ref></type>
+        <type>unsigned int</type>
         <definition>unsigned int Brush::Pop::Individual&lt; T &gt;::get_complexity</definition>
         <argsstring>() const</argsstring>
         <name>get_complexity</name>
@@ -436,8 +424,7 @@
         <inbodydescription>
         </inbodydescription>
         <location file="/home/runner/work/brush/brush/src/ind/individual.h" line="88" column="18" bodyfile="/home/runner/work/brush/brush/src/ind/individual.h" bodystart="88" bodyend="88"/>
-        <references refid="db/d88/structBrush_1_1Program_1a6fc6aa2a6ecbe639aa3f80accf0c2798" compoundref="d1/dea/program_8h" startline="93" endline="97">Brush::Program&lt; PType &gt;::complexity</references>
-        <references refid="de/d83/classBrush_1_1Pop_1_1Individual_1af8eafd2aab3c3a683d6b3b80a649dfa6" compoundref="d5/d1f/individual_8h" startline="17">Brush::Pop::Individual&lt; T &gt;::program</references>
+        <referencedby refid="d1/de5/classBrush_1_1Eval_1_1Evaluation_1ac7562624d114b22b19720729d599a40a" compoundref="d9/d6a/evaluation_8cpp" startline="46" endline="94">Brush::Eval::Evaluation&lt; T &gt;::assign_fit</referencedby>
       </memberdef>
       <memberdef kind="function" id="de/d83/classBrush_1_1Pop_1_1Individual_1a6de9a64bd6963f896b8f45d291a3b8f4" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
         <type><ref refid="db/d88/structBrush_1_1Program" kindref="compound">Program</ref>&lt; T &gt; &amp;</type>
@@ -452,23 +439,22 @@
         <inbodydescription>
         </inbodydescription>
         <location file="/home/runner/work/brush/brush/src/ind/individual.h" line="89" column="13" bodyfile="/home/runner/work/brush/brush/src/ind/individual.h" bodystart="89" bodyend="89"/>
-        <references refid="de/d83/classBrush_1_1Pop_1_1Individual_1af8eafd2aab3c3a683d6b3b80a649dfa6" compoundref="d5/d1f/individual_8h" startline="17">Brush::Pop::Individual&lt; T &gt;::program</references>
       </memberdef>
       <memberdef kind="function" id="de/d83/classBrush_1_1Pop_1_1Individual_1a17a796fd1d02a07d6bba2d1f1fd4e4d8" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
-        <type>string</type>
+        <type><ref refid="d5/d92/classstring" kindref="compound">string</ref></type>
         <definition>string Brush::Pop::Individual&lt; T &gt;::get_model</definition>
         <argsstring>(string fmt=&quot;compact&quot;, bool pretty=false)</argsstring>
         <name>get_model</name>
         <qualifiedname>Brush::Pop::Individual::get_model</qualifiedname>
         <param>
-          <type>string</type>
+          <type><ref refid="d5/d92/classstring" kindref="compound">string</ref></type>
           <declname>fmt</declname>
           <defval>&quot;compact&quot;</defval>
         </param>
         <param>
-          <type><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">bool</ref></type>
+          <type>bool</type>
           <declname>pretty</declname>
-          <defval><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">false</ref></defval>
+          <defval>false</defval>
         </param>
         <briefdescription>
         </briefdescription>
@@ -477,19 +463,16 @@
         <inbodydescription>
         </inbodydescription>
         <location file="/home/runner/work/brush/brush/src/ind/individual.h" line="91" column="12" bodyfile="/home/runner/work/brush/brush/src/ind/individual.h" bodystart="91" bodyend="92"/>
-        <references refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" compoundref="d4/d93/bind__engines_8h" startline="35" endline="104">bind_engine</references>
-        <references refid="db/d88/structBrush_1_1Program_1ac87e13742552236e1dc9fd9b62078331" compoundref="d1/dea/program_8h" startline="328" endline="336">Brush::Program&lt; PType &gt;::get_model</references>
-        <references refid="de/d83/classBrush_1_1Pop_1_1Individual_1af8eafd2aab3c3a683d6b3b80a649dfa6" compoundref="d5/d1f/individual_8h" startline="17">Brush::Pop::Individual&lt; T &gt;::program</references>
         <referencedby refid="da/da3/classBrush_1_1Pop_1_1Population_1a92f851fffa86280c36cd54a8f670466e" compoundref="d7/d4a/population_8cpp" startline="211" endline="228">Brush::Pop::Population&lt; T &gt;::print_models</referencedby>
       </memberdef>
       <memberdef kind="function" id="de/d83/classBrush_1_1Pop_1_1Individual_1aafddbfcf357d73a1ced6c4f50c21009d" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
-        <type>string</type>
+        <type><ref refid="d5/d92/classstring" kindref="compound">string</ref></type>
         <definition>string Brush::Pop::Individual&lt; T &gt;::get_dot_model</definition>
         <argsstring>(string extras=&quot;&quot;)</argsstring>
         <name>get_dot_model</name>
         <qualifiedname>Brush::Pop::Individual::get_dot_model</qualifiedname>
         <param>
-          <type>string</type>
+          <type><ref refid="d5/d92/classstring" kindref="compound">string</ref></type>
           <declname>extras</declname>
           <defval>&quot;&quot;</defval>
         </param>
@@ -500,12 +483,9 @@
         <inbodydescription>
         </inbodydescription>
         <location file="/home/runner/work/brush/brush/src/ind/individual.h" line="93" column="12" bodyfile="/home/runner/work/brush/brush/src/ind/individual.h" bodystart="93" bodyend="94"/>
-        <references refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" compoundref="d4/d93/bind__engines_8h" startline="35" endline="104">bind_engine</references>
-        <references refid="db/d88/structBrush_1_1Program_1ab288bd389c68ab3c0776ef14a9e5e331" compoundref="d1/dea/program_8h" startline="344" endline="475">Brush::Program&lt; PType &gt;::get_dot_model</references>
-        <references refid="de/d83/classBrush_1_1Pop_1_1Individual_1af8eafd2aab3c3a683d6b3b80a649dfa6" compoundref="d5/d1f/individual_8h" startline="17">Brush::Pop::Individual&lt; T &gt;::program</references>
       </memberdef>
       <memberdef kind="function" id="de/d83/classBrush_1_1Pop_1_1Individual_1a4c2c3c4064a3ef28edbec34421e968fd" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
-        <type><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">void</ref></type>
+        <type>void</type>
         <definition>void Brush::Pop::Individual&lt; T &gt;::set_fitness</definition>
         <argsstring>(Fitness &amp;f)</argsstring>
         <name>set_fitness</name>
@@ -521,8 +501,6 @@
         <inbodydescription>
         </inbodydescription>
         <location file="/home/runner/work/brush/brush/src/ind/individual.h" line="96" column="10" bodyfile="/home/runner/work/brush/brush/src/ind/individual.h" bodystart="96" bodyend="96"/>
-        <references refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" compoundref="d4/d93/bind__engines_8h" startline="35" endline="104">bind_engine</references>
-        <references refid="de/d83/classBrush_1_1Pop_1_1Individual_1a96a4869472f1e11e19219c2d07fb6c53" compoundref="d5/d1f/individual_8h" startline="33">Brush::Pop::Individual&lt; T &gt;::fitness</references>
       </memberdef>
       <memberdef kind="function" id="de/d83/classBrush_1_1Pop_1_1Individual_1a7b16f9c3d62d3cc345abdd12ab3105f6" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
         <type><ref refid="d6/dd0/structBrush_1_1Fitness" kindref="compound">Fitness</ref> &amp;</type>
@@ -537,16 +515,15 @@
         <inbodydescription>
         </inbodydescription>
         <location file="/home/runner/work/brush/brush/src/ind/individual.h" line="97" column="13" bodyfile="/home/runner/work/brush/brush/src/ind/individual.h" bodystart="97" bodyend="97"/>
-        <references refid="de/d83/classBrush_1_1Pop_1_1Individual_1a96a4869472f1e11e19219c2d07fb6c53" compoundref="d5/d1f/individual_8h" startline="33">Brush::Pop::Individual&lt; T &gt;::fitness</references>
       </memberdef>
       <memberdef kind="function" id="de/d83/classBrush_1_1Pop_1_1Individual_1a7561f68c685f2d5613143a2385760787" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
-        <type><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">void</ref></type>
+        <type>void</type>
         <definition>void Brush::Pop::Individual&lt; T &gt;::set_id</definition>
         <argsstring>(unsigned i)</argsstring>
         <name>set_id</name>
         <qualifiedname>Brush::Pop::Individual::set_id</qualifiedname>
         <param>
-          <type><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">unsigned</ref></type>
+          <type>unsigned</type>
           <declname>i</declname>
         </param>
         <briefdescription>
@@ -556,16 +533,16 @@
         <inbodydescription>
         </inbodydescription>
         <location file="/home/runner/work/brush/brush/src/ind/individual.h" line="99" column="10" bodyfile="/home/runner/work/brush/brush/src/ind/individual.h" bodystart="99" bodyend="99"/>
-        <references refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" compoundref="d4/d93/bind__engines_8h" startline="35" endline="104">bind_engine</references>
+        <referencedby refid="d5/d14/classBrush_1_1Var_1_1Variation_1a344233ce053ca4b267539182fecbbc91" compoundref="d1/d64/variation_8cpp" startline="578" endline="638">Brush::Var::Variation&lt; T &gt;::vary</referencedby>
       </memberdef>
       <memberdef kind="function" id="de/d83/classBrush_1_1Pop_1_1Individual_1acc67d46bc2b684a68e59b500a2d9aa8a" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
-        <type><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">void</ref></type>
+        <type>void</type>
         <definition>void Brush::Pop::Individual&lt; T &gt;::set_parents</definition>
         <argsstring>(const vector&lt; Individual&lt; T &gt; &gt; &amp;parents)</argsstring>
         <name>set_parents</name>
         <qualifiedname>Brush::Pop::Individual::set_parents</qualifiedname>
         <param>
-          <type><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">const</ref> vector&lt; <ref refid="de/d83/classBrush_1_1Pop_1_1Individual" kindref="compound">Individual</ref>&lt; T &gt; &gt; &amp;</type>
+          <type>const <ref refid="d7/dfc/classvector" kindref="compound">vector</ref>&lt; <ref refid="de/d83/classBrush_1_1Pop_1_1Individual" kindref="compound">Individual</ref>&lt; T &gt; &gt; &amp;</type>
           <declname>parents</declname>
         </param>
         <briefdescription>
@@ -575,33 +552,29 @@
         <inbodydescription>
         </inbodydescription>
         <location file="/home/runner/work/brush/brush/src/ind/individual.h" line="100" column="10" bodyfile="/home/runner/work/brush/brush/src/ind/individual.h" bodystart="100" bodyend="104"/>
-        <references refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" compoundref="d4/d93/bind__engines_8h" startline="35" endline="104">bind_engine</references>
-        <references refid="de/d83/classBrush_1_1Pop_1_1Individual_1ad53a3b6ea8c53b2f615158081ea98584" compoundref="d5/d1f/individual_8h" startline="29">Brush::Pop::Individual&lt; T &gt;::parent_id</references>
+        <referencedby refid="d5/d14/classBrush_1_1Var_1_1Variation_1a344233ce053ca4b267539182fecbbc91" compoundref="d1/d64/variation_8cpp" startline="578" endline="638">Brush::Var::Variation&lt; T &gt;::vary</referencedby>
       </memberdef>
       <memberdef kind="function" id="de/d83/classBrush_1_1Pop_1_1Individual_1aad07cb9ef262458bfe335316c707f816" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
-        <type><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">void</ref></type>
+        <type>void</type>
         <definition>void Brush::Pop::Individual&lt; T &gt;::set_parents</definition>
         <argsstring>(const vector&lt; unsigned &gt; &amp;parents)</argsstring>
         <name>set_parents</name>
         <qualifiedname>Brush::Pop::Individual::set_parents</qualifiedname>
         <param>
-          <type><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">const</ref> vector&lt; <ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">unsigned</ref> &gt; &amp;</type>
+          <type>const <ref refid="d7/dfc/classvector" kindref="compound">vector</ref>&lt; unsigned &gt; &amp;</type>
           <declname>parents</declname>
         </param>
         <briefdescription>
-<para>set parent ids using parents <linebreak/>
- </para>
+<para>set parent ids using parents </para>
         </briefdescription>
         <detaileddescription>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
         <location file="/home/runner/work/brush/brush/src/ind/individual.h" line="105" column="10" bodyfile="/home/runner/work/brush/brush/src/ind/individual.h" bodystart="105" bodyend="105"/>
-        <references refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" compoundref="d4/d93/bind__engines_8h" startline="35" endline="104">bind_engine</references>
-        <references refid="de/d83/classBrush_1_1Pop_1_1Individual_1ad53a3b6ea8c53b2f615158081ea98584" compoundref="d5/d1f/individual_8h" startline="29">Brush::Pop::Individual&lt; T &gt;::parent_id</references>
       </memberdef>
       <memberdef kind="function" id="de/d83/classBrush_1_1Pop_1_1Individual_1ab6d50093f0d37ecccb4e0963b2b1b7e3" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
-        <type>vector&lt; string &gt;</type>
+        <type><ref refid="d7/dfc/classvector" kindref="compound">vector</ref>&lt; <ref refid="d5/d92/classstring" kindref="compound">string</ref> &gt;</type>
         <definition>vector&lt; string &gt; Brush::Pop::Individual&lt; T &gt;::get_objectives</definition>
         <argsstring>() const</argsstring>
         <name>get_objectives</name>
@@ -613,17 +586,19 @@
         <inbodydescription>
         </inbodydescription>
         <location file="/home/runner/work/brush/brush/src/ind/individual.h" line="127" column="12" bodyfile="/home/runner/work/brush/brush/src/ind/individual.h" bodystart="127" bodyend="127"/>
-        <references refid="de/d83/classBrush_1_1Pop_1_1Individual_1a27993e06c9f048907ffaa42545a5a32e" compoundref="d5/d1f/individual_8h" startline="35">Brush::Pop::Individual&lt; T &gt;::objectives</references>
+        <referencedby refid="d1/de5/classBrush_1_1Eval_1_1Evaluation_1ac7562624d114b22b19720729d599a40a" compoundref="d9/d6a/evaluation_8cpp" startline="46" endline="94">Brush::Eval::Evaluation&lt; T &gt;::assign_fit</referencedby>
+        <referencedby refid="d5/d14/classBrush_1_1Var_1_1Variation_1acf7d5d1c0d6a102eec277180dce590fe" compoundref="d1/d64/variation_8cpp" startline="345" endline="450">Brush::Var::Variation&lt; T &gt;::cross</referencedby>
         <referencedby refid="d5/d14/classBrush_1_1Var_1_1Variation_1a024e971b0f8685c89d119c0af484284a" compoundref="d1/d64/variation_8cpp" startline="486" endline="575">Brush::Var::Variation&lt; T &gt;::mutate</referencedby>
+        <referencedby refid="d5/d14/classBrush_1_1Var_1_1Variation_1a344233ce053ca4b267539182fecbbc91" compoundref="d1/d64/variation_8cpp" startline="578" endline="638">Brush::Var::Variation&lt; T &gt;::vary</referencedby>
       </memberdef>
       <memberdef kind="function" id="de/d83/classBrush_1_1Pop_1_1Individual_1abbf86134203ab8b573dc043a3c10d388" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
-        <type><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">void</ref></type>
+        <type>void</type>
         <definition>void Brush::Pop::Individual&lt; T &gt;::set_objectives</definition>
         <argsstring>(vector&lt; string &gt; objs)</argsstring>
         <name>set_objectives</name>
         <qualifiedname>Brush::Pop::Individual::set_objectives</qualifiedname>
         <param>
-          <type>vector&lt; string &gt;</type>
+          <type><ref refid="d7/dfc/classvector" kindref="compound">vector</ref>&lt; <ref refid="d5/d92/classstring" kindref="compound">string</ref> &gt;</type>
           <declname>objs</declname>
         </param>
         <briefdescription>
@@ -633,11 +608,10 @@
         <inbodydescription>
         </inbodydescription>
         <location file="/home/runner/work/brush/brush/src/ind/individual.h" line="128" column="10" bodyfile="/home/runner/work/brush/brush/src/ind/individual.h" bodystart="128" bodyend="144"/>
-        <references refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" compoundref="d4/d93/bind__engines_8h" startline="35" endline="104">bind_engine</references>
-        <references refid="de/d83/classBrush_1_1Pop_1_1Individual_1a96a4869472f1e11e19219c2d07fb6c53" compoundref="d5/d1f/individual_8h" startline="33">Brush::Pop::Individual&lt; T &gt;::fitness</references>
-        <references refid="de/d83/classBrush_1_1Pop_1_1Individual_1a27993e06c9f048907ffaa42545a5a32e" compoundref="d5/d1f/individual_8h" startline="35">Brush::Pop::Individual&lt; T &gt;::objectives</references>
-        <references refid="d6/dd0/structBrush_1_1Fitness_1aea7bd29487b3dda47a908ef049da7ddd" compoundref="dc/d7a/fitness_8h" startline="89" endline="91">Brush::Fitness::set_weights</references>
-        <references refid="de/d83/classBrush_1_1Pop_1_1Individual_1a0445d333388f2198459c25dd2b01794c" compoundref="d5/d1f/individual_8h" startline="116" endline="125">Brush::Pop::Individual&lt; T &gt;::weightsMap</references>
+        <referencedby refid="d1/de5/classBrush_1_1Eval_1_1Evaluation_1ac7562624d114b22b19720729d599a40a" compoundref="d9/d6a/evaluation_8cpp" startline="46" endline="94">Brush::Eval::Evaluation&lt; T &gt;::assign_fit</referencedby>
+        <referencedby refid="d5/d14/classBrush_1_1Var_1_1Variation_1acf7d5d1c0d6a102eec277180dce590fe" compoundref="d1/d64/variation_8cpp" startline="345" endline="450">Brush::Var::Variation&lt; T &gt;::cross</referencedby>
+        <referencedby refid="d5/d14/classBrush_1_1Var_1_1Variation_1a024e971b0f8685c89d119c0af484284a" compoundref="d1/d64/variation_8cpp" startline="486" endline="575">Brush::Var::Variation&lt; T &gt;::mutate</referencedby>
+        <referencedby refid="d5/d14/classBrush_1_1Var_1_1Variation_1a344233ce053ca4b267539182fecbbc91" compoundref="d1/d64/variation_8cpp" startline="578" endline="638">Brush::Var::Variation&lt; T &gt;::vary</referencedby>
       </memberdef>
     </sectiondef>
     <briefdescription>
@@ -645,13 +619,13 @@
     <detaileddescription>
     </detaileddescription>
     <collaborationgraph>
-      <node id="5">
+      <node id="4">
         <label>Brush::Fitness</label>
         <link refid="d6/dd0/structBrush_1_1Fitness"/>
-        <childnode refid="6" relation="usage">
+        <childnode refid="5" relation="usage">
           <edgelabel>dominated</edgelabel>
         </childnode>
-        <childnode refid="7" relation="usage">
+        <childnode refid="6" relation="usage">
           <edgelabel>values</edgelabel>
           <edgelabel>weights</edgelabel>
           <edgelabel>wvalues</edgelabel>
@@ -667,52 +641,46 @@
           <edgelabel>parent_id</edgelabel>
         </childnode>
         <childnode refid="4" relation="usage">
-          <edgelabel>error</edgelabel>
-        </childnode>
-        <childnode refid="5" relation="usage">
           <edgelabel>fitness</edgelabel>
         </childnode>
-        <childnode refid="8" relation="usage">
+        <childnode refid="7" relation="usage">
           <edgelabel>objectives</edgelabel>
         </childnode>
-        <childnode refid="11" relation="usage">
+        <childnode refid="10" relation="usage">
           <edgelabel>weightsMap</edgelabel>
         </childnode>
-      </node>
-      <node id="4">
-        <label>VectorXf</label>
       </node>
       <node id="2">
         <label>Brush::Program&lt; T &gt;</label>
         <link refid="db/d88/structBrush_1_1Program"/>
       </node>
-      <node id="11">
+      <node id="9">
+        <label>std::basic_string&lt; Char &gt;</label>
+      </node>
+      <node id="10">
         <label>std::map&lt; std::string, float &gt;</label>
-        <childnode refid="9" relation="usage">
+        <childnode refid="8" relation="usage">
           <edgelabel>keys</edgelabel>
         </childnode>
       </node>
-      <node id="10">
-        <label>std::basic_string&lt; Char &gt;</label>
-      </node>
-      <node id="9">
+      <node id="8">
         <label>std::string</label>
-        <childnode refid="10" relation="public-inheritance">
+        <childnode refid="9" relation="public-inheritance">
         </childnode>
       </node>
-      <node id="7">
+      <node id="6">
         <label>std::vector&lt; float &gt;</label>
       </node>
-      <node id="8">
+      <node id="7">
         <label>std::vector&lt; string &gt;</label>
-        <childnode refid="9" relation="usage">
+        <childnode refid="8" relation="usage">
           <edgelabel>elements</edgelabel>
         </childnode>
       </node>
       <node id="3">
         <label>std::vector&lt; unsigned &gt;</label>
       </node>
-      <node id="6">
+      <node id="5">
         <label>std::vector&lt; unsigned int &gt;</label>
       </node>
     </collaborationgraph>

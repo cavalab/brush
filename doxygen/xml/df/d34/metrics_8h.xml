@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
-<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.10.0" xml:lang="en-US">
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.13.2" xml:lang="en-US">
   <compounddef id="df/d34/metrics_8h" kind="file" language="C++">
     <compoundname>metrics.h</compoundname>
     <includes refid="d2/dbd/data_8h" local="yes">../data/data.h</includes>
@@ -315,7 +315,7 @@
 <codeline lineno="14"><highlight class="normal"></highlight></codeline>
 <codeline lineno="15"><highlight class="normal"></highlight><highlight class="comment">//<sp/>regression<sp/>------------------------------------------------------------------</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="16"><highlight class="normal"></highlight></codeline>
-<codeline lineno="25"><highlight class="normal"></highlight><highlight class="keywordtype">float</highlight><highlight class="normal"><sp/><ref refid="d5/db3/namespaceBrush_1_1Eval_1a4966de42610a227a10447790a79b0e60" kindref="member">mse</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>VectorXf&amp;<sp/>y,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>VectorXf&amp;<sp/><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">yhat</ref>,<sp/>VectorXf&amp;<sp/>loss,<sp/></highlight></codeline>
+<codeline lineno="25"><highlight class="normal"></highlight><highlight class="keywordtype">float</highlight><highlight class="normal"><sp/><ref refid="d5/db3/namespaceBrush_1_1Eval_1a4966de42610a227a10447790a79b0e60" kindref="member">mse</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>VectorXf&amp;<sp/>y,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>VectorXf&amp;<sp/>yhat,<sp/>VectorXf&amp;<sp/>loss,<sp/></highlight></codeline>
 <codeline lineno="26"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>vector&lt;float&gt;&amp;<sp/>class_weights=vector&lt;float&gt;()<sp/>);</highlight></codeline>
 <codeline lineno="27"><highlight class="normal"></highlight></codeline>
 <codeline lineno="28"><highlight class="normal"></highlight><highlight class="comment">//<sp/>binary<sp/>classification<sp/>-------------------------------------------------------<sp/></highlight><highlight class="normal"></highlight></codeline>

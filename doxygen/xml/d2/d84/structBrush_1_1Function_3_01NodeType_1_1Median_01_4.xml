@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
-<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.10.0" xml:lang="en-US">
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.13.2" xml:lang="en-US">
   <compounddef id="d2/d84/structBrush_1_1Function_3_01NodeType_1_1Median_01_4" kind="struct" language="C++" prot="public">
     <compoundname>Brush::Function&lt; NodeType::Median &gt;</compoundname>
     <includes refid="d8/d5c/functions_8h" local="no">functions.h</includes>
@@ -9,7 +9,7 @@
       <memberdef kind="function" id="d2/d84/structBrush_1_1Function_3_01NodeType_1_1Median_01_4_1ae43ba05c03d73ad8cbfcbf4d53caec58" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
         <templateparamlist>
           <param>
-            <type><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">typename</ref> <ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">Derived</ref></type>
+            <type>typename Derived</type>
           </param>
         </templateparamlist>
         <type>Derived::Scalar</type>
@@ -18,7 +18,7 @@
         <name>median</name>
         <qualifiedname>Brush::Function&lt; NodeType::Median &gt;::median</qualifiedname>
         <param>
-          <type>Eigen::DenseBase&lt; <ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">Derived</ref> &gt; &amp;</type>
+          <type>Eigen::DenseBase&lt; Derived &gt; &amp;</type>
           <declname>d</declname>
         </param>
         <briefdescription>
@@ -28,13 +28,12 @@
         <inbodydescription>
         </inbodydescription>
         <location file="/home/runner/work/brush/brush/src/program/functions.h" line="133" column="34" bodyfile="/home/runner/work/brush/brush/src/program/functions.h" bodystart="133" bodyend="139"/>
-        <references refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" compoundref="d4/d93/bind__engines_8h" startline="35" endline="104">bind_engine</references>
         <references refid="d6/d2e/namespaceBrush_1_1Util_1af7dd70e54015821d96e3a1afed6344ca" compoundref="d2/da9/rnd_8h" startline="174">Brush::Util::r</references>
       </memberdef>
       <memberdef kind="function" id="d2/d84/structBrush_1_1Function_3_01NodeType_1_1Median_01_4_1a226a9b29496d0d09fb55055ca23a3c86" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
         <templateparamlist>
           <param>
-            <type><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">typename</ref> <ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">Derived</ref></type>
+            <type>typename Derived</type>
           </param>
         </templateparamlist>
         <type>Derived::Scalar</type>
@@ -43,7 +42,7 @@
         <name>median</name>
         <qualifiedname>Brush::Function&lt; NodeType::Median &gt;::median</qualifiedname>
         <param>
-          <type><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">const</ref> Eigen::DenseBase&lt; <ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">Derived</ref> &gt; &amp;</type>
+          <type>const Eigen::DenseBase&lt; Derived &gt; &amp;</type>
           <declname>d</declname>
         </param>
         <briefdescription>
@@ -53,26 +52,25 @@
         <inbodydescription>
         </inbodydescription>
         <location file="/home/runner/work/brush/brush/src/program/functions.h" line="142" column="34" bodyfile="/home/runner/work/brush/brush/src/program/functions.h" bodystart="142" bodyend="145"/>
-        <references refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" compoundref="d4/d93/bind__engines_8h" startline="35" endline="104">bind_engine</references>
         <references refid="d6/d2e/namespaceBrush_1_1Util_1a4d848757d9123e0562a7d87b44f1bdc6" compoundref="d5/d60/utils_8h" startline="202" endline="219">Brush::Util::median</references>
       </memberdef>
       <memberdef kind="function" id="d2/d84/structBrush_1_1Function_3_01NodeType_1_1Median_01_4_1a1a24c586b9a1bdba15aeaa0d9240159a" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
         <templateparamlist>
           <param>
-            <type><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">typename</ref> <ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">Derived</ref></type>
+            <type>typename Derived</type>
           </param>
           <param>
-            <type><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">typename</ref> T</type>
+            <type>typename T</type>
             <defval>Derived::Scalar</defval>
           </param>
         </templateparamlist>
-        <type><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">auto</ref></type>
+        <type>auto</type>
         <definition>auto Brush::Function&lt; NodeType::Median &gt;::operator()</definition>
         <argsstring>(const Eigen::ArrayBase&lt; Derived &gt; &amp;t)</argsstring>
         <name>operator()</name>
         <qualifiedname>Brush::Function&lt; NodeType::Median &gt;::operator()</qualifiedname>
         <param>
-          <type><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">const</ref> Eigen::ArrayBase&lt; <ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">Derived</ref> &gt; &amp;</type>
+          <type>const Eigen::ArrayBase&lt; Derived &gt; &amp;</type>
           <declname>t</declname>
         </param>
         <briefdescription>
@@ -82,21 +80,20 @@
         <inbodydescription>
         </inbodydescription>
         <location file="/home/runner/work/brush/brush/src/program/functions.h" line="148" column="21" bodyfile="/home/runner/work/brush/brush/src/program/functions.h" bodystart="148" bodyend="155"/>
-        <references refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" compoundref="d4/d93/bind__engines_8h" startline="35" endline="104">bind_engine</references>
       </memberdef>
       <memberdef kind="function" id="d2/d84/structBrush_1_1Function_3_01NodeType_1_1Median_01_4_1aedec89939e9612ace73a1de31e4d8b0d" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
         <templateparamlist>
           <param>
-            <type><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">typename</ref> T</type>
+            <type>typename T</type>
           </param>
         </templateparamlist>
-        <type><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">auto</ref></type>
+        <type>auto</type>
         <definition>auto Brush::Function&lt; NodeType::Median &gt;::operator()</definition>
         <argsstring>(const TimeSeries&lt; T &gt; &amp;t)</argsstring>
         <name>operator()</name>
         <qualifiedname>Brush::Function&lt; NodeType::Median &gt;::operator()</qualifiedname>
         <param>
-          <type><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">const</ref> <ref refid="d7/d56/structBrush_1_1Data_1_1TimeSeries" kindref="compound">TimeSeries</ref>&lt; T &gt; &amp;</type>
+          <type>const <ref refid="d7/d56/structBrush_1_1Data_1_1TimeSeries" kindref="compound">TimeSeries</ref>&lt; T &gt; &amp;</type>
           <declname>t</declname>
         </param>
         <briefdescription>
@@ -106,7 +103,29 @@
         <inbodydescription>
         </inbodydescription>
         <location file="/home/runner/work/brush/brush/src/program/functions.h" line="158" column="21" bodyfile="/home/runner/work/brush/brush/src/program/functions.h" bodystart="158" bodyend="158"/>
-        <references refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" compoundref="d4/d93/bind__engines_8h" startline="35" endline="104">bind_engine</references>
+        <references refid="d7/d56/structBrush_1_1Data_1_1TimeSeries_1ae3c8babca545b4cb131aa6ec8f039ac3" compoundref="d9/df7/timeseries_8h" startline="131" endline="131">Brush::Data::TimeSeries&lt; T &gt;::median</references>
+      </memberdef>
+      <memberdef kind="function" id="d9/d1b/structBrush_1_1Function_1a9ded8f668ece5beef07a87c790409fd7" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>auto</type>
+        <definition>auto Brush::Function&lt; N &gt;::operator()</definition>
+        <argsstring>(const T1 &amp;t1, Tn... tn)</argsstring>
+        <name>operator()</name>
+        <qualifiedname>Brush::Function&lt; NodeType::Median &gt;::operator()</qualifiedname>
+        <param>
+          <type>const T1 &amp;</type>
+          <declname>t1</declname>
+        </param>
+        <param>
+          <type>Tn...</type>
+          <declname>tn</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/runner/work/brush/brush/src/program/functions.h" line="50" column="21" bodyfile="/home/runner/work/brush/brush/src/program/functions.h" bodystart="50" bodyend="50"/>
       </memberdef>
     </sectiondef>
     <briefdescription>
@@ -119,6 +138,7 @@
       <member refid="d2/d84/structBrush_1_1Function_3_01NodeType_1_1Median_01_4_1a226a9b29496d0d09fb55055ca23a3c86" prot="public" virt="non-virtual"><scope>Brush::Function&lt; NodeType::Median &gt;</scope><name>median</name></member>
       <member refid="d2/d84/structBrush_1_1Function_3_01NodeType_1_1Median_01_4_1a1a24c586b9a1bdba15aeaa0d9240159a" prot="public" virt="non-virtual"><scope>Brush::Function&lt; NodeType::Median &gt;</scope><name>operator()</name></member>
       <member refid="d2/d84/structBrush_1_1Function_3_01NodeType_1_1Median_01_4_1aedec89939e9612ace73a1de31e4d8b0d" prot="public" virt="non-virtual"><scope>Brush::Function&lt; NodeType::Median &gt;</scope><name>operator()</name></member>
+      <member refid="d9/d1b/structBrush_1_1Function_1a9ded8f668ece5beef07a87c790409fd7" prot="public" virt="non-virtual"><scope>Brush::Function&lt; NodeType::Median &gt;</scope><name>operator()</name></member>
     </listofallmembers>
   </compounddef>
 </doxygen>

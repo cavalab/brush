@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
-<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.10.0" xml:lang="en-US">
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.13.2" xml:lang="en-US">
   <compounddef id="d5/dd4/structfmt_1_1formatter_3_01Brush_1_1Data_1_1TimeSeriesf_01_4" kind="struct" language="C++" prot="public">
     <compoundname>fmt::formatter&lt; Brush::Data::TimeSeriesf &gt;</compoundname>
     <basecompoundref prot="public" virt="non-virtual">formatter&lt; string_view &gt;</basecompoundref>
@@ -10,10 +10,10 @@
       <memberdef kind="function" id="d5/dd4/structfmt_1_1formatter_3_01Brush_1_1Data_1_1TimeSeriesf_01_4_1a005f01289d7b31d245cea506fa4a81b2" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
         <templateparamlist>
           <param>
-            <type><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">typename</ref> <ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">FormatContext</ref></type>
+            <type>typename FormatContext</type>
           </param>
         </templateparamlist>
-        <type><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">auto</ref></type>
+        <type>auto</type>
         <definition>auto fmt::formatter&lt; Brush::Data::TimeSeriesf &gt;::format</definition>
         <argsstring>(Brush::Data::TimeSeriesf x, FormatContext &amp;ctx) const</argsstring>
         <name>format</name>
@@ -23,7 +23,7 @@
           <declname>x</declname>
         </param>
         <param>
-          <type><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">FormatContext</ref> &amp;</type>
+          <type>FormatContext &amp;</type>
           <declname>ctx</declname>
         </param>
         <briefdescription>
@@ -33,7 +33,7 @@
         <inbodydescription>
         </inbodydescription>
         <location file="/home/runner/work/brush/brush/src/data/timeseries.h" line="223" column="8" bodyfile="/home/runner/work/brush/brush/src/data/timeseries.h" bodystart="223" bodyend="227"/>
-        <references refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" compoundref="d4/d93/bind__engines_8h" startline="35" endline="104">bind_engine</references>
+        <references refid="d7/d56/structBrush_1_1Data_1_1TimeSeries_1a45820a71d7cb5d552dce96fdce8db1d1" compoundref="d9/df7/timeseries_8h" startline="168" endline="190">Brush::Data::TimeSeries&lt; T &gt;::print</references>
       </memberdef>
     </sectiondef>
     <briefdescription>

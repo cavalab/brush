@@ -1,26 +1,26 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
-<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.10.0" xml:lang="en-US">
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.13.2" xml:lang="en-US">
   <compounddef id="db/d64/structBrush_1_1all__same" kind="struct" language="C++" prot="public">
     <compoundname>Brush::all_same</compoundname>
     <includes refid="d9/d49/types_8h" local="no">types.h</includes>
     <templateparamlist>
       <param>
-        <type><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">typename</ref> <ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">First</ref></type>
+        <type>typename First</type>
       </param>
       <param>
-        <type><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">typename</ref> ...</type>
+        <type>typename ...</type>
         <declname>Next</declname>
         <defname>Next</defname>
       </param>
     </templateparamlist>
     <sectiondef kind="public-static-attrib">
       <memberdef kind="variable" id="db/d64/structBrush_1_1all__same_1a2451a4b50eda0715b566770d3b4dfb01" prot="public" static="yes" constexpr="yes" mutable="no">
-        <type><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">constexpr</ref> <ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">bool</ref></type>
-        <definition>constexpr bool Brush::all_same&lt; First, Next &gt;::value</definition>
+        <type>bool</type>
+        <definition>bool Brush::all_same&lt; First, Next &gt;::value</definition>
         <argsstring></argsstring>
         <name>value</name>
         <qualifiedname>Brush::all_same::value</qualifiedname>
-        <initializer>{(std::is_same_v&lt;<ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">First</ref>,<ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">Next</ref>&gt; &amp;&amp; ...)}</initializer>
+        <initializer>{(std::is_same_v&lt;First,Next&gt; &amp;&amp; ...)}</initializer>
         <briefdescription>
         </briefdescription>
         <detaileddescription>

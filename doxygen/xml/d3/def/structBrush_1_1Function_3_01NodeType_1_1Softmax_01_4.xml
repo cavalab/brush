@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
-<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.10.0" xml:lang="en-US">
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.13.2" xml:lang="en-US">
   <compounddef id="d3/def/structBrush_1_1Function_3_01NodeType_1_1Softmax_01_4" kind="struct" language="C++" prot="public">
     <compoundname>Brush::Function&lt; NodeType::Softmax &gt;</compoundname>
     <includes refid="d8/d5c/functions_8h" local="no">functions.h</includes>
@@ -9,16 +9,16 @@
       <memberdef kind="function" id="d3/def/structBrush_1_1Function_3_01NodeType_1_1Softmax_01_4_1affcedbb6c6228d2998c06513e311b06c" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
         <templateparamlist>
           <param>
-            <type><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">typename</ref> T</type>
+            <type>typename T</type>
           </param>
         </templateparamlist>
-        <type><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">auto</ref></type>
+        <type>auto</type>
         <definition>auto Brush::Function&lt; NodeType::Softmax &gt;::softmax</definition>
         <argsstring>(const ArrayBase&lt; T &gt; &amp;t) const</argsstring>
         <name>softmax</name>
         <qualifiedname>Brush::Function&lt; NodeType::Softmax &gt;::softmax</qualifiedname>
         <param>
-          <type><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">const</ref> ArrayBase&lt; T &gt; &amp;</type>
+          <type>const ArrayBase&lt; T &gt; &amp;</type>
           <declname>t</declname>
         </param>
         <briefdescription>
@@ -28,21 +28,20 @@
         <inbodydescription>
         </inbodydescription>
         <location file="/home/runner/work/brush/brush/src/program/functions.h" line="416" column="20" bodyfile="/home/runner/work/brush/brush/src/program/functions.h" bodystart="416" bodyend="420"/>
-        <references refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" compoundref="d4/d93/bind__engines_8h" startline="35" endline="104">bind_engine</references>
       </memberdef>
       <memberdef kind="function" id="d3/def/structBrush_1_1Function_3_01NodeType_1_1Softmax_01_4_1a973c465137ea44720d1ba0f16463f265" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
         <templateparamlist>
           <param>
-            <type><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">typename</ref> T</type>
+            <type>typename T</type>
           </param>
         </templateparamlist>
-        <type><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">auto</ref></type>
+        <type>auto</type>
         <definition>auto Brush::Function&lt; NodeType::Softmax &gt;::operator()</definition>
         <argsstring>(const ArrayBase&lt; T &gt; &amp;t)</argsstring>
         <name>operator()</name>
         <qualifiedname>Brush::Function&lt; NodeType::Softmax &gt;::operator()</qualifiedname>
         <param>
-          <type><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">const</ref> ArrayBase&lt; T &gt; &amp;</type>
+          <type>const ArrayBase&lt; T &gt; &amp;</type>
           <declname>t</declname>
         </param>
         <briefdescription>
@@ -54,6 +53,28 @@
         <location file="/home/runner/work/brush/brush/src/program/functions.h" line="423" column="20" bodyfile="/home/runner/work/brush/brush/src/program/functions.h" bodystart="423" bodyend="426"/>
         <references refid="d6/d2e/namespaceBrush_1_1Util_1a49fa99aae6db3940dee2bca4e6358309" compoundref="d5/d60/utils_8h" startline="296" endline="309">Brush::Util::softmax</references>
       </memberdef>
+      <memberdef kind="function" id="d9/d1b/structBrush_1_1Function_1a9ded8f668ece5beef07a87c790409fd7" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>auto</type>
+        <definition>auto Brush::Function&lt; N &gt;::operator()</definition>
+        <argsstring>(const T1 &amp;t1, Tn... tn)</argsstring>
+        <name>operator()</name>
+        <qualifiedname>Brush::Function&lt; NodeType::Softmax &gt;::operator()</qualifiedname>
+        <param>
+          <type>const T1 &amp;</type>
+          <declname>t1</declname>
+        </param>
+        <param>
+          <type>Tn...</type>
+          <declname>tn</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/runner/work/brush/brush/src/program/functions.h" line="50" column="21" bodyfile="/home/runner/work/brush/brush/src/program/functions.h" bodystart="50" bodyend="50"/>
+      </memberdef>
     </sectiondef>
     <briefdescription>
     </briefdescription>
@@ -62,6 +83,7 @@
     <location file="/home/runner/work/brush/brush/src/program/functions.h" line="413" column="5" bodyfile="/home/runner/work/brush/brush/src/program/functions.h" bodystart="414" bodyend="434"/>
     <listofallmembers>
       <member refid="d3/def/structBrush_1_1Function_3_01NodeType_1_1Softmax_01_4_1a973c465137ea44720d1ba0f16463f265" prot="public" virt="non-virtual"><scope>Brush::Function&lt; NodeType::Softmax &gt;</scope><name>operator()</name></member>
+      <member refid="d9/d1b/structBrush_1_1Function_1a9ded8f668ece5beef07a87c790409fd7" prot="public" virt="non-virtual"><scope>Brush::Function&lt; NodeType::Softmax &gt;</scope><name>operator()</name></member>
       <member refid="d3/def/structBrush_1_1Function_3_01NodeType_1_1Softmax_01_4_1affcedbb6c6228d2998c06513e311b06c" prot="public" virt="non-virtual"><scope>Brush::Function&lt; NodeType::Softmax &gt;</scope><name>softmax</name></member>
     </listofallmembers>
   </compounddef>

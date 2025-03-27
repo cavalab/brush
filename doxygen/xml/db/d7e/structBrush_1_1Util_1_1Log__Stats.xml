@@ -1,11 +1,11 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
-<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.10.0" xml:lang="en-US">
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.13.2" xml:lang="en-US">
   <compounddef id="db/d7e/structBrush_1_1Util_1_1Log__Stats" kind="struct" language="C++" prot="public">
     <compoundname>Brush::Util::Log_Stats</compoundname>
     <includes refid="d5/d60/utils_8h" local="no">utils.h</includes>
     <sectiondef kind="public-attrib">
       <memberdef kind="variable" id="db/d7e/structBrush_1_1Util_1_1Log__Stats_1aebdb57a7b38f632b9855ede6c86eb948" prot="public" static="no" mutable="no">
-        <type>vector&lt; <ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">int</ref> &gt;</type>
+        <type><ref refid="d7/dfc/classvector" kindref="compound">vector</ref>&lt; int &gt;</type>
         <definition>vector&lt;int&gt; Brush::Util::Log_Stats::generation</definition>
         <argsstring></argsstring>
         <name>generation</name>
@@ -20,7 +20,7 @@
         <referencedby refid="db/d7e/structBrush_1_1Util_1_1Log__Stats_1a16227000cf1d98852df3ef1cd6a6efff" compoundref="de/d06/utils_8cpp" startline="227" endline="252">update</referencedby>
       </memberdef>
       <memberdef kind="variable" id="db/d7e/structBrush_1_1Util_1_1Log__Stats_1ae664f5f7dec3314e1a7cc6bce660eac4" prot="public" static="no" mutable="no">
-        <type>vector&lt; <ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">float</ref> &gt;</type>
+        <type><ref refid="d7/dfc/classvector" kindref="compound">vector</ref>&lt; float &gt;</type>
         <definition>vector&lt;float&gt; Brush::Util::Log_Stats::time</definition>
         <argsstring></argsstring>
         <name>time</name>
@@ -35,7 +35,7 @@
         <referencedby refid="db/d7e/structBrush_1_1Util_1_1Log__Stats_1a16227000cf1d98852df3ef1cd6a6efff" compoundref="de/d06/utils_8cpp" startline="227" endline="252">update</referencedby>
       </memberdef>
       <memberdef kind="variable" id="db/d7e/structBrush_1_1Util_1_1Log__Stats_1add898f2c47859b9c759a1cab4cda136c" prot="public" static="no" mutable="no">
-        <type>vector&lt; <ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">float</ref> &gt;</type>
+        <type><ref refid="d7/dfc/classvector" kindref="compound">vector</ref>&lt; float &gt;</type>
         <definition>vector&lt;float&gt; Brush::Util::Log_Stats::best_score</definition>
         <argsstring></argsstring>
         <name>best_score</name>
@@ -50,7 +50,7 @@
         <referencedby refid="db/d7e/structBrush_1_1Util_1_1Log__Stats_1a16227000cf1d98852df3ef1cd6a6efff" compoundref="de/d06/utils_8cpp" startline="227" endline="252">update</referencedby>
       </memberdef>
       <memberdef kind="variable" id="db/d7e/structBrush_1_1Util_1_1Log__Stats_1ad14397a3403cfe63bfac32beea700c7a" prot="public" static="no" mutable="no">
-        <type>vector&lt; <ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">float</ref> &gt;</type>
+        <type><ref refid="d7/dfc/classvector" kindref="compound">vector</ref>&lt; float &gt;</type>
         <definition>vector&lt;float&gt; Brush::Util::Log_Stats::best_score_v</definition>
         <argsstring></argsstring>
         <name>best_score_v</name>
@@ -65,7 +65,7 @@
         <referencedby refid="db/d7e/structBrush_1_1Util_1_1Log__Stats_1a16227000cf1d98852df3ef1cd6a6efff" compoundref="de/d06/utils_8cpp" startline="227" endline="252">update</referencedby>
       </memberdef>
       <memberdef kind="variable" id="db/d7e/structBrush_1_1Util_1_1Log__Stats_1ac23e8ca79f408dfc07c4f86a8e89a9ca" prot="public" static="no" mutable="no">
-        <type>vector&lt; <ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">float</ref> &gt;</type>
+        <type><ref refid="d7/dfc/classvector" kindref="compound">vector</ref>&lt; float &gt;</type>
         <definition>vector&lt;float&gt; Brush::Util::Log_Stats::med_score</definition>
         <argsstring></argsstring>
         <name>med_score</name>
@@ -80,7 +80,7 @@
         <referencedby refid="db/d7e/structBrush_1_1Util_1_1Log__Stats_1a16227000cf1d98852df3ef1cd6a6efff" compoundref="de/d06/utils_8cpp" startline="227" endline="252">update</referencedby>
       </memberdef>
       <memberdef kind="variable" id="db/d7e/structBrush_1_1Util_1_1Log__Stats_1aad65800dd14b817a5426312d43251e7b" prot="public" static="no" mutable="no">
-        <type>vector&lt; <ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">float</ref> &gt;</type>
+        <type><ref refid="d7/dfc/classvector" kindref="compound">vector</ref>&lt; float &gt;</type>
         <definition>vector&lt;float&gt; Brush::Util::Log_Stats::med_score_v</definition>
         <argsstring></argsstring>
         <name>med_score_v</name>
@@ -95,7 +95,7 @@
         <referencedby refid="db/d7e/structBrush_1_1Util_1_1Log__Stats_1a16227000cf1d98852df3ef1cd6a6efff" compoundref="de/d06/utils_8cpp" startline="227" endline="252">update</referencedby>
       </memberdef>
       <memberdef kind="variable" id="db/d7e/structBrush_1_1Util_1_1Log__Stats_1ac158480ad1d6fc12ea5a20811b115d1e" prot="public" static="no" mutable="no">
-        <type>vector&lt; <ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">unsigned</ref> &gt;</type>
+        <type><ref refid="d7/dfc/classvector" kindref="compound">vector</ref>&lt; unsigned &gt;</type>
         <definition>vector&lt;unsigned&gt; Brush::Util::Log_Stats::med_size</definition>
         <argsstring></argsstring>
         <name>med_size</name>
@@ -110,7 +110,7 @@
         <referencedby refid="db/d7e/structBrush_1_1Util_1_1Log__Stats_1a16227000cf1d98852df3ef1cd6a6efff" compoundref="de/d06/utils_8cpp" startline="227" endline="252">update</referencedby>
       </memberdef>
       <memberdef kind="variable" id="db/d7e/structBrush_1_1Util_1_1Log__Stats_1ad6978c4386468c44dd252345c11ca126" prot="public" static="no" mutable="no">
-        <type>vector&lt; <ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">unsigned</ref> &gt;</type>
+        <type><ref refid="d7/dfc/classvector" kindref="compound">vector</ref>&lt; unsigned &gt;</type>
         <definition>vector&lt;unsigned&gt; Brush::Util::Log_Stats::med_complexity</definition>
         <argsstring></argsstring>
         <name>med_complexity</name>
@@ -125,7 +125,7 @@
         <referencedby refid="db/d7e/structBrush_1_1Util_1_1Log__Stats_1a16227000cf1d98852df3ef1cd6a6efff" compoundref="de/d06/utils_8cpp" startline="227" endline="252">update</referencedby>
       </memberdef>
       <memberdef kind="variable" id="db/d7e/structBrush_1_1Util_1_1Log__Stats_1a07aeaad3d63ca1c76bd1c1fc55f944c2" prot="public" static="no" mutable="no">
-        <type>vector&lt; <ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">unsigned</ref> &gt;</type>
+        <type><ref refid="d7/dfc/classvector" kindref="compound">vector</ref>&lt; unsigned &gt;</type>
         <definition>vector&lt;unsigned&gt; Brush::Util::Log_Stats::max_size</definition>
         <argsstring></argsstring>
         <name>max_size</name>
@@ -140,7 +140,7 @@
         <referencedby refid="db/d7e/structBrush_1_1Util_1_1Log__Stats_1a16227000cf1d98852df3ef1cd6a6efff" compoundref="de/d06/utils_8cpp" startline="227" endline="252">update</referencedby>
       </memberdef>
       <memberdef kind="variable" id="db/d7e/structBrush_1_1Util_1_1Log__Stats_1a8d36cca3c88663adf33e28043d025b56" prot="public" static="no" mutable="no">
-        <type>vector&lt; <ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">unsigned</ref> &gt;</type>
+        <type><ref refid="d7/dfc/classvector" kindref="compound">vector</ref>&lt; unsigned &gt;</type>
         <definition>vector&lt;unsigned&gt; Brush::Util::Log_Stats::max_complexity</definition>
         <argsstring></argsstring>
         <name>max_complexity</name>
@@ -157,49 +157,49 @@
     </sectiondef>
     <sectiondef kind="public-func">
       <memberdef kind="function" id="db/d7e/structBrush_1_1Util_1_1Log__Stats_1a16227000cf1d98852df3ef1cd6a6efff" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
-        <type><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">void</ref></type>
+        <type>void</type>
         <definition>void Brush::Util::Log_Stats::update</definition>
         <argsstring>(int index, float timer_count, float bst_score, float bst_score_v, float md_score, float md_score_v, unsigned md_size, unsigned md_complexity, unsigned mx_size, unsigned mx_complexity)</argsstring>
         <name>update</name>
         <qualifiedname>Brush::Util::Log_Stats::update</qualifiedname>
         <param>
-          <type><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">int</ref></type>
+          <type>int</type>
           <declname>index</declname>
         </param>
         <param>
-          <type><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">float</ref></type>
+          <type>float</type>
           <declname>timer_count</declname>
         </param>
         <param>
-          <type><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">float</ref></type>
+          <type>float</type>
           <declname>bst_score</declname>
         </param>
         <param>
-          <type><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">float</ref></type>
+          <type>float</type>
           <declname>bst_score_v</declname>
         </param>
         <param>
-          <type><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">float</ref></type>
+          <type>float</type>
           <declname>md_score</declname>
         </param>
         <param>
-          <type><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">float</ref></type>
+          <type>float</type>
           <declname>md_score_v</declname>
         </param>
         <param>
-          <type><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">unsigned</ref></type>
+          <type>unsigned</type>
           <declname>md_size</declname>
         </param>
         <param>
-          <type><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">unsigned</ref></type>
+          <type>unsigned</type>
           <declname>md_complexity</declname>
         </param>
         <param>
-          <type><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">unsigned</ref></type>
+          <type>unsigned</type>
           <declname>mx_size</declname>
         </param>
         <param>
-          <type><ref refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" kindref="member">unsigned</ref></type>
+          <type>unsigned</type>
           <declname>mx_complexity</declname>
         </param>
         <briefdescription>
@@ -211,7 +211,6 @@
         <location file="/home/runner/work/brush/brush/src/util/utils.h" line="412" column="10" bodyfile="/home/runner/work/brush/brush/src/util/utils.cpp" bodystart="227" bodyend="252"/>
         <references refid="db/d7e/structBrush_1_1Util_1_1Log__Stats_1add898f2c47859b9c759a1cab4cda136c" compoundref="d5/d60/utils_8h" startline="402">best_score</references>
         <references refid="db/d7e/structBrush_1_1Util_1_1Log__Stats_1ad14397a3403cfe63bfac32beea700c7a" compoundref="d5/d60/utils_8h" startline="403">best_score_v</references>
-        <references refid="d4/d93/bind__engines_8h_1a7084fed01f1c1153d0d06da9a828b5a3" compoundref="d4/d93/bind__engines_8h" startline="35" endline="104">bind_engine</references>
         <references refid="db/d7e/structBrush_1_1Util_1_1Log__Stats_1aebdb57a7b38f632b9855ede6c86eb948" compoundref="d5/d60/utils_8h" startline="399">generation</references>
         <references refid="db/d7e/structBrush_1_1Util_1_1Log__Stats_1a8d36cca3c88663adf33e28043d025b56" compoundref="d5/d60/utils_8h" startline="410">max_complexity</references>
         <references refid="db/d7e/structBrush_1_1Util_1_1Log__Stats_1a07aeaad3d63ca1c76bd1c1fc55f944c2" compoundref="d5/d60/utils_8h" startline="409">max_size</references>
