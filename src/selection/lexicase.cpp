@@ -38,8 +38,9 @@ vector<size_t> Lexicase<T>::select(Population<T>& pop, int island,
     ArrayXf epsilon = ArrayXf::Zero(N);
   
     // if output is continuous, use epsilon lexicase            
-    if (!params.classification || params.scorer_.compare("log")==0 
-    ||  params.scorer_.compare("multi_log")==0)
+    if (!params.classification || params.scorer.compare("log")==0 
+                               || params.scorer.compare("multi_log")==0
+                               || params.scorer.compare("average_precision_score")==0 )
     {
         // for each sample, calculate epsilon
         for (int i = 0; i<epsilon.size(); ++i)
@@ -49,6 +50,9 @@ vector<size_t> Lexicase<T>::select(Population<T>& pop, int island,
             {
                 case_errors(j) = pop.individuals.at(island_pool[j])->error(i);
             }
+
+            // notice that metric used to calculate the error must be a
+            // minimization problem in order for lexicase to work
             epsilon(i) = mad(case_errors);
         }
     }
@@ -69,8 +73,13 @@ vector<size_t> Lexicase<T>::select(Population<T>& pop, int island,
         vector<size_t> cases; // cases (samples)
         if (params.classification && !params.class_weights.empty()) 
         {
+            // NOTE: when calling lexicase, make sure `errors` is from training
+            // data, and not from validation data. This is because the sample 
+            // weights indexes are based on train partition
+        
             // for classification problems, weight case selection 
             // by class weights
+            cases.resize(0); 
             vector<size_t> choices(N);
             std::iota(choices.begin(), choices.end(),0);
 
@@ -112,7 +121,7 @@ vector<size_t> Lexicase<T>::select(Population<T>& pop, int island,
             // minimum error on case
             float minfit = std::numeric_limits<float>::max();                     
 
-            // get minimum
+            // get minimum (assuming minization of indiviual errors)
             for (size_t j = 0; j<pool.size(); ++j)
                 if (pop.individuals.at(pool[j])->error(cases[h]) < minfit) 
                     minfit = pop.individuals.at(pool[j])->error(cases[h]);
@@ -122,9 +131,11 @@ vector<size_t> Lexicase<T>::select(Population<T>& pop, int island,
 
             // select best
             for (size_t j = 0; j<pool.size(); ++j)
+            {
                 if (pop.individuals.at(pool[j])->error(cases[h]) 
                         <= epsilon_threshold)
-                winner.push_back(pool[j]);                 
+                    winner.push_back(pool[j]);  
+            }
             
             ++h; // next case
             // only keep going if needed
@@ -147,14 +158,10 @@ vector<size_t> Lexicase<T>::select(Population<T>& pop, int island,
         //if more than one winner, pick randomly
         selected.at(i) = *r.select_randomly(
                          winner.begin(), winner.end() );   
-                         
-        // cout << "parallel end index  " + to_string(i) << endl;
     }               
 
     if (selected.size() != island_pool.size())
     {
-        // std::cout << "selected: " ;
-        // for (auto s: selected) std::cout << s << " "; std::cout << "\n";
         HANDLE_ERROR_THROW("Lexicase did not select correct number of \
                 parents");
     }

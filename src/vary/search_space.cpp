@@ -121,7 +121,10 @@ vector<Node> generate_terminals(const Dataset& d, const bool weights_init)
     };
 
     // iterate through terminals and take the average of values of same signature
-    auto signature_avg = [terminals](DataType ret_type){
+    auto signature_avg = [terminals, weights_init](DataType ret_type){
+        if (!weights_init)
+            return 1.0f;
+
         float sum = 0.0;
         int count = 0;
 
@@ -132,27 +135,35 @@ vector<Node> generate_terminals(const Dataset& d, const bool weights_init)
             }
         }
 
+        if (count==0) // no terminals of datatype. return 1.0 for the constant
+            return 1.0f;
+
         return sum / count;
     };
 
-    // constants for each type
-    auto cXf = Node(NodeType::Constant, Signature<ArrayXf()>{}, true, "Cf");
+    // constants for each type -- floats, integers, boolean. This is useful
+    // to ensure the search space will always have something to fill up open spaces
+    // when building/modifying trees
+    auto cXf = Node(NodeType::Constant, Signature<ArrayXf()>{}, true, "Constant");
     float floats_avg_weights = signature_avg(cXf.ret_type);
     cXf.set_prob_change(floats_avg_weights);
     terminals.push_back(cXf);
 
-    auto cXi = Node(NodeType::Constant, Signature<ArrayXi()>{}, true, "Ci");
+    auto cXi = Node(NodeType::Constant, Signature<ArrayXi()>{}, true, "Constant");
     cXi.set_prob_change(signature_avg(cXi.ret_type));
     terminals.push_back(cXi);
 
-    auto cXb = Node(NodeType::Constant, Signature<ArrayXb()>{}, false, "Cb");
+    auto cXb = Node(NodeType::Constant, Signature<ArrayXb()>{}, false, "Constant");
     cXb.set_prob_change(signature_avg(cXb.ret_type));
     terminals.push_back(cXb);
 
-    // mean label node
-    auto meanlabel = Node(NodeType::MeanLabel, Signature<ArrayXf()>{}, true, "MeanLabel");
-    meanlabel.set_prob_change(floats_avg_weights);
-    terminals.push_back(meanlabel);
+    // mean label node. Does not need to be part of symbols. works only for classification
+    if (d.classification)
+    {
+        auto meanlabel = Node(NodeType::MeanLabel, Signature<ArrayXf()>{}, true, "MeanLabel");
+        meanlabel.set_prob_change(floats_avg_weights);
+        terminals.push_back(meanlabel);
+    }
 
     return terminals;
 };
@@ -172,9 +183,19 @@ void SearchSpace::init(const Dataset& d, const unordered_map<string,float>& user
     this->terminal_map.clear();
     this->terminal_types.clear();
     this->terminal_weights.clear();
+    this->op_names.clear();
 
     bool use_all = user_ops.size() == 0;
-    vector<string> op_names;
+    if (use_all)
+    {
+        for (size_t op_index=0; op_index< NodeTypes::Count; op_index++){
+            op_names.push_back(    
+                NodeTypeName.at(static_cast<NodeType>(1UL << op_index))
+            );
+        }
+    }
+
+
     for (const auto& [op, weight] : user_ops)
         op_names.push_back(op);
 
@@ -192,11 +213,14 @@ void SearchSpace::init(const Dataset& d, const unordered_map<string,float>& user
     // and signatures for them (and they can be used only in program root).
     // TODO: fix softmax and add it here
 
-    // Copy the original map using the copy constructor
-    std::unordered_map<std::string, float> extended_user_ops(user_ops);
+    /* fmt::print("generate nodetype\n"); */
+    GenerateNodeMap(user_ops, d.unique_data_types, 
+                    std::make_index_sequence<NodeTypes::OpCount>());
 
     if (d.classification)
     {        
+        std::unordered_map<std::string, float> extended_user_ops;
+        
         // Convert ArrayXf to std::vector<float> for compatibility with std::set
         std::vector<float> vec(d.y.data(), d.y.data() + d.y.size());
 
@@ -205,18 +229,24 @@ void SearchSpace::init(const Dataset& d, const unordered_map<string,float>& user
         // We need some ops in the search space so we can have the logit and offset
         if (user_ops.find("OffsetSum") == user_ops.end())
             extended_user_ops.insert({"OffsetSum", 0.0f});
+            op_names.push_back("OffsetSum");
 
         if (unique_classes.size()==2 && (user_ops.find("Logistic") == user_ops.end())) {
             extended_user_ops.insert({"Logistic", 0.0f});
+            op_names.push_back("Logistic");
         }
         else if (user_ops.find("Softmax") == user_ops.end()) {
             extended_user_ops.insert({"Softmax", 0.0f});
+            op_names.push_back("Softmax");
+        }
+
+        if (extended_user_ops.size() > 0)
+        {
+            // fmt::print("generate nodetype\n");
+            GenerateNodeMap(extended_user_ops, d.unique_data_types, 
+                            std::make_index_sequence<NodeTypes::OpCount>());
         }
     }
-
-    /* fmt::print("generate nodetype\n"); */
-    GenerateNodeMap(extended_user_ops, d.unique_data_types, 
-                    std::make_index_sequence<NodeTypes::OpCount>());
 
     // map terminals
     /* fmt::print("looping through terminals...\n"); */
@@ -289,9 +319,11 @@ tree<Node>& SearchSpace::PTC2(tree<Node>& Tree,
     // updating size accordingly to root node
     if (Is<NodeType::SplitBest>(root.node_type))
         s += 3;
-    else if (Is<NodeType::SplitOn>(root.node_type))
+    else if (Is<NodeType::SplitOn>(root.node_type)){
         s += 2;
-    
+        // cout << "sampled split on node\n";
+    }
+        
     if ( root.get_is_weighted()==true
     &&   Isnt<NodeType::Constant, NodeType::MeanLabel>(root.node_type) )
         s += 2;
@@ -299,7 +331,6 @@ tree<Node>& SearchSpace::PTC2(tree<Node>& Tree,
     //For each argument position a of n, Enqueue(a; g) 
     for (auto a : root.arg_types)
     { 
-        // cout << "queing a node of type " << DataTypeName[a] << endl;
         auto child_spot = Tree.append_child(spot);
         queue.push_back(make_tuple(child_spot, a, d));
     }
@@ -319,10 +350,8 @@ tree<Node>& SearchSpace::PTC2(tree<Node>& Tree,
         // always insert a non terminal (which by default has weights off).
         // this way, we can have PTC2 working properly.
         
-        // cout << "queue size: " << queue.size() << endl;
         auto [qspot, t, d] = RandomDequeue(queue);
 
-        // cout << "current depth: " << d << endl;
         if (d >= max_d || s >= max_size)
         {
             auto opt = sample_terminal(t);
@@ -344,6 +373,10 @@ tree<Node>& SearchSpace::PTC2(tree<Node>& Tree,
 
             if (!opt) { // there is no operator for this node. sample a terminal instead
                 opt = sample_terminal(t);
+
+                // didnt work the easy way, lets try the hard way
+                if (!opt)
+                    opt = sample_terminal(t, true);
             }
 
             if (!opt) { // no operator nor terminal. weird.
@@ -355,6 +388,9 @@ tree<Node>& SearchSpace::PTC2(tree<Node>& Tree,
             }
 
             n = opt.value();
+            // if (Is<NodeType::And>(n.node_type)){
+            //     cout << "AND\n";
+            // }
             
             auto newspot = Tree.replace(qspot, n);
 
@@ -372,8 +408,10 @@ tree<Node>& SearchSpace::PTC2(tree<Node>& Tree,
         
         if (Is<NodeType::SplitBest>(n.node_type))
             s += 3;
-        else if (Is<NodeType::SplitOn>(n.node_type))
+        else if (Is<NodeType::SplitOn>(n.node_type)){
+            // cout << "sampled split on node/n";
             s += 2;
+        }
 
         if ( n.get_is_weighted()==true
         &&   Isnt<NodeType::Constant, NodeType::MeanLabel>(n.node_type) )
@@ -388,6 +426,7 @@ tree<Node>& SearchSpace::PTC2(tree<Node>& Tree,
         auto [qspot, t, d] = RandomDequeue(queue);
 
         auto opt = sample_terminal(t);
+
         if (!opt)
             opt = sample_terminal(t, true);
 

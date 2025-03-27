@@ -1,6 +1,7 @@
 import pytest
 
 import _brush
+from pybrush import BrushRegressor, BrushClassifier
 import time
 from multiprocessing import Pool
 import numpy as np
@@ -22,9 +23,9 @@ import numpy as np
 #     for d in range(1,4):
 #         for s in range(1,20):
 #             prg = SS.make_regressor(d, s)
-#             prg = prg.mutate()
+#             prg, _ = prg.mutate()
             
-#             if prg != None: prg = prg.cross(prg)    
+#             if prg != None: prg, _ = prg.cross(prg)    
 #             if prg != None: first_run.append(prg.get_model())
     
 #     assert len(first_run) > 0, "either mutation or crossover is always failing"
@@ -35,9 +36,9 @@ import numpy as np
 #     for d in range(1,4):
 #         for s in range(1,20):
 #             prg = SS.make_regressor(d, s)
-#             prg = prg.mutate()
+#             prg, _ = prg.mutate()
 
-#             if prg != None: prg = prg.cross(prg)
+#             if prg != None: prg, _ = prg.cross(prg)
 #             if prg != None: second_run.append(prg.get_model())
         
 #     assert len(second_run) > 0, "either mutation or crossover is always failing"
@@ -94,3 +95,47 @@ import numpy as np
 #                                              (1, 1*scale),
 #                                              (2, 2*scale)])
     
+
+def test_max_gens():
+    y = np.array( [1. , 0. , 1.4, 1. , 0. , 1. , 1. , 0. , 0. , 0.  ])
+    X = np.array([[1.1, 2.0, 3.0, 4.0, 5.0, 6.5, 7.0, 8.0, 9.0, 10.0],
+                       [2.0, 1.2, 6.0, 4.0, 5.0, 8.0, 7.0, 5.0, 9.0, 10.0]]).T
+    
+    for max_gen in [0, 1, 10]:
+        print(f"Testing with max_gen={max_gen}")
+        reg = BrushRegressor(max_gens=max_gen, verbosity=2).fit(X, y)
+
+        predictions = reg.predict(X)
+        assert predictions is not None, "Prediction failed"
+
+        print(f"Best individual program: {reg.best_estimator_.program.get_model()}")
+        print(f"Best individual fitness: {reg.best_estimator_.fitness}")
+    
+    # assert False
+
+def test_class_weights():
+    y = np.array([1, 1, 1, 0, 0, 0, 0, 0, 0, 0])
+    X = np.array([[1.1, 2.0, 3.0, 4.0, 5.0, 6.5, 7.0, 8.0, 9.0, 10.0],
+                    [2.0, 1.2, 6.0, 4.0, 5.0, 8.0, 7.0, 5.0, 9.0, 10.0]]).T
+
+    class_weights = [np.sum(y == 0)/len(y), np.sum(y == 1)/len(y)]
+
+    clf = BrushClassifier(
+        # class_weights=class_weights,
+        max_gens=10, verbosity=2
+    ).fit(X, y)
+
+    assert len(clf.parameters_.class_weights)==2, \
+        f"Expected class weights to be empty, but got {clf.class_weights}"
+    
+    # class weight = n_classes*(1 - (y==class)/n_samples)
+    assert np.allclose(clf.parameters_.class_weights,
+                       [(1 - 7/10), (1 - 3/10)]), \
+        f"Expected class weights to be [0.3, 0.7], but got {clf.parameters_.class_weights}"
+    
+    predictions = clf.predict(X)
+    assert predictions is not None, "Prediction failed"
+
+    print(f"Best individual program: {clf.best_estimator_.program.get_model()}")
+    print(f"Best individual fitness: {clf.best_estimator_.fitness}")
+    print(f"Best individual score (acc): {clf.score(X, y)}")

@@ -27,7 +27,7 @@ Special thanks to these contributors:
 - Guilherme Aldeia ([@gAldeia](https://github.com/gAldeia))
 - Fabricio Olivetti de Franca ([@folivetti](https://github.com/folivetti))
 - Zongjun Liu ([@msnliu](https://github.com/msnliu))
-- Daniel S. Herman 
+- Daniel S. Herman ([@hermands](https://github.com/hermands))
 
 
 ## Acknowledgments
@@ -68,7 +68,7 @@ Install the brush environment:
 
 ```
 cd brush
-conda env create
+conda env create -f environment.yml
 ```
 
 Install brush: 

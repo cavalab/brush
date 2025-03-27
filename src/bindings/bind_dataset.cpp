@@ -12,34 +12,44 @@ void bind_dataset(py::module & m)
         // construct from X, feature names (and optional validation and batch sizes) with constructor 3.
         .def(py::init([](const Ref<const ArrayXXf>& X, 
                          const vector<string>& feature_names=vector<string>(),
+                         const vector<string>& feature_types=vector<string>(),
                          const bool c=false,
                          const float validation_size=0.0,
-                         const float batch_size=1.0){
+                         const float batch_size=1.0,
+                         const bool shuffle_split=false){
                 return br::Data::Dataset(
-                    X, feature_names, c, validation_size, batch_size);
+                    X, feature_names, feature_types, c,
+                    validation_size, batch_size, shuffle_split);
             }), 
             py::arg("X"),
             py::arg("feature_names") = vector<string>(),
+            py::arg("feature_types") = vector<string>(),
             py::arg("c") = false,
             py::arg("validation_size") = 0.0,
-            py::arg("batch_size") = 1.0
+            py::arg("batch_size") = 1.0,
+            py::arg("shuffle_split") = false
         )
         // construct from X, y, feature names (and optional validation and batch sizes) with constructor 2.
         .def(py::init([](const Ref<const ArrayXXf>& X, 
                          const Ref<const ArrayXf>& y,
                          const vector<string>& feature_names=vector<string>(),
+                         const vector<string>& feature_types=vector<string>(),
                          const bool c=false,
                          const float validation_size=0.0,
-                         const float batch_size=1.0){
+                         const float batch_size=1.0,
+                         const bool shuffle_split=false){                            
                 return br::Data::Dataset(
-                    X, y, feature_names, {}, c, validation_size, batch_size);
+                    X, y, feature_names, {}, feature_types,
+                    c, validation_size, batch_size, shuffle_split);
             }), 
             py::arg("X"),
             py::arg("y"),
             py::arg("feature_names") = vector<string>(),
+            py::arg("feature_types") = vector<string>(),
             py::arg("c") = false,
             py::arg("validation_size") = 0.0,
-            py::arg("batch_size") = 1.0
+            py::arg("batch_size") = 1.0,
+            py::arg("shuffle_split") = false
         )
         // construct from X, feature names, but copying the feature types from a
         // reference dataset with constructor 4. Useful for predicting (specially
@@ -47,14 +57,12 @@ void bind_dataset(py::module & m)
         // no feature names).
         .def(py::init([](const Ref<const ArrayXXf>& X, 
                          const br::Data::Dataset& ref_dataset,
-                         const vector<string>& feature_names,
-                         const bool c=false){
-                return br::Data::Dataset(X, ref_dataset, feature_names, c);
+                         const vector<string>& feature_names){
+                return br::Data::Dataset(X, ref_dataset, feature_names);
             }), 
             py::arg("X"),
             py::arg("ref_dataset"),
-            py::arg("feature_names"),
-            py::arg("c") = false
+            py::arg("feature_names")
         )
         
         .def_readwrite("y", &br::Data::Dataset::y)
