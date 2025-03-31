@@ -14,6 +14,7 @@ public:
     size_t pop_size;
     int num_islands;
     float mig_prob;
+    bool linear_complexity;  ///< Indicates if the user set linear_complexity instead of recursive complexity
     
     vector<std::shared_ptr<Individual<T>>> individuals;
     vector<vector<size_t>> island_indexes;
@@ -67,7 +68,17 @@ public:
         SortComplexity(Population& p): pop(p){}
         bool operator()(size_t i, size_t j)
         { 
-            return pop[i].get_complexity() < pop[j].get_complexity();
+            return pop[i].fitness.complexity < pop[j].fitness.complexity;
+        }
+    };
+
+    struct SortLinearComplexity
+    {
+        Population& pop;
+        SortLinearComplexity(Population& p): pop(p){}
+        bool operator()(size_t i, size_t j)
+        { 
+            return pop[i].fitness.linear_complexity < pop[j].fitness.linear_complexity;
         }
     };
     
@@ -78,19 +89,22 @@ public:
         SameFitComplexity(Population<T>& p): pop(p){}
         bool operator()(size_t i, size_t j)
         {
-            return pop[i].get_complexity() == pop[j].get_complexity();
+            return (pop[i].fitness == pop[j].fitness);
+
+            // return (pop[i].fitness == pop[j].fitness
+            //     &&  pop[i].fitness.complexity == pop[j].fitness.complexity);
         }
     };
 };
 
-NLOHMANN_DEFINE_TYPE_NON_INTRUSIVE(
-    Population<PT::Regressor>, individuals, island_indexes, pop_size, num_islands);
-NLOHMANN_DEFINE_TYPE_NON_INTRUSIVE(
-    Population<PT::BinaryClassifier>, individuals, island_indexes, pop_size, num_islands);
-NLOHMANN_DEFINE_TYPE_NON_INTRUSIVE(
-    Population<PT::MulticlassClassifier>, individuals, island_indexes, pop_size, num_islands);
-NLOHMANN_DEFINE_TYPE_NON_INTRUSIVE(
-    Population<PT::Representer>, individuals, island_indexes, pop_size, num_islands);
+NLOHMANN_DEFINE_TYPE_NON_INTRUSIVE(Population<PT::Regressor>,
+    individuals, island_indexes, pop_size, num_islands, mig_prob, linear_complexity);
+NLOHMANN_DEFINE_TYPE_NON_INTRUSIVE(Population<PT::BinaryClassifier>,
+    individuals, island_indexes, pop_size, num_islands, mig_prob, linear_complexity);
+NLOHMANN_DEFINE_TYPE_NON_INTRUSIVE(Population<PT::MulticlassClassifier>,
+    individuals, island_indexes, pop_size, num_islands, mig_prob, linear_complexity);
+NLOHMANN_DEFINE_TYPE_NON_INTRUSIVE(Population<PT::Representer>,
+    individuals, island_indexes, pop_size, num_islands, mig_prob, linear_complexity);
     
 }// Pop
 }// Brush

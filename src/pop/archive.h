@@ -26,6 +26,7 @@ struct Archive
 {
     vector<Individual<T>> individuals; ///< individual programs in the archive
     bool sort_complexity;    ///< whether to sort archive by complexity
+    bool linear_complexity;  ///< Indicates if the user set linear_complexity instead of recursive complexity
     NSGA2<T> selector;       ///< using NSGA2 in survival mode (nsga2 does not implement selection)
 
     /**
@@ -67,6 +68,8 @@ struct Archive
      */
     static bool sortComplexity(const Individual<T>& lhs, const Individual<T>& rhs);
 
+    static bool sortLinearComplexity(const Individual<T>& lhs, const Individual<T>& rhs);
+
     /**
      * @brief Sorts the population by the first objective.
      * 
@@ -102,10 +105,10 @@ struct Archive
 };
 
 //serialization
-NLOHMANN_DEFINE_TYPE_NON_INTRUSIVE(Archive<PT::Regressor>, individuals, sort_complexity);
-NLOHMANN_DEFINE_TYPE_NON_INTRUSIVE(Archive<PT::BinaryClassifier>, individuals, sort_complexity);
-NLOHMANN_DEFINE_TYPE_NON_INTRUSIVE(Archive<PT::MulticlassClassifier>, individuals, sort_complexity);
-NLOHMANN_DEFINE_TYPE_NON_INTRUSIVE(Archive<PT::Representer>, individuals, sort_complexity);
+NLOHMANN_DEFINE_TYPE_NON_INTRUSIVE(Archive<PT::Regressor>, individuals, sort_complexity, linear_complexity);
+NLOHMANN_DEFINE_TYPE_NON_INTRUSIVE(Archive<PT::BinaryClassifier>, individuals, sort_complexity, linear_complexity);
+NLOHMANN_DEFINE_TYPE_NON_INTRUSIVE(Archive<PT::MulticlassClassifier>, individuals, sort_complexity, linear_complexity);
+NLOHMANN_DEFINE_TYPE_NON_INTRUSIVE(Archive<PT::Representer>, individuals, sort_complexity, linear_complexity);
 
 } // Pop
 } // Brush

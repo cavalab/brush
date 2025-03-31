@@ -395,12 +395,12 @@ https://eigen.tuxfamily.org/dox/group__QuickRefPage.html#arrayonly
         inline auto operator()(const T1& t1, const T2& t2) { return t1.during(t2); }
     };
 
-    template<>
-    struct Function<NodeType::SplitOn>
-    {
-        template<typename T1, typename T2>
-        inline auto operator()(const T1& t1, const T2& t2, const T2& t3) { return t2; }
-    };
+    // template<>
+    // struct Function<NodeType::SplitOn>
+    // {
+    //     template<typename T1, typename T2>
+    //     inline auto operator()(const T1& t1, const T2& t2, const T2& t3) { return t2; }
+    // };
     
     /// @brief Stacks Eigen arrays into a 2d-array, where each array is a column.
     /// @tparam T : underlying type in array

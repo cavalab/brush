@@ -12,6 +12,7 @@ void to_json(json &j, const Fitness &f)
         {"loss", f.loss},
         {"loss_v", f.loss_v},
         {"complexity", f.complexity},
+        {"linear_complexity", f.linear_complexity},
         {"size", f.size},
         {"depth", f.depth},
         {"dcounter", f.dcounter},
@@ -29,6 +30,7 @@ void from_json(const json &j, Fitness& f)
     j.at("loss").get_to( f.loss );
     j.at("loss_v").get_to( f.loss_v );
     j.at("complexity").get_to( f.complexity );
+    j.at("linear_complexity").get_to( f.linear_complexity );
     j.at("size").get_to( f.size );
     j.at("depth").get_to( f.depth );
     j.at("dcounter").get_to( f.dcounter );
@@ -43,19 +45,19 @@ int Fitness::dominates(const Fitness& b) const
     int flag1 = 0, // to check if this has a better objective
         flag2 = 0; // to check if b    has a better objective
 
-    // TODO: replace comparison of individual values by using the overloaded  operators (here and in nsga2)
+    // TODO: replace comparison of individual values by using the overloaded operators (here and in nsga2)
     for (int i=0; i<get_wvalues().size(); ++i) {
         if (get_wvalues().at(i) > b.get_wvalues().at(i)
-        || std::isnan(b.get_wvalues().at(i)) 
+        ||  std::isnan(b.get_wvalues().at(i)) 
         ) 
             flag1 = 1;
         if (get_wvalues().at(i) < b.get_wvalues().at(i)
-        || std::isnan(get_wvalues().at(i))
+        ||  std::isnan(get_wvalues().at(i))
         ) 
             flag2 = 1;                       
     }
 
-    // the proper way of comparing weighted values is considering everything as a maximization problem
+    // the proper way of comparing weighted values is considering everything as a MAXIMIIZATIION problem
     // (this is like deap does, and our fitness is inspired by them)
     if (flag1==1 && flag2==0)   
         // there is at least one smaller objective for this and none 

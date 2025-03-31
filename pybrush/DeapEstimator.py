@@ -61,16 +61,16 @@ class DeapEstimator(EstimatorInterface, BaseEstimator):
         # create Individual class, inheriting from self.Individual with a fitness attribute
         if self.mode == 'classification':
             self.Individual = ( individual.ClassifierIndividual
-                                 if self.n_classes_ == 2 else
+                                 if self.parameters_.n_classes == 2 else
                                  individual.MultiClassifierIndividual)  
             self.eval_ = ( ClassifierEvaluator()
-                     if self.n_classes_ == 2 else
+                     if self.parameters_.n_classes == 2 else
                      MultiClassifierEvaluator() )  
             self.sel_  = ( ClassifierSelector("nsga2", False)
-                     if self.n_classes_ == 2 else
+                     if self.parameters_.n_classes == 2 else
                      MultiClassifierSelector("nsga2", False) )  
             self.surv_ = ( ClassifierSelector("nsga2", True)
-                     if self.n_classes_ == 2 else
+                     if self.parameters_.n_classes == 2 else
                      MultiClassifierSelector("nsga2", True) )  
         else:
             self.Individual = individual.RegressorIndividual  
@@ -96,8 +96,10 @@ class DeapEstimator(EstimatorInterface, BaseEstimator):
         
         toolbox.register("Clone", lambda ind: self.Individual(ind.program.copy()))
         
-        toolbox.register("mate", self.variator_.cross)
-        toolbox.register("mutate", self.variator_.mutate)
+        # crossover and mutation will return a tuple, the individual and context. Here 
+        # we are interested only in the context part
+        toolbox.register("mate", lambda ind1, ind2: self.variator_.cross(ind1, ind2)[0])
+        toolbox.register("mutate", lambda ind: self.variator_.mutate(ind, "")[0])
         toolbox.register("vary_pop", lambda pop: self.variator_.vary_pop(pop, self.parameters_))
 
         # When solving multi-objective problems, selection and survival must
@@ -138,12 +140,8 @@ class DeapEstimator(EstimatorInterface, BaseEstimator):
 
         self.data_ = self._make_data(X, y, 
                                      feature_names=self.feature_names_,
-                                     validation_size=self.validation_size)
-
-        # set n classes if relevant
-        self.n_classes_ = 0
-        if self.mode=="classification":
-            self.n_classes_ = len(np.unique(y))
+                                     validation_size=self.validation_size,
+                                     shuffle_split=self.shuffle_split)
 
         # These have a default behavior to return something meaningfull if 
         # no values are set
@@ -152,16 +150,16 @@ class DeapEstimator(EstimatorInterface, BaseEstimator):
         
         self.validation_ = self.data_.get_validation_data()
 
-        self.parameters_ = self._wrap_parameters(n_classes=self.n_classes_)
+        self.parameters_ = self._wrap_parameters(self.train_.y)
         self.search_space_ = SearchSpace(self.data_, self.parameters_.functions, self.weights_init)
 
         if self.mode == "classification":
             self.variator_ = (ClassifierVariator
-                              if self.n_classes_ == 2 else
+                              if self.parameters_.n_classes == 2 else
                               MultiClassifierVariator
-                              )(self.parameters_, self.search_space_)
-        elif self.mode == "regressor":
-            self.variator_ = RegressorVariator(self.parameters_, self.search_space_)
+                              )(self.parameters_, self.search_space_, self.train_)
+        elif self.mode == "regression":
+            self.variator_ = RegressorVariator(self.parameters_, self.search_space_, self.train_)
             
             # from pybrush import RegressorEngine
             # brush_estimator = RegressorEngine(self.parameters_)
@@ -213,26 +211,6 @@ class DeapEstimator(EstimatorInterface, BaseEstimator):
 
         return self
     
-    def _make_data(self, X, y=None, feature_names=[], validation_size=0.0):
-        # This function should not partition data (since it may be used in `predict`).
-        # partitioning is done by `fit`. Feature names should be inferred
-        # before calling _make_data (so predict can be made with np arrays or
-        # pd dataframes).
-
-        if isinstance(y, pd.Series):
-            y = y.values
-        if isinstance(X, pd.DataFrame):
-            X = X.values
-        
-        assert isinstance(X, np.ndarray)
-
-        if y is None:
-            return Dataset(X=X,
-                    feature_names=feature_names, validation_size=validation_size)
-
-        return Dataset(X=X, y=y,
-            feature_names=feature_names, validation_size=validation_size)
-
 
     def _make_individual(self):
         # C++'s PTC2-based `make_individual` will create a tree of at least
@@ -245,7 +223,7 @@ class DeapEstimator(EstimatorInterface, BaseEstimator):
 
         ind = self.Individual()
         ind.init(self.search_space_, self.parameters_)
-        ind.objectives = self.objectives
+        # ind.objectives = self.parameters_.objectives
         
         return ind
     
@@ -254,16 +232,21 @@ class DeapEstimator(EstimatorInterface, BaseEstimator):
 
         check_is_fitted(self)
 
+        if self.data_ is None:
+            self.data_ = self._make_data(X, 
+                                    feature_names=self.feature_names_,
+                                    validation_size=self.validation_size,
+                                    shuffle_split=self.shuffle_split)
+            
         if isinstance(X, pd.DataFrame):
             X = X.values
 
         assert isinstance(X, np.ndarray)
 
+        # Need to provide feature names because reference does not store order
         data = Dataset(X=X, ref_dataset=self.data_, 
                               feature_names=self.feature_names_)
         
-        # data = self._make_data(X, feature_names=self.feature_names_)
-
         return self.best_estimator_.program.predict(data)
 
     # def _setup_population(self):
@@ -332,16 +315,21 @@ class DeapClassifier(DeapEstimator,ClassifierMixin):
         if isinstance(X, pd.DataFrame):
             X = X.values
 
+        if self.data_ is None:
+            self.data_ = self._make_data(X, 
+                                    feature_names=self.feature_names_,
+                                    validation_size=self.validation_size,
+                                    shuffle_split=self.shuffle_split)
+            
         assert isinstance(X, np.ndarray)
 
+        # Need to provide feature names because reference does not store order
         data = Dataset(X=X, ref_dataset=self.data_, 
                               feature_names=self.feature_names_)
 
-        # data = self._make_data(X, feature_names=self.feature_names_)
-
         prob = self.best_estimator_.program.predict_proba(data)
 
-        if self.n_classes_ <= 2:
+        if self.parameters_.n_classes <= 2:
             prob = np.hstack( (np.ones(X.shape[0]).reshape(-1,1), prob.reshape(-1,1)) )  
             prob[:, 0] -= prob[:, 1]
 
@@ -365,7 +353,7 @@ class DeapRegressor(DeapEstimator, RegressorMixin):
     >>> # print('score:', est.score(X,y))
     """
     def __init__(self, **kwargs):
-        super().__init__(mode='regressor',**kwargs)
+        super().__init__(mode='regression',**kwargs)
 
 # Under development
 # class DeapRepresenter(DeapEstimator, TransformerMixin):
@@ -385,7 +373,7 @@ class DeapRegressor(DeapEstimator, RegressorMixin):
 #     >>> # print('score:', est.score(X,y))
 #     """
 #     def __init__(self, **kwargs):
-#         super().__init__(mode='regressor',**kwargs)
+#         super().__init__(mode='regression',**kwargs)
 
 #     def _fitness_function(self, ind, data: Dataset):
 #         ind.program.fit(data)

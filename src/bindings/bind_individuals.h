@@ -52,6 +52,9 @@ void bind_individual(py::module& m, string name)
         .def("predict",
             static_cast<RetType (Class::*)(const Ref<const ArrayXXf> &X)>(&Class::predict),
             "predict from X data")
+       .def_static("from_json", [](const nl::json j) -> Class {
+                                                                Class p = j;
+                                                                return p; })
        .def(py::pickle(
             [](const Class &p) { // __getstate__
                 /* Return a tuple that fully encodes the state of the object */

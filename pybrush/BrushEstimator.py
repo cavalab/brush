@@ -38,6 +38,8 @@ class BrushEstimator(EstimatorInterface, BaseEstimator):
         Partition of `data_` containing `(validation_size)`% of the data, in Brush format.
     search_space_ : a Brush `SearchSpace` object. 
         Holds the operators and terminals and sampling utilities to update programs.
+
+    > NOTE: as for now, when serializing the model with pickle, the objects of type `Dataset` and `SearchSpace` are not serialized.
     """
     
     def __init__(self, **kwargs):
@@ -61,12 +63,8 @@ class BrushEstimator(EstimatorInterface, BaseEstimator):
 
         self.data_ = self._make_data(X, y, 
                                      feature_names=self.feature_names_,
-                                     validation_size=self.validation_size)
-
-        # set n classes if relevant
-        self.n_classes_ = 0
-        if self.mode=="classification":
-            self.n_classes_ = len(np.unique(y))
+                                     validation_size=self.validation_size,
+                                     shuffle_split=self.shuffle_split)
 
         # These have a default behavior to return something meaningfull if 
         # no values are set
@@ -74,82 +72,93 @@ class BrushEstimator(EstimatorInterface, BaseEstimator):
         self.train_.set_batch_size(self.batch_size) # TODO: update batch indexes at the beggining of every generation
         self.validation_ = self.data_.get_validation_data()
 
-        self.parameters_ = self._wrap_parameters(n_classes=self.n_classes_)
+        self.parameters_ = self._wrap_parameters(self.train_.y)
 
-        self.search_space_ = SearchSpace(self.data_, self.parameters_.functions, self.weights_init)
+        self.search_space_ = SearchSpace(self.data_,
+                                         self.parameters_.functions,
+                                         self.parameters_.weights_init)
                 
         self.engine_ = None
         if self.mode == 'classification':
             self.engine_ = ( ClassifierEngine
-                             if self.n_classes_ == 2 else
-                             MultiClassifierEngine)(self.parameters_)
+                             if self.parameters_.n_classes == 2 else
+                             MultiClassifierEngine)(self.parameters_, 
+                                                    self.search_space_)
         else:
-            self.engine_ = RegressorEngine(self.parameters_)
+            self.engine_ = RegressorEngine(self.parameters_, self.search_space_)
 
         self.engine_.fit(self.data_)
         
         self.archive_ = self.engine_.get_archive()
+        self.population_ = self.engine_.get_population()
         self.best_estimator_ = self.engine_.best_ind
 
         return self
     
-    def _make_data(self, X, y=None, feature_names=[], validation_size=0.0):
+    def partial_fit(self, X, y, lock_nodes_depth=0, skip_leaves=True):
         """
-        Prepare the data for training or prediction.
+        Fit an estimator to X,y, without reseting the estimator.
 
-        Parameters:
-        - X: array-like or pandas DataFrame, shape (n_samples, n_features)
-            The input features.
-        - y: array-like or pandas Series, shape (n_samples,), optional (default=None)
-            The target variable.
-        - feature_names: list, optional (default=[])
-            The names of the features.
-        - validation_size: float, optional (default=0.0)
-            The proportion of the data to be used for validation.
-
-        Returns:
-        - dataset: Dataset
-            The prepared dataset object containing the input features, target variable,
-            feature names, and validation size.
+        Parameters
+        ----------
+        X : np.ndarray
+            2-d array of input data.
+        y : np.ndarray
+            1-d array of (boolean) target values.
+        lock_nodes_depth : int, optional
+            The depth of the tree to lock. Default is 0.
+        skip_leaves : bool, optional
+            Whether to skip leaves when locking nodes. Default is True.
         """
 
-        # This function should not partition data (since it may be used in `predict`).
-        # partitioning is done by `fit`. Feature names should be inferred
-        # before calling _make_data (so predict can be made with np arrays or
-        # pd dataframes).
-
-        if isinstance(y, pd.Series):
-            y = y.values
         if isinstance(X, pd.DataFrame):
-            X = X.values
+            assert self.feature_names_ == X.columns.to_list(), \
+                "Feature names must be the same as in data from previous fit"
+
+        new_data = self._make_data(X, y, 
+                                     feature_names=self.feature_names_,
+                                     validation_size=self.validation_size,
+                                     shuffle_split=self.shuffle_split)
         
-        assert isinstance(X, np.ndarray)
+        new_parameters = self._wrap_parameters(new_data.get_training_data().y)
 
-        if y is None:
-            return Dataset(X=X,
-                    feature_names=feature_names, c=self.mode == "classification", 
-                    validation_size=validation_size)
+        assert self.engine_ is not None, \
+            "You must call `fit` before calling `partial_fit`"
+        
+        # protecting the logistic model root nodes
+        clf_root = 2 if self.mode=='classification' else 0
 
-        return Dataset(X=X, y=y,
-            feature_names=feature_names, c=self.mode == "classification",
-            validation_size=validation_size)
+        self.engine_.params = new_parameters
+        self.engine_.lock_nodes(lock_nodes_depth+clf_root, skip_leaves)
+        self.engine_.fit(new_data)
+        self.engine_.unlock_nodes(clf_root)
 
+        self.archive_ = self.engine_.get_archive()
+        self.population_ = self.engine_.get_population()
+        self.best_estimator_ = self.engine_.best_ind
+
+        return self
 
     def predict(self, X):
         """Predict using the best estimator in the archive. """
 
         check_is_fitted(self)
 
+        if self.data_ is None:
+            self.data_ = self._make_data(X, 
+                                    feature_names=self.feature_names_,
+                                    validation_size=self.validation_size,
+                                    shuffle_split=self.shuffle_split)
+            
         if isinstance(X, pd.DataFrame):
             X = X.values
 
         assert isinstance(X, np.ndarray)
 
-        data = Dataset(X=X, ref_dataset=self.data_, c=self.mode == "classification",
-                       feature_names=self.feature_names_)
+        # Need to provide feature names because reference does not store order
+        data = Dataset(X=X, ref_dataset=self.data_, 
+                              feature_names=self.feature_names_)
         
-        # data = self._make_data(X, feature_names=self.feature_names_)
-
         return self.best_estimator_.program.predict(data)
 
     def get_params(self, deep=True):
@@ -167,13 +176,20 @@ class BrushEstimator(EstimatorInterface, BaseEstimator):
 
         check_is_fitted(self)
 
+        if self.data_ is None:
+            self.data_ = self._make_data(X, 
+                                    feature_names=self.feature_names_,
+                                    validation_size=self.validation_size,
+                                    shuffle_split=self.shuffle_split)
+            
         if isinstance(X, pd.DataFrame):
             X = X.values
 
         assert isinstance(X, np.ndarray)
 
-        data = Dataset(X=X, ref_dataset=self.data_, c=self.mode == "classification",
-                       feature_names=self.feature_names_)
+        # Need to provide feature names because reference does not store order
+        data = Dataset(X=X, ref_dataset=self.data_, 
+                            feature_names=self.feature_names_)
 
         archive = self.engine_.get_archive()
 
@@ -209,6 +225,7 @@ class BrushClassifier(BrushEstimator, ClassifierMixin):
     >>> # print('score:', est.score(X,y))
     """
     def __init__( self, **kwargs):
+        kwargs.pop('mode', None)
         super().__init__(mode='classification',**kwargs)
 
     def predict_proba(self, X):
@@ -228,19 +245,24 @@ class BrushClassifier(BrushEstimator, ClassifierMixin):
         
         check_is_fitted(self)
 
+        if self.data_ is None:
+            self.data_ = self._make_data(X, 
+                                    feature_names=self.feature_names_,
+                                    validation_size=self.validation_size,
+                                    shuffle_split=self.shuffle_split)
+            
         if isinstance(X, pd.DataFrame):
             X = X.values
 
         assert isinstance(X, np.ndarray)
 
-        data = Dataset(X=X, ref_dataset=self.data_, c=True,
+        # Need to provide feature names because reference does not store order
+        data = Dataset(X=X, ref_dataset=self.data_, 
                               feature_names=self.feature_names_)
-
-        # data = self._make_data(X, feature_names=self.feature_names_)
 
         prob = self.best_estimator_.program.predict_proba(data)
 
-        if self.n_classes_ == 2:
+        if self.parameters_.n_classes == 2:
             prob = np.hstack( (np.ones(X.shape[0]).reshape(-1,1), prob.reshape(-1,1)) )  
             prob[:, 0] -= prob[:, 1]
 
@@ -252,14 +274,21 @@ class BrushClassifier(BrushEstimator, ClassifierMixin):
 
         check_is_fitted(self)
 
+        if self.data_ is None:
+            self.data_ = self._make_data(X, 
+                                    feature_names=self.feature_names_,
+                                    validation_size=self.validation_size,
+                                    shuffle_split=self.shuffle_split)
+            
         if isinstance(X, pd.DataFrame):
             X = X.values
 
         assert isinstance(X, np.ndarray)
 
-        data = Dataset(X=X, ref_dataset=self.data_, c=True,
-                       feature_names=self.feature_names_)
-
+        # Need to provide feature names because reference does not store order
+        data = Dataset(X=X, ref_dataset=self.data_, 
+                            feature_names=self.feature_names_)
+        
         archive = self.engine_.get_archive()
 
         preds = []
@@ -295,4 +324,5 @@ class BrushRegressor(BrushEstimator, RegressorMixin):
     """
     
     def __init__(self, **kwargs):
-        super().__init__(mode='regressor',**kwargs)
+        kwargs.pop('mode', None)
+        super().__init__(mode='regression', **kwargs)

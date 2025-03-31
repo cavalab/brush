@@ -88,12 +88,20 @@ template<PT PType> struct Program
         SSref = std::optional<std::reference_wrapper<SearchSpace>>{s};
     }
 
-    /// @brief count the complexity of the program.
+    /// @brief count the (recursive) complexity of the program.
     /// @return int complexity.
     int complexity() const{
         auto head = Tree.begin(); 
         
         return head.node->get_complexity();
+    }
+
+    /// @brief count the linear complexity of the program.
+    /// @return int complexity.
+    int linear_complexity() const{
+        auto head = Tree.begin(); 
+        
+        return head.node->get_linear_complexity();
     }
 
     /// @brief count the tree size of the program, including the weights in weighted nodes.
@@ -172,7 +180,7 @@ template<PT PType> struct Program
      * @return 
      */
     template <typename R = RetType>
-    TreeType predict(const Dataset &d)  requires(is_same_v<R, TreeType>)
+    TreeType predict(const Dataset &d) requires(is_same_v<R, TreeType>)
     {
         if (!is_fitted_)
             HANDLE_ERROR_THROW("Program is not fitted. Call 'fit' first.\n");
@@ -189,6 +197,7 @@ template<PT PType> struct Program
     {
         if (!is_fitted_)
             HANDLE_ERROR_THROW("Program is not fitted. Call 'fit' first.\n");
+            
         return (Tree.begin().node->predict<TreeType>(d) > 0.5);
     };
 
@@ -201,6 +210,7 @@ template<PT PType> struct Program
     {
         if (!is_fitted_)
             HANDLE_ERROR_THROW("Program is not fitted. Call 'fit' first.\n");
+
         TreeType out = Tree.begin().node->predict<TreeType>(d);
         auto argmax = Function<NodeType::ArgMax>{};
         return argmax(out);
@@ -263,7 +273,9 @@ template<PT PType> struct Program
         for (PostIter i = Tree.begin_post(); i != Tree.end_post(); ++i)
         {
             const auto& node = i.node->data; 
-            if (node.get_is_weighted())
+            // some nodes cannot have their weights optimized, others must have
+            if ( Is<NodeType::OffsetSum>(node.node_type)
+            ||   (node.get_is_weighted() && IsWeighable(node.node_type)) )
                 ++count;
         }
         return count;
@@ -281,7 +293,8 @@ template<PT PType> struct Program
         for (PostIter t = Tree.begin_post(); t != Tree.end_post(); ++t)
         {
             const auto& node = t.node->data; 
-            if (node.get_is_weighted())
+            if ( Is<NodeType::OffsetSum>(node.node_type)
+            ||   (node.get_is_weighted() && IsWeighable(node.node_type)) )
             {
                 weights(i) = node.W;
                 ++i;
@@ -306,13 +319,72 @@ template<PT PType> struct Program
         for (PostIter i = Tree.begin_post(); i != Tree.end_post(); ++i)
         {
             auto& node = i.node->data; 
-            if (node.get_is_weighted())
+            if ( Is<NodeType::OffsetSum>(node.node_type)
+            ||   (node.get_is_weighted() && IsWeighable(node.node_type)) )
             {
                 node.W = weights(j);
                 ++j;
             }
         }
     }
+
+    /**
+     * @brief Iterates over the program, locking the nodes until it reaches
+     * a certain depth.
+     * 
+     * @param end_depth the depth to stop locking nodes. Default 0.
+     * @param skip_leaves whether to skip leaves and leave them unlocked. 
+     * Default true.  
+     */
+    void lock_nodes(int end_depth=0, bool skip_leaves=true)
+    {
+        // iterate over the nodes, locking them if their depth does not exceed end_depth.
+        if (end_depth<=0)
+            return;
+
+        // we need the iterator to calculate the depth, but 
+        // the lambda below iterate using nodes. So we are creating an iterator
+        // and using it to access depth.
+        auto tree_iter = Tree.begin();
+
+        std::for_each(Tree.begin(), Tree.end(),
+            [&](auto& n){ 
+                auto d = Tree.depth(tree_iter);
+                std::advance(tree_iter, 1);
+
+                if (skip_leaves && IsLeaf(n.node_type))
+                    return;
+
+                if (d<=end_depth)
+                    n.fixed = true; 
+                    // n.set_prob_change(0.0f); 
+            }
+        );
+    }
+
+    /**
+     * @brief Iterates over the program, unlocking the nodes until it reaches
+     * a certain depth. It does not protect the root nodes of logistic regression
+     * models.
+     * 
+     * @param start_depth the depth to start unlocking nodes. Default 0.
+     */
+    void unlock_nodes(int start_depth=0)
+    {
+        auto tree_iter = Tree.begin();
+
+        std::for_each(Tree.begin(), Tree.end(),
+            [&](auto& n){ 
+                auto d = Tree.depth(tree_iter);
+                std::advance(tree_iter, 1);
+
+                if (d>=start_depth)                
+                    n.fixed = false; 
+                    // n.set_prob_change(1.0f); 
+            }
+        );
+    }
+
     /**
      * @brief Get the model as a string
      * 
@@ -409,7 +481,9 @@ template<PT PType> struct Program
                 // kid_id = kid_id.substr(2);
 
                 if (kid->data.get_is_weighted()
-                && Isnt<NodeType::Constant, NodeType::MeanLabel, NodeType::OffsetSum>(kid->data.node_type)){
+                && Isnt<NodeType::Constant, NodeType::MeanLabel, 
+                        NodeType::OffsetSum, NodeType::SplitBest>(kid->data.node_type))
+                {
                     edge_label = fmt::format("{:.2f}",kid->data.W);
                 }
 
@@ -462,7 +536,7 @@ template<PT PType> struct Program
                         );
                         
                 // drawing the node
-                out += fmt::format("\"{}\" [label=\"{}\"];\n",
+                out += fmt::format("\"{}\" [label=\"{:.2f}\"];\n",
                         parent_id+"Offset",
                         parent->data.W
                         ); 
