@@ -402,41 +402,48 @@ bool Engine<T>::update_best()
 template <ProgramType T>
 void Engine<T>::run(Dataset &data)
 {
-    //TODO: i need to make sure i initialize everything (pybind needs to have constructors
-    // without arguments to work, and i need to handle correcting these values before running)
+    // avoid re-initializing stuff so we can perform partial fits
+    if (!this->is_fitted){
+        //TODO: i need to make sure i initialize everything (pybind needs to have constructors
+        // without arguments to work, and i need to handle correcting these values before running)
 
-    // initializing classes that need data references    
-    this->ss.init(data, params.functions, params.weights_init);    
-    
-    // TODO: make variator have a default constructor and make it part of engine
-    Dataset training_data = data.get_training_data(); // TODO: I think I should not pass training_data here, because vary_and_update needs the test partition. 
-    Variation<T> variator = Variation<T>(this->params, this->ss, data);
-    
-    // TODO: make init to take necessary arguments and perform all initializations inside that function
-    this->init();
+        // initializing classes that need data references    
+        this->ss.init(data, params.functions, params.weights_init);    
+        
+        // TODO: make init to take necessary arguments and perform all initializations inside that function
+        this->init();
 
-    if (params.load_population != "") {
-        // cout << "Loading population from: " << params.load_population << std::endl;
-        this->pop.load(params.load_population);
+        if (params.load_population != "") {
+            cout << "Loading population from file " << params.load_population << std::endl;
+            this->pop.load(params.load_population);
 
-        // invalidating all individuals
-        for (auto& individual : this->pop.individuals) {
-            if (individual != nullptr) {
-                individual->set_is_fitted(false);
-                // cout << "Invalidated individual with ID: " << individual->id << std::endl;
+            // invalidating all individuals
+            for (auto& individual : this->pop.individuals) {
+                if (individual != nullptr) {
+                    individual->set_is_fitted(false);
+                    // cout << "Invalidated individual with ID: " << individual->id << std::endl;
+                }
             }
+            // cout << "Population loaded and individuals invalidated." << std::endl;
         }
-        // cout << "Population loaded and individuals invalidated." << std::endl;
-    }
-    else if (this->pop.individuals.size() > 0) {
-        // cout << "Population was already initialized." << std::endl;
-        // This only works because the Population constructor resizes individuals to zero.
+        else if (this->pop.individuals.size() > 0) {
+            cout << "Population was already initialized." << std::endl;
+            // This only works because the Population constructor resizes individuals to zero.
+        }
+        else
+        {
+            cout << "Initializing population." << std::endl;
+            this->pop.init(this->ss, this->params);
+        }
     }
     else
     {
-        // cout << "Initializing population." << std::endl;
-        this->pop.init(this->ss, this->params);
+        // cout << "Starting to run a partial fit with population" << this->pop.print_models("\n") << endl;
     }
+    
+    // This is data dependent so we initialize it everytime, regardless of partial fit
+    // TODO: make variator have a default constructor and make it an attribute of engine
+    Variation<T> variator = Variation<T>(this->params, this->ss, data);
     
     // log file stream
     std::ofstream log;

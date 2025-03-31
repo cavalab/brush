@@ -356,7 +356,8 @@ template<PT PType> struct Program
                     return;
 
                 if (d<=end_depth)
-                    n.set_prob_change(0.0f); 
+                    n.fixed = true; 
+                    // n.set_prob_change(0.0f); 
             }
         );
     }
@@ -377,8 +378,9 @@ template<PT PType> struct Program
                 auto d = Tree.depth(tree_iter);
                 std::advance(tree_iter, 1);
 
-                if (d>=start_depth)
-                    n.set_prob_change(1.0f); 
+                if (d>=start_depth)                
+                    n.fixed = false; 
+                    // n.set_prob_change(1.0f); 
             }
         );
     }

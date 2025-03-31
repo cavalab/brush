@@ -215,49 +215,68 @@ public:
             // pass check for children undergoing variation     
             std::optional<Individual<T>> opt = std::nullopt; // new individual  
                 
-            const Individual<T>& mom = pop[
-                *r.select_randomly(parents.begin(), parents.end())];
+            auto idx = *r.select_randomly(parents.begin(), parents.end());
+            const Individual<T>& mom = pop[idx];
         
+            // if we got here, then the individual is not fully locked and we can proceed with mutation
             vector<Individual<T>> ind_parents;
             VectorXf root_context = get_context(mom.program, mom.program.Tree.begin());
             VectorXf context;
-
-            string choice = this->variation_bandit.choose(root_context);
-            if (choice == "cx")
-            {
-                const Individual<T>& dad = pop[
-                    *r.select_randomly(parents.begin(), parents.end())];
-                
-                // cout << "Performing crossover" << std::endl;
-                auto variation_result = cross(mom, dad);
-                ind_parents = {mom, dad};
-                tie(opt, context) = variation_result;
-            }
-            else
-            {
-                // cout << "Performing mutation " << choice << std::endl;
-                auto variation_result = mutate(mom, choice);  
-                // cout << "finished mutation" << endl;
-                ind_parents = {mom};
-                tie(opt, context) = variation_result;
-                // cout << "unpacked" << endl;
-            }
-
+            string choice;
+            
             // this assumes that islands do not share indexes before doing variation
             unsigned id = parameters.current_gen * parameters.pop_size + indices.at(i);
 
-            Individual<T> ind;
-            if (opt) // variation worked, lets keep this
-            {
-                // cout << "Variation successful" << std::endl;
-                ind = opt.value();
-                ind.set_parents(ind_parents);
-            }
-            else {  // no optional value was returned. creating a new random individual
-                // cout << "Variation failed, creating a new random individual" << std::endl;
-                ind.init(search_space, parameters); // ind.variation is born by default
-            }
+            Individual<T> ind; // the new individual
 
+            // fully locked individuals should not be replaced by random ones. returning
+            // a copy
+            if (std::all_of(mom.program.Tree.begin(), mom.program.Tree.end(),
+                [](const auto& n) { return n.get_prob_change()<=0.0; }))
+            {
+                // cout << "Fully locked individual, copying it" << std::endl;    
+                ind = Individual<T>(mom);
+                ind.variation = "born";
+            }
+            else
+            {
+                choice = this->variation_bandit.choose(root_context);
+                if (choice == "cx")
+                {
+                    const Individual<T>& dad = pop[
+                        *r.select_randomly(parents.begin(), parents.end())];
+                    
+                    // cout << "Performing crossover" << std::endl;
+                    auto variation_result = cross(mom, dad);
+                    ind_parents = {mom, dad};
+                    tie(opt, context) = variation_result;
+                }
+                else
+                {
+                    // cout << "Performing mutation " << choice << std::endl;
+                    auto variation_result = mutate(mom, choice);  
+                    // cout << "finished mutation" << endl;
+                    ind_parents = {mom};
+                    tie(opt, context) = variation_result;
+                    // cout << "unpacked" << endl;
+                }
+                if (opt) // variation worked, lets keep this
+                {
+                    // cout << "Variation successful" << std::endl;
+                    ind = opt.value();
+                    ind.set_parents(ind_parents);
+                }
+                else {  // no optional value was returned. creating a new random individual
+                    // cout << "Variation failed, copying the individual" << std::endl;
+                    
+                    ind = Individual<T>(mom);
+                    ind.variation = "born";
+                    
+                    // cout << "Variation failed, creating a new random individual" << std::endl;
+                    // ind.init(search_space, parameters); // ind.variation is born by default
+                }
+            }
+            
             // ind.set_objectives(mom.get_objectives()); // it will have an invalid fitness
 
             ind.set_id(id);
