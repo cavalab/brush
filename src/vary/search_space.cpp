@@ -32,8 +32,8 @@ float calc_initial_weight(const ArrayXf& value, const ArrayXf& y)
                                        data.col(1).array() )); // y=target
 
     // having a minimum feature weight if it was not set to zero
-    if (std::abs(prob_change)<1e-4)
-        prob_change = 1e-1;
+    if (std::abs(prob_change)<1e-2)
+        prob_change = 1e-2;
 
     // prob_change will evaluate to nan if variance(x)==0. Features with
     // zero variance should not be used (as they behave just like a constant).

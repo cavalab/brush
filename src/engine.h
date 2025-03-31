@@ -116,6 +116,8 @@ public:
     vector<json> get_archive(bool front);
     vector<json> get_population();
 
+    void set_population(vector<json> pop_vector);
+
     // locking and unlocking parts of the solutions
     void lock_nodes(int end_depth=0, bool skip_leaves=true);
     void unlock_nodes(int start_depth=0);

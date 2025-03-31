@@ -123,10 +123,10 @@ TEST(BanditTest, GetContext) {
     }
     std::cout << std::endl;
 
-    std::cout << "Tree:\n" << PRG.get_model("compact", true) << std::endl;
+    // std::cout << "Tree:\n" << PRG.get_model("compact", true) << std::endl;
 
     std::cout << "Spot name: " << (*spot).name << std::endl;
     
-    // std::cout << "Context: " << context.transpose() << std::endl;
+    cout << "Context: " << context.transpose() << std::endl;
     std::cout << "Context head: " << context.head(5).transpose() << std::endl;
 }

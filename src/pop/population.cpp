@@ -124,18 +124,13 @@ void Population<T>::load(string filename)
     std::string line;
     indata >> line; 
 
-    // std::cout << "Debug: Read line from file " << std::endl;
-
     json j = json::parse(line);
     from_json(j, *this);
-
-    // std::cout << "Debug: Parsed JSON successfully." << std::endl;
 
     logger.log("Loaded population from " + filename + " of size = " 
             + to_string(this->size()),1);
 
     indata.close();
-    // std::cout << "Debug: Closed input file." << std::endl;
 }
 
 /// update individual vector size and island indexes

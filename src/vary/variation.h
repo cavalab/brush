@@ -206,11 +206,11 @@ public:
         {
             if (pop.individuals.at(indices.at(i)) != nullptr)
             {
-                // std::cout << "Skipping individual at index " << indices.at(i) << std::endl;
+                // cout << "Skipping individual at index " << indices.at(i) << std::endl;
                 continue; // skipping if it is an individual
             }
             
-            // std::cout << "Processing individual at index " << indices.at(i) << std::endl;
+            // cout << "Processing individual at index " << indices.at(i) << std::endl;
 
             // pass check for children undergoing variation     
             std::optional<Individual<T>> opt = std::nullopt; // new individual  
@@ -228,14 +228,14 @@ public:
                 const Individual<T>& dad = pop[
                     *r.select_randomly(parents.begin(), parents.end())];
                 
-                // std::cout << "Performing crossover" << std::endl;
+                // cout << "Performing crossover" << std::endl;
                 auto variation_result = cross(mom, dad);
                 ind_parents = {mom, dad};
                 tie(opt, context) = variation_result;
             }
             else
             {
-                // std::cout << "Performing mutation " << choice << std::endl;
+                // cout << "Performing mutation " << choice << std::endl;
                 auto variation_result = mutate(mom, choice);  
                 // cout << "finished mutation" << endl;
                 ind_parents = {mom};
@@ -249,12 +249,12 @@ public:
             Individual<T> ind;
             if (opt) // variation worked, lets keep this
             {
-                // std::cout << "Variation successful" << std::endl;
+                // cout << "Variation successful" << std::endl;
                 ind = opt.value();
                 ind.set_parents(ind_parents);
             }
             else {  // no optional value was returned. creating a new random individual
-                // std::cout << "Variation failed, creating a new random individual" << std::endl;
+                // cout << "Variation failed, creating a new random individual" << std::endl;
                 ind.init(search_space, parameters); // ind.variation is born by default
             }
 
@@ -350,16 +350,16 @@ public:
                 if (!allPositive &&  allNegative) r = -1.0;
             }
 
-            // std::cout << "Updating variation bandit with reward: " << r << std::endl;
+            // cout << "Updating variation bandit with reward: " << r << std::endl;
 
             if (ind.get_variation().compare("born") != 0)
             {
-                // std::cout << "Updating variation bandit with variation: " << ind.get_variation() << " and reward: " << r << ". choosen variation was: " << choice << std::endl;
+                // cout << "Updating variation bandit with variation: " << ind.get_variation() << " and reward: " << r << ". choosen variation was: " << choice << std::endl;
                 this->variation_bandit.update(ind.get_variation(), r, root_context);
             }
             else
             { // giving zero reward if the variation failed
-                // std::cout << "Variation failed, updating variation bandit with choice: " << choice << " and reward: 0.0" << std::endl;
+                // cout << "Variation failed, updating variation bandit with choice: " << choice << " and reward: 0.0" << std::endl;
                 this->variation_bandit.update(choice, 0.0, root_context);
             }
 
@@ -367,19 +367,19 @@ public:
             // &&  !ind.get_variation().compare("subtree"))
             // {                
                 if (ind.get_sampled_nodes().size() > 0) {
-                    // std::cout << "Updating terminal and operator bandits for sampled nodes" << std::endl;
+                    // cout << "Updating terminal and operator bandits for sampled nodes" << std::endl;
                     const auto& changed_nodes = ind.get_sampled_nodes();
                     for (auto& node : changed_nodes) {
                         if (node.get_arg_count() == 0) {
                             auto datatype = node.get_ret_type();
-                            // std::cout << "Updating terminal bandit for node: " << node.name << std::endl;
+                            // cout << "Updating terminal bandit for node: " << node.name << std::endl;
                             this->terminal_bandits[datatype].update(node.get_feature(), r, context);
                         }
                         else {
                             auto ret_type = node.get_ret_type();
                             auto args_type = node.args_type();
                             auto name = node.name;
-                            // std::cout << "Updating operator bandit for node: " << name << std::endl;
+                            // cout << "Updating operator bandit for node: " << name << std::endl;
                             this->op_bandits[ret_type][args_type].update(name, r, context);
                         }
                     }
@@ -387,7 +387,7 @@ public:
             // }
             
             pop.individuals.at(indices.at(i)) = std::make_shared<Individual<T>>(ind);
-            // std::cout << "Individual at index " << indices.at(i) << " updated successfully" << std::endl;
+            // cout << "Individual at index " << indices.at(i) << " updated successfully" << std::endl;
         }
     }
     
@@ -395,16 +395,16 @@ public:
     // bandit_sample_terminal
     std::optional<Node> bandit_sample_terminal(DataType R, VectorXf& context)
     {
-        // std::cout << "bandit_sample_terminal called with DataType: " << std::endl;
+        // cout << "bandit_sample_terminal called with DataType: " << std::endl;
 
         if (terminal_bandits.find(R) == terminal_bandits.end()) {
-            // std::cout << "No bandit found for DataType: " << std::endl;
+            // cout << "No bandit found for DataType: " << std::endl;
             return std::nullopt;
         }
 
         auto& bandit = terminal_bandits.at(R);
         string terminal_name = bandit.choose(context);
-        // std::cout << "Bandit chose terminal name: " << terminal_name << std::endl;
+        // cout << "Bandit chose terminal name: " << terminal_name << std::endl;
 
         auto it = std::find_if(
             search_space.terminal_map.at(R).begin(),
@@ -413,46 +413,46 @@ public:
 
         if (it != search_space.terminal_map.at(R).end()) {
             auto index = std::distance(search_space.terminal_map.at(R).begin(), it);
-            // std::cout << "Terminal found at index: " << index << std::endl;
+            // cout << "Terminal found at index: " << index << std::endl;
             return search_space.terminal_map.at(R).at(index);
         }
 
-        // std::cout << "Terminal not found for name: " << terminal_name << std::endl;
+        // cout << "Terminal not found for name: " << terminal_name << std::endl;
         return std::nullopt;
     };
 
     // bandit_get_node_like
     std::optional<Node> bandit_get_node_like(Node node, VectorXf& context)
     {
-        // std::cout << "bandit_get_node_like called with node: " << node.name << std::endl;
+        // cout << "bandit_get_node_like called with node: " << node.name << std::endl;
 
         // TODO: use search_space.terminal_types here (and in search_space get_node_like as well)
         if (Is<NodeType::Terminal, NodeType::Constant, NodeType::MeanLabel>(node.node_type)){
-            // std::cout << "Node is of type Terminal, Constant, or MeanLabel" << std::endl;
+            // cout << "Node is of type Terminal, Constant, or MeanLabel" << std::endl;
             return bandit_sample_terminal(node.ret_type, context);
         }
 
         if (op_bandits.find(node.ret_type) == op_bandits.end()) {
-            // std::cout << "No bandit found for return type: " << std::endl;
+            // cout << "No bandit found for return type: " << std::endl;
             return std::nullopt;
         }
         if (op_bandits.at(node.ret_type).find(node.args_type()) == op_bandits.at(node.ret_type).end()) {
-            // std::cout << "No bandit found for arg type: " << std::endl;
+            // cout << "No bandit found for arg type: " << std::endl;
             return std::nullopt;
         }
 
         auto& bandit = op_bandits[node.ret_type][node.args_type()];
         string node_name = bandit.choose(context);
-        // std::cout << "Bandit chose node name: " << node_name << std::endl;
+        // cout << "Bandit chose node name: " << node_name << std::endl;
 
         auto entries = search_space.node_map[node.ret_type][node.args_type()];
-        // std::cout << "Ret match size: " << entries.size() << std::endl;
+        // cout << "Ret match size: " << entries.size() << std::endl;
 
         for (const auto& [node_type, node_value]: entries)
         {
-            // std::cout << " - Node name: " << node_value.name << std::endl;
+            // cout << " - Node name: " << node_value.name << std::endl;
             if (node_value.name == node_name) {
-                // std::cout << "Node name match: " << node_value.name << std::endl;
+                // cout << "Node name match: " << node_value.name << std::endl;
                 return node_value;
             }
         }

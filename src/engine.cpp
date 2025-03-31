@@ -213,6 +213,32 @@ vector<json> Engine<T>::get_population()
     return pop_vector;
 }
 
+template <ProgramType T>
+void Engine<T>::set_population(vector<json> pop_vector)
+{
+    vector<Individual<T>> new_pop;
+
+    // load serialized individuals
+    for (const auto& ind_j : pop_vector) {
+        Individual<T> ind;
+
+        // deserialize individual
+        from_json(ind_j, ind);
+
+        // set reference to search space
+        ind.program.set_search_space(ss);
+
+        new_pop.push_back(ind);
+    }
+
+    // check if size matches
+    if(new_pop.size() != params.pop_size)
+        HANDLE_ERROR_THROW("set_population size is different from params.pop_size");
+
+    // re-initialize population
+    this->pop.init(new_pop, params);
+}
+
 
 // TODO: private function called find_individual that searches for it based on id. Then,
 // use this function in predict_archive and predict_proba_archive.
@@ -390,25 +416,25 @@ void Engine<T>::run(Dataset &data)
     this->init();
 
     if (params.load_population != "") {
-        // std::cout << "Loading population from: " << params.load_population << std::endl;
+        // cout << "Loading population from: " << params.load_population << std::endl;
         this->pop.load(params.load_population);
 
         // invalidating all individuals
         for (auto& individual : this->pop.individuals) {
             if (individual != nullptr) {
                 individual->set_is_fitted(false);
-                // std::cout << "Invalidated individual with ID: " << individual->id << std::endl;
+                // cout << "Invalidated individual with ID: " << individual->id << std::endl;
             }
         }
-        // std::cout << "Population loaded and individuals invalidated." << std::endl;
+        // cout << "Population loaded and individuals invalidated." << std::endl;
     }
     else if (this->pop.individuals.size() > 0) {
-        // std::cout << "Population was already initialized." << std::endl;
+        // cout << "Population was already initialized." << std::endl;
         // This only works because the Population constructor resizes individuals to zero.
     }
     else
     {
-        // std::cout << "Initializing population." << std::endl;
+        // cout << "Initializing population." << std::endl;
         this->pop.init(this->ss, this->params);
     }
     

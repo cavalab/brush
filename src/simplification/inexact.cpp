@@ -47,26 +47,26 @@ vector<string> Inexact_simplifier::hash(const ArrayXf& inputPoint)
     for (size_t planeIdx = 0; planeIdx < uniformPlanes.size(); ++planeIdx)
     {
         // TODO: handle nan predictions here and on the index functions
-        // std::cout << "Processing plane " << planeIdx << std::endl;
+        // cout << "Processing plane " << planeIdx << std::endl;
         const auto& plane = uniformPlanes[planeIdx];
         ArrayXf projections = (plane * inputPoint.matrix());
-        // std::cout << "Projections: " << projections.transpose() << std::endl;
+        // cout << "Projections: " << projections.transpose() << std::endl;
 
         ArrayXb comparison = (projections.array() > 0);
-        // std::cout << "Comparisons: " << comparison.transpose() << std::endl;
+        // cout << "Comparisons: " << comparison.transpose() << std::endl;
 
         string hashString = ""; // TODO: size_t instead of string
         // hashString.reserve(hashSize);
         
         for (bool v : comparison){
-            // std::cout << v << ", ";
+            // cout << v << ", ";
             hashString += v ? "1" : "0";
         }
 
-        // std::cout << std::endl << "Generated hash string: " << hashString << std::endl;
+        // cout << std::endl << "Generated hash string: " << hashString << std::endl;
         hashes.push_back(hashString);
     }
-    // std::cout << "Returning hashes" << std::endl;
+    // cout << "Returning hashes" << std::endl;
     return hashes;
 }
 
@@ -74,22 +74,22 @@ void Inexact_simplifier::index(TreeIter& spot, const Dataset &d)
 {
     // we cast to float because hash and query are based on matrix multiplications,
     // but we will store the hash only on the corresponding storage instance
-    // std::cout << "Predicting node value" << std::endl;
+    // cout << "Predicting node value" << std::endl;
     ArrayXf v_float = (*spot.node).template predict<ArrayXf>(d);
 
-    // std::cout << "Hashing node value" << std::endl;
+    // cout << "Hashing node value" << std::endl;
     auto hashes = hash(v_float);
     for (size_t i = 0; i < hashes.size(); ++i)
     {
-        // std::cout << "Processing hash " << i << ": " << hashes[i] << std::endl;
+        // cout << "Processing hash " << i << ": " << hashes[i] << std::endl;
         if (spot.node->data.ret_type==DataType::ArrayB) {
-            // std::cout << "Appending to storageBool" << std::endl;
+            // cout << "Appending to storageBool" << std::endl;
             storageBool.append(hashes[i], v_float);
         } else if (spot.node->data.ret_type==DataType::ArrayI) {
-            // std::cout << "Appending to storageInt" << std::endl;
+            // cout << "Appending to storageInt" << std::endl;
             storageInt.append(hashes[i], v_float);
         } else { // otherwise we store it as floats
-            // std::cout << "Appending to storageFloat" << std::endl;
+            // cout << "Appending to storageFloat" << std::endl;
             storageFloat.append(hashes[i], v_float); // TODO: should throw an error
         }
     }
@@ -108,37 +108,37 @@ optional<pair<size_t, string>> Inexact_simplifier::query(TreeIter& spot, const D
     HashStorage *storage;
     if (spot.node->data.ret_type==DataType::ArrayB) {
         storage = (&storageBool);
-        // std::cout << "Using storageBool" << std::endl;
+        // cout << "Using storageBool" << std::endl;
     } else if (spot.node->data.ret_type==DataType::ArrayI) {
         storage = (&storageInt);
-        // std::cout << "Using storageInt" << std::endl;
+        // cout << "Using storageInt" << std::endl;
     } else { // otherwise we store it as floats
         storage = (&storageFloat); // TODO: should throw an error
-        // std::cout << "Using storageFloat" << std::endl;
+        // cout << "Using storageFloat" << std::endl;
     }
 
     vector<string> hashes = hash(v_float);
-    // std::cout << "Hashes: ";
+    // cout << "Hashes: ";
     for (const auto& h : hashes) {
-        // std::cout << h << " ";
+        // cout << h << " ";
     }
-    // std::cout << std::endl;
+    // cout << std::endl;
 
     for (size_t i = 0; i < hashes.size(); ++i){
         auto newCandidates = storage->getList(hashes[i]);
-        // std::cout << "Candidates for hash " << hashes[i] << ": " << newCandidates.size() << std::endl;
+        // cout << "Candidates for hash " << hashes[i] << ": " << newCandidates.size() << std::endl;
         
         for (const auto& cand : newCandidates) {
             float d = (v_float - cand).array().pow(2).mean();
             if (std::isnan(d) || std::isinf(d))
                 d = MAX_FLT;
 
-            // std::cout << "Distance: " << d << std::endl;
+            // cout << "Distance: " << d << std::endl;
 
             if (d<threshold){
                 candidates.push_back(make_pair(i, hashes[i]));
                 distances.push_back(d);
-                // std::cout << "Candidate added with distance: " << d << std::endl;
+                // cout << "Candidate added with distance: " << d << std::endl;
             }
         }
     }
@@ -146,10 +146,10 @@ optional<pair<size_t, string>> Inexact_simplifier::query(TreeIter& spot, const D
     if (distances.size() > 0){
         auto min_idx = std::distance(std::begin(distances),
             std::min_element(std::begin(distances), std::end(distances)));
-        // std::cout << "Minimum distance index: " << min_idx << std::endl;
+        // cout << "Minimum distance index: " << min_idx << std::endl;
         return candidates[min_idx];
     } else {
-        // std::cout << "No candidates found within threshold" << std::endl;
+        // cout << "No candidates found within threshold" << std::endl;
     }
 
     return std::nullopt;

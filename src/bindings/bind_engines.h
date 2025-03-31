@@ -84,6 +84,7 @@ void bind_engine(py::module& m, string name)
                 "predict from individual in archive")
             .def("get_archive", &T::get_archive, py::arg("front") = false)
             .def("get_population", &T::get_population)
+            .def("set_population", &T::set_population)
             .def("lock_nodes",
                 &T::lock_nodes,
                 py::arg("end_depth") = 0,

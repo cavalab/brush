@@ -164,7 +164,7 @@ VectorXf Bandit<T>::get_context(const Program<PT>& program, Iter spot,
     // the number of nodes below the spot.
     // The vector below works as a reference of the nodes.
 
-    // std::cout << "Tree: " << std::endl;
+    // cout << "Tree: " << std::endl;
     // for (auto it = Tree.begin(); it != Tree.end(); ++it) {
     //     for (int i = 0; i < Tree.depth(it); ++i) {
     //         std::cout << "  ";
@@ -172,7 +172,7 @@ VectorXf Bandit<T>::get_context(const Program<PT>& program, Iter spot,
     //     std::cout << (*it).name << std::endl;
     // }
 
-    // std::cout << "Spot name: " << (*spot).name << std::endl;
+    // cout << "Spot name: " << (*spot).name << std::endl;
 
     // size_t tot_operators = ss.op_names.size(); //NodeTypes::Count;
     // size_t tot_features  = 0;
@@ -187,10 +187,10 @@ VectorXf Bandit<T>::get_context(const Program<PT>& program, Iter spot,
     
     // for (auto it = Tree.begin(); it != Tree.end(); ++it) {
     //     if (Tree.is_valid(it)) {
-    //         // std::cout << "Check succeeded for node: " << (*it).name << std::endl;
-    //         // std::cout << "Depth of spot: " << Tree.depth(spot) << std::endl;
-    //         // std::cout << "Depth of it: " << Tree.depth(it) << std::endl;
-    //         // std::cout << "It is the spot, searching for it " << std::endl;
+    //         cout << "Check succeeded for node: " << (*it).name << std::endl;
+    //         cout << "Depth of spot: " << Tree.depth(spot) << std::endl;
+    //         cout << "Depth of it: " << Tree.depth(it) << std::endl;
+    //         cout << "It is the spot, searching for it " << std::endl;
             
     //         // deciding if it is above or below the spot
     //         size_t pos_shift = 0; // above
@@ -200,7 +200,7 @@ VectorXf Bandit<T>::get_context(const Program<PT>& program, Iter spot,
     //         else if (Tree.is_in_subTree(it, spot)) // below
     //             pos_shift = 2;
 
-    //         // std::cout << "Position shift: " << pos_shift << std::endl;
+    //         cout << "Position shift: " << pos_shift << std::endl;
     //         if (Is<NodeType::Terminal, NodeType::Constant, NodeType::MeanLabel>((*it).node_type)){
     //             size_t feature_index = 0;
 
@@ -228,7 +228,7 @@ VectorXf Bandit<T>::get_context(const Program<PT>& program, Iter spot,
     //                     // int complexity = it.node->get_linear_complexity();
     //                     // context((tot_operators + feature_index) + pos_shift*tot_symbols) += static_cast<float>(complexity);
 
-    //                     // std::cout << "Below spot, terminal: " << terminal.name << " at feature index " << feature_index << std::endl;
+    //                     cout << "Below spot, terminal: " << terminal.name << " at feature index " << feature_index << std::endl;
     //                     break;
     //                 }
     //                 ++feature_index;
@@ -238,7 +238,7 @@ VectorXf Bandit<T>::get_context(const Program<PT>& program, Iter spot,
     //             if (it_op != ss.op_names.end()) {
     //                 size_t op_index = std::distance(ss.op_names.begin(), it_op);
     //                 context(pos_shift * tot_symbols + op_index) += 1.0;
-    //                 // std::cout << "Below spot, operator: " << (*it).name << " of index " << pos_shift*tot_symbols + op_index << std::endl;
+    //                 cout << "Below spot, operator: " << (*it).name << " of index " << pos_shift*tot_symbols + op_index << std::endl;
     //             }
     //             else {
     //                 HANDLE_ERROR_THROW("Undefined operator " + (*it).name + "\n");
@@ -247,9 +247,9 @@ VectorXf Bandit<T>::get_context(const Program<PT>& program, Iter spot,
     //     }
     // }
 
-    // std::cout << "Context part 1: " << context.head(tot_symbols).transpose() << std::endl;
-    // std::cout << "Context part 2: " << context.segment(tot_symbols, tot_symbols).transpose() << std::endl;
-    // std::cout << "Context part 3: " << context.tail(tot_symbols).transpose() << std::endl;
+    // cout << "Context part 1: " << context.head(tot_symbols).transpose() << std::endl;
+    // cout << "Context part 2: " << context.segment(tot_symbols, tot_symbols).transpose() << std::endl;
+    // cout << "Context part 3: " << context.tail(tot_symbols).transpose() << std::endl;
     // -------------------------------------------------------------------------
     
     return context;

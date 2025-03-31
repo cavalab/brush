@@ -24,7 +24,7 @@ public:
         // get_node_like will sample a similar node based on node_map_weights or
         // terminal_weights, and maybe will return a Node.
 
-        // std::cout << "point mutation" << std::endl;
+        // cout << "point mutation" << std::endl;
         auto context = variator.get_context(program, spot);
         optional<Node> newNode = variator.bandit_get_node_like(spot.node->data, context);
 
@@ -92,7 +92,7 @@ public:
         // size restriction, which will be relaxed here (just as it is in the PTC2
         // algorithm). This mutation can create a new expression that exceeds the
         // maximum size by the highest arity among the operators.
-        // std::cout << "insert mutation" << std::endl;
+        // cout << "insert mutation" << std::endl;
         auto context = variator.get_context(program, spot);
         std::optional<Node> n = variator.bandit_sample_op_with_arg(
             spot_type, spot_type, context, params.max_size-program.Tree.size()-1); 
@@ -153,7 +153,7 @@ public:
         // sample_terminal will sample based on terminal_weights. If it succeeds, 
         // then the new terminal will be in `opt.value()`
 
-        // std::cout << "delete mutation" << std::endl;
+        // cout << "delete mutation" << std::endl;
         auto context = variator.get_context(program, spot);
         auto opt = variator.bandit_sample_terminal(spot.node->data.ret_type, context); 
         
@@ -499,28 +499,28 @@ std::tuple<std::optional<Individual<T>>, VectorXf> Variation<T>::cross(
         for (const auto& w: other_weights)
         {
             // we found at least one weight that is non-zero
-            matching_spots_found = w > 0.0;
+            matching_spots_found = matching_spots_found || (w > 0.0);
+        }
+        
+        if (matching_spots_found) {
+            // cout << "crossover" << std::endl;
+            VectorXf context = get_context(child, child_spot);
+       
+            auto other_spot = r.select_randomly(
+                other.Tree.begin(), 
+                other.Tree.end(), 
+                other_weights.begin(), 
+                other_weights.end()
+            );
+                 
+            // fmt::print("other_spot : {}\n",other_spot.node->data);
+            // swap subtrees at child_spot and other_spot
+            child.Tree.move_ontop(child_spot, other_spot);
+            
+            Individual<T> ind(child);
+            ind.set_variation("cx"); // TODO: use enum here to make it faster
 
-            if (matching_spots_found) {
-                // std::cout << "crossover" << std::endl;
-                VectorXf context = get_context(child, child_spot);
-           
-                auto other_spot = r.select_randomly(
-                    other.Tree.begin(), 
-                    other.Tree.end(), 
-                    other_weights.begin(), 
-                    other_weights.end()
-                );
-                     
-                // fmt::print("other_spot : {}\n",other_spot.node->data);
-                // swap subtrees at child_spot and other_spot
-                child.Tree.move_ontop(child_spot, other_spot);
-                
-                Individual<T> ind(child);
-                ind.set_variation("cx"); // TODO: use enum here to make it faster
-
-                return std::make_tuple(ind, context);
-            }
+            return std::make_tuple(ind, context);
         }
     }
 
@@ -566,7 +566,7 @@ std::tuple<std::optional<Individual<T>>, VectorXf> Variation<T>::mutate(
 {
     if (choice.empty())
     {
-        // std::cout << "Will sample a mut choice" << std::endl;
+        // cout << "Will sample a mut choice" << std::endl;
         auto options = parameters.mutation_probs;
 
         bool all_zero = true;
@@ -585,7 +585,7 @@ std::tuple<std::optional<Individual<T>>, VectorXf> Variation<T>::mutate(
         choice = r.random_choice(parameters.mutation_probs);
     }
     
-    // std::cout << "Mutation choice: " << choice << std::endl;
+    // cout << "Mutation choice: " << choice << std::endl;
 
     Program<T> copy(parent.program);
 
@@ -618,7 +618,7 @@ std::tuple<std::optional<Individual<T>>, VectorXf> Variation<T>::mutate(
     int attempts = 0;
     while(++attempts <= 3)
     {
-        // std::cout << "Attempt: " << attempts << std::endl;
+        // cout << "Attempt: " << attempts << std::endl;
         Program<T> child(parent.program);
 
         // apply the mutation and check if it succeeded
@@ -629,7 +629,7 @@ std::tuple<std::optional<Individual<T>>, VectorXf> Variation<T>::mutate(
         // std::optional to indicare the result of their manipulation over the
         // program tree. Here we call the mutation function and return the result
         
-        // std::cout << "mutate()" << std::endl;
+        // cout << "mutate()" << std::endl;
         context = get_context(child, spot);
 
         bool success;
@@ -649,7 +649,7 @@ std::tuple<std::optional<Individual<T>>, VectorXf> Variation<T>::mutate(
         if (success
         && ( (child.size()  <= parameters.max_size)
         &&   (child.depth() <= parameters.max_depth) )){
-            // std::cout << "Mutation succeeded on attempt " << attempts << std::endl;
+            // cout << "Mutation succeeded on attempt " << attempts << std::endl;
         
             Individual<T> ind(child);
             ind.set_variation(choice);
@@ -665,7 +665,7 @@ std::tuple<std::optional<Individual<T>>, VectorXf> Variation<T>::mutate(
             return std::make_tuple(ind, context);
         }
         else { // reseting 
-            // std::cout << "Mutation failed on attempt " << attempts << std::endl;
+            // cout << "Mutation failed on attempt " << attempts << std::endl;
         }
     }
 
@@ -706,7 +706,7 @@ void Variation<T>::vary(Population<T>& pop, int island,
         }
         else
         {
-            // std::cout << "Performing mutation " << std::endl;
+            // cout << "Performing mutation " << std::endl;
             auto variation_result = mutate(mom);   
             // cout << "finished mutation" << endl;
             ind_parents = {mom};
@@ -772,7 +772,7 @@ void Variation<T>::update_ss()
     // variation: getting new probabilities for variation operators
     auto variation_probs = variation_bandit.sample_probs(true);
 
-    // std::cout << "Variation probabilities:" << std::endl;
+    // cout << "Variation probabilities:" << std::endl;
     // for (const auto& variation : variation_probs) {
     //     std::cout << " - " << variation.first << ": " << variation.second << std::endl;
     // }
@@ -789,9 +789,9 @@ void Variation<T>::update_ss()
         auto datatype = bandit.first;
         
         auto terminal_probs = bandit.second.sample_probs(true);
-        // std::cout << "Terminal probabilities for datatype " << std::endl;
+        // cout << "Terminal probabilities for datatype " << std::endl;
         for (auto& terminal : terminal_probs) {
-            // std::cout << " - " << terminal.first << ": " << terminal.second << std::endl;
+            // cout << " - " << terminal.first << ": " << terminal.second << std::endl;
 
             auto terminal_name = terminal.first;
             auto terminal_prob = terminal.second;
@@ -817,11 +817,11 @@ void Variation<T>::update_ss()
             auto op_probs = bandit.sample_probs(true);
 
             for (auto& [op_name, op_prob] : op_probs) {
-                // std::cout << " - " << op_name << ": " << op_prob << std::endl;
+                // cout << " - " << op_name << ": " << op_prob << std::endl;
 
                 for (const auto& [node_type, node_value]: search_space.node_map.at(ret_type).at(args_type))
                 {
-                    // std::cout << " - Node name: " << node_value.name << std::endl;
+                    // cout << " - Node name: " << node_value.name << std::endl;
                     if (node_value.name == op_name) {
                         // cout << "match" << endl;
                         search_space.node_map_weights.at(ret_type).at(args_type).at(node_type) = op_prob;
@@ -831,12 +831,12 @@ void Variation<T>::update_ss()
         }
     }
     
-    // std::cout << "inside update_ss(). Parameters probs:" << std::endl;
-    // std::cout << "cx: " << parameters.get_cx_prob() << std::endl;
+    // cout << "inside update_ss(). Parameters probs:" << std::endl;
+    // cout << "cx: " << parameters.get_cx_prob() << std::endl;
     // for (const auto& [name, prob] : parameters.get_mutation_probs())
     //     std::cout << name << ": " << prob << std::endl;
 
-    // std::cout << "Search Space:" << std::endl;
+    // cout << "Search Space:" << std::endl;
     // search_space.print();
 };
 
