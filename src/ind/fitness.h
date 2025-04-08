@@ -202,6 +202,7 @@ struct Fitness {
 
     // String representation
     std::string toString() const {
+        // TODO: unify to_string, toString, print, print_models, etc.
         if (valid()) {
             string s = "Fitness(";
             for (auto& v : values)

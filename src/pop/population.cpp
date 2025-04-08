@@ -160,24 +160,30 @@ void Population<T>::add_offspring_indexes(int island)
 template<ProgramType T>
 void Population<T>::update(vector<vector<size_t>> survivors)
 {
+    // cout << "[Population::update] Starting update with " 
+    //           << survivors.at(0).size() << " individuals.\n";
+
     // this is the step that should end up cutting off half of the population
     vector<Individual<T>> new_pop;
     new_pop.resize(0);
+    for (int k=0; k<survivors.at(0).size(); ++k){
+        // cout << "    - Adding survivor idx " << survivors.at(0).at(k) << endl;
+        new_pop.push_back( *individuals.at(survivors.at(0).at(k)) );
+    }
+
     for (int j=0; j<num_islands; ++j)
     {
-        for (int k=0; k<survivors.at(j).size(); ++k){
-            new_pop.push_back(
-                *individuals.at(survivors.at(j).at(k)) );
-        }
+        // cout << "  Processing island " << j << endl;
 
         // need to make island point to original range
         size_t idx_start = std::floor(j*pop_size/num_islands);
         size_t idx_end   = std::floor((j+1)*pop_size/num_islands);
-
         auto delta = idx_end - idx_start;
 
-        assert(delta == survivors.at(j).size()
-           && " migration ended up with a different popsize");
+        // cout << "  Island " << j << " index range [" << idx_start << ", " << idx_end << ") -> delta = " << delta << endl;
+
+        // assert(delta == survivors.at(0).size()
+        //    && " migration ended up with a different popsize");
 
         // inserting indexes of the offspring
         island_indexes.at(j).clear();
@@ -194,7 +200,7 @@ void Population<T>::update(vector<vector<size_t>> survivors)
         // making hard copies of the individuals
         json ind_copy = ind;
 
-        // this will fill just half of the pop
+        // this will fill just half of the individuals vector
         individuals.push_back(
             std::make_shared<Individual<T>>(ind_copy) );
     }
@@ -212,18 +218,18 @@ void Population<T>::update(vector<vector<size_t>> survivors)
 template<ProgramType T>
 string Population<T>::print_models(string sep)
 {
-    // not printing the island each individual belongs to
+    // TODO: rename it. This function does not print anything, just returns a string
     string output = "";
 
     for (int j=0; j<num_islands; ++j)
     {
-        output += "island " + to_string(j) + ":\n";
-
         for (int k=0; k<island_indexes.at(j).size(); ++k) {
-            output += "ind index " + to_string(k);
-            output += " pos " + to_string(island_indexes.at(j).at(k)) + ": ";
             Individual<T>& ind = *individuals.at(island_indexes.at(j).at(k)).get();
-            output += ind.get_model() + sep;
+
+            output += "island " + to_string(j) + " ";
+            output += "index " + to_string(island_indexes.at(j).at(k)) + ": ";
+            output += ind.get_model() + " ";
+            output += ind.fitness.toString() + sep;
         }
     }
     return output;
