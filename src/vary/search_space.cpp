@@ -195,7 +195,6 @@ void SearchSpace::init(const Dataset& d, const unordered_map<string,float>& user
         }
     }
 
-
     for (const auto& [op, weight] : user_ops)
         op_names.push_back(op);
 
@@ -228,15 +227,15 @@ void SearchSpace::init(const Dataset& d, const unordered_map<string,float>& user
 
         // We need some ops in the search space so we can have the logit and offset
         if (user_ops.find("OffsetSum") == user_ops.end())
-            extended_user_ops.insert({"OffsetSum", 0.0f});
+            extended_user_ops.insert({"OffsetSum", -1.0f});
             op_names.push_back("OffsetSum");
 
         if (unique_classes.size()==2 && (user_ops.find("Logistic") == user_ops.end())) {
-            extended_user_ops.insert({"Logistic", 0.0f});
+            extended_user_ops.insert({"Logistic", -1.0f});
             op_names.push_back("Logistic");
         }
         else if (user_ops.find("Softmax") == user_ops.end()) {
-            extended_user_ops.insert({"Softmax", 0.0f});
+            extended_user_ops.insert({"Softmax", -1.0f});
             op_names.push_back("Softmax");
         }
 
@@ -279,10 +278,12 @@ std::optional<tree<Node>> SearchSpace::sample_subtree(Node root, int max_d, int 
     if (!has_solution_space(args_w.begin(), args_w.end()))
         return std::nullopt;
 
-    if ( (terminal_map.find(root.ret_type) == terminal_map.end())
-    ||   (!has_solution_space(terminal_weights.at(root.ret_type).begin(), 
-                              terminal_weights.at(root.ret_type).end())) )
-        return std::nullopt;
+    // it will always have a terminal (because we create constants).
+    // TODO: I guess I can remove this line below and it will still work
+    // if ( (terminal_map.find(root.ret_type) == terminal_map.end())
+    // ||   (!has_solution_space(terminal_weights.at(root.ret_type).begin(), 
+    //                           terminal_weights.at(root.ret_type).end())) )
+    //     return std::nullopt;
 
     auto Tree = tree<Node>();
     auto spot = Tree.insert(Tree.begin(), root);

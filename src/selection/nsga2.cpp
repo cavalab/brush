@@ -72,7 +72,7 @@ vector<size_t> NSGA2<T>::survive(Population<T>& pop, int island,
     size_t idx_start = std::floor(island*params.pop_size/params.num_islands);
     size_t idx_end   = std::floor((island+1)*params.pop_size/params.num_islands);
 
-    // TODO: survive should be unified across islands, and stop taking island as argument
+    // TODO: survive should be unified across islands, and stop taking island as argument. This was already implemented, I need to update to remove island argument only
     // auto original_size = idx_end - idx_start; // original island size (survive must   be  called with an island with offfspring)
     
     auto original_size = params.pop_size;

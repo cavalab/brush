@@ -133,9 +133,8 @@ public:
     void set_current_gen(unsigned int gen){ current_gen = gen; };
     unsigned int get_current_gen(){ return current_gen; };
 
-    // TODO: fix vary_and_update and get parallelism working 
-    // void set_num_islands(int new_num_islands){ num_islands = new_num_islands; };
-    void set_num_islands(int new_num_islands){ num_islands = 1; };
+    // TODO: improve vary_and_update to have island working in parallel 
+    void set_num_islands(int new_num_islands){ num_islands = new_num_islands; };
     int get_num_islands(){ return num_islands; };
 
     void set_max_depth(unsigned new_max_depth){ max_depth = new_max_depth; };

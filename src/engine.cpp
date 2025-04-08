@@ -417,22 +417,15 @@ void Engine<T>::run(Dataset &data)
             cout << "Loading population from file " << params.load_population << std::endl;
             this->pop.load(params.load_population);
 
-            // invalidating all individuals
-            for (auto& individual : this->pop.individuals) {
-                if (individual != nullptr) {
-                    individual->set_is_fitted(false);
-                    // cout << "Invalidated individual with ID: " << individual->id << std::endl;
-                }
-            }
             // cout << "Population loaded and individuals invalidated." << std::endl;
         }
         else if (this->pop.individuals.size() > 0) {
-            cout << "Population was already initialized." << std::endl;
+            // cout<< "Population was already initialized." << std::endl;
             // This only works because the Population constructor resizes individuals to zero.
         }
         else
         {
-            cout << "Initializing population." << std::endl;
+            // cout<< "Initializing population." << std::endl;
             this->pop.init(this->ss, this->params);
         }
     }
@@ -441,6 +434,14 @@ void Engine<T>::run(Dataset &data)
         // cout << "Starting to run a partial fit with population" << this->pop.print_models("\n") << endl;
     }
     
+    // invalidating all individuals (so they are fitted with current data)
+    for (auto& individual : this->pop.individuals) {
+        if (individual != nullptr) {
+            individual->set_is_fitted(false);
+            // cout << "Invalidated individual with ID: " << individual->id << std::endl;
+        }
+    }
+
     // This is data dependent so we initialize it everytime, regardless of partial fit
     // TODO: make variator have a default constructor and make it an attribute of engine
     Variation<T> variator = Variation<T>(this->params, this->ss, data);
@@ -552,20 +553,31 @@ void Engine<T>::run(Dataset &data)
                     // TODO: do I have to pass data as an argument here? or can I use the instance reference
                     variator.vary_and_update(this->pop, island, island_parents.at(island),
                                              data, evaluator);
+                    // cout<< "Finsh vary and update" << endl;
                     if (data.use_batch) // assign the batch error as fitness (but fit was done with training data)
                         evaluator.update_fitness(this->pop, island, batch, params, false, false);
+                        // cout<< "Finsh updating fitness" << endl;
                 }
 
+                // cout<< this->pop.print_models() << endl;
                 // select survivors from combined pool of parents and offspring.
                 // if the same individual exists in different islands, then it will be selected several times and the pareto front will have less diversity.
                 // to avoid this, survive should be unified
-                // TODO: survivor should still take parameters?
-                auto survivors = {survivor.survive(this->pop, 0, params)};
-                
-                // // TODO: do i need these next this-> pointers?rewar
+                // TODO: survivor should still take params?
+                // TODO: RETURN SINGLE VECTOR and stop wrapping it into a single-element vector
+                // cout<< "Will select survivors" << endl;
+                auto survivor_indices = survivor.survive(this->pop, 0, params);
+                // cout<< "Finsh selecting survivors" << endl;
+
+                // TODO: do i need these next this-> pointers?
                 variator.update_ss();
-                this->pop.update(survivors);
+                // cout<< "Finsh update ss" << endl;
+
+                this->pop.update({survivor_indices});
+                // cout<< "Finsh pop update" << endl;
                 this->pop.migrate();
+                // cout<< "Finsh migrate" << endl;
+
             }).name("update, migrate and disentangle indexes between islands");
             
             auto finish_gen = subflow.emplace([&]() {

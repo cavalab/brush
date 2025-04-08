@@ -78,8 +78,10 @@ class Inexact_simplifier
             TreeIter spot = simplified_program.Tree.begin();
             while(spot != simplified_program.Tree.end())
             {
-                // we dont index or simplify fixed stuff
-                if (spot.node->data.get_prob_change() > 0) {
+                // we dont index or simplify fixed stuff.
+                    // non-wheightable nodes are not simplified. TODO: revisit this and see if they should (then implement it)
+                if (spot.node->data.get_prob_change() > 0
+                &&  IsWeighable(spot.node->data.ret_type)) {
                     // indexing only small subtrees or non-constant-terminal nodes
                     if (simplified_program.size_at(spot) < 10
                     ||  Isnt<NodeType::Constant, NodeType::MeanLabel>(spot.node->data.node_type)) {

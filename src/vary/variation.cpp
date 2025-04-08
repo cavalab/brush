@@ -285,12 +285,11 @@ public:
             Iter iter = program.Tree.begin();
             std::transform(program.Tree.begin(), program.Tree.end(), std::back_inserter(weights),
                         [&](const auto& n){ 
-                            size_t d = 1+program.Tree.depth(iter);
+                            size_t d = program.Tree.depth(iter);
                             std::advance(iter, 1);
 
                             // we need to make sure there's some node to start the subtree
                             if ((d >= params.max_depth)
-                            ||  (node_map.find(n.ret_type) == node_map.end())
                             ||  (node_map.find(n.ret_type) == node_map.end()) )
                                 return 0.0f;
                             else
@@ -324,19 +323,26 @@ public:
         size_t d = params.max_depth - program.Tree.depth(spot);
         size_t s = params.max_size - (program.Tree.size() - program.Tree.size(spot));
 
-        s = r.rnd_int(1, s);
+        s = r.rnd_int(1, s+1);
 
         // sample subtree uses PTC2, which operates on depth and size of the tree<Node> 
         // (and not on the program!). we shoudn't care for weights here
+        // cout<< "sampling subtree" << endl;
         auto subtree = variator.search_space.sample_subtree(spot.node->data, d, s); 
+        // cout<< "Finish sampling" << endl;
 
         if (!subtree) // there is no terminal with compatible arguments
             return false;
 
+        // cout<< "updating the tree" << endl;
         // if optional contains a Node, we access its contained value
         program.Tree.erase_children(spot); 
-        program.Tree.replace(spot, subtree.value().begin());
+        // cout<< "erased" << endl;
 
+        program.Tree.move_ontop(spot, subtree.value().begin());
+        // cout<< "replaced" << endl;
+
+        // cout<< "going to return" << endl;
         return true;
     }
 };
@@ -467,41 +473,30 @@ std::tuple<std::optional<Individual<T>>, VectorXf> Variation<T>::cross(
                             ( child.size() - child.size_at(child_spot) );
         auto allowed_depth = parameters.max_depth - 
                             ( child.depth_to_reach(child_spot) );
-        
+
         vector<float> other_weights(other.Tree.size());
 
-        // iterator to get the size of subtrees inside transform
+        // Iterator to traverse the tree during transformation
         auto other_iter = other.Tree.begin();
+        std::transform(other.Tree.begin(), other.Tree.end(), other_weights.begin(),
+            [&other, &other_iter, allowed_size, allowed_depth, child_ret_type](const auto& n) mutable {
+                int s = other.size_at(other_iter);
+                int d = other.depth_at(other_iter);
 
-        // lambda function to check feasibility of solution and increment the iterator 
-        const auto check_and_incrm = [other, &other_iter, allowed_size, allowed_depth]() -> bool {
-            int s = other.size_at( other_iter );
-            int d = other.depth_at( other_iter );
+                std::advance(other_iter, 1);
 
-            std::advance(other_iter, 1);
-            return (s <= allowed_size) && (d <= allowed_depth);
-        };
+                // Check feasibility and matching return type
+                if (s <= allowed_size && d <= allowed_depth && n.ret_type == child_ret_type) {
+                    return n.get_prob_change();
+                }
 
-        std::transform(other.Tree.begin(), other.Tree.end(), 
-            other_weights.begin(),
-            [child_ret_type, check_and_incrm](const auto& n){
-                // need to pick a node that has a matching output type to the child_spot.
-                // also need to check if swaping this node wouldn't exceed max_size
-                if (check_and_incrm() && (n.ret_type == child_ret_type))
-                    return n.get_prob_change(); 
-                else
-                    // setting the weight to zero to indicate a non-feasible crossover point
-                    return 0.0f;
+                return 0.0f; // Non-feasible crossover point
             }
         );
         
-        bool matching_spots_found = false;
-        for (const auto& w: other_weights)
-        {
-            // we found at least one weight that is non-zero
-            matching_spots_found = matching_spots_found || (w > 0.0);
-        }
-        
+        bool matching_spots_found = std::any_of(other_weights.begin(), other_weights.end(), 
+                                        [](float w) { return w > 0.0f; });
+
         if (matching_spots_found) {
             // cout << "crossover" << std::endl;
             VectorXf context = get_context(child, child_spot);
@@ -618,7 +613,7 @@ std::tuple<std::optional<Individual<T>>, VectorXf> Variation<T>::mutate(
     int attempts = 0;
     while(++attempts <= 3)
     {
-        // cout << "Attempt: " << attempts << std::endl;
+        // cout<< "Attempt: " << attempts << std::endl;
         Program<T> child(parent.program);
 
         // apply the mutation and check if it succeeded
@@ -629,7 +624,7 @@ std::tuple<std::optional<Individual<T>>, VectorXf> Variation<T>::mutate(
         // std::optional to indicare the result of their manipulation over the
         // program tree. Here we call the mutation function and return the result
         
-        // cout << "mutate()" << std::endl;
+        // cout<< "mutate()" << std::endl;
         context = get_context(child, spot);
 
         bool success;
@@ -646,26 +641,38 @@ std::tuple<std::optional<Individual<T>>, VectorXf> Variation<T>::mutate(
         else // it must be"toggle_weight_off"
             success = ToggleWeightOffMutation::mutate(child, spot, (*this), parameters);
 
+        // cout<< "Mutation returned " << success << std::endl;
         if (success
         && ( (child.size()  <= parameters.max_size)
         &&   (child.depth() <= parameters.max_depth) )){
-            // cout << "Mutation succeeded on attempt " << attempts << std::endl;
+            // cout<< "Mutation succeeded on attempt " << attempts << std::endl;
         
             Individual<T> ind(child);
+            // cout<< "new ind program " << child.get_model() << std::endl;
             ind.set_variation(choice);
+            // cout<< "set variation " << choice << std::endl;
 
+            // subtree performs several samplings, and it will leverate
+            // what point/insert/delete mutations learned about each node utility.
+
+            // TODO: handle subtree - it will sample too many nodes and it may
+            // be hard to track which ones actually improved the expression to
+            // update the bandits/ maybe we should skip it?
             // mutations that sampled from search space
             if (choice.compare("point")   == 0
             ||  choice.compare("insert")  == 0
             ||  choice.compare("delete")  == 0
-            ||  choice.compare("subtree") == 0) {
+            // ||  choice.compare("subtree") == 0 // TODO: disable this one
+            ) {
+                // cout<< "setting sampled nodes " << spot.node->data.name << std::endl;
                 ind.set_sampled_nodes({spot.node->data});
             }
 
+            // cout<< "returning..." << std::endl;
             return std::make_tuple(ind, context);
         }
         else { // reseting 
-            // cout << "Mutation failed on attempt " << attempts << std::endl;
+            // cout<< "Mutation failed on attempt " << attempts << std::endl;
         }
     }
 

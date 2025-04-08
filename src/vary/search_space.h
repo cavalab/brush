@@ -472,7 +472,8 @@ struct SearchSpace
         vector<float> weights; 
         for (const auto& [arg_hash, node_type_map]: ret_match)
         {
-            if (node_type_map.find(type) != node_type_map.end())
+            if (node_type_map.find(type) != node_type_map.end()
+            &&  node_map_weights.at(R).at(arg_hash).at(type) > 0.0f)
             {
                 matches.push_back(node_type_map.at(type));
                 weights.push_back(node_map_weights.at(R).at(arg_hash).at(type));
@@ -519,7 +520,11 @@ struct SearchSpace
                 // arguments woudn't exceed the maximum number of arguments
                 auto within_size_limit = !(max_args) || (node.get_arg_count() <= max_args);
                 
-                if ( in(node_arg_types, arg) && within_size_limit) {
+                // TODO: I created constant terminals for all datatypes. Can I stop performing this check? (there is always gonna be a terminal)
+                if ( in(node_arg_types, arg)
+                &&   within_size_limit
+                &&   node_map_weights.at(ret).at(args_type).at(name) > 0.0f )
+                {
                     // if checking terminal compatibility, make sure there's
                     // a compatible terminal for the node's other arguments
                     if (terminal_compatible) {

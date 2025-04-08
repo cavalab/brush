@@ -20,13 +20,17 @@ namespace Brush { namespace Simpl{
             
             // static void destroy();
 
-            
-            template <ProgramType PT>
-            Program<PT> simplify_tree(
-                Program<PT>& program, const SearchSpace &ss, const Dataset &d)
+            template <ProgramType P>
+            Program<P> simplify_tree(
+                Program<P>& program, const SearchSpace &ss, const Dataset &d)
             {
+                using RetType =
+                typename std::conditional_t<P == PT::Regressor, ArrayXf,
+                            std::conditional_t<P == PT::Representer, ArrayXXf, ArrayXf
+                >>;
+
                 // create a copy of the tree
-                Program<PT> simplified_program(program);
+                Program<P> simplified_program(program);
                 
                 // iterate over the tree, trying to replace each node with a constant, and keeping the change if the pred does not change.
                 TreeIter spot = simplified_program.Tree.begin();
@@ -34,17 +38,21 @@ namespace Brush { namespace Simpl{
                 {
                     Node n = spot.node->data;
 
+                    // non-wheightable nodes are not simplified. TODO: revisit this and see if they should (then implement it)
                     if (Isnt<NodeType::Terminal, NodeType::Constant, NodeType::MeanLabel>(n.node_type)
-                    &&  n.get_prob_change()>0)
-                    {        
+                    &&  n.get_prob_change()>0
+                    &&  IsWeighable(n.ret_type)
+                    )
+                    {       
                         // TODO: check if holds alternative and use this information, instead of making it templated. Also, return void.
                         // get new_pred with predictions after simplification
                         VectorXf branch_pred;
-                        if constexpr (PT==ProgramType::Regressor || PT==ProgramType::BinaryClassifier)
+                        if constexpr (P==ProgramType::Regressor || P==ProgramType::BinaryClassifier)
                         {
-                            branch_pred = (*spot.node).template predict<ArrayXf>(d);
+                            RetType pred = (*spot.node).predict<RetType>(d);
+                            branch_pred = pred.template cast<float>();
                         }
-                        else if constexpr (PT==ProgramType::MulticlassClassifier)
+                        else if constexpr (P==ProgramType::MulticlassClassifier)
                         {
                             ArrayXXf out = (*spot.node).template predict<ArrayXXf>(d);
                             auto argmax = Function<NodeType::ArgMax>{};
@@ -71,7 +79,6 @@ namespace Brush { namespace Simpl{
                     ++spot;
                 }
                 program.Tree = simplified_program.Tree;
-
                 return simplified_program;
             }
 
