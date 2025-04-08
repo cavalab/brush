@@ -360,16 +360,15 @@ class EstimatorInterface():
         if isinstance(X, pd.DataFrame):
             feature_names = X.columns
             for values, dtype in zip(X.values.T, X.dtypes):
-                if is_float_dtype(dtype):
-                    feature_types.append('ArrayF')
+                if is_bool_dtype(dtype):
+                    feature_types.append('ArrayB')
                 elif is_integer_dtype(dtype):
-                    # For Brush, it does matter if it is realy an integer or a boolean in disguise
                     if np.all(np.logical_or(values == 0, values == 1)):
                         feature_types.append('ArrayB')
                     else:
                         feature_types.append('ArrayI')
-                elif is_bool_dtype(dtype):
-                    feature_types.append('ArrayB')
+                elif is_float_dtype(dtype):
+                    feature_types.append('ArrayF')
                 else:
                     raise ValueError(
                         "Unsupported data type. Please try using an "
