@@ -146,7 +146,7 @@ public:
     Archive<T> archive;     ///< pareto front archive
     Population<T> pop;      ///< population of programs
 
-    bool is_fitted; ///< keeps track of whether fit was called
+    bool is_fitted = false; ///< keeps track of whether fit was called
 private:
     Selection<T>  selector;   ///< selection algorithm
     Evaluation<T> evaluator;  ///< evaluation code
