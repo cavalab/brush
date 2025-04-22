@@ -151,13 +151,14 @@ float average_precision_score(const VectorXf& y, const VectorXf& predict_proba,
     // Calculate the precision and recall values
     VectorXf precision(num_instances);
     VectorXf recall(num_instances);
-    
-    loss.resize(num_instances); 
+    loss.resize(num_instances);
 
     float true_positives  = 0;
     float false_positives = 0;
     float positives = 0; // y.sum();
 
+    // we need to iterate over the sorted indices
+    // and calculate precision and recall at each step
     for (int i = 0; i < num_instances; ++i) {
         int index = argsort[i];
         
@@ -184,6 +185,9 @@ float average_precision_score(const VectorXf& y, const VectorXf& predict_proba,
     float last_recall = recall(0);
 
     for (int i = 0; i < num_instances; ++i) {
+        int index = argsort[i];
+        float p = predict_proba(index);
+
         if (recall(i) != last_recall) {
             average_precision += precision(i) * (recall(i) - last_recall);
             last_recall = recall(i);
@@ -191,10 +195,10 @@ float average_precision_score(const VectorXf& y, const VectorXf& predict_proba,
         
         // The loss vector is used in lexicase selection. we need to set something useful here
         // that does make sense on individual level. Using log loss here.
-        if (predict_proba(i) < eps || 1 - predict_proba(i) < eps)
-            loss(i) = -(y(i)*log(eps) + (1-y(i))*log(1-eps));
+        if (p < eps || 1 - p < eps)
+            loss(index) = -(y(index)*log(eps) + (1-y(index))*log(1-eps));
         else
-            loss(i) = -(y(i)*log(predict_proba(i)) + (1-y(i))*log(1-predict_proba(i)));
+            loss(index) = -(y(index)*log(p) + (1-y(index))*log(1-p));
     }
 
     return average_precision;
