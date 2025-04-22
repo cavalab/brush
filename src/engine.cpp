@@ -600,7 +600,9 @@ void Engine<T>::run(Dataset &data)
                 }
 
                 if(params.verbosity>1)
-                    print_stats(log, fraction);    
+                {
+                    print_stats(log, fraction);
+                }
                 else if(params.verbosity == 1)
                     print_progress(fraction);
 
