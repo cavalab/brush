@@ -79,9 +79,10 @@ class Inexact_simplifier
             while(spot != simplified_program.Tree.end())
             {
                 // we dont index or simplify fixed stuff.
-                    // non-wheightable nodes are not simplified. TODO: revisit this and see if they should (then implement it)
+                // non-wheightable nodes are not simplified. TODO: revisit this and see if they should (then implement it)
+                // This is avoiding using booleans.
                 if (spot.node->data.get_prob_change() > 0
-                &&  IsWeighable(spot.node->data.ret_type)) {
+                &&  IsWeighable(spot.node->data.ret_type) && IsWeighable(spot.node->data.node_type)) {
                     // indexing only small subtrees or non-constant-terminal nodes
                     if (simplified_program.size_at(spot) < 10
                     ||  Isnt<NodeType::Constant, NodeType::MeanLabel>(spot.node->data.node_type)) {
@@ -99,7 +100,7 @@ class Inexact_simplifier
                             if (equivalentExpression.find(key) == equivalentExpression.end()) {
                                 equivalentExpression[key] = branch;
                             } else if (spot.node->get_size(false) < equivalentExpression[key].begin().node->get_size(false)){                
-                                    equivalentExpression[key] = branch;
+                                equivalentExpression[key] = branch;
                             } else if (spot.node->get_size(false) > equivalentExpression[key].begin().node->get_size(false)){                         
                                 const tree<Node> simplified_branch(equivalentExpression[key]);
                                 simplified_program.Tree.erase_children(spot); 
@@ -116,11 +117,13 @@ class Inexact_simplifier
         }
         Inexact_simplifier();
         ~Inexact_simplifier();
+        
+        // TODO: make index private and initUniformPlanes to add terminals from search space
+        void index(TreeIter& spot, const Dataset &d);
     private:
 
         vector<string> hash(const ArrayXf& inputPoint); // one string for each plane
 
-        void index(TreeIter& spot, const Dataset &d);
 
         // will return the hash and the distance to the queryPoint
         optional<pair<size_t, string>> query(TreeIter& spot, const Dataset &d);

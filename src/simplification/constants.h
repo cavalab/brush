@@ -38,6 +38,7 @@ namespace Brush { namespace Simpl{
                 {
                     Node n = spot.node->data;
 
+                    // This is avoiding using booleans.
                     // non-wheightable nodes are not simplified. TODO: revisit this and see if they should (then implement it)
                     if (Isnt<NodeType::Terminal, NodeType::Constant, NodeType::MeanLabel>(n.node_type)
                     &&  n.get_prob_change()>0

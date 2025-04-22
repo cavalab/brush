@@ -152,6 +152,25 @@ public:
         }
 
         inexact_simplifier.initUniformPlanes(128, data.get_training_data().get_n_samples(), 1);
+        // TODO: init simplification with terminals (including booleans?)
+        // for (const auto& entry : this->search_space.terminal_weights) {
+        //     map<string, float> terminal_probs;
+        //     for (int i = 0; i < entry.second.size(); i++)
+        //         if (entry.second[i] > 0.0)
+        //         {
+        //             Node node = search_space.terminal_map.at(entry.first).at(i);
+
+        //             // non-wheightable nodes are not simplified. TODO: revisit this and see if they should (then implement it)
+        //             // This is avoiding using booleans.
+        //             if (IsWeighable(node.node_type))
+        //             {
+        //                 tree<Node> dummy_tree;
+        //                 dummy_tree.insert(dummy_tree.begin(), node);
+        //                 auto it = dummy_tree.begin();
+        //                 inexact_simplifier.index(it, data.get_training_data());
+        //             }
+        //         }
+        // }
     };
 
     /**
