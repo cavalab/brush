@@ -37,7 +37,7 @@ public:
     unsigned int max_depth = 5;
     unsigned int max_size  = 50;
 
-    vector<string> objectives{"scorer","complexity"}; // scorer should be generic and deducted based on mode
+    vector<string> objectives{"scorer","linear_complexity"}; // scorer should be generic and deducted based on mode
     string bandit = "thompson"; // TODO: should I rename dummy? 
     string sel  = "lexicase"; //selection method
     string surv = "nsga2"; //survival method

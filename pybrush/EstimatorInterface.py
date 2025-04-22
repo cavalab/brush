@@ -29,7 +29,8 @@ class EstimatorInterface():
         How many generations to continue after the validation loss has
         stalled. If 0, not used.
     verbosity : int, default 0
-        Controls level of printouts.
+        Controls level of printouts. Set 0 to disable all printouts,
+        1 for basic information, and 2 or more for detailed information.
     max_depth : int, default 10
         Maximum depth of GP trees in the GP program. Use 0 for no limit.
     max_size : int, default 100
@@ -171,7 +172,7 @@ class EstimatorInterface():
                           "toggle_weight_on":1/6, "toggle_weight_off":1/6},
         functions: Union[List[str], Dict[str, float]] = {},
         initialization: str = "uniform",
-        objectives: List[str] = ["scorer", "size"],
+        objectives: List[str] = ["scorer", "linear_complexity"],
         scorer: str = None,
         algorithm: str = "nsga2",
         weights_init: bool = True,
