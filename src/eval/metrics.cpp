@@ -151,48 +151,42 @@ float average_precision_score(const VectorXf& y, const VectorXf& predict_proba,
     // Calculate the precision and recall values
     VectorXf precision(num_instances);
     VectorXf recall(num_instances);
-    loss.resize(num_instances);
 
     float true_positives  = 0;
     float false_positives = 0;
-    float positives = 0; // y.sum();
+    float positives = ysum;
 
     // we need to iterate over the sorted indices
     // and calculate precision and recall at each step
     for (int i = 0; i < num_instances; ++i) {
         int index = argsort[i];
         
-        if (predict_proba(index) > 0.5)
-        {
-            float weight = class_weights.empty() ? 1.0f : class_weights.at(y(index));
+        float weight = class_weights.empty() ? 1.0f : class_weights.at(y(index));
 
-            if (y(index) > 0.5) {
-                true_positives += weight;
-            }
-            else {
-                false_positives += weight;
-            }
+        if (y(index) > 0.5) {
+            true_positives += weight;
+        }
+        else {
+            false_positives += weight;
         }
         
-        positives = true_positives + false_positives;
+        int relevant = true_positives+false_positives;
 
-        precision(i) = positives==0.0 ? 0.0 : true_positives/positives;
+        precision(i) = relevant==0.0 ? 0.0 : true_positives/relevant;
         recall(i)    = ysum==0.0 ? 1.0 : true_positives/ysum;
     }
 
     // Calculate the average precision score
     float average_precision = 0.0;
-    float last_recall = recall(0);
-
+    loss.resize(num_instances);
+    
     for (int i = 0; i < num_instances; ++i) {
+        if (i > 0)
+            average_precision += (recall(i) - recall(i-1)) * precision(i);
+
         int index = argsort[i];
         float p = predict_proba(index);
 
-        if (recall(i) != last_recall) {
-            average_precision += precision(i) * (recall(i) - last_recall);
-            last_recall = recall(i);
-        }
-        
         // The loss vector is used in lexicase selection. we need to set something useful here
         // that does make sense on individual level. Using log loss here.
         if (p < eps || 1 - p < eps)
