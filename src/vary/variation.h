@@ -137,7 +137,7 @@ public:
                     {
                         // Attempt to emplace; if the key exists, do nothing
                         auto [it, inserted] = node_probs.try_emplace(node.name, weight);
-                        // cout << node.name << ", " << weight << endl;
+
                         // If the key already existed, update its value
                         if (!inserted) {
                             it->second = weight;
@@ -234,12 +234,12 @@ public:
         {
             if (pop.individuals.at(indices.at(i)) != nullptr)
             {
-                // cout<< "Skipping individual at index " << indices.at(i) << std::endl;
+
                 continue; // skipping if it is an individual --- we just want to fill invalid positions
             }
 
-            // cout<< "------" << endl;
-            // cout<< "Processing individual at index " << indices.at(i) << std::endl;
+
+
 
             // pass check for children undergoing variation     
             std::optional<Individual<T>> opt = std::nullopt; // new individual  
@@ -250,7 +250,7 @@ public:
             
             const Individual<T>& mom = pop[idx];
 
-             // cout<< "orig:  " << mom.program.get_model() << endl;
+
         
             // if we got here, then the individual is not fully locked and we can proceed with mutation
             vector<Individual<T>> ind_parents;
@@ -268,7 +268,7 @@ public:
             if (std::all_of(mom.program.Tree.begin(), mom.program.Tree.end(),
                 [](const auto& n) { return n.get_prob_change()<=0.0; }))
             {
-                 // cout<< "Fully locked individual, copying it" << std::endl;    
+
                 ind = Individual<T>(mom);
                 ind.variation = "born";
             }
@@ -281,44 +281,44 @@ public:
                     //     *r.select_randomly(parents.begin(), parents.end())];
                     const Individual<T>& dad = pop[parents.at((i+1) % parents.size())]; // use modulo to cycle through parents
 
-                    // cout<< "Performing crossover" << std::endl;
+
                     auto variation_result = cross(mom, dad);
                     ind_parents = {mom, dad};
                     tie(opt, context) = variation_result;
                 }
                 else
                 {
-                    // cout<< "Performing mutation " << choice << std::endl;
+
                     auto variation_result = mutate(mom, choice);  
-                    // cout<< "finished mutation" << endl;
+
                     ind_parents = {mom};
                     tie(opt, context) = variation_result;
-                    // cout<< "unpacked" << endl;
+
                 }
 
                 if (opt) // variation worked, lets keep this
                 {
-                    // cout<< "Variation successful" << std::endl;
+
                     ind = opt.value();
                     ind.set_parents(ind_parents);
                 }
                 else {  // no optional value was returned. creating a new random individual
-                    // cout<< "Variation failed, copying the individual" << std::endl;
+
                     
                     ind = Individual<T>(mom);
                     ind.variation = "born";
                     
-                    // cout<< "Variation failed, creating a new random individual" << std::endl;
+
                     // ind.init(search_space, parameters); // ind.variation is born by default
                 }
             }
             
-            // cout<< "Setting objt" << std::endl;
+
             // ind.set_objectives(mom.get_objectives()); // it will have an invalid fitness
 
             ind.set_id(id);
 
-            // cout<< "Setting fitness values" << std::endl;
+
             ind.fitness.set_loss(mom.fitness.get_loss());
             ind.fitness.set_loss_v(mom.fitness.get_loss_v());
             ind.fitness.set_size(mom.fitness.get_size());
@@ -329,45 +329,45 @@ public:
             assert(ind.program.size() > 0);
             assert(ind.fitness.valid() == false);
 
-            // cout<< "Fitting" << std::endl;
+
             auto data_aux = data.get_training_data();
-            // cout<< "data aux" << std::endl;
-            // cout<< "program:  " << ind.program.get_model() << endl;
+
+
             ind.program.fit(data_aux);
-            // cout<< "done fitting." << std::endl;
+
 
             // simplify before calculating fitness (order matters, as they are not refitted and constants simplifier does not replace with the right value.)
             // TODO: constants_simplifier should set the correct value for the constant (so we dont have to refit).
             // simplify constants first to avoid letting the lsh simplifier to visit redundant branches
-            // cout<< "after vary:  " << ind.program.get_model() << endl;
+
             if (parameters.constants_simplification)
             {
                 constants_simplifier.simplify_tree<T>(ind.program, search_space, data.get_training_data());            
-                // cout<< "const: " << ind.program.get_model() << endl;
+
             }
             if (parameters.inexact_simplification)
             {
                 inexact_simplifier.simplify_tree<T>(ind.program, search_space, data.get_training_data());
-                // cout<< "inext: " << ind.program.get_model() << endl;
+
             }
         
-            // cout<< "before assign fit" << endl;
+
             evaluator.assign_fit(ind, data, parameters, false);
-            // cout<< "after fit: " << ind.program.get_model() << endl;
+
             
             // vector<float> deltas(ind.get_objectives().size(), 0.0f);
             vector<float> deltas;
-            // cout<< "Updating metrics for individual..." << endl;
-            // cout<< "Objectives: ";
+
+
             // for (const auto& obj : ind.get_objectives()) {
-            //     cout << obj << " ";
+
             // }
-            // cout << endl;
+
 
             float delta  = 0.0f;
             float weight = 0.0f;
 
-            // cout<< "updating metrics" << endl;
+
             for (const auto& obj : ind.get_objectives())
             {   
                 // some objectives are unsigned int, which can have weird values if we
@@ -375,27 +375,27 @@ public:
                 // value indicating only if it was greater or not, so we can deal with 
                 // this issue.
 
-                // cout<< "Processing objective: " << obj << endl;
+
 
                 if (obj.compare(parameters.scorer) == 0) {
                     delta = ind.fitness.get_loss() - ind.fitness.get_prev_loss();
-                    // cout<< "  delta (loss) = " << delta << endl;
+
                 }
                 else if (obj.compare("complexity") == 0) {
                     delta = ind.fitness.get_complexity() > ind.fitness.get_prev_complexity() ? 1.0 : -1.0 ;
-                    // cout<< "  delta (complexity) = " << delta << endl;
+
                 }
                 else if (obj.compare("linear_complexity") == 0) {
                     delta = ind.fitness.get_linear_complexity() > ind.fitness.get_prev_linear_complexity() ? 1.0 : -1.0;
-                    // cout<< "  delta (linear_complexity) = " << delta << endl;
+
                 }
                 else if (obj.compare("size") == 0) {
                     delta = ind.fitness.get_size() > ind.fitness.get_prev_size() ? 1.0 : -1.0;
-                    // cout<< "  delta (size) = " << delta << endl;
+
                 }
                 else if (obj.compare("depth") == 0) {
                     delta = ind.fitness.get_depth() > ind.fitness.get_prev_depth() ? 1.0 : -1.0;
-                    // cout<< "  delta (depth) = " << delta << endl;
+
                 }
                 else {
                     HANDLE_ERROR_THROW(obj + " is not a known objective");
@@ -407,17 +407,17 @@ public:
                 }
 
                 weight = it->second;
-                // cout<< "  weight = " << weight << endl;
+
 
                 float weighted_delta = delta * weight;
-                // cout<< "  weighted delta = " << weighted_delta << endl;
+
 
                 deltas.push_back(weighted_delta);
             }
 
-            // cout<< "Final deltas vector (size = " << deltas.size() << "): ";
-            // for (const auto& d : deltas) cout << d << " ";
-            // cout << endl;
+
+
+
             
             bool allPositive = true;
             bool allNegative = true;
@@ -450,30 +450,30 @@ public:
                 if (!allPositive &&  allNegative) r = -1.0;
             }
 
-            // cout<< "Updating variation bandit with reward: " << r << std::endl;
+
 
             if (ind.get_variation().compare("born") != 0)
             {
-                // cout<< "Updating variation bandit with variation: " << ind.get_variation() << " and reward: " << r << ". choosen variation was: " << choice << std::endl;
+
                 this->variation_bandit.update(ind.get_variation(), r, root_context);
                 
                 // if (!ind.get_variation().compare("born") && !ind.get_variation().compare("cx")
                 // &&  !ind.get_variation().compare("subtree"))
                 // {                
                     if (ind.get_sampled_nodes().size() > 0) {
-                        // cout<< "Updating terminal and operator bandits for sampled nodes" << std::endl;
+
                         const auto& changed_nodes = ind.get_sampled_nodes();
                         for (auto& node : changed_nodes) {
                             if (node.get_arg_count() == 0) {
                                 auto datatype = node.get_ret_type();
-                                // cout<< "Updating terminal bandit for node: " << node.name << std::endl;
+
                                 this->terminal_bandits[datatype].update(node.get_feature(), r, context);
                             }
                             else {
                                 auto ret_type = node.get_ret_type();
                                 auto args_type = node.args_type();
                                 auto name = node.name;
-                                // cout<< "Updating operator bandit for node: " << name << std::endl;
+
                                 this->op_bandits[ret_type][args_type].update(name, r, context);
                             }
                         }
@@ -482,13 +482,13 @@ public:
             }
             else
             { // giving zero reward if the variation failed
-                // cout<< "Variation failed, updating variation bandit with choice: " << choice << " and reward: 0.0" << std::endl;
+
                 this->variation_bandit.update(choice, 0.0, root_context);
             }
             
             // aux_individuals.push_back(std::make_shared<Individual<T>>(ind));
             pop.individuals.at(indices.at(i)) = std::make_shared<Individual<T>>(ind);
-            // cout<< "Individual at index " << indices.at(i) << " updated successfully" << std::endl;
+
         }
         
         // updating the population with the new individual
@@ -508,16 +508,16 @@ public:
     // bandit_sample_terminal
     std::optional<Node> bandit_sample_terminal(DataType R, VectorXf& context)
     {
-        // cout << "bandit_sample_terminal called with DataType: " << std::endl;
+
 
         if (terminal_bandits.find(R) == terminal_bandits.end()) {
-            // cout << "No bandit found for DataType: " << std::endl;
+
             return std::nullopt;
         }
 
         auto& bandit = terminal_bandits.at(R);
         string terminal_name = bandit.choose(context);
-        // cout << "Bandit chose terminal name: " << terminal_name << std::endl;
+
 
         auto it = std::find_if(
             search_space.terminal_map.at(R).begin(),
@@ -526,46 +526,46 @@ public:
 
         if (it != search_space.terminal_map.at(R).end()) {
             auto index = std::distance(search_space.terminal_map.at(R).begin(), it);
-            // cout << "Terminal found at index: " << index << std::endl;
+
             return search_space.terminal_map.at(R).at(index);
         }
 
-        // cout << "Terminal not found for name: " << terminal_name << std::endl;
+
         return std::nullopt;
     };
 
     // bandit_get_node_like
     std::optional<Node> bandit_get_node_like(Node node, VectorXf& context)
     {
-        // cout << "bandit_get_node_like called with node: " << node.name << std::endl;
+
 
         // TODO: use search_space.terminal_types here (and in search_space get_node_like as well)
         if (Is<NodeType::Terminal, NodeType::Constant, NodeType::MeanLabel>(node.node_type)){
-            // cout << "Node is of type Terminal, Constant, or MeanLabel" << std::endl;
+
             return bandit_sample_terminal(node.ret_type, context);
         }
 
         if (op_bandits.find(node.ret_type) == op_bandits.end()) {
-            // cout << "No bandit found for return type: " << std::endl;
+
             return std::nullopt;
         }
         if (op_bandits.at(node.ret_type).find(node.args_type()) == op_bandits.at(node.ret_type).end()) {
-            // cout << "No bandit found for arg type: " << std::endl;
+
             return std::nullopt;
         }
 
         auto& bandit = op_bandits[node.ret_type][node.args_type()];
         string node_name = bandit.choose(context);
-        // cout << "Bandit chose node name: " << node_name << std::endl;
+
 
         auto entries = search_space.node_map[node.ret_type][node.args_type()];
-        // cout << "Ret match size: " << entries.size() << std::endl;
+
 
         for (const auto& [node_type, node_value]: entries)
         {
-            // cout << " - Node name: " << node_value.name << std::endl;
+
             if (node_value.name == node_name) {
-                // cout << "Node name match: " << node_value.name << std::endl;
+
                 return node_value;
             }
         }

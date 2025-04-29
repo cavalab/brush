@@ -105,14 +105,14 @@ VectorXf Bandit<T>::get_context(const Program<PT>& program, Iter spot,
     // TODO: for better performance, get_context should calculate the context only if the 
     // pbandit is of a contextual type. otherwise, return empty stuff
 
-    // cout << "Inside get_context" << endl;
+    // 
     VectorXf context;
     // -------------------------------------------------------------------------
     //  SECOND APPROACH: prediction vector of the spot node
     // -------------------------------------------------------------------------
     if constexpr (PT==ProgramType::Regressor)
     {
-        // cout << "RegressorProgram detected\n" << endl;
+
         
         // use the code below to work with the whole tree prediction -----------
         ArrayXf out = (*program.Tree.begin().node).template predict<ArrayXf>(d);
@@ -123,7 +123,7 @@ VectorXf Bandit<T>::get_context(const Program<PT>& program, Iter spot,
     }
     else if constexpr (PT==ProgramType::BinaryClassifier)
     {
-        // cout << "ClassifierProgram detected\n" << endl;
+
 
         // use the code below to work with the whole tree prediction -----------
         ArrayXf out = (*program.Tree.begin().node).template predict<ArrayXf>(d);
@@ -136,7 +136,7 @@ VectorXf Bandit<T>::get_context(const Program<PT>& program, Iter spot,
     }
     else if constexpr (PT==ProgramType::MulticlassClassifier)
     {
-        // cout << "MulticlassClassifierProgram detected\n" << endl;
+
 
         // use the code below to work with the whole tree prediction -----------
         ArrayXXf out = (*program.Tree.begin().node).template predict<ArrayXXf>(d);
@@ -147,7 +147,7 @@ VectorXf Bandit<T>::get_context(const Program<PT>& program, Iter spot,
     }
     else if constexpr (PT==ProgramType::Representer)
     {
-        cout << "MulticlassClassifierProgram detected, not implemented\n" << endl;
+
     }
     else
     {
@@ -164,15 +164,15 @@ VectorXf Bandit<T>::get_context(const Program<PT>& program, Iter spot,
     // the number of nodes below the spot.
     // The vector below works as a reference of the nodes.
 
-    // cout << "Tree: " << std::endl;
+
     // for (auto it = Tree.begin(); it != Tree.end(); ++it) {
     //     for (int i = 0; i < Tree.depth(it); ++i) {
-    //         std::cout << "  ";
+
     //     }
-    //     std::cout << (*it).name << std::endl;
+
     // }
 
-    // cout << "Spot name: " << (*spot).name << std::endl;
+
 
     // size_t tot_operators = ss.op_names.size(); //NodeTypes::Count;
     // size_t tot_features  = 0;
@@ -187,10 +187,10 @@ VectorXf Bandit<T>::get_context(const Program<PT>& program, Iter spot,
     
     // for (auto it = Tree.begin(); it != Tree.end(); ++it) {
     //     if (Tree.is_valid(it)) {
-    //         cout << "Check succeeded for node: " << (*it).name << std::endl;
-    //         cout << "Depth of spot: " << Tree.depth(spot) << std::endl;
-    //         cout << "Depth of it: " << Tree.depth(it) << std::endl;
-    //         cout << "It is the spot, searching for it " << std::endl;
+
+
+
+
             
     //         // deciding if it is above or below the spot
     //         size_t pos_shift = 0; // above
@@ -200,7 +200,7 @@ VectorXf Bandit<T>::get_context(const Program<PT>& program, Iter spot,
     //         else if (Tree.is_in_subTree(it, spot)) // below
     //             pos_shift = 2;
 
-    //         cout << "Position shift: " << pos_shift << std::endl;
+
     //         if (Is<NodeType::Terminal, NodeType::Constant, NodeType::MeanLabel>((*it).node_type)){
     //             size_t feature_index = 0;
 
@@ -228,7 +228,7 @@ VectorXf Bandit<T>::get_context(const Program<PT>& program, Iter spot,
     //                     // int complexity = it.node->get_linear_complexity();
     //                     // context((tot_operators + feature_index) + pos_shift*tot_symbols) += static_cast<float>(complexity);
 
-    //                     cout << "Below spot, terminal: " << terminal.name << " at feature index " << feature_index << std::endl;
+
     //                     break;
     //                 }
     //                 ++feature_index;
@@ -238,7 +238,7 @@ VectorXf Bandit<T>::get_context(const Program<PT>& program, Iter spot,
     //             if (it_op != ss.op_names.end()) {
     //                 size_t op_index = std::distance(ss.op_names.begin(), it_op);
     //                 context(pos_shift * tot_symbols + op_index) += 1.0;
-    //                 cout << "Below spot, operator: " << (*it).name << " of index " << pos_shift*tot_symbols + op_index << std::endl;
+
     //             }
     //             else {
     //                 HANDLE_ERROR_THROW("Undefined operator " + (*it).name + "\n");
@@ -247,9 +247,9 @@ VectorXf Bandit<T>::get_context(const Program<PT>& program, Iter spot,
     //     }
     // }
 
-    // cout << "Context part 1: " << context.head(tot_symbols).transpose() << std::endl;
-    // cout << "Context part 2: " << context.segment(tot_symbols, tot_symbols).transpose() << std::endl;
-    // cout << "Context part 3: " << context.tail(tot_symbols).transpose() << std::endl;
+
+
+
     // -------------------------------------------------------------------------
     
     return context;

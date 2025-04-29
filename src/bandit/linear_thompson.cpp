@@ -45,7 +45,7 @@ LinearThompsonSamplingBandit<T>::LinearThompsonSamplingBandit(map<T, float> arms
 
 template <typename T>
 std::map<T, float> LinearThompsonSamplingBandit<T>::sample_probs(bool update) {
-    // cout << "sampling probs started" << endl;
+
     if (update && B.size()>0) // must be called after at least one choose
     {
         int context_size = B.at(0).rows();
@@ -80,7 +80,7 @@ std::map<T, float> LinearThompsonSamplingBandit<T>::sample_probs(bool update) {
     }
 
     return this->probabilities;
-    // cout << "sampling probs finished" << endl;
+
 }
 
 template <typename T>
@@ -88,7 +88,7 @@ T LinearThompsonSamplingBandit<T>::choose(const VectorXf& context) {
     int context_size = context.size();
 
     if (B.size()==0){
-        // cout << "INITIALIZING BANDIT " << endl;
+
 
         for (int i = 0; i < n_arms; ++i) { // one for each arm
             B.push_back( MatrixXf::Identity(context_size, context_size) );
@@ -108,16 +108,16 @@ T LinearThompsonSamplingBandit<T>::choose(const VectorXf& context) {
 
     w = mean + w;
         
-    // cout << "w: " << w << endl;
+
     VectorXf u(n_arms);
     u = w * context; // mat mul
-    // cout << "u: " << u << endl;
+
 
     Eigen::Index max_index;
     float max_value = u.maxCoeff(&max_index);
-    // cout << "max_index: " << max_index << ", max_value: " << max_value << endl;
 
-    // cout << "choose finished" << endl;
+
+
     return arm_index_to_key[max_index];
 }
 
@@ -126,7 +126,7 @@ void LinearThompsonSamplingBandit<T>::update(T arm, float reward, VectorXf& cont
     int context_size = context.size();
 
     if (B.size()==0){
-        // cout << "INITIALIZING BANDIT " << endl;
+
         for (int i = 0; i < n_arms; ++i) { // one for each arm
             B.push_back( MatrixXf::Identity(context_size, context_size) );
             B_inv.push_back( MatrixXf::Identity(context_size, context_size) );
@@ -148,27 +148,27 @@ void LinearThompsonSamplingBandit<T>::update(T arm, float reward, VectorXf& cont
 
     int arm_index = it->first;
 
-    // cout << "Arm index: " << arm_index << endl;
-    // cout << "Context: " << context.size() << endl;
-    // cout << "B[arm_index] before update: " << B[arm_index].size() << endl;
-    // cout << "m2_r.row(arm_index) before update: " << m2_r.row(arm_index).size() << endl;
+
+
+
+
 
     B[arm_index] += context * context.transpose();
-    // cout << "B[arm_index] after update: " << B[arm_index].size() << endl;
+
 
     m2_r.row(arm_index) += (context * reward).transpose();
-    // cout << "m2_r.row(arm_index) after update: " << m2_r.row(arm_index).size() << endl;
+
 
     B_inv[arm_index] = B[arm_index].inverse();
-    // cout << "B_inv[arm_index]: " << B_inv[arm_index].size() << endl;
+
 
     B_inv_sqrt[arm_index] = B_inv[arm_index].ldlt().matrixL();
-    // cout << "B_inv_sqrt[arm_index]: " << B_inv_sqrt[arm_index].size() << endl;
+
 
     mean.row(arm_index) = B_inv[arm_index] * m2_r.row(arm_index).transpose(); // mat mul
-    // cout << "mean.row(arm_index): " << mean.row(arm_index).size() << endl;
 
-    // cout << "update finished" << endl;
+
+
 }
 
 } // MAB

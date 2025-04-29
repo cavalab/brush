@@ -217,10 +217,10 @@ VectorXf multi_log_loss(const VectorXf& y, const ArrayXXf& predict_proba,
     //     {
     //         // for specific class
     //         ArrayXf yhat = predict_proba.col(int(c));
-    //         /* std::cout << "class " << c << "\n"; */
+
 
     //         /* float yi = y(i) == c ? 1.0 : 0.0 ; */ 
-    //         /* std::cout << "yi: " << yi << ", yhat(" << i << "): " << yhat(i) ; */  
+
     //         if (y(i) == c)
     //         {
     //             if (yhat(i) < eps || 1 - yhat(i) < eps)
@@ -232,12 +232,12 @@ VectorXf multi_log_loss(const VectorXf& y, const ArrayXXf& predict_proba,
     //             {
     //                 loss(i) += -log(yhat(i));
     //             }
-    //             /* std::cout << ", loss(" << i << ") = " << loss(i); */
+
     //         }
-    //         /* std::cout << "\n"; */
+
     //         }
     //     if (!class_weights.empty()){
-    //         /* std::cout << "weights.at(y(" << i << ")): " << class_weights.at(y(i)) << "\n"; */
+
     //         loss(i) = loss(i)*class_weights.at(y(i));
     //         sum_weights += class_weights.at(y(i));
     //     }
@@ -245,8 +245,8 @@ VectorXf multi_log_loss(const VectorXf& y, const ArrayXXf& predict_proba,
     // if (sum_weights > 0)
     //     loss = loss.array() / sum_weights * y.size(); 
 
-    /* cout << "loss.mean(): " << loss.mean() << "\n"; */
-    /* cout << "loss.sum(): " << loss.sum() << "\n"; */
+
+
     return loss;
 }
 
@@ -256,8 +256,8 @@ float mean_multi_log_loss(const VectorXf& y,
 {
     loss = multi_log_loss(y, predict_proba, class_weights);
 
-    /* std::cout << "loss: " << loss.transpose() << "\n"; */
-    /* std::cout << "mean loss: " << loss.mean() << "\n"; */
+
+
     return loss.mean();
 }  
 
@@ -298,9 +298,9 @@ float multi_zero_one_loss(const VectorXf& y,
     // // class-wise accuracy = 1/2 ( true positive rate + true negative rate)
     // for (unsigned i=0; i< c.size(); ++i){
     //     class_accuracies(i) = (TP.at(i)/P.at(i) + TN.at(i)/N.at(i))/2; 
-    //     //std::cout << "TP(" << i << "): " << TP.at(i) << ", P[" << i << "]: " << P.at(i) << "\n";
-    //     //std::cout << "TN(" << i << "): " << TN.at(i) << ", N[" << i << "]: " << N.at(i) << "\n";
-    //     //std::cout << "class accuracy(" << i << "): " << class_accuracies(i) << "\n";
+
+
+
     // }
     
     // // set loss vectors if third argument supplied
