@@ -72,9 +72,10 @@ vector<Node> generate_terminals(const Dataset& d, const bool weights_init)
                 if (d.y.size()>0 && weights_init) 
                 {
                     // if the value can be casted to float array, we can calculate slope
-                    if (std::holds_alternative<ArrayXf>(value) && d.y.size()>0) 
+                    if (std::holds_alternative<ArrayXb>(value))
                     {
-                        prob_change = calc_initial_weight(std::get<ArrayXf>(value), d.y);
+                        ArrayXf tmp = std::get<ArrayXb>(value).template cast<float>();
+                        prob_change = calc_initial_weight(tmp, d.y);
                     }
                     else if (std::holds_alternative<ArrayXi>(value))
                     {
@@ -99,10 +100,9 @@ vector<Node> generate_terminals(const Dataset& d, const bool weights_init)
                         
                         prob_change = slopes.mean();
                     }
-                    else if (std::holds_alternative<ArrayXb>(value))
+                    else if (std::holds_alternative<ArrayXf>(value)) 
                     {
-                        auto tmp = std::get<ArrayXb>(value).template cast<float>();
-                        prob_change = calc_initial_weight(tmp, d.y);
+                        prob_change = calc_initial_weight(std::get<ArrayXf>(value), d.y);
                     }
                     else
                     {
@@ -129,7 +129,7 @@ vector<Node> generate_terminals(const Dataset& d, const bool weights_init)
         int count = 0;
 
         for (const auto& n : terminals) {
-            if (n.ret_type == ret_type) {
+            if (n.ret_type == ret_type && n.get_prob_change()>0) {
                 sum += n.get_prob_change();
                 count++;
             }
@@ -140,15 +140,15 @@ vector<Node> generate_terminals(const Dataset& d, const bool weights_init)
 
         return sum / count;
     };
-
+    
     // constants for each type -- floats, integers, boolean. This is useful
     // to ensure the search space will always have something to fill up open spaces
     // when building/modifying trees
     auto cXf = Node(NodeType::Constant, Signature<ArrayXf()>{}, true, "Constant");
-    float floats_avg_weights = signature_avg(cXf.ret_type);
-    cXf.set_prob_change(floats_avg_weights);
+    cXf.set_prob_change(signature_avg(cXf.ret_type));
     terminals.push_back(cXf);
-
+    
+    // Reminder: Integers are used to represent categorical variables
     auto cXi = Node(NodeType::Constant, Signature<ArrayXi()>{}, true, "Constant");
     cXi.set_prob_change(signature_avg(cXi.ret_type));
     terminals.push_back(cXi);
@@ -160,8 +160,8 @@ vector<Node> generate_terminals(const Dataset& d, const bool weights_init)
     // mean label node. Does not need to be part of symbols. works only for classification
     if (d.classification)
     {
-        auto meanlabel = Node(NodeType::MeanLabel, Signature<ArrayXf()>{}, true, "MeanLabel");
-        meanlabel.set_prob_change(floats_avg_weights);
+        auto meanlabel = Node(NodeType::MeanLabel, Signature<ArrayXb()>{}, true, "MeanLabel");
+        meanlabel.set_prob_change(1.0f); // always present in classification problems
         terminals.push_back(meanlabel);
     }
 
@@ -217,7 +217,7 @@ void SearchSpace::init(const Dataset& d, const unordered_map<string,float>& user
                     std::make_index_sequence<NodeTypes::OpCount>());
 
     if (d.classification)
-    {        
+    {
         std::unordered_map<std::string, float> extended_user_ops;
         
         // Convert ArrayXf to std::vector<float> for compatibility with std::set

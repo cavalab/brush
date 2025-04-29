@@ -75,7 +75,17 @@ void Inexact_simplifier::index(TreeIter& spot, const Dataset &d)
     // we cast to float because hash and query are based on matrix multiplications,
     // but we will store the hash only on the corresponding storage instance
     // cout << "Predicting node value" << std::endl;
-    ArrayXf v_float = (*spot.node).template predict<ArrayXf>(d);
+    ArrayXf v_float; // = (*spot.node).template predict<ArrayXf>(d);
+    if (spot.node->data.ret_type==DataType::ArrayB) { // TODO: make this function templated?
+        auto temp = (*spot.node).predict<ArrayXb>(d);
+        v_float = temp.template cast<float>();
+    }
+    else if (spot.node->data.ret_type==DataType::ArrayI) {
+        auto temp = (*spot.node).predict<ArrayXi>(d);
+        v_float = temp.template cast<float>();
+    } else { // otherwise we store it as floats
+        v_float = (*spot.node).template predict<ArrayXf>(d);
+    }
 
     // cout << "Hashing node value" << std::endl;
     auto hashes = hash(v_float);
@@ -100,7 +110,18 @@ optional<pair<size_t, string>> Inexact_simplifier::query(TreeIter& spot, const D
 {
     float threshold = 1e-8; // TODO: calculate threshold based on variance of dataset
 
-    ArrayXf v_float = (*spot.node).template predict<ArrayXf>(d);
+    // TODO: this block below filling v_float is repeated in the function above. Maybe I should implement it in a separate function?
+    ArrayXf v_float; // = (*spot.node).template predict<ArrayXf>(d);
+    if (spot.node->data.ret_type==DataType::ArrayB) { // TODO: make this function templated?
+        auto temp = (*spot.node).predict<ArrayXb>(d);
+        v_float = temp.template cast<float>();
+    }
+    else if (spot.node->data.ret_type==DataType::ArrayI) {
+        auto temp = (*spot.node).predict<ArrayXi>(d);
+        v_float = temp.template cast<float>();
+    } else { // otherwise we store it as floats
+        v_float = (*spot.node).template predict<ArrayXf>(d);
+    }
 
     vector<pair<size_t, string>> candidates;
     vector<float> distances;
@@ -113,9 +134,10 @@ optional<pair<size_t, string>> Inexact_simplifier::query(TreeIter& spot, const D
         storage = (&storageInt);
         // cout << "Using storageInt" << std::endl;
     } else { // otherwise we store it as floats
-        storage = (&storageFloat); // TODO: should throw an error
+        storage = (&storageFloat); 
         // cout << "Using storageFloat" << std::endl;
     }
+    // TODO: should throw an error if no storage matches
 
     vector<string> hashes = hash(v_float);
     // cout << "Hashes: ";

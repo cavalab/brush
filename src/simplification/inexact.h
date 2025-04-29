@@ -82,7 +82,8 @@ class Inexact_simplifier
                 // non-wheightable nodes are not simplified. TODO: revisit this and see if they should (then implement it)
                 // This is avoiding using booleans.
                 if (spot.node->data.get_prob_change() > 0
-                &&  IsWeighable(spot.node->data.ret_type) && IsWeighable(spot.node->data.node_type)) {
+                // &&  IsWeighable(spot.node->data.ret_type) && IsWeighable(spot.node->data.node_type)
+                ) {
                     // indexing only small subtrees or non-constant-terminal nodes
                     if (simplified_program.size_at(spot) < 10
                     ||  Isnt<NodeType::Constant, NodeType::MeanLabel>(spot.node->data.node_type)) {

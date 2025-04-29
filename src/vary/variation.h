@@ -229,6 +229,7 @@ public:
         // TODO: rewrite this entire function to avoid repetition (this is a frankenstein)
         auto indices = pop.get_island_indexes(island);
 
+        vector<std::shared_ptr<Individual<T>>> aux_individuals;
         for (unsigned i = 0; i < indices.size(); ++i)
         {
             if (pop.individuals.at(indices.at(i)) != nullptr)
@@ -244,11 +245,12 @@ public:
             std::optional<Individual<T>> opt = std::nullopt; // new individual  
                 
             // TODO: should this be randomly selected, or should I use each parent sequentially?
-            auto idx = *r.select_randomly(parents.begin(), parents.end());
+            // auto idx = *r.select_randomly(parents.begin(), parents.end());
+            auto idx = parents.at(i % parents.size()); // use modulo to cycle through parents
             
             const Individual<T>& mom = pop[idx];
 
-            // cout<< "orig:  " << mom.program.get_model() << endl;
+             // cout<< "orig:  " << mom.program.get_model() << endl;
         
             // if we got here, then the individual is not fully locked and we can proceed with mutation
             vector<Individual<T>> ind_parents;
@@ -266,7 +268,7 @@ public:
             if (std::all_of(mom.program.Tree.begin(), mom.program.Tree.end(),
                 [](const auto& n) { return n.get_prob_change()<=0.0; }))
             {
-                // cout<< "Fully locked individual, copying it" << std::endl;    
+                 // cout<< "Fully locked individual, copying it" << std::endl;    
                 ind = Individual<T>(mom);
                 ind.variation = "born";
             }
@@ -275,9 +277,10 @@ public:
                 choice = this->variation_bandit.choose(root_context);
                 if (choice == "cx")
                 {
-                    const Individual<T>& dad = pop[
-                        *r.select_randomly(parents.begin(), parents.end())];
-                    
+                    // const Individual<T>& dad = pop[
+                    //     *r.select_randomly(parents.begin(), parents.end())];
+                    const Individual<T>& dad = pop[parents.at((i+1) % parents.size())]; // use modulo to cycle through parents
+
                     // cout<< "Performing crossover" << std::endl;
                     auto variation_result = cross(mom, dad);
                     ind_parents = {mom, dad};
@@ -292,6 +295,7 @@ public:
                     tie(opt, context) = variation_result;
                     // cout<< "unpacked" << endl;
                 }
+
                 if (opt) // variation worked, lets keep this
                 {
                     // cout<< "Variation successful" << std::endl;
@@ -309,10 +313,12 @@ public:
                 }
             }
             
+            // cout<< "Setting objt" << std::endl;
             // ind.set_objectives(mom.get_objectives()); // it will have an invalid fitness
 
             ind.set_id(id);
 
+            // cout<< "Setting fitness values" << std::endl;
             ind.fitness.set_loss(mom.fitness.get_loss());
             ind.fitness.set_loss_v(mom.fitness.get_loss_v());
             ind.fitness.set_size(mom.fitness.get_size());
@@ -323,7 +329,12 @@ public:
             assert(ind.program.size() > 0);
             assert(ind.fitness.valid() == false);
 
-            ind.program.fit(data.get_training_data());
+            // cout<< "Fitting" << std::endl;
+            auto data_aux = data.get_training_data();
+            // cout<< "data aux" << std::endl;
+            // cout<< "program:  " << ind.program.get_model() << endl;
+            ind.program.fit(data_aux);
+            // cout<< "done fitting." << std::endl;
 
             // simplify before calculating fitness (order matters, as they are not refitted and constants simplifier does not replace with the right value.)
             // TODO: constants_simplifier should set the correct value for the constant (so we dont have to refit).
@@ -340,6 +351,7 @@ public:
                 // cout<< "inext: " << ind.program.get_model() << endl;
             }
         
+            // cout<< "before assign fit" << endl;
             evaluator.assign_fit(ind, data, parameters, false);
             // cout<< "after fit: " << ind.program.get_model() << endl;
             
@@ -444,39 +456,52 @@ public:
             {
                 // cout<< "Updating variation bandit with variation: " << ind.get_variation() << " and reward: " << r << ". choosen variation was: " << choice << std::endl;
                 this->variation_bandit.update(ind.get_variation(), r, root_context);
+                
+                // if (!ind.get_variation().compare("born") && !ind.get_variation().compare("cx")
+                // &&  !ind.get_variation().compare("subtree"))
+                // {                
+                    if (ind.get_sampled_nodes().size() > 0) {
+                        // cout<< "Updating terminal and operator bandits for sampled nodes" << std::endl;
+                        const auto& changed_nodes = ind.get_sampled_nodes();
+                        for (auto& node : changed_nodes) {
+                            if (node.get_arg_count() == 0) {
+                                auto datatype = node.get_ret_type();
+                                // cout<< "Updating terminal bandit for node: " << node.name << std::endl;
+                                this->terminal_bandits[datatype].update(node.get_feature(), r, context);
+                            }
+                            else {
+                                auto ret_type = node.get_ret_type();
+                                auto args_type = node.args_type();
+                                auto name = node.name;
+                                // cout<< "Updating operator bandit for node: " << name << std::endl;
+                                this->op_bandits[ret_type][args_type].update(name, r, context);
+                            }
+                        }
+                    }
+                // }
             }
             else
             { // giving zero reward if the variation failed
                 // cout<< "Variation failed, updating variation bandit with choice: " << choice << " and reward: 0.0" << std::endl;
                 this->variation_bandit.update(choice, 0.0, root_context);
             }
-
-            // if (!ind.get_variation().compare("born") && !ind.get_variation().compare("cx")
-            // &&  !ind.get_variation().compare("subtree"))
-            // {                
-                if (ind.get_sampled_nodes().size() > 0) {
-                    // cout<< "Updating terminal and operator bandits for sampled nodes" << std::endl;
-                    const auto& changed_nodes = ind.get_sampled_nodes();
-                    for (auto& node : changed_nodes) {
-                        if (node.get_arg_count() == 0) {
-                            auto datatype = node.get_ret_type();
-                            // cout<< "Updating terminal bandit for node: " << node.name << std::endl;
-                            this->terminal_bandits[datatype].update(node.get_feature(), r, context);
-                        }
-                        else {
-                            auto ret_type = node.get_ret_type();
-                            auto args_type = node.args_type();
-                            auto name = node.name;
-                            // cout<< "Updating operator bandit for node: " << name << std::endl;
-                            this->op_bandits[ret_type][args_type].update(name, r, context);
-                        }
-                    }
-                }
-            // }
             
+            // aux_individuals.push_back(std::make_shared<Individual<T>>(ind));
             pop.individuals.at(indices.at(i)) = std::make_shared<Individual<T>>(ind);
             // cout<< "Individual at index " << indices.at(i) << " updated successfully" << std::endl;
         }
+        
+        // updating the population with the new individual
+        // int aux_index = 0;
+        // for (unsigned i = 0; i < indices.size(); ++i)
+        // {
+        //     if (pop.individuals.at(indices.at(i)) != nullptr)
+        //     {
+        //         // the nullptrs should be at the end of the vector
+        //        pop.individuals.at(indices.at(i)) = aux_individuals.at(aux_index);
+        //        aux_index++;
+        //     }
+        // }
     }
     
     // these functions below will extract context and use it to choose the nodes to replace
