@@ -205,7 +205,9 @@ template<>
 struct Signatures<NodeType::MeanLabel>{ 
     // meanlabel is based on y, so it is always a float ret_type
     using type = std::tuple<
-          Signature<ArrayXf()>
+          Signature<ArrayXf()>,
+          Signature<ArrayXi()>,
+          Signature<ArrayXb()>
           >;
 }; 
 
@@ -264,8 +266,7 @@ struct Signatures<N, enable_if_t<is_in_v<N,
     NodeType::Sqrt,
     NodeType::Sqrtabs,
     NodeType::Square,
-    NodeType::Logistic,
-    NodeType::OffsetSum
+    NodeType::Logistic
     >>>{ 
         // using type = std::tuple< 
         //     Signature<ArrayXf(ArrayXf)>,
@@ -274,6 +275,24 @@ struct Signatures<N, enable_if_t<is_in_v<N,
         using unaryTuple = std::tuple<
             Signature<ArrayXf(ArrayXf)>,
             Signature<ArrayXXf(ArrayXXf)>
+        >;
+
+        using naryTuple = NarySignatures_t<ArrayXXf,ArrayXf,MAX_ARGS>;
+
+        using type = decltype(std::tuple_cat(unaryTuple(), naryTuple()));
+
+        // using default = tuple_element<0,type>;
+    };
+
+    
+template<NodeType N> 
+struct Signatures<N, enable_if_t<is_in_v<N,
+    NodeType::OffsetSum
+    >>>{ 
+        using unaryTuple = std::tuple<
+            Signature<ArrayXf(ArrayXf)>
+            // Signature<ArrayXf(ArrayXi)>,
+            // Signature<ArrayXf(ArrayXb)>
         >;
 
         using naryTuple = NarySignatures_t<ArrayXXf,ArrayXf,MAX_ARGS>;
