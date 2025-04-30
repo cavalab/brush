@@ -203,8 +203,11 @@ struct Signatures<N, enable_if_t<is_in_v<N, NodeType::Constant, NodeType::Termin
 
 template<>
 struct Signatures<NodeType::MeanLabel>{ 
+    // meanlabel is based on y, so it is always a float ret_type
     using type = std::tuple<
-          Signature<ArrayXf()>
+          Signature<ArrayXf()>,
+          Signature<ArrayXi()>,
+          Signature<ArrayXb()>
           >;
 }; 
 
@@ -218,7 +221,10 @@ struct Signatures<N, enable_if_t<is_in_v<N,
     >>>{
         using type = std::tuple< 
             Signature<ArrayXf(ArrayXf,ArrayXf)>,
-            Signature<ArrayXXf(ArrayXXf,ArrayXXf)>
+            Signature<ArrayXi(ArrayXi,ArrayXi)>,
+            // Signature<ArrayXf(ArrayXi,ArrayXf)>, // this will cast the integer to float. TODO: make this work (or figure out a better way of casting)
+            Signature<ArrayXXf(ArrayXXf,ArrayXXf)>,
+            Signature<ArrayXXi(ArrayXXi,ArrayXXi)>
         >; 
     }; 
 
@@ -260,8 +266,7 @@ struct Signatures<N, enable_if_t<is_in_v<N,
     NodeType::Sqrt,
     NodeType::Sqrtabs,
     NodeType::Square,
-    NodeType::Logistic,
-    NodeType::OffsetSum
+    NodeType::Logistic
     >>>{ 
         // using type = std::tuple< 
         //     Signature<ArrayXf(ArrayXf)>,
@@ -270,6 +275,24 @@ struct Signatures<N, enable_if_t<is_in_v<N,
         using unaryTuple = std::tuple<
             Signature<ArrayXf(ArrayXf)>,
             Signature<ArrayXXf(ArrayXXf)>
+        >;
+
+        using naryTuple = NarySignatures_t<ArrayXXf,ArrayXf,MAX_ARGS>;
+
+        using type = decltype(std::tuple_cat(unaryTuple(), naryTuple()));
+
+        // using default = tuple_element<0,type>;
+    };
+
+    
+template<NodeType N> 
+struct Signatures<N, enable_if_t<is_in_v<N,
+    NodeType::OffsetSum
+    >>>{ 
+        using unaryTuple = std::tuple<
+            Signature<ArrayXf(ArrayXf)>
+            // Signature<ArrayXf(ArrayXi)>,
+            // Signature<ArrayXf(ArrayXb)>
         >;
 
         using naryTuple = NarySignatures_t<ArrayXXf,ArrayXf,MAX_ARGS>;
@@ -360,19 +383,23 @@ struct Signatures<N, enable_if_t<is_in_v<N, NodeType::SplitBest, NodeType::Custo
             /* Signature<ArrayXXf,ArrayXXf,,ArrayXXf, */
         >; 
     }; 
+
 template<>
 struct Signatures<NodeType::SplitOn>{ 
+    // spliton and splitbest will always compare to the weight if is a number, otherwise will use the boolean value
+    // TODO: idea: if we have the LEQ or GEQ, we can have splitOn with all different data types without
+    // having to make it explicit in the signature. I think there is too many types of splitOn that makes it hard to actually be used
         using type = std::tuple< 
-            Signature<ArrayXf(ArrayXf,ArrayXf,ArrayXf)>,
-            Signature<ArrayXf(ArrayXi,ArrayXf,ArrayXf)>,
+            // Signature<ArrayXf(ArrayXf,ArrayXf,ArrayXf)>,
+            // Signature<ArrayXf(ArrayXi,ArrayXf,ArrayXf)>,
             Signature<ArrayXf(ArrayXb,ArrayXf,ArrayXf)>,
 
-            Signature<ArrayXi(ArrayXf,ArrayXi,ArrayXi)>,
-            Signature<ArrayXi(ArrayXi,ArrayXi,ArrayXi)>,
+            // Signature<ArrayXi(ArrayXf,ArrayXi,ArrayXi)>,
+            // Signature<ArrayXi(ArrayXi,ArrayXi,ArrayXi)>,
             Signature<ArrayXi(ArrayXb,ArrayXi,ArrayXi)>,
 
-            Signature<ArrayXb(ArrayXf,ArrayXb,ArrayXb)>,
-            Signature<ArrayXb(ArrayXi,ArrayXb,ArrayXb)>,
+            // Signature<ArrayXb(ArrayXf,ArrayXb,ArrayXb)>,
+            // Signature<ArrayXb(ArrayXi,ArrayXb,ArrayXb)>,
             Signature<ArrayXb(ArrayXb,ArrayXb,ArrayXb)>
         >;
     }; 

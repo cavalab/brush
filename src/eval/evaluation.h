@@ -16,6 +16,7 @@ namespace Brush {
 
 using namespace Pop;
 
+// TODO: rename this file and class to evaluator?
 namespace Eval {
 
 template<ProgramType T> 
@@ -33,6 +34,7 @@ public:
     Evaluation(){
         // TODO: make eval update loss_v accordingly, and set to th same as train loss if there is no batch or no validation
     
+        // TODO: make accuracy the main classification metric?
         string scorer;
         if ( (T == Brush::ProgramType::MulticlassClassifier)
         ||   (T == Brush::ProgramType::Representer) )
@@ -72,7 +74,7 @@ public:
                  const Dataset& data, 
                  const Parameters& params, 
                  bool fit=true,
-                 bool validation=false
+                 bool validation=true // if there is no validation, then loss_v==loss
                  );
     
     /**

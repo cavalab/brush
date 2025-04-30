@@ -28,17 +28,35 @@ string TreeNode::get_tree_model(bool pretty, string offset) const
     auto sib = first_child;
     for(int i = 0; i < data.get_arg_count(); ++i)
     {
-        child_outputs += offset + "|-";
+        child_outputs += offset + "|- ";
         string s = sib->get_tree_model(pretty, offset+new_offset);
         sib = sib->next_sibling;
-        if (sib == nullptr)
+        // if (sib == nullptr)
             ReplaceStringInPlace(s, "\n"+offset, "\n"+offset+"|") ;
         child_outputs += s;
         if (sib != nullptr)
             child_outputs += "\n";
     }
     
-    return data.get_name() + child_outputs;
+    if (Is<NodeType::SplitBest>(data.node_type)){
+        if (data.get_feature_type() == DataType::ArrayB)
+            return fmt::format("If({})", data.get_feature()) + child_outputs;
+
+        return fmt::format("If({}>{:.2f})", data.get_feature(), data.W) +
+               child_outputs;
+    }
+    else if (Is<NodeType::SplitOn>(data.node_type)){
+        if (data.arg_types.at(0) == DataType::ArrayB)
+        {
+            // booleans dont use thresholds (they are used directly as mask in split)
+            return "If" + child_outputs;
+        }
+        // integers or floating points (they have a threshold)
+        return fmt::format("If(>{:.2f})", data.W) + child_outputs;
+    }
+    else{
+        return data.get_name() + child_outputs;
+    }
 };
 ////////////////////////////////////////////////////////////////////////////////
 // serialization for tree
@@ -77,49 +95,49 @@ void from_json(const json &j, tree<Node> &t)
 
 unordered_map<NodeType, int> operator_complexities = {
     // Unary
-    {NodeType::Abs     ,  3},
-    {NodeType::Acos    ,  5},
-    {NodeType::Asin    ,  5},
-    {NodeType::Atan    ,  5},
-    {NodeType::Cos     ,  5},
-    {NodeType::Cosh    ,  5},
-    {NodeType::Sin     ,  5},
-    {NodeType::Sinh    ,  5},
-    {NodeType::Tan     ,  5},
-    {NodeType::Tanh    ,  5},
-    {NodeType::Ceil    ,  4},
-    {NodeType::Floor   ,  4},
-    {NodeType::Exp     ,  4},
-    {NodeType::Log     ,  4},
-    {NodeType::Logabs  ,  12},
-    {NodeType::Log1p   ,  8},
-    {NodeType::Sqrt    ,  4},
-    {NodeType::Sqrtabs ,  4},
-    {NodeType::Square  ,  3},
-    {NodeType::Logistic,  3},
-    {NodeType::OffsetSum, 2},
+    {NodeType::Abs     ,  4},
+    {NodeType::Acos    ,  6},
+    {NodeType::Asin    ,  6},
+    {NodeType::Atan    ,  6},
+    {NodeType::Cos     ,  6},
+    {NodeType::Cosh    ,  6},
+    {NodeType::Sin     ,  6},
+    {NodeType::Sinh    ,  6},
+    {NodeType::Tan     ,  6},
+    {NodeType::Tanh    ,  6},
+    {NodeType::Ceil    ,  5},
+    {NodeType::Floor   ,  5},
+    {NodeType::Exp     ,  5},
+    {NodeType::Log     ,  5},
+    {NodeType::Logabs  ,  10},
+    {NodeType::Log1p   ,  9},
+    {NodeType::Sqrt    ,  5},
+    {NodeType::Sqrtabs ,  5},
+    {NodeType::Square  ,  4},
+    {NodeType::Logistic,  4},
+    {NodeType::OffsetSum, 3},
 
     // timing masks
-    {NodeType::Before, 3},
-    {NodeType::After , 3},
-    {NodeType::During, 3},
+    {NodeType::Before, 4},
+    {NodeType::After , 4},
+    {NodeType::During, 4},
 
     // Reducers
-    {NodeType::Min      , 3},
-    {NodeType::Max      , 3},
-    {NodeType::Mean     , 3},
-    {NodeType::Median   , 3},
-    {NodeType::Sum      , 2},
-    {NodeType::Prod     , 3},
+    {NodeType::Min      , 4},
+    {NodeType::Max      , 4},
+    {NodeType::Mean     , 4},
+    {NodeType::Median   , 4},
+    {NodeType::Sum      , 4},
+    {NodeType::Prod     , 4},
 
     // Transformers 
-    {NodeType::Softmax, 4},
+    {NodeType::Softmax, 5},
 
     // Binary
-    {NodeType::Add, 2},
-    {NodeType::Sub, 2},
-    {NodeType::Mul, 3},
-    {NodeType::Div, 4},
+    {NodeType::Add, 3},
+    {NodeType::Sub, 3},
+    {NodeType::Mul, 4},
+    {NodeType::Div, 5},
     {NodeType::Pow, 5},
 
     //split
@@ -127,21 +145,47 @@ unordered_map<NodeType, int> operator_complexities = {
     {NodeType::SplitOn  , 4},
 
     // boolean
-    {NodeType::And, 2},
-    {NodeType::Or , 2},
-    {NodeType::Not, 2},
+    {NodeType::And, 3},
+    {NodeType::Or , 3},
+    {NodeType::Not, 3},
 
     // leaves
     {NodeType::MeanLabel, 1},
-    {NodeType::Constant , 1},
-    {NodeType::Terminal , 2},
+    {NodeType::Constant , 2},
+    {NodeType::Terminal , 3},
     {NodeType::ArgMax   , 5},
-    {NodeType::Count    , 3},
+    {NodeType::Count    , 4},
     
     // custom
     {NodeType::CustomUnaryOp , 5},
     {NodeType::CustomBinaryOp, 5},
     {NodeType::CustomSplit   , 5}
+};
+
+int TreeNode::get_linear_complexity() const 
+{
+    int tree_complexity = operator_complexities.at(data.node_type);
+
+    auto child = first_child;
+    for(int i = 0; i < data.get_arg_count(); ++i)
+    {
+        tree_complexity += child->get_linear_complexity();
+        child = child->next_sibling;
+    }
+
+    // include the `w` and `*` if the node is weighted (and it is not a constant or mean label)
+    if (data.get_is_weighted()
+    &&  Isnt<NodeType::Constant, NodeType::MeanLabel>(data.node_type) )
+    {
+        // ignoring weight if it has the value of neutral element of operation
+        if ((Is<NodeType::OffsetSum>(data.node_type) && data.W != 0.0)
+        ||  (data.W != 1.0))
+            return operator_complexities.at(NodeType::Mul) +
+                operator_complexities.at(NodeType::Constant) + 
+                tree_complexity;
+    }
+    
+    return tree_complexity;
 };
 
 int TreeNode::get_complexity() const 
@@ -161,14 +205,16 @@ int TreeNode::get_complexity() const
 
     // include the `w` and `*` if the node is weighted (and it is not a constant or mean label)
     if (data.get_is_weighted()
-    && !(Is<NodeType::Constant>(data.node_type)
-        ||  (Is<NodeType::MeanLabel>(data.node_type)
-        ||   Is<NodeType::OffsetSum>(data.node_type)) )
-    )
-        return operator_complexities.at(NodeType::Mul)*(
-            operator_complexities.at(NodeType::Constant) + 
-            node_complexity*(children_complexity_sum)
-        );
+    &&  Isnt<NodeType::Constant, NodeType::MeanLabel>(data.node_type) )
+    {
+        // ignoring weight if it has the value of neutral element of operation
+        if ((Is<NodeType::OffsetSum>(data.node_type) && data.W != 0.0)
+        ||  (data.W != 1.0))
+            return operator_complexities.at(NodeType::Mul)*(
+                       operator_complexities.at(NodeType::Constant) + 
+                       node_complexity*(children_complexity_sum)
+                   );
+    }
 
     return node_complexity*(children_complexity_sum);
 };

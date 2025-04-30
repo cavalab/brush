@@ -1,4 +1,5 @@
 #include "testsHeader.h"
+#include "../../src/bandit/bandit.cpp"
 
 TEST(Variation, FixedRootDoesntChange)
 {
@@ -29,10 +30,10 @@ TEST(Variation, FixedRootDoesntChange)
             params.max_size  = s;
             params.max_depth = d;
 
-            Variation variator = Variation<ProgramType::BinaryClassifier>(params, SS);
+            Variation variator = Variation<ProgramType::BinaryClassifier>(params, SS, data);
 
             int successes = 0;
-            for (int attempt = 0; attempt < 10; ++attempt)
+            for (int attempt = 0; attempt < 50; ++attempt)
             {
                 // different program types changes how predict works (and the rettype of predict)
                 ClassifierProgram PRG = SS.make_classifier(0, 0, params);
@@ -53,7 +54,7 @@ TEST(Variation, FixedRootDoesntChange)
                 ASSERT_TRUE(root.fixed==true);
 
                 Individual<PT::BinaryClassifier> IND(PRG);
-                auto opt_mutation = variator.mutate(IND);
+                auto [opt_mutation, context_mutation] = variator.mutate(IND);
                 
                 if (opt_mutation)
                 {
@@ -74,7 +75,7 @@ TEST(Variation, FixedRootDoesntChange)
                 ClassifierProgram PRG2 = SS.make_classifier(0, 0, params);
 
                 Individual<PT::BinaryClassifier> IND2(PRG2);
-                auto opt_cx = variator.cross(IND, IND2);
+                auto [opt_cx, context] = variator.cross(IND, IND2);
 
                 if (opt_cx)
                 {
@@ -140,7 +141,7 @@ TEST(Variation, InsertMutationWorks)
     SearchSpace SS;
     SS.init(data);
 
-    Variation variator = Variation<ProgramType::Regressor>(params, SS);
+    Variation variator = Variation<ProgramType::Regressor>(params, SS, data);
 
     int successes = 0;
     for (int attempt = 0; attempt < 100; ++attempt)
@@ -165,7 +166,7 @@ TEST(Variation, InsertMutationWorks)
 
         Individual<PT::Regressor> IND(PRG);
 
-        auto opt = variator.mutate(IND); 
+        auto [opt, context] = variator.mutate(IND); 
 
         if (opt){
             successes += 1;
@@ -196,7 +197,7 @@ TEST(Variation, InsertMutationWorks)
         variator.parameters.set_max_depth(IND.program.depth());
         variator.parameters.set_max_size(IND.program.size());
 
-        auto opt2 = variator.mutate(IND);
+        auto [opt2, context2] = variator.mutate(IND);
         if (opt2){ // This shoudl't happen. We'll print the error
             auto Child2 = opt2.value();
 
@@ -247,7 +248,7 @@ TEST(Variation, Mutation)
             params.max_size  = s;
             params.max_depth = d;
 
-            Variation variator = Variation<ProgramType::Regressor>(params, SS);
+            Variation variator = Variation<ProgramType::Regressor>(params, SS, data);
 
             fmt::print("d={},s={}\n",d,s);
             fmt::print("make_regressor\n");
@@ -274,7 +275,7 @@ TEST(Variation, Mutation)
             fmt::print("auto Child = PRG.mutate();\n");
 
             Individual<PT::Regressor> IND(PRG);
-            auto opt = variator.mutate(IND);
+            auto [opt, context] = variator.mutate(IND);
 
             if (!opt){
                 fmt::print(
@@ -345,7 +346,7 @@ TEST(Variation, MutationSizeAndDepthLimit)
             params.max_depth = d;
             
             // creating and fitting a child
-            Variation variator = Variation<ProgramType::Regressor>(params, SS);
+            Variation variator = Variation<ProgramType::Regressor>(params, SS, data);
 
             fmt::print("d={},s={}\n",d,s);
             fmt::print("make_regressor\n");
@@ -358,7 +359,7 @@ TEST(Variation, MutationSizeAndDepthLimit)
             auto PRG_model = PRG.get_model("compact", true);
 
             Individual<PT::Regressor> IND(PRG);
-            auto opt = variator.mutate(IND);
+            auto [opt, context] = variator.mutate(IND);
 
             if (!opt){
                 fmt::print(
@@ -437,7 +438,7 @@ TEST(Variation, Crossover)
         {
             params.max_size  = s;
             params.max_depth = d;
-            Variation variator = Variation<ProgramType::Regressor>(params, SS);
+            Variation variator = Variation<ProgramType::Regressor>(params, SS, data);
             
             RegressorProgram PRG1 = SS.make_regressor(d, 0, params);
             PRG1.fit(data);
@@ -463,7 +464,7 @@ TEST(Variation, Crossover)
 
             Individual<PT::Regressor> IND1(PRG1);
             Individual<PT::Regressor> IND2(PRG2);
-            auto opt = variator.cross(IND1, IND2);
+            auto [opt, context] = variator.cross(IND1, IND2);
 
             if (!opt){
                 fmt::print(
@@ -534,7 +535,7 @@ TEST(Variation, CrossoverSizeAndDepthLimit)
         {
             params.max_size  = s;
             params.max_depth = d;
-            Variation variator = Variation<ProgramType::Regressor>(params, SS);
+            Variation variator = Variation<ProgramType::Regressor>(params, SS, data);
 
             // Enforcing that the parents does not exceed max_size by
             // taking into account the highest arity of the function nodes
@@ -561,7 +562,7 @@ TEST(Variation, CrossoverSizeAndDepthLimit)
             fmt::print("cross\n");
             Individual<PT::Regressor> IND1(PRG1);
             Individual<PT::Regressor> IND2(PRG2);
-            auto opt = variator.cross(IND1, IND2);
+            auto [opt, context] = variator.cross(IND1, IND2);
 
             if (!opt){
                 fmt::print("Crossover failed to create a child"

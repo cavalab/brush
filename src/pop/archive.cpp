@@ -9,7 +9,10 @@ Archive<T>::Archive():  selector(true) {};
 template<ProgramType T>
 void Archive<T>::set_objectives(vector<string> objectives)
 {
-    this->sort_complexity = in(objectives, std::string("complexity"));
+    this->sort_complexity =  in(objectives, std::string("complexity"))
+                          || in(objectives, std::string("linear_complexity"));
+                          
+    this->linear_complexity = in(objectives, std::string("linear_complexity"));
 }
 
 // sorting etc --- all done using fitness class (easier to compare regardless of obj func)
@@ -21,8 +24,14 @@ bool Archive<T>::sortComplexity(const Individual<T>& lhs,
     // other option would be having the getters and setters to use iin pybind11, but
     // in cpp we do it directly (we know how to manipulate this thing, but users may not,
     // so these setters could do some validation to justify its existence).
-
     return lhs.fitness.complexity < rhs.fitness.complexity;
+}
+
+template<ProgramType T>
+bool Archive<T>::sortLinearComplexity(const Individual<T>& lhs, 
+        const Individual<T>& rhs)
+{
+    return lhs.fitness.linear_complexity < rhs.fitness.linear_complexity;
 }
 
 template<ProgramType T>
@@ -45,19 +54,23 @@ template<ProgramType T>
 bool Archive<T>::sameFitComplexity(const Individual<T>& lhs, 
         const Individual<T>& rhs)
 {
+    // TODO: delete this one
+
+    return (lhs.fitness == rhs.fitness);
+
     // fitness' operator== is overloaded to compare wvalues.
     // we also check complexity equality to avoid the case where the user
     // did not specified complexity as one of the objectives
-    return (lhs.fitness == rhs.fitness &&
-            lhs.fitness.complexity == rhs.fitness.complexity);
+    // return (lhs.fitness == rhs.fitness
+    //     &&  lhs.fitness.complexity == rhs.fitness.complexity);
 }
 
+// TODO: i could get rid of one of these
 template<ProgramType T>
 bool Archive<T>::sameObjectives(const Individual<T>& lhs, 
         const Individual<T>& rhs)
 {
     return (lhs.fitness == rhs.fitness);
-
 }
 
 template<ProgramType T>
@@ -97,8 +110,12 @@ void Archive<T>::init(Population<T>& pop)
             }
         } 
     }
-    if (this->sort_complexity)
-        std::sort(individuals.begin(),individuals.end(), &sortComplexity); 
+    if (this->sort_complexity) {
+        if (this->linear_complexity)
+            std::sort(individuals.begin(), individuals.end(), &sortLinearComplexity); 
+        else
+            std::sort(individuals.begin(), individuals.end(), &sortComplexity);
+    }
     else
         std::sort(individuals.begin(),individuals.end(), &sortObj1); 
 
@@ -110,6 +127,7 @@ void Archive<T>::update(Population<T>& pop, const Parameters& params)
     individuals.resize(0);  // clear archive
 
     // refill archive with new pareto fronts (one pareto front for each island!)
+    // TODO: refill with fast nds just like hall of fame
     for (int island =0; island< pop.num_islands; ++island) {
         vector<size_t> indices = pop.get_island_indexes(island);
 
@@ -121,11 +139,16 @@ void Archive<T>::update(Population<T>& pop, const Parameters& params)
         }
     }
     
-    if (this->sort_complexity)
-        std::sort(individuals.begin(), individuals.end(), &sortComplexity); 
-    else
+    if (this->sort_complexity) {
+        if (this->linear_complexity)
+            std::sort(individuals.begin(), individuals.end(), &sortLinearComplexity); 
+        else
+            std::sort(individuals.begin(), individuals.end(), &sortComplexity);
+    }
+    else {
         std::sort(individuals.begin(), individuals.end(), &sortObj1); 
-
+    }
+    
     /* auto it = std::unique(individuals.begin(),individuals.end(), &sameFitComplexity); */
     auto it = std::unique(individuals.begin(),individuals.end(), 
             &sameObjectives);

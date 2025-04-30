@@ -74,7 +74,7 @@ Dataset read_csv (
 
         if (tmp.size() != y.size())
             HANDLE_ERROR_THROW("different numbers of samples in X and y");
-        features[key] = check_type(tmp); 
+        features[key] = check_type(tmp, ""); 
         
     }
 

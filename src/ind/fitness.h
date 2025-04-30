@@ -29,15 +29,27 @@ struct Fitness {
     float loss_v;   ///< aggregate validation loss score
 
     unsigned int complexity;
+    unsigned int linear_complexity;
     unsigned int size;
     unsigned int depth;
 
-    // these can be different depending on the island the individual is
-    unsigned int dcounter;  ///< number of individuals this dominates
-    vector<unsigned int> dominated; ///< individual indices this dominates
-    unsigned int rank;             ///< pareto front rank
-    float crowding_dist;   ///< crowding distance on the Pareto front
+    // We store the previous values of the objectives everytime we update them.
+    // This is used by the bandits to allow easy calculation of rewards.
+    float prev_loss;
+    float prev_loss_v;
 
+    unsigned int prev_complexity;
+    unsigned int prev_linear_complexity;
+    unsigned int prev_size;
+    unsigned int prev_depth;
+
+    // these can be different depending on the island the individual is
+    unsigned int dcounter;          ///< number of individuals this dominates
+    vector<unsigned int> dominated; ///< individual indices this dominates
+    unsigned int rank;              ///< pareto front rank
+    float crowding_dist;            ///< crowding distance on the Pareto front
+
+    // store the values and weights for the objectives
     vector<float> values;
     vector<float> weights;
 
@@ -47,20 +59,39 @@ struct Fitness {
     void set_dominated(vector<unsigned int>& dom){ dominated=dom; };
     vector<unsigned int> get_dominated() const { return dominated; };
 
-    void set_loss(float f){ loss=f; };
-    float get_loss() const { return loss; };
+    // these setters are going to update the previous value --------------------
+    void set_loss(float f){prev_loss=loss; loss=f; };
 
-    void set_loss_v(float f_v){ loss_v=f_v; };
+    float get_loss() const { return loss; };
+    float get_prev_loss() const {return prev_loss; };
+
+    void set_loss_v(float f_v){ prev_loss_v=loss_v; loss_v=f_v; };
+
     float get_loss_v() const { return loss_v; };
+    float get_prev_loss_v() const {return prev_loss_v; };
     
-    void set_size(unsigned int new_s){ size=new_s; };
+    void set_size(unsigned int new_s){ prev_size=size; size=new_s; };
+
     unsigned int get_size() const { return size; };
+    unsigned int get_prev_size() const {return prev_size; };
     
-    void set_complexity(unsigned int new_c){ complexity=new_c; };
+    void set_complexity(unsigned int new_c){
+        prev_complexity=complexity; complexity=new_c; };
+
     unsigned int get_complexity() const { return complexity; };
-    
-    void set_depth(unsigned int new_d){ depth=new_d; };
+    unsigned int get_prev_complexity() const {return prev_complexity; };
+
+    void set_linear_complexity(unsigned int new_lc){
+        prev_linear_complexity=linear_complexity; linear_complexity=new_lc; };
+
+    unsigned int get_linear_complexity() const { return linear_complexity; };
+    unsigned int get_prev_linear_complexity() const {return prev_linear_complexity; };
+
+    void set_depth(unsigned int new_d){ prev_depth=depth; depth=new_d; };
+
     unsigned int get_depth() const { return depth; };
+    unsigned int get_prev_depth() const { return prev_depth; };
+    // -------------------------------------------------------------------------
 
     void set_dcounter(unsigned int d){ dcounter=d; };
     unsigned int get_dcounter() const { return dcounter; };
@@ -75,7 +106,7 @@ struct Fitness {
     Fitness(const vector<float>& w={}) : values(), wvalues(), weights(w) {
         dcounter = 0;
         set_rank(0);
-        set_crowding_dist(0);
+        set_crowding_dist(0.0f);
         dominated.resize(0);
     }
     
@@ -132,7 +163,14 @@ struct Fitness {
 
     // Equality comparison
     bool operator==(const Fitness& other) const {
-        return wvalues == other.wvalues;
+        if (wvalues.size() != other.wvalues.size()) {
+            return false;
+        }
+        for (size_t i = 0; i < wvalues.size(); ++i)
+            if (fabs(wvalues[i] - other.wvalues[i]) > 1e-7)
+                return false;
+                
+        return true;
     }
 
     // Inequality comparison
@@ -164,6 +202,7 @@ struct Fitness {
 
     // String representation
     std::string toString() const {
+        // TODO: unify to_string, toString, print, print_models, etc.
         if (valid()) {
             string s = "Fitness(";
             for (auto& v : values)

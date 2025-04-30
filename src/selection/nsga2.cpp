@@ -72,9 +72,19 @@ vector<size_t> NSGA2<T>::survive(Population<T>& pop, int island,
     size_t idx_start = std::floor(island*params.pop_size/params.num_islands);
     size_t idx_end   = std::floor((island+1)*params.pop_size/params.num_islands);
 
-    auto original_size = idx_end - idx_start; // original island size (survive must   be  called with an island with offfspring)
+    // TODO: survive should be unified across islands, and stop taking island as argument. This was already implemented, I need to update to remove island argument only
+    // auto original_size = idx_end - idx_start; // original island size (survive must   be  called with an island with offfspring)
     
-    auto island_pool = pop.get_island_indexes(island);
+    auto original_size = params.pop_size;
+
+    // TODO: clean up comments mess here 
+    // auto island_pool = pop.get_island_indexes(island);
+
+    std::vector<size_t> island_pool;
+    for (int i = 0; i < params.num_islands; ++i) {
+        auto indexes = pop.get_island_indexes(i);
+        island_pool.insert(island_pool.end(), indexes.begin(), indexes.end());
+    }
     
     // fast non-dominated sort
     auto front = fast_nds(pop, island_pool);
@@ -147,6 +157,7 @@ vector<vector<int>> NSGA2<T>::fast_nds(Population<T>& pop, vector<size_t>& islan
         p->fitness.dcounter  = dcount;
         p->fitness.dominated.clear();
         p->fitness.dominated = dom; // dom will have values already referring to island indexes
+        p->fitness.set_crowding_dist(0.0f);
     
         if (p->fitness.dcounter == 0) {
             // fmt::print("pushing {}...\n", island_pool[i]);
@@ -213,7 +224,7 @@ void NSGA2<T>::crowding_distance(Population<T>& pop, vector<vector<int>>& front,
     // fmt::print("front size is {}...\n", fsize);
 
     for (int i = 0; i < fsize; ++i)
-        pop.individuals.at(F.at(i))->fitness.crowding_dist = 0;
+        pop.individuals.at(F.at(i))->fitness.set_crowding_dist(0.0f);
 
     // fmt::print("reseted crowding distance for individuals in this front\n");
 
@@ -231,14 +242,18 @@ void NSGA2<T>::crowding_distance(Population<T>& pop, vector<vector<int>>& front,
         if (fsize > 1)
             pop.individuals.at(F.at(fsize-1))->fitness.crowding_dist = std::numeric_limits<float>::max();
     
+        float first_of_front = pop.individuals.at(F.at(0))->fitness.get_wvalues().at(m);
+        float last_of_front  = pop.individuals.at(F.at(fsize-1))->fitness.get_wvalues().at(m);
         for (int i = 1; i < fsize-1; ++i) 
         {
-            if (pop.individuals.at(F.at(i))->fitness.crowding_dist != std::numeric_limits<float>::max()) 
-            {   // crowd over obj
-                // TODO: this could be improved
+            if (pop.individuals.at(F.at(i))->fitness.crowding_dist != std::numeric_limits<float>::max())
+            {
+                float next_of_front = pop.individuals.at(F.at(i+1))->fitness.get_wvalues().at(m);
+                float prev_of_front = pop.individuals.at(F.at(i-1))->fitness.get_wvalues().at(m);
+
+                // updating the value by aggregating crowd dist for each objective
                 pop.individuals.at(F.at(i))->fitness.crowding_dist +=
-                    (pop.individuals.at(F.at(i+1))->fitness.get_wvalues().at(m) - pop.individuals.at(F.at(i-1))->fitness.get_wvalues().at(m)) 
-                    / (pop.individuals.at(F.at(fsize-1))->fitness.get_wvalues().at(m) - pop.individuals.at(F.at(0))->fitness.get_wvalues().at(m));
+                    (next_of_front - prev_of_front) / (last_of_front - first_of_front);
             }
         }
     }        

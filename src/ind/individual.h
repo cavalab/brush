@@ -25,30 +25,43 @@ public: // TODO: make these private (and work with nlohman json)
 
     // archive utility (and also keep track of evolution) (this is meaningful only
     // if variation is done using the vary() function)
-    unsigned id;                                ///< tracking id
-    vector<unsigned> parent_id;                      ///< ids of parents
+    unsigned id;                 ///< tracking id
+    vector<unsigned> parent_id;  ///< ids of parents
     
+    // storing what changed in relation to parent inside variation
+    string variation = "born"; // spontanegous generation (born), crossover, or which type of mutation
+    vector<Node> sampled_nodes = {}; // nodes that were sampled in mutation
+
     VectorXf error;     ///< training error (used in lexicase selectors)
 
     Fitness fitness;     ///< aggregate fitness score
 
     vector<string> objectives; ///< objectives for use with Pareto selection
        
+
     Individual()
     {
-        objectives = {"error", "complexity"}; 
+        objectives = {"scorer", "linear_complexity"}; 
         id = 0; // unsigned
     };
 
-    Individual(Program<T>& prg) : Individual() { program = prg; };
+    Individual(Program<T>& prg) : Individual() {
+        program = prg;
+    };
 
     void init(SearchSpace& ss, const Parameters& params)
     {
         program = ss.make_program<Program<T>>(params, 0, 0);
 
+        // overriding the objectives with the ones from params (to replace
+        // the generic "scorer" by the actual scorer set in the params object)
+        objectives = params.get_objectives();
+
         // If different from zero, then the program is created with a fixed depth and size.
         // If zero, it samples the value
         // program = SS.make_program<T>(params, params.max_depth, params.max_size);
+
+        variation = "born";
     };
 
     // TODO: replace occurences of program.fit with these (also predict and predict_proba)
@@ -82,10 +95,10 @@ public: // TODO: make these private (and work with nlohman json)
     };
 
     // just getters
-    bool get_is_fitted() const { return this->is_fitted_; };
     unsigned int get_size() const { return program.size(); };
     unsigned int get_depth() const { return program.depth(); };
     unsigned int get_complexity() const { return program.complexity(); };
+    unsigned int get_linear_complexity() const { return program.linear_complexity(); };
     Program<T>& get_program() { return program; };
     
     string get_model(string fmt="compact", bool pretty=false) {
@@ -95,6 +108,15 @@ public: // TODO: make these private (and work with nlohman json)
 
     void set_fitness(Fitness &f) { fitness=f; };
     Fitness& get_fitness() { return fitness; };
+
+    void set_variation(string v) { variation=v; };
+    string get_variation() const { return variation; };
+
+    bool get_is_fitted() const { return this->is_fitted_; };
+    void set_is_fitted(bool fitted) { this->is_fitted_ = fitted; };
+
+    void set_sampled_nodes(const vector<Node>& nodes) { sampled_nodes = nodes; };
+    vector<Node> get_sampled_nodes() const { return sampled_nodes; };
     
     void set_id(unsigned i){id = i;};
     void set_parents(const vector<Individual<T>>& parents){
@@ -112,16 +134,18 @@ public: // TODO: make these private (and work with nlohman json)
     // this will determine each fitness metric to be a min/max problem.
     // generic error metric: by default log and multi_log if it is a
     // classification problem, and MSE if it is a regression (so its always
-    // a minimization by default, thus "error" has weight -1.0)
+    // a minimization by default, thus "scorer" has weight -1.0)
     inline static std::map<std::string, float> weightsMap = {
         {"complexity",              -1.0},
+        {"linear_complexity",       -1.0},
         {"size",                    -1.0},
         {"mse",                     -1.0},
         {"log",                     -1.0},
         {"multi_log",               -1.0},
         {"average_precision_score", +1.0},
-        {"accuracy",                +1.0},
-        {"error",                   -1.0}
+        {"balanced_accuracy",       +1.0},
+        {"accuracy",                +1.0}
+        // {"scorer",                   -1.0}
     };
 
     vector<string> get_objectives() const { return objectives; };
@@ -131,6 +155,7 @@ public: // TODO: make these private (and work with nlohman json)
         vector<float> weights;
         weights.resize(0);
         for (const auto& obj : objectives) {
+            // TODO: do i need to use find or this can be done directly?
             auto it = weightsMap.find(obj);
             if (it != weightsMap.end()) {
                 weights.push_back(it->second);
@@ -154,7 +179,9 @@ void to_json(json &j, const Individual<T> &p)
         {"fitness", p.fitness},
         {"id", p.id},
         {"parent_id", p.parent_id},
-        {"objectives", p.objectives}
+        {"objectives", p.objectives},
+        {"is_fitted_", p.is_fitted_},
+        {"variation", p.variation}\
     }; 
 }
 
@@ -166,6 +193,8 @@ void from_json(const json &j, Individual<T>& p)
     j.at("id").get_to( p.id );
     j.at("parent_id").get_to( p.parent_id );
     j.at("objectives").get_to( p.objectives );
+    j.at("is_fitted_").get_to( p.is_fitted_ );
+    j.at("variation").get_to( p.variation );\
 }
 } // Pop
 } // Brush

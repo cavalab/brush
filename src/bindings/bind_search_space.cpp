@@ -25,6 +25,7 @@ void bind_search_space(py::module &m)
             py::arg("data"),
             py::arg("user_ops"),
             py::arg("weights_init") = true )
+        .def("__repr__", &br::SearchSpace::repr, "Representation for debugging the SearchSpace object")
         .def("make_regressor", &br::SearchSpace::make_regressor,
              py::arg("max_d") = 0,
              py::arg("max_size") = 0,

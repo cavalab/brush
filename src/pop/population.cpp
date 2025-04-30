@@ -10,6 +10,7 @@ Population<T>::Population()
     mig_prob = 0.0;
     pop_size = 0;
     num_islands = 0;
+    linear_complexity = false;
 }
 
 
@@ -24,6 +25,7 @@ void Population<T>::init(vector<Individual<T>>& new_individuals, const Parameter
     this->mig_prob = params.mig_prob;
     this->pop_size = params.pop_size;
     this->num_islands=params.num_islands;
+    this->linear_complexity = in(params.objectives, std::string("linear_complexity"));
 
     island_indexes.resize(num_islands);
     
@@ -62,6 +64,7 @@ void Population<T>::init(SearchSpace& ss, const Parameters& params)
     this->mig_prob = params.mig_prob;
     this->pop_size = params.pop_size;
     this->num_islands=params.num_islands;
+    this->linear_complexity = in(params.objectives, std::string("linear_complexity"));
     
     // Tuples with start and end indexes for each island. Number of individuals
     // in each island can slightly differ if num_islands is not a divisor of p (popsize)
@@ -88,7 +91,6 @@ void Population<T>::init(SearchSpace& ss, const Parameters& params)
         // first half will contain the initial population
         individuals.at(i) = std::make_shared<Individual<T>>();
         individuals.at(i)->init(ss, params);
-        individuals.at(i)->set_objectives(params.objectives);
         
         // second half is space to the offspring (but we dont initialize them)
         individuals.at(p+i) = nullptr;
@@ -158,24 +160,30 @@ void Population<T>::add_offspring_indexes(int island)
 template<ProgramType T>
 void Population<T>::update(vector<vector<size_t>> survivors)
 {
+    // cout << "[Population::update] Starting update with " 
+    //           << survivors.at(0).size() << " individuals.\n";
+
     // this is the step that should end up cutting off half of the population
     vector<Individual<T>> new_pop;
     new_pop.resize(0);
+    for (int k=0; k<survivors.at(0).size(); ++k){
+        // cout << "    - Adding survivor idx " << survivors.at(0).at(k) << endl;
+        new_pop.push_back( *individuals.at(survivors.at(0).at(k)) );
+    }
+
     for (int j=0; j<num_islands; ++j)
     {
-        for (int k=0; k<survivors.at(j).size(); ++k){
-            new_pop.push_back(
-                *individuals.at(survivors.at(j).at(k)) );
-        }
+        // cout << "  Processing island " << j << endl;
 
         // need to make island point to original range
         size_t idx_start = std::floor(j*pop_size/num_islands);
         size_t idx_end   = std::floor((j+1)*pop_size/num_islands);
-
         auto delta = idx_end - idx_start;
 
-        assert(delta == survivors.at(j).size()
-           && " migration ended up with a different popsize");
+        // cout << "  Island " << j << " index range [" << idx_start << ", " << idx_end << ") -> delta = " << delta << endl;
+
+        // assert(delta == survivors.at(0).size()
+        //    && " migration ended up with a different popsize");
 
         // inserting indexes of the offspring
         island_indexes.at(j).clear();
@@ -192,7 +200,7 @@ void Population<T>::update(vector<vector<size_t>> survivors)
         // making hard copies of the individuals
         json ind_copy = ind;
 
-        // this will fill just half of the pop
+        // this will fill just half of the individuals vector
         individuals.push_back(
             std::make_shared<Individual<T>>(ind_copy) );
     }
@@ -210,18 +218,18 @@ void Population<T>::update(vector<vector<size_t>> survivors)
 template<ProgramType T>
 string Population<T>::print_models(string sep)
 {
-    // not printing the island each individual belongs to
+    // TODO: rename it. This function does not print anything, just returns a string
     string output = "";
 
     for (int j=0; j<num_islands; ++j)
     {
-        output += "island " + to_string(j) + ":\n";
-
         for (int k=0; k<island_indexes.at(j).size(); ++k) {
-            output += "ind index " + to_string(k);
-            output += " pos " + to_string(island_indexes.at(j).at(k)) + ": ";
             Individual<T>& ind = *individuals.at(island_indexes.at(j).at(k)).get();
-            output += ind.get_model() + sep;
+
+            output += "island " + to_string(j) + " ";
+            output += "index " + to_string(island_indexes.at(j).at(k)) + ": ";
+            output += ind.get_model() + " ";
+            output += ind.fitness.toString() + sep;
         }
     }
     return output;
@@ -248,7 +256,11 @@ vector<vector<size_t>> Population<T>::sorted_front(unsigned rank)
                 pf.push_back(i);
         }
 
-        std::sort(pf.begin(),pf.end(),SortComplexity(*this)); 
+        if (this->linear_complexity)
+            std::sort(pf.begin(),pf.end(),SortLinearComplexity(*this)); 
+        else
+            std::sort(pf.begin(),pf.end(),SortComplexity(*this)); 
+
         auto it = std::unique(pf.begin(),pf.end(),SameFitComplexity(*this));
         
         pf.resize(std::distance(pf.begin(),it));
@@ -261,31 +273,61 @@ vector<vector<size_t>> Population<T>::sorted_front(unsigned rank)
 template<ProgramType T>
 vector<size_t> Population<T>::hall_of_fame(unsigned rank)
 {
-    // TODO: hall of fame should unify all pareto fronts by doing a new fast_nds.
+    // Inspired in fast nds from nsga2
+
     // TODO: use hall of fame instead of re-implmementing this feature in
     // archive init and update functions
 
     // this is used to migration and update archive at the end of a generation.
     // Thiis function expects islands without offspring
 
-    vector<size_t> pf(0);
+    // TODO: run fast_nds here to get the pareto fronts? I think this could improve performance
+    vector<size_t> merged_islands(0);
     
     for (int j=0;j<num_islands; ++j)
     {
         auto indices = island_indexes.at(j);
         for (int i=0; i<indices.size(); ++i)
         {
-            if (individuals.at(indices.at(i))->fitness.rank == rank)
-                pf.push_back(indices.at(i));
+            merged_islands.push_back(indices.at(i));
         }
     }
-    std::sort(pf.begin(),pf.end(),SortComplexity(*this)); 
 
-    auto it = std::unique(pf.begin(),pf.end(),SameFitComplexity(*this));
+    // checking if there is no dominance between different fronts
+    // (without updating their fitness objects)
+    vector<size_t> hof;                
+    hof.clear();
+
+    for (int i = 0; i < merged_islands.size(); ++i) {
+        int dcount = 0;
     
-    pf.resize(std::distance(pf.begin(),it));
+        auto p = individuals.at(merged_islands[i]);
 
-    return pf;
+        for (int j = 0; j < merged_islands.size(); ++j) {
+            const Individual<T>& q = (*individuals.at(merged_islands[j]));
+        
+            int compare = p->fitness.dominates(q.fitness);
+            if (compare == -1) { // q dominates p
+                //p.dcounter += 1;
+                dcount += 1;
+            }
+        }
+
+        if (dcount == 0) {
+            hof.push_back(merged_islands[i]);
+        }
+    }
+
+    if (this->linear_complexity)
+        std::sort(hof.begin(),hof.end(),SortLinearComplexity(*this)); 
+    else
+        std::sort(hof.begin(),hof.end(),SortComplexity(*this)); 
+        
+    auto it = std::unique(hof.begin(),hof.end(),SameFitComplexity(*this));
+    
+    hof.resize(std::distance(hof.begin(),it));
+
+    return hof;
 }
 
 template<ProgramType T>
@@ -300,7 +342,6 @@ void Population<T>::migrate()
     vector<vector<size_t>> new_island_indexes;
     new_island_indexes.resize(num_islands);
 
-    // std::cout << "Looping" << std::endl;
     for (int island=0; island<num_islands; ++island)
     {
         new_island_indexes.at(island).resize(0);
@@ -343,8 +384,7 @@ void Population<T>::migrate()
     // making hard copies (so the next generation starts with islands that does not share individuals 
     // this is particularly important to avoid multiple threads assigning different rank/crowdist/dcounter 
     // or different fitness)
-    
-    // std::cout << "starting to consolidate pop" << std::endl;
+
     vector<Individual<T>> new_pop;
     new_pop.resize(0);
     for (int j=0; j<num_islands; ++j)

@@ -34,7 +34,7 @@ namespace Data
 
 
 /// determines data types of columns of matrix X.
-State check_type(const ArrayXf& x);
+State check_type(const ArrayXf& x, const string t);
 DataType StateType(const State& arg);
 
 template<typename StateRef>
@@ -62,13 +62,17 @@ class Dataset
         std::vector<DataType> unique_data_types;
 
         /// @brief types of data in the features.  
-        std::vector<DataType> feature_types;
+        std::vector<DataType> feature_types; 
+
+        /// @brief names of the feature types as string representations.
+        std::vector<string> feature_names; // TODO: remove?
 
         /// @brief map from data types to features having that type.
         std::unordered_map<DataType,vector<string>> features_of_type;
         
         /// @brief dataset features, as key value pairs
         std::map<string, State> features;
+
         // TODO: this should probably be a more complex type to include feature type 
         // and potentially other info, like arbitrary relations between features
 
@@ -81,13 +85,15 @@ class Dataset
 
         /// @brief percentage of original data used for train. if 0.0, then all data is used for train and validation
         float validation_size; 
-        bool use_validation; // TODO: shuffle before validation (this should be a parameter)
+        bool use_validation;
+        bool shuffle_split;
 
         /// @brief percentage of training data size to use in each batch. if 1.0, then all data is used
         float batch_size;
         bool use_batch;
 
         Dataset operator()(const vector<size_t>& idx) const;
+
         /// call init at the end of constructors
         /// to define metafeatures of the data.
         void init();
@@ -95,10 +101,9 @@ class Dataset
         /// turns input data into a feature map
         map<string,State> make_features(const ArrayXXf& X,
                                         const map<string, State>& Z = {},
-                                        const vector<string>& vn = {}
+                                        const vector<string>& vn = {},
+                                        const vector<string>& ft = {}
                                        );
-
-        // TODO: let the user specify the datatypes 
 
         /// turns input into a feature map, with feature types copied from a reference
         map<string,State> copy_and_make_features(const ArrayXXf& X,
@@ -111,7 +116,8 @@ class Dataset
              const Ref<const ArrayXf>& y_ = ArrayXf(), 
              bool c = false,
              float validation_size = 0.0,
-             float batch_size = 1.0
+             float batch_size = 1.0,
+             bool shuffle_split = false
              ) 
              : features(d) 
              , y(y_)
@@ -120,6 +126,7 @@ class Dataset
              , use_validation(validation_size > 0.0 && validation_size < 1.0)
              , batch_size(batch_size)
              , use_batch(batch_size > 0.0 && batch_size < 1.0)
+             , shuffle_split(shuffle_split)
              {init();};
 
         /// 2. initialize data from a matrix with feature columns.
@@ -127,17 +134,20 @@ class Dataset
              const Ref<const ArrayXf>& y_ = ArrayXf(), 
              const vector<string>& vn = {}, 
              const map<string, State>& Z = {},
+             const vector<string>& ft = {},
              bool c = false,
              float validation_size = 0.0,
-             float batch_size = 1.0
+             float batch_size = 1.0,
+             bool shuffle_split = false
             ) 
-            : features(make_features(X,Z,vn))
+            : features(make_features(X,Z,vn,ft))
             , y(y_)
             , classification(c)
             , validation_size(validation_size)
             , use_validation(validation_size > 0.0 && validation_size < 1.0)
             , batch_size(batch_size)
             , use_batch(batch_size > 0.0 && batch_size < 1.0)
+            , shuffle_split(shuffle_split)
             {
                 init();
                 Xref = optional<reference_wrapper<const ArrayXXf>>{X};
@@ -145,16 +155,19 @@ class Dataset
 
         /// 3. initialize data from X and feature names
         Dataset(const ArrayXXf& X, const vector<string>& vn,
+             const vector<string>& ft = {},
              bool c = false,
              float validation_size = 0.0,
-             float batch_size = 1.0
+             float batch_size = 1.0,
+             bool shuffle_split = false
             ) 
             : classification(c)
-            , features(make_features(X,map<string, State>{},vn))
+            , features(make_features(X,map<string, State>{},vn,ft))
             , validation_size(validation_size)
             , use_validation(validation_size > 0.0 && validation_size < 1.0)
             , batch_size(batch_size)
             , use_batch(batch_size > 0.0 && batch_size < 1.0)
+            , shuffle_split(shuffle_split)
             {
                 init();
                 Xref = optional<reference_wrapper<const ArrayXXf>>{X};
@@ -164,15 +177,15 @@ class Dataset
         //// reference dataset. Useful for bypass Brush's type sniffer and
         //// doing predictions with small number of samples
         Dataset(const ArrayXXf& X, const Dataset& ref_dataset,
-             const vector<string>& vn,
-             bool c = false
+             const vector<string>& vn
             )
-            : classification(c)
+            : classification(ref_dataset.classification)
             , features(copy_and_make_features(X,ref_dataset,vn))
             , validation_size(0.0)
             , use_validation(false)
             , batch_size(1.0)
             , use_batch(false)
+            , shuffle_split(false)
             {
                 init();
                 Xref = optional<reference_wrapper<const ArrayXXf>>{X};
@@ -205,7 +218,7 @@ class Dataset
         // if split is not set, then training = validation.
         Dataset get_training_data() const;
         Dataset get_validation_data() const;
-        // TODO: shuffle split
+
         inline int get_n_samples() const { 
             return std::visit(
                 [&](auto&& arg) -> int { return int(arg.size());}, 
@@ -230,6 +243,18 @@ class Dataset
 
         /* template<> ArrayXb get<ArrayXb>(std::string name) */
 }; // class data
+
+// TODO: serialization of features in order to nlohmann to work
+// NLOHMANN_DEFINE_TYPE_NON_INTRUSIVE(Dataset,
+//     features,
+//     y,
+//     classification,
+//     validation_size,
+//     use_validation,
+//     batch_size,
+//     use_batch,
+//     shuffle_split
+// );
 
 // // read csv
 // Dataset read_csv(const std::string & path, MatrixXf& X, VectorXf& y, 

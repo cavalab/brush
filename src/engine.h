@@ -6,16 +6,16 @@ license: GNU/GPL v3
 #ifndef Engine_H
 #define Engine_H
 
-#include "./util/rnd.h"
+#include "util/rnd.h"
 #include "init.h"
 #include "params.h"
+#include "eval/evaluation.h"
+#include "vary/variation.h"
 #include "pop/population.h"
 #include "pop/archive.h"
-#include "./eval/evaluation.h"
-#include "vary/variation.h"
 #include "selection/selection.h"
-#include "taskflow/taskflow.hpp"
 
+#include "taskflow/taskflow.hpp"
 #include <taskflow/algorithm/for_each.hpp>
 
 namespace Brush
@@ -42,11 +42,19 @@ template <ProgramType T>
  */
 class Engine{
 public:
-    Engine(const Parameters& p=Parameters())
-    : params(p)
-    , ss(SearchSpace()) // we need to initialize ss and variator. TODO: make them have a default way so we dont have to initialize here
-    , variator(Variation<T>(params, ss)) 
-    {};
+    Engine()
+    {
+        this->params = Parameters();
+        this->ss = SearchSpace();
+    };
+
+    Engine(Parameters& p, SearchSpace& s)
+    {
+        this->params = p;
+        this->ss = s;
+        // TODO: make variation to have a default constructor
+        // this->variator(Variation<T>(params, ss)) ;
+    };
     
     ~Engine(){};
 
@@ -60,16 +68,14 @@ public:
     inline Parameters& get_params(){return params;}
     inline void set_params(Parameters& p){params=p;}
 
+    inline SearchSpace& get_search_space() { return ss; }
+    inline void set_search_space(SearchSpace& space) { ss = space; }
+
     inline bool get_is_fitted(){return is_fitted;}
 
     /// updates best score by searching in the population for the individual that best fits the given data
-    bool update_best(const Dataset& data, bool val=false);
-    
-    // TODO: hyperparameter to set how the best is picked (MCDM, best on val, pareto front, etc). one of the options should be getting the pareto front
+    bool update_best();
 
-    // TODO: best fitness (the class) instead of these. use fitness comparison
-    float best_score;
-    int best_complexity;
     Individual<T>& get_best_ind(){return best_ind;};  
     
     Engine<T> &fit(Dataset& data) {
@@ -79,8 +85,9 @@ public:
     Engine<T> &fit(const Ref<const ArrayXXf>& X, const Ref<const ArrayXf>& y)
     {
         // Using constructor 2 to create the dataset
-        Dataset d(X,y,params.feature_names,{},params.classification,
-                params.validation_size, params.batch_size);
+        Dataset d(X,y,params.feature_names,{},params.feature_types,
+                params.classification,params.validation_size,
+                params.batch_size, params.shuffle_split);
         return fit(d);
     };
 
@@ -105,9 +112,16 @@ public:
     ///return archive size
     int get_archive_size(){ return this->archive.individuals.size(); };
 
-    ///return population as string
+    ///return archive/population as string
     vector<json> get_archive(bool front);
-    
+    vector<json> get_population();
+
+    void set_population(vector<json> pop_vector);
+
+    // locking and unlocking parts of the solutions
+    void lock_nodes(int end_depth=0, bool skip_leaves=true);
+    void unlock_nodes(int start_depth=0);
+
     /// predict on unseen data from the archive             
     auto predict_archive(int id, const Dataset& data);
     auto predict_archive(int id, const Ref<const ArrayXXf>& X);
@@ -124,24 +138,23 @@ public:
     /// train the model
     void run(Dataset &d);
     
+    // TODO: should params and ss be private? (that would require better json handling)
     Parameters params;  ///< hyperparameters of brush, which the user can interact
-    Individual<T> best_ind;
-    
-    Archive<T> archive;          ///< pareto front archive
-private:
     SearchSpace ss;
+    
+    Individual<T> best_ind; ///< best individual found during training
+    Archive<T> archive;     ///< pareto front archive
+    Population<T> pop;      ///< population of programs
 
-    Population<T> pop;       	///< population of programs
+    bool is_fitted = false; ///< keeps track of whether fit was called
+private:
     Selection<T>  selector;   ///< selection algorithm
     Evaluation<T> evaluator;  ///< evaluation code
-    Variation<T>  variator;  	///< variation operators
     Selection<T>  survivor;   ///< survival algorithm
     
     Log_Stats stats; ///< runtime stats
 
-    Timer timer;       ///< start time of training
-
-    bool is_fitted; ///< keeps track of whether fit was called.
+    Timer timer; ///< start time of training
 
     void init();
 
@@ -149,11 +162,12 @@ private:
     inline void set_is_fitted(bool f){is_fitted=f;}
 };
 
-// Only stuff to make new predictions or call fit again
-NLOHMANN_DEFINE_TYPE_NON_INTRUSIVE(Engine<PT::Regressor>, params, best_ind, archive);
-NLOHMANN_DEFINE_TYPE_NON_INTRUSIVE(Engine<PT::BinaryClassifier>,params, best_ind, archive);
-NLOHMANN_DEFINE_TYPE_NON_INTRUSIVE(Engine<PT::MulticlassClassifier>,params, best_ind, archive);
-NLOHMANN_DEFINE_TYPE_NON_INTRUSIVE(Engine<PT::Representer>,params, best_ind, archive);
+// TODO: should I serialize data and search space as well?
+// Only stuff to make new predictions should be serialized
+NLOHMANN_DEFINE_TYPE_NON_INTRUSIVE(Engine<PT::Regressor>, params, best_ind, archive, pop, ss, is_fitted);
+NLOHMANN_DEFINE_TYPE_NON_INTRUSIVE(Engine<PT::BinaryClassifier>, params, best_ind, archive, pop, ss, is_fitted);
+NLOHMANN_DEFINE_TYPE_NON_INTRUSIVE(Engine<PT::MulticlassClassifier>, params, best_ind, archive, pop, ss, is_fitted);
+NLOHMANN_DEFINE_TYPE_NON_INTRUSIVE(Engine<PT::Representer>, params, best_ind, archive, pop, ss, is_fitted);
 
 } // Brush
 #endif

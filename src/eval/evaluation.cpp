@@ -20,12 +20,11 @@ void Evaluation<T>::update_fitness(Population<T>& pop,
     {
         Individual<T>& ind = *pop.individuals.at(indices.at(i)).get(); // we are modifying it, so operator[] wont work
 
-        bool pass = false;
-
-        if (pass)
+        if (false) // pass
         {
-            ind.fitness.loss = MAX_FLT;
-            ind.fitness.loss_v = MAX_FLT;
+            ind.fitness.set_loss(MAX_FLT);
+            ind.fitness.set_loss_v(MAX_FLT);
+
             ind.error = MAX_FLT*VectorXf::Ones(data.y.size());
         }
         else
@@ -33,7 +32,7 @@ void Evaluation<T>::update_fitness(Population<T>& pop,
             // assign weights to individual
             if (fit && ind.get_is_fitted() == false)
             {
-                ind.program.fit(data);
+                ind.program.fit(data.get_training_data());
             }
             
             assign_fit(ind, data, params, validation);
@@ -51,40 +50,55 @@ void Evaluation<T>::assign_fit(Individual<T>& ind, const Dataset& data,
     
     Dataset train = data.get_training_data();
     float f = S.score(ind, train, errors, params);
-    
+    ind.error = errors;
+
     float f_v = f;
     if (data.use_validation) {
         Dataset validation = data.get_validation_data();
-        f_v = S.score(ind, validation, errors, params);
+
+        // when calculating validation score, we should not let
+        // it write in errors vector. That would avoid validation data leakage
+        VectorXf val_errors;
+        f_v = S.score(ind, validation, val_errors, params);
+
+        // if (val) // never use validation data here. This is used in lexicase selection
+        //     ind.error = val_errors;
     }
 
-    // TODO: implement the class weights and use it here (and on errors)
+    float error_weight = Individual<T>::weightsMap[params.scorer];
+    if (std::isnan(f) || std::isinf(f))
+        f = error_weight > 0 ? -MAX_FLT : MAX_FLT;
+    if (std::isnan(f_v) || std::isinf(f_v))
+        f_v = error_weight > 0 ? -MAX_FLT : MAX_FLT;
 
-    ind.set_objectives(params.objectives);
+    // This is what is going to determine the weights for the individual's fitness
+    ind.set_objectives(params.get_objectives());
 
-    // we will always set all values for fitness (regardless of being used).
-    // this will make sure the information is calculated and ready to be used
-    // regardless of how the program is set to run.
-    ind.error = errors;
+    // when we use these setters, it updates its previous values references
     ind.fitness.set_loss(f);
     ind.fitness.set_loss_v(f_v);
     ind.fitness.set_size(ind.get_size());
     ind.fitness.set_complexity(ind.get_complexity());
+    ind.fitness.set_linear_complexity(ind.get_linear_complexity());
     ind.fitness.set_depth(ind.get_depth());
 
     vector<float> values;
     values.resize(0);
 
+    // TODO: implement a better way of switching between train and val
+    // without the burden of calculating stuff everytime
     for (const auto& n : ind.get_objectives())
     {
-        if (n.compare("error")==0)
+        if (n.compare(params.scorer)==0)
             values.push_back(val ? f_v : f);
         else if (n.compare("complexity")==0)
-            values.push_back(ind.program.complexity());
+            values.push_back(ind.get_complexity());
+        else if (n.compare("linear_complexity")==0)
+            values.push_back(ind.get_linear_complexity());
         else if (n.compare("size")==0)
-            values.push_back(ind.program.size());
+            values.push_back(ind.get_size());
         else if (n.compare("depth")==0)
-            values.push_back(ind.program.depth());
+            values.push_back(ind.get_depth());
         else
             HANDLE_ERROR_THROW(n+" is not a known objective");
     }

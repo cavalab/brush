@@ -8,10 +8,16 @@
 #include "../../src/selection/selection_operator.cpp"
 #include "../../src/selection/selection.cpp"
 
+#include "../../src/bandit/bandit.cpp"
+#include "../../src/bandit/bandit_operator.cpp"
+#include "../../src/bandit/dummy.cpp"
+#include "../../src/bandit/thompson.cpp"
+
 using namespace Brush::Pop;
 using namespace Brush::Sel;
 using namespace Brush::Eval;
 using namespace Brush::Sel;
+using namespace Brush::MAB;
 
 TEST(Population, PopulationTests)
 {    
@@ -40,10 +46,12 @@ TEST(Population, PopulationTests)
     Evaluation evaluator = Evaluation<ProgramType::Regressor>();
     Selection selector = Selection<ProgramType::Regressor>(params.sel, false);
     Selection survivor = Selection<ProgramType::Regressor>(params.surv, true);
-    Variation variator = Variation<ProgramType::Regressor>(params, SS);
+    Variation variator = Variation<ProgramType::Regressor>(params, SS, data);
             
     selector.set_operator();
     survivor.set_operator();
+
+    // TODO: test if loaded population does not double its size
 
     // size, all individuals were initialized
     ASSERT_TRUE(pop.size() == pop.individuals.size()
@@ -69,6 +77,7 @@ TEST(Population, PopulationTests)
     }
 
     pop.save("./tests/cpp/__pop_save_first_gen.json");
+
     // print models
     fmt::print("Printing from population method:\n");
     fmt::print("{}\n",pop.print_models()); // may yeld seg fault if string is too large for buffer
@@ -146,4 +155,3 @@ TEST(Population, PopulationTests)
     pop.save("./tests/cpp/__pop_save_100_gen.json");
     pop.load("./tests/cpp/__pop_save_100_gen.json");
 }
-

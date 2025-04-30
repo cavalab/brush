@@ -2,7 +2,12 @@
 
 namespace Brush {
 namespace Var {
-    
+
+
+using namespace Brush;
+using namespace Pop;
+using namespace MAB;
+
 /// @brief replace node with same typed node
 /// @param prog the program
 /// @param Tree the program tree
@@ -12,18 +17,22 @@ namespace Var {
 class PointMutation : public MutationBase
 {
 public:
-    static auto mutate(tree<Node>& Tree, Iter spot, const SearchSpace& SS,
+    template<Brush::ProgramType T>
+    static auto mutate(Program<T>& program, Iter spot, Variation<T>& variator,
                     const Parameters& params)
     {
         // get_node_like will sample a similar node based on node_map_weights or
         // terminal_weights, and maybe will return a Node.
-        optional<Node> newNode = SS.get_node_like(spot.node->data);
+
+        // cout << "point mutation" << std::endl;
+        auto context = variator.get_context(program, spot);
+        optional<Node> newNode = variator.bandit_get_node_like(spot.node->data, context);
 
         if (!newNode) // overload to check if newNode == nullopt
             return false;
 
         // if optional contains a Node, we access its contained value
-        Tree.replace(spot, *newNode);
+        program.Tree.replace(spot, *newNode);
 
         return true;
     }
@@ -38,21 +47,22 @@ public:
 class InsertMutation : public MutationBase
 {
 public:
-    static auto find_spots(tree<Node>& Tree, const SearchSpace& SS,
+    template<Brush::ProgramType T>
+    static auto find_spots(Program<T>& program, Variation<T>& variator,
                     const Parameters& params)
     {
         vector<float> weights;
 
-        if (Tree.size() < params.get_max_size()) {
-            Iter iter = Tree.begin();
-            std::transform(Tree.begin(), Tree.end(), std::back_inserter(weights),
+        if (program.Tree.size() < params.get_max_size()) {
+            Iter iter = program.Tree.begin();
+            std::transform(program.Tree.begin(), program.Tree.end(), std::back_inserter(weights),
                         [&](const auto& n){ 
-                            size_t d = 1+Tree.depth(iter);
+                            size_t d = 1+program.Tree.depth(iter);
                             std::advance(iter, 1);
 
                             // check if SS holds an operator to avoid failing `check` in sample_op_with_arg
                             if ((d >= params.get_max_depth())
-                            ||  (SS.node_map.find(n.ret_type) == SS.node_map.end())) {
+                            ||  (variator.search_space.node_map.find(n.ret_type) == variator.search_space.node_map.end())) {
                                 return 0.0f;
                             }
                             else {
@@ -62,14 +72,15 @@ public:
         }
         else {
             // fill the vector with zeros, since we're already at max_size
-            weights.resize(Tree.size());
+            weights.resize(program.Tree.size());
             std::fill(weights.begin(), weights.end(), 0.0f); 
         }
         
         return weights;
     }
 
-    static auto mutate(tree<Node>& Tree, Iter spot, const SearchSpace& SS,
+    template<Brush::ProgramType T>
+    static auto mutate(Program<T>& program, Iter spot, Variation<T>& variator,
                     const Parameters& params)
     {
         auto spot_type = spot.node->data.ret_type;
@@ -81,14 +92,16 @@ public:
         // size restriction, which will be relaxed here (just as it is in the PTC2
         // algorithm). This mutation can create a new expression that exceeds the
         // maximum size by the highest arity among the operators.
-        std::optional<Node> n = SS.sample_op_with_arg(
-            spot_type, spot_type, true, params.max_size-Tree.size()-1); 
+        // cout << "insert mutation" << std::endl;
+        auto context = variator.get_context(program, spot);
+        std::optional<Node> n = variator.bandit_sample_op_with_arg(
+            spot_type, spot_type, context, params.max_size-program.Tree.size()-1); 
 
         if (!n) // there is no operator with compatible arguments
             return false;
 
         // make node n wrap the subtree at the chosen spot
-        auto parent_node = Tree.wrap(spot, *n);
+        auto parent_node = program.Tree.wrap(spot, *n);
 
         // now fill the arguments of n appropriately
         bool spot_filled = false;
@@ -97,24 +110,26 @@ public:
             if (spot_filled)
             {
                 // if spot is in its child position, append children.
-                auto opt = SS.sample_terminal(a);
+                // auto context = variator.get_context<T>(program.Tree, spot);
+                auto opt = variator.bandit_sample_terminal(a, context);
 
                 if (!opt)
                     return false;
 
-                Tree.append_child(parent_node, opt.value());
+                program.Tree.append_child(parent_node, opt.value());
             }
             // if types match, treat this spot as filled by the spot node 
             else if (a == spot_type)
                 spot_filled = true;
             // otherwise, add siblings before spot node
-            else {
-                auto opt = SS.sample_terminal(a);
+            else {        
+                // auto context = variator.get_context<T>(program.Tree, spot);
+                auto opt = variator.bandit_sample_terminal(a, context);
 
                 if (!opt)
                     return false;
 
-                Tree.insert(spot, opt.value());
+                program.Tree.insert(spot, opt.value());
             }
         } 
 
@@ -131,19 +146,23 @@ public:
 class DeleteMutation : public MutationBase
 {
 public:
-    static auto mutate(tree<Node>& Tree, Iter spot, const SearchSpace& SS,
+    template<Brush::ProgramType T>
+    static auto mutate(Program<T>& program, Iter spot, Variation<T>& variator,
                     const Parameters& params)
     {
         // sample_terminal will sample based on terminal_weights. If it succeeds, 
         // then the new terminal will be in `opt.value()`
-        auto opt = SS.sample_terminal(spot.node->data.ret_type); 
+
+        // cout << "delete mutation" << std::endl;
+        auto context = variator.get_context(program, spot);
+        auto opt = variator.bandit_sample_terminal(spot.node->data.ret_type, context); 
         
         if (!opt) // there is no terminal with compatible arguments
             return false;
 
-        Tree.erase_children(spot); 
+        program.Tree.erase_children(spot); 
 
-        Tree.replace(spot, opt.value());
+        program.Tree.replace(spot, opt.value());
 
         return true;
     }
@@ -158,13 +177,14 @@ public:
 class ToggleWeightOnMutation : public MutationBase
 {
 public:
-    static auto find_spots(tree<Node>& Tree, const SearchSpace& SS,
+    template<Brush::ProgramType T>
+    static auto find_spots(Program<T>& program, Variation<T>& variator,
                     const Parameters& params)
     {
-        vector<float> weights(Tree.size());
+        vector<float> weights(program.Tree.size());
 
-        if (Tree.size() < params.max_size) {
-            std::transform(Tree.begin(), Tree.end(), weights.begin(),
+        if (program.Tree.size() < params.max_size) {
+            std::transform(program.Tree.begin(), program.Tree.end(), weights.begin(),
                         [&](const auto& n){
                             // some nodetypes must always have a weight                            
                             if (Is<NodeType::OffsetSum>(n.node_type))
@@ -172,7 +192,7 @@ public:
 
                             // only weighted nodes can be toggled off
                             if (!n.get_is_weighted()
-                            &&  IsWeighable(n.ret_type))
+                            &&  IsWeighable(n.node_type))
                             {
                                 return n.get_prob_change();
                             }
@@ -188,11 +208,12 @@ public:
         return weights;
     }
 
-    static auto mutate(tree<Node>& Tree, Iter spot, const SearchSpace& SS,
+    template<Brush::ProgramType T>
+    static auto mutate(Program<T>& program, Iter spot, Variation<T>& variator,
                     const Parameters& params)
     {
         if (spot.node->data.get_is_weighted()==true // cant turn on whats already on
-        ||  !IsWeighable(spot.node->data.ret_type)) // does not accept weights (e.g. boolean)
+        ||  !IsWeighable(spot.node->data.node_type)) // does not accept weights (e.g. boolean)
             return false; // false indicates that mutation failed and should return std::nullopt
 
         spot.node->data.set_is_weighted(true);
@@ -209,19 +230,20 @@ public:
 class ToggleWeightOffMutation : public MutationBase
 {
 public:
-    static auto find_spots(tree<Node>& Tree, const SearchSpace& SS,
+    template<Brush::ProgramType T>
+    static auto find_spots(Program<T>& program, Variation<T>& variator,
                     const Parameters& params)
     {
-        vector<float> weights(Tree.size());
+        vector<float> weights(program.Tree.size());
 
-        std::transform(Tree.begin(), Tree.end(), weights.begin(),
+        std::transform(program.Tree.begin(), program.Tree.end(), weights.begin(),
                     [&](const auto& n){
                         // some nodetypes must always have a weight                            
                         if (Is<NodeType::OffsetSum>(n.node_type))
                             return 0.0f;
                             
                         if (n.get_is_weighted()
-                        &&  IsWeighable(n.ret_type))
+                        &&  IsWeighable(n.node_type))
                             return n.get_prob_change();
                         else
                             return 0.0f;
@@ -230,12 +252,11 @@ public:
         return weights;
     }
 
-    static auto mutate(tree<Node>& Tree, Iter spot, const SearchSpace& SS,
+    template<Brush::ProgramType T>
+    static auto mutate(Program<T>& program, Iter spot, Variation<T>& variator,
                     const Parameters& params)
     {
-        // cout << "toggle_weight_off mutation\n";
-
-        if (spot.node->data.get_is_weighted()==false)
+        if (spot.node->data.get_is_weighted()==false) // TODO: This condition should never happen. Make sure it dont, then remove it. (this is also true for toggleweighton, also fix that)
             return false; 
 
         spot.node->data.set_is_weighted(false);
@@ -252,69 +273,128 @@ public:
 class SubtreeMutation : public MutationBase
 {
 public:
-    static auto find_spots(tree<Node>& Tree, const SearchSpace& SS,
+    template<Brush::ProgramType T>
+    static auto find_spots(Program<T>& program, Variation<T>& variator,
                     const Parameters& params)
     {
         vector<float> weights;
 
-        auto node_map = SS.node_map;
+        auto node_map = variator.search_space.node_map;
 
-        if (Tree.size() < params.max_size) {
-            Iter iter = Tree.begin();
-            std::transform(Tree.begin(), Tree.end(), std::back_inserter(weights),
+        if (program.Tree.size() < params.max_size) {
+            Iter iter = program.Tree.begin();
+            std::transform(program.Tree.begin(), program.Tree.end(), std::back_inserter(weights),
                         [&](const auto& n){ 
-                            size_t d = 1+Tree.depth(iter);
+                            size_t d = program.Tree.depth(iter);
                             std::advance(iter, 1);
 
                             // we need to make sure there's some node to start the subtree
                             if ((d >= params.max_depth)
-                            ||  (SS.node_map.find(n.ret_type) == SS.node_map.end())
-                            ||  (SS.node_map.find(n.ret_type) == SS.node_map.end()) )
+                            ||  (node_map.find(n.ret_type) == node_map.end()) )
                                 return 0.0f;
                             else
                                 return n.get_prob_change(); 
                         });
         }
         else {
-            weights.resize(Tree.size());
+            weights.resize(program.Tree.size());
             std::fill(weights.begin(), weights.end(), 0.0f); 
         }
         
         return weights;
     }
 
-    static auto mutate(tree<Node>& Tree, Iter spot, const SearchSpace& SS,
+    template<Brush::ProgramType T>
+    static auto mutate(Program<T>& program, Iter spot, Variation<T>& variator,
                     const Parameters& params)
     {
         // check if we exceeded the size/depth constrains (without subtracting,
         // to avoid overflow cases if the user sets max_size smaller than arity
         // of smallest operator. The overflow would happen when calculating d and
         // s in the following lines, to choose the PTC2 limits)
-        if ( params.max_size  <= (Tree.size() - Tree.size(spot))
-        ||   params.max_depth <= Tree.depth(spot) )
+        if ( params.max_size  <= (program.Tree.size() - program.Tree.size(spot))
+        ||   params.max_depth <= program.Tree.depth(spot) )
             return false;
 
         auto spot_type = spot.node->data.ret_type;
 
         // d and s must be compatible with PTC2 --- they should be based on 
         // tree structure, not program structure
-        size_t d = params.max_depth - Tree.depth(spot);
-        size_t s = params.max_size - (Tree.size() - Tree.size(spot));
+        size_t d = params.max_depth - program.Tree.depth(spot);
+        size_t s = params.max_size - (program.Tree.size() - program.Tree.size(spot));
 
-        s = r.rnd_int(1, s);
+        s = r.rnd_int(1, s+1);
 
         // sample subtree uses PTC2, which operates on depth and size of the tree<Node> 
         // (and not on the program!). we shoudn't care for weights here
-        auto subtree = SS.sample_subtree(spot.node->data, d, s); 
+        // cout<< "sampling subtree" << endl;
+        auto subtree = variator.search_space.sample_subtree(spot.node->data, d, s); 
+        // cout<< "Finish sampling" << endl;
 
         if (!subtree) // there is no terminal with compatible arguments
             return false;
 
+        // cout<< "updating the tree" << endl;
         // if optional contains a Node, we access its contained value
-        Tree.erase_children(spot); 
-        Tree.replace(spot, subtree.value().begin());
+        program.Tree.erase_children(spot); 
+        // cout<< "erased" << endl;
 
+        program.Tree.move_ontop(spot, subtree.value().begin());
+        // cout<< "replaced" << endl;
+
+        // cout<< "going to return" << endl;
         return true;
+    }
+};
+
+/// @brief Inserts an split node in the `spot`
+/// @param prog the program
+/// @param Tree the program tree
+/// @param spot an iterator to the node that is being mutated
+/// @param SS the search space to generate a compatible subtree
+/// @return boolean indicating the success (true) or fail (false) of the operation
+class SplitMutation : public MutationBase
+{
+public:
+    template<Brush::ProgramType T>
+    static auto find_spots(Program<T>& program, Variation<T>& variator,
+                    const Parameters& params)
+    {
+        vector<float> weights;
+
+        if (program.Tree.size() < params.get_max_size()) {
+            Iter iter = program.Tree.begin();
+            std::transform(program.Tree.begin(), program.Tree.end(), std::back_inserter(weights),
+                        [&](const auto& n){ 
+                            size_t d = 1+program.Tree.depth(iter);
+                            std::advance(iter, 1);
+
+                            // check if SS holds an operator to avoid failing `check` in sample_op_with_arg
+                            if (d >= params.get_max_depth()
+                            ||  variator.search_space.node_map.find(n.ret_type) == variator.search_space.node_map.end()
+                            // ||  check if n.ret_type can be splitted (e.g. DataType::ArrayF)
+                            ) {
+                                return 0.0f;
+                            }
+                            else {
+                                return n.get_prob_change(); 
+                            }
+                        });
+        }
+        else {
+            // fill the vector with zeros, since we're already at max_size
+            weights.resize(program.Tree.size());
+            std::fill(weights.begin(), weights.end(), 0.0f); 
+        }
+        
+        return weights;
+    }
+
+    template<Brush::ProgramType T>
+    static auto mutate(Program<T>& program, Iter spot, Variation<T>& variator,
+                    const Parameters& params)
+    {
+        return false;
     }
 };
 
@@ -342,7 +422,7 @@ public:
  * @return `std::optional` that may contain the child program of type `T`
  */
 template<Brush::ProgramType T>
-std::optional<Individual<T>> Variation<T>::cross(
+std::tuple<std::optional<Individual<T>>, VectorXf> Variation<T>::cross(
     const Individual<T>& mom, const Individual<T>& dad) 
 {
     /* subtree crossover between this and other, producing new Program */
@@ -352,6 +432,7 @@ std::optional<Individual<T>> Variation<T>::cross(
 
     // pick a subtree to replace
     vector<float> child_weights(child.Tree.size());
+
     auto child_iter = child.Tree.begin();
     std::transform(child.Tree.begin(), child.Tree.end(), child_weights.begin(),
                 [&](const auto& n){ 
@@ -371,7 +452,7 @@ std::optional<Individual<T>> Variation<T>::cross(
         return w<=0.0;
     }))
     { // There is no spot that has a probability to be selected
-        return std::nullopt;
+        return std::make_tuple(std::nullopt, VectorXf());
     }
     
     // pick a subtree to insert. Selection is based on other_weights
@@ -392,62 +473,54 @@ std::optional<Individual<T>> Variation<T>::cross(
                             ( child.size() - child.size_at(child_spot) );
         auto allowed_depth = parameters.max_depth - 
                             ( child.depth_to_reach(child_spot) );
-        
+
         vector<float> other_weights(other.Tree.size());
 
-        // iterator to get the size of subtrees inside transform
+        // Iterator to traverse the tree during transformation
         auto other_iter = other.Tree.begin();
+        std::transform(other.Tree.begin(), other.Tree.end(), other_weights.begin(),
+            [&other, &other_iter, allowed_size, allowed_depth, child_ret_type](const auto& n) mutable {
+                int s = other.size_at(other_iter);
+                int d = other.depth_at(other_iter);
 
-        // lambda function to check feasibility of solution and increment the iterator 
-        const auto check_and_incrm = [other, &other_iter, allowed_size, allowed_depth]() -> bool {
-            int s = other.size_at( other_iter );
-            int d = other.depth_at( other_iter );
+                std::advance(other_iter, 1);
 
-            std::advance(other_iter, 1);
-            return (s <= allowed_size) && (d <= allowed_depth);
-        };
+                // Check feasibility and matching return type
+                if (s <= allowed_size && d <= allowed_depth && n.ret_type == child_ret_type) {
+                    return n.get_prob_change();
+                }
 
-        std::transform(other.Tree.begin(), other.Tree.end(), 
-            other_weights.begin(),
-            [child_ret_type, check_and_incrm](const auto& n){
-                // need to pick a node that has a matching output type to the child_spot.
-                // also need to check if swaping this node wouldn't exceed max_size
-                if (check_and_incrm() && (n.ret_type == child_ret_type))
-                    return n.get_prob_change(); 
-                else
-                    // setting the weight to zero to indicate a non-feasible crossover point
-                    return 0.0f;
+                return 0.0f; // Non-feasible crossover point
             }
         );
         
-        bool matching_spots_found = false;
-        for (const auto& w: other_weights)
-        {
-            // we found at least one weight that is non-zero
-            matching_spots_found = w > 0.0;
+        bool matching_spots_found = std::any_of(other_weights.begin(), other_weights.end(), 
+                                        [](float w) { return w > 0.0f; });
 
-            if (matching_spots_found) {
-                auto other_spot = r.select_randomly(
-                    other.Tree.begin(), 
-                    other.Tree.end(), 
-                    other_weights.begin(), 
-                    other_weights.end()
-                );
-                                
-                // fmt::print("other_spot : {}\n",other_spot.node->data);
-                // swap subtrees at child_spot and other_spot
-                child.Tree.move_ontop(child_spot, other_spot);
-                
-                Individual<T> ind(child);
-                ind.set_objectives(mom.get_objectives()); // it will have an invalid fitness
+        if (matching_spots_found) {
+            // cout << "crossover" << std::endl;
+            VectorXf context = get_context(child, child_spot);
+       
+            auto other_spot = r.select_randomly(
+                other.Tree.begin(), 
+                other.Tree.end(), 
+                other_weights.begin(), 
+                other_weights.end()
+            );
+                 
+            // fmt::print("other_spot : {}\n",other_spot.node->data);
+            // swap subtrees at child_spot and other_spot
+            child.Tree.move_ontop(child_spot, other_spot);
+            
+            Individual<T> ind(child);
+            ind.set_variation("cx"); // TODO: use enum here to make it faster
 
-                return ind;
-            }
+            return std::make_tuple(ind, context);
         }
     }
 
-    return std::nullopt;
-}
+    return std::make_tuple(std::nullopt, VectorXf());
+};
 
 /**
  * @brief Stochastically mutate a program.
@@ -483,98 +556,130 @@ std::optional<Individual<T>> Variation<T>::cross(
  * @return `std::optional` that may contain the child program of type `T`
  */
 template<Brush::ProgramType T>
-std::optional<Individual<T>> Variation<T>::mutate(const Individual<T>& parent)
+std::tuple<std::optional<Individual<T>>, VectorXf> Variation<T>::mutate(
+    const Individual<T>& parent, string choice)
 {
-    auto options = parameters.mutation_probs;
+    if (choice.empty())
+    {
+        // cout << "Will sample a mut choice" << std::endl;
+        auto options = parameters.mutation_probs;
 
-    bool all_zero = true;
-    for (auto &it : parameters.mutation_probs) {
-        if (it.second > 0.0) {
-            all_zero = false;
-            break;
+        bool all_zero = true;
+        for (auto &it : parameters.mutation_probs) {
+            if (it.second > 0.0) {
+                all_zero = false;
+                break;
+            }
         }
-    }
 
-    if (all_zero)
-    { // No mutation can be successfully applied to this solution  
-        return std::nullopt;
+        if (all_zero) { // No mutation can be successfully applied to this solution  
+            return std::make_tuple(std::nullopt, VectorXf());
+        }
+        
+        // picking a valid mutation option
+        choice = r.random_choice(parameters.mutation_probs);
     }
     
-    Program<T> child(parent.program);
+    // cout << "Mutation choice: " << choice << std::endl;
+
+    Program<T> copy(parent.program);
+
+    vector<float> weights; // choose location by weighted sampling of program
+    if (choice.compare("point") == 0) // TODO: use enum here to optimize
+        weights = PointMutation::find_spots(copy, (*this), parameters);
+    else if (choice.compare("insert") == 0)
+        weights = InsertMutation::find_spots(copy, (*this), parameters);
+    else if (choice.compare("delete") == 0)
+        weights = DeleteMutation::find_spots(copy, (*this), parameters);
+    else if (choice.compare("subtree") == 0)
+        weights = SubtreeMutation::find_spots(copy, (*this), parameters);
+    else if (choice.compare("toggle_weight_on") == 0)
+        weights = ToggleWeightOnMutation::find_spots(copy, (*this), parameters);
+    else if (choice.compare("toggle_weight_off") == 0)
+        weights = ToggleWeightOffMutation::find_spots(copy, (*this), parameters);
+    else {
+        std::string msg = fmt::format("{} not a valid mutation choice", choice);
+        HANDLE_ERROR_THROW(msg);
+    }
+
+    if (std::all_of(weights.begin(), weights.end(), [](const auto& w) {
+        return w<=0.0;
+    }))
+    { // There is no spot that has a probability to be selected
+        return std::make_tuple(std::nullopt, VectorXf());
+    }
+    VectorXf context = {};
 
     int attempts = 0;
     while(++attempts <= 3)
     {
-        // choose a valid mutation option
-        string choice = r.random_choice(parameters.mutation_probs);
-        
-        vector<float> weights;
-
-        // choose location by weighted sampling of program
-        if (choice == "point")
-            weights = PointMutation::find_spots(child.Tree, search_space, parameters);
-        else if (choice == "insert")
-            weights = InsertMutation::find_spots(child.Tree, search_space, parameters);
-        else if (choice == "delete")
-            weights = DeleteMutation::find_spots(child.Tree, search_space, parameters);
-        else if (choice == "subtree")
-            weights = SubtreeMutation::find_spots(child.Tree, search_space, parameters);
-        else if (choice == "toggle_weight_on")
-            weights = ToggleWeightOnMutation::find_spots(child.Tree, search_space, parameters);
-        else if (choice == "toggle_weight_off")
-            weights = ToggleWeightOffMutation::find_spots(child.Tree, search_space, parameters);
-        else {
-            std::string msg = fmt::format("{} not a valid mutation choice", choice);
-            HANDLE_ERROR_THROW(msg);
-        }
-
-        if (std::all_of(weights.begin(), weights.end(), [](const auto& w) {
-            return w<=0.0;
-        }))
-        { // There is no spot that has a probability to be selected
-            continue;
-        }
+        // cout<< "Attempt: " << attempts << std::endl;
+        Program<T> child(parent.program);
 
         // apply the mutation and check if it succeeded
         auto spot = r.select_randomly(child.Tree.begin(), child.Tree.end(),
-                                    weights.begin(), weights.end());
+                                      weights.begin(), weights.end());
 
         // Every mutation here works inplace, so they return bool instead of
         // std::optional to indicare the result of their manipulation over the
         // program tree. Here we call the mutation function and return the result
         
-        bool success;
-        if (choice == "point")
-            success = PointMutation::mutate(child.Tree, spot, search_space, parameters);
-        else if (choice == "insert")
-            success = InsertMutation::mutate(child.Tree, spot, search_space, parameters);
-        else if (choice == "delete")
-            success = DeleteMutation::mutate(child.Tree, spot, search_space, parameters);
-        else if (choice == "subtree")
-            success = SubtreeMutation::mutate(child.Tree, spot, search_space, parameters);
-        else if (choice == "toggle_weight_on")
-            success = ToggleWeightOnMutation::mutate(child.Tree, spot, search_space, parameters);
-        else // it must be"toggle_weight_off"
-            success = ToggleWeightOffMutation::mutate(child.Tree, spot, search_space, parameters);
+        // cout<< "mutate()" << std::endl;
+        context = get_context(child, spot);
 
-        // std::cout << "returning" << std::endl;
+        bool success;
+        if (choice.compare("point") == 0)
+            success = PointMutation::mutate(child, spot, (*this), parameters);
+        else if (choice.compare("insert") == 0)
+            success = InsertMutation::mutate(child, spot, (*this), parameters);
+        else if (choice.compare("delete") == 0)
+            success = DeleteMutation::mutate(child, spot, (*this), parameters);
+        else if (choice.compare("subtree") == 0)
+            success = SubtreeMutation::mutate(child, spot, (*this), parameters);
+        else if (choice.compare("toggle_weight_on") == 0)
+            success = ToggleWeightOnMutation::mutate(child, spot, (*this), parameters);
+        else // it must be"toggle_weight_off"
+            success = ToggleWeightOffMutation::mutate(child, spot, (*this), parameters);
+
+        // cout<< "Mutation returned " << success << std::endl;
         if (success
         && ( (child.size()  <= parameters.max_size)
         &&   (child.depth() <= parameters.max_depth) )){
-
+            // cout<< "Mutation succeeded on attempt " << attempts << std::endl;
+        
             Individual<T> ind(child);
-            ind.set_objectives(parent.get_objectives()); // it will have an invalid fitness
+            // cout<< "new ind program " << child.get_model() << std::endl;
+            ind.set_variation(choice);
+            // cout<< "set variation " << choice << std::endl;
 
-            return ind;
-        } else {
-            continue;
+            // subtree performs several samplings, and it will leverate
+            // what point/insert/delete mutations learned about each node utility.
+
+            // TODO: handle subtree - it will sample too many nodes and it may
+            // be hard to track which ones actually improved the expression to
+            // update the bandits/ maybe we should skip it?
+            // mutations that sampled from search space
+            if (choice.compare("point")   == 0
+            ||  choice.compare("insert")  == 0
+            ||  choice.compare("delete")  == 0
+            // ||  choice.compare("subtree") == 0 // TODO: disable this one
+            ) {
+                // cout<< "setting sampled nodes " << spot.node->data.name << std::endl;
+                ind.set_sampled_nodes({spot.node->data});
+            }
+
+            // cout<< "returning..." << std::endl;
+            return std::make_tuple(ind, context);
+        }
+        else { // reseting 
+            // cout<< "Mutation failed on attempt " << attempts << std::endl;
         }
     }
 
-    return std::nullopt;
-}
+    return std::make_tuple(std::nullopt, context);
+};
 
-template <Brush::ProgramType T>
+template<Brush::ProgramType T>
 void Variation<T>::vary(Population<T>& pop, int island, 
                         const vector<size_t>& parents)
 {    
@@ -594,48 +699,153 @@ void Variation<T>::vary(Population<T>& pop, int island,
             *r.select_randomly(parents.begin(), parents.end())];
     
         vector<Individual<T>> ind_parents;
-        if ( r() < parameters.cx_prob) // crossover
+        VectorXf context = {};
+        
+        bool crossover = ( r() < parameters.cx_prob );
+        if (crossover)
         {
             const Individual<T>& dad = pop[
                 *r.select_randomly(parents.begin(), parents.end())];
             
-            opt = cross(mom, dad);   
+            auto variation_result = cross(mom, dad);
             ind_parents = {mom, dad};
+            tie(opt, context) = variation_result;
         }
-        else // mutation
+        else
         {
-            opt = mutate(mom);   
+            // cout << "Performing mutation " << std::endl;
+            auto variation_result = mutate(mom);   
+            // cout << "finished mutation" << endl;
             ind_parents = {mom};
+            tie(opt, context) = variation_result;
+            // cout << "unpacked" << endl;
         }
-
+    
         // this assumes that islands do not share indexes before doing variation
         unsigned id = parameters.current_gen*parameters.pop_size+indices.at(i);
 
         // mutation and crossover already perform 3 attempts. If it fails, we just fill with a random individual
+        
+        Individual<T> ind;
         if (opt) // variation worked, lets keep this
         {
-            Individual<T> ind = opt.value();
-  
-            ind.is_fitted_ = false;
-            ind.set_id(id);
+            ind = opt.value();
             ind.set_parents(ind_parents);
-
-            assert(ind.program.size()>0);
-            pop.individuals.at(indices.at(i)) = std::make_shared<Individual<T>>(ind);
         }
-        else {  // no optional value was returned
-            Individual<T> new_ind;
+        else {  // no optional value was returned. creating a new random individual
+            // It seems that the line below will not fix the root in clf programs
+            ind.init(search_space, parameters); // ind.variation is born by default
+        
+            // Program<T> p = search_space.make_program<Program<T>>(parameters, 0, 0);
+            // ind = Individual<T>(p);
+        }
+
+        ind.set_objectives(mom.get_objectives()); // it will have an invalid fitness
+
+        ind.is_fitted_ = false;
+        ind.set_id(id);
+
+        // TODO: smarter way of copying the entire fitness
+        // copying mom fitness to the new individual (without making the fitnes valid)
+        // so the bandits can access this information. Fitness will be valid
+        // only when we do set_values(). We are setting these parameters below
+        // because we want to keep the previous values for the bandits, and
+        // we are not updating the fitness values here.
+        ind.fitness.set_loss(mom.fitness.get_loss());
+        ind.fitness.set_loss_v(mom.fitness.get_loss_v());
+        ind.fitness.set_size(mom.fitness.get_size());
+        ind.fitness.set_complexity(mom.fitness.get_complexity());
+        ind.fitness.set_linear_complexity(mom.fitness.get_linear_complexity());
+        ind.fitness.set_depth(mom.fitness.get_depth());
+
+        // dont set stuff that is not used to calculate the rewards, like crowding_dist
+        // ind.fitness.set_crowding_dist(0.0);
+        
+        assert(ind.program.size()>0);
+        assert(ind.fitness.valid()==false);
+
+        pop.individuals.at(indices.at(i)) = std::make_shared<Individual<T>>(ind);
+    }
+};
+
+template <Brush::ProgramType T>
+void Variation<T>::update_ss()
+{
+    // propagate bandits learnt information to the search space.
+    // TODO: not all arms are initialized, if the user set something to zero then we must
+    // disable it. So, during update, we need to properly handle these skipped arms. --> remove this for nodes, allow it just for variations. If the user doesnt want to use a feature or op, he should not set it at the first place. We need to do this with variations because the user 
+    // can choose it directly instead of letting brush to figure out.
+
+    // variation: getting new probabilities for variation operators
+    auto variation_probs = variation_bandit.sample_probs(true);
+
+    // cout << "Variation probabilities:" << std::endl;
+    // for (const auto& variation : variation_probs) {
+    //     std::cout << " - " << variation.first << ": " << variation.second << std::endl;
+    // }
+
+    if (variation_probs.find("cx") != variation_probs.end())
+        parameters.set_cx_prob(variation_probs.at("cx"));
+    
+    for (const auto& variation : variation_probs)
+        if (variation.first != "cx")
+            parameters.mutation_probs[variation.first] = variation.second;
             
-            // creating a new random individual
-            new_ind.init(search_space, parameters);
-            new_ind.set_objectives(mom.get_objectives()); // it will have an invalid fitness
-            new_ind.set_id(id);
-            new_ind.is_fitted_ = false;
+    // terminal: getting new probabilities for terminal nodes in search space
+    for (auto& bandit : terminal_bandits) {
+        auto datatype = bandit.first;
+        
+        auto terminal_probs = bandit.second.sample_probs(true);
+        // cout << "Terminal probabilities for datatype " << std::endl;
+        for (auto& terminal : terminal_probs) {
+            // cout << " - " << terminal.first << ": " << terminal.second << std::endl;
 
-            pop.individuals.at(indices.at(i)) = std::make_shared<Individual<T>>(new_ind);
+            auto terminal_name = terminal.first;
+            auto terminal_prob = terminal.second;
+
+            // Search for the index that matches the terminal name
+            auto it = std::find_if(
+                search_space.terminal_map.at(datatype).begin(),
+                search_space.terminal_map.at(datatype).end(), 
+                [&](auto& node) { return node.get_feature() == terminal_name; });
+
+            // if (it != search_space.terminal_map.at(datatype).end()) {
+                auto index = std::distance(search_space.terminal_map.at(datatype).begin(), it);
+
+                // Update the terminal weights with the second value
+                search_space.terminal_weights.at(datatype)[index] = terminal_prob;
+            // }
         }
-   }
-}
+    }
+
+    // operators: getting new probabilities for op nodes
+    for (auto& [ret_type, bandit_map] : op_bandits) {
+        for (auto& [args_type, bandit] : bandit_map) {
+            auto op_probs = bandit.sample_probs(true);
+
+            for (auto& [op_name, op_prob] : op_probs) {
+                // cout << " - " << op_name << ": " << op_prob << std::endl;
+
+                for (const auto& [node_type, node_value]: search_space.node_map.at(ret_type).at(args_type))
+                {
+                    // cout << " - Node name: " << node_value.name << std::endl;
+                    if (node_value.name == op_name) {
+                        // cout << "match" << endl;
+                        search_space.node_map_weights.at(ret_type).at(args_type).at(node_type) = op_prob;
+                    }
+                }
+            }
+        }
+    }
+    
+    // cout << "inside update_ss(). Parameters probs:" << std::endl;
+    // cout << "cx: " << parameters.get_cx_prob() << std::endl;
+    // for (const auto& [name, prob] : parameters.get_mutation_probs())
+    //     std::cout << name << ": " << prob << std::endl;
+
+    // cout << "Search Space:" << std::endl;
+    // search_space.print();
+};
 
 } //namespace Var
 } //namespace Brush

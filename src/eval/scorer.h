@@ -89,6 +89,8 @@ public:
     Scorer(string scorer="log") {
         score_hash["log"] = &mean_log_loss;
         score_hash["average_precision_score"] = &average_precision_score;
+        score_hash["accuracy"] = &zero_one_loss;
+        score_hash["balanced_accuracy"] = &bal_zero_one_loss;
     
         this->set_scorer(scorer);
     };
@@ -118,7 +120,20 @@ public:
                 VectorXf& loss, const Parameters& params)
     {
         RetType y_pred = ind.predict_proba(data); // .template cast<float>();
-        return score(data.y, y_pred, loss, params.class_weights);
+        
+        auto class_weights = params.class_weights;
+
+        // calculate class weights based on data instead of using a predetermined value
+        if (!class_weights.empty())
+        {            
+            class_weights.resize(params.n_classes);
+            for (unsigned i = 0; i < params.n_classes; ++i){
+                class_weights.at(i) = float((data.y.cast<int>().array() == i).count())/data.y.size(); 
+                class_weights.at(i) = (1.0 - class_weights.at(i));
+            }
+        }
+
+        return score(data.y, y_pred, loss, class_weights);
     }
 };
 
@@ -138,8 +153,10 @@ public:
     std::map<string, funcPointer> score_hash;
     string scorer;
 
+    // TODO: I actually need to test this stuff
     Scorer(string scorer="multi_log") {
         score_hash["multi_log"] = &mean_multi_log_loss; 
+        score_hash["accuracy"] = &multi_zero_one_loss;
     
         this->set_scorer(scorer);
     };
@@ -173,7 +190,20 @@ public:
                 VectorXf& loss, const Parameters& params)
     {
         RetType y_pred = ind.predict_proba(data); // .template cast<float>();
-        return score(data.y, y_pred, loss, params.class_weights);
+        
+        auto class_weights = params.class_weights;
+
+        // calculate class weights based on data instead of using a predetermined value
+        if (!class_weights.empty())
+        {            
+            class_weights.resize(params.n_classes);
+            for (unsigned i = 0; i < params.n_classes; ++i){
+                class_weights.at(i) = float((data.y.cast<int>().array() == i).count())/data.y.size(); 
+                class_weights.at(i) = (1.0 - class_weights.at(i));
+            }
+        }
+
+        return score(data.y, y_pred, loss, class_weights);
     }
 };
 

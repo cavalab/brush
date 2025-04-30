@@ -153,14 +153,20 @@ struct Node {
 
     void init(){
 
-        W = 1.0;
+        // starting weights with neutral element of the operation. offsetsum
+        // is the only node that does not multiply the weight --- instead, it adds it
+        W = (node_type == NodeType::OffsetSum) ? 0.0 : 1.0;
+
         // set_node_hash();
         fixed=false;
         set_prob_change(1.0);
 
+        // TODO: confirm that this is really necessary (intializing this variable) and transform this line into a ternary if so
         // cant weight an boolean terminal
         if (!IsWeighable(this->ret_type)) 
             this->is_weighted = false;
+        else
+            this->is_weighted = true;
     }
 
     /// @brief gets a string version of the node for printing.
@@ -242,6 +248,9 @@ struct Node {
 
     inline void set_feature(string f){ feature = f; };
     inline string get_feature() const { return feature; };
+    
+    inline void set_feature_type(DataType ft){ feature_type = ft; };
+    inline DataType get_feature_type() const { return feature_type; };
 
     inline bool get_is_weighted() const {return this->is_weighted;};
     inline void set_is_weighted(bool is_weighted){
@@ -251,9 +260,12 @@ struct Node {
     };
 
     private:
-
         /// @brief feature name for terminals or splitting nodes
         string feature; 
+        
+        /// @brief feature type for terminals or splitting nodes
+        DataType feature_type; 
+        
 };
 
 template <NodeType... T>
@@ -262,6 +274,8 @@ inline auto Is(NodeType nt) -> bool { return ((nt == T) || ...); }
 template <NodeType... T>
 inline auto Isnt(NodeType nt) -> bool { return !((nt == T) || ...); }
 
+// TODO: I think there are places where I can replace some logic with IsLeaf --> Check that.
+// TODO: create IsConstant, and add Constant and MeanLabel to it.
 inline auto IsLeaf(NodeType nt) noexcept -> bool { 
     return Is<NodeType::Constant, NodeType::Terminal, NodeType::MeanLabel>(nt); 
 }
@@ -284,7 +298,7 @@ inline auto IsDifferentiable(NodeType nt) noexcept -> bool {
                 NodeType::Count,
                 NodeType::And, 
                 NodeType::Or,
-                NodeType::Not
+                NodeType::Not // TODO: should I include OffsetSum here? If I do so, then I should change the logic in the optimizer to not optimize the weight of OffsetSum nodes.
                 >(nt);                
 }
 template<NodeType NT>
@@ -300,7 +314,8 @@ inline auto IsWeighable() noexcept -> bool {
                     NodeType::SplitBest,
                     NodeType::And, 
                     NodeType::Or,
-                    NodeType::Not 
+                    NodeType::Not,
+                    NodeType::MeanLabel
                     >(NT);                
 }
 inline auto IsWeighable(NodeType nt) noexcept -> bool { 
@@ -315,7 +330,8 @@ inline auto IsWeighable(NodeType nt) noexcept -> bool {
                     NodeType::SplitBest,
                     NodeType::And, 
                     NodeType::Or,
-                    NodeType::Not
+                    NodeType::Not,
+                    NodeType::MeanLabel
                     >(nt);                
 }
 

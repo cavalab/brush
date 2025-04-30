@@ -21,7 +21,7 @@ template<ProgramType T>
 vector<size_t> SelectionOperator<T>::survive(Population<T>& pop, int island, 
         const Parameters& p)
 {   
-    HANDLE_ERROR_THROW("Undefined select() operation");
+    HANDLE_ERROR_THROW("Undefined survive() operation");
     return vector<size_t>();
 };
 

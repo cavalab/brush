@@ -85,10 +85,10 @@ struct SearchSpace
     using ArgsHash = std::size_t; 
 
     template<typename T>
-    using Map = unordered_map<DataType,           // return type
-                    unordered_map<ArgsHash,         // hash of arg types
-                        unordered_map<NodeType,   // node type 
-                            T>>>;        // the data!
+    using Map = unordered_map<DataType,         // return type
+                    unordered_map<ArgsHash,     // hash of arg types
+                        unordered_map<NodeType, // node type 
+                            T>>>;               // the data!
     
     /**
      * @brief Maps return types to argument types to node types. 
@@ -102,6 +102,8 @@ struct SearchSpace
     /// @brief A map of weights corresponding to elements in @ref node_map, used to weight probabilities of each node being sampled from the map. 
     Map<float> node_map_weights; 
 
+    // TODO: maybe we could flatten this terminal map
+    
     /**
      * @brief Maps return types to terminals. 
      * 
@@ -118,6 +120,9 @@ struct SearchSpace
     /// @brief A vector storing the available return types of terminals. 
     vector<DataType> terminal_types;
 
+    /// @brief A vector storing the available operator names (used by bandits).
+    vector<string> op_names;
+
     // serialization
 #ifndef DOXYGEN_SKIP
 
@@ -126,7 +131,8 @@ struct SearchSpace
         node_map_weights,
         terminal_map,
         terminal_weights,
-        terminal_types
+        terminal_types,
+        op_names
     ) 
 
 #endif
@@ -249,7 +255,7 @@ struct SearchSpace
     /// @param R the return type of the node
     /// @param sig_hash the signature hash of the node
     /// @return the matching [Node](@ref Node)
-    Node get(NodeType type, DataType R, size_t sig_hash)
+    Node get(NodeType type, DataType R, size_t sig_hash) const 
     {
         check(R, sig_hash, type);
         return node_map.at(R).at(sig_hash).at(type);
@@ -262,7 +268,7 @@ struct SearchSpace
     /// @param sig the signature of the node 
     /// @return the matching Node 
     template<typename S>
-    Node get(NodeType type, DataType R, S sig){ return get(type, R, sig.hash()); };
+    Node get(NodeType type, DataType R, S sig) const { return get(type, R, sig.hash()); };
 
     /// @brief get weights of the return types 
     /// @return a weight vector, each element corresponding to a return type.
@@ -391,10 +397,14 @@ struct SearchSpace
         vector<float> match_weights(terminal_weights.at(R).size());
         if (force_return)
         {
+            // This should have at least the constant
             std::fill(match_weights.begin(), match_weights.end(), 1.0f); 
         }
         else
         {
+            if (terminal_map.find(R) == terminal_map.end())
+                return std::nullopt;
+
             std::transform(
                 terminal_weights.at(R).begin(),
                 terminal_weights.at(R).end(),
@@ -402,10 +412,9 @@ struct SearchSpace
                 [](const auto& w){  return w; }
             );
 
-            if ( (terminal_map.find(R) == terminal_map.end())
-            ||   (!has_solution_space(match_weights.begin(), 
-                                      match_weights.end())) )
-            return std::nullopt;
+            if (!has_solution_space(match_weights.begin(), 
+                                    match_weights.end()))
+                return std::nullopt;
         }
     
         return *r.select_randomly(terminal_map.at(R).begin(), 
@@ -419,7 +428,7 @@ struct SearchSpace
     /// @return `std::optional` that may contain a randomly chosen operator matching return type `ret`
     std::optional<Node> sample_op(DataType ret) const
     {
-        // check(ret);
+        check(ret);
         if (node_map.find(ret) == node_map.end())
             return std::nullopt;
 
@@ -453,7 +462,7 @@ struct SearchSpace
     /// @return `std::optional` that may contain a Node of type `type` with return type `R`. 
     std::optional<Node> sample_op(NodeType type, DataType R)
     {
-        // check(R);
+        check(R);
         if (node_map.find(R) == node_map.end())
             return std::nullopt;
 
@@ -461,11 +470,10 @@ struct SearchSpace
         
         vector<Node> matches; 
         vector<float> weights; 
-        for (const auto& kv: ret_match)
+        for (const auto& [arg_hash, node_type_map]: ret_match)
         {
-            auto arg_hash = kv.first;
-            auto node_type_map = kv.second;
-            if (node_type_map.find(type) != node_type_map.end())
+            if (node_type_map.find(type) != node_type_map.end()
+            &&  node_map_weights.at(R).at(arg_hash).at(type) > 0.0f)
             {
                 matches.push_back(node_type_map.at(type));
                 weights.push_back(node_map_weights.at(R).at(arg_hash).at(type));
@@ -512,7 +520,11 @@ struct SearchSpace
                 // arguments woudn't exceed the maximum number of arguments
                 auto within_size_limit = !(max_args) || (node.get_arg_count() <= max_args);
                 
-                if ( in(node_arg_types, arg) && within_size_limit) {
+                // TODO: I created constant terminals for all datatypes. Can I stop performing this check? (there is always gonna be a terminal)
+                if ( in(node_arg_types, arg)
+                &&   within_size_limit
+                &&   node_map_weights.at(ret).at(args_type).at(name) > 0.0f )
+                {
                     // if checking terminal compatibility, make sure there's
                     // a compatible terminal for the node's other arguments
                     if (terminal_compatible) {
@@ -577,6 +589,28 @@ struct SearchSpace
 
     /// @brief prints the search space map. 
     void print() const; 
+
+    /// @brief returns a string with a json representation of the search space map
+    std::string repr() const {
+        string output = "=== Search space ===\n";
+        output += fmt::format("terminal_map: {}\n", this->terminal_map);
+        output += fmt::format("terminal_weights: {}\n", this->terminal_weights);
+        
+        for (const auto& [ret_type, v] : this->node_map) {
+            for (const auto& [args_type, v2] : v) {
+                for (const auto& [node_type, node] : v2) {
+                    output += fmt::format("node_map[{}][{}][{}] = {}, weight = {}\n", 
+                            ret_type,
+                            ArgsName[args_type],
+                            node_type,
+                            node,
+                            this->node_map_weights.at(ret_type).at(args_type).at(node_type)
+                            );
+                }
+            }
+        }
+        return output;
+    };
 
     private:
         tree<Node>& PTC2(tree<Node>& Tree, tree<Node>::iterator root, int max_d, int max_size) const;
@@ -702,12 +736,15 @@ P SearchSpace::make_program(const Parameters& params, int max_d, int max_size)
     if (P::program_type == ProgramType::BinaryClassifier)
     {
         Node node_logit = get(NodeType::Logistic, DataType::ArrayF, Signature<ArrayXf(ArrayXf)>());
+        node_logit.set_is_weighted(false);
         node_logit.set_prob_change(0.0);
         node_logit.fixed=true;
+
         auto spot_logit = Tree.insert(Tree.begin(), node_logit);
 
-        if (true) { // Logistic(Add(Constant, <>)). 
+        if (true) { // Logistic(Add(Constant, <>)). TODO: let the user control this
             Node node_offset = get(NodeType::OffsetSum, DataType::ArrayF, Signature<ArrayXf(ArrayXf)>());
+
             node_offset.set_prob_change(0.0);
             node_offset.fixed=true;
 
@@ -722,7 +759,9 @@ P SearchSpace::make_program(const Parameters& params, int max_d, int max_size)
     else if (P::program_type == ProgramType::MulticlassClassifier)
     {
         Node node_softmax = get(NodeType::Softmax, DataType::MatrixF, Signature<ArrayXXf(ArrayXXf)>());
+
         node_softmax.set_prob_change(0.0);
+        node_softmax.set_is_weighted(false);
         node_softmax.fixed=true;
         
         spot = Tree.insert(Tree.begin(), node_softmax);
@@ -747,6 +786,17 @@ P SearchSpace::make_program(const Parameters& params, int max_d, int max_size)
     // max_d-1 because we always pick the root before calling ptc2
     PTC2(Tree, spot, max_d-1, max_size); // change inplace
 
+    // weighting the tree if classification problem (so it can optimize the scale by default)
+    // if (P::program_type == ProgramType::BinaryClassifier
+    // ||  P::program_type == ProgramType::MulticlassClassifier)
+    // {
+    //     // Get the child of the spot
+    //     auto child = spot.begin();
+
+    //     // Turn on the weight for the child
+    //     child->set_prob_change(1.0);
+    // }
+
     return P(*this, Tree);
 };
 
@@ -755,27 +805,12 @@ extern SearchSpace SS;
 } // Brush
 
 // format overload 
-template <> struct fmt::formatter<Brush::SearchSpace>: formatter<string_view> {
-  template <typename FormatContext>
-  auto format(const Brush::SearchSpace& SS, FormatContext& ctx) const {
-    string output = "Search Space\n===\n";
-    output += fmt::format("terminal_map: {}\n", SS.terminal_map);
-    output += fmt::format("terminal_weights: {}\n", SS.terminal_weights);
-    for (const auto& [ret_type, v] : SS.node_map) {
-        for (const auto& [args_type, v2] : v) {
-            for (const auto& [node_type, node] : v2) {
-                output += fmt::format("node_map[{}][{}][{}] = {}, weight = {}\n", 
-                        ret_type,
-                        ArgsName[args_type],
-                        node_type,
-                        node,
-                        SS.node_map_weights.at(ret_type).at(args_type).at(node_type)
-                        );
-            }
-        }
+template <>
+struct fmt::formatter<Brush::SearchSpace>: formatter<string_view> {
+    template <typename FormatContext>
+    auto format(const Brush::SearchSpace& SS, FormatContext& ctx) const {
+        string output = SS.repr();
+        return formatter<string_view>::format(output, ctx);
     }
-    output += "===";
-    return formatter<string_view>::format(output, ctx);
-  }
 };
 #endif

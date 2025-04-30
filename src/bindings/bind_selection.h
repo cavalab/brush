@@ -45,8 +45,6 @@ void bind_selection(py::module& m, string name)
             {
                 vector<size_t> selected = self.select(pop, island, params);
 
-                // std::cout << "selecting in island " << island << std::endl;
-
                 for (size_t idx : selected) {
                     pool.push_back(pop[idx]);
                 }

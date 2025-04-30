@@ -11,5 +11,5 @@ void bind_selections(py::module& m)
     bind_selection<br::ProgramType::BinaryClassifier>(m, "ClassifierSelector");
     
     bind_selection<br::ProgramType::MulticlassClassifier>(m, "MultiClassifierSelector");
-    // bind_selection<br::ProgramType::Representer>(m, "RepresenterSelector");
+    bind_selection<br::ProgramType::Representer>(m, "RepresenterSelector");
 }

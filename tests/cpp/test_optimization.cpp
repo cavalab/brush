@@ -135,6 +135,7 @@ INSTANTIATE_TEST_SUITE_P(OptimizerTestParameters, OptimizerTest,
             }
         ),
 
+        // TODO: make examples hardcoded here and get rid of lots of data? or even have one single example and calculate the targets on the fly
         /** Simple subtractive problem with one negative weight.
          *  The dataset models y = 2*x1 + 3*x2. 
          *  The initial model is yhat = 1*x1 - 1*x2. 

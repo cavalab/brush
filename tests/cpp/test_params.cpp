@@ -22,9 +22,9 @@ TEST(Params, ParamsTests)
 	ASSERT_EQ(params.max_depth, 6);
 	ASSERT_EQ(params.get_max_depth(), 6);
 	
-	params.set_objectives({"fitness","complexity"});
+	params.set_objectives({"scorer","complexity"});
 	ASSERT_EQ(params.get_objectives().size(), 2);
-	ASSERT_STREQ(params.get_objectives()[0].c_str(), "fitness");
+	ASSERT_STREQ(params.get_objectives()[0].c_str(), params.get_scorer().c_str());
 	ASSERT_STREQ(params.get_objectives()[1].c_str(), "complexity");
 	
     // TODO: implement logger and verbosity and make this work
