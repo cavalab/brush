@@ -1,13 +1,18 @@
 var searchData=
 [
-  ['jetify_0',['Jetify',['../de/d30/structBrush_1_1Jetify.html',1,'Brush']]],
-  ['jetify_3c_20arrayxb_20_3e_1',['Jetify&lt; ArrayXb &gt;',['../da/dd5/structBrush_1_1Jetify_3_01ArrayXb_01_4.html',1,'Brush']]],
-  ['jetify_3c_20arrayxf_20_3e_2',['Jetify&lt; ArrayXf &gt;',['../d4/d10/structBrush_1_1Jetify_3_01ArrayXf_01_4.html',1,'Brush']]],
-  ['jetify_3c_20arrayxi_20_3e_3',['Jetify&lt; ArrayXi &gt;',['../dc/d2f/structBrush_1_1Jetify_3_01ArrayXi_01_4.html',1,'Brush']]],
-  ['jetify_3c_20arrayxxb_20_3e_4',['Jetify&lt; ArrayXXb &gt;',['../d9/d13/structBrush_1_1Jetify_3_01ArrayXXb_01_4.html',1,'Brush']]],
-  ['jetify_3c_20arrayxxf_20_3e_5',['Jetify&lt; ArrayXXf &gt;',['../da/d99/structBrush_1_1Jetify_3_01ArrayXXf_01_4.html',1,'Brush']]],
-  ['jetify_3c_20arrayxxi_20_3e_6',['Jetify&lt; ArrayXXi &gt;',['../d2/d53/structBrush_1_1Jetify_3_01ArrayXXi_01_4.html',1,'Brush']]],
-  ['jetify_3c_20data_3a_3atimeseriesb_20_3e_7',['Jetify&lt; Data::TimeSeriesb &gt;',['../d4/d01/structBrush_1_1Jetify_3_01Data_1_1TimeSeriesb_01_4.html',1,'Brush']]],
-  ['jetify_3c_20data_3a_3atimeseriesf_20_3e_8',['Jetify&lt; Data::TimeSeriesf &gt;',['../da/dc3/structBrush_1_1Jetify_3_01Data_1_1TimeSeriesf_01_4.html',1,'Brush']]],
-  ['jetify_3c_20data_3a_3atimeseriesi_20_3e_9',['Jetify&lt; Data::TimeSeriesi &gt;',['../d9/da6/structBrush_1_1Jetify_3_01Data_1_1TimeSeriesi_01_4.html',1,'Brush']]]
+  ['individual_0',['Individual',['../de/d83/classBrush_1_1Pop_1_1Individual.html',1,'Brush::Pop']]],
+  ['individual_3c_20pt_3a_3abinaryclassifier_20_3e_1',['Individual&lt; PT::BinaryClassifier &gt;',['../de/d83/classBrush_1_1Pop_1_1Individual.html',1,'Brush::Pop']]],
+  ['individual_3c_20pt_3a_3amulticlassclassifier_20_3e_2',['Individual&lt; PT::MulticlassClassifier &gt;',['../de/d83/classBrush_1_1Pop_1_1Individual.html',1,'Brush::Pop']]],
+  ['individual_3c_20pt_3a_3aregressor_20_3e_3',['Individual&lt; PT::Regressor &gt;',['../de/d83/classBrush_1_1Pop_1_1Individual.html',1,'Brush::Pop']]],
+  ['individual_3c_20pt_3a_3arepresenter_20_3e_4',['Individual&lt; PT::Representer &gt;',['../de/d83/classBrush_1_1Pop_1_1Individual.html',1,'Brush::Pop']]],
+  ['inexact_5fsimplifier_5',['Inexact_simplifier',['../de/dc5/classBrush_1_1Simpl_1_1Inexact__simplifier.html',1,'Brush::Simpl']]],
+  ['insertmutation_6',['InsertMutation',['../dc/de3/classBrush_1_1Var_1_1InsertMutation.html',1,'Brush::Var']]],
+  ['is_5feigen_5farray_7',['is_eigen_array',['../df/d72/structBrush_1_1is__eigen__array.html',1,'Brush']]],
+  ['is_5fin_8',['is_in',['../d0/d80/structis__in.html',1,'']]],
+  ['is_5fone_5fof_9',['is_one_of',['../d3/d0e/structBrush_1_1is__one__of.html',1,'Brush']]],
+  ['is_5fstd_5farray_10',['is_std_array',['../d6/dfa/structBrush_1_1is__std__array.html',1,'Brush']]],
+  ['is_5fstd_5farray_3c_20std_3a_3aarray_3c_20v_2c_20n_20_3e_20_3e_11',['is_std_array&lt; std::array&lt; V, n &gt; &gt;',['../d4/df1/structBrush_1_1is__std__array_3_01std_1_1array_3_01V_00_01n_01_4_01_4.html',1,'Brush']]],
+  ['is_5ftuple_12',['is_tuple',['../d0/d4c/structBrush_1_1is__tuple.html',1,'Brush']]],
+  ['is_5ftuple_3c_20std_3a_3atuple_3c_20t_2e_2e_2e_20_3e_20_3e_13',['is_tuple&lt; std::tuple&lt; T... &gt; &gt;',['../df/d54/structBrush_1_1is__tuple_3_01std_1_1tuple_3_01T_8_8_8_01_4_01_4.html',1,'Brush']]],
+  ['iterator_14',['iterator',['../d9/dcc/classarray_1_1iterator.html',1,'array&lt; T &gt;::iterator'],['../dd/d7b/classmap_1_1iterator.html',1,'map&lt; K, T &gt;::iterator'],['../dd/d43/classset_1_1iterator.html',1,'set&lt; K &gt;::iterator'],['../d5/d16/classstring_1_1iterator.html',1,'string::iterator'],['../d0/d05/classvector_1_1iterator.html',1,'vector&lt; T &gt;::iterator']]]
 ];

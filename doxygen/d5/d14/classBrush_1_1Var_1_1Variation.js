@@ -1,12 +1,25 @@
 var classBrush_1_1Var_1_1Variation =
 [
     [ "Variation", "d5/d14/classBrush_1_1Var_1_1Variation.html#a3df7d1814f29d5073fccce5a4c59311c", null ],
-    [ "Variation", "d5/d14/classBrush_1_1Var_1_1Variation.html#adb0d1a96dcccf09834f7bfc266a535b2", null ],
+    [ "Variation", "d5/d14/classBrush_1_1Var_1_1Variation.html#ab37851161965ba93a7f93668d07075cd", null ],
     [ "~Variation", "d5/d14/classBrush_1_1Var_1_1Variation.html#a68dde038b2d0554791ee4a8da2f7e623", null ],
-    [ "cross", "d5/d14/classBrush_1_1Var_1_1Variation.html#acf7d5d1c0d6a102eec277180dce590fe", null ],
-    [ "init", "d5/d14/classBrush_1_1Var_1_1Variation.html#aab1cc3b5be6c321b56d4af61c7466f2b", null ],
-    [ "mutate", "d5/d14/classBrush_1_1Var_1_1Variation.html#a024e971b0f8685c89d119c0af484284a", null ],
+    [ "bandit_get_node_like", "d5/d14/classBrush_1_1Var_1_1Variation.html#a0cd9d38414eb29daf31e98f3fc7a36a3", null ],
+    [ "bandit_sample_op", "d5/d14/classBrush_1_1Var_1_1Variation.html#ae6f99d35a8faa5a9c58793205677a49d", null ],
+    [ "bandit_sample_op_with_arg", "d5/d14/classBrush_1_1Var_1_1Variation.html#afe4c2c76e93db4939a6a7396d7ca50a8", null ],
+    [ "bandit_sample_terminal", "d5/d14/classBrush_1_1Var_1_1Variation.html#a77ffe248c2769ff453b46516cf318686", null ],
+    [ "cross", "d5/d14/classBrush_1_1Var_1_1Variation.html#a3034de2db34c5aa0f4316fd939650898", null ],
+    [ "get_context", "d5/d14/classBrush_1_1Var_1_1Variation.html#a95bbb0beafcf8f8eefca4fbff1be44f8", null ],
+    [ "init", "d5/d14/classBrush_1_1Var_1_1Variation.html#a34e022870eeefe3cf27f1b5575738ce9", null ],
+    [ "mutate", "d5/d14/classBrush_1_1Var_1_1Variation.html#a170852afd5b486b1d5dac0486ab98121", null ],
+    [ "update_ss", "d5/d14/classBrush_1_1Var_1_1Variation.html#ac3440610a9989704a29120584ab8e123", null ],
     [ "vary", "d5/d14/classBrush_1_1Var_1_1Variation.html#a344233ce053ca4b267539182fecbbc91", null ],
+    [ "vary_and_update", "d5/d14/classBrush_1_1Var_1_1Variation.html#a9655e67f642d72aa61452d1913c436cc", null ],
+    [ "constants_simplifier", "d5/d14/classBrush_1_1Var_1_1Variation.html#a81a91c3a62473615877e1dcb7a1efda6", null ],
+    [ "data", "d5/d14/classBrush_1_1Var_1_1Variation.html#a52293d9aac76f8a53394961e11e15752", null ],
+    [ "inexact_simplifier", "d5/d14/classBrush_1_1Var_1_1Variation.html#a52754389aa9f09ae9916376eed681588", null ],
+    [ "op_bandits", "d5/d14/classBrush_1_1Var_1_1Variation.html#a98b1f95462b1f1f60dc55abf61336afe", null ],
     [ "parameters", "d5/d14/classBrush_1_1Var_1_1Variation.html#adae97420f4b1ac89a28903fc473c9f57", null ],
-    [ "search_space", "d5/d14/classBrush_1_1Var_1_1Variation.html#a656380481257dd8f03ceebcb07f0019f", null ]
+    [ "search_space", "d5/d14/classBrush_1_1Var_1_1Variation.html#a656380481257dd8f03ceebcb07f0019f", null ],
+    [ "terminal_bandits", "d5/d14/classBrush_1_1Var_1_1Variation.html#a700222a7e1a2e4e99b07956c9f8b9da3", null ],
+    [ "variation_bandit", "d5/d14/classBrush_1_1Var_1_1Variation.html#a16f2681b4d4aaecb7ce405e5ecf3eb12", null ]
 ];

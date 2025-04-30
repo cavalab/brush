@@ -64,6 +64,21 @@
         </inbodydescription>
         <location file="/home/runner/work/brush/brush/src/data/data.h" line="65" column="21" bodyfile="/home/runner/work/brush/brush/src/data/data.h" bodystart="65" bodyend="-1"/>
       </memberdef>
+      <memberdef kind="variable" id="d7/da5/classDataset_1a8b9d0d635516aa675f9783d7c6ab1b72" prot="public" static="no" mutable="no">
+        <type>std::vector&lt; <ref refid="d5/d92/classstring" kindref="compound">string</ref> &gt;</type>
+        <definition>std::vector&lt;string&gt; Brush::Data::Dataset::feature_names</definition>
+        <argsstring></argsstring>
+        <name>feature_names</name>
+        <qualifiedname>Dataset::feature_names</qualifiedname>
+        <briefdescription>
+<para>names of the feature types as string representations. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/runner/work/brush/brush/src/data/data.h" line="68" column="21" bodyfile="/home/runner/work/brush/brush/src/data/data.h" bodystart="68" bodyend="-1"/>
+      </memberdef>
       <memberdef kind="variable" id="d7/da5/classDataset_1a652aba735323fddf7bf79407e7e4fc83" prot="public" static="no" mutable="no">
         <type>std::unordered_map&lt; <ref refid="dc/d5c/namespaceBrush_1a3f2c9b744330ba4a561ac72f048a1a5f" kindref="member">DataType</ref>, <ref refid="d7/dfc/classvector" kindref="compound">vector</ref>&lt; <ref refid="d5/d92/classstring" kindref="compound">string</ref> &gt; &gt;</type>
         <definition>std::unordered_map&lt;DataType,vector&lt;string&gt; &gt; Brush::Data::Dataset::features_of_type</definition>
@@ -77,7 +92,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/runner/work/brush/brush/src/data/data.h" line="68" column="28" bodyfile="/home/runner/work/brush/brush/src/data/data.h" bodystart="68" bodyend="-1"/>
+        <location file="/home/runner/work/brush/brush/src/data/data.h" line="71" column="28" bodyfile="/home/runner/work/brush/brush/src/data/data.h" bodystart="71" bodyend="-1"/>
         <referencedby refid="de/dd1/namespaceSplit_1aafc092b8203061cdffb0278bc56ac377" compoundref="d4/df2/split_8h" startline="115" endline="150">Split::get_best_threshold_by_type</referencedby>
       </memberdef>
       <memberdef kind="variable" id="d7/da5/classDataset_1a23f1c86e056b6806e7fa66c8fe6ea9ff" prot="public" static="no" mutable="no">
@@ -93,7 +108,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/runner/work/brush/brush/src/data/data.h" line="71" column="18" bodyfile="/home/runner/work/brush/brush/src/data/data.h" bodystart="71" bodyend="-1"/>
+        <location file="/home/runner/work/brush/brush/src/data/data.h" line="74" column="18" bodyfile="/home/runner/work/brush/brush/src/data/data.h" bodystart="74" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="d7/da5/classDataset_1ade105f069d4f745d44374b7b8a3a9b0d" prot="public" static="no" mutable="no">
         <type>ArrayXf</type>
@@ -108,8 +123,8 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/runner/work/brush/brush/src/data/data.h" line="76" column="17" bodyfile="/home/runner/work/brush/brush/src/data/data.h" bodystart="76" bodyend="-1"/>
-        <referencedby refid="d3/df2/structOperator_3_01NT_00_01S_00_01Fit_00_01enable__if__t_3_01is__in__v_3_01NT_00_01NodeType_1_1Se4750a8ecc1d24ba81c8da2bd5c73a14_1a771c7574933c9720bdb9fb2e51571bbd" compoundref="d4/df2/split_8h" startline="225" endline="244">Operator&lt; NT, S, Fit, enable_if_t&lt; is_in_v&lt; NT, NodeType::SplitOn, NodeType::SplitBest &gt; &gt; &gt;::fit</referencedby>
+        <location file="/home/runner/work/brush/brush/src/data/data.h" line="80" column="17" bodyfile="/home/runner/work/brush/brush/src/data/data.h" bodystart="80" bodyend="-1"/>
+        <referencedby refid="d3/df2/structOperator_3_01NT_00_01S_00_01Fit_00_01enable__if__t_3_01is__in__v_3_01NT_00_01NodeType_1_1Se4750a8ecc1d24ba81c8da2bd5c73a14_1a771c7574933c9720bdb9fb2e51571bbd" compoundref="d4/df2/split_8h" startline="225" endline="254">Operator&lt; NT, S, Fit, enable_if_t&lt; is_in_v&lt; NT, NodeType::SplitOn, NodeType::SplitBest &gt; &gt; &gt;::fit</referencedby>
         <referencedby refid="de/dd1/namespaceSplit_1aafc092b8203061cdffb0278bc56ac377" compoundref="d4/df2/split_8h" startline="115" endline="150">Split::get_best_threshold_by_type</referencedby>
         <referencedby refid="da/d4c/classBrush_1_1Eval_1_1Scorer_1a3797d5ee458a9b91b165b53a8e53cbf6" compoundref="da/d3b/scorer_8h" startline="63" endline="68">Brush::Eval::Scorer&lt; P &gt;::score</referencedby>
       </memberdef>
@@ -126,8 +141,8 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/runner/work/brush/brush/src/data/data.h" line="79" column="14" bodyfile="/home/runner/work/brush/brush/src/data/data.h" bodystart="79" bodyend="-1"/>
-        <referencedby refid="d3/df2/structOperator_3_01NT_00_01S_00_01Fit_00_01enable__if__t_3_01is__in__v_3_01NT_00_01NodeType_1_1Se4750a8ecc1d24ba81c8da2bd5c73a14_1a771c7574933c9720bdb9fb2e51571bbd" compoundref="d4/df2/split_8h" startline="225" endline="244">Operator&lt; NT, S, Fit, enable_if_t&lt; is_in_v&lt; NT, NodeType::SplitOn, NodeType::SplitBest &gt; &gt; &gt;::fit</referencedby>
+        <location file="/home/runner/work/brush/brush/src/data/data.h" line="83" column="14" bodyfile="/home/runner/work/brush/brush/src/data/data.h" bodystart="83" bodyend="-1"/>
+        <referencedby refid="d3/df2/structOperator_3_01NT_00_01S_00_01Fit_00_01enable__if__t_3_01is__in__v_3_01NT_00_01NodeType_1_1Se4750a8ecc1d24ba81c8da2bd5c73a14_1a771c7574933c9720bdb9fb2e51571bbd" compoundref="d4/df2/split_8h" startline="225" endline="254">Operator&lt; NT, S, Fit, enable_if_t&lt; is_in_v&lt; NT, NodeType::SplitOn, NodeType::SplitBest &gt; &gt; &gt;::fit</referencedby>
         <referencedby refid="de/dd1/namespaceSplit_1aafc092b8203061cdffb0278bc56ac377" compoundref="d4/df2/split_8h" startline="115" endline="150">Split::get_best_threshold_by_type</referencedby>
       </memberdef>
       <memberdef kind="variable" id="d7/da5/classDataset_1a8a1a428f46a5c80322000f4bef0a09d4" prot="public" static="no" mutable="no">
@@ -142,7 +157,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/runner/work/brush/brush/src/data/data.h" line="80" column="23" bodyfile="/home/runner/work/brush/brush/src/data/data.h" bodystart="80" bodyend="-1"/>
+        <location file="/home/runner/work/brush/brush/src/data/data.h" line="84" column="23" bodyfile="/home/runner/work/brush/brush/src/data/data.h" bodystart="84" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="d7/da5/classDataset_1aae2b4b532ccc55a95f65b75a5cd9e176" prot="public" static="no" mutable="no">
         <type>float</type>
@@ -157,7 +172,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/runner/work/brush/brush/src/data/data.h" line="83" column="15" bodyfile="/home/runner/work/brush/brush/src/data/data.h" bodystart="83" bodyend="-1"/>
+        <location file="/home/runner/work/brush/brush/src/data/data.h" line="87" column="15" bodyfile="/home/runner/work/brush/brush/src/data/data.h" bodystart="87" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="d7/da5/classDataset_1a6cadfbd9f8a4700361e63defb7d6f6e0" prot="public" static="no" mutable="no">
         <type>bool</type>
@@ -171,7 +186,21 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/runner/work/brush/brush/src/data/data.h" line="84" column="14" bodyfile="/home/runner/work/brush/brush/src/data/data.h" bodystart="84" bodyend="-1"/>
+        <location file="/home/runner/work/brush/brush/src/data/data.h" line="88" column="14" bodyfile="/home/runner/work/brush/brush/src/data/data.h" bodystart="88" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="d7/da5/classDataset_1a47efbb19e4ca04538d4ef04f0a87d856" prot="public" static="no" mutable="no">
+        <type>bool</type>
+        <definition>bool Brush::Data::Dataset::shuffle_split</definition>
+        <argsstring></argsstring>
+        <name>shuffle_split</name>
+        <qualifiedname>Dataset::shuffle_split</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/runner/work/brush/brush/src/data/data.h" line="89" column="14" bodyfile="/home/runner/work/brush/brush/src/data/data.h" bodystart="89" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="d7/da5/classDataset_1a6ac1f4f56991e43a782dd519c414916a" prot="public" static="no" mutable="no">
         <type>float</type>
@@ -186,7 +215,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/runner/work/brush/brush/src/data/data.h" line="87" column="15" bodyfile="/home/runner/work/brush/brush/src/data/data.h" bodystart="87" bodyend="-1"/>
+        <location file="/home/runner/work/brush/brush/src/data/data.h" line="92" column="15" bodyfile="/home/runner/work/brush/brush/src/data/data.h" bodystart="92" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="d7/da5/classDataset_1a8cba7a5f962538d67012264fb6c97ed4" prot="public" static="no" mutable="no">
         <type>bool</type>
@@ -200,7 +229,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/runner/work/brush/brush/src/data/data.h" line="88" column="14" bodyfile="/home/runner/work/brush/brush/src/data/data.h" bodystart="88" bodyend="-1"/>
+        <location file="/home/runner/work/brush/brush/src/data/data.h" line="93" column="14" bodyfile="/home/runner/work/brush/brush/src/data/data.h" bodystart="93" bodyend="-1"/>
       </memberdef>
     </sectiondef>
     <sectiondef kind="public-func">
@@ -221,7 +250,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/runner/work/brush/brush/src/data/data.h" line="90" column="17" bodyfile="/home/runner/work/brush/brush/src/data/data.cpp" bodystart="117" bodyend="141"/>
+        <location file="/home/runner/work/brush/brush/src/data/data.h" line="95" column="17" bodyfile="/home/runner/work/brush/brush/src/data/data.cpp" bodystart="140" bodyend="165"/>
       </memberdef>
       <memberdef kind="function" id="d7/da5/classDataset_1aacd5afd19b9cee9d9d84e4290eeabb6f" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -236,12 +265,12 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/runner/work/brush/brush/src/data/data.h" line="93" column="14" bodyfile="/home/runner/work/brush/brush/src/data/data.cpp" bodystart="178" bodyend="228"/>
+        <location file="/home/runner/work/brush/brush/src/data/data.h" line="99" column="14" bodyfile="/home/runner/work/brush/brush/src/data/data.cpp" bodystart="202" bodyend="317"/>
       </memberdef>
-      <memberdef kind="function" id="d7/da5/classDataset_1ab709f6732a1854b45418e7f14dd759ea" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+      <memberdef kind="function" id="d7/da5/classDataset_1aa9e841d2f28f1466b82428dddba49227" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type><ref refid="d9/d28/classmap" kindref="compound">map</ref>&lt; <ref refid="d5/d92/classstring" kindref="compound">string</ref>, <ref refid="d4/d59/split_8cpp_1aeec1ea0d55dd44db207801471be4f09c" kindref="member">State</ref> &gt;</type>
         <definition>map&lt; string, State &gt; Brush::Data::Dataset::make_features</definition>
-        <argsstring>(const ArrayXXf &amp;X, const map&lt; string, State &gt; &amp;Z={}, const vector&lt; string &gt; &amp;vn={})</argsstring>
+        <argsstring>(const ArrayXXf &amp;X, const map&lt; string, State &gt; &amp;Z={}, const vector&lt; string &gt; &amp;vn={}, const vector&lt; string &gt; &amp;ft={})</argsstring>
         <name>make_features</name>
         <qualifiedname>Dataset::make_features</qualifiedname>
         <param>
@@ -258,6 +287,11 @@
           <declname>vn</declname>
           <defval>{}</defval>
         </param>
+        <param>
+          <type>const <ref refid="d7/dfc/classvector" kindref="compound">vector</ref>&lt; <ref refid="d5/d92/classstring" kindref="compound">string</ref> &gt; &amp;</type>
+          <declname>ft</declname>
+          <defval>{}</defval>
+        </param>
         <briefdescription>
 <para>turns input data into a feature map </para>
         </briefdescription>
@@ -265,7 +299,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/runner/work/brush/brush/src/data/data.h" line="96" column="13" bodyfile="/home/runner/work/brush/brush/src/data/data.cpp" bodystart="238" bodyend="280"/>
+        <location file="/home/runner/work/brush/brush/src/data/data.h" line="102" column="13" bodyfile="/home/runner/work/brush/brush/src/data/data.cpp" bodystart="326" bodyend="387"/>
       </memberdef>
       <memberdef kind="function" id="d7/da5/classDataset_1aa09045b1736581575ec928a7eba7dd98" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type><ref refid="d9/d28/classmap" kindref="compound">map</ref>&lt; <ref refid="d5/d92/classstring" kindref="compound">string</ref>, <ref refid="d4/d59/split_8cpp_1aeec1ea0d55dd44db207801471be4f09c" kindref="member">State</ref> &gt;</type>
@@ -293,12 +327,12 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/runner/work/brush/brush/src/data/data.h" line="104" column="13" bodyfile="/home/runner/work/brush/brush/src/data/data.cpp" bodystart="283" bodyend="331"/>
+        <location file="/home/runner/work/brush/brush/src/data/data.h" line="109" column="13" bodyfile="/home/runner/work/brush/brush/src/data/data.cpp" bodystart="390" bodyend="438"/>
       </memberdef>
-      <memberdef kind="function" id="d7/da5/classDataset_1aa9fa70bb9e8720a3b9ceafb9aa643df4" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+      <memberdef kind="function" id="d7/da5/classDataset_1a2b8f61c5fb8f2128ddbe82108e7644d6" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
         <type></type>
         <definition>Brush::Data::Dataset::Dataset</definition>
-        <argsstring>(std::map&lt; string, State &gt; &amp;d, const Ref&lt; const ArrayXf &gt; &amp;y_=ArrayXf(), bool c=false, float validation_size=0.0, float batch_size=1.0)</argsstring>
+        <argsstring>(std::map&lt; string, State &gt; &amp;d, const Ref&lt; const ArrayXf &gt; &amp;y_=ArrayXf(), bool c=false, float validation_size=0.0, float batch_size=1.0, bool shuffle_split=false)</argsstring>
         <name>Dataset</name>
         <qualifiedname>Dataset::Dataset</qualifiedname>
         <param>
@@ -325,6 +359,11 @@
           <declname>batch_size</declname>
           <defval>1.0</defval>
         </param>
+        <param>
+          <type>bool</type>
+          <declname>shuffle_split</declname>
+          <defval>false</defval>
+        </param>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
@@ -335,12 +374,12 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/runner/work/brush/brush/src/data/data.h" line="110" column="9" bodyfile="/home/runner/work/brush/brush/src/data/data.h" bodystart="110" bodyend="123"/>
+        <location file="/home/runner/work/brush/brush/src/data/data.h" line="115" column="9" bodyfile="/home/runner/work/brush/brush/src/data/data.h" bodystart="115" bodyend="130"/>
       </memberdef>
-      <memberdef kind="function" id="d7/da5/classDataset_1ac99a56b161c19d868efc3317545b6ca2" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+      <memberdef kind="function" id="d7/da5/classDataset_1ad017496e1ae05e52999af69f409e19b1" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
         <type></type>
         <definition>Brush::Data::Dataset::Dataset</definition>
-        <argsstring>(const ArrayXXf &amp;X, const Ref&lt; const ArrayXf &gt; &amp;y_=ArrayXf(), const vector&lt; string &gt; &amp;vn={}, const map&lt; string, State &gt; &amp;Z={}, bool c=false, float validation_size=0.0, float batch_size=1.0)</argsstring>
+        <argsstring>(const ArrayXXf &amp;X, const Ref&lt; const ArrayXf &gt; &amp;y_=ArrayXf(), const vector&lt; string &gt; &amp;vn={}, const map&lt; string, State &gt; &amp;Z={}, const vector&lt; string &gt; &amp;ft={}, bool c=false, float validation_size=0.0, float batch_size=1.0, bool shuffle_split=false)</argsstring>
         <name>Dataset</name>
         <qualifiedname>Dataset::Dataset</qualifiedname>
         <param>
@@ -363,6 +402,11 @@
           <defval>{}</defval>
         </param>
         <param>
+          <type>const <ref refid="d7/dfc/classvector" kindref="compound">vector</ref>&lt; <ref refid="d5/d92/classstring" kindref="compound">string</ref> &gt; &amp;</type>
+          <declname>ft</declname>
+          <defval>{}</defval>
+        </param>
+        <param>
           <type>bool</type>
           <declname>c</declname>
           <defval>false</defval>
@@ -376,6 +420,11 @@
           <type>float</type>
           <declname>batch_size</declname>
           <defval>1.0</defval>
+        </param>
+        <param>
+          <type>bool</type>
+          <declname>shuffle_split</declname>
+          <defval>false</defval>
         </param>
         <briefdescription>
         </briefdescription>
@@ -387,12 +436,12 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/runner/work/brush/brush/src/data/data.h" line="126" column="9" bodyfile="/home/runner/work/brush/brush/src/data/data.h" bodystart="126" bodyend="144"/>
+        <location file="/home/runner/work/brush/brush/src/data/data.h" line="133" column="9" bodyfile="/home/runner/work/brush/brush/src/data/data.h" bodystart="133" bodyend="154"/>
       </memberdef>
-      <memberdef kind="function" id="d7/da5/classDataset_1ab359a25094c452b49e0a998542e34a42" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+      <memberdef kind="function" id="d7/da5/classDataset_1a00560cec5545ae35e9e9dd838647b883" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
         <type></type>
         <definition>Brush::Data::Dataset::Dataset</definition>
-        <argsstring>(const ArrayXXf &amp;X, const vector&lt; string &gt; &amp;vn, bool c=false, float validation_size=0.0, float batch_size=1.0)</argsstring>
+        <argsstring>(const ArrayXXf &amp;X, const vector&lt; string &gt; &amp;vn, const vector&lt; string &gt; &amp;ft={}, bool c=false, float validation_size=0.0, float batch_size=1.0, bool shuffle_split=false)</argsstring>
         <name>Dataset</name>
         <qualifiedname>Dataset::Dataset</qualifiedname>
         <param>
@@ -402,6 +451,11 @@
         <param>
           <type>const <ref refid="d7/dfc/classvector" kindref="compound">vector</ref>&lt; <ref refid="d5/d92/classstring" kindref="compound">string</ref> &gt; &amp;</type>
           <declname>vn</declname>
+        </param>
+        <param>
+          <type>const <ref refid="d7/dfc/classvector" kindref="compound">vector</ref>&lt; <ref refid="d5/d92/classstring" kindref="compound">string</ref> &gt; &amp;</type>
+          <declname>ft</declname>
+          <defval>{}</defval>
         </param>
         <param>
           <type>bool</type>
@@ -418,6 +472,11 @@
           <declname>batch_size</declname>
           <defval>1.0</defval>
         </param>
+        <param>
+          <type>bool</type>
+          <declname>shuffle_split</declname>
+          <defval>false</defval>
+        </param>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
@@ -428,12 +487,12 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/runner/work/brush/brush/src/data/data.h" line="147" column="9" bodyfile="/home/runner/work/brush/brush/src/data/data.h" bodystart="147" bodyend="161"/>
+        <location file="/home/runner/work/brush/brush/src/data/data.h" line="157" column="9" bodyfile="/home/runner/work/brush/brush/src/data/data.h" bodystart="157" bodyend="174"/>
       </memberdef>
-      <memberdef kind="function" id="d7/da5/classDataset_1ac15d3e1c19c7d2acd3499a8392512a12" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+      <memberdef kind="function" id="d7/da5/classDataset_1a8401b18d80d94ca2e4a47e80bc130ec4" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
         <type></type>
         <definition>Brush::Data::Dataset::Dataset</definition>
-        <argsstring>(const ArrayXXf &amp;X, const Dataset &amp;ref_dataset, const vector&lt; string &gt; &amp;vn, bool c=false)</argsstring>
+        <argsstring>(const ArrayXXf &amp;X, const Dataset &amp;ref_dataset, const vector&lt; string &gt; &amp;vn)</argsstring>
         <name>Dataset</name>
         <qualifiedname>Dataset::Dataset</qualifiedname>
         <param>
@@ -448,18 +507,13 @@
           <type>const <ref refid="d7/dfc/classvector" kindref="compound">vector</ref>&lt; <ref refid="d5/d92/classstring" kindref="compound">string</ref> &gt; &amp;</type>
           <declname>vn</declname>
         </param>
-        <param>
-          <type>bool</type>
-          <declname>c</declname>
-          <defval>false</defval>
-        </param>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/runner/work/brush/brush/src/data/data.h" line="166" column="9" bodyfile="/home/runner/work/brush/brush/src/data/data.h" bodystart="166" bodyend="179"/>
+        <location file="/home/runner/work/brush/brush/src/data/data.h" line="179" column="9" bodyfile="/home/runner/work/brush/brush/src/data/data.h" bodystart="179" bodyend="192"/>
       </memberdef>
       <memberdef kind="function" id="d7/da5/classDataset_1a59ec8554d617a4a99ba7feec09bdc62c" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
         <type>void</type>
@@ -473,7 +527,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/runner/work/brush/brush/src/data/data.h" line="181" column="14" bodyfile="/home/runner/work/brush/brush/src/data/data.h" bodystart="181" bodyend="196"/>
+        <location file="/home/runner/work/brush/brush/src/data/data.h" line="194" column="14" bodyfile="/home/runner/work/brush/brush/src/data/data.h" bodystart="194" bodyend="209"/>
       </memberdef>
       <memberdef kind="function" id="d7/da5/classDataset_1a44ebc4ada574ea7a3a843ae74810aac9" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
         <type>auto</type>
@@ -487,7 +541,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/runner/work/brush/brush/src/data/data.h" line="197" column="14" bodyfile="/home/runner/work/brush/brush/src/data/data.h" bodystart="197" bodyend="202"/>
+        <location file="/home/runner/work/brush/brush/src/data/data.h" line="210" column="14" bodyfile="/home/runner/work/brush/brush/src/data/data.h" bodystart="210" bodyend="215"/>
       </memberdef>
       <memberdef kind="function" id="d7/da5/classDataset_1ae69087b8c020840f254e3679cd324ba5" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
         <type><ref refid="d2/d36/classBrush_1_1Data_1_1Dataset" kindref="compound">Dataset</ref></type>
@@ -501,7 +555,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/runner/work/brush/brush/src/data/data.h" line="206" column="17" bodyfile="/home/runner/work/brush/brush/src/data/data.cpp" bodystart="173" bodyend="173"/>
+        <location file="/home/runner/work/brush/brush/src/data/data.h" line="219" column="17" bodyfile="/home/runner/work/brush/brush/src/data/data.cpp" bodystart="197" bodyend="197"/>
       </memberdef>
       <memberdef kind="function" id="d7/da5/classDataset_1a1ddb847fd1ceff63e60ffd79542409d9" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
         <type><ref refid="d2/d36/classBrush_1_1Data_1_1Dataset" kindref="compound">Dataset</ref></type>
@@ -515,7 +569,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/runner/work/brush/brush/src/data/data.h" line="207" column="17" bodyfile="/home/runner/work/brush/brush/src/data/data.cpp" bodystart="174" bodyend="174"/>
+        <location file="/home/runner/work/brush/brush/src/data/data.h" line="220" column="17" bodyfile="/home/runner/work/brush/brush/src/data/data.cpp" bodystart="198" bodyend="198"/>
       </memberdef>
       <memberdef kind="function" id="d7/da5/classDataset_1a2b7b42b1b16630554b2e49102098a170" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
         <type>int</type>
@@ -529,8 +583,8 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/runner/work/brush/brush/src/data/data.h" line="209" column="20" bodyfile="/home/runner/work/brush/brush/src/data/data.h" bodystart="209" bodyend="214"/>
-        <referencedby refid="d3/df2/structOperator_3_01NT_00_01S_00_01Fit_00_01enable__if__t_3_01is__in__v_3_01NT_00_01NodeType_1_1Se4750a8ecc1d24ba81c8da2bd5c73a14_1af103a8ad8b7580d3c3a82b5c997b26c0" compoundref="d4/df2/split_8h" startline="246" endline="276">Operator&lt; NT, S, Fit, enable_if_t&lt; is_in_v&lt; NT, NodeType::SplitOn, NodeType::SplitBest &gt; &gt; &gt;::predict</referencedby>
+        <location file="/home/runner/work/brush/brush/src/data/data.h" line="222" column="20" bodyfile="/home/runner/work/brush/brush/src/data/data.h" bodystart="222" bodyend="227"/>
+        <referencedby refid="d3/df2/structOperator_3_01NT_00_01S_00_01Fit_00_01enable__if__t_3_01is__in__v_3_01NT_00_01NodeType_1_1Se4750a8ecc1d24ba81c8da2bd5c73a14_1af103a8ad8b7580d3c3a82b5c997b26c0" compoundref="d4/df2/split_8h" startline="256" endline="286">Operator&lt; NT, S, Fit, enable_if_t&lt; is_in_v&lt; NT, NodeType::SplitOn, NodeType::SplitBest &gt; &gt; &gt;::predict</referencedby>
       </memberdef>
       <memberdef kind="function" id="d7/da5/classDataset_1a6edc04702aee605a766f4a79c375d0c6" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
         <type>int</type>
@@ -544,7 +598,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/runner/work/brush/brush/src/data/data.h" line="215" column="20" bodyfile="/home/runner/work/brush/brush/src/data/data.h" bodystart="215" bodyend="215"/>
+        <location file="/home/runner/work/brush/brush/src/data/data.h" line="228" column="20" bodyfile="/home/runner/work/brush/brush/src/data/data.h" bodystart="228" bodyend="228"/>
       </memberdef>
       <memberdef kind="function" id="d7/da5/classDataset_1a5020e43def6267598be0ba3d2b46e616" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
         <type><ref refid="d2/d36/classBrush_1_1Data_1_1Dataset" kindref="compound">Dataset</ref></type>
@@ -559,7 +613,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/runner/work/brush/brush/src/data/data.h" line="217" column="17" bodyfile="/home/runner/work/brush/brush/src/data/data.cpp" bodystart="146" bodyend="160"/>
+        <location file="/home/runner/work/brush/brush/src/data/data.h" line="230" column="17" bodyfile="/home/runner/work/brush/brush/src/data/data.cpp" bodystart="170" bodyend="184"/>
       </memberdef>
       <memberdef kind="function" id="d7/da5/classDataset_1ade358be2a762f2a6df738a41fe1095b5" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>float</type>
@@ -573,7 +627,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/runner/work/brush/brush/src/data/data.h" line="219" column="15" bodyfile="/home/runner/work/brush/brush/src/data/data.cpp" bodystart="231" bodyend="231"/>
+        <location file="/home/runner/work/brush/brush/src/data/data.h" line="232" column="15" bodyfile="/home/runner/work/brush/brush/src/data/data.cpp" bodystart="319" bodyend="319"/>
       </memberdef>
       <memberdef kind="function" id="d7/da5/classDataset_1afa07fa8dff0f8e01293509d6b7cc0dc3" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -591,7 +645,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/runner/work/brush/brush/src/data/data.h" line="220" column="14" bodyfile="/home/runner/work/brush/brush/src/data/data.cpp" bodystart="232" bodyend="235"/>
+        <location file="/home/runner/work/brush/brush/src/data/data.h" line="233" column="14" bodyfile="/home/runner/work/brush/brush/src/data/data.cpp" bodystart="320" bodyend="323"/>
       </memberdef>
       <memberdef kind="function" id="d7/da5/classDataset_1ade5da9269ebc099385d6f79cf4a53f9f" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
         <type>std::array&lt; <ref refid="d2/d36/classBrush_1_1Data_1_1Dataset" kindref="compound">Dataset</ref>, 2 &gt;</type>
@@ -609,8 +663,8 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/runner/work/brush/brush/src/data/data.h" line="222" column="20" bodyfile="/home/runner/work/brush/brush/src/data/data.cpp" bodystart="162" bodyend="171"/>
-        <referencedby refid="d3/df2/structOperator_3_01NT_00_01S_00_01Fit_00_01enable__if__t_3_01is__in__v_3_01NT_00_01NodeType_1_1Se4750a8ecc1d24ba81c8da2bd5c73a14_1af103a8ad8b7580d3c3a82b5c997b26c0" compoundref="d4/df2/split_8h" startline="246" endline="276">Operator&lt; NT, S, Fit, enable_if_t&lt; is_in_v&lt; NT, NodeType::SplitOn, NodeType::SplitBest &gt; &gt; &gt;::predict</referencedby>
+        <location file="/home/runner/work/brush/brush/src/data/data.h" line="235" column="20" bodyfile="/home/runner/work/brush/brush/src/data/data.cpp" bodystart="186" bodyend="195"/>
+        <referencedby refid="d3/df2/structOperator_3_01NT_00_01S_00_01Fit_00_01enable__if__t_3_01is__in__v_3_01NT_00_01NodeType_1_1Se4750a8ecc1d24ba81c8da2bd5c73a14_1af103a8ad8b7580d3c3a82b5c997b26c0" compoundref="d4/df2/split_8h" startline="256" endline="286">Operator&lt; NT, S, Fit, enable_if_t&lt; is_in_v&lt; NT, NodeType::SplitOn, NodeType::SplitBest &gt; &gt; &gt;::predict</referencedby>
       </memberdef>
       <memberdef kind="function" id="d7/da5/classDataset_1a86f779c55c96ff7182b4e649f87fbf24" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
         <type><ref refid="d4/d59/split_8cpp_1aeec1ea0d55dd44db207801471be4f09c" kindref="member">State</ref></type>
@@ -628,7 +682,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/runner/work/brush/brush/src/data/data.h" line="224" column="15" bodyfile="/home/runner/work/brush/brush/src/data/data.h" bodystart="224" bodyend="229"/>
+        <location file="/home/runner/work/brush/brush/src/data/data.h" line="237" column="15" bodyfile="/home/runner/work/brush/brush/src/data/data.h" bodystart="237" bodyend="242"/>
       </memberdef>
     </sectiondef>
     <briefdescription>
@@ -649,29 +703,32 @@
           <edgelabel>unique_data_types</edgelabel>
         </childnode>
         <childnode refid="4" relation="usage">
+          <edgelabel>feature_names</edgelabel>
+        </childnode>
+        <childnode refid="7" relation="usage">
           <edgelabel>features_of_type</edgelabel>
         </childnode>
         <childnode refid="8" relation="usage">
           <edgelabel>features</edgelabel>
         </childnode>
       </node>
-      <node id="7">
+      <node id="6">
         <label>std::basic_string&lt; Char &gt;</label>
       </node>
       <node id="8">
         <label>std::map&lt; string, State &gt;</label>
-        <childnode refid="6" relation="usage">
+        <childnode refid="5" relation="usage">
           <edgelabel>keys</edgelabel>
         </childnode>
       </node>
-      <node id="6">
+      <node id="5">
         <label>std::string</label>
-        <childnode refid="7" relation="public-inheritance">
+        <childnode refid="6" relation="public-inheritance">
         </childnode>
       </node>
-      <node id="4">
+      <node id="7">
         <label>std::unordered_map&lt; DataType, vector&lt; string &gt; &gt;</label>
-        <childnode refid="5" relation="usage">
+        <childnode refid="4" relation="usage">
           <edgelabel>elements</edgelabel>
         </childnode>
       </node>
@@ -681,22 +738,23 @@
       <node id="2">
         <label>std::vector&lt; size_t &gt;</label>
       </node>
-      <node id="5">
+      <node id="4">
         <label>std::vector&lt; string &gt;</label>
-        <childnode refid="6" relation="usage">
+        <childnode refid="5" relation="usage">
           <edgelabel>elements</edgelabel>
         </childnode>
       </node>
     </collaborationgraph>
-    <location file="/home/runner/work/brush/brush/src/data/data.h" line="50" column="1" bodyfile="/home/runner/work/brush/brush/src/data/data.h" bodystart="51" bodyend="232"/>
+    <location file="/home/runner/work/brush/brush/src/data/data.h" line="50" column="1" bodyfile="/home/runner/work/brush/brush/src/data/data.h" bodystart="51" bodyend="245"/>
     <listofallmembers>
       <member refid="d7/da5/classDataset_1a6ac1f4f56991e43a782dd519c414916a" prot="public" virt="non-virtual"><scope>Dataset</scope><name>batch_size</name></member>
       <member refid="d7/da5/classDataset_1a1a8a1e77afdecb032696bdf38e5c424c" prot="public" virt="non-virtual"><scope>Dataset</scope><name>classification</name></member>
       <member refid="d7/da5/classDataset_1aa09045b1736581575ec928a7eba7dd98" prot="public" virt="non-virtual"><scope>Dataset</scope><name>copy_and_make_features</name></member>
-      <member refid="d7/da5/classDataset_1aa9fa70bb9e8720a3b9ceafb9aa643df4" prot="public" virt="non-virtual"><scope>Dataset</scope><name>Dataset</name></member>
-      <member refid="d7/da5/classDataset_1ac99a56b161c19d868efc3317545b6ca2" prot="public" virt="non-virtual"><scope>Dataset</scope><name>Dataset</name></member>
-      <member refid="d7/da5/classDataset_1ab359a25094c452b49e0a998542e34a42" prot="public" virt="non-virtual"><scope>Dataset</scope><name>Dataset</name></member>
-      <member refid="d7/da5/classDataset_1ac15d3e1c19c7d2acd3499a8392512a12" prot="public" virt="non-virtual"><scope>Dataset</scope><name>Dataset</name></member>
+      <member refid="d7/da5/classDataset_1a2b8f61c5fb8f2128ddbe82108e7644d6" prot="public" virt="non-virtual"><scope>Dataset</scope><name>Dataset</name></member>
+      <member refid="d7/da5/classDataset_1ad017496e1ae05e52999af69f409e19b1" prot="public" virt="non-virtual"><scope>Dataset</scope><name>Dataset</name></member>
+      <member refid="d7/da5/classDataset_1a00560cec5545ae35e9e9dd838647b883" prot="public" virt="non-virtual"><scope>Dataset</scope><name>Dataset</name></member>
+      <member refid="d7/da5/classDataset_1a8401b18d80d94ca2e4a47e80bc130ec4" prot="public" virt="non-virtual"><scope>Dataset</scope><name>Dataset</name></member>
+      <member refid="d7/da5/classDataset_1a8b9d0d635516aa675f9783d7c6ab1b72" prot="public" virt="non-virtual"><scope>Dataset</scope><name>feature_names</name></member>
       <member refid="d7/da5/classDataset_1a52d591cce797480e80f8cf1f1482702e" prot="public" virt="non-virtual"><scope>Dataset</scope><name>feature_types</name></member>
       <member refid="d7/da5/classDataset_1a23f1c86e056b6806e7fa66c8fe6ea9ff" prot="public" virt="non-virtual"><scope>Dataset</scope><name>features</name></member>
       <member refid="d7/da5/classDataset_1a652aba735323fddf7bf79407e7e4fc83" prot="public" virt="non-virtual"><scope>Dataset</scope><name>features_of_type</name></member>
@@ -708,11 +766,12 @@
       <member refid="d7/da5/classDataset_1a1ddb847fd1ceff63e60ffd79542409d9" prot="public" virt="non-virtual"><scope>Dataset</scope><name>get_validation_data</name></member>
       <member refid="d7/da5/classDataset_1a44ebc4ada574ea7a3a843ae74810aac9" prot="public" virt="non-virtual"><scope>Dataset</scope><name>get_X</name></member>
       <member refid="d7/da5/classDataset_1aacd5afd19b9cee9d9d84e4290eeabb6f" prot="public" virt="non-virtual"><scope>Dataset</scope><name>init</name></member>
-      <member refid="d7/da5/classDataset_1ab709f6732a1854b45418e7f14dd759ea" prot="public" virt="non-virtual"><scope>Dataset</scope><name>make_features</name></member>
+      <member refid="d7/da5/classDataset_1aa9e841d2f28f1466b82428dddba49227" prot="public" virt="non-virtual"><scope>Dataset</scope><name>make_features</name></member>
       <member refid="d7/da5/classDataset_1afa676d96150281b2384a07e4a3fcc352" prot="public" virt="non-virtual"><scope>Dataset</scope><name>operator()</name></member>
       <member refid="d7/da5/classDataset_1a86f779c55c96ff7182b4e649f87fbf24" prot="public" virt="non-virtual"><scope>Dataset</scope><name>operator[]</name></member>
       <member refid="d7/da5/classDataset_1a59ec8554d617a4a99ba7feec09bdc62c" prot="public" virt="non-virtual"><scope>Dataset</scope><name>print</name></member>
       <member refid="d7/da5/classDataset_1afa07fa8dff0f8e01293509d6b7cc0dc3" prot="public" virt="non-virtual"><scope>Dataset</scope><name>set_batch_size</name></member>
+      <member refid="d7/da5/classDataset_1a47efbb19e4ca04538d4ef04f0a87d856" prot="public" virt="non-virtual"><scope>Dataset</scope><name>shuffle_split</name></member>
       <member refid="d7/da5/classDataset_1ade5da9269ebc099385d6f79cf4a53f9f" prot="public" virt="non-virtual"><scope>Dataset</scope><name>split</name></member>
       <member refid="d7/da5/classDataset_1a4112a2cb86ce4138c3c4bea966c96b65" prot="private" virt="non-virtual"><scope>Dataset</scope><name>training_data_idx</name></member>
       <member refid="d7/da5/classDataset_1a96fc30b35f152f425377e1ae34398779" prot="public" virt="non-virtual"><scope>Dataset</scope><name>unique_data_types</name></member>

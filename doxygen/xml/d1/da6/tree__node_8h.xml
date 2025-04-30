@@ -11,6 +11,7 @@
     <includes refid="de/d26/nodetype_8h" local="yes">nodetype.h</includes>
     <includes local="yes">../../thirdparty/tree.hh</includes>
     <includes refid="df/d61/dispatch__table_8h" local="yes">dispatch_table.h</includes>
+    <includedby refid="da/d8e/bandit__operator_8h" local="yes">bandit_operator.h</includedby>
     <includedby refid="d7/de0/operator_8h" local="yes">operator.h</includedby>
     <includedby refid="d1/dea/program_8h" local="yes">program.h</includedby>
     <includedby refid="d9/d99/search__space_8h" local="yes">search_space.h</includedby>
@@ -350,197 +351,321 @@
       </node>
     </incdepgraph>
     <invincdepgraph>
-      <node id="13">
-        <label>bind_engines.cpp</label>
-        <link refid="d1/df0/bind__engines_8cpp"/>
-      </node>
-      <node id="12">
-        <label>bind_engines.h</label>
-        <link refid="d4/d93/bind__engines_8h"/>
-        <childnode refid="13" relation="include">
+      <node id="4">
+        <label>bandit.cpp</label>
+        <link refid="d7/d01/bandit_8cpp"/>
+        <childnode refid="5" relation="include">
         </childnode>
-      </node>
-      <node id="20">
-        <label>bind_evaluator.cpp</label>
-        <link refid="da/dff/bind__evaluator_8cpp"/>
-      </node>
-      <node id="19">
-        <label>bind_evaluator.h</label>
-        <link refid="d0/d67/bind__evaluator_8h"/>
-        <childnode refid="20" relation="include">
-        </childnode>
-      </node>
-      <node id="17">
-        <label>bind_individuals.cpp</label>
-        <link refid="d9/d27/bind__individuals_8cpp"/>
-      </node>
-      <node id="16">
-        <label>bind_individuals.h</label>
-        <link refid="d6/ddc/bind__individuals_8h"/>
-        <childnode refid="17" relation="include">
-        </childnode>
-      </node>
-      <node id="7">
-        <label>bind_programs.cpp</label>
-        <link refid="d9/d26/bind__programs_8cpp"/>
-      </node>
-      <node id="6">
-        <label>bind_programs.h</label>
-        <link refid="d6/d3f/bind__programs_8h"/>
         <childnode refid="7" relation="include">
         </childnode>
       </node>
-      <node id="8">
-        <label>bind_search_space.cpp</label>
-        <link refid="d0/d94/bind__search__space_8cpp"/>
-      </node>
-      <node id="25">
-        <label>bind_selection.cpp</label>
-        <link refid="d7/dce/bind__selection_8cpp"/>
-      </node>
-      <node id="24">
-        <label>bind_selection.h</label>
-        <link refid="da/d67/bind__selection_8h"/>
-        <childnode refid="25" relation="include">
+      <node id="3">
+        <label>bandit.h</label>
+        <link refid="d7/d00/bandit_8h"/>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="5" relation="include">
+        </childnode>
+        <childnode refid="7" relation="include">
+        </childnode>
+        <childnode refid="9" relation="include">
         </childnode>
       </node>
-      <node id="27">
-        <label>bind_variation.cpp</label>
-        <link refid="df/d41/bind__variation_8cpp"/>
-      </node>
-      <node id="26">
-        <label>bind_variation.h</label>
-        <link refid="d8/df7/bind__variation_8h"/>
-        <childnode refid="27" relation="include">
+      <node id="13">
+        <label>bandit_operator.cpp</label>
+        <link refid="dd/d4e/bandit__operator_8cpp"/>
+        <childnode refid="5" relation="include">
+        </childnode>
+        <childnode refid="7" relation="include">
         </childnode>
       </node>
-      <node id="15">
-        <label>engine.cpp</label>
-        <link refid="da/d5c/engine_8cpp"/>
-        <childnode refid="12" relation="include">
+      <node id="2">
+        <label>bandit_operator.h</label>
+        <link refid="da/d8e/bandit__operator_8h"/>
+        <childnode refid="3" relation="include">
         </childnode>
-      </node>
-      <node id="14">
-        <label>engine.h</label>
-        <link refid="d1/d55/engine_8h"/>
-        <childnode refid="12" relation="include">
+        <childnode refid="13" relation="include">
         </childnode>
-        <childnode refid="15" relation="include">
+        <childnode refid="5" relation="include">
         </childnode>
-      </node>
-      <node id="21">
-        <label>evaluation.cpp</label>
-        <link refid="d9/d6a/evaluation_8cpp"/>
-        <childnode refid="12" relation="include">
-        </childnode>
-        <childnode refid="19" relation="include">
-        </childnode>
-      </node>
-      <node id="18">
-        <label>evaluation.h</label>
-        <link refid="d3/df9/evaluation_8h"/>
-        <childnode refid="12" relation="include">
-        </childnode>
-        <childnode refid="19" relation="include">
+        <childnode refid="7" relation="include">
         </childnode>
         <childnode refid="14" relation="include">
-        </childnode>
-        <childnode refid="21" relation="include">
-        </childnode>
-      </node>
-      <node id="22">
-        <label>individual.cpp</label>
-        <link refid="db/df6/individual_8cpp"/>
-      </node>
-      <node id="9">
-        <label>individual.h</label>
-        <link refid="d5/d1f/individual_8h"/>
-        <childnode refid="10" relation="include">
         </childnode>
         <childnode refid="16" relation="include">
         </childnode>
         <childnode refid="18" relation="include">
         </childnode>
-        <childnode refid="22" relation="include">
-        </childnode>
-        <childnode refid="23" relation="include">
+        <childnode refid="9" relation="include">
         </childnode>
       </node>
-      <node id="11">
-        <label>archive.cpp</label>
-        <link refid="d7/d05/archive_8cpp"/>
-        <childnode refid="12" relation="include">
+      <node id="15">
+        <label>dummy.cpp</label>
+        <link refid="d4/d05/dummy_8cpp"/>
+        <childnode refid="5" relation="include">
+        </childnode>
+        <childnode refid="7" relation="include">
         </childnode>
       </node>
-      <node id="10">
-        <label>archive.h</label>
-        <link refid="d9/d28/archive_8h"/>
-        <childnode refid="11" relation="include">
-        </childnode>
-        <childnode refid="12" relation="include">
-        </childnode>
-        <childnode refid="14" relation="include">
-        </childnode>
-      </node>
-      <node id="28">
-        <label>population.cpp</label>
-        <link refid="d7/d4a/population_8cpp"/>
-        <childnode refid="12" relation="include">
-        </childnode>
-        <childnode refid="24" relation="include">
-        </childnode>
-        <childnode refid="26" relation="include">
-        </childnode>
-      </node>
-      <node id="23">
-        <label>population.h</label>
-        <link refid="d2/d76/population_8h"/>
-        <childnode refid="12" relation="include">
-        </childnode>
-        <childnode refid="24" relation="include">
-        </childnode>
-        <childnode refid="26" relation="include">
-        </childnode>
-        <childnode refid="14" relation="include">
-        </childnode>
-        <childnode refid="18" relation="include">
-        </childnode>
-        <childnode refid="28" relation="include">
-        </childnode>
-        <childnode refid="29" relation="include">
-        </childnode>
-        <childnode refid="37" relation="include">
-        </childnode>
-      </node>
-      <node id="3">
-        <label>dispatch_table.cpp</label>
-        <link refid="df/d47/dispatch__table_8cpp"/>
-      </node>
-      <node id="2">
-        <label>operator.h</label>
-        <link refid="d7/de0/operator_8h"/>
+      <node id="14">
+        <label>dummy.h</label>
+        <link refid="d2/d94/dummy_8h"/>
         <childnode refid="3" relation="include">
         </childnode>
-        <childnode refid="4" relation="include">
+        <childnode refid="5" relation="include">
         </childnode>
-      </node>
-      <node id="5">
-        <label>program.h</label>
-        <link refid="d1/dea/program_8h"/>
-        <childnode refid="6" relation="include">
+        <childnode refid="7" relation="include">
         </childnode>
-        <childnode refid="8" relation="include">
+        <childnode refid="15" relation="include">
         </childnode>
         <childnode refid="9" relation="include">
         </childnode>
-        <childnode refid="39" relation="include">
+      </node>
+      <node id="17">
+        <label>linear_thompson.cpp</label>
+        <link refid="db/d2d/linear__thompson_8cpp"/>
+        <childnode refid="7" relation="include">
         </childnode>
       </node>
-      <node id="4">
+      <node id="16">
+        <label>linear_thompson.h</label>
+        <link refid="d9/df5/linear__thompson_8h"/>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="7" relation="include">
+        </childnode>
+        <childnode refid="17" relation="include">
+        </childnode>
+      </node>
+      <node id="19">
+        <label>thompson.cpp</label>
+        <link refid="d3/d12/thompson_8cpp"/>
+        <childnode refid="5" relation="include">
+        </childnode>
+        <childnode refid="7" relation="include">
+        </childnode>
+      </node>
+      <node id="18">
+        <label>thompson.h</label>
+        <link refid="db/ddd/thompson_8h"/>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="5" relation="include">
+        </childnode>
+        <childnode refid="7" relation="include">
+        </childnode>
+        <childnode refid="19" relation="include">
+        </childnode>
+      </node>
+      <node id="6">
+        <label>bind_engines.cpp</label>
+        <link refid="d1/df0/bind__engines_8cpp"/>
+      </node>
+      <node id="5">
+        <label>bind_engines.h</label>
+        <link refid="d4/d93/bind__engines_8h"/>
+        <childnode refid="6" relation="include">
+        </childnode>
+      </node>
+      <node id="36">
+        <label>bind_evaluator.cpp</label>
+        <link refid="da/dff/bind__evaluator_8cpp"/>
+      </node>
+      <node id="35">
+        <label>bind_evaluator.h</label>
+        <link refid="d0/d67/bind__evaluator_8h"/>
+        <childnode refid="36" relation="include">
+        </childnode>
+      </node>
+      <node id="33">
+        <label>bind_individuals.cpp</label>
+        <link refid="d9/d27/bind__individuals_8cpp"/>
+      </node>
+      <node id="32">
+        <label>bind_individuals.h</label>
+        <link refid="d6/ddc/bind__individuals_8h"/>
+        <childnode refid="33" relation="include">
+        </childnode>
+      </node>
+      <node id="25">
+        <label>bind_programs.cpp</label>
+        <link refid="d9/d26/bind__programs_8cpp"/>
+      </node>
+      <node id="24">
+        <label>bind_programs.h</label>
+        <link refid="d6/d3f/bind__programs_8h"/>
+        <childnode refid="25" relation="include">
+        </childnode>
+      </node>
+      <node id="26">
+        <label>bind_search_space.cpp</label>
+        <link refid="d0/d94/bind__search__space_8cpp"/>
+      </node>
+      <node id="41">
+        <label>bind_selection.cpp</label>
+        <link refid="d7/dce/bind__selection_8cpp"/>
+      </node>
+      <node id="40">
+        <label>bind_selection.h</label>
+        <link refid="da/d67/bind__selection_8h"/>
+        <childnode refid="41" relation="include">
+        </childnode>
+      </node>
+      <node id="8">
+        <label>bind_variation.cpp</label>
+        <link refid="df/d41/bind__variation_8cpp"/>
+      </node>
+      <node id="7">
+        <label>bind_variation.h</label>
+        <link refid="d8/df7/bind__variation_8h"/>
+        <childnode refid="8" relation="include">
+        </childnode>
+      </node>
+      <node id="11">
+        <label>engine.cpp</label>
+        <link refid="da/d5c/engine_8cpp"/>
+        <childnode refid="5" relation="include">
+        </childnode>
+      </node>
+      <node id="10">
+        <label>engine.h</label>
+        <link refid="d1/d55/engine_8h"/>
+        <childnode refid="5" relation="include">
+        </childnode>
+        <childnode refid="11" relation="include">
+        </childnode>
+      </node>
+      <node id="37">
+        <label>evaluation.cpp</label>
+        <link refid="d9/d6a/evaluation_8cpp"/>
+        <childnode refid="5" relation="include">
+        </childnode>
+        <childnode refid="35" relation="include">
+        </childnode>
+      </node>
+      <node id="34">
+        <label>evaluation.h</label>
+        <link refid="d3/df9/evaluation_8h"/>
+        <childnode refid="5" relation="include">
+        </childnode>
+        <childnode refid="35" relation="include">
+        </childnode>
+        <childnode refid="10" relation="include">
+        </childnode>
+        <childnode refid="37" relation="include">
+        </childnode>
+        <childnode refid="9" relation="include">
+        </childnode>
+      </node>
+      <node id="38">
+        <label>individual.cpp</label>
+        <link refid="db/df6/individual_8cpp"/>
+        <childnode refid="5" relation="include">
+        </childnode>
+        <childnode refid="7" relation="include">
+        </childnode>
+      </node>
+      <node id="29">
+        <label>individual.h</label>
+        <link refid="d5/d1f/individual_8h"/>
+        <childnode refid="30" relation="include">
+        </childnode>
+        <childnode refid="5" relation="include">
+        </childnode>
+        <childnode refid="32" relation="include">
+        </childnode>
+        <childnode refid="7" relation="include">
+        </childnode>
+        <childnode refid="34" relation="include">
+        </childnode>
+        <childnode refid="38" relation="include">
+        </childnode>
+        <childnode refid="39" relation="include">
+        </childnode>
+        <childnode refid="9" relation="include">
+        </childnode>
+      </node>
+      <node id="31">
+        <label>archive.cpp</label>
+        <link refid="d7/d05/archive_8cpp"/>
+        <childnode refid="5" relation="include">
+        </childnode>
+      </node>
+      <node id="30">
+        <label>archive.h</label>
+        <link refid="d9/d28/archive_8h"/>
+        <childnode refid="31" relation="include">
+        </childnode>
+        <childnode refid="5" relation="include">
+        </childnode>
+        <childnode refid="10" relation="include">
+        </childnode>
+      </node>
+      <node id="42">
+        <label>population.cpp</label>
+        <link refid="d7/d4a/population_8cpp"/>
+        <childnode refid="5" relation="include">
+        </childnode>
+        <childnode refid="40" relation="include">
+        </childnode>
+        <childnode refid="7" relation="include">
+        </childnode>
+      </node>
+      <node id="39">
+        <label>population.h</label>
+        <link refid="d2/d76/population_8h"/>
+        <childnode refid="5" relation="include">
+        </childnode>
+        <childnode refid="40" relation="include">
+        </childnode>
+        <childnode refid="7" relation="include">
+        </childnode>
+        <childnode refid="10" relation="include">
+        </childnode>
+        <childnode refid="34" relation="include">
+        </childnode>
+        <childnode refid="42" relation="include">
+        </childnode>
+        <childnode refid="43" relation="include">
+        </childnode>
+        <childnode refid="9" relation="include">
+        </childnode>
+      </node>
+      <node id="21">
+        <label>dispatch_table.cpp</label>
+        <link refid="df/d47/dispatch__table_8cpp"/>
+      </node>
+      <node id="20">
+        <label>operator.h</label>
+        <link refid="d7/de0/operator_8h"/>
+        <childnode refid="21" relation="include">
+        </childnode>
+        <childnode refid="22" relation="include">
+        </childnode>
+      </node>
+      <node id="23">
+        <label>program.h</label>
+        <link refid="d1/dea/program_8h"/>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="24" relation="include">
+        </childnode>
+        <childnode refid="26" relation="include">
+        </childnode>
+        <childnode refid="27" relation="include">
+        </childnode>
+        <childnode refid="29" relation="include">
+        </childnode>
+        <childnode refid="51" relation="include">
+        </childnode>
+        <childnode refid="53" relation="include">
+        </childnode>
+      </node>
+      <node id="22">
         <label>split.cpp</label>
         <link refid="d4/d59/split_8cpp"/>
       </node>
-      <node id="41">
+      <node id="55">
         <label>tree_node.cpp</label>
         <link refid="dd/d06/tree__node_8cpp"/>
       </node>
@@ -549,129 +674,173 @@
         <link refid="d1/da6/tree__node_8h"/>
         <childnode refid="2" relation="include">
         </childnode>
+        <childnode refid="20" relation="include">
+        </childnode>
+        <childnode refid="23" relation="include">
+        </childnode>
+        <childnode refid="54" relation="include">
+        </childnode>
+        <childnode refid="55" relation="include">
+        </childnode>
+      </node>
+      <node id="45">
+        <label>lexicase.cpp</label>
+        <link refid="d8/dac/lexicase_8cpp"/>
         <childnode refid="5" relation="include">
         </childnode>
         <childnode refid="40" relation="include">
         </childnode>
-        <childnode refid="41" relation="include">
-        </childnode>
       </node>
-      <node id="31">
-        <label>lexicase.cpp</label>
-        <link refid="d8/dac/lexicase_8cpp"/>
-        <childnode refid="12" relation="include">
-        </childnode>
-        <childnode refid="24" relation="include">
-        </childnode>
-      </node>
-      <node id="30">
+      <node id="44">
         <label>lexicase.h</label>
         <link refid="d3/d12/lexicase_8h"/>
-        <childnode refid="12" relation="include">
+        <childnode refid="5" relation="include">
         </childnode>
-        <childnode refid="24" relation="include">
+        <childnode refid="40" relation="include">
         </childnode>
-        <childnode refid="31" relation="include">
+        <childnode refid="45" relation="include">
         </childnode>
-        <childnode refid="32" relation="include">
+        <childnode refid="46" relation="include">
         </childnode>
       </node>
-      <node id="35">
+      <node id="49">
         <label>nsga2.cpp</label>
         <link refid="de/d0d/nsga2_8cpp"/>
-        <childnode refid="12" relation="include">
+        <childnode refid="5" relation="include">
         </childnode>
-        <childnode refid="24" relation="include">
+        <childnode refid="40" relation="include">
         </childnode>
       </node>
-      <node id="34">
+      <node id="48">
         <label>nsga2.h</label>
         <link refid="d3/d06/nsga2_8h"/>
-        <childnode refid="10" relation="include">
-        </childnode>
-        <childnode refid="12" relation="include">
-        </childnode>
-        <childnode refid="24" relation="include">
-        </childnode>
-        <childnode refid="35" relation="include">
-        </childnode>
-        <childnode refid="32" relation="include">
-        </childnode>
-      </node>
-      <node id="33">
-        <label>selection.cpp</label>
-        <link refid="df/dbb/selection_8cpp"/>
-        <childnode refid="12" relation="include">
-        </childnode>
-        <childnode refid="24" relation="include">
-        </childnode>
-      </node>
-      <node id="32">
-        <label>selection.h</label>
-        <link refid="df/d48/selection_8h"/>
-        <childnode refid="12" relation="include">
-        </childnode>
-        <childnode refid="24" relation="include">
-        </childnode>
-        <childnode refid="14" relation="include">
-        </childnode>
-        <childnode refid="33" relation="include">
-        </childnode>
-      </node>
-      <node id="36">
-        <label>selection_operator.cpp</label>
-        <link refid="d4/db2/selection__operator_8cpp"/>
-        <childnode refid="12" relation="include">
-        </childnode>
-        <childnode refid="24" relation="include">
-        </childnode>
-      </node>
-      <node id="29">
-        <label>selection_operator.h</label>
-        <link refid="dd/d5d/selection__operator_8h"/>
-        <childnode refid="12" relation="include">
-        </childnode>
-        <childnode refid="24" relation="include">
-        </childnode>
         <childnode refid="30" relation="include">
-        </childnode>
-        <childnode refid="34" relation="include">
-        </childnode>
-        <childnode refid="32" relation="include">
-        </childnode>
-        <childnode refid="36" relation="include">
-        </childnode>
-      </node>
-      <node id="39">
-        <label>search_space.cpp</label>
-        <link refid="da/d48/search__space_8cpp"/>
-      </node>
-      <node id="40">
-        <label>search_space.h</label>
-        <link refid="d9/d99/search__space_8h"/>
-        <childnode refid="8" relation="include">
-        </childnode>
-        <childnode refid="18" relation="include">
         </childnode>
         <childnode refid="5" relation="include">
         </childnode>
-        <childnode refid="39" relation="include">
+        <childnode refid="40" relation="include">
+        </childnode>
+        <childnode refid="49" relation="include">
+        </childnode>
+        <childnode refid="46" relation="include">
         </childnode>
       </node>
-      <node id="38">
+      <node id="47">
+        <label>selection.cpp</label>
+        <link refid="df/dbb/selection_8cpp"/>
+        <childnode refid="5" relation="include">
+        </childnode>
+        <childnode refid="40" relation="include">
+        </childnode>
+      </node>
+      <node id="46">
+        <label>selection.h</label>
+        <link refid="df/d48/selection_8h"/>
+        <childnode refid="5" relation="include">
+        </childnode>
+        <childnode refid="40" relation="include">
+        </childnode>
+        <childnode refid="10" relation="include">
+        </childnode>
+        <childnode refid="47" relation="include">
+        </childnode>
+      </node>
+      <node id="50">
+        <label>selection_operator.cpp</label>
+        <link refid="d4/db2/selection__operator_8cpp"/>
+        <childnode refid="5" relation="include">
+        </childnode>
+        <childnode refid="40" relation="include">
+        </childnode>
+      </node>
+      <node id="43">
+        <label>selection_operator.h</label>
+        <link refid="dd/d5d/selection__operator_8h"/>
+        <childnode refid="5" relation="include">
+        </childnode>
+        <childnode refid="40" relation="include">
+        </childnode>
+        <childnode refid="44" relation="include">
+        </childnode>
+        <childnode refid="48" relation="include">
+        </childnode>
+        <childnode refid="46" relation="include">
+        </childnode>
+        <childnode refid="50" relation="include">
+        </childnode>
+      </node>
+      <node id="28">
+        <label>constants.cpp</label>
+        <link refid="d6/d80/constants_8cpp"/>
+        <childnode refid="7" relation="include">
+        </childnode>
+      </node>
+      <node id="27">
+        <label>constants.h</label>
+        <link refid="d2/d6f/constants_8h"/>
+        <childnode refid="7" relation="include">
+        </childnode>
+        <childnode refid="28" relation="include">
+        </childnode>
+        <childnode refid="9" relation="include">
+        </childnode>
+      </node>
+      <node id="52">
+        <label>inexact.cpp</label>
+        <link refid="de/d79/inexact_8cpp"/>
+        <childnode refid="7" relation="include">
+        </childnode>
+      </node>
+      <node id="51">
+        <label>inexact.h</label>
+        <link refid="d1/db6/inexact_8h"/>
+        <childnode refid="7" relation="include">
+        </childnode>
+        <childnode refid="52" relation="include">
+        </childnode>
+        <childnode refid="9" relation="include">
+        </childnode>
+      </node>
+      <node id="53">
+        <label>search_space.cpp</label>
+        <link refid="da/d48/search__space_8cpp"/>
+      </node>
+      <node id="54">
+        <label>search_space.h</label>
+        <link refid="d9/d99/search__space_8h"/>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="26" relation="include">
+        </childnode>
+        <childnode refid="27" relation="include">
+        </childnode>
+        <childnode refid="34" relation="include">
+        </childnode>
+        <childnode refid="51" relation="include">
+        </childnode>
+        <childnode refid="23" relation="include">
+        </childnode>
+        <childnode refid="53" relation="include">
+        </childnode>
+      </node>
+      <node id="12">
         <label>variation.cpp</label>
         <link refid="d1/d64/variation_8cpp"/>
-        <childnode refid="26" relation="include">
+        <childnode refid="5" relation="include">
+        </childnode>
+        <childnode refid="7" relation="include">
         </childnode>
       </node>
-      <node id="37">
+      <node id="9">
         <label>variation.h</label>
         <link refid="d4/d1f/variation_8h"/>
-        <childnode refid="26" relation="include">
+        <childnode refid="5" relation="include">
         </childnode>
-        <childnode refid="14" relation="include">
+        <childnode refid="7" relation="include">
         </childnode>
-        <childnode refid="38" relation="include">
+        <childnode refid="10" relation="include">
+        </childnode>
+        <childnode refid="12" relation="include">
         </childnode>
       </node>
     </invincdepgraph>
@@ -689,7 +858,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/runner/work/brush/brush/src/program/tree_node.h" line="56" column="1" bodyfile="/home/runner/work/brush/brush/src/program/tree_node.h" bodystart="56" bodyend="-1"/>
+        <location file="/home/runner/work/brush/brush/src/program/tree_node.h" line="57" column="1" bodyfile="/home/runner/work/brush/brush/src/program/tree_node.h" bodystart="57" bodyend="-1"/>
       </memberdef>
     </sectiondef>
     <sectiondef kind="func">
@@ -712,7 +881,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/runner/work/brush/brush/src/program/tree_node.h" line="85" column="6" bodyfile="/home/runner/work/brush/brush/src/program/tree_node.cpp" bodystart="45" bodyend="53" declfile="/home/runner/work/brush/brush/src/program/tree_node.h" declline="85" declcolumn="6"/>
+        <location file="/home/runner/work/brush/brush/src/program/tree_node.h" line="86" column="6" bodyfile="/home/runner/work/brush/brush/src/program/tree_node.cpp" bodystart="63" bodyend="71" declfile="/home/runner/work/brush/brush/src/program/tree_node.h" declline="86" declcolumn="6"/>
       </memberdef>
       <memberdef kind="function" id="d1/da6/tree__node_8h_1a3fc3c974a33ae40a1182f771a9a4c7d1" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -752,7 +921,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/runner/work/brush/brush/src/program/tree_node.h" line="86" column="6" bodyfile="/home/runner/work/brush/brush/src/program/tree_node.cpp" bodystart="58" bodyend="76" declfile="/home/runner/work/brush/brush/src/program/tree_node.h" declline="86" declcolumn="6"/>
+        <location file="/home/runner/work/brush/brush/src/program/tree_node.h" line="87" column="6" bodyfile="/home/runner/work/brush/brush/src/program/tree_node.cpp" bodystart="76" bodyend="94" declfile="/home/runner/work/brush/brush/src/program/tree_node.h" declline="87" declcolumn="6"/>
       </memberdef>
     </sectiondef>
     <briefdescription>
@@ -809,80 +978,81 @@
 <codeline lineno="51" refid="dc/d90/classtree__node___3_01Node_01_4_1a60f975dbb46739a9aaf7a7466ab13eda" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">string</highlight><highlight class="normal"><sp/><ref refid="dc/d90/classtree__node___3_01Node_01_4_1a60f975dbb46739a9aaf7a7466ab13eda" kindref="member">get_tree_model</ref>(</highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/>pretty=</highlight><highlight class="keyword">false</highlight><highlight class="normal">,<sp/></highlight><highlight class="keywordtype">string</highlight><highlight class="normal"><sp/>offset=</highlight><highlight class="stringliteral">&quot;&quot;</highlight><highlight class="normal">)<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal">;</highlight></codeline>
 <codeline lineno="52"><highlight class="normal"></highlight></codeline>
 <codeline lineno="53" refid="dc/d90/classtree__node___3_01Node_01_4_1ade98b5591fd485a3bc81023e5d6221cb" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="dc/d90/classtree__node___3_01Node_01_4_1ade98b5591fd485a3bc81023e5d6221cb" kindref="member">get_complexity</ref>()<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal">;</highlight></codeline>
-<codeline lineno="54" refid="dc/d90/classtree__node___3_01Node_01_4_1ad7f332d5e2607c3a8036d3e5eea19a13" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="dc/d90/classtree__node___3_01Node_01_4_1ad7f332d5e2607c3a8036d3e5eea19a13" kindref="member">get_size</ref>(</highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/>include_weight=</highlight><highlight class="keyword">true</highlight><highlight class="normal">)<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal">;</highlight></codeline>
-<codeline lineno="55"><highlight class="normal">};<sp/></highlight></codeline>
-<codeline lineno="56" refid="d1/da6/tree__node_8h_1a5d0d9e773ca46763fb1b1152cafc4179" refkind="member"><highlight class="normal"></highlight><highlight class="keyword">using<sp/></highlight><highlight class="normal"><ref refid="df/d61/dispatch__table_8h_1a5d0d9e773ca46763fb1b1152cafc4179" kindref="member">TreeNode</ref><sp/>=<sp/></highlight><highlight class="keyword">class<sp/></highlight><highlight class="normal"><ref refid="d0/d0e/classtree__node__" kindref="compound">tree_node_</ref>&lt;<ref refid="d1/d3a/structBrush_1_1Node" kindref="compound">Node</ref>&gt;;<sp/></highlight></codeline>
-<codeline lineno="57"><highlight class="normal"></highlight></codeline>
-<codeline lineno="59"><highlight class="normal"></highlight><highlight class="comment">//<sp/>fit,<sp/>eval,<sp/>predict</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="60"><highlight class="normal"></highlight></codeline>
-<codeline lineno="61"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;<ref refid="df/d61/dispatch__table_8h" kindref="compound">dispatch_table.h</ref>&quot;</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="62"><highlight class="normal"></highlight></codeline>
-<codeline lineno="63"><highlight class="normal"></highlight><highlight class="keyword">template</highlight><highlight class="normal">&lt;</highlight><highlight class="keyword">typename</highlight><highlight class="normal"><sp/>T&gt;</highlight></codeline>
-<codeline lineno="64"><highlight class="normal"></highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/>TreeNode::fit(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="d2/d36/classBrush_1_1Data_1_1Dataset" kindref="compound">Dataset</ref>&amp;<sp/>d)</highlight></codeline>
-<codeline lineno="65"><highlight class="normal">{<sp/></highlight></codeline>
-<codeline lineno="66"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/>F<sp/>=<sp/><ref refid="dc/d5c/namespaceBrush_1ab00cdf5cac845f372ec06d02f7a316b5" kindref="member">dtable_fit</ref>.template<sp/>Get&lt;T&gt;(data.node_type,<sp/>data.sig_hash);</highlight></codeline>
-<codeline lineno="67"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>F(d,<sp/>(*</highlight><highlight class="keyword">this</highlight><highlight class="normal">));</highlight></codeline>
-<codeline lineno="68"><highlight class="normal">};</highlight></codeline>
-<codeline lineno="69"><highlight class="normal"></highlight></codeline>
-<codeline lineno="70"><highlight class="normal"></highlight><highlight class="keyword">template</highlight><highlight class="normal">&lt;</highlight><highlight class="keyword">typename</highlight><highlight class="normal"><sp/>T&gt;<sp/></highlight></codeline>
-<codeline lineno="71"><highlight class="normal"></highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/>TreeNode::predict(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="d2/d36/classBrush_1_1Data_1_1Dataset" kindref="compound">Dataset</ref>&amp;<sp/>d,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">float</highlight><highlight class="normal">**<sp/>weights)</highlight></codeline>
-<codeline lineno="72"><highlight class="normal">{<sp/></highlight></codeline>
-<codeline lineno="73"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/>F<sp/>=<sp/><ref refid="dc/d5c/namespaceBrush_1a175d0497be0c922c453075fed37ecec0" kindref="member">dtable_predict</ref>.template<sp/>Get&lt;T&gt;(data.node_type,<sp/>data.sig_hash);</highlight></codeline>
-<codeline lineno="74"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>F(d,<sp/>(*</highlight><highlight class="keyword">this</highlight><highlight class="normal">),<sp/>weights);</highlight></codeline>
-<codeline lineno="75"><highlight class="normal">};</highlight></codeline>
-<codeline lineno="76"><highlight class="normal"></highlight></codeline>
-<codeline lineno="77"><highlight class="normal"></highlight><highlight class="keyword">template</highlight><highlight class="normal">&lt;</highlight><highlight class="keyword">typename</highlight><highlight class="normal"><sp/>T,<sp/></highlight><highlight class="keyword">typename</highlight><highlight class="normal"><sp/>W&gt;<sp/></highlight></codeline>
-<codeline lineno="78"><highlight class="normal"></highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/>TreeNode::predict(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="d2/d36/classBrush_1_1Data_1_1Dataset" kindref="compound">Dataset</ref>&amp;<sp/>d,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>W**<sp/>weights)</highlight></codeline>
-<codeline lineno="79"><highlight class="normal">{<sp/></highlight></codeline>
-<codeline lineno="80"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/>F<sp/>=<sp/><ref refid="dc/d5c/namespaceBrush_1a175d0497be0c922c453075fed37ecec0" kindref="member">dtable_predict</ref>.template<sp/>Get&lt;T&gt;(data.node_type,<sp/>data.sig_dual_hash);</highlight></codeline>
-<codeline lineno="81"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>F(d,<sp/>(*</highlight><highlight class="keyword">this</highlight><highlight class="normal">),<sp/>weights);</highlight></codeline>
-<codeline lineno="82"><highlight class="normal">};</highlight></codeline>
-<codeline lineno="83"><highlight class="normal"></highlight></codeline>
-<codeline lineno="84"><highlight class="normal"></highlight><highlight class="comment">//<sp/>serialization<sp/>functions</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="85"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="dc/d5c/namespaceBrush_1a8cfe33753dda03e1480fdcbe62e1885d" kindref="member">to_json</ref>(json<sp/>&amp;j,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>tree&lt;Node&gt;<sp/>&amp;t);</highlight></codeline>
-<codeline lineno="86"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="dc/d5c/namespaceBrush_1a20d08fdc417fcb203d6cae91abfa4bff" kindref="member">from_json</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>json<sp/>&amp;j,<sp/>tree&lt;Node&gt;<sp/>&amp;t);</highlight></codeline>
-<codeline lineno="87"><highlight class="normal"></highlight></codeline>
-<codeline lineno="88"><highlight class="normal"></highlight><highlight class="comment">//<sp/>namespace<sp/>node{</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="89"><highlight class="normal"></highlight></codeline>
-<codeline lineno="90"><highlight class="normal"></highlight><highlight class="comment">//<sp/><sp/><sp/><sp/><sp/>template&lt;NodeType<sp/>NT=0&gt;</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="91"><highlight class="normal"></highlight><highlight class="comment">//<sp/><sp/><sp/><sp/><sp/>string<sp/>get_model(const<sp/>Node&amp;<sp/>data,<sp/>const<sp/>vector&lt;string&gt;&amp;<sp/>children)</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="92"><highlight class="normal"></highlight><highlight class="comment">//<sp/><sp/><sp/><sp/><sp/>{</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="93"><highlight class="normal"></highlight><highlight class="comment">//<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>string<sp/>args<sp/>=<sp/>&quot;&quot;;</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="94"><highlight class="normal"></highlight><highlight class="comment">//<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>for<sp/>(int<sp/>i<sp/>=<sp/>0;<sp/>i<sp/>&lt;<sp/>children.size();<sp/>++i){</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="95"><highlight class="normal"></highlight><highlight class="comment">//<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>args<sp/>+=<sp/>children.at(i);</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="96"><highlight class="normal"></highlight><highlight class="comment">//<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>if<sp/>(i<sp/>&lt;<sp/>children.size()-1)</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="97"><highlight class="normal"></highlight><highlight class="comment">//<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>args<sp/>+=<sp/>&quot;,&quot;;</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="98"><highlight class="normal"></highlight><highlight class="comment">//<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="99"><highlight class="normal"></highlight></codeline>
-<codeline lineno="100"><highlight class="normal"></highlight><highlight class="comment">//<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>return<sp/>fmt::format(&quot;{}({})&quot;,<sp/>data.get_name(),<sp/>args);</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="101"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
-<codeline lineno="102"><highlight class="normal"></highlight><highlight class="comment">//<sp/><sp/><sp/><sp/><sp/>}</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="103"><highlight class="normal"></highlight></codeline>
-<codeline lineno="104"><highlight class="normal"></highlight><highlight class="comment">//<sp/><sp/><sp/><sp/><sp/>template&lt;&gt;</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="105"><highlight class="normal"></highlight><highlight class="comment">//<sp/><sp/><sp/><sp/><sp/>string<sp/>get_model&lt;NodeType::SplitBest&gt;(const<sp/>Node&amp;<sp/>data,<sp/>const<sp/>vector&lt;string&gt;&amp;<sp/>children)</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="106"><highlight class="normal"></highlight><highlight class="comment">//<sp/><sp/><sp/><sp/><sp/>{</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="107"><highlight class="normal"></highlight><highlight class="comment">//<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>return<sp/>fmt::format(&quot;IF-THEN-ELSE({}&gt;{:.3f},{},{})&quot;,</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="108"><highlight class="normal"></highlight><highlight class="comment">//<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>data.get_feature(),</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="109"><highlight class="normal"></highlight><highlight class="comment">//<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>data.W,</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="110"><highlight class="normal"></highlight><highlight class="comment">//<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>children.at(0),</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="111"><highlight class="normal"></highlight><highlight class="comment">//<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>children.at(1)</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="112"><highlight class="normal"></highlight><highlight class="comment">//<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>);</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="113"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
-<codeline lineno="114"><highlight class="normal"></highlight><highlight class="comment">//<sp/><sp/><sp/><sp/><sp/>}</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="115"><highlight class="normal"></highlight></codeline>
-<codeline lineno="116"><highlight class="normal"></highlight><highlight class="comment">//<sp/><sp/><sp/><sp/><sp/>template&lt;&gt;</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="117"><highlight class="normal"></highlight><highlight class="comment">//<sp/><sp/><sp/><sp/><sp/>string<sp/>get_model&lt;NodeType::SplitOn&gt;(const<sp/>Node&amp;<sp/>data,<sp/>const<sp/>vector&lt;string&gt;&amp;<sp/>children)</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="118"><highlight class="normal"></highlight><highlight class="comment">//<sp/><sp/><sp/><sp/><sp/>{</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="119"><highlight class="normal"></highlight><highlight class="comment">//<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>return<sp/>fmt::format(&quot;IF-THEN-ELSE({}&gt;{:.3f},{},{})&quot;,</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="120"><highlight class="normal"></highlight><highlight class="comment">//<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>children.at(0),</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="121"><highlight class="normal"></highlight><highlight class="comment">//<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>data.W,</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="122"><highlight class="normal"></highlight><highlight class="comment">//<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>children.at(1),</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="123"><highlight class="normal"></highlight><highlight class="comment">//<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>children.at(2)</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="124"><highlight class="normal"></highlight><highlight class="comment">//<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>);</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="125"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
-<codeline lineno="126"><highlight class="normal"></highlight><highlight class="comment">//<sp/><sp/><sp/><sp/><sp/>}</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="127"><highlight class="normal"></highlight><highlight class="comment">//<sp/>}</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="128"><highlight class="normal"></highlight><highlight class="preprocessor">#endif</highlight></codeline>
+<codeline lineno="54" refid="dc/d90/classtree__node___3_01Node_01_4_1a3aca05d75d4de81d7b75161ba92f3711" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="dc/d90/classtree__node___3_01Node_01_4_1a3aca05d75d4de81d7b75161ba92f3711" kindref="member">get_linear_complexity</ref>()<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="55" refid="dc/d90/classtree__node___3_01Node_01_4_1ad7f332d5e2607c3a8036d3e5eea19a13" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="dc/d90/classtree__node___3_01Node_01_4_1ad7f332d5e2607c3a8036d3e5eea19a13" kindref="member">get_size</ref>(</highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/>include_weight=</highlight><highlight class="keyword">true</highlight><highlight class="normal">)<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="56"><highlight class="normal">};<sp/></highlight></codeline>
+<codeline lineno="57" refid="d1/da6/tree__node_8h_1a5d0d9e773ca46763fb1b1152cafc4179" refkind="member"><highlight class="normal"></highlight><highlight class="keyword">using<sp/></highlight><highlight class="normal"><ref refid="df/d61/dispatch__table_8h_1a5d0d9e773ca46763fb1b1152cafc4179" kindref="member">TreeNode</ref><sp/>=<sp/></highlight><highlight class="keyword">class<sp/></highlight><highlight class="normal"><ref refid="d0/d0e/classtree__node__" kindref="compound">tree_node_</ref>&lt;<ref refid="d1/d3a/structBrush_1_1Node" kindref="compound">Node</ref>&gt;;<sp/></highlight></codeline>
+<codeline lineno="58"><highlight class="normal"></highlight></codeline>
+<codeline lineno="60"><highlight class="normal"></highlight><highlight class="comment">//<sp/>fit,<sp/>eval,<sp/>predict</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="61"><highlight class="normal"></highlight></codeline>
+<codeline lineno="62"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;<ref refid="df/d61/dispatch__table_8h" kindref="compound">dispatch_table.h</ref>&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="63"><highlight class="normal"></highlight></codeline>
+<codeline lineno="64"><highlight class="normal"></highlight><highlight class="keyword">template</highlight><highlight class="normal">&lt;</highlight><highlight class="keyword">typename</highlight><highlight class="normal"><sp/>T&gt;</highlight></codeline>
+<codeline lineno="65"><highlight class="normal"></highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/>TreeNode::fit(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="d2/d36/classBrush_1_1Data_1_1Dataset" kindref="compound">Dataset</ref>&amp;<sp/>d)</highlight></codeline>
+<codeline lineno="66"><highlight class="normal">{<sp/></highlight></codeline>
+<codeline lineno="67"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/>F<sp/>=<sp/><ref refid="dc/d5c/namespaceBrush_1ab00cdf5cac845f372ec06d02f7a316b5" kindref="member">dtable_fit</ref>.template<sp/>Get&lt;T&gt;(data.node_type,<sp/>data.sig_hash);</highlight></codeline>
+<codeline lineno="68"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>F(d,<sp/>(*</highlight><highlight class="keyword">this</highlight><highlight class="normal">));</highlight></codeline>
+<codeline lineno="69"><highlight class="normal">};</highlight></codeline>
+<codeline lineno="70"><highlight class="normal"></highlight></codeline>
+<codeline lineno="71"><highlight class="normal"></highlight><highlight class="keyword">template</highlight><highlight class="normal">&lt;</highlight><highlight class="keyword">typename</highlight><highlight class="normal"><sp/>T&gt;<sp/></highlight></codeline>
+<codeline lineno="72"><highlight class="normal"></highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/>TreeNode::predict(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="d2/d36/classBrush_1_1Data_1_1Dataset" kindref="compound">Dataset</ref>&amp;<sp/>d,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">float</highlight><highlight class="normal">**<sp/>weights)</highlight></codeline>
+<codeline lineno="73"><highlight class="normal">{<sp/></highlight></codeline>
+<codeline lineno="74"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/>F<sp/>=<sp/><ref refid="dc/d5c/namespaceBrush_1a175d0497be0c922c453075fed37ecec0" kindref="member">dtable_predict</ref>.template<sp/>Get&lt;T&gt;(data.node_type,<sp/>data.sig_hash);</highlight></codeline>
+<codeline lineno="75"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>F(d,<sp/>(*</highlight><highlight class="keyword">this</highlight><highlight class="normal">),<sp/>weights);</highlight></codeline>
+<codeline lineno="76"><highlight class="normal">};</highlight></codeline>
+<codeline lineno="77"><highlight class="normal"></highlight></codeline>
+<codeline lineno="78"><highlight class="normal"></highlight><highlight class="keyword">template</highlight><highlight class="normal">&lt;</highlight><highlight class="keyword">typename</highlight><highlight class="normal"><sp/>T,<sp/></highlight><highlight class="keyword">typename</highlight><highlight class="normal"><sp/>W&gt;<sp/></highlight></codeline>
+<codeline lineno="79"><highlight class="normal"></highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/>TreeNode::predict(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="d2/d36/classBrush_1_1Data_1_1Dataset" kindref="compound">Dataset</ref>&amp;<sp/>d,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>W**<sp/>weights)</highlight></codeline>
+<codeline lineno="80"><highlight class="normal">{<sp/></highlight></codeline>
+<codeline lineno="81"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/>F<sp/>=<sp/><ref refid="dc/d5c/namespaceBrush_1a175d0497be0c922c453075fed37ecec0" kindref="member">dtable_predict</ref>.template<sp/>Get&lt;T&gt;(data.node_type,<sp/>data.sig_dual_hash);</highlight></codeline>
+<codeline lineno="82"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>F(d,<sp/>(*</highlight><highlight class="keyword">this</highlight><highlight class="normal">),<sp/>weights);</highlight></codeline>
+<codeline lineno="83"><highlight class="normal">};</highlight></codeline>
+<codeline lineno="84"><highlight class="normal"></highlight></codeline>
+<codeline lineno="85"><highlight class="normal"></highlight><highlight class="comment">//<sp/>serialization<sp/>functions</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="86"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="dc/d5c/namespaceBrush_1a8cfe33753dda03e1480fdcbe62e1885d" kindref="member">to_json</ref>(json<sp/>&amp;j,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>tree&lt;Node&gt;<sp/>&amp;t);</highlight></codeline>
+<codeline lineno="87"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="dc/d5c/namespaceBrush_1a20d08fdc417fcb203d6cae91abfa4bff" kindref="member">from_json</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>json<sp/>&amp;j,<sp/>tree&lt;Node&gt;<sp/>&amp;t);</highlight></codeline>
+<codeline lineno="88"><highlight class="normal"></highlight></codeline>
+<codeline lineno="89"><highlight class="normal"></highlight><highlight class="comment">//<sp/>namespace<sp/>node{</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="90"><highlight class="normal"></highlight></codeline>
+<codeline lineno="91"><highlight class="normal"></highlight><highlight class="comment">//<sp/><sp/><sp/><sp/><sp/>template&lt;NodeType<sp/>NT=0&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="92"><highlight class="normal"></highlight><highlight class="comment">//<sp/><sp/><sp/><sp/><sp/>string<sp/>get_model(const<sp/>Node&amp;<sp/>data,<sp/>const<sp/>vector&lt;string&gt;&amp;<sp/>children)</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="93"><highlight class="normal"></highlight><highlight class="comment">//<sp/><sp/><sp/><sp/><sp/>{</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="94"><highlight class="normal"></highlight><highlight class="comment">//<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>string<sp/>args<sp/>=<sp/>&quot;&quot;;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="95"><highlight class="normal"></highlight><highlight class="comment">//<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>for<sp/>(int<sp/>i<sp/>=<sp/>0;<sp/>i<sp/>&lt;<sp/>children.size();<sp/>++i){</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="96"><highlight class="normal"></highlight><highlight class="comment">//<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>args<sp/>+=<sp/>children.at(i);</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="97"><highlight class="normal"></highlight><highlight class="comment">//<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>if<sp/>(i<sp/>&lt;<sp/>children.size()-1)</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="98"><highlight class="normal"></highlight><highlight class="comment">//<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>args<sp/>+=<sp/>&quot;,&quot;;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="99"><highlight class="normal"></highlight><highlight class="comment">//<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="100"><highlight class="normal"></highlight></codeline>
+<codeline lineno="101"><highlight class="normal"></highlight><highlight class="comment">//<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>return<sp/>fmt::format(&quot;{}({})&quot;,<sp/>data.get_name(),<sp/>args);</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="102"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="103"><highlight class="normal"></highlight><highlight class="comment">//<sp/><sp/><sp/><sp/><sp/>}</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="104"><highlight class="normal"></highlight></codeline>
+<codeline lineno="105"><highlight class="normal"></highlight><highlight class="comment">//<sp/><sp/><sp/><sp/><sp/>template&lt;&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="106"><highlight class="normal"></highlight><highlight class="comment">//<sp/><sp/><sp/><sp/><sp/>string<sp/>get_model&lt;NodeType::SplitBest&gt;(const<sp/>Node&amp;<sp/>data,<sp/>const<sp/>vector&lt;string&gt;&amp;<sp/>children)</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="107"><highlight class="normal"></highlight><highlight class="comment">//<sp/><sp/><sp/><sp/><sp/>{</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="108"><highlight class="normal"></highlight><highlight class="comment">//<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>return<sp/>fmt::format(&quot;IF-THEN-ELSE({}&gt;{:.3f},{},{})&quot;,</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="109"><highlight class="normal"></highlight><highlight class="comment">//<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>data.get_feature(),</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="110"><highlight class="normal"></highlight><highlight class="comment">//<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>data.W,</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="111"><highlight class="normal"></highlight><highlight class="comment">//<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>children.at(0),</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="112"><highlight class="normal"></highlight><highlight class="comment">//<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>children.at(1)</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="113"><highlight class="normal"></highlight><highlight class="comment">//<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>);</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="114"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="115"><highlight class="normal"></highlight><highlight class="comment">//<sp/><sp/><sp/><sp/><sp/>}</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="116"><highlight class="normal"></highlight></codeline>
+<codeline lineno="117"><highlight class="normal"></highlight><highlight class="comment">//<sp/><sp/><sp/><sp/><sp/>template&lt;&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="118"><highlight class="normal"></highlight><highlight class="comment">//<sp/><sp/><sp/><sp/><sp/>string<sp/>get_model&lt;NodeType::SplitOn&gt;(const<sp/>Node&amp;<sp/>data,<sp/>const<sp/>vector&lt;string&gt;&amp;<sp/>children)</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="119"><highlight class="normal"></highlight><highlight class="comment">//<sp/><sp/><sp/><sp/><sp/>{</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="120"><highlight class="normal"></highlight><highlight class="comment">//<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>return<sp/>fmt::format(&quot;IF-THEN-ELSE({}&gt;{:.3f},{},{})&quot;,</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="121"><highlight class="normal"></highlight><highlight class="comment">//<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>children.at(0),</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="122"><highlight class="normal"></highlight><highlight class="comment">//<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>data.W,</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="123"><highlight class="normal"></highlight><highlight class="comment">//<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>children.at(1),</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="124"><highlight class="normal"></highlight><highlight class="comment">//<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>children.at(2)</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="125"><highlight class="normal"></highlight><highlight class="comment">//<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>);</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="126"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="127"><highlight class="normal"></highlight><highlight class="comment">//<sp/><sp/><sp/><sp/><sp/>}</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="128"><highlight class="normal"></highlight><highlight class="comment">//<sp/>}</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="129"><highlight class="normal"></highlight><highlight class="preprocessor">#endif</highlight></codeline>
     </programlisting>
     <location file="/home/runner/work/brush/brush/src/program/tree_node.h"/>
   </compounddef>

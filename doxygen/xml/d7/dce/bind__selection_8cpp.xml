@@ -145,9 +145,9 @@
       <node id="64">
         <label>../params.h</label>
         <link refid="da/d33/params_8h"/>
-        <childnode refid="21" relation="include">
-        </childnode>
         <childnode refid="45" relation="include">
+        </childnode>
+        <childnode refid="13" relation="include">
         </childnode>
       </node>
       <node id="79">
@@ -606,7 +606,7 @@
         <inbodydescription>
         </inbodydescription>
         <location file="/home/runner/work/brush/brush/src/bindings/bind_selection.cpp" line="8" column="6" bodyfile="/home/runner/work/brush/brush/src/bindings/bind_selection.cpp" bodystart="8" bodyend="15"/>
-        <references refid="da/d67/bind__selection_8h_1ab9984f712961be9a040dd775a1ab5bd0" compoundref="da/d67/bind__selection_8h" startline="21" endline="103">bind_selection</references>
+        <references refid="da/d67/bind__selection_8h_1ab9984f712961be9a040dd775a1ab5bd0" compoundref="da/d67/bind__selection_8h" startline="21" endline="101">bind_selection</references>
         <referencedby refid="dd/d30/module_8cpp_1ab3432520f506686ba18c7ce7758a6c69" compoundref="dd/d30/module_8cpp" startline="33" endline="60">PYBIND11_MODULE</referencedby>
       </memberdef>
     </sectiondef>
@@ -628,7 +628,7 @@
 <codeline lineno="11"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="da/d67/bind__selection_8h_1ab9984f712961be9a040dd775a1ab5bd0" kindref="member">bind_selection&lt;br::ProgramType::BinaryClassifier&gt;</ref>(m,<sp/></highlight><highlight class="stringliteral">&quot;ClassifierSelector&quot;</highlight><highlight class="normal">);</highlight></codeline>
 <codeline lineno="12"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
 <codeline lineno="13"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="da/d67/bind__selection_8h_1ab9984f712961be9a040dd775a1ab5bd0" kindref="member">bind_selection&lt;br::ProgramType::MulticlassClassifier&gt;</ref>(m,<sp/></highlight><highlight class="stringliteral">&quot;MultiClassifierSelector&quot;</highlight><highlight class="normal">);</highlight></codeline>
-<codeline lineno="14"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>bind_selection&lt;br::ProgramType::Representer&gt;(m,<sp/>&quot;RepresenterSelector&quot;);</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="14"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="da/d67/bind__selection_8h_1ab9984f712961be9a040dd775a1ab5bd0" kindref="member">bind_selection&lt;br::ProgramType::Representer&gt;</ref>(m,<sp/></highlight><highlight class="stringliteral">&quot;RepresenterSelector&quot;</highlight><highlight class="normal">);</highlight></codeline>
 <codeline lineno="15"><highlight class="normal">}</highlight></codeline>
     </programlisting>
     <location file="/home/runner/work/brush/brush/src/bindings/bind_selection.cpp"/>

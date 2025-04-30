@@ -1,6 +1,12 @@
 var searchData=
 [
-  ['residualevaluator_0',['ResidualEvaluator',['../d4/d70/structBrush_1_1ResidualEvaluator.html',1,'Brush']]],
-  ['reverse_5fiterator_1',['reverse_iterator',['../dd/d20/classarray_1_1reverse__iterator.html',1,'array&lt; T &gt;::reverse_iterator'],['../dc/ddc/classmap_1_1reverse__iterator.html',1,'map&lt; K, T &gt;::reverse_iterator'],['../d8/d5a/classset_1_1reverse__iterator.html',1,'set&lt; K &gt;::reverse_iterator'],['../d0/d8d/classstring_1_1reverse__iterator.html',1,'string::reverse_iterator'],['../dd/d96/classvector_1_1reverse__iterator.html',1,'vector&lt; T &gt;::reverse_iterator']]],
-  ['rnd_2',['Rnd',['../d2/d2d/classBrush_1_1Util_1_1Rnd.html',1,'Brush::Util']]]
+  ['parameters_0',['Parameters',['../de/deb/structBrush_1_1Parameters.html',1,'Brush']]],
+  ['pointmutation_1',['PointMutation',['../d4/d46/classBrush_1_1Var_1_1PointMutation.html',1,'Brush::Var']]],
+  ['population_2',['Population',['../da/da3/classBrush_1_1Pop_1_1Population.html',1,'Brush::Pop']]],
+  ['program_3',['Program',['../db/d88/structBrush_1_1Program.html',1,'Brush']]],
+  ['program_3c_20pt_3a_3abinaryclassifier_20_3e_4',['Program&lt; PT::BinaryClassifier &gt;',['../db/d88/structBrush_1_1Program.html',1,'Brush']]],
+  ['program_3c_20pt_3a_3amulticlassclassifier_20_3e_5',['Program&lt; PT::MulticlassClassifier &gt;',['../db/d88/structBrush_1_1Program.html',1,'Brush']]],
+  ['program_3c_20pt_3a_3aregressor_20_3e_6',['Program&lt; PT::Regressor &gt;',['../db/d88/structBrush_1_1Program.html',1,'Brush']]],
+  ['program_3c_20pt_3a_3arepresenter_20_3e_7',['Program&lt; PT::Representer &gt;',['../db/d88/structBrush_1_1Program.html',1,'Brush']]],
+  ['program_3c_20t_20_3e_8',['Program&lt; T &gt;',['../db/d88/structBrush_1_1Program.html',1,'Brush']]]
 ];

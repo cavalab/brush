@@ -176,6 +176,7 @@
 <li class="toctree-l2"><a class="reference internal" href="json.html">JSON Interoperability</a></li>
 <li class="toctree-l2"><a class="reference internal" href="saving_loading_populations.html">Saving and loading populations</a></li>
 <li class="toctree-l2 current active"><a class="current reference internal" href="#">The archive</a></li>
+
 <li class="toctree-l2"><a class="reference internal" href="deap.html">Using Deap</a></li>
 </ul>
 </details></li>
@@ -348,7 +349,9 @@ document.write(`
   </button>
 `);
 </script>
-
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
 </div></div>
       
     </div>
@@ -364,6 +367,21 @@ document.write(`
     <div id="print-main-content">
         <div id="jb-print-toc">
             
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">The archive</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#loading-a-specific-model-from-archive">Loading a specific model from archive</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#visualizing-the-pareto-front-of-the-archive">Visualizing the Pareto front of the archive</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#storing-the-population-unique-individuals">Storing the population (unique individuals)</a></li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#advanced-interactive-plot-of-archive">(advanced) Interactive plot of archive</a></li>
+</ul>
+
+            </nav>
         </div>
     </div>
 </div>
@@ -376,7 +394,7 @@ document.write(`
   <section id="the-archive">
 <h1>The archive<a class="headerlink" href="#the-archive" title="Link to this heading">#</a></h1>
 <p>When you fit a brush estimator, two new attributes are created: <code class="docutils literal notranslate"><span class="pre">best_estimator_</span></code> and <code class="docutils literal notranslate"><span class="pre">archive_</span></code>.</p>
-<p>If you set <code class="docutils literal notranslate"><span class="pre">use_arch</span></code> to <code class="docutils literal notranslate"><span class="pre">True</span></code> when instantiating the estimator, then it will store the pareto front as a list in <code class="docutils literal notranslate"><span class="pre">archive_</span></code>. This pareto front is always created with individuals from the final population that are not dominated in objectives <strong>error</strong> and <strong>complexity</strong>.</p>
+<p>If you set <code class="docutils literal notranslate"><span class="pre">use_arch</span></code> to <code class="docutils literal notranslate"><span class="pre">True</span></code> when instantiating the estimator, then it will store the pareto front as a list in <code class="docutils literal notranslate"><span class="pre">archive_</span></code>. This pareto front is always created with individuals from the final population that are not dominated in objectives <strong>scorer</strong> and <strong>complexity</strong>. Setting <code class="docutils literal notranslate"><span class="pre">scorer</span></code> as an objective means optimizing the metric set as <code class="docutils literal notranslate"><span class="pre">scorer:</span> <span class="pre">str</span></code>.</p>
 <p>In case you need more flexibility, the archive will contain the entire final population if <code class="docutils literal notranslate"><span class="pre">use_arch</span></code> is <code class="docutils literal notranslate"><span class="pre">False</span></code>, and you can iterate through this list to select individuals with different criteria. It is also good to remind that Brush supports different optimization objectives using the argument <code class="docutils literal notranslate"><span class="pre">objectives</span></code>.</p>
 <p>Each element from the archive is a serialized individual (JSON object).</p>
 <div class="cell docutils container">
@@ -395,21 +413,28 @@ document.write(`
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">est</span> <span class="o">=</span> <span class="n">BrushClassifier</span><span class="p">(</span>
-    <span class="n">functions</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;SplitBest&#39;</span><span class="p">,</span><span class="s1">&#39;Add&#39;</span><span class="p">,</span><span class="s1">&#39;Mul&#39;</span><span class="p">,</span><span class="s1">&#39;Sin&#39;</span><span class="p">,</span><span class="s1">&#39;Cos&#39;</span><span class="p">,</span><span class="s1">&#39;Exp&#39;</span><span class="p">,</span><span class="s1">&#39;Logabs&#39;</span><span class="p">],</span>
+    <span class="c1"># functions=[&#39;SplitBest&#39;,&#39;Add&#39;,&#39;Mul&#39;,&#39;Sin&#39;,&#39;Cos&#39;,&#39;Exp&#39;,&#39;Logabs&#39;],</span>
     <span class="n">use_arch</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+    <span class="n">objectives</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;scorer&quot;</span><span class="p">,</span> <span class="s2">&quot;linear_complexity&quot;</span><span class="p">],</span>
+    <span class="n">scorer</span><span class="o">=</span><span class="s1">&#39;balanced_accuracy&#39;</span><span class="p">,</span> <span class="c1"># brush implements several metrics for clf and reg!</span>
     <span class="n">max_gens</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span>
+    <span class="n">pop_size</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span>
+    <span class="n">max_depth</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span>
+    <span class="n">max_size</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span>
     <span class="n">verbosity</span><span class="o">=</span><span class="mi">1</span>
 <span class="p">)</span>
 
 <span class="n">est</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X</span><span class="p">,</span><span class="n">y</span><span class="p">)</span>
-<span class="n">y_pred</span> <span class="o">=</span> <span class="n">est</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Best model:&quot;</span><span class="p">,</span> <span class="n">est</span><span class="o">.</span><span class="n">best_estimator_</span><span class="o">.</span><span class="n">get_model</span><span class="p">())</span>
 <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;score:&#39;</span><span class="p">,</span> <span class="n">est</span><span class="o">.</span><span class="n">score</span><span class="p">(</span><span class="n">X</span><span class="p">,</span><span class="n">y</span><span class="p">))</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Completed 100% [====================]
-score: 0.7
+Best model: Logistic(Sum(-0.24,If(AIDS&gt;15890.50,1.00,If(Total&gt;1572255.50,0.00,Asin(If(AIDS&gt;123.00,1.00,1.00*Atan(Tan(AIDS))))))))
+score: 0.9
 </pre></div>
 </div>
 </div>
@@ -424,7 +449,7 @@ score: 0.7
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>5
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>7
 </pre></div>
 </div>
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{&#39;fitness&#39;: {&#39;complexity&#39;: 80,
@@ -432,65 +457,43 @@ score: 0.7
   &#39;dcounter&#39;: 0,
   &#39;depth&#39;: 3,
   &#39;dominated&#39;: [],
-  &#39;loss&#39;: 0.5091069936752319,
-  &#39;loss_v&#39;: 0.5091069936752319,
+  &#39;linear_complexity&#39;: 14,
+  &#39;loss&#39;: 0.5400000214576721,
+  &#39;loss_v&#39;: 0.5400000214576721,
   &#39;rank&#39;: 1,
-  &#39;size&#39;: 12,
-  &#39;values&#39;: [0.5091069936752319, 12.0],
-  &#39;weights&#39;: [-1.0, -1.0],
-  &#39;wvalues&#39;: [-0.5091069936752319, -12.0]},
- &#39;id&#39;: 10060,
- &#39;objectives&#39;: [&#39;error&#39;, &#39;size&#39;],
- &#39;parent_id&#39;: [9628],
- &#39;program&#39;: {&#39;Tree&#39;: [{&#39;W&#39;: 15890.5,
-    &#39;arg_types&#39;: [&#39;ArrayF&#39;, &#39;ArrayF&#39;],
-    &#39;center_op&#39;: True,
-    &#39;feature&#39;: &#39;AIDS&#39;,
-    &#39;fixed&#39;: False,
-    &#39;is_weighted&#39;: False,
-    &#39;name&#39;: &#39;SplitBest&#39;,
-    &#39;node_type&#39;: &#39;SplitBest&#39;,
-    &#39;prob_change&#39;: 1.0,
-    &#39;ret_type&#39;: &#39;ArrayF&#39;,
-    &#39;sig_dual_hash&#39;: 9996486434638833164,
-    &#39;sig_hash&#39;: 10001460114883919497},
-   {&#39;W&#39;: 1.0,
+  &#39;size&#39;: 5,
+  &#39;values&#39;: [0.5400000214576721, 14.0],
+  &#39;weights&#39;: [1.0, -1.0],
+  &#39;wvalues&#39;: [0.5400000214576721, -14.0]},
+ &#39;id&#39;: 264,
+ &#39;is_fitted_&#39;: False,
+ &#39;objectives&#39;: [&#39;balanced_accuracy&#39;, &#39;linear_complexity&#39;],
+ &#39;parent_id&#39;: [207],
+ &#39;program&#39;: {&#39;Tree&#39;: [{&#39;W&#39;: 1.0,
     &#39;arg_types&#39;: [&#39;ArrayF&#39;],
-    &#39;center_op&#39;: True,
+    &#39;center_op&#39;: False,
     &#39;feature&#39;: &#39;&#39;,
-    &#39;fixed&#39;: False,
+    &#39;fixed&#39;: True,
     &#39;is_weighted&#39;: False,
-    &#39;name&#39;: &#39;Logabs&#39;,
-    &#39;node_type&#39;: &#39;Logabs&#39;,
-    &#39;prob_change&#39;: 1.0,
+    &#39;name&#39;: &#39;Logistic&#39;,
+    &#39;node_type&#39;: &#39;Logistic&#39;,
+    &#39;prob_change&#39;: 0.0,
     &#39;ret_type&#39;: &#39;ArrayF&#39;,
     &#39;sig_dual_hash&#39;: 10617925524997611780,
     &#39;sig_hash&#39;: 13326223354425868050},
-   {&#39;W&#39;: 2.7182815074920654,
-    &#39;arg_types&#39;: [],
-    &#39;center_op&#39;: True,
-    &#39;feature&#39;: &#39;Cf&#39;,
-    &#39;fixed&#39;: False,
-    &#39;is_weighted&#39;: False,
-    &#39;name&#39;: &#39;Constant&#39;,
-    &#39;node_type&#39;: &#39;Constant&#39;,
-    &#39;prob_change&#39;: 1.0,
+   {&#39;W&#39;: 8.940696716308594e-08,
+    &#39;arg_types&#39;: [&#39;ArrayF&#39;],
+    &#39;center_op&#39;: False,
+    &#39;feature&#39;: &#39;&#39;,
+    &#39;fixed&#39;: True,
+    &#39;is_weighted&#39;: True,
+    &#39;name&#39;: &#39;OffsetSum&#39;,
+    &#39;node_type&#39;: &#39;OffsetSum&#39;,
+    &#39;prob_change&#39;: 0.0,
     &#39;ret_type&#39;: &#39;ArrayF&#39;,
-    &#39;sig_dual_hash&#39;: 509529941281334733,
-    &#39;sig_hash&#39;: 17717457037689164349},
-   {&#39;W&#39;: 1572255.5,
-    &#39;arg_types&#39;: [&#39;ArrayF&#39;, &#39;ArrayF&#39;],
-    &#39;center_op&#39;: True,
-    &#39;feature&#39;: &#39;Total&#39;,
-    &#39;fixed&#39;: False,
-    &#39;is_weighted&#39;: False,
-    &#39;name&#39;: &#39;SplitBest&#39;,
-    &#39;node_type&#39;: &#39;SplitBest&#39;,
-    &#39;prob_change&#39;: 1.0,
-    &#39;ret_type&#39;: &#39;ArrayF&#39;,
-    &#39;sig_dual_hash&#39;: 9996486434638833164,
-    &#39;sig_hash&#39;: 10001460114883919497},
-   {&#39;W&#39;: 0.2222222238779068,
+    &#39;sig_dual_hash&#39;: 10617925524997611780,
+    &#39;sig_hash&#39;: 13326223354425868050},
+   {&#39;W&#39;: 0.0,
     &#39;arg_types&#39;: [],
     &#39;center_op&#39;: True,
     &#39;feature&#39;: &#39;MeanLabel&#39;,
@@ -498,23 +501,12 @@ score: 0.7
     &#39;is_weighted&#39;: True,
     &#39;name&#39;: &#39;MeanLabel&#39;,
     &#39;node_type&#39;: &#39;MeanLabel&#39;,
-    &#39;prob_change&#39;: 1.0,
-    &#39;ret_type&#39;: &#39;ArrayF&#39;,
-    &#39;sig_dual_hash&#39;: 509529941281334733,
-    &#39;sig_hash&#39;: 17717457037689164349},
-   {&#39;W&#39;: 0.5217871069908142,
-    &#39;arg_types&#39;: [],
-    &#39;center_op&#39;: True,
-    &#39;feature&#39;: &#39;Cf&#39;,
-    &#39;fixed&#39;: False,
-    &#39;is_weighted&#39;: False,
-    &#39;name&#39;: &#39;Constant&#39;,
-    &#39;node_type&#39;: &#39;Constant&#39;,
-    &#39;prob_change&#39;: 1.0,
+    &#39;prob_change&#39;: 0.19857122004032135,
     &#39;ret_type&#39;: &#39;ArrayF&#39;,
     &#39;sig_dual_hash&#39;: 509529941281334733,
     &#39;sig_hash&#39;: 17717457037689164349}],
-  &#39;is_fitted_&#39;: True}}
+  &#39;is_fitted_&#39;: True},
+ &#39;variation&#39;: &#39;subtree&#39;}
 </pre></div>
 </div>
 </div>
@@ -527,47 +519,82 @@ score: 0.7
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[{&#39;id&#39;: 10060,
-  &#39;y_pred&#39;: array([False,  True,  True,  True,  True, False,  True,  True,  True,
-         False,  True,  True,  True,  True, False,  True,  True,  True,
-          True,  True,  True,  True,  True,  True,  True, False, False,
-         False, False, False, False, False, False, False, False, False,
-         False, False,  True, False,  True,  True,  True,  True,  True,
-          True,  True,  True,  True,  True])},
- {&#39;id&#39;: 9789,
-  &#39;y_pred&#39;: array([False,  True,  True,  True,  True, False,  True,  True,  True,
-         False,  True,  True,  True,  True, False,  True,  True,  True,
-          True,  True,  True,  True,  True,  True,  True, False, False,
-         False, False, False, False, False, False, False, False, False,
-         False, False,  True, False,  True,  True,  True,  True,  True,
-          True,  True,  True,  True,  True])},
- {&#39;id&#39;: 10049,
-  &#39;y_pred&#39;: array([False,  True,  True,  True,  True, False,  True,  True,  True,
-         False, False,  True,  True, False, False, False, False, False,
-         False, False, False, False, False, False, False, False, False,
-         False, False, False, False, False, False, False, False, False,
-         False, False, False, False, False, False, False, False, False,
-         False, False, False, False, False])},
- {&#39;id&#39;: 4384,
-  &#39;y_pred&#39;: array([False,  True,  True,  True,  True, False,  True,  True,  True,
-         False, False,  True,  True, False, False, False, False, False,
-         False, False, False, False, False, False, False, False, False,
-         False, False, False, False, False, False, False, False, False,
-         False, False, False, False, False, False, False, False, False,
-         False, False, False, False, False])},
- {&#39;id&#39;: 9692,
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[{&#39;id&#39;: 264,
   &#39;y_pred&#39;: array([ True,  True,  True,  True,  True,  True,  True,  True,  True,
           True,  True,  True,  True,  True,  True,  True,  True,  True,
           True,  True,  True,  True,  True,  True,  True,  True,  True,
           True,  True,  True,  True,  True,  True,  True,  True,  True,
           True,  True,  True,  True,  True,  True,  True,  True,  True,
-          True,  True,  True,  True,  True])},
- {&#39;id&#39;: 9552,
-  &#39;y_pred&#39;: array([False, False, False, False, False, False, False, False, False,
+          True,  True,  True, False, False])},
+ {&#39;id&#39;: 284,
+  &#39;y_pred&#39;: array([ True,  True,  True,  True,  True,  True,  True,  True,  True,
+          True,  True,  True,  True,  True,  True, False,  True,  True,
+          True,  True, False,  True,  True,  True, False,  True,  True,
+          True,  True,  True,  True,  True,  True,  True,  True,  True,
+          True,  True,  True,  True, False, False, False, False, False,
+         False, False, False, False, False])},
+ {&#39;id&#39;: 260,
+  &#39;y_pred&#39;: array([False,  True,  True,  True, False, False,  True,  True,  True,
+         False, False,  True,  True, False, False, False, False, False,
          False, False, False, False, False, False, False, False, False,
          False, False, False, False, False, False, False, False, False,
          False, False, False, False, False, False, False, False, False,
+         False, False, False, False, False])},
+ {&#39;id&#39;: 286,
+  &#39;y_pred&#39;: array([False,  True,  True,  True,  True, False,  True,  True,  True,
+          True, False,  True,  True,  True, False, False, False, False,
          False, False, False, False, False, False, False, False, False,
+         False, False, False, False,  True,  True, False, False, False,
+         False, False, False, False, False, False, False, False, False,
+         False, False, False, False, False])},
+ {&#39;id&#39;: 276,
+  &#39;y_pred&#39;: array([ True,  True,  True,  True,  True,  True,  True,  True,  True,
+         False, False,  True,  True,  True, False,  True, False, False,
+          True,  True,  True,  True, False, False,  True, False,  True,
+         False,  True, False,  True, False, False,  True, False, False,
+          True,  True, False, False, False,  True, False, False, False,
+         False, False, False, False,  True])},
+ {&#39;id&#39;: 251,
+  &#39;y_pred&#39;: array([ True,  True,  True,  True,  True,  True,  True,  True,  True,
+         False, False,  True,  True,  True, False, False, False, False,
+          True,  True,  True,  True, False, False,  True, False, False,
+         False, False, False,  True, False, False,  True, False, False,
+          True,  True, False, False, False,  True, False, False, False,
+         False, False, False, False,  True])},
+ {&#39;id&#39;: 227,
+  &#39;y_pred&#39;: array([ True,  True,  True,  True,  True,  True,  True,  True,  True,
+         False, False,  True,  True,  True, False,  True, False, False,
+          True,  True,  True,  True, False,  True,  True, False, False,
+          True, False, False,  True, False, False,  True, False, False,
+          True,  True, False, False, False, False, False, False, False,
+         False, False, False, False,  True])},
+ {&#39;id&#39;: 261,
+  &#39;y_pred&#39;: array([False,  True,  True,  True,  True, False,  True,  True,  True,
+         False,  True,  True,  True,  True, False, False,  True,  True,
+          True,  True, False,  True,  True,  True, False, False, False,
+         False, False, False, False, False, False, False, False, False,
+         False, False,  True, False, False, False,  True, False, False,
+         False, False, False, False, False])},
+ {&#39;id&#39;: 247,
+  &#39;y_pred&#39;: array([False,  True,  True,  True,  True, False,  True,  True,  True,
+         False,  True,  True,  True,  True, False, False,  True,  True,
+          True,  True, False,  True,  True,  True, False, False, False,
+         False, False, False, False, False, False, False, False, False,
+         False, False,  True, False, False, False, False, False, False,
+         False, False, False, False, False])},
+ {&#39;id&#39;: 228,
+  &#39;y_pred&#39;: array([False,  True,  True,  True,  True, False,  True,  True,  True,
+         False,  True,  True,  True,  True, False,  True,  True,  True,
+          True,  True, False,  True,  True,  True, False, False, False,
+         False, False, False, False, False, False, False, False, False,
+         False, False,  True, False, False, False, False, False, False,
+         False, False, False, False, False])},
+ {&#39;id&#39;: 230,
+  &#39;y_pred&#39;: array([False,  True,  True,  True,  True, False,  True,  True,  True,
+         False,  True,  True,  True,  True, False,  True,  True,  True,
+          True,  True,  True,  True,  True,  True,  True, False, False,
+         False, False, False, False, False, False, False, False, False,
+         False, False,  True, False, False, False, False, False, False,
          False, False, False, False, False])}]
 </pre></div>
 </div>
@@ -580,72 +607,291 @@ score: 0.7
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[{&#39;id&#39;: 10060,
-  &#39;y_pred&#39;: array([0.22222222, 0.9999999 , 0.9999999 , 0.9999999 , 0.9999999 ,
-         0.22222222, 0.9999999 , 0.9999999 , 0.9999999 , 0.22222222,
-         0.5217871 , 0.9999999 , 0.9999999 , 0.5217871 , 0.22222222,
-         0.5217871 , 0.5217871 , 0.5217871 , 0.5217871 , 0.5217871 ,
-         0.5217871 , 0.5217871 , 0.5217871 , 0.5217871 , 0.5217871 ,
-         0.22222222, 0.22222222, 0.22222222, 0.22222222, 0.22222222,
-         0.22222222, 0.22222222, 0.22222222, 0.22222222, 0.22222222,
-         0.22222222, 0.22222222, 0.22222222, 0.5217871 , 0.22222222,
-         0.5217871 , 0.5217871 , 0.5217871 , 0.5217871 , 0.5217871 ,
-         0.5217871 , 0.5217871 , 0.5217871 , 0.5217871 , 0.5217871 ],
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[{&#39;id&#39;: 264,
+  &#39;y_pred&#39;: array([0.50000006, 0.50000006, 0.50000006, 0.50000006, 0.50000006,
+         0.50000006, 0.50000006, 0.50000006, 0.50000006, 0.50000006,
+         0.50000006, 0.50000006, 0.50000006, 0.50000006, 0.50000006,
+         0.50000006, 0.50000006, 0.50000006, 0.50000006, 0.50000006,
+         0.50000006, 0.50000006, 0.50000006, 0.50000006, 0.50000006,
+         0.50000006, 0.50000006, 0.50000006, 0.50000006, 0.50000006,
+         0.50000006, 0.50000006, 0.50000006, 0.50000006, 0.50000006,
+         0.50000006, 0.50000006, 0.50000006, 0.50000006, 0.50000006,
+         0.50000006, 0.50000006, 0.50000006, 0.50000006, 0.50000006,
+         0.50000006, 0.50000006, 0.50000006, 0.5       , 0.5       ],
         dtype=float32)},
- {&#39;id&#39;: 9789,
-  &#39;y_pred&#39;: array([0.22222222, 0.99994993, 0.99994993, 0.99994993, 0.99994993,
-         0.22222222, 0.99994993, 0.99994993, 0.99994993, 0.22222222,
-         0.5217871 , 0.99994993, 0.99994993, 0.5217871 , 0.22222222,
-         0.5217871 , 0.5217871 , 0.5217871 , 0.5217871 , 0.5217871 ,
-         0.5217871 , 0.5217871 , 0.5217871 , 0.5217871 , 0.5217871 ,
-         0.22222222, 0.22222222, 0.22222222, 0.22222222, 0.22222222,
-         0.22222222, 0.22222222, 0.22222222, 0.22222222, 0.22222222,
-         0.22222222, 0.22222222, 0.22222222, 0.5217871 , 0.22222222,
-         0.5217871 , 0.5217871 , 0.5217871 , 0.5217871 , 0.5217871 ,
-         0.5217871 , 0.5217871 , 0.5217871 , 0.5217871 , 0.5217871 ],
+ {&#39;id&#39;: 284,
+  &#39;y_pred&#39;: array([1.0000000e+00, 1.0000000e+00, 1.0000000e+00, 1.0000000e+00,
+         1.0000000e+00, 1.0000000e+00, 1.0000000e+00, 1.0000000e+00,
+         1.0000000e+00, 1.0000000e+00, 1.0000000e+00, 1.0000000e+00,
+         1.0000000e+00, 1.0000000e+00, 1.0000000e+00, 0.0000000e+00,
+         1.0000000e+00, 1.0000000e+00, 1.0000000e+00, 1.0000000e+00,
+         0.0000000e+00, 1.0000000e+00, 1.0000000e+00, 9.9985957e-01,
+         7.8951918e-37, 1.0000000e+00, 1.0000000e+00, 1.0000000e+00,
+         1.0000000e+00, 1.0000000e+00, 1.0000000e+00, 1.0000000e+00,
+         1.0000000e+00, 1.0000000e+00, 1.0000000e+00, 1.0000000e+00,
+         1.0000000e+00, 1.0000000e+00, 1.0000000e+00, 1.0000000e+00,
+         0.0000000e+00, 1.2521880e-21, 1.2202326e-11, 1.0412302e-27,
+         8.6581284e-34, 0.0000000e+00, 8.4371766e-24, 3.1038638e-24,
+         0.0000000e+00, 0.0000000e+00], dtype=float32)},
+ {&#39;id&#39;: 260,
+  &#39;y_pred&#39;: array([1.0081212e-35, 1.0000000e+00, 1.0000000e+00, 1.0000000e+00,
+         1.2496071e-02, 5.2254774e-36, 1.0000000e+00, 1.0000000e+00,
+         1.0000000e+00, 7.0163466e-14, 0.0000000e+00, 9.9999726e-01,
+         1.0000000e+00, 1.3096678e-11, 5.5269798e-28, 0.0000000e+00,
+         0.0000000e+00, 0.0000000e+00, 0.0000000e+00, 0.0000000e+00,
+         0.0000000e+00, 0.0000000e+00, 0.0000000e+00, 0.0000000e+00,
+         0.0000000e+00, 0.0000000e+00, 1.2658817e-27, 7.8919543e-26,
+         1.5775963e-37, 0.0000000e+00, 0.0000000e+00, 1.5053514e-09,
+         3.0856791e-03, 1.2355835e-24, 8.1867808e-36, 0.0000000e+00,
+         4.9887171e-28, 1.6857511e-26, 1.5835223e-38, 0.0000000e+00,
+         0.0000000e+00, 0.0000000e+00, 0.0000000e+00, 0.0000000e+00,
+         0.0000000e+00, 0.0000000e+00, 0.0000000e+00, 0.0000000e+00,
+         0.0000000e+00, 0.0000000e+00], dtype=float32)},
+ {&#39;id&#39;: 286,
+  &#39;y_pred&#39;: array([0.40833515, 0.9820269 , 0.9980566 , 0.9287328 , 0.67898846,
+         0.40701428, 0.90484595, 0.9760761 , 0.8018543 , 0.5646876 ,
+         0.38469985, 0.7565818 , 0.841811  , 0.58659005, 0.45134798,
+         0.35905573, 0.3723781 , 0.38076416, 0.3690718 , 0.36326265,
+         0.35882685, 0.36579695, 0.3663163 , 0.36100355, 0.3592465 ,
+         0.36772186, 0.4536888 , 0.4658134 , 0.40029088, 0.3931104 ,
+         0.38719437, 0.60710794, 0.6725419 , 0.47429875, 0.40791473,
+         0.3677797 , 0.45106068, 0.4611968 , 0.39615962, 0.375852  ,
+         0.35844555, 0.3599145 , 0.3603538 , 0.3596472 , 0.35938004,
+         0.3583884 , 0.35981902, 0.35979992, 0.3589222 , 0.35859805],
         dtype=float32)},
- {&#39;id&#39;: 10049,
-  &#39;y_pred&#39;: array([0.39024392, 0.9999999 , 0.9999999 , 0.9999999 , 0.9999999 ,
-         0.39024392, 0.9999999 , 0.9999999 , 0.9999999 , 0.39024392,
-         0.39024392, 0.9999999 , 0.9999999 , 0.39024392, 0.39024392,
-         0.39024392, 0.39024392, 0.39024392, 0.39024392, 0.39024392,
-         0.39024392, 0.39024392, 0.39024392, 0.39024392, 0.39024392,
-         0.39024392, 0.39024392, 0.39024392, 0.39024392, 0.39024392,
-         0.39024392, 0.39024392, 0.39024392, 0.39024392, 0.39024392,
-         0.39024392, 0.39024392, 0.39024392, 0.39024392, 0.39024392,
-         0.39024392, 0.39024392, 0.39024392, 0.39024392, 0.39024392,
-         0.39024392, 0.39024392, 0.39024392, 0.39024392, 0.39024392],
+ {&#39;id&#39;: 276,
+  &#39;y_pred&#39;: array([7.8108364e-01, 7.4068010e-01, 7.4068010e-01, 7.4068010e-01,
+         7.4068010e-01, 7.6991338e-01, 7.4068010e-01, 7.4068010e-01,
+         7.4068010e-01, 4.2578113e-01, 3.9292258e-01, 7.4068010e-01,
+         7.4068010e-01, 8.1273812e-01, 3.1526712e-01, 5.8899599e-01,
+         1.8576130e-01, 4.1078791e-01, 7.4497253e-01, 6.1298168e-01,
+         7.7351385e-01, 6.2793267e-01, 2.5962147e-01, 7.3486399e-03,
+         7.7723646e-01, 4.9020657e-01, 5.6600595e-01, 2.5054170e-03,
+         5.1463062e-01, 3.0869538e-01, 7.8104508e-01, 3.8264209e-01,
+         5.0942674e-02, 9.2560732e-01, 4.2246539e-02, 4.5395932e-01,
+         8.4166944e-01, 7.4169952e-01, 3.3088744e-01, 1.4896183e-01,
+         4.3991685e-01, 9.8073673e-01, 2.6703531e-01, 4.8349547e-01,
+         2.5045840e-20, 4.7675678e-01, 3.6594018e-01, 1.0172682e-14,
+         4.0319046e-01, 9.9932098e-01], dtype=float32)},
+ {&#39;id&#39;: 251,
+  &#39;y_pred&#39;: array([0.6278971 , 0.60289556, 0.60289556, 0.60289556, 0.60289556,
+         0.62100005, 0.60289556, 0.60289556, 0.60289556,        nan,
+                nan, 0.60289556, 0.60289556, 0.6476004 ,        nan,
+         0.4936501 ,        nan,        nan, 0.6055672 , 0.51452976,
+         0.62322253, 0.5264537 ,        nan,        nan, 0.6255207 ,
+                nan, 0.47062764,        nan, 0.38050255,        nan,
+         0.62787324,        nan,        nan, 0.7290232 ,        nan,
+                nan, 0.66614634, 0.60353065,        nan,        nan,
+                nan, 0.80018765,        nan,        nan,        nan,
+                nan,        nan,        nan,        nan, 0.891787  ],
         dtype=float32)},
- {&#39;id&#39;: 4384,
-  &#39;y_pred&#39;: array([0.39024392, 0.9999522 , 0.9999522 , 0.9999522 , 0.9999522 ,
-         0.39024392, 0.9999522 , 0.9999522 , 0.9999522 , 0.39024392,
-         0.39024392, 0.9999522 , 0.9999522 , 0.39024392, 0.39024392,
-         0.39024392, 0.39024392, 0.39024392, 0.39024392, 0.39024392,
-         0.39024392, 0.39024392, 0.39024392, 0.39024392, 0.39024392,
-         0.39024392, 0.39024392, 0.39024392, 0.39024392, 0.39024392,
-         0.39024392, 0.39024392, 0.39024392, 0.39024392, 0.39024392,
-         0.39024392, 0.39024392, 0.39024392, 0.39024392, 0.39024392,
-         0.39024392, 0.39024392, 0.39024392, 0.39024392, 0.39024392,
-         0.39024392, 0.39024392, 0.39024392, 0.39024392, 0.39024392],
+ {&#39;id&#39;: 227,
+  &#39;y_pred&#39;: array([0.6689781 , 0.6821383 , 0.6821383 , 0.6821383 , 0.6821383 ,
+         0.66368186, 0.6821383 , 0.6821383 , 0.6821383 , 0.35940248,
+         0.3313259 , 0.6821383 , 0.6821383 , 0.6796199 , 0.27467927,
+         0.5172356 , 0.22523105, 0.34633443, 0.6495391 , 0.54054886,
+         0.6654655 , 0.55476266, 0.24482079, 0.67573524, 0.667234  ,
+         0.41946912, 0.49450168, 0.50200063, 0.4434057 , 0.2706287 ,
+         0.66896105, 0.32298976, 0.40061048, 0.59498376, 0.44833356,
+         0.38498515, 0.68186295, 0.64747214, 0.28481302, 0.2293548 ,
+         0.37208086, 0.287013  , 0.24817689, 0.41297618, 0.23708849,
+         0.40650123, 0.30995077, 0.27102837, 0.33987376, 0.64190036],
         dtype=float32)},
- {&#39;id&#39;: 9692,
-  &#39;y_pred&#39;: array([0.5317098 , 0.93985564, 0.9835824 , 0.8686745 , 0.68970597,
-         0.53089285, 0.8455727 , 0.9291562 , 0.7663612 , 0.6237519 ,
-         0.5169323 , 0.7368382 , 0.794476  , 0.63628834, 0.5578266 ,
-         0.50047225, 0.50908357, 0.51443684, 0.506959  , 0.50320625,
-         0.5003231 , 0.50484663, 0.5051821 , 0.50173986, 0.5005965 ,
-         0.5060892 , 0.5592239 , 0.56642807, 0.5267187 , 0.5222307 ,
-         0.5185086 , 0.64804167, 0.68591666, 0.5714386 , 0.5314499 ,
-         0.50612646, 0.5576549 , 0.5636914 , 0.5241404 , 0.5113072 ,
-         0.50007457, 0.5010315 , 0.5013173 , 0.50085753, 0.50068355,
-         0.5000373 , 0.50096935, 0.50095695, 0.5003852 , 0.500174  ],
+ {&#39;id&#39;: 261,
+  &#39;y_pred&#39;: array([0.3447548 , 0.58851355, 0.58851355, 0.58851355, 0.58851355,
+         0.3447548 , 0.58851355, 0.58851355, 0.58851355, 0.3447548 ,
+         0.9996426 , 0.58851355, 0.58851355, 1.        , 0.3447548 ,
+         0.40058893, 0.9812676 , 0.9987348 , 0.946967  , 0.7274303 ,
+         0.38259757, 0.8596523 , 0.8789301 , 0.5594563 , 0.41579157,
+         0.3447548 , 0.3447548 , 0.3447548 , 0.3447548 , 0.3447548 ,
+         0.3447548 , 0.3447548 , 0.3447548 , 0.3447548 , 0.3447548 ,
+         0.3447548 , 0.3447548 , 0.3447548 , 0.9999908 , 0.3447548 ,
+         0.35333464, 0.47008803, 0.50624126, 0.4482104 , 0.42653137,
+         0.3490325 , 0.46225694, 0.46069285, 0.390058  , 0.3649223 ],
         dtype=float32)},
- {&#39;id&#39;: 9552,
-  &#39;y_pred&#39;: array([0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5,
-         0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5,
-         0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5,
-         0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5],
+ {&#39;id&#39;: 247,
+  &#39;y_pred&#39;: array([0.44111538, 0.6820835 , 0.6820835 , 0.6820835 , 0.6820835 ,
+         0.44111538, 0.6820835 , 0.6820835 , 0.6820835 , 0.44111538,
+         0.7915279 , 0.6820835 , 0.6820835 , 0.7915279 , 0.44111538,
+         0.44111538, 0.7915279 , 0.7915279 , 0.7915279 , 0.7915279 ,
+         0.44111538, 0.7915279 , 0.7915279 , 0.7915279 , 0.44111538,
+         0.44111538, 0.44111538, 0.44111538, 0.44111538, 0.44111538,
+         0.44111538, 0.44111538, 0.44111538, 0.44111538, 0.44111538,
+         0.44111538, 0.44111538, 0.44111538, 0.7915279 , 0.44111538,
+         0.44111538, 0.44111538, 0.44111538, 0.44111538, 0.44111538,
+         0.44111538, 0.44111538, 0.44111538, 0.44111538, 0.44111538],
+        dtype=float32)},
+ {&#39;id&#39;: 228,
+  &#39;y_pred&#39;: array([0.44111538, 0.6820835 , 0.6820835 , 0.6820835 , 0.6820835 ,
+         0.44111538, 0.6820835 , 0.6820835 , 0.6820835 , 0.44111538,
+         0.7915279 , 0.6820835 , 0.6820835 , 0.7915279 , 0.44111538,
+         0.5197103 , 0.7915279 , 0.7915279 , 0.7915279 , 0.7915279 ,
+                nan, 0.7915279 , 0.7915279 , 0.7915279 ,        nan,
+         0.44111538, 0.44111538, 0.44111538, 0.44111538, 0.44111538,
+         0.44111538, 0.44111538, 0.44111538, 0.44111538, 0.44111538,
+         0.44111538, 0.44111538, 0.44111538, 0.7915279 , 0.44111538,
+         0.37007034,        nan,        nan, 0.41278994,        nan,
+         0.4062064 , 0.29336157,        nan, 0.33311623,        nan],
+        dtype=float32)},
+ {&#39;id&#39;: 230,
+  &#39;y_pred&#39;: array([0.44111538, 0.6820835 , 0.6820835 , 0.6820835 , 0.6820835 ,
+         0.44111538, 0.6820835 , 0.6820835 , 0.6820835 , 0.44111538,
+         0.7915279 , 0.6820835 , 0.6820835 , 0.7915279 , 0.44111538,
+         0.51724   , 0.7915279 , 0.7915279 , 0.7915279 , 0.7915279 ,
+         0.6927554 , 0.7915279 , 0.7915279 , 0.7915279 , 0.69658685,
+         0.44111538, 0.44111538, 0.44111538, 0.44111538, 0.44111538,
+         0.44111538, 0.44111538, 0.44111538, 0.44111538, 0.44111538,
+         0.44111538, 0.44111538, 0.44111538, 0.7915279 , 0.44111538,
+         0.3719757 ,        nan, 0.23363459, 0.41291445,        nan,
+         0.40643886, 0.30856097,        nan, 0.3394832 ,        nan],
         dtype=float32)}]
+</pre></div>
+</div>
+</div>
+</div>
+<section id="loading-a-specific-model-from-archive">
+<h2>Loading a specific model from archive<a class="headerlink" href="#loading-a-specific-model-from-archive" title="Link to this heading">#</a></h2>
+<p>We have a static class method called <code class="docutils literal notranslate"><span class="pre">from_json</span></code> which let’s you easily the string representation of the json from the archive to load an individual.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">pybrush</span><span class="w"> </span><span class="kn">import</span> <span class="n">individual</span>
+
+<span class="n">loaded_from_arch</span> <span class="o">=</span> <span class="n">individual</span><span class="o">.</span><span class="n">ClassifierIndividual</span><span class="o">.</span><span class="n">from_json</span><span class="p">(</span><span class="n">est</span><span class="o">.</span><span class="n">archive_</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">loaded_from_arch</span><span class="o">.</span><span class="n">get_model</span><span class="p">())</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">loaded_from_arch</span><span class="o">.</span><span class="n">fitness</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Logistic(Sum(-0.24,If(AIDS&gt;15890.50,1.00,If(Total&gt;1572255.50,0.00,Asin(If(AIDS&gt;123.00,1.00,1.00*Atan(Tan(AIDS))))))))
+Fitness(0.900000 67.000000 )
+</pre></div>
+</div>
+</div>
+</div>
+<p>To use this loaded model to do predictions, you need to wrap the data into a Dataset:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">pybrush</span><span class="w"> </span><span class="kn">import</span> <span class="n">Dataset</span>
+
+<span class="n">loaded_from_arch</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">Dataset</span><span class="p">(</span><span class="n">X</span><span class="o">=</span><span class="n">X</span><span class="p">,</span> <span class="n">ref_dataset</span><span class="o">=</span><span class="n">est</span><span class="o">.</span><span class="n">data_</span><span class="p">,</span> 
+                              <span class="n">feature_names</span><span class="o">=</span><span class="n">est</span><span class="o">.</span><span class="n">feature_names_</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([False,  True,  True,  True,  True, False,  True,  True,  True,
+       False,  True,  True,  True,  True, False,  True,  True,  True,
+        True,  True,  True,  True,  True,  True,  True, False, False,
+       False, False, False, False, False, False, False, False, False,
+       False, False,  True, False, False, False, False, False, False,
+       False, False, False, False, False])
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="visualizing-the-pareto-front-of-the-archive">
+<h2>Visualizing the Pareto front of the archive<a class="headerlink" href="#visualizing-the-pareto-front-of-the-archive" title="Link to this heading">#</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
+
+<span class="n">xs</span><span class="p">,</span> <span class="n">ys</span> <span class="o">=</span> <span class="p">[],</span> <span class="p">[]</span>
+<span class="k">for</span> <span class="n">ind</span> <span class="ow">in</span> <span class="n">est</span><span class="o">.</span><span class="n">archive_</span><span class="p">:</span>
+    <span class="c1"># We should look at the same objectives to get a valid pareto front</span>
+    <span class="n">xs</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">ind</span><span class="p">[</span><span class="s1">&#39;fitness&#39;</span><span class="p">][</span><span class="s1">&#39;loss&#39;</span><span class="p">])</span>
+    <span class="n">ys</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">ind</span><span class="p">[</span><span class="s1">&#39;fitness&#39;</span><span class="p">][</span><span class="s1">&#39;linear_complexity&#39;</span><span class="p">])</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">xs</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">xs</span><span class="p">,</span> <span class="n">ys</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.25</span><span class="p">,</span> <span class="n">c</span><span class="o">=</span><span class="s1">&#39;b&#39;</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="mf">1.0</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">yscale</span><span class="p">(</span><span class="s1">&#39;log&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">&quot;Loss on validation partition (greater is better)&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">&quot;Complexity (smaller is better)&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>11
+</pre></div>
+</div>
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Text(0, 0.5, &#39;Complexity (smaller is better)&#39;)
+</pre></div>
+</div>
+<img alt="../_images/de05b39b75031b604799e7971d6e82693a7e0be28eef725ee58a3434571952ea.png" src="../_images/de05b39b75031b604799e7971d6e82693a7e0be28eef725ee58a3434571952ea.png" />
+</div>
+</div>
+</section>
+<section id="storing-the-population-unique-individuals">
+<h2>Storing the population (unique individuals)<a class="headerlink" href="#storing-the-population-unique-individuals" title="Link to this heading">#</a></h2>
+<p>If not using archive, then the unique individuals from the final population will be stored. Notice that, while the archive contains only the Pareto front (when <code class="docutils literal notranslate"><span class="pre">use_arch=True</span></code>), this will contain all individuals, even dominated ones.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">est</span> <span class="o">=</span> <span class="n">BrushClassifier</span><span class="p">(</span>
+    <span class="c1"># functions=[&#39;SplitBest&#39;,&#39;Add&#39;,&#39;Mul&#39;,&#39;Sin&#39;,&#39;Cos&#39;,&#39;Exp&#39;,&#39;Logabs&#39;],</span>
+    <span class="n">use_arch</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+    <span class="n">objectives</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;scorer&quot;</span><span class="p">,</span> <span class="s2">&quot;linear_complexity&quot;</span><span class="p">],</span>
+    <span class="n">max_depth</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span>
+    <span class="n">max_size</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span>
+    <span class="n">max_gens</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span>
+    <span class="n">pop_size</span><span class="o">=</span><span class="mi">200</span><span class="p">,</span>
+    <span class="n">verbosity</span><span class="o">=</span><span class="mi">1</span>
+<span class="p">)</span>
+
+<span class="n">est</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X</span><span class="p">,</span><span class="n">y</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Best model:&quot;</span><span class="p">,</span> <span class="n">est</span><span class="o">.</span><span class="n">best_estimator_</span><span class="o">.</span><span class="n">get_model</span><span class="p">())</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;score:&#39;</span><span class="p">,</span> <span class="n">est</span><span class="o">.</span><span class="n">score</span><span class="p">(</span><span class="n">X</span><span class="p">,</span><span class="n">y</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Completed 100% [====================]
+Best model: Logistic(Sum(-1.39,If(AIDS&gt;15890.50,17.24,If(Total&gt;1572255.50,If(AIDS&gt;2320.50,11.61*Logistic(If(Age&gt;0.00,13.75,-21.10)),1.00*Mul(If(AIDS&gt;491.50,-39544.36,Total),Add(-10166.09,0.00))),If(AIDS&gt;123.00,If(AIDS&gt;1653.50,If(AIDS&gt;6597.50,15.18,Total),Add(15.18,1.00)),If(AIDS&gt;51.50,-14.40,If(AIDS&gt;20.00,If(Total&gt;168995.50,15.98,-21.11),-14.01)))))))
+score: 0.84
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">xs</span><span class="p">,</span> <span class="n">ys</span> <span class="o">=</span> <span class="p">[],</span> <span class="p">[]</span>
+<span class="k">for</span> <span class="n">ind</span> <span class="ow">in</span> <span class="n">est</span><span class="o">.</span><span class="n">archive_</span><span class="p">:</span>
+    <span class="c1"># use the same as the objectives</span>
+    <span class="n">xs</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">ind</span><span class="p">[</span><span class="s1">&#39;fitness&#39;</span><span class="p">][</span><span class="s1">&#39;loss&#39;</span><span class="p">])</span>
+    <span class="n">ys</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">ind</span><span class="p">[</span><span class="s1">&#39;fitness&#39;</span><span class="p">][</span><span class="s1">&#39;linear_complexity&#39;</span><span class="p">])</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">xs</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">xs</span><span class="p">,</span> <span class="n">ys</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.25</span><span class="p">,</span> <span class="n">c</span><span class="o">=</span><span class="s1">&#39;b&#39;</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="mf">1.0</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">yscale</span><span class="p">(</span><span class="s1">&#39;log&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">&quot;Loss on validation partition (smaller is better)&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">&quot;Complexity (smaller is better)&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>42
+</pre></div>
+</div>
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Text(0, 0.5, &#39;Complexity (smaller is better)&#39;)
+</pre></div>
+</div>
+<img alt="../_images/8236ac7f4e466a77bcb441e3791747b0e11c47a1dfa6bdede008ba458df931ce.png" src="../_images/8236ac7f4e466a77bcb441e3791747b0e11c47a1dfa6bdede008ba458df931ce.png" />
+</div>
+</div>
+</section>
+</section>
+<section id="advanced-interactive-plot-of-archive">
+<h1>(advanced) Interactive plot of archive<a class="headerlink" href="#advanced-interactive-plot-of-archive" title="Link to this heading">#</a></h1>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># TODO</span>
 </pre></div>
 </div>
 </div>
@@ -687,6 +933,28 @@ score: 0.7
             </div>
             
             
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">The archive</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#loading-a-specific-model-from-archive">Loading a specific model from archive</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#visualizing-the-pareto-front-of-the-archive">Visualizing the Pareto front of the archive</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#storing-the-population-unique-individuals">Storing the population (unique individuals)</a></li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#advanced-interactive-plot-of-archive">(advanced) Interactive plot of archive</a></li>
+</ul>
+
+  </nav></div>
+
+</div></div>
               
             
           </div>

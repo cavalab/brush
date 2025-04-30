@@ -1,7 +1,7 @@
 var structBrush_1_1SearchSpace =
 [
     [ "ArgsHash", "d4/dc3/structBrush_1_1SearchSpace.html#af004a91112f5e3994d7c90c8baa71310", null ],
-    [ "Map", "d4/dc3/structBrush_1_1SearchSpace.html#a04a57733f443d86d89bca723426cc4e1", null ],
+    [ "Map", "d4/dc3/structBrush_1_1SearchSpace.html#a5296a6d834c32ab1259e34c3351933be", null ],
     [ "SearchSpace", "d4/dc3/structBrush_1_1SearchSpace.html#af87c7270774accc9aa698089d310c4c3", null ],
     [ "SearchSpace", "d4/dc3/structBrush_1_1SearchSpace.html#ab2fd65c0af1125ba51f5c68c4168f1a2", null ],
     [ "AddNode", "d4/dc3/structBrush_1_1SearchSpace.html#a4a255b2a600b65c33dc7dad6dd6a4614", null ],
@@ -12,8 +12,8 @@ var structBrush_1_1SearchSpace =
     [ "CreateNode", "d4/dc3/structBrush_1_1SearchSpace.html#a35d500d78521e7fe880349c8006e55c7", null ],
     [ "GenerateNodeMap", "d4/dc3/structBrush_1_1SearchSpace.html#aaa7e4460ad218ff67bc4159aff77bdf3", null ],
     [ "get", "d4/dc3/structBrush_1_1SearchSpace.html#a3f54812898af087a3bc6c1bfea8f4a87", null ],
-    [ "get", "d4/dc3/structBrush_1_1SearchSpace.html#a6687f99606513848ee1042b90f7750dd", null ],
-    [ "get", "d4/dc3/structBrush_1_1SearchSpace.html#a9f5632dcb5c60863face5d6e1fdd92ba", null ],
+    [ "get", "d4/dc3/structBrush_1_1SearchSpace.html#a1f09cb439be2e66bb487348689a4f614", null ],
+    [ "get", "d4/dc3/structBrush_1_1SearchSpace.html#a46358ce73198f7e1b4318e0a41a34e98", null ],
     [ "get_node_like", "d4/dc3/structBrush_1_1SearchSpace.html#ac51e5e0acb3a880ffd0f3b7fba2fd68f", null ],
     [ "get_weights", "d4/dc3/structBrush_1_1SearchSpace.html#a9ba4526a9c2c4a5e636eff913ad808da", null ],
     [ "get_weights", "d4/dc3/structBrush_1_1SearchSpace.html#aa0d0eb72a9afd0fb54c414b66ad822ff", null ],
@@ -29,6 +29,7 @@ var structBrush_1_1SearchSpace =
     [ "MakeNodes", "d4/dc3/structBrush_1_1SearchSpace.html#af8165ac09c39eec3e5aa6e2d925b8104", null ],
     [ "print", "d4/dc3/structBrush_1_1SearchSpace.html#a1cfbfca3a45987de45159bc4699a61bb", null ],
     [ "PTC2", "d4/dc3/structBrush_1_1SearchSpace.html#ab1e6afddd1375b0f8cbd40f0033b32b1", null ],
+    [ "repr", "d4/dc3/structBrush_1_1SearchSpace.html#ab671dbf7c62fca02f2ccf263a2ad9a6a", null ],
     [ "sample_op", "d4/dc3/structBrush_1_1SearchSpace.html#ab23bc4732e733749b8aa1e8c2c2689a2", null ],
     [ "sample_op", "d4/dc3/structBrush_1_1SearchSpace.html#a9aa8d90d79abb8a1e76270b80bbcab38", null ],
     [ "sample_op_with_arg", "d4/dc3/structBrush_1_1SearchSpace.html#ad4ecbe9a8128d1a2b5aba0d5aeec686f", null ],
@@ -37,6 +38,7 @@ var structBrush_1_1SearchSpace =
     [ "sample_terminal", "d4/dc3/structBrush_1_1SearchSpace.html#a5bd06df519092dac780a09fcd4a36857", null ],
     [ "node_map", "d4/dc3/structBrush_1_1SearchSpace.html#a4bd8ffb41071c9a6739f92b275a510f5", null ],
     [ "node_map_weights", "d4/dc3/structBrush_1_1SearchSpace.html#ae1e33e2c9ca2d6777a42f6234c3b9a17", null ],
+    [ "op_names", "d4/dc3/structBrush_1_1SearchSpace.html#a9d2c04b945cb5b2a7a00fe0a9cdcda13", null ],
     [ "terminal_map", "d4/dc3/structBrush_1_1SearchSpace.html#a4c2acdd29d7465109ead9835f952fee0", null ],
     [ "terminal_types", "d4/dc3/structBrush_1_1SearchSpace.html#af67633b1cb0d2ff56bec919e81d84ede", null ],
     [ "terminal_weights", "d4/dc3/structBrush_1_1SearchSpace.html#a990aab15f3645f7b13cd678473e9f2fb", null ]

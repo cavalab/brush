@@ -47,166 +47,198 @@
       </node>
     </incdepgraph>
     <invincdepgraph>
-      <node id="10">
+      <node id="4">
+        <label>bandit.cpp</label>
+        <link refid="d7/d01/bandit_8cpp"/>
+        <childnode refid="5" relation="include">
+        </childnode>
+        <childnode refid="7" relation="include">
+        </childnode>
+      </node>
+      <node id="3">
+        <label>bandit.h</label>
+        <link refid="d7/d00/bandit_8h"/>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="5" relation="include">
+        </childnode>
+        <childnode refid="7" relation="include">
+        </childnode>
+        <childnode refid="9" relation="include">
+        </childnode>
+      </node>
+      <node id="6">
         <label>bind_engines.cpp</label>
         <link refid="d1/df0/bind__engines_8cpp"/>
       </node>
-      <node id="9">
+      <node id="5">
         <label>bind_engines.h</label>
         <link refid="d4/d93/bind__engines_8h"/>
-        <childnode refid="10" relation="include">
-        </childnode>
-      </node>
-      <node id="17">
-        <label>bind_evaluator.cpp</label>
-        <link refid="da/dff/bind__evaluator_8cpp"/>
-      </node>
-      <node id="16">
-        <label>bind_evaluator.h</label>
-        <link refid="d0/d67/bind__evaluator_8h"/>
-        <childnode refid="17" relation="include">
-        </childnode>
-      </node>
-      <node id="14">
-        <label>bind_individuals.cpp</label>
-        <link refid="d9/d27/bind__individuals_8cpp"/>
-      </node>
-      <node id="13">
-        <label>bind_individuals.h</label>
-        <link refid="d6/ddc/bind__individuals_8h"/>
-        <childnode refid="14" relation="include">
-        </childnode>
-      </node>
-      <node id="4">
-        <label>bind_programs.cpp</label>
-        <link refid="d9/d26/bind__programs_8cpp"/>
-      </node>
-      <node id="3">
-        <label>bind_programs.h</label>
-        <link refid="d6/d3f/bind__programs_8h"/>
-        <childnode refid="4" relation="include">
-        </childnode>
-      </node>
-      <node id="5">
-        <label>bind_search_space.cpp</label>
-        <link refid="d0/d94/bind__search__space_8cpp"/>
-      </node>
-      <node id="22">
-        <label>bind_selection.cpp</label>
-        <link refid="d7/dce/bind__selection_8cpp"/>
-      </node>
-      <node id="21">
-        <label>bind_selection.h</label>
-        <link refid="da/d67/bind__selection_8h"/>
-        <childnode refid="22" relation="include">
-        </childnode>
-      </node>
-      <node id="24">
-        <label>bind_variation.cpp</label>
-        <link refid="df/d41/bind__variation_8cpp"/>
-      </node>
-      <node id="23">
-        <label>bind_variation.h</label>
-        <link refid="d8/df7/bind__variation_8h"/>
-        <childnode refid="24" relation="include">
-        </childnode>
-      </node>
-      <node id="12">
-        <label>engine.cpp</label>
-        <link refid="da/d5c/engine_8cpp"/>
-        <childnode refid="9" relation="include">
-        </childnode>
-      </node>
-      <node id="11">
-        <label>engine.h</label>
-        <link refid="d1/d55/engine_8h"/>
-        <childnode refid="9" relation="include">
-        </childnode>
-        <childnode refid="12" relation="include">
-        </childnode>
-      </node>
-      <node id="18">
-        <label>evaluation.cpp</label>
-        <link refid="d9/d6a/evaluation_8cpp"/>
-        <childnode refid="9" relation="include">
-        </childnode>
-        <childnode refid="16" relation="include">
-        </childnode>
-      </node>
-      <node id="15">
-        <label>evaluation.h</label>
-        <link refid="d3/df9/evaluation_8h"/>
-        <childnode refid="9" relation="include">
-        </childnode>
-        <childnode refid="16" relation="include">
-        </childnode>
-        <childnode refid="11" relation="include">
-        </childnode>
-        <childnode refid="18" relation="include">
-        </childnode>
-      </node>
-      <node id="19">
-        <label>individual.cpp</label>
-        <link refid="db/df6/individual_8cpp"/>
-      </node>
-      <node id="6">
-        <label>individual.h</label>
-        <link refid="d5/d1f/individual_8h"/>
-        <childnode refid="7" relation="include">
-        </childnode>
-        <childnode refid="13" relation="include">
-        </childnode>
-        <childnode refid="15" relation="include">
-        </childnode>
-        <childnode refid="19" relation="include">
-        </childnode>
-        <childnode refid="20" relation="include">
-        </childnode>
-      </node>
-      <node id="8">
-        <label>archive.cpp</label>
-        <link refid="d7/d05/archive_8cpp"/>
-        <childnode refid="9" relation="include">
-        </childnode>
-      </node>
-      <node id="7">
-        <label>archive.h</label>
-        <link refid="d9/d28/archive_8h"/>
-        <childnode refid="8" relation="include">
-        </childnode>
-        <childnode refid="9" relation="include">
-        </childnode>
-        <childnode refid="11" relation="include">
+        <childnode refid="6" relation="include">
         </childnode>
       </node>
       <node id="25">
-        <label>population.cpp</label>
-        <link refid="d7/d4a/population_8cpp"/>
-        <childnode refid="9" relation="include">
-        </childnode>
-        <childnode refid="21" relation="include">
-        </childnode>
-        <childnode refid="23" relation="include">
+        <label>bind_evaluator.cpp</label>
+        <link refid="da/dff/bind__evaluator_8cpp"/>
+      </node>
+      <node id="24">
+        <label>bind_evaluator.h</label>
+        <link refid="d0/d67/bind__evaluator_8h"/>
+        <childnode refid="25" relation="include">
         </childnode>
       </node>
-      <node id="20">
-        <label>population.h</label>
-        <link refid="d2/d76/population_8h"/>
-        <childnode refid="9" relation="include">
+      <node id="22">
+        <label>bind_individuals.cpp</label>
+        <link refid="d9/d27/bind__individuals_8cpp"/>
+      </node>
+      <node id="21">
+        <label>bind_individuals.h</label>
+        <link refid="d6/ddc/bind__individuals_8h"/>
+        <childnode refid="22" relation="include">
         </childnode>
-        <childnode refid="21" relation="include">
+      </node>
+      <node id="14">
+        <label>bind_programs.cpp</label>
+        <link refid="d9/d26/bind__programs_8cpp"/>
+      </node>
+      <node id="13">
+        <label>bind_programs.h</label>
+        <link refid="d6/d3f/bind__programs_8h"/>
+        <childnode refid="14" relation="include">
         </childnode>
-        <childnode refid="23" relation="include">
+      </node>
+      <node id="15">
+        <label>bind_search_space.cpp</label>
+        <link refid="d0/d94/bind__search__space_8cpp"/>
+      </node>
+      <node id="30">
+        <label>bind_selection.cpp</label>
+        <link refid="d7/dce/bind__selection_8cpp"/>
+      </node>
+      <node id="29">
+        <label>bind_selection.h</label>
+        <link refid="da/d67/bind__selection_8h"/>
+        <childnode refid="30" relation="include">
+        </childnode>
+      </node>
+      <node id="8">
+        <label>bind_variation.cpp</label>
+        <link refid="df/d41/bind__variation_8cpp"/>
+      </node>
+      <node id="7">
+        <label>bind_variation.h</label>
+        <link refid="d8/df7/bind__variation_8h"/>
+        <childnode refid="8" relation="include">
+        </childnode>
+      </node>
+      <node id="11">
+        <label>engine.cpp</label>
+        <link refid="da/d5c/engine_8cpp"/>
+        <childnode refid="5" relation="include">
+        </childnode>
+      </node>
+      <node id="10">
+        <label>engine.h</label>
+        <link refid="d1/d55/engine_8h"/>
+        <childnode refid="5" relation="include">
         </childnode>
         <childnode refid="11" relation="include">
         </childnode>
-        <childnode refid="15" relation="include">
+      </node>
+      <node id="26">
+        <label>evaluation.cpp</label>
+        <link refid="d9/d6a/evaluation_8cpp"/>
+        <childnode refid="5" relation="include">
         </childnode>
-        <childnode refid="25" relation="include">
+        <childnode refid="24" relation="include">
+        </childnode>
+      </node>
+      <node id="23">
+        <label>evaluation.h</label>
+        <link refid="d3/df9/evaluation_8h"/>
+        <childnode refid="5" relation="include">
+        </childnode>
+        <childnode refid="24" relation="include">
+        </childnode>
+        <childnode refid="10" relation="include">
         </childnode>
         <childnode refid="26" relation="include">
         </childnode>
-        <childnode refid="34" relation="include">
+        <childnode refid="9" relation="include">
+        </childnode>
+      </node>
+      <node id="27">
+        <label>individual.cpp</label>
+        <link refid="db/df6/individual_8cpp"/>
+        <childnode refid="5" relation="include">
+        </childnode>
+        <childnode refid="7" relation="include">
+        </childnode>
+      </node>
+      <node id="18">
+        <label>individual.h</label>
+        <link refid="d5/d1f/individual_8h"/>
+        <childnode refid="19" relation="include">
+        </childnode>
+        <childnode refid="5" relation="include">
+        </childnode>
+        <childnode refid="21" relation="include">
+        </childnode>
+        <childnode refid="7" relation="include">
+        </childnode>
+        <childnode refid="23" relation="include">
+        </childnode>
+        <childnode refid="27" relation="include">
+        </childnode>
+        <childnode refid="28" relation="include">
+        </childnode>
+        <childnode refid="9" relation="include">
+        </childnode>
+      </node>
+      <node id="20">
+        <label>archive.cpp</label>
+        <link refid="d7/d05/archive_8cpp"/>
+        <childnode refid="5" relation="include">
+        </childnode>
+      </node>
+      <node id="19">
+        <label>archive.h</label>
+        <link refid="d9/d28/archive_8h"/>
+        <childnode refid="20" relation="include">
+        </childnode>
+        <childnode refid="5" relation="include">
+        </childnode>
+        <childnode refid="10" relation="include">
+        </childnode>
+      </node>
+      <node id="31">
+        <label>population.cpp</label>
+        <link refid="d7/d4a/population_8cpp"/>
+        <childnode refid="5" relation="include">
+        </childnode>
+        <childnode refid="29" relation="include">
+        </childnode>
+        <childnode refid="7" relation="include">
+        </childnode>
+      </node>
+      <node id="28">
+        <label>population.h</label>
+        <link refid="d2/d76/population_8h"/>
+        <childnode refid="5" relation="include">
+        </childnode>
+        <childnode refid="29" relation="include">
+        </childnode>
+        <childnode refid="7" relation="include">
+        </childnode>
+        <childnode refid="10" relation="include">
+        </childnode>
+        <childnode refid="23" relation="include">
+        </childnode>
+        <childnode refid="31" relation="include">
+        </childnode>
+        <childnode refid="32" relation="include">
+        </childnode>
+        <childnode refid="9" relation="include">
         </childnode>
       </node>
       <node id="1">
@@ -220,117 +252,159 @@
         <link refid="d1/dea/program_8h"/>
         <childnode refid="3" relation="include">
         </childnode>
+        <childnode refid="13" relation="include">
+        </childnode>
+        <childnode refid="15" relation="include">
+        </childnode>
+        <childnode refid="16" relation="include">
+        </childnode>
+        <childnode refid="18" relation="include">
+        </childnode>
+        <childnode refid="40" relation="include">
+        </childnode>
+        <childnode refid="42" relation="include">
+        </childnode>
+      </node>
+      <node id="34">
+        <label>lexicase.cpp</label>
+        <link refid="d8/dac/lexicase_8cpp"/>
         <childnode refid="5" relation="include">
         </childnode>
-        <childnode refid="6" relation="include">
+        <childnode refid="29" relation="include">
+        </childnode>
+      </node>
+      <node id="33">
+        <label>lexicase.h</label>
+        <link refid="d3/d12/lexicase_8h"/>
+        <childnode refid="5" relation="include">
+        </childnode>
+        <childnode refid="29" relation="include">
+        </childnode>
+        <childnode refid="34" relation="include">
+        </childnode>
+        <childnode refid="35" relation="include">
+        </childnode>
+      </node>
+      <node id="38">
+        <label>nsga2.cpp</label>
+        <link refid="de/d0d/nsga2_8cpp"/>
+        <childnode refid="5" relation="include">
+        </childnode>
+        <childnode refid="29" relation="include">
+        </childnode>
+      </node>
+      <node id="37">
+        <label>nsga2.h</label>
+        <link refid="d3/d06/nsga2_8h"/>
+        <childnode refid="19" relation="include">
+        </childnode>
+        <childnode refid="5" relation="include">
+        </childnode>
+        <childnode refid="29" relation="include">
+        </childnode>
+        <childnode refid="38" relation="include">
+        </childnode>
+        <childnode refid="35" relation="include">
+        </childnode>
+      </node>
+      <node id="36">
+        <label>selection.cpp</label>
+        <link refid="df/dbb/selection_8cpp"/>
+        <childnode refid="5" relation="include">
+        </childnode>
+        <childnode refid="29" relation="include">
+        </childnode>
+      </node>
+      <node id="35">
+        <label>selection.h</label>
+        <link refid="df/d48/selection_8h"/>
+        <childnode refid="5" relation="include">
+        </childnode>
+        <childnode refid="29" relation="include">
+        </childnode>
+        <childnode refid="10" relation="include">
         </childnode>
         <childnode refid="36" relation="include">
         </childnode>
       </node>
-      <node id="28">
-        <label>lexicase.cpp</label>
-        <link refid="d8/dac/lexicase_8cpp"/>
-        <childnode refid="9" relation="include">
-        </childnode>
-        <childnode refid="21" relation="include">
-        </childnode>
-      </node>
-      <node id="27">
-        <label>lexicase.h</label>
-        <link refid="d3/d12/lexicase_8h"/>
-        <childnode refid="9" relation="include">
-        </childnode>
-        <childnode refid="21" relation="include">
-        </childnode>
-        <childnode refid="28" relation="include">
+      <node id="39">
+        <label>selection_operator.cpp</label>
+        <link refid="d4/db2/selection__operator_8cpp"/>
+        <childnode refid="5" relation="include">
         </childnode>
         <childnode refid="29" relation="include">
         </childnode>
       </node>
       <node id="32">
-        <label>nsga2.cpp</label>
-        <link refid="de/d0d/nsga2_8cpp"/>
-        <childnode refid="9" relation="include">
-        </childnode>
-        <childnode refid="21" relation="include">
-        </childnode>
-      </node>
-      <node id="31">
-        <label>nsga2.h</label>
-        <link refid="d3/d06/nsga2_8h"/>
-        <childnode refid="7" relation="include">
-        </childnode>
-        <childnode refid="9" relation="include">
-        </childnode>
-        <childnode refid="21" relation="include">
-        </childnode>
-        <childnode refid="32" relation="include">
-        </childnode>
-        <childnode refid="29" relation="include">
-        </childnode>
-      </node>
-      <node id="30">
-        <label>selection.cpp</label>
-        <link refid="df/dbb/selection_8cpp"/>
-        <childnode refid="9" relation="include">
-        </childnode>
-        <childnode refid="21" relation="include">
-        </childnode>
-      </node>
-      <node id="29">
-        <label>selection.h</label>
-        <link refid="df/d48/selection_8h"/>
-        <childnode refid="9" relation="include">
-        </childnode>
-        <childnode refid="21" relation="include">
-        </childnode>
-        <childnode refid="11" relation="include">
-        </childnode>
-        <childnode refid="30" relation="include">
-        </childnode>
-      </node>
-      <node id="33">
-        <label>selection_operator.cpp</label>
-        <link refid="d4/db2/selection__operator_8cpp"/>
-        <childnode refid="9" relation="include">
-        </childnode>
-        <childnode refid="21" relation="include">
-        </childnode>
-      </node>
-      <node id="26">
         <label>selection_operator.h</label>
         <link refid="dd/d5d/selection__operator_8h"/>
-        <childnode refid="9" relation="include">
-        </childnode>
-        <childnode refid="21" relation="include">
-        </childnode>
-        <childnode refid="27" relation="include">
-        </childnode>
-        <childnode refid="31" relation="include">
+        <childnode refid="5" relation="include">
         </childnode>
         <childnode refid="29" relation="include">
         </childnode>
         <childnode refid="33" relation="include">
         </childnode>
+        <childnode refid="37" relation="include">
+        </childnode>
+        <childnode refid="35" relation="include">
+        </childnode>
+        <childnode refid="39" relation="include">
+        </childnode>
       </node>
-      <node id="36">
+      <node id="17">
+        <label>constants.cpp</label>
+        <link refid="d6/d80/constants_8cpp"/>
+        <childnode refid="7" relation="include">
+        </childnode>
+      </node>
+      <node id="16">
+        <label>constants.h</label>
+        <link refid="d2/d6f/constants_8h"/>
+        <childnode refid="7" relation="include">
+        </childnode>
+        <childnode refid="17" relation="include">
+        </childnode>
+        <childnode refid="9" relation="include">
+        </childnode>
+      </node>
+      <node id="41">
+        <label>inexact.cpp</label>
+        <link refid="de/d79/inexact_8cpp"/>
+        <childnode refid="7" relation="include">
+        </childnode>
+      </node>
+      <node id="40">
+        <label>inexact.h</label>
+        <link refid="d1/db6/inexact_8h"/>
+        <childnode refid="7" relation="include">
+        </childnode>
+        <childnode refid="41" relation="include">
+        </childnode>
+        <childnode refid="9" relation="include">
+        </childnode>
+      </node>
+      <node id="42">
         <label>search_space.cpp</label>
         <link refid="da/d48/search__space_8cpp"/>
       </node>
-      <node id="35">
+      <node id="12">
         <label>variation.cpp</label>
         <link refid="d1/d64/variation_8cpp"/>
-        <childnode refid="23" relation="include">
+        <childnode refid="5" relation="include">
+        </childnode>
+        <childnode refid="7" relation="include">
         </childnode>
       </node>
-      <node id="34">
+      <node id="9">
         <label>variation.h</label>
         <link refid="d4/d1f/variation_8h"/>
-        <childnode refid="23" relation="include">
+        <childnode refid="5" relation="include">
         </childnode>
-        <childnode refid="11" relation="include">
+        <childnode refid="7" relation="include">
         </childnode>
-        <childnode refid="35" relation="include">
+        <childnode refid="10" relation="include">
+        </childnode>
+        <childnode refid="12" relation="include">
         </childnode>
       </node>
     </invincdepgraph>

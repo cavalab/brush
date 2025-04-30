@@ -6,9 +6,11 @@ var structBrush_1_1Pop_1_1Archive =
     [ "sameObjectives", "d1/d30/structBrush_1_1Pop_1_1Archive.html#ae48c8db22bdf072955564c079e379610", null ],
     [ "set_objectives", "d1/d30/structBrush_1_1Pop_1_1Archive.html#a073b0ac31fc55c35e2a8296b919c1876", null ],
     [ "sortComplexity", "d1/d30/structBrush_1_1Pop_1_1Archive.html#a8e11ee4659b1dc0a4332ffad5690e30f", null ],
+    [ "sortLinearComplexity", "d1/d30/structBrush_1_1Pop_1_1Archive.html#a06108c7b5249901089d2bd0279ab6273", null ],
     [ "sortObj1", "d1/d30/structBrush_1_1Pop_1_1Archive.html#a8407a45b676b80bbf7197dbdd96d2c30", null ],
     [ "update", "d1/d30/structBrush_1_1Pop_1_1Archive.html#a14ec57dcaf13d237552d7fa46f58f3c3", null ],
     [ "individuals", "d1/d30/structBrush_1_1Pop_1_1Archive.html#a47b75ce0613b190b0b637ab4f8effa5a", null ],
+    [ "linear_complexity", "d1/d30/structBrush_1_1Pop_1_1Archive.html#aeee2d8283bccc50026b654e0bff4b388", null ],
     [ "selector", "d1/d30/structBrush_1_1Pop_1_1Archive.html#a56b6da606397435d4e736e0ece911451", null ],
     [ "sort_complexity", "d1/d30/structBrush_1_1Pop_1_1Archive.html#a4b6989b7840a0bd9649ab5331eb43e48", null ]
 ];

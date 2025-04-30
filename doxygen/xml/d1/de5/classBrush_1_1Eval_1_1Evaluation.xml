@@ -23,8 +23,8 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/runner/work/brush/brush/src/eval/evaluation.h" line="28" column="12" bodyfile="/home/runner/work/brush/brush/src/eval/evaluation.h" bodystart="28" bodyend="-1"/>
-        <referencedby refid="d1/de5/classBrush_1_1Eval_1_1Evaluation_1ac7562624d114b22b19720729d599a40a" compoundref="d9/d6a/evaluation_8cpp" startline="46" endline="94">Brush::Eval::Evaluation&lt; T &gt;::assign_fit</referencedby>
+        <location file="/home/runner/work/brush/brush/src/eval/evaluation.h" line="29" column="12" bodyfile="/home/runner/work/brush/brush/src/eval/evaluation.h" bodystart="29" bodyend="-1"/>
+        <referencedby refid="d1/de5/classBrush_1_1Eval_1_1Evaluation_1ac7562624d114b22b19720729d599a40a" compoundref="d9/d6a/evaluation_8cpp" startline="45" endline="108">Brush::Eval::Evaluation&lt; T &gt;::assign_fit</referencedby>
       </memberdef>
     </sectiondef>
     <sectiondef kind="public-func">
@@ -42,7 +42,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/runner/work/brush/brush/src/eval/evaluation.h" line="33" column="5" bodyfile="/home/runner/work/brush/brush/src/eval/evaluation.h" bodystart="33" bodyend="46"/>
+        <location file="/home/runner/work/brush/brush/src/eval/evaluation.h" line="34" column="5" bodyfile="/home/runner/work/brush/brush/src/eval/evaluation.h" bodystart="34" bodyend="48"/>
         <references refid="dc/d5c/namespaceBrush_1ae591329af27c88b714d0f92b86276366a3cdc33a35d0e4f3b9bae953babd8f9b4" compoundref="d9/d49/types_8h" startline="72">Brush::BinaryClassifier</references>
         <references refid="dc/d5c/namespaceBrush_1ae591329af27c88b714d0f92b86276366ac62539fc5a23115fca906befbd511c0a" compoundref="d9/d49/types_8h" startline="73">Brush::MulticlassClassifier</references>
         <references refid="dc/d5c/namespaceBrush_1ae591329af27c88b714d0f92b86276366aca702b6b08355f71cf4b1a17a8e16b8b" compoundref="d9/d49/types_8h" startline="74">Brush::Representer</references>
@@ -60,7 +60,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/runner/work/brush/brush/src/eval/evaluation.h" line="47" column="5" bodyfile="/home/runner/work/brush/brush/src/eval/evaluation.h" bodystart="47" bodyend="47"/>
+        <location file="/home/runner/work/brush/brush/src/eval/evaluation.h" line="49" column="5" bodyfile="/home/runner/work/brush/brush/src/eval/evaluation.h" bodystart="49" bodyend="49"/>
       </memberdef>
       <memberdef kind="function" id="d1/de5/classBrush_1_1Eval_1_1Evaluation_1a87c9ee9700af58b3d96469b6cd50bf1b" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
         <type>void</type>
@@ -89,7 +89,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/runner/work/brush/brush/src/eval/evaluation.h" line="53" column="10" bodyfile="/home/runner/work/brush/brush/src/eval/evaluation.h" bodystart="53" bodyend="53"/>
+        <location file="/home/runner/work/brush/brush/src/eval/evaluation.h" line="55" column="10" bodyfile="/home/runner/work/brush/brush/src/eval/evaluation.h" bodystart="55" bodyend="55"/>
         <references refid="da/d4c/classBrush_1_1Eval_1_1Scorer_1a29a78f6ded6e276708939f562e3b1153" compoundref="da/d3b/scorer_8h" startline="41" endline="41">Brush::Eval::Scorer&lt; P &gt;::set_scorer</references>
       </memberdef>
       <memberdef kind="function" id="d1/de5/classBrush_1_1Eval_1_1Evaluation_1ab85a890810fbb2f047ddd689aea80ed9" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
@@ -108,13 +108,13 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/runner/work/brush/brush/src/eval/evaluation.h" line="59" column="12" bodyfile="/home/runner/work/brush/brush/src/eval/evaluation.h" bodystart="59" bodyend="59"/>
+        <location file="/home/runner/work/brush/brush/src/eval/evaluation.h" line="61" column="12" bodyfile="/home/runner/work/brush/brush/src/eval/evaluation.h" bodystart="61" bodyend="61"/>
         <references refid="da/d4c/classBrush_1_1Eval_1_1Scorer_1a074ffe387edb4090061c5aa0402ebb1d" compoundref="da/d3b/scorer_8h" startline="42" endline="42">Brush::Eval::Scorer&lt; P &gt;::get_scorer</references>
       </memberdef>
-      <memberdef kind="function" id="d1/de5/classBrush_1_1Eval_1_1Evaluation_1a1d652164264243bd40efcfd38ba6d569" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+      <memberdef kind="function" id="d1/de5/classBrush_1_1Eval_1_1Evaluation_1a6ca34005b1a4ab87038a4c391e77d786" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
         <definition>void Brush::Eval::Evaluation&lt; T &gt;::update_fitness</definition>
-        <argsstring>(Population&lt; T &gt; &amp;pop, int island, const Dataset &amp;data, const Parameters &amp;params, bool fit=true, bool validation=false)</argsstring>
+        <argsstring>(Population&lt; T &gt; &amp;pop, int island, const Dataset &amp;data, const Parameters &amp;params, bool fit=true, bool validation=true)</argsstring>
         <name>update_fitness</name>
         <qualifiedname>Brush::Eval::Evaluation::update_fitness</qualifiedname>
         <param>
@@ -141,7 +141,7 @@
         <param>
           <type>bool</type>
           <declname>validation</declname>
-          <defval>false</defval>
+          <defval>true</defval>
         </param>
         <briefdescription>
 <para>Update the fitness of individuals in a population. </para>
@@ -200,19 +200,20 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/runner/work/brush/brush/src/eval/evaluation.h" line="70" column="10" bodyfile="/home/runner/work/brush/brush/src/eval/evaluation.cpp" bodystart="9" bodyend="42"/>
-        <references refid="d1/de5/classBrush_1_1Eval_1_1Evaluation_1ac7562624d114b22b19720729d599a40a" compoundref="d9/d6a/evaluation_8cpp" startline="46" endline="94">Brush::Eval::Evaluation&lt; T &gt;::assign_fit</references>
-        <references refid="de/d83/classBrush_1_1Pop_1_1Individual_1a7d8554e86a649d039be4bb367b879530" compoundref="d5/d1f/individual_8h" startline="31">Brush::Pop::Individual&lt; T &gt;::error</references>
-        <references refid="db/d88/structBrush_1_1Program_1a8ed721f103dd63c7adfc2934340097b4" compoundref="d1/dea/program_8h" startline="142" endline="149">Brush::Program&lt; PType &gt;::fit</references>
-        <references refid="de/d83/classBrush_1_1Pop_1_1Individual_1a96a4869472f1e11e19219c2d07fb6c53" compoundref="d5/d1f/individual_8h" startline="33">Brush::Pop::Individual&lt; T &gt;::fitness</references>
-        <references refid="de/d83/classBrush_1_1Pop_1_1Individual_1afe255c458bb9558fdab16cccd01de0c6" compoundref="d5/d1f/individual_8h" startline="85" endline="85">Brush::Pop::Individual&lt; T &gt;::get_is_fitted</references>
-        <references refid="da/da3/classBrush_1_1Pop_1_1Population_1a2bf4066c7a32ec3bd85c96bd80098de6" compoundref="d2/d76/population_8h" startline="38" endline="38">Brush::Pop::Population&lt; T &gt;::get_island_indexes</references>
-        <references refid="da/da3/classBrush_1_1Pop_1_1Population_1a7b529af66e90f378ca96a54ee5ce0c71" compoundref="d2/d76/population_8h" startline="18">Brush::Pop::Population&lt; T &gt;::individuals</references>
-        <references refid="d6/dd0/structBrush_1_1Fitness_1a30e994e0b4aa0a8febfe7d7a09529f04" compoundref="dc/d7a/fitness_8h" startline="28">Brush::Fitness::loss</references>
-        <references refid="d6/dd0/structBrush_1_1Fitness_1aa8cd674fad6f65c344f008c3e2442491" compoundref="dc/d7a/fitness_8h" startline="29">Brush::Fitness::loss_v</references>
+        <location file="/home/runner/work/brush/brush/src/eval/evaluation.h" line="72" column="10" bodyfile="/home/runner/work/brush/brush/src/eval/evaluation.cpp" bodystart="9" bodyend="41"/>
+        <references refid="d1/de5/classBrush_1_1Eval_1_1Evaluation_1ac7562624d114b22b19720729d599a40a" compoundref="d9/d6a/evaluation_8cpp" startline="45" endline="108">Brush::Eval::Evaluation&lt; T &gt;::assign_fit</references>
+        <references refid="de/d83/classBrush_1_1Pop_1_1Individual_1a7d8554e86a649d039be4bb367b879530" compoundref="d5/d1f/individual_8h" startline="35">Brush::Pop::Individual&lt; T &gt;::error</references>
+        <references refid="db/d88/structBrush_1_1Program_1a8ed721f103dd63c7adfc2934340097b4" compoundref="d1/dea/program_8h" startline="150" endline="157">Brush::Program&lt; PType &gt;::fit</references>
+        <references refid="de/d83/classBrush_1_1Pop_1_1Individual_1a96a4869472f1e11e19219c2d07fb6c53" compoundref="d5/d1f/individual_8h" startline="37">Brush::Pop::Individual&lt; T &gt;::fitness</references>
+        <references refid="de/d83/classBrush_1_1Pop_1_1Individual_1afe255c458bb9558fdab16cccd01de0c6" compoundref="d5/d1f/individual_8h" startline="115" endline="115">Brush::Pop::Individual&lt; T &gt;::get_is_fitted</references>
+        <references refid="da/da3/classBrush_1_1Pop_1_1Population_1a2bf4066c7a32ec3bd85c96bd80098de6" compoundref="d2/d76/population_8h" startline="39" endline="39">Brush::Pop::Population&lt; T &gt;::get_island_indexes</references>
+        <references refid="d2/d36/classBrush_1_1Data_1_1Dataset_1ae69087b8c020840f254e3679cd324ba5" compoundref="da/dc9/data_8cpp" startline="197" endline="197">Brush::Data::Dataset::get_training_data</references>
+        <references refid="da/da3/classBrush_1_1Pop_1_1Population_1a7b529af66e90f378ca96a54ee5ce0c71" compoundref="d2/d76/population_8h" startline="19">Brush::Pop::Population&lt; T &gt;::individuals</references>
         <references refid="d8/dc0/init_8h_1a0c86fe7dc09ca580e891580bf302e659" compoundref="d8/dc0/init_8h" startline="61">MAX_FLT</references>
         <references refid="de/d83/classBrush_1_1Pop_1_1Individual_1af8eafd2aab3c3a683d6b3b80a649dfa6" compoundref="d5/d1f/individual_8h" startline="17">Brush::Pop::Individual&lt; T &gt;::program</references>
-        <references refid="d2/d36/classBrush_1_1Data_1_1Dataset_1ade105f069d4f745d44374b7b8a3a9b0d" compoundref="d2/dbd/data_8h" startline="76">Brush::Data::Dataset::y</references>
+        <references refid="d6/dd0/structBrush_1_1Fitness_1af8ccf40c598f102153c058e9f470c9a2" compoundref="dc/d7a/fitness_8h" startline="63" endline="63">Brush::Fitness::set_loss</references>
+        <references refid="d6/dd0/structBrush_1_1Fitness_1a777abbd7a2453ba1b580e28fb2f6f28a" compoundref="dc/d7a/fitness_8h" startline="68" endline="68">Brush::Fitness::set_loss_v</references>
+        <references refid="d2/d36/classBrush_1_1Data_1_1Dataset_1ade105f069d4f745d44374b7b8a3a9b0d" compoundref="d2/dbd/data_8h" startline="80">Brush::Data::Dataset::y</references>
       </memberdef>
       <memberdef kind="function" id="d1/de5/classBrush_1_1Eval_1_1Evaluation_1ac7562624d114b22b19720729d599a40a" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -278,31 +279,33 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/runner/work/brush/brush/src/eval/evaluation.h" line="85" column="10" bodyfile="/home/runner/work/brush/brush/src/eval/evaluation.cpp" bodystart="46" bodyend="94"/>
-        <references refid="db/d88/structBrush_1_1Program_1a6fc6aa2a6ecbe639aa3f80accf0c2798" compoundref="d1/dea/program_8h" startline="93" endline="97">Brush::Program&lt; PType &gt;::complexity</references>
-        <references refid="db/d88/structBrush_1_1Program_1a91dd138edc7ecb5bc6d013ae68bf0e42" compoundref="d1/dea/program_8h" startline="120" endline="124">Brush::Program&lt; PType &gt;::depth</references>
-        <references refid="de/d83/classBrush_1_1Pop_1_1Individual_1a7d8554e86a649d039be4bb367b879530" compoundref="d5/d1f/individual_8h" startline="31">Brush::Pop::Individual&lt; T &gt;::error</references>
-        <references refid="de/d83/classBrush_1_1Pop_1_1Individual_1a96a4869472f1e11e19219c2d07fb6c53" compoundref="d5/d1f/individual_8h" startline="33">Brush::Pop::Individual&lt; T &gt;::fitness</references>
-        <references refid="de/d83/classBrush_1_1Pop_1_1Individual_1a14fd7a5cc46f3dde2d71b6ef8f128e05" compoundref="d5/d1f/individual_8h" startline="88" endline="88">Brush::Pop::Individual&lt; T &gt;::get_complexity</references>
-        <references refid="de/d83/classBrush_1_1Pop_1_1Individual_1ad17e7fd9fab8894a38aa6a46653198d4" compoundref="d5/d1f/individual_8h" startline="87" endline="87">Brush::Pop::Individual&lt; T &gt;::get_depth</references>
-        <references refid="de/d83/classBrush_1_1Pop_1_1Individual_1ab6d50093f0d37ecccb4e0963b2b1b7e3" compoundref="d5/d1f/individual_8h" startline="127" endline="127">Brush::Pop::Individual&lt; T &gt;::get_objectives</references>
-        <references refid="de/d83/classBrush_1_1Pop_1_1Individual_1a5e9b0e440c94101e01f2d813453e6596" compoundref="d5/d1f/individual_8h" startline="86" endline="86">Brush::Pop::Individual&lt; T &gt;::get_size</references>
-        <references refid="d2/d36/classBrush_1_1Data_1_1Dataset_1ae69087b8c020840f254e3679cd324ba5" compoundref="da/dc9/data_8cpp" startline="173" endline="173">Brush::Data::Dataset::get_training_data</references>
-        <references refid="d2/d36/classBrush_1_1Data_1_1Dataset_1a1ddb847fd1ceff63e60ffd79542409d9" compoundref="da/dc9/data_8cpp" startline="174" endline="174">Brush::Data::Dataset::get_validation_data</references>
+        <location file="/home/runner/work/brush/brush/src/eval/evaluation.h" line="87" column="10" bodyfile="/home/runner/work/brush/brush/src/eval/evaluation.cpp" bodystart="45" bodyend="108"/>
+        <references refid="de/d83/classBrush_1_1Pop_1_1Individual_1a7d8554e86a649d039be4bb367b879530" compoundref="d5/d1f/individual_8h" startline="35">Brush::Pop::Individual&lt; T &gt;::error</references>
+        <references refid="de/d83/classBrush_1_1Pop_1_1Individual_1a96a4869472f1e11e19219c2d07fb6c53" compoundref="d5/d1f/individual_8h" startline="37">Brush::Pop::Individual&lt; T &gt;::fitness</references>
+        <references refid="de/d83/classBrush_1_1Pop_1_1Individual_1a14fd7a5cc46f3dde2d71b6ef8f128e05" compoundref="d5/d1f/individual_8h" startline="100" endline="100">Brush::Pop::Individual&lt; T &gt;::get_complexity</references>
+        <references refid="de/d83/classBrush_1_1Pop_1_1Individual_1ad17e7fd9fab8894a38aa6a46653198d4" compoundref="d5/d1f/individual_8h" startline="99" endline="99">Brush::Pop::Individual&lt; T &gt;::get_depth</references>
+        <references refid="de/d83/classBrush_1_1Pop_1_1Individual_1ae82cf291f4e18cc85b74ecc2c6d11ce4" compoundref="d5/d1f/individual_8h" startline="101" endline="101">Brush::Pop::Individual&lt; T &gt;::get_linear_complexity</references>
+        <references refid="de/deb/structBrush_1_1Parameters_1a3430720f17bdc30a30291b199cf68015" compoundref="da/d33/params_8h" startline="150" endline="164">Brush::Parameters::get_objectives</references>
+        <references refid="de/d83/classBrush_1_1Pop_1_1Individual_1ab6d50093f0d37ecccb4e0963b2b1b7e3" compoundref="d5/d1f/individual_8h" startline="151" endline="151">Brush::Pop::Individual&lt; T &gt;::get_objectives</references>
+        <references refid="de/d83/classBrush_1_1Pop_1_1Individual_1a5e9b0e440c94101e01f2d813453e6596" compoundref="d5/d1f/individual_8h" startline="98" endline="98">Brush::Pop::Individual&lt; T &gt;::get_size</references>
+        <references refid="d2/d36/classBrush_1_1Data_1_1Dataset_1ae69087b8c020840f254e3679cd324ba5" compoundref="da/dc9/data_8cpp" startline="197" endline="197">Brush::Data::Dataset::get_training_data</references>
+        <references refid="d2/d36/classBrush_1_1Data_1_1Dataset_1a1ddb847fd1ceff63e60ffd79542409d9" compoundref="da/dc9/data_8cpp" startline="198" endline="198">Brush::Data::Dataset::get_validation_data</references>
         <references refid="da/d41/error_8h_1aa4c550bcd71e4ec1c97b111e1360509a" compoundref="da/d41/error_8h" startline="27">HANDLE_ERROR_THROW</references>
-        <references refid="de/deb/structBrush_1_1Parameters_1a110a7c46dffa83836fb155a566219292" compoundref="da/d33/params_8h" startline="38" endline="38">Brush::Parameters::objectives</references>
-        <references refid="de/d83/classBrush_1_1Pop_1_1Individual_1af8eafd2aab3c3a683d6b3b80a649dfa6" compoundref="d5/d1f/individual_8h" startline="17">Brush::Pop::Individual&lt; T &gt;::program</references>
-        <references refid="d1/de5/classBrush_1_1Eval_1_1Evaluation_1a8b0cbe86a7f12660f9ff1df7d4ef6835" compoundref="d3/df9/evaluation_8h" startline="28">Brush::Eval::Evaluation&lt; T &gt;::S</references>
-        <references refid="d6/dd0/structBrush_1_1Fitness_1a6624d493b11552c90ebd6a32567d4021" compoundref="dc/d7a/fitness_8h" startline="59" endline="59">Brush::Fitness::set_complexity</references>
-        <references refid="d6/dd0/structBrush_1_1Fitness_1a86d061384bf1df41de74a9fe1f1f7f47" compoundref="dc/d7a/fitness_8h" startline="62" endline="62">Brush::Fitness::set_depth</references>
-        <references refid="d6/dd0/structBrush_1_1Fitness_1af8ccf40c598f102153c058e9f470c9a2" compoundref="dc/d7a/fitness_8h" startline="50" endline="50">Brush::Fitness::set_loss</references>
-        <references refid="d6/dd0/structBrush_1_1Fitness_1a777abbd7a2453ba1b580e28fb2f6f28a" compoundref="dc/d7a/fitness_8h" startline="53" endline="53">Brush::Fitness::set_loss_v</references>
-        <references refid="de/d83/classBrush_1_1Pop_1_1Individual_1abbf86134203ab8b573dc043a3c10d388" compoundref="d5/d1f/individual_8h" startline="128" endline="144">Brush::Pop::Individual&lt; T &gt;::set_objectives</references>
-        <references refid="d6/dd0/structBrush_1_1Fitness_1ad18b85ddb700f0213b07ac662ce16980" compoundref="dc/d7a/fitness_8h" startline="56" endline="56">Brush::Fitness::set_size</references>
-        <references refid="d6/dd0/structBrush_1_1Fitness_1aaec7fc8a8c22af4fb6265beac92002a4" compoundref="dc/d7a/fitness_8h" startline="103" endline="122">Brush::Fitness::set_values</references>
-        <references refid="db/d88/structBrush_1_1Program_1af64e3100027b89fd4fffd50bfb843993" compoundref="d1/dea/program_8h" startline="102" endline="106">Brush::Program&lt; PType &gt;::size</references>
-        <references refid="d2/d36/classBrush_1_1Data_1_1Dataset_1a6cadfbd9f8a4700361e63defb7d6f6e0" compoundref="d2/dbd/data_8h" startline="84">Brush::Data::Dataset::use_validation</references>
-        <referencedby refid="d1/de5/classBrush_1_1Eval_1_1Evaluation_1a1d652164264243bd40efcfd38ba6d569" compoundref="d9/d6a/evaluation_8cpp" startline="9" endline="42">Brush::Eval::Evaluation&lt; T &gt;::update_fitness</referencedby>
+        <references refid="d8/dc0/init_8h_1a0c86fe7dc09ca580e891580bf302e659" compoundref="d8/dc0/init_8h" startline="61">MAX_FLT</references>
+        <references refid="d1/de5/classBrush_1_1Eval_1_1Evaluation_1a8b0cbe86a7f12660f9ff1df7d4ef6835" compoundref="d3/df9/evaluation_8h" startline="29">Brush::Eval::Evaluation&lt; T &gt;::S</references>
+        <references refid="de/deb/structBrush_1_1Parameters_1aa4ccaa768b6371176d89cd3378e80d45" compoundref="da/d33/params_8h" startline="69">Brush::Parameters::scorer</references>
+        <references refid="d6/dd0/structBrush_1_1Fitness_1a6624d493b11552c90ebd6a32567d4021" compoundref="dc/d7a/fitness_8h" startline="78" endline="79">Brush::Fitness::set_complexity</references>
+        <references refid="d6/dd0/structBrush_1_1Fitness_1a86d061384bf1df41de74a9fe1f1f7f47" compoundref="dc/d7a/fitness_8h" startline="90" endline="90">Brush::Fitness::set_depth</references>
+        <references refid="d6/dd0/structBrush_1_1Fitness_1a5846462375ca69c6bec23a5e28f4afa4" compoundref="dc/d7a/fitness_8h" startline="84" endline="85">Brush::Fitness::set_linear_complexity</references>
+        <references refid="d6/dd0/structBrush_1_1Fitness_1af8ccf40c598f102153c058e9f470c9a2" compoundref="dc/d7a/fitness_8h" startline="63" endline="63">Brush::Fitness::set_loss</references>
+        <references refid="d6/dd0/structBrush_1_1Fitness_1a777abbd7a2453ba1b580e28fb2f6f28a" compoundref="dc/d7a/fitness_8h" startline="68" endline="68">Brush::Fitness::set_loss_v</references>
+        <references refid="de/d83/classBrush_1_1Pop_1_1Individual_1abbf86134203ab8b573dc043a3c10d388" compoundref="d5/d1f/individual_8h" startline="152" endline="169">Brush::Pop::Individual&lt; T &gt;::set_objectives</references>
+        <references refid="d6/dd0/structBrush_1_1Fitness_1ad18b85ddb700f0213b07ac662ce16980" compoundref="dc/d7a/fitness_8h" startline="73" endline="73">Brush::Fitness::set_size</references>
+        <references refid="d6/dd0/structBrush_1_1Fitness_1aaec7fc8a8c22af4fb6265beac92002a4" compoundref="dc/d7a/fitness_8h" startline="134" endline="153">Brush::Fitness::set_values</references>
+        <references refid="d2/d36/classBrush_1_1Data_1_1Dataset_1a6cadfbd9f8a4700361e63defb7d6f6e0" compoundref="d2/dbd/data_8h" startline="88">Brush::Data::Dataset::use_validation</references>
+        <references refid="de/d83/classBrush_1_1Pop_1_1Individual_1a0445d333388f2198459c25dd2b01794c" compoundref="d5/d1f/individual_8h" startline="138" endline="149">Brush::Pop::Individual&lt; T &gt;::weightsMap</references>
+        <referencedby refid="d1/de5/classBrush_1_1Eval_1_1Evaluation_1a6ca34005b1a4ab87038a4c391e77d786" compoundref="d9/d6a/evaluation_8cpp" startline="9" endline="41">Brush::Eval::Evaluation&lt; T &gt;::update_fitness</referencedby>
+        <referencedby refid="d5/d14/classBrush_1_1Var_1_1Variation_1a9655e67f642d72aa61452d1913c436cc" compoundref="d4/d1f/variation_8h" startline="225" endline="505">Brush::Var::Variation&lt; T &gt;::vary_and_update</referencedby>
       </memberdef>
     </sectiondef>
     <briefdescription>
@@ -343,14 +346,14 @@
         </childnode>
       </node>
     </collaborationgraph>
-    <location file="/home/runner/work/brush/brush/src/eval/evaluation.h" line="26" column="1" bodyfile="/home/runner/work/brush/brush/src/eval/evaluation.h" bodystart="26" bodyend="89"/>
+    <location file="/home/runner/work/brush/brush/src/eval/evaluation.h" line="27" column="1" bodyfile="/home/runner/work/brush/brush/src/eval/evaluation.h" bodystart="27" bodyend="91"/>
     <listofallmembers>
       <member refid="d1/de5/classBrush_1_1Eval_1_1Evaluation_1ac7562624d114b22b19720729d599a40a" prot="public" virt="non-virtual"><scope>Brush::Eval::Evaluation</scope><name>assign_fit</name></member>
       <member refid="d1/de5/classBrush_1_1Eval_1_1Evaluation_1a97f33d97eef93cbe4f38168957a7ee7e" prot="public" virt="non-virtual"><scope>Brush::Eval::Evaluation</scope><name>Evaluation</name></member>
       <member refid="d1/de5/classBrush_1_1Eval_1_1Evaluation_1ab85a890810fbb2f047ddd689aea80ed9" prot="public" virt="non-virtual"><scope>Brush::Eval::Evaluation</scope><name>get_scorer</name></member>
       <member refid="d1/de5/classBrush_1_1Eval_1_1Evaluation_1a8b0cbe86a7f12660f9ff1df7d4ef6835" prot="public" virt="non-virtual"><scope>Brush::Eval::Evaluation</scope><name>S</name></member>
       <member refid="d1/de5/classBrush_1_1Eval_1_1Evaluation_1a87c9ee9700af58b3d96469b6cd50bf1b" prot="public" virt="non-virtual"><scope>Brush::Eval::Evaluation</scope><name>set_scorer</name></member>
-      <member refid="d1/de5/classBrush_1_1Eval_1_1Evaluation_1a1d652164264243bd40efcfd38ba6d569" prot="public" virt="non-virtual"><scope>Brush::Eval::Evaluation</scope><name>update_fitness</name></member>
+      <member refid="d1/de5/classBrush_1_1Eval_1_1Evaluation_1a6ca34005b1a4ab87038a4c391e77d786" prot="public" virt="non-virtual"><scope>Brush::Eval::Evaluation</scope><name>update_fitness</name></member>
       <member refid="d1/de5/classBrush_1_1Eval_1_1Evaluation_1a7a35cc80ebd4d2573151270caacaa03e" prot="public" virt="non-virtual"><scope>Brush::Eval::Evaluation</scope><name>~Evaluation</name></member>
     </listofallmembers>
   </compounddef>

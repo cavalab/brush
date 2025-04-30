@@ -125,7 +125,7 @@ Collaboration diagram for Node:</div>
 <map name="aNode_coll__map" id="aNode_coll__map">
 <area shape="rect" title="class holding the data for a node in a tree." alt="" coords="163,209,218,237"/>
 <area shape="rect" title=" " alt="" coords="31,99,118,127"/>
-<area shape="poly" title=" " alt="" coords="101,136,151,183,177,206,174,210,147,187,97,140"/>
+<area shape="poly" title=" " alt="" coords="100,136,149,183,177,207,173,211,146,187,96,140"/>
 <area shape="rect" title=" " alt="" coords="5,5,144,50"/>
 <area shape="poly" title=" " alt="" coords="77,65,77,99,72,99,72,65"/>
 <area shape="rect" title=" " alt="" coords="141,99,322,127"/>
@@ -189,6 +189,10 @@ Public Member Functions</h2></td></tr>
 <tr class="separator:a7e8460b645f3d58c3093eda1d5d3166c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a85a62efd4f1f99fa45eb52e4c0a1a26f" id="r_a85a62efd4f1f99fa45eb52e4c0a1a26f"><td class="memItemLeft" align="right" valign="top"><a class="el" href="../../d5/d92/classstring.html">string</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a85a62efd4f1f99fa45eb52e4c0a1a26f">get_feature</a> () const</td></tr>
 <tr class="separator:a85a62efd4f1f99fa45eb52e4c0a1a26f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9ceebb9b686a6f6784ae90c558385410" id="r_a9ceebb9b686a6f6784ae90c558385410"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a9ceebb9b686a6f6784ae90c558385410">set_feature_type</a> (<a class="el" href="../../dc/d5c/namespaceBrush.html#a3f2c9b744330ba4a561ac72f048a1a5f">DataType</a> ft)</td></tr>
+<tr class="separator:a9ceebb9b686a6f6784ae90c558385410"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5d3a467bbb0b2fa914594c735579926d" id="r_a5d3a467bbb0b2fa914594c735579926d"><td class="memItemLeft" align="right" valign="top"><a class="el" href="../../dc/d5c/namespaceBrush.html#a3f2c9b744330ba4a561ac72f048a1a5f">DataType</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a5d3a467bbb0b2fa914594c735579926d">get_feature_type</a> () const</td></tr>
+<tr class="separator:a5d3a467bbb0b2fa914594c735579926d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a8d884d5ad5f6825aa8f50039fb6baf9f" id="r_a8d884d5ad5f6825aa8f50039fb6baf9f"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a8d884d5ad5f6825aa8f50039fb6baf9f">get_is_weighted</a> () const</td></tr>
 <tr class="separator:a8d884d5ad5f6825aa8f50039fb6baf9f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a70fb9b583f72b67f6c24c2bbaae55267" id="r_a70fb9b583f72b67f6c24c2bbaae55267"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a70fb9b583f72b67f6c24c2bbaae55267">set_is_weighted</a> (bool <a class="el" href="#ab72b791f57011a032c6c89238db85845">is_weighted</a>)</td></tr>
@@ -235,6 +239,9 @@ Private Attributes</h2></td></tr>
 <tr class="memitem:ac5f37d638625468ed68de599a2a7d968" id="r_ac5f37d638625468ed68de599a2a7d968"><td class="memItemLeft" align="right" valign="top"><a class="el" href="../../d5/d92/classstring.html">string</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ac5f37d638625468ed68de599a2a7d968">feature</a></td></tr>
 <tr class="memdesc:ac5f37d638625468ed68de599a2a7d968"><td class="mdescLeft">&#160;</td><td class="mdescRight">feature name for terminals or splitting nodes  <br /></td></tr>
 <tr class="separator:ac5f37d638625468ed68de599a2a7d968"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2875e5aa77054658c071f7b0d7103e68" id="r_a2875e5aa77054658c071f7b0d7103e68"><td class="memItemLeft" align="right" valign="top"><a class="el" href="../../dc/d5c/namespaceBrush.html#a3f2c9b744330ba4a561ac72f048a1a5f">DataType</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a2875e5aa77054658c071f7b0d7103e68">feature_type</a></td></tr>
+<tr class="memdesc:a2875e5aa77054658c071f7b0d7103e68"><td class="mdescLeft">&#160;</td><td class="mdescRight">feature type for terminals or splitting nodes  <br /></td></tr>
+<tr class="separator:a2875e5aa77054658c071f7b0d7103e68"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>class holding the data for a node in a tree. </p>
@@ -261,7 +268,7 @@ Private Attributes</h2></td></tr>
 <div class="line">        <span class="keywordtype">int</span>                     </div>
 <div class="line">        </div>
 <div class="line">    &gt;</div>
-<div class="ttc" id="anamespaceBrush_html_a03de66d0fd6edab4d8a8ab5281e74dc3"><div class="ttname"><a href="../../dc/d5c/namespaceBrush.html#a03de66d0fd6edab4d8a8ab5281e74dc3">Brush::UnderlyingNodeType</a></div><div class="ttdeci">std::underlying_type_t&lt; NodeType &gt; UnderlyingNodeType</div><div class="ttdef"><b>Definition</b> <a href="../../de/d26/nodetype_8h_source.html#l00112">nodetype.h:112</a></div></div>
+<div class="ttc" id="anamespaceBrush_html_a03de66d0fd6edab4d8a8ab5281e74dc3"><div class="ttname"><a href="../../dc/d5c/namespaceBrush.html#a03de66d0fd6edab4d8a8ab5281e74dc3">Brush::UnderlyingNodeType</a></div><div class="ttdeci">std::underlying_type_t&lt; NodeType &gt; UnderlyingNodeType</div><div class="ttdef"><b>Definition</b> <a href="../../de/d26/nodetype_8h_source.html#l00114">nodetype.h:114</a></div></div>
 </div><!-- fragment -->
 <p>tuple type for hashing </p>
 
@@ -378,7 +385,7 @@ template&lt;typename S&gt; </div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="../../d1/d77/node_8h_source.html#l00174">174</a> of file <a class="el" href="../../d1/d77/node_8h_source.html">node.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="../../d1/d77/node_8h_source.html#l00180">180</a> of file <a class="el" href="../../d1/d77/node_8h_source.html">node.h</a>.</p>
 
 </div>
 </div>
@@ -405,7 +412,7 @@ template&lt;typename S&gt; </div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="../../d1/d77/node_8h_source.html#l00176">176</a> of file <a class="el" href="../../d1/d77/node_8h_source.html">node.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="../../d1/d77/node_8h_source.html#l00182">182</a> of file <a class="el" href="../../d1/d77/node_8h_source.html">node.h</a>.</p>
 
 </div>
 </div>
@@ -432,7 +439,7 @@ template&lt;typename S&gt; </div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="../../d1/d77/node_8h_source.html#l00175">175</a> of file <a class="el" href="../../d1/d77/node_8h_source.html">node.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="../../d1/d77/node_8h_source.html#l00181">181</a> of file <a class="el" href="../../d1/d77/node_8h_source.html">node.h</a>.</p>
 
 </div>
 </div>
@@ -459,7 +466,34 @@ template&lt;typename S&gt; </div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="../../d1/d77/node_8h_source.html#l00244">244</a> of file <a class="el" href="../../d1/d77/node_8h_source.html">node.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="../../d1/d77/node_8h_source.html#l00250">250</a> of file <a class="el" href="../../d1/d77/node_8h_source.html">node.h</a>.</p>
+
+</div>
+</div>
+<a id="a5d3a467bbb0b2fa914594c735579926d" name="a5d3a467bbb0b2fa914594c735579926d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5d3a467bbb0b2fa914594c735579926d">&#9670;&#160;</a></span>get_feature_type()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="../../dc/d5c/namespaceBrush.html#a3f2c9b744330ba4a561ac72f048a1a5f">DataType</a> Brush::Node::get_feature_type </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="../../d1/d77/node_8h_source.html#l00253">253</a> of file <a class="el" href="../../d1/d77/node_8h_source.html">node.h</a>.</p>
 
 </div>
 </div>
@@ -486,7 +520,7 @@ template&lt;typename S&gt; </div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="../../d1/d77/node_8h_source.html#l00246">246</a> of file <a class="el" href="../../d1/d77/node_8h_source.html">node.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="../../d1/d77/node_8h_source.html#l00255">255</a> of file <a class="el" href="../../d1/d77/node_8h_source.html">node.h</a>.</p>
 
 </div>
 </div>
@@ -513,7 +547,7 @@ template&lt;typename S&gt; </div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="../../d7/d70/node_8cpp_source.html#l00050">50</a> of file <a class="el" href="../../d7/d70/node_8cpp_source.html">node.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="../../d7/d70/node_8cpp_source.html#l00053">53</a> of file <a class="el" href="../../d7/d70/node_8cpp_source.html">node.cpp</a>.</p>
 
 </div>
 </div>
@@ -579,7 +613,7 @@ name </dd></dl>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="../../d1/d77/node_8h_source.html#l00190">190</a> of file <a class="el" href="../../d1/d77/node_8h_source.html">node.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="../../d1/d77/node_8h_source.html#l00196">196</a> of file <a class="el" href="../../d1/d77/node_8h_source.html">node.h</a>.</p>
 
 </div>
 </div>
@@ -606,7 +640,7 @@ name </dd></dl>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="../../d1/d77/node_8h_source.html#l00239">239</a> of file <a class="el" href="../../d1/d77/node_8h_source.html">node.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="../../d1/d77/node_8h_source.html#l00245">245</a> of file <a class="el" href="../../d1/d77/node_8h_source.html">node.h</a>.</p>
 
 </div>
 </div>
@@ -633,7 +667,7 @@ name </dd></dl>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="../../d1/d77/node_8h_source.html#l00241">241</a> of file <a class="el" href="../../d1/d77/node_8h_source.html">node.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="../../d1/d77/node_8h_source.html#l00247">247</a> of file <a class="el" href="../../d1/d77/node_8h_source.html">node.h</a>.</p>
 
 </div>
 </div>
@@ -660,7 +694,7 @@ name </dd></dl>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="../../d1/d77/node_8h_source.html#l00173">173</a> of file <a class="el" href="../../d1/d77/node_8h_source.html">node.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="../../d1/d77/node_8h_source.html#l00179">179</a> of file <a class="el" href="../../d1/d77/node_8h_source.html">node.h</a>.</p>
 
 </div>
 </div>
@@ -715,7 +749,7 @@ name </dd></dl>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="../../d1/d77/node_8h_source.html#l00209">209</a> of file <a class="el" href="../../d1/d77/node_8h_source.html">node.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="../../d1/d77/node_8h_source.html#l00215">215</a> of file <a class="el" href="../../d1/d77/node_8h_source.html">node.h</a>.</p>
 
 </div>
 </div>
@@ -743,7 +777,7 @@ name </dd></dl>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="../../d1/d77/node_8h_source.html#l00214">214</a> of file <a class="el" href="../../d1/d77/node_8h_source.html">node.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="../../d1/d77/node_8h_source.html#l00220">220</a> of file <a class="el" href="../../d1/d77/node_8h_source.html">node.h</a>.</p>
 
 </div>
 </div>
@@ -771,7 +805,7 @@ name </dd></dl>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="../../d1/d77/node_8h_source.html#l00221">221</a> of file <a class="el" href="../../d1/d77/node_8h_source.html">node.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="../../d1/d77/node_8h_source.html#l00227">227</a> of file <a class="el" href="../../d1/d77/node_8h_source.html">node.h</a>.</p>
 
 </div>
 </div>
@@ -799,7 +833,7 @@ name </dd></dl>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="../../d1/d77/node_8h_source.html#l00202">202</a> of file <a class="el" href="../../d1/d77/node_8h_source.html">node.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="../../d1/d77/node_8h_source.html#l00208">208</a> of file <a class="el" href="../../d1/d77/node_8h_source.html">node.h</a>.</p>
 
 </div>
 </div>
@@ -827,7 +861,7 @@ name </dd></dl>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="../../d1/d77/node_8h_source.html#l00226">226</a> of file <a class="el" href="../../d1/d77/node_8h_source.html">node.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="../../d1/d77/node_8h_source.html#l00232">232</a> of file <a class="el" href="../../d1/d77/node_8h_source.html">node.h</a>.</p>
 
 </div>
 </div>
@@ -855,7 +889,7 @@ name </dd></dl>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="../../d1/d77/node_8h_source.html#l00231">231</a> of file <a class="el" href="../../d1/d77/node_8h_source.html">node.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="../../d1/d77/node_8h_source.html#l00237">237</a> of file <a class="el" href="../../d1/d77/node_8h_source.html">node.h</a>.</p>
 
 </div>
 </div>
@@ -882,7 +916,34 @@ name </dd></dl>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="../../d1/d77/node_8h_source.html#l00243">243</a> of file <a class="el" href="../../d1/d77/node_8h_source.html">node.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="../../d1/d77/node_8h_source.html#l00249">249</a> of file <a class="el" href="../../d1/d77/node_8h_source.html">node.h</a>.</p>
+
+</div>
+</div>
+<a id="a9ceebb9b686a6f6784ae90c558385410" name="a9ceebb9b686a6f6784ae90c558385410"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9ceebb9b686a6f6784ae90c558385410">&#9670;&#160;</a></span>set_feature_type()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Brush::Node::set_feature_type </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="../../dc/d5c/namespaceBrush.html#a3f2c9b744330ba4a561ac72f048a1a5f">DataType</a></td>          <td class="paramname"><span class="paramname"><em>ft</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="../../d1/d77/node_8h_source.html#l00252">252</a> of file <a class="el" href="../../d1/d77/node_8h_source.html">node.h</a>.</p>
 
 </div>
 </div>
@@ -909,7 +970,7 @@ name </dd></dl>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="../../d1/d77/node_8h_source.html#l00247">247</a> of file <a class="el" href="../../d1/d77/node_8h_source.html">node.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="../../d1/d77/node_8h_source.html#l00256">256</a> of file <a class="el" href="../../d1/d77/node_8h_source.html">node.h</a>.</p>
 
 </div>
 </div>
@@ -936,7 +997,7 @@ name </dd></dl>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="../../d1/d77/node_8h_source.html#l00240">240</a> of file <a class="el" href="../../d1/d77/node_8h_source.html">node.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="../../d1/d77/node_8h_source.html#l00246">246</a> of file <a class="el" href="../../d1/d77/node_8h_source.html">node.h</a>.</p>
 
 </div>
 </div>
@@ -1028,7 +1089,33 @@ template&lt;typename S&gt; </div>
 
 <p>feature name for terminals or splitting nodes </p>
 
-<p class="definition">Definition at line <a class="el" href="../../d1/d77/node_8h_source.html#l00256">256</a> of file <a class="el" href="../../d1/d77/node_8h_source.html">node.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="../../d1/d77/node_8h_source.html#l00264">264</a> of file <a class="el" href="../../d1/d77/node_8h_source.html">node.h</a>.</p>
+
+</div>
+</div>
+<a id="a2875e5aa77054658c071f7b0d7103e68" name="a2875e5aa77054658c071f7b0d7103e68"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2875e5aa77054658c071f7b0d7103e68">&#9670;&#160;</a></span>feature_type</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="../../dc/d5c/namespaceBrush.html#a3f2c9b744330ba4a561ac72f048a1a5f">DataType</a> Brush::Node::feature_type</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>feature type for terminals or splitting nodes </p>
+
+<p class="definition">Definition at line <a class="el" href="../../d1/d77/node_8h_source.html#l00267">267</a> of file <a class="el" href="../../d1/d77/node_8h_source.html">node.h</a>.</p>
 
 </div>
 </div>

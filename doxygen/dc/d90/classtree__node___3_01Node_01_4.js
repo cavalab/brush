@@ -5,6 +5,7 @@ var classtree__node___3_01Node_01_4 =
     [ "tree_node_", "dc/d90/classtree__node___3_01Node_01_4.html#aaf4dfc44e325680e2aaecc6f795944de", null ],
     [ "fit", "dc/d90/classtree__node___3_01Node_01_4.html#a0dfec2ce7f43ba74641899bcd3e3ffed", null ],
     [ "get_complexity", "dc/d90/classtree__node___3_01Node_01_4.html#ade98b5591fd485a3bc81023e5d6221cb", null ],
+    [ "get_linear_complexity", "dc/d90/classtree__node___3_01Node_01_4.html#a3aca05d75d4de81d7b75161ba92f3711", null ],
     [ "get_model", "dc/d90/classtree__node___3_01Node_01_4.html#a4419d3fd481991863578783f286eab93", null ],
     [ "get_size", "dc/d90/classtree__node___3_01Node_01_4.html#ad7f332d5e2607c3a8036d3e5eea19a13", null ],
     [ "get_tree_model", "dc/d90/classtree__node___3_01Node_01_4.html#a60f975dbb46739a9aaf7a7466ab13eda", null ],

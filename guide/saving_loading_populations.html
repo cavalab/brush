@@ -176,6 +176,7 @@
 <li class="toctree-l2"><a class="reference internal" href="json.html">JSON Interoperability</a></li>
 <li class="toctree-l2 current active"><a class="current reference internal" href="#">Saving and loading populations</a></li>
 <li class="toctree-l2"><a class="reference internal" href="archive.html">The archive</a></li>
+
 <li class="toctree-l2"><a class="reference internal" href="deap.html">Using Deap</a></li>
 </ul>
 </details></li>
@@ -348,7 +349,9 @@ document.write(`
   </button>
 `);
 </script>
-
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
 </div></div>
       
     </div>
@@ -364,6 +367,17 @@ document.write(`
     <div id="print-main-content">
         <div id="jb-print-toc">
             
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#saving-just-the-archive">Saving just the archive</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#using-population-files-with-classification">Using population files with classification</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#serialization-with-pickle">Serialization with pickle</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#stop-resume-the-fitting-of-an-estimator">Stop/resume the fitting of an estimator</a></li>
+</ul>
+            </nav>
         </div>
     </div>
 </div>
@@ -405,7 +419,10 @@ We use JSON notation to store the population into a file that is human readable.
 <span class="n">est</span> <span class="o">=</span> <span class="n">BrushRegressor</span><span class="p">(</span>
     <span class="n">functions</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;SplitBest&#39;</span><span class="p">,</span><span class="s1">&#39;Add&#39;</span><span class="p">,</span><span class="s1">&#39;Mul&#39;</span><span class="p">,</span><span class="s1">&#39;Sin&#39;</span><span class="p">,</span><span class="s1">&#39;Cos&#39;</span><span class="p">,</span><span class="s1">&#39;Exp&#39;</span><span class="p">,</span><span class="s1">&#39;Logabs&#39;</span><span class="p">],</span>
     <span class="n">max_gens</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span>
+    <span class="n">objectives</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;scorer&quot;</span><span class="p">,</span> <span class="s2">&quot;complexity&quot;</span><span class="p">],</span>
+    <span class="n">scorer</span><span class="o">=</span><span class="s1">&#39;mse&#39;</span><span class="p">,</span>
     <span class="n">save_population</span><span class="o">=</span><span class="n">pop_file</span><span class="p">,</span>
+    <span class="n">use_arch</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="c1"># Only the pareto front of last gen will be stored in archive</span>
     <span class="n">verbosity</span><span class="o">=</span><span class="mi">2</span>
 <span class="p">)</span>
 
@@ -417,77 +434,87 @@ We use JSON notation to store the population into a file that is human readable.
 </div>
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Generation 1/10 [//////                                            ]
-Train Loss (Med): 11.75939 (74.37032)
-Val Loss (Med): 11.75939 (74.37032)
-Median Size (Max): 3 (19)
-Median complexity (Max): 9 (432)
-Time (s): 0.12205
+Best model on Val:If(x0&gt;0.75,0.25*Add(31.49*Sin(-164.64*x0),0.20*x1),-142.85*Cos(0.84*Exp(0.95*x4)))
+Train Loss (Med): 10.44742 (74.37033)
+Val Loss (Med): 10.44742 (74.37033)
+Median Size (Max): 7 (123)
+Median complexity (Max): 360 (2008928968)
+Time (s): -0.22113
 
 Generation 2/10 [///////////                                       ]
-Train Loss (Med): 11.58283 (17.94969)
-Val Loss (Med): 11.58283 (17.94969)
-Median Size (Max): 3 (19)
-Median complexity (Max): 9 (368)
-Time (s): 0.27800
+Best model on Val:46.86*Cos(-5.73*Logabs(-3.88*Exp(Sin(-16.12*Sin(If(x0&gt;0.75,0.94*x2,1.00*x3))))))
+Train Loss (Med): 10.37396 (38.19257)
+Val Loss (Med): 10.37396 (38.19257)
+Median Size (Max): 6 (123)
+Median complexity (Max): 120 (1792519880)
+Time (s): 1.33424
 
 Generation 3/10 [////////////////                                  ]
-Train Loss (Med): 11.15674 (17.94969)
-Val Loss (Med): 11.15674 (17.94969)
-Median Size (Max): 3 (20)
-Median complexity (Max): 10 (915)
-Time (s): 0.41845
+Best model on Val:46.89*Cos(-5.73*Logabs(-3.88*Exp(Sin(-16.12*Sin(If(x0&gt;0.75,0.94*x2,1.00*x3))))))
+Train Loss (Med): 10.37383 (19.28615)
+Val Loss (Med): 10.37383 (19.28615)
+Median Size (Max): 6 (85)
+Median complexity (Max): 360 (1792519880)
+Time (s): 1.99511
 
 Generation 4/10 [/////////////////////                             ]
-Train Loss (Med): 10.62121 (17.94969)
-Val Loss (Med): 10.62121 (17.94969)
-Median Size (Max): 3 (20)
-Median complexity (Max): 9 (381)
-Time (s): 0.56585
+Best model on Val:41.88*Cos(-5.94*Logabs(-3.68*Exp(Sin(-16.36*Sin(If(x0&gt;0.75,0.94*x2,1.00*x3))))))
+Train Loss (Med): 10.37381 (18.86849)
+Val Loss (Med): 10.37381 (18.86849)
+Median Size (Max): 7 (82)
+Median complexity (Max): 72 (1792519880)
+Time (s): 2.64494
 
 Generation 5/10 [//////////////////////////                        ]
-Train Loss (Med): 10.51181 (17.94969)
-Val Loss (Med): 10.51181 (17.94969)
-Median Size (Max): 3 (20)
-Median complexity (Max): 9 (412)
-Time (s): 0.73561
+Best model on Val:If(x0&gt;0.75,0.25*Add(31.49*Sin(-164.64*x0),0.20*x1),-16.97*Cos(5.02*x0))
+Train Loss (Med): 9.98502 (17.90351)
+Val Loss (Med): 9.98502 (17.90351)
+Median Size (Max): 7 (82)
+Median complexity (Max): 278 (1792519880)
+Time (s): 3.27326
 
 Generation 6/10 [///////////////////////////////                   ]
-Train Loss (Med): 10.51181 (17.94969)
-Val Loss (Med): 10.51181 (17.94969)
-Median Size (Max): 3 (20)
-Median complexity (Max): 9 (412)
-Time (s): 0.89526
+Best model on Val:If(x0&gt;0.75,0.25*Add(31.49*Sin(-164.64*x0),0.20*x1),-16.97*Cos(5.02*x0))
+Train Loss (Med): 9.98502 (22.98119)
+Val Loss (Med): 9.98502 (22.98119)
+Median Size (Max): 7 (82)
+Median complexity (Max): 120 (1792519880)
+Time (s): 3.74381
 
 Generation 7/10 [////////////////////////////////////              ]
-Train Loss (Med): 10.51181 (17.94969)
-Val Loss (Med): 10.51181 (17.94969)
-Median Size (Max): 3 (20)
-Median complexity (Max): 9 (412)
-Time (s): 1.03213
+Best model on Val:If(x0&gt;0.75,0.25*Add(31.47*Sin(-164.64*x0),0.20*x1),-16.97*Cos(5.02*x0))
+Train Loss (Med): 9.98502 (17.94969)
+Val Loss (Med): 9.98502 (17.94969)
+Median Size (Max): 7 (82)
+Median complexity (Max): 120 (105480)
+Time (s): 4.23275
 
 Generation 8/10 [/////////////////////////////////////////         ]
-Train Loss (Med): 10.43982 (17.94969)
-Val Loss (Med): 10.43982 (17.94969)
-Median Size (Max): 3 (20)
-Median complexity (Max): 9 (412)
-Time (s): 1.19282
+Best model on Val:If(x0&gt;0.75,0.25*Add(31.47*Sin(-164.64*x0),0.20*x1),-16.97*Cos(5.02*x0))
+Train Loss (Med): 9.98502 (17.94969)
+Val Loss (Med): 9.98502 (17.94969)
+Median Size (Max): 8 (66)
+Median complexity (Max): 169 (105480)
+Time (s): 4.65756
 
 Generation 9/10 [//////////////////////////////////////////////    ]
-Train Loss (Med): 10.33524 (17.94969)
-Val Loss (Med): 10.33524 (17.94969)
-Median Size (Max): 3 (20)
-Median complexity (Max): 9 (368)
-Time (s): 1.33781
+Best model on Val:If(x0&gt;0.75,0.25*Add(31.47*Sin(-164.64*x0),0.20*x1),-16.97*Cos(5.02*x0))
+Train Loss (Med): 9.98502 (17.94969)
+Val Loss (Med): 9.98502 (17.94969)
+Median Size (Max): 8 (66)
+Median complexity (Max): 169 (105480)
+Time (s): 5.21162
 
 Generation 10/10 [//////////////////////////////////////////////////]
-Train Loss (Med): 10.33524 (17.94969)
-Val Loss (Med): 10.33524 (17.94969)
-Median Size (Max): 3 (20)
-Median complexity (Max): 9 (368)
-Time (s): 1.50192
+Best model on Val:If(x0&gt;0.75,0.25*Add(31.47*Sin(-164.64*x0),0.20*x1),-16.97*Cos(5.02*x0))
+Train Loss (Med): 9.98502 (14.64283)
+Val Loss (Med): 9.98502 (14.64283)
+Median Size (Max): 12 (66)
+Median complexity (Max): 648 (105480)
+Time (s): 5.65408
 
-Saved population to file /tmp/tmpw7jkwa5m/population.json
-score: 0.8856532915521027
+Saved population to file /tmp/tmpxpisicq_/population.json
+score: 0.8895281125331685
 </pre></div>
 </div>
 </div>
@@ -500,7 +527,7 @@ score: 0.8856532915521027
     <span class="n">functions</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;SplitBest&#39;</span><span class="p">,</span><span class="s1">&#39;Add&#39;</span><span class="p">,</span><span class="s1">&#39;Mul&#39;</span><span class="p">,</span><span class="s1">&#39;Sin&#39;</span><span class="p">,</span><span class="s1">&#39;Cos&#39;</span><span class="p">,</span><span class="s1">&#39;Exp&#39;</span><span class="p">,</span><span class="s1">&#39;Logabs&#39;</span><span class="p">],</span>
     <span class="n">load_population</span><span class="o">=</span><span class="n">pop_file</span><span class="p">,</span>
     <span class="n">max_gens</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span>
-    <span class="n">verbosity</span><span class="o">=</span><span class="mi">2</span>
+    <span class="n">verbosity</span><span class="o">=</span><span class="mi">1</span>
 <span class="p">)</span>
 
 <span class="n">est</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X</span><span class="p">,</span><span class="n">y</span><span class="p">)</span>
@@ -510,84 +537,1011 @@ score: 0.8856532915521027
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Loaded population from /tmp/tmpw7jkwa5m/population.json of size = 200
-Generation 1/10 [//////                                            ]
-Train Loss (Med): 10.33524 (17.94969)
-Val Loss (Med): 10.33524 (17.94969)
-Median Size (Max): 3 (20)
-Median complexity (Max): 9 (368)
-Time (s): 0.16596
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Loaded population from /tmp/tmpxpisicq_/population.json of size = 200
+Completed 100% [====================]
+saving final population as archive...
+score: 0.9298016661101332
+</pre></div>
+</div>
+</div>
+</div>
+<p>There is a convenient way of accessing individuals on the population: just use the index of the individual on the <code class="docutils literal notranslate"><span class="pre">est.population_</span></code> list.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># it will contain all individuals, differently than the archive</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;population size:&quot;</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">est</span><span class="o">.</span><span class="n">population_</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;archive size   :&quot;</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">est</span><span class="o">.</span><span class="n">archive_</span><span class="p">))</span>
 
-Generation 2/10 [///////////                                       ]
-Train Loss (Med): 10.33524 (17.94969)
-Val Loss (Med): 10.33524 (17.94969)
-Median Size (Max): 3 (18)
-Median complexity (Max): 9 (240)
-Time (s): 0.31669
+<span class="n">est</span><span class="o">.</span><span class="n">population_</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>population size: 100
+archive size   : 13
+</pre></div>
+</div>
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{&#39;fitness&#39;: {&#39;complexity&#39;: 2,
+  &#39;crowding_dist&#39;: 0.0,
+  &#39;dcounter&#39;: 0,
+  &#39;depth&#39;: 1,
+  &#39;dominated&#39;: [75, 76],
+  &#39;linear_complexity&#39;: 2,
+  &#39;loss&#39;: 90.3851318359375,
+  &#39;loss_v&#39;: 90.3851318359375,
+  &#39;rank&#39;: 1,
+  &#39;size&#39;: 1,
+  &#39;values&#39;: [90.3851318359375, 1.0],
+  &#39;weights&#39;: [-1.0, -1.0],
+  &#39;wvalues&#39;: [-90.3851318359375, -1.0]},
+ &#39;id&#39;: 0,
+ &#39;is_fitted_&#39;: False,
+ &#39;objectives&#39;: [&#39;mse&#39;, &#39;size&#39;],
+ &#39;parent_id&#39;: [],
+ &#39;program&#39;: {&#39;Tree&#39;: [{&#39;W&#39;: 24.585369110107422,
+    &#39;arg_types&#39;: [],
+    &#39;center_op&#39;: True,
+    &#39;feature&#39;: &#39;Constant&#39;,
+    &#39;fixed&#39;: False,
+    &#39;is_weighted&#39;: True,
+    &#39;name&#39;: &#39;Constant&#39;,
+    &#39;node_type&#39;: &#39;Constant&#39;,
+    &#39;prob_change&#39;: 0.6167147755622864,
+    &#39;ret_type&#39;: &#39;ArrayF&#39;,
+    &#39;sig_dual_hash&#39;: 509529941281334733,
+    &#39;sig_hash&#39;: 17717457037689164349}],
+  &#39;is_fitted_&#39;: True},
+ &#39;variation&#39;: &#39;born&#39;}
+</pre></div>
+</div>
+</div>
+</div>
+<p>you can convert the json representation back to an fully functional individual by wrapping it in the individual class. It is important that the type of individual (i.e. classification, regression) is the same.</p>
+<p>Differently from the archive (which is sorted by complexity), the individuals in the population have no specific order. So individual 5 may or may not be more complex than individual 10, for example.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">pybrush</span><span class="w"> </span><span class="kn">import</span> <span class="n">individual</span>
 
-Generation 3/10 [////////////////                                  ]
-Train Loss (Med): 10.26326 (17.94969)
-Val Loss (Med): 10.26326 (17.94969)
-Median Size (Max): 3 (20)
-Median complexity (Max): 9 (368)
-Time (s): 0.45045
+<span class="n">loaded_from_population</span> <span class="o">=</span> <span class="n">individual</span><span class="o">.</span><span class="n">RegressorIndividual</span><span class="o">.</span><span class="n">from_json</span><span class="p">(</span><span class="n">est</span><span class="o">.</span><span class="n">population_</span><span class="p">[</span><span class="mi">2</span><span class="p">])</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">loaded_from_population</span><span class="o">.</span><span class="n">get_model</span><span class="p">(</span><span class="s2">&quot;tree&quot;</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>24.59
+</pre></div>
+</div>
+</div>
+</div>
+<section id="saving-just-the-archive">
+<h2>Saving just the archive<a class="headerlink" href="#saving-just-the-archive" title="Link to this heading">#</a></h2>
+<p>In case you want to use another expression rather than the final <code class="docutils literal notranslate"><span class="pre">best_estimator_</span></code>, brush provides the archive option.</p>
+<p>The archive is just the pareto front from the population. You can use <code class="docutils literal notranslate"><span class="pre">predict_archive</span></code> (and <code class="docutils literal notranslate"><span class="pre">predict_proba_archive</span></code> if using a <code class="docutils literal notranslate"><span class="pre">BrushClassifier</span></code>) to call the prediction methods for the entire archive, instead of the selected best individual.</p>
+<p>But first, you need to enable this option with <code class="docutils literal notranslate"><span class="pre">use_arch=True</span></code>. When set to False, it will store the entire final population</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">est</span> <span class="o">=</span> <span class="n">BrushRegressor</span><span class="p">(</span>
+    <span class="n">functions</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;SplitBest&#39;</span><span class="p">,</span><span class="s1">&#39;Add&#39;</span><span class="p">,</span><span class="s1">&#39;Mul&#39;</span><span class="p">,</span><span class="s1">&#39;Sin&#39;</span><span class="p">,</span><span class="s1">&#39;Cos&#39;</span><span class="p">,</span><span class="s1">&#39;Exp&#39;</span><span class="p">,</span><span class="s1">&#39;Logabs&#39;</span><span class="p">],</span>
+    <span class="n">load_population</span><span class="o">=</span><span class="n">pop_file</span><span class="p">,</span>
+    <span class="n">use_arch</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+    <span class="n">max_gens</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span>
+    <span class="n">verbosity</span><span class="o">=</span><span class="mi">1</span>
+<span class="p">)</span>
 
-Generation 4/10 [/////////////////////                             ]
-Train Loss (Med): 10.26326 (17.94969)
-Val Loss (Med): 10.26326 (17.94969)
-Median Size (Max): 3 (19)
-Median complexity (Max): 9 (368)
-Time (s): 0.63331
+<span class="n">est</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X</span><span class="p">,</span><span class="n">y</span><span class="p">)</span>
 
-Generation 5/10 [//////////////////////////                        ]
-Train Loss (Med): 10.26326 (16.41696)
-Val Loss (Med): 10.26326 (16.41696)
-Median Size (Max): 5 (17)
-Median complexity (Max): 33 (330)
-Time (s): 0.78002
-
-Generation 6/10 [///////////////////////////////                   ]
-Train Loss (Med): 9.70269 (17.94969)
-Val Loss (Med): 9.70269 (17.94969)
-Median Size (Max): 3 (19)
-Median complexity (Max): 9 (330)
-Time (s): 0.91656
-
-Generation 7/10 [////////////////////////////////////              ]
-Train Loss (Med): 9.67577 (17.94969)
-Val Loss (Med): 9.67577 (17.94969)
-Median Size (Max): 3 (19)
-Median complexity (Max): 9 (330)
-Time (s): 1.10225
-
-Generation 8/10 [/////////////////////////////////////////         ]
-Train Loss (Med): 9.67577 (16.41696)
-Val Loss (Med): 9.67577 (16.41696)
-Median Size (Max): 5 (19)
-Median complexity (Max): 33 (330)
-Time (s): 1.30773
-
-Generation 9/10 [//////////////////////////////////////////////    ]
-Train Loss (Med): 9.67577 (16.41696)
-Val Loss (Med): 9.67577 (16.41696)
-Median Size (Max): 5 (19)
-Median complexity (Max): 33 (330)
-Time (s): 1.44840
-
-Generation 10/10 [//////////////////////////////////////////////////]
-Train Loss (Med): 9.67577 (15.67545)
-Val Loss (Med): 9.67577 (15.67545)
-Median Size (Max): 6 (19)
-Median complexity (Max): 36 (723)
-Time (s): 1.65144
-
-score: 0.892949582824199
+<span class="c1"># accessing first expression from the archive. It is serialized as a dict</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">est</span><span class="o">.</span><span class="n">archive_</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="s1">&#39;fitness&#39;</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Loaded population from /tmp/tmpxpisicq_/population.json of size = 200
+Completed 100% [====================]
+{&#39;complexity&#39;: 486080840, &#39;crowding_dist&#39;: 0.0, &#39;dcounter&#39;: 0, &#39;depth&#39;: 7, &#39;dominated&#39;: [], &#39;linear_complexity&#39;: 105, &#39;loss&#39;: 3.7732295989990234, &#39;loss_v&#39;: 3.7732295989990234, &#39;rank&#39;: 1, &#39;size&#39;: 31, &#39;values&#39;: [3.7732295989990234, 31.0], &#39;weights&#39;: [-1.0, -1.0], &#39;wvalues&#39;: [-3.7732295989990234, -31.0]}
 </pre></div>
 </div>
 </div>
 </div>
 <p>You can open the serialized file and change individuals’ programs manually.</p>
 <p>This also allow us to have checkpoints in the execution.</p>
+</section>
+<section id="using-population-files-with-classification">
+<h2>Using population files with classification<a class="headerlink" href="#using-population-files-with-classification" title="Link to this heading">#</a></h2>
+<p>To give another example, we do a two-step fit in the cells below.</p>
+<p>First, we run the evolution and save the population to a file; then, we load it and keep evolving the individuals.</p>
+<p>What is different though is that the first run is optimizing <code class="docutils literal notranslate"><span class="pre">scorer</span></code> and <code class="docutils literal notranslate"><span class="pre">complexity</span></code>, and the second run is optimizing <code class="docutils literal notranslate"><span class="pre">average_precision_score</span></code> and <code class="docutils literal notranslate"><span class="pre">linear_complexity</span></code>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">pybrush</span><span class="w"> </span><span class="kn">import</span> <span class="n">BrushClassifier</span>
+
+<span class="c1"># load data</span>
+<span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">&#39;../examples/datasets/d_analcatdata_aids.csv&#39;</span><span class="p">)</span>
+<span class="n">X</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="s1">&#39;target&#39;</span><span class="p">)</span>
+<span class="n">y</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;target&#39;</span><span class="p">]</span>
+
+<span class="n">pop_file</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">tempfile</span><span class="o">.</span><span class="n">mkdtemp</span><span class="p">(),</span> <span class="s1">&#39;population.json&#39;</span><span class="p">)</span>
+
+<span class="n">est</span> <span class="o">=</span> <span class="n">BrushClassifier</span><span class="p">(</span>
+    <span class="n">functions</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;SplitBest&#39;</span><span class="p">,</span><span class="s1">&#39;Add&#39;</span><span class="p">,</span><span class="s1">&#39;Mul&#39;</span><span class="p">,</span><span class="s1">&#39;Sin&#39;</span><span class="p">,</span><span class="s1">&#39;Cos&#39;</span><span class="p">,</span><span class="s1">&#39;Exp&#39;</span><span class="p">,</span><span class="s1">&#39;Logabs&#39;</span><span class="p">],</span>
+    <span class="n">max_gens</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span>
+    <span class="n">objectives</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;scorer&quot;</span><span class="p">,</span> <span class="s2">&quot;complexity&quot;</span><span class="p">],</span>
+    <span class="n">scorer</span><span class="o">=</span><span class="s2">&quot;log&quot;</span><span class="p">,</span>
+    <span class="n">save_population</span><span class="o">=</span><span class="n">pop_file</span><span class="p">,</span>
+    <span class="n">pop_size</span><span class="o">=</span><span class="mi">200</span><span class="p">,</span>
+    <span class="n">verbosity</span><span class="o">=</span><span class="mi">2</span>
+<span class="p">)</span>
+
+<span class="n">est</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X</span><span class="p">,</span><span class="n">y</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Best model:&quot;</span><span class="p">,</span> <span class="n">est</span><span class="o">.</span><span class="n">best_estimator_</span><span class="o">.</span><span class="n">get_model</span><span class="p">())</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;score:&#39;</span><span class="p">,</span> <span class="n">est</span><span class="o">.</span><span class="n">score</span><span class="p">(</span><span class="n">X</span><span class="p">,</span><span class="n">y</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Generation 1/10 [//////                                            ]
+Best model on Val:Logistic(Sum(-0.63,If(AIDS&gt;15890.50,10.04,If(Total&gt;1572255.50,-0.62,0.72))))
+Train Loss (Med): 0.50912 (0.69315)
+Val Loss (Med): 0.50912 (0.69315)
+Median Size (Max): 11 (91)
+Median complexity (Max): 992 (2029842336)
+Time (s): 0.46829
+
+Generation 2/10 [///////////                                       ]
+Best model on Val:Logistic(Sum(-0.63,If(AIDS&gt;15890.50,10.04,If(Total&gt;1572255.50,-0.62,0.72))))
+Train Loss (Med): 0.50912 (0.69294)
+Val Loss (Med): 0.50912 (0.69294)
+Median Size (Max): 12 (87)
+Median complexity (Max): 128 (2029842336)
+Time (s): 0.65486
+
+Generation 3/10 [////////////////                                  ]
+Best model on Val:Logistic(Sum(3.80,If(AIDS&gt;15890.50,1.00,-4.54*Exp(0.44*Cos(If(Total&gt;1572255.50,-7.64,3.24*Mul(1.00,3.24*Cos(Sum(-1.47,0.13*AIDS)))))))))
+Train Loss (Med): 0.44384 (0.64347)
+Val Loss (Med): 0.44384 (0.64347)
+Median Size (Max): 15 (87)
+Median complexity (Max): 128 (2029842336)
+Time (s): 0.96243
+
+Generation 4/10 [/////////////////////                             ]
+Best model on Val:Logistic(Sum(1.39,If(AIDS&gt;15890.50,1.00,-2.70*Cos(If(Total&gt;1572255.50,12.88,If(AIDS&gt;123.00,-10.69,0.05*Logabs(-9.26*AIDS)))))))
+Train Loss (Med): 0.41213 (0.57942)
+Val Loss (Med): 0.41213 (0.57942)
+Median Size (Max): 28 (87)
+Median complexity (Max): 31904 (2029842336)
+Time (s): 1.24020
+
+Generation 5/10 [//////////////////////////                        ]
+Best model on Val:Logistic(Sum(2.52,If(AIDS&gt;15890.50,1.00,-3.80*Cos(Sum(0.47,If(Total&gt;1572255.50,12.20,If(AIDS&gt;123.00,1.00,-0.03*Logabs(443.94*AIDS))))))))
+Train Loss (Med): 0.40162 (0.54763)
+Val Loss (Med): 0.40162 (0.54763)
+Median Size (Max): 30 (87)
+Median complexity (Max): 31904 (1908211616)
+Time (s): 1.58313
+
+Generation 6/10 [///////////////////////////////                   ]
+Best model on Val:Logistic(Sum(4.04,If(AIDS&gt;15890.50,1.00,-5.14*Cos(If(Total&gt;1572255.50,0.00,If(AIDS&gt;123.00,1.56*Mul(1.00,If(AIDS&gt;1653.50,0.00,If(AIDS&gt;199.00,10.84,0.95))),0.06))))))
+Train Loss (Med): 0.36771 (0.50492)
+Val Loss (Med): 0.36771 (0.50492)
+Median Size (Max): 31 (79)
+Median complexity (Max): 11360 (1908211616)
+Time (s): 2.02055
+
+Generation 7/10 [////////////////////////////////////              ]
+Best model on Val:Logistic(Sum(4.04,If(AIDS&gt;15890.50,1.00,-5.14*Cos(If(Total&gt;1572255.50,0.00,If(AIDS&gt;123.00,1.56*Mul(1.00,If(AIDS&gt;1653.50,0.00,If(AIDS&gt;199.00,10.84,0.95))),0.06))))))
+Train Loss (Med): 0.36771 (0.48550)
+Val Loss (Med): 0.36771 (0.48550)
+Median Size (Max): 31 (74)
+Median complexity (Max): 32288 (1908211616)
+Time (s): 2.47527
+
+Generation 8/10 [/////////////////////////////////////////         ]
+Best model on Val:Logistic(Sum(1.00,If(AIDS&gt;15890.50,1.00,-2.00*Exp(-4.27*Cos(If(Total&gt;1572255.50,-17.71*Logabs(51.81*AIDS),If(AIDS&gt;123.00,1.00,-5.47*Cos(Sum(1.37,0.18*AIDS)))))))))
+Train Loss (Med): 0.33648 (0.46860)
+Val Loss (Med): 0.33648 (0.46860)
+Median Size (Max): 32 (54)
+Median complexity (Max): 56480 (1908211616)
+Time (s): 2.98516
+
+Generation 9/10 [//////////////////////////////////////////////    ]
+Best model on Val:Logistic(Sum(1.00,If(AIDS&gt;15890.50,1.00,-2.00*Exp(-4.27*Cos(If(Total&gt;1572255.50,-17.71*Logabs(51.81*AIDS),If(AIDS&gt;123.00,1.00,-5.47*Cos(Sum(1.37,0.18*AIDS)))))))))
+Train Loss (Med): 0.33648 (0.46043)
+Val Loss (Med): 0.33648 (0.46043)
+Median Size (Max): 31 (54)
+Median complexity (Max): 56480 (1908211616)
+Time (s): 3.47623
+
+Generation 10/10 [//////////////////////////////////////////////////]
+Best model on Val:Logistic(Sum(6.84,If(AIDS&gt;15890.50,1.00,-7.70*Exp(-0.71*Cos(If(Total&gt;1572255.50,4.64,If(AIDS&gt;123.00,1.00,5.42*Cos(Sum(-4.96,0.20*AIDS)))))))))
+Train Loss (Med): 0.33520 (0.45006)
+Val Loss (Med): 0.33520 (0.45006)
+Median Size (Max): 31 (66)
+Median complexity (Max): 32672 (1625096096)
+Time (s): 3.93048
+
+saving final population as archive...
+Saved population to file /tmp/tmpi5q6ccgl/population.json
+Best model: Logistic(Sum(6.84,If(AIDS&gt;15890.50,1.00,-7.70*Exp(-0.71*Cos(If(Total&gt;1572255.50,4.64,If(AIDS&gt;123.00,1.00,5.42*Cos(Sum(-4.96,0.20*AIDS)))))))))
+score: 0.86
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.metrics</span><span class="w"> </span><span class="kn">import</span> <span class="n">accuracy_score</span>
+
+<span class="n">accuracy_score</span><span class="p">(</span><span class="n">y</span><span class="p">,</span> <span class="n">est</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.86
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">est</span> <span class="o">=</span> <span class="n">BrushClassifier</span><span class="p">(</span>
+    <span class="n">functions</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;SplitBest&#39;</span><span class="p">,</span><span class="s1">&#39;Add&#39;</span><span class="p">,</span><span class="s1">&#39;Mul&#39;</span><span class="p">,</span><span class="s1">&#39;Sin&#39;</span><span class="p">,</span><span class="s1">&#39;Cos&#39;</span><span class="p">,</span><span class="s1">&#39;Exp&#39;</span><span class="p">,</span><span class="s1">&#39;Logabs&#39;</span><span class="p">],</span>
+    <span class="n">load_population</span><span class="o">=</span><span class="n">pop_file</span><span class="p">,</span>
+    <span class="n">objectives</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;scorer&quot;</span><span class="p">,</span> <span class="s2">&quot;complexity&quot;</span><span class="p">],</span>
+    <span class="n">scorer</span><span class="o">=</span><span class="s2">&quot;average_precision_score&quot;</span><span class="p">,</span>
+    <span class="n">max_gens</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span>
+    <span class="n">validation_size</span><span class="o">=</span><span class="mf">0.0</span><span class="p">,</span>
+    <span class="n">pop_size</span><span class="o">=</span><span class="mi">200</span><span class="p">,</span> <span class="c1"># make sure this is the same as loaded pop</span>
+    <span class="n">use_arch</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+    <span class="n">verbosity</span><span class="o">=</span><span class="mi">1</span>
+<span class="p">)</span>
+
+<span class="n">est</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X</span><span class="p">,</span><span class="n">y</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Best model:&quot;</span><span class="p">,</span> <span class="n">est</span><span class="o">.</span><span class="n">best_estimator_</span><span class="o">.</span><span class="n">get_model</span><span class="p">())</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;score:&#39;</span><span class="p">,</span> <span class="n">est</span><span class="o">.</span><span class="n">score</span><span class="p">(</span><span class="n">X</span><span class="p">,</span><span class="n">y</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Loaded population from /tmp/tmpi5q6ccgl/population.json of size = 400
+Completed 100% [====================]
+Best model: Logistic(Sum(1.44,If(AIDS&gt;15890.50,1.00,-5.62*Exp(-5.09*Cos(If(Total&gt;1572255.50,-13.53*Logabs(AIDS),If(AIDS&gt;123.00,1.00,5.16*Cos(Sum(-1.47,0.13*AIDS)))))))))
+score: 0.9
+</pre></div>
+</div>
+</div>
+</div>
+<p>We can see the fitness object, and that the scorer now matches the average precision score metric:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Fitness is (scorer, linear complexity)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">est</span><span class="o">.</span><span class="n">best_estimator_</span><span class="o">.</span><span class="n">fitness</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Fitness(0.888867 80.000000 )
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.metrics</span><span class="w"> </span><span class="kn">import</span> <span class="n">average_precision_score</span>
+
+<span class="c1"># takes y_true as first argument, and y_pred as second argument.</span>
+<span class="n">average_precision_score</span><span class="p">(</span><span class="n">y</span><span class="p">,</span> <span class="n">est</span><span class="o">.</span><span class="n">predict_proba</span><span class="p">(</span><span class="n">X</span><span class="p">)[:,</span> <span class="mi">1</span><span class="p">])</span> <span class="c1">#, average=&#39;weighted&#39;)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.9224849564228874
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="serialization-with-pickle">
+<h2>Serialization with pickle<a class="headerlink" href="#serialization-with-pickle" title="Link to this heading">#</a></h2>
+<p>You can save the entire model (best individual, parameters, and archive) with pickle.</p>
+<blockquote>
+<div><p>At the current stage, Brush does not serialize the search space and dataset references, but only the necessary information to be able to load a previously trained model and do predictions with it.</p>
+</div></blockquote>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">est</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><style>#sk-container-id-1 {
+  /* Definition of color scheme common for light and dark mode */
+  --sklearn-color-text: black;
+  --sklearn-color-line: gray;
+  /* Definition of color scheme for unfitted estimators */
+  --sklearn-color-unfitted-level-0: #fff5e6;
+  --sklearn-color-unfitted-level-1: #f6e4d2;
+  --sklearn-color-unfitted-level-2: #ffe0b3;
+  --sklearn-color-unfitted-level-3: chocolate;
+  /* Definition of color scheme for fitted estimators */
+  --sklearn-color-fitted-level-0: #f0f8ff;
+  --sklearn-color-fitted-level-1: #d4ebff;
+  --sklearn-color-fitted-level-2: #b3dbfd;
+  --sklearn-color-fitted-level-3: cornflowerblue;
+
+  /* Specific color for light theme */
+  --sklearn-color-text-on-default-background: var(--sg-text-color, var(--theme-code-foreground, var(--jp-content-font-color1, black)));
+  --sklearn-color-background: var(--sg-background-color, var(--theme-background, var(--jp-layout-color0, white)));
+  --sklearn-color-border-box: var(--sg-text-color, var(--theme-code-foreground, var(--jp-content-font-color1, black)));
+  --sklearn-color-icon: #696969;
+
+  @media (prefers-color-scheme: dark) {
+    /* Redefinition of color scheme for dark theme */
+    --sklearn-color-text-on-default-background: var(--sg-text-color, var(--theme-code-foreground, var(--jp-content-font-color1, white)));
+    --sklearn-color-background: var(--sg-background-color, var(--theme-background, var(--jp-layout-color0, #111)));
+    --sklearn-color-border-box: var(--sg-text-color, var(--theme-code-foreground, var(--jp-content-font-color1, white)));
+    --sklearn-color-icon: #878787;
+  }
+}
+
+#sk-container-id-1 {
+  color: var(--sklearn-color-text);
+}
+
+#sk-container-id-1 pre {
+  padding: 0;
+}
+
+#sk-container-id-1 input.sk-hidden--visually {
+  border: 0;
+  clip: rect(1px 1px 1px 1px);
+  clip: rect(1px, 1px, 1px, 1px);
+  height: 1px;
+  margin: -1px;
+  overflow: hidden;
+  padding: 0;
+  position: absolute;
+  width: 1px;
+}
+
+#sk-container-id-1 div.sk-dashed-wrapped {
+  border: 1px dashed var(--sklearn-color-line);
+  margin: 0 0.4em 0.5em 0.4em;
+  box-sizing: border-box;
+  padding-bottom: 0.4em;
+  background-color: var(--sklearn-color-background);
+}
+
+#sk-container-id-1 div.sk-container {
+  /* jupyter's `normalize.less` sets `[hidden] { display: none; }`
+     but bootstrap.min.css set `[hidden] { display: none !important; }`
+     so we also need the `!important` here to be able to override the
+     default hidden behavior on the sphinx rendered scikit-learn.org.
+     See: https://github.com/scikit-learn/scikit-learn/issues/21755 */
+  display: inline-block !important;
+  position: relative;
+}
+
+#sk-container-id-1 div.sk-text-repr-fallback {
+  display: none;
+}
+
+div.sk-parallel-item,
+div.sk-serial,
+div.sk-item {
+  /* draw centered vertical line to link estimators */
+  background-image: linear-gradient(var(--sklearn-color-text-on-default-background), var(--sklearn-color-text-on-default-background));
+  background-size: 2px 100%;
+  background-repeat: no-repeat;
+  background-position: center center;
+}
+
+/* Parallel-specific style estimator block */
+
+#sk-container-id-1 div.sk-parallel-item::after {
+  content: "";
+  width: 100%;
+  border-bottom: 2px solid var(--sklearn-color-text-on-default-background);
+  flex-grow: 1;
+}
+
+#sk-container-id-1 div.sk-parallel {
+  display: flex;
+  align-items: stretch;
+  justify-content: center;
+  background-color: var(--sklearn-color-background);
+  position: relative;
+}
+
+#sk-container-id-1 div.sk-parallel-item {
+  display: flex;
+  flex-direction: column;
+}
+
+#sk-container-id-1 div.sk-parallel-item:first-child::after {
+  align-self: flex-end;
+  width: 50%;
+}
+
+#sk-container-id-1 div.sk-parallel-item:last-child::after {
+  align-self: flex-start;
+  width: 50%;
+}
+
+#sk-container-id-1 div.sk-parallel-item:only-child::after {
+  width: 0;
+}
+
+/* Serial-specific style estimator block */
+
+#sk-container-id-1 div.sk-serial {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: var(--sklearn-color-background);
+  padding-right: 1em;
+  padding-left: 1em;
+}
+
+
+/* Toggleable style: style used for estimator/Pipeline/ColumnTransformer box that is
+clickable and can be expanded/collapsed.
+- Pipeline and ColumnTransformer use this feature and define the default style
+- Estimators will overwrite some part of the style using the `sk-estimator` class
+*/
+
+/* Pipeline and ColumnTransformer style (default) */
+
+#sk-container-id-1 div.sk-toggleable {
+  /* Default theme specific background. It is overwritten whether we have a
+  specific estimator or a Pipeline/ColumnTransformer */
+  background-color: var(--sklearn-color-background);
+}
+
+/* Toggleable label */
+#sk-container-id-1 label.sk-toggleable__label {
+  cursor: pointer;
+  display: block;
+  width: 100%;
+  margin-bottom: 0;
+  padding: 0.5em;
+  box-sizing: border-box;
+  text-align: center;
+}
+
+#sk-container-id-1 label.sk-toggleable__label-arrow:before {
+  /* Arrow on the left of the label */
+  content: "▸";
+  float: left;
+  margin-right: 0.25em;
+  color: var(--sklearn-color-icon);
+}
+
+#sk-container-id-1 label.sk-toggleable__label-arrow:hover:before {
+  color: var(--sklearn-color-text);
+}
+
+/* Toggleable content - dropdown */
+
+#sk-container-id-1 div.sk-toggleable__content {
+  max-height: 0;
+  max-width: 0;
+  overflow: hidden;
+  text-align: left;
+  /* unfitted */
+  background-color: var(--sklearn-color-unfitted-level-0);
+}
+
+#sk-container-id-1 div.sk-toggleable__content.fitted {
+  /* fitted */
+  background-color: var(--sklearn-color-fitted-level-0);
+}
+
+#sk-container-id-1 div.sk-toggleable__content pre {
+  margin: 0.2em;
+  border-radius: 0.25em;
+  color: var(--sklearn-color-text);
+  /* unfitted */
+  background-color: var(--sklearn-color-unfitted-level-0);
+}
+
+#sk-container-id-1 div.sk-toggleable__content.fitted pre {
+  /* unfitted */
+  background-color: var(--sklearn-color-fitted-level-0);
+}
+
+#sk-container-id-1 input.sk-toggleable__control:checked~div.sk-toggleable__content {
+  /* Expand drop-down */
+  max-height: 200px;
+  max-width: 100%;
+  overflow: auto;
+}
+
+#sk-container-id-1 input.sk-toggleable__control:checked~label.sk-toggleable__label-arrow:before {
+  content: "▾";
+}
+
+/* Pipeline/ColumnTransformer-specific style */
+
+#sk-container-id-1 div.sk-label input.sk-toggleable__control:checked~label.sk-toggleable__label {
+  color: var(--sklearn-color-text);
+  background-color: var(--sklearn-color-unfitted-level-2);
+}
+
+#sk-container-id-1 div.sk-label.fitted input.sk-toggleable__control:checked~label.sk-toggleable__label {
+  background-color: var(--sklearn-color-fitted-level-2);
+}
+
+/* Estimator-specific style */
+
+/* Colorize estimator box */
+#sk-container-id-1 div.sk-estimator input.sk-toggleable__control:checked~label.sk-toggleable__label {
+  /* unfitted */
+  background-color: var(--sklearn-color-unfitted-level-2);
+}
+
+#sk-container-id-1 div.sk-estimator.fitted input.sk-toggleable__control:checked~label.sk-toggleable__label {
+  /* fitted */
+  background-color: var(--sklearn-color-fitted-level-2);
+}
+
+#sk-container-id-1 div.sk-label label.sk-toggleable__label,
+#sk-container-id-1 div.sk-label label {
+  /* The background is the default theme color */
+  color: var(--sklearn-color-text-on-default-background);
+}
+
+/* On hover, darken the color of the background */
+#sk-container-id-1 div.sk-label:hover label.sk-toggleable__label {
+  color: var(--sklearn-color-text);
+  background-color: var(--sklearn-color-unfitted-level-2);
+}
+
+/* Label box, darken color on hover, fitted */
+#sk-container-id-1 div.sk-label.fitted:hover label.sk-toggleable__label.fitted {
+  color: var(--sklearn-color-text);
+  background-color: var(--sklearn-color-fitted-level-2);
+}
+
+/* Estimator label */
+
+#sk-container-id-1 div.sk-label label {
+  font-family: monospace;
+  font-weight: bold;
+  display: inline-block;
+  line-height: 1.2em;
+}
+
+#sk-container-id-1 div.sk-label-container {
+  text-align: center;
+}
+
+/* Estimator-specific */
+#sk-container-id-1 div.sk-estimator {
+  font-family: monospace;
+  border: 1px dotted var(--sklearn-color-border-box);
+  border-radius: 0.25em;
+  box-sizing: border-box;
+  margin-bottom: 0.5em;
+  /* unfitted */
+  background-color: var(--sklearn-color-unfitted-level-0);
+}
+
+#sk-container-id-1 div.sk-estimator.fitted {
+  /* fitted */
+  background-color: var(--sklearn-color-fitted-level-0);
+}
+
+/* on hover */
+#sk-container-id-1 div.sk-estimator:hover {
+  /* unfitted */
+  background-color: var(--sklearn-color-unfitted-level-2);
+}
+
+#sk-container-id-1 div.sk-estimator.fitted:hover {
+  /* fitted */
+  background-color: var(--sklearn-color-fitted-level-2);
+}
+
+/* Specification for estimator info (e.g. "i" and "?") */
+
+/* Common style for "i" and "?" */
+
+.sk-estimator-doc-link,
+a:link.sk-estimator-doc-link,
+a:visited.sk-estimator-doc-link {
+  float: right;
+  font-size: smaller;
+  line-height: 1em;
+  font-family: monospace;
+  background-color: var(--sklearn-color-background);
+  border-radius: 1em;
+  height: 1em;
+  width: 1em;
+  text-decoration: none !important;
+  margin-left: 1ex;
+  /* unfitted */
+  border: var(--sklearn-color-unfitted-level-1) 1pt solid;
+  color: var(--sklearn-color-unfitted-level-1);
+}
+
+.sk-estimator-doc-link.fitted,
+a:link.sk-estimator-doc-link.fitted,
+a:visited.sk-estimator-doc-link.fitted {
+  /* fitted */
+  border: var(--sklearn-color-fitted-level-1) 1pt solid;
+  color: var(--sklearn-color-fitted-level-1);
+}
+
+/* On hover */
+div.sk-estimator:hover .sk-estimator-doc-link:hover,
+.sk-estimator-doc-link:hover,
+div.sk-label-container:hover .sk-estimator-doc-link:hover,
+.sk-estimator-doc-link:hover {
+  /* unfitted */
+  background-color: var(--sklearn-color-unfitted-level-3);
+  color: var(--sklearn-color-background);
+  text-decoration: none;
+}
+
+div.sk-estimator.fitted:hover .sk-estimator-doc-link.fitted:hover,
+.sk-estimator-doc-link.fitted:hover,
+div.sk-label-container:hover .sk-estimator-doc-link.fitted:hover,
+.sk-estimator-doc-link.fitted:hover {
+  /* fitted */
+  background-color: var(--sklearn-color-fitted-level-3);
+  color: var(--sklearn-color-background);
+  text-decoration: none;
+}
+
+/* Span, style for the box shown on hovering the info icon */
+.sk-estimator-doc-link span {
+  display: none;
+  z-index: 9999;
+  position: relative;
+  font-weight: normal;
+  right: .2ex;
+  padding: .5ex;
+  margin: .5ex;
+  width: min-content;
+  min-width: 20ex;
+  max-width: 50ex;
+  color: var(--sklearn-color-text);
+  box-shadow: 2pt 2pt 4pt #999;
+  /* unfitted */
+  background: var(--sklearn-color-unfitted-level-0);
+  border: .5pt solid var(--sklearn-color-unfitted-level-3);
+}
+
+.sk-estimator-doc-link.fitted span {
+  /* fitted */
+  background: var(--sklearn-color-fitted-level-0);
+  border: var(--sklearn-color-fitted-level-3);
+}
+
+.sk-estimator-doc-link:hover span {
+  display: block;
+}
+
+/* "?"-specific style due to the `<a>` HTML tag */
+
+#sk-container-id-1 a.estimator_doc_link {
+  float: right;
+  font-size: 1rem;
+  line-height: 1em;
+  font-family: monospace;
+  background-color: var(--sklearn-color-background);
+  border-radius: 1rem;
+  height: 1rem;
+  width: 1rem;
+  text-decoration: none;
+  /* unfitted */
+  color: var(--sklearn-color-unfitted-level-1);
+  border: var(--sklearn-color-unfitted-level-1) 1pt solid;
+}
+
+#sk-container-id-1 a.estimator_doc_link.fitted {
+  /* fitted */
+  border: var(--sklearn-color-fitted-level-1) 1pt solid;
+  color: var(--sklearn-color-fitted-level-1);
+}
+
+/* On hover */
+#sk-container-id-1 a.estimator_doc_link:hover {
+  /* unfitted */
+  background-color: var(--sklearn-color-unfitted-level-3);
+  color: var(--sklearn-color-background);
+  text-decoration: none;
+}
+
+#sk-container-id-1 a.estimator_doc_link.fitted:hover {
+  /* fitted */
+  background-color: var(--sklearn-color-fitted-level-3);
+}
+</style><div id="sk-container-id-1" class="sk-top-container"><div class="sk-text-repr-fallback"><pre>BrushClassifier(algorithm=&#x27;nsga2&#x27;, bandit=&#x27;dynamic_thompson&#x27;, batch_size=1.0,
+                constants_simplification=True, cx_prob=0.14285714285714285,
+                functions=[&#x27;SplitBest&#x27;, &#x27;Add&#x27;, &#x27;Mul&#x27;, &#x27;Sin&#x27;, &#x27;Cos&#x27;, &#x27;Exp&#x27;,
+                           &#x27;Logabs&#x27;],
+                inexact_simplification=True, initialization=&#x27;uniform&#x27;,
+                load_population=&#x27;/tmp/tmpi5q6ccgl/population.json&#x27;, logfile=&#x27;&#x27;,
+                max_depth=10, max_gens=10, max_size=100, m...
+                                &#x27;point&#x27;: 0.16666666666666666,
+                                &#x27;subtree&#x27;: 0.16666666666666666,
+                                &#x27;toggle_weight_off&#x27;: 0.16666666666666666,
+                                &#x27;toggle_weight_on&#x27;: 0.16666666666666666},
+                n_jobs=1, num_islands=5, objectives=[&#x27;scorer&#x27;, &#x27;complexity&#x27;],
+                pop_size=200, random_state=None, save_population=&#x27;&#x27;,
+                scorer=&#x27;average_precision_score&#x27;, sel=&#x27;lexicase&#x27;,
+                shuffle_split=False, surv=&#x27;nsga2&#x27;, use_arch=True,
+                val_from_arch=True, ...)</pre><b>In a Jupyter environment, please rerun this cell to show the HTML representation or trust the notebook. <br />On GitHub, the HTML representation is unable to render, please try loading this page with nbviewer.org.</b></div><div class="sk-container" hidden><div class="sk-item"><div class="sk-estimator fitted sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-1" type="checkbox" checked><label for="sk-estimator-id-1" class="sk-toggleable__label fitted sk-toggleable__label-arrow fitted">&nbsp;BrushClassifier<span class="sk-estimator-doc-link fitted">i<span>Fitted</span></span></label><div class="sk-toggleable__content fitted"><pre>BrushClassifier(algorithm=&#x27;nsga2&#x27;, bandit=&#x27;dynamic_thompson&#x27;, batch_size=1.0,
+                constants_simplification=True, cx_prob=0.14285714285714285,
+                functions=[&#x27;SplitBest&#x27;, &#x27;Add&#x27;, &#x27;Mul&#x27;, &#x27;Sin&#x27;, &#x27;Cos&#x27;, &#x27;Exp&#x27;,
+                           &#x27;Logabs&#x27;],
+                inexact_simplification=True, initialization=&#x27;uniform&#x27;,
+                load_population=&#x27;/tmp/tmpi5q6ccgl/population.json&#x27;, logfile=&#x27;&#x27;,
+                max_depth=10, max_gens=10, max_size=100, m...
+                                &#x27;point&#x27;: 0.16666666666666666,
+                                &#x27;subtree&#x27;: 0.16666666666666666,
+                                &#x27;toggle_weight_off&#x27;: 0.16666666666666666,
+                                &#x27;toggle_weight_on&#x27;: 0.16666666666666666},
+                n_jobs=1, num_islands=5, objectives=[&#x27;scorer&#x27;, &#x27;complexity&#x27;],
+                pop_size=200, random_state=None, save_population=&#x27;&#x27;,
+                scorer=&#x27;average_precision_score&#x27;, sel=&#x27;lexicase&#x27;,
+                shuffle_split=False, surv=&#x27;nsga2&#x27;, use_arch=True,
+                val_from_arch=True, ...)</pre></div> </div></div></div></div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">pickle</span>
+
+<span class="n">est_file</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">tempfile</span><span class="o">.</span><span class="n">mkdtemp</span><span class="p">(),</span> <span class="s1">&#39;est.pkl&#39;</span><span class="p">)</span>
+
+<span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">est_file</span><span class="p">,</span> <span class="s1">&#39;wb&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+    <span class="n">pickle</span><span class="o">.</span><span class="n">dump</span><span class="p">(</span><span class="n">est</span><span class="p">,</span> <span class="n">f</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">loaded_est</span> <span class="o">=</span> <span class="n">pickle</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="nb">open</span><span class="p">(</span><span class="n">est_file</span><span class="p">,</span> <span class="s1">&#39;rb&#39;</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">est</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">loaded_est</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[ True  True  True  True  True  True  True  True  True  True  True  True
+  True  True  True  True  True  True  True  True  True  True  True  True
+  True False False False False  True False False  True False  True False
+  True False  True False False False False False False False False False
+ False False]
+[ True  True  True  True  True  True  True  True  True  True  True  True
+  True  True  True  True  True  True  True  True  True  True  True  True
+  True False False False False  True False False  True False  True False
+  True False  True False False False False False False False False False
+ False False]
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">est</span><span class="o">.</span><span class="n">predict_archive</span><span class="p">(</span><span class="n">X</span><span class="p">)[</span><span class="mi">0</span><span class="p">])</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">loaded_est</span><span class="o">.</span><span class="n">predict_archive</span><span class="p">(</span><span class="n">X</span><span class="p">)[</span><span class="mi">0</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{&#39;id&#39;: 494, &#39;y_pred&#39;: array([False,  True,  True,  True,  True,  True,  True,  True,  True,
+        True,  True,  True,  True,  True,  True,  True,  True,  True,
+        True,  True,  True,  True,  True,  True,  True, False, False,
+       False, False, False,  True,  True,  True, False,  True, False,
+        True, False,  True, False, False, False, False, False, False,
+       False, False, False, False, False])}
+{&#39;id&#39;: 494, &#39;y_pred&#39;: array([False,  True,  True,  True,  True,  True,  True,  True,  True,
+        True,  True,  True,  True,  True,  True,  True,  True,  True,
+        True,  True,  True,  True,  True,  True,  True, False, False,
+       False, False, False,  True,  True,  True, False,  True, False,
+        True, False,  True, False, False, False, False, False, False,
+       False, False, False, False, False])}
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="stop-resume-the-fitting-of-an-estimator">
+<h2>Stop/resume the fitting of an estimator<a class="headerlink" href="#stop-resume-the-fitting-of-an-estimator" title="Link to this heading">#</a></h2>
+<p>In the code below I try to mimic how pytorch models are trained: we can stop the training at any time, and we can resume it later.</p>
+<p>The idea is to demonstrate how to use population files to store checkpoints, and continuing from the last saved checkpoint.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">train</span><span class="p">(</span><span class="n">est</span><span class="p">,</span> <span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">):</span>
+    <span class="n">checkpoint</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">tempfile</span><span class="o">.</span><span class="n">mkdtemp</span><span class="p">(),</span> <span class="s1">&#39;brush_pop_checkpoint.json&#39;</span><span class="p">)</span>
+    
+    <span class="n">step</span> <span class="o">=</span> <span class="mi">5</span>
+    <span class="n">max_gens</span> <span class="o">=</span> <span class="n">est</span><span class="o">.</span><span class="n">max_gens</span>
+    <span class="n">est</span><span class="o">.</span><span class="n">max_gens</span> <span class="o">=</span> <span class="n">step</span>
+    <span class="n">est</span><span class="o">.</span><span class="n">save_population</span> <span class="o">=</span> <span class="n">checkpoint</span>
+    <span class="n">est</span><span class="o">.</span><span class="n">load_population</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span>
+    
+    <span class="c1"># You can set validation_size to a value greater than zero</span>
+    <span class="c1"># and shuffle_split to true to have random bathes of data</span>
+    <span class="n">est</span><span class="o">.</span><span class="n">shuffle_split</span> <span class="o">=</span> <span class="kc">True</span>
+    <span class="n">est</span><span class="o">.</span><span class="n">validation_size</span> <span class="o">=</span> <span class="mf">0.2</span>
+    
+    <span class="k">for</span> <span class="n">g</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">max_gens</span> <span class="o">//</span> <span class="n">step</span><span class="p">):</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Progress </span><span class="si">{</span><span class="n">g</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">1</span><span class="si">}</span><span class="s2">/</span><span class="si">{</span><span class="n">max_gens</span><span class="w"> </span><span class="o">//</span><span class="w"> </span><span class="n">step</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+        
+        <span class="n">est</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span> <span class="c1"># Notice that this will reset the MAB everytime!</span>
+
+        <span class="c1"># Enable loading the checkpoint after a first run</span>
+        <span class="n">est</span><span class="o">.</span><span class="n">load_population</span> <span class="o">=</span> <span class="n">checkpoint</span>
+        
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Best model:&quot;</span><span class="p">,</span> <span class="n">est</span><span class="o">.</span><span class="n">best_estimator_</span><span class="o">.</span><span class="n">get_model</span><span class="p">())</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;score     :&#39;</span><span class="p">,</span> <span class="n">est</span><span class="o">.</span><span class="n">score</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">))</span>
+
+    <span class="c1"># Restoring initial state</span>
+    <span class="n">est</span><span class="o">.</span><span class="n">max_gens</span> <span class="o">=</span> <span class="n">max_gens</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">est</span> <span class="o">=</span> <span class="n">BrushClassifier</span><span class="p">(</span>
+    <span class="n">objectives</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;scorer&quot;</span><span class="p">,</span> <span class="s2">&quot;linear_complexity&quot;</span><span class="p">],</span>
+    <span class="n">scorer</span><span class="o">=</span><span class="s2">&quot;balanced_accuracy&quot;</span><span class="p">,</span>
+    <span class="n">max_gens</span><span class="o">=</span><span class="mi">50</span><span class="p">,</span>
+    <span class="n">validation_size</span><span class="o">=</span><span class="mf">0.2</span><span class="p">,</span>
+    <span class="n">pop_size</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span>
+    <span class="n">max_depth</span><span class="o">=</span><span class="mi">20</span><span class="p">,</span>
+    <span class="n">max_size</span><span class="o">=</span><span class="mi">50</span><span class="p">,</span>
+    <span class="n">verbosity</span><span class="o">=</span><span class="mi">1</span>
+<span class="p">)</span>
+
+<span class="n">train</span><span class="p">(</span><span class="n">est</span><span class="p">,</span> <span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Progress 1/10
+Completed 100% [====================]
+saving final population as archive...
+Saved population to file /tmp/tmpjgcfekf5/brush_pop_checkpoint.json
+Best model: Logistic(Sum(0.00,1.00*Prod(1.00*Max(AIDS,1.00*Pow(1.00,1.00),1.00),1.00*Tan(1.00*Median(1.00*Prod(1.00*Abs(AIDS),1.00,1.00,AIDS),1.00)))))
+score     : 0.52
+Progress 2/10
+Loaded population from /tmp/tmpjgcfekf5/brush_pop_checkpoint.json of size = 200
+Completed 100% [====================]
+saving final population as archive...
+Saved population to file /tmp/tmpjgcfekf5/brush_pop_checkpoint.json
+Best model: Logistic(Sum(-20.23,AIDS))
+score     : 0.56
+Progress 3/10
+Loaded population from /tmp/tmpjgcfekf5/brush_pop_checkpoint.json of size = 200
+Completed 100% [====================]
+saving final population as archive...
+Saved population to file /tmp/tmpjgcfekf5/brush_pop_checkpoint.json
+Best model: Logistic(Sum(-215.72,AIDS))
+score     : 0.62
+Progress 4/10
+Loaded population from /tmp/tmpjgcfekf5/brush_pop_checkpoint.json of size = 200
+Completed 100% [====================]
+saving final population as archive...
+Saved population to file /tmp/tmpjgcfekf5/brush_pop_checkpoint.json
+Best model: Logistic(Sum(-0.32,0.00*AIDS))
+score     : 0.68
+Progress 5/10
+Loaded population from /tmp/tmpjgcfekf5/brush_pop_checkpoint.json of size = 200
+Completed 100% [====================]
+saving final population as archive...
+Saved population to file /tmp/tmpjgcfekf5/brush_pop_checkpoint.json
+Best model: Logistic(Sum(-0.60,0.00*AIDS))
+score     : 0.68
+Progress 6/10
+Loaded population from /tmp/tmpjgcfekf5/brush_pop_checkpoint.json of size = 200
+Completed 100% [====================]
+saving final population as archive...
+Saved population to file /tmp/tmpjgcfekf5/brush_pop_checkpoint.json
+Best model: Logistic(Sum(-125.60,0.04*AIDS))
+score     : 0.6
+Progress 7/10
+Loaded population from /tmp/tmpjgcfekf5/brush_pop_checkpoint.json of size = 200
+Completed 100% [====================]
+saving final population as archive...
+Saved population to file /tmp/tmpjgcfekf5/brush_pop_checkpoint.json
+Best model: Logistic(Sum(-125.60,AIDS))
+score     : 0.64
+Progress 8/10
+Loaded population from /tmp/tmpjgcfekf5/brush_pop_checkpoint.json of size = 200
+Completed 100% [====================]
+saving final population as archive...
+Saved population to file /tmp/tmpjgcfekf5/brush_pop_checkpoint.json
+Best model: Logistic(Sum(-0.14,If(AIDS&gt;16496.00,1.00,0.00)))
+score     : 0.66
+Progress 9/10
+Loaded population from /tmp/tmpjgcfekf5/brush_pop_checkpoint.json of size = 200
+Completed 100% [====================]
+saving final population as archive...
+Saved population to file /tmp/tmpjgcfekf5/brush_pop_checkpoint.json
+Best model: Logistic(Sum(-0.52,If(AIDS&gt;14174.00,1.00,If(Total&gt;2412823.50,0.00,If(AIDS&gt;123.00,1.00,0.00)))))
+score     : 0.78
+Progress 10/10
+Loaded population from /tmp/tmpjgcfekf5/brush_pop_checkpoint.json of size = 200
+Completed 100% [====================]
+saving final population as archive...
+Saved population to file /tmp/tmpjgcfekf5/brush_pop_checkpoint.json
+Best model: Logistic(Sum(-0.17,If(AIDS&gt;15890.50,1.00,0.00)))
+score     : 0.68
+</pre></div>
+</div>
+</div>
+</div>
+<p>By default, sklearn estimators will reset when calling fit twice. To continue from last fit, you can call <code class="docutils literal notranslate"><span class="pre">partial_fit</span></code> and brush will resume the training.</p>
+<p>If you want, you can change parameters from the <code class="docutils literal notranslate"><span class="pre">est</span></code> object before calling partial fit to update the execution settings.</p>
+<p>It is important that the data has the same features (same name and dtype) as the data used in the previous <code class="docutils literal notranslate"><span class="pre">fit</span></code>/<code class="docutils literal notranslate"><span class="pre">partial_fit</span></code>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">est</span><span class="o">.</span><span class="n">best_estimator_</span><span class="o">.</span><span class="n">get_model</span><span class="p">())</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">est</span><span class="o">.</span><span class="n">best_estimator_</span><span class="o">.</span><span class="n">fitness</span><span class="p">)</span>
+
+<span class="n">est</span><span class="o">.</span><span class="n">partial_fit</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">est</span><span class="o">.</span><span class="n">best_estimator_</span><span class="o">.</span><span class="n">get_model</span><span class="p">())</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">est</span><span class="o">.</span><span class="n">best_estimator_</span><span class="o">.</span><span class="n">fitness</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Logistic(Sum(-0.17,If(AIDS&gt;15890.50,1.00,0.00)))
+Fitness(0.800000 25.000000 )
+Loaded population from /tmp/tmpjgcfekf5/brush_pop_checkpoint.json of size = 200
+Completed 100% [====================]
+saving final population as archive...
+Saved population to file /tmp/tmpjgcfekf5/brush_pop_checkpoint.json
+Logistic(Sum(-0.71,If(AIDS&gt;15890.50,1.00,If(Total&gt;1586725.00,0.00,0.00*AIDS))))
+Fitness(0.800000 44.000000 )
+</pre></div>
+</div>
+</div>
+</div>
+<p>The <code class="docutils literal notranslate"><span class="pre">partial_fit</span></code> also allows you to fix an initial portion of the tree before doing the new fit.</p>
+<p>You can also choose to leave leaves out of this locking mechanism, this way the terminals close to the root are unlocked and can change.</p>
+<p>If you set a big depth and also force leaves to be locked, there may be some (smaller) programs in the population that will not change at all during the run.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">est</span><span class="o">.</span><span class="n">best_estimator_</span><span class="o">.</span><span class="n">get_model</span><span class="p">())</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">est</span><span class="o">.</span><span class="n">best_estimator_</span><span class="o">.</span><span class="n">fitness</span><span class="p">)</span>
+
+<span class="n">est</span><span class="o">.</span><span class="n">partial_fit</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">lock_nodes_depth</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">skip_leaves</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">est</span><span class="o">.</span><span class="n">best_estimator_</span><span class="o">.</span><span class="n">get_model</span><span class="p">())</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">est</span><span class="o">.</span><span class="n">best_estimator_</span><span class="o">.</span><span class="n">fitness</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Logistic(Sum(-0.71,If(AIDS&gt;15890.50,1.00,If(Total&gt;1586725.00,0.00,0.00*AIDS))))
+Fitness(0.800000 44.000000 )
+Loaded population from /tmp/tmpjgcfekf5/brush_pop_checkpoint.json of size = 200
+Completed 100% [====================]
+saving final population as archive...
+Saved population to file /tmp/tmpjgcfekf5/brush_pop_checkpoint.json
+Logistic(Sum(-0.48,If(AIDS&gt;15890.50,1.00,If(Total&gt;1572255.50,0.00,If(AIDS&gt;123.00,1.00,If(AIDS&gt;51.50,0.00,If(AIDS&gt;20.00,1.00,0.00)))))))
+Fitness(0.900000 69.000000 )
+</pre></div>
+</div>
+</div>
+</div>
+</section>
 </section>
 
 
@@ -625,6 +1579,24 @@ score: 0.892949582824199
             </div>
             
             
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#saving-just-the-archive">Saving just the archive</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#using-population-files-with-classification">Using population files with classification</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#serialization-with-pickle">Serialization with pickle</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#stop-resume-the-fitting-of-an-estimator">Stop/resume the fitting of an estimator</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
               
             
           </div>

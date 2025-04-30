@@ -4,19 +4,26 @@
     <compoundname>Brush::Var::ToggleWeightOffMutation</compoundname>
     <basecompoundref refid="d0/dec/classBrush_1_1Var_1_1MutationBase" prot="public" virt="non-virtual">Brush::Var::MutationBase</basecompoundref>
     <sectiondef kind="public-static-func">
-      <memberdef kind="function" id="dd/d55/classBrush_1_1Var_1_1ToggleWeightOffMutation_1a99dc89128f212cac60285811f7e493f0" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+      <memberdef kind="function" id="dd/d55/classBrush_1_1Var_1_1ToggleWeightOffMutation_1a1a80c7e972edead47f615d4c216d4af2" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type><ref refid="dc/d5c/namespaceBrush_1ae591329af27c88b714d0f92b86276366" kindref="member">Brush::ProgramType</ref></type>
+            <declname>T</declname>
+            <defname>T</defname>
+          </param>
+        </templateparamlist>
         <type>auto</type>
         <definition>static auto Brush::Var::ToggleWeightOffMutation::find_spots</definition>
-        <argsstring>(tree&lt; Node &gt; &amp;Tree, const SearchSpace &amp;SS, const Parameters &amp;params)</argsstring>
+        <argsstring>(Program&lt; T &gt; &amp;program, Variation&lt; T &gt; &amp;variator, const Parameters &amp;params)</argsstring>
         <name>find_spots</name>
         <qualifiedname>Brush::Var::ToggleWeightOffMutation::find_spots</qualifiedname>
         <param>
-          <type>tree&lt; <ref refid="d1/d3a/structBrush_1_1Node" kindref="compound">Node</ref> &gt; &amp;</type>
-          <declname>Tree</declname>
+          <type><ref refid="db/d88/structBrush_1_1Program" kindref="compound">Program</ref>&lt; T &gt; &amp;</type>
+          <declname>program</declname>
         </param>
         <param>
-          <type>const <ref refid="d4/dc3/structBrush_1_1SearchSpace" kindref="compound">SearchSpace</ref> &amp;</type>
-          <declname>SS</declname>
+          <type><ref refid="d5/d14/classBrush_1_1Var_1_1Variation" kindref="compound">Variation</ref>&lt; T &gt; &amp;</type>
+          <declname>variator</declname>
         </param>
         <param>
           <type>const <ref refid="de/deb/structBrush_1_1Parameters" kindref="compound">Parameters</ref> &amp;</type>
@@ -28,27 +35,34 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/runner/work/brush/brush/src/vary/variation.cpp" line="212" column="17" bodyfile="/home/runner/work/brush/brush/src/vary/variation.cpp" bodystart="212" bodyend="231"/>
-        <references refid="dc/d5c/namespaceBrush_1ae41500fed38676f34a4d476a992d585d">Brush::SS</references>
-        <referencedby refid="d5/d14/classBrush_1_1Var_1_1Variation_1a024e971b0f8685c89d119c0af484284a" compoundref="d1/d64/variation_8cpp" startline="486" endline="575">Brush::Var::Variation&lt; T &gt;::mutate</referencedby>
+        <location file="/home/runner/work/brush/brush/src/vary/variation.cpp" line="234" column="17" bodyfile="/home/runner/work/brush/brush/src/vary/variation.cpp" bodystart="234" bodyend="253"/>
+        <references refid="db/d88/structBrush_1_1Program_1a7435fb84d7b056a108f142bb19956da5" compoundref="d1/dea/program_8h" startline="73">Brush::Program&lt; PType &gt;::Tree</references>
+        <referencedby refid="d5/d14/classBrush_1_1Var_1_1Variation_1a170852afd5b486b1d5dac0486ab98121" compoundref="d1/d64/variation_8cpp" startline="559" endline="680">Brush::Var::Variation&lt; T &gt;::mutate</referencedby>
       </memberdef>
-      <memberdef kind="function" id="dd/d55/classBrush_1_1Var_1_1ToggleWeightOffMutation_1afc76eadd239937dae4e650080d0e7d25" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+      <memberdef kind="function" id="dd/d55/classBrush_1_1Var_1_1ToggleWeightOffMutation_1afa6678966f1b55efc8afbe08f009d36a" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type><ref refid="dc/d5c/namespaceBrush_1ae591329af27c88b714d0f92b86276366" kindref="member">Brush::ProgramType</ref></type>
+            <declname>T</declname>
+            <defname>T</defname>
+          </param>
+        </templateparamlist>
         <type>auto</type>
         <definition>static auto Brush::Var::ToggleWeightOffMutation::mutate</definition>
-        <argsstring>(tree&lt; Node &gt; &amp;Tree, Iter spot, const SearchSpace &amp;SS, const Parameters &amp;params)</argsstring>
+        <argsstring>(Program&lt; T &gt; &amp;program, Iter spot, Variation&lt; T &gt; &amp;variator, const Parameters &amp;params)</argsstring>
         <name>mutate</name>
         <qualifiedname>Brush::Var::ToggleWeightOffMutation::mutate</qualifiedname>
         <param>
-          <type>tree&lt; <ref refid="d1/d3a/structBrush_1_1Node" kindref="compound">Node</ref> &gt; &amp;</type>
-          <declname>Tree</declname>
+          <type><ref refid="db/d88/structBrush_1_1Program" kindref="compound">Program</ref>&lt; T &gt; &amp;</type>
+          <declname>program</declname>
         </param>
         <param>
           <type><ref refid="d0/dec/classBrush_1_1Var_1_1MutationBase_1a4cacb44817dc1e054fca562d703de50c" kindref="member">Iter</ref></type>
           <declname>spot</declname>
         </param>
         <param>
-          <type>const <ref refid="d4/dc3/structBrush_1_1SearchSpace" kindref="compound">SearchSpace</ref> &amp;</type>
-          <declname>SS</declname>
+          <type><ref refid="d5/d14/classBrush_1_1Var_1_1Variation" kindref="compound">Variation</ref>&lt; T &gt; &amp;</type>
+          <declname>variator</declname>
         </param>
         <param>
           <type>const <ref refid="de/deb/structBrush_1_1Parameters" kindref="compound">Parameters</ref> &amp;</type>
@@ -60,9 +74,8 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/runner/work/brush/brush/src/vary/variation.cpp" line="233" column="17" bodyfile="/home/runner/work/brush/brush/src/vary/variation.cpp" bodystart="233" bodyend="243"/>
-        <references refid="dc/d5c/namespaceBrush_1ae41500fed38676f34a4d476a992d585d">Brush::SS</references>
-        <referencedby refid="d5/d14/classBrush_1_1Var_1_1Variation_1a024e971b0f8685c89d119c0af484284a" compoundref="d1/d64/variation_8cpp" startline="486" endline="575">Brush::Var::Variation&lt; T &gt;::mutate</referencedby>
+        <location file="/home/runner/work/brush/brush/src/vary/variation.cpp" line="256" column="17" bodyfile="/home/runner/work/brush/brush/src/vary/variation.cpp" bodystart="256" bodyend="264"/>
+        <referencedby refid="d5/d14/classBrush_1_1Var_1_1Variation_1a170852afd5b486b1d5dac0486ab98121" compoundref="d1/d64/variation_8cpp" startline="559" endline="680">Brush::Var::Variation&lt; T &gt;::mutate</referencedby>
       </memberdef>
     </sectiondef>
     <briefdescription>
@@ -130,11 +143,11 @@
         </childnode>
       </node>
     </collaborationgraph>
-    <location file="/home/runner/work/brush/brush/src/vary/variation.cpp" line="209" column="1" bodyfile="/home/runner/work/brush/brush/src/vary/variation.cpp" bodystart="210" bodyend="244"/>
+    <location file="/home/runner/work/brush/brush/src/vary/variation.cpp" line="230" column="1" bodyfile="/home/runner/work/brush/brush/src/vary/variation.cpp" bodystart="231" bodyend="265"/>
     <listofallmembers>
-      <member refid="dd/d55/classBrush_1_1Var_1_1ToggleWeightOffMutation_1a99dc89128f212cac60285811f7e493f0" prot="public" virt="non-virtual"><scope>Brush::Var::ToggleWeightOffMutation</scope><name>find_spots</name></member>
+      <member refid="dd/d55/classBrush_1_1Var_1_1ToggleWeightOffMutation_1a1a80c7e972edead47f615d4c216d4af2" prot="public" virt="non-virtual"><scope>Brush::Var::ToggleWeightOffMutation</scope><name>find_spots</name></member>
       <member refid="d0/dec/classBrush_1_1Var_1_1MutationBase_1a4cacb44817dc1e054fca562d703de50c" prot="public" virt="non-virtual"><scope>Brush::Var::ToggleWeightOffMutation</scope><name>Iter</name></member>
-      <member refid="dd/d55/classBrush_1_1Var_1_1ToggleWeightOffMutation_1afc76eadd239937dae4e650080d0e7d25" prot="public" virt="non-virtual"><scope>Brush::Var::ToggleWeightOffMutation</scope><name>mutate</name></member>
+      <member refid="dd/d55/classBrush_1_1Var_1_1ToggleWeightOffMutation_1afa6678966f1b55efc8afbe08f009d36a" prot="public" virt="non-virtual"><scope>Brush::Var::ToggleWeightOffMutation</scope><name>mutate</name></member>
     </listofallmembers>
   </compounddef>
 </doxygen>

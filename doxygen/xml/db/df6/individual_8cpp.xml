@@ -3,6 +3,8 @@
   <compounddef id="db/df6/individual_8cpp" kind="file" language="C++">
     <compoundname>individual.cpp</compoundname>
     <includes refid="d5/d1f/individual_8h" local="yes">individual.h</includes>
+    <includedby refid="d4/d93/bind__engines_8h" local="yes">bind_engines.h</includedby>
+    <includedby refid="d8/df7/bind__variation_8h" local="yes">bind_variation.h</includedby>
     <incdepgraph>
       <node id="50">
         <label>../../thirdparty/tree.hh</label>
@@ -100,9 +102,9 @@
       <node id="54">
         <label>../params.h</label>
         <link refid="da/d33/params_8h"/>
-        <childnode refid="6" relation="include">
-        </childnode>
         <childnode refid="35" relation="include">
+        </childnode>
+        <childnode refid="28" relation="include">
         </childnode>
       </node>
       <node id="51">
@@ -459,6 +461,36 @@
         <label>vector</label>
       </node>
     </incdepgraph>
+    <invincdepgraph>
+      <node id="3">
+        <label>bind_engines.cpp</label>
+        <link refid="d1/df0/bind__engines_8cpp"/>
+      </node>
+      <node id="2">
+        <label>bind_engines.h</label>
+        <link refid="d4/d93/bind__engines_8h"/>
+        <childnode refid="3" relation="include">
+        </childnode>
+      </node>
+      <node id="5">
+        <label>bind_variation.cpp</label>
+        <link refid="df/d41/bind__variation_8cpp"/>
+      </node>
+      <node id="4">
+        <label>bind_variation.h</label>
+        <link refid="d8/df7/bind__variation_8h"/>
+        <childnode refid="5" relation="include">
+        </childnode>
+      </node>
+      <node id="1">
+        <label>individual.cpp</label>
+        <link refid="db/df6/individual_8cpp"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+      </node>
+    </invincdepgraph>
     <innernamespace refid="dc/d5c/namespaceBrush">Brush</innernamespace>
     <innernamespace refid="dd/d56/namespaceBrush_1_1Pop">Brush::Pop</innernamespace>
     <briefdescription>

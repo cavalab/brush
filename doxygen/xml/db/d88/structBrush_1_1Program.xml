@@ -81,8 +81,8 @@
         <inbodydescription>
         </inbodydescription>
         <location file="/home/runner/work/brush/brush/src/program/program.h" line="67" column="10" bodyfile="/home/runner/work/brush/brush/src/program/program.h" bodystart="67" bodyend="-1"/>
-        <referencedby refid="dc/d5c/namespaceBrush_1a2360e8e22462df83dc799c8096ce5938" compoundref="d1/dea/program_8h" startline="515" endline="519">Brush::from_json</referencedby>
-        <referencedby refid="dc/d5c/namespaceBrush_1ab70b101224f05ee7cb285e1212137053" compoundref="d1/dea/program_8h" startline="509" endline="512">Brush::to_json</referencedby>
+        <referencedby refid="dc/d5c/namespaceBrush_1a2360e8e22462df83dc799c8096ce5938" compoundref="d1/dea/program_8h" startline="589" endline="593">Brush::from_json</referencedby>
+        <referencedby refid="dc/d5c/namespaceBrush_1ab70b101224f05ee7cb285e1212137053" compoundref="d1/dea/program_8h" startline="583" endline="586">Brush::to_json</referencedby>
       </memberdef>
       <memberdef kind="variable" id="db/d88/structBrush_1_1Program_1a7435fb84d7b056a108f142bb19956da5" prot="public" static="no" mutable="no">
         <type>tree&lt; <ref refid="d1/d3a/structBrush_1_1Node" kindref="compound">Node</ref> &gt;</type>
@@ -99,10 +99,23 @@
         <inbodydescription>
         </inbodydescription>
         <location file="/home/runner/work/brush/brush/src/program/program.h" line="73" column="10" bodyfile="/home/runner/work/brush/brush/src/program/program.h" bodystart="73" bodyend="-1"/>
-        <referencedby refid="d5/d14/classBrush_1_1Var_1_1Variation_1acf7d5d1c0d6a102eec277180dce590fe" compoundref="d1/d64/variation_8cpp" startline="345" endline="450">Brush::Var::Variation&lt; T &gt;::cross</referencedby>
-        <referencedby refid="dc/d5c/namespaceBrush_1a2360e8e22462df83dc799c8096ce5938" compoundref="d1/dea/program_8h" startline="515" endline="519">Brush::from_json</referencedby>
-        <referencedby refid="d5/d14/classBrush_1_1Var_1_1Variation_1a024e971b0f8685c89d119c0af484284a" compoundref="d1/d64/variation_8cpp" startline="486" endline="575">Brush::Var::Variation&lt; T &gt;::mutate</referencedby>
-        <referencedby refid="dc/d5c/namespaceBrush_1ab70b101224f05ee7cb285e1212137053" compoundref="d1/dea/program_8h" startline="509" endline="512">Brush::to_json</referencedby>
+        <referencedby refid="d5/d14/classBrush_1_1Var_1_1Variation_1a3034de2db34c5aa0f4316fd939650898" compoundref="d1/d64/variation_8cpp" startline="425" endline="523">Brush::Var::Variation&lt; T &gt;::cross</referencedby>
+        <referencedby refid="dc/de3/classBrush_1_1Var_1_1InsertMutation_1a8b98cb676dbaeb976e61dd54c3bc4e5b" compoundref="d1/d64/variation_8cpp" startline="51" endline="80">Brush::Var::InsertMutation::find_spots</referencedby>
+        <referencedby refid="d0/dec/classBrush_1_1Var_1_1MutationBase_1a0f89a4b58f11422d086c684452a4d536" compoundref="d4/d1f/variation_8h" startline="679" endline="690">Brush::Var::MutationBase::find_spots</referencedby>
+        <referencedby refid="de/d20/classBrush_1_1Var_1_1SplitMutation_1a49da760d5c4a35ff5305c68a61e34bee" compoundref="d1/d64/variation_8cpp" startline="360" endline="391">Brush::Var::SplitMutation::find_spots</referencedby>
+        <referencedby refid="de/d23/classBrush_1_1Var_1_1SubtreeMutation_1a8e479d939de06f33eafd5d4e4b64d2f1" compoundref="d1/d64/variation_8cpp" startline="277" endline="305">Brush::Var::SubtreeMutation::find_spots</referencedby>
+        <referencedby refid="dd/d55/classBrush_1_1Var_1_1ToggleWeightOffMutation_1a1a80c7e972edead47f615d4c216d4af2" compoundref="d1/d64/variation_8cpp" startline="234" endline="253">Brush::Var::ToggleWeightOffMutation::find_spots</referencedby>
+        <referencedby refid="d2/d1a/classBrush_1_1Var_1_1ToggleWeightOnMutation_1ad228fa1b8f1c2203c3f1c6fc38df9956" compoundref="d1/d64/variation_8cpp" startline="181" endline="209">Brush::Var::ToggleWeightOnMutation::find_spots</referencedby>
+        <referencedby refid="dc/d5c/namespaceBrush_1a2360e8e22462df83dc799c8096ce5938" compoundref="d1/dea/program_8h" startline="589" endline="593">Brush::from_json</referencedby>
+        <referencedby refid="d0/d6d/classBrush_1_1Var_1_1DeleteMutation_1a12cc0fe6c3a857aff9073187f053bb72" compoundref="d1/d64/variation_8cpp" startline="150" endline="168">Brush::Var::DeleteMutation::mutate</referencedby>
+        <referencedby refid="dc/de3/classBrush_1_1Var_1_1InsertMutation_1a54f75a7d5b2583320d9d00d317f933ed" compoundref="d1/d64/variation_8cpp" startline="83" endline="137">Brush::Var::InsertMutation::mutate</referencedby>
+        <referencedby refid="d4/d46/classBrush_1_1Var_1_1PointMutation_1abed0c55509e074070bd1068a62a1ca0a" compoundref="d1/d64/variation_8cpp" startline="21" endline="38">Brush::Var::PointMutation::mutate</referencedby>
+        <referencedby refid="de/d23/classBrush_1_1Var_1_1SubtreeMutation_1af9c010fdbdd1049e2df276f7e08340dc" compoundref="d1/d64/variation_8cpp" startline="308" endline="347">Brush::Var::SubtreeMutation::mutate</referencedby>
+        <referencedby refid="d5/d14/classBrush_1_1Var_1_1Variation_1a170852afd5b486b1d5dac0486ab98121" compoundref="d1/d64/variation_8cpp" startline="559" endline="680">Brush::Var::Variation&lt; T &gt;::mutate</referencedby>
+        <referencedby refid="d6/df2/classBrush_1_1Simpl_1_1Constants__simplifier_1a1967ec4e50c83b4a7890959d9f6e145f" compoundref="d2/d6f/constants_8h" startline="24" endline="84">Brush::Simpl::Constants_simplifier::simplify_tree</referencedby>
+        <referencedby refid="de/dc5/classBrush_1_1Simpl_1_1Inexact__simplifier_1a0bc38a2a1733e80dbdfeb790e95acb61" compoundref="d1/db6/inexact_8h" startline="72" endline="118">Brush::Simpl::Inexact_simplifier::simplify_tree</referencedby>
+        <referencedby refid="dc/d5c/namespaceBrush_1ab70b101224f05ee7cb285e1212137053" compoundref="d1/dea/program_8h" startline="583" endline="586">Brush::to_json</referencedby>
+        <referencedby refid="d5/d14/classBrush_1_1Var_1_1Variation_1a9655e67f642d72aa61452d1913c436cc" compoundref="d4/d1f/variation_8h" startline="225" endline="505">Brush::Var::Variation&lt; T &gt;::vary_and_update</referencedby>
       </memberdef>
       <memberdef kind="variable" id="db/d88/structBrush_1_1Program_1a349a42d743b44ad4515bbeb9a93a95f1" prot="public" static="no" mutable="no">
         <type>std::optional&lt; std::reference_wrapper&lt; <ref refid="d4/dc3/structBrush_1_1SearchSpace" kindref="compound">SearchSpace</ref> &gt; &gt;</type>
@@ -189,6 +202,7 @@
         <inbodydescription>
         </inbodydescription>
         <location file="/home/runner/work/brush/brush/src/program/program.h" line="86" column="17" bodyfile="/home/runner/work/brush/brush/src/program/program.h" bodystart="86" bodyend="89"/>
+        <referencedby refid="d0/d75/classBrush_1_1Engine_1a7936896228b5c00b6e87070b7caeed00" compoundref="da/d5c/engine_8cpp" startline="217" endline="240">Brush::Engine&lt; T &gt;::set_population</referencedby>
       </memberdef>
       <memberdef kind="function" id="db/d88/structBrush_1_1Program_1a6fc6aa2a6ecbe639aa3f80accf0c2798" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
         <type>int</type>
@@ -197,7 +211,7 @@
         <name>complexity</name>
         <qualifiedname>Brush::Program::complexity</qualifiedname>
         <briefdescription>
-<para>count the complexity of the program. </para>
+<para>count the (recursive) complexity of the program. </para>
         </briefdescription>
         <detaileddescription>
 <para><simplesect kind="return"><para>int complexity. </para>
@@ -207,7 +221,24 @@
         <inbodydescription>
         </inbodydescription>
         <location file="/home/runner/work/brush/brush/src/program/program.h" line="93" column="9" bodyfile="/home/runner/work/brush/brush/src/program/program.h" bodystart="93" bodyend="97"/>
-        <referencedby refid="d1/de5/classBrush_1_1Eval_1_1Evaluation_1ac7562624d114b22b19720729d599a40a" compoundref="d9/d6a/evaluation_8cpp" startline="46" endline="94">Brush::Eval::Evaluation&lt; T &gt;::assign_fit</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="db/d88/structBrush_1_1Program_1a4ac36b2680c5fa0aae06db61fa2ffae6" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>int</type>
+        <definition>int Brush::Program&lt; PType &gt;::linear_complexity</definition>
+        <argsstring>() const</argsstring>
+        <name>linear_complexity</name>
+        <qualifiedname>Brush::Program::linear_complexity</qualifiedname>
+        <briefdescription>
+<para>count the linear complexity of the program. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>int complexity. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/runner/work/brush/brush/src/program/program.h" line="101" column="9" bodyfile="/home/runner/work/brush/brush/src/program/program.h" bodystart="101" bodyend="105"/>
       </memberdef>
       <memberdef kind="function" id="db/d88/structBrush_1_1Program_1af64e3100027b89fd4fffd50bfb843993" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
         <type>int</type>
@@ -239,11 +270,11 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/runner/work/brush/brush/src/program/program.h" line="102" column="9" bodyfile="/home/runner/work/brush/brush/src/program/program.h" bodystart="102" bodyend="106"/>
-        <referencedby refid="d1/de5/classBrush_1_1Eval_1_1Evaluation_1ac7562624d114b22b19720729d599a40a" compoundref="d9/d6a/evaluation_8cpp" startline="46" endline="94">Brush::Eval::Evaluation&lt; T &gt;::assign_fit</referencedby>
-        <referencedby refid="d5/d14/classBrush_1_1Var_1_1Variation_1acf7d5d1c0d6a102eec277180dce590fe" compoundref="d1/d64/variation_8cpp" startline="345" endline="450">Brush::Var::Variation&lt; T &gt;::cross</referencedby>
-        <referencedby refid="d5/d14/classBrush_1_1Var_1_1Variation_1a024e971b0f8685c89d119c0af484284a" compoundref="d1/d64/variation_8cpp" startline="486" endline="575">Brush::Var::Variation&lt; T &gt;::mutate</referencedby>
-        <referencedby refid="d5/d14/classBrush_1_1Var_1_1Variation_1a344233ce053ca4b267539182fecbbc91" compoundref="d1/d64/variation_8cpp" startline="578" endline="638">Brush::Var::Variation&lt; T &gt;::vary</referencedby>
+        <location file="/home/runner/work/brush/brush/src/program/program.h" line="110" column="9" bodyfile="/home/runner/work/brush/brush/src/program/program.h" bodystart="110" bodyend="114"/>
+        <referencedby refid="d5/d14/classBrush_1_1Var_1_1Variation_1a3034de2db34c5aa0f4316fd939650898" compoundref="d1/d64/variation_8cpp" startline="425" endline="523">Brush::Var::Variation&lt; T &gt;::cross</referencedby>
+        <referencedby refid="d5/d14/classBrush_1_1Var_1_1Variation_1a170852afd5b486b1d5dac0486ab98121" compoundref="d1/d64/variation_8cpp" startline="559" endline="680">Brush::Var::Variation&lt; T &gt;::mutate</referencedby>
+        <referencedby refid="d5/d14/classBrush_1_1Var_1_1Variation_1a344233ce053ca4b267539182fecbbc91" compoundref="d1/d64/variation_8cpp" startline="683" endline="769">Brush::Var::Variation&lt; T &gt;::vary</referencedby>
+        <referencedby refid="d5/d14/classBrush_1_1Var_1_1Variation_1a9655e67f642d72aa61452d1913c436cc" compoundref="d4/d1f/variation_8h" startline="225" endline="505">Brush::Var::Variation&lt; T &gt;::vary_and_update</referencedby>
       </memberdef>
       <memberdef kind="function" id="db/d88/structBrush_1_1Program_1a826ef90ae1aaf8f2637f551cfff0746a" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
         <type>int</type>
@@ -287,8 +318,9 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/runner/work/brush/brush/src/program/program.h" line="113" column="9" bodyfile="/home/runner/work/brush/brush/src/program/program.h" bodystart="113" bodyend="116"/>
-        <referencedby refid="d5/d14/classBrush_1_1Var_1_1Variation_1acf7d5d1c0d6a102eec277180dce590fe" compoundref="d1/d64/variation_8cpp" startline="345" endline="450">Brush::Var::Variation&lt; T &gt;::cross</referencedby>
+        <location file="/home/runner/work/brush/brush/src/program/program.h" line="121" column="9" bodyfile="/home/runner/work/brush/brush/src/program/program.h" bodystart="121" bodyend="124"/>
+        <referencedby refid="d5/d14/classBrush_1_1Var_1_1Variation_1a3034de2db34c5aa0f4316fd939650898" compoundref="d1/d64/variation_8cpp" startline="425" endline="523">Brush::Var::Variation&lt; T &gt;::cross</referencedby>
+        <referencedby refid="de/dc5/classBrush_1_1Simpl_1_1Inexact__simplifier_1a0bc38a2a1733e80dbdfeb790e95acb61" compoundref="d1/db6/inexact_8h" startline="72" endline="118">Brush::Simpl::Inexact_simplifier::simplify_tree</referencedby>
       </memberdef>
       <memberdef kind="function" id="db/d88/structBrush_1_1Program_1a91dd138edc7ecb5bc6d013ae68bf0e42" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
         <type>int</type>
@@ -306,9 +338,8 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/runner/work/brush/brush/src/program/program.h" line="120" column="9" bodyfile="/home/runner/work/brush/brush/src/program/program.h" bodystart="120" bodyend="124"/>
-        <referencedby refid="d1/de5/classBrush_1_1Eval_1_1Evaluation_1ac7562624d114b22b19720729d599a40a" compoundref="d9/d6a/evaluation_8cpp" startline="46" endline="94">Brush::Eval::Evaluation&lt; T &gt;::assign_fit</referencedby>
-        <referencedby refid="d5/d14/classBrush_1_1Var_1_1Variation_1a024e971b0f8685c89d119c0af484284a" compoundref="d1/d64/variation_8cpp" startline="486" endline="575">Brush::Var::Variation&lt; T &gt;::mutate</referencedby>
+        <location file="/home/runner/work/brush/brush/src/program/program.h" line="128" column="9" bodyfile="/home/runner/work/brush/brush/src/program/program.h" bodystart="128" bodyend="132"/>
+        <referencedby refid="d5/d14/classBrush_1_1Var_1_1Variation_1a170852afd5b486b1d5dac0486ab98121" compoundref="d1/d64/variation_8cpp" startline="559" endline="680">Brush::Var::Variation&lt; T &gt;::mutate</referencedby>
       </memberdef>
       <memberdef kind="function" id="db/d88/structBrush_1_1Program_1a9a1dd47fb6491ad830c147cced29752b" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
         <type>int</type>
@@ -339,8 +370,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/runner/work/brush/brush/src/program/program.h" line="130" column="9" bodyfile="/home/runner/work/brush/brush/src/program/program.h" bodystart="130" bodyend="132"/>
-        <referencedby refid="d5/d14/classBrush_1_1Var_1_1Variation_1acf7d5d1c0d6a102eec277180dce590fe" compoundref="d1/d64/variation_8cpp" startline="345" endline="450">Brush::Var::Variation&lt; T &gt;::cross</referencedby>
+        <location file="/home/runner/work/brush/brush/src/program/program.h" line="138" column="9" bodyfile="/home/runner/work/brush/brush/src/program/program.h" bodystart="138" bodyend="140"/>
       </memberdef>
       <memberdef kind="function" id="db/d88/structBrush_1_1Program_1af1f9858cdb8c05bdcf5db55cab745f7c" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
         <type>int</type>
@@ -371,8 +401,8 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/runner/work/brush/brush/src/program/program.h" line="138" column="9" bodyfile="/home/runner/work/brush/brush/src/program/program.h" bodystart="138" bodyend="140"/>
-        <referencedby refid="d5/d14/classBrush_1_1Var_1_1Variation_1acf7d5d1c0d6a102eec277180dce590fe" compoundref="d1/d64/variation_8cpp" startline="345" endline="450">Brush::Var::Variation&lt; T &gt;::cross</referencedby>
+        <location file="/home/runner/work/brush/brush/src/program/program.h" line="146" column="9" bodyfile="/home/runner/work/brush/brush/src/program/program.h" bodystart="146" bodyend="148"/>
+        <referencedby refid="d5/d14/classBrush_1_1Var_1_1Variation_1a3034de2db34c5aa0f4316fd939650898" compoundref="d1/d64/variation_8cpp" startline="425" endline="523">Brush::Var::Variation&lt; T &gt;::cross</referencedby>
       </memberdef>
       <memberdef kind="function" id="db/d88/structBrush_1_1Program_1a8ed721f103dd63c7adfc2934340097b4" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
         <type><ref refid="db/d88/structBrush_1_1Program" kindref="compound">Program</ref>&lt; PType &gt; &amp;</type>
@@ -390,9 +420,10 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/runner/work/brush/brush/src/program/program.h" line="142" column="13" bodyfile="/home/runner/work/brush/brush/src/program/program.h" bodystart="142" bodyend="149"/>
-        <referencedby refid="db/d88/structBrush_1_1Program_1af62fee4f37c3a748c68505986a979ba3" compoundref="d1/dea/program_8h" startline="221" endline="225">Brush::Program&lt; PT::Regressor &gt;::fit</referencedby>
-        <referencedby refid="d1/de5/classBrush_1_1Eval_1_1Evaluation_1a1d652164264243bd40efcfd38ba6d569" compoundref="d9/d6a/evaluation_8cpp" startline="9" endline="42">Brush::Eval::Evaluation&lt; T &gt;::update_fitness</referencedby>
+        <location file="/home/runner/work/brush/brush/src/program/program.h" line="150" column="13" bodyfile="/home/runner/work/brush/brush/src/program/program.h" bodystart="150" bodyend="157"/>
+        <referencedby refid="db/d88/structBrush_1_1Program_1af62fee4f37c3a748c68505986a979ba3" compoundref="d1/dea/program_8h" startline="231" endline="235">Brush::Program&lt; PT::Regressor &gt;::fit</referencedby>
+        <referencedby refid="d1/de5/classBrush_1_1Eval_1_1Evaluation_1a6ca34005b1a4ab87038a4c391e77d786" compoundref="d9/d6a/evaluation_8cpp" startline="9" endline="41">Brush::Eval::Evaluation&lt; T &gt;::update_fitness</referencedby>
+        <referencedby refid="d5/d14/classBrush_1_1Var_1_1Variation_1a9655e67f642d72aa61452d1913c436cc" compoundref="d4/d1f/variation_8h" startline="225" endline="505">Brush::Var::Variation&lt; T &gt;::vary_and_update</referencedby>
       </memberdef>
       <memberdef kind="function" id="db/d88/structBrush_1_1Program_1a6a1237f15d7b9cc1e825e1a3213df58e" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
         <templateparamlist>
@@ -422,8 +453,8 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/runner/work/brush/brush/src/program/program.h" line="152" column="7" bodyfile="/home/runner/work/brush/brush/src/program/program.h" bodystart="152" bodyend="158"/>
-        <referencedby refid="db/d88/structBrush_1_1Program_1a93735deb988101774e8e58c5402e1a21" compoundref="d1/dea/program_8h" startline="160" endline="164">Brush::Program&lt; PT::Regressor &gt;::predict_with_weights</referencedby>
+        <location file="/home/runner/work/brush/brush/src/program/program.h" line="160" column="7" bodyfile="/home/runner/work/brush/brush/src/program/program.h" bodystart="160" bodyend="166"/>
+        <referencedby refid="db/d88/structBrush_1_1Program_1a93735deb988101774e8e58c5402e1a21" compoundref="d1/dea/program_8h" startline="168" endline="172">Brush::Program&lt; PT::Regressor &gt;::predict_with_weights</referencedby>
       </memberdef>
       <memberdef kind="function" id="db/d88/structBrush_1_1Program_1a93735deb988101774e8e58c5402e1a21" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
         <type>auto</type>
@@ -445,7 +476,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/runner/work/brush/brush/src/program/program.h" line="160" column="10" bodyfile="/home/runner/work/brush/brush/src/program/program.h" bodystart="160" bodyend="164"/>
+        <location file="/home/runner/work/brush/brush/src/program/program.h" line="168" column="10" bodyfile="/home/runner/work/brush/brush/src/program/program.h" bodystart="168" bodyend="172"/>
       </memberdef>
       <memberdef kind="function" id="db/d88/structBrush_1_1Program_1a68b5b3a1aedf1dfd2769dbba3a01a2ec" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
         <templateparamlist>
@@ -492,9 +523,9 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/runner/work/brush/brush/src/program/program.h" line="175" column="14" bodyfile="/home/runner/work/brush/brush/src/program/program.h" bodystart="175" bodyend="181"/>
-        <referencedby refid="db/d88/structBrush_1_1Program_1a59371dd699ddbb0bdb3b27237cb40e76" compoundref="d1/dea/program_8h" startline="230" endline="234">Brush::Program&lt; PT::Regressor &gt;::predict</referencedby>
-        <referencedby refid="db/d88/structBrush_1_1Program_1a166fc75406fd631070f4477a367c4bb8" compoundref="d1/dea/program_8h" startline="212" endline="215">Brush::Program&lt; PT::Regressor &gt;::predict_proba</referencedby>
+        <location file="/home/runner/work/brush/brush/src/program/program.h" line="183" column="14" bodyfile="/home/runner/work/brush/brush/src/program/program.h" bodystart="183" bodyend="189"/>
+        <referencedby refid="db/d88/structBrush_1_1Program_1a59371dd699ddbb0bdb3b27237cb40e76" compoundref="d1/dea/program_8h" startline="240" endline="244">Brush::Program&lt; PT::Regressor &gt;::predict</referencedby>
+        <referencedby refid="db/d88/structBrush_1_1Program_1a166fc75406fd631070f4477a367c4bb8" compoundref="d1/dea/program_8h" startline="222" endline="225">Brush::Program&lt; PT::Regressor &gt;::predict_proba</referencedby>
       </memberdef>
       <memberdef kind="function" id="db/d88/structBrush_1_1Program_1aae1a9e6d998ac210bb41566bf74d2cbf" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
         <templateparamlist>
@@ -541,7 +572,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/runner/work/brush/brush/src/program/program.h" line="188" column="13" bodyfile="/home/runner/work/brush/brush/src/program/program.h" bodystart="188" bodyend="193"/>
+        <location file="/home/runner/work/brush/brush/src/program/program.h" line="196" column="13" bodyfile="/home/runner/work/brush/brush/src/program/program.h" bodystart="196" bodyend="202"/>
       </memberdef>
       <memberdef kind="function" id="db/d88/structBrush_1_1Program_1a9e0114cb8da8698b0db76f67ce5d22e3" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
         <templateparamlist>
@@ -588,7 +619,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/runner/work/brush/brush/src/program/program.h" line="200" column="13" bodyfile="/home/runner/work/brush/brush/src/program/program.h" bodystart="200" bodyend="207"/>
+        <location file="/home/runner/work/brush/brush/src/program/program.h" line="209" column="13" bodyfile="/home/runner/work/brush/brush/src/program/program.h" bodystart="209" bodyend="217"/>
       </memberdef>
       <memberdef kind="function" id="db/d88/structBrush_1_1Program_1a166fc75406fd631070f4477a367c4bb8" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
         <templateparamlist>
@@ -615,8 +646,8 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/runner/work/brush/brush/src/program/program.h" line="212" column="14" bodyfile="/home/runner/work/brush/brush/src/program/program.h" bodystart="212" bodyend="215"/>
-        <referencedby refid="db/d88/structBrush_1_1Program_1ad63eebe3f515f9b229617c1df623b30d" compoundref="d1/dea/program_8h" startline="245" endline="249">Brush::Program&lt; PT::Regressor &gt;::predict_proba</referencedby>
+        <location file="/home/runner/work/brush/brush/src/program/program.h" line="222" column="14" bodyfile="/home/runner/work/brush/brush/src/program/program.h" bodystart="222" bodyend="225"/>
+        <referencedby refid="db/d88/structBrush_1_1Program_1ad63eebe3f515f9b229617c1df623b30d" compoundref="d1/dea/program_8h" startline="255" endline="259">Brush::Program&lt; PT::Regressor &gt;::predict_proba</referencedby>
       </memberdef>
       <memberdef kind="function" id="db/d88/structBrush_1_1Program_1af62fee4f37c3a748c68505986a979ba3" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
         <type><ref refid="db/d88/structBrush_1_1Program" kindref="compound">Program</ref>&lt; PType &gt; &amp;</type>
@@ -659,7 +690,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/runner/work/brush/brush/src/program/program.h" line="221" column="13" bodyfile="/home/runner/work/brush/brush/src/program/program.h" bodystart="221" bodyend="225"/>
+        <location file="/home/runner/work/brush/brush/src/program/program.h" line="231" column="13" bodyfile="/home/runner/work/brush/brush/src/program/program.h" bodystart="231" bodyend="235"/>
       </memberdef>
       <memberdef kind="function" id="db/d88/structBrush_1_1Program_1a59371dd699ddbb0bdb3b27237cb40e76" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
         <type><ref refid="db/d88/structBrush_1_1Program_1a2a669a8179423af25fb10d26c67c27eb" kindref="member">RetType</ref></type>
@@ -690,7 +721,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/runner/work/brush/brush/src/program/program.h" line="230" column="13" bodyfile="/home/runner/work/brush/brush/src/program/program.h" bodystart="230" bodyend="234"/>
+        <location file="/home/runner/work/brush/brush/src/program/program.h" line="240" column="13" bodyfile="/home/runner/work/brush/brush/src/program/program.h" bodystart="240" bodyend="244"/>
       </memberdef>
       <memberdef kind="function" id="db/d88/structBrush_1_1Program_1ad63eebe3f515f9b229617c1df623b30d" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
         <templateparamlist>
@@ -729,7 +760,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/runner/work/brush/brush/src/program/program.h" line="245" column="14" bodyfile="/home/runner/work/brush/brush/src/program/program.h" bodystart="245" bodyend="249"/>
+        <location file="/home/runner/work/brush/brush/src/program/program.h" line="255" column="14" bodyfile="/home/runner/work/brush/brush/src/program/program.h" bodystart="255" bodyend="259"/>
       </memberdef>
       <memberdef kind="function" id="db/d88/structBrush_1_1Program_1a1cc0fd2af851933b54ef5fb6fb6c941b" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -758,8 +789,8 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/runner/work/brush/brush/src/program/program.h" line="256" column="10" bodyfile="/home/runner/work/brush/brush/src/program/program.h" bodystart="495" bodyend="502"/>
-        <referencedby refid="db/d88/structBrush_1_1Program_1a8ed721f103dd63c7adfc2934340097b4" compoundref="d1/dea/program_8h" startline="142" endline="149">Brush::Program&lt; PT::Regressor &gt;::fit</referencedby>
+        <location file="/home/runner/work/brush/brush/src/program/program.h" line="266" column="10" bodyfile="/home/runner/work/brush/brush/src/program/program.h" bodystart="569" bodyend="576"/>
+        <referencedby refid="db/d88/structBrush_1_1Program_1a8ed721f103dd63c7adfc2934340097b4" compoundref="d1/dea/program_8h" startline="150" endline="157">Brush::Program&lt; PT::Regressor &gt;::fit</referencedby>
       </memberdef>
       <memberdef kind="function" id="db/d88/structBrush_1_1Program_1a990bd3691f3b3e2b7ff479bcd4231479" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
         <type>int</type>
@@ -774,8 +805,8 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/runner/work/brush/brush/src/program/program.h" line="259" column="9" bodyfile="/home/runner/work/brush/brush/src/program/program.h" bodystart="259" bodyend="270"/>
-        <referencedby refid="db/d88/structBrush_1_1Program_1a8bee1c866051b3e11c017cdf29b46eb7" compoundref="d1/dea/program_8h" startline="277" endline="291">Brush::Program&lt; PT::Regressor &gt;::get_weights</referencedby>
+        <location file="/home/runner/work/brush/brush/src/program/program.h" line="269" column="9" bodyfile="/home/runner/work/brush/brush/src/program/program.h" bodystart="269" bodyend="282"/>
+        <referencedby refid="db/d88/structBrush_1_1Program_1a8bee1c866051b3e11c017cdf29b46eb7" compoundref="d1/dea/program_8h" startline="289" endline="304">Brush::Program&lt; PT::Regressor &gt;::get_weights</referencedby>
       </memberdef>
       <memberdef kind="function" id="db/d88/structBrush_1_1Program_1a8bee1c866051b3e11c017cdf29b46eb7" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
         <type>ArrayXf</type>
@@ -793,7 +824,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/runner/work/brush/brush/src/program/program.h" line="277" column="13" bodyfile="/home/runner/work/brush/brush/src/program/program.h" bodystart="277" bodyend="291"/>
+        <location file="/home/runner/work/brush/brush/src/program/program.h" line="289" column="13" bodyfile="/home/runner/work/brush/brush/src/program/program.h" bodystart="289" bodyend="304"/>
       </memberdef>
       <memberdef kind="function" id="db/d88/structBrush_1_1Program_1a5ba9c69ade043cacb917dfb654a57834" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
         <type>void</type>
@@ -822,7 +853,80 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/runner/work/brush/brush/src/program/program.h" line="299" column="10" bodyfile="/home/runner/work/brush/brush/src/program/program.h" bodystart="299" bodyend="315"/>
+        <location file="/home/runner/work/brush/brush/src/program/program.h" line="312" column="10" bodyfile="/home/runner/work/brush/brush/src/program/program.h" bodystart="312" bodyend="329"/>
+      </memberdef>
+      <memberdef kind="function" id="db/d88/structBrush_1_1Program_1ac95fc63e130e0e594b92a0c160db44aa" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void Brush::Program&lt; PType &gt;::lock_nodes</definition>
+        <argsstring>(int end_depth=0, bool skip_leaves=true)</argsstring>
+        <name>lock_nodes</name>
+        <qualifiedname>Brush::Program::lock_nodes</qualifiedname>
+        <param>
+          <type>int</type>
+          <declname>end_depth</declname>
+          <defval>0</defval>
+        </param>
+        <param>
+          <type>bool</type>
+          <declname>skip_leaves</declname>
+          <defval>true</defval>
+        </param>
+        <briefdescription>
+<para>Iterates over the program, locking the nodes until it reaches a certain depth. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>end_depth</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the depth to stop locking nodes. Default 0. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>skip_leaves</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>whether to skip leaves and leave them unlocked. Default true. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/runner/work/brush/brush/src/program/program.h" line="339" column="10" bodyfile="/home/runner/work/brush/brush/src/program/program.h" bodystart="339" bodyend="363"/>
+      </memberdef>
+      <memberdef kind="function" id="db/d88/structBrush_1_1Program_1a9a48839ac5f4e68f5b0468cc50f35439" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void Brush::Program&lt; PType &gt;::unlock_nodes</definition>
+        <argsstring>(int start_depth=0)</argsstring>
+        <name>unlock_nodes</name>
+        <qualifiedname>Brush::Program::unlock_nodes</qualifiedname>
+        <param>
+          <type>int</type>
+          <declname>start_depth</declname>
+          <defval>0</defval>
+        </param>
+        <briefdescription>
+<para>Iterates over the program, unlocking the nodes until it reaches a certain depth. It does not protect the root nodes of logistic regression models. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>start_depth</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the depth to start unlocking nodes. Default 0. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/runner/work/brush/brush/src/program/program.h" line="372" column="10" bodyfile="/home/runner/work/brush/brush/src/program/program.h" bodystart="372" bodyend="386"/>
       </memberdef>
       <memberdef kind="function" id="db/d88/structBrush_1_1Program_1ac87e13742552236e1dc9fd9b62078331" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
         <type><ref refid="d5/d92/classstring" kindref="compound">string</ref></type>
@@ -875,7 +979,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/runner/work/brush/brush/src/program/program.h" line="328" column="12" bodyfile="/home/runner/work/brush/brush/src/program/program.h" bodystart="328" bodyend="336"/>
+        <location file="/home/runner/work/brush/brush/src/program/program.h" line="400" column="12" bodyfile="/home/runner/work/brush/brush/src/program/program.h" bodystart="400" bodyend="408"/>
       </memberdef>
       <memberdef kind="function" id="db/d88/structBrush_1_1Program_1ab288bd389c68ab3c0776ef14a9e5e331" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
         <type><ref refid="d5/d92/classstring" kindref="compound">string</ref></type>
@@ -907,8 +1011,8 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/runner/work/brush/brush/src/program/program.h" line="344" column="12" bodyfile="/home/runner/work/brush/brush/src/program/program.h" bodystart="344" bodyend="475"/>
-        <referencedby refid="db/d88/structBrush_1_1Program_1ac87e13742552236e1dc9fd9b62078331" compoundref="d1/dea/program_8h" startline="328" endline="336">Brush::Program&lt; PT::Regressor &gt;::get_model</referencedby>
+        <location file="/home/runner/work/brush/brush/src/program/program.h" line="416" column="12" bodyfile="/home/runner/work/brush/brush/src/program/program.h" bodystart="416" bodyend="549"/>
+        <referencedby refid="db/d88/structBrush_1_1Program_1ac87e13742552236e1dc9fd9b62078331" compoundref="d1/dea/program_8h" startline="400" endline="408">Brush::Program&lt; PT::Regressor &gt;::get_model</referencedby>
       </memberdef>
       <memberdef kind="function" id="db/d88/structBrush_1_1Program_1a9db890cb3b1bd9f07764bb3bc7f75d64" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
         <type><ref refid="d7/dfc/classvector" kindref="compound">vector</ref>&lt; <ref refid="d1/d3a/structBrush_1_1Node" kindref="compound">Node</ref> &gt;</type>
@@ -926,7 +1030,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/runner/work/brush/brush/src/program/program.h" line="479" column="12" bodyfile="/home/runner/work/brush/brush/src/program/program.h" bodystart="479" bodyend="484"/>
+        <location file="/home/runner/work/brush/brush/src/program/program.h" line="553" column="12" bodyfile="/home/runner/work/brush/brush/src/program/program.h" bodystart="553" bodyend="558"/>
       </memberdef>
     </sectiondef>
     <briefdescription>
@@ -944,7 +1048,7 @@
 </parameterlist>
 </para>
     </detaileddescription>
-    <location file="/home/runner/work/brush/brush/src/program/program.h" line="49" column="11" bodyfile="/home/runner/work/brush/brush/src/program/program.h" bodystart="50" bodyend="485"/>
+    <location file="/home/runner/work/brush/brush/src/program/program.h" line="49" column="11" bodyfile="/home/runner/work/brush/brush/src/program/program.h" bodystart="50" bodyend="559"/>
     <listofallmembers>
       <member refid="db/d88/structBrush_1_1Program_1a6fc6aa2a6ecbe639aa3f80accf0c2798" prot="public" virt="non-virtual"><scope>Brush::Program</scope><name>complexity</name></member>
       <member refid="db/d88/structBrush_1_1Program_1af50c7ca669b20b48971b5108cd24525c" prot="public" virt="non-virtual"><scope>Brush::Program</scope><name>copy</name></member>
@@ -958,7 +1062,9 @@
       <member refid="db/d88/structBrush_1_1Program_1a990bd3691f3b3e2b7ff479bcd4231479" prot="public" virt="non-virtual"><scope>Brush::Program</scope><name>get_n_weights</name></member>
       <member refid="db/d88/structBrush_1_1Program_1a8bee1c866051b3e11c017cdf29b46eb7" prot="public" virt="non-virtual"><scope>Brush::Program</scope><name>get_weights</name></member>
       <member refid="db/d88/structBrush_1_1Program_1a66e9a1ae33267ee5132ba3b3757b8a01" prot="public" virt="non-virtual"><scope>Brush::Program</scope><name>is_fitted_</name></member>
+      <member refid="db/d88/structBrush_1_1Program_1a4ac36b2680c5fa0aae06db61fa2ffae6" prot="public" virt="non-virtual"><scope>Brush::Program</scope><name>linear_complexity</name></member>
       <member refid="db/d88/structBrush_1_1Program_1a9db890cb3b1bd9f07764bb3bc7f75d64" prot="public" virt="non-virtual"><scope>Brush::Program</scope><name>linearize</name></member>
+      <member refid="db/d88/structBrush_1_1Program_1ac95fc63e130e0e594b92a0c160db44aa" prot="public" virt="non-virtual"><scope>Brush::Program</scope><name>lock_nodes</name></member>
       <member refid="db/d88/structBrush_1_1Program_1a68b5b3a1aedf1dfd2769dbba3a01a2ec" prot="public" virt="non-virtual"><scope>Brush::Program</scope><name>predict</name></member>
       <member refid="db/d88/structBrush_1_1Program_1aae1a9e6d998ac210bb41566bf74d2cbf" prot="public" virt="non-virtual"><scope>Brush::Program</scope><name>predict</name></member>
       <member refid="db/d88/structBrush_1_1Program_1a9e0114cb8da8698b0db76f67ce5d22e3" prot="public" virt="non-virtual"><scope>Brush::Program</scope><name>predict</name></member>
@@ -978,6 +1084,7 @@
       <member refid="db/d88/structBrush_1_1Program_1a349a42d743b44ad4515bbeb9a93a95f1" prot="public" virt="non-virtual"><scope>Brush::Program</scope><name>SSref</name></member>
       <member refid="db/d88/structBrush_1_1Program_1a7435fb84d7b056a108f142bb19956da5" prot="public" virt="non-virtual"><scope>Brush::Program</scope><name>Tree</name></member>
       <member refid="db/d88/structBrush_1_1Program_1a6a1a298cfdb17245ce9174e559d6fef1" prot="public" virt="non-virtual"><scope>Brush::Program</scope><name>TreeType</name></member>
+      <member refid="db/d88/structBrush_1_1Program_1a9a48839ac5f4e68f5b0468cc50f35439" prot="public" virt="non-virtual"><scope>Brush::Program</scope><name>unlock_nodes</name></member>
       <member refid="db/d88/structBrush_1_1Program_1a1cc0fd2af851933b54ef5fb6fb6c941b" prot="public" virt="non-virtual"><scope>Brush::Program</scope><name>update_weights</name></member>
     </listofallmembers>
   </compounddef>

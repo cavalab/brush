@@ -11,6 +11,13 @@ var annotated_dup =
         [ "Scorer", "da/d4c/classBrush_1_1Eval_1_1Scorer.html", "da/d4c/classBrush_1_1Eval_1_1Scorer" ],
         [ "Scorer< P >", "d1/d73/classBrush_1_1Eval_1_1Scorer_3_01P_01_4.html", "d1/d73/classBrush_1_1Eval_1_1Scorer_3_01P_01_4" ]
       ] ],
+      [ "MAB", "da/d94/namespaceBrush_1_1MAB.html", [
+        [ "Bandit", "d4/d90/structBrush_1_1MAB_1_1Bandit.html", "d4/d90/structBrush_1_1MAB_1_1Bandit" ],
+        [ "BanditOperator", "df/dde/classBrush_1_1MAB_1_1BanditOperator.html", "df/dde/classBrush_1_1MAB_1_1BanditOperator" ],
+        [ "DummyBandit", "dd/d41/classBrush_1_1MAB_1_1DummyBandit.html", "dd/d41/classBrush_1_1MAB_1_1DummyBandit" ],
+        [ "LinearThompsonSamplingBandit", "d1/d67/classBrush_1_1MAB_1_1LinearThompsonSamplingBandit.html", "d1/d67/classBrush_1_1MAB_1_1LinearThompsonSamplingBandit" ],
+        [ "ThompsonSamplingBandit", "db/d10/classBrush_1_1MAB_1_1ThompsonSamplingBandit.html", "db/d10/classBrush_1_1MAB_1_1ThompsonSamplingBandit" ]
+      ] ],
       [ "Pop", "dd/d56/namespaceBrush_1_1Pop.html", [
         [ "Archive", "d1/d30/structBrush_1_1Pop_1_1Archive.html", "d1/d30/structBrush_1_1Pop_1_1Archive" ],
         [ "Individual", "de/d83/classBrush_1_1Pop_1_1Individual.html", "de/d83/classBrush_1_1Pop_1_1Individual" ],
@@ -21,6 +28,11 @@ var annotated_dup =
         [ "NSGA2", "d3/d7d/classBrush_1_1Sel_1_1NSGA2.html", "d3/d7d/classBrush_1_1Sel_1_1NSGA2" ],
         [ "Selection", "dd/d0f/structBrush_1_1Sel_1_1Selection.html", "dd/d0f/structBrush_1_1Sel_1_1Selection" ],
         [ "SelectionOperator", "de/db9/classBrush_1_1Sel_1_1SelectionOperator.html", "de/db9/classBrush_1_1Sel_1_1SelectionOperator" ]
+      ] ],
+      [ "Simpl", "df/d29/namespaceBrush_1_1Simpl.html", [
+        [ "Constants_simplifier", "d6/df2/classBrush_1_1Simpl_1_1Constants__simplifier.html", "d6/df2/classBrush_1_1Simpl_1_1Constants__simplifier" ],
+        [ "HashStorage", "d4/d71/classBrush_1_1Simpl_1_1HashStorage.html", "d4/d71/classBrush_1_1Simpl_1_1HashStorage" ],
+        [ "Inexact_simplifier", "de/dc5/classBrush_1_1Simpl_1_1Inexact__simplifier.html", "de/dc5/classBrush_1_1Simpl_1_1Inexact__simplifier" ]
       ] ],
       [ "Util", "d6/d2e/namespaceBrush_1_1Util.html", [
         [ "Log_Stats", "db/d7e/structBrush_1_1Util_1_1Log__Stats.html", "db/d7e/structBrush_1_1Util_1_1Log__Stats" ],
@@ -34,6 +46,7 @@ var annotated_dup =
         [ "InsertMutation", "dc/de3/classBrush_1_1Var_1_1InsertMutation.html", "dc/de3/classBrush_1_1Var_1_1InsertMutation" ],
         [ "MutationBase", "d0/dec/classBrush_1_1Var_1_1MutationBase.html", "d0/dec/classBrush_1_1Var_1_1MutationBase" ],
         [ "PointMutation", "d4/d46/classBrush_1_1Var_1_1PointMutation.html", "d4/d46/classBrush_1_1Var_1_1PointMutation" ],
+        [ "SplitMutation", "de/d20/classBrush_1_1Var_1_1SplitMutation.html", "de/d20/classBrush_1_1Var_1_1SplitMutation" ],
         [ "SubtreeMutation", "de/d23/classBrush_1_1Var_1_1SubtreeMutation.html", "de/d23/classBrush_1_1Var_1_1SubtreeMutation" ],
         [ "ToggleWeightOffMutation", "dd/d55/classBrush_1_1Var_1_1ToggleWeightOffMutation.html", "dd/d55/classBrush_1_1Var_1_1ToggleWeightOffMutation" ],
         [ "ToggleWeightOnMutation", "d2/d1a/classBrush_1_1Var_1_1ToggleWeightOnMutation.html", "d2/d1a/classBrush_1_1Var_1_1ToggleWeightOnMutation" ],
@@ -113,7 +126,6 @@ var annotated_dup =
       [ "Function< NodeType::Sin >", "d7/d76/structBrush_1_1Function_3_01NodeType_1_1Sin_01_4.html", "d7/d76/structBrush_1_1Function_3_01NodeType_1_1Sin_01_4" ],
       [ "Function< NodeType::Sinh >", "d5/d7d/structBrush_1_1Function_3_01NodeType_1_1Sinh_01_4.html", "d5/d7d/structBrush_1_1Function_3_01NodeType_1_1Sinh_01_4" ],
       [ "Function< NodeType::Softmax >", "d3/def/structBrush_1_1Function_3_01NodeType_1_1Softmax_01_4.html", "d3/def/structBrush_1_1Function_3_01NodeType_1_1Softmax_01_4" ],
-      [ "Function< NodeType::SplitOn >", "d8/d1f/structBrush_1_1Function_3_01NodeType_1_1SplitOn_01_4.html", "d8/d1f/structBrush_1_1Function_3_01NodeType_1_1SplitOn_01_4" ],
       [ "Function< NodeType::Sqrt >", "d1/dc4/structBrush_1_1Function_3_01NodeType_1_1Sqrt_01_4.html", "d1/dc4/structBrush_1_1Function_3_01NodeType_1_1Sqrt_01_4" ],
       [ "Function< NodeType::Sqrtabs >", "db/d25/structBrush_1_1Function_3_01NodeType_1_1Sqrtabs_01_4.html", "db/d25/structBrush_1_1Function_3_01NodeType_1_1Sqrtabs_01_4" ],
       [ "Function< NodeType::Square >", "db/dba/structBrush_1_1Function_3_01NodeType_1_1Square_01_4.html", "db/dba/structBrush_1_1Function_3_01NodeType_1_1Square_01_4" ],
@@ -156,12 +168,13 @@ var annotated_dup =
       [ "Signature", "d2/d75/structBrush_1_1Signature.html", null ],
       [ "Signature< R(Args...)>", "d5/d7d/structBrush_1_1Signature_3_01R_07Args_8_8_8_08_4.html", "d5/d7d/structBrush_1_1Signature_3_01R_07Args_8_8_8_08_4" ],
       [ "Signatures", "d1/d9a/structBrush_1_1Signatures.html", null ],
-      [ "Signatures< N, enable_if_t< is_in_v< N, NodeType::Abs, NodeType::Acos, NodeType::Asin, NodeType::Atan, NodeType::Cos, NodeType::Cosh, NodeType::Sin, NodeType::Sinh, NodeType::Tan, NodeType::Tanh, NodeType::Ceil, NodeType::Floor, NodeType::Exp, NodeType::Log, NodeType::Logabs, NodeType::Log1p, NodeType::Sqrt, NodeType::Sqrtabs, NodeType::Square, NodeType::Logistic, NodeType::OffsetSum > > >", "d2/def/structBrush_1_1Signatures_3_01N_00_01enable__if__t_3_01is__in__v_3_01N_00_01NodeType_1_1Abs_00_0aeef5405a01257b84f9033923028819e.html", "d2/def/structBrush_1_1Signatures_3_01N_00_01enable__if__t_3_01is__in__v_3_01N_00_01NodeType_1_1Abs_00_0aeef5405a01257b84f9033923028819e" ],
+      [ "Signatures< N, enable_if_t< is_in_v< N, NodeType::Abs, NodeType::Acos, NodeType::Asin, NodeType::Atan, NodeType::Cos, NodeType::Cosh, NodeType::Sin, NodeType::Sinh, NodeType::Tan, NodeType::Tanh, NodeType::Ceil, NodeType::Floor, NodeType::Exp, NodeType::Log, NodeType::Logabs, NodeType::Log1p, NodeType::Sqrt, NodeType::Sqrtabs, NodeType::Square, NodeType::Logistic > > >", "d6/d13/structBrush_1_1Signatures_3_01N_00_01enable__if__t_3_01is__in__v_3_01N_00_01NodeType_1_1Abs_00_041c8b69233b6ea6ea1dff31c8b98dd13.html", "d6/d13/structBrush_1_1Signatures_3_01N_00_01enable__if__t_3_01is__in__v_3_01N_00_01NodeType_1_1Abs_00_041c8b69233b6ea6ea1dff31c8b98dd13" ],
       [ "Signatures< N, enable_if_t< is_in_v< N, NodeType::Add, NodeType::Sub, NodeType::Mul, NodeType::Div, NodeType::Pow > > >", "d2/d82/structBrush_1_1Signatures_3_01N_00_01enable__if__t_3_01is__in__v_3_01N_00_01NodeType_1_1Add_00_02ae8c79e1c3eb458e9c5f6f94e9a9b11.html", "d2/d82/structBrush_1_1Signatures_3_01N_00_01enable__if__t_3_01is__in__v_3_01N_00_01NodeType_1_1Add_00_02ae8c79e1c3eb458e9c5f6f94e9a9b11" ],
       [ "Signatures< N, enable_if_t< is_in_v< N, NodeType::And, NodeType::Or > > >", "d6/d2d/structBrush_1_1Signatures_3_01N_00_01enable__if__t_3_01is__in__v_3_01N_00_01NodeType_1_1And_00_01NodeType_1_1Or_01_4_01_4_01_4.html", "d6/d2d/structBrush_1_1Signatures_3_01N_00_01enable__if__t_3_01is__in__v_3_01N_00_01NodeType_1_1And_00_01NodeType_1_1Or_01_4_01_4_01_4" ],
       [ "Signatures< N, enable_if_t< is_in_v< N, NodeType::ArgMax > > >", "dd/d56/structBrush_1_1Signatures_3_01N_00_01enable__if__t_3_01is__in__v_3_01N_00_01NodeType_1_1ArgMax_01_4_01_4_01_4.html", "dd/d56/structBrush_1_1Signatures_3_01N_00_01enable__if__t_3_01is__in__v_3_01N_00_01NodeType_1_1ArgMax_01_4_01_4_01_4" ],
       [ "Signatures< N, enable_if_t< is_in_v< N, NodeType::Before, NodeType::After, NodeType::During > > >", "d8/de1/structBrush_1_1Signatures_3_01N_00_01enable__if__t_3_01is__in__v_3_01N_00_01NodeType_1_1Before_086362e8a3357214e4d1e7ae6488defd0.html", "d8/de1/structBrush_1_1Signatures_3_01N_00_01enable__if__t_3_01is__in__v_3_01N_00_01NodeType_1_1Before_086362e8a3357214e4d1e7ae6488defd0" ],
       [ "Signatures< N, enable_if_t< is_in_v< N, NodeType::Constant, NodeType::Terminal > > >", "d6/d46/structBrush_1_1Signatures_3_01N_00_01enable__if__t_3_01is__in__v_3_01N_00_01NodeType_1_1Constant596b719ae2fbdba032d4d7caf610588d.html", "d6/d46/structBrush_1_1Signatures_3_01N_00_01enable__if__t_3_01is__in__v_3_01N_00_01NodeType_1_1Constant596b719ae2fbdba032d4d7caf610588d" ],
+      [ "Signatures< N, enable_if_t< is_in_v< N, NodeType::OffsetSum > > >", "d8/d1c/structBrush_1_1Signatures_3_01N_00_01enable__if__t_3_01is__in__v_3_01N_00_01NodeType_1_1OffsetSum_01_4_01_4_01_4.html", "d8/d1c/structBrush_1_1Signatures_3_01N_00_01enable__if__t_3_01is__in__v_3_01N_00_01NodeType_1_1OffsetSum_01_4_01_4_01_4" ],
       [ "Signatures< N, enable_if_t< is_in_v< N, NodeType::SplitBest, NodeType::CustomSplit > > >", "d2/d1e/structBrush_1_1Signatures_3_01N_00_01enable__if__t_3_01is__in__v_3_01N_00_01NodeType_1_1SplitBesd813f162f676219afb7a127e3ee4a443.html", "d2/d1e/structBrush_1_1Signatures_3_01N_00_01enable__if__t_3_01is__in__v_3_01N_00_01NodeType_1_1SplitBesd813f162f676219afb7a127e3ee4a443" ],
       [ "Signatures< N, enable_if_t< is_in_v< N, NodeType::Sum, NodeType::Prod, NodeType::Min, NodeType::Max, NodeType::Mean, NodeType::Median > > >", "d6/da3/structBrush_1_1Signatures_3_01N_00_01enable__if__t_3_01is__in__v_3_01N_00_01NodeType_1_1Sum_00_083e8a3a604402dec7f5377fa9aae58ea.html", "d6/da3/structBrush_1_1Signatures_3_01N_00_01enable__if__t_3_01is__in__v_3_01N_00_01NodeType_1_1Sum_00_083e8a3a604402dec7f5377fa9aae58ea" ],
       [ "Signatures< NodeType::Count >", "d9/d74/structBrush_1_1Signatures_3_01NodeType_1_1Count_01_4.html", "d9/d74/structBrush_1_1Signatures_3_01NodeType_1_1Count_01_4" ],

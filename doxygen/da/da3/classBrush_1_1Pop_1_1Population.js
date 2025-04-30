@@ -2,6 +2,7 @@ var classBrush_1_1Pop_1_1Population =
 [
     [ "SameFitComplexity", "d4/de2/structBrush_1_1Pop_1_1Population_1_1SameFitComplexity.html", "d4/de2/structBrush_1_1Pop_1_1Population_1_1SameFitComplexity" ],
     [ "SortComplexity", "d6/dd9/structBrush_1_1Pop_1_1Population_1_1SortComplexity.html", "d6/dd9/structBrush_1_1Pop_1_1Population_1_1SortComplexity" ],
+    [ "SortLinearComplexity", "d6/d21/structBrush_1_1Pop_1_1Population_1_1SortLinearComplexity.html", "d6/d21/structBrush_1_1Pop_1_1Population_1_1SortLinearComplexity" ],
     [ "Population", "da/da3/classBrush_1_1Pop_1_1Population.html#accbe0e4c2b8bf582fc686d7b93d784c1", null ],
     [ "~Population", "da/da3/classBrush_1_1Pop_1_1Population.html#a95bb307f431f7ab815f724c0e159b797", null ],
     [ "add_offspring_indexes", "da/da3/classBrush_1_1Pop_1_1Population.html#a74417ef86a9a4195d6422427d97347a5", null ],
@@ -20,6 +21,7 @@ var classBrush_1_1Pop_1_1Population =
     [ "update", "da/da3/classBrush_1_1Pop_1_1Population.html#af76f3d5380e7def96176b72d4969b69e", null ],
     [ "individuals", "da/da3/classBrush_1_1Pop_1_1Population.html#a7b529af66e90f378ca96a54ee5ce0c71", null ],
     [ "island_indexes", "da/da3/classBrush_1_1Pop_1_1Population.html#aa0bc73e0a032afefdf56a94aa27a68cf", null ],
+    [ "linear_complexity", "da/da3/classBrush_1_1Pop_1_1Population.html#a37b76e13ed8e9d39dbec875b3e50d7c7", null ],
     [ "mig_prob", "da/da3/classBrush_1_1Pop_1_1Population.html#a31f1c6f4250a15d2b720483d98fb456d", null ],
     [ "num_islands", "da/da3/classBrush_1_1Pop_1_1Population.html#a0a1f364040ce0de2ab17ae82e0faac76", null ],
     [ "pop_size", "da/da3/classBrush_1_1Pop_1_1Population.html#aada5cceb77f0823c7fdc99d21536146d", null ]

@@ -66,19 +66,20 @@ var NAVTREE =
 var NAVTREEINDEX =
 [
 "annotated.html",
-"d1/d3a/structBrush_1_1Node.html#a4fcf7feccb71d538f8614d3c51247eb4",
-"d2/d36/classBrush_1_1Data_1_1Dataset.html#ac15d3e1c19c7d2acd3499a8392512a12",
-"d4/d70/structBrush_1_1ResidualEvaluator.html#a7944b5155a9e8fe6ba66bb5ba0af0011",
-"d6/d2e/namespaceBrush_1_1Util.html#a313cbd04c33a2fe62b87977739337658",
-"d7/d56/structBrush_1_1Data_1_1TimeSeries.html#a564eb61fe2e0a33b8ccafdf5635fd706",
-"d8/d49/structNode.html#aed6c2af0fae3dd8e5a8aa2fab77479fd",
-"d9/da6/structBrush_1_1NarySignatures.html#aa831ed4ff505cd0c2ca95bc50eb1ba15",
-"db/d1f/structBrush_1_1Operator_3_01NT_00_01S_00_01Fit_00_01enable__if__t_3_01is__in__v_3_01NT_00_01Node0d34d2b97afea7b3bb37b94bd97cbb86.html#ae4852e75e91124556a838934d222fbc6",
-"dc/d31/structBrush_1_1Operator.html#aa4adc47d9cddb762f26e38747773bba6",
-"dc/d91/structBrush_1_1OptimizerSummary.html#ac5148f1dea89f3a5361bcbb668b8fb4d",
-"de/d30/structBrush_1_1Jetify.html#a41a88664219f863ac8fe341e03f5c21f",
-"de/deb/structBrush_1_1Parameters.html#a503e5e39ff8078bfd0132399bc376651",
-"functions_r.html"
+"d1/d3a/structBrush_1_1Node.html#a0971012cfb2ae944f4bea0ea0dc9e5a3",
+"d2/d36/classBrush_1_1Data_1_1Dataset.html#a00560cec5545ae35e9e9dd838647b883",
+"d4/d01/structBrush_1_1Jetify_3_01Data_1_1TimeSeriesb_01_4.html#a7512b59b3ddb27e6728c1a7e24facf31",
+"d4/de2/structBrush_1_1Pop_1_1Population_1_1SameFitComplexity.html#a9d8bb70353f845ab28181912f3a51cac",
+"d6/dd0/structBrush_1_1Fitness.html#a0998d4960cae30c329ae6d2f05a27c84",
+"d7/d56/structBrush_1_1Data_1_1TimeSeries.html#aa833203e5097827e5e395c9bd21d4be7",
+"d8/da4/classBrush_1_1Util_1_1Timer.html#a0b2b4a4a29477bf98ec3b0b80b29685c",
+"da/d4c/classBrush_1_1Eval_1_1Scorer.html#a074ffe387edb4090061c5aa0402ebb1d",
+"db/d2d/linear__thompson_8cpp.html",
+"dc/d31/structBrush_1_1Operator.html#a91d6de562fe5a54112e3c746b4281f7e",
+"dc/d91/structBrush_1_1OptimizerSummary.html#a445626b389af9b957a3df56919650fa9",
+"de/d20/classBrush_1_1Var_1_1SplitMutation.html",
+"de/deb/structBrush_1_1Parameters.html#a03a5ec7ccfcba501d57264aeb3a41263",
+"df/d09/structBrush_1_1TinyCostFunction.html#a81e83e5c0b620ee5c25da852a33d5f57"
 ];
 
 var SYNCONMSG = 'click to disable panel synchronization';

@@ -188,210 +188,225 @@ $(function(){initNavTree('de/d0d/nsga2_8cpp_source.html','../../'); initResizabl
 <div class="line"><a id="l00072" name="l00072"></a><span class="lineno">   72</span>    <span class="keywordtype">size_t</span> idx_start = std::floor(island*params.<a class="code hl_variable" href="../../de/deb/structBrush_1_1Parameters.html#a139004f9fa652376afabd690dac242e5">pop_size</a>/params.<a class="code hl_variable" href="../../de/deb/structBrush_1_1Parameters.html#a93ed229becd162e94722e034f8e5bebc">num_islands</a>);</div>
 <div class="line"><a id="l00073" name="l00073"></a><span class="lineno">   73</span>    <span class="keywordtype">size_t</span> idx_end   = std::floor((island+1)*params.<a class="code hl_variable" href="../../de/deb/structBrush_1_1Parameters.html#a139004f9fa652376afabd690dac242e5">pop_size</a>/params.<a class="code hl_variable" href="../../de/deb/structBrush_1_1Parameters.html#a93ed229becd162e94722e034f8e5bebc">num_islands</a>);</div>
 <div class="line"><a id="l00074" name="l00074"></a><span class="lineno">   74</span> </div>
-<div class="line"><a id="l00075" name="l00075"></a><span class="lineno">   75</span>    <span class="keyword">auto</span> original_size = idx_end - idx_start; <span class="comment">// original island size (survive must   be  called with an island with offfspring)</span></div>
-<div class="line"><a id="l00076" name="l00076"></a><span class="lineno">   76</span>    </div>
-<div class="line"><a id="l00077" name="l00077"></a><span class="lineno">   77</span>    <span class="keyword">auto</span> island_pool = pop.<a class="code hl_function" href="../../da/da3/classBrush_1_1Pop_1_1Population.html#a2bf4066c7a32ec3bd85c96bd80098de6">get_island_indexes</a>(island);</div>
-<div class="line"><a id="l00078" name="l00078"></a><span class="lineno">   78</span>    </div>
-<div class="line"><a id="l00079" name="l00079"></a><span class="lineno">   79</span>    <span class="comment">// fast non-dominated sort</span></div>
-<div class="line"><a id="l00080" name="l00080"></a><span class="lineno">   80</span>    <span class="keyword">auto</span> front = <a class="code hl_function" href="../../d3/d7d/classBrush_1_1Sel_1_1NSGA2.html#a4196468152e50eed683b327b0b732f70">fast_nds</a>(pop, island_pool);</div>
-<div class="line"><a id="l00081" name="l00081"></a><span class="lineno">   81</span>    </div>
-<div class="line"><a id="l00082" name="l00082"></a><span class="lineno">   82</span>    <span class="comment">// Push back selected individuals until full</span></div>
-<div class="line"><a id="l00083" name="l00083"></a><span class="lineno">   83</span>    vector&lt;size_t&gt; selected;</div>
-<div class="line"><a id="l00084" name="l00084"></a><span class="lineno">   84</span>    selected.resize(0);</div>
-<div class="line"><a id="l00085" name="l00085"></a><span class="lineno">   85</span>    </div>
-<div class="line"><a id="l00086" name="l00086"></a><span class="lineno">   86</span>    <span class="keywordtype">int</span> i = 0;</div>
-<div class="line"><a id="l00087" name="l00087"></a><span class="lineno">   87</span>    <span class="keywordflow">while</span> (</div>
-<div class="line"><a id="l00088" name="l00088"></a><span class="lineno">   88</span>        i &lt; front.size()</div>
-<div class="line"><a id="l00089" name="l00089"></a><span class="lineno">   89</span>        &amp;&amp; ( selected.size() + front.at(i).size() &lt; original_size )</div>
-<div class="line"><a id="l00090" name="l00090"></a><span class="lineno">   90</span>    )</div>
-<div class="line"><a id="l00091" name="l00091"></a><span class="lineno">   91</span>    {</div>
-<div class="line"><a id="l00092" name="l00092"></a><span class="lineno">   92</span>        std::vector&lt;int&gt;&amp; Fi = front.at(i);        <span class="comment">// indices in front i</span></div>
-<div class="line"><a id="l00093" name="l00093"></a><span class="lineno">   93</span> </div>
-<div class="line"><a id="l00094" name="l00094"></a><span class="lineno">   94</span>        <a class="code hl_function" href="../../d3/d7d/classBrush_1_1Sel_1_1NSGA2.html#a03190cdc845ff83c08c6d25681fc738c">crowding_distance</a>(pop, front, i);          <span class="comment">// calculate crowding in Fi</span></div>
-<div class="line"><a id="l00095" name="l00095"></a><span class="lineno">   95</span> </div>
-<div class="line"><a id="l00096" name="l00096"></a><span class="lineno">   96</span>        <span class="keywordflow">for</span> (<span class="keywordtype">int</span> j = 0; j &lt; Fi.size(); ++j)     <span class="comment">// Pt+1 = Pt+1 U Fi</span></div>
-<div class="line"><a id="l00097" name="l00097"></a><span class="lineno">   97</span>            selected.push_back(Fi.at(j));</div>
-<div class="line"><a id="l00098" name="l00098"></a><span class="lineno">   98</span> </div>
-<div class="line"><a id="l00099" name="l00099"></a><span class="lineno">   99</span>        ++i;</div>
-<div class="line"><a id="l00100" name="l00100"></a><span class="lineno">  100</span>    }</div>
-<div class="line"><a id="l00101" name="l00101"></a><span class="lineno">  101</span> </div>
-<div class="line"><a id="l00102" name="l00102"></a><span class="lineno">  102</span>    <span class="comment">// fmt::print(&quot;crowding distance\n&quot;);</span></div>
-<div class="line"><a id="l00103" name="l00103"></a><span class="lineno">  103</span>    <a class="code hl_function" href="../../d3/d7d/classBrush_1_1Sel_1_1NSGA2.html#a03190cdc845ff83c08c6d25681fc738c">crowding_distance</a>(pop, front, i);   <span class="comment">// calculate crowding in final front to include</span></div>
-<div class="line"><a id="l00104" name="l00104"></a><span class="lineno">  104</span>    std::sort(front.at(i).begin(),front.at(i).end(),<a class="code hl_struct" href="../../d1/d20/structBrush_1_1Sel_1_1NSGA2_1_1sort__n.html">sort_n</a>(pop));</div>
-<div class="line"><a id="l00105" name="l00105"></a><span class="lineno">  105</span>    </div>
-<div class="line"><a id="l00106" name="l00106"></a><span class="lineno">  106</span>    <span class="comment">// fmt::print(&quot;adding last front)\n&quot;);</span></div>
-<div class="line"><a id="l00107" name="l00107"></a><span class="lineno">  107</span>    <span class="keyword">const</span> <span class="keywordtype">int</span> extra = original_size - selected.size();</div>
-<div class="line"><a id="l00108" name="l00108"></a><span class="lineno">  108</span>    <span class="keywordflow">for</span> (<span class="keywordtype">int</span> j = 0; j &lt; extra; ++j) <span class="comment">// Pt+1 = Pt+1 U Fi[1:N-|Pt+1|]</span></div>
-<div class="line"><a id="l00109" name="l00109"></a><span class="lineno">  109</span>        selected.push_back(front.at(i).at(j));</div>
-<div class="line"><a id="l00110" name="l00110"></a><span class="lineno">  110</span>    </div>
-<div class="line"><a id="l00111" name="l00111"></a><span class="lineno">  111</span>    <span class="comment">// fmt::print(&quot;returning\n&quot;);</span></div>
-<div class="line"><a id="l00112" name="l00112"></a><span class="lineno">  112</span>    <span class="keywordflow">return</span> selected;</div>
-<div class="line"><a id="l00113" name="l00113"></a><span class="lineno">  113</span>}</div>
+<div class="line"><a id="l00075" name="l00075"></a><span class="lineno">   75</span>    <span class="comment">// TODO: survive should be unified across islands, and stop taking island as argument. This was already implemented, I need to update to remove island argument only</span></div>
+<div class="line"><a id="l00076" name="l00076"></a><span class="lineno">   76</span>    <span class="comment">// auto original_size = idx_end - idx_start; // original island size (survive must   be  called with an island with offfspring)</span></div>
+<div class="line"><a id="l00077" name="l00077"></a><span class="lineno">   77</span>    </div>
+<div class="line"><a id="l00078" name="l00078"></a><span class="lineno">   78</span>    <span class="keyword">auto</span> original_size = params.<a class="code hl_variable" href="../../de/deb/structBrush_1_1Parameters.html#a139004f9fa652376afabd690dac242e5">pop_size</a>;</div>
+<div class="line"><a id="l00079" name="l00079"></a><span class="lineno">   79</span> </div>
+<div class="line"><a id="l00080" name="l00080"></a><span class="lineno">   80</span>    <span class="comment">// TODO: clean up comments mess here </span></div>
+<div class="line"><a id="l00081" name="l00081"></a><span class="lineno">   81</span>    <span class="comment">// auto island_pool = pop.get_island_indexes(island);</span></div>
+<div class="line"><a id="l00082" name="l00082"></a><span class="lineno">   82</span> </div>
+<div class="line"><a id="l00083" name="l00083"></a><span class="lineno">   83</span>    std::vector&lt;size_t&gt; island_pool;</div>
+<div class="line"><a id="l00084" name="l00084"></a><span class="lineno">   84</span>    <span class="keywordflow">for</span> (<span class="keywordtype">int</span> i = 0; i &lt; params.<a class="code hl_variable" href="../../de/deb/structBrush_1_1Parameters.html#a93ed229becd162e94722e034f8e5bebc">num_islands</a>; ++i) {</div>
+<div class="line"><a id="l00085" name="l00085"></a><span class="lineno">   85</span>        <span class="keyword">auto</span> indexes = pop.<a class="code hl_function" href="../../da/da3/classBrush_1_1Pop_1_1Population.html#a2bf4066c7a32ec3bd85c96bd80098de6">get_island_indexes</a>(i);</div>
+<div class="line"><a id="l00086" name="l00086"></a><span class="lineno">   86</span>        island_pool.insert(island_pool.end(), indexes.begin(), indexes.end());</div>
+<div class="line"><a id="l00087" name="l00087"></a><span class="lineno">   87</span>    }</div>
+<div class="line"><a id="l00088" name="l00088"></a><span class="lineno">   88</span>    </div>
+<div class="line"><a id="l00089" name="l00089"></a><span class="lineno">   89</span>    <span class="comment">// fast non-dominated sort</span></div>
+<div class="line"><a id="l00090" name="l00090"></a><span class="lineno">   90</span>    <span class="keyword">auto</span> front = <a class="code hl_function" href="../../d3/d7d/classBrush_1_1Sel_1_1NSGA2.html#a4196468152e50eed683b327b0b732f70">fast_nds</a>(pop, island_pool);</div>
+<div class="line"><a id="l00091" name="l00091"></a><span class="lineno">   91</span>    </div>
+<div class="line"><a id="l00092" name="l00092"></a><span class="lineno">   92</span>    <span class="comment">// Push back selected individuals until full</span></div>
+<div class="line"><a id="l00093" name="l00093"></a><span class="lineno">   93</span>    vector&lt;size_t&gt; selected;</div>
+<div class="line"><a id="l00094" name="l00094"></a><span class="lineno">   94</span>    selected.resize(0);</div>
+<div class="line"><a id="l00095" name="l00095"></a><span class="lineno">   95</span>    </div>
+<div class="line"><a id="l00096" name="l00096"></a><span class="lineno">   96</span>    <span class="keywordtype">int</span> i = 0;</div>
+<div class="line"><a id="l00097" name="l00097"></a><span class="lineno">   97</span>    <span class="keywordflow">while</span> (</div>
+<div class="line"><a id="l00098" name="l00098"></a><span class="lineno">   98</span>        i &lt; front.size()</div>
+<div class="line"><a id="l00099" name="l00099"></a><span class="lineno">   99</span>        &amp;&amp; ( selected.size() + front.at(i).size() &lt; original_size )</div>
+<div class="line"><a id="l00100" name="l00100"></a><span class="lineno">  100</span>    )</div>
+<div class="line"><a id="l00101" name="l00101"></a><span class="lineno">  101</span>    {</div>
+<div class="line"><a id="l00102" name="l00102"></a><span class="lineno">  102</span>        std::vector&lt;int&gt;&amp; Fi = front.at(i);        <span class="comment">// indices in front i</span></div>
+<div class="line"><a id="l00103" name="l00103"></a><span class="lineno">  103</span> </div>
+<div class="line"><a id="l00104" name="l00104"></a><span class="lineno">  104</span>        <a class="code hl_function" href="../../d3/d7d/classBrush_1_1Sel_1_1NSGA2.html#a03190cdc845ff83c08c6d25681fc738c">crowding_distance</a>(pop, front, i);          <span class="comment">// calculate crowding in Fi</span></div>
+<div class="line"><a id="l00105" name="l00105"></a><span class="lineno">  105</span> </div>
+<div class="line"><a id="l00106" name="l00106"></a><span class="lineno">  106</span>        <span class="keywordflow">for</span> (<span class="keywordtype">int</span> j = 0; j &lt; Fi.size(); ++j)     <span class="comment">// Pt+1 = Pt+1 U Fi</span></div>
+<div class="line"><a id="l00107" name="l00107"></a><span class="lineno">  107</span>            selected.push_back(Fi.at(j));</div>
+<div class="line"><a id="l00108" name="l00108"></a><span class="lineno">  108</span> </div>
+<div class="line"><a id="l00109" name="l00109"></a><span class="lineno">  109</span>        ++i;</div>
+<div class="line"><a id="l00110" name="l00110"></a><span class="lineno">  110</span>    }</div>
+<div class="line"><a id="l00111" name="l00111"></a><span class="lineno">  111</span> </div>
+<div class="line"><a id="l00112" name="l00112"></a><span class="lineno">  112</span>    <span class="comment">// fmt::print(&quot;crowding distance\n&quot;);</span></div>
+<div class="line"><a id="l00113" name="l00113"></a><span class="lineno">  113</span>    <a class="code hl_function" href="../../d3/d7d/classBrush_1_1Sel_1_1NSGA2.html#a03190cdc845ff83c08c6d25681fc738c">crowding_distance</a>(pop, front, i);   <span class="comment">// calculate crowding in final front to include</span></div>
+<div class="line"><a id="l00114" name="l00114"></a><span class="lineno">  114</span>    std::sort(front.at(i).begin(),front.at(i).end(),<a class="code hl_struct" href="../../d1/d20/structBrush_1_1Sel_1_1NSGA2_1_1sort__n.html">sort_n</a>(pop));</div>
+<div class="line"><a id="l00115" name="l00115"></a><span class="lineno">  115</span>    </div>
+<div class="line"><a id="l00116" name="l00116"></a><span class="lineno">  116</span>    <span class="comment">// fmt::print(&quot;adding last front)\n&quot;);</span></div>
+<div class="line"><a id="l00117" name="l00117"></a><span class="lineno">  117</span>    <span class="keyword">const</span> <span class="keywordtype">int</span> extra = original_size - selected.size();</div>
+<div class="line"><a id="l00118" name="l00118"></a><span class="lineno">  118</span>    <span class="keywordflow">for</span> (<span class="keywordtype">int</span> j = 0; j &lt; extra; ++j) <span class="comment">// Pt+1 = Pt+1 U Fi[1:N-|Pt+1|]</span></div>
+<div class="line"><a id="l00119" name="l00119"></a><span class="lineno">  119</span>        selected.push_back(front.at(i).at(j));</div>
+<div class="line"><a id="l00120" name="l00120"></a><span class="lineno">  120</span>    </div>
+<div class="line"><a id="l00121" name="l00121"></a><span class="lineno">  121</span>    <span class="comment">// fmt::print(&quot;returning\n&quot;);</span></div>
+<div class="line"><a id="l00122" name="l00122"></a><span class="lineno">  122</span>    <span class="keywordflow">return</span> selected;</div>
+<div class="line"><a id="l00123" name="l00123"></a><span class="lineno">  123</span>}</div>
 </div>
-<div class="line"><a id="l00114" name="l00114"></a><span class="lineno">  114</span> </div>
-<div class="line"><a id="l00115" name="l00115"></a><span class="lineno">  115</span><span class="keyword">template</span>&lt;ProgramType T&gt;</div>
-<div class="foldopen" id="foldopen00116" data-start="{" data-end="}">
-<div class="line"><a id="l00116" name="l00116"></a><span class="lineno"><a class="line" href="../../d3/d7d/classBrush_1_1Sel_1_1NSGA2.html#a4196468152e50eed683b327b0b732f70">  116</a></span>vector&lt;vector&lt;int&gt;&gt; <a class="code hl_function" href="../../d3/d7d/classBrush_1_1Sel_1_1NSGA2.html#a4196468152e50eed683b327b0b732f70">NSGA2&lt;T&gt;::fast_nds</a>(<a class="code hl_class" href="../../da/da3/classBrush_1_1Pop_1_1Population.html">Population&lt;T&gt;</a>&amp; pop, vector&lt;size_t&gt;&amp; island_pool) </div>
-<div class="line"><a id="l00117" name="l00117"></a><span class="lineno">  117</span>{</div>
-<div class="line"><a id="l00118" name="l00118"></a><span class="lineno">  118</span>    <span class="comment">// this will update pareto dominance attributes in fitness class</span></div>
-<div class="line"><a id="l00119" name="l00119"></a><span class="lineno">  119</span>    <span class="comment">// based on the population</span></div>
-<div class="line"><a id="l00120" name="l00120"></a><span class="lineno">  120</span> </div>
-<div class="line"><a id="l00121" name="l00121"></a><span class="lineno">  121</span>    <span class="comment">//&lt; the Pareto fronts</span></div>
-<div class="line"><a id="l00122" name="l00122"></a><span class="lineno">  122</span>    vector&lt;vector&lt;int&gt;&gt; front;                </div>
-<div class="line"><a id="l00123" name="l00123"></a><span class="lineno">  123</span> </div>
-<div class="line"><a id="l00124" name="l00124"></a><span class="lineno">  124</span>    front.resize(1);</div>
-<div class="line"><a id="l00125" name="l00125"></a><span class="lineno">  125</span>    front.at(0).clear();</div>
-<div class="line"><a id="l00126" name="l00126"></a><span class="lineno">  126</span> </div>
-<div class="line"><a id="l00127" name="l00127"></a><span class="lineno">  127</span>    <span class="keywordflow">for</span> (<span class="keywordtype">int</span> i = 0; i &lt; island_pool.size(); ++i) {</div>
-<div class="line"><a id="l00128" name="l00128"></a><span class="lineno">  128</span>    </div>
-<div class="line"><a id="l00129" name="l00129"></a><span class="lineno">  129</span>        std::vector&lt;unsigned int&gt; dom;</div>
-<div class="line"><a id="l00130" name="l00130"></a><span class="lineno">  130</span>        <span class="keywordtype">int</span> dcount = 0;</div>
-<div class="line"><a id="l00131" name="l00131"></a><span class="lineno">  131</span>    </div>
-<div class="line"><a id="l00132" name="l00132"></a><span class="lineno">  132</span>        <span class="keyword">auto</span> p = pop.<a class="code hl_variable" href="../../da/da3/classBrush_1_1Pop_1_1Population.html#a7b529af66e90f378ca96a54ee5ce0c71">individuals</a>.at(island_pool[i]);</div>
+<div class="line"><a id="l00124" name="l00124"></a><span class="lineno">  124</span> </div>
+<div class="line"><a id="l00125" name="l00125"></a><span class="lineno">  125</span><span class="keyword">template</span>&lt;ProgramType T&gt;</div>
+<div class="foldopen" id="foldopen00126" data-start="{" data-end="}">
+<div class="line"><a id="l00126" name="l00126"></a><span class="lineno"><a class="line" href="../../d3/d7d/classBrush_1_1Sel_1_1NSGA2.html#a4196468152e50eed683b327b0b732f70">  126</a></span>vector&lt;vector&lt;int&gt;&gt; <a class="code hl_function" href="../../d3/d7d/classBrush_1_1Sel_1_1NSGA2.html#a4196468152e50eed683b327b0b732f70">NSGA2&lt;T&gt;::fast_nds</a>(<a class="code hl_class" href="../../da/da3/classBrush_1_1Pop_1_1Population.html">Population&lt;T&gt;</a>&amp; pop, vector&lt;size_t&gt;&amp; island_pool) </div>
+<div class="line"><a id="l00127" name="l00127"></a><span class="lineno">  127</span>{</div>
+<div class="line"><a id="l00128" name="l00128"></a><span class="lineno">  128</span>    <span class="comment">// this will update pareto dominance attributes in fitness class</span></div>
+<div class="line"><a id="l00129" name="l00129"></a><span class="lineno">  129</span>    <span class="comment">// based on the population</span></div>
+<div class="line"><a id="l00130" name="l00130"></a><span class="lineno">  130</span> </div>
+<div class="line"><a id="l00131" name="l00131"></a><span class="lineno">  131</span>    <span class="comment">//&lt; the Pareto fronts</span></div>
+<div class="line"><a id="l00132" name="l00132"></a><span class="lineno">  132</span>    vector&lt;vector&lt;int&gt;&gt; front;                </div>
 <div class="line"><a id="l00133" name="l00133"></a><span class="lineno">  133</span> </div>
-<div class="line"><a id="l00134" name="l00134"></a><span class="lineno">  134</span>        <span class="keywordflow">for</span> (<span class="keywordtype">int</span> j = 0; j &lt; island_pool.size(); ++j) {</div>
-<div class="line"><a id="l00135" name="l00135"></a><span class="lineno">  135</span>        </div>
-<div class="line"><a id="l00136" name="l00136"></a><span class="lineno">  136</span>            <span class="keyword">const</span> <a class="code hl_class" href="../../de/d83/classBrush_1_1Pop_1_1Individual.html">Individual&lt;T&gt;</a>&amp; q = pop[island_pool[j]];</div>
-<div class="line"><a id="l00137" name="l00137"></a><span class="lineno">  137</span>        </div>
-<div class="line"><a id="l00138" name="l00138"></a><span class="lineno">  138</span>            <span class="keywordtype">int</span> compare = p-&gt;fitness.dominates(q.<a class="code hl_variable" href="../../de/d83/classBrush_1_1Pop_1_1Individual.html#a96a4869472f1e11e19219c2d07fb6c53">fitness</a>);</div>
-<div class="line"><a id="l00139" name="l00139"></a><span class="lineno">  139</span>            <span class="keywordflow">if</span> (compare == 1) { <span class="comment">// p dominates q</span></div>
-<div class="line"><a id="l00140" name="l00140"></a><span class="lineno">  140</span>                <span class="comment">//p.dominated.push_back(j);</span></div>
-<div class="line"><a id="l00141" name="l00141"></a><span class="lineno">  141</span>                dom.push_back(island_pool[j]);</div>
-<div class="line"><a id="l00142" name="l00142"></a><span class="lineno">  142</span>            } <span class="keywordflow">else</span> <span class="keywordflow">if</span> (compare == -1) { <span class="comment">// q dominates p</span></div>
-<div class="line"><a id="l00143" name="l00143"></a><span class="lineno">  143</span>                <span class="comment">//p.dcounter += 1;</span></div>
-<div class="line"><a id="l00144" name="l00144"></a><span class="lineno">  144</span>                dcount += 1;</div>
-<div class="line"><a id="l00145" name="l00145"></a><span class="lineno">  145</span>            }</div>
-<div class="line"><a id="l00146" name="l00146"></a><span class="lineno">  146</span>        }</div>
-<div class="line"><a id="l00147" name="l00147"></a><span class="lineno">  147</span>        p-&gt;fitness.dcounter  = dcount;</div>
-<div class="line"><a id="l00148" name="l00148"></a><span class="lineno">  148</span>        p-&gt;fitness.dominated.clear();</div>
-<div class="line"><a id="l00149" name="l00149"></a><span class="lineno">  149</span>        p-&gt;fitness.dominated = dom; <span class="comment">// dom will have values already referring to island indexes</span></div>
-<div class="line"><a id="l00150" name="l00150"></a><span class="lineno">  150</span>    </div>
-<div class="line"><a id="l00151" name="l00151"></a><span class="lineno">  151</span>        <span class="keywordflow">if</span> (p-&gt;fitness.dcounter == 0) {</div>
-<div class="line"><a id="l00152" name="l00152"></a><span class="lineno">  152</span>            <span class="comment">// fmt::print(&quot;pushing {}...\n&quot;, island_pool[i]);</span></div>
-<div class="line"><a id="l00153" name="l00153"></a><span class="lineno">  153</span>            p-&gt;fitness.set_rank(1);</div>
-<div class="line"><a id="l00154" name="l00154"></a><span class="lineno">  154</span>            <span class="comment">// front will have values already referring to island indexes</span></div>
-<div class="line"><a id="l00155" name="l00155"></a><span class="lineno">  155</span>            front.at(0).push_back(island_pool[i]);</div>
+<div class="line"><a id="l00134" name="l00134"></a><span class="lineno">  134</span>    front.resize(1);</div>
+<div class="line"><a id="l00135" name="l00135"></a><span class="lineno">  135</span>    front.at(0).clear();</div>
+<div class="line"><a id="l00136" name="l00136"></a><span class="lineno">  136</span> </div>
+<div class="line"><a id="l00137" name="l00137"></a><span class="lineno">  137</span>    <span class="keywordflow">for</span> (<span class="keywordtype">int</span> i = 0; i &lt; island_pool.size(); ++i) {</div>
+<div class="line"><a id="l00138" name="l00138"></a><span class="lineno">  138</span>    </div>
+<div class="line"><a id="l00139" name="l00139"></a><span class="lineno">  139</span>        std::vector&lt;unsigned int&gt; dom;</div>
+<div class="line"><a id="l00140" name="l00140"></a><span class="lineno">  140</span>        <span class="keywordtype">int</span> dcount = 0;</div>
+<div class="line"><a id="l00141" name="l00141"></a><span class="lineno">  141</span>    </div>
+<div class="line"><a id="l00142" name="l00142"></a><span class="lineno">  142</span>        <span class="keyword">auto</span> p = pop.<a class="code hl_variable" href="../../da/da3/classBrush_1_1Pop_1_1Population.html#a7b529af66e90f378ca96a54ee5ce0c71">individuals</a>.at(island_pool[i]);</div>
+<div class="line"><a id="l00143" name="l00143"></a><span class="lineno">  143</span> </div>
+<div class="line"><a id="l00144" name="l00144"></a><span class="lineno">  144</span>        <span class="keywordflow">for</span> (<span class="keywordtype">int</span> j = 0; j &lt; island_pool.size(); ++j) {</div>
+<div class="line"><a id="l00145" name="l00145"></a><span class="lineno">  145</span>        </div>
+<div class="line"><a id="l00146" name="l00146"></a><span class="lineno">  146</span>            <span class="keyword">const</span> <a class="code hl_class" href="../../de/d83/classBrush_1_1Pop_1_1Individual.html">Individual&lt;T&gt;</a>&amp; q = pop[island_pool[j]];</div>
+<div class="line"><a id="l00147" name="l00147"></a><span class="lineno">  147</span>        </div>
+<div class="line"><a id="l00148" name="l00148"></a><span class="lineno">  148</span>            <span class="keywordtype">int</span> compare = p-&gt;fitness.dominates(q.<a class="code hl_variable" href="../../de/d83/classBrush_1_1Pop_1_1Individual.html#a96a4869472f1e11e19219c2d07fb6c53">fitness</a>);</div>
+<div class="line"><a id="l00149" name="l00149"></a><span class="lineno">  149</span>            <span class="keywordflow">if</span> (compare == 1) { <span class="comment">// p dominates q</span></div>
+<div class="line"><a id="l00150" name="l00150"></a><span class="lineno">  150</span>                <span class="comment">//p.dominated.push_back(j);</span></div>
+<div class="line"><a id="l00151" name="l00151"></a><span class="lineno">  151</span>                dom.push_back(island_pool[j]);</div>
+<div class="line"><a id="l00152" name="l00152"></a><span class="lineno">  152</span>            } <span class="keywordflow">else</span> <span class="keywordflow">if</span> (compare == -1) { <span class="comment">// q dominates p</span></div>
+<div class="line"><a id="l00153" name="l00153"></a><span class="lineno">  153</span>                <span class="comment">//p.dcounter += 1;</span></div>
+<div class="line"><a id="l00154" name="l00154"></a><span class="lineno">  154</span>                dcount += 1;</div>
+<div class="line"><a id="l00155" name="l00155"></a><span class="lineno">  155</span>            }</div>
 <div class="line"><a id="l00156" name="l00156"></a><span class="lineno">  156</span>        }</div>
-<div class="line"><a id="l00157" name="l00157"></a><span class="lineno">  157</span> </div>
-<div class="line"><a id="l00158" name="l00158"></a><span class="lineno">  158</span>    }</div>
-<div class="line"><a id="l00159" name="l00159"></a><span class="lineno">  159</span> </div>
-<div class="line"><a id="l00160" name="l00160"></a><span class="lineno">  160</span>    <span class="comment">// fmt::print(&quot;First front size {}...\n&quot;, front.at(0).size());</span></div>
+<div class="line"><a id="l00157" name="l00157"></a><span class="lineno">  157</span>        p-&gt;fitness.dcounter  = dcount;</div>
+<div class="line"><a id="l00158" name="l00158"></a><span class="lineno">  158</span>        p-&gt;fitness.dominated.clear();</div>
+<div class="line"><a id="l00159" name="l00159"></a><span class="lineno">  159</span>        p-&gt;fitness.dominated = dom; <span class="comment">// dom will have values already referring to island indexes</span></div>
+<div class="line"><a id="l00160" name="l00160"></a><span class="lineno">  160</span>        p-&gt;fitness.set_crowding_dist(0.0f);</div>
 <div class="line"><a id="l00161" name="l00161"></a><span class="lineno">  161</span>    </div>
-<div class="line"><a id="l00162" name="l00162"></a><span class="lineno">  162</span>    <span class="comment">// using OpenMP can have different orders in the front.at(0)</span></div>
-<div class="line"><a id="l00163" name="l00163"></a><span class="lineno">  163</span>    <span class="comment">// so let&#39;s sort it so that the algorithm is deterministic</span></div>
-<div class="line"><a id="l00164" name="l00164"></a><span class="lineno">  164</span>    <span class="comment">// given a seed</span></div>
-<div class="line"><a id="l00165" name="l00165"></a><span class="lineno">  165</span>    std::sort(front.at(0).begin(), front.at(0).end());    </div>
-<div class="line"><a id="l00166" name="l00166"></a><span class="lineno">  166</span> </div>
-<div class="line"><a id="l00167" name="l00167"></a><span class="lineno">  167</span>    <span class="keywordtype">int</span> fi = 1;</div>
-<div class="line"><a id="l00168" name="l00168"></a><span class="lineno">  168</span>    <span class="keywordflow">while</span> (front.at(fi-1).size() &gt; 0) {</div>
-<div class="line"><a id="l00169" name="l00169"></a><span class="lineno">  169</span>        std::vector&lt;int&gt;&amp; fronti = front.at(fi-1);</div>
-<div class="line"><a id="l00170" name="l00170"></a><span class="lineno">  170</span>        std::vector&lt;int&gt; Q;</div>
-<div class="line"><a id="l00171" name="l00171"></a><span class="lineno">  171</span>        <span class="keywordflow">for</span> (<span class="keywordtype">int</span> i = 0; i &lt; fronti.size(); ++i) {</div>
-<div class="line"><a id="l00172" name="l00172"></a><span class="lineno">  172</span> </div>
-<div class="line"><a id="l00173" name="l00173"></a><span class="lineno">  173</span>            <span class="keyword">const</span> <a class="code hl_class" href="../../de/d83/classBrush_1_1Pop_1_1Individual.html">Individual&lt;T&gt;</a>&amp; p = pop[fronti.at(i)];</div>
-<div class="line"><a id="l00174" name="l00174"></a><span class="lineno">  174</span> </div>
-<div class="line"><a id="l00175" name="l00175"></a><span class="lineno">  175</span>            <span class="comment">// iterating over dominated individuals</span></div>
-<div class="line"><a id="l00176" name="l00176"></a><span class="lineno">  176</span>            <span class="keywordflow">for</span> (<span class="keywordtype">int</span> j = 0; j &lt; p.<a class="code hl_variable" href="../../de/d83/classBrush_1_1Pop_1_1Individual.html#a96a4869472f1e11e19219c2d07fb6c53">fitness</a>.<a class="code hl_variable" href="../../d6/dd0/structBrush_1_1Fitness.html#ad66abe65f27bd44fc49975be3c2103cb">dominated</a>.size() ; ++j) {</div>
-<div class="line"><a id="l00177" name="l00177"></a><span class="lineno">  177</span>                <span class="comment">// fmt::print(&quot;decreased counter of ind {} for {} to {} \n&quot;, j, p.fitness.dominated.at(j), pop.individuals.at(p.fitness.dominated.at(j))-&gt;fitness.dcounter);</span></div>
-<div class="line"><a id="l00178" name="l00178"></a><span class="lineno">  178</span> </div>
-<div class="line"><a id="l00179" name="l00179"></a><span class="lineno">  179</span>                <span class="keyword">auto</span> q = pop.<a class="code hl_variable" href="../../da/da3/classBrush_1_1Pop_1_1Population.html#a7b529af66e90f378ca96a54ee5ce0c71">individuals</a>.at(p.<a class="code hl_variable" href="../../de/d83/classBrush_1_1Pop_1_1Individual.html#a96a4869472f1e11e19219c2d07fb6c53">fitness</a>.<a class="code hl_variable" href="../../d6/dd0/structBrush_1_1Fitness.html#ad66abe65f27bd44fc49975be3c2103cb">dominated</a>.at(j));</div>
-<div class="line"><a id="l00180" name="l00180"></a><span class="lineno">  180</span>                </div>
-<div class="line"><a id="l00181" name="l00181"></a><span class="lineno">  181</span>                <span class="comment">// fmt::print(&quot;decreased counter \n&quot;);</span></div>
-<div class="line"><a id="l00182" name="l00182"></a><span class="lineno">  182</span>                q-&gt;fitness.dcounter -= 1;</div>
+<div class="line"><a id="l00162" name="l00162"></a><span class="lineno">  162</span>        <span class="keywordflow">if</span> (p-&gt;fitness.dcounter == 0) {</div>
+<div class="line"><a id="l00163" name="l00163"></a><span class="lineno">  163</span>            <span class="comment">// fmt::print(&quot;pushing {}...\n&quot;, island_pool[i]);</span></div>
+<div class="line"><a id="l00164" name="l00164"></a><span class="lineno">  164</span>            p-&gt;fitness.set_rank(1);</div>
+<div class="line"><a id="l00165" name="l00165"></a><span class="lineno">  165</span>            <span class="comment">// front will have values already referring to island indexes</span></div>
+<div class="line"><a id="l00166" name="l00166"></a><span class="lineno">  166</span>            front.at(0).push_back(island_pool[i]);</div>
+<div class="line"><a id="l00167" name="l00167"></a><span class="lineno">  167</span>        }</div>
+<div class="line"><a id="l00168" name="l00168"></a><span class="lineno">  168</span> </div>
+<div class="line"><a id="l00169" name="l00169"></a><span class="lineno">  169</span>    }</div>
+<div class="line"><a id="l00170" name="l00170"></a><span class="lineno">  170</span> </div>
+<div class="line"><a id="l00171" name="l00171"></a><span class="lineno">  171</span>    <span class="comment">// fmt::print(&quot;First front size {}...\n&quot;, front.at(0).size());</span></div>
+<div class="line"><a id="l00172" name="l00172"></a><span class="lineno">  172</span>    </div>
+<div class="line"><a id="l00173" name="l00173"></a><span class="lineno">  173</span>    <span class="comment">// using OpenMP can have different orders in the front.at(0)</span></div>
+<div class="line"><a id="l00174" name="l00174"></a><span class="lineno">  174</span>    <span class="comment">// so let&#39;s sort it so that the algorithm is deterministic</span></div>
+<div class="line"><a id="l00175" name="l00175"></a><span class="lineno">  175</span>    <span class="comment">// given a seed</span></div>
+<div class="line"><a id="l00176" name="l00176"></a><span class="lineno">  176</span>    std::sort(front.at(0).begin(), front.at(0).end());    </div>
+<div class="line"><a id="l00177" name="l00177"></a><span class="lineno">  177</span> </div>
+<div class="line"><a id="l00178" name="l00178"></a><span class="lineno">  178</span>    <span class="keywordtype">int</span> fi = 1;</div>
+<div class="line"><a id="l00179" name="l00179"></a><span class="lineno">  179</span>    <span class="keywordflow">while</span> (front.at(fi-1).size() &gt; 0) {</div>
+<div class="line"><a id="l00180" name="l00180"></a><span class="lineno">  180</span>        std::vector&lt;int&gt;&amp; fronti = front.at(fi-1);</div>
+<div class="line"><a id="l00181" name="l00181"></a><span class="lineno">  181</span>        std::vector&lt;int&gt; Q;</div>
+<div class="line"><a id="l00182" name="l00182"></a><span class="lineno">  182</span>        <span class="keywordflow">for</span> (<span class="keywordtype">int</span> i = 0; i &lt; fronti.size(); ++i) {</div>
 <div class="line"><a id="l00183" name="l00183"></a><span class="lineno">  183</span> </div>
-<div class="line"><a id="l00184" name="l00184"></a><span class="lineno">  184</span>                <span class="keywordflow">if</span> (q-&gt;fitness.dcounter == 0) {</div>
-<div class="line"><a id="l00185" name="l00185"></a><span class="lineno">  185</span>                    <span class="comment">// fmt::print(&quot;updated counter for ind {} \n&quot;, j);</span></div>
-<div class="line"><a id="l00186" name="l00186"></a><span class="lineno">  186</span> </div>
-<div class="line"><a id="l00187" name="l00187"></a><span class="lineno">  187</span>                    q-&gt;fitness.set_rank(fi+1);</div>
-<div class="line"><a id="l00188" name="l00188"></a><span class="lineno">  188</span>                    Q.push_back(p.<a class="code hl_variable" href="../../de/d83/classBrush_1_1Pop_1_1Individual.html#a96a4869472f1e11e19219c2d07fb6c53">fitness</a>.<a class="code hl_variable" href="../../d6/dd0/structBrush_1_1Fitness.html#ad66abe65f27bd44fc49975be3c2103cb">dominated</a>.at(j));</div>
-<div class="line"><a id="l00189" name="l00189"></a><span class="lineno">  189</span>                }</div>
-<div class="line"><a id="l00190" name="l00190"></a><span class="lineno">  190</span>            }</div>
-<div class="line"><a id="l00191" name="l00191"></a><span class="lineno">  191</span>        }</div>
-<div class="line"><a id="l00192" name="l00192"></a><span class="lineno">  192</span> </div>
-<div class="line"><a id="l00193" name="l00193"></a><span class="lineno">  193</span>        front.push_back(Q);</div>
+<div class="line"><a id="l00184" name="l00184"></a><span class="lineno">  184</span>            <span class="keyword">const</span> <a class="code hl_class" href="../../de/d83/classBrush_1_1Pop_1_1Individual.html">Individual&lt;T&gt;</a>&amp; p = pop[fronti.at(i)];</div>
+<div class="line"><a id="l00185" name="l00185"></a><span class="lineno">  185</span> </div>
+<div class="line"><a id="l00186" name="l00186"></a><span class="lineno">  186</span>            <span class="comment">// iterating over dominated individuals</span></div>
+<div class="line"><a id="l00187" name="l00187"></a><span class="lineno">  187</span>            <span class="keywordflow">for</span> (<span class="keywordtype">int</span> j = 0; j &lt; p.<a class="code hl_variable" href="../../de/d83/classBrush_1_1Pop_1_1Individual.html#a96a4869472f1e11e19219c2d07fb6c53">fitness</a>.<a class="code hl_variable" href="../../d6/dd0/structBrush_1_1Fitness.html#ad66abe65f27bd44fc49975be3c2103cb">dominated</a>.size() ; ++j) {</div>
+<div class="line"><a id="l00188" name="l00188"></a><span class="lineno">  188</span>                <span class="comment">// fmt::print(&quot;decreased counter of ind {} for {} to {} \n&quot;, j, p.fitness.dominated.at(j), pop.individuals.at(p.fitness.dominated.at(j))-&gt;fitness.dcounter);</span></div>
+<div class="line"><a id="l00189" name="l00189"></a><span class="lineno">  189</span> </div>
+<div class="line"><a id="l00190" name="l00190"></a><span class="lineno">  190</span>                <span class="keyword">auto</span> q = pop.<a class="code hl_variable" href="../../da/da3/classBrush_1_1Pop_1_1Population.html#a7b529af66e90f378ca96a54ee5ce0c71">individuals</a>.at(p.<a class="code hl_variable" href="../../de/d83/classBrush_1_1Pop_1_1Individual.html#a96a4869472f1e11e19219c2d07fb6c53">fitness</a>.<a class="code hl_variable" href="../../d6/dd0/structBrush_1_1Fitness.html#ad66abe65f27bd44fc49975be3c2103cb">dominated</a>.at(j));</div>
+<div class="line"><a id="l00191" name="l00191"></a><span class="lineno">  191</span>                </div>
+<div class="line"><a id="l00192" name="l00192"></a><span class="lineno">  192</span>                <span class="comment">// fmt::print(&quot;decreased counter \n&quot;);</span></div>
+<div class="line"><a id="l00193" name="l00193"></a><span class="lineno">  193</span>                q-&gt;fitness.dcounter -= 1;</div>
 <div class="line"><a id="l00194" name="l00194"></a><span class="lineno">  194</span> </div>
-<div class="line"><a id="l00195" name="l00195"></a><span class="lineno">  195</span>        fi += 1;</div>
-<div class="line"><a id="l00196" name="l00196"></a><span class="lineno">  196</span>    }</div>
-<div class="line"><a id="l00197" name="l00197"></a><span class="lineno">  197</span>    <span class="keywordflow">return</span> front;</div>
-<div class="line"><a id="l00198" name="l00198"></a><span class="lineno">  198</span>}</div>
-</div>
-<div class="line"><a id="l00199" name="l00199"></a><span class="lineno">  199</span> </div>
-<div class="line"><a id="l00200" name="l00200"></a><span class="lineno">  200</span><span class="keyword">template</span>&lt;ProgramType T&gt;</div>
-<div class="foldopen" id="foldopen00201" data-start="{" data-end="}">
-<div class="line"><a id="l00201" name="l00201"></a><span class="lineno"><a class="line" href="../../d3/d7d/classBrush_1_1Sel_1_1NSGA2.html#a03190cdc845ff83c08c6d25681fc738c">  201</a></span><span class="keywordtype">void</span> <a class="code hl_function" href="../../d3/d7d/classBrush_1_1Sel_1_1NSGA2.html#a03190cdc845ff83c08c6d25681fc738c">NSGA2&lt;T&gt;::crowding_distance</a>(<a class="code hl_class" href="../../da/da3/classBrush_1_1Pop_1_1Population.html">Population&lt;T&gt;</a>&amp; pop, vector&lt;vector&lt;int&gt;&gt;&amp; front, <span class="keywordtype">int</span> fronti)</div>
-<div class="line"><a id="l00202" name="l00202"></a><span class="lineno">  202</span>{</div>
+<div class="line"><a id="l00195" name="l00195"></a><span class="lineno">  195</span>                <span class="keywordflow">if</span> (q-&gt;fitness.dcounter == 0) {</div>
+<div class="line"><a id="l00196" name="l00196"></a><span class="lineno">  196</span>                    <span class="comment">// fmt::print(&quot;updated counter for ind {} \n&quot;, j);</span></div>
+<div class="line"><a id="l00197" name="l00197"></a><span class="lineno">  197</span> </div>
+<div class="line"><a id="l00198" name="l00198"></a><span class="lineno">  198</span>                    q-&gt;fitness.set_rank(fi+1);</div>
+<div class="line"><a id="l00199" name="l00199"></a><span class="lineno">  199</span>                    Q.push_back(p.<a class="code hl_variable" href="../../de/d83/classBrush_1_1Pop_1_1Individual.html#a96a4869472f1e11e19219c2d07fb6c53">fitness</a>.<a class="code hl_variable" href="../../d6/dd0/structBrush_1_1Fitness.html#ad66abe65f27bd44fc49975be3c2103cb">dominated</a>.at(j));</div>
+<div class="line"><a id="l00200" name="l00200"></a><span class="lineno">  200</span>                }</div>
+<div class="line"><a id="l00201" name="l00201"></a><span class="lineno">  201</span>            }</div>
+<div class="line"><a id="l00202" name="l00202"></a><span class="lineno">  202</span>        }</div>
 <div class="line"><a id="l00203" name="l00203"></a><span class="lineno">  203</span> </div>
-<div class="line"><a id="l00204" name="l00204"></a><span class="lineno">  204</span>    <span class="comment">// fmt::print(&quot;inside crowding distance for front {}...\n&quot;, fronti);</span></div>
+<div class="line"><a id="l00204" name="l00204"></a><span class="lineno">  204</span>        front.push_back(Q);</div>
 <div class="line"><a id="l00205" name="l00205"></a><span class="lineno">  205</span> </div>
-<div class="line"><a id="l00206" name="l00206"></a><span class="lineno">  206</span>    std::vector&lt;int&gt; F = front.at(fronti);</div>
-<div class="line"><a id="l00207" name="l00207"></a><span class="lineno">  207</span>    <span class="keywordflow">if</span> (F.size() == 0 ){</div>
-<div class="line"><a id="l00208" name="l00208"></a><span class="lineno">  208</span>        <span class="comment">// fmt::print(&quot;empty front\n&quot;);</span></div>
-<div class="line"><a id="l00209" name="l00209"></a><span class="lineno">  209</span>        <span class="keywordflow">return</span>;</div>
-<div class="line"><a id="l00210" name="l00210"></a><span class="lineno">  210</span>    }</div>
-<div class="line"><a id="l00211" name="l00211"></a><span class="lineno">  211</span> </div>
-<div class="line"><a id="l00212" name="l00212"></a><span class="lineno">  212</span>    <span class="keyword">const</span> <span class="keywordtype">int</span> fsize = F.size();</div>
-<div class="line"><a id="l00213" name="l00213"></a><span class="lineno">  213</span>    <span class="comment">// fmt::print(&quot;front size is {}...\n&quot;, fsize);</span></div>
-<div class="line"><a id="l00214" name="l00214"></a><span class="lineno">  214</span> </div>
-<div class="line"><a id="l00215" name="l00215"></a><span class="lineno">  215</span>    <span class="keywordflow">for</span> (<span class="keywordtype">int</span> i = 0; i &lt; fsize; ++i)</div>
-<div class="line"><a id="l00216" name="l00216"></a><span class="lineno">  216</span>        pop.<a class="code hl_variable" href="../../da/da3/classBrush_1_1Pop_1_1Population.html#a7b529af66e90f378ca96a54ee5ce0c71">individuals</a>.at(F.at(i))-&gt;fitness.crowding_dist = 0;</div>
-<div class="line"><a id="l00217" name="l00217"></a><span class="lineno">  217</span> </div>
-<div class="line"><a id="l00218" name="l00218"></a><span class="lineno">  218</span>    <span class="comment">// fmt::print(&quot;reseted crowding distance for individuals in this front\n&quot;);</span></div>
-<div class="line"><a id="l00219" name="l00219"></a><span class="lineno">  219</span> </div>
-<div class="line"><a id="l00220" name="l00220"></a><span class="lineno">  220</span>    <span class="keyword">const</span> <span class="keywordtype">int</span> limit = pop.<a class="code hl_variable" href="../../da/da3/classBrush_1_1Pop_1_1Population.html#a7b529af66e90f378ca96a54ee5ce0c71">individuals</a>.at(0)-&gt;fitness.get_wvalues().size();</div>
-<div class="line"><a id="l00221" name="l00221"></a><span class="lineno">  221</span>    <span class="comment">// fmt::print(&quot;limit is {}\n&quot;, limit);</span></div>
-<div class="line"><a id="l00222" name="l00222"></a><span class="lineno">  222</span> </div>
-<div class="line"><a id="l00223" name="l00223"></a><span class="lineno">  223</span>    <span class="keywordflow">for</span> (<span class="keywordtype">int</span> m = 0; m &lt; limit; ++m) {</div>
-<div class="line"><a id="l00224" name="l00224"></a><span class="lineno">  224</span>        <span class="comment">// fmt::print(&quot;m {}\n&quot;, m);</span></div>
-<div class="line"><a id="l00225" name="l00225"></a><span class="lineno">  225</span> </div>
-<div class="line"><a id="l00226" name="l00226"></a><span class="lineno">  226</span>        std::sort(F.begin(), F.end(), <a class="code hl_struct" href="../../dd/dc3/structBrush_1_1Sel_1_1NSGA2_1_1comparator__obj.html">comparator_obj</a>(pop,m));</div>
-<div class="line"><a id="l00227" name="l00227"></a><span class="lineno">  227</span> </div>
-<div class="line"><a id="l00228" name="l00228"></a><span class="lineno">  228</span>        <span class="comment">// in the paper dist=INF for the first and last, in the code</span></div>
-<div class="line"><a id="l00229" name="l00229"></a><span class="lineno">  229</span>        <span class="comment">// this is only done to the first one or to the two first when size=2</span></div>
-<div class="line"><a id="l00230" name="l00230"></a><span class="lineno">  230</span>        pop.<a class="code hl_variable" href="../../da/da3/classBrush_1_1Pop_1_1Population.html#a7b529af66e90f378ca96a54ee5ce0c71">individuals</a>.at(F.at(0))-&gt;fitness.crowding_dist = std::numeric_limits&lt;float&gt;::max();</div>
-<div class="line"><a id="l00231" name="l00231"></a><span class="lineno">  231</span>        <span class="keywordflow">if</span> (fsize &gt; 1)</div>
-<div class="line"><a id="l00232" name="l00232"></a><span class="lineno">  232</span>            pop.<a class="code hl_variable" href="../../da/da3/classBrush_1_1Pop_1_1Population.html#a7b529af66e90f378ca96a54ee5ce0c71">individuals</a>.at(F.at(fsize-1))-&gt;fitness.crowding_dist = std::numeric_limits&lt;float&gt;::max();</div>
-<div class="line"><a id="l00233" name="l00233"></a><span class="lineno">  233</span>    </div>
-<div class="line"><a id="l00234" name="l00234"></a><span class="lineno">  234</span>        <span class="keywordflow">for</span> (<span class="keywordtype">int</span> i = 1; i &lt; fsize-1; ++i) </div>
-<div class="line"><a id="l00235" name="l00235"></a><span class="lineno">  235</span>        {</div>
-<div class="line"><a id="l00236" name="l00236"></a><span class="lineno">  236</span>            <span class="keywordflow">if</span> (pop.<a class="code hl_variable" href="../../da/da3/classBrush_1_1Pop_1_1Population.html#a7b529af66e90f378ca96a54ee5ce0c71">individuals</a>.at(F.at(i))-&gt;fitness.crowding_dist != std::numeric_limits&lt;float&gt;::max()) </div>
-<div class="line"><a id="l00237" name="l00237"></a><span class="lineno">  237</span>            {   <span class="comment">// crowd over obj</span></div>
-<div class="line"><a id="l00238" name="l00238"></a><span class="lineno">  238</span>                <span class="comment">// TODO: this could be improved</span></div>
-<div class="line"><a id="l00239" name="l00239"></a><span class="lineno">  239</span>                pop.<a class="code hl_variable" href="../../da/da3/classBrush_1_1Pop_1_1Population.html#a7b529af66e90f378ca96a54ee5ce0c71">individuals</a>.at(F.at(i))-&gt;fitness.crowding_dist +=</div>
-<div class="line"><a id="l00240" name="l00240"></a><span class="lineno">  240</span>                    (pop.<a class="code hl_variable" href="../../da/da3/classBrush_1_1Pop_1_1Population.html#a7b529af66e90f378ca96a54ee5ce0c71">individuals</a>.at(F.at(i+1))-&gt;fitness.get_wvalues().at(m) - pop.<a class="code hl_variable" href="../../da/da3/classBrush_1_1Pop_1_1Population.html#a7b529af66e90f378ca96a54ee5ce0c71">individuals</a>.at(F.at(i-1))-&gt;fitness.get_wvalues().at(m)) </div>
-<div class="line"><a id="l00241" name="l00241"></a><span class="lineno">  241</span>                    / (pop.<a class="code hl_variable" href="../../da/da3/classBrush_1_1Pop_1_1Population.html#a7b529af66e90f378ca96a54ee5ce0c71">individuals</a>.at(F.at(fsize-1))-&gt;fitness.get_wvalues().at(m) - pop.<a class="code hl_variable" href="../../da/da3/classBrush_1_1Pop_1_1Population.html#a7b529af66e90f378ca96a54ee5ce0c71">individuals</a>.at(F.at(0))-&gt;fitness.get_wvalues().at(m));</div>
-<div class="line"><a id="l00242" name="l00242"></a><span class="lineno">  242</span>            }</div>
-<div class="line"><a id="l00243" name="l00243"></a><span class="lineno">  243</span>        }</div>
-<div class="line"><a id="l00244" name="l00244"></a><span class="lineno">  244</span>    }        </div>
-<div class="line"><a id="l00245" name="l00245"></a><span class="lineno">  245</span>}</div>
+<div class="line"><a id="l00206" name="l00206"></a><span class="lineno">  206</span>        fi += 1;</div>
+<div class="line"><a id="l00207" name="l00207"></a><span class="lineno">  207</span>    }</div>
+<div class="line"><a id="l00208" name="l00208"></a><span class="lineno">  208</span>    <span class="keywordflow">return</span> front;</div>
+<div class="line"><a id="l00209" name="l00209"></a><span class="lineno">  209</span>}</div>
 </div>
-<div class="line"><a id="l00246" name="l00246"></a><span class="lineno">  246</span> </div>
-<div class="line"><a id="l00247" name="l00247"></a><span class="lineno">  247</span>} <span class="comment">// selection</span></div>
-<div class="line"><a id="l00248" name="l00248"></a><span class="lineno">  248</span>} <span class="comment">// Brush</span></div>
+<div class="line"><a id="l00210" name="l00210"></a><span class="lineno">  210</span> </div>
+<div class="line"><a id="l00211" name="l00211"></a><span class="lineno">  211</span><span class="keyword">template</span>&lt;ProgramType T&gt;</div>
+<div class="foldopen" id="foldopen00212" data-start="{" data-end="}">
+<div class="line"><a id="l00212" name="l00212"></a><span class="lineno"><a class="line" href="../../d3/d7d/classBrush_1_1Sel_1_1NSGA2.html#a03190cdc845ff83c08c6d25681fc738c">  212</a></span><span class="keywordtype">void</span> <a class="code hl_function" href="../../d3/d7d/classBrush_1_1Sel_1_1NSGA2.html#a03190cdc845ff83c08c6d25681fc738c">NSGA2&lt;T&gt;::crowding_distance</a>(<a class="code hl_class" href="../../da/da3/classBrush_1_1Pop_1_1Population.html">Population&lt;T&gt;</a>&amp; pop, vector&lt;vector&lt;int&gt;&gt;&amp; front, <span class="keywordtype">int</span> fronti)</div>
+<div class="line"><a id="l00213" name="l00213"></a><span class="lineno">  213</span>{</div>
+<div class="line"><a id="l00214" name="l00214"></a><span class="lineno">  214</span> </div>
+<div class="line"><a id="l00215" name="l00215"></a><span class="lineno">  215</span>    <span class="comment">// fmt::print(&quot;inside crowding distance for front {}...\n&quot;, fronti);</span></div>
+<div class="line"><a id="l00216" name="l00216"></a><span class="lineno">  216</span> </div>
+<div class="line"><a id="l00217" name="l00217"></a><span class="lineno">  217</span>    std::vector&lt;int&gt; F = front.at(fronti);</div>
+<div class="line"><a id="l00218" name="l00218"></a><span class="lineno">  218</span>    <span class="keywordflow">if</span> (F.size() == 0 ){</div>
+<div class="line"><a id="l00219" name="l00219"></a><span class="lineno">  219</span>        <span class="comment">// fmt::print(&quot;empty front\n&quot;);</span></div>
+<div class="line"><a id="l00220" name="l00220"></a><span class="lineno">  220</span>        <span class="keywordflow">return</span>;</div>
+<div class="line"><a id="l00221" name="l00221"></a><span class="lineno">  221</span>    }</div>
+<div class="line"><a id="l00222" name="l00222"></a><span class="lineno">  222</span> </div>
+<div class="line"><a id="l00223" name="l00223"></a><span class="lineno">  223</span>    <span class="keyword">const</span> <span class="keywordtype">int</span> fsize = F.size();</div>
+<div class="line"><a id="l00224" name="l00224"></a><span class="lineno">  224</span>    <span class="comment">// fmt::print(&quot;front size is {}...\n&quot;, fsize);</span></div>
+<div class="line"><a id="l00225" name="l00225"></a><span class="lineno">  225</span> </div>
+<div class="line"><a id="l00226" name="l00226"></a><span class="lineno">  226</span>    <span class="keywordflow">for</span> (<span class="keywordtype">int</span> i = 0; i &lt; fsize; ++i)</div>
+<div class="line"><a id="l00227" name="l00227"></a><span class="lineno">  227</span>        pop.<a class="code hl_variable" href="../../da/da3/classBrush_1_1Pop_1_1Population.html#a7b529af66e90f378ca96a54ee5ce0c71">individuals</a>.at(F.at(i))-&gt;fitness.set_crowding_dist(0.0f);</div>
+<div class="line"><a id="l00228" name="l00228"></a><span class="lineno">  228</span> </div>
+<div class="line"><a id="l00229" name="l00229"></a><span class="lineno">  229</span>    <span class="comment">// fmt::print(&quot;reseted crowding distance for individuals in this front\n&quot;);</span></div>
+<div class="line"><a id="l00230" name="l00230"></a><span class="lineno">  230</span> </div>
+<div class="line"><a id="l00231" name="l00231"></a><span class="lineno">  231</span>    <span class="keyword">const</span> <span class="keywordtype">int</span> limit = pop.<a class="code hl_variable" href="../../da/da3/classBrush_1_1Pop_1_1Population.html#a7b529af66e90f378ca96a54ee5ce0c71">individuals</a>.at(0)-&gt;fitness.get_wvalues().size();</div>
+<div class="line"><a id="l00232" name="l00232"></a><span class="lineno">  232</span>    <span class="comment">// fmt::print(&quot;limit is {}\n&quot;, limit);</span></div>
+<div class="line"><a id="l00233" name="l00233"></a><span class="lineno">  233</span> </div>
+<div class="line"><a id="l00234" name="l00234"></a><span class="lineno">  234</span>    <span class="keywordflow">for</span> (<span class="keywordtype">int</span> m = 0; m &lt; limit; ++m) {</div>
+<div class="line"><a id="l00235" name="l00235"></a><span class="lineno">  235</span>        <span class="comment">// fmt::print(&quot;m {}\n&quot;, m);</span></div>
+<div class="line"><a id="l00236" name="l00236"></a><span class="lineno">  236</span> </div>
+<div class="line"><a id="l00237" name="l00237"></a><span class="lineno">  237</span>        std::sort(F.begin(), F.end(), <a class="code hl_struct" href="../../dd/dc3/structBrush_1_1Sel_1_1NSGA2_1_1comparator__obj.html">comparator_obj</a>(pop,m));</div>
+<div class="line"><a id="l00238" name="l00238"></a><span class="lineno">  238</span> </div>
+<div class="line"><a id="l00239" name="l00239"></a><span class="lineno">  239</span>        <span class="comment">// in the paper dist=INF for the first and last, in the code</span></div>
+<div class="line"><a id="l00240" name="l00240"></a><span class="lineno">  240</span>        <span class="comment">// this is only done to the first one or to the two first when size=2</span></div>
+<div class="line"><a id="l00241" name="l00241"></a><span class="lineno">  241</span>        pop.<a class="code hl_variable" href="../../da/da3/classBrush_1_1Pop_1_1Population.html#a7b529af66e90f378ca96a54ee5ce0c71">individuals</a>.at(F.at(0))-&gt;fitness.crowding_dist = std::numeric_limits&lt;float&gt;::max();</div>
+<div class="line"><a id="l00242" name="l00242"></a><span class="lineno">  242</span>        <span class="keywordflow">if</span> (fsize &gt; 1)</div>
+<div class="line"><a id="l00243" name="l00243"></a><span class="lineno">  243</span>            pop.<a class="code hl_variable" href="../../da/da3/classBrush_1_1Pop_1_1Population.html#a7b529af66e90f378ca96a54ee5ce0c71">individuals</a>.at(F.at(fsize-1))-&gt;fitness.crowding_dist = std::numeric_limits&lt;float&gt;::max();</div>
+<div class="line"><a id="l00244" name="l00244"></a><span class="lineno">  244</span>    </div>
+<div class="line"><a id="l00245" name="l00245"></a><span class="lineno">  245</span>        <span class="keywordtype">float</span> first_of_front = pop.<a class="code hl_variable" href="../../da/da3/classBrush_1_1Pop_1_1Population.html#a7b529af66e90f378ca96a54ee5ce0c71">individuals</a>.at(F.at(0))-&gt;fitness.get_wvalues().at(m);</div>
+<div class="line"><a id="l00246" name="l00246"></a><span class="lineno">  246</span>        <span class="keywordtype">float</span> last_of_front  = pop.<a class="code hl_variable" href="../../da/da3/classBrush_1_1Pop_1_1Population.html#a7b529af66e90f378ca96a54ee5ce0c71">individuals</a>.at(F.at(fsize-1))-&gt;fitness.get_wvalues().at(m);</div>
+<div class="line"><a id="l00247" name="l00247"></a><span class="lineno">  247</span>        <span class="keywordflow">for</span> (<span class="keywordtype">int</span> i = 1; i &lt; fsize-1; ++i) </div>
+<div class="line"><a id="l00248" name="l00248"></a><span class="lineno">  248</span>        {</div>
+<div class="line"><a id="l00249" name="l00249"></a><span class="lineno">  249</span>            <span class="keywordflow">if</span> (pop.<a class="code hl_variable" href="../../da/da3/classBrush_1_1Pop_1_1Population.html#a7b529af66e90f378ca96a54ee5ce0c71">individuals</a>.at(F.at(i))-&gt;fitness.crowding_dist != std::numeric_limits&lt;float&gt;::max())</div>
+<div class="line"><a id="l00250" name="l00250"></a><span class="lineno">  250</span>            {</div>
+<div class="line"><a id="l00251" name="l00251"></a><span class="lineno">  251</span>                <span class="keywordtype">float</span> next_of_front = pop.<a class="code hl_variable" href="../../da/da3/classBrush_1_1Pop_1_1Population.html#a7b529af66e90f378ca96a54ee5ce0c71">individuals</a>.at(F.at(i+1))-&gt;fitness.get_wvalues().at(m);</div>
+<div class="line"><a id="l00252" name="l00252"></a><span class="lineno">  252</span>                <span class="keywordtype">float</span> prev_of_front = pop.<a class="code hl_variable" href="../../da/da3/classBrush_1_1Pop_1_1Population.html#a7b529af66e90f378ca96a54ee5ce0c71">individuals</a>.at(F.at(i-1))-&gt;fitness.get_wvalues().at(m);</div>
+<div class="line"><a id="l00253" name="l00253"></a><span class="lineno">  253</span> </div>
+<div class="line"><a id="l00254" name="l00254"></a><span class="lineno">  254</span>                <span class="comment">// updating the value by aggregating crowd dist for each objective</span></div>
+<div class="line"><a id="l00255" name="l00255"></a><span class="lineno">  255</span>                pop.<a class="code hl_variable" href="../../da/da3/classBrush_1_1Pop_1_1Population.html#a7b529af66e90f378ca96a54ee5ce0c71">individuals</a>.at(F.at(i))-&gt;fitness.crowding_dist +=</div>
+<div class="line"><a id="l00256" name="l00256"></a><span class="lineno">  256</span>                    (next_of_front - prev_of_front) / (last_of_front - first_of_front);</div>
+<div class="line"><a id="l00257" name="l00257"></a><span class="lineno">  257</span>            }</div>
+<div class="line"><a id="l00258" name="l00258"></a><span class="lineno">  258</span>        }</div>
+<div class="line"><a id="l00259" name="l00259"></a><span class="lineno">  259</span>    }        </div>
+<div class="line"><a id="l00260" name="l00260"></a><span class="lineno">  260</span>}</div>
+</div>
+<div class="line"><a id="l00261" name="l00261"></a><span class="lineno">  261</span> </div>
+<div class="line"><a id="l00262" name="l00262"></a><span class="lineno">  262</span>} <span class="comment">// selection</span></div>
+<div class="line"><a id="l00263" name="l00263"></a><span class="lineno">  263</span>} <span class="comment">// Brush</span></div>
 <div class="ttc" id="aclassBrush_1_1Pop_1_1Individual_html"><div class="ttname"><a href="../../de/d83/classBrush_1_1Pop_1_1Individual.html">Brush::Pop::Individual</a></div><div class="ttdef"><b>Definition</b> <a href="../../d5/d1f/individual_8h_source.html#l00015">individual.h:15</a></div></div>
-<div class="ttc" id="aclassBrush_1_1Pop_1_1Individual_html_a96a4869472f1e11e19219c2d07fb6c53"><div class="ttname"><a href="../../de/d83/classBrush_1_1Pop_1_1Individual.html#a96a4869472f1e11e19219c2d07fb6c53">Brush::Pop::Individual::fitness</a></div><div class="ttdeci">Fitness fitness</div><div class="ttdoc">aggregate fitness score</div><div class="ttdef"><b>Definition</b> <a href="../../d5/d1f/individual_8h_source.html#l00033">individual.h:33</a></div></div>
+<div class="ttc" id="aclassBrush_1_1Pop_1_1Individual_html_a96a4869472f1e11e19219c2d07fb6c53"><div class="ttname"><a href="../../de/d83/classBrush_1_1Pop_1_1Individual.html#a96a4869472f1e11e19219c2d07fb6c53">Brush::Pop::Individual::fitness</a></div><div class="ttdeci">Fitness fitness</div><div class="ttdoc">aggregate fitness score</div><div class="ttdef"><b>Definition</b> <a href="../../d5/d1f/individual_8h_source.html#l00037">individual.h:37</a></div></div>
 <div class="ttc" id="aclassBrush_1_1Pop_1_1Population_html"><div class="ttname"><a href="../../da/da3/classBrush_1_1Pop_1_1Population.html">Brush::Pop::Population</a></div><div class="ttdef"><b>Definition</b> <a href="../../d2/d76/population_8h_source.html#l00012">population.h:12</a></div></div>
-<div class="ttc" id="aclassBrush_1_1Pop_1_1Population_html_a2bf4066c7a32ec3bd85c96bd80098de6"><div class="ttname"><a href="../../da/da3/classBrush_1_1Pop_1_1Population.html#a2bf4066c7a32ec3bd85c96bd80098de6">Brush::Pop::Population::get_island_indexes</a></div><div class="ttdeci">vector&lt; size_t &gt; get_island_indexes(int island)</div><div class="ttdef"><b>Definition</b> <a href="../../d2/d76/population_8h_source.html#l00038">population.h:38</a></div></div>
-<div class="ttc" id="aclassBrush_1_1Pop_1_1Population_html_a7b529af66e90f378ca96a54ee5ce0c71"><div class="ttname"><a href="../../da/da3/classBrush_1_1Pop_1_1Population.html#a7b529af66e90f378ca96a54ee5ce0c71">Brush::Pop::Population::individuals</a></div><div class="ttdeci">vector&lt; std::shared_ptr&lt; Individual&lt; T &gt; &gt; &gt; individuals</div><div class="ttdef"><b>Definition</b> <a href="../../d2/d76/population_8h_source.html#l00018">population.h:18</a></div></div>
-<div class="ttc" id="aclassBrush_1_1Sel_1_1NSGA2_html_a03190cdc845ff83c08c6d25681fc738c"><div class="ttname"><a href="../../d3/d7d/classBrush_1_1Sel_1_1NSGA2.html#a03190cdc845ff83c08c6d25681fc738c">Brush::Sel::NSGA2::crowding_distance</a></div><div class="ttdeci">void crowding_distance(Population&lt; T &gt; &amp;, vector&lt; vector&lt; int &gt; &gt; &amp;, int)</div><div class="ttdef"><b>Definition</b> <a href="#l00201">nsga2.cpp:201</a></div></div>
+<div class="ttc" id="aclassBrush_1_1Pop_1_1Population_html_a2bf4066c7a32ec3bd85c96bd80098de6"><div class="ttname"><a href="../../da/da3/classBrush_1_1Pop_1_1Population.html#a2bf4066c7a32ec3bd85c96bd80098de6">Brush::Pop::Population::get_island_indexes</a></div><div class="ttdeci">vector&lt; size_t &gt; get_island_indexes(int island)</div><div class="ttdef"><b>Definition</b> <a href="../../d2/d76/population_8h_source.html#l00039">population.h:39</a></div></div>
+<div class="ttc" id="aclassBrush_1_1Pop_1_1Population_html_a7b529af66e90f378ca96a54ee5ce0c71"><div class="ttname"><a href="../../da/da3/classBrush_1_1Pop_1_1Population.html#a7b529af66e90f378ca96a54ee5ce0c71">Brush::Pop::Population::individuals</a></div><div class="ttdeci">vector&lt; std::shared_ptr&lt; Individual&lt; T &gt; &gt; &gt; individuals</div><div class="ttdef"><b>Definition</b> <a href="../../d2/d76/population_8h_source.html#l00019">population.h:19</a></div></div>
+<div class="ttc" id="aclassBrush_1_1Sel_1_1NSGA2_html_a03190cdc845ff83c08c6d25681fc738c"><div class="ttname"><a href="../../d3/d7d/classBrush_1_1Sel_1_1NSGA2.html#a03190cdc845ff83c08c6d25681fc738c">Brush::Sel::NSGA2::crowding_distance</a></div><div class="ttdeci">void crowding_distance(Population&lt; T &gt; &amp;, vector&lt; vector&lt; int &gt; &gt; &amp;, int)</div><div class="ttdef"><b>Definition</b> <a href="#l00212">nsga2.cpp:212</a></div></div>
 <div class="ttc" id="aclassBrush_1_1Sel_1_1NSGA2_html_a263e5ab1678a79eb1cab18fce362b9f9"><div class="ttname"><a href="../../d3/d7d/classBrush_1_1Sel_1_1NSGA2.html#a263e5ab1678a79eb1cab18fce362b9f9">Brush::Sel::NSGA2::tournament</a></div><div class="ttdeci">size_t tournament(Population&lt; T &gt; &amp;pop, size_t i, size_t j) const</div><div class="ttdef"><b>Definition</b> <a href="#l00018">nsga2.cpp:18</a></div></div>
 <div class="ttc" id="aclassBrush_1_1Sel_1_1NSGA2_html_a2faddb61c1d9ce38a1bc994e9a9b08eb"><div class="ttname"><a href="../../d3/d7d/classBrush_1_1Sel_1_1NSGA2.html#a2faddb61c1d9ce38a1bc994e9a9b08eb">Brush::Sel::NSGA2::survive</a></div><div class="ttdeci">vector&lt; size_t &gt; survive(Population&lt; T &gt; &amp;pop, int island, const Parameters &amp;p)</div><div class="ttdoc">survival according to the survival scheme of NSGA-II</div><div class="ttdef"><b>Definition</b> <a href="#l00069">nsga2.cpp:69</a></div></div>
 <div class="ttc" id="aclassBrush_1_1Sel_1_1NSGA2_html_a3335532116a0c515eecbf30d0d521d78"><div class="ttname"><a href="../../d3/d7d/classBrush_1_1Sel_1_1NSGA2.html#a3335532116a0c515eecbf30d0d521d78">Brush::Sel::NSGA2::NSGA2</a></div><div class="ttdeci">NSGA2(bool surv=false)</div><div class="ttdef"><b>Definition</b> <a href="#l00011">nsga2.cpp:11</a></div></div>
-<div class="ttc" id="aclassBrush_1_1Sel_1_1NSGA2_html_a4196468152e50eed683b327b0b732f70"><div class="ttname"><a href="../../d3/d7d/classBrush_1_1Sel_1_1NSGA2.html#a4196468152e50eed683b327b0b732f70">Brush::Sel::NSGA2::fast_nds</a></div><div class="ttdeci">vector&lt; vector&lt; int &gt; &gt; fast_nds(Population&lt; T &gt; &amp;, vector&lt; size_t &gt; &amp;)</div><div class="ttdef"><b>Definition</b> <a href="#l00116">nsga2.cpp:116</a></div></div>
+<div class="ttc" id="aclassBrush_1_1Sel_1_1NSGA2_html_a4196468152e50eed683b327b0b732f70"><div class="ttname"><a href="../../d3/d7d/classBrush_1_1Sel_1_1NSGA2.html#a4196468152e50eed683b327b0b732f70">Brush::Sel::NSGA2::fast_nds</a></div><div class="ttdeci">vector&lt; vector&lt; int &gt; &gt; fast_nds(Population&lt; T &gt; &amp;, vector&lt; size_t &gt; &amp;)</div><div class="ttdef"><b>Definition</b> <a href="#l00126">nsga2.cpp:126</a></div></div>
 <div class="ttc" id="aclassBrush_1_1Sel_1_1NSGA2_html_a53788b6bda8ce09f644e2cc44c9aa478"><div class="ttname"><a href="../../d3/d7d/classBrush_1_1Sel_1_1NSGA2.html#a53788b6bda8ce09f644e2cc44c9aa478">Brush::Sel::NSGA2::select</a></div><div class="ttdeci">vector&lt; size_t &gt; select(Population&lt; T &gt; &amp;pop, int island, const Parameters &amp;p)</div><div class="ttdoc">selection according to the survival scheme of NSGA-II</div><div class="ttdef"><b>Definition</b> <a href="#l00039">nsga2.cpp:39</a></div></div>
-<div class="ttc" id="aclassBrush_1_1Sel_1_1SelectionOperator_html_a612a07491346369b748198d11ae43675"><div class="ttname"><a href="../../de/db9/classBrush_1_1Sel_1_1SelectionOperator.html#a612a07491346369b748198d11ae43675">Brush::Sel::SelectionOperator::survival</a></div><div class="ttdeci">bool survival</div><div class="ttdef"><b>Definition</b> <a href="../../dd/d5d/selection__operator_8h_source.html#l00031">selection_operator.h:31</a></div></div>
-<div class="ttc" id="aclassBrush_1_1Sel_1_1SelectionOperator_html_a66068ecfa22feb22c5c135caa7c2eb8d"><div class="ttname"><a href="../../de/db9/classBrush_1_1Sel_1_1SelectionOperator.html#a66068ecfa22feb22c5c135caa7c2eb8d">Brush::Sel::SelectionOperator::name</a></div><div class="ttdeci">string name</div><div class="ttdef"><b>Definition</b> <a href="../../dd/d5d/selection__operator_8h_source.html#l00032">selection_operator.h:32</a></div></div>
+<div class="ttc" id="aclassBrush_1_1Sel_1_1SelectionOperator_html_a612a07491346369b748198d11ae43675"><div class="ttname"><a href="../../de/db9/classBrush_1_1Sel_1_1SelectionOperator.html#a612a07491346369b748198d11ae43675">Brush::Sel::SelectionOperator::survival</a></div><div class="ttdeci">bool survival</div><div class="ttdef"><b>Definition</b> <a href="../../dd/d5d/selection__operator_8h_source.html#l00033">selection_operator.h:33</a></div></div>
+<div class="ttc" id="aclassBrush_1_1Sel_1_1SelectionOperator_html_a66068ecfa22feb22c5c135caa7c2eb8d"><div class="ttname"><a href="../../de/db9/classBrush_1_1Sel_1_1SelectionOperator.html#a66068ecfa22feb22c5c135caa7c2eb8d">Brush::Sel::SelectionOperator::name</a></div><div class="ttdeci">string name</div><div class="ttdef"><b>Definition</b> <a href="../../dd/d5d/selection__operator_8h_source.html#l00034">selection_operator.h:34</a></div></div>
 <div class="ttc" id="anamespaceBrush_1_1Pop_html"><div class="ttname"><a href="../../dd/d56/namespaceBrush_1_1Pop.html">Brush::Pop</a></div><div class="ttdef"><b>Definition</b> <a href="../../db/df6/individual_8cpp_source.html#l00004">individual.cpp:4</a></div></div>
 <div class="ttc" id="anamespaceBrush_1_1Sel_html"><div class="ttname"><a href="../../d9/df6/namespaceBrush_1_1Sel.html">Brush::Sel</a></div><div class="ttdef"><b>Definition</b> <a href="../../d8/dac/lexicase_8cpp_source.html#l00004">lexicase.cpp:4</a></div></div>
 <div class="ttc" id="anamespaceBrush_1_1Util_html_af7dd70e54015821d96e3a1afed6344ca"><div class="ttname"><a href="../../d6/d2e/namespaceBrush_1_1Util.html#af7dd70e54015821d96e3a1afed6344ca">Brush::Util::r</a></div><div class="ttdeci">static Rnd &amp; r</div><div class="ttdef"><b>Definition</b> <a href="../../d2/da9/rnd_8h_source.html#l00174">rnd.h:174</a></div></div>
-<div class="ttc" id="anamespaceBrush_html"><div class="ttname"><a href="../../dc/d5c/namespaceBrush.html">Brush</a></div><div class="ttdoc">&lt; nsga2 selection operator for getting the front</div><div class="ttdef"><b>Definition</b> <a href="../../da/dc9/data_8cpp_source.html#l00012">data.cpp:12</a></div></div>
+<div class="ttc" id="anamespaceBrush_html"><div class="ttname"><a href="../../dc/d5c/namespaceBrush.html">Brush</a></div><div class="ttdoc">&lt; nsga2 selection operator for getting the front</div><div class="ttdef"><b>Definition</b> <a href="../../d7/d01/bandit_8cpp_source.html#l00004">bandit.cpp:4</a></div></div>
 <div class="ttc" id="ansga2_8h_html"><div class="ttname"><a href="../../d3/d06/nsga2_8h.html">nsga2.h</a></div></div>
-<div class="ttc" id="astructBrush_1_1Fitness_html_a0998d4960cae30c329ae6d2f05a27c84"><div class="ttname"><a href="../../d6/dd0/structBrush_1_1Fitness.html#a0998d4960cae30c329ae6d2f05a27c84">Brush::Fitness::crowding_dist</a></div><div class="ttdeci">float crowding_dist</div><div class="ttdoc">crowding distance on the Pareto front</div><div class="ttdef"><b>Definition</b> <a href="../../dc/d7a/fitness_8h_source.html#l00039">fitness.h:39</a></div></div>
-<div class="ttc" id="astructBrush_1_1Fitness_html_ad66abe65f27bd44fc49975be3c2103cb"><div class="ttname"><a href="../../d6/dd0/structBrush_1_1Fitness.html#ad66abe65f27bd44fc49975be3c2103cb">Brush::Fitness::dominated</a></div><div class="ttdeci">vector&lt; unsigned int &gt; dominated</div><div class="ttdoc">individual indices this dominates</div><div class="ttdef"><b>Definition</b> <a href="../../dc/d7a/fitness_8h_source.html#l00037">fitness.h:37</a></div></div>
-<div class="ttc" id="astructBrush_1_1Fitness_html_aeb7b43cd4977e3c1e9c7feb3084de17a"><div class="ttname"><a href="../../d6/dd0/structBrush_1_1Fitness.html#aeb7b43cd4977e3c1e9c7feb3084de17a">Brush::Fitness::dominates</a></div><div class="ttdeci">int dominates(const Fitness &amp;b) const</div><div class="ttdoc">set obj vector given a string of objective names</div><div class="ttdef"><b>Definition</b> <a href="../../dc/d5c/fitness_8cpp_source.html#l00041">fitness.cpp:41</a></div></div>
-<div class="ttc" id="astructBrush_1_1Parameters_html"><div class="ttname"><a href="../../de/deb/structBrush_1_1Parameters.html">Brush::Parameters</a></div><div class="ttdef"><b>Definition</b> <a href="../../da/d33/params_8h_source.html#l00017">params.h:18</a></div></div>
-<div class="ttc" id="astructBrush_1_1Parameters_html_a139004f9fa652376afabd690dac242e5"><div class="ttname"><a href="../../de/deb/structBrush_1_1Parameters.html#a139004f9fa652376afabd690dac242e5">Brush::Parameters::pop_size</a></div><div class="ttdeci">int pop_size</div><div class="ttdef"><b>Definition</b> <a href="../../da/d33/params_8h_source.html#l00030">params.h:30</a></div></div>
-<div class="ttc" id="astructBrush_1_1Parameters_html_a93ed229becd162e94722e034f8e5bebc"><div class="ttname"><a href="../../de/deb/structBrush_1_1Parameters.html#a93ed229becd162e94722e034f8e5bebc">Brush::Parameters::num_islands</a></div><div class="ttdeci">int num_islands</div><div class="ttdef"><b>Definition</b> <a href="../../da/d33/params_8h_source.html#l00043">params.h:43</a></div></div>
-<div class="ttc" id="astructBrush_1_1Parameters_html_acd37c52e411d17126bff22dca19f0408"><div class="ttname"><a href="../../de/deb/structBrush_1_1Parameters.html#acd37c52e411d17126bff22dca19f0408">Brush::Parameters::current_gen</a></div><div class="ttdeci">unsigned int current_gen</div><div class="ttdef"><b>Definition</b> <a href="../../da/d33/params_8h_source.html#l00027">params.h:27</a></div></div>
+<div class="ttc" id="astructBrush_1_1Fitness_html_a0998d4960cae30c329ae6d2f05a27c84"><div class="ttname"><a href="../../d6/dd0/structBrush_1_1Fitness.html#a0998d4960cae30c329ae6d2f05a27c84">Brush::Fitness::crowding_dist</a></div><div class="ttdeci">float crowding_dist</div><div class="ttdoc">crowding distance on the Pareto front</div><div class="ttdef"><b>Definition</b> <a href="../../dc/d7a/fitness_8h_source.html#l00050">fitness.h:50</a></div></div>
+<div class="ttc" id="astructBrush_1_1Fitness_html_ad66abe65f27bd44fc49975be3c2103cb"><div class="ttname"><a href="../../d6/dd0/structBrush_1_1Fitness.html#ad66abe65f27bd44fc49975be3c2103cb">Brush::Fitness::dominated</a></div><div class="ttdeci">vector&lt; unsigned int &gt; dominated</div><div class="ttdoc">individual indices this dominates</div><div class="ttdef"><b>Definition</b> <a href="../../dc/d7a/fitness_8h_source.html#l00048">fitness.h:48</a></div></div>
+<div class="ttc" id="astructBrush_1_1Fitness_html_aeb7b43cd4977e3c1e9c7feb3084de17a"><div class="ttname"><a href="../../d6/dd0/structBrush_1_1Fitness.html#aeb7b43cd4977e3c1e9c7feb3084de17a">Brush::Fitness::dominates</a></div><div class="ttdeci">int dominates(const Fitness &amp;b) const</div><div class="ttdoc">set obj vector given a string of objective names</div><div class="ttdef"><b>Definition</b> <a href="../../dc/d5c/fitness_8cpp_source.html#l00043">fitness.cpp:43</a></div></div>
+<div class="ttc" id="astructBrush_1_1Parameters_html"><div class="ttname"><a href="../../de/deb/structBrush_1_1Parameters.html">Brush::Parameters</a></div><div class="ttdef"><b>Definition</b> <a href="../../da/d33/params_8h_source.html#l00019">params.h:20</a></div></div>
+<div class="ttc" id="astructBrush_1_1Parameters_html_a139004f9fa652376afabd690dac242e5"><div class="ttname"><a href="../../de/deb/structBrush_1_1Parameters.html#a139004f9fa652376afabd690dac242e5">Brush::Parameters::pop_size</a></div><div class="ttdeci">int pop_size</div><div class="ttdef"><b>Definition</b> <a href="../../da/d33/params_8h_source.html#l00032">params.h:32</a></div></div>
+<div class="ttc" id="astructBrush_1_1Parameters_html_a93ed229becd162e94722e034f8e5bebc"><div class="ttname"><a href="../../de/deb/structBrush_1_1Parameters.html#a93ed229becd162e94722e034f8e5bebc">Brush::Parameters::num_islands</a></div><div class="ttdeci">int num_islands</div><div class="ttdef"><b>Definition</b> <a href="../../da/d33/params_8h_source.html#l00045">params.h:45</a></div></div>
+<div class="ttc" id="astructBrush_1_1Parameters_html_acd37c52e411d17126bff22dca19f0408"><div class="ttname"><a href="../../de/deb/structBrush_1_1Parameters.html#acd37c52e411d17126bff22dca19f0408">Brush::Parameters::current_gen</a></div><div class="ttdeci">unsigned int current_gen</div><div class="ttdef"><b>Definition</b> <a href="../../da/d33/params_8h_source.html#l00029">params.h:29</a></div></div>
 <div class="ttc" id="astructBrush_1_1Sel_1_1NSGA2_1_1comparator__obj_html"><div class="ttname"><a href="../../dd/dc3/structBrush_1_1Sel_1_1NSGA2_1_1comparator__obj.html">Brush::Sel::NSGA2::comparator_obj</a></div><div class="ttdoc">sort based on objective m</div><div class="ttdef"><b>Definition</b> <a href="../../d3/d06/nsga2_8h_source.html#l00064">nsga2.h:65</a></div></div>
 <div class="ttc" id="astructBrush_1_1Sel_1_1NSGA2_1_1sort__n_html"><div class="ttname"><a href="../../d1/d20/structBrush_1_1Sel_1_1NSGA2_1_1sort__n.html">Brush::Sel::NSGA2::sort_n</a></div><div class="ttdoc">sort based on rank, breaking ties with crowding distance</div><div class="ttdef"><b>Definition</b> <a href="../../d3/d06/nsga2_8h_source.html#l00043">nsga2.h:44</a></div></div>
 </div><!-- fragment --></div><!-- contents -->

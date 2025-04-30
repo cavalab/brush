@@ -242,6 +242,16 @@
         <childnode refid="8" relation="include">
         </childnode>
       </node>
+      <node id="14">
+        <label>bind_variation.cpp</label>
+        <link refid="df/d41/bind__variation_8cpp"/>
+      </node>
+      <node id="13">
+        <label>bind_variation.h</label>
+        <link refid="d8/df7/bind__variation_8h"/>
+        <childnode refid="14" relation="include">
+        </childnode>
+      </node>
       <node id="10">
         <label>engine.cpp</label>
         <link refid="da/d5c/engine_8cpp"/>
@@ -275,6 +285,8 @@
         </childnode>
         <childnode refid="11" relation="include">
         </childnode>
+        <childnode refid="12" relation="include">
+        </childnode>
       </node>
       <node id="2">
         <label>metrics.cpp</label>
@@ -292,6 +304,26 @@
         <label>scorer.h</label>
         <link refid="da/d3b/scorer_8h"/>
         <childnode refid="4" relation="include">
+        </childnode>
+      </node>
+      <node id="15">
+        <label>variation.cpp</label>
+        <link refid="d1/d64/variation_8cpp"/>
+        <childnode refid="5" relation="include">
+        </childnode>
+        <childnode refid="13" relation="include">
+        </childnode>
+      </node>
+      <node id="12">
+        <label>variation.h</label>
+        <link refid="d4/d1f/variation_8h"/>
+        <childnode refid="5" relation="include">
+        </childnode>
+        <childnode refid="13" relation="include">
+        </childnode>
+        <childnode refid="9" relation="include">
+        </childnode>
+        <childnode refid="15" relation="include">
         </childnode>
       </node>
     </invincdepgraph>
@@ -330,19 +362,32 @@
 <codeline lineno="60"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>VectorXf&amp;<sp/>loss,</highlight></codeline>
 <codeline lineno="61"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>vector&lt;float&gt;&amp;<sp/>class_weights=vector&lt;float&gt;());</highlight></codeline>
 <codeline lineno="62"><highlight class="normal"></highlight></codeline>
-<codeline lineno="63"><highlight class="normal"></highlight><highlight class="comment">//<sp/>multiclass<sp/>classification<sp/>---------------------------------------------------</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="64"><highlight class="normal"></highlight></codeline>
-<codeline lineno="72"><highlight class="normal">VectorXf<sp/><ref refid="d5/db3/namespaceBrush_1_1Eval_1a547663e116b3500703ca69aaa68831b7" kindref="member">multi_log_loss</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>VectorXf&amp;<sp/>y,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>ArrayXXf&amp;<sp/>predict_proba,<sp/></highlight></codeline>
-<codeline lineno="73"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>vector&lt;float&gt;&amp;<sp/>class_weights=vector&lt;float&gt;());</highlight></codeline>
+<codeline lineno="71"><highlight class="normal"></highlight><highlight class="keywordtype">float</highlight><highlight class="normal"><sp/><ref refid="d5/db3/namespaceBrush_1_1Eval_1a1c8af1d41e4eba5c5472fbc3efa85d05" kindref="member">zero_one_loss</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>VectorXf&amp;<sp/>y,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>VectorXf&amp;<sp/>predict_proba,</highlight></codeline>
+<codeline lineno="72"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>VectorXf&amp;<sp/>loss,<sp/></highlight></codeline>
+<codeline lineno="73"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>vector&lt;float&gt;&amp;<sp/>class_weights=vector&lt;float&gt;()<sp/>);</highlight></codeline>
 <codeline lineno="74"><highlight class="normal"></highlight></codeline>
-<codeline lineno="83"><highlight class="normal"></highlight><highlight class="keywordtype">float</highlight><highlight class="normal"><sp/><ref refid="d5/db3/namespaceBrush_1_1Eval_1a44be437c0b947ccb876abd9fd8f38467" kindref="member">mean_multi_log_loss</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>VectorXf&amp;<sp/>y,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>ArrayXXf&amp;<sp/>predict_proba,</highlight></codeline>
-<codeline lineno="84"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>VectorXf&amp;<sp/>loss,</highlight></codeline>
-<codeline lineno="85"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>vector&lt;float&gt;&amp;<sp/>class_weights=vector&lt;float&gt;());</highlight></codeline>
-<codeline lineno="86"><highlight class="normal"></highlight></codeline>
-<codeline lineno="87"><highlight class="normal">}<sp/></highlight><highlight class="comment">//<sp/>metrics</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="88"><highlight class="normal">}<sp/></highlight><highlight class="comment">//<sp/>Brush</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="89"><highlight class="normal"></highlight></codeline>
-<codeline lineno="90"><highlight class="normal"></highlight><highlight class="preprocessor">#endif</highlight></codeline>
+<codeline lineno="83"><highlight class="normal"></highlight><highlight class="keywordtype">float</highlight><highlight class="normal"><sp/><ref refid="d5/db3/namespaceBrush_1_1Eval_1ac69db7d03dbb7901643bb137dbf868bc" kindref="member">bal_zero_one_loss</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>VectorXf&amp;<sp/>y,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>VectorXf&amp;<sp/>predict_proba,</highlight></codeline>
+<codeline lineno="84"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>VectorXf&amp;<sp/>loss,<sp/></highlight></codeline>
+<codeline lineno="85"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>vector&lt;float&gt;&amp;<sp/>class_weights=vector&lt;float&gt;()<sp/>);</highlight></codeline>
+<codeline lineno="86"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="87"><highlight class="normal"></highlight><highlight class="comment">//<sp/>multiclass<sp/>classification<sp/>---------------------------------------------------</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="88"><highlight class="normal"></highlight></codeline>
+<codeline lineno="96"><highlight class="normal">VectorXf<sp/><ref refid="d5/db3/namespaceBrush_1_1Eval_1a547663e116b3500703ca69aaa68831b7" kindref="member">multi_log_loss</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>VectorXf&amp;<sp/>y,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>ArrayXXf&amp;<sp/>predict_proba,<sp/></highlight></codeline>
+<codeline lineno="97"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>vector&lt;float&gt;&amp;<sp/>class_weights=vector&lt;float&gt;());</highlight></codeline>
+<codeline lineno="98"><highlight class="normal"></highlight></codeline>
+<codeline lineno="107"><highlight class="normal"></highlight><highlight class="keywordtype">float</highlight><highlight class="normal"><sp/><ref refid="d5/db3/namespaceBrush_1_1Eval_1a44be437c0b947ccb876abd9fd8f38467" kindref="member">mean_multi_log_loss</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>VectorXf&amp;<sp/>y,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>ArrayXXf&amp;<sp/>predict_proba,</highlight></codeline>
+<codeline lineno="108"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>VectorXf&amp;<sp/>loss,</highlight></codeline>
+<codeline lineno="109"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>vector&lt;float&gt;&amp;<sp/>class_weights=vector&lt;float&gt;());</highlight></codeline>
+<codeline lineno="110"><highlight class="normal"></highlight></codeline>
+<codeline lineno="119"><highlight class="normal"></highlight><highlight class="keywordtype">float</highlight><highlight class="normal"><sp/><ref refid="d5/db3/namespaceBrush_1_1Eval_1a0ea2c4db96a2f7d4081831bbf50a02de" kindref="member">multi_zero_one_loss</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>VectorXf&amp;<sp/>y,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>ArrayXXf&amp;<sp/>predict_proba,</highlight></codeline>
+<codeline lineno="120"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>VectorXf&amp;<sp/>loss,<sp/></highlight></codeline>
+<codeline lineno="121"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>vector&lt;float&gt;&amp;<sp/>class_weights=vector&lt;float&gt;()<sp/>);</highlight></codeline>
+<codeline lineno="122"><highlight class="normal"></highlight></codeline>
+<codeline lineno="123"><highlight class="normal"></highlight></codeline>
+<codeline lineno="124"><highlight class="normal">}<sp/></highlight><highlight class="comment">//<sp/>metrics</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="125"><highlight class="normal">}<sp/></highlight><highlight class="comment">//<sp/>Brush</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="126"><highlight class="normal"></highlight></codeline>
+<codeline lineno="127"><highlight class="normal"></highlight><highlight class="preprocessor">#endif</highlight></codeline>
     </programlisting>
     <location file="/home/runner/work/brush/brush/src/eval/metrics.h"/>
   </compounddef>

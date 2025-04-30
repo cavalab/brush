@@ -38,7 +38,6 @@ var functions_8h =
     [ "Brush::Function< NodeType::Before >", "dc/dd3/structBrush_1_1Function_3_01NodeType_1_1Before_01_4.html", "dc/dd3/structBrush_1_1Function_3_01NodeType_1_1Before_01_4" ],
     [ "Brush::Function< NodeType::After >", "d8/dca/structBrush_1_1Function_3_01NodeType_1_1After_01_4.html", "d8/dca/structBrush_1_1Function_3_01NodeType_1_1After_01_4" ],
     [ "Brush::Function< NodeType::During >", "de/da7/structBrush_1_1Function_3_01NodeType_1_1During_01_4.html", "de/da7/structBrush_1_1Function_3_01NodeType_1_1During_01_4" ],
-    [ "Brush::Function< NodeType::SplitOn >", "d8/d1f/structBrush_1_1Function_3_01NodeType_1_1SplitOn_01_4.html", "d8/d1f/structBrush_1_1Function_3_01NodeType_1_1SplitOn_01_4" ],
     [ "Brush::Function< NodeType::Softmax >", "d3/def/structBrush_1_1Function_3_01NodeType_1_1Softmax_01_4.html", "d3/def/structBrush_1_1Function_3_01NodeType_1_1Softmax_01_4" ],
     [ "Brush::Function< NodeType::And >", "de/d19/structBrush_1_1Function_3_01NodeType_1_1And_01_4.html", "de/d19/structBrush_1_1Function_3_01NodeType_1_1And_01_4" ],
     [ "Brush::Function< NodeType::Or >", "d4/d1b/structBrush_1_1Function_3_01NodeType_1_1Or_01_4.html", "d4/d1b/structBrush_1_1Function_3_01NodeType_1_1Or_01_4" ],

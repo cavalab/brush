@@ -176,6 +176,7 @@
 <li class="toctree-l2"><a class="reference internal" href="../guide/json.html">JSON Interoperability</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../guide/saving_loading_populations.html">Saving and loading populations</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../guide/archive.html">The archive</a></li>
+
 <li class="toctree-l2"><a class="reference internal" href="../guide/deap.html">Using Deap</a></li>
 </ul>
 </details></li>
@@ -378,8 +379,10 @@ document.write(`
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#_CPPv4N5Brush3Pop7Archive14set_objectivesE6vectorI6stringE"><code class="docutils literal notranslate"><span class="pre">set_objectives()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#_CPPv4N5Brush3Pop7Archive11individualsE"><code class="docutils literal notranslate"><span class="pre">individuals</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#_CPPv4N5Brush3Pop7Archive15sort_complexityE"><code class="docutils literal notranslate"><span class="pre">sort_complexity</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#_CPPv4N5Brush3Pop7Archive17linear_complexityE"><code class="docutils literal notranslate"><span class="pre">linear_complexity</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#_CPPv4N5Brush3Pop7Archive8selectorE"><code class="docutils literal notranslate"><span class="pre">selector</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#_CPPv4N5Brush3Pop7Archive14sortComplexityERK10IndividualI1TERK10IndividualI1TE"><code class="docutils literal notranslate"><span class="pre">sortComplexity()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#_CPPv4N5Brush3Pop7Archive20sortLinearComplexityERK10IndividualI1TERK10IndividualI1TE"><code class="docutils literal notranslate"><span class="pre">sortLinearComplexity()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#_CPPv4N5Brush3Pop7Archive8sortObj1ERK10IndividualI1TERK10IndividualI1TE"><code class="docutils literal notranslate"><span class="pre">sortObj1()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#_CPPv4N5Brush3Pop7Archive17sameFitComplexityERK10IndividualI1TERK10IndividualI1TE"><code class="docutils literal notranslate"><span class="pre">sameFitComplexity()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#_CPPv4N5Brush3Pop7Archive14sameObjectivesERK10IndividualI1TERK10IndividualI1TE"><code class="docutils literal notranslate"><span class="pre">sameObjectives()</span></code></a></li>
@@ -469,6 +472,12 @@ document.write(`
 </dd></dl>
 
 <dl class="cpp var">
+<dt class="sig sig-object cpp" id="_CPPv4N5Brush3Pop7Archive17linear_complexityE">
+<span id="_CPPv3N5Brush3Pop7Archive17linear_complexityE"></span><span id="_CPPv2N5Brush3Pop7Archive17linear_complexityE"></span><span id="Brush::Pop::Archive::linear_complexity__b"></span><span class="target" id="d1/d30/structBrush_1_1Pop_1_1Archive_1aeee2d8283bccc50026b654e0bff4b388"></span><span class="kt"><span class="pre">bool</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">linear_complexity</span></span></span><a class="headerlink" href="#_CPPv4N5Brush3Pop7Archive17linear_complexityE" title="Link to this definition">#</a><br /></dt>
+<dd><p>Indicates if the user set linear_complexity instead of recursive complexity. </p>
+</dd></dl>
+
+<dl class="cpp var">
 <dt class="sig sig-object cpp" id="_CPPv4N5Brush3Pop7Archive8selectorE">
 <span id="_CPPv3N5Brush3Pop7Archive8selectorE"></span><span id="_CPPv2N5Brush3Pop7Archive8selectorE"></span><span id="Brush::Pop::Archive::selector__NSGA2:T:"></span><span class="target" id="d1/d30/structBrush_1_1Pop_1_1Archive_1a56b6da606397435d4e736e0ece911451"></span><span class="n"><span class="pre">NSGA2</span></span><span class="p"><span class="pre">&lt;</span></span><a class="reference internal" href="#_CPPv4I_11ProgramTypeEN5Brush3Pop7ArchiveE" title="Brush::Pop::Archive::T"><span class="n"><span class="pre">T</span></span></a><span class="p"><span class="pre">&gt;</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">selector</span></span></span><a class="headerlink" href="#_CPPv4N5Brush3Pop7Archive8selectorE" title="Link to this definition">#</a><br /></dt>
 <dd><p>using <a class="reference internal" href="selection.html#d3/d7d/classBrush_1_1Sel_1_1NSGA2"><span class="std std-ref">NSGA2</span></a> in survival mode (nsga2 does not implement selection) </p>
@@ -491,6 +500,11 @@ document.write(`
 </dd>
 </dl>
 </dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N5Brush3Pop7Archive20sortLinearComplexityERK10IndividualI1TERK10IndividualI1TE">
+<span id="_CPPv3N5Brush3Pop7Archive20sortLinearComplexityERK10IndividualI1TERK10IndividualI1TE"></span><span id="_CPPv2N5Brush3Pop7Archive20sortLinearComplexityERK10IndividualI1TERK10IndividualI1TE"></span><span id="Brush::Pop::Archive::sortLinearComplexity__Individual:T:CR.Individual:T:CR"></span><span class="target" id="d1/d30/structBrush_1_1Pop_1_1Archive_1a06108c7b5249901089d2bd0279ab6273"></span><span class="k"><span class="pre">static</span></span><span class="w"> </span><span class="kt"><span class="pre">bool</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">sortLinearComplexity</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="individual.html#_CPPv4I_11ProgramTypeEN5Brush3Pop10IndividualE" title="Brush::Pop::Individual"><span class="n"><span class="pre">Individual</span></span></a><span class="p"><span class="pre">&lt;</span></span><a class="reference internal" href="#_CPPv4I_11ProgramTypeEN5Brush3Pop7ArchiveE" title="Brush::Pop::Archive::T"><span class="n"><span class="pre">T</span></span></a><span class="p"><span class="pre">&gt;</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">lhs</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="individual.html#_CPPv4I_11ProgramTypeEN5Brush3Pop10IndividualE" title="Brush::Pop::Individual"><span class="n"><span class="pre">Individual</span></span></a><span class="p"><span class="pre">&lt;</span></span><a class="reference internal" href="#_CPPv4I_11ProgramTypeEN5Brush3Pop7ArchiveE" title="Brush::Pop::Archive::T"><span class="n"><span class="pre">T</span></span></a><span class="p"><span class="pre">&gt;</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">rhs</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N5Brush3Pop7Archive20sortLinearComplexityERK10IndividualI1TERK10IndividualI1TE" title="Link to this definition">#</a><br /></dt>
+<dd></dd></dl>
 
 <dl class="cpp function">
 <dt class="sig sig-object cpp" id="_CPPv4N5Brush3Pop7Archive8sortObj1ERK10IndividualI1TERK10IndividualI1TE">
@@ -594,8 +608,10 @@ document.write(`
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#_CPPv4N5Brush3Pop7Archive14set_objectivesE6vectorI6stringE"><code class="docutils literal notranslate"><span class="pre">set_objectives()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#_CPPv4N5Brush3Pop7Archive11individualsE"><code class="docutils literal notranslate"><span class="pre">individuals</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#_CPPv4N5Brush3Pop7Archive15sort_complexityE"><code class="docutils literal notranslate"><span class="pre">sort_complexity</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#_CPPv4N5Brush3Pop7Archive17linear_complexityE"><code class="docutils literal notranslate"><span class="pre">linear_complexity</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#_CPPv4N5Brush3Pop7Archive8selectorE"><code class="docutils literal notranslate"><span class="pre">selector</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#_CPPv4N5Brush3Pop7Archive14sortComplexityERK10IndividualI1TERK10IndividualI1TE"><code class="docutils literal notranslate"><span class="pre">sortComplexity()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#_CPPv4N5Brush3Pop7Archive20sortLinearComplexityERK10IndividualI1TERK10IndividualI1TE"><code class="docutils literal notranslate"><span class="pre">sortLinearComplexity()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#_CPPv4N5Brush3Pop7Archive8sortObj1ERK10IndividualI1TERK10IndividualI1TE"><code class="docutils literal notranslate"><span class="pre">sortObj1()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#_CPPv4N5Brush3Pop7Archive17sameFitComplexityERK10IndividualI1TERK10IndividualI1TE"><code class="docutils literal notranslate"><span class="pre">sameFitComplexity()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#_CPPv4N5Brush3Pop7Archive14sameObjectivesERK10IndividualI1TERK10IndividualI1TE"><code class="docutils literal notranslate"><span class="pre">sameObjectives()</span></code></a></li>

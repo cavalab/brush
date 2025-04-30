@@ -176,6 +176,7 @@
 <li class="toctree-l2"><a class="reference internal" href="../guide/json.html">JSON Interoperability</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../guide/saving_loading_populations.html">Saving and loading populations</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../guide/archive.html">The archive</a></li>
+
 <li class="toctree-l2"><a class="reference internal" href="../guide/deap.html">Using Deap</a></li>
 </ul>
 </details></li>
@@ -374,8 +375,10 @@ document.write(`
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pybrush.BrushEstimator.BrushEstimator"><code class="docutils literal notranslate"><span class="pre">BrushEstimator</span></code></a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#pybrush.BrushEstimator.BrushEstimator.fit"><code class="docutils literal notranslate"><span class="pre">BrushEstimator.fit()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#pybrush.BrushEstimator.BrushEstimator.get_params"><code class="docutils literal notranslate"><span class="pre">BrushEstimator.get_params()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#pybrush.BrushEstimator.BrushEstimator.partial_fit"><code class="docutils literal notranslate"><span class="pre">BrushEstimator.partial_fit()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#pybrush.BrushEstimator.BrushEstimator.predict"><code class="docutils literal notranslate"><span class="pre">BrushEstimator.predict()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#pybrush.BrushEstimator.BrushEstimator.predict_archive"><code class="docutils literal notranslate"><span class="pre">BrushEstimator.predict_archive()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#pybrush.BrushEstimator.BrushEstimator.set_partial_fit_request"><code class="docutils literal notranslate"><span class="pre">BrushEstimator.set_partial_fit_request()</span></code></a></li>
 </ul>
 </li>
 </ul>
@@ -393,7 +396,7 @@ document.write(`
 <h1>BrushEstimator<a class="headerlink" href="#brushestimator" title="Link to this heading">#</a></h1>
 <dl class="py class">
 <dt class="sig sig-object py" id="pybrush.BrushEstimator.BrushEstimator">
-<em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">pybrush.BrushEstimator.</span></span><span class="sig-name descname"><span class="pre">BrushEstimator</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/cavalab/brush/blob/master/../../../micromamba/envs/brush/lib/python3.13/site-packages/pybrush/BrushEstimator.py#L20-L188"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pybrush.BrushEstimator.BrushEstimator" title="Link to this definition">#</a></dt>
+<em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">pybrush.BrushEstimator.</span></span><span class="sig-name descname"><span class="pre">BrushEstimator</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/cavalab/brush/blob/master/../../../micromamba/envs/brush/lib/python3.13/site-packages/pybrush/BrushEstimator.py#L20-L204"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pybrush.BrushEstimator.BrushEstimator" title="Link to this definition">#</a></dt>
 <dd><p>This is the base class for Brush estimators using the c++ engine.</p>
 <p>Parameters are defined and documented in 
 <a class="reference internal" href="interface.html#pybrush.EstimatorInterface.EstimatorInterface" title="pybrush.EstimatorInterface.EstimatorInterface"><code class="xref py py-class docutils literal notranslate"><span class="pre">EstimatorInterface</span></code></a></p>
@@ -412,6 +415,7 @@ document.write(`
 </dd>
 <dt><strong>search_space_</strong><span class="classifier">a Brush <cite>SearchSpace</cite> object.</span></dt><dd><p>Holds the operators and terminals and sampling utilities to update programs.</p>
 </dd>
+<dt><strong>&gt; NOTE: as for now, when serializing the model with pickle, the objects of type `Dataset` and `SearchSpace` are not serialized.</strong></dt><dd></dd>
 </dl>
 </dd>
 </dl>
@@ -427,21 +431,27 @@ document.write(`
 <tr class="row-odd"><td><p><a class="reference internal" href="#pybrush.BrushEstimator.BrushEstimator.get_params" title="pybrush.BrushEstimator.BrushEstimator.get_params"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_params</span></code></a>([deep])</p></td>
 <td><p>Get parameters for this estimator.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#pybrush.BrushEstimator.BrushEstimator.predict" title="pybrush.BrushEstimator.BrushEstimator.predict"><code class="xref py py-obj docutils literal notranslate"><span class="pre">predict</span></code></a>(X)</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#pybrush.BrushEstimator.BrushEstimator.partial_fit" title="pybrush.BrushEstimator.BrushEstimator.partial_fit"><code class="xref py py-obj docutils literal notranslate"><span class="pre">partial_fit</span></code></a>(X, y[, lock_nodes_depth, ...])</p></td>
+<td><p>Fit an estimator to X,y, without reseting the estimator.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#pybrush.BrushEstimator.BrushEstimator.predict" title="pybrush.BrushEstimator.BrushEstimator.predict"><code class="xref py py-obj docutils literal notranslate"><span class="pre">predict</span></code></a>(X)</p></td>
 <td><p>Predict using the best estimator in the archive.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#pybrush.BrushEstimator.BrushEstimator.predict_archive" title="pybrush.BrushEstimator.BrushEstimator.predict_archive"><code class="xref py py-obj docutils literal notranslate"><span class="pre">predict_archive</span></code></a>(X)</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#pybrush.BrushEstimator.BrushEstimator.predict_archive" title="pybrush.BrushEstimator.BrushEstimator.predict_archive"><code class="xref py py-obj docutils literal notranslate"><span class="pre">predict_archive</span></code></a>(X)</p></td>
 <td><p>Returns a list of dictionary predictions for all models.</p></td>
 </tr>
-<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">set_params</span></code>(**params)</p></td>
+<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">set_params</span></code>(**params)</p></td>
 <td><p>Set the parameters of this estimator.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#pybrush.BrushEstimator.BrushEstimator.set_partial_fit_request" title="pybrush.BrushEstimator.BrushEstimator.set_partial_fit_request"><code class="xref py py-obj docutils literal notranslate"><span class="pre">set_partial_fit_request</span></code></a>(*[, ...])</p></td>
+<td><p>Request metadata passed to the <code class="docutils literal notranslate"><span class="pre">partial_fit</span></code> method.</p></td>
 </tr>
 </tbody>
 </table>
 </div>
 <dl class="py method">
 <dt class="sig sig-object py" id="pybrush.BrushEstimator.BrushEstimator.fit">
-<span class="sig-name descname"><span class="pre">fit</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">X</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y</span></span></em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/cavalab/brush/blob/master/../../../micromamba/envs/brush/lib/python3.13/site-packages/pybrush/BrushEstimator.py#L46-L94"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pybrush.BrushEstimator.BrushEstimator.fit" title="Link to this definition">#</a></dt>
+<span class="sig-name descname"><span class="pre">fit</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">X</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y</span></span></em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/cavalab/brush/blob/master/../../../micromamba/envs/brush/lib/python3.13/site-packages/pybrush/BrushEstimator.py#L48-L96"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pybrush.BrushEstimator.BrushEstimator.fit" title="Link to this definition">#</a></dt>
 <dd><p>Fit an estimator to X,y.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
@@ -457,7 +467,7 @@ document.write(`
 
 <dl class="py method">
 <dt class="sig sig-object py" id="pybrush.BrushEstimator.BrushEstimator.get_params">
-<span class="sig-name descname"><span class="pre">get_params</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">deep</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/cavalab/brush/blob/master/../../../micromamba/envs/brush/lib/python3.13/site-packages/pybrush/BrushEstimator.py#L155-L163"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pybrush.BrushEstimator.BrushEstimator.get_params" title="Link to this definition">#</a></dt>
+<span class="sig-name descname"><span class="pre">get_params</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">deep</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/cavalab/brush/blob/master/../../../micromamba/envs/brush/lib/python3.13/site-packages/pybrush/BrushEstimator.py#L164-L172"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pybrush.BrushEstimator.BrushEstimator.get_params" title="Link to this definition">#</a></dt>
 <dd><p>Get parameters for this estimator.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
@@ -477,15 +487,80 @@ contained subobjects that are estimators.</p>
 </dd></dl>
 
 <dl class="py method">
+<dt class="sig sig-object py" id="pybrush.BrushEstimator.BrushEstimator.partial_fit">
+<span class="sig-name descname"><span class="pre">partial_fit</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">X</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">lock_nodes_depth</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">skip_leaves</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/cavalab/brush/blob/master/../../../micromamba/envs/brush/lib/python3.13/site-packages/pybrush/BrushEstimator.py#L98-L140"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pybrush.BrushEstimator.BrushEstimator.partial_fit" title="Link to this definition">#</a></dt>
+<dd><p>Fit an estimator to X,y, without reseting the estimator.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>X</strong><span class="classifier">np.ndarray</span></dt><dd><p>2-d array of input data.</p>
+</dd>
+<dt><strong>y</strong><span class="classifier">np.ndarray</span></dt><dd><p>1-d array of (boolean) target values.</p>
+</dd>
+<dt><strong>lock_nodes_depth</strong><span class="classifier">int, optional</span></dt><dd><p>The depth of the tree to lock. Default is 0.</p>
+</dd>
+<dt><strong>skip_leaves</strong><span class="classifier">bool, optional</span></dt><dd><p>Whether to skip leaves when locking nodes. Default is True.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
 <dt class="sig sig-object py" id="pybrush.BrushEstimator.BrushEstimator.predict">
-<span class="sig-name descname"><span class="pre">predict</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">X</span></span></em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/cavalab/brush/blob/master/../../../micromamba/envs/brush/lib/python3.13/site-packages/pybrush/BrushEstimator.py#L138-L153"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pybrush.BrushEstimator.BrushEstimator.predict" title="Link to this definition">#</a></dt>
+<span class="sig-name descname"><span class="pre">predict</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">X</span></span></em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/cavalab/brush/blob/master/../../../micromamba/envs/brush/lib/python3.13/site-packages/pybrush/BrushEstimator.py#L142-L162"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pybrush.BrushEstimator.BrushEstimator.predict" title="Link to this definition">#</a></dt>
 <dd><p>Predict using the best estimator in the archive.</p>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="pybrush.BrushEstimator.BrushEstimator.predict_archive">
-<span class="sig-name descname"><span class="pre">predict_archive</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">X</span></span></em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/cavalab/brush/blob/master/../../../micromamba/envs/brush/lib/python3.13/site-packages/pybrush/BrushEstimator.py#L165-L188"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pybrush.BrushEstimator.BrushEstimator.predict_archive" title="Link to this definition">#</a></dt>
+<span class="sig-name descname"><span class="pre">predict_archive</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">X</span></span></em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/cavalab/brush/blob/master/../../../micromamba/envs/brush/lib/python3.13/site-packages/pybrush/BrushEstimator.py#L174-L204"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pybrush.BrushEstimator.BrushEstimator.predict_archive" title="Link to this definition">#</a></dt>
 <dd><p>Returns a list of dictionary predictions for all models.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pybrush.BrushEstimator.BrushEstimator.set_partial_fit_request">
+<span class="sig-name descname"><span class="pre">set_partial_fit_request</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="keyword-only-separator o"><abbr title="Keyword-only parameters separator (PEP 3102)"><span class="pre">*</span></abbr></span></em>, <em class="sig-param"><span class="n"><span class="pre">lock_nodes_depth</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'$UNCHANGED$'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">skip_leaves</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'$UNCHANGED$'</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#pybrush.BrushEstimator.BrushEstimator" title="pybrush.BrushEstimator.BrushEstimator"><span class="pre">BrushEstimator</span></a></span></span><a class="reference external" href="https://github.com/cavalab/brush/blob/master/../../../micromamba/envs/brush/lib/python3.13/site-packages/sklearn/utils/_metadata_requests.py#L1251-L1295"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pybrush.BrushEstimator.BrushEstimator.set_partial_fit_request" title="Link to this definition">#</a></dt>
+<dd><p>Request metadata passed to the <code class="docutils literal notranslate"><span class="pre">partial_fit</span></code> method.</p>
+<p>Note that this method is only relevant if
+<code class="docutils literal notranslate"><span class="pre">enable_metadata_routing=True</span></code> (see <code class="xref py py-func docutils literal notranslate"><span class="pre">sklearn.set_config()</span></code>).
+Please see <span class="xref std std-ref">User Guide</span> on how the routing
+mechanism works.</p>
+<p>The options for each parameter are:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">True</span></code>: metadata is requested, and passed to <code class="docutils literal notranslate"><span class="pre">partial_fit</span></code> if provided. The request is ignored if metadata is not provided.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">False</span></code>: metadata is not requested and the meta-estimator will not pass it to <code class="docutils literal notranslate"><span class="pre">partial_fit</span></code>.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">None</span></code>: metadata is not requested, and the meta-estimator will raise an error if the user provides it.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">str</span></code>: metadata should be passed to the meta-estimator with this given alias instead of the original name.</p></li>
+</ul>
+<p>The default (<code class="docutils literal notranslate"><span class="pre">sklearn.utils.metadata_routing.UNCHANGED</span></code>) retains the
+existing request. This allows you to change the request for some
+parameters and not others.</p>
+<div class="versionadded">
+<p><span class="versionmodified added">Added in version 1.3.</span></p>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>This method is only relevant if this estimator is used as a
+sub-estimator of a meta-estimator, e.g. used inside a
+<code class="xref py py-class docutils literal notranslate"><span class="pre">Pipeline</span></code>. Otherwise it has no effect.</p>
+</div>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>lock_nodes_depth</strong><span class="classifier">str, True, False, or None,                     default=sklearn.utils.metadata_routing.UNCHANGED</span></dt><dd><p>Metadata routing for <code class="docutils literal notranslate"><span class="pre">lock_nodes_depth</span></code> parameter in <code class="docutils literal notranslate"><span class="pre">partial_fit</span></code>.</p>
+</dd>
+<dt><strong>skip_leaves</strong><span class="classifier">str, True, False, or None,                     default=sklearn.utils.metadata_routing.UNCHANGED</span></dt><dd><p>Metadata routing for <code class="docutils literal notranslate"><span class="pre">skip_leaves</span></code> parameter in <code class="docutils literal notranslate"><span class="pre">partial_fit</span></code>.</p>
+</dd>
+</dl>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><dl class="simple">
+<dt><strong>self</strong><span class="classifier">object</span></dt><dd><p>The updated object.</p>
+</dd>
+</dl>
+</dd>
+</dl>
 </dd></dl>
 
 </dd></dl>
@@ -540,8 +615,10 @@ contained subobjects that are estimators.</p>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pybrush.BrushEstimator.BrushEstimator"><code class="docutils literal notranslate"><span class="pre">BrushEstimator</span></code></a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#pybrush.BrushEstimator.BrushEstimator.fit"><code class="docutils literal notranslate"><span class="pre">BrushEstimator.fit()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#pybrush.BrushEstimator.BrushEstimator.get_params"><code class="docutils literal notranslate"><span class="pre">BrushEstimator.get_params()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#pybrush.BrushEstimator.BrushEstimator.partial_fit"><code class="docutils literal notranslate"><span class="pre">BrushEstimator.partial_fit()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#pybrush.BrushEstimator.BrushEstimator.predict"><code class="docutils literal notranslate"><span class="pre">BrushEstimator.predict()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#pybrush.BrushEstimator.BrushEstimator.predict_archive"><code class="docutils literal notranslate"><span class="pre">BrushEstimator.predict_archive()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#pybrush.BrushEstimator.BrushEstimator.set_partial_fit_request"><code class="docutils literal notranslate"><span class="pre">BrushEstimator.set_partial_fit_request()</span></code></a></li>
 </ul>
 </li>
 </ul>

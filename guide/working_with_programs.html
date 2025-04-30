@@ -177,6 +177,7 @@
 <li class="toctree-l2"><a class="reference internal" href="json.html">JSON Interoperability</a></li>
 <li class="toctree-l2"><a class="reference internal" href="saving_loading_populations.html">Saving and loading populations</a></li>
 <li class="toctree-l2"><a class="reference internal" href="archive.html">The archive</a></li>
+
 <li class="toctree-l2"><a class="reference internal" href="deap.html">Using Deap</a></li>
 </ul>
 </details></li>
@@ -382,6 +383,7 @@ document.write(`
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#quick-little-tree">Quick Little Tree</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#graphviz">GraphViz</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#tweaking-graphs">Tweaking Graphs</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#a-classification-example">A classification example</a></li>
 </ul>
 </li>
 </ul>
@@ -472,7 +474,8 @@ We use the <a class="reference external" href="https://github.com/kpeeters/tree.
 </div>
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Completed 100% [====================]
-score: 0.8972961690538603
+saving final population as archive...
+score: 0.8864496494920485
 </pre></div>
 </div>
 </div>
@@ -486,8 +489,8 @@ score: 0.8972961690538603
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Fitness(9.282899 19.000000 )
-[&#39;error&#39;, &#39;size&#39;]
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Fitness(10.263265 19.000000 )
+[&#39;scorer&#39;, &#39;size&#39;]
 </pre></div>
 </div>
 </div>
@@ -507,6 +510,23 @@ score: 0.8972961690538603
 </div>
 </div>
 </div>
+<p>Other information of the best estimator can also be accessed through its fitness attribute:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">est</span><span class="o">.</span><span class="n">best_estimator_</span><span class="o">.</span><span class="n">fitness</span><span class="o">.</span><span class="n">size</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">est</span><span class="o">.</span><span class="n">best_estimator_</span><span class="o">.</span><span class="n">fitness</span><span class="o">.</span><span class="n">complexity</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">est</span><span class="o">.</span><span class="n">best_estimator_</span><span class="o">.</span><span class="n">fitness</span><span class="o">.</span><span class="n">depth</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>19
+6088
+3
+</pre></div>
+</div>
+</div>
+</div>
 </section>
 <section id="serialization">
 <h2>Serialization<a class="headerlink" href="#serialization" title="Link to this heading">#</a></h2>
@@ -521,11 +541,13 @@ score: 0.8972961690538603
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>fitness {&#39;complexity&#39;: 304, &#39;crowding_dist&#39;: 3.4028234663852886e+38, &#39;dcounter&#39;: 0, &#39;depth&#39;: 3, &#39;dominated&#39;: [0, 2, 29, 62, 80, 127, 146], &#39;loss&#39;: 9.282898902893066, &#39;loss_v&#39;: 9.282898902893066, &#39;rank&#39;: 1, &#39;size&#39;: 19, &#39;values&#39;: [9.282898902893066, 19.0], &#39;weights&#39;: [-1.0, -1.0], &#39;wvalues&#39;: [-9.282898902893066, -19.0]}
-id 1910
-objectives [&#39;error&#39;, &#39;size&#39;]
-parent_id [1858]
-program {&#39;Tree&#39;: [{&#39;W&#39;: 0.75, &#39;arg_types&#39;: [&#39;ArrayF&#39;, &#39;ArrayF&#39;], &#39;center_op&#39;: True, &#39;feature&#39;: &#39;x0&#39;, &#39;fixed&#39;: False, &#39;is_weighted&#39;: False, &#39;name&#39;: &#39;SplitBest&#39;, &#39;node_type&#39;: &#39;SplitBest&#39;, &#39;prob_change&#39;: 1.0, &#39;ret_type&#39;: &#39;ArrayF&#39;, &#39;sig_dual_hash&#39;: 9996486434638833164, &#39;sig_hash&#39;: 10001460114883919497}, {&#39;W&#39;: 0.8050000071525574, &#39;arg_types&#39;: [&#39;ArrayF&#39;, &#39;ArrayF&#39;], &#39;center_op&#39;: True, &#39;feature&#39;: &#39;x0&#39;, &#39;fixed&#39;: False, &#39;is_weighted&#39;: False, &#39;name&#39;: &#39;SplitBest&#39;, &#39;node_type&#39;: &#39;SplitBest&#39;, &#39;prob_change&#39;: 1.0, &#39;ret_type&#39;: &#39;ArrayF&#39;, &#39;sig_dual_hash&#39;: 9996486434638833164, &#39;sig_hash&#39;: 10001460114883919497}, {&#39;W&#39;: 30.494491577148438, &#39;arg_types&#39;: [], &#39;center_op&#39;: True, &#39;feature&#39;: &#39;MeanLabel&#39;, &#39;fixed&#39;: False, &#39;is_weighted&#39;: True, &#39;name&#39;: &#39;MeanLabel&#39;, &#39;node_type&#39;: &#39;MeanLabel&#39;, &#39;prob_change&#39;: 1.0, &#39;ret_type&#39;: &#39;ArrayF&#39;, &#39;sig_dual_hash&#39;: 509529941281334733, &#39;sig_hash&#39;: 17717457037689164349}, {&#39;W&#39;: 49.47871017456055, &#39;arg_types&#39;: [], &#39;center_op&#39;: True, &#39;feature&#39;: &#39;x0&#39;, &#39;fixed&#39;: False, &#39;is_weighted&#39;: True, &#39;name&#39;: &#39;Terminal&#39;, &#39;node_type&#39;: &#39;Terminal&#39;, &#39;prob_change&#39;: 1.0, &#39;ret_type&#39;: &#39;ArrayF&#39;, &#39;sig_dual_hash&#39;: 509529941281334733, &#39;sig_hash&#39;: 17717457037689164349}, {&#39;W&#39;: 1.0, &#39;arg_types&#39;: [&#39;ArrayF&#39;, &#39;ArrayF&#39;], &#39;center_op&#39;: True, &#39;feature&#39;: &#39;&#39;, &#39;fixed&#39;: False, &#39;is_weighted&#39;: False, &#39;name&#39;: &#39;Add&#39;, &#39;node_type&#39;: &#39;Add&#39;, &#39;prob_change&#39;: 1.0, &#39;ret_type&#39;: &#39;ArrayF&#39;, &#39;sig_dual_hash&#39;: 9996486434638833164, &#39;sig_hash&#39;: 10001460114883919497}, {&#39;W&#39;: 0.018234524875879288, &#39;arg_types&#39;: [], &#39;center_op&#39;: True, &#39;feature&#39;: &#39;x1&#39;, &#39;fixed&#39;: False, &#39;is_weighted&#39;: True, &#39;name&#39;: &#39;Terminal&#39;, &#39;node_type&#39;: &#39;Terminal&#39;, &#39;prob_change&#39;: 1.0, &#39;ret_type&#39;: &#39;ArrayF&#39;, &#39;sig_dual_hash&#39;: 509529941281334733, &#39;sig_hash&#39;: 17717457037689164349}, {&#39;W&#39;: 10.46687126159668, &#39;arg_types&#39;: [], &#39;center_op&#39;: True, &#39;feature&#39;: &#39;x6&#39;, &#39;fixed&#39;: False, &#39;is_weighted&#39;: True, &#39;name&#39;: &#39;Terminal&#39;, &#39;node_type&#39;: &#39;Terminal&#39;, &#39;prob_change&#39;: 1.0, &#39;ret_type&#39;: &#39;ArrayF&#39;, &#39;sig_dual_hash&#39;: 509529941281334733, &#39;sig_hash&#39;: 17717457037689164349}], &#39;is_fitted_&#39;: True}
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>fitness {&#39;complexity&#39;: 6088, &#39;crowding_dist&#39;: 3.4028234663852886e+38, &#39;dcounter&#39;: 0, &#39;depth&#39;: 3, &#39;dominated&#39;: [125, 127, 176, 188], &#39;linear_complexity&#39;: 40, &#39;loss&#39;: 10.263264656066895, &#39;loss_v&#39;: 10.263264656066895, &#39;rank&#39;: 1, &#39;size&#39;: 19, &#39;values&#39;: [10.263264656066895, 19.0], &#39;weights&#39;: [-1.0, -1.0], &#39;wvalues&#39;: [-10.263264656066895, -19.0]}
+id 259
+is_fitted_ False
+objectives [&#39;mse&#39;, &#39;size&#39;]
+parent_id [282]
+program {&#39;Tree&#39;: [{&#39;W&#39;: 0.75, &#39;arg_types&#39;: [&#39;ArrayF&#39;, &#39;ArrayF&#39;], &#39;center_op&#39;: False, &#39;feature&#39;: &#39;x0&#39;, &#39;fixed&#39;: False, &#39;is_weighted&#39;: True, &#39;name&#39;: &#39;SplitBest&#39;, &#39;node_type&#39;: &#39;SplitBest&#39;, &#39;prob_change&#39;: 1.0, &#39;ret_type&#39;: &#39;ArrayF&#39;, &#39;sig_dual_hash&#39;: 9996486434638833164, &#39;sig_hash&#39;: 10001460114883919497}, {&#39;W&#39;: 0.8050000071525574, &#39;arg_types&#39;: [&#39;ArrayF&#39;, &#39;ArrayF&#39;], &#39;center_op&#39;: False, &#39;feature&#39;: &#39;x0&#39;, &#39;fixed&#39;: False, &#39;is_weighted&#39;: True, &#39;name&#39;: &#39;SplitBest&#39;, &#39;node_type&#39;: &#39;SplitBest&#39;, &#39;prob_change&#39;: 1.0, &#39;ret_type&#39;: &#39;ArrayF&#39;, &#39;sig_dual_hash&#39;: 9996486434638833164, &#39;sig_hash&#39;: 10001460114883919497}, {&#39;W&#39;: 30.494491577148438, &#39;arg_types&#39;: [], &#39;center_op&#39;: True, &#39;feature&#39;: &#39;Constant&#39;, &#39;fixed&#39;: False, &#39;is_weighted&#39;: True, &#39;name&#39;: &#39;Constant&#39;, &#39;node_type&#39;: &#39;Constant&#39;, &#39;prob_change&#39;: 0.6167147755622864, &#39;ret_type&#39;: &#39;ArrayF&#39;, &#39;sig_dual_hash&#39;: 509529941281334733, &#39;sig_hash&#39;: 17717457037689164349}, {&#39;W&#39;: 49.47871398925781, &#39;arg_types&#39;: [], &#39;center_op&#39;: True, &#39;feature&#39;: &#39;x0&#39;, &#39;fixed&#39;: False, &#39;is_weighted&#39;: True, &#39;name&#39;: &#39;Terminal&#39;, &#39;node_type&#39;: &#39;Terminal&#39;, &#39;prob_change&#39;: 0.6343384981155396, &#39;ret_type&#39;: &#39;ArrayF&#39;, &#39;sig_dual_hash&#39;: 509529941281334733, &#39;sig_hash&#39;: 17717457037689164349}, {&#39;W&#39;: 0.02150718681514263, &#39;arg_types&#39;: [], &#39;center_op&#39;: True, &#39;feature&#39;: &#39;x1&#39;, &#39;fixed&#39;: False, &#39;is_weighted&#39;: True, &#39;name&#39;: &#39;Terminal&#39;, &#39;node_type&#39;: &#39;Terminal&#39;, &#39;prob_change&#39;: 0.6729995608329773, &#39;ret_type&#39;: &#39;ArrayF&#39;, &#39;sig_dual_hash&#39;: 509529941281334733, &#39;sig_hash&#39;: 17717457037689164349}], &#39;is_fitted_&#39;: True}
+variation point
 </pre></div>
 </div>
 </div>
@@ -557,7 +579,7 @@ program {&#39;Tree&#39;: [{&#39;W&#39;: 0.75, &#39;arg_types&#39;: [&#39;ArrayF&
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>If(x0&gt;0.75,If(x0&gt;0.81,30.49*MeanLabel,49.48*x0),Add(0.02*x1,10.47*x6))
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>If(x0&gt;0.75,If(x0&gt;0.81,30.49,49.48*x0),0.02*x1)
 </pre></div>
 </div>
 </div>
@@ -573,7 +595,7 @@ We can view it as a string:</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>If(x0&gt;0.75,If(x0&gt;0.81,30.49*MeanLabel,49.48*x0),Add(0.02*x1,10.47*x6))
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>If(x0&gt;0.75,If(x0&gt;0.81,30.49,49.48*x0),0.02*x1)
 </pre></div>
 </div>
 </div>
@@ -589,13 +611,11 @@ We can view it as a string:</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>SplitBest
-|-SplitBest
-  |-30.49*MeanLabel
-  |-49.48*x0
-|-Add
-|  |-0.02*x1
-|  |-10.47*x6
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>If(x0)
+|- If(x0)
+|  |- 30.49
+|  |- 49.48*x0
+|- 0.02*x1
 </pre></div>
 </div>
 </div>
@@ -615,7 +635,7 @@ Let’s import graphviz and make a nicer plot.</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/f565a56baa5caba4a8da5631b725e656c6e86247681e12b581b9f77f59485b4f.svg" src="../_images/f565a56baa5caba4a8da5631b725e656c6e86247681e12b581b9f77f59485b4f.svg" />
+<img alt="../_images/a97b3e64133b6a8fdb9e72a09e04603b3d8d11129d167d8d25873556c32a6a12.svg" src="../_images/a97b3e64133b6a8fdb9e72a09e04603b3d8d11129d167d8d25873556c32a6a12.svg" />
 </div>
 </div>
 <p>The <code class="docutils literal notranslate"><span class="pre">model</span></code> variable is now a little program in the <a class="reference external" href="https://graphviz.org/docs/layouts/dot/">dot language</a>, which we can inspect directly.</p>
@@ -627,19 +647,17 @@ Let’s import graphviz and make a nicer plot.</p>
 </div>
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>digraph G {
-&quot;7f370003ebc0&quot; [label=&quot;x0&gt;0.75?&quot;];
-&quot;7f370003ebc0&quot; -&gt; &quot;7f37000b5410&quot; [headlabel=&quot;&quot;,taillabel=&quot;Y&quot;];
-&quot;7f370003ebc0&quot; -&gt; &quot;7f370003f120&quot; [headlabel=&quot;&quot;,taillabel=&quot;N&quot;];
-&quot;7f37000b5410&quot; [label=&quot;x0&gt;0.81?&quot;];
-&quot;7f37000b5410&quot; -&gt; &quot;7f370003ef80&quot; [headlabel=&quot;&quot;,taillabel=&quot;Y&quot;];
-&quot;7f37000b5410&quot; -&gt; &quot;x0&quot; [headlabel=&quot;49.48&quot;,taillabel=&quot;N&quot;];
-&quot;7f370003ef80&quot; [label=&quot;30.49*MeanLabel&quot;];
+y [shape=box];
+y -&gt; &quot;7f2110142b30&quot; [label=&quot;0.75&quot;];
+&quot;7f2110142b30&quot; [label=&quot;x0&gt;0.75?&quot;];
+&quot;7f2110142b30&quot; -&gt; &quot;7f211016c9e0&quot; [headlabel=&quot;&quot;,taillabel=&quot;Y&quot;];
+&quot;7f2110142b30&quot; -&gt; &quot;x1&quot; [headlabel=&quot;0.02&quot;,taillabel=&quot;N&quot;];
+&quot;7f211016c9e0&quot; [label=&quot;x0&gt;0.81?&quot;];
+&quot;7f211016c9e0&quot; -&gt; &quot;7f2110142520&quot; [headlabel=&quot;&quot;,taillabel=&quot;Y&quot;];
+&quot;7f211016c9e0&quot; -&gt; &quot;x0&quot; [headlabel=&quot;49.48&quot;,taillabel=&quot;N&quot;];
+&quot;7f2110142520&quot; [label=&quot;30.49&quot;];
 &quot;x0&quot; [label=&quot;x0&quot;];
-&quot;7f370003f120&quot; [label=&quot;Add&quot;];
-&quot;7f370003f120&quot; -&gt; &quot;x1&quot; [label=&quot;0.02&quot;];
-&quot;7f370003f120&quot; -&gt; &quot;x6&quot; [label=&quot;10.47&quot;];
 &quot;x1&quot; [label=&quot;x1&quot;];
-&quot;x6&quot; [label=&quot;x6&quot;];
 }
 </pre></div>
 </div>
@@ -659,7 +677,54 @@ You can do this by manually editing <code class="docutils literal notranslate"><
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/ece6b5dce4ed21d79db83a73c56ed18c60f1b752ea1eb6474fcc6d722b2e1082.svg" src="../_images/ece6b5dce4ed21d79db83a73c56ed18c60f1b752ea1eb6474fcc6d722b2e1082.svg" />
+<img alt="../_images/b9e568ad647dff3cb90249f2603d2e5dc40a329bff413bd3152cb66307735170.svg" src="../_images/b9e568ad647dff3cb90249f2603d2e5dc40a329bff413bd3152cb66307735170.svg" />
+</div>
+</div>
+</section>
+<section id="a-classification-example">
+<h3>A classification example<a class="headerlink" href="#a-classification-example" title="Link to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">pybrush</span><span class="w"> </span><span class="kn">import</span> <span class="n">BrushClassifier</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.preprocessing</span><span class="w"> </span><span class="kn">import</span> <span class="n">StandardScaler</span>
+
+<span class="c1"># load data</span>
+<span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">&#39;../examples/datasets/d_analcatdata_aids.csv&#39;</span><span class="p">)</span>
+<span class="n">X</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="s1">&#39;target&#39;</span><span class="p">)</span>
+<span class="n">y</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;target&#39;</span><span class="p">]</span>
+
+<span class="k">if</span> <span class="kc">True</span><span class="p">:</span>
+    <span class="n">scl</span> <span class="o">=</span> <span class="n">StandardScaler</span><span class="p">()</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X</span><span class="p">)</span>
+    <span class="n">X</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">scl</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="n">X</span><span class="p">),</span> <span class="n">columns</span><span class="o">=</span><span class="n">X</span><span class="o">.</span><span class="n">columns</span><span class="p">)</span>
+
+<span class="n">est</span> <span class="o">=</span> <span class="n">BrushClassifier</span><span class="p">(</span>
+    <span class="n">functions</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;SplitOn&#39;</span><span class="p">,</span> <span class="s1">&#39;SplitBest&#39;</span><span class="p">,</span> <span class="s1">&#39;Sin&#39;</span><span class="p">,</span><span class="s1">&#39;Cos&#39;</span><span class="p">,</span><span class="s1">&#39;Exp&#39;</span><span class="p">],</span>
+    <span class="n">max_gens</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span>
+    <span class="n">objectives</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;scorer&quot;</span><span class="p">,</span> <span class="s2">&quot;linear_complexity&quot;</span><span class="p">],</span>  
+    <span class="n">scorer</span><span class="o">=</span><span class="s2">&quot;log&quot;</span><span class="p">,</span>
+    <span class="n">pop_size</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span>
+    <span class="n">bandit</span><span class="o">=</span><span class="s1">&#39;dynamic_thompson&#39;</span><span class="p">,</span>
+    <span class="n">verbosity</span><span class="o">=</span><span class="mi">1</span>
+<span class="p">)</span>
+
+<span class="n">est</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X</span><span class="p">,</span><span class="n">y</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Best model:&quot;</span><span class="p">,</span> <span class="n">est</span><span class="o">.</span><span class="n">best_estimator_</span><span class="o">.</span><span class="n">get_model</span><span class="p">())</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;score:&#39;</span><span class="p">,</span> <span class="n">est</span><span class="o">.</span><span class="n">score</span><span class="p">(</span><span class="n">X</span><span class="p">,</span><span class="n">y</span><span class="p">))</span>
+
+<span class="n">model</span> <span class="o">=</span> <span class="n">est</span><span class="o">.</span><span class="n">best_estimator_</span><span class="o">.</span><span class="n">get_dot_model</span><span class="p">()</span>
+<span class="n">graphviz</span><span class="o">.</span><span class="n">Source</span><span class="p">(</span><span class="n">model</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Completed 100% [====================]
+saving final population as archive...
+Best model: Logistic(Sum(-0.62,If(AIDS&gt;0.41,9.13,-0.70*Total)))
+score: 0.68
+</pre></div>
+</div>
+<img alt="../_images/f0a56b3dc5c8f14a17fee747ab0892ccd3401e08836bce79f2cb6dc9ed25b1c6.svg" src="../_images/f0a56b3dc5c8f14a17fee747ab0892ccd3401e08836bce79f2cb6dc9ed25b1c6.svg" />
 </div>
 </div>
 </section>
@@ -721,6 +786,7 @@ You can do this by manually editing <code class="docutils literal notranslate"><
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#quick-little-tree">Quick Little Tree</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#graphviz">GraphViz</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#tweaking-graphs">Tweaking Graphs</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#a-classification-example">A classification example</a></li>
 </ul>
 </li>
 </ul>

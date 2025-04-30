@@ -1,6 +1,7 @@
 var classBrush_1_1Engine =
 [
-    [ "Engine", "d0/d75/classBrush_1_1Engine.html#a20427c4779258cc283570230039e4a3c", null ],
+    [ "Engine", "d0/d75/classBrush_1_1Engine.html#ab1eff1b88ccdae24b480972bd5b0131d", null ],
+    [ "Engine", "d0/d75/classBrush_1_1Engine.html#a4fbbbdda545c6dda1a55ef8644c008b8", null ],
     [ "~Engine", "d0/d75/classBrush_1_1Engine.html#a426bf144e6990e58cb1b1347c4a5795d", null ],
     [ "calculate_stats", "d0/d75/classBrush_1_1Engine.html#a215399033d10c86535f344e54937ea01", null ],
     [ "fit", "d0/d75/classBrush_1_1Engine.html#aad11ac5c3f0adc14cabf465eeb7d3e91", null ],
@@ -10,7 +11,10 @@ var classBrush_1_1Engine =
     [ "get_best_ind", "d0/d75/classBrush_1_1Engine.html#a7f2a508f9bd1860f0ab15dbbc1f306fc", null ],
     [ "get_is_fitted", "d0/d75/classBrush_1_1Engine.html#aab1caca99728e672a5c78142546aa497", null ],
     [ "get_params", "d0/d75/classBrush_1_1Engine.html#a7c02eca29f421b7242a346ceaefd622b", null ],
+    [ "get_population", "d0/d75/classBrush_1_1Engine.html#a40877d86ac0f8be201ed33893333d0c8", null ],
+    [ "get_search_space", "d0/d75/classBrush_1_1Engine.html#a25c352fff846ce0a5ce45bfe65cab739", null ],
     [ "init", "d0/d75/classBrush_1_1Engine.html#abf9f9f0eec7c0c6d4cf9985d993e6018", null ],
+    [ "lock_nodes", "d0/d75/classBrush_1_1Engine.html#a554973e3cdb838b80351337558995469", null ],
     [ "log_stats", "d0/d75/classBrush_1_1Engine.html#ae099086faca2e6ea54f5e85b380a8da8", null ],
     [ "predict", "d0/d75/classBrush_1_1Engine.html#a1b6447ad9d2eb1f0fc1252be14729e0f", null ],
     [ "predict", "d0/d75/classBrush_1_1Engine.html#a5f7b02e40b9cdabf1cf9ad6f3a99cc59", null ],
@@ -25,11 +29,12 @@ var classBrush_1_1Engine =
     [ "run", "d0/d75/classBrush_1_1Engine.html#a4248c80ebcd035a70953065045e04705", null ],
     [ "set_is_fitted", "d0/d75/classBrush_1_1Engine.html#a82422a2bb8061934c4be271ee7eef810", null ],
     [ "set_params", "d0/d75/classBrush_1_1Engine.html#a7fdb1ff2afedbde73b8cf91d667f98b6", null ],
-    [ "update_best", "d0/d75/classBrush_1_1Engine.html#a9a15cd9b6bdcc6c7bee5a473ebff1081", null ],
+    [ "set_population", "d0/d75/classBrush_1_1Engine.html#a7936896228b5c00b6e87070b7caeed00", null ],
+    [ "set_search_space", "d0/d75/classBrush_1_1Engine.html#a6cdeb0b7db1613e70128d93c72591520", null ],
+    [ "unlock_nodes", "d0/d75/classBrush_1_1Engine.html#a906eb67b9e5e91447f270653b468a36d", null ],
+    [ "update_best", "d0/d75/classBrush_1_1Engine.html#ad1d21bed892c8d2132d58ec34372ec41", null ],
     [ "archive", "d0/d75/classBrush_1_1Engine.html#a59769ad184bdcdf2032c99acf3a77410", null ],
-    [ "best_complexity", "d0/d75/classBrush_1_1Engine.html#a3abf94acdca8101698f36c364f8e0145", null ],
     [ "best_ind", "d0/d75/classBrush_1_1Engine.html#a27fbc5f690c9952dc95ed5c3cce31418", null ],
-    [ "best_score", "d0/d75/classBrush_1_1Engine.html#a16a22a02c2ff6d2c4fbd1b593e055a4f", null ],
     [ "evaluator", "d0/d75/classBrush_1_1Engine.html#aa8ccb37fe65cec921d9a155c1000cda7", null ],
     [ "is_fitted", "d0/d75/classBrush_1_1Engine.html#a1f3f589d727557956c89c6abc272c3c5", null ],
     [ "params", "d0/d75/classBrush_1_1Engine.html#ab732127d18c12f7c5ea28fd33ee846e6", null ],
@@ -38,6 +43,5 @@ var classBrush_1_1Engine =
     [ "ss", "d0/d75/classBrush_1_1Engine.html#ae4708d8c80153665a35fdc298ec626f5", null ],
     [ "stats", "d0/d75/classBrush_1_1Engine.html#a596db23cf521696b72b023bacbf3a737", null ],
     [ "survivor", "d0/d75/classBrush_1_1Engine.html#a70abc4545878805cd572d110f21d1e7c", null ],
-    [ "timer", "d0/d75/classBrush_1_1Engine.html#a1c15a1ffc9ffcebee65da12242791b13", null ],
-    [ "variator", "d0/d75/classBrush_1_1Engine.html#a77c7fc26671fb2b064a4c588540ebed5", null ]
+    [ "timer", "d0/d75/classBrush_1_1Engine.html#a1c15a1ffc9ffcebee65da12242791b13", null ]
 ];

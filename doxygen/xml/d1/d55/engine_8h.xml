@@ -2,50 +2,112 @@
 <doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.13.2" xml:lang="en-US">
   <compounddef id="d1/d55/engine_8h" kind="file" language="C++">
     <compoundname>engine.h</compoundname>
-    <includes refid="d2/da9/rnd_8h" local="yes">./util/rnd.h</includes>
+    <includes refid="d2/da9/rnd_8h" local="yes">util/rnd.h</includes>
     <includes refid="d8/dc0/init_8h" local="yes">init.h</includes>
     <includes refid="da/d33/params_8h" local="yes">params.h</includes>
+    <includes refid="d3/df9/evaluation_8h" local="yes">eval/evaluation.h</includes>
+    <includes refid="d4/d1f/variation_8h" local="yes">vary/variation.h</includes>
     <includes refid="d2/d76/population_8h" local="yes">pop/population.h</includes>
     <includes refid="d9/d28/archive_8h" local="yes">pop/archive.h</includes>
-    <includes refid="d3/df9/evaluation_8h" local="yes">./eval/evaluation.h</includes>
-    <includes refid="d4/d1f/variation_8h" local="yes">vary/variation.h</includes>
     <includes refid="df/d48/selection_8h" local="yes">selection/selection.h</includes>
     <includes local="yes">taskflow/taskflow.hpp</includes>
     <includes local="no">taskflow/algorithm/for_each.hpp</includes>
     <includedby refid="d4/d93/bind__engines_8h" local="yes">bind_engines.h</includedby>
     <includedby refid="da/d5c/engine_8cpp" local="yes">engine.cpp</includedby>
     <incdepgraph>
-      <node id="52">
+      <node id="50">
         <label>../../thirdparty/tree.hh</label>
       </node>
-      <node id="40">
+      <node id="68">
+        <label>../bandit/bandit.h</label>
+        <link refid="d7/d00/bandit_8h"/>
+        <childnode refid="6" relation="include">
+        </childnode>
+        <childnode refid="20" relation="include">
+        </childnode>
+        <childnode refid="54" relation="include">
+        </childnode>
+        <childnode refid="35" relation="include">
+        </childnode>
+        <childnode refid="26" relation="include">
+        </childnode>
+        <childnode refid="69" relation="include">
+        </childnode>
+        <childnode refid="70" relation="include">
+        </childnode>
+        <childnode refid="71" relation="include">
+        </childnode>
+        <childnode refid="73" relation="include">
+        </childnode>
+      </node>
+      <node id="69">
+        <label>bandit_operator.h</label>
+        <link refid="da/d8e/bandit__operator_8h"/>
+        <childnode refid="6" relation="include">
+        </childnode>
+        <childnode refid="20" relation="include">
+        </childnode>
+        <childnode refid="24" relation="include">
+        </childnode>
+        <childnode refid="45" relation="include">
+        </childnode>
+        <childnode refid="63" relation="include">
+        </childnode>
+      </node>
+      <node id="70">
+        <label>dummy.h</label>
+        <link refid="d2/d94/dummy_8h"/>
+        <childnode refid="69" relation="include">
+        </childnode>
+      </node>
+      <node id="73">
+        <label>linear_thompson.h</label>
+        <link refid="d9/df5/linear__thompson_8h"/>
+        <childnode refid="69" relation="include">
+        </childnode>
+        <childnode refid="72" relation="include">
+        </childnode>
+        <childnode refid="26" relation="include">
+        </childnode>
+      </node>
+      <node id="71">
+        <label>thompson.h</label>
+        <link refid="db/ddd/thompson_8h"/>
+        <childnode refid="69" relation="include">
+        </childnode>
+        <childnode refid="72" relation="include">
+        </childnode>
+        <childnode refid="26" relation="include">
+        </childnode>
+      </node>
+      <node id="37">
         <label>../data/data.h</label>
         <link refid="d2/dbd/data_8h"/>
         <childnode refid="6" relation="include">
         </childnode>
-        <childnode refid="27" relation="include">
+        <childnode refid="26" relation="include">
         </childnode>
-        <childnode refid="30" relation="include">
+        <childnode refid="29" relation="include">
         </childnode>
         <childnode refid="25" relation="include">
         </childnode>
         <childnode refid="2" relation="include">
         </childnode>
-        <childnode refid="41" relation="include">
+        <childnode refid="38" relation="include">
         </childnode>
         <childnode refid="21" relation="include">
         </childnode>
-        <childnode refid="42" relation="include">
+        <childnode refid="39" relation="include">
         </childnode>
       </node>
-      <node id="41">
+      <node id="38">
         <label>timeseries.h</label>
         <link refid="d9/df7/timeseries_8h"/>
         <childnode refid="6" relation="include">
         </childnode>
-        <childnode refid="27" relation="include">
+        <childnode refid="26" relation="include">
         </childnode>
-        <childnode refid="30" relation="include">
+        <childnode refid="29" relation="include">
         </childnode>
       </node>
       <node id="1">
@@ -57,49 +119,49 @@
         </childnode>
         <childnode refid="24" relation="include">
         </childnode>
-        <childnode refid="26" relation="include">
-        </childnode>
-        <childnode refid="64" relation="include">
+        <childnode refid="34" relation="include">
         </childnode>
         <childnode refid="67" relation="include">
         </childnode>
-        <childnode refid="70" relation="include">
+        <childnode refid="66" relation="include">
         </childnode>
-        <childnode refid="71" relation="include">
+        <childnode refid="76" relation="include">
         </childnode>
-        <childnode refid="73" relation="include">
+        <childnode refid="79" relation="include">
         </childnode>
-        <childnode refid="74" relation="include">
+        <childnode refid="81" relation="include">
+        </childnode>
+        <childnode refid="82" relation="include">
         </childnode>
       </node>
-      <node id="67">
-        <label>./eval/evaluation.h</label>
+      <node id="34">
+        <label>eval/evaluation.h</label>
         <link refid="d3/df9/evaluation_8h"/>
         <childnode refid="15" relation="include">
         </childnode>
-        <childnode refid="55" relation="include">
-        </childnode>
         <childnode refid="35" relation="include">
         </childnode>
-        <childnode refid="40" relation="include">
+        <childnode refid="53" relation="include">
         </childnode>
-        <childnode refid="68" relation="include">
+        <childnode refid="37" relation="include">
         </childnode>
-        <childnode refid="26" relation="include">
+        <childnode refid="64" relation="include">
+        </childnode>
+        <childnode refid="66" relation="include">
         </childnode>
       </node>
-      <node id="69">
+      <node id="65">
         <label>metrics.h</label>
         <link refid="df/d34/metrics_8h"/>
-        <childnode refid="40" relation="include">
+        <childnode refid="37" relation="include">
         </childnode>
       </node>
-      <node id="68">
+      <node id="64">
         <label>scorer.h</label>
         <link refid="da/d3b/scorer_8h"/>
-        <childnode refid="69" relation="include">
+        <childnode refid="65" relation="include">
         </childnode>
-        <childnode refid="30" relation="include">
+        <childnode refid="29" relation="include">
         </childnode>
         <childnode refid="20" relation="include">
         </childnode>
@@ -107,21 +169,21 @@
       <node id="63">
         <label>fitness.h</label>
         <link refid="dc/d7a/fitness_8h"/>
-        <childnode refid="51" relation="include">
+        <childnode refid="49" relation="include">
         </childnode>
         <childnode refid="6" relation="include">
         </childnode>
-        <childnode refid="27" relation="include">
+        <childnode refid="26" relation="include">
         </childnode>
       </node>
-      <node id="35">
+      <node id="53">
         <label>../ind/individual.h</label>
         <link refid="d5/d1f/individual_8h"/>
-        <childnode refid="36" relation="include">
+        <childnode refid="54" relation="include">
         </childnode>
         <childnode refid="63" relation="include">
         </childnode>
-        <childnode refid="51" relation="include">
+        <childnode refid="49" relation="include">
         </childnode>
       </node>
       <node id="6">
@@ -161,101 +223,101 @@
       <node id="24">
         <label>params.h</label>
         <link refid="da/d33/params_8h"/>
-        <childnode refid="6" relation="include">
-        </childnode>
         <childnode refid="25" relation="include">
         </childnode>
+        <childnode refid="26" relation="include">
+        </childnode>
       </node>
-      <node id="64">
+      <node id="76">
         <label>pop/archive.h</label>
         <link refid="d9/d28/archive_8h"/>
-        <childnode refid="35" relation="include">
+        <childnode refid="53" relation="include">
         </childnode>
-        <childnode refid="65" relation="include">
+        <childnode refid="77" relation="include">
         </childnode>
       </node>
-      <node id="26">
-        <label>pop/population.h</label>
+      <node id="66">
+        <label>../pop/population.h</label>
         <link refid="d2/d76/population_8h"/>
-        <childnode refid="27" relation="include">
+        <childnode refid="26" relation="include">
         </childnode>
-        <childnode refid="30" relation="include">
+        <childnode refid="29" relation="include">
         </childnode>
-        <childnode refid="35" relation="include">
+        <childnode refid="53" relation="include">
         </childnode>
       </node>
-      <node id="53">
+      <node id="51">
         <label>dispatch_table.h</label>
         <link refid="df/d61/dispatch__table_8h"/>
         <childnode refid="6" relation="include">
         </childnode>
+        <childnode refid="37" relation="include">
+        </childnode>
         <childnode refid="40" relation="include">
         </childnode>
-        <childnode refid="44" relation="include">
+        <childnode refid="36" relation="include">
         </childnode>
-        <childnode refid="43" relation="include">
+        <childnode refid="39" relation="include">
         </childnode>
-        <childnode refid="42" relation="include">
+        <childnode refid="52" relation="include">
         </childnode>
-        <childnode refid="54" relation="include">
-        </childnode>
-        <childnode refid="34" relation="include">
+        <childnode refid="33" relation="include">
         </childnode>
       </node>
-      <node id="49">
+      <node id="47">
         <label>functions.h</label>
         <link refid="d8/d5c/functions_8h"/>
-        <childnode refid="50" relation="include">
+        <childnode refid="48" relation="include">
         </childnode>
-        <childnode refid="32" relation="include">
+        <childnode refid="31" relation="include">
         </childnode>
-        <childnode refid="51" relation="include">
+        <childnode refid="49" relation="include">
         </childnode>
         <childnode refid="12" relation="include">
         </childnode>
-        <childnode refid="46" relation="include">
+        <childnode refid="42" relation="include">
         </childnode>
         <childnode refid="6" relation="include">
         </childnode>
-        <childnode refid="44" relation="include">
-        </childnode>
-        <childnode refid="27" relation="include">
-        </childnode>
         <childnode refid="40" relation="include">
         </childnode>
-        <childnode refid="43" relation="include">
+        <childnode refid="26" relation="include">
+        </childnode>
+        <childnode refid="37" relation="include">
+        </childnode>
+        <childnode refid="36" relation="include">
         </childnode>
       </node>
-      <node id="43">
-        <label>node.h</label>
+      <node id="36">
+        <label>../program/node.h</label>
         <link refid="d1/d77/node_8h"/>
+        <childnode refid="37" relation="include">
+        </childnode>
         <childnode refid="40" relation="include">
         </childnode>
-        <childnode refid="44" relation="include">
-        </childnode>
-        <childnode refid="27" relation="include">
+        <childnode refid="26" relation="include">
         </childnode>
         <childnode refid="10" relation="include">
         </childnode>
       </node>
-      <node id="44">
+      <node id="40">
         <label>nodetype.h</label>
         <link refid="de/d26/nodetype_8h"/>
-        <childnode refid="45" relation="include">
+        <childnode refid="41" relation="include">
         </childnode>
-        <childnode refid="46" relation="include">
+        <childnode refid="42" relation="include">
         </childnode>
-        <childnode refid="47" relation="include">
+        <childnode refid="43" relation="include">
         </childnode>
         <childnode refid="6" relation="include">
         </childnode>
-        <childnode refid="40" relation="include">
+        <childnode refid="37" relation="include">
         </childnode>
-        <childnode refid="27" relation="include">
+        <childnode refid="26" relation="include">
         </childnode>
         <childnode refid="2" relation="include">
         </childnode>
-        <childnode refid="48" relation="include">
+        <childnode refid="44" relation="include">
         </childnode>
       </node>
       <node id="62">
@@ -278,83 +340,111 @@
         <childnode refid="62" relation="include">
         </childnode>
       </node>
-      <node id="36">
+      <node id="54">
         <label>../program/program.h</label>
         <link refid="d1/dea/program_8h"/>
         <childnode refid="15" relation="include">
         </childnode>
-        <childnode refid="37" relation="include">
+        <childnode refid="55" relation="include">
         </childnode>
         <childnode refid="6" relation="include">
         </childnode>
-        <childnode refid="38" relation="include">
+        <childnode refid="45" relation="include">
         </childnode>
-        <childnode refid="43" relation="include">
+        <childnode refid="36" relation="include">
         </childnode>
-        <childnode refid="55" relation="include">
+        <childnode refid="35" relation="include">
         </childnode>
         <childnode refid="24" relation="include">
         </childnode>
-        <childnode refid="27" relation="include">
+        <childnode refid="26" relation="include">
         </childnode>
-        <childnode refid="49" relation="include">
+        <childnode refid="47" relation="include">
         </childnode>
         <childnode refid="56" relation="include">
         </childnode>
       </node>
-      <node id="48">
+      <node id="44">
         <label>signatures.h</label>
         <link refid="d8/d8b/signatures_8h"/>
       </node>
-      <node id="38">
-        <label>tree_node.h</label>
+      <node id="45">
+        <label>../program/tree_node.h</label>
         <link refid="d1/da6/tree__node_8h"/>
-        <childnode refid="34" relation="include">
+        <childnode refid="33" relation="include">
         </childnode>
-        <childnode refid="39" relation="include">
+        <childnode refid="46" relation="include">
         </childnode>
         <childnode refid="6" relation="include">
         </childnode>
+        <childnode refid="37" relation="include">
+        </childnode>
+        <childnode refid="36" relation="include">
+        </childnode>
+        <childnode refid="47" relation="include">
+        </childnode>
         <childnode refid="40" relation="include">
         </childnode>
-        <childnode refid="43" relation="include">
+        <childnode refid="50" relation="include">
         </childnode>
-        <childnode refid="49" relation="include">
-        </childnode>
-        <childnode refid="44" relation="include">
-        </childnode>
-        <childnode refid="52" relation="include">
-        </childnode>
-        <childnode refid="53" relation="include">
+        <childnode refid="51" relation="include">
         </childnode>
       </node>
-      <node id="72">
+      <node id="80">
         <label>lexicase.h</label>
         <link refid="d3/d12/lexicase_8h"/>
-        <childnode refid="66" relation="include">
+        <childnode refid="78" relation="include">
         </childnode>
-        <childnode refid="27" relation="include">
+        <childnode refid="26" relation="include">
         </childnode>
       </node>
-      <node id="65">
+      <node id="77">
         <label>../selection/nsga2.h</label>
         <link refid="d3/d06/nsga2_8h"/>
-        <childnode refid="66" relation="include">
+        <childnode refid="78" relation="include">
         </childnode>
       </node>
-      <node id="71">
+      <node id="79">
         <label>selection/selection.h</label>
         <link refid="df/d48/selection_8h"/>
-        <childnode refid="66" relation="include">
+        <childnode refid="78" relation="include">
         </childnode>
-        <childnode refid="65" relation="include">
+        <childnode refid="77" relation="include">
         </childnode>
-        <childnode refid="72" relation="include">
+        <childnode refid="80" relation="include">
         </childnode>
       </node>
-      <node id="66">
+      <node id="78">
         <label>selection_operator.h</label>
         <link refid="dd/d5d/selection__operator_8h"/>
+        <childnode refid="66" relation="include">
+        </childnode>
+      </node>
+      <node id="74">
+        <label>../simplification/constants.h</label>
+        <link refid="d2/d6f/constants_8h"/>
+        <childnode refid="6" relation="include">
+        </childnode>
+        <childnode refid="20" relation="include">
+        </childnode>
+        <childnode refid="54" relation="include">
+        </childnode>
+        <childnode refid="35" relation="include">
+        </childnode>
+        <childnode refid="26" relation="include">
+        </childnode>
+      </node>
+      <node id="75">
+        <label>../simplification/inexact.h</label>
+        <link refid="d1/db6/inexact_8h"/>
+        <childnode refid="6" relation="include">
+        </childnode>
+        <childnode refid="20" relation="include">
+        </childnode>
+        <childnode refid="54" relation="include">
+        </childnode>
+        <childnode refid="35" relation="include">
+        </childnode>
         <childnode refid="26" relation="include">
         </childnode>
       </node>
@@ -368,7 +458,7 @@
         <childnode refid="23" relation="include">
         </childnode>
       </node>
-      <node id="30">
+      <node id="29">
         <label>error.h</label>
         <link refid="da/d41/error_8h"/>
         <childnode refid="15" relation="include">
@@ -383,7 +473,7 @@
         </childnode>
       </node>
       <node id="2">
-        <label>./util/rnd.h</label>
+        <label>util/rnd.h</label>
         <link refid="d2/da9/rnd_8h"/>
         <childnode refid="3" relation="include">
         </childnode>
@@ -394,8 +484,8 @@
         <childnode refid="6" relation="include">
         </childnode>
       </node>
-      <node id="27">
-        <label>../util/utils.h</label>
+      <node id="26">
+        <label>util/utils.h</label>
         <link refid="d5/d60/utils_8h"/>
         <childnode refid="8" relation="include">
         </childnode>
@@ -405,13 +495,15 @@
         </childnode>
         <childnode refid="11" relation="include">
         </childnode>
-        <childnode refid="28" relation="include">
+        <childnode refid="27" relation="include">
         </childnode>
-        <childnode refid="29" relation="include">
+        <childnode refid="28" relation="include">
         </childnode>
         <childnode refid="13" relation="include">
         </childnode>
         <childnode refid="6" relation="include">
+        </childnode>
+        <childnode refid="29" relation="include">
         </childnode>
         <childnode refid="30" relation="include">
         </childnode>
@@ -421,53 +513,68 @@
         </childnode>
         <childnode refid="33" relation="include">
         </childnode>
-        <childnode refid="34" relation="include">
-        </childnode>
       </node>
-      <node id="55">
+      <node id="35">
         <label>../vary/search_space.h</label>
         <link refid="d9/d99/search__space_8h"/>
         <childnode refid="6" relation="include">
         </childnode>
-        <childnode refid="43" relation="include">
+        <childnode refid="36" relation="include">
         </childnode>
-        <childnode refid="44" relation="include">
+        <childnode refid="40" relation="include">
         </childnode>
-        <childnode refid="38" relation="include">
+        <childnode refid="45" relation="include">
         </childnode>
-        <childnode refid="30" relation="include">
+        <childnode refid="29" relation="include">
         </childnode>
-        <childnode refid="27" relation="include">
+        <childnode refid="26" relation="include">
         </childnode>
         <childnode refid="2" relation="include">
         </childnode>
         <childnode refid="24" relation="include">
         </childnode>
-        <childnode refid="47" relation="include">
+        <childnode refid="43" relation="include">
         </childnode>
-        <childnode refid="42" relation="include">
+        <childnode refid="39" relation="include">
         </childnode>
         <childnode refid="10" relation="include">
         </childnode>
       </node>
-      <node id="70">
+      <node id="67">
         <label>vary/variation.h</label>
         <link refid="d4/d1f/variation_8h"/>
-        <childnode refid="26" relation="include">
+        <childnode refid="53" relation="include">
+        </childnode>
+        <childnode refid="68" relation="include">
+        </childnode>
+        <childnode refid="69" relation="include">
+        </childnode>
+        <childnode refid="70" relation="include">
+        </childnode>
+        <childnode refid="66" relation="include">
+        </childnode>
+        <childnode refid="34" relation="include">
+        </childnode>
+        <childnode refid="74" relation="include">
+        </childnode>
+        <childnode refid="75" relation="include">
         </childnode>
         <childnode refid="13" relation="include">
         </childnode>
-        <childnode refid="42" relation="include">
+        <childnode refid="39" relation="include">
         </childnode>
       </node>
       <node id="8">
         <label>Eigen/Dense</label>
       </node>
-      <node id="37">
+      <node id="55">
         <label>assert.h</label>
       </node>
-      <node id="45">
+      <node id="41">
         <label>bitset</label>
+      </node>
+      <node id="72">
+        <label>boost/math/distributions/gamma.hpp</label>
       </node>
       <node id="57">
         <label>ceres/dynamic_autodiff_cost_function.h</label>
@@ -487,19 +594,19 @@
       <node id="61">
         <label>ceres/tiny_solver.h</label>
       </node>
-      <node id="28">
+      <node id="27">
         <label>chrono</label>
       </node>
-      <node id="50">
+      <node id="48">
         <label>cmath</label>
       </node>
       <node id="23">
         <label>concepts</label>
       </node>
-      <node id="54">
+      <node id="52">
         <label>cstddef</label>
       </node>
-      <node id="33">
+      <node id="32">
         <label>execution</label>
       </node>
       <node id="17">
@@ -514,13 +621,13 @@
       <node id="11">
         <label>fstream</label>
       </node>
-      <node id="51">
+      <node id="49">
         <label>functional</label>
       </node>
       <node id="10">
         <label>iostream</label>
       </node>
-      <node id="32">
+      <node id="31">
         <label>iterator</label>
       </node>
       <node id="4">
@@ -538,10 +645,10 @@
       <node id="12">
         <label>numeric</label>
       </node>
-      <node id="42">
+      <node id="39">
         <label>optional</label>
       </node>
-      <node id="29">
+      <node id="28">
         <label>ostream</label>
       </node>
       <node id="3">
@@ -556,25 +663,25 @@
       <node id="15">
         <label>string</label>
       </node>
-      <node id="74">
+      <node id="82">
         <label>taskflow/algorithm/for_each.hpp</label>
       </node>
-      <node id="73">
+      <node id="81">
         <label>taskflow/taskflow.hpp</label>
       </node>
-      <node id="34">
+      <node id="33">
         <label>tuple</label>
       </node>
-      <node id="46">
+      <node id="42">
         <label>type_traits</label>
       </node>
-      <node id="31">
+      <node id="30">
         <label>typeindex</label>
       </node>
-      <node id="39">
+      <node id="46">
         <label>unordered_map</label>
       </node>
-      <node id="47">
+      <node id="43">
         <label>utility</label>
       </node>
       <node id="21">
@@ -625,16 +732,16 @@
 <codeline lineno="6"><highlight class="normal"></highlight><highlight class="preprocessor">#ifndef<sp/>Engine_H</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="7"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>Engine_H</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="8"><highlight class="normal"></highlight></codeline>
-<codeline lineno="9"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;<ref refid="d2/da9/rnd_8h" kindref="compound">./util/rnd.h</ref>&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="9"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;<ref refid="d2/da9/rnd_8h" kindref="compound">util/rnd.h</ref>&quot;</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="10"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;<ref refid="d8/dc0/init_8h" kindref="compound">init.h</ref>&quot;</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="11"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;<ref refid="da/d33/params_8h" kindref="compound">params.h</ref>&quot;</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="12"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;<ref refid="d2/d76/population_8h" kindref="compound">pop/population.h</ref>&quot;</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="13"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;<ref refid="d9/d28/archive_8h" kindref="compound">pop/archive.h</ref>&quot;</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="14"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;<ref refid="d3/df9/evaluation_8h" kindref="compound">./eval/evaluation.h</ref>&quot;</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="15"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;<ref refid="d4/d1f/variation_8h" kindref="compound">vary/variation.h</ref>&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="12"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;<ref refid="d3/df9/evaluation_8h" kindref="compound">eval/evaluation.h</ref>&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="13"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;<ref refid="d4/d1f/variation_8h" kindref="compound">vary/variation.h</ref>&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="14"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;<ref refid="d2/d76/population_8h" kindref="compound">pop/population.h</ref>&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="15"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;<ref refid="d9/d28/archive_8h" kindref="compound">pop/archive.h</ref>&quot;</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="16"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;<ref refid="df/d48/selection_8h" kindref="compound">selection/selection.h</ref>&quot;</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="17"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;taskflow/taskflow.hpp&quot;</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="18"><highlight class="normal"></highlight></codeline>
+<codeline lineno="17"><highlight class="normal"></highlight></codeline>
+<codeline lineno="18"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;taskflow/taskflow.hpp&quot;</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="19"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;taskflow/algorithm/for_each.hpp&gt;</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="20"><highlight class="normal"></highlight></codeline>
 <codeline lineno="21"><highlight class="normal"></highlight><highlight class="keyword">namespace<sp/></highlight><highlight class="normal"><ref refid="dc/d5c/namespaceBrush" kindref="compound">Brush</ref></highlight></codeline>
@@ -647,117 +754,131 @@
 <codeline lineno="28"><highlight class="normal"></highlight><highlight class="keyword">using<sp/>namespace<sp/></highlight><highlight class="normal">nlohmann;</highlight></codeline>
 <codeline lineno="29"><highlight class="normal"></highlight></codeline>
 <codeline lineno="30"><highlight class="normal"></highlight><highlight class="keyword">template</highlight><highlight class="normal"><sp/>&lt;ProgramType<sp/>T&gt;</highlight></codeline>
-<codeline lineno="43" refid="d0/d75/classBrush_1_1Engine" refkind="compound"><highlight class="normal"></highlight><highlight class="keyword">class<sp/></highlight><highlight class="normal"><ref refid="d0/d75/classBrush_1_1Engine_1a20427c4779258cc283570230039e4a3c" kindref="member">Engine</ref>{</highlight></codeline>
+<codeline lineno="43" refid="d0/d75/classBrush_1_1Engine" refkind="compound"><highlight class="normal"></highlight><highlight class="keyword">class<sp/></highlight><highlight class="normal"><ref refid="d0/d75/classBrush_1_1Engine_1ab1eff1b88ccdae24b480972bd5b0131d" kindref="member">Engine</ref>{</highlight></codeline>
 <codeline lineno="44"><highlight class="normal"></highlight><highlight class="keyword">public</highlight><highlight class="normal">:</highlight></codeline>
-<codeline lineno="45" refid="d0/d75/classBrush_1_1Engine_1a20427c4779258cc283570230039e4a3c" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="d0/d75/classBrush_1_1Engine_1a20427c4779258cc283570230039e4a3c" kindref="member">Engine</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="de/deb/structBrush_1_1Parameters" kindref="compound">Parameters</ref>&amp;<sp/>p=<ref refid="de/deb/structBrush_1_1Parameters" kindref="compound">Parameters</ref>())</highlight></codeline>
-<codeline lineno="46"><highlight class="normal"><sp/><sp/><sp/><sp/>:<sp/><ref refid="d0/d75/classBrush_1_1Engine_1ab732127d18c12f7c5ea28fd33ee846e6" kindref="member">params</ref>(p)</highlight></codeline>
-<codeline lineno="47"><highlight class="normal"><sp/><sp/><sp/><sp/>,<sp/><ref refid="d0/d75/classBrush_1_1Engine_1ae4708d8c80153665a35fdc298ec626f5" kindref="member">ss</ref>(<ref refid="d4/dc3/structBrush_1_1SearchSpace" kindref="compound">SearchSpace</ref>())<sp/></highlight><highlight class="comment">//<sp/>we<sp/>need<sp/>to<sp/>initialize<sp/>ss<sp/>and<sp/>variator.<sp/>TODO:<sp/>make<sp/>them<sp/>have<sp/>a<sp/>default<sp/>way<sp/>so<sp/>we<sp/>dont<sp/>have<sp/>to<sp/>initialize<sp/>here</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="48"><highlight class="normal"><sp/><sp/><sp/><sp/>,<sp/><ref refid="d0/d75/classBrush_1_1Engine_1a77c7fc26671fb2b064a4c588540ebed5" kindref="member">variator</ref>(<ref refid="d5/d14/classBrush_1_1Var_1_1Variation" kindref="compound">Variation</ref>&lt;T&gt;(<ref refid="d0/d75/classBrush_1_1Engine_1ab732127d18c12f7c5ea28fd33ee846e6" kindref="member">params</ref>,<sp/><ref refid="d0/d75/classBrush_1_1Engine_1ae4708d8c80153665a35fdc298ec626f5" kindref="member">ss</ref>))<sp/></highlight></codeline>
-<codeline lineno="49"><highlight class="normal"><sp/><sp/><sp/><sp/>{};</highlight></codeline>
-<codeline lineno="50"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
-<codeline lineno="51" refid="d0/d75/classBrush_1_1Engine_1a426bf144e6990e58cb1b1347c4a5795d" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="d0/d75/classBrush_1_1Engine_1a426bf144e6990e58cb1b1347c4a5795d" kindref="member">~Engine</ref>(){};</highlight></codeline>
-<codeline lineno="52"><highlight class="normal"></highlight></codeline>
-<codeline lineno="53"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>outputs<sp/>a<sp/>progress<sp/>bar,<sp/>filled<sp/>according<sp/>to<sp/>@param<sp/>percentage.</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="54" refid="d0/d75/classBrush_1_1Engine_1a33590e9eed9490be52dc2eedbb5b0feb" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="d0/d75/classBrush_1_1Engine_1a33590e9eed9490be52dc2eedbb5b0feb" kindref="member">print_progress</ref>(</highlight><highlight class="keywordtype">float</highlight><highlight class="normal"><sp/>percentage);</highlight></codeline>
-<codeline lineno="55" refid="d0/d75/classBrush_1_1Engine_1a215399033d10c86535f344e54937ea01" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="d0/d75/classBrush_1_1Engine_1a215399033d10c86535f344e54937ea01" kindref="member">calculate_stats</ref>();</highlight></codeline>
-<codeline lineno="56" refid="d0/d75/classBrush_1_1Engine_1ae246e0130aecd7b1a6680468b0fe9b9b" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="d0/d75/classBrush_1_1Engine_1ae246e0130aecd7b1a6680468b0fe9b9b" kindref="member">print_stats</ref>(std::ofstream&amp;<sp/>log,<sp/></highlight><highlight class="keywordtype">float</highlight><highlight class="normal"><sp/>fraction);<sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
-<codeline lineno="57" refid="d0/d75/classBrush_1_1Engine_1ae099086faca2e6ea54f5e85b380a8da8" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="d0/d75/classBrush_1_1Engine_1ae099086faca2e6ea54f5e85b380a8da8" kindref="member">log_stats</ref>(std::ofstream&amp;<sp/>log);</highlight></codeline>
-<codeline lineno="58"><highlight class="normal"></highlight></codeline>
-<codeline lineno="59"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>all<sp/>hyperparameters<sp/>are<sp/>controlled<sp/>by<sp/>the<sp/>parameter<sp/>class.<sp/>please<sp/>refer<sp/>to<sp/>that<sp/>to<sp/>change<sp/>something</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="60" refid="d0/d75/classBrush_1_1Engine_1a7c02eca29f421b7242a346ceaefd622b" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">inline</highlight><highlight class="normal"><sp/><ref refid="de/deb/structBrush_1_1Parameters" kindref="compound">Parameters</ref>&amp;<sp/><ref refid="d0/d75/classBrush_1_1Engine_1a7c02eca29f421b7242a346ceaefd622b" kindref="member">get_params</ref>(){</highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/><ref refid="d0/d75/classBrush_1_1Engine_1ab732127d18c12f7c5ea28fd33ee846e6" kindref="member">params</ref>;}</highlight></codeline>
-<codeline lineno="61" refid="d0/d75/classBrush_1_1Engine_1a7fdb1ff2afedbde73b8cf91d667f98b6" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">inline</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="d0/d75/classBrush_1_1Engine_1a7fdb1ff2afedbde73b8cf91d667f98b6" kindref="member">set_params</ref>(<ref refid="de/deb/structBrush_1_1Parameters" kindref="compound">Parameters</ref>&amp;<sp/>p){<ref refid="d0/d75/classBrush_1_1Engine_1ab732127d18c12f7c5ea28fd33ee846e6" kindref="member">params</ref>=p;}</highlight></codeline>
-<codeline lineno="62"><highlight class="normal"></highlight></codeline>
-<codeline lineno="63" refid="d0/d75/classBrush_1_1Engine_1aab1caca99728e672a5c78142546aa497" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">inline</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/><ref refid="d0/d75/classBrush_1_1Engine_1aab1caca99728e672a5c78142546aa497" kindref="member">get_is_fitted</ref>(){</highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/><ref refid="d0/d75/classBrush_1_1Engine_1a1f3f589d727557956c89c6abc272c3c5" kindref="member">is_fitted</ref>;}</highlight></codeline>
-<codeline lineno="64"><highlight class="normal"></highlight></codeline>
-<codeline lineno="66" refid="d0/d75/classBrush_1_1Engine_1a9a15cd9b6bdcc6c7bee5a473ebff1081" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/><ref refid="d0/d75/classBrush_1_1Engine_1a9a15cd9b6bdcc6c7bee5a473ebff1081" kindref="member">update_best</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="d2/d36/classBrush_1_1Data_1_1Dataset" kindref="compound">Dataset</ref>&amp;<sp/>data,<sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/>val=</highlight><highlight class="keyword">false</highlight><highlight class="normal">);</highlight></codeline>
-<codeline lineno="67"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
-<codeline lineno="68"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>TODO:<sp/>hyperparameter<sp/>to<sp/>set<sp/>how<sp/>the<sp/>best<sp/>is<sp/>picked<sp/>(MCDM,<sp/>best<sp/>on<sp/>val,<sp/>pareto<sp/>front,<sp/>etc).<sp/>one<sp/>of<sp/>the<sp/>options<sp/>should<sp/>be<sp/>getting<sp/>the<sp/>pareto<sp/>front</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="69"><highlight class="normal"></highlight></codeline>
-<codeline lineno="70"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>TODO:<sp/>best<sp/>fitness<sp/>(the<sp/>class)<sp/>instead<sp/>of<sp/>these.<sp/>use<sp/>fitness<sp/>comparison</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="71" refid="d0/d75/classBrush_1_1Engine_1a16a22a02c2ff6d2c4fbd1b593e055a4f" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">float</highlight><highlight class="normal"><sp/><ref refid="d0/d75/classBrush_1_1Engine_1a16a22a02c2ff6d2c4fbd1b593e055a4f" kindref="member">best_score</ref>;</highlight></codeline>
-<codeline lineno="72" refid="d0/d75/classBrush_1_1Engine_1a3abf94acdca8101698f36c364f8e0145" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="d0/d75/classBrush_1_1Engine_1a3abf94acdca8101698f36c364f8e0145" kindref="member">best_complexity</ref>;</highlight></codeline>
-<codeline lineno="73" refid="d0/d75/classBrush_1_1Engine_1a7f2a508f9bd1860f0ab15dbbc1f306fc" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="de/d83/classBrush_1_1Pop_1_1Individual" kindref="compound">Individual&lt;T&gt;</ref>&amp;<sp/><ref refid="d0/d75/classBrush_1_1Engine_1a7f2a508f9bd1860f0ab15dbbc1f306fc" kindref="member">get_best_ind</ref>(){</highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/><ref refid="d0/d75/classBrush_1_1Engine_1a27fbc5f690c9952dc95ed5c3cce31418" kindref="member">best_ind</ref>;};<sp/><sp/></highlight></codeline>
-<codeline lineno="74"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
-<codeline lineno="75" refid="d0/d75/classBrush_1_1Engine_1a55f5d4ccc161d1674c1ca63a917abd9f" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="d0/d75/classBrush_1_1Engine_1a20427c4779258cc283570230039e4a3c" kindref="member">Engine&lt;T&gt;</ref><sp/>&amp;<ref refid="d0/d75/classBrush_1_1Engine_1a55f5d4ccc161d1674c1ca63a917abd9f" kindref="member">fit</ref>(<ref refid="d2/d36/classBrush_1_1Data_1_1Dataset" kindref="compound">Dataset</ref>&amp;<sp/>data)<sp/>{</highlight></codeline>
-<codeline lineno="76"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="d0/d75/classBrush_1_1Engine_1a4248c80ebcd035a70953065045e04705" kindref="member">run</ref>(data);</highlight></codeline>
-<codeline lineno="77"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>*</highlight><highlight class="keyword">this</highlight><highlight class="normal">;</highlight></codeline>
-<codeline lineno="78"><highlight class="normal"><sp/><sp/><sp/><sp/>};</highlight></codeline>
-<codeline lineno="79" refid="d0/d75/classBrush_1_1Engine_1aad11ac5c3f0adc14cabf465eeb7d3e91" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="d0/d75/classBrush_1_1Engine_1a20427c4779258cc283570230039e4a3c" kindref="member">Engine&lt;T&gt;</ref><sp/>&amp;<ref refid="d0/d75/classBrush_1_1Engine_1aad11ac5c3f0adc14cabf465eeb7d3e91" kindref="member">fit</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>Ref&lt;const<sp/>ArrayXXf&gt;&amp;<sp/>X,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>Ref&lt;const<sp/>ArrayXf&gt;&amp;<sp/>y)</highlight></codeline>
-<codeline lineno="80"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
-<codeline lineno="81"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Using<sp/>constructor<sp/>2<sp/>to<sp/>create<sp/>the<sp/>dataset</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="82"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="d2/d36/classBrush_1_1Data_1_1Dataset" kindref="compound">Dataset</ref><sp/>d(X,y,<ref refid="d0/d75/classBrush_1_1Engine_1ab732127d18c12f7c5ea28fd33ee846e6" kindref="member">params</ref>.feature_names,{},<ref refid="d0/d75/classBrush_1_1Engine_1ab732127d18c12f7c5ea28fd33ee846e6" kindref="member">params</ref>.classification,</highlight></codeline>
-<codeline lineno="83"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="d0/d75/classBrush_1_1Engine_1ab732127d18c12f7c5ea28fd33ee846e6" kindref="member">params</ref>.validation_size,<sp/><ref refid="d0/d75/classBrush_1_1Engine_1ab732127d18c12f7c5ea28fd33ee846e6" kindref="member">params</ref>.batch_size);</highlight></codeline>
-<codeline lineno="84"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/><ref refid="d0/d75/classBrush_1_1Engine_1a55f5d4ccc161d1674c1ca63a917abd9f" kindref="member">fit</ref>(d);</highlight></codeline>
-<codeline lineno="85"><highlight class="normal"><sp/><sp/><sp/><sp/>};</highlight></codeline>
-<codeline lineno="86"><highlight class="normal"></highlight></codeline>
-<codeline lineno="87" refid="d0/d75/classBrush_1_1Engine_1a1b6447ad9d2eb1f0fc1252be14729e0f" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/><ref refid="d0/d75/classBrush_1_1Engine_1a1b6447ad9d2eb1f0fc1252be14729e0f" kindref="member">predict</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="d2/d36/classBrush_1_1Data_1_1Dataset" kindref="compound">Dataset</ref>&amp;<sp/>data)<sp/>{<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>this-&gt;<ref refid="d0/d75/classBrush_1_1Engine_1a27fbc5f690c9952dc95ed5c3cce31418" kindref="member">best_ind</ref>.predict(data);<sp/>};</highlight></codeline>
-<codeline lineno="88" refid="d0/d75/classBrush_1_1Engine_1a5f7b02e40b9cdabf1cf9ad6f3a99cc59" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/><ref refid="d0/d75/classBrush_1_1Engine_1a5f7b02e40b9cdabf1cf9ad6f3a99cc59" kindref="member">predict</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>Ref&lt;const<sp/>ArrayXXf&gt;&amp;<sp/>X)</highlight></codeline>
-<codeline lineno="89"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
-<codeline lineno="90"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="d2/d36/classBrush_1_1Data_1_1Dataset" kindref="compound">Dataset</ref><sp/>d(X);</highlight></codeline>
-<codeline lineno="91"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/><ref refid="d0/d75/classBrush_1_1Engine_1a1b6447ad9d2eb1f0fc1252be14729e0f" kindref="member">predict</ref>(d);</highlight></codeline>
+<codeline lineno="45" refid="d0/d75/classBrush_1_1Engine_1ab1eff1b88ccdae24b480972bd5b0131d" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="d0/d75/classBrush_1_1Engine_1ab1eff1b88ccdae24b480972bd5b0131d" kindref="member">Engine</ref>()</highlight></codeline>
+<codeline lineno="46"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="47"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>this-&gt;<ref refid="d0/d75/classBrush_1_1Engine_1ab732127d18c12f7c5ea28fd33ee846e6" kindref="member">params</ref><sp/>=<sp/><ref refid="de/deb/structBrush_1_1Parameters" kindref="compound">Parameters</ref>();</highlight></codeline>
+<codeline lineno="48"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>this-&gt;<ref refid="d0/d75/classBrush_1_1Engine_1ae4708d8c80153665a35fdc298ec626f5" kindref="member">ss</ref><sp/>=<sp/><ref refid="d4/dc3/structBrush_1_1SearchSpace" kindref="compound">SearchSpace</ref>();</highlight></codeline>
+<codeline lineno="49"><highlight class="normal"><sp/><sp/><sp/><sp/>};</highlight></codeline>
+<codeline lineno="50"><highlight class="normal"></highlight></codeline>
+<codeline lineno="51" refid="d0/d75/classBrush_1_1Engine_1a4fbbbdda545c6dda1a55ef8644c008b8" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="d0/d75/classBrush_1_1Engine_1a4fbbbdda545c6dda1a55ef8644c008b8" kindref="member">Engine</ref>(<ref refid="de/deb/structBrush_1_1Parameters" kindref="compound">Parameters</ref>&amp;<sp/>p,<sp/><ref refid="d4/dc3/structBrush_1_1SearchSpace" kindref="compound">SearchSpace</ref>&amp;<sp/>s)</highlight></codeline>
+<codeline lineno="52"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="53"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>this-&gt;<ref refid="d0/d75/classBrush_1_1Engine_1ab732127d18c12f7c5ea28fd33ee846e6" kindref="member">params</ref><sp/>=<sp/>p;</highlight></codeline>
+<codeline lineno="54"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>this-&gt;<ref refid="d0/d75/classBrush_1_1Engine_1ae4708d8c80153665a35fdc298ec626f5" kindref="member">ss</ref><sp/>=<sp/>s;</highlight></codeline>
+<codeline lineno="55"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>TODO:<sp/>make<sp/>variation<sp/>to<sp/>have<sp/>a<sp/>default<sp/>constructor</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="56"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>this-&gt;variator(Variation&lt;T&gt;(params,<sp/>ss))<sp/>;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="57"><highlight class="normal"><sp/><sp/><sp/><sp/>};</highlight></codeline>
+<codeline lineno="58"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="59" refid="d0/d75/classBrush_1_1Engine_1a426bf144e6990e58cb1b1347c4a5795d" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="d0/d75/classBrush_1_1Engine_1a426bf144e6990e58cb1b1347c4a5795d" kindref="member">~Engine</ref>(){};</highlight></codeline>
+<codeline lineno="60"><highlight class="normal"></highlight></codeline>
+<codeline lineno="61"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>outputs<sp/>a<sp/>progress<sp/>bar,<sp/>filled<sp/>according<sp/>to<sp/>@param<sp/>percentage.</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="62" refid="d0/d75/classBrush_1_1Engine_1a33590e9eed9490be52dc2eedbb5b0feb" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="d0/d75/classBrush_1_1Engine_1a33590e9eed9490be52dc2eedbb5b0feb" kindref="member">print_progress</ref>(</highlight><highlight class="keywordtype">float</highlight><highlight class="normal"><sp/>percentage);</highlight></codeline>
+<codeline lineno="63" refid="d0/d75/classBrush_1_1Engine_1a215399033d10c86535f344e54937ea01" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="d0/d75/classBrush_1_1Engine_1a215399033d10c86535f344e54937ea01" kindref="member">calculate_stats</ref>();</highlight></codeline>
+<codeline lineno="64" refid="d0/d75/classBrush_1_1Engine_1ae246e0130aecd7b1a6680468b0fe9b9b" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="d0/d75/classBrush_1_1Engine_1ae246e0130aecd7b1a6680468b0fe9b9b" kindref="member">print_stats</ref>(std::ofstream&amp;<sp/>log,<sp/></highlight><highlight class="keywordtype">float</highlight><highlight class="normal"><sp/>fraction);<sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="65" refid="d0/d75/classBrush_1_1Engine_1ae099086faca2e6ea54f5e85b380a8da8" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="d0/d75/classBrush_1_1Engine_1ae099086faca2e6ea54f5e85b380a8da8" kindref="member">log_stats</ref>(std::ofstream&amp;<sp/>log);</highlight></codeline>
+<codeline lineno="66"><highlight class="normal"></highlight></codeline>
+<codeline lineno="67"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>all<sp/>hyperparameters<sp/>are<sp/>controlled<sp/>by<sp/>the<sp/>parameter<sp/>class.<sp/>please<sp/>refer<sp/>to<sp/>that<sp/>to<sp/>change<sp/>something</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="68" refid="d0/d75/classBrush_1_1Engine_1a7c02eca29f421b7242a346ceaefd622b" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">inline</highlight><highlight class="normal"><sp/><ref refid="de/deb/structBrush_1_1Parameters" kindref="compound">Parameters</ref>&amp;<sp/><ref refid="d0/d75/classBrush_1_1Engine_1a7c02eca29f421b7242a346ceaefd622b" kindref="member">get_params</ref>(){</highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/><ref refid="d0/d75/classBrush_1_1Engine_1ab732127d18c12f7c5ea28fd33ee846e6" kindref="member">params</ref>;}</highlight></codeline>
+<codeline lineno="69" refid="d0/d75/classBrush_1_1Engine_1a7fdb1ff2afedbde73b8cf91d667f98b6" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">inline</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="d0/d75/classBrush_1_1Engine_1a7fdb1ff2afedbde73b8cf91d667f98b6" kindref="member">set_params</ref>(<ref refid="de/deb/structBrush_1_1Parameters" kindref="compound">Parameters</ref>&amp;<sp/>p){<ref refid="d0/d75/classBrush_1_1Engine_1ab732127d18c12f7c5ea28fd33ee846e6" kindref="member">params</ref>=p;}</highlight></codeline>
+<codeline lineno="70"><highlight class="normal"></highlight></codeline>
+<codeline lineno="71" refid="d0/d75/classBrush_1_1Engine_1a25c352fff846ce0a5ce45bfe65cab739" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">inline</highlight><highlight class="normal"><sp/><ref refid="d4/dc3/structBrush_1_1SearchSpace" kindref="compound">SearchSpace</ref>&amp;<sp/><ref refid="d0/d75/classBrush_1_1Engine_1a25c352fff846ce0a5ce45bfe65cab739" kindref="member">get_search_space</ref>()<sp/>{<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/><ref refid="d0/d75/classBrush_1_1Engine_1ae4708d8c80153665a35fdc298ec626f5" kindref="member">ss</ref>;<sp/>}</highlight></codeline>
+<codeline lineno="72" refid="d0/d75/classBrush_1_1Engine_1a6cdeb0b7db1613e70128d93c72591520" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">inline</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="d0/d75/classBrush_1_1Engine_1a6cdeb0b7db1613e70128d93c72591520" kindref="member">set_search_space</ref>(<ref refid="d4/dc3/structBrush_1_1SearchSpace" kindref="compound">SearchSpace</ref>&amp;<sp/>space)<sp/>{<sp/><ref refid="d0/d75/classBrush_1_1Engine_1ae4708d8c80153665a35fdc298ec626f5" kindref="member">ss</ref><sp/>=<sp/>space;<sp/>}</highlight></codeline>
+<codeline lineno="73"><highlight class="normal"></highlight></codeline>
+<codeline lineno="74" refid="d0/d75/classBrush_1_1Engine_1aab1caca99728e672a5c78142546aa497" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">inline</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/><ref refid="d0/d75/classBrush_1_1Engine_1aab1caca99728e672a5c78142546aa497" kindref="member">get_is_fitted</ref>(){</highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/><ref refid="d0/d75/classBrush_1_1Engine_1a1f3f589d727557956c89c6abc272c3c5" kindref="member">is_fitted</ref>;}</highlight></codeline>
+<codeline lineno="75"><highlight class="normal"></highlight></codeline>
+<codeline lineno="77" refid="d0/d75/classBrush_1_1Engine_1ad1d21bed892c8d2132d58ec34372ec41" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/><ref refid="d0/d75/classBrush_1_1Engine_1ad1d21bed892c8d2132d58ec34372ec41" kindref="member">update_best</ref>();</highlight></codeline>
+<codeline lineno="78"><highlight class="normal"></highlight></codeline>
+<codeline lineno="79" refid="d0/d75/classBrush_1_1Engine_1a7f2a508f9bd1860f0ab15dbbc1f306fc" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="de/d83/classBrush_1_1Pop_1_1Individual" kindref="compound">Individual&lt;T&gt;</ref>&amp;<sp/><ref refid="d0/d75/classBrush_1_1Engine_1a7f2a508f9bd1860f0ab15dbbc1f306fc" kindref="member">get_best_ind</ref>(){</highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/><ref refid="d0/d75/classBrush_1_1Engine_1a27fbc5f690c9952dc95ed5c3cce31418" kindref="member">best_ind</ref>;};<sp/><sp/></highlight></codeline>
+<codeline lineno="80"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="81" refid="d0/d75/classBrush_1_1Engine_1a55f5d4ccc161d1674c1ca63a917abd9f" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="d0/d75/classBrush_1_1Engine_1ab1eff1b88ccdae24b480972bd5b0131d" kindref="member">Engine&lt;T&gt;</ref><sp/>&amp;<ref refid="d0/d75/classBrush_1_1Engine_1a55f5d4ccc161d1674c1ca63a917abd9f" kindref="member">fit</ref>(<ref refid="d2/d36/classBrush_1_1Data_1_1Dataset" kindref="compound">Dataset</ref>&amp;<sp/>data)<sp/>{</highlight></codeline>
+<codeline lineno="82"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="d0/d75/classBrush_1_1Engine_1a4248c80ebcd035a70953065045e04705" kindref="member">run</ref>(data);</highlight></codeline>
+<codeline lineno="83"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>*</highlight><highlight class="keyword">this</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="84"><highlight class="normal"><sp/><sp/><sp/><sp/>};</highlight></codeline>
+<codeline lineno="85" refid="d0/d75/classBrush_1_1Engine_1aad11ac5c3f0adc14cabf465eeb7d3e91" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="d0/d75/classBrush_1_1Engine_1ab1eff1b88ccdae24b480972bd5b0131d" kindref="member">Engine&lt;T&gt;</ref><sp/>&amp;<ref refid="d0/d75/classBrush_1_1Engine_1aad11ac5c3f0adc14cabf465eeb7d3e91" kindref="member">fit</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>Ref&lt;const<sp/>ArrayXXf&gt;&amp;<sp/>X,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>Ref&lt;const<sp/>ArrayXf&gt;&amp;<sp/>y)</highlight></codeline>
+<codeline lineno="86"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="87"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Using<sp/>constructor<sp/>2<sp/>to<sp/>create<sp/>the<sp/>dataset</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="88"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="d2/d36/classBrush_1_1Data_1_1Dataset" kindref="compound">Dataset</ref><sp/>d(X,y,<ref refid="d0/d75/classBrush_1_1Engine_1ab732127d18c12f7c5ea28fd33ee846e6" kindref="member">params</ref>.feature_names,{},<ref refid="d0/d75/classBrush_1_1Engine_1ab732127d18c12f7c5ea28fd33ee846e6" kindref="member">params</ref>.feature_types,</highlight></codeline>
+<codeline lineno="89"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="d0/d75/classBrush_1_1Engine_1ab732127d18c12f7c5ea28fd33ee846e6" kindref="member">params</ref>.classification,<ref refid="d0/d75/classBrush_1_1Engine_1ab732127d18c12f7c5ea28fd33ee846e6" kindref="member">params</ref>.validation_size,</highlight></codeline>
+<codeline lineno="90"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="d0/d75/classBrush_1_1Engine_1ab732127d18c12f7c5ea28fd33ee846e6" kindref="member">params</ref>.batch_size,<sp/><ref refid="d0/d75/classBrush_1_1Engine_1ab732127d18c12f7c5ea28fd33ee846e6" kindref="member">params</ref>.shuffle_split);</highlight></codeline>
+<codeline lineno="91"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/><ref refid="d0/d75/classBrush_1_1Engine_1a55f5d4ccc161d1674c1ca63a917abd9f" kindref="member">fit</ref>(d);</highlight></codeline>
 <codeline lineno="92"><highlight class="normal"><sp/><sp/><sp/><sp/>};</highlight></codeline>
 <codeline lineno="93"><highlight class="normal"></highlight></codeline>
-<codeline lineno="94"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">template</highlight><highlight class="normal"><sp/>&lt;ProgramType<sp/>P<sp/>=<sp/>T&gt;</highlight></codeline>
-<codeline lineno="95"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">requires</highlight><highlight class="normal">((P<sp/>==<sp/><ref refid="dc/d5c/namespaceBrush_1ae591329af27c88b714d0f92b86276366a3cdc33a35d0e4f3b9bae953babd8f9b4" kindref="member">PT::BinaryClassifier</ref>)<sp/>||<sp/>(P<sp/>==<sp/><ref refid="dc/d5c/namespaceBrush_1ae591329af27c88b714d0f92b86276366ac62539fc5a23115fca906befbd511c0a" kindref="member">PT::MulticlassClassifier</ref>))</highlight></codeline>
-<codeline lineno="96" refid="d0/d75/classBrush_1_1Engine_1a2375ba6f0ebb3119ccc91664b2f6a79a" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/><ref refid="d0/d75/classBrush_1_1Engine_1a2375ba6f0ebb3119ccc91664b2f6a79a" kindref="member">predict_proba</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="d2/d36/classBrush_1_1Data_1_1Dataset" kindref="compound">Dataset</ref><sp/>&amp;d)<sp/>{<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>this-&gt;<ref refid="d0/d75/classBrush_1_1Engine_1a27fbc5f690c9952dc95ed5c3cce31418" kindref="member">best_ind</ref>.predict_proba(d);<sp/>};</highlight></codeline>
-<codeline lineno="97"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">template</highlight><highlight class="normal"><sp/>&lt;ProgramType<sp/>P<sp/>=<sp/>T&gt;</highlight></codeline>
-<codeline lineno="98"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">requires</highlight><highlight class="normal">((P<sp/>==<sp/><ref refid="dc/d5c/namespaceBrush_1ae591329af27c88b714d0f92b86276366a3cdc33a35d0e4f3b9bae953babd8f9b4" kindref="member">PT::BinaryClassifier</ref>)<sp/>||<sp/>(P<sp/>==<sp/><ref refid="dc/d5c/namespaceBrush_1ae591329af27c88b714d0f92b86276366ac62539fc5a23115fca906befbd511c0a" kindref="member">PT::MulticlassClassifier</ref>))</highlight></codeline>
-<codeline lineno="99" refid="d0/d75/classBrush_1_1Engine_1a8020d8de0e61e5485a157229305ec126" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/><ref refid="d0/d75/classBrush_1_1Engine_1a8020d8de0e61e5485a157229305ec126" kindref="member">predict_proba</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>Ref&lt;const<sp/>ArrayXXf&gt;&amp;<sp/>X)<sp/></highlight></codeline>
-<codeline lineno="100"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
-<codeline lineno="101"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="d2/d36/classBrush_1_1Data_1_1Dataset" kindref="compound">Dataset</ref><sp/>d(X);</highlight></codeline>
-<codeline lineno="102"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/><ref refid="d0/d75/classBrush_1_1Engine_1a2375ba6f0ebb3119ccc91664b2f6a79a" kindref="member">predict_proba</ref>(d);</highlight></codeline>
-<codeline lineno="103"><highlight class="normal"><sp/><sp/><sp/><sp/>};</highlight></codeline>
-<codeline lineno="104"><highlight class="normal"></highlight></codeline>
-<codeline lineno="106" refid="d0/d75/classBrush_1_1Engine_1a830f938cd00be6c41d8effc07668feb8" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="d0/d75/classBrush_1_1Engine_1a830f938cd00be6c41d8effc07668feb8" kindref="member">get_archive_size</ref>(){<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>this-&gt;<ref refid="d0/d75/classBrush_1_1Engine_1a59769ad184bdcdf2032c99acf3a77410" kindref="member">archive</ref>.individuals.size();<sp/>};</highlight></codeline>
-<codeline lineno="107"><highlight class="normal"></highlight></codeline>
-<codeline lineno="109" refid="d0/d75/classBrush_1_1Engine_1ae11d9f38618b28e5e35912ee58419ed0" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>vector&lt;json&gt;<sp/><ref refid="d0/d75/classBrush_1_1Engine_1ae11d9f38618b28e5e35912ee58419ed0" kindref="member">get_archive</ref>(</highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/>front);</highlight></codeline>
-<codeline lineno="110"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
-<codeline lineno="112" refid="d0/d75/classBrush_1_1Engine_1ac70f5fca40a2a058b187e579a7910ab3" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/><ref refid="d0/d75/classBrush_1_1Engine_1ac70f5fca40a2a058b187e579a7910ab3" kindref="member">predict_archive</ref>(</highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">id</highlight><highlight class="normal">,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="d2/d36/classBrush_1_1Data_1_1Dataset" kindref="compound">Dataset</ref>&amp;<sp/>data);</highlight></codeline>
-<codeline lineno="113" refid="d0/d75/classBrush_1_1Engine_1a7dd0788450fa1c0b3f5b4687c0588e63" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/><ref refid="d0/d75/classBrush_1_1Engine_1a7dd0788450fa1c0b3f5b4687c0588e63" kindref="member">predict_archive</ref>(</highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">id</highlight><highlight class="normal">,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>Ref&lt;const<sp/>ArrayXXf&gt;&amp;<sp/>X);</highlight></codeline>
+<codeline lineno="94" refid="d0/d75/classBrush_1_1Engine_1a1b6447ad9d2eb1f0fc1252be14729e0f" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/><ref refid="d0/d75/classBrush_1_1Engine_1a1b6447ad9d2eb1f0fc1252be14729e0f" kindref="member">predict</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="d2/d36/classBrush_1_1Data_1_1Dataset" kindref="compound">Dataset</ref>&amp;<sp/>data)<sp/>{<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>this-&gt;<ref refid="d0/d75/classBrush_1_1Engine_1a27fbc5f690c9952dc95ed5c3cce31418" kindref="member">best_ind</ref>.predict(data);<sp/>};</highlight></codeline>
+<codeline lineno="95" refid="d0/d75/classBrush_1_1Engine_1a5f7b02e40b9cdabf1cf9ad6f3a99cc59" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/><ref refid="d0/d75/classBrush_1_1Engine_1a5f7b02e40b9cdabf1cf9ad6f3a99cc59" kindref="member">predict</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>Ref&lt;const<sp/>ArrayXXf&gt;&amp;<sp/>X)</highlight></codeline>
+<codeline lineno="96"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="97"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="d2/d36/classBrush_1_1Data_1_1Dataset" kindref="compound">Dataset</ref><sp/>d(X);</highlight></codeline>
+<codeline lineno="98"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/><ref refid="d0/d75/classBrush_1_1Engine_1a1b6447ad9d2eb1f0fc1252be14729e0f" kindref="member">predict</ref>(d);</highlight></codeline>
+<codeline lineno="99"><highlight class="normal"><sp/><sp/><sp/><sp/>};</highlight></codeline>
+<codeline lineno="100"><highlight class="normal"></highlight></codeline>
+<codeline lineno="101"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">template</highlight><highlight class="normal"><sp/>&lt;ProgramType<sp/>P<sp/>=<sp/>T&gt;</highlight></codeline>
+<codeline lineno="102"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">requires</highlight><highlight class="normal">((P<sp/>==<sp/><ref refid="dc/d5c/namespaceBrush_1ae591329af27c88b714d0f92b86276366a3cdc33a35d0e4f3b9bae953babd8f9b4" kindref="member">PT::BinaryClassifier</ref>)<sp/>||<sp/>(P<sp/>==<sp/><ref refid="dc/d5c/namespaceBrush_1ae591329af27c88b714d0f92b86276366ac62539fc5a23115fca906befbd511c0a" kindref="member">PT::MulticlassClassifier</ref>))</highlight></codeline>
+<codeline lineno="103" refid="d0/d75/classBrush_1_1Engine_1a2375ba6f0ebb3119ccc91664b2f6a79a" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/><ref refid="d0/d75/classBrush_1_1Engine_1a2375ba6f0ebb3119ccc91664b2f6a79a" kindref="member">predict_proba</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="d2/d36/classBrush_1_1Data_1_1Dataset" kindref="compound">Dataset</ref><sp/>&amp;d)<sp/>{<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>this-&gt;<ref refid="d0/d75/classBrush_1_1Engine_1a27fbc5f690c9952dc95ed5c3cce31418" kindref="member">best_ind</ref>.predict_proba(d);<sp/>};</highlight></codeline>
+<codeline lineno="104"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">template</highlight><highlight class="normal"><sp/>&lt;ProgramType<sp/>P<sp/>=<sp/>T&gt;</highlight></codeline>
+<codeline lineno="105"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">requires</highlight><highlight class="normal">((P<sp/>==<sp/><ref refid="dc/d5c/namespaceBrush_1ae591329af27c88b714d0f92b86276366a3cdc33a35d0e4f3b9bae953babd8f9b4" kindref="member">PT::BinaryClassifier</ref>)<sp/>||<sp/>(P<sp/>==<sp/><ref refid="dc/d5c/namespaceBrush_1ae591329af27c88b714d0f92b86276366ac62539fc5a23115fca906befbd511c0a" kindref="member">PT::MulticlassClassifier</ref>))</highlight></codeline>
+<codeline lineno="106" refid="d0/d75/classBrush_1_1Engine_1a8020d8de0e61e5485a157229305ec126" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/><ref refid="d0/d75/classBrush_1_1Engine_1a8020d8de0e61e5485a157229305ec126" kindref="member">predict_proba</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>Ref&lt;const<sp/>ArrayXXf&gt;&amp;<sp/>X)<sp/></highlight></codeline>
+<codeline lineno="107"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="108"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="d2/d36/classBrush_1_1Data_1_1Dataset" kindref="compound">Dataset</ref><sp/>d(X);</highlight></codeline>
+<codeline lineno="109"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/><ref refid="d0/d75/classBrush_1_1Engine_1a2375ba6f0ebb3119ccc91664b2f6a79a" kindref="member">predict_proba</ref>(d);</highlight></codeline>
+<codeline lineno="110"><highlight class="normal"><sp/><sp/><sp/><sp/>};</highlight></codeline>
+<codeline lineno="111"><highlight class="normal"></highlight></codeline>
+<codeline lineno="113" refid="d0/d75/classBrush_1_1Engine_1a830f938cd00be6c41d8effc07668feb8" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="d0/d75/classBrush_1_1Engine_1a830f938cd00be6c41d8effc07668feb8" kindref="member">get_archive_size</ref>(){<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>this-&gt;<ref refid="d0/d75/classBrush_1_1Engine_1a59769ad184bdcdf2032c99acf3a77410" kindref="member">archive</ref>.individuals.size();<sp/>};</highlight></codeline>
 <codeline lineno="114"><highlight class="normal"></highlight></codeline>
-<codeline lineno="115"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">template</highlight><highlight class="normal"><sp/>&lt;ProgramType<sp/>P<sp/>=<sp/>T&gt;</highlight></codeline>
-<codeline lineno="116"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">requires</highlight><highlight class="normal">((P<sp/>==<sp/><ref refid="dc/d5c/namespaceBrush_1ae591329af27c88b714d0f92b86276366a3cdc33a35d0e4f3b9bae953babd8f9b4" kindref="member">PT::BinaryClassifier</ref>)<sp/>||<sp/>(P<sp/>==<sp/><ref refid="dc/d5c/namespaceBrush_1ae591329af27c88b714d0f92b86276366ac62539fc5a23115fca906befbd511c0a" kindref="member">PT::MulticlassClassifier</ref>))</highlight></codeline>
-<codeline lineno="117" refid="d0/d75/classBrush_1_1Engine_1ac1f6620adc2dd0710a415a7e48b76650" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/><ref refid="d0/d75/classBrush_1_1Engine_1ac1f6620adc2dd0710a415a7e48b76650" kindref="member">predict_proba_archive</ref>(</highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">id</highlight><highlight class="normal">,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="d2/d36/classBrush_1_1Data_1_1Dataset" kindref="compound">Dataset</ref>&amp;<sp/>data);</highlight></codeline>
-<codeline lineno="118"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">template</highlight><highlight class="normal"><sp/>&lt;ProgramType<sp/>P<sp/>=<sp/>T&gt;</highlight></codeline>
-<codeline lineno="119"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">requires</highlight><highlight class="normal">((P<sp/>==<sp/><ref refid="dc/d5c/namespaceBrush_1ae591329af27c88b714d0f92b86276366a3cdc33a35d0e4f3b9bae953babd8f9b4" kindref="member">PT::BinaryClassifier</ref>)<sp/>||<sp/>(P<sp/>==<sp/><ref refid="dc/d5c/namespaceBrush_1ae591329af27c88b714d0f92b86276366ac62539fc5a23115fca906befbd511c0a" kindref="member">PT::MulticlassClassifier</ref>))</highlight></codeline>
-<codeline lineno="120" refid="d0/d75/classBrush_1_1Engine_1aef6812fe71d50d6e05cb432d226b4b37" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/><ref refid="d0/d75/classBrush_1_1Engine_1aef6812fe71d50d6e05cb432d226b4b37" kindref="member">predict_proba_archive</ref>(</highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">id</highlight><highlight class="normal">,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>Ref&lt;const<sp/>ArrayXXf&gt;&amp;<sp/>X);</highlight></codeline>
-<codeline lineno="121"><highlight class="normal"></highlight></codeline>
-<codeline lineno="122"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>TODO:<sp/>predict/predict_proba/archive<sp/>with<sp/>longitudinal<sp/>data</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="123"><highlight class="normal"></highlight></codeline>
-<codeline lineno="125" refid="d0/d75/classBrush_1_1Engine_1a4248c80ebcd035a70953065045e04705" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="d0/d75/classBrush_1_1Engine_1a4248c80ebcd035a70953065045e04705" kindref="member">run</ref>(<ref refid="d2/d36/classBrush_1_1Data_1_1Dataset" kindref="compound">Dataset</ref><sp/>&amp;d);</highlight></codeline>
-<codeline lineno="126"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
-<codeline lineno="127" refid="d0/d75/classBrush_1_1Engine_1ab732127d18c12f7c5ea28fd33ee846e6" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="de/deb/structBrush_1_1Parameters" kindref="compound">Parameters</ref><sp/><ref refid="d0/d75/classBrush_1_1Engine_1ab732127d18c12f7c5ea28fd33ee846e6" kindref="member">params</ref>;<sp/><sp/></highlight></codeline>
-<codeline lineno="128" refid="d0/d75/classBrush_1_1Engine_1a27fbc5f690c9952dc95ed5c3cce31418" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="de/d83/classBrush_1_1Pop_1_1Individual" kindref="compound">Individual&lt;T&gt;</ref><sp/><ref refid="d0/d75/classBrush_1_1Engine_1a27fbc5f690c9952dc95ed5c3cce31418" kindref="member">best_ind</ref>;</highlight></codeline>
-<codeline lineno="129"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
-<codeline lineno="130" refid="d0/d75/classBrush_1_1Engine_1a59769ad184bdcdf2032c99acf3a77410" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="d1/d30/structBrush_1_1Pop_1_1Archive" kindref="compound">Archive&lt;T&gt;</ref><sp/><ref refid="d0/d75/classBrush_1_1Engine_1a59769ad184bdcdf2032c99acf3a77410" kindref="member">archive</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
-<codeline lineno="131"><highlight class="normal"></highlight><highlight class="keyword">private</highlight><highlight class="normal">:</highlight></codeline>
-<codeline lineno="132" refid="d0/d75/classBrush_1_1Engine_1ae4708d8c80153665a35fdc298ec626f5" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="d4/dc3/structBrush_1_1SearchSpace" kindref="compound">SearchSpace</ref><sp/><ref refid="d0/d75/classBrush_1_1Engine_1ae4708d8c80153665a35fdc298ec626f5" kindref="member">ss</ref>;</highlight></codeline>
-<codeline lineno="133"><highlight class="normal"></highlight></codeline>
-<codeline lineno="134" refid="d0/d75/classBrush_1_1Engine_1a5e0104eaadbe7a19722ee149d06a7c76" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="da/da3/classBrush_1_1Pop_1_1Population" kindref="compound">Population&lt;T&gt;</ref><sp/><ref refid="d0/d75/classBrush_1_1Engine_1a5e0104eaadbe7a19722ee149d06a7c76" kindref="member">pop</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
-<codeline lineno="135" refid="d0/d75/classBrush_1_1Engine_1a1979bbf5e2af65845c461dbd2e0b9ef5" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="dd/d0f/structBrush_1_1Sel_1_1Selection" kindref="compound">Selection&lt;T&gt;</ref><sp/><sp/><ref refid="d0/d75/classBrush_1_1Engine_1a1979bbf5e2af65845c461dbd2e0b9ef5" kindref="member">selector</ref>;<sp/><sp/><sp/></highlight></codeline>
-<codeline lineno="136" refid="d0/d75/classBrush_1_1Engine_1aa8ccb37fe65cec921d9a155c1000cda7" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="d1/de5/classBrush_1_1Eval_1_1Evaluation" kindref="compound">Evaluation&lt;T&gt;</ref><sp/><ref refid="d0/d75/classBrush_1_1Engine_1aa8ccb37fe65cec921d9a155c1000cda7" kindref="member">evaluator</ref>;<sp/><sp/></highlight></codeline>
-<codeline lineno="137" refid="d0/d75/classBrush_1_1Engine_1a77c7fc26671fb2b064a4c588540ebed5" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="d5/d14/classBrush_1_1Var_1_1Variation" kindref="compound">Variation&lt;T&gt;</ref><sp/><sp/><ref refid="d0/d75/classBrush_1_1Engine_1a77c7fc26671fb2b064a4c588540ebed5" kindref="member">variator</ref>;<sp/><sp/><sp/><sp/><sp/></highlight></codeline>
-<codeline lineno="138" refid="d0/d75/classBrush_1_1Engine_1a70abc4545878805cd572d110f21d1e7c" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="dd/d0f/structBrush_1_1Sel_1_1Selection" kindref="compound">Selection&lt;T&gt;</ref><sp/><sp/><ref refid="d0/d75/classBrush_1_1Engine_1a70abc4545878805cd572d110f21d1e7c" kindref="member">survivor</ref>;<sp/><sp/><sp/></highlight></codeline>
-<codeline lineno="139"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
-<codeline lineno="140" refid="d0/d75/classBrush_1_1Engine_1a596db23cf521696b72b023bacbf3a737" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="db/d7e/structBrush_1_1Util_1_1Log__Stats" kindref="compound">Log_Stats</ref><sp/><ref refid="d0/d75/classBrush_1_1Engine_1a596db23cf521696b72b023bacbf3a737" kindref="member">stats</ref>;<sp/></highlight></codeline>
-<codeline lineno="141"><highlight class="normal"></highlight></codeline>
-<codeline lineno="142" refid="d0/d75/classBrush_1_1Engine_1a1c15a1ffc9ffcebee65da12242791b13" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="d8/da4/classBrush_1_1Util_1_1Timer" kindref="compound">Timer</ref><sp/><ref refid="d0/d75/classBrush_1_1Engine_1a1c15a1ffc9ffcebee65da12242791b13" kindref="member">timer</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
-<codeline lineno="143"><highlight class="normal"></highlight></codeline>
-<codeline lineno="144" refid="d0/d75/classBrush_1_1Engine_1a1f3f589d727557956c89c6abc272c3c5" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/><ref refid="d0/d75/classBrush_1_1Engine_1a1f3f589d727557956c89c6abc272c3c5" kindref="member">is_fitted</ref>;<sp/></highlight></codeline>
-<codeline lineno="145"><highlight class="normal"></highlight></codeline>
-<codeline lineno="146" refid="d0/d75/classBrush_1_1Engine_1abf9f9f0eec7c0c6d4cf9985d993e6018" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="d0/d75/classBrush_1_1Engine_1abf9f9f0eec7c0c6d4cf9985d993e6018" kindref="member">init</ref>();</highlight></codeline>
-<codeline lineno="147"><highlight class="normal"></highlight></codeline>
-<codeline lineno="149" refid="d0/d75/classBrush_1_1Engine_1a82422a2bb8061934c4be271ee7eef810" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">inline</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="d0/d75/classBrush_1_1Engine_1a82422a2bb8061934c4be271ee7eef810" kindref="member">set_is_fitted</ref>(</highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/>f){<ref refid="d0/d75/classBrush_1_1Engine_1a1f3f589d727557956c89c6abc272c3c5" kindref="member">is_fitted</ref>=f;}</highlight></codeline>
-<codeline lineno="150"><highlight class="normal">};</highlight></codeline>
-<codeline lineno="151"><highlight class="normal"></highlight></codeline>
-<codeline lineno="152"><highlight class="normal"></highlight><highlight class="comment">//<sp/>Only<sp/>stuff<sp/>to<sp/>make<sp/>new<sp/>predictions<sp/>or<sp/>call<sp/>fit<sp/>again</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="153" refid="dc/d5c/namespaceBrush_1ad27311cbe7ece71f795b25effe278324" refkind="member"><highlight class="normal"><ref refid="dc/d5c/namespaceBrush_1ad27311cbe7ece71f795b25effe278324" kindref="member">NLOHMANN_DEFINE_TYPE_NON_INTRUSIVE</ref>(<ref refid="d0/d75/classBrush_1_1Engine" kindref="compound">Engine&lt;PT::Regressor&gt;</ref>,<sp/>params,<sp/>best_ind,<sp/>archive);</highlight></codeline>
-<codeline lineno="154" refid="dc/d5c/namespaceBrush_1afd15d7edd344c52112a348a554ec2eb1" refkind="member"><highlight class="normal"><ref refid="dc/d5c/namespaceBrush_1ad27311cbe7ece71f795b25effe278324" kindref="member">NLOHMANN_DEFINE_TYPE_NON_INTRUSIVE</ref>(<ref refid="d0/d75/classBrush_1_1Engine" kindref="compound">Engine&lt;PT::BinaryClassifier&gt;</ref>,params,<sp/>best_ind,<sp/>archive);</highlight></codeline>
-<codeline lineno="155" refid="dc/d5c/namespaceBrush_1a54a7c951709cc060add1e17f09c1101b" refkind="member"><highlight class="normal"><ref refid="dc/d5c/namespaceBrush_1ad27311cbe7ece71f795b25effe278324" kindref="member">NLOHMANN_DEFINE_TYPE_NON_INTRUSIVE</ref>(<ref refid="d0/d75/classBrush_1_1Engine" kindref="compound">Engine&lt;PT::MulticlassClassifier&gt;</ref>,params,<sp/>best_ind,<sp/>archive);</highlight></codeline>
-<codeline lineno="156" refid="dc/d5c/namespaceBrush_1af29d3abe6bb9bb7f0ed96a0232d94185" refkind="member"><highlight class="normal"><ref refid="dc/d5c/namespaceBrush_1ad27311cbe7ece71f795b25effe278324" kindref="member">NLOHMANN_DEFINE_TYPE_NON_INTRUSIVE</ref>(<ref refid="d0/d75/classBrush_1_1Engine" kindref="compound">Engine&lt;PT::Representer&gt;</ref>,params,<sp/>best_ind,<sp/>archive);</highlight></codeline>
-<codeline lineno="157"><highlight class="normal"></highlight></codeline>
-<codeline lineno="158"><highlight class="normal">}<sp/></highlight><highlight class="comment">//<sp/>Brush</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="159"><highlight class="normal"></highlight><highlight class="preprocessor">#endif</highlight></codeline>
+<codeline lineno="116" refid="d0/d75/classBrush_1_1Engine_1ae11d9f38618b28e5e35912ee58419ed0" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>vector&lt;json&gt;<sp/><ref refid="d0/d75/classBrush_1_1Engine_1ae11d9f38618b28e5e35912ee58419ed0" kindref="member">get_archive</ref>(</highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/>front);</highlight></codeline>
+<codeline lineno="117" refid="d0/d75/classBrush_1_1Engine_1a40877d86ac0f8be201ed33893333d0c8" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>vector&lt;json&gt;<sp/><ref refid="d0/d75/classBrush_1_1Engine_1a40877d86ac0f8be201ed33893333d0c8" kindref="member">get_population</ref>();</highlight></codeline>
+<codeline lineno="118"><highlight class="normal"></highlight></codeline>
+<codeline lineno="119" refid="d0/d75/classBrush_1_1Engine_1a7936896228b5c00b6e87070b7caeed00" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="d0/d75/classBrush_1_1Engine_1a7936896228b5c00b6e87070b7caeed00" kindref="member">set_population</ref>(vector&lt;json&gt;<sp/>pop_vector);</highlight></codeline>
+<codeline lineno="120"><highlight class="normal"></highlight></codeline>
+<codeline lineno="121"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>locking<sp/>and<sp/>unlocking<sp/>parts<sp/>of<sp/>the<sp/>solutions</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="122" refid="d0/d75/classBrush_1_1Engine_1a554973e3cdb838b80351337558995469" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="d0/d75/classBrush_1_1Engine_1a554973e3cdb838b80351337558995469" kindref="member">lock_nodes</ref>(</highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>end_depth=0,<sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/>skip_leaves=</highlight><highlight class="keyword">true</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="123" refid="d0/d75/classBrush_1_1Engine_1a906eb67b9e5e91447f270653b468a36d" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="d0/d75/classBrush_1_1Engine_1a906eb67b9e5e91447f270653b468a36d" kindref="member">unlock_nodes</ref>(</highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>start_depth=0);</highlight></codeline>
+<codeline lineno="124"><highlight class="normal"></highlight></codeline>
+<codeline lineno="126" refid="d0/d75/classBrush_1_1Engine_1ac70f5fca40a2a058b187e579a7910ab3" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/><ref refid="d0/d75/classBrush_1_1Engine_1ac70f5fca40a2a058b187e579a7910ab3" kindref="member">predict_archive</ref>(</highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">id</highlight><highlight class="normal">,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="d2/d36/classBrush_1_1Data_1_1Dataset" kindref="compound">Dataset</ref>&amp;<sp/>data);</highlight></codeline>
+<codeline lineno="127" refid="d0/d75/classBrush_1_1Engine_1a7dd0788450fa1c0b3f5b4687c0588e63" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/><ref refid="d0/d75/classBrush_1_1Engine_1a7dd0788450fa1c0b3f5b4687c0588e63" kindref="member">predict_archive</ref>(</highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">id</highlight><highlight class="normal">,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>Ref&lt;const<sp/>ArrayXXf&gt;&amp;<sp/>X);</highlight></codeline>
+<codeline lineno="128"><highlight class="normal"></highlight></codeline>
+<codeline lineno="129"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">template</highlight><highlight class="normal"><sp/>&lt;ProgramType<sp/>P<sp/>=<sp/>T&gt;</highlight></codeline>
+<codeline lineno="130"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">requires</highlight><highlight class="normal">((P<sp/>==<sp/><ref refid="dc/d5c/namespaceBrush_1ae591329af27c88b714d0f92b86276366a3cdc33a35d0e4f3b9bae953babd8f9b4" kindref="member">PT::BinaryClassifier</ref>)<sp/>||<sp/>(P<sp/>==<sp/><ref refid="dc/d5c/namespaceBrush_1ae591329af27c88b714d0f92b86276366ac62539fc5a23115fca906befbd511c0a" kindref="member">PT::MulticlassClassifier</ref>))</highlight></codeline>
+<codeline lineno="131" refid="d0/d75/classBrush_1_1Engine_1ac1f6620adc2dd0710a415a7e48b76650" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/><ref refid="d0/d75/classBrush_1_1Engine_1ac1f6620adc2dd0710a415a7e48b76650" kindref="member">predict_proba_archive</ref>(</highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">id</highlight><highlight class="normal">,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="d2/d36/classBrush_1_1Data_1_1Dataset" kindref="compound">Dataset</ref>&amp;<sp/>data);</highlight></codeline>
+<codeline lineno="132"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">template</highlight><highlight class="normal"><sp/>&lt;ProgramType<sp/>P<sp/>=<sp/>T&gt;</highlight></codeline>
+<codeline lineno="133"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">requires</highlight><highlight class="normal">((P<sp/>==<sp/><ref refid="dc/d5c/namespaceBrush_1ae591329af27c88b714d0f92b86276366a3cdc33a35d0e4f3b9bae953babd8f9b4" kindref="member">PT::BinaryClassifier</ref>)<sp/>||<sp/>(P<sp/>==<sp/><ref refid="dc/d5c/namespaceBrush_1ae591329af27c88b714d0f92b86276366ac62539fc5a23115fca906befbd511c0a" kindref="member">PT::MulticlassClassifier</ref>))</highlight></codeline>
+<codeline lineno="134" refid="d0/d75/classBrush_1_1Engine_1aef6812fe71d50d6e05cb432d226b4b37" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/><ref refid="d0/d75/classBrush_1_1Engine_1aef6812fe71d50d6e05cb432d226b4b37" kindref="member">predict_proba_archive</ref>(</highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">id</highlight><highlight class="normal">,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>Ref&lt;const<sp/>ArrayXXf&gt;&amp;<sp/>X);</highlight></codeline>
+<codeline lineno="135"><highlight class="normal"></highlight></codeline>
+<codeline lineno="136"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>TODO:<sp/>predict/predict_proba/archive<sp/>with<sp/>longitudinal<sp/>data</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="137"><highlight class="normal"></highlight></codeline>
+<codeline lineno="139" refid="d0/d75/classBrush_1_1Engine_1a4248c80ebcd035a70953065045e04705" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="d0/d75/classBrush_1_1Engine_1a4248c80ebcd035a70953065045e04705" kindref="member">run</ref>(<ref refid="d2/d36/classBrush_1_1Data_1_1Dataset" kindref="compound">Dataset</ref><sp/>&amp;d);</highlight></codeline>
+<codeline lineno="140"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="141"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>TODO:<sp/>should<sp/>params<sp/>and<sp/>ss<sp/>be<sp/>private?<sp/>(that<sp/>would<sp/>require<sp/>better<sp/>json<sp/>handling)</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="142" refid="d0/d75/classBrush_1_1Engine_1ab732127d18c12f7c5ea28fd33ee846e6" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="de/deb/structBrush_1_1Parameters" kindref="compound">Parameters</ref><sp/><ref refid="d0/d75/classBrush_1_1Engine_1ab732127d18c12f7c5ea28fd33ee846e6" kindref="member">params</ref>;<sp/><sp/></highlight></codeline>
+<codeline lineno="143" refid="d0/d75/classBrush_1_1Engine_1ae4708d8c80153665a35fdc298ec626f5" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="d4/dc3/structBrush_1_1SearchSpace" kindref="compound">SearchSpace</ref><sp/><ref refid="d0/d75/classBrush_1_1Engine_1ae4708d8c80153665a35fdc298ec626f5" kindref="member">ss</ref>;</highlight></codeline>
+<codeline lineno="144"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="145" refid="d0/d75/classBrush_1_1Engine_1a27fbc5f690c9952dc95ed5c3cce31418" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="de/d83/classBrush_1_1Pop_1_1Individual" kindref="compound">Individual&lt;T&gt;</ref><sp/><ref refid="d0/d75/classBrush_1_1Engine_1a27fbc5f690c9952dc95ed5c3cce31418" kindref="member">best_ind</ref>;<sp/></highlight></codeline>
+<codeline lineno="146" refid="d0/d75/classBrush_1_1Engine_1a59769ad184bdcdf2032c99acf3a77410" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="d1/d30/structBrush_1_1Pop_1_1Archive" kindref="compound">Archive&lt;T&gt;</ref><sp/><ref refid="d0/d75/classBrush_1_1Engine_1a59769ad184bdcdf2032c99acf3a77410" kindref="member">archive</ref>;<sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="147" refid="d0/d75/classBrush_1_1Engine_1a5e0104eaadbe7a19722ee149d06a7c76" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="da/da3/classBrush_1_1Pop_1_1Population" kindref="compound">Population&lt;T&gt;</ref><sp/><ref refid="d0/d75/classBrush_1_1Engine_1a5e0104eaadbe7a19722ee149d06a7c76" kindref="member">pop</ref>;<sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="148"><highlight class="normal"></highlight></codeline>
+<codeline lineno="149" refid="d0/d75/classBrush_1_1Engine_1a1f3f589d727557956c89c6abc272c3c5" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/><ref refid="d0/d75/classBrush_1_1Engine_1a1f3f589d727557956c89c6abc272c3c5" kindref="member">is_fitted</ref><sp/>=<sp/></highlight><highlight class="keyword">false</highlight><highlight class="normal">;<sp/></highlight></codeline>
+<codeline lineno="150"><highlight class="normal"></highlight><highlight class="keyword">private</highlight><highlight class="normal">:</highlight></codeline>
+<codeline lineno="151" refid="d0/d75/classBrush_1_1Engine_1a1979bbf5e2af65845c461dbd2e0b9ef5" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="dd/d0f/structBrush_1_1Sel_1_1Selection" kindref="compound">Selection&lt;T&gt;</ref><sp/><sp/><ref refid="d0/d75/classBrush_1_1Engine_1a1979bbf5e2af65845c461dbd2e0b9ef5" kindref="member">selector</ref>;<sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="152" refid="d0/d75/classBrush_1_1Engine_1aa8ccb37fe65cec921d9a155c1000cda7" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="d1/de5/classBrush_1_1Eval_1_1Evaluation" kindref="compound">Evaluation&lt;T&gt;</ref><sp/><ref refid="d0/d75/classBrush_1_1Engine_1aa8ccb37fe65cec921d9a155c1000cda7" kindref="member">evaluator</ref>;<sp/><sp/></highlight></codeline>
+<codeline lineno="153" refid="d0/d75/classBrush_1_1Engine_1a70abc4545878805cd572d110f21d1e7c" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="dd/d0f/structBrush_1_1Sel_1_1Selection" kindref="compound">Selection&lt;T&gt;</ref><sp/><sp/><ref refid="d0/d75/classBrush_1_1Engine_1a70abc4545878805cd572d110f21d1e7c" kindref="member">survivor</ref>;<sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="154"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="155" refid="d0/d75/classBrush_1_1Engine_1a596db23cf521696b72b023bacbf3a737" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="db/d7e/structBrush_1_1Util_1_1Log__Stats" kindref="compound">Log_Stats</ref><sp/><ref refid="d0/d75/classBrush_1_1Engine_1a596db23cf521696b72b023bacbf3a737" kindref="member">stats</ref>;<sp/></highlight></codeline>
+<codeline lineno="156"><highlight class="normal"></highlight></codeline>
+<codeline lineno="157" refid="d0/d75/classBrush_1_1Engine_1a1c15a1ffc9ffcebee65da12242791b13" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="d8/da4/classBrush_1_1Util_1_1Timer" kindref="compound">Timer</ref><sp/><ref refid="d0/d75/classBrush_1_1Engine_1a1c15a1ffc9ffcebee65da12242791b13" kindref="member">timer</ref>;<sp/></highlight></codeline>
+<codeline lineno="158"><highlight class="normal"></highlight></codeline>
+<codeline lineno="159" refid="d0/d75/classBrush_1_1Engine_1abf9f9f0eec7c0c6d4cf9985d993e6018" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="d0/d75/classBrush_1_1Engine_1abf9f9f0eec7c0c6d4cf9985d993e6018" kindref="member">init</ref>();</highlight></codeline>
+<codeline lineno="160"><highlight class="normal"></highlight></codeline>
+<codeline lineno="162" refid="d0/d75/classBrush_1_1Engine_1a82422a2bb8061934c4be271ee7eef810" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">inline</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="d0/d75/classBrush_1_1Engine_1a82422a2bb8061934c4be271ee7eef810" kindref="member">set_is_fitted</ref>(</highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/>f){<ref refid="d0/d75/classBrush_1_1Engine_1a1f3f589d727557956c89c6abc272c3c5" kindref="member">is_fitted</ref>=f;}</highlight></codeline>
+<codeline lineno="163"><highlight class="normal">};</highlight></codeline>
+<codeline lineno="164"><highlight class="normal"></highlight></codeline>
+<codeline lineno="165"><highlight class="normal"></highlight><highlight class="comment">//<sp/>TODO:<sp/>should<sp/>I<sp/>serialize<sp/>data<sp/>and<sp/>search<sp/>space<sp/>as<sp/>well?</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="166"><highlight class="normal"></highlight><highlight class="comment">//<sp/>Only<sp/>stuff<sp/>to<sp/>make<sp/>new<sp/>predictions<sp/>should<sp/>be<sp/>serialized</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="167" refid="dc/d5c/namespaceBrush_1a2b2ffd06833f1e9ee57cfd689acfcc6d" refkind="member"><highlight class="normal"><ref refid="dc/d5c/namespaceBrush_1a2b2ffd06833f1e9ee57cfd689acfcc6d" kindref="member">NLOHMANN_DEFINE_TYPE_NON_INTRUSIVE</ref>(<ref refid="d0/d75/classBrush_1_1Engine" kindref="compound">Engine&lt;PT::Regressor&gt;</ref>,<sp/>params,<sp/>best_ind,<sp/>archive,<sp/>pop,<sp/>ss,<sp/>is_fitted);</highlight></codeline>
+<codeline lineno="168" refid="dc/d5c/namespaceBrush_1a78f7f19a49bc1a818f29602b1773acc4" refkind="member"><highlight class="normal"><ref refid="dc/d5c/namespaceBrush_1a2b2ffd06833f1e9ee57cfd689acfcc6d" kindref="member">NLOHMANN_DEFINE_TYPE_NON_INTRUSIVE</ref>(<ref refid="d0/d75/classBrush_1_1Engine" kindref="compound">Engine&lt;PT::BinaryClassifier&gt;</ref>,<sp/>params,<sp/>best_ind,<sp/>archive,<sp/>pop,<sp/>ss,<sp/>is_fitted);</highlight></codeline>
+<codeline lineno="169" refid="dc/d5c/namespaceBrush_1aec1262548f3c9b2aa988c8705575885c" refkind="member"><highlight class="normal"><ref refid="dc/d5c/namespaceBrush_1a2b2ffd06833f1e9ee57cfd689acfcc6d" kindref="member">NLOHMANN_DEFINE_TYPE_NON_INTRUSIVE</ref>(<ref refid="d0/d75/classBrush_1_1Engine" kindref="compound">Engine&lt;PT::MulticlassClassifier&gt;</ref>,<sp/>params,<sp/>best_ind,<sp/>archive,<sp/>pop,<sp/>ss,<sp/>is_fitted);</highlight></codeline>
+<codeline lineno="170" refid="dc/d5c/namespaceBrush_1a58948e8e175aae197197ef454a3a9e13" refkind="member"><highlight class="normal"><ref refid="dc/d5c/namespaceBrush_1a2b2ffd06833f1e9ee57cfd689acfcc6d" kindref="member">NLOHMANN_DEFINE_TYPE_NON_INTRUSIVE</ref>(<ref refid="d0/d75/classBrush_1_1Engine" kindref="compound">Engine&lt;PT::Representer&gt;</ref>,<sp/>params,<sp/>best_ind,<sp/>archive,<sp/>pop,<sp/>ss,<sp/>is_fitted);</highlight></codeline>
+<codeline lineno="171"><highlight class="normal"></highlight></codeline>
+<codeline lineno="172"><highlight class="normal">}<sp/></highlight><highlight class="comment">//<sp/>Brush</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="173"><highlight class="normal"></highlight><highlight class="preprocessor">#endif</highlight></codeline>
     </programlisting>
     <location file="/home/runner/work/brush/brush/src/engine.h"/>
   </compounddef>

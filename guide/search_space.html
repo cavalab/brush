@@ -176,6 +176,7 @@
 <li class="toctree-l2"><a class="reference internal" href="json.html">JSON Interoperability</a></li>
 <li class="toctree-l2"><a class="reference internal" href="saving_loading_populations.html">Saving and loading populations</a></li>
 <li class="toctree-l2"><a class="reference internal" href="archive.html">The archive</a></li>
+
 <li class="toctree-l2"><a class="reference internal" href="deap.html">Using Deap</a></li>
 </ul>
 </details></li>
@@ -373,6 +374,9 @@ document.write(`
                 <ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#initializing">Initializing</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#inspecting">Inspecting</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#initializing-sampling-probabilities">Initializing sampling probabilities</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#loading-datatypes">Loading datatypes</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#automatically-updating-sampling-probabilities-with-multi-armed-bandits">Automatically updating sampling probabilities with multi-armed bandits</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#sampling">Sampling</a></li>
 </ul>
             </nav>
@@ -403,11 +407,103 @@ Users can optionally provide these weights.</p>
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">pybrush</span><span class="w"> </span><span class="kn">import</span> <span class="n">Dataset</span><span class="p">,</span> <span class="n">SearchSpace</span>
 
-<span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">&#39;../examples/datasets/d_enc.csv&#39;</span><span class="p">)</span>
-<span class="n">X</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="s1">&#39;label&#39;</span><span class="p">)</span>
-<span class="n">y</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;label&#39;</span><span class="p">]</span>
+<span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">&#39;../examples/datasets/d_example_patients.csv&#39;</span><span class="p">)</span>
+<span class="n">X</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="s1">&#39;target&#39;</span><span class="p">)</span>
+<span class="n">y</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;target&#39;</span><span class="p">]</span>
 
-<span class="n">data</span> <span class="o">=</span> <span class="n">Dataset</span><span class="p">(</span><span class="n">X</span><span class="p">,</span><span class="n">y</span><span class="p">)</span>
+<span class="n">df</span><span class="o">.</span><span class="n">describe</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>id</th>
+      <th>sex</th>
+      <th>race</th>
+      <th>target</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>count</th>
+      <td>993.00000</td>
+      <td>993.000000</td>
+      <td>993.000000</td>
+      <td>993.000000</td>
+    </tr>
+    <tr>
+      <th>mean</th>
+      <td>496.00000</td>
+      <td>0.487412</td>
+      <td>2.625378</td>
+      <td>8.219092</td>
+    </tr>
+    <tr>
+      <th>std</th>
+      <td>286.79871</td>
+      <td>0.500093</td>
+      <td>1.725240</td>
+      <td>1.101319</td>
+    </tr>
+    <tr>
+      <th>min</th>
+      <td>0.00000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>1.337280</td>
+    </tr>
+    <tr>
+      <th>25%</th>
+      <td>248.00000</td>
+      <td>0.000000</td>
+      <td>1.000000</td>
+      <td>7.836757</td>
+    </tr>
+    <tr>
+      <th>50%</th>
+      <td>496.00000</td>
+      <td>0.000000</td>
+      <td>3.000000</td>
+      <td>8.404038</td>
+    </tr>
+    <tr>
+      <th>75%</th>
+      <td>744.00000</td>
+      <td>1.000000</td>
+      <td>4.000000</td>
+      <td>8.810710</td>
+    </tr>
+    <tr>
+      <th>max</th>
+      <td>992.00000</td>
+      <td>1.000000</td>
+      <td>5.000000</td>
+      <td>11.410597</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">data</span> <span class="o">=</span> <span class="n">Dataset</span><span class="p">(</span><span class="n">X</span><span class="p">,</span><span class="n">y</span><span class="p">)</span>
 
 <span class="n">search_space</span> <span class="o">=</span> <span class="n">SearchSpace</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
 </pre></div>
@@ -420,11 +516,12 @@ That can be quite large.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">user_ops</span> <span class="o">=</span> <span class="p">{</span>
-    <span class="s1">&#39;Add&#39;</span><span class="p">:</span> <span class="mf">0.5</span><span class="p">,</span>
-    <span class="s1">&#39;Sub&#39;</span><span class="p">:</span> <span class="mf">0.5</span><span class="p">,</span>
-    <span class="s1">&#39;Mul&#39;</span><span class="p">:</span> <span class="mf">1.0</span><span class="p">,</span>
-    <span class="s1">&#39;Div&#39;</span><span class="p">:</span> <span class="mf">0.1</span><span class="p">,</span>
-    <span class="s1">&#39;SplitBest&#39;</span><span class="p">:</span><span class="mf">0.2</span>
+    <span class="c1"># &#39;Add&#39;: 0.5,</span>
+    <span class="c1"># &#39;Sub&#39;: 0.5,</span>
+    <span class="c1"># &#39;Mul&#39;: 1.0,</span>
+    <span class="c1"># &#39;Div&#39;: 0.1,</span>
+    <span class="s1">&#39;SplitBest&#39;</span><span class="p">:</span><span class="mf">0.1</span><span class="p">,</span>
+    <span class="s1">&#39;SplitOn&#39;</span><span class="p">:</span><span class="mf">0.1</span>
 <span class="p">}</span>
 
 <span class="n">search_space</span> <span class="o">=</span> <span class="n">SearchSpace</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">user_ops</span><span class="p">)</span>
@@ -443,17 +540,56 @@ That can be quite large.</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Search Space
-===
-terminal_map: {&quot;ArrayB&quot;: [&quot;1.00&quot;], &quot;ArrayI&quot;: [&quot;x_5&quot;, &quot;x_7&quot;, &quot;1.00&quot;], &quot;ArrayF&quot;: [&quot;x_0&quot;, &quot;x_1&quot;, &quot;x_2&quot;, &quot;x_3&quot;, &quot;x_4&quot;, &quot;x_6&quot;, &quot;1.00&quot;, &quot;1.00*MeanLabel&quot;]}
-terminal_weights: {&quot;ArrayB&quot;: [-nan], &quot;ArrayI&quot;: [0.011619061, 0.03579926, 0.023709161], &quot;ArrayF&quot;: [0.6343385, 0.67299956, 0.42711574, 0.8625447, 0.8957853, 0.20750472, 0.6167148, 0.6167148]}
-node_map[ArrayI][[&quot;ArrayI&quot;, &quot;ArrayI&quot;]][SplitBest] = SplitBest, weight = 0.2
-node_map[ArrayF][[&quot;ArrayF&quot;, &quot;ArrayF&quot;]][SplitBest] = SplitBest, weight = 0.2
-node_map[ArrayF][[&quot;ArrayF&quot;, &quot;ArrayF&quot;]][Div] = Div, weight = 0.1
-node_map[ArrayF][[&quot;ArrayF&quot;, &quot;ArrayF&quot;]][Mul] = Mul, weight = 1
-node_map[ArrayF][[&quot;ArrayF&quot;, &quot;ArrayF&quot;]][Sub] = Sub, weight = 0.5
-node_map[ArrayF][[&quot;ArrayF&quot;, &quot;ArrayF&quot;]][Add] = Add, weight = 0.5
-===
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>=== Search space ===
+terminal_map: {&quot;ArrayI&quot;: [&quot;x_2&quot;, &quot;1.00&quot;], &quot;ArrayB&quot;: [&quot;x_1&quot;, &quot;1.00&quot;], &quot;ArrayF&quot;: [&quot;x_0&quot;, &quot;1.00&quot;]}
+terminal_weights: {&quot;ArrayI&quot;: [0.01214596, 0.01214596], &quot;ArrayB&quot;: [0.026419641, 0.026419641], &quot;ArrayF&quot;: [0.056145623, 0.056145623]}
+node_map[ArrayB][[&quot;ArrayI&quot;, &quot;ArrayB&quot;, &quot;ArrayB&quot;]][SplitOn] = SplitOn, weight = 0.1
+node_map[ArrayB][[&quot;ArrayF&quot;, &quot;ArrayB&quot;, &quot;ArrayB&quot;]][SplitOn] = SplitOn, weight = 0.1
+node_map[ArrayB][[&quot;ArrayB&quot;, &quot;ArrayB&quot;, &quot;ArrayB&quot;]][SplitOn] = SplitOn, weight = 0.1
+node_map[ArrayB][[&quot;ArrayB&quot;, &quot;ArrayB&quot;]][SplitBest] = SplitBest, weight = 0.1
+node_map[ArrayI][[&quot;ArrayB&quot;, &quot;ArrayI&quot;, &quot;ArrayI&quot;]][SplitOn] = 1.00*SplitOn, weight = 0.1
+node_map[ArrayI][[&quot;ArrayF&quot;, &quot;ArrayI&quot;, &quot;ArrayI&quot;]][SplitOn] = 1.00*SplitOn, weight = 0.1
+node_map[ArrayI][[&quot;ArrayI&quot;, &quot;ArrayI&quot;, &quot;ArrayI&quot;]][SplitOn] = 1.00*SplitOn, weight = 0.1
+node_map[ArrayI][[&quot;ArrayI&quot;, &quot;ArrayI&quot;]][SplitBest] = 1.00*SplitBest, weight = 0.1
+node_map[ArrayF][[&quot;ArrayB&quot;, &quot;ArrayF&quot;, &quot;ArrayF&quot;]][SplitOn] = 1.00*SplitOn, weight = 0.1
+node_map[ArrayF][[&quot;ArrayI&quot;, &quot;ArrayF&quot;, &quot;ArrayF&quot;]][SplitOn] = 1.00*SplitOn, weight = 0.1
+node_map[ArrayF][[&quot;ArrayF&quot;, &quot;ArrayF&quot;, &quot;ArrayF&quot;]][SplitOn] = 1.00*SplitOn, weight = 0.1
+node_map[ArrayF][[&quot;ArrayF&quot;, &quot;ArrayF&quot;]][SplitBest] = 1.00*SplitBest, weight = 0.1
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="initializing-sampling-probabilities">
+<h2>Initializing sampling probabilities<a class="headerlink" href="#initializing-sampling-probabilities" title="Link to this heading">#</a></h2>
+<p>The search space will create the terminals based on each input feature.</p>
+<p>Brush lets you start the execution with uniformly initialized weights for sampling terminals when creating or mutating programs or pre-calculating sampling probabilities based on correlations with the target variable.</p>
+<p>These weights will affect the occurrence of each terminal in the programs during the run.</p>
+<p>You can enable this feature by setting <code class="docutils literal notranslate"><span class="pre">weights_init=True</span></code>. This setting is true by default.</p>
+<p>Below we show the search space with the weights off.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">search_space_off</span> <span class="o">=</span> <span class="n">SearchSpace</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">user_ops</span><span class="p">,</span> <span class="n">weights_init</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<span class="n">search_space_off</span><span class="o">.</span><span class="n">print</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>=== Search space ===
+terminal_map: {&quot;ArrayI&quot;: [&quot;x_2&quot;, &quot;1.00&quot;], &quot;ArrayB&quot;: [&quot;x_1&quot;, &quot;1.00&quot;], &quot;ArrayF&quot;: [&quot;x_0&quot;, &quot;1.00&quot;]}
+terminal_weights: {&quot;ArrayI&quot;: [1, 1], &quot;ArrayB&quot;: [1, 1], &quot;ArrayF&quot;: [1, 1]}
+node_map[ArrayB][[&quot;ArrayI&quot;, &quot;ArrayB&quot;, &quot;ArrayB&quot;]][SplitOn] = SplitOn, weight = 0.1
+node_map[ArrayB][[&quot;ArrayF&quot;, &quot;ArrayB&quot;, &quot;ArrayB&quot;]][SplitOn] = SplitOn, weight = 0.1
+node_map[ArrayB][[&quot;ArrayB&quot;, &quot;ArrayB&quot;, &quot;ArrayB&quot;]][SplitOn] = SplitOn, weight = 0.1
+node_map[ArrayB][[&quot;ArrayB&quot;, &quot;ArrayB&quot;]][SplitBest] = SplitBest, weight = 0.1
+node_map[ArrayI][[&quot;ArrayB&quot;, &quot;ArrayI&quot;, &quot;ArrayI&quot;]][SplitOn] = 1.00*SplitOn, weight = 0.1
+node_map[ArrayI][[&quot;ArrayF&quot;, &quot;ArrayI&quot;, &quot;ArrayI&quot;]][SplitOn] = 1.00*SplitOn, weight = 0.1
+node_map[ArrayI][[&quot;ArrayI&quot;, &quot;ArrayI&quot;, &quot;ArrayI&quot;]][SplitOn] = 1.00*SplitOn, weight = 0.1
+node_map[ArrayI][[&quot;ArrayI&quot;, &quot;ArrayI&quot;]][SplitBest] = 1.00*SplitBest, weight = 0.1
+node_map[ArrayF][[&quot;ArrayB&quot;, &quot;ArrayF&quot;, &quot;ArrayF&quot;]][SplitOn] = 1.00*SplitOn, weight = 0.1
+node_map[ArrayF][[&quot;ArrayI&quot;, &quot;ArrayF&quot;, &quot;ArrayF&quot;]][SplitOn] = 1.00*SplitOn, weight = 0.1
+node_map[ArrayF][[&quot;ArrayF&quot;, &quot;ArrayF&quot;, &quot;ArrayF&quot;]][SplitOn] = 1.00*SplitOn, weight = 0.1
+node_map[ArrayF][[&quot;ArrayF&quot;, &quot;ArrayF&quot;]][SplitBest] = 1.00*SplitBest, weight = 0.1
 </pre></div>
 </div>
 </div>
@@ -461,6 +597,118 @@ node_map[ArrayF][[&quot;ArrayF&quot;, &quot;ArrayF&quot;]][Add] = Add, weight = 
 <p>Note that the <code class="docutils literal notranslate"><span class="pre">node_map</span></code> includes two <code class="docutils literal notranslate"><span class="pre">SplitBest</span></code> operators: one with the signature <code class="docutils literal notranslate"><span class="pre">ArrayI(ArrayI,</span> <span class="pre">ArrayI)</span></code> and one with the signature <code class="docutils literal notranslate"><span class="pre">ArrayF(ArrayF,</span> <span class="pre">ArrayF)</span></code>.
 This is because our dataset contains both interger and floating point data types.
 Note also that the default behavior is to give both of these nodes the same weight as specified by the user.</p>
+</section>
+<section id="loading-datatypes">
+<h2>Loading datatypes<a class="headerlink" href="#loading-datatypes" title="Link to this heading">#</a></h2>
+<p>If you pass a numpy array, Brush will try to infer datatypes based on its values.
+If instead of passing the data directly you rather pass a pandas dataframe, then it will use the data types retrieved from the powerful pandas sniffer to use as its own data type.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">data</span> <span class="o">=</span> <span class="n">Dataset</span><span class="p">(</span><span class="n">X</span><span class="o">.</span><span class="n">values</span><span class="p">,</span> <span class="n">y</span><span class="o">.</span><span class="n">values</span><span class="p">)</span>
+
+<span class="n">search_space</span> <span class="o">=</span> <span class="n">SearchSpace</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">user_ops</span><span class="p">)</span>
+<span class="n">search_space</span><span class="o">.</span><span class="n">print</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>=== Search space ===
+terminal_map: {&quot;ArrayI&quot;: [&quot;x_2&quot;, &quot;1.00&quot;], &quot;ArrayB&quot;: [&quot;x_1&quot;, &quot;1.00&quot;], &quot;ArrayF&quot;: [&quot;x_0&quot;, &quot;1.00&quot;]}
+terminal_weights: {&quot;ArrayI&quot;: [0.01214596, 0.01214596], &quot;ArrayB&quot;: [0.026419641, 0.026419641], &quot;ArrayF&quot;: [0.056145623, 0.056145623]}
+node_map[ArrayB][[&quot;ArrayI&quot;, &quot;ArrayB&quot;, &quot;ArrayB&quot;]][SplitOn] = SplitOn, weight = 0.1
+node_map[ArrayB][[&quot;ArrayF&quot;, &quot;ArrayB&quot;, &quot;ArrayB&quot;]][SplitOn] = SplitOn, weight = 0.1
+node_map[ArrayB][[&quot;ArrayB&quot;, &quot;ArrayB&quot;, &quot;ArrayB&quot;]][SplitOn] = SplitOn, weight = 0.1
+node_map[ArrayB][[&quot;ArrayB&quot;, &quot;ArrayB&quot;]][SplitBest] = SplitBest, weight = 0.1
+node_map[ArrayI][[&quot;ArrayB&quot;, &quot;ArrayI&quot;, &quot;ArrayI&quot;]][SplitOn] = 1.00*SplitOn, weight = 0.1
+node_map[ArrayI][[&quot;ArrayF&quot;, &quot;ArrayI&quot;, &quot;ArrayI&quot;]][SplitOn] = 1.00*SplitOn, weight = 0.1
+node_map[ArrayI][[&quot;ArrayI&quot;, &quot;ArrayI&quot;, &quot;ArrayI&quot;]][SplitOn] = 1.00*SplitOn, weight = 0.1
+node_map[ArrayI][[&quot;ArrayI&quot;, &quot;ArrayI&quot;]][SplitBest] = 1.00*SplitBest, weight = 0.1
+node_map[ArrayF][[&quot;ArrayB&quot;, &quot;ArrayF&quot;, &quot;ArrayF&quot;]][SplitOn] = 1.00*SplitOn, weight = 0.1
+node_map[ArrayF][[&quot;ArrayI&quot;, &quot;ArrayF&quot;, &quot;ArrayF&quot;]][SplitOn] = 1.00*SplitOn, weight = 0.1
+node_map[ArrayF][[&quot;ArrayF&quot;, &quot;ArrayF&quot;, &quot;ArrayF&quot;]][SplitOn] = 1.00*SplitOn, weight = 0.1
+node_map[ArrayF][[&quot;ArrayF&quot;, &quot;ArrayF&quot;]][SplitBest] = 1.00*SplitBest, weight = 0.1
+</pre></div>
+</div>
+</div>
+</div>
+<p>The regressor contains an engine, responsible for running the search.</p>
+<p>The engine will have its own instance of the search space.You can access the search space from the regressor with the following:</p>
+</section>
+<section id="automatically-updating-sampling-probabilities-with-multi-armed-bandits">
+<h2>Automatically updating sampling probabilities with multi-armed bandits<a class="headerlink" href="#automatically-updating-sampling-probabilities-with-multi-armed-bandits" title="Link to this heading">#</a></h2>
+<p>Brush has a reinforcement learning agent implemented on the C++ backend that will observe which terminals are making the programs better or worse regarding the user-defined objectives and update the sampling probabilities.</p>
+<p>To enable it, you must set <code class="docutils literal notranslate"><span class="pre">bandit=&quot;thompson&quot;</span></code> if you want to have a global static probability used during the entire search, or <code class="docutils literal notranslate"><span class="pre">bandit=&quot;dynamic_thompson&quot;</span></code> if you want to use a policy that gives more importance to recent observed results and sets a lower importance to older generations.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">pybrush</span><span class="w"> </span><span class="kn">import</span> <span class="n">BrushRegressor</span>
+
+<span class="n">est</span> <span class="o">=</span> <span class="n">BrushRegressor</span><span class="p">(</span>
+    <span class="n">functions</span><span class="o">=</span><span class="n">user_ops</span><span class="p">,</span>
+    <span class="n">max_gens</span><span class="o">=</span><span class="mi">20</span><span class="p">,</span>
+    <span class="n">objectives</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;scorer&quot;</span><span class="p">,</span> <span class="s2">&quot;linear_complexity&quot;</span><span class="p">],</span>
+    <span class="n">weights_init</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+    <span class="n">bandit</span><span class="o">=</span><span class="s2">&quot;dynamic_thompson&quot;</span><span class="p">,</span>
+    <span class="n">verbosity</span><span class="o">=</span><span class="mi">1</span>
+<span class="p">)</span>
+
+<span class="n">est</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X</span><span class="o">.</span><span class="n">values</span><span class="p">,</span><span class="n">y</span><span class="o">.</span><span class="n">values</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Best model:&quot;</span><span class="p">,</span> <span class="n">est</span><span class="o">.</span><span class="n">best_estimator_</span><span class="o">.</span><span class="n">get_model</span><span class="p">())</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;score:&#39;</span><span class="p">,</span> <span class="n">est</span><span class="o">.</span><span class="n">score</span><span class="p">(</span><span class="n">X</span><span class="p">,</span><span class="n">y</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Completed 100% [====================]
+saving final population as archive...
+Best model: If(x_0&gt;0.50,If(x_0&gt;1.50,8.22,5.77),9.04)
+score: 0.005547027354798839
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">est</span><span class="o">.</span><span class="n">engine_</span><span class="o">.</span><span class="n">search_space</span><span class="o">.</span><span class="n">print</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>=== Search space ===
+terminal_map: {&quot;ArrayI&quot;: [&quot;x_2&quot;, &quot;1.00&quot;], &quot;ArrayB&quot;: [&quot;x_1&quot;, &quot;1.00&quot;], &quot;ArrayF&quot;: [&quot;x_0&quot;, &quot;1.00&quot;]}
+terminal_weights: {&quot;ArrayI&quot;: [0.5988976, 0.39022964], &quot;ArrayB&quot;: [0.31329083, 0.29768455], &quot;ArrayF&quot;: [0.01, 0.01]}
+node_map[ArrayB][[&quot;ArrayI&quot;, &quot;ArrayB&quot;, &quot;ArrayB&quot;]][SplitOn] = SplitOn, weight = 0.4727218
+node_map[ArrayB][[&quot;ArrayF&quot;, &quot;ArrayB&quot;, &quot;ArrayB&quot;]][SplitOn] = SplitOn, weight = 0.13049549
+node_map[ArrayB][[&quot;ArrayB&quot;, &quot;ArrayB&quot;, &quot;ArrayB&quot;]][SplitOn] = SplitOn, weight = 0.2557611
+node_map[ArrayB][[&quot;ArrayB&quot;, &quot;ArrayB&quot;]][SplitBest] = SplitBest, weight = 0.44342086
+node_map[ArrayI][[&quot;ArrayB&quot;, &quot;ArrayI&quot;, &quot;ArrayI&quot;]][SplitOn] = 1.00*SplitOn, weight = 0.079836436
+node_map[ArrayI][[&quot;ArrayF&quot;, &quot;ArrayI&quot;, &quot;ArrayI&quot;]][SplitOn] = 1.00*SplitOn, weight = 0.26834965
+node_map[ArrayI][[&quot;ArrayI&quot;, &quot;ArrayI&quot;, &quot;ArrayI&quot;]][SplitOn] = 1.00*SplitOn, weight = 0.978205
+node_map[ArrayI][[&quot;ArrayI&quot;, &quot;ArrayI&quot;]][SplitBest] = 1.00*SplitBest, weight = 0.54717386
+node_map[ArrayF][[&quot;ArrayB&quot;, &quot;ArrayF&quot;, &quot;ArrayF&quot;]][SplitOn] = 1.00*SplitOn, weight = 0.13805643
+node_map[ArrayF][[&quot;ArrayI&quot;, &quot;ArrayF&quot;, &quot;ArrayF&quot;]][SplitOn] = 1.00*SplitOn, weight = 0.22573847
+node_map[ArrayF][[&quot;ArrayF&quot;, &quot;ArrayF&quot;, &quot;ArrayF&quot;]][SplitOn] = 1.00*SplitOn, weight = 0.09722547
+node_map[ArrayF][[&quot;ArrayF&quot;, &quot;ArrayF&quot;]][SplitBest] = 1.00*SplitBest, weight = 0.01
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">est</span><span class="o">.</span><span class="n">best_estimator_</span><span class="o">.</span><span class="n">get_model</span><span class="p">(</span><span class="s2">&quot;tree&quot;</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>If(x_0)
+|- If(x_0)
+|  |- 8.22
+|  |- 5.77
+|- 9.04
+</pre></div>
+</div>
+</div>
+</div>
 </section>
 <section id="sampling">
 <h2>Sampling<a class="headerlink" href="#sampling" title="Link to this heading">#</a></h2>
@@ -515,6 +763,9 @@ Note also that the default behavior is to give both of these nodes the same weig
     <ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#initializing">Initializing</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#inspecting">Inspecting</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#initializing-sampling-probabilities">Initializing sampling probabilities</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#loading-datatypes">Loading datatypes</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#automatically-updating-sampling-probabilities-with-multi-armed-bandits">Automatically updating sampling probabilities with multi-armed bandits</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#sampling">Sampling</a></li>
 </ul>
   </nav></div>

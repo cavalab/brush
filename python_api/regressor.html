@@ -176,6 +176,7 @@
 <li class="toctree-l2"><a class="reference internal" href="../guide/json.html">JSON Interoperability</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../guide/saving_loading_populations.html">Saving and loading populations</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../guide/archive.html">The archive</a></li>
+
 <li class="toctree-l2"><a class="reference internal" href="../guide/deap.html">Using Deap</a></li>
 </ul>
 </details></li>
@@ -372,6 +373,7 @@ document.write(`
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pybrush.BrushEstimator.BrushRegressor"><code class="docutils literal notranslate"><span class="pre">BrushRegressor</span></code></a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#pybrush.BrushEstimator.BrushRegressor.set_partial_fit_request"><code class="docutils literal notranslate"><span class="pre">BrushRegressor.set_partial_fit_request()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#pybrush.BrushEstimator.BrushRegressor.set_score_request"><code class="docutils literal notranslate"><span class="pre">BrushRegressor.set_score_request()</span></code></a></li>
 </ul>
 </li>
@@ -390,7 +392,7 @@ document.write(`
 <h1>BrushRegressor<a class="headerlink" href="#brushregressor" title="Link to this heading">#</a></h1>
 <dl class="py class">
 <dt class="sig sig-object py" id="pybrush.BrushEstimator.BrushRegressor">
-<em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">pybrush.BrushEstimator.</span></span><span class="sig-name descname"><span class="pre">BrushRegressor</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/cavalab/brush/blob/master/../../../micromamba/envs/brush/lib/python3.13/site-packages/pybrush/BrushEstimator.py#L276-L298"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pybrush.BrushEstimator.BrushRegressor" title="Link to this definition">#</a></dt>
+<em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">pybrush.BrushEstimator.</span></span><span class="sig-name descname"><span class="pre">BrushRegressor</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/cavalab/brush/blob/master/../../../micromamba/envs/brush/lib/python3.13/site-packages/pybrush/BrushEstimator.py#L305-L328"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pybrush.BrushEstimator.BrushRegressor" title="Link to this definition">#</a></dt>
 <dd><p>Brush with c++ engine for regression.</p>
 <p>Parameters are defined and documented in 
 <a class="reference internal" href="interface.html#pybrush.EstimatorInterface.EstimatorInterface" title="pybrush.EstimatorInterface.EstimatorInterface"><code class="xref py py-class docutils literal notranslate"><span class="pre">EstimatorInterface</span></code></a></p>
@@ -408,17 +410,23 @@ A full documentation of the methods and attributes can be found there.</p>
 <tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_params</span></code>([deep])</p></td>
 <td><p>Get parameters for this estimator.</p></td>
 </tr>
-<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">predict</span></code>(X)</p></td>
+<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">partial_fit</span></code>(X, y[, lock_nodes_depth, ...])</p></td>
+<td><p>Fit an estimator to X,y, without reseting the estimator.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">predict</span></code>(X)</p></td>
 <td><p>Predict using the best estimator in the archive.</p></td>
 </tr>
-<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">predict_archive</span></code>(X)</p></td>
+<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">predict_archive</span></code>(X)</p></td>
 <td><p>Returns a list of dictionary predictions for all models.</p></td>
 </tr>
-<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">score</span></code>(X, y[, sample_weight])</p></td>
+<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">score</span></code>(X, y[, sample_weight])</p></td>
 <td><p>Return the coefficient of determination of the prediction.</p></td>
 </tr>
-<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">set_params</span></code>(**params)</p></td>
+<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">set_params</span></code>(**params)</p></td>
 <td><p>Set the parameters of this estimator.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#pybrush.BrushEstimator.BrushRegressor.set_partial_fit_request" title="pybrush.BrushEstimator.BrushRegressor.set_partial_fit_request"><code class="xref py py-obj docutils literal notranslate"><span class="pre">set_partial_fit_request</span></code></a>(*[, ...])</p></td>
+<td><p>Request metadata passed to the <code class="docutils literal notranslate"><span class="pre">partial_fit</span></code> method.</p></td>
 </tr>
 <tr class="row-even"><td><p><a class="reference internal" href="#pybrush.BrushEstimator.BrushRegressor.set_score_request" title="pybrush.BrushEstimator.BrushRegressor.set_score_request"><code class="xref py py-obj docutils literal notranslate"><span class="pre">set_score_request</span></code></a>(*[, sample_weight])</p></td>
 <td><p>Request metadata passed to the <code class="docutils literal notranslate"><span class="pre">score</span></code> method.</p></td>
@@ -437,6 +445,51 @@ A full documentation of the methods and attributes can be found there.</p>
 <span class="gp">&gt;&gt;&gt; </span><span class="c1"># print(&#39;score:&#39;, est.score(X,y))</span>
 </pre></div>
 </div>
+<dl class="py method">
+<dt class="sig sig-object py" id="pybrush.BrushEstimator.BrushRegressor.set_partial_fit_request">
+<span class="sig-name descname"><span class="pre">set_partial_fit_request</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="keyword-only-separator o"><abbr title="Keyword-only parameters separator (PEP 3102)"><span class="pre">*</span></abbr></span></em>, <em class="sig-param"><span class="n"><span class="pre">lock_nodes_depth</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'$UNCHANGED$'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">skip_leaves</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'$UNCHANGED$'</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#pybrush.BrushEstimator.BrushRegressor" title="pybrush.BrushEstimator.BrushRegressor"><span class="pre">BrushRegressor</span></a></span></span><a class="reference external" href="https://github.com/cavalab/brush/blob/master/../../../micromamba/envs/brush/lib/python3.13/site-packages/sklearn/utils/_metadata_requests.py#L1251-L1295"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pybrush.BrushEstimator.BrushRegressor.set_partial_fit_request" title="Link to this definition">#</a></dt>
+<dd><p>Request metadata passed to the <code class="docutils literal notranslate"><span class="pre">partial_fit</span></code> method.</p>
+<p>Note that this method is only relevant if
+<code class="docutils literal notranslate"><span class="pre">enable_metadata_routing=True</span></code> (see <code class="xref py py-func docutils literal notranslate"><span class="pre">sklearn.set_config()</span></code>).
+Please see <span class="xref std std-ref">User Guide</span> on how the routing
+mechanism works.</p>
+<p>The options for each parameter are:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">True</span></code>: metadata is requested, and passed to <code class="docutils literal notranslate"><span class="pre">partial_fit</span></code> if provided. The request is ignored if metadata is not provided.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">False</span></code>: metadata is not requested and the meta-estimator will not pass it to <code class="docutils literal notranslate"><span class="pre">partial_fit</span></code>.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">None</span></code>: metadata is not requested, and the meta-estimator will raise an error if the user provides it.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">str</span></code>: metadata should be passed to the meta-estimator with this given alias instead of the original name.</p></li>
+</ul>
+<p>The default (<code class="docutils literal notranslate"><span class="pre">sklearn.utils.metadata_routing.UNCHANGED</span></code>) retains the
+existing request. This allows you to change the request for some
+parameters and not others.</p>
+<div class="versionadded">
+<p><span class="versionmodified added">Added in version 1.3.</span></p>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>This method is only relevant if this estimator is used as a
+sub-estimator of a meta-estimator, e.g. used inside a
+<code class="xref py py-class docutils literal notranslate"><span class="pre">Pipeline</span></code>. Otherwise it has no effect.</p>
+</div>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>lock_nodes_depth</strong><span class="classifier">str, True, False, or None,                     default=sklearn.utils.metadata_routing.UNCHANGED</span></dt><dd><p>Metadata routing for <code class="docutils literal notranslate"><span class="pre">lock_nodes_depth</span></code> parameter in <code class="docutils literal notranslate"><span class="pre">partial_fit</span></code>.</p>
+</dd>
+<dt><strong>skip_leaves</strong><span class="classifier">str, True, False, or None,                     default=sklearn.utils.metadata_routing.UNCHANGED</span></dt><dd><p>Metadata routing for <code class="docutils literal notranslate"><span class="pre">skip_leaves</span></code> parameter in <code class="docutils literal notranslate"><span class="pre">partial_fit</span></code>.</p>
+</dd>
+</dl>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><dl class="simple">
+<dt><strong>self</strong><span class="classifier">object</span></dt><dd><p>The updated object.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
 <dl class="py method">
 <dt class="sig sig-object py" id="pybrush.BrushEstimator.BrushRegressor.set_score_request">
 <span class="sig-name descname"><span class="pre">set_score_request</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="keyword-only-separator o"><abbr title="Keyword-only parameters separator (PEP 3102)"><span class="pre">*</span></abbr></span></em>, <em class="sig-param"><span class="n"><span class="pre">sample_weight</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'$UNCHANGED$'</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#pybrush.BrushEstimator.BrushRegressor" title="pybrush.BrushEstimator.BrushRegressor"><span class="pre">BrushRegressor</span></a></span></span><a class="reference external" href="https://github.com/cavalab/brush/blob/master/../../../micromamba/envs/brush/lib/python3.13/site-packages/sklearn/utils/_metadata_requests.py#L1251-L1295"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pybrush.BrushEstimator.BrushRegressor.set_score_request" title="Link to this definition">#</a></dt>
@@ -530,6 +583,7 @@ sub-estimator of a meta-estimator, e.g. used inside a
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pybrush.BrushEstimator.BrushRegressor"><code class="docutils literal notranslate"><span class="pre">BrushRegressor</span></code></a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#pybrush.BrushEstimator.BrushRegressor.set_partial_fit_request"><code class="docutils literal notranslate"><span class="pre">BrushRegressor.set_partial_fit_request()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#pybrush.BrushEstimator.BrushRegressor.set_score_request"><code class="docutils literal notranslate"><span class="pre">BrushRegressor.set_score_request()</span></code></a></li>
 </ul>
 </li>

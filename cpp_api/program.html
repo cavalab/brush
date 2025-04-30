@@ -176,6 +176,7 @@
 <li class="toctree-l2"><a class="reference internal" href="../guide/json.html">JSON Interoperability</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../guide/saving_loading_populations.html">Saving and loading populations</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../guide/archive.html">The archive</a></li>
+
 <li class="toctree-l2"><a class="reference internal" href="../guide/deap.html">Using Deap</a></li>
 </ul>
 </details></li>
@@ -379,6 +380,7 @@ document.write(`
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#_CPPv4N5Brush7Program4copyEv"><code class="docutils literal notranslate"><span class="pre">copy()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#_CPPv4N5Brush7Program16set_search_spaceEKNSt17reference_wrapperI11SearchSpaceEE"><code class="docutils literal notranslate"><span class="pre">set_search_space()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#_CPPv4NK5Brush7Program10complexityEv"><code class="docutils literal notranslate"><span class="pre">complexity()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#_CPPv4NK5Brush7Program17linear_complexityEv"><code class="docutils literal notranslate"><span class="pre">linear_complexity()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#_CPPv4NK5Brush7Program4sizeEb"><code class="docutils literal notranslate"><span class="pre">size()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#_CPPv4NK5Brush7Program7size_atER4Iterb"><code class="docutils literal notranslate"><span class="pre">size_at()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#_CPPv4NK5Brush7Program5depthEv"><code class="docutils literal notranslate"><span class="pre">depth()</span></code></a></li>
@@ -398,6 +400,8 @@ document.write(`
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#_CPPv4NK5Brush7Program13get_n_weightsEv"><code class="docutils literal notranslate"><span class="pre">get_n_weights()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#_CPPv4N5Brush7Program11get_weightsEv"><code class="docutils literal notranslate"><span class="pre">get_weights()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#_CPPv4N5Brush7Program11set_weightsERK7ArrayXf"><code class="docutils literal notranslate"><span class="pre">set_weights()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#_CPPv4N5Brush7Program10lock_nodesEib"><code class="docutils literal notranslate"><span class="pre">lock_nodes()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#_CPPv4N5Brush7Program12unlock_nodesEi"><code class="docutils literal notranslate"><span class="pre">unlock_nodes()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#_CPPv4NK5Brush7Program9get_modelE6stringb"><code class="docutils literal notranslate"><span class="pre">get_model()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#_CPPv4NK5Brush7Program13get_dot_modelE6string"><code class="docutils literal notranslate"><span class="pre">get_dot_model()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#_CPPv4NK5Brush7Program9linearizeEv"><code class="docutils literal notranslate"><span class="pre">linearize()</span></code></a></li>
@@ -469,7 +473,18 @@ document.write(`
 <dl class="cpp function">
 <dt class="sig sig-object cpp" id="_CPPv4NK5Brush7Program10complexityEv">
 <span id="_CPPv3NK5Brush7Program10complexityEv"></span><span id="_CPPv2NK5Brush7Program10complexityEv"></span><span id="Brush::Program::complexityC"></span><span class="target" id="db/d88/structBrush_1_1Program_1a6fc6aa2a6ecbe639aa3f80accf0c2798"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">complexity</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">const</span></span><a class="headerlink" href="#_CPPv4NK5Brush7Program10complexityEv" title="Link to this definition">#</a><br /></dt>
-<dd><p>count the complexity of the program. </p>
+<dd><p>count the (recursive) complexity of the program. </p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>int complexity. </p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4NK5Brush7Program17linear_complexityEv">
+<span id="_CPPv3NK5Brush7Program17linear_complexityEv"></span><span id="_CPPv2NK5Brush7Program17linear_complexityEv"></span><span id="Brush::Program::linear_complexityC"></span><span class="target" id="db/d88/structBrush_1_1Program_1a4ac36b2680c5fa0aae06db61fa2ffae6"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">linear_complexity</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">const</span></span><a class="headerlink" href="#_CPPv4NK5Brush7Program17linear_complexityEv" title="Link to this definition">#</a><br /></dt>
+<dd><p>count the linear complexity of the program. </p>
 <dl class="field-list simple">
 <dt class="field-odd">Returns<span class="colon">:</span></dt>
 <dd class="field-odd"><p>int complexity. </p>
@@ -701,6 +716,31 @@ document.write(`
 </dd></dl>
 
 <dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N5Brush7Program10lock_nodesEib">
+<span id="_CPPv3N5Brush7Program10lock_nodesEib"></span><span id="_CPPv2N5Brush7Program10lock_nodesEib"></span><span id="Brush::Program::lock_nodes__i.b"></span><span class="target" id="db/d88/structBrush_1_1Program_1ac95fc63e130e0e594b92a0c160db44aa"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">lock_nodes</span></span></span><span class="sig-paren">(</span><span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">end_depth</span></span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="m"><span class="pre">0</span></span>, <span class="kt"><span class="pre">bool</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">skip_leaves</span></span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="k"><span class="pre">true</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N5Brush7Program10lock_nodesEib" title="Link to this definition">#</a><br /></dt>
+<dd><p>Iterates over the program, locking the nodes until it reaches a certain depth. </p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>end_depth</strong> – the depth to stop locking nodes. Default 0. </p></li>
+<li><p><strong>skip_leaves</strong> – whether to skip leaves and leave them unlocked. Default true. </p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N5Brush7Program12unlock_nodesEi">
+<span id="_CPPv3N5Brush7Program12unlock_nodesEi"></span><span id="_CPPv2N5Brush7Program12unlock_nodesEi"></span><span id="Brush::Program::unlock_nodes__i"></span><span class="target" id="db/d88/structBrush_1_1Program_1a9a48839ac5f4e68f5b0468cc50f35439"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">unlock_nodes</span></span></span><span class="sig-paren">(</span><span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">start_depth</span></span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="m"><span class="pre">0</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N5Brush7Program12unlock_nodesEi" title="Link to this definition">#</a><br /></dt>
+<dd><p>Iterates over the program, unlocking the nodes until it reaches a certain depth. It does not protect the root nodes of logistic regression models. </p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>start_depth</strong> – the depth to start unlocking nodes. Default 0. </p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="cpp function">
 <dt class="sig sig-object cpp" id="_CPPv4NK5Brush7Program9get_modelE6stringb">
 <span id="_CPPv3NK5Brush7Program9get_modelE6stringb"></span><span id="_CPPv2NK5Brush7Program9get_modelE6stringb"></span><span id="Brush::Program::get_model__string.bC"></span><span class="target" id="db/d88/structBrush_1_1Program_1ac87e13742552236e1dc9fd9b62078331"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="n"><span class="pre">string</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">get_model</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">string</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">fmt</span></span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="s"><span class="pre">&quot;compact&quot;</span></span>, <span class="kt"><span class="pre">bool</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">pretty</span></span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="k"><span class="pre">false</span></span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">const</span></span><a class="headerlink" href="#_CPPv4NK5Brush7Program9get_modelE6stringb" title="Link to this definition">#</a><br /></dt>
 <dd><p>Get the model as a string. </p>
@@ -837,6 +877,7 @@ document.write(`
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#_CPPv4N5Brush7Program4copyEv"><code class="docutils literal notranslate"><span class="pre">copy()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#_CPPv4N5Brush7Program16set_search_spaceEKNSt17reference_wrapperI11SearchSpaceEE"><code class="docutils literal notranslate"><span class="pre">set_search_space()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#_CPPv4NK5Brush7Program10complexityEv"><code class="docutils literal notranslate"><span class="pre">complexity()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#_CPPv4NK5Brush7Program17linear_complexityEv"><code class="docutils literal notranslate"><span class="pre">linear_complexity()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#_CPPv4NK5Brush7Program4sizeEb"><code class="docutils literal notranslate"><span class="pre">size()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#_CPPv4NK5Brush7Program7size_atER4Iterb"><code class="docutils literal notranslate"><span class="pre">size_at()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#_CPPv4NK5Brush7Program5depthEv"><code class="docutils literal notranslate"><span class="pre">depth()</span></code></a></li>
@@ -856,6 +897,8 @@ document.write(`
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#_CPPv4NK5Brush7Program13get_n_weightsEv"><code class="docutils literal notranslate"><span class="pre">get_n_weights()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#_CPPv4N5Brush7Program11get_weightsEv"><code class="docutils literal notranslate"><span class="pre">get_weights()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#_CPPv4N5Brush7Program11set_weightsERK7ArrayXf"><code class="docutils literal notranslate"><span class="pre">set_weights()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#_CPPv4N5Brush7Program10lock_nodesEib"><code class="docutils literal notranslate"><span class="pre">lock_nodes()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#_CPPv4N5Brush7Program12unlock_nodesEi"><code class="docutils literal notranslate"><span class="pre">unlock_nodes()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#_CPPv4NK5Brush7Program9get_modelE6stringb"><code class="docutils literal notranslate"><span class="pre">get_model()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#_CPPv4NK5Brush7Program13get_dot_modelE6string"><code class="docutils literal notranslate"><span class="pre">get_dot_model()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#_CPPv4NK5Brush7Program9linearizeEv"><code class="docutils literal notranslate"><span class="pre">linearize()</span></code></a></li>

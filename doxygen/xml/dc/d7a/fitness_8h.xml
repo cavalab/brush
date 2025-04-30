@@ -5,6 +5,7 @@
     <includes local="no">functional</includes>
     <includes refid="d8/dc0/init_8h" local="yes">../init.h</includes>
     <includes refid="d5/d60/utils_8h" local="yes">../util/utils.h</includes>
+    <includedby refid="da/d8e/bandit__operator_8h" local="yes">bandit_operator.h</includedby>
     <includedby refid="d8/d80/bind__fitness_8cpp" local="yes">bind_fitness.cpp</includedby>
     <includedby refid="dc/d5c/fitness_8cpp" local="yes">fitness.cpp</includedby>
     <includedby refid="d5/d1f/individual_8h" local="yes">individual.h</includedby>
@@ -175,95 +176,203 @@
       </node>
     </incdepgraph>
     <invincdepgraph>
-      <node id="8">
-        <label>bind_engines.cpp</label>
-        <link refid="d1/df0/bind__engines_8cpp"/>
-      </node>
-      <node id="7">
-        <label>bind_engines.h</label>
-        <link refid="d4/d93/bind__engines_8h"/>
-        <childnode refid="8" relation="include">
+      <node id="4">
+        <label>bandit.cpp</label>
+        <link refid="d7/d01/bandit_8cpp"/>
+        <childnode refid="5" relation="include">
         </childnode>
-      </node>
-      <node id="15">
-        <label>bind_evaluator.cpp</label>
-        <link refid="da/dff/bind__evaluator_8cpp"/>
-      </node>
-      <node id="14">
-        <label>bind_evaluator.h</label>
-        <link refid="d0/d67/bind__evaluator_8h"/>
-        <childnode refid="15" relation="include">
-        </childnode>
-      </node>
-      <node id="2">
-        <label>bind_fitness.cpp</label>
-        <link refid="d8/d80/bind__fitness_8cpp"/>
-      </node>
-      <node id="12">
-        <label>bind_individuals.cpp</label>
-        <link refid="d9/d27/bind__individuals_8cpp"/>
-      </node>
-      <node id="11">
-        <label>bind_individuals.h</label>
-        <link refid="d6/ddc/bind__individuals_8h"/>
-        <childnode refid="12" relation="include">
-        </childnode>
-      </node>
-      <node id="20">
-        <label>bind_selection.cpp</label>
-        <link refid="d7/dce/bind__selection_8cpp"/>
-      </node>
-      <node id="19">
-        <label>bind_selection.h</label>
-        <link refid="da/d67/bind__selection_8h"/>
-        <childnode refid="20" relation="include">
-        </childnode>
-      </node>
-      <node id="22">
-        <label>bind_variation.cpp</label>
-        <link refid="df/d41/bind__variation_8cpp"/>
-      </node>
-      <node id="21">
-        <label>bind_variation.h</label>
-        <link refid="d8/df7/bind__variation_8h"/>
-        <childnode refid="22" relation="include">
-        </childnode>
-      </node>
-      <node id="10">
-        <label>engine.cpp</label>
-        <link refid="da/d5c/engine_8cpp"/>
         <childnode refid="7" relation="include">
-        </childnode>
-      </node>
-      <node id="9">
-        <label>engine.h</label>
-        <link refid="d1/d55/engine_8h"/>
-        <childnode refid="7" relation="include">
-        </childnode>
-        <childnode refid="10" relation="include">
-        </childnode>
-      </node>
-      <node id="16">
-        <label>evaluation.cpp</label>
-        <link refid="d9/d6a/evaluation_8cpp"/>
-        <childnode refid="7" relation="include">
-        </childnode>
-        <childnode refid="14" relation="include">
-        </childnode>
-      </node>
-      <node id="13">
-        <label>evaluation.h</label>
-        <link refid="d3/df9/evaluation_8h"/>
-        <childnode refid="7" relation="include">
-        </childnode>
-        <childnode refid="14" relation="include">
-        </childnode>
-        <childnode refid="9" relation="include">
-        </childnode>
-        <childnode refid="16" relation="include">
         </childnode>
       </node>
       <node id="3">
+        <label>bandit.h</label>
+        <link refid="d7/d00/bandit_8h"/>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="5" relation="include">
+        </childnode>
+        <childnode refid="7" relation="include">
+        </childnode>
+        <childnode refid="9" relation="include">
+        </childnode>
+      </node>
+      <node id="13">
+        <label>bandit_operator.cpp</label>
+        <link refid="dd/d4e/bandit__operator_8cpp"/>
+        <childnode refid="5" relation="include">
+        </childnode>
+        <childnode refid="7" relation="include">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>bandit_operator.h</label>
+        <link refid="da/d8e/bandit__operator_8h"/>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="13" relation="include">
+        </childnode>
+        <childnode refid="5" relation="include">
+        </childnode>
+        <childnode refid="7" relation="include">
+        </childnode>
+        <childnode refid="14" relation="include">
+        </childnode>
+        <childnode refid="16" relation="include">
+        </childnode>
+        <childnode refid="18" relation="include">
+        </childnode>
+        <childnode refid="9" relation="include">
+        </childnode>
+      </node>
+      <node id="15">
+        <label>dummy.cpp</label>
+        <link refid="d4/d05/dummy_8cpp"/>
+        <childnode refid="5" relation="include">
+        </childnode>
+        <childnode refid="7" relation="include">
+        </childnode>
+      </node>
+      <node id="14">
+        <label>dummy.h</label>
+        <link refid="d2/d94/dummy_8h"/>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="5" relation="include">
+        </childnode>
+        <childnode refid="7" relation="include">
+        </childnode>
+        <childnode refid="15" relation="include">
+        </childnode>
+        <childnode refid="9" relation="include">
+        </childnode>
+      </node>
+      <node id="17">
+        <label>linear_thompson.cpp</label>
+        <link refid="db/d2d/linear__thompson_8cpp"/>
+        <childnode refid="7" relation="include">
+        </childnode>
+      </node>
+      <node id="16">
+        <label>linear_thompson.h</label>
+        <link refid="d9/df5/linear__thompson_8h"/>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="7" relation="include">
+        </childnode>
+        <childnode refid="17" relation="include">
+        </childnode>
+      </node>
+      <node id="19">
+        <label>thompson.cpp</label>
+        <link refid="d3/d12/thompson_8cpp"/>
+        <childnode refid="5" relation="include">
+        </childnode>
+        <childnode refid="7" relation="include">
+        </childnode>
+      </node>
+      <node id="18">
+        <label>thompson.h</label>
+        <link refid="db/ddd/thompson_8h"/>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="5" relation="include">
+        </childnode>
+        <childnode refid="7" relation="include">
+        </childnode>
+        <childnode refid="19" relation="include">
+        </childnode>
+      </node>
+      <node id="6">
+        <label>bind_engines.cpp</label>
+        <link refid="d1/df0/bind__engines_8cpp"/>
+      </node>
+      <node id="5">
+        <label>bind_engines.h</label>
+        <link refid="d4/d93/bind__engines_8h"/>
+        <childnode refid="6" relation="include">
+        </childnode>
+      </node>
+      <node id="29">
+        <label>bind_evaluator.cpp</label>
+        <link refid="da/dff/bind__evaluator_8cpp"/>
+      </node>
+      <node id="28">
+        <label>bind_evaluator.h</label>
+        <link refid="d0/d67/bind__evaluator_8h"/>
+        <childnode refid="29" relation="include">
+        </childnode>
+      </node>
+      <node id="20">
+        <label>bind_fitness.cpp</label>
+        <link refid="d8/d80/bind__fitness_8cpp"/>
+      </node>
+      <node id="26">
+        <label>bind_individuals.cpp</label>
+        <link refid="d9/d27/bind__individuals_8cpp"/>
+      </node>
+      <node id="25">
+        <label>bind_individuals.h</label>
+        <link refid="d6/ddc/bind__individuals_8h"/>
+        <childnode refid="26" relation="include">
+        </childnode>
+      </node>
+      <node id="34">
+        <label>bind_selection.cpp</label>
+        <link refid="d7/dce/bind__selection_8cpp"/>
+      </node>
+      <node id="33">
+        <label>bind_selection.h</label>
+        <link refid="da/d67/bind__selection_8h"/>
+        <childnode refid="34" relation="include">
+        </childnode>
+      </node>
+      <node id="8">
+        <label>bind_variation.cpp</label>
+        <link refid="df/d41/bind__variation_8cpp"/>
+      </node>
+      <node id="7">
+        <label>bind_variation.h</label>
+        <link refid="d8/df7/bind__variation_8h"/>
+        <childnode refid="8" relation="include">
+        </childnode>
+      </node>
+      <node id="11">
+        <label>engine.cpp</label>
+        <link refid="da/d5c/engine_8cpp"/>
+        <childnode refid="5" relation="include">
+        </childnode>
+      </node>
+      <node id="10">
+        <label>engine.h</label>
+        <link refid="d1/d55/engine_8h"/>
+        <childnode refid="5" relation="include">
+        </childnode>
+        <childnode refid="11" relation="include">
+        </childnode>
+      </node>
+      <node id="30">
+        <label>evaluation.cpp</label>
+        <link refid="d9/d6a/evaluation_8cpp"/>
+        <childnode refid="5" relation="include">
+        </childnode>
+        <childnode refid="28" relation="include">
+        </childnode>
+      </node>
+      <node id="27">
+        <label>evaluation.h</label>
+        <link refid="d3/df9/evaluation_8h"/>
+        <childnode refid="5" relation="include">
+        </childnode>
+        <childnode refid="28" relation="include">
+        </childnode>
+        <childnode refid="10" relation="include">
+        </childnode>
+        <childnode refid="30" relation="include">
+        </childnode>
+        <childnode refid="9" relation="include">
+        </childnode>
+      </node>
+      <node id="21">
         <label>fitness.cpp</label>
         <link refid="dc/d5c/fitness_8cpp"/>
       </node>
@@ -272,175 +381,191 @@
         <link refid="dc/d7a/fitness_8h"/>
         <childnode refid="2" relation="include">
         </childnode>
-        <childnode refid="3" relation="include">
-        </childnode>
-        <childnode refid="4" relation="include">
-        </childnode>
-      </node>
-      <node id="17">
-        <label>individual.cpp</label>
-        <link refid="db/df6/individual_8cpp"/>
-      </node>
-      <node id="4">
-        <label>individual.h</label>
-        <link refid="d5/d1f/individual_8h"/>
-        <childnode refid="5" relation="include">
-        </childnode>
-        <childnode refid="11" relation="include">
-        </childnode>
-        <childnode refid="13" relation="include">
-        </childnode>
-        <childnode refid="17" relation="include">
-        </childnode>
-        <childnode refid="18" relation="include">
-        </childnode>
-      </node>
-      <node id="6">
-        <label>archive.cpp</label>
-        <link refid="d7/d05/archive_8cpp"/>
-        <childnode refid="7" relation="include">
-        </childnode>
-      </node>
-      <node id="5">
-        <label>archive.h</label>
-        <link refid="d9/d28/archive_8h"/>
-        <childnode refid="6" relation="include">
-        </childnode>
-        <childnode refid="7" relation="include">
-        </childnode>
-        <childnode refid="9" relation="include">
-        </childnode>
-      </node>
-      <node id="23">
-        <label>population.cpp</label>
-        <link refid="d7/d4a/population_8cpp"/>
-        <childnode refid="7" relation="include">
-        </childnode>
-        <childnode refid="19" relation="include">
+        <childnode refid="20" relation="include">
         </childnode>
         <childnode refid="21" relation="include">
         </childnode>
-      </node>
-      <node id="18">
-        <label>population.h</label>
-        <link refid="d2/d76/population_8h"/>
-        <childnode refid="7" relation="include">
-        </childnode>
-        <childnode refid="19" relation="include">
-        </childnode>
-        <childnode refid="21" relation="include">
-        </childnode>
-        <childnode refid="9" relation="include">
-        </childnode>
-        <childnode refid="13" relation="include">
-        </childnode>
-        <childnode refid="23" relation="include">
-        </childnode>
-        <childnode refid="24" relation="include">
-        </childnode>
-        <childnode refid="32" relation="include">
-        </childnode>
-      </node>
-      <node id="26">
-        <label>lexicase.cpp</label>
-        <link refid="d8/dac/lexicase_8cpp"/>
-        <childnode refid="7" relation="include">
-        </childnode>
-        <childnode refid="19" relation="include">
-        </childnode>
-      </node>
-      <node id="25">
-        <label>lexicase.h</label>
-        <link refid="d3/d12/lexicase_8h"/>
-        <childnode refid="7" relation="include">
-        </childnode>
-        <childnode refid="19" relation="include">
-        </childnode>
-        <childnode refid="26" relation="include">
-        </childnode>
-        <childnode refid="27" relation="include">
-        </childnode>
-      </node>
-      <node id="30">
-        <label>nsga2.cpp</label>
-        <link refid="de/d0d/nsga2_8cpp"/>
-        <childnode refid="7" relation="include">
-        </childnode>
-        <childnode refid="19" relation="include">
-        </childnode>
-      </node>
-      <node id="29">
-        <label>nsga2.h</label>
-        <link refid="d3/d06/nsga2_8h"/>
-        <childnode refid="5" relation="include">
-        </childnode>
-        <childnode refid="7" relation="include">
-        </childnode>
-        <childnode refid="19" relation="include">
-        </childnode>
-        <childnode refid="30" relation="include">
-        </childnode>
-        <childnode refid="27" relation="include">
-        </childnode>
-      </node>
-      <node id="28">
-        <label>selection.cpp</label>
-        <link refid="df/dbb/selection_8cpp"/>
-        <childnode refid="7" relation="include">
-        </childnode>
-        <childnode refid="19" relation="include">
-        </childnode>
-      </node>
-      <node id="27">
-        <label>selection.h</label>
-        <link refid="df/d48/selection_8h"/>
-        <childnode refid="7" relation="include">
-        </childnode>
-        <childnode refid="19" relation="include">
-        </childnode>
-        <childnode refid="9" relation="include">
-        </childnode>
-        <childnode refid="28" relation="include">
+        <childnode refid="22" relation="include">
         </childnode>
       </node>
       <node id="31">
-        <label>selection_operator.cpp</label>
-        <link refid="d4/db2/selection__operator_8cpp"/>
-        <childnode refid="7" relation="include">
+        <label>individual.cpp</label>
+        <link refid="db/df6/individual_8cpp"/>
+        <childnode refid="5" relation="include">
         </childnode>
-        <childnode refid="19" relation="include">
+        <childnode refid="7" relation="include">
         </childnode>
       </node>
-      <node id="24">
-        <label>selection_operator.h</label>
-        <link refid="dd/d5d/selection__operator_8h"/>
-        <childnode refid="7" relation="include">
+      <node id="22">
+        <label>individual.h</label>
+        <link refid="d5/d1f/individual_8h"/>
+        <childnode refid="23" relation="include">
         </childnode>
-        <childnode refid="19" relation="include">
+        <childnode refid="5" relation="include">
         </childnode>
         <childnode refid="25" relation="include">
         </childnode>
-        <childnode refid="29" relation="include">
+        <childnode refid="7" relation="include">
         </childnode>
         <childnode refid="27" relation="include">
         </childnode>
         <childnode refid="31" relation="include">
         </childnode>
-      </node>
-      <node id="33">
-        <label>variation.cpp</label>
-        <link refid="d1/d64/variation_8cpp"/>
-        <childnode refid="21" relation="include">
-        </childnode>
-      </node>
-      <node id="32">
-        <label>variation.h</label>
-        <link refid="d4/d1f/variation_8h"/>
-        <childnode refid="21" relation="include">
+        <childnode refid="32" relation="include">
         </childnode>
         <childnode refid="9" relation="include">
         </childnode>
+      </node>
+      <node id="24">
+        <label>archive.cpp</label>
+        <link refid="d7/d05/archive_8cpp"/>
+        <childnode refid="5" relation="include">
+        </childnode>
+      </node>
+      <node id="23">
+        <label>archive.h</label>
+        <link refid="d9/d28/archive_8h"/>
+        <childnode refid="24" relation="include">
+        </childnode>
+        <childnode refid="5" relation="include">
+        </childnode>
+        <childnode refid="10" relation="include">
+        </childnode>
+      </node>
+      <node id="35">
+        <label>population.cpp</label>
+        <link refid="d7/d4a/population_8cpp"/>
+        <childnode refid="5" relation="include">
+        </childnode>
         <childnode refid="33" relation="include">
+        </childnode>
+        <childnode refid="7" relation="include">
+        </childnode>
+      </node>
+      <node id="32">
+        <label>population.h</label>
+        <link refid="d2/d76/population_8h"/>
+        <childnode refid="5" relation="include">
+        </childnode>
+        <childnode refid="33" relation="include">
+        </childnode>
+        <childnode refid="7" relation="include">
+        </childnode>
+        <childnode refid="10" relation="include">
+        </childnode>
+        <childnode refid="27" relation="include">
+        </childnode>
+        <childnode refid="35" relation="include">
+        </childnode>
+        <childnode refid="36" relation="include">
+        </childnode>
+        <childnode refid="9" relation="include">
+        </childnode>
+      </node>
+      <node id="38">
+        <label>lexicase.cpp</label>
+        <link refid="d8/dac/lexicase_8cpp"/>
+        <childnode refid="5" relation="include">
+        </childnode>
+        <childnode refid="33" relation="include">
+        </childnode>
+      </node>
+      <node id="37">
+        <label>lexicase.h</label>
+        <link refid="d3/d12/lexicase_8h"/>
+        <childnode refid="5" relation="include">
+        </childnode>
+        <childnode refid="33" relation="include">
+        </childnode>
+        <childnode refid="38" relation="include">
+        </childnode>
+        <childnode refid="39" relation="include">
+        </childnode>
+      </node>
+      <node id="42">
+        <label>nsga2.cpp</label>
+        <link refid="de/d0d/nsga2_8cpp"/>
+        <childnode refid="5" relation="include">
+        </childnode>
+        <childnode refid="33" relation="include">
+        </childnode>
+      </node>
+      <node id="41">
+        <label>nsga2.h</label>
+        <link refid="d3/d06/nsga2_8h"/>
+        <childnode refid="23" relation="include">
+        </childnode>
+        <childnode refid="5" relation="include">
+        </childnode>
+        <childnode refid="33" relation="include">
+        </childnode>
+        <childnode refid="42" relation="include">
+        </childnode>
+        <childnode refid="39" relation="include">
+        </childnode>
+      </node>
+      <node id="40">
+        <label>selection.cpp</label>
+        <link refid="df/dbb/selection_8cpp"/>
+        <childnode refid="5" relation="include">
+        </childnode>
+        <childnode refid="33" relation="include">
+        </childnode>
+      </node>
+      <node id="39">
+        <label>selection.h</label>
+        <link refid="df/d48/selection_8h"/>
+        <childnode refid="5" relation="include">
+        </childnode>
+        <childnode refid="33" relation="include">
+        </childnode>
+        <childnode refid="10" relation="include">
+        </childnode>
+        <childnode refid="40" relation="include">
+        </childnode>
+      </node>
+      <node id="43">
+        <label>selection_operator.cpp</label>
+        <link refid="d4/db2/selection__operator_8cpp"/>
+        <childnode refid="5" relation="include">
+        </childnode>
+        <childnode refid="33" relation="include">
+        </childnode>
+      </node>
+      <node id="36">
+        <label>selection_operator.h</label>
+        <link refid="dd/d5d/selection__operator_8h"/>
+        <childnode refid="5" relation="include">
+        </childnode>
+        <childnode refid="33" relation="include">
+        </childnode>
+        <childnode refid="37" relation="include">
+        </childnode>
+        <childnode refid="41" relation="include">
+        </childnode>
+        <childnode refid="39" relation="include">
+        </childnode>
+        <childnode refid="43" relation="include">
+        </childnode>
+      </node>
+      <node id="12">
+        <label>variation.cpp</label>
+        <link refid="d1/d64/variation_8cpp"/>
+        <childnode refid="5" relation="include">
+        </childnode>
+        <childnode refid="7" relation="include">
+        </childnode>
+      </node>
+      <node id="9">
+        <label>variation.h</label>
+        <link refid="d4/d1f/variation_8h"/>
+        <childnode refid="5" relation="include">
+        </childnode>
+        <childnode refid="7" relation="include">
+        </childnode>
+        <childnode refid="10" relation="include">
+        </childnode>
+        <childnode refid="12" relation="include">
         </childnode>
       </node>
     </invincdepgraph>
@@ -469,171 +594,210 @@
 <codeline lineno="29" refid="d6/dd0/structBrush_1_1Fitness_1aa8cd674fad6f65c344f008c3e2442491" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">float</highlight><highlight class="normal"><sp/><ref refid="d6/dd0/structBrush_1_1Fitness_1aa8cd674fad6f65c344f008c3e2442491" kindref="member">loss_v</ref>;<sp/><sp/><sp/></highlight></codeline>
 <codeline lineno="30"><highlight class="normal"></highlight></codeline>
 <codeline lineno="31" refid="d6/dd0/structBrush_1_1Fitness_1a2edfafc177c7f47f7c5fccc9238236cf" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">unsigned</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="d6/dd0/structBrush_1_1Fitness_1a2edfafc177c7f47f7c5fccc9238236cf" kindref="member">complexity</ref>;</highlight></codeline>
-<codeline lineno="32" refid="d6/dd0/structBrush_1_1Fitness_1aa8d013edea014b30ff85fe341c8c3ea5" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">unsigned</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="d6/dd0/structBrush_1_1Fitness_1aa8d013edea014b30ff85fe341c8c3ea5" kindref="member">size</ref>;</highlight></codeline>
-<codeline lineno="33" refid="d6/dd0/structBrush_1_1Fitness_1ac5ea0f880c248e2426a132d1d151243a" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">unsigned</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="d6/dd0/structBrush_1_1Fitness_1ac5ea0f880c248e2426a132d1d151243a" kindref="member">depth</ref>;</highlight></codeline>
-<codeline lineno="34"><highlight class="normal"></highlight></codeline>
-<codeline lineno="35"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>these<sp/>can<sp/>be<sp/>different<sp/>depending<sp/>on<sp/>the<sp/>island<sp/>the<sp/>individual<sp/>is</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="36" refid="d6/dd0/structBrush_1_1Fitness_1a76b3053e09f2fa0f08a5dc4abb1c8daf" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">unsigned</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="d6/dd0/structBrush_1_1Fitness_1a76b3053e09f2fa0f08a5dc4abb1c8daf" kindref="member">dcounter</ref>;<sp/><sp/></highlight></codeline>
-<codeline lineno="37" refid="d6/dd0/structBrush_1_1Fitness_1ad66abe65f27bd44fc49975be3c2103cb" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>vector&lt;unsigned<sp/>int&gt;<sp/><ref refid="d6/dd0/structBrush_1_1Fitness_1ad66abe65f27bd44fc49975be3c2103cb" kindref="member">dominated</ref>;<sp/></highlight></codeline>
-<codeline lineno="38" refid="d6/dd0/structBrush_1_1Fitness_1aae177694d7f7bceaa8f907e317c328ab" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">unsigned</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="d6/dd0/structBrush_1_1Fitness_1aae177694d7f7bceaa8f907e317c328ab" kindref="member">rank</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
-<codeline lineno="39" refid="d6/dd0/structBrush_1_1Fitness_1a0998d4960cae30c329ae6d2f05a27c84" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">float</highlight><highlight class="normal"><sp/><ref refid="d6/dd0/structBrush_1_1Fitness_1a0998d4960cae30c329ae6d2f05a27c84" kindref="member">crowding_dist</ref>;<sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="32" refid="d6/dd0/structBrush_1_1Fitness_1a73c060c3062cc51f0c6444d58d76de7a" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">unsigned</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="d6/dd0/structBrush_1_1Fitness_1a73c060c3062cc51f0c6444d58d76de7a" kindref="member">linear_complexity</ref>;</highlight></codeline>
+<codeline lineno="33" refid="d6/dd0/structBrush_1_1Fitness_1aa8d013edea014b30ff85fe341c8c3ea5" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">unsigned</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="d6/dd0/structBrush_1_1Fitness_1aa8d013edea014b30ff85fe341c8c3ea5" kindref="member">size</ref>;</highlight></codeline>
+<codeline lineno="34" refid="d6/dd0/structBrush_1_1Fitness_1ac5ea0f880c248e2426a132d1d151243a" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">unsigned</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="d6/dd0/structBrush_1_1Fitness_1ac5ea0f880c248e2426a132d1d151243a" kindref="member">depth</ref>;</highlight></codeline>
+<codeline lineno="35"><highlight class="normal"></highlight></codeline>
+<codeline lineno="36"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>We<sp/>store<sp/>the<sp/>previous<sp/>values<sp/>of<sp/>the<sp/>objectives<sp/>everytime<sp/>we<sp/>update<sp/>them.</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="37"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>This<sp/>is<sp/>used<sp/>by<sp/>the<sp/>bandits<sp/>to<sp/>allow<sp/>easy<sp/>calculation<sp/>of<sp/>rewards.</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="38" refid="d6/dd0/structBrush_1_1Fitness_1a032568acc7f2b2272658fda567768098" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">float</highlight><highlight class="normal"><sp/><ref refid="d6/dd0/structBrush_1_1Fitness_1a032568acc7f2b2272658fda567768098" kindref="member">prev_loss</ref>;</highlight></codeline>
+<codeline lineno="39" refid="d6/dd0/structBrush_1_1Fitness_1a6c7610a15638c4963f5f99a5414c8dac" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">float</highlight><highlight class="normal"><sp/><ref refid="d6/dd0/structBrush_1_1Fitness_1a6c7610a15638c4963f5f99a5414c8dac" kindref="member">prev_loss_v</ref>;</highlight></codeline>
 <codeline lineno="40"><highlight class="normal"></highlight></codeline>
-<codeline lineno="41" refid="d6/dd0/structBrush_1_1Fitness_1a853380ca80adf2ab47bc8d2fc34b09b4" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>vector&lt;float&gt;<sp/><ref refid="d6/dd0/structBrush_1_1Fitness_1a853380ca80adf2ab47bc8d2fc34b09b4" kindref="member">values</ref>;</highlight></codeline>
-<codeline lineno="42" refid="d6/dd0/structBrush_1_1Fitness_1a1207d03059fa2d786e983270388b1f16" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>vector&lt;float&gt;<sp/><ref refid="d6/dd0/structBrush_1_1Fitness_1a1207d03059fa2d786e983270388b1f16" kindref="member">weights</ref>;</highlight></codeline>
-<codeline lineno="43"><highlight class="normal"></highlight></codeline>
-<codeline lineno="44"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>weighted<sp/>values</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="45" refid="d6/dd0/structBrush_1_1Fitness_1a972dd960fd7c2a68449827ec987d0671" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>vector&lt;float&gt;<sp/><ref refid="d6/dd0/structBrush_1_1Fitness_1a972dd960fd7c2a68449827ec987d0671" kindref="member">wvalues</ref>;</highlight></codeline>
-<codeline lineno="46"><highlight class="normal"></highlight></codeline>
-<codeline lineno="47" refid="d6/dd0/structBrush_1_1Fitness_1a7e7ad401b1d97b818bbc01fbb95355e1" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="d6/dd0/structBrush_1_1Fitness_1a7e7ad401b1d97b818bbc01fbb95355e1" kindref="member">set_dominated</ref>(vector&lt;unsigned<sp/>int&gt;&amp;<sp/>dom){<sp/><ref refid="d6/dd0/structBrush_1_1Fitness_1ad66abe65f27bd44fc49975be3c2103cb" kindref="member">dominated</ref>=dom;<sp/>};</highlight></codeline>
-<codeline lineno="48" refid="d6/dd0/structBrush_1_1Fitness_1a1e6a7fbf8c83a164c3c8fca6108a1859" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>vector&lt;unsigned<sp/>int&gt;<sp/><ref refid="d6/dd0/structBrush_1_1Fitness_1a1e6a7fbf8c83a164c3c8fca6108a1859" kindref="member">get_dominated</ref>()</highlight><highlight class="keyword"><sp/>const<sp/></highlight><highlight class="normal">{<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/><ref refid="d6/dd0/structBrush_1_1Fitness_1ad66abe65f27bd44fc49975be3c2103cb" kindref="member">dominated</ref>;<sp/>};</highlight></codeline>
-<codeline lineno="49"><highlight class="normal"></highlight></codeline>
-<codeline lineno="50" refid="d6/dd0/structBrush_1_1Fitness_1af8ccf40c598f102153c058e9f470c9a2" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="d6/dd0/structBrush_1_1Fitness_1af8ccf40c598f102153c058e9f470c9a2" kindref="member">set_loss</ref>(</highlight><highlight class="keywordtype">float</highlight><highlight class="normal"><sp/>f){<sp/><ref refid="d6/dd0/structBrush_1_1Fitness_1a30e994e0b4aa0a8febfe7d7a09529f04" kindref="member">loss</ref>=f;<sp/>};</highlight></codeline>
-<codeline lineno="51" refid="d6/dd0/structBrush_1_1Fitness_1a3a12b069a168aa86d3e7bce0f4c56cad" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">float</highlight><highlight class="normal"><sp/><ref refid="d6/dd0/structBrush_1_1Fitness_1a3a12b069a168aa86d3e7bce0f4c56cad" kindref="member">get_loss</ref>()</highlight><highlight class="keyword"><sp/>const<sp/></highlight><highlight class="normal">{<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/><ref refid="d6/dd0/structBrush_1_1Fitness_1a30e994e0b4aa0a8febfe7d7a09529f04" kindref="member">loss</ref>;<sp/>};</highlight></codeline>
-<codeline lineno="52"><highlight class="normal"></highlight></codeline>
-<codeline lineno="53" refid="d6/dd0/structBrush_1_1Fitness_1a777abbd7a2453ba1b580e28fb2f6f28a" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="d6/dd0/structBrush_1_1Fitness_1a777abbd7a2453ba1b580e28fb2f6f28a" kindref="member">set_loss_v</ref>(</highlight><highlight class="keywordtype">float</highlight><highlight class="normal"><sp/>f_v){<sp/><ref refid="d6/dd0/structBrush_1_1Fitness_1aa8cd674fad6f65c344f008c3e2442491" kindref="member">loss_v</ref>=f_v;<sp/>};</highlight></codeline>
-<codeline lineno="54" refid="d6/dd0/structBrush_1_1Fitness_1a735c8326b8e7750e500ead86f2ad2c31" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">float</highlight><highlight class="normal"><sp/><ref refid="d6/dd0/structBrush_1_1Fitness_1a735c8326b8e7750e500ead86f2ad2c31" kindref="member">get_loss_v</ref>()</highlight><highlight class="keyword"><sp/>const<sp/></highlight><highlight class="normal">{<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/><ref refid="d6/dd0/structBrush_1_1Fitness_1aa8cd674fad6f65c344f008c3e2442491" kindref="member">loss_v</ref>;<sp/>};</highlight></codeline>
-<codeline lineno="55"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
-<codeline lineno="56" refid="d6/dd0/structBrush_1_1Fitness_1ad18b85ddb700f0213b07ac662ce16980" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="d6/dd0/structBrush_1_1Fitness_1ad18b85ddb700f0213b07ac662ce16980" kindref="member">set_size</ref>(</highlight><highlight class="keywordtype">unsigned</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>new_s){<sp/><ref refid="d6/dd0/structBrush_1_1Fitness_1aa8d013edea014b30ff85fe341c8c3ea5" kindref="member">size</ref>=new_s;<sp/>};</highlight></codeline>
-<codeline lineno="57" refid="d6/dd0/structBrush_1_1Fitness_1af1eac138217509d2ab3c5db903e05a09" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">unsigned</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="d6/dd0/structBrush_1_1Fitness_1af1eac138217509d2ab3c5db903e05a09" kindref="member">get_size</ref>()</highlight><highlight class="keyword"><sp/>const<sp/></highlight><highlight class="normal">{<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/><ref refid="d6/dd0/structBrush_1_1Fitness_1aa8d013edea014b30ff85fe341c8c3ea5" kindref="member">size</ref>;<sp/>};</highlight></codeline>
-<codeline lineno="58"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
-<codeline lineno="59" refid="d6/dd0/structBrush_1_1Fitness_1a6624d493b11552c90ebd6a32567d4021" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="d6/dd0/structBrush_1_1Fitness_1a6624d493b11552c90ebd6a32567d4021" kindref="member">set_complexity</ref>(</highlight><highlight class="keywordtype">unsigned</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>new_c){<sp/><ref refid="d6/dd0/structBrush_1_1Fitness_1a2edfafc177c7f47f7c5fccc9238236cf" kindref="member">complexity</ref>=new_c;<sp/>};</highlight></codeline>
-<codeline lineno="60" refid="d6/dd0/structBrush_1_1Fitness_1a8ab836a166ef8eba47a93b00d7bbb40c" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">unsigned</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="d6/dd0/structBrush_1_1Fitness_1a8ab836a166ef8eba47a93b00d7bbb40c" kindref="member">get_complexity</ref>()</highlight><highlight class="keyword"><sp/>const<sp/></highlight><highlight class="normal">{<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/><ref refid="d6/dd0/structBrush_1_1Fitness_1a2edfafc177c7f47f7c5fccc9238236cf" kindref="member">complexity</ref>;<sp/>};</highlight></codeline>
-<codeline lineno="61"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
-<codeline lineno="62" refid="d6/dd0/structBrush_1_1Fitness_1a86d061384bf1df41de74a9fe1f1f7f47" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="d6/dd0/structBrush_1_1Fitness_1a86d061384bf1df41de74a9fe1f1f7f47" kindref="member">set_depth</ref>(</highlight><highlight class="keywordtype">unsigned</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>new_d){<sp/><ref refid="d6/dd0/structBrush_1_1Fitness_1ac5ea0f880c248e2426a132d1d151243a" kindref="member">depth</ref>=new_d;<sp/>};</highlight></codeline>
-<codeline lineno="63" refid="d6/dd0/structBrush_1_1Fitness_1addbfaf0dd6163c1e5ebf8edb4788cc98" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">unsigned</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="d6/dd0/structBrush_1_1Fitness_1addbfaf0dd6163c1e5ebf8edb4788cc98" kindref="member">get_depth</ref>()</highlight><highlight class="keyword"><sp/>const<sp/></highlight><highlight class="normal">{<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/><ref refid="d6/dd0/structBrush_1_1Fitness_1ac5ea0f880c248e2426a132d1d151243a" kindref="member">depth</ref>;<sp/>};</highlight></codeline>
+<codeline lineno="41" refid="d6/dd0/structBrush_1_1Fitness_1a4d1653a58b07bde5a0017ae8d057730d" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">unsigned</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="d6/dd0/structBrush_1_1Fitness_1a4d1653a58b07bde5a0017ae8d057730d" kindref="member">prev_complexity</ref>;</highlight></codeline>
+<codeline lineno="42" refid="d6/dd0/structBrush_1_1Fitness_1aa3de746d94f0606bb6a37c974bdc3cb6" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">unsigned</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="d6/dd0/structBrush_1_1Fitness_1aa3de746d94f0606bb6a37c974bdc3cb6" kindref="member">prev_linear_complexity</ref>;</highlight></codeline>
+<codeline lineno="43" refid="d6/dd0/structBrush_1_1Fitness_1ae21ba5b950c66615315adf3ad6c1ec06" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">unsigned</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="d6/dd0/structBrush_1_1Fitness_1ae21ba5b950c66615315adf3ad6c1ec06" kindref="member">prev_size</ref>;</highlight></codeline>
+<codeline lineno="44" refid="d6/dd0/structBrush_1_1Fitness_1ae21f85b6f5e52f0b3b4b4b91d490d9c5" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">unsigned</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="d6/dd0/structBrush_1_1Fitness_1ae21f85b6f5e52f0b3b4b4b91d490d9c5" kindref="member">prev_depth</ref>;</highlight></codeline>
+<codeline lineno="45"><highlight class="normal"></highlight></codeline>
+<codeline lineno="46"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>these<sp/>can<sp/>be<sp/>different<sp/>depending<sp/>on<sp/>the<sp/>island<sp/>the<sp/>individual<sp/>is</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="47" refid="d6/dd0/structBrush_1_1Fitness_1a76b3053e09f2fa0f08a5dc4abb1c8daf" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">unsigned</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="d6/dd0/structBrush_1_1Fitness_1a76b3053e09f2fa0f08a5dc4abb1c8daf" kindref="member">dcounter</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="48" refid="d6/dd0/structBrush_1_1Fitness_1ad66abe65f27bd44fc49975be3c2103cb" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>vector&lt;unsigned<sp/>int&gt;<sp/><ref refid="d6/dd0/structBrush_1_1Fitness_1ad66abe65f27bd44fc49975be3c2103cb" kindref="member">dominated</ref>;<sp/></highlight></codeline>
+<codeline lineno="49" refid="d6/dd0/structBrush_1_1Fitness_1aae177694d7f7bceaa8f907e317c328ab" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">unsigned</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="d6/dd0/structBrush_1_1Fitness_1aae177694d7f7bceaa8f907e317c328ab" kindref="member">rank</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="50" refid="d6/dd0/structBrush_1_1Fitness_1a0998d4960cae30c329ae6d2f05a27c84" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">float</highlight><highlight class="normal"><sp/><ref refid="d6/dd0/structBrush_1_1Fitness_1a0998d4960cae30c329ae6d2f05a27c84" kindref="member">crowding_dist</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="51"><highlight class="normal"></highlight></codeline>
+<codeline lineno="52"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>store<sp/>the<sp/>values<sp/>and<sp/>weights<sp/>for<sp/>the<sp/>objectives</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="53" refid="d6/dd0/structBrush_1_1Fitness_1a853380ca80adf2ab47bc8d2fc34b09b4" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>vector&lt;float&gt;<sp/><ref refid="d6/dd0/structBrush_1_1Fitness_1a853380ca80adf2ab47bc8d2fc34b09b4" kindref="member">values</ref>;</highlight></codeline>
+<codeline lineno="54" refid="d6/dd0/structBrush_1_1Fitness_1a1207d03059fa2d786e983270388b1f16" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>vector&lt;float&gt;<sp/><ref refid="d6/dd0/structBrush_1_1Fitness_1a1207d03059fa2d786e983270388b1f16" kindref="member">weights</ref>;</highlight></codeline>
+<codeline lineno="55"><highlight class="normal"></highlight></codeline>
+<codeline lineno="56"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>weighted<sp/>values</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="57" refid="d6/dd0/structBrush_1_1Fitness_1a972dd960fd7c2a68449827ec987d0671" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>vector&lt;float&gt;<sp/><ref refid="d6/dd0/structBrush_1_1Fitness_1a972dd960fd7c2a68449827ec987d0671" kindref="member">wvalues</ref>;</highlight></codeline>
+<codeline lineno="58"><highlight class="normal"></highlight></codeline>
+<codeline lineno="59" refid="d6/dd0/structBrush_1_1Fitness_1a7e7ad401b1d97b818bbc01fbb95355e1" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="d6/dd0/structBrush_1_1Fitness_1a7e7ad401b1d97b818bbc01fbb95355e1" kindref="member">set_dominated</ref>(vector&lt;unsigned<sp/>int&gt;&amp;<sp/>dom){<sp/><ref refid="d6/dd0/structBrush_1_1Fitness_1ad66abe65f27bd44fc49975be3c2103cb" kindref="member">dominated</ref>=dom;<sp/>};</highlight></codeline>
+<codeline lineno="60" refid="d6/dd0/structBrush_1_1Fitness_1a1e6a7fbf8c83a164c3c8fca6108a1859" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>vector&lt;unsigned<sp/>int&gt;<sp/><ref refid="d6/dd0/structBrush_1_1Fitness_1a1e6a7fbf8c83a164c3c8fca6108a1859" kindref="member">get_dominated</ref>()</highlight><highlight class="keyword"><sp/>const<sp/></highlight><highlight class="normal">{<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/><ref refid="d6/dd0/structBrush_1_1Fitness_1ad66abe65f27bd44fc49975be3c2103cb" kindref="member">dominated</ref>;<sp/>};</highlight></codeline>
+<codeline lineno="61"><highlight class="normal"></highlight></codeline>
+<codeline lineno="62"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>these<sp/>setters<sp/>are<sp/>going<sp/>to<sp/>update<sp/>the<sp/>previous<sp/>value<sp/>--------------------</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="63" refid="d6/dd0/structBrush_1_1Fitness_1af8ccf40c598f102153c058e9f470c9a2" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="d6/dd0/structBrush_1_1Fitness_1af8ccf40c598f102153c058e9f470c9a2" kindref="member">set_loss</ref>(</highlight><highlight class="keywordtype">float</highlight><highlight class="normal"><sp/>f){<ref refid="d6/dd0/structBrush_1_1Fitness_1a032568acc7f2b2272658fda567768098" kindref="member">prev_loss</ref>=<ref refid="d6/dd0/structBrush_1_1Fitness_1a30e994e0b4aa0a8febfe7d7a09529f04" kindref="member">loss</ref>;<sp/><ref refid="d6/dd0/structBrush_1_1Fitness_1a30e994e0b4aa0a8febfe7d7a09529f04" kindref="member">loss</ref>=f;<sp/>};</highlight></codeline>
 <codeline lineno="64"><highlight class="normal"></highlight></codeline>
-<codeline lineno="65" refid="d6/dd0/structBrush_1_1Fitness_1aa6cf18d9db8de8609dd618c8c9f1e516" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="d6/dd0/structBrush_1_1Fitness_1aa6cf18d9db8de8609dd618c8c9f1e516" kindref="member">set_dcounter</ref>(</highlight><highlight class="keywordtype">unsigned</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>d){<sp/><ref refid="d6/dd0/structBrush_1_1Fitness_1a76b3053e09f2fa0f08a5dc4abb1c8daf" kindref="member">dcounter</ref>=d;<sp/>};</highlight></codeline>
-<codeline lineno="66" refid="d6/dd0/structBrush_1_1Fitness_1ab25babcc558853c2c270e6205c24b8bc" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">unsigned</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="d6/dd0/structBrush_1_1Fitness_1ab25babcc558853c2c270e6205c24b8bc" kindref="member">get_dcounter</ref>()</highlight><highlight class="keyword"><sp/>const<sp/></highlight><highlight class="normal">{<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/><ref refid="d6/dd0/structBrush_1_1Fitness_1a76b3053e09f2fa0f08a5dc4abb1c8daf" kindref="member">dcounter</ref>;<sp/>};</highlight></codeline>
+<codeline lineno="65" refid="d6/dd0/structBrush_1_1Fitness_1a3a12b069a168aa86d3e7bce0f4c56cad" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">float</highlight><highlight class="normal"><sp/><ref refid="d6/dd0/structBrush_1_1Fitness_1a3a12b069a168aa86d3e7bce0f4c56cad" kindref="member">get_loss</ref>()</highlight><highlight class="keyword"><sp/>const<sp/></highlight><highlight class="normal">{<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/><ref refid="d6/dd0/structBrush_1_1Fitness_1a30e994e0b4aa0a8febfe7d7a09529f04" kindref="member">loss</ref>;<sp/>};</highlight></codeline>
+<codeline lineno="66" refid="d6/dd0/structBrush_1_1Fitness_1a4ca966e6cb92024ad7a29c420094a14e" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">float</highlight><highlight class="normal"><sp/><ref refid="d6/dd0/structBrush_1_1Fitness_1a4ca966e6cb92024ad7a29c420094a14e" kindref="member">get_prev_loss</ref>()</highlight><highlight class="keyword"><sp/>const<sp/></highlight><highlight class="normal">{</highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/><ref refid="d6/dd0/structBrush_1_1Fitness_1a032568acc7f2b2272658fda567768098" kindref="member">prev_loss</ref>;<sp/>};</highlight></codeline>
 <codeline lineno="67"><highlight class="normal"></highlight></codeline>
-<codeline lineno="68" refid="d6/dd0/structBrush_1_1Fitness_1ab92c03b4eac43138dfd59484c7f0ccc7" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="d6/dd0/structBrush_1_1Fitness_1ab92c03b4eac43138dfd59484c7f0ccc7" kindref="member">set_rank</ref>(</highlight><highlight class="keywordtype">unsigned</highlight><highlight class="normal"><sp/>r){<sp/><ref refid="d6/dd0/structBrush_1_1Fitness_1aae177694d7f7bceaa8f907e317c328ab" kindref="member">rank</ref>=r;<sp/>};</highlight></codeline>
-<codeline lineno="69" refid="d6/dd0/structBrush_1_1Fitness_1a8ec7c6ed8c23c1a18036d546bcbd0aae" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">size_t</highlight><highlight class="normal"><sp/><ref refid="d6/dd0/structBrush_1_1Fitness_1a8ec7c6ed8c23c1a18036d546bcbd0aae" kindref="member">get_rank</ref>()</highlight><highlight class="keyword"><sp/>const<sp/></highlight><highlight class="normal">{<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/><ref refid="d6/dd0/structBrush_1_1Fitness_1aae177694d7f7bceaa8f907e317c328ab" kindref="member">rank</ref>;<sp/>};</highlight></codeline>
-<codeline lineno="70"><highlight class="normal"></highlight></codeline>
-<codeline lineno="71" refid="d6/dd0/structBrush_1_1Fitness_1ae1927c4532e152a318d5156cd3f83aa9" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="d6/dd0/structBrush_1_1Fitness_1ae1927c4532e152a318d5156cd3f83aa9" kindref="member">set_crowding_dist</ref>(</highlight><highlight class="keywordtype">float</highlight><highlight class="normal"><sp/>cd){<sp/><ref refid="d6/dd0/structBrush_1_1Fitness_1a0998d4960cae30c329ae6d2f05a27c84" kindref="member">crowding_dist</ref>=cd;<sp/>};</highlight></codeline>
-<codeline lineno="72" refid="d6/dd0/structBrush_1_1Fitness_1a2a732eff1606d1a9d932daf0a26f3f35" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">float</highlight><highlight class="normal"><sp/><ref refid="d6/dd0/structBrush_1_1Fitness_1a2a732eff1606d1a9d932daf0a26f3f35" kindref="member">get_crowding_dist</ref>()</highlight><highlight class="keyword"><sp/>const<sp/></highlight><highlight class="normal">{<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/><ref refid="d6/dd0/structBrush_1_1Fitness_1a0998d4960cae30c329ae6d2f05a27c84" kindref="member">crowding_dist</ref>;<sp/>};</highlight></codeline>
-<codeline lineno="73"><highlight class="normal"></highlight></codeline>
-<codeline lineno="74"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Constructor<sp/>with<sp/>initializer<sp/>list<sp/>for<sp/>weights</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="75" refid="d6/dd0/structBrush_1_1Fitness_1abe6bd05816dfb1c51f16e057c797cf84" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="d6/dd0/structBrush_1_1Fitness_1abe6bd05816dfb1c51f16e057c797cf84" kindref="member">Fitness</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>vector&lt;float&gt;&amp;<sp/>w={})<sp/>:<sp/><ref refid="d6/dd0/structBrush_1_1Fitness_1a853380ca80adf2ab47bc8d2fc34b09b4" kindref="member">values</ref>(),<sp/><ref refid="d6/dd0/structBrush_1_1Fitness_1a972dd960fd7c2a68449827ec987d0671" kindref="member">wvalues</ref>(),<sp/><ref refid="d6/dd0/structBrush_1_1Fitness_1a1207d03059fa2d786e983270388b1f16" kindref="member">weights</ref>(w)<sp/>{</highlight></codeline>
-<codeline lineno="76"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="d6/dd0/structBrush_1_1Fitness_1a76b3053e09f2fa0f08a5dc4abb1c8daf" kindref="member">dcounter</ref><sp/>=<sp/>0;</highlight></codeline>
-<codeline lineno="77"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="d6/dd0/structBrush_1_1Fitness_1ab92c03b4eac43138dfd59484c7f0ccc7" kindref="member">set_rank</ref>(0);</highlight></codeline>
-<codeline lineno="78"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="d6/dd0/structBrush_1_1Fitness_1ae1927c4532e152a318d5156cd3f83aa9" kindref="member">set_crowding_dist</ref>(0);</highlight></codeline>
-<codeline lineno="79"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="d6/dd0/structBrush_1_1Fitness_1ad66abe65f27bd44fc49975be3c2103cb" kindref="member">dominated</ref>.resize(0);</highlight></codeline>
-<codeline lineno="80"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
-<codeline lineno="81"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
-<codeline lineno="82"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Hash<sp/>function<sp/>(deap<sp/>requires<sp/>individuals<sp/>(and<sp/>fitness<sp/>by<sp/>induction)</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="83"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>to<sp/>be<sp/>hashable)</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="84" refid="d6/dd0/structBrush_1_1Fitness_1a74d3a57b040075bc8b036220d9b6e6da" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">size_t</highlight><highlight class="normal"><sp/><ref refid="d6/dd0/structBrush_1_1Fitness_1a74d3a57b040075bc8b036220d9b6e6da" kindref="member">hash</ref>()</highlight><highlight class="keyword"><sp/>const<sp/></highlight><highlight class="normal">{</highlight></codeline>
-<codeline lineno="85"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>std::size_t<sp/>h<sp/>=<sp/>std::hash&lt;vector&lt;float&gt;&gt;{}(<ref refid="d6/dd0/structBrush_1_1Fitness_1a972dd960fd7c2a68449827ec987d0671" kindref="member">wvalues</ref>);</highlight></codeline>
-<codeline lineno="86"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>h;</highlight></codeline>
-<codeline lineno="87"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
-<codeline lineno="88"><highlight class="normal"></highlight></codeline>
-<codeline lineno="89" refid="d6/dd0/structBrush_1_1Fitness_1aea7bd29487b3dda47a908ef049da7ddd" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="d6/dd0/structBrush_1_1Fitness_1aea7bd29487b3dda47a908ef049da7ddd" kindref="member">set_weights</ref>(vector&lt;float&gt;&amp;<sp/>w)<sp/>{</highlight></codeline>
-<codeline lineno="90"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="d6/dd0/structBrush_1_1Fitness_1a1207d03059fa2d786e983270388b1f16" kindref="member">weights</ref><sp/>=<sp/>w;</highlight></codeline>
-<codeline lineno="91"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
-<codeline lineno="92" refid="d6/dd0/structBrush_1_1Fitness_1af274bda89992e906bd63904a471672c4" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>vector&lt;float&gt;<sp/><ref refid="d6/dd0/structBrush_1_1Fitness_1af274bda89992e906bd63904a471672c4" kindref="member">get_weights</ref>()</highlight><highlight class="keyword"><sp/>const<sp/></highlight><highlight class="normal">{</highlight></codeline>
-<codeline lineno="93"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/><ref refid="d6/dd0/structBrush_1_1Fitness_1a1207d03059fa2d786e983270388b1f16" kindref="member">weights</ref>;</highlight></codeline>
-<codeline lineno="94"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
-<codeline lineno="95" refid="d6/dd0/structBrush_1_1Fitness_1a512d328942d02c909b2e0c11c23ad1b2" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>vector&lt;float&gt;<sp/><ref refid="d6/dd0/structBrush_1_1Fitness_1a512d328942d02c909b2e0c11c23ad1b2" kindref="member">get_values</ref>()</highlight><highlight class="keyword"><sp/>const<sp/></highlight><highlight class="normal">{</highlight></codeline>
-<codeline lineno="96"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/><ref refid="d6/dd0/structBrush_1_1Fitness_1a853380ca80adf2ab47bc8d2fc34b09b4" kindref="member">values</ref>;</highlight></codeline>
-<codeline lineno="97"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
-<codeline lineno="98" refid="d6/dd0/structBrush_1_1Fitness_1aa9396fa7bd5d5b4c1858081ccd999567" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>vector&lt;float&gt;<sp/><ref refid="d6/dd0/structBrush_1_1Fitness_1aa9396fa7bd5d5b4c1858081ccd999567" kindref="member">get_wvalues</ref>()</highlight><highlight class="keyword"><sp/>const<sp/></highlight><highlight class="normal">{</highlight></codeline>
-<codeline lineno="99"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/><ref refid="d6/dd0/structBrush_1_1Fitness_1a972dd960fd7c2a68449827ec987d0671" kindref="member">wvalues</ref>;</highlight></codeline>
-<codeline lineno="100"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="68" refid="d6/dd0/structBrush_1_1Fitness_1a777abbd7a2453ba1b580e28fb2f6f28a" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="d6/dd0/structBrush_1_1Fitness_1a777abbd7a2453ba1b580e28fb2f6f28a" kindref="member">set_loss_v</ref>(</highlight><highlight class="keywordtype">float</highlight><highlight class="normal"><sp/>f_v){<sp/><ref refid="d6/dd0/structBrush_1_1Fitness_1a6c7610a15638c4963f5f99a5414c8dac" kindref="member">prev_loss_v</ref>=<ref refid="d6/dd0/structBrush_1_1Fitness_1aa8cd674fad6f65c344f008c3e2442491" kindref="member">loss_v</ref>;<sp/><ref refid="d6/dd0/structBrush_1_1Fitness_1aa8cd674fad6f65c344f008c3e2442491" kindref="member">loss_v</ref>=f_v;<sp/>};</highlight></codeline>
+<codeline lineno="69"><highlight class="normal"></highlight></codeline>
+<codeline lineno="70" refid="d6/dd0/structBrush_1_1Fitness_1a735c8326b8e7750e500ead86f2ad2c31" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">float</highlight><highlight class="normal"><sp/><ref refid="d6/dd0/structBrush_1_1Fitness_1a735c8326b8e7750e500ead86f2ad2c31" kindref="member">get_loss_v</ref>()</highlight><highlight class="keyword"><sp/>const<sp/></highlight><highlight class="normal">{<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/><ref refid="d6/dd0/structBrush_1_1Fitness_1aa8cd674fad6f65c344f008c3e2442491" kindref="member">loss_v</ref>;<sp/>};</highlight></codeline>
+<codeline lineno="71" refid="d6/dd0/structBrush_1_1Fitness_1a3e8bde3e0513223b943f702aeb0a8730" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">float</highlight><highlight class="normal"><sp/><ref refid="d6/dd0/structBrush_1_1Fitness_1a3e8bde3e0513223b943f702aeb0a8730" kindref="member">get_prev_loss_v</ref>()</highlight><highlight class="keyword"><sp/>const<sp/></highlight><highlight class="normal">{</highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/><ref refid="d6/dd0/structBrush_1_1Fitness_1a6c7610a15638c4963f5f99a5414c8dac" kindref="member">prev_loss_v</ref>;<sp/>};</highlight></codeline>
+<codeline lineno="72"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="73" refid="d6/dd0/structBrush_1_1Fitness_1ad18b85ddb700f0213b07ac662ce16980" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="d6/dd0/structBrush_1_1Fitness_1ad18b85ddb700f0213b07ac662ce16980" kindref="member">set_size</ref>(</highlight><highlight class="keywordtype">unsigned</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>new_s){<sp/><ref refid="d6/dd0/structBrush_1_1Fitness_1ae21ba5b950c66615315adf3ad6c1ec06" kindref="member">prev_size</ref>=<ref refid="d6/dd0/structBrush_1_1Fitness_1aa8d013edea014b30ff85fe341c8c3ea5" kindref="member">size</ref>;<sp/><ref refid="d6/dd0/structBrush_1_1Fitness_1aa8d013edea014b30ff85fe341c8c3ea5" kindref="member">size</ref>=new_s;<sp/>};</highlight></codeline>
+<codeline lineno="74"><highlight class="normal"></highlight></codeline>
+<codeline lineno="75" refid="d6/dd0/structBrush_1_1Fitness_1af1eac138217509d2ab3c5db903e05a09" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">unsigned</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="d6/dd0/structBrush_1_1Fitness_1af1eac138217509d2ab3c5db903e05a09" kindref="member">get_size</ref>()</highlight><highlight class="keyword"><sp/>const<sp/></highlight><highlight class="normal">{<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/><ref refid="d6/dd0/structBrush_1_1Fitness_1aa8d013edea014b30ff85fe341c8c3ea5" kindref="member">size</ref>;<sp/>};</highlight></codeline>
+<codeline lineno="76" refid="d6/dd0/structBrush_1_1Fitness_1a4e1d1ad04517eecb191bc378d3f0baca" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">unsigned</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="d6/dd0/structBrush_1_1Fitness_1a4e1d1ad04517eecb191bc378d3f0baca" kindref="member">get_prev_size</ref>()</highlight><highlight class="keyword"><sp/>const<sp/></highlight><highlight class="normal">{</highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/><ref refid="d6/dd0/structBrush_1_1Fitness_1ae21ba5b950c66615315adf3ad6c1ec06" kindref="member">prev_size</ref>;<sp/>};</highlight></codeline>
+<codeline lineno="77"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="78" refid="d6/dd0/structBrush_1_1Fitness_1a6624d493b11552c90ebd6a32567d4021" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="d6/dd0/structBrush_1_1Fitness_1a6624d493b11552c90ebd6a32567d4021" kindref="member">set_complexity</ref>(</highlight><highlight class="keywordtype">unsigned</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>new_c){</highlight></codeline>
+<codeline lineno="79"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="d6/dd0/structBrush_1_1Fitness_1a4d1653a58b07bde5a0017ae8d057730d" kindref="member">prev_complexity</ref>=<ref refid="d6/dd0/structBrush_1_1Fitness_1a2edfafc177c7f47f7c5fccc9238236cf" kindref="member">complexity</ref>;<sp/><ref refid="d6/dd0/structBrush_1_1Fitness_1a2edfafc177c7f47f7c5fccc9238236cf" kindref="member">complexity</ref>=new_c;<sp/>};</highlight></codeline>
+<codeline lineno="80"><highlight class="normal"></highlight></codeline>
+<codeline lineno="81" refid="d6/dd0/structBrush_1_1Fitness_1a8ab836a166ef8eba47a93b00d7bbb40c" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">unsigned</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="d6/dd0/structBrush_1_1Fitness_1a8ab836a166ef8eba47a93b00d7bbb40c" kindref="member">get_complexity</ref>()</highlight><highlight class="keyword"><sp/>const<sp/></highlight><highlight class="normal">{<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/><ref refid="d6/dd0/structBrush_1_1Fitness_1a2edfafc177c7f47f7c5fccc9238236cf" kindref="member">complexity</ref>;<sp/>};</highlight></codeline>
+<codeline lineno="82" refid="d6/dd0/structBrush_1_1Fitness_1a52c42c28deffbad276611722fdd58859" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">unsigned</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="d6/dd0/structBrush_1_1Fitness_1a52c42c28deffbad276611722fdd58859" kindref="member">get_prev_complexity</ref>()</highlight><highlight class="keyword"><sp/>const<sp/></highlight><highlight class="normal">{</highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/><ref refid="d6/dd0/structBrush_1_1Fitness_1a4d1653a58b07bde5a0017ae8d057730d" kindref="member">prev_complexity</ref>;<sp/>};</highlight></codeline>
+<codeline lineno="83"><highlight class="normal"></highlight></codeline>
+<codeline lineno="84" refid="d6/dd0/structBrush_1_1Fitness_1a5846462375ca69c6bec23a5e28f4afa4" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="d6/dd0/structBrush_1_1Fitness_1a5846462375ca69c6bec23a5e28f4afa4" kindref="member">set_linear_complexity</ref>(</highlight><highlight class="keywordtype">unsigned</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>new_lc){</highlight></codeline>
+<codeline lineno="85"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="d6/dd0/structBrush_1_1Fitness_1aa3de746d94f0606bb6a37c974bdc3cb6" kindref="member">prev_linear_complexity</ref>=<ref refid="d6/dd0/structBrush_1_1Fitness_1a73c060c3062cc51f0c6444d58d76de7a" kindref="member">linear_complexity</ref>;<sp/><ref refid="d6/dd0/structBrush_1_1Fitness_1a73c060c3062cc51f0c6444d58d76de7a" kindref="member">linear_complexity</ref>=new_lc;<sp/>};</highlight></codeline>
+<codeline lineno="86"><highlight class="normal"></highlight></codeline>
+<codeline lineno="87" refid="d6/dd0/structBrush_1_1Fitness_1aecba2641f6f963b691d059c91b51ab9b" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">unsigned</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="d6/dd0/structBrush_1_1Fitness_1aecba2641f6f963b691d059c91b51ab9b" kindref="member">get_linear_complexity</ref>()</highlight><highlight class="keyword"><sp/>const<sp/></highlight><highlight class="normal">{<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/><ref refid="d6/dd0/structBrush_1_1Fitness_1a73c060c3062cc51f0c6444d58d76de7a" kindref="member">linear_complexity</ref>;<sp/>};</highlight></codeline>
+<codeline lineno="88" refid="d6/dd0/structBrush_1_1Fitness_1a89752b9185790e4e23c4634546aa213d" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">unsigned</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="d6/dd0/structBrush_1_1Fitness_1a89752b9185790e4e23c4634546aa213d" kindref="member">get_prev_linear_complexity</ref>()</highlight><highlight class="keyword"><sp/>const<sp/></highlight><highlight class="normal">{</highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/><ref refid="d6/dd0/structBrush_1_1Fitness_1aa3de746d94f0606bb6a37c974bdc3cb6" kindref="member">prev_linear_complexity</ref>;<sp/>};</highlight></codeline>
+<codeline lineno="89"><highlight class="normal"></highlight></codeline>
+<codeline lineno="90" refid="d6/dd0/structBrush_1_1Fitness_1a86d061384bf1df41de74a9fe1f1f7f47" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="d6/dd0/structBrush_1_1Fitness_1a86d061384bf1df41de74a9fe1f1f7f47" kindref="member">set_depth</ref>(</highlight><highlight class="keywordtype">unsigned</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>new_d){<sp/><ref refid="d6/dd0/structBrush_1_1Fitness_1ae21f85b6f5e52f0b3b4b4b91d490d9c5" kindref="member">prev_depth</ref>=<ref refid="d6/dd0/structBrush_1_1Fitness_1ac5ea0f880c248e2426a132d1d151243a" kindref="member">depth</ref>;<sp/><ref refid="d6/dd0/structBrush_1_1Fitness_1ac5ea0f880c248e2426a132d1d151243a" kindref="member">depth</ref>=new_d;<sp/>};</highlight></codeline>
+<codeline lineno="91"><highlight class="normal"></highlight></codeline>
+<codeline lineno="92" refid="d6/dd0/structBrush_1_1Fitness_1addbfaf0dd6163c1e5ebf8edb4788cc98" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">unsigned</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="d6/dd0/structBrush_1_1Fitness_1addbfaf0dd6163c1e5ebf8edb4788cc98" kindref="member">get_depth</ref>()</highlight><highlight class="keyword"><sp/>const<sp/></highlight><highlight class="normal">{<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/><ref refid="d6/dd0/structBrush_1_1Fitness_1ac5ea0f880c248e2426a132d1d151243a" kindref="member">depth</ref>;<sp/>};</highlight></codeline>
+<codeline lineno="93" refid="d6/dd0/structBrush_1_1Fitness_1a3ec8d709a86ab2676c95b8d791106bd4" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">unsigned</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="d6/dd0/structBrush_1_1Fitness_1a3ec8d709a86ab2676c95b8d791106bd4" kindref="member">get_prev_depth</ref>()</highlight><highlight class="keyword"><sp/>const<sp/></highlight><highlight class="normal">{<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/><ref refid="d6/dd0/structBrush_1_1Fitness_1ae21f85b6f5e52f0b3b4b4b91d490d9c5" kindref="member">prev_depth</ref>;<sp/>};</highlight></codeline>
+<codeline lineno="94"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>-------------------------------------------------------------------------</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="95"><highlight class="normal"></highlight></codeline>
+<codeline lineno="96" refid="d6/dd0/structBrush_1_1Fitness_1aa6cf18d9db8de8609dd618c8c9f1e516" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="d6/dd0/structBrush_1_1Fitness_1aa6cf18d9db8de8609dd618c8c9f1e516" kindref="member">set_dcounter</ref>(</highlight><highlight class="keywordtype">unsigned</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>d){<sp/><ref refid="d6/dd0/structBrush_1_1Fitness_1a76b3053e09f2fa0f08a5dc4abb1c8daf" kindref="member">dcounter</ref>=d;<sp/>};</highlight></codeline>
+<codeline lineno="97" refid="d6/dd0/structBrush_1_1Fitness_1ab25babcc558853c2c270e6205c24b8bc" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">unsigned</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="d6/dd0/structBrush_1_1Fitness_1ab25babcc558853c2c270e6205c24b8bc" kindref="member">get_dcounter</ref>()</highlight><highlight class="keyword"><sp/>const<sp/></highlight><highlight class="normal">{<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/><ref refid="d6/dd0/structBrush_1_1Fitness_1a76b3053e09f2fa0f08a5dc4abb1c8daf" kindref="member">dcounter</ref>;<sp/>};</highlight></codeline>
+<codeline lineno="98"><highlight class="normal"></highlight></codeline>
+<codeline lineno="99" refid="d6/dd0/structBrush_1_1Fitness_1ab92c03b4eac43138dfd59484c7f0ccc7" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="d6/dd0/structBrush_1_1Fitness_1ab92c03b4eac43138dfd59484c7f0ccc7" kindref="member">set_rank</ref>(</highlight><highlight class="keywordtype">unsigned</highlight><highlight class="normal"><sp/><ref refid="d6/d2e/namespaceBrush_1_1Util_1af7dd70e54015821d96e3a1afed6344ca" kindref="member">r</ref>){<sp/><ref refid="d6/dd0/structBrush_1_1Fitness_1aae177694d7f7bceaa8f907e317c328ab" kindref="member">rank</ref>=<ref refid="d6/d2e/namespaceBrush_1_1Util_1af7dd70e54015821d96e3a1afed6344ca" kindref="member">r</ref>;<sp/>};</highlight></codeline>
+<codeline lineno="100" refid="d6/dd0/structBrush_1_1Fitness_1a8ec7c6ed8c23c1a18036d546bcbd0aae" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">size_t</highlight><highlight class="normal"><sp/><ref refid="d6/dd0/structBrush_1_1Fitness_1a8ec7c6ed8c23c1a18036d546bcbd0aae" kindref="member">get_rank</ref>()</highlight><highlight class="keyword"><sp/>const<sp/></highlight><highlight class="normal">{<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/><ref refid="d6/dd0/structBrush_1_1Fitness_1aae177694d7f7bceaa8f907e317c328ab" kindref="member">rank</ref>;<sp/>};</highlight></codeline>
 <codeline lineno="101"><highlight class="normal"></highlight></codeline>
-<codeline lineno="102"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Method<sp/>to<sp/>set<sp/>values</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="103" refid="d6/dd0/structBrush_1_1Fitness_1aaec7fc8a8c22af4fb6265beac92002a4" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="d6/dd0/structBrush_1_1Fitness_1aaec7fc8a8c22af4fb6265beac92002a4" kindref="member">set_values</ref>(vector&lt;float&gt;&amp;<sp/>v)<sp/>{</highlight></codeline>
-<codeline lineno="104"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(v.size()<sp/>!=<sp/><ref refid="d6/dd0/structBrush_1_1Fitness_1a1207d03059fa2d786e983270388b1f16" kindref="member">weights</ref>.size())<sp/>{</highlight></codeline>
-<codeline lineno="105"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">throw</highlight><highlight class="normal"><sp/>std::length_error(</highlight><highlight class="stringliteral">&quot;Assigned<sp/>values<sp/>have<sp/>not<sp/>the<sp/>same<sp/>length<sp/>than<sp/>current<sp/>values&quot;</highlight><highlight class="normal">);</highlight></codeline>
-<codeline lineno="106"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
-<codeline lineno="107"><highlight class="normal"></highlight></codeline>
-<codeline lineno="108"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="d6/dd0/structBrush_1_1Fitness_1a853380ca80adf2ab47bc8d2fc34b09b4" kindref="member">values</ref>.resize(0);</highlight></codeline>
-<codeline lineno="109"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal">&amp;<sp/>element<sp/>:<sp/>v)<sp/>{</highlight></codeline>
-<codeline lineno="110"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="d6/dd0/structBrush_1_1Fitness_1a853380ca80adf2ab47bc8d2fc34b09b4" kindref="member">values</ref>.push_back(element);</highlight></codeline>
-<codeline lineno="111"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
-<codeline lineno="112"><highlight class="normal"></highlight></codeline>
-<codeline lineno="113"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Minimizing/maximizing<sp/>problem:<sp/>negative/positive<sp/>weight,<sp/>respectively.</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="114"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="d6/dd0/structBrush_1_1Fitness_1a972dd960fd7c2a68449827ec987d0671" kindref="member">wvalues</ref>.resize(<ref refid="d6/dd0/structBrush_1_1Fitness_1a1207d03059fa2d786e983270388b1f16" kindref="member">weights</ref>.size());</highlight></codeline>
-<codeline lineno="115"><highlight class="normal"></highlight></codeline>
-<codeline lineno="116"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Perform<sp/>element-wise<sp/>multiplication</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="117"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>std::transform(v.begin(),<sp/>v.end(),<sp/></highlight></codeline>
-<codeline lineno="118"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="d6/dd0/structBrush_1_1Fitness_1a1207d03059fa2d786e983270388b1f16" kindref="member">weights</ref>.begin(),<sp/><ref refid="d6/dd0/structBrush_1_1Fitness_1a972dd960fd7c2a68449827ec987d0671" kindref="member">wvalues</ref>.begin(),</highlight></codeline>
-<codeline lineno="119"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>[](</highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>a,<sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>b)<sp/>{</highlight></codeline>
-<codeline lineno="120"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>return<sp/>a<sp/>*<sp/>b;</highlight></codeline>
-<codeline lineno="121"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>});</highlight></codeline>
+<codeline lineno="102" refid="d6/dd0/structBrush_1_1Fitness_1ae1927c4532e152a318d5156cd3f83aa9" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="d6/dd0/structBrush_1_1Fitness_1ae1927c4532e152a318d5156cd3f83aa9" kindref="member">set_crowding_dist</ref>(</highlight><highlight class="keywordtype">float</highlight><highlight class="normal"><sp/>cd){<sp/><ref refid="d6/dd0/structBrush_1_1Fitness_1a0998d4960cae30c329ae6d2f05a27c84" kindref="member">crowding_dist</ref>=cd;<sp/>};</highlight></codeline>
+<codeline lineno="103" refid="d6/dd0/structBrush_1_1Fitness_1a2a732eff1606d1a9d932daf0a26f3f35" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">float</highlight><highlight class="normal"><sp/><ref refid="d6/dd0/structBrush_1_1Fitness_1a2a732eff1606d1a9d932daf0a26f3f35" kindref="member">get_crowding_dist</ref>()</highlight><highlight class="keyword"><sp/>const<sp/></highlight><highlight class="normal">{<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/><ref refid="d6/dd0/structBrush_1_1Fitness_1a0998d4960cae30c329ae6d2f05a27c84" kindref="member">crowding_dist</ref>;<sp/>};</highlight></codeline>
+<codeline lineno="104"><highlight class="normal"></highlight></codeline>
+<codeline lineno="105"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Constructor<sp/>with<sp/>initializer<sp/>list<sp/>for<sp/>weights</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="106" refid="d6/dd0/structBrush_1_1Fitness_1abe6bd05816dfb1c51f16e057c797cf84" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="d6/dd0/structBrush_1_1Fitness_1abe6bd05816dfb1c51f16e057c797cf84" kindref="member">Fitness</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>vector&lt;float&gt;&amp;<sp/>w={})<sp/>:<sp/><ref refid="d6/dd0/structBrush_1_1Fitness_1a853380ca80adf2ab47bc8d2fc34b09b4" kindref="member">values</ref>(),<sp/><ref refid="d6/dd0/structBrush_1_1Fitness_1a972dd960fd7c2a68449827ec987d0671" kindref="member">wvalues</ref>(),<sp/><ref refid="d6/dd0/structBrush_1_1Fitness_1a1207d03059fa2d786e983270388b1f16" kindref="member">weights</ref>(w)<sp/>{</highlight></codeline>
+<codeline lineno="107"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="d6/dd0/structBrush_1_1Fitness_1a76b3053e09f2fa0f08a5dc4abb1c8daf" kindref="member">dcounter</ref><sp/>=<sp/>0;</highlight></codeline>
+<codeline lineno="108"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="d6/dd0/structBrush_1_1Fitness_1ab92c03b4eac43138dfd59484c7f0ccc7" kindref="member">set_rank</ref>(0);</highlight></codeline>
+<codeline lineno="109"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="d6/dd0/structBrush_1_1Fitness_1ae1927c4532e152a318d5156cd3f83aa9" kindref="member">set_crowding_dist</ref>(0.0f);</highlight></codeline>
+<codeline lineno="110"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="d6/dd0/structBrush_1_1Fitness_1ad66abe65f27bd44fc49975be3c2103cb" kindref="member">dominated</ref>.resize(0);</highlight></codeline>
+<codeline lineno="111"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="112"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="113"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Hash<sp/>function<sp/>(deap<sp/>requires<sp/>individuals<sp/>(and<sp/>fitness<sp/>by<sp/>induction)</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="114"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>to<sp/>be<sp/>hashable)</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="115" refid="d6/dd0/structBrush_1_1Fitness_1a74d3a57b040075bc8b036220d9b6e6da" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">size_t</highlight><highlight class="normal"><sp/><ref refid="d6/dd0/structBrush_1_1Fitness_1a74d3a57b040075bc8b036220d9b6e6da" kindref="member">hash</ref>()</highlight><highlight class="keyword"><sp/>const<sp/></highlight><highlight class="normal">{</highlight></codeline>
+<codeline lineno="116"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>std::size_t<sp/>h<sp/>=<sp/>std::hash&lt;vector&lt;float&gt;&gt;{}(<ref refid="d6/dd0/structBrush_1_1Fitness_1a972dd960fd7c2a68449827ec987d0671" kindref="member">wvalues</ref>);</highlight></codeline>
+<codeline lineno="117"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>h;</highlight></codeline>
+<codeline lineno="118"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="119"><highlight class="normal"></highlight></codeline>
+<codeline lineno="120" refid="d6/dd0/structBrush_1_1Fitness_1aea7bd29487b3dda47a908ef049da7ddd" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="d6/dd0/structBrush_1_1Fitness_1aea7bd29487b3dda47a908ef049da7ddd" kindref="member">set_weights</ref>(vector&lt;float&gt;&amp;<sp/>w)<sp/>{</highlight></codeline>
+<codeline lineno="121"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="d6/dd0/structBrush_1_1Fitness_1a1207d03059fa2d786e983270388b1f16" kindref="member">weights</ref><sp/>=<sp/>w;</highlight></codeline>
 <codeline lineno="122"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
-<codeline lineno="123"><highlight class="normal"></highlight></codeline>
-<codeline lineno="124"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Method<sp/>to<sp/>clear<sp/>values</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="125" refid="d6/dd0/structBrush_1_1Fitness_1a101d3e509a063d7d3ee16a43cd1f98f4" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="d6/dd0/structBrush_1_1Fitness_1a101d3e509a063d7d3ee16a43cd1f98f4" kindref="member">clearValues</ref>()<sp/>{</highlight></codeline>
-<codeline lineno="126"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="d6/dd0/structBrush_1_1Fitness_1a972dd960fd7c2a68449827ec987d0671" kindref="member">wvalues</ref>.clear();</highlight></codeline>
-<codeline lineno="127"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
-<codeline lineno="128"><highlight class="normal"></highlight></codeline>
-<codeline lineno="129" refid="d6/dd0/structBrush_1_1Fitness_1a55b3762be6e11b3667eaf464657784c6" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/><ref refid="d6/dd0/structBrush_1_1Fitness_1a55b3762be6e11b3667eaf464657784c6" kindref="member">valid</ref>()</highlight><highlight class="keyword"><sp/>const<sp/></highlight><highlight class="normal">{</highlight></codeline>
-<codeline lineno="130"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>!<ref refid="d6/dd0/structBrush_1_1Fitness_1a972dd960fd7c2a68449827ec987d0671" kindref="member">wvalues</ref>.empty();</highlight></codeline>
+<codeline lineno="123" refid="d6/dd0/structBrush_1_1Fitness_1af274bda89992e906bd63904a471672c4" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>vector&lt;float&gt;<sp/><ref refid="d6/dd0/structBrush_1_1Fitness_1af274bda89992e906bd63904a471672c4" kindref="member">get_weights</ref>()</highlight><highlight class="keyword"><sp/>const<sp/></highlight><highlight class="normal">{</highlight></codeline>
+<codeline lineno="124"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/><ref refid="d6/dd0/structBrush_1_1Fitness_1a1207d03059fa2d786e983270388b1f16" kindref="member">weights</ref>;</highlight></codeline>
+<codeline lineno="125"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="126" refid="d6/dd0/structBrush_1_1Fitness_1a512d328942d02c909b2e0c11c23ad1b2" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>vector&lt;float&gt;<sp/><ref refid="d6/dd0/structBrush_1_1Fitness_1a512d328942d02c909b2e0c11c23ad1b2" kindref="member">get_values</ref>()</highlight><highlight class="keyword"><sp/>const<sp/></highlight><highlight class="normal">{</highlight></codeline>
+<codeline lineno="127"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/><ref refid="d6/dd0/structBrush_1_1Fitness_1a853380ca80adf2ab47bc8d2fc34b09b4" kindref="member">values</ref>;</highlight></codeline>
+<codeline lineno="128"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="129" refid="d6/dd0/structBrush_1_1Fitness_1aa9396fa7bd5d5b4c1858081ccd999567" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>vector&lt;float&gt;<sp/><ref refid="d6/dd0/structBrush_1_1Fitness_1aa9396fa7bd5d5b4c1858081ccd999567" kindref="member">get_wvalues</ref>()</highlight><highlight class="keyword"><sp/>const<sp/></highlight><highlight class="normal">{</highlight></codeline>
+<codeline lineno="130"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/><ref refid="d6/dd0/structBrush_1_1Fitness_1a972dd960fd7c2a68449827ec987d0671" kindref="member">wvalues</ref>;</highlight></codeline>
 <codeline lineno="131"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
 <codeline lineno="132"><highlight class="normal"></highlight></codeline>
-<codeline lineno="133"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Equality<sp/>comparison</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="134" refid="d6/dd0/structBrush_1_1Fitness_1a77280961992df506699026e7fe47adbe" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/><ref refid="d6/dd0/structBrush_1_1Fitness_1a77280961992df506699026e7fe47adbe" kindref="member">operator==</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="d6/dd0/structBrush_1_1Fitness_1abe6bd05816dfb1c51f16e057c797cf84" kindref="member">Fitness</ref>&amp;<sp/>other)</highlight><highlight class="keyword"><sp/>const<sp/></highlight><highlight class="normal">{</highlight></codeline>
-<codeline lineno="135"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/><ref refid="d6/dd0/structBrush_1_1Fitness_1a972dd960fd7c2a68449827ec987d0671" kindref="member">wvalues</ref><sp/>==<sp/>other.<ref refid="d6/dd0/structBrush_1_1Fitness_1a972dd960fd7c2a68449827ec987d0671" kindref="member">wvalues</ref>;</highlight></codeline>
-<codeline lineno="136"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
-<codeline lineno="137"><highlight class="normal"></highlight></codeline>
-<codeline lineno="138"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Inequality<sp/>comparison</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="139" refid="d6/dd0/structBrush_1_1Fitness_1a814e36bb358ad4a4729e72fc05ba4719" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/><ref refid="d6/dd0/structBrush_1_1Fitness_1a814e36bb358ad4a4729e72fc05ba4719" kindref="member">operator!=</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="d6/dd0/structBrush_1_1Fitness_1abe6bd05816dfb1c51f16e057c797cf84" kindref="member">Fitness</ref>&amp;<sp/>other)</highlight><highlight class="keyword"><sp/>const<sp/></highlight><highlight class="normal">{</highlight></codeline>
-<codeline lineno="140"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>!(*</highlight><highlight class="keyword">this</highlight><highlight class="normal"><sp/>==<sp/>other);</highlight></codeline>
-<codeline lineno="141"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
-<codeline lineno="142"><highlight class="normal"></highlight></codeline>
-<codeline lineno="143"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Less<sp/>than<sp/>comparison</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="144" refid="d6/dd0/structBrush_1_1Fitness_1a84795f84cd165e72194fd65359fc7564" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/><ref refid="d6/dd0/structBrush_1_1Fitness_1a84795f84cd165e72194fd65359fc7564" kindref="member">operator&lt;</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="d6/dd0/structBrush_1_1Fitness_1abe6bd05816dfb1c51f16e057c797cf84" kindref="member">Fitness</ref>&amp;<sp/>other)</highlight><highlight class="keyword"><sp/>const<sp/></highlight><highlight class="normal">{</highlight></codeline>
-<codeline lineno="145"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>because<sp/>of<sp/>the<sp/>weights,<sp/>every<sp/>objective<sp/>is<sp/>a<sp/>maximization<sp/>problem</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="146"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>!std::lexicographical_compare(<ref refid="d6/dd0/structBrush_1_1Fitness_1a972dd960fd7c2a68449827ec987d0671" kindref="member">wvalues</ref>.begin(),<sp/><ref refid="d6/dd0/structBrush_1_1Fitness_1a972dd960fd7c2a68449827ec987d0671" kindref="member">wvalues</ref>.end(),</highlight></codeline>
-<codeline lineno="147"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>other.<ref refid="d6/dd0/structBrush_1_1Fitness_1a972dd960fd7c2a68449827ec987d0671" kindref="member">wvalues</ref>.begin(),<sp/>other.<ref refid="d6/dd0/structBrush_1_1Fitness_1a972dd960fd7c2a68449827ec987d0671" kindref="member">wvalues</ref>.end());</highlight></codeline>
-<codeline lineno="148"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
-<codeline lineno="149"><highlight class="normal"></highlight></codeline>
-<codeline lineno="150"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Greater<sp/>than<sp/>comparison</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="151" refid="d6/dd0/structBrush_1_1Fitness_1a026384af1bce901c71eef83e93b4d0a5" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/><ref refid="d6/dd0/structBrush_1_1Fitness_1a026384af1bce901c71eef83e93b4d0a5" kindref="member">operator&gt;</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="d6/dd0/structBrush_1_1Fitness_1abe6bd05816dfb1c51f16e057c797cf84" kindref="member">Fitness</ref>&amp;<sp/>other)</highlight><highlight class="keyword"><sp/>const<sp/></highlight><highlight class="normal">{</highlight></codeline>
-<codeline lineno="152"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>other<sp/>&lt;<sp/>*</highlight><highlight class="keyword">this</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="133"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Method<sp/>to<sp/>set<sp/>values</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="134" refid="d6/dd0/structBrush_1_1Fitness_1aaec7fc8a8c22af4fb6265beac92002a4" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="d6/dd0/structBrush_1_1Fitness_1aaec7fc8a8c22af4fb6265beac92002a4" kindref="member">set_values</ref>(vector&lt;float&gt;&amp;<sp/>v)<sp/>{</highlight></codeline>
+<codeline lineno="135"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(v.size()<sp/>!=<sp/><ref refid="d6/dd0/structBrush_1_1Fitness_1a1207d03059fa2d786e983270388b1f16" kindref="member">weights</ref>.size())<sp/>{</highlight></codeline>
+<codeline lineno="136"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">throw</highlight><highlight class="normal"><sp/>std::length_error(</highlight><highlight class="stringliteral">&quot;Assigned<sp/>values<sp/>have<sp/>not<sp/>the<sp/>same<sp/>length<sp/>than<sp/>current<sp/>values&quot;</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="137"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="138"><highlight class="normal"></highlight></codeline>
+<codeline lineno="139"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="d6/dd0/structBrush_1_1Fitness_1a853380ca80adf2ab47bc8d2fc34b09b4" kindref="member">values</ref>.resize(0);</highlight></codeline>
+<codeline lineno="140"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal">&amp;<sp/>element<sp/>:<sp/>v)<sp/>{</highlight></codeline>
+<codeline lineno="141"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="d6/dd0/structBrush_1_1Fitness_1a853380ca80adf2ab47bc8d2fc34b09b4" kindref="member">values</ref>.push_back(element);</highlight></codeline>
+<codeline lineno="142"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="143"><highlight class="normal"></highlight></codeline>
+<codeline lineno="144"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Minimizing/maximizing<sp/>problem:<sp/>negative/positive<sp/>weight,<sp/>respectively.</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="145"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="d6/dd0/structBrush_1_1Fitness_1a972dd960fd7c2a68449827ec987d0671" kindref="member">wvalues</ref>.resize(<ref refid="d6/dd0/structBrush_1_1Fitness_1a1207d03059fa2d786e983270388b1f16" kindref="member">weights</ref>.size());</highlight></codeline>
+<codeline lineno="146"><highlight class="normal"></highlight></codeline>
+<codeline lineno="147"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Perform<sp/>element-wise<sp/>multiplication</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="148"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>std::transform(v.begin(),<sp/>v.end(),<sp/></highlight></codeline>
+<codeline lineno="149"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="d6/dd0/structBrush_1_1Fitness_1a1207d03059fa2d786e983270388b1f16" kindref="member">weights</ref>.begin(),<sp/><ref refid="d6/dd0/structBrush_1_1Fitness_1a972dd960fd7c2a68449827ec987d0671" kindref="member">wvalues</ref>.begin(),</highlight></codeline>
+<codeline lineno="150"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>[](</highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>a,<sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>b)<sp/>{</highlight></codeline>
+<codeline lineno="151"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>return<sp/>a<sp/>*<sp/>b;</highlight></codeline>
+<codeline lineno="152"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>});</highlight></codeline>
 <codeline lineno="153"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
 <codeline lineno="154"><highlight class="normal"></highlight></codeline>
-<codeline lineno="155"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Less<sp/>than<sp/>or<sp/>equal<sp/>to<sp/>comparison</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="156" refid="d6/dd0/structBrush_1_1Fitness_1aab30800f8d856dfb2eba921a8e41272e" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/><ref refid="d6/dd0/structBrush_1_1Fitness_1aab30800f8d856dfb2eba921a8e41272e" kindref="member">operator&lt;=</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="d6/dd0/structBrush_1_1Fitness_1abe6bd05816dfb1c51f16e057c797cf84" kindref="member">Fitness</ref>&amp;<sp/>other)</highlight><highlight class="keyword"><sp/>const<sp/></highlight><highlight class="normal">{</highlight></codeline>
-<codeline lineno="157"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>!(other<sp/>&lt;<sp/>*</highlight><highlight class="keyword">this</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="155"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Method<sp/>to<sp/>clear<sp/>values</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="156" refid="d6/dd0/structBrush_1_1Fitness_1a101d3e509a063d7d3ee16a43cd1f98f4" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="d6/dd0/structBrush_1_1Fitness_1a101d3e509a063d7d3ee16a43cd1f98f4" kindref="member">clearValues</ref>()<sp/>{</highlight></codeline>
+<codeline lineno="157"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="d6/dd0/structBrush_1_1Fitness_1a972dd960fd7c2a68449827ec987d0671" kindref="member">wvalues</ref>.clear();</highlight></codeline>
 <codeline lineno="158"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
 <codeline lineno="159"><highlight class="normal"></highlight></codeline>
-<codeline lineno="160"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Greater<sp/>than<sp/>or<sp/>equal<sp/>to<sp/>comparison</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="161" refid="d6/dd0/structBrush_1_1Fitness_1a2f88daa472f8df0bb4a6b2b7746fd2a2" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/><ref refid="d6/dd0/structBrush_1_1Fitness_1a2f88daa472f8df0bb4a6b2b7746fd2a2" kindref="member">operator&gt;=</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="d6/dd0/structBrush_1_1Fitness_1abe6bd05816dfb1c51f16e057c797cf84" kindref="member">Fitness</ref>&amp;<sp/>other)</highlight><highlight class="keyword"><sp/>const<sp/></highlight><highlight class="normal">{</highlight></codeline>
-<codeline lineno="162"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>!(*</highlight><highlight class="keyword">this</highlight><highlight class="normal"><sp/>&lt;<sp/>other);</highlight></codeline>
-<codeline lineno="163"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
-<codeline lineno="164"><highlight class="normal"></highlight></codeline>
-<codeline lineno="165"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>String<sp/>representation</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="166" refid="d6/dd0/structBrush_1_1Fitness_1a6253406e0ac28947766a5f5afbb721e1" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>std::string<sp/><ref refid="d6/dd0/structBrush_1_1Fitness_1a6253406e0ac28947766a5f5afbb721e1" kindref="member">toString</ref>()</highlight><highlight class="keyword"><sp/>const<sp/></highlight><highlight class="normal">{</highlight></codeline>
-<codeline lineno="167"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(<ref refid="d6/dd0/structBrush_1_1Fitness_1a55b3762be6e11b3667eaf464657784c6" kindref="member">valid</ref>())<sp/>{</highlight></codeline>
-<codeline lineno="168"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">string</highlight><highlight class="normal"><sp/>s<sp/>=<sp/></highlight><highlight class="stringliteral">&quot;Fitness(&quot;</highlight><highlight class="normal">;</highlight></codeline>
-<codeline lineno="169"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>(</highlight><highlight class="keyword">auto</highlight><highlight class="normal">&amp;<sp/>v<sp/>:<sp/><ref refid="d6/dd0/structBrush_1_1Fitness_1a853380ca80adf2ab47bc8d2fc34b09b4" kindref="member">values</ref>)</highlight></codeline>
-<codeline lineno="170"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>s<sp/>+=<sp/>to_string(v)<sp/>+<sp/></highlight><highlight class="stringliteral">&quot;<sp/>&quot;</highlight><highlight class="normal">;</highlight></codeline>
-<codeline lineno="171"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>s+</highlight><highlight class="stringliteral">&quot;)&quot;</highlight><highlight class="normal">;</highlight></codeline>
-<codeline lineno="172"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}<sp/></highlight><highlight class="keywordflow">else</highlight><highlight class="normal"><sp/>{</highlight></codeline>
-<codeline lineno="173"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/></highlight><highlight class="stringliteral">&quot;Fitness()&quot;</highlight><highlight class="normal">;</highlight></codeline>
-<codeline lineno="174"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
-<codeline lineno="175"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
-<codeline lineno="176"><highlight class="normal"></highlight></codeline>
-<codeline lineno="177"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Representation<sp/>for<sp/>debugging</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="178" refid="d6/dd0/structBrush_1_1Fitness_1a4bec036d5b4fa2acc82b2e934183a45c" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>std::string<sp/><ref refid="d6/dd0/structBrush_1_1Fitness_1a4bec036d5b4fa2acc82b2e934183a45c" kindref="member">repr</ref>()</highlight><highlight class="keyword"><sp/>const<sp/></highlight><highlight class="normal">{</highlight></codeline>
-<codeline lineno="179"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(<ref refid="d6/dd0/structBrush_1_1Fitness_1a55b3762be6e11b3667eaf464657784c6" kindref="member">valid</ref>())<sp/>{</highlight></codeline>
-<codeline lineno="180"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">string</highlight><highlight class="normal"><sp/>s<sp/>=<sp/></highlight><highlight class="stringliteral">&quot;Fitness(&quot;</highlight><highlight class="normal">;</highlight></codeline>
-<codeline lineno="181"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>(</highlight><highlight class="keyword">auto</highlight><highlight class="normal">&amp;<sp/>v<sp/>:<sp/><ref refid="d6/dd0/structBrush_1_1Fitness_1a853380ca80adf2ab47bc8d2fc34b09b4" kindref="member">values</ref>)</highlight></codeline>
-<codeline lineno="182"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>s<sp/>+=<sp/>to_string(v)<sp/>+<sp/></highlight><highlight class="stringliteral">&quot;<sp/>&quot;</highlight><highlight class="normal">;</highlight></codeline>
-<codeline lineno="183"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>s+</highlight><highlight class="stringliteral">&quot;)&quot;</highlight><highlight class="normal">;</highlight></codeline>
-<codeline lineno="184"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}<sp/></highlight><highlight class="keywordflow">else</highlight><highlight class="normal"><sp/>{</highlight></codeline>
-<codeline lineno="185"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/></highlight><highlight class="stringliteral">&quot;Fitness()&quot;</highlight><highlight class="normal">;</highlight></codeline>
-<codeline lineno="186"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
-<codeline lineno="187"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
-<codeline lineno="188"><highlight class="normal"></highlight></codeline>
-<codeline lineno="190"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="d6/dd0/structBrush_1_1Fitness_1aeb7b43cd4977e3c1e9c7feb3084de17a" kindref="member">dominates</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="d6/dd0/structBrush_1_1Fitness" kindref="compound">Fitness</ref>&amp;<sp/>b)<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal">;</highlight></codeline>
-<codeline lineno="191"><highlight class="normal">};</highlight></codeline>
+<codeline lineno="160" refid="d6/dd0/structBrush_1_1Fitness_1a55b3762be6e11b3667eaf464657784c6" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/><ref refid="d6/dd0/structBrush_1_1Fitness_1a55b3762be6e11b3667eaf464657784c6" kindref="member">valid</ref>()</highlight><highlight class="keyword"><sp/>const<sp/></highlight><highlight class="normal">{</highlight></codeline>
+<codeline lineno="161"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>!<ref refid="d6/dd0/structBrush_1_1Fitness_1a972dd960fd7c2a68449827ec987d0671" kindref="member">wvalues</ref>.empty();</highlight></codeline>
+<codeline lineno="162"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="163"><highlight class="normal"></highlight></codeline>
+<codeline lineno="164"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Equality<sp/>comparison</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="165" refid="d6/dd0/structBrush_1_1Fitness_1a77280961992df506699026e7fe47adbe" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/><ref refid="d6/dd0/structBrush_1_1Fitness_1a77280961992df506699026e7fe47adbe" kindref="member">operator==</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="d6/dd0/structBrush_1_1Fitness_1abe6bd05816dfb1c51f16e057c797cf84" kindref="member">Fitness</ref>&amp;<sp/>other)</highlight><highlight class="keyword"><sp/>const<sp/></highlight><highlight class="normal">{</highlight></codeline>
+<codeline lineno="166"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(<ref refid="d6/dd0/structBrush_1_1Fitness_1a972dd960fd7c2a68449827ec987d0671" kindref="member">wvalues</ref>.size()<sp/>!=<sp/>other.<ref refid="d6/dd0/structBrush_1_1Fitness_1a972dd960fd7c2a68449827ec987d0671" kindref="member">wvalues</ref>.size())<sp/>{</highlight></codeline>
+<codeline lineno="167"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">false</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="168"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="169"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>(</highlight><highlight class="keywordtype">size_t</highlight><highlight class="normal"><sp/>i<sp/>=<sp/>0;<sp/>i<sp/>&lt;<sp/><ref refid="d6/dd0/structBrush_1_1Fitness_1a972dd960fd7c2a68449827ec987d0671" kindref="member">wvalues</ref>.size();<sp/>++i)</highlight></codeline>
+<codeline lineno="170"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(fabs(<ref refid="d6/dd0/structBrush_1_1Fitness_1a972dd960fd7c2a68449827ec987d0671" kindref="member">wvalues</ref>[i]<sp/>-<sp/>other.<ref refid="d6/dd0/structBrush_1_1Fitness_1a972dd960fd7c2a68449827ec987d0671" kindref="member">wvalues</ref>[i])<sp/>&gt;<sp/>1e-7)</highlight></codeline>
+<codeline lineno="171"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">false</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="172"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="173"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">true</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="174"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="175"><highlight class="normal"></highlight></codeline>
+<codeline lineno="176"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Inequality<sp/>comparison</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="177" refid="d6/dd0/structBrush_1_1Fitness_1a814e36bb358ad4a4729e72fc05ba4719" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/><ref refid="d6/dd0/structBrush_1_1Fitness_1a814e36bb358ad4a4729e72fc05ba4719" kindref="member">operator!=</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="d6/dd0/structBrush_1_1Fitness_1abe6bd05816dfb1c51f16e057c797cf84" kindref="member">Fitness</ref>&amp;<sp/>other)</highlight><highlight class="keyword"><sp/>const<sp/></highlight><highlight class="normal">{</highlight></codeline>
+<codeline lineno="178"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>!(*</highlight><highlight class="keyword">this</highlight><highlight class="normal"><sp/>==<sp/>other);</highlight></codeline>
+<codeline lineno="179"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="180"><highlight class="normal"></highlight></codeline>
+<codeline lineno="181"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Less<sp/>than<sp/>comparison</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="182" refid="d6/dd0/structBrush_1_1Fitness_1a84795f84cd165e72194fd65359fc7564" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/><ref refid="d6/dd0/structBrush_1_1Fitness_1a84795f84cd165e72194fd65359fc7564" kindref="member">operator&lt;</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="d6/dd0/structBrush_1_1Fitness_1abe6bd05816dfb1c51f16e057c797cf84" kindref="member">Fitness</ref>&amp;<sp/>other)</highlight><highlight class="keyword"><sp/>const<sp/></highlight><highlight class="normal">{</highlight></codeline>
+<codeline lineno="183"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>because<sp/>of<sp/>the<sp/>weights,<sp/>every<sp/>objective<sp/>is<sp/>a<sp/>maximization<sp/>problem</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="184"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>!std::lexicographical_compare(<ref refid="d6/dd0/structBrush_1_1Fitness_1a972dd960fd7c2a68449827ec987d0671" kindref="member">wvalues</ref>.begin(),<sp/><ref refid="d6/dd0/structBrush_1_1Fitness_1a972dd960fd7c2a68449827ec987d0671" kindref="member">wvalues</ref>.end(),</highlight></codeline>
+<codeline lineno="185"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>other.<ref refid="d6/dd0/structBrush_1_1Fitness_1a972dd960fd7c2a68449827ec987d0671" kindref="member">wvalues</ref>.begin(),<sp/>other.<ref refid="d6/dd0/structBrush_1_1Fitness_1a972dd960fd7c2a68449827ec987d0671" kindref="member">wvalues</ref>.end());</highlight></codeline>
+<codeline lineno="186"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="187"><highlight class="normal"></highlight></codeline>
+<codeline lineno="188"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Greater<sp/>than<sp/>comparison</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="189" refid="d6/dd0/structBrush_1_1Fitness_1a026384af1bce901c71eef83e93b4d0a5" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/><ref refid="d6/dd0/structBrush_1_1Fitness_1a026384af1bce901c71eef83e93b4d0a5" kindref="member">operator&gt;</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="d6/dd0/structBrush_1_1Fitness_1abe6bd05816dfb1c51f16e057c797cf84" kindref="member">Fitness</ref>&amp;<sp/>other)</highlight><highlight class="keyword"><sp/>const<sp/></highlight><highlight class="normal">{</highlight></codeline>
+<codeline lineno="190"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>other<sp/>&lt;<sp/>*</highlight><highlight class="keyword">this</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="191"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
 <codeline lineno="192"><highlight class="normal"></highlight></codeline>
-<codeline lineno="193"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="dc/d5c/namespaceBrush_1a8cfe33753dda03e1480fdcbe62e1885d" kindref="member">to_json</ref>(json<sp/>&amp;j,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>Fitness<sp/>&amp;f);</highlight></codeline>
-<codeline lineno="194"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="dc/d5c/namespaceBrush_1a20d08fdc417fcb203d6cae91abfa4bff" kindref="member">from_json</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>json<sp/>&amp;j,<sp/>Fitness&amp;<sp/>f);</highlight></codeline>
-<codeline lineno="195"><highlight class="normal"></highlight></codeline>
-<codeline lineno="196"><highlight class="normal">}</highlight></codeline>
-<codeline lineno="197"><highlight class="normal"></highlight><highlight class="preprocessor">#endif</highlight></codeline>
+<codeline lineno="193"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Less<sp/>than<sp/>or<sp/>equal<sp/>to<sp/>comparison</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="194" refid="d6/dd0/structBrush_1_1Fitness_1aab30800f8d856dfb2eba921a8e41272e" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/><ref refid="d6/dd0/structBrush_1_1Fitness_1aab30800f8d856dfb2eba921a8e41272e" kindref="member">operator&lt;=</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="d6/dd0/structBrush_1_1Fitness_1abe6bd05816dfb1c51f16e057c797cf84" kindref="member">Fitness</ref>&amp;<sp/>other)</highlight><highlight class="keyword"><sp/>const<sp/></highlight><highlight class="normal">{</highlight></codeline>
+<codeline lineno="195"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>!(other<sp/>&lt;<sp/>*</highlight><highlight class="keyword">this</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="196"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="197"><highlight class="normal"></highlight></codeline>
+<codeline lineno="198"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Greater<sp/>than<sp/>or<sp/>equal<sp/>to<sp/>comparison</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="199" refid="d6/dd0/structBrush_1_1Fitness_1a2f88daa472f8df0bb4a6b2b7746fd2a2" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/><ref refid="d6/dd0/structBrush_1_1Fitness_1a2f88daa472f8df0bb4a6b2b7746fd2a2" kindref="member">operator&gt;=</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="d6/dd0/structBrush_1_1Fitness_1abe6bd05816dfb1c51f16e057c797cf84" kindref="member">Fitness</ref>&amp;<sp/>other)</highlight><highlight class="keyword"><sp/>const<sp/></highlight><highlight class="normal">{</highlight></codeline>
+<codeline lineno="200"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>!(*</highlight><highlight class="keyword">this</highlight><highlight class="normal"><sp/>&lt;<sp/>other);</highlight></codeline>
+<codeline lineno="201"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="202"><highlight class="normal"></highlight></codeline>
+<codeline lineno="203"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>String<sp/>representation</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="204" refid="d6/dd0/structBrush_1_1Fitness_1a6253406e0ac28947766a5f5afbb721e1" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>std::string<sp/><ref refid="d6/dd0/structBrush_1_1Fitness_1a6253406e0ac28947766a5f5afbb721e1" kindref="member">toString</ref>()</highlight><highlight class="keyword"><sp/>const<sp/></highlight><highlight class="normal">{</highlight></codeline>
+<codeline lineno="205"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>TODO:<sp/>unify<sp/>to_string,<sp/>toString,<sp/>print,<sp/>print_models,<sp/>etc.</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="206"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(<ref refid="d6/dd0/structBrush_1_1Fitness_1a55b3762be6e11b3667eaf464657784c6" kindref="member">valid</ref>())<sp/>{</highlight></codeline>
+<codeline lineno="207"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">string</highlight><highlight class="normal"><sp/>s<sp/>=<sp/></highlight><highlight class="stringliteral">&quot;Fitness(&quot;</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="208"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>(</highlight><highlight class="keyword">auto</highlight><highlight class="normal">&amp;<sp/>v<sp/>:<sp/><ref refid="d6/dd0/structBrush_1_1Fitness_1a853380ca80adf2ab47bc8d2fc34b09b4" kindref="member">values</ref>)</highlight></codeline>
+<codeline lineno="209"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>s<sp/>+=<sp/><ref refid="d6/d2e/namespaceBrush_1_1Util_1a9cd8004de7aab46b7a06f27d440064ed" kindref="member">to_string</ref>(v)<sp/>+<sp/></highlight><highlight class="stringliteral">&quot;<sp/>&quot;</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="210"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>s+</highlight><highlight class="stringliteral">&quot;)&quot;</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="211"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}<sp/></highlight><highlight class="keywordflow">else</highlight><highlight class="normal"><sp/>{</highlight></codeline>
+<codeline lineno="212"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/></highlight><highlight class="stringliteral">&quot;Fitness()&quot;</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="213"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="214"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="215"><highlight class="normal"></highlight></codeline>
+<codeline lineno="216"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Representation<sp/>for<sp/>debugging</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="217" refid="d6/dd0/structBrush_1_1Fitness_1a4bec036d5b4fa2acc82b2e934183a45c" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>std::string<sp/><ref refid="d6/dd0/structBrush_1_1Fitness_1a4bec036d5b4fa2acc82b2e934183a45c" kindref="member">repr</ref>()</highlight><highlight class="keyword"><sp/>const<sp/></highlight><highlight class="normal">{</highlight></codeline>
+<codeline lineno="218"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(<ref refid="d6/dd0/structBrush_1_1Fitness_1a55b3762be6e11b3667eaf464657784c6" kindref="member">valid</ref>())<sp/>{</highlight></codeline>
+<codeline lineno="219"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">string</highlight><highlight class="normal"><sp/>s<sp/>=<sp/></highlight><highlight class="stringliteral">&quot;Fitness(&quot;</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="220"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>(</highlight><highlight class="keyword">auto</highlight><highlight class="normal">&amp;<sp/>v<sp/>:<sp/><ref refid="d6/dd0/structBrush_1_1Fitness_1a853380ca80adf2ab47bc8d2fc34b09b4" kindref="member">values</ref>)</highlight></codeline>
+<codeline lineno="221"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>s<sp/>+=<sp/><ref refid="d6/d2e/namespaceBrush_1_1Util_1a9cd8004de7aab46b7a06f27d440064ed" kindref="member">to_string</ref>(v)<sp/>+<sp/></highlight><highlight class="stringliteral">&quot;<sp/>&quot;</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="222"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>s+</highlight><highlight class="stringliteral">&quot;)&quot;</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="223"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}<sp/></highlight><highlight class="keywordflow">else</highlight><highlight class="normal"><sp/>{</highlight></codeline>
+<codeline lineno="224"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/></highlight><highlight class="stringliteral">&quot;Fitness()&quot;</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="225"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="226"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="227"><highlight class="normal"></highlight></codeline>
+<codeline lineno="229"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="d6/dd0/structBrush_1_1Fitness_1aeb7b43cd4977e3c1e9c7feb3084de17a" kindref="member">dominates</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="d6/dd0/structBrush_1_1Fitness" kindref="compound">Fitness</ref>&amp;<sp/>b)<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="230"><highlight class="normal">};</highlight></codeline>
+<codeline lineno="231"><highlight class="normal"></highlight></codeline>
+<codeline lineno="232"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="dc/d5c/namespaceBrush_1a8cfe33753dda03e1480fdcbe62e1885d" kindref="member">to_json</ref>(json<sp/>&amp;j,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>Fitness<sp/>&amp;f);</highlight></codeline>
+<codeline lineno="233"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="dc/d5c/namespaceBrush_1a20d08fdc417fcb203d6cae91abfa4bff" kindref="member">from_json</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>json<sp/>&amp;j,<sp/>Fitness&amp;<sp/>f);</highlight></codeline>
+<codeline lineno="234"><highlight class="normal"></highlight></codeline>
+<codeline lineno="235"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="236"><highlight class="normal"></highlight><highlight class="preprocessor">#endif</highlight></codeline>
     </programlisting>
     <location file="/home/runner/work/brush/brush/src/ind/fitness.h"/>
   </compounddef>

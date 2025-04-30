@@ -13,7 +13,7 @@
         </childnode>
         <childnode refid="9" relation="include">
         </childnode>
-        <childnode refid="29" relation="include">
+        <childnode refid="37" relation="include">
         </childnode>
       </node>
       <node id="2">
@@ -32,13 +32,87 @@
         <childnode refid="8" relation="include">
         </childnode>
       </node>
-      <node id="10">
-        <label>init.h</label>
+      <node id="20">
+        <label>../init.h</label>
         <link refid="d8/dc0/init_8h"/>
+        <childnode refid="21" relation="include">
+        </childnode>
+        <childnode refid="13" relation="include">
+        </childnode>
+        <childnode refid="22" relation="include">
+        </childnode>
         <childnode refid="11" relation="include">
+        </childnode>
+        <childnode refid="16" relation="include">
+        </childnode>
+        <childnode refid="23" relation="include">
+        </childnode>
+        <childnode refid="19" relation="include">
+        </childnode>
+        <childnode refid="15" relation="include">
+        </childnode>
+        <childnode refid="14" relation="include">
+        </childnode>
+        <childnode refid="24" relation="include">
+        </childnode>
+        <childnode refid="25" relation="include">
+        </childnode>
+        <childnode refid="26" relation="include">
+        </childnode>
+        <childnode refid="27" relation="include">
+        </childnode>
+        <childnode refid="8" relation="include">
+        </childnode>
+        <childnode refid="28" relation="include">
+        </childnode>
+      </node>
+      <node id="9">
+        <label>../params.h</label>
+        <link refid="da/d33/params_8h"/>
+        <childnode refid="10" relation="include">
         </childnode>
         <childnode refid="12" relation="include">
         </childnode>
+      </node>
+      <node id="28">
+        <label>types.h</label>
+        <link refid="d9/d49/types_8h"/>
+        <childnode refid="29" relation="include">
+        </childnode>
+        <childnode refid="30" relation="include">
+        </childnode>
+        <childnode refid="31" relation="include">
+        </childnode>
+      </node>
+      <node id="32">
+        <label>error.h</label>
+        <link refid="da/d41/error_8h"/>
+        <childnode refid="24" relation="include">
+        </childnode>
+        <childnode refid="11" relation="include">
+        </childnode>
+      </node>
+      <node id="10">
+        <label>util/logger.h</label>
+        <link refid="d1/d8c/logger_8h"/>
+        <childnode refid="11" relation="include">
+        </childnode>
+      </node>
+      <node id="37">
+        <label>../util/rnd.h</label>
+        <link refid="d2/da9/rnd_8h"/>
+        <childnode refid="38" relation="include">
+        </childnode>
+        <childnode refid="39" relation="include">
+        </childnode>
+        <childnode refid="14" relation="include">
+        </childnode>
+        <childnode refid="20" relation="include">
+        </childnode>
+      </node>
+      <node id="12">
+        <label>util/utils.h</label>
+        <link refid="d5/d60/utils_8h"/>
         <childnode refid="13" relation="include">
         </childnode>
         <childnode refid="14" relation="include">
@@ -55,91 +129,67 @@
         </childnode>
         <childnode refid="20" relation="include">
         </childnode>
-        <childnode refid="21" relation="include">
+        <childnode refid="32" relation="include">
         </childnode>
-        <childnode refid="22" relation="include">
+        <childnode refid="33" relation="include">
         </childnode>
-        <childnode refid="23" relation="include">
+        <childnode refid="34" relation="include">
         </childnode>
-        <childnode refid="8" relation="include">
+        <childnode refid="35" relation="include">
         </childnode>
-        <childnode refid="24" relation="include">
+        <childnode refid="36" relation="include">
         </childnode>
-      </node>
-      <node id="9">
-        <label>../params.h</label>
-        <link refid="da/d33/params_8h"/>
-        <childnode refid="10" relation="include">
-        </childnode>
-        <childnode refid="28" relation="include">
-        </childnode>
-      </node>
-      <node id="24">
-        <label>types.h</label>
-        <link refid="d9/d49/types_8h"/>
-        <childnode refid="25" relation="include">
-        </childnode>
-        <childnode refid="26" relation="include">
-        </childnode>
-        <childnode refid="27" relation="include">
-        </childnode>
-      </node>
-      <node id="28">
-        <label>util/logger.h</label>
-        <link refid="d1/d8c/logger_8h"/>
-        <childnode refid="14" relation="include">
-        </childnode>
-      </node>
-      <node id="29">
-        <label>../util/rnd.h</label>
-        <link refid="d2/da9/rnd_8h"/>
-        <childnode refid="30" relation="include">
-        </childnode>
-        <childnode refid="31" relation="include">
-        </childnode>
-        <childnode refid="19" relation="include">
-        </childnode>
-        <childnode refid="10" relation="include">
-        </childnode>
-      </node>
-      <node id="12">
-        <label>Eigen/Dense</label>
-      </node>
-      <node id="26">
-        <label>ceres/jet.h</label>
-      </node>
-      <node id="27">
-        <label>concepts</label>
-      </node>
-      <node id="22">
-        <label>fmt/format.h</label>
-      </node>
-      <node id="21">
-        <label>fmt/ostream.h</label>
-      </node>
-      <node id="23">
-        <label>fmt/ranges.h</label>
-      </node>
-      <node id="15">
-        <label>fstream</label>
-      </node>
-      <node id="14">
-        <label>iostream</label>
-      </node>
-      <node id="31">
-        <label>limits</label>
-      </node>
-      <node id="17">
-        <label>map</label>
       </node>
       <node id="13">
+        <label>Eigen/Dense</label>
+      </node>
+      <node id="30">
+        <label>ceres/jet.h</label>
+      </node>
+      <node id="17">
+        <label>chrono</label>
+      </node>
+      <node id="31">
+        <label>concepts</label>
+      </node>
+      <node id="35">
+        <label>execution</label>
+      </node>
+      <node id="26">
+        <label>fmt/format.h</label>
+      </node>
+      <node id="25">
+        <label>fmt/ostream.h</label>
+      </node>
+      <node id="27">
+        <label>fmt/ranges.h</label>
+      </node>
+      <node id="16">
+        <label>fstream</label>
+      </node>
+      <node id="11">
+        <label>iostream</label>
+      </node>
+      <node id="34">
+        <label>iterator</label>
+      </node>
+      <node id="39">
+        <label>limits</label>
+      </node>
+      <node id="19">
+        <label>map</label>
+      </node>
+      <node id="22">
         <label>memory</label>
       </node>
       <node id="8">
         <label>nlohmann/json.hpp</label>
       </node>
-      <node id="16">
+      <node id="23">
         <label>numeric</label>
+      </node>
+      <node id="18">
+        <label>ostream</label>
       </node>
       <node id="4">
         <label>pybind11/eigen.h</label>
@@ -156,22 +206,28 @@
       <node id="7">
         <label>pybind11_json/pybind11_json.hpp</label>
       </node>
-      <node id="30">
+      <node id="38">
         <label>random</label>
       </node>
-      <node id="18">
+      <node id="15">
         <label>set</label>
       </node>
-      <node id="11">
+      <node id="21">
         <label>stdint.h</label>
       </node>
-      <node id="20">
+      <node id="24">
         <label>string</label>
       </node>
-      <node id="25">
+      <node id="36">
+        <label>tuple</label>
+      </node>
+      <node id="33">
+        <label>typeindex</label>
+      </node>
+      <node id="29">
         <label>variant</label>
       </node>
-      <node id="19">
+      <node id="14">
         <label>vector</label>
       </node>
     </incdepgraph>
@@ -191,68 +247,81 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/runner/work/brush/brush/src/bindings/bind_params.cpp" line="7" column="6" bodyfile="/home/runner/work/brush/brush/src/bindings/bind_params.cpp" bodystart="7" bodyend="59"/>
-        <references refid="de/deb/structBrush_1_1Parameters_1a55829db9efdf15f588da5aed54fa42a8" compoundref="da/d33/params_8h" startline="174" endline="174">Brush::Parameters::get_batch_size</references>
-        <references refid="de/deb/structBrush_1_1Parameters_1a0941104c9a1c006e2d616b04fe8772f8" compoundref="da/d33/params_8h" startline="159" endline="159">Brush::Parameters::get_classification</references>
-        <references refid="de/deb/structBrush_1_1Parameters_1ae342f8777e40bb52f65cdb951a960603" compoundref="da/d33/params_8h" startline="123" endline="123">Brush::Parameters::get_current_gen</references>
-        <references refid="de/deb/structBrush_1_1Parameters_1ad295afd17da08fdccb207f28caf07cc8" compoundref="da/d33/params_8h" startline="147" endline="147">Brush::Parameters::get_cx_prob</references>
-        <references refid="de/deb/structBrush_1_1Parameters_1a503e5e39ff8078bfd0132399bc376651" compoundref="da/d33/params_8h" startline="171" endline="171">Brush::Parameters::get_feature_names</references>
-        <references refid="de/deb/structBrush_1_1Parameters_1aee62986fbd874d410a0d5d4ab81dce7b" compoundref="da/d33/params_8h" startline="180" endline="180">Brush::Parameters::get_functions</references>
-        <references refid="de/deb/structBrush_1_1Parameters_1a714c905329b7ca861e5c7488c1415dbf" compoundref="da/d33/params_8h" startline="114" endline="114">Brush::Parameters::get_load_population</references>
-        <references refid="de/deb/structBrush_1_1Parameters_1a9db4d0fc9bf85b823d8963382118fde5" compoundref="da/d33/params_8h" startline="119" endline="119">Brush::Parameters::get_logfile</references>
-        <references refid="de/deb/structBrush_1_1Parameters_1a77aa7201a837482c7bf92579fe156811" compoundref="da/d33/params_8h" startline="129" endline="129">Brush::Parameters::get_max_depth</references>
-        <references refid="de/deb/structBrush_1_1Parameters_1a32be1d9b49a8ce5636de4828a15ec6c1" compoundref="da/d33/params_8h" startline="102" endline="102">Brush::Parameters::get_max_gens</references>
-        <references refid="de/deb/structBrush_1_1Parameters_1a122b7243856cd15f940b6d6b5ec1074f" compoundref="da/d33/params_8h" startline="135" endline="135">Brush::Parameters::get_max_size</references>
-        <references refid="de/deb/structBrush_1_1Parameters_1a60eb890e9354559600d21c46e310bdd2" compoundref="da/d33/params_8h" startline="105" endline="105">Brush::Parameters::get_max_stall</references>
-        <references refid="de/deb/structBrush_1_1Parameters_1a2cbb237e04a742e5b7045213409f8810" compoundref="da/d33/params_8h" startline="108" endline="108">Brush::Parameters::get_max_time</references>
-        <references refid="de/deb/structBrush_1_1Parameters_1a62efc097c2a873a92515dd492a78a402" compoundref="da/d33/params_8h" startline="150" endline="150">Brush::Parameters::get_mig_prob</references>
-        <references refid="de/deb/structBrush_1_1Parameters_1ae663b0ea31743fceb203fe476f4ddc99" compoundref="da/d33/params_8h" startline="177" endline="177">Brush::Parameters::get_mutation_probs</references>
-        <references refid="de/deb/structBrush_1_1Parameters_1a572e97fe2ee54989dc8c72ad322076f7" compoundref="da/d33/params_8h" startline="165" endline="165">Brush::Parameters::get_n_classes</references>
-        <references refid="de/deb/structBrush_1_1Parameters_1a3bb3c39fa10b2087f5733d7ad47902de" compoundref="da/d33/params_8h" startline="132" endline="132">Brush::Parameters::get_n_jobs</references>
-        <references refid="de/deb/structBrush_1_1Parameters_1a908bc47bbc7691bf870a909c4eb80edb" compoundref="da/d33/params_8h" startline="126" endline="126">Brush::Parameters::get_num_islands</references>
-        <references refid="de/deb/structBrush_1_1Parameters_1a1c9f68be4ca366f7658cc469c2f2f3b6" compoundref="da/d33/params_8h" startline="138" endline="138">Brush::Parameters::get_objectives</references>
-        <references refid="de/deb/structBrush_1_1Parameters_1a7d391d24fbe78545ba09cf01a3634878" compoundref="da/d33/params_8h" startline="99" endline="99">Brush::Parameters::get_pop_size</references>
-        <references refid="de/deb/structBrush_1_1Parameters_1a65d0b2e202d140602ca832dbd0e3c9bc" compoundref="da/d33/params_8h" startline="96" endline="96">Brush::Parameters::get_random_state</references>
-        <references refid="de/deb/structBrush_1_1Parameters_1a5340c96aa233e2a9a631160b0b08099a" compoundref="da/d33/params_8h" startline="117" endline="117">Brush::Parameters::get_save_population</references>
-        <references refid="de/deb/structBrush_1_1Parameters_1a6bfe2cf27c917e6b54f49529e1a23a81" compoundref="da/d33/params_8h" startline="111" endline="111">Brush::Parameters::get_scorer_</references>
-        <references refid="de/deb/structBrush_1_1Parameters_1afff93890adec7af136be0dc19ccdd35f" compoundref="da/d33/params_8h" startline="141" endline="141">Brush::Parameters::get_sel</references>
-        <references refid="de/deb/structBrush_1_1Parameters_1acaae679131485c3a26d673de03dec296" compoundref="da/d33/params_8h" startline="162" endline="162">Brush::Parameters::get_shuffle_split</references>
-        <references refid="de/deb/structBrush_1_1Parameters_1abbd954f5018446151e1f5711171476a9" compoundref="da/d33/params_8h" startline="144" endline="144">Brush::Parameters::get_surv</references>
-        <references refid="de/deb/structBrush_1_1Parameters_1a18bd85faa68a7a7835f374ebaa08e029" compoundref="da/d33/params_8h" startline="153" endline="153">Brush::Parameters::get_use_arch</references>
-        <references refid="de/deb/structBrush_1_1Parameters_1a24bd26badcac2c7285e9966b684ffd3b" compoundref="da/d33/params_8h" startline="156" endline="156">Brush::Parameters::get_val_from_arch</references>
-        <references refid="de/deb/structBrush_1_1Parameters_1aead717c90a933bdc5b1b149a4b40ec78" compoundref="da/d33/params_8h" startline="168" endline="168">Brush::Parameters::get_validation_size</references>
-        <references refid="de/deb/structBrush_1_1Parameters_1a0b9ab7c9b3c3e3fcb4445b4acca9a7c9" compoundref="da/d33/params_8h" startline="93" endline="93">Brush::Parameters::get_verbosity</references>
+        <location file="/home/runner/work/brush/brush/src/bindings/bind_params.cpp" line="7" column="6" bodyfile="/home/runner/work/brush/brush/src/bindings/bind_params.cpp" bodystart="7" bodyend="68"/>
+        <references refid="de/deb/structBrush_1_1Parameters_1a59c69b664a2053e98eaaa42a93bbfc60" compoundref="da/d33/params_8h" startline="113" endline="113">Brush::Parameters::get_bandit</references>
+        <references refid="de/deb/structBrush_1_1Parameters_1a55829db9efdf15f588da5aed54fa42a8" compoundref="da/d33/params_8h" startline="246" endline="246">Brush::Parameters::get_batch_size</references>
+        <references refid="de/deb/structBrush_1_1Parameters_1a50778f2c6d11b993f8388b80616a5459" compoundref="da/d33/params_8h" startline="233" endline="233">Brush::Parameters::get_class_weights</references>
+        <references refid="de/deb/structBrush_1_1Parameters_1a0941104c9a1c006e2d616b04fe8772f8" compoundref="da/d33/params_8h" startline="185" endline="185">Brush::Parameters::get_classification</references>
+        <references refid="de/deb/structBrush_1_1Parameters_1a5945d0484d68867abd931647627507b8" compoundref="da/d33/params_8h" startline="191" endline="191">Brush::Parameters::get_constants_simplification</references>
+        <references refid="de/deb/structBrush_1_1Parameters_1ae342f8777e40bb52f65cdb951a960603" compoundref="da/d33/params_8h" startline="134" endline="134">Brush::Parameters::get_current_gen</references>
+        <references refid="de/deb/structBrush_1_1Parameters_1ad295afd17da08fdccb207f28caf07cc8" compoundref="da/d33/params_8h" startline="173" endline="173">Brush::Parameters::get_cx_prob</references>
+        <references refid="de/deb/structBrush_1_1Parameters_1a503e5e39ff8078bfd0132399bc376651" compoundref="da/d33/params_8h" startline="240" endline="240">Brush::Parameters::get_feature_names</references>
+        <references refid="de/deb/structBrush_1_1Parameters_1aee62986fbd874d410a0d5d4ab81dce7b" compoundref="da/d33/params_8h" startline="252" endline="252">Brush::Parameters::get_functions</references>
+        <references refid="de/deb/structBrush_1_1Parameters_1a1a65ccec3f7dc32f50b115f5423aaaaa" compoundref="da/d33/params_8h" startline="194" endline="194">Brush::Parameters::get_inexact_simplification</references>
+        <references refid="de/deb/structBrush_1_1Parameters_1a714c905329b7ca861e5c7488c1415dbf" compoundref="da/d33/params_8h" startline="125" endline="125">Brush::Parameters::get_load_population</references>
+        <references refid="de/deb/structBrush_1_1Parameters_1a9db4d0fc9bf85b823d8963382118fde5" compoundref="da/d33/params_8h" startline="130" endline="130">Brush::Parameters::get_logfile</references>
+        <references refid="de/deb/structBrush_1_1Parameters_1a77aa7201a837482c7bf92579fe156811" compoundref="da/d33/params_8h" startline="141" endline="141">Brush::Parameters::get_max_depth</references>
+        <references refid="de/deb/structBrush_1_1Parameters_1a32be1d9b49a8ce5636de4828a15ec6c1" compoundref="da/d33/params_8h" startline="110" endline="110">Brush::Parameters::get_max_gens</references>
+        <references refid="de/deb/structBrush_1_1Parameters_1a122b7243856cd15f940b6d6b5ec1074f" compoundref="da/d33/params_8h" startline="147" endline="147">Brush::Parameters::get_max_size</references>
+        <references refid="de/deb/structBrush_1_1Parameters_1a60eb890e9354559600d21c46e310bdd2" compoundref="da/d33/params_8h" startline="116" endline="116">Brush::Parameters::get_max_stall</references>
+        <references refid="de/deb/structBrush_1_1Parameters_1a2cbb237e04a742e5b7045213409f8810" compoundref="da/d33/params_8h" startline="119" endline="119">Brush::Parameters::get_max_time</references>
+        <references refid="de/deb/structBrush_1_1Parameters_1a62efc097c2a873a92515dd492a78a402" compoundref="da/d33/params_8h" startline="176" endline="176">Brush::Parameters::get_mig_prob</references>
+        <references refid="de/deb/structBrush_1_1Parameters_1ae663b0ea31743fceb203fe476f4ddc99" compoundref="da/d33/params_8h" startline="249" endline="249">Brush::Parameters::get_mutation_probs</references>
+        <references refid="de/deb/structBrush_1_1Parameters_1a572e97fe2ee54989dc8c72ad322076f7" compoundref="da/d33/params_8h" startline="232" endline="232">Brush::Parameters::get_n_classes</references>
+        <references refid="de/deb/structBrush_1_1Parameters_1a3bb3c39fa10b2087f5733d7ad47902de" compoundref="da/d33/params_8h" startline="144" endline="144">Brush::Parameters::get_n_jobs</references>
+        <references refid="de/deb/structBrush_1_1Parameters_1a908bc47bbc7691bf870a909c4eb80edb" compoundref="da/d33/params_8h" startline="138" endline="138">Brush::Parameters::get_num_islands</references>
+        <references refid="de/deb/structBrush_1_1Parameters_1a3430720f17bdc30a30291b199cf68015" compoundref="da/d33/params_8h" startline="150" endline="164">Brush::Parameters::get_objectives</references>
+        <references refid="de/deb/structBrush_1_1Parameters_1a7d391d24fbe78545ba09cf01a3634878" compoundref="da/d33/params_8h" startline="107" endline="107">Brush::Parameters::get_pop_size</references>
+        <references refid="de/deb/structBrush_1_1Parameters_1a65d0b2e202d140602ca832dbd0e3c9bc" compoundref="da/d33/params_8h" startline="104" endline="104">Brush::Parameters::get_random_state</references>
+        <references refid="de/deb/structBrush_1_1Parameters_1ab3fe327b0600be29a925541f73d1836b" compoundref="da/d33/params_8h" startline="234" endline="234">Brush::Parameters::get_sample_weights</references>
+        <references refid="de/deb/structBrush_1_1Parameters_1a5340c96aa233e2a9a631160b0b08099a" compoundref="da/d33/params_8h" startline="128" endline="128">Brush::Parameters::get_save_population</references>
+        <references refid="de/deb/structBrush_1_1Parameters_1a6b59a48d2390a37f4cba81f33b348f75" compoundref="da/d33/params_8h" startline="122" endline="122">Brush::Parameters::get_scorer</references>
+        <references refid="de/deb/structBrush_1_1Parameters_1afff93890adec7af136be0dc19ccdd35f" compoundref="da/d33/params_8h" startline="167" endline="167">Brush::Parameters::get_sel</references>
+        <references refid="de/deb/structBrush_1_1Parameters_1acaae679131485c3a26d673de03dec296" compoundref="da/d33/params_8h" startline="188" endline="188">Brush::Parameters::get_shuffle_split</references>
+        <references refid="de/deb/structBrush_1_1Parameters_1abbd954f5018446151e1f5711171476a9" compoundref="da/d33/params_8h" startline="170" endline="170">Brush::Parameters::get_surv</references>
+        <references refid="de/deb/structBrush_1_1Parameters_1a18bd85faa68a7a7835f374ebaa08e029" compoundref="da/d33/params_8h" startline="179" endline="179">Brush::Parameters::get_use_arch</references>
+        <references refid="de/deb/structBrush_1_1Parameters_1a24bd26badcac2c7285e9966b684ffd3b" compoundref="da/d33/params_8h" startline="182" endline="182">Brush::Parameters::get_val_from_arch</references>
+        <references refid="de/deb/structBrush_1_1Parameters_1aead717c90a933bdc5b1b149a4b40ec78" compoundref="da/d33/params_8h" startline="237" endline="237">Brush::Parameters::get_validation_size</references>
+        <references refid="de/deb/structBrush_1_1Parameters_1a0b9ab7c9b3c3e3fcb4445b4acca9a7c9" compoundref="da/d33/params_8h" startline="101" endline="101">Brush::Parameters::get_verbosity</references>
+        <references refid="de/deb/structBrush_1_1Parameters_1a31e0f74e08fd99e1fe1f1033b43b394e" compoundref="da/d33/params_8h" startline="197" endline="197">Brush::Parameters::get_weights_init</references>
         <references refid="d2/d2d/classBrush_1_1Util_1_1Rnd_1a4fee4453f2aff1384cda4e14d53234fe" compoundref="de/d67/rnd_8cpp" startline="26" endline="36">Brush::Util::Rnd::initRand</references>
         <references refid="d6/d2e/namespaceBrush_1_1Util_1af7dd70e54015821d96e3a1afed6344ca" compoundref="d2/da9/rnd_8h" startline="174">Brush::Util::r</references>
-        <references refid="de/deb/structBrush_1_1Parameters_1a3764d1c46477f804a75d58248cc64ea8" compoundref="da/d33/params_8h" startline="173" endline="173">Brush::Parameters::set_batch_size</references>
-        <references refid="de/deb/structBrush_1_1Parameters_1aadbf81786a17f23863c85f1896b7155d" compoundref="da/d33/params_8h" startline="158" endline="158">Brush::Parameters::set_classification</references>
-        <references refid="de/deb/structBrush_1_1Parameters_1a83d1e4fc6ee0bab95df90583080a1bd7" compoundref="da/d33/params_8h" startline="122" endline="122">Brush::Parameters::set_current_gen</references>
-        <references refid="de/deb/structBrush_1_1Parameters_1ae117be02b10c413ff07be95c2edf2417" compoundref="da/d33/params_8h" startline="146" endline="146">Brush::Parameters::set_cx_prob</references>
-        <references refid="de/deb/structBrush_1_1Parameters_1adce3ebf4b9d0aa35a4da35f33e5d9168" compoundref="da/d33/params_8h" startline="170" endline="170">Brush::Parameters::set_feature_names</references>
-        <references refid="de/deb/structBrush_1_1Parameters_1a2054b866fb2d2a08114ae9c468ad3863" compoundref="da/d33/params_8h" startline="179" endline="179">Brush::Parameters::set_functions</references>
-        <references refid="de/deb/structBrush_1_1Parameters_1a7ccc0f7607fb73e0e3c37d7ac6305954" compoundref="da/d33/params_8h" startline="113" endline="113">Brush::Parameters::set_load_population</references>
-        <references refid="de/deb/structBrush_1_1Parameters_1a531d8a7a2fc8a402881be57b62f38e2c" compoundref="da/d33/params_8h" startline="120" endline="120">Brush::Parameters::set_logfile</references>
-        <references refid="de/deb/structBrush_1_1Parameters_1a09b2945802ab49e8510e16181a7d916e" compoundref="da/d33/params_8h" startline="128" endline="128">Brush::Parameters::set_max_depth</references>
-        <references refid="de/deb/structBrush_1_1Parameters_1a11a7976ca8a7aaa45d9722b74aeb5704" compoundref="da/d33/params_8h" startline="101" endline="101">Brush::Parameters::set_max_gens</references>
-        <references refid="de/deb/structBrush_1_1Parameters_1ad36ed3c368c1cc152b179a824e9b3144" compoundref="da/d33/params_8h" startline="134" endline="134">Brush::Parameters::set_max_size</references>
-        <references refid="de/deb/structBrush_1_1Parameters_1a0ca031442d56216059f5fe520d493b9b" compoundref="da/d33/params_8h" startline="104" endline="104">Brush::Parameters::set_max_stall</references>
-        <references refid="de/deb/structBrush_1_1Parameters_1a1961e03a4ec41dcc0fd1d384ebeca6cd" compoundref="da/d33/params_8h" startline="107" endline="107">Brush::Parameters::set_max_time</references>
-        <references refid="de/deb/structBrush_1_1Parameters_1afb6a671883dbfbde88932791fbb4de87" compoundref="da/d33/params_8h" startline="149" endline="149">Brush::Parameters::set_mig_prob</references>
-        <references refid="de/deb/structBrush_1_1Parameters_1a21bfb9aa5ac33bee26416611d51cee1a" compoundref="da/d33/params_8h" startline="176" endline="176">Brush::Parameters::set_mutation_probs</references>
-        <references refid="de/deb/structBrush_1_1Parameters_1a0f4d07dbdf17466810ef7e944cadf3f0" compoundref="da/d33/params_8h" startline="164" endline="164">Brush::Parameters::set_n_classes</references>
-        <references refid="de/deb/structBrush_1_1Parameters_1a49b871e5bfa462b974e47112cc53ce53" compoundref="da/d33/params_8h" startline="125" endline="125">Brush::Parameters::set_num_islands</references>
-        <references refid="de/deb/structBrush_1_1Parameters_1abb9b1681e45572c95ce97f0e5aeefa05" compoundref="da/d33/params_8h" startline="137" endline="137">Brush::Parameters::set_objectives</references>
-        <references refid="de/deb/structBrush_1_1Parameters_1a4e5aa0dc57b760b0329483e64c3ccea3" compoundref="da/d33/params_8h" startline="98" endline="98">Brush::Parameters::set_pop_size</references>
-        <references refid="de/deb/structBrush_1_1Parameters_1a520456c57a2c3f8703036ae0d5142635" compoundref="da/d33/params_8h" startline="95" endline="95">Brush::Parameters::set_random_state</references>
-        <references refid="de/deb/structBrush_1_1Parameters_1a03a5ec7ccfcba501d57264aeb3a41263" compoundref="da/d33/params_8h" startline="116" endline="116">Brush::Parameters::set_save_population</references>
-        <references refid="de/deb/structBrush_1_1Parameters_1ae5f2660ca53a25b460e23332b234230d" compoundref="da/d33/params_8h" startline="110" endline="110">Brush::Parameters::set_scorer_</references>
-        <references refid="de/deb/structBrush_1_1Parameters_1a9a8f5f8dbfd009fd4aed4b322c19b429" compoundref="da/d33/params_8h" startline="140" endline="140">Brush::Parameters::set_sel</references>
-        <references refid="de/deb/structBrush_1_1Parameters_1a165c8b63ae6066b392ab945c2d04a7b5" compoundref="da/d33/params_8h" startline="161" endline="161">Brush::Parameters::set_shuffle_split</references>
-        <references refid="de/deb/structBrush_1_1Parameters_1aaa61711b5534b0530b60cd11a7070e7c" compoundref="da/d33/params_8h" startline="143" endline="143">Brush::Parameters::set_surv</references>
-        <references refid="de/deb/structBrush_1_1Parameters_1aab67dbc5fa33691d911959e0ab70b356" compoundref="da/d33/params_8h" startline="152" endline="152">Brush::Parameters::set_use_arch</references>
-        <references refid="de/deb/structBrush_1_1Parameters_1a3911c070b29e41bd9fa50dffcec77986" compoundref="da/d33/params_8h" startline="155" endline="155">Brush::Parameters::set_val_from_arch</references>
-        <references refid="de/deb/structBrush_1_1Parameters_1adcfeb3fbcd6bb2ace4eb112dd1ac1fc7" compoundref="da/d33/params_8h" startline="167" endline="167">Brush::Parameters::set_validation_size</references>
-        <references refid="de/deb/structBrush_1_1Parameters_1af232e2b8ac05a182b54437cbf03fc18c" compoundref="da/d33/params_8h" startline="91" endline="92">Brush::Parameters::set_verbosity</references>
+        <references refid="de/deb/structBrush_1_1Parameters_1afed0556e44457c8ef23a69631ae8561e" compoundref="da/d33/params_8h" startline="112" endline="112">Brush::Parameters::set_bandit</references>
+        <references refid="de/deb/structBrush_1_1Parameters_1a3764d1c46477f804a75d58248cc64ea8" compoundref="da/d33/params_8h" startline="245" endline="245">Brush::Parameters::set_batch_size</references>
+        <references refid="de/deb/structBrush_1_1Parameters_1a44c430fde30e55d5e1ff3bbbda26fd76" compoundref="da/d33/params_8h" startline="218" endline="224">Brush::Parameters::set_class_weights</references>
+        <references refid="de/deb/structBrush_1_1Parameters_1aadbf81786a17f23863c85f1896b7155d" compoundref="da/d33/params_8h" startline="184" endline="184">Brush::Parameters::set_classification</references>
+        <references refid="de/deb/structBrush_1_1Parameters_1a461cce1b7b252913ede2e7b8d6cb5c91" compoundref="da/d33/params_8h" startline="190" endline="190">Brush::Parameters::set_constants_simplification</references>
+        <references refid="de/deb/structBrush_1_1Parameters_1a83d1e4fc6ee0bab95df90583080a1bd7" compoundref="da/d33/params_8h" startline="133" endline="133">Brush::Parameters::set_current_gen</references>
+        <references refid="de/deb/structBrush_1_1Parameters_1ae117be02b10c413ff07be95c2edf2417" compoundref="da/d33/params_8h" startline="172" endline="172">Brush::Parameters::set_cx_prob</references>
+        <references refid="de/deb/structBrush_1_1Parameters_1adce3ebf4b9d0aa35a4da35f33e5d9168" compoundref="da/d33/params_8h" startline="239" endline="239">Brush::Parameters::set_feature_names</references>
+        <references refid="de/deb/structBrush_1_1Parameters_1a2054b866fb2d2a08114ae9c468ad3863" compoundref="da/d33/params_8h" startline="251" endline="251">Brush::Parameters::set_functions</references>
+        <references refid="de/deb/structBrush_1_1Parameters_1a2b56dd258dc9aac0a2dc1420743ce39f" compoundref="da/d33/params_8h" startline="193" endline="193">Brush::Parameters::set_inexact_simplification</references>
+        <references refid="de/deb/structBrush_1_1Parameters_1a7ccc0f7607fb73e0e3c37d7ac6305954" compoundref="da/d33/params_8h" startline="124" endline="124">Brush::Parameters::set_load_population</references>
+        <references refid="de/deb/structBrush_1_1Parameters_1a531d8a7a2fc8a402881be57b62f38e2c" compoundref="da/d33/params_8h" startline="131" endline="131">Brush::Parameters::set_logfile</references>
+        <references refid="de/deb/structBrush_1_1Parameters_1a09b2945802ab49e8510e16181a7d916e" compoundref="da/d33/params_8h" startline="140" endline="140">Brush::Parameters::set_max_depth</references>
+        <references refid="de/deb/structBrush_1_1Parameters_1a11a7976ca8a7aaa45d9722b74aeb5704" compoundref="da/d33/params_8h" startline="109" endline="109">Brush::Parameters::set_max_gens</references>
+        <references refid="de/deb/structBrush_1_1Parameters_1ad36ed3c368c1cc152b179a824e9b3144" compoundref="da/d33/params_8h" startline="146" endline="146">Brush::Parameters::set_max_size</references>
+        <references refid="de/deb/structBrush_1_1Parameters_1a0ca031442d56216059f5fe520d493b9b" compoundref="da/d33/params_8h" startline="115" endline="115">Brush::Parameters::set_max_stall</references>
+        <references refid="de/deb/structBrush_1_1Parameters_1a1961e03a4ec41dcc0fd1d384ebeca6cd" compoundref="da/d33/params_8h" startline="118" endline="118">Brush::Parameters::set_max_time</references>
+        <references refid="de/deb/structBrush_1_1Parameters_1afb6a671883dbfbde88932791fbb4de87" compoundref="da/d33/params_8h" startline="175" endline="175">Brush::Parameters::set_mig_prob</references>
+        <references refid="de/deb/structBrush_1_1Parameters_1a21bfb9aa5ac33bee26416611d51cee1a" compoundref="da/d33/params_8h" startline="248" endline="248">Brush::Parameters::set_mutation_probs</references>
+        <references refid="de/deb/structBrush_1_1Parameters_1a2601b9ce7184a0bc7b58efe8f477e178" compoundref="da/d33/params_8h" startline="199" endline="217">Brush::Parameters::set_n_classes</references>
+        <references refid="de/deb/structBrush_1_1Parameters_1ad5cf6dfc60d005e70ef569ac1e58bdeb" compoundref="da/d33/params_8h" startline="143" endline="143">Brush::Parameters::set_n_jobs</references>
+        <references refid="de/deb/structBrush_1_1Parameters_1a49b871e5bfa462b974e47112cc53ce53" compoundref="da/d33/params_8h" startline="137" endline="137">Brush::Parameters::set_num_islands</references>
+        <references refid="de/deb/structBrush_1_1Parameters_1abb9b1681e45572c95ce97f0e5aeefa05" compoundref="da/d33/params_8h" startline="149" endline="149">Brush::Parameters::set_objectives</references>
+        <references refid="de/deb/structBrush_1_1Parameters_1a4e5aa0dc57b760b0329483e64c3ccea3" compoundref="da/d33/params_8h" startline="106" endline="106">Brush::Parameters::set_pop_size</references>
+        <references refid="de/deb/structBrush_1_1Parameters_1a520456c57a2c3f8703036ae0d5142635" compoundref="da/d33/params_8h" startline="103" endline="103">Brush::Parameters::set_random_state</references>
+        <references refid="de/deb/structBrush_1_1Parameters_1abcb29d9409d58681fe925d955c010573" compoundref="da/d33/params_8h" startline="225" endline="230">Brush::Parameters::set_sample_weights</references>
+        <references refid="de/deb/structBrush_1_1Parameters_1a03a5ec7ccfcba501d57264aeb3a41263" compoundref="da/d33/params_8h" startline="127" endline="127">Brush::Parameters::set_save_population</references>
+        <references refid="de/deb/structBrush_1_1Parameters_1a9a9fea16aff19dd2b74f98c379a2e3cf" compoundref="da/d33/params_8h" startline="121" endline="121">Brush::Parameters::set_scorer</references>
+        <references refid="de/deb/structBrush_1_1Parameters_1a9a8f5f8dbfd009fd4aed4b322c19b429" compoundref="da/d33/params_8h" startline="166" endline="166">Brush::Parameters::set_sel</references>
+        <references refid="de/deb/structBrush_1_1Parameters_1a165c8b63ae6066b392ab945c2d04a7b5" compoundref="da/d33/params_8h" startline="187" endline="187">Brush::Parameters::set_shuffle_split</references>
+        <references refid="de/deb/structBrush_1_1Parameters_1aaa61711b5534b0530b60cd11a7070e7c" compoundref="da/d33/params_8h" startline="169" endline="169">Brush::Parameters::set_surv</references>
+        <references refid="de/deb/structBrush_1_1Parameters_1aab67dbc5fa33691d911959e0ab70b356" compoundref="da/d33/params_8h" startline="178" endline="178">Brush::Parameters::set_use_arch</references>
+        <references refid="de/deb/structBrush_1_1Parameters_1a3911c070b29e41bd9fa50dffcec77986" compoundref="da/d33/params_8h" startline="181" endline="181">Brush::Parameters::set_val_from_arch</references>
+        <references refid="de/deb/structBrush_1_1Parameters_1adcfeb3fbcd6bb2ace4eb112dd1ac1fc7" compoundref="da/d33/params_8h" startline="236" endline="236">Brush::Parameters::set_validation_size</references>
+        <references refid="de/deb/structBrush_1_1Parameters_1af232e2b8ac05a182b54437cbf03fc18c" compoundref="da/d33/params_8h" startline="99" endline="100">Brush::Parameters::set_verbosity</references>
+        <references refid="de/deb/structBrush_1_1Parameters_1a5f6ede2fb7d56bcb51c687eea1721efe" compoundref="da/d33/params_8h" startline="196" endline="196">Brush::Parameters::set_weights_init</references>
         <referencedby refid="dd/d30/module_8cpp_1ab3432520f506686ba18c7ce7758a6c69" compoundref="dd/d30/module_8cpp" startline="33" endline="60">PYBIND11_MODULE</referencedby>
       </memberdef>
     </sectiondef>
@@ -282,44 +351,53 @@
 <codeline lineno="19"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>.def_property(</highlight><highlight class="stringliteral">&quot;max_stall&quot;</highlight><highlight class="normal">,<sp/>&amp;<ref refid="de/deb/structBrush_1_1Parameters_1a60eb890e9354559600d21c46e310bdd2" kindref="member">Brush::Parameters::get_max_stall</ref>,<sp/>&amp;<ref refid="de/deb/structBrush_1_1Parameters_1a0ca031442d56216059f5fe520d493b9b" kindref="member">Brush::Parameters::set_max_stall</ref>)</highlight></codeline>
 <codeline lineno="20"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>.def_property(</highlight><highlight class="stringliteral">&quot;max_time&quot;</highlight><highlight class="normal">,<sp/>&amp;<ref refid="de/deb/structBrush_1_1Parameters_1a2cbb237e04a742e5b7045213409f8810" kindref="member">Brush::Parameters::get_max_time</ref>,<sp/>&amp;<ref refid="de/deb/structBrush_1_1Parameters_1a1961e03a4ec41dcc0fd1d384ebeca6cd" kindref="member">Brush::Parameters::set_max_time</ref>)</highlight></codeline>
 <codeline lineno="21"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>.def_property(</highlight><highlight class="stringliteral">&quot;current_gen&quot;</highlight><highlight class="normal">,<sp/>&amp;<ref refid="de/deb/structBrush_1_1Parameters_1ae342f8777e40bb52f65cdb951a960603" kindref="member">Brush::Parameters::get_current_gen</ref>,<sp/>&amp;<ref refid="de/deb/structBrush_1_1Parameters_1a83d1e4fc6ee0bab95df90583080a1bd7" kindref="member">Brush::Parameters::set_current_gen</ref>)</highlight></codeline>
-<codeline lineno="22"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>.def_property(</highlight><highlight class="stringliteral">&quot;scorer_&quot;</highlight><highlight class="normal">,<sp/>&amp;<ref refid="de/deb/structBrush_1_1Parameters_1a6bfe2cf27c917e6b54f49529e1a23a81" kindref="member">Brush::Parameters::get_scorer_</ref>,<sp/>&amp;<ref refid="de/deb/structBrush_1_1Parameters_1ae5f2660ca53a25b460e23332b234230d" kindref="member">Brush::Parameters::set_scorer_</ref>)</highlight></codeline>
+<codeline lineno="22"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>.def_property(</highlight><highlight class="stringliteral">&quot;scorer&quot;</highlight><highlight class="normal">,<sp/>&amp;<ref refid="de/deb/structBrush_1_1Parameters_1a6b59a48d2390a37f4cba81f33b348f75" kindref="member">Brush::Parameters::get_scorer</ref>,<sp/>&amp;<ref refid="de/deb/structBrush_1_1Parameters_1a9a9fea16aff19dd2b74f98c379a2e3cf" kindref="member">Brush::Parameters::set_scorer</ref>)</highlight></codeline>
 <codeline lineno="23"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>.def_property(</highlight><highlight class="stringliteral">&quot;random_state&quot;</highlight><highlight class="normal">,<sp/>&amp;<ref refid="de/deb/structBrush_1_1Parameters_1a65d0b2e202d140602ca832dbd0e3c9bc" kindref="member">Brush::Parameters::get_random_state</ref>,<sp/>&amp;<ref refid="de/deb/structBrush_1_1Parameters_1a520456c57a2c3f8703036ae0d5142635" kindref="member">Brush::Parameters::set_random_state</ref>)</highlight></codeline>
 <codeline lineno="24"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>.def_property(</highlight><highlight class="stringliteral">&quot;load_population&quot;</highlight><highlight class="normal">,<sp/>&amp;<ref refid="de/deb/structBrush_1_1Parameters_1a714c905329b7ca861e5c7488c1415dbf" kindref="member">Brush::Parameters::get_load_population</ref>,<sp/>&amp;<ref refid="de/deb/structBrush_1_1Parameters_1a7ccc0f7607fb73e0e3c37d7ac6305954" kindref="member">Brush::Parameters::set_load_population</ref>)</highlight></codeline>
 <codeline lineno="25"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>.def_property(</highlight><highlight class="stringliteral">&quot;save_population&quot;</highlight><highlight class="normal">,<sp/>&amp;<ref refid="de/deb/structBrush_1_1Parameters_1a5340c96aa233e2a9a631160b0b08099a" kindref="member">Brush::Parameters::get_save_population</ref>,<sp/>&amp;<ref refid="de/deb/structBrush_1_1Parameters_1a03a5ec7ccfcba501d57264aeb3a41263" kindref="member">Brush::Parameters::set_save_population</ref>)</highlight></codeline>
 <codeline lineno="26"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>.def_property(</highlight><highlight class="stringliteral">&quot;logfile&quot;</highlight><highlight class="normal">,<sp/>&amp;<ref refid="de/deb/structBrush_1_1Parameters_1a9db4d0fc9bf85b823d8963382118fde5" kindref="member">Brush::Parameters::get_logfile</ref>,<sp/>&amp;<ref refid="de/deb/structBrush_1_1Parameters_1a531d8a7a2fc8a402881be57b62f38e2c" kindref="member">Brush::Parameters::set_logfile</ref>)</highlight></codeline>
 <codeline lineno="27"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>.def_property(</highlight><highlight class="stringliteral">&quot;num_islands&quot;</highlight><highlight class="normal">,<sp/>&amp;<ref refid="de/deb/structBrush_1_1Parameters_1a908bc47bbc7691bf870a909c4eb80edb" kindref="member">Brush::Parameters::get_num_islands</ref>,<sp/>&amp;<ref refid="de/deb/structBrush_1_1Parameters_1a49b871e5bfa462b974e47112cc53ce53" kindref="member">Brush::Parameters::set_num_islands</ref>)</highlight></codeline>
-<codeline lineno="28"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>.def_property(</highlight><highlight class="stringliteral">&quot;use_arch&quot;</highlight><highlight class="normal">,<sp/>&amp;<ref refid="de/deb/structBrush_1_1Parameters_1a18bd85faa68a7a7835f374ebaa08e029" kindref="member">Brush::Parameters::get_use_arch</ref>,<sp/>&amp;<ref refid="de/deb/structBrush_1_1Parameters_1aab67dbc5fa33691d911959e0ab70b356" kindref="member">Brush::Parameters::set_use_arch</ref>)</highlight></codeline>
-<codeline lineno="29"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>.def_property(</highlight><highlight class="stringliteral">&quot;val_from_arch&quot;</highlight><highlight class="normal">,<sp/>&amp;<ref refid="de/deb/structBrush_1_1Parameters_1a24bd26badcac2c7285e9966b684ffd3b" kindref="member">Brush::Parameters::get_val_from_arch</ref>,<sp/>&amp;<ref refid="de/deb/structBrush_1_1Parameters_1a3911c070b29e41bd9fa50dffcec77986" kindref="member">Brush::Parameters::set_val_from_arch</ref>)</highlight></codeline>
-<codeline lineno="30"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>.def_property(</highlight><highlight class="stringliteral">&quot;n_classes&quot;</highlight><highlight class="normal">,<sp/>&amp;<ref refid="de/deb/structBrush_1_1Parameters_1a572e97fe2ee54989dc8c72ad322076f7" kindref="member">Brush::Parameters::get_n_classes</ref>,<sp/>&amp;<ref refid="de/deb/structBrush_1_1Parameters_1a0f4d07dbdf17466810ef7e944cadf3f0" kindref="member">Brush::Parameters::set_n_classes</ref>)</highlight></codeline>
-<codeline lineno="31"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>.def_property(</highlight><highlight class="stringliteral">&quot;n_jobs&quot;</highlight><highlight class="normal">,<sp/>&amp;<ref refid="de/deb/structBrush_1_1Parameters_1a3bb3c39fa10b2087f5733d7ad47902de" kindref="member">Brush::Parameters::get_n_jobs</ref>,<sp/>&amp;<ref refid="de/deb/structBrush_1_1Parameters_1a0f4d07dbdf17466810ef7e944cadf3f0" kindref="member">Brush::Parameters::set_n_classes</ref>)</highlight></codeline>
-<codeline lineno="32"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>.def_property(</highlight><highlight class="stringliteral">&quot;classification&quot;</highlight><highlight class="normal">,<sp/>&amp;<ref refid="de/deb/structBrush_1_1Parameters_1a0941104c9a1c006e2d616b04fe8772f8" kindref="member">Brush::Parameters::get_classification</ref>,<sp/>&amp;<ref refid="de/deb/structBrush_1_1Parameters_1aadbf81786a17f23863c85f1896b7155d" kindref="member">Brush::Parameters::set_classification</ref>)</highlight></codeline>
-<codeline lineno="33"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>.def_property(</highlight><highlight class="stringliteral">&quot;shuffle_split&quot;</highlight><highlight class="normal">,<sp/>&amp;<ref refid="de/deb/structBrush_1_1Parameters_1acaae679131485c3a26d673de03dec296" kindref="member">Brush::Parameters::get_shuffle_split</ref>,<sp/>&amp;<ref refid="de/deb/structBrush_1_1Parameters_1a165c8b63ae6066b392ab945c2d04a7b5" kindref="member">Brush::Parameters::set_shuffle_split</ref>)</highlight></codeline>
-<codeline lineno="34"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>.def_property(</highlight><highlight class="stringliteral">&quot;validation_size&quot;</highlight><highlight class="normal">,<sp/>&amp;<ref refid="de/deb/structBrush_1_1Parameters_1aead717c90a933bdc5b1b149a4b40ec78" kindref="member">Brush::Parameters::get_validation_size</ref>,<sp/>&amp;<ref refid="de/deb/structBrush_1_1Parameters_1adcfeb3fbcd6bb2ace4eb112dd1ac1fc7" kindref="member">Brush::Parameters::set_validation_size</ref>)</highlight></codeline>
-<codeline lineno="35"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>.def_property(</highlight><highlight class="stringliteral">&quot;feature_names&quot;</highlight><highlight class="normal">,<sp/>&amp;<ref refid="de/deb/structBrush_1_1Parameters_1a503e5e39ff8078bfd0132399bc376651" kindref="member">Brush::Parameters::get_feature_names</ref>,<sp/>&amp;<ref refid="de/deb/structBrush_1_1Parameters_1adce3ebf4b9d0aa35a4da35f33e5d9168" kindref="member">Brush::Parameters::set_feature_names</ref>)</highlight></codeline>
-<codeline lineno="36"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>.def_property(</highlight><highlight class="stringliteral">&quot;batch_size&quot;</highlight><highlight class="normal">,<sp/>&amp;<ref refid="de/deb/structBrush_1_1Parameters_1a55829db9efdf15f588da5aed54fa42a8" kindref="member">Brush::Parameters::get_batch_size</ref>,<sp/>&amp;<ref refid="de/deb/structBrush_1_1Parameters_1a3764d1c46477f804a75d58248cc64ea8" kindref="member">Brush::Parameters::set_batch_size</ref>)</highlight></codeline>
-<codeline lineno="37"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>.def_property(</highlight><highlight class="stringliteral">&quot;max_depth&quot;</highlight><highlight class="normal">,<sp/>&amp;<ref refid="de/deb/structBrush_1_1Parameters_1a77aa7201a837482c7bf92579fe156811" kindref="member">Brush::Parameters::get_max_depth</ref>,<sp/>&amp;<ref refid="de/deb/structBrush_1_1Parameters_1a09b2945802ab49e8510e16181a7d916e" kindref="member">Brush::Parameters::set_max_depth</ref>)</highlight></codeline>
-<codeline lineno="38"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>.def_property(</highlight><highlight class="stringliteral">&quot;max_size&quot;</highlight><highlight class="normal">,<sp/>&amp;<ref refid="de/deb/structBrush_1_1Parameters_1a122b7243856cd15f940b6d6b5ec1074f" kindref="member">Brush::Parameters::get_max_size</ref>,<sp/>&amp;<ref refid="de/deb/structBrush_1_1Parameters_1ad36ed3c368c1cc152b179a824e9b3144" kindref="member">Brush::Parameters::set_max_size</ref>)</highlight></codeline>
-<codeline lineno="39"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>.def_property(</highlight><highlight class="stringliteral">&quot;objectives&quot;</highlight><highlight class="normal">,<sp/>&amp;<ref refid="de/deb/structBrush_1_1Parameters_1a1c9f68be4ca366f7658cc469c2f2f3b6" kindref="member">Brush::Parameters::get_objectives</ref>,<sp/>&amp;<ref refid="de/deb/structBrush_1_1Parameters_1abb9b1681e45572c95ce97f0e5aeefa05" kindref="member">Brush::Parameters::set_objectives</ref>)</highlight></codeline>
-<codeline lineno="40"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>.def_property(</highlight><highlight class="stringliteral">&quot;sel&quot;</highlight><highlight class="normal">,<sp/>&amp;<ref refid="de/deb/structBrush_1_1Parameters_1afff93890adec7af136be0dc19ccdd35f" kindref="member">Brush::Parameters::get_sel</ref>,<sp/>&amp;<ref refid="de/deb/structBrush_1_1Parameters_1a9a8f5f8dbfd009fd4aed4b322c19b429" kindref="member">Brush::Parameters::set_sel</ref>)</highlight></codeline>
-<codeline lineno="41"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>.def_property(</highlight><highlight class="stringliteral">&quot;surv&quot;</highlight><highlight class="normal">,<sp/>&amp;<ref refid="de/deb/structBrush_1_1Parameters_1abbd954f5018446151e1f5711171476a9" kindref="member">Brush::Parameters::get_surv</ref>,<sp/>&amp;<ref refid="de/deb/structBrush_1_1Parameters_1aaa61711b5534b0530b60cd11a7070e7c" kindref="member">Brush::Parameters::set_surv</ref>)</highlight></codeline>
-<codeline lineno="42"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>.def_property(</highlight><highlight class="stringliteral">&quot;cx_prob&quot;</highlight><highlight class="normal">,<sp/>&amp;<ref refid="de/deb/structBrush_1_1Parameters_1ad295afd17da08fdccb207f28caf07cc8" kindref="member">Brush::Parameters::get_cx_prob</ref>,<sp/>&amp;<ref refid="de/deb/structBrush_1_1Parameters_1ae117be02b10c413ff07be95c2edf2417" kindref="member">Brush::Parameters::set_cx_prob</ref>)</highlight></codeline>
-<codeline lineno="43"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>.def_property(</highlight><highlight class="stringliteral">&quot;mig_prob&quot;</highlight><highlight class="normal">,<sp/>&amp;<ref refid="de/deb/structBrush_1_1Parameters_1a62efc097c2a873a92515dd492a78a402" kindref="member">Brush::Parameters::get_mig_prob</ref>,<sp/>&amp;<ref refid="de/deb/structBrush_1_1Parameters_1afb6a671883dbfbde88932791fbb4de87" kindref="member">Brush::Parameters::set_mig_prob</ref>)</highlight></codeline>
-<codeline lineno="44"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>.def_property(</highlight><highlight class="stringliteral">&quot;functions&quot;</highlight><highlight class="normal">,<sp/>&amp;<ref refid="de/deb/structBrush_1_1Parameters_1aee62986fbd874d410a0d5d4ab81dce7b" kindref="member">Brush::Parameters::get_functions</ref>,<sp/>&amp;<ref refid="de/deb/structBrush_1_1Parameters_1a2054b866fb2d2a08114ae9c468ad3863" kindref="member">Brush::Parameters::set_functions</ref>)</highlight></codeline>
-<codeline lineno="45"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>.def_property(</highlight><highlight class="stringliteral">&quot;mutation_probs&quot;</highlight><highlight class="normal">,<sp/>&amp;<ref refid="de/deb/structBrush_1_1Parameters_1ae663b0ea31743fceb203fe476f4ddc99" kindref="member">Brush::Parameters::get_mutation_probs</ref>,<sp/>&amp;<ref refid="de/deb/structBrush_1_1Parameters_1a21bfb9aa5ac33bee26416611d51cee1a" kindref="member">Brush::Parameters::set_mutation_probs</ref>)</highlight></codeline>
-<codeline lineno="46"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>.def(py::pickle(</highlight></codeline>
-<codeline lineno="47"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>[](</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="de/deb/structBrush_1_1Parameters" kindref="compound">Brush::Parameters</ref><sp/>&amp;p)<sp/>{<sp/></highlight><highlight class="comment">//<sp/>__getstate__</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="48"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>Return<sp/>a<sp/>tuple<sp/>that<sp/>fully<sp/>encodes<sp/>the<sp/>state<sp/>of<sp/>the<sp/>object<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="49"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>return<sp/>py::make_tuple(p.value(),<sp/>p.extra());</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="50"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>nl::json<sp/>j<sp/>=<sp/>p;</highlight></codeline>
-<codeline lineno="51"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>j;</highlight></codeline>
-<codeline lineno="52"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>},</highlight></codeline>
-<codeline lineno="53"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>[](nl::json<sp/>j)<sp/>{<sp/></highlight><highlight class="comment">//<sp/>__setstate__</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="54"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="de/deb/structBrush_1_1Parameters" kindref="compound">Brush::Parameters</ref><sp/>p<sp/>=<sp/>j;</highlight></codeline>
-<codeline lineno="55"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>p;</highlight></codeline>
-<codeline lineno="56"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>})</highlight></codeline>
-<codeline lineno="57"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>)</highlight></codeline>
-<codeline lineno="58"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>;<sp/><sp/><sp/><sp/></highlight></codeline>
-<codeline lineno="59"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="28"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>.def_property(</highlight><highlight class="stringliteral">&quot;constants_simplification&quot;</highlight><highlight class="normal">,<sp/>&amp;<ref refid="de/deb/structBrush_1_1Parameters_1a5945d0484d68867abd931647627507b8" kindref="member">Brush::Parameters::get_constants_simplification</ref>,<sp/>&amp;<ref refid="de/deb/structBrush_1_1Parameters_1a461cce1b7b252913ede2e7b8d6cb5c91" kindref="member">Brush::Parameters::set_constants_simplification</ref>)</highlight></codeline>
+<codeline lineno="29"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>.def_property(</highlight><highlight class="stringliteral">&quot;inexact_simplification&quot;</highlight><highlight class="normal">,<sp/>&amp;<ref refid="de/deb/structBrush_1_1Parameters_1a1a65ccec3f7dc32f50b115f5423aaaaa" kindref="member">Brush::Parameters::get_inexact_simplification</ref>,<sp/>&amp;<ref refid="de/deb/structBrush_1_1Parameters_1a2b56dd258dc9aac0a2dc1420743ce39f" kindref="member">Brush::Parameters::set_inexact_simplification</ref>)</highlight></codeline>
+<codeline lineno="30"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>.def_property(</highlight><highlight class="stringliteral">&quot;use_arch&quot;</highlight><highlight class="normal">,<sp/>&amp;<ref refid="de/deb/structBrush_1_1Parameters_1a18bd85faa68a7a7835f374ebaa08e029" kindref="member">Brush::Parameters::get_use_arch</ref>,<sp/>&amp;<ref refid="de/deb/structBrush_1_1Parameters_1aab67dbc5fa33691d911959e0ab70b356" kindref="member">Brush::Parameters::set_use_arch</ref>)</highlight></codeline>
+<codeline lineno="31"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>.def_property(</highlight><highlight class="stringliteral">&quot;val_from_arch&quot;</highlight><highlight class="normal">,<sp/>&amp;<ref refid="de/deb/structBrush_1_1Parameters_1a24bd26badcac2c7285e9966b684ffd3b" kindref="member">Brush::Parameters::get_val_from_arch</ref>,<sp/>&amp;<ref refid="de/deb/structBrush_1_1Parameters_1a3911c070b29e41bd9fa50dffcec77986" kindref="member">Brush::Parameters::set_val_from_arch</ref>)</highlight></codeline>
+<codeline lineno="32"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>.def(</highlight><highlight class="stringliteral">&quot;set_n_classes&quot;</highlight><highlight class="normal">,<sp/>&amp;<ref refid="de/deb/structBrush_1_1Parameters_1a2601b9ce7184a0bc7b58efe8f477e178" kindref="member">Brush::Parameters::set_n_classes</ref>)</highlight></codeline>
+<codeline lineno="33"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>.def(</highlight><highlight class="stringliteral">&quot;set_class_weights&quot;</highlight><highlight class="normal">,<sp/>&amp;<ref refid="de/deb/structBrush_1_1Parameters_1a44c430fde30e55d5e1ff3bbbda26fd76" kindref="member">Brush::Parameters::set_class_weights</ref>)</highlight></codeline>
+<codeline lineno="34"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>.def(</highlight><highlight class="stringliteral">&quot;set_sample_weights&quot;</highlight><highlight class="normal">,<sp/>&amp;<ref refid="de/deb/structBrush_1_1Parameters_1abcb29d9409d58681fe925d955c010573" kindref="member">Brush::Parameters::set_sample_weights</ref>)</highlight></codeline>
+<codeline lineno="35"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>.def_property_readonly(</highlight><highlight class="stringliteral">&quot;n_classes&quot;</highlight><highlight class="normal">,<sp/>&amp;<ref refid="de/deb/structBrush_1_1Parameters_1a572e97fe2ee54989dc8c72ad322076f7" kindref="member">br::Parameters::get_n_classes</ref>)</highlight></codeline>
+<codeline lineno="36"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>.def_property_readonly(</highlight><highlight class="stringliteral">&quot;class_weights&quot;</highlight><highlight class="normal">,<sp/>&amp;<ref refid="de/deb/structBrush_1_1Parameters_1a50778f2c6d11b993f8388b80616a5459" kindref="member">br::Parameters::get_class_weights</ref>)</highlight></codeline>
+<codeline lineno="37"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>.def_property_readonly(</highlight><highlight class="stringliteral">&quot;sample_weights&quot;</highlight><highlight class="normal">,<sp/>&amp;<ref refid="de/deb/structBrush_1_1Parameters_1ab3fe327b0600be29a925541f73d1836b" kindref="member">br::Parameters::get_sample_weights</ref>)</highlight></codeline>
+<codeline lineno="38"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>.def_property(</highlight><highlight class="stringliteral">&quot;n_jobs&quot;</highlight><highlight class="normal">,<sp/>&amp;<ref refid="de/deb/structBrush_1_1Parameters_1a3bb3c39fa10b2087f5733d7ad47902de" kindref="member">Brush::Parameters::get_n_jobs</ref>,<sp/>&amp;<ref refid="de/deb/structBrush_1_1Parameters_1ad5cf6dfc60d005e70ef569ac1e58bdeb" kindref="member">Brush::Parameters::set_n_jobs</ref>)</highlight></codeline>
+<codeline lineno="39"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>.def_property(</highlight><highlight class="stringliteral">&quot;weights_init&quot;</highlight><highlight class="normal">,<sp/>&amp;<ref refid="de/deb/structBrush_1_1Parameters_1a31e0f74e08fd99e1fe1f1033b43b394e" kindref="member">Brush::Parameters::get_weights_init</ref>,<sp/>&amp;<ref refid="de/deb/structBrush_1_1Parameters_1a5f6ede2fb7d56bcb51c687eea1721efe" kindref="member">Brush::Parameters::set_weights_init</ref>)</highlight></codeline>
+<codeline lineno="40"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>.def_property(</highlight><highlight class="stringliteral">&quot;classification&quot;</highlight><highlight class="normal">,<sp/>&amp;<ref refid="de/deb/structBrush_1_1Parameters_1a0941104c9a1c006e2d616b04fe8772f8" kindref="member">Brush::Parameters::get_classification</ref>,<sp/>&amp;<ref refid="de/deb/structBrush_1_1Parameters_1aadbf81786a17f23863c85f1896b7155d" kindref="member">Brush::Parameters::set_classification</ref>)</highlight></codeline>
+<codeline lineno="41"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>.def_property(</highlight><highlight class="stringliteral">&quot;shuffle_split&quot;</highlight><highlight class="normal">,<sp/>&amp;<ref refid="de/deb/structBrush_1_1Parameters_1acaae679131485c3a26d673de03dec296" kindref="member">Brush::Parameters::get_shuffle_split</ref>,<sp/>&amp;<ref refid="de/deb/structBrush_1_1Parameters_1a165c8b63ae6066b392ab945c2d04a7b5" kindref="member">Brush::Parameters::set_shuffle_split</ref>)</highlight></codeline>
+<codeline lineno="42"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>.def_property(</highlight><highlight class="stringliteral">&quot;validation_size&quot;</highlight><highlight class="normal">,<sp/>&amp;<ref refid="de/deb/structBrush_1_1Parameters_1aead717c90a933bdc5b1b149a4b40ec78" kindref="member">Brush::Parameters::get_validation_size</ref>,<sp/>&amp;<ref refid="de/deb/structBrush_1_1Parameters_1adcfeb3fbcd6bb2ace4eb112dd1ac1fc7" kindref="member">Brush::Parameters::set_validation_size</ref>)</highlight></codeline>
+<codeline lineno="43"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>.def_property(</highlight><highlight class="stringliteral">&quot;feature_names&quot;</highlight><highlight class="normal">,<sp/>&amp;<ref refid="de/deb/structBrush_1_1Parameters_1a503e5e39ff8078bfd0132399bc376651" kindref="member">Brush::Parameters::get_feature_names</ref>,<sp/>&amp;<ref refid="de/deb/structBrush_1_1Parameters_1adce3ebf4b9d0aa35a4da35f33e5d9168" kindref="member">Brush::Parameters::set_feature_names</ref>)</highlight></codeline>
+<codeline lineno="44"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>.def_property(</highlight><highlight class="stringliteral">&quot;batch_size&quot;</highlight><highlight class="normal">,<sp/>&amp;<ref refid="de/deb/structBrush_1_1Parameters_1a55829db9efdf15f588da5aed54fa42a8" kindref="member">Brush::Parameters::get_batch_size</ref>,<sp/>&amp;<ref refid="de/deb/structBrush_1_1Parameters_1a3764d1c46477f804a75d58248cc64ea8" kindref="member">Brush::Parameters::set_batch_size</ref>)</highlight></codeline>
+<codeline lineno="45"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>.def_property(</highlight><highlight class="stringliteral">&quot;max_depth&quot;</highlight><highlight class="normal">,<sp/>&amp;<ref refid="de/deb/structBrush_1_1Parameters_1a77aa7201a837482c7bf92579fe156811" kindref="member">Brush::Parameters::get_max_depth</ref>,<sp/>&amp;<ref refid="de/deb/structBrush_1_1Parameters_1a09b2945802ab49e8510e16181a7d916e" kindref="member">Brush::Parameters::set_max_depth</ref>)</highlight></codeline>
+<codeline lineno="46"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>.def_property(</highlight><highlight class="stringliteral">&quot;max_size&quot;</highlight><highlight class="normal">,<sp/>&amp;<ref refid="de/deb/structBrush_1_1Parameters_1a122b7243856cd15f940b6d6b5ec1074f" kindref="member">Brush::Parameters::get_max_size</ref>,<sp/>&amp;<ref refid="de/deb/structBrush_1_1Parameters_1ad36ed3c368c1cc152b179a824e9b3144" kindref="member">Brush::Parameters::set_max_size</ref>)</highlight></codeline>
+<codeline lineno="47"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>.def_property(</highlight><highlight class="stringliteral">&quot;objectives&quot;</highlight><highlight class="normal">,<sp/>&amp;<ref refid="de/deb/structBrush_1_1Parameters_1a3430720f17bdc30a30291b199cf68015" kindref="member">Brush::Parameters::get_objectives</ref>,<sp/>&amp;<ref refid="de/deb/structBrush_1_1Parameters_1abb9b1681e45572c95ce97f0e5aeefa05" kindref="member">Brush::Parameters::set_objectives</ref>)</highlight></codeline>
+<codeline lineno="48"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>.def_property(</highlight><highlight class="stringliteral">&quot;sel&quot;</highlight><highlight class="normal">,<sp/>&amp;<ref refid="de/deb/structBrush_1_1Parameters_1afff93890adec7af136be0dc19ccdd35f" kindref="member">Brush::Parameters::get_sel</ref>,<sp/>&amp;<ref refid="de/deb/structBrush_1_1Parameters_1a9a8f5f8dbfd009fd4aed4b322c19b429" kindref="member">Brush::Parameters::set_sel</ref>)</highlight></codeline>
+<codeline lineno="49"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>.def_property(</highlight><highlight class="stringliteral">&quot;surv&quot;</highlight><highlight class="normal">,<sp/>&amp;<ref refid="de/deb/structBrush_1_1Parameters_1abbd954f5018446151e1f5711171476a9" kindref="member">Brush::Parameters::get_surv</ref>,<sp/>&amp;<ref refid="de/deb/structBrush_1_1Parameters_1aaa61711b5534b0530b60cd11a7070e7c" kindref="member">Brush::Parameters::set_surv</ref>)</highlight></codeline>
+<codeline lineno="50"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>.def_property(</highlight><highlight class="stringliteral">&quot;cx_prob&quot;</highlight><highlight class="normal">,<sp/>&amp;<ref refid="de/deb/structBrush_1_1Parameters_1ad295afd17da08fdccb207f28caf07cc8" kindref="member">Brush::Parameters::get_cx_prob</ref>,<sp/>&amp;<ref refid="de/deb/structBrush_1_1Parameters_1ae117be02b10c413ff07be95c2edf2417" kindref="member">Brush::Parameters::set_cx_prob</ref>)</highlight></codeline>
+<codeline lineno="51"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>.def_property(</highlight><highlight class="stringliteral">&quot;mig_prob&quot;</highlight><highlight class="normal">,<sp/>&amp;<ref refid="de/deb/structBrush_1_1Parameters_1a62efc097c2a873a92515dd492a78a402" kindref="member">Brush::Parameters::get_mig_prob</ref>,<sp/>&amp;<ref refid="de/deb/structBrush_1_1Parameters_1afb6a671883dbfbde88932791fbb4de87" kindref="member">Brush::Parameters::set_mig_prob</ref>)</highlight></codeline>
+<codeline lineno="52"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>.def_property(</highlight><highlight class="stringliteral">&quot;bandit&quot;</highlight><highlight class="normal">,<sp/>&amp;<ref refid="de/deb/structBrush_1_1Parameters_1a59c69b664a2053e98eaaa42a93bbfc60" kindref="member">Brush::Parameters::get_bandit</ref>,<sp/>&amp;<ref refid="de/deb/structBrush_1_1Parameters_1afed0556e44457c8ef23a69631ae8561e" kindref="member">Brush::Parameters::set_bandit</ref>)</highlight></codeline>
+<codeline lineno="53"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>.def_property(</highlight><highlight class="stringliteral">&quot;functions&quot;</highlight><highlight class="normal">,<sp/>&amp;<ref refid="de/deb/structBrush_1_1Parameters_1aee62986fbd874d410a0d5d4ab81dce7b" kindref="member">Brush::Parameters::get_functions</ref>,<sp/>&amp;<ref refid="de/deb/structBrush_1_1Parameters_1a2054b866fb2d2a08114ae9c468ad3863" kindref="member">Brush::Parameters::set_functions</ref>)</highlight></codeline>
+<codeline lineno="54"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>.def_property(</highlight><highlight class="stringliteral">&quot;mutation_probs&quot;</highlight><highlight class="normal">,<sp/>&amp;<ref refid="de/deb/structBrush_1_1Parameters_1ae663b0ea31743fceb203fe476f4ddc99" kindref="member">Brush::Parameters::get_mutation_probs</ref>,<sp/>&amp;<ref refid="de/deb/structBrush_1_1Parameters_1a21bfb9aa5ac33bee26416611d51cee1a" kindref="member">Brush::Parameters::set_mutation_probs</ref>)</highlight></codeline>
+<codeline lineno="55"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>.def(py::pickle(</highlight></codeline>
+<codeline lineno="56"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>[](</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="de/deb/structBrush_1_1Parameters" kindref="compound">Brush::Parameters</ref><sp/>&amp;p)<sp/>{<sp/></highlight><highlight class="comment">//<sp/>__getstate__</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="57"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>Return<sp/>a<sp/>tuple<sp/>that<sp/>fully<sp/>encodes<sp/>the<sp/>state<sp/>of<sp/>the<sp/>object<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="58"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>return<sp/>py::make_tuple(p.value(),<sp/>p.extra());</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="59"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>nl::json<sp/>j<sp/>=<sp/>p;</highlight></codeline>
+<codeline lineno="60"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>j;</highlight></codeline>
+<codeline lineno="61"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>},</highlight></codeline>
+<codeline lineno="62"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>[](nl::json<sp/>j)<sp/>{<sp/></highlight><highlight class="comment">//<sp/>__setstate__</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="63"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="de/deb/structBrush_1_1Parameters" kindref="compound">Brush::Parameters</ref><sp/>p<sp/>=<sp/>j;</highlight></codeline>
+<codeline lineno="64"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>p;</highlight></codeline>
+<codeline lineno="65"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>})</highlight></codeline>
+<codeline lineno="66"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>)</highlight></codeline>
+<codeline lineno="67"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>;<sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="68"><highlight class="normal">}</highlight></codeline>
     </programlisting>
     <location file="/home/runner/work/brush/brush/src/bindings/bind_params.cpp"/>
   </compounddef>

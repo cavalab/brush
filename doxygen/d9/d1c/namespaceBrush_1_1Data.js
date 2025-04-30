@@ -20,7 +20,7 @@ var namespaceBrush_1_1Data =
       [ "timestamp", "d9/d1c/namespaceBrush_1_1Data.html#a7e8d2615fe3bb7ef5f2a7cc9c625f985ad7e6d55ba379a13d08c25d15faf2a23b", null ]
     ] ],
     [ "cast_type", "d9/d1c/namespaceBrush_1_1Data.html#a5e5f876d004717e85c08b7661e090e29", null ],
-    [ "check_type", "d9/d1c/namespaceBrush_1_1Data.html#a1087f7155f1e2855ed2821058b6ab036", null ],
+    [ "check_type", "d9/d1c/namespaceBrush_1_1Data.html#a82683b7af172813488ef4db81905de67", null ],
     [ "operator<<", "d9/d1c/namespaceBrush_1_1Data.html#ad1be6b37dda8f94db59996bc060e5e2e", null ],
     [ "read_csv", "d9/d1c/namespaceBrush_1_1Data.html#ad4320ca3604e146155ccc7c55ea9006c", null ],
     [ "StateType", "d9/d1c/namespaceBrush_1_1Data.html#a6c00d36ba6aefd852544da96a089754a", null ],

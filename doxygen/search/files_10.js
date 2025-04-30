@@ -1,4 +1,5 @@
 var searchData=
 [
-  ['weight_5foptimizer_2eh_0',['weight_optimizer.h',['../d7/de3/weight__optimizer_8h.html',1,'']]]
+  ['variation_2ecpp_0',['variation.cpp',['../d1/d64/variation_8cpp.html',1,'']]],
+  ['variation_2eh_1',['variation.h',['../d4/d1f/variation_8h.html',1,'']]]
 ];

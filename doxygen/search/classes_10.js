@@ -1,15 +1,18 @@
 var searchData=
 [
-  ['uint32_5fvector_5fhasher_0',['uint32_vector_hasher',['../d1/ddf/structBrush_1_1uint32__vector__hasher.html',1,'Brush']]],
-  ['unique_5fptr_1',['unique_ptr',['../dd/d67/classunique__ptr.html',1,'']]],
-  ['unjetify_2',['UnJetify',['../dd/dc6/structBrush_1_1UnJetify.html',1,'Brush']]],
-  ['unjetify_3c_20arrayxbjet_20_3e_3',['UnJetify&lt; ArrayXbJet &gt;',['../d7/dae/structBrush_1_1UnJetify_3_01ArrayXbJet_01_4.html',1,'Brush']]],
-  ['unjetify_3c_20arrayxfjet_20_3e_4',['UnJetify&lt; ArrayXfJet &gt;',['../d6/d5c/structBrush_1_1UnJetify_3_01ArrayXfJet_01_4.html',1,'Brush']]],
-  ['unjetify_3c_20arrayxijet_20_3e_5',['UnJetify&lt; ArrayXiJet &gt;',['../db/d0f/structBrush_1_1UnJetify_3_01ArrayXiJet_01_4.html',1,'Brush']]],
-  ['unjetify_3c_20arrayxxbjet_20_3e_6',['UnJetify&lt; ArrayXXbJet &gt;',['../d4/d8b/structBrush_1_1UnJetify_3_01ArrayXXbJet_01_4.html',1,'Brush']]],
-  ['unjetify_3c_20arrayxxfjet_20_3e_7',['UnJetify&lt; ArrayXXfJet &gt;',['../d3/d4f/structBrush_1_1UnJetify_3_01ArrayXXfJet_01_4.html',1,'Brush']]],
-  ['unjetify_3c_20arrayxxijet_20_3e_8',['UnJetify&lt; ArrayXXiJet &gt;',['../dd/d0d/structBrush_1_1UnJetify_3_01ArrayXXiJet_01_4.html',1,'Brush']]],
-  ['unjetify_3c_20data_3a_3atimeseriesbjet_20_3e_9',['UnJetify&lt; Data::TimeSeriesbJet &gt;',['../da/de1/structBrush_1_1UnJetify_3_01Data_1_1TimeSeriesbJet_01_4.html',1,'Brush']]],
-  ['unjetify_3c_20data_3a_3atimeseriesfjet_20_3e_10',['UnJetify&lt; Data::TimeSeriesfJet &gt;',['../df/d76/structBrush_1_1UnJetify_3_01Data_1_1TimeSeriesfJet_01_4.html',1,'Brush']]],
-  ['unjetify_3c_20data_3a_3atimeseriesijet_20_3e_11',['UnJetify&lt; Data::TimeSeriesiJet &gt;',['../dc/d96/structBrush_1_1UnJetify_3_01Data_1_1TimeSeriesiJet_01_4.html',1,'Brush']]]
+  ['thompsonsamplingbandit_0',['ThompsonSamplingBandit',['../db/d10/classBrush_1_1MAB_1_1ThompsonSamplingBandit.html',1,'Brush::MAB']]],
+  ['timer_1',['Timer',['../d8/da4/classBrush_1_1Util_1_1Timer.html',1,'Brush::Util']]],
+  ['timeseries_2',['TimeSeries',['../d7/d56/structBrush_1_1Data_1_1TimeSeries.html',1,'Brush::Data::TimeSeries&lt; T &gt;'],['../d0/d8e/structTimeSeries.html',1,'TimeSeries&lt; T &gt;']]],
+  ['timeseries_3c_20bjet_20_3e_3',['TimeSeries&lt; bJet &gt;',['../d7/d56/structBrush_1_1Data_1_1TimeSeries.html',1,'Brush::Data']]],
+  ['timeseries_3c_20bool_20_3e_4',['TimeSeries&lt; bool &gt;',['../d7/d56/structBrush_1_1Data_1_1TimeSeries.html',1,'Brush::Data']]],
+  ['timeseries_3c_20fjet_20_3e_5',['TimeSeries&lt; fJet &gt;',['../d7/d56/structBrush_1_1Data_1_1TimeSeries.html',1,'Brush::Data']]],
+  ['timeseries_3c_20float_20_3e_6',['TimeSeries&lt; float &gt;',['../d7/d56/structBrush_1_1Data_1_1TimeSeries.html',1,'Brush::Data']]],
+  ['timeseries_3c_20ijet_20_3e_7',['TimeSeries&lt; iJet &gt;',['../d7/d56/structBrush_1_1Data_1_1TimeSeries.html',1,'Brush::Data']]],
+  ['timeseries_3c_20int_20_3e_8',['TimeSeries&lt; int &gt;',['../d7/d56/structBrush_1_1Data_1_1TimeSeries.html',1,'Brush::Data']]],
+  ['tinycostfunction_9',['TinyCostFunction',['../df/d09/structBrush_1_1TinyCostFunction.html',1,'Brush']]],
+  ['toggleweightoffmutation_10',['ToggleWeightOffMutation',['../dd/d55/classBrush_1_1Var_1_1ToggleWeightOffMutation.html',1,'Brush::Var']]],
+  ['toggleweightonmutation_11',['ToggleWeightOnMutation',['../d2/d1a/classBrush_1_1Var_1_1ToggleWeightOnMutation.html',1,'Brush::Var']]],
+  ['tree_5fnode_5f_12',['tree_node_',['../d0/d0e/classtree__node__.html',1,'']]],
+  ['tree_5fnode_5f_3c_20brush_3a_3anode_20_3e_13',['tree_node_&lt; Brush::Node &gt;',['../d0/d0e/classtree__node__.html',1,'']]],
+  ['tree_5fnode_5f_3c_20node_20_3e_14',['tree_node_&lt; Node &gt;',['../dc/d90/classtree__node___3_01Node_01_4.html',1,'']]]
 ];

@@ -104,9 +104,9 @@
       <node id="54">
         <label>../params.h</label>
         <link refid="da/d33/params_8h"/>
-        <childnode refid="10" relation="include">
-        </childnode>
         <childnode refid="35" relation="include">
+        </childnode>
+        <childnode refid="2" relation="include">
         </childnode>
       </node>
       <node id="1">
@@ -547,24 +547,26 @@
         </childnode>
         <childnode refid="13" relation="include">
         </childnode>
+        <childnode refid="14" relation="include">
+        </childnode>
       </node>
-      <node id="22">
+      <node id="24">
         <label>archive.cpp</label>
         <link refid="d7/d05/archive_8cpp"/>
         <childnode refid="2" relation="include">
         </childnode>
       </node>
-      <node id="21">
+      <node id="23">
         <label>archive.h</label>
         <link refid="d9/d28/archive_8h"/>
-        <childnode refid="22" relation="include">
+        <childnode refid="24" relation="include">
         </childnode>
         <childnode refid="2" relation="include">
         </childnode>
         <childnode refid="8" relation="include">
         </childnode>
       </node>
-      <node id="14">
+      <node id="16">
         <label>population.cpp</label>
         <link refid="d7/d4a/population_8cpp"/>
         <childnode refid="2" relation="include">
@@ -587,14 +589,14 @@
         </childnode>
         <childnode refid="10" relation="include">
         </childnode>
+        <childnode refid="16" relation="include">
+        </childnode>
+        <childnode refid="17" relation="include">
+        </childnode>
         <childnode refid="14" relation="include">
         </childnode>
-        <childnode refid="15" relation="include">
-        </childnode>
-        <childnode refid="25" relation="include">
-        </childnode>
       </node>
-      <node id="17">
+      <node id="19">
         <label>lexicase.cpp</label>
         <link refid="d8/dac/lexicase_8cpp"/>
         <childnode refid="2" relation="include">
@@ -602,19 +604,19 @@
         <childnode refid="4" relation="include">
         </childnode>
       </node>
-      <node id="16">
+      <node id="18">
         <label>lexicase.h</label>
         <link refid="d3/d12/lexicase_8h"/>
         <childnode refid="2" relation="include">
         </childnode>
         <childnode refid="4" relation="include">
         </childnode>
-        <childnode refid="17" relation="include">
+        <childnode refid="19" relation="include">
         </childnode>
-        <childnode refid="18" relation="include">
+        <childnode refid="20" relation="include">
         </childnode>
       </node>
-      <node id="23">
+      <node id="25">
         <label>nsga2.cpp</label>
         <link refid="de/d0d/nsga2_8cpp"/>
         <childnode refid="2" relation="include">
@@ -622,21 +624,21 @@
         <childnode refid="4" relation="include">
         </childnode>
       </node>
-      <node id="20">
+      <node id="22">
         <label>nsga2.h</label>
         <link refid="d3/d06/nsga2_8h"/>
-        <childnode refid="21" relation="include">
+        <childnode refid="23" relation="include">
         </childnode>
         <childnode refid="2" relation="include">
         </childnode>
         <childnode refid="4" relation="include">
         </childnode>
-        <childnode refid="23" relation="include">
+        <childnode refid="25" relation="include">
         </childnode>
-        <childnode refid="18" relation="include">
+        <childnode refid="20" relation="include">
         </childnode>
       </node>
-      <node id="19">
+      <node id="21">
         <label>selection.cpp</label>
         <link refid="df/dbb/selection_8cpp"/>
         <childnode refid="2" relation="include">
@@ -644,7 +646,7 @@
         <childnode refid="4" relation="include">
         </childnode>
       </node>
-      <node id="18">
+      <node id="20">
         <label>selection.h</label>
         <link refid="df/d48/selection_8h"/>
         <childnode refid="2" relation="include">
@@ -653,10 +655,10 @@
         </childnode>
         <childnode refid="8" relation="include">
         </childnode>
-        <childnode refid="19" relation="include">
+        <childnode refid="21" relation="include">
         </childnode>
       </node>
-      <node id="24">
+      <node id="26">
         <label>selection_operator.cpp</label>
         <link refid="d4/db2/selection__operator_8cpp"/>
         <childnode refid="2" relation="include">
@@ -664,41 +666,46 @@
         <childnode refid="4" relation="include">
         </childnode>
       </node>
-      <node id="15">
+      <node id="17">
         <label>selection_operator.h</label>
         <link refid="dd/d5d/selection__operator_8h"/>
         <childnode refid="2" relation="include">
         </childnode>
         <childnode refid="4" relation="include">
         </childnode>
-        <childnode refid="16" relation="include">
+        <childnode refid="18" relation="include">
+        </childnode>
+        <childnode refid="22" relation="include">
         </childnode>
         <childnode refid="20" relation="include">
         </childnode>
-        <childnode refid="18" relation="include">
-        </childnode>
-        <childnode refid="24" relation="include">
+        <childnode refid="26" relation="include">
         </childnode>
       </node>
-      <node id="26">
+      <node id="15">
         <label>variation.cpp</label>
         <link refid="d1/d64/variation_8cpp"/>
+        <childnode refid="2" relation="include">
+        </childnode>
         <childnode refid="6" relation="include">
         </childnode>
       </node>
-      <node id="25">
+      <node id="14">
         <label>variation.h</label>
         <link refid="d4/d1f/variation_8h"/>
+        <childnode refid="2" relation="include">
+        </childnode>
         <childnode refid="6" relation="include">
         </childnode>
         <childnode refid="8" relation="include">
         </childnode>
-        <childnode refid="26" relation="include">
+        <childnode refid="15" relation="include">
         </childnode>
       </node>
     </invincdepgraph>
     <innerclass refid="da/da3/classBrush_1_1Pop_1_1Population" prot="public">Brush::Pop::Population</innerclass>
     <innerclass refid="d6/dd9/structBrush_1_1Pop_1_1Population_1_1SortComplexity" prot="public">Brush::Pop::Population::SortComplexity</innerclass>
+    <innerclass refid="d6/d21/structBrush_1_1Pop_1_1Population_1_1SortLinearComplexity" prot="public">Brush::Pop::Population::SortLinearComplexity</innerclass>
     <innerclass refid="d4/de2/structBrush_1_1Pop_1_1Population_1_1SameFitComplexity" prot="public">Brush::Pop::Population::SameFitComplexity</innerclass>
     <innernamespace refid="dc/d5c/namespaceBrush">Brush</innernamespace>
     <innernamespace refid="dd/d56/namespaceBrush_1_1Pop">Brush::Pop</innernamespace>
@@ -723,79 +730,93 @@
 <codeline lineno="14" refid="da/da3/classBrush_1_1Pop_1_1Population_1aada5cceb77f0823c7fdc99d21536146d" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">size_t</highlight><highlight class="normal"><sp/><ref refid="da/da3/classBrush_1_1Pop_1_1Population_1aada5cceb77f0823c7fdc99d21536146d" kindref="member">pop_size</ref>;</highlight></codeline>
 <codeline lineno="15" refid="da/da3/classBrush_1_1Pop_1_1Population_1a0a1f364040ce0de2ab17ae82e0faac76" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="da/da3/classBrush_1_1Pop_1_1Population_1a0a1f364040ce0de2ab17ae82e0faac76" kindref="member">num_islands</ref>;</highlight></codeline>
 <codeline lineno="16" refid="da/da3/classBrush_1_1Pop_1_1Population_1a31f1c6f4250a15d2b720483d98fb456d" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">float</highlight><highlight class="normal"><sp/><ref refid="da/da3/classBrush_1_1Pop_1_1Population_1a31f1c6f4250a15d2b720483d98fb456d" kindref="member">mig_prob</ref>;</highlight></codeline>
-<codeline lineno="17"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
-<codeline lineno="18" refid="da/da3/classBrush_1_1Pop_1_1Population_1a7b529af66e90f378ca96a54ee5ce0c71" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>vector&lt;std::shared_ptr&lt;Individual&lt;T&gt;&gt;&gt;<sp/><ref refid="da/da3/classBrush_1_1Pop_1_1Population_1a7b529af66e90f378ca96a54ee5ce0c71" kindref="member">individuals</ref>;</highlight></codeline>
-<codeline lineno="19" refid="da/da3/classBrush_1_1Pop_1_1Population_1aa0bc73e0a032afefdf56a94aa27a68cf" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>vector&lt;vector&lt;size_t&gt;&gt;<sp/><ref refid="da/da3/classBrush_1_1Pop_1_1Population_1aa0bc73e0a032afefdf56a94aa27a68cf" kindref="member">island_indexes</ref>;</highlight></codeline>
-<codeline lineno="20"><highlight class="normal"></highlight></codeline>
-<codeline lineno="21"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="da/da3/classBrush_1_1Pop_1_1Population_1accbe0e4c2b8bf582fc686d7b93d784c1" kindref="member">Population</ref>();</highlight></codeline>
-<codeline lineno="22" refid="da/da3/classBrush_1_1Pop_1_1Population_1a95bb307f431f7ab815f724c0e159b797" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="da/da3/classBrush_1_1Pop_1_1Population_1a95bb307f431f7ab815f724c0e159b797" kindref="member">~Population</ref>(){};</highlight></codeline>
-<codeline lineno="23"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
-<codeline lineno="25"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="da/da3/classBrush_1_1Pop_1_1Population_1a8c4ce8e8bd8cedecb3d0ef621aad9d22" kindref="member">init</ref>(<ref refid="d4/dc3/structBrush_1_1SearchSpace" kindref="compound">SearchSpace</ref>&amp;<sp/>ss,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="de/deb/structBrush_1_1Parameters" kindref="compound">Parameters</ref>&amp;<sp/>params);</highlight></codeline>
-<codeline lineno="26"><highlight class="normal"></highlight></codeline>
-<codeline lineno="27"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>initialize<sp/>based<sp/>on<sp/>list<sp/>of<sp/>individuals</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="28"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="da/da3/classBrush_1_1Pop_1_1Population_1a8c4ce8e8bd8cedecb3d0ef621aad9d22" kindref="member">init</ref>(vector&lt;<ref refid="de/d83/classBrush_1_1Pop_1_1Individual" kindref="compound">Individual&lt;T&gt;</ref>&gt;&amp;<sp/><ref refid="da/da3/classBrush_1_1Pop_1_1Population_1a7b529af66e90f378ca96a54ee5ce0c71" kindref="member">individuals</ref>,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="de/deb/structBrush_1_1Parameters" kindref="compound">Parameters</ref>&amp;<sp/>params);</highlight></codeline>
-<codeline lineno="29"><highlight class="normal"></highlight></codeline>
-<codeline lineno="30"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>save<sp/>serialized<sp/>population</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="31"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="da/da3/classBrush_1_1Pop_1_1Population_1a760c5b3804c92d23da170e37ecae158a" kindref="member">save</ref>(</highlight><highlight class="keywordtype">string</highlight><highlight class="normal"><sp/>filename);</highlight></codeline>
-<codeline lineno="32"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>load<sp/>serialized<sp/>population</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="33"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="da/da3/classBrush_1_1Pop_1_1Population_1ad193aced6ffa6d3587f0f390d9ed0415" kindref="member">load</ref>(</highlight><highlight class="keywordtype">string</highlight><highlight class="normal"><sp/>filename);</highlight></codeline>
-<codeline lineno="34"><highlight class="normal"></highlight></codeline>
-<codeline lineno="36" refid="da/da3/classBrush_1_1Pop_1_1Population_1a415c50b87a36ef476547ca965e4f341d" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="da/da3/classBrush_1_1Pop_1_1Population_1a415c50b87a36ef476547ca965e4f341d" kindref="member">size</ref>()<sp/>{<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/><ref refid="da/da3/classBrush_1_1Pop_1_1Population_1a7b529af66e90f378ca96a54ee5ce0c71" kindref="member">individuals</ref>.size();<sp/>};</highlight></codeline>
-<codeline lineno="37"><highlight class="normal"></highlight></codeline>
-<codeline lineno="38" refid="da/da3/classBrush_1_1Pop_1_1Population_1a2bf4066c7a32ec3bd85c96bd80098de6" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>vector&lt;size_t&gt;<sp/><ref refid="da/da3/classBrush_1_1Pop_1_1Population_1a2bf4066c7a32ec3bd85c96bd80098de6" kindref="member">get_island_indexes</ref>(</highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>island){<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/><ref refid="da/da3/classBrush_1_1Pop_1_1Population_1aa0bc73e0a032afefdf56a94aa27a68cf" kindref="member">island_indexes</ref>.at(island);<sp/>};</highlight></codeline>
-<codeline lineno="39"><highlight class="normal"></highlight></codeline>
-<codeline lineno="41"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="da/da3/classBrush_1_1Pop_1_1Population_1a74417ef86a9a4195d6422427d97347a5" kindref="member">add_offspring_indexes</ref>(</highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>island);</highlight></codeline>
-<codeline lineno="42"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
-<codeline lineno="44"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="da/da3/classBrush_1_1Pop_1_1Population_1af76f3d5380e7def96176b72d4969b69e" kindref="member">update</ref>(vector&lt;vector&lt;size_t&gt;&gt;<sp/>survivors);</highlight></codeline>
-<codeline lineno="45"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
-<codeline lineno="47" refid="da/da3/classBrush_1_1Pop_1_1Population_1a281c5ef097d5fd90efba598c04826a50" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="de/d83/classBrush_1_1Pop_1_1Individual" kindref="compound">Individual&lt;T&gt;</ref>&amp;<sp/><ref refid="da/da3/classBrush_1_1Pop_1_1Population_1a281c5ef097d5fd90efba598c04826a50" kindref="member">operator []</ref>(</highlight><highlight class="keywordtype">size_t</highlight><highlight class="normal"><sp/>i)</highlight><highlight class="keyword"><sp/>const<sp/></highlight><highlight class="normal">{</highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>*<ref refid="da/da3/classBrush_1_1Pop_1_1Population_1a7b529af66e90f378ca96a54ee5ce0c71" kindref="member">individuals</ref>.at(i);}</highlight></codeline>
-<codeline lineno="48" refid="da/da3/classBrush_1_1Pop_1_1Population_1a149319e12e39ef62533b6240ad5359c6" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="de/d83/classBrush_1_1Pop_1_1Individual" kindref="compound">Individual&lt;T&gt;</ref>&amp;<sp/><ref refid="da/da3/classBrush_1_1Pop_1_1Population_1a281c5ef097d5fd90efba598c04826a50" kindref="member">operator []</ref>(</highlight><highlight class="keywordtype">size_t</highlight><highlight class="normal"><sp/>i)<sp/>{</highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>*<ref refid="da/da3/classBrush_1_1Pop_1_1Population_1a7b529af66e90f378ca96a54ee5ce0c71" kindref="member">individuals</ref>.at(i);}</highlight></codeline>
-<codeline lineno="49"><highlight class="normal"></highlight></codeline>
-<codeline lineno="51"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">string</highlight><highlight class="normal"><sp/><ref refid="da/da3/classBrush_1_1Pop_1_1Population_1a92f851fffa86280c36cd54a8f670466e" kindref="member">print_models</ref>(</highlight><highlight class="keywordtype">string</highlight><highlight class="normal"><sp/>sep=</highlight><highlight class="stringliteral">&quot;\n&quot;</highlight><highlight class="normal">);</highlight></codeline>
-<codeline lineno="52"><highlight class="normal"></highlight></codeline>
-<codeline lineno="54"><highlight class="normal"><sp/><sp/><sp/><sp/>vector&lt;vector&lt;size_t&gt;&gt;<sp/><ref refid="da/da3/classBrush_1_1Pop_1_1Population_1a78b95a2dc04224a015fdbe356cbf1e87" kindref="member">sorted_front</ref>(</highlight><highlight class="keywordtype">unsigned</highlight><highlight class="normal"><sp/>rank=1);</highlight></codeline>
-<codeline lineno="55"><highlight class="normal"></highlight></codeline>
-<codeline lineno="56"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>pareto<sp/>front<sp/>ignoring<sp/>island<sp/>divisions</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="57"><highlight class="normal"><sp/><sp/><sp/><sp/>vector&lt;size_t&gt;<sp/><ref refid="da/da3/classBrush_1_1Pop_1_1Population_1aba7a86b4a919e95ca0bb4219ba469b74" kindref="member">hall_of_fame</ref>(</highlight><highlight class="keywordtype">unsigned</highlight><highlight class="normal"><sp/>rank=1);</highlight></codeline>
-<codeline lineno="58"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
-<codeline lineno="59"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>perform<sp/>a<sp/>migration<sp/>in<sp/>the<sp/>population.<sp/>Individuals<sp/>from<sp/>sorted<sp/>front<sp/>or<sp/>hall<sp/>of<sp/>fame<sp/>will<sp/>replace<sp/>others<sp/>by<sp/>the</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="60"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>probability<sp/>set<sp/>in<sp/>parameters.<sp/>Expects<sp/>a<sp/>population<sp/>without<sp/>offspring</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="61"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="da/da3/classBrush_1_1Pop_1_1Population_1a450651324884449dbb76f32377bcb0fe" kindref="member">migrate</ref>();</highlight></codeline>
-<codeline lineno="62"><highlight class="normal"></highlight></codeline>
-<codeline lineno="64" refid="d6/dd9/structBrush_1_1Pop_1_1Population_1_1SortComplexity" refkind="compound"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">struct<sp/></highlight><highlight class="normal"><ref refid="d6/dd9/structBrush_1_1Pop_1_1Population_1_1SortComplexity_1ad444ec2420dd4772c97741567e85e268" kindref="member">SortComplexity</ref></highlight></codeline>
-<codeline lineno="65"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
-<codeline lineno="66" refid="d6/dd9/structBrush_1_1Pop_1_1Population_1_1SortComplexity_1a8f9fdb267f616449654ff4b783607abf" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="da/da3/classBrush_1_1Pop_1_1Population_1accbe0e4c2b8bf582fc686d7b93d784c1" kindref="member">Population</ref>&amp;<sp/><ref refid="d6/dd9/structBrush_1_1Pop_1_1Population_1_1SortComplexity_1a8f9fdb267f616449654ff4b783607abf" kindref="member">pop</ref>;</highlight></codeline>
-<codeline lineno="67" refid="d6/dd9/structBrush_1_1Pop_1_1Population_1_1SortComplexity_1ad444ec2420dd4772c97741567e85e268" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="d6/dd9/structBrush_1_1Pop_1_1Population_1_1SortComplexity_1ad444ec2420dd4772c97741567e85e268" kindref="member">SortComplexity</ref>(<ref refid="da/da3/classBrush_1_1Pop_1_1Population_1accbe0e4c2b8bf582fc686d7b93d784c1" kindref="member">Population</ref>&amp;<sp/>p):<sp/><ref refid="d6/dd9/structBrush_1_1Pop_1_1Population_1_1SortComplexity_1a8f9fdb267f616449654ff4b783607abf" kindref="member">pop</ref>(p){}</highlight></codeline>
-<codeline lineno="68" refid="d6/dd9/structBrush_1_1Pop_1_1Population_1_1SortComplexity_1a183417a86954dcb970b7ba86f18fab97" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/><ref refid="d6/dd9/structBrush_1_1Pop_1_1Population_1_1SortComplexity_1a183417a86954dcb970b7ba86f18fab97" kindref="member">operator()</ref>(</highlight><highlight class="keywordtype">size_t</highlight><highlight class="normal"><sp/>i,<sp/></highlight><highlight class="keywordtype">size_t</highlight><highlight class="normal"><sp/>j)</highlight></codeline>
-<codeline lineno="69"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{<sp/></highlight></codeline>
-<codeline lineno="70"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/><ref refid="d6/dd9/structBrush_1_1Pop_1_1Population_1_1SortComplexity_1a8f9fdb267f616449654ff4b783607abf" kindref="member">pop</ref>[i].get_complexity()<sp/>&lt;<sp/><ref refid="d6/dd9/structBrush_1_1Pop_1_1Population_1_1SortComplexity_1a8f9fdb267f616449654ff4b783607abf" kindref="member">pop</ref>[j].get_complexity();</highlight></codeline>
-<codeline lineno="71"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
-<codeline lineno="72"><highlight class="normal"><sp/><sp/><sp/><sp/>};</highlight></codeline>
-<codeline lineno="73"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
-<codeline lineno="75" refid="d4/de2/structBrush_1_1Pop_1_1Population_1_1SameFitComplexity" refkind="compound"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">struct<sp/></highlight><highlight class="normal"><ref refid="d4/de2/structBrush_1_1Pop_1_1Population_1_1SameFitComplexity_1ad585dc4ce935dcf3e6dd8ff5293affb0" kindref="member">SameFitComplexity</ref></highlight></codeline>
+<codeline lineno="17" refid="da/da3/classBrush_1_1Pop_1_1Population_1a37b76e13ed8e9d39dbec875b3e50d7c7" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/><ref refid="da/da3/classBrush_1_1Pop_1_1Population_1a37b76e13ed8e9d39dbec875b3e50d7c7" kindref="member">linear_complexity</ref>;<sp/><sp/></highlight></codeline>
+<codeline lineno="18"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="19" refid="da/da3/classBrush_1_1Pop_1_1Population_1a7b529af66e90f378ca96a54ee5ce0c71" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>vector&lt;std::shared_ptr&lt;Individual&lt;T&gt;&gt;&gt;<sp/><ref refid="da/da3/classBrush_1_1Pop_1_1Population_1a7b529af66e90f378ca96a54ee5ce0c71" kindref="member">individuals</ref>;</highlight></codeline>
+<codeline lineno="20" refid="da/da3/classBrush_1_1Pop_1_1Population_1aa0bc73e0a032afefdf56a94aa27a68cf" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>vector&lt;vector&lt;size_t&gt;&gt;<sp/><ref refid="da/da3/classBrush_1_1Pop_1_1Population_1aa0bc73e0a032afefdf56a94aa27a68cf" kindref="member">island_indexes</ref>;</highlight></codeline>
+<codeline lineno="21"><highlight class="normal"></highlight></codeline>
+<codeline lineno="22"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="da/da3/classBrush_1_1Pop_1_1Population_1accbe0e4c2b8bf582fc686d7b93d784c1" kindref="member">Population</ref>();</highlight></codeline>
+<codeline lineno="23" refid="da/da3/classBrush_1_1Pop_1_1Population_1a95bb307f431f7ab815f724c0e159b797" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="da/da3/classBrush_1_1Pop_1_1Population_1a95bb307f431f7ab815f724c0e159b797" kindref="member">~Population</ref>(){};</highlight></codeline>
+<codeline lineno="24"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="26"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="da/da3/classBrush_1_1Pop_1_1Population_1a8c4ce8e8bd8cedecb3d0ef621aad9d22" kindref="member">init</ref>(<ref refid="d4/dc3/structBrush_1_1SearchSpace" kindref="compound">SearchSpace</ref>&amp;<sp/>ss,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="de/deb/structBrush_1_1Parameters" kindref="compound">Parameters</ref>&amp;<sp/>params);</highlight></codeline>
+<codeline lineno="27"><highlight class="normal"></highlight></codeline>
+<codeline lineno="28"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>initialize<sp/>based<sp/>on<sp/>list<sp/>of<sp/>individuals</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="29"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="da/da3/classBrush_1_1Pop_1_1Population_1a8c4ce8e8bd8cedecb3d0ef621aad9d22" kindref="member">init</ref>(vector&lt;<ref refid="de/d83/classBrush_1_1Pop_1_1Individual" kindref="compound">Individual&lt;T&gt;</ref>&gt;&amp;<sp/><ref refid="da/da3/classBrush_1_1Pop_1_1Population_1a7b529af66e90f378ca96a54ee5ce0c71" kindref="member">individuals</ref>,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="de/deb/structBrush_1_1Parameters" kindref="compound">Parameters</ref>&amp;<sp/>params);</highlight></codeline>
+<codeline lineno="30"><highlight class="normal"></highlight></codeline>
+<codeline lineno="31"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>save<sp/>serialized<sp/>population</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="32"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="da/da3/classBrush_1_1Pop_1_1Population_1a760c5b3804c92d23da170e37ecae158a" kindref="member">save</ref>(</highlight><highlight class="keywordtype">string</highlight><highlight class="normal"><sp/>filename);</highlight></codeline>
+<codeline lineno="33"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>load<sp/>serialized<sp/>population</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="34"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="da/da3/classBrush_1_1Pop_1_1Population_1ad193aced6ffa6d3587f0f390d9ed0415" kindref="member">load</ref>(</highlight><highlight class="keywordtype">string</highlight><highlight class="normal"><sp/>filename);</highlight></codeline>
+<codeline lineno="35"><highlight class="normal"></highlight></codeline>
+<codeline lineno="37" refid="da/da3/classBrush_1_1Pop_1_1Population_1a415c50b87a36ef476547ca965e4f341d" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="da/da3/classBrush_1_1Pop_1_1Population_1a415c50b87a36ef476547ca965e4f341d" kindref="member">size</ref>()<sp/>{<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/><ref refid="da/da3/classBrush_1_1Pop_1_1Population_1a7b529af66e90f378ca96a54ee5ce0c71" kindref="member">individuals</ref>.size();<sp/>};</highlight></codeline>
+<codeline lineno="38"><highlight class="normal"></highlight></codeline>
+<codeline lineno="39" refid="da/da3/classBrush_1_1Pop_1_1Population_1a2bf4066c7a32ec3bd85c96bd80098de6" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>vector&lt;size_t&gt;<sp/><ref refid="da/da3/classBrush_1_1Pop_1_1Population_1a2bf4066c7a32ec3bd85c96bd80098de6" kindref="member">get_island_indexes</ref>(</highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>island){<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/><ref refid="da/da3/classBrush_1_1Pop_1_1Population_1aa0bc73e0a032afefdf56a94aa27a68cf" kindref="member">island_indexes</ref>.at(island);<sp/>};</highlight></codeline>
+<codeline lineno="40"><highlight class="normal"></highlight></codeline>
+<codeline lineno="42"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="da/da3/classBrush_1_1Pop_1_1Population_1a74417ef86a9a4195d6422427d97347a5" kindref="member">add_offspring_indexes</ref>(</highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>island);</highlight></codeline>
+<codeline lineno="43"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="45"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="da/da3/classBrush_1_1Pop_1_1Population_1af76f3d5380e7def96176b72d4969b69e" kindref="member">update</ref>(vector&lt;vector&lt;size_t&gt;&gt;<sp/>survivors);</highlight></codeline>
+<codeline lineno="46"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="48" refid="da/da3/classBrush_1_1Pop_1_1Population_1a281c5ef097d5fd90efba598c04826a50" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="de/d83/classBrush_1_1Pop_1_1Individual" kindref="compound">Individual&lt;T&gt;</ref>&amp;<sp/><ref refid="da/da3/classBrush_1_1Pop_1_1Population_1a281c5ef097d5fd90efba598c04826a50" kindref="member">operator []</ref>(</highlight><highlight class="keywordtype">size_t</highlight><highlight class="normal"><sp/>i)</highlight><highlight class="keyword"><sp/>const<sp/></highlight><highlight class="normal">{</highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>*<ref refid="da/da3/classBrush_1_1Pop_1_1Population_1a7b529af66e90f378ca96a54ee5ce0c71" kindref="member">individuals</ref>.at(i);}</highlight></codeline>
+<codeline lineno="49" refid="da/da3/classBrush_1_1Pop_1_1Population_1a149319e12e39ef62533b6240ad5359c6" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="de/d83/classBrush_1_1Pop_1_1Individual" kindref="compound">Individual&lt;T&gt;</ref>&amp;<sp/><ref refid="da/da3/classBrush_1_1Pop_1_1Population_1a281c5ef097d5fd90efba598c04826a50" kindref="member">operator []</ref>(</highlight><highlight class="keywordtype">size_t</highlight><highlight class="normal"><sp/>i)<sp/>{</highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>*<ref refid="da/da3/classBrush_1_1Pop_1_1Population_1a7b529af66e90f378ca96a54ee5ce0c71" kindref="member">individuals</ref>.at(i);}</highlight></codeline>
+<codeline lineno="50"><highlight class="normal"></highlight></codeline>
+<codeline lineno="52"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">string</highlight><highlight class="normal"><sp/><ref refid="da/da3/classBrush_1_1Pop_1_1Population_1a92f851fffa86280c36cd54a8f670466e" kindref="member">print_models</ref>(</highlight><highlight class="keywordtype">string</highlight><highlight class="normal"><sp/>sep=</highlight><highlight class="stringliteral">&quot;\n&quot;</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="53"><highlight class="normal"></highlight></codeline>
+<codeline lineno="55"><highlight class="normal"><sp/><sp/><sp/><sp/>vector&lt;vector&lt;size_t&gt;&gt;<sp/><ref refid="da/da3/classBrush_1_1Pop_1_1Population_1a78b95a2dc04224a015fdbe356cbf1e87" kindref="member">sorted_front</ref>(</highlight><highlight class="keywordtype">unsigned</highlight><highlight class="normal"><sp/>rank=1);</highlight></codeline>
+<codeline lineno="56"><highlight class="normal"></highlight></codeline>
+<codeline lineno="57"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>pareto<sp/>front<sp/>ignoring<sp/>island<sp/>divisions</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="58"><highlight class="normal"><sp/><sp/><sp/><sp/>vector&lt;size_t&gt;<sp/><ref refid="da/da3/classBrush_1_1Pop_1_1Population_1aba7a86b4a919e95ca0bb4219ba469b74" kindref="member">hall_of_fame</ref>(</highlight><highlight class="keywordtype">unsigned</highlight><highlight class="normal"><sp/>rank=1);</highlight></codeline>
+<codeline lineno="59"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="60"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>perform<sp/>a<sp/>migration<sp/>in<sp/>the<sp/>population.<sp/>Individuals<sp/>from<sp/>sorted<sp/>front<sp/>or<sp/>hall<sp/>of<sp/>fame<sp/>will<sp/>replace<sp/>others<sp/>by<sp/>the</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="61"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>probability<sp/>set<sp/>in<sp/>parameters.<sp/>Expects<sp/>a<sp/>population<sp/>without<sp/>offspring</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="62"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="da/da3/classBrush_1_1Pop_1_1Population_1a450651324884449dbb76f32377bcb0fe" kindref="member">migrate</ref>();</highlight></codeline>
+<codeline lineno="63"><highlight class="normal"></highlight></codeline>
+<codeline lineno="65" refid="d6/dd9/structBrush_1_1Pop_1_1Population_1_1SortComplexity" refkind="compound"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">struct<sp/></highlight><highlight class="normal"><ref refid="d6/dd9/structBrush_1_1Pop_1_1Population_1_1SortComplexity_1ad444ec2420dd4772c97741567e85e268" kindref="member">SortComplexity</ref></highlight></codeline>
+<codeline lineno="66"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="67" refid="d6/dd9/structBrush_1_1Pop_1_1Population_1_1SortComplexity_1a8f9fdb267f616449654ff4b783607abf" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="da/da3/classBrush_1_1Pop_1_1Population_1accbe0e4c2b8bf582fc686d7b93d784c1" kindref="member">Population</ref>&amp;<sp/><ref refid="d6/dd9/structBrush_1_1Pop_1_1Population_1_1SortComplexity_1a8f9fdb267f616449654ff4b783607abf" kindref="member">pop</ref>;</highlight></codeline>
+<codeline lineno="68" refid="d6/dd9/structBrush_1_1Pop_1_1Population_1_1SortComplexity_1ad444ec2420dd4772c97741567e85e268" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="d6/dd9/structBrush_1_1Pop_1_1Population_1_1SortComplexity_1ad444ec2420dd4772c97741567e85e268" kindref="member">SortComplexity</ref>(<ref refid="da/da3/classBrush_1_1Pop_1_1Population_1accbe0e4c2b8bf582fc686d7b93d784c1" kindref="member">Population</ref>&amp;<sp/>p):<sp/><ref refid="d6/dd9/structBrush_1_1Pop_1_1Population_1_1SortComplexity_1a8f9fdb267f616449654ff4b783607abf" kindref="member">pop</ref>(p){}</highlight></codeline>
+<codeline lineno="69" refid="d6/dd9/structBrush_1_1Pop_1_1Population_1_1SortComplexity_1a183417a86954dcb970b7ba86f18fab97" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/><ref refid="d6/dd9/structBrush_1_1Pop_1_1Population_1_1SortComplexity_1a183417a86954dcb970b7ba86f18fab97" kindref="member">operator()</ref>(</highlight><highlight class="keywordtype">size_t</highlight><highlight class="normal"><sp/>i,<sp/></highlight><highlight class="keywordtype">size_t</highlight><highlight class="normal"><sp/>j)</highlight></codeline>
+<codeline lineno="70"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{<sp/></highlight></codeline>
+<codeline lineno="71"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/><ref refid="d6/dd9/structBrush_1_1Pop_1_1Population_1_1SortComplexity_1a8f9fdb267f616449654ff4b783607abf" kindref="member">pop</ref>[i].fitness.complexity<sp/>&lt;<sp/><ref refid="d6/dd9/structBrush_1_1Pop_1_1Population_1_1SortComplexity_1a8f9fdb267f616449654ff4b783607abf" kindref="member">pop</ref>[j].fitness.complexity;</highlight></codeline>
+<codeline lineno="72"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="73"><highlight class="normal"><sp/><sp/><sp/><sp/>};</highlight></codeline>
+<codeline lineno="74"><highlight class="normal"></highlight></codeline>
+<codeline lineno="75" refid="d6/d21/structBrush_1_1Pop_1_1Population_1_1SortLinearComplexity" refkind="compound"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">struct<sp/></highlight><highlight class="normal"><ref refid="d6/d21/structBrush_1_1Pop_1_1Population_1_1SortLinearComplexity_1aa0ee948f058ae3e9838f9553805fb8f9" kindref="member">SortLinearComplexity</ref></highlight></codeline>
 <codeline lineno="76"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
-<codeline lineno="77" refid="d4/de2/structBrush_1_1Pop_1_1Population_1_1SameFitComplexity_1a9d8bb70353f845ab28181912f3a51cac" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="da/da3/classBrush_1_1Pop_1_1Population_1accbe0e4c2b8bf582fc686d7b93d784c1" kindref="member">Population&lt;T&gt;</ref><sp/>&amp;<sp/><ref refid="d4/de2/structBrush_1_1Pop_1_1Population_1_1SameFitComplexity_1a9d8bb70353f845ab28181912f3a51cac" kindref="member">pop</ref>;</highlight></codeline>
-<codeline lineno="78" refid="d4/de2/structBrush_1_1Pop_1_1Population_1_1SameFitComplexity_1ad585dc4ce935dcf3e6dd8ff5293affb0" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="d4/de2/structBrush_1_1Pop_1_1Population_1_1SameFitComplexity_1ad585dc4ce935dcf3e6dd8ff5293affb0" kindref="member">SameFitComplexity</ref>(<ref refid="da/da3/classBrush_1_1Pop_1_1Population_1accbe0e4c2b8bf582fc686d7b93d784c1" kindref="member">Population&lt;T&gt;</ref>&amp;<sp/>p):<sp/><ref refid="d4/de2/structBrush_1_1Pop_1_1Population_1_1SameFitComplexity_1a9d8bb70353f845ab28181912f3a51cac" kindref="member">pop</ref>(p){}</highlight></codeline>
-<codeline lineno="79" refid="d4/de2/structBrush_1_1Pop_1_1Population_1_1SameFitComplexity_1a08e61d9f1f10b6020f24e232f264caed" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/><ref refid="d4/de2/structBrush_1_1Pop_1_1Population_1_1SameFitComplexity_1a08e61d9f1f10b6020f24e232f264caed" kindref="member">operator()</ref>(</highlight><highlight class="keywordtype">size_t</highlight><highlight class="normal"><sp/>i,<sp/></highlight><highlight class="keywordtype">size_t</highlight><highlight class="normal"><sp/>j)</highlight></codeline>
-<codeline lineno="80"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
-<codeline lineno="81"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/><ref refid="d4/de2/structBrush_1_1Pop_1_1Population_1_1SameFitComplexity_1a9d8bb70353f845ab28181912f3a51cac" kindref="member">pop</ref>[i].get_complexity()<sp/>==<sp/><ref refid="d4/de2/structBrush_1_1Pop_1_1Population_1_1SameFitComplexity_1a9d8bb70353f845ab28181912f3a51cac" kindref="member">pop</ref>[j].get_complexity();</highlight></codeline>
+<codeline lineno="77" refid="d6/d21/structBrush_1_1Pop_1_1Population_1_1SortLinearComplexity_1a13be7c4811240485ac486fa956219493" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="da/da3/classBrush_1_1Pop_1_1Population_1accbe0e4c2b8bf582fc686d7b93d784c1" kindref="member">Population</ref>&amp;<sp/><ref refid="d6/d21/structBrush_1_1Pop_1_1Population_1_1SortLinearComplexity_1a13be7c4811240485ac486fa956219493" kindref="member">pop</ref>;</highlight></codeline>
+<codeline lineno="78" refid="d6/d21/structBrush_1_1Pop_1_1Population_1_1SortLinearComplexity_1aa0ee948f058ae3e9838f9553805fb8f9" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="d6/d21/structBrush_1_1Pop_1_1Population_1_1SortLinearComplexity_1aa0ee948f058ae3e9838f9553805fb8f9" kindref="member">SortLinearComplexity</ref>(<ref refid="da/da3/classBrush_1_1Pop_1_1Population_1accbe0e4c2b8bf582fc686d7b93d784c1" kindref="member">Population</ref>&amp;<sp/>p):<sp/><ref refid="d6/d21/structBrush_1_1Pop_1_1Population_1_1SortLinearComplexity_1a13be7c4811240485ac486fa956219493" kindref="member">pop</ref>(p){}</highlight></codeline>
+<codeline lineno="79" refid="d6/d21/structBrush_1_1Pop_1_1Population_1_1SortLinearComplexity_1ad8ba6e91bc110a18013fe94bb5018b76" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/><ref refid="d6/d21/structBrush_1_1Pop_1_1Population_1_1SortLinearComplexity_1ad8ba6e91bc110a18013fe94bb5018b76" kindref="member">operator()</ref>(</highlight><highlight class="keywordtype">size_t</highlight><highlight class="normal"><sp/>i,<sp/></highlight><highlight class="keywordtype">size_t</highlight><highlight class="normal"><sp/>j)</highlight></codeline>
+<codeline lineno="80"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{<sp/></highlight></codeline>
+<codeline lineno="81"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/><ref refid="d6/d21/structBrush_1_1Pop_1_1Population_1_1SortLinearComplexity_1a13be7c4811240485ac486fa956219493" kindref="member">pop</ref>[i].fitness.linear_complexity<sp/>&lt;<sp/><ref refid="d6/d21/structBrush_1_1Pop_1_1Population_1_1SortLinearComplexity_1a13be7c4811240485ac486fa956219493" kindref="member">pop</ref>[j].fitness.linear_complexity;</highlight></codeline>
 <codeline lineno="82"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
 <codeline lineno="83"><highlight class="normal"><sp/><sp/><sp/><sp/>};</highlight></codeline>
-<codeline lineno="84"><highlight class="normal">};</highlight></codeline>
-<codeline lineno="85"><highlight class="normal"></highlight></codeline>
-<codeline lineno="86" refid="dd/d56/namespaceBrush_1_1Pop_1a2c1a836d405bf6be54d01f10af23a61d" refkind="member"><highlight class="normal"><ref refid="dd/d56/namespaceBrush_1_1Pop_1a704ebba96b204fd356880daec211b4b1" kindref="member">NLOHMANN_DEFINE_TYPE_NON_INTRUSIVE</ref>(</highlight></codeline>
-<codeline lineno="87"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="da/da3/classBrush_1_1Pop_1_1Population" kindref="compound">Population&lt;PT::Regressor&gt;</ref>,<sp/>individuals,<sp/>island_indexes,<sp/>pop_size,<sp/>num_islands);</highlight></codeline>
-<codeline lineno="88" refid="dd/d56/namespaceBrush_1_1Pop_1a595b84a0c7d0216623d689148d51e016" refkind="member"><highlight class="normal"><ref refid="dd/d56/namespaceBrush_1_1Pop_1a704ebba96b204fd356880daec211b4b1" kindref="member">NLOHMANN_DEFINE_TYPE_NON_INTRUSIVE</ref>(</highlight></codeline>
-<codeline lineno="89"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="da/da3/classBrush_1_1Pop_1_1Population" kindref="compound">Population&lt;PT::BinaryClassifier&gt;</ref>,<sp/>individuals,<sp/>island_indexes,<sp/>pop_size,<sp/>num_islands);</highlight></codeline>
-<codeline lineno="90" refid="dd/d56/namespaceBrush_1_1Pop_1a879da6f33849e3a286c51c26748f411c" refkind="member"><highlight class="normal"><ref refid="dd/d56/namespaceBrush_1_1Pop_1a704ebba96b204fd356880daec211b4b1" kindref="member">NLOHMANN_DEFINE_TYPE_NON_INTRUSIVE</ref>(</highlight></codeline>
-<codeline lineno="91"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="da/da3/classBrush_1_1Pop_1_1Population" kindref="compound">Population&lt;PT::MulticlassClassifier&gt;</ref>,<sp/>individuals,<sp/>island_indexes,<sp/>pop_size,<sp/>num_islands);</highlight></codeline>
-<codeline lineno="92" refid="dd/d56/namespaceBrush_1_1Pop_1a7267710a488d4bbd2e0169f7b6a07e38" refkind="member"><highlight class="normal"><ref refid="dd/d56/namespaceBrush_1_1Pop_1a704ebba96b204fd356880daec211b4b1" kindref="member">NLOHMANN_DEFINE_TYPE_NON_INTRUSIVE</ref>(</highlight></codeline>
-<codeline lineno="93"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="da/da3/classBrush_1_1Pop_1_1Population" kindref="compound">Population&lt;PT::Representer&gt;</ref>,<sp/>individuals,<sp/>island_indexes,<sp/>pop_size,<sp/>num_islands);</highlight></codeline>
-<codeline lineno="94"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
-<codeline lineno="95"><highlight class="normal">}</highlight><highlight class="comment">//<sp/>Pop</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="96"><highlight class="normal">}</highlight><highlight class="comment">//<sp/>Brush</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="97"><highlight class="normal"></highlight></codeline>
-<codeline lineno="98"><highlight class="normal"></highlight><highlight class="preprocessor">#endif</highlight></codeline>
+<codeline lineno="84"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="86" refid="d4/de2/structBrush_1_1Pop_1_1Population_1_1SameFitComplexity" refkind="compound"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">struct<sp/></highlight><highlight class="normal"><ref refid="d4/de2/structBrush_1_1Pop_1_1Population_1_1SameFitComplexity_1ad585dc4ce935dcf3e6dd8ff5293affb0" kindref="member">SameFitComplexity</ref></highlight></codeline>
+<codeline lineno="87"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="88" refid="d4/de2/structBrush_1_1Pop_1_1Population_1_1SameFitComplexity_1a9d8bb70353f845ab28181912f3a51cac" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="da/da3/classBrush_1_1Pop_1_1Population_1accbe0e4c2b8bf582fc686d7b93d784c1" kindref="member">Population&lt;T&gt;</ref><sp/>&amp;<sp/><ref refid="d4/de2/structBrush_1_1Pop_1_1Population_1_1SameFitComplexity_1a9d8bb70353f845ab28181912f3a51cac" kindref="member">pop</ref>;</highlight></codeline>
+<codeline lineno="89" refid="d4/de2/structBrush_1_1Pop_1_1Population_1_1SameFitComplexity_1ad585dc4ce935dcf3e6dd8ff5293affb0" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="d4/de2/structBrush_1_1Pop_1_1Population_1_1SameFitComplexity_1ad585dc4ce935dcf3e6dd8ff5293affb0" kindref="member">SameFitComplexity</ref>(<ref refid="da/da3/classBrush_1_1Pop_1_1Population_1accbe0e4c2b8bf582fc686d7b93d784c1" kindref="member">Population&lt;T&gt;</ref>&amp;<sp/>p):<sp/><ref refid="d4/de2/structBrush_1_1Pop_1_1Population_1_1SameFitComplexity_1a9d8bb70353f845ab28181912f3a51cac" kindref="member">pop</ref>(p){}</highlight></codeline>
+<codeline lineno="90" refid="d4/de2/structBrush_1_1Pop_1_1Population_1_1SameFitComplexity_1a08e61d9f1f10b6020f24e232f264caed" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/><ref refid="d4/de2/structBrush_1_1Pop_1_1Population_1_1SameFitComplexity_1a08e61d9f1f10b6020f24e232f264caed" kindref="member">operator()</ref>(</highlight><highlight class="keywordtype">size_t</highlight><highlight class="normal"><sp/>i,<sp/></highlight><highlight class="keywordtype">size_t</highlight><highlight class="normal"><sp/>j)</highlight></codeline>
+<codeline lineno="91"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="92"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>(<ref refid="d4/de2/structBrush_1_1Pop_1_1Population_1_1SameFitComplexity_1a9d8bb70353f845ab28181912f3a51cac" kindref="member">pop</ref>[i].fitness<sp/>==<sp/><ref refid="d4/de2/structBrush_1_1Pop_1_1Population_1_1SameFitComplexity_1a9d8bb70353f845ab28181912f3a51cac" kindref="member">pop</ref>[j].fitness);</highlight></codeline>
+<codeline lineno="93"><highlight class="normal"></highlight></codeline>
+<codeline lineno="94"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>return<sp/>(pop[i].fitness<sp/>==<sp/>pop[j].fitness</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="95"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/><sp/><sp/><sp/><sp/>&amp;&amp;<sp/><sp/>pop[i].fitness.complexity<sp/>==<sp/>pop[j].fitness.complexity);</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="96"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="97"><highlight class="normal"><sp/><sp/><sp/><sp/>};</highlight></codeline>
+<codeline lineno="98"><highlight class="normal">};</highlight></codeline>
+<codeline lineno="99"><highlight class="normal"></highlight></codeline>
+<codeline lineno="100" refid="dd/d56/namespaceBrush_1_1Pop_1a382a48bbf328f68d77d55831fd7562a8" refkind="member"><highlight class="normal"><ref refid="dd/d56/namespaceBrush_1_1Pop_1a8d00185166af67ee5f64195dec8fa628" kindref="member">NLOHMANN_DEFINE_TYPE_NON_INTRUSIVE</ref>(<ref refid="da/da3/classBrush_1_1Pop_1_1Population" kindref="compound">Population&lt;PT::Regressor&gt;</ref>,</highlight></codeline>
+<codeline lineno="101"><highlight class="normal"><sp/><sp/><sp/><sp/>individuals,<sp/>island_indexes,<sp/>pop_size,<sp/>num_islands,<sp/>mig_prob,<sp/>linear_complexity);</highlight></codeline>
+<codeline lineno="102" refid="dd/d56/namespaceBrush_1_1Pop_1ad837d8c03eae8c024e75f9d5c902d03c" refkind="member"><highlight class="normal"><ref refid="dd/d56/namespaceBrush_1_1Pop_1a8d00185166af67ee5f64195dec8fa628" kindref="member">NLOHMANN_DEFINE_TYPE_NON_INTRUSIVE</ref>(<ref refid="da/da3/classBrush_1_1Pop_1_1Population" kindref="compound">Population&lt;PT::BinaryClassifier&gt;</ref>,</highlight></codeline>
+<codeline lineno="103"><highlight class="normal"><sp/><sp/><sp/><sp/>individuals,<sp/>island_indexes,<sp/>pop_size,<sp/>num_islands,<sp/>mig_prob,<sp/>linear_complexity);</highlight></codeline>
+<codeline lineno="104" refid="dd/d56/namespaceBrush_1_1Pop_1ac3e730ac3a4e5804e13e89e8cb40b547" refkind="member"><highlight class="normal"><ref refid="dd/d56/namespaceBrush_1_1Pop_1a8d00185166af67ee5f64195dec8fa628" kindref="member">NLOHMANN_DEFINE_TYPE_NON_INTRUSIVE</ref>(<ref refid="da/da3/classBrush_1_1Pop_1_1Population" kindref="compound">Population&lt;PT::MulticlassClassifier&gt;</ref>,</highlight></codeline>
+<codeline lineno="105"><highlight class="normal"><sp/><sp/><sp/><sp/>individuals,<sp/>island_indexes,<sp/>pop_size,<sp/>num_islands,<sp/>mig_prob,<sp/>linear_complexity);</highlight></codeline>
+<codeline lineno="106" refid="dd/d56/namespaceBrush_1_1Pop_1ab9861a98cb4a3b202ae57a5f0d3b69df" refkind="member"><highlight class="normal"><ref refid="dd/d56/namespaceBrush_1_1Pop_1a8d00185166af67ee5f64195dec8fa628" kindref="member">NLOHMANN_DEFINE_TYPE_NON_INTRUSIVE</ref>(<ref refid="da/da3/classBrush_1_1Pop_1_1Population" kindref="compound">Population&lt;PT::Representer&gt;</ref>,</highlight></codeline>
+<codeline lineno="107"><highlight class="normal"><sp/><sp/><sp/><sp/>individuals,<sp/>island_indexes,<sp/>pop_size,<sp/>num_islands,<sp/>mig_prob,<sp/>linear_complexity);</highlight></codeline>
+<codeline lineno="108"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="109"><highlight class="normal">}</highlight><highlight class="comment">//<sp/>Pop</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="110"><highlight class="normal">}</highlight><highlight class="comment">//<sp/>Brush</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="111"><highlight class="normal"></highlight></codeline>
+<codeline lineno="112"><highlight class="normal"></highlight><highlight class="preprocessor">#endif</highlight></codeline>
     </programlisting>
     <location file="/home/runner/work/brush/brush/src/pop/population.h"/>
   </compounddef>

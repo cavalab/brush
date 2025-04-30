@@ -1,0 +1,173 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.13.2" xml:lang="en-US">
+  <compounddef id="d4/d71/classBrush_1_1Simpl_1_1HashStorage" kind="class" language="C++" prot="public">
+    <compoundname>Brush::Simpl::HashStorage</compoundname>
+    <includes refid="d1/db6/inexact_8h" local="no">inexact.h</includes>
+    <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="d4/d71/classBrush_1_1Simpl_1_1HashStorage_1a729e37e8a93bd58b89c4652aff2ae8df" prot="private" static="no" mutable="no">
+        <type><ref refid="d9/d28/classmap" kindref="compound">map</ref>&lt; <ref refid="d5/d92/classstring" kindref="compound">string</ref>, <ref refid="d7/dfc/classvector" kindref="compound">vector</ref>&lt; ArrayXf &gt; &gt;</type>
+        <definition>map&lt;string, vector&lt;ArrayXf&gt; &gt; Brush::Simpl::HashStorage::storage</definition>
+        <argsstring></argsstring>
+        <name>storage</name>
+        <qualifiedname>Brush::Simpl::HashStorage::storage</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/runner/work/brush/brush/src/simplification/inexact.h" line="57" column="9" bodyfile="/home/runner/work/brush/brush/src/simplification/inexact.h" bodystart="57" bodyend="-1"/>
+        <referencedby refid="d4/d71/classBrush_1_1Simpl_1_1HashStorage_1a4af7d1c7c216e6a796c10d594a99b88d" compoundref="d1/db6/inexact_8h" startline="28" endline="33">append</referencedby>
+        <referencedby refid="d4/d71/classBrush_1_1Simpl_1_1HashStorage_1a4cc087bda9fd98d2e7fe416e3e3ad4ba" compoundref="d1/db6/inexact_8h" startline="44" endline="46">clear</referencedby>
+        <referencedby refid="d4/d71/classBrush_1_1Simpl_1_1HashStorage_1a068c14340ed0eb673af8566415b653ac" compoundref="d1/db6/inexact_8h" startline="35" endline="42">getList</referencedby>
+        <referencedby refid="d4/d71/classBrush_1_1Simpl_1_1HashStorage_1a3131a419472218d757fbb0753789f50a" compoundref="d1/db6/inexact_8h" startline="48" endline="54">keys</referencedby>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="public-func">
+      <memberdef kind="function" id="d4/d71/classBrush_1_1Simpl_1_1HashStorage_1a09455036f0b5fe29bced058c54b148e3" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>Brush::Simpl::HashStorage::HashStorage</definition>
+        <argsstring>()</argsstring>
+        <name>HashStorage</name>
+        <qualifiedname>Brush::Simpl::HashStorage::HashStorage</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/runner/work/brush/brush/src/simplification/inexact.h" line="25" column="5" bodyfile="/home/runner/work/brush/brush/src/simplification/inexact.h" bodystart="25" bodyend="25"/>
+      </memberdef>
+      <memberdef kind="function" id="d4/d71/classBrush_1_1Simpl_1_1HashStorage_1a150bed4ddabbe973e01d4555724fb086" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>Brush::Simpl::HashStorage::~HashStorage</definition>
+        <argsstring>()</argsstring>
+        <name>~HashStorage</name>
+        <qualifiedname>Brush::Simpl::HashStorage::~HashStorage</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/runner/work/brush/brush/src/simplification/inexact.h" line="26" column="5" bodyfile="/home/runner/work/brush/brush/src/simplification/inexact.h" bodystart="26" bodyend="26"/>
+      </memberdef>
+      <memberdef kind="function" id="d4/d71/classBrush_1_1Simpl_1_1HashStorage_1a4af7d1c7c216e6a796c10d594a99b88d" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void Brush::Simpl::HashStorage::append</definition>
+        <argsstring>(const string &amp;key, const ArrayXf &amp;value)</argsstring>
+        <name>append</name>
+        <qualifiedname>Brush::Simpl::HashStorage::append</qualifiedname>
+        <param>
+          <type>const <ref refid="d5/d92/classstring" kindref="compound">string</ref> &amp;</type>
+          <declname>key</declname>
+        </param>
+        <param>
+          <type>const ArrayXf &amp;</type>
+          <declname>value</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/runner/work/brush/brush/src/simplification/inexact.h" line="28" column="10" bodyfile="/home/runner/work/brush/brush/src/simplification/inexact.h" bodystart="28" bodyend="33"/>
+        <references refid="d4/d71/classBrush_1_1Simpl_1_1HashStorage_1a729e37e8a93bd58b89c4652aff2ae8df" compoundref="d1/db6/inexact_8h" startline="57">storage</references>
+      </memberdef>
+      <memberdef kind="function" id="d4/d71/classBrush_1_1Simpl_1_1HashStorage_1a068c14340ed0eb673af8566415b653ac" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="d7/dfc/classvector" kindref="compound">vector</ref>&lt; ArrayXf &gt;</type>
+        <definition>vector&lt; ArrayXf &gt; Brush::Simpl::HashStorage::getList</definition>
+        <argsstring>(const string &amp;key)</argsstring>
+        <name>getList</name>
+        <qualifiedname>Brush::Simpl::HashStorage::getList</qualifiedname>
+        <param>
+          <type>const <ref refid="d5/d92/classstring" kindref="compound">string</ref> &amp;</type>
+          <declname>key</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/runner/work/brush/brush/src/simplification/inexact.h" line="35" column="12" bodyfile="/home/runner/work/brush/brush/src/simplification/inexact.h" bodystart="35" bodyend="42"/>
+        <references refid="d4/d71/classBrush_1_1Simpl_1_1HashStorage_1a729e37e8a93bd58b89c4652aff2ae8df" compoundref="d1/db6/inexact_8h" startline="57">storage</references>
+        <referencedby refid="de/dc5/classBrush_1_1Simpl_1_1Inexact__simplifier_1ad8c739c0661668ec1b869d73c3f412f6" compoundref="de/d79/inexact_8cpp" startline="109" endline="178">Brush::Simpl::Inexact_simplifier::query</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="d4/d71/classBrush_1_1Simpl_1_1HashStorage_1a4cc087bda9fd98d2e7fe416e3e3ad4ba" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void Brush::Simpl::HashStorage::clear</definition>
+        <argsstring>()</argsstring>
+        <name>clear</name>
+        <qualifiedname>Brush::Simpl::HashStorage::clear</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/runner/work/brush/brush/src/simplification/inexact.h" line="44" column="10" bodyfile="/home/runner/work/brush/brush/src/simplification/inexact.h" bodystart="44" bodyend="46"/>
+        <references refid="d4/d71/classBrush_1_1Simpl_1_1HashStorage_1a729e37e8a93bd58b89c4652aff2ae8df" compoundref="d1/db6/inexact_8h" startline="57">storage</references>
+      </memberdef>
+      <memberdef kind="function" id="d4/d71/classBrush_1_1Simpl_1_1HashStorage_1a3131a419472218d757fbb0753789f50a" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="d7/dfc/classvector" kindref="compound">vector</ref>&lt; <ref refid="d5/d92/classstring" kindref="compound">string</ref> &gt;</type>
+        <definition>vector&lt; string &gt; Brush::Simpl::HashStorage::keys</definition>
+        <argsstring>()</argsstring>
+        <name>keys</name>
+        <qualifiedname>Brush::Simpl::HashStorage::keys</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/runner/work/brush/brush/src/simplification/inexact.h" line="48" column="12" bodyfile="/home/runner/work/brush/brush/src/simplification/inexact.h" bodystart="48" bodyend="54"/>
+        <references refid="d4/d71/classBrush_1_1Simpl_1_1HashStorage_1a729e37e8a93bd58b89c4652aff2ae8df" compoundref="d1/db6/inexact_8h" startline="57">storage</references>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <collaborationgraph>
+      <node id="1">
+        <label>Brush::Simpl::HashStorage</label>
+        <link refid="d4/d71/classBrush_1_1Simpl_1_1HashStorage"/>
+        <childnode refid="2" relation="usage">
+          <edgelabel>storage</edgelabel>
+        </childnode>
+      </node>
+      <node id="4">
+        <label>std::basic_string&lt; Char &gt;</label>
+      </node>
+      <node id="2">
+        <label>std::map&lt; string, vector&lt; ArrayXf &gt; &gt;</label>
+        <childnode refid="3" relation="usage">
+          <edgelabel>keys</edgelabel>
+        </childnode>
+        <childnode refid="5" relation="usage">
+          <edgelabel>elements</edgelabel>
+        </childnode>
+      </node>
+      <node id="3">
+        <label>std::string</label>
+        <childnode refid="4" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="5">
+        <label>std::vector&lt; ArrayXf &gt;</label>
+      </node>
+    </collaborationgraph>
+    <location file="/home/runner/work/brush/brush/src/simplification/inexact.h" line="23" column="1" bodyfile="/home/runner/work/brush/brush/src/simplification/inexact.h" bodystart="23" bodyend="58"/>
+    <listofallmembers>
+      <member refid="d4/d71/classBrush_1_1Simpl_1_1HashStorage_1a4af7d1c7c216e6a796c10d594a99b88d" prot="public" virt="non-virtual"><scope>Brush::Simpl::HashStorage</scope><name>append</name></member>
+      <member refid="d4/d71/classBrush_1_1Simpl_1_1HashStorage_1a4cc087bda9fd98d2e7fe416e3e3ad4ba" prot="public" virt="non-virtual"><scope>Brush::Simpl::HashStorage</scope><name>clear</name></member>
+      <member refid="d4/d71/classBrush_1_1Simpl_1_1HashStorage_1a068c14340ed0eb673af8566415b653ac" prot="public" virt="non-virtual"><scope>Brush::Simpl::HashStorage</scope><name>getList</name></member>
+      <member refid="d4/d71/classBrush_1_1Simpl_1_1HashStorage_1a09455036f0b5fe29bced058c54b148e3" prot="public" virt="non-virtual"><scope>Brush::Simpl::HashStorage</scope><name>HashStorage</name></member>
+      <member refid="d4/d71/classBrush_1_1Simpl_1_1HashStorage_1a3131a419472218d757fbb0753789f50a" prot="public" virt="non-virtual"><scope>Brush::Simpl::HashStorage</scope><name>keys</name></member>
+      <member refid="d4/d71/classBrush_1_1Simpl_1_1HashStorage_1a729e37e8a93bd58b89c4652aff2ae8df" prot="private" virt="non-virtual"><scope>Brush::Simpl::HashStorage</scope><name>storage</name></member>
+      <member refid="d4/d71/classBrush_1_1Simpl_1_1HashStorage_1a150bed4ddabbe973e01d4555724fb086" prot="public" virt="non-virtual"><scope>Brush::Simpl::HashStorage</scope><name>~HashStorage</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

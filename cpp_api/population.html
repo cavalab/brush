@@ -176,6 +176,7 @@
 <li class="toctree-l2"><a class="reference internal" href="../guide/json.html">JSON Interoperability</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../guide/saving_loading_populations.html">Saving and loading populations</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../guide/archive.html">The archive</a></li>
+
 <li class="toctree-l2"><a class="reference internal" href="../guide/deap.html">Using Deap</a></li>
 </ul>
 </details></li>
@@ -391,6 +392,7 @@ document.write(`
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#_CPPv4N5Brush3Pop10Population8pop_sizeE"><code class="docutils literal notranslate"><span class="pre">pop_size</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#_CPPv4N5Brush3Pop10Population11num_islandsE"><code class="docutils literal notranslate"><span class="pre">num_islands</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#_CPPv4N5Brush3Pop10Population8mig_probE"><code class="docutils literal notranslate"><span class="pre">mig_prob</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#_CPPv4N5Brush3Pop10Population17linear_complexityE"><code class="docutils literal notranslate"><span class="pre">linear_complexity</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#_CPPv4N5Brush3Pop10Population11individualsE"><code class="docutils literal notranslate"><span class="pre">individuals</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#_CPPv4N5Brush3Pop10Population14island_indexesE"><code class="docutils literal notranslate"><span class="pre">island_indexes</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#_CPPv4N5Brush3Pop10Population17SameFitComplexityE"><code class="docutils literal notranslate"><span class="pre">Brush::Pop::Population::SameFitComplexity</span></code></a><ul class="nav section-nav flex-column">
@@ -403,6 +405,12 @@ document.write(`
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#_CPPv4N5Brush3Pop10Population14SortComplexity14SortComplexityER10Population"><code class="docutils literal notranslate"><span class="pre">SortComplexity()</span></code></a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#_CPPv4N5Brush3Pop10Population14SortComplexityclE6size_t6size_t"><code class="docutils literal notranslate"><span class="pre">operator()()</span></code></a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#_CPPv4N5Brush3Pop10Population14SortComplexity3popE"><code class="docutils literal notranslate"><span class="pre">pop</span></code></a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#_CPPv4N5Brush3Pop10Population20SortLinearComplexityE"><code class="docutils literal notranslate"><span class="pre">Brush::Pop::Population::SortLinearComplexity</span></code></a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#_CPPv4N5Brush3Pop10Population20SortLinearComplexity20SortLinearComplexityER10Population"><code class="docutils literal notranslate"><span class="pre">SortLinearComplexity()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#_CPPv4N5Brush3Pop10Population20SortLinearComplexityclE6size_t6size_t"><code class="docutils literal notranslate"><span class="pre">operator()()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#_CPPv4N5Brush3Pop10Population20SortLinearComplexity3popE"><code class="docutils literal notranslate"><span class="pre">pop</span></code></a></li>
 </ul>
 </li>
 </ul>
@@ -532,6 +540,12 @@ document.write(`
 <dd></dd></dl>
 
 <dl class="cpp var">
+<dt class="sig sig-object cpp" id="_CPPv4N5Brush3Pop10Population17linear_complexityE">
+<span id="_CPPv3N5Brush3Pop10Population17linear_complexityE"></span><span id="_CPPv2N5Brush3Pop10Population17linear_complexityE"></span><span id="Brush::Pop::Population::linear_complexity__b"></span><span class="target" id="da/da3/classBrush_1_1Pop_1_1Population_1a37b76e13ed8e9d39dbec875b3e50d7c7"></span><span class="kt"><span class="pre">bool</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">linear_complexity</span></span></span><a class="headerlink" href="#_CPPv4N5Brush3Pop10Population17linear_complexityE" title="Link to this definition">#</a><br /></dt>
+<dd><p>Indicates if the user set linear_complexity instead of recursive complexity. </p>
+</dd></dl>
+
+<dl class="cpp var">
 <dt class="sig sig-object cpp" id="_CPPv4N5Brush3Pop10Population11individualsE">
 <span id="_CPPv3N5Brush3Pop10Population11individualsE"></span><span id="_CPPv2N5Brush3Pop10Population11individualsE"></span><span id="Brush::Pop::Population::individuals__vector:std::shared_ptr:Individual:T:::"></span><span class="target" id="da/da3/classBrush_1_1Pop_1_1Population_1a7b529af66e90f378ca96a54ee5ce0c71"></span><span class="n"><span class="pre">vector</span></span><span class="p"><span class="pre">&lt;</span></span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">shared_ptr</span></span><span class="p"><span class="pre">&lt;</span></span><a class="reference internal" href="individual.html#_CPPv4I_11ProgramTypeEN5Brush3Pop10IndividualE" title="Brush::Pop::Individual"><span class="n"><span class="pre">Individual</span></span></a><span class="p"><span class="pre">&lt;</span></span><a class="reference internal" href="#_CPPv4I_11ProgramTypeEN5Brush3Pop10PopulationE" title="Brush::Pop::Population::T"><span class="n"><span class="pre">T</span></span></a><span class="p"><span class="pre">&gt;</span></span><span class="p"><span class="pre">&gt;</span></span><span class="p"><span class="pre">&gt;</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">individuals</span></span></span><a class="headerlink" href="#_CPPv4N5Brush3Pop10Population11individualsE" title="Link to this definition">#</a><br /></dt>
 <dd></dd></dl>
@@ -591,6 +605,32 @@ document.write(`
 <dl class="cpp var">
 <dt class="sig sig-object cpp" id="_CPPv4N5Brush3Pop10Population14SortComplexity3popE">
 <span id="_CPPv3N5Brush3Pop10Population14SortComplexity3popE"></span><span id="_CPPv2N5Brush3Pop10Population14SortComplexity3popE"></span><span id="Brush::Pop::Population::SortComplexity::pop__PopulationR"></span><span class="target" id="d6/dd9/structBrush_1_1Pop_1_1Population_1_1SortComplexity_1a8f9fdb267f616449654ff4b783607abf"></span><a class="reference internal" href="#_CPPv4I_11ProgramTypeEN5Brush3Pop10PopulationE" title="Brush::Pop::Population"><span class="n"><span class="pre">Population</span></span></a><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="sig-name descname"><span class="n"><span class="pre">pop</span></span></span><a class="headerlink" href="#_CPPv4N5Brush3Pop10Population14SortComplexity3popE" title="Link to this definition">#</a><br /></dt>
+<dd></dd></dl>
+
+</div>
+</dd></dl>
+
+<dl class="cpp struct">
+<dt class="sig sig-object cpp" id="_CPPv4N5Brush3Pop10Population20SortLinearComplexityE">
+<span id="_CPPv3N5Brush3Pop10Population20SortLinearComplexityE"></span><span id="_CPPv2N5Brush3Pop10Population20SortLinearComplexityE"></span><span id="Brush::Pop::Population::SortLinearComplexity"></span><span class="target" id="d6/d21/structBrush_1_1Pop_1_1Population_1_1SortLinearComplexity"></span><span class="k"><span class="pre">struct</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">SortLinearComplexity</span></span></span><a class="headerlink" href="#_CPPv4N5Brush3Pop10Population20SortLinearComplexityE" title="Link to this definition">#</a><br /></dt>
+<dd><div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric" id="breathe-section-title-public-functions">Public Functions</p>
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N5Brush3Pop10Population20SortLinearComplexity20SortLinearComplexityER10Population">
+<span id="_CPPv3N5Brush3Pop10Population20SortLinearComplexity20SortLinearComplexityER10Population"></span><span id="_CPPv2N5Brush3Pop10Population20SortLinearComplexity20SortLinearComplexityER10Population"></span><span id="Brush::Pop::Population::SortLinearComplexity::SortLinearComplexity__PopulationR"></span><span class="target" id="d6/d21/structBrush_1_1Pop_1_1Population_1_1SortLinearComplexity_1aa0ee948f058ae3e9838f9553805fb8f9"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">SortLinearComplexity</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="#_CPPv4I_11ProgramTypeEN5Brush3Pop10PopulationE" title="Brush::Pop::Population"><span class="n"><span class="pre">Population</span></span></a><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">p</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N5Brush3Pop10Population20SortLinearComplexity20SortLinearComplexityER10Population" title="Link to this definition">#</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N5Brush3Pop10Population20SortLinearComplexityclE6size_t6size_t">
+<span id="_CPPv3N5Brush3Pop10Population20SortLinearComplexityclE6size_t6size_t"></span><span id="_CPPv2N5Brush3Pop10Population20SortLinearComplexityclE6size_t6size_t"></span><span id="Brush::Pop::Population::SortLinearComplexity::call-operator__s.s"></span><span class="target" id="d6/d21/structBrush_1_1Pop_1_1Population_1_1SortLinearComplexity_1ad8ba6e91bc110a18013fe94bb5018b76"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="kt"><span class="pre">bool</span></span><span class="w"> </span><span class="sig-name descname"><span class="k"><span class="pre">operator</span></span><span class="o"><span class="pre">()</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">size_t</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">i</span></span>, <span class="n"><span class="pre">size_t</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">j</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N5Brush3Pop10Population20SortLinearComplexityclE6size_t6size_t" title="Link to this definition">#</a><br /></dt>
+<dd></dd></dl>
+
+</div>
+<div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric" id="breathe-section-title-public-members">Public Members</p>
+<dl class="cpp var">
+<dt class="sig sig-object cpp" id="_CPPv4N5Brush3Pop10Population20SortLinearComplexity3popE">
+<span id="_CPPv3N5Brush3Pop10Population20SortLinearComplexity3popE"></span><span id="_CPPv2N5Brush3Pop10Population20SortLinearComplexity3popE"></span><span id="Brush::Pop::Population::SortLinearComplexity::pop__PopulationR"></span><span class="target" id="d6/d21/structBrush_1_1Pop_1_1Population_1_1SortLinearComplexity_1a13be7c4811240485ac486fa956219493"></span><a class="reference internal" href="#_CPPv4I_11ProgramTypeEN5Brush3Pop10PopulationE" title="Brush::Pop::Population"><span class="n"><span class="pre">Population</span></span></a><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="sig-name descname"><span class="n"><span class="pre">pop</span></span></span><a class="headerlink" href="#_CPPv4N5Brush3Pop10Population20SortLinearComplexity3popE" title="Link to this definition">#</a><br /></dt>
 <dd></dd></dl>
 
 </div>
@@ -665,6 +705,7 @@ document.write(`
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#_CPPv4N5Brush3Pop10Population8pop_sizeE"><code class="docutils literal notranslate"><span class="pre">pop_size</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#_CPPv4N5Brush3Pop10Population11num_islandsE"><code class="docutils literal notranslate"><span class="pre">num_islands</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#_CPPv4N5Brush3Pop10Population8mig_probE"><code class="docutils literal notranslate"><span class="pre">mig_prob</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#_CPPv4N5Brush3Pop10Population17linear_complexityE"><code class="docutils literal notranslate"><span class="pre">linear_complexity</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#_CPPv4N5Brush3Pop10Population11individualsE"><code class="docutils literal notranslate"><span class="pre">individuals</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#_CPPv4N5Brush3Pop10Population14island_indexesE"><code class="docutils literal notranslate"><span class="pre">island_indexes</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#_CPPv4N5Brush3Pop10Population17SameFitComplexityE"><code class="docutils literal notranslate"><span class="pre">Brush::Pop::Population::SameFitComplexity</span></code></a><ul class="nav section-nav flex-column">
@@ -677,6 +718,12 @@ document.write(`
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#_CPPv4N5Brush3Pop10Population14SortComplexity14SortComplexityER10Population"><code class="docutils literal notranslate"><span class="pre">SortComplexity()</span></code></a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#_CPPv4N5Brush3Pop10Population14SortComplexityclE6size_t6size_t"><code class="docutils literal notranslate"><span class="pre">operator()()</span></code></a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#_CPPv4N5Brush3Pop10Population14SortComplexity3popE"><code class="docutils literal notranslate"><span class="pre">pop</span></code></a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#_CPPv4N5Brush3Pop10Population20SortLinearComplexityE"><code class="docutils literal notranslate"><span class="pre">Brush::Pop::Population::SortLinearComplexity</span></code></a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#_CPPv4N5Brush3Pop10Population20SortLinearComplexity20SortLinearComplexityER10Population"><code class="docutils literal notranslate"><span class="pre">SortLinearComplexity()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#_CPPv4N5Brush3Pop10Population20SortLinearComplexityclE6size_t6size_t"><code class="docutils literal notranslate"><span class="pre">operator()()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#_CPPv4N5Brush3Pop10Population20SortLinearComplexity3popE"><code class="docutils literal notranslate"><span class="pre">pop</span></code></a></li>
 </ul>
 </li>
 </ul>

@@ -4,8 +4,9 @@ var searchData=
   ['weight_5foptimizer_2eh_1',['weight_optimizer.h',['../d7/de3/weight__optimizer_8h.html',1,'']]],
   ['weightoptimizer_2',['WeightOptimizer',['../d7/d79/structBrush_1_1WeightOptimizer.html',1,'Brush']]],
   ['weights_3',['weights',['../d6/dd0/structBrush_1_1Fitness.html#a1207d03059fa2d786e983270388b1f16',1,'Brush::Fitness']]],
-  ['weightsmap_4',['weightsMap',['../de/d83/classBrush_1_1Pop_1_1Individual.html#a0445d333388f2198459c25dd2b01794c',1,'Brush::Pop::Individual']]],
-  ['weighttype_5',['WeightType',['../da/d54/structBrush_1_1WeightType.html',1,'Brush::WeightType&lt; T &gt;'],['../da/dd5/structBrush_1_1SigBase.html#af330c93cdb4c2b8855a1224f65070f08',1,'Brush::SigBase::WeightType'],['../dc/da5/structBrush_1_1SigBase_3_01R_01_4.html#ad4623810d48636cef328a9cc02e385ab',1,'Brush::SigBase&lt; R &gt;::WeightType'],['../d5/d7d/structBrush_1_1Signature_3_01R_07Args_8_8_8_08_4.html#a0d7d214836abf590725c8e2e9d7fc420',1,'Brush::Signature&lt; R(Args...)&gt;::WeightType'],['../da/dd5/structBrush_1_1SigBase.html#af330c93cdb4c2b8855a1224f65070f08',1,'Brush::SigBase&lt; R &gt;::WeightType']]],
-  ['weighttype_5ft_6',['WeightType_t',['../dc/d5c/namespaceBrush.html#a1f2bbe4d2e8f978c26e3b50612ac4fcb',1,'Brush']]],
-  ['wvalues_7',['wvalues',['../d6/dd0/structBrush_1_1Fitness.html#a972dd960fd7c2a68449827ec987d0671',1,'Brush::Fitness']]]
+  ['weights_5finit_4',['weights_init',['../de/deb/structBrush_1_1Parameters.html#ad60ceac73cd4773e3d808531463a87eb',1,'Brush::Parameters']]],
+  ['weightsmap_5',['weightsMap',['../de/d83/classBrush_1_1Pop_1_1Individual.html#a0445d333388f2198459c25dd2b01794c',1,'Brush::Pop::Individual']]],
+  ['weighttype_6',['WeightType',['../da/d54/structBrush_1_1WeightType.html',1,'Brush::WeightType&lt; T &gt;'],['../da/dd5/structBrush_1_1SigBase.html#af330c93cdb4c2b8855a1224f65070f08',1,'Brush::SigBase::WeightType'],['../dc/da5/structBrush_1_1SigBase_3_01R_01_4.html#ad4623810d48636cef328a9cc02e385ab',1,'Brush::SigBase&lt; R &gt;::WeightType'],['../d5/d7d/structBrush_1_1Signature_3_01R_07Args_8_8_8_08_4.html#a0d7d214836abf590725c8e2e9d7fc420',1,'Brush::Signature&lt; R(Args...)&gt;::WeightType'],['../da/dd5/structBrush_1_1SigBase.html#af330c93cdb4c2b8855a1224f65070f08',1,'Brush::SigBase&lt; R &gt;::WeightType']]],
+  ['weighttype_5ft_7',['WeightType_t',['../dc/d5c/namespaceBrush.html#a1f2bbe4d2e8f978c26e3b50612ac4fcb',1,'Brush']]],
+  ['wvalues_8',['wvalues',['../d6/dd0/structBrush_1_1Fitness.html#a972dd960fd7c2a68449827ec987d0671',1,'Brush::Fitness']]]
 ];

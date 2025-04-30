@@ -96,9 +96,9 @@
       <node id="56">
         <label>../params.h</label>
         <link refid="da/d33/params_8h"/>
-        <childnode refid="12" relation="include">
-        </childnode>
         <childnode refid="37" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
         </childnode>
       </node>
       <node id="3">
@@ -537,7 +537,7 @@
 <codeline lineno="21" refid="de/db9/classBrush_1_1Sel_1_1SelectionOperator_1aae4a8e2e3b4e14ca055312da466c8547" refkind="member"><highlight class="normal">vector&lt;size_t&gt;<sp/><ref refid="de/db9/classBrush_1_1Sel_1_1SelectionOperator_1aae4a8e2e3b4e14ca055312da466c8547" kindref="member">SelectionOperator&lt;T&gt;::survive</ref>(<ref refid="da/da3/classBrush_1_1Pop_1_1Population" kindref="compound">Population&lt;T&gt;</ref>&amp;<sp/>pop,<sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>island,<sp/></highlight></codeline>
 <codeline lineno="22"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="de/deb/structBrush_1_1Parameters" kindref="compound">Parameters</ref>&amp;<sp/>p)</highlight></codeline>
 <codeline lineno="23"><highlight class="normal">{<sp/><sp/><sp/></highlight></codeline>
-<codeline lineno="24"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="da/d41/error_8h_1aa4c550bcd71e4ec1c97b111e1360509a" kindref="member">HANDLE_ERROR_THROW</ref>(</highlight><highlight class="stringliteral">&quot;Undefined<sp/>select()<sp/>operation&quot;</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="24"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="da/d41/error_8h_1aa4c550bcd71e4ec1c97b111e1360509a" kindref="member">HANDLE_ERROR_THROW</ref>(</highlight><highlight class="stringliteral">&quot;Undefined<sp/>survive()<sp/>operation&quot;</highlight><highlight class="normal">);</highlight></codeline>
 <codeline lineno="25"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>vector&lt;size_t&gt;();</highlight></codeline>
 <codeline lineno="26"><highlight class="normal">};</highlight></codeline>
 <codeline lineno="27"><highlight class="normal"></highlight></codeline>

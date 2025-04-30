@@ -25,8 +25,8 @@
         <inbodydescription>
         </inbodydescription>
         <location file="/home/runner/work/brush/brush/src/pop/archive.h" line="27" column="12" bodyfile="/home/runner/work/brush/brush/src/pop/archive.h" bodystart="27" bodyend="-1"/>
-        <referencedby refid="d1/d30/structBrush_1_1Pop_1_1Archive_1a5e6c6513918f87a8a68c2a7a162edb27" compoundref="d7/d05/archive_8cpp" startline="64" endline="105">Brush::Pop::Archive&lt; T &gt;::init</referencedby>
-        <referencedby refid="d1/d30/structBrush_1_1Pop_1_1Archive_1a14ec57dcaf13d237552d7fa46f58f3c3" compoundref="d7/d05/archive_8cpp" startline="108" endline="134">Brush::Pop::Archive&lt; T &gt;::update</referencedby>
+        <referencedby refid="d1/d30/structBrush_1_1Pop_1_1Archive_1a5e6c6513918f87a8a68c2a7a162edb27" compoundref="d7/d05/archive_8cpp" startline="77" endline="122">Brush::Pop::Archive&lt; T &gt;::init</referencedby>
+        <referencedby refid="d1/d30/structBrush_1_1Pop_1_1Archive_1a14ec57dcaf13d237552d7fa46f58f3c3" compoundref="d7/d05/archive_8cpp" startline="125" endline="157">Brush::Pop::Archive&lt; T &gt;::update</referencedby>
       </memberdef>
       <memberdef kind="variable" id="d1/d30/structBrush_1_1Pop_1_1Archive_1a4b6989b7840a0bd9649ab5331eb43e48" prot="public" static="no" mutable="no">
         <type>bool</type>
@@ -42,9 +42,27 @@
         <inbodydescription>
         </inbodydescription>
         <location file="/home/runner/work/brush/brush/src/pop/archive.h" line="28" column="10" bodyfile="/home/runner/work/brush/brush/src/pop/archive.h" bodystart="28" bodyend="-1"/>
-        <referencedby refid="d1/d30/structBrush_1_1Pop_1_1Archive_1a5e6c6513918f87a8a68c2a7a162edb27" compoundref="d7/d05/archive_8cpp" startline="64" endline="105">Brush::Pop::Archive&lt; T &gt;::init</referencedby>
-        <referencedby refid="d1/d30/structBrush_1_1Pop_1_1Archive_1a073b0ac31fc55c35e2a8296b919c1876" compoundref="d7/d05/archive_8cpp" startline="10" endline="13">Brush::Pop::Archive&lt; T &gt;::set_objectives</referencedby>
-        <referencedby refid="d1/d30/structBrush_1_1Pop_1_1Archive_1a14ec57dcaf13d237552d7fa46f58f3c3" compoundref="d7/d05/archive_8cpp" startline="108" endline="134">Brush::Pop::Archive&lt; T &gt;::update</referencedby>
+        <referencedby refid="d1/d30/structBrush_1_1Pop_1_1Archive_1a5e6c6513918f87a8a68c2a7a162edb27" compoundref="d7/d05/archive_8cpp" startline="77" endline="122">Brush::Pop::Archive&lt; T &gt;::init</referencedby>
+        <referencedby refid="d1/d30/structBrush_1_1Pop_1_1Archive_1a073b0ac31fc55c35e2a8296b919c1876" compoundref="d7/d05/archive_8cpp" startline="10" endline="16">Brush::Pop::Archive&lt; T &gt;::set_objectives</referencedby>
+        <referencedby refid="d1/d30/structBrush_1_1Pop_1_1Archive_1a14ec57dcaf13d237552d7fa46f58f3c3" compoundref="d7/d05/archive_8cpp" startline="125" endline="157">Brush::Pop::Archive&lt; T &gt;::update</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="d1/d30/structBrush_1_1Pop_1_1Archive_1aeee2d8283bccc50026b654e0bff4b388" prot="public" static="no" mutable="no">
+        <type>bool</type>
+        <definition>bool Brush::Pop::Archive&lt; T &gt;::linear_complexity</definition>
+        <argsstring></argsstring>
+        <name>linear_complexity</name>
+        <qualifiedname>Brush::Pop::Archive::linear_complexity</qualifiedname>
+        <briefdescription>
+<para>Indicates if the user set linear_complexity instead of recursive complexity. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/runner/work/brush/brush/src/pop/archive.h" line="29" column="10" bodyfile="/home/runner/work/brush/brush/src/pop/archive.h" bodystart="29" bodyend="-1"/>
+        <referencedby refid="d1/d30/structBrush_1_1Pop_1_1Archive_1a5e6c6513918f87a8a68c2a7a162edb27" compoundref="d7/d05/archive_8cpp" startline="77" endline="122">Brush::Pop::Archive&lt; T &gt;::init</referencedby>
+        <referencedby refid="d1/d30/structBrush_1_1Pop_1_1Archive_1a073b0ac31fc55c35e2a8296b919c1876" compoundref="d7/d05/archive_8cpp" startline="10" endline="16">Brush::Pop::Archive&lt; T &gt;::set_objectives</referencedby>
+        <referencedby refid="d1/d30/structBrush_1_1Pop_1_1Archive_1a14ec57dcaf13d237552d7fa46f58f3c3" compoundref="d7/d05/archive_8cpp" startline="125" endline="157">Brush::Pop::Archive&lt; T &gt;::update</referencedby>
       </memberdef>
       <memberdef kind="variable" id="d1/d30/structBrush_1_1Pop_1_1Archive_1a56b6da606397435d4e736e0ece911451" prot="public" static="no" mutable="no">
         <type><ref refid="d3/d7d/classBrush_1_1Sel_1_1NSGA2" kindref="compound">NSGA2</ref>&lt; T &gt;</type>
@@ -59,10 +77,10 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/runner/work/brush/brush/src/pop/archive.h" line="29" column="11" bodyfile="/home/runner/work/brush/brush/src/pop/archive.h" bodystart="29" bodyend="-1"/>
+        <location file="/home/runner/work/brush/brush/src/pop/archive.h" line="30" column="11" bodyfile="/home/runner/work/brush/brush/src/pop/archive.h" bodystart="30" bodyend="-1"/>
         <referencedby refid="d1/d30/structBrush_1_1Pop_1_1Archive_1af697a235df24c3c180a2d726eadb8b51" compoundref="d7/d05/archive_8cpp" startline="7" endline="7">Brush::Pop::Archive&lt; T &gt;::Archive</referencedby>
-        <referencedby refid="d1/d30/structBrush_1_1Pop_1_1Archive_1a5e6c6513918f87a8a68c2a7a162edb27" compoundref="d7/d05/archive_8cpp" startline="64" endline="105">Brush::Pop::Archive&lt; T &gt;::init</referencedby>
-        <referencedby refid="d1/d30/structBrush_1_1Pop_1_1Archive_1a14ec57dcaf13d237552d7fa46f58f3c3" compoundref="d7/d05/archive_8cpp" startline="108" endline="134">Brush::Pop::Archive&lt; T &gt;::update</referencedby>
+        <referencedby refid="d1/d30/structBrush_1_1Pop_1_1Archive_1a5e6c6513918f87a8a68c2a7a162edb27" compoundref="d7/d05/archive_8cpp" startline="77" endline="122">Brush::Pop::Archive&lt; T &gt;::init</referencedby>
+        <referencedby refid="d1/d30/structBrush_1_1Pop_1_1Archive_1a14ec57dcaf13d237552d7fa46f58f3c3" compoundref="d7/d05/archive_8cpp" startline="125" endline="157">Brush::Pop::Archive&lt; T &gt;::update</referencedby>
       </memberdef>
     </sectiondef>
     <sectiondef kind="public-func">
@@ -79,8 +97,8 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/runner/work/brush/brush/src/pop/archive.h" line="34" column="5" bodyfile="/home/runner/work/brush/brush/src/pop/archive.cpp" bodystart="7" bodyend="7"/>
-        <references refid="d1/d30/structBrush_1_1Pop_1_1Archive_1a56b6da606397435d4e736e0ece911451" compoundref="d9/d28/archive_8h" startline="29">Brush::Pop::Archive&lt; T &gt;::selector</references>
+        <location file="/home/runner/work/brush/brush/src/pop/archive.h" line="35" column="5" bodyfile="/home/runner/work/brush/brush/src/pop/archive.cpp" bodystart="7" bodyend="7"/>
+        <references refid="d1/d30/structBrush_1_1Pop_1_1Archive_1a56b6da606397435d4e736e0ece911451" compoundref="d9/d28/archive_8h" startline="30">Brush::Pop::Archive&lt; T &gt;::selector</references>
       </memberdef>
       <memberdef kind="function" id="d1/d30/structBrush_1_1Pop_1_1Archive_1a5e6c6513918f87a8a68c2a7a162edb27" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -109,15 +127,17 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/runner/work/brush/brush/src/pop/archive.h" line="40" column="10" bodyfile="/home/runner/work/brush/brush/src/pop/archive.cpp" bodystart="64" bodyend="105"/>
-        <references refid="da/da3/classBrush_1_1Pop_1_1Population_1a2bf4066c7a32ec3bd85c96bd80098de6" compoundref="d2/d76/population_8h" startline="38" endline="38">Brush::Pop::Population&lt; T &gt;::get_island_indexes</references>
+        <location file="/home/runner/work/brush/brush/src/pop/archive.h" line="41" column="10" bodyfile="/home/runner/work/brush/brush/src/pop/archive.cpp" bodystart="77" bodyend="122"/>
+        <references refid="da/da3/classBrush_1_1Pop_1_1Population_1a2bf4066c7a32ec3bd85c96bd80098de6" compoundref="d2/d76/population_8h" startline="39" endline="39">Brush::Pop::Population&lt; T &gt;::get_island_indexes</references>
         <references refid="d1/d30/structBrush_1_1Pop_1_1Archive_1a47b75ce0613b190b0b637ab4f8effa5a" compoundref="d9/d28/archive_8h" startline="27">Brush::Pop::Archive&lt; T &gt;::individuals</references>
-        <references refid="da/da3/classBrush_1_1Pop_1_1Population_1a7b529af66e90f378ca96a54ee5ce0c71" compoundref="d2/d76/population_8h" startline="18">Brush::Pop::Population&lt; T &gt;::individuals</references>
+        <references refid="da/da3/classBrush_1_1Pop_1_1Population_1a7b529af66e90f378ca96a54ee5ce0c71" compoundref="d2/d76/population_8h" startline="19">Brush::Pop::Population&lt; T &gt;::individuals</references>
+        <references refid="d1/d30/structBrush_1_1Pop_1_1Archive_1aeee2d8283bccc50026b654e0bff4b388" compoundref="d9/d28/archive_8h" startline="29">Brush::Pop::Archive&lt; T &gt;::linear_complexity</references>
         <references refid="da/da3/classBrush_1_1Pop_1_1Population_1a0a1f364040ce0de2ab17ae82e0faac76" compoundref="d2/d76/population_8h" startline="15">Brush::Pop::Population&lt; T &gt;::num_islands</references>
-        <references refid="d1/d30/structBrush_1_1Pop_1_1Archive_1a56b6da606397435d4e736e0ece911451" compoundref="d9/d28/archive_8h" startline="29">Brush::Pop::Archive&lt; T &gt;::selector</references>
+        <references refid="d1/d30/structBrush_1_1Pop_1_1Archive_1a56b6da606397435d4e736e0ece911451" compoundref="d9/d28/archive_8h" startline="30">Brush::Pop::Archive&lt; T &gt;::selector</references>
         <references refid="d1/d30/structBrush_1_1Pop_1_1Archive_1a4b6989b7840a0bd9649ab5331eb43e48" compoundref="d9/d28/archive_8h" startline="28">Brush::Pop::Archive&lt; T &gt;::sort_complexity</references>
-        <references refid="d1/d30/structBrush_1_1Pop_1_1Archive_1a8e11ee4659b1dc0a4332ffad5690e30f" compoundref="d7/d05/archive_8cpp" startline="17" endline="26">Brush::Pop::Archive&lt; T &gt;::sortComplexity</references>
-        <references refid="d1/d30/structBrush_1_1Pop_1_1Archive_1a8407a45b676b80bbf7197dbdd96d2c30" compoundref="d7/d05/archive_8cpp" startline="29" endline="42">Brush::Pop::Archive&lt; T &gt;::sortObj1</references>
+        <references refid="d1/d30/structBrush_1_1Pop_1_1Archive_1a8e11ee4659b1dc0a4332ffad5690e30f" compoundref="d7/d05/archive_8cpp" startline="20" endline="28">Brush::Pop::Archive&lt; T &gt;::sortComplexity</references>
+        <references refid="d1/d30/structBrush_1_1Pop_1_1Archive_1a06108c7b5249901089d2bd0279ab6273" compoundref="d7/d05/archive_8cpp" startline="31" endline="35">Brush::Pop::Archive&lt; T &gt;::sortLinearComplexity</references>
+        <references refid="d1/d30/structBrush_1_1Pop_1_1Archive_1a8407a45b676b80bbf7197dbdd96d2c30" compoundref="d7/d05/archive_8cpp" startline="38" endline="51">Brush::Pop::Archive&lt; T &gt;::sortObj1</references>
       </memberdef>
       <memberdef kind="function" id="d1/d30/structBrush_1_1Pop_1_1Archive_1a14ec57dcaf13d237552d7fa46f58f3c3" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -158,16 +178,18 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/runner/work/brush/brush/src/pop/archive.h" line="47" column="10" bodyfile="/home/runner/work/brush/brush/src/pop/archive.cpp" bodystart="108" bodyend="134"/>
-        <references refid="da/da3/classBrush_1_1Pop_1_1Population_1a2bf4066c7a32ec3bd85c96bd80098de6" compoundref="d2/d76/population_8h" startline="38" endline="38">Brush::Pop::Population&lt; T &gt;::get_island_indexes</references>
+        <location file="/home/runner/work/brush/brush/src/pop/archive.h" line="48" column="10" bodyfile="/home/runner/work/brush/brush/src/pop/archive.cpp" bodystart="125" bodyend="157"/>
+        <references refid="da/da3/classBrush_1_1Pop_1_1Population_1a2bf4066c7a32ec3bd85c96bd80098de6" compoundref="d2/d76/population_8h" startline="39" endline="39">Brush::Pop::Population&lt; T &gt;::get_island_indexes</references>
         <references refid="d1/d30/structBrush_1_1Pop_1_1Archive_1a47b75ce0613b190b0b637ab4f8effa5a" compoundref="d9/d28/archive_8h" startline="27">Brush::Pop::Archive&lt; T &gt;::individuals</references>
-        <references refid="da/da3/classBrush_1_1Pop_1_1Population_1a7b529af66e90f378ca96a54ee5ce0c71" compoundref="d2/d76/population_8h" startline="18">Brush::Pop::Population&lt; T &gt;::individuals</references>
+        <references refid="da/da3/classBrush_1_1Pop_1_1Population_1a7b529af66e90f378ca96a54ee5ce0c71" compoundref="d2/d76/population_8h" startline="19">Brush::Pop::Population&lt; T &gt;::individuals</references>
+        <references refid="d1/d30/structBrush_1_1Pop_1_1Archive_1aeee2d8283bccc50026b654e0bff4b388" compoundref="d9/d28/archive_8h" startline="29">Brush::Pop::Archive&lt; T &gt;::linear_complexity</references>
         <references refid="da/da3/classBrush_1_1Pop_1_1Population_1a0a1f364040ce0de2ab17ae82e0faac76" compoundref="d2/d76/population_8h" startline="15">Brush::Pop::Population&lt; T &gt;::num_islands</references>
-        <references refid="d1/d30/structBrush_1_1Pop_1_1Archive_1ae48c8db22bdf072955564c079e379610" compoundref="d7/d05/archive_8cpp" startline="56" endline="61">Brush::Pop::Archive&lt; T &gt;::sameObjectives</references>
-        <references refid="d1/d30/structBrush_1_1Pop_1_1Archive_1a56b6da606397435d4e736e0ece911451" compoundref="d9/d28/archive_8h" startline="29">Brush::Pop::Archive&lt; T &gt;::selector</references>
+        <references refid="d1/d30/structBrush_1_1Pop_1_1Archive_1ae48c8db22bdf072955564c079e379610" compoundref="d7/d05/archive_8cpp" startline="70" endline="74">Brush::Pop::Archive&lt; T &gt;::sameObjectives</references>
+        <references refid="d1/d30/structBrush_1_1Pop_1_1Archive_1a56b6da606397435d4e736e0ece911451" compoundref="d9/d28/archive_8h" startline="30">Brush::Pop::Archive&lt; T &gt;::selector</references>
         <references refid="d1/d30/structBrush_1_1Pop_1_1Archive_1a4b6989b7840a0bd9649ab5331eb43e48" compoundref="d9/d28/archive_8h" startline="28">Brush::Pop::Archive&lt; T &gt;::sort_complexity</references>
-        <references refid="d1/d30/structBrush_1_1Pop_1_1Archive_1a8e11ee4659b1dc0a4332ffad5690e30f" compoundref="d7/d05/archive_8cpp" startline="17" endline="26">Brush::Pop::Archive&lt; T &gt;::sortComplexity</references>
-        <references refid="d1/d30/structBrush_1_1Pop_1_1Archive_1a8407a45b676b80bbf7197dbdd96d2c30" compoundref="d7/d05/archive_8cpp" startline="29" endline="42">Brush::Pop::Archive&lt; T &gt;::sortObj1</references>
+        <references refid="d1/d30/structBrush_1_1Pop_1_1Archive_1a8e11ee4659b1dc0a4332ffad5690e30f" compoundref="d7/d05/archive_8cpp" startline="20" endline="28">Brush::Pop::Archive&lt; T &gt;::sortComplexity</references>
+        <references refid="d1/d30/structBrush_1_1Pop_1_1Archive_1a06108c7b5249901089d2bd0279ab6273" compoundref="d7/d05/archive_8cpp" startline="31" endline="35">Brush::Pop::Archive&lt; T &gt;::sortLinearComplexity</references>
+        <references refid="d1/d30/structBrush_1_1Pop_1_1Archive_1a8407a45b676b80bbf7197dbdd96d2c30" compoundref="d7/d05/archive_8cpp" startline="38" endline="51">Brush::Pop::Archive&lt; T &gt;::sortObj1</references>
       </memberdef>
       <memberdef kind="function" id="d1/d30/structBrush_1_1Pop_1_1Archive_1a073b0ac31fc55c35e2a8296b919c1876" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -197,8 +219,9 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/runner/work/brush/brush/src/pop/archive.h" line="57" column="10" bodyfile="/home/runner/work/brush/brush/src/pop/archive.cpp" bodystart="10" bodyend="13"/>
+        <location file="/home/runner/work/brush/brush/src/pop/archive.h" line="58" column="10" bodyfile="/home/runner/work/brush/brush/src/pop/archive.cpp" bodystart="10" bodyend="16"/>
         <references refid="d6/d2e/namespaceBrush_1_1Util_1ab03528e8d9652013786252f63b6d5840" compoundref="d5/d60/utils_8h" startline="192" endline="195">Brush::Util::in</references>
+        <references refid="d1/d30/structBrush_1_1Pop_1_1Archive_1aeee2d8283bccc50026b654e0bff4b388" compoundref="d9/d28/archive_8h" startline="29">Brush::Pop::Archive&lt; T &gt;::linear_complexity</references>
         <references refid="d1/d30/structBrush_1_1Pop_1_1Archive_1a4b6989b7840a0bd9649ab5331eb43e48" compoundref="d9/d28/archive_8h" startline="28">Brush::Pop::Archive&lt; T &gt;::sort_complexity</references>
       </memberdef>
     </sectiondef>
@@ -243,11 +266,37 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/runner/work/brush/brush/src/pop/archive.h" line="68" column="17" bodyfile="/home/runner/work/brush/brush/src/pop/archive.cpp" bodystart="17" bodyend="26"/>
+        <location file="/home/runner/work/brush/brush/src/pop/archive.h" line="69" column="17" bodyfile="/home/runner/work/brush/brush/src/pop/archive.cpp" bodystart="20" bodyend="28"/>
         <references refid="d6/dd0/structBrush_1_1Fitness_1a2edfafc177c7f47f7c5fccc9238236cf" compoundref="dc/d7a/fitness_8h" startline="31">Brush::Fitness::complexity</references>
-        <references refid="de/d83/classBrush_1_1Pop_1_1Individual_1a96a4869472f1e11e19219c2d07fb6c53" compoundref="d5/d1f/individual_8h" startline="33">Brush::Pop::Individual&lt; T &gt;::fitness</references>
-        <referencedby refid="d1/d30/structBrush_1_1Pop_1_1Archive_1a5e6c6513918f87a8a68c2a7a162edb27" compoundref="d7/d05/archive_8cpp" startline="64" endline="105">Brush::Pop::Archive&lt; T &gt;::init</referencedby>
-        <referencedby refid="d1/d30/structBrush_1_1Pop_1_1Archive_1a14ec57dcaf13d237552d7fa46f58f3c3" compoundref="d7/d05/archive_8cpp" startline="108" endline="134">Brush::Pop::Archive&lt; T &gt;::update</referencedby>
+        <references refid="de/d83/classBrush_1_1Pop_1_1Individual_1a96a4869472f1e11e19219c2d07fb6c53" compoundref="d5/d1f/individual_8h" startline="37">Brush::Pop::Individual&lt; T &gt;::fitness</references>
+        <referencedby refid="d1/d30/structBrush_1_1Pop_1_1Archive_1a5e6c6513918f87a8a68c2a7a162edb27" compoundref="d7/d05/archive_8cpp" startline="77" endline="122">Brush::Pop::Archive&lt; T &gt;::init</referencedby>
+        <referencedby refid="d1/d30/structBrush_1_1Pop_1_1Archive_1a14ec57dcaf13d237552d7fa46f58f3c3" compoundref="d7/d05/archive_8cpp" startline="125" endline="157">Brush::Pop::Archive&lt; T &gt;::update</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="d1/d30/structBrush_1_1Pop_1_1Archive_1a06108c7b5249901089d2bd0279ab6273" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool Brush::Pop::Archive&lt; T &gt;::sortLinearComplexity</definition>
+        <argsstring>(const Individual&lt; T &gt; &amp;lhs, const Individual&lt; T &gt; &amp;rhs)</argsstring>
+        <name>sortLinearComplexity</name>
+        <qualifiedname>Brush::Pop::Archive::sortLinearComplexity</qualifiedname>
+        <param>
+          <type>const <ref refid="de/d83/classBrush_1_1Pop_1_1Individual" kindref="compound">Individual</ref>&lt; T &gt; &amp;</type>
+          <declname>lhs</declname>
+        </param>
+        <param>
+          <type>const <ref refid="de/d83/classBrush_1_1Pop_1_1Individual" kindref="compound">Individual</ref>&lt; T &gt; &amp;</type>
+          <declname>rhs</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/runner/work/brush/brush/src/pop/archive.h" line="71" column="17" bodyfile="/home/runner/work/brush/brush/src/pop/archive.cpp" bodystart="31" bodyend="35"/>
+        <references refid="de/d83/classBrush_1_1Pop_1_1Individual_1a96a4869472f1e11e19219c2d07fb6c53" compoundref="d5/d1f/individual_8h" startline="37">Brush::Pop::Individual&lt; T &gt;::fitness</references>
+        <references refid="d6/dd0/structBrush_1_1Fitness_1a73c060c3062cc51f0c6444d58d76de7a" compoundref="dc/d7a/fitness_8h" startline="32">Brush::Fitness::linear_complexity</references>
+        <referencedby refid="d1/d30/structBrush_1_1Pop_1_1Archive_1a5e6c6513918f87a8a68c2a7a162edb27" compoundref="d7/d05/archive_8cpp" startline="77" endline="122">Brush::Pop::Archive&lt; T &gt;::init</referencedby>
+        <referencedby refid="d1/d30/structBrush_1_1Pop_1_1Archive_1a14ec57dcaf13d237552d7fa46f58f3c3" compoundref="d7/d05/archive_8cpp" startline="125" endline="157">Brush::Pop::Archive&lt; T &gt;::update</referencedby>
       </memberdef>
       <memberdef kind="function" id="d1/d30/structBrush_1_1Pop_1_1Archive_1a8407a45b676b80bbf7197dbdd96d2c30" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>bool</type>
@@ -289,11 +338,11 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/runner/work/brush/brush/src/pop/archive.h" line="79" column="17" bodyfile="/home/runner/work/brush/brush/src/pop/archive.cpp" bodystart="29" bodyend="42"/>
-        <references refid="de/d83/classBrush_1_1Pop_1_1Individual_1a96a4869472f1e11e19219c2d07fb6c53" compoundref="d5/d1f/individual_8h" startline="33">Brush::Pop::Individual&lt; T &gt;::fitness</references>
-        <references refid="d6/dd0/structBrush_1_1Fitness_1a972dd960fd7c2a68449827ec987d0671" compoundref="dc/d7a/fitness_8h" startline="45">Brush::Fitness::wvalues</references>
-        <referencedby refid="d1/d30/structBrush_1_1Pop_1_1Archive_1a5e6c6513918f87a8a68c2a7a162edb27" compoundref="d7/d05/archive_8cpp" startline="64" endline="105">Brush::Pop::Archive&lt; T &gt;::init</referencedby>
-        <referencedby refid="d1/d30/structBrush_1_1Pop_1_1Archive_1a14ec57dcaf13d237552d7fa46f58f3c3" compoundref="d7/d05/archive_8cpp" startline="108" endline="134">Brush::Pop::Archive&lt; T &gt;::update</referencedby>
+        <location file="/home/runner/work/brush/brush/src/pop/archive.h" line="82" column="17" bodyfile="/home/runner/work/brush/brush/src/pop/archive.cpp" bodystart="38" bodyend="51"/>
+        <references refid="de/d83/classBrush_1_1Pop_1_1Individual_1a96a4869472f1e11e19219c2d07fb6c53" compoundref="d5/d1f/individual_8h" startline="37">Brush::Pop::Individual&lt; T &gt;::fitness</references>
+        <references refid="d6/dd0/structBrush_1_1Fitness_1a972dd960fd7c2a68449827ec987d0671" compoundref="dc/d7a/fitness_8h" startline="57">Brush::Fitness::wvalues</references>
+        <referencedby refid="d1/d30/structBrush_1_1Pop_1_1Archive_1a5e6c6513918f87a8a68c2a7a162edb27" compoundref="d7/d05/archive_8cpp" startline="77" endline="122">Brush::Pop::Archive&lt; T &gt;::init</referencedby>
+        <referencedby refid="d1/d30/structBrush_1_1Pop_1_1Archive_1a14ec57dcaf13d237552d7fa46f58f3c3" compoundref="d7/d05/archive_8cpp" startline="125" endline="157">Brush::Pop::Archive&lt; T &gt;::update</referencedby>
       </memberdef>
       <memberdef kind="function" id="d1/d30/structBrush_1_1Pop_1_1Archive_1a7510447de2f87201fa3d7977f3a3e8d8" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>bool</type>
@@ -335,9 +384,8 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/runner/work/brush/brush/src/pop/archive.h" line="90" column="17" bodyfile="/home/runner/work/brush/brush/src/pop/archive.cpp" bodystart="45" bodyend="53"/>
-        <references refid="d6/dd0/structBrush_1_1Fitness_1a2edfafc177c7f47f7c5fccc9238236cf" compoundref="dc/d7a/fitness_8h" startline="31">Brush::Fitness::complexity</references>
-        <references refid="de/d83/classBrush_1_1Pop_1_1Individual_1a96a4869472f1e11e19219c2d07fb6c53" compoundref="d5/d1f/individual_8h" startline="33">Brush::Pop::Individual&lt; T &gt;::fitness</references>
+        <location file="/home/runner/work/brush/brush/src/pop/archive.h" line="93" column="17" bodyfile="/home/runner/work/brush/brush/src/pop/archive.cpp" bodystart="54" bodyend="66"/>
+        <references refid="de/d83/classBrush_1_1Pop_1_1Individual_1a96a4869472f1e11e19219c2d07fb6c53" compoundref="d5/d1f/individual_8h" startline="37">Brush::Pop::Individual&lt; T &gt;::fitness</references>
       </memberdef>
       <memberdef kind="function" id="d1/d30/structBrush_1_1Pop_1_1Archive_1ae48c8db22bdf072955564c079e379610" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>bool</type>
@@ -379,9 +427,9 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/runner/work/brush/brush/src/pop/archive.h" line="101" column="17" bodyfile="/home/runner/work/brush/brush/src/pop/archive.cpp" bodystart="56" bodyend="61"/>
-        <references refid="de/d83/classBrush_1_1Pop_1_1Individual_1a96a4869472f1e11e19219c2d07fb6c53" compoundref="d5/d1f/individual_8h" startline="33">Brush::Pop::Individual&lt; T &gt;::fitness</references>
-        <referencedby refid="d1/d30/structBrush_1_1Pop_1_1Archive_1a14ec57dcaf13d237552d7fa46f58f3c3" compoundref="d7/d05/archive_8cpp" startline="108" endline="134">Brush::Pop::Archive&lt; T &gt;::update</referencedby>
+        <location file="/home/runner/work/brush/brush/src/pop/archive.h" line="104" column="17" bodyfile="/home/runner/work/brush/brush/src/pop/archive.cpp" bodystart="70" bodyend="74"/>
+        <references refid="de/d83/classBrush_1_1Pop_1_1Individual_1a96a4869472f1e11e19219c2d07fb6c53" compoundref="d5/d1f/individual_8h" startline="37">Brush::Pop::Individual&lt; T &gt;::fitness</references>
+        <referencedby refid="d1/d30/structBrush_1_1Pop_1_1Archive_1a14ec57dcaf13d237552d7fa46f58f3c3" compoundref="d7/d05/archive_8cpp" startline="125" endline="157">Brush::Pop::Archive&lt; T &gt;::update</referencedby>
       </memberdef>
     </sectiondef>
     <briefdescription>
@@ -418,17 +466,19 @@
         </childnode>
       </node>
     </collaborationgraph>
-    <location file="/home/runner/work/brush/brush/src/pop/archive.h" line="25" column="1" bodyfile="/home/runner/work/brush/brush/src/pop/archive.h" bodystart="26" bodyend="102"/>
+    <location file="/home/runner/work/brush/brush/src/pop/archive.h" line="25" column="1" bodyfile="/home/runner/work/brush/brush/src/pop/archive.h" bodystart="26" bodyend="105"/>
     <listofallmembers>
       <member refid="d1/d30/structBrush_1_1Pop_1_1Archive_1af697a235df24c3c180a2d726eadb8b51" prot="public" virt="non-virtual"><scope>Brush::Pop::Archive</scope><name>Archive</name></member>
       <member refid="d1/d30/structBrush_1_1Pop_1_1Archive_1a47b75ce0613b190b0b637ab4f8effa5a" prot="public" virt="non-virtual"><scope>Brush::Pop::Archive</scope><name>individuals</name></member>
       <member refid="d1/d30/structBrush_1_1Pop_1_1Archive_1a5e6c6513918f87a8a68c2a7a162edb27" prot="public" virt="non-virtual"><scope>Brush::Pop::Archive</scope><name>init</name></member>
+      <member refid="d1/d30/structBrush_1_1Pop_1_1Archive_1aeee2d8283bccc50026b654e0bff4b388" prot="public" virt="non-virtual"><scope>Brush::Pop::Archive</scope><name>linear_complexity</name></member>
       <member refid="d1/d30/structBrush_1_1Pop_1_1Archive_1a7510447de2f87201fa3d7977f3a3e8d8" prot="public" virt="non-virtual"><scope>Brush::Pop::Archive</scope><name>sameFitComplexity</name></member>
       <member refid="d1/d30/structBrush_1_1Pop_1_1Archive_1ae48c8db22bdf072955564c079e379610" prot="public" virt="non-virtual"><scope>Brush::Pop::Archive</scope><name>sameObjectives</name></member>
       <member refid="d1/d30/structBrush_1_1Pop_1_1Archive_1a56b6da606397435d4e736e0ece911451" prot="public" virt="non-virtual"><scope>Brush::Pop::Archive</scope><name>selector</name></member>
       <member refid="d1/d30/structBrush_1_1Pop_1_1Archive_1a073b0ac31fc55c35e2a8296b919c1876" prot="public" virt="non-virtual"><scope>Brush::Pop::Archive</scope><name>set_objectives</name></member>
       <member refid="d1/d30/structBrush_1_1Pop_1_1Archive_1a4b6989b7840a0bd9649ab5331eb43e48" prot="public" virt="non-virtual"><scope>Brush::Pop::Archive</scope><name>sort_complexity</name></member>
       <member refid="d1/d30/structBrush_1_1Pop_1_1Archive_1a8e11ee4659b1dc0a4332ffad5690e30f" prot="public" virt="non-virtual"><scope>Brush::Pop::Archive</scope><name>sortComplexity</name></member>
+      <member refid="d1/d30/structBrush_1_1Pop_1_1Archive_1a06108c7b5249901089d2bd0279ab6273" prot="public" virt="non-virtual"><scope>Brush::Pop::Archive</scope><name>sortLinearComplexity</name></member>
       <member refid="d1/d30/structBrush_1_1Pop_1_1Archive_1a8407a45b676b80bbf7197dbdd96d2c30" prot="public" virt="non-virtual"><scope>Brush::Pop::Archive</scope><name>sortObj1</name></member>
       <member refid="d1/d30/structBrush_1_1Pop_1_1Archive_1a14ec57dcaf13d237552d7fa46f58f3c3" prot="public" virt="non-virtual"><scope>Brush::Pop::Archive</scope><name>update</name></member>
     </listofallmembers>

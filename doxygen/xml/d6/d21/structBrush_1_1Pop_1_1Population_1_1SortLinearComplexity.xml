@@ -1,0 +1,117 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.13.2" xml:lang="en-US">
+  <compounddef id="d6/d21/structBrush_1_1Pop_1_1Population_1_1SortLinearComplexity" kind="struct" language="C++" prot="public">
+    <compoundname>Brush::Pop::Population::SortLinearComplexity</compoundname>
+    <includes refid="d2/d76/population_8h" local="no">population.h</includes>
+    <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="d6/d21/structBrush_1_1Pop_1_1Population_1_1SortLinearComplexity_1a13be7c4811240485ac486fa956219493" prot="public" static="no" mutable="no">
+        <type><ref refid="da/da3/classBrush_1_1Pop_1_1Population" kindref="compound">Population</ref> &amp;</type>
+        <definition>Population&amp; Brush::Pop::Population&lt; T &gt;::SortLinearComplexity::pop</definition>
+        <argsstring></argsstring>
+        <name>pop</name>
+        <qualifiedname>Brush::Pop::Population::SortLinearComplexity::pop</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/runner/work/brush/brush/src/pop/population.h" line="77" column="20" bodyfile="/home/runner/work/brush/brush/src/pop/population.h" bodystart="77" bodyend="-1"/>
+        <referencedby refid="d6/d21/structBrush_1_1Pop_1_1Population_1_1SortLinearComplexity_1ad8ba6e91bc110a18013fe94bb5018b76" compoundref="d2/d76/population_8h" startline="79" endline="82">Brush::Pop::Population&lt; T &gt;::SortLinearComplexity::operator()</referencedby>
+        <referencedby refid="d6/d21/structBrush_1_1Pop_1_1Population_1_1SortLinearComplexity_1aa0ee948f058ae3e9838f9553805fb8f9" compoundref="d2/d76/population_8h" startline="78" endline="78">Brush::Pop::Population&lt; T &gt;::SortLinearComplexity::SortLinearComplexity</referencedby>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="public-func">
+      <memberdef kind="function" id="d6/d21/structBrush_1_1Pop_1_1Population_1_1SortLinearComplexity_1aa0ee948f058ae3e9838f9553805fb8f9" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>Brush::Pop::Population&lt; T &gt;::SortLinearComplexity::SortLinearComplexity</definition>
+        <argsstring>(Population &amp;p)</argsstring>
+        <name>SortLinearComplexity</name>
+        <qualifiedname>Brush::Pop::Population::SortLinearComplexity::SortLinearComplexity</qualifiedname>
+        <param>
+          <type><ref refid="da/da3/classBrush_1_1Pop_1_1Population" kindref="compound">Population</ref> &amp;</type>
+          <declname>p</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/runner/work/brush/brush/src/pop/population.h" line="78" column="9" bodyfile="/home/runner/work/brush/brush/src/pop/population.h" bodystart="78" bodyend="78"/>
+        <references refid="d6/d21/structBrush_1_1Pop_1_1Population_1_1SortLinearComplexity_1a13be7c4811240485ac486fa956219493" compoundref="d2/d76/population_8h" startline="77">Brush::Pop::Population&lt; T &gt;::SortLinearComplexity::pop</references>
+        <references refid="da/da3/classBrush_1_1Pop_1_1Population_1accbe0e4c2b8bf582fc686d7b93d784c1" compoundref="d7/d4a/population_8cpp" startline="7" endline="14">Brush::Pop::Population&lt; T &gt;::Population</references>
+      </memberdef>
+      <memberdef kind="function" id="d6/d21/structBrush_1_1Pop_1_1Population_1_1SortLinearComplexity_1ad8ba6e91bc110a18013fe94bb5018b76" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool Brush::Pop::Population&lt; T &gt;::SortLinearComplexity::operator()</definition>
+        <argsstring>(size_t i, size_t j)</argsstring>
+        <name>operator()</name>
+        <qualifiedname>Brush::Pop::Population::SortLinearComplexity::operator()</qualifiedname>
+        <param>
+          <type>size_t</type>
+          <declname>i</declname>
+        </param>
+        <param>
+          <type>size_t</type>
+          <declname>j</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/runner/work/brush/brush/src/pop/population.h" line="79" column="14" bodyfile="/home/runner/work/brush/brush/src/pop/population.h" bodystart="79" bodyend="82"/>
+        <references refid="d6/d21/structBrush_1_1Pop_1_1Population_1_1SortLinearComplexity_1a13be7c4811240485ac486fa956219493" compoundref="d2/d76/population_8h" startline="77">Brush::Pop::Population&lt; T &gt;::SortLinearComplexity::pop</references>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <collaborationgraph>
+      <node id="2">
+        <label>Brush::Pop::Population&lt; T &gt;</label>
+        <link refid="da/da3/classBrush_1_1Pop_1_1Population"/>
+        <childnode refid="3" relation="usage">
+          <edgelabel>individuals</edgelabel>
+        </childnode>
+        <childnode refid="5" relation="usage">
+          <edgelabel>island_indexes</edgelabel>
+        </childnode>
+      </node>
+      <node id="1">
+        <label>Brush::Pop::Population&lt; T &gt;::SortLinearComplexity</label>
+        <link refid="d6/d21/structBrush_1_1Pop_1_1Population_1_1SortLinearComplexity"/>
+        <childnode refid="2" relation="usage">
+          <edgelabel>pop</edgelabel>
+        </childnode>
+      </node>
+      <node id="4">
+        <label>T</label>
+      </node>
+      <node id="6">
+        <label>std::vector&lt; size_t &gt;</label>
+      </node>
+      <node id="3">
+        <label>std::vector&lt; std::shared_ptr&lt; Brush::Pop::Individual&lt; T &gt; &gt; &gt;</label>
+        <childnode refid="4" relation="usage">
+          <edgelabel>elements</edgelabel>
+        </childnode>
+      </node>
+      <node id="5">
+        <label>std::vector&lt; vector&lt; size_t &gt; &gt;</label>
+        <childnode refid="6" relation="usage">
+          <edgelabel>elements</edgelabel>
+        </childnode>
+      </node>
+    </collaborationgraph>
+    <location file="/home/runner/work/brush/brush/src/pop/population.h" line="75" column="5" bodyfile="/home/runner/work/brush/brush/src/pop/population.h" bodystart="76" bodyend="83"/>
+    <listofallmembers>
+      <member refid="d6/d21/structBrush_1_1Pop_1_1Population_1_1SortLinearComplexity_1ad8ba6e91bc110a18013fe94bb5018b76" prot="public" virt="non-virtual"><scope>Brush::Pop::Population::SortLinearComplexity</scope><name>operator()</name></member>
+      <member refid="d6/d21/structBrush_1_1Pop_1_1Population_1_1SortLinearComplexity_1a13be7c4811240485ac486fa956219493" prot="public" virt="non-virtual"><scope>Brush::Pop::Population::SortLinearComplexity</scope><name>pop</name></member>
+      <member refid="d6/d21/structBrush_1_1Pop_1_1Population_1_1SortLinearComplexity_1aa0ee948f058ae3e9838f9553805fb8f9" prot="public" virt="non-virtual"><scope>Brush::Pop::Population::SortLinearComplexity</scope><name>SortLinearComplexity</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>
