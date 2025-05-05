@@ -145,10 +145,13 @@ struct Operator
 
     /// gets one kid for a tuple of kids
     template<int I>
-    NthType<I> get_kid(const Dataset& d,TreeNode& tn, const W** weights ) const
+    NthType<I> get_kid(const Dataset& d, TreeNode& tn, const W** weights ) const
     {
-        auto sib = tree<TreeNode>::sibling_iterator(tn.first_child) ;
-        sib += I;
+        TreeNode* sib = tn.first_child;
+        for (int i = 0; i < I; ++i)
+        {
+            sib= sib->next_sibling;
+        }
         if constexpr(Fit)
             return sib->fit<NthType<I>>(d);
         else
