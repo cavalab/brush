@@ -142,13 +142,14 @@ Dataset Dataset::operator()(const vector<size_t>& idx) const
     std::map<std::string, State> new_features;
     for (auto& [key, value] : this->features) 
     {
+        auto& k = key;
         std::visit([&](auto&& arg) 
         {
             using T = std::decay_t<decltype(arg)>;
             if constexpr ( T::NumDimensions == 1)
-                new_features[key] = T(arg(idx));
+                new_features[k] = T(arg(idx));
             else if constexpr (T::NumDimensions==2)
-                new_features[key] = T(arg(idx, Eigen::all));
+                new_features[k] = T(arg(idx, Eigen::all));
             else 
                 static_assert(always_false_v<T>, "non-exhaustive visitor!");
         },

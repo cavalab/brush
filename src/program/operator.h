@@ -96,7 +96,7 @@ struct Operator
 
     /// utility for returning the type of the Nth argument
     template <std::size_t N>
-    using NthType = typename S::NthType<N>; 
+    using NthType = typename S::template NthType<N>;
 
     /// set weight type
     using W = typename S::WeightType; 

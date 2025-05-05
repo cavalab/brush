@@ -687,40 +687,40 @@ auto vectorToTuple(const std::vector<T>& v) {
   return vectorToTupleHelper(v, std::make_index_sequence<N>());
 }
 
-template<typename R, typename Arg, typename... Args>
-R apply(const std::function<R(Args...)>& f, const vector<Arg>& inputs)
-{
-    R output;
-    switch (inputs.size())
-    {
-        case 1: 
-            std::transform(
-                    std::execution::par_unseq,
-                    inputs.at(0).begin(),
-                    inputs.at(0).end(),
-                    output.begin(),
-                    f
-            );
-            break;
-        case 2: 
-            std::transform(
-                std::execution::par_unseq,
-                inputs.at(0).begin(),
-                inputs.at(0).end(),
-                inputs.at(1).begin(),
-                // inputs.at(1).end(),
-                output.begin(),
-                f
-            );
-            break;
-        default: 
-            HANDLE_ERROR_THROW("Wrong number of inputs for operator");
-            break;
+// template<typename R, typename Arg, typename... Args>
+// R apply(const std::function<R(Args...)>& f, const vector<Arg>& inputs)
+// {
+//     R output;
+//     switch (inputs.size())
+//     {
+//         case 1: 
+//             std::transform(
+//                     std::execution::par_unseq,
+//                     inputs.at(0).begin(),
+//                     inputs.at(0).end(),
+//                     output.begin(),
+//                     f
+//             );
+//             break;
+//         case 2: 
+//             std::transform(
+//                 std::execution::par_unseq,
+//                 inputs.at(0).begin(),
+//                 inputs.at(0).end(),
+//                 inputs.at(1).begin(),
+//                 // inputs.at(1).end(),
+//                 output.begin(),
+//                 f
+//             );
+//             break;
+//         default: 
+//             HANDLE_ERROR_THROW("Wrong number of inputs for operator");
+//             break;
         
-    };
+//     };
 
-    return output;
-};
+//     return output;
+// };
 
 template<class T, class U>
 std::vector<T> slice(const vector<T>& v, const U& idx)

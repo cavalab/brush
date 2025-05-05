@@ -69,6 +69,7 @@ set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wno-ignored-attributes")
 ########################################
 # fmt
 find_package(fmt REQUIRED)
+message("fmt_FOUND: ${fmt_FOUND}")
 ########################################
 # Python
 find_package(Python COMPONENTS Interpreter Development REQUIRED)
@@ -98,7 +99,7 @@ message(STATUS "Sources: '${sources}")
 # the pure cpp brush library (no python bindings)
 add_library(cbrush SHARED ${sources})
 # target_link_libraries(cbrush ${PYTHON_LIBRARIES} fmt::fmt)
-target_link_libraries(cbrush fmt::fmt)
+target_link_libraries(cbrush PUBLIC fmt::fmt)
 
 ########################################
 # generate python bindings

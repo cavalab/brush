@@ -2,7 +2,6 @@ name: brush
 channels:
     - conda-forge
 dependencies:
-    # TODO: try to relax dependencies versions
     - python>=3.9 #=3.8.2
     - cmake #=3.18.*
     - eigen #=3.4.*
@@ -17,7 +16,7 @@ dependencies:
     - pydot
     - scikit-learn
     - pandas
-    # not required for install the c++ library (but used in the wrapper)
+    # not required to install the c++ library (but used in the wrapper)
     - jupyter
     - ipython
     - pip

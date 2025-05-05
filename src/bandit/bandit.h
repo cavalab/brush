@@ -121,7 +121,7 @@ public:
      * @param arm The chosen arm.
      * @param reward The received reward.
      */
-    void update(T arm, float reward, VectorXf& context={});
+    void update(T arm, float reward, VectorXf& context);
     
     template <ProgramType PT>
     VectorXf get_context(const Program<PT>& program, Iter spot,

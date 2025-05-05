@@ -51,6 +51,7 @@ class CMakeBuild(build_ext):
             "-DEIGEN3_INCLUDE_DIR={}/include/eigen3/".format(conda_prefix),
             "-Dpybind11_DIR={}/lib/python3.8/site-packages/pybind11/share/cmake/pybind11/".format(conda_prefix),
             "-DPYBIND11_FINDPYTHON=ON",
+	    "-DCMAKE_CXX_FLAGS=-fexperimental-library"
         ]
         build_args = ['--target',ext.name]
 
