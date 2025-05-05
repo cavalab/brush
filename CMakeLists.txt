@@ -13,8 +13,6 @@ cmake_minimum_required (VERSION 3.15...3.19)
 # use c++ 20
 set (CMAKE_CXX_STANDARD 20)
 
-#set (CMAKE_CXX_FLAGS "--std=c++11")
-
 #set (CUDA_PROPAGATE_HOST_FLAGS ON)
 
   
@@ -60,8 +58,8 @@ option(OMP "use OpenMP" ON)
 if (OMP)
     find_package(OpenMP)
     if (OPENMP_FOUND)
-        set (CMAKE_C_FLAGS "${CMAKE_C_FLAGS} ${OpenMP_C_FLAGS}")
-        set (CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} ${OpenMP_CXX_FLAGS}")
+        set (CMAKE_C_FLAGS "${CMAKE_C_FLAGS} ${OpenMP_C_FLAGS} -fopenmp=libgomp")
+        set (CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} ${OpenMP_CXX_FLAGS} -fopenmp=libgomp")
     endif()
 endif()
 
