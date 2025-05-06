@@ -60,7 +60,6 @@ class CMakeBuild(build_ext):
                 cmake_args += ["-GNinja"]
             if self.compiler.compiler_type == 'darwin':
                 cmake_args += [
-                    "-DCMAKE_CXX_FLAGS=-fexperimental-library",
                     "-DCMAKE_MACOSX_DEPLOYMENT_TARGET=14_0"
                     ]
 
@@ -97,6 +96,7 @@ class CMakeBuild(build_ext):
         if not os.path.exists(self.build_temp):
             os.makedirs(self.build_temp)
 
+        print(cmake_args)
         subprocess.check_call(
             ["cmake", ext.sourcedir] + cmake_args, cwd=self.build_temp
         )
