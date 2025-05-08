@@ -15,7 +15,7 @@ var structBrush_1_1MAB_1_1Bandit =
     [ "set_bandit", "d4/d90/structBrush_1_1MAB_1_1Bandit.html#afd7b456f1385ed795bc6bebbd874707b", null ],
     [ "set_probs", "d4/d90/structBrush_1_1MAB_1_1Bandit.html#abfbcbb2eedfe06a4843c99cbd269a0d6", null ],
     [ "set_type", "d4/d90/structBrush_1_1MAB_1_1Bandit.html#a776427889cba2b72e7eeb6bc007d0f51", null ],
-    [ "update", "d4/d90/structBrush_1_1MAB_1_1Bandit.html#a1d9f09b751bfd40656e2d82ee01c0d21", null ],
+    [ "update", "d4/d90/structBrush_1_1MAB_1_1Bandit.html#aafb91bb50c407dfbd67c0ef312882a36", null ],
     [ "arms", "d4/d90/structBrush_1_1MAB_1_1Bandit.html#a9920575ed34196d8891195af7ab9bcd8", null ],
     [ "pbandit", "d4/d90/structBrush_1_1MAB_1_1Bandit.html#a5b4d1f00adf1fa588e2ccafec72f6e05", null ],
     [ "probabilities", "d4/d90/structBrush_1_1MAB_1_1Bandit.html#abb23983ee78e5f80d731928df406af5a", null ],

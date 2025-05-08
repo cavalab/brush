@@ -1,5 +1,7 @@
 var NAVTREEINDEX14 =
 {
+"df/d09/structBrush_1_1TinyCostFunction.html#a78af5167fa8aeaa9326dc7fc87418185":[2,0,0,138,12],
+"df/d09/structBrush_1_1TinyCostFunction.html#a81e83e5c0b620ee5c25da852a33d5f57":[0,0,0,141,3],
 "df/d09/structBrush_1_1TinyCostFunction.html#a81e83e5c0b620ee5c25da852a33d5f57":[2,0,0,138,3],
 "df/d09/structBrush_1_1TinyCostFunction.html#a90b55951088f99d62f300bb6252bc16f":[0,0,0,141,1],
 "df/d09/structBrush_1_1TinyCostFunction.html#a90b55951088f99d62f300bb6252bc16f":[2,0,0,138,1],

@@ -1,5 +1,6 @@
 var NAVTREEINDEX8 =
 {
+"da/d4c/classBrush_1_1Eval_1_1Scorer.html#a074ffe387edb4090061c5aa0402ebb1d":[2,0,0,1,1,3],
 "da/d4c/classBrush_1_1Eval_1_1Scorer.html#a074ffe387edb4090061c5aa0402ebb1d":[2,0,0,1,2,9],
 "da/d4c/classBrush_1_1Eval_1_1Scorer.html#a29a78f6ded6e276708939f562e3b1153":[0,0,0,2,1,6],
 "da/d4c/classBrush_1_1Eval_1_1Scorer.html#a29a78f6ded6e276708939f562e3b1153":[0,0,0,2,2,18],
@@ -228,6 +229,8 @@ var NAVTREEINDEX8 =
 "db/d1f/structBrush_1_1Operator_3_01NT_00_01S_00_01Fit_00_01enable__if__t_3_01is__in__v_3_01NT_00_01Node0d34d2b97afea7b3bb37b94bd97cbb86.html#a184e097f47b9205af5840971608d06ab":[2,0,0,113,17],
 "db/d1f/structBrush_1_1Operator_3_01NT_00_01S_00_01Fit_00_01enable__if__t_3_01is__in__v_3_01NT_00_01Node0d34d2b97afea7b3bb37b94bd97cbb86.html#a26de9211c472622d1abd8b7965c94560":[0,0,0,116,25],
 "db/d1f/structBrush_1_1Operator_3_01NT_00_01S_00_01Fit_00_01enable__if__t_3_01is__in__v_3_01NT_00_01Node0d34d2b97afea7b3bb37b94bd97cbb86.html#a26de9211c472622d1abd8b7965c94560":[2,0,0,113,25],
+"db/d1f/structBrush_1_1Operator_3_01NT_00_01S_00_01Fit_00_01enable__if__t_3_01is__in__v_3_01NT_00_01Node0d34d2b97afea7b3bb37b94bd97cbb86.html#a30052ad32c3a73558db6c97cc313d6ac":[0,0,0,116,4],
+"db/d1f/structBrush_1_1Operator_3_01NT_00_01S_00_01Fit_00_01enable__if__t_3_01is__in__v_3_01NT_00_01Node0d34d2b97afea7b3bb37b94bd97cbb86.html#a30052ad32c3a73558db6c97cc313d6ac":[2,0,0,113,4],
 "db/d1f/structBrush_1_1Operator_3_01NT_00_01S_00_01Fit_00_01enable__if__t_3_01is__in__v_3_01NT_00_01Node0d34d2b97afea7b3bb37b94bd97cbb86.html#a44a7325acd05e13e1ec3a2b46fc8d407":[0,0,0,116,23],
 "db/d1f/structBrush_1_1Operator_3_01NT_00_01S_00_01Fit_00_01enable__if__t_3_01is__in__v_3_01NT_00_01Node0d34d2b97afea7b3bb37b94bd97cbb86.html#a44a7325acd05e13e1ec3a2b46fc8d407":[2,0,0,113,23],
 "db/d1f/structBrush_1_1Operator_3_01NT_00_01S_00_01Fit_00_01enable__if__t_3_01is__in__v_3_01NT_00_01Node0d34d2b97afea7b3bb37b94bd97cbb86.html#a89bc8eb841fd2d39b0878f2486f8af28":[0,0,0,116,6],
@@ -236,8 +239,6 @@ var NAVTREEINDEX8 =
 "db/d1f/structBrush_1_1Operator_3_01NT_00_01S_00_01Fit_00_01enable__if__t_3_01is__in__v_3_01NT_00_01Node0d34d2b97afea7b3bb37b94bd97cbb86.html#abb1f5cfaa4ad8540ef48a3ce6322487e":[2,0,0,113,8],
 "db/d1f/structBrush_1_1Operator_3_01NT_00_01S_00_01Fit_00_01enable__if__t_3_01is__in__v_3_01NT_00_01Node0d34d2b97afea7b3bb37b94bd97cbb86.html#abc17ddcd149126c4b4f18f3c20385ed7":[0,0,0,116,1],
 "db/d1f/structBrush_1_1Operator_3_01NT_00_01S_00_01Fit_00_01enable__if__t_3_01is__in__v_3_01NT_00_01Node0d34d2b97afea7b3bb37b94bd97cbb86.html#abc17ddcd149126c4b4f18f3c20385ed7":[2,0,0,113,1],
-"db/d1f/structBrush_1_1Operator_3_01NT_00_01S_00_01Fit_00_01enable__if__t_3_01is__in__v_3_01NT_00_01Node0d34d2b97afea7b3bb37b94bd97cbb86.html#abff4d8d2aa2e0cf94fb7b1cf43a0f7b0":[0,0,0,116,4],
-"db/d1f/structBrush_1_1Operator_3_01NT_00_01S_00_01Fit_00_01enable__if__t_3_01is__in__v_3_01NT_00_01Node0d34d2b97afea7b3bb37b94bd97cbb86.html#abff4d8d2aa2e0cf94fb7b1cf43a0f7b0":[2,0,0,113,4],
 "db/d1f/structBrush_1_1Operator_3_01NT_00_01S_00_01Fit_00_01enable__if__t_3_01is__in__v_3_01NT_00_01Node0d34d2b97afea7b3bb37b94bd97cbb86.html#ac4166892131ec208bf921ae8bd520b2d":[0,0,0,116,2],
 "db/d1f/structBrush_1_1Operator_3_01NT_00_01S_00_01Fit_00_01enable__if__t_3_01is__in__v_3_01NT_00_01Node0d34d2b97afea7b3bb37b94bd97cbb86.html#ac4166892131ec208bf921ae8bd520b2d":[2,0,0,113,2],
 "db/d1f/structBrush_1_1Operator_3_01NT_00_01S_00_01Fit_00_01enable__if__t_3_01is__in__v_3_01NT_00_01Node0d34d2b97afea7b3bb37b94bd97cbb86.html#ae195a1f5837279cdad368eeb135bb9e1":[0,0,0,116,14],
@@ -248,6 +249,5 @@ var NAVTREEINDEX8 =
 "db/d20/structfmt_1_1formatter_3_01Brush_1_1Data_1_1TimeSeriesb_01_4.html#a29c877a88576c90a8569ae3d5cd67780":[2,0,1,0,0],
 "db/d25/structBrush_1_1Function_3_01NodeType_1_1Sqrtabs_01_4.html":[0,0,0,86],
 "db/d25/structBrush_1_1Function_3_01NodeType_1_1Sqrtabs_01_4.html":[2,0,0,83],
-"db/d25/structBrush_1_1Function_3_01NodeType_1_1Sqrtabs_01_4.html#a2f56929b44f85894bc615e33e8862266":[0,0,0,86,0],
-"db/d25/structBrush_1_1Function_3_01NodeType_1_1Sqrtabs_01_4.html#a2f56929b44f85894bc615e33e8862266":[2,0,0,83,0]
+"db/d25/structBrush_1_1Function_3_01NodeType_1_1Sqrtabs_01_4.html#a2f56929b44f85894bc615e33e8862266":[0,0,0,86,0]
 };

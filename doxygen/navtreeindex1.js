@@ -193,9 +193,11 @@ var NAVTREEINDEX1 =
 "d1/df0/bind__engines_8cpp.html":[3,0,0,1,1],
 "d1/df0/bind__engines_8cpp.html#a5e9ee65a2fe83e25a41b3776034ca404":[3,0,0,1,1,0],
 "d1/df0/bind__engines_8cpp_source.html":[3,0,0,1,1],
-"d1/df2/classstring_1_1const__iterator.html":[2,0,13,0],
+"d1/df2/classstring_1_1const__iterator.html":[2,0,14,0],
 "d2/d01/omop_8cpp.html":[3,0,0,2,4],
 "d2/d01/omop_8cpp_source.html":[3,0,0,2,4],
+"d2/d17/structis__any.html":[2,0,6],
+"d2/d17/structis__any.html#a2d66f86beda83e667cb546607d88e05f":[2,0,6,0],
 "d2/d1a/classBrush_1_1Var_1_1ToggleWeightOnMutation.html":[0,0,0,10,7],
 "d2/d1a/classBrush_1_1Var_1_1ToggleWeightOnMutation.html":[2,0,0,7,7],
 "d2/d1a/classBrush_1_1Var_1_1ToggleWeightOnMutation.html#a2ecf70886b1561e4cb5e2ccbab014c66":[0,0,0,10,7,1],
@@ -247,7 +249,5 @@ var NAVTREEINDEX1 =
 "d2/d2d/classBrush_1_1Util_1_1Rnd.html#aaefc1dfb704aa94c17973a8798e81603":[0,0,0,8,3,3],
 "d2/d2d/classBrush_1_1Util_1_1Rnd.html#aaefc1dfb704aa94c17973a8798e81603":[2,0,0,6,3,3],
 "d2/d2d/classBrush_1_1Util_1_1Rnd.html#aef0f2836321f651d5887d29739e180f5":[0,0,0,8,3,12],
-"d2/d2d/classBrush_1_1Util_1_1Rnd.html#aef0f2836321f651d5887d29739e180f5":[2,0,0,6,3,12],
-"d2/d36/classBrush_1_1Data_1_1Dataset.html":[0,0,0,0,0],
-"d2/d36/classBrush_1_1Data_1_1Dataset.html":[2,0,0,0,0]
+"d2/d2d/classBrush_1_1Util_1_1Rnd.html#aef0f2836321f651d5887d29739e180f5":[2,0,0,6,3,12]
 };

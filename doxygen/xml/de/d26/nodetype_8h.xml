@@ -811,6 +811,7 @@
     </invincdepgraph>
     <innerclass refid="db/d53/structBrush_1_1NodeTypes" prot="public">Brush::NodeTypes</innerclass>
     <innerclass refid="d4/d42/structfmt_1_1formatter_3_01Brush_1_1NodeType_01_4" prot="public">fmt::formatter&lt; Brush::NodeType &gt;</innerclass>
+    <innerclass refid="d2/d17/structis__any" prot="public">is_any</innerclass>
     <innerclass refid="d0/d80/structis__in" prot="public">is_in</innerclass>
     <innerclass refid="d2/d41/classarray" prot="public">array</innerclass>
     <innernamespace refid="dc/d5c/namespaceBrush">Brush</innernamespace>
@@ -871,6 +872,31 @@
       </memberdef>
     </sectiondef>
     <sectiondef kind="var">
+      <memberdef kind="variable" id="de/d26/nodetype_8h_1a6cb189ea6b77db485afec81008a70dc7" prot="public" static="yes" constexpr="yes" mutable="no">
+        <templateparamlist>
+          <param>
+            <type>typename T</type>
+          </param>
+          <param>
+            <type>typename...</type>
+            <declname>Ts</declname>
+            <defname>Ts</defname>
+          </param>
+        </templateparamlist>
+        <type>bool</type>
+        <definition>bool is_any_v</definition>
+        <argsstring></argsstring>
+        <name>is_any_v</name>
+        <initializer>= <ref refid="d2/d17/structis__any" kindref="compound">is_any</ref>&lt;T, Ts...&gt;::value</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/runner/work/brush/brush/src/program/nodetype.h" line="259" column="23" bodyfile="/home/runner/work/brush/brush/src/program/nodetype.h" bodystart="259" bodyend="-1"/>
+        <referencedby refid="da/dd5/structBrush_1_1SigBase_1afcea385152d72559a0544447c1467537" compoundref="d8/d8b/signatures_8h" startline="104" endline="104">Brush::SigBase&lt; R, Args... &gt;::contains</referencedby>
+      </memberdef>
       <memberdef kind="variable" id="de/d26/nodetype_8h_1a71f687f53e36ccdc3277214f2d535fe5" prot="public" static="yes" constexpr="yes" mutable="no">
         <templateparamlist>
           <param>
@@ -895,9 +921,8 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/runner/work/brush/brush/src/program/nodetype.h" line="260" column="23" bodyfile="/home/runner/work/brush/brush/src/program/nodetype.h" bodystart="260" bodyend="-1"/>
+        <location file="/home/runner/work/brush/brush/src/program/nodetype.h" line="268" column="23" bodyfile="/home/runner/work/brush/brush/src/program/nodetype.h" bodystart="268" bodyend="-1"/>
         <referencedby refid="d3/da8/structBrush_1_1DispatchTable_1ab68d8c77b6defc24352bbaac2688b06e" compoundref="df/d61/dispatch__table_8h" startline="92" endline="107">Brush::DispatchTable&lt; Fit &gt;::AddOperator</referencedby>
-        <referencedby refid="da/dd5/structBrush_1_1SigBase_1afcea385152d72559a0544447c1467537" compoundref="d8/d8b/signatures_8h" startline="104" endline="104">Brush::SigBase&lt; R, Args... &gt;::contains</referencedby>
       </memberdef>
       <memberdef kind="variable" id="de/d26/nodetype_8h_1a876e80643fd688721e2b628ba2cd39cd" prot="public" static="yes" constexpr="yes" mutable="no">
         <templateparamlist>
@@ -940,7 +965,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/runner/work/brush/brush/src/program/nodetype.h" line="265" column="23" bodyfile="/home/runner/work/brush/brush/src/program/nodetype.h" bodystart="265" bodyend="-1"/>
+        <location file="/home/runner/work/brush/brush/src/program/nodetype.h" line="273" column="23" bodyfile="/home/runner/work/brush/brush/src/program/nodetype.h" bodystart="273" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="de/d26/nodetype_8h_1ae99fa5ab7f6193e3cb2056ba55cbb522" prot="public" static="yes" constexpr="yes" mutable="no">
         <templateparamlist>
@@ -967,7 +992,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/runner/work/brush/brush/src/program/nodetype.h" line="290" column="23" bodyfile="/home/runner/work/brush/brush/src/program/nodetype.h" bodystart="290" bodyend="-1"/>
+        <location file="/home/runner/work/brush/brush/src/program/nodetype.h" line="298" column="23" bodyfile="/home/runner/work/brush/brush/src/program/nodetype.h" bodystart="298" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="de/d26/nodetype_8h_1ae09c2c47bcd6dad5a050d1aae1638af2" prot="public" static="yes" constexpr="yes" mutable="no">
         <templateparamlist>
@@ -991,7 +1016,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/runner/work/brush/brush/src/program/nodetype.h" line="299" column="23" bodyfile="/home/runner/work/brush/brush/src/program/nodetype.h" bodystart="299" bodyend="-1"/>
+        <location file="/home/runner/work/brush/brush/src/program/nodetype.h" line="307" column="23" bodyfile="/home/runner/work/brush/brush/src/program/nodetype.h" bodystart="307" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="de/d26/nodetype_8h_1a82f43e5fe13312809d2411e25aff9e3a" prot="public" static="yes" constexpr="yes" mutable="no">
         <templateparamlist>
@@ -1021,7 +1046,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/runner/work/brush/brush/src/program/nodetype.h" line="305" column="23" bodyfile="/home/runner/work/brush/brush/src/program/nodetype.h" bodystart="305" bodyend="-1"/>
+        <location file="/home/runner/work/brush/brush/src/program/nodetype.h" line="313" column="23" bodyfile="/home/runner/work/brush/brush/src/program/nodetype.h" bodystart="313" bodyend="-1"/>
       </memberdef>
     </sectiondef>
     <briefdescription>
@@ -1280,86 +1305,94 @@
 <codeline lineno="249"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>formatter&lt;string_view&gt;::format(<ref refid="dc/d5c/namespaceBrush_1abfd0b15e0aacec494262585ad04fd79b" kindref="member">Brush::NodeTypeName</ref>.at(x),<sp/>ctx);</highlight></codeline>
 <codeline lineno="250"><highlight class="normal"><sp/><sp/>}</highlight></codeline>
 <codeline lineno="251"><highlight class="normal">};</highlight></codeline>
-<codeline lineno="253"><highlight class="normal"></highlight><highlight class="keyword">template</highlight><highlight class="normal"><sp/>&lt;<ref refid="dc/d5c/namespaceBrush_1a051322bb9fd1db4638b6eccd399a29c8" kindref="member">NodeType</ref><sp/>T,<sp/><ref refid="dc/d5c/namespaceBrush_1a051322bb9fd1db4638b6eccd399a29c8" kindref="member">NodeType</ref>...<sp/>Ts&gt;<sp/></highlight></codeline>
-<codeline lineno="254" refid="d0/d80/structis__in" refkind="compound"><highlight class="normal"></highlight><highlight class="keyword">struct<sp/></highlight><highlight class="normal"><ref refid="d0/d80/structis__in" kindref="compound">is_in</ref></highlight></codeline>
-<codeline lineno="255"><highlight class="normal">{</highlight></codeline>
-<codeline lineno="256" refid="d0/d80/structis__in_1ab3c8d28cec054e6dc08780566a70876a" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">constexpr</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/><ref refid="d0/d80/structis__in_1ab3c8d28cec054e6dc08780566a70876a" kindref="member">value</ref><sp/>=<sp/>((T<sp/>==<sp/>Ts)<sp/>||<sp/>...);</highlight></codeline>
-<codeline lineno="257"><highlight class="normal">};</highlight></codeline>
-<codeline lineno="258"><highlight class="normal"></highlight></codeline>
-<codeline lineno="259"><highlight class="normal"></highlight><highlight class="keyword">template</highlight><highlight class="normal">&lt;<ref refid="dc/d5c/namespaceBrush_1a051322bb9fd1db4638b6eccd399a29c8" kindref="member">NodeType</ref><sp/>T,<sp/><ref refid="dc/d5c/namespaceBrush_1a051322bb9fd1db4638b6eccd399a29c8" kindref="member">NodeType</ref>...<sp/>Ts&gt;<sp/></highlight></codeline>
-<codeline lineno="260" refid="de/d26/nodetype_8h_1a71f687f53e36ccdc3277214f2d535fe5" refkind="member"><highlight class="normal"></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">constexpr</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/><ref refid="de/d26/nodetype_8h_1a71f687f53e36ccdc3277214f2d535fe5" kindref="member">is_in_v</ref><sp/>=<sp/><ref refid="d0/d80/structis__in" kindref="compound">is_in</ref>&lt;T,<sp/>Ts...&gt;::value;</highlight></codeline>
-<codeline lineno="261"><highlight class="normal"></highlight></codeline>
-<codeline lineno="262"><highlight class="normal"></highlight><highlight class="keyword">using<sp/></highlight><highlight class="normal"><ref refid="dc/d5c/namespaceBrush_1a9b0bd8b9146f84ced649709c94aa596b" kindref="member">NT</ref><sp/>=<sp/><ref refid="dc/d5c/namespaceBrush_1a051322bb9fd1db4638b6eccd399a29c8" kindref="member">NodeType</ref>;</highlight></codeline>
-<codeline lineno="263"><highlight class="normal"></highlight><highlight class="comment">//<sp/>NodeType<sp/>concepts</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="264"><highlight class="normal"></highlight><highlight class="keyword">template</highlight><highlight class="normal">&lt;NT<sp/>nt&gt;</highlight></codeline>
-<codeline lineno="265" refid="de/d26/nodetype_8h_1a876e80643fd688721e2b628ba2cd39cd" refkind="member"><highlight class="normal"></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">constexpr</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/><ref refid="de/d26/nodetype_8h_1a876e80643fd688721e2b628ba2cd39cd" kindref="member">UnaryOp</ref><sp/>=<sp/><ref refid="de/d26/nodetype_8h_1a71f687f53e36ccdc3277214f2d535fe5" kindref="member">is_in_v</ref>&lt;nt,<sp/></highlight></codeline>
-<codeline lineno="266"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="dc/d5c/namespaceBrush_1a051322bb9fd1db4638b6eccd399a29c8a1e34af023adeb7d5f484f8eb4b9826b6" kindref="member">NT::Abs</ref>,</highlight></codeline>
-<codeline lineno="267"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="dc/d5c/namespaceBrush_1a051322bb9fd1db4638b6eccd399a29c8aed4629033ecb516ed7d1536e162030bb" kindref="member">NT::Acos</ref>,</highlight></codeline>
-<codeline lineno="268"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="dc/d5c/namespaceBrush_1a051322bb9fd1db4638b6eccd399a29c8a76cfc54de4e2b9cde17334c821217d11" kindref="member">NT::Asin</ref>,</highlight></codeline>
-<codeline lineno="269"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="dc/d5c/namespaceBrush_1a051322bb9fd1db4638b6eccd399a29c8ac9968ab1fa8103acbb3a4f22265f2def" kindref="member">NT::Atan</ref>,</highlight></codeline>
-<codeline lineno="270"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="dc/d5c/namespaceBrush_1a051322bb9fd1db4638b6eccd399a29c8affca562be079b9e4e41ea9d6a86c582b" kindref="member">NT::Cos</ref>,</highlight></codeline>
-<codeline lineno="271"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="dc/d5c/namespaceBrush_1a051322bb9fd1db4638b6eccd399a29c8a4371c3565b771b40c187487cc0190392" kindref="member">NT::Cosh</ref>,</highlight></codeline>
-<codeline lineno="272"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="dc/d5c/namespaceBrush_1a051322bb9fd1db4638b6eccd399a29c8a0986d137604183312e6d3599578bc6cd" kindref="member">NT::Sin</ref>,</highlight></codeline>
-<codeline lineno="273"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="dc/d5c/namespaceBrush_1a051322bb9fd1db4638b6eccd399a29c8a98ed804abf4edd1f3be3fa894fa8cc3d" kindref="member">NT::Sinh</ref>,</highlight></codeline>
-<codeline lineno="274"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="dc/d5c/namespaceBrush_1a051322bb9fd1db4638b6eccd399a29c8a1266b4e6f81e60733ec6c717e0181f60" kindref="member">NT::Tan</ref>,</highlight></codeline>
-<codeline lineno="275"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="dc/d5c/namespaceBrush_1a051322bb9fd1db4638b6eccd399a29c8acc132a41cab5676334f353a22a0aa5c5" kindref="member">NT::Tanh</ref>,</highlight></codeline>
-<codeline lineno="276"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="dc/d5c/namespaceBrush_1a051322bb9fd1db4638b6eccd399a29c8ab95a01ffffa8fcdd2a9af961937c097c" kindref="member">NT::Ceil</ref>,</highlight></codeline>
-<codeline lineno="277"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="dc/d5c/namespaceBrush_1a051322bb9fd1db4638b6eccd399a29c8af3f6d0343d56ce88ce7958170ed05cb3" kindref="member">NT::Floor</ref>,</highlight></codeline>
-<codeline lineno="278"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="dc/d5c/namespaceBrush_1a051322bb9fd1db4638b6eccd399a29c8acad39a154bffb61175f674d6eefaf6d0" kindref="member">NT::Exp</ref>,</highlight></codeline>
-<codeline lineno="279"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="dc/d5c/namespaceBrush_1a051322bb9fd1db4638b6eccd399a29c8ace0be71e33226e4c1db2bcea5959f16b" kindref="member">NT::Log</ref>,</highlight></codeline>
-<codeline lineno="280"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="dc/d5c/namespaceBrush_1a051322bb9fd1db4638b6eccd399a29c8a90cfc7b40a8a0ccaf1e7f2822f3970ec" kindref="member">NT::Logabs</ref>,</highlight></codeline>
-<codeline lineno="281"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="dc/d5c/namespaceBrush_1a051322bb9fd1db4638b6eccd399a29c8a03d80d06f1bae0730687cc7d5815fc3c" kindref="member">NT::Log1p</ref>,</highlight></codeline>
-<codeline lineno="282"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="dc/d5c/namespaceBrush_1a051322bb9fd1db4638b6eccd399a29c8aae77f3ad25595e35b327334d89410054" kindref="member">NT::Sqrt</ref>,</highlight></codeline>
-<codeline lineno="283"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="dc/d5c/namespaceBrush_1a051322bb9fd1db4638b6eccd399a29c8a8a3e1775ae37f59b4078cb38d1d30154" kindref="member">NT::Sqrtabs</ref>,</highlight></codeline>
-<codeline lineno="284"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="dc/d5c/namespaceBrush_1a051322bb9fd1db4638b6eccd399a29c8aceb46ca115d05c51aa5a16a8867c3304" kindref="member">NT::Square</ref>,</highlight></codeline>
-<codeline lineno="285"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="dc/d5c/namespaceBrush_1a051322bb9fd1db4638b6eccd399a29c8a9a2126552a9de60d20d95a47f85a16fd" kindref="member">NT::Logistic</ref></highlight></codeline>
-<codeline lineno="286"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>NT::Not</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="287"><highlight class="normal">&gt;;</highlight></codeline>
-<codeline lineno="288"><highlight class="normal"></highlight></codeline>
-<codeline lineno="289"><highlight class="normal"></highlight><highlight class="keyword">template</highlight><highlight class="normal">&lt;NT<sp/>nt&gt;</highlight></codeline>
-<codeline lineno="290" refid="de/d26/nodetype_8h_1ae99fa5ab7f6193e3cb2056ba55cbb522" refkind="member"><highlight class="normal"></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">constexpr</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/><ref refid="de/d26/nodetype_8h_1ae99fa5ab7f6193e3cb2056ba55cbb522" kindref="member">BinaryOp</ref><sp/>=<sp/><ref refid="de/d26/nodetype_8h_1a71f687f53e36ccdc3277214f2d535fe5" kindref="member">is_in_v</ref>&lt;nt,<sp/></highlight></codeline>
-<codeline lineno="291"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="dc/d5c/namespaceBrush_1a051322bb9fd1db4638b6eccd399a29c8aec211f7c20af43e742bf2570c3cb84f9" kindref="member">NT::Add</ref>,</highlight></codeline>
-<codeline lineno="292"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="dc/d5c/namespaceBrush_1a051322bb9fd1db4638b6eccd399a29c8ae80155eceb940c89e2de63ad05868db2" kindref="member">NT::Sub</ref>,</highlight></codeline>
-<codeline lineno="293"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="dc/d5c/namespaceBrush_1a051322bb9fd1db4638b6eccd399a29c8a62b6d55816cf737bfc6f42e60df1a3f2" kindref="member">NT::Mul</ref>,</highlight></codeline>
-<codeline lineno="294"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="dc/d5c/namespaceBrush_1a051322bb9fd1db4638b6eccd399a29c8a43d11850893d2fe84a1e618121c1cc0a" kindref="member">NT::Div</ref>,</highlight></codeline>
-<codeline lineno="295"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="dc/d5c/namespaceBrush_1a051322bb9fd1db4638b6eccd399a29c8a8be6d3e955290ee50c00a4bc92aa7749" kindref="member">NT::Pow</ref></highlight></codeline>
-<codeline lineno="296"><highlight class="normal">&gt;;</highlight></codeline>
-<codeline lineno="297"><highlight class="normal"></highlight></codeline>
-<codeline lineno="298"><highlight class="normal"></highlight><highlight class="keyword">template</highlight><highlight class="normal">&lt;NT<sp/>nt&gt;</highlight></codeline>
-<codeline lineno="299" refid="de/d26/nodetype_8h_1ae09c2c47bcd6dad5a050d1aae1638af2" refkind="member"><highlight class="normal"></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">constexpr</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/><ref refid="de/d26/nodetype_8h_1ae09c2c47bcd6dad5a050d1aae1638af2" kindref="member">AssociativeBinaryOp</ref><sp/>=<sp/><ref refid="de/d26/nodetype_8h_1a71f687f53e36ccdc3277214f2d535fe5" kindref="member">is_in_v</ref>&lt;nt,<sp/></highlight></codeline>
-<codeline lineno="300"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="dc/d5c/namespaceBrush_1a051322bb9fd1db4638b6eccd399a29c8aec211f7c20af43e742bf2570c3cb84f9" kindref="member">NT::Add</ref>,</highlight></codeline>
-<codeline lineno="301"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="dc/d5c/namespaceBrush_1a051322bb9fd1db4638b6eccd399a29c8a62b6d55816cf737bfc6f42e60df1a3f2" kindref="member">NT::Mul</ref></highlight></codeline>
-<codeline lineno="302"><highlight class="normal">&gt;;</highlight></codeline>
-<codeline lineno="303"><highlight class="normal"></highlight></codeline>
-<codeline lineno="304"><highlight class="normal"></highlight><highlight class="keyword">template</highlight><highlight class="normal">&lt;NT<sp/>nt&gt;</highlight></codeline>
-<codeline lineno="305" refid="de/d26/nodetype_8h_1a82f43e5fe13312809d2411e25aff9e3a" refkind="member"><highlight class="normal"></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">constexpr</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/><ref refid="de/d26/nodetype_8h_1a82f43e5fe13312809d2411e25aff9e3a" kindref="member">NaryOp</ref><sp/>=<sp/><ref refid="de/d26/nodetype_8h_1a71f687f53e36ccdc3277214f2d535fe5" kindref="member">is_in_v</ref>&lt;nt,<sp/></highlight></codeline>
-<codeline lineno="306"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="dc/d5c/namespaceBrush_1a051322bb9fd1db4638b6eccd399a29c8a78d811e98514cd165dda532286610fd2" kindref="member">NT::Min</ref>,</highlight></codeline>
-<codeline lineno="307"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="dc/d5c/namespaceBrush_1a051322bb9fd1db4638b6eccd399a29c8a6a061313d22e51e0f25b7cd4dc065233" kindref="member">NT::Max</ref>,</highlight></codeline>
-<codeline lineno="308"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="dc/d5c/namespaceBrush_1a051322bb9fd1db4638b6eccd399a29c8a3d6c9ac08ada31c184094bbc67afe00d" kindref="member">NT::Mean</ref>,</highlight></codeline>
-<codeline lineno="309"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="dc/d5c/namespaceBrush_1a051322bb9fd1db4638b6eccd399a29c8a66851a3adec6655a7bd563743e4a55a2" kindref="member">NT::Median</ref>,</highlight></codeline>
-<codeline lineno="310"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="dc/d5c/namespaceBrush_1a051322bb9fd1db4638b6eccd399a29c8aa0ec87054b5e5b7847d0d8780a01a3d5" kindref="member">NT::Sum</ref>,</highlight></codeline>
-<codeline lineno="311"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="dc/d5c/namespaceBrush_1a051322bb9fd1db4638b6eccd399a29c8a4d83dec288ae3948fe9a8e21a3c3c734" kindref="member">NT::OffsetSum</ref>,</highlight></codeline>
-<codeline lineno="312"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="dc/d5c/namespaceBrush_1a051322bb9fd1db4638b6eccd399a29c8a362a33c23b08e4a32a4ec53fbb82cccd" kindref="member">NT::Prod</ref>,</highlight></codeline>
-<codeline lineno="313"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="dc/d5c/namespaceBrush_1a051322bb9fd1db4638b6eccd399a29c8a31d953b9d49a6b4378f45097047976d0" kindref="member">NT::Softmax</ref></highlight></codeline>
-<codeline lineno="314"><highlight class="normal">&gt;;</highlight></codeline>
-<codeline lineno="315"><highlight class="normal"></highlight></codeline>
-<codeline lineno="316"><highlight class="normal"></highlight><highlight class="comment">//<sp/>//<sp/>TODO:<sp/>make<sp/>this<sp/>work<sp/></highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="317"><highlight class="normal"></highlight><highlight class="comment">//<sp/>template&lt;typename<sp/>NT,<sp/>size_t<sp/>ArgCount&gt;</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="318"><highlight class="normal"></highlight><highlight class="comment">//<sp/>concept<sp/>Transformer<sp/>=<sp/>requires(NT<sp/>n,<sp/>size_t<sp/>ArgCount)<sp/></highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="319"><highlight class="normal"></highlight><highlight class="comment">//<sp/>{</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="320"><highlight class="normal"></highlight><highlight class="comment">//<sp/><sp/><sp/><sp/><sp/>UnaryOp&lt;n&gt;<sp/>&amp;&amp;<sp/>ArgCount<sp/>&gt;<sp/>1;</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="321"><highlight class="normal"></highlight><highlight class="comment">//<sp/>}</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="322"><highlight class="normal"></highlight></codeline>
-<codeline lineno="323"><highlight class="normal"></highlight><highlight class="comment">//<sp/>template&lt;typename<sp/>NT,<sp/>size_t<sp/>ArgCount&gt;</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="324"><highlight class="normal"></highlight><highlight class="comment">//<sp/>concept<sp/>Reducer<sp/>=<sp/>requires(NT<sp/>n,<sp/>size_t<sp/>ArgCount)<sp/></highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="325"><highlight class="normal"></highlight><highlight class="comment">//<sp/>{</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="326"><highlight class="normal"></highlight><highlight class="comment">//<sp/><sp/><sp/><sp/><sp/>BinaryOp&lt;n&gt;<sp/>&amp;&amp;<sp/>ArgCount<sp/>&gt;<sp/>2;</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="327"><highlight class="normal"></highlight><highlight class="comment">//<sp/>}</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="328"><highlight class="normal"></highlight></codeline>
-<codeline lineno="329"><highlight class="normal"><sp/><sp/><sp/></highlight></codeline>
-<codeline lineno="330"><highlight class="normal"><sp/><sp/><sp/></highlight></codeline>
-<codeline lineno="331"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;<ref refid="d8/d8b/signatures_8h" kindref="compound">signatures.h</ref>&quot;</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="332"><highlight class="normal"></highlight><highlight class="preprocessor">#endif</highlight></codeline>
+<codeline lineno="253"><highlight class="normal"></highlight><highlight class="keyword">template</highlight><highlight class="normal"><sp/>&lt;</highlight><highlight class="keyword">typename</highlight><highlight class="normal"><sp/>T,<sp/></highlight><highlight class="keyword">typename</highlight><highlight class="normal">...<sp/>Ts&gt;</highlight></codeline>
+<codeline lineno="254" refid="d2/d17/structis__any" refkind="compound"><highlight class="normal"></highlight><highlight class="keyword">struct<sp/></highlight><highlight class="normal"><ref refid="d2/d17/structis__any" kindref="compound">is_any</ref><sp/>{</highlight></codeline>
+<codeline lineno="255" refid="d2/d17/structis__any_1a2d66f86beda83e667cb546607d88e05f" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">constexpr</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/><ref refid="d2/d17/structis__any_1a2d66f86beda83e667cb546607d88e05f" kindref="member">value</ref><sp/>=<sp/>(std::is_same_v&lt;T,<sp/>Ts&gt;<sp/>||<sp/>...);</highlight></codeline>
+<codeline lineno="256"><highlight class="normal">};</highlight></codeline>
+<codeline lineno="257"><highlight class="normal"></highlight></codeline>
+<codeline lineno="258"><highlight class="normal"></highlight><highlight class="keyword">template</highlight><highlight class="normal"><sp/>&lt;</highlight><highlight class="keyword">typename</highlight><highlight class="normal"><sp/>T,<sp/></highlight><highlight class="keyword">typename</highlight><highlight class="normal">...<sp/>Ts&gt;</highlight></codeline>
+<codeline lineno="259" refid="de/d26/nodetype_8h_1a6cb189ea6b77db485afec81008a70dc7" refkind="member"><highlight class="normal"></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">constexpr</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/><ref refid="de/d26/nodetype_8h_1a6cb189ea6b77db485afec81008a70dc7" kindref="member">is_any_v</ref><sp/>=<sp/><ref refid="d2/d17/structis__any" kindref="compound">is_any</ref>&lt;T,<sp/>Ts...&gt;::value;</highlight></codeline>
+<codeline lineno="260"><highlight class="normal"></highlight></codeline>
+<codeline lineno="261"><highlight class="normal"></highlight><highlight class="keyword">template</highlight><highlight class="normal"><sp/>&lt;<ref refid="dc/d5c/namespaceBrush_1a051322bb9fd1db4638b6eccd399a29c8" kindref="member">NodeType</ref><sp/>T,<sp/><ref refid="dc/d5c/namespaceBrush_1a051322bb9fd1db4638b6eccd399a29c8" kindref="member">NodeType</ref>...<sp/>Ts&gt;<sp/></highlight></codeline>
+<codeline lineno="262" refid="d0/d80/structis__in" refkind="compound"><highlight class="normal"></highlight><highlight class="keyword">struct<sp/></highlight><highlight class="normal"><ref refid="d0/d80/structis__in" kindref="compound">is_in</ref></highlight></codeline>
+<codeline lineno="263"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="264" refid="d0/d80/structis__in_1ab3c8d28cec054e6dc08780566a70876a" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">constexpr</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/><ref refid="d0/d80/structis__in_1ab3c8d28cec054e6dc08780566a70876a" kindref="member">value</ref><sp/>=<sp/>((T<sp/>==<sp/>Ts)<sp/>||<sp/>...);</highlight></codeline>
+<codeline lineno="265"><highlight class="normal">};</highlight></codeline>
+<codeline lineno="266"><highlight class="normal"></highlight></codeline>
+<codeline lineno="267"><highlight class="normal"></highlight><highlight class="keyword">template</highlight><highlight class="normal">&lt;<ref refid="dc/d5c/namespaceBrush_1a051322bb9fd1db4638b6eccd399a29c8" kindref="member">NodeType</ref><sp/>T,<sp/><ref refid="dc/d5c/namespaceBrush_1a051322bb9fd1db4638b6eccd399a29c8" kindref="member">NodeType</ref>...<sp/>Ts&gt;<sp/></highlight></codeline>
+<codeline lineno="268" refid="de/d26/nodetype_8h_1a71f687f53e36ccdc3277214f2d535fe5" refkind="member"><highlight class="normal"></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">constexpr</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/><ref refid="de/d26/nodetype_8h_1a71f687f53e36ccdc3277214f2d535fe5" kindref="member">is_in_v</ref><sp/>=<sp/><ref refid="d0/d80/structis__in" kindref="compound">is_in</ref>&lt;T,<sp/>Ts...&gt;::value;</highlight></codeline>
+<codeline lineno="269"><highlight class="normal"></highlight></codeline>
+<codeline lineno="270"><highlight class="normal"></highlight><highlight class="keyword">using<sp/></highlight><highlight class="normal"><ref refid="dc/d5c/namespaceBrush_1a9b0bd8b9146f84ced649709c94aa596b" kindref="member">NT</ref><sp/>=<sp/><ref refid="dc/d5c/namespaceBrush_1a051322bb9fd1db4638b6eccd399a29c8" kindref="member">NodeType</ref>;</highlight></codeline>
+<codeline lineno="271"><highlight class="normal"></highlight><highlight class="comment">//<sp/>NodeType<sp/>concepts</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="272"><highlight class="normal"></highlight><highlight class="keyword">template</highlight><highlight class="normal">&lt;NT<sp/>nt&gt;</highlight></codeline>
+<codeline lineno="273" refid="de/d26/nodetype_8h_1a876e80643fd688721e2b628ba2cd39cd" refkind="member"><highlight class="normal"></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">constexpr</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/><ref refid="de/d26/nodetype_8h_1a876e80643fd688721e2b628ba2cd39cd" kindref="member">UnaryOp</ref><sp/>=<sp/><ref refid="de/d26/nodetype_8h_1a71f687f53e36ccdc3277214f2d535fe5" kindref="member">is_in_v</ref>&lt;nt,<sp/></highlight></codeline>
+<codeline lineno="274"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="dc/d5c/namespaceBrush_1a051322bb9fd1db4638b6eccd399a29c8a1e34af023adeb7d5f484f8eb4b9826b6" kindref="member">NT::Abs</ref>,</highlight></codeline>
+<codeline lineno="275"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="dc/d5c/namespaceBrush_1a051322bb9fd1db4638b6eccd399a29c8aed4629033ecb516ed7d1536e162030bb" kindref="member">NT::Acos</ref>,</highlight></codeline>
+<codeline lineno="276"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="dc/d5c/namespaceBrush_1a051322bb9fd1db4638b6eccd399a29c8a76cfc54de4e2b9cde17334c821217d11" kindref="member">NT::Asin</ref>,</highlight></codeline>
+<codeline lineno="277"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="dc/d5c/namespaceBrush_1a051322bb9fd1db4638b6eccd399a29c8ac9968ab1fa8103acbb3a4f22265f2def" kindref="member">NT::Atan</ref>,</highlight></codeline>
+<codeline lineno="278"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="dc/d5c/namespaceBrush_1a051322bb9fd1db4638b6eccd399a29c8affca562be079b9e4e41ea9d6a86c582b" kindref="member">NT::Cos</ref>,</highlight></codeline>
+<codeline lineno="279"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="dc/d5c/namespaceBrush_1a051322bb9fd1db4638b6eccd399a29c8a4371c3565b771b40c187487cc0190392" kindref="member">NT::Cosh</ref>,</highlight></codeline>
+<codeline lineno="280"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="dc/d5c/namespaceBrush_1a051322bb9fd1db4638b6eccd399a29c8a0986d137604183312e6d3599578bc6cd" kindref="member">NT::Sin</ref>,</highlight></codeline>
+<codeline lineno="281"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="dc/d5c/namespaceBrush_1a051322bb9fd1db4638b6eccd399a29c8a98ed804abf4edd1f3be3fa894fa8cc3d" kindref="member">NT::Sinh</ref>,</highlight></codeline>
+<codeline lineno="282"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="dc/d5c/namespaceBrush_1a051322bb9fd1db4638b6eccd399a29c8a1266b4e6f81e60733ec6c717e0181f60" kindref="member">NT::Tan</ref>,</highlight></codeline>
+<codeline lineno="283"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="dc/d5c/namespaceBrush_1a051322bb9fd1db4638b6eccd399a29c8acc132a41cab5676334f353a22a0aa5c5" kindref="member">NT::Tanh</ref>,</highlight></codeline>
+<codeline lineno="284"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="dc/d5c/namespaceBrush_1a051322bb9fd1db4638b6eccd399a29c8ab95a01ffffa8fcdd2a9af961937c097c" kindref="member">NT::Ceil</ref>,</highlight></codeline>
+<codeline lineno="285"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="dc/d5c/namespaceBrush_1a051322bb9fd1db4638b6eccd399a29c8af3f6d0343d56ce88ce7958170ed05cb3" kindref="member">NT::Floor</ref>,</highlight></codeline>
+<codeline lineno="286"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="dc/d5c/namespaceBrush_1a051322bb9fd1db4638b6eccd399a29c8acad39a154bffb61175f674d6eefaf6d0" kindref="member">NT::Exp</ref>,</highlight></codeline>
+<codeline lineno="287"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="dc/d5c/namespaceBrush_1a051322bb9fd1db4638b6eccd399a29c8ace0be71e33226e4c1db2bcea5959f16b" kindref="member">NT::Log</ref>,</highlight></codeline>
+<codeline lineno="288"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="dc/d5c/namespaceBrush_1a051322bb9fd1db4638b6eccd399a29c8a90cfc7b40a8a0ccaf1e7f2822f3970ec" kindref="member">NT::Logabs</ref>,</highlight></codeline>
+<codeline lineno="289"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="dc/d5c/namespaceBrush_1a051322bb9fd1db4638b6eccd399a29c8a03d80d06f1bae0730687cc7d5815fc3c" kindref="member">NT::Log1p</ref>,</highlight></codeline>
+<codeline lineno="290"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="dc/d5c/namespaceBrush_1a051322bb9fd1db4638b6eccd399a29c8aae77f3ad25595e35b327334d89410054" kindref="member">NT::Sqrt</ref>,</highlight></codeline>
+<codeline lineno="291"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="dc/d5c/namespaceBrush_1a051322bb9fd1db4638b6eccd399a29c8a8a3e1775ae37f59b4078cb38d1d30154" kindref="member">NT::Sqrtabs</ref>,</highlight></codeline>
+<codeline lineno="292"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="dc/d5c/namespaceBrush_1a051322bb9fd1db4638b6eccd399a29c8aceb46ca115d05c51aa5a16a8867c3304" kindref="member">NT::Square</ref>,</highlight></codeline>
+<codeline lineno="293"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="dc/d5c/namespaceBrush_1a051322bb9fd1db4638b6eccd399a29c8a9a2126552a9de60d20d95a47f85a16fd" kindref="member">NT::Logistic</ref></highlight></codeline>
+<codeline lineno="294"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>NT::Not</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="295"><highlight class="normal">&gt;;</highlight></codeline>
+<codeline lineno="296"><highlight class="normal"></highlight></codeline>
+<codeline lineno="297"><highlight class="normal"></highlight><highlight class="keyword">template</highlight><highlight class="normal">&lt;NT<sp/>nt&gt;</highlight></codeline>
+<codeline lineno="298" refid="de/d26/nodetype_8h_1ae99fa5ab7f6193e3cb2056ba55cbb522" refkind="member"><highlight class="normal"></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">constexpr</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/><ref refid="de/d26/nodetype_8h_1ae99fa5ab7f6193e3cb2056ba55cbb522" kindref="member">BinaryOp</ref><sp/>=<sp/><ref refid="de/d26/nodetype_8h_1a71f687f53e36ccdc3277214f2d535fe5" kindref="member">is_in_v</ref>&lt;nt,<sp/></highlight></codeline>
+<codeline lineno="299"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="dc/d5c/namespaceBrush_1a051322bb9fd1db4638b6eccd399a29c8aec211f7c20af43e742bf2570c3cb84f9" kindref="member">NT::Add</ref>,</highlight></codeline>
+<codeline lineno="300"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="dc/d5c/namespaceBrush_1a051322bb9fd1db4638b6eccd399a29c8ae80155eceb940c89e2de63ad05868db2" kindref="member">NT::Sub</ref>,</highlight></codeline>
+<codeline lineno="301"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="dc/d5c/namespaceBrush_1a051322bb9fd1db4638b6eccd399a29c8a62b6d55816cf737bfc6f42e60df1a3f2" kindref="member">NT::Mul</ref>,</highlight></codeline>
+<codeline lineno="302"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="dc/d5c/namespaceBrush_1a051322bb9fd1db4638b6eccd399a29c8a43d11850893d2fe84a1e618121c1cc0a" kindref="member">NT::Div</ref>,</highlight></codeline>
+<codeline lineno="303"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="dc/d5c/namespaceBrush_1a051322bb9fd1db4638b6eccd399a29c8a8be6d3e955290ee50c00a4bc92aa7749" kindref="member">NT::Pow</ref></highlight></codeline>
+<codeline lineno="304"><highlight class="normal">&gt;;</highlight></codeline>
+<codeline lineno="305"><highlight class="normal"></highlight></codeline>
+<codeline lineno="306"><highlight class="normal"></highlight><highlight class="keyword">template</highlight><highlight class="normal">&lt;NT<sp/>nt&gt;</highlight></codeline>
+<codeline lineno="307" refid="de/d26/nodetype_8h_1ae09c2c47bcd6dad5a050d1aae1638af2" refkind="member"><highlight class="normal"></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">constexpr</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/><ref refid="de/d26/nodetype_8h_1ae09c2c47bcd6dad5a050d1aae1638af2" kindref="member">AssociativeBinaryOp</ref><sp/>=<sp/><ref refid="de/d26/nodetype_8h_1a71f687f53e36ccdc3277214f2d535fe5" kindref="member">is_in_v</ref>&lt;nt,<sp/></highlight></codeline>
+<codeline lineno="308"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="dc/d5c/namespaceBrush_1a051322bb9fd1db4638b6eccd399a29c8aec211f7c20af43e742bf2570c3cb84f9" kindref="member">NT::Add</ref>,</highlight></codeline>
+<codeline lineno="309"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="dc/d5c/namespaceBrush_1a051322bb9fd1db4638b6eccd399a29c8a62b6d55816cf737bfc6f42e60df1a3f2" kindref="member">NT::Mul</ref></highlight></codeline>
+<codeline lineno="310"><highlight class="normal">&gt;;</highlight></codeline>
+<codeline lineno="311"><highlight class="normal"></highlight></codeline>
+<codeline lineno="312"><highlight class="normal"></highlight><highlight class="keyword">template</highlight><highlight class="normal">&lt;NT<sp/>nt&gt;</highlight></codeline>
+<codeline lineno="313" refid="de/d26/nodetype_8h_1a82f43e5fe13312809d2411e25aff9e3a" refkind="member"><highlight class="normal"></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">constexpr</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/><ref refid="de/d26/nodetype_8h_1a82f43e5fe13312809d2411e25aff9e3a" kindref="member">NaryOp</ref><sp/>=<sp/><ref refid="de/d26/nodetype_8h_1a71f687f53e36ccdc3277214f2d535fe5" kindref="member">is_in_v</ref>&lt;nt,<sp/></highlight></codeline>
+<codeline lineno="314"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="dc/d5c/namespaceBrush_1a051322bb9fd1db4638b6eccd399a29c8a78d811e98514cd165dda532286610fd2" kindref="member">NT::Min</ref>,</highlight></codeline>
+<codeline lineno="315"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="dc/d5c/namespaceBrush_1a051322bb9fd1db4638b6eccd399a29c8a6a061313d22e51e0f25b7cd4dc065233" kindref="member">NT::Max</ref>,</highlight></codeline>
+<codeline lineno="316"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="dc/d5c/namespaceBrush_1a051322bb9fd1db4638b6eccd399a29c8a3d6c9ac08ada31c184094bbc67afe00d" kindref="member">NT::Mean</ref>,</highlight></codeline>
+<codeline lineno="317"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="dc/d5c/namespaceBrush_1a051322bb9fd1db4638b6eccd399a29c8a66851a3adec6655a7bd563743e4a55a2" kindref="member">NT::Median</ref>,</highlight></codeline>
+<codeline lineno="318"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="dc/d5c/namespaceBrush_1a051322bb9fd1db4638b6eccd399a29c8aa0ec87054b5e5b7847d0d8780a01a3d5" kindref="member">NT::Sum</ref>,</highlight></codeline>
+<codeline lineno="319"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="dc/d5c/namespaceBrush_1a051322bb9fd1db4638b6eccd399a29c8a4d83dec288ae3948fe9a8e21a3c3c734" kindref="member">NT::OffsetSum</ref>,</highlight></codeline>
+<codeline lineno="320"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="dc/d5c/namespaceBrush_1a051322bb9fd1db4638b6eccd399a29c8a362a33c23b08e4a32a4ec53fbb82cccd" kindref="member">NT::Prod</ref>,</highlight></codeline>
+<codeline lineno="321"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="dc/d5c/namespaceBrush_1a051322bb9fd1db4638b6eccd399a29c8a31d953b9d49a6b4378f45097047976d0" kindref="member">NT::Softmax</ref></highlight></codeline>
+<codeline lineno="322"><highlight class="normal">&gt;;</highlight></codeline>
+<codeline lineno="323"><highlight class="normal"></highlight></codeline>
+<codeline lineno="324"><highlight class="normal"></highlight><highlight class="comment">//<sp/>//<sp/>TODO:<sp/>make<sp/>this<sp/>work<sp/></highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="325"><highlight class="normal"></highlight><highlight class="comment">//<sp/>template&lt;typename<sp/>NT,<sp/>size_t<sp/>ArgCount&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="326"><highlight class="normal"></highlight><highlight class="comment">//<sp/>concept<sp/>Transformer<sp/>=<sp/>requires(NT<sp/>n,<sp/>size_t<sp/>ArgCount)<sp/></highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="327"><highlight class="normal"></highlight><highlight class="comment">//<sp/>{</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="328"><highlight class="normal"></highlight><highlight class="comment">//<sp/><sp/><sp/><sp/><sp/>UnaryOp&lt;n&gt;<sp/>&amp;&amp;<sp/>ArgCount<sp/>&gt;<sp/>1;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="329"><highlight class="normal"></highlight><highlight class="comment">//<sp/>}</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="330"><highlight class="normal"></highlight></codeline>
+<codeline lineno="331"><highlight class="normal"></highlight><highlight class="comment">//<sp/>template&lt;typename<sp/>NT,<sp/>size_t<sp/>ArgCount&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="332"><highlight class="normal"></highlight><highlight class="comment">//<sp/>concept<sp/>Reducer<sp/>=<sp/>requires(NT<sp/>n,<sp/>size_t<sp/>ArgCount)<sp/></highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="333"><highlight class="normal"></highlight><highlight class="comment">//<sp/>{</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="334"><highlight class="normal"></highlight><highlight class="comment">//<sp/><sp/><sp/><sp/><sp/>BinaryOp&lt;n&gt;<sp/>&amp;&amp;<sp/>ArgCount<sp/>&gt;<sp/>2;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="335"><highlight class="normal"></highlight><highlight class="comment">//<sp/>}</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="336"><highlight class="normal"></highlight></codeline>
+<codeline lineno="337"><highlight class="normal"><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="338"><highlight class="normal"><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="339"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;<ref refid="d8/d8b/signatures_8h" kindref="compound">signatures.h</ref>&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="340"><highlight class="normal"></highlight><highlight class="preprocessor">#endif</highlight></codeline>
     </programlisting>
     <location file="/home/runner/work/brush/brush/src/program/nodetype.h"/>
   </compounddef>

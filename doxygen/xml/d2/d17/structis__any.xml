@@ -1,0 +1,42 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.13.2" xml:lang="en-US">
+  <compounddef id="d2/d17/structis__any" kind="struct" language="C++" prot="public">
+    <compoundname>is_any</compoundname>
+    <includes refid="de/d26/nodetype_8h" local="no">nodetype.h</includes>
+    <templateparamlist>
+      <param>
+        <type>typename T</type>
+      </param>
+      <param>
+        <type>typename...</type>
+        <declname>Ts</declname>
+        <defname>Ts</defname>
+      </param>
+    </templateparamlist>
+    <sectiondef kind="public-static-attrib">
+      <memberdef kind="variable" id="d2/d17/structis__any_1a2d66f86beda83e667cb546607d88e05f" prot="public" static="yes" constexpr="yes" mutable="no">
+        <type>bool</type>
+        <definition>bool is_any&lt; T, Ts &gt;::value</definition>
+        <argsstring></argsstring>
+        <name>value</name>
+        <qualifiedname>is_any::value</qualifiedname>
+        <initializer>= (std::is_same_v&lt;T, Ts&gt; || ...)</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/runner/work/brush/brush/src/program/nodetype.h" line="255" column="27" bodyfile="/home/runner/work/brush/brush/src/program/nodetype.h" bodystart="255" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="/home/runner/work/brush/brush/src/program/nodetype.h" line="254" column="1" bodyfile="/home/runner/work/brush/brush/src/program/nodetype.h" bodystart="254" bodyend="256"/>
+    <listofallmembers>
+      <member refid="d2/d17/structis__any_1a2d66f86beda83e667cb546607d88e05f" prot="public" virt="non-virtual"><scope>is_any</scope><name>value</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

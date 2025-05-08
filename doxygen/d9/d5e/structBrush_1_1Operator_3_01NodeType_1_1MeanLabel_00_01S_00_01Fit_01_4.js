@@ -1,7 +1,7 @@
 var structBrush_1_1Operator_3_01NodeType_1_1MeanLabel_00_01S_00_01Fit_01_4 =
 [
     [ "ArgTypes", "dc/d31/structBrush_1_1Operator.html#a6918e9c614dbbb417f98fe2b95199fea", null ],
-    [ "NthType", "dc/d31/structBrush_1_1Operator.html#a395f3c1b1eefad96f02412b2dd74721e", null ],
+    [ "NthType", "dc/d31/structBrush_1_1Operator.html#a5a0ceadaff7a8c69f145e7d404289292", null ],
     [ "RetType", "dc/d31/structBrush_1_1Operator.html#a424bb09369598ed3d44f4d2b68eebcef", null ],
     [ "RetType", "d9/d5e/structBrush_1_1Operator_3_01NodeType_1_1MeanLabel_00_01S_00_01Fit_01_4.html#a7c8549ef9aed9cb5fd5cb47126f3731c", null ],
     [ "W", "dc/d31/structBrush_1_1Operator.html#a33cf8494b82e7e0b7beb42fa376e9a6c", null ],

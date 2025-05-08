@@ -1,5 +1,7 @@
 var NAVTREEINDEX13 =
 {
+"de/deb/structBrush_1_1Parameters.html":[2,0,0,115],
+"de/deb/structBrush_1_1Parameters.html#a03a5ec7ccfcba501d57264aeb3a41263":[0,0,0,118,66],
 "de/deb/structBrush_1_1Parameters.html#a03a5ec7ccfcba501d57264aeb3a41263":[2,0,0,115,66],
 "de/deb/structBrush_1_1Parameters.html#a08ad8f286c31998bd94f897a2894a950":[0,0,0,118,87],
 "de/deb/structBrush_1_1Parameters.html#a08ad8f286c31998bd94f897a2894a950":[2,0,0,115,87],
@@ -247,7 +249,5 @@ var NAVTREEINDEX13 =
 "df/d09/structBrush_1_1TinyCostFunction.html#a6e468d63ff6887868052dc771a3281ca":[2,0,0,138,13],
 "df/d09/structBrush_1_1TinyCostFunction.html#a713b8084e828215cec8ea822841ec732":[0,0,0,141,8],
 "df/d09/structBrush_1_1TinyCostFunction.html#a713b8084e828215cec8ea822841ec732":[2,0,0,138,8],
-"df/d09/structBrush_1_1TinyCostFunction.html#a78af5167fa8aeaa9326dc7fc87418185":[0,0,0,141,12],
-"df/d09/structBrush_1_1TinyCostFunction.html#a78af5167fa8aeaa9326dc7fc87418185":[2,0,0,138,12],
-"df/d09/structBrush_1_1TinyCostFunction.html#a81e83e5c0b620ee5c25da852a33d5f57":[0,0,0,141,3]
+"df/d09/structBrush_1_1TinyCostFunction.html#a78af5167fa8aeaa9326dc7fc87418185":[0,0,0,141,12]
 };

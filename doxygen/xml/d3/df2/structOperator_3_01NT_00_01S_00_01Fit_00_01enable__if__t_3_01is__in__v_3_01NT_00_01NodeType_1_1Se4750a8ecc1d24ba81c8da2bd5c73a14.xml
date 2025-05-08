@@ -75,7 +75,7 @@
         </inbodydescription>
         <location file="/home/runner/work/brush/brush/src/program/split.h" line="193" column="5" bodyfile="/home/runner/work/brush/brush/src/program/split.h" bodystart="193" bodyend="-1"/>
       </memberdef>
-      <memberdef kind="typedef" id="d3/df2/structOperator_3_01NT_00_01S_00_01Fit_00_01enable__if__t_3_01is__in__v_3_01NT_00_01NodeType_1_1Se4750a8ecc1d24ba81c8da2bd5c73a14_1a619d1dc463822671ef633a9653271051" prot="public" static="no">
+      <memberdef kind="typedef" id="d3/df2/structOperator_3_01NT_00_01S_00_01Fit_00_01enable__if__t_3_01is__in__v_3_01NT_00_01NodeType_1_1Se4750a8ecc1d24ba81c8da2bd5c73a14_1acaaa6eef17551a8fdd2a7ca6208da4a4" prot="public" static="no">
         <templateparamlist>
           <param>
             <type>std::size_t</type>
@@ -83,8 +83,8 @@
             <defname>N</defname>
           </param>
         </templateparamlist>
-        <type>typename S::NthType&lt; N &gt;</type>
-        <definition>using Operator&lt; NT, S, Fit, enable_if_t&lt; is_in_v&lt; NT, NodeType::SplitOn, NodeType::SplitBest &gt; &gt; &gt;::NthType =  typename S::NthType&lt;N&gt;</definition>
+        <type>typename S::template <ref refid="d3/df2/structOperator_3_01NT_00_01S_00_01Fit_00_01enable__if__t_3_01is__in__v_3_01NT_00_01NodeType_1_1Se4750a8ecc1d24ba81c8da2bd5c73a14_1acaaa6eef17551a8fdd2a7ca6208da4a4" kindref="member">NthType</ref>&lt; N &gt;</type>
+        <definition>using Operator&lt; NT, S, Fit, enable_if_t&lt; is_in_v&lt; NT, NodeType::SplitOn, NodeType::SplitBest &gt; &gt; &gt;::NthType =  typename S::template NthType&lt;N&gt;</definition>
         <argsstring></argsstring>
         <name>NthType</name>
         <qualifiedname>Operator&lt; NT, S, Fit, enable_if_t&lt; is_in_v&lt; NT, NodeType::SplitOn, NodeType::SplitBest &gt; &gt; &gt;::NthType</qualifiedname>
@@ -215,7 +215,7 @@
         <location file="/home/runner/work/brush/brush/src/program/split.h" line="256" column="13" bodyfile="/home/runner/work/brush/brush/src/program/split.h" bodystart="256" bodyend="286"/>
         <references refid="d3/df2/structOperator_3_01NT_00_01S_00_01Fit_00_01enable__if__t_3_01is__in__v_3_01NT_00_01NodeType_1_1Se4750a8ecc1d24ba81c8da2bd5c73a14_1ad6e1218b2542a008987a8820ba48b5e4" compoundref="d4/df2/split_8h" startline="202" endline="223">get_kids</references>
         <references refid="d7/da5/classDataset_1a2b7b42b1b16630554b2e49102098a170" compoundref="d2/dbd/data_8h" startline="222" endline="227">Dataset::get_n_samples</references>
-        <references refid="d7/da5/classDataset_1ade5da9269ebc099385d6f79cf4a53f9f" compoundref="da/dc9/data_8cpp" startline="186" endline="195">Dataset::split</references>
+        <references refid="d7/da5/classDataset_1ade5da9269ebc099385d6f79cf4a53f9f" compoundref="da/dc9/data_8cpp" startline="187" endline="196">Dataset::split</references>
         <references refid="de/dd1/namespaceSplit_1ad6013220c481c0b8720207da6814d690" compoundref="d4/df2/split_8h" startline="172" endline="182">Split::stitch</references>
         <references refid="de/dd1/namespaceSplit_1a32d9e8db103f509738ced38619513853" compoundref="d4/df2/split_8h" startline="15" endline="17">Split::threshold_mask</references>
         <referencedby refid="d3/df2/structOperator_3_01NT_00_01S_00_01Fit_00_01enable__if__t_3_01is__in__v_3_01NT_00_01NodeType_1_1Se4750a8ecc1d24ba81c8da2bd5c73a14_1ac550bfa5df6d21bff327a8a74019e0a1" compoundref="d4/df2/split_8h" startline="287" endline="292">eval</referencedby>
@@ -264,7 +264,7 @@
       <member refid="d3/df2/structOperator_3_01NT_00_01S_00_01Fit_00_01enable__if__t_3_01is__in__v_3_01NT_00_01NodeType_1_1Se4750a8ecc1d24ba81c8da2bd5c73a14_1ae52d9a4d9def8053cb71f8d2bac7f3d2" prot="public" virt="non-virtual"><scope>Operator&lt; NT, S, Fit, enable_if_t&lt; is_in_v&lt; NT, NodeType::SplitOn, NodeType::SplitBest &gt; &gt; &gt;</scope><name>FirstArg</name></member>
       <member refid="d3/df2/structOperator_3_01NT_00_01S_00_01Fit_00_01enable__if__t_3_01is__in__v_3_01NT_00_01NodeType_1_1Se4750a8ecc1d24ba81c8da2bd5c73a14_1a771c7574933c9720bdb9fb2e51571bbd" prot="public" virt="non-virtual"><scope>Operator&lt; NT, S, Fit, enable_if_t&lt; is_in_v&lt; NT, NodeType::SplitOn, NodeType::SplitBest &gt; &gt; &gt;</scope><name>fit</name></member>
       <member refid="d3/df2/structOperator_3_01NT_00_01S_00_01Fit_00_01enable__if__t_3_01is__in__v_3_01NT_00_01NodeType_1_1Se4750a8ecc1d24ba81c8da2bd5c73a14_1ad6e1218b2542a008987a8820ba48b5e4" prot="public" virt="non-virtual"><scope>Operator&lt; NT, S, Fit, enable_if_t&lt; is_in_v&lt; NT, NodeType::SplitOn, NodeType::SplitBest &gt; &gt; &gt;</scope><name>get_kids</name></member>
-      <member refid="d3/df2/structOperator_3_01NT_00_01S_00_01Fit_00_01enable__if__t_3_01is__in__v_3_01NT_00_01NodeType_1_1Se4750a8ecc1d24ba81c8da2bd5c73a14_1a619d1dc463822671ef633a9653271051" prot="public" virt="non-virtual"><scope>Operator&lt; NT, S, Fit, enable_if_t&lt; is_in_v&lt; NT, NodeType::SplitOn, NodeType::SplitBest &gt; &gt; &gt;</scope><name>NthType</name></member>
+      <member refid="d3/df2/structOperator_3_01NT_00_01S_00_01Fit_00_01enable__if__t_3_01is__in__v_3_01NT_00_01NodeType_1_1Se4750a8ecc1d24ba81c8da2bd5c73a14_1acaaa6eef17551a8fdd2a7ca6208da4a4" prot="public" virt="non-virtual"><scope>Operator&lt; NT, S, Fit, enable_if_t&lt; is_in_v&lt; NT, NodeType::SplitOn, NodeType::SplitBest &gt; &gt; &gt;</scope><name>NthType</name></member>
       <member refid="d3/df2/structOperator_3_01NT_00_01S_00_01Fit_00_01enable__if__t_3_01is__in__v_3_01NT_00_01NodeType_1_1Se4750a8ecc1d24ba81c8da2bd5c73a14_1af103a8ad8b7580d3c3a82b5c997b26c0" prot="public" virt="non-virtual"><scope>Operator&lt; NT, S, Fit, enable_if_t&lt; is_in_v&lt; NT, NodeType::SplitOn, NodeType::SplitBest &gt; &gt; &gt;</scope><name>predict</name></member>
       <member refid="d3/df2/structOperator_3_01NT_00_01S_00_01Fit_00_01enable__if__t_3_01is__in__v_3_01NT_00_01NodeType_1_1Se4750a8ecc1d24ba81c8da2bd5c73a14_1a0749d2fcccf558e9dbb4c11e668ae3aa" prot="public" virt="non-virtual"><scope>Operator&lt; NT, S, Fit, enable_if_t&lt; is_in_v&lt; NT, NodeType::SplitOn, NodeType::SplitBest &gt; &gt; &gt;</scope><name>RetType</name></member>
       <member refid="d3/df2/structOperator_3_01NT_00_01S_00_01Fit_00_01enable__if__t_3_01is__in__v_3_01NT_00_01NodeType_1_1Se4750a8ecc1d24ba81c8da2bd5c73a14_1aee0f8e740812e0102ca842c75ac26bd9" prot="public" virt="non-virtual"><scope>Operator&lt; NT, S, Fit, enable_if_t&lt; is_in_v&lt; NT, NodeType::SplitOn, NodeType::SplitBest &gt; &gt; &gt;</scope><name>W</name></member>

@@ -125,6 +125,7 @@ var hierarchy =
     [ "Brush::Simpl::HashStorage", "d4/d71/classBrush_1_1Simpl_1_1HashStorage.html", null ],
     [ "Brush::Pop::Individual< T >", "de/d83/classBrush_1_1Pop_1_1Individual.html", null ],
     [ "Brush::Simpl::Inexact_simplifier", "de/dc5/classBrush_1_1Simpl_1_1Inexact__simplifier.html", null ],
+    [ "is_any< T, Ts >", "d2/d17/structis__any.html", null ],
     [ "std::is_base_of", null, [
       [ "Brush::is_eigen_array< T >", "df/d72/structBrush_1_1is__eigen__array.html", null ]
     ] ],

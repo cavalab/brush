@@ -1,5 +1,6 @@
 var NAVTREEINDEX5 =
 {
+"d6/dd0/structBrush_1_1Fitness.html#a0998d4960cae30c329ae6d2f05a27c84":[0,0,0,49,45],
 "d6/dd0/structBrush_1_1Fitness.html#a0998d4960cae30c329ae6d2f05a27c84":[2,0,0,46,45],
 "d6/dd0/structBrush_1_1Fitness.html#a101d3e509a063d7d3ee16a43cd1f98f4":[0,0,0,49,1],
 "d6/dd0/structBrush_1_1Fitness.html#a101d3e509a063d7d3ee16a43cd1f98f4":[2,0,0,46,1],
@@ -248,6 +249,5 @@ var NAVTREEINDEX5 =
 "d7/d56/structBrush_1_1Data_1_1TimeSeries.html#aa298e6d97eb7bbc8a4eadcda159505ba":[0,0,0,0,2,29],
 "d7/d56/structBrush_1_1Data_1_1TimeSeries.html#aa298e6d97eb7bbc8a4eadcda159505ba":[2,0,0,0,2,29],
 "d7/d56/structBrush_1_1Data_1_1TimeSeries.html#aa7a7bb5dcd813763c1cc2b52c77dc887":[0,0,0,0,2,2],
-"d7/d56/structBrush_1_1Data_1_1TimeSeries.html#aa7a7bb5dcd813763c1cc2b52c77dc887":[2,0,0,0,2,2],
-"d7/d56/structBrush_1_1Data_1_1TimeSeries.html#aa833203e5097827e5e395c9bd21d4be7":[0,0,0,0,2,1]
+"d7/d56/structBrush_1_1Data_1_1TimeSeries.html#aa7a7bb5dcd813763c1cc2b52c77dc887":[2,0,0,0,2,2]
 };

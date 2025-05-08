@@ -7,7 +7,6 @@ var namespaceBrush_1_1Util =
     [ "Timer", "d8/da4/classBrush_1_1Util_1_1Timer.html", "d8/da4/classBrush_1_1Util_1_1Timer" ],
     [ "Log_stats", "d6/d2e/namespaceBrush_1_1Util.html#a879344781baecb2119f7bde9bddd8660", null ],
     [ "TypeMap", "d6/d2e/namespaceBrush_1_1Util.html#adc1985a99c2dc32ac23e139322748380", null ],
-    [ "apply", "d6/d2e/namespaceBrush_1_1Util.html#a1381c5883d1216248a82c6aafdceb944", null ],
     [ "argmiddle", "d6/d2e/namespaceBrush_1_1Util.html#afbb579185a6522b235c40136b5858851", null ],
     [ "argsort", "d6/d2e/namespaceBrush_1_1Util.html#a3a18a9ccd426286d474e8507adee1025", null ],
     [ "clean", "d6/d2e/namespaceBrush_1_1Util.html#a61817392e38bfbd623504cd8def55b3f", null ],

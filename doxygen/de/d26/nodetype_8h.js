@@ -2,6 +2,7 @@ var nodetype_8h =
 [
     [ "Brush::NodeTypes", "db/d53/structBrush_1_1NodeTypes.html", "db/d53/structBrush_1_1NodeTypes" ],
     [ "fmt::formatter< Brush::NodeType >", "d4/d42/structfmt_1_1formatter_3_01Brush_1_1NodeType_01_4.html", "d4/d42/structfmt_1_1formatter_3_01Brush_1_1NodeType_01_4" ],
+    [ "is_any< T, Ts >", "d2/d17/structis__any.html", "d2/d17/structis__any" ],
     [ "is_in< T, Ts >", "d0/d80/structis__in.html", "d0/d80/structis__in" ],
     [ "array< T >", "d2/d41/classarray.html", "d2/d41/classarray" ],
     [ "TimeSeriesb", "de/d26/nodetype_8h.html#a31f33981b7b5a0fd9f735aecac86bdf9", null ],
@@ -69,6 +70,7 @@ var nodetype_8h =
     [ "Brush::operator~", "dc/d5c/namespaceBrush.html#a110a71b11a52c4c11874f33d85082788", null ],
     [ "AssociativeBinaryOp", "de/d26/nodetype_8h.html#ae09c2c47bcd6dad5a050d1aae1638af2", null ],
     [ "BinaryOp", "de/d26/nodetype_8h.html#ae99fa5ab7f6193e3cb2056ba55cbb522", null ],
+    [ "is_any_v", "de/d26/nodetype_8h.html#a6cb189ea6b77db485afec81008a70dc7", null ],
     [ "is_in_v", "de/d26/nodetype_8h.html#a71f687f53e36ccdc3277214f2d535fe5", null ],
     [ "NaryOp", "de/d26/nodetype_8h.html#a82f43e5fe13312809d2411e25aff9e3a", null ],
     [ "UnaryOp", "de/d26/nodetype_8h.html#a876e80643fd688721e2b628ba2cd39cd", null ]

@@ -1,5 +1,6 @@
 var NAVTREEINDEX9 =
 {
+"db/d25/structBrush_1_1Function_3_01NodeType_1_1Sqrtabs_01_4.html#a2f56929b44f85894bc615e33e8862266":[2,0,0,83,0],
 "db/d2d/linear__thompson_8cpp.html":[3,0,0,0,6],
 "db/d2d/linear__thompson_8cpp_source.html":[3,0,0,0,6],
 "db/d53/structBrush_1_1NodeTypes.html":[0,0,0,111],
@@ -191,16 +192,6 @@ var NAVTREEINDEX9 =
 "dc/d31/structBrush_1_1Operator.html#a3510e6cd8f26f1f30ab53dcfafe08025":[2,0,0,111,18],
 "dc/d31/structBrush_1_1Operator.html#a3510e6cd8f26f1f30ab53dcfafe08025":[2,0,0,112,18],
 "dc/d31/structBrush_1_1Operator.html#a3510e6cd8f26f1f30ab53dcfafe08025":[2,0,0,113,22],
-"dc/d31/structBrush_1_1Operator.html#a395f3c1b1eefad96f02412b2dd74721e":[0,0,0,112,1],
-"dc/d31/structBrush_1_1Operator.html#a395f3c1b1eefad96f02412b2dd74721e":[0,0,0,113,1],
-"dc/d31/structBrush_1_1Operator.html#a395f3c1b1eefad96f02412b2dd74721e":[0,0,0,114,1],
-"dc/d31/structBrush_1_1Operator.html#a395f3c1b1eefad96f02412b2dd74721e":[0,0,0,115,1],
-"dc/d31/structBrush_1_1Operator.html#a395f3c1b1eefad96f02412b2dd74721e":[0,0,0,116,3],
-"dc/d31/structBrush_1_1Operator.html#a395f3c1b1eefad96f02412b2dd74721e":[2,0,0,109,1],
-"dc/d31/structBrush_1_1Operator.html#a395f3c1b1eefad96f02412b2dd74721e":[2,0,0,110,1],
-"dc/d31/structBrush_1_1Operator.html#a395f3c1b1eefad96f02412b2dd74721e":[2,0,0,111,1],
-"dc/d31/structBrush_1_1Operator.html#a395f3c1b1eefad96f02412b2dd74721e":[2,0,0,112,1],
-"dc/d31/structBrush_1_1Operator.html#a395f3c1b1eefad96f02412b2dd74721e":[2,0,0,113,3],
 "dc/d31/structBrush_1_1Operator.html#a424bb09369598ed3d44f4d2b68eebcef":[0,0,0,112,2],
 "dc/d31/structBrush_1_1Operator.html#a424bb09369598ed3d44f4d2b68eebcef":[0,0,0,113,2],
 "dc/d31/structBrush_1_1Operator.html#a424bb09369598ed3d44f4d2b68eebcef":[0,0,0,114,2],
@@ -211,6 +202,16 @@ var NAVTREEINDEX9 =
 "dc/d31/structBrush_1_1Operator.html#a424bb09369598ed3d44f4d2b68eebcef":[2,0,0,111,2],
 "dc/d31/structBrush_1_1Operator.html#a424bb09369598ed3d44f4d2b68eebcef":[2,0,0,112,2],
 "dc/d31/structBrush_1_1Operator.html#a424bb09369598ed3d44f4d2b68eebcef":[2,0,0,113,5],
+"dc/d31/structBrush_1_1Operator.html#a5a0ceadaff7a8c69f145e7d404289292":[0,0,0,112,1],
+"dc/d31/structBrush_1_1Operator.html#a5a0ceadaff7a8c69f145e7d404289292":[0,0,0,113,1],
+"dc/d31/structBrush_1_1Operator.html#a5a0ceadaff7a8c69f145e7d404289292":[0,0,0,114,1],
+"dc/d31/structBrush_1_1Operator.html#a5a0ceadaff7a8c69f145e7d404289292":[0,0,0,115,1],
+"dc/d31/structBrush_1_1Operator.html#a5a0ceadaff7a8c69f145e7d404289292":[0,0,0,116,3],
+"dc/d31/structBrush_1_1Operator.html#a5a0ceadaff7a8c69f145e7d404289292":[2,0,0,109,1],
+"dc/d31/structBrush_1_1Operator.html#a5a0ceadaff7a8c69f145e7d404289292":[2,0,0,110,1],
+"dc/d31/structBrush_1_1Operator.html#a5a0ceadaff7a8c69f145e7d404289292":[2,0,0,111,1],
+"dc/d31/structBrush_1_1Operator.html#a5a0ceadaff7a8c69f145e7d404289292":[2,0,0,112,1],
+"dc/d31/structBrush_1_1Operator.html#a5a0ceadaff7a8c69f145e7d404289292":[2,0,0,113,3],
 "dc/d31/structBrush_1_1Operator.html#a5f08ba3c3b0e39c54b830845eba40b68":[0,0,0,112,14],
 "dc/d31/structBrush_1_1Operator.html#a5f08ba3c3b0e39c54b830845eba40b68":[0,0,0,113,17],
 "dc/d31/structBrush_1_1Operator.html#a5f08ba3c3b0e39c54b830845eba40b68":[0,0,0,114,19],
@@ -248,6 +249,5 @@ var NAVTREEINDEX9 =
 "dc/d31/structBrush_1_1Operator.html#a91d6de562fe5a54112e3c746b4281f7e":[0,0,0,116,19],
 "dc/d31/structBrush_1_1Operator.html#a91d6de562fe5a54112e3c746b4281f7e":[2,0,0,109,11],
 "dc/d31/structBrush_1_1Operator.html#a91d6de562fe5a54112e3c746b4281f7e":[2,0,0,110,14],
-"dc/d31/structBrush_1_1Operator.html#a91d6de562fe5a54112e3c746b4281f7e":[2,0,0,111,15],
-"dc/d31/structBrush_1_1Operator.html#a91d6de562fe5a54112e3c746b4281f7e":[2,0,0,112,16]
+"dc/d31/structBrush_1_1Operator.html#a91d6de562fe5a54112e3c746b4281f7e":[2,0,0,111,15]
 };

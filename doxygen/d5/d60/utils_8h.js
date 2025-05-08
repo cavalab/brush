@@ -8,7 +8,6 @@ var utils_8h =
     [ "Brush::Util::Log_Stats", "db/d7e/structBrush_1_1Util_1_1Log__Stats.html", "db/d7e/structBrush_1_1Util_1_1Log__Stats" ],
     [ "Brush::Util::Log_stats", "d6/d2e/namespaceBrush_1_1Util.html#a879344781baecb2119f7bde9bddd8660", null ],
     [ "Brush::Util::TypeMap", "d6/d2e/namespaceBrush_1_1Util.html#adc1985a99c2dc32ac23e139322748380", null ],
-    [ "Brush::Util::apply", "d6/d2e/namespaceBrush_1_1Util.html#a1381c5883d1216248a82c6aafdceb944", null ],
     [ "Brush::Util::argmiddle", "d6/d2e/namespaceBrush_1_1Util.html#afbb579185a6522b235c40136b5858851", null ],
     [ "Brush::Util::argsort", "d6/d2e/namespaceBrush_1_1Util.html#a3a18a9ccd426286d474e8507adee1025", null ],
     [ "Brush::Util::clean", "d6/d2e/namespaceBrush_1_1Util.html#a61817392e38bfbd623504cd8def55b3f", null ],

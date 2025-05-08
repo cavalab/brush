@@ -1,5 +1,6 @@
 var NAVTREEINDEX7 =
 {
+"d8/da4/classBrush_1_1Util_1_1Timer.html":[2,0,0,6,4],
 "d8/da4/classBrush_1_1Util_1_1Timer.html#a0b2b4a4a29477bf98ec3b0b80b29685c":[0,0,0,8,4,3],
 "d8/da4/classBrush_1_1Util_1_1Timer.html#a0b2b4a4a29477bf98ec3b0b80b29685c":[2,0,0,6,4,3],
 "d8/da4/classBrush_1_1Util_1_1Timer.html#a1038d1fb626abf7b44ca1d5f63f1ca36":[0,0,0,8,4,2],
@@ -160,9 +161,9 @@ var NAVTREEINDEX7 =
 "d9/d27/bind__individuals_8cpp_source.html":[3,0,0,1,6],
 "d9/d28/archive_8h.html":[3,0,0,5,1],
 "d9/d28/archive_8h_source.html":[3,0,0,5,1],
-"d9/d28/classmap.html":[2,0,7],
-"d9/d28/classmap.html#a8dc2b3ed44acf51fb2bd3eb30b237269":[2,0,7,5],
-"d9/d28/classmap.html#ac69fe575e214b796b8d9457b0c22469a":[2,0,7,4],
+"d9/d28/classmap.html":[2,0,8],
+"d9/d28/classmap.html#a8dc2b3ed44acf51fb2bd3eb30b237269":[2,0,8,5],
+"d9/d28/classmap.html#ac69fe575e214b796b8d9457b0c22469a":[2,0,8,4],
 "d9/d40/bind__dataset_8cpp.html":[3,0,0,1,0],
 "d9/d40/bind__dataset_8cpp.html#a3a32d76d471ed16427cad15ed2364f0f":[3,0,0,1,0,0],
 "d9/d40/bind__dataset_8cpp_source.html":[3,0,0,1,0],
@@ -248,6 +249,5 @@ var NAVTREEINDEX7 =
 "da/d4c/classBrush_1_1Eval_1_1Scorer.html":[0,0,0,2,1],
 "da/d4c/classBrush_1_1Eval_1_1Scorer.html":[2,0,0,1,1],
 "da/d4c/classBrush_1_1Eval_1_1Scorer.html#a074ffe387edb4090061c5aa0402ebb1d":[0,0,0,2,1,3],
-"da/d4c/classBrush_1_1Eval_1_1Scorer.html#a074ffe387edb4090061c5aa0402ebb1d":[0,0,0,2,2,9],
-"da/d4c/classBrush_1_1Eval_1_1Scorer.html#a074ffe387edb4090061c5aa0402ebb1d":[2,0,0,1,1,3]
+"da/d4c/classBrush_1_1Eval_1_1Scorer.html#a074ffe387edb4090061c5aa0402ebb1d":[0,0,0,2,2,9]
 };

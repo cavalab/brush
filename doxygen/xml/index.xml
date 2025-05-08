@@ -44,7 +44,7 @@
     <member refid="d4/d90/structBrush_1_1MAB_1_1Bandit_1abfbcbb2eedfe06a4843c99cbd269a0d6" kind="function"><name>set_probs</name></member>
     <member refid="d4/d90/structBrush_1_1MAB_1_1Bandit_1affb89017044ba912926e6713cb1ffda1" kind="function"><name>sample_probs</name></member>
     <member refid="d4/d90/structBrush_1_1MAB_1_1Bandit_1a1f4eabc175f8f7e1b8308be103024d4d" kind="function"><name>choose</name></member>
-    <member refid="d4/d90/structBrush_1_1MAB_1_1Bandit_1a1d9f09b751bfd40656e2d82ee01c0d21" kind="function"><name>update</name></member>
+    <member refid="d4/d90/structBrush_1_1MAB_1_1Bandit_1aafb91bb50c407dfbd67c0ef312882a36" kind="function"><name>update</name></member>
     <member refid="d4/d90/structBrush_1_1MAB_1_1Bandit_1a1a5001879a43a4b5e0cd7241fdd01334" kind="function"><name>get_context</name></member>
   </compound>
   <compound refid="df/dde/classBrush_1_1MAB_1_1BanditOperator" kind="class"><name>Brush::MAB::BanditOperator</name>
@@ -691,6 +691,9 @@
     <member refid="dc/de3/classBrush_1_1Var_1_1InsertMutation_1a8b98cb676dbaeb976e61dd54c3bc4e5b" kind="function"><name>find_spots</name></member>
     <member refid="dc/de3/classBrush_1_1Var_1_1InsertMutation_1a54f75a7d5b2583320d9d00d317f933ed" kind="function"><name>mutate</name></member>
   </compound>
+  <compound refid="d2/d17/structis__any" kind="struct"><name>is_any</name>
+    <member refid="d2/d17/structis__any_1a2d66f86beda83e667cb546607d88e05f" kind="variable"><name>value</name></member>
+  </compound>
   <compound refid="df/d72/structBrush_1_1is__eigen__array" kind="struct"><name>Brush::is_eigen_array</name>
   </compound>
   <compound refid="d0/d80/structis__in" kind="struct"><name>is_in</name>
@@ -939,7 +942,7 @@
   <compound refid="dc/d31/structBrush_1_1Operator" kind="struct"><name>Brush::Operator</name>
     <member refid="dc/d31/structBrush_1_1Operator_1a6918e9c614dbbb417f98fe2b95199fea" kind="typedef"><name>ArgTypes</name></member>
     <member refid="dc/d31/structBrush_1_1Operator_1a424bb09369598ed3d44f4d2b68eebcef" kind="typedef"><name>RetType</name></member>
-    <member refid="dc/d31/structBrush_1_1Operator_1a395f3c1b1eefad96f02412b2dd74721e" kind="typedef"><name>NthType</name></member>
+    <member refid="dc/d31/structBrush_1_1Operator_1a5a0ceadaff7a8c69f145e7d404289292" kind="typedef"><name>NthType</name></member>
     <member refid="dc/d31/structBrush_1_1Operator_1a33cf8494b82e7e0b7beb42fa376e9a6c" kind="typedef"><name>W</name></member>
     <member refid="dc/d31/structBrush_1_1Operator_1a3510e6cd8f26f1f30ab53dcfafe08025" kind="variable"><name>ArgCount</name></member>
     <member refid="dc/d31/structBrush_1_1Operator_1a5f08ba3c3b0e39c54b830845eba40b68" kind="variable"><name>F</name></member>
@@ -958,7 +961,7 @@
     <member refid="df/dc1/structBrush_1_1Operator_3_01NodeType_1_1Constant_00_01S_00_01Fit_01_4_1a9c73f02bcd42c10cd4094ab2f9fb06dd" kind="typedef"><name>W</name></member>
     <member refid="dc/d31/structBrush_1_1Operator_1a6918e9c614dbbb417f98fe2b95199fea" kind="typedef"><name>ArgTypes</name></member>
     <member refid="dc/d31/structBrush_1_1Operator_1a424bb09369598ed3d44f4d2b68eebcef" kind="typedef"><name>RetType</name></member>
-    <member refid="dc/d31/structBrush_1_1Operator_1a395f3c1b1eefad96f02412b2dd74721e" kind="typedef"><name>NthType</name></member>
+    <member refid="dc/d31/structBrush_1_1Operator_1a5a0ceadaff7a8c69f145e7d404289292" kind="typedef"><name>NthType</name></member>
     <member refid="dc/d31/structBrush_1_1Operator_1a33cf8494b82e7e0b7beb42fa376e9a6c" kind="typedef"><name>W</name></member>
     <member refid="df/dc1/structBrush_1_1Operator_3_01NodeType_1_1Constant_00_01S_00_01Fit_01_4_1a1309f7a7253c0899447c91ebfee84a3a" kind="function"><name>eval</name></member>
     <member refid="dc/d31/structBrush_1_1Operator_1a09fa4721bd510aacdb5402dc4ce4b5ac" kind="function"><name>Operator</name></member>
@@ -978,7 +981,7 @@
     <member refid="d9/d5e/structBrush_1_1Operator_3_01NodeType_1_1MeanLabel_00_01S_00_01Fit_01_4_1a6d0ef851de4d7697f92b8180647ff3ca" kind="typedef"><name>W</name></member>
     <member refid="dc/d31/structBrush_1_1Operator_1a6918e9c614dbbb417f98fe2b95199fea" kind="typedef"><name>ArgTypes</name></member>
     <member refid="dc/d31/structBrush_1_1Operator_1a424bb09369598ed3d44f4d2b68eebcef" kind="typedef"><name>RetType</name></member>
-    <member refid="dc/d31/structBrush_1_1Operator_1a395f3c1b1eefad96f02412b2dd74721e" kind="typedef"><name>NthType</name></member>
+    <member refid="dc/d31/structBrush_1_1Operator_1a5a0ceadaff7a8c69f145e7d404289292" kind="typedef"><name>NthType</name></member>
     <member refid="dc/d31/structBrush_1_1Operator_1a33cf8494b82e7e0b7beb42fa376e9a6c" kind="typedef"><name>W</name></member>
     <member refid="d9/d5e/structBrush_1_1Operator_3_01NodeType_1_1MeanLabel_00_01S_00_01Fit_01_4_1a0a729da1a61e625544c79406c1d38a8f" kind="function"><name>fit</name></member>
     <member refid="d9/d5e/structBrush_1_1Operator_3_01NodeType_1_1MeanLabel_00_01S_00_01Fit_01_4_1a56b67e05e4f1f89f7fd83f755d826d16" kind="function"><name>predict</name></member>
@@ -1000,7 +1003,7 @@
     <member refid="dd/d88/structBrush_1_1Operator_3_01NodeType_1_1Terminal_00_01S_00_01Fit_01_4_1a5176127947597b2158c8cd5984cb276f" kind="typedef"><name>W</name></member>
     <member refid="dc/d31/structBrush_1_1Operator_1a6918e9c614dbbb417f98fe2b95199fea" kind="typedef"><name>ArgTypes</name></member>
     <member refid="dc/d31/structBrush_1_1Operator_1a424bb09369598ed3d44f4d2b68eebcef" kind="typedef"><name>RetType</name></member>
-    <member refid="dc/d31/structBrush_1_1Operator_1a395f3c1b1eefad96f02412b2dd74721e" kind="typedef"><name>NthType</name></member>
+    <member refid="dc/d31/structBrush_1_1Operator_1a5a0ceadaff7a8c69f145e7d404289292" kind="typedef"><name>NthType</name></member>
     <member refid="dc/d31/structBrush_1_1Operator_1a33cf8494b82e7e0b7beb42fa376e9a6c" kind="typedef"><name>W</name></member>
     <member refid="dd/d88/structBrush_1_1Operator_3_01NodeType_1_1Terminal_00_01S_00_01Fit_01_4_1ac4f981989fbe362656ac8294fa0d4ef3" kind="function"><name>eval</name></member>
     <member refid="dd/d88/structBrush_1_1Operator_3_01NodeType_1_1Terminal_00_01S_00_01Fit_01_4_1a84a585608a7ff8031adcd94c92b1541a" kind="function"><name>eval</name></member>
@@ -1022,10 +1025,10 @@
     <member refid="db/d1f/structBrush_1_1Operator_3_01NT_00_01S_00_01Fit_00_01enable__if__t_3_01is__in__v_3_01NT_00_01Node0d34d2b97afea7b3bb37b94bd97cbb86_1ac4166892131ec208bf921ae8bd520b2d" kind="typedef"><name>FirstArg</name></member>
     <member refid="db/d1f/structBrush_1_1Operator_3_01NT_00_01S_00_01Fit_00_01enable__if__t_3_01is__in__v_3_01NT_00_01Node0d34d2b97afea7b3bb37b94bd97cbb86_1a89bc8eb841fd2d39b0878f2486f8af28" kind="typedef"><name>RetType</name></member>
     <member refid="db/d1f/structBrush_1_1Operator_3_01NT_00_01S_00_01Fit_00_01enable__if__t_3_01is__in__v_3_01NT_00_01Node0d34d2b97afea7b3bb37b94bd97cbb86_1abb1f5cfaa4ad8540ef48a3ce6322487e" kind="typedef"><name>W</name></member>
-    <member refid="db/d1f/structBrush_1_1Operator_3_01NT_00_01S_00_01Fit_00_01enable__if__t_3_01is__in__v_3_01NT_00_01Node0d34d2b97afea7b3bb37b94bd97cbb86_1abff4d8d2aa2e0cf94fb7b1cf43a0f7b0" kind="typedef"><name>NthType</name></member>
+    <member refid="db/d1f/structBrush_1_1Operator_3_01NT_00_01S_00_01Fit_00_01enable__if__t_3_01is__in__v_3_01NT_00_01Node0d34d2b97afea7b3bb37b94bd97cbb86_1a30052ad32c3a73558db6c97cc313d6ac" kind="typedef"><name>NthType</name></member>
     <member refid="dc/d31/structBrush_1_1Operator_1a6918e9c614dbbb417f98fe2b95199fea" kind="typedef"><name>ArgTypes</name></member>
     <member refid="dc/d31/structBrush_1_1Operator_1a424bb09369598ed3d44f4d2b68eebcef" kind="typedef"><name>RetType</name></member>
-    <member refid="dc/d31/structBrush_1_1Operator_1a395f3c1b1eefad96f02412b2dd74721e" kind="typedef"><name>NthType</name></member>
+    <member refid="dc/d31/structBrush_1_1Operator_1a5a0ceadaff7a8c69f145e7d404289292" kind="typedef"><name>NthType</name></member>
     <member refid="dc/d31/structBrush_1_1Operator_1a33cf8494b82e7e0b7beb42fa376e9a6c" kind="typedef"><name>W</name></member>
     <member refid="db/d1f/structBrush_1_1Operator_3_01NT_00_01S_00_01Fit_00_01enable__if__t_3_01is__in__v_3_01NT_00_01Node0d34d2b97afea7b3bb37b94bd97cbb86_1a44a7325acd05e13e1ec3a2b46fc8d407" kind="variable"><name>ArgCount</name></member>
     <member refid="db/d1f/structBrush_1_1Operator_3_01NT_00_01S_00_01Fit_00_01enable__if__t_3_01is__in__v_3_01NT_00_01Node0d34d2b97afea7b3bb37b94bd97cbb86_1a26de9211c472622d1abd8b7965c94560" kind="variable"><name>F</name></member>
@@ -1050,7 +1053,7 @@
     <member refid="d3/df2/structOperator_3_01NT_00_01S_00_01Fit_00_01enable__if__t_3_01is__in__v_3_01NT_00_01NodeType_1_1Se4750a8ecc1d24ba81c8da2bd5c73a14_1ae52d9a4d9def8053cb71f8d2bac7f3d2" kind="typedef"><name>FirstArg</name></member>
     <member refid="d3/df2/structOperator_3_01NT_00_01S_00_01Fit_00_01enable__if__t_3_01is__in__v_3_01NT_00_01NodeType_1_1Se4750a8ecc1d24ba81c8da2bd5c73a14_1a0749d2fcccf558e9dbb4c11e668ae3aa" kind="typedef"><name>RetType</name></member>
     <member refid="d3/df2/structOperator_3_01NT_00_01S_00_01Fit_00_01enable__if__t_3_01is__in__v_3_01NT_00_01NodeType_1_1Se4750a8ecc1d24ba81c8da2bd5c73a14_1aee0f8e740812e0102ca842c75ac26bd9" kind="typedef"><name>W</name></member>
-    <member refid="d3/df2/structOperator_3_01NT_00_01S_00_01Fit_00_01enable__if__t_3_01is__in__v_3_01NT_00_01NodeType_1_1Se4750a8ecc1d24ba81c8da2bd5c73a14_1a619d1dc463822671ef633a9653271051" kind="typedef"><name>NthType</name></member>
+    <member refid="d3/df2/structOperator_3_01NT_00_01S_00_01Fit_00_01enable__if__t_3_01is__in__v_3_01NT_00_01NodeType_1_1Se4750a8ecc1d24ba81c8da2bd5c73a14_1acaaa6eef17551a8fdd2a7ca6208da4a4" kind="typedef"><name>NthType</name></member>
     <member refid="d3/df2/structOperator_3_01NT_00_01S_00_01Fit_00_01enable__if__t_3_01is__in__v_3_01NT_00_01NodeType_1_1Se4750a8ecc1d24ba81c8da2bd5c73a14_1a8c96614169cd36203eb851b93d2c9288" kind="variable"><name>ArgCount</name></member>
     <member refid="d3/df2/structOperator_3_01NT_00_01S_00_01Fit_00_01enable__if__t_3_01is__in__v_3_01NT_00_01NodeType_1_1Se4750a8ecc1d24ba81c8da2bd5c73a14_1a30758756a9257da28a932a01c0ef291f" kind="variable"><name>F</name></member>
     <member refid="d3/df2/structOperator_3_01NT_00_01S_00_01Fit_00_01enable__if__t_3_01is__in__v_3_01NT_00_01NodeType_1_1Se4750a8ecc1d24ba81c8da2bd5c73a14_1ad6e1218b2542a008987a8820ba48b5e4" kind="function"><name>get_kids</name></member>
@@ -2152,7 +2155,6 @@
     <member refid="d6/d2e/namespaceBrush_1_1Util_1ac697e701ef641df7a4cff481c667c9f7" kind="function"><name>unique_insert</name></member>
     <member refid="d6/d2e/namespaceBrush_1_1Util_1a75d33dae3c8a1a36b1ef5f889d815d6e" kind="function"><name>vectorToTupleHelper</name></member>
     <member refid="d6/d2e/namespaceBrush_1_1Util_1a7a0a0b4f0cab1c690fc54ea9126e6814" kind="function"><name>vectorToTuple</name></member>
-    <member refid="d6/d2e/namespaceBrush_1_1Util_1a1381c5883d1216248a82c6aafdceb944" kind="function"><name>apply</name></member>
     <member refid="d6/d2e/namespaceBrush_1_1Util_1abbfd3f4b029bb0b27ba4746f12726df2" kind="function"><name>slice</name></member>
     <member refid="d6/d2e/namespaceBrush_1_1Util_1a104f5440d54d751bac78c892b7022c71" kind="function"><name>reverse_map</name></member>
     <member refid="d6/d2e/namespaceBrush_1_1Util_1af874ef4c659cfb3cb52fa8032f531beb" kind="function"><name>operator&lt;&lt;</name></member>
@@ -2379,6 +2381,7 @@
     <member refid="de/d26/nodetype_8h_1a31f33981b7b5a0fd9f735aecac86bdf9" kind="typedef"><name>TimeSeriesb</name></member>
     <member refid="de/d26/nodetype_8h_1af3754cc76393d77d2e246a50cf26789b" kind="typedef"><name>TimeSeriesi</name></member>
     <member refid="de/d26/nodetype_8h_1a66dd2004d1ee46aa2b08a5b2ff462d29" kind="typedef"><name>TimeSeriesf</name></member>
+    <member refid="de/d26/nodetype_8h_1a6cb189ea6b77db485afec81008a70dc7" kind="variable"><name>is_any_v</name></member>
     <member refid="de/d26/nodetype_8h_1a71f687f53e36ccdc3277214f2d535fe5" kind="variable"><name>is_in_v</name></member>
     <member refid="de/d26/nodetype_8h_1a876e80643fd688721e2b628ba2cd39cd" kind="variable"><name>UnaryOp</name></member>
     <member refid="de/d26/nodetype_8h_1ae99fa5ab7f6193e3cb2056ba55cbb522" kind="variable"><name>BinaryOp</name></member>

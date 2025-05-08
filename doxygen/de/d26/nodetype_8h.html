@@ -409,6 +409,8 @@ Classes</h2></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d4/d42/structfmt_1_1formatter_3_01Brush_1_1NodeType_01_4.html">fmt::formatter&lt; Brush::NodeType &gt;</a></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d2/d17/structis__any.html">is_any&lt; T, Ts &gt;</a></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d0/d80/structis__in.html">is_in&lt; T, Ts &gt;</a></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d2/d41/classarray.html">array&lt; T &gt;</a></td></tr>
@@ -523,6 +525,9 @@ Functions</h2></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="var-members" name="var-members"></a>
 Variables</h2></td></tr>
+<tr class="memitem:a6cb189ea6b77db485afec81008a70dc7" id="r_a6cb189ea6b77db485afec81008a70dc7"><td class="memTemplParams" colspan="2">template&lt;typename T, typename... Ts&gt; </td></tr>
+<tr class="memitem:a6cb189ea6b77db485afec81008a70dc7"><td class="memTemplItemLeft" align="right" valign="top">static constexpr bool&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="#a6cb189ea6b77db485afec81008a70dc7">is_any_v</a> = <a class="el" href="../../d2/d17/structis__any.html">is_any</a>&lt;T, Ts...&gt;::value</td></tr>
+<tr class="separator:a6cb189ea6b77db485afec81008a70dc7"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a71f687f53e36ccdc3277214f2d535fe5" id="r_a71f687f53e36ccdc3277214f2d535fe5"><td class="memTemplParams" colspan="2">template&lt;<a class="el" href="../../dc/d5c/namespaceBrush.html#a051322bb9fd1db4638b6eccd399a29c8">NodeType</a> T, NodeType... Ts&gt; </td></tr>
 <tr class="memitem:a71f687f53e36ccdc3277214f2d535fe5"><td class="memTemplItemLeft" align="right" valign="top">static constexpr bool&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="#a71f687f53e36ccdc3277214f2d535fe5">is_in_v</a> = <a class="el" href="../../d0/d80/structis__in.html">is_in</a>&lt;T, Ts...&gt;::value</td></tr>
 <tr class="separator:a71f687f53e36ccdc3277214f2d535fe5"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -643,9 +648,9 @@ template&lt;<a class="el" href="../../dc/d5c/namespaceBrush.html#a051322bb9fd1db
 <div class="line">    NT::Add,</div>
 <div class="line">    NT::Mul</div>
 <div class="line">&gt;</div>
-<div class="ttc" id="anodetype_8h_html_a71f687f53e36ccdc3277214f2d535fe5"><div class="ttname"><a href="#a71f687f53e36ccdc3277214f2d535fe5">is_in_v</a></div><div class="ttdeci">static constexpr bool is_in_v</div><div class="ttdef"><b>Definition</b> <a href="../../de/d26/nodetype_8h_source.html#l00260">nodetype.h:260</a></div></div>
+<div class="ttc" id="anodetype_8h_html_a71f687f53e36ccdc3277214f2d535fe5"><div class="ttname"><a href="#a71f687f53e36ccdc3277214f2d535fe5">is_in_v</a></div><div class="ttdeci">static constexpr bool is_in_v</div><div class="ttdef"><b>Definition</b> <a href="../../de/d26/nodetype_8h_source.html#l00268">nodetype.h:268</a></div></div>
 </div><!-- fragment -->
-<p class="definition">Definition at line <a class="el" href="../../de/d26/nodetype_8h_source.html#l00299">299</a> of file <a class="el" href="../../de/d26/nodetype_8h_source.html">nodetype.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="../../de/d26/nodetype_8h_source.html#l00307">307</a> of file <a class="el" href="../../de/d26/nodetype_8h_source.html">nodetype.h</a>.</p>
 
 </div>
 </div>
@@ -678,7 +683,33 @@ template&lt;<a class="el" href="../../dc/d5c/namespaceBrush.html#a051322bb9fd1db
 <div class="line">    NT::Pow</div>
 <div class="line">&gt;</div>
 </div><!-- fragment -->
-<p class="definition">Definition at line <a class="el" href="../../de/d26/nodetype_8h_source.html#l00290">290</a> of file <a class="el" href="../../de/d26/nodetype_8h_source.html">nodetype.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="../../de/d26/nodetype_8h_source.html#l00298">298</a> of file <a class="el" href="../../de/d26/nodetype_8h_source.html">nodetype.h</a>.</p>
+
+</div>
+</div>
+<a id="a6cb189ea6b77db485afec81008a70dc7" name="a6cb189ea6b77db485afec81008a70dc7"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6cb189ea6b77db485afec81008a70dc7">&#9670;&#160;</a></span>is_any_v</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename T, typename... Ts&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool is_any_v = <a class="el" href="../../d2/d17/structis__any.html">is_any</a>&lt;T, Ts...&gt;::value</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel static">static</span><span class="mlabel constexpr">constexpr</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="../../de/d26/nodetype_8h_source.html#l00259">259</a> of file <a class="el" href="../../de/d26/nodetype_8h_source.html">nodetype.h</a>.</p>
 
 </div>
 </div>
@@ -704,7 +735,7 @@ template&lt;<a class="el" href="../../dc/d5c/namespaceBrush.html#a051322bb9fd1db
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="../../de/d26/nodetype_8h_source.html#l00260">260</a> of file <a class="el" href="../../de/d26/nodetype_8h_source.html">nodetype.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="../../de/d26/nodetype_8h_source.html#l00268">268</a> of file <a class="el" href="../../de/d26/nodetype_8h_source.html">nodetype.h</a>.</p>
 
 </div>
 </div>
@@ -740,7 +771,7 @@ template&lt;<a class="el" href="../../dc/d5c/namespaceBrush.html#a051322bb9fd1db
 <div class="line">    NT::Softmax</div>
 <div class="line">&gt;</div>
 </div><!-- fragment -->
-<p class="definition">Definition at line <a class="el" href="../../de/d26/nodetype_8h_source.html#l00305">305</a> of file <a class="el" href="../../de/d26/nodetype_8h_source.html">nodetype.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="../../de/d26/nodetype_8h_source.html#l00313">313</a> of file <a class="el" href="../../de/d26/nodetype_8h_source.html">nodetype.h</a>.</p>
 
 </div>
 </div>
@@ -789,7 +820,7 @@ template&lt;<a class="el" href="../../dc/d5c/namespaceBrush.html#a051322bb9fd1db
 <div class="line">    </div>
 <div class="line">&gt;</div>
 </div><!-- fragment -->
-<p class="definition">Definition at line <a class="el" href="../../de/d26/nodetype_8h_source.html#l00265">265</a> of file <a class="el" href="../../de/d26/nodetype_8h_source.html">nodetype.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="../../de/d26/nodetype_8h_source.html#l00273">273</a> of file <a class="el" href="../../de/d26/nodetype_8h_source.html">nodetype.h</a>.</p>
 
 </div>
 </div>

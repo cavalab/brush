@@ -215,6 +215,7 @@ var annotated_dup =
     ] ],
     [ "array", "d2/d41/classarray.html", "d2/d41/classarray" ],
     [ "Dataset", "d7/da5/classDataset.html", "d7/da5/classDataset" ],
+    [ "is_any", "d2/d17/structis__any.html", "d2/d17/structis__any" ],
     [ "is_in", "d0/d80/structis__in.html", "d0/d80/structis__in" ],
     [ "map", "d9/d28/classmap.html", "d9/d28/classmap" ],
     [ "Node", "d8/d49/structNode.html", "d8/d49/structNode" ],

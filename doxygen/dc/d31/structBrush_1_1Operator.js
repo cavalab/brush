@@ -1,7 +1,7 @@
 var structBrush_1_1Operator =
 [
     [ "ArgTypes", "dc/d31/structBrush_1_1Operator.html#a6918e9c614dbbb417f98fe2b95199fea", null ],
-    [ "NthType", "dc/d31/structBrush_1_1Operator.html#a395f3c1b1eefad96f02412b2dd74721e", null ],
+    [ "NthType", "dc/d31/structBrush_1_1Operator.html#a5a0ceadaff7a8c69f145e7d404289292", null ],
     [ "RetType", "dc/d31/structBrush_1_1Operator.html#a424bb09369598ed3d44f4d2b68eebcef", null ],
     [ "W", "dc/d31/structBrush_1_1Operator.html#a33cf8494b82e7e0b7beb42fa376e9a6c", null ],
     [ "Operator", "dc/d31/structBrush_1_1Operator.html#a09fa4721bd510aacdb5402dc4ce4b5ac", null ],

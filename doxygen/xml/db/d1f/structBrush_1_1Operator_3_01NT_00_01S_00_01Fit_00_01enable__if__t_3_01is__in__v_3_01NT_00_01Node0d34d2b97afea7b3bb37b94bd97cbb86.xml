@@ -75,7 +75,7 @@
         </inbodydescription>
         <location file="/home/runner/work/brush/brush/src/program/split.h" line="194" column="5" bodyfile="/home/runner/work/brush/brush/src/program/operator.h" bodystart="194" bodyend="-1"/>
       </memberdef>
-      <memberdef kind="typedef" id="db/d1f/structBrush_1_1Operator_3_01NT_00_01S_00_01Fit_00_01enable__if__t_3_01is__in__v_3_01NT_00_01Node0d34d2b97afea7b3bb37b94bd97cbb86_1abff4d8d2aa2e0cf94fb7b1cf43a0f7b0" prot="public" static="no">
+      <memberdef kind="typedef" id="db/d1f/structBrush_1_1Operator_3_01NT_00_01S_00_01Fit_00_01enable__if__t_3_01is__in__v_3_01NT_00_01Node0d34d2b97afea7b3bb37b94bd97cbb86_1a30052ad32c3a73558db6c97cc313d6ac" prot="public" static="no">
         <templateparamlist>
           <param>
             <type>std::size_t</type>
@@ -83,8 +83,8 @@
             <defname>N</defname>
           </param>
         </templateparamlist>
-        <type>typename S::NthType&lt; N &gt;</type>
-        <definition>using Brush::Operator&lt; NT, S, Fit, enable_if_t&lt; is_in_v&lt; NT, NodeType::SplitOn, NodeType::SplitBest &gt; &gt; &gt;::NthType =  typename S::NthType&lt;N&gt;</definition>
+        <type>typename S::template <ref refid="db/d1f/structBrush_1_1Operator_3_01NT_00_01S_00_01Fit_00_01enable__if__t_3_01is__in__v_3_01NT_00_01Node0d34d2b97afea7b3bb37b94bd97cbb86_1a30052ad32c3a73558db6c97cc313d6ac" kindref="member">NthType</ref>&lt; N &gt;</type>
+        <definition>using Brush::Operator&lt; NT, S, Fit, enable_if_t&lt; is_in_v&lt; NT, NodeType::SplitOn, NodeType::SplitBest &gt; &gt; &gt;::NthType =  typename S::template NthType&lt;N&gt;</definition>
         <argsstring></argsstring>
         <name>NthType</name>
         <qualifiedname>Brush::Operator&lt; NT, S, Fit, enable_if_t&lt; is_in_v&lt; NT, NodeType::SplitOn, NodeType::SplitBest &gt; &gt; &gt;::NthType</qualifiedname>
@@ -129,8 +129,8 @@
         </inbodydescription>
         <location file="/home/runner/work/brush/brush/src/program/operator.h" line="92" column="5" bodyfile="/home/runner/work/brush/brush/src/program/operator.h" bodystart="92" bodyend="-1"/>
       </memberdef>
-      <memberdef kind="typedef" id="dc/d31/structBrush_1_1Operator_1a395f3c1b1eefad96f02412b2dd74721e" prot="public" static="no">
-        <type>typename S::NthType&lt; N &gt;</type>
+      <memberdef kind="typedef" id="dc/d31/structBrush_1_1Operator_1a5a0ceadaff7a8c69f145e7d404289292" prot="public" static="no">
+        <type>typename S::template <ref refid="db/d1f/structBrush_1_1Operator_3_01NT_00_01S_00_01Fit_00_01enable__if__t_3_01is__in__v_3_01NT_00_01Node0d34d2b97afea7b3bb37b94bd97cbb86_1a30052ad32c3a73558db6c97cc313d6ac" kindref="member">NthType</ref>&lt; N &gt;</type>
         <definition>using Brush::Operator&lt; NT, S, Fit, enable_if_t&lt; is_in_v&lt; NT, NodeType::SplitOn, NodeType::SplitBest &gt; &gt; &gt;::NthType = </definition>
         <argsstring></argsstring>
         <name>NthType</name>
@@ -249,7 +249,8 @@
         <inbodydescription>
         </inbodydescription>
         <location file="/home/runner/work/brush/brush/src/program/split.h" line="203" column="11" bodyfile="/home/runner/work/brush/brush/src/program/operator.h" bodystart="203" bodyend="224"/>
-        <references refid="dc/d31/structBrush_1_1Operator_1a5f08ba3c3b0e39c54b830845eba40b68" compoundref="d7/de0/operator_8h" startline="105" endline="108">Brush::Operator&lt; NT, S, Fit, E &gt;::F</references>
+        <references refid="dc/d5c/namespaceBrush_1a6225fa35f6e06e54d4a31a8f25cd4a66" compoundref="d9/d49/types_8h" startline="253">Brush::is_eigen_array_v</references>
+        <references refid="dc/d5c/namespaceBrush_1af0a72d6e11b43912abc5bc15d19e66f3" compoundref="d9/d49/types_8h" startline="245">Brush::is_std_array_v</references>
       </memberdef>
       <memberdef kind="function" id="db/d1f/structBrush_1_1Operator_3_01NT_00_01S_00_01Fit_00_01enable__if__t_3_01is__in__v_3_01NT_00_01Node0d34d2b97afea7b3bb37b94bd97cbb86_1a11a0722c89daf802f2b49e7497aa1a9d" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
         <type><ref refid="db/d1f/structBrush_1_1Operator_3_01NT_00_01S_00_01Fit_00_01enable__if__t_3_01is__in__v_3_01NT_00_01Node0d34d2b97afea7b3bb37b94bd97cbb86_1a89bc8eb841fd2d39b0878f2486f8af28" kindref="member">RetType</ref></type>
@@ -433,10 +434,10 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/runner/work/brush/brush/src/program/operator.h" line="180" column="7" bodyfile="/home/runner/work/brush/brush/src/program/operator.h" bodystart="180" bodyend="183"/>
+        <location file="/home/runner/work/brush/brush/src/program/operator.h" line="183" column="7" bodyfile="/home/runner/work/brush/brush/src/program/operator.h" bodystart="183" bodyend="186"/>
       </memberdef>
       <memberdef kind="function" id="dc/d31/structBrush_1_1Operator_1a9088496bd47b051080700b53f3cddd80" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
-        <type><ref refid="db/d1f/structBrush_1_1Operator_3_01NT_00_01S_00_01Fit_00_01enable__if__t_3_01is__in__v_3_01NT_00_01Node0d34d2b97afea7b3bb37b94bd97cbb86_1abff4d8d2aa2e0cf94fb7b1cf43a0f7b0" kindref="member">NthType</ref>&lt; I &gt;</type>
+        <type><ref refid="db/d1f/structBrush_1_1Operator_3_01NT_00_01S_00_01Fit_00_01enable__if__t_3_01is__in__v_3_01NT_00_01Node0d34d2b97afea7b3bb37b94bd97cbb86_1a30052ad32c3a73558db6c97cc313d6ac" kindref="member">NthType</ref>&lt; I &gt;</type>
         <definition>NthType&lt; I &gt; Brush::Operator&lt; NT, S, Fit, enable_if_t&lt; is_in_v&lt; NT, NodeType::SplitOn, NodeType::SplitBest &gt; &gt; &gt;::get_kid</definition>
         <argsstring>(const Dataset &amp;d, TreeNode &amp;tn, const W **weights) const</argsstring>
         <name>get_kid</name>
@@ -460,7 +461,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/runner/work/brush/brush/src/program/operator.h" line="148" column="13" bodyfile="/home/runner/work/brush/brush/src/program/operator.h" bodystart="148" bodyend="156"/>
+        <location file="/home/runner/work/brush/brush/src/program/operator.h" line="148" column="13" bodyfile="/home/runner/work/brush/brush/src/program/operator.h" bodystart="148" bodyend="159"/>
       </memberdef>
       <memberdef kind="function" id="dc/d31/structBrush_1_1Operator_1a3494388e6927873c8ba8d296fbb30908" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
         <type>T</type>
@@ -528,7 +529,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/runner/work/brush/brush/src/program/operator.h" line="168" column="7" bodyfile="/home/runner/work/brush/brush/src/program/operator.h" bodystart="168" bodyend="171"/>
+        <location file="/home/runner/work/brush/brush/src/program/operator.h" line="171" column="7" bodyfile="/home/runner/work/brush/brush/src/program/operator.h" bodystart="171" bodyend="174"/>
       </memberdef>
       <memberdef kind="function" id="dc/d31/structBrush_1_1Operator_1ab1ff8e429a35176b81c19079cd1397c4" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
         <type><ref refid="db/d1f/structBrush_1_1Operator_3_01NT_00_01S_00_01Fit_00_01enable__if__t_3_01is__in__v_3_01NT_00_01Node0d34d2b97afea7b3bb37b94bd97cbb86_1a89bc8eb841fd2d39b0878f2486f8af28" kindref="member">RetType</ref></type>
@@ -568,7 +569,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/runner/work/brush/brush/src/program/operator.h" line="192" column="13" bodyfile="/home/runner/work/brush/brush/src/program/operator.h" bodystart="192" bodyend="195"/>
+        <location file="/home/runner/work/brush/brush/src/program/operator.h" line="195" column="13" bodyfile="/home/runner/work/brush/brush/src/program/operator.h" bodystart="195" bodyend="198"/>
       </memberdef>
       <memberdef kind="function" id="dc/d31/structBrush_1_1Operator_1ab4b156eb563db21ac32223aabfb9b92c" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
         <type><ref refid="db/d1f/structBrush_1_1Operator_3_01NT_00_01S_00_01Fit_00_01enable__if__t_3_01is__in__v_3_01NT_00_01Node0d34d2b97afea7b3bb37b94bd97cbb86_1a89bc8eb841fd2d39b0878f2486f8af28" kindref="member">RetType</ref></type>
@@ -608,7 +609,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/runner/work/brush/brush/src/program/operator.h" line="202" column="13" bodyfile="/home/runner/work/brush/brush/src/program/operator.h" bodystart="202" bodyend="205"/>
+        <location file="/home/runner/work/brush/brush/src/program/operator.h" line="205" column="13" bodyfile="/home/runner/work/brush/brush/src/program/operator.h" bodystart="205" bodyend="208"/>
       </memberdef>
       <memberdef kind="function" id="dc/d31/structBrush_1_1Operator_1a19c4d0c66ace631c3105e11bd75b4761" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
         <type><ref refid="db/d1f/structBrush_1_1Operator_3_01NT_00_01S_00_01Fit_00_01enable__if__t_3_01is__in__v_3_01NT_00_01Node0d34d2b97afea7b3bb37b94bd97cbb86_1a89bc8eb841fd2d39b0878f2486f8af28" kindref="member">RetType</ref></type>
@@ -681,7 +682,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/runner/work/brush/brush/src/program/operator.h" line="215" column="13" bodyfile="/home/runner/work/brush/brush/src/program/operator.h" bodystart="215" bodyend="227"/>
+        <location file="/home/runner/work/brush/brush/src/program/operator.h" line="218" column="13" bodyfile="/home/runner/work/brush/brush/src/program/operator.h" bodystart="218" bodyend="230"/>
       </memberdef>
       <memberdef kind="function" id="dc/d31/structBrush_1_1Operator_1a2971efb3f05fd1ed22a5f805fe0720c7" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
         <type><ref refid="db/d1f/structBrush_1_1Operator_3_01NT_00_01S_00_01Fit_00_01enable__if__t_3_01is__in__v_3_01NT_00_01Node0d34d2b97afea7b3bb37b94bd97cbb86_1a89bc8eb841fd2d39b0878f2486f8af28" kindref="member">RetType</ref></type>
@@ -708,7 +709,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/runner/work/brush/brush/src/program/operator.h" line="232" column="13" bodyfile="/home/runner/work/brush/brush/src/program/operator.h" bodystart="232" bodyend="244"/>
+        <location file="/home/runner/work/brush/brush/src/program/operator.h" line="235" column="13" bodyfile="/home/runner/work/brush/brush/src/program/operator.h" bodystart="235" bodyend="247"/>
       </memberdef>
     </sectiondef>
     <briefdescription>
@@ -748,8 +749,8 @@
       <member refid="dc/d31/structBrush_1_1Operator_1aa4adc47d9cddb762f26e38747773bba6" prot="public" virt="non-virtual"><scope>Brush::Operator&lt; NT, S, Fit, enable_if_t&lt; is_in_v&lt; NT, NodeType::SplitOn, NodeType::SplitBest &gt; &gt; &gt;</scope><name>get_kids</name></member>
       <member refid="dc/d31/structBrush_1_1Operator_1a91d6de562fe5a54112e3c746b4281f7e" prot="public" virt="non-virtual"><scope>Brush::Operator&lt; NT, S, Fit, enable_if_t&lt; is_in_v&lt; NT, NodeType::SplitOn, NodeType::SplitBest &gt; &gt; &gt;</scope><name>get_kids</name></member>
       <member refid="dc/d31/structBrush_1_1Operator_1a3494388e6927873c8ba8d296fbb30908" prot="public" virt="non-virtual"><scope>Brush::Operator&lt; NT, S, Fit, enable_if_t&lt; is_in_v&lt; NT, NodeType::SplitOn, NodeType::SplitBest &gt; &gt; &gt;</scope><name>get_kids_seq</name></member>
-      <member refid="db/d1f/structBrush_1_1Operator_3_01NT_00_01S_00_01Fit_00_01enable__if__t_3_01is__in__v_3_01NT_00_01Node0d34d2b97afea7b3bb37b94bd97cbb86_1abff4d8d2aa2e0cf94fb7b1cf43a0f7b0" prot="public" virt="non-virtual"><scope>Brush::Operator&lt; NT, S, Fit, enable_if_t&lt; is_in_v&lt; NT, NodeType::SplitOn, NodeType::SplitBest &gt; &gt; &gt;</scope><name>NthType</name></member>
-      <member refid="dc/d31/structBrush_1_1Operator_1a395f3c1b1eefad96f02412b2dd74721e" prot="public" virt="non-virtual"><scope>Brush::Operator&lt; NT, S, Fit, enable_if_t&lt; is_in_v&lt; NT, NodeType::SplitOn, NodeType::SplitBest &gt; &gt; &gt;</scope><name>NthType</name></member>
+      <member refid="db/d1f/structBrush_1_1Operator_3_01NT_00_01S_00_01Fit_00_01enable__if__t_3_01is__in__v_3_01NT_00_01Node0d34d2b97afea7b3bb37b94bd97cbb86_1a30052ad32c3a73558db6c97cc313d6ac" prot="public" virt="non-virtual"><scope>Brush::Operator&lt; NT, S, Fit, enable_if_t&lt; is_in_v&lt; NT, NodeType::SplitOn, NodeType::SplitBest &gt; &gt; &gt;</scope><name>NthType</name></member>
+      <member refid="dc/d31/structBrush_1_1Operator_1a5a0ceadaff7a8c69f145e7d404289292" prot="public" virt="non-virtual"><scope>Brush::Operator&lt; NT, S, Fit, enable_if_t&lt; is_in_v&lt; NT, NodeType::SplitOn, NodeType::SplitBest &gt; &gt; &gt;</scope><name>NthType</name></member>
       <member refid="dc/d31/structBrush_1_1Operator_1a09fa4721bd510aacdb5402dc4ce4b5ac" prot="public" virt="non-virtual"><scope>Brush::Operator&lt; NT, S, Fit, enable_if_t&lt; is_in_v&lt; NT, NodeType::SplitOn, NodeType::SplitBest &gt; &gt; &gt;</scope><name>Operator</name></member>
       <member refid="db/d1f/structBrush_1_1Operator_3_01NT_00_01S_00_01Fit_00_01enable__if__t_3_01is__in__v_3_01NT_00_01Node0d34d2b97afea7b3bb37b94bd97cbb86_1ae4852e75e91124556a838934d222fbc6" prot="public" virt="non-virtual"><scope>Brush::Operator&lt; NT, S, Fit, enable_if_t&lt; is_in_v&lt; NT, NodeType::SplitOn, NodeType::SplitBest &gt; &gt; &gt;</scope><name>predict</name></member>
       <member refid="db/d1f/structBrush_1_1Operator_3_01NT_00_01S_00_01Fit_00_01enable__if__t_3_01is__in__v_3_01NT_00_01Node0d34d2b97afea7b3bb37b94bd97cbb86_1a89bc8eb841fd2d39b0878f2486f8af28" prot="public" virt="non-virtual"><scope>Brush::Operator&lt; NT, S, Fit, enable_if_t&lt; is_in_v&lt; NT, NodeType::SplitOn, NodeType::SplitBest &gt; &gt; &gt;</scope><name>RetType</name></member>
