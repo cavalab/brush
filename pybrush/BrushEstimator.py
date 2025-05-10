@@ -11,7 +11,8 @@ import pandas as pd
 from sklearn.base import BaseEstimator, ClassifierMixin, \
                          RegressorMixin, TransformerMixin
 
-from sklearn.utils.validation  import check_is_fitted
+from sklearn.utils.validation import check_is_fitted
+from sklearn.utils import check_X_y
 
 from pybrush import Parameters, Dataset, SearchSpace, brush_rng
 from pybrush.EstimatorInterface import EstimatorInterface
@@ -60,6 +61,8 @@ class BrushEstimator(EstimatorInterface, BaseEstimator):
         self.feature_names_ = []
         if isinstance(X, pd.DataFrame):
             self.feature_names_ = X.columns.to_list()
+
+        X, y = check_X_y(X, y)
 
         self.data_ = self._make_data(X, y, 
                                      feature_names=self.feature_names_,
