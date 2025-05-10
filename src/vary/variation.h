@@ -238,9 +238,6 @@ public:
                 continue; // skipping if it is an individual --- we just want to fill invalid positions
             }
 
-
-
-
             // pass check for children undergoing variation     
             std::optional<Individual<T>> opt = std::nullopt; // new individual  
                 
@@ -250,8 +247,6 @@ public:
             
             const Individual<T>& mom = pop[idx];
 
-
-        
             // if we got here, then the individual is not fully locked and we can proceed with mutation
             vector<Individual<T>> ind_parents;
             VectorXf root_context = get_context(mom.program, mom.program.Tree.begin());
@@ -268,7 +263,6 @@ public:
             if (std::all_of(mom.program.Tree.begin(), mom.program.Tree.end(),
                 [](const auto& n) { return n.get_prob_change()<=0.0; }))
             {
-
                 ind = Individual<T>(mom);
                 ind.variation = "born";
             }
@@ -281,43 +275,33 @@ public:
                     //     *r.select_randomly(parents.begin(), parents.end())];
                     const Individual<T>& dad = pop[parents.at((i+1) % parents.size())]; // use modulo to cycle through parents
 
-
                     auto variation_result = cross(mom, dad);
                     ind_parents = {mom, dad};
                     tie(opt, context) = variation_result;
                 }
                 else
                 {
-
                     auto variation_result = mutate(mom, choice);  
 
                     ind_parents = {mom};
                     tie(opt, context) = variation_result;
-
                 }
 
                 if (opt) // variation worked, lets keep this
                 {
-
                     ind = opt.value();
                     ind.set_parents(ind_parents);
                 }
                 else {  // no optional value was returned. creating a new random individual
-
-                    
                     ind = Individual<T>(mom);
                     ind.variation = "born";
-                    
-
                     // ind.init(search_space, parameters); // ind.variation is born by default
                 }
             }
             
-
             // ind.set_objectives(mom.get_objectives()); // it will have an invalid fitness
 
             ind.set_id(id);
-
 
             ind.fitness.set_loss(mom.fitness.get_loss());
             ind.fitness.set_loss_v(mom.fitness.get_loss_v());
@@ -329,12 +313,9 @@ public:
             assert(ind.program.size() > 0);
             assert(ind.fitness.valid() == false);
 
-
             auto data_aux = data.get_training_data();
 
-
             ind.program.fit(data_aux);
-
 
             // simplify before calculating fitness (order matters, as they are not refitted and constants simplifier does not replace with the right value.)
             // TODO: constants_simplifier should set the correct value for the constant (so we dont have to refit).
@@ -343,30 +324,19 @@ public:
             if (parameters.constants_simplification)
             {
                 constants_simplifier.simplify_tree<T>(ind.program, search_space, data.get_training_data());            
-
             }
             if (parameters.inexact_simplification)
             {
                 inexact_simplifier.simplify_tree<T>(ind.program, search_space, data.get_training_data());
-
             }
         
-
             evaluator.assign_fit(ind, data, parameters, false);
 
-            
             // vector<float> deltas(ind.get_objectives().size(), 0.0f);
             vector<float> deltas;
 
-
-            // for (const auto& obj : ind.get_objectives()) {
-
-            // }
-
-
             float delta  = 0.0f;
             float weight = 0.0f;
-
 
             for (const auto& obj : ind.get_objectives())
             {   
@@ -375,27 +345,20 @@ public:
                 // value indicating only if it was greater or not, so we can deal with 
                 // this issue.
 
-
-
                 if (obj.compare(parameters.scorer) == 0) {
                     delta = ind.fitness.get_loss() - ind.fitness.get_prev_loss();
-
                 }
                 else if (obj.compare("complexity") == 0) {
                     delta = ind.fitness.get_complexity() > ind.fitness.get_prev_complexity() ? 1.0 : -1.0 ;
-
                 }
                 else if (obj.compare("linear_complexity") == 0) {
                     delta = ind.fitness.get_linear_complexity() > ind.fitness.get_prev_linear_complexity() ? 1.0 : -1.0;
-
                 }
                 else if (obj.compare("size") == 0) {
                     delta = ind.fitness.get_size() > ind.fitness.get_prev_size() ? 1.0 : -1.0;
-
                 }
                 else if (obj.compare("depth") == 0) {
                     delta = ind.fitness.get_depth() > ind.fitness.get_prev_depth() ? 1.0 : -1.0;
-
                 }
                 else {
                     HANDLE_ERROR_THROW(obj + " is not a known objective");
@@ -407,18 +370,10 @@ public:
                 }
 
                 weight = it->second;
-
-
                 float weighted_delta = delta * weight;
-
-
                 deltas.push_back(weighted_delta);
             }
 
-
-
-
-            
             bool allPositive = true;
             bool allNegative = true;
             for (float d : deltas) {
@@ -447,42 +402,37 @@ public:
                 //                         1.0f, std::multiplies<float>());
 
                 if ( allPositive && !allNegative) r =  1.0;
-                if (!allPositive &&  allNegative) r = -1.0;
+                else if (!allPositive &&  allNegative) r = -1.0;
+                else r = 0.0;
             }
 
-
-
-            if (ind.get_variation().compare("born") != 0)
+            if (!ind.get_variation().compare("born")
+            &&  !ind.get_variation().compare("cx")
+            &&  !ind.get_variation().compare("subtree") // TODO: handle subtree
+            )
             {
-
                 this->variation_bandit.update(ind.get_variation(), r, root_context);
-                
-                // if (!ind.get_variation().compare("born") && !ind.get_variation().compare("cx")
-                // &&  !ind.get_variation().compare("subtree"))
-                // {                
-                    if (ind.get_sampled_nodes().size() > 0) {
+                              
+                if (ind.get_sampled_nodes().size() > 0) {
+                    const auto& changed_nodes = ind.get_sampled_nodes();
+                    for (auto& node : changed_nodes) {
+                        if (node.get_arg_count() == 0) {
+                            auto datatype = node.get_ret_type();
 
-                        const auto& changed_nodes = ind.get_sampled_nodes();
-                        for (auto& node : changed_nodes) {
-                            if (node.get_arg_count() == 0) {
-                                auto datatype = node.get_ret_type();
+                            this->terminal_bandits[datatype].update(node.get_feature(), r, context);
+                        }
+                        else {
+                            auto ret_type = node.get_ret_type();
+                            auto args_type = node.args_type();
+                            auto name = node.name;
 
-                                this->terminal_bandits[datatype].update(node.get_feature(), r, context);
-                            }
-                            else {
-                                auto ret_type = node.get_ret_type();
-                                auto args_type = node.args_type();
-                                auto name = node.name;
-
-                                this->op_bandits[ret_type][args_type].update(name, r, context);
-                            }
+                            this->op_bandits[ret_type][args_type].update(name, r, context);
                         }
                     }
-                // }
+                }
             }
             else
             { // giving zero reward if the variation failed
-
                 this->variation_bandit.update(choice, 0.0, root_context);
             }
             

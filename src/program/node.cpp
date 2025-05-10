@@ -126,7 +126,8 @@ void to_json(json& j, const Node& p)
         {"sig_dual_hash", p.sig_dual_hash}, 
         {"ret_type", p.ret_type}, 
         {"arg_types", p.arg_types}, 
-        {"feature", p.get_feature()} 
+        {"feature", p.get_feature()},
+        {"feature_type", p.get_feature_type()}
         // {"node_hash", p.get_node_hash()} 
     };
 }
@@ -238,12 +239,11 @@ void from_json(const json &j, Node& p)
 
     if (j.contains("feature"))
     {
-        // j.at("feature").get_to(p.feature);
-        p.set_feature(j.at("feature"));
+        j.at("feature").get_to(p.feature);
     }
     if (j.contains("feature_type"))
     {
-        p.set_feature_type(j.at("feature_type"));
+        j.at("feature_type").get_to(p.feature_type);
     }
 
     // if node has a ret_type and arg_types, get them. if not we need to make 

@@ -239,15 +239,16 @@ struct Operator<NT, S, Fit, enable_if_t<is_in_v<NT, NodeType::SplitOn, NodeType:
             tie(feature, threshold) = Split::get_best_variable_and_threshold(d, tn);
             tn.data.set_feature(feature);
             
-            // TODO: improve this. Im interested only in ArrayB, maybe I could simplify
-            if (std::holds_alternative<ArrayXf>(d[feature]))
-                tn.data.set_feature_type(DataType::ArrayB);
-            else if (std::holds_alternative<ArrayXi>(d[feature])) 
-                tn.data.set_feature_type(DataType::ArrayI);
-            else if (std::holds_alternative<ArrayXf>(d[feature])) 
-                tn.data.set_feature_type(DataType::ArrayF);
-            else
-                HANDLE_ERROR_THROW("Unknown feature type in data\n");
+            for (auto& [ftype, names] : d.features_of_type){
+                auto it = std::find_if(names.begin(), names.end(),
+                    [&](const auto& name){ return name.compare(feature)==0; });
+
+                if (it != names.end())
+                {
+                    tn.data.set_feature_type(ftype);
+                    break;
+                }
+            }
         }
 
         return predict(d, tn);

@@ -611,9 +611,8 @@ std::tuple<std::optional<Individual<T>>, VectorXf> Variation<T>::mutate(
     VectorXf context = {};
 
     int attempts = 0;
-    while(++attempts <= 3)
+    while(attempts++ < 3)
     {
-
         Program<T> child(parent.program);
 
         // apply the mutation and check if it succeeded
@@ -624,7 +623,6 @@ std::tuple<std::optional<Individual<T>>, VectorXf> Variation<T>::mutate(
         // std::optional to indicare the result of their manipulation over the
         // program tree. Here we call the mutation function and return the result
         
-
         context = get_context(child, spot);
 
         bool success;
@@ -646,11 +644,9 @@ std::tuple<std::optional<Individual<T>>, VectorXf> Variation<T>::mutate(
         && ( (child.size()  <= parameters.max_size)
         &&   (child.depth() <= parameters.max_depth) )){
 
-        
             Individual<T> ind(child);
 
             ind.set_variation(choice);
-
 
             // subtree performs several samplings, and it will leverate
             // what point/insert/delete mutations learned about each node utility.
@@ -664,11 +660,9 @@ std::tuple<std::optional<Individual<T>>, VectorXf> Variation<T>::mutate(
             ||  choice.compare("delete")  == 0
             // ||  choice.compare("subtree") == 0 // TODO: disable this one
             ) {
-
                 ind.set_sampled_nodes({spot.node->data});
             }
-
-
+            
             return std::make_tuple(ind, context);
         }
         else { // reseting 

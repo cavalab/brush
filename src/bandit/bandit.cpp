@@ -86,7 +86,18 @@ void Bandit<T>::set_probs(map<T, float> arms_probs) {
 
 template <typename T>
 map<T, float> Bandit<T>::sample_probs(bool update) {
-    return this->pbandit->sample_probs(update);
+    map<T, float> new_probs = this->pbandit->sample_probs(update);
+
+    // making all probabilities strictly positive
+    float eps = 1e-6;
+
+    for (auto& pair : new_probs) {
+        if (pair.second <= 0.0f) {
+            pair.second = eps;
+        }
+    }
+
+    return new_probs; 
 }
 
 template <typename T>
@@ -105,39 +116,48 @@ VectorXf Bandit<T>::get_context(const Program<PT>& program, Iter spot,
     // TODO: for better performance, get_context should calculate the context only if the 
     // pbandit is of a contextual type. otherwise, return empty stuff
 
-    // 
     VectorXf context;
-    // -------------------------------------------------------------------------
-    //  SECOND APPROACH: prediction vector of the spot node
-    // -------------------------------------------------------------------------
-    if constexpr (PT==ProgramType::Regressor)
-    {
 
+    // -------------------------------------------------------------------------
+    //  THIRD APPROACH: y - (program.predict(d) - program_without_subtree.predict(d))
+    // -------------------------------------------------------------------------
+    if constexpr (PT==ProgramType::Regressor || PT==ProgramType::BinaryClassifier)
+    {
+        // use the code below to work with the whole tree prediction -----------
+        ArrayXf out = (*program.Tree.begin().node).template predict<ArrayXf>(d);
         
-        // use the code below to work with the whole tree prediction -----------
-        ArrayXf out = (*program.Tree.begin().node).template predict<ArrayXf>(d);
-        context = out;
+        // create a copy of the tree
+        Program<PT> program_hat(program);
 
-        // predicting the spot node --------------------------------------------
-        // context = (*spot.node).template predict<ArrayXf>(d);
-    }
-    else if constexpr (PT==ProgramType::BinaryClassifier)
-    {
+        // finding the corresponding stop in the program_hat
+        TreeIter program_iter = program.Tree.begin();
+        TreeIter program_hat_iter = program_hat.Tree.begin();
+        while(program_iter != spot)
+        {
+            program_iter++;
+            program_hat_iter++;
+        }
 
+        // replacing the subtree with a constant
+        Node n   = program_hat_iter.node->data;
+        Node cte = ss.terminal_map.at(n.ret_type).at(
+            ss.terminal_map.at(n.ret_type).size()-1);
 
-        // use the code below to work with the whole tree prediction -----------
-        ArrayXf out = (*program.Tree.begin().node).template predict<ArrayXf>(d);
-        context = ArrayXf(out.template cast<float>());
+        program_hat.Tree.erase_children(program_hat_iter); 
+        program_hat_iter = program_hat.Tree.replace(program_hat_iter, cte);
 
-        // predicting the spot node --------------------------------------------
-        // ArrayXf logit = (*spot.node).template predict<ArrayXf>(d);
-        // ArrayXb pred  = (logit > 0.5);
-        // context = ArrayXf(pred.template cast<float>());
+        ArrayXf out_hat = (*program_hat.Tree.begin().node).template predict<ArrayXf>(d);
+
+        // generating the context
+        if constexpr (PT==ProgramType::BinaryClassifier)
+        {
+            context = d.y - ( (out - out_hat).array() > 0.5 ).array().template cast<float>();
+        }
+        else
+            context = d.y - (out - out_hat);
     }
     else if constexpr (PT==ProgramType::MulticlassClassifier)
     {
-
-
         // use the code below to work with the whole tree prediction -----------
         ArrayXXf out = (*program.Tree.begin().node).template predict<ArrayXXf>(d);
         auto argmax = Function<NodeType::ArgMax>{};
@@ -147,12 +167,57 @@ VectorXf Bandit<T>::get_context(const Program<PT>& program, Iter spot,
     }
     else if constexpr (PT==ProgramType::Representer)
     {
-
+        context << 1.0; // TODO: implement representer context
     }
     else
     {
         HANDLE_ERROR_THROW("No predict available for the class.");
     }
+
+    // -------------------------------------------------------------------------
+    //  SECOND APPROACH: prediction vector of the spot node
+    // -------------------------------------------------------------------------
+    // if constexpr (PT==ProgramType::Regressor)
+    // {
+    //     // use the code below to work with the whole tree prediction -----------
+    //     ArrayXf out = (*program.Tree.begin().node).template predict<ArrayXf>(d);
+    //     context = out;
+
+    //     // predicting the spot node --------------------------------------------
+    //     // context = (*spot.node).template predict<ArrayXf>(d);
+    // }
+    // else if constexpr (PT==ProgramType::BinaryClassifier)
+    // {
+
+
+    //     // use the code below to work with the whole tree prediction -----------
+    //     ArrayXf out = (*program.Tree.begin().node).template predict<ArrayXf>(d);
+    //     context = ArrayXf(out.template cast<float>());
+
+    //     // predicting the spot node --------------------------------------------
+    //     // ArrayXf logit = (*spot.node).template predict<ArrayXf>(d);
+    //     // ArrayXb pred  = (logit > 0.5);
+    //     // context = ArrayXf(pred.template cast<float>());
+    // }
+    // else if constexpr (PT==ProgramType::MulticlassClassifier)
+    // {
+
+
+    //     // use the code below to work with the whole tree prediction -----------
+    //     ArrayXXf out = (*program.Tree.begin().node).template predict<ArrayXXf>(d);
+    //     auto argmax = Function<NodeType::ArgMax>{};
+    //     context = ArrayXf(argmax(out).template cast<float>());
+        
+    //     // predicting the spot node --------------------------------------------
+    // }
+    // else if constexpr (PT==ProgramType::Representer)
+    // {
+
+    // }
+    // else
+    // {
+    //     HANDLE_ERROR_THROW("No predict available for the class.");
+    // }
 
     // -------------------------------------------------------------------------
     // FIRST APPROACH: label encoding of nodes above/below/on the spot
@@ -164,15 +229,10 @@ VectorXf Bandit<T>::get_context(const Program<PT>& program, Iter spot,
     // the number of nodes below the spot.
     // The vector below works as a reference of the nodes.
 
-
     // for (auto it = Tree.begin(); it != Tree.end(); ++it) {
     //     for (int i = 0; i < Tree.depth(it); ++i) {
-
     //     }
-
     // }
-
-
 
     // size_t tot_operators = ss.op_names.size(); //NodeTypes::Count;
     // size_t tot_features  = 0;
@@ -184,14 +244,9 @@ VectorXf Bandit<T>::get_context(const Program<PT>& program, Iter spot,
 
     // VectorXf context( 3 * tot_symbols );
     // context.setZero();
-    
+
     // for (auto it = Tree.begin(); it != Tree.end(); ++it) {
     //     if (Tree.is_valid(it)) {
-
-
-
-
-            
     //         // deciding if it is above or below the spot
     //         size_t pos_shift = 0; // above
     //         if (it == spot) { // spot
@@ -199,17 +254,13 @@ VectorXf Bandit<T>::get_context(const Program<PT>& program, Iter spot,
     //         }
     //         else if (Tree.is_in_subTree(it, spot)) // below
     //             pos_shift = 2;
-
-
     //         if (Is<NodeType::Terminal, NodeType::Constant, NodeType::MeanLabel>((*it).node_type)){
     //             size_t feature_index = 0;
-
     //             // iterating using terminal_types since it is ordered
     //             for (const auto& terminal : ss.terminal_map.at((*it).ret_type)) {
     //                 if (terminal.name == (*it).name) {
     //                     // Just one hot encode --------------------------------------
     //                     context((tot_operators + feature_index) + pos_shift*tot_symbols) += 1.0;
-
     //                     // encode with weights --------------------------------------
     //                     // int Tree_complexity = operator_complexities.at((*it).node_type);
     //                     // if ((*it).get_is_weighted()
@@ -222,13 +273,10 @@ VectorXf Bandit<T>::get_context(const Program<PT>& program, Iter spot,
     //                     //                           Tree_complexity;
     //                     // }
     //                     // context((tot_operators + feature_index) + pos_shift*tot_symbols) += static_cast<float>(Tree_complexity);
-
     //                     // use recursive evaluation to get the complexity of the subTree
     //                     // linear complexity to avoid exponential increase of values
     //                     // int complexity = it.node->get_linear_complexity();
     //                     // context((tot_operators + feature_index) + pos_shift*tot_symbols) += static_cast<float>(complexity);
-
-
     //                     break;
     //                 }
     //                 ++feature_index;
@@ -238,7 +286,6 @@ VectorXf Bandit<T>::get_context(const Program<PT>& program, Iter spot,
     //             if (it_op != ss.op_names.end()) {
     //                 size_t op_index = std::distance(ss.op_names.begin(), it_op);
     //                 context(pos_shift * tot_symbols + op_index) += 1.0;
-
     //             }
     //             else {
     //                 HANDLE_ERROR_THROW("Undefined operator " + (*it).name + "\n");
