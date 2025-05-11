@@ -1,5 +1,5 @@
 #include "testsHeader.h"
-#include "../../src/bandit/bandit.cpp"
+// #include "../../src/bandit/bandit.cpp"
 
 TEST(Variation, FixedRootDoesntChange)
 {
@@ -54,7 +54,7 @@ TEST(Variation, FixedRootDoesntChange)
                 ASSERT_TRUE(root.fixed==true);
 
                 Individual<PT::BinaryClassifier> IND(PRG);
-                auto [opt_mutation, context_mutation] = variator.mutate(IND);
+                auto opt_mutation = variator.mutate(IND);
                 
                 if (opt_mutation)
                 {
@@ -75,7 +75,7 @@ TEST(Variation, FixedRootDoesntChange)
                 ClassifierProgram PRG2 = SS.make_classifier(0, 0, params);
 
                 Individual<PT::BinaryClassifier> IND2(PRG2);
-                auto [opt_cx, context] = variator.cross(IND, IND2);
+                auto opt_cx = variator.cross(IND, IND2);
 
                 if (opt_cx)
                 {
@@ -166,7 +166,7 @@ TEST(Variation, InsertMutationWorks)
 
         Individual<PT::Regressor> IND(PRG);
 
-        auto [opt, context] = variator.mutate(IND); 
+        auto opt = variator.mutate(IND); 
 
         if (opt){
             successes += 1;
@@ -197,7 +197,7 @@ TEST(Variation, InsertMutationWorks)
         variator.parameters.set_max_depth(IND.program.depth());
         variator.parameters.set_max_size(IND.program.size());
 
-        auto [opt2, context2] = variator.mutate(IND);
+        auto opt2 = variator.mutate(IND);
         if (opt2){ // This shoudl't happen. We'll print the error
             auto Child2 = opt2.value();
 
@@ -275,7 +275,7 @@ TEST(Variation, Mutation)
             fmt::print("auto Child = PRG.mutate();\n");
 
             Individual<PT::Regressor> IND(PRG);
-            auto [opt, context] = variator.mutate(IND);
+            auto opt = variator.mutate(IND);
 
             if (!opt){
                 fmt::print(
@@ -359,7 +359,7 @@ TEST(Variation, MutationSizeAndDepthLimit)
             auto PRG_model = PRG.get_model("compact", true);
 
             Individual<PT::Regressor> IND(PRG);
-            auto [opt, context] = variator.mutate(IND);
+            auto opt = variator.mutate(IND);
 
             if (!opt){
                 fmt::print(
@@ -464,7 +464,7 @@ TEST(Variation, Crossover)
 
             Individual<PT::Regressor> IND1(PRG1);
             Individual<PT::Regressor> IND2(PRG2);
-            auto [opt, context] = variator.cross(IND1, IND2);
+            auto opt = variator.cross(IND1, IND2);
 
             if (!opt){
                 fmt::print(
@@ -562,7 +562,7 @@ TEST(Variation, CrossoverSizeAndDepthLimit)
             fmt::print("cross\n");
             Individual<PT::Regressor> IND1(PRG1);
             Individual<PT::Regressor> IND2(PRG2);
-            auto [opt, context] = variator.cross(IND1, IND2);
+            auto opt = variator.cross(IND1, IND2);
 
             if (!opt){
                 fmt::print("Crossover failed to create a child"

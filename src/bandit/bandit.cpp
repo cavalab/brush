@@ -4,19 +4,17 @@
 namespace Brush {
 namespace MAB {
 
-template <typename T>
-Bandit<T>::Bandit() { 
+Bandit::Bandit() { 
     set_type("dynamic_thompson");
     set_arms({});
     set_probs({});
     set_bandit();
 }
 
-template <typename T>
-Bandit<T>::Bandit(string type, vector<T> arms) : type(type) {
+Bandit::Bandit(string type, vector<string> arms) : type(type) {
     this->set_arms(arms);
 
-    map<T, float> arms_probs;
+    map<string, float> arms_probs;
     float prob = 1.0 / arms.size();
     for (const auto& arm : arms) {
         arms_probs[arm] = prob;
@@ -25,11 +23,10 @@ Bandit<T>::Bandit(string type, vector<T> arms) : type(type) {
     this->set_bandit();
 }
 
-template <typename T>
-Bandit<T>::Bandit(string type, map<T, float> arms_probs) : type(type) {
+Bandit::Bandit(string type, map<string, float> arms_probs) : type(type) {
     this->set_probs(arms_probs);
 
-    vector<T> arms_names;
+    vector<string> arms_names;
     for (const auto& pair : arms_probs) {
         arms_names.push_back(pair.first);
     }
@@ -37,56 +34,46 @@ Bandit<T>::Bandit(string type, map<T, float> arms_probs) : type(type) {
     this->set_bandit();
 }
 
-template <typename T>
-void Bandit<T>::set_bandit() {
+void Bandit::set_bandit() {
     // TODO: a flag that is set to true when this function is called. make all
     // other methods to raise an error if bandit was not set
     if (type == "thompson") {
-        pbandit = make_unique<ThompsonSamplingBandit<T>>(probabilities);
+        pbandit = make_unique<ThompsonSamplingBandit>(probabilities);
     } else if (type == "dynamic_thompson") {
-        pbandit = make_unique<ThompsonSamplingBandit<T>>(probabilities, true);
-    } else if (type == "linear_thompson") {
-        pbandit = make_unique<LinearThompsonSamplingBandit<T>>(probabilities);
+        pbandit = make_unique<ThompsonSamplingBandit>(probabilities, true);
     } else if (type == "dummy") {
-        pbandit = make_unique<DummyBandit<T>>(probabilities);
+        pbandit = make_unique<DummyBandit>(probabilities);
     } else {
         HANDLE_ERROR_THROW("Undefined Selection Operator " + this->type + "\n");
     }
 }
 
-template <typename T>
-string Bandit<T>::get_type() {
+string Bandit::get_type() {
     return type;
 }
 
-template <typename T>
-void Bandit<T>::set_type(string type) {
+void Bandit::set_type(string type) {
     this->type = type;
 }
 
-template <typename T>
-vector<T> Bandit<T>::get_arms() {
+vector<string> Bandit::get_arms() {
     return arms;
 }
 
-template <typename T>
-void Bandit<T>::set_arms(vector<T> arms) {
+void Bandit::set_arms(vector<string> arms) {
     this->arms = arms;
 }
 
-template <typename T>
-map<T, float> Bandit<T>::get_probs() {
+map<string, float> Bandit::get_probs() {
     return probabilities;
 }
 
-template <typename T>
-void Bandit<T>::set_probs(map<T, float> arms_probs) {
+void Bandit::set_probs(map<string, float> arms_probs) {
     probabilities = arms_probs;
 }
 
-template <typename T>
-map<T, float> Bandit<T>::sample_probs(bool update) {
-    map<T, float> new_probs = this->pbandit->sample_probs(update);
+map<string, float> Bandit::sample_probs(bool update) {
+    map<string, float> new_probs = this->pbandit->sample_probs(update);
 
     // making all probabilities strictly positive
     float eps = 1e-6;
@@ -100,206 +87,12 @@ map<T, float> Bandit<T>::sample_probs(bool update) {
     return new_probs; 
 }
 
-template <typename T>
-T Bandit<T>::choose(const VectorXf& context) {
-    return this->pbandit->choose(context);
+string Bandit::choose() {
+    return this->pbandit->choose();
 }
 
-template <typename T>
-void Bandit<T>::update(T arm, float reward, VectorXf& context) {
-    this->pbandit->update(arm, reward, context);
-}
-
-template <typename T> template <ProgramType PT>
-VectorXf Bandit<T>::get_context(const Program<PT>& program, Iter spot,
-                                const SearchSpace &ss, const Dataset &d) {
-    // TODO: for better performance, get_context should calculate the context only if the 
-    // pbandit is of a contextual type. otherwise, return empty stuff
-
-    VectorXf context;
-
-    // -------------------------------------------------------------------------
-    //  THIRD APPROACH: y - (program.predict(d) - program_without_subtree.predict(d))
-    // -------------------------------------------------------------------------
-    if constexpr (PT==ProgramType::Regressor || PT==ProgramType::BinaryClassifier)
-    {
-        // use the code below to work with the whole tree prediction -----------
-        ArrayXf out = (*program.Tree.begin().node).template predict<ArrayXf>(d);
-        
-        // create a copy of the tree
-        Program<PT> program_hat(program);
-
-        // finding the corresponding stop in the program_hat
-        TreeIter program_iter = program.Tree.begin();
-        TreeIter program_hat_iter = program_hat.Tree.begin();
-        while(program_iter != spot)
-        {
-            program_iter++;
-            program_hat_iter++;
-        }
-
-        // replacing the subtree with a constant
-        Node n   = program_hat_iter.node->data;
-        Node cte = ss.terminal_map.at(n.ret_type).at(
-            ss.terminal_map.at(n.ret_type).size()-1);
-
-        program_hat.Tree.erase_children(program_hat_iter); 
-        program_hat_iter = program_hat.Tree.replace(program_hat_iter, cte);
-
-        ArrayXf out_hat = (*program_hat.Tree.begin().node).template predict<ArrayXf>(d);
-
-        // generating the context
-        if constexpr (PT==ProgramType::BinaryClassifier)
-        {
-            context = d.y - ( (out - out_hat).array() > 0.5 ).array().template cast<float>();
-        }
-        else
-            context = d.y - (out - out_hat);
-    }
-    else if constexpr (PT==ProgramType::MulticlassClassifier)
-    {
-        // use the code below to work with the whole tree prediction -----------
-        ArrayXXf out = (*program.Tree.begin().node).template predict<ArrayXXf>(d);
-        auto argmax = Function<NodeType::ArgMax>{};
-        context = ArrayXf(argmax(out).template cast<float>());
-        
-        // predicting the spot node --------------------------------------------
-    }
-    else if constexpr (PT==ProgramType::Representer)
-    {
-        context << 1.0; // TODO: implement representer context
-    }
-    else
-    {
-        HANDLE_ERROR_THROW("No predict available for the class.");
-    }
-
-    // -------------------------------------------------------------------------
-    //  SECOND APPROACH: prediction vector of the spot node
-    // -------------------------------------------------------------------------
-    // if constexpr (PT==ProgramType::Regressor)
-    // {
-    //     // use the code below to work with the whole tree prediction -----------
-    //     ArrayXf out = (*program.Tree.begin().node).template predict<ArrayXf>(d);
-    //     context = out;
-
-    //     // predicting the spot node --------------------------------------------
-    //     // context = (*spot.node).template predict<ArrayXf>(d);
-    // }
-    // else if constexpr (PT==ProgramType::BinaryClassifier)
-    // {
-
-
-    //     // use the code below to work with the whole tree prediction -----------
-    //     ArrayXf out = (*program.Tree.begin().node).template predict<ArrayXf>(d);
-    //     context = ArrayXf(out.template cast<float>());
-
-    //     // predicting the spot node --------------------------------------------
-    //     // ArrayXf logit = (*spot.node).template predict<ArrayXf>(d);
-    //     // ArrayXb pred  = (logit > 0.5);
-    //     // context = ArrayXf(pred.template cast<float>());
-    // }
-    // else if constexpr (PT==ProgramType::MulticlassClassifier)
-    // {
-
-
-    //     // use the code below to work with the whole tree prediction -----------
-    //     ArrayXXf out = (*program.Tree.begin().node).template predict<ArrayXXf>(d);
-    //     auto argmax = Function<NodeType::ArgMax>{};
-    //     context = ArrayXf(argmax(out).template cast<float>());
-        
-    //     // predicting the spot node --------------------------------------------
-    // }
-    // else if constexpr (PT==ProgramType::Representer)
-    // {
-
-    // }
-    // else
-    // {
-    //     HANDLE_ERROR_THROW("No predict available for the class.");
-    // }
-
-    // -------------------------------------------------------------------------
-    // FIRST APPROACH: label encoding of nodes above/below/on the spot
-    // -------------------------------------------------------------------------
-    // context is 3 times the number of nodes in the search space.
-    // it represents a label encoding of the Tree structure, where
-    // the first third represents number of nodes above the spot,
-    // the second represents the spot, and the third represents
-    // the number of nodes below the spot.
-    // The vector below works as a reference of the nodes.
-
-    // for (auto it = Tree.begin(); it != Tree.end(); ++it) {
-    //     for (int i = 0; i < Tree.depth(it); ++i) {
-    //     }
-    // }
-
-    // size_t tot_operators = ss.op_names.size(); //NodeTypes::Count;
-    // size_t tot_features  = 0;
-
-    // for (const auto& pair : ss.terminal_map)
-    //     tot_features += pair.second.size();
-
-    // size_t tot_symbols = tot_operators + tot_features;
-
-    // VectorXf context( 3 * tot_symbols );
-    // context.setZero();
-
-    // for (auto it = Tree.begin(); it != Tree.end(); ++it) {
-    //     if (Tree.is_valid(it)) {
-    //         // deciding if it is above or below the spot
-    //         size_t pos_shift = 0; // above
-    //         if (it == spot) { // spot
-    //             pos_shift = 1;
-    //         }
-    //         else if (Tree.is_in_subTree(it, spot)) // below
-    //             pos_shift = 2;
-    //         if (Is<NodeType::Terminal, NodeType::Constant, NodeType::MeanLabel>((*it).node_type)){
-    //             size_t feature_index = 0;
-    //             // iterating using terminal_types since it is ordered
-    //             for (const auto& terminal : ss.terminal_map.at((*it).ret_type)) {
-    //                 if (terminal.name == (*it).name) {
-    //                     // Just one hot encode --------------------------------------
-    //                     context((tot_operators + feature_index) + pos_shift*tot_symbols) += 1.0;
-    //                     // encode with weights --------------------------------------
-    //                     // int Tree_complexity = operator_complexities.at((*it).node_type);
-    //                     // if ((*it).get_is_weighted()
-    //                     // &&  Isnt<NodeType::Constant, NodeType::MeanLabel>((*it).node_type) )
-    //                     // {
-    //                     //     if ((Is<NodeType::OffsetSum>((*it).node_type) && (*it).W != 0.0)
-    //                     //     ||  ((*it).W != 1.0))
-    //                     //         Tree_complexity = operator_complexities.at(NodeType::Mul) +
-    //                     //                           operator_complexities.at(NodeType::Constant) + 
-    //                     //                           Tree_complexity;
-    //                     // }
-    //                     // context((tot_operators + feature_index) + pos_shift*tot_symbols) += static_cast<float>(Tree_complexity);
-    //                     // use recursive evaluation to get the complexity of the subTree
-    //                     // linear complexity to avoid exponential increase of values
-    //                     // int complexity = it.node->get_linear_complexity();
-    //                     // context((tot_operators + feature_index) + pos_shift*tot_symbols) += static_cast<float>(complexity);
-    //                     break;
-    //                 }
-    //                 ++feature_index;
-    //             }
-    //         } else {
-    //             auto it_op = std::find(ss.op_names.begin(), ss.op_names.end(), (*it).name);
-    //             if (it_op != ss.op_names.end()) {
-    //                 size_t op_index = std::distance(ss.op_names.begin(), it_op);
-    //                 context(pos_shift * tot_symbols + op_index) += 1.0;
-    //             }
-    //             else {
-    //                 HANDLE_ERROR_THROW("Undefined operator " + (*it).name + "\n");
-    //             }
-    //         }
-    //     }
-    // }
-
-
-
-
-    // -------------------------------------------------------------------------
-    
-    return context;
+void Bandit::update(string arm, float reward) {
+    this->pbandit->update(arm, reward);
 }
 
 } // MAB

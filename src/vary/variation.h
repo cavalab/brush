@@ -84,7 +84,7 @@ public:
         if (parameters.cx_prob > 0.0)
             variation_probs["cx"] = parameters.cx_prob;
         
-        this->variation_bandit = Bandit<string>(parameters.bandit, variation_probs);
+        this->variation_bandit = Bandit(parameters.bandit, variation_probs);
 
         // TODO: should I set C parameter based on pop size or leave it fixed?
         // TODO: update string comparisons to use .compare method
@@ -108,7 +108,7 @@ public:
                     }
                     
                 if (terminal_probs.size()>0)
-                    terminal_bandits[entry.first] = Bandit<string>(parameters.bandit,
+                    terminal_bandits[entry.first] = Bandit(parameters.bandit,
                                                                    terminal_probs);
             }
         }
@@ -119,7 +119,7 @@ public:
         for (auto& [ret_type, arg_w_map]: search_space.node_map) 
         {
             // if (op_bandits.find(ret_type) == op_bandits.end())
-            //     op_bandits.at(ret_type) = map<size_t, Bandit<string>>();
+            //     op_bandits.at(ret_type) = map<size_t, Bandit>();
 
             for (const auto& [args_type, node_map] : arg_w_map)
             {
@@ -146,7 +146,7 @@ public:
                 }
 
                 if (node_probs.size() > 0)
-                    op_bandits[ret_type][args_type] = Bandit<string>(parameters.bandit,
+                    op_bandits[ret_type][args_type] = Bandit(parameters.bandit,
                                                                      node_probs);
             }
         }
@@ -181,7 +181,7 @@ public:
      * @return An optional containing the offspring individual if the crossover 
      * is successful, or an empty optional otherwise.
      */
-    std::tuple<std::optional<Individual<T>>, VectorXf> cross(
+    std::optional<Individual<T>> cross(
         const Individual<T>& mom, const Individual<T>& dad);
 
     /**
@@ -191,7 +191,7 @@ public:
      * @return An optional containing the mutated individual if the mutation is
      * successful, or an empty optional otherwise.
      */
-    std::tuple<std::optional<Individual<T>>, VectorXf> mutate(
+    std::optional<Individual<T>> mutate(
         const Individual<T>& parent, string choice="");
 
     /**
@@ -249,8 +249,6 @@ public:
 
             // if we got here, then the individual is not fully locked and we can proceed with mutation
             vector<Individual<T>> ind_parents;
-            VectorXf root_context = get_context(mom.program, mom.program.Tree.begin());
-            VectorXf context;
             string choice;
             
             // this assumes that islands do not share indexes before doing variation
@@ -268,7 +266,7 @@ public:
             }
             else
             {
-                choice = this->variation_bandit.choose(root_context);
+                choice = this->variation_bandit.choose();
                 if (choice == "cx")
                 {
                     // const Individual<T>& dad = pop[
@@ -277,14 +275,14 @@ public:
 
                     auto variation_result = cross(mom, dad);
                     ind_parents = {mom, dad};
-                    tie(opt, context) = variation_result;
+                    opt = variation_result;
                 }
                 else
                 {
                     auto variation_result = mutate(mom, choice);  
 
                     ind_parents = {mom};
-                    tie(opt, context) = variation_result;
+                    opt = variation_result;
                 }
 
                 if (opt) // variation worked, lets keep this
@@ -387,31 +385,12 @@ public:
             if (allPositive && !allNegative)
                 r = 1.0;
 
-            // linear bandit can handle non-bernoulli-like rewards
-            if (parameters.bandit.compare("linear_thompson") == 0)
-            {
-                // r = std::accumulate(deltas.begin(), deltas.end(), 0.0f,
-                //                     [](float sum, float delta) {
-                //                         if (delta > 0) return sum + 1.0f;
-                //                         // if (delta < 0) return sum - 1.0f;
-                //                         return sum; // For delta == 0
-                //                     });
-                
-                // if (allPositive)
-                //     r = std::accumulate(deltas.begin(), deltas.end(),
-                //                         1.0f, std::multiplies<float>());
-
-                if ( allPositive && !allNegative) r =  1.0;
-                else if (!allPositive &&  allNegative) r = -1.0;
-                else r = 0.0;
-            }
-
             if (!ind.get_variation().compare("born")
             &&  !ind.get_variation().compare("cx")
             &&  !ind.get_variation().compare("subtree") // TODO: handle subtree
             )
             {
-                this->variation_bandit.update(ind.get_variation(), r, root_context);
+                this->variation_bandit.update(ind.get_variation(), r);
                               
                 if (ind.get_sampled_nodes().size() > 0) {
                     const auto& changed_nodes = ind.get_sampled_nodes();
@@ -419,21 +398,21 @@ public:
                         if (node.get_arg_count() == 0) {
                             auto datatype = node.get_ret_type();
 
-                            this->terminal_bandits[datatype].update(node.get_feature(), r, context);
+                            this->terminal_bandits[datatype].update(node.get_feature(), r);
                         }
                         else {
                             auto ret_type = node.get_ret_type();
                             auto args_type = node.args_type();
                             auto name = node.name;
 
-                            this->op_bandits[ret_type][args_type].update(name, r, context);
+                            this->op_bandits[ret_type][args_type].update(name, r);
                         }
                     }
                 }
             }
             else
             { // giving zero reward if the variation failed
-                this->variation_bandit.update(choice, 0.0, root_context);
+                this->variation_bandit.update(choice, 0.0);
             }
             
             // aux_individuals.push_back(std::make_shared<Individual<T>>(ind));
@@ -456,7 +435,7 @@ public:
     
     // these functions below will extract context and use it to choose the nodes to replace
     // bandit_sample_terminal
-    std::optional<Node> bandit_sample_terminal(DataType R, VectorXf& context)
+    std::optional<Node> bandit_sample_terminal(DataType R)
     {
 
 
@@ -466,7 +445,7 @@ public:
         }
 
         auto& bandit = terminal_bandits.at(R);
-        string terminal_name = bandit.choose(context);
+        string terminal_name = bandit.choose();
 
 
         auto it = std::find_if(
@@ -485,14 +464,14 @@ public:
     };
 
     // bandit_get_node_like
-    std::optional<Node> bandit_get_node_like(Node node, VectorXf& context)
+    std::optional<Node> bandit_get_node_like(Node node)
     {
 
 
         // TODO: use search_space.terminal_types here (and in search_space get_node_like as well)
         if (Is<NodeType::Terminal, NodeType::Constant, NodeType::MeanLabel>(node.node_type)){
 
-            return bandit_sample_terminal(node.ret_type, context);
+            return bandit_sample_terminal(node.ret_type);
         }
 
         if (op_bandits.find(node.ret_type) == op_bandits.end()) {
@@ -505,7 +484,7 @@ public:
         }
 
         auto& bandit = op_bandits[node.ret_type][node.args_type()];
-        string node_name = bandit.choose(context);
+        string node_name = bandit.choose();
 
 
         auto entries = search_space.node_map[node.ret_type][node.args_type()];
@@ -524,8 +503,7 @@ public:
     };
 
     // bandit_sample_op_with_arg
-    std::optional<Node> bandit_sample_op_with_arg(DataType ret, DataType arg,
-                                                  VectorXf& context, int max_args=0)
+    std::optional<Node> bandit_sample_op_with_arg(DataType ret, DataType arg, int max_args=0)
     {
         auto args_map = search_space.node_map.at(ret);
         vector<size_t> matches;
@@ -553,7 +531,7 @@ public:
         auto args_type = *r.select_randomly(matches.begin(), 
                                             matches.end() );
         auto& bandit = op_bandits[ret][args_type];
-        string node_name = bandit.choose(context);
+        string node_name = bandit.choose();
 
         // TODO: this could be more efficient
         auto entries = search_space.node_map[ret][args_type];
@@ -568,7 +546,7 @@ public:
     };
 
     // bandit_sample_op
-    std::optional<Node> bandit_sample_op(DataType ret, VectorXf& context)
+    std::optional<Node> bandit_sample_op(DataType ret)
     {
         if (search_space.node_map.find(ret) == search_space.node_map.end())
             return std::nullopt;
@@ -577,7 +555,7 @@ public:
         auto& [args_type, bandit] = *r.select_randomly(op_bandits[ret].begin(), 
                                                        op_bandits[ret].end() );
 
-        string node_name = bandit.choose(context);
+        string node_name = bandit.choose();
 
         auto entries = search_space.node_map[ret][args_type];
         for (const auto& [node_type, node_value]: entries)
@@ -595,9 +573,6 @@ public:
     // the sampled probabilities we update after every generation. Since there are lots
     // of samplings, I think it is ok to not update them and just use the distribution they learned.
 
-    VectorXf get_context(const Program<T>& program, Iter spot) {
-        return variation_bandit.get_context<T>(program, spot, search_space, data); }
-
     // they need to be references because we are going to modify them
     SearchSpace search_space; // The search space for the variation operator.
     Dataset& data;             // the data used to extract context and evaluate the models
@@ -606,9 +581,9 @@ private:
     // bandits will internaly work as an interface between variation and its searchspace.
     // they will sample from the SS (instead of letting the search space do it directly),
     // and also propagate what they learn back to the search space at the end of the execution.
-    Bandit<string> variation_bandit;
-    map<DataType, Bandit<string>> terminal_bandits; 
-    map<DataType, map<size_t, Bandit<string>>> op_bandits;  
+    Bandit variation_bandit;
+    map<DataType, Bandit> terminal_bandits; 
+    map<DataType, map<size_t, Bandit>> op_bandits;  
     
     // simplification methods
     Constants_simplifier constants_simplifier; 

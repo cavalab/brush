@@ -8,10 +8,10 @@
 #include "../../src/selection/selection_operator.cpp"
 #include "../../src/selection/selection.cpp"
 
-#include "../../src/bandit/bandit.cpp"
-#include "../../src/bandit/bandit_operator.cpp"
-#include "../../src/bandit/dummy.cpp"
-#include "../../src/bandit/thompson.cpp"
+// #include "../../src/bandit/bandit.cpp"
+// #include "../../src/bandit/bandit_operator.cpp"
+// #include "../../src/bandit/dummy.cpp"
+// #include "../../src/bandit/thompson.cpp"
 
 using namespace Brush::Pop;
 using namespace Brush::Sel;

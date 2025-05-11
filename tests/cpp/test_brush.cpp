@@ -25,10 +25,10 @@
 #include "../../src/eval/evaluation.cpp"
 #include "../../src/pop/archive.cpp"
 #include "../../src/pop/population.cpp"
-#include "../../src/bandit/bandit.cpp"
-#include "../../src/bandit/bandit_operator.cpp"
-#include "../../src/bandit/dummy.cpp"
-#include "../../src/bandit/thompson.cpp"
+// #include "../../src/bandit/bandit.cpp"
+// #include "../../src/bandit/bandit_operator.cpp"
+// #include "../../src/bandit/dummy.cpp"
+// #include "../../src/bandit/thompson.cpp"
 #include "../../src/simplification/constants.cpp"
 #include "../../src/simplification/inexact.cpp"
 
@@ -216,8 +216,7 @@ INSTANTIATE_TEST_SUITE_P(
     ::testing::Values(
         "dummy",
         "thompson",
-        "dynamic_thompson",
-        "linear_thompson"
+        "dynamic_thompson"
     )
 );
 
