@@ -51,18 +51,14 @@ vector<string> Inexact_simplifier::hash(const ArrayXf& inputPoint)
         const auto& plane = uniformPlanes[planeIdx];
         ArrayXf projections = (plane * inputPoint.matrix());
 
-
         ArrayXb comparison = (projections.array() > 0);
-
 
         string hashString = ""; // TODO: size_t instead of string
         // hashString.reserve(hashSize);
         
         for (bool v : comparison){
-
             hashString += v ? "1" : "0";
         }
-
 
         hashes.push_back(hashString);
     }
@@ -91,15 +87,11 @@ void Inexact_simplifier::index(TreeIter& spot, const Dataset &d)
     auto hashes = hash(v_float);
     for (size_t i = 0; i < hashes.size(); ++i)
     {
-
         if (spot.node->data.ret_type==DataType::ArrayB) {
-
             storageBool.append(hashes[i], v_float);
         } else if (spot.node->data.ret_type==DataType::ArrayI) {
-
             storageInt.append(hashes[i], v_float);
         } else { // otherwise we store it as floats
-
             storageFloat.append(hashes[i], v_float); // TODO: should throw an error
         }
     }
@@ -129,38 +121,26 @@ optional<pair<size_t, string>> Inexact_simplifier::query(TreeIter& spot, const D
     HashStorage *storage;
     if (spot.node->data.ret_type==DataType::ArrayB) {
         storage = (&storageBool);
-
     } else if (spot.node->data.ret_type==DataType::ArrayI) {
         storage = (&storageInt);
-
     } else { // otherwise we store it as floats
         storage = (&storageFloat); 
-
     }
     // TODO: should throw an error if no storage matches
 
     vector<string> hashes = hash(v_float);
 
-    for (const auto& h : hashes) {
-
-    }
-
-
     for (size_t i = 0; i < hashes.size(); ++i){
         auto newCandidates = storage->getList(hashes[i]);
 
-        
         for (const auto& cand : newCandidates) {
             float d = (v_float - cand).array().pow(2).mean();
             if (std::isnan(d) || std::isinf(d))
                 d = MAX_FLT;
 
-
-
             if (d<threshold){
                 candidates.push_back(make_pair(i, hashes[i]));
                 distances.push_back(d);
-
             }
         }
     }
@@ -170,8 +150,6 @@ optional<pair<size_t, string>> Inexact_simplifier::query(TreeIter& spot, const D
             std::min_element(std::begin(distances), std::end(distances)));
 
         return candidates[min_idx];
-    } else {
-
     }
 
     return std::nullopt;

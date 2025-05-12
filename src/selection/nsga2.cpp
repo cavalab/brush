@@ -39,7 +39,9 @@ template<ProgramType T>
 vector<size_t> NSGA2<T>::select(Population<T>& pop, int island, 
         const Parameters& params)
 {
-    // tournament selection. TODO: move this to tournament selection file, and throw not implemented error in nsga.
+    // tournament selection.
+    
+    // TODO: move this to tournament selection file, and throw not implemented error in nsga.
     auto island_pool = pop.get_island_indexes(island);
 
     // if this is first generation, just return indices to pop
@@ -66,20 +68,12 @@ vector<size_t> NSGA2<T>::select(Population<T>& pop, int island,
 }
 
 template<ProgramType T>
-vector<size_t> NSGA2<T>::survive(Population<T>& pop, int island,
-        const Parameters& params)
+vector<size_t> NSGA2<T>::survive(Population<T>& pop, int island, 
+    const Parameters& params)
 {
-    size_t idx_start = std::floor(island*params.pop_size/params.num_islands);
-    size_t idx_end   = std::floor((island+1)*params.pop_size/params.num_islands);
-
-    // TODO: survive should be unified across islands, and stop taking island as argument. This was already implemented, I need to update to remove island argument only
-    // auto original_size = idx_end - idx_start; // original island size (survive must   be  called with an island with offfspring)
-    
-    auto original_size = params.pop_size;
-
     // TODO: clean up comments mess here 
-    // auto island_pool = pop.get_island_indexes(island);
 
+    // combining all islands to get the pareto fronts
     std::vector<size_t> island_pool;
     for (int i = 0; i < params.num_islands; ++i) {
         auto indexes = pop.get_island_indexes(i);
@@ -96,7 +90,7 @@ vector<size_t> NSGA2<T>::survive(Population<T>& pop, int island,
     int i = 0;
     while (
         i < front.size()
-        && ( selected.size() + front.at(i).size() < original_size )
+        && ( selected.size() + front.at(i).size() < params.pop_size )
     )
     {
         std::vector<int>& Fi = front.at(i);        // indices in front i
@@ -114,7 +108,7 @@ vector<size_t> NSGA2<T>::survive(Population<T>& pop, int island,
     std::sort(front.at(i).begin(),front.at(i).end(),sort_n(pop));
     
     // fmt::print("adding last front)\n");
-    const int extra = original_size - selected.size();
+    const int extra = params.pop_size - selected.size();
     for (int j = 0; j < extra; ++j) // Pt+1 = Pt+1 U Fi[1:N-|Pt+1|]
         selected.push_back(front.at(i).at(j));
     
@@ -154,10 +148,9 @@ vector<vector<int>> NSGA2<T>::fast_nds(Population<T>& pop, vector<size_t>& islan
                 dcount += 1;
             }
         }
-        p->fitness.dcounter  = dcount;
-        p->fitness.dominated.clear();
+        p->fitness.dcounter = dcount;
         p->fitness.dominated = dom; // dom will have values already referring to island indexes
-        p->fitness.set_crowding_dist(0.0f);
+        // p->fitness.set_crowding_dist(0.0f);
     
         if (p->fitness.dcounter == 0) {
             // fmt::print("pushing {}...\n", island_pool[i]);
@@ -184,7 +177,7 @@ vector<vector<int>> NSGA2<T>::fast_nds(Population<T>& pop, vector<size_t>& islan
             const Individual<T>& p = pop[fronti.at(i)];
 
             // iterating over dominated individuals
-            for (int j = 0; j < p.fitness.dominated.size() ; ++j) {
+            for (int j = 0; j < p.fitness.dominated.size(); ++j) {
                 // fmt::print("decreased counter of ind {} for {} to {} \n", j, p.fitness.dominated.at(j), pop.individuals.at(p.fitness.dominated.at(j))->fitness.dcounter);
 
                 auto q = pop.individuals.at(p.fitness.dominated.at(j));

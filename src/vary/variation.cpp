@@ -756,11 +756,6 @@ void Variation<T>::update_ss()
     // variation: getting new probabilities for variation operators
     auto variation_probs = variation_bandit.sample_probs(true);
 
-
-    // for (const auto& variation : variation_probs) {
-
-    // }
-
     if (variation_probs.find("cx") != variation_probs.end())
         parameters.set_cx_prob(variation_probs.at("cx"));
     
@@ -774,12 +769,7 @@ void Variation<T>::update_ss()
         
         auto terminal_probs = bandit.second.sample_probs(true);
 
-        for (auto& terminal : terminal_probs) {
-
-
-            auto terminal_name = terminal.first;
-            auto terminal_prob = terminal.second;
-
+        for (auto& [terminal_name, terminal_prob] : terminal_probs) {
             // Search for the index that matches the terminal name
             auto it = std::find_if(
                 search_space.terminal_map.at(datatype).begin(),
@@ -802,10 +792,8 @@ void Variation<T>::update_ss()
 
             for (auto& [op_name, op_prob] : op_probs) {
 
-
                 for (const auto& [node_type, node_value]: search_space.node_map.at(ret_type).at(args_type))
                 {
-
                     if (node_value.name == op_name) {
 
                         search_space.node_map_weights.at(ret_type).at(args_type).at(node_type) = op_prob;
@@ -814,14 +802,6 @@ void Variation<T>::update_ss()
             }
         }
     }
-    
-
-
-    // for (const auto& [name, prob] : parameters.get_mutation_probs())
-
-
-
-    // search_space.print();
 };
 
 } //namespace Var

@@ -238,17 +238,7 @@ struct Operator<NT, S, Fit, enable_if_t<is_in_v<NT, NodeType::SplitOn, NodeType:
             string feature = "";
             tie(feature, threshold) = Split::get_best_variable_and_threshold(d, tn);
             tn.data.set_feature(feature);
-            
-            for (auto& [ftype, names] : d.features_of_type){
-                auto it = std::find_if(names.begin(), names.end(),
-                    [&](const auto& name){ return name.compare(feature)==0; });
-
-                if (it != names.end())
-                {
-                    tn.data.set_feature_type(ftype);
-                    break;
-                }
-            }
+            tn.data.set_feature_type(d.get_feature_type(feature));
         }
 
         return predict(d, tn);

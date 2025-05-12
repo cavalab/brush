@@ -86,10 +86,11 @@ class Inexact_simplifier
                 ) {
                     // indexing only small subtrees or non-constant-terminal nodes
                     if (simplified_program.size_at(spot) < 10
-                    ||  Isnt<NodeType::Constant, NodeType::MeanLabel>(spot.node->data.node_type)) {
+                    ||  Isnt<NodeType::Constant, NodeType::MeanLabel, NodeType::Terminal>(spot.node->data.node_type)) {
                         index(spot, d);
                     }
-
+                    
+                    // TODO: use IsLeaf here instead of checking for each possible nodetype. also search throughout the code and replace it
                     if (Isnt<NodeType::Constant, NodeType::MeanLabel, NodeType::Terminal>(spot.node->data.node_type)){
                         // res will return the closest within the threshold, so we dont have to check distance here
                         auto res = query(spot, d); // optional<pair<size_t, string>>

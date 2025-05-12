@@ -153,24 +153,19 @@ public:
 
         inexact_simplifier.initUniformPlanes(128, data.get_training_data().get_n_samples(), 1);
         // TODO: init simplification with terminals (including booleans?)
-        // for (const auto& entry : this->search_space.terminal_weights) {
-        //     map<string, float> terminal_probs;
-        //     for (int i = 0; i < entry.second.size(); i++)
-        //         if (entry.second[i] > 0.0)
-        //         {
-        //             Node node = search_space.terminal_map.at(entry.first).at(i);
+        for (const auto& entry : this->search_space.terminal_weights) {
+            map<string, float> terminal_probs;
+            for (int i = 0; i < entry.second.size(); i++)
+                if (entry.second[i] > 0.0)
+                {
+                    Node node = search_space.terminal_map.at(entry.first).at(i);
 
-        //             // non-wheightable nodes are not simplified. TODO: revisit this and see if they should (then implement it)
-        //             // This is avoiding using booleans.
-        //             if (IsWeighable(node.node_type))
-        //             {
-        //                 tree<Node> dummy_tree;
-        //                 dummy_tree.insert(dummy_tree.begin(), node);
-        //                 auto it = dummy_tree.begin();
-        //                 inexact_simplifier.index(it, data.get_training_data());
-        //             }
-        //         }
-        // }
+                    tree<Node> dummy_tree;
+                    dummy_tree.insert(dummy_tree.begin(), node);
+                    auto it = dummy_tree.begin();
+                    inexact_simplifier.index(it, data.get_training_data());
+                }
+        }
     };
 
     /**
@@ -248,7 +243,7 @@ public:
             const Individual<T>& mom = pop[idx];
 
             // if we got here, then the individual is not fully locked and we can proceed with mutation
-            vector<Individual<T>> ind_parents;
+            vector<Individual<T>> ind_parents = {mom};
             string choice;
             
             // this assumes that islands do not share indexes before doing variation
@@ -267,22 +262,19 @@ public:
             else
             {
                 choice = this->variation_bandit.choose();
-                if (choice == "cx")
+                // cout << choice << endl;
+                if (choice.compare("cx") == 0)
                 {
                     // const Individual<T>& dad = pop[
                     //     *r.select_randomly(parents.begin(), parents.end())];
                     const Individual<T>& dad = pop[parents.at((i+1) % parents.size())]; // use modulo to cycle through parents
 
-                    auto variation_result = cross(mom, dad);
-                    ind_parents = {mom, dad};
-                    opt = variation_result;
+                    opt = cross(mom, dad);
+                    ind_parents.push_back(dad);
                 }
                 else
                 {
-                    auto variation_result = mutate(mom, choice);  
-
-                    ind_parents = {mom};
-                    opt = variation_result;
+                    opt = mutate(mom, choice);  
                 }
 
                 if (opt) // variation worked, lets keep this
@@ -295,6 +287,7 @@ public:
                     ind.variation = "born";
                     // ind.init(search_space, parameters); // ind.variation is born by default
                 }
+                // cout << "finish generating new ind" << endl;
             }
             
             // ind.set_objectives(mom.get_objectives()); // it will have an invalid fitness
@@ -308,12 +301,13 @@ public:
             ind.fitness.set_linear_complexity(mom.fitness.get_linear_complexity());
             ind.fitness.set_depth(mom.fitness.get_depth());
 
+            // cout << "finish setting fitness" << endl;
             assert(ind.program.size() > 0);
             assert(ind.fitness.valid() == false);
 
-            auto data_aux = data.get_training_data();
+            ind.program.fit(data.get_training_data());
 
-            ind.program.fit(data_aux);
+            // cout << "finish fitting" << endl;
 
             // simplify before calculating fitness (order matters, as they are not refitted and constants simplifier does not replace with the right value.)
             // TODO: constants_simplifier should set the correct value for the constant (so we dont have to refit).

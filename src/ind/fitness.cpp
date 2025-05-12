@@ -15,6 +15,12 @@ void to_json(json &j, const Fitness &f)
         {"linear_complexity", f.linear_complexity},
         {"size", f.size},
         {"depth", f.depth},
+        {"prev_loss", f.prev_loss},
+        {"prev_loss_v", f.prev_loss_v},
+        {"prev_complexity", f.prev_complexity},
+        {"prev_linear_complexity", f.prev_linear_complexity},
+        {"prev_size", f.prev_size},
+        {"prev_depth", f.prev_depth},
         {"dcounter", f.dcounter},
         {"dominated", f.dominated},
         {"rank", f.rank},
@@ -30,9 +36,15 @@ void from_json(const json &j, Fitness& f)
     j.at("loss").get_to( f.loss );
     j.at("loss_v").get_to( f.loss_v );
     j.at("complexity").get_to( f.complexity );
-    j.at("linear_complexity").get_to( f.linear_complexity );
     j.at("size").get_to( f.size );
     j.at("depth").get_to( f.depth );
+    j.at("linear_complexity").get_to( f.linear_complexity );
+    j.at("prev_loss").get_to( f.prev_loss );
+    j.at("prev_loss_v").get_to( f.prev_loss_v );
+    j.at("prev_complexity").get_to( f.prev_complexity );
+    j.at("prev_linear_complexity").get_to( f.prev_linear_complexity );
+    j.at("prev_size").get_to( f.prev_size );
+    j.at("prev_depth").get_to( f.prev_depth );
     j.at("dcounter").get_to( f.dcounter );
     j.at("dominated").get_to( f.dominated );
     j.at("rank").get_to( f.rank );

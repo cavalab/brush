@@ -525,7 +525,6 @@ void Engine<T>::run(Dataset &data)
 
             auto run_generation = subflow.for_each_index(0, this->params.num_islands, 1, [&](int island) {
 
-
                 evaluator.update_fitness(this->pop, island, data, params, false, false); // fit the weights with all training data
 
                 // TODO: have some way to set which fitness to use (for example in params, or it can infer based on split size idk)
@@ -548,7 +547,6 @@ void Engine<T>::run(Dataset &data)
                 // TODO: optimize this and make it work with multiple islands in parallel.
                 for (int island = 0; island < this->params.num_islands; ++island) {
 
-
                     // TODO: do I have to pass data as an argument here? or can I use the instance reference
                     variator.vary_and_update(this->pop, island, island_parents.at(island),
                                              data, evaluator);
@@ -556,8 +554,6 @@ void Engine<T>::run(Dataset &data)
                     if (data.use_batch) // assign the batch error as fitness (but fit was done with training data)
                         evaluator.update_fitness(this->pop, island, batch, params, false, false);
                 }
-
-
 
                 // select survivors from combined pool of parents and offspring.
                 // if the same individual exists in different islands, then it will be selected several times and the pareto front will have less diversity.
@@ -567,13 +563,9 @@ void Engine<T>::run(Dataset &data)
 
                 auto survivor_indices = survivor.survive(this->pop, 0, params);
 
-
                 // TODO: do i need these next this-> pointers?
                 variator.update_ss();
-
-
                 this->pop.update({survivor_indices});
-
                 this->pop.migrate();
 
 

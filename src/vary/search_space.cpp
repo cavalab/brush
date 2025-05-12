@@ -362,6 +362,8 @@ tree<Node>& SearchSpace::PTC2(tree<Node>& Tree,
             if (!opt)
                 opt = sample_terminal(t, true);
 
+            assert (opt && "PTC2: failed to sample terminal to fill in empty leaves due to max depth or size");
+
             // If we successfully get a terminal, use it
             n = opt.value();
 
@@ -430,6 +432,8 @@ tree<Node>& SearchSpace::PTC2(tree<Node>& Tree,
 
         if (!opt)
             opt = sample_terminal(t, true);
+            
+        assert (opt && "PTC2: failed to sample terminal to fill remaining spots in queue");
 
         n = opt.value();
         

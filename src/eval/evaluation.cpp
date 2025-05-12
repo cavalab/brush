@@ -89,6 +89,7 @@ void Evaluation<T>::assign_fit(Individual<T>& ind, const Dataset& data,
     // without the burden of calculating stuff everytime
     for (const auto& n : ind.get_objectives())
     {
+        // TODO: this should be done in the fitness class when calling wvalues() or values()
         if (n.compare(params.scorer)==0)
             values.push_back(val ? f_v : f);
         else if (n.compare("complexity")==0)
