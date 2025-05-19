@@ -275,7 +275,7 @@ template<PT PType> struct Program
             const auto& node = i.node->data; 
             // some nodes cannot have their weights optimized, others must have
             if ( Is<NodeType::OffsetSum>(node.node_type)
-            ||   (node.get_is_weighted() && IsWeighable(node.node_type)) )
+            ||   (node.get_is_weighted() && IsWeighable(node.ret_type)) )
                 ++count;
         }
         return count;
@@ -294,7 +294,7 @@ template<PT PType> struct Program
         {
             const auto& node = t.node->data; 
             if ( Is<NodeType::OffsetSum>(node.node_type)
-            ||   (node.get_is_weighted() && IsWeighable(node.node_type)) )
+            ||   (node.get_is_weighted() && IsWeighable(node.ret_type)) )
             {
                 weights(i) = node.W;
                 ++i;

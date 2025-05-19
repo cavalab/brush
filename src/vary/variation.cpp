@@ -180,7 +180,7 @@ public:
             std::transform(program.Tree.begin(), program.Tree.end(), weights.begin(),
                         [&](const auto& n){
                             // some nodetypes must always have a weight                            
-                            if (Is<NodeType::OffsetSum>(n.node_type))
+                            if (Is<NodeType::OffsetSum>(n.node_type) || Is<NodeType::Constant>(n.node_type))
                                 return 0.0f;
 
                             // only weighted nodes can be toggled off
@@ -232,7 +232,7 @@ public:
         std::transform(program.Tree.begin(), program.Tree.end(), weights.begin(),
                     [&](const auto& n){
                         // some nodetypes must always have a weight                            
-                        if (Is<NodeType::OffsetSum>(n.node_type))
+                        if (Is<NodeType::OffsetSum>(n.node_type) || Is<NodeType::Constant>(n.node_type))
                             return 0.0f;
                             
                         if (n.get_is_weighted()

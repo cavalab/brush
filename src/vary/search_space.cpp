@@ -144,16 +144,16 @@ vector<Node> generate_terminals(const Dataset& d, const bool weights_init)
     // constants for each type -- floats, integers, boolean. This is useful
     // to ensure the search space will always have something to fill up open spaces
     // when building/modifying trees
-    auto cXf = Node(NodeType::Constant, Signature<ArrayXf()>{}, true, "Constant");
+    auto cXf = Node(NodeType::Constant, Signature<ArrayXf()>{}, true, "constF");
     cXf.set_prob_change(signature_avg(cXf.ret_type));
     terminals.push_back(cXf);
     
     // Reminder: Integers are used to represent categorical variables
-    auto cXi = Node(NodeType::Constant, Signature<ArrayXi()>{}, true, "Constant");
+    auto cXi = Node(NodeType::Constant, Signature<ArrayXi()>{}, true, "constI");
     cXi.set_prob_change(signature_avg(cXi.ret_type));
     terminals.push_back(cXi);
 
-    auto cXb = Node(NodeType::Constant, Signature<ArrayXb()>{}, false, "Constant");
+    auto cXb = Node(NodeType::Constant, Signature<ArrayXb()>{}, false, "constB");
     cXb.set_prob_change(signature_avg(cXb.ret_type));
     terminals.push_back(cXb);
 

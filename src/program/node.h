@@ -197,7 +197,7 @@ struct Node {
         return std::hash<HashTuple>{}(HashTuple{
                 NodeTypes::GetIndex(node_type),
                 sig_hash,
-                is_weighted,
+                get_is_weighted(),
                 feature,
                 fixed,
                 int(W*100)
@@ -252,9 +252,14 @@ struct Node {
     inline void set_feature_type(DataType ft){ this->feature_type = ft; };
     inline DataType get_feature_type() const { return this->feature_type; };
 
-    inline bool get_is_weighted() const {return this->is_weighted;};
+    // Some types does not have weights, so we completely ignore the weights
+    // if is not weighable
+    inline bool get_is_weighted() const {
+        if (IsWeighable(this->ret_type)) 
+            return this->is_weighted;
+        return false;
+    };
     inline void set_is_weighted(bool is_weighted){
-        // cant change the weight of a boolean terminal
         if (IsWeighable(this->ret_type)) 
             this->is_weighted = is_weighted;
     };

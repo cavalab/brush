@@ -308,6 +308,36 @@ TEST(Engine, MaxStall)
 
     Brush::RegressorEngine est(params, ss);
     est.run(data);
+}
 
+// brute forcing errors with d_enc dataset. This is extremely slow, and I use
+// it to test very rare events.
+TEST(Engine, DEnc)
+{
+    Dataset data = Data::read_csv("./docs/examples/datasets/d_enc.csv", "label");
+    SearchSpace ss(data);
 
+    std::vector<std::string> bandits = {"dummy", "thompson", "dynamic_thompson"};
+    std::map<std::string, std::vector<std::map<std::string, std::string>>> results;
+
+    for (const auto& bandit : bandits) {
+        std::cout << "Running bandit: " << bandit << std::endl;
+        for (int run = 0; run < 50; ++run) {
+            Parameters params;
+            params.set_pop_size(100);
+            params.set_max_gens(50);
+            params.set_max_stall(100); // avoid early stopping
+            params.set_max_depth(10);
+            params.set_objectives({"scorer", "linear_complexity"});
+            params.set_bandit(bandit);
+            params.set_weights_init(false);
+            params.set_use_arch(false);
+            params.set_verbosity(1);
+
+            Brush::RegressorEngine est(params, ss);
+            est.fit(data);
+
+            std::cout << "model: " << est.best_ind.program.get_model() << std::endl;
+        }
+    }
 }

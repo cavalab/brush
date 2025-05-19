@@ -23,25 +23,59 @@ namespace util{
         // Prediction case: weight is stored in the node data.
         if (weights == nullptr)
         {
-            w = Scalar(tn.data.W);
+            if constexpr (std::is_floating_point_v<decltype(tn.data.W)> || std::is_integral_v<decltype(tn.data.W)>) {
+                if (std::isnan(tn.data.W) || tn.data.W == std::numeric_limits<decltype(tn.data.W)>::lowest()) {
+                    HANDLE_ERROR_THROW("TreeNode weight (W) is not set or is invalid for node: " + tn.data.name);
+                }
+            }
+
+            try //TODO: remove this try catch after debugging it
+            {
+                w = Scalar(tn.data.W);
+            }
+            catch (const std::exception& e) {
+                std::string err_msg = "Null pointer dereference: *weights is nullptr. "
+                                        "TreeNode ret_type: " + std::to_string(static_cast<int>(tn.data.ret_type)) +
+                                        ", name: " + tn.data.name;
+                std::cerr << "[EXCEPTION] get_weight: caught std::exception: " << e.what() << err_msg << std::endl;
+                throw;  // Re-throw to allow crash
+            } 
         }
         else
         {
-            // NLS case 1: floating point weight is stored in weights
-            if constexpr (is_same_v<Scalar, W>) 
-                w = **weights;
-            // NLS case 2: a Jet/Dual weight is stored in weights, but this constant is a 
-            // integer type. We need to do some casting
-            else if constexpr (is_same_v<Scalar, iJet> && is_same_v<W, fJet>) {
-                using WScalar = typename Scalar::Scalar;
-                WScalar tmp = WScalar((**weights).a);    
-                w = Scalar(tmp);
+            try //TODO: remove this try catch after debugging it
+            {
+                if (*weights == nullptr) {
+                    std::string err_msg = "Null pointer dereference: *weights is nullptr. "
+                                        "TreeNode ret_type: " + std::to_string(static_cast<int>(tn.data.ret_type)) +
+                                        ", name: " + tn.data.name;
+                    HANDLE_ERROR_THROW("Null pointer dereference: *weights is nullptr. " + err_msg);
+                }
+
+                // NLS case 1: floating point weight is stored in weights
+                if constexpr (is_same_v<Scalar, W>) 
+                    w = **weights;
+
+                // NLS case 2: a Jet/Dual weight is stored in weights, but this constant is a 
+                // integer type. We need to do some casting
+                else if constexpr (is_same_v<Scalar, iJet> && is_same_v<W, fJet>) {
+                    using WScalar = typename Scalar::Scalar;
+                    WScalar tmp = WScalar((**weights).a);    
+                    w = Scalar(tmp);
+                }
+                // NLS case 3: a Jet/Dual weight is stored in weights, matching Scalar type
+                else            
+                    w = Scalar(**weights);
+
+                *weights = *weights+1;
             }
-            // NLS case 3: a Jet/Dual weight is stored in weights, matching Scalar type
-            else            
-                w = Scalar(**weights);
-            *weights = *weights+1;
-            
+            catch (const std::exception& e) {
+                std::string err_msg = "Null pointer dereference: *weights is nullptr. "
+                                        "TreeNode ret_type: " + std::to_string(static_cast<int>(tn.data.ret_type)) +
+                                        ", name: " + tn.data.name;
+                std::cerr << "[EXCEPTION] get_weight: caught std::exception: " << e.what() << err_msg << std::endl;
+                throw;  // Re-throw to allow crash
+            }            
         }
         return w;
     };
@@ -60,6 +94,7 @@ namespace util{
             HANDLE_ERROR_THROW(fmt::format("boolean terminal is weighted, but "
             "it should not\n"));
 
+        // std::cout << "Returning weight: Scalar(true) for a boolean node tn " << tn.data.name << std::endl;
         return Scalar(true);
     };
 }
@@ -314,6 +349,12 @@ struct Operator<NodeType::Constant, S, Fit>
     { 
         // Scalar w = get_weight(tn, weights);
         Scalar w = util::get_weight<RetType,Scalar,W>(tn, weights);
+
+        if constexpr (Fit)
+        {
+            // there is no need to fit a constant node, get_weight will be called
+        }
+
         if constexpr (N == 1)
             return RetType::Constant(d.get_n_samples(), w); 
         else
