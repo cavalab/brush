@@ -34,11 +34,12 @@ public:
         // about the order of the rest of the elements.
         auto& storage_it = storage[storage_n][key];
 
-        if (storage_it.size()>0
-        &&  Tree.begin().node->get_size() < storage_it[0].begin().node->get_size())
-            storage_it.insert(storage_it.begin(), Tree);
-        else
-            storage_it.push_back(Tree);
+        // Insert Tree in order by size, smallest first
+        auto it = std::find_if(storage_it.begin(), storage_it.end(),
+            [&](const tree<Node>& t) {
+            return Tree.begin().node->get_size() < t.begin().node->get_size();
+            });
+        storage_it.insert(it, Tree);
     }
 
     vector<tree<Node>> getList(const int& storage_n, const size_t& key) {
@@ -292,9 +293,13 @@ class Inexact_simplifier
                 if (newCandidates.size() == 0)
                     continue;
 
-                if (newCandidates[0].begin().node->get_size() < spot_size){
-                        const tree<Node>& cand = newCandidates[0];
+                for (const auto& cand : newCandidates) {
+                    if (cand.begin().node->get_size() < spot_size) {
                         matches.push_back(cand);
+                    } else {
+                        // Since candidates are ordered by size, we can break early
+                        break;
+                    }
                 }
             }
 

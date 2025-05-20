@@ -228,21 +228,25 @@ void from_json(const json &j, Node& p)
     // First we start with required information, then we set the optional ones
     // (they can be inferred from the required ones)
 
+    if (j.contains("node_type"))
+        j.at("node_type").get_to(p.node_type);
+    else
+        HANDLE_ERROR_THROW("Node json must contain node_type");
+
     if (j.contains("name"))
         j.at("name").get_to(p.name);
     else        
         p.name = NodeTypeName[p.node_type];
 
-    if (j.contains("node_type"))
-        j.at("node_type").get_to(p.node_type);
-    else
-        HANDLE_ERROR_THROW("Node json must contain node_type");
+    if (j.contains("center_op"))
+        j.at("center_op").get_to(p.center_op);
 
     // used in split nodes
     if (j.contains("feature"))
     {
         j.at("feature").get_to(p.feature);
     }
+
     if (j.contains("feature_type"))
     {
         j.at("feature_type").get_to(p.feature_type);
@@ -270,7 +274,7 @@ void from_json(const json &j, Node& p)
         make_signature=true;
 
     if (make_signature){
-        // p.is_weighted = false; // TODO: remove this line
+        p.is_weighted = false; // TODO: remove this line
         init_node_with_default_signature(p);
     }
 
@@ -297,9 +301,6 @@ void from_json(const json &j, Node& p)
     {
         j.at("W").get_to(p.W);
     }
-
-    if (j.contains("center_op"))
-        j.at("center_op").get_to(p.center_op);
 
     json new_json = p;
 }

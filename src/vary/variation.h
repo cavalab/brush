@@ -151,7 +151,7 @@ public:
             }
         }
 
-        inexact_simplifier.init(256, data, 1);
+        inexact_simplifier.init(256, data, 3);
         for (const auto& entry : this->search_space.terminal_weights) {
             map<string, float> terminal_probs;
             for (int i = 0; i < entry.second.size(); i++)
@@ -313,13 +313,16 @@ public:
             // simplify constants first to avoid letting the lsh simplifier to visit redundant branches
 
             // we alternate simplification to run faster
+            // cout << "Original: " << ind.get_model() << endl;
             if (parameters.constants_simplification && even_gen)
             {
-                constants_simplifier.simplify_tree<T>(ind.program, search_space, data.get_training_data());            
+                constants_simplifier.simplify_tree<T>(ind.program, search_space, data.get_training_data());  
+                // cout << "const simp: " << ind.get_model() << endl;          
             }
             if (parameters.inexact_simplification && even_gen)
             {
                 inexact_simplifier.simplify_tree<T>(ind.program, search_space, data.get_training_data());
+                // cout << "inext simp: " << ind.get_model() << endl;          
             }
         
             evaluator.assign_fit(ind, data, parameters, false);
