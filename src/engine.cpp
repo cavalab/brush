@@ -549,7 +549,7 @@ void Engine<T>::run(Dataset &data)
 
                     // TODO: do I have to pass data as an argument here? or can I use the instance reference
                     variator.vary_and_update(this->pop, island, island_parents.at(island),
-                                             data, evaluator);
+                                             data, evaluator, generation%2 == 0);
 
                     if (data.use_batch) // assign the batch error as fitness (but fit was done with training data)
                         evaluator.update_fitness(this->pop, island, batch, params, false, false);

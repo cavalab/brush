@@ -151,8 +151,7 @@ public:
             }
         }
 
-        inexact_simplifier.initUniformPlanes(128, data.get_training_data().get_n_samples(), 1);
-        // TODO: init simplification with terminals (including booleans?)
+        inexact_simplifier.init(256, data, 1);
         for (const auto& entry : this->search_space.terminal_weights) {
             map<string, float> terminal_probs;
             for (int i = 0; i < entry.second.size(); i++)
@@ -163,7 +162,7 @@ public:
                     tree<Node> dummy_tree;
                     dummy_tree.insert(dummy_tree.begin(), node);
                     auto it = dummy_tree.begin();
-                    inexact_simplifier.index(it, data.get_training_data());
+                    inexact_simplifier.index<T>(it, data.get_training_data());
                 }
         }
     };
@@ -218,7 +217,7 @@ public:
      * @param parents The indices of the parent individuals.
      */
     void vary_and_update(Population<T>& pop, int island, const vector<size_t>& parents,
-                         const Dataset& data, Evaluation<T>& evaluator) {
+                         const Dataset& data, Evaluation<T>& evaluator, bool even_gen) {
 
         // TODO: move implementation to cpp file and keep only declarations here
         // TODO: rewrite this entire function to avoid repetition (this is a frankenstein)
@@ -313,11 +312,12 @@ public:
             // TODO: constants_simplifier should set the correct value for the constant (so we dont have to refit).
             // simplify constants first to avoid letting the lsh simplifier to visit redundant branches
 
-            if (parameters.constants_simplification)
+            // we alternate simplification to run faster
+            if (parameters.constants_simplification && even_gen)
             {
                 constants_simplifier.simplify_tree<T>(ind.program, search_space, data.get_training_data());            
             }
-            if (parameters.inexact_simplification)
+            if (parameters.inexact_simplification && even_gen)
             {
                 inexact_simplifier.simplify_tree<T>(ind.program, search_space, data.get_training_data());
             }

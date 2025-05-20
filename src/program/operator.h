@@ -327,9 +327,10 @@ struct Operator<NodeType::Terminal, S, Fit>
         if (std::holds_alternative<T>(d[feature]))
             return std::get<T>(d[feature]); 
 
-        HANDLE_ERROR_THROW(fmt::format("Failed to return type {} for '{}'\n",
-            DataTypeEnum<RetType>::value,
-            feature
+        HANDLE_ERROR_THROW(fmt::format("Failed to return type {} for '{}'. The feature's original ret type is {}.\n",
+            DataTypeEnum<T>::value,
+            feature,
+            DataTypeEnum<RetType>::value
         ));
 
         return T(); 

@@ -58,7 +58,7 @@ vector<Node> generate_terminals(const Dataset& d, const bool weights_init)
             [&](auto&& arg) {
                 using T = std::decay_t<decltype(arg)>;
                 using Scalar = typename T::Scalar;
-                constexpr bool weighted = std::is_same_v<Scalar, float>;
+                constexpr bool weighted = !std::is_same_v<Scalar, bool>;
                 // if constexpr (T::Scalar == float)
                 auto n = Node(
                     NodeType::Terminal, 

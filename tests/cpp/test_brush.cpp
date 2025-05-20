@@ -314,7 +314,9 @@ TEST(Engine, MaxStall)
 // it to test very rare events.
 TEST(Engine, DEnc)
 {
-    Dataset data = Data::read_csv("./docs/examples/datasets/d_enc.csv", "label");
+    // Dataset data = Data::read_csv("./docs/examples/datasets/d_enc.csv", "label");
+    Dataset data = Data::read_csv("./docs/examples/datasets/d_example_patients.csv", "target");
+
     SearchSpace ss(data);
 
     std::vector<std::string> bandits = {"dummy", "thompson", "dynamic_thompson"};
@@ -332,6 +334,10 @@ TEST(Engine, DEnc)
             params.set_bandit(bandit);
             params.set_weights_init(false);
             params.set_use_arch(false);
+            
+            // params.set_constants_simplification(false);
+            // params.set_inexact_simplification(false);
+
             params.set_verbosity(1);
 
             Brush::RegressorEngine est(params, ss);

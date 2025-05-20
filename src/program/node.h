@@ -85,26 +85,30 @@ struct Node {
 
     /// full name of the node, with types
     string name;
-    /// whether to center the operator in pretty printing
-    bool center_op;
-    /// chance of node being selected for variation
-    float prob_change; 
-    /// whether node is modifiable
-    bool fixed;
     /// @brief the node type
     NodeType node_type;
-    /// @brief a hash of the signature
-    std::size_t sig_hash;
-    /// @brief a hash of the dual of the signature (for NLS)
-    std::size_t sig_dual_hash;
+
     /// @brief return data type
     DataType ret_type;
     /// @brief argument data types
     std::vector<DataType> arg_types;
+    /// @brief a hash of the signature
+    std::size_t sig_hash;
+    /// @brief a hash of the dual of the signature (for NLS)
+    std::size_t sig_dual_hash;
+
+    /// whether node is modifiable
+    bool fixed;
     /// @brief whether this node is weighted
     bool is_weighted;
+    /// chance of node being selected for variation
+    float prob_change; 
     /// @brief the weights of the node. also used for splitting thresholds.
     float W; 
+    
+    /// whether to center the operator in pretty printing
+    bool center_op; // TODO: use center_op in printing
+    
     // /// @brief a node hash / unique ID for the node, except weights
     // size_t node_hash; 
     /// @brief tuple type for hashing
@@ -163,10 +167,7 @@ struct Node {
 
         // TODO: confirm that this is really necessary (intializing this variable) and transform this line into a ternary if so
         // cant weight an boolean terminal
-        if (!IsWeighable(this->ret_type)) 
-            this->is_weighted = false;
-        else
-            this->is_weighted = true;
+        this->is_weighted = IsWeighable(this->ret_type);
     }
 
     /// @brief gets a string version of the node for printing.
@@ -289,7 +290,9 @@ inline auto IsCommutative(NodeType nt) noexcept -> bool {
     return Is<NodeType::Add,
               NodeType::Mul,
               NodeType::Min,
-              NodeType::Max
+              NodeType::Max,
+              NodeType::And, 
+              NodeType::Or
               >(nt); 
 }
 
@@ -342,8 +345,6 @@ inline auto IsWeighable(NodeType nt) noexcept -> bool {
 
 ostream& operator<<(ostream& os, const Node& n);
 ostream& operator<<(ostream& os, const NodeType& nt);
-
-
 
 void from_json(const json &j, Node& p);
 void to_json(json& j, const Node& p);
