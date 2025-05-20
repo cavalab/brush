@@ -212,15 +212,15 @@ void init_node_with_default_signature(Node& node)
             " Please provide them.\n",n);
         HANDLE_ERROR_THROW(msg);
     }
-    // else if (Is<
-    //     NT::SplitOn
-    //     >(n))
-    // {
-    //     node.set_signature<Signature<ArrayXf(ArrayXb,ArrayXf,ArrayXf)>>();
-    // }
-    // else{
-    //     node.set_signature<Signature<ArrayXf()>>();
-    // }
+    else if (Is<
+        NT::SplitOn
+        >(n))
+    {
+        node.set_signature<Signature<ArrayXf(ArrayXb,ArrayXf,ArrayXf)>>();
+    }
+    else{
+        node.set_signature<Signature<ArrayXf()>>();
+    }
 }
 
 void from_json(const json &j, Node& p)

@@ -292,15 +292,16 @@ class Inexact_simplifier
 
                 if (newCandidates.size() == 0)
                     continue;
-
-                for (const auto& cand : newCandidates) {
-                    if (cand.begin().node->get_size() < spot_size) {
-                        matches.push_back(cand);
-                    } else {
-                        // Since candidates are ordered by size, we can break early
-                        break;
+                    int count = 0;
+                    for (const auto& cand : newCandidates) {
+                        if (cand.begin().node->get_size() < spot_size) {
+                            matches.push_back(cand);
+                            if (++count >= 10) break; // returning only top 10
+                        } else {
+                            // Since candidates are ordered by size, we can break early
+                            break;
+                        }
                     }
-                }
             }
 
             if (matches.size() > 0)
