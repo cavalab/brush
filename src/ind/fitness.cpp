@@ -36,9 +36,9 @@ void from_json(const json &j, Fitness& f)
     j.at("loss").get_to( f.loss );
     j.at("loss_v").get_to( f.loss_v );
     j.at("complexity").get_to( f.complexity );
+    j.at("linear_complexity").get_to( f.linear_complexity );
     j.at("size").get_to( f.size );
     j.at("depth").get_to( f.depth );
-    j.at("linear_complexity").get_to( f.linear_complexity );
     j.at("prev_loss").get_to( f.prev_loss );
     j.at("prev_loss_v").get_to( f.prev_loss_v );
     j.at("prev_complexity").get_to( f.prev_complexity );
