@@ -261,7 +261,7 @@ public:
             else
             {
                 choice = this->variation_bandit.choose();
-                // cout << choice << endl;
+                
                 if (choice.compare("cx") == 0)
                 {
                     // const Individual<T>& dad = pop[
@@ -286,7 +286,7 @@ public:
                     ind.variation = "born";
                     // ind.init(search_space, parameters); // ind.variation is born by default
                 }
-                // cout << "finish generating new ind" << endl;
+                
             }
             
             // ind.set_objectives(mom.get_objectives()); // it will have an invalid fitness
@@ -300,32 +300,34 @@ public:
             ind.fitness.set_linear_complexity(mom.fitness.get_linear_complexity());
             ind.fitness.set_depth(mom.fitness.get_depth());
 
-            // cout << "finish setting fitness" << endl;
+            
             assert(ind.program.size() > 0);
             assert(ind.fitness.valid() == false);
 
             ind.program.fit(data.get_training_data());
 
-            // cout << "finish fitting" << endl;
+            
 
             // simplify before calculating fitness (order matters, as they are not refitted and constants simplifier does not replace with the right value.)
             // TODO: constants_simplifier should set the correct value for the constant (so we dont have to refit).
             // simplify constants first to avoid letting the lsh simplifier to visit redundant branches
 
             // we alternate simplification to run faster
-            // cout << "Original: " << ind.get_model() << endl;
+            
+            
             if (parameters.constants_simplification && even_gen)
             {
                 constants_simplifier.simplify_tree<T>(ind.program, search_space, data.get_training_data());  
-                // cout << "const simp: " << ind.get_model() << endl;          
+                
             }
             if (parameters.inexact_simplification && even_gen)
             {
                 inexact_simplifier.simplify_tree<T>(ind.program, search_space, data.get_training_data());
-                // cout << "inext simp: " << ind.get_model() << endl;          
+                
             }
         
             evaluator.assign_fit(ind, data, parameters, false);
+            
 
             // vector<float> deltas(ind.get_objectives().size(), 0.0f);
             vector<float> deltas;

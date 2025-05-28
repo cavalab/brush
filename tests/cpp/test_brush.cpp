@@ -324,7 +324,7 @@ TEST(Engine, engine_save_load_pop_works)
 
     SearchSpace ss(data);
 
-    auto f = {
+    std::unordered_map<string, float> f = {
         {"SplitBest", 1.0},
         {"Add", 1.0},
         {"Mul", 1.0},

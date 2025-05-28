@@ -82,21 +82,21 @@ class Inexact_simplifier
                                     const SearchSpace &ss, const Dataset &d)
         {
             // using RetType =
-            //     typename std::conditional_t<P == PT::Regressor, ArrayXf,
-            //                 std::conditional_t<P == PT::Representer, ArrayXXf, ArrayXf
+            //     typename // std::conditional_t<P == PT::Regressor, ArrayXf,
+            //                 // std::conditional_t<P == PT::Representer, ArrayXXf, ArrayXf
             //     >>;
-            // std::cout << "[DEBUG] inside simplify" << std::endl;
+            
 
             Program<P> simplified_program(program);
-            // std::cout << "[DEBUG] created copy" << std::endl;
+            
 
             // prediction at the root already performs template cast and always returns a float
             auto original_predictions = simplified_program.predict(d);
-            // std::cout << "[DEBUG] initial predict" << std::endl;
+            
 
             // iterate over the tree, trying to replace each node with a constant, and keeping the change if the pred does not change.
-            TreeIter spot = simplified_program.Tree.end();
-            while(spot != simplified_program.Tree.begin())
+            TreeIter spot = simplified_program.Tree.begin_post();
+            while(spot != simplified_program.Tree.end_post())
             {
                 // we dont index or simplify fixed stuff.
                 // non-wheightable nodes are not simplified. TODO: revisit this and see if they should (then implement it)
@@ -114,7 +114,7 @@ class Inexact_simplifier
                     if (Isnt<NodeType::Constant, NodeType::MeanLabel, NodeType::Terminal>(spot.node->data.node_type)){
 
                         // res will return the closest within the threshold, so we dont have to check distance here
-                        // std::cout << "[DEBUG] Querying replacements..." << std::endl;
+                        
                         auto res = query<P>(spot, d); // optional<pair<int, size_T>>
 
                         if (res){
@@ -122,37 +122,53 @@ class Inexact_simplifier
                             // we know they will be smaller because query only returns smaller trees. We also include
                             // the current node in the list of candidates so the model does not get worse.
                             
-                            for (const auto& cand : res.value()) {
-                                // std::cout << "[DEBUG] Trying candidate for simplification..." << std::endl;
-                                const tree<Node> original_branch(spot);
+                            float threshold = 1e-6;
 
+                            float best_distance = threshold;
+                            tree<Node> best_branch;
+                            for (const auto& cand : res.value()) {
+                                
+                                const tree<Node> original_branch(spot);
                                 const tree<Node> simplified_branch(cand);
+
+                                // auto original_predictions = simplified_program.predict(d);
+                                // auto spot_pred = spot.node->template predict<spot.node->data.ret_type>(d);
+                                // using RetType = decltype(spot_pred);
+
                                 simplified_program.Tree.erase_children(spot);
 
-                                // std::cout << "[DEBUG] Moved candidate onto spot, predicting..." << std::endl;
+                                
                                 spot = simplified_program.Tree.move_ontop(spot, simplified_branch.begin());
                                 
                                 auto new_predictions = simplified_program.predict(d);
 
-                                float diff = (original_predictions - new_predictions).square().mean();
-                                // std::cout << "[DEBUG] Prediction diff: " << diff << std::endl;
+                                float diff = (original_predictions.template cast<float>() - new_predictions.template cast<float>()).square().mean();
+                                
+                                
+                                if (diff < best_distance) {
+                                    
+                                    best_distance = diff;
+                                    best_branch = cand;
+                                }
 
-                                if (diff > 1e-6){
-                                    // std::cout << "[DEBUG] Diff too large, rolling back..." << std::endl;
-                                    // rollback
-                                    simplified_program.Tree.erase_children(spot);
-                                    spot = simplified_program.Tree.move_ontop(spot, original_branch.begin());
-                                }
-                                else {
-                                    // std::cout << "[DEBUG] Simplification accepted." << std::endl;
-                                    // we have changed the tree, so we need to update the predictions
-                                    original_predictions = new_predictions;
-                                }
+                                // rollback
+                                simplified_program.Tree.erase_children(spot);
+                                spot = simplified_program.Tree.move_ontop(spot, original_branch.begin());
+                            }
+                            if (best_distance < threshold) {
+
+                                // cout << "replacing " << spot.node->get_model();
+                                simplified_program.Tree.erase_children(spot);
+
+                                const tree<Node> best_branch_copy(best_branch);
+                                // cout << " with " << best_branch_copy.begin().node->get_model() << endl;
+                                
+                                spot = simplified_program.Tree.move_ontop(spot, best_branch_copy.begin());
                             }
                         }
                     }
                 }
-                --spot;
+                ++spot;
             }    
             program.Tree = simplified_program.Tree;
 
@@ -172,23 +188,36 @@ class Inexact_simplifier
             // cout << tree_copy.begin().node->get_model(true) 
             //     << " with datatype " << static_cast<int>(tree_copy.begin().node->data.ret_type) << endl;
             
-            // std::cout << "[DEBUG] Entering index()" << std::endl;
+            
             auto hashes = hash<P>(spot, d);
-            // std::cout << "[DEBUG] After hash()" << std::endl;
+            
             
             for (size_t i = 0; i < hashes.size(); ++i)
             {
-                // std::cout << "[DEBUG] In index() loop" << std::endl;
+                
                 // hash() will clip the prediction to the inputDim, but here we store the full
                 // predictions so we can calculate the distance to the query point later in query()
                 equivalentExpressions[spot.node->data.ret_type].append(i, hashes[i], tree_copy);
-                // std::cout << "[DEBUG] After append()" << std::endl;
+                
             }
-            // std::cout << "[DEBUG] Exiting index()" << std::endl;
+            
         }
 
     private:
         int inputDim = 1;
+
+        // template<DataType D>
+        // float compare_predictions_at_node(TreeIter spot,
+        //                                 const tree<Node>& replacement_branch,
+        //                                 const Dataset& d)
+        // {
+        //     using RetType = typename DataEnumType<D>::type;
+
+        //     auto original_pred = spot.node->predict<RetType>(d, nullptr);
+        //     auto replacement_pred = replacement_branch.begin().node->predict<RetType>(d, nullptr);
+
+        //     return (original_pred.array() - replacement_pred.array()).square().mean();
+        // }
 
         template<ProgramType P>
         vector<size_t> hash(TreeIter& spot, const Dataset &d)
@@ -204,53 +233,53 @@ class Inexact_simplifier
             // but we will store the hash only on the corresponding storage instance
             ArrayXf floatClippedInput;
             
-            // std::cout << "[DEBUG] Entering hash()" << std::endl;
+            
 
             if constexpr (P == PT::Representer) {
-                // std::cout << "[DEBUG] ProgramType is Representer." << std::endl;
+                
                 ArrayXXf inputPoint = (*spot.node).template predict<ArrayXXf>(d);
-                // std::cout << "[DEBUG] After predict<ArrayXXf>" << std::endl;
+                
                 floatClippedInput = Eigen::Map<ArrayXf>(inputPoint.data(), inputPoint.size()).head(inputDim).template cast<float>();
-                // std::cout << "[DEBUG] After mapping and casting ArrayXXf" << std::endl;
+                
             } else {
-                // std::cout << "[DEBUG] ProgramType is not Representer." << std::endl;
+                
                 if (spot.node->data.ret_type == DataType::ArrayB) {
-                    // std::cout << "[DEBUG] ret_type is ArrayB." << std::endl;
+                    
                     ArrayXb inputPointB = (*spot.node).template predict<ArrayXb>(d);
-                    // std::cout << "[DEBUG] After predict<ArrayXb>" << std::endl;
+                    
                     floatClippedInput = inputPointB.template cast<float>();
-                    // std::cout << "[DEBUG] After casting ArrayXb" << std::endl;
+                    
                 }
                 else if (spot.node->data.ret_type == DataType::ArrayI) {
-                    // std::cout << "[DEBUG] ret_type is ArrayI." << std::endl;
+                    
                     ArrayXi inputPointI = (*spot.node).template predict<ArrayXi>(d);
-                    // std::cout << "[DEBUG] After predict<ArrayXi>" << std::endl;
+                    
                     floatClippedInput = inputPointI.template cast<float>();
-                    // std::cout << "[DEBUG] After casting ArrayXi" << std::endl;
+                    
                 }
                 else {
-                    // std::cout << "[DEBUG] ret_type is default (ArrayXf)." << std::endl;
+                    
                     floatClippedInput = (*spot.node).template predict<ArrayXf>(d);
-                    // std::cout << "[DEBUG] After predict<ArrayXf>" << std::endl;
+                    
                 }
             }
-            // std::cout << "[DEBUG] After preparing floatClippedInput" << std::endl;
             
-            // std::cout << "[DEBUG] Starting hash computation..." << std::endl;
+            
+            
 
             assert(floatClippedInput.size() >= inputDim && 
                 "data must have at least inputDim elements");
 
-            // std::cout << "[DEBUG] After assert, preparing input..." << std::endl;
+            
 
             floatClippedInput = floatClippedInput.head(inputDim);
 
-            // std::cout << "[DEBUG] Prepared floatClippedInput, entering hash loop..." << std::endl;
+            
 
             vector<size_t> hashes;
             for (size_t planeIdx = 0; planeIdx < uniformPlanes.size(); ++planeIdx)
             {
-                // std::cout << "[DEBUG] In hash loop..." << std::endl;
+                
                 // TODO: handle nan predictions?
 
                 const auto& plane = uniformPlanes[planeIdx];
@@ -262,9 +291,9 @@ class Inexact_simplifier
                     input_hash <<= 1;
                     input_hash |= comparison(i) ? 1 : 0;
                 }
-                // std::cout << "[DEBUG] Hash for plane " << planeIdx << ": " << input_hash << endl;
+                
                 hashes.push_back(input_hash);
-                // std::cout << "[DEBUG] pushing..." << endl;
+                
                 
             }
 
