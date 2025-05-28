@@ -151,7 +151,7 @@ public:
             }
         }
 
-        inexact_simplifier.init(256, data, 3);
+        inexact_simplifier.init(256, data, 1);
         for (const auto& entry : this->search_space.terminal_weights) {
             map<string, float> terminal_probs;
             for (int i = 0; i < entry.second.size(); i++)

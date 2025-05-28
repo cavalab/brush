@@ -95,8 +95,8 @@ class Inexact_simplifier
             // std::cout << "[DEBUG] initial predict" << std::endl;
 
             // iterate over the tree, trying to replace each node with a constant, and keeping the change if the pred does not change.
-            TreeIter spot = simplified_program.Tree.begin();
-            while(spot != simplified_program.Tree.end())
+            TreeIter spot = simplified_program.Tree.end();
+            while(spot != simplified_program.Tree.begin())
             {
                 // we dont index or simplify fixed stuff.
                 // non-wheightable nodes are not simplified. TODO: revisit this and see if they should (then implement it)
@@ -105,7 +105,7 @@ class Inexact_simplifier
                 // &&  IsWeighable(spot.node->data.ret_type) && IsWeighable(spot.node->data.node_type)
                 ) {
                     // indexing only small subtrees
-                    if (simplified_program.size_at(spot, true) <= 10
+                    if (simplified_program.size_at(spot, true) <= 15
                     &&  Isnt<NodeType::Constant, NodeType::MeanLabel, NodeType::Terminal>(spot.node->data.node_type)) {
                         index<P>(spot, d);
                     }
@@ -137,7 +137,7 @@ class Inexact_simplifier
                                 float diff = (original_predictions - new_predictions).square().mean();
                                 // std::cout << "[DEBUG] Prediction diff: " << diff << std::endl;
 
-                                if (diff > 1e-4){
+                                if (diff > 1e-6){
                                     // std::cout << "[DEBUG] Diff too large, rolling back..." << std::endl;
                                     // rollback
                                     simplified_program.Tree.erase_children(spot);
@@ -152,7 +152,7 @@ class Inexact_simplifier
                         }
                     }
                 }
-                ++spot;
+                --spot;
             }    
             program.Tree = simplified_program.Tree;
 
