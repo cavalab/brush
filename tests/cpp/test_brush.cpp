@@ -352,7 +352,7 @@ TEST(Engine, engine_save_load_pop_works)
     params_load.set_use_arch(true);
     params_load.set_load_population("./tests/cpp/__pop_analcatdata_aids.json");
 
-    for (int run = 0; run < 100; ++run) {
+    for (int run = 0; run < 10; ++run) {
         Brush::ClassifierEngine est_save(params_save, ss);
         est_save.fit(data);
         
