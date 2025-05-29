@@ -160,30 +160,23 @@ void Population<T>::add_offspring_indexes(int island)
 template<ProgramType T>
 void Population<T>::update(vector<vector<size_t>> survivors)
 {
-    // cout << "[Population::update] Starting update with " 
-    //           << survivors.at(0).size() << " individuals.\n";
 
     // this is the step that should end up cutting off half of the population
     vector<Individual<T>> new_pop;
     new_pop.resize(0);
     for (int k=0; k<survivors.at(0).size(); ++k){
-        // cout << "    - Adding survivor idx " << survivors.at(0).at(k) << endl;
         new_pop.push_back( *individuals.at(survivors.at(0).at(k)) );
     }
 
+    assert(new_pop.size() == individuals.size() && " migration ended up with a different popsize");
+
     for (int j=0; j<num_islands; ++j)
     {
-        // cout << "  Processing island " << j << endl;
 
         // need to make island point to original range
         size_t idx_start = std::floor(j*pop_size/num_islands);
         size_t idx_end   = std::floor((j+1)*pop_size/num_islands);
         auto delta = idx_end - idx_start;
-
-        // cout << "  Island " << j << " index range [" << idx_start << ", " << idx_end << ") -> delta = " << delta << endl;
-
-        // assert(delta == survivors.at(0).size()
-        //    && " migration ended up with a different popsize");
 
         // inserting indexes of the offspring
         island_indexes.at(j).clear();

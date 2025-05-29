@@ -19,6 +19,9 @@ string TreeNode::get_model(bool pretty) const
 
 string TreeNode::get_tree_model(bool pretty, string offset) const 
 { 
+    // TODO: pretty is not being used. either drop it or improve the function.
+    // offset seems to be for internal usage. TODO: check that, and write it in the docs
+
     if (data.get_arg_count()==0)
         return data.get_name();
 
@@ -37,13 +40,13 @@ string TreeNode::get_tree_model(bool pretty, string offset) const
         if (sib != nullptr)
             child_outputs += "\n";
     }
-    
     if (Is<NodeType::SplitBest>(data.node_type)){
-        if (data.get_feature_type() == DataType::ArrayB)
+        if (data.get_feature_type() != DataType::ArrayB) {
+            return fmt::format("If({}>{:.2f})", data.get_feature(), data.W) + child_outputs;
+        }
+        else {
             return fmt::format("If({})", data.get_feature()) + child_outputs;
-
-        return fmt::format("If({}>{:.2f})", data.get_feature(), data.W) +
-               child_outputs;
+        }
     }
     else if (Is<NodeType::SplitOn>(data.node_type)){
         if (data.arg_types.at(0) == DataType::ArrayB)
@@ -51,8 +54,10 @@ string TreeNode::get_tree_model(bool pretty, string offset) const
             // booleans dont use thresholds (they are used directly as mask in split)
             return "If" + child_outputs;
         }
-        // integers or floating points (they have a threshold)
-        return fmt::format("If(>{:.2f})", data.W) + child_outputs;
+        else {
+            // integers or floating points (they have a threshold)
+            return fmt::format("If(>{:.2f})", data.W) + child_outputs;
+        }
     }
     else{
         return data.get_name() + child_outputs;

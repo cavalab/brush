@@ -4,13 +4,9 @@
 
 // TODO: figure out why do I need to include the whole thing (otherwise it gives me symbol errors)
 #include "../bandit/bandit.h"
-#include "../bandit/bandit.cpp"
 #include "../bandit/bandit_operator.h"
-#include "../bandit/bandit_operator.cpp"
 #include "../bandit/dummy.h"
-#include "../bandit/dummy.cpp"
 #include "../bandit/thompson.h"
-#include "../bandit/thompson.cpp"
 
 #include "../ind/individual.h"
 #include "../ind/individual.cpp"

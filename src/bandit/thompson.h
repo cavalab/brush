@@ -16,23 +16,22 @@
 namespace Brush {
 namespace MAB {
 
-template <typename T> // TODO: make templates to have a requirement on T (so compilation is faster)
-class ThompsonSamplingBandit : public BanditOperator<T>
+class ThompsonSamplingBandit : public BanditOperator
 {
 public:
-    ThompsonSamplingBandit(vector<T> arms, bool dynamic=false);
-    ThompsonSamplingBandit(map<T, float> arms_probs, bool dynamic=false);
+    ThompsonSamplingBandit(vector<string> arms, bool dynamic=false);
+    ThompsonSamplingBandit(map<string, float> arms_probs, bool dynamic=false);
     ~ThompsonSamplingBandit(){};
 
-    std::map<T, float> sample_probs(bool update);
-    T choose(const VectorXf& context);
-    void update(T arm, float reward, VectorXf& context);
+    std::map<string, float> sample_probs(bool update);
+    string choose();
+    void update(string arm, float reward);
 private:
     bool dynamic_update;
     float C = 250;
 
-    std::map<T, float> alphas;
-    std::map<T, float> betas;
+    std::map<string, float> alphas;
+    std::map<string, float> betas;
 };
 
 } // MAB

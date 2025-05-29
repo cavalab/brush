@@ -10,17 +10,16 @@ namespace MAB {
 
 // TODO: rename dummy to static or fixed
 
-template <typename T>
-class DummyBandit : public BanditOperator<T>
+class DummyBandit : public BanditOperator
 {
 public:
-    DummyBandit(vector<T> arms)           : BanditOperator<T>(arms) {};
-    DummyBandit(map<T, float> arms_probs) : BanditOperator<T>(arms_probs) {};
+    DummyBandit(vector<string> arms)      : BanditOperator(arms) {};
+    DummyBandit(map<string, float> arms_probs) : BanditOperator(arms_probs) {};
     ~DummyBandit(){};
 
-    std::map<T, float> sample_probs(bool update);
-    T choose(const VectorXf& context);
-    void update(T arm, float reward, VectorXf& context);
+    std::map<string, float> sample_probs(bool update);
+    string choose();
+    void update(string arm, float reward);
 
 private:
     // additional stuff should come here

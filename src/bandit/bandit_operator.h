@@ -18,7 +18,6 @@ namespace MAB {
  * 
  * @tparam T The type of the arms.
  */
-template<typename T>
 class BanditOperator
 {
     using Iter = tree<Node>::pre_order_iterator;
@@ -28,14 +27,14 @@ public:
      * 
      * @param arms The vector of arms.
      */
-    BanditOperator(vector<T> arms);
+    BanditOperator(vector<string> arms);
     
     /**
      * @brief Constructs a BanditOperator object with a map of arms and their probabilities.
      * 
      * @param arms_probs The map of arms and their probabilities.
      */
-    BanditOperator(map<T, float> arms_probs);
+    BanditOperator(map<string, float> arms_probs);
     
     ~BanditOperator() {};
 
@@ -45,7 +44,7 @@ public:
      * @param update A boolean indicating whether to update the probabilities.
      * @return A map of arms and their probabilities.
      */
-    virtual std::map<T, float> sample_probs(bool update);
+    virtual std::map<string, float> sample_probs(bool update);
 
     /**
      * @brief Chooses an arm based on the given tree and fitness. Should call sample_probs internally.
@@ -54,7 +53,7 @@ public:
      * @param f The fitness value used to influence the choice.
      * @return The arm with highest probability.
      */
-    virtual T choose(const VectorXf& context);
+    virtual string choose();
 
     /**
      * @brief Updates the reward for a specific arm.
@@ -62,9 +61,9 @@ public:
      * @param arm The arm for which to update the reward.
      * @param reward The reward value.
      */
-    virtual void update(T arm, float reward, VectorXf& context);
+    virtual void update(string arm, float reward);
 protected:    
-    std::map<T, float> probabilities;
+    std::map<string, float> probabilities;
 };
 
 } // MAB

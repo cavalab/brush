@@ -3,29 +3,26 @@
 namespace Brush {
 namespace MAB {
 
-template<typename T>
-BanditOperator<T>::BanditOperator(vector<T> arms)
+BanditOperator::BanditOperator(vector<string> arms)
 {
     // Initialize the map with the keys and uniform distributed values
     float uniform_prob = 1.0 / arms.size();
 
-    this->probabilities = std::map<T, float>();
-    for (const T& arm : arms) {
+    this->probabilities = std::map<string, float>();
+    for (const string& arm : arms) {
         this->probabilities[arm] = uniform_prob;
     }
 }
 
-template<typename T>
-BanditOperator<T>::BanditOperator(map<T, float> arms_probs)
+BanditOperator::BanditOperator(map<string, float> arms_probs)
 {
-    this->probabilities = std::map<T, float>();
+    this->probabilities = std::map<string, float>();
     for (const auto& arm_prob : arms_probs) {
         this->probabilities[arm_prob.first] = arm_prob.second;
     }
 }
 
-template<typename T>
-std::map<T, float> BanditOperator<T>::sample_probs(bool update)
+std::map<string, float> BanditOperator::sample_probs(bool update)
 {
     // TODO: Implement the logic for sampling probabilities
     // based on the bandit operator's strategy
@@ -37,8 +34,7 @@ std::map<T, float> BanditOperator<T>::sample_probs(bool update)
     return this->probabilities;
 }
 
-template<typename T>
-T BanditOperator<T>::choose(const VectorXf& context)
+string BanditOperator::choose()
 {
     // TODO: Implement the logic for sampling probabilities
     // based on the bandit operator's strategy
@@ -50,8 +46,7 @@ T BanditOperator<T>::choose(const VectorXf& context)
 }
 
 
-template<typename T>
-void BanditOperator<T>::update(T arm, float reward, VectorXf& context)
+void BanditOperator::update(string arm, float reward)
 {
     // TODO: Implement the logic for updating the bandit operator's internal state
     // based on the received rewards

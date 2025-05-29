@@ -4,15 +4,9 @@
 #include "../pop/population.cpp"
 
 #include "../bandit/bandit.h"
-#include "../bandit/bandit.cpp"
 #include "../bandit/bandit_operator.h"
-#include "../bandit/bandit_operator.cpp"
 #include "../bandit/dummy.h"
-#include "../bandit/dummy.cpp"
 #include "../bandit/thompson.h"
-#include "../bandit/thompson.cpp"
-#include "../bandit/linear_thompson.h"
-#include "../bandit/linear_thompson.cpp"
 #include "../ind/individual.h"
 #include "../ind/individual.cpp"
 

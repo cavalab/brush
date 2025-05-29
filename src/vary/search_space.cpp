@@ -58,7 +58,7 @@ vector<Node> generate_terminals(const Dataset& d, const bool weights_init)
             [&](auto&& arg) {
                 using T = std::decay_t<decltype(arg)>;
                 using Scalar = typename T::Scalar;
-                constexpr bool weighted = std::is_same_v<Scalar, float>;
+                constexpr bool weighted = !std::is_same_v<Scalar, bool>;
                 // if constexpr (T::Scalar == float)
                 auto n = Node(
                     NodeType::Terminal, 
@@ -144,16 +144,16 @@ vector<Node> generate_terminals(const Dataset& d, const bool weights_init)
     // constants for each type -- floats, integers, boolean. This is useful
     // to ensure the search space will always have something to fill up open spaces
     // when building/modifying trees
-    auto cXf = Node(NodeType::Constant, Signature<ArrayXf()>{}, true, "Constant");
+    auto cXf = Node(NodeType::Constant, Signature<ArrayXf()>{}, true, "constF");
     cXf.set_prob_change(signature_avg(cXf.ret_type));
     terminals.push_back(cXf);
     
     // Reminder: Integers are used to represent categorical variables
-    auto cXi = Node(NodeType::Constant, Signature<ArrayXi()>{}, true, "Constant");
+    auto cXi = Node(NodeType::Constant, Signature<ArrayXi()>{}, true, "constI");
     cXi.set_prob_change(signature_avg(cXi.ret_type));
     terminals.push_back(cXi);
 
-    auto cXb = Node(NodeType::Constant, Signature<ArrayXb()>{}, false, "Constant");
+    auto cXb = Node(NodeType::Constant, Signature<ArrayXb()>{}, false, "constB");
     cXb.set_prob_change(signature_avg(cXb.ret_type));
     terminals.push_back(cXb);
 
@@ -362,6 +362,8 @@ tree<Node>& SearchSpace::PTC2(tree<Node>& Tree,
             if (!opt)
                 opt = sample_terminal(t, true);
 
+            assert (opt && "PTC2: failed to sample terminal to fill in empty leaves due to max depth or size");
+
             // If we successfully get a terminal, use it
             n = opt.value();
 
@@ -430,6 +432,8 @@ tree<Node>& SearchSpace::PTC2(tree<Node>& Tree,
 
         if (!opt)
             opt = sample_terminal(t, true);
+            
+        assert (opt && "PTC2: failed to sample terminal to fill remaining spots in queue");
 
         n = opt.value();
         

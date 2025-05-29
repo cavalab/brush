@@ -232,6 +232,29 @@ class Dataset
         float get_batch_size();
         void set_batch_size(float new_size);
 
+        DataType get_feature_type(const string& name) const
+        {
+            DataType feature_type = DataType::ArrayF;
+
+            bool has_feature = false;
+            for (auto& [ftype, names] : features_of_type){
+                auto it = std::find_if(names.begin(), names.end(),
+                    [&](const auto& name){ return name == name; });
+
+                if (it != names.end())
+                {
+                    feature_type = ftype;
+                    has_feature = true;
+                    break;
+                }
+            }
+
+            if (!has_feature)
+                HANDLE_ERROR_THROW(fmt::format("Couldn't find feature {} in data\n",name));
+
+            return feature_type;
+        };
+
         std::array<Dataset, 2> split(const ArrayXb& mask) const;
 
         State operator[](std::string name) const 

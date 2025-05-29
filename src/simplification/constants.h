@@ -64,7 +64,7 @@ namespace Brush { namespace Simpl{
                             HANDLE_ERROR_THROW("No predict available for the class.");
                         }
 
-                        if (variance(branch_pred) < 1e-4) // TODO: calculate threshold based on data
+                        if (variance(branch_pred) < 1e-6) // TODO: calculate threshold based on data
                         {
                             // get constant equivalent to its argtype (all data types should have
                             // a constant defined in the search space for its given type). It will be

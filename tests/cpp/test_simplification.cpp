@@ -108,7 +108,7 @@ TEST(Simplification, InexactSimplification)
 
     // This one requires initialization.
     // TODO: cut-off at 100 samples and use default values?
-    inexact_simplifier.initUniformPlanes(16, data.get_training_data().get_n_samples(), 1);
+    inexact_simplifier.init(16, data, 1);
 
     inexact_simplifier.simplify_tree(PRG2, SS, data.get_training_data());
 

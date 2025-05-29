@@ -174,6 +174,7 @@ public: // TODO: make these private (and work with nlohman json)
 template<ProgramType T>
 void to_json(json &j, const Individual<T> &p)
 {
+    // error and sampled nodes are not being serialized
     j = json{
         {"program", p.program},
         {"fitness", p.fitness},
@@ -181,7 +182,7 @@ void to_json(json &j, const Individual<T> &p)
         {"parent_id", p.parent_id},
         {"objectives", p.objectives},
         {"is_fitted_", p.is_fitted_},
-        {"variation", p.variation}\
+        {"variation", p.variation}
     }; 
 }
 
@@ -194,7 +195,7 @@ void from_json(const json &j, Individual<T>& p)
     j.at("parent_id").get_to( p.parent_id );
     j.at("objectives").get_to( p.objectives );
     j.at("is_fitted_").get_to( p.is_fitted_ );
-    j.at("variation").get_to( p.variation );\
+    j.at("variation").get_to( p.variation );
 }
 } // Pop
 } // Brush

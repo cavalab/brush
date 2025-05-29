@@ -247,6 +247,12 @@ class EstimatorInterface():
             params.set_class_weights(y)
             params.set_sample_weights(y)
 
+        for obj in self.objectives:
+            if obj not in ['scorer', 'size', 'complexity', 'linear_complexity', 'depth']:
+                raise ValueError(f"Invalid objective {obj}. "
+                                 "Valid objectives are: 'scorer', 'size', "
+                                 "'complexity', 'linear_complexity', and 'depth'.")
+                          
         params.objectives = self.objectives
         params.n_jobs = self.n_jobs
 
@@ -308,7 +314,7 @@ class EstimatorInterface():
                     "Invalid scorer for the classification mode"
                 
         params.scorer = self.scorer
-
+       
         if self.random_state is not None:
             seed = 0
             if isinstance(self.random_state, np.random.Generator):
