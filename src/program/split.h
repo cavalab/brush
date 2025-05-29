@@ -194,7 +194,7 @@ struct Operator<NT, S, Fit, enable_if_t<is_in_v<NT, NodeType::SplitOn, NodeType:
     static constexpr size_t ArgCount = S::ArgCount;
     // get arg types from tuple by index
     template <std::size_t N>
-    using NthType = typename S::NthType<N>; 
+    using NthType = typename S::template NthType<N>;
     
     /* static constexpr auto F = [](const auto& ...args){ Function<NT> f{}; return f(args...); }; */ 
     static constexpr Function<NT> F{};

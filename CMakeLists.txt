@@ -12,8 +12,7 @@ link_directories( $ENV{LD_LIBRARY_PATH})
 cmake_minimum_required (VERSION 3.15...3.19)
 # use c++ 20
 set (CMAKE_CXX_STANDARD 20)
-
-#set (CMAKE_CXX_FLAGS "--std=c++11")
+set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
 #set (CUDA_PROPAGATE_HOST_FLAGS ON)
 
@@ -41,6 +40,9 @@ else()
 endif()
 
 
+if (${CMAKE_SYSTEM_NAME} MATCHES "Darwin")
+    set(MACOSX TRUE)
+endif()
 
 
 # autocomplete for YouCompleteMe needs commands to be exported
@@ -65,26 +67,30 @@ if (OMP)
     endif()
 endif()
 
+if (MACOSX)
+    set (CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -fopenmp=libgomp -fexperimental-library")
+    set (CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -fopenmp=libgomp -fexperimental-library")
+endif()
+
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wno-ignored-attributes")
 ########################################
 # fmt
 find_package(fmt REQUIRED)
+message("fmt_FOUND: ${fmt_FOUND}")
 ########################################
 # Python
 find_package(Python COMPONENTS Interpreter Development REQUIRED)
-# Find pybind11
-find_package(pybind11 REQUIRED)
-include_directories("${pybind11_INCLUDE_DIRS}")
 
 message("Python_FOUND:${Python_FOUND}")
 message("Python_VERSION:${Python_VERSION}")
 message("Python_Development_FOUND:${Python_Development_FOUND}")
 message("Python_LIBRARIES:${Python_LIBRARIES}")
-message("pybind11_DIR:${pybind11_DIR}")
+message("Python_INCLUDE_DIRS:${Python_INCLUDE_DIRS}")
 
-find_package(PythonLibs REQUIRED)
-include_directories("${PYTHON_INCLUDE_DIRS}")
-message("Python_INCLUDE_DIRS:${PYTHON_INCLUDE_DIRS}")
+# Find pybind11
+find_package(pybind11 REQUIRED)
+include_directories("${pybind11_INCLUDE_DIRS}")
+message("pybind11_DIR:${pybind11_DIR}")
 
 ########################################
 # build brush library
@@ -97,8 +103,9 @@ message(STATUS "Sources: '${sources}")
 
 # the pure cpp brush library (no python bindings)
 add_library(cbrush SHARED ${sources})
-# target_link_libraries(cbrush ${PYTHON_LIBRARIES} fmt::fmt)
-target_link_libraries(cbrush fmt::fmt)
+# target_link_libraries(cbrush PUBLIC ${Python_LIBRARIES} fmt::fmt)
+# target_link_libraries(cbrush PUBLIC fmt::fmt)
+target_link_libraries(cbrush PUBLIC fmt::fmt)
 
 ########################################
 # generate python bindings

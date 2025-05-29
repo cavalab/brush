@@ -101,7 +101,7 @@ struct SigBase
     static constexpr auto get_ret_type() {return DataTypeEnum<RetType>::value;};
 
     template<typename T>
-    static constexpr bool contains() { return is_in_v<T, Args...>; }
+    static constexpr bool contains() { return is_any_v<T, Args...>; }
 
     static constexpr std::size_t hash_args(){ return typeid(ArgTypes).hash_code();}
 

@@ -131,7 +131,7 @@ struct Operator
 
     /// utility for returning the type of the Nth argument
     template <std::size_t N>
-    using NthType = typename S::NthType<N>; 
+    using NthType = typename S::template NthType<N>;
 
     /// set weight type
     using W = typename S::WeightType; 
@@ -180,10 +180,13 @@ struct Operator
 
     /// gets one kid for a tuple of kids
     template<int I>
-    NthType<I> get_kid(const Dataset& d,TreeNode& tn, const W** weights ) const
+    NthType<I> get_kid(const Dataset& d, TreeNode& tn, const W** weights ) const
     {
-        auto sib = tree<TreeNode>::sibling_iterator(tn.first_child) ;
-        sib += I;
+        TreeNode* sib = tn.first_child;
+        for (int i = 0; i < I; ++i)
+        {
+            sib= sib->next_sibling;
+        }
         if constexpr(Fit)
             return sib->fit<NthType<I>>(d);
         else

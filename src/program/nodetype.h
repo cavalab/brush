@@ -250,6 +250,14 @@ template <> struct fmt::formatter<Brush::NodeType>: formatter<string_view> {
   }
 };
 ////////////////////////////////////////////////////////////////////////////////
+template <typename T, typename... Ts>
+struct is_any {
+    static constexpr bool value = (std::is_same_v<T, Ts> || ...);
+};
+
+template <typename T, typename... Ts>
+static constexpr bool is_any_v = is_any<T, Ts...>::value;
+
 template <NodeType T, NodeType... Ts> 
 struct is_in
 {
