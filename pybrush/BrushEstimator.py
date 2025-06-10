@@ -81,6 +81,7 @@ class BrushEstimator(EstimatorInterface, BaseEstimator):
                                          self.parameters_.functions,
                                          self.parameters_.weights_init)
                 
+        self.search_space_.print()
         self.engine_ = None
         if self.mode == 'classification':
             self.engine_ = ( ClassifierEngine

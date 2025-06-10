@@ -144,23 +144,23 @@ vector<Node> generate_terminals(const Dataset& d, const bool weights_init)
     // constants for each type -- floats, integers, boolean. This is useful
     // to ensure the search space will always have something to fill up open spaces
     // when building/modifying trees
-    auto cXf = Node(NodeType::Constant, Signature<ArrayXf()>{}, true, "constF");
+    auto cXf = Node(NodeType::Constant, Signature<ArrayXf()>(), true, "constF");
     cXf.set_prob_change(signature_avg(cXf.ret_type));
     terminals.push_back(cXf);
     
     // Reminder: Integers are used to represent categorical variables
-    auto cXi = Node(NodeType::Constant, Signature<ArrayXi()>{}, true, "constI");
+    auto cXi = Node(NodeType::Constant, Signature<ArrayXi()>(), true, "constI");
     cXi.set_prob_change(signature_avg(cXi.ret_type));
     terminals.push_back(cXi);
 
-    auto cXb = Node(NodeType::Constant, Signature<ArrayXb()>{}, false, "constB");
+    auto cXb = Node(NodeType::Constant, Signature<ArrayXb()>(), false, "constB");
     cXb.set_prob_change(signature_avg(cXb.ret_type));
     terminals.push_back(cXb);
 
     // mean label node. Does not need to be part of symbols. works only for classification
     if (d.classification)
     {
-        auto meanlabel = Node(NodeType::MeanLabel, Signature<ArrayXb()>{}, true, "MeanLabel");
+        auto meanlabel = Node(NodeType::MeanLabel, Signature<ArrayXb()>(), true, "MeanLabel");
         meanlabel.set_prob_change(1.0f); // always present in classification problems
         terminals.push_back(meanlabel);
     }
@@ -213,12 +213,15 @@ void SearchSpace::init(const Dataset& d, const unordered_map<string,float>& user
     // TODO: fix softmax and add it here
 
     /* fmt::print("generate nodetype\n"); */
+
+    // NOTE: it is important that we generate with user parameters first, because the default
+    // is an empty set of functions (which means to create all of them)
     GenerateNodeMap(user_ops, d.unique_data_types, 
                     std::make_index_sequence<NodeTypes::OpCount>());
 
     if (d.classification)
     {
-        std::unordered_map<std::string, float> extended_user_ops;
+        std::unordered_map<std::string, float> extended_user_ops=user_ops;
         
         // Convert ArrayXf to std::vector<float> for compatibility with std::set
         std::vector<float> vec(d.y.data(), d.y.data() + d.y.size());

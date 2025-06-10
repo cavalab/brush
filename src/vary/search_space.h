@@ -599,7 +599,8 @@ struct SearchSpace
         for (const auto& [ret_type, v] : this->node_map) {
             for (const auto& [args_type, v2] : v) {
                 for (const auto& [node_type, node] : v2) {
-                    output += fmt::format("node_map[{}][{}][{}] = {}, weight = {}\n", 
+                    output += fmt::format("{} node_map[{}][{}][{}] = {}, weight = {}\n", 
+                            node_type,
                             ret_type,
                             ArgsName[args_type],
                             node_type,

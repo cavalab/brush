@@ -232,8 +232,6 @@ class Inexact_simplifier
             // we cast to float because hash and query are based on matrix multiplications,
             // but we will store the hash only on the corresponding storage instance
             ArrayXf floatClippedInput;
-            
-            
 
             if constexpr (P == PT::Representer) {
                 
@@ -264,9 +262,6 @@ class Inexact_simplifier
                 }
             }
             
-            
-            
-
             assert(floatClippedInput.size() >= inputDim && 
                 "data must have at least inputDim elements");
 
