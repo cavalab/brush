@@ -22,8 +22,10 @@ using std::stoi;
 using std::to_string;
 using std::stof;
 
-#define private public
+// this is a compiler-specific hack and a bad practice. TODO: delete it
+// #define private public
 
+// TODO: remove these lots of imports and keep only essential stuff
 #include <cstdio>
 #include "../../src/init.h"
 #include "../../src/params.h"
