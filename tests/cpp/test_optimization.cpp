@@ -6,11 +6,6 @@
 
 using testing::TestWithParam;
 
-// Hashes corresponding to a 3-ary Prod operator
-const std::size_t sig_hash      = 5617655905677279916u;
-const std::size_t sig_dual_hash = 10188582206427064428u;
-const std::size_t complete_hash = 1786662244046809282u;
-
 class OptimizerTest 
     : public TestWithParam< std::tuple<string,json,std::function<bool(ArrayXf)>> > {
     /** @brief Texture used to create value-parameterized tests. Expects a tuple
@@ -314,23 +309,15 @@ INSTANTIATE_TEST_SUITE_P(OptimizerTestParameters, OptimizerTest,
             }
         ),
 
-        /** Product problem with 3-ary Prod operator with one weighted variable.
+        /** Product problem with one weighted variable.
          *  The dataset models y =  5*x1*x2*x3. 
          *  The initial model is yhat = Prod(1*x1, x2, x3).
          */
         std::make_tuple (
             "docs/examples/datasets/d_5x1_multiply_x2_multiply_x3.csv",
             json({{"Tree", {
-                {   // Creating a 3-ary Prod node
-                    {"is_weighted",false}, {"node_type","Prod"},
-
-                    // We need to provide this information to avoid letting the parser
-                    // infer the node signature
-                    {"arg_types"    ,{"ArrayF", "ArrayF", "ArrayF"}},
-                    {"ret_type"     ,"ArrayF"},
-                    {"sig_hash"     ,sig_hash},
-                    {"sig_dual_hash",sig_dual_hash},
-                    {"complete_hash",complete_hash} },
+                { {"is_weighted",false}, {"node_type","Mul"} },
+                { {"is_weighted",false}, {"node_type","Mul"} },
                 { {"node_type","Terminal"}, {"feature","x1"}, {"is_weighted", true } },
                 { {"node_type","Terminal"}, {"feature","x2"}, {"is_weighted", false} },
                 { {"node_type","Terminal"}, {"feature","x3"}, {"is_weighted", false} }
@@ -342,23 +329,15 @@ INSTANTIATE_TEST_SUITE_P(OptimizerTestParameters, OptimizerTest,
             }
         ),
 
-        /** Product problem with weighted 3-ary Prod operator.
+        /** Product problem with weighted operator.
          *  The dataset models y =  5*x1*x2*x3. 
          *  The initial model is yhat = 1*Prod(x1, x2, x3).
          */
         std::make_tuple (
             "docs/examples/datasets/d_5x1_multiply_x2_multiply_x3.csv",
             json({{"Tree", {
-                {   // Creating a 3-ary Prod node
-                    {"is_weighted",true}, {"node_type","Prod"},
-
-                    // We need to provide this information to avoid letting the parser
-                    // infer the node signature
-                    {"arg_types"    ,{"ArrayF", "ArrayF", "ArrayF"}},
-                    {"ret_type"     ,"ArrayF"},
-                    {"sig_hash"     ,sig_hash},
-                    {"sig_dual_hash",sig_dual_hash},
-                    {"complete_hash",complete_hash} },
+                { {"is_weighted",true}, {"node_type","Mul"} },
+                { {"is_weighted",false}, {"node_type","Mul"} },
                 { {"node_type","Terminal"}, {"feature","x1"}, {"is_weighted", false} },
                 { {"node_type","Terminal"}, {"feature","x2"}, {"is_weighted", false} },
                 { {"node_type","Terminal"}, {"feature","x3"}, {"is_weighted", false} }
@@ -381,7 +360,8 @@ INSTANTIATE_TEST_SUITE_P(OptimizerTestParameters, OptimizerTest,
                 { {"node_type","Terminal"}, {"feature","x1"}, {"is_weighted", false} },
                 { {"node_type","Mul"     },                   {"is_weighted", false} },
                 { {"node_type","Terminal"}, {"feature","x2"}, {"is_weighted", false} },
-                { {"node_type","Constant"}, {"feature","C" }, {"is_weighted", true } }
+                // TODO: should I improve naming of constants?
+                { {"node_type","Constant"}, {"feature","constF" }, {"is_weighted", true } }
             }}, {"is_fitted_",false}}),
             [](ArrayXf learned_weights) -> bool { 
                 ArrayXf true_weights(1);

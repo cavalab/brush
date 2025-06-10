@@ -41,9 +41,11 @@ TEST(SearchSpace, Initialization)
     // dtable_fit.print();
     // dtable_predict.print();
 
+    cout << "Successfully initialized the search space" << endl;
+
     // manually calculated. last value is the avg of prev values
-    ArrayXf expected_weights_Xf(4); // 5 elements (x3, x4, x5, c, meanLabel)    
-    expected_weights_Xf << 0.80240685, 0.19270448, 0.5994426, 0.531518, 0.531518;
+    ArrayXf expected_weights_Xf(4); // 5 elements (x2, x3, x4, c)    
+    expected_weights_Xf << 0.80240685, 0.19270448, 0.5994426, 0.531518;
     
     auto actual_weights_f = SS.terminal_weights.at(DataType::ArrayF);
     Eigen::Map<ArrayXf> actual_weights_Xf(actual_weights_f.data(), actual_weights_f.size());
