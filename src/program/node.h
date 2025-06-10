@@ -266,11 +266,11 @@ struct Node {
     };
 
     // private:
-        /// @brief feature name for terminals or splitting nodes
-        string feature; 
-        
-        /// @brief feature type for terminals or splitting nodes
-        DataType feature_type = DataType::ArrayF; 
+    /// @brief feature name for terminals or splitting nodes
+    string feature; 
+    
+    /// @brief feature type for terminals or splitting nodes
+    DataType feature_type = DataType::ArrayF; 
         
 };
 

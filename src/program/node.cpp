@@ -212,19 +212,40 @@ void init_node_with_default_signature(Node& node)
             " Please provide them.\n",n);
         HANDLE_ERROR_THROW(msg);
     }
-    else if (Is<
-        NT::SplitOn
-        >(n))
+    else if (Is<NT::SplitOn>(n))
     {
         node.set_signature<Signature<ArrayXf(ArrayXb,ArrayXf,ArrayXf)>>();
     }
-    else{
+    else if (Is<NT::Constant>(n))
+    {
+        // "feature" starts with "const"
+        char last_char = node.feature.back();
+
+        switch (last_char) {
+            case 'F':
+                node.set_signature<Signature<ArrayXf()>>();
+                break;
+            case 'I':
+                node.set_signature<Signature<ArrayXi()>>();
+                break;
+            case 'B':
+                node.set_signature<Signature<ArrayXb()>>();
+                break;
+            default:
+                node.set_signature<Signature<ArrayXf()>>();
+        }
+    } 
+    else if (Is<NT::MeanLabel>(n))
+        node.set_signature<Signature<ArrayXb()>>();
+    else
         node.set_signature<Signature<ArrayXf()>>();
-    }
 }
 
 void from_json(const json &j, Node& p)
 {
+    // This serialization tries to build the nodes with the fewest information possible,
+    // so interface is easier when doing manual generation of trees.
+
     // First we start with required information, then we set the optional ones
     // (they can be inferred from the required ones)
 
