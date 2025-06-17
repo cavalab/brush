@@ -6,7 +6,7 @@ import pandas as pd
 from pmlb import fetch_data
 from sklearn.utils import resample
 
-import _brush
+from pybrush import _brush
 import json
 
 import traceback

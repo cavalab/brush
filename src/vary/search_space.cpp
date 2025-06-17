@@ -194,9 +194,11 @@ void SearchSpace::init(const Dataset& d, const unordered_map<string,float>& user
             );
         }
     }
-
-    for (const auto& [op, weight] : user_ops)
-        op_names.push_back(op);
+    else
+    {
+        for (const auto& [op, weight] : user_ops)
+            op_names.push_back(op);
+    }
 
     // create nodes based on data types 
     terminal_types = d.unique_data_types;
@@ -214,40 +216,40 @@ void SearchSpace::init(const Dataset& d, const unordered_map<string,float>& user
 
     /* fmt::print("generate nodetype\n"); */
 
-    // NOTE: it is important that we generate with user parameters first, because the default
-    // is an empty set of functions (which means to create all of them)
-    GenerateNodeMap(user_ops, d.unique_data_types, 
-                    std::make_index_sequence<NodeTypes::OpCount>());
-
     if (d.classification)
     {
         std::unordered_map<std::string, float> extended_user_ops=user_ops;
         
-        // Convert ArrayXf to std::vector<float> for compatibility with std::set
-        std::vector<float> vec(d.y.data(), d.y.data() + d.y.size());
-
-        std::set<float> unique_classes(vec.begin(), vec.end());
-
-        // We need some ops in the search space so we can have the logit and offset
-        if (user_ops.find("OffsetSum") == user_ops.end())
-            extended_user_ops.insert({"OffsetSum", -1.0f});
-            op_names.push_back("OffsetSum");
-
-        if (unique_classes.size()==2 && (user_ops.find("Logistic") == user_ops.end())) {
-            extended_user_ops.insert({"Logistic", -1.0f});
-            op_names.push_back("Logistic");
-        }
-        else if (user_ops.find("Softmax") == user_ops.end()) {
-            extended_user_ops.insert({"Softmax", -1.0f});
-            op_names.push_back("Softmax");
-        }
-
-        if (extended_user_ops.size() > 0)
+        if (!use_all)
         {
-            // fmt::print("generate nodetype\n");
-            GenerateNodeMap(extended_user_ops, d.unique_data_types, 
-                            std::make_index_sequence<NodeTypes::OpCount>());
+            // We need some ops in the search space so we can have the logit and offset
+            if (extended_user_ops.find("OffsetSum") == extended_user_ops.end()){
+            extended_user_ops.insert({"OffsetSum", 0.0f});
+            op_names.push_back("OffsetSum");
+            }
+
+            // Convert ArrayXf to std::vector<float> for compatibility with std::set
+            std::vector<float> vec(d.y.data(), d.y.data() + d.y.size());
+            std::set<float> unique_classes(vec.begin(), vec.end());
+
+            if (unique_classes.size()==2 && (extended_user_ops.find("Logistic") == extended_user_ops.end())) {
+            extended_user_ops.insert({"Logistic", 0.0f});
+            op_names.push_back("Logistic");
+            }
+            else if (extended_user_ops.find("Softmax") == extended_user_ops.end()) {
+            extended_user_ops.insert({"Softmax", 0.0f});
+            op_names.push_back("Softmax");
+            }
         }
+
+        // fmt::print("generate nodetype\n");
+        GenerateNodeMap(extended_user_ops, terminal_types, 
+                        std::make_index_sequence<NodeTypes::OpCount>());
+    }
+    else
+    {
+        GenerateNodeMap(user_ops, terminal_types, 
+                    std::make_index_sequence<NodeTypes::OpCount>());
     }
 
     // map terminals
