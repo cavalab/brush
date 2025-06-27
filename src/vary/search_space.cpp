@@ -323,15 +323,11 @@ tree<Node>& SearchSpace::PTC2(tree<Node>& Tree,
     Node root = spot.node->data;
 
     // updating size accordingly to root node
-    if (Is<NodeType::SplitBest>(root.node_type))
-        s += 3;
-    else if (Is<NodeType::SplitOn>(root.node_type)){
+    if (Is<NodeType::SplitBest>(root.node_type) || Is<NodeType::SplitOn>(root.node_type)){
         s += 2;
-        // cout << "sampled split on node\n";
-    }
-        
-    if ( root.get_is_weighted()==true
-    &&   Isnt<NodeType::Constant, NodeType::MeanLabel>(root.node_type) )
+    }        
+    else if ( root.get_is_weighted()==true
+              && Isnt<NodeType::Constant, NodeType::MeanLabel>(root.node_type) )
         s += 2;
         
     //For each argument position a of n, Enqueue(a; g) 
@@ -344,8 +340,11 @@ tree<Node>& SearchSpace::PTC2(tree<Node>& Tree,
     int max_arity = 4;
 
     Node n;
-    // Now we actually start the PTC2 procedure to create the program tree
-    while ( queue.size() + s < max_size && queue.size() > 0) 
+
+    // Now we actually start the PTC2 procedure to create the program tree.
+    // we are considering that all nodes in the queue will be weighted, so we
+    // multiply the queue size by 3
+    while ( 3*queue.size() + s < max_size && queue.size() > 0) 
     {            
         // including the queue size in the max_size, since each element in queue
         // can grow up exponentially
@@ -414,15 +413,12 @@ tree<Node>& SearchSpace::PTC2(tree<Node>& Tree,
         // increment is different based on node weights
         ++s;
         
-        if (Is<NodeType::SplitBest>(n.node_type))
-            s += 3;
-        else if (Is<NodeType::SplitOn>(n.node_type)){
+        if (Is<NodeType::SplitBest>(n.node_type) || Is<NodeType::SplitOn>(n.node_type)){
             // cout << "sampled split on node/n";
             s += 2;
         }
-
-        if ( n.get_is_weighted()==true
-        &&   Isnt<NodeType::Constant, NodeType::MeanLabel>(n.node_type) )
+        else if ( n.get_is_weighted()==true
+                  && Isnt<NodeType::Constant, NodeType::MeanLabel>(n.node_type) )
             s += 2;
     } 
 

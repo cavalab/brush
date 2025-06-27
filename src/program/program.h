@@ -465,7 +465,9 @@ template<PT PType> struct Program
             if (Is<NodeType::OffsetSum>(parent->data.node_type)){
                 node_label = fmt::format("Add"); 
             }
-            out += fmt::format("\"{}\" [label=\"{}\"];\n", parent_id, node_label); 
+            
+            string node_style = parent->data.get_prob_change() >0.0 ? "" : ", style=filled, fillcolor=lightcoral";
+            out += fmt::format("\"{}\" [label=\"{}\"{}];\n", parent_id, node_label, node_style);
 
             // add edges to the node's children
             auto kid = iter.node->first_child;

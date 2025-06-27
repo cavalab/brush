@@ -19,7 +19,7 @@ void Inexact_simplifier::init(int hashSize, const Dataset &data, int numPlanes)
     // The greater the number of planes, the more accurate the hash, but the slower the search
     
     // cut-off for performance at 100 samples
-    inputDim = std::min(1000, data.get_training_data().get_n_samples());
+    inputDim = std::min(inputDim, data.get_training_data().get_n_samples());
 
     uniformPlanes.clear();
     for (int i=0; i<numPlanes; ++i)

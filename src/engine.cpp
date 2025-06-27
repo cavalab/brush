@@ -549,10 +549,15 @@ void Engine<T>::run(Dataset &data)
 
                     // TODO: do I have to pass data as an argument here? or can I use the instance reference
                     variator.vary_and_update(this->pop, island, island_parents.at(island),
-                                             data, evaluator, generation%2 == 0);
-
-                    if (data.use_batch) // assign the batch error as fitness (but fit was done with training data)
-                        evaluator.update_fitness(this->pop, island, batch, params, false, false);
+                                             data, evaluator, 
+                                             
+                                             // conditions to apply simplification.
+                                             // It starts only on the second half of generations,
+                                             // and it is not applied every generation. 
+                                             // Also, we garantee that the final generation
+                                             // will be simplified.
+                                             (generation>=params.max_gens/2) || (stall_count == params.max_stall-1) 
+                                            );
                 }
 
                 // select survivors from combined pool of parents and offspring.

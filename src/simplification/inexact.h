@@ -77,6 +77,34 @@ class Inexact_simplifier
         
         // static void destroy();
 
+        // iterates through the tree, indexing it's nodes
+        template<ProgramType P>
+        void analyze_tree(Program<P>& program,
+                                    const SearchSpace &ss, const Dataset &d)
+        {
+            // iterate over the tree, trying to replace each node with a constant, and keeping the change if the pred does not change.
+            TreeIter spot = program.Tree.begin_post();
+            while(spot != program.Tree.end_post())
+            {
+                // we dont index or simplify fixed stuff.
+                // non-wheightable nodes are not simplified. TODO: revisit this and see if they should (then implement it)
+                // This is avoiding using booleans.
+                if (spot.node->data.get_prob_change() > 0
+                // &&  IsWeighable(spot.node->data.ret_type) && IsWeighable(spot.node->data.node_type)
+                ) {
+                    // indexing only small subtrees. We don't index constants (the constant simplifier will take
+                    // care of them), but we index terminals, as they are weighted and may be added to different
+                    // hash collections
+                    if (program.size_at(spot, true) <= 15
+                    &&  Isnt<NodeType::Constant, NodeType::MeanLabel>(spot.node->data.node_type))
+                    {
+                        index<P>(spot, d);
+                    }
+                }
+                ++spot;
+            }  
+        }
+
         template<ProgramType P>
         Program<P> simplify_tree(Program<P>& program,
                                     const SearchSpace &ss, const Dataset &d)
@@ -86,15 +114,15 @@ class Inexact_simplifier
             //                 // std::conditional_t<P == PT::Representer, ArrayXXf, ArrayXf
             //     >>;
             
+            analyze_tree(program, ss, d);
 
             Program<P> simplified_program(program);
             
-
             // prediction at the root already performs template cast and always returns a float
             auto original_predictions = simplified_program.predict(d);
             
-
             // iterate over the tree, trying to replace each node with a constant, and keeping the change if the pred does not change.
+            // notice it is a post order iterator.
             TreeIter spot = simplified_program.Tree.begin_post();
             while(spot != simplified_program.Tree.end_post())
             {
@@ -104,12 +132,6 @@ class Inexact_simplifier
                 if (spot.node->data.get_prob_change() > 0
                 // &&  IsWeighable(spot.node->data.ret_type) && IsWeighable(spot.node->data.node_type)
                 ) {
-                    // indexing only small subtrees
-                    if (simplified_program.size_at(spot, true) <= 15
-                    &&  Isnt<NodeType::Constant, NodeType::MeanLabel, NodeType::Terminal>(spot.node->data.node_type)) {
-                        index<P>(spot, d);
-                    }
-                    
                     // TODO: use IsLeaf here instead of checking for each possible nodetype. also search throughout the code and replace it
                     if (Isnt<NodeType::Constant, NodeType::MeanLabel, NodeType::Terminal>(spot.node->data.node_type)){
 
@@ -178,7 +200,6 @@ class Inexact_simplifier
         Inexact_simplifier();
         ~Inexact_simplifier();
                 
-
         template<ProgramType P>
         void index(TreeIter& spot, const Dataset &d)
         {
@@ -192,18 +213,14 @@ class Inexact_simplifier
             
             for (size_t i = 0; i < hashes.size(); ++i)
             {
-                
                 // hash() will clip the prediction to the inputDim, but here we store the full
                 // predictions so we can calculate the distance to the query point later in query()
                 equivalentExpressions[spot.node->data.ret_type].append(i, hashes[i], tree_copy);
-                
             }
-            
         }
 
+        int inputDim = 1000; // default value
     private:
-        int inputDim = 1;
-
         template<ProgramType P>
         vector<size_t> hash(TreeIter& spot, const Dataset &d)
         {
@@ -219,38 +236,32 @@ class Inexact_simplifier
             ArrayXf floatClippedInput;
 
             if constexpr (P == PT::Representer) {
-                
                 ArrayXXf inputPoint = (*spot.node).template predict<ArrayXXf>(d);
-                
                 floatClippedInput = Eigen::Map<ArrayXf>(inputPoint.data(), inputPoint.size()).head(inputDim).template cast<float>();
-                
             } else {
-                
                 if (spot.node->data.ret_type == DataType::ArrayB) {
-                    
                     ArrayXb inputPointB = (*spot.node).template predict<ArrayXb>(d);
-                    
                     floatClippedInput = inputPointB.template cast<float>();
-                    
                 }
                 else if (spot.node->data.ret_type == DataType::ArrayI) {
-                    
                     ArrayXi inputPointI = (*spot.node).template predict<ArrayXi>(d);
-                    
                     floatClippedInput = inputPointI.template cast<float>();
-                    
                 }
                 else {
-                    
                     floatClippedInput = (*spot.node).template predict<ArrayXf>(d);
-                    
                 }
             }
             
-            assert(floatClippedInput.size() >= inputDim && 
-                "data must have at least inputDim elements");
+            // assert(floatClippedInput.size() >= inputDim && 
+            //     "data must have at least inputDim elements");
 
-            floatClippedInput = floatClippedInput.head(inputDim);
+            // floatClippedInput = floatClippedInput.head(inputDim);
+
+            assert(floatClippedInput.size() == inputDim && 
+                "You need to pass a dataset with inputDim samples to the simplification.");
+
+            // Equalize floatClippedInput 
+            floatClippedInput = floatClippedInput - floatClippedInput.mean();
 
             vector<size_t> hashes;
             for (size_t planeIdx = 0; planeIdx < uniformPlanes.size(); ++planeIdx)

@@ -12,14 +12,9 @@ using Brush::Node;
 using Brush::DataType;
 
 namespace Brush { namespace Simpl{
-    
     class Constants_simplifier
     {
         public:
-            // static Constants_simplifier* initSimplifier();
-            
-            // static void destroy();
-
             template <ProgramType P>
             Program<P> simplify_tree(
                 Program<P>& program, const SearchSpace &ss, const Dataset &d)
@@ -87,17 +82,7 @@ namespace Brush { namespace Simpl{
             ~Constants_simplifier();
         private:
 
-            // private static attribute used by every instance of the class
-            // static Constants_simplifier* instance;
     };
-
-    // TODO: get rid of static reference
-    // static attribute holding an singleton instance of Constants_simplifier.
-    // the instance is created by calling `initRand`, which creates
-    // an instance of the private static attribute `instance`. `r` will contain
-    // one generator for each thread (since it called the constructor) 
-    // static Constants_simplifier &constants_simplifier = *Constants_simplifier::initSimplifier();
-
 } // Simply
 } // Brush
 
