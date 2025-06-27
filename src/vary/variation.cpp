@@ -274,26 +274,23 @@ public:
 
         auto node_map = variator.search_space.node_map;
 
-        if (program.Tree.size() < params.max_size) {
-            Iter iter = program.Tree.begin();
-            std::transform(program.Tree.begin(), program.Tree.end(), std::back_inserter(weights),
-                        [&](const auto& n){ 
-                            size_t d = program.Tree.depth(iter);
-                            std::advance(iter, 1);
+        // The minimal size increment would be 2 - replacing a constant with a weighted terminal.
+        // we dont check for size constraints because the replacement can shrink the tree.
+        Iter iter = program.Tree.begin();
+        std::transform(program.Tree.begin(), program.Tree.end(), std::back_inserter(weights),
+                    [&](const auto& n){ 
+                        size_t d = program.Tree.depth(iter);
+                        size_t s = program.Tree.size(iter);
+                        std::advance(iter, 1);
 
-                            // we need to make sure there's some node to start the subtree
-                            if ((d >= params.max_depth)
-                            ||  (node_map.find(n.ret_type) == node_map.end()) )
-                                return 0.0f;
-                            else
-                                return n.get_prob_change(); 
-                        });
-        }
-        else {
-            weights.resize(program.Tree.size());
-            std::fill(weights.begin(), weights.end(), 0.0f); 
-        }
-        
+                        // we need to make sure there's some node to start the subtree
+                        if ((d >= params.max_depth)
+                        ||  (node_map.find(n.ret_type) == node_map.end()) )
+                            return 0.0f;
+                        else
+                            return n.get_prob_change(); 
+                    });
+
         return weights;
     }
 
@@ -314,8 +311,14 @@ public:
         // d and s must be compatible with PTC2 --- they should be based on 
         // tree structure, not program structure
         size_t d = params.max_depth - program.Tree.depth(spot);
-        size_t s = params.max_size - (program.Tree.size() - program.Tree.size(spot));
-
+        size_t s;
+        
+        // since `s` is size_t, we need to ensure the operation below will not overflow
+        if (program.Tree.size() < params.max_size)
+            s = params.max_size - (program.Tree.size() - program.Tree.size(spot));
+        else
+            s = 1;
+        
         s = r.rnd_int(1, s+1);
 
         // sample subtree uses PTC2, which operates on depth and size of the tree<Node> 
@@ -323,18 +326,13 @@ public:
 
         auto subtree = variator.search_space.sample_subtree(spot.node->data, d, s); 
 
-
         if (!subtree) // there is no terminal with compatible arguments
             return false;
-
 
         // if optional contains a Node, we access its contained value
         program.Tree.erase_children(spot); 
 
-
         program.Tree.move_ontop(spot, subtree.value().begin());
-
-
 
         return true;
     }
@@ -536,7 +534,14 @@ std::optional<Individual<T>> Variation<T>::cross(
  * so it can be used in a boolean context).
  * 
  * If the mutation succeeds, the mutated program can be accessed through the
- * `.value()` attribute of the `std::optional`. 
+ * `.value()` attribute of the `std::optional`. This method will try to generate
+ * a child that is within size and depth constraints. If ater three attempts
+ * it failed to generate a solution under these conditions, then the last model
+ * is returned regardless of it's size and depth. This loosens the size and
+ * depth constraints by a small factor (the final program will have at most
+ * `3*max_arity` extra nodes), and it is better than the alternatives of 
+ * just replicating the parent or generating a new random solution to add to 
+ * the population.
  * 
  * This means that, if you use the mutation as `auto opt = mutate(parent, SS)`,
  * either `opt==false` or `opt.value()` contains the child program.
@@ -552,7 +557,6 @@ std::optional<Individual<T>> Variation<T>::mutate(
 {
     if (choice.empty())
     {
-
         auto options = parameters.mutation_probs;
 
         bool all_zero = true;
@@ -597,6 +601,7 @@ std::optional<Individual<T>> Variation<T>::mutate(
     { // There is no spot that has a probability to be selected
         return std::nullopt;
     }
+
     int attempts = 0;
     while(attempts++ < 3)
     {
@@ -624,11 +629,14 @@ std::optional<Individual<T>> Variation<T>::mutate(
         else // it must be"toggle_weight_off"
             success = ToggleWeightOffMutation::mutate(child, spot, (*this), parameters);
 
-        if (success
-            && ( (child.size()  <= parameters.max_size)
-            &&   (child.depth() <= parameters.max_depth) )
-        ){
+        if (// strict mutation --- returns only valid solutions.
+            ( success
+            && (child.size()  <= parameters.max_size)
+            && (child.depth() <= parameters.max_depth) )
 
+            // loose mutation --- it will try its best, but may return something slightly larger.
+            || attempts==3 // this is the final attempt, return whatever we got.
+        ){
             Individual<T> ind(child);
 
             ind.set_variation(choice);
@@ -651,7 +659,6 @@ std::optional<Individual<T>> Variation<T>::mutate(
             return ind;
         }
         else { // reseting 
-
         }
     }
 
@@ -691,12 +698,10 @@ void Variation<T>::vary(Population<T>& pop, int island,
         }
         else
         {
-
             auto variation_result = mutate(mom);   
 
             ind_parents = {mom};
             opt = variation_result;
-
         }
     
         // this assumes that islands do not share indexes before doing variation

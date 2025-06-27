@@ -262,6 +262,11 @@ TEST(Operators, ProgramSizeAndDepthPARAMS)
     SearchSpace SS;
     SS.init(data);
 
+    // prod operator  --> arity 4: prod(T1, T2, T3, T4)
+    // split best     --> has 6 symbols: if(terminal > value, T_case_true, T_case_false),
+    //                    and size 6, but the `> value` corresponds to the weight of the node.
+    int max_arity = 4;
+
     for (int d = 1; d < 6; ++d)
     {
         for (int s = 10; s < 20; ++s)
@@ -291,7 +296,7 @@ TEST(Operators, ProgramSizeAndDepthPARAMS)
             
             // PTC2: maximum size is s+max(arity). Since in Brush terminals are
             // weighted by default, we set it to 3*max(arity)
-            ASSERT_TRUE(PRG.size() <= s+3*4); 
+            ASSERT_TRUE(PRG.size() <= s+max_arity*3); 
 
             ASSERT_TRUE(PRG.depth() <= d+1);
             ASSERT_TRUE(PRG.depth() > 0); // depth is always positive

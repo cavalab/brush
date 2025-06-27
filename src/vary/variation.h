@@ -151,6 +151,7 @@ public:
             }
         }
 
+        // ensuring all terminals exists as a simplification option
         inexact_simplifier.init(256, data, 1);
         for (const auto& entry : this->search_space.terminal_weights) {
             map<string, float> terminal_probs;
@@ -162,7 +163,7 @@ public:
                     tree<Node> dummy_tree;
                     dummy_tree.insert(dummy_tree.begin(), node);
                     auto it = dummy_tree.begin();
-                    inexact_simplifier.index<T>(it, data.get_training_data());
+                    inexact_simplifier.index<T>(it, data.get_training_data());                    
                 }
         }
     };
@@ -217,7 +218,7 @@ public:
      * @param parents The indices of the parent individuals.
      */
     void vary_and_update(Population<T>& pop, int island, const vector<size_t>& parents,
-                         const Dataset& data, Evaluation<T>& evaluator, bool even_gen) {
+                         const Dataset& data, Evaluation<T>& evaluator, bool do_simplification) {
 
         // TODO: move implementation to cpp file and keep only declarations here
         // TODO: rewrite this entire function to avoid repetition (this is a frankenstein)
@@ -306,29 +307,39 @@ public:
 
             ind.program.fit(data.get_training_data());
 
-            
-
             // simplify before calculating fitness (order matters, as they are not refitted and constants simplifier does not replace with the right value.)
             // TODO: constants_simplifier should set the correct value for the constant (so we dont have to refit).
             // simplify constants first to avoid letting the lsh simplifier to visit redundant branches
 
-            // we alternate simplification to run faster
-            
-            
-            if (parameters.constants_simplification && even_gen)
+            // string prg_str = ind.program.get_model();
+            if (parameters.constants_simplification && do_simplification)
             {
                 constants_simplifier.simplify_tree<T>(ind.program, search_space, data.get_training_data());  
-                
+                // prg_str = ind.program.get_model();
             }
-            if (parameters.inexact_simplification && even_gen)
+
+            if (parameters.inexact_simplification)
             {
-                inexact_simplifier.simplify_tree<T>(ind.program, search_space, data.get_training_data());
-                
+                auto inputDim = std::min(inexact_simplifier.inputDim, data.get_training_data().get_n_samples());
+
+                vector<size_t> idx(inputDim);
+                std::iota(idx.begin(), idx.end(), 0);
+                Dataset data_simp = data(idx);
+
+                if (do_simplification)
+                {
+                    inexact_simplifier.simplify_tree<T>(ind.program, search_space, data_simp);
+                    // if (ind.program.get_model().compare(prg_str)!= 0)
+                    //     cout << prg_str << endl << ind.program.get_model() << endl << "=====" << endl;
+                }
+                else
+                {
+                    inexact_simplifier.analyze_tree<T>(ind.program, search_space, data_simp);
+                }
             }
         
             evaluator.assign_fit(ind, data, parameters, false);
             
-
             // vector<float> deltas(ind.get_objectives().size(), 0.0f);
             vector<float> deltas;
 
