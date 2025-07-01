@@ -7,7 +7,6 @@ provides documentation for the hyperparameters.
 
 import numpy as np
 import pandas as pd
-from pandas.api.types import is_float_dtype, is_bool_dtype, is_integer_dtype
 from pybrush import Parameters, Dataset
 from typing import Union, List, Dict
 
@@ -333,7 +332,7 @@ class EstimatorInterface():
 
     
     def _make_data(self, X, y=None,
-                    feature_names=[],
+                    feature_names=[], feature_types=[],
                     validation_size=0.0, shuffle_split=False):
         """
         Prepare the data for training or prediction.
@@ -361,26 +360,9 @@ class EstimatorInterface():
         # before calling `_make_data` (so predict can be made with np arrays or
         # pd dataframes).
 
-        feature_types = []
         if isinstance(y, pd.Series):
             y = y.values
         if isinstance(X, pd.DataFrame):
-            feature_names = X.columns
-            for values, dtype in zip(X.values.T, X.dtypes):
-                if is_bool_dtype(dtype):
-                    feature_types.append('ArrayB')
-                elif is_integer_dtype(dtype):
-                    if np.all(np.logical_or(values == 0, values == 1)):
-                        feature_types.append('ArrayB')
-                    else:
-                        feature_types.append('ArrayI')
-                elif is_float_dtype(dtype):
-                    feature_types.append('ArrayF')
-                else:
-                    raise ValueError(
-                        "Unsupported data type. Please try using an "
-                        "encoding method to convert the data to a supported "
-                        "format.")
             X = X.values
 
         assert isinstance(X, np.ndarray)

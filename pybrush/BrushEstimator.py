@@ -18,6 +18,8 @@ from pybrush import Parameters, Dataset, SearchSpace, brush_rng
 from pybrush.EstimatorInterface import EstimatorInterface
 from pybrush import RegressorEngine, ClassifierEngine, MultiClassifierEngine
 
+from pandas.api.types import is_float_dtype, is_bool_dtype, is_integer_dtype
+
 class BrushEstimator(EstimatorInterface, BaseEstimator):
     """
     This is the base class for Brush estimators using the c++ engine. 
@@ -59,13 +61,30 @@ class BrushEstimator(EstimatorInterface, BaseEstimator):
         """
         
         self.feature_names_ = []
+        self.feature_types_ = []
         if isinstance(X, pd.DataFrame):
             self.feature_names_ = X.columns.to_list()
+            for values, dtype in zip(X.values.T, X.dtypes):
+                if is_bool_dtype(dtype):
+                    self.feature_types_.append('ArrayB')
+                elif is_integer_dtype(dtype):
+                    if np.all(np.logical_or(values == 0, values == 1)):
+                        self.feature_types_.append('ArrayB')
+                    else:
+                        self.feature_types_.append('ArrayI')
+                elif is_float_dtype(dtype):
+                    self.feature_types_.append('ArrayF')
+                else:
+                    raise ValueError(
+                        "Unsupported data type. Please try using an "
+                        "encoding method to convert the data to a supported "
+                        "format.")
 
         X, y = check_X_y(X, y)
 
         self.data_ = self._make_data(X, y, 
                                      feature_names=self.feature_names_,
+                                     feature_types=self.feature_types_,
                                      validation_size=self.validation_size,
                                      shuffle_split=self.shuffle_split)
 
@@ -120,9 +139,11 @@ class BrushEstimator(EstimatorInterface, BaseEstimator):
 
         new_data = self._make_data(X, y, 
                                      feature_names=self.feature_names_,
+                                     feature_types=self.feature_types_,
                                      validation_size=self.validation_size,
                                      shuffle_split=self.shuffle_split)
         
+        # We need to update class weights, this is what is happening here.
         new_parameters = self._wrap_parameters(new_data.get_training_data().y)
 
         assert self.engine_ is not None, \
@@ -150,6 +171,7 @@ class BrushEstimator(EstimatorInterface, BaseEstimator):
         if self.data_ is None:
             self.data_ = self._make_data(X, 
                                     feature_names=self.feature_names_,
+                                    feature_types=self.feature_types_,
                                     validation_size=self.validation_size,
                                     shuffle_split=self.shuffle_split)
             
@@ -182,6 +204,7 @@ class BrushEstimator(EstimatorInterface, BaseEstimator):
         if self.data_ is None:
             self.data_ = self._make_data(X, 
                                     feature_names=self.feature_names_,
+                                    feature_types=self.feature_types_,
                                     validation_size=self.validation_size,
                                     shuffle_split=self.shuffle_split)
             
@@ -251,6 +274,7 @@ class BrushClassifier(BrushEstimator, ClassifierMixin):
         if self.data_ is None:
             self.data_ = self._make_data(X, 
                                     feature_names=self.feature_names_,
+                                    feature_types=self.feature_types_,
                                     validation_size=self.validation_size,
                                     shuffle_split=self.shuffle_split)
             
@@ -280,6 +304,7 @@ class BrushClassifier(BrushEstimator, ClassifierMixin):
         if self.data_ is None:
             self.data_ = self._make_data(X, 
                                     feature_names=self.feature_names_,
+                                    feature_types=self.feature_types_,
                                     validation_size=self.validation_size,
                                     shuffle_split=self.shuffle_split)
             

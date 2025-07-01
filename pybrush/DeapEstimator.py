@@ -19,6 +19,8 @@ from sklearn.utils.validation  import check_is_fitted
 from sklearn.base import BaseEstimator, ClassifierMixin, RegressorMixin, \
                          TransformerMixin
 
+from pandas.api.types import is_float_dtype, is_bool_dtype, is_integer_dtype
+
 from pybrush.EstimatorInterface import EstimatorInterface
 from pybrush.deap_api import nsga2
 from pybrush import individual
@@ -135,11 +137,28 @@ class DeapEstimator(EstimatorInterface, BaseEstimator):
         """
         
         self.feature_names_ = []
+        self.feature_types_ = []
         if isinstance(X, pd.DataFrame):
             self.feature_names_ = X.columns.to_list()
+            for values, dtype in zip(X.values.T, X.dtypes):
+                if is_bool_dtype(dtype):
+                    self.feature_types_.append('ArrayB')
+                elif is_integer_dtype(dtype):
+                    if np.all(np.logical_or(values == 0, values == 1)):
+                        self.feature_types_.append('ArrayB')
+                    else:
+                        self.feature_types_.append('ArrayI')
+                elif is_float_dtype(dtype):
+                    self.feature_types_.append('ArrayF')
+                else:
+                    raise ValueError(
+                        "Unsupported data type. Please try using an "
+                        "encoding method to convert the data to a supported "
+                        "format.")
 
         self.data_ = self._make_data(X, y, 
                                      feature_names=self.feature_names_,
+                                     feature_types=self.feature_types_,
                                      validation_size=self.validation_size,
                                      shuffle_split=self.shuffle_split)
 
@@ -235,6 +254,7 @@ class DeapEstimator(EstimatorInterface, BaseEstimator):
         if self.data_ is None:
             self.data_ = self._make_data(X, 
                                     feature_names=self.feature_names_,
+                                    feature_types=self.feature_types_,
                                     validation_size=self.validation_size,
                                     shuffle_split=self.shuffle_split)
             
@@ -318,6 +338,7 @@ class DeapClassifier(DeapEstimator,ClassifierMixin):
         if self.data_ is None:
             self.data_ = self._make_data(X, 
                                     feature_names=self.feature_names_,
+                                    feature_types=self.feature_types_,
                                     validation_size=self.validation_size,
                                     shuffle_split=self.shuffle_split)
             

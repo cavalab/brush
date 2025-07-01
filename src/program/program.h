@@ -538,12 +538,13 @@ template<PT PType> struct Program
                         );
                         
                 // drawing the node
-                out += fmt::format("\"{}\" [label=\"{:.2f}\"];\n",
+                out += fmt::format("\"{}\" [label=\"{:.2f}\"{}];\n",
                         parent_id+"Offset",
-                        parent->data.W
+                        parent->data.W,
+                        node_style
                         ); 
             }
-                        
+                 
             ++i;
         }
         out += "}\n";
