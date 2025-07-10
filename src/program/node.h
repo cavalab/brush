@@ -97,9 +97,9 @@ struct Node {
     /// @brief a hash of the dual of the signature (for NLS)
     std::size_t sig_dual_hash;
 
-    /// whether node is modifiable
+    /// whether the node is replaceable. Weights are still optimized.
     bool fixed;
-    /// @brief whether this node is weighted
+    /// @brief whether this node is weighted (ignored in nodes that must have weights, such as meanLabel, constants, splits)
     bool is_weighted;
     /// chance of node being selected for variation
     float prob_change; 
@@ -124,7 +124,6 @@ struct Node {
 
     // Node(){init();}; 
     Node() = default;
-
 
     /// @brief Constructor used by search space 
     /// @tparam S signature 
@@ -253,6 +252,9 @@ struct Node {
     inline void set_feature_type(DataType ft){ this->feature_type = ft; };
     inline DataType get_feature_type() const { return this->feature_type; };
 
+    inline void set_keep_split_feature(bool keep){ this->keep_split_feature = keep; };
+    inline bool get_keep_split_feature() const { return this->keep_split_feature; };
+
     // Some types does not have weights, so we completely ignore the weights
     // if is not weighable
     inline bool get_is_weighted() const {
@@ -271,7 +273,9 @@ struct Node {
     
     /// @brief feature type for terminals or splitting nodes
     DataType feature_type = DataType::ArrayF; 
-        
+
+    /// @brief fix the SplitBest feature when the node is fixed
+    bool keep_split_feature = false; // TODO: unittests for keep_split_feature
 };
 
 template <NodeType... T>

@@ -152,7 +152,9 @@ class BrushEstimator(EstimatorInterface, BaseEstimator):
         # protecting the logistic model root nodes
         clf_root = 2 if self.mode=='classification' else 0
 
+        # This updates the parameters (such as class weights)
         self.engine_.params = new_parameters
+        
         self.engine_.lock_nodes(lock_nodes_depth+clf_root, skip_leaves)
         self.engine_.fit(new_data)
         self.engine_.unlock_nodes(clf_root)

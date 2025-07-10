@@ -331,6 +331,7 @@ template<PT PType> struct Program
     /**
      * @brief Iterates over the program, locking the nodes until it reaches
      * a certain depth.
+     * If the node is a SplitBest, then the split feature is fixed 
      * 
      * @param end_depth the depth to stop locking nodes. Default 0.
      * @param skip_leaves whether to skip leaves and leave them unlocked. 
@@ -355,6 +356,20 @@ template<PT PType> struct Program
                 if (skip_leaves && IsLeaf(n.node_type))
                     return;
 
+                // If we are skipping leaves, then the split feature is unlocked;
+                // Otherwise, then we lock based on depth.
+                if (n.node_type==NodeType::SplitBest)
+                {
+                    if (skip_leaves)
+                    {
+                        n.set_keep_split_feature(false);
+                    }
+                    else // leaves can also be locked based on depth
+                    {
+                        n.set_keep_split_feature(d+1<=end_depth);
+                    }
+                }
+                
                 if (d<=end_depth)
                     n.fixed = true; 
                     // n.set_prob_change(0.0f); 
@@ -377,6 +392,10 @@ template<PT PType> struct Program
             [&](auto& n){ 
                 auto d = Tree.depth(tree_iter);
                 std::advance(tree_iter, 1);
+
+                // fully unlocking splitBest nodes
+                if (n.node_type==NodeType::SplitBest)
+                    n.set_keep_split_feature(false);
 
                 if (d>=start_depth)                
                     n.fixed = false; 

@@ -19,7 +19,6 @@ ostream& operator<<(ostream& os, const Node& n)
 /// @return name 
 auto Node::get_name(bool include_weight) const noexcept -> std::string 
 {
-
     if (Is<NodeType::Terminal>(node_type))
     {
         if (is_weighted && W != 1.0 && include_weight)

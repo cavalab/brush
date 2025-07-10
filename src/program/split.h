@@ -74,6 +74,7 @@ namespace Split{
         //////////////////// shared //////////////////////
         float best_thresh, best_score = MAX_FLT;
         int i = 0 ;
+
         vector<float> unique_classes;
         if (classification)
             unique_classes = unique(y);
@@ -235,10 +236,20 @@ struct Operator<NT, S, Fit, enable_if_t<is_in_v<NT, NodeType::SplitOn, NodeType:
         }
         else
         {
-            string feature = "";
-            tie(feature, threshold) = Split::get_best_variable_and_threshold(d, tn);
-            tn.data.set_feature(feature);
-            tn.data.set_feature_type(d.get_feature_type(feature));
+            if (tn.data.get_keep_split_feature())
+            {
+                // do not find the best split, just use the current feature.
+                // Threshold will be optimized regardless
+                tie(threshold, ignore) = Split::best_threshold(
+                    std::get<RetType>(d[tn.data.get_feature()]), d.y, d.classification);
+            }
+            else // keep_split_feature == false
+            {
+                string feature = "";
+                tie(feature, threshold) = Split::get_best_variable_and_threshold(d, tn);
+                tn.data.set_feature(feature);
+                tn.data.set_feature_type(d.get_feature_type(feature));
+            }
         }
 
         return predict(d, tn);
