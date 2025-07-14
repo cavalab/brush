@@ -366,11 +366,11 @@ template<PT PType> struct Program
                     }
                     else // leaves can also be locked based on depth
                     {
-                        n.set_keep_split_feature(d+1<=end_depth);
+                        n.set_keep_split_feature(d+1<end_depth);
                     }
                 }
-                
-                if (d<=end_depth)
+
+                if (d<end_depth)
                     n.fixed = true; 
                     // n.set_prob_change(0.0f); 
             }

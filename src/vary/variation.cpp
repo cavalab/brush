@@ -432,7 +432,12 @@ std::optional<Individual<T>> Variation<T>::cross(
 
                     std::advance(child_iter, 1);
 
-                    if (s_at<parameters.max_size && d_at<parameters.max_depth)
+                    if (
+                        // We don't have to check size here, because it will be replaced
+                        // by something with a valid new size.
+                        // s_at<parameters.max_size &&
+                        d_at<parameters.max_depth
+                    )
                         return n.get_prob_change(); 
                     else
                         return 0.0f;

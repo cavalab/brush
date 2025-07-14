@@ -256,7 +256,11 @@ public:
             if (std::all_of(mom.program.Tree.begin(), mom.program.Tree.end(),
                 [](const auto& n) { return n.get_prob_change()<=0.0; }))
             {
+                // Notice that if everything is locked then the entire population
+                // may be replaced (if the new random individuals dominates the old
+                // fixed ones)
                 ind = Individual<T>(mom);
+                ind.init(search_space, parameters);
                 ind.variation = "born";
             }
             else
@@ -284,10 +288,9 @@ public:
                 }
                 else {  // no optional value was returned. creating a new random individual
                     ind = Individual<T>(mom);
+                    ind.init(search_space, parameters);
                     ind.variation = "born";
-                    // ind.init(search_space, parameters); // ind.variation is born by default
                 }
-                
             }
             
             // ind.set_objectives(mom.get_objectives()); // it will have an invalid fitness
