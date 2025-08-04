@@ -259,9 +259,15 @@ public:
                 // Notice that if everything is locked then the entire population
                 // may be replaced (if the new random individuals dominates the old
                 // fixed ones)
-                ind = Individual<T>(mom);
-                ind.init(search_space, parameters);
+                ind = Individual<T>();
                 ind.variation = "born";
+
+                ind.init(search_space, parameters);
+
+                // Alternative: keep it as it is, and just re-fit the constants
+                // (comment out just the line below to disable, but keep ind.init)
+                Program<T> copy(mom.program);
+                ind.program = copy;
             }
             else
             {
@@ -287,7 +293,7 @@ public:
                     ind.set_parents(ind_parents);
                 }
                 else {  // no optional value was returned. creating a new random individual
-                    ind = Individual<T>(mom);
+                    ind = Individual<T>();
                     ind.init(search_space, parameters);
                     ind.variation = "born";
                 }

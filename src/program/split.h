@@ -236,12 +236,19 @@ struct Operator<NT, S, Fit, enable_if_t<is_in_v<NT, NodeType::SplitOn, NodeType:
         }
         else
         {
-            if (tn.data.get_keep_split_feature())
+            if (tn.data.get_keep_split_feature() && tn.data.get_feature()!="")
             {
-                // do not find the best split, just use the current feature.
-                // Threshold will be optimized regardless
-                tie(threshold, ignore) = Split::best_threshold(
-                    std::get<RetType>(d[tn.data.get_feature()]), d.y, d.classification);
+                // TODO: I think the if-else clausules could be simplified
+
+                auto values = d[tn.data.get_feature()];
+
+                // Threshold will be optimized regardless.
+                if (std::holds_alternative<ArrayXf>(values))
+                    tie(threshold, ignore) = Split::best_threshold(std::get<ArrayXf>(values), d.y, d.classification);
+                else if (std::holds_alternative<ArrayXi>(values))
+                    tie(threshold, ignore) = Split::best_threshold(std::get<ArrayXi>(values), d.y, d.classification);
+                else if (std::holds_alternative<ArrayXb>(values))
+                    tie(threshold, ignore) = Split::best_threshold(std::get<ArrayXb>(values), d.y, d.classification);
             }
             else // keep_split_feature == false
             {

@@ -117,7 +117,7 @@ class BrushEstimator(EstimatorInterface, BaseEstimator):
 
         return self
     
-    def partial_fit(self, X, y, lock_nodes_depth=0, skip_leaves=True):
+    def partial_fit(self, X, y, lock_nodes_depth=0, keep_leaves_unlocked=True):
         """
         Fit an estimator to X,y, without reseting the estimator.
 
@@ -129,7 +129,7 @@ class BrushEstimator(EstimatorInterface, BaseEstimator):
             1-d array of (boolean) target values.
         lock_nodes_depth : int, optional
             The depth of the tree to lock. Default is 0.
-        skip_leaves : bool, optional
+        keep_leaves_unlocked : bool, optional
             Whether to skip leaves when locking nodes. Default is True.
         """
 
@@ -149,15 +149,15 @@ class BrushEstimator(EstimatorInterface, BaseEstimator):
         assert self.engine_ is not None, \
             "You must call `fit` before calling `partial_fit`"
         
-        # protecting the logistic model root nodes
-        clf_root = 2 if self.mode=='classification' else 0
+        # The logistic root is not affected by locking or unlocking.
+        # It is fixed due to prob_change==0.0.
 
         # This updates the parameters (such as class weights)
         self.engine_.params = new_parameters
         
-        self.engine_.lock_nodes(lock_nodes_depth+clf_root, skip_leaves)
+        self.engine_.lock_nodes(lock_nodes_depth, keep_leaves_unlocked)
         self.engine_.fit(new_data)
-        self.engine_.unlock_nodes(clf_root)
+        self.engine_.lock_nodes(0, False) # unlocking everything
 
         self.archive_ = self.engine_.get_archive()
         self.population_ = self.engine_.get_population()

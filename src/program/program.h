@@ -331,13 +331,13 @@ template<PT PType> struct Program
     /**
      * @brief Iterates over the program, locking the nodes until it reaches
      * a certain depth.
-     * If the node is a SplitBest, then the split feature is fixed 
+     * If the node is a SplitBest and leaves are kept, then the split feature is fixed.
      * 
      * @param end_depth the depth to stop locking nodes. Default 0.
-     * @param skip_leaves whether to skip leaves and leave them unlocked. 
+     * @param keep_leaves_unlocked whether to skip leaves and leave them unlocked. 
      * Default true.  
      */
-    void lock_nodes(int end_depth=0, bool skip_leaves=true)
+    void lock_nodes(int end_depth=0, bool keep_leaves_unlocked=true)
     {
         // iterate over the nodes, locking them if their depth does not exceed end_depth.
         if (end_depth<=0)
@@ -353,53 +353,26 @@ template<PT PType> struct Program
                 auto d = Tree.depth(tree_iter);
                 std::advance(tree_iter, 1);
 
-                if (skip_leaves && IsLeaf(n.node_type))
+                if (keep_leaves_unlocked && IsLeaf(n.node_type))
                     return;
 
                 // If we are skipping leaves, then the split feature is unlocked;
                 // Otherwise, then we lock based on depth.
                 if (n.node_type==NodeType::SplitBest)
                 {
-                    if (skip_leaves)
+                    if (keep_leaves_unlocked)
                     {
                         n.set_keep_split_feature(false);
                     }
                     else // leaves can also be locked based on depth
                     {
-                        n.set_keep_split_feature(d+1<end_depth);
+                        n.set_keep_split_feature(d+1<=end_depth);
                     }
                 }
 
-                if (d<end_depth)
+                if (d<=end_depth)
                     n.fixed = true; 
                     // n.set_prob_change(0.0f); 
-            }
-        );
-    }
-
-    /**
-     * @brief Iterates over the program, unlocking the nodes until it reaches
-     * a certain depth. It does not protect the root nodes of logistic regression
-     * models.
-     * 
-     * @param start_depth the depth to start unlocking nodes. Default 0.
-     */
-    void unlock_nodes(int start_depth=0)
-    {
-        auto tree_iter = Tree.begin();
-
-        std::for_each(Tree.begin(), Tree.end(),
-            [&](auto& n){ 
-                auto d = Tree.depth(tree_iter);
-                std::advance(tree_iter, 1);
-
-                // fully unlocking splitBest nodes
-                if (n.node_type==NodeType::SplitBest)
-                    n.set_keep_split_feature(false);
-
-                if (d>=start_depth)                
-                    n.fixed = false; 
-                    // n.set_prob_change(1.0f); 
             }
         );
     }

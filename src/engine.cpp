@@ -323,7 +323,7 @@ auto Engine<T>::predict_proba_archive(int id, const Ref<const ArrayXXf>& X)
 }
 
 template <ProgramType T>
-void Engine<T>::lock_nodes(int end_depth, bool skip_leaves)
+void Engine<T>::lock_nodes(int end_depth, bool keep_leaves_unlocked)
 {
     // iterate over the population, locking the program's tree nodes
     for (int island=0; island<pop.num_islands; ++island) {
@@ -332,25 +332,9 @@ void Engine<T>::lock_nodes(int end_depth, bool skip_leaves)
         for (unsigned i = 0; i<indices.size(); ++i)
         {
             const auto& ind = pop.individuals.at(indices.at(i));
-            ind->program.lock_nodes(end_depth, skip_leaves);
+            ind->program.lock_nodes(end_depth, keep_leaves_unlocked);
         }
     }
-}
-
-template <ProgramType T>
-void Engine<T>::unlock_nodes(int start_depth)
-{
-    // iterate over the population, unlocking the program's tree nodes
-    for (int island=0; island<pop.num_islands; ++island) {
-        auto indices = pop.get_island_indexes(island);
-
-        for (unsigned i = 0; i<indices.size(); ++i)
-        {
-            const auto& ind = pop.individuals.at(indices.at(i));
-            ind->program.unlock_nodes(start_depth);
-        }
-    }
-
 }
 
 template <ProgramType T>
@@ -470,10 +454,15 @@ void Engine<T>::run(Dataset &data)
     float fraction = 0;
 
     auto stop = [&]() {
-        return (  (generation == params.max_gens)
+        bool condition = ( (generation == params.max_gens)
                || (params.max_stall != 0 && stall_count > params.max_stall) 
                || (params.max_time != -1 && timer.Elapsed().count() > params.max_time)
         );
+
+        if (condition)
+            cout << "Stop condition reached" << endl;
+
+        return condition;
     };
 
     // TODO: check that I dont use pop.size() (or I use correctly, because it will return the size with the slots for the offspring)
@@ -496,22 +485,23 @@ void Engine<T>::run(Dataset &data)
     // heavily inspired in https://github.com/heal-research/operon/blob/main/source/algorithms/nsga2.cpp
     auto [init, cond, body, back, done] = taskflow.emplace(
         [&](tf::Subflow& subflow) { 
+            cout << "initializing" << endl;
             auto fit_init_pop = subflow.for_each_index(0, this->params.num_islands, 1, [&](int island) {
                 // Evaluate the individuals at least once
                 // Set validation loss before calling update best
 
                 evaluator.update_fitness(this->pop, island, data, params, true, true);
             });
-
+            cout << "updated fitness" << endl;
             auto find_init_best = subflow.emplace([&]() { 
                 // Make sure we initialize it. We do this update here because we need to 
                 // have the individuals fitted before we can compare them. When update_best
                 // is called, we are garanteed that the individuals are fitted and have valid 
                 // fitnesses.
                 this->best_ind = *pop.individuals.at(0);
-                bool updated_best = this->update_best();
+                this->update_best(); // at this moment we dont care about update_best return value
             });
-
+            cout << "updated best" << endl;
             fit_init_pop.precede(find_init_best);
          }, // init (entry point for taskflow)
 
@@ -521,11 +511,13 @@ void Engine<T>::run(Dataset &data)
             auto prepare_gen = subflow.emplace([&]() { 
                 params.set_current_gen(generation);
                 batch = data.get_batch(); // will return the original dataset if it is set to dont use batch 
+                cout << "set gen to " << generation << endl;
             }).name("prepare generation");// set generation in params, get batch
 
             auto run_generation = subflow.for_each_index(0, this->params.num_islands, 1, [&](int island) {
 
                 evaluator.update_fitness(this->pop, island, data, params, false, false); // fit the weights with all training data
+                cout << "updated gen fitness" << endl;
 
                 // TODO: have some way to set which fitness to use (for example in params, or it can infer based on split size idk)
                 // TODO: if using batch, fitness should be called before selection to set the batch
@@ -533,7 +525,7 @@ void Engine<T>::run(Dataset &data)
                     evaluator.update_fitness(this->pop, island, batch, params, false, false);
 
                 vector<size_t> parents = selector.select(this->pop, island, params);
-
+                cout << "performed parent selection" << endl;
                 for (int i=0; i< parents.size(); i++){
                     island_parents.at(island).at(i) = parents.at(i);
                 }
@@ -572,8 +564,6 @@ void Engine<T>::run(Dataset &data)
                 variator.update_ss();
                 this->pop.update({survivor_indices});
                 this->pop.migrate();
-
-
             }).name("update, migrate and disentangle indexes between islands");
             
             auto finish_gen = subflow.emplace([&]() {
