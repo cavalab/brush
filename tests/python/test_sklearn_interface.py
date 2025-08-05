@@ -2,6 +2,7 @@ import pytest
 from sklearn.model_selection import GridSearchCV
 from sklearn.datasets import make_regression
 from pybrush import BrushRegressor
+import numpy as np
 
 def test_brush_regressor_grid_search():
     # Generate synthetic regression data
@@ -28,6 +29,20 @@ def test_brush_regressor_grid_search():
     # Print the best parameters and score
     print("Best parameters found: ", grid_search.best_params_)
     print("Best score: ", grid_search.best_score_)
+
+def test_final_model_selection():
+    X, y = make_regression(n_samples=100, n_features=10, noise=0.1, random_state=42)
+    
+    model = BrushRegressor(max_gens=10, pop_size=10, final_model_selection="").fit(X, y)
+    idx = np.argmin([p['fitness']['complexity'] for p in model.archive_])
+    
+    assert model.best_estimator_.fitness.complexity != model.archive_[idx]['fitness']['complexity']
+
+    model = BrushRegressor(max_gens=10, pop_size=10, final_model_selection="smallest_complexity").fit(X, y)
+    idx = np.argmin([p['fitness']['complexity'] for p in model.archive_])
+
+    # Archive is sorted by complexity
+    assert model.best_estimator_.fitness.complexity <= model.archive_[-1]['fitness']['complexity']
 
 if __name__ == "__main__":
     pytest.main()

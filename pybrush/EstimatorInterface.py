@@ -9,6 +9,7 @@ import numpy as np
 import pandas as pd
 from pybrush import Parameters, Dataset
 from typing import Union, List, Dict
+from collections.abc import Callable
 
 class EstimatorInterface():
     """
@@ -126,6 +127,25 @@ class EstimatorInterface():
     load_population: str, optional (default "")
         string containing the path to load the initial population. Ignored
         if not provided.
+    final_model_selection : {"", "smallest_complexity"} or function, optional (default "")
+        specifies how the final model should be selected. If a function is 
+        passed, then it will be applied over the population to select the
+        final model. If a string is passed, then it should be one of the
+        available options:
+        * `""`: the model selected by the C++ engine is used. The C++ picks the
+        model with best `scorer` objective value on the inner validation
+        partition. If `validation_size` is set to zero, then the training 
+        partition is used;
+        * `"smallest_complexity"`: the non-dominated individual with the 
+        smallest complexity, and more than one node in size (asserting it is
+        a non-constant solution);
+
+        If a custom function is passed, then it should hhave the signature
+        `Callable[[List[Dict], List[Dict]], Dict]]`, which means that it takes
+        as arguments two lists of dicts (the entire population and the 
+        pareto front represented as a list of individuals serialized as
+        dictionaries, respectively), and returns a single individual (one 
+        individual from any of the lists).
     bandit : str, optional (default: "dynamic_thompson")
         The bandit strategy to use for the estimator. Options are `"dummy"` that
         does not change the probabilities; `"thompson"` that uses static Thompson
@@ -183,6 +203,7 @@ class EstimatorInterface():
         batch_size: float = 1.0,
         sel: str = "lexicase",
         surv: str = "nsga2",
+        final_model_selection: Union[str, Callable[[List[Dict], List[Dict]], Dict]] = "",
         save_population: str = "",
         load_population: str = "",
         bandit: str = 'dynamic_thompson',
@@ -206,6 +227,7 @@ class EstimatorInterface():
         self.cx_prob = cx_prob
         self.bandit = bandit
         self.logfile = logfile
+        self.final_model_selection = final_model_selection
         self.save_population = save_population
         self.load_population = load_population
         self.mutation_probs = mutation_probs

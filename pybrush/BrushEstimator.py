@@ -14,7 +14,7 @@ from sklearn.base import BaseEstimator, ClassifierMixin, \
 from sklearn.utils.validation import check_is_fitted
 from sklearn.utils import check_X_y
 
-from pybrush import Parameters, Dataset, SearchSpace, brush_rng
+from pybrush import Parameters, Dataset, SearchSpace, brush_rng, individual
 from pybrush.EstimatorInterface import EstimatorInterface
 from pybrush import RegressorEngine, ClassifierEngine, MultiClassifierEngine
 
@@ -114,7 +114,7 @@ class BrushEstimator(EstimatorInterface, BaseEstimator):
         self.archive_ = self.engine_.get_archive()
         self.population_ = self.engine_.get_population()
         self.best_estimator_ = self.engine_.best_ind
-
+        
         return self
     
     def partial_fit(self, X, y, lock_nodes_depth=0, keep_leaves_unlocked=True):
@@ -162,6 +162,9 @@ class BrushEstimator(EstimatorInterface, BaseEstimator):
         self.archive_ = self.engine_.get_archive()
         self.population_ = self.engine_.get_population()
         self.best_estimator_ = self.engine_.best_ind
+
+        if self.final_model_selection != "":
+            self._update_final_model()
 
         return self
 
@@ -231,6 +234,41 @@ class BrushEstimator(EstimatorInterface, BaseEstimator):
 
         return preds
     
+    def _update_final_model(self):
+        # selecting the final individual based on the final_model_selection function
+        # if the user specified something other than the default cpp pick method
+
+        candidate = None
+        if self.final_model_selection == "smallest_complexity":
+            candidates = [p for p in self.archive_ if p['fitness']['size'] > 1 + (4 if self.mode == 'classification' else 0)]
+            if len(candidates)==0: # fallback to all elements
+                candidates = self.archive_
+
+            idx = np.argmin([p['fitness']['complexity'] for p in candidates])
+
+            candidate = candidates[idx]
+        elif callable(self.final_model_selection):
+            try:
+                candidate = self.final_model_selection(self.population_, self.archive_)
+            except Exception as e:
+                raise RuntimeError("Failed to use the provided model "
+                                   "selection function. Raised the following "
+                                   f"error: {e}")
+        else:
+            raise ValueError("Unknown model selection method. Please try using "
+                             "a valid function or one of the default methods.")
+        
+        # Casting the json from the archive_ or population_ into something callable
+        if isinstance(candidate, dict):
+            if self.mode == 'classification':
+                self.best_estimator_ = (
+                    individual.ClassifierIndividual
+                    if self.parameters_.n_classes == 2 else
+                    individual.MultiClassifierIndividual
+                ).from_json(candidate)
+            else:
+                self.best_estimator_ = individual.RegressorIndividual.from_json(candidate)
+
 
 class BrushClassifier(BrushEstimator, ClassifierMixin):
     """Brush with c++ engine for classification.
