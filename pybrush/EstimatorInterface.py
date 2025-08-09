@@ -85,7 +85,7 @@ class EstimatorInterface():
         based on the correlation with the output y. If `False`, then all terminal nodes
         will have the same probability of 1.0. This parameter is ignored if the bandit
         strategy is used, and weights will be learned dynamically during the run.
-    validation_size : float, default 0.0
+    validation_size : float, default 0.2
         Percentage of samples to use as a hold-out partition. These samples are used
         to calculate statistics during evolution, but not used to train the models.
         The `best_estimator_` will be selected using this partition. If zero, then
@@ -195,7 +195,7 @@ class EstimatorInterface():
         scorer: str = None,
         algorithm: str = "nsga2",
         weights_init: bool = True,
-        validation_size: float = 0.0,
+        validation_size: float = 0.2,
         use_arch: bool = False,
         val_from_arch: bool = True,
         constants_simplification=True,
@@ -418,4 +418,7 @@ class EstimatorInterface():
 
     def __setstate__(self, state):
         self.__dict__.update(state)
-        self.data_ = None
+        # self.data_ = None
+        # self.train_ = None
+        # self.validation_ = None
+        # self.search_space_ = None

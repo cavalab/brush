@@ -68,10 +68,14 @@ class BrushEstimator(EstimatorInterface, BaseEstimator):
                 if is_bool_dtype(dtype):
                     self.feature_types_.append('ArrayB')
                 elif is_integer_dtype(dtype):
+                    # For Brush, it does matter if it is realy an integer or a boolean in disguise
                     if np.all(np.logical_or(values == 0, values == 1)):
                         self.feature_types_.append('ArrayB')
                     else:
-                        self.feature_types_.append('ArrayI')
+                        if len(np.unique(values))<=10: # Categories, encoded
+                            self.feature_types_.append('ArrayI')
+                        else: # Integers, we'll treat as floats so we can do all the math normally
+                            self.feature_types_.append('ArrayF')
                 elif is_float_dtype(dtype):
                     self.feature_types_.append('ArrayF')
                 else:
@@ -173,21 +177,19 @@ class BrushEstimator(EstimatorInterface, BaseEstimator):
 
         check_is_fitted(self)
 
-        if self.data_ is None:
-            self.data_ = self._make_data(X, 
-                                    feature_names=self.feature_names_,
-                                    feature_types=self.feature_types_,
-                                    validation_size=self.validation_size,
-                                    shuffle_split=self.shuffle_split)
-            
         if isinstance(X, pd.DataFrame):
             X = X.values
 
         assert isinstance(X, np.ndarray)
 
-        # Need to provide feature names because reference does not store order
-        data = Dataset(X=X, ref_dataset=self.data_, 
-                              feature_names=self.feature_names_)
+        # Need to provide feature names because reference does not store order.
+        # Some of the self.<attr> are created just after fitting the estimator,
+        # and they are properly serialized in the python-side.
+        data = Dataset(X=X, # ref_dataset=self.data_, 
+                            feature_types=self.feature_types_,
+                            feature_names=self.feature_names_,
+                            validation_size=0.0,
+                            )
         
         return self.best_estimator_.program.predict(data)
 
@@ -206,21 +208,16 @@ class BrushEstimator(EstimatorInterface, BaseEstimator):
 
         check_is_fitted(self)
 
-        if self.data_ is None:
-            self.data_ = self._make_data(X, 
-                                    feature_names=self.feature_names_,
-                                    feature_types=self.feature_types_,
-                                    validation_size=self.validation_size,
-                                    shuffle_split=self.shuffle_split)
-            
         if isinstance(X, pd.DataFrame):
             X = X.values
 
         assert isinstance(X, np.ndarray)
 
         # Need to provide feature names because reference does not store order
-        data = Dataset(X=X, ref_dataset=self.data_, 
-                            feature_names=self.feature_names_)
+        data = Dataset(X=X, 
+                            feature_types=self.feature_types_,
+                            feature_names=self.feature_names_,
+                            validation_size=0.0)
 
         archive = self.engine_.get_archive()
 
@@ -310,22 +307,18 @@ class BrushClassifier(BrushEstimator, ClassifierMixin):
         """
         
         check_is_fitted(self)
-
-        if self.data_ is None:
-            self.data_ = self._make_data(X, 
-                                    feature_names=self.feature_names_,
-                                    feature_types=self.feature_types_,
-                                    validation_size=self.validation_size,
-                                    shuffle_split=self.shuffle_split)
-            
+    
         if isinstance(X, pd.DataFrame):
             X = X.values
 
         assert isinstance(X, np.ndarray)
 
         # Need to provide feature names because reference does not store order
-        data = Dataset(X=X, ref_dataset=self.data_, 
-                              feature_names=self.feature_names_)
+        data = Dataset(X=X, # ref_dataset=self.data_, 
+                            feature_types=self.feature_types_,
+                            feature_names=self.feature_names_,
+                            validation_size=0.0)
+
 
         prob = self.best_estimator_.program.predict_proba(data)
 
@@ -341,21 +334,16 @@ class BrushClassifier(BrushEstimator, ClassifierMixin):
 
         check_is_fitted(self)
 
-        if self.data_ is None:
-            self.data_ = self._make_data(X, 
-                                    feature_names=self.feature_names_,
-                                    feature_types=self.feature_types_,
-                                    validation_size=self.validation_size,
-                                    shuffle_split=self.shuffle_split)
-            
         if isinstance(X, pd.DataFrame):
             X = X.values
 
         assert isinstance(X, np.ndarray)
 
         # Need to provide feature names because reference does not store order
-        data = Dataset(X=X, ref_dataset=self.data_, 
-                            feature_names=self.feature_names_)
+        data = Dataset(X=X, 
+                        feature_types=self.feature_types_,
+                        feature_names=self.feature_names_,
+                        validation_size=0.0)
         
         archive = self.engine_.get_archive()
 
