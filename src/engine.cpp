@@ -416,8 +416,8 @@ void Engine<T>::run(Dataset &data)
     // invalidating all individuals (so they are fitted with current data)
     for (auto& individual : this->pop.individuals) {
         if (individual != nullptr) {
+            // will force re-fit and calc all fitness information
             individual->set_is_fitted(false);
-
         }
     }
 

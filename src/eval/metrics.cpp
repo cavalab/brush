@@ -140,7 +140,7 @@ float average_precision_score(const VectorXf& y, const VectorXf& predict_proba,
         return predict_proba(i) > predict_proba(j);
     });
 
-    float ysum = 0;
+    float ysum = 0; // counts only the positive class
     if (!class_weights.empty()) 
         for (int i = 0; i < y.size(); i++) {
             ysum += y(i) * class_weights.at(y(i));
