@@ -54,7 +54,7 @@ string Node::get_model(const vector<string>& children) const noexcept
     if (children.empty())
         return get_name();
     else if (Is<NodeType::SplitBest>(node_type)){
-        return fmt::format("If({}>{:.2f},{},{})",
+        return fmt::format("If({}>={:.2f},{},{})",
             feature,
             W,
             children.at(0),
@@ -72,7 +72,7 @@ string Node::get_model(const vector<string>& children) const noexcept
             );
         }
         // integers or floating points (they have a threshold)
-        return fmt::format("If({}>{:.2f},{},{})",
+        return fmt::format("If({}>={:.2f},{},{})",
             children.at(0),
             W,
             children.at(1),

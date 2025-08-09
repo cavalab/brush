@@ -56,7 +56,22 @@ struct ResidualEvaluator {
 
         auto residualMap = ArrayType::Map(residuals, GetDataset().get_n_samples());
 
-        residualMap = (y_pred - GetTarget()); 
+        // how we calculate the residuals
+        if (GetDataset().classification) // classification
+        {
+            // tolerance to avoid numeric errors
+            float eps = pow(10,-10);
+            auto y = GetTarget();
+
+            // clamp values and avoid log(0) evaluations
+            y_pred = y_pred.min(T(1.0) - T(eps)).max(T(eps));
+            
+            // log loss
+            residualMap = -(y*log(y_pred) + (T(1.0)-y)*log(T(1.0)-y_pred));
+        }
+        else { // This is MSE, default behavior
+            residualMap = (y_pred - GetTarget()); 
+        }
 
         return true;
     }

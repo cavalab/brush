@@ -118,8 +118,13 @@ def test_class_weights():
     X = np.array([[1.1, 2.0, 3.0, 4.0, 5.0, 6.5, 7.0, 8.0, 9.0, 10.0],
                     [2.0, 1.2, 6.0, 4.0, 5.0, 8.0, 7.0, 5.0, 9.0, 10.0]]).T
 
-    class_weights = [np.sum(y == 0)/len(y), np.sum(y == 1)/len(y)]
-
+    # Class weights calculated by support
+    classes = np.unique(y)
+    class_weights = []
+    for i in classes:
+        support = np.sum(y == i)
+        class_weights.append(0.0 if support==0 else len(y)/(len(classes)*support)) 
+    
     print(f"Input y: {y}")
     print(f"Input X: {X}")
     print(f"Calculated class_weights: {class_weights}")
@@ -132,16 +137,16 @@ def test_class_weights():
     clf = BrushClassifier(
         # class_weights=class_weights,
         # functions=['Logistic', 'Add', 'Mul'],
-        max_gens=10, verbosity=2
+        max_gens=10, verbosity=2,
+        validation_size=0, # So the calculated class_weights match
     ).fit(X, y)
 
     assert len(clf.parameters_.class_weights)==2, \
         f"Expected class weights to be empty, but got {clf.class_weights}"
     
     # class weight = n_classes*(1 - (y==class)/n_samples)
-    assert np.allclose(clf.parameters_.class_weights,
-                       [(1 - 7/10), (1 - 3/10)]), \
-        f"Expected class weights to be [0.3, 0.7], but got {clf.parameters_.class_weights}"
+    assert np.allclose(clf.parameters_.class_weights, class_weights), \
+        f"Expected class weights to be {class_weights}, but got {clf.parameters_.class_weights}"
     
     predictions = clf.predict(X)
     assert predictions is not None, "Prediction failed"

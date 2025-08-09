@@ -364,8 +364,9 @@ template<PT PType> struct Program
                     {
                         n.set_keep_split_feature(false);
                     }
-                    else // leaves can also be locked based on depth
+                    else // leaves can be locked
                     {
+                        // check if we should lock based on depth
                         n.set_keep_split_feature(d+1<=end_depth);
                     }
                 }
@@ -452,7 +453,7 @@ template<PT PType> struct Program
             string node_label = parent->data.get_name(is_constant);
 
             if (Is<NodeType::SplitBest>(parent->data.node_type)){
-                node_label = fmt::format("{}>{:.2f}?", parent->data.get_feature(), parent->data.W); 
+                node_label = fmt::format("{}>={:.2f}?", parent->data.get_feature(), parent->data.W); 
             }
             if (Is<NodeType::OffsetSum>(parent->data.node_type)){
                 node_label = fmt::format("Add"); 
@@ -484,7 +485,7 @@ template<PT PType> struct Program
                 if (Is<NodeType::SplitOn>(parent->data.node_type)){
                     use_head_tail_labels=true;
                     if (j == 0)
-                        tail_label = fmt::format(">{:.2f}",parent->data.W); 
+                        tail_label = fmt::format(">={:.2f}",parent->data.W); 
                     else if (j==1)
                         tail_label = "Y"; 
                     else
