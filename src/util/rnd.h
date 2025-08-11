@@ -39,6 +39,8 @@ namespace Brush { namespace Util{
 
             float rnd_flt(float min=0.0, float max=1.0);
 
+            float rnd_alpha_beta(float alpha, float beta);
+
             float rnd_dbl(float min=0.0, float max=1.0);
             
             float operator()(unsigned i);
