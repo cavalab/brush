@@ -24,14 +24,19 @@ description = "Python bindings for brush"
 readme = "README.md"
 license = { text = "GPL-3.0-or-later" }
 requires-python = ">=3.8"
-optional-dependencies.docs = [
+[project.optional-dependencies]
+docs = [
     "sphinx_rtd_theme",
     "maisie_sphinx_theme",
     "breathe"
 ]
-optional-dependencies.test = [
+test = [
+    "deap",
     "pytest",
     "pmlb"
+]
+deap = [
+    "deap"
 ]
 
 [project.urls]
