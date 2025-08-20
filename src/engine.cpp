@@ -627,6 +627,14 @@ void Engine<T>::run(Dataset &data)
 
             set_is_fitted(true);
             
+            if (!params.logfile.empty()) {
+                std::ofstream log_simplification;
+                log_simplification.open(params.logfile+"simplification_table", std::ofstream::app);
+                variator.log_simplification_table(log_simplification);
+                
+                log_simplification.close();
+            }
+
             // TODO: open, write, close? (to avoid breaking the file and allow some debugging if things dont work well)
             if (log.is_open())
                 log.close();

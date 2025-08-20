@@ -23,7 +23,7 @@ public:
     };
     ~HashStorage() {};
 
-    void append(const int& storage_n, const size_t& key, const tree<Node> Tree) {
+    void append(const int& storage_n, const size_t& key, const tree<Brush::Node> Tree) {
         // we initialize the list of equivalent vectors if it does not exist
 
         if (storage[storage_n].find(key) == storage[storage_n].end())
@@ -34,11 +34,45 @@ public:
         // about the order of the rest of the elements.
         auto& storage_it = storage[storage_n][key];
 
+        // calculating incoming tree's attributes to compare 
+        size_t new_size = Tree.begin().node->get_size();
+
+        auto it = storage_it.begin();
+        for (; it != storage_it.end(); ++it) {
+            size_t curr_size = it->begin().node->get_size();
+
+            if (curr_size > new_size) {
+                // found insertion point, we dont need to look beyond this point
+                break;
+            } else if (curr_size == new_size) {
+                // Compare structure + contents
+                auto it1 = it->begin();
+                auto it2 = Tree.begin();
+
+                auto end1 = it->end();
+                auto end2 = Tree.end();
+
+                bool trees_equal = true;
+                for (; it1 != end1 && it2 != end2; ++it1, ++it2) {
+                    if (it1.node->data.get_node_hash(false)
+                    !=  it2.node->data.get_node_hash(false) ){
+                        trees_equal = false;
+                        break;
+                    }
+                }
+
+                if (trees_equal && it1 == end1 && it2 == end2) {
+                    // both finished at same time and the look was not interrupted earlier.
+                    // it means we already have the same exact tree (but maybe with a different coeff).
+                    // lets pretend we inserted and just return
+                    return;
+                }
+
+                // else keep scanning; insertion will be after last equal-size element
+            }
+        }
+
         // Insert Tree in order by size, smallest first
-        auto it = std::find_if(storage_it.begin(), storage_it.end(),
-            [&](const tree<Node>& t) {
-            return Tree.begin().node->get_size() < t.begin().node->get_size();
-            });
         storage_it.insert(it, Tree);
     }
 
@@ -62,6 +96,23 @@ public:
             result.push_back(pair.first);
 
         return result;
+    }
+
+    void print(const string& prefix, std::ofstream& log) const {
+        for (size_t plane_idx = 0; plane_idx < storage.size(); ++plane_idx) {
+            for (const auto& kv : storage[plane_idx]) {
+                size_t key = kv.first;
+                const auto& trees = kv.second;
+
+                for (const auto& t : trees) {
+                    log << prefix
+                              << plane_idx << ","
+                              << key << ","
+                              << t.begin().node->get_model()
+                              << "\n";
+                }
+            }
+        }
     }
 
 private:
@@ -159,16 +210,13 @@ class Inexact_simplifier
 
                                 simplified_program.Tree.erase_children(spot);
 
-                                
                                 spot = simplified_program.Tree.move_ontop(spot, simplified_branch.begin());
                                 
                                 auto new_predictions = simplified_program.predict(d);
 
                                 float diff = (original_predictions.template cast<float>() - new_predictions.template cast<float>()).square().mean();
                                 
-                                
-                                if (diff < best_distance) {
-                                    
+                                if (diff < best_distance) {    
                                     best_distance = diff;
                                     best_branch = cand;
                                 }
@@ -216,6 +264,21 @@ class Inexact_simplifier
                 // hash() will clip the prediction to the inputDim, but here we store the full
                 // predictions so we can calculate the distance to the query point later in query()
                 equivalentExpressions[spot.node->data.ret_type].append(i, hashes[i], tree_copy);
+            }
+        }
+
+        // wrapper to print all equivalentExpressions
+        inline void log_simplification_table(std::ofstream& log) {
+            // print header
+            log << "DataType,Plane,Key,Tree\n";
+
+            for (const auto& kv : equivalentExpressions) {
+                DataType dt = kv.first;
+                const HashStorage& hs = kv.second;
+
+                // prefix is the DataType name + a comma
+                std::string prefix = dt_to_string(dt) + ",";
+                hs.print(prefix, log);
             }
         }
 
@@ -320,6 +383,30 @@ class Inexact_simplifier
             if (matches.size() > 0)
                 return matches;
             return std::nullopt;
+        }
+
+        inline string dt_to_string(DataType dt) {
+            switch (dt) {
+                case DataType::ArrayB: return "ArrayB";
+                case DataType::ArrayI: return "ArrayI";
+                case DataType::ArrayF: return "ArrayF";
+                case DataType::MatrixB: return "MatrixB";
+                case DataType::MatrixI: return "MatrixI";
+                case DataType::MatrixF: return "MatrixF";
+                case DataType::TimeSeriesB: return "TimeSeriesB";
+                case DataType::TimeSeriesI: return "TimeSeriesI";
+                case DataType::TimeSeriesF: return "TimeSeriesF";
+                case DataType::ArrayBJet: return "ArrayBJet";
+                case DataType::ArrayIJet: return "ArrayIJet";
+                case DataType::ArrayFJet: return "ArrayFJet";
+                case DataType::MatrixBJet: return "MatrixBJet";
+                case DataType::MatrixIJet: return "MatrixIJet";
+                case DataType::MatrixFJet: return "MatrixFJet";
+                case DataType::TimeSeriesBJet: return "TimeSeriesBJet";
+                case DataType::TimeSeriesIJet: return "TimeSeriesIJet";
+                case DataType::TimeSeriesFJet: return "TimeSeriesFJet";
+            }
+            return "Unknown";
         }
 
         // one storage instance for each datatype/rettype.

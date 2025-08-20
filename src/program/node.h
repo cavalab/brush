@@ -193,20 +193,29 @@ struct Node {
     //     });
     //     // fmt::print("nodetype:{}; hash tuple:{}; node_hash={}\n", node_type, tmp, node_hash);
     // }
-    size_t get_node_hash() const {
+    size_t get_node_hash(bool include_const=true) const {
+        // we ignore the constant only on simplification, because it will be tuned anyways
+
         return std::hash<HashTuple>{}(HashTuple{
                 NodeTypes::GetIndex(node_type),
                 sig_hash,
                 get_is_weighted(),
                 feature,
                 fixed,
-                int(W*100)
+                // include weights only if we want exact matches.
+                // but we will indicate that constants are on using get is weighted,
+                // just so we differentiate whether the weight exists or is ignored
+                include_const ? int(W * 100) : (get_is_weighted() ? 1 : 0)
         });
     }
     ////////////////////////////////////////////////////////////////////////////////
     //comparison operators
     inline auto operator==(const Node& rhs) const noexcept -> bool
     {
+        // obs: this is declared as a member operator, so the lhs is implicit.
+        // If i were to declare this outsize class definition, then I would have
+        // to include lhs in the function signature
+        
         /* return CalculatedHashValue == rhs.CalculatedHashValue; */
         return get_node_hash() == rhs.get_node_hash();
         /* return (*this) == rhs; */

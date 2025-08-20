@@ -46,5 +46,14 @@ def test_final_model_selection():
     # Archive is sorted by complexity
     # assert model.best_estimator_.fitness.complexity <= model.archive_[-1]['fitness']['complexity']
 
+
+def test_brush_simplification_log():
+    # Generate synthetic regression data
+    X, y = make_regression(n_samples=100, n_features=10, noise=0.1, random_state=42)
+    
+    # Define the BrushRegressor
+    model = BrushRegressor(inexact_simplification=True, max_gens=20, logfile='./temp.log').fit(X, y)
+
+
 if __name__ == "__main__":
     pytest.main()

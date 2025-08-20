@@ -53,6 +53,7 @@ class tree_node_<Node> { // size: 5*4=20 bytes (on 32 bit arch), can be reduced 
         int get_complexity() const;
         int get_linear_complexity() const;
         int get_size(bool include_weight=true) const;
+
 }; 
 using TreeNode = class tree_node_<Node>; 
 

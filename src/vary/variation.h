@@ -587,6 +587,10 @@ public:
         return std::nullopt;
     };
 
+    inline void log_simplification_table(std::ofstream& log) {
+        inexact_simplifier.log_simplification_table(log);
+    };
+
     // bandit_sample_subtree // TODO: should I implement this? (its going to be hard).
     // without this one being performed directly by the bandits, we then rely on
     // the sampled probabilities we update after every generation. Since there are lots
