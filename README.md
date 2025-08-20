@@ -226,7 +226,8 @@ It will not build the docs or cpp tests.
 
 ### Python
 
-The tests are run by calling pytest from the root directory. 
+The tests are run by calling pytest from the root directory. You may need to install brush with `pip install '.[test]'` to install all required dependencies
+
 
 ```bash
 pytest 
@@ -266,5 +267,11 @@ make html
 ```
 
 The static website is located in `-build/html`
+
+## Building the python docs
+
+First you need to modify the `CMakeLists.txt` to enable building the docs by changing `option(DOCS "build docs" OFF)` to `ON`, as well as `"-DDOCS=OFF"` to `ON` in the `pyproject.toml`.
+
+Then you can install brush with `pip install '.[docs]'` and it will build the docs as it install the module.
 
 <!-- end development -->

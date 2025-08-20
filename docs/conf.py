@@ -22,6 +22,7 @@ import subprocess
 import os
 import sys
 
+# Now all relative paths are relative to docs/
 sys.path.insert(0, os.path.abspath('../src'))
 print("SPHINX SYSTEM PATH:")
 print(sys.path)
@@ -53,11 +54,13 @@ breathe_projects['brush'] = output_dir + '/xml'
 # -- Project information -----------------------------------------------------
 
 project = 'Brush'
-copyright = '2021, William La Cava and Joseph D. Romano'
+copyright = '2025, William La Cava and Joseph D. Romano'
 author = 'William La Cava and Joseph D. Romano'
 
 # The full version, including alpha/beta/rc tags
-release = '0.1a' # TODO: use versionstr here
+sys.path.insert(0, os.path.abspath('../pybrush'))
+from _versionstr import __version__
+release = __version__ # or just hardcode something e.g. '0.1a'
 
 
 # -- General configuration ---------------------------------------------------
@@ -71,14 +74,15 @@ extensions = [
 	"breathe",  # Use Doxygen output as input for Sphinx
 	"sphinx.ext.graphviz",
 	"sphinx.ext.linkcode",
-	'numpydoc',
+	'sphinx.ext.autodoc',
 	'sphinx_copybutton',
 	'sphinx.ext.mathjax',
 	'sphinx_math_dollar',
 	'myst_nb',
 	# 'nbsphinx',
-	# "myst_parser",
 ]
+
+master_doc = "index"
 
 autosummary_generate = True
 
@@ -97,7 +101,8 @@ nb_execution_mode = "off"
 # The theme to use for HTML and HTML Help pages.  See the documentation for
 # a list of builtin themes.
 #
-html_theme = 'sphinx_book_theme'
+# html_theme = 'sphinx_book_theme'
+html_theme = 'sphinx_rtd_theme'
 html_favicon = "_static/paint-brush-solid.svg"
 # html_logo = "_static/paint-brush-solid.svg"
 # Add any paths that contain custom static files (such as style sheets) here,
