@@ -319,12 +319,10 @@ public:
             // simplify before calculating fitness (order matters, as they are not refitted and constants simplifier does not replace with the right value.)
             // TODO: constants_simplifier should set the correct value for the constant (so we dont have to refit).
             // simplify constants first to avoid letting the lsh simplifier to visit redundant branches
-
-            // string prg_str = ind.program.get_model();
+            
             if (parameters.constants_simplification && do_simplification)
             {
                 constants_simplifier.simplify_tree<T>(ind.program, search_space, data.get_training_data());  
-                // prg_str = ind.program.get_model();
             }
 
             if (parameters.inexact_simplification)
@@ -337,7 +335,10 @@ public:
 
                 if (do_simplification)
                 {
+                    // string prg_str = ind.program.get_model();
+
                     inexact_simplifier.simplify_tree<T>(ind.program, search_space, data_simp);
+
                     // if (ind.program.get_model().compare(prg_str)!= 0)
                     //     cout << prg_str << endl << ind.program.get_model() << endl << "=====" << endl;
                 }
@@ -456,8 +457,6 @@ public:
     // bandit_sample_terminal
     std::optional<Node> bandit_sample_terminal(DataType R)
     {
-
-
         if (terminal_bandits.find(R) == terminal_bandits.end()) {
 
             return std::nullopt;
@@ -465,7 +464,6 @@ public:
 
         auto& bandit = terminal_bandits.at(R);
         string terminal_name = bandit.choose();
-
 
         auto it = std::find_if(
             search_space.terminal_map.at(R).begin(),
@@ -478,15 +476,12 @@ public:
             return search_space.terminal_map.at(R).at(index);
         }
 
-
         return std::nullopt;
     };
 
     // bandit_get_node_like
     std::optional<Node> bandit_get_node_like(Node node)
     {
-
-
         // TODO: use search_space.terminal_types here (and in search_space get_node_like as well)
         if (Is<NodeType::Terminal, NodeType::Constant, NodeType::MeanLabel>(node.node_type)){
 
@@ -505,15 +500,11 @@ public:
         auto& bandit = op_bandits[node.ret_type][node.args_type()];
         string node_name = bandit.choose();
 
-
         auto entries = search_space.node_map[node.ret_type][node.args_type()];
-
 
         for (const auto& [node_type, node_value]: entries)
         {
-
             if (node_value.name == node_name) {
-
                 return node_value;
             }
         }

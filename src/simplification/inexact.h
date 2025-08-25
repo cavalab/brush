@@ -146,10 +146,11 @@ class Inexact_simplifier
                     // indexing only small subtrees. We don't index constants (the constant simplifier will take
                     // care of them), but we index terminals, as they are weighted and may be added to different
                     // hash collections
-                    if (program.size_at(spot, true) <= 15
-                    &&  Isnt<NodeType::Constant, NodeType::MeanLabel>(spot.node->data.node_type))
+                    if (program.size_at(spot, true) <= 30
+                    &&  Isnt<NodeType::Terminal, NodeType::Constant, NodeType::MeanLabel>(spot.node->data.node_type))
                     {
                         index<P>(spot, d);
+                        // terminals are indexed on initialization 
                     }
                 }
                 ++spot;
@@ -234,6 +235,9 @@ class Inexact_simplifier
                                 // cout << " with " << best_branch_copy.begin().node->get_model() << endl;
                                 
                                 spot = simplified_program.Tree.move_ontop(spot, best_branch_copy.begin());
+
+                                // learning the simplifications made here
+                                analyze_tree(simplified_program, ss, d);
                             }
                         }
                     }
@@ -324,7 +328,8 @@ class Inexact_simplifier
                 "You need to pass a dataset with inputDim samples to the simplification.");
 
             // Equalize floatClippedInput 
-            floatClippedInput = floatClippedInput - floatClippedInput.mean();
+            float floatClippedInput_mean = floatClippedInput.mean();
+            floatClippedInput = floatClippedInput - floatClippedInput_mean;
 
             vector<size_t> hashes;
             for (size_t planeIdx = 0; planeIdx < uniformPlanes.size(); ++planeIdx)
@@ -372,7 +377,7 @@ class Inexact_simplifier
                 for (const auto& cand : newCandidates) {
                     if (cand.begin().node->get_size() < spot_size) {
                         matches.push_back(cand);
-                        if (++count >= 10) break; // returning only top 10
+                        if (++count >= 25) break; // returning only top 10
                     } else {
                         // Since candidates are ordered by size, we can break early
                         break;
