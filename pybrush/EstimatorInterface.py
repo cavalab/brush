@@ -67,7 +67,7 @@ class EstimatorInterface():
         Distribution of sizes on the initial population. If `max_size`, then every
         expression is created with `max_size` nodes. If `uniform`, size will be
         uniformly distributed between 1 and `max_size`.
-    objectives : list[str], default ["scorer", "size"]
+    objectives : list[str], default ["scorer", "linear_complexity"]
         list with one or more objectives to use. The first objective is the main.
         If `"scorer"` is used, then the metric in `scorer` will be used as objective.
         Possible values are "scorer", "size", "complexity", "linear_complexity",
