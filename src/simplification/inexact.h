@@ -196,7 +196,7 @@ class Inexact_simplifier
                             // we know they will be smaller because query only returns smaller trees. We also include
                             // the current node in the list of candidates so the model does not get worse.
                             
-                            float threshold = 1e-6;
+                            float threshold = 1e-5;
 
                             float best_distance = threshold;
                             tree<Node> best_branch;

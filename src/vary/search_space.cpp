@@ -32,8 +32,8 @@ float calc_initial_weight(const ArrayXf& value, const ArrayXf& y)
                                        data.col(1).array() )); // y=target
 
     // having a minimum feature weight if it was not set to zero
-    if (std::abs(prob_change)<1e-2)
-        prob_change = 1e-2;
+    if (std::abs(prob_change)<1e-5)
+        prob_change = 1e-5;
 
     // prob_change will evaluate to nan if variance(x)==0. Features with
     // zero variance should not be used (as they behave just like a constant).
@@ -153,9 +153,10 @@ vector<Node> generate_terminals(const Dataset& d, const bool weights_init)
     cXi.set_prob_change(signature_avg(cXi.ret_type));
     terminals.push_back(cXi);
 
-    auto cXb = Node(NodeType::Constant, Signature<ArrayXb()>(), false, "constB");
-    cXb.set_prob_change(signature_avg(cXb.ret_type));
-    terminals.push_back(cXb);
+    // Constants for booleans are rarely useful. Our special terminal `MeanLabel` provides a better way of dealing with that
+    // auto cXb = Node(NodeType::Constant, Signature<ArrayXb()>(), false, "constB");
+    // cXb.set_prob_change(signature_avg(cXb.ret_type));
+    // terminals.push_back(cXb);
 
     // mean label node. Does not need to be part of symbols. works only for classification
     if (d.classification)
@@ -395,9 +396,6 @@ tree<Node>& SearchSpace::PTC2(tree<Node>& Tree,
             }
 
             n = opt.value();
-            // if (Is<NodeType::And>(n.node_type)){
-            //     cout << "AND\n";
-            // }
             
             auto newspot = Tree.replace(qspot, n);
 

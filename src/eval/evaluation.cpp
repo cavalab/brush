@@ -34,7 +34,7 @@ void Evaluation<T>::update_fitness(Population<T>& pop,
             {
                 ind.program.fit(data.get_training_data());
             }
-            
+
             assign_fit(ind, data, params, validation);
         }
     }

@@ -59,14 +59,27 @@ struct ResidualEvaluator {
         // how we calculate the residuals
         if (GetDataset().classification) // classification
         {
-            // tolerance to avoid numeric errors
-            float eps = pow(10,-10);
+            // tolerance to avoid numeric errors.
+
+            // Using an eps with 7 significant digits to avoid weird behavior.
+            // From some experiments, I noticed that using very small values (previous
+            // was pow(10,-10) caused the optimizer to evaluate to nans), probably because
+            // we were calculating log(0) due to cpp ignoring more than 7 significant digits
+            // for floats. using -6. As a reference, tensorflow uses -7.
+            // We need to remember that we dont want to have eps too big, otherwise
+            // we are biasing the predictions away from 0 and 1
+            float eps = 1e-6f;
+
+
             auto y = GetTarget();
 
-            // clamp values and avoid log(0) evaluations
+            // cout << T(1.0) << ", " << T(eps) << endl;
+
+            // clamp values and avoid log(0)
             y_pred = y_pred.min(T(1.0) - T(eps)).max(T(eps));
             
             // log loss
+            // residualMap = -(y*log(y_pred.array()) + (T(1.0)-y)*log(T(1.0)-y_pred.array()));
             residualMap = -(y*log(y_pred) + (T(1.0)-y)*log(T(1.0)-y_pred));
         }
         else { // This is MSE, default behavior

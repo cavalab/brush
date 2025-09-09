@@ -273,7 +273,9 @@ template<PT PType> struct Program
         for (PostIter i = Tree.begin_post(); i != Tree.end_post(); ++i)
         {
             const auto& node = i.node->data; 
-            // some nodes cannot have their weights optimized, others must have
+            // some nodes cannot have their weights optimized, others must have.
+            // It is important that this condition also matches the condition in 
+            // the methods get_weights, set_weights, .
             if ( Is<NodeType::OffsetSum>(node.node_type)
             ||   (node.get_is_weighted() && IsWeighable(node.ret_type)) )
                 ++count;

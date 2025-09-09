@@ -17,7 +17,9 @@ float mse(const VectorXf& y, const VectorXf& yhat, VectorXf& loss,
 VectorXf log_loss(const VectorXf& y, const VectorXf& predict_proba, 
                     const vector<float>& class_weights)
 {
-    float eps = pow(10,-10);
+    // See comments on weight_optimizer to learn more about why am I using
+    // this value for eps. TL;DR: dont change, can cause weird behaviour
+    float eps = 1e-6f;
     
     VectorXf loss;
     
@@ -113,7 +115,7 @@ float bal_zero_one_loss(const VectorXf& y,
         else                                    FN += weight;
     }
 
-    float eps = pow(10,-10);
+    float eps = 1e-6f;
     
     float TPR = (TP + eps) / (TP + FN + eps);
     float TNR = (TN + eps) / (TN + FP + eps);
@@ -127,7 +129,7 @@ float average_precision_score(const VectorXf& y, const VectorXf& predict_proba,
     
     // TODO: revisit this
     
-    float eps = pow(10,-10);
+    float eps = 1e-6f;
 
     // Assuming y contains binary labels (0 or 1)
     int num_instances = y.rows();
@@ -209,7 +211,7 @@ VectorXf multi_log_loss(const VectorXf& y, const ArrayXXf& predict_proba,
     // get class labels
     // vector<float> uc = unique( ArrayXi(y.cast<int>()) );
 
-    // float eps = pow(10,-10);
+    // float eps = 1e-6f;
     // float sum_weights = 0; 
     // for (unsigned i = 0; i < y.rows(); ++i)
     // {
