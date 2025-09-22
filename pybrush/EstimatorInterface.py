@@ -77,6 +77,7 @@ class EstimatorInterface():
     scorer : str, default None
         The metric to use for the "scorer" objective. If None, it will be set to
         "mse" for regression and "log" for binary classification.
+        Available options are `["mse", "log", "accuracy", "balanced_accuracy", "average_precision_score"]`
     algorithm : {"nsga2island", "nsga2", "gaisland", "ga"}, default "nsga2"
         Which Evolutionary Algorithm framework to use to evolve the population.
         This is used only in DeapEstimators.
@@ -108,9 +109,9 @@ class EstimatorInterface():
         The inexact simplification algorithm works by mapping similar expressions
         to the same hash, and retrieving the simplest one when doing the
         simplification of an expression.
-    use_arch: boolean, optional (default: False)
+    use_arch: boolean, optional (default: True)
         Determines if we should save pareto front of the entire evolution
-        (when set to  True) or just the final population (False).
+        (when set to  True) or just the final population (True).
     batch_size : float, default 1.0
         Percentage of training data to sample every generation. If `1.0`, then
         all data is used. Very small values can improve execution time, but 
@@ -127,7 +128,7 @@ class EstimatorInterface():
     load_population: str, optional (default "")
         string containing the path to load the initial population. Ignored
         if not provided.
-    final_model_selection : {"", "smallest_complexity"} or function, optional (default "")
+    final_model_selection : str or function, optional (default "")
         specifies how the final model should be selected. If a function is 
         passed, then it will be applied over the population to select the
         final model. If a string is passed, then it should be one of the
@@ -139,6 +140,10 @@ class EstimatorInterface():
         * `"smallest_complexity"`: the non-dominated individual with the 
         smallest complexity, and more than one node in size (asserting it is
         a non-constant solution);
+        * `"best_validation_ci"`: The less complex solution that is within
+        the 95% confidence interval of the best solution's validation loss, with
+        the confidence interval estimated with the inner validation partition of
+        the data passed to `fit` or `fit_partial`;
 
         If a custom function is passed, then it should hhave the signature
         `Callable[[List[Dict], List[Dict]], Dict]]`, which means that it takes
@@ -196,7 +201,7 @@ class EstimatorInterface():
         algorithm: str = "nsga2",
         weights_init: bool = True,
         validation_size: float = 0.2,
-        use_arch: bool = False,
+        use_arch: bool = True,
         val_from_arch: bool = True,
         constants_simplification=True,
         inexact_simplification=True,

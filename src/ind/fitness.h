@@ -162,7 +162,7 @@ struct Fitness {
             return false;
         }
         for (size_t i = 0; i < wvalues.size(); ++i)
-            if (fabs(wvalues[i] - other.wvalues[i]) > 1e-7)
+            if (fabs(wvalues[i] - other.wvalues[i]) > 1e-6)
                 return false;
                 
         return true;

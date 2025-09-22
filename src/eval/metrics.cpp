@@ -127,8 +127,6 @@ float average_precision_score(const VectorXf& y, const VectorXf& predict_proba,
                           VectorXf& loss,
                           const vector<float>& class_weights) {
     
-    // TODO: revisit this
-    
     float eps = 1e-6f;
 
     // Assuming y contains binary labels (0 or 1)
@@ -138,7 +136,7 @@ float average_precision_score(const VectorXf& y, const VectorXf& predict_proba,
     vector<int> argsort(num_instances);
 
     iota(argsort.begin(), argsort.end(), 0);
-    sort(argsort.begin(), argsort.end(), [&](int i, int j) {
+    stable_sort(argsort.begin(), argsort.end(), [&](int i, int j) {
         return predict_proba(i) > predict_proba(j);
     });
 
@@ -151,12 +149,16 @@ float average_precision_score(const VectorXf& y, const VectorXf& predict_proba,
         ysum = y.sum();
 
     // Calculate the precision and recall values
-    VectorXf precision(num_instances);
-    VectorXf recall(num_instances);
+    VectorXf precision(num_instances+1);
+    VectorXf recall(num_instances+1);
+
+    // Pad recall/precision to start at (0, 1) as sklearn does. This imples that
+    // acessing precision and recall should use i+1
+    precision(0) = 1.0;
+    recall(0)    = 0.0;
 
     float true_positives  = 0;
     float false_positives = 0;
-    float positives = ysum;
 
     // we need to iterate over the sorted indices
     // and calculate precision and recall at each step
@@ -174,8 +176,8 @@ float average_precision_score(const VectorXf& y, const VectorXf& predict_proba,
         
         int relevant = true_positives+false_positives;
 
-        precision(i) = relevant==0.0 ? 0.0 : true_positives/relevant;
-        recall(i)    = ysum==0.0 ? 1.0 : true_positives/ysum;
+        precision(i+1) = relevant==0.0 ? 0.0 : true_positives/relevant;
+        recall(i+1)    = ysum==0.0 ? 1.0 : true_positives/ysum;
     }
 
     // Calculate the average precision score
@@ -183,8 +185,7 @@ float average_precision_score(const VectorXf& y, const VectorXf& predict_proba,
     loss.resize(num_instances);
     
     for (int i = 0; i < num_instances; ++i) {
-        if (i > 0)
-            average_precision += (recall(i) - recall(i-1)) * precision(i);
+        average_precision += (recall(i+1) - recall(i)) * precision(i+1);
 
         int index = argsort[i];
         float p = predict_proba(index);

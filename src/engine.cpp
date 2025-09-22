@@ -459,9 +459,6 @@ void Engine<T>::run(Dataset &data)
                || (params.max_time != -1 && timer.Elapsed().count() > params.max_time)
         );
 
-        if (condition)
-            cout << "Stop condition reached" << endl;
-
         return condition;
     };
 
@@ -561,13 +558,13 @@ void Engine<T>::run(Dataset &data)
             }).name("update, migrate and disentangle indexes between islands");
             
             auto finish_gen = subflow.emplace([&]() {
-                if (params.use_arch) {
-                    archive.update(pop, params);
-                }
-                
                 // Set validation loss before calling update best
                 for (int island = 0; island < this->params.num_islands; ++island) {
                     evaluator.update_fitness(this->pop, island, data, params, false, true);
+                }
+
+                if (params.use_arch) {
+                    archive.update(pop, params);
                 }
 
                 bool updated_best = this->update_best();
@@ -607,9 +604,9 @@ void Engine<T>::run(Dataset &data)
         [&]() { return 0; }, // jump back to the next iteration
 
         [&](tf::Subflow& subflow) {
-            // set training loss for archive
+            // set VALIDATION loss for archive
             for (int island = 0; island < this->params.num_islands; ++island) {
-                evaluator.update_fitness(this->pop, island, data, params, true, false);
+                evaluator.update_fitness(this->pop, island, data, params, true, true);
             }
 
             // TODO: if we're not using an archive, let's store the final population in the 

@@ -14,6 +14,9 @@ from sklearn.base import BaseEstimator, ClassifierMixin, \
 from sklearn.utils.validation import check_is_fitted
 from sklearn.utils import check_X_y
 
+from sklearn.metrics import accuracy_score, balanced_accuracy_score, log_loss
+from sklearn.metrics import average_precision_score, mean_squared_error
+
 from pybrush import Parameters, Dataset, SearchSpace, brush_rng, individual
 from pybrush.EstimatorInterface import EstimatorInterface
 from pybrush import RegressorEngine, ClassifierEngine, MultiClassifierEngine
@@ -117,8 +120,12 @@ class BrushEstimator(EstimatorInterface, BaseEstimator):
         
         self.archive_ = self.engine_.get_archive()
         self.population_ = self.engine_.get_population()
+
         self.best_estimator_ = self.engine_.best_ind
-        
+
+        if self.final_model_selection != "":
+            self._update_final_model(self.data_.get_validation_data())
+
         return self
     
     def partial_fit(self, X, y, lock_nodes_depth=0, keep_leaves_unlocked=True):
@@ -168,7 +175,7 @@ class BrushEstimator(EstimatorInterface, BaseEstimator):
         self.best_estimator_ = self.engine_.best_ind
 
         if self.final_model_selection != "":
-            self._update_final_model()
+            self._update_final_model(new_data.get_validation_data())
 
         return self
 
@@ -231,9 +238,14 @@ class BrushEstimator(EstimatorInterface, BaseEstimator):
 
         return preds
     
-    def _update_final_model(self):
+    def _update_final_model(self, data=None):
         # selecting the final individual based on the final_model_selection function
         # if the user specified something other than the default cpp pick method
+
+        # TODO : figure out the individual class here and save it to avoid repetition
+
+        if data is None:
+            data = self.validation_ #.get_validation_data()
 
         candidate = None
         if self.final_model_selection == "smallest_complexity":
@@ -244,6 +256,66 @@ class BrushEstimator(EstimatorInterface, BaseEstimator):
             idx = np.argmin([p['fitness']['complexity'] for p in candidates])
 
             candidate = candidates[idx]
+        elif self.final_model_selection == "best_validation_ci":
+            loss_f_dict = { # using sklearn metric, equivalent to what is used internally in brush
+                "mse": mean_squared_error, 
+                "log": log_loss, 
+                "accuracy": accuracy_score, 
+                "balanced_accuracy": balanced_accuracy_score,
+                "average_precision_score": average_precision_score
+            }
+            loss_f = loss_f_dict[self.parameters_.scorer]
+
+            if self.parameters_.scorer in ["log", "average_precision_score"]:
+                y_pred = np.array(self.best_estimator_.predict_proba(data))
+            else:
+                y_pred = np.array(self.best_estimator_.predict(data))
+
+            y_pred = np.nan_to_num(y_pred)
+            y = np.array(data.y)
+            val_samples = []
+            for i in range(100):
+                sample = np.random.randint(0, len(y)-1, size=len(y))
+                if self.parameters_.scorer == "average_precision_score":
+                    val_samples.append( loss_f(y[sample], y_pred[sample], average='weighted') )
+                else:
+                    val_samples.append( loss_f(y[sample], y_pred[sample]) )
+
+            lower_ci, upper_ci = np.quantile(val_samples,0.05), np.quantile(val_samples,0.95)
+
+            # Recalculate metric with new data
+            new_losses = []
+            for ind_json in self.archive_:
+                if self.mode == 'classification':
+                    if self.parameters_.n_classes==2:
+                        ind = individual.ClassifierIndividual.from_json(ind_json) 
+                    else:
+                        ind = individual.MultiClassifierIndividual.from_json(ind_json) 
+                else:
+                    ind = individual.RegressorIndividual.from_json(ind_json) 
+                if self.parameters_.scorer in ["log", "average_precision_score"]:
+                    y_pred = np.array(ind.predict_proba(data))
+                else:
+                    y_pred = np.array(ind.predict(data))
+
+                if self.parameters_.scorer == "average_precision_score":
+                    new_losses.append( loss_f(y, y_pred, average='weighted') )
+                else:
+                    new_losses.append(loss_f(y, y_pred))
+
+            # Filter for overlapping points. Adding the best estimator to assert there is at least one sample
+            candidates = [(l, p) for l, p in zip(new_losses, self.archive_) if lower_ci <= l <= upper_ci]
+            
+            # There is a chance no candidate exists, since the best individual
+            # may not be from the last generation, and brush internally uses the training
+            # partition in the evolutionary loop. The individual is picked with 
+            # validation loss.
+
+            if len(candidates) > 0:
+                # Select the row with the smallest complexity among overlapping rows
+                idx = np.argmin([p['fitness']['complexity'] for _, p in candidates])
+                
+                candidate = candidates[idx][1]
         elif callable(self.final_model_selection):
             try:
                 candidate = self.final_model_selection(self.population_, self.archive_)
@@ -265,7 +337,8 @@ class BrushEstimator(EstimatorInterface, BaseEstimator):
                 ).from_json(candidate)
             else:
                 self.best_estimator_ = individual.RegressorIndividual.from_json(candidate)
-
+        elif candidate == None:
+            return # there is no better option
 
 class BrushClassifier(BrushEstimator, ClassifierMixin):
     """Brush with c++ engine for classification.
