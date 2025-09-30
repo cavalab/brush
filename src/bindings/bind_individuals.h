@@ -35,6 +35,7 @@ void bind_individual(py::module& m, string name)
        .def_property("objectives", &Class::get_objectives, &Class::set_objectives)
        .def_property_readonly("program", &Class::get_program)
        .def_property_readonly("fitness", &Class::get_fitness)
+       .def_property_readonly("id", &Class::get_id)
        .def("get_model", &Class::get_model, 
             py::arg("fmt") = "compact",
             py::arg("pretty") = false)

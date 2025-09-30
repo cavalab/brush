@@ -86,7 +86,7 @@ float zero_one_loss(const VectorXf& y,
         }
     }
 
-    // since loss is wrong predictions, we need to invert it
+    // since `loss` contains wrong predictions, we need to invert it
     return 1.0 - loss.mean();
 }
 
@@ -106,8 +106,8 @@ float bal_zero_one_loss(const VectorXf& y,
 
     int num_instances = y.rows();
     for (int i = 0; i < num_instances; ++i) {
+        float weight = 1.0f; // it is a balanced metric; ignoring class weights
         // float weight = class_weights.empty() ? 1.0f : class_weights.at(y(i));
-        float weight = 1.0f; // it is already balanced; ignoring class weights
         
         if      (yhat(i) == 1.0 && y(i) == 1.0) TP += weight;
         else if (yhat(i) == 1.0 && y(i) == 0.0) FP += weight;

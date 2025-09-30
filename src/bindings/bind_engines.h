@@ -72,15 +72,12 @@ void bind_engine(py::module& m, string name)
             .def("predict",
                 static_cast<RetType (T::*)(const Ref<const ArrayXXf> &X)>(&T::predict),
                 "predict from X data")
-            .def("predict_archive",
-                static_cast<RetType (T::*)(int id, const Dataset &d)>(&T::predict_archive),
-                "predict from individual in archive")
-            .def("predict_archive",
-                static_cast<RetType (T::*)(int id, const Ref<const ArrayXXf> &X)>(&T::predict_archive),
-                "predict from individual in archive")
-            .def("get_archive", &T::get_archive, py::arg("front") = false)
+            .def("get_archive", &T::get_archive)
             .def("get_population", &T::get_population)
             .def("set_population", &T::set_population)
+            .def("get_archive_as_json", &T::get_archive_as_json)
+            .def("get_population_as_json", &T::get_population_as_json)
+            .def("set_population_from_json", &T::set_population_from_json)
             .def("lock_nodes",
                 &T::lock_nodes,
                 py::arg("end_depth") = 0,
@@ -111,13 +108,6 @@ void bind_engine(py::module& m, string name)
            .def("predict_proba",
                 static_cast<ArrayXf (T::*)(const Ref<const ArrayXXf> &X)>(&T::predict_proba),
                 "predict from X data")
-            .def("predict_proba_archive",
-                static_cast<ArrayXf (T::*)(int id, const Dataset &d)>(&T::predict_proba_archive),
-                "predict from individual in archive")
-            .def("predict_proba_archive",
-                static_cast<ArrayXf (T::*)(int id, const Ref<const ArrayXXf> &X)>(&T::predict_proba_archive),
-                "predict from individual in archive")
-            
             ;
     }
 }

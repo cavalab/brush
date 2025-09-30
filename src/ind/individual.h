@@ -118,6 +118,7 @@ public: // TODO: make these private (and work with nlohman json)
     void set_sampled_nodes(const vector<Node>& nodes) { sampled_nodes = nodes; };
     vector<Node> get_sampled_nodes() const { return sampled_nodes; };
     
+    unsigned int get_id(){ return id;};
     void set_id(unsigned i){id = i;};
     void set_parents(const vector<Individual<T>>& parents){
         parent_id.clear();

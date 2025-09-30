@@ -91,9 +91,6 @@ class EstimatorInterface():
         to calculate statistics during evolution, but not used to train the models.
         The `best_estimator_` will be selected using this partition. If zero, then
         the same data used for training is used for validation.
-    val_from_arch: boolean, optional (default: True)
-        Validates the final model using the archive rather than the whole 
-        population.
     constants_simplification: boolean, optional (default: True)
         Whether if the program should check for constant sub-trees and replace
         them with a single terminal with constant value or not.
@@ -109,9 +106,6 @@ class EstimatorInterface():
         The inexact simplification algorithm works by mapping similar expressions
         to the same hash, and retrieving the simplest one when doing the
         simplification of an expression.
-    use_arch: boolean, optional (default: True)
-        Determines if we should save pareto front of the entire evolution
-        (when set to  True) or just the final population (True).
     batch_size : float, default 1.0
         Percentage of training data to sample every generation. If `1.0`, then
         all data is used. Very small values can improve execution time, but 
@@ -162,11 +156,17 @@ class EstimatorInterface():
         whether if the engine should shuffle the data before splitting it
         into train and validation partitions. Ignored if `validation_size`
         is set to zero.
-    class_weights : list of float, default []
+    class_weights : str or list[float], optional (default: "support")
         List of weights to assign to each class in classification problems. 
         The length of the list should match the number of classes. If empty, all
         classes are assumed to have equal weight. This can be useful to handle
         imbalanced datasets by assigning weights to underrepresented classes.
+        The sample weights will be based on the class weights.
+        For unbalanced learning, `"unbalanced"` will ignore class weights.
+        By default, brush implements weight by support. 
+        For user-defined values, a list with class weights for each class is
+        expected.
+        If `scorer` is `"balanced_accuracy"`, this setting is ignored
     logfile: str, optional (default: "")
         If specified, spits statistics into a logfile. "" means don't log.
     random_state: int or None, default None
@@ -201,8 +201,6 @@ class EstimatorInterface():
         algorithm: str = "nsga2",
         weights_init: bool = True,
         validation_size: float = 0.2,
-        use_arch: bool = True,
-        val_from_arch: bool = True,
         constants_simplification=True,
         inexact_simplification=True,
         batch_size: float = 1.0,
@@ -215,7 +213,7 @@ class EstimatorInterface():
         shuffle_split: bool = False,
         logfile: str = "",
         random_state: int = None,
-        # class_weights: List[float] = [] # TODO: should we allow the user to set it?
+        class_weights: Union[str, List[float]] = "support",
     ) -> None:
         self.pop_size = pop_size
         self.max_gens = max_gens
@@ -236,8 +234,6 @@ class EstimatorInterface():
         self.save_population = save_population
         self.load_population = load_population
         self.mutation_probs = mutation_probs
-        self.val_from_arch = val_from_arch
-        self.use_arch = use_arch
         self.functions = functions
         self.objectives = objectives
         self.constants_simplification=constants_simplification
@@ -251,7 +247,7 @@ class EstimatorInterface():
         self.surv = surv
         self.weights_init = weights_init
         self.validation_size = validation_size
-        # self.class_weights = class_weights
+        self.class_weights = class_weights
 
     def _wrap_parameters(self, y, **extra_kwargs):
         """
@@ -270,7 +266,23 @@ class EstimatorInterface():
         if self.mode == "classification":
             params.classification = True
             params.set_n_classes(y)
-            params.set_class_weights(y)
+
+            if  isinstance(self.class_weights, list):
+                if len(self.class_weights) == params.n_classes:
+                    params.set_class_weights(self.class_weights)
+                    params.set_class_weights_type("user_defined")
+                else:
+                    raise ValueError(f"Invalid class weights {self.class_weights}. "
+                                     f"Expected {params.n_classes} values, got "
+                                     f"{len(self.class_weights)}.")
+            elif self.class_weights in ['support']:
+                params.set_class_weights_type(self.class_weights)
+            elif self.class_weights != 'unbalanced':
+                raise ValueError(f"Invalid class weights {self.class_weights}. "
+                                 "Valid objectives are: 'support', or a list ",
+                                 "with values for each class in your y")
+
+            # Will set sample weights based on class weights
             params.set_sample_weights(y)
 
         for obj in self.objectives:
@@ -287,10 +299,6 @@ class EstimatorInterface():
         params.logfile = self.logfile
         params.save_population = self.save_population
         params.load_population = self.load_population
-
-        # Pop and archive
-        params.use_arch = self.use_arch
-        params.val_from_arch = self.val_from_arch
 
         # Simplification
         params.constants_simplification = self.constants_simplification

@@ -44,11 +44,6 @@ public:
     std::unordered_map<string, float> functions;
     int num_islands=1;
 
-    // if we should save pareto front of the entire evolution (use_arch=true)
-    // or just the final population (use_arch=false)
-    bool use_arch=false;
-    bool val_from_arch=true;
-
     // Different simplification strategies
     bool constants_simplification=true;
     bool inexact_simplification=true;
@@ -70,7 +65,8 @@ public:
     vector<int>   classes = vector<int>();          ///< class labels
     vector<float> class_weights = vector<float>();  ///< weights for each class
     vector<float> sample_weights = vector<float>(); ///< weights for each sample 
-    
+    string        class_weights_type = "unbalanced"; // user_defined, unbalanced, support
+
     // for creating dataset from X and y in Engine<T>::fit. Ignored if 
     // the uses uses an dataset
     bool classification = false;
@@ -174,12 +170,6 @@ public:
     void set_mig_prob(float new_mig_prob){ mig_prob = new_mig_prob; };
     float get_mig_prob(){ return mig_prob; };
 
-    void set_use_arch(bool new_use_arch){ use_arch = new_use_arch; };
-    bool get_use_arch(){ return use_arch; };
-
-    void set_val_from_arch(bool new_val_from_arch){ val_from_arch = new_val_from_arch; };
-    bool get_val_from_arch(){ return val_from_arch; };
-
     void set_classification(bool c){ classification = c; };
     bool get_classification(){ return classification; };
 
@@ -214,20 +204,34 @@ public:
             // classes   = uc;
         }
     };
-    void set_class_weights(const ArrayXf& y){
-        class_weights.resize(n_classes); // set_n_classes must be called first
-        for (unsigned i = 0; i < n_classes; ++i){
-            // weighting by support 
-            int support = (y.cast<int>().array() == i).count();
+    void set_class_weights(const vector<float>& weights){
+        if (weights.size() != n_classes)
+            HANDLE_ERROR_THROW("Length of class_weights does not match expected number of classes");
 
-            if (support==0)
-                class_weights.at(i) = 0.0;
-            else
-                class_weights.at(i) = float(y.size()) / float(n_classes * support);
+        class_weights.clear();
+        for (unsigned int i = 0; i < n_classes; ++i) {
+            class_weights.push_back(weights[i]);
         }
     };
+
     void set_sample_weights(const ArrayXf& y){
-        sample_weights.resize(0); // set_class_weights must be called first
+        sample_weights.resize(0);
+
+        // one if for each case, so the default is unbalanced or user defined
+        if (class_weights_type == "support")
+        { // ignores everything and calculate the weights here.
+            class_weights.resize(n_classes); // set_n_classes must be called first
+            for (unsigned i = 0; i < n_classes; ++i){
+                // weighting by support 
+                int support = (y.cast<int>().array() == i).count();
+
+                if (support==0)
+                    class_weights.at(i) = 0.0;
+                else
+                    class_weights.at(i) = float(y.size()) / float(n_classes * support);
+            }
+        } // else it is either unbalanced or user_defined
+
         if (!class_weights.empty())
             for (unsigned i = 0; i < y.size(); ++i)
                 sample_weights.push_back(class_weights.at(int(y(i))));
@@ -236,6 +240,9 @@ public:
     unsigned int get_n_classes(){ return n_classes; };
     vector<float> get_class_weights(){ return class_weights; };
     vector<float> get_sample_weights(){ return sample_weights; };
+
+    string get_class_weights_type(){ return class_weights_type; };
+    void set_class_weights_type(string cwt){ class_weights_type = cwt; };
 
     void set_validation_size(float s){ validation_size = s; };
     float get_validation_size(){ return validation_size; };
@@ -278,9 +285,6 @@ NLOHMANN_DEFINE_TYPE_NON_INTRUSIVE(Parameters,
     surv,
     functions,
     num_islands,
-
-    use_arch,
-    val_from_arch,
     
     constants_simplification,
     inexact_simplification,

@@ -118,8 +118,13 @@ class BrushEstimator(EstimatorInterface, BaseEstimator):
 
         self.engine_.fit(self.data_)
         
+        # retrieving archive and population as a list of individuals.
         self.archive_ = self.engine_.get_archive()
         self.population_ = self.engine_.get_population()
+
+        # Serialized version of the above
+        # self.archive_ = self.engine_.get_archive_as_json()
+        # self.population_ = self.engine_.get_population_as_json()
 
         self.best_estimator_ = self.engine_.best_ind
 
@@ -157,6 +162,7 @@ class BrushEstimator(EstimatorInterface, BaseEstimator):
         # We need to update class weights, this is what is happening here.
         new_parameters = self._wrap_parameters(new_data.get_training_data().y)
 
+        # Using the same engine as before --- it will keep the population
         assert self.engine_ is not None, \
             "You must call `fit` before calling `partial_fit`"
         
@@ -210,34 +216,6 @@ class BrushEstimator(EstimatorInterface, BaseEstimator):
                 out[key] = value
         return out
     
-    def predict_archive(self, X):
-        """Returns a list of dictionary predictions for all models."""
-
-        check_is_fitted(self)
-
-        if isinstance(X, pd.DataFrame):
-            X = X.values
-
-        assert isinstance(X, np.ndarray)
-
-        # Need to provide feature names because reference does not store order
-        data = Dataset(X=X, 
-                            feature_types=self.feature_types_,
-                            feature_names=self.feature_names_,
-                            validation_size=0.0)
-
-        archive = self.engine_.get_archive()
-
-        preds = []
-        for ind in archive:
-            tmp = {
-                'id' : ind['id'],
-                'y_pred' : self.engine_.predict_archive(ind['id'], data)
-            }
-            preds.append(tmp)
-
-        return preds
-    
     def _update_final_model(self, data=None):
         # selecting the final individual based on the final_model_selection function
         # if the user specified something other than the default cpp pick method
@@ -249,11 +227,11 @@ class BrushEstimator(EstimatorInterface, BaseEstimator):
 
         candidate = None
         if self.final_model_selection == "smallest_complexity":
-            candidates = [p for p in self.archive_ if p['fitness']['size'] > 1 + (4 if self.mode == 'classification' else 0)]
+            candidates = [p for p in self.archive_ if p.fitness.size > 1 + (4 if self.mode == 'classification' else 0)]
             if len(candidates)==0: # fallback to all elements
                 candidates = self.archive_
 
-            idx = np.argmin([p['fitness']['complexity'] for p in candidates])
+            idx = np.argmin([p.fitness.complexity for p in candidates])
 
             candidate = candidates[idx]
         elif self.final_model_selection == "best_validation_ci":
@@ -266,42 +244,48 @@ class BrushEstimator(EstimatorInterface, BaseEstimator):
             }
             loss_f = loss_f_dict[self.parameters_.scorer]
 
-            if self.parameters_.scorer in ["log", "average_precision_score"]:
-                y_pred = np.array(self.best_estimator_.predict_proba(data))
-            else:
-                y_pred = np.array(self.best_estimator_.predict(data))
+            def eval(ind, data, sample=None):
+                if sample is None:
+                    sample = np.arange(len(data.y))
 
-            y_pred = np.nan_to_num(y_pred)
+                if self.parameters_.scorer in ["log", "average_precision_score"]:
+                    y_pred = np.array(ind.predict_proba(data))
+                else: # accuracy, balanced accuracy, or regression metrics
+                    y_pred = np.array(ind.predict(data))
+
+                y_pred = np.nan_to_num(y_pred) # Protecting the evaluation
+
+                # if user_defined, sample_weight is given by his custom weights. if
+                # support, I calculate it here. otherwise, no weight is used
+                if self.class_weights not in ['unbalanced', 'balanced_accuracy']:
+                    sample_weight = []
+                    if isinstance(self.class_weights, list): # using user-defined values
+                        sample_weight = [self.class_weights[int(label)] for label in data.y]
+                    else: # support
+                        # Calculate class weights by support
+                        classes, counts = np.unique(data.y, return_counts=True)
+        
+                        support_weights = {
+                            int(cls): len(data.y) / (len(classes)*count) 
+                            if count > 0 else 0.0 for cls, count in zip(classes, counts)}
+                        
+                        sample_weight = [support_weights[int(label)] for label in data.y]
+                    sample_weight = np.array(sample_weight)
+                    return loss_f(y[sample], y_pred[sample], sample_weight=sample_weight[sample])
+                else: # unbalanced metrics, ignoring weights
+                    return loss_f(y[sample], y_pred[sample])
+
             y = np.array(data.y)
+            np.random.seed(0)
             val_samples = []
             for i in range(100):
-                sample = np.random.randint(0, len(y)-1, size=len(y))
-                if self.parameters_.scorer == "average_precision_score":
-                    val_samples.append( loss_f(y[sample], y_pred[sample], average='weighted') )
-                else:
-                    val_samples.append( loss_f(y[sample], y_pred[sample]) )
+                sample = np.random.randint(0, len(y), size=len(y))
+                val_samples.append( eval(self.best_estimator_, data, sample) )
 
             lower_ci, upper_ci = np.quantile(val_samples,0.05), np.quantile(val_samples,0.95)
 
             # Recalculate metric with new data
-            new_losses = []
-            for ind_json in self.archive_:
-                if self.mode == 'classification':
-                    if self.parameters_.n_classes==2:
-                        ind = individual.ClassifierIndividual.from_json(ind_json) 
-                    else:
-                        ind = individual.MultiClassifierIndividual.from_json(ind_json) 
-                else:
-                    ind = individual.RegressorIndividual.from_json(ind_json) 
-                if self.parameters_.scorer in ["log", "average_precision_score"]:
-                    y_pred = np.array(ind.predict_proba(data))
-                else:
-                    y_pred = np.array(ind.predict(data))
-
-                if self.parameters_.scorer == "average_precision_score":
-                    new_losses.append( loss_f(y, y_pred, average='weighted') )
-                else:
-                    new_losses.append(loss_f(y, y_pred))
+            new_losses = [eval(ind, data) for ind in self.archive_]
 
             # Filter for overlapping points. Adding the best estimator to assert there is at least one sample
             candidates = [(l, p) for l, p in zip(new_losses, self.archive_) if lower_ci <= l <= upper_ci]
@@ -313,7 +297,7 @@ class BrushEstimator(EstimatorInterface, BaseEstimator):
 
             if len(candidates) > 0:
                 # Select the row with the smallest complexity among overlapping rows
-                idx = np.argmin([p['fitness']['complexity'] for _, p in candidates])
+                idx = np.argmin([p.fitness.complexity for _, p in candidates])
                 
                 candidate = candidates[idx][1]
         elif callable(self.final_model_selection):
@@ -327,18 +311,9 @@ class BrushEstimator(EstimatorInterface, BaseEstimator):
             raise ValueError("Unknown model selection method. Please try using "
                              "a valid function or one of the default methods.")
         
-        # Casting the json from the archive_ or population_ into something callable
-        if isinstance(candidate, dict):
-            if self.mode == 'classification':
-                self.best_estimator_ = (
-                    individual.ClassifierIndividual
-                    if self.parameters_.n_classes == 2 else
-                    individual.MultiClassifierIndividual
-                ).from_json(candidate)
-            else:
-                self.best_estimator_ = individual.RegressorIndividual.from_json(candidate)
-        elif candidate == None:
-            return # there is no better option
+        if candidate is not None:
+            self.best_estimator_ = candidate
+
 
 class BrushClassifier(BrushEstimator, ClassifierMixin):
     """Brush with c++ engine for classification.
@@ -401,36 +376,7 @@ class BrushClassifier(BrushEstimator, ClassifierMixin):
 
         return prob
     
-        
-    def predict_proba_archive(self, X):
-        """Returns a list of dictionary predictions for all models."""
-
-        check_is_fitted(self)
-
-        if isinstance(X, pd.DataFrame):
-            X = X.values
-
-        assert isinstance(X, np.ndarray)
-
-        # Need to provide feature names because reference does not store order
-        data = Dataset(X=X, 
-                        feature_types=self.feature_types_,
-                        feature_names=self.feature_names_,
-                        validation_size=0.0)
-        
-        archive = self.engine_.get_archive()
-
-        preds = []
-        for ind in archive:
-            tmp = {
-                'id' : ind['id'],
-                'y_pred' : self.engine_.predict_proba_archive(ind['id'], data)
-            }
-            preds.append(tmp)
-
-        return preds
-
-
+    
 class BrushRegressor(BrushEstimator, RegressorMixin):
     """Brush with c++ engine for regression.
 

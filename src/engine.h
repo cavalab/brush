@@ -112,25 +112,18 @@ public:
     ///return archive size
     int get_archive_size(){ return this->archive.individuals.size(); };
 
-    ///return archive/population as string
-    vector<json> get_archive(bool front);
-    vector<json> get_population();
+    ///return archive/population as strings
+    vector<json> get_archive_as_json();
+    vector<json> get_population_as_json();
+    void set_population_from_json(vector<json> pop_vector);
 
-    void set_population(vector<json> pop_vector);
+    /// return archive/popularion as individuals ready to use
+    vector<Individual<T>> get_archive();
+    vector<Individual<T>> get_population();
+    void set_population(vector<Individual<T>> pop_vector);
 
     // locking and unlocking parts of the solutions
     void lock_nodes(int end_depth=0, bool keep_leaves_unlocked=true);
-
-    /// predict on unseen data from the archive             
-    auto predict_archive(int id, const Dataset& data);
-    auto predict_archive(int id, const Ref<const ArrayXXf>& X);
-
-    template <ProgramType P = T>
-        requires((P == PT::BinaryClassifier) || (P == PT::MulticlassClassifier))
-    auto predict_proba_archive(int id, const Dataset& data);
-    template <ProgramType P = T>
-        requires((P == PT::BinaryClassifier) || (P == PT::MulticlassClassifier))
-    auto predict_proba_archive(int id, const Ref<const ArrayXXf>& X);
 
     // TODO: predict/predict_proba/archive with longitudinal data
 
