@@ -80,14 +80,20 @@ float zero_one_loss(const VectorXf& y,
     loss = (yhat.array() != y.cast<int>().array()).cast<float>();
 
     // Apply class weights if provided
+    float scale = 0.0f;
     if (!class_weights.empty()) {
         for (int i = 0; i < y.rows(); ++i) {
             loss(i) *= class_weights.at(y(i));
+            scale += class_weights.at(y(i));
         }
+    }
+    else
+    {
+        scale = static_cast<float>(loss.size());
     }
 
     // since `loss` contains wrong predictions, we need to invert it
-    return 1.0 - loss.mean();
+    return 1.0 - (loss.sum() / scale);
 }
 
 // balanced accuracy
@@ -127,75 +133,84 @@ float average_precision_score(const VectorXf& y, const VectorXf& predict_proba,
                           VectorXf& loss,
                           const vector<float>& class_weights) {
     
-    float eps = 1e-6f;
+    // AP is implemented as AUC PR in sklearn.
+    // AP summarizes a precision-recall curve as the weighted mean of precisions
+    // achieved at each threshold, with the increase in recall from the previous threshold used as the weight
 
     // Assuming y contains binary labels (0 or 1)
-    int num_instances = y.rows();
+    int num_instances = y.size();
 
-    // get argsort of predict proba (descending)
-    vector<int> argsort(num_instances);
-
-    iota(argsort.begin(), argsort.end(), 0);
-    stable_sort(argsort.begin(), argsort.end(), [&](int i, int j) {
-        return predict_proba(i) > predict_proba(j);
-    });
-
-    float ysum = 0; // counts only the positive class
-    if (!class_weights.empty()) 
-        for (int i = 0; i < y.size(); i++) {
-            ysum += y(i) * class_weights.at(y(i));
-        }
-    else
-        ysum = y.sum();
-
-    // Calculate the precision and recall values
-    VectorXf precision(num_instances+1);
-    VectorXf recall(num_instances+1);
-
-    // Pad recall/precision to start at (0, 1) as sklearn does. This imples that
-    // acessing precision and recall should use i+1
-    precision(0) = 1.0;
-    recall(0)    = 0.0;
-
-    float true_positives  = 0;
-    float false_positives = 0;
-
-    // we need to iterate over the sorted indices
-    // and calculate precision and recall at each step
-    for (int i = 0; i < num_instances; ++i) {
-        int index = argsort[i];
-        
-        float weight = class_weights.empty() ? 1.0f : class_weights.at(y(index));
-
-        if (y(index) > 0.5) {
-            true_positives += weight;
-        }
-        else {
-            false_positives += weight;
-        }
-        
-        int relevant = true_positives+false_positives;
-
-        precision(i+1) = relevant==0.0 ? 0.0 : true_positives/relevant;
-        recall(i+1)    = ysum==0.0 ? 1.0 : true_positives/ysum;
-    }
-
-    // Calculate the average precision score
-    float average_precision = 0.0;
+    float eps = 1e-6f; // first we set the loss vector values
     loss.resize(num_instances);
-    
     for (int i = 0; i < num_instances; ++i) {
-        average_precision += (recall(i+1) - recall(i)) * precision(i+1);
-
-        int index = argsort[i];
-        float p = predict_proba(index);
+        float p = predict_proba(i);
 
         // The loss vector is used in lexicase selection. we need to set something useful here
         // that does make sense on individual level. Using log loss here.
         if (p < eps || 1 - p < eps)
-            loss(index) = -(y(index)*log(eps) + (1-y(index))*log(1-eps));
+            loss(i) = -(y(i)*log(eps) + (1-y(i))*log(1-eps));
         else
-            loss(index) = -(y(index)*log(p) + (1-y(index))*log(1-p));
+            loss(i) = -(y(i)*log(p) + (1-y(i))*log(1-p));
+    }
+
+    // get argsort of predict proba (descending)
+    vector<int> order(num_instances);
+    iota(order.begin(), order.end(), 0);
+    stable_sort(order.begin(), order.end(), [&](int i, int j) {
+        return predict_proba(i) > predict_proba(j); // descending
+    });
+
+    float ysum = 0.0f;
+    vector<float> y_sorted(num_instances); // y true
+    vector<float> p_sorted(num_instances); // pred probas
+    vector<float> w_sorted(num_instances); // sample weights
+    for (int i = 0; i < num_instances; ++i) {
+        int idx = order[i];
+
+        y_sorted[i] = y(idx);
+        p_sorted[i] = predict_proba(idx);
+        w_sorted[i] = class_weights.empty() ? 1.0f : class_weights.at(y_sorted[i]);
+
+        ysum += y_sorted[i] * w_sorted[i];
+    }
+
+    // when all scores are the same, the sort order is arbitrary, so the PR curve
+    // you integrate is a staircase instead of a flat line. Sklearn avoids this by
+    // treating ties as one threshold.
+
+    // Find the indexes where prediction changes, so we can treat it as one block
+    vector<int> unique_indices = {};
+    set<int> unique_probas = {}; // keep track of unique elements
+    
+    for (int i=0; i<p_sorted.size(); --i)
+        if (unique_probas.insert(p_sorted.at(i)).second)
+            unique_indices.push_back(i);
+    unique_indices.push_back(num_instances); // last index
+
+    float tp = 0.0f;
+    float fp = 0.0f;
+    vector<float> precision = {1.0};
+    vector<float> recall    = {0.0};
+
+    for (size_t i = 0; i < unique_indices.size() - 1; ++i) {
+        int start = unique_indices[i];
+        int end   = unique_indices[i+1];
+
+        // process group with a for loop (aggregating for each sample)
+        for (int j = start; j < end; ++j) {
+            tp += y_sorted.at(j) * w_sorted.at(j);
+            fp += (1.0f - y_sorted.at(j)) * w_sorted.at(j);
+        }
+
+        float relevant = tp + fp;
+        precision.push_back(relevant == 0.0f ? 0.0f : tp / relevant);
+        recall.push_back(ysum == 0.0f ? 1.0f : tp / ysum);
+    }
+
+    // integrate PR curve
+    float average_precision = 0.0f;
+    for (size_t i = 0; i < precision.size() - 1; ++i) {
+        average_precision += (recall[i+1] - recall[i]) * precision[i+1];
     }
 
     return average_precision;

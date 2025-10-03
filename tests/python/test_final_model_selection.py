@@ -83,23 +83,38 @@ def test_classification_selection():
 
 
 @pytest.mark.parametrize("scorer", ['log', 'accuracy', 'balanced_accuracy', 'average_precision_score'])
-@pytest.mark.parametrize("class_weights", ['unbalanced', 'support', [0.3, 0.7]])
+@pytest.mark.parametrize("class_weights", ['unbalanced', 'support', [1.0, 1.0], [1.0, 1.3]])
 def test_final_model_selection_best_validation_ci_replicated(scorer, class_weights):
     # Small dataset for testing
     X, y = make_classification(n_samples=100, n_features=6, n_informative=4, random_state=42)
 
+    # Print prevalence of y
+    unique, counts = np.unique(y, return_counts=True)
+    prevalence = dict(zip(unique, counts / len(y)))
+    print("Prevalence of y:", prevalence)
+
     est = BrushClassifier(
-        max_gens=5,
-        pop_size=12,
+        max_gens=10,
+        pop_size=10,
         final_model_selection="best_validation_ci",
         scorer=scorer,
         class_weights=class_weights,
+        validation_size=0.3,
         verbosity=0,
     )
     est.fit(X, y)
     
+    assert np.allclose(est.engine_.params.class_weights, est.parameters_.class_weights), \
+        "Somewhere along the way the class weights changed"
+    
+    if isinstance(class_weights, list):
+        assert np.allclose(class_weights, est.class_weights) \
+            and np.allclose(class_weights, est.engine_.params.class_weights), \
+            "Class weights was not properly set"
+        
     # Replicate the selection logic here
     data = est.validation_
+    y = np.array(data.y).astype(int)
 
     loss_f_dict = {
         "mse": mean_squared_error,
@@ -110,62 +125,62 @@ def test_final_model_selection_best_validation_ci_replicated(scorer, class_weigh
     }
     loss_f = loss_f_dict[est.parameters_.scorer]
 
-    def eval(ind, data, sample=None):
+    def eval(individual, sample=None):
         if sample is None:
-            sample = np.arange(len(data.y))
+            sample = np.arange(len(y))
 
+        y_pred = None
         if est.parameters_.scorer in ["log", "average_precision_score"]:
-            y_pred = np.array(ind.predict_proba(data))
+            y_pred = np.array(individual.predict_proba(data))
         else:
-            y_pred = np.array(ind.predict(data))
-
-        y_pred = np.nan_to_num(y_pred)
-        y = np.array(data.y)
+            y_pred = np.array(individual.predict(data))
+        # y_pred = np.nan_to_num(y_pred)
 
         if est.class_weights not in ['unbalanced', 'balanced_accuracy']:
-            sample_weight = []
+            sample_weight = None
             if isinstance(est.class_weights, list):
-                sample_weight = [est.class_weights[int(label)] for label in data.y]
-            elif est.class_weights == 'support' and est.scorer == "average_precision_score": # using support as a way of weighting
-                return loss_f(y[sample], y_pred[sample], average='weighted')
+                sample_weight = np.array([est.class_weights[label] for label in y])
+            # elif est.class_weights == 'support' and est.scorer == "average_precision_score": # using support as a way of weighting
+            #     return loss_f(y[sample], y_pred[sample], average='weighted')
             else:
-                classes, counts = np.unique(data.y, return_counts=True)
+                classes, counts = np.unique(y[sample], return_counts=True)
+                
+                assert len(classes) == est.parameters_.n_classes, \
+                    "Sampled data does not have same number of classes"
 
                 support_weights = {
-                    int(cls): len(data.y) / (len(classes)*count) 
+                    cls: len(y) / (len(classes)*count) 
                     if count > 0 else 0.0 for cls, count in zip(classes, counts)}
                 
-                sample_weight = [support_weights[label] for label in data.y]
-
-            sample_weight = np.array(sample_weight)
+                sample_weight = np.array([support_weights[label] for label in y])
             return loss_f(y[sample], y_pred[sample], sample_weight=sample_weight[sample])
         else: # Cases where we ignore weights
             return loss_f(y[sample], y_pred[sample])
 
     # Bootstrap validation samples
-    y = np.array(data.y)
+    print("original loss", est.best_estimator_.fitness.loss)
+    print("original loss_v", est.best_estimator_.fitness.loss_v)
+    print("recalculated loss", eval(est.best_estimator_))
+
     np.random.seed(0)
-    val_samples = []
-    for i in range(100):
-        sample = np.random.randint(0, len(y), size=len(y))
-        val_samples.append(eval(est.best_estimator_, data, sample))
+    val_samples = [eval(est.best_estimator_, np.random.randint(len(y), size=len(y)))
+                   for _ in range(100)]
 
     lower_ci, upper_ci = np.quantile(val_samples, 0.05), np.quantile(val_samples, 0.95)
     print(f"CI bounds: {lower_ci:.4f}, {upper_ci:.4f}")
 
-    print("original loss", est.best_estimator_.fitness.loss_v)
-    print("recalculated loss", eval(est.best_estimator_, data))
-
     # Evaluate all archive members
-    new_losses = [eval(ind, data) for ind in est.archive_]
+    new_losses = [eval(ind) for ind in est.archive_]
     candidates = [(l, p) for l, p in zip(new_losses, est.archive_) if lower_ci <= l <= upper_ci]
 
-    print("Original losses from archive", [ind.fitness.loss_v for ind in est.archive_])
+    print('first arch ind', est.archive_[0].get_model())
+    print("Original losses from archive", [ind.fitness.loss for ind in est.archive_])
+    print("Original losses_v from archive", [ind.fitness.loss_v for ind in est.archive_])
     print("Recalculated losses (should match)", new_losses)
     print(f"Num candidates in CI: {len(candidates)}")
 
     # TODO: make the assert below work
-    # assert np.allclose([ind.fitness.loss_v for ind in est.archive_], new_losses)
+    assert np.allclose([ind.fitness.loss_v for ind in est.archive_], new_losses)
 
     if candidates:
         chosen = min(candidates, key=lambda lp: lp[1].fitness.complexity)[1]

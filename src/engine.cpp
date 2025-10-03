@@ -535,9 +535,7 @@ void Engine<T>::run(Dataset &data)
                 }
 
                 if(params.verbosity>1)
-                {
                     print_stats(log, fraction);
-                }
                 else if(params.verbosity == 1)
                     print_progress(fraction);
 
@@ -562,13 +560,13 @@ void Engine<T>::run(Dataset &data)
         [&]() { return 0; }, // jump back to the next iteration
 
         [&](tf::Subflow& subflow) {
-            // set VALIDATION loss for archive
+            // set VALIDATION loss for archive, without refitting the model
             for (int island = 0; island < this->params.num_islands; ++island) {
-                evaluator.update_fitness(this->pop, island, data, params, true, true);
+                evaluator.update_fitness(this->pop, island, data, params, false, true);
             }
 
-            calculate_stats();
             archive.update(pop, params);
+            // calculate_stats();
 
             if (params.save_population != "")
                 this->pop.save(params.save_population);

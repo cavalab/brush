@@ -121,25 +121,26 @@ public:
     {
         RetType y_pred = ind.predict_proba(data); // .template cast<float>();
         
-        vector<float> class_weights;
+        vector<float> class_weights = {};
 
         // calculate class weights based on current data --- instead of using a pre-calculated value.
         // This is only true for the scoring. For other usages of class weights, then
         // the training data is used.
         if (params.class_weights_type == "support")
-        {            
+        {
             class_weights.resize(params.n_classes);
             for (unsigned i = 0; i < params.n_classes; ++i){
                 // weighting by support 
                 int support = (data.y.cast<int>().array() == i).count();
 
                 if (support==0)
-                    class_weights.at(i) = 0.0;
+                    class_weights.at(i) = 0.0f;
                 else
                     class_weights.at(i) = float(data.y.size()) / float(params.n_classes * support);
             }
-        } // else it is either unbalanced or user_defined
-        else {
+        }
+        else // else it is either unbalanced or user_defined
+        { 
             class_weights = params.class_weights;
         }
         
@@ -201,9 +202,9 @@ public:
     {
         RetType y_pred = ind.predict_proba(data); // .template cast<float>();
         
-        vector<float> class_weights;
+        vector<float> class_weights = {};
         if (params.class_weights_type == "support")
-        {            
+        {
             class_weights.resize(params.n_classes);
             for (unsigned i = 0; i < params.n_classes; ++i){
                 // weighting by support 
@@ -214,7 +215,7 @@ public:
                 else
                     class_weights.at(i) = float(data.y.size()) / float(params.n_classes * support);
             }
-        } // else it is either unbalanced or user_defined
+        } // or else it is either unbalanced or user_defined
         else {
             class_weights = params.class_weights;
         }

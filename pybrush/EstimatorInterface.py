@@ -267,20 +267,20 @@ class EstimatorInterface():
             params.classification = True
             params.set_n_classes(y)
 
-            if  isinstance(self.class_weights, list):
+            if isinstance(self.class_weights, list):
                 if len(self.class_weights) == params.n_classes:
                     params.set_class_weights(self.class_weights)
                     params.set_class_weights_type("user_defined")
                 else:
                     raise ValueError(f"Invalid class weights {self.class_weights}. "
-                                     f"Expected {params.n_classes} values, got "
-                                     f"{len(self.class_weights)}.")
+                            f"Expected {params.n_classes} values, got "
+                            f"{len(self.class_weights)}.")
             elif self.class_weights in ['support']:
                 params.set_class_weights_type(self.class_weights)
             elif self.class_weights != 'unbalanced':
                 raise ValueError(f"Invalid class weights {self.class_weights}. "
-                                 "Valid objectives are: 'support', or a list ",
-                                 "with values for each class in your y")
+                        "Valid objectives are: 'support', or a list ",
+                        "with values for each class in your y")
 
             # Will set sample weights based on class weights
             params.set_sample_weights(y)
