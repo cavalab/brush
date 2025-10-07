@@ -755,7 +755,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/runner/work/brush/brush/src/program/node.cpp" line="134" column="1" bodyfile="/home/runner/work/brush/brush/src/program/node.cpp" bodystart="134" bodyend="-1"/>
+        <location file="/home/runner/work/brush/brush/src/program/node.cpp" line="135" column="1" bodyfile="/home/runner/work/brush/brush/src/program/node.cpp" bodystart="135" bodyend="-1"/>
       </memberdef>
       <memberdef kind="typedef" id="dc/d5c/namespaceBrush_1a03de66d0fd6edab4d8a8ab5281e74dc3" prot="public" static="no">
         <type>std::underlying_type_t&lt; <ref refid="dc/d5c/namespaceBrush_1a051322bb9fd1db4638b6eccd399a29c8" kindref="member">NodeType</ref> &gt;</type>
@@ -1351,9 +1351,9 @@
         <inbodydescription>
         </inbodydescription>
         <location file="/home/runner/work/brush/brush/src/data/data.cpp" line="14" column="6" bodyfile="/home/runner/work/brush/brush/src/data/data.cpp" bodystart="14" bodyend="33" declfile="/home/runner/work/brush/brush/src/data/data.h" declline="23" declcolumn="13"/>
-        <referencedby refid="de/d6b/structfmt_1_1formatter_3_01Brush_1_1DataType_01_4_1a6452cbf0c4b7b6e338b6cc06528fbb82" compoundref="d2/dbd/data_8h" startline="273" endline="275">fmt::formatter&lt; Brush::DataType &gt;::format</referencedby>
+        <referencedby refid="de/d6b/structfmt_1_1formatter_3_01Brush_1_1DataType_01_4_1a6452cbf0c4b7b6e338b6cc06528fbb82" compoundref="d2/dbd/data_8h" startline="296" endline="298">fmt::formatter&lt; Brush::DataType &gt;::format</referencedby>
         <referencedby refid="d9/d1c/namespaceBrush_1_1Data_1ad1be6b37dda8f94db59996bc060e5e2e" compoundref="da/dc9/data_8cpp" startline="441" endline="445">Brush::Data::operator&lt;&lt;</referencedby>
-        <referencedby refid="d4/dc3/structBrush_1_1SearchSpace_1ab1e6afddd1375b0f8cbd40f0033b32b1" compoundref="da/d48/search__space_8cpp" startline="299" endline="439">Brush::SearchSpace::PTC2</referencedby>
+        <referencedby refid="d4/dc3/structBrush_1_1SearchSpace_1ab1e6afddd1375b0f8cbd40f0033b32b1" compoundref="da/d48/search__space_8cpp" startline="299" endline="443">Brush::SearchSpace::PTC2</referencedby>
       </memberdef>
       <memberdef kind="variable" id="dc/d5c/namespaceBrush_1ae8e6a6b88349644cf160c63559cddd9c" prot="public" static="no" mutable="no">
         <type><ref refid="d9/d28/classmap" kindref="compound">map</ref>&lt; <ref refid="d5/d92/classstring" kindref="compound">string</ref>, <ref refid="dc/d5c/namespaceBrush_1a3f2c9b744330ba4a561ac72f048a1a5f" kindref="member">DataType</ref> &gt;</type>
@@ -1369,7 +1369,7 @@
         <inbodydescription>
         </inbodydescription>
         <location file="/home/runner/work/brush/brush/src/data/data.cpp" line="34" column="5" bodyfile="/home/runner/work/brush/brush/src/data/data.cpp" bodystart="34" bodyend="-1" declfile="/home/runner/work/brush/brush/src/data/data.h" declline="24" declcolumn="13"/>
-        <referencedby refid="d9/d1c/namespaceBrush_1_1Data_1a82683b7af172813488ef4db81905de67" compoundref="da/dc9/data_8cpp" startline="71" endline="126">Brush::Data::check_type</referencedby>
+        <referencedby refid="d9/d1c/namespaceBrush_1_1Data_1a82683b7af172813488ef4db81905de67" compoundref="da/dc9/data_8cpp" startline="71" endline="125">Brush::Data::check_type</referencedby>
       </memberdef>
       <memberdef kind="variable" id="dc/d5c/namespaceBrush_1ac3ce3882d87416154925fcc5031fc2bc" prot="public" static="no" mutable="no">
         <type>const <ref refid="d9/d28/classmap" kindref="compound">map</ref>&lt; <ref refid="dc/d5c/namespaceBrush_1a3f2c9b744330ba4a561ac72f048a1a5f" kindref="member">DataType</ref>, std::type_index &gt;</type>
@@ -1394,7 +1394,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/runner/work/brush/brush/src/data/data.cpp" line="36" column="12" bodyfile="/home/runner/work/brush/brush/src/data/data.cpp" bodystart="36" bodyend="46" declfile="/home/runner/work/brush/brush/src/data/data.h" declline="265" declcolumn="19"/>
+        <location file="/home/runner/work/brush/brush/src/data/data.cpp" line="36" column="12" bodyfile="/home/runner/work/brush/brush/src/data/data.cpp" bodystart="36" bodyend="46" declfile="/home/runner/work/brush/brush/src/data/data.h" declline="288" declcolumn="19"/>
       </memberdef>
       <memberdef kind="variable" id="dc/d5c/namespaceBrush_1ad90f755a36fec02b0be6867f5321e77e" prot="public" static="no" mutable="no">
         <type><ref refid="d9/d28/classmap" kindref="compound">map</ref>&lt; std::type_index, <ref refid="dc/d5c/namespaceBrush_1a3f2c9b744330ba4a561ac72f048a1a5f" kindref="member">DataType</ref> &gt;</type>
@@ -1409,7 +1409,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/runner/work/brush/brush/src/data/data.cpp" line="47" column="5" bodyfile="/home/runner/work/brush/brush/src/data/data.cpp" bodystart="47" bodyend="-1" declfile="/home/runner/work/brush/brush/src/data/data.h" declline="266" declcolumn="13"/>
+        <location file="/home/runner/work/brush/brush/src/data/data.cpp" line="47" column="5" bodyfile="/home/runner/work/brush/brush/src/data/data.cpp" bodystart="47" bodyend="-1" declfile="/home/runner/work/brush/brush/src/data/data.h" declline="289" declcolumn="13"/>
       </memberdef>
       <memberdef kind="variable" id="dc/d5c/namespaceBrush_1a6c9a5070ffbcf71c795073cbb2a88964" prot="public" static="no" constexpr="yes" mutable="no">
         <templateparamlist>
@@ -1430,7 +1430,7 @@
         <inbodydescription>
         </inbodydescription>
         <location file="/home/runner/work/brush/brush/src/init.h" line="67" column="33" bodyfile="/home/runner/work/brush/brush/src/init.h" bodystart="67" bodyend="-1"/>
-        <referencedby refid="d2/d36/classBrush_1_1Data_1_1Dataset_1afa676d96150281b2384a07e4a3fcc352" compoundref="da/dc9/data_8cpp" startline="140" endline="166">Brush::Data::Dataset::operator()</referencedby>
+        <referencedby refid="d2/d36/classBrush_1_1Data_1_1Dataset_1afa676d96150281b2384a07e4a3fcc352" compoundref="da/dc9/data_8cpp" startline="139" endline="165">Brush::Data::Dataset::operator()</referencedby>
       </memberdef>
       <memberdef kind="variable" id="dc/d5c/namespaceBrush_1ab00cdf5cac845f372ec06d02f7a316b5" prot="public" static="no" mutable="no">
         <type><ref refid="d3/da8/structBrush_1_1DispatchTable" kindref="compound">DispatchTable</ref>&lt; true &gt;</type>
@@ -1444,7 +1444,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/runner/work/brush/brush/src/program/dispatch_table.cpp" line="5" column="19" bodyfile="/home/runner/work/brush/brush/src/program/dispatch_table.cpp" bodystart="5" bodyend="-1" declfile="/home/runner/work/brush/brush/src/program/dispatch_table.h" declline="203" declcolumn="22"/>
+        <location file="/home/runner/work/brush/brush/src/program/dispatch_table.cpp" line="5" column="19" bodyfile="/home/runner/work/brush/brush/src/program/dispatch_table.cpp" bodystart="5" bodyend="-1" declfile="/home/runner/work/brush/brush/src/program/dispatch_table.h" declline="200" declcolumn="22"/>
       </memberdef>
       <memberdef kind="variable" id="dc/d5c/namespaceBrush_1a175d0497be0c922c453075fed37ecec0" prot="public" static="no" mutable="no">
         <type><ref refid="d3/da8/structBrush_1_1DispatchTable" kindref="compound">DispatchTable</ref>&lt; false &gt;</type>
@@ -1458,7 +1458,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/runner/work/brush/brush/src/program/dispatch_table.cpp" line="6" column="19" bodyfile="/home/runner/work/brush/brush/src/program/dispatch_table.cpp" bodystart="6" bodyend="-1" declfile="/home/runner/work/brush/brush/src/program/dispatch_table.h" declline="204" declcolumn="22"/>
+        <location file="/home/runner/work/brush/brush/src/program/dispatch_table.cpp" line="6" column="19" bodyfile="/home/runner/work/brush/brush/src/program/dispatch_table.cpp" bodystart="6" bodyend="-1" declfile="/home/runner/work/brush/brush/src/program/dispatch_table.h" declline="201" declcolumn="22"/>
       </memberdef>
       <memberdef kind="variable" id="dc/d5c/namespaceBrush_1a37e6a93b6978c3a875d719972ae1736a" prot="public" static="no" constexpr="yes" mutable="no">
         <templateparamlist>
@@ -1523,10 +1523,10 @@
         <location file="/home/runner/work/brush/brush/src/program/nodetype.cpp" line="81" column="10" bodyfile="/home/runner/work/brush/brush/src/program/nodetype.cpp" bodystart="81" bodyend="-1" declfile="/home/runner/work/brush/brush/src/program/nodetype.h" declline="161" declcolumn="17"/>
         <referencedby refid="d4/dc3/structBrush_1_1SearchSpace_1a4a255b2a600b65c33dc7dad6dd6a4614" compoundref="d9/d99/search__space_8h" startline="638" endline="659">Brush::SearchSpace::AddNode</referencedby>
         <referencedby refid="d4/d42/structfmt_1_1formatter_3_01Brush_1_1NodeType_01_4_1a66499c22826759622fa847c796886088" compoundref="de/d26/nodetype_8h" startline="248" endline="250">fmt::formatter&lt; Brush::NodeType &gt;::format</referencedby>
-        <referencedby refid="dc/d5c/namespaceBrush_1ad36f62c73493c032059be8cd18590d0e" compoundref="d7/d70/node_8cpp" startline="224" endline="298">from_json</referencedby>
+        <referencedby refid="dc/d5c/namespaceBrush_1ad36f62c73493c032059be8cd18590d0e" compoundref="d7/d70/node_8cpp" startline="226" endline="306">from_json</referencedby>
         <referencedby refid="d4/dc3/structBrush_1_1SearchSpace_1a5e4bea5b32dfe137262f014c8107a0f7" compoundref="da/d48/search__space_8cpp" startline="177" endline="262">Brush::SearchSpace::init</referencedby>
         <referencedby refid="d4/dc3/structBrush_1_1SearchSpace_1af8165ac09c39eec3e5aa6e2d925b8104" compoundref="d9/d99/search__space_8h" startline="670" endline="690">Brush::SearchSpace::MakeNodes</referencedby>
-        <referencedby refid="d1/d3a/structBrush_1_1Node_1a62f7ba79b38e86e54488e5dd9a6bdc93" compoundref="d1/d77/node_8h" startline="131" endline="142">Brush::Node::Node</referencedby>
+        <referencedby refid="d1/d3a/structBrush_1_1Node_1a62f7ba79b38e86e54488e5dd9a6bdc93" compoundref="d1/d77/node_8h" startline="135" endline="146">Brush::Node::Node</referencedby>
         <referencedby refid="dc/d5c/namespaceBrush_1a613f142cf27eb135a3eb1ba07bbfaffc" compoundref="d7/d70/node_8cpp" startline="5" endline="10">operator&lt;&lt;</referencedby>
       </memberdef>
       <memberdef kind="variable" id="dc/d5c/namespaceBrush_1a5720ee549e0df722bd77a7495c0c6f60" prot="public" static="yes" constexpr="yes" mutable="no">
@@ -1593,9 +1593,8 @@
         <inbodydescription>
         </inbodydescription>
         <location file="/home/runner/work/brush/brush/src/types.h" line="33" column="23" bodyfile="/home/runner/work/brush/brush/src/types.h" bodystart="33" bodyend="-1"/>
-        <referencedby refid="dc/d31/structBrush_1_1Operator_1a19c4d0c66ace631c3105e11bd75b4761" compoundref="d7/de0/operator_8h" startline="218" endline="230">Brush::Operator&lt; NT, S, Fit, E &gt;::eval</referencedby>
-        <referencedby refid="dd/d88/structBrush_1_1Operator_3_01NodeType_1_1Terminal_00_01S_00_01Fit_01_4_1ac4f981989fbe362656ac8294fa0d4ef3" compoundref="d7/de0/operator_8h" startline="261" endline="272">Brush::Operator&lt; NodeType::Terminal, S, Fit &gt;::eval</referencedby>
-        <referencedby refid="db/d1f/structBrush_1_1Operator_3_01NT_00_01S_00_01Fit_00_01enable__if__t_3_01is__in__v_3_01NT_00_01Node0d34d2b97afea7b3bb37b94bd97cbb86_1ae4852e75e91124556a838934d222fbc6" compoundref="d7/de0/operator_8h" startline="257" endline="287">Brush::Operator&lt; NT, S, Fit, enable_if_t&lt; is_in_v&lt; NT, NodeType::SplitOn, NodeType::SplitBest &gt; &gt; &gt;::predict</referencedby>
+        <referencedby refid="dc/d31/structBrush_1_1Operator_1a19c4d0c66ace631c3105e11bd75b4761" compoundref="d7/de0/operator_8h" startline="253" endline="265">Brush::Operator&lt; NT, S, Fit, E &gt;::eval</referencedby>
+        <referencedby refid="dd/d88/structBrush_1_1Operator_3_01NodeType_1_1Terminal_00_01S_00_01Fit_01_4_1ac4f981989fbe362656ac8294fa0d4ef3" compoundref="d7/de0/operator_8h" startline="296" endline="307">Brush::Operator&lt; NodeType::Terminal, S, Fit &gt;::eval</referencedby>
         <referencedby refid="d7/da9/namespaceBrush_1_1Split_1ae5981aac972763c24e7b668bfca35e96" compoundref="d7/de0/operator_8h" startline="16" endline="18">Brush::Split::threshold_mask</referencedby>
       </memberdef>
       <memberdef kind="variable" id="dc/d5c/namespaceBrush_1ae997c702078cc1c68f8c951c331fdf51" prot="public" static="yes" constexpr="yes" mutable="no">
@@ -1632,8 +1631,8 @@
         <inbodydescription>
         </inbodydescription>
         <location file="/home/runner/work/brush/brush/src/types.h" line="245" column="23" bodyfile="/home/runner/work/brush/brush/src/types.h" bodystart="245" bodyend="-1"/>
-        <referencedby refid="dc/d31/structBrush_1_1Operator_1aa4adc47d9cddb762f26e38747773bba6" compoundref="d7/de0/operator_8h" startline="116" endline="144">Brush::Operator&lt; NT, S, Fit, E &gt;::get_kids</referencedby>
-        <referencedby refid="db/d1f/structBrush_1_1Operator_3_01NT_00_01S_00_01Fit_00_01enable__if__t_3_01is__in__v_3_01NT_00_01Node0d34d2b97afea7b3bb37b94bd97cbb86_1a184e097f47b9205af5840971608d06ab" compoundref="d7/de0/operator_8h" startline="203" endline="224">Brush::Operator&lt; NT, S, Fit, enable_if_t&lt; is_in_v&lt; NT, NodeType::SplitOn, NodeType::SplitBest &gt; &gt; &gt;::get_kids</referencedby>
+        <referencedby refid="db/d1f/structBrush_1_1Operator_3_01NT_00_01S_00_01Fit_00_01enable__if__t_3_01is__in__v_3_01NT_00_01Node0d34d2b97afea7b3bb37b94bd97cbb86_1a11a0722c89daf802f2b49e7497aa1a9d" compoundref="d7/de0/operator_8h" startline="226" endline="246">Brush::Operator&lt; NT, S, Fit, enable_if_t&lt; is_in_v&lt; NT, NodeType::SplitOn, NodeType::SplitBest &gt; &gt; &gt;::fit</referencedby>
+        <referencedby refid="d7/da9/namespaceBrush_1_1Split_1acd04486b86f474e72160c903df755c7d" compoundref="d7/de0/operator_8h" startline="154" endline="169">Brush::Split::get_best_thresholds</referencedby>
         <referencedby refid="dc/d31/structBrush_1_1Operator_1a09fa4721bd510aacdb5402dc4ce4b5ac">Brush::Operator&lt; NT, S, Fit, E &gt;::Operator</referencedby>
       </memberdef>
       <memberdef kind="variable" id="dc/d5c/namespaceBrush_1a6225fa35f6e06e54d4a31a8f25cd4a66" prot="public" static="yes" constexpr="yes" mutable="no">
@@ -1655,8 +1654,7 @@
         <inbodydescription>
         </inbodydescription>
         <location file="/home/runner/work/brush/brush/src/types.h" line="253" column="23" bodyfile="/home/runner/work/brush/brush/src/types.h" bodystart="253" bodyend="-1"/>
-        <referencedby refid="dc/d31/structBrush_1_1Operator_1aa4adc47d9cddb762f26e38747773bba6" compoundref="d7/de0/operator_8h" startline="116" endline="144">Brush::Operator&lt; NT, S, Fit, E &gt;::get_kids</referencedby>
-        <referencedby refid="db/d1f/structBrush_1_1Operator_3_01NT_00_01S_00_01Fit_00_01enable__if__t_3_01is__in__v_3_01NT_00_01Node0d34d2b97afea7b3bb37b94bd97cbb86_1a184e097f47b9205af5840971608d06ab" compoundref="d7/de0/operator_8h" startline="203" endline="224">Brush::Operator&lt; NT, S, Fit, enable_if_t&lt; is_in_v&lt; NT, NodeType::SplitOn, NodeType::SplitBest &gt; &gt; &gt;::get_kids</referencedby>
+        <referencedby refid="d7/da9/namespaceBrush_1_1Split_1acd04486b86f474e72160c903df755c7d" compoundref="d7/de0/operator_8h" startline="154" endline="169">Brush::Split::get_best_thresholds</referencedby>
         <referencedby refid="dc/d31/structBrush_1_1Operator_1a09fa4721bd510aacdb5402dc4ce4b5ac">Brush::Operator&lt; NT, S, Fit, E &gt;::Operator</referencedby>
       </memberdef>
       <memberdef kind="variable" id="dc/d5c/namespaceBrush_1a00b234ce343d03867e55d528f8cb8895" prot="public" static="yes" constexpr="yes" mutable="no">
@@ -1678,6 +1676,8 @@
         <inbodydescription>
         </inbodydescription>
         <location file="/home/runner/work/brush/brush/src/types.h" line="259" column="23" bodyfile="/home/runner/work/brush/brush/src/types.h" bodystart="259" bodyend="-1"/>
+        <referencedby refid="db/d1f/structBrush_1_1Operator_3_01NT_00_01S_00_01Fit_00_01enable__if__t_3_01is__in__v_3_01NT_00_01Node0d34d2b97afea7b3bb37b94bd97cbb86_1a11a0722c89daf802f2b49e7497aa1a9d" compoundref="d7/de0/operator_8h" startline="226" endline="246">Brush::Operator&lt; NT, S, Fit, enable_if_t&lt; is_in_v&lt; NT, NodeType::SplitOn, NodeType::SplitBest &gt; &gt; &gt;::fit</referencedby>
+        <referencedby refid="db/d1f/structBrush_1_1Operator_3_01NT_00_01S_00_01Fit_00_01enable__if__t_3_01is__in__v_3_01NT_00_01Node0d34d2b97afea7b3bb37b94bd97cbb86_1a184e097f47b9205af5840971608d06ab" compoundref="d7/de0/operator_8h" startline="203" endline="224">Brush::Operator&lt; NT, S, Fit, enable_if_t&lt; is_in_v&lt; NT, NodeType::SplitOn, NodeType::SplitBest &gt; &gt; &gt;::get_kids</referencedby>
       </memberdef>
       <memberdef kind="variable" id="dc/d5c/namespaceBrush_1a5ce2db092b85cde6a08777c7e9446b8b" prot="public" static="no" mutable="no">
         <type>std::unordered_map&lt; std::size_t, std::string &gt;</type>
@@ -1964,7 +1964,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/runner/work/brush/brush/src/ind/fitness.cpp" line="6" column="6" bodyfile="/home/runner/work/brush/brush/src/ind/fitness.cpp" bodystart="6" bodyend="23" declfile="/home/runner/work/brush/brush/src/ind/fitness.h" declline="232" declcolumn="6"/>
+        <location file="/home/runner/work/brush/brush/src/ind/fitness.cpp" line="6" column="6" bodyfile="/home/runner/work/brush/brush/src/ind/fitness.cpp" bodystart="6" bodyend="29" declfile="/home/runner/work/brush/brush/src/ind/fitness.h" declline="227" declcolumn="6"/>
         <references refid="d6/dd0/structBrush_1_1Fitness_1a2edfafc177c7f47f7c5fccc9238236cf" compoundref="dc/d7a/fitness_8h" startline="31">Brush::Fitness::complexity</references>
         <references refid="d6/dd0/structBrush_1_1Fitness_1a0998d4960cae30c329ae6d2f05a27c84" compoundref="dc/d7a/fitness_8h" startline="50">Brush::Fitness::crowding_dist</references>
         <references refid="d6/dd0/structBrush_1_1Fitness_1a76b3053e09f2fa0f08a5dc4abb1c8daf" compoundref="dc/d7a/fitness_8h" startline="47">Brush::Fitness::dcounter</references>
@@ -1973,6 +1973,12 @@
         <references refid="d6/dd0/structBrush_1_1Fitness_1a73c060c3062cc51f0c6444d58d76de7a" compoundref="dc/d7a/fitness_8h" startline="32">Brush::Fitness::linear_complexity</references>
         <references refid="d6/dd0/structBrush_1_1Fitness_1a30e994e0b4aa0a8febfe7d7a09529f04" compoundref="dc/d7a/fitness_8h" startline="28">Brush::Fitness::loss</references>
         <references refid="d6/dd0/structBrush_1_1Fitness_1aa8cd674fad6f65c344f008c3e2442491" compoundref="dc/d7a/fitness_8h" startline="29">Brush::Fitness::loss_v</references>
+        <references refid="d6/dd0/structBrush_1_1Fitness_1a4d1653a58b07bde5a0017ae8d057730d" compoundref="dc/d7a/fitness_8h" startline="41">Brush::Fitness::prev_complexity</references>
+        <references refid="d6/dd0/structBrush_1_1Fitness_1ae21f85b6f5e52f0b3b4b4b91d490d9c5" compoundref="dc/d7a/fitness_8h" startline="44">Brush::Fitness::prev_depth</references>
+        <references refid="d6/dd0/structBrush_1_1Fitness_1aa3de746d94f0606bb6a37c974bdc3cb6" compoundref="dc/d7a/fitness_8h" startline="42">Brush::Fitness::prev_linear_complexity</references>
+        <references refid="d6/dd0/structBrush_1_1Fitness_1a032568acc7f2b2272658fda567768098" compoundref="dc/d7a/fitness_8h" startline="38">Brush::Fitness::prev_loss</references>
+        <references refid="d6/dd0/structBrush_1_1Fitness_1a6c7610a15638c4963f5f99a5414c8dac" compoundref="dc/d7a/fitness_8h" startline="39">Brush::Fitness::prev_loss_v</references>
+        <references refid="d6/dd0/structBrush_1_1Fitness_1ae21ba5b950c66615315adf3ad6c1ec06" compoundref="dc/d7a/fitness_8h" startline="43">Brush::Fitness::prev_size</references>
         <references refid="d6/dd0/structBrush_1_1Fitness_1aae177694d7f7bceaa8f907e317c328ab" compoundref="dc/d7a/fitness_8h" startline="49">Brush::Fitness::rank</references>
         <references refid="d6/dd0/structBrush_1_1Fitness_1aa8d013edea014b30ff85fe341c8c3ea5" compoundref="dc/d7a/fitness_8h" startline="33">Brush::Fitness::size</references>
         <references refid="d6/dd0/structBrush_1_1Fitness_1a853380ca80adf2ab47bc8d2fc34b09b4" compoundref="dc/d7a/fitness_8h" startline="53">Brush::Fitness::values</references>
@@ -2001,7 +2007,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/runner/work/brush/brush/src/ind/fitness.cpp" line="25" column="6" bodyfile="/home/runner/work/brush/brush/src/ind/fitness.cpp" bodystart="25" bodyend="40" declfile="/home/runner/work/brush/brush/src/ind/fitness.h" declline="233" declcolumn="6"/>
+        <location file="/home/runner/work/brush/brush/src/ind/fitness.cpp" line="31" column="6" bodyfile="/home/runner/work/brush/brush/src/ind/fitness.cpp" bodystart="31" bodyend="52" declfile="/home/runner/work/brush/brush/src/ind/fitness.h" declline="228" declcolumn="6"/>
         <references refid="d6/dd0/structBrush_1_1Fitness_1a2edfafc177c7f47f7c5fccc9238236cf" compoundref="dc/d7a/fitness_8h" startline="31">Brush::Fitness::complexity</references>
         <references refid="d6/dd0/structBrush_1_1Fitness_1a0998d4960cae30c329ae6d2f05a27c84" compoundref="dc/d7a/fitness_8h" startline="50">Brush::Fitness::crowding_dist</references>
         <references refid="d6/dd0/structBrush_1_1Fitness_1a76b3053e09f2fa0f08a5dc4abb1c8daf" compoundref="dc/d7a/fitness_8h" startline="47">Brush::Fitness::dcounter</references>
@@ -2010,6 +2016,12 @@
         <references refid="d6/dd0/structBrush_1_1Fitness_1a73c060c3062cc51f0c6444d58d76de7a" compoundref="dc/d7a/fitness_8h" startline="32">Brush::Fitness::linear_complexity</references>
         <references refid="d6/dd0/structBrush_1_1Fitness_1a30e994e0b4aa0a8febfe7d7a09529f04" compoundref="dc/d7a/fitness_8h" startline="28">Brush::Fitness::loss</references>
         <references refid="d6/dd0/structBrush_1_1Fitness_1aa8cd674fad6f65c344f008c3e2442491" compoundref="dc/d7a/fitness_8h" startline="29">Brush::Fitness::loss_v</references>
+        <references refid="d6/dd0/structBrush_1_1Fitness_1a4d1653a58b07bde5a0017ae8d057730d" compoundref="dc/d7a/fitness_8h" startline="41">Brush::Fitness::prev_complexity</references>
+        <references refid="d6/dd0/structBrush_1_1Fitness_1ae21f85b6f5e52f0b3b4b4b91d490d9c5" compoundref="dc/d7a/fitness_8h" startline="44">Brush::Fitness::prev_depth</references>
+        <references refid="d6/dd0/structBrush_1_1Fitness_1aa3de746d94f0606bb6a37c974bdc3cb6" compoundref="dc/d7a/fitness_8h" startline="42">Brush::Fitness::prev_linear_complexity</references>
+        <references refid="d6/dd0/structBrush_1_1Fitness_1a032568acc7f2b2272658fda567768098" compoundref="dc/d7a/fitness_8h" startline="38">Brush::Fitness::prev_loss</references>
+        <references refid="d6/dd0/structBrush_1_1Fitness_1a6c7610a15638c4963f5f99a5414c8dac" compoundref="dc/d7a/fitness_8h" startline="39">Brush::Fitness::prev_loss_v</references>
+        <references refid="d6/dd0/structBrush_1_1Fitness_1ae21ba5b950c66615315adf3ad6c1ec06" compoundref="dc/d7a/fitness_8h" startline="43">Brush::Fitness::prev_size</references>
         <references refid="d6/dd0/structBrush_1_1Fitness_1aae177694d7f7bceaa8f907e317c328ab" compoundref="dc/d7a/fitness_8h" startline="49">Brush::Fitness::rank</references>
         <references refid="d6/dd0/structBrush_1_1Fitness_1aa8d013edea014b30ff85fe341c8c3ea5" compoundref="dc/d7a/fitness_8h" startline="33">Brush::Fitness::size</references>
         <references refid="d6/dd0/structBrush_1_1Fitness_1a853380ca80adf2ab47bc8d2fc34b09b4" compoundref="dc/d7a/fitness_8h" startline="53">Brush::Fitness::values</references>
@@ -2017,20 +2029,26 @@
         <references refid="d6/dd0/structBrush_1_1Fitness_1a972dd960fd7c2a68449827ec987d0671" compoundref="dc/d7a/fitness_8h" startline="57">Brush::Fitness::wvalues</references>
         <referencedby refid="d0/d75/classBrush_1_1Engine_1a7936896228b5c00b6e87070b7caeed00" compoundref="da/d5c/engine_8cpp" startline="217" endline="240">Brush::Engine&lt; T &gt;::set_population</referencedby>
       </memberdef>
-      <memberdef kind="function" id="dc/d5c/namespaceBrush_1a7360b5c2c04d7df5f9d83d2b33885aef" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+      <memberdef kind="function" id="dc/d5c/namespaceBrush_1a67a0e8290b852a0ea0f5b8392c53ece9" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type></type>
         <definition>Brush::NLOHMANN_DEFINE_TYPE_NON_INTRUSIVE</definition>
-        <argsstring>(Parameters, verbosity, random_state, pop_size, max_gens, max_stall, max_time, scorer, load_population, save_population, logfile, current_gen, num_islands, max_depth, n_jobs, max_size, objectives, sel, surv, cx_prob, mig_prob, classification, n_classes, classes, class_weights, sample_weights, validation_size, feature_names, batch_size, mutation_probs, functions)</argsstring>
+        <argsstring>(Parameters, random_state, verbosity, mode, current_gen, pop_size, max_gens, max_stall, max_time, max_depth, max_size, objectives, bandit, sel, surv, functions, num_islands, use_arch, val_from_arch, constants_simplification, inexact_simplification, mutation_probs, cx_prob, mig_prob, scorer, classes, class_weights, sample_weights, classification, n_classes, shuffle_split, validation_size, feature_names, feature_types, batch_size, weights_init, load_population, save_population, logfile, n_jobs)</argsstring>
         <name>NLOHMANN_DEFINE_TYPE_NON_INTRUSIVE</name>
         <qualifiedname>Brush::NLOHMANN_DEFINE_TYPE_NON_INTRUSIVE</qualifiedname>
         <param>
           <type><ref refid="de/deb/structBrush_1_1Parameters" kindref="compound">Parameters</ref></type>
         </param>
         <param>
+          <type>random_state</type>
+        </param>
+        <param>
           <type>verbosity</type>
         </param>
         <param>
-          <type>random_state</type>
+          <type>mode</type>
+        </param>
+        <param>
+          <type>current_gen</type>
         </param>
         <param>
           <type>pop_size</type>
@@ -2045,28 +2063,7 @@
           <type>max_time</type>
         </param>
         <param>
-          <type>scorer</type>
-        </param>
-        <param>
-          <type>load_population</type>
-        </param>
-        <param>
-          <type>save_population</type>
-        </param>
-        <param>
-          <type>logfile</type>
-        </param>
-        <param>
-          <type>current_gen</type>
-        </param>
-        <param>
-          <type>num_islands</type>
-        </param>
-        <param>
           <type>max_depth</type>
-        </param>
-        <param>
-          <type>n_jobs</type>
         </param>
         <param>
           <type>max_size</type>
@@ -2075,10 +2072,34 @@
           <type>objectives</type>
         </param>
         <param>
+          <type>bandit</type>
+        </param>
+        <param>
           <type>sel</type>
         </param>
         <param>
           <type>surv</type>
+        </param>
+        <param>
+          <type>functions</type>
+        </param>
+        <param>
+          <type>num_islands</type>
+        </param>
+        <param>
+          <type>use_arch</type>
+        </param>
+        <param>
+          <type>val_from_arch</type>
+        </param>
+        <param>
+          <type>constants_simplification</type>
+        </param>
+        <param>
+          <type>inexact_simplification</type>
+        </param>
+        <param>
+          <type>mutation_probs</type>
         </param>
         <param>
           <type>cx_prob</type>
@@ -2087,10 +2108,7 @@
           <type>mig_prob</type>
         </param>
         <param>
-          <type>classification</type>
-        </param>
-        <param>
-          <type>n_classes</type>
+          <type>scorer</type>
         </param>
         <param>
           <type>classes</type>
@@ -2102,19 +2120,40 @@
           <type>sample_weights</type>
         </param>
         <param>
+          <type>classification</type>
+        </param>
+        <param>
+          <type>n_classes</type>
+        </param>
+        <param>
+          <type>shuffle_split</type>
+        </param>
+        <param>
           <type>validation_size</type>
         </param>
         <param>
           <type>feature_names</type>
         </param>
         <param>
+          <type>feature_types</type>
+        </param>
+        <param>
           <type>batch_size</type>
         </param>
         <param>
-          <type>mutation_probs</type>
+          <type>weights_init</type>
         </param>
         <param>
-          <type>functions</type>
+          <type>load_population</type>
+        </param>
+        <param>
+          <type>save_population</type>
+        </param>
+        <param>
+          <type>logfile</type>
+        </param>
+        <param>
+          <type>n_jobs</type>
         </param>
         <briefdescription>
         </briefdescription>
@@ -2122,7 +2161,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/runner/work/brush/brush/src/params.h" line="255" column="1" declfile="/home/runner/work/brush/brush/src/params.h" declline="255" declcolumn="1"/>
+        <location file="/home/runner/work/brush/brush/src/params.h" line="254" column="1" declfile="/home/runner/work/brush/brush/src/params.h" declline="254" declcolumn="1"/>
       </memberdef>
       <memberdef kind="function" id="dc/d5c/namespaceBrush_1a295fffe6ae57b4a3c871c7cfe1450e1d" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
         <templateparamlist>
@@ -2169,8 +2208,8 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/runner/work/brush/brush/src/program/operator.h" line="391" column="10" bodyfile="/home/runner/work/brush/brush/src/program/operator.h" bodystart="391" bodyend="395" declfile="/home/runner/work/brush/brush/src/program/dispatch_table.h" declline="29" declcolumn="3"/>
-        <references refid="dc/d31/structBrush_1_1Operator_1a19c4d0c66ace631c3105e11bd75b4761" compoundref="d7/de0/operator_8h" startline="218" endline="230">Brush::Operator&lt; NT, S, Fit, E &gt;::eval</references>
+        <location file="/home/runner/work/brush/brush/src/program/operator.h" line="433" column="10" bodyfile="/home/runner/work/brush/brush/src/program/operator.h" bodystart="433" bodyend="437" declfile="/home/runner/work/brush/brush/src/program/dispatch_table.h" declline="29" declcolumn="3"/>
+        <references refid="dc/d31/structBrush_1_1Operator_1a19c4d0c66ace631c3105e11bd75b4761" compoundref="d7/de0/operator_8h" startline="253" endline="265">Brush::Operator&lt; NT, S, Fit, E &gt;::eval</references>
         <referencedby refid="d3/da8/structBrush_1_1DispatchTable_1a18c6366cbcd3c590466a319f41173a42" compoundref="df/d61/dispatch__table_8h" startline="111" endline="119">Brush::DispatchTable&lt; Fit &gt;::MakeCallable</referencedby>
       </memberdef>
       <memberdef kind="function" id="dc/d5c/namespaceBrush_1a835c559533dfd1b02fb7c2ded01c2442" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
@@ -2211,8 +2250,8 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/runner/work/brush/brush/src/program/operator.h" line="398" column="10" bodyfile="/home/runner/work/brush/brush/src/program/operator.h" bodystart="398" bodyend="402" declfile="/home/runner/work/brush/brush/src/program/dispatch_table.h" declline="31" declcolumn="3"/>
-        <references refid="dc/d31/structBrush_1_1Operator_1a19c4d0c66ace631c3105e11bd75b4761" compoundref="d7/de0/operator_8h" startline="218" endline="230">Brush::Operator&lt; NT, S, Fit, E &gt;::eval</references>
+        <location file="/home/runner/work/brush/brush/src/program/operator.h" line="440" column="10" bodyfile="/home/runner/work/brush/brush/src/program/operator.h" bodystart="440" bodyend="444" declfile="/home/runner/work/brush/brush/src/program/dispatch_table.h" declline="31" declcolumn="3"/>
+        <references refid="dc/d31/structBrush_1_1Operator_1a19c4d0c66ace631c3105e11bd75b4761" compoundref="d7/de0/operator_8h" startline="253" endline="265">Brush::Operator&lt; NT, S, Fit, E &gt;::eval</references>
       </memberdef>
       <memberdef kind="function" id="dc/d5c/namespaceBrush_1a613f142cf27eb135a3eb1ba07bbfaffc" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>ostream &amp;</type>
@@ -2234,7 +2273,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/runner/work/brush/brush/src/program/node.cpp" line="5" column="1" bodyfile="/home/runner/work/brush/brush/src/program/node.cpp" bodystart="5" bodyend="10" declfile="/home/runner/work/brush/brush/src/program/node.h" declline="339" declcolumn="1"/>
+        <location file="/home/runner/work/brush/brush/src/program/node.cpp" line="5" column="1" bodyfile="/home/runner/work/brush/brush/src/program/node.cpp" bodystart="5" bodyend="10" declfile="/home/runner/work/brush/brush/src/program/node.h" declline="347" declcolumn="1"/>
         <references refid="dc/d5c/namespaceBrush_1abfd0b15e0aacec494262585ad04fd79b" compoundref="df/dfe/nodetype_8cpp" startline="81">NodeTypeName</references>
       </memberdef>
       <memberdef kind="function" id="dc/d5c/namespaceBrush_1a9f9e092d833b2604cd38086f8b344a10" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
@@ -2257,7 +2296,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/runner/work/brush/brush/src/program/node.cpp" line="12" column="1" bodyfile="/home/runner/work/brush/brush/src/program/node.cpp" bodystart="12" bodyend="16" declfile="/home/runner/work/brush/brush/src/program/node.h" declline="338" declcolumn="1"/>
+        <location file="/home/runner/work/brush/brush/src/program/node.cpp" line="12" column="1" bodyfile="/home/runner/work/brush/brush/src/program/node.cpp" bodystart="12" bodyend="16" declfile="/home/runner/work/brush/brush/src/program/node.h" declline="346" declcolumn="1"/>
         <references refid="d1/d3a/structBrush_1_1Node_1aaddaf7903795dfdcad487234d6dc380e" compoundref="d7/d70/node_8cpp" startline="20" endline="51">Brush::Node::get_name</references>
       </memberdef>
       <memberdef kind="function" id="dc/d5c/namespaceBrush_1a2277345e299e6d41c9573c59b32ad0aa" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
@@ -2280,18 +2319,19 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/runner/work/brush/brush/src/program/node.cpp" line="115" column="6" bodyfile="/home/runner/work/brush/brush/src/program/node.cpp" bodystart="115" bodyend="132" declfile="/home/runner/work/brush/brush/src/program/node.h" declline="344" declcolumn="6"/>
-        <references refid="d1/d3a/structBrush_1_1Node_1a237b9208864ace5209edca01623f6b1e" compoundref="d1/d77/node_8h" startline="103">Brush::Node::arg_types</references>
-        <references refid="d1/d3a/structBrush_1_1Node_1a0971012cfb2ae944f4bea0ea0dc9e5a3" compoundref="d1/d77/node_8h" startline="89">Brush::Node::center_op</references>
-        <references refid="d1/d3a/structBrush_1_1Node_1a32c73293ee4e02b6d828c2c213e06154" compoundref="d1/d77/node_8h" startline="93">Brush::Node::fixed</references>
-        <references refid="d1/d3a/structBrush_1_1Node_1a85a62efd4f1f99fa45eb52e4c0a1a26f" compoundref="d1/d77/node_8h" startline="250" endline="250">Brush::Node::get_feature</references>
-        <references refid="d1/d3a/structBrush_1_1Node_1ab72b791f57011a032c6c89238db85845" compoundref="d1/d77/node_8h" startline="105">Brush::Node::is_weighted</references>
+        <location file="/home/runner/work/brush/brush/src/program/node.cpp" line="115" column="6" bodyfile="/home/runner/work/brush/brush/src/program/node.cpp" bodystart="115" bodyend="133" declfile="/home/runner/work/brush/brush/src/program/node.h" declline="350" declcolumn="6"/>
+        <references refid="d1/d3a/structBrush_1_1Node_1a237b9208864ace5209edca01623f6b1e" compoundref="d1/d77/node_8h" startline="94">Brush::Node::arg_types</references>
+        <references refid="d1/d3a/structBrush_1_1Node_1a0971012cfb2ae944f4bea0ea0dc9e5a3" compoundref="d1/d77/node_8h" startline="110">Brush::Node::center_op</references>
+        <references refid="d1/d3a/structBrush_1_1Node_1a32c73293ee4e02b6d828c2c213e06154" compoundref="d1/d77/node_8h" startline="101">Brush::Node::fixed</references>
+        <references refid="d1/d3a/structBrush_1_1Node_1a85a62efd4f1f99fa45eb52e4c0a1a26f" compoundref="d1/d77/node_8h" startline="251" endline="251">Brush::Node::get_feature</references>
+        <references refid="d1/d3a/structBrush_1_1Node_1a5d3a467bbb0b2fa914594c735579926d" compoundref="d1/d77/node_8h" startline="254" endline="254">Brush::Node::get_feature_type</references>
+        <references refid="d1/d3a/structBrush_1_1Node_1ab72b791f57011a032c6c89238db85845" compoundref="d1/d77/node_8h" startline="103">Brush::Node::is_weighted</references>
         <references refid="d1/d3a/structBrush_1_1Node_1ad6b3fd4a54c813d066370defc8a85af1" compoundref="d1/d77/node_8h" startline="87">Brush::Node::name</references>
-        <references refid="d1/d3a/structBrush_1_1Node_1a522791afe93c92442564356ff19ff55a" compoundref="d1/d77/node_8h" startline="95">Brush::Node::node_type</references>
-        <references refid="d1/d3a/structBrush_1_1Node_1a9f5b2e34d8ba752e0f6bffebec8afdc0" compoundref="d1/d77/node_8h" startline="91">Brush::Node::prob_change</references>
-        <references refid="d1/d3a/structBrush_1_1Node_1a65b283648fe779d81ac11f9e4714d920" compoundref="d1/d77/node_8h" startline="101">Brush::Node::ret_type</references>
-        <references refid="d1/d3a/structBrush_1_1Node_1aed6c2af0fae3dd8e5a8aa2fab77479fd" compoundref="d1/d77/node_8h" startline="99">Brush::Node::sig_dual_hash</references>
-        <references refid="d1/d3a/structBrush_1_1Node_1a889e0361b55a63a4510a3edabd2fa57c" compoundref="d1/d77/node_8h" startline="97">Brush::Node::sig_hash</references>
+        <references refid="d1/d3a/structBrush_1_1Node_1a522791afe93c92442564356ff19ff55a" compoundref="d1/d77/node_8h" startline="89">Brush::Node::node_type</references>
+        <references refid="d1/d3a/structBrush_1_1Node_1a9f5b2e34d8ba752e0f6bffebec8afdc0" compoundref="d1/d77/node_8h" startline="105">Brush::Node::prob_change</references>
+        <references refid="d1/d3a/structBrush_1_1Node_1a65b283648fe779d81ac11f9e4714d920" compoundref="d1/d77/node_8h" startline="92">Brush::Node::ret_type</references>
+        <references refid="d1/d3a/structBrush_1_1Node_1aed6c2af0fae3dd8e5a8aa2fab77479fd" compoundref="d1/d77/node_8h" startline="98">Brush::Node::sig_dual_hash</references>
+        <references refid="d1/d3a/structBrush_1_1Node_1a889e0361b55a63a4510a3edabd2fa57c" compoundref="d1/d77/node_8h" startline="96">Brush::Node::sig_hash</references>
         <references refid="d1/d3a/structBrush_1_1Node_1ab719e64b13753515be49327d98bf2224" compoundref="d1/d77/node_8h" startline="107">Brush::Node::W</references>
       </memberdef>
       <memberdef kind="function" id="dc/d5c/namespaceBrush_1a8f1ed90f7962fef5764e7be14845aa34" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
@@ -2310,7 +2350,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/runner/work/brush/brush/src/program/node.cpp" line="135" column="6" bodyfile="/home/runner/work/brush/brush/src/program/node.cpp" bodystart="135" bodyend="222"/>
+        <location file="/home/runner/work/brush/brush/src/program/node.cpp" line="136" column="6" bodyfile="/home/runner/work/brush/brush/src/program/node.cpp" bodystart="136" bodyend="224"/>
         <references refid="dc/d5c/namespaceBrush_1a051322bb9fd1db4638b6eccd399a29c8a1e34af023adeb7d5f484f8eb4b9826b6" compoundref="de/d26/nodetype_8h" startline="34">Abs</references>
         <references refid="dc/d5c/namespaceBrush_1a051322bb9fd1db4638b6eccd399a29c8aed4629033ecb516ed7d1536e162030bb" compoundref="de/d26/nodetype_8h" startline="35">Acos</references>
         <references refid="dc/d5c/namespaceBrush_1a051322bb9fd1db4638b6eccd399a29c8aec211f7c20af43e742bf2570c3cb84f9" compoundref="de/d26/nodetype_8h" startline="73">Add</references>
@@ -2326,7 +2366,7 @@
         <references refid="dc/d5c/namespaceBrush_1a051322bb9fd1db4638b6eccd399a29c8acad39a154bffb61175f674d6eefaf6d0" compoundref="de/d26/nodetype_8h" startline="46">Exp</references>
         <references refid="dc/d5c/namespaceBrush_1a051322bb9fd1db4638b6eccd399a29c8af3f6d0343d56ce88ce7958170ed05cb3" compoundref="de/d26/nodetype_8h" startline="45">Floor</references>
         <references refid="da/d41/error_8h_1aa4c550bcd71e4ec1c97b111e1360509a" compoundref="da/d41/error_8h" startline="27">HANDLE_ERROR_THROW</references>
-        <references refid="dc/d5c/namespaceBrush_1a4f135739df5fe55a0ff81d943bec8be2" compoundref="d1/d77/node_8h" startline="272" endline="272">Is</references>
+        <references refid="dc/d5c/namespaceBrush_1a4f135739df5fe55a0ff81d943bec8be2" compoundref="d1/d77/node_8h" startline="278" endline="278">Is</references>
         <references refid="dc/d5c/namespaceBrush_1a051322bb9fd1db4638b6eccd399a29c8ace0be71e33226e4c1db2bcea5959f16b" compoundref="de/d26/nodetype_8h" startline="47">Log</references>
         <references refid="dc/d5c/namespaceBrush_1a051322bb9fd1db4638b6eccd399a29c8a03d80d06f1bae0730687cc7d5815fc3c" compoundref="de/d26/nodetype_8h" startline="49">Log1p</references>
         <references refid="dc/d5c/namespaceBrush_1a051322bb9fd1db4638b6eccd399a29c8a90cfc7b40a8a0ccaf1e7f2822f3970ec" compoundref="de/d26/nodetype_8h" startline="48">Logabs</references>
@@ -2336,12 +2376,13 @@
         <references refid="dc/d5c/namespaceBrush_1a051322bb9fd1db4638b6eccd399a29c8a66851a3adec6655a7bd563743e4a55a2" compoundref="de/d26/nodetype_8h" startline="64">Median</references>
         <references refid="dc/d5c/namespaceBrush_1a051322bb9fd1db4638b6eccd399a29c8a78d811e98514cd165dda532286610fd2" compoundref="de/d26/nodetype_8h" startline="61">Min</references>
         <references refid="dc/d5c/namespaceBrush_1a051322bb9fd1db4638b6eccd399a29c8a62b6d55816cf737bfc6f42e60df1a3f2" compoundref="de/d26/nodetype_8h" startline="75">Mul</references>
-        <references refid="d1/d3a/structBrush_1_1Node_1a522791afe93c92442564356ff19ff55a" compoundref="d1/d77/node_8h" startline="95">Brush::Node::node_type</references>
+        <references refid="d1/d3a/structBrush_1_1Node_1a522791afe93c92442564356ff19ff55a" compoundref="d1/d77/node_8h" startline="89">Brush::Node::node_type</references>
+        <references refid="dc/d5c/namespaceBrush_1a051322bb9fd1db4638b6eccd399a29c8aa74c05d080620f087c4e523977230666" compoundref="de/d26/nodetype_8h" startline="93">Not</references>
         <references refid="dc/d5c/namespaceBrush_1a051322bb9fd1db4638b6eccd399a29c8a4d83dec288ae3948fe9a8e21a3c3c734" compoundref="de/d26/nodetype_8h" startline="67">OffsetSum</references>
         <references refid="dc/d5c/namespaceBrush_1a051322bb9fd1db4638b6eccd399a29c8a3a2d5fe857d8f9541136a124c2edec6c" compoundref="de/d26/nodetype_8h" startline="92">Or</references>
         <references refid="dc/d5c/namespaceBrush_1a051322bb9fd1db4638b6eccd399a29c8a8be6d3e955290ee50c00a4bc92aa7749" compoundref="de/d26/nodetype_8h" startline="77">Pow</references>
         <references refid="dc/d5c/namespaceBrush_1a051322bb9fd1db4638b6eccd399a29c8a362a33c23b08e4a32a4ec53fbb82cccd" compoundref="de/d26/nodetype_8h" startline="65">Prod</references>
-        <references refid="d1/d3a/structBrush_1_1Node_1a24ab653c36833ab9cd301efe99b39d5f" compoundref="d1/d77/node_8h" startline="145" endline="152">Brush::Node::set_signature</references>
+        <references refid="d1/d3a/structBrush_1_1Node_1a24ab653c36833ab9cd301efe99b39d5f" compoundref="d1/d77/node_8h" startline="149" endline="156">Brush::Node::set_signature</references>
         <references refid="dc/d5c/namespaceBrush_1a051322bb9fd1db4638b6eccd399a29c8a0986d137604183312e6d3599578bc6cd" compoundref="de/d26/nodetype_8h" startline="40">Sin</references>
         <references refid="dc/d5c/namespaceBrush_1a051322bb9fd1db4638b6eccd399a29c8a98ed804abf4edd1f3be3fa894fa8cc3d" compoundref="de/d26/nodetype_8h" startline="41">Sinh</references>
         <references refid="dc/d5c/namespaceBrush_1a051322bb9fd1db4638b6eccd399a29c8a31d953b9d49a6b4378f45097047976d0" compoundref="de/d26/nodetype_8h" startline="70">Softmax</references>
@@ -2354,7 +2395,7 @@
         <references refid="dc/d5c/namespaceBrush_1a051322bb9fd1db4638b6eccd399a29c8aa0ec87054b5e5b7847d0d8780a01a3d5" compoundref="de/d26/nodetype_8h" startline="66">Sum</references>
         <references refid="dc/d5c/namespaceBrush_1a051322bb9fd1db4638b6eccd399a29c8a1266b4e6f81e60733ec6c717e0181f60" compoundref="de/d26/nodetype_8h" startline="42">Tan</references>
         <references refid="dc/d5c/namespaceBrush_1a051322bb9fd1db4638b6eccd399a29c8acc132a41cab5676334f353a22a0aa5c5" compoundref="de/d26/nodetype_8h" startline="43">Tanh</references>
-        <referencedby refid="dc/d5c/namespaceBrush_1ad36f62c73493c032059be8cd18590d0e" compoundref="d7/d70/node_8cpp" startline="224" endline="298">from_json</referencedby>
+        <referencedby refid="dc/d5c/namespaceBrush_1ad36f62c73493c032059be8cd18590d0e" compoundref="d7/d70/node_8cpp" startline="226" endline="306">from_json</referencedby>
       </memberdef>
       <memberdef kind="function" id="dc/d5c/namespaceBrush_1ad36f62c73493c032059be8cd18590d0e" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -2376,23 +2417,23 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/runner/work/brush/brush/src/program/node.cpp" line="224" column="6" bodyfile="/home/runner/work/brush/brush/src/program/node.cpp" bodystart="224" bodyend="298" declfile="/home/runner/work/brush/brush/src/program/node.h" declline="343" declcolumn="6"/>
-        <references refid="d1/d3a/structBrush_1_1Node_1a237b9208864ace5209edca01623f6b1e" compoundref="d1/d77/node_8h" startline="103">Brush::Node::arg_types</references>
-        <references refid="d1/d3a/structBrush_1_1Node_1a0971012cfb2ae944f4bea0ea0dc9e5a3" compoundref="d1/d77/node_8h" startline="89">Brush::Node::center_op</references>
-        <references refid="d1/d3a/structBrush_1_1Node_1a32c73293ee4e02b6d828c2c213e06154" compoundref="d1/d77/node_8h" startline="93">Brush::Node::fixed</references>
+        <location file="/home/runner/work/brush/brush/src/program/node.cpp" line="226" column="6" bodyfile="/home/runner/work/brush/brush/src/program/node.cpp" bodystart="226" bodyend="306" declfile="/home/runner/work/brush/brush/src/program/node.h" declline="349" declcolumn="6"/>
+        <references refid="d1/d3a/structBrush_1_1Node_1a237b9208864ace5209edca01623f6b1e" compoundref="d1/d77/node_8h" startline="94">Brush::Node::arg_types</references>
+        <references refid="d1/d3a/structBrush_1_1Node_1a0971012cfb2ae944f4bea0ea0dc9e5a3" compoundref="d1/d77/node_8h" startline="110">Brush::Node::center_op</references>
+        <references refid="d1/d3a/structBrush_1_1Node_1ac5f37d638625468ed68de599a2a7d968" compoundref="d1/d77/node_8h" startline="270">Brush::Node::feature</references>
+        <references refid="d1/d3a/structBrush_1_1Node_1a2875e5aa77054658c071f7b0d7103e68" compoundref="d1/d77/node_8h" startline="273">Brush::Node::feature_type</references>
+        <references refid="d1/d3a/structBrush_1_1Node_1a32c73293ee4e02b6d828c2c213e06154" compoundref="d1/d77/node_8h" startline="101">Brush::Node::fixed</references>
         <references refid="da/d41/error_8h_1aa4c550bcd71e4ec1c97b111e1360509a" compoundref="da/d41/error_8h" startline="27">HANDLE_ERROR_THROW</references>
-        <references refid="d1/d3a/structBrush_1_1Node_1a99e9db58c89646c630fb9d54b41ff2ba" compoundref="d1/d77/node_8h" startline="154" endline="170">Brush::Node::init</references>
-        <references refid="dc/d5c/namespaceBrush_1a8f1ed90f7962fef5764e7be14845aa34" compoundref="d7/d70/node_8cpp" startline="135" endline="222">init_node_with_default_signature</references>
-        <references refid="d1/d3a/structBrush_1_1Node_1ab72b791f57011a032c6c89238db85845" compoundref="d1/d77/node_8h" startline="105">Brush::Node::is_weighted</references>
+        <references refid="d1/d3a/structBrush_1_1Node_1a99e9db58c89646c630fb9d54b41ff2ba" compoundref="d1/d77/node_8h" startline="158" endline="171">Brush::Node::init</references>
+        <references refid="dc/d5c/namespaceBrush_1a8f1ed90f7962fef5764e7be14845aa34" compoundref="d7/d70/node_8cpp" startline="136" endline="224">init_node_with_default_signature</references>
+        <references refid="d1/d3a/structBrush_1_1Node_1ab72b791f57011a032c6c89238db85845" compoundref="d1/d77/node_8h" startline="103">Brush::Node::is_weighted</references>
         <references refid="d1/d3a/structBrush_1_1Node_1ad6b3fd4a54c813d066370defc8a85af1" compoundref="d1/d77/node_8h" startline="87">Brush::Node::name</references>
-        <references refid="d1/d3a/structBrush_1_1Node_1a522791afe93c92442564356ff19ff55a" compoundref="d1/d77/node_8h" startline="95">Brush::Node::node_type</references>
+        <references refid="d1/d3a/structBrush_1_1Node_1a522791afe93c92442564356ff19ff55a" compoundref="d1/d77/node_8h" startline="89">Brush::Node::node_type</references>
         <references refid="dc/d5c/namespaceBrush_1abfd0b15e0aacec494262585ad04fd79b" compoundref="df/dfe/nodetype_8cpp" startline="81">NodeTypeName</references>
-        <references refid="d1/d3a/structBrush_1_1Node_1a9f5b2e34d8ba752e0f6bffebec8afdc0" compoundref="d1/d77/node_8h" startline="91">Brush::Node::prob_change</references>
-        <references refid="d1/d3a/structBrush_1_1Node_1a65b283648fe779d81ac11f9e4714d920" compoundref="d1/d77/node_8h" startline="101">Brush::Node::ret_type</references>
-        <references refid="d1/d3a/structBrush_1_1Node_1a7e8460b645f3d58c3093eda1d5d3166c" compoundref="d1/d77/node_8h" startline="249" endline="249">Brush::Node::set_feature</references>
-        <references refid="d1/d3a/structBrush_1_1Node_1a9ceebb9b686a6f6784ae90c558385410" compoundref="d1/d77/node_8h" startline="252" endline="252">Brush::Node::set_feature_type</references>
-        <references refid="d1/d3a/structBrush_1_1Node_1aed6c2af0fae3dd8e5a8aa2fab77479fd" compoundref="d1/d77/node_8h" startline="99">Brush::Node::sig_dual_hash</references>
-        <references refid="d1/d3a/structBrush_1_1Node_1a889e0361b55a63a4510a3edabd2fa57c" compoundref="d1/d77/node_8h" startline="97">Brush::Node::sig_hash</references>
+        <references refid="d1/d3a/structBrush_1_1Node_1a9f5b2e34d8ba752e0f6bffebec8afdc0" compoundref="d1/d77/node_8h" startline="105">Brush::Node::prob_change</references>
+        <references refid="d1/d3a/structBrush_1_1Node_1a65b283648fe779d81ac11f9e4714d920" compoundref="d1/d77/node_8h" startline="92">Brush::Node::ret_type</references>
+        <references refid="d1/d3a/structBrush_1_1Node_1aed6c2af0fae3dd8e5a8aa2fab77479fd" compoundref="d1/d77/node_8h" startline="98">Brush::Node::sig_dual_hash</references>
+        <references refid="d1/d3a/structBrush_1_1Node_1a889e0361b55a63a4510a3edabd2fa57c" compoundref="d1/d77/node_8h" startline="96">Brush::Node::sig_hash</references>
         <references refid="d1/d3a/structBrush_1_1Node_1ab719e64b13753515be49327d98bf2224" compoundref="d1/d77/node_8h" startline="107">Brush::Node::W</references>
       </memberdef>
       <memberdef kind="function" id="dc/d5c/namespaceBrush_1a14447d2f04191fa6607e02077a4137ea" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
@@ -2420,13 +2461,13 @@
         </inbodydescription>
         <location file="/home/runner/work/brush/brush/src/program/node.h" line="43" column="13" bodyfile="/home/runner/work/brush/brush/src/program/node.h" bodystart="43" bodyend="43"/>
         <referencedby refid="db/d88/structBrush_1_1Program_1ab288bd389c68ab3c0776ef14a9e5e331" compoundref="d1/dea/program_8h" startline="416" endline="549">Brush::Program&lt; PT::Regressor &gt;::get_dot_model</referencedby>
-        <referencedby refid="dc/d5c/namespaceBrush_1af66d4d1b86198350055ea499bb0238f7" compoundref="d1/d77/node_8h" startline="291" endline="303">IsDifferentiable</referencedby>
+        <referencedby refid="dc/d5c/namespaceBrush_1af66d4d1b86198350055ea499bb0238f7" compoundref="d1/d77/node_8h" startline="299" endline="311">IsDifferentiable</referencedby>
         <referencedby refid="dc/d5c/namespaceBrush_1a1d5a63450bcdb77bd08283c9f74ca53f" compoundref="d1/d77/node_8h" startline="46" endline="53">IsWeighable</referencedby>
         <referencedby refid="dc/d5c/namespaceBrush_1a8b19fac06df5a0722bdb46eb9b9e50d3" compoundref="d1/d77/node_8h" startline="54" endline="61">IsWeighable</referencedby>
-        <referencedby refid="dc/d5c/namespaceBrush_1a8dc5b7550111d2207dd36c94e4cb17cb" compoundref="d1/d77/node_8h" startline="321" endline="336">IsWeighable</referencedby>
-        <referencedby refid="d4/dc3/structBrush_1_1SearchSpace_1ab1e6afddd1375b0f8cbd40f0033b32b1" compoundref="da/d48/search__space_8cpp" startline="299" endline="439">Brush::SearchSpace::PTC2</referencedby>
+        <referencedby refid="dc/d5c/namespaceBrush_1a8dc5b7550111d2207dd36c94e4cb17cb" compoundref="d1/d77/node_8h" startline="329" endline="344">IsWeighable</referencedby>
+        <referencedby refid="d4/dc3/structBrush_1_1SearchSpace_1ab1e6afddd1375b0f8cbd40f0033b32b1" compoundref="da/d48/search__space_8cpp" startline="299" endline="443">Brush::SearchSpace::PTC2</referencedby>
         <referencedby refid="d6/df2/classBrush_1_1Simpl_1_1Constants__simplifier_1a1967ec4e50c83b4a7890959d9f6e145f" compoundref="d2/d6f/constants_8h" startline="24" endline="84">Brush::Simpl::Constants_simplifier::simplify_tree</referencedby>
-        <referencedby refid="de/dc5/classBrush_1_1Simpl_1_1Inexact__simplifier_1a0bc38a2a1733e80dbdfeb790e95acb61" compoundref="d1/db6/inexact_8h" startline="72" endline="118">Brush::Simpl::Inexact_simplifier::simplify_tree</referencedby>
+        <referencedby refid="de/dc5/classBrush_1_1Simpl_1_1Inexact__simplifier_1a8a70383d31da8c7798595f36f2acb2a9" compoundref="d1/db6/inexact_8h" startline="81" endline="176">Brush::Simpl::Inexact_simplifier::simplify_tree</referencedby>
       </memberdef>
       <memberdef kind="function" id="dc/d5c/namespaceBrush_1a1d5a63450bcdb77bd08283c9f74ca53f" prot="public" static="no" const="no" explicit="no" inline="yes" noexcept="yes" virt="non-virtual">
         <templateparamlist>
@@ -2454,11 +2495,12 @@
         <references refid="dc/d5c/namespaceBrush_1a3f2c9b744330ba4a561ac72f048a1a5faff5fcdb084b02b3a04c8047ba23cc517" compoundref="d9/d49/types_8h" startline="147">MatrixB</references>
         <references refid="dc/d5c/namespaceBrush_1a3f2c9b744330ba4a561ac72f048a1a5fafea6e13957d754d28035f576e0670bdc" compoundref="d9/d49/types_8h" startline="156">MatrixBJet</references>
         <references refid="dc/d5c/namespaceBrush_1a3f2c9b744330ba4a561ac72f048a1a5fad2d25b8ef74c30d96415406364f58a4c" compoundref="d9/d49/types_8h" startline="150">TimeSeriesB</references>
+        <referencedby refid="d1/d3a/structBrush_1_1Node_1a8d884d5ad5f6825aa8f50039fb6baf9f" compoundref="d1/d77/node_8h" startline="258" endline="262">Brush::Node::get_is_weighted</referencedby>
         <referencedby refid="db/d88/structBrush_1_1Program_1a990bd3691f3b3e2b7ff479bcd4231479" compoundref="d1/dea/program_8h" startline="269" endline="282">Brush::Program&lt; PT::Regressor &gt;::get_n_weights</referencedby>
         <referencedby refid="db/d88/structBrush_1_1Program_1a8bee1c866051b3e11c017cdf29b46eb7" compoundref="d1/dea/program_8h" startline="289" endline="304">Brush::Program&lt; PT::Regressor &gt;::get_weights</referencedby>
-        <referencedby refid="d1/d3a/structBrush_1_1Node_1a99e9db58c89646c630fb9d54b41ff2ba" compoundref="d1/d77/node_8h" startline="154" endline="170">Brush::Node::init</referencedby>
-        <referencedby refid="d2/d1a/classBrush_1_1Var_1_1ToggleWeightOnMutation_1a2ecf70886b1561e4cb5e2ccbab014c66" compoundref="d1/d64/variation_8cpp" startline="212" endline="221">Brush::Var::ToggleWeightOnMutation::mutate</referencedby>
-        <referencedby refid="d1/d3a/structBrush_1_1Node_1a70fb9b583f72b67f6c24c2bbaae55267" compoundref="d1/d77/node_8h" startline="256" endline="260">Brush::Node::set_is_weighted</referencedby>
+        <referencedby refid="d1/d3a/structBrush_1_1Node_1a99e9db58c89646c630fb9d54b41ff2ba" compoundref="d1/d77/node_8h" startline="158" endline="171">Brush::Node::init</referencedby>
+        <referencedby refid="d2/d1a/classBrush_1_1Var_1_1ToggleWeightOnMutation_1a2ecf70886b1561e4cb5e2ccbab014c66" compoundref="d1/d64/variation_8cpp" startline="205" endline="214">Brush::Var::ToggleWeightOnMutation::mutate</referencedby>
+        <referencedby refid="d1/d3a/structBrush_1_1Node_1a70fb9b583f72b67f6c24c2bbaae55267" compoundref="d1/d77/node_8h" startline="263" endline="266">Brush::Node::set_is_weighted</referencedby>
         <referencedby refid="db/d88/structBrush_1_1Program_1a5ba9c69ade043cacb917dfb654a57834" compoundref="d1/dea/program_8h" startline="312" endline="329">Brush::Program&lt; PT::Regressor &gt;::set_weights</referencedby>
         <referencedby refid="d6/df2/classBrush_1_1Simpl_1_1Constants__simplifier_1a1967ec4e50c83b4a7890959d9f6e145f" compoundref="d2/d6f/constants_8h" startline="24" endline="84">Brush::Simpl::Constants_simplifier::simplify_tree</referencedby>
       </memberdef>
@@ -2509,22 +2551,22 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/runner/work/brush/brush/src/program/node.h" line="272" column="13" bodyfile="/home/runner/work/brush/brush/src/program/node.h" bodystart="272" bodyend="272"/>
+        <location file="/home/runner/work/brush/brush/src/program/node.h" line="278" column="13" bodyfile="/home/runner/work/brush/brush/src/program/node.h" bodystart="278" bodyend="278"/>
         <referencedby refid="d4/dc3/structBrush_1_1SearchSpace_1a4a255b2a600b65c33dc7dad6dd6a4614" compoundref="d9/d99/search__space_8h" startline="638" endline="659">Brush::SearchSpace::AddNode</referencedby>
-        <referencedby refid="d5/d14/classBrush_1_1Var_1_1Variation_1a0cd9d38414eb29daf31e98f3fc7a36a3" compoundref="d4/d1f/variation_8h" startline="538" endline="574">Brush::Var::Variation&lt; T &gt;::bandit_get_node_like</referencedby>
+        <referencedby refid="d5/d14/classBrush_1_1Var_1_1Variation_1aee4d051cf57caab64e694bdb70622913" compoundref="d4/d1f/variation_8h" startline="466" endline="502">Brush::Var::Variation&lt; T &gt;::bandit_get_node_like</referencedby>
         <referencedby refid="db/d88/structBrush_1_1Program_1ab288bd389c68ab3c0776ef14a9e5e331" compoundref="d1/dea/program_8h" startline="416" endline="549">Brush::Program&lt; PT::Regressor &gt;::get_dot_model</referencedby>
         <referencedby refid="d1/d3a/structBrush_1_1Node_1af621eb9463a3ed3434841565a849c03b" compoundref="d7/d70/node_8cpp" startline="53" endline="108">Brush::Node::get_model</referencedby>
         <referencedby refid="db/d88/structBrush_1_1Program_1a990bd3691f3b3e2b7ff479bcd4231479" compoundref="d1/dea/program_8h" startline="269" endline="282">Brush::Program&lt; PT::Regressor &gt;::get_n_weights</referencedby>
         <referencedby refid="d1/d3a/structBrush_1_1Node_1aaddaf7903795dfdcad487234d6dc380e" compoundref="d7/d70/node_8cpp" startline="20" endline="51">Brush::Node::get_name</referencedby>
         <referencedby refid="d4/dc3/structBrush_1_1SearchSpace_1ac51e5e0acb3a880ffd0f3b7fba2fd68f" compoundref="d9/d99/search__space_8h" startline="562" endline="581">Brush::SearchSpace::get_node_like</referencedby>
         <referencedby refid="db/d88/structBrush_1_1Program_1a8bee1c866051b3e11c017cdf29b46eb7" compoundref="d1/dea/program_8h" startline="289" endline="304">Brush::Program&lt; PT::Regressor &gt;::get_weights</referencedby>
-        <referencedby refid="dc/d5c/namespaceBrush_1a8f1ed90f7962fef5764e7be14845aa34" compoundref="d7/d70/node_8cpp" startline="135" endline="222">init_node_with_default_signature</referencedby>
+        <referencedby refid="dc/d5c/namespaceBrush_1a8f1ed90f7962fef5764e7be14845aa34" compoundref="d7/d70/node_8cpp" startline="136" endline="224">init_node_with_default_signature</referencedby>
         <referencedby refid="d3/da8/structBrush_1_1DispatchTable_1ae2fa0fd2e42d0a32ce1cb49f58042283" compoundref="df/d61/dispatch__table_8h" startline="74" endline="80">Brush::DispatchTable&lt; Fit &gt;::InitMap</referencedby>
-        <referencedby refid="dc/d5c/namespaceBrush_1a2b2fe399958c87099f03e33511fcd3d0" compoundref="d1/d77/node_8h" startline="283" endline="289">IsCommutative</referencedby>
-        <referencedby refid="dc/d5c/namespaceBrush_1a21f448ef801105ba35186dae512bef06" compoundref="d1/d77/node_8h" startline="279" endline="281">IsLeaf</referencedby>
+        <referencedby refid="dc/d5c/namespaceBrush_1a2b2fe399958c87099f03e33511fcd3d0" compoundref="d1/d77/node_8h" startline="289" endline="297">IsCommutative</referencedby>
+        <referencedby refid="dc/d5c/namespaceBrush_1a21f448ef801105ba35186dae512bef06" compoundref="d1/d77/node_8h" startline="285" endline="287">IsLeaf</referencedby>
         <referencedby refid="d9/da6/structBrush_1_1NarySignatures_1a2c3db586df4a4d2a14f9b5336c63ab64" compoundref="d8/d8b/signatures_8h" startline="178" endline="181">Brush::NarySignatures&lt; R, Arg, MaxArgCount &gt;::make_signatures</referencedby>
         <referencedby refid="d4/dc3/structBrush_1_1SearchSpace_1af8165ac09c39eec3e5aa6e2d925b8104" compoundref="d9/d99/search__space_8h" startline="670" endline="690">Brush::SearchSpace::MakeNodes</referencedby>
-        <referencedby refid="d4/dc3/structBrush_1_1SearchSpace_1ab1e6afddd1375b0f8cbd40f0033b32b1" compoundref="da/d48/search__space_8cpp" startline="299" endline="439">Brush::SearchSpace::PTC2</referencedby>
+        <referencedby refid="d4/dc3/structBrush_1_1SearchSpace_1ab1e6afddd1375b0f8cbd40f0033b32b1" compoundref="da/d48/search__space_8cpp" startline="299" endline="443">Brush::SearchSpace::PTC2</referencedby>
         <referencedby refid="db/d88/structBrush_1_1Program_1a5ba9c69ade043cacb917dfb654a57834" compoundref="d1/dea/program_8h" startline="312" endline="329">Brush::Program&lt; PT::Regressor &gt;::set_weights</referencedby>
       </memberdef>
       <memberdef kind="function" id="dc/d5c/namespaceBrush_1ac47c0777f99875f50e193b67b691cbb0" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
@@ -2550,7 +2592,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/runner/work/brush/brush/src/program/node.h" line="275" column="13" bodyfile="/home/runner/work/brush/brush/src/program/node.h" bodystart="275" bodyend="275"/>
+        <location file="/home/runner/work/brush/brush/src/program/node.h" line="281" column="13" bodyfile="/home/runner/work/brush/brush/src/program/node.h" bodystart="281" bodyend="281"/>
       </memberdef>
       <memberdef kind="function" id="dc/d5c/namespaceBrush_1a21f448ef801105ba35186dae512bef06" prot="public" static="no" const="no" explicit="no" inline="yes" noexcept="yes" virt="non-virtual">
         <type>bool</type>
@@ -2568,8 +2610,8 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/runner/work/brush/brush/src/program/node.h" line="279" column="13" bodyfile="/home/runner/work/brush/brush/src/program/node.h" bodystart="279" bodyend="281"/>
-        <references refid="dc/d5c/namespaceBrush_1a4f135739df5fe55a0ff81d943bec8be2" compoundref="d1/d77/node_8h" startline="272" endline="272">Is</references>
+        <location file="/home/runner/work/brush/brush/src/program/node.h" line="285" column="13" bodyfile="/home/runner/work/brush/brush/src/program/node.h" bodystart="285" bodyend="287"/>
+        <references refid="dc/d5c/namespaceBrush_1a4f135739df5fe55a0ff81d943bec8be2" compoundref="d1/d77/node_8h" startline="278" endline="278">Is</references>
       </memberdef>
       <memberdef kind="function" id="dc/d5c/namespaceBrush_1a2b2fe399958c87099f03e33511fcd3d0" prot="public" static="no" const="no" explicit="no" inline="yes" noexcept="yes" virt="non-virtual">
         <type>bool</type>
@@ -2587,12 +2629,14 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/runner/work/brush/brush/src/program/node.h" line="283" column="13" bodyfile="/home/runner/work/brush/brush/src/program/node.h" bodystart="283" bodyend="289"/>
+        <location file="/home/runner/work/brush/brush/src/program/node.h" line="289" column="13" bodyfile="/home/runner/work/brush/brush/src/program/node.h" bodystart="289" bodyend="297"/>
         <references refid="dc/d5c/namespaceBrush_1a051322bb9fd1db4638b6eccd399a29c8aec211f7c20af43e742bf2570c3cb84f9" compoundref="de/d26/nodetype_8h" startline="73">Add</references>
-        <references refid="dc/d5c/namespaceBrush_1a4f135739df5fe55a0ff81d943bec8be2" compoundref="d1/d77/node_8h" startline="272" endline="272">Is</references>
+        <references refid="dc/d5c/namespaceBrush_1a051322bb9fd1db4638b6eccd399a29c8ac33315685a0cba3ce53be378b3c7874b" compoundref="de/d26/nodetype_8h" startline="91">And</references>
+        <references refid="dc/d5c/namespaceBrush_1a4f135739df5fe55a0ff81d943bec8be2" compoundref="d1/d77/node_8h" startline="278" endline="278">Is</references>
         <references refid="dc/d5c/namespaceBrush_1a051322bb9fd1db4638b6eccd399a29c8a6a061313d22e51e0f25b7cd4dc065233" compoundref="de/d26/nodetype_8h" startline="62">Max</references>
         <references refid="dc/d5c/namespaceBrush_1a051322bb9fd1db4638b6eccd399a29c8a78d811e98514cd165dda532286610fd2" compoundref="de/d26/nodetype_8h" startline="61">Min</references>
         <references refid="dc/d5c/namespaceBrush_1a051322bb9fd1db4638b6eccd399a29c8a62b6d55816cf737bfc6f42e60df1a3f2" compoundref="de/d26/nodetype_8h" startline="75">Mul</references>
+        <references refid="dc/d5c/namespaceBrush_1a051322bb9fd1db4638b6eccd399a29c8a3a2d5fe857d8f9541136a124c2edec6c" compoundref="de/d26/nodetype_8h" startline="92">Or</references>
       </memberdef>
       <memberdef kind="function" id="dc/d5c/namespaceBrush_1af66d4d1b86198350055ea499bb0238f7" prot="public" static="no" const="no" explicit="no" inline="yes" noexcept="yes" virt="non-virtual">
         <type>bool</type>
@@ -2610,7 +2654,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/runner/work/brush/brush/src/program/node.h" line="291" column="13" bodyfile="/home/runner/work/brush/brush/src/program/node.h" bodystart="291" bodyend="303"/>
+        <location file="/home/runner/work/brush/brush/src/program/node.h" line="299" column="13" bodyfile="/home/runner/work/brush/brush/src/program/node.h" bodystart="299" bodyend="311"/>
         <references refid="dc/d5c/namespaceBrush_1a051322bb9fd1db4638b6eccd399a29c8a7bfcadb5535fe8aad5032762b7bfe159" compoundref="de/d26/nodetype_8h" startline="57">After</references>
         <references refid="dc/d5c/namespaceBrush_1a051322bb9fd1db4638b6eccd399a29c8ac33315685a0cba3ce53be378b3c7874b" compoundref="de/d26/nodetype_8h" startline="91">And</references>
         <references refid="dc/d5c/namespaceBrush_1a051322bb9fd1db4638b6eccd399a29c8a9060587edeb01a63e3d3edc959678d1e" compoundref="de/d26/nodetype_8h" startline="56">Before</references>
@@ -2638,7 +2682,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/runner/work/brush/brush/src/program/node.h" line="321" column="13" bodyfile="/home/runner/work/brush/brush/src/program/node.h" bodystart="321" bodyend="336"/>
+        <location file="/home/runner/work/brush/brush/src/program/node.h" line="329" column="13" bodyfile="/home/runner/work/brush/brush/src/program/node.h" bodystart="329" bodyend="344"/>
         <references refid="dc/d5c/namespaceBrush_1a051322bb9fd1db4638b6eccd399a29c8a7bfcadb5535fe8aad5032762b7bfe159" compoundref="de/d26/nodetype_8h" startline="57">After</references>
         <references refid="dc/d5c/namespaceBrush_1a051322bb9fd1db4638b6eccd399a29c8ac33315685a0cba3ce53be378b3c7874b" compoundref="de/d26/nodetype_8h" startline="91">And</references>
         <references refid="dc/d5c/namespaceBrush_1a051322bb9fd1db4638b6eccd399a29c8a9060587edeb01a63e3d3edc959678d1e" compoundref="de/d26/nodetype_8h" startline="56">Before</references>
@@ -2938,7 +2982,7 @@
         <references refid="d2/d36/classBrush_1_1Data_1_1Dataset_1a23f1c86e056b6806e7fa66c8fe6ea9ff" compoundref="d2/dbd/data_8h" startline="74">Brush::Data::Dataset::features</references>
         <references refid="da/d41/error_8h_1aa4c550bcd71e4ec1c97b111e1360509a" compoundref="da/d41/error_8h" startline="27">HANDLE_ERROR_THROW</references>
         <references refid="dc/d5c/namespaceBrush_1a051322bb9fd1db4638b6eccd399a29c8a2636ffd13bc710aebeeb21c41a89eec9" compoundref="de/d26/nodetype_8h" startline="97">MeanLabel</references>
-        <references refid="d1/d3a/structBrush_1_1Node_1ad9e4f8654978a40e8266b20a4bb0950f" compoundref="d1/d77/node_8h" startline="246" endline="246">Brush::Node::set_prob_change</references>
+        <references refid="d1/d3a/structBrush_1_1Node_1ad9e4f8654978a40e8266b20a4bb0950f" compoundref="d1/d77/node_8h" startline="247" endline="247">Brush::Node::set_prob_change</references>
         <references refid="dc/d5c/namespaceBrush_1a051322bb9fd1db4638b6eccd399a29c8a514d8a494f087c0d549b9536c2ef3bd9" compoundref="de/d26/nodetype_8h" startline="99">Terminal</references>
         <references refid="d2/d36/classBrush_1_1Data_1_1Dataset_1ade105f069d4f745d44374b7b8a3a9b0d" compoundref="d2/dbd/data_8h" startline="80">Brush::Data::Dataset::y</references>
         <referencedby refid="d4/dc3/structBrush_1_1SearchSpace_1a5e4bea5b32dfe137262f014c8107a0f7" compoundref="da/d48/search__space_8cpp" startline="177" endline="262">Brush::SearchSpace::init</referencedby>
@@ -2967,7 +3011,7 @@
         </inbodydescription>
         <location file="/home/runner/work/brush/brush/src/vary/search_space.h" line="705" column="3" bodyfile="/home/runner/work/brush/brush/src/vary/search_space.h" bodystart="705" bodyend="712"/>
         <references refid="d6/d2e/namespaceBrush_1_1Util_1af7dd70e54015821d96e3a1afed6344ca" compoundref="d2/da9/rnd_8h" startline="174">Brush::Util::r</references>
-        <referencedby refid="d4/dc3/structBrush_1_1SearchSpace_1ab1e6afddd1375b0f8cbd40f0033b32b1" compoundref="da/d48/search__space_8cpp" startline="299" endline="439">Brush::SearchSpace::PTC2</referencedby>
+        <referencedby refid="d4/dc3/structBrush_1_1SearchSpace_1ab1e6afddd1375b0f8cbd40f0033b32b1" compoundref="da/d48/search__space_8cpp" startline="299" endline="443">Brush::SearchSpace::PTC2</referencedby>
       </memberdef>
     </sectiondef>
     <briefdescription>

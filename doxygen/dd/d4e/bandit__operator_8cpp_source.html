@@ -112,89 +112,76 @@ $(function(){initNavTree('dd/d4e/bandit__operator_8cpp_source.html','../../'); i
 <div class="line"><a id="l00003" name="l00003"></a><span class="lineno">    3</span><span class="keyword">namespace </span><a class="code hl_namespace" href="../../dc/d5c/namespaceBrush.html">Brush</a> {</div>
 <div class="line"><a id="l00004" name="l00004"></a><span class="lineno">    4</span><span class="keyword">namespace </span><a class="code hl_namespace" href="../../da/d94/namespaceBrush_1_1MAB.html">MAB</a> {</div>
 <div class="line"><a id="l00005" name="l00005"></a><span class="lineno">    5</span> </div>
-<div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span><span class="keyword">template</span>&lt;<span class="keyword">typename</span> T&gt;</div>
-<div class="foldopen" id="foldopen00007" data-start="{" data-end="}">
-<div class="line"><a id="l00007" name="l00007"></a><span class="lineno"><a class="line" href="../../df/dde/classBrush_1_1MAB_1_1BanditOperator.html#a7ab649ed7a9fde167743426d98e6d8e3">    7</a></span><a class="code hl_function" href="../../df/dde/classBrush_1_1MAB_1_1BanditOperator.html#a7ab649ed7a9fde167743426d98e6d8e3">BanditOperator&lt;T&gt;::BanditOperator</a>(vector&lt;T&gt; arms)</div>
-<div class="line"><a id="l00008" name="l00008"></a><span class="lineno">    8</span>{</div>
-<div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span>    <span class="comment">// Initialize the map with the keys and uniform distributed values</span></div>
-<div class="line"><a id="l00010" name="l00010"></a><span class="lineno">   10</span>    <span class="keywordtype">float</span> uniform_prob = 1.0 / arms.size();</div>
-<div class="line"><a id="l00011" name="l00011"></a><span class="lineno">   11</span> </div>
-<div class="line"><a id="l00012" name="l00012"></a><span class="lineno">   12</span>    this-&gt;<a class="code hl_variable" href="../../df/dde/classBrush_1_1MAB_1_1BanditOperator.html#a9b732dfe2c3292ce4c420e5a66ff33c6">probabilities</a> = std::map&lt;T, float&gt;();</div>
-<div class="line"><a id="l00013" name="l00013"></a><span class="lineno">   13</span>    <span class="keywordflow">for</span> (<span class="keyword">const</span> T&amp; arm : arms) {</div>
-<div class="line"><a id="l00014" name="l00014"></a><span class="lineno">   14</span>        this-&gt;<a class="code hl_variable" href="../../df/dde/classBrush_1_1MAB_1_1BanditOperator.html#a9b732dfe2c3292ce4c420e5a66ff33c6">probabilities</a>[arm] = uniform_prob;</div>
-<div class="line"><a id="l00015" name="l00015"></a><span class="lineno">   15</span>    }</div>
-<div class="line"><a id="l00016" name="l00016"></a><span class="lineno">   16</span>}</div>
+<div class="foldopen" id="foldopen00006" data-start="{" data-end="}">
+<div class="line"><a id="l00006" name="l00006"></a><span class="lineno"><a class="line" href="../../df/dde/classBrush_1_1MAB_1_1BanditOperator.html#ab235b15e23e629a01e6709ffd67b3e60">    6</a></span><a class="code hl_function" href="../../df/dde/classBrush_1_1MAB_1_1BanditOperator.html#ab235b15e23e629a01e6709ffd67b3e60">BanditOperator::BanditOperator</a>(vector&lt;string&gt; arms)</div>
+<div class="line"><a id="l00007" name="l00007"></a><span class="lineno">    7</span>{</div>
+<div class="line"><a id="l00008" name="l00008"></a><span class="lineno">    8</span>    <span class="comment">// Initialize the map with the keys and uniform distributed values</span></div>
+<div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span>    <span class="keywordtype">float</span> uniform_prob = 1.0 / arms.size();</div>
+<div class="line"><a id="l00010" name="l00010"></a><span class="lineno">   10</span> </div>
+<div class="line"><a id="l00011" name="l00011"></a><span class="lineno">   11</span>    this-&gt;<a class="code hl_variable" href="../../df/dde/classBrush_1_1MAB_1_1BanditOperator.html#a4a58caa7e258d9f833de5c1dc0878f6a">probabilities</a> = std::map&lt;string, float&gt;();</div>
+<div class="line"><a id="l00012" name="l00012"></a><span class="lineno">   12</span>    <span class="keywordflow">for</span> (<span class="keyword">const</span> <span class="keywordtype">string</span>&amp; arm : arms) {</div>
+<div class="line"><a id="l00013" name="l00013"></a><span class="lineno">   13</span>        this-&gt;<a class="code hl_variable" href="../../df/dde/classBrush_1_1MAB_1_1BanditOperator.html#a4a58caa7e258d9f833de5c1dc0878f6a">probabilities</a>[arm] = uniform_prob;</div>
+<div class="line"><a id="l00014" name="l00014"></a><span class="lineno">   14</span>    }</div>
+<div class="line"><a id="l00015" name="l00015"></a><span class="lineno">   15</span>}</div>
 </div>
-<div class="line"><a id="l00017" name="l00017"></a><span class="lineno">   17</span> </div>
-<div class="line"><a id="l00018" name="l00018"></a><span class="lineno">   18</span><span class="keyword">template</span>&lt;<span class="keyword">typename</span> T&gt;</div>
-<div class="foldopen" id="foldopen00019" data-start="{" data-end="}">
-<div class="line"><a id="l00019" name="l00019"></a><span class="lineno"><a class="line" href="../../df/dde/classBrush_1_1MAB_1_1BanditOperator.html#a4b87a9de6b7e72d7ecd81eaa312ae966">   19</a></span><a class="code hl_function" href="../../df/dde/classBrush_1_1MAB_1_1BanditOperator.html#a7ab649ed7a9fde167743426d98e6d8e3">BanditOperator&lt;T&gt;::BanditOperator</a>(map&lt;T, float&gt; arms_probs)</div>
-<div class="line"><a id="l00020" name="l00020"></a><span class="lineno">   20</span>{</div>
-<div class="line"><a id="l00021" name="l00021"></a><span class="lineno">   21</span>    this-&gt;<a class="code hl_variable" href="../../df/dde/classBrush_1_1MAB_1_1BanditOperator.html#a9b732dfe2c3292ce4c420e5a66ff33c6">probabilities</a> = std::map&lt;T, float&gt;();</div>
-<div class="line"><a id="l00022" name="l00022"></a><span class="lineno">   22</span>    <span class="keywordflow">for</span> (<span class="keyword">const</span> <span class="keyword">auto</span>&amp; arm_prob : arms_probs) {</div>
-<div class="line"><a id="l00023" name="l00023"></a><span class="lineno">   23</span>        this-&gt;<a class="code hl_variable" href="../../df/dde/classBrush_1_1MAB_1_1BanditOperator.html#a9b732dfe2c3292ce4c420e5a66ff33c6">probabilities</a>[arm_prob.first] = arm_prob.second;</div>
-<div class="line"><a id="l00024" name="l00024"></a><span class="lineno">   24</span>    }</div>
-<div class="line"><a id="l00025" name="l00025"></a><span class="lineno">   25</span>}</div>
+<div class="line"><a id="l00016" name="l00016"></a><span class="lineno">   16</span> </div>
+<div class="foldopen" id="foldopen00017" data-start="{" data-end="}">
+<div class="line"><a id="l00017" name="l00017"></a><span class="lineno"><a class="line" href="../../df/dde/classBrush_1_1MAB_1_1BanditOperator.html#ad5073f5958b0d8914e2938664d25ee05">   17</a></span><a class="code hl_function" href="../../df/dde/classBrush_1_1MAB_1_1BanditOperator.html#ab235b15e23e629a01e6709ffd67b3e60">BanditOperator::BanditOperator</a>(map&lt;string, float&gt; arms_probs)</div>
+<div class="line"><a id="l00018" name="l00018"></a><span class="lineno">   18</span>{</div>
+<div class="line"><a id="l00019" name="l00019"></a><span class="lineno">   19</span>    this-&gt;<a class="code hl_variable" href="../../df/dde/classBrush_1_1MAB_1_1BanditOperator.html#a4a58caa7e258d9f833de5c1dc0878f6a">probabilities</a> = std::map&lt;string, float&gt;();</div>
+<div class="line"><a id="l00020" name="l00020"></a><span class="lineno">   20</span>    <span class="keywordflow">for</span> (<span class="keyword">const</span> <span class="keyword">auto</span>&amp; arm_prob : arms_probs) {</div>
+<div class="line"><a id="l00021" name="l00021"></a><span class="lineno">   21</span>        this-&gt;<a class="code hl_variable" href="../../df/dde/classBrush_1_1MAB_1_1BanditOperator.html#a4a58caa7e258d9f833de5c1dc0878f6a">probabilities</a>[arm_prob.first] = arm_prob.second;</div>
+<div class="line"><a id="l00022" name="l00022"></a><span class="lineno">   22</span>    }</div>
+<div class="line"><a id="l00023" name="l00023"></a><span class="lineno">   23</span>}</div>
 </div>
-<div class="line"><a id="l00026" name="l00026"></a><span class="lineno">   26</span> </div>
-<div class="line"><a id="l00027" name="l00027"></a><span class="lineno">   27</span><span class="keyword">template</span>&lt;<span class="keyword">typename</span> T&gt;</div>
-<div class="foldopen" id="foldopen00028" data-start="{" data-end="}">
-<div class="line"><a id="l00028" name="l00028"></a><span class="lineno"><a class="line" href="../../df/dde/classBrush_1_1MAB_1_1BanditOperator.html#a18cb2ab1637319fc3e4d4ee89077e05d">   28</a></span>std::map&lt;T, float&gt; <a class="code hl_function" href="../../df/dde/classBrush_1_1MAB_1_1BanditOperator.html#a18cb2ab1637319fc3e4d4ee89077e05d">BanditOperator&lt;T&gt;::sample_probs</a>(<span class="keywordtype">bool</span> <a class="code hl_function" href="../../df/dde/classBrush_1_1MAB_1_1BanditOperator.html#add60c0e803a4511425be94002e180edc">update</a>)</div>
-<div class="line"><a id="l00029" name="l00029"></a><span class="lineno">   29</span>{</div>
-<div class="line"><a id="l00030" name="l00030"></a><span class="lineno">   30</span>    <span class="comment">// TODO: Implement the logic for sampling probabilities</span></div>
-<div class="foldopen" id="foldopen00031" data-start="{" data-end="}">
-<div class="line"><a id="l00031" name="l00031"></a><span class="lineno"><a class="line" href="../../df/dde/classBrush_1_1MAB_1_1BanditOperator.html#a7ab649ed7a9fde167743426d98e6d8e3">   31</a></span>    <span class="comment">// based on the bandit operator&#39;s strategy</span></div>
+<div class="line"><a id="l00024" name="l00024"></a><span class="lineno">   24</span> </div>
+<div class="foldopen" id="foldopen00025" data-start="{" data-end="}">
+<div class="line"><a id="l00025" name="l00025"></a><span class="lineno"><a class="line" href="../../df/dde/classBrush_1_1MAB_1_1BanditOperator.html#afe6a2789a3e73970c443b7a05b05c6fa">   25</a></span>std::map&lt;string, float&gt; <a class="code hl_function" href="../../df/dde/classBrush_1_1MAB_1_1BanditOperator.html#afe6a2789a3e73970c443b7a05b05c6fa">BanditOperator::sample_probs</a>(<span class="keywordtype">bool</span> <a class="code hl_function" href="../../df/dde/classBrush_1_1MAB_1_1BanditOperator.html#a7330ef49ededf6ea721324756580a6aa">update</a>)</div>
+<div class="line"><a id="l00026" name="l00026"></a><span class="lineno">   26</span>{</div>
+<div class="line"><a id="l00027" name="l00027"></a><span class="lineno">   27</span>    <span class="comment">// TODO: Implement the logic for sampling probabilities</span></div>
+<div class="line"><a id="l00028" name="l00028"></a><span class="lineno">   28</span>    <span class="comment">// based on the bandit operator&#39;s strategy</span></div>
+<div class="line"><a id="l00029" name="l00029"></a><span class="lineno">   29</span> </div>
+<div class="line"><a id="l00030" name="l00030"></a><span class="lineno">   30</span>    <span class="comment">// Throw an error if the select() operation is undefined</span></div>
+<div class="line"><a id="l00031" name="l00031"></a><span class="lineno">   31</span>    <a class="code hl_define" href="../../da/d41/error_8h.html#aa4c550bcd71e4ec1c97b111e1360509a">HANDLE_ERROR_THROW</a>(<span class="stringliteral">&quot;Undefined bandit sample_probs() operation&quot;</span>);</div>
 <div class="line"><a id="l00032" name="l00032"></a><span class="lineno">   32</span> </div>
-<div class="line"><a id="l00033" name="l00033"></a><span class="lineno">   33</span>    <span class="comment">// Throw an error if the select() operation is undefined</span></div>
-<div class="line"><a id="l00034" name="l00034"></a><span class="lineno">   34</span>    <a class="code hl_define" href="../../da/d41/error_8h.html#aa4c550bcd71e4ec1c97b111e1360509a">HANDLE_ERROR_THROW</a>(<span class="stringliteral">&quot;Undefined bandit sample_probs() operation&quot;</span>);</div>
-<div class="line"><a id="l00035" name="l00035"></a><span class="lineno">   35</span> </div>
-<div class="line"><a id="l00036" name="l00036"></a><span class="lineno">   36</span>    <span class="comment">// Return an empty vector</span></div>
-<div class="line"><a id="l00037" name="l00037"></a><span class="lineno">   37</span>    <span class="keywordflow">return</span> this-&gt;<a class="code hl_variable" href="../../df/dde/classBrush_1_1MAB_1_1BanditOperator.html#a9b732dfe2c3292ce4c420e5a66ff33c6">probabilities</a>;</div>
-<div class="foldopen" id="foldopen00038" data-start="{" data-end="}">
-<div class="line"><a id="l00038" name="l00038"></a><span class="lineno"><a class="line" href="../../df/dde/classBrush_1_1MAB_1_1BanditOperator.html#a4b87a9de6b7e72d7ecd81eaa312ae966">   38</a></span>}</div>
-<div class="line"><a id="l00039" name="l00039"></a><span class="lineno">   39</span> </div>
-<div class="line"><a id="l00040" name="l00040"></a><span class="lineno">   40</span><span class="keyword">template</span>&lt;<span class="keyword">typename</span> T&gt;</div>
-<div class="foldopen" id="foldopen00041" data-start="{" data-end="}">
-<div class="line"><a id="l00041" name="l00041"></a><span class="lineno"><a class="line" href="../../df/dde/classBrush_1_1MAB_1_1BanditOperator.html#a3ed66cd086859adf694af88ea60112c4">   41</a></span>T <a class="code hl_function" href="../../df/dde/classBrush_1_1MAB_1_1BanditOperator.html#a3ed66cd086859adf694af88ea60112c4">BanditOperator&lt;T&gt;::choose</a>(<span class="keyword">const</span> VectorXf&amp; context)</div>
-<div class="line"><a id="l00042" name="l00042"></a><span class="lineno">   42</span>{</div>
-<div class="line"><a id="l00043" name="l00043"></a><span class="lineno">   43</span>    <span class="comment">// TODO: Implement the logic for sampling probabilities</span></div>
-<div class="line"><a id="l00044" name="l00044"></a><span class="lineno">   44</span>    <span class="comment">// based on the bandit operator&#39;s strategy</span></div>
-<div class="line"><a id="l00045" name="l00045"></a><span class="lineno">   45</span> </div>
-<div class="line"><a id="l00046" name="l00046"></a><span class="lineno">   46</span>    <a class="code hl_define" href="../../da/d41/error_8h.html#aa4c550bcd71e4ec1c97b111e1360509a">HANDLE_ERROR_THROW</a>(<span class="stringliteral">&quot;Undefined bandit choose() operation&quot;</span>);</div>
+<div class="line"><a id="l00033" name="l00033"></a><span class="lineno">   33</span>    <span class="comment">// Return an empty vector</span></div>
+<div class="line"><a id="l00034" name="l00034"></a><span class="lineno">   34</span>    <span class="keywordflow">return</span> this-&gt;<a class="code hl_variable" href="../../df/dde/classBrush_1_1MAB_1_1BanditOperator.html#a4a58caa7e258d9f833de5c1dc0878f6a">probabilities</a>;</div>
+<div class="line"><a id="l00035" name="l00035"></a><span class="lineno">   35</span>}</div>
+</div>
+<div class="line"><a id="l00036" name="l00036"></a><span class="lineno">   36</span> </div>
+<div class="foldopen" id="foldopen00037" data-start="{" data-end="}">
+<div class="line"><a id="l00037" name="l00037"></a><span class="lineno"><a class="line" href="../../df/dde/classBrush_1_1MAB_1_1BanditOperator.html#a9422ddb2a936a30f184747659cfc3ec2">   37</a></span><span class="keywordtype">string</span> <a class="code hl_function" href="../../df/dde/classBrush_1_1MAB_1_1BanditOperator.html#a9422ddb2a936a30f184747659cfc3ec2">BanditOperator::choose</a>()</div>
+<div class="line"><a id="l00038" name="l00038"></a><span class="lineno">   38</span>{</div>
+<div class="line"><a id="l00039" name="l00039"></a><span class="lineno">   39</span>    <span class="comment">// TODO: Implement the logic for sampling probabilities</span></div>
+<div class="line"><a id="l00040" name="l00040"></a><span class="lineno">   40</span>    <span class="comment">// based on the bandit operator&#39;s strategy</span></div>
+<div class="line"><a id="l00041" name="l00041"></a><span class="lineno">   41</span> </div>
+<div class="line"><a id="l00042" name="l00042"></a><span class="lineno">   42</span>    <a class="code hl_define" href="../../da/d41/error_8h.html#aa4c550bcd71e4ec1c97b111e1360509a">HANDLE_ERROR_THROW</a>(<span class="stringliteral">&quot;Undefined bandit choose() operation&quot;</span>);</div>
+<div class="line"><a id="l00043" name="l00043"></a><span class="lineno">   43</span> </div>
+<div class="line"><a id="l00044" name="l00044"></a><span class="lineno">   44</span>    <span class="comment">// Placeholder</span></div>
+<div class="line"><a id="l00045" name="l00045"></a><span class="lineno">   45</span>    <span class="keywordflow">return</span> this-&gt;<a class="code hl_variable" href="../../df/dde/classBrush_1_1MAB_1_1BanditOperator.html#a4a58caa7e258d9f833de5c1dc0878f6a">probabilities</a>.begin()-&gt;first;</div>
+<div class="line"><a id="l00046" name="l00046"></a><span class="lineno">   46</span>}</div>
+</div>
 <div class="line"><a id="l00047" name="l00047"></a><span class="lineno">   47</span> </div>
-<div class="foldopen" id="foldopen00048" data-start="{" data-end="}">
-<div class="line"><a id="l00048" name="l00048"></a><span class="lineno"><a class="line" href="../../df/dde/classBrush_1_1MAB_1_1BanditOperator.html#a18cb2ab1637319fc3e4d4ee89077e05d">   48</a></span>    <span class="comment">// Placeholder</span></div>
-<div class="line"><a id="l00049" name="l00049"></a><span class="lineno">   49</span>    <span class="keywordflow">return</span> this-&gt;<a class="code hl_variable" href="../../df/dde/classBrush_1_1MAB_1_1BanditOperator.html#a9b732dfe2c3292ce4c420e5a66ff33c6">probabilities</a>.begin()-&gt;first;</div>
-<div class="line"><a id="l00050" name="l00050"></a><span class="lineno">   50</span>}</div>
-<div class="line"><a id="l00051" name="l00051"></a><span class="lineno">   51</span> </div>
-<div class="line"><a id="l00052" name="l00052"></a><span class="lineno">   52</span> </div>
-<div class="line"><a id="l00053" name="l00053"></a><span class="lineno">   53</span><span class="keyword">template</span>&lt;<span class="keyword">typename</span> T&gt;</div>
-<div class="foldopen" id="foldopen00054" data-start="{" data-end="}">
-<div class="line"><a id="l00054" name="l00054"></a><span class="lineno"><a class="line" href="../../df/dde/classBrush_1_1MAB_1_1BanditOperator.html#add60c0e803a4511425be94002e180edc">   54</a></span><span class="keywordtype">void</span> <a class="code hl_function" href="../../df/dde/classBrush_1_1MAB_1_1BanditOperator.html#add60c0e803a4511425be94002e180edc">BanditOperator&lt;T&gt;::update</a>(T arm, <span class="keywordtype">float</span> reward, VectorXf&amp; context)</div>
-<div class="line"><a id="l00055" name="l00055"></a><span class="lineno">   55</span>{</div>
-<div class="line"><a id="l00056" name="l00056"></a><span class="lineno">   56</span>    <span class="comment">// TODO: Implement the logic for updating the bandit operator&#39;s internal state</span></div>
-<div class="foldopen" id="foldopen00057" data-start="{" data-end="}">
-<div class="line"><a id="l00057" name="l00057"></a><span class="lineno"><a class="line" href="../../df/dde/classBrush_1_1MAB_1_1BanditOperator.html#a3ed66cd086859adf694af88ea60112c4">   57</a></span>    <span class="comment">// based on the received rewards</span></div>
-<div class="line"><a id="l00058" name="l00058"></a><span class="lineno">   58</span> </div>
-<div class="line"><a id="l00059" name="l00059"></a><span class="lineno">   59</span>    <span class="comment">// Throw an error if the update operation is undefined</span></div>
-<div class="line"><a id="l00060" name="l00060"></a><span class="lineno">   60</span>    <a class="code hl_define" href="../../da/d41/error_8h.html#aa4c550bcd71e4ec1c97b111e1360509a">HANDLE_ERROR_THROW</a>(<span class="stringliteral">&quot;Undefined bandit update() operation&quot;</span>);</div>
-<div class="line"><a id="l00061" name="l00061"></a><span class="lineno">   61</span>}</div>
-<div class="line"><a id="l00062" name="l00062"></a><span class="lineno">   62</span> </div>
-<div class="line"><a id="l00063" name="l00063"></a><span class="lineno">   63</span>} <span class="comment">// MAB</span></div>
-<div class="line"><a id="l00064" name="l00064"></a><span class="lineno">   64</span>} <span class="comment">// Brush</span></div>
+<div class="line"><a id="l00048" name="l00048"></a><span class="lineno">   48</span> </div>
+<div class="foldopen" id="foldopen00049" data-start="{" data-end="}">
+<div class="line"><a id="l00049" name="l00049"></a><span class="lineno"><a class="line" href="../../df/dde/classBrush_1_1MAB_1_1BanditOperator.html#a7330ef49ededf6ea721324756580a6aa">   49</a></span><span class="keywordtype">void</span> <a class="code hl_function" href="../../df/dde/classBrush_1_1MAB_1_1BanditOperator.html#a7330ef49ededf6ea721324756580a6aa">BanditOperator::update</a>(<span class="keywordtype">string</span> arm, <span class="keywordtype">float</span> reward)</div>
+<div class="line"><a id="l00050" name="l00050"></a><span class="lineno">   50</span>{</div>
+<div class="line"><a id="l00051" name="l00051"></a><span class="lineno">   51</span>    <span class="comment">// TODO: Implement the logic for updating the bandit operator&#39;s internal state</span></div>
+<div class="line"><a id="l00052" name="l00052"></a><span class="lineno">   52</span>    <span class="comment">// based on the received rewards</span></div>
+<div class="line"><a id="l00053" name="l00053"></a><span class="lineno">   53</span> </div>
+<div class="line"><a id="l00054" name="l00054"></a><span class="lineno">   54</span>    <span class="comment">// Throw an error if the update operation is undefined</span></div>
+<div class="line"><a id="l00055" name="l00055"></a><span class="lineno">   55</span>    <a class="code hl_define" href="../../da/d41/error_8h.html#aa4c550bcd71e4ec1c97b111e1360509a">HANDLE_ERROR_THROW</a>(<span class="stringliteral">&quot;Undefined bandit update() operation&quot;</span>);</div>
+<div class="line"><a id="l00056" name="l00056"></a><span class="lineno">   56</span>}</div>
 </div>
-</div>
-</div>
-</div>
-</div>
-</div>
-</div>
+<div class="line"><a id="l00057" name="l00057"></a><span class="lineno">   57</span> </div>
+<div class="line"><a id="l00058" name="l00058"></a><span class="lineno">   58</span>} <span class="comment">// MAB</span></div>
+<div class="line"><a id="l00059" name="l00059"></a><span class="lineno">   59</span>} <span class="comment">// Brush</span></div>
 <div class="ttc" id="abandit__operator_8h_html"><div class="ttname"><a href="../../da/d8e/bandit__operator_8h.html">bandit_operator.h</a></div></div>
-<div class="ttc" id="aclassBrush_1_1MAB_1_1BanditOperator_html_a18cb2ab1637319fc3e4d4ee89077e05d"><div class="ttname"><a href="../../df/dde/classBrush_1_1MAB_1_1BanditOperator.html#a18cb2ab1637319fc3e4d4ee89077e05d">Brush::MAB::BanditOperator::sample_probs</a></div><div class="ttdeci">virtual std::map&lt; T, float &gt; sample_probs(bool update)</div><div class="ttdoc">Samples the probabilities of the arms.</div><div class="ttdef"><b>Definition</b> <a href="#l00028">bandit_operator.cpp:28</a></div></div>
-<div class="ttc" id="aclassBrush_1_1MAB_1_1BanditOperator_html_a3ed66cd086859adf694af88ea60112c4"><div class="ttname"><a href="../../df/dde/classBrush_1_1MAB_1_1BanditOperator.html#a3ed66cd086859adf694af88ea60112c4">Brush::MAB::BanditOperator::choose</a></div><div class="ttdeci">virtual T choose(const VectorXf &amp;context)</div><div class="ttdoc">Chooses an arm based on the given tree and fitness. Should call sample_probs internally.</div><div class="ttdef"><b>Definition</b> <a href="#l00041">bandit_operator.cpp:41</a></div></div>
-<div class="ttc" id="aclassBrush_1_1MAB_1_1BanditOperator_html_a7ab649ed7a9fde167743426d98e6d8e3"><div class="ttname"><a href="../../df/dde/classBrush_1_1MAB_1_1BanditOperator.html#a7ab649ed7a9fde167743426d98e6d8e3">Brush::MAB::BanditOperator::BanditOperator</a></div><div class="ttdeci">BanditOperator(vector&lt; T &gt; arms)</div><div class="ttdoc">Constructs a BanditOperator object with a vector of arms.</div><div class="ttdef"><b>Definition</b> <a href="#l00007">bandit_operator.cpp:7</a></div></div>
-<div class="ttc" id="aclassBrush_1_1MAB_1_1BanditOperator_html_a9b732dfe2c3292ce4c420e5a66ff33c6"><div class="ttname"><a href="../../df/dde/classBrush_1_1MAB_1_1BanditOperator.html#a9b732dfe2c3292ce4c420e5a66ff33c6">Brush::MAB::BanditOperator::probabilities</a></div><div class="ttdeci">std::map&lt; T, float &gt; probabilities</div><div class="ttdef"><b>Definition</b> <a href="../../da/d8e/bandit__operator_8h_source.html#l00067">bandit_operator.h:67</a></div></div>
-<div class="ttc" id="aclassBrush_1_1MAB_1_1BanditOperator_html_add60c0e803a4511425be94002e180edc"><div class="ttname"><a href="../../df/dde/classBrush_1_1MAB_1_1BanditOperator.html#add60c0e803a4511425be94002e180edc">Brush::MAB::BanditOperator::update</a></div><div class="ttdeci">virtual void update(T arm, float reward, VectorXf &amp;context)</div><div class="ttdoc">Updates the reward for a specific arm.</div><div class="ttdef"><b>Definition</b> <a href="#l00054">bandit_operator.cpp:54</a></div></div>
+<div class="ttc" id="aclassBrush_1_1MAB_1_1BanditOperator_html_a4a58caa7e258d9f833de5c1dc0878f6a"><div class="ttname"><a href="../../df/dde/classBrush_1_1MAB_1_1BanditOperator.html#a4a58caa7e258d9f833de5c1dc0878f6a">Brush::MAB::BanditOperator::probabilities</a></div><div class="ttdeci">std::map&lt; string, float &gt; probabilities</div><div class="ttdef"><b>Definition</b> <a href="../../da/d8e/bandit__operator_8h_source.html#l00066">bandit_operator.h:66</a></div></div>
+<div class="ttc" id="aclassBrush_1_1MAB_1_1BanditOperator_html_a7330ef49ededf6ea721324756580a6aa"><div class="ttname"><a href="../../df/dde/classBrush_1_1MAB_1_1BanditOperator.html#a7330ef49ededf6ea721324756580a6aa">Brush::MAB::BanditOperator::update</a></div><div class="ttdeci">virtual void update(string arm, float reward)</div><div class="ttdoc">Updates the reward for a specific arm.</div><div class="ttdef"><b>Definition</b> <a href="#l00049">bandit_operator.cpp:49</a></div></div>
+<div class="ttc" id="aclassBrush_1_1MAB_1_1BanditOperator_html_a9422ddb2a936a30f184747659cfc3ec2"><div class="ttname"><a href="../../df/dde/classBrush_1_1MAB_1_1BanditOperator.html#a9422ddb2a936a30f184747659cfc3ec2">Brush::MAB::BanditOperator::choose</a></div><div class="ttdeci">virtual string choose()</div><div class="ttdoc">Chooses an arm based on the given tree and fitness. Should call sample_probs internally.</div><div class="ttdef"><b>Definition</b> <a href="#l00037">bandit_operator.cpp:37</a></div></div>
+<div class="ttc" id="aclassBrush_1_1MAB_1_1BanditOperator_html_ab235b15e23e629a01e6709ffd67b3e60"><div class="ttname"><a href="../../df/dde/classBrush_1_1MAB_1_1BanditOperator.html#ab235b15e23e629a01e6709ffd67b3e60">Brush::MAB::BanditOperator::BanditOperator</a></div><div class="ttdeci">BanditOperator(vector&lt; string &gt; arms)</div><div class="ttdoc">Constructs a BanditOperator object with a vector of arms.</div><div class="ttdef"><b>Definition</b> <a href="#l00006">bandit_operator.cpp:6</a></div></div>
+<div class="ttc" id="aclassBrush_1_1MAB_1_1BanditOperator_html_afe6a2789a3e73970c443b7a05b05c6fa"><div class="ttname"><a href="../../df/dde/classBrush_1_1MAB_1_1BanditOperator.html#afe6a2789a3e73970c443b7a05b05c6fa">Brush::MAB::BanditOperator::sample_probs</a></div><div class="ttdeci">virtual std::map&lt; string, float &gt; sample_probs(bool update)</div><div class="ttdoc">Samples the probabilities of the arms.</div><div class="ttdef"><b>Definition</b> <a href="#l00025">bandit_operator.cpp:25</a></div></div>
 <div class="ttc" id="aerror_8h_html_aa4c550bcd71e4ec1c97b111e1360509a"><div class="ttname"><a href="../../da/d41/error_8h.html#aa4c550bcd71e4ec1c97b111e1360509a">HANDLE_ERROR_THROW</a></div><div class="ttdeci">#define HANDLE_ERROR_THROW(err)</div><div class="ttdef"><b>Definition</b> <a href="../../da/d41/error_8h_source.html#l00027">error.h:27</a></div></div>
 <div class="ttc" id="anamespaceBrush_1_1MAB_html"><div class="ttname"><a href="../../da/d94/namespaceBrush_1_1MAB.html">Brush::MAB</a></div><div class="ttdef"><b>Definition</b> <a href="../../d7/d01/bandit_8cpp_source.html#l00005">bandit.cpp:5</a></div></div>
 <div class="ttc" id="anamespaceBrush_html"><div class="ttname"><a href="../../dc/d5c/namespaceBrush.html">Brush</a></div><div class="ttdoc">&lt; nsga2 selection operator for getting the front</div><div class="ttdef"><b>Definition</b> <a href="../../d7/d01/bandit_8cpp_source.html#l00004">bandit.cpp:4</a></div></div>

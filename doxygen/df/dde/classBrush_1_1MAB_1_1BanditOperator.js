@@ -1,11 +1,11 @@
 var classBrush_1_1MAB_1_1BanditOperator =
 [
-    [ "Iter", "df/dde/classBrush_1_1MAB_1_1BanditOperator.html#a6953c55888445cfed5462918b3c822e4", null ],
-    [ "BanditOperator", "df/dde/classBrush_1_1MAB_1_1BanditOperator.html#a7ab649ed7a9fde167743426d98e6d8e3", null ],
-    [ "BanditOperator", "df/dde/classBrush_1_1MAB_1_1BanditOperator.html#a4b87a9de6b7e72d7ecd81eaa312ae966", null ],
-    [ "~BanditOperator", "df/dde/classBrush_1_1MAB_1_1BanditOperator.html#ac898647033aa6ca44e4c1d67391cb017", null ],
-    [ "choose", "df/dde/classBrush_1_1MAB_1_1BanditOperator.html#a3ed66cd086859adf694af88ea60112c4", null ],
-    [ "sample_probs", "df/dde/classBrush_1_1MAB_1_1BanditOperator.html#a18cb2ab1637319fc3e4d4ee89077e05d", null ],
-    [ "update", "df/dde/classBrush_1_1MAB_1_1BanditOperator.html#add60c0e803a4511425be94002e180edc", null ],
-    [ "probabilities", "df/dde/classBrush_1_1MAB_1_1BanditOperator.html#a9b732dfe2c3292ce4c420e5a66ff33c6", null ]
+    [ "Iter", "df/dde/classBrush_1_1MAB_1_1BanditOperator.html#acc0564b969a11e14016363510b6dbe6d", null ],
+    [ "BanditOperator", "df/dde/classBrush_1_1MAB_1_1BanditOperator.html#ab235b15e23e629a01e6709ffd67b3e60", null ],
+    [ "BanditOperator", "df/dde/classBrush_1_1MAB_1_1BanditOperator.html#ad5073f5958b0d8914e2938664d25ee05", null ],
+    [ "~BanditOperator", "df/dde/classBrush_1_1MAB_1_1BanditOperator.html#a36fb7e5b3bbdc7f814fba82216f1c178", null ],
+    [ "choose", "df/dde/classBrush_1_1MAB_1_1BanditOperator.html#a9422ddb2a936a30f184747659cfc3ec2", null ],
+    [ "sample_probs", "df/dde/classBrush_1_1MAB_1_1BanditOperator.html#afe6a2789a3e73970c443b7a05b05c6fa", null ],
+    [ "update", "df/dde/classBrush_1_1MAB_1_1BanditOperator.html#a7330ef49ededf6ea721324756580a6aa", null ],
+    [ "probabilities", "df/dde/classBrush_1_1MAB_1_1BanditOperator.html#a4a58caa7e258d9f833de5c1dc0878f6a", null ]
 ];

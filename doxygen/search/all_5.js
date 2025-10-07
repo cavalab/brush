@@ -11,7 +11,7 @@ var searchData=
   ['engine_3c_20pt_3a_3aregressor_20_3e_8',['Engine&lt; PT::Regressor &gt;',['../d0/d75/classBrush_1_1Engine.html',1,'Brush']]],
   ['engine_3c_20pt_3a_3arepresenter_20_3e_9',['Engine&lt; PT::Representer &gt;',['../d0/d75/classBrush_1_1Engine.html',1,'Brush']]],
   ['entrytype_10',['EntryType',['../d7/d56/structBrush_1_1Data_1_1TimeSeries.html#a8b9d1462cec60687e36eb7d4f96c9051',1,'Brush::Data::TimeSeries::EntryType'],['../d0/d8e/structTimeSeries.html#a8b9d1462cec60687e36eb7d4f96c9051',1,'TimeSeries::EntryType']]],
-  ['equivalentexpression_11',['equivalentExpression',['../de/dc5/classBrush_1_1Simpl_1_1Inexact__simplifier.html#adf34fc95f8eb5c75bfa8b79820612241',1,'Brush::Simpl::Inexact_simplifier']]],
+  ['equivalentexpressions_11',['equivalentExpressions',['../de/dc5/classBrush_1_1Simpl_1_1Inexact__simplifier.html#ac63ac4ab691f7bedb423a60ead721ec9',1,'Brush::Simpl::Inexact_simplifier']]],
   ['error_12',['error',['../de/d83/classBrush_1_1Pop_1_1Individual.html#a7d8554e86a649d039be4bb367b879530',1,'Brush::Pop::Individual']]],
   ['error_2ecpp_13',['error.cpp',['../dd/db1/error_8cpp.html',1,'']]],
   ['error_2eh_14',['error.h',['../da/d41/error_8h.html',1,'']]],

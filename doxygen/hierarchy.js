@@ -4,11 +4,10 @@ var hierarchy =
     [ "Brush::all_same< First, Next >", "db/d64/structBrush_1_1all__same.html", null ],
     [ "Brush::Pop::Archive< T >", "d1/d30/structBrush_1_1Pop_1_1Archive.html", null ],
     [ "array< T >", "d2/d41/classarray.html", null ],
-    [ "Brush::MAB::Bandit< T >", "d4/d90/structBrush_1_1MAB_1_1Bandit.html", null ],
-    [ "Brush::MAB::BanditOperator< T >", "df/dde/classBrush_1_1MAB_1_1BanditOperator.html", [
-      [ "Brush::MAB::DummyBandit< T >", "dd/d41/classBrush_1_1MAB_1_1DummyBandit.html", null ],
-      [ "Brush::MAB::LinearThompsonSamplingBandit< T >", "d1/d67/classBrush_1_1MAB_1_1LinearThompsonSamplingBandit.html", null ],
-      [ "Brush::MAB::ThompsonSamplingBandit< T >", "db/d10/classBrush_1_1MAB_1_1ThompsonSamplingBandit.html", null ]
+    [ "Brush::MAB::Bandit", "d4/d90/structBrush_1_1MAB_1_1Bandit.html", null ],
+    [ "Brush::MAB::BanditOperator", "df/dde/classBrush_1_1MAB_1_1BanditOperator.html", [
+      [ "Brush::MAB::DummyBandit", "dd/d41/classBrush_1_1MAB_1_1DummyBandit.html", null ],
+      [ "Brush::MAB::ThompsonSamplingBandit", "db/d10/classBrush_1_1MAB_1_1ThompsonSamplingBandit.html", null ]
     ] ],
     [ "Brush::Sel::NSGA2< T >::comparator_obj", "dd/dc3/structBrush_1_1Sel_1_1NSGA2_1_1comparator__obj.html", null ],
     [ "array< T >::const_iterator", "dc/d95/classarray_1_1const__iterator.html", null ],

@@ -69,8 +69,8 @@ var searchData=
   ['dualargs_66',['DualArgs',['../d5/d7d/structBrush_1_1Signature_3_01R_07Args_8_8_8_08_4.html#a7ace5066b187efa33260b6b979451bd9',1,'Brush::Signature&lt; R(Args...)&gt;']]],
   ['dummy_2ecpp_67',['dummy.cpp',['../d4/d05/dummy_8cpp.html',1,'']]],
   ['dummy_2eh_68',['dummy.h',['../d2/d94/dummy_8h.html',1,'']]],
-  ['dummybandit_69',['DummyBandit',['../dd/d41/classBrush_1_1MAB_1_1DummyBandit.html',1,'Brush::MAB::DummyBandit&lt; T &gt;'],['../dd/d41/classBrush_1_1MAB_1_1DummyBandit.html#a4c66350c9e64b1ee3e6a5e9439f50466',1,'Brush::MAB::DummyBandit::DummyBandit(vector&lt; T &gt; arms)'],['../dd/d41/classBrush_1_1MAB_1_1DummyBandit.html#a96339e5a707ec9d23d4f9d3abce79c78',1,'Brush::MAB::DummyBandit::DummyBandit(map&lt; T, float &gt; arms_probs)']]],
+  ['dummybandit_69',['DummyBandit',['../dd/d41/classBrush_1_1MAB_1_1DummyBandit.html',1,'Brush::MAB::DummyBandit'],['../dd/d41/classBrush_1_1MAB_1_1DummyBandit.html#a52c1c5b4e2c67706db9db7973ab8e2cb',1,'Brush::MAB::DummyBandit::DummyBandit(vector&lt; string &gt; arms)'],['../dd/d41/classBrush_1_1MAB_1_1DummyBandit.html#ab1f789efb2c1a00b22352b0a69b5ce13',1,'Brush::MAB::DummyBandit::DummyBandit(map&lt; string, float &gt; arms_probs)']]],
   ['during_70',['During',['../dc/d5c/namespaceBrush.html#a051322bb9fd1db4638b6eccd399a29c8a6bff18384c86302924dc53ce5595a5ee',1,'Brush']]],
   ['during_71',['during',['../d7/d56/structBrush_1_1Data_1_1TimeSeries.html#a5909f9853c5891a7369f378725a99550',1,'Brush::Data::TimeSeries::during()'],['../d0/d8e/structTimeSeries.html#a5909f9853c5891a7369f378725a99550',1,'TimeSeries::during()']]],
-  ['dynamic_5fupdate_72',['dynamic_update',['../db/d10/classBrush_1_1MAB_1_1ThompsonSamplingBandit.html#af85a615d188fd27ecd7d61ff1b2ba83a',1,'Brush::MAB::ThompsonSamplingBandit']]]
+  ['dynamic_5fupdate_72',['dynamic_update',['../db/d10/classBrush_1_1MAB_1_1ThompsonSamplingBandit.html#a08a370a0d6cd8751f1748544ff47e419',1,'Brush::MAB::ThompsonSamplingBandit']]]
 ];

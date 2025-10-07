@@ -24,14 +24,11 @@ var searchData=
   ['statetypes_21',['StateTypes',['../d9/d1c/namespaceBrush_1_1Data.html#a024bc26071be66d565dd66852c79ada2',1,'Brush::Data']]],
   ['stats_22',['stats',['../d0/d75/classBrush_1_1Engine.html#a596db23cf521696b72b023bacbf3a737',1,'Brush::Engine']]],
   ['storage_23',['Storage',['../df/d09/structBrush_1_1TinyCostFunction.html#a6e468d63ff6887868052dc771a3281ca',1,'Brush::TinyCostFunction']]],
-  ['storage_24',['storage',['../d4/d71/classBrush_1_1Simpl_1_1HashStorage.html#a729e37e8a93bd58b89c4652aff2ae8df',1,'Brush::Simpl::HashStorage']]],
-  ['storagebool_25',['storageBool',['../de/dc5/classBrush_1_1Simpl_1_1Inexact__simplifier.html#a301d3c5a919a16816eef139a0e15350b',1,'Brush::Simpl::Inexact_simplifier']]],
-  ['storagefloat_26',['storageFloat',['../de/dc5/classBrush_1_1Simpl_1_1Inexact__simplifier.html#ac495100cc8a47f38e1fb9b16b8c7b67c',1,'Brush::Simpl::Inexact_simplifier']]],
-  ['storageint_27',['storageInt',['../de/dc5/classBrush_1_1Simpl_1_1Inexact__simplifier.html#a33d6b73c253d7aeedf50a3681a0d28c1',1,'Brush::Simpl::Inexact_simplifier']]],
-  ['stride_28',['Stride',['../df/d09/structBrush_1_1TinyCostFunction.html#a1e1831616fb4ebc67aade514d0fb224e',1,'Brush::TinyCostFunction']]],
-  ['stride_29',['stride',['../dc/d5c/namespaceBrush.html#ae997c702078cc1c68f8c951c331fdf51',1,'Brush']]],
-  ['success_30',['Success',['../dc/d91/structBrush_1_1OptimizerSummary.html#ad48f59adb9bd1ef842a04b446af078e7',1,'Brush::OptimizerSummary']]],
-  ['surv_31',['surv',['../de/deb/structBrush_1_1Parameters.html#a4ff98035fbd50487abb5946504e8e4d6',1,'Brush::Parameters']]],
-  ['survival_32',['survival',['../dd/d0f/structBrush_1_1Sel_1_1Selection.html#a3dc6778d19c18f6081f30ebf870eed3c',1,'Brush::Sel::Selection::survival'],['../de/db9/classBrush_1_1Sel_1_1SelectionOperator.html#a612a07491346369b748198d11ae43675',1,'Brush::Sel::SelectionOperator::survival']]],
-  ['survivor_33',['survivor',['../d0/d75/classBrush_1_1Engine.html#a70abc4545878805cd572d110f21d1e7c',1,'Brush::Engine']]]
+  ['storage_24',['storage',['../d4/d71/classBrush_1_1Simpl_1_1HashStorage.html#a563604a190930983934a9718a42b720b',1,'Brush::Simpl::HashStorage']]],
+  ['stride_25',['Stride',['../df/d09/structBrush_1_1TinyCostFunction.html#a1e1831616fb4ebc67aade514d0fb224e',1,'Brush::TinyCostFunction']]],
+  ['stride_26',['stride',['../dc/d5c/namespaceBrush.html#ae997c702078cc1c68f8c951c331fdf51',1,'Brush']]],
+  ['success_27',['Success',['../dc/d91/structBrush_1_1OptimizerSummary.html#ad48f59adb9bd1ef842a04b446af078e7',1,'Brush::OptimizerSummary']]],
+  ['surv_28',['surv',['../de/deb/structBrush_1_1Parameters.html#a4ff98035fbd50487abb5946504e8e4d6',1,'Brush::Parameters']]],
+  ['survival_29',['survival',['../dd/d0f/structBrush_1_1Sel_1_1Selection.html#a3dc6778d19c18f6081f30ebf870eed3c',1,'Brush::Sel::Selection::survival'],['../de/db9/classBrush_1_1Sel_1_1SelectionOperator.html#a612a07491346369b748198d11ae43675',1,'Brush::Sel::SelectionOperator::survival']]],
+  ['survivor_30',['survivor',['../d0/d75/classBrush_1_1Engine.html#a70abc4545878805cd572d110f21d1e7c',1,'Brush::Engine']]]
 ];

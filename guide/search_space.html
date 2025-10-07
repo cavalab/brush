@@ -32,7 +32,7 @@
     <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=eba8b062" />
     <link rel="stylesheet" type="text/css" href="../_static/graphviz.css?v=4ae1632d" />
     <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
-    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.8ecb98da25f57f5357bf6f572d296f466b2cfe2517ffebfabe82451661e28f02.css" />
   
   <!-- Pre-loaded scripts that we'll load fully later -->
   <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
@@ -542,18 +542,12 @@ That can be quite large.</p>
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>=== Search space ===
 terminal_map: {&quot;ArrayI&quot;: [&quot;x_2&quot;, &quot;1.00&quot;], &quot;ArrayB&quot;: [&quot;x_1&quot;, &quot;1.00&quot;], &quot;ArrayF&quot;: [&quot;x_0&quot;, &quot;1.00&quot;]}
-terminal_weights: {&quot;ArrayI&quot;: [0.01214596, 0.01214596], &quot;ArrayB&quot;: [0.026419641, 0.026419641], &quot;ArrayF&quot;: [0.056145623, 0.056145623]}
-node_map[ArrayB][[&quot;ArrayI&quot;, &quot;ArrayB&quot;, &quot;ArrayB&quot;]][SplitOn] = SplitOn, weight = 0.1
-node_map[ArrayB][[&quot;ArrayF&quot;, &quot;ArrayB&quot;, &quot;ArrayB&quot;]][SplitOn] = SplitOn, weight = 0.1
+terminal_weights: {&quot;ArrayI&quot;: [0.016013855, 0.016013855], &quot;ArrayB&quot;: [0.026419641, 0.026419641], &quot;ArrayF&quot;: [0.056145623, 0.056145623]}
 node_map[ArrayB][[&quot;ArrayB&quot;, &quot;ArrayB&quot;, &quot;ArrayB&quot;]][SplitOn] = SplitOn, weight = 0.1
 node_map[ArrayB][[&quot;ArrayB&quot;, &quot;ArrayB&quot;]][SplitBest] = SplitBest, weight = 0.1
 node_map[ArrayI][[&quot;ArrayB&quot;, &quot;ArrayI&quot;, &quot;ArrayI&quot;]][SplitOn] = 1.00*SplitOn, weight = 0.1
-node_map[ArrayI][[&quot;ArrayF&quot;, &quot;ArrayI&quot;, &quot;ArrayI&quot;]][SplitOn] = 1.00*SplitOn, weight = 0.1
-node_map[ArrayI][[&quot;ArrayI&quot;, &quot;ArrayI&quot;, &quot;ArrayI&quot;]][SplitOn] = 1.00*SplitOn, weight = 0.1
 node_map[ArrayI][[&quot;ArrayI&quot;, &quot;ArrayI&quot;]][SplitBest] = 1.00*SplitBest, weight = 0.1
 node_map[ArrayF][[&quot;ArrayB&quot;, &quot;ArrayF&quot;, &quot;ArrayF&quot;]][SplitOn] = 1.00*SplitOn, weight = 0.1
-node_map[ArrayF][[&quot;ArrayI&quot;, &quot;ArrayF&quot;, &quot;ArrayF&quot;]][SplitOn] = 1.00*SplitOn, weight = 0.1
-node_map[ArrayF][[&quot;ArrayF&quot;, &quot;ArrayF&quot;, &quot;ArrayF&quot;]][SplitOn] = 1.00*SplitOn, weight = 0.1
 node_map[ArrayF][[&quot;ArrayF&quot;, &quot;ArrayF&quot;]][SplitBest] = 1.00*SplitBest, weight = 0.1
 </pre></div>
 </div>
@@ -578,17 +572,11 @@ node_map[ArrayF][[&quot;ArrayF&quot;, &quot;ArrayF&quot;]][SplitBest] = 1.00*Spl
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>=== Search space ===
 terminal_map: {&quot;ArrayI&quot;: [&quot;x_2&quot;, &quot;1.00&quot;], &quot;ArrayB&quot;: [&quot;x_1&quot;, &quot;1.00&quot;], &quot;ArrayF&quot;: [&quot;x_0&quot;, &quot;1.00&quot;]}
 terminal_weights: {&quot;ArrayI&quot;: [1, 1], &quot;ArrayB&quot;: [1, 1], &quot;ArrayF&quot;: [1, 1]}
-node_map[ArrayB][[&quot;ArrayI&quot;, &quot;ArrayB&quot;, &quot;ArrayB&quot;]][SplitOn] = SplitOn, weight = 0.1
-node_map[ArrayB][[&quot;ArrayF&quot;, &quot;ArrayB&quot;, &quot;ArrayB&quot;]][SplitOn] = SplitOn, weight = 0.1
 node_map[ArrayB][[&quot;ArrayB&quot;, &quot;ArrayB&quot;, &quot;ArrayB&quot;]][SplitOn] = SplitOn, weight = 0.1
 node_map[ArrayB][[&quot;ArrayB&quot;, &quot;ArrayB&quot;]][SplitBest] = SplitBest, weight = 0.1
 node_map[ArrayI][[&quot;ArrayB&quot;, &quot;ArrayI&quot;, &quot;ArrayI&quot;]][SplitOn] = 1.00*SplitOn, weight = 0.1
-node_map[ArrayI][[&quot;ArrayF&quot;, &quot;ArrayI&quot;, &quot;ArrayI&quot;]][SplitOn] = 1.00*SplitOn, weight = 0.1
-node_map[ArrayI][[&quot;ArrayI&quot;, &quot;ArrayI&quot;, &quot;ArrayI&quot;]][SplitOn] = 1.00*SplitOn, weight = 0.1
 node_map[ArrayI][[&quot;ArrayI&quot;, &quot;ArrayI&quot;]][SplitBest] = 1.00*SplitBest, weight = 0.1
 node_map[ArrayF][[&quot;ArrayB&quot;, &quot;ArrayF&quot;, &quot;ArrayF&quot;]][SplitOn] = 1.00*SplitOn, weight = 0.1
-node_map[ArrayF][[&quot;ArrayI&quot;, &quot;ArrayF&quot;, &quot;ArrayF&quot;]][SplitOn] = 1.00*SplitOn, weight = 0.1
-node_map[ArrayF][[&quot;ArrayF&quot;, &quot;ArrayF&quot;, &quot;ArrayF&quot;]][SplitOn] = 1.00*SplitOn, weight = 0.1
 node_map[ArrayF][[&quot;ArrayF&quot;, &quot;ArrayF&quot;]][SplitBest] = 1.00*SplitBest, weight = 0.1
 </pre></div>
 </div>
@@ -614,18 +602,12 @@ If instead of passing the data directly you rather pass a pandas dataframe, then
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>=== Search space ===
 terminal_map: {&quot;ArrayI&quot;: [&quot;x_2&quot;, &quot;1.00&quot;], &quot;ArrayB&quot;: [&quot;x_1&quot;, &quot;1.00&quot;], &quot;ArrayF&quot;: [&quot;x_0&quot;, &quot;1.00&quot;]}
-terminal_weights: {&quot;ArrayI&quot;: [0.01214596, 0.01214596], &quot;ArrayB&quot;: [0.026419641, 0.026419641], &quot;ArrayF&quot;: [0.056145623, 0.056145623]}
-node_map[ArrayB][[&quot;ArrayI&quot;, &quot;ArrayB&quot;, &quot;ArrayB&quot;]][SplitOn] = SplitOn, weight = 0.1
-node_map[ArrayB][[&quot;ArrayF&quot;, &quot;ArrayB&quot;, &quot;ArrayB&quot;]][SplitOn] = SplitOn, weight = 0.1
+terminal_weights: {&quot;ArrayI&quot;: [0.016013855, 0.016013855], &quot;ArrayB&quot;: [0.026419641, 0.026419641], &quot;ArrayF&quot;: [0.056145623, 0.056145623]}
 node_map[ArrayB][[&quot;ArrayB&quot;, &quot;ArrayB&quot;, &quot;ArrayB&quot;]][SplitOn] = SplitOn, weight = 0.1
 node_map[ArrayB][[&quot;ArrayB&quot;, &quot;ArrayB&quot;]][SplitBest] = SplitBest, weight = 0.1
 node_map[ArrayI][[&quot;ArrayB&quot;, &quot;ArrayI&quot;, &quot;ArrayI&quot;]][SplitOn] = 1.00*SplitOn, weight = 0.1
-node_map[ArrayI][[&quot;ArrayF&quot;, &quot;ArrayI&quot;, &quot;ArrayI&quot;]][SplitOn] = 1.00*SplitOn, weight = 0.1
-node_map[ArrayI][[&quot;ArrayI&quot;, &quot;ArrayI&quot;, &quot;ArrayI&quot;]][SplitOn] = 1.00*SplitOn, weight = 0.1
 node_map[ArrayI][[&quot;ArrayI&quot;, &quot;ArrayI&quot;]][SplitBest] = 1.00*SplitBest, weight = 0.1
 node_map[ArrayF][[&quot;ArrayB&quot;, &quot;ArrayF&quot;, &quot;ArrayF&quot;]][SplitOn] = 1.00*SplitOn, weight = 0.1
-node_map[ArrayF][[&quot;ArrayI&quot;, &quot;ArrayF&quot;, &quot;ArrayF&quot;]][SplitOn] = 1.00*SplitOn, weight = 0.1
-node_map[ArrayF][[&quot;ArrayF&quot;, &quot;ArrayF&quot;, &quot;ArrayF&quot;]][SplitOn] = 1.00*SplitOn, weight = 0.1
 node_map[ArrayF][[&quot;ArrayF&quot;, &quot;ArrayF&quot;]][SplitBest] = 1.00*SplitBest, weight = 0.1
 </pre></div>
 </div>
@@ -661,8 +643,8 @@ node_map[ArrayF][[&quot;ArrayF&quot;, &quot;ArrayF&quot;]][SplitBest] = 1.00*Spl
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Completed 100% [====================]
 saving final population as archive...
-Best model: If(x_0&gt;0.50,If(x_0&gt;1.50,8.22,5.77),9.04)
-score: 0.005547027354798839
+Best model: If(x_0&gt;0.50,If(x_0&gt;1.50,If(x_0&gt;2.50,If(x_0&gt;991.50,8.53,8.22),9.18),5.77),9.04)
+score: 0.006386309031210291
 </pre></div>
 </div>
 </div>
@@ -676,19 +658,13 @@ score: 0.005547027354798839
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>=== Search space ===
 terminal_map: {&quot;ArrayI&quot;: [&quot;x_2&quot;, &quot;1.00&quot;], &quot;ArrayB&quot;: [&quot;x_1&quot;, &quot;1.00&quot;], &quot;ArrayF&quot;: [&quot;x_0&quot;, &quot;1.00&quot;]}
-terminal_weights: {&quot;ArrayI&quot;: [0.5988976, 0.39022964], &quot;ArrayB&quot;: [0.31329083, 0.29768455], &quot;ArrayF&quot;: [0.01, 0.01]}
-node_map[ArrayB][[&quot;ArrayI&quot;, &quot;ArrayB&quot;, &quot;ArrayB&quot;]][SplitOn] = SplitOn, weight = 0.4727218
-node_map[ArrayB][[&quot;ArrayF&quot;, &quot;ArrayB&quot;, &quot;ArrayB&quot;]][SplitOn] = SplitOn, weight = 0.13049549
-node_map[ArrayB][[&quot;ArrayB&quot;, &quot;ArrayB&quot;, &quot;ArrayB&quot;]][SplitOn] = SplitOn, weight = 0.2557611
-node_map[ArrayB][[&quot;ArrayB&quot;, &quot;ArrayB&quot;]][SplitBest] = SplitBest, weight = 0.44342086
-node_map[ArrayI][[&quot;ArrayB&quot;, &quot;ArrayI&quot;, &quot;ArrayI&quot;]][SplitOn] = 1.00*SplitOn, weight = 0.079836436
-node_map[ArrayI][[&quot;ArrayF&quot;, &quot;ArrayI&quot;, &quot;ArrayI&quot;]][SplitOn] = 1.00*SplitOn, weight = 0.26834965
-node_map[ArrayI][[&quot;ArrayI&quot;, &quot;ArrayI&quot;, &quot;ArrayI&quot;]][SplitOn] = 1.00*SplitOn, weight = 0.978205
-node_map[ArrayI][[&quot;ArrayI&quot;, &quot;ArrayI&quot;]][SplitBest] = 1.00*SplitBest, weight = 0.54717386
-node_map[ArrayF][[&quot;ArrayB&quot;, &quot;ArrayF&quot;, &quot;ArrayF&quot;]][SplitOn] = 1.00*SplitOn, weight = 0.13805643
-node_map[ArrayF][[&quot;ArrayI&quot;, &quot;ArrayF&quot;, &quot;ArrayF&quot;]][SplitOn] = 1.00*SplitOn, weight = 0.22573847
-node_map[ArrayF][[&quot;ArrayF&quot;, &quot;ArrayF&quot;, &quot;ArrayF&quot;]][SplitOn] = 1.00*SplitOn, weight = 0.09722547
-node_map[ArrayF][[&quot;ArrayF&quot;, &quot;ArrayF&quot;]][SplitBest] = 1.00*SplitBest, weight = 0.01
+terminal_weights: {&quot;ArrayI&quot;: [0.26122442, 0.89121705], &quot;ArrayB&quot;: [0.79961514, 0.34149784], &quot;ArrayF&quot;: [0.31632814, 0.58380014]}
+node_map[ArrayB][[&quot;ArrayB&quot;, &quot;ArrayB&quot;, &quot;ArrayB&quot;]][SplitOn] = SplitOn, weight = 0.21997896
+node_map[ArrayB][[&quot;ArrayB&quot;, &quot;ArrayB&quot;]][SplitBest] = SplitBest, weight = 0.5239252
+node_map[ArrayI][[&quot;ArrayB&quot;, &quot;ArrayI&quot;, &quot;ArrayI&quot;]][SplitOn] = 1.00*SplitOn, weight = 0.36014962
+node_map[ArrayI][[&quot;ArrayI&quot;, &quot;ArrayI&quot;]][SplitBest] = 1.00*SplitBest, weight = 0.3266917
+node_map[ArrayF][[&quot;ArrayB&quot;, &quot;ArrayF&quot;, &quot;ArrayF&quot;]][SplitOn] = 1.00*SplitOn, weight = 0.9564706
+node_map[ArrayF][[&quot;ArrayF&quot;, &quot;ArrayF&quot;]][SplitBest] = 1.00*SplitBest, weight = 0.6078548
 </pre></div>
 </div>
 </div>
@@ -700,9 +676,13 @@ node_map[ArrayF][[&quot;ArrayF&quot;, &quot;ArrayF&quot;]][SplitBest] = 1.00*Spl
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>If(x_0)
-|- If(x_0)
-|  |- 8.22
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>If(x_0&gt;0.50)
+|- If(x_0&gt;1.50)
+|  |- If(x_0&gt;2.50)
+|  |  |- If(x_0&gt;991.50)
+|  |  |  |- 8.53
+|  |  |  |- 8.22
+|  |  |- 9.18
 |  |- 5.77
 |- 9.04
 </pre></div>

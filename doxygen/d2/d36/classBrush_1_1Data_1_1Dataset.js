@@ -7,6 +7,7 @@ var classBrush_1_1Data_1_1Dataset =
     [ "copy_and_make_features", "d2/d36/classBrush_1_1Data_1_1Dataset.html#aa09045b1736581575ec928a7eba7dd98", null ],
     [ "get_batch", "d2/d36/classBrush_1_1Data_1_1Dataset.html#a5020e43def6267598be0ba3d2b46e616", null ],
     [ "get_batch_size", "d2/d36/classBrush_1_1Data_1_1Dataset.html#ade358be2a762f2a6df738a41fe1095b5", null ],
+    [ "get_feature_type", "d2/d36/classBrush_1_1Data_1_1Dataset.html#a2923e87bfc5d20fc3b45b9f72ca71de2", null ],
     [ "get_n_features", "d2/d36/classBrush_1_1Data_1_1Dataset.html#a6edc04702aee605a766f4a79c375d0c6", null ],
     [ "get_n_samples", "d2/d36/classBrush_1_1Data_1_1Dataset.html#a2b7b42b1b16630554b2e49102098a170", null ],
     [ "get_training_data", "d2/d36/classBrush_1_1Data_1_1Dataset.html#ae69087b8c020840f254e3679cd324ba5", null ],

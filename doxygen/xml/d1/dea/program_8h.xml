@@ -453,10 +453,6 @@
       <node id="3">
         <label>bandit.cpp</label>
         <link refid="d7/d01/bandit_8cpp"/>
-        <childnode refid="4" relation="include">
-        </childnode>
-        <childnode refid="6" relation="include">
-        </childnode>
       </node>
       <node id="2">
         <label>bandit.h</label>
@@ -1020,7 +1016,7 @@
 <codeline lineno="275"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal">&amp;<sp/>node<sp/>=<sp/>i.node-&gt;data;<sp/></highlight></codeline>
 <codeline lineno="276"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>some<sp/>nodes<sp/>cannot<sp/>have<sp/>their<sp/>weights<sp/>optimized,<sp/>others<sp/>must<sp/>have</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="277"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(<sp/><ref refid="dc/d5c/namespaceBrush_1a4f135739df5fe55a0ff81d943bec8be2" kindref="member">Is&lt;NodeType::OffsetSum&gt;</ref>(node.node_type)</highlight></codeline>
-<codeline lineno="278"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>||<sp/><sp/><sp/>(node.get_is_weighted()<sp/>&amp;&amp;<sp/><ref refid="dc/d5c/namespaceBrush_1a1d5a63450bcdb77bd08283c9f74ca53f" kindref="member">IsWeighable</ref>(node.node_type))<sp/>)</highlight></codeline>
+<codeline lineno="278"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>||<sp/><sp/><sp/>(node.get_is_weighted()<sp/>&amp;&amp;<sp/><ref refid="dc/d5c/namespaceBrush_1a1d5a63450bcdb77bd08283c9f74ca53f" kindref="member">IsWeighable</ref>(node.ret_type))<sp/>)</highlight></codeline>
 <codeline lineno="279"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>++count;</highlight></codeline>
 <codeline lineno="280"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
 <codeline lineno="281"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>count;</highlight></codeline>
@@ -1034,7 +1030,7 @@
 <codeline lineno="294"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
 <codeline lineno="295"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal">&amp;<sp/>node<sp/>=<sp/>t.node-&gt;data;<sp/></highlight></codeline>
 <codeline lineno="296"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(<sp/><ref refid="dc/d5c/namespaceBrush_1a4f135739df5fe55a0ff81d943bec8be2" kindref="member">Is&lt;NodeType::OffsetSum&gt;</ref>(node.node_type)</highlight></codeline>
-<codeline lineno="297"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>||<sp/><sp/><sp/>(node.get_is_weighted()<sp/>&amp;&amp;<sp/><ref refid="dc/d5c/namespaceBrush_1a1d5a63450bcdb77bd08283c9f74ca53f" kindref="member">IsWeighable</ref>(node.node_type))<sp/>)</highlight></codeline>
+<codeline lineno="297"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>||<sp/><sp/><sp/>(node.get_is_weighted()<sp/>&amp;&amp;<sp/><ref refid="dc/d5c/namespaceBrush_1a1d5a63450bcdb77bd08283c9f74ca53f" kindref="member">IsWeighable</ref>(node.ret_type))<sp/>)</highlight></codeline>
 <codeline lineno="298"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
 <codeline lineno="299"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>weights(i)<sp/>=<sp/>node.W;</highlight></codeline>
 <codeline lineno="300"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>++i;</highlight></codeline>

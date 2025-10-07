@@ -3,8 +3,6 @@
   <compounddef id="d4/d05/dummy_8cpp" kind="file" language="C++">
     <compoundname>dummy.cpp</compoundname>
     <includes refid="d2/d94/dummy_8h" local="yes">dummy.h</includes>
-    <includedby refid="d4/d93/bind__engines_8h" local="yes">bind_engines.h</includedby>
-    <includedby refid="d8/df7/bind__variation_8h" local="yes">bind_variation.h</includedby>
     <incdepgraph>
       <node id="50">
         <label>../../thirdparty/tree.hh</label>
@@ -383,36 +381,6 @@
         <label>vector</label>
       </node>
     </incdepgraph>
-    <invincdepgraph>
-      <node id="1">
-        <label>dummy.cpp</label>
-        <link refid="d4/d05/dummy_8cpp"/>
-        <childnode refid="2" relation="include">
-        </childnode>
-        <childnode refid="4" relation="include">
-        </childnode>
-      </node>
-      <node id="3">
-        <label>bind_engines.cpp</label>
-        <link refid="d1/df0/bind__engines_8cpp"/>
-      </node>
-      <node id="2">
-        <label>bind_engines.h</label>
-        <link refid="d4/d93/bind__engines_8h"/>
-        <childnode refid="3" relation="include">
-        </childnode>
-      </node>
-      <node id="5">
-        <label>bind_variation.cpp</label>
-        <link refid="df/d41/bind__variation_8cpp"/>
-      </node>
-      <node id="4">
-        <label>bind_variation.h</label>
-        <link refid="d8/df7/bind__variation_8h"/>
-        <childnode refid="5" relation="include">
-        </childnode>
-      </node>
-    </invincdepgraph>
     <innernamespace refid="dc/d5c/namespaceBrush">Brush</innernamespace>
     <innernamespace refid="da/d94/namespaceBrush_1_1MAB">Brush::MAB</innernamespace>
     <briefdescription>
@@ -425,25 +393,22 @@
 <codeline lineno="3"><highlight class="normal"></highlight><highlight class="keyword">namespace<sp/></highlight><highlight class="normal"><ref refid="dc/d5c/namespaceBrush" kindref="compound">Brush</ref><sp/>{</highlight></codeline>
 <codeline lineno="4"><highlight class="normal"></highlight><highlight class="keyword">namespace<sp/></highlight><highlight class="normal"><ref refid="da/d94/namespaceBrush_1_1MAB" kindref="compound">MAB</ref><sp/>{</highlight></codeline>
 <codeline lineno="5"><highlight class="normal"></highlight></codeline>
-<codeline lineno="6"><highlight class="normal"></highlight><highlight class="keyword">template</highlight><highlight class="normal"><sp/>&lt;</highlight><highlight class="keyword">typename</highlight><highlight class="normal"><sp/>T&gt;</highlight></codeline>
-<codeline lineno="7" refid="dd/d41/classBrush_1_1MAB_1_1DummyBandit_1ac27a0416af048dcfdc25635d4b4029db" refkind="member"><highlight class="normal">std::map&lt;T,<sp/>float&gt;<sp/><ref refid="dd/d41/classBrush_1_1MAB_1_1DummyBandit_1ac27a0416af048dcfdc25635d4b4029db" kindref="member">DummyBandit&lt;T&gt;::sample_probs</ref>(</highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/><ref refid="dd/d41/classBrush_1_1MAB_1_1DummyBandit_1a326b1f39e9585c7b0f23150ccace1a11" kindref="member">update</ref>)<sp/>{</highlight></codeline>
-<codeline lineno="8"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>this-&gt;<ref refid="df/dde/classBrush_1_1MAB_1_1BanditOperator_1a9b732dfe2c3292ce4c420e5a66ff33c6" kindref="member">probabilities</ref>;</highlight></codeline>
-<codeline lineno="9"><highlight class="normal">}</highlight></codeline>
-<codeline lineno="10"><highlight class="normal"></highlight></codeline>
-<codeline lineno="11"><highlight class="normal"></highlight><highlight class="keyword">template</highlight><highlight class="normal"><sp/>&lt;</highlight><highlight class="keyword">typename</highlight><highlight class="normal"><sp/>T&gt;</highlight></codeline>
-<codeline lineno="12" refid="dd/d41/classBrush_1_1MAB_1_1DummyBandit_1ac15d31141a0ef97ba83df190de1e5379" refkind="member"><highlight class="normal">T<sp/><ref refid="dd/d41/classBrush_1_1MAB_1_1DummyBandit_1ac15d31141a0ef97ba83df190de1e5379" kindref="member">DummyBandit&lt;T&gt;::choose</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>VectorXf&amp;<sp/>context)<sp/>{</highlight></codeline>
-<codeline lineno="13"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>std::map&lt;T,<sp/>float&gt;<sp/>probs<sp/>=<sp/>this-&gt;sample_probs(false);</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="14"><highlight class="normal"></highlight></codeline>
-<codeline lineno="15"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/><ref refid="d6/d2e/namespaceBrush_1_1Util_1af7dd70e54015821d96e3a1afed6344ca" kindref="member">r</ref>.random_choice(this-&gt;<ref refid="df/dde/classBrush_1_1MAB_1_1BanditOperator_1a9b732dfe2c3292ce4c420e5a66ff33c6" kindref="member">probabilities</ref>);</highlight></codeline>
-<codeline lineno="16"><highlight class="normal">}</highlight></codeline>
-<codeline lineno="17"><highlight class="normal"></highlight></codeline>
-<codeline lineno="18"><highlight class="normal"></highlight><highlight class="keyword">template</highlight><highlight class="normal"><sp/>&lt;</highlight><highlight class="keyword">typename</highlight><highlight class="normal"><sp/>T&gt;</highlight></codeline>
-<codeline lineno="19" refid="dd/d41/classBrush_1_1MAB_1_1DummyBandit_1a326b1f39e9585c7b0f23150ccace1a11" refkind="member"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="dd/d41/classBrush_1_1MAB_1_1DummyBandit_1a326b1f39e9585c7b0f23150ccace1a11" kindref="member">DummyBandit&lt;T&gt;::update</ref>(T<sp/>arm,<sp/></highlight><highlight class="keywordtype">float</highlight><highlight class="normal"><sp/>reward,<sp/>VectorXf&amp;<sp/>context)<sp/>{</highlight></codeline>
-<codeline lineno="20"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Do<sp/>nothing</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="21"><highlight class="normal">}</highlight></codeline>
-<codeline lineno="22"><highlight class="normal"></highlight></codeline>
-<codeline lineno="23"><highlight class="normal">}<sp/></highlight><highlight class="comment">//<sp/>MAB</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="24"><highlight class="normal">}<sp/></highlight><highlight class="comment">//<sp/>Brush</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="6" refid="dd/d41/classBrush_1_1MAB_1_1DummyBandit_1a5728010919b4047bb923b1ecae9ca1a4" refkind="member"><highlight class="normal">std::map&lt;string,<sp/>float&gt;<sp/><ref refid="dd/d41/classBrush_1_1MAB_1_1DummyBandit_1a5728010919b4047bb923b1ecae9ca1a4" kindref="member">DummyBandit::sample_probs</ref>(</highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/><ref refid="dd/d41/classBrush_1_1MAB_1_1DummyBandit_1a31859ae251644691b13016d8fc2eb782" kindref="member">update</ref>)<sp/>{</highlight></codeline>
+<codeline lineno="7"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>this-&gt;<ref refid="df/dde/classBrush_1_1MAB_1_1BanditOperator_1a4a58caa7e258d9f833de5c1dc0878f6a" kindref="member">probabilities</ref>;</highlight></codeline>
+<codeline lineno="8"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="9"><highlight class="normal"></highlight></codeline>
+<codeline lineno="10" refid="dd/d41/classBrush_1_1MAB_1_1DummyBandit_1a3c2fd48cd2461c39a932a7e44ea6f7ea" refkind="member"><highlight class="normal"></highlight><highlight class="keywordtype">string</highlight><highlight class="normal"><sp/><ref refid="dd/d41/classBrush_1_1MAB_1_1DummyBandit_1a3c2fd48cd2461c39a932a7e44ea6f7ea" kindref="member">DummyBandit::choose</ref>()<sp/>{</highlight></codeline>
+<codeline lineno="11"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>std::map&lt;T,<sp/>float&gt;<sp/>probs<sp/>=<sp/>this-&gt;sample_probs(false);</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="12"><highlight class="normal"></highlight></codeline>
+<codeline lineno="13"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/><ref refid="d6/d2e/namespaceBrush_1_1Util_1af7dd70e54015821d96e3a1afed6344ca" kindref="member">r</ref>.random_choice(this-&gt;<ref refid="df/dde/classBrush_1_1MAB_1_1BanditOperator_1a4a58caa7e258d9f833de5c1dc0878f6a" kindref="member">probabilities</ref>);</highlight></codeline>
+<codeline lineno="14"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="15"><highlight class="normal"></highlight></codeline>
+<codeline lineno="16" refid="dd/d41/classBrush_1_1MAB_1_1DummyBandit_1a31859ae251644691b13016d8fc2eb782" refkind="member"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="dd/d41/classBrush_1_1MAB_1_1DummyBandit_1a31859ae251644691b13016d8fc2eb782" kindref="member">DummyBandit::update</ref>(</highlight><highlight class="keywordtype">string</highlight><highlight class="normal"><sp/>arm,<sp/></highlight><highlight class="keywordtype">float</highlight><highlight class="normal"><sp/>reward)<sp/>{</highlight></codeline>
+<codeline lineno="17"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Do<sp/>nothing</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="18"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="19"><highlight class="normal"></highlight></codeline>
+<codeline lineno="20"><highlight class="normal">}<sp/></highlight><highlight class="comment">//<sp/>MAB</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="21"><highlight class="normal">}<sp/></highlight><highlight class="comment">//<sp/>Brush</highlight><highlight class="normal"></highlight></codeline>
     </programlisting>
     <location file="/home/runner/work/brush/brush/src/bandit/dummy.cpp"/>
   </compounddef>

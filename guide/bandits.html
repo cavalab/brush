@@ -32,7 +32,7 @@
     <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=eba8b062" />
     <link rel="stylesheet" type="text/css" href="../_static/graphviz.css?v=4ae1632d" />
     <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
-    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.8ecb98da25f57f5357bf6f572d296f466b2cfe2517ffebfabe82451661e28f02.css" />
   
   <!-- Pre-loaded scripts that we'll load fully later -->
   <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
@@ -574,7 +574,7 @@ None
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Completed  96% [=================== ]saving final population as archive...
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Completed  80% [================    ]saving final population as archive...
 </pre></div>
 </div>
 <div class="output text_html"><style>#sk-container-id-1 {
@@ -1024,8 +1024,8 @@ div.sk-label-container:hover .sk-estimator-doc-link.fitted:hover,
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>R2 score: 0.9503088822701279
-RMSE    : 2.1192778599130486
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>R2 score: 0.9644483834047515
+RMSE    : 1.792578548833604
 </pre></div>
 </div>
 </div>
@@ -1042,10 +1042,10 @@ RMSE    : 2.1192778599130486
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>model: Add(If(x0&gt;0.75,If(x0&gt;0.81,3.72*x4,0.24*x3),0.02*x1),Add(19.40*x6,If(x0&gt;0.75,3.27*Sin(0.08*x1),-8.93*x6)))
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>model: If(x0&gt;0.75,-81.71*Sub(If(x0&gt;0.81,0.37*Sub(1.73*Cos(1.00*x3),-0.10*x4),0.44*Cos(1.00*x3)),0.23*x6),Add(If(x0&gt;0.70,12.45,Add(31.19*Sin(16.22*x0),If(x0&gt;0.63,Add(x0,42.65),Add(x0,30.64)))),10.57*x6))
 </pre></div>
 </div>
-<img alt="../_images/1960821d090ead13b62df526259dc0cdb4bac84cc8fec78362ecf43790adcbf6.svg" src="../_images/1960821d090ead13b62df526259dc0cdb4bac84cc8fec78362ecf43790adcbf6.svg" />
+<img alt="../_images/26b41f58391b5bf700d8471b07d64e2014cfae0d38c798d615d08071a0ae7a88.svg" src="../_images/26b41f58391b5bf700d8471b07d64e2014cfae0d38c798d615d08071a0ae7a88.svg" />
 </div>
 </div>
 <p>The attribute <code class="docutils literal notranslate"><span class="pre">search_space_</span></code> is an original copy and it is not changed.</p>
@@ -1097,31 +1097,31 @@ node_map[ArrayF][[&quot;ArrayF&quot;]][Cos] = 1.00*Cos, weight = 1
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>=== Search space ===
 terminal_map: {&quot;ArrayB&quot;: [&quot;1.00&quot;], &quot;ArrayI&quot;: [&quot;x5&quot;, &quot;x7&quot;, &quot;1.00&quot;], &quot;ArrayF&quot;: [&quot;x0&quot;, &quot;x1&quot;, &quot;x2&quot;, &quot;x3&quot;, &quot;x4&quot;, &quot;x6&quot;, &quot;1.00&quot;]}
-terminal_weights: {&quot;ArrayB&quot;: [0.3329473], &quot;ArrayI&quot;: [0.3809668, 0.47323334, 0.5664852], &quot;ArrayF&quot;: [0.033086747, 0.08362485, 0.06368329, 0.059957452, 0.07092283, 0.045770478, 0.07865266]}
-node_map[ArrayI][[&quot;ArrayI&quot;, &quot;ArrayI&quot;]][SplitBest] = 1.00*SplitBest, weight = 0.31536424
-node_map[ArrayI][[&quot;ArrayI&quot;, &quot;ArrayI&quot;]][Mul] = 1.00*Mul, weight = 0.46593833
-node_map[ArrayI][[&quot;ArrayI&quot;, &quot;ArrayI&quot;]][Sub] = 1.00*Sub, weight = 0.6326896
-node_map[ArrayI][[&quot;ArrayI&quot;, &quot;ArrayI&quot;]][Add] = 1.00*Add, weight = 0.0353554
-node_map[MatrixF][[&quot;ArrayF&quot;, &quot;ArrayF&quot;, &quot;ArrayF&quot;, &quot;ArrayF&quot;]][Logabs] = 1.00*Logabs, weight = 0.7454892
-node_map[MatrixF][[&quot;ArrayF&quot;, &quot;ArrayF&quot;, &quot;ArrayF&quot;, &quot;ArrayF&quot;]][Exp] = 1.00*Exp, weight = 0.3469734
-node_map[MatrixF][[&quot;ArrayF&quot;, &quot;ArrayF&quot;, &quot;ArrayF&quot;, &quot;ArrayF&quot;]][Sin] = 1.00*Sin, weight = 0.5367735
-node_map[MatrixF][[&quot;ArrayF&quot;, &quot;ArrayF&quot;, &quot;ArrayF&quot;, &quot;ArrayF&quot;]][Cos] = 1.00*Cos, weight = 0.7427638
-node_map[MatrixF][[&quot;ArrayF&quot;, &quot;ArrayF&quot;, &quot;ArrayF&quot;]][Logabs] = 1.00*Logabs, weight = 0.49479496
-node_map[MatrixF][[&quot;ArrayF&quot;, &quot;ArrayF&quot;, &quot;ArrayF&quot;]][Exp] = 1.00*Exp, weight = 0.32540795
-node_map[MatrixF][[&quot;ArrayF&quot;, &quot;ArrayF&quot;, &quot;ArrayF&quot;]][Sin] = 1.00*Sin, weight = 0.34870425
-node_map[MatrixF][[&quot;ArrayF&quot;, &quot;ArrayF&quot;, &quot;ArrayF&quot;]][Cos] = 1.00*Cos, weight = 0.39023522
-node_map[MatrixF][[&quot;ArrayF&quot;, &quot;ArrayF&quot;]][Logabs] = 1.00*Logabs, weight = 0.751796
-node_map[MatrixF][[&quot;ArrayF&quot;, &quot;ArrayF&quot;]][Exp] = 1.00*Exp, weight = 0.4705618
-node_map[MatrixF][[&quot;ArrayF&quot;, &quot;ArrayF&quot;]][Sin] = 1.00*Sin, weight = 0.74605215
-node_map[MatrixF][[&quot;ArrayF&quot;, &quot;ArrayF&quot;]][Cos] = 1.00*Cos, weight = 0.3795501
-node_map[ArrayF][[&quot;ArrayF&quot;, &quot;ArrayF&quot;]][SplitBest] = 1.00*SplitBest, weight = 0.5067013
-node_map[ArrayF][[&quot;ArrayF&quot;, &quot;ArrayF&quot;]][Mul] = 1.00*Mul, weight = 0.01
-node_map[ArrayF][[&quot;ArrayF&quot;, &quot;ArrayF&quot;]][Sub] = 1.00*Sub, weight = 0.023901379
-node_map[ArrayF][[&quot;ArrayF&quot;, &quot;ArrayF&quot;]][Add] = 1.00*Add, weight = 0.07550835
-node_map[ArrayF][[&quot;ArrayF&quot;]][Logabs] = 1.00*Logabs, weight = 0.1325138
-node_map[ArrayF][[&quot;ArrayF&quot;]][Exp] = 1.00*Exp, weight = 0.06990866
-node_map[ArrayF][[&quot;ArrayF&quot;]][Sin] = 1.00*Sin, weight = 0.07668449
-node_map[ArrayF][[&quot;ArrayF&quot;]][Cos] = 1.00*Cos, weight = 0.033387024
+terminal_weights: {&quot;ArrayB&quot;: [0.31641042], &quot;ArrayI&quot;: [0.40001643, 0.7300561, 0.33041582], &quot;ArrayF&quot;: [0.5862769, 0.37799728, 0.5130713, 0.41667598, 0.28544503, 0.8411703, 0.3747217]}
+node_map[ArrayI][[&quot;ArrayI&quot;, &quot;ArrayI&quot;]][SplitBest] = 1.00*SplitBest, weight = 0.38799778
+node_map[ArrayI][[&quot;ArrayI&quot;, &quot;ArrayI&quot;]][Mul] = 1.00*Mul, weight = 0.21231566
+node_map[ArrayI][[&quot;ArrayI&quot;, &quot;ArrayI&quot;]][Sub] = 1.00*Sub, weight = 0.47975916
+node_map[ArrayI][[&quot;ArrayI&quot;, &quot;ArrayI&quot;]][Add] = 1.00*Add, weight = 0.62021255
+node_map[MatrixF][[&quot;ArrayF&quot;, &quot;ArrayF&quot;, &quot;ArrayF&quot;, &quot;ArrayF&quot;]][Logabs] = 1.00*Logabs, weight = 0.35245612
+node_map[MatrixF][[&quot;ArrayF&quot;, &quot;ArrayF&quot;, &quot;ArrayF&quot;, &quot;ArrayF&quot;]][Exp] = 1.00*Exp, weight = 0.8055198
+node_map[MatrixF][[&quot;ArrayF&quot;, &quot;ArrayF&quot;, &quot;ArrayF&quot;, &quot;ArrayF&quot;]][Sin] = 1.00*Sin, weight = 0.3553904
+node_map[MatrixF][[&quot;ArrayF&quot;, &quot;ArrayF&quot;, &quot;ArrayF&quot;, &quot;ArrayF&quot;]][Cos] = 1.00*Cos, weight = 0.9379348
+node_map[MatrixF][[&quot;ArrayF&quot;, &quot;ArrayF&quot;, &quot;ArrayF&quot;]][Logabs] = 1.00*Logabs, weight = 0.29540697
+node_map[MatrixF][[&quot;ArrayF&quot;, &quot;ArrayF&quot;, &quot;ArrayF&quot;]][Exp] = 1.00*Exp, weight = 0.5393347
+node_map[MatrixF][[&quot;ArrayF&quot;, &quot;ArrayF&quot;, &quot;ArrayF&quot;]][Sin] = 1.00*Sin, weight = 0.52640975
+node_map[MatrixF][[&quot;ArrayF&quot;, &quot;ArrayF&quot;, &quot;ArrayF&quot;]][Cos] = 1.00*Cos, weight = 0.7617483
+node_map[MatrixF][[&quot;ArrayF&quot;, &quot;ArrayF&quot;]][Logabs] = 1.00*Logabs, weight = 0.37520972
+node_map[MatrixF][[&quot;ArrayF&quot;, &quot;ArrayF&quot;]][Exp] = 1.00*Exp, weight = 0.43845758
+node_map[MatrixF][[&quot;ArrayF&quot;, &quot;ArrayF&quot;]][Sin] = 1.00*Sin, weight = 0.20359929
+node_map[MatrixF][[&quot;ArrayF&quot;, &quot;ArrayF&quot;]][Cos] = 1.00*Cos, weight = 0.5781435
+node_map[ArrayF][[&quot;ArrayF&quot;, &quot;ArrayF&quot;]][SplitBest] = 1.00*SplitBest, weight = 0.53659433
+node_map[ArrayF][[&quot;ArrayF&quot;, &quot;ArrayF&quot;]][Mul] = 1.00*Mul, weight = 0.48227155
+node_map[ArrayF][[&quot;ArrayF&quot;, &quot;ArrayF&quot;]][Sub] = 1.00*Sub, weight = 0.66283673
+node_map[ArrayF][[&quot;ArrayF&quot;, &quot;ArrayF&quot;]][Add] = 1.00*Add, weight = 0.20790648
+node_map[ArrayF][[&quot;ArrayF&quot;]][Logabs] = 1.00*Logabs, weight = 0.36600778
+node_map[ArrayF][[&quot;ArrayF&quot;]][Exp] = 1.00*Exp, weight = 0.66059244
+node_map[ArrayF][[&quot;ArrayF&quot;]][Sin] = 1.00*Sin, weight = 0.37146825
+node_map[ArrayF][[&quot;ArrayF&quot;]][Cos] = 1.00*Cos, weight = 0.30392477
 </pre></div>
 </div>
 </div>
@@ -1149,8 +1149,8 @@ node_map[ArrayF][[&quot;ArrayF&quot;]][Cos] = 1.00*Cos, weight = 0.033387024
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.09370556473731995
-{&#39;delete&#39;: 0.07188443094491959, &#39;insert&#39;: 0.054662108421325684, &#39;point&#39;: 0.23181933164596558, &#39;subtree&#39;: 0.517862856388092, &#39;toggle_weight_off&#39;: 0.14806653559207916, &#39;toggle_weight_on&#39;: 0.052384451031684875}
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.009999999776482582
+{&#39;delete&#39;: 0.009999999776482582, &#39;insert&#39;: 0.009999999776482582, &#39;point&#39;: 0.009999999776482582, &#39;subtree&#39;: 0.009999999776482582, &#39;toggle_weight_off&#39;: 0.009999999776482582, &#39;toggle_weight_on&#39;: 0.009999999776482582}
 </pre></div>
 </div>
 </div>
@@ -1163,35 +1163,50 @@ node_map[ArrayF][[&quot;ArrayF&quot;]][Cos] = 1.00*Cos, weight = 0.033387024
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">tempfile</span>
 
 <span class="c1"># Running 5x each algorithm and saving its convergence data</span>
-<span class="n">bandits</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;dummy&#39;</span><span class="p">,</span> <span class="s1">&#39;thompson&#39;</span><span class="p">,</span> <span class="s1">&#39;linear_thompson&#39;</span><span class="p">,</span> <span class="s1">&#39;dynamic_thompson&#39;</span><span class="p">]</span>
+<span class="n">bandits</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;dummy&#39;</span><span class="p">,</span> <span class="s1">&#39;thompson&#39;</span><span class="p">,</span> <span class="s1">&#39;dynamic_thompson&#39;</span><span class="p">]</span>
 <span class="n">results</span> <span class="o">=</span> <span class="p">{</span><span class="n">b</span><span class="p">:[]</span> <span class="k">for</span> <span class="n">b</span> <span class="ow">in</span> <span class="n">bandits</span><span class="p">}</span>
 
 <span class="k">with</span> <span class="n">tempfile</span><span class="o">.</span><span class="n">TemporaryDirectory</span><span class="p">()</span> <span class="k">as</span> <span class="n">tmpdirname</span><span class="p">:</span>
     <span class="k">for</span> <span class="n">bandit</span> <span class="ow">in</span> <span class="n">bandits</span><span class="p">:</span>
         <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Running bandit: </span><span class="si">{</span><span class="n">bandit</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
-        <span class="k">for</span> <span class="n">run</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">5</span><span class="p">):</span>
+        <span class="k">for</span> <span class="n">run</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">10</span><span class="p">):</span>
             <span class="n">logfile</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">tmpdirname</span><span class="si">}</span><span class="s2">/log_bandit=</span><span class="si">{</span><span class="n">bandit</span><span class="si">}</span><span class="s2">_run=</span><span class="si">{</span><span class="n">run</span><span class="si">}</span><span class="s2">.csv&quot;</span>
             
             <span class="n">est</span> <span class="o">=</span> <span class="n">BrushRegressor</span><span class="p">(</span>
-                <span class="n">functions</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;SplitOn&#39;</span><span class="p">,</span><span class="s1">&#39;Add&#39;</span><span class="p">,</span><span class="s1">&#39;Exp&#39;</span><span class="p">,</span><span class="s1">&#39;Sub&#39;</span><span class="p">,</span> <span class="s1">&#39;SplitBest&#39;</span><span class="p">,</span>
-                        <span class="s1">&#39;Mul&#39;</span><span class="p">,</span><span class="s1">&#39;Sin&#39;</span><span class="p">,</span><span class="s1">&#39;Cos&#39;</span><span class="p">,</span><span class="s1">&#39;Exp&#39;</span><span class="p">,</span><span class="s1">&#39;Logabs&#39;</span><span class="p">],</span>
+                <span class="n">functions</span><span class="o">=</span><span class="p">[</span>
+                    <span class="s1">&#39;Exp&#39;</span><span class="p">,</span> <span class="s1">&#39;Sub&#39;</span><span class="p">,</span> <span class="s1">&#39;Add&#39;</span><span class="p">,</span> <span class="s1">&#39;SplitBest&#39;</span><span class="p">,</span> <span class="c1"># &#39;SplitOn&#39;, # &#39;And&#39;, &#39;Or&#39;, #</span>
+                    <span class="c1"># &#39;Mul&#39;, &#39;Sin&#39;, &#39;Cos&#39;, &#39;Exp&#39;, &#39;Logabs&#39;</span>
+                <span class="p">],</span>
                 <span class="n">max_gens</span><span class="o">=</span><span class="mi">50</span><span class="p">,</span>
                 <span class="n">pop_size</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span>
-                <span class="n">max_stall</span><span class="o">=</span><span class="mi">50</span><span class="p">,</span> <span class="c1"># avoiding early stopping --- we want to see the full convergence</span>
+                <span class="n">max_stall</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span> <span class="c1"># avoiding early stopping --- we want to see the full convergence</span>
+                <span class="n">max_depth</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span>
                 <span class="n">objectives</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;scorer&quot;</span><span class="p">,</span> <span class="s2">&quot;linear_complexity&quot;</span><span class="p">],</span>
                 <span class="n">bandit</span><span class="o">=</span><span class="n">bandit</span><span class="p">,</span>
                 <span class="n">weights_init</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+                <span class="n">cx_prob</span> <span class="o">=</span> <span class="mi">1</span><span class="o">/</span><span class="mi">10</span><span class="p">,</span>
+                <span class="n">mutation_probs</span> <span class="o">=</span> <span class="p">{</span>
+                    <span class="s2">&quot;point&quot;</span>             <span class="p">:</span> <span class="mi">2</span><span class="o">/</span><span class="mi">10</span><span class="p">,</span>
+                    <span class="s2">&quot;insert&quot;</span>            <span class="p">:</span> <span class="mi">2</span><span class="o">/</span><span class="mi">10</span><span class="p">,</span>
+                    <span class="s2">&quot;delete&quot;</span>            <span class="p">:</span> <span class="mi">1</span><span class="o">/</span><span class="mi">10</span><span class="p">,</span>
+                    <span class="s2">&quot;subtree&quot;</span>           <span class="p">:</span> <span class="mi">2</span><span class="o">/</span><span class="mi">10</span><span class="p">,</span>
+                    <span class="s2">&quot;toggle_weight_on&quot;</span>  <span class="p">:</span> <span class="mi">1</span><span class="o">/</span><span class="mi">10</span><span class="p">,</span>
+                    <span class="s2">&quot;toggle_weight_off&quot;</span> <span class="p">:</span> <span class="mi">1</span><span class="o">/</span><span class="mi">10</span> <span class="p">},</span>
                 <span class="n">use_arch</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
                 <span class="n">logfile</span><span class="o">=</span><span class="n">logfile</span><span class="p">,</span>
                 <span class="n">verbosity</span><span class="o">=</span><span class="mi">1</span>
-            <span class="p">)</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X</span><span class="p">,</span><span class="n">y</span><span class="p">)</span>
+            <span class="p">)</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">float</span><span class="p">),</span><span class="n">y</span><span class="p">)</span>
 
+            <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;model:&#39;</span><span class="p">,</span> <span class="n">est</span><span class="o">.</span><span class="n">best_estimator_</span><span class="o">.</span><span class="n">get_model</span><span class="p">())</span>
+            
             <span class="n">results</span><span class="p">[</span><span class="n">bandit</span><span class="p">]</span> <span class="o">.</span><span class="n">append</span><span class="p">({</span><span class="s1">&#39;run&#39;</span>       <span class="p">:</span> <span class="n">run</span><span class="p">,</span>
                                     <span class="s1">&#39;model&#39;</span>      <span class="p">:</span> <span class="n">est</span><span class="o">.</span><span class="n">best_estimator_</span><span class="o">.</span><span class="n">get_model</span><span class="p">(),</span>
                                     <span class="s1">&#39;size&#39;</span>       <span class="p">:</span> <span class="n">est</span><span class="o">.</span><span class="n">best_estimator_</span><span class="o">.</span><span class="n">fitness</span><span class="o">.</span><span class="n">size</span><span class="p">,</span>
                                     <span class="s1">&#39;loss_v&#39;</span>     <span class="p">:</span> <span class="n">est</span><span class="o">.</span><span class="n">best_estimator_</span><span class="o">.</span><span class="n">fitness</span><span class="o">.</span><span class="n">loss_v</span><span class="p">,</span>
                                     <span class="s1">&#39;complexity&#39;</span> <span class="p">:</span> <span class="n">est</span><span class="o">.</span><span class="n">best_estimator_</span><span class="o">.</span><span class="n">fitness</span><span class="o">.</span><span class="n">complexity</span><span class="p">,</span>
-                                    <span class="s1">&#39;log&#39;</span>        <span class="p">:</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">logfile</span><span class="p">)</span> <span class="p">})</span> <span class="c1"># loading logfile and saving it</span>
+                                    <span class="c1"># &#39;linear_complexity&#39; : est.best_estimator_.fitness.linear_complexity,</span>
+                                    <span class="s1">&#39;log&#39;</span>        <span class="p">:</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">logfile</span><span class="p">)</span> <span class="c1"># loading logfile and keeping it</span>
+                                    <span class="p">})</span> 
 </pre></div>
 </div>
 </div>
@@ -1199,47 +1214,96 @@ node_map[ArrayF][[&quot;ArrayF&quot;]][Cos] = 1.00*Cos, weight = 0.033387024
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Running bandit: dummy
 Completed 100% [====================]
 saving final population as archive...
+model: Sub(If(x0&gt;0.75,Add(If(x0&gt;0.81,213.55,281.18*x0),-0.04*x3),If(x0&gt;0.70,0.44*Add(-0.07*x2,82.46*x0),If(x0&gt;0.63,0.02*x1,11.00))),15.48*Add(If(x0&gt;0.75,12.67,1.79*x0),Sub(-0.00*x2,0.96*x6)))
 Completed 100% [====================]
 saving final population as archive...
+model: 0.67*Add(Add(28.29*x6,If(x0&gt;0.75,-0.06*Add(-1.76*x2,9.44*x1),-33.32*x0)),If(x0&gt;0.75,If(x0&gt;0.81,Add(0.49*x1,26.00),50.54*x4),Sub(42.72,12.62*x6)))
 Completed 100% [====================]
 saving final population as archive...
+model: If(x0&gt;0.75,Add(If(x0&gt;0.81,0.50*Add(61.01,-0.07*x3),Sub(127.74*x0,65.14)),19.07*x6),Sub(Add(137.19,0.28*Sub(-484.59*x0,0.40*x2)),-10.57*x6))
 Completed 100% [====================]
 saving final population as archive...
+model: -1.08*Add(If(x0&gt;0.75,If(x0&gt;0.81,If(x6&gt;0.17,-25.19,-3.48*x4),Sub(-118.41*x0,-59.63)),0.00*Add(If(x0&gt;0.70,x1,1235.15*x6),-965.41*x4)),-14.45*x6)
 Completed 100% [====================]
 saving final population as archive...
+model: If(x0&gt;0.75,Add(Add(-65.15,19.07*x6),If(x0&gt;0.81,0.97*Add(88.60,5.76*x0),127.74*x0)),Sub(10.28*x6,If(x0&gt;0.70,-12.51,If(x0&gt;0.63,-0.02*x1,-20.70*x0))))
+Completed 100% [====================]
+saving final population as archive...
+model: Add(If(x0&gt;0.75,Add(If(x0&gt;0.81,91.17,127.74*x0),0.69*Add(-94.43,12.47*x6)),0.02*x1),10.47*x6)
+Completed 100% [====================]
+saving final population as archive...
+model: Add(If(x0&gt;0.75,If(x0&gt;0.81,Sub(30.52,0.03*x3),0.96*Sub(-67.57,-132.49*x0)),2.16*Sub(0.07*Add(0.13*x1,-12.33*x0),3.93*x6)),19.07*x6)
+Completed 100% [====================]
+saving final population as archive...
+model: Sub(If(x0&gt;0.75,If(x0&gt;0.81,0.06*x2,0.19*x3),Add(-8.50*x6,If(x0&gt;0.70,12.02,0.02*x1))),-0.56*Sub(33.94*x6,Sub(If(x0&gt;0.75,0.07*x3,3.37*x4),3.58*x4)))
+Completed 100% [====================]
+saving final population as archive...
+model: 0.85*Sub(0.06*Add(1.66*Add(0.98*Add(2026.03,167.46*x6),Sub(-840.44*x0,1.03*x3)),-0.94*x1),If(x0&gt;0.75,If(x0&gt;0.81,If(x6&gt;0.17,0.07*x1,43.22),0.10*x2),57.97))
+Completed 100% [====================]
+saving final population as archive...
+model: If(x0&gt;0.75,-0.01*Add(If(x0&gt;0.81,-865.31*x0,-1915.73*x0),202.45*Add(-1.12*x4,-8.55*x6)),-0.13*Add(-30.34*Sub(0.01*x1,-2.70*x6),5.36*x4))
 Running bandit: thompson
 Completed 100% [====================]
 saving final population as archive...
+model: Add(0.02*Add(19.56*Sub(48.22*x6,1.36*Sub(54.91*x4,0.67*x3)),-3.17*x2),If(x0&gt;0.75,If(x0&gt;0.81,0.26*Sub(x2,-383.94*x0),0.27*x1),If(x0&gt;0.70,0.06*x1,If(x0&gt;0.63,0.15*x2,48.62))))
 Completed 100% [====================]
 saving final population as archive...
+model: If(x0&gt;0.75,Add(4.36*Add(0.03*x3,x4),-0.22*Sub(If(x0&gt;0.81,0.77*x3,0.10*x1),87.55*x6)),Sub(If(x0&gt;0.70,-0.00*x1,-0.48*x0),0.60*Sub(-17.57*x6,0.03*x1)))
 Completed 100% [====================]
 saving final population as archive...
+model: Sub(0.07*Sub(Add(154.21*x6,Sub(-796.99*x0,x2)),-0.52*x1),If(x0&gt;0.75,Add(If(x0&gt;0.81,0.29*x3,0.05*x1),-10.38*Add(1.57*x4,0.82*x6)),-44.75))
 Completed 100% [====================]
 saving final population as archive...
+model: Add(0.18*Sub(Add(Add(0.15*x2,-0.49*x3),If(x0&gt;0.75,100.99*x6,-0.11*x1)),77.76*x0),If(x0&gt;0.75,If(x0&gt;0.81,Sub(41.43,-1.49*x6),0.34*x3),Add(48.35,10.57*x6)))
 Completed 100% [====================]
 saving final population as archive...
-Running bandit: linear_thompson
+model: Sub(If(x0&gt;0.75,If(x0&gt;0.81,0.61*Add(49.68,-0.06*x3),0.05*Sub(147.01*x4,x2)),If(x0&gt;0.70,2.30*x4,0.04*x3)),0.02*Sub(-620.58*x6,If(x0&gt;0.75,499.46*x6,x2)))
 Completed 100% [====================]
 saving final population as archive...
+model: 0.24*Add(If(x0&gt;0.75,If(x0&gt;0.81,0.74*Sub(-6.26*x4,x3),Add(-0.33*x2,16.46*x6)),If(x0&gt;0.70,If(x6&gt;0.05,-234.59,-0.34*x1),If(x0&gt;0.63,-244.32,-431.73*x0))),Add(59.82*Add(0.80*x0,x6),0.36*x1))
 Completed 100% [====================]
 saving final population as archive...
+model: Add(If(x0&gt;0.75,Add(19.07*x6,-0.29*x2),10.57*x6),Sub(If(x0&gt;0.75,If(x0&gt;0.81,-204.28*x0,-21.52*x4),Add(-22.46*x0,-1250.99)),Sub(-389.30,If(x0&gt;0.75,-0.71*x3,254.42*x4))))
 Completed 100% [====================]
 saving final population as archive...
+model: Sub(If(x0&gt;0.75,3.18*Add(If(x0&gt;0.81,50.16,67.27*x0),2.67*x6),82.65),Sub(0.02*Add(Sub(1003.98*x4,1.18*x2),1.94*x3),10.57*x6))
 Completed 100% [====================]
 saving final population as archive...
+model: If(x0&gt;0.75,Sub(Sub(19.07*x6,-0.04*x2),If(x0&gt;0.81,-15.28,-0.21*Sub(x3,0.09*x2))),Add(If(x0&gt;0.70,Add(72.51,10.95*x6),If(x0&gt;0.63,0.10*x1,121.61*x0)),-60.16))
 Completed 100% [====================]
 saving final population as archive...
+model: If(x0&gt;0.75,-0.05*Add(If(x0&gt;0.81,-499.15,Add(-1029.05,x2)),-365.75*x6),Add(10.57*x6,-0.00*Sub(-344.06*Add(x1,-65.62),2.71*Sub(-165.07*x2,46352.27*x0))))
 Running bandit: dynamic_thompson
 Completed 100% [====================]
 saving final population as archive...
+model: -0.02*Sub(-1045.36*x6,If(x0&gt;0.75,Sub(If(x0&gt;0.81,3.54*x1,3567.66*x0),2.31*Sub(1.75*x1,105.99*x4)),Add(x1,-472.58*x6)))
 Completed 100% [====================]
 saving final population as archive...
+model: Sub(If(x0&gt;0.75,-4.34*Add(If(x0&gt;0.81,-21.02,-29.45*x0),15.02),0.07*Add(Sub(0.31*x1,121.86*x6),-9.89*x4)),-19.07*x6)
 Completed 100% [====================]
 saving final population as archive...
+model: If(x0&gt;0.75,Add(0.93*Sub(Add(-231.42,21.41*x6),-0.07*x2),If(x0&gt;0.81,7.79*Add(16.40*x0,0.02*x1),If(x6&gt;0.32,287.93*x0,289.03*x0))),Add(-22.46*x0,Add(10.57*x6,28.79)))
 Completed 100% [====================]
 saving final population as archive...
+model: Add(If(x0&gt;0.75,If(x0&gt;0.81,Add(68.03,-0.13*x3),0.03*Sub(2988.39*x0,x2)),Add(5.29*x0,10.57*x6)),0.13*Add(If(x0&gt;0.75,146.03*x6,x3),-212.49*x0))
 Completed 100% [====================]
 saving final population as archive...
+model: 0.57*Add(If(x0&gt;0.75,If(x0&gt;0.81,If(x6&gt;0.17,6.76*x4,0.15*x2),0.43*x3),7.75*x4),0.02*Add(1267.54*x6,17.48*Add(0.11*x1,-0.43*x3)))
+Completed 100% [====================]
+saving final population as archive...
+model: 0.02*Add(Add(If(x0&gt;0.75,If(x0&gt;0.81,4999.81,7005.36*x0),x1),-271.46*Sub(If(x0&gt;0.75,13.16,1.74*x6),-2282.78*x6)),620738.56*x6)
+Completed 100% [====================]
+saving final population as archive...
+model: Add(Sub(18.83*x6,If(x0&gt;0.75,0.04*x3,-0.02*x1)),If(x0&gt;0.75,If(x0&gt;0.81,If(x6&gt;0.17,31.02,0.10*x2),0.07*Sub(1607.87*x0,x1)),-8.36*x6))
+Completed 100% [====================]
+saving final population as archive...
+model: Sub(0.17*Sub(If(x0&gt;0.75,If(x0&gt;0.81,0.28*x2,x3),Sub(-133.79*x0,50.48*x6)),-113.41*x6),If(x0&gt;0.75,-0.01*Add(1295.14*x0,x2),-28.79))
+Completed 100% [====================]
+saving final population as archive...
+model: Sub(If(x0&gt;0.75,Sub(If(x0&gt;0.81,16.62,0.18*x3),-8.39*Add(x6,0.79*x0)),0.01*x1),3.01*Sub(-3.54*x6,0.00*x2))
+Completed 100% [====================]
+saving final population as archive...
+model: If(x0&gt;0.75,Add(Add(If(x0&gt;0.81,17.74,0.19*x3),19.07*x6),Add(12.78,-0.03*x3)),Add(0.02*x1,0.52*Sub(20.38*x6,4.66)))
 </pre></div>
 </div>
 </div>
@@ -1259,7 +1323,7 @@ saving final population as archive...
 <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">col</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">([</span><span class="s1">&#39;best_score&#39;</span><span class="p">,</span> <span class="s1">&#39;best_score_val&#39;</span><span class="p">]):</span>
     <span class="k">for</span> <span class="n">bandit</span> <span class="ow">in</span> <span class="n">bandits</span><span class="p">:</span>
         <span class="n">bandit_df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">concat</span><span class="p">([</span><span class="n">experiment</span><span class="p">[</span><span class="s1">&#39;log&#39;</span><span class="p">]</span> <span class="k">for</span> <span class="n">experiment</span> <span class="ow">in</span> <span class="n">results</span><span class="p">[</span><span class="n">bandit</span><span class="p">]],</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
-        <span class="n">sns</span><span class="o">.</span><span class="n">lineplot</span><span class="p">(</span><span class="n">bandit_df</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="s1">&#39;generation&#39;</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="n">col</span><span class="p">,</span> <span class="n">ls</span><span class="o">=</span><span class="nb">next</span><span class="p">(</span><span class="n">linecycler</span><span class="p">),</span> <span class="n">label</span><span class="o">=</span><span class="n">bandit</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="n">axs</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">estimator</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">)</span>
+        <span class="n">sns</span><span class="o">.</span><span class="n">lineplot</span><span class="p">(</span><span class="n">bandit_df</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="s1">&#39;generation&#39;</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="n">col</span><span class="p">,</span> <span class="n">ls</span><span class="o">=</span><span class="nb">next</span><span class="p">(</span><span class="n">linecycler</span><span class="p">),</span> <span class="n">label</span><span class="o">=</span><span class="n">bandit</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="n">axs</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">estimator</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">nanmedian</span><span class="p">,</span> <span class="n">errorbar</span><span class="o">=</span><span class="s1">&#39;ci&#39;</span><span class="p">)</span>
     <span class="n">sns</span><span class="o">.</span><span class="n">despine</span><span class="p">()</span>
     <span class="n">axs</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">grid</span><span class="p">()</span>
     <span class="n">axs</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">set_yscale</span><span class="p">(</span><span class="s1">&#39;log&#39;</span><span class="p">)</span>
@@ -1267,14 +1331,12 @@ saving final population as archive...
 <span class="n">axs</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">&#39;Best Score per Generation&#39;</span><span class="p">)</span>
 <span class="n">axs</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">&#39;Best Val Score per Generation&#39;</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.legend.Legend at 0x7f1a95d314f0&gt;
-</pre></div>
-</div>
-<img alt="../_images/a06d05a6b59aae2ad3e466d8f0ddc6acab20d6af6b2bf9ae77a54c9a25a98b9c.png" src="../_images/a06d05a6b59aae2ad3e466d8f0ddc6acab20d6af6b2bf9ae77a54c9a25a98b9c.png" />
+<img alt="../_images/a753e30d5be6fe7412ca987fb1dd3f0f81532432f42dddc16a0c8dabc05030f2.png" src="../_images/a753e30d5be6fe7412ca987fb1dd3f0f81532432f42dddc16a0c8dabc05030f2.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -1293,10 +1355,9 @@ saving final population as archive...
 
 <span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">frames</span><span class="p">)</span>
 
+<span class="n">fig</span><span class="p">,</span> <span class="n">axs</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span> <span class="mi">5</span><span class="p">),</span> <span class="n">sharey</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 
-<span class="n">fig</span><span class="p">,</span> <span class="n">axs</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">5</span><span class="p">),</span> <span class="n">sharey</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-
-<span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">col</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">([</span><span class="s1">&#39;size&#39;</span><span class="p">,</span> <span class="s1">&#39;loss_v&#39;</span><span class="p">]):</span>
+<span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">col</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">([</span><span class="s1">&#39;size&#39;</span><span class="p">,</span> <span class="s1">&#39;complexity&#39;</span><span class="p">,</span> <span class="s1">&#39;loss_v&#39;</span><span class="p">]):</span>
     <span class="n">sns</span><span class="o">.</span><span class="n">barplot</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="s1">&#39;bandit&#39;</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="n">col</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="n">axs</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>
     <span class="n">sns</span><span class="o">.</span><span class="n">despine</span><span class="p">()</span>
     
@@ -1305,7 +1366,7 @@ saving final population as archive...
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/e5ace4657af0af9183578bf9f0757da07b9a2ec4c05501d40b365f25ebe4b349.png" src="../_images/e5ace4657af0af9183578bf9f0757da07b9a2ec4c05501d40b365f25ebe4b349.png" />
+<img alt="../_images/d62fc3cf285e74cfc07eb3500d523c1342c1e96df1f52e0467be73f50ef0063b.png" src="../_images/d62fc3cf285e74cfc07eb3500d523c1342c1e96df1f52e0467be73f50ef0063b.png" />
 </div>
 </div>
 </section>

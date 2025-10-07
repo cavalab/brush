@@ -67,19 +67,19 @@ var NAVTREEINDEX =
 [
 "annotated.html",
 "d1/d3a/structBrush_1_1Node.html#a0971012cfb2ae944f4bea0ea0dc9e5a3",
-"d2/d36/classBrush_1_1Data_1_1Dataset.html",
-"d4/d01/structBrush_1_1Jetify_3_01Data_1_1TimeSeriesb_01_4.html",
-"d4/de2/structBrush_1_1Pop_1_1Population_1_1SameFitComplexity.html#a08e61d9f1f10b6020f24e232f264caed",
-"d6/dd0/structBrush_1_1Fitness.html#a0998d4960cae30c329ae6d2f05a27c84",
-"d7/d56/structBrush_1_1Data_1_1TimeSeries.html#aa833203e5097827e5e395c9bd21d4be7",
-"d8/da4/classBrush_1_1Util_1_1Timer.html",
-"da/d4c/classBrush_1_1Eval_1_1Scorer.html#a074ffe387edb4090061c5aa0402ebb1d",
-"db/d25/structBrush_1_1Function_3_01NodeType_1_1Sqrtabs_01_4.html#a2f56929b44f85894bc615e33e8862266",
-"dc/d31/structBrush_1_1Operator.html#a91d6de562fe5a54112e3c746b4281f7e",
-"dc/d91/structBrush_1_1OptimizerSummary.html#a35d3cdbb636c352133ed40ed224bbb45",
-"de/d20/classBrush_1_1Var_1_1SplitMutation.html",
-"de/deb/structBrush_1_1Parameters.html",
-"df/d09/structBrush_1_1TinyCostFunction.html#a78af5167fa8aeaa9326dc7fc87418185"
+"d2/d36/classBrush_1_1Data_1_1Dataset.html#a652aba735323fddf7bf79407e7e4fc83",
+"d4/d46/classBrush_1_1Var_1_1PointMutation.html#abed0c55509e074070bd1068a62a1ca0a",
+"d5/d14/classBrush_1_1Var_1_1Variation.html#a5a134c3d6b952ac01254d396f9dd2726",
+"d6/dd0/structBrush_1_1Fitness.html#a512d328942d02c909b2e0c11c23ad1b2",
+"d7/d56/structBrush_1_1Data_1_1TimeSeries.html#aef32cd8108ad378942c6c3af97902bd9",
+"d8/dca/structBrush_1_1Function_3_01NodeType_1_1After_01_4.html",
+"da/d4c/classBrush_1_1Eval_1_1Scorer.html#af3946b7d7b31126563379e68591374ce",
+"db/d7e/structBrush_1_1Util_1_1Log__Stats.html#ad14397a3403cfe63bfac32beea700c7a",
+"dc/d5c/namespaceBrush.html",
+"dc/dac/io_8h.html",
+"de/d30/structBrush_1_1Jetify.html#a41a88664219f863ac8fe341e03f5c21f",
+"de/deb/structBrush_1_1Parameters.html#a1cb1c1f543a2d7c19ae843252e4c4f9e",
+"df/d76/structBrush_1_1UnJetify_3_01Data_1_1TimeSeriesfJet_01_4.html#a106d860b25f2bf8a4e1a4c76921d4f91"
 ];
 
 var SYNCONMSG = 'click to disable panel synchronization';

@@ -25,7 +25,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/runner/work/brush/brush/src/program/node.h" line="111" column="5" bodyfile="/home/runner/work/brush/brush/src/program/node.h" bodystart="111" bodyend="-1"/>
+        <location file="/home/runner/work/brush/brush/src/program/node.h" line="115" column="5" bodyfile="/home/runner/work/brush/brush/src/program/node.h" bodystart="115" bodyend="-1"/>
       </memberdef>
     </sectiondef>
     <sectiondef kind="public-attrib">
@@ -44,51 +44,6 @@
         </inbodydescription>
         <location file="/home/runner/work/brush/brush/src/program/node.h" line="87" column="12" bodyfile="/home/runner/work/brush/brush/src/program/node.h" bodystart="87" bodyend="-1"/>
       </memberdef>
-      <memberdef kind="variable" id="d8/d49/structNode_1a0971012cfb2ae944f4bea0ea0dc9e5a3" prot="public" static="no" mutable="no">
-        <type>bool</type>
-        <definition>bool Brush::Node::center_op</definition>
-        <argsstring></argsstring>
-        <name>center_op</name>
-        <qualifiedname>Node::center_op</qualifiedname>
-        <briefdescription>
-<para>whether to center the operator in pretty printing </para>
-        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="/home/runner/work/brush/brush/src/program/node.h" line="89" column="10" bodyfile="/home/runner/work/brush/brush/src/program/node.h" bodystart="89" bodyend="-1"/>
-      </memberdef>
-      <memberdef kind="variable" id="d8/d49/structNode_1a9f5b2e34d8ba752e0f6bffebec8afdc0" prot="public" static="no" mutable="no">
-        <type>float</type>
-        <definition>float Brush::Node::prob_change</definition>
-        <argsstring></argsstring>
-        <name>prob_change</name>
-        <qualifiedname>Node::prob_change</qualifiedname>
-        <briefdescription>
-<para>chance of node being selected for variation </para>
-        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="/home/runner/work/brush/brush/src/program/node.h" line="91" column="11" bodyfile="/home/runner/work/brush/brush/src/program/node.h" bodystart="91" bodyend="-1"/>
-      </memberdef>
-      <memberdef kind="variable" id="d8/d49/structNode_1a32c73293ee4e02b6d828c2c213e06154" prot="public" static="no" mutable="no">
-        <type>bool</type>
-        <definition>bool Brush::Node::fixed</definition>
-        <argsstring></argsstring>
-        <name>fixed</name>
-        <qualifiedname>Node::fixed</qualifiedname>
-        <briefdescription>
-<para>whether node is modifiable </para>
-        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="/home/runner/work/brush/brush/src/program/node.h" line="93" column="10" bodyfile="/home/runner/work/brush/brush/src/program/node.h" bodystart="93" bodyend="-1"/>
-      </memberdef>
       <memberdef kind="variable" id="d8/d49/structNode_1a522791afe93c92442564356ff19ff55a" prot="public" static="no" mutable="no">
         <type><ref refid="dc/d5c/namespaceBrush_1a051322bb9fd1db4638b6eccd399a29c8" kindref="member">NodeType</ref></type>
         <definition>NodeType Brush::Node::node_type</definition>
@@ -102,37 +57,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/runner/work/brush/brush/src/program/node.h" line="95" column="14" bodyfile="/home/runner/work/brush/brush/src/program/node.h" bodystart="95" bodyend="-1"/>
-      </memberdef>
-      <memberdef kind="variable" id="d8/d49/structNode_1a889e0361b55a63a4510a3edabd2fa57c" prot="public" static="no" mutable="no">
-        <type>std::size_t</type>
-        <definition>std::size_t Brush::Node::sig_hash</definition>
-        <argsstring></argsstring>
-        <name>sig_hash</name>
-        <qualifiedname>Node::sig_hash</qualifiedname>
-        <briefdescription>
-<para>a hash of the signature </para>
-        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="/home/runner/work/brush/brush/src/program/node.h" line="97" column="17" bodyfile="/home/runner/work/brush/brush/src/program/node.h" bodystart="97" bodyend="-1"/>
-      </memberdef>
-      <memberdef kind="variable" id="d8/d49/structNode_1aed6c2af0fae3dd8e5a8aa2fab77479fd" prot="public" static="no" mutable="no">
-        <type>std::size_t</type>
-        <definition>std::size_t Brush::Node::sig_dual_hash</definition>
-        <argsstring></argsstring>
-        <name>sig_dual_hash</name>
-        <qualifiedname>Node::sig_dual_hash</qualifiedname>
-        <briefdescription>
-<para>a hash of the dual of the signature (for NLS) </para>
-        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="/home/runner/work/brush/brush/src/program/node.h" line="99" column="17" bodyfile="/home/runner/work/brush/brush/src/program/node.h" bodystart="99" bodyend="-1"/>
+        <location file="/home/runner/work/brush/brush/src/program/node.h" line="89" column="14" bodyfile="/home/runner/work/brush/brush/src/program/node.h" bodystart="89" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="d8/d49/structNode_1a65b283648fe779d81ac11f9e4714d920" prot="public" static="no" mutable="no">
         <type><ref refid="dc/d5c/namespaceBrush_1a3f2c9b744330ba4a561ac72f048a1a5f" kindref="member">DataType</ref></type>
@@ -147,7 +72,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/runner/work/brush/brush/src/program/node.h" line="101" column="14" bodyfile="/home/runner/work/brush/brush/src/program/node.h" bodystart="101" bodyend="-1"/>
+        <location file="/home/runner/work/brush/brush/src/program/node.h" line="92" column="14" bodyfile="/home/runner/work/brush/brush/src/program/node.h" bodystart="92" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="d8/d49/structNode_1a237b9208864ace5209edca01623f6b1e" prot="public" static="no" mutable="no">
         <type>std::vector&lt; <ref refid="dc/d5c/namespaceBrush_1a3f2c9b744330ba4a561ac72f048a1a5f" kindref="member">DataType</ref> &gt;</type>
@@ -162,7 +87,52 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/runner/work/brush/brush/src/program/node.h" line="103" column="17" bodyfile="/home/runner/work/brush/brush/src/program/node.h" bodystart="103" bodyend="-1"/>
+        <location file="/home/runner/work/brush/brush/src/program/node.h" line="94" column="17" bodyfile="/home/runner/work/brush/brush/src/program/node.h" bodystart="94" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="d8/d49/structNode_1a889e0361b55a63a4510a3edabd2fa57c" prot="public" static="no" mutable="no">
+        <type>std::size_t</type>
+        <definition>std::size_t Brush::Node::sig_hash</definition>
+        <argsstring></argsstring>
+        <name>sig_hash</name>
+        <qualifiedname>Node::sig_hash</qualifiedname>
+        <briefdescription>
+<para>a hash of the signature </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/runner/work/brush/brush/src/program/node.h" line="96" column="17" bodyfile="/home/runner/work/brush/brush/src/program/node.h" bodystart="96" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="d8/d49/structNode_1aed6c2af0fae3dd8e5a8aa2fab77479fd" prot="public" static="no" mutable="no">
+        <type>std::size_t</type>
+        <definition>std::size_t Brush::Node::sig_dual_hash</definition>
+        <argsstring></argsstring>
+        <name>sig_dual_hash</name>
+        <qualifiedname>Node::sig_dual_hash</qualifiedname>
+        <briefdescription>
+<para>a hash of the dual of the signature (for NLS) </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/runner/work/brush/brush/src/program/node.h" line="98" column="17" bodyfile="/home/runner/work/brush/brush/src/program/node.h" bodystart="98" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="d8/d49/structNode_1a32c73293ee4e02b6d828c2c213e06154" prot="public" static="no" mutable="no">
+        <type>bool</type>
+        <definition>bool Brush::Node::fixed</definition>
+        <argsstring></argsstring>
+        <name>fixed</name>
+        <qualifiedname>Node::fixed</qualifiedname>
+        <briefdescription>
+<para>whether node is modifiable </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/runner/work/brush/brush/src/program/node.h" line="101" column="10" bodyfile="/home/runner/work/brush/brush/src/program/node.h" bodystart="101" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="d8/d49/structNode_1ab72b791f57011a032c6c89238db85845" prot="public" static="no" mutable="no">
         <type>bool</type>
@@ -177,7 +147,22 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/runner/work/brush/brush/src/program/node.h" line="105" column="10" bodyfile="/home/runner/work/brush/brush/src/program/node.h" bodystart="105" bodyend="-1"/>
+        <location file="/home/runner/work/brush/brush/src/program/node.h" line="103" column="10" bodyfile="/home/runner/work/brush/brush/src/program/node.h" bodystart="103" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="d8/d49/structNode_1a9f5b2e34d8ba752e0f6bffebec8afdc0" prot="public" static="no" mutable="no">
+        <type>float</type>
+        <definition>float Brush::Node::prob_change</definition>
+        <argsstring></argsstring>
+        <name>prob_change</name>
+        <qualifiedname>Node::prob_change</qualifiedname>
+        <briefdescription>
+<para>chance of node being selected for variation </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/runner/work/brush/brush/src/program/node.h" line="105" column="11" bodyfile="/home/runner/work/brush/brush/src/program/node.h" bodystart="105" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="d8/d49/structNode_1ab719e64b13753515be49327d98bf2224" prot="public" static="no" mutable="no">
         <type>float</type>
@@ -194,9 +179,22 @@
         </inbodydescription>
         <location file="/home/runner/work/brush/brush/src/program/node.h" line="107" column="11" bodyfile="/home/runner/work/brush/brush/src/program/node.h" bodystart="107" bodyend="-1"/>
       </memberdef>
-    </sectiondef>
-    <sectiondef kind="private-attrib">
-      <memberdef kind="variable" id="d8/d49/structNode_1ac5f37d638625468ed68de599a2a7d968" prot="private" static="no" mutable="no">
+      <memberdef kind="variable" id="d8/d49/structNode_1a0971012cfb2ae944f4bea0ea0dc9e5a3" prot="public" static="no" mutable="no">
+        <type>bool</type>
+        <definition>bool Brush::Node::center_op</definition>
+        <argsstring></argsstring>
+        <name>center_op</name>
+        <qualifiedname>Node::center_op</qualifiedname>
+        <briefdescription>
+<para>whether to center the operator in pretty printing </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/runner/work/brush/brush/src/program/node.h" line="110" column="10" bodyfile="/home/runner/work/brush/brush/src/program/node.h" bodystart="110" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="d8/d49/structNode_1ac5f37d638625468ed68de599a2a7d968" prot="public" static="no" mutable="no">
         <type><ref refid="d5/d92/classstring" kindref="compound">string</ref></type>
         <definition>string Brush::Node::feature</definition>
         <argsstring></argsstring>
@@ -209,14 +207,15 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/runner/work/brush/brush/src/program/node.h" line="264" column="16" bodyfile="/home/runner/work/brush/brush/src/program/node.h" bodystart="264" bodyend="-1"/>
+        <location file="/home/runner/work/brush/brush/src/program/node.h" line="270" column="16" bodyfile="/home/runner/work/brush/brush/src/program/node.h" bodystart="270" bodyend="-1"/>
       </memberdef>
-      <memberdef kind="variable" id="d8/d49/structNode_1a2875e5aa77054658c071f7b0d7103e68" prot="private" static="no" mutable="no">
+      <memberdef kind="variable" id="d8/d49/structNode_1a2875e5aa77054658c071f7b0d7103e68" prot="public" static="no" mutable="no">
         <type><ref refid="dc/d5c/namespaceBrush_1a3f2c9b744330ba4a561ac72f048a1a5f" kindref="member">DataType</ref></type>
         <definition>DataType Brush::Node::feature_type</definition>
         <argsstring></argsstring>
         <name>feature_type</name>
         <qualifiedname>Node::feature_type</qualifiedname>
+        <initializer>= DataType::ArrayF</initializer>
         <briefdescription>
 <para>feature type for terminals or splitting nodes </para>
         </briefdescription>
@@ -224,7 +223,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/runner/work/brush/brush/src/program/node.h" line="267" column="18" bodyfile="/home/runner/work/brush/brush/src/program/node.h" bodystart="267" bodyend="-1"/>
+        <location file="/home/runner/work/brush/brush/src/program/node.h" line="273" column="18" bodyfile="/home/runner/work/brush/brush/src/program/node.h" bodystart="273" bodyend="-1"/>
       </memberdef>
     </sectiondef>
     <sectiondef kind="public-func">
@@ -240,7 +239,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/runner/work/brush/brush/src/program/node.h" line="122" column="5"/>
+        <location file="/home/runner/work/brush/brush/src/program/node.h" line="126" column="5"/>
       </memberdef>
       <memberdef kind="function" id="d8/d49/structNode_1a62f7ba79b38e86e54488e5dd9a6bdc93" prot="public" static="no" const="no" explicit="yes" inline="yes" noexcept="yes" virt="non-virtual">
         <templateparamlist>
@@ -313,7 +312,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/runner/work/brush/brush/src/program/node.h" line="131" column="14" bodyfile="/home/runner/work/brush/brush/src/program/node.h" bodystart="131" bodyend="142"/>
+        <location file="/home/runner/work/brush/brush/src/program/node.h" line="135" column="14" bodyfile="/home/runner/work/brush/brush/src/program/node.h" bodystart="135" bodyend="146"/>
       </memberdef>
       <memberdef kind="function" id="d8/d49/structNode_1a24ab653c36833ab9cd301efe99b39d5f" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
         <templateparamlist>
@@ -332,7 +331,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/runner/work/brush/brush/src/program/node.h" line="145" column="10" bodyfile="/home/runner/work/brush/brush/src/program/node.h" bodystart="145" bodyend="152"/>
+        <location file="/home/runner/work/brush/brush/src/program/node.h" line="149" column="10" bodyfile="/home/runner/work/brush/brush/src/program/node.h" bodystart="149" bodyend="156"/>
       </memberdef>
       <memberdef kind="function" id="d8/d49/structNode_1a99e9db58c89646c630fb9d54b41ff2ba" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
         <type>void</type>
@@ -346,7 +345,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/runner/work/brush/brush/src/program/node.h" line="154" column="10" bodyfile="/home/runner/work/brush/brush/src/program/node.h" bodystart="154" bodyend="170"/>
+        <location file="/home/runner/work/brush/brush/src/program/node.h" line="158" column="10" bodyfile="/home/runner/work/brush/brush/src/program/node.h" bodystart="158" bodyend="171"/>
       </memberdef>
       <memberdef kind="function" id="d8/d49/structNode_1aaddaf7903795dfdcad487234d6dc380e" prot="public" static="no" const="yes" explicit="no" inline="no" noexcept="yes" virt="non-virtual">
         <type><ref refid="d5/d92/classstring" kindref="compound">string</ref></type>
@@ -381,7 +380,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/runner/work/brush/brush/src/program/node.h" line="175" column="12" bodyfile="/home/runner/work/brush/brush/src/program/node.cpp" bodystart="20" bodyend="51"/>
+        <location file="/home/runner/work/brush/brush/src/program/node.h" line="176" column="12" bodyfile="/home/runner/work/brush/brush/src/program/node.cpp" bodystart="20" bodyend="51"/>
       </memberdef>
       <memberdef kind="function" id="d8/d49/structNode_1af621eb9463a3ed3434841565a849c03b" prot="public" static="no" const="yes" explicit="no" inline="no" noexcept="yes" virt="non-virtual">
         <type><ref refid="d5/d92/classstring" kindref="compound">string</ref></type>
@@ -399,7 +398,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/runner/work/brush/brush/src/program/node.h" line="176" column="12" bodyfile="/home/runner/work/brush/brush/src/program/node.cpp" bodystart="53" bodyend="108"/>
+        <location file="/home/runner/work/brush/brush/src/program/node.h" line="177" column="12" bodyfile="/home/runner/work/brush/brush/src/program/node.cpp" bodystart="53" bodyend="108"/>
       </memberdef>
       <memberdef kind="function" id="d8/d49/structNode_1a2d4b7a1f21f80ce980f4748432911964" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
         <type><ref refid="dc/d5c/namespaceBrush_1a3f2c9b744330ba4a561ac72f048a1a5f" kindref="member">DataType</ref></type>
@@ -413,7 +412,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/runner/work/brush/brush/src/program/node.h" line="179" column="21" bodyfile="/home/runner/work/brush/brush/src/program/node.h" bodystart="179" bodyend="179"/>
+        <location file="/home/runner/work/brush/brush/src/program/node.h" line="180" column="21" bodyfile="/home/runner/work/brush/brush/src/program/node.h" bodystart="180" bodyend="180"/>
       </memberdef>
       <memberdef kind="function" id="d8/d49/structNode_1a9ec6ba08b0baebc0cd105e4ef774b7fb" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
         <type>std::size_t</type>
@@ -427,7 +426,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/runner/work/brush/brush/src/program/node.h" line="180" column="24" bodyfile="/home/runner/work/brush/brush/src/program/node.h" bodystart="180" bodyend="180"/>
+        <location file="/home/runner/work/brush/brush/src/program/node.h" line="181" column="24" bodyfile="/home/runner/work/brush/brush/src/program/node.h" bodystart="181" bodyend="181"/>
       </memberdef>
       <memberdef kind="function" id="d8/d49/structNode_1a754e5efb828686e30ebfa2174d56e37a" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
         <type>auto</type>
@@ -441,7 +440,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/runner/work/brush/brush/src/program/node.h" line="181" column="17" bodyfile="/home/runner/work/brush/brush/src/program/node.h" bodystart="181" bodyend="181"/>
+        <location file="/home/runner/work/brush/brush/src/program/node.h" line="182" column="17" bodyfile="/home/runner/work/brush/brush/src/program/node.h" bodystart="182" bodyend="182"/>
       </memberdef>
       <memberdef kind="function" id="d8/d49/structNode_1ac2f0913b7a3e238d879722eb7f62aee2" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
         <type>size_t</type>
@@ -455,7 +454,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/runner/work/brush/brush/src/program/node.h" line="182" column="19" bodyfile="/home/runner/work/brush/brush/src/program/node.h" bodystart="182" bodyend="182"/>
+        <location file="/home/runner/work/brush/brush/src/program/node.h" line="183" column="19" bodyfile="/home/runner/work/brush/brush/src/program/node.h" bodystart="183" bodyend="183"/>
       </memberdef>
       <memberdef kind="function" id="d8/d49/structNode_1a1aef5137dca5171a150c6d26ca43d9bc" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
         <type>size_t</type>
@@ -469,7 +468,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/runner/work/brush/brush/src/program/node.h" line="196" column="12" bodyfile="/home/runner/work/brush/brush/src/program/node.h" bodystart="196" bodyend="205"/>
+        <location file="/home/runner/work/brush/brush/src/program/node.h" line="197" column="12" bodyfile="/home/runner/work/brush/brush/src/program/node.h" bodystart="197" bodyend="206"/>
       </memberdef>
       <memberdef kind="function" id="d8/d49/structNode_1a7c46bb16fb006691be230d29b6e731fe" prot="public" static="no" const="yes" explicit="no" inline="yes" noexcept="yes" virt="non-virtual">
         <type>bool</type>
@@ -487,7 +486,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/runner/work/brush/brush/src/program/node.h" line="208" column="17" bodyfile="/home/runner/work/brush/brush/src/program/node.h" bodystart="208" bodyend="213"/>
+        <location file="/home/runner/work/brush/brush/src/program/node.h" line="209" column="17" bodyfile="/home/runner/work/brush/brush/src/program/node.h" bodystart="209" bodyend="214"/>
       </memberdef>
       <memberdef kind="function" id="d8/d49/structNode_1ac854a6c4b96a0524e1371397c6fba4b1" prot="public" static="no" const="yes" explicit="no" inline="yes" noexcept="yes" virt="non-virtual">
         <type>bool</type>
@@ -505,7 +504,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/runner/work/brush/brush/src/program/node.h" line="215" column="17" bodyfile="/home/runner/work/brush/brush/src/program/node.h" bodystart="215" bodyend="218"/>
+        <location file="/home/runner/work/brush/brush/src/program/node.h" line="216" column="17" bodyfile="/home/runner/work/brush/brush/src/program/node.h" bodystart="216" bodyend="219"/>
       </memberdef>
       <memberdef kind="function" id="d8/d49/structNode_1aea5769142b80b211a53eb20d8a14507b" prot="public" static="no" const="yes" explicit="no" inline="yes" noexcept="yes" virt="non-virtual">
         <type>bool</type>
@@ -523,7 +522,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/runner/work/brush/brush/src/program/node.h" line="220" column="12" bodyfile="/home/runner/work/brush/brush/src/program/node.h" bodystart="220" bodyend="225"/>
+        <location file="/home/runner/work/brush/brush/src/program/node.h" line="221" column="12" bodyfile="/home/runner/work/brush/brush/src/program/node.h" bodystart="221" bodyend="226"/>
       </memberdef>
       <memberdef kind="function" id="d8/d49/structNode_1a62ae8b64fc43f5f13d697c481efb6588" prot="public" static="no" const="yes" explicit="no" inline="yes" noexcept="yes" virt="non-virtual">
         <type>bool</type>
@@ -541,7 +540,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/runner/work/brush/brush/src/program/node.h" line="227" column="12" bodyfile="/home/runner/work/brush/brush/src/program/node.h" bodystart="227" bodyend="230"/>
+        <location file="/home/runner/work/brush/brush/src/program/node.h" line="228" column="12" bodyfile="/home/runner/work/brush/brush/src/program/node.h" bodystart="228" bodyend="231"/>
       </memberdef>
       <memberdef kind="function" id="d8/d49/structNode_1a6dabaf6f3fcd362ff8fbc9e0bd37756f" prot="public" static="no" const="yes" explicit="no" inline="yes" noexcept="yes" virt="non-virtual">
         <type>bool</type>
@@ -559,7 +558,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/runner/work/brush/brush/src/program/node.h" line="232" column="17" bodyfile="/home/runner/work/brush/brush/src/program/node.h" bodystart="232" bodyend="235"/>
+        <location file="/home/runner/work/brush/brush/src/program/node.h" line="233" column="17" bodyfile="/home/runner/work/brush/brush/src/program/node.h" bodystart="233" bodyend="236"/>
       </memberdef>
       <memberdef kind="function" id="d8/d49/structNode_1aa020471209858e31cb4cf26453033929" prot="public" static="no" const="yes" explicit="no" inline="yes" noexcept="yes" virt="non-virtual">
         <type>bool</type>
@@ -577,7 +576,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/runner/work/brush/brush/src/program/node.h" line="237" column="17" bodyfile="/home/runner/work/brush/brush/src/program/node.h" bodystart="237" bodyend="240"/>
+        <location file="/home/runner/work/brush/brush/src/program/node.h" line="238" column="17" bodyfile="/home/runner/work/brush/brush/src/program/node.h" bodystart="238" bodyend="241"/>
       </memberdef>
       <memberdef kind="function" id="d8/d49/structNode_1a4fcf7feccb71d538f8614d3c51247eb4" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
         <type>float</type>
@@ -591,7 +590,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/runner/work/brush/brush/src/program/node.h" line="245" column="11" bodyfile="/home/runner/work/brush/brush/src/program/node.h" bodystart="245" bodyend="245"/>
+        <location file="/home/runner/work/brush/brush/src/program/node.h" line="246" column="11" bodyfile="/home/runner/work/brush/brush/src/program/node.h" bodystart="246" bodyend="246"/>
       </memberdef>
       <memberdef kind="function" id="d8/d49/structNode_1ad9e4f8654978a40e8266b20a4bb0950f" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
         <type>void</type>
@@ -609,7 +608,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/runner/work/brush/brush/src/program/node.h" line="246" column="10" bodyfile="/home/runner/work/brush/brush/src/program/node.h" bodystart="246" bodyend="246"/>
+        <location file="/home/runner/work/brush/brush/src/program/node.h" line="247" column="10" bodyfile="/home/runner/work/brush/brush/src/program/node.h" bodystart="247" bodyend="247"/>
       </memberdef>
       <memberdef kind="function" id="d8/d49/structNode_1a087a9c51b46b3e801506415376cd0518" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
         <type>float</type>
@@ -623,7 +622,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/runner/work/brush/brush/src/program/node.h" line="247" column="11" bodyfile="/home/runner/work/brush/brush/src/program/node.h" bodystart="247" bodyend="247"/>
+        <location file="/home/runner/work/brush/brush/src/program/node.h" line="248" column="11" bodyfile="/home/runner/work/brush/brush/src/program/node.h" bodystart="248" bodyend="248"/>
       </memberdef>
       <memberdef kind="function" id="d8/d49/structNode_1a7e8460b645f3d58c3093eda1d5d3166c" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
         <type>void</type>
@@ -641,7 +640,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/runner/work/brush/brush/src/program/node.h" line="249" column="17" bodyfile="/home/runner/work/brush/brush/src/program/node.h" bodystart="249" bodyend="249"/>
+        <location file="/home/runner/work/brush/brush/src/program/node.h" line="250" column="17" bodyfile="/home/runner/work/brush/brush/src/program/node.h" bodystart="250" bodyend="250"/>
       </memberdef>
       <memberdef kind="function" id="d8/d49/structNode_1a85a62efd4f1f99fa45eb52e4c0a1a26f" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
         <type><ref refid="d5/d92/classstring" kindref="compound">string</ref></type>
@@ -655,7 +654,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/runner/work/brush/brush/src/program/node.h" line="250" column="19" bodyfile="/home/runner/work/brush/brush/src/program/node.h" bodystart="250" bodyend="250"/>
+        <location file="/home/runner/work/brush/brush/src/program/node.h" line="251" column="19" bodyfile="/home/runner/work/brush/brush/src/program/node.h" bodystart="251" bodyend="251"/>
       </memberdef>
       <memberdef kind="function" id="d8/d49/structNode_1a9ceebb9b686a6f6784ae90c558385410" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
         <type>void</type>
@@ -673,7 +672,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/runner/work/brush/brush/src/program/node.h" line="252" column="17" bodyfile="/home/runner/work/brush/brush/src/program/node.h" bodystart="252" bodyend="252"/>
+        <location file="/home/runner/work/brush/brush/src/program/node.h" line="253" column="17" bodyfile="/home/runner/work/brush/brush/src/program/node.h" bodystart="253" bodyend="253"/>
       </memberdef>
       <memberdef kind="function" id="d8/d49/structNode_1a5d3a467bbb0b2fa914594c735579926d" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
         <type><ref refid="dc/d5c/namespaceBrush_1a3f2c9b744330ba4a561ac72f048a1a5f" kindref="member">DataType</ref></type>
@@ -687,7 +686,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/runner/work/brush/brush/src/program/node.h" line="253" column="21" bodyfile="/home/runner/work/brush/brush/src/program/node.h" bodystart="253" bodyend="253"/>
+        <location file="/home/runner/work/brush/brush/src/program/node.h" line="254" column="21" bodyfile="/home/runner/work/brush/brush/src/program/node.h" bodystart="254" bodyend="254"/>
       </memberdef>
       <memberdef kind="function" id="d8/d49/structNode_1a8d884d5ad5f6825aa8f50039fb6baf9f" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
         <type>bool</type>
@@ -701,7 +700,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/runner/work/brush/brush/src/program/node.h" line="255" column="17" bodyfile="/home/runner/work/brush/brush/src/program/node.h" bodystart="255" bodyend="255"/>
+        <location file="/home/runner/work/brush/brush/src/program/node.h" line="258" column="17" bodyfile="/home/runner/work/brush/brush/src/program/node.h" bodystart="258" bodyend="262"/>
       </memberdef>
       <memberdef kind="function" id="d8/d49/structNode_1a70fb9b583f72b67f6c24c2bbaae55267" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
         <type>void</type>
@@ -719,7 +718,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/runner/work/brush/brush/src/program/node.h" line="256" column="17" bodyfile="/home/runner/work/brush/brush/src/program/node.h" bodystart="256" bodyend="260"/>
+        <location file="/home/runner/work/brush/brush/src/program/node.h" line="263" column="17" bodyfile="/home/runner/work/brush/brush/src/program/node.h" bodystart="263" bodyend="266"/>
       </memberdef>
     </sectiondef>
     <briefdescription>
@@ -751,13 +750,13 @@
         <label>std::vector&lt; DataType &gt;</label>
       </node>
     </collaborationgraph>
-    <location file="/home/runner/work/brush/brush/src/program/node.h" line="84" column="1" bodyfile="/home/runner/work/brush/brush/src/program/node.h" bodystart="84" bodyend="269"/>
+    <location file="/home/runner/work/brush/brush/src/program/node.h" line="84" column="1" bodyfile="/home/runner/work/brush/brush/src/program/node.h" bodystart="84" bodyend="275"/>
     <listofallmembers>
       <member refid="d8/d49/structNode_1a237b9208864ace5209edca01623f6b1e" prot="public" virt="non-virtual"><scope>Node</scope><name>arg_types</name></member>
       <member refid="d8/d49/structNode_1a9ec6ba08b0baebc0cd105e4ef774b7fb" prot="public" virt="non-virtual"><scope>Node</scope><name>args_type</name></member>
       <member refid="d8/d49/structNode_1a0971012cfb2ae944f4bea0ea0dc9e5a3" prot="public" virt="non-virtual"><scope>Node</scope><name>center_op</name></member>
-      <member refid="d8/d49/structNode_1ac5f37d638625468ed68de599a2a7d968" prot="private" virt="non-virtual"><scope>Node</scope><name>feature</name></member>
-      <member refid="d8/d49/structNode_1a2875e5aa77054658c071f7b0d7103e68" prot="private" virt="non-virtual"><scope>Node</scope><name>feature_type</name></member>
+      <member refid="d8/d49/structNode_1ac5f37d638625468ed68de599a2a7d968" prot="public" virt="non-virtual"><scope>Node</scope><name>feature</name></member>
+      <member refid="d8/d49/structNode_1a2875e5aa77054658c071f7b0d7103e68" prot="public" virt="non-virtual"><scope>Node</scope><name>feature_type</name></member>
       <member refid="d8/d49/structNode_1a32c73293ee4e02b6d828c2c213e06154" prot="public" virt="non-virtual"><scope>Node</scope><name>fixed</name></member>
       <member refid="d8/d49/structNode_1ac2f0913b7a3e238d879722eb7f62aee2" prot="public" virt="non-virtual"><scope>Node</scope><name>get_arg_count</name></member>
       <member refid="d8/d49/structNode_1a754e5efb828686e30ebfa2174d56e37a" prot="public" virt="non-virtual"><scope>Node</scope><name>get_arg_types</name></member>

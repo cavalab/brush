@@ -32,7 +32,7 @@
     <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=eba8b062" />
     <link rel="stylesheet" type="text/css" href="../_static/graphviz.css?v=4ae1632d" />
     <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
-    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.8ecb98da25f57f5357bf6f572d296f466b2cfe2517ffebfabe82451661e28f02.css" />
   
   <!-- Pre-loaded scripts that we'll load fully later -->
   <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
@@ -402,6 +402,7 @@ document.write(`
 <li class="toctree-l3"><a class="reference internal" href="data.html#_CPPv4NK5Brush4Data7Dataset9get_batchEv"><code class="docutils literal notranslate"><span class="pre">get_batch()</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="data.html#_CPPv4N5Brush4Data7Dataset14get_batch_sizeEv"><code class="docutils literal notranslate"><span class="pre">get_batch_size()</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="data.html#_CPPv4N5Brush4Data7Dataset14set_batch_sizeEf"><code class="docutils literal notranslate"><span class="pre">set_batch_size()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="data.html#_CPPv4NK5Brush4Data7Dataset16get_feature_typeERK6string"><code class="docutils literal notranslate"><span class="pre">get_feature_type()</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="data.html#_CPPv4NK5Brush4Data7Dataset5splitERK7ArrayXb"><code class="docutils literal notranslate"><span class="pre">split()</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="data.html#_CPPv4NK5Brush4Data7DatasetixENSt6stringE"><code class="docutils literal notranslate"><span class="pre">operator[]()</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="data.html#_CPPv4N5Brush4Data7Dataset17unique_data_typesE"><code class="docutils literal notranslate"><span class="pre">unique_data_types</span></code></a></li>
@@ -598,16 +599,18 @@ document.write(`
 <li class="toctree-l3"><a class="reference internal" href="node.html#_CPPv4NK5Brush4Node15get_is_weightedEv"><code class="docutils literal notranslate"><span class="pre">get_is_weighted()</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="node.html#_CPPv4N5Brush4Node15set_is_weightedEb"><code class="docutils literal notranslate"><span class="pre">set_is_weighted()</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="node.html#_CPPv4N5Brush4Node4nameE"><code class="docutils literal notranslate"><span class="pre">name</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="node.html#_CPPv4N5Brush4Node9center_opE"><code class="docutils literal notranslate"><span class="pre">center_op</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="node.html#_CPPv4N5Brush4Node11prob_changeE"><code class="docutils literal notranslate"><span class="pre">prob_change</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="node.html#_CPPv4N5Brush4Node5fixedE"><code class="docutils literal notranslate"><span class="pre">fixed</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="node.html#_CPPv4N5Brush4Node9node_typeE"><code class="docutils literal notranslate"><span class="pre">node_type</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="node.html#_CPPv4N5Brush4Node8sig_hashE"><code class="docutils literal notranslate"><span class="pre">sig_hash</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="node.html#_CPPv4N5Brush4Node13sig_dual_hashE"><code class="docutils literal notranslate"><span class="pre">sig_dual_hash</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="node.html#_CPPv4N5Brush4Node8ret_typeE"><code class="docutils literal notranslate"><span class="pre">ret_type</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="node.html#_CPPv4N5Brush4Node9arg_typesE"><code class="docutils literal notranslate"><span class="pre">arg_types</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="node.html#_CPPv4N5Brush4Node8sig_hashE"><code class="docutils literal notranslate"><span class="pre">sig_hash</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="node.html#_CPPv4N5Brush4Node13sig_dual_hashE"><code class="docutils literal notranslate"><span class="pre">sig_dual_hash</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="node.html#_CPPv4N5Brush4Node5fixedE"><code class="docutils literal notranslate"><span class="pre">fixed</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="node.html#_CPPv4N5Brush4Node11is_weightedE"><code class="docutils literal notranslate"><span class="pre">is_weighted</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="node.html#_CPPv4N5Brush4Node11prob_changeE"><code class="docutils literal notranslate"><span class="pre">prob_change</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="node.html#_CPPv4N5Brush4Node1WE"><code class="docutils literal notranslate"><span class="pre">W</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="node.html#_CPPv4N5Brush4Node9center_opE"><code class="docutils literal notranslate"><span class="pre">center_op</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="node.html#_CPPv4N5Brush4Node7featureE"><code class="docutils literal notranslate"><span class="pre">feature</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="node.html#_CPPv4N5Brush4Node12feature_typeE"><code class="docutils literal notranslate"><span class="pre">feature_type</span></code></a></li>
 </ul>
 </li>
 </ul>
@@ -863,12 +866,11 @@ document.write(`
 <li class="toctree-l3"><a class="reference internal" href="variation.html#_CPPv4N5Brush3Var9Variation6mutateERK10IndividualI1TE6string"><code class="docutils literal notranslate"><span class="pre">mutate()</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="variation.html#_CPPv4N5Brush3Var9Variation4varyER10PopulationI1TEiRK6vectorI6size_tE"><code class="docutils literal notranslate"><span class="pre">vary()</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="variation.html#_CPPv4N5Brush3Var9Variation9update_ssEv"><code class="docutils literal notranslate"><span class="pre">update_ss()</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="variation.html#_CPPv4N5Brush3Var9Variation15vary_and_updateER10PopulationI1TEiRK6vectorI6size_tERK7DatasetR10EvaluationI1TE"><code class="docutils literal notranslate"><span class="pre">vary_and_update()</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="variation.html#_CPPv4N5Brush3Var9Variation22bandit_sample_terminalE8DataTypeR8VectorXf"><code class="docutils literal notranslate"><span class="pre">bandit_sample_terminal()</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="variation.html#_CPPv4N5Brush3Var9Variation20bandit_get_node_likeE4NodeR8VectorXf"><code class="docutils literal notranslate"><span class="pre">bandit_get_node_like()</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="variation.html#_CPPv4N5Brush3Var9Variation25bandit_sample_op_with_argE8DataType8DataTypeR8VectorXfi"><code class="docutils literal notranslate"><span class="pre">bandit_sample_op_with_arg()</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="variation.html#_CPPv4N5Brush3Var9Variation16bandit_sample_opE8DataTypeR8VectorXf"><code class="docutils literal notranslate"><span class="pre">bandit_sample_op()</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="variation.html#_CPPv4N5Brush3Var9Variation11get_contextERK7ProgramI1TE4Iter"><code class="docutils literal notranslate"><span class="pre">get_context()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="variation.html#_CPPv4N5Brush3Var9Variation15vary_and_updateER10PopulationI1TEiRK6vectorI6size_tERK7DatasetR10EvaluationI1TEb"><code class="docutils literal notranslate"><span class="pre">vary_and_update()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="variation.html#_CPPv4N5Brush3Var9Variation22bandit_sample_terminalE8DataType"><code class="docutils literal notranslate"><span class="pre">bandit_sample_terminal()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="variation.html#_CPPv4N5Brush3Var9Variation20bandit_get_node_likeE4Node"><code class="docutils literal notranslate"><span class="pre">bandit_get_node_like()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="variation.html#_CPPv4N5Brush3Var9Variation25bandit_sample_op_with_argE8DataType8DataTypei"><code class="docutils literal notranslate"><span class="pre">bandit_sample_op_with_arg()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="variation.html#_CPPv4N5Brush3Var9Variation16bandit_sample_opE8DataType"><code class="docutils literal notranslate"><span class="pre">bandit_sample_op()</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="variation.html#_CPPv4N5Brush3Var9Variation12search_spaceE"><code class="docutils literal notranslate"><span class="pre">search_space</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="variation.html#_CPPv4N5Brush3Var9Variation4dataE"><code class="docutils literal notranslate"><span class="pre">data</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="variation.html#_CPPv4N5Brush3Var9Variation10parametersE"><code class="docutils literal notranslate"><span class="pre">parameters</span></code></a></li>

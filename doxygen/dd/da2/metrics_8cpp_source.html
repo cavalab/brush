@@ -337,10 +337,10 @@ $(function(){initNavTree('dd/da2/metrics_8cpp_source.html','../../'); initResiza
 <div class="line"><a id="l00217" name="l00217"></a><span class="lineno">  217</span>    <span class="comment">//     {</span></div>
 <div class="line"><a id="l00218" name="l00218"></a><span class="lineno">  218</span>    <span class="comment">//         // for specific class</span></div>
 <div class="line"><a id="l00219" name="l00219"></a><span class="lineno">  219</span>    <span class="comment">//         ArrayXf yhat = predict_proba.col(int(c));</span></div>
-<div class="line"><a id="l00220" name="l00220"></a><span class="lineno">  220</span>    <span class="comment">//         /* std::cout &lt;&lt; &quot;class &quot; &lt;&lt; c &lt;&lt; &quot;\n&quot;; */</span></div>
+<div class="line"><a id="l00220" name="l00220"></a><span class="lineno">  220</span> </div>
 <div class="line"><a id="l00221" name="l00221"></a><span class="lineno">  221</span> </div>
 <div class="line"><a id="l00222" name="l00222"></a><span class="lineno">  222</span>    <span class="comment">//         /* float yi = y(i) == c ? 1.0 : 0.0 ; */ </span></div>
-<div class="line"><a id="l00223" name="l00223"></a><span class="lineno">  223</span>    <span class="comment">//         /* std::cout &lt;&lt; &quot;yi: &quot; &lt;&lt; yi &lt;&lt; &quot;, yhat(&quot; &lt;&lt; i &lt;&lt; &quot;): &quot; &lt;&lt; yhat(i) ; */  </span></div>
+<div class="line"><a id="l00223" name="l00223"></a><span class="lineno">  223</span> </div>
 <div class="line"><a id="l00224" name="l00224"></a><span class="lineno">  224</span>    <span class="comment">//         if (y(i) == c)</span></div>
 <div class="line"><a id="l00225" name="l00225"></a><span class="lineno">  225</span>    <span class="comment">//         {</span></div>
 <div class="line"><a id="l00226" name="l00226"></a><span class="lineno">  226</span>    <span class="comment">//             if (yhat(i) &lt; eps || 1 - yhat(i) &lt; eps)</span></div>
@@ -352,12 +352,12 @@ $(function(){initNavTree('dd/da2/metrics_8cpp_source.html','../../'); initResiza
 <div class="line"><a id="l00232" name="l00232"></a><span class="lineno">  232</span>    <span class="comment">//             {</span></div>
 <div class="line"><a id="l00233" name="l00233"></a><span class="lineno">  233</span>    <span class="comment">//                 loss(i) += -log(yhat(i));</span></div>
 <div class="line"><a id="l00234" name="l00234"></a><span class="lineno">  234</span>    <span class="comment">//             }</span></div>
-<div class="line"><a id="l00235" name="l00235"></a><span class="lineno">  235</span>    <span class="comment">//             /* std::cout &lt;&lt; &quot;, loss(&quot; &lt;&lt; i &lt;&lt; &quot;) = &quot; &lt;&lt; loss(i); */</span></div>
+<div class="line"><a id="l00235" name="l00235"></a><span class="lineno">  235</span> </div>
 <div class="line"><a id="l00236" name="l00236"></a><span class="lineno">  236</span>    <span class="comment">//         }</span></div>
-<div class="line"><a id="l00237" name="l00237"></a><span class="lineno">  237</span>    <span class="comment">//         /* std::cout &lt;&lt; &quot;\n&quot;; */</span></div>
+<div class="line"><a id="l00237" name="l00237"></a><span class="lineno">  237</span> </div>
 <div class="line"><a id="l00238" name="l00238"></a><span class="lineno">  238</span>    <span class="comment">//         }</span></div>
 <div class="line"><a id="l00239" name="l00239"></a><span class="lineno">  239</span>    <span class="comment">//     if (!class_weights.empty()){</span></div>
-<div class="line"><a id="l00240" name="l00240"></a><span class="lineno">  240</span>    <span class="comment">//         /* std::cout &lt;&lt; &quot;weights.at(y(&quot; &lt;&lt; i &lt;&lt; &quot;)): &quot; &lt;&lt; class_weights.at(y(i)) &lt;&lt; &quot;\n&quot;; */</span></div>
+<div class="line"><a id="l00240" name="l00240"></a><span class="lineno">  240</span> </div>
 <div class="line"><a id="l00241" name="l00241"></a><span class="lineno">  241</span>    <span class="comment">//         loss(i) = loss(i)*class_weights.at(y(i));</span></div>
 <div class="line"><a id="l00242" name="l00242"></a><span class="lineno">  242</span>    <span class="comment">//         sum_weights += class_weights.at(y(i));</span></div>
 <div class="line"><a id="l00243" name="l00243"></a><span class="lineno">  243</span>    <span class="comment">//     }</span></div>
@@ -365,8 +365,8 @@ $(function(){initNavTree('dd/da2/metrics_8cpp_source.html','../../'); initResiza
 <div class="line"><a id="l00245" name="l00245"></a><span class="lineno">  245</span>    <span class="comment">// if (sum_weights &gt; 0)</span></div>
 <div class="line"><a id="l00246" name="l00246"></a><span class="lineno">  246</span>    <span class="comment">//     loss = loss.array() / sum_weights * y.size(); </span></div>
 <div class="line"><a id="l00247" name="l00247"></a><span class="lineno">  247</span> </div>
-<div class="line"><a id="l00248" name="l00248"></a><span class="lineno">  248</span>    <span class="comment">/* cout &lt;&lt; &quot;loss.mean(): &quot; &lt;&lt; loss.mean() &lt;&lt; &quot;\n&quot;; */</span></div>
-<div class="line"><a id="l00249" name="l00249"></a><span class="lineno">  249</span>    <span class="comment">/* cout &lt;&lt; &quot;loss.sum(): &quot; &lt;&lt; loss.sum() &lt;&lt; &quot;\n&quot;; */</span></div>
+<div class="line"><a id="l00248" name="l00248"></a><span class="lineno">  248</span> </div>
+<div class="line"><a id="l00249" name="l00249"></a><span class="lineno">  249</span> </div>
 <div class="line"><a id="l00250" name="l00250"></a><span class="lineno">  250</span>    <span class="keywordflow">return</span> loss;</div>
 <div class="line"><a id="l00251" name="l00251"></a><span class="lineno">  251</span>}</div>
 </div>
@@ -378,8 +378,8 @@ $(function(){initNavTree('dd/da2/metrics_8cpp_source.html','../../'); initResiza
 <div class="line"><a id="l00256" name="l00256"></a><span class="lineno">  256</span>{</div>
 <div class="line"><a id="l00257" name="l00257"></a><span class="lineno">  257</span>    loss = <a class="code hl_function" href="../../d5/db3/namespaceBrush_1_1Eval.html#a547663e116b3500703ca69aaa68831b7">multi_log_loss</a>(y, predict_proba, class_weights);</div>
 <div class="line"><a id="l00258" name="l00258"></a><span class="lineno">  258</span> </div>
-<div class="line"><a id="l00259" name="l00259"></a><span class="lineno">  259</span>    <span class="comment">/* std::cout &lt;&lt; &quot;loss: &quot; &lt;&lt; loss.transpose() &lt;&lt; &quot;\n&quot;; */</span></div>
-<div class="line"><a id="l00260" name="l00260"></a><span class="lineno">  260</span>    <span class="comment">/* std::cout &lt;&lt; &quot;mean loss: &quot; &lt;&lt; loss.mean() &lt;&lt; &quot;\n&quot;; */</span></div>
+<div class="line"><a id="l00259" name="l00259"></a><span class="lineno">  259</span> </div>
+<div class="line"><a id="l00260" name="l00260"></a><span class="lineno">  260</span> </div>
 <div class="line"><a id="l00261" name="l00261"></a><span class="lineno">  261</span>    <span class="keywordflow">return</span> loss.mean();</div>
 <div class="line"><a id="l00262" name="l00262"></a><span class="lineno">  262</span>}  </div>
 </div>
@@ -422,9 +422,9 @@ $(function(){initNavTree('dd/da2/metrics_8cpp_source.html','../../'); initResiza
 <div class="line"><a id="l00298" name="l00298"></a><span class="lineno">  298</span>    <span class="comment">// // class-wise accuracy = 1/2 ( true positive rate + true negative rate)</span></div>
 <div class="line"><a id="l00299" name="l00299"></a><span class="lineno">  299</span>    <span class="comment">// for (unsigned i=0; i&lt; c.size(); ++i){</span></div>
 <div class="line"><a id="l00300" name="l00300"></a><span class="lineno">  300</span>    <span class="comment">//     class_accuracies(i) = (TP.at(i)/P.at(i) + TN.at(i)/N.at(i))/2; </span></div>
-<div class="line"><a id="l00301" name="l00301"></a><span class="lineno">  301</span>    <span class="comment">//     //std::cout &lt;&lt; &quot;TP(&quot; &lt;&lt; i &lt;&lt; &quot;): &quot; &lt;&lt; TP.at(i) &lt;&lt; &quot;, P[&quot; &lt;&lt; i &lt;&lt; &quot;]: &quot; &lt;&lt; P.at(i) &lt;&lt; &quot;\n&quot;;</span></div>
-<div class="line"><a id="l00302" name="l00302"></a><span class="lineno">  302</span>    <span class="comment">//     //std::cout &lt;&lt; &quot;TN(&quot; &lt;&lt; i &lt;&lt; &quot;): &quot; &lt;&lt; TN.at(i) &lt;&lt; &quot;, N[&quot; &lt;&lt; i &lt;&lt; &quot;]: &quot; &lt;&lt; N.at(i) &lt;&lt; &quot;\n&quot;;</span></div>
-<div class="line"><a id="l00303" name="l00303"></a><span class="lineno">  303</span>    <span class="comment">//     //std::cout &lt;&lt; &quot;class accuracy(&quot; &lt;&lt; i &lt;&lt; &quot;): &quot; &lt;&lt; class_accuracies(i) &lt;&lt; &quot;\n&quot;;</span></div>
+<div class="line"><a id="l00301" name="l00301"></a><span class="lineno">  301</span> </div>
+<div class="line"><a id="l00302" name="l00302"></a><span class="lineno">  302</span> </div>
+<div class="line"><a id="l00303" name="l00303"></a><span class="lineno">  303</span> </div>
 <div class="line"><a id="l00304" name="l00304"></a><span class="lineno">  304</span>    <span class="comment">// }</span></div>
 <div class="line"><a id="l00305" name="l00305"></a><span class="lineno">  305</span>    </div>
 <div class="line"><a id="l00306" name="l00306"></a><span class="lineno">  306</span>    <span class="comment">// // set loss vectors if third argument supplied</span></div>

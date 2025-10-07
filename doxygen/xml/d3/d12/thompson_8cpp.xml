@@ -3,8 +3,6 @@
   <compounddef id="d3/d12/thompson_8cpp" kind="file" language="C++">
     <compoundname>thompson.cpp</compoundname>
     <includes refid="db/ddd/thompson_8h" local="yes">thompson.h</includes>
-    <includedby refid="d4/d93/bind__engines_8h" local="yes">bind_engines.h</includedby>
-    <includedby refid="d8/df7/bind__variation_8h" local="yes">bind_variation.h</includedby>
     <incdepgraph>
       <node id="50">
         <label>../../thirdparty/tree.hh</label>
@@ -390,36 +388,6 @@
         <label>vector</label>
       </node>
     </incdepgraph>
-    <invincdepgraph>
-      <node id="1">
-        <label>thompson.cpp</label>
-        <link refid="d3/d12/thompson_8cpp"/>
-        <childnode refid="2" relation="include">
-        </childnode>
-        <childnode refid="4" relation="include">
-        </childnode>
-      </node>
-      <node id="3">
-        <label>bind_engines.cpp</label>
-        <link refid="d1/df0/bind__engines_8cpp"/>
-      </node>
-      <node id="2">
-        <label>bind_engines.h</label>
-        <link refid="d4/d93/bind__engines_8h"/>
-        <childnode refid="3" relation="include">
-        </childnode>
-      </node>
-      <node id="5">
-        <label>bind_variation.cpp</label>
-        <link refid="df/d41/bind__variation_8cpp"/>
-      </node>
-      <node id="4">
-        <label>bind_variation.h</label>
-        <link refid="d8/df7/bind__variation_8h"/>
-        <childnode refid="5" relation="include">
-        </childnode>
-      </node>
-    </invincdepgraph>
     <innernamespace refid="dc/d5c/namespaceBrush">Brush</innernamespace>
     <innernamespace refid="da/d94/namespaceBrush_1_1MAB">Brush::MAB</innernamespace>
     <briefdescription>
@@ -432,103 +400,98 @@
 <codeline lineno="3"><highlight class="normal"></highlight><highlight class="keyword">namespace<sp/></highlight><highlight class="normal"><ref refid="dc/d5c/namespaceBrush" kindref="compound">Brush</ref><sp/>{</highlight></codeline>
 <codeline lineno="4"><highlight class="normal"></highlight><highlight class="keyword">namespace<sp/></highlight><highlight class="normal"><ref refid="da/d94/namespaceBrush_1_1MAB" kindref="compound">MAB</ref><sp/>{</highlight></codeline>
 <codeline lineno="5"><highlight class="normal"></highlight></codeline>
-<codeline lineno="6"><highlight class="normal"></highlight><highlight class="keyword">template</highlight><highlight class="normal"><sp/>&lt;</highlight><highlight class="keyword">typename</highlight><highlight class="normal"><sp/>T&gt;</highlight></codeline>
-<codeline lineno="7" refid="db/d10/classBrush_1_1MAB_1_1ThompsonSamplingBandit_1a54908b57830705cb187b90df57089d3f" refkind="member"><highlight class="normal"><ref refid="db/d10/classBrush_1_1MAB_1_1ThompsonSamplingBandit_1a54908b57830705cb187b90df57089d3f" kindref="member">ThompsonSamplingBandit&lt;T&gt;::ThompsonSamplingBandit</ref>(vector&lt;T&gt;<sp/>arms,<sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/>dynamic)</highlight></codeline>
-<codeline lineno="8"><highlight class="normal"><sp/><sp/><sp/><sp/>:<sp/><ref refid="df/dde/classBrush_1_1MAB_1_1BanditOperator_1a7ab649ed7a9fde167743426d98e6d8e3" kindref="member">BanditOperator</ref>&lt;T&gt;(arms)</highlight></codeline>
-<codeline lineno="9"><highlight class="normal"><sp/><sp/><sp/><sp/>,<sp/><ref refid="db/d10/classBrush_1_1MAB_1_1ThompsonSamplingBandit_1af85a615d188fd27ecd7d61ff1b2ba83a" kindref="member">dynamic_update</ref>(dynamic)</highlight></codeline>
-<codeline lineno="10"><highlight class="normal">{</highlight></codeline>
-<codeline lineno="11"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal">&amp;<sp/>arm<sp/>:<sp/>arms)<sp/>{</highlight></codeline>
-<codeline lineno="12"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="db/d10/classBrush_1_1MAB_1_1ThompsonSamplingBandit_1a1c069411aaa16f793ec25af4700c0318" kindref="member">alphas</ref>[arm]<sp/>=<sp/>2;</highlight></codeline>
-<codeline lineno="13"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="db/d10/classBrush_1_1MAB_1_1ThompsonSamplingBandit_1adc2da9e9a7871bcad702bec2dac4659c" kindref="member">betas</ref>[arm]<sp/><sp/>=<sp/>2;</highlight></codeline>
-<codeline lineno="14"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
-<codeline lineno="15"><highlight class="normal">}</highlight></codeline>
-<codeline lineno="16"><highlight class="normal"></highlight></codeline>
-<codeline lineno="17"><highlight class="normal"></highlight><highlight class="keyword">template</highlight><highlight class="normal"><sp/>&lt;</highlight><highlight class="keyword">typename</highlight><highlight class="normal"><sp/>T&gt;</highlight></codeline>
-<codeline lineno="18" refid="db/d10/classBrush_1_1MAB_1_1ThompsonSamplingBandit_1a662be251876580d93d28958538a59de1" refkind="member"><highlight class="normal"><ref refid="db/d10/classBrush_1_1MAB_1_1ThompsonSamplingBandit_1a54908b57830705cb187b90df57089d3f" kindref="member">ThompsonSamplingBandit&lt;T&gt;::ThompsonSamplingBandit</ref>(map&lt;T,<sp/>float&gt;<sp/>arms_probs,<sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/>dynamic)</highlight></codeline>
-<codeline lineno="19"><highlight class="normal"><sp/><sp/><sp/><sp/>:<sp/><ref refid="df/dde/classBrush_1_1MAB_1_1BanditOperator_1a7ab649ed7a9fde167743426d98e6d8e3" kindref="member">BanditOperator</ref>&lt;T&gt;(arms_probs)</highlight></codeline>
-<codeline lineno="20"><highlight class="normal"><sp/><sp/><sp/><sp/>,<sp/><ref refid="db/d10/classBrush_1_1MAB_1_1ThompsonSamplingBandit_1af85a615d188fd27ecd7d61ff1b2ba83a" kindref="member">dynamic_update</ref>(dynamic)</highlight></codeline>
-<codeline lineno="21"><highlight class="normal">{</highlight></codeline>
-<codeline lineno="22"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal">&amp;<sp/>pair<sp/>:<sp/>arms_probs)<sp/>{</highlight></codeline>
-<codeline lineno="23"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="db/d10/classBrush_1_1MAB_1_1ThompsonSamplingBandit_1a1c069411aaa16f793ec25af4700c0318" kindref="member">alphas</ref>[pair.first]<sp/>=<sp/>2;</highlight></codeline>
-<codeline lineno="24"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="db/d10/classBrush_1_1MAB_1_1ThompsonSamplingBandit_1adc2da9e9a7871bcad702bec2dac4659c" kindref="member">betas</ref>[pair.first]<sp/><sp/>=<sp/>2;</highlight></codeline>
-<codeline lineno="25"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
-<codeline lineno="26"><highlight class="normal">};</highlight></codeline>
-<codeline lineno="27"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
-<codeline lineno="28"><highlight class="normal"></highlight></codeline>
-<codeline lineno="29"><highlight class="normal"></highlight><highlight class="keyword">template</highlight><highlight class="normal"><sp/>&lt;</highlight><highlight class="keyword">typename</highlight><highlight class="normal"><sp/>T&gt;</highlight></codeline>
-<codeline lineno="30" refid="db/d10/classBrush_1_1MAB_1_1ThompsonSamplingBandit_1a813db4fe639a36bf856aadb55c14a4da" refkind="member"><highlight class="normal">std::map&lt;T,<sp/>float&gt;<sp/><ref refid="db/d10/classBrush_1_1MAB_1_1ThompsonSamplingBandit_1a813db4fe639a36bf856aadb55c14a4da" kindref="member">ThompsonSamplingBandit&lt;T&gt;::sample_probs</ref>(</highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/><ref refid="db/d10/classBrush_1_1MAB_1_1ThompsonSamplingBandit_1ae63bf20ce6b93e6d1a6ee26eff273f25" kindref="member">update</ref>)<sp/>{</highlight></codeline>
-<codeline lineno="31"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>gets<sp/>sampling<sp/>probabilities<sp/>using<sp/>the<sp/>bandit</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="32"><highlight class="normal"></highlight></codeline>
-<codeline lineno="33"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>from<sp/>https://stackoverflow.com/questions/4181403/generate-random-number-based-on-beta-distribution-using-boost</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="34"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>You&apos;ll<sp/>first<sp/>want<sp/>to<sp/>draw<sp/>a<sp/>random<sp/>number<sp/>uniformly<sp/>from<sp/>the</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="35"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>range<sp/>(0,1).<sp/>Given<sp/>any<sp/>distribution,<sp/>you<sp/>can<sp/>then<sp/>plug<sp/>that<sp/>number</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="36"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>into<sp/>the<sp/>distribution&apos;s<sp/>&quot;quantile<sp/>function,&quot;<sp/>and<sp/>the<sp/>result<sp/>is<sp/>as</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="37"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>if<sp/>a<sp/>random<sp/>value<sp/>was<sp/>drawn<sp/>from<sp/>the<sp/>distribution.<sp/></highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="38"><highlight class="normal"></highlight></codeline>
-<codeline lineno="39"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>from<sp/>https://stackoverflow.com/questions/10358064/random-numbers-from-beta-distribution-c</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="40"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>The<sp/>beta<sp/>distribution<sp/>is<sp/>related<sp/>to<sp/>the<sp/>gamma<sp/>distribution.<sp/>Let<sp/>X<sp/>be<sp/>a</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="41"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>random<sp/>number<sp/>drawn<sp/>from<sp/>Gamma(α,1)<sp/>and<sp/>Y<sp/>from<sp/>Gamma(β,1),<sp/>where<sp/>the</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="42"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>first<sp/>argument<sp/>to<sp/>the<sp/>gamma<sp/>distribution<sp/>is<sp/>the<sp/>shape<sp/>parameter.</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="43"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Then<sp/>Z=X/(X+Y)<sp/>has<sp/>distribution<sp/>Beta(α,β).<sp/></highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="44"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
-<codeline lineno="45"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(<ref refid="db/d10/classBrush_1_1MAB_1_1ThompsonSamplingBandit_1ae63bf20ce6b93e6d1a6ee26eff273f25" kindref="member">update</ref>)<sp/>{</highlight></codeline>
-<codeline lineno="46"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>1.<sp/>use<sp/>a<sp/>beta<sp/>distribution<sp/>based<sp/>on<sp/>alphas<sp/>and<sp/>betas<sp/>to<sp/>sample<sp/>probabilities</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="47"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>2.<sp/>normalize<sp/>probabilities<sp/>so<sp/>the<sp/>sum<sp/>is<sp/>1?</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="48"><highlight class="normal"></highlight></codeline>
-<codeline lineno="49"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">float</highlight><highlight class="normal"><sp/>alpha,<sp/>beta,<sp/>X,<sp/>Y,<sp/>prob;</highlight></codeline>
-<codeline lineno="50"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal">&amp;<sp/>pair<sp/>:<sp/>this-&gt;<ref refid="df/dde/classBrush_1_1MAB_1_1BanditOperator_1a9b732dfe2c3292ce4c420e5a66ff33c6" kindref="member">probabilities</ref>)<sp/>{</highlight></codeline>
-<codeline lineno="51"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>T<sp/>arm<sp/>=<sp/>pair.first;</highlight></codeline>
-<codeline lineno="52"><highlight class="normal"></highlight></codeline>
-<codeline lineno="53"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>alpha<sp/>=<sp/><ref refid="db/d10/classBrush_1_1MAB_1_1ThompsonSamplingBandit_1a1c069411aaa16f793ec25af4700c0318" kindref="member">alphas</ref>[arm];</highlight></codeline>
-<codeline lineno="54"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>beta<sp/><sp/>=<sp/><ref refid="db/d10/classBrush_1_1MAB_1_1ThompsonSamplingBandit_1adc2da9e9a7871bcad702bec2dac4659c" kindref="member">betas</ref>[arm];</highlight></codeline>
-<codeline lineno="55"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
-<codeline lineno="56"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>TODO:<sp/>stop<sp/>using<sp/>boost<sp/>and<sp/>use<sp/>std::gamma_distribution<sp/>(first,<sp/>search<sp/>to<sp/>see<sp/>if<sp/>it<sp/>is<sp/>faster)</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="57"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>boost::math::gamma_distribution&lt;&gt;<sp/>gammaX(alpha);</highlight></codeline>
-<codeline lineno="58"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>boost::math::gamma_distribution&lt;&gt;<sp/>gammaY(beta);</highlight></codeline>
+<codeline lineno="6" refid="db/d10/classBrush_1_1MAB_1_1ThompsonSamplingBandit_1a761ac01c116bc93d9eada9c84635b2af" refkind="member"><highlight class="normal"><ref refid="db/d10/classBrush_1_1MAB_1_1ThompsonSamplingBandit_1a761ac01c116bc93d9eada9c84635b2af" kindref="member">ThompsonSamplingBandit::ThompsonSamplingBandit</ref>(vector&lt;string&gt;<sp/>arms,<sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/>dynamic)</highlight></codeline>
+<codeline lineno="7"><highlight class="normal"><sp/><sp/><sp/><sp/>:<sp/><ref refid="df/dde/classBrush_1_1MAB_1_1BanditOperator_1ab235b15e23e629a01e6709ffd67b3e60" kindref="member">BanditOperator</ref>(arms)</highlight></codeline>
+<codeline lineno="8"><highlight class="normal"><sp/><sp/><sp/><sp/>,<sp/><ref refid="db/d10/classBrush_1_1MAB_1_1ThompsonSamplingBandit_1a08a370a0d6cd8751f1748544ff47e419" kindref="member">dynamic_update</ref>(dynamic)</highlight></codeline>
+<codeline lineno="9"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="10"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal">&amp;<sp/>arm<sp/>:<sp/>arms)<sp/>{</highlight></codeline>
+<codeline lineno="11"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="db/d10/classBrush_1_1MAB_1_1ThompsonSamplingBandit_1a733ae88b247d7a7f0eceb96b0d7c9ffd" kindref="member">alphas</ref>[arm]<sp/>=<sp/>2;</highlight></codeline>
+<codeline lineno="12"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="db/d10/classBrush_1_1MAB_1_1ThompsonSamplingBandit_1acdb685bebd456dd5da80e4a214d9b55f" kindref="member">betas</ref>[arm]<sp/><sp/>=<sp/>2;</highlight></codeline>
+<codeline lineno="13"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="14"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="15"><highlight class="normal"></highlight></codeline>
+<codeline lineno="16" refid="db/d10/classBrush_1_1MAB_1_1ThompsonSamplingBandit_1ad29d503d65844e8f30906c77265aaf58" refkind="member"><highlight class="normal"><ref refid="db/d10/classBrush_1_1MAB_1_1ThompsonSamplingBandit_1a761ac01c116bc93d9eada9c84635b2af" kindref="member">ThompsonSamplingBandit::ThompsonSamplingBandit</ref>(map&lt;string,<sp/>float&gt;<sp/>arms_probs,<sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/>dynamic)</highlight></codeline>
+<codeline lineno="17"><highlight class="normal"><sp/><sp/><sp/><sp/>:<sp/><ref refid="df/dde/classBrush_1_1MAB_1_1BanditOperator_1ab235b15e23e629a01e6709ffd67b3e60" kindref="member">BanditOperator</ref>(arms_probs)</highlight></codeline>
+<codeline lineno="18"><highlight class="normal"><sp/><sp/><sp/><sp/>,<sp/><ref refid="db/d10/classBrush_1_1MAB_1_1ThompsonSamplingBandit_1a08a370a0d6cd8751f1748544ff47e419" kindref="member">dynamic_update</ref>(dynamic)</highlight></codeline>
+<codeline lineno="19"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="20"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal">&amp;<sp/>pair<sp/>:<sp/>arms_probs)<sp/>{</highlight></codeline>
+<codeline lineno="21"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="db/d10/classBrush_1_1MAB_1_1ThompsonSamplingBandit_1a733ae88b247d7a7f0eceb96b0d7c9ffd" kindref="member">alphas</ref>[pair.first]<sp/>=<sp/>2;</highlight></codeline>
+<codeline lineno="22"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="db/d10/classBrush_1_1MAB_1_1ThompsonSamplingBandit_1acdb685bebd456dd5da80e4a214d9b55f" kindref="member">betas</ref>[pair.first]<sp/><sp/>=<sp/>2;</highlight></codeline>
+<codeline lineno="23"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="24"><highlight class="normal">};</highlight></codeline>
+<codeline lineno="25"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="26"><highlight class="normal"></highlight></codeline>
+<codeline lineno="27" refid="db/d10/classBrush_1_1MAB_1_1ThompsonSamplingBandit_1a439981e98dbe8c366cdd8bdadfe40765" refkind="member"><highlight class="normal">std::map&lt;string,<sp/>float&gt;<sp/><ref refid="db/d10/classBrush_1_1MAB_1_1ThompsonSamplingBandit_1a439981e98dbe8c366cdd8bdadfe40765" kindref="member">ThompsonSamplingBandit::sample_probs</ref>(</highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/><ref refid="db/d10/classBrush_1_1MAB_1_1ThompsonSamplingBandit_1a670420157e8bc8fa177e28655fcec19e" kindref="member">update</ref>)<sp/>{</highlight></codeline>
+<codeline lineno="28"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>gets<sp/>sampling<sp/>probabilities<sp/>using<sp/>the<sp/>bandit</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="29"><highlight class="normal"></highlight></codeline>
+<codeline lineno="30"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>from<sp/>https://stackoverflow.com/questions/4181403/generate-random-number-based-on-beta-distribution-using-boost</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="31"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>You&apos;ll<sp/>first<sp/>want<sp/>to<sp/>draw<sp/>a<sp/>random<sp/>number<sp/>uniformly<sp/>from<sp/>the</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="32"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>range<sp/>(0,1).<sp/>Given<sp/>any<sp/>distribution,<sp/>you<sp/>can<sp/>then<sp/>plug<sp/>that<sp/>number</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="33"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>into<sp/>the<sp/>distribution&apos;s<sp/>&quot;quantile<sp/>function,&quot;<sp/>and<sp/>the<sp/>result<sp/>is<sp/>as</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="34"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>if<sp/>a<sp/>random<sp/>value<sp/>was<sp/>drawn<sp/>from<sp/>the<sp/>distribution.<sp/></highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="35"><highlight class="normal"></highlight></codeline>
+<codeline lineno="36"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>from<sp/>https://stackoverflow.com/questions/10358064/random-numbers-from-beta-distribution-c</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="37"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>The<sp/>beta<sp/>distribution<sp/>is<sp/>related<sp/>to<sp/>the<sp/>gamma<sp/>distribution.<sp/>Let<sp/>X<sp/>be<sp/>a</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="38"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>random<sp/>number<sp/>drawn<sp/>from<sp/>Gamma(α,1)<sp/>and<sp/>Y<sp/>from<sp/>Gamma(β,1),<sp/>where<sp/>the</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="39"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>first<sp/>argument<sp/>to<sp/>the<sp/>gamma<sp/>distribution<sp/>is<sp/>the<sp/>shape<sp/>parameter.</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="40"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Then<sp/>Z=X/(X+Y)<sp/>has<sp/>distribution<sp/>Beta(α,β).<sp/></highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="41"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="42"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(<ref refid="db/d10/classBrush_1_1MAB_1_1ThompsonSamplingBandit_1a670420157e8bc8fa177e28655fcec19e" kindref="member">update</ref>)<sp/>{</highlight></codeline>
+<codeline lineno="43"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>1.<sp/>use<sp/>a<sp/>beta<sp/>distribution<sp/>based<sp/>on<sp/>alphas<sp/>and<sp/>betas<sp/>to<sp/>sample<sp/>probabilities</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="44"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>2.<sp/>normalize<sp/>probabilities<sp/>so<sp/>the<sp/>sum<sp/>is<sp/>1?</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="45"><highlight class="normal"></highlight></codeline>
+<codeline lineno="46"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">float</highlight><highlight class="normal"><sp/>alpha,<sp/>beta,<sp/>X,<sp/>Y,<sp/>prob;</highlight></codeline>
+<codeline lineno="47"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal">&amp;<sp/>pair<sp/>:<sp/>this-&gt;<ref refid="df/dde/classBrush_1_1MAB_1_1BanditOperator_1a4a58caa7e258d9f833de5c1dc0878f6a" kindref="member">probabilities</ref>)<sp/>{</highlight></codeline>
+<codeline lineno="48"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">string</highlight><highlight class="normal"><sp/>arm<sp/>=<sp/>pair.first;</highlight></codeline>
+<codeline lineno="49"><highlight class="normal"></highlight></codeline>
+<codeline lineno="50"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>alpha<sp/>=<sp/><ref refid="db/d10/classBrush_1_1MAB_1_1ThompsonSamplingBandit_1a733ae88b247d7a7f0eceb96b0d7c9ffd" kindref="member">alphas</ref>[arm];</highlight></codeline>
+<codeline lineno="51"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>beta<sp/><sp/>=<sp/><ref refid="db/d10/classBrush_1_1MAB_1_1ThompsonSamplingBandit_1acdb685bebd456dd5da80e4a214d9b55f" kindref="member">betas</ref>[arm];</highlight></codeline>
+<codeline lineno="52"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="53"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>TODO:<sp/>stop<sp/>using<sp/>boost<sp/>and<sp/>use<sp/>std::gamma_distribution<sp/>(first,<sp/>search<sp/>to<sp/>see<sp/>if<sp/>it<sp/>is<sp/>faster)</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="54"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>boost::math::gamma_distribution&lt;&gt;<sp/>gammaX(alpha);</highlight></codeline>
+<codeline lineno="55"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>boost::math::gamma_distribution&lt;&gt;<sp/>gammaY(beta);</highlight></codeline>
+<codeline lineno="56"><highlight class="normal"></highlight></codeline>
+<codeline lineno="57"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>X<sp/>=<sp/>boost::math::quantile(gammaX,<sp/><ref refid="d6/d2e/namespaceBrush_1_1Util_1af7dd70e54015821d96e3a1afed6344ca" kindref="member">Brush::Util::r</ref>.rnd_flt());</highlight></codeline>
+<codeline lineno="58"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>Y<sp/>=<sp/>boost::math::quantile(gammaY,<sp/><ref refid="d6/d2e/namespaceBrush_1_1Util_1af7dd70e54015821d96e3a1afed6344ca" kindref="member">Brush::Util::r</ref>.rnd_flt());</highlight></codeline>
 <codeline lineno="59"><highlight class="normal"></highlight></codeline>
-<codeline lineno="60"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>X<sp/>=<sp/>boost::math::quantile(gammaX,<sp/><ref refid="d6/d2e/namespaceBrush_1_1Util_1af7dd70e54015821d96e3a1afed6344ca" kindref="member">Brush::Util::r</ref>.rnd_flt());</highlight></codeline>
-<codeline lineno="61"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>Y<sp/>=<sp/>boost::math::quantile(gammaY,<sp/><ref refid="d6/d2e/namespaceBrush_1_1Util_1af7dd70e54015821d96e3a1afed6344ca" kindref="member">Brush::Util::r</ref>.rnd_flt());</highlight></codeline>
-<codeline lineno="62"><highlight class="normal"></highlight></codeline>
-<codeline lineno="63"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>prob<sp/>=<sp/><sp/>X/(X+Y+0.001f);</highlight></codeline>
-<codeline lineno="64"><highlight class="normal"></highlight></codeline>
-<codeline lineno="65"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>avoiding<sp/>deadlocks<sp/>when<sp/>sampling<sp/>from<sp/>search<sp/>space</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="66"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>this-&gt;probabilities[arm]<sp/>=<sp/>std::max(prob,<sp/>0.01f);</highlight></codeline>
-<codeline lineno="67"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
-<codeline lineno="68"><highlight class="normal"></highlight></codeline>
-<codeline lineno="69"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>assert<sp/>that<sp/>the<sp/>sum<sp/>is<sp/>not<sp/>zero</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="70"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">float</highlight><highlight class="normal"><sp/>totalProb<sp/>=<sp/>0.0f;</highlight></codeline>
-<codeline lineno="71"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal">&amp;<sp/>pair<sp/>:<sp/>this-&gt;probabilities)<sp/>{</highlight></codeline>
-<codeline lineno="72"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>totalProb<sp/>+=<sp/>pair.second;</highlight></codeline>
-<codeline lineno="73"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
-<codeline lineno="74"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>assert(totalProb<sp/>!=<sp/>0.0f<sp/>&amp;&amp;<sp/></highlight><highlight class="stringliteral">&quot;Sum<sp/>of<sp/>probabilities<sp/>is<sp/>zero!&quot;</highlight><highlight class="normal">);</highlight></codeline>
-<codeline lineno="75"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="60"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>prob<sp/>=<sp/><sp/>X/(X+Y+0.001f);</highlight></codeline>
+<codeline lineno="61"><highlight class="normal"></highlight></codeline>
+<codeline lineno="62"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>avoiding<sp/>deadlocks<sp/>when<sp/>sampling<sp/>from<sp/>search<sp/>space</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="63"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>this-&gt;probabilities[arm]<sp/>=<sp/>std::max(prob,<sp/>0.01f);</highlight></codeline>
+<codeline lineno="64"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="65"><highlight class="normal"></highlight></codeline>
+<codeline lineno="66"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>assert<sp/>that<sp/>the<sp/>sum<sp/>is<sp/>not<sp/>zero</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="67"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">float</highlight><highlight class="normal"><sp/>totalProb<sp/>=<sp/>0.0f;</highlight></codeline>
+<codeline lineno="68"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal">&amp;<sp/>pair<sp/>:<sp/>this-&gt;probabilities)<sp/>{</highlight></codeline>
+<codeline lineno="69"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>totalProb<sp/>+=<sp/>pair.second;</highlight></codeline>
+<codeline lineno="70"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="71"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>assert(totalProb<sp/>!=<sp/>0.0f<sp/>&amp;&amp;<sp/></highlight><highlight class="stringliteral">&quot;Sum<sp/>of<sp/>probabilities<sp/>is<sp/>zero!&quot;</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="72"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="73"><highlight class="normal"></highlight></codeline>
+<codeline lineno="74"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>this-&gt;<ref refid="df/dde/classBrush_1_1MAB_1_1BanditOperator_1a4a58caa7e258d9f833de5c1dc0878f6a" kindref="member">probabilities</ref>;</highlight></codeline>
+<codeline lineno="75"><highlight class="normal">}</highlight></codeline>
 <codeline lineno="76"><highlight class="normal"></highlight></codeline>
-<codeline lineno="77"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>this-&gt;<ref refid="df/dde/classBrush_1_1MAB_1_1BanditOperator_1a9b732dfe2c3292ce4c420e5a66ff33c6" kindref="member">probabilities</ref>;</highlight></codeline>
-<codeline lineno="78"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="77" refid="db/d10/classBrush_1_1MAB_1_1ThompsonSamplingBandit_1a429bc282a1077ee3bccacf6a6ba4885b" refkind="member"><highlight class="normal"></highlight><highlight class="keywordtype">string</highlight><highlight class="normal"><sp/><ref refid="db/d10/classBrush_1_1MAB_1_1ThompsonSamplingBandit_1a429bc282a1077ee3bccacf6a6ba4885b" kindref="member">ThompsonSamplingBandit::choose</ref>()<sp/>{</highlight></codeline>
+<codeline lineno="78"><highlight class="normal"><sp/><sp/><sp/><sp/>std::map&lt;string,<sp/>float&gt;<sp/>probs<sp/>=<sp/>this-&gt;<ref refid="db/d10/classBrush_1_1MAB_1_1ThompsonSamplingBandit_1a439981e98dbe8c366cdd8bdadfe40765" kindref="member">sample_probs</ref>(</highlight><highlight class="keyword">true</highlight><highlight class="normal">);</highlight></codeline>
 <codeline lineno="79"><highlight class="normal"></highlight></codeline>
-<codeline lineno="80"><highlight class="normal"></highlight><highlight class="keyword">template</highlight><highlight class="normal"><sp/>&lt;</highlight><highlight class="keyword">typename</highlight><highlight class="normal"><sp/>T&gt;</highlight></codeline>
-<codeline lineno="81" refid="db/d10/classBrush_1_1MAB_1_1ThompsonSamplingBandit_1af6548c3f73eb04633654f9b190ab83b6" refkind="member"><highlight class="normal">T<sp/><ref refid="db/d10/classBrush_1_1MAB_1_1ThompsonSamplingBandit_1af6548c3f73eb04633654f9b190ab83b6" kindref="member">ThompsonSamplingBandit&lt;T&gt;::choose</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>VectorXf&amp;<sp/>context)<sp/>{</highlight></codeline>
-<codeline lineno="82"><highlight class="normal"><sp/><sp/><sp/><sp/>std::map&lt;T,<sp/>float&gt;<sp/>probs<sp/>=<sp/>this-&gt;<ref refid="db/d10/classBrush_1_1MAB_1_1ThompsonSamplingBandit_1a813db4fe639a36bf856aadb55c14a4da" kindref="member">sample_probs</ref>(</highlight><highlight class="keyword">true</highlight><highlight class="normal">);</highlight></codeline>
-<codeline lineno="83"><highlight class="normal"></highlight></codeline>
-<codeline lineno="84"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/><ref refid="d6/d2e/namespaceBrush_1_1Util_1af7dd70e54015821d96e3a1afed6344ca" kindref="member">r</ref>.random_choice(probs);</highlight></codeline>
-<codeline lineno="85"><highlight class="normal">}</highlight></codeline>
-<codeline lineno="86"><highlight class="normal"></highlight></codeline>
-<codeline lineno="87"><highlight class="normal"></highlight><highlight class="keyword">template</highlight><highlight class="normal"><sp/>&lt;</highlight><highlight class="keyword">typename</highlight><highlight class="normal"><sp/>T&gt;</highlight></codeline>
-<codeline lineno="88" refid="db/d10/classBrush_1_1MAB_1_1ThompsonSamplingBandit_1ae63bf20ce6b93e6d1a6ee26eff273f25" refkind="member"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="db/d10/classBrush_1_1MAB_1_1ThompsonSamplingBandit_1ae63bf20ce6b93e6d1a6ee26eff273f25" kindref="member">ThompsonSamplingBandit&lt;T&gt;::update</ref>(T<sp/>arm,<sp/></highlight><highlight class="keywordtype">float</highlight><highlight class="normal"><sp/>reward,<sp/>VectorXf&amp;<sp/>context)<sp/>{</highlight></codeline>
-<codeline lineno="89"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>reward<sp/>must<sp/>be<sp/>either<sp/>0<sp/>or<sp/>1</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="90"><highlight class="normal"></highlight></codeline>
-<codeline lineno="91"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="db/d10/classBrush_1_1MAB_1_1ThompsonSamplingBandit_1a1c069411aaa16f793ec25af4700c0318" kindref="member">alphas</ref>[arm]<sp/>+=<sp/>reward;</highlight></codeline>
-<codeline lineno="92"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="db/d10/classBrush_1_1MAB_1_1ThompsonSamplingBandit_1adc2da9e9a7871bcad702bec2dac4659c" kindref="member">betas</ref>[arm]<sp/><sp/>+=<sp/>1.0f-reward;</highlight></codeline>
-<codeline lineno="93"><highlight class="normal"></highlight></codeline>
-<codeline lineno="94"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(<ref refid="db/d10/classBrush_1_1MAB_1_1ThompsonSamplingBandit_1af85a615d188fd27ecd7d61ff1b2ba83a" kindref="member">dynamic_update</ref><sp/>&amp;&amp;<sp/><ref refid="db/d10/classBrush_1_1MAB_1_1ThompsonSamplingBandit_1a1c069411aaa16f793ec25af4700c0318" kindref="member">alphas</ref>[arm]<sp/>+<sp/><ref refid="db/d10/classBrush_1_1MAB_1_1ThompsonSamplingBandit_1adc2da9e9a7871bcad702bec2dac4659c" kindref="member">betas</ref>[arm]<sp/>&gt;=<sp/><ref refid="db/d10/classBrush_1_1MAB_1_1ThompsonSamplingBandit_1a2f1fd03574e38ad95daedca5eaf9e4b8" kindref="member">C</ref>)</highlight></codeline>
-<codeline lineno="95"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
-<codeline lineno="96"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="db/d10/classBrush_1_1MAB_1_1ThompsonSamplingBandit_1a1c069411aaa16f793ec25af4700c0318" kindref="member">alphas</ref>[arm]<sp/>*=<sp/><ref refid="db/d10/classBrush_1_1MAB_1_1ThompsonSamplingBandit_1a2f1fd03574e38ad95daedca5eaf9e4b8" kindref="member">C</ref>/(<ref refid="db/d10/classBrush_1_1MAB_1_1ThompsonSamplingBandit_1a2f1fd03574e38ad95daedca5eaf9e4b8" kindref="member">C</ref>+1.0f)<sp/>;</highlight></codeline>
-<codeline lineno="97"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="db/d10/classBrush_1_1MAB_1_1ThompsonSamplingBandit_1adc2da9e9a7871bcad702bec2dac4659c" kindref="member">betas</ref>[arm]<sp/><sp/>*=<sp/><ref refid="db/d10/classBrush_1_1MAB_1_1ThompsonSamplingBandit_1a2f1fd03574e38ad95daedca5eaf9e4b8" kindref="member">C</ref>/(<ref refid="db/d10/classBrush_1_1MAB_1_1ThompsonSamplingBandit_1a2f1fd03574e38ad95daedca5eaf9e4b8" kindref="member">C</ref>+1.0f)<sp/>;</highlight></codeline>
-<codeline lineno="98"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
-<codeline lineno="99"><highlight class="normal">}</highlight></codeline>
-<codeline lineno="100"><highlight class="normal"></highlight></codeline>
-<codeline lineno="101"><highlight class="normal">}<sp/></highlight><highlight class="comment">//<sp/>MAB</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="102"><highlight class="normal">}<sp/></highlight><highlight class="comment">//<sp/>Brush</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="80"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/><ref refid="d6/d2e/namespaceBrush_1_1Util_1af7dd70e54015821d96e3a1afed6344ca" kindref="member">r</ref>.random_choice(probs);</highlight></codeline>
+<codeline lineno="81"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="82"><highlight class="normal"></highlight></codeline>
+<codeline lineno="83" refid="db/d10/classBrush_1_1MAB_1_1ThompsonSamplingBandit_1a670420157e8bc8fa177e28655fcec19e" refkind="member"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="db/d10/classBrush_1_1MAB_1_1ThompsonSamplingBandit_1a670420157e8bc8fa177e28655fcec19e" kindref="member">ThompsonSamplingBandit::update</ref>(</highlight><highlight class="keywordtype">string</highlight><highlight class="normal"><sp/>arm,<sp/></highlight><highlight class="keywordtype">float</highlight><highlight class="normal"><sp/>reward)<sp/>{</highlight></codeline>
+<codeline lineno="84"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>reward<sp/>must<sp/>be<sp/>either<sp/>0<sp/>or<sp/>1</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="85"><highlight class="normal"></highlight></codeline>
+<codeline lineno="86"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="db/d10/classBrush_1_1MAB_1_1ThompsonSamplingBandit_1a733ae88b247d7a7f0eceb96b0d7c9ffd" kindref="member">alphas</ref>[arm]<sp/>+=<sp/>reward;</highlight></codeline>
+<codeline lineno="87"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="db/d10/classBrush_1_1MAB_1_1ThompsonSamplingBandit_1acdb685bebd456dd5da80e4a214d9b55f" kindref="member">betas</ref>[arm]<sp/><sp/>+=<sp/>1.0f-reward;</highlight></codeline>
+<codeline lineno="88"><highlight class="normal"></highlight></codeline>
+<codeline lineno="89"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(<ref refid="db/d10/classBrush_1_1MAB_1_1ThompsonSamplingBandit_1a08a370a0d6cd8751f1748544ff47e419" kindref="member">dynamic_update</ref><sp/>&amp;&amp;<sp/><ref refid="db/d10/classBrush_1_1MAB_1_1ThompsonSamplingBandit_1a733ae88b247d7a7f0eceb96b0d7c9ffd" kindref="member">alphas</ref>[arm]<sp/>+<sp/><ref refid="db/d10/classBrush_1_1MAB_1_1ThompsonSamplingBandit_1acdb685bebd456dd5da80e4a214d9b55f" kindref="member">betas</ref>[arm]<sp/>&gt;=<sp/><ref refid="db/d10/classBrush_1_1MAB_1_1ThompsonSamplingBandit_1acb1c631e00212bb6086b2a05564cf740" kindref="member">C</ref>)</highlight></codeline>
+<codeline lineno="90"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="91"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="db/d10/classBrush_1_1MAB_1_1ThompsonSamplingBandit_1a733ae88b247d7a7f0eceb96b0d7c9ffd" kindref="member">alphas</ref>[arm]<sp/>*=<sp/><ref refid="db/d10/classBrush_1_1MAB_1_1ThompsonSamplingBandit_1acb1c631e00212bb6086b2a05564cf740" kindref="member">C</ref>/(<ref refid="db/d10/classBrush_1_1MAB_1_1ThompsonSamplingBandit_1acb1c631e00212bb6086b2a05564cf740" kindref="member">C</ref>+1.0f)<sp/>;</highlight></codeline>
+<codeline lineno="92"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="db/d10/classBrush_1_1MAB_1_1ThompsonSamplingBandit_1acdb685bebd456dd5da80e4a214d9b55f" kindref="member">betas</ref>[arm]<sp/><sp/>*=<sp/><ref refid="db/d10/classBrush_1_1MAB_1_1ThompsonSamplingBandit_1acb1c631e00212bb6086b2a05564cf740" kindref="member">C</ref>/(<ref refid="db/d10/classBrush_1_1MAB_1_1ThompsonSamplingBandit_1acb1c631e00212bb6086b2a05564cf740" kindref="member">C</ref>+1.0f)<sp/>;</highlight></codeline>
+<codeline lineno="93"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="94"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="95"><highlight class="normal"></highlight></codeline>
+<codeline lineno="96"><highlight class="normal">}<sp/></highlight><highlight class="comment">//<sp/>MAB</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="97"><highlight class="normal">}<sp/></highlight><highlight class="comment">//<sp/>Brush</highlight><highlight class="normal"></highlight></codeline>
     </programlisting>
     <location file="/home/runner/work/brush/brush/src/bandit/thompson.cpp"/>
   </compounddef>

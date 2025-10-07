@@ -12,7 +12,6 @@
     <includedby refid="d4/d93/bind__engines_8h" local="yes">bind_engines.h</includedby>
     <includedby refid="d8/df7/bind__variation_8h" local="yes">bind_variation.h</includedby>
     <includedby refid="d2/d94/dummy_8h" local="yes">dummy.h</includedby>
-    <includedby refid="d9/df5/linear__thompson_8h" local="yes">linear_thompson.h</includedby>
     <includedby refid="db/ddd/thompson_8h" local="yes">thompson.h</includedby>
     <includedby refid="d4/d1f/variation_8h" local="yes">variation.h</includedby>
     <incdepgraph>
@@ -385,10 +384,6 @@
       <node id="3">
         <label>bandit.cpp</label>
         <link refid="d7/d01/bandit_8cpp"/>
-        <childnode refid="4" relation="include">
-        </childnode>
-        <childnode refid="6" relation="include">
-        </childnode>
       </node>
       <node id="2">
         <label>bandit.h</label>
@@ -405,10 +400,6 @@
       <node id="12">
         <label>bandit_operator.cpp</label>
         <link refid="dd/d4e/bandit__operator_8cpp"/>
-        <childnode refid="4" relation="include">
-        </childnode>
-        <childnode refid="6" relation="include">
-        </childnode>
       </node>
       <node id="1">
         <label>bandit_operator.h</label>
@@ -425,18 +416,12 @@
         </childnode>
         <childnode refid="15" relation="include">
         </childnode>
-        <childnode refid="17" relation="include">
-        </childnode>
         <childnode refid="8" relation="include">
         </childnode>
       </node>
       <node id="14">
         <label>dummy.cpp</label>
         <link refid="d4/d05/dummy_8cpp"/>
-        <childnode refid="4" relation="include">
-        </childnode>
-        <childnode refid="6" relation="include">
-        </childnode>
       </node>
       <node id="13">
         <label>dummy.h</label>
@@ -453,30 +438,10 @@
         </childnode>
       </node>
       <node id="16">
-        <label>linear_thompson.cpp</label>
-        <link refid="db/d2d/linear__thompson_8cpp"/>
-        <childnode refid="6" relation="include">
-        </childnode>
-      </node>
-      <node id="15">
-        <label>linear_thompson.h</label>
-        <link refid="d9/df5/linear__thompson_8h"/>
-        <childnode refid="2" relation="include">
-        </childnode>
-        <childnode refid="6" relation="include">
-        </childnode>
-        <childnode refid="16" relation="include">
-        </childnode>
-      </node>
-      <node id="18">
         <label>thompson.cpp</label>
         <link refid="d3/d12/thompson_8cpp"/>
-        <childnode refid="4" relation="include">
-        </childnode>
-        <childnode refid="6" relation="include">
-        </childnode>
       </node>
-      <node id="17">
+      <node id="15">
         <label>thompson.h</label>
         <link refid="db/ddd/thompson_8h"/>
         <childnode refid="2" relation="include">
@@ -485,7 +450,7 @@
         </childnode>
         <childnode refid="6" relation="include">
         </childnode>
-        <childnode refid="18" relation="include">
+        <childnode refid="16" relation="include">
         </childnode>
       </node>
       <node id="5">
@@ -564,30 +529,29 @@
 <codeline lineno="11"><highlight class="normal"></highlight><highlight class="keyword">namespace<sp/></highlight><highlight class="normal"><ref refid="dc/d5c/namespaceBrush" kindref="compound">Brush</ref><sp/>{</highlight></codeline>
 <codeline lineno="12"><highlight class="normal"></highlight><highlight class="keyword">namespace<sp/></highlight><highlight class="normal"><ref refid="da/d94/namespaceBrush_1_1MAB" kindref="compound">MAB</ref><sp/>{</highlight></codeline>
 <codeline lineno="13"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
-<codeline lineno="21"><highlight class="normal"></highlight><highlight class="keyword">template</highlight><highlight class="normal">&lt;</highlight><highlight class="keyword">typename</highlight><highlight class="normal"><sp/>T&gt;</highlight></codeline>
-<codeline lineno="22" refid="df/dde/classBrush_1_1MAB_1_1BanditOperator" refkind="compound"><highlight class="normal"></highlight><highlight class="keyword">class<sp/></highlight><highlight class="normal"><ref refid="df/dde/classBrush_1_1MAB_1_1BanditOperator_1a7ab649ed7a9fde167743426d98e6d8e3" kindref="member">BanditOperator</ref></highlight></codeline>
-<codeline lineno="23"><highlight class="normal">{</highlight></codeline>
-<codeline lineno="24" refid="df/dde/classBrush_1_1MAB_1_1BanditOperator_1a6953c55888445cfed5462918b3c822e4" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">using<sp/></highlight><highlight class="normal"><ref refid="df/dde/classBrush_1_1MAB_1_1BanditOperator_1a6953c55888445cfed5462918b3c822e4" kindref="member">Iter</ref><sp/>=<sp/>tree&lt;Node&gt;::pre_order_iterator;</highlight></codeline>
-<codeline lineno="25"><highlight class="normal"></highlight><highlight class="keyword">public</highlight><highlight class="normal">:</highlight></codeline>
-<codeline lineno="31"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="df/dde/classBrush_1_1MAB_1_1BanditOperator_1a7ab649ed7a9fde167743426d98e6d8e3" kindref="member">BanditOperator</ref>(vector&lt;T&gt;<sp/>arms);</highlight></codeline>
-<codeline lineno="32"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
-<codeline lineno="38"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="df/dde/classBrush_1_1MAB_1_1BanditOperator_1a7ab649ed7a9fde167743426d98e6d8e3" kindref="member">BanditOperator</ref>(map&lt;T,<sp/>float&gt;<sp/>arms_probs);</highlight></codeline>
-<codeline lineno="39"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
-<codeline lineno="40" refid="df/dde/classBrush_1_1MAB_1_1BanditOperator_1ac898647033aa6ca44e4c1d67391cb017" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="df/dde/classBrush_1_1MAB_1_1BanditOperator_1ac898647033aa6ca44e4c1d67391cb017" kindref="member">~BanditOperator</ref>()<sp/>{};</highlight></codeline>
-<codeline lineno="41"><highlight class="normal"></highlight></codeline>
-<codeline lineno="48"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">virtual</highlight><highlight class="normal"><sp/>std::map&lt;T,<sp/>float&gt;<sp/><ref refid="df/dde/classBrush_1_1MAB_1_1BanditOperator_1a18cb2ab1637319fc3e4d4ee89077e05d" kindref="member">sample_probs</ref>(</highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/><ref refid="df/dde/classBrush_1_1MAB_1_1BanditOperator_1add60c0e803a4511425be94002e180edc" kindref="member">update</ref>);</highlight></codeline>
-<codeline lineno="49"><highlight class="normal"></highlight></codeline>
-<codeline lineno="57"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">virtual</highlight><highlight class="normal"><sp/>T<sp/><ref refid="df/dde/classBrush_1_1MAB_1_1BanditOperator_1a3ed66cd086859adf694af88ea60112c4" kindref="member">choose</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>VectorXf&amp;<sp/>context);</highlight></codeline>
-<codeline lineno="58"><highlight class="normal"></highlight></codeline>
-<codeline lineno="65"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">virtual</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="df/dde/classBrush_1_1MAB_1_1BanditOperator_1add60c0e803a4511425be94002e180edc" kindref="member">update</ref>(T<sp/>arm,<sp/></highlight><highlight class="keywordtype">float</highlight><highlight class="normal"><sp/>reward,<sp/>VectorXf&amp;<sp/>context);</highlight></codeline>
-<codeline lineno="66"><highlight class="normal"></highlight><highlight class="keyword">protected</highlight><highlight class="normal">:<sp/><sp/><sp/><sp/></highlight></codeline>
-<codeline lineno="67" refid="df/dde/classBrush_1_1MAB_1_1BanditOperator_1a9b732dfe2c3292ce4c420e5a66ff33c6" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>std::map&lt;T,<sp/>float&gt;<sp/><ref refid="df/dde/classBrush_1_1MAB_1_1BanditOperator_1a9b732dfe2c3292ce4c420e5a66ff33c6" kindref="member">probabilities</ref>;</highlight></codeline>
-<codeline lineno="68"><highlight class="normal">};</highlight></codeline>
-<codeline lineno="69"><highlight class="normal"></highlight></codeline>
-<codeline lineno="70"><highlight class="normal">}<sp/></highlight><highlight class="comment">//<sp/>MAB</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="71"><highlight class="normal">}<sp/></highlight><highlight class="comment">//<sp/>Brush</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="72"><highlight class="normal"></highlight></codeline>
-<codeline lineno="73"><highlight class="normal"></highlight><highlight class="preprocessor">#endif<sp/></highlight><highlight class="comment">//<sp/>BANDIT_OPERATOR_H</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="21" refid="df/dde/classBrush_1_1MAB_1_1BanditOperator" refkind="compound"><highlight class="normal"></highlight><highlight class="keyword">class<sp/></highlight><highlight class="normal"><ref refid="df/dde/classBrush_1_1MAB_1_1BanditOperator_1ab235b15e23e629a01e6709ffd67b3e60" kindref="member">BanditOperator</ref></highlight></codeline>
+<codeline lineno="22"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="23" refid="df/dde/classBrush_1_1MAB_1_1BanditOperator_1acc0564b969a11e14016363510b6dbe6d" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">using<sp/></highlight><highlight class="normal"><ref refid="df/dde/classBrush_1_1MAB_1_1BanditOperator_1acc0564b969a11e14016363510b6dbe6d" kindref="member">Iter</ref><sp/>=<sp/>tree&lt;Node&gt;::pre_order_iterator;</highlight></codeline>
+<codeline lineno="24"><highlight class="normal"></highlight><highlight class="keyword">public</highlight><highlight class="normal">:</highlight></codeline>
+<codeline lineno="30"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="df/dde/classBrush_1_1MAB_1_1BanditOperator_1ab235b15e23e629a01e6709ffd67b3e60" kindref="member">BanditOperator</ref>(vector&lt;string&gt;<sp/>arms);</highlight></codeline>
+<codeline lineno="31"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="37"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="df/dde/classBrush_1_1MAB_1_1BanditOperator_1ab235b15e23e629a01e6709ffd67b3e60" kindref="member">BanditOperator</ref>(map&lt;string,<sp/>float&gt;<sp/>arms_probs);</highlight></codeline>
+<codeline lineno="38"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="39" refid="df/dde/classBrush_1_1MAB_1_1BanditOperator_1a36fb7e5b3bbdc7f814fba82216f1c178" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="df/dde/classBrush_1_1MAB_1_1BanditOperator_1a36fb7e5b3bbdc7f814fba82216f1c178" kindref="member">~BanditOperator</ref>()<sp/>{};</highlight></codeline>
+<codeline lineno="40"><highlight class="normal"></highlight></codeline>
+<codeline lineno="47"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">virtual</highlight><highlight class="normal"><sp/>std::map&lt;string,<sp/>float&gt;<sp/><ref refid="df/dde/classBrush_1_1MAB_1_1BanditOperator_1afe6a2789a3e73970c443b7a05b05c6fa" kindref="member">sample_probs</ref>(</highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/><ref refid="df/dde/classBrush_1_1MAB_1_1BanditOperator_1a7330ef49ededf6ea721324756580a6aa" kindref="member">update</ref>);</highlight></codeline>
+<codeline lineno="48"><highlight class="normal"></highlight></codeline>
+<codeline lineno="56"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">virtual</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">string</highlight><highlight class="normal"><sp/><ref refid="df/dde/classBrush_1_1MAB_1_1BanditOperator_1a9422ddb2a936a30f184747659cfc3ec2" kindref="member">choose</ref>();</highlight></codeline>
+<codeline lineno="57"><highlight class="normal"></highlight></codeline>
+<codeline lineno="64"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">virtual</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="df/dde/classBrush_1_1MAB_1_1BanditOperator_1a7330ef49ededf6ea721324756580a6aa" kindref="member">update</ref>(</highlight><highlight class="keywordtype">string</highlight><highlight class="normal"><sp/>arm,<sp/></highlight><highlight class="keywordtype">float</highlight><highlight class="normal"><sp/>reward);</highlight></codeline>
+<codeline lineno="65"><highlight class="normal"></highlight><highlight class="keyword">protected</highlight><highlight class="normal">:<sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="66" refid="df/dde/classBrush_1_1MAB_1_1BanditOperator_1a4a58caa7e258d9f833de5c1dc0878f6a" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>std::map&lt;string,<sp/>float&gt;<sp/><ref refid="df/dde/classBrush_1_1MAB_1_1BanditOperator_1a4a58caa7e258d9f833de5c1dc0878f6a" kindref="member">probabilities</ref>;</highlight></codeline>
+<codeline lineno="67"><highlight class="normal">};</highlight></codeline>
+<codeline lineno="68"><highlight class="normal"></highlight></codeline>
+<codeline lineno="69"><highlight class="normal">}<sp/></highlight><highlight class="comment">//<sp/>MAB</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="70"><highlight class="normal">}<sp/></highlight><highlight class="comment">//<sp/>Brush</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="71"><highlight class="normal"></highlight></codeline>
+<codeline lineno="72"><highlight class="normal"></highlight><highlight class="preprocessor">#endif<sp/></highlight><highlight class="comment">//<sp/>BANDIT_OPERATOR_H</highlight><highlight class="normal"></highlight></codeline>
     </programlisting>
     <location file="/home/runner/work/brush/brush/src/bandit/bandit_operator.h"/>
   </compounddef>

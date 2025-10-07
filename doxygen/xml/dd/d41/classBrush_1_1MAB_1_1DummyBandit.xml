@@ -2,22 +2,17 @@
 <doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.13.2" xml:lang="en-US">
   <compounddef id="dd/d41/classBrush_1_1MAB_1_1DummyBandit" kind="class" language="C++" prot="public">
     <compoundname>Brush::MAB::DummyBandit</compoundname>
-    <basecompoundref refid="df/dde/classBrush_1_1MAB_1_1BanditOperator" prot="public" virt="non-virtual">Brush::MAB::BanditOperator&lt; T &gt;</basecompoundref>
+    <basecompoundref refid="df/dde/classBrush_1_1MAB_1_1BanditOperator" prot="public" virt="non-virtual">Brush::MAB::BanditOperator</basecompoundref>
     <includes refid="d2/d94/dummy_8h" local="no">dummy.h</includes>
-    <templateparamlist>
-      <param>
-        <type>typename T</type>
-      </param>
-    </templateparamlist>
     <sectiondef kind="public-func">
-      <memberdef kind="function" id="dd/d41/classBrush_1_1MAB_1_1DummyBandit_1a4c66350c9e64b1ee3e6a5e9439f50466" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+      <memberdef kind="function" id="dd/d41/classBrush_1_1MAB_1_1DummyBandit_1a52c1c5b4e2c67706db9db7973ab8e2cb" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
         <type></type>
-        <definition>Brush::MAB::DummyBandit&lt; T &gt;::DummyBandit</definition>
-        <argsstring>(vector&lt; T &gt; arms)</argsstring>
+        <definition>Brush::MAB::DummyBandit::DummyBandit</definition>
+        <argsstring>(vector&lt; string &gt; arms)</argsstring>
         <name>DummyBandit</name>
         <qualifiedname>Brush::MAB::DummyBandit::DummyBandit</qualifiedname>
         <param>
-          <type><ref refid="d7/dfc/classvector" kindref="compound">vector</ref>&lt; T &gt;</type>
+          <type><ref refid="d7/dfc/classvector" kindref="compound">vector</ref>&lt; <ref refid="d5/d92/classstring" kindref="compound">string</ref> &gt;</type>
           <declname>arms</declname>
         </param>
         <briefdescription>
@@ -26,17 +21,17 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/runner/work/brush/brush/src/bandit/dummy.h" line="17" column="5" bodyfile="/home/runner/work/brush/brush/src/bandit/dummy.h" bodystart="17" bodyend="17"/>
-        <references refid="df/dde/classBrush_1_1MAB_1_1BanditOperator_1a7ab649ed7a9fde167743426d98e6d8e3" compoundref="dd/d4e/bandit__operator_8cpp" startline="7" endline="16">Brush::MAB::BanditOperator&lt; T &gt;::BanditOperator</references>
+        <location file="/home/runner/work/brush/brush/src/bandit/dummy.h" line="16" column="5" bodyfile="/home/runner/work/brush/brush/src/bandit/dummy.h" bodystart="16" bodyend="16"/>
+        <references refid="df/dde/classBrush_1_1MAB_1_1BanditOperator_1ab235b15e23e629a01e6709ffd67b3e60" compoundref="dd/d4e/bandit__operator_8cpp" startline="6" endline="15">Brush::MAB::BanditOperator::BanditOperator</references>
       </memberdef>
-      <memberdef kind="function" id="dd/d41/classBrush_1_1MAB_1_1DummyBandit_1a96339e5a707ec9d23d4f9d3abce79c78" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+      <memberdef kind="function" id="dd/d41/classBrush_1_1MAB_1_1DummyBandit_1ab1f789efb2c1a00b22352b0a69b5ce13" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
         <type></type>
-        <definition>Brush::MAB::DummyBandit&lt; T &gt;::DummyBandit</definition>
-        <argsstring>(map&lt; T, float &gt; arms_probs)</argsstring>
+        <definition>Brush::MAB::DummyBandit::DummyBandit</definition>
+        <argsstring>(map&lt; string, float &gt; arms_probs)</argsstring>
         <name>DummyBandit</name>
         <qualifiedname>Brush::MAB::DummyBandit::DummyBandit</qualifiedname>
         <param>
-          <type><ref refid="d9/d28/classmap" kindref="compound">map</ref>&lt; T, float &gt;</type>
+          <type><ref refid="d9/d28/classmap" kindref="compound">map</ref>&lt; <ref refid="d5/d92/classstring" kindref="compound">string</ref>, float &gt;</type>
           <declname>arms_probs</declname>
         </param>
         <briefdescription>
@@ -45,12 +40,12 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/runner/work/brush/brush/src/bandit/dummy.h" line="18" column="5" bodyfile="/home/runner/work/brush/brush/src/bandit/dummy.h" bodystart="18" bodyend="18"/>
-        <references refid="df/dde/classBrush_1_1MAB_1_1BanditOperator_1a7ab649ed7a9fde167743426d98e6d8e3" compoundref="dd/d4e/bandit__operator_8cpp" startline="7" endline="16">Brush::MAB::BanditOperator&lt; T &gt;::BanditOperator</references>
+        <location file="/home/runner/work/brush/brush/src/bandit/dummy.h" line="17" column="5" bodyfile="/home/runner/work/brush/brush/src/bandit/dummy.h" bodystart="17" bodyend="17"/>
+        <references refid="df/dde/classBrush_1_1MAB_1_1BanditOperator_1ab235b15e23e629a01e6709ffd67b3e60" compoundref="dd/d4e/bandit__operator_8cpp" startline="6" endline="15">Brush::MAB::BanditOperator::BanditOperator</references>
       </memberdef>
-      <memberdef kind="function" id="dd/d41/classBrush_1_1MAB_1_1DummyBandit_1a3c4ae38c36dd19f99c94cb7a118bc259" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+      <memberdef kind="function" id="dd/d41/classBrush_1_1MAB_1_1DummyBandit_1acebdb451af6ad29ea74cdfde72ed5a61" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
         <type></type>
-        <definition>Brush::MAB::DummyBandit&lt; T &gt;::~DummyBandit</definition>
+        <definition>Brush::MAB::DummyBandit::~DummyBandit</definition>
         <argsstring>()</argsstring>
         <name>~DummyBandit</name>
         <qualifiedname>Brush::MAB::DummyBandit::~DummyBandit</qualifiedname>
@@ -60,15 +55,15 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/runner/work/brush/brush/src/bandit/dummy.h" line="19" column="5" bodyfile="/home/runner/work/brush/brush/src/bandit/dummy.h" bodystart="19" bodyend="19"/>
+        <location file="/home/runner/work/brush/brush/src/bandit/dummy.h" line="18" column="5" bodyfile="/home/runner/work/brush/brush/src/bandit/dummy.h" bodystart="18" bodyend="18"/>
       </memberdef>
-      <memberdef kind="function" id="dd/d41/classBrush_1_1MAB_1_1DummyBandit_1ac27a0416af048dcfdc25635d4b4029db" prot="public" static="no" const="no" explicit="no" inline="no" virt="virtual">
-        <type>std::map&lt; T, float &gt;</type>
-        <definition>std::map&lt; T, float &gt; Brush::MAB::DummyBandit&lt; T &gt;::sample_probs</definition>
+      <memberdef kind="function" id="dd/d41/classBrush_1_1MAB_1_1DummyBandit_1a5728010919b4047bb923b1ecae9ca1a4" prot="public" static="no" const="no" explicit="no" inline="no" virt="virtual">
+        <type>std::map&lt; <ref refid="d5/d92/classstring" kindref="compound">string</ref>, float &gt;</type>
+        <definition>std::map&lt; string, float &gt; Brush::MAB::DummyBandit::sample_probs</definition>
         <argsstring>(bool update)</argsstring>
         <name>sample_probs</name>
         <qualifiedname>Brush::MAB::DummyBandit::sample_probs</qualifiedname>
-        <reimplements refid="df/dde/classBrush_1_1MAB_1_1BanditOperator_1a18cb2ab1637319fc3e4d4ee89077e05d">sample_probs</reimplements>
+        <reimplements refid="df/dde/classBrush_1_1MAB_1_1BanditOperator_1afe6a2789a3e73970c443b7a05b05c6fa">sample_probs</reimplements>
         <param>
           <type>bool</type>
           <declname>update</declname>
@@ -92,21 +87,17 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/runner/work/brush/brush/src/bandit/dummy.h" line="21" column="14" bodyfile="/home/runner/work/brush/brush/src/bandit/dummy.cpp" bodystart="7" bodyend="9"/>
-        <references refid="df/dde/classBrush_1_1MAB_1_1BanditOperator_1a9b732dfe2c3292ce4c420e5a66ff33c6" compoundref="da/d8e/bandit__operator_8h" startline="67">Brush::MAB::BanditOperator&lt; T &gt;::probabilities</references>
-        <references refid="dd/d41/classBrush_1_1MAB_1_1DummyBandit_1a326b1f39e9585c7b0f23150ccace1a11" compoundref="d4/d05/dummy_8cpp" startline="19" endline="21">Brush::MAB::DummyBandit&lt; T &gt;::update</references>
+        <location file="/home/runner/work/brush/brush/src/bandit/dummy.h" line="20" column="14" bodyfile="/home/runner/work/brush/brush/src/bandit/dummy.cpp" bodystart="6" bodyend="8"/>
+        <references refid="df/dde/classBrush_1_1MAB_1_1BanditOperator_1a4a58caa7e258d9f833de5c1dc0878f6a" compoundref="da/d8e/bandit__operator_8h" startline="66">Brush::MAB::BanditOperator::probabilities</references>
+        <references refid="dd/d41/classBrush_1_1MAB_1_1DummyBandit_1a31859ae251644691b13016d8fc2eb782" compoundref="d4/d05/dummy_8cpp" startline="16" endline="18">update</references>
       </memberdef>
-      <memberdef kind="function" id="dd/d41/classBrush_1_1MAB_1_1DummyBandit_1ac15d31141a0ef97ba83df190de1e5379" prot="public" static="no" const="no" explicit="no" inline="no" virt="virtual">
-        <type>T</type>
-        <definition>T Brush::MAB::DummyBandit&lt; T &gt;::choose</definition>
-        <argsstring>(const VectorXf &amp;context)</argsstring>
+      <memberdef kind="function" id="dd/d41/classBrush_1_1MAB_1_1DummyBandit_1a3c2fd48cd2461c39a932a7e44ea6f7ea" prot="public" static="no" const="no" explicit="no" inline="no" virt="virtual">
+        <type><ref refid="d5/d92/classstring" kindref="compound">string</ref></type>
+        <definition>string Brush::MAB::DummyBandit::choose</definition>
+        <argsstring>()</argsstring>
         <name>choose</name>
         <qualifiedname>Brush::MAB::DummyBandit::choose</qualifiedname>
-        <reimplements refid="df/dde/classBrush_1_1MAB_1_1BanditOperator_1a3ed66cd086859adf694af88ea60112c4">choose</reimplements>
-        <param>
-          <type>const VectorXf &amp;</type>
-          <declname>context</declname>
-        </param>
+        <reimplements refid="df/dde/classBrush_1_1MAB_1_1BanditOperator_1a9422ddb2a936a30f184747659cfc3ec2">choose</reimplements>
         <briefdescription>
 <para>Chooses an arm based on the given tree and fitness. Should call sample_probs internally. </para>
         </briefdescription>
@@ -134,28 +125,24 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/runner/work/brush/brush/src/bandit/dummy.h" line="22" column="7" bodyfile="/home/runner/work/brush/brush/src/bandit/dummy.cpp" bodystart="12" bodyend="16"/>
-        <references refid="df/dde/classBrush_1_1MAB_1_1BanditOperator_1a9b732dfe2c3292ce4c420e5a66ff33c6" compoundref="da/d8e/bandit__operator_8h" startline="67">Brush::MAB::BanditOperator&lt; T &gt;::probabilities</references>
+        <location file="/home/runner/work/brush/brush/src/bandit/dummy.h" line="21" column="12" bodyfile="/home/runner/work/brush/brush/src/bandit/dummy.cpp" bodystart="10" bodyend="14"/>
+        <references refid="df/dde/classBrush_1_1MAB_1_1BanditOperator_1a4a58caa7e258d9f833de5c1dc0878f6a" compoundref="da/d8e/bandit__operator_8h" startline="66">Brush::MAB::BanditOperator::probabilities</references>
         <references refid="d6/d2e/namespaceBrush_1_1Util_1af7dd70e54015821d96e3a1afed6344ca" compoundref="d2/da9/rnd_8h" startline="174">Brush::Util::r</references>
       </memberdef>
-      <memberdef kind="function" id="dd/d41/classBrush_1_1MAB_1_1DummyBandit_1a326b1f39e9585c7b0f23150ccace1a11" prot="public" static="no" const="no" explicit="no" inline="no" virt="virtual">
+      <memberdef kind="function" id="dd/d41/classBrush_1_1MAB_1_1DummyBandit_1a31859ae251644691b13016d8fc2eb782" prot="public" static="no" const="no" explicit="no" inline="no" virt="virtual">
         <type>void</type>
-        <definition>void Brush::MAB::DummyBandit&lt; T &gt;::update</definition>
-        <argsstring>(T arm, float reward, VectorXf &amp;context)</argsstring>
+        <definition>void Brush::MAB::DummyBandit::update</definition>
+        <argsstring>(string arm, float reward)</argsstring>
         <name>update</name>
         <qualifiedname>Brush::MAB::DummyBandit::update</qualifiedname>
-        <reimplements refid="df/dde/classBrush_1_1MAB_1_1BanditOperator_1add60c0e803a4511425be94002e180edc">update</reimplements>
+        <reimplements refid="df/dde/classBrush_1_1MAB_1_1BanditOperator_1a7330ef49ededf6ea721324756580a6aa">update</reimplements>
         <param>
-          <type>T</type>
+          <type><ref refid="d5/d92/classstring" kindref="compound">string</ref></type>
           <declname>arm</declname>
         </param>
         <param>
           <type>float</type>
           <declname>reward</declname>
-        </param>
-        <param>
-          <type>VectorXf &amp;</type>
-          <declname>context</declname>
         </param>
         <briefdescription>
 <para>Updates the reward for a specific arm. </para>
@@ -182,8 +169,8 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/runner/work/brush/brush/src/bandit/dummy.h" line="23" column="10" bodyfile="/home/runner/work/brush/brush/src/bandit/dummy.cpp" bodystart="19" bodyend="21"/>
-        <referencedby refid="dd/d41/classBrush_1_1MAB_1_1DummyBandit_1ac27a0416af048dcfdc25635d4b4029db" compoundref="d4/d05/dummy_8cpp" startline="7" endline="9">Brush::MAB::DummyBandit&lt; T &gt;::sample_probs</referencedby>
+        <location file="/home/runner/work/brush/brush/src/bandit/dummy.h" line="22" column="10" bodyfile="/home/runner/work/brush/brush/src/bandit/dummy.cpp" bodystart="16" bodyend="18"/>
+        <referencedby refid="dd/d41/classBrush_1_1MAB_1_1DummyBandit_1a5728010919b4047bb923b1ecae9ca1a4" compoundref="d4/d05/dummy_8cpp" startline="6" endline="8">sample_probs</referencedby>
       </memberdef>
     </sectiondef>
     <briefdescription>
@@ -192,11 +179,11 @@
     </detaileddescription>
     <inheritancegraph>
       <node id="2">
-        <label>Brush::MAB::BanditOperator&lt; T &gt;</label>
+        <label>Brush::MAB::BanditOperator</label>
         <link refid="df/dde/classBrush_1_1MAB_1_1BanditOperator"/>
       </node>
       <node id="1">
-        <label>Brush::MAB::DummyBandit&lt; T &gt;</label>
+        <label>Brush::MAB::DummyBandit</label>
         <link refid="dd/d41/classBrush_1_1MAB_1_1DummyBandit"/>
         <childnode refid="2" relation="public-inheritance">
         </childnode>
@@ -204,41 +191,46 @@
     </inheritancegraph>
     <collaborationgraph>
       <node id="2">
-        <label>Brush::MAB::BanditOperator&lt; T &gt;</label>
+        <label>Brush::MAB::BanditOperator</label>
         <link refid="df/dde/classBrush_1_1MAB_1_1BanditOperator"/>
         <childnode refid="3" relation="usage">
           <edgelabel>probabilities</edgelabel>
         </childnode>
       </node>
       <node id="1">
-        <label>Brush::MAB::DummyBandit&lt; T &gt;</label>
+        <label>Brush::MAB::DummyBandit</label>
         <link refid="dd/d41/classBrush_1_1MAB_1_1DummyBandit"/>
         <childnode refid="2" relation="public-inheritance">
         </childnode>
       </node>
-      <node id="4">
-        <label>T</label>
+      <node id="5">
+        <label>std::basic_string&lt; Char &gt;</label>
       </node>
       <node id="3">
-        <label>std::map&lt; T, float &gt;</label>
+        <label>std::map&lt; string, float &gt;</label>
         <childnode refid="4" relation="usage">
           <edgelabel>keys</edgelabel>
         </childnode>
       </node>
+      <node id="4">
+        <label>std::string</label>
+        <childnode refid="5" relation="public-inheritance">
+        </childnode>
+      </node>
     </collaborationgraph>
-    <location file="/home/runner/work/brush/brush/src/bandit/dummy.h" line="14" column="1" bodyfile="/home/runner/work/brush/brush/src/bandit/dummy.h" bodystart="15" bodyend="27"/>
+    <location file="/home/runner/work/brush/brush/src/bandit/dummy.h" line="13" column="1" bodyfile="/home/runner/work/brush/brush/src/bandit/dummy.h" bodystart="14" bodyend="26"/>
     <listofallmembers>
-      <member refid="df/dde/classBrush_1_1MAB_1_1BanditOperator_1a7ab649ed7a9fde167743426d98e6d8e3" prot="public" virt="non-virtual"><scope>Brush::MAB::DummyBandit</scope><name>BanditOperator</name></member>
-      <member refid="df/dde/classBrush_1_1MAB_1_1BanditOperator_1a4b87a9de6b7e72d7ecd81eaa312ae966" prot="public" virt="non-virtual"><scope>Brush::MAB::DummyBandit</scope><name>BanditOperator</name></member>
-      <member refid="dd/d41/classBrush_1_1MAB_1_1DummyBandit_1ac15d31141a0ef97ba83df190de1e5379" prot="public" virt="virtual"><scope>Brush::MAB::DummyBandit</scope><name>choose</name></member>
-      <member refid="dd/d41/classBrush_1_1MAB_1_1DummyBandit_1a4c66350c9e64b1ee3e6a5e9439f50466" prot="public" virt="non-virtual"><scope>Brush::MAB::DummyBandit</scope><name>DummyBandit</name></member>
-      <member refid="dd/d41/classBrush_1_1MAB_1_1DummyBandit_1a96339e5a707ec9d23d4f9d3abce79c78" prot="public" virt="non-virtual"><scope>Brush::MAB::DummyBandit</scope><name>DummyBandit</name></member>
-      <member refid="df/dde/classBrush_1_1MAB_1_1BanditOperator_1a6953c55888445cfed5462918b3c822e4" prot="private" virt="non-virtual"><scope>Brush::MAB::DummyBandit</scope><name>Iter</name></member>
-      <member refid="df/dde/classBrush_1_1MAB_1_1BanditOperator_1a9b732dfe2c3292ce4c420e5a66ff33c6" prot="protected" virt="non-virtual"><scope>Brush::MAB::DummyBandit</scope><name>probabilities</name></member>
-      <member refid="dd/d41/classBrush_1_1MAB_1_1DummyBandit_1ac27a0416af048dcfdc25635d4b4029db" prot="public" virt="virtual"><scope>Brush::MAB::DummyBandit</scope><name>sample_probs</name></member>
-      <member refid="dd/d41/classBrush_1_1MAB_1_1DummyBandit_1a326b1f39e9585c7b0f23150ccace1a11" prot="public" virt="virtual"><scope>Brush::MAB::DummyBandit</scope><name>update</name></member>
-      <member refid="df/dde/classBrush_1_1MAB_1_1BanditOperator_1ac898647033aa6ca44e4c1d67391cb017" prot="public" virt="non-virtual"><scope>Brush::MAB::DummyBandit</scope><name>~BanditOperator</name></member>
-      <member refid="dd/d41/classBrush_1_1MAB_1_1DummyBandit_1a3c4ae38c36dd19f99c94cb7a118bc259" prot="public" virt="non-virtual"><scope>Brush::MAB::DummyBandit</scope><name>~DummyBandit</name></member>
+      <member refid="df/dde/classBrush_1_1MAB_1_1BanditOperator_1ab235b15e23e629a01e6709ffd67b3e60" prot="public" virt="non-virtual"><scope>Brush::MAB::DummyBandit</scope><name>BanditOperator</name></member>
+      <member refid="df/dde/classBrush_1_1MAB_1_1BanditOperator_1ad5073f5958b0d8914e2938664d25ee05" prot="public" virt="non-virtual"><scope>Brush::MAB::DummyBandit</scope><name>BanditOperator</name></member>
+      <member refid="dd/d41/classBrush_1_1MAB_1_1DummyBandit_1a3c2fd48cd2461c39a932a7e44ea6f7ea" prot="public" virt="virtual"><scope>Brush::MAB::DummyBandit</scope><name>choose</name></member>
+      <member refid="dd/d41/classBrush_1_1MAB_1_1DummyBandit_1a52c1c5b4e2c67706db9db7973ab8e2cb" prot="public" virt="non-virtual"><scope>Brush::MAB::DummyBandit</scope><name>DummyBandit</name></member>
+      <member refid="dd/d41/classBrush_1_1MAB_1_1DummyBandit_1ab1f789efb2c1a00b22352b0a69b5ce13" prot="public" virt="non-virtual"><scope>Brush::MAB::DummyBandit</scope><name>DummyBandit</name></member>
+      <member refid="df/dde/classBrush_1_1MAB_1_1BanditOperator_1acc0564b969a11e14016363510b6dbe6d" prot="private" virt="non-virtual"><scope>Brush::MAB::DummyBandit</scope><name>Iter</name></member>
+      <member refid="df/dde/classBrush_1_1MAB_1_1BanditOperator_1a4a58caa7e258d9f833de5c1dc0878f6a" prot="protected" virt="non-virtual"><scope>Brush::MAB::DummyBandit</scope><name>probabilities</name></member>
+      <member refid="dd/d41/classBrush_1_1MAB_1_1DummyBandit_1a5728010919b4047bb923b1ecae9ca1a4" prot="public" virt="virtual"><scope>Brush::MAB::DummyBandit</scope><name>sample_probs</name></member>
+      <member refid="dd/d41/classBrush_1_1MAB_1_1DummyBandit_1a31859ae251644691b13016d8fc2eb782" prot="public" virt="virtual"><scope>Brush::MAB::DummyBandit</scope><name>update</name></member>
+      <member refid="df/dde/classBrush_1_1MAB_1_1BanditOperator_1a36fb7e5b3bbdc7f814fba82216f1c178" prot="public" virt="non-virtual"><scope>Brush::MAB::DummyBandit</scope><name>~BanditOperator</name></member>
+      <member refid="dd/d41/classBrush_1_1MAB_1_1DummyBandit_1acebdb451af6ad29ea74cdfde72ed5a61" prot="public" virt="non-virtual"><scope>Brush::MAB::DummyBandit</scope><name>~DummyBandit</name></member>
     </listofallmembers>
   </compounddef>
 </doxygen>

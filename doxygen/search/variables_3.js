@@ -1,6 +1,6 @@
 var searchData=
 [
-  ['c_0',['C',['../db/d10/classBrush_1_1MAB_1_1ThompsonSamplingBandit.html#a2f1fd03574e38ad95daedca5eaf9e4b8',1,'Brush::MAB::ThompsonSamplingBandit']]],
+  ['c_0',['C',['../db/d10/classBrush_1_1MAB_1_1ThompsonSamplingBandit.html#acb1c631e00212bb6086b2a05564cf740',1,'Brush::MAB::ThompsonSamplingBandit']]],
   ['cdm_5fversion_1',['cdm_version',['../dc/d67/structBrush_1_1Data_1_1OmopData.html#a33bc71d0a2b254f83094568cf9518ae7',1,'Brush::Data::OmopData']]],
   ['center_5fop_2',['center_op',['../d1/d3a/structBrush_1_1Node.html#a0971012cfb2ae944f4bea0ea0dc9e5a3',1,'Brush::Node::center_op'],['../d8/d49/structNode.html#a0971012cfb2ae944f4bea0ea0dc9e5a3',1,'Node::center_op']]],
   ['class_5fweights_3',['class_weights',['../de/deb/structBrush_1_1Parameters.html#a88f5a4e906459cfc44ab04bca01fb333',1,'Brush::Parameters']]],

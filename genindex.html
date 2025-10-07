@@ -31,7 +31,7 @@
     <link rel="stylesheet" type="text/css" href="_static/styles/sphinx-book-theme.css?v=eba8b062" />
     <link rel="stylesheet" type="text/css" href="_static/graphviz.css?v=4ae1632d" />
     <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
-    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.8ecb98da25f57f5357bf6f572d296f466b2cfe2517ffebfabe82451661e28f02.css" />
   
   <!-- Pre-loaded scripts that we'll load fully later -->
   <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
@@ -361,6 +361,8 @@ document.write(`
       <li><a href="cpp_api/data.html#_CPPv4NK5Brush4Data7Dataset9get_batchEv">Brush::Data::Dataset::get_batch (C++ function)</a>
 </li>
       <li><a href="cpp_api/data.html#_CPPv4N5Brush4Data7Dataset14get_batch_sizeEv">Brush::Data::Dataset::get_batch_size (C++ function)</a>
+</li>
+      <li><a href="cpp_api/data.html#_CPPv4NK5Brush4Data7Dataset16get_feature_typeERK6string">Brush::Data::Dataset::get_feature_type (C++ function)</a>
 </li>
       <li><a href="cpp_api/data.html#_CPPv4NK5Brush4Data7Dataset14get_n_featuresEv">Brush::Data::Dataset::get_n_features (C++ function)</a>
 </li>
@@ -744,6 +746,10 @@ document.write(`
 </li>
       <li><a href="cpp_api/node.html#_CPPv4N5Brush4Node9center_opE">Brush::Node::center_op (C++ member)</a>
 </li>
+      <li><a href="cpp_api/node.html#_CPPv4N5Brush4Node7featureE">Brush::Node::feature (C++ member)</a>
+</li>
+      <li><a href="cpp_api/node.html#_CPPv4N5Brush4Node12feature_typeE">Brush::Node::feature_type (C++ member)</a>
+</li>
       <li><a href="cpp_api/node.html#_CPPv4N5Brush4Node5fixedE">Brush::Node::fixed (C++ member)</a>
 </li>
       <li><a href="cpp_api/node.html#_CPPv4NK5Brush4Node13get_arg_countEv">Brush::Node::get_arg_count (C++ function)</a>
@@ -930,12 +936,12 @@ document.write(`
 </li>
       <li><a href="cpp_api/engine.html#_CPPv4N5Brush10Parameters7cx_probE">Brush::Parameters::cx_prob (C++ member)</a>
 </li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="cpp_api/engine.html#_CPPv4N5Brush10Parameters13feature_namesE">Brush::Parameters::feature_names (C++ member)</a>
 </li>
       <li><a href="cpp_api/engine.html#_CPPv4N5Brush10Parameters13feature_typesE">Brush::Parameters::feature_types (C++ member)</a>
 </li>
-  </ul></td>
-  <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="cpp_api/engine.html#_CPPv4N5Brush10Parameters9functionsE">Brush::Parameters::functions (C++ member)</a>
 </li>
       <li><a href="cpp_api/engine.html#_CPPv4N5Brush10Parameters10get_banditEv">Brush::Parameters::get_bandit (C++ function)</a>
@@ -1492,19 +1498,17 @@ document.write(`
 </li>
       <li><a href="cpp_api/variation.html#_CPPv4I_11ProgramTypeEN5Brush3Var9VariationE">Brush::Var::Variation (C++ class)</a>
 </li>
-      <li><a href="cpp_api/variation.html#_CPPv4N5Brush3Var9Variation20bandit_get_node_likeE4NodeR8VectorXf">Brush::Var::Variation::bandit_get_node_like (C++ function)</a>
+      <li><a href="cpp_api/variation.html#_CPPv4N5Brush3Var9Variation20bandit_get_node_likeE4Node">Brush::Var::Variation::bandit_get_node_like (C++ function)</a>
 </li>
-      <li><a href="cpp_api/variation.html#_CPPv4N5Brush3Var9Variation16bandit_sample_opE8DataTypeR8VectorXf">Brush::Var::Variation::bandit_sample_op (C++ function)</a>
+      <li><a href="cpp_api/variation.html#_CPPv4N5Brush3Var9Variation16bandit_sample_opE8DataType">Brush::Var::Variation::bandit_sample_op (C++ function)</a>
 </li>
-      <li><a href="cpp_api/variation.html#_CPPv4N5Brush3Var9Variation25bandit_sample_op_with_argE8DataType8DataTypeR8VectorXfi">Brush::Var::Variation::bandit_sample_op_with_arg (C++ function)</a>
+      <li><a href="cpp_api/variation.html#_CPPv4N5Brush3Var9Variation25bandit_sample_op_with_argE8DataType8DataTypei">Brush::Var::Variation::bandit_sample_op_with_arg (C++ function)</a>
 </li>
-      <li><a href="cpp_api/variation.html#_CPPv4N5Brush3Var9Variation22bandit_sample_terminalE8DataTypeR8VectorXf">Brush::Var::Variation::bandit_sample_terminal (C++ function)</a>
+      <li><a href="cpp_api/variation.html#_CPPv4N5Brush3Var9Variation22bandit_sample_terminalE8DataType">Brush::Var::Variation::bandit_sample_terminal (C++ function)</a>
 </li>
       <li><a href="cpp_api/variation.html#_CPPv4N5Brush3Var9Variation5crossERK10IndividualI1TERK10IndividualI1TE">Brush::Var::Variation::cross (C++ function)</a>
 </li>
       <li><a href="cpp_api/variation.html#_CPPv4N5Brush3Var9Variation4dataE">Brush::Var::Variation::data (C++ member)</a>
-</li>
-      <li><a href="cpp_api/variation.html#_CPPv4N5Brush3Var9Variation11get_contextERK7ProgramI1TE4Iter">Brush::Var::Variation::get_context (C++ function)</a>
 </li>
       <li><a href="cpp_api/variation.html#_CPPv4N5Brush3Var9Variation4initEv">Brush::Var::Variation::init (C++ function)</a>
 </li>
@@ -1520,7 +1524,7 @@ document.write(`
 </li>
       <li><a href="cpp_api/variation.html#_CPPv4N5Brush3Var9Variation4varyER10PopulationI1TEiRK6vectorI6size_tE">Brush::Var::Variation::vary (C++ function)</a>
 </li>
-      <li><a href="cpp_api/variation.html#_CPPv4N5Brush3Var9Variation15vary_and_updateER10PopulationI1TEiRK6vectorI6size_tERK7DatasetR10EvaluationI1TE">Brush::Var::Variation::vary_and_update (C++ function)</a>
+      <li><a href="cpp_api/variation.html#_CPPv4N5Brush3Var9Variation15vary_and_updateER10PopulationI1TEiRK6vectorI6size_tERK7DatasetR10EvaluationI1TEb">Brush::Var::Variation::vary_and_update (C++ function)</a>
 </li>
       <li><a href="cpp_api/variation.html#_CPPv4N5Brush3Var9VariationD0Ev">Brush::Var::Variation::~Variation (C++ function)</a>
 </li>

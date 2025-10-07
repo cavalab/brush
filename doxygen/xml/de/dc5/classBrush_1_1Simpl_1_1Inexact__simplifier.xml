@@ -4,68 +4,39 @@
     <compoundname>Brush::Simpl::Inexact_simplifier</compoundname>
     <includes refid="d1/db6/inexact_8h" local="no">inexact.h</includes>
     <sectiondef kind="private-attrib">
-      <memberdef kind="variable" id="de/dc5/classBrush_1_1Simpl_1_1Inexact__simplifier_1a301d3c5a919a16816eef139a0e15350b" prot="private" static="no" mutable="no">
-        <type><ref refid="d4/d71/classBrush_1_1Simpl_1_1HashStorage" kindref="compound">HashStorage</ref></type>
-        <definition>HashStorage Brush::Simpl::Inexact_simplifier::storageBool</definition>
+      <memberdef kind="variable" id="de/dc5/classBrush_1_1Simpl_1_1Inexact__simplifier_1ae737baf7821d6027feda169330192272" prot="private" static="no" mutable="no">
+        <type>int</type>
+        <definition>int Brush::Simpl::Inexact_simplifier::inputDim</definition>
         <argsstring></argsstring>
-        <name>storageBool</name>
-        <qualifiedname>Brush::Simpl::Inexact_simplifier::storageBool</qualifiedname>
+        <name>inputDim</name>
+        <qualifiedname>Brush::Simpl::Inexact_simplifier::inputDim</qualifiedname>
+        <initializer>= 1</initializer>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/runner/work/brush/brush/src/simplification/inexact.h" line="138" column="21" bodyfile="/home/runner/work/brush/brush/src/simplification/inexact.h" bodystart="138" bodyend="-1"/>
-        <referencedby refid="de/dc5/classBrush_1_1Simpl_1_1Inexact__simplifier_1ade7f7d485257f318d04c6e60c0b027ff" compoundref="de/d79/inexact_8cpp" startline="73" endline="106">index</referencedby>
-        <referencedby refid="de/dc5/classBrush_1_1Simpl_1_1Inexact__simplifier_1ad8c739c0661668ec1b869d73c3f412f6" compoundref="de/d79/inexact_8cpp" startline="109" endline="178">query</referencedby>
+        <location file="/home/runner/work/brush/brush/src/simplification/inexact.h" line="207" column="13" bodyfile="/home/runner/work/brush/brush/src/simplification/inexact.h" bodystart="207" bodyend="-1"/>
+        <referencedby refid="de/dc5/classBrush_1_1Simpl_1_1Inexact__simplifier_1a5f837106982ddf27cb2fcd8d492cc677" compoundref="d1/db6/inexact_8h" startline="223" endline="301">hash</referencedby>
+        <referencedby refid="de/dc5/classBrush_1_1Simpl_1_1Inexact__simplifier_1abb9431d42274e6b559249d6b2872d2a2" compoundref="de/d79/inexact_8cpp" startline="17" endline="35">init</referencedby>
       </memberdef>
-      <memberdef kind="variable" id="de/dc5/classBrush_1_1Simpl_1_1Inexact__simplifier_1a33d6b73c253d7aeedf50a3681a0d28c1" prot="private" static="no" mutable="no">
-        <type><ref refid="d4/d71/classBrush_1_1Simpl_1_1HashStorage" kindref="compound">HashStorage</ref></type>
-        <definition>HashStorage Brush::Simpl::Inexact_simplifier::storageInt</definition>
+      <memberdef kind="variable" id="de/dc5/classBrush_1_1Simpl_1_1Inexact__simplifier_1ac63ac4ab691f7bedb423a60ead721ec9" prot="private" static="no" mutable="no">
+        <type>std::unordered_map&lt; <ref refid="dc/d5c/namespaceBrush_1a3f2c9b744330ba4a561ac72f048a1a5f" kindref="member">DataType</ref>, <ref refid="d4/d71/classBrush_1_1Simpl_1_1HashStorage" kindref="compound">HashStorage</ref> &gt;</type>
+        <definition>std::unordered_map&lt;DataType, HashStorage&gt; Brush::Simpl::Inexact_simplifier::equivalentExpressions</definition>
         <argsstring></argsstring>
-        <name>storageInt</name>
-        <qualifiedname>Brush::Simpl::Inexact_simplifier::storageInt</qualifiedname>
+        <name>equivalentExpressions</name>
+        <qualifiedname>Brush::Simpl::Inexact_simplifier::equivalentExpressions</qualifiedname>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/runner/work/brush/brush/src/simplification/inexact.h" line="139" column="21" bodyfile="/home/runner/work/brush/brush/src/simplification/inexact.h" bodystart="139" bodyend="-1"/>
-        <referencedby refid="de/dc5/classBrush_1_1Simpl_1_1Inexact__simplifier_1ade7f7d485257f318d04c6e60c0b027ff" compoundref="de/d79/inexact_8cpp" startline="73" endline="106">index</referencedby>
-        <referencedby refid="de/dc5/classBrush_1_1Simpl_1_1Inexact__simplifier_1ad8c739c0661668ec1b869d73c3f412f6" compoundref="de/d79/inexact_8cpp" startline="109" endline="178">query</referencedby>
-      </memberdef>
-      <memberdef kind="variable" id="de/dc5/classBrush_1_1Simpl_1_1Inexact__simplifier_1ac495100cc8a47f38e1fb9b16b8c7b67c" prot="private" static="no" mutable="no">
-        <type><ref refid="d4/d71/classBrush_1_1Simpl_1_1HashStorage" kindref="compound">HashStorage</ref></type>
-        <definition>HashStorage Brush::Simpl::Inexact_simplifier::storageFloat</definition>
-        <argsstring></argsstring>
-        <name>storageFloat</name>
-        <qualifiedname>Brush::Simpl::Inexact_simplifier::storageFloat</qualifiedname>
-        <briefdescription>
-        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="/home/runner/work/brush/brush/src/simplification/inexact.h" line="140" column="21" bodyfile="/home/runner/work/brush/brush/src/simplification/inexact.h" bodystart="140" bodyend="-1"/>
-        <referencedby refid="de/dc5/classBrush_1_1Simpl_1_1Inexact__simplifier_1ade7f7d485257f318d04c6e60c0b027ff" compoundref="de/d79/inexact_8cpp" startline="73" endline="106">index</referencedby>
-        <referencedby refid="de/dc5/classBrush_1_1Simpl_1_1Inexact__simplifier_1ad8c739c0661668ec1b869d73c3f412f6" compoundref="de/d79/inexact_8cpp" startline="109" endline="178">query</referencedby>
-      </memberdef>
-      <memberdef kind="variable" id="de/dc5/classBrush_1_1Simpl_1_1Inexact__simplifier_1adf34fc95f8eb5c75bfa8b79820612241" prot="private" static="no" mutable="no">
-        <type><ref refid="d9/d28/classmap" kindref="compound">map</ref>&lt; pair&lt; size_t, <ref refid="d5/d92/classstring" kindref="compound">string</ref> &gt;, tree&lt; <ref refid="d1/d3a/structBrush_1_1Node" kindref="compound">Node</ref> &gt; &gt;</type>
-        <definition>map&lt;pair&lt;size_t, string&gt;, tree&lt;Node&gt; &gt; Brush::Simpl::Inexact_simplifier::equivalentExpression</definition>
-        <argsstring></argsstring>
-        <name>equivalentExpression</name>
-        <qualifiedname>Brush::Simpl::Inexact_simplifier::equivalentExpression</qualifiedname>
-        <briefdescription>
-        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="/home/runner/work/brush/brush/src/simplification/inexact.h" line="142" column="13" bodyfile="/home/runner/work/brush/brush/src/simplification/inexact.h" bodystart="142" bodyend="-1"/>
-        <referencedby refid="de/dc5/classBrush_1_1Simpl_1_1Inexact__simplifier_1a0bc38a2a1733e80dbdfeb790e95acb61" compoundref="d1/db6/inexact_8h" startline="72" endline="118">simplify_tree</referencedby>
+        <location file="/home/runner/work/brush/brush/src/simplification/inexact.h" line="346" column="28" bodyfile="/home/runner/work/brush/brush/src/simplification/inexact.h" bodystart="346" bodyend="-1"/>
+        <referencedby refid="de/dc5/classBrush_1_1Simpl_1_1Inexact__simplifier_1a7c78cf61e853e40d9729e4b31cb1ca59" compoundref="d1/db6/inexact_8h" startline="183" endline="204">index</referencedby>
+        <referencedby refid="de/dc5/classBrush_1_1Simpl_1_1Inexact__simplifier_1abb9431d42274e6b559249d6b2872d2a2" compoundref="de/d79/inexact_8cpp" startline="17" endline="35">init</referencedby>
+        <referencedby refid="de/dc5/classBrush_1_1Simpl_1_1Inexact__simplifier_1a32dabddbcfac94f89741db0c4fd6ffa3" compoundref="d1/db6/inexact_8h" startline="305" endline="339">query</referencedby>
       </memberdef>
       <memberdef kind="variable" id="de/dc5/classBrush_1_1Simpl_1_1Inexact__simplifier_1a7319339ce256877088504967d3100685" prot="private" static="no" mutable="no">
         <type><ref refid="d7/dfc/classvector" kindref="compound">vector</ref>&lt; MatrixXf &gt;</type>
@@ -79,25 +50,25 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/runner/work/brush/brush/src/simplification/inexact.h" line="144" column="16" bodyfile="/home/runner/work/brush/brush/src/simplification/inexact.h" bodystart="144" bodyend="-1"/>
-        <referencedby refid="de/dc5/classBrush_1_1Simpl_1_1Inexact__simplifier_1aded95b400fe1fab7d4e7fb8979fc559d" compoundref="de/d79/inexact_8cpp" startline="44" endline="71">hash</referencedby>
-        <referencedby refid="de/dc5/classBrush_1_1Simpl_1_1Inexact__simplifier_1a41460e9850821be449036099f776a84f" compoundref="de/d79/inexact_8cpp" startline="28" endline="42">initUniformPlanes</referencedby>
+        <location file="/home/runner/work/brush/brush/src/simplification/inexact.h" line="348" column="16" bodyfile="/home/runner/work/brush/brush/src/simplification/inexact.h" bodystart="348" bodyend="-1"/>
+        <referencedby refid="de/dc5/classBrush_1_1Simpl_1_1Inexact__simplifier_1a5f837106982ddf27cb2fcd8d492cc677" compoundref="d1/db6/inexact_8h" startline="223" endline="301">hash</referencedby>
+        <referencedby refid="de/dc5/classBrush_1_1Simpl_1_1Inexact__simplifier_1abb9431d42274e6b559249d6b2872d2a2" compoundref="de/d79/inexact_8cpp" startline="17" endline="35">init</referencedby>
       </memberdef>
     </sectiondef>
     <sectiondef kind="public-func">
-      <memberdef kind="function" id="de/dc5/classBrush_1_1Simpl_1_1Inexact__simplifier_1a41460e9850821be449036099f776a84f" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+      <memberdef kind="function" id="de/dc5/classBrush_1_1Simpl_1_1Inexact__simplifier_1abb9431d42274e6b559249d6b2872d2a2" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
-        <definition>void Brush::Simpl::Inexact_simplifier::initUniformPlanes</definition>
-        <argsstring>(int hashSize, int inputDim, int numPlanes)</argsstring>
-        <name>initUniformPlanes</name>
-        <qualifiedname>Brush::Simpl::Inexact_simplifier::initUniformPlanes</qualifiedname>
+        <definition>void Brush::Simpl::Inexact_simplifier::init</definition>
+        <argsstring>(int hashSize, const Dataset &amp;data, int numPlanes)</argsstring>
+        <name>init</name>
+        <qualifiedname>Brush::Simpl::Inexact_simplifier::init</qualifiedname>
         <param>
           <type>int</type>
           <declname>hashSize</declname>
         </param>
         <param>
-          <type>int</type>
-          <declname>inputDim</declname>
+          <type>const <ref refid="d2/d36/classBrush_1_1Data_1_1Dataset" kindref="compound">Dataset</ref> &amp;</type>
+          <declname>data</declname>
         </param>
         <param>
           <type>int</type>
@@ -109,24 +80,29 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/runner/work/brush/brush/src/simplification/inexact.h" line="64" column="14" bodyfile="/home/runner/work/brush/brush/src/simplification/inexact.cpp" bodystart="28" bodyend="42"/>
-        <references refid="de/dc5/classBrush_1_1Simpl_1_1Inexact__simplifier_1a7319339ce256877088504967d3100685" compoundref="d1/db6/inexact_8h" startline="144">uniformPlanes</references>
+        <location file="/home/runner/work/brush/brush/src/simplification/inexact.h" line="76" column="14" bodyfile="/home/runner/work/brush/brush/src/simplification/inexact.cpp" bodystart="17" bodyend="35"/>
+        <references refid="de/dc5/classBrush_1_1Simpl_1_1Inexact__simplifier_1ac63ac4ab691f7bedb423a60ead721ec9" compoundref="d1/db6/inexact_8h" startline="346">equivalentExpressions</references>
+        <references refid="d2/d36/classBrush_1_1Data_1_1Dataset_1a2b7b42b1b16630554b2e49102098a170" compoundref="d2/dbd/data_8h" startline="222" endline="227">Brush::Data::Dataset::get_n_samples</references>
+        <references refid="d2/d36/classBrush_1_1Data_1_1Dataset_1ae69087b8c020840f254e3679cd324ba5" compoundref="da/dc9/data_8cpp" startline="197" endline="197">Brush::Data::Dataset::get_training_data</references>
+        <references refid="de/dc5/classBrush_1_1Simpl_1_1Inexact__simplifier_1ae737baf7821d6027feda169330192272" compoundref="d1/db6/inexact_8h" startline="207">inputDim</references>
+        <references refid="de/dc5/classBrush_1_1Simpl_1_1Inexact__simplifier_1a7319339ce256877088504967d3100685" compoundref="d1/db6/inexact_8h" startline="348">uniformPlanes</references>
+        <references refid="d2/d36/classBrush_1_1Data_1_1Dataset_1a96fc30b35f152f425377e1ae34398779" compoundref="d2/dbd/data_8h" startline="62">Brush::Data::Dataset::unique_data_types</references>
       </memberdef>
-      <memberdef kind="function" id="de/dc5/classBrush_1_1Simpl_1_1Inexact__simplifier_1a0bc38a2a1733e80dbdfeb790e95acb61" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+      <memberdef kind="function" id="de/dc5/classBrush_1_1Simpl_1_1Inexact__simplifier_1a8a70383d31da8c7798595f36f2acb2a9" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
         <templateparamlist>
           <param>
-            <type><ref refid="dc/d5c/namespaceBrush_1ae591329af27c88b714d0f92b86276366" kindref="member">Brush::ProgramType</ref></type>
-            <declname>PT</declname>
-            <defname>PT</defname>
+            <type><ref refid="dc/d5c/namespaceBrush_1ae591329af27c88b714d0f92b86276366" kindref="member">ProgramType</ref></type>
+            <declname>P</declname>
+            <defname>P</defname>
           </param>
         </templateparamlist>
-        <type><ref refid="db/d88/structBrush_1_1Program" kindref="compound">Program</ref>&lt; <ref refid="dc/d5c/namespaceBrush_1ae591329af27c88b714d0f92b86276366" kindref="member">PT</ref> &gt;</type>
-        <definition>Program&lt; PT &gt; Brush::Simpl::Inexact_simplifier::simplify_tree</definition>
-        <argsstring>(Program&lt; PT &gt; &amp;program, const SearchSpace &amp;ss, const Dataset &amp;d)</argsstring>
+        <type><ref refid="db/d88/structBrush_1_1Program" kindref="compound">Program</ref>&lt; P &gt;</type>
+        <definition>Program&lt; P &gt; Brush::Simpl::Inexact_simplifier::simplify_tree</definition>
+        <argsstring>(Program&lt; P &gt; &amp;program, const SearchSpace &amp;ss, const Dataset &amp;d)</argsstring>
         <name>simplify_tree</name>
         <qualifiedname>Brush::Simpl::Inexact_simplifier::simplify_tree</qualifiedname>
         <param>
-          <type><ref refid="db/d88/structBrush_1_1Program" kindref="compound">Program</ref>&lt; <ref refid="dc/d5c/namespaceBrush_1ae591329af27c88b714d0f92b86276366" kindref="member">PT</ref> &gt; &amp;</type>
+          <type><ref refid="db/d88/structBrush_1_1Program" kindref="compound">Program</ref>&lt; P &gt; &amp;</type>
           <declname>program</declname>
         </param>
         <param>
@@ -143,11 +119,11 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/runner/work/brush/brush/src/simplification/inexact.h" line="72" column="17" bodyfile="/home/runner/work/brush/brush/src/simplification/inexact.h" bodystart="72" bodyend="118"/>
-        <references refid="de/dc5/classBrush_1_1Simpl_1_1Inexact__simplifier_1adf34fc95f8eb5c75bfa8b79820612241" compoundref="d1/db6/inexact_8h" startline="142">equivalentExpression</references>
-        <references refid="de/dc5/classBrush_1_1Simpl_1_1Inexact__simplifier_1ade7f7d485257f318d04c6e60c0b027ff" compoundref="de/d79/inexact_8cpp" startline="73" endline="106">index</references>
+        <location file="/home/runner/work/brush/brush/src/simplification/inexact.h" line="81" column="17" bodyfile="/home/runner/work/brush/brush/src/simplification/inexact.h" bodystart="81" bodyend="176"/>
+        <references refid="de/dc5/classBrush_1_1Simpl_1_1Inexact__simplifier_1a7c78cf61e853e40d9729e4b31cb1ca59" compoundref="d1/db6/inexact_8h" startline="183" endline="204">index</references>
         <references refid="dc/d5c/namespaceBrush_1a14447d2f04191fa6607e02077a4137ea" compoundref="d1/d77/node_8h" startline="43" endline="43">Brush::Isnt</references>
-        <references refid="de/dc5/classBrush_1_1Simpl_1_1Inexact__simplifier_1ad8c739c0661668ec1b869d73c3f412f6" compoundref="de/d79/inexact_8cpp" startline="109" endline="178">query</references>
+        <references refid="db/d88/structBrush_1_1Program_1a68b5b3a1aedf1dfd2769dbba3a01a2ec" compoundref="d1/dea/program_8h" startline="183" endline="189">Brush::Program&lt; PType &gt;::predict</references>
+        <references refid="de/dc5/classBrush_1_1Simpl_1_1Inexact__simplifier_1a32dabddbcfac94f89741db0c4fd6ffa3" compoundref="d1/db6/inexact_8h" startline="305" endline="339">query</references>
         <references refid="db/d88/structBrush_1_1Program_1a826ef90ae1aaf8f2637f551cfff0746a" compoundref="d1/dea/program_8h" startline="121" endline="124">Brush::Program&lt; PType &gt;::size_at</references>
         <references refid="db/d88/structBrush_1_1Program_1a7435fb84d7b056a108f142bb19956da5" compoundref="d1/dea/program_8h" startline="73">Brush::Program&lt; PType &gt;::Tree</references>
       </memberdef>
@@ -163,7 +139,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/runner/work/brush/brush/src/simplification/inexact.h" line="119" column="9" bodyfile="/home/runner/work/brush/brush/src/simplification/inexact.cpp" bodystart="12" bodyend="14"/>
+        <location file="/home/runner/work/brush/brush/src/simplification/inexact.h" line="178" column="9" bodyfile="/home/runner/work/brush/brush/src/simplification/inexact.cpp" bodystart="12" bodyend="14"/>
       </memberdef>
       <memberdef kind="function" id="de/dc5/classBrush_1_1Simpl_1_1Inexact__simplifier_1a8b53abd24e3b1b8018379befdce0059a" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type></type>
@@ -177,9 +153,16 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/runner/work/brush/brush/src/simplification/inexact.h" line="120" column="9" bodyfile="/home/runner/work/brush/brush/src/simplification/inexact.cpp" bodystart="188" bodyend="188"/>
+        <location file="/home/runner/work/brush/brush/src/simplification/inexact.h" line="179" column="9" bodyfile="/home/runner/work/brush/brush/src/simplification/inexact.cpp" bodystart="38" bodyend="38"/>
       </memberdef>
-      <memberdef kind="function" id="de/dc5/classBrush_1_1Simpl_1_1Inexact__simplifier_1ade7f7d485257f318d04c6e60c0b027ff" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+      <memberdef kind="function" id="de/dc5/classBrush_1_1Simpl_1_1Inexact__simplifier_1a7c78cf61e853e40d9729e4b31cb1ca59" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type><ref refid="dc/d5c/namespaceBrush_1ae591329af27c88b714d0f92b86276366" kindref="member">ProgramType</ref></type>
+            <declname>P</declname>
+            <defname>P</defname>
+          </param>
+        </templateparamlist>
         <type>void</type>
         <definition>void Brush::Simpl::Inexact_simplifier::index</definition>
         <argsstring>(TreeIter &amp;spot, const Dataset &amp;d)</argsstring>
@@ -199,26 +182,33 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/runner/work/brush/brush/src/simplification/inexact.h" line="123" column="14" bodyfile="/home/runner/work/brush/brush/src/simplification/inexact.cpp" bodystart="73" bodyend="106"/>
-        <references refid="dc/d5c/namespaceBrush_1a3f2c9b744330ba4a561ac72f048a1a5fa3c119844524e715e16e6c9b36e6516f0" compoundref="d9/d49/types_8h" startline="144">Brush::ArrayB</references>
-        <references refid="dc/d5c/namespaceBrush_1a3f2c9b744330ba4a561ac72f048a1a5fa2374ac8b377f9b738831879110e0a42f" compoundref="d9/d49/types_8h" startline="145">Brush::ArrayI</references>
-        <references refid="de/dc5/classBrush_1_1Simpl_1_1Inexact__simplifier_1aded95b400fe1fab7d4e7fb8979fc559d" compoundref="de/d79/inexact_8cpp" startline="44" endline="71">hash</references>
-        <references refid="de/dc5/classBrush_1_1Simpl_1_1Inexact__simplifier_1a301d3c5a919a16816eef139a0e15350b" compoundref="d1/db6/inexact_8h" startline="138">storageBool</references>
-        <references refid="de/dc5/classBrush_1_1Simpl_1_1Inexact__simplifier_1ac495100cc8a47f38e1fb9b16b8c7b67c" compoundref="d1/db6/inexact_8h" startline="140">storageFloat</references>
-        <references refid="de/dc5/classBrush_1_1Simpl_1_1Inexact__simplifier_1a33d6b73c253d7aeedf50a3681a0d28c1" compoundref="d1/db6/inexact_8h" startline="139">storageInt</references>
-        <referencedby refid="de/dc5/classBrush_1_1Simpl_1_1Inexact__simplifier_1a0bc38a2a1733e80dbdfeb790e95acb61" compoundref="d1/db6/inexact_8h" startline="72" endline="118">simplify_tree</referencedby>
+        <location file="/home/runner/work/brush/brush/src/simplification/inexact.h" line="183" column="14" bodyfile="/home/runner/work/brush/brush/src/simplification/inexact.h" bodystart="183" bodyend="204"/>
+        <references refid="de/dc5/classBrush_1_1Simpl_1_1Inexact__simplifier_1ac63ac4ab691f7bedb423a60ead721ec9" compoundref="d1/db6/inexact_8h" startline="346">equivalentExpressions</references>
+        <references refid="de/dc5/classBrush_1_1Simpl_1_1Inexact__simplifier_1a5f837106982ddf27cb2fcd8d492cc677" compoundref="d1/db6/inexact_8h" startline="223" endline="301">hash</references>
+        <referencedby refid="de/dc5/classBrush_1_1Simpl_1_1Inexact__simplifier_1a8a70383d31da8c7798595f36f2acb2a9" compoundref="d1/db6/inexact_8h" startline="81" endline="176">simplify_tree</referencedby>
       </memberdef>
     </sectiondef>
     <sectiondef kind="private-func">
-      <memberdef kind="function" id="de/dc5/classBrush_1_1Simpl_1_1Inexact__simplifier_1aded95b400fe1fab7d4e7fb8979fc559d" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
-        <type><ref refid="d7/dfc/classvector" kindref="compound">vector</ref>&lt; <ref refid="d5/d92/classstring" kindref="compound">string</ref> &gt;</type>
-        <definition>vector&lt; string &gt; Brush::Simpl::Inexact_simplifier::hash</definition>
-        <argsstring>(const ArrayXf &amp;inputPoint)</argsstring>
+      <memberdef kind="function" id="de/dc5/classBrush_1_1Simpl_1_1Inexact__simplifier_1a5f837106982ddf27cb2fcd8d492cc677" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type><ref refid="dc/d5c/namespaceBrush_1ae591329af27c88b714d0f92b86276366" kindref="member">ProgramType</ref></type>
+            <declname>P</declname>
+            <defname>P</defname>
+          </param>
+        </templateparamlist>
+        <type><ref refid="d7/dfc/classvector" kindref="compound">vector</ref>&lt; size_t &gt;</type>
+        <definition>vector&lt; size_t &gt; Brush::Simpl::Inexact_simplifier::hash</definition>
+        <argsstring>(TreeIter &amp;spot, const Dataset &amp;d)</argsstring>
         <name>hash</name>
         <qualifiedname>Brush::Simpl::Inexact_simplifier::hash</qualifiedname>
         <param>
-          <type>const ArrayXf &amp;</type>
-          <declname>inputPoint</declname>
+          <type><ref refid="dc/d5c/namespaceBrush_1a85201aa8f093fe8fdd3b9060a2526dfe" kindref="member">TreeIter</ref> &amp;</type>
+          <declname>spot</declname>
+        </param>
+        <param>
+          <type>const <ref refid="d2/d36/classBrush_1_1Data_1_1Dataset" kindref="compound">Dataset</ref> &amp;</type>
+          <declname>d</declname>
         </param>
         <briefdescription>
         </briefdescription>
@@ -226,14 +216,26 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/runner/work/brush/brush/src/simplification/inexact.h" line="126" column="16" bodyfile="/home/runner/work/brush/brush/src/simplification/inexact.cpp" bodystart="44" bodyend="71"/>
-        <references refid="de/dc5/classBrush_1_1Simpl_1_1Inexact__simplifier_1a7319339ce256877088504967d3100685" compoundref="d1/db6/inexact_8h" startline="144">uniformPlanes</references>
-        <referencedby refid="de/dc5/classBrush_1_1Simpl_1_1Inexact__simplifier_1ade7f7d485257f318d04c6e60c0b027ff" compoundref="de/d79/inexact_8cpp" startline="73" endline="106">index</referencedby>
-        <referencedby refid="de/dc5/classBrush_1_1Simpl_1_1Inexact__simplifier_1ad8c739c0661668ec1b869d73c3f412f6" compoundref="de/d79/inexact_8cpp" startline="109" endline="178">query</referencedby>
+        <location file="/home/runner/work/brush/brush/src/simplification/inexact.h" line="223" column="16" bodyfile="/home/runner/work/brush/brush/src/simplification/inexact.h" bodystart="223" bodyend="301"/>
+        <references refid="dc/d5c/namespaceBrush_1a3f2c9b744330ba4a561ac72f048a1a5fa3c119844524e715e16e6c9b36e6516f0" compoundref="d9/d49/types_8h" startline="144">Brush::ArrayB</references>
+        <references refid="dc/d5c/namespaceBrush_1a3f2c9b744330ba4a561ac72f048a1a5fa2374ac8b377f9b738831879110e0a42f" compoundref="d9/d49/types_8h" startline="145">Brush::ArrayI</references>
+        <references refid="de/dc5/classBrush_1_1Simpl_1_1Inexact__simplifier_1ae737baf7821d6027feda169330192272" compoundref="d1/db6/inexact_8h" startline="207">inputDim</references>
+        <references refid="dc/d5c/namespaceBrush_1ae591329af27c88b714d0f92b86276366abe2f9eac301f8c5b7acffd6b3c458faa" compoundref="d9/d49/types_8h" startline="71">Brush::Regressor</references>
+        <references refid="dc/d5c/namespaceBrush_1ae591329af27c88b714d0f92b86276366aca702b6b08355f71cf4b1a17a8e16b8b" compoundref="d9/d49/types_8h" startline="74">Brush::Representer</references>
+        <references refid="de/dc5/classBrush_1_1Simpl_1_1Inexact__simplifier_1a7319339ce256877088504967d3100685" compoundref="d1/db6/inexact_8h" startline="348">uniformPlanes</references>
+        <referencedby refid="de/dc5/classBrush_1_1Simpl_1_1Inexact__simplifier_1a7c78cf61e853e40d9729e4b31cb1ca59" compoundref="d1/db6/inexact_8h" startline="183" endline="204">index</referencedby>
+        <referencedby refid="de/dc5/classBrush_1_1Simpl_1_1Inexact__simplifier_1a32dabddbcfac94f89741db0c4fd6ffa3" compoundref="d1/db6/inexact_8h" startline="305" endline="339">query</referencedby>
       </memberdef>
-      <memberdef kind="function" id="de/dc5/classBrush_1_1Simpl_1_1Inexact__simplifier_1ad8c739c0661668ec1b869d73c3f412f6" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
-        <type>optional&lt; pair&lt; size_t, <ref refid="d5/d92/classstring" kindref="compound">string</ref> &gt; &gt;</type>
-        <definition>optional&lt; pair&lt; size_t, string &gt; &gt; Brush::Simpl::Inexact_simplifier::query</definition>
+      <memberdef kind="function" id="de/dc5/classBrush_1_1Simpl_1_1Inexact__simplifier_1a32dabddbcfac94f89741db0c4fd6ffa3" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type><ref refid="dc/d5c/namespaceBrush_1ae591329af27c88b714d0f92b86276366" kindref="member">ProgramType</ref></type>
+            <declname>P</declname>
+            <defname>P</defname>
+          </param>
+        </templateparamlist>
+        <type>optional&lt; <ref refid="d7/dfc/classvector" kindref="compound">vector</ref>&lt; tree&lt; <ref refid="d1/d3a/structBrush_1_1Node" kindref="compound">Node</ref> &gt; &gt; &gt;</type>
+        <definition>optional&lt; vector&lt; tree&lt; Node &gt; &gt; &gt; Brush::Simpl::Inexact_simplifier::query</definition>
         <argsstring>(TreeIter &amp;spot, const Dataset &amp;d)</argsstring>
         <name>query</name>
         <qualifiedname>Brush::Simpl::Inexact_simplifier::query</qualifiedname>
@@ -251,16 +253,10 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/runner/work/brush/brush/src/simplification/inexact.h" line="130" column="18" bodyfile="/home/runner/work/brush/brush/src/simplification/inexact.cpp" bodystart="109" bodyend="178"/>
-        <references refid="dc/d5c/namespaceBrush_1a3f2c9b744330ba4a561ac72f048a1a5fa3c119844524e715e16e6c9b36e6516f0" compoundref="d9/d49/types_8h" startline="144">Brush::ArrayB</references>
-        <references refid="dc/d5c/namespaceBrush_1a3f2c9b744330ba4a561ac72f048a1a5fa2374ac8b377f9b738831879110e0a42f" compoundref="d9/d49/types_8h" startline="145">Brush::ArrayI</references>
-        <references refid="d4/d71/classBrush_1_1Simpl_1_1HashStorage_1a068c14340ed0eb673af8566415b653ac" compoundref="d1/db6/inexact_8h" startline="35" endline="42">Brush::Simpl::HashStorage::getList</references>
-        <references refid="de/dc5/classBrush_1_1Simpl_1_1Inexact__simplifier_1aded95b400fe1fab7d4e7fb8979fc559d" compoundref="de/d79/inexact_8cpp" startline="44" endline="71">hash</references>
-        <references refid="d8/dc0/init_8h_1a0c86fe7dc09ca580e891580bf302e659" compoundref="d8/dc0/init_8h" startline="61">MAX_FLT</references>
-        <references refid="de/dc5/classBrush_1_1Simpl_1_1Inexact__simplifier_1a301d3c5a919a16816eef139a0e15350b" compoundref="d1/db6/inexact_8h" startline="138">storageBool</references>
-        <references refid="de/dc5/classBrush_1_1Simpl_1_1Inexact__simplifier_1ac495100cc8a47f38e1fb9b16b8c7b67c" compoundref="d1/db6/inexact_8h" startline="140">storageFloat</references>
-        <references refid="de/dc5/classBrush_1_1Simpl_1_1Inexact__simplifier_1a33d6b73c253d7aeedf50a3681a0d28c1" compoundref="d1/db6/inexact_8h" startline="139">storageInt</references>
-        <referencedby refid="de/dc5/classBrush_1_1Simpl_1_1Inexact__simplifier_1a0bc38a2a1733e80dbdfeb790e95acb61" compoundref="d1/db6/inexact_8h" startline="72" endline="118">simplify_tree</referencedby>
+        <location file="/home/runner/work/brush/brush/src/simplification/inexact.h" line="305" column="18" bodyfile="/home/runner/work/brush/brush/src/simplification/inexact.h" bodystart="305" bodyend="339"/>
+        <references refid="de/dc5/classBrush_1_1Simpl_1_1Inexact__simplifier_1ac63ac4ab691f7bedb423a60ead721ec9" compoundref="d1/db6/inexact_8h" startline="346">equivalentExpressions</references>
+        <references refid="de/dc5/classBrush_1_1Simpl_1_1Inexact__simplifier_1a5f837106982ddf27cb2fcd8d492cc677" compoundref="d1/db6/inexact_8h" startline="223" endline="301">hash</references>
+        <referencedby refid="de/dc5/classBrush_1_1Simpl_1_1Inexact__simplifier_1a8a70383d31da8c7798595f36f2acb2a9" compoundref="d1/db6/inexact_8h" startline="81" endline="176">simplify_tree</referencedby>
       </memberdef>
     </sectiondef>
     <briefdescription>
@@ -268,10 +264,10 @@
     <detaileddescription>
     </detaileddescription>
     <collaborationgraph>
-      <node id="2">
+      <node id="3">
         <label>Brush::Simpl::HashStorage</label>
         <link refid="d4/d71/classBrush_1_1Simpl_1_1HashStorage"/>
-        <childnode refid="3" relation="usage">
+        <childnode refid="4" relation="usage">
           <edgelabel>storage</edgelabel>
         </childnode>
       </node>
@@ -279,65 +275,47 @@
         <label>Brush::Simpl::Inexact_simplifier</label>
         <link refid="de/dc5/classBrush_1_1Simpl_1_1Inexact__simplifier"/>
         <childnode refid="2" relation="usage">
-          <edgelabel>storageBool</edgelabel>
-          <edgelabel>storageFloat</edgelabel>
-          <edgelabel>storageInt</edgelabel>
+          <edgelabel>equivalentExpressions</edgelabel>
         </childnode>
         <childnode refid="7" relation="usage">
-          <edgelabel>equivalentExpression</edgelabel>
-        </childnode>
-        <childnode refid="9" relation="usage">
           <edgelabel>uniformPlanes</edgelabel>
         </childnode>
       </node>
       <node id="5">
-        <label>std::basic_string&lt; Char &gt;</label>
-      </node>
-      <node id="7">
-        <label>std::map&lt; pair&lt; size_t, string &gt;, tree&lt; Brush::Node &gt; &gt;</label>
-        <childnode refid="8" relation="usage">
-          <edgelabel>keys</edgelabel>
-        </childnode>
-      </node>
-      <node id="3">
-        <label>std::map&lt; string, vector&lt; ArrayXf &gt; &gt;</label>
-        <childnode refid="4" relation="usage">
-          <edgelabel>keys</edgelabel>
-        </childnode>
+        <label>std::map&lt; size_t, vector&lt; tree&lt; Brush::Node &gt; &gt; &gt;</label>
         <childnode refid="6" relation="usage">
           <edgelabel>elements</edgelabel>
         </childnode>
       </node>
-      <node id="8">
-        <label>std::pair&lt; size_t, string &gt;</label>
-        <childnode refid="4" relation="usage">
-          <edgelabel>second_type</edgelabel>
+      <node id="2">
+        <label>std::unordered_map&lt; DataType, Brush::Simpl::HashStorage &gt;</label>
+        <childnode refid="3" relation="usage">
+          <edgelabel>elements</edgelabel>
         </childnode>
       </node>
+      <node id="7">
+        <label>std::vector&lt; MatrixXf &gt;</label>
+      </node>
       <node id="4">
-        <label>std::string</label>
-        <childnode refid="5" relation="public-inheritance">
+        <label>std::vector&lt; map&lt; size_t, vector&lt; tree&lt; Brush::Node &gt; &gt; &gt; &gt;</label>
+        <childnode refid="5" relation="usage">
+          <edgelabel>elements</edgelabel>
         </childnode>
       </node>
       <node id="6">
-        <label>std::vector&lt; ArrayXf &gt;</label>
-      </node>
-      <node id="9">
-        <label>std::vector&lt; MatrixXf &gt;</label>
+        <label>std::vector&lt; tree&lt; Brush::Node &gt; &gt;</label>
       </node>
     </collaborationgraph>
-    <location file="/home/runner/work/brush/brush/src/simplification/inexact.h" line="60" column="1" bodyfile="/home/runner/work/brush/brush/src/simplification/inexact.h" bodystart="61" bodyend="148"/>
+    <location file="/home/runner/work/brush/brush/src/simplification/inexact.h" line="72" column="1" bodyfile="/home/runner/work/brush/brush/src/simplification/inexact.h" bodystart="73" bodyend="349"/>
     <listofallmembers>
-      <member refid="de/dc5/classBrush_1_1Simpl_1_1Inexact__simplifier_1adf34fc95f8eb5c75bfa8b79820612241" prot="private" virt="non-virtual"><scope>Brush::Simpl::Inexact_simplifier</scope><name>equivalentExpression</name></member>
-      <member refid="de/dc5/classBrush_1_1Simpl_1_1Inexact__simplifier_1aded95b400fe1fab7d4e7fb8979fc559d" prot="private" virt="non-virtual"><scope>Brush::Simpl::Inexact_simplifier</scope><name>hash</name></member>
-      <member refid="de/dc5/classBrush_1_1Simpl_1_1Inexact__simplifier_1ade7f7d485257f318d04c6e60c0b027ff" prot="public" virt="non-virtual"><scope>Brush::Simpl::Inexact_simplifier</scope><name>index</name></member>
+      <member refid="de/dc5/classBrush_1_1Simpl_1_1Inexact__simplifier_1ac63ac4ab691f7bedb423a60ead721ec9" prot="private" virt="non-virtual"><scope>Brush::Simpl::Inexact_simplifier</scope><name>equivalentExpressions</name></member>
+      <member refid="de/dc5/classBrush_1_1Simpl_1_1Inexact__simplifier_1a5f837106982ddf27cb2fcd8d492cc677" prot="private" virt="non-virtual"><scope>Brush::Simpl::Inexact_simplifier</scope><name>hash</name></member>
+      <member refid="de/dc5/classBrush_1_1Simpl_1_1Inexact__simplifier_1a7c78cf61e853e40d9729e4b31cb1ca59" prot="public" virt="non-virtual"><scope>Brush::Simpl::Inexact_simplifier</scope><name>index</name></member>
       <member refid="de/dc5/classBrush_1_1Simpl_1_1Inexact__simplifier_1a3a6711a4adc8e43324fe675688c8b3cb" prot="public" virt="non-virtual"><scope>Brush::Simpl::Inexact_simplifier</scope><name>Inexact_simplifier</name></member>
-      <member refid="de/dc5/classBrush_1_1Simpl_1_1Inexact__simplifier_1a41460e9850821be449036099f776a84f" prot="public" virt="non-virtual"><scope>Brush::Simpl::Inexact_simplifier</scope><name>initUniformPlanes</name></member>
-      <member refid="de/dc5/classBrush_1_1Simpl_1_1Inexact__simplifier_1ad8c739c0661668ec1b869d73c3f412f6" prot="private" virt="non-virtual"><scope>Brush::Simpl::Inexact_simplifier</scope><name>query</name></member>
-      <member refid="de/dc5/classBrush_1_1Simpl_1_1Inexact__simplifier_1a0bc38a2a1733e80dbdfeb790e95acb61" prot="public" virt="non-virtual"><scope>Brush::Simpl::Inexact_simplifier</scope><name>simplify_tree</name></member>
-      <member refid="de/dc5/classBrush_1_1Simpl_1_1Inexact__simplifier_1a301d3c5a919a16816eef139a0e15350b" prot="private" virt="non-virtual"><scope>Brush::Simpl::Inexact_simplifier</scope><name>storageBool</name></member>
-      <member refid="de/dc5/classBrush_1_1Simpl_1_1Inexact__simplifier_1ac495100cc8a47f38e1fb9b16b8c7b67c" prot="private" virt="non-virtual"><scope>Brush::Simpl::Inexact_simplifier</scope><name>storageFloat</name></member>
-      <member refid="de/dc5/classBrush_1_1Simpl_1_1Inexact__simplifier_1a33d6b73c253d7aeedf50a3681a0d28c1" prot="private" virt="non-virtual"><scope>Brush::Simpl::Inexact_simplifier</scope><name>storageInt</name></member>
+      <member refid="de/dc5/classBrush_1_1Simpl_1_1Inexact__simplifier_1abb9431d42274e6b559249d6b2872d2a2" prot="public" virt="non-virtual"><scope>Brush::Simpl::Inexact_simplifier</scope><name>init</name></member>
+      <member refid="de/dc5/classBrush_1_1Simpl_1_1Inexact__simplifier_1ae737baf7821d6027feda169330192272" prot="private" virt="non-virtual"><scope>Brush::Simpl::Inexact_simplifier</scope><name>inputDim</name></member>
+      <member refid="de/dc5/classBrush_1_1Simpl_1_1Inexact__simplifier_1a32dabddbcfac94f89741db0c4fd6ffa3" prot="private" virt="non-virtual"><scope>Brush::Simpl::Inexact_simplifier</scope><name>query</name></member>
+      <member refid="de/dc5/classBrush_1_1Simpl_1_1Inexact__simplifier_1a8a70383d31da8c7798595f36f2acb2a9" prot="public" virt="non-virtual"><scope>Brush::Simpl::Inexact_simplifier</scope><name>simplify_tree</name></member>
       <member refid="de/dc5/classBrush_1_1Simpl_1_1Inexact__simplifier_1a7319339ce256877088504967d3100685" prot="private" virt="non-virtual"><scope>Brush::Simpl::Inexact_simplifier</scope><name>uniformPlanes</name></member>
       <member refid="de/dc5/classBrush_1_1Simpl_1_1Inexact__simplifier_1a8b53abd24e3b1b8018379befdce0059a" prot="public" virt="non-virtual"><scope>Brush::Simpl::Inexact_simplifier</scope><name>~Inexact_simplifier</name></member>
     </listofallmembers>

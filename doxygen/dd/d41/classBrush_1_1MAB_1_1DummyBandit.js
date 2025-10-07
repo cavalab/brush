@@ -1,9 +1,9 @@
 var classBrush_1_1MAB_1_1DummyBandit =
 [
-    [ "DummyBandit", "dd/d41/classBrush_1_1MAB_1_1DummyBandit.html#a4c66350c9e64b1ee3e6a5e9439f50466", null ],
-    [ "DummyBandit", "dd/d41/classBrush_1_1MAB_1_1DummyBandit.html#a96339e5a707ec9d23d4f9d3abce79c78", null ],
-    [ "~DummyBandit", "dd/d41/classBrush_1_1MAB_1_1DummyBandit.html#a3c4ae38c36dd19f99c94cb7a118bc259", null ],
-    [ "choose", "dd/d41/classBrush_1_1MAB_1_1DummyBandit.html#ac15d31141a0ef97ba83df190de1e5379", null ],
-    [ "sample_probs", "dd/d41/classBrush_1_1MAB_1_1DummyBandit.html#ac27a0416af048dcfdc25635d4b4029db", null ],
-    [ "update", "dd/d41/classBrush_1_1MAB_1_1DummyBandit.html#a326b1f39e9585c7b0f23150ccace1a11", null ]
+    [ "DummyBandit", "dd/d41/classBrush_1_1MAB_1_1DummyBandit.html#a52c1c5b4e2c67706db9db7973ab8e2cb", null ],
+    [ "DummyBandit", "dd/d41/classBrush_1_1MAB_1_1DummyBandit.html#ab1f789efb2c1a00b22352b0a69b5ce13", null ],
+    [ "~DummyBandit", "dd/d41/classBrush_1_1MAB_1_1DummyBandit.html#acebdb451af6ad29ea74cdfde72ed5a61", null ],
+    [ "choose", "dd/d41/classBrush_1_1MAB_1_1DummyBandit.html#a3c2fd48cd2461c39a932a7e44ea6f7ea", null ],
+    [ "sample_probs", "dd/d41/classBrush_1_1MAB_1_1DummyBandit.html#a5728010919b4047bb923b1ecae9ca1a4", null ],
+    [ "update", "dd/d41/classBrush_1_1MAB_1_1DummyBandit.html#a31859ae251644691b13016d8fc2eb782", null ]
 ];

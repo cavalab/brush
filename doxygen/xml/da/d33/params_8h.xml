@@ -180,10 +180,6 @@
       <node id="4">
         <label>bandit.cpp</label>
         <link refid="d7/d01/bandit_8cpp"/>
-        <childnode refid="5" relation="include">
-        </childnode>
-        <childnode refid="7" relation="include">
-        </childnode>
       </node>
       <node id="3">
         <label>bandit.h</label>
@@ -200,10 +196,6 @@
       <node id="13">
         <label>bandit_operator.cpp</label>
         <link refid="dd/d4e/bandit__operator_8cpp"/>
-        <childnode refid="5" relation="include">
-        </childnode>
-        <childnode refid="7" relation="include">
-        </childnode>
       </node>
       <node id="2">
         <label>bandit_operator.h</label>
@@ -220,18 +212,12 @@
         </childnode>
         <childnode refid="16" relation="include">
         </childnode>
-        <childnode refid="18" relation="include">
-        </childnode>
         <childnode refid="9" relation="include">
         </childnode>
       </node>
       <node id="15">
         <label>dummy.cpp</label>
         <link refid="d4/d05/dummy_8cpp"/>
-        <childnode refid="5" relation="include">
-        </childnode>
-        <childnode refid="7" relation="include">
-        </childnode>
       </node>
       <node id="14">
         <label>dummy.h</label>
@@ -248,30 +234,10 @@
         </childnode>
       </node>
       <node id="17">
-        <label>linear_thompson.cpp</label>
-        <link refid="db/d2d/linear__thompson_8cpp"/>
-        <childnode refid="7" relation="include">
-        </childnode>
-      </node>
-      <node id="16">
-        <label>linear_thompson.h</label>
-        <link refid="d9/df5/linear__thompson_8h"/>
-        <childnode refid="3" relation="include">
-        </childnode>
-        <childnode refid="7" relation="include">
-        </childnode>
-        <childnode refid="17" relation="include">
-        </childnode>
-      </node>
-      <node id="19">
         <label>thompson.cpp</label>
         <link refid="d3/d12/thompson_8cpp"/>
-        <childnode refid="5" relation="include">
-        </childnode>
-        <childnode refid="7" relation="include">
-        </childnode>
       </node>
-      <node id="18">
+      <node id="16">
         <label>thompson.h</label>
         <link refid="db/ddd/thompson_8h"/>
         <childnode refid="3" relation="include">
@@ -280,7 +246,7 @@
         </childnode>
         <childnode refid="7" relation="include">
         </childnode>
-        <childnode refid="19" relation="include">
+        <childnode refid="17" relation="include">
         </childnode>
       </node>
       <node id="6">
@@ -293,52 +259,52 @@
         <childnode refid="6" relation="include">
         </childnode>
       </node>
-      <node id="34">
+      <node id="32">
         <label>bind_evaluator.cpp</label>
         <link refid="da/dff/bind__evaluator_8cpp"/>
       </node>
-      <node id="33">
+      <node id="31">
         <label>bind_evaluator.h</label>
         <link refid="d0/d67/bind__evaluator_8h"/>
-        <childnode refid="34" relation="include">
+        <childnode refid="32" relation="include">
         </childnode>
       </node>
-      <node id="31">
+      <node id="29">
         <label>bind_individuals.cpp</label>
         <link refid="d9/d27/bind__individuals_8cpp"/>
       </node>
-      <node id="30">
+      <node id="28">
         <label>bind_individuals.h</label>
         <link refid="d6/ddc/bind__individuals_8h"/>
-        <childnode refid="31" relation="include">
+        <childnode refid="29" relation="include">
         </childnode>
       </node>
-      <node id="20">
+      <node id="18">
         <label>bind_params.cpp</label>
         <link refid="da/dbf/bind__params_8cpp"/>
       </node>
-      <node id="23">
+      <node id="21">
         <label>bind_programs.cpp</label>
         <link refid="d9/d26/bind__programs_8cpp"/>
       </node>
-      <node id="22">
+      <node id="20">
         <label>bind_programs.h</label>
         <link refid="d6/d3f/bind__programs_8h"/>
-        <childnode refid="23" relation="include">
+        <childnode refid="21" relation="include">
         </childnode>
       </node>
-      <node id="24">
+      <node id="22">
         <label>bind_search_space.cpp</label>
         <link refid="d0/d94/bind__search__space_8cpp"/>
       </node>
-      <node id="39">
+      <node id="37">
         <label>bind_selection.cpp</label>
         <link refid="d7/dce/bind__selection_8cpp"/>
       </node>
-      <node id="38">
+      <node id="36">
         <label>bind_selection.h</label>
         <link refid="da/d67/bind__selection_8h"/>
-        <childnode refid="39" relation="include">
+        <childnode refid="37" relation="include">
         </childnode>
       </node>
       <node id="8">
@@ -365,29 +331,29 @@
         <childnode refid="11" relation="include">
         </childnode>
       </node>
-      <node id="35">
+      <node id="33">
         <label>evaluation.cpp</label>
         <link refid="d9/d6a/evaluation_8cpp"/>
         <childnode refid="5" relation="include">
         </childnode>
-        <childnode refid="33" relation="include">
+        <childnode refid="31" relation="include">
         </childnode>
       </node>
-      <node id="32">
+      <node id="30">
         <label>evaluation.h</label>
         <link refid="d3/df9/evaluation_8h"/>
         <childnode refid="5" relation="include">
         </childnode>
-        <childnode refid="33" relation="include">
+        <childnode refid="31" relation="include">
         </childnode>
         <childnode refid="10" relation="include">
         </childnode>
-        <childnode refid="35" relation="include">
+        <childnode refid="33" relation="include">
         </childnode>
         <childnode refid="9" relation="include">
         </childnode>
       </node>
-      <node id="36">
+      <node id="34">
         <label>individual.cpp</label>
         <link refid="db/df6/individual_8cpp"/>
         <childnode refid="5" relation="include">
@@ -395,22 +361,22 @@
         <childnode refid="7" relation="include">
         </childnode>
       </node>
-      <node id="27">
+      <node id="25">
         <label>individual.h</label>
         <link refid="d5/d1f/individual_8h"/>
-        <childnode refid="28" relation="include">
+        <childnode refid="26" relation="include">
         </childnode>
         <childnode refid="5" relation="include">
         </childnode>
-        <childnode refid="30" relation="include">
+        <childnode refid="28" relation="include">
         </childnode>
         <childnode refid="7" relation="include">
         </childnode>
-        <childnode refid="32" relation="include">
+        <childnode refid="30" relation="include">
         </childnode>
-        <childnode refid="36" relation="include">
+        <childnode refid="34" relation="include">
         </childnode>
-        <childnode refid="37" relation="include">
+        <childnode refid="35" relation="include">
         </childnode>
         <childnode refid="9" relation="include">
         </childnode>
@@ -420,217 +386,217 @@
         <link refid="da/d33/params_8h"/>
         <childnode refid="2" relation="include">
         </childnode>
-        <childnode refid="20" relation="include">
+        <childnode refid="18" relation="include">
         </childnode>
         <childnode refid="10" relation="include">
         </childnode>
-        <childnode refid="21" relation="include">
+        <childnode refid="19" relation="include">
         </childnode>
-        <childnode refid="52" relation="include">
+        <childnode refid="50" relation="include">
         </childnode>
       </node>
-      <node id="29">
+      <node id="27">
         <label>archive.cpp</label>
         <link refid="d7/d05/archive_8cpp"/>
         <childnode refid="5" relation="include">
         </childnode>
       </node>
-      <node id="28">
+      <node id="26">
         <label>archive.h</label>
         <link refid="d9/d28/archive_8h"/>
-        <childnode refid="29" relation="include">
+        <childnode refid="27" relation="include">
         </childnode>
         <childnode refid="5" relation="include">
         </childnode>
         <childnode refid="10" relation="include">
         </childnode>
       </node>
-      <node id="40">
+      <node id="38">
         <label>population.cpp</label>
         <link refid="d7/d4a/population_8cpp"/>
         <childnode refid="5" relation="include">
         </childnode>
-        <childnode refid="38" relation="include">
+        <childnode refid="36" relation="include">
         </childnode>
         <childnode refid="7" relation="include">
         </childnode>
       </node>
-      <node id="37">
+      <node id="35">
         <label>population.h</label>
         <link refid="d2/d76/population_8h"/>
         <childnode refid="5" relation="include">
         </childnode>
-        <childnode refid="38" relation="include">
+        <childnode refid="36" relation="include">
         </childnode>
         <childnode refid="7" relation="include">
         </childnode>
         <childnode refid="10" relation="include">
         </childnode>
-        <childnode refid="32" relation="include">
+        <childnode refid="30" relation="include">
         </childnode>
-        <childnode refid="40" relation="include">
+        <childnode refid="38" relation="include">
         </childnode>
-        <childnode refid="41" relation="include">
+        <childnode refid="39" relation="include">
         </childnode>
         <childnode refid="9" relation="include">
         </childnode>
       </node>
-      <node id="21">
+      <node id="19">
         <label>program.h</label>
         <link refid="d1/dea/program_8h"/>
         <childnode refid="3" relation="include">
         </childnode>
+        <childnode refid="20" relation="include">
+        </childnode>
         <childnode refid="22" relation="include">
         </childnode>
-        <childnode refid="24" relation="include">
+        <childnode refid="23" relation="include">
         </childnode>
         <childnode refid="25" relation="include">
         </childnode>
-        <childnode refid="27" relation="include">
+        <childnode refid="47" relation="include">
         </childnode>
         <childnode refid="49" relation="include">
         </childnode>
-        <childnode refid="51" relation="include">
-        </childnode>
       </node>
-      <node id="43">
+      <node id="41">
         <label>lexicase.cpp</label>
         <link refid="d8/dac/lexicase_8cpp"/>
         <childnode refid="5" relation="include">
         </childnode>
-        <childnode refid="38" relation="include">
+        <childnode refid="36" relation="include">
         </childnode>
       </node>
-      <node id="42">
+      <node id="40">
         <label>lexicase.h</label>
         <link refid="d3/d12/lexicase_8h"/>
         <childnode refid="5" relation="include">
         </childnode>
-        <childnode refid="38" relation="include">
+        <childnode refid="36" relation="include">
         </childnode>
-        <childnode refid="43" relation="include">
+        <childnode refid="41" relation="include">
         </childnode>
-        <childnode refid="44" relation="include">
+        <childnode refid="42" relation="include">
         </childnode>
       </node>
-      <node id="47">
+      <node id="45">
         <label>nsga2.cpp</label>
         <link refid="de/d0d/nsga2_8cpp"/>
         <childnode refid="5" relation="include">
         </childnode>
-        <childnode refid="38" relation="include">
+        <childnode refid="36" relation="include">
         </childnode>
       </node>
-      <node id="46">
+      <node id="44">
         <label>nsga2.h</label>
         <link refid="d3/d06/nsga2_8h"/>
-        <childnode refid="28" relation="include">
+        <childnode refid="26" relation="include">
         </childnode>
         <childnode refid="5" relation="include">
         </childnode>
-        <childnode refid="38" relation="include">
+        <childnode refid="36" relation="include">
         </childnode>
-        <childnode refid="47" relation="include">
+        <childnode refid="45" relation="include">
         </childnode>
-        <childnode refid="44" relation="include">
+        <childnode refid="42" relation="include">
         </childnode>
       </node>
-      <node id="45">
+      <node id="43">
         <label>selection.cpp</label>
         <link refid="df/dbb/selection_8cpp"/>
         <childnode refid="5" relation="include">
         </childnode>
-        <childnode refid="38" relation="include">
+        <childnode refid="36" relation="include">
         </childnode>
       </node>
-      <node id="44">
+      <node id="42">
         <label>selection.h</label>
         <link refid="df/d48/selection_8h"/>
         <childnode refid="5" relation="include">
         </childnode>
-        <childnode refid="38" relation="include">
+        <childnode refid="36" relation="include">
         </childnode>
         <childnode refid="10" relation="include">
         </childnode>
-        <childnode refid="45" relation="include">
+        <childnode refid="43" relation="include">
         </childnode>
       </node>
-      <node id="48">
+      <node id="46">
         <label>selection_operator.cpp</label>
         <link refid="d4/db2/selection__operator_8cpp"/>
         <childnode refid="5" relation="include">
         </childnode>
-        <childnode refid="38" relation="include">
+        <childnode refid="36" relation="include">
         </childnode>
       </node>
-      <node id="41">
+      <node id="39">
         <label>selection_operator.h</label>
         <link refid="dd/d5d/selection__operator_8h"/>
         <childnode refid="5" relation="include">
         </childnode>
-        <childnode refid="38" relation="include">
+        <childnode refid="36" relation="include">
+        </childnode>
+        <childnode refid="40" relation="include">
+        </childnode>
+        <childnode refid="44" relation="include">
         </childnode>
         <childnode refid="42" relation="include">
         </childnode>
         <childnode refid="46" relation="include">
         </childnode>
-        <childnode refid="44" relation="include">
-        </childnode>
-        <childnode refid="48" relation="include">
-        </childnode>
       </node>
-      <node id="26">
+      <node id="24">
         <label>constants.cpp</label>
         <link refid="d6/d80/constants_8cpp"/>
         <childnode refid="7" relation="include">
         </childnode>
       </node>
-      <node id="25">
+      <node id="23">
         <label>constants.h</label>
         <link refid="d2/d6f/constants_8h"/>
         <childnode refid="7" relation="include">
         </childnode>
-        <childnode refid="26" relation="include">
+        <childnode refid="24" relation="include">
         </childnode>
         <childnode refid="9" relation="include">
         </childnode>
       </node>
-      <node id="50">
+      <node id="48">
         <label>inexact.cpp</label>
         <link refid="de/d79/inexact_8cpp"/>
         <childnode refid="7" relation="include">
         </childnode>
       </node>
-      <node id="49">
+      <node id="47">
         <label>inexact.h</label>
         <link refid="d1/db6/inexact_8h"/>
         <childnode refid="7" relation="include">
         </childnode>
-        <childnode refid="50" relation="include">
+        <childnode refid="48" relation="include">
         </childnode>
         <childnode refid="9" relation="include">
         </childnode>
       </node>
-      <node id="51">
+      <node id="49">
         <label>search_space.cpp</label>
         <link refid="da/d48/search__space_8cpp"/>
       </node>
-      <node id="52">
+      <node id="50">
         <label>search_space.h</label>
         <link refid="d9/d99/search__space_8h"/>
         <childnode refid="3" relation="include">
         </childnode>
-        <childnode refid="24" relation="include">
+        <childnode refid="22" relation="include">
         </childnode>
-        <childnode refid="25" relation="include">
+        <childnode refid="23" relation="include">
         </childnode>
-        <childnode refid="32" relation="include">
+        <childnode refid="30" relation="include">
+        </childnode>
+        <childnode refid="47" relation="include">
+        </childnode>
+        <childnode refid="19" relation="include">
         </childnode>
         <childnode refid="49" relation="include">
-        </childnode>
-        <childnode refid="21" relation="include">
-        </childnode>
-        <childnode refid="51" relation="include">
         </childnode>
       </node>
       <node id="12">
@@ -725,232 +691,255 @@
 <codeline lineno="62"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight><highlight class="stringliteral">&quot;toggle_weight_on&quot;</highlight><highlight class="normal">,<sp/>0.167},</highlight></codeline>
 <codeline lineno="63"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight><highlight class="stringliteral">&quot;toggle_weight_off&quot;</highlight><highlight class="normal">,<sp/>0.167}</highlight></codeline>
 <codeline lineno="64"><highlight class="normal"><sp/><sp/><sp/><sp/>};</highlight></codeline>
-<codeline lineno="65"><highlight class="normal"></highlight></codeline>
-<codeline lineno="66" refid="de/deb/structBrush_1_1Parameters_1a1d0a366fbf2bb9d7d20d45309b97a7a1" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">float</highlight><highlight class="normal"><sp/><ref refid="de/deb/structBrush_1_1Parameters_1a1d0a366fbf2bb9d7d20d45309b97a7a1" kindref="member">cx_prob</ref>=0.2;<sp/><sp/></highlight></codeline>
-<codeline lineno="67" refid="de/deb/structBrush_1_1Parameters_1aed0024de73a9fec99711efe303484ab8" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">float</highlight><highlight class="normal"><sp/><ref refid="de/deb/structBrush_1_1Parameters_1aed0024de73a9fec99711efe303484ab8" kindref="member">mig_prob</ref><sp/>=<sp/>0.05;</highlight></codeline>
-<codeline lineno="68"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
-<codeline lineno="69" refid="de/deb/structBrush_1_1Parameters_1aa4ccaa768b6371176d89cd3378e80d45" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">string</highlight><highlight class="normal"><sp/><ref refid="de/deb/structBrush_1_1Parameters_1aa4ccaa768b6371176d89cd3378e80d45" kindref="member">scorer</ref>=</highlight><highlight class="stringliteral">&quot;mse&quot;</highlight><highlight class="normal">;<sp/><sp/><sp/></highlight></codeline>
-<codeline lineno="70"><highlight class="normal"></highlight></codeline>
-<codeline lineno="71" refid="de/deb/structBrush_1_1Parameters_1a7e6f0518ea271df0c3f35a2313071202" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>vector&lt;int&gt;<sp/><sp/><sp/><ref refid="de/deb/structBrush_1_1Parameters_1a7e6f0518ea271df0c3f35a2313071202" kindref="member">classes</ref><sp/>=<sp/>vector&lt;int&gt;();<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
-<codeline lineno="72" refid="de/deb/structBrush_1_1Parameters_1a88f5a4e906459cfc44ab04bca01fb333" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>vector&lt;float&gt;<sp/><ref refid="de/deb/structBrush_1_1Parameters_1a88f5a4e906459cfc44ab04bca01fb333" kindref="member">class_weights</ref><sp/>=<sp/>vector&lt;float&gt;();<sp/><sp/></highlight></codeline>
-<codeline lineno="73" refid="de/deb/structBrush_1_1Parameters_1a0c58f9fade0aa2b61ce38213f1675cc5" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>vector&lt;float&gt;<sp/><ref refid="de/deb/structBrush_1_1Parameters_1a0c58f9fade0aa2b61ce38213f1675cc5" kindref="member">sample_weights</ref><sp/>=<sp/>vector&lt;float&gt;();<sp/></highlight></codeline>
-<codeline lineno="74"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
-<codeline lineno="75"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>for<sp/>creating<sp/>dataset<sp/>from<sp/>X<sp/>and<sp/>y<sp/>in<sp/>Engine&lt;T&gt;::fit.<sp/>Ignored<sp/>if<sp/></highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="76"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>the<sp/>uses<sp/>uses<sp/>an<sp/>dataset</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="77" refid="de/deb/structBrush_1_1Parameters_1a72bfe23c101219ee3460ef8b9e1e1cbe" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/><ref refid="de/deb/structBrush_1_1Parameters_1a72bfe23c101219ee3460ef8b9e1e1cbe" kindref="member">classification</ref><sp/>=<sp/></highlight><highlight class="keyword">false</highlight><highlight class="normal">;</highlight></codeline>
-<codeline lineno="78" refid="de/deb/structBrush_1_1Parameters_1af6ac960263e42bba7e6a334fb86c5798" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">unsigned</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="de/deb/structBrush_1_1Parameters_1af6ac960263e42bba7e6a334fb86c5798" kindref="member">n_classes</ref><sp/>=<sp/>0;</highlight></codeline>
-<codeline lineno="79"><highlight class="normal"></highlight></codeline>
-<codeline lineno="80"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>validation<sp/>partition</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="81" refid="de/deb/structBrush_1_1Parameters_1a38f19ab73e20b7d19604338e7ea5f64e" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/><ref refid="de/deb/structBrush_1_1Parameters_1a38f19ab73e20b7d19604338e7ea5f64e" kindref="member">shuffle_split</ref><sp/>=<sp/></highlight><highlight class="keyword">false</highlight><highlight class="normal">;</highlight></codeline>
-<codeline lineno="82" refid="de/deb/structBrush_1_1Parameters_1a56cb7729183a3d4bc9514e83198b99d5" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">float</highlight><highlight class="normal"><sp/><ref refid="de/deb/structBrush_1_1Parameters_1a56cb7729183a3d4bc9514e83198b99d5" kindref="member">validation_size</ref><sp/>=<sp/>0.75;</highlight></codeline>
-<codeline lineno="83" refid="de/deb/structBrush_1_1Parameters_1a9aefe0091a5fcba33a3d98c4716a6c4d" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>vector&lt;string&gt;<sp/><ref refid="de/deb/structBrush_1_1Parameters_1a9aefe0091a5fcba33a3d98c4716a6c4d" kindref="member">feature_names</ref><sp/>=<sp/>{};</highlight></codeline>
-<codeline lineno="84" refid="de/deb/structBrush_1_1Parameters_1addfeacae93daf53f5537f526f4712426" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>vector&lt;string&gt;<sp/><ref refid="de/deb/structBrush_1_1Parameters_1addfeacae93daf53f5537f526f4712426" kindref="member">feature_types</ref><sp/>=<sp/>{};</highlight></codeline>
-<codeline lineno="85" refid="de/deb/structBrush_1_1Parameters_1a3079fe8703a9a8c57e06afd7425f48d4" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">float</highlight><highlight class="normal"><sp/><ref refid="de/deb/structBrush_1_1Parameters_1a3079fe8703a9a8c57e06afd7425f48d4" kindref="member">batch_size</ref><sp/>=<sp/>0.0;</highlight></codeline>
-<codeline lineno="86" refid="de/deb/structBrush_1_1Parameters_1ad60ceac73cd4773e3d808531463a87eb" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/><ref refid="de/deb/structBrush_1_1Parameters_1ad60ceac73cd4773e3d808531463a87eb" kindref="member">weights_init</ref>=</highlight><highlight class="keyword">true</highlight><highlight class="normal">;</highlight></codeline>
-<codeline lineno="87"><highlight class="normal"></highlight></codeline>
-<codeline lineno="88" refid="de/deb/structBrush_1_1Parameters_1ad1a131cf61b76ff1ab4b576f5fd1df9b" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">string</highlight><highlight class="normal"><sp/><ref refid="de/deb/structBrush_1_1Parameters_1ad1a131cf61b76ff1ab4b576f5fd1df9b" kindref="member">load_population</ref><sp/>=<sp/></highlight><highlight class="stringliteral">&quot;&quot;</highlight><highlight class="normal">;</highlight></codeline>
-<codeline lineno="89" refid="de/deb/structBrush_1_1Parameters_1ad2ad3c96073fa555d752b20a182309bf" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">string</highlight><highlight class="normal"><sp/><ref refid="de/deb/structBrush_1_1Parameters_1ad2ad3c96073fa555d752b20a182309bf" kindref="member">save_population</ref><sp/>=<sp/></highlight><highlight class="stringliteral">&quot;&quot;</highlight><highlight class="normal">;</highlight></codeline>
-<codeline lineno="90"><highlight class="normal"></highlight></codeline>
-<codeline lineno="91" refid="de/deb/structBrush_1_1Parameters_1ab800a9c06c4bbfd47f031659ff7bb7b8" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">string</highlight><highlight class="normal"><sp/><ref refid="de/deb/structBrush_1_1Parameters_1ab800a9c06c4bbfd47f031659ff7bb7b8" kindref="member">logfile</ref><sp/>=<sp/></highlight><highlight class="stringliteral">&quot;&quot;</highlight><highlight class="normal">;</highlight></codeline>
-<codeline lineno="92"><highlight class="normal"></highlight></codeline>
-<codeline lineno="93" refid="de/deb/structBrush_1_1Parameters_1a7fe27c4ba2a88aaea8fbed5a845e868e" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="de/deb/structBrush_1_1Parameters_1a7fe27c4ba2a88aaea8fbed5a845e868e" kindref="member">n_jobs</ref><sp/>=<sp/>1;<sp/></highlight></codeline>
-<codeline lineno="94"><highlight class="normal"></highlight></codeline>
-<codeline lineno="95" refid="de/deb/structBrush_1_1Parameters_1a8997d623bed2d28638bde6993f11f9c5" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="de/deb/structBrush_1_1Parameters_1a8997d623bed2d28638bde6993f11f9c5" kindref="member">Parameters</ref>(){};<sp/></highlight></codeline>
-<codeline lineno="96" refid="de/deb/structBrush_1_1Parameters_1a123bc3a7c8b17c0add03f6fbb128b6e4" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="de/deb/structBrush_1_1Parameters_1a123bc3a7c8b17c0add03f6fbb128b6e4" kindref="member">~Parameters</ref>(){};</highlight></codeline>
-<codeline lineno="97"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
-<codeline lineno="98"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>TODO:<sp/>use<sp/>logger<sp/>to<sp/>log<sp/>information.<sp/>Make<sp/>getters<sp/>const<sp/><sp/></highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="99" refid="de/deb/structBrush_1_1Parameters_1af232e2b8ac05a182b54437cbf03fc18c" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="de/deb/structBrush_1_1Parameters_1af232e2b8ac05a182b54437cbf03fc18c" kindref="member">set_verbosity</ref>(</highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>new_verbosity){<sp/><ref refid="d6/d2e/namespaceBrush_1_1Util_1aa6d49e22e6193fabd31fde261f607560" kindref="member">Brush::Util::logger</ref>.set_log_level(new_verbosity);</highlight></codeline>
-<codeline lineno="100"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="de/deb/structBrush_1_1Parameters_1aa3266a1e88b1d869a94ab3b21152beda" kindref="member">verbosity</ref><sp/>=<sp/>new_verbosity;<sp/>};</highlight></codeline>
-<codeline lineno="101" refid="de/deb/structBrush_1_1Parameters_1a0b9ab7c9b3c3e3fcb4445b4acca9a7c9" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="de/deb/structBrush_1_1Parameters_1a0b9ab7c9b3c3e3fcb4445b4acca9a7c9" kindref="member">get_verbosity</ref>(){<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/><ref refid="de/deb/structBrush_1_1Parameters_1aa3266a1e88b1d869a94ab3b21152beda" kindref="member">verbosity</ref>;<sp/>};</highlight></codeline>
-<codeline lineno="102"><highlight class="normal"></highlight></codeline>
-<codeline lineno="103" refid="de/deb/structBrush_1_1Parameters_1a520456c57a2c3f8703036ae0d5142635" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="de/deb/structBrush_1_1Parameters_1a520456c57a2c3f8703036ae0d5142635" kindref="member">set_random_state</ref>(</highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>new_random_state){<ref refid="de/deb/structBrush_1_1Parameters_1abe9f1394bdf123d3186976d50bb89a70" kindref="member">random_state</ref><sp/>=<sp/>new_random_state;<sp/>};</highlight></codeline>
-<codeline lineno="104" refid="de/deb/structBrush_1_1Parameters_1a65d0b2e202d140602ca832dbd0e3c9bc" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="de/deb/structBrush_1_1Parameters_1a65d0b2e202d140602ca832dbd0e3c9bc" kindref="member">get_random_state</ref>(){<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/><ref refid="de/deb/structBrush_1_1Parameters_1abe9f1394bdf123d3186976d50bb89a70" kindref="member">random_state</ref>;<sp/>};</highlight></codeline>
-<codeline lineno="105"><highlight class="normal"></highlight></codeline>
-<codeline lineno="106" refid="de/deb/structBrush_1_1Parameters_1a4e5aa0dc57b760b0329483e64c3ccea3" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="de/deb/structBrush_1_1Parameters_1a4e5aa0dc57b760b0329483e64c3ccea3" kindref="member">set_pop_size</ref>(</highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>new_pop_size){<sp/><ref refid="de/deb/structBrush_1_1Parameters_1a139004f9fa652376afabd690dac242e5" kindref="member">pop_size</ref><sp/>=<sp/>new_pop_size;<sp/>};</highlight></codeline>
-<codeline lineno="107" refid="de/deb/structBrush_1_1Parameters_1a7d391d24fbe78545ba09cf01a3634878" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="de/deb/structBrush_1_1Parameters_1a7d391d24fbe78545ba09cf01a3634878" kindref="member">get_pop_size</ref>(){<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/><ref refid="de/deb/structBrush_1_1Parameters_1a139004f9fa652376afabd690dac242e5" kindref="member">pop_size</ref>;<sp/>};</highlight></codeline>
-<codeline lineno="108"><highlight class="normal"></highlight></codeline>
-<codeline lineno="109" refid="de/deb/structBrush_1_1Parameters_1a11a7976ca8a7aaa45d9722b74aeb5704" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="de/deb/structBrush_1_1Parameters_1a11a7976ca8a7aaa45d9722b74aeb5704" kindref="member">set_max_gens</ref>(</highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>new_max_gens){<sp/><ref refid="de/deb/structBrush_1_1Parameters_1ae8174a3006e30812afa63f1d74aeb6e9" kindref="member">max_gens</ref><sp/>=<sp/>new_max_gens;<sp/>};</highlight></codeline>
-<codeline lineno="110" refid="de/deb/structBrush_1_1Parameters_1a32be1d9b49a8ce5636de4828a15ec6c1" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="de/deb/structBrush_1_1Parameters_1a32be1d9b49a8ce5636de4828a15ec6c1" kindref="member">get_max_gens</ref>(){<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/><ref refid="de/deb/structBrush_1_1Parameters_1ae8174a3006e30812afa63f1d74aeb6e9" kindref="member">max_gens</ref>;<sp/>};</highlight></codeline>
-<codeline lineno="111"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
-<codeline lineno="112" refid="de/deb/structBrush_1_1Parameters_1afed0556e44457c8ef23a69631ae8561e" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="de/deb/structBrush_1_1Parameters_1afed0556e44457c8ef23a69631ae8561e" kindref="member">set_bandit</ref>(</highlight><highlight class="keywordtype">string</highlight><highlight class="normal"><sp/>new_bandit){<sp/><ref refid="de/deb/structBrush_1_1Parameters_1a6f3ad01c68279966458cf707b26ef3e7" kindref="member">bandit</ref><sp/>=<sp/>new_bandit;<sp/>};</highlight></codeline>
-<codeline lineno="113" refid="de/deb/structBrush_1_1Parameters_1a59c69b664a2053e98eaaa42a93bbfc60" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">string</highlight><highlight class="normal"><sp/><ref refid="de/deb/structBrush_1_1Parameters_1a59c69b664a2053e98eaaa42a93bbfc60" kindref="member">get_bandit</ref>(){<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/><ref refid="de/deb/structBrush_1_1Parameters_1a6f3ad01c68279966458cf707b26ef3e7" kindref="member">bandit</ref>;<sp/>};</highlight></codeline>
-<codeline lineno="114"><highlight class="normal"></highlight></codeline>
-<codeline lineno="115" refid="de/deb/structBrush_1_1Parameters_1a0ca031442d56216059f5fe520d493b9b" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="de/deb/structBrush_1_1Parameters_1a0ca031442d56216059f5fe520d493b9b" kindref="member">set_max_stall</ref>(</highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>new_max_stall){<sp/><ref refid="de/deb/structBrush_1_1Parameters_1a21e3da5422ccf31326362f1806ac3eae" kindref="member">max_stall</ref><sp/>=<sp/>new_max_stall;<sp/>};</highlight></codeline>
-<codeline lineno="116" refid="de/deb/structBrush_1_1Parameters_1a60eb890e9354559600d21c46e310bdd2" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="de/deb/structBrush_1_1Parameters_1a60eb890e9354559600d21c46e310bdd2" kindref="member">get_max_stall</ref>(){<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/><ref refid="de/deb/structBrush_1_1Parameters_1a21e3da5422ccf31326362f1806ac3eae" kindref="member">max_stall</ref>;<sp/>};</highlight></codeline>
-<codeline lineno="117"><highlight class="normal"></highlight></codeline>
-<codeline lineno="118" refid="de/deb/structBrush_1_1Parameters_1a1961e03a4ec41dcc0fd1d384ebeca6cd" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="de/deb/structBrush_1_1Parameters_1a1961e03a4ec41dcc0fd1d384ebeca6cd" kindref="member">set_max_time</ref>(</highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>new_max_time){<sp/><ref refid="de/deb/structBrush_1_1Parameters_1a1625c1a71de2fdd1ccd0954a32fc4ead" kindref="member">max_time</ref><sp/>=<sp/>new_max_time;<sp/>};</highlight></codeline>
-<codeline lineno="119" refid="de/deb/structBrush_1_1Parameters_1a2cbb237e04a742e5b7045213409f8810" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="de/deb/structBrush_1_1Parameters_1a2cbb237e04a742e5b7045213409f8810" kindref="member">get_max_time</ref>(){<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/><ref refid="de/deb/structBrush_1_1Parameters_1a1625c1a71de2fdd1ccd0954a32fc4ead" kindref="member">max_time</ref>;<sp/>};</highlight></codeline>
-<codeline lineno="120"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
-<codeline lineno="121" refid="de/deb/structBrush_1_1Parameters_1a9a9fea16aff19dd2b74f98c379a2e3cf" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="de/deb/structBrush_1_1Parameters_1a9a9fea16aff19dd2b74f98c379a2e3cf" kindref="member">set_scorer</ref>(</highlight><highlight class="keywordtype">string</highlight><highlight class="normal"><sp/>new_scorer){<sp/><ref refid="de/deb/structBrush_1_1Parameters_1aa4ccaa768b6371176d89cd3378e80d45" kindref="member">scorer</ref><sp/>=<sp/>new_scorer;<sp/>};</highlight></codeline>
-<codeline lineno="122" refid="de/deb/structBrush_1_1Parameters_1a6b59a48d2390a37f4cba81f33b348f75" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">string</highlight><highlight class="normal"><sp/><ref refid="de/deb/structBrush_1_1Parameters_1a6b59a48d2390a37f4cba81f33b348f75" kindref="member">get_scorer</ref>(){<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/><ref refid="de/deb/structBrush_1_1Parameters_1aa4ccaa768b6371176d89cd3378e80d45" kindref="member">scorer</ref>;<sp/>};</highlight></codeline>
-<codeline lineno="123"><highlight class="normal"></highlight></codeline>
-<codeline lineno="124" refid="de/deb/structBrush_1_1Parameters_1a7ccc0f7607fb73e0e3c37d7ac6305954" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="de/deb/structBrush_1_1Parameters_1a7ccc0f7607fb73e0e3c37d7ac6305954" kindref="member">set_load_population</ref>(</highlight><highlight class="keywordtype">string</highlight><highlight class="normal"><sp/>new_load_population){<sp/><ref refid="de/deb/structBrush_1_1Parameters_1ad1a131cf61b76ff1ab4b576f5fd1df9b" kindref="member">load_population</ref><sp/>=<sp/>new_load_population;<sp/>};</highlight></codeline>
-<codeline lineno="125" refid="de/deb/structBrush_1_1Parameters_1a714c905329b7ca861e5c7488c1415dbf" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">string</highlight><highlight class="normal"><sp/><ref refid="de/deb/structBrush_1_1Parameters_1a714c905329b7ca861e5c7488c1415dbf" kindref="member">get_load_population</ref>(){<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/><ref refid="de/deb/structBrush_1_1Parameters_1ad1a131cf61b76ff1ab4b576f5fd1df9b" kindref="member">load_population</ref>;<sp/>};</highlight></codeline>
-<codeline lineno="126"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
-<codeline lineno="127" refid="de/deb/structBrush_1_1Parameters_1a03a5ec7ccfcba501d57264aeb3a41263" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="de/deb/structBrush_1_1Parameters_1a03a5ec7ccfcba501d57264aeb3a41263" kindref="member">set_save_population</ref>(</highlight><highlight class="keywordtype">string</highlight><highlight class="normal"><sp/>new_save_population){<sp/><ref refid="de/deb/structBrush_1_1Parameters_1ad2ad3c96073fa555d752b20a182309bf" kindref="member">save_population</ref><sp/>=<sp/>new_save_population;<sp/>};</highlight></codeline>
-<codeline lineno="128" refid="de/deb/structBrush_1_1Parameters_1a5340c96aa233e2a9a631160b0b08099a" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">string</highlight><highlight class="normal"><sp/><ref refid="de/deb/structBrush_1_1Parameters_1a5340c96aa233e2a9a631160b0b08099a" kindref="member">get_save_population</ref>(){<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/><ref refid="de/deb/structBrush_1_1Parameters_1ad2ad3c96073fa555d752b20a182309bf" kindref="member">save_population</ref>;<sp/>};</highlight></codeline>
-<codeline lineno="129"><highlight class="normal"></highlight></codeline>
-<codeline lineno="130" refid="de/deb/structBrush_1_1Parameters_1a9db4d0fc9bf85b823d8963382118fde5" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">string</highlight><highlight class="normal"><sp/><ref refid="de/deb/structBrush_1_1Parameters_1a9db4d0fc9bf85b823d8963382118fde5" kindref="member">get_logfile</ref>(){<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/><ref refid="de/deb/structBrush_1_1Parameters_1ab800a9c06c4bbfd47f031659ff7bb7b8" kindref="member">logfile</ref>;<sp/>};</highlight></codeline>
-<codeline lineno="131" refid="de/deb/structBrush_1_1Parameters_1a531d8a7a2fc8a402881be57b62f38e2c" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="de/deb/structBrush_1_1Parameters_1a531d8a7a2fc8a402881be57b62f38e2c" kindref="member">set_logfile</ref>(</highlight><highlight class="keywordtype">string</highlight><highlight class="normal"><sp/>s){<sp/><ref refid="de/deb/structBrush_1_1Parameters_1ab800a9c06c4bbfd47f031659ff7bb7b8" kindref="member">logfile</ref>=s;<sp/>};</highlight></codeline>
-<codeline lineno="132"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
-<codeline lineno="133" refid="de/deb/structBrush_1_1Parameters_1a83d1e4fc6ee0bab95df90583080a1bd7" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="de/deb/structBrush_1_1Parameters_1a83d1e4fc6ee0bab95df90583080a1bd7" kindref="member">set_current_gen</ref>(</highlight><highlight class="keywordtype">unsigned</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>gen){<sp/><ref refid="de/deb/structBrush_1_1Parameters_1acd37c52e411d17126bff22dca19f0408" kindref="member">current_gen</ref><sp/>=<sp/>gen;<sp/>};</highlight></codeline>
-<codeline lineno="134" refid="de/deb/structBrush_1_1Parameters_1ae342f8777e40bb52f65cdb951a960603" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">unsigned</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="de/deb/structBrush_1_1Parameters_1ae342f8777e40bb52f65cdb951a960603" kindref="member">get_current_gen</ref>(){<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/><ref refid="de/deb/structBrush_1_1Parameters_1acd37c52e411d17126bff22dca19f0408" kindref="member">current_gen</ref>;<sp/>};</highlight></codeline>
-<codeline lineno="135"><highlight class="normal"></highlight></codeline>
-<codeline lineno="136"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>TODO:<sp/>improve<sp/>vary_and_update<sp/>to<sp/>have<sp/>island<sp/>working<sp/>in<sp/>parallel<sp/></highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="137" refid="de/deb/structBrush_1_1Parameters_1a49b871e5bfa462b974e47112cc53ce53" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="de/deb/structBrush_1_1Parameters_1a49b871e5bfa462b974e47112cc53ce53" kindref="member">set_num_islands</ref>(</highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>new_num_islands){<sp/><ref refid="de/deb/structBrush_1_1Parameters_1a93ed229becd162e94722e034f8e5bebc" kindref="member">num_islands</ref><sp/>=<sp/>new_num_islands;<sp/>};</highlight></codeline>
-<codeline lineno="138" refid="de/deb/structBrush_1_1Parameters_1a908bc47bbc7691bf870a909c4eb80edb" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="de/deb/structBrush_1_1Parameters_1a908bc47bbc7691bf870a909c4eb80edb" kindref="member">get_num_islands</ref>(){<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/><ref refid="de/deb/structBrush_1_1Parameters_1a93ed229becd162e94722e034f8e5bebc" kindref="member">num_islands</ref>;<sp/>};</highlight></codeline>
-<codeline lineno="139"><highlight class="normal"></highlight></codeline>
-<codeline lineno="140" refid="de/deb/structBrush_1_1Parameters_1a09b2945802ab49e8510e16181a7d916e" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="de/deb/structBrush_1_1Parameters_1a09b2945802ab49e8510e16181a7d916e" kindref="member">set_max_depth</ref>(</highlight><highlight class="keywordtype">unsigned</highlight><highlight class="normal"><sp/>new_max_depth){<sp/><ref refid="de/deb/structBrush_1_1Parameters_1a22d49e1dbd59a355e5c234c7488595a6" kindref="member">max_depth</ref><sp/>=<sp/>new_max_depth;<sp/>};</highlight></codeline>
-<codeline lineno="141" refid="de/deb/structBrush_1_1Parameters_1a77aa7201a837482c7bf92579fe156811" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">unsigned</highlight><highlight class="normal"><sp/><ref refid="de/deb/structBrush_1_1Parameters_1a77aa7201a837482c7bf92579fe156811" kindref="member">get_max_depth</ref>()</highlight><highlight class="keyword"><sp/>const<sp/></highlight><highlight class="normal">{<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/><ref refid="de/deb/structBrush_1_1Parameters_1a22d49e1dbd59a355e5c234c7488595a6" kindref="member">max_depth</ref>;<sp/>};</highlight></codeline>
-<codeline lineno="142"><highlight class="normal"></highlight></codeline>
-<codeline lineno="143" refid="de/deb/structBrush_1_1Parameters_1ad5cf6dfc60d005e70ef569ac1e58bdeb" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="de/deb/structBrush_1_1Parameters_1ad5cf6dfc60d005e70ef569ac1e58bdeb" kindref="member">set_n_jobs</ref>(</highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>new_n_jobs){<sp/><ref refid="de/deb/structBrush_1_1Parameters_1a7fe27c4ba2a88aaea8fbed5a845e868e" kindref="member">n_jobs</ref><sp/>=<sp/>new_n_jobs;<sp/>};</highlight></codeline>
-<codeline lineno="144" refid="de/deb/structBrush_1_1Parameters_1a3bb3c39fa10b2087f5733d7ad47902de" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="de/deb/structBrush_1_1Parameters_1a3bb3c39fa10b2087f5733d7ad47902de" kindref="member">get_n_jobs</ref>(){<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/><ref refid="de/deb/structBrush_1_1Parameters_1a7fe27c4ba2a88aaea8fbed5a845e868e" kindref="member">n_jobs</ref>;<sp/>};</highlight></codeline>
-<codeline lineno="145"><highlight class="normal"></highlight></codeline>
-<codeline lineno="146" refid="de/deb/structBrush_1_1Parameters_1ad36ed3c368c1cc152b179a824e9b3144" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="de/deb/structBrush_1_1Parameters_1ad36ed3c368c1cc152b179a824e9b3144" kindref="member">set_max_size</ref>(</highlight><highlight class="keywordtype">unsigned</highlight><highlight class="normal"><sp/>new_max_size){<sp/><ref refid="de/deb/structBrush_1_1Parameters_1aeec98494c11bc2760b7feedf56741ff7" kindref="member">max_size</ref><sp/>=<sp/>new_max_size;<sp/>};</highlight></codeline>
-<codeline lineno="147" refid="de/deb/structBrush_1_1Parameters_1a122b7243856cd15f940b6d6b5ec1074f" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">unsigned</highlight><highlight class="normal"><sp/><ref refid="de/deb/structBrush_1_1Parameters_1a122b7243856cd15f940b6d6b5ec1074f" kindref="member">get_max_size</ref>()</highlight><highlight class="keyword"><sp/>const<sp/></highlight><highlight class="normal">{<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/><ref refid="de/deb/structBrush_1_1Parameters_1aeec98494c11bc2760b7feedf56741ff7" kindref="member">max_size</ref>;<sp/>};</highlight></codeline>
-<codeline lineno="148"><highlight class="normal"></highlight></codeline>
-<codeline lineno="149" refid="de/deb/structBrush_1_1Parameters_1abb9b1681e45572c95ce97f0e5aeefa05" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="de/deb/structBrush_1_1Parameters_1abb9b1681e45572c95ce97f0e5aeefa05" kindref="member">set_objectives</ref>(vector&lt;string&gt;<sp/>new_objectives){<sp/><ref refid="de/deb/structBrush_1_1Parameters_1a110a7c46dffa83836fb155a566219292" kindref="member">objectives</ref><sp/>=<sp/>new_objectives;<sp/>};</highlight></codeline>
-<codeline lineno="150" refid="de/deb/structBrush_1_1Parameters_1a3430720f17bdc30a30291b199cf68015" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>vector&lt;string&gt;<sp/><ref refid="de/deb/structBrush_1_1Parameters_1a3430720f17bdc30a30291b199cf68015" kindref="member">get_objectives</ref>()</highlight><highlight class="keyword"><sp/>const<sp/></highlight><highlight class="normal">{</highlight></codeline>
-<codeline lineno="151"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>return<sp/>objectives;</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="152"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
-<codeline lineno="153"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>properly<sp/>replace<sp/>scorer<sp/>with<sp/>the<sp/>specified<sp/>scorer</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="154"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>vector&lt;string&gt;<sp/>aux_objectives(0);</highlight></codeline>
-<codeline lineno="155"><highlight class="normal"></highlight></codeline>
-<codeline lineno="156"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>(</highlight><highlight class="keyword">auto</highlight><highlight class="normal">&amp;<sp/>objective<sp/>:<sp/><ref refid="de/deb/structBrush_1_1Parameters_1a110a7c46dffa83836fb155a566219292" kindref="member">objectives</ref>)<sp/>{</highlight></codeline>
-<codeline lineno="157"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(objective.compare(</highlight><highlight class="stringliteral">&quot;scorer&quot;</highlight><highlight class="normal">)==0)</highlight></codeline>
-<codeline lineno="158"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>aux_objectives.push_back(<ref refid="de/deb/structBrush_1_1Parameters_1aa4ccaa768b6371176d89cd3378e80d45" kindref="member">scorer</ref>);</highlight></codeline>
-<codeline lineno="159"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">else</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="160"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>aux_objectives.push_back(objective);</highlight></codeline>
-<codeline lineno="161"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
-<codeline lineno="162"><highlight class="normal"></highlight></codeline>
-<codeline lineno="163"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>aux_objectives;</highlight></codeline>
-<codeline lineno="164"><highlight class="normal"><sp/><sp/><sp/><sp/>};</highlight></codeline>
-<codeline lineno="165"><highlight class="normal"></highlight></codeline>
-<codeline lineno="166" refid="de/deb/structBrush_1_1Parameters_1a9a8f5f8dbfd009fd4aed4b322c19b429" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="de/deb/structBrush_1_1Parameters_1a9a8f5f8dbfd009fd4aed4b322c19b429" kindref="member">set_sel</ref>(</highlight><highlight class="keywordtype">string</highlight><highlight class="normal"><sp/>new_sel){<sp/><ref refid="de/deb/structBrush_1_1Parameters_1a187fd63755c90c13f4b3723becd9bdd8" kindref="member">sel</ref><sp/>=<sp/>new_sel;<sp/>};</highlight></codeline>
-<codeline lineno="167" refid="de/deb/structBrush_1_1Parameters_1afff93890adec7af136be0dc19ccdd35f" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">string</highlight><highlight class="normal"><sp/><ref refid="de/deb/structBrush_1_1Parameters_1afff93890adec7af136be0dc19ccdd35f" kindref="member">get_sel</ref>(){<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/><ref refid="de/deb/structBrush_1_1Parameters_1a187fd63755c90c13f4b3723becd9bdd8" kindref="member">sel</ref>;<sp/>};</highlight></codeline>
-<codeline lineno="168"><highlight class="normal"></highlight></codeline>
-<codeline lineno="169" refid="de/deb/structBrush_1_1Parameters_1aaa61711b5534b0530b60cd11a7070e7c" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="de/deb/structBrush_1_1Parameters_1aaa61711b5534b0530b60cd11a7070e7c" kindref="member">set_surv</ref>(</highlight><highlight class="keywordtype">string</highlight><highlight class="normal"><sp/>new_surv){<sp/><ref refid="de/deb/structBrush_1_1Parameters_1a4ff98035fbd50487abb5946504e8e4d6" kindref="member">surv</ref><sp/>=<sp/>new_surv;<sp/>};</highlight></codeline>
-<codeline lineno="170" refid="de/deb/structBrush_1_1Parameters_1abbd954f5018446151e1f5711171476a9" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">string</highlight><highlight class="normal"><sp/><ref refid="de/deb/structBrush_1_1Parameters_1abbd954f5018446151e1f5711171476a9" kindref="member">get_surv</ref>(){<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/><ref refid="de/deb/structBrush_1_1Parameters_1a4ff98035fbd50487abb5946504e8e4d6" kindref="member">surv</ref>;<sp/>};</highlight></codeline>
-<codeline lineno="171"><highlight class="normal"></highlight></codeline>
-<codeline lineno="172" refid="de/deb/structBrush_1_1Parameters_1ae117be02b10c413ff07be95c2edf2417" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="de/deb/structBrush_1_1Parameters_1ae117be02b10c413ff07be95c2edf2417" kindref="member">set_cx_prob</ref>(</highlight><highlight class="keywordtype">float</highlight><highlight class="normal"><sp/>new_cx_prob){<sp/><ref refid="de/deb/structBrush_1_1Parameters_1a1d0a366fbf2bb9d7d20d45309b97a7a1" kindref="member">cx_prob</ref><sp/>=<sp/>new_cx_prob;<sp/>};</highlight></codeline>
-<codeline lineno="173" refid="de/deb/structBrush_1_1Parameters_1ad295afd17da08fdccb207f28caf07cc8" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">float</highlight><highlight class="normal"><sp/><ref refid="de/deb/structBrush_1_1Parameters_1ad295afd17da08fdccb207f28caf07cc8" kindref="member">get_cx_prob</ref>(){<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/><ref refid="de/deb/structBrush_1_1Parameters_1a1d0a366fbf2bb9d7d20d45309b97a7a1" kindref="member">cx_prob</ref>;<sp/>};</highlight></codeline>
-<codeline lineno="174"><highlight class="normal"></highlight></codeline>
-<codeline lineno="175" refid="de/deb/structBrush_1_1Parameters_1afb6a671883dbfbde88932791fbb4de87" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="de/deb/structBrush_1_1Parameters_1afb6a671883dbfbde88932791fbb4de87" kindref="member">set_mig_prob</ref>(</highlight><highlight class="keywordtype">float</highlight><highlight class="normal"><sp/>new_mig_prob){<sp/><ref refid="de/deb/structBrush_1_1Parameters_1aed0024de73a9fec99711efe303484ab8" kindref="member">mig_prob</ref><sp/>=<sp/>new_mig_prob;<sp/>};</highlight></codeline>
-<codeline lineno="176" refid="de/deb/structBrush_1_1Parameters_1a62efc097c2a873a92515dd492a78a402" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">float</highlight><highlight class="normal"><sp/><ref refid="de/deb/structBrush_1_1Parameters_1a62efc097c2a873a92515dd492a78a402" kindref="member">get_mig_prob</ref>(){<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/><ref refid="de/deb/structBrush_1_1Parameters_1aed0024de73a9fec99711efe303484ab8" kindref="member">mig_prob</ref>;<sp/>};</highlight></codeline>
-<codeline lineno="177"><highlight class="normal"></highlight></codeline>
-<codeline lineno="178" refid="de/deb/structBrush_1_1Parameters_1aab67dbc5fa33691d911959e0ab70b356" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="de/deb/structBrush_1_1Parameters_1aab67dbc5fa33691d911959e0ab70b356" kindref="member">set_use_arch</ref>(</highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/>new_use_arch){<sp/><ref refid="de/deb/structBrush_1_1Parameters_1a41a48deed7929591e10f9886c0d20ff6" kindref="member">use_arch</ref><sp/>=<sp/>new_use_arch;<sp/>};</highlight></codeline>
-<codeline lineno="179" refid="de/deb/structBrush_1_1Parameters_1a18bd85faa68a7a7835f374ebaa08e029" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/><ref refid="de/deb/structBrush_1_1Parameters_1a18bd85faa68a7a7835f374ebaa08e029" kindref="member">get_use_arch</ref>(){<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/><ref refid="de/deb/structBrush_1_1Parameters_1a41a48deed7929591e10f9886c0d20ff6" kindref="member">use_arch</ref>;<sp/>};</highlight></codeline>
-<codeline lineno="180"><highlight class="normal"></highlight></codeline>
-<codeline lineno="181" refid="de/deb/structBrush_1_1Parameters_1a3911c070b29e41bd9fa50dffcec77986" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="de/deb/structBrush_1_1Parameters_1a3911c070b29e41bd9fa50dffcec77986" kindref="member">set_val_from_arch</ref>(</highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/>new_val_from_arch){<sp/><ref refid="de/deb/structBrush_1_1Parameters_1a9d3932cd3266036a3db14445caee390c" kindref="member">val_from_arch</ref><sp/>=<sp/>new_val_from_arch;<sp/>};</highlight></codeline>
-<codeline lineno="182" refid="de/deb/structBrush_1_1Parameters_1a24bd26badcac2c7285e9966b684ffd3b" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/><ref refid="de/deb/structBrush_1_1Parameters_1a24bd26badcac2c7285e9966b684ffd3b" kindref="member">get_val_from_arch</ref>(){<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/><ref refid="de/deb/structBrush_1_1Parameters_1a9d3932cd3266036a3db14445caee390c" kindref="member">val_from_arch</ref>;<sp/>};</highlight></codeline>
-<codeline lineno="183"><highlight class="normal"></highlight></codeline>
-<codeline lineno="184" refid="de/deb/structBrush_1_1Parameters_1aadbf81786a17f23863c85f1896b7155d" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="de/deb/structBrush_1_1Parameters_1aadbf81786a17f23863c85f1896b7155d" kindref="member">set_classification</ref>(</highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/>c){<sp/><ref refid="de/deb/structBrush_1_1Parameters_1a72bfe23c101219ee3460ef8b9e1e1cbe" kindref="member">classification</ref><sp/>=<sp/>c;<sp/>};</highlight></codeline>
-<codeline lineno="185" refid="de/deb/structBrush_1_1Parameters_1a0941104c9a1c006e2d616b04fe8772f8" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/><ref refid="de/deb/structBrush_1_1Parameters_1a0941104c9a1c006e2d616b04fe8772f8" kindref="member">get_classification</ref>(){<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/><ref refid="de/deb/structBrush_1_1Parameters_1a72bfe23c101219ee3460ef8b9e1e1cbe" kindref="member">classification</ref>;<sp/>};</highlight></codeline>
-<codeline lineno="186"><highlight class="normal"></highlight></codeline>
-<codeline lineno="187" refid="de/deb/structBrush_1_1Parameters_1a165c8b63ae6066b392ab945c2d04a7b5" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="de/deb/structBrush_1_1Parameters_1a165c8b63ae6066b392ab945c2d04a7b5" kindref="member">set_shuffle_split</ref>(</highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/>shuff){<sp/><ref refid="de/deb/structBrush_1_1Parameters_1a38f19ab73e20b7d19604338e7ea5f64e" kindref="member">shuffle_split</ref><sp/>=<sp/>shuff;<sp/>};</highlight></codeline>
-<codeline lineno="188" refid="de/deb/structBrush_1_1Parameters_1acaae679131485c3a26d673de03dec296" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/><ref refid="de/deb/structBrush_1_1Parameters_1acaae679131485c3a26d673de03dec296" kindref="member">get_shuffle_split</ref>(){<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/><ref refid="de/deb/structBrush_1_1Parameters_1a38f19ab73e20b7d19604338e7ea5f64e" kindref="member">shuffle_split</ref>;<sp/>};</highlight></codeline>
-<codeline lineno="189"><highlight class="normal"></highlight></codeline>
-<codeline lineno="190" refid="de/deb/structBrush_1_1Parameters_1a461cce1b7b252913ede2e7b8d6cb5c91" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="de/deb/structBrush_1_1Parameters_1a461cce1b7b252913ede2e7b8d6cb5c91" kindref="member">set_constants_simplification</ref>(</highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/>cs){<sp/><ref refid="de/deb/structBrush_1_1Parameters_1ac16925784c3e0cd3da64858643aec590" kindref="member">constants_simplification</ref><sp/>=<sp/>cs;<sp/>};</highlight></codeline>
-<codeline lineno="191" refid="de/deb/structBrush_1_1Parameters_1a5945d0484d68867abd931647627507b8" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/><ref refid="de/deb/structBrush_1_1Parameters_1a5945d0484d68867abd931647627507b8" kindref="member">get_constants_simplification</ref>(){<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/><ref refid="de/deb/structBrush_1_1Parameters_1ac16925784c3e0cd3da64858643aec590" kindref="member">constants_simplification</ref>;<sp/>};</highlight></codeline>
-<codeline lineno="192"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
-<codeline lineno="193" refid="de/deb/structBrush_1_1Parameters_1a2b56dd258dc9aac0a2dc1420743ce39f" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="de/deb/structBrush_1_1Parameters_1a2b56dd258dc9aac0a2dc1420743ce39f" kindref="member">set_inexact_simplification</ref>(</highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/>is){<sp/><ref refid="de/deb/structBrush_1_1Parameters_1a08ad8f286c31998bd94f897a2894a950" kindref="member">inexact_simplification</ref><sp/>=<sp/>is;<sp/>};</highlight></codeline>
-<codeline lineno="194" refid="de/deb/structBrush_1_1Parameters_1a1a65ccec3f7dc32f50b115f5423aaaaa" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/><ref refid="de/deb/structBrush_1_1Parameters_1a1a65ccec3f7dc32f50b115f5423aaaaa" kindref="member">get_inexact_simplification</ref>(){<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/><ref refid="de/deb/structBrush_1_1Parameters_1a08ad8f286c31998bd94f897a2894a950" kindref="member">inexact_simplification</ref>;<sp/>};</highlight></codeline>
-<codeline lineno="195"><highlight class="normal"></highlight></codeline>
-<codeline lineno="196" refid="de/deb/structBrush_1_1Parameters_1a5f6ede2fb7d56bcb51c687eea1721efe" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="de/deb/structBrush_1_1Parameters_1a5f6ede2fb7d56bcb51c687eea1721efe" kindref="member">set_weights_init</ref>(</highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/>init){<sp/><ref refid="de/deb/structBrush_1_1Parameters_1ad60ceac73cd4773e3d808531463a87eb" kindref="member">weights_init</ref><sp/>=<sp/>init;<sp/>};</highlight></codeline>
-<codeline lineno="197" refid="de/deb/structBrush_1_1Parameters_1a31e0f74e08fd99e1fe1f1033b43b394e" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/><ref refid="de/deb/structBrush_1_1Parameters_1a31e0f74e08fd99e1fe1f1033b43b394e" kindref="member">get_weights_init</ref>(){<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/><ref refid="de/deb/structBrush_1_1Parameters_1ad60ceac73cd4773e3d808531463a87eb" kindref="member">weights_init</ref>;<sp/>};</highlight></codeline>
-<codeline lineno="198"><highlight class="normal"></highlight></codeline>
-<codeline lineno="199" refid="de/deb/structBrush_1_1Parameters_1a2601b9ce7184a0bc7b58efe8f477e178" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="de/deb/structBrush_1_1Parameters_1a2601b9ce7184a0bc7b58efe8f477e178" kindref="member">set_n_classes</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>ArrayXf&amp;<sp/>y){</highlight></codeline>
-<codeline lineno="200"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(<ref refid="de/deb/structBrush_1_1Parameters_1a72bfe23c101219ee3460ef8b9e1e1cbe" kindref="member">classification</ref>)</highlight></codeline>
-<codeline lineno="201"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
-<codeline lineno="202"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>vector&lt;int&gt;<sp/>uc<sp/>=<sp/><ref refid="d6/d2e/namespaceBrush_1_1Util_1abbcdb6fb60bd2927a57691262f14420a" kindref="member">unique</ref>(<sp/><ref refid="dc/d5c/namespaceBrush_1ac5cd76eed6ea70d1c8f429ee37ca9fc0" kindref="member">ArrayXi</ref>(y.cast&lt;</highlight><highlight class="keywordtype">int</highlight><highlight class="normal">&gt;())<sp/>);</highlight></codeline>
-<codeline lineno="203"><highlight class="normal"></highlight></codeline>
-<codeline lineno="204"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(</highlight><highlight class="keywordtype">int</highlight><highlight class="normal">(uc.at(0))<sp/>!=<sp/>0)</highlight></codeline>
-<codeline lineno="205"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="da/d41/error_8h_1aa4c550bcd71e4ec1c97b111e1360509a" kindref="member">HANDLE_ERROR_THROW</ref>(</highlight><highlight class="stringliteral">&quot;Class<sp/>labels<sp/>must<sp/>start<sp/>at<sp/>0&quot;</highlight><highlight class="normal">);</highlight></codeline>
-<codeline lineno="206"><highlight class="normal"></highlight></codeline>
-<codeline lineno="207"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>vector&lt;int&gt;<sp/>cont_classes(uc.size());</highlight></codeline>
-<codeline lineno="208"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>iota(cont_classes.begin(),<sp/>cont_classes.end(),<sp/>0);</highlight></codeline>
-<codeline lineno="209"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>(</highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>i<sp/>=<sp/>0;<sp/>i<sp/>&lt;<sp/>cont_classes.size();<sp/>++i)</highlight></codeline>
-<codeline lineno="210"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
-<codeline lineno="211"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(<sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal">(uc.at(i))<sp/>!=<sp/>cont_classes.at(i))</highlight></codeline>
-<codeline lineno="212"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="da/d41/error_8h_1aa4c550bcd71e4ec1c97b111e1360509a" kindref="member">HANDLE_ERROR_THROW</ref>(</highlight><highlight class="stringliteral">&quot;Class<sp/>labels<sp/>must<sp/>be<sp/>contiguous&quot;</highlight><highlight class="normal">);</highlight></codeline>
-<codeline lineno="213"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
-<codeline lineno="214"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="de/deb/structBrush_1_1Parameters_1af6ac960263e42bba7e6a334fb86c5798" kindref="member">n_classes</ref><sp/>=<sp/>uc.size();</highlight></codeline>
-<codeline lineno="215"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>classes<sp/><sp/><sp/>=<sp/>uc;</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="216"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
-<codeline lineno="217"><highlight class="normal"><sp/><sp/><sp/><sp/>};</highlight></codeline>
-<codeline lineno="218" refid="de/deb/structBrush_1_1Parameters_1a44c430fde30e55d5e1ff3bbbda26fd76" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="de/deb/structBrush_1_1Parameters_1a44c430fde30e55d5e1ff3bbbda26fd76" kindref="member">set_class_weights</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>ArrayXf&amp;<sp/>y){</highlight></codeline>
-<codeline lineno="219"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="de/deb/structBrush_1_1Parameters_1a88f5a4e906459cfc44ab04bca01fb333" kindref="member">class_weights</ref>.resize(<ref refid="de/deb/structBrush_1_1Parameters_1af6ac960263e42bba7e6a334fb86c5798" kindref="member">n_classes</ref>);<sp/></highlight><highlight class="comment">//<sp/>set_n_classes<sp/>must<sp/>be<sp/>called<sp/>first</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="220"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>(</highlight><highlight class="keywordtype">unsigned</highlight><highlight class="normal"><sp/>i<sp/>=<sp/>0;<sp/>i<sp/>&lt;<sp/><ref refid="de/deb/structBrush_1_1Parameters_1af6ac960263e42bba7e6a334fb86c5798" kindref="member">n_classes</ref>;<sp/>++i){</highlight></codeline>
-<codeline lineno="221"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="de/deb/structBrush_1_1Parameters_1a88f5a4e906459cfc44ab04bca01fb333" kindref="member">class_weights</ref>.at(i)<sp/>=<sp/>float((y.cast&lt;</highlight><highlight class="keywordtype">int</highlight><highlight class="normal">&gt;().array()<sp/>==<sp/>i).count())/y.size();<sp/></highlight></codeline>
-<codeline lineno="222"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="de/deb/structBrush_1_1Parameters_1a88f5a4e906459cfc44ab04bca01fb333" kindref="member">class_weights</ref>.at(i)<sp/>=<sp/>(1.0<sp/>-<sp/><ref refid="de/deb/structBrush_1_1Parameters_1a88f5a4e906459cfc44ab04bca01fb333" kindref="member">class_weights</ref>.at(i));</highlight></codeline>
-<codeline lineno="223"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
-<codeline lineno="224"><highlight class="normal"><sp/><sp/><sp/><sp/>};</highlight></codeline>
-<codeline lineno="225" refid="de/deb/structBrush_1_1Parameters_1abcb29d9409d58681fe925d955c010573" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="de/deb/structBrush_1_1Parameters_1abcb29d9409d58681fe925d955c010573" kindref="member">set_sample_weights</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>ArrayXf&amp;<sp/>y){</highlight></codeline>
-<codeline lineno="226"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="de/deb/structBrush_1_1Parameters_1a0c58f9fade0aa2b61ce38213f1675cc5" kindref="member">sample_weights</ref>.resize(0);<sp/></highlight><highlight class="comment">//<sp/>set_class_weights<sp/>must<sp/>be<sp/>called<sp/>first</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="227"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(!<ref refid="de/deb/structBrush_1_1Parameters_1a88f5a4e906459cfc44ab04bca01fb333" kindref="member">class_weights</ref>.empty())</highlight></codeline>
-<codeline lineno="228"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>(</highlight><highlight class="keywordtype">unsigned</highlight><highlight class="normal"><sp/>i<sp/>=<sp/>0;<sp/>i<sp/>&lt;<sp/>y.size();<sp/>++i)</highlight></codeline>
-<codeline lineno="229"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="de/deb/structBrush_1_1Parameters_1a0c58f9fade0aa2b61ce38213f1675cc5" kindref="member">sample_weights</ref>.push_back(<ref refid="de/deb/structBrush_1_1Parameters_1a88f5a4e906459cfc44ab04bca01fb333" kindref="member">class_weights</ref>.at(</highlight><highlight class="keywordtype">int</highlight><highlight class="normal">(y(i))));</highlight></codeline>
-<codeline lineno="230"><highlight class="normal"><sp/><sp/><sp/><sp/>};</highlight></codeline>
-<codeline lineno="231"><highlight class="normal"></highlight></codeline>
-<codeline lineno="232" refid="de/deb/structBrush_1_1Parameters_1a572e97fe2ee54989dc8c72ad322076f7" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">unsigned</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="de/deb/structBrush_1_1Parameters_1a572e97fe2ee54989dc8c72ad322076f7" kindref="member">get_n_classes</ref>(){<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/><ref refid="de/deb/structBrush_1_1Parameters_1af6ac960263e42bba7e6a334fb86c5798" kindref="member">n_classes</ref>;<sp/>};</highlight></codeline>
-<codeline lineno="233" refid="de/deb/structBrush_1_1Parameters_1a50778f2c6d11b993f8388b80616a5459" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>vector&lt;float&gt;<sp/><ref refid="de/deb/structBrush_1_1Parameters_1a50778f2c6d11b993f8388b80616a5459" kindref="member">get_class_weights</ref>(){<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/><ref refid="de/deb/structBrush_1_1Parameters_1a88f5a4e906459cfc44ab04bca01fb333" kindref="member">class_weights</ref>;<sp/>};</highlight></codeline>
-<codeline lineno="234" refid="de/deb/structBrush_1_1Parameters_1ab3fe327b0600be29a925541f73d1836b" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>vector&lt;float&gt;<sp/><ref refid="de/deb/structBrush_1_1Parameters_1ab3fe327b0600be29a925541f73d1836b" kindref="member">get_sample_weights</ref>(){<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/><ref refid="de/deb/structBrush_1_1Parameters_1a0c58f9fade0aa2b61ce38213f1675cc5" kindref="member">sample_weights</ref>;<sp/>};</highlight></codeline>
-<codeline lineno="235"><highlight class="normal"></highlight></codeline>
-<codeline lineno="236" refid="de/deb/structBrush_1_1Parameters_1adcfeb3fbcd6bb2ace4eb112dd1ac1fc7" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="de/deb/structBrush_1_1Parameters_1adcfeb3fbcd6bb2ace4eb112dd1ac1fc7" kindref="member">set_validation_size</ref>(</highlight><highlight class="keywordtype">float</highlight><highlight class="normal"><sp/>s){<sp/><ref refid="de/deb/structBrush_1_1Parameters_1a56cb7729183a3d4bc9514e83198b99d5" kindref="member">validation_size</ref><sp/>=<sp/>s;<sp/>};</highlight></codeline>
-<codeline lineno="237" refid="de/deb/structBrush_1_1Parameters_1aead717c90a933bdc5b1b149a4b40ec78" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">float</highlight><highlight class="normal"><sp/><ref refid="de/deb/structBrush_1_1Parameters_1aead717c90a933bdc5b1b149a4b40ec78" kindref="member">get_validation_size</ref>(){<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/><ref refid="de/deb/structBrush_1_1Parameters_1a56cb7729183a3d4bc9514e83198b99d5" kindref="member">validation_size</ref>;<sp/>};</highlight></codeline>
-<codeline lineno="238"><highlight class="normal"></highlight></codeline>
-<codeline lineno="239" refid="de/deb/structBrush_1_1Parameters_1adce3ebf4b9d0aa35a4da35f33e5d9168" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="de/deb/structBrush_1_1Parameters_1adce3ebf4b9d0aa35a4da35f33e5d9168" kindref="member">set_feature_names</ref>(vector&lt;string&gt;<sp/>vn){<sp/><ref refid="de/deb/structBrush_1_1Parameters_1a9aefe0091a5fcba33a3d98c4716a6c4d" kindref="member">feature_names</ref><sp/>=<sp/>vn;<sp/>};</highlight></codeline>
-<codeline lineno="240" refid="de/deb/structBrush_1_1Parameters_1a503e5e39ff8078bfd0132399bc376651" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>vector&lt;string&gt;<sp/><ref refid="de/deb/structBrush_1_1Parameters_1a503e5e39ff8078bfd0132399bc376651" kindref="member">get_feature_names</ref>(){<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/><ref refid="de/deb/structBrush_1_1Parameters_1a9aefe0091a5fcba33a3d98c4716a6c4d" kindref="member">feature_names</ref>;<sp/>};</highlight></codeline>
-<codeline lineno="241"><highlight class="normal"></highlight></codeline>
-<codeline lineno="242" refid="de/deb/structBrush_1_1Parameters_1a1cb1c1f543a2d7c19ae843252e4c4f9e" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="de/deb/structBrush_1_1Parameters_1a1cb1c1f543a2d7c19ae843252e4c4f9e" kindref="member">set_feature_types</ref>(vector&lt;string&gt;<sp/>ft){<sp/><ref refid="de/deb/structBrush_1_1Parameters_1addfeacae93daf53f5537f526f4712426" kindref="member">feature_types</ref><sp/>=<sp/>ft;<sp/>};</highlight></codeline>
-<codeline lineno="243" refid="de/deb/structBrush_1_1Parameters_1ae699514fc828219e2abb3a7d62087e4b" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>vector&lt;string&gt;<sp/><ref refid="de/deb/structBrush_1_1Parameters_1ae699514fc828219e2abb3a7d62087e4b" kindref="member">get_feature_types</ref>(){<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/><ref refid="de/deb/structBrush_1_1Parameters_1addfeacae93daf53f5537f526f4712426" kindref="member">feature_types</ref>;<sp/>};</highlight></codeline>
-<codeline lineno="244"><highlight class="normal"></highlight></codeline>
-<codeline lineno="245" refid="de/deb/structBrush_1_1Parameters_1a3764d1c46477f804a75d58248cc64ea8" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="de/deb/structBrush_1_1Parameters_1a3764d1c46477f804a75d58248cc64ea8" kindref="member">set_batch_size</ref>(</highlight><highlight class="keywordtype">float</highlight><highlight class="normal"><sp/>c){<sp/><ref refid="de/deb/structBrush_1_1Parameters_1a3079fe8703a9a8c57e06afd7425f48d4" kindref="member">batch_size</ref><sp/>=<sp/>c;<sp/>};</highlight></codeline>
-<codeline lineno="246" refid="de/deb/structBrush_1_1Parameters_1a55829db9efdf15f588da5aed54fa42a8" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">float</highlight><highlight class="normal"><sp/><ref refid="de/deb/structBrush_1_1Parameters_1a55829db9efdf15f588da5aed54fa42a8" kindref="member">get_batch_size</ref>(){<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/><ref refid="de/deb/structBrush_1_1Parameters_1a3079fe8703a9a8c57e06afd7425f48d4" kindref="member">batch_size</ref>;<sp/>};</highlight></codeline>
-<codeline lineno="247"><highlight class="normal"></highlight></codeline>
-<codeline lineno="248" refid="de/deb/structBrush_1_1Parameters_1a21bfb9aa5ac33bee26416611d51cee1a" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="de/deb/structBrush_1_1Parameters_1a21bfb9aa5ac33bee26416611d51cee1a" kindref="member">set_mutation_probs</ref>(std::map&lt;std::string,<sp/>float&gt;<sp/>new_mutation_probs){<sp/><ref refid="de/deb/structBrush_1_1Parameters_1a49392abcea1d48447c024a23137fd788" kindref="member">mutation_probs</ref><sp/>=<sp/>new_mutation_probs;<sp/>};</highlight></codeline>
-<codeline lineno="249" refid="de/deb/structBrush_1_1Parameters_1ae663b0ea31743fceb203fe476f4ddc99" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>std::map&lt;std::string,<sp/>float&gt;<sp/><ref refid="de/deb/structBrush_1_1Parameters_1ae663b0ea31743fceb203fe476f4ddc99" kindref="member">get_mutation_probs</ref>(){<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/><ref refid="de/deb/structBrush_1_1Parameters_1a49392abcea1d48447c024a23137fd788" kindref="member">mutation_probs</ref>;<sp/>};</highlight></codeline>
-<codeline lineno="250"><highlight class="normal"></highlight></codeline>
-<codeline lineno="251" refid="de/deb/structBrush_1_1Parameters_1a2054b866fb2d2a08114ae9c468ad3863" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="de/deb/structBrush_1_1Parameters_1a2054b866fb2d2a08114ae9c468ad3863" kindref="member">set_functions</ref>(std::unordered_map&lt;std::string,<sp/>float&gt;<sp/>new_functions){<sp/><ref refid="de/deb/structBrush_1_1Parameters_1a6ad3da8ee5919f7f8d562348f99d9e36" kindref="member">functions</ref><sp/>=<sp/>new_functions;<sp/>};</highlight></codeline>
-<codeline lineno="252" refid="de/deb/structBrush_1_1Parameters_1aee62986fbd874d410a0d5d4ab81dce7b" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>std::unordered_map&lt;std::string,<sp/>float&gt;<sp/><ref refid="de/deb/structBrush_1_1Parameters_1aee62986fbd874d410a0d5d4ab81dce7b" kindref="member">get_functions</ref>(){<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/><ref refid="de/deb/structBrush_1_1Parameters_1a6ad3da8ee5919f7f8d562348f99d9e36" kindref="member">functions</ref>;<sp/>};</highlight></codeline>
-<codeline lineno="253"><highlight class="normal">};</highlight></codeline>
-<codeline lineno="254"><highlight class="normal"></highlight></codeline>
-<codeline lineno="255" refid="dc/d5c/namespaceBrush_1a7360b5c2c04d7df5f9d83d2b33885aef" refkind="member"><highlight class="normal"><ref refid="dc/d5c/namespaceBrush_1a2b2ffd06833f1e9ee57cfd689acfcc6d" kindref="member">NLOHMANN_DEFINE_TYPE_NON_INTRUSIVE</ref>(<ref refid="de/deb/structBrush_1_1Parameters" kindref="compound">Parameters</ref>,</highlight></codeline>
+<codeline lineno="65" refid="de/deb/structBrush_1_1Parameters_1a1d0a366fbf2bb9d7d20d45309b97a7a1" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">float</highlight><highlight class="normal"><sp/><ref refid="de/deb/structBrush_1_1Parameters_1a1d0a366fbf2bb9d7d20d45309b97a7a1" kindref="member">cx_prob</ref>=0.2;<sp/><sp/></highlight></codeline>
+<codeline lineno="66" refid="de/deb/structBrush_1_1Parameters_1aed0024de73a9fec99711efe303484ab8" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">float</highlight><highlight class="normal"><sp/><ref refid="de/deb/structBrush_1_1Parameters_1aed0024de73a9fec99711efe303484ab8" kindref="member">mig_prob</ref><sp/>=<sp/>0.05;</highlight></codeline>
+<codeline lineno="67"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="68" refid="de/deb/structBrush_1_1Parameters_1aa4ccaa768b6371176d89cd3378e80d45" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">string</highlight><highlight class="normal"><sp/><ref refid="de/deb/structBrush_1_1Parameters_1aa4ccaa768b6371176d89cd3378e80d45" kindref="member">scorer</ref>=</highlight><highlight class="stringliteral">&quot;mse&quot;</highlight><highlight class="normal">;<sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="69"><highlight class="normal"></highlight></codeline>
+<codeline lineno="70" refid="de/deb/structBrush_1_1Parameters_1a7e6f0518ea271df0c3f35a2313071202" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>vector&lt;int&gt;<sp/><sp/><sp/><ref refid="de/deb/structBrush_1_1Parameters_1a7e6f0518ea271df0c3f35a2313071202" kindref="member">classes</ref><sp/>=<sp/>vector&lt;int&gt;();<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="71" refid="de/deb/structBrush_1_1Parameters_1a88f5a4e906459cfc44ab04bca01fb333" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>vector&lt;float&gt;<sp/><ref refid="de/deb/structBrush_1_1Parameters_1a88f5a4e906459cfc44ab04bca01fb333" kindref="member">class_weights</ref><sp/>=<sp/>vector&lt;float&gt;();<sp/><sp/></highlight></codeline>
+<codeline lineno="72" refid="de/deb/structBrush_1_1Parameters_1a0c58f9fade0aa2b61ce38213f1675cc5" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>vector&lt;float&gt;<sp/><ref refid="de/deb/structBrush_1_1Parameters_1a0c58f9fade0aa2b61ce38213f1675cc5" kindref="member">sample_weights</ref><sp/>=<sp/>vector&lt;float&gt;();<sp/></highlight></codeline>
+<codeline lineno="73"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="74"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>for<sp/>creating<sp/>dataset<sp/>from<sp/>X<sp/>and<sp/>y<sp/>in<sp/>Engine&lt;T&gt;::fit.<sp/>Ignored<sp/>if<sp/></highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="75"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>the<sp/>uses<sp/>uses<sp/>an<sp/>dataset</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="76" refid="de/deb/structBrush_1_1Parameters_1a72bfe23c101219ee3460ef8b9e1e1cbe" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/><ref refid="de/deb/structBrush_1_1Parameters_1a72bfe23c101219ee3460ef8b9e1e1cbe" kindref="member">classification</ref><sp/>=<sp/></highlight><highlight class="keyword">false</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="77" refid="de/deb/structBrush_1_1Parameters_1af6ac960263e42bba7e6a334fb86c5798" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">unsigned</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="de/deb/structBrush_1_1Parameters_1af6ac960263e42bba7e6a334fb86c5798" kindref="member">n_classes</ref><sp/>=<sp/>0;</highlight></codeline>
+<codeline lineno="78"><highlight class="normal"></highlight></codeline>
+<codeline lineno="79"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>validation<sp/>partition</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="80" refid="de/deb/structBrush_1_1Parameters_1a38f19ab73e20b7d19604338e7ea5f64e" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/><ref refid="de/deb/structBrush_1_1Parameters_1a38f19ab73e20b7d19604338e7ea5f64e" kindref="member">shuffle_split</ref><sp/>=<sp/></highlight><highlight class="keyword">false</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="81" refid="de/deb/structBrush_1_1Parameters_1a56cb7729183a3d4bc9514e83198b99d5" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">float</highlight><highlight class="normal"><sp/><ref refid="de/deb/structBrush_1_1Parameters_1a56cb7729183a3d4bc9514e83198b99d5" kindref="member">validation_size</ref><sp/>=<sp/>0.75;</highlight></codeline>
+<codeline lineno="82" refid="de/deb/structBrush_1_1Parameters_1a9aefe0091a5fcba33a3d98c4716a6c4d" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>vector&lt;string&gt;<sp/><ref refid="de/deb/structBrush_1_1Parameters_1a9aefe0091a5fcba33a3d98c4716a6c4d" kindref="member">feature_names</ref><sp/>=<sp/>{};</highlight></codeline>
+<codeline lineno="83" refid="de/deb/structBrush_1_1Parameters_1addfeacae93daf53f5537f526f4712426" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>vector&lt;string&gt;<sp/><ref refid="de/deb/structBrush_1_1Parameters_1addfeacae93daf53f5537f526f4712426" kindref="member">feature_types</ref><sp/>=<sp/>{};</highlight></codeline>
+<codeline lineno="84" refid="de/deb/structBrush_1_1Parameters_1a3079fe8703a9a8c57e06afd7425f48d4" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">float</highlight><highlight class="normal"><sp/><ref refid="de/deb/structBrush_1_1Parameters_1a3079fe8703a9a8c57e06afd7425f48d4" kindref="member">batch_size</ref><sp/>=<sp/>0.0;</highlight></codeline>
+<codeline lineno="85" refid="de/deb/structBrush_1_1Parameters_1ad60ceac73cd4773e3d808531463a87eb" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/><ref refid="de/deb/structBrush_1_1Parameters_1ad60ceac73cd4773e3d808531463a87eb" kindref="member">weights_init</ref>=</highlight><highlight class="keyword">true</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="86"><highlight class="normal"></highlight></codeline>
+<codeline lineno="87" refid="de/deb/structBrush_1_1Parameters_1ad1a131cf61b76ff1ab4b576f5fd1df9b" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">string</highlight><highlight class="normal"><sp/><ref refid="de/deb/structBrush_1_1Parameters_1ad1a131cf61b76ff1ab4b576f5fd1df9b" kindref="member">load_population</ref><sp/>=<sp/></highlight><highlight class="stringliteral">&quot;&quot;</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="88" refid="de/deb/structBrush_1_1Parameters_1ad2ad3c96073fa555d752b20a182309bf" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">string</highlight><highlight class="normal"><sp/><ref refid="de/deb/structBrush_1_1Parameters_1ad2ad3c96073fa555d752b20a182309bf" kindref="member">save_population</ref><sp/>=<sp/></highlight><highlight class="stringliteral">&quot;&quot;</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="89"><highlight class="normal"></highlight></codeline>
+<codeline lineno="90" refid="de/deb/structBrush_1_1Parameters_1ab800a9c06c4bbfd47f031659ff7bb7b8" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">string</highlight><highlight class="normal"><sp/><ref refid="de/deb/structBrush_1_1Parameters_1ab800a9c06c4bbfd47f031659ff7bb7b8" kindref="member">logfile</ref><sp/>=<sp/></highlight><highlight class="stringliteral">&quot;&quot;</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="91"><highlight class="normal"></highlight></codeline>
+<codeline lineno="92" refid="de/deb/structBrush_1_1Parameters_1a7fe27c4ba2a88aaea8fbed5a845e868e" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="de/deb/structBrush_1_1Parameters_1a7fe27c4ba2a88aaea8fbed5a845e868e" kindref="member">n_jobs</ref><sp/>=<sp/>1;<sp/></highlight></codeline>
+<codeline lineno="93"><highlight class="normal"></highlight></codeline>
+<codeline lineno="94" refid="de/deb/structBrush_1_1Parameters_1a8997d623bed2d28638bde6993f11f9c5" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="de/deb/structBrush_1_1Parameters_1a8997d623bed2d28638bde6993f11f9c5" kindref="member">Parameters</ref>(){};<sp/></highlight></codeline>
+<codeline lineno="95" refid="de/deb/structBrush_1_1Parameters_1a123bc3a7c8b17c0add03f6fbb128b6e4" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="de/deb/structBrush_1_1Parameters_1a123bc3a7c8b17c0add03f6fbb128b6e4" kindref="member">~Parameters</ref>(){};</highlight></codeline>
+<codeline lineno="96"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="97"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>TODO:<sp/>use<sp/>logger<sp/>to<sp/>log<sp/>information.<sp/>Make<sp/>getters<sp/>const<sp/><sp/></highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="98" refid="de/deb/structBrush_1_1Parameters_1af232e2b8ac05a182b54437cbf03fc18c" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="de/deb/structBrush_1_1Parameters_1af232e2b8ac05a182b54437cbf03fc18c" kindref="member">set_verbosity</ref>(</highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>new_verbosity){<sp/><ref refid="d6/d2e/namespaceBrush_1_1Util_1aa6d49e22e6193fabd31fde261f607560" kindref="member">Brush::Util::logger</ref>.set_log_level(new_verbosity);</highlight></codeline>
+<codeline lineno="99"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="de/deb/structBrush_1_1Parameters_1aa3266a1e88b1d869a94ab3b21152beda" kindref="member">verbosity</ref><sp/>=<sp/>new_verbosity;<sp/>};</highlight></codeline>
+<codeline lineno="100" refid="de/deb/structBrush_1_1Parameters_1a0b9ab7c9b3c3e3fcb4445b4acca9a7c9" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="de/deb/structBrush_1_1Parameters_1a0b9ab7c9b3c3e3fcb4445b4acca9a7c9" kindref="member">get_verbosity</ref>(){<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/><ref refid="de/deb/structBrush_1_1Parameters_1aa3266a1e88b1d869a94ab3b21152beda" kindref="member">verbosity</ref>;<sp/>};</highlight></codeline>
+<codeline lineno="101"><highlight class="normal"></highlight></codeline>
+<codeline lineno="102" refid="de/deb/structBrush_1_1Parameters_1a520456c57a2c3f8703036ae0d5142635" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="de/deb/structBrush_1_1Parameters_1a520456c57a2c3f8703036ae0d5142635" kindref="member">set_random_state</ref>(</highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>new_random_state){<ref refid="de/deb/structBrush_1_1Parameters_1abe9f1394bdf123d3186976d50bb89a70" kindref="member">random_state</ref><sp/>=<sp/>new_random_state;<sp/>};</highlight></codeline>
+<codeline lineno="103" refid="de/deb/structBrush_1_1Parameters_1a65d0b2e202d140602ca832dbd0e3c9bc" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="de/deb/structBrush_1_1Parameters_1a65d0b2e202d140602ca832dbd0e3c9bc" kindref="member">get_random_state</ref>(){<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/><ref refid="de/deb/structBrush_1_1Parameters_1abe9f1394bdf123d3186976d50bb89a70" kindref="member">random_state</ref>;<sp/>};</highlight></codeline>
+<codeline lineno="104"><highlight class="normal"></highlight></codeline>
+<codeline lineno="105" refid="de/deb/structBrush_1_1Parameters_1a4e5aa0dc57b760b0329483e64c3ccea3" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="de/deb/structBrush_1_1Parameters_1a4e5aa0dc57b760b0329483e64c3ccea3" kindref="member">set_pop_size</ref>(</highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>new_pop_size){<sp/><ref refid="de/deb/structBrush_1_1Parameters_1a139004f9fa652376afabd690dac242e5" kindref="member">pop_size</ref><sp/>=<sp/>new_pop_size;<sp/>};</highlight></codeline>
+<codeline lineno="106" refid="de/deb/structBrush_1_1Parameters_1a7d391d24fbe78545ba09cf01a3634878" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="de/deb/structBrush_1_1Parameters_1a7d391d24fbe78545ba09cf01a3634878" kindref="member">get_pop_size</ref>(){<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/><ref refid="de/deb/structBrush_1_1Parameters_1a139004f9fa652376afabd690dac242e5" kindref="member">pop_size</ref>;<sp/>};</highlight></codeline>
+<codeline lineno="107"><highlight class="normal"></highlight></codeline>
+<codeline lineno="108" refid="de/deb/structBrush_1_1Parameters_1a11a7976ca8a7aaa45d9722b74aeb5704" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="de/deb/structBrush_1_1Parameters_1a11a7976ca8a7aaa45d9722b74aeb5704" kindref="member">set_max_gens</ref>(</highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>new_max_gens){<sp/><ref refid="de/deb/structBrush_1_1Parameters_1ae8174a3006e30812afa63f1d74aeb6e9" kindref="member">max_gens</ref><sp/>=<sp/>new_max_gens;<sp/>};</highlight></codeline>
+<codeline lineno="109" refid="de/deb/structBrush_1_1Parameters_1a32be1d9b49a8ce5636de4828a15ec6c1" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="de/deb/structBrush_1_1Parameters_1a32be1d9b49a8ce5636de4828a15ec6c1" kindref="member">get_max_gens</ref>(){<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/><ref refid="de/deb/structBrush_1_1Parameters_1ae8174a3006e30812afa63f1d74aeb6e9" kindref="member">max_gens</ref>;<sp/>};</highlight></codeline>
+<codeline lineno="110"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="111" refid="de/deb/structBrush_1_1Parameters_1afed0556e44457c8ef23a69631ae8561e" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="de/deb/structBrush_1_1Parameters_1afed0556e44457c8ef23a69631ae8561e" kindref="member">set_bandit</ref>(</highlight><highlight class="keywordtype">string</highlight><highlight class="normal"><sp/>new_bandit){<sp/><ref refid="de/deb/structBrush_1_1Parameters_1a6f3ad01c68279966458cf707b26ef3e7" kindref="member">bandit</ref><sp/>=<sp/>new_bandit;<sp/>};</highlight></codeline>
+<codeline lineno="112" refid="de/deb/structBrush_1_1Parameters_1a59c69b664a2053e98eaaa42a93bbfc60" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">string</highlight><highlight class="normal"><sp/><ref refid="de/deb/structBrush_1_1Parameters_1a59c69b664a2053e98eaaa42a93bbfc60" kindref="member">get_bandit</ref>(){<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/><ref refid="de/deb/structBrush_1_1Parameters_1a6f3ad01c68279966458cf707b26ef3e7" kindref="member">bandit</ref>;<sp/>};</highlight></codeline>
+<codeline lineno="113"><highlight class="normal"></highlight></codeline>
+<codeline lineno="114" refid="de/deb/structBrush_1_1Parameters_1a0ca031442d56216059f5fe520d493b9b" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="de/deb/structBrush_1_1Parameters_1a0ca031442d56216059f5fe520d493b9b" kindref="member">set_max_stall</ref>(</highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>new_max_stall){<sp/><ref refid="de/deb/structBrush_1_1Parameters_1a21e3da5422ccf31326362f1806ac3eae" kindref="member">max_stall</ref><sp/>=<sp/>new_max_stall;<sp/>};</highlight></codeline>
+<codeline lineno="115" refid="de/deb/structBrush_1_1Parameters_1a60eb890e9354559600d21c46e310bdd2" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="de/deb/structBrush_1_1Parameters_1a60eb890e9354559600d21c46e310bdd2" kindref="member">get_max_stall</ref>(){<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/><ref refid="de/deb/structBrush_1_1Parameters_1a21e3da5422ccf31326362f1806ac3eae" kindref="member">max_stall</ref>;<sp/>};</highlight></codeline>
+<codeline lineno="116"><highlight class="normal"></highlight></codeline>
+<codeline lineno="117" refid="de/deb/structBrush_1_1Parameters_1a1961e03a4ec41dcc0fd1d384ebeca6cd" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="de/deb/structBrush_1_1Parameters_1a1961e03a4ec41dcc0fd1d384ebeca6cd" kindref="member">set_max_time</ref>(</highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>new_max_time){<sp/><ref refid="de/deb/structBrush_1_1Parameters_1a1625c1a71de2fdd1ccd0954a32fc4ead" kindref="member">max_time</ref><sp/>=<sp/>new_max_time;<sp/>};</highlight></codeline>
+<codeline lineno="118" refid="de/deb/structBrush_1_1Parameters_1a2cbb237e04a742e5b7045213409f8810" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="de/deb/structBrush_1_1Parameters_1a2cbb237e04a742e5b7045213409f8810" kindref="member">get_max_time</ref>(){<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/><ref refid="de/deb/structBrush_1_1Parameters_1a1625c1a71de2fdd1ccd0954a32fc4ead" kindref="member">max_time</ref>;<sp/>};</highlight></codeline>
+<codeline lineno="119"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="120" refid="de/deb/structBrush_1_1Parameters_1a9a9fea16aff19dd2b74f98c379a2e3cf" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="de/deb/structBrush_1_1Parameters_1a9a9fea16aff19dd2b74f98c379a2e3cf" kindref="member">set_scorer</ref>(</highlight><highlight class="keywordtype">string</highlight><highlight class="normal"><sp/>new_scorer){<sp/><ref refid="de/deb/structBrush_1_1Parameters_1aa4ccaa768b6371176d89cd3378e80d45" kindref="member">scorer</ref><sp/>=<sp/>new_scorer;<sp/>};</highlight></codeline>
+<codeline lineno="121" refid="de/deb/structBrush_1_1Parameters_1a6b59a48d2390a37f4cba81f33b348f75" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">string</highlight><highlight class="normal"><sp/><ref refid="de/deb/structBrush_1_1Parameters_1a6b59a48d2390a37f4cba81f33b348f75" kindref="member">get_scorer</ref>(){<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/><ref refid="de/deb/structBrush_1_1Parameters_1aa4ccaa768b6371176d89cd3378e80d45" kindref="member">scorer</ref>;<sp/>};</highlight></codeline>
+<codeline lineno="122"><highlight class="normal"></highlight></codeline>
+<codeline lineno="123" refid="de/deb/structBrush_1_1Parameters_1a7ccc0f7607fb73e0e3c37d7ac6305954" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="de/deb/structBrush_1_1Parameters_1a7ccc0f7607fb73e0e3c37d7ac6305954" kindref="member">set_load_population</ref>(</highlight><highlight class="keywordtype">string</highlight><highlight class="normal"><sp/>new_load_population){<sp/><ref refid="de/deb/structBrush_1_1Parameters_1ad1a131cf61b76ff1ab4b576f5fd1df9b" kindref="member">load_population</ref><sp/>=<sp/>new_load_population;<sp/>};</highlight></codeline>
+<codeline lineno="124" refid="de/deb/structBrush_1_1Parameters_1a714c905329b7ca861e5c7488c1415dbf" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">string</highlight><highlight class="normal"><sp/><ref refid="de/deb/structBrush_1_1Parameters_1a714c905329b7ca861e5c7488c1415dbf" kindref="member">get_load_population</ref>(){<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/><ref refid="de/deb/structBrush_1_1Parameters_1ad1a131cf61b76ff1ab4b576f5fd1df9b" kindref="member">load_population</ref>;<sp/>};</highlight></codeline>
+<codeline lineno="125"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="126" refid="de/deb/structBrush_1_1Parameters_1a03a5ec7ccfcba501d57264aeb3a41263" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="de/deb/structBrush_1_1Parameters_1a03a5ec7ccfcba501d57264aeb3a41263" kindref="member">set_save_population</ref>(</highlight><highlight class="keywordtype">string</highlight><highlight class="normal"><sp/>new_save_population){<sp/><ref refid="de/deb/structBrush_1_1Parameters_1ad2ad3c96073fa555d752b20a182309bf" kindref="member">save_population</ref><sp/>=<sp/>new_save_population;<sp/>};</highlight></codeline>
+<codeline lineno="127" refid="de/deb/structBrush_1_1Parameters_1a5340c96aa233e2a9a631160b0b08099a" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">string</highlight><highlight class="normal"><sp/><ref refid="de/deb/structBrush_1_1Parameters_1a5340c96aa233e2a9a631160b0b08099a" kindref="member">get_save_population</ref>(){<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/><ref refid="de/deb/structBrush_1_1Parameters_1ad2ad3c96073fa555d752b20a182309bf" kindref="member">save_population</ref>;<sp/>};</highlight></codeline>
+<codeline lineno="128"><highlight class="normal"></highlight></codeline>
+<codeline lineno="129" refid="de/deb/structBrush_1_1Parameters_1a9db4d0fc9bf85b823d8963382118fde5" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">string</highlight><highlight class="normal"><sp/><ref refid="de/deb/structBrush_1_1Parameters_1a9db4d0fc9bf85b823d8963382118fde5" kindref="member">get_logfile</ref>(){<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/><ref refid="de/deb/structBrush_1_1Parameters_1ab800a9c06c4bbfd47f031659ff7bb7b8" kindref="member">logfile</ref>;<sp/>};</highlight></codeline>
+<codeline lineno="130" refid="de/deb/structBrush_1_1Parameters_1a531d8a7a2fc8a402881be57b62f38e2c" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="de/deb/structBrush_1_1Parameters_1a531d8a7a2fc8a402881be57b62f38e2c" kindref="member">set_logfile</ref>(</highlight><highlight class="keywordtype">string</highlight><highlight class="normal"><sp/>s){<sp/><ref refid="de/deb/structBrush_1_1Parameters_1ab800a9c06c4bbfd47f031659ff7bb7b8" kindref="member">logfile</ref>=s;<sp/>};</highlight></codeline>
+<codeline lineno="131"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="132" refid="de/deb/structBrush_1_1Parameters_1a83d1e4fc6ee0bab95df90583080a1bd7" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="de/deb/structBrush_1_1Parameters_1a83d1e4fc6ee0bab95df90583080a1bd7" kindref="member">set_current_gen</ref>(</highlight><highlight class="keywordtype">unsigned</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>gen){<sp/><ref refid="de/deb/structBrush_1_1Parameters_1acd37c52e411d17126bff22dca19f0408" kindref="member">current_gen</ref><sp/>=<sp/>gen;<sp/>};</highlight></codeline>
+<codeline lineno="133" refid="de/deb/structBrush_1_1Parameters_1ae342f8777e40bb52f65cdb951a960603" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">unsigned</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="de/deb/structBrush_1_1Parameters_1ae342f8777e40bb52f65cdb951a960603" kindref="member">get_current_gen</ref>(){<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/><ref refid="de/deb/structBrush_1_1Parameters_1acd37c52e411d17126bff22dca19f0408" kindref="member">current_gen</ref>;<sp/>};</highlight></codeline>
+<codeline lineno="134"><highlight class="normal"></highlight></codeline>
+<codeline lineno="135"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>TODO:<sp/>improve<sp/>vary_and_update<sp/>to<sp/>have<sp/>island<sp/>working<sp/>in<sp/>parallel<sp/></highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="136" refid="de/deb/structBrush_1_1Parameters_1a49b871e5bfa462b974e47112cc53ce53" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="de/deb/structBrush_1_1Parameters_1a49b871e5bfa462b974e47112cc53ce53" kindref="member">set_num_islands</ref>(</highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>new_num_islands){<sp/><ref refid="de/deb/structBrush_1_1Parameters_1a93ed229becd162e94722e034f8e5bebc" kindref="member">num_islands</ref><sp/>=<sp/>new_num_islands;<sp/>};</highlight></codeline>
+<codeline lineno="137" refid="de/deb/structBrush_1_1Parameters_1a908bc47bbc7691bf870a909c4eb80edb" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="de/deb/structBrush_1_1Parameters_1a908bc47bbc7691bf870a909c4eb80edb" kindref="member">get_num_islands</ref>(){<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/><ref refid="de/deb/structBrush_1_1Parameters_1a93ed229becd162e94722e034f8e5bebc" kindref="member">num_islands</ref>;<sp/>};</highlight></codeline>
+<codeline lineno="138"><highlight class="normal"></highlight></codeline>
+<codeline lineno="139" refid="de/deb/structBrush_1_1Parameters_1a09b2945802ab49e8510e16181a7d916e" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="de/deb/structBrush_1_1Parameters_1a09b2945802ab49e8510e16181a7d916e" kindref="member">set_max_depth</ref>(</highlight><highlight class="keywordtype">unsigned</highlight><highlight class="normal"><sp/>new_max_depth){<sp/><ref refid="de/deb/structBrush_1_1Parameters_1a22d49e1dbd59a355e5c234c7488595a6" kindref="member">max_depth</ref><sp/>=<sp/>new_max_depth;<sp/>};</highlight></codeline>
+<codeline lineno="140" refid="de/deb/structBrush_1_1Parameters_1a77aa7201a837482c7bf92579fe156811" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">unsigned</highlight><highlight class="normal"><sp/><ref refid="de/deb/structBrush_1_1Parameters_1a77aa7201a837482c7bf92579fe156811" kindref="member">get_max_depth</ref>()</highlight><highlight class="keyword"><sp/>const<sp/></highlight><highlight class="normal">{<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/><ref refid="de/deb/structBrush_1_1Parameters_1a22d49e1dbd59a355e5c234c7488595a6" kindref="member">max_depth</ref>;<sp/>};</highlight></codeline>
+<codeline lineno="141"><highlight class="normal"></highlight></codeline>
+<codeline lineno="142" refid="de/deb/structBrush_1_1Parameters_1ad5cf6dfc60d005e70ef569ac1e58bdeb" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="de/deb/structBrush_1_1Parameters_1ad5cf6dfc60d005e70ef569ac1e58bdeb" kindref="member">set_n_jobs</ref>(</highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>new_n_jobs){<sp/><ref refid="de/deb/structBrush_1_1Parameters_1a7fe27c4ba2a88aaea8fbed5a845e868e" kindref="member">n_jobs</ref><sp/>=<sp/>new_n_jobs;<sp/>};</highlight></codeline>
+<codeline lineno="143" refid="de/deb/structBrush_1_1Parameters_1a3bb3c39fa10b2087f5733d7ad47902de" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="de/deb/structBrush_1_1Parameters_1a3bb3c39fa10b2087f5733d7ad47902de" kindref="member">get_n_jobs</ref>(){<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/><ref refid="de/deb/structBrush_1_1Parameters_1a7fe27c4ba2a88aaea8fbed5a845e868e" kindref="member">n_jobs</ref>;<sp/>};</highlight></codeline>
+<codeline lineno="144"><highlight class="normal"></highlight></codeline>
+<codeline lineno="145" refid="de/deb/structBrush_1_1Parameters_1ad36ed3c368c1cc152b179a824e9b3144" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="de/deb/structBrush_1_1Parameters_1ad36ed3c368c1cc152b179a824e9b3144" kindref="member">set_max_size</ref>(</highlight><highlight class="keywordtype">unsigned</highlight><highlight class="normal"><sp/>new_max_size){<sp/><ref refid="de/deb/structBrush_1_1Parameters_1aeec98494c11bc2760b7feedf56741ff7" kindref="member">max_size</ref><sp/>=<sp/>new_max_size;<sp/>};</highlight></codeline>
+<codeline lineno="146" refid="de/deb/structBrush_1_1Parameters_1a122b7243856cd15f940b6d6b5ec1074f" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">unsigned</highlight><highlight class="normal"><sp/><ref refid="de/deb/structBrush_1_1Parameters_1a122b7243856cd15f940b6d6b5ec1074f" kindref="member">get_max_size</ref>()</highlight><highlight class="keyword"><sp/>const<sp/></highlight><highlight class="normal">{<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/><ref refid="de/deb/structBrush_1_1Parameters_1aeec98494c11bc2760b7feedf56741ff7" kindref="member">max_size</ref>;<sp/>};</highlight></codeline>
+<codeline lineno="147"><highlight class="normal"></highlight></codeline>
+<codeline lineno="148" refid="de/deb/structBrush_1_1Parameters_1abb9b1681e45572c95ce97f0e5aeefa05" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="de/deb/structBrush_1_1Parameters_1abb9b1681e45572c95ce97f0e5aeefa05" kindref="member">set_objectives</ref>(vector&lt;string&gt;<sp/>new_objectives){<sp/><ref refid="de/deb/structBrush_1_1Parameters_1a110a7c46dffa83836fb155a566219292" kindref="member">objectives</ref><sp/>=<sp/>new_objectives;<sp/>};</highlight></codeline>
+<codeline lineno="149" refid="de/deb/structBrush_1_1Parameters_1a3430720f17bdc30a30291b199cf68015" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>vector&lt;string&gt;<sp/><ref refid="de/deb/structBrush_1_1Parameters_1a3430720f17bdc30a30291b199cf68015" kindref="member">get_objectives</ref>()</highlight><highlight class="keyword"><sp/>const<sp/></highlight><highlight class="normal">{</highlight></codeline>
+<codeline lineno="150"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>return<sp/>objectives;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="151"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="152"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>properly<sp/>replace<sp/>scorer<sp/>with<sp/>the<sp/>specified<sp/>scorer</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="153"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>vector&lt;string&gt;<sp/>aux_objectives(0);</highlight></codeline>
+<codeline lineno="154"><highlight class="normal"></highlight></codeline>
+<codeline lineno="155"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>(</highlight><highlight class="keyword">auto</highlight><highlight class="normal">&amp;<sp/>objective<sp/>:<sp/><ref refid="de/deb/structBrush_1_1Parameters_1a110a7c46dffa83836fb155a566219292" kindref="member">objectives</ref>)<sp/>{</highlight></codeline>
+<codeline lineno="156"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(objective.compare(</highlight><highlight class="stringliteral">&quot;scorer&quot;</highlight><highlight class="normal">)==0)</highlight></codeline>
+<codeline lineno="157"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>aux_objectives.push_back(<ref refid="de/deb/structBrush_1_1Parameters_1aa4ccaa768b6371176d89cd3378e80d45" kindref="member">scorer</ref>);</highlight></codeline>
+<codeline lineno="158"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">else</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="159"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>aux_objectives.push_back(objective);</highlight></codeline>
+<codeline lineno="160"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="161"><highlight class="normal"></highlight></codeline>
+<codeline lineno="162"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>aux_objectives;</highlight></codeline>
+<codeline lineno="163"><highlight class="normal"><sp/><sp/><sp/><sp/>};</highlight></codeline>
+<codeline lineno="164"><highlight class="normal"></highlight></codeline>
+<codeline lineno="165" refid="de/deb/structBrush_1_1Parameters_1a9a8f5f8dbfd009fd4aed4b322c19b429" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="de/deb/structBrush_1_1Parameters_1a9a8f5f8dbfd009fd4aed4b322c19b429" kindref="member">set_sel</ref>(</highlight><highlight class="keywordtype">string</highlight><highlight class="normal"><sp/>new_sel){<sp/><ref refid="de/deb/structBrush_1_1Parameters_1a187fd63755c90c13f4b3723becd9bdd8" kindref="member">sel</ref><sp/>=<sp/>new_sel;<sp/>};</highlight></codeline>
+<codeline lineno="166" refid="de/deb/structBrush_1_1Parameters_1afff93890adec7af136be0dc19ccdd35f" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">string</highlight><highlight class="normal"><sp/><ref refid="de/deb/structBrush_1_1Parameters_1afff93890adec7af136be0dc19ccdd35f" kindref="member">get_sel</ref>(){<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/><ref refid="de/deb/structBrush_1_1Parameters_1a187fd63755c90c13f4b3723becd9bdd8" kindref="member">sel</ref>;<sp/>};</highlight></codeline>
+<codeline lineno="167"><highlight class="normal"></highlight></codeline>
+<codeline lineno="168" refid="de/deb/structBrush_1_1Parameters_1aaa61711b5534b0530b60cd11a7070e7c" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="de/deb/structBrush_1_1Parameters_1aaa61711b5534b0530b60cd11a7070e7c" kindref="member">set_surv</ref>(</highlight><highlight class="keywordtype">string</highlight><highlight class="normal"><sp/>new_surv){<sp/><ref refid="de/deb/structBrush_1_1Parameters_1a4ff98035fbd50487abb5946504e8e4d6" kindref="member">surv</ref><sp/>=<sp/>new_surv;<sp/>};</highlight></codeline>
+<codeline lineno="169" refid="de/deb/structBrush_1_1Parameters_1abbd954f5018446151e1f5711171476a9" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">string</highlight><highlight class="normal"><sp/><ref refid="de/deb/structBrush_1_1Parameters_1abbd954f5018446151e1f5711171476a9" kindref="member">get_surv</ref>(){<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/><ref refid="de/deb/structBrush_1_1Parameters_1a4ff98035fbd50487abb5946504e8e4d6" kindref="member">surv</ref>;<sp/>};</highlight></codeline>
+<codeline lineno="170"><highlight class="normal"></highlight></codeline>
+<codeline lineno="171" refid="de/deb/structBrush_1_1Parameters_1ae117be02b10c413ff07be95c2edf2417" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="de/deb/structBrush_1_1Parameters_1ae117be02b10c413ff07be95c2edf2417" kindref="member">set_cx_prob</ref>(</highlight><highlight class="keywordtype">float</highlight><highlight class="normal"><sp/>new_cx_prob){<sp/><ref refid="de/deb/structBrush_1_1Parameters_1a1d0a366fbf2bb9d7d20d45309b97a7a1" kindref="member">cx_prob</ref><sp/>=<sp/>new_cx_prob;<sp/>};</highlight></codeline>
+<codeline lineno="172" refid="de/deb/structBrush_1_1Parameters_1ad295afd17da08fdccb207f28caf07cc8" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">float</highlight><highlight class="normal"><sp/><ref refid="de/deb/structBrush_1_1Parameters_1ad295afd17da08fdccb207f28caf07cc8" kindref="member">get_cx_prob</ref>(){<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/><ref refid="de/deb/structBrush_1_1Parameters_1a1d0a366fbf2bb9d7d20d45309b97a7a1" kindref="member">cx_prob</ref>;<sp/>};</highlight></codeline>
+<codeline lineno="173"><highlight class="normal"></highlight></codeline>
+<codeline lineno="174" refid="de/deb/structBrush_1_1Parameters_1afb6a671883dbfbde88932791fbb4de87" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="de/deb/structBrush_1_1Parameters_1afb6a671883dbfbde88932791fbb4de87" kindref="member">set_mig_prob</ref>(</highlight><highlight class="keywordtype">float</highlight><highlight class="normal"><sp/>new_mig_prob){<sp/><ref refid="de/deb/structBrush_1_1Parameters_1aed0024de73a9fec99711efe303484ab8" kindref="member">mig_prob</ref><sp/>=<sp/>new_mig_prob;<sp/>};</highlight></codeline>
+<codeline lineno="175" refid="de/deb/structBrush_1_1Parameters_1a62efc097c2a873a92515dd492a78a402" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">float</highlight><highlight class="normal"><sp/><ref refid="de/deb/structBrush_1_1Parameters_1a62efc097c2a873a92515dd492a78a402" kindref="member">get_mig_prob</ref>(){<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/><ref refid="de/deb/structBrush_1_1Parameters_1aed0024de73a9fec99711efe303484ab8" kindref="member">mig_prob</ref>;<sp/>};</highlight></codeline>
+<codeline lineno="176"><highlight class="normal"></highlight></codeline>
+<codeline lineno="177" refid="de/deb/structBrush_1_1Parameters_1aab67dbc5fa33691d911959e0ab70b356" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="de/deb/structBrush_1_1Parameters_1aab67dbc5fa33691d911959e0ab70b356" kindref="member">set_use_arch</ref>(</highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/>new_use_arch){<sp/><ref refid="de/deb/structBrush_1_1Parameters_1a41a48deed7929591e10f9886c0d20ff6" kindref="member">use_arch</ref><sp/>=<sp/>new_use_arch;<sp/>};</highlight></codeline>
+<codeline lineno="178" refid="de/deb/structBrush_1_1Parameters_1a18bd85faa68a7a7835f374ebaa08e029" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/><ref refid="de/deb/structBrush_1_1Parameters_1a18bd85faa68a7a7835f374ebaa08e029" kindref="member">get_use_arch</ref>(){<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/><ref refid="de/deb/structBrush_1_1Parameters_1a41a48deed7929591e10f9886c0d20ff6" kindref="member">use_arch</ref>;<sp/>};</highlight></codeline>
+<codeline lineno="179"><highlight class="normal"></highlight></codeline>
+<codeline lineno="180" refid="de/deb/structBrush_1_1Parameters_1a3911c070b29e41bd9fa50dffcec77986" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="de/deb/structBrush_1_1Parameters_1a3911c070b29e41bd9fa50dffcec77986" kindref="member">set_val_from_arch</ref>(</highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/>new_val_from_arch){<sp/><ref refid="de/deb/structBrush_1_1Parameters_1a9d3932cd3266036a3db14445caee390c" kindref="member">val_from_arch</ref><sp/>=<sp/>new_val_from_arch;<sp/>};</highlight></codeline>
+<codeline lineno="181" refid="de/deb/structBrush_1_1Parameters_1a24bd26badcac2c7285e9966b684ffd3b" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/><ref refid="de/deb/structBrush_1_1Parameters_1a24bd26badcac2c7285e9966b684ffd3b" kindref="member">get_val_from_arch</ref>(){<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/><ref refid="de/deb/structBrush_1_1Parameters_1a9d3932cd3266036a3db14445caee390c" kindref="member">val_from_arch</ref>;<sp/>};</highlight></codeline>
+<codeline lineno="182"><highlight class="normal"></highlight></codeline>
+<codeline lineno="183" refid="de/deb/structBrush_1_1Parameters_1aadbf81786a17f23863c85f1896b7155d" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="de/deb/structBrush_1_1Parameters_1aadbf81786a17f23863c85f1896b7155d" kindref="member">set_classification</ref>(</highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/>c){<sp/><ref refid="de/deb/structBrush_1_1Parameters_1a72bfe23c101219ee3460ef8b9e1e1cbe" kindref="member">classification</ref><sp/>=<sp/>c;<sp/>};</highlight></codeline>
+<codeline lineno="184" refid="de/deb/structBrush_1_1Parameters_1a0941104c9a1c006e2d616b04fe8772f8" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/><ref refid="de/deb/structBrush_1_1Parameters_1a0941104c9a1c006e2d616b04fe8772f8" kindref="member">get_classification</ref>(){<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/><ref refid="de/deb/structBrush_1_1Parameters_1a72bfe23c101219ee3460ef8b9e1e1cbe" kindref="member">classification</ref>;<sp/>};</highlight></codeline>
+<codeline lineno="185"><highlight class="normal"></highlight></codeline>
+<codeline lineno="186" refid="de/deb/structBrush_1_1Parameters_1a165c8b63ae6066b392ab945c2d04a7b5" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="de/deb/structBrush_1_1Parameters_1a165c8b63ae6066b392ab945c2d04a7b5" kindref="member">set_shuffle_split</ref>(</highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/>shuff){<sp/><ref refid="de/deb/structBrush_1_1Parameters_1a38f19ab73e20b7d19604338e7ea5f64e" kindref="member">shuffle_split</ref><sp/>=<sp/>shuff;<sp/>};</highlight></codeline>
+<codeline lineno="187" refid="de/deb/structBrush_1_1Parameters_1acaae679131485c3a26d673de03dec296" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/><ref refid="de/deb/structBrush_1_1Parameters_1acaae679131485c3a26d673de03dec296" kindref="member">get_shuffle_split</ref>(){<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/><ref refid="de/deb/structBrush_1_1Parameters_1a38f19ab73e20b7d19604338e7ea5f64e" kindref="member">shuffle_split</ref>;<sp/>};</highlight></codeline>
+<codeline lineno="188"><highlight class="normal"></highlight></codeline>
+<codeline lineno="189" refid="de/deb/structBrush_1_1Parameters_1a461cce1b7b252913ede2e7b8d6cb5c91" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="de/deb/structBrush_1_1Parameters_1a461cce1b7b252913ede2e7b8d6cb5c91" kindref="member">set_constants_simplification</ref>(</highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/>cs){<sp/><ref refid="de/deb/structBrush_1_1Parameters_1ac16925784c3e0cd3da64858643aec590" kindref="member">constants_simplification</ref><sp/>=<sp/>cs;<sp/>};</highlight></codeline>
+<codeline lineno="190" refid="de/deb/structBrush_1_1Parameters_1a5945d0484d68867abd931647627507b8" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/><ref refid="de/deb/structBrush_1_1Parameters_1a5945d0484d68867abd931647627507b8" kindref="member">get_constants_simplification</ref>(){<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/><ref refid="de/deb/structBrush_1_1Parameters_1ac16925784c3e0cd3da64858643aec590" kindref="member">constants_simplification</ref>;<sp/>};</highlight></codeline>
+<codeline lineno="191"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="192" refid="de/deb/structBrush_1_1Parameters_1a2b56dd258dc9aac0a2dc1420743ce39f" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="de/deb/structBrush_1_1Parameters_1a2b56dd258dc9aac0a2dc1420743ce39f" kindref="member">set_inexact_simplification</ref>(</highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/>is){<sp/><ref refid="de/deb/structBrush_1_1Parameters_1a08ad8f286c31998bd94f897a2894a950" kindref="member">inexact_simplification</ref><sp/>=<sp/>is;<sp/>};</highlight></codeline>
+<codeline lineno="193" refid="de/deb/structBrush_1_1Parameters_1a1a65ccec3f7dc32f50b115f5423aaaaa" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/><ref refid="de/deb/structBrush_1_1Parameters_1a1a65ccec3f7dc32f50b115f5423aaaaa" kindref="member">get_inexact_simplification</ref>(){<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/><ref refid="de/deb/structBrush_1_1Parameters_1a08ad8f286c31998bd94f897a2894a950" kindref="member">inexact_simplification</ref>;<sp/>};</highlight></codeline>
+<codeline lineno="194"><highlight class="normal"></highlight></codeline>
+<codeline lineno="195" refid="de/deb/structBrush_1_1Parameters_1a5f6ede2fb7d56bcb51c687eea1721efe" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="de/deb/structBrush_1_1Parameters_1a5f6ede2fb7d56bcb51c687eea1721efe" kindref="member">set_weights_init</ref>(</highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/>init){<sp/><ref refid="de/deb/structBrush_1_1Parameters_1ad60ceac73cd4773e3d808531463a87eb" kindref="member">weights_init</ref><sp/>=<sp/>init;<sp/>};</highlight></codeline>
+<codeline lineno="196" refid="de/deb/structBrush_1_1Parameters_1a31e0f74e08fd99e1fe1f1033b43b394e" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/><ref refid="de/deb/structBrush_1_1Parameters_1a31e0f74e08fd99e1fe1f1033b43b394e" kindref="member">get_weights_init</ref>(){<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/><ref refid="de/deb/structBrush_1_1Parameters_1ad60ceac73cd4773e3d808531463a87eb" kindref="member">weights_init</ref>;<sp/>};</highlight></codeline>
+<codeline lineno="197"><highlight class="normal"></highlight></codeline>
+<codeline lineno="198" refid="de/deb/structBrush_1_1Parameters_1a2601b9ce7184a0bc7b58efe8f477e178" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="de/deb/structBrush_1_1Parameters_1a2601b9ce7184a0bc7b58efe8f477e178" kindref="member">set_n_classes</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>ArrayXf&amp;<sp/>y){</highlight></codeline>
+<codeline lineno="199"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(<ref refid="de/deb/structBrush_1_1Parameters_1a72bfe23c101219ee3460ef8b9e1e1cbe" kindref="member">classification</ref>)</highlight></codeline>
+<codeline lineno="200"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="201"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>vector&lt;int&gt;<sp/>uc<sp/>=<sp/><ref refid="d6/d2e/namespaceBrush_1_1Util_1abbcdb6fb60bd2927a57691262f14420a" kindref="member">unique</ref>(<sp/><ref refid="dc/d5c/namespaceBrush_1ac5cd76eed6ea70d1c8f429ee37ca9fc0" kindref="member">ArrayXi</ref>(y.cast&lt;</highlight><highlight class="keywordtype">int</highlight><highlight class="normal">&gt;())<sp/>);</highlight></codeline>
+<codeline lineno="202"><highlight class="normal"></highlight></codeline>
+<codeline lineno="203"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(</highlight><highlight class="keywordtype">int</highlight><highlight class="normal">(uc.at(0))<sp/>!=<sp/>0)</highlight></codeline>
+<codeline lineno="204"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="da/d41/error_8h_1aa4c550bcd71e4ec1c97b111e1360509a" kindref="member">HANDLE_ERROR_THROW</ref>(</highlight><highlight class="stringliteral">&quot;Class<sp/>labels<sp/>must<sp/>start<sp/>at<sp/>0&quot;</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="205"><highlight class="normal"></highlight></codeline>
+<codeline lineno="206"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>vector&lt;int&gt;<sp/>cont_classes(uc.size());</highlight></codeline>
+<codeline lineno="207"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>iota(cont_classes.begin(),<sp/>cont_classes.end(),<sp/>0);</highlight></codeline>
+<codeline lineno="208"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>(</highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>i<sp/>=<sp/>0;<sp/>i<sp/>&lt;<sp/>cont_classes.size();<sp/>++i)</highlight></codeline>
+<codeline lineno="209"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="210"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(<sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal">(uc.at(i))<sp/>!=<sp/>cont_classes.at(i))</highlight></codeline>
+<codeline lineno="211"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="da/d41/error_8h_1aa4c550bcd71e4ec1c97b111e1360509a" kindref="member">HANDLE_ERROR_THROW</ref>(</highlight><highlight class="stringliteral">&quot;Class<sp/>labels<sp/>must<sp/>be<sp/>contiguous&quot;</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="212"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="213"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="de/deb/structBrush_1_1Parameters_1af6ac960263e42bba7e6a334fb86c5798" kindref="member">n_classes</ref><sp/>=<sp/>uc.size();</highlight></codeline>
+<codeline lineno="214"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>classes<sp/><sp/><sp/>=<sp/>uc;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="215"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="216"><highlight class="normal"><sp/><sp/><sp/><sp/>};</highlight></codeline>
+<codeline lineno="217" refid="de/deb/structBrush_1_1Parameters_1a44c430fde30e55d5e1ff3bbbda26fd76" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="de/deb/structBrush_1_1Parameters_1a44c430fde30e55d5e1ff3bbbda26fd76" kindref="member">set_class_weights</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>ArrayXf&amp;<sp/>y){</highlight></codeline>
+<codeline lineno="218"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="de/deb/structBrush_1_1Parameters_1a88f5a4e906459cfc44ab04bca01fb333" kindref="member">class_weights</ref>.resize(<ref refid="de/deb/structBrush_1_1Parameters_1af6ac960263e42bba7e6a334fb86c5798" kindref="member">n_classes</ref>);<sp/></highlight><highlight class="comment">//<sp/>set_n_classes<sp/>must<sp/>be<sp/>called<sp/>first</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="219"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>(</highlight><highlight class="keywordtype">unsigned</highlight><highlight class="normal"><sp/>i<sp/>=<sp/>0;<sp/>i<sp/>&lt;<sp/><ref refid="de/deb/structBrush_1_1Parameters_1af6ac960263e42bba7e6a334fb86c5798" kindref="member">n_classes</ref>;<sp/>++i){</highlight></codeline>
+<codeline lineno="220"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="de/deb/structBrush_1_1Parameters_1a88f5a4e906459cfc44ab04bca01fb333" kindref="member">class_weights</ref>.at(i)<sp/>=<sp/>float((y.cast&lt;</highlight><highlight class="keywordtype">int</highlight><highlight class="normal">&gt;().array()<sp/>==<sp/>i).count())/y.size();<sp/></highlight></codeline>
+<codeline lineno="221"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="de/deb/structBrush_1_1Parameters_1a88f5a4e906459cfc44ab04bca01fb333" kindref="member">class_weights</ref>.at(i)<sp/>=<sp/>(1.0<sp/>-<sp/><ref refid="de/deb/structBrush_1_1Parameters_1a88f5a4e906459cfc44ab04bca01fb333" kindref="member">class_weights</ref>.at(i));</highlight></codeline>
+<codeline lineno="222"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="223"><highlight class="normal"><sp/><sp/><sp/><sp/>};</highlight></codeline>
+<codeline lineno="224" refid="de/deb/structBrush_1_1Parameters_1abcb29d9409d58681fe925d955c010573" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="de/deb/structBrush_1_1Parameters_1abcb29d9409d58681fe925d955c010573" kindref="member">set_sample_weights</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>ArrayXf&amp;<sp/>y){</highlight></codeline>
+<codeline lineno="225"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="de/deb/structBrush_1_1Parameters_1a0c58f9fade0aa2b61ce38213f1675cc5" kindref="member">sample_weights</ref>.resize(0);<sp/></highlight><highlight class="comment">//<sp/>set_class_weights<sp/>must<sp/>be<sp/>called<sp/>first</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="226"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(!<ref refid="de/deb/structBrush_1_1Parameters_1a88f5a4e906459cfc44ab04bca01fb333" kindref="member">class_weights</ref>.empty())</highlight></codeline>
+<codeline lineno="227"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>(</highlight><highlight class="keywordtype">unsigned</highlight><highlight class="normal"><sp/>i<sp/>=<sp/>0;<sp/>i<sp/>&lt;<sp/>y.size();<sp/>++i)</highlight></codeline>
+<codeline lineno="228"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="de/deb/structBrush_1_1Parameters_1a0c58f9fade0aa2b61ce38213f1675cc5" kindref="member">sample_weights</ref>.push_back(<ref refid="de/deb/structBrush_1_1Parameters_1a88f5a4e906459cfc44ab04bca01fb333" kindref="member">class_weights</ref>.at(</highlight><highlight class="keywordtype">int</highlight><highlight class="normal">(y(i))));</highlight></codeline>
+<codeline lineno="229"><highlight class="normal"><sp/><sp/><sp/><sp/>};</highlight></codeline>
+<codeline lineno="230"><highlight class="normal"></highlight></codeline>
+<codeline lineno="231" refid="de/deb/structBrush_1_1Parameters_1a572e97fe2ee54989dc8c72ad322076f7" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">unsigned</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="de/deb/structBrush_1_1Parameters_1a572e97fe2ee54989dc8c72ad322076f7" kindref="member">get_n_classes</ref>(){<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/><ref refid="de/deb/structBrush_1_1Parameters_1af6ac960263e42bba7e6a334fb86c5798" kindref="member">n_classes</ref>;<sp/>};</highlight></codeline>
+<codeline lineno="232" refid="de/deb/structBrush_1_1Parameters_1a50778f2c6d11b993f8388b80616a5459" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>vector&lt;float&gt;<sp/><ref refid="de/deb/structBrush_1_1Parameters_1a50778f2c6d11b993f8388b80616a5459" kindref="member">get_class_weights</ref>(){<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/><ref refid="de/deb/structBrush_1_1Parameters_1a88f5a4e906459cfc44ab04bca01fb333" kindref="member">class_weights</ref>;<sp/>};</highlight></codeline>
+<codeline lineno="233" refid="de/deb/structBrush_1_1Parameters_1ab3fe327b0600be29a925541f73d1836b" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>vector&lt;float&gt;<sp/><ref refid="de/deb/structBrush_1_1Parameters_1ab3fe327b0600be29a925541f73d1836b" kindref="member">get_sample_weights</ref>(){<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/><ref refid="de/deb/structBrush_1_1Parameters_1a0c58f9fade0aa2b61ce38213f1675cc5" kindref="member">sample_weights</ref>;<sp/>};</highlight></codeline>
+<codeline lineno="234"><highlight class="normal"></highlight></codeline>
+<codeline lineno="235" refid="de/deb/structBrush_1_1Parameters_1adcfeb3fbcd6bb2ace4eb112dd1ac1fc7" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="de/deb/structBrush_1_1Parameters_1adcfeb3fbcd6bb2ace4eb112dd1ac1fc7" kindref="member">set_validation_size</ref>(</highlight><highlight class="keywordtype">float</highlight><highlight class="normal"><sp/>s){<sp/><ref refid="de/deb/structBrush_1_1Parameters_1a56cb7729183a3d4bc9514e83198b99d5" kindref="member">validation_size</ref><sp/>=<sp/>s;<sp/>};</highlight></codeline>
+<codeline lineno="236" refid="de/deb/structBrush_1_1Parameters_1aead717c90a933bdc5b1b149a4b40ec78" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">float</highlight><highlight class="normal"><sp/><ref refid="de/deb/structBrush_1_1Parameters_1aead717c90a933bdc5b1b149a4b40ec78" kindref="member">get_validation_size</ref>(){<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/><ref refid="de/deb/structBrush_1_1Parameters_1a56cb7729183a3d4bc9514e83198b99d5" kindref="member">validation_size</ref>;<sp/>};</highlight></codeline>
+<codeline lineno="237"><highlight class="normal"></highlight></codeline>
+<codeline lineno="238" refid="de/deb/structBrush_1_1Parameters_1adce3ebf4b9d0aa35a4da35f33e5d9168" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="de/deb/structBrush_1_1Parameters_1adce3ebf4b9d0aa35a4da35f33e5d9168" kindref="member">set_feature_names</ref>(vector&lt;string&gt;<sp/>vn){<sp/><ref refid="de/deb/structBrush_1_1Parameters_1a9aefe0091a5fcba33a3d98c4716a6c4d" kindref="member">feature_names</ref><sp/>=<sp/>vn;<sp/>};</highlight></codeline>
+<codeline lineno="239" refid="de/deb/structBrush_1_1Parameters_1a503e5e39ff8078bfd0132399bc376651" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>vector&lt;string&gt;<sp/><ref refid="de/deb/structBrush_1_1Parameters_1a503e5e39ff8078bfd0132399bc376651" kindref="member">get_feature_names</ref>(){<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/><ref refid="de/deb/structBrush_1_1Parameters_1a9aefe0091a5fcba33a3d98c4716a6c4d" kindref="member">feature_names</ref>;<sp/>};</highlight></codeline>
+<codeline lineno="240"><highlight class="normal"></highlight></codeline>
+<codeline lineno="241" refid="de/deb/structBrush_1_1Parameters_1a1cb1c1f543a2d7c19ae843252e4c4f9e" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="de/deb/structBrush_1_1Parameters_1a1cb1c1f543a2d7c19ae843252e4c4f9e" kindref="member">set_feature_types</ref>(vector&lt;string&gt;<sp/>ft){<sp/><ref refid="de/deb/structBrush_1_1Parameters_1addfeacae93daf53f5537f526f4712426" kindref="member">feature_types</ref><sp/>=<sp/>ft;<sp/>};</highlight></codeline>
+<codeline lineno="242" refid="de/deb/structBrush_1_1Parameters_1ae699514fc828219e2abb3a7d62087e4b" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>vector&lt;string&gt;<sp/><ref refid="de/deb/structBrush_1_1Parameters_1ae699514fc828219e2abb3a7d62087e4b" kindref="member">get_feature_types</ref>(){<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/><ref refid="de/deb/structBrush_1_1Parameters_1addfeacae93daf53f5537f526f4712426" kindref="member">feature_types</ref>;<sp/>};</highlight></codeline>
+<codeline lineno="243"><highlight class="normal"></highlight></codeline>
+<codeline lineno="244" refid="de/deb/structBrush_1_1Parameters_1a3764d1c46477f804a75d58248cc64ea8" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="de/deb/structBrush_1_1Parameters_1a3764d1c46477f804a75d58248cc64ea8" kindref="member">set_batch_size</ref>(</highlight><highlight class="keywordtype">float</highlight><highlight class="normal"><sp/>c){<sp/><ref refid="de/deb/structBrush_1_1Parameters_1a3079fe8703a9a8c57e06afd7425f48d4" kindref="member">batch_size</ref><sp/>=<sp/>c;<sp/>};</highlight></codeline>
+<codeline lineno="245" refid="de/deb/structBrush_1_1Parameters_1a55829db9efdf15f588da5aed54fa42a8" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">float</highlight><highlight class="normal"><sp/><ref refid="de/deb/structBrush_1_1Parameters_1a55829db9efdf15f588da5aed54fa42a8" kindref="member">get_batch_size</ref>(){<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/><ref refid="de/deb/structBrush_1_1Parameters_1a3079fe8703a9a8c57e06afd7425f48d4" kindref="member">batch_size</ref>;<sp/>};</highlight></codeline>
+<codeline lineno="246"><highlight class="normal"></highlight></codeline>
+<codeline lineno="247" refid="de/deb/structBrush_1_1Parameters_1a21bfb9aa5ac33bee26416611d51cee1a" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="de/deb/structBrush_1_1Parameters_1a21bfb9aa5ac33bee26416611d51cee1a" kindref="member">set_mutation_probs</ref>(std::map&lt;std::string,<sp/>float&gt;<sp/>new_mutation_probs){<sp/><ref refid="de/deb/structBrush_1_1Parameters_1a49392abcea1d48447c024a23137fd788" kindref="member">mutation_probs</ref><sp/>=<sp/>new_mutation_probs;<sp/>};</highlight></codeline>
+<codeline lineno="248" refid="de/deb/structBrush_1_1Parameters_1ae663b0ea31743fceb203fe476f4ddc99" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>std::map&lt;std::string,<sp/>float&gt;<sp/><ref refid="de/deb/structBrush_1_1Parameters_1ae663b0ea31743fceb203fe476f4ddc99" kindref="member">get_mutation_probs</ref>(){<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/><ref refid="de/deb/structBrush_1_1Parameters_1a49392abcea1d48447c024a23137fd788" kindref="member">mutation_probs</ref>;<sp/>};</highlight></codeline>
+<codeline lineno="249"><highlight class="normal"></highlight></codeline>
+<codeline lineno="250" refid="de/deb/structBrush_1_1Parameters_1a2054b866fb2d2a08114ae9c468ad3863" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="de/deb/structBrush_1_1Parameters_1a2054b866fb2d2a08114ae9c468ad3863" kindref="member">set_functions</ref>(std::unordered_map&lt;std::string,<sp/>float&gt;<sp/>new_functions){<sp/><ref refid="de/deb/structBrush_1_1Parameters_1a6ad3da8ee5919f7f8d562348f99d9e36" kindref="member">functions</ref><sp/>=<sp/>new_functions;<sp/>};</highlight></codeline>
+<codeline lineno="251" refid="de/deb/structBrush_1_1Parameters_1aee62986fbd874d410a0d5d4ab81dce7b" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>std::unordered_map&lt;std::string,<sp/>float&gt;<sp/><ref refid="de/deb/structBrush_1_1Parameters_1aee62986fbd874d410a0d5d4ab81dce7b" kindref="member">get_functions</ref>(){<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/><ref refid="de/deb/structBrush_1_1Parameters_1a6ad3da8ee5919f7f8d562348f99d9e36" kindref="member">functions</ref>;<sp/>};</highlight></codeline>
+<codeline lineno="252"><highlight class="normal">};</highlight></codeline>
+<codeline lineno="253"><highlight class="normal"></highlight></codeline>
+<codeline lineno="254" refid="dc/d5c/namespaceBrush_1a67a0e8290b852a0ea0f5b8392c53ece9" refkind="member"><highlight class="normal"><ref refid="dc/d5c/namespaceBrush_1a2b2ffd06833f1e9ee57cfd689acfcc6d" kindref="member">NLOHMANN_DEFINE_TYPE_NON_INTRUSIVE</ref>(<ref refid="de/deb/structBrush_1_1Parameters" kindref="compound">Parameters</ref>,</highlight></codeline>
+<codeline lineno="255"><highlight class="normal"><sp/><sp/><sp/><sp/>random_state,</highlight></codeline>
 <codeline lineno="256"><highlight class="normal"><sp/><sp/><sp/><sp/>verbosity,</highlight></codeline>
-<codeline lineno="257"><highlight class="normal"><sp/><sp/><sp/><sp/>random_state,</highlight></codeline>
-<codeline lineno="258"><highlight class="normal"><sp/><sp/><sp/><sp/>pop_size,</highlight></codeline>
-<codeline lineno="259"><highlight class="normal"><sp/><sp/><sp/><sp/>max_gens,</highlight></codeline>
-<codeline lineno="260"><highlight class="normal"><sp/><sp/><sp/><sp/>max_stall,</highlight></codeline>
-<codeline lineno="261"><highlight class="normal"><sp/><sp/><sp/><sp/>max_time,</highlight></codeline>
-<codeline lineno="262"><highlight class="normal"><sp/><sp/><sp/><sp/>scorer,</highlight></codeline>
-<codeline lineno="263"><highlight class="normal"><sp/><sp/><sp/><sp/>load_population,</highlight></codeline>
-<codeline lineno="264"><highlight class="normal"><sp/><sp/><sp/><sp/>save_population,</highlight></codeline>
-<codeline lineno="265"><highlight class="normal"><sp/><sp/><sp/><sp/>logfile,</highlight></codeline>
-<codeline lineno="266"><highlight class="normal"><sp/><sp/><sp/><sp/>current_gen,</highlight></codeline>
-<codeline lineno="267"><highlight class="normal"><sp/><sp/><sp/><sp/>num_islands,</highlight></codeline>
-<codeline lineno="268"><highlight class="normal"><sp/><sp/><sp/><sp/>max_depth,</highlight></codeline>
-<codeline lineno="269"><highlight class="normal"><sp/><sp/><sp/><sp/>n_jobs,</highlight></codeline>
-<codeline lineno="270"><highlight class="normal"><sp/><sp/><sp/><sp/>max_size,</highlight></codeline>
-<codeline lineno="271"><highlight class="normal"><sp/><sp/><sp/><sp/>objectives,</highlight></codeline>
+<codeline lineno="257"><highlight class="normal"></highlight></codeline>
+<codeline lineno="258"><highlight class="normal"><sp/><sp/><sp/><sp/>mode,</highlight></codeline>
+<codeline lineno="259"><highlight class="normal"></highlight></codeline>
+<codeline lineno="260"><highlight class="normal"><sp/><sp/><sp/><sp/>current_gen,</highlight></codeline>
+<codeline lineno="261"><highlight class="normal"></highlight></codeline>
+<codeline lineno="262"><highlight class="normal"><sp/><sp/><sp/><sp/>pop_size,</highlight></codeline>
+<codeline lineno="263"><highlight class="normal"><sp/><sp/><sp/><sp/>max_gens,</highlight></codeline>
+<codeline lineno="264"><highlight class="normal"><sp/><sp/><sp/><sp/>max_stall,</highlight></codeline>
+<codeline lineno="265"><highlight class="normal"><sp/><sp/><sp/><sp/>max_time,</highlight></codeline>
+<codeline lineno="266"><highlight class="normal"></highlight></codeline>
+<codeline lineno="267"><highlight class="normal"><sp/><sp/><sp/><sp/>max_depth,</highlight></codeline>
+<codeline lineno="268"><highlight class="normal"><sp/><sp/><sp/><sp/>max_size,</highlight></codeline>
+<codeline lineno="269"><highlight class="normal"></highlight></codeline>
+<codeline lineno="270"><highlight class="normal"><sp/><sp/><sp/><sp/>objectives,</highlight></codeline>
+<codeline lineno="271"><highlight class="normal"><sp/><sp/><sp/><sp/>bandit,</highlight></codeline>
 <codeline lineno="272"><highlight class="normal"><sp/><sp/><sp/><sp/>sel,</highlight></codeline>
 <codeline lineno="273"><highlight class="normal"><sp/><sp/><sp/><sp/>surv,</highlight></codeline>
-<codeline lineno="274"><highlight class="normal"><sp/><sp/><sp/><sp/>cx_prob,</highlight></codeline>
-<codeline lineno="275"><highlight class="normal"><sp/><sp/><sp/><sp/>mig_prob,</highlight></codeline>
-<codeline lineno="276"><highlight class="normal"><sp/><sp/><sp/><sp/>classification,</highlight></codeline>
-<codeline lineno="277"><highlight class="normal"><sp/><sp/><sp/><sp/>n_classes,</highlight></codeline>
-<codeline lineno="278"><highlight class="normal"><sp/><sp/><sp/><sp/>classes,<sp/></highlight><highlight class="comment">//<sp/>TODO:<sp/>get<sp/>rid<sp/>of<sp/>this<sp/>parameter?<sp/>for<sp/>some<sp/>reason,<sp/>when<sp/>i<sp/>remove<sp/>it<sp/>(or<sp/>set<sp/>it<sp/>to<sp/>any<sp/>value)<sp/>the<sp/>load<sp/>population<sp/>starts<sp/>to<sp/>fail<sp/>with<sp/>regression</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="279"><highlight class="normal"><sp/><sp/><sp/><sp/>class_weights,</highlight></codeline>
-<codeline lineno="280"><highlight class="normal"><sp/><sp/><sp/><sp/>sample_weights,</highlight></codeline>
-<codeline lineno="281"><highlight class="normal"><sp/><sp/><sp/><sp/>validation_size,</highlight></codeline>
-<codeline lineno="282"><highlight class="normal"><sp/><sp/><sp/><sp/>feature_names,</highlight></codeline>
-<codeline lineno="283"><highlight class="normal"><sp/><sp/><sp/><sp/>batch_size,</highlight></codeline>
-<codeline lineno="284"><highlight class="normal"><sp/><sp/><sp/><sp/>mutation_probs,</highlight></codeline>
-<codeline lineno="285"><highlight class="normal"><sp/><sp/><sp/><sp/>functions</highlight></codeline>
-<codeline lineno="286"><highlight class="normal">);</highlight></codeline>
-<codeline lineno="287"><highlight class="normal"></highlight></codeline>
-<codeline lineno="288"><highlight class="normal">}<sp/></highlight><highlight class="comment">//<sp/>Brush</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="289"><highlight class="normal"></highlight></codeline>
-<codeline lineno="290"><highlight class="normal"></highlight><highlight class="preprocessor">#endif</highlight></codeline>
+<codeline lineno="274"><highlight class="normal"><sp/><sp/><sp/><sp/>functions,</highlight></codeline>
+<codeline lineno="275"><highlight class="normal"><sp/><sp/><sp/><sp/>num_islands,</highlight></codeline>
+<codeline lineno="276"><highlight class="normal"></highlight></codeline>
+<codeline lineno="277"><highlight class="normal"><sp/><sp/><sp/><sp/>use_arch,</highlight></codeline>
+<codeline lineno="278"><highlight class="normal"><sp/><sp/><sp/><sp/>val_from_arch,</highlight></codeline>
+<codeline lineno="279"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="280"><highlight class="normal"><sp/><sp/><sp/><sp/>constants_simplification,</highlight></codeline>
+<codeline lineno="281"><highlight class="normal"><sp/><sp/><sp/><sp/>inexact_simplification,</highlight></codeline>
+<codeline lineno="282"><highlight class="normal"></highlight></codeline>
+<codeline lineno="283"><highlight class="normal"><sp/><sp/><sp/><sp/>mutation_probs,</highlight></codeline>
+<codeline lineno="284"><highlight class="normal"><sp/><sp/><sp/><sp/>cx_prob,</highlight></codeline>
+<codeline lineno="285"><highlight class="normal"><sp/><sp/><sp/><sp/>mig_prob,</highlight></codeline>
+<codeline lineno="286"><highlight class="normal"></highlight></codeline>
+<codeline lineno="287"><highlight class="normal"><sp/><sp/><sp/><sp/>scorer,</highlight></codeline>
+<codeline lineno="288"><highlight class="normal"></highlight></codeline>
+<codeline lineno="289"><highlight class="normal"><sp/><sp/><sp/><sp/>classes,<sp/></highlight><highlight class="comment">//<sp/>TODO:<sp/>get<sp/>rid<sp/>of<sp/>this<sp/>parameter?<sp/>for<sp/>some<sp/>reason,<sp/>when<sp/>i<sp/>remove<sp/>it<sp/>(or<sp/>set<sp/>it<sp/>to<sp/>any<sp/>value)<sp/>the<sp/>load<sp/>population<sp/>starts<sp/>to<sp/>fail<sp/>with<sp/>regression</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="290"><highlight class="normal"><sp/><sp/><sp/><sp/>class_weights,</highlight></codeline>
+<codeline lineno="291"><highlight class="normal"><sp/><sp/><sp/><sp/>sample_weights,</highlight></codeline>
+<codeline lineno="292"><highlight class="normal"></highlight></codeline>
+<codeline lineno="293"><highlight class="normal"><sp/><sp/><sp/><sp/>classification,</highlight></codeline>
+<codeline lineno="294"><highlight class="normal"><sp/><sp/><sp/><sp/>n_classes,</highlight></codeline>
+<codeline lineno="295"><highlight class="normal"></highlight></codeline>
+<codeline lineno="296"><highlight class="normal"><sp/><sp/><sp/><sp/>shuffle_split,</highlight></codeline>
+<codeline lineno="297"><highlight class="normal"><sp/><sp/><sp/><sp/>validation_size,</highlight></codeline>
+<codeline lineno="298"><highlight class="normal"><sp/><sp/><sp/><sp/>feature_names,</highlight></codeline>
+<codeline lineno="299"><highlight class="normal"><sp/><sp/><sp/><sp/>feature_types,</highlight></codeline>
+<codeline lineno="300"><highlight class="normal"><sp/><sp/><sp/><sp/>batch_size,</highlight></codeline>
+<codeline lineno="301"><highlight class="normal"><sp/><sp/><sp/><sp/>weights_init,</highlight></codeline>
+<codeline lineno="302"><highlight class="normal"></highlight></codeline>
+<codeline lineno="303"><highlight class="normal"><sp/><sp/><sp/><sp/>load_population,</highlight></codeline>
+<codeline lineno="304"><highlight class="normal"><sp/><sp/><sp/><sp/>save_population,</highlight></codeline>
+<codeline lineno="305"><highlight class="normal"></highlight></codeline>
+<codeline lineno="306"><highlight class="normal"><sp/><sp/><sp/><sp/>logfile,</highlight></codeline>
+<codeline lineno="307"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="308"><highlight class="normal"><sp/><sp/><sp/><sp/>n_jobs</highlight></codeline>
+<codeline lineno="309"><highlight class="normal">);</highlight></codeline>
+<codeline lineno="310"><highlight class="normal"></highlight></codeline>
+<codeline lineno="311"><highlight class="normal">}<sp/></highlight><highlight class="comment">//<sp/>Brush</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="312"><highlight class="normal"></highlight></codeline>
+<codeline lineno="313"><highlight class="normal"></highlight><highlight class="preprocessor">#endif</highlight></codeline>
     </programlisting>
     <location file="/home/runner/work/brush/brush/src/params.h"/>
   </compounddef>

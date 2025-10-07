@@ -10,7 +10,6 @@
     <includes refid="da/d8e/bandit__operator_8h" local="yes">bandit_operator.h</includes>
     <includes refid="d2/d94/dummy_8h" local="yes">dummy.h</includes>
     <includes refid="db/ddd/thompson_8h" local="yes">thompson.h</includes>
-    <includes refid="d9/df5/linear__thompson_8h" local="yes">linear_thompson.h</includes>
     <includedby refid="d7/d01/bandit_8cpp" local="yes">bandit.cpp</includedby>
     <includedby refid="d4/d93/bind__engines_8h" local="yes">bind_engines.h</includedby>
     <includedby refid="d8/df7/bind__variation_8h" local="yes">bind_variation.h</includedby>
@@ -38,8 +37,6 @@
         </childnode>
         <childnode refid="64" relation="include">
         </childnode>
-        <childnode refid="66" relation="include">
-        </childnode>
       </node>
       <node id="61">
         <label>bandit_operator.h</label>
@@ -59,16 +56,6 @@
         <label>dummy.h</label>
         <link refid="d2/d94/dummy_8h"/>
         <childnode refid="61" relation="include">
-        </childnode>
-      </node>
-      <node id="66">
-        <label>linear_thompson.h</label>
-        <link refid="d9/df5/linear__thompson_8h"/>
-        <childnode refid="61" relation="include">
-        </childnode>
-        <childnode refid="65" relation="include">
-        </childnode>
-        <childnode refid="27" relation="include">
         </childnode>
       </node>
       <node id="64">
@@ -524,10 +511,6 @@
       <node id="2">
         <label>bandit.cpp</label>
         <link refid="d7/d01/bandit_8cpp"/>
-        <childnode refid="3" relation="include">
-        </childnode>
-        <childnode refid="5" relation="include">
-        </childnode>
       </node>
       <node id="1">
         <label>bandit.h</label>
@@ -620,64 +603,58 @@
 <codeline lineno="14"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;<ref refid="da/d8e/bandit__operator_8h" kindref="compound">bandit_operator.h</ref>&quot;</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="15"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;<ref refid="d2/d94/dummy_8h" kindref="compound">dummy.h</ref>&quot;</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="16"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;<ref refid="db/ddd/thompson_8h" kindref="compound">thompson.h</ref>&quot;</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="17"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;<ref refid="d9/df5/linear__thompson_8h" kindref="compound">linear_thompson.h</ref>&quot;</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="18"><highlight class="normal"></highlight></codeline>
-<codeline lineno="19"><highlight class="normal"></highlight><highlight class="keyword">namespace<sp/></highlight><highlight class="normal"><ref refid="dc/d5c/namespaceBrush" kindref="compound">Brush</ref><sp/>{</highlight></codeline>
-<codeline lineno="20"><highlight class="normal"></highlight><highlight class="keyword">namespace<sp/></highlight><highlight class="normal"><ref refid="da/d94/namespaceBrush_1_1MAB" kindref="compound">MAB</ref><sp/>{</highlight></codeline>
-<codeline lineno="21"><highlight class="normal"></highlight></codeline>
-<codeline lineno="22"><highlight class="normal"></highlight><highlight class="keyword">using<sp/>namespace<sp/></highlight><highlight class="normal">Brush;</highlight></codeline>
-<codeline lineno="23"><highlight class="normal"></highlight></codeline>
-<codeline lineno="32"><highlight class="normal"></highlight><highlight class="keyword">template</highlight><highlight class="normal"><sp/>&lt;</highlight><highlight class="keyword">typename</highlight><highlight class="normal"><sp/>T&gt;</highlight></codeline>
-<codeline lineno="33" refid="d4/d90/structBrush_1_1MAB_1_1Bandit" refkind="compound"><highlight class="normal"></highlight><highlight class="keyword">struct<sp/></highlight><highlight class="normal"><ref refid="d4/d90/structBrush_1_1MAB_1_1Bandit_1adc69d78fba1571b2855a80579c97f041" kindref="member">Bandit</ref></highlight></codeline>
-<codeline lineno="34"><highlight class="normal">{</highlight></codeline>
-<codeline lineno="35" refid="d4/d90/structBrush_1_1MAB_1_1Bandit_1a17c3340457413a3a80dea80d5f07e459" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">using<sp/></highlight><highlight class="normal"><ref refid="d4/d90/structBrush_1_1MAB_1_1Bandit_1a17c3340457413a3a80dea80d5f07e459" kindref="member">Iter</ref><sp/>=<sp/>tree&lt;Node&gt;::pre_order_iterator;</highlight></codeline>
-<codeline lineno="36"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
-<codeline lineno="37"><highlight class="normal"></highlight><highlight class="keyword">public</highlight><highlight class="normal">:</highlight></codeline>
-<codeline lineno="41" refid="d4/d90/structBrush_1_1MAB_1_1Bandit_1a5b4d1f00adf1fa588e2ccafec72f6e05" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>std::shared_ptr&lt;BanditOperator&lt;T&gt;&gt;<sp/><ref refid="d4/d90/structBrush_1_1MAB_1_1Bandit_1a5b4d1f00adf1fa588e2ccafec72f6e05" kindref="member">pbandit</ref>;</highlight></codeline>
-<codeline lineno="42"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>TODO:<sp/>This<sp/>should<sp/>be<sp/>a<sp/>shared<sp/>pointer<sp/>to<sp/>allow<sp/>multiple<sp/>instances<sp/>of<sp/>Bandit<sp/>to<sp/>share<sp/>the<sp/>same<sp/>operator.</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="43"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
-<codeline lineno="44" refid="d4/d90/structBrush_1_1MAB_1_1Bandit_1a8cdfc23d184ebc55a2c93eacf162ae0c" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>std::string<sp/><ref refid="d4/d90/structBrush_1_1MAB_1_1Bandit_1a8cdfc23d184ebc55a2c93eacf162ae0c" kindref="member">type</ref>;<sp/></highlight></codeline>
-<codeline lineno="45" refid="d4/d90/structBrush_1_1MAB_1_1Bandit_1a9920575ed34196d8891195af7ab9bcd8" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>vector&lt;T&gt;<sp/><ref refid="d4/d90/structBrush_1_1MAB_1_1Bandit_1a9920575ed34196d8891195af7ab9bcd8" kindref="member">arms</ref>;<sp/></highlight></codeline>
+<codeline lineno="17"><highlight class="normal"></highlight></codeline>
+<codeline lineno="18"><highlight class="normal"></highlight><highlight class="keyword">namespace<sp/></highlight><highlight class="normal"><ref refid="dc/d5c/namespaceBrush" kindref="compound">Brush</ref><sp/>{</highlight></codeline>
+<codeline lineno="19"><highlight class="normal"></highlight><highlight class="keyword">namespace<sp/></highlight><highlight class="normal"><ref refid="da/d94/namespaceBrush_1_1MAB" kindref="compound">MAB</ref><sp/>{</highlight></codeline>
+<codeline lineno="20"><highlight class="normal"></highlight></codeline>
+<codeline lineno="21"><highlight class="normal"></highlight><highlight class="keyword">using<sp/>namespace<sp/></highlight><highlight class="normal">Brush;</highlight></codeline>
+<codeline lineno="22"><highlight class="normal"></highlight></codeline>
+<codeline lineno="31" refid="d4/d90/structBrush_1_1MAB_1_1Bandit" refkind="compound"><highlight class="normal"></highlight><highlight class="keyword">struct<sp/></highlight><highlight class="normal"><ref refid="d4/d90/structBrush_1_1MAB_1_1Bandit_1a0e007a9f8217044eb0b5a9e9fccb30d5" kindref="member">Bandit</ref></highlight></codeline>
+<codeline lineno="32"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="33" refid="d4/d90/structBrush_1_1MAB_1_1Bandit_1a22965715ab666b082d226a50d84dff36" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">using<sp/></highlight><highlight class="normal"><ref refid="d4/d90/structBrush_1_1MAB_1_1Bandit_1a22965715ab666b082d226a50d84dff36" kindref="member">Iter</ref><sp/>=<sp/>tree&lt;Node&gt;::pre_order_iterator;</highlight></codeline>
+<codeline lineno="34"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="35"><highlight class="normal"></highlight><highlight class="keyword">public</highlight><highlight class="normal">:</highlight></codeline>
+<codeline lineno="39" refid="d4/d90/structBrush_1_1MAB_1_1Bandit_1ae7171024c5935b29bf475ab2e660fe2e" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>std::shared_ptr&lt;BanditOperator&gt;<sp/><ref refid="d4/d90/structBrush_1_1MAB_1_1Bandit_1ae7171024c5935b29bf475ab2e660fe2e" kindref="member">pbandit</ref>;</highlight></codeline>
+<codeline lineno="40"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>TODO:<sp/>This<sp/>should<sp/>be<sp/>a<sp/>shared<sp/>pointer<sp/>to<sp/>allow<sp/>multiple<sp/>instances<sp/>of<sp/>Bandit<sp/>to<sp/>share<sp/>the<sp/>same<sp/>operator.</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="41"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="42" refid="d4/d90/structBrush_1_1MAB_1_1Bandit_1aa686598d41be58ff1189ee62de90cecb" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>std::string<sp/><ref refid="d4/d90/structBrush_1_1MAB_1_1Bandit_1aa686598d41be58ff1189ee62de90cecb" kindref="member">type</ref>;<sp/></highlight></codeline>
+<codeline lineno="43" refid="d4/d90/structBrush_1_1MAB_1_1Bandit_1a6100cbe0bd8dffa5dff50918fcaecadb" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>vector&lt;string&gt;<sp/><ref refid="d4/d90/structBrush_1_1MAB_1_1Bandit_1a6100cbe0bd8dffa5dff50918fcaecadb" kindref="member">arms</ref>;<sp/></highlight></codeline>
+<codeline lineno="44"><highlight class="normal"></highlight></codeline>
+<codeline lineno="45" refid="d4/d90/structBrush_1_1MAB_1_1Bandit_1a8891c3797dcbd7a400ee9d3ebe3f5c5a" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>std::map&lt;string,<sp/>float&gt;<sp/><ref refid="d4/d90/structBrush_1_1MAB_1_1Bandit_1a8891c3797dcbd7a400ee9d3ebe3f5c5a" kindref="member">probabilities</ref>;<sp/></highlight></codeline>
 <codeline lineno="46"><highlight class="normal"></highlight></codeline>
-<codeline lineno="47" refid="d4/d90/structBrush_1_1MAB_1_1Bandit_1abb23983ee78e5f80d731928df406af5a" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>std::map&lt;T,<sp/>float&gt;<sp/><ref refid="d4/d90/structBrush_1_1MAB_1_1Bandit_1abb23983ee78e5f80d731928df406af5a" kindref="member">probabilities</ref>;<sp/></highlight></codeline>
-<codeline lineno="48"><highlight class="normal"></highlight></codeline>
-<codeline lineno="49"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="d4/d90/structBrush_1_1MAB_1_1Bandit_1adc69d78fba1571b2855a80579c97f041" kindref="member">Bandit</ref>();</highlight></codeline>
-<codeline lineno="50" refid="d4/d90/structBrush_1_1MAB_1_1Bandit_1ad03455f1d2abb6c3f19c86817388e2a3" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="d4/d90/structBrush_1_1MAB_1_1Bandit_1ad03455f1d2abb6c3f19c86817388e2a3" kindref="member">~Bandit</ref>(){};</highlight></codeline>
-<codeline lineno="51"><highlight class="normal"></highlight></codeline>
-<codeline lineno="57"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="d4/d90/structBrush_1_1MAB_1_1Bandit_1adc69d78fba1571b2855a80579c97f041" kindref="member">Bandit</ref>(</highlight><highlight class="keywordtype">string</highlight><highlight class="normal"><sp/><ref refid="d4/d90/structBrush_1_1MAB_1_1Bandit_1a8cdfc23d184ebc55a2c93eacf162ae0c" kindref="member">type</ref>,<sp/>vector&lt;T&gt;<sp/><ref refid="d4/d90/structBrush_1_1MAB_1_1Bandit_1a9920575ed34196d8891195af7ab9bcd8" kindref="member">arms</ref>);</highlight></codeline>
-<codeline lineno="58"><highlight class="normal"></highlight></codeline>
-<codeline lineno="64"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="d4/d90/structBrush_1_1MAB_1_1Bandit_1adc69d78fba1571b2855a80579c97f041" kindref="member">Bandit</ref>(</highlight><highlight class="keywordtype">string</highlight><highlight class="normal"><sp/><ref refid="d4/d90/structBrush_1_1MAB_1_1Bandit_1a8cdfc23d184ebc55a2c93eacf162ae0c" kindref="member">type</ref>,<sp/>map&lt;T,<sp/>float&gt;<sp/>arms_probs);</highlight></codeline>
-<codeline lineno="65"><highlight class="normal"></highlight></codeline>
-<codeline lineno="69"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="d4/d90/structBrush_1_1MAB_1_1Bandit_1afd7b456f1385ed795bc6bebbd874707b" kindref="member">set_bandit</ref>();</highlight></codeline>
-<codeline lineno="70"><highlight class="normal"></highlight></codeline>
-<codeline lineno="74"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="d4/d90/structBrush_1_1MAB_1_1Bandit_1a618fec32c27cfd2abd67dd0a756c6fd4" kindref="member">set_arms</ref>(vector&lt;T&gt;<sp/><ref refid="d4/d90/structBrush_1_1MAB_1_1Bandit_1a9920575ed34196d8891195af7ab9bcd8" kindref="member">arms</ref>);</highlight></codeline>
-<codeline lineno="75"><highlight class="normal"></highlight></codeline>
-<codeline lineno="79"><highlight class="normal"><sp/><sp/><sp/><sp/>vector&lt;T&gt;<sp/><ref refid="d4/d90/structBrush_1_1MAB_1_1Bandit_1a81ed95b6af36d310c6b0ca573d1e41df" kindref="member">get_arms</ref>();</highlight></codeline>
-<codeline lineno="80"><highlight class="normal"></highlight></codeline>
-<codeline lineno="84"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">string</highlight><highlight class="normal"><sp/><ref refid="d4/d90/structBrush_1_1MAB_1_1Bandit_1a6435fd2cd3ef52b6c9b73f1f5f7ae3a2" kindref="member">get_type</ref>();</highlight></codeline>
-<codeline lineno="85"><highlight class="normal"></highlight></codeline>
-<codeline lineno="89"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="d4/d90/structBrush_1_1MAB_1_1Bandit_1a776427889cba2b72e7eeb6bc007d0f51" kindref="member">set_type</ref>(</highlight><highlight class="keywordtype">string</highlight><highlight class="normal"><sp/><ref refid="d4/d90/structBrush_1_1MAB_1_1Bandit_1a8cdfc23d184ebc55a2c93eacf162ae0c" kindref="member">type</ref>);</highlight></codeline>
-<codeline lineno="90"><highlight class="normal"></highlight></codeline>
-<codeline lineno="94"><highlight class="normal"><sp/><sp/><sp/><sp/>map&lt;T,<sp/>float&gt;<sp/><ref refid="d4/d90/structBrush_1_1MAB_1_1Bandit_1a8b12aa7d8653bc813e1ae6fb353f6991" kindref="member">get_probs</ref>();</highlight></codeline>
-<codeline lineno="95"><highlight class="normal"></highlight></codeline>
-<codeline lineno="100"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="d4/d90/structBrush_1_1MAB_1_1Bandit_1abfbcbb2eedfe06a4843c99cbd269a0d6" kindref="member">set_probs</ref>(map&lt;T,<sp/>float&gt;<sp/>arms_probs);</highlight></codeline>
-<codeline lineno="101"><highlight class="normal"></highlight></codeline>
-<codeline lineno="107"><highlight class="normal"><sp/><sp/><sp/><sp/>map&lt;T,<sp/>float&gt;<sp/><ref refid="d4/d90/structBrush_1_1MAB_1_1Bandit_1affb89017044ba912926e6713cb1ffda1" kindref="member">sample_probs</ref>(</highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/><ref refid="d4/d90/structBrush_1_1MAB_1_1Bandit_1aafb91bb50c407dfbd67c0ef312882a36" kindref="member">update</ref>=</highlight><highlight class="keyword">false</highlight><highlight class="normal">);</highlight></codeline>
-<codeline lineno="108"><highlight class="normal"></highlight></codeline>
-<codeline lineno="117"><highlight class="normal"><sp/><sp/><sp/><sp/>T<sp/><ref refid="d4/d90/structBrush_1_1MAB_1_1Bandit_1a1f4eabc175f8f7e1b8308be103024d4d" kindref="member">choose</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>VectorXf&amp;<sp/>context);</highlight></codeline>
-<codeline lineno="118"><highlight class="normal"></highlight></codeline>
-<codeline lineno="124"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="d4/d90/structBrush_1_1MAB_1_1Bandit_1aafb91bb50c407dfbd67c0ef312882a36" kindref="member">update</ref>(T<sp/>arm,<sp/></highlight><highlight class="keywordtype">float</highlight><highlight class="normal"><sp/>reward,<sp/>VectorXf&amp;<sp/>context);</highlight></codeline>
-<codeline lineno="125"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
-<codeline lineno="126"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">template</highlight><highlight class="normal"><sp/>&lt;ProgramType<sp/>PT&gt;</highlight></codeline>
-<codeline lineno="127"><highlight class="normal"><sp/><sp/><sp/><sp/>VectorXf<sp/><ref refid="d4/d90/structBrush_1_1MAB_1_1Bandit_1a1a5001879a43a4b5e0cd7241fdd01334" kindref="member">get_context</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="db/d88/structBrush_1_1Program" kindref="compound">Program&lt;PT&gt;</ref>&amp;<sp/>program,<sp/><ref refid="dc/d5c/namespaceBrush_1a822ae4ce07ba14ae433977a635675764" kindref="member">Iter</ref><sp/>spot,</highlight></codeline>
-<codeline lineno="128"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="d4/dc3/structBrush_1_1SearchSpace" kindref="compound">SearchSpace</ref><sp/>&amp;ss,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="d2/d36/classBrush_1_1Data_1_1Dataset" kindref="compound">Dataset</ref><sp/>&amp;d);</highlight></codeline>
-<codeline lineno="129"><highlight class="normal">};</highlight></codeline>
-<codeline lineno="130"><highlight class="normal"></highlight></codeline>
-<codeline lineno="131"><highlight class="normal"></highlight><highlight class="comment">//TODO:<sp/>serialization<sp/>should<sp/>save<sp/>the<sp/>type<sp/>of<sp/>bandit<sp/>and<sp/>its<sp/>parameters</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="132"><highlight class="normal"></highlight></codeline>
-<codeline lineno="133"><highlight class="normal">}<sp/></highlight><highlight class="comment">//<sp/>MAB</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="134"><highlight class="normal">}<sp/></highlight><highlight class="comment">//<sp/>Brush</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="135"><highlight class="normal"></highlight><highlight class="preprocessor">#endif</highlight></codeline>
+<codeline lineno="47"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="d4/d90/structBrush_1_1MAB_1_1Bandit_1a0e007a9f8217044eb0b5a9e9fccb30d5" kindref="member">Bandit</ref>();</highlight></codeline>
+<codeline lineno="48" refid="d4/d90/structBrush_1_1MAB_1_1Bandit_1ac0c055ea74418b27bc2656eec7de61c6" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="d4/d90/structBrush_1_1MAB_1_1Bandit_1ac0c055ea74418b27bc2656eec7de61c6" kindref="member">~Bandit</ref>(){};</highlight></codeline>
+<codeline lineno="49"><highlight class="normal"></highlight></codeline>
+<codeline lineno="55"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="d4/d90/structBrush_1_1MAB_1_1Bandit_1a0e007a9f8217044eb0b5a9e9fccb30d5" kindref="member">Bandit</ref>(</highlight><highlight class="keywordtype">string</highlight><highlight class="normal"><sp/><ref refid="d4/d90/structBrush_1_1MAB_1_1Bandit_1aa686598d41be58ff1189ee62de90cecb" kindref="member">type</ref>,<sp/>vector&lt;string&gt;<sp/><ref refid="d4/d90/structBrush_1_1MAB_1_1Bandit_1a6100cbe0bd8dffa5dff50918fcaecadb" kindref="member">arms</ref>);</highlight></codeline>
+<codeline lineno="56"><highlight class="normal"></highlight></codeline>
+<codeline lineno="62"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="d4/d90/structBrush_1_1MAB_1_1Bandit_1a0e007a9f8217044eb0b5a9e9fccb30d5" kindref="member">Bandit</ref>(</highlight><highlight class="keywordtype">string</highlight><highlight class="normal"><sp/><ref refid="d4/d90/structBrush_1_1MAB_1_1Bandit_1aa686598d41be58ff1189ee62de90cecb" kindref="member">type</ref>,<sp/>map&lt;string,<sp/>float&gt;<sp/>arms_probs);</highlight></codeline>
+<codeline lineno="63"><highlight class="normal"></highlight></codeline>
+<codeline lineno="67"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="d4/d90/structBrush_1_1MAB_1_1Bandit_1acb35b5e93e90f30dd09e3266ae81e8ab" kindref="member">set_bandit</ref>();</highlight></codeline>
+<codeline lineno="68"><highlight class="normal"></highlight></codeline>
+<codeline lineno="72"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="d4/d90/structBrush_1_1MAB_1_1Bandit_1a830e2402a6d2b784721c38c612b290d0" kindref="member">set_arms</ref>(vector&lt;string&gt;<sp/><ref refid="d4/d90/structBrush_1_1MAB_1_1Bandit_1a6100cbe0bd8dffa5dff50918fcaecadb" kindref="member">arms</ref>);</highlight></codeline>
+<codeline lineno="73"><highlight class="normal"></highlight></codeline>
+<codeline lineno="77"><highlight class="normal"><sp/><sp/><sp/><sp/>vector&lt;string&gt;<sp/><ref refid="d4/d90/structBrush_1_1MAB_1_1Bandit_1a6fe249896107334427a46fdd5feb3772" kindref="member">get_arms</ref>();</highlight></codeline>
+<codeline lineno="78"><highlight class="normal"></highlight></codeline>
+<codeline lineno="82"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">string</highlight><highlight class="normal"><sp/><ref refid="d4/d90/structBrush_1_1MAB_1_1Bandit_1a3638d6743fcfb62c21b0f78b8450a910" kindref="member">get_type</ref>();</highlight></codeline>
+<codeline lineno="83"><highlight class="normal"></highlight></codeline>
+<codeline lineno="87"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="d4/d90/structBrush_1_1MAB_1_1Bandit_1a8227b7fc6ffd0a7a5fa5349fca85cfa1" kindref="member">set_type</ref>(</highlight><highlight class="keywordtype">string</highlight><highlight class="normal"><sp/><ref refid="d4/d90/structBrush_1_1MAB_1_1Bandit_1aa686598d41be58ff1189ee62de90cecb" kindref="member">type</ref>);</highlight></codeline>
+<codeline lineno="88"><highlight class="normal"></highlight></codeline>
+<codeline lineno="92"><highlight class="normal"><sp/><sp/><sp/><sp/>map&lt;string,<sp/>float&gt;<sp/><ref refid="d4/d90/structBrush_1_1MAB_1_1Bandit_1aebce8fa00012441f66c6375acc03b309" kindref="member">get_probs</ref>();</highlight></codeline>
+<codeline lineno="93"><highlight class="normal"></highlight></codeline>
+<codeline lineno="98"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="d4/d90/structBrush_1_1MAB_1_1Bandit_1aa9355d7069ff5b8484f55270d1ff6cd5" kindref="member">set_probs</ref>(map&lt;string,<sp/>float&gt;<sp/>arms_probs);</highlight></codeline>
+<codeline lineno="99"><highlight class="normal"></highlight></codeline>
+<codeline lineno="105"><highlight class="normal"><sp/><sp/><sp/><sp/>map&lt;string,<sp/>float&gt;<sp/><ref refid="d4/d90/structBrush_1_1MAB_1_1Bandit_1ac982cfb269eca3c87663bd039a3e4687" kindref="member">sample_probs</ref>(</highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/><ref refid="d4/d90/structBrush_1_1MAB_1_1Bandit_1a316044a5416b7ed322fce6409a54fe98" kindref="member">update</ref>=</highlight><highlight class="keyword">false</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="106"><highlight class="normal"></highlight></codeline>
+<codeline lineno="112"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">string</highlight><highlight class="normal"><sp/><ref refid="d4/d90/structBrush_1_1MAB_1_1Bandit_1aae555d46747265bdbd23c224600e3eb2" kindref="member">choose</ref>();</highlight></codeline>
+<codeline lineno="113"><highlight class="normal"></highlight></codeline>
+<codeline lineno="119"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="d4/d90/structBrush_1_1MAB_1_1Bandit_1a316044a5416b7ed322fce6409a54fe98" kindref="member">update</ref>(</highlight><highlight class="keywordtype">string</highlight><highlight class="normal"><sp/>arm,<sp/></highlight><highlight class="keywordtype">float</highlight><highlight class="normal"><sp/>reward);</highlight></codeline>
+<codeline lineno="120"><highlight class="normal">};</highlight></codeline>
+<codeline lineno="121"><highlight class="normal"></highlight></codeline>
+<codeline lineno="122"><highlight class="normal"></highlight><highlight class="comment">//TODO:<sp/>serialization<sp/>should<sp/>save<sp/>the<sp/>type<sp/>of<sp/>bandit<sp/>and<sp/>its<sp/>parameters</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="123"><highlight class="normal"></highlight></codeline>
+<codeline lineno="124"><highlight class="normal">}<sp/></highlight><highlight class="comment">//<sp/>MAB</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="125"><highlight class="normal">}<sp/></highlight><highlight class="comment">//<sp/>Brush</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="126"><highlight class="normal"></highlight><highlight class="preprocessor">#endif</highlight></codeline>
     </programlisting>
     <location file="/home/runner/work/brush/brush/src/bandit/bandit.h"/>
   </compounddef>

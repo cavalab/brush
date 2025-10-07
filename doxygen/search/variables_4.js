@@ -12,5 +12,5 @@ var searchData=
   ['dtable_5ffit_9',['dtable_fit',['../dc/d5c/namespaceBrush.html#ab00cdf5cac845f372ec06d02f7a316b5',1,'Brush']]],
   ['dtable_5fpredict_10',['dtable_predict',['../dc/d5c/namespaceBrush.html#a175d0497be0c922c453075fed37ecec0',1,'Brush']]],
   ['dtypes_11',['dtypes',['../d2/df8/structBrush_1_1Util_1_1Normalizer.html#a574c6632238c45c3b505b2c0eab9744e',1,'Brush::Util::Normalizer']]],
-  ['dynamic_5fupdate_12',['dynamic_update',['../db/d10/classBrush_1_1MAB_1_1ThompsonSamplingBandit.html#af85a615d188fd27ecd7d61ff1b2ba83a',1,'Brush::MAB::ThompsonSamplingBandit']]]
+  ['dynamic_5fupdate_12',['dynamic_update',['../db/d10/classBrush_1_1MAB_1_1ThompsonSamplingBandit.html#a08a370a0d6cd8751f1748544ff47e419',1,'Brush::MAB::ThompsonSamplingBandit']]]
 ];

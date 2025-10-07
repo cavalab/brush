@@ -1,22 +1,21 @@
 var searchData=
 [
-  ['_7ebandit_0',['~Bandit',['../d4/d90/structBrush_1_1MAB_1_1Bandit.html#ad03455f1d2abb6c3f19c86817388e2a3',1,'Brush::MAB::Bandit']]],
-  ['_7ebanditoperator_1',['~BanditOperator',['../df/dde/classBrush_1_1MAB_1_1BanditOperator.html#ac898647033aa6ca44e4c1d67391cb017',1,'Brush::MAB::BanditOperator']]],
+  ['_7ebandit_0',['~Bandit',['../d4/d90/structBrush_1_1MAB_1_1Bandit.html#ac0c055ea74418b27bc2656eec7de61c6',1,'Brush::MAB::Bandit']]],
+  ['_7ebanditoperator_1',['~BanditOperator',['../df/dde/classBrush_1_1MAB_1_1BanditOperator.html#a36fb7e5b3bbdc7f814fba82216f1c178',1,'Brush::MAB::BanditOperator']]],
   ['_7econstants_5fsimplifier_2',['~Constants_simplifier',['../d6/df2/classBrush_1_1Simpl_1_1Constants__simplifier.html#ad652683352c6e58a84f093a8b34503b9',1,'Brush::Simpl::Constants_simplifier']]],
   ['_7edispatchtable_3',['~DispatchTable',['../d3/da8/structBrush_1_1DispatchTable.html#aeaad2760d627909a9cf80fd6131f34e4',1,'Brush::DispatchTable']]],
-  ['_7edummybandit_4',['~DummyBandit',['../dd/d41/classBrush_1_1MAB_1_1DummyBandit.html#a3c4ae38c36dd19f99c94cb7a118bc259',1,'Brush::MAB::DummyBandit']]],
+  ['_7edummybandit_4',['~DummyBandit',['../dd/d41/classBrush_1_1MAB_1_1DummyBandit.html#acebdb451af6ad29ea74cdfde72ed5a61',1,'Brush::MAB::DummyBandit']]],
   ['_7eengine_5',['~Engine',['../d0/d75/classBrush_1_1Engine.html#a426bf144e6990e58cb1b1347c4a5795d',1,'Brush::Engine']]],
   ['_7eevaluation_6',['~Evaluation',['../d1/de5/classBrush_1_1Eval_1_1Evaluation.html#a7a35cc80ebd4d2573151270caacaa03e',1,'Brush::Eval::Evaluation']]],
   ['_7ehashstorage_7',['~HashStorage',['../d4/d71/classBrush_1_1Simpl_1_1HashStorage.html#a150bed4ddabbe973e01d4555724fb086',1,'Brush::Simpl::HashStorage']]],
   ['_7einexact_5fsimplifier_8',['~Inexact_simplifier',['../de/dc5/classBrush_1_1Simpl_1_1Inexact__simplifier.html#a8b53abd24e3b1b8018379befdce0059a',1,'Brush::Simpl::Inexact_simplifier']]],
   ['_7elexicase_9',['~Lexicase',['../d2/dd0/classBrush_1_1Sel_1_1Lexicase.html#a1df9142fbfc3995866d93f3cad5b6fd0',1,'Brush::Sel::Lexicase']]],
-  ['_7elinearthompsonsamplingbandit_10',['~LinearThompsonSamplingBandit',['../d1/d67/classBrush_1_1MAB_1_1LinearThompsonSamplingBandit.html#a2c6d2fff662adf5384d92e97579e1884',1,'Brush::MAB::LinearThompsonSamplingBandit']]],
-  ['_7ensga2_11',['~NSGA2',['../d3/d7d/classBrush_1_1Sel_1_1NSGA2.html#a0566b494d27cacc5bebc27c280a47600',1,'Brush::Sel::NSGA2']]],
-  ['_7eparameters_12',['~Parameters',['../de/deb/structBrush_1_1Parameters.html#a123bc3a7c8b17c0add03f6fbb128b6e4',1,'Brush::Parameters']]],
-  ['_7epopulation_13',['~Population',['../da/da3/classBrush_1_1Pop_1_1Population.html#a95bb307f431f7ab815f724c0e159b797',1,'Brush::Pop::Population']]],
-  ['_7ernd_14',['~Rnd',['../d2/d2d/classBrush_1_1Util_1_1Rnd.html#a69f29eab729d9b0921b8b4a28c985d1c',1,'Brush::Util::Rnd']]],
-  ['_7eselection_15',['~Selection',['../dd/d0f/structBrush_1_1Sel_1_1Selection.html#a4e5b67978a7e599d86717deffa91b215',1,'Brush::Sel::Selection']]],
-  ['_7eselectionoperator_16',['~SelectionOperator',['../de/db9/classBrush_1_1Sel_1_1SelectionOperator.html#a67d05df40cbc572d3b950523d2daf786',1,'Brush::Sel::SelectionOperator']]],
-  ['_7ethompsonsamplingbandit_17',['~ThompsonSamplingBandit',['../db/d10/classBrush_1_1MAB_1_1ThompsonSamplingBandit.html#abed8e057121586536d694e1f06626025',1,'Brush::MAB::ThompsonSamplingBandit']]],
-  ['_7evariation_18',['~Variation',['../d5/d14/classBrush_1_1Var_1_1Variation.html#a68dde038b2d0554791ee4a8da2f7e623',1,'Brush::Var::Variation']]]
+  ['_7ensga2_10',['~NSGA2',['../d3/d7d/classBrush_1_1Sel_1_1NSGA2.html#a0566b494d27cacc5bebc27c280a47600',1,'Brush::Sel::NSGA2']]],
+  ['_7eparameters_11',['~Parameters',['../de/deb/structBrush_1_1Parameters.html#a123bc3a7c8b17c0add03f6fbb128b6e4',1,'Brush::Parameters']]],
+  ['_7epopulation_12',['~Population',['../da/da3/classBrush_1_1Pop_1_1Population.html#a95bb307f431f7ab815f724c0e159b797',1,'Brush::Pop::Population']]],
+  ['_7ernd_13',['~Rnd',['../d2/d2d/classBrush_1_1Util_1_1Rnd.html#a69f29eab729d9b0921b8b4a28c985d1c',1,'Brush::Util::Rnd']]],
+  ['_7eselection_14',['~Selection',['../dd/d0f/structBrush_1_1Sel_1_1Selection.html#a4e5b67978a7e599d86717deffa91b215',1,'Brush::Sel::Selection']]],
+  ['_7eselectionoperator_15',['~SelectionOperator',['../de/db9/classBrush_1_1Sel_1_1SelectionOperator.html#a67d05df40cbc572d3b950523d2daf786',1,'Brush::Sel::SelectionOperator']]],
+  ['_7ethompsonsamplingbandit_16',['~ThompsonSamplingBandit',['../db/d10/classBrush_1_1MAB_1_1ThompsonSamplingBandit.html#a518c1dfe7269e964e90c88960c95474d',1,'Brush::MAB::ThompsonSamplingBandit']]],
+  ['_7evariation_17',['~Variation',['../d5/d14/classBrush_1_1Var_1_1Variation.html#a68dde038b2d0554791ee4a8da2f7e623',1,'Brush::Var::Variation']]]
 ];
